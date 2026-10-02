@@ -1,0 +1,31 @@
+{
+  "include": [
+    "**/*.md",
+    "**/*.json",
+    ".gitignore",
+    "**/tests/**",
+    "**/__tests__/**",
+    "**/*.test.{js,jsx,ts,tsx}",
+    "**/*.spec.{js,jsx,ts,tsx}",
+    "**/test_*.py",
+    "**/*_test.{py,go,rs}"
+  ],
+  "exclude": [
+    ".fullops-squad/docs/evaluations/qa-reports/**/*.{png,jpg,jpeg,gif,webp,mp4,mov}",
+    ".fullops-squad/docs/evaluations/qa-reports/**/*.log",
+    ".fullops-squad/docs/evaluations/qa-reports/*-test/*/play/state-*.json",
+    ".fullops-squad/docs/evaluations/qa-reports/*-test/*/play/action-*.json",
+    "**/*.bak",
+    ".fullops-squad/board/board-data.js"
+  ],
+  "rules": [
+    {
+      "path": "**/*.md",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "path": "**/*.json",
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}
