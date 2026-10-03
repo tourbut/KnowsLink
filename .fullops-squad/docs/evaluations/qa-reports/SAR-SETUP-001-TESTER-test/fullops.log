@@ -1,0 +1,13 @@
+$ lint.py --repo . --from 729446d8da57 @ f1f0848 -> exit 1
+WARNING LINT-001 .fullops-squad/lint/lint.json 이 브랜치의 lint 설정 변경은 적용하지 않았습니다. 병합 후 적용되니 변경 이유를 검토하세요
+ERROR DOC-003 .fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md front matter: front matter 없음. `deliverables.py --stamp --path docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md`로 다시 쓴다
+WARNING LINT-000 .fullops-squad/lint/lint.json 프로젝트 lint 명령이 등록되지 않았습니다. setup에서 기존 도구를 연결하세요
+head f1f0848143a6 / 파일 56 / ERROR 1 / WARNING 2 / 실행 불가 0
+
+$ lint.py --repo . --from 729446d8da57 @ c2e8e9b -> exit 0
+WARNING LINT-001 .fullops-squad/lint/lint.json 이 브랜치의 lint 설정 변경은 적용하지 않았습니다. 병합 후 적용되니 변경 이유를 검토하세요
+WARNING LINT-000 .fullops-squad/lint/lint.json 프로젝트 lint 명령이 등록되지 않았습니다. setup에서 기존 도구를 연결하세요
+head c2e8e9bded9b / 파일 56 / ERROR 0 / WARNING 2 / 실행 불가 0
+
+$ deliverables.py --repo . --strict @ c2e8e9b -> exit 0
+검사: 13 / 미작성: 11 / 문제: 0 / 경고: 0

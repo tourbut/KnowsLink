@@ -76,3 +76,18 @@ summary: dev 완료 SHA 0cc10b0의 수락 기준별 독립 QA 결과와 한계
 - 실제 Tunnel·운영 배포·네 벤더 어댑터·C1–C5 보안 동작은 범위 밖이며 검증하지 않았다.
 - ARM 등 다른 플랫폼과 다른 Docker 버전은 실행하지 않았다.
 - 문서 메타데이터 검사는 의미적 수락을 대신하지 않는다.
+
+## tester 최종 검사
+
+기준 ref는 `729446d8da57`이다. 결과 파일은 `SAR-SETUP-001-TESTER-test/`에 있다. 문서 자신의 SHA는 적을 수 없으므로 최종 커밋 SHA와 최종 lint 결과는 worker_done 보고에 적는다.
+
+| 대상 SHA | 명령 | 종료코드 | ERROR | WARNING | 실행 불가 |
+|---|---|---|---|---|---|
+| `f1f0848` (QA 문서·로그 커밋) | `lint.py --from 729446d8da57` | 1 | 1 | 2 | 0 |
+| `c2e8e9b` (coor의 메타데이터 커밋 `82910be` 반영) | `lint.py --from 729446d8da57` | 0 | 0 | 2 | 0 |
+| `c2e8e9b` | `deliverables.py --strict` | 0 | 문제 0 | 경고 0 | 검사 13, 미작성 11 |
+| `c2e8e9b` | `git diff --check` | 0 | | | |
+
+- `f1f0848`의 ERROR 1은 DOC-003이다. 대상은 coor가 추가한 `SAR-SETUP-001-DEV-099-review/report.md`의 front matter 누락이다. tester 문서의 오류가 아니다. coor가 `82910be`에서 메타데이터를 등록했고 그 커밋만 cherry-pick했다. 실패 기록은 [fullops-f1f0848-error1.json](SAR-SETUP-001-TESTER-test/fullops-f1f0848-error1.json)에 보존한다.
+- WARNING 2건은 LINT-001(이 브랜치의 `lint.json` 변경은 병합 후 적용)과 LINT-000(기준 `commands`가 비어 있음)이다. 기준 `commands`가 비어 있으므로 이 통과는 제품 lint 실행의 증거가 아니다. 제품 동작 판정은 dev SHA `0cc10b0`의 직접 검사 결과에 연결한다.
+- 원천 스냅샷은 변경하지 않았다. 기준 ref를 바꾸지 않았다.

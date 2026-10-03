@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "base": "729446d8da57b9be5397608315821990d4f4606d",
+  "merge_base": "729446d8da57b9be5397608315821990d4f4606d",
+  "head": "f1f0848143a6dc721a44dd50820789ae19e49a0e",
+  "config_sha256": "1e5b922b7cdd4b950aeedf73effaeb8daaf252d4394e192ead1b11798142abbc",
+  "commands": [],
+  "violations": [
+    {
+      "code": "LINT-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": ".fullops-squad/lint/lint.json",
+      "message": "이 브랜치의 lint 설정 변경은 적용하지 않았습니다. 병합 후 적용되니 변경 이유를 검토하세요"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md`로 다시 쓴다"
+    },
+    {
+      "code": "LINT-000",
+      "severity": "WARNING",
+      "line": null,
+      "path": ".fullops-squad/lint/lint.json",
+      "message": "프로젝트 lint 명령이 등록되지 않았습니다. setup에서 기존 도구를 연결하세요"
+    }
+  ],
+  "summary": {
+    "files": 56,
+    "errors": 1,
+    "warnings": 2,
+    "unavailable": 0
+  }
+}
