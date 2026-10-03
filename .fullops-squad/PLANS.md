@@ -366,3 +366,8 @@ OPS f5a73a3/리뷰 c0e37c0는 로컬·origin/main 0e4b5de에 포함됐다. 두 �
 QA task_33e3336872e4 / ctx_fcf73eae42eb / term_849b3e3a-68dc-436c-9002-c838535d61ba를 실제 Grok 4.7 high 새 세션으로 배정했다. input_accepted와 live/working 상태를 확인했다. 제품은 고정 4262d02이며 운영 main 동기화는 제품 코드를 바꾸지 않았다. QA 완료 전문·held 보존·수정 후 고정 SHA의 독립 리뷰를 기다린다. 새 기능과 실제 배포는 시작하지 않는다.
 
 정리 대상 fullops-designer-pilot HEAD 69dbec4와 fullops-dev-mvp HEAD a6a10c7은 깨끗하며 연결된 터미널이 없다. origin/main에 아직 없는 완료 조상이 각각 4/3개이므로 필수 검토와 원격 통합 후 Orca worktree rm을 실행한다. 임시 브랜치·완료 기록은 병합 조상 관계로 보존한다.
+
+
+## 수정 후보 legacy claim high — 2026-10-03
+
+reviewer escalation msg_5d70016552f0: 고정 4262d02는 새 human claim 경계를 차단하지만 기존 a6a10c7의 실제 State 메서드로 발급된 deliver:human ClaimToken을 authorize/relay.result가 수락한다. owner gates=0 재현으로 수락 차단이다. reviewer가 test-only overlay 증거·high 보고를 완료할 때까지 dev 체크아웃을 변경하지 않는다. 이후 같은 SAR-MVP-001-DEV의 새 구현 세션에 고정 증거를 인계하고 기존 claim 무효화와 parentRouting 경계를 담당 DEV가 수정한다. QA에는 현재 고정 후보 검증을 마무리하고 제품 수락과 구별하도록 전달했다. 새 후보에서 narrow 독립 재검증·고정 SHA 리뷰가 필요하다. coor가 계속 조정하며 임시 워크트리 정리는 원격 통합 후다.

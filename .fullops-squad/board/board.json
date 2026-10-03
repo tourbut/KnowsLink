@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "OPS D12 독립 검토·main 반영 완료. MVP 수정 후보의 독립 QA·리뷰 대기. 실제 배포 보류.",
+  "summary": "독립 리뷰에서 기존 human claim 재사용 high 재현. DEV 후속 수정·재검증 전 제품 수락 보류.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -51,7 +51,7 @@
       "deliverables": [
         "D04"
       ],
-      "note": "기존 QA 31 pass·8 held·0 fail 보존. reviewer high 재현으로 수락 차단; DEV 수정·UI 기록·독립 재검증 진행."
+      "note": "새 human claim 차단은 통과. 기존 claim token 재사용 high 미해결로 수락 차단."
     },
     {
       "name": "실제 어댑터·일정 조회",
