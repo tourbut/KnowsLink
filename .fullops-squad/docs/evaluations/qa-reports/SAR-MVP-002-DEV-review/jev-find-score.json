@@ -1,0 +1,46 @@
+{
+  "task_key": "SAR-MVP-002-DEV",
+  "find_head": "e732fedb8a7f80b9813219bf2dbc65fc029ff272",
+  "base": "dbdd70086971285b790683f362702e5a9ff55acd",
+  "head": "552586b6e886f95bffa9a000a031ea03070afedb",
+  "changed_existing": [
+    "Makefile",
+    "adapters/package.json",
+    "adapters/src/index.ts",
+    "adapters/src/synthetic.ts"
+  ],
+  "new_files": [
+    "adapters/.cursor-plugin/plugin.json",
+    "adapters/README.md",
+    "adapters/mcp.json",
+    "adapters/package-lock.json",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/core.ts",
+    "adapters/src/mcp.test.ts",
+    "adapters/src/mcp.ts",
+    "scripts/package_plugin.py"
+  ],
+  "candidates": [
+    "README.md",
+    "adapters/eslint.config.mjs",
+    "adapters/package.json",
+    "adapters/src/index.ts",
+    "adapters/src/synthetic.ts",
+    "cmd/relay/main.go",
+    "deploy/knowslink/access_apply.py",
+    "internal/config/config.go",
+    "internal/relay/registry.go",
+    "scripts/verify_mvp.py"
+  ],
+  "hits": [
+    "adapters/package.json",
+    "adapters/src/index.ts",
+    "adapters/src/synthetic.ts"
+  ],
+  "recall": 0.75,
+  "precision": 0.3,
+  "existence_status": "absent",
+  "existence_correct": false,
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
