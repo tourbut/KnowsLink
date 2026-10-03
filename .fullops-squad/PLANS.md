@@ -596,3 +596,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - FIX 독립 리뷰 ce0946dd701b6dca627cc0aaaa41cdb85fa7610f 수락: F01~F08 해소, critical/high/medium 0. 신규 low N01 Node 선교체·N02 swap 중 신호·N03 관리폴더 교체/SIGKILL stage 잔존은 미해결로 보존한다. 댓글은 실패 시 전체 준비물 보존을 보장하지 않는다. msg_25cfedf0defe는 좁은QA·최종lint·main push까지 hold, coor 담당.
 
 - 최신 QA 3f71848ac893732181f01f79ce814e1407bf1058 수락 범위: 설치/재실행/거절/추출·env-i실패보존/ZIP d3037/레포밖 tools2·held 통과. swap실패 보존 assert 3개 실패는 리뷰 N02와 동일 low 미해결로 수락하며 전체 QA pass로 표시하지 않는다. ce0946dd delta리뷰는 critical/high/medium0으로 수락. 실제 계정 등록은 owner 재시험 대기. 원본8e46·96d9673·87cfb7c와 최신423db6a·ce0946dd·3f71848을 main 통합한다.
+
+- 제품·리뷰·QA를 main/origin 8f18707af794e8a7963e3f054bca87b576dc50bf에 일반push하고 6개 완료SHA 조상 확인. 이슈 댓글 https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5971769608 게시·원문 대조·OPEN 확인. 실제 Bot 등록/카탈로그/status는 미검증, owner 재시험 대기. lint ERROR0/WARNING1(SIZE001 기존 PLANS 증가). integration pending0, delivery_22bb3f2dbb12 ack. DEV2·OPS2 terminal release, TESTER2 user_requested/external_terminal retained. 남은 모든 역할 터미널 tui-idle 확인 후 깨끗한 브랜치 동기화한다.
