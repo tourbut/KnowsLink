@@ -1,0 +1,70 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-BETA-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D10",
+    "D03"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.84,
+        "product": 0.16
+      },
+      "confidence": 0.68
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "tester": 0.01,
+        "dev": 0.72,
+        "ops": 0.27
+      },
+      "confidence": 0.59
+    },
+    "docs": {
+      "D01": 0.46,
+      "D02": 0.5,
+      "D03": 0.65,
+      "D04": 0.41,
+      "D05": 0.53,
+      "D06": 0.51,
+      "D07": 0.4,
+      "D08": 0.36,
+      "D09": 0.45,
+      "D10": 0.72,
+      "D11": 0.47,
+      "D12": 0.85,
+      "D13": 0.54
+    }
+  },
+  "usage": {
+    "input_tokens": 2449,
+    "output_tokens": 314,
+    "cost": 0.000102858
+  },
+  "error": null,
+  "latency_seconds": 0.278,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "제품범위는 사용자 승인 합성·접근 제한 베타이며 서버/Tunnel/Access 준비·배포 검증은 OPS 기술 책임이다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}
