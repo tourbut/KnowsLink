@@ -9,7 +9,7 @@ from tempfile import TemporaryDirectory
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = [".cursor-plugin/plugin.json", "mcp.json", "README.md", "skills/knowslink/SKILL.md", "dist/plugin.js"]
+FILES = [".cursor-plugin/plugin.json", "mcp.json", ".grok-plugin/plugin.json", ".mcp.json", "README.md", "skills/knowslink/SKILL.md", "dist/plugin.js"]
 
 
 def add(archive, name, content):
@@ -32,6 +32,8 @@ def main():
     with ZipFile(output, "w", ZIP_DEFLATED) as archive:
         marketplace = {"name": "knowslink-plugins", "owner": {"name": "KnowsLink"}, "plugins": [{"name": "knowslink", "source": "knowslink", "description": "Human-gated pull relay connector; actual connection held"}]}
         add(archive, ".cursor-plugin/marketplace.json", json.dumps(marketplace, indent=2) + "\n")
+        # Grok reads .grok-plugin/ and .mcp.json only; it ignores the Cursor manifest and mcp.json.
+        add(archive, ".grok-plugin/marketplace.json", json.dumps(marketplace, indent=2) + "\n")
         for name, path in sources:
             add(archive, "knowslink/" + name, path.read_bytes())
         add(archive, "knowslink/package.json", json.dumps({"name": "knowslink", "version": "0.1.0", "private": True, "type": "module", "engines": {"node": ">=22.22.2 <23"}}) + "\n")

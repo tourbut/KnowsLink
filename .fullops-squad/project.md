@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 프로젝트 기준
 status: review
-updated: 2026-10-03
+updated: 2026-10-04
 owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV]
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV]
 summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다
 ---
 
@@ -47,6 +47,7 @@ summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계�
 - 합성 업무 DB·경합·TypeScript/Go UI 연동: `make verify-mvp` (고유 Compose project, 자기 자원만 회수).
 - 실제 sqlc 생성: `make generate`; 생성물 diff는 `git diff --exit-code -- internal/database`.
 - D08 테이블 정의 생성: `make schema`.
+- Grok plugin 패키지·실제 CLI 설치 검사: `make verify-grok-plugin` (임시 HOME의 `grok plugin install`·`grok mcp doctor`, 사용자 `~/.grok` 미변경).
 - 운영 배포·실제 Tunnel 연결: 후보 수락 뒤 OPS 담당.
 
 ## 공통 기준의 적용과 예외
