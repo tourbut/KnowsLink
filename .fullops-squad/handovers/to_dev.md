@@ -123,8 +123,25 @@ D02를 upstream으로 연결하고 초기 구성만 문서화한다. `fullops-de
 첫 기능 MVP의 human-gate 포함 결정은 유지한다. 이번 설정을 기능 MVP 완료로 표시하지 않는다.
 기능 골격이 업무 요청을 수락하거나 approve/exec 성공을 반환하지 않게 한다. webhook/evidence fetch와 실데이터 silent 경로는 열지 않는다.
 가격·Free N·추가 rate/size 제한을 발명하지 않는다. 운영 배포에 필요한 미결정 정책은 후속으로 남긴다.
-기술 세부는 승인 범위 안에서 직접 결정한다. 원천과 충돌하거나 설명되지 않는 검증 실패가 생기면 preamble의 ask로 coordinator에게 묻는다.
+기술 판단은 dev 책임이다. 위임된 범위의 버전·경로·도구·설정·구현·검증 방법은 추가 ask 없이 직접 결정하고 D03과 실행 기록에 근거를 남긴다.
+제품 규칙 변경·범위 확대·공유 제품 기준의 불명확성, 잠긴 원천 선택 변경, 승인 범위 밖 행위 또는 설명되지 않는 검증 실패가 있을 때만 preamble의 ask로 coordinator에게 묻는다.
 완료 후 coor가 이 SHA를 tester에게 전달한다. tester와 동시에 제품 코드를 수정하지 않는다.
+
+### 후속 범위 확인 — msg_1dbf16aa5bc7
+
+질문 원문은 `.fullops-squad/docs/planning/SAR-SETUP-001-question.md`에 있다. 다음 답변은 D02의 제품 범위를 해석한다. 기술 설계의 타당성 판정과 구현 선택은 dev가 수행한다. 기준 ref는 `729446d8da57`이다.
+
+답 원문:
+
+> 제안한 루트 Go module, 기동 확인용 `cmd/relay`의 `healthz`·DB ping, 별도 `cmd/migrate`의 goose SQL-only 구성, `internal/config`, `db/migrations`·`db/queries`와 sqlc 설정, 벤더 연결 없는 TypeScript adapter 골격, npm lock·ESLint·Prettier·tsc, Makefile 통합 lint, Dockerfile·Compose 네 서비스, D03과 재현 검증 스크립트는 D02의 초기 구성 범위에 포함됩니다.
+> loopback 기본값, cloudflared의 선택 profile·활성화 시 token 필수, DB 포트 미공개, 빈 migration의 명시적 no-op은 업무 기능이나 운영 연결을 추가하지 않는 개발 구성으로 범위에 포함됩니다.
+> 기술 판단은 dev 책임이며, 잠긴 원천 선택과 기존 수락 기준을 지키는 버전·디렉터리·설정·도구·구현·검증 방법은 추가 ask 없이 직접 결정하고 D03과 실행 기록에 근거를 남기십시오.
+> 제품 규칙 변경·범위 확대·공유 제품 기준의 불명확성, 잠긴 원천 선택 변경, 승인 범위 밖 행위 또는 설명되지 않는 검증 실패가 있을 때만 coordinator에게 질문하십시오.
+
+이 답변은 D02의 수락 기준을 변경하지 않는다. `healthz`·DB ping은 기동·상태 확인에만 사용하며 업무 API·승인 UI·벤더 연결·실데이터 경로를 추가하지 않는다.
+빈 migration의 no-op과 업무 스키마 부재로 실행하지 못한 SQL/codegen 검사는 실제 migration·생성 검사 성공과 구분한다. 미적용 사유를 기록하며 필수 제품 lint의 실패 검출은 생략하지 않는다.
+Compose 네 서비스의 구성 검사, 비밀값 없는 예시 설정, 외부 서비스 비활성 상태의 검증은 기존 SETUP-03·04를 따른다. 실제 Tunnel 연결과 운영 배포는 범위 밖이다.
+제품 범위와 수락 기준이 같으므로 D02는 수정하지 않는다. D03 작성·기술 검증은 dev, 완료 SHA 이후 독립 검증은 tester가 수행한다.
 
 ## 완료 보고
 
