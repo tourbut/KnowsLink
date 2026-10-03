@@ -71,14 +71,14 @@ summary: dev 완료 SHA의 초기 구성과 lint 독립 검증
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] dev 완료 SHA와 기술 정본·실제 검사 명령을 확인한다. SHA와 설치된 도구 버전을 QA 보고서에 고정한다.
-- [ ] `docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md`에 D02의 수락 기준별 정상·실패 시나리오를 작성한다.
-- [ ] 깨끗한 독립 체크아웃에서 문서 명령만으로 의존성 설치, Go·TypeScript 빌드·최소 실행, Compose 구성 검증, 제품 lint를 재현한다.
-- [ ] Go 포맷 위반, TypeScript lint 위반·타입 오류를 임시 복제본 또는 fixture에 주입하고 비정상 종료를 확인한다. 원복 후 정상 검사를 재실행한다.
-- [ ] 예시 환경 설정과 필수값 누락, 비밀값 비추적, Postgres 비공개, one-shot migration, API auto-up 부재, 외부 기능 비활성을 확인한다.
-- [ ] dev가 선택한 lint 도구가 실제 소유 소스를 검사하는지 확인한다. FullOps의 새 commands 연결을 읽고 등록 명령을 직접 재실행한다.
-- [ ] QA 보고서에 대상 SHA, 수락 기준별 통과·실패·미실행, 명령·종료코드·로그·한계를 남긴다. 코드 결함은 coor를 통해 dev에 전달한다.
-- [ ] 본인 실행 기록·contexts/tester.md·완료 보고를 작성하고 `work.py finish`로 보존한다. 변경을 커밋하고 필요한 FullOps 검사를 수행한다.
+- [x] dev 완료 SHA와 기술 정본·실제 검사 명령을 확인한다. SHA와 설치된 도구 버전을 QA 보고서에 고정한다.
+- [x] `docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md`에 D02의 수락 기준별 정상·실패 시나리오를 작성한다.
+- [x] 깨끗한 독립 체크아웃에서 문서 명령만으로 의존성 설치, Go·TypeScript 빌드·최소 실행, Compose 구성 검증, 제품 lint를 재현한다.
+- [x] Go 포맷 위반, TypeScript lint 위반·타입 오류를 임시 복제본 또는 fixture에 주입하고 비정상 종료를 확인한다. 원복 후 정상 검사를 재실행한다.
+- [x] 예시 환경 설정과 필수값 누락, 비밀값 비추적, Postgres 비공개, one-shot migration, API auto-up 부재, 외부 기능 비활성을 확인한다.
+- [x] dev가 선택한 lint 도구가 실제 소유 소스를 검사하는지 확인한다. FullOps의 새 commands 연결을 읽고 등록 명령을 직접 재실행한다.
+- [x] QA 보고서에 대상 SHA, 수락 기준별 통과·실패·미실행, 명령·종료코드·로그·한계를 남긴다. 코드 결함은 coor를 통해 dev에 전달한다.
+- [x] 본인 실행 기록·contexts/tester.md·완료 보고를 작성하고 `work.py finish`로 보존한다. 변경을 커밋하고 필요한 FullOps 검사를 수행한다.
 
 소유 파일: `.fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md`, `.fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md`, `.fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md`, 본인 인박스·컨텍스트·완료 기록.
 검증에 필요한 최소 테스트 파일은 dev가 정본에 등록한 테스트 경로에서만 작성한다. 임시 위반은 검증 후 제거하고 제품 수정으로 커밋하지 않는다.
