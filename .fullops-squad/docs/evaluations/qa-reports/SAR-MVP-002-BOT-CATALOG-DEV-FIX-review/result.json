@@ -3,248 +3,248 @@
   "head": "423db6a2a388ea63610462f9d3a5f4c619dd781b",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "ops independent reviewer (Claude Code, claude-sonnet-5-5)",
+  "conclusion": "수락(조건부 권고 없음, 게시 전 문구 1건 권고): critical/high 0, medium 0, low 3 신규(N-01~N-03, 모두 문서 문구·방어 경계). 원본 F-01~F-08 모두 423db6a에서 해소. 실제 앱 계정 등록·메뉴·승인 카드·status 호출은 미검증이며 원인은 미확정 가설로 유지됨.",
   "files": [
     {
       "path": ".fullops-squad/PLANS.md",
       "status": "modified",
       "insertions": 10,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "coor 소유 기록. DEV 구현 커밋이 아닌 coor 준비·병합 커밋의 추가분(10줄)을 읽었다. 실제 상태와 일치. SIZE-001 WARNING(582줄)은 기존 파일 증가이며 lint WARNING으로 기록. 수정하지 않음."
     },
     {
       "path": ".fullops-squad/board/board.json",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "coor 소유. 요약 2줄 변경을 읽었다. 유효 JSON, 역할·브랜치 설정과 충돌 없음, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 5,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D10 절 diff 전체 대조. 원인을 가설로 낮추고 Team Bots 근거 범위·AddMcpServer 부재·상대 prefix 거절·비소유 항목 거절을 설명한다. F-01~F-03 해소. 'node·knowslink를 통과한 뒤에만 교체'는 knowslink에는 맞고 Node에는 부정확(N-01)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-FIX-context.json",
       "status": "added",
       "insertions": 125,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-FIX-documents-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-FIX-find.json",
       "status": "added",
       "insertions": 59,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-FIX-route.json",
       "status": "added",
       "insertions": 76,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-REVIEW-context.json",
       "status": "added",
       "insertions": 123,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-REVIEW-documents-find.json",
       "status": "added",
       "insertions": 79,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-REVIEW-find.json",
       "status": "added",
       "insertions": 84,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-REVIEW-route.json",
       "status": "added",
       "insertions": 66,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-TESTER-context.json",
       "status": "added",
       "insertions": 123,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-TESTER-documents-find.json",
       "status": "added",
       "insertions": 84,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-TESTER-find.json",
       "status": "added",
       "insertions": 49,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DEV-TESTER-route.json",
       "status": "added",
       "insertions": 66,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 관측 JSON. 본문을 읽고 keep 결정과 후보 경로를 확인했다. 참고용이며 수락 판단에 쓰지 않음. 유효 JSON, 비밀값 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/jev-find-score.json",
       "status": "added",
       "insertions": 32,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 적중률 기록. coor 병합으로 들어온 불변 원본이다. F-01~F-08 판정 기준으로만 읽었고 수정하지 않았다. 내용이 96d9673 기록과 같음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/lint.json",
       "status": "added",
       "insertions": 28,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 lint 결과. coor 병합으로 들어온 불변 원본이다. F-01~F-08 판정 기준으로만 읽었고 수정하지 않았다. 내용이 96d9673 기록과 같음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/preview.json",
       "status": "added",
       "insertions": 132,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 preview. coor 병합으로 들어온 불변 원본이다. F-01~F-08 판정 기준으로만 읽었고 수정하지 않았다. 내용이 96d9673 기록과 같음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/report.md",
       "status": "added",
       "insertions": 68,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 보고서(96d9673). coor 병합으로 들어온 불변 원본이다. F-01~F-08 판정 기준으로만 읽었고 수정하지 않았다. 내용이 96d9673 기록과 같음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/result.json",
       "status": "added",
       "insertions": 234,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 result. coor 병합으로 들어온 불변 원본이다. F-01~F-08 판정 기준으로만 읽었고 수정하지 않았다. 내용이 96d9673 기록과 같음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/rules.json",
       "status": "added",
       "insertions": 41,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 rules. coor 병합으로 들어온 불변 원본이다. F-01~F-08 판정 기준으로만 읽었고 수정하지 않았다. 내용이 96d9673 기록과 같음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
       "status": "added",
       "insertions": 132,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "신규 132줄 전체를 읽고 공식 docs.x.ai 3종(2026-10-04 재수신) 인용과 대조. 정정표 5행·조치·검증표 일치. 독립 재실행으로 ZIP SHA256 d3037d20…과 경계 회귀 19개 구성(ok 19줄)을 확인. 댓글 초안의 '실패하면 기존 준비물을 그대로 둡니다'는 Node 교체 뒤 실패에는 부정확(N-01, 게시 전 문구 권고). 나머지 초안 문구는 공식 문서·실제 동작과 일치."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
       "status": "modified",
       "insertions": 3,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "정정 안내 1줄과 tasks 필드만 변경. 본문 보존을 확인. 남은 단정 문구(원인·카드·Settings→Plugins)는 안내 줄이 FIX 기록 우선·초안 미게시를 명시해 오도 위험 없음."
     },
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
       "status": "modified",
       "insertions": 5,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D12 12절 diff 대조. 2단계가 Setup→채팅 분기로 조건부이고 3단계가 중단·회신, AddMcpServer 부재, /workspace 비보장과 재설치 복구를 명시. F-01·F-05 해소. 공식 문서 인용과 모순 없음."
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "status": "modified",
       "insertions": 3,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D13 절 대조. 원인 단정을 미확정으로 낮추고 게시 대상을 FIX 기록 초안으로 바꿨으며 미검증을 유지. F-02·F-04 해소."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
       "status": "modified",
       "insertions": 51,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 완료 보고 전문(FIX 절 51줄) 읽음. 변경·검증·미검증이 실제 커밋·재실행과 일치. 새 ZIP SHA 재현. '실패 시 기존 준비물 보존' 표현은 N-01 범위."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
       "status": "modified",
       "insertions": 48,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "이전 OPS 리뷰(96d9673) 인박스 보존본. 내용이 원본 리뷰 보고와 일치함만 확인. 수정하지 않음."
     },
     {
       "path": ".fullops-squad/handovers/to_tester.md",
       "status": "modified",
       "insertions": 35,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "coor가 배정한 TESTER 지시서. 원본 8e46c5a 대상이라 ZIP b7882df7을 예상값으로 쓴다. 423db6a의 installer 변경은 이 QA가 덮지 않으므로 이번 독립 scratch 재현을 보완 증거로 둔다. 수정하지 않음."
     },
     {
       "path": "adapters/README.md",
       "status": "modified",
       "insertions": 41,
       "deletions": 11,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "앱 등록·CLI 절 diff 전체를 공식 문서와 대조. F-01~F-05 해소 확인. 설치 절 문장을 실제 스크립트와 대조해 N-01(Node 교체 시점 불일치)·N-03(비소유 판정은 이전 실행 형태 마커) 기록."
     },
     {
       "path": "scripts/install_bot_mcp.sh",
       "status": "modified",
       "insertions": 37,
       "deletions": 11,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "전체 70여 줄을 읽고 독립 scratch(423db6a 클론)에서 실제 실행: 첫 실행 exit0·체크섬 OK·PASS 2·ZIP d3037d20 재현, 등록 command를 /에서 env -i로 호출해 tools 2·held·stderr 0. F-06/F-07/F-08 해소를 stale·상대 prefix·node 파일로 재현. 가짜 shim으로 경계 3종 추가 확인: Node 교체 뒤 npm 실패 시 Node만 교체(N-01), 교체 구간 신호 시 bundle 소실(N-02), SIGKILL 시 .stage 잔존(N-03)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV-FIX/boundary-regress.sh.txt",
@@ -252,8 +252,8 @@
       "insertions": 64,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 txt. 내용을 직접 읽고 독립 재현과 대조했다: 스크립트 64줄이 로그의 19개 확인 항목과 일치. Node 교체 뒤 후속 실패 경우는 시험하지 않음(N-01 근거)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV-FIX/boundary-regress.txt",
@@ -261,8 +261,8 @@
       "insertions": 28,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 txt. 내용을 직접 읽고 독립 재현과 대조했다: ok 19줄·fail=0. 독립 재현(F-06~F-08, 재실행)과 같은 결과."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV-FIX/command-probe.txt",
@@ -270,8 +270,8 @@
       "insertions": 4,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 txt. 내용을 직접 읽고 독립 재현과 대조했다: /에서 env -i 실행 tools 2·held·stderr 0이 독립 프로브와 일치."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV-FIX/install-final-rerun.txt",
@@ -279,8 +279,8 @@
       "insertions": 31,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 txt. 내용을 직접 읽고 독립 재현과 대조했다: PASS 2줄·ZIP d3037d20…이 423db6a 클론 실행과 일치."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV-FIX/install-first.txt",
@@ -288,8 +288,8 @@
       "insertions": 32,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 txt. 내용을 직접 읽고 독립 재현과 대조했다: 체크섬 OK·PASS 2줄·등록 값 출력이 독립 첫 실행과 같은 흐름."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV-FIX/product-lint.txt",
@@ -297,8 +297,8 @@
       "insertions": 31,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 txt. 내용을 직접 읽고 독립 재현과 대조했다: make lint 출력. 독립 lint.json의 product-lint passed와 일치."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV-FIX/red-old-installer.txt",
@@ -306,16 +306,41 @@
       "insertions": 9,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 txt. 내용을 직접 읽고 독립 재현과 대조했다: 이전 installer의 상대 prefix exit0·node 파일 교체·STALE 유입 RED. 원본 리뷰 F-06~F-08 재현과 일치."
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "start_line": 54,
+      "end_line": 54,
+      "content": "N-01 Node는 체크섬·추출 직후(54행) 교체되고 bundle 빌드·package 검증·env -i 검사는 그 뒤(56-66행)다. 독립 재현: 구 Node(v0.0.0)와 bundle이 있는 prefix에서 Node 교체 뒤 npm이 실패하면 exit1이고 Node만 새 것이며 bundle은 기존이다. README 58행·D10 58행·FIX 기록·댓글 초안은 '검사를 통과한 Node와 bundle만 교체'·'실패하면 기존 준비물을 그대로 둔다'고 쓴다. 새 Node는 고정 SHA256으로 검증돼 실해는 작다. 수정: 문구를 'bundle 단계 실패 시 bundle은 유지, Node는 체크섬 통과 뒤 이미 교체될 수 있다'로 낮추거나 staged Node로 검사한 뒤 둘을 함께 교체한다.",
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "start_line": 41,
+      "end_line": 44,
+      "content": "N-02 swap은 mv 두 번이며 비원자적이다. 두 mv 사이에 HUP/INT/TERM이 오면 trap이 exit 1로 EXIT trap을 실행해 stage의 old-knowslink와 새 knowslink를 함께 지운다. 독립 재현(mv shim으로 첫 mv 직후 TERM 주입): exit1, $PREFIX에 knowslink 없음. 실제 창은 마이크로초이고 재실행으로 복구된다. 문서의 '실패하면 기존 준비물 보존'은 이 경우 거짓이다. 후속: 두 번째 mv 실패·신호 시 old를 되돌리는 trap.",
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "adapters/README.md",
+      "start_line": 58,
+      "end_line": 58,
+      "content": "N-03 비소유 판정은 node/bin/node·knowslink/dist/plugin.js 마커 파일 하나뿐이다. 마커가 있는 폴더는 사용자 파일이 섞여 있어도 통째로 교체된다(독립 재현: knowslink/mine.txt 소실, 형제 other.txt 보존). README는 '관리하는 경로 node·knowslink, 만들지 않은 항목은 거절'로 쓰므로 거의 맞지만 'node·knowslink 안 파일도 교체된다'는 한 줄이 없다. SIGKILL·전원 차단 뒤 .stage.*는 다음 실행이 지우지 않고 남는다(재현: .stage.XXXXXX 잔존, 다음 실행 exit0). 기존 bundle은 영향 없음. 수정: README에 폴더 통째 교체와 잔존 stage 삭제 가능을 한 줄 추가.",
+      "severity": "low",
+      "resolved": false
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "285f1146-41cc-44cf-9ff4-bbe496639170",
+    "reviewer_session": "71164814-f769-4f08-b4e3-c0334aa7a429",
+    "snapshot_path": "/tmp/knowslink-bot-catalog-review-423db6a",
     "snapshot_head": "423db6a2a388ea63610462f9d3a5f4c619dd781b",
     "read_only": true
   }
