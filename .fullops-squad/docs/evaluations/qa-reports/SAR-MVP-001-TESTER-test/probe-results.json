@@ -1,0 +1,229 @@
+{
+  "checks": [
+    {
+      "id": "QA-01-signup",
+      "result": "pass",
+      "detail": "POST /v1/owners and PoP /v1/agents returned 200 for four synthetic owners"
+    },
+    {
+      "id": "QA-01-agent-credential",
+      "result": "pass",
+      "detail": "agent credential on owner routes: 401,401,401,401"
+    },
+    {
+      "id": "QA-01-url-kid",
+      "result": "pass",
+      "detail": "URL kid status 422 error invalid_schema"
+    },
+    {
+      "id": "QA-01-rotate-reassign",
+      "result": "pass",
+      "detail": "wrong-pop 422, rotate 200, kid reuse 409 key_exists, previous key 401"
+    },
+    {
+      "id": "QA-02-before-accept",
+      "result": "pass",
+      "detail": "invite pending, send 403 human_invite_required, contacts []"
+    },
+    {
+      "id": "QA-02-deny",
+      "result": "pass",
+      "detail": "deny state denied, send 403"
+    },
+    {
+      "id": "QA-02-active-reinvite",
+      "result": "pass",
+      "detail": "accept gen 1, reinvite active gen 1"
+    },
+    {
+      "id": "QA-02-pending-concurrent",
+      "result": "pass",
+      "detail": "pending-contacts 0, accept 200,200,200,200,200,200,200,200, contacts [\"qa_a_cca03be0\"]"
+    },
+    {
+      "id": "QA-02-free-n",
+      "result": "held",
+      "detail": "Free N, price, and slot-unit stay unset. This run does not estimate them."
+    },
+    {
+      "id": "QA-03-auth-before-cache",
+      "result": "pass",
+      "detail": "send 200, unauth 401, digest leaked false"
+    },
+    {
+      "id": "QA-03-strict-schema",
+      "result": "pass",
+      "detail": "duplicate-key:422,deliver-both:422,unknown:422,taskId:422,role-user:422,bad-unicode:422,uppercase-from:422"
+    },
+    {
+      "id": "QA-04-replay-rollback",
+      "result": "pass",
+      "detail": "replay 200 id-match true, conflict 409 idempotency_conflict, ttl 422 ttl_too_long, rollback 200, id 409 id_collision"
+    },
+    {
+      "id": "QA-05-lease-30s",
+      "result": "pass",
+      "detail": "attempts 1, lease gap 30.0s"
+    },
+    {
+      "id": "QA-05-exp-min-and-ack-before-persist",
+      "result": "pass",
+      "detail": "ack-before-persist 409, short attempts 1, until-exp 0.0s"
+    },
+    {
+      "id": "QA-05-attempts-ack-claim-restart",
+      "result": "pass",
+      "detail": "attempts 2/3, late 409, delivered delivered, winners 1, restart 409"
+    },
+    {
+      "id": "QA-05-max-attempts",
+      "result": "pass",
+      "detail": "transport failed:max_attempts"
+    },
+    {
+      "id": "QA-06-revoke-before-lease",
+      "result": "pass",
+      "detail": "revoke 200, pull-revoked 200 token false, rotate 200, old-not-restored false, fresh 200 leased true"
+    },
+    {
+      "id": "QA-06-unpair-generation",
+      "result": "pass",
+      "detail": "ack 409, generation 2, old 403, new 200"
+    },
+    {
+      "id": "QA-06-abnormal-clock",
+      "result": "pass",
+      "detail": "clock 503 abnormal_clock, health 200"
+    },
+    {
+      "id": "QA-06-unknown-auth",
+      "result": "pass",
+      "detail": "unknown credential 401"
+    },
+    {
+      "id": "QA-06-epoch-cas",
+      "result": "held",
+      "detail": "Concurrent accepts and claims showed one winner. A deliberate stale-epoch 503 was not forced from outside the transaction."
+    },
+    {
+      "id": "QA-07-query-deny-and-claim",
+      "result": "pass",
+      "detail": "pre-ack leased, persist 200, authorize false/false"
+    },
+    {
+      "id": "QA-07-commit-stub",
+      "result": "pass",
+      "detail": "policy schedule.commit: human gate required; non-executable stub even after approve, executable false, done 403"
+    },
+    {
+      "id": "QA-07-escalation-binding",
+      "result": "pass",
+      "detail": "no-claim 403, bound 200, duplicate 409 duplicate_gate, recursive 403, late-exp 422 expired"
+    },
+    {
+      "id": "QA-08-ui-csrf-consume",
+      "result": "pass",
+      "detail": "hint-shown false, get true, agent 401, csrf 403, approve 303, consume 200 exec false"
+    },
+    {
+      "id": "QA-08-deny-page",
+      "result": "pass",
+      "detail": "deny-send 200 , denied true, button false"
+    },
+    {
+      "id": "QA-09-result-binding",
+      "result": "pass",
+      "detail": "direction 403, result 422, stack 422, denied 200, duplicate 403 sender_not_allowed, completion denied"
+    },
+    {
+      "id": "QA-09-result-not-command",
+      "result": "pass",
+      "detail": "intent relay.result, persist 200, ack 200, next false"
+    },
+    {
+      "id": "QA-10-off-boundaries",
+      "result": "pass",
+      "detail": "evidence 200, older-normal-not-preempted true, webhook 404"
+    },
+    {
+      "id": "QA-10-adapter-unconfigured",
+      "result": "pass",
+      "detail": "{\"state\":\"unconfigured\",\"transport\":\"pull\",\"webhook\":false,\"evidenceFetch\":false}"
+    },
+    {
+      "id": "QA-10-real-adapter",
+      "result": "held",
+      "detail": "Loopback TypeScript stub only. No vendor connection or public operation is claimed."
+    },
+    {
+      "id": "QA-10-a2a",
+      "result": "held",
+      "detail": "A2A wire fields were rejected. No claim of a current A2A revision review or push webhook."
+    },
+    {
+      "id": "QA-11-exp-clears-original",
+      "result": "pass",
+      "detail": "transport failed:expired, completion \"\", envelope f, row t"
+    },
+    {
+      "id": "QA-11-receipt-24h",
+      "result": "pass",
+      "detail": "25h message present f, 23h envelope t; wall clock was not waited"
+    },
+    {
+      "id": "QA-11-wal",
+      "result": "held",
+      "detail": "Row removal is not a claim that WAL or backups were erased."
+    },
+    {
+      "id": "QA-11-captions",
+      "result": "pass",
+      "detail": "expired true, revoked true, unavailable true, auth 401"
+    },
+    {
+      "id": "DEC-02",
+      "result": "held",
+      "detail": "Positive silent done on real data stays held. Synthetic status done was rejected and is not a silent-done pass."
+    },
+    {
+      "id": "DEC-03",
+      "result": "held",
+      "detail": "Public limits, real identity proof, and singleton throughput stay held. Synthetic pass does not replace them."
+    },
+    {
+      "id": "UI-designer",
+      "result": "held",
+      "detail": "V-01–04 captures are shared for designer visual review. This probe does not record that review as passed."
+    }
+  ],
+  "pages": [
+    {
+      "id": "v01-pending",
+      "file": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.html"
+    },
+    {
+      "id": "v02-approved",
+      "file": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.html"
+    },
+    {
+      "id": "v02-denied",
+      "file": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.html"
+    },
+    {
+      "id": "v03-expired",
+      "file": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.html"
+    },
+    {
+      "id": "v03-revoked",
+      "file": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.html"
+    },
+    {
+      "id": "v04-unavailable",
+      "file": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.html"
+    },
+    {
+      "id": "v04-unauthorized",
+      "file": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.html"
+    }
+  ]
+}
