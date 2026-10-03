@@ -1,0 +1,249 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "223d9ff5f69b6b74e50fac5a632b4819fc8e7405",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "a70db5c4db3911f42853105b2f11b7193d8688348d7f9af65d6598ef1d7687a4",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-README.md",
+      "c1-plugin.json",
+      "c2-mcp.json",
+      "c3-SKILL.md",
+      "c4-core.ts",
+      "c5-mcp.ts",
+      "c6-mcp.test.ts",
+      "c7-synthetic.ts",
+      "c8-package_plugin.py",
+      "c9-verify_mvp.py",
+      "c10-Makefile",
+      "c11-package.json",
+      "c12-SAR-MVP-002-DEV.md",
+      "c13-interface-design.md",
+      "c14-module-design.md",
+      "c15-README.md",
+      "c16-FULLOPS.md",
+      "c17-project.md",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-README.md",
+      "c1-plugin.json",
+      "c2-mcp.json",
+      "c3-SKILL.md",
+      "c4-core.ts",
+      "c5-mcp.ts",
+      "c6-mcp.test.ts",
+      "c7-synthetic.ts",
+      "c8-package_plugin.py",
+      "c9-verify_mvp.py",
+      "c10-Makefile",
+      "c11-package.json",
+      "c12-SAR-MVP-002-DEV.md",
+      "c13-interface-design.md",
+      "c14-module-design.md",
+      "c15-README.md",
+      "c16-FULLOPS.md",
+      "c17-project.md",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-README.md": {
+        "relevant": 0.81,
+        "evidence": 0.87,
+        "contradicts": 0.18,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-plugin.json": {
+        "relevant": 0.71,
+        "evidence": 0.63,
+        "contradicts": 0.1,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-mcp.json": {
+        "relevant": 0.67,
+        "evidence": 0.72,
+        "contradicts": 0.17,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-SKILL.md": {
+        "relevant": 0.81,
+        "evidence": 0.84,
+        "contradicts": 0.13,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-core.ts": {
+        "relevant": 0.59,
+        "evidence": 0.55,
+        "contradicts": 0.17,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-mcp.ts": {
+        "relevant": 0.73,
+        "evidence": 0.72,
+        "contradicts": 0.16,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-mcp.test.ts": {
+        "relevant": 0.82,
+        "evidence": 0.77,
+        "contradicts": 0.18,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-synthetic.ts": {
+        "relevant": 0.74,
+        "evidence": 0.68,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-package_plugin.py": {
+        "relevant": 0.82,
+        "evidence": 0.86,
+        "contradicts": 0.25,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-Makefile": {
+        "relevant": 0.6,
+        "evidence": 0.78,
+        "contradicts": 0.19,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-package.json": {
+        "relevant": 0.54,
+        "evidence": 0.73,
+        "contradicts": 0.14,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c12-SAR-MVP-002-DEV.md": {
+        "relevant": 0.52,
+        "evidence": 0.62,
+        "contradicts": 0.28,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c13-interface-design.md": {
+        "relevant": 0.59,
+        "evidence": 0.69,
+        "contradicts": 0.15,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c14-module-design.md": {
+        "relevant": 0.77,
+        "evidence": 0.89,
+        "contradicts": 0.17,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c15-README.md": {
+        "relevant": 0.56,
+        "evidence": 0.67,
+        "contradicts": 0.17,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c16-FULLOPS.md": {
+        "relevant": 0.34,
+        "evidence": 0.53,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c17-project.md": {
+        "relevant": 0.48,
+        "evidence": 0.73,
+        "contradicts": 0.25,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-README.md": "adapters/README.md",
+      "c1-plugin.json": "adapters/.cursor-plugin/plugin.json",
+      "c2-mcp.json": "adapters/mcp.json",
+      "c3-SKILL.md": "adapters/skills/knowslink/SKILL.md",
+      "c4-core.ts": "adapters/src/core.ts",
+      "c5-mcp.ts": "adapters/src/mcp.ts",
+      "c6-mcp.test.ts": "adapters/src/mcp.test.ts",
+      "c7-synthetic.ts": "adapters/src/synthetic.ts",
+      "c8-package_plugin.py": "scripts/package_plugin.py",
+      "c9-verify_mvp.py": "scripts/verify_mvp.py",
+      "c10-Makefile": "Makefile",
+      "c11-package.json": "adapters/package.json",
+      "c12-SAR-MVP-002-DEV.md": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV.md",
+      "c13-interface-design.md": ".fullops-squad/docs/design-docs/interface-design.md",
+      "c14-module-design.md": ".fullops-squad/docs/design-docs/module-design.md",
+      "c15-README.md": ".fullops-squad/rules/common/README.md",
+      "c16-FULLOPS.md": ".fullops-squad/FULLOPS.md",
+      "c17-project.md": ".fullops-squad/project.md",
+      "required_1": ".fullops-squad/handovers/to_tester.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 43977,
+    "output_tokens": 1292,
+    "cost": 0.001847034
+  },
+  "latency_seconds": 0.435,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-MVP-002-DEV-TESTER",
+  "role": "tester",
+  "unsent_sources": {
+    "scripts/verify_mvp.py": "sensitive or oversized passage"
+  },
+  "refused_paths": []
+}

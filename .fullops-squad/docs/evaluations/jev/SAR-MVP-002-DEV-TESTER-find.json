@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-DEV-TESTER",
+  "head": "223d9ff5f69b6b74e50fac5a632b4819fc8e7405",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 54,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 54
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.35000000000000003
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.16
+    },
+    {
+      "path": "adapters/src/mcp.test.ts",
+      "summary": "Exercise the actual SDK stdio handshake, default hold, URL guard, and redirect rejection.",
+      "probability": 0.13
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "summary": "Package a standalone Cursor/Grok Bot plugin with a strict file allowlist and no credentials.",
+      "probability": 0.11
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.09
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "summary": "Grok Bot MCP connector: held by default; only explicit loopback synthetic pulls can run.",
+      "probability": 0.05
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "summary": "Synthetic QA seed and end-to-end adapter check; credentials stay in ignored local files only.",
+      "probability": 0.03
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/.cursor-plugin/plugin.json",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.01
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/mcp.json",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.89,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3563,
+    "output_tokens": 589,
+    "cost": 0.000149646
+  },
+  "latency_seconds": 0.283,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

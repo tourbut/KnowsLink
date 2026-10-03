@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-DEV-REVIEW",
+  "head": "223d9ff5f69b6b74e50fac5a632b4819fc8e7405",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 102,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 102
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV.md",
+      "summary": "SAR-MVP-002-DEV 실행 기록 — 공식 제품 후보와 안전 pull 준비 및 검증과 재개 조건을 기록한다",
+      "probability": 0.79
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "summary": "ops 컨텍스트 — 운영 준비의 수락 경계와 서버 관찰 재사용 원칙을 보존한다",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "summary": "<과제 키> 리뷰",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.94,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 8716,
+    "output_tokens": 1069,
+    "cost": 0.000366072
+  },
+  "latency_seconds": 0.305,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
