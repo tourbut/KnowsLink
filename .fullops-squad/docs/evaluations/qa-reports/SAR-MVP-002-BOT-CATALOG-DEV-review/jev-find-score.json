@@ -1,0 +1,32 @@
+{
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV",
+  "find_head": "4d6ccfd003ee0823928f044b8528723468fba6ba",
+  "base": "8c95bde1240bf52819ce987b2d387d437610c6e8",
+  "head": "8e46c5a846e6d190e484e48be40b3dc368001a2b",
+  "changed_existing": [
+    "Makefile",
+    "adapters/README.md",
+    "scripts/verify_grok_plugin.py"
+  ],
+  "new_files": [
+    "scripts/install_bot_mcp.sh"
+  ],
+  "candidates": [
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/mcp.ts",
+    "cmd/migrate/main_test.go",
+    "scripts/package_plugin.py",
+    "scripts/verify_grok_plugin.py"
+  ],
+  "hits": [
+    "adapters/README.md",
+    "scripts/verify_grok_plugin.py"
+  ],
+  "recall": 0.667,
+  "precision": 0.333,
+  "existence_status": "found",
+  "existence_correct": true,
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
