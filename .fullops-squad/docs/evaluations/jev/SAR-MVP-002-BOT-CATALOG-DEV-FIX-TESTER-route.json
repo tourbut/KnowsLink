@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0,
+        "implementation": 1
+      },
+      "confidence": 0.99
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "tester": 0.98,
+        "dev": 0.02,
+        "ops": 0
+      },
+      "confidence": 0.97
+    },
+    "docs": {
+      "D01": 0.09,
+      "D02": 0.11,
+      "D03": 0.09,
+      "D04": 0.08,
+      "D05": 0.08,
+      "D06": 0.09,
+      "D07": 0.08,
+      "D08": 0.1,
+      "D09": 0.09,
+      "D10": 0.19,
+      "D11": 0.13,
+      "D12": 0.31,
+      "D13": 0.25
+    }
+  },
+  "usage": {
+    "input_tokens": 2507,
+    "output_tokens": 314,
+    "cost": 0.000105294
+  },
+  "error": null,
+  "latency_seconds": 0.277,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "최신수정의 좁은독립QA. 사용자 지정 Grok4.7high, 원본 QA는 이미 완료",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "6291c22462a8546fe59764ec524bf0c07f61bfa4b220d7d4180a7caf9a964435"
+}

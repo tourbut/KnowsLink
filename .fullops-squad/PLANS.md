@@ -584,3 +584,9 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - same-root DEV 보완 착수: task_f616a824269c/ctx_24132a165238/term_11d3428c-4de9-4f30-90b5-1c63802cce30. fresh claude-opus-5-5 high·turn_started 확인. 원본 QA는 독립 고정8e46c5a를 계속 검사하고 새 수정은 완료SHA의 delta 리뷰·관련 회귀만 수행한다.
 
 - DEV FIX msg_cfdd64bb4439/423db6a2a388ea63610462f9d3a5f4c619dd781b 후보 수집·coor 준비SHA 보존병합. 등록 가설/개인UI·AddMcpServer 미확정 및 잘못된Settings 안내 정정, installer staged추출/절대prefix·비소유경로거절·기존bundle보존, 관련19회귀/held·lint0. 새ZIP d3037d20…e609. integration hold와DEV retain, delta OPS 리뷰를 준비한다. 원본QA 진행인 tester inbox는 보존하고 완료 후 수정범위의 좁은QA를 대기배정한다.
+
+- 원본QA msg_e5d7c0c2747c/87cfb7c0f2361e450df1ec82190185b8a0d2feb2 수락: 고정8e46c5a 첫/재설치0·hash b7882df7…·독립env-i tools2/held/stderr0·xz무호출·무관marker/사용자설정불변·다운로드/체크섬/빌드/unsupported실패1·Ready없음·verify env4개제거/오류출력·lint0. 실제앱미검증구분·QA전문·빈인박스 확인. 수집SHA null을 실제body/cleanHEAD/아카이브 SHA로 출처 보존 보완했다. 최신423db6a 수정범위 좁은QA를 다음인박스에 배정한다.
+
+- delta OPS 착수 task_da14a4213522/ctx_669518f4a748/term_9c73ce88-b9e5-4fbb-9692-d721da1eef9b, fresh claude-sonnet-5-5 high·turn_started. 원본QA ctx_c06624b7d67a retain·integration hold는 최신수정수락 대기다.
+
+- 최신수정 QA SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER를 정규빈 tester inbox에 준비했다. 원본87cfb7c의 다운로드/환경/CLI불변 근거 재사용, 최신installer 파일보존·stale/상대prefix·추출/검사실패와새ZIP/held만 독립추가한다. 원본session은20분대형로그로 cache이득 작아 같은과제후속도 freshGrok4.7high로 선택한다.
