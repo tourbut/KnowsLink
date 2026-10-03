@@ -299,3 +299,9 @@ msg_d2d32881ffc3은 Task task_bc9fa903d0d6 / Dispatch ctx_a7a06b6f1b0d의 성공
 unit/build/verify-mvp/probe 로그의 실제 [exit 0]을 확인했다. 초기 의존성 부재 lint 실패와 probe 기대값 수정 실패는 원본 기록에 보존한다. 최종 기준 lint ERROR 0/WARNING 3(SIZE-001)/실행 불가 0, product-lint passed다. 미해결 critical/high 제품 결함은 tester 보고에서 없다. QA-06-epoch-cas, Free N, 실제 adapter/A2A 현행 검토, WAL/backup 삭제, DEC-02/03, designer 시각 판정의 held를 보존한다. 코드 리뷰와 직접 UI 검수 및 필수 미충족 조건 해소 전 main 수락·임시 DEV 제거는 보류한다.
 
 worker-release는 external_terminal 때문에 retained/processAction none을 반환했다. 상설 tester 터미널과 체크아웃은 유지한다. QA 증거와 결과를 origin/fullops/tester로 공유하고 coordinator 현황도 원격에 반영한다. 완료 QA 보고서 정본은 tester의 docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md다.
+
+## 현재 작업 수락·병합 뒤 중지 — 2026-10-03 사용자 지시
+
+사용자는 현재 진행 과제만 완료·main 병합·원격 push한 뒤 새 작업을 시작하지 말라고 지시했다. SAR-MVP-001의 필수 QA·UI·독립 리뷰와 기존 공개 기획·OPS 사전조사 기록을 마무리한다. 다음 기능·공개 정책 수치 확정·제한 구현·실제 배포·벤더 연결은 시작하지 않는다. 보류 정책과 운영 인증을 합성 수락 PASS로 바꾸지 않는다.
+
+QA c59537b와 공개 기획 69dbec4를 coor 통합 후보에 반영했다. to_tester 충돌은 완료 아카이브 보존과 빈 인박스, orca-agents 충돌은 최신 사용자 지정 Grok와 즉시 공유 규칙 보존으로 해결했다. main에는 아직 병합하지 않았다. 코드 리뷰 Jev는 claude-opus-5-5 high를 선택했으나 Claude 사용량 한도 때문에 같은 고성능 후보의 codex gpt-6.1-sol high로 실행한다. 범위·독립성·critical/high 차단은 유지한다. OPS 기존 Dispatch는 operator_close 실패로 종료됐고 작성 중 ops-guide.md가 남아 있다. 같은 과제의 기록 마무리만 재개한다.
