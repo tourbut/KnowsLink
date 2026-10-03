@@ -12,28 +12,31 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 
 이 문서는 베타 배포의 인수인계 상태를 기록한다. 배포 구성과 절차 정본은 [D12](ops-guide.md) 11장이다. 사용자 시험 절차는 [D11](user-guide.md)이다.
 
-## 현재 상태 (이 문서 작성 시점)
+## 현재 상태 (2026-10-03 보호 연결 적용 후)
 
 | 항목 | 상태 |
 |---|---|
-| 배포 SHA | 체크아웃 `/home/shin/deploy/knowslink`는 detached다. 제품 코드는 수락 제품 `78b1d92`와 동일하다. 현재 SHA의 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. `knowslink-state/deploy-history.log`는 `beta.sh deploy` 이동만 기록한다 갱신·rollback은 D12 11.3 |
+| 배포 SHA | 구성 `28bd1bb`(독립 리뷰 `7ba9df0`·QA 통과). 체크아웃 `/home/shin/deploy/knowslink`는 detached다. 제품 코드는 수락 제품 `78b1d92`와 동일하다. 현재 SHA의 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. `knowslink-state/deploy-history.log`는 `beta.sh deploy` 이동만 기록한다. 갱신·rollback은 D12 11.3 |
 | 로컬 스택 | 기동·검증 완료. relay `127.0.0.1:8080`, Postgres 비게시 |
-| Tunnel | `knowslink` Tunnel 생성 완료. connector 미기동 |
-| Access 앱·정책 | **미생성** — Access 쓰기 권한이 필요하다 |
-| DNS `link.knowslog.com` | **없음** — 보호 확인 전 연결하지 않는다 |
-| 공개 노출 | **held** |
-| 사용자 이메일 로그인 확인 | 인간 검사. 미실행 |
+| Tunnel | `knowslink` Tunnel 연결 4개(icn05/06/07). 컨테이너 `knowslink-cloudflared-1` |
+| Access 앱·정책 | 생성됨. self-hosted 앱 `KnowsLink beta (owner-only)`, 대상 `link.knowslog.com` 하나, reusable 정책 `knowslink-beta-owner-only`(사용자 이메일 한 개만 allow), IdP는 One-time PIN 하나, 세션 24h |
+| 원점 JWT | Tunnel `originRequest.access.required: true`, teamName `scshin88`, audTag는 앱 aud와 일치 |
+| DNS `link.knowslog.com` | proxied CNAME → `knowslink` Tunnel. 기존 레코드 3개 불변 |
+| 미인증 공개 검사 | 모든 경로가 302로 `scshin88.cloudflareaccess.com`에 이동한다. 실제 응답 본문 없음 |
+| 사용자 이메일 로그인 | **인간 검사. 미실행**. D11 절차로 사용자가 수행한다 |
+| 공개 수락 | held — 로그인 확인 전, 그리고 전체 공개 한도·실제 신원·실데이터는 별도 held |
 
 ## 인수 항목
 
 - 상태 디렉터리 `/home/shin/deploy/knowslink-state`(0700): `.env`, Tunnel 자격 파일, `access.aud`, 백업. 모두 Git 미추적이다. 자격 파일을 공유 위치로 옮기지 않는다.
 - 공유 서비스 baseline은 `shared-baseline.json`에 있다. `verify.py regression`으로 비교한다.
 - 첫 DB 백업과 격리 복원 검증은 완료했다.
+- 관리 연결: 이번 Access 쓰기는 coordinator가 준비한 Codex file-store OAuth(공식 Cloudflare MCP, scopes에 Access 앱·정책 쓰기 포함)로 수행했다. 원본 credential은 복사·기록하지 않았다. 반복 시 같은 방식이 필요하다.
 - 보존 대상: `myportfolio` 프로젝트·볼륨, `orca` Tunnel, 호스트 cloudflared PID 506937, `~/.cloudflared/config.yml`.
 
 ## 남은 일
 
-1. Access 앱 생성 권한을 연결한다. 최소 권한은 Account 범위의 `Access: Apps and Policies Edit`와 `Access: Organizations, Identity Providers, and Groups Read` 두 개다. 둘 중 하나가 빠지면 `apply`가 HTTP 403으로 멈춘다(fail-closed).
-2. 독립 리뷰와 coordinator main 통합 후 D12 11.2 순서로 노출한다.
-3. 사용자가 본인 이메일로 로그인해 시험한다.
-4. held 유지: DEC-03 공개 한도, 실제 신원, 실데이터, 실제 벤더, 무제한 공개.
+1. 사용자가 D11 절차로 본인 이메일 OTP 로그인과 합성 시험을 수행한다(인간 검사).
+2. 종료는 D11의 `unexpose`(외부 접근만) 또는 `stop`(전체)이다. 전체 철회는 D12 11.3이다.
+3. held 유지: DEC-03 공개 한도, 실제 신원, 실데이터, 실제 벤더, 무제한 공개.
+4. 구성 갱신이 필요하면 `beta.sh deploy <sha>`와 새 독립 리뷰를 거친다. 코드 변경 SHA에서 `expose`를 다시 하기 전 `access_apply.py check`를 통과해야 한다.

@@ -28,3 +28,8 @@ a6a10c7은 deliver:human C1 high로 수락·배포 금지다. DEV 수정과 독�
 수락 후보 557ebc3/제품 78b1d92로 a6a10c7 금지는 역사적 기록이 됐다. 구성은 `deploy/knowslink/`, 상태·비밀은 `/home/shin/deploy/knowslink-state`(0700)다.
 Cloudflare API MCP는 읽기 전용이다. `cert.pem`은 Tunnel 생성 가능, Access 쓰기는 별도 토큰이 필요하다. Access 앱 확인 전에는 DNS·connector를 열지 않는다.
 reusable policy는 새로 만든다. 기존 `knowslog-bot - Production`은 다른 이메일을 허용하므로 재사용하지 않는다. OTP는 이메일 제한과 함께만 쓴다.
+
+## 2026-10-03 — SAR-BETA-001-OPS 연결 적용
+
+구성 28bd1bb로 Access 앱·정책·DNS·connector를 적용했다. 관리 쓰기는 Codex file-store OAuth(공식 MCP)를 일회성 bridge로 사용했다. 로컬 resolver의 NXDOMAIN 음성 캐시는 `dig @1.1.1.1`+`curl --resolve`로 우회한다.
+사용자 이메일 로그인은 인간 검사로 남는다. 코드 변경 SHA에서 `expose`를 다시 하기 전 독립 리뷰와 `access_apply.py check`가 필요하다.

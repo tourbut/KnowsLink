@@ -130,8 +130,8 @@ DNS 판정 근거: [Cloudflare CNAME flattening](https://developers.cloudflare.c
 | 항목 | 상태 |
 |---|---|
 | 이전 서버 관찰 보존·운영 계획(D12 초안) | 역사적 기록으로 보존 |
-| DNS·Tunnel·컨테이너 변경 | 로컬 컨테이너와 `knowslink` Tunnel은 생성됐다. DNS·connector는 **미실행** |
-| 수락 SHA 배포·공개 health 검증 | 로컬 배포는 11장 참조. 공개 연결은 Access 보호 확인 전까지 held. 기존 a6a10c7 금지는 역사적 기록 |
+| DNS·Tunnel·컨테이너 변경 | 로컬 컨테이너, `knowslink` Tunnel, Access 앱·정책, `link` proxied CNAME, connector 컨테이너가 생성됐다(11.2 적용 완료). 기존 자원은 불변 |
+| 수락 SHA 배포·공개 health 검증 | 로컬 배포는 11장 참조. 공개 연결은 적용됐다(보호 확인 후). 사용자 이메일 로그인 인간 검사는 미실행이며 공개 수락은 held. 기존 a6a10c7 금지는 역사적 기록 |
 | D11 사용자설명서·D13 인수인계서 | 작성됨(draft). 공개 연결 전 상태를 반영 |
 
 ## 10. 개정 근거와 검증 범위
@@ -182,3 +182,7 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 ### 11.5 비밀 취급 주의
 
 `beta.sh owner-login`은 합성 Basic 값을 터미널에 출력한다. 사용자 본인만 자기 터미널에서 실행한다. agent·자동화는 실행하지 않는다. 출력이 세션 기록에 남는다. `access_apply.py`는 토큰·이메일·응답 본문을 출력하지 않는다.
+
+### 11.6 적용 결과 (2026-10-03, 구성 `28bd1bb`)
+
+11.2의 1~5단계를 순서대로 실행했다. 2단계는 `access_apply.py`와 같은 본문 함수를 공식 Cloudflare MCP로 호출해 수행했다(`access.live.json`은 읽기 GET 응답). 결과·증거는 [실행 기록](../exec-plans/phases/SAR-BETA-001-OPS.md)에 있다. 로컬 resolver가 NXDOMAIN을 캐시하면(SOA TTL) `verify.py public`이 `Name or service not known`으로 실패할 수 있다. 이때는 `dig @1.1.1.1`로 엣지 IP를 얻어 `curl --resolve`를 쓴다.
