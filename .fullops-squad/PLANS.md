@@ -285,3 +285,5 @@ SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다
 사용자가 tester를 Grok 4.7 high로 설정하고 Claude 사용량 한도로 막힌 QA를 재개하도록 지시했다. 모델 목록에서 grok-4.7과 로그인 상태, CLI --reasoning-effort 지원을 확인했다. 같은 사용자 실행 지시 범위에서 원본 /home/shin/Workspace/KnowsLink의 Grok 폴더 신뢰를 등록했다. 다른 폴더 신뢰나 권한 모드는 변경하지 않았다.
 
 worker-stop은 user_owned 때문에 stop_unknown/no terminal closed를 반환했다. 사용자 명시 전환 지시에 따라 해당 한도 대기 터미널만 닫았고 ptyKilled=true를 확인했다. Dispatch ctx_6129fd1c9c83은 failed/process_exited/operator_close이며 실제 QA 코드·증거는 생성하지 않았다. 같은 Task task_bc9fa903d0d6과 기존 tester 체크아웃에서 Grok retry를 수행한다. 원래 실패와 미실행 기록은 보존한다.
+
+- Grok 재개 영수증: 같은 Task task_bc9fa903d0d6 / 새 Dispatch ctx_a7a06b6f1b0d / terminal term_236edd67-8fbe-4960-90cc-d20e975b4a48. Grok 4.7 (high) 화면을 확인했다. Orca provider turn_started 관찰은 unsupported지만 실제 화면에서 QA-01–11 착수 응답과 규약·지시서 read_file 실행을 확인했다. 준비 HEAD 69870db는 모델/인계 문서만 추가했고 제품 diff는 a6a10c7 대비 비어 있다. 기존 tester 워크트리를 재사용하며 새 워크트리는 만들지 않았다. Claude의 18:10 대기 차단은 Grok 재개로 해소했으나 독립 QA 결과는 아직 대기한다.
