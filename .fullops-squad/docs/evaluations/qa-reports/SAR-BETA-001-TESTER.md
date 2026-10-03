@@ -76,6 +76,10 @@ relay는 `cap_drop ALL`, `read_only`, `no-new-privileges`다. postgres 호스트
 | `beta.sh backup` | 0 | [backup.log](SAR-BETA-001-TESTER-test/backup.log) |
 | `beta.sh restore-verify` | 0 | [restore.log](SAR-BETA-001-TESTER-test/restore.log) |
 | `beta.sh expose` | 1 | [expose.log](SAR-BETA-001-TESTER-test/expose.log). 기대된 차단 |
+| `gates.py` | 0 | [gates.log](SAR-BETA-001-TESTER-test/gates.log) |
+| `git diff --cached --check` | 0 | 공백 오류 없음 |
+| `lint.py --from 437f143` | 0 | ERROR 0, WARNING 0, 실행 불가 0. product-lint passed |
+| `deliverables.py --strict` | 0 | 문제 0, 경고 0 |
 
 첫 실행의 `run.py` 종료코드는 1이다. HEAD가 이미 `8a7ad36`이라 고정 SHA 비교와 dump 이름 비교가 실패했다. revoke 응답의 JSON `invalid_auth`를 본문 문자열과 다르게 비교했다. owner 화면은 200으로 남았다. 제품 결함으로 기록하지 않는다.
 `make test`, `make verify-mvp`, `make verify-runtime`은 실행하지 않았다. 제품 트리가 `78b1d92`와 같기 때문이다.
