@@ -1,0 +1,46 @@
+{
+  "task": "SAR-MVP-002-DEV-TESTER",
+  "date": "2026-10-03",
+  "candidate": "552586b6e886f95bffa9a000a031ea03070afedb",
+  "record_branch": "fullops/tester",
+  "record_head_before": "e8cf6cf531142bc1b440d46d527a7f6720dc317f",
+  "clone": "detached clean clone outside the recording checkout",
+  "clone_head_after": "552586b6e886f95bffa9a000a031ea03070afedb",
+  "node": "v22.22.2",
+  "go": "go1.27.1",
+  "docker_server": "29.4.3",
+  "zip_sha256": "0e671d1a89c141d896034fff31619b9cd2148b73b567adbc3a97126031989117",
+  "zip_matches_dev_record": true,
+  "zip_entries": 8,
+  "forbidden_entries": 0,
+  "ui_compare": {
+    "base": "9584aafcbb5fee88dcc6d618caf660884f6a527d",
+    "paths": ["*.go", "*.html", "*.css", "*.tsx", "*.jsx"],
+    "diff_exit": 0,
+    "browser_qa": "reused original evidence; not executed on this candidate"
+  },
+  "source_compare_for_reused_go_race": {
+    "base": "c4ebbecd3ef91be10ecbb517fe451e02769358bc",
+    "paths": ["cmd", "internal", "adapters/src", "adapters/package.json", "adapters/package-lock.json", "adapters/mcp.json", "adapters/.cursor-plugin", "adapters/skills"],
+    "diff_exit": 0
+  },
+  "commands": [
+    {"command": "make install", "exit_code": 0, "log": "install.log"},
+    {"command": "make plugin", "exit_code": 0, "log": "plugin.log"},
+    {"command": "node adapters/dist/mcp.test.js <extracted plugin.js>", "exit_code": 0, "log": "mcp-extracted.log"},
+    {"command": "node concurrent.mjs <extracted plugin.js>", "exit_code": 0, "log": "concurrent.log"},
+    {"command": "make verify-mvp", "exit_code": 0, "log": "verify-mvp.log"},
+    {"command": "make lint", "exit_code": 0, "log": "lint.log"},
+    {"command": "inventory.py <zip>", "exit_code": 0, "log": "inventory.log"}
+  ],
+  "compose_project": "knowslink-mvp-c564765cd4",
+  "compose_down_volumes_exit": 0,
+  "preexisting_container_name_count": 8,
+  "preexisting_container_names_unchanged": true,
+  "shared_fixture_sha256": "d5c6e55306a5be50c961018400315ce1be2a56fc3dac07e83e7cf276eed7d3db",
+  "shared_fixture_mode": "600",
+  "shared_fixture_unchanged": true,
+  "clone_seed_fixture": "mode 600 file created in the clone build directory and deleted after log review",
+  "actual_connection": "held",
+  "defects": []
+}
