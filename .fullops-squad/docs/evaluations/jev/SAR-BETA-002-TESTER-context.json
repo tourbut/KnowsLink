@@ -1,0 +1,164 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "2a3bc0b4620c9d4ca88e51162b5d1ddc2c0a7827",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "378e2a48d64b05c543ee6c810ee93ee8231c93751c8c68480c8e62463c1610fd",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-http.go",
+      "c1-synthetic.ts",
+      "c2-beta.sh",
+      "c3-SAR-BETA-001-TESTER-PUBLIC.md",
+      "c4-SAR-BETA-001-TESTER.md",
+      "c5-SAR-MVP-001-TESTER-FINAL.md",
+      "c6-user-guide.md",
+      "c7-transition.md",
+      "c8-project.md",
+      "c9-README.md",
+      "required_0",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-http.go",
+      "c1-synthetic.ts",
+      "c2-beta.sh",
+      "c3-SAR-BETA-001-TESTER-PUBLIC.md",
+      "c4-SAR-BETA-001-TESTER.md",
+      "c5-SAR-MVP-001-TESTER-FINAL.md",
+      "c6-user-guide.md",
+      "c7-transition.md",
+      "c8-project.md",
+      "c9-README.md",
+      "required_0",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-http.go": {
+        "relevant": 0.19,
+        "evidence": 0.31,
+        "contradicts": 0.14,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-synthetic.ts": {
+        "relevant": 0.64,
+        "evidence": 0.52,
+        "contradicts": 0.19,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-SAR-BETA-001-TESTER-PUBLIC.md": {
+        "relevant": 0.21,
+        "evidence": 0.38,
+        "contradicts": 0.22,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-SAR-BETA-001-TESTER.md": {
+        "relevant": 0.23,
+        "evidence": 0.42,
+        "contradicts": 0.25,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-SAR-MVP-001-TESTER-FINAL.md": {
+        "relevant": 0.18,
+        "evidence": 0.34,
+        "contradicts": 0.25,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-user-guide.md": {
+        "relevant": 0.76,
+        "evidence": 0.86,
+        "contradicts": 0.19,
+        "injection": 0.07,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-transition.md": {
+        "relevant": 0.52,
+        "evidence": 0.68,
+        "contradicts": 0.16,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-project.md": {
+        "relevant": 0.31,
+        "evidence": 0.64,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-README.md": {
+        "relevant": 0.53,
+        "evidence": 0.65,
+        "contradicts": 0.12,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-http.go": "internal/relay/http.go",
+      "c1-synthetic.ts": "adapters/src/synthetic.ts",
+      "c2-beta.sh": "deploy/knowslink/beta.sh",
+      "c3-SAR-BETA-001-TESTER-PUBLIC.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+      "c4-SAR-BETA-001-TESTER.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "c5-SAR-MVP-001-TESTER-FINAL.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "c6-user-guide.md": ".fullops-squad/docs/operations/user-guide.md",
+      "c7-transition.md": ".fullops-squad/docs/operations/transition.md",
+      "c8-project.md": ".fullops-squad/project.md",
+      "c9-README.md": ".fullops-squad/rules/common/README.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_tester.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 24447,
+    "output_tokens": 684,
+    "cost": 0.001026774
+  },
+  "latency_seconds": 0.329,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-BETA-002-TESTER",
+  "role": "tester",
+  "unsent_sources": {
+    "deploy/knowslink/beta.sh": "sensitive or oversized passage"
+  },
+  "refused_paths": []
+}
