@@ -390,3 +390,14 @@ QA36bd4ae/msg_904473017979는 legacy high 보존으로 hold하고 coor 후보에
 QA659f4b0/msg_4fed96367aa4는 고정78b1d92의 실제 이전 serialized fixture를 Postgres에 로드하여 authorize/H/R/consume 차단과 새 agent/owner/current-auth 정상 회귀를 확인했다. tester 형태 비교 실패 세 번과 최종 exit0을 구별해 보존했다. 제품 변경 없음·lint ERROR0/WARNING1·strict·공백 검사 통과다. 코드리뷰311381f는 critical/high0·RF-01/C1 해소·전체 fixed-SHA 커버리지 check 통과다. UIe238777/PNG동일성은 기존 실행 조건으로 재사용한다. QA-06 stale epoch는 원래 held를 보존하고 reviewer/DEV의 actual DB CAS 별도 증거와 구분한다.
 
 coor는 확정된 합성 MVP 구현·관련 QA/UI·공개 기획 문서(제안값 미확정)·OPS 문서 결과를 수락한다. 전체 서비스 완성·실제 공개 운영 배포·벤더 연결·신원/공개 한도·실데이터·24시간/WAL/backup held는 수락하지 않는다. 고정 검토 제품78b1d92와 최종 report/archive SHA만 병합하며 이후 결과 커밋의 제품 diff 무변경을 확인한다. 새 기능 배정 없이 main 일반 push와 완료 SHA 원격 조상 관계 확인 뒤 두 임시 워크트리를 제거한다.
+
+
+## 통합·임시 워크트리 정리 완료 — 2026-10-03
+
+main/origin/main 1f465cb에 고정 제품78b1d92·최종 리뷰311381f·QA659f4b0·UIe238777·원래 DEV a6a10c7/QA c59537b/기획69dbec4·OPS f5a73a3의 조상 관계를 확인했다. 일반 push 성공이며 관련 integration hold를 resume했다. main lint는 처음 로컬 Node 의존성 불일치로 실패해 기존 lockfile 기준 npm ci 후 재검증했다. 최종 product-lint passed, ERROR0/WARNING3/실행불가0다. strict13종 중 미작성2(D11/D13)·문제0·경고0다. 새 전체 QA는 중복하지 않았다.
+
+사용자가 정리를 요청한 fullops-designer-pilot(69dbec4)·fullops-dev-mvp(a6a10c7)는 clean·연결 터미널 없음·결과 origin/main 보존을 확인한 뒤 Orca worktree rm으로 각각 removed:true를 받았다. 원래 커밋·QA·기획·리뷰 증거는 main Git 이력에 보존한다. 강제 삭제는 사용하지 않았다.
+
+현재 Run의 active worker는 없다. DEV/리뷰/designer의 release는 user_takeover, tester는 external_terminal 사유로 retained되므로 사용자 소유 터미널을 강제 종료하지 않았다. designer는 실제 tui-idle, dev/tester는 completion activity done·clean 확인 뒤 최신 main으로 동기화한다. ops의 사용자 기존 두 터미널은 tui-idle 확인 timeout이므로 워크트리를 변경하지 않고 main1f465cb와 이번 운영 완료 SHA 동기화를 예약한다. 다음 ops dispatch 전 idle/clean 확인·최신 main merge가 필수다. coor도 최신 main을 포함한다.
+
+합성 구현 검증 범위는 수락됐으며 서비스 전체 완성·실제 공개 배포는 보류다. 원래 held·제품 정책 결정·벤더/실데이터/신원·운영 장기 검증은 보존하고 새 기능/배포를 배정하지 않는다. 사용자 현재 과제 완료 뒤 중지 지시를 따른다.
