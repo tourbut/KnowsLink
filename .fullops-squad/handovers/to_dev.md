@@ -10,7 +10,7 @@ summary: Grok Bot 지원 인터페이스를 확인하고 안전한 실제 어댑
 
 # SAR-MVP-002-DEV — Grok Bot 인터페이스 확인과 안전 어댑터 준비
 
-- 상태: ready
+- 상태: blocked — 사용자 작업 중단 요청. 새 coordinator 세션의 명시적 재개 뒤 배정한다.
 - From / To: coor / dev
 - 사용자 근거: 베타 완료 뒤 다음 작업 진행 요청. 백로그 002 우선순위를 적용한다.
 - 담당: /home/shin/orca/workspaces/KnowsLink/fullops-dev, fullops/dev

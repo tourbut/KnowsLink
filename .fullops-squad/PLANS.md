@@ -493,3 +493,11 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 기준 main e732fedb8a7f80b9813219bf2dbc65fc029ff272. route implementation/dev, Codex gpt-6.1-sol medium. 새 과제 키이며 기존 DEV 리뷰 세션은 오래되어 새 세션을 사용한다.
 - 기존 DEV 터미널 term_5ef7be3a의 tui-idle=true와 clean checkout을 직접 확인했다. 최신 main과 준비 기록을 반영한 뒤 착수한다. 제품 정체성·지원 API를 확인한 뒤 가능한 로컬 구현과 검증을 같은 DEV 과제에서 수행한다.
 - 003 DEC-02 정책 보류, 004–006 순서와 공개 확대 보류를 유지한다. DEV 완료는 실제 외부 연결/전체 MVP 수락과 구분한다.
+
+## FULLOPS-UPDATE-0.9.13 — 사용자 중단과 업데이트
+
+- 사용자 작업 중단 요청에 따라 SAR-MVP-002-DEV 배정을 중단했다. 준비 SHA 99c0aaf는 보존한다. worker-start는 실행하지 않았으며 제품 변경은 없다. 인박스는 blocked로 유지한다. 이 세션은 업데이트만 수행한다.
+- 실제 설치 전/후 0.9.13, 레포 적용 0.9.12→0.9.13. marketplace upgrade/plugin add/deps check/setup dry-run 성공. 신규 파일 0개.
+- 공용 gate·완료 수집·종료 확인 수정은 설치된 글로벌 hook에 적용된다. integration pending 0건으로 빈 SHA/키 복구 대상이 없다. 기존 실패·held와 작업 중단을 유지한다.
+- 현재 coordinator는 이전 Run에 bound 상태가 아니므로 check 종료코드 1을 보존한다. 업데이트를 위해 Run을 재배정하거나 제품 worker를 시작하지 않는다. 새 coordinator 세션에서 현재 터미널로 Run을 정상 바인딩한 뒤 진행한다.
+- main/coor의 깨끗한 체크아웃에 운영 기록을 반영한다. dev는 직전 idle 확인 이후 새 작업 미배정이며 안전 상태를 재확인해 동기화한다. designer/ops/tester는 실제 유휴 확인 전 동기화 예약, 담당 coor, 다음 착수 전 최신 main 포함 확인.
