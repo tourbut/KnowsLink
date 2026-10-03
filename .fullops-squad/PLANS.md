@@ -310,3 +310,7 @@ QA c59537b와 공개 기획 69dbec4를 coor 통합 후보에 반영했다. to_te
 - 직접 UI 검수 영수증: Task task_911c61d88587 / Dispatch ctx_b7d073da41ef / terminal term_fd607972-ef9e-4be1-8fac-7dd3d9ac8245. 기존 designer 체크아웃에서 effective codex gpt-6.1-sol high와 7개 PNG 직접 열람을 확인했다.
 - OPS 기존 과제 마무리 영수증: Task task_85e5a5aa9960 / Dispatch ctx_78873a1ba765 / terminal term_9cab4795-870e-43e2-94bc-49d5eb44e3d9. task ready 상태가 retry-of를 거절해 dispatch-show로 기존 failed·exited를 확인하고 같은 Task로 시작했다. effective codex gpt-6.1-sol medium과 최신 후속 지시서 열람을 확인했다. CLI 기본 후보 밖 선택은 Claude 사용량 차단 해소와 기존 문서 마무리 목적이며 역할 소유권은 OPS다. 새 과제·배포는 시작하지 않는다.
 - coor 기준 0dd08ec lint 첫 실행은 product-lint passed이나 준비 리뷰 report.md front matter 부재 때문에 ERROR 1이었다. 해당 보고서 소유 reviewer에게 전달했다. WARNING 3은 기존 SIZE-001이다. 템플릿 완성·최종 통합 커밋 뒤 다시 검사한다.
+
+## FullOps 0.9.11 업데이트 — 2026-10-03
+
+Codex 설치 버전 0.9.11이 최신임을 확인했다. 레포 적용 버전을 0.9.10에서 0.9.11로 갱신했다. 이 릴리스는 글로벌 설치 편의 기능이므로 제품 코드·역할·검증 기준 변경은 해당 없음이다. 의존성 검사는 통과했다. [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md)을 따른다. 진행 중 worker와 기존 미추적 리뷰 증거를 보존한다. 역할 동기화는 coor가 실제 유휴·깨끗한 상태를 확인한 뒤 수행한다. 제품 작업 중지 지시는 유지하며 다음 운영은 새 coordinator 세션에서 이어간다.
