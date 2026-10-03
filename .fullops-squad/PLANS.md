@@ -572,3 +572,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - route implementation/dev, claude-opus-5-5 high, D13/D10/D12. 기준4d6ccfd, fresh DEV. 공식 Bot 앱 등록 계약을 조사·진단·최소 구현하며 실제 Bot 호출 경로를 수락 기준으로 사용한다. 사용자 승인 이슈 댓글 후속을 유지하고 FullOps 업데이트·유료/실제릴레이는 제외한다.
 
 - fresh DEV 착수 영수증: task_d0d56ebcf3c6 / ctx_44982314ed3f / term_b3c48e3a-4bdc-419d-bec3-57aebd7499f4. effective claude-opus-5-5 high·turn_started 확인. 기존 DEV user_takeover 세션은 보존한다. 새 과제이며 직전 구현 종료가 오래돼 새 세션을 쓴다.
+
+- coor가 앱 Manage plugins and skills의 추가 메뉴(URL MCP/Git 플러그인/없음)를 비차단 질문으로 확인 요청했다. 답 전까지 메뉴 존재를 가정하지 않고 DEV가 공식 계약 조사와 구체적 설치물 준비를 계속한다. 계정 권한과 UI 확인은 실제 앱 검증 근거로 남긴다. designer/ops/tester의 최신main8c95bde 동기화는 실제 유휴 재확인 후 다음 dispatch 전 처리한다. 진행DEV 체크아웃은 보존한다.
