@@ -1,0 +1,69 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-BETA-001-REVIEW-FINAL",
+  "head": "4d48ce3a9b921b83501939ded0b26334c7c6f857",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 92,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 92
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md",
+      "summary": "SAR-BETA-001 베타 배포 설정 리뷰 — 고정 SHA 437f143의 본인 전용 합성 베타 배포 설정과 D11/D12/D13 독립 리뷰 결과와 공개 held 결론을 기록한다",
+      "probability": 0.7
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "summary": "SAR-MVP-001-REVIEW-FINAL — RF-01 수정 독립 최종 코드 리뷰 — RF-01 해소와 고정 SHA 독립 코드 리뷰 및 기존 증거 재사용 범위를 기록한다",
+      "probability": 0.11
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.08
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "summary": "SAR-BETA-001-OPS 실행 기록 — 본인 전용 합성 베타 배포 준비의 근거와 검증 증거 및 held 항목을 기록한다",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "summary": "SAR-BETA-001-OPS — 본인 전용 합성 베타 배포 준비·검증 및 보호된 공개 연결 — 본인 전용 합성 베타 배포 준비·검증 및 보호된 공개 연결",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "summary": "<과제 키> — <목표> — 작업 범위와 검증 담당 및 최종 수락을 구분하는 지시서 양식",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.27,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 7692,
+    "output_tokens": 970,
+    "cost": 0.000323064
+  },
+  "latency_seconds": 0.293,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

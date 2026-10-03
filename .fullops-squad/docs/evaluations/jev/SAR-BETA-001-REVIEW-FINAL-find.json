@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-BETA-001-REVIEW-FINAL",
+  "head": "4d48ce3a9b921b83501939ded0b26334c7c6f857",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 46,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 46
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.47000000000000003
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.09
+    },
+    {
+      "path": "internal/relay/registry.go",
+      "summary": "Registry exposes the central frozen seed; adding an intent never creates an execution handler.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "summary": "Owner-only synthetic beta lifecycle for the separate \"knowslink\" Compose project; never touches other projects.",
+      "probability": 0.06
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "summary": "Package relay validates frozen relay.v1 and preserves one parsed object for signing and processing.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/registry.json",
+      "summary": "",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "summary": "Validate isolated example Compose settings and locked service boundaries.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/schema.py",
+      "summary": "Generate D08 directly from the committed SQL migration, preserving stamped metadata.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/protocol_test.go",
+      "summary": "Frozen wire tests cover strict parsing, JCS, signed fields, and semantic replay boundaries.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.26,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3111,
+    "output_tokens": 510,
+    "cost": 0.000130662
+  },
+  "latency_seconds": 0.277,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

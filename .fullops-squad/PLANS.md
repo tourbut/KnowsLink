@@ -419,3 +419,9 @@ CloudflareOAuth콜백HTTP200을수신했지만Codex가OSDBussecret저장소에�
 
 
 베타 독립 QA task_34fd68aad62b/ctx_0821628cf2cc/term_85644521-b9d5-46e0-93db-5ecd1907fa53를 새 Grok4.7high 세션에 배정했다. ready prompt/input_accepted 및 실제 live/working을 확인했다. 사용자가 원격터미널로그인 무반응을 보고했고 실제 사용자 명령이 기본keyring store인 codex mcp login cloudflare임을확인했다. 사용자프로세스는중지하지않고 Ctrl+C뒤file store override와 --no-browser·hidden Callback URL 입력방법을안내했다. file store 실제 auth는아직not_logged_in이다. 외부protected연결은인증회복·독립리뷰/QA후에수행한다.
+
+
+베타 리뷰 f625c4e/msg_87b07c98d317는 critical/high 0이지만 M2 최소 권한 문서와 M3 실제 Access 검증 게이트 수정이 필요하여 공개 수락을 보류했다. OPS는 질문 msg_90196e3a518f 및 중복 msg_90f098c04599로 수정 고정 SHA f824015314c66bcab42940cfe3db2edabb22e1dd를 제출했다. M1/M2/M3/M5와 낮은 우선순위 항목 수정 및 로컬 회귀 통과를 보고했다. 담당 coor가 새 SHA 독립 재리뷰와 tester 확인을 준비한다. 인증 및 수정 검증 전 Access 적용·DNS·connector 노출을 대기하도록 두 질문에 회신했다. OAuth 이전 세션은 callback timeout으로 종료됐고 file/no-browser 새 세션은 사용자 콜백 대기 중이다. 비밀값은 기록하지 않는다.
+
+
+Cloudflare OAuth file 저장 로그인이 성공했다. 같은 override의 codex mcp list에서 cloudflare auth_status=o_auth를 확인했다. OPS에 실제 knowslog.com 계정·Access 읽기 연결을 인증 비밀값 출력 없이 확인하도록 전달했다. 관리 API 권한과 외부 보호 동작은 아직 확인 전이다. 재리뷰·QA 이후 쓰기 및 노출 조건을 충족해야 한다.
