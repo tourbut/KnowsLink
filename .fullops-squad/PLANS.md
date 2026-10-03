@@ -168,3 +168,5 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - run.py는 이제 하위 종료코드를 그대로 반환한다. 0/1/2/7 전파와 같은 dev SHA의 필수 make 명령 및 주입·원복을 재검증했다. 기존 로그와 최초 runner 한계는 보존했다. 최종 lint 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0이다.
 - worker-release 결과는 reused external_terminal이라 retained다. Orca가 안전하게 release하지 않는 세션은 강제로 종료하지 않는다.
 - main과 실제 최종 통합 후보의 refs가 기존 제품 리뷰 refs와 달라 최종 독립 통합 리뷰를 수행한다. 제품 파일 동일성과 기존 QA·리뷰 증거를 재사용하고 신규 QA runner 및 미검토 기획·운영 기록을 확인한다.
+
+- 최종 통합 리뷰 영수증: Task task_bea67a9755f1 / Dispatch ctx_dab52fc0aa32 / terminal term_720f0fb4-2f5d-4f79-b325-c25d672bf685. effective claude-opus-5-5 medium과 turn_started를 확인했다. 고정 후보 59be02d와 main 기준 f94510f를 사용한다.
