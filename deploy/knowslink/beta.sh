@@ -15,7 +15,7 @@ die() { echo "ERROR: $*" >&2; exit 1; }
 
 prepare() { # prepare <sha>: detached checkout, 0700 state dir, new 0600 secrets
   sha=${1:?usage: beta.sh prepare <sha>}
-  ! ss -ltn | grep -q '127.0.0.1:8080 \|0.0.0.0:8080 ' || die "port 8080 is busy"
+  ! ss -ltnH | grep -Eq '(127\.0\.0\.1|0\.0\.0\.0|\*|\[::\]):8080 ' || die "port 8080 is busy"
   [ ! -e "$DEPLOY" ] || die "$DEPLOY exists"
   [ ! -e "$STATE/.env" ] || die "$STATE/.env exists; refusing to rotate secrets"
   git clone --quiet "$SRC" "$DEPLOY" && git -C "$DEPLOY" checkout --quiet --detach "$sha"
@@ -36,9 +36,10 @@ unexpose() { dc --profile tunnel stop cloudflared; }
 
 backup() { # pg_dump -Fc into 0600 file, then list it
   out="$STATE/backups/$(git -C "$DEPLOY" rev-parse --short HEAD)-$(date -u +%Y%m%dT%H%M%SZ).dump"
-  (umask 077; dc exec -T postgres pg_dump -U knowslink -Fc knowslink >"$out")
-  pg_list=$(docker run --rm -i "$POSTGRES_IMAGE" pg_restore --list <"$out" | wc -l)
-  echo "backup $(basename "$out") bytes=$(stat -c %s "$out") toc_lines=$pg_list"
+  (umask 077; dc exec -T postgres pg_dump -U knowslink -Fc knowslink >"$out") || { rm -f "$out"; die "pg_dump failed"; }
+  pg_list=$(docker run --rm -i "$POSTGRES_IMAGE" pg_restore --list <"$out" | wc -l) || { rm -f "$out"; die "dump unreadable"; }
+  rows=$(dc exec -T postgres psql -U knowslink -Atc 'select count(*) from relay_state')
+  echo "backup $(basename "$out") bytes=$(stat -c %s "$out") toc_lines=$pg_list relay_state_rows=$rows"
 }
 
 restore_verify() { # restore a dump into a throwaway container with no network; live DB untouched
@@ -52,7 +53,7 @@ restore_verify() { # restore a dump into a throwaway container with no network; 
   docker exec $name psql -U postgres -qc 'CREATE ROLE knowslink' -c 'CREATE DATABASE restored OWNER knowslink'
   docker exec -i $name pg_restore -U postgres -d restored --no-owner <"$dump"
   docker exec $name psql -U postgres -d restored -Atc \
-    "select 'tables='||count(*) from information_schema.tables where table_schema='public'"
+    "select 'tables='||(select count(*) from information_schema.tables where table_schema='public')||' relay_state_rows='||(select count(*) from relay_state)"
 }
 
 seed() { # synthetic fixture on the server; adapters only talk to loopback. Gate expires 180 s after this runs
@@ -87,20 +88,39 @@ render_config() { # needs access.aud from access_apply.py
   cloudflared tunnel --config "$STATE/tunnel/config.yml" ingress validate
 }
 
-expose() { # gate: protected Access app recorded, config requires the JWT, DNS record absent
+deploy() { # deploy <sha>: backup, move the detached checkout, rebuild. Also the rollback path (see D12 11.3)
+  sha=${1:?usage: beta.sh deploy <sha>}
+  current=$(git -C "$DEPLOY" rev-parse HEAD)
+  git -C "$DEPLOY" fetch -q origin
+  git -C "$DEPLOY" cat-file -e "$sha^{commit}" || die "unknown commit $sha"
+  git -C "$DEPLOY" diff --quiet "$current" "$sha" -- db/migrations \
+    || die "db/migrations differ between $current and $sha; schema compatibility needs D12 section 5 review"
+  backup
+  echo "$(date -u +%FT%TZ) $current -> $sha" >>"$STATE/deploy-history.log"
+  git -C "$DEPLOY" checkout -q --detach "$sha"
+  up
+  python3 "$DEPLOY/deploy/knowslink/verify.py" local
+}
+
+expose() { # gate: live Access app/policy/aud/team verified against the tunnel config, DNS record absent
   [ -s "$STATE/access.aud" ] || die "Access app not recorded; run access_apply.py first"
   grep -q 'required: true' "$STATE/tunnel/config.yml" || die "origin JWT check missing in tunnel config"
+  python3 "$DEPLOY/deploy/knowslink/access_apply.py" check || die "live Access verification failed"
   curl -fsS -o /dev/null "http://127.0.0.1:8080/healthz" || die "relay not healthy"
-  ! dig +short "$HOST" | grep -q . || die "$HOST already resolves; not overwriting"
+  out=$(dig +short "$HOST" A) || die "dig failed; DNS state unknown"
+  [ -z "$out" ] || die "$HOST already resolves; not overwriting"
   cloudflared tunnel route dns "$(<"$STATE/tunnel.uuid")" "$HOST"
   dc --profile tunnel up -d cloudflared
 }
 
+{ # braces: bash parses the whole dispatch first, so "deploy" may replace this file mid-run
 case "${1:-}" in
-  prepare|up|stop|unexpose|backup|expose|seed) "$1" "${@:2}" ;;
+  prepare|up|stop|unexpose|backup|expose|seed|deploy) "$1" "${@:2}" ;;
   owner-login) owner_login ;;
   restore-verify) restore_verify "${@:2}" ;;
   tunnel-create) tunnel_create ;;
   render-config) render_config ;;
-  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|restore-verify <dump>|seed|owner-login|tunnel-create|render-config|expose" ;;
+  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|deploy <sha>|restore-verify <dump>|seed|owner-login|tunnel-create|render-config|expose" ;;
 esac
+  exit
+}
