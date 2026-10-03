@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, FULLOPS-UPDATE-0.9.10]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -84,3 +84,25 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 
 - 구현과 QA의 검사 기준은 원천 보존 설정을 포함한 준비 커밋 `729446d8da57`으로 갱신했다. 설계 단계의 원래 검사 실패 기록은 보존한다.
 - dev 새 세션 배정: Run `run_8ca8bc058ab7`, Task `task_a7fd5d1b8806`, Dispatch `ctx_ab5236bf8b40`, terminal `term_5c300e96-6aca-49ad-ad46-441c378b7cee`. 갱신된 후보에서 codex gpt-6.1-sol high를 선택했고 착수를 확인했다.
+
+## FullOps 0.9.9 업데이트 — FULLOPS-UPDATE-099
+
+- 준비 기준은 `00b4cb34ae6e9f9fbc0b733ecaa3a2095fbc88eb`이다. 현재 Codex 플러그인은 0.9.9이며 필수 의존성을 확인했다.
+- 제품 기획 designer / 기술 계획 dev의 합의된 책임 분리를 marker로 활성화했다. coor·설계·tester와 역할 브랜치 매핑은 유지했다.
+- 이전 첫 요청 대기 기록은 당시 이력이다. 현재 SAR-SETUP-001 진행 자료는 coor·designer·dev 브랜치에 있다.
+- ops·tester만 쉬고 깨끗한 동기화 대상이다. coor·designer·dev는 기존 SAR 인계와 작업을 보존하기 위해 완료 후 동기화한다.
+- 새 coordinator는 [갱신과 인계 기록](docs/exec-plans/phases/FULLOPS-UPDATE-099.md)을 읽고 기존 Run을 연결한다.
+
+## FullOps 0.9.10 업데이트 — FULLOPS-UPDATE-0.9.10
+
+- 설치 버전은 갱신 전후 0.9.10이다. 레포 적용 버전 0.9.9의 미적용 릴리스를 회수한다.
+- 공통 기준 0.3.2, 핸드오버와 시나리오 기준, 업데이트 연결과 역할별 검증 인계를 반영한다.
+- DEV 관련 회귀와 최종 수락을 구분한다. tester는 안정된 통합 후보의 독립 전체 QA를 맡고 designer는 직접 시각 검수를 맡는다.
+- 증거는 원래 SHA·조건과 의존성 동일성을 확인해 재사용한다. 기존 실패와 제품 정지는 유지한다.
+- 모든 역할 워크트리의 동기화는 보류한다. coor가 진행 과제·활성 세션·깨끗한 상태를 확인한 뒤 준비 커밋을 전달한다.
+- 상세 적용·검증·보류 담당과 재개 조건은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md)을 따른다.
+
+### 하위 워크트리 적용 — 2026-10-03
+
+사용자 요청으로 FullOps 0.9.10 준비 커밋을 이 역할 브랜치에 병합했다. 위 동기화 보류는 당시 기록이다.
+기존 제품 자료·지시서·실패 기록과 역할별 프로젝트 기준을 보존했다. 실행 중 세션은 다음 시작 시 새 플러그인 규약을 읽는다.
