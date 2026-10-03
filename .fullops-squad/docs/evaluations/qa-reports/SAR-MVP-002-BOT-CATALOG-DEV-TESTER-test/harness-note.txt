@@ -1,0 +1,4 @@
+exits.txt의 첫 `1 install_first`는 제품 실패가 아니다. 이전 시도가 PATH 앞에 남긴 curl shim이 깨진 파일을 써서 checksum이 실패했다. 그 다음 `0 install_first`부터가 detached clone의 성공 실행이다. 성공 로그는 같은 파일 이름을 덮어썼다.
+첫 시도는 cwd가 기록 체크아웃이었다. 그 시도가 만든 gitignore ZIP `build/knowslink-grok-bot-plugin.zip`은 지웠다. 판정 실행은 clone에서 다시 했다.
+grok-shim-env.txt 원문은 커밋하지 않았다. grok-shim-env-keys.txt는 이름만 있다. Node tarball은 커밋하지 않았다. tarball_check가 공식 SHA256 일치를 기록한다.
+verify_shim.err 끝의 빈 줄 하나는 공백 검사 때문에 제거했다. 표식과 exit=7 줄은 그대로다.

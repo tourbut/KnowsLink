@@ -1,0 +1,68 @@
+PASS workspace prefix absent before
+PASS clone already present
+PASS detach exit 0
+PASS clone HEAD 8e46c5a846e6d190e484e48be40b3dc368001a2b
+PASS clone clean after detach
+PASS sh -n exit 0
+PASS SHASUMS256 download
+PASS x64 pin matches official
+PASS arm64 pin matches official
+PASS install first exit 0
+PASS xz not executed
+PASS first output has Ready
+PASS tarball checksum OK line
+PASS two MCP PASS lines
+PASS package verify exit line 0
+PASS name knowslink
+PASS type Command
+PASS environment none
+PASS command absolute
+PASS arguments absolute
+PASS command is staged node
+PASS arguments is staged bundle
+PASS staged node executable
+PASS staged bundle file
+PASS staged node v22.22.2
+PASS staged npm 10.9.7
+PASS zip sha256sum exit 0
+PASS script printed same zip hash
+PASS zip hash expected
+PASS markers preserved after first
+PASS independent tarball download
+PASS independent tarball checksum
+PASS independent probe exit 0
+PASS install rerun exit 0
+PASS rerun did not call curl
+PASS rerun skipped checksum line
+PASS rerun Ready
+PASS rerun command same
+PASS rerun arguments same
+PASS rerun targets still exist
+PASS markers preserved after rerun
+PASS bundle mtime replaced
+PASS unsupported exit 1
+PASS unsupported created no prefix
+PASS unsupported message
+PASS unsupported no Ready
+PASS download fail exit 1
+PASS download fail no Ready
+PASS download fail no node
+PASS checksum fail exit 1
+PASS checksum fail no Ready
+PASS checksum FAILED visible
+PASS build fail exit 1
+PASS build fail no Ready
+PASS verify shim exit 1
+PASS verify shows stdout and stderr
+PASS verify shows exit 7
+PASS verify failure has no PASS
+PASS GROK_CONFIG family removed
+PASS new PASS wording present
+PASS old PASS wording absent
+PASS user grok config and installed-plugins unchanged
+PASS recording checkout zip absent
+PASS qa-fixture mode 600
+PASS recording checkout tracked clean
+PASS workspace prefix still absent
+PASS clone porcelain clean
+PASS clone HEAD unchanged

@@ -1,9 +1,9 @@
 ---
 title: tester 컨텍스트
 status: draft
-updated: 2026-10-03
+updated: 2026-10-04
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER]
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER]
 summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다"
 ---
 
@@ -33,3 +33,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검�
 - 2026-10-03 SAR-MVP-002-DEV-TESTER: 후보 `552586b6e886f95bffa9a000a031ea03070afedb`의 별도 clone에서 ZIP SHA256은 `0e671d1a89c141d896034fff31619b9cd2148b73b567adbc3a97126031989117`이다. MCP 경계와 `make verify-mvp` 종료코드는 0이다.
 - 같은 프로세스의 겹친 pull은 `busy`다. 실제 Grok Bot 계정, marketplace, hosted runtime은 held다. 새 critical/high는 없다.
 - 판정·증거: [SAR-MVP-002-DEV-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md). UI·Go는 `9584aaf`와 같아 Chrome QA를 재사용했다. 제품 코드는 수정하지 않았다.
+- 2026-10-04 SAR-MVP-002-BOT-CATALOG-DEV-TESTER: 후보 `8e46c5a846e6d190e484e48be40b3dc368001a2b`의 별도 clone에서 설치 첫 실행·재실행 종료코드는 0이다. ZIP SHA256은 `b7882df74537ad0bd32bdde45f9dd01677431ff74dda3312ef6c8fa650c00cad`다.
+- 레포 밖 `env -i` 프로브는 도구 2개, held, stderr 0이다. 미지원·다운로드·checksum·빌드 실패는 exit 1이고 Ready가 없다. 새 결함은 없다.
+- 판정·증거: [SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md). 실제 앱 등록·카탈로그·aarch64 실행은 미검증이다. 제품 코드는 수정하지 않았다.
