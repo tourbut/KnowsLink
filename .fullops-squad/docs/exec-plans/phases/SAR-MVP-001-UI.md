@@ -88,3 +88,14 @@ D04 자체의 정규 메타데이터·로컬 링크를 별도로 검사해 전�
 제품 경로의 `git diff --exit-code a6a10c7 -- ...`와 `git diff --check` 종료코드는 각각 0이다.
 명령의 직접 종료코드와 PNG SHA-256은 `/tmp/SAR-MVP-001-UI-validation/ctx_f6be2c2d0ce4/`에 보존한다.
 최종 FullOps lint는 깨끗한 커밋에 수행하고 해당 SHA와 결과를 완료 보고·worker_done으로 전달한다.
+
+## 커밋된 문서의 lint와 환경 복구
+
+문서 커밋은 `26e601d8d69394602945d9333acf8bd32a22c536`이다.
+`lint.py --repo . --from 0a5b044` 첫 실행 종료코드는 1이다.
+`product-lint`의 TypeScript 검사가 `@types/node` 부재로 실패했다. ERROR 1, WARNING 0, 실행 불가 0이다.
+이는 tester의 기존 의존성 부재 관찰과 같은 환경 조건이다. 제품 소스나 잠금 파일을 변경하지 않았다.
+잠금 파일 기반 `npm ci --prefix adapters` 종료코드는 0이다. 설치 대상은 Git 제외 `adapters/node_modules`다.
+같은 커밋에서 lint를 다시 실행했다. 종료코드 0, `product-lint` passed, ERROR 0, WARNING 0, 실행 불가 0이다.
+실패·복구 결과는 `lint-initial.json`·`install.log`·`lint-restored.json`에 보존한다.
+인박스 아카이브 후 최종 커밋에도 동일 기준 lint를 실행한다. 최종 SHA의 결과는 worker_done으로 전달한다.
