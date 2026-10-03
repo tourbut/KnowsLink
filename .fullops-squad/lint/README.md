@@ -1,3 +1,12 @@
+---
+title: KnowsLink lint 게이트
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [FULLOPS-UPDATE-098]
+summary: 코드 lint와 일반 문서 메타데이터 검사의 실행 기준을 정의한다
+---
+
 # Lint 게이트
 
 코드 산출물의 품질을 일정하게 유지하려고 모든 코드 변경에 lint를 실행한다. 실행 도구는 플러그인의 `scripts/lint.py`이고, 설정 정본은 이 디렉터리의 `lint.json`이다.
@@ -23,6 +32,7 @@
 | SEC-001 | ERROR (테스트·`.md`는 WARNING) | 하드코딩 비밀값 의심. `test`·`example`·`dummy` 등 더미 값과 환경변수 참조는 예외다. |
 | DOC-001 | WARNING | 새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없음. 이 설명이 `jev_find.py`의 코드 지도가 된다 |
 | DOC-002 | ERROR | 바뀐 산출물 원천 문서의 front matter가 없거나, 필수 필드·id·상태·날짜가 틀리거나, 인덱스 상태와 다르거나, `deliverables.py --stamp` 출력 형식과 다름. `--stamp`로 다시 쓴다 |
+| DOC-003 | ERROR | 변경된 일반 FullOps Markdown의 front matter를 검사한다. 검사 기준은 `docs/agents/document-writing.md`다. 코드 lint의 exclude와 별도로 검사한다. `deliverables.py --stamp --path`로 메타데이터를 등록한다. |
 | LINT-000 | WARNING | 프로젝트 lint 명령이 등록되지 않음 |
 | LINT-001 | WARNING | 검사 대상 브랜치가 `lint.json`을 바꿈. 변경은 병합 후 적용된다 |
 | CUSTOM-NNN | 규칙별 | `rules`에 등록한 레포별 정규식 규칙 |

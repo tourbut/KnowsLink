@@ -1,3 +1,12 @@
+---
+title: KnowsLink 현재 계획
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [FULLOPS-UPDATE-098]
+summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이트 기록을 관리한다"
+---
+
 # KnowsLink 현재 계획
 
 ## 운영
@@ -35,3 +44,15 @@
 - 모든 워크트리의 브랜치·upstream·동일 HEAD·깨끗한 상태와 .env 링크 확인. 에이전트 세션은 기동하지 않았다.
 - Jev OPENROUTER_API_KEY 존재 확인. 값은 출력하지 않았으며 실제 API 호출은 이번 setup에서 수행하지 않았다.
 - 현황판: `.fullops-squad/board/index.html`. 생성 데이터는 Git 미추적이며 각 워크트리에서 board.py로 생성한다.
+
+## FullOps 0.9.8 업데이트 — FULLOPS-UPDATE-098
+
+- 업데이트 전 기준 커밋: `3c1a185`. 기본 브랜치는 main이며 기존 변경은 없었다.
+- Codex 설치 버전은 0.9.8이다. `deps.py --check`에서 필수 CLI를 모두 확인했다.
+- 진행 중 worker는 없었다. 다섯 역할의 인박스는 비어 있었다. 역할 워크트리는 모두 깨끗했다.
+- 새 문서 작성 규칙을 추가했다. 하네스 지도에 규칙 링크를 추가했다. lint 안내에 DOC-003을 등록했다.
+- 이번에 수정한 일반 문서는 `deliverables.py --stamp --path`로 등록했다. 기존 역할·모델·인박스·외부 공통 규칙은 유지했다.
+- 기존 문서는 다음 수정 때 메타데이터를 등록한다. 진행 중 지시서의 일괄 변환은 보류한다.
+- 동기화 대상은 coor, designer, dev, ops, tester다. 이 역할들은 쉬고 있으며 작업 트리가 깨끗하다. 예약된 동기화는 없다.
+- 이 세션은 업데이트 전용이다. 새 coor 세션에서 Run `run_8ca8bc058ab7`을 연결한다.
+- Claude Code와 grok은 이전 설치 버전 0.9.7이다. 해당 CLI로 worker를 시작하기 전에 README의 업데이트 명령을 실행한다.

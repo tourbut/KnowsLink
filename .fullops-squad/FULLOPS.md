@@ -1,7 +1,18 @@
+---
+title: FullOps Squad 하네스 지도
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [FULLOPS-UPDATE-098]
+summary: KnowsLink 작업 규약과 역할별 참조 문서를 안내한다
+---
+
 # FullOps Squad — 하네스 지도
 
 현재 레포 루트의 `.fullops-squad/fullops.json`이 있을 때만 이 규약을 적용한다.
 규약은 한국어로 관리하고 식별자·코드베이스의 기존 언어 규칙은 유지한다.
+문서를 작성하거나 수정하기 전에 [문서 작성 규칙](docs/agents/document-writing.md)을 읽는다.
+작성자는 front matter와 한국어 STE 작성 원칙을 적용한다. 검토자는 같은 규칙으로 문서를 확인한다.
 
 | 작업 | 먼저 읽을 문서 (`.fullops-squad/` 기준) |
 |---|---|
