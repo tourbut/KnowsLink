@@ -1,0 +1,370 @@
+{
+  "snapshot_head": "4262d02fdd7b0b57a804d9e550597852950ffeae",
+  "snapshot_detached": true,
+  "snapshot_clean": true,
+  "standards": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "sha256": "5fb41b7cdb0585330ccb749ea8728ea0dafe537586ed28d40e5a9aa5cd506451",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "sha256": "6b2cb7bc8809e3befac83bdf0ba1110d1fdf0f7ece38f0f2eee2a1d68a07333e",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "sha256": "a1351e7b72b8f8ce4071f9962b2ebec8649c1c7e2d84c117ced86b54c72cebbf",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "sha256": "78c2b6a10a1fb757eb60b8b290352a35ab2211177767c1c96f0ebcfb668b0b40",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "sha256": "4c2f3d0910dd96d38d7ece069b1478f772ea9411117386d2ed606a32bd8a636f",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "sha256": "c6933cf2fc4e79c1f5691c60bff4d434327301827b82aef08dca0d4e881ba9e0",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/review/rule.json",
+      "sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+      "same_as_record_checkout": true
+    }
+  ],
+  "excluded_artifacts": [
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI-v01-pending-full.png",
+      "bytes": 87675,
+      "sha256": "0410a33a19b93e53de837d3d0645a5edabbb9a69fa9916a8a567001e1756d503",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        1100
+      ]
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/install.log",
+      "bytes": 152,
+      "sha256": "8920eb51650d845a95dc5fb60a2722b8e9ed833ef52dbff0efa3258a13a84c9a",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.log",
+      "bytes": 642,
+      "sha256": "edba3f3f958446b624ef5a901e45e17f45924c52fd3991f902329028f3b0e904",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.log",
+      "bytes": 642,
+      "sha256": "05c80d99a6c05378a241bed5f2a75202defac3a9083cbf3b534998689492d5fe",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/targeted.log",
+      "bytes": 660,
+      "sha256": "f55dc690e24336fe0b1bc46fdb31a7643dfa2ddb5aad2408bba9645a8616cfdc",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "last_summary": [
+        "--- PASS: TestReviewHumanDelivery (0.12s)",
+        "    review_test.go:48: PASS: generated stale epoch CAS affects zero rows and preserves data; zero-row transaction save returns HTTP 503 and rolls back owner signup",
+        "--- PASS: TestReviewStaleEpochCAS (0.07s)"
+      ]
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/build.log",
+      "bytes": 291,
+      "sha256": "5fc4a209208cb881f07e104e7b35574b4174d5fa335d620b94130fbe59646bf2",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/install.log",
+      "bytes": 262,
+      "sha256": "15c99f8f751cf568edd2b53838dcf52c3fcbf0aa0f95c59bee09de092e8a9105",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/lint.log",
+      "bytes": 4874,
+      "sha256": "02edc353c317b3a2f9bb12687a47cf44655c695c89a9c065b73352e68e7de276",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "2",
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.log",
+      "bytes": 51931,
+      "sha256": "05e2e600eef59835790584c869e4dc048e889c053b3494db81615ece2dcea622",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "last_summary": [
+        "PROBE fail 3 held 8 pass 28",
+        "PROBE fail 0 held 8 pass 31"
+      ]
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png",
+      "bytes": 81993,
+      "sha256": "f29706386c1456d94ba9db94d4973e1a8325e1b7e19a5f52b392c0e3dd7f8c29",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "same_as_original_qa_blob": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png",
+      "bytes": 84544,
+      "sha256": "522459c5d3de6c81b773a84970e1b958c8cdad4cfb9f21e6297dab22804ccf67",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "same_as_original_qa_blob": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png",
+      "bytes": 82872,
+      "sha256": "dc9e2a2288d9d3d8e6bb7f2c2333dd30e051a152580761dcd881f94301b0e7ff",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "same_as_original_qa_blob": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png",
+      "bytes": 82576,
+      "sha256": "9b1e80bde009173fa1283e629f484778340a9786b3e2636100388f476e21288a",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "same_as_original_qa_blob": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png",
+      "bytes": 74469,
+      "sha256": "e7d609c969440f78c3cfbc2551b06f005090358c86d7bc35d52b3f05bf35b156",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "same_as_original_qa_blob": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png",
+      "bytes": 6378,
+      "sha256": "f17b9389981cc5ab1578070fb99f399496d2eafa3723a8238c3b337445fe1159",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "same_as_original_qa_blob": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png",
+      "bytes": 74886,
+      "sha256": "369df16fac609761f6c6033c1613ba0e4634bc71c9ea7e0469e28fb920f08a4a",
+      "exclude_reason": "binary",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "same_as_original_qa_blob": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/unit.log",
+      "bytes": 429,
+      "sha256": "e7494730af6b575a0638d7cd12d9d56c590538fe5d194a54692e3b75a8b1c2fd",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/verify-mvp.log",
+      "bytes": 9426,
+      "sha256": "5111bab4c4996f61ce138d9919e208ff4e62473dfa1d3e80bb1f0f7beeea5e5e",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": [
+        "--- PASS: TestPendingAndConcurrentAccept (0.10s)",
+        "--- PASS: TestFrozenParsingAndSigning (0.01s)",
+        "--- PASS: TestFrozenFieldLimits (0.02s)",
+        "PASS: TS verify/persist/ACK/claim, policy deny, owner approve and denied result; no effects",
+        "PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused"
+      ]
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/versions.log",
+      "bytes": 683,
+      "sha256": "5f635dcb99355f430e6fe579c8af9b10579039bab359129f89b26501dcd842e3",
+      "exclude_reason": "user_exclude",
+      "recorded_exit_codes": [
+        "0"
+      ],
+      "last_summary": []
+    },
+    {
+      "path": "go.mod",
+      "bytes": 607,
+      "sha256": "d59fb714a7cf8f0fc47003d787eb3f7a98274bd3b6ca401b454ee7434be35c06",
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": "go.sum",
+      "bytes": 4714,
+      "sha256": "e825702e21bbdfb1eb3268d4b1605a4f95e6cd1736a9eb2b50ee6c301183bb3c",
+      "exclude_reason": "unsupported_ext"
+    }
+  ],
+  "qa_original_head": "a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92",
+  "qa_evidence_commit": "c59537b6fa0c7e008c4c6bdba0a251dd821d4ee8",
+  "changed_product_paths_since_qa": [
+    "internal/relay/http.go",
+    "internal/relay/integration_test.go",
+    "internal/relay/protocol_test.go",
+    "internal/relay/store.go"
+  ],
+  "original_probe_counts": {
+    "pass": 31,
+    "held": 8,
+    "fail": 0
+  },
+  "reuse_dependencies": [
+    {
+      "path": "internal/relay/store.go",
+      "scope": "func (s *Service) transaction(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "65cbf1865c395ef77961e75d5bf42329afa84efc8591ffa6cd519966a18b1335"
+    },
+    {
+      "path": "internal/relay/store.go",
+      "scope": "func (st *State) current(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "0fa96e07f988b150753188c5e43389605de7c45662bbc35a02ac996648ab110f"
+    },
+    {
+      "path": "internal/relay/store.go",
+      "scope": "func (st *State) sweep(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "4f75c4f74b796d4ea6be68ecbeaf00fcab13050feed54d5b20baa18faafb3121"
+    },
+    {
+      "path": "internal/relay/http.go",
+      "scope": "var page =",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "f92a9999a3704d0688bab7d6fc501c4d4afb627ea8b1bb553c2f5c4c7cf1f640"
+    },
+    {
+      "path": "internal/relay/http.go",
+      "scope": "func (s *Service) gateView(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "03fcf962065ae3e699a50e1464ba0294bc08470151bf748370756774109a3c5d"
+    },
+    {
+      "path": "internal/relay/http.go",
+      "scope": "func (s *Service) gateDecision(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "890f5f3b23025a7be56d8dbbf27a1b8af53c7f3ac5a994b4ff7c1659d7b8d3d9"
+    },
+    {
+      "path": "db/queries/relay.sql",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "5515bdeb83ba4f009fbe5308613229a55668e36d979f21fa01366c0fde282698"
+    },
+    {
+      "path": "internal/database/relay.sql.go",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "a0db982e8585ca7ef638352749345126d0a206da071561618ad6c7daf717e638"
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "afe0d45abfbe8de96447c77c7dfcc18e12aa75aa58f789e8c01176a24fa7cd08"
+    },
+    {
+      "path": "compose.yaml",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "31bb474598f29f0cc334ae594bfd9e24dbecc5eba798496601b4f8ae5613dc84"
+    },
+    {
+      "path": "Dockerfile",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "0d4910ef981013c4db94ae408f6eb814c21d0a4bffe3edcc2658ad97f374314e"
+    }
+  ]
+}

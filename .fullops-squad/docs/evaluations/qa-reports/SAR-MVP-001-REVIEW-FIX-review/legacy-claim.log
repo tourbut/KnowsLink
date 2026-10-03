@@ -1,0 +1,17 @@
+
+SOURCE a6a10c7; test-only temporary overlay
+=== RUN   TestReviewLegacyHumanClaim
+    protocol_test.go:143: BASELINE: genuine old human ingest/pull/persist/ACK/claim accepted; serialized pre-fix state
+--- PASS: TestReviewLegacyHumanClaim (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	0.007s
+[exit 0]
+
+SOURCE 4262d02; test-only temporary overlay
+=== RUN   TestReviewLegacyHumanClaim
+    protocol_test.go:157: HEAD: new claim correctly denied
+    protocol_test.go:166: REPRODUCED: old deliver=human claim authorizes and accepts agent result; completion=denied; owner gates=0
+--- PASS: TestReviewLegacyHumanClaim (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	0.009s
+[exit 0]

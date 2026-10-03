@@ -1,0 +1,49 @@
+
+func TestReviewLegacyHumanClaim(t *testing.T) {
+ now := time.Now().UTC()
+ statePath := os.Getenv("REVIEW_LEGACY_STATE")
+ if os.Getenv("REVIEW_SEED_LEGACY") == "1" {
+  publicA, privateA, _ := ed25519.GenerateKey(rand.Reader)
+  publicB, privateB, _ := ed25519.GenerateKey(rand.Reader)
+  st := newState()
+  st.Owners["owner_a"] = &Owner{hashToken("review_owner_a"), true}
+  st.Owners["owner_b"] = &Owner{hashToken("review_owner_b"), true}
+  st.Agents["agent_a"] = &Agent{"owner_a", hashToken("review_agent_a"), map[string]*Key{"key1": {Public: publicA}}}
+  st.Agents["agent_b"] = &Agent{"owner_b", hashToken("review_agent_b"), map[string]*Key{"key1": {Public: publicB}}}
+  st.Pairs[pairID("agent_a", "agent_b")] = &Pair{A:"agent_a", B:"agent_b", State:"active", Generation:1}
+  var raw map[string]any
+  _ = json.Unmarshal(wire(t, privateA, firstID, "agent_a", "agent_b", "schedule.query", "review-legacy-key-01", "", queryBody(), now.Add(240*time.Second)), &raw)
+  raw["deliver"] = "human"
+  unsigned, _ := json.Marshal(raw)
+  e, err := Parse(unsigned); if err != nil { t.Fatal(err) }
+  raw["sig"].(map[string]any)["value"] = base64.RawURLEncoding.EncodeToString(ed25519.Sign(privateA, e.SigningBytes()))
+  signed, _ := json.Marshal(raw); e, err = Parse(signed); if err != nil { t.Fatal(err) }
+  if _, err = st.ingest("agent_a", e, "", now); err != nil { t.Fatal(err) }
+  lease, err := st.leaseMessage("agent_b", now); if err != nil || lease == nil { t.Fatal("old human lease failed", err) }
+  token := lease.(map[string]any)["lease_token"].(string)
+  for _, path := range []string{"persist", "ack", "claim"} {
+   if _, err = st.operate(path, "review_agent_b", command{ID:firstID, Token:token}, now); err != nil { t.Fatal(path, err) }
+  }
+  state, _ := json.Marshal(st); if err = os.WriteFile(statePath, state, 0600); err != nil { t.Fatal(err) }
+  if err = os.WriteFile(statePath+".private", privateB, 0600); err != nil { t.Fatal(err) }
+  t.Log("BASELINE: genuine old human ingest/pull/persist/ACK/claim accepted; serialized pre-fix state")
+  return
+ }
+ raw, err := os.ReadFile(statePath); if err != nil { t.Fatal(err) }
+ st := newState(); if err = json.Unmarshal(raw, st); err != nil { t.Fatal(err) }
+ m := st.Messages[firstID]
+ var envelope map[string]any; _ = json.Unmarshal(m.Envelope, &envelope)
+ if envelope["deliver"] != "human" || !m.Claimed || m.Receipt.State != "delivered" { t.Fatal("invalid old fixture") }
+ _, err = st.operate("claim", "review_agent_b", command{ID:firstID}, now)
+ if err == nil { t.Fatal("new claim unexpectedly allowed") }
+ t.Log("HEAD: new claim correctly denied")
+ _, err = st.operate("authorize", "review_agent_b", command{ID:firstID, Claim:m.ClaimToken}, now)
+ if err != nil { t.Log("HEAD: legacy authorize denied", err); return }
+ privateBytes, err := os.ReadFile(statePath+".private"); if err != nil { t.Fatal(err) }
+ privateB := ed25519.PrivateKey(privateBytes)
+ result, err := Parse(wire(t, privateB, secondID, "agent_b", "agent_a", "relay.result", "review-result-key-01", firstID, map[string]any{"status":"denied"}, m.Receipt.Exp))
+ if err != nil { t.Fatal(err) }
+ _, err = st.ingest("agent_b", result, m.ClaimToken, now)
+ if err != nil { t.Log("HEAD: legacy result denied", err); return }
+ t.Logf("REPRODUCED: old deliver=human claim authorizes and accepts agent result; completion=%s; owner gates=%d", m.Completion, len(st.Gates))
+}

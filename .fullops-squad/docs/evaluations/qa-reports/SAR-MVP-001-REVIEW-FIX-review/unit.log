@@ -1,0 +1,8 @@
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.016s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.016s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.015s
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.051s
+
+[exit 0]
