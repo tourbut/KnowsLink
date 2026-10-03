@@ -1,6 +1,6 @@
-command: ['make', 'verify']
+command: make verify
 python3 scripts/verify_setup.py
-command: ['make', 'lint']; exit: 0
+command: make lint; exit: 0
 make[1]: Entering directory '/home/shin/orca/workspaces/KnowsLink/fullops-dev'
 go vet ./cmd/... ./internal/...
 go mod verify
@@ -31,13 +31,13 @@ python3 scripts/check_compose.py
 Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
 python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
 make[1]: Leaving directory '/home/shin/orca/workspaces/KnowsLink/fullops-dev'
-command: ['make', 'lint']; exit: 2
+command: make lint; exit: 2
 make[1]: Entering directory '/tmp/knowslink-lint-aqi44aob/repo'
 Go formatting violations:
 cmd/relay/lint_probe.go
 make[1]: Leaving directory '/tmp/knowslink-lint-aqi44aob/repo'
 make[1]: *** [Makefile:11: lint-go] Error 1
-command: ['make', 'lint']; exit: 2
+command: make lint; exit: 2
 make[1]: Entering directory '/tmp/knowslink-lint-aqi44aob/repo'
 go vet ./cmd/... ./internal/...
 go mod verify
@@ -65,7 +65,7 @@ All matched files use Prettier code style!
 
 make[1]: Leaving directory '/tmp/knowslink-lint-aqi44aob/repo'
 make[1]: *** [Makefile:17: lint-adapters] Error 1
-command: ['make', 'lint']; exit: 2
+command: make lint; exit: 2
 make[1]: Entering directory '/tmp/knowslink-lint-aqi44aob/repo'
 go vet ./cmd/... ./internal/...
 go mod verify
@@ -92,7 +92,7 @@ All matched files use Prettier code style!
 src/lint_probe.ts(1,14): error TS2322: Type 'number' is not assignable to type 'string'.
 make[1]: Leaving directory '/tmp/knowslink-lint-aqi44aob/repo'
 make[1]: *** [Makefile:17: lint-adapters] Error 2
-command: ['make', 'lint']; exit: 2
+command: make lint; exit: 2
 make[1]: Entering directory '/tmp/knowslink-lint-aqi44aob/repo'
 go vet ./cmd/... ./internal/...
 go mod verify
@@ -111,7 +111,7 @@ make[1]: Leaving directory '/tmp/knowslink-lint-aqi44aob/repo'
 [warn] src/lint_probe.ts
 [warn] Code style issues found in the above file. Run Prettier with --write to fix.
 make[1]: *** [Makefile:17: lint-adapters] Error 1
-command: ['make', 'lint']; exit: 0
+command: make lint; exit: 0
 make[1]: Entering directory '/tmp/knowslink-lint-aqi44aob/repo'
 go vet ./cmd/... ./internal/...
 go mod verify

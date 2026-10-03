@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import socket
+import shlex
 import subprocess
 import tempfile
 import uuid
@@ -27,7 +28,7 @@ def main():
 
     def run(command, expected=0, diagnostic=None):
         result = subprocess.run(command, cwd=ROOT, env=environment, text=True, capture_output=True)
-        print(f"command: {command}; exit: {result.returncode}", flush=True)
+        print(f"command: {shlex.join(command)}; exit: {result.returncode}", flush=True)
         print(result.stdout + result.stderr, end="", flush=True)
         assert (result.returncode == 0) if expected == 0 else (result.returncode != 0)
         if diagnostic:

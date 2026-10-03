@@ -49,11 +49,15 @@ runtime 검증은 Compose 의존 순서와 실제 DB ping을 확인했다. 빈 m
 
 로그는 subprocess의 실제 returncode를 저장했다. 명령을 `tail`과 연결하지 않았다. 실행 뒤 로그 일부를 읽는 동작은 판정 명령이 아니다. [environment.log](../logs/SAR-SETUP-001-DEV/environment.log)에 실제 도구·의존성 버전이 있다.
 
+Git 공백 검사를 위해 저장한 로그의 줄 끝 공백을 정규화했다. 명령은 동일한 인자를 shell quoting 형식으로 표시한다. 오류 문구와 실제 종료코드는 유지한다.
+
 ## 실패 원인과 수정
 
 첫 runtime 검증은 cloudflared 누락 오류의 기대 문구를 `credentials`로 잘못 지정해 실패했다. 실제 2026.9.1은 `requires the ID or name of the tunnel`로 실패하며 종료코드는 255다. 검사 기대 문구를 실제 필수 설정 오류에 맞춘 뒤 전체 runtime 검증을 다시 통과했다. [runtime-initial.log](../logs/SAR-SETUP-001-DEV/runtime-initial.log)는 실패 증거를 보존한다.
 
 처음 조회한 ESLint 9.39.3은 npm 지원 종료 경고를 반환했다. 최종 구성은 지원되는 10.12.0으로 갱신했다. 최종 설치 감사는 취약점 0이다. Go의 `./...` 탐색은 node_modules의 외부 Go 파일도 포함했다. vet와 test 대상을 실제 제품 경로로 제한했다. 기존 FullOps 규칙과 exclude는 완화하지 않았다.
+
+첫 커밋 `bd9c8dc`의 FullOps lint는 로그에서 SEC-001 두 건을 검출했다. Python list 표시의 빈 `TUNNEL_TOKEN=` 뒤 구분 기호를 비밀값 문자열로 해석한 결과였다. 실제 token은 빈 값이다. 로그 명령 표시를 shell quoting으로 바꿨다. 기준이나 보안 규칙은 변경하지 않는다. Docker 출력의 줄 끝 공백도 정규화한다. 최초 공백 검사 뒤 셸이 커밋까지 계속 실행한 문제를 확인했다. 후속 검사와 커밋은 실패 시 즉시 중단한다.
 
 ## 미적용과 후속
 

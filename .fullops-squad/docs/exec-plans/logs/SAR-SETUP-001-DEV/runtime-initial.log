@@ -8,7 +8,7 @@ npm run build --prefix adapters
 > tsc
 
 python3 scripts/verify_runtime.py
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'up', '--build', '--wait', '--wait-timeout', '120', 'relay']; exit: 0
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json up --build --wait --wait-timeout 120 relay; exit: 0
 #1 [internal] load local bake definitions
 #1 reading from stdin 1.08kB done
 #1 DONE 0.0s
@@ -96,7 +96,7 @@ command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-ch
 
 #22 [relay] resolving provenance for metadata file
 #22 DONE 0.0s
- Image postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24 Pulling 
+ Image postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24 Pulling
  a8a481ae6efc Pulling fs layer 0B
  43f9814c9a3b Pulling fs layer 0B
  4ece9a32c307 Pulling fs layer 0B
@@ -241,74 +241,74 @@ command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-ch
  f3b07e8a357c Pull complete 0B
  a8a481ae6efc Pull complete 0B
  b0a0d9d2abf2 Pull complete 0B
- Image postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24 Pulled 
- Image knowslink-check-68b642ec38-relay Building 
- Image knowslink-check-68b642ec38-migrate Building 
- Image knowslink-check-68b642ec38-migrate Built 
- Image knowslink-check-68b642ec38-relay Built 
- Network knowslink-check-68b642ec38_database Creating 
- Network knowslink-check-68b642ec38_database Created 
- Network knowslink-check-68b642ec38_ingress Creating 
- Network knowslink-check-68b642ec38_ingress Created 
- Container knowslink-check-68b642ec38-postgres-1 Creating 
- Container knowslink-check-68b642ec38-postgres-1 Created 
- Container knowslink-check-68b642ec38-migrate-1 Creating 
- Container knowslink-check-68b642ec38-migrate-1 Created 
- Container knowslink-check-68b642ec38-relay-1 Creating 
- Container knowslink-check-68b642ec38-relay-1 Created 
- Container knowslink-check-68b642ec38-postgres-1 Starting 
- Container knowslink-check-68b642ec38-postgres-1 Started 
- Container knowslink-check-68b642ec38-postgres-1 Waiting 
- Container knowslink-check-68b642ec38-postgres-1 Healthy 
- Container knowslink-check-68b642ec38-migrate-1 Starting 
- Container knowslink-check-68b642ec38-migrate-1 Started 
- Container knowslink-check-68b642ec38-migrate-1 Waiting 
- Container knowslink-check-68b642ec38-migrate-1 Exited 
- Container knowslink-check-68b642ec38-relay-1 Starting 
- Container knowslink-check-68b642ec38-relay-1 Started 
- Container knowslink-check-68b642ec38-migrate-1 Waiting 
- Container knowslink-check-68b642ec38-relay-1 Waiting 
- Container knowslink-check-68b642ec38-postgres-1 Waiting 
- Container knowslink-check-68b642ec38-migrate-1 Exited 
- Container knowslink-check-68b642ec38-postgres-1 Healthy 
- Container knowslink-check-68b642ec38-relay-1 Healthy 
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'logs', 'migrate']; exit: 0
+ Image postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24 Pulled
+ Image knowslink-check-68b642ec38-relay Building
+ Image knowslink-check-68b642ec38-migrate Building
+ Image knowslink-check-68b642ec38-migrate Built
+ Image knowslink-check-68b642ec38-relay Built
+ Network knowslink-check-68b642ec38_database Creating
+ Network knowslink-check-68b642ec38_database Created
+ Network knowslink-check-68b642ec38_ingress Creating
+ Network knowslink-check-68b642ec38_ingress Created
+ Container knowslink-check-68b642ec38-postgres-1 Creating
+ Container knowslink-check-68b642ec38-postgres-1 Created
+ Container knowslink-check-68b642ec38-migrate-1 Creating
+ Container knowslink-check-68b642ec38-migrate-1 Created
+ Container knowslink-check-68b642ec38-relay-1 Creating
+ Container knowslink-check-68b642ec38-relay-1 Created
+ Container knowslink-check-68b642ec38-postgres-1 Starting
+ Container knowslink-check-68b642ec38-postgres-1 Started
+ Container knowslink-check-68b642ec38-postgres-1 Waiting
+ Container knowslink-check-68b642ec38-postgres-1 Healthy
+ Container knowslink-check-68b642ec38-migrate-1 Starting
+ Container knowslink-check-68b642ec38-migrate-1 Started
+ Container knowslink-check-68b642ec38-migrate-1 Waiting
+ Container knowslink-check-68b642ec38-migrate-1 Exited
+ Container knowslink-check-68b642ec38-relay-1 Starting
+ Container knowslink-check-68b642ec38-relay-1 Started
+ Container knowslink-check-68b642ec38-migrate-1 Waiting
+ Container knowslink-check-68b642ec38-relay-1 Waiting
+ Container knowslink-check-68b642ec38-postgres-1 Waiting
+ Container knowslink-check-68b642ec38-migrate-1 Exited
+ Container knowslink-check-68b642ec38-postgres-1 Healthy
+ Container knowslink-check-68b642ec38-relay-1 Healthy
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json logs migrate; exit: 0
 migrate-1  | 2026/10/03 02:55:56 no SQL migrations; no-op (no business schema exists)
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'exec', '-T', 'postgres', 'psql', '-U', 'knowslink', '-d', 'knowslink', '-Atc', "SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"]; exit: 0
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json exec -T postgres psql -U knowslink -d knowslink -Atc 'SELECT count(*) FROM information_schema.tables WHERE table_schema='"'"'public'"'"''; exit: 0
 0
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'exec', '-T', 'relay', 'wget', '-q', '-O', '-', 'http://127.0.0.1:8080/healthz']; exit: 0
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 0
 ok
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'exec', '-T', 'relay', 'env', 'DATABASE_URL=', '/app/relay']; exit: 1
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json exec -T relay env DATABASE_URL= /app/relay; exit: 1
 2026/10/03 02:56:03 DATABASE_URL is required
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'exec', '-T', 'relay', 'env', 'DATABASE_URL=postgres://localhost:1/knowslink', '/app/relay']; exit: 1
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/relay; exit: 1
 2026/10/03 02:56:03 database ping failed
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'exec', '-T', 'relay', 'env', 'DATABASE_URL=', '/app/migrate']; exit: 1
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json exec -T relay env DATABASE_URL= /app/migrate; exit: 1
 2026/10/03 02:56:03 DATABASE_URL is required
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'exec', '-T', 'relay', 'env', 'DATABASE_URL=postgres://localhost:1/knowslink', '/app/migrate']; exit: 1
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/migrate; exit: 1
 2026/10/03 02:56:03 database ping failed
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'stop', 'postgres']; exit: 0
- Container knowslink-check-68b642ec38-postgres-1 Stopping 
- Container knowslink-check-68b642ec38-postgres-1 Stopped 
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'exec', '-T', 'relay', 'wget', '-q', '-O', '-', 'http://127.0.0.1:8080/healthz']; exit: 1
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json stop postgres; exit: 0
+ Container knowslink-check-68b642ec38-postgres-1 Stopping
+ Container knowslink-check-68b642ec38-postgres-1 Stopped
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 1
 wget: server returned error: HTTP/1.1 503 Service Unavailable
-command: ['docker', 'compose', '--env-file', '.env.example', '-p', 'knowslink-check-68b642ec38', '-f', '/home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml', '-f', '/tmp/knowslink-runtime-ocyyoial/compose.json', 'down']; exit: 0
- Container knowslink-check-68b642ec38-relay-1 Stopping 
- Container knowslink-check-68b642ec38-relay-1 Stopped 
- Container knowslink-check-68b642ec38-relay-1 Removing 
- Container knowslink-check-68b642ec38-relay-1 Removed 
- Container knowslink-check-68b642ec38-migrate-1 Stopping 
- Container knowslink-check-68b642ec38-migrate-1 Stopped 
- Container knowslink-check-68b642ec38-migrate-1 Removing 
- Container knowslink-check-68b642ec38-migrate-1 Removed 
- Container knowslink-check-68b642ec38-postgres-1 Stopping 
- Container knowslink-check-68b642ec38-postgres-1 Stopped 
- Container knowslink-check-68b642ec38-postgres-1 Removing 
- Container knowslink-check-68b642ec38-postgres-1 Removed 
- Network knowslink-check-68b642ec38_ingress Removing 
- Network knowslink-check-68b642ec38_database Removing 
- Network knowslink-check-68b642ec38_database Removed 
- Network knowslink-check-68b642ec38_ingress Removed 
-command: ['docker', 'run', '--rm', '--network', 'none', '-e', 'TUNNEL_TOKEN=', 'cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4', 'tunnel', '--no-autoupdate', 'run']; exit: 255
+command: docker compose --env-file .env.example -p knowslink-check-68b642ec38 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-ocyyoial/compose.json down; exit: 0
+ Container knowslink-check-68b642ec38-relay-1 Stopping
+ Container knowslink-check-68b642ec38-relay-1 Stopped
+ Container knowslink-check-68b642ec38-relay-1 Removing
+ Container knowslink-check-68b642ec38-relay-1 Removed
+ Container knowslink-check-68b642ec38-migrate-1 Stopping
+ Container knowslink-check-68b642ec38-migrate-1 Stopped
+ Container knowslink-check-68b642ec38-migrate-1 Removing
+ Container knowslink-check-68b642ec38-migrate-1 Removed
+ Container knowslink-check-68b642ec38-postgres-1 Stopping
+ Container knowslink-check-68b642ec38-postgres-1 Stopped
+ Container knowslink-check-68b642ec38-postgres-1 Removing
+ Container knowslink-check-68b642ec38-postgres-1 Removed
+ Network knowslink-check-68b642ec38_ingress Removing
+ Network knowslink-check-68b642ec38_database Removing
+ Network knowslink-check-68b642ec38_database Removed
+ Network knowslink-check-68b642ec38_ingress Removed
+command: docker run --rm --network none -e TUNNEL_TOKEN= cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4 tunnel --no-autoupdate run; exit: 255
 Unable to find image 'cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4' locally
 docker.io/cloudflare/cloudflared@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4: Pulling from cloudflare/cloudflared
 97975017fe3e: Pulling fs layer
