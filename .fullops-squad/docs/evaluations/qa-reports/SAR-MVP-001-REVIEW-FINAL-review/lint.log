@@ -1,0 +1,9 @@
+cwd: /tmp/knowslink-mvp-review-78b1d92
+command: python3 /home/shin/.codex/plugins/cache/fullops-squad/fullops-squad/0.9.12/scripts/lint.py --repo /tmp/knowslink-mvp-review-78b1d92 --from 0e4b5de7fa5eccb6a4391dedce3742e1845d1d00 --out /home/shin/orca/workspaces/KnowsLink/fullops-dev/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/lint.json
+[passed] product-lint: make lint
+WARNING SIZE-001 internal/relay/http.go 487줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/integration_test.go 478줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/store.go 420줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+head 78b1d92c8aa6 / 파일 45 / ERROR 0 / WARNING 3 / 실행 불가 0
+
+exit_code: 0

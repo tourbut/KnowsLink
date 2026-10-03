@@ -1,0 +1,10 @@
+cwd: /tmp/knowslink-mvp-review-78b1d92
+command: go test -count=1 -race -overlay /tmp/knowslink-final-review-probes/human-overlay.json ./internal/relay -run TestLegacyClaimsCannotReachParentBoundaries|TestReviewLegacyFixtureAndTTL -v
+=== RUN   TestLegacyClaimsCannotReachParentBoundaries
+--- PASS: TestLegacyClaimsCannotReachParentBoundaries (0.02s)
+=== RUN   TestReviewLegacyFixtureAndTTL
+--- PASS: TestReviewLegacyFixtureAndTTL (0.01s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.054s
+
+exit_code: 0

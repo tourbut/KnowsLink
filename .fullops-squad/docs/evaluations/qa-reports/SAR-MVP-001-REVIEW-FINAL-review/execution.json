@@ -1,0 +1,83 @@
+[
+  {
+    "name": "install",
+    "command": [
+      "make",
+      "install"
+    ],
+    "cwd": "/tmp/knowslink-mvp-review-78b1d92",
+    "exit_code": 0,
+    "log": "install.log",
+    "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef"
+  },
+  {
+    "name": "legacy-green",
+    "command": [
+      "go",
+      "test",
+      "-count=1",
+      "-race",
+      "./internal/relay",
+      "-run",
+      "TestLegacyClaimsCannotReachParentBoundaries",
+      "-v"
+    ],
+    "cwd": "/tmp/knowslink-mvp-review-78b1d92",
+    "exit_code": 0,
+    "log": "legacy-green.log",
+    "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef"
+  },
+  {
+    "name": "unit",
+    "command": [
+      "make",
+      "test"
+    ],
+    "cwd": "/tmp/knowslink-mvp-review-78b1d92",
+    "exit_code": 0,
+    "log": "unit.log",
+    "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef"
+  },
+  {
+    "name": "mvp",
+    "command": [
+      "make",
+      "verify-mvp"
+    ],
+    "cwd": "/tmp/knowslink-mvp-review-78b1d92",
+    "exit_code": 0,
+    "log": "mvp.log",
+    "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef"
+  },
+  {
+    "name": "lint",
+    "command": [
+      "python3",
+      "/home/shin/.codex/plugins/cache/fullops-squad/fullops-squad/0.9.12/scripts/lint.py",
+      "--repo",
+      "/tmp/knowslink-mvp-review-78b1d92",
+      "--from",
+      "0e4b5de7fa5eccb6a4391dedce3742e1845d1d00",
+      "--out",
+      "/home/shin/orca/workspaces/KnowsLink/fullops-dev/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/lint.json"
+    ],
+    "cwd": "/tmp/knowslink-mvp-review-78b1d92",
+    "exit_code": 0,
+    "log": "lint.log",
+    "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef"
+  },
+  {
+    "name": "strict",
+    "command": [
+      "python3",
+      "/home/shin/.codex/plugins/cache/fullops-squad/fullops-squad/0.9.12/scripts/deliverables.py",
+      "--repo",
+      "/tmp/knowslink-mvp-review-78b1d92",
+      "--strict"
+    ],
+    "cwd": "/tmp/knowslink-mvp-review-78b1d92",
+    "exit_code": 0,
+    "log": "strict.log",
+    "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef"
+  }
+]

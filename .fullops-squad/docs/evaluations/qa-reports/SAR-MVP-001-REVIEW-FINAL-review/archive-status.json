@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python3",
+    "<installed-fullops>/scripts/work.py",
+    "finish",
+    "--repo",
+    ".",
+    "--role",
+    "dev",
+    "--key",
+    "SAR-MVP-001-REVIEW-FIX"
+  ],
+  "exit_code": 1,
+  "output": "핸드오버 처리 실패: 이미 아카이브된 과제입니다. 기록을 확인하세요",
+  "duplicate_key": "SAR-MVP-001-REVIEW-FIX",
+  "fallback_authority": "current handovers/to_dev.md: same-key finish duplicate preserves separate follow-up full text plus failure evidence",
+  "archive": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+  "marker": "## SAR-MVP-001-REVIEW-FIX 최종 리뷰 후속 — 2026-10-03",
+  "full_inbox_and_completion_preserved": true,
+  "original_archive_preserved": true,
+  "inbox_cleared_after_verified_append": true
+}

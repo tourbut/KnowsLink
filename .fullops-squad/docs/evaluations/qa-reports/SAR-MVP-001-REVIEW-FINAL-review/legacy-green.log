@@ -1,0 +1,8 @@
+cwd: /tmp/knowslink-mvp-review-78b1d92
+command: go test -count=1 -race ./internal/relay -run TestLegacyClaimsCannotReachParentBoundaries -v
+=== RUN   TestLegacyClaimsCannotReachParentBoundaries
+--- PASS: TestLegacyClaimsCannotReachParentBoundaries (0.03s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.062s
+
+exit_code: 0
