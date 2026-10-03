@@ -69,6 +69,7 @@ Go integration은 Compose Postgres에 연결된다. `TEST_DATABASE_URL`이 없�
 | `a6a10c7`과 `4262d02`의 설정 경로 diff | 0 | 같은 로그. Compose, Makefile, adapter, cmd, db는 같다 |
 | PNG blob 8개 | 0 | [png-identity.log](SAR-MVP-001-TESTER-FIX-test/png-identity.log) |
 | `make lint` | 0 | [lint.log](SAR-MVP-001-TESTER-FIX-test/lint.log) |
+| FullOps `lint.py --from 4262d02` | 0 | [fullops-lint.json](SAR-MVP-001-TESTER-FIX-test/fullops-lint.json). HEAD `bcc8d34009f00e749975546f66e162b72e8b2ba2`, ERROR 0, WARNING 0, 실행 불가 0 |
 | `make test` | 0 | [unit.log](SAR-MVP-001-TESTER-FIX-test/unit.log) |
 | `make verify-mvp` | 0 | [verify-mvp.log](SAR-MVP-001-TESTER-FIX-test/verify-mvp.log). 마지막 판정 줄은 PASS |
 | `isolated.py` 첫 실행 | 1 | [probe.log](SAR-MVP-001-TESTER-FIX-test/probe.log). tester SQL 중단. 제품 판정 아님 |

@@ -33,7 +33,7 @@ summary: 수정된 기존 MVP 후보의 독립 QA
 
 held: DEC-02, DEC-03, Free N, 실adapter, A2A 현행 검토, WAL 또는 backup 삭제, 고의 stale epoch를 유지한다. designer 시각 판정은 `e238777` 기록이다. 이번 실행의 시각 통과로 바꾸지 않는다.
 
-lint: 커밋 후 FullOps lint 결과의 HEAD, ERROR, WARNING, 실행 불가는 이 절의 다음 갱신 또는 worker_done 시점의 보고서 검증 메모에 남긴다. 기준 ref는 `4262d02`다.
+lint: 기준 ref `4262d02`. 보고 커밋 `bcc8d34009f00e749975546f66e162b72e8b2ba2`의 FullOps lint 종료코드는 0이다. ERROR 0, WARNING 0, 실행 불가 0. product-lint는 passed다. JSON은 증거 폴더의 `fullops-lint.json`이다.
 
 산출물: [QA 보고서](../docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md), [시나리오](../docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md), [증거](../docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX-test/), [컨텍스트](../contexts/tester.md).
 
