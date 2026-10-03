@@ -233,75 +233,25 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 
 초기 골격의 설계·구현·QA 완료와 전체 MVP 진행 상태를 별도 단계로 표시했다. 서비스 기획·개발 준비는 완료다. 첫 SAR-MVP-001-DEV/TESTER는 queued이며 개발·독립 QA·직접 UI 검수·리뷰는 미착수다. D04–D13 미작성 산출물을 완료로 표시하지 않는다. 실제 연결·일정 조회와 운영 배포는 백로그의 선행 조건·DEC-01–05를 따른다. 현황판 데이터는 coor와 로컬 main에서 다시 생성한다.
 
-## MVP 구현과 현재 서버 운영 착수 — 2026-10-03
 
-사용자가 전체 MVP 진행 및 현재 서버의 Docker·Cloudflare Tunnel 배포를 승인했다. 첫 SAR-MVP-001-DEV를 실행하고 이후 안정 후보의 독립 QA·designer 직접 UI 검수·별도 세션 코드 리뷰를 수행한다. 현재 서버 Docker 29.4.3/Compose 5.1.3 사용 가능, 다른 프로젝트 컨테이너 가동 중이며 보존한다. ~/.cloudflared에 기존 인증·다른 서비스 route가 있으며 비밀값은 출력하지 않는다. KnowsLink hostname을 사용자에게 질문했고 구현·운영 준비는 병행한다. 기존 user-owned dev 세션은 건드리지 않고 새 dev 체크아웃·세션으로 시작한다.
+## FullOps 0.9.12 업데이트 — 2026-10-03
 
-## MVP 세션 복구와 hostname 확정 — 2026-10-03
+Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적용 버전은 0.9.11이고 main은 0.9.10이다. 0.9.11은 글로벌 설치기 기능으로 제품 변경 해당 없음이다. 0.9.12의 즉시 main 병합·원격 공유와 역할 인박스 수명주기를 FULLOPS.md·orca-agents.md·핸드오버 템플릿에 적용한다. 업데이트 운영 문서는 main 기준의 별도 준비 브랜치에서 통합하며 미수락 제품 코드를 함께 올리지 않는다.
 
-- 사용자 요청으로 이전 coor 세션 01a0ffe9-9a5f-7501-8258-771971d82a89의 작업을 이어받았다. 새 세션은 기존 Run run_8ca8bc058ab7을 run-use로 연결했다. 설치 0.9.11 스크립트 접근과 명령 실행을 확인했다. 레포 하네스의 plugin_version 0.9.10은 적용 이력으로 유지한다.
-- SAR-MVP-001-DEV는 Task task_491be61b82eb / Dispatch ctx_66989e4a879d / terminal term_a14d0b14-d989-4853-b53a-02e3ac904b53에서 작업 중이다. 실제 체크아웃은 fullops-dev-mvp이며 사용자 소유 세션으로 표시된다. 종료하거나 중복 배정하지 않는다. 상태 메시지 msg_9fd5d0cda327로 복귀와 hostname을 전달했다.
-- 사용자 확정 hostname은 link.knowslog.com이다. knowslog.com은 사용자 소유 Cloudflare 관리 도메인이다. cloudflared 로컬 인증을 통한 기존 orca tunnel 조회가 성공했고 활성 연결을 확인했다. 도메인 전체 DNS 관리 권한은 별도 확인한다.
-- SAR-DEPLOY-001-OPS는 implementation → ops, claude-sonnet-5-5 high로 분류했다. 기존 OPS 터미널 없음과 깨끗한 체크아웃을 확인했다. 오래된 완료 세션 대신 새 세션을 사용한다. 읽기 전용 서버 준비와 D12 운영 계획을 먼저 수행한다. 실제 운영 변경은 DEV 고정 후보 수락 이후 같은 과제의 후속으로 수행한다.
+| 과제/역할 | 완료 SHA 또는 상태 | 판정·담당·재개 조건 |
+|---|---|---|
+| SAR-MVP-001-DEV | a6a10c7 / msg_bcf340cb7ce8 | coor 통합 후보 포함, main 미병합. 독립 리뷰·UI 검수 미완료로 hold. coor가 필수 수락 조건 확인 뒤 병합·push한다. |
+| SAR-MVP-001-TESTER | c59537b / msg_d2d32881ffc3 | coor 통합 후보 포함, main 미병합. 미수락 제품 조상을 포함해 hold. coor가 DEV 수락과 필수 held 판정 뒤 병합·push한다. |
+| SAR-MVP-PUBLIC-POLICY-001 | 69dbec4 / msg_8bd2e3ced6fc | coor 통합 후보 포함, main 미병합. 별도 기획 검토 결론 미완료로 hold. coor가 문서 검토 뒤 제품 전체 수락과 분리해 통합한다. |
+| SAR-MVP-001-REVIEW | ctx_005e493d18f5 failed/exited | 작업명 지시서 보존. 보고서는 미완성 템플릿이다. coor가 새 세션에서 같은 과제 리뷰를 재개한 뒤 보존·정규 inbox 전환한다. |
+| SAR-MVP-001-UI / designer | ctx_b7d073da41ef failed, liveness unverifiable | 미추적 UI 증거 보존. coor가 실제 상태·완료 검수 확인 후 수락한다. 워크트리 동기화 보류다. |
+| SAR-DEPLOY-001-OPS / ops | 8a03b34, ctx_78873a1ba765 failed/exited | 미커밋 문서·아카이브 보존. coor가 기존 기록 마무리·검토 후 통합한다. 실제 배포는 시작하지 않는다. |
+| dev | 830131a, clean | 해당 워크트리의 실제 유휴 확인 후 운영 업데이트 main 동기화한다. |
+| tester | c59537b, clean, liveness unverifiable | 깨끗함만으로 유휴 판정하지 않는다. 실제 상태 확인 뒤 동기화한다. |
+| coor | 5b94be5, 미추적 리뷰 증거 | 누적 미수락 제품 조상을 main에 일괄 병합하지 않는다. 운영 준비 main을 merge하고 미추적 증거는 보존한다. |
 
-- OPS 준비 배정 영수증: Run run_8ca8bc058ab7 / Task task_85e5a5aa9960 / Dispatch ctx_59f3c76e94f1 / terminal term_586f18f7-8ca2-46e5-b169-6ed5cef4dacf. effective claude-sonnet-5-5 high와 turn_started를 확인했다. OPS branch의 과거 기록 때문에 fast-forward가 실패했다. 기존 내용을 보존한 merge 2023144로 동기화했으며 PLANS의 빈 HEAD 충돌을 해결했다. worker 착수와 지시서 열람을 확인했다. 준비 SHA 전달이 착수보다 늦었던 점을 보완 메시지 msg_594acbf335db로 기록했다.
+과거 완료 메시지 세 건을 기존 PLANS의 실제 메시지 ID와 SHA로 공용 integration 기록에 회수했다. 사유·담당·재개 조건을 갖춘 hold를 적용했다. pending이 비어도 hold의 제품 작업이 통합 완료됐다는 의미는 아니다. 다른 오래된 역할 SHA의 main 미포함 이력도 보존한다. 상설·임시 워크트리와 기존 Run run_8ca8bc058ab7을 유지한다. 새 제품 worker는 시작하지 않는다. 전체 제품 수락·실제 배포·새 기능은 이번 업데이트 범위 밖이다.
 
-- SAR-MVP-PUBLIC-POLICY-001을 product → designer, codex gpt-6.1-sol medium으로 분류했다. 승인된 파일럿 공개의 DEC-03 제품 기준만 결정한다. 기술 계획·구현·배포는 DEV/OPS에 유지한다. 기존 designer user-owned 체크아웃과 충돌을 피하도록 별도 새 체크아웃·세션을 사용한다. D03 추천은 기술 소유권 때문에 제외한다.
+[업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md)을 따른다. 다음 운영은 새 coordinator 세션에서 이어간다.
 
-- 공개 정책 배정 영수증: Task task_9031cdaccb54 / Dispatch ctx_44f5c365fa4f / terminal term_3a8fde43-89ab-4038-a86e-17e370157e4d / 체크아웃 fullops-designer-pilot. effective codex gpt-6.1-sol medium과 turn_started를 확인했다. 사용자는 이후 새 체크아웃 생성 이유를 질문했다. user_owned 표시만으로 새 체크아웃이 필요하다는 판단은 과했으며 앞으로 기존 역할 워크트리를 우선 사용한다. 이미 진행 중인 DEV·designer 작업은 보존한다.
-- 사용자 공개 범위 결정: 누구나 가입하는 공개 서비스다. 초대 전용 파일럿으로 제한하지 않는다. msg_f6b3585a0e09 질문에 msg_240f0ed89175로 답변하고 delivery_7b7747de0eaa를 ack했다. 기획자는 요청·resource·동시 처리 한도의 구체적 권장안과 근거를 준비하고 제안값과 확정값을 구분한다. 실제 공개는 확정 기준·구현·독립 검증·고정 후보 수락 후 진행한다. 사용자에게 모든 수치를 처음부터 정하도록 요구하지 않는다.
-- 사용자가 다시 보낸 세션 ID는 오발송이라고 확인했다. 작업 목표나 기존 복귀 Run을 바꾸지 않는다.
-
-## 완료 리뷰 핸드오버 보관 — 2026-10-03
-
-사용자 요청으로 완료된 독립 리뷰 지시서 두 개를 handovers/logs/로 옮겼다. [개발 리뷰](handovers/logs/SAR-SETUP-001-DEV-REVIEW.md)는 85c2a6a와 msg_2ea9b1d5e1ab, [통합 리뷰](handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md)는 50caf7b와 msg_54fa321f61b6의 완료 근거를 연결했다. 본문과 과거 fixed-SHA 리뷰 파일 목록·경로는 당시 이력으로 보존했다. 진행 중 DEV·OPS·designer 및 대기 중 tester 인박스는 유지했다. 문서 이동만 수행했으므로 제품 코드 검사·테스트는 적용하지 않는다.
-
-## 공개 가입 기획 기록 완료 — 2026-10-03
-
-SAR-MVP-PUBLIC-POLICY-001의 성공 회신 msg_8bd2e3ced6fc와 완료 SHA 69dbec44c0193266f8f6c8499f22493e1e3c1722를 확인했다. D01·D02·백로그와 자기 기록을 갱신했다. 수치·자원 한도는 아직 제안이며 사용자 확정과 기술 근거·제한 구현·독립 검증·수락이 남았다. 제품 공개나 전체 MVP 완료가 아니다. 별도 검토와 coor 병합은 대기한다. terminal은 user_takeover에 따른 user_owned/retained 상태이므로 강제 종료하지 않는다.
-
-DEV 기술 회신 msg_976b4514120b는 raw envelope 32768 bytes와 frozen body JCS 16KiB의 별도 검사, polling과 ACK·철회·deny의 안전 budget 분리, pending/claim 회수 및 24h receipt 20000 처리량의 별도 측정 필요를 기록했다. 성능 보장이나 수치 확정으로 해석하지 않는다. 기존 DEV 범위를 유지한다.
-
-## 첫 MVP DEV 완료와 독립 QA 착수 — 2026-10-03
-
-msg_bcf340cb7ce8은 Task task_491be61b82eb / Dispatch ctx_66989e4a879d 성공 회신이다. 완료 SHA a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92와 깨끗한 DEV 체크아웃을 확인했다. 등록·키·페어링·안전 relay·receipt/lease/ACK/claim·human-gate·최소 result·합성 adapter와 D03/D05–D10을 보고했다. 자동 검증·product-lint 종료코드 0, lint ERROR 0/WARNING 3(파일 크기)/실행 불가 0이다. 독립 QA·UI·리뷰·수락·배포는 아직 완료되지 않았다. singleton global lock 처리량·실사용자 신원 인증·실벤더·공개 정책·운영 한도 held를 보존한다. DEV terminal은 user_owned/retained이므로 임의 종료하지 않는다.
-
-SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다. 기존 tester idle·clean 확인 후 a6a10c7로 fast-forward했다. 새 워크트리를 만들지 않으며 오래된 과제 대신 새 세션을 사용한다. QA 고정 제품 후보는 a6a10c7이고 추가 준비 문서는 제품 diff가 없는지 확인한다. 직접 UI 검수와 fixed-SHA 독립 리뷰는 같은 후보로 후속한다.
-
-- QA 배정 영수증: Task task_bc9fa903d0d6 / Dispatch ctx_6129fd1c9c83 / terminal term_5eefdb06-ccd5-44aa-8696-b160c5f51818. effective claude-sonnet-5-5 high와 turn_started를 확인했다. 기존 tester 체크아웃 준비 SHA 707298e의 제품 diff는 a6a10c7 대비 비어 있다.
-
-- QA 착수 확인에서 Claude의 "You've hit your session limit · resets 6:10pm (Asia/Seoul)"를 확인했다. 2026-10-03 18:10 KST 자동 재개 대기이며 실제 QA는 시작하지 않았다. turn_started 영수증을 QA 실행 증거로 취급하지 않는다. 살아 있는 Dispatch를 중복 배정하거나 임의 종료하지 않는다.
-
-## 상설 워크트리 유지와 임시 DEV 정리 승인 — 2026-10-03
-
-사용자는 fullops-dev-mvp의 작업 완료와 검증·리뷰 확인 뒤 병합하고 임시 워크트리를 제거하도록 지시했다. 상설 체크아웃은 main과 등록 coor/designer/dev/ops/tester만 유지한다. 새 과제는 기존 역할 워크트리의 새 세션을 우선 사용한다. 임시 designer-pilot도 결과 검토·병합과 필요한 후속 인계 뒤 같은 정리 원칙을 적용한다.
-
-현재 DEV 완료 SHA a6a10c7은 보존되어 있지만 독립 QA는 Claude 사용량 한도로 대기한다. 직접 UI 검수와 fixed-SHA 코드 리뷰도 아직 완료되지 않았다. 검증 완료 조건을 충족하기 전 main 수락·임시 워크트리 제거는 수행하지 않는다. 완료 후 병합된 브랜치 포함 여부·깨끗한 작업 트리·진행 중 세션 없음·보고서 보존을 확인하고 Orca CLI로 임시 워크트리를 제거한다. 사용자 승인된 정리는 다시 승인받지 않는다. force 삭제·미커밋 작업 삭제는 하지 않는다.
-
-삭제된 기존 fullops-dev는 Orca CLI로 같은 경로에 복구하고 기존 fullops/dev 브랜치로 연결했다. 작업 트리는 깨끗하며 환경 링크를 복원했다. MVP 완료 코드는 별도 fullops-dev-mvp에서 검증 완료까지 보존한다.
-
-## tester Grok 4.7 high 전환 — 2026-10-03
-
-사용자가 tester를 Grok 4.7 high로 설정하고 Claude 사용량 한도로 막힌 QA를 재개하도록 지시했다. 모델 목록에서 grok-4.7과 로그인 상태, CLI --reasoning-effort 지원을 확인했다. 같은 사용자 실행 지시 범위에서 원본 /home/shin/Workspace/KnowsLink의 Grok 폴더 신뢰를 등록했다. 다른 폴더 신뢰나 권한 모드는 변경하지 않았다.
-
-worker-stop은 user_owned 때문에 stop_unknown/no terminal closed를 반환했다. 사용자 명시 전환 지시에 따라 해당 한도 대기 터미널만 닫았고 ptyKilled=true를 확인했다. Dispatch ctx_6129fd1c9c83은 failed/process_exited/operator_close이며 실제 QA 코드·증거는 생성하지 않았다. 같은 Task task_bc9fa903d0d6과 기존 tester 체크아웃에서 Grok retry를 수행한다. 원래 실패와 미실행 기록은 보존한다.
-
-- Grok 재개 영수증: 같은 Task task_bc9fa903d0d6 / 새 Dispatch ctx_a7a06b6f1b0d / terminal term_236edd67-8fbe-4960-90cc-d20e975b4a48. Grok 4.7 (high) 화면을 확인했다. Orca provider turn_started 관찰은 unsupported지만 실제 화면에서 QA-01–11 착수 응답과 규약·지시서 read_file 실행을 확인했다. 준비 HEAD 69870db는 모델/인계 문서만 추가했고 제품 diff는 a6a10c7 대비 비어 있다. 기존 tester 워크트리를 재사용하며 새 워크트리는 만들지 않았다. Claude의 18:10 대기 차단은 Grok 재개로 해소했으나 독립 QA 결과는 아직 대기한다.
-
-## 완료 작업의 main 병합·원격 공유 상시 승인 — 2026-10-03
-
-사용자가 하위 역할 워크트리에 개발을 보내고 완료·확인 후 즉시 main에 병합하여 원격에 올리도록 지시했다. orca-agents.md에 필수 검사·독립 QA/UI/리뷰·수락 확인 뒤 main 병합과 origin/main push, idle/clean 역할 동기화, 임시 체크아웃 정리 순서를 기록했다. 동일 범위의 병합·push 승인을 다시 묻지 않는다. 현재 a6a10c7 MVP 후보는 Grok 독립 QA가 진행 중이며 필수 UI·리뷰·수락이 남아 있어 main에 공개하지 않는다. 운영 기록은 origin/fullops/coor로 공유한다.
-
-## Grok 독립 QA 결과 확인 — 2026-10-03
-
-msg_d2d32881ffc3은 Task task_bc9fa903d0d6 / Dispatch ctx_a7a06b6f1b0d의 성공 회신이다. 기록 SHA c59537b6fa0c7e008c4c6bdba0a251dd821d4ee8와 깨끗한 tester 체크아웃을 확인했다. 대상 제품은 a6a10c7이다. 보고서와 probe-results.json을 대조했고 세부 결과는 pass 31 / held 8 / fail 0이다. QA-01–11의 실행 항목이 통과했다는 의미이며 고의 stale epoch·designer 시각 판정 등 held까지 통과한 것은 아니다.
-
-unit/build/verify-mvp/probe 로그의 실제 [exit 0]을 확인했다. 초기 의존성 부재 lint 실패와 probe 기대값 수정 실패는 원본 기록에 보존한다. 최종 기준 lint ERROR 0/WARNING 3(SIZE-001)/실행 불가 0, product-lint passed다. 미해결 critical/high 제품 결함은 tester 보고에서 없다. QA-06-epoch-cas, Free N, 실제 adapter/A2A 현행 검토, WAL/backup 삭제, DEC-02/03, designer 시각 판정의 held를 보존한다. 코드 리뷰와 직접 UI 검수 및 필수 미충족 조건 해소 전 main 수락·임시 DEV 제거는 보류한다.
-
-worker-release는 external_terminal 때문에 retained/processAction none을 반환했다. 상설 tester 터미널과 체크아웃은 유지한다. QA 증거와 결과를 origin/fullops/tester로 공유하고 coordinator 현황도 원격에 반영한다. 완료 QA 보고서 정본은 tester의 docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md다.
-
-## 현재 작업 수락·병합 뒤 중지 — 2026-10-03 사용자 지시
-
-사용자는 현재 진행 과제만 완료·main 병합·원격 push한 뒤 새 작업을 시작하지 말라고 지시했다. SAR-MVP-001의 필수 QA·UI·독립 리뷰와 기존 공개 기획·OPS 사전조사 기록을 마무리한다. 다음 기능·공개 정책 수치 확정·제한 구현·실제 배포·벤더 연결은 시작하지 않는다. 보류 정책과 운영 인증을 합성 수락 PASS로 바꾸지 않는다.
-
-QA c59537b와 공개 기획 69dbec4를 coor 통합 후보에 반영했다. to_tester 충돌은 완료 아카이브 보존과 빈 인박스, orca-agents 충돌은 최신 사용자 지정 Grok와 즉시 공유 규칙 보존으로 해결했다. main에는 아직 병합하지 않았다. 코드 리뷰 Jev는 claude-opus-5-5 high를 선택했으나 Claude 사용량 한도 때문에 같은 고성능 후보의 codex gpt-6.1-sol high로 실행한다. 범위·독립성·critical/high 차단은 유지한다. OPS 기존 Dispatch는 operator_close 실패로 종료됐고 작성 중 ops-guide.md가 남아 있다. 같은 과제의 기록 마무리만 재개한다.
+운영 main 반영 SHA 66f7ffc와 origin/main 일반 push를 확인했다. coor c9b2a8e·유휴 dev 25f03ad 동기화 완료다. designer/ops는 미커밋 자료, tester 및 임시 체크아웃은 실제 상태 불명으로 동기화를 예약한다. coor가 다음 배정 전 처리한다. 제품 hold와 현재 작업 완료 뒤 중지 지시는 유지한다.
