@@ -84,3 +84,7 @@ Access는 정확한 hostname 전체에 사용자 이메일만 allow인 reusable 
 성공/실패 실제 종료코드와 비밀값 제외 증거, lint ERROR0/product-lint passed/strict/공백을 보존한다. 새 과제 finish로 전문을 logs에 보존하고 inbox를 비운다. worker_done 본문에 [완료] SAR-BETA-001-OPS | SHA <커밋> | 배포 SHA/URL | 실제 수행/held·남은 인간 검사를 명시한다. 사용자에게 접속·합성 테스트·종료 방법을 구체적으로 인계한다.
 
 복귀 Run run_8ca8bc058ab7/coor term_9afa8217-862c-404d-9a43-2122427113fc, coordinator /home/shin/orca/workspaces/KnowsLink/fullops-coor다. 새 preamble Task/Dispatch/capability를 사용한다. 구현 설정 고정 리뷰·독립 QA·main push는 coor가 조정한다. 실제 Access 권한 막힘은 필요한 준비 완료 후 질문하며 단순 상태 보고로 진행을 중지하지 않는다.
+
+## 지시 전제와 충돌 — 먼저 확인
+
+Jev가 ops-guide와 contexts/ops의 예전 C1 high·a6a10c7 금지·기록 후 중지 조건을 감지했다. 당시 조건은 역사적 기록으로 보존한다. 최신 main557ebc3의 독립 리뷰311381f/QA659f4b0은 high 해소를 수락했고 이번 사용자 베타 재개 지시는 배포 범위만 새로 승인했다. 전체 공개 한도·신원·실데이터 held는 여전히 유효하다. 실행 전 실제 후보 SHA와 좁은 승인 범위를 대조하여 오래된 제품을 배포하지 않는다.
