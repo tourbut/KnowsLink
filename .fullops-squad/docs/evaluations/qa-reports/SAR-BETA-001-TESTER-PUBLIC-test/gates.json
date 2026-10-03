@@ -1,0 +1,133 @@
+{
+  "sha": "28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2",
+  "script_sha256": "c50300937414068b048f38cac9e1c338ef1837119b2b7a9d0dd0210c90f8e71b",
+  "state_meta_unchanged": true,
+  "checks": [
+    {
+      "name": "snap-head",
+      "pass": true,
+      "exit": null,
+      "detail": "28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2"
+    },
+    {
+      "name": "live-head",
+      "pass": true,
+      "exit": null,
+      "detail": "28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2"
+    },
+    {
+      "name": "selftest",
+      "pass": true,
+      "exit": 0,
+      "detail": "expect 0 needle='access_apply selftest ok'"
+    },
+    {
+      "name": "selftest-O",
+      "pass": true,
+      "exit": 0,
+      "detail": "expect 0 needle='access_apply selftest ok'"
+    },
+    {
+      "name": "fresh",
+      "pass": true,
+      "exit": 0,
+      "detail": "expect 0 needle='live Access app, owner-only policy and tunnel config agree'"
+    },
+    {
+      "name": "fresh-O",
+      "pass": true,
+      "exit": 0,
+      "detail": "expect 0 needle='live Access app, owner-only policy and tunnel config agree'"
+    },
+    {
+      "name": "aud-mismatch",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='app aud differs from the recorded aud'"
+    },
+    {
+      "name": "aud-mismatch-O",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='app aud differs from the recorded aud'"
+    },
+    {
+      "name": "aud-mismatch-OO",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='app aud differs from the recorded aud'"
+    },
+    {
+      "name": "aud-mismatch-env",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='app aud differs from the recorded aud'"
+    },
+    {
+      "name": "proof-app-id",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='snapshot app/policy ids differ'"
+    },
+    {
+      "name": "proof-app-id-env",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='snapshot app/policy ids differ'"
+    },
+    {
+      "name": "proof-policy-id",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='snapshot app/policy ids differ'"
+    },
+    {
+      "name": "missing-live",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='access.live.json'"
+    },
+    {
+      "name": "missing-access-json",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='access.json'"
+    },
+    {
+      "name": "stale-proof",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='last 10 minutes'"
+    },
+    {
+      "name": "stale-proof-env",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='last 10 minutes'"
+    },
+    {
+      "name": "future-proof",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='last 10 minutes'"
+    },
+    {
+      "name": "future-proof-env",
+      "pass": true,
+      "exit": 1,
+      "detail": "expect 1 needle='last 10 minutes'"
+    },
+    {
+      "name": "snap-unchanged",
+      "pass": true,
+      "exit": null,
+      "detail": "28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2"
+    },
+    {
+      "name": "live-unchanged",
+      "pass": true,
+      "exit": null,
+      "detail": "head porcelain state-meta"
+    }
+  ]
+}

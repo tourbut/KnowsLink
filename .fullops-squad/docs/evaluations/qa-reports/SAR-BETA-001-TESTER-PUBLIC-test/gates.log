@@ -1,0 +1,23 @@
+PASS snap-head exit=None 28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2
+PASS live-head exit=None 28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2
+PASS selftest exit=0 expect 0 needle='access_apply selftest ok'
+PASS selftest-O exit=0 expect 0 needle='access_apply selftest ok'
+PASS fresh exit=0 expect 0 needle='live Access app, owner-only policy and tunnel config agree'
+PASS fresh-O exit=0 expect 0 needle='live Access app, owner-only policy and tunnel config agree'
+PASS aud-mismatch exit=1 expect 1 needle='app aud differs from the recorded aud'
+PASS aud-mismatch-O exit=1 expect 1 needle='app aud differs from the recorded aud'
+PASS aud-mismatch-OO exit=1 expect 1 needle='app aud differs from the recorded aud'
+PASS aud-mismatch-env exit=1 expect 1 needle='app aud differs from the recorded aud'
+PASS proof-app-id exit=1 expect 1 needle='snapshot app/policy ids differ'
+PASS proof-app-id-env exit=1 expect 1 needle='snapshot app/policy ids differ'
+PASS proof-policy-id exit=1 expect 1 needle='snapshot app/policy ids differ'
+PASS missing-live exit=1 expect 1 needle='access.live.json'
+PASS missing-access-json exit=1 expect 1 needle='access.json'
+PASS stale-proof exit=1 expect 1 needle='last 10 minutes'
+PASS stale-proof-env exit=1 expect 1 needle='last 10 minutes'
+PASS future-proof exit=1 expect 1 needle='last 10 minutes'
+PASS future-proof-env exit=1 expect 1 needle='last 10 minutes'
+PASS snap-unchanged exit=None 28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2
+PASS live-unchanged exit=None head porcelain state-meta
+failed=[]
+EXIT:0

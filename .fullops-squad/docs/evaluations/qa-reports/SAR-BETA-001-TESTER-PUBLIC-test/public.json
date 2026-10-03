@@ -1,0 +1,129 @@
+{
+  "system_resolver": {
+    "ok": false,
+    "error": "gaierror"
+  },
+  "system_dig_exit": 0,
+  "system_dig_empty": true,
+  "public_ips_agree": true,
+  "edge_ip_count": 2,
+  "probes": [
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/",
+      "headers": "none",
+      "port": 443,
+      "pass": true
+    },
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/owner",
+      "headers": "none",
+      "port": 443,
+      "pass": true
+    },
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/v1/registry",
+      "headers": "none",
+      "port": 443,
+      "pass": true
+    },
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/healthz",
+      "headers": "none",
+      "port": 443,
+      "pass": true
+    },
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/_probe",
+      "headers": "none",
+      "port": 443,
+      "pass": true
+    },
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/healthz",
+      "headers": "fake-jwt",
+      "port": 443,
+      "pass": true
+    },
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/healthz",
+      "headers": "service-token",
+      "port": 443,
+      "pass": true
+    },
+    {
+      "exit": 0,
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com",
+      "location_scheme": "https",
+      "body_has_relay": false,
+      "body_len": 143,
+      "curl_error": false,
+      "path": "/healthz",
+      "headers": "bearer",
+      "port": 443,
+      "pass": true
+    }
+  ],
+  "http80": {
+    "exit": 0,
+    "status": 301,
+    "location_host": "link.knowslog.com",
+    "location_scheme": "https",
+    "body_has_relay": false,
+    "body_len": 167,
+    "curl_error": false,
+    "path": "/",
+    "headers": "none",
+    "port": 80,
+    "pass": true
+  }
+}
