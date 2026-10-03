@@ -26,3 +26,7 @@ result.json의 모든 파일과 발견 사항을 기록한다. 실제 구현자 
 설치된 lint.py를 snapshot에서 --from f94510f48a050c08254ad028ac66a14a96946b3a로 실행해 lint.json에 기록한다. 지시서의 기존 완료 검사 기준 729446d8da57 결과는 이미 존재하며 재사용한다. main 기준 commands가 비어 있어 제품 lint를 실행하지 않는 한계는 명시한다. review.py check의 key는 SAR-SETUP-001-INTEGRATION, from/to는 위 고정 refs다. 실제 명령 종료코드를 보존한다. critical/high나 필수 증거 결함이 있으면 수락을 차단한다.
 
 완료 조건은 모든 파일의 검토 또는 근거 있는 생략, 실제 독립성, lint와 check 결과, main 병합 후보에 대한 수락 또는 차단 결론이다. 결과 SHA·refs·심각도·로그/보고서·남은 수락 조건을 새 preamble의 worker_done으로 한 번 보고한다. main 병합과 외부 발송·배포는 하지 않는다. Run은 run_8ca8bc058ab7이다.
+
+## Coordinator 실제 병합 refs 갱신
+
+main 준비 기준은 fa971df3a36e다. 기존 승인된 외부 원천 전용 lint 제외만 반영했으며 준비 lint 종료코드 0, ERROR 0, WARNING 2다. 최종 후보는 ec190f98848fbe21cc4df6d78e7d01dca0d58129이고 이 준비 커밋을 조상으로 갖는다. 새 읽기 전용 snapshot은 /tmp/SAR-SETUP-001-integration-review-ec190f9다. 최종 review key는 SAR-SETUP-001-INTEGRATION-FINAL이며 대응 디렉터리를 소유권에 추가한다. 이전 INTEGRATION 기록과 당시 DOC-003 실패는 보존한다. 검토한 제품·QA 증거는 동일성을 확인해 재사용하고 준비·병합 운영 diff만 추가 검토한다. lint와 check의 실제 refs는 fa971df3a36e..ec190f98848fbe21cc4df6d78e7d01dca0d58129를 사용한다.
