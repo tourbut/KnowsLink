@@ -1,3 +1,12 @@
+---
+title: 산출물 인덱스
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [SAR-SETUP-001]
+summary: 산출물 원천 경로와 작성 상태를 관리한다
+---
+
 # 산출물 인덱스
 
 아래 경로는 `.fullops-squad/` 기준 기본 매핑이다. 기존 원천이 있으면 실제 경로로 바꾼다.
@@ -6,7 +15,7 @@
 | ID | 단계 | 산출물 | 원천 | 상태 |
 |---|---|---|---|---|
 | D01 | 착수 | 사업계획서 | `docs/planning/business-plan.md` | 미작성 |
-| D02 | 분석 | 요구사항정의서 | `docs/planning/product-specs/` | 미작성 |
+| D02 | 분석 | 요구사항정의서 | `docs/planning/product-specs/` | review |
 | D03 | 설계 | 아키텍처설계서 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` | 미작성 |
 | D04 | 설계 | 화면설계서 | `docs/design-docs/mockups/` | 미작성 |
 | D05 | 설계 | 인터페이스설계서 | `docs/design-docs/interface-design.md` | 미작성 |
