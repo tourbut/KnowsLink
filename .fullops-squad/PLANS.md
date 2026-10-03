@@ -152,3 +152,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 검토 50/50, skipped 0, critical/high/medium 0, low 2다. low는 DB 오류 원인 유실과 Compose 검사 assert 사용이며 초기 구성 수락을 차단하지 않는다는 검토 결론을 기록했다.
 - 지시서 lint 기준 729446d8da57과 리뷰 기준 dbe0b40 양쪽 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0이다. review.py check 종료코드 0이다. 상세 보고서는 docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md다.
 - 검토 세션을 release한다. 독립 QA QA-01과 최종 수락은 아직 대기한다.
+
+### QA 완료 회신과 증거 보완 — 2026-10-03
+
+- msg_e6af94920990은 Task task_83afe3153820 / Dispatch ctx_8bc7450abd67의 성공 회신이다. tester 완료 SHA는 51f0d54dedd139564c87fb4555f9f47c371de569다. 제품 수락 기준 전부 통과, 결함 0, lint ERROR 0 / WARNING 2 / 실행 불가 0을 보고했다.
+- QA 로그 러너가 실제 하위 종료코드를 기록하지만 자신의 종료코드를 0으로 바꾸는 증거 결함을 확인했다. 세션의 종료코드 보존 지시에 맞게 같은 tester 세션에 좁은 보완 후속을 배정한다. 기존 결과와 실패는 보존하며 새 과제로 전체 제품 QA를 복제하지 않는다.
+- main에 있는 0.9.10 하위 워크트리 동기화와 검증 기록이 coor 준비 브랜치에서 빠져 있어 원본 그대로 회수했다. 기존 제품·운영 기록을 삭제하지 않는다.

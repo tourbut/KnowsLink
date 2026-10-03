@@ -49,3 +49,21 @@ Git 공백 검사, JSON·역할 보존, 변경 Markdown 상대 링크, 산출물
 - 산출물 strict는 검사 13, 미작성 13, 문제 0, 경고 0이다. Git 공백·상대 링크·역할·원격 보존 검사와 현황판 생성은 통과했다.
 - 필수 적용과 검증을 완료해 fullops.json의 plugin_version을 0.9.10으로 갱신했다. 최종 커밋에도 같은 기준 ref의 lint를 실행한다.
 - 준비 전달 담당은 coor다. 재개 조건은 역할의 실제 활성 상태·열린 인계·작업 트리 확인과 안전한 동기화 범위 확정이다. 원격 push와 역할 체크아웃 변경은 하지 않았다.
+
+## 사용자 요청에 따른 하위 워크트리 적용
+
+2026-10-03 사용자가 하위 워크트리 적용을 요청했다. 기존 보류를 해제하고 모든 역할에 준비 커밋 e825dc7을 병합했다.
+
+- coor: `f5efbc5`. 미추적 SAR-SETUP-001-DEV-099-review 폴더는 그대로 유지했다.
+- designer: `78ac098`. 기존 제품 기획 자료와 완료 기록을 유지했다.
+- dev: `830131a`. 제품 코드와 프로젝트 검증 명령을 유지했다.
+- ops: `45acdec`.
+- tester: `a3d654b`. 기존 구현 결과와 독립 QA 인계를 유지했다.
+
+충돌은 기존 역할별 기술 기준·SAR 계획·제품 단계와 새 운영 규약을 함께 보존해 해결했다. 모든 역할의 기존 HEAD와 준비 커밋은 새 HEAD의 조상이다. 모든 역할의 plugin_version은 0.9.10이다.
+역할별 lint는 변경 전 HEAD를 기준으로 실행했다. designer·ops는 ERROR 0, WARNING 1이며 기존 LINT-000이다. dev·tester는 product-lint를 포함해 ERROR 0, WARNING 0이다.
+coor는 미추적 사용자 자료 때문에 원본 작업 트리 lint가 거부됐다. 동일 고정 SHA의 깨끗한 detached snapshot에서 검사했다.
+tester와 coor snapshot은 prettier 의존성 누락으로 첫 product-lint가 실패했다. lockfile 기준 npm ci 후 재검증했다. 실패는 제품 결함이나 QA 통과로 바꾸어 기록하지 않는다.
+원격 push는 수행하지 않았다. 이미 열린 에이전트 세션은 이전 hook을 유지할 수 있으므로 다음 세션에서 갱신 규약을 읽는다.
+
+coor 고정 SHA snapshot의 최종 product-lint와 FullOps lint는 종료코드 0, ERROR 0, WARNING 0이다. 원본 미추적 자료는 이동·커밋·삭제하지 않았다.
