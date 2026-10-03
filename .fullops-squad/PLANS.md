@@ -336,3 +336,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md)을 따른다. 다음 운영은 새 coordinator 세션에서 이어간다.
 
 운영 main 반영 SHA 66f7ffc와 origin/main 일반 push를 확인했다. coor c9b2a8e·유휴 dev 25f03ad 동기화 완료다. designer/ops는 미커밋 자료, tester 및 임시 체크아웃은 실제 상태 불명으로 동기화를 예약한다. coor가 다음 배정 전 처리한다. 제품 hold와 현재 작업 완료 뒤 중지 지시는 유지한다.
+
+## 기존 MVP 재개 — 2026-10-03
+
+사용자가 마지막 진행 과제를 확인하고 재개하도록 지시했다. Run run_8ca8bc058ab7을 현재 coor 터미널에 다시 연결했다. 미처리 reviewer escalation msg_4fbcac80f76c와 실제 targeted.log에서 agent credential의 deliver:human 처리 우회 high 결함을 확인했다. C1 기존 요구 구현 결함으로 Jev implementation→dev가 정상 분류했고 claude-opus-5-5 high를 선택했다. 같은 SAR-MVP-001-DEV 후속으로 상설 dev에서 재현·수정·회귀를 수행한다. UI는 exited 확인과 미커밋 직접 검수 자료를 보존해 같은 Task를 재개한다. OPS는 실패한 같은 Task의 기존 기록만 마무리한다. 제품 hold는 새 수정 후보의 QA·독립 리뷰·수락까지 유지한다. 신규 기능·수치 확정·실제 배포는 시작하지 않는다.
