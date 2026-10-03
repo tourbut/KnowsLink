@@ -185,3 +185,13 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - main 준비 fa971df는 source exclude만 추가했다. 준비 lint ERROR 0/WARNING 2다. 기존 원천 스냅샷을 원문 그대로 main 3eb7647에 반입하고 coor 9c96232에 병합했다. 원천과 후보의 byte-level Git diff는 0이다.
 - 원천 반입 자체의 lint는 ERROR 7/WARNING 1/종료코드 1이며 /tmp/SAR-SETUP-001-source-import-lint.json에 보존한다. 원문 Markdown hard break의 git diff --check 실패도 유지한다. 원천을 stamp하거나 whitespace를 바꾸지 않는다. 제품 수락으로 표시하지 않는다.
 - 제품 통합의 실제 최종 refs는 main 준비 3eb7647938111c9f13ad523760aeb7e90c7fa7f3..9c96232e6230e00319c33ff77637c80923e2438b다. 새 read-only snapshot /tmp/SAR-SETUP-001-integration-review-9c96232와 SAR-SETUP-001-INTEGRATION-SOURCE 기록으로 게이트를 확인한다. 이전 두 리뷰의 차단 결과는 덮어쓰지 않는다.
+
+## SAR-SETUP-001 초기 구성 수락과 main 병합 완료 — 2026-10-03
+
+- msg_54fa321f61b6은 Task task_bea67a9755f1 / Dispatch ctx_dab52fc0aa32의 성공 회신이다. 최종 리뷰 커밋은 50caf7b다. 실제 refs 3eb7647..9c96232에서 검토 94, skipped 11, critical/high/medium 0, 미해결 low 6이다. skipped는 원시 QA 로그이며 명령·종료코드 집계를 확인했다. lint와 review check 종료코드 0이다.
+- 구현·QA 러너·각 검토자의 실제 세션이 다르며 fixed-SHA detached snapshot이 깨끗하고 읽기 전용임을 확인했다. 제품 경로는 기존 독립 리뷰·QA 대상 0cc10b0과 같다. 독립 QA와 종료코드 증거 보완은 통과했다.
+- coor는 기존 초기 구성 범위만 수락했다. main을 검토된 head 9c96232e6230e00319c33ff77637c80923e2438b로 fast-forward했다. 검토 범위 이후 커밋은 제품 병합에 포함하지 않았다. main에서 make install과 make lint를 직접 실행해 각각 종료코드 0을 확인했다.
+- 최종 리뷰: docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md. QA: docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md. 최종 리뷰 세션을 release했고 reclaimable worker는 없다. tester 재사용 세션은 Orca external_terminal 정책으로 retained이며 강제로 종료하지 않았다.
+- 완료 지시서 정본은 handovers/logs/2026-10-03_to_dev.md, handovers/logs/2026-10-03_to_tester.md다. 빈 인박스는 진행 과제가 아니다.
+- low 후속 담당: DB 오류 분류와 Compose assert는 dev, QA 실행 기록 상대 링크는 tester, 과거 인박스 경로는 기록 당시 이력으로 보존한다. FullOps DOC-003 exclude 순서는 플러그인 유지보수 대상이며 로컬 캐시를 수정하지 않는다. 현재 board 상태는 coor가 완료로 갱신한다.
+- 제품 전체 MVP·업무 SQL·sqlc 생성·UI·실제 Tunnel·운영 배포는 이번 초기 구성 수락 범위 밖이다. 원격 push는 수행하지 않았다. 후속 기능 범위는 새 요청으로 확정한다. 상설 워크트리 동기화는 실제 idle·clean 확인 뒤 진행한다. retained/user-owned 세션은 임의 변경하지 않는다.
