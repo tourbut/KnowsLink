@@ -3,7 +3,7 @@ title: SAR-MVP-002-INSTALL-FIX-DEV 실행 기록
 status: draft
 updated: 2026-10-04
 owner: dev
-tasks: [SAR-MVP-002-INSTALL-FIX-DEV]
+tasks: [SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV]
 summary: GitHub 이슈1의 Grok 설치 실패 원인과 수정·검증 및 재시험 댓글 초안을 기록한다
 ---
 
@@ -31,7 +31,7 @@ summary: GitHub 이슈1의 Grok 설치 실패 원인과 수정·검증 및 재�
 | 0b2d5c6 ZIP의 `grok plugin validate` | `No plugin.json found` |
 | 0b2d5c6 ZIP을 임시 HOME에 설치한 `grok inspect --json` | 이름 `knowslink-e45c424f`, version null, `mcpServers: 0`, `grok mcp doctor knowslink`는 `not found` |
 
-따라서 이전 ZIP을 `grok plugin install`해도 KnowsLink MCP 도구는 노출되지 않았다. 이슈의 `grok mcp list` 빈 결과는 별도 이유도 있다. 이 명령은 config.toml 서버만 보여 주고 plugin 서버는 보여 주지 않는다. Bot 앱 도구 목록에 InstallPlugin 등이 없던 것은 앱의 동적 카탈로그 문제이며 CLI 설치와 다른 경로다. 이번 수정은 CLI 설치 경로를 고쳤고 앱 카탈로그 노출은 주장하지 않는다.
+따라서 이전 ZIP을 `grok plugin install`해도 KnowsLink MCP 도구는 노출되지 않았다. 이슈의 `grok mcp list` 빈 결과는 별도 이유도 있다. 이 명령은 config.toml 서버만 보여 주고 plugin 서버는 보여 주지 않는다. Bot 앱 도구 목록에 InstallPlugin 등이 없던 원인은 이 과제에서 판정하지 않았다. 추정으로는 앱 동적 카탈로그 경로이며 CLI 설치와 다르다. 후속 판정은 SAR-MVP-002-BOT-CATALOG-DEV 기록을 따른다. 이번 수정은 CLI 설치 경로를 고쳤고 앱 카탈로그 노출은 주장하지 않는다.
 
 ## 수정
 

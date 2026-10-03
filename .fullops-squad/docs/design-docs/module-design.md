@@ -2,9 +2,9 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-03
+updated: 2026-10-04
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -50,3 +50,11 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 - `adapters/src/synthetic.ts`: 기존 SQL 합성 흐름에서 owner gate 경로를 실제 MCP bundle 호출로 검증한다. PEM은 자기 임시 0700 폴더의 0600 파일에 두고 처리 후 제거한다.
 
 [플러그인 설치 문서](../../../adapters/README.md)와 [공식 조사·실행 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)에 버전·실패 수정·한계·후속 담당을 기록한다. TESTER 독립 QA와 fixed-SHA 독립 리뷰는 coor 후속이며 이번 자동 검사로 대체하지 않는다.
+
+## SAR-MVP-002-BOT-CATALOG-DEV 앱 등록 경로
+
+- Grok Bot 앱 도구 카탈로그는 계정에 등록된 connector만 읽는다. Bot 컴퓨터의 Grok CLI plugin(`~/.grok`)은 앱에 등록되지 않는다. KnowsLink는 custom MCP server **Command**로 등록한다.
+- `scripts/install_bot_mcp.sh`: Linux x86_64/aarch64용 고정 SHA256 Node `v22.22.2` `.tar.gz`와 bundle을 `/workspace/.knowslink`에 준비한다. 빈 환경에서 기존 MCP 경계 검사를 실행하고 등록 값을 출력한다. 환경 변수가 없으므로 `mcp.ts`의 기본 held를 사용한다.
+- `scripts/verify_grok_plugin.py`: CLI 설치 검사다. 앱 카탈로그 증거가 아니다. 실패 시 grok 출력을 표시하고 `GROK_CONFIG*` 변수를 제거한다.
+
+근거·가설·검증은 [실행 기록](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md)을 따른다.

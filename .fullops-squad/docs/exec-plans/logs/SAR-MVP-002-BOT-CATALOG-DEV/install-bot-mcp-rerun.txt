@@ -1,0 +1,30 @@
+
+added 188 packages, and audited 189 packages in 2s
+
+65 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+
+  dist/plugin.js  1016.6kb
+
+⚡ Done in 60ms
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+Plugin: build/knowslink-grok-bot-plugin.zip; sha256: fb745c66b4e786f5267228099c3794763632381451bd37cf66a82111f9b14a75
+extracted standalone MCP test exit=0
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+Ready. Register in the Grok Bot app as a Custom MCP server:
+  Name:        knowslink
+  Type:        Command
+  Command:     <scratch>/bot/node/bin/node
+  Arguments:   <scratch>/bot/knowslink/dist/plugin.js
+  Environment: none (held is the default)
+exit=0

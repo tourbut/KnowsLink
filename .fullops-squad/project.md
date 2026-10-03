@@ -3,7 +3,7 @@ title: KnowsLink 프로젝트 기준
 status: review
 updated: 2026-10-04
 owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV]
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV]
 summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다
 ---
 
@@ -47,7 +47,8 @@ summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계�
 - 합성 업무 DB·경합·TypeScript/Go UI 연동: `make verify-mvp` (고유 Compose project, 자기 자원만 회수).
 - 실제 sqlc 생성: `make generate`; 생성물 diff는 `git diff --exit-code -- internal/database`.
 - D08 테이블 정의 생성: `make schema`.
-- Grok plugin 패키지·실제 CLI 설치 검사: `make verify-grok-plugin` (임시 HOME의 `grok plugin install`·`grok mcp doctor`, 사용자 `~/.grok` 미변경).
+- Grok plugin 패키지·실제 CLI 설치 검사: `make verify-grok-plugin` (임시 HOME의 `grok plugin install`·`grok mcp doctor`, 사용자 `~/.grok` 미변경). CLI 검사이며 앱 카탈로그 증거가 아니다.
+- Grok Bot 앱 Command server 준비: Bot 컴퓨터에서 `sh scripts/install_bot_mcp.sh` (`KNOWSLINK_PREFIX` 기본 `/workspace/.knowslink`). 앱 등록은 owner가 [README](../adapters/README.md#grok-bot-앱-등록)대로 실행한다.
 - 운영 배포·실제 Tunnel 연결: 후보 수락 뒤 OPS 담당.
 
 ## 공통 기준의 적용과 예외
