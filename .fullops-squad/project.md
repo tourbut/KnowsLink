@@ -1,3 +1,12 @@
+---
+title: KnowsLink 프로젝트 기준
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [FULLOPS-UPDATE-0.9.10]
+summary: 프로젝트 정본과 공통 검증 기준 및 담당별 인계 조건을 정의한다
+---
+
 # KnowsLink 프로젝트 기준
 
 | 항목 | 값 |
@@ -8,7 +17,7 @@
 | 기술 스택 | 미정 — dev가 첫 개발 과제에서 기술 설계와 함께 선택 |
 | 기술 설계 정본 | `.fullops-squad/docs/design-docs/` — dev 담당, 실제 문서는 과제 때 작성 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
-| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.1`; Ponytail full |
+| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.2`; Ponytail full |
 | 보안·코딩 규칙 | [코딩](rules/common/coding-style.md), [테스트](rules/common/testing.md), [보안](rules/common/security.md) |
 | 문서 언어 | 한국어 |
 | 이슈 트래커 | 로컬 `PLANS.md`·역할 인박스. GitHub Issues/Projects 연동은 미설정 |
@@ -35,3 +44,13 @@
 기존 프로젝트 규칙은 없으므로 공통 규칙을 기본값으로 적용한다. 이후 기술 정본이 생기면 연결하며 보안·권한·리뷰 수락 기준은 낮추지 않는다.
 변경한 동작과 실패·경계 조건을 검증한다. 제품 도구가 없는 현 단계에는 설정·Git·하네스 검증을 수행하고 제품 테스트 성공으로 보고하지 않는다.
 작업 지시서에는 적용 문서와 기준 SHA를 남기고 worker와 검토자가 같은 버전을 읽도록 한다.
+
+## 검증 담당과 후속 인계
+
+DEV는 변경 동작의 자동 검사·관련 회귀·필요한 짧은 실행 확인을 완료한다. DEV 완료와 제품 최종 수락은 구분한다.
+독립 전체 QA는 tester가 안정된 고정 통합 후보에서 수행한다. 직접 시각 검수는 designer가 담당한다. 별도 ART 역할은 구성하지 않는다.
+coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인계 조건을 지시서에 기록한다.
+캡처는 지정 시각 항목에만 만든다. 영상은 정지 화면으로 판정할 수 없는 항목에만 만든다.
+변경 없는 증거는 관련 의존성의 동일성을 확인하고 원래 실행 SHA·조건을 연결해 재사용한다. 새 SHA에서 실행한 결과로 표시하지 않는다.
+재검증은 변경 영향·새 실패·증거 결함·미충족 조건이 있을 때 수행한다. 기존 실패·held·미해결 critical/high·제품 정지·최종 플랫폼과 사람 평가 기준은 유지한다.
+보류 항목에는 담당과 재개 조건을 남긴다. 상세 반복 범위는 [공통 테스트 기준](rules/common/testing.md)을 따른다.
