@@ -565,3 +565,8 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 통합 완료 main/origin/main 9c2e09881aa26d6d03c81fe07a4f4ead1785ae81: DEV5506d64·reviewa2dc281·QAa7e682b가 로컬/원격 main 조상이며 ls-remote 일치. 최종 lint exit0/product-lint passed/ERROR0/WARNING1(PLANS 길이)/실행불가0. coor 포함 다섯 역할 실제 유휴·clean 확인 후 main 동기화와 역할 원격 push 완료.
 - 사용자 승인 댓글 게시: https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5971011626. 고정9c2e098·원인·설치 명령·카탈로그/doctor·Node환경·statusheld·QA/실패회신 항목을 게시하고 read-back으로 확인했다. 실제 Bot 재시험 전까지 이슈 OPEN 유지. coor 전달 ZIP은 새 hash fb745c66…로 갱신해 QA와 일치 확인.
 - integration hold2건 resume 뒤 pending0. worker-release 결과 DEV/OPS는 user_takeover retained, TESTER는 external_terminal retained로 프로세스를 보존한다. 강제 종료하지 않는다. delivery_7e7d08091af2 ack 후 messages0. 새 제품 과제를 자동 배정하지 않는다.
+
+## SAR-MVP-002-BOT-CATALOG-DEV — 2026-10-04
+
+- 사용자 재시험 실패 조치 요청. 이슈1 댓글5971027648/5971034506: CLI1.0.40 설치·doctor2tools 성공, 실제 Bot 앱 동적카탈로그 검색0·status호출불가. 기존 CLI 수정 성공과 남은 앱 등록 실패를 구분한다. 원격 재시험 원본 보존.
+- route implementation/dev, claude-opus-5-5 high, D13/D10/D12. 기준4d6ccfd, fresh DEV. 공식 Bot 앱 등록 계약을 조사·진단·최소 구현하며 실제 Bot 호출 경로를 수락 기준으로 사용한다. 사용자 승인 이슈 댓글 후속을 유지하고 FullOps 업데이트·유료/실제릴레이는 제외한다.

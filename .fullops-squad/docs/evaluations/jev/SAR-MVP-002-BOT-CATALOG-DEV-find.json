@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV",
+  "head": "4d6ccfd003ee0823928f044b8528723468fba6ba",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 57,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 57
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/src/mcp.ts",
+      "summary": "Grok Bot MCP connector: held by default; only explicit loopback synthetic pulls can run.",
+      "probability": 0.48
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched.",
+      "probability": 0.33
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.12
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "summary": "Package a standalone Cursor/Grok Bot plugin with a strict file allowlist and no credentials.",
+      "probability": 0.03
+    },
+    {
+      "path": "cmd/migrate/main_test.go",
+      "summary": "Migration source checks reject missing directories and Go code before DB access.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "summary": "KnowsLink",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.92,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3974,
+    "output_tokens": 619,
+    "cost": 0.000166908
+  },
+  "latency_seconds": 0.318,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

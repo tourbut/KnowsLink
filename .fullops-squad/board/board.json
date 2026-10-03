@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "이슈1 설치 수정·독립 리뷰·Grok QA·main 푸시·재시험 댓글 게시 완료. 실제 Bot 재시험 대기.",
+  "summary": "재시험 CLI 설치 성공·Bot 앱 도구등록 실패를 분리했다. 실제 Bot 등록/호출 경로를 진단한다.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -57,7 +57,7 @@
       "name": "실제 어댑터·일정 조회",
       "status": "blocked",
       "deliverables": [],
-      "note": "수정9c2e098 main 푸시·이슈1 댓글 완료. 실제 Bot 설치/카탈로그 재시험 대기."
+      "note": "CLI 설치 재시험 성공. Bot 카탈로그 검색0·status불가를 DEV가 진단·조치."
     },
     {
       "name": "운영 배포·이행",

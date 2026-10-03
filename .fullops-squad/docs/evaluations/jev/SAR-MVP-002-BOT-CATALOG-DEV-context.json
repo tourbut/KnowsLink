@@ -1,0 +1,125 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "4d6ccfd003ee0823928f044b8528723468fba6ba",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "eb86582b9aad4c790782d4fce52e6cb15f5658e4b1cfc01c35425d466078ef25",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-FULLOPS.md",
+      "c1-project.md",
+      "c2-README.md",
+      "c3-SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "c4-SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "c5-README.md",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-FULLOPS.md",
+      "c1-project.md",
+      "c2-README.md",
+      "c3-SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "c4-SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "c5-README.md",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-FULLOPS.md": {
+        "relevant": 0.2,
+        "evidence": 0.51,
+        "contradicts": 0.14,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-project.md": {
+        "relevant": 0.22,
+        "evidence": 0.6,
+        "contradicts": 0.23,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-README.md": {
+        "relevant": 0.16,
+        "evidence": 0.56,
+        "contradicts": 0.13,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-SAR-MVP-002-INSTALL-FIX-DEV.md": {
+        "relevant": 0.54,
+        "evidence": 0.71,
+        "contradicts": 0.71,
+        "injection": 0.05,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      },
+      "c4-SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md": {
+        "relevant": 0.42,
+        "evidence": 0.64,
+        "contradicts": 0.44,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-README.md": {
+        "relevant": 0.73,
+        "evidence": 0.85,
+        "contradicts": 0.46,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [
+      "c3-SAR-MVP-002-INSTALL-FIX-DEV.md"
+    ],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-FULLOPS.md": ".fullops-squad/FULLOPS.md",
+      "c1-project.md": ".fullops-squad/project.md",
+      "c2-README.md": ".fullops-squad/rules/common/README.md",
+      "c3-SAR-MVP-002-INSTALL-FIX-DEV.md": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "c4-SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "c5-README.md": "adapters/README.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 19940,
+    "output_tokens": 456,
+    "cost": 0.00083748
+  },
+  "latency_seconds": 0.312,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV",
+  "role": "dev",
+  "unsent_sources": {},
+  "refused_paths": []
+}
