@@ -37,3 +37,7 @@ summary: Codex 최신 설치와 글로벌 설치기 릴리스의 레포 적용 �
 ## 검증
 
 제품 코드 변경이 없으므로 제품 동작 테스트·빌드·시각 검수는 해당 없음이다. Git 공백 검사와 JSON 파싱·기존 역할 및 원격 보존을 확인한다. 운영 문서와 설정만 지정해 커밋한다.
+
+## 검증 결과 복구 — 0.9.12 업데이트
+
+준비 SHA `5b94be5e0cb1`의 깨끗한 detached snapshot에서 lockfile 기준 npm ci와 FullOps lint를 실행했다. 종료코드 0, product-lint passed, ERROR 0, WARNING 0, 실행 불가 0이었다. 이전 0.9.11 캐시 삭제로 후속 기록 명령이 hook에서 차단되어 이번 기록으로 복구한다.
