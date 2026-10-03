@@ -228,3 +228,7 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - Task task_f06aa8c9770f / Dispatch ctx_343dcf84e81c 성공 완료, 메시지 msg_d4d4e7abd839, 후보 901b81df9fec0046156102144a011f792ca6d332을 독립 검토하고 로컬 병합했다. 이미 완료된 과제이므로 중복 배정하지 않는다.
 - [독립 리뷰](docs/evaluations/qa-reports/SAR-PREP-002-review/report.md)는 전체 31개 reviewed, skipped 0이며 기록 검사 통과다. 최종 후보 lint ERROR/WARNING/실행 불가 0과 product-lint passed를 보존했다. 제품 코드는 바뀌지 않았다.
 - designer terminal은 Orca user_takeover로 user_owned/retained다. 강제 종료·워크트리 변경은 하지 않는다. 첫 SAR-MVP-001-DEV/TESTER는 준비된 queued 인계를 유지한다. DEC-01–05는 백로그의 담당·재개 조건에 따른다.
+
+## 현황판 현행화 — 2026-10-03
+
+초기 골격의 설계·구현·QA 완료와 전체 MVP 진행 상태를 별도 단계로 표시했다. 서비스 기획·개발 준비는 완료다. 첫 SAR-MVP-001-DEV/TESTER는 queued이며 개발·독립 QA·직접 UI 검수·리뷰는 미착수다. D04–D13 미작성 산출물을 완료로 표시하지 않는다. 실제 연결·일정 조회와 운영 배포는 백로그의 선행 조건·DEC-01–05를 따른다. 현황판 데이터는 coor와 로컬 main에서 다시 생성한다.
