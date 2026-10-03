@@ -16,13 +16,13 @@ summary: dev 완료 SHA의 초기 구성과 lint 독립 검증
 - 추가 승인이 필요한 행위: 외부 배포·발송, 운영 자원 변경, 레포 밖 영속 변경, 데이터·파일 삭제, force-push, 파일 소유권 밖 수정.
 - 담당 워크트리 / 브랜치: `/home/shin/orca/workspaces/KnowsLink/fullops-tester` / `fullops/tester`.
 - 병합 책임자 / 기본 브랜치: coor가 검토·병합을 조정하며 필요 시 ops에 배정 / `main`.
-- 복귀 워크트리 / 터미널: `/home/shin/orca/workspaces/KnowsLink/fullops-coor` / `term_89f25ea4-e70e-46c0-8514-e95f8cf81928`.
+- 복귀 워크트리 / 터미널: `/home/shin/orca/workspaces/KnowsLink/fullops-coor` / `term_98d5ec21-4481-4db6-9add-f19b566c1ff8`.
 - Run: `run_8ca8bc058ab7`. repo id와 해당 worker의 task id·dispatch id는 새 dispatch에서 coordinator가 실제 값으로 기록한다. 후속 모델은 coor가 갱신한 후보에서 선택하며 과거 Astra 배정을 재사용하지 않는다.
 - 완료 전송: 새 dispatch preamble의 from·capability·task id·dispatch id를 그대로 쓴다. 설계 worker의 lifecycle ID는 재사용하지 않는다.
 
 ## 적용 기준과 예외
 
-- 규칙: `fullops-common-0.3.1`; `.fullops-squad/rules/common/README.md` 및 coding-style.md, testing.md, security.md.
+- 규칙: `fullops-common-0.3.2`; `.fullops-squad/rules/common/README.md` 및 coding-style.md, testing.md, security.md.
 - 정본: `.fullops-squad/project.md`, `.fullops-squad/docs/agents/document-writing.md`, `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md`.
 - 기준 ref: `729446d8da57`. 고정 원천은 준비 커밋 `0cc35f0`, 외부 원천 SHA `404ff834c0607055d63d2053bf7771d2f46ad3ae`다.
 - 착수 전에 coordinator가 이 지시서를 포함한 설계 커밋을 반영한다. worker와 검토자는 같은 원천·규칙 버전을 읽는다.
@@ -143,3 +143,7 @@ dev 완료 SHA 전에는 검증을 시작하지 않는다. coor가 새 dispatch�
 ## Coordinator 완료 SHA 전달
 
 검증 대상은 `0cc10b083771be9b3423833b222c57d426315333`이다. 준비 체크아웃에는 운영 기록만 추가한다. 제품 동작은 이 SHA의 깨끗한 독립 복제본에서 검사한다. 설치된 Claude FullOps 버전은 0.9.9로 확인했다. 모델 선택은 Jev 키 부재 폴백인 claude-opus-5-5 medium이다.
+
+## Coordinator 0.9.10 재개
+
+사용자가 2026-10-03에 Claude workspace 신뢰 승인을 완료했다고 확인했다. 실패 Dispatch ctx_ace07a0460f8을 보존하고 같은 Task task_83afe3153820를 재개한다. 최신 Jev 선정은 claude-sonnet-5-5 high다. 공통 규칙 0.3.2와 최신 준비 커밋의 정본을 읽는다. 제품 검증 대상 SHA와 lint 기준 729446d8da57은 유지한다. 전체 QA는 tester가 직접 수행하며 DEV 증거를 독립 실행으로 표시하지 않는다. 코드와 UI가 없는 항목은 조건과 근거를 기록한다.

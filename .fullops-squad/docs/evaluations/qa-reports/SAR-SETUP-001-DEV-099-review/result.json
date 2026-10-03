@@ -1,0 +1,431 @@
+{
+  "base": "dbe0b40076af4d440bb263ca4d02d671780d2514",
+  "head": "0cc10b083771be9b3423833b222c57d426315333",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "",
+  "conclusion": "",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "added",
+      "insertions": 71,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "added",
+      "insertions": 62,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/fullops-checkpoint-initial.json",
+      "status": "added",
+      "insertions": 44,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/fullops-checkpoint.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-DEV.md",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+      "status": "added",
+      "insertions": 175,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 153,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/lint/lint.json",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 23,
+      "deletions": 7,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".gitignore",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".nvmrc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "Dockerfile",
+      "status": "added",
+      "insertions": 17,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "Makefile",
+      "status": "added",
+      "insertions": 37,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 64,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/eslint.config.mjs",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/package-lock.json",
+      "status": "added",
+      "insertions": 1358,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/tsconfig.json",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "cmd/migrate/main.go",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "cmd/migrate/main_test.go",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "added",
+      "insertions": 85,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "cmd/relay/main_test.go",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "compose.yaml",
+      "status": "added",
+      "insertions": 57,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "db/migrations/.gitkeep",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "db/queries/.gitkeep",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/config/config.go",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/config/config_test.go",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "status": "added",
+      "insertions": 53,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "sqlc.yaml",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".env.example",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/checks.log",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/clean-checkout-initial.log",
+      "status": "added",
+      "insertions": 65,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/clean-checkout.log",
+      "status": "added",
+      "insertions": 209,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/environment.log",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/install.log",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/lint-injection.log",
+      "status": "added",
+      "insertions": 147,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/runtime-initial.log",
+      "status": "added",
+      "insertions": 383,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/runtime.log",
+      "status": "added",
+      "insertions": 178,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".npmrc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "secret_exclude",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "go.mod",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "go.sum",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "",
+    "reviewer_session": "",
+    "snapshot_path": "",
+    "snapshot_head": "0cc10b083771be9b3423833b222c57d426315333",
+    "read_only": true
+  }
+}
