@@ -551,3 +551,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 독립 OPS 리뷰: task_a5f032815dac/ctx_209ed3f90ea1/term_5e88316a-36da-4867-a461-78f478301a9b, effective claude-sonnet-5-5 high·turn_started. TESTER: task_1ee72a2d3171/ctx_b52b9cd8fe28/term_91461fcc-9133-449e-b64b-c77c5dd8f8a5, fresh grok-4.7 high의 tui-idle=true 후 input_accepted. Grok turn 관측 unsupported를 보존하고 실제 성공은 worker_done으로 확인한다.
 
 - 완료 수집의 SHA null은 worker_done subject·깨끗한 DEV HEAD·전문 아카이브의 일치5506d64로 확인했다. coor가 Git 공용 통합 상태의 sha와 출처 메타데이터를 보완했다. 원래 완료 메시지와 hold는 보존했으며 플러그인 하네스 변경은 없다.
+
+- OPS msg_f3ced3927667/a2dc281f734278119fa664bb4624a09acd50d3f7 수락 가능. 고정5506d64 reviewed18/skipped0, critical/high/medium0·low5, lint0/check0. 실제 CLI 설치·marketplace·doctor2tools·실패전파를 독립 재현. F-01 진단출력·F-02 검증문구·F-03 GROK_CONFIG 격리·F-04 원인추정 표현·F-05 linux-x64 준비 가정은 low 후속이며 댓글에 앱 미확정·환경 전제와 아키텍처 확인을 보완한다. QA 수락 대기로 integration hold·OPS retain. 수집 SHA는 ZIP hash로 오인해 subject·HEAD·완료 전문의 a2dc281로 출처 보존 보완했다.
