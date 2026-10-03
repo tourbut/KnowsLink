@@ -1,0 +1,74 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-INSTALL-FIX-DEV-REVIEW",
+  "head": "9037d990e792c32f7ed2bbf99b115bb00a46a963",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 108,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 108
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "summary": "SAR-MVP-002-INSTALL-FIX-DEV 실행 기록 — GitHub 이슈1의 Grok 설치 실패 원인과 수정·검증 및 재시험 댓글 초안을 기록한다",
+      "probability": 0.41000000000000003
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+      "summary": "SAR-MVP-002-DEV-REVIEW — 독립 리뷰 실행 기록 — Grok Bot 플러그인 고정 SHA의 독립 리뷰 범위와 재현 결론을 기록한다",
+      "probability": 0.27
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "summary": "SAR-MVP-002-DEV 리뷰 — Grok Bot 플러그인 고정 SHA 독립 코드 문서 리뷰 결과",
+      "probability": 0.17
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.08
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV.md",
+      "summary": "SAR-MVP-002-DEV 실행 기록 — 공식 제품 후보와 안전 pull 준비 및 검증과 재개 조건을 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "summary": "<과제 키> 리뷰",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.77,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 9024,
+    "output_tokens": 1129,
+    "cost": 0.000379008
+  },
+  "latency_seconds": 0.325,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

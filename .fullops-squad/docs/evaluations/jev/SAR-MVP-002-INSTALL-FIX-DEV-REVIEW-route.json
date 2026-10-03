@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-002-INSTALL-FIX-DEV-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 0.99
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "tester": 0.38,
+        "ops": 0.29,
+        "dev": 0.33
+      },
+      "confidence": 0.07
+    },
+    "docs": {
+      "D01": 0.08,
+      "D02": 0.11,
+      "D03": 0.1,
+      "D04": 0.12,
+      "D05": 0.1,
+      "D06": 0.1,
+      "D07": 0.09,
+      "D08": 0.12,
+      "D09": 0.1,
+      "D10": 0.17,
+      "D11": 0.1,
+      "D12": 0.2,
+      "D13": 0.16
+    }
+  },
+  "usage": {
+    "input_tokens": 2436,
+    "output_tokens": 314,
+    "cost": 0.000102312
+  },
+  "error": null,
+  "latency_seconds": 0.284,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "FullOps 규정에 따른 구현 후 독립 리뷰, 유휴 OPS 검토자 배정",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

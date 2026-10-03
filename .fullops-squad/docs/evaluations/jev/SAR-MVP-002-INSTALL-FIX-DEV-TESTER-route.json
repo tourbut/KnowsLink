@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-002-INSTALL-FIX-DEV-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.99
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "ops": 0,
+        "tester": 1,
+        "dev": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.06,
+      "D02": 0.09,
+      "D03": 0.07,
+      "D04": 0.07,
+      "D05": 0.06,
+      "D06": 0.07,
+      "D07": 0.06,
+      "D08": 0.07,
+      "D09": 0.06,
+      "D10": 0.13,
+      "D11": 0.12,
+      "D12": 0.26,
+      "D13": 0.18
+    }
+  },
+  "usage": {
+    "input_tokens": 2449,
+    "output_tokens": 314,
+    "cost": 0.000102858
+  },
+  "error": null,
+  "latency_seconds": 0.364,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "FullOps 규정의 구현 후 독립 TESTER QA 배정이며 사용자 지정 Grok4.7high 모델을 따른다",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "6291c22462a8546fe59764ec524bf0c07f61bfa4b220d7d4180a7caf9a964435"
+}

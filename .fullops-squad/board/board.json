@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "이슈1 설치 실패를 DEV가 진단·수정한다. 수락·푸시 뒤 재시험 절차를 댓글로 전달한다.",
+  "summary": "이슈1 원인과 설치 수정 후보를 확보했다. 고정 SHA 독립 리뷰와 Grok QA를 진행한다.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -57,7 +57,7 @@
       "name": "실제 어댑터·일정 조회",
       "status": "blocked",
       "deliverables": [],
-      "note": "이슈1 설치 경로 수정·독립 검증 진행. 실제 외부 연결 held 유지."
+      "note": "5506d64 Grok manifest/MCP 누락 수정. 독립 리뷰·설치 QA 뒤 푸시·댓글."
     },
     {
       "name": "운영 배포·이행",
