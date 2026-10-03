@@ -1,0 +1,108 @@
+{
+  "base": "437f1432a158670a485413c1aba159debc3759e5",
+  "head": "f824015314c66bcab42940cfe3db2edabb22e1dd",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "dev worker (Claude Opus 5.5, session 941501bd-e2b4-4578-b092-e6c70cdbd306, dispatch ctx_b100d949407f), 구현 OPS 세션 2191cc9b와 별도",
+  "conclusion": "f824015에 미해결 critical/high 없음. 원래 M1·M2·M3·M5·L2-L6은 해소, L1은 문서화된 상한으로 부분 해소. 새 medium 1건(N1 assert 기반 게이트가 PYTHONOPTIMIZE에서 통과)·low 4건은 미해결이며 N1은 expose 전 수정을 권고한다. Access 앱·DNS·connector·공개 negative·이메일 로그인은 미실행이므로 공개 수락은 held다.",
+  "files": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "status": "modified",
+      "insertions": 36,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "권한 표기(Write/Edit 동일)·원시 호출 표(비밀 없음)·리뷰 대응 표를 실제 diff와 대조했다. 재검증 서술은 8a7ad36 코드 기준이며 8a7ad36..f824015는 문서만 다르다. 이력 서술 부정확은 N3"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "서두·6·9·10장의 역사적 표시(M1 해소), 11.2 권한·check 설명(M2/M3), 11.3 deploy·rollback(M5), 11.5 owner-login(L4)을 코드와 대조했다. rollback 시 이전 expose 게이트 회귀 미기재는 N4, 이력 기록 서술은 N3"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "최소 권한 두 개(M2 해소)와 배포 SHA 확인 방법을 실제 배포 체크아웃(HEAD f824015)·deploy-history.log와 대조했다. 로그가 현재 이동을 담지 않음은 N3"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "owner-login 본인 실행 제한(L4)과 5단계 칸별 분리(L6) 확인"
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "status": "modified",
+      "insertions": 64,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "verify_live·live_snapshot·check·apply 사후 검증·계정 1개 강제를 읽고 selftest와 임시 상태 디렉터리 12개 사례로 독립 실행했다. PYTHONOPTIMIZE 우회(N1), MCP 증거 출처·미래 mtime·ID 미결합(N2), selftest 격리 약함(N5). Cloudflare OpenAPI로 aud·options_preflight_bypass·allowed_idps·destinations·custom_pages·policies·per_page 필드를 확인했다"
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "status": "modified",
+      "insertions": 29,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "bash -n, deploy의 unknown commit·migration 차이·pg_dump 실패 차단을 가짜 docker와 scratch clone으로 실행해 체크아웃·이력 불변과 부분 dump 삭제를 확인했다. 중괄호 dispatch, expose의 check 호출·dig 실패 중단, 8080 패턴(L2)을 검토했다"
+    }
+  ],
+  "findings": [
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "start_line": 42,
+      "end_line": 53,
+      "severity": "medium",
+      "resolved": false,
+      "content": "N1: verify_live의 모든 검사가 assert다. PYTHONOPTIMIZE=1 환경에서 access.aud와 다른 aud의 live 앱으로 check가 exit 0으로 통과했다(재현). expose 게이트가 fail-open된다. 원점 JWT audTag가 별도로 막으므로 high가 아니다. assert를 명시적 raise SystemExit으로 바꾸거나 beta.sh에서 python3 -I/PYTHONOPTIMIZE 해제를 권고"
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "start_line": 114,
+      "end_line": 126,
+      "severity": "low",
+      "resolved": false,
+      "content": "N2: MCP 증거 access.live.json은 출처 검증이 없고 mtime만 본다. mtime이 미래이면 영구 통과하고(재현), 스냅숏의 app id가 access.json의 app과 달라도 통과한다(재현). aud 비교가 앱을 묶으므로 영향은 작다. saved app/policy id 비교와 음수 나이 거부를 권고"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "start_line": 19,
+      "end_line": 19,
+      "severity": "low",
+      "resolved": false,
+      "content": "N3: deploy-history.log는 8a7ad36->437f143, 8a7ad36->8a7ad36 두 줄뿐이다. 현재 HEAD f824015로의 이동과 437f143->8a7ad36 복귀는 수동 체크아웃이라 기록이 없다. D13은 이 로그를 현재 SHA 근거로, D12 11.3은 앞으로의 이동을 '이력 기록'으로 적었다. rev-parse를 정본으로 하고 수동 이동을 기록하도록 정정 권고"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "start_line": 172,
+      "end_line": 172,
+      "severity": "low",
+      "resolved": false,
+      "content": "N4: 8a7ad36 이전 SHA로 rollback하면 그 SHA의 beta.sh expose는 live 검증이 없는 이전 게이트다. 11.3에 expose는 access_apply.py check가 있는 SHA에서만 실행한다는 주의가 없다"
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "start_line": 72,
+      "end_line": 72,
+      "severity": "low",
+      "resolved": false,
+      "content": "N5: selftest의 config.replace(\"team\",\"other\")는 teamName 키 자체를 바꾸므로 값 불일치만을 격리해 검사하지 않는다. 독립 실행으로 값만 다른 경우도 거부됨을 확인했다. teamName은 live organization auth_domain과 비교하지 않는다(불일치 시 원점 거부로 fail-closed)"
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "2191cc9b-76ef-4522-9fad-d2c9f017bfbc",
+    "reviewer_session": "941501bd-e2b4-4578-b092-e6c70cdbd306",
+    "snapshot_path": "/tmp/knowslink-beta-review-f824015",
+    "snapshot_head": "f824015314c66bcab42940cfe3db2edabb22e1dd",
+    "read_only": true
+  }
+}

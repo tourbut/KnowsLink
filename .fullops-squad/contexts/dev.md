@@ -22,3 +22,4 @@ summary: 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기�
 - 2026-10-03 SAR-MVP-001-DEV 보안 후속: 메시지에 `deliver` 경로를 저장하고 agent transport는 `deliver:agent`만 처리한다. 직접 human inbox가 없으므로 H 외 `deliver:human` send는 403이다.
 - 2026-10-03 RF-01: 경로 검사는 transport뿐 아니라 이미 발급된 claim을 다시 쓰는 부모 경계(`parentRouting`)에도 둔다. 저장 형식이 바뀌면 이전 메서드로 만든 직렬화 상태를 fixture로 남겨 회귀한다.
 - 봉투 필드로 처리 주체가 갈리면 저장 상태에 경로를 남기고 lease·persist·ACK·claim 각 확정 지점에서 검사한다. intent 예외 목록에 기대지 않는다.
+- 2026-10-03 SAR-BETA-001-REVIEW-FINAL: 보안 게이트를 Python `assert`로 쓰면 `PYTHONOPTIMIZE`에서 모두 사라진다. 운영 게이트 리뷰에서는 `-O` 실행과 증거 파일의 미래 mtime·ID 결합을 직접 시험한다.
