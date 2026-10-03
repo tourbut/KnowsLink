@@ -1,3 +1,12 @@
+---
+title: Orca 역할 배정
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [SAR-SETUP-001]
+summary: 역할별 책임과 Astra를 제외한 모델 후보 및 라우팅 기준을 정의한다
+---
+
 # Orca 역할 배정
 
 역할·워크트리·브랜치는 1:1:1이며 `fullops.json`이 브랜치 정본이다.

@@ -66,3 +66,4 @@ summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이�
 - designer 배정: Run `run_8ca8bc058ab7`, Task `task_49c6e00e6470`, Dispatch `ctx_1f186b4db5b5`, terminal `term_6935611a-04a4-4427-ba3b-d92dd4cf247e`. codex gpt-6-astra high 적용과 착수를 확인했다.
 
 - 사용자 요청으로 모델 후보에서 gpt-6-astra를 전부 제외했다. 이후 배정은 갱신된 후보만 사용한다. 이미 착수한 designer Dispatch는 완료를 기다리고 후속 배정에서 변경한다.
+- 원천 스냅샷은 외부 원본 보존 규칙에 따라 front matter를 추가하지 않는다. 프로젝트 lint에서 해당 스냅샷 경로만 제외하고 작성 문서는 계속 검사한다.
