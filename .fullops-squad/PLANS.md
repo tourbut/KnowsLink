@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098]
-summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이트 기록을 관리한다"
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001]
+summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
 # KnowsLink 현재 계획
@@ -21,11 +21,11 @@ summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이�
 
 ## 첫 요청 대기
 
-- 제품 목적·요구사항·사용자 경험: designer가 첫 요청에서 기록.
-- 기술 스택·기술 설계·제품 경로·lint/test/build 명령: dev가 첫 개발 과제에서 확정.
+- 제품 목적·요구사항: SAR-SETUP-001 D02에 초기 구성과 lint 범위를 기록했다. 사용자 기능은 후속 과제다.
+- 기술 스택: 고정 원천의 Go·TypeScript·Postgres·Compose 선택을 따른다. 실제 버전·경로·검사 명령은 dev가 SAR-SETUP-001-DEV에서 확정한다.
 - 배포 대상·운영 환경: ops가 배포 과제에서 확정.
 - 재현·테스트·회귀 기준: tester가 구현 완료 SHA를 대상으로 확정.
-- 진행 중 제품 과제·worker Dispatch: 없음.
+- 현재 제품 과제: SAR-SETUP-001 설계 완료 후 SAR-SETUP-001-DEV, SAR-SETUP-001-TESTER 순서로 진행한다.
 - 역할별 모델 후보는 사용자 참고 파일에서 유지했다. 실제 지원 여부는 과제 기동 시 확인한다.
 
 ## 워크트리·검증 근거
@@ -67,3 +67,19 @@ summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이�
 
 - 사용자 요청으로 모델 후보에서 gpt-6-astra를 전부 제외했다. 이후 배정은 갱신된 후보만 사용한다. 이미 착수한 designer Dispatch는 완료를 기다리고 후속 배정에서 변경한다.
 - 원천 스냅샷은 외부 원본 보존 규칙에 따라 front matter를 추가하지 않는다. 프로젝트 lint에서 해당 스냅샷 경로만 제외하고 작성 문서는 계속 검사한다.
+
+### SAR-SETUP-001 설계 결과 — 2026-10-03
+
+- D02: `docs/planning/product-specs/SAR-SETUP-001.md`. 초기 개발 골격과 실제 lint 실패 검출만 수락 범위로 정했다.
+- D03은 dev 책임이다. 잠긴 Go·TypeScript·Postgres·Compose·DB tooling·Go UI 선택을 유지한다.
+- dev 지시서: `handovers/to_dev.md` (`SAR-SETUP-001-DEV`, ready).
+- tester 지시서: `handovers/to_tester.md` (`SAR-SETUP-001-TESTER`, dev 완료 SHA 대기).
+- 역할별 Jev find/code·documents 및 context는 API 실패로 fallback했다. 문서를 수동으로 좁히고 모두 keep했다. 원천은 수정하지 않았다.
+- coor 후속: 설계 커밋을 역할 워크트리에 반영하고 실제 dispatch 복귀 정보를 기록한다. dev 완료 후 tester를 dispatch한다.
+- 상세 근거와 검증: `docs/exec-plans/phases/SAR-SETUP-001.md`. 제품 기능·배포와 제품 테스트는 수행하지 않았다.
+- 지정 기준 lint는 기존 원천 DOC-003 7건으로 차단됐다. coor가 원천 보존 및 차단 기록 후 설계 완료를 허용했다. 시작 HEAD 기준 설계 검사 ERROR 0, WARNING 1이다.
+- coor 회신: 원천 전용 제외는 `729446d`에 기록했으며 기준 ref의 설정에는 아직 적용되지 않는다. dev는 제품 lint 등록과 함께 이 제약을 확인한다.
+- 후속 모델 배정: 사용자 요청으로 제거한 Astra 후보를 재사용하지 않는다. coor가 갱신한 후보를 사용한다.
+
+
+- 구현과 QA의 검사 기준은 원천 보존 설정을 포함한 준비 커밋 `729446d8da57`으로 갱신했다. 설계 단계의 원래 검사 실패 기록은 보존한다.
