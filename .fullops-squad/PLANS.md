@@ -178,3 +178,10 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 ## SAR 초기 구성 통합 검사 준비 — 2026-10-03
 
 기존 coor 결정 729446d8da57의 외부 원천 전용 lint 제외를 main에 먼저 반영한다. 원본 외부 문서에는 front matter를 추가하지 않는다. 제품 코드와 작성 문서의 검사는 유지한다. 이 준비는 제품 수락이나 제품 코드 병합이 아니다. 실제 main 기준 통합 리뷰는 이 준비 커밋을 조상으로 갖는 새 후보에서 수행한다.
+
+### 최종 통합 리뷰의 원천 준비 결함 — 2026-10-03
+
+- reviewer 질문 msg_2af0c5e13279에서 0.9.10 DOC-003이 exclude보다 먼저 적용됨을 확인했다. 기존 source exclude만으로 외부 원문을 보호하지 못한다. 이전 729446d 기준은 이미 반입한 원천이 diff에 없어 통과한 것이며 제외가 DOC-003을 막았다는 과거 해석을 바로잡는다.
+- main 준비 fa971df는 source exclude만 추가했다. 준비 lint ERROR 0/WARNING 2다. 기존 원천 스냅샷을 원문 그대로 main 3eb7647에 반입하고 coor 9c96232에 병합했다. 원천과 후보의 byte-level Git diff는 0이다.
+- 원천 반입 자체의 lint는 ERROR 7/WARNING 1/종료코드 1이며 /tmp/SAR-SETUP-001-source-import-lint.json에 보존한다. 원문 Markdown hard break의 git diff --check 실패도 유지한다. 원천을 stamp하거나 whitespace를 바꾸지 않는다. 제품 수락으로 표시하지 않는다.
+- 제품 통합의 실제 최종 refs는 main 준비 3eb7647938111c9f13ad523760aeb7e90c7fa7f3..9c96232e6230e00319c33ff77637c80923e2438b다. 새 read-only snapshot /tmp/SAR-SETUP-001-integration-review-9c96232와 SAR-SETUP-001-INTEGRATION-SOURCE 기록으로 게이트를 확인한다. 이전 두 리뷰의 차단 결과는 덮어쓰지 않는다.

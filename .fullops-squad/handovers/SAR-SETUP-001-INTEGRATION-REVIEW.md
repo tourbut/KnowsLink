@@ -30,3 +30,7 @@ result.json의 모든 파일과 발견 사항을 기록한다. 실제 구현자 
 ## Coordinator 실제 병합 refs 갱신
 
 main 준비 기준은 fa971df3a36e다. 기존 승인된 외부 원천 전용 lint 제외만 반영했으며 준비 lint 종료코드 0, ERROR 0, WARNING 2다. 최종 후보는 ec190f98848fbe21cc4df6d78e7d01dca0d58129이고 이 준비 커밋을 조상으로 갖는다. 새 읽기 전용 snapshot은 /tmp/SAR-SETUP-001-integration-review-ec190f9다. 최종 review key는 SAR-SETUP-001-INTEGRATION-FINAL이며 대응 디렉터리를 소유권에 추가한다. 이전 INTEGRATION 기록과 당시 DOC-003 실패는 보존한다. 검토한 제품·QA 증거는 동일성을 확인해 재사용하고 준비·병합 운영 diff만 추가 검토한다. lint와 check의 실제 refs는 fa971df3a36e..ec190f98848fbe21cc4df6d78e7d01dca0d58129를 사용한다.
+
+## Coordinator 원본 원천 준비와 최종 refs
+
+0.9.10 DOC-003이 exclude보다 먼저 실행되어 기존 제외는 원천 front matter 오류를 막지 못한다. 앞선 INTEGRATION과 FINAL의 ERROR 7을 보존한다. 기존 외부 스냅샷 원문을 main 준비 커밋 3eb7647938111c9f13ad523760aeb7e90c7fa7f3에 그대로 반입했다. 원천 반입의 lint ERROR 7 및 원문 hard break의 whitespace 실패는 별도 기록하고 통과로 표시하지 않는다. 원문과의 무결성 diff는 0이다. 새 최종 head는 9c96232e6230e00319c33ff77637c80923e2438b, snapshot은 /tmp/SAR-SETUP-001-integration-review-9c96232, 최종 key는 SAR-SETUP-001-INTEGRATION-SOURCE다. 대응 리뷰 디렉터리를 소유권에 추가한다. 이 실제 base/head로 lint와 check를 완료한다. 기존 제품·QA 검토는 동일성 확인 뒤 재사용한다.
