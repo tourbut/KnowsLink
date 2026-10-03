@@ -207,3 +207,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 상태: 배정과 검토 완료. Run run_8ca8bc058ab7, Task task_bea67a9755f1, Dispatch ctx_dab52fc0aa32에 배정했고 turn_started를 확인했다.
 - 성공 완료 회신은 msg_54fa321f61b6이다. 최종 리뷰 결과는 커밋 50caf7b와 docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md에 있다. 검토된 후보는 main에 병합했다.
 - 신규 배정 보류 사유: 이 과제는 이미 성공 완료했고 검토 세션도 release했다. Stop hook의 미배정 판정은 실제 배정 영수증과 다르다. 같은 완료 검토를 중복 배정하지 않는다. 제품 정지나 미완료 과제로 변경하지 않는다.
+
+## SAR-PREP-002 — 최신 서비스 기획 반입과 MVP 개발 준비
+
+- 사용자 요청으로 service-design main의 silent-agent-relay를 최신 SHA 7bc9ea190ea549fae8b047e850247a19322fc9c3에 고정했다. product.md와 decisions.md의 A2A gap review 잠금만 바뀌었다. 원문 바이트를 반입하며 이전 원문은 Git 이력으로 보존한다.
+- Jev product → designer, codex gpt-6.1-sol high다. 전체 서비스 제품 규칙·MVP 범위·사용자 완료 조건과 기능별 후속 인계를 준비한다. 기존 SAR-SETUP-001 골격과 검증은 재사용한다.
+- 이번 요청의 완료 범위는 개발 준비다. 전체 MVP 구현이나 운영 배포는 시작하지 않는다. 기술 계획은 dev의 후속 기능 구현 과제에서 수행한다.
