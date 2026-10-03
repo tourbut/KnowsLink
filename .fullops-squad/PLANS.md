@@ -261,3 +261,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 SAR-MVP-PUBLIC-POLICY-001의 성공 회신 msg_8bd2e3ced6fc와 완료 SHA 69dbec44c0193266f8f6c8499f22493e1e3c1722를 확인했다. D01·D02·백로그와 자기 기록을 갱신했다. 수치·자원 한도는 아직 제안이며 사용자 확정과 기술 근거·제한 구현·독립 검증·수락이 남았다. 제품 공개나 전체 MVP 완료가 아니다. 별도 검토와 coor 병합은 대기한다. terminal은 user_takeover에 따른 user_owned/retained 상태이므로 강제 종료하지 않는다.
 
 DEV 기술 회신 msg_976b4514120b는 raw envelope 32768 bytes와 frozen body JCS 16KiB의 별도 검사, polling과 ACK·철회·deny의 안전 budget 분리, pending/claim 회수 및 24h receipt 20000 처리량의 별도 측정 필요를 기록했다. 성능 보장이나 수치 확정으로 해석하지 않는다. 기존 DEV 범위를 유지한다.
+
+## 첫 MVP DEV 완료와 독립 QA 착수 — 2026-10-03
+
+msg_bcf340cb7ce8은 Task task_491be61b82eb / Dispatch ctx_66989e4a879d 성공 회신이다. 완료 SHA a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92와 깨끗한 DEV 체크아웃을 확인했다. 등록·키·페어링·안전 relay·receipt/lease/ACK/claim·human-gate·최소 result·합성 adapter와 D03/D05–D10을 보고했다. 자동 검증·product-lint 종료코드 0, lint ERROR 0/WARNING 3(파일 크기)/실행 불가 0이다. 독립 QA·UI·리뷰·수락·배포는 아직 완료되지 않았다. singleton global lock 처리량·실사용자 신원 인증·실벤더·공개 정책·운영 한도 held를 보존한다. DEV terminal은 user_owned/retained이므로 임의 종료하지 않는다.
+
+SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다. 기존 tester idle·clean 확인 후 a6a10c7로 fast-forward했다. 새 워크트리를 만들지 않으며 오래된 과제 대신 새 세션을 사용한다. QA 고정 제품 후보는 a6a10c7이고 추가 준비 문서는 제품 diff가 없는지 확인한다. 직접 UI 검수와 fixed-SHA 독립 리뷰는 같은 후보로 후속한다.
