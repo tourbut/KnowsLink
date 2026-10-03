@@ -103,8 +103,12 @@ pending에는 Approve와 Deny가 있다. approved, denied, expired, revoked, una
 - `make lint`, `make test`, `make build`, `make verify-mvp`, `isolated.py`는 이 워크트리에서 다시 실행했다.
 - `make verify-mvp`의 합성 seed 경로는 재사용했다. DEV가 남긴 로그 파일은 재사용하지 않았다.
 - `verify-mvp.log`는 `build/qa-fixture.json` 경로만 말한다. 그 파일은 gitignore 대상이며 커밋하지 않는다.
-- 기준 ref `0dd08ec994771836c15d9d22a6a83393a71d7987`의 FullOps lint는 이 기록을 커밋한 뒤 깨끗한 트리에서 실행한다. ERROR, WARNING, 실행 불가는 그 실행의 로그와 이 절의 다음 수정에 남긴다.
+- 기준 ref `0dd08ec994771836c15d9d22a6a83393a71d7987`의 FullOps lint는 완료 커밋 `6bb6fad9f32a`의 깨끗한 트리에서 실행했다. 결과는 아래 절이다.
 
 ## tester 최종 검사
 
-아직 완료 커밋 전의 기록이다. `deliverables.py --strict`, `git diff --check`, 기준 ref lint의 종료코드는 커밋 후 이 절에 채운다.
+- 검사 대상 HEAD는 `6bb6fad9f32a`다. QA 기록 커밋은 `72941857c1fe6490fa7fe154b81b712b7212ec8d`다. 그 다음 커밋이 로그 끝의 빈 줄을 제거했다.
+- `git diff --check 69870db66618202b8981eee55805f0020f421be8 HEAD` 종료코드는 0이다.
+- `deliverables.py --strict` 종료코드는 0이다. 검사 13, 미작성 4, 문제 0, 경고 0이다. 미작성은 D04, D11, D12, D13이다. 이 QA는 그 상태를 완료로 바꾸지 않는다.
+- `lint.py --from 0dd08ec994771836c15d9d22a6a83393a71d7987` 종료코드는 0이다. `product-lint`의 `make lint`는 passed다. ERROR 0, WARNING 3, 실행 불가 0이다.
+- WARNING 3건은 모두 SIZE-001이다. `internal/relay/http.go` 487줄, `integration_test.go` 416줄, `store.go` 416줄이다. 기준 ref 이후의 제품 파일이며 이 QA가 만든 파일이 아니다. 제품 코드는 나누지 않았다.
