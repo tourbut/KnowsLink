@@ -101,3 +101,7 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - SAR-SETUP-001-DEV를 같은 키로 force 재선정했다. D02와 범위 답변에 근거해 override-role dev를 기록했다. Jev API 키 부재로 implementation/dev와 codex gpt-6.1-sol high 폴백을 기록했다. 기존 결과는 prior 파일로 보존했다. 갱신 산출물은 지시서의 D03을 유지한다.
 - 같은 Task `task_a7fd5d1b8806`를 retry-of로 새 세션에서 재개한다. 이전 세션 종료 및 0.9.8 캐시 경로 오류 때문에 세션을 재사용하지 않는다. dev가 기술 계획·구현·테스트·문서 갱신을 수행한다.
 - designer 후속 세션은 병합 검토까지 retain한다. tester는 성공 완료 SHA 이후 배정한다. 병합 전 서로 다른 구현·리뷰 세션 ID와 깨끗한 read-only detached snapshot, fixed-SHA 리뷰·lint·테스트 게이트를 확인한다.
+
+- 재개 영수증: Task `task_a7fd5d1b8806`, Dispatch `ctx_67f98ed4cd42`, terminal `term_cf9a131a-84f0-40fa-91a2-c5bd7e0fb28f`. effective codex gpt-6.1-sol high, turn_started 확인. 기존 ready Task는 retry-of를 거절하므로 dispatch-show로 이전 실패를 확인한 후 같은 Task를 ready 상태에서 시작했다. 과제는 복제하지 않았다.
+- 이전 질문 reply는 dispatch_inactive로 거절됐다. 답 원문은 designer 커밋과 최신 dev 지시서에 보존하여 새 세션에 전달했다. dev 워크트리는 종료와 깨끗한 상태를 확인한 후 준비 HEAD `dbe0b40`까지 fast-forward했다. designer 진행 브랜치는 변경하지 않았다.
+- 운영 변경의 lint: HEAD `dbe0b40`, 기준 `729446d8da57`, 종료코드 0, ERROR 0, WARNING 1(LINT-000), 실행 불가 0. 제품 코드 변경은 없으므로 제품 테스트는 적용하지 않았다.
