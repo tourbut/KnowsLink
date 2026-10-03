@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-BETA-001-TESTER-PUBLIC",
+  "head": "98b29f4cb00b2f176f30077ea529909894e0df78",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 46,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 46
+    }
+  ],
+  "candidates": [
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.32
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.29000000000000004
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "summary": "Create or remove the owner-only Cloudflare Access app for link.knowslog.com; never prints the email or token.",
+      "probability": 0.06
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.04
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "summary": "Synthetic QA seed and end-to-end adapter check; credentials stay in ignored local files only.",
+      "probability": 0.04
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.03
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "summary": "Owner-only synthetic beta lifecycle for the separate \"knowslink\" Compose project; never touches other projects.",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "summary": "Validate isolated example Compose settings and locked service boundaries.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.25,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3121,
+    "output_tokens": 510,
+    "cost": 0.000131082
+  },
+  "latency_seconds": 0.25,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

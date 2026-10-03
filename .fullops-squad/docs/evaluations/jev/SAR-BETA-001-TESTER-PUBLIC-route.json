@@ -1,0 +1,70 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-BETA-001-TESTER-PUBLIC",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D11"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.11,
+        "implementation": 0.89
+      },
+      "confidence": 0.78
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.77,
+        "tester": 0.16,
+        "ops": 0.07
+      },
+      "confidence": 0.66
+    },
+    "docs": {
+      "D01": 0.31,
+      "D02": 0.42,
+      "D03": 0.64,
+      "D04": 0.56,
+      "D05": 0.53,
+      "D06": 0.51,
+      "D07": 0.31,
+      "D08": 0.31,
+      "D09": 0.46,
+      "D10": 0.62,
+      "D11": 0.67,
+      "D12": 0.77,
+      "D13": 0.7
+    }
+  },
+  "usage": {
+    "input_tokens": 2477,
+    "output_tokens": 314,
+    "cost": 0.000104034
+  },
+  "error": null,
+  "latency_seconds": 0.277,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "본인 전용 배포의 실제 외부 보호 동작은 구현 OPS와 독립인 tester 담당이다.",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "6291c22462a8546fe59764ec524bf0c07f61bfa4b220d7d4180a7caf9a964435"
+}

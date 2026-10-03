@@ -445,3 +445,6 @@ N1 수정 독립 검토 task_be8f037e8453/ctx_9779a5971c1d/term_5ef7be3a-3b11-40
 
 
 QA msg_0c6c6575f70c의 보고 SHA는1762b430bed1c0584fecd163ae81567a4a5d04a9다. 본문의 f824015는 검사 대상이며 보고 SHA와 구별한다. 고정 f824015에서 로컬 인증/CSRF·loopback·비게시 DB·백업/격리 복원·공유서비스 회귀와 expose/deploy 차단이 통과했다. 처음 SHA 이동에 따른 판정 실패와 이후 안정된 실행을 보고서가 구별했다. QA 기록은 coor 후보에 보존했으며 최신28bd1bb gate 검토·외부 보호 후속 QA 전 공개 수락은 보류한다. 새 gate는 독립 검토자가 안전한 임시 상태에서 확인하며 런타임 제품/Compose 불변 증거는 원래f824015로 재사용한다.
+
+
+공개 후속 QA SAR-BETA-001-TESTER-PUBLIC을 준비했다. 마지막 gate 독립 검증 후 public_ready 질문을 받아 coor가 적용 재개를 결정하고, protected 적용 후 외부 HTTP와 실제 정책/설정·공유 서비스만 확인한다. 큰 로컬 QA 컨텍스트를 이어 쓰지 않고 새 Grok4.7 high 세션을 사용한다. 사용자 인간 로그인은 별도 조건이다.
