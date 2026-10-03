@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV]
 summary: 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다
 ---
 
@@ -24,3 +24,7 @@ summary: 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기�
 - 봉투 필드로 처리 주체가 갈리면 저장 상태에 경로를 남기고 lease·persist·ACK·claim 각 확정 지점에서 검사한다. intent 예외 목록에 기대지 않는다.
 - 2026-10-03 SAR-BETA-001-REVIEW-FINAL: 보안 게이트를 Python `assert`로 쓰면 `PYTHONOPTIMIZE`에서 모두 사라진다. 운영 게이트 리뷰에서는 `-O` 실행과 증거 파일의 미래 mtime·ID 결합을 직접 시험한다.
 - 2026-10-03 SAR-BETA-001-REVIEW-N1: 수정 검증은 negative 행렬을 일반·`-O`·`-OO`·`PYTHONOPTIMIZE=1`로 돌리고, 이전 SHA 파일을 대조군으로 같은 행렬에 넣어 검출력을 먼저 증명한다. 게이트만 고치면 같은 `assert` 패턴의 사후 증명(`verify.py`)이 남는다.
+
+- 2026-10-03 SAR-MVP-002-DEV: 사용자가 공식 Grok Bot을 확정했다. Cursor manifest·stdio MCP·skill·standalone bundle을 준비하며 actual connection은 held다.
+- 공통 Adapter와 direct-run CLI를 분리해야 bundle의 stdout에 CLI 출력이 섞이지 않는다. 기본 held와 synthetic-loopback·redirect 차단을 실제 MCP handshake로 검사한다.
+- 지원 근거·package·검증·owner/admin 설치·독립 리뷰/QA 후속은 [실행 기록](../docs/exec-plans/phases/SAR-MVP-002-DEV.md)에 보존한다.

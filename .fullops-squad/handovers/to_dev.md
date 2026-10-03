@@ -66,3 +66,21 @@ route 추천 D05/D10/D13. 실제 영향만 갱신하며 D03 필요 시 추가한
 ## 완료 보고
 
 브랜치·고정 SHA·변경 이유·공식 근거·검증 HEAD/명령/종료코드·실행 불가·후속과 재개 조건을 적는다. worker_done body 첫 줄은 `[완료] SAR-MVP-002-DEV | SHA <전체 완료 SHA>`로 한다.
+
+## DEV 기술 계획과 착수 조사 — 2026-10-03
+
+1. 원천은 Grok Bot 이름과 우선순위만 지정한다. 공식 제품 URL과 사용자 계정은 아직 특정하지 않았다.
+2. Context7 `/websites/x_ai_grok-bot` resolve→query와 공식 문서로 hosted shell·공유 컴퓨터·인증·routine 근거를 확인한다. 설치 CLI는 `Grok Build TUI`, `grok 1.0.46 (2765805b9442) [stable]`다. 이름만으로 동일 제품이라고 확정하지 않는다.
+3. 제품 정체성 질문을 Orca ask로 보냈다. coor는 사용자에게 확인 중이며 답 전에는 특정 제품 연결 코드를 작성하지 말라고 회신했다.
+4. 답 대기 동안 기존 `make verify-mvp`의 격리 SQL·서명·persist·ACK·claim·gate·최소 result 회귀를 실행한다. D05/D10/D13에는 후보별 지원 범위와 실제 연결 held를 기록한다.
+5. 대상 확정 뒤 기존 Adapter를 재사용하는 가장 작은 공식 지원 경로를 준비한다. wire·owner 권한·무정책 deny를 유지한다. 제품 계정·비밀·유료 inference·운영 연결은 사용하지 않는다.
+
+조사 경로 보정: 지시서의 `docs/evaluations/jev/`는 루트에 없었다. 실제 `.fullops-squad/docs/evaluations/jev/SAR-MVP-002-DEV-*.json` 네 파일과 context keep 원문 전체를 읽었다. 기존 Jev observation SHA는 `e732fedb8a7f80b9813219bf2dbc65fc029ff272`이며 이번 준비 HEAD의 실행 증거가 아니다.
+
+## 사용자 후속 확정과 플러그인 기술 계획
+
+coor 메시지 `msg_1d99c6fd5e89`와 `msg_d8b63570d547`에서 사용자는 xAI 공식 Grok Bot (`docs.x.ai/grok-bot`)과 설치/연결 가능한 플러그인 제작을 확정했다. 제품 정체성 대기는 해제됐다. 실제 계정/연결 held와 외부 효과 금지는 유지한다.
+
+공식 Grok Bot은 Cursor connector policy와 MCP를 지원한다. Cursor 공식 `.cursor-plugin/plugin.json`·`mcp.json`·skill 구조로 패키징한다. SDK 기반 stdio MCP 도구는 status와 pull-once만 제공한다. 기본 held이며 명시적 synthetic-loopback 모드만 로컬 relay를 사용한다. 기존 Adapter를 재사용해 검증·persist·ACK·claim·owner gate·최소 denied R을 순서대로 수행한다. 모델에 봉투·credential·claim을 노출하지 않는다. 실제 제품 설치는 marketplace/계정 정책과 hosted runtime 확인 후 owner가 수행한다. Cursor IDE 로컬 폴더 로딩을 Grok Bot 설치 성공이라고 주장하지 않는다.
+
+DEV 파일 소유권 안의 adapters/에 manifest·MCP·skill·사용자 설치 문서를 둔다. scripts/에는 whitelist 패키징 도구를 둔다. 짧은 테스트에서 실제 MCP initialize/discovery/tool call과 held/no-network, non-loopback reject를 검사한다. 기존 SQL 합성 회귀와 MCP-to-relay 흐름을 연결한다. D03/D05/D10/D13 및 실행 기록을 갱신한다.

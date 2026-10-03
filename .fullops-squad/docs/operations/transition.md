@@ -4,7 +4,7 @@ title: 인수인계서
 status: draft
 updated: 2026-10-03
 owner: ops
-tasks: [SAR-BETA-001-OPS]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -40,3 +40,11 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 2. 종료는 D11의 `unexpose`(외부 접근만) 또는 `stop`(전체)이다. 전체 철회는 D12 11.3이다.
 3. held 유지: DEC-03 공개 한도, 실제 신원, 실데이터, 실제 벤더, 무제한 공개.
 4. 구성 갱신이 필요하면 `beta.sh deploy <sha>`와 새 독립 리뷰를 거친다. 코드 변경 SHA에서 `expose`를 다시 하기 전 `access_apply.py check`를 통과해야 한다.
+
+## SAR-MVP-002 DEV 플러그인 준비 인계
+
+기존 베타·Access·Tunnel·Tailscale·배포 SHA는 변경하지 않았다. 사용자 확정 대상은 xAI 공식 Grok Bot이다. 설치된 Grok Build CLI와 inference API를 대체 대상으로 선택하지 않았다.
+
+`make plugin`으로 `build/knowslink-grok-bot-plugin.zip`을 생성한다. package는 MCP·skill·Cursor manifest와 standalone bundle을 포함하며 기본 held다. [사용자 설치 문서](../../../adapters/README.md)에 marketplace 배포 선행 조건·도구 검색·Node·계정/secret·합성 검사와 실패 의미를 기록했다.
+
+owner/admin은 승인된 marketplace 등록과 실제 Bot 앱의 설치·도구 검색을 담당한다. DEV/OPS는 승인된 relay network·최소 권한·secret 전달을 확인한다. coor는 fixed-SHA 독립 리뷰·TESTER QA와 PLANS/board를 갱신한다. 계정·운영 연결은 이번 과제에서 실행하지 않았다. 문서 완료와 로컬 MCP 성공을 실제 Bot 연결 수락으로 표시하지 않는다. 자세한 지원 근거·검증 SHA·재개 조건은 [실행 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)을 따른다.

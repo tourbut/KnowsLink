@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-MVP-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -84,3 +84,15 @@ URL은 loopback만 허용한다. PEM은 로컬 파일에서 읽으며 로그에 
 registry·B가 받은 signature를 검증한 뒤 persist·ACK·claim을 수행한다.
 query는 무정책 denied다. 승인된 query도 denied다. commit은 non-executable stub이다.
 실제 벤더 inbound API·MCP 연결 성공은 주장하지 않는다. evidence URL은 읽지 않는다.
+
+## SAR-MVP-002 Grok Bot MCP 계약
+
+사용자가 공식 `docs.x.ai/grok-bot` 제품을 확정했다. 실제 연결은 held다. [설치 문서](../../../adapters/README.md)와 [조사·검증 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)을 따른다.
+
+Cursor plugin manifest·stdio MCP·skill을 패키지에 포함한다. SDK는 MCP wire만 처리한다. frozen relay.v1·owner/agent credential·shared durable inbox·ACK/claim·gate·무정책 deny는 기존 Go/TypeScript 계약을 유지한다. 임의 inbound endpoint·natural-language wire를 추가하지 않는다.
+
+`knowslink_status`와 `knowslink_pull_once`는 입력 없는 도구다. status는 held/synthetic_only만 보고한다. pull은 기본 held(isError=true)이며 `KNOWSLINK_MODE=synthetic-loopback`만 허용한다. 설정은 서버 환경으로 제공한다. HTTP loopback root만 수락하고 URL userinfo·path·query·fragment와 redirect를 거부한다.
+
+합성 pull은 한 delivery의 검증·persist·ACK·claim 후 owner gate를 만든다. 승인 뒤에도 최소 denied R을 보낸다. control result는 ACK까지만 수행하고 재응답하지 않는다. tool 출력은 state·transport·actualConnection·webhook·evidenceFetch만 포함하며 원문·claim·lease·gate ID·credential을 숨긴다. processing busy/failure/empty는 업무 done과 구분한다. 같은 프로세스의 동시 pull은 busy로 거부한다. 공유 claim은 계속 relay가 집행한다.
+
+Grok Bot Auto Review/Allow once는 KnowsLink owner approve를 대신하지 않는다. 공식 Bot 앱의 실제 도구 검색·hosted Node·network·credential은 후속 확인 대상이다. Cursor IDE 로컬 plugin loading 검사를 Bot 설치 성공으로 표시하지 않는다.

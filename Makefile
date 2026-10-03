@@ -1,5 +1,5 @@
 # Reproducible development checks; every failure stops its target.
-.PHONY: install lint lint-go lint-adapters lint-config test build verify verify-runtime verify-mvp generate schema
+.PHONY: install lint lint-go lint-adapters lint-config test build verify verify-runtime verify-mvp generate schema plugin
 
 install:
 	go mod download
@@ -19,10 +19,11 @@ lint-adapters:
 lint-config:
 	npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
 	python3 scripts/check_compose.py
-	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py
+	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py
 
 test:
 	go test -race ./cmd/... ./internal/...
+	npm test --prefix adapters
 
 build:
 	mkdir -p build
@@ -45,3 +46,6 @@ verify-mvp: build
 
 schema:
 	python3 scripts/schema.py
+
+plugin: build
+	python3 scripts/package_plugin.py
