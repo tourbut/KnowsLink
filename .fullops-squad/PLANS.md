@@ -56,3 +56,10 @@ summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이�
 - 동기화 대상은 coor, designer, dev, ops, tester다. 이 역할들은 쉬고 있으며 작업 트리가 깨끗하다. 예약된 동기화는 없다.
 - 이 세션은 업데이트 전용이다. 새 coor 세션에서 Run `run_8ca8bc058ab7`을 연결한다.
 - Claude Code와 grok은 이전 설치 버전 0.9.7이다. 해당 CLI로 worker를 시작하기 전에 README의 업데이트 명령을 실행한다.
+
+## SAR-SETUP-001 — 프로젝트 초기 구성과 lint
+
+- 사용자 요청의 GitHub 기획 문서를 커밋 고정 스냅샷으로 확보했다.
+- Jev API 키가 없어 design → designer, codex gpt-6-astra high 폴백을 기록했다.
+- designer는 제품 요구사항과 설정 범위를 확인하고 dev 및 tester 지시서를 작성한다.
+- 새 과제이므로 designer 새 세션을 시작한다. 기준 ref는 `00b4cb34ae6e9f9fbc0b733ecaa3a2095fbc88eb`이다.
