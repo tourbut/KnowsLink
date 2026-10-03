@@ -1,0 +1,17 @@
+$ git -C /home/shin/orca/workspaces/KnowsLink/fullops-tester diff 552586b6e886f95bffa9a000a031ea03070afedb 5506d646c47c2d64b35d1254ddfdec5e2003084d -- adapters/package.json
+exit:0
+----- stdout -----
+diff --git a/adapters/package.json b/adapters/package.json
+index 4003b86..b3bfc2d 100644
+--- a/adapters/package.json
++++ b/adapters/package.json
+@@ -8,7 +8,7 @@
+     "npm": ">=10.9.7 <11"
+   },
+   "scripts": {
+-    "format:check": "prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json",
++    "format:check": "prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json",
+     "lint": "eslint src eslint.config.mjs",
+     "typecheck": "tsc --noEmit",
+     "check": "npm run format:check && npm run lint && npm run typecheck",
+----- stderr -----

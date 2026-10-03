@@ -1,0 +1,27 @@
+$ make verify-grok-plugin
+exit:0
+----- stdout -----
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+python3 scripts/package_plugin.py --verify
+Plugin: build/knowslink-grok-bot-plugin.zip; sha256: fb745c66b4e786f5267228099c3794763632381451bd37cf66a82111f9b14a75
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+extracted standalone MCP test exit=0
+python3 scripts/verify_grok_plugin.py
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+PASS: grok plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 2 tools, installed copy held
+----- stderr -----
+
+  dist/plugin.js  1016.6kb
+
+⚡ Done in 66ms

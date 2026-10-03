@@ -1,0 +1,67 @@
+$ timeout 90 env -u GROK_HOME -u XDG_CONFIG_HOME -u XDG_DATA_HOME -u XDG_STATE_HOME HOME=/tmp/knowslink-install-qa-5506d64/home-install PATH=/tmp/knowslink-install-qa-5506d64/home-node22/.local/node/node-v22.22.2-linux-x64/bin:/home/shin/.local/bin:/usr/bin:/bin /home/shin/.local/bin/grok mcp doctor knowslink --json
+exit:0
+----- stdout -----
+{
+  "sources": [
+    {
+      "path": "~/.grok/config.toml",
+      "status": {
+        "status": "found",
+        "server_count": 0
+      }
+    },
+    {
+      "path": "plugin: knowslink",
+      "status": {
+        "status": "found",
+        "server_count": 1
+      }
+    },
+    {
+      "path": "~/.claude.json",
+      "status": {
+        "status": "not_found"
+      }
+    },
+    {
+      "path": ".mcp.json",
+      "status": {
+        "status": "not_found"
+      }
+    }
+  ],
+  "servers": [
+    {
+      "name": "knowslink",
+      "transport": "stdio",
+      "target": "node /tmp/knowslink-install-qa-5506d64/home-install/.grok/installed-plugins/knowslink-07ec00a3/dist/plugin.js",
+      "source": "plugin: knowslink",
+      "checks": [
+        {
+          "label": "command found",
+          "passed": true,
+          "detail": "/tmp/knowslink-install-qa-5506d64/home-node22/.local/node/node-v22.22.2-linux-x64/bin/node"
+        },
+        {
+          "label": "server started",
+          "passed": true,
+          "detail": "0.0s"
+        },
+        {
+          "label": "handshake OK",
+          "passed": true,
+          "detail": "protocol 2025-11-25"
+        },
+        {
+          "label": "2 tools discovered",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "healthy": true
+    }
+  ],
+  "healthy_count": 1,
+  "failing_count": 0
+}
+----- stderr -----
