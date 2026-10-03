@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python3",
+    "/home/shin/.codex/plugins/cache/fullops-squad/fullops-squad/0.9.12/scripts/review.py",
+    "check",
+    "--repo",
+    "/home/shin/orca/workspaces/KnowsLink/fullops-dev",
+    "--key",
+    "SAR-MVP-001-REVIEW-FIX",
+    "--from",
+    "ffca87c9ec501e9f313c50f60124b686d27af728",
+    "--to",
+    "4262d02fdd7b0b57a804d9e550597852950ffeae"
+  ],
+  "exit_code": 1,
+  "passed": false,
+  "expected_blocker": "RF-01 unresolved high",
+  "output": "리뷰 처리 실패: critical/high 미해결 사항이 있습니다\n",
+  "coverage_complete": true,
+  "independence_checked_by_review_py_before_finding_gate": true,
+  "lint_after_finding_gate_not_executed_by_check": true
+}
