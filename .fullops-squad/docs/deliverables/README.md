@@ -3,8 +3,8 @@ title: 산출물 인덱스
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [SAR-SETUP-001]
-summary: 산출물 원천 경로와 작성 상태를 관리한다
+tasks: [SAR-SETUP-001, SAR-PREP-002]
+summary: 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력을 관리한다
 ---
 
 # 산출물 인덱스
@@ -14,7 +14,7 @@ summary: 산출물 원천 경로와 작성 상태를 관리한다
 
 | ID | 단계 | 산출물 | 원천 | 상태 |
 |---|---|---|---|---|
-| D01 | 착수 | 사업계획서 | `docs/planning/business-plan.md` | 미작성 |
+| D01 | 착수 | 사업계획서 | `docs/planning/business-plan.md` | review |
 | D02 | 분석 | 요구사항정의서 | `docs/planning/product-specs/` | review |
 | D03 | 설계 | 아키텍처설계서 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` | review |
 | D04 | 설계 | 화면설계서 | `docs/design-docs/mockups/` | 미작성 |
@@ -27,6 +27,16 @@ summary: 산출물 원천 경로와 작성 상태를 관리한다
 | D11 | 이행 | 사용자설명서 | `docs/operations/user-guide.md` | 미작성 |
 | D12 | 이행 | 운영자설명서 | `docs/operations/ops-guide.md` | 미작성 |
 | D13 | 이행 | 인수인계서 | `docs/operations/transition.md` | 미작성 |
+
+## SAR-PREP-002의 현재 정본과 보존 이력
+
+D01은 [KnowsLink 서비스 개요](../planning/business-plan.md)다.
+D02의 현재 전체 MVP 정본은 [SAR-MVP](../planning/product-specs/SAR-MVP.md)다.
+[SAR-SETUP-001](../planning/product-specs/SAR-SETUP-001.md)은 초기 구성과 lint의 D02 이력으로 보존한다.
+D02 폴더 매핑은 두 원천의 메타데이터를 함께 검사한다. 초기 구성 이력을 새 MVP 완료로 해석하지 않는다.
+기능 우선순위·미정 결정과 인계는 [백로그](../planning/SAR-MVP-backlog.md)를 따른다.
+D01/D02의 review는 검토 상태다. 제품 MVP 구현·수락이나 운영 배포 상태가 아니다.
+D03과 D05–D10의 실제 기능 기술 정본은 후속 dev가 갱신한다. D04·D05–D13의 미작성 상태를 이번 기획으로 완료 처리하지 않는다.
 
 원천 문서 맨 위에는 front matter를 둔다. 원천이 여러 파일이거나 폴더면 각 문서에 같은 `id`를 적는다.
 **front matter는 손으로 쓰지 않고 `deliverables.py --stamp`로만 쓴다.** 필드 순서와 목록 표기가 고정되고, `updated`는 오늘 날짜, 과제 키는 `tasks`에 추가되며, 이 표의 상태도 같은 값으로 맞춰진다.

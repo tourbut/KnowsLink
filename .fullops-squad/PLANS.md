@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -215,3 +215,10 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 이번 요청의 완료 범위는 개발 준비다. 전체 MVP 구현이나 운영 배포는 시작하지 않는다. 기술 계획은 dev의 후속 기능 구현 과제에서 수행한다.
 
 - SAR-PREP-002 배정 영수증: Task task_f06aa8c9770f / Dispatch ctx_343dcf84e81c / terminal term_1dd11bab-15ab-4832-b5a4-6d5451786e61 / Run run_8ca8bc058ab7. effective codex gpt-6.1-sol high와 turn_started를 확인했다. designer는 idle·clean 확인 후 최신 준비 커밋 bee1d87과 원천 7bc9ea1을 전달받았다. 이전 PLANS·board·역할 metadata 충돌은 최신 coor 정본과 기존 기획 이력을 보존해 해결했다. 검사 기준은 최신 원천을 포함하는 0dd08ec이다.
+### SAR-PREP-002 designer 개발 준비 결과 — 2026-10-03
+
+- 최신 service-design `7bc9ea190ea549fae8b047e850247a19322fc9c3`에서 D01과 새 MVP D02, 기능 백로그와 SAR-MVP-001-DEV/TESTER queued 지시서를 작성했다. 기존 setup·원천·제품 코드·D03·lint/board는 보존했다. 상세 결정·검증은 [실행 기록](docs/exec-plans/phases/SAR-PREP-002.md)에 있다.
+- 첫 후속은 로컬 합성 요청의 등록·수락·안전 전달·human-gate다. DEV가 기술 계획·구현·관련 회귀·기술 정본 갱신을 같은 과제에서 맡는다. tester는 DEV 고정 SHA 이후 독립 QA를 수행하고 designer는 같은 UI 후보를 직접 검수한다. 독립 fixed-SHA 코드 리뷰와 수락은 coor가 조정한다.
+- disclosure/result schema·Free N/가격/slot-unit·추가 resource 제한·실제 어댑터 인터페이스·운영 설정은 DEC-01–05에 담당·영향·재개 조건을 남겼다. positive silent done과 무제한 공개 배포를 허용하지 않는다. 이번에 DEV/TESTER를 배정하거나 MVP 구현·배포·외부 발송을 시작하지 않았다.
+- 준비 HEAD `06de846`의 strict 검사 종료코드 0, 문제 0/경고 0/미작성 10이다. lint 첫 실패는 로컬 prettier 부재이며 기존 lock의 npm ci 후 같은 HEAD에서 종료코드 0, ERROR 0/WARNING 0/실행 불가 0, product-lint passed를 확인했다. 실패 기록과 통과 기록을 모두 보존했다. 아카이브·최종 커밋의 고정 SHA와 lint 결과는 이 Dispatch의 worker_done에 전달한다.
+- 기존 사용자 요청은 개발 준비다. 구현 시작 지시 전 첫 DEV/TESTER는 queued로 유지한다. 이번 준비 완료를 전체 MVP 제품 수락이나 운영 배포 승인으로 표시하지 않는다.
