@@ -509,3 +509,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - Run run_8ca8bc058ab7을 현재 coordinator term_8b2f910b-c0dc-41de-bceb-03865daa87eb에 연결했다. 과거 coordinator 인계 Task task_3c3978705656/ctx_26348a86f1c7는 failed이며 exactWorker exited/operator_close를 확인했다. 해당 인계는 현재 사용자의 직접 재개 요청으로 이 coordinator가 이어받는다. 실패 기록을 보존하고 중복 coordinator를 시작하지 않는다.
 - DEV 현재 터미널 term_4a246708-ae2a-4884-8766-52755e98de08의 tui-idle=true와 깨끗한 체크아웃을 확인했다. 기존 사용자 터미널을 보존하고 별도 DEV 세션에서 기술 조사·계획·가능한 구현·검증을 수행한다.
 - 실제 업무 발송·실데이터·유료 API 호출·운영 활성화 및 DEC-02 정책은 계속 보류한다. 완료 SHA의 필수 리뷰·QA를 확인한 뒤 main/origin에 통합한다. designer/ops/tester의 동기화는 실제 유휴 확인 후 처리한다.
+
+- DEV 착수 영수증: Task task_12bfd0213594, Dispatch ctx_d575ace1846d, terminal term_35b3d13f-af21-4db7-99df-2b97b0748d5e. effective codex gpt-6.1-sol medium과 turn_started를 확인했다. worker_done 중심으로 대기하며 실행 중 DEV 체크아웃은 변경하지 않는다.
