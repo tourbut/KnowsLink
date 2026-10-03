@@ -11,7 +11,7 @@ summary: dev 완료 SHA의 초기 구성과 lint 독립 검증
 
 - 작성일: 2026-10-03
 - From / To: designer / tester
-- 상태: blocked — dev 완료 SHA 대기
+- 상태: ready — dev 완료 SHA `0cc10b083771be9b3423833b222c57d426315333` 독립 검증
 - 승인된 범위: 이 지시서의 소유 파일에서 초기 구성·검증에 필요한 비파괴 작업 및 커밋.
 - 추가 승인이 필요한 행위: 외부 배포·발송, 운영 자원 변경, 레포 밖 영속 변경, 데이터·파일 삭제, force-push, 파일 소유권 밖 수정.
 - 담당 워크트리 / 브랜치: `/home/shin/orca/workspaces/KnowsLink/fullops-tester` / `fullops/tester`.
@@ -139,3 +139,7 @@ dev 완료 SHA 전에는 검증을 시작하지 않는다. coor가 새 dispatch�
 ## Coordinator 검사 기준 갱신
 
 원천 보존용 제외 설정을 포함하는 준비 커밋 `729446d8da57`을 이 구현 및 검증 과제의 기준 ref로 지정한다. 과거 설계 단계의 차단 기록은 유지한다. 원천 스냅샷만 제외하며 제품 검사는 직접 실행하고 새 commands를 등록한다.
+
+## Coordinator 완료 SHA 전달
+
+검증 대상은 `0cc10b083771be9b3423833b222c57d426315333`이다. 준비 체크아웃에는 운영 기록만 추가한다. 제품 동작은 이 SHA의 깨끗한 독립 복제본에서 검사한다. 설치된 Claude FullOps 버전은 0.9.9로 확인했다. 모델 선택은 Jev 키 부재 폴백인 claude-opus-5-5 medium이다.

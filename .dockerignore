@@ -1,0 +1,8 @@
+# Send only files required to build Go binaries and package SQL migrations.
+*
+!go.mod
+!go.sum
+!cmd/**
+!internal/**
+!db/migrations/**
+!Dockerfile

@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -105,3 +105,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 재개 영수증: Task `task_a7fd5d1b8806`, Dispatch `ctx_67f98ed4cd42`, terminal `term_cf9a131a-84f0-40fa-91a2-c5bd7e0fb28f`. effective codex gpt-6.1-sol high, turn_started 확인. 기존 ready Task는 retry-of를 거절하므로 dispatch-show로 이전 실패를 확인한 후 같은 Task를 ready 상태에서 시작했다. 과제는 복제하지 않았다.
 - 이전 질문 reply는 dispatch_inactive로 거절됐다. 답 원문은 designer 커밋과 최신 dev 지시서에 보존하여 새 세션에 전달했다. dev 워크트리는 종료와 깨끗한 상태를 확인한 후 준비 HEAD `dbe0b40`까지 fast-forward했다. designer 진행 브랜치는 변경하지 않았다.
 - 운영 변경의 lint: HEAD `dbe0b40`, 기준 `729446d8da57`, 종료코드 0, ERROR 0, WARNING 1(LINT-000), 실행 불가 0. 제품 코드 변경은 없으므로 제품 테스트는 적용하지 않았다.
+## SAR-SETUP-001-DEV 구현 결과 — 2026-10-03
+
+- 초기 Go relay·별도 SQL-only migrate·TypeScript adapter·Compose·제품 lint를 구현했다. 업무 MVP와 운영 배포는 후속이다.
+- 코드 체크포인트 `929832aa0ecd`에서 직접 검사·위반 주입·깨끗한 clone 재현·로컬 DB runtime을 통과했다. FullOps 기준 `729446d8da57`의 lint는 ERROR 0, WARNING 2, 실행 불가 0이다.
+- D03은 review다. 독립 QA·고정 SHA 독립 코드 리뷰와 병합 수락은 대기한다. 최종 완료 SHA는 현재 Dispatch의 worker_done으로 coordinator에게 전달한다.
+- 상세 근거와 한계: [실행 기록](docs/exec-plans/phases/SAR-SETUP-001-DEV.md).

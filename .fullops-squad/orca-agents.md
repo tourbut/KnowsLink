@@ -3,7 +3,7 @@ title: Orca 역할 배정
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [SAR-SETUP-001, FULLOPS-UPDATE-099]
+tasks: [SAR-SETUP-001, FULLOPS-UPDATE-099, SAR-SETUP-001-DEV]
 summary: 역할별 책임과 Astra를 제외한 모델 후보 및 라우팅 기준을 정의한다
 ---
 
@@ -16,11 +16,11 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 |---|---|---|---|---|---|
 | coor | 과제 분해·배정·Run·진행 관리; `PLANS.md`, `handovers/`, `board/` | `fullops/coor` | `codex` | 모델 후보 | 상설 워크트리; 첫 요청 때 coordinator 세션 시작 |
 | designer | 제품 기획·요구사항·사용자 경험; `docs/planning/`, `docs/design-docs/mockups/` | `fullops/designer` | `codex` | 모델 후보 | 기획 과제 발생 시 `worker-start --run` |
-| dev | 기술 설계·구현·직접 검증; `docs/design-docs/`의 기술 문서, 향후 제품 코드·에셋 경로 | `fullops/dev` | `claude` 또는 `codex` | 모델 후보 | 기술 설계·구현 과제 발생 시 `worker-start --run` |
+| dev | 기술 설계·구현·직접 검증; `docs/design-docs/` 기술 문서, `cmd/`, `internal/`, `adapters/`, `db/`, `scripts/`, 루트 Go·sqlc·Make·Docker·Compose 설정 | `fullops/dev` | `claude` 또는 `codex` | 모델 후보 | 기술 설계·구현 과제 발생 시 `worker-start --run` |
 | ops | 배포·통합·운영; `docs/operations/`, 향후 배포 설정 경로 | `fullops/ops` | `claude` | 모델 후보 | 운영 과제 발생 시 `worker-start --run` |
 | tester | 재현·테스트·회귀 검증; `docs/evaluations/scenarios/`, `docs/evaluations/qa-reports/`, 향후 테스트 경로 | `fullops/tester` | `claude` | 모델 후보 | 구현 SHA 준비 후 `worker-start --run` |
 
-문서 경로는 `.fullops-squad/` 기준이다. 실제 제품 코드·에셋·배포·테스트 경로는 첫 개발 과제에서 dev가 기술 스택과 함께 정한다.
+문서 경로는 `.fullops-squad/` 기준이다. 제품 경로는 레포 루트 기준이다. SAR-SETUP-001-DEV의 초기 구성·직접 검증 파일은 dev 소유다. 독립 QA의 시나리오·보고서는 tester 소유다. 운영 배포의 파일 소유권은 후속 ops 지시서에서 정한다.
 원격은 `origin`, 기준 브랜치는 `main`이다. 상설 워크트리만 구성하고 이번 setup에서는 에이전트 세션을 시작하지 않는다.
 
 ## 모델 후보

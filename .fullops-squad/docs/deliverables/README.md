@@ -16,7 +16,7 @@ summary: 산출물 원천 경로와 작성 상태를 관리한다
 |---|---|---|---|---|
 | D01 | 착수 | 사업계획서 | `docs/planning/business-plan.md` | 미작성 |
 | D02 | 분석 | 요구사항정의서 | `docs/planning/product-specs/` | review |
-| D03 | 설계 | 아키텍처설계서 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` | 미작성 |
+| D03 | 설계 | 아키텍처설계서 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` | review |
 | D04 | 설계 | 화면설계서 | `docs/design-docs/mockups/` | 미작성 |
 | D05 | 설계 | 인터페이스설계서 | `docs/design-docs/interface-design.md` | 미작성 |
 | D06 | 분석 | 엔티티정의서 | `docs/design-docs/data-model.md` 엔티티 절 | 미작성 |

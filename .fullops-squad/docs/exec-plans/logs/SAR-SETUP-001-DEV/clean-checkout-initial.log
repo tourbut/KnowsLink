@@ -1,0 +1,65 @@
+Cloning into '/tmp/knowslink-clean-mxs4opvs/checkout'...
+done.
+HEAD is now at bd9c8dc feat: configure Go relay, SQL migration, adapters and verified product lint
+code SHA: bd9c8dce8618a4f57e72175534bf5bc45bc235c3
+command: make install
+go mod download
+npm ci --prefix adapters
+
+added 97 packages, and audited 98 packages in 1s
+
+31 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+exit: 0
+command: make lint test build
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
+Checking formatting...
+All matched files use Prettier code style!
+python3 scripts/check_compose.py
+Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
+python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.012s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.013s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.012s
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc
+
+exit: 0
+command: npm run start --prefix adapters
+
+> @knowslink/adapters@0.0.0 start
+> node dist/index.js
+
+{"state":"unimplemented","transport":"pull","webhook":false,"evidenceFetch":false}
+exit: 0
+git status --porcelain: ''

@@ -3,7 +3,7 @@ title: KnowsLink lint 게이트
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001-DEV]
 summary: 코드 lint와 일반 문서 메타데이터 검사의 실행 기준을 정의한다
 ---
 
@@ -53,3 +53,8 @@ summary: 코드 lint와 일반 문서 메타데이터 검사의 실행 기준을
 - 실행 불가(폐쇄망·도구 미설치)는 사유를 `reason`에 적고, 대신 수행한 정적 검사와 CI·스테이징에서 실행해야 한다는 점을 보고서에 남긴다. WARNING은 보고서에 기록하고 검토자가 판단한다.
 
 ## 규칙 변경 기록
+
+- SAR-SETUP-001-DEV: `product-lint`를 `make lint`에 연결했다. Go 포맷·vet·module 무결성, TypeScript 포맷·ESLint·타입, YAML 포맷·Compose 구조와 검증 스크립트 문법을 검사한다. 검사 모드는 파일을 자동 수정하지 않는다.
+- 제품 대상은 `cmd/`, `internal/`, `adapters/src/`와 실제 설정이다. 원천 스냅샷은 제품 검사 대상이 아니다. 의존성·빌드 생성물은 검사하지 않는다. 기존 FullOps exclude와 규칙은 변경하지 않았다.
+- 기준 ref `729446d8da57`의 commands는 비어 있다. 이번 FullOps 통과는 새 제품 검사 실행을 증명하지 않는다. `make lint`와 `make verify`를 직접 실행하고 실행 로그를 남긴다. `make verify`는 임시 복제본에서 Go 포맷·TypeScript 포맷·ESLint·타입 위반과 등록 명령의 실패 전파를 검증한다.
+- 업무 SQL이 없어 sqlc 생성과 SQL migration 적용 검사는 미적용이다. 실패하는 빈 codegen을 성공처럼 감추는 명령은 등록하지 않았다. 실제 스키마·쿼리 도입 시 sqlc 검사를 추가한다.
