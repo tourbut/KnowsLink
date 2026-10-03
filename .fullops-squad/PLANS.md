@@ -213,3 +213,5 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 사용자 요청으로 service-design main의 silent-agent-relay를 최신 SHA 7bc9ea190ea549fae8b047e850247a19322fc9c3에 고정했다. product.md와 decisions.md의 A2A gap review 잠금만 바뀌었다. 원문 바이트를 반입하며 이전 원문은 Git 이력으로 보존한다.
 - Jev product → designer, codex gpt-6.1-sol high다. 전체 서비스 제품 규칙·MVP 범위·사용자 완료 조건과 기능별 후속 인계를 준비한다. 기존 SAR-SETUP-001 골격과 검증은 재사용한다.
 - 이번 요청의 완료 범위는 개발 준비다. 전체 MVP 구현이나 운영 배포는 시작하지 않는다. 기술 계획은 dev의 후속 기능 구현 과제에서 수행한다.
+
+- SAR-PREP-002 배정 영수증: Task task_f06aa8c9770f / Dispatch ctx_343dcf84e81c / terminal term_1dd11bab-15ab-4832-b5a4-6d5451786e61 / Run run_8ca8bc058ab7. effective codex gpt-6.1-sol high와 turn_started를 확인했다. designer는 idle·clean 확인 후 최신 준비 커밋 bee1d87과 원천 7bc9ea1을 전달받았다. 이전 PLANS·board·역할 metadata 충돌은 최신 coor 정본과 기존 기획 이력을 보존해 해결했다. 검사 기준은 최신 원천을 포함하는 0dd08ec이다.
