@@ -1,3 +1,12 @@
+---
+title: coor 컨텍스트
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [SAR-MVP-002-DEV]
+summary: Grok Bot 플러그인 통합과 실제 연결 보류의 운영 원칙을 기록한다
+---
+
 # coor 컨텍스트
 
 결정·교훈을 항목당 3줄 이내로 기록한다.
