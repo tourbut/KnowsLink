@@ -1,0 +1,208 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "e732fedb8a7f80b9813219bf2dbc65fc029ff272",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "9da4a9d30cbb49a6ad6a2a55e7470d0a4dfceda67f5b85224ace6d2195c53e68",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-index.ts",
+      "c1-synthetic.ts",
+      "c2-package.json",
+      "c3-verify_mvp.py",
+      "c4-interface-design.md",
+      "c5-SAR-MVP.md",
+      "c6-SAR-MVP-backlog.md",
+      "c7-product.md",
+      "c8-protocol.md",
+      "c9-architecture.md",
+      "c10-tech-stack.md",
+      "c11-dev.md",
+      "c12-project.md",
+      "c13-README.md",
+      "required_0",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-index.ts",
+      "c1-synthetic.ts",
+      "c2-package.json",
+      "c3-verify_mvp.py",
+      "c4-interface-design.md",
+      "c5-SAR-MVP.md",
+      "c6-SAR-MVP-backlog.md",
+      "c7-product.md",
+      "c8-protocol.md",
+      "c9-architecture.md",
+      "c10-tech-stack.md",
+      "c11-dev.md",
+      "c12-project.md",
+      "c13-README.md",
+      "required_0",
+      "required_1",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-index.ts": {
+        "relevant": 0.61,
+        "evidence": 0.56,
+        "contradicts": 0.17,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-synthetic.ts": {
+        "relevant": 0.62,
+        "evidence": 0.56,
+        "contradicts": 0.21,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-package.json": {
+        "relevant": 0.24,
+        "evidence": 0.3,
+        "contradicts": 0.1,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-interface-design.md": {
+        "relevant": 0.56,
+        "evidence": 0.72,
+        "contradicts": 0.18,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-SAR-MVP.md": {
+        "relevant": 0.22,
+        "evidence": 0.46,
+        "contradicts": 0.27,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-SAR-MVP-backlog.md": {
+        "relevant": 0.88,
+        "evidence": 0.83,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-product.md": {
+        "relevant": 0.28,
+        "evidence": 0.5,
+        "contradicts": 0.26,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-protocol.md": {
+        "relevant": 0.47,
+        "evidence": 0.66,
+        "contradicts": 0.21,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-architecture.md": {
+        "relevant": 0.24,
+        "evidence": 0.48,
+        "contradicts": 0.23,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-tech-stack.md": {
+        "relevant": 0.13,
+        "evidence": 0.35,
+        "contradicts": 0.13,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-dev.md": {
+        "relevant": 0.2,
+        "evidence": 0.47,
+        "contradicts": 0.14,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c12-project.md": {
+        "relevant": 0.21,
+        "evidence": 0.6,
+        "contradicts": 0.18,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c13-README.md": {
+        "relevant": 0.28,
+        "evidence": 0.58,
+        "contradicts": 0.11,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-index.ts": "adapters/src/index.ts",
+      "c1-synthetic.ts": "adapters/src/synthetic.ts",
+      "c2-package.json": "adapters/package.json",
+      "c3-verify_mvp.py": "scripts/verify_mvp.py",
+      "c4-interface-design.md": ".fullops-squad/docs/design-docs/interface-design.md",
+      "c5-SAR-MVP.md": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "c6-SAR-MVP-backlog.md": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "c7-product.md": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "c8-protocol.md": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "c9-architecture.md": ".fullops-squad/docs/design-docs/architecture.md",
+      "c10-tech-stack.md": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "c11-dev.md": ".fullops-squad/contexts/dev.md",
+      "c12-project.md": ".fullops-squad/project.md",
+      "c13-README.md": ".fullops-squad/rules/common/README.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 34340,
+    "output_tokens": 988,
+    "cost": 0.00144228
+  },
+  "latency_seconds": 0.438,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-MVP-002-DEV",
+  "role": "dev",
+  "unsent_sources": {
+    "scripts/verify_mvp.py": "sensitive or oversized passage"
+  },
+  "refused_paths": []
+}

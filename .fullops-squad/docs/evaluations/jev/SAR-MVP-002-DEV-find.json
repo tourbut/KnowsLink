@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-DEV",
+  "head": "e732fedb8a7f80b9813219bf2dbc65fc029ff272",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 46,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 46
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/src/index.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.51
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.2
+    },
+    {
+      "path": "adapters/eslint.config.mjs",
+      "summary": "Check adapter source and this flat configuration with recommended rules.",
+      "probability": 0.11
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "summary": "Synthetic QA seed and end-to-end adapter check; credentials stay in ignored local files only.",
+      "probability": 0.09
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/package.json",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/registry.go",
+      "summary": "Registry exposes the central frozen seed; adding an intent never creates an execution handler.",
+      "probability": 0.01
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.01
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "summary": "Create or remove the owner-only Cloudflare Access app for link.knowslog.com; never prints the email or token.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.28,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3147,
+    "output_tokens": 510,
+    "cost": 0.000132174
+  },
+  "latency_seconds": 0.292,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

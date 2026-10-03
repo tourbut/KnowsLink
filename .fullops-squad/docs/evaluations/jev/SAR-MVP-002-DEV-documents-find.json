@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-DEV",
+  "head": "e732fedb8a7f80b9813219bf2dbc65fc029ff272",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 98,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 98
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "summary": "인터페이스설계서 — owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다",
+      "probability": 0.45
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.29000000000000004
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "summary": "relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "summary": "<과제 키> — <목표> — 작업 범위와 검증 담당 및 최종 수락을 구분하는 지시서 양식",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "summary": "SAR-MVP-001-DEV 실행 기록 — 로컬 합성 MVP의 기술 계획과 구현 및 검증 증거를 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "summary": "Orca 역할 배정 — 역할별 책임과 Astra를 제외한 모델 후보 및 라우팅 기준을 정의한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "summary": "KnowsLink 프로젝트 기준 — 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "summary": "SAR-PREP-002 — MVP 개발 준비 실행 기록 — 최신 원천의 MVP 개발 준비 결정과 문서 검증 및 후속 책임을 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "summary": "산출물 인덱스 — 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력을 관리한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "summary": "KnowsLink MVP 요구사항 — 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후속 검증 책임을 정의한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.28,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 8408,
+    "output_tokens": 1030,
+    "cost": 0.000353136
+  },
+  "latency_seconds": 0.324,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
