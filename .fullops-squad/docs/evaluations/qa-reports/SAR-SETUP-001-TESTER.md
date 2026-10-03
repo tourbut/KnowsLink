@@ -92,3 +92,22 @@ summary: dev 완료 SHA 0cc10b0의 수락 기준별 독립 QA 결과와 한계
 - `f1f0848`의 ERROR 1은 DOC-003이다. 대상은 coor가 추가한 `SAR-SETUP-001-DEV-099-review/report.md`의 front matter 누락이다. tester 문서의 오류가 아니다. coor가 `82910be`에서 메타데이터를 등록했고 그 커밋만 cherry-pick했다. 실패 기록은 [fullops-f1f0848-error1.json](SAR-SETUP-001-TESTER-test/fullops-f1f0848-error1.json)에 보존한다.
 - WARNING 2건은 LINT-001(이 브랜치의 `lint.json` 변경은 병합 후 적용)과 LINT-000(기준 `commands`가 비어 있음)이다. 기준 `commands`가 비어 있으므로 이 통과는 제품 lint 실행의 증거가 아니다. 제품 동작 판정은 dev SHA `0cc10b0`의 직접 검사 결과에 연결한다.
 - 원천 스냅샷은 변경하지 않았다. 기준 ref를 바꾸지 않았다.
+
+## 보완 기록 — 로그 러너 종료코드 (2차 dispatch)
+
+위 본문과 `SAR-SETUP-001-TESTER-test/`의 기존 로그는 최초 실행 기록이다. 수정하지 않았다. 아래는 증거 결함을 고친 보완 기록이다.
+
+- 결함: 최초 `run.py`는 하위 명령의 종료코드를 `[exit N]`으로 기록했지만 자신은 항상 0으로 끝났다. 호출한 셸이 실패를 감지할 수 없었다. 기존 판정은 기록된 `[exit N]` 값에서 내렸으므로 기존 결과는 유효하다. 그러나 러너가 실패를 가리는 증거 구조였다.
+- 수정: `SAR-SETUP-001-TESTER-test/run.py` 끝에 `sys.exit(p.returncode)`를 추가하고 사용법 주석을 갱신했다. 최초 버전은 Git 이력(`f1f0848`)에 있다. 제품 코드는 바꾸지 않았다.
+- 전파 검증([supplement-runner-selftest.log](SAR-SETUP-001-TESTER-test/supplement-runner-selftest.log)): 새 러너는 `true`→0, `false`→1, `sh -c 'exit 7'`→7, `sh -c '…; exit 2'`→2를 그대로 반환했다. 같은 `false`에서 최초 러너는 0, 새 러너는 1이다.
+- 재실행: 같은 dev SHA `0cc10b083771be9b3423833b222c57d426315333`의 새 임시 clone(깨끗한 detached checkout, `git status --porcelain` 빈 값)에서 새 러너로 실행했다. 각 명령 뒤 셸의 `$?`를 직접 확인했다. 러너 반환값과 로그의 `[exit N]`이 일치했다([supplement-rerun.log](SAR-SETUP-001-TESTER-test/supplement-rerun.log)).
+
+| 명령 | 러너 반환값(`$?`) |
+|---|---|
+| `make install` / `lint` / `test` / `build` | 0 / 0 / 0 / 0 |
+| `make verify` | 0 |
+| `make verify-runtime` | 0 (`PASS: local startup, empty SQL no-op, readiness, missing settings, DB failure, disabled Tunnel, inert adapter`) |
+| 빌드·검증 뒤 `git status --porcelain` | 빈 값 (무시 대상은 최초 기록과 같음) |
+
+- 비정상 종료 전파([supplement-rerun-injection.log](SAR-SETUP-001-TESTER-test/supplement-rerun-injection.log)): 복사본에 TS 타입 오류와 Go 포맷 위반을 각각 주입했다. 새 러너의 `make lint` 반환값은 둘 다 2다. 원복 뒤 `git status --porcelain`은 빈 값이고 `make lint` 반환값은 0이다.
+- 한계: 이 재실행은 최초 실행과 같은 호스트·도구 버전에서 했다. 새 SHA에서의 결과가 아니라 같은 SHA의 재실행이다. 판정은 바뀌지 않았다. 위 "한계"의 러너 설명은 최초 실행에 대한 당시 사실로 보존한다.
