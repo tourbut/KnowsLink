@@ -3,104 +3,104 @@
   "head": "8e46c5a846e6d190e484e48be40b3dc368001a2b",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "ops independent reviewer (Claude Code, claude-sonnet-5-5)",
+  "conclusion": "조건부 수락: critical/high 0, medium 2·low 6 미해결(모두 문서·방어 경계). 코드는 설치·체크섬·실패 전파·env -i 검증이 독립 재현됨. 앱 카탈로그 노출은 미검증이며 원인은 가설이다. 병합은 허용하되 F-01·F-02 문구 완화 또는 재시험 전 단서 추가를 권고한다.",
   "files": [
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 10,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D10 신규 절을 실제 README·스크립트와 대조. 카탈로그 원인 단정(F-02)만 지적, 나머지 설명은 스크립트 동작과 일치."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
       "status": "added",
       "insertions": 149,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "증상·가설표·조치·검증·댓글 초안 전체를 공식 문서 원문(docs.x.ai 재수신)과 이슈1 원본 대조. F-01~F-05 해당. 미검증 목록과 held 경계는 정확."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "F-04 원인 판정 문장을 추정으로 낮춘 2줄 변경 확인. 이슈 원본(AddMcpServer 부재 등)과 모순 없음."
     },
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
       "status": "modified",
       "insertions": 10,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D12 12절 3단계를 README와 대조. 2단계에 카드 생성 불확실성 단서가 없다(F-01)."
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "status": "modified",
       "insertions": 8,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D13 인계 절 확인. 원인 단정(F-02) 외 미검증·held 경계 정확."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
       "status": "modified",
       "insertions": 58,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 완료 기록 보존본. 지시서 전문과 완료 보고를 확인. 원인 단정(F-02). 구현 커밋·ZIP SHA256 값은 독립 재현과 일치."
     },
     {
       "path": ".fullops-squad/handovers/to_dev.md",
       "status": "modified",
       "insertions": 0,
       "deletions": 48,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "인박스 비움(삭제 48줄)이 logs 보존본과 일치함을 확인."
     },
     {
       "path": ".fullops-squad/project.md",
       "status": "modified",
       "insertions": 3,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검증 명령 목록 2줄 변경 확인. CLI 검사가 앱 카탈로그 증거가 아님을 명시해 기준과 일치."
     },
     {
       "path": "Makefile",
       "status": "modified",
       "insertions": 1,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "lint-config에 sh -n 추가를 실행 확인(make lint-config exit0)."
     },
     {
       "path": "adapters/README.md",
       "status": "modified",
       "insertions": 35,
       "deletions": 7,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "앱 등록 절을 공식 문서 원문·스크립트 동작과 대조. F-01~F-05 해당. Node tar.gz·arch·checksum 절차는 공식 SHASUMS256과 일치."
     },
     {
       "path": "scripts/install_bot_mcp.sh",
       "status": "added",
       "insertions": 49,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "전체 49줄을 읽고 scratch 클론에서 독립 실행: 첫 실행·재실행 exit0, ZIP SHA256 재현, 잘못된 체크섬 exit1, 다른 cwd exit1, 상대 prefix, stale package, node 경로가 파일인 경우. F-06~F-08 해당."
     },
     {
       "path": "scripts/verify_grok_plugin.py",
       "status": "modified",
       "insertions": 7,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "실제 grok 1.0.46으로 make 없이 직접 실행 PASS. 실패 shim(exit3)은 stdout·stderr 표시 후 exit1. GROK_CONFIG·GROK_CONFIG_PATH·GROK_MANAGED_CONFIG_URL 이름이 바이너리 문자열에 존재함을 확인."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV/command-probes.txt",
@@ -108,8 +108,8 @@
       "insertions": 22,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 파일(unsupported_ext). 내용을 직접 읽고 독립 재현 결과와 대조해 확인: env -i 실행·미지원 플랫폼·실패 shim 결과가 독립 재현과 일치. grok 바이너리 정황은 보조 근거로 표시돼 계약으로 쓰이지 않음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV/install-bot-mcp-first.txt",
@@ -117,8 +117,8 @@
       "insertions": 31,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 파일(unsupported_ext). 내용을 직접 읽고 독립 재현 결과와 대조해 확인: 체크섬 OK, PASS 2줄, 등록 값 출력. 독립 실행과 같은 흐름·fb745c66 해시는 이전 값(README 변경 전)으로 표시됨."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV/install-bot-mcp-rerun.txt",
@@ -126,8 +126,8 @@
       "insertions": 30,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 파일(unsupported_ext). 내용을 직접 읽고 독립 재현 결과와 대조해 확인: 재실행에서 Node 다운로드 줄이 없음. 독립 재실행도 checksum 줄 0개로 일치."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV/official-docs-excerpts.txt",
@@ -135,8 +135,8 @@
       "insertions": 83,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 파일(unsupported_ext). 내용을 직접 읽고 독립 재현 결과와 대조해 확인: 발췌를 docs.x.ai 원문 4개 문서에서 재수신해 대조. 발췌 문장은 원문과 일치하며 AddMcpServer·승인 카드·개인 계정 Command를 다루지 않음(F-01·F-03 근거)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV/product-lint.txt",
@@ -144,8 +144,8 @@
       "insertions": 30,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 파일(unsupported_ext). 내용을 직접 읽고 독립 재현 결과와 대조해 확인: make lint 출력 확인. 독립 make lint-config exit0."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-BOT-CATALOG-DEV/verify-grok-plugin.txt",
@@ -153,16 +153,81 @@
       "insertions": 24,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "제외 증거 파일(unsupported_ext). 내용을 직접 읽고 독립 재현 결과와 대조해 확인: PASS 2줄과 ZIP SHA256 b7882df7…을 독립 실행으로 재현(동일 해시)."
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "adapters/README.md",
+      "start_line": 57,
+      "end_line": 57,
+      "content": "F-01 자연어 Add 요청이 승인 카드를 만든다는 전제가 미확인이다. 이슈1 첫 보고의 Bot은 도구 목록에 AddMcpServer가 없었다(InstallPlugin 등 동일). 공식 문서 4종에는 채팅 요청·Add MCP Server 카드가 없고 근거는 제3자 글(Composio·Scrapeless)뿐이다. README 61행은 카드의 Command 종류 부재만 다루고 AddMcpServer 부재는 어느 신규 문서에도 없다. ops-guide.md:193·실행 기록 125행 댓글 초안에는 단서가 없다. 수정: 카드가 안 나오면 Bot의 응답과 도구 목록을 회신하고 AddMcpServer 부재가 기존 이슈임을 명시한다.",
+      "severity": "medium",
+      "resolved": false
+    },
+    {
+      "path": "adapters/README.md",
+      "start_line": 38,
+      "end_line": 38,
+      "content": "F-02 카탈로그 미노출의 원인이 확정 사실처럼 쓰였다. 같은 내용이 module-design.md:56, transition.md:54, 실행 기록 50·86행(댓글 초안), dev 로그 125행에 있다. 공식 문서는 설치된 connector가 계정 전체에 적용된다고만 쓰고 앱 카탈로그가 등록된 connector만 읽는다거나 CLI plugin을 읽지 않는다고는 쓰지 않는다. 실행 기록 36행도 가설 1을 채택했을 뿐 앱에서 반증·재현하지 않았다. 수정: 가장 유력한 가설이며 실제 계정 재시험 전까지 미확정으로 낮춘다.",
+      "severity": "medium",
+      "resolved": false
+    },
+    {
+      "path": "adapters/README.md",
+      "start_line": 38,
+      "end_line": 38,
+      "content": "F-03 Command 종류의 공식 근거는 Team Bots 문서의 Plugins 절이다. 개인 계정 UI의 Command 지원은 공식 문서에 없다. README는 두 종류를 일반 사실로 적고 후속 분기(Remote HTTPS·팀 marketplace)는 실행 기록에만 있다. 수정: 근거 범위를 Team Bots로 한정한다고 쓴다.",
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "adapters/README.md",
+      "start_line": 59,
+      "end_line": 59,
+      "content": "F-04 `Settings → Plugins` 경로는 공식 문서와 모순된다. settings-and-notifications.md는 `Plugins are not a settings section`이라 쓰고 Marketplace → Your plugins만 안내한다. 같은 문구가 실행 기록 129행 댓글 초안에도 있다. 수정: 괄호 삭제.",
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "adapters/README.md",
+      "start_line": 48,
+      "end_line": 48,
+      "content": "F-05 `/workspace`가 update·recovery 뒤에도 유지된다고 단정했다. 공식 문서는 designed to survive라 하고 수동 설치 패키지는 replaceable로 취급하라며 Reset은 최근 변경을 잃는다고 쓴다. 실행 기록은 /workspace 유지를 미검증으로 적었으나 README는 사실로 적었다. 수정: 설계 의도와 재실행 복구 조건으로 표현한다.",
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "start_line": 36,
+      "end_line": 36,
+      "content": "F-06 `$PREFIX/package`를 추출 전에 지우지 않는다. 직전 실행이 mv 전에 중단돼 남은 package/knowslink의 파일이 새 추출과 병합된다(독립 재현: STALE 파일이 배포 bundle에 포함). 또 36행에서 기존 bundle을 먼저 지워 추출 실패 시 등록된 서버가 깨진다. 수정: 추출 전 `rm -rf \"$PREFIX/package\"`, 추출 성공 뒤 교체.",
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "start_line": 6,
+      "end_line": 6,
+      "content": "F-07 KNOWSLINK_PREFIX 상대 경로를 검사하지 않는다. `../rel/pfx`로 실행하면 exit0이고 등록 값에 상대 경로를 출력한다(독립 재현). 앱의 cwd에서는 실행 불가다. 수정: 절대 경로가 아니면 exit1.",
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "start_line": 24,
+      "end_line": 24,
+      "content": "F-08 기존 Node 재사용은 `--version` 문자열만 보고 체크섬을 다시 확인하지 않는다. 버전이 다르거나 실행 불가인 `$PREFIX/node`는 내용과 무관하게 rm -rf로 지워진다(독립 재현: 파일 `node`는 디렉터리로 교체). 체크섬 실패 시 검증 안 된 tar.gz가 PREFIX에 남는다(exit1은 정상). README 48행은 재사용만 설명한다. 수정: README에 교체·삭제 범위를 적거나 실패 시 archive를 삭제.",
+      "severity": "low",
+      "resolved": false
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "fcfec882-634c-458a-b16b-b2b285aea791",
+    "reviewer_session": "103a7c86-8e5c-415a-976d-a7f06607a499",
+    "snapshot_path": "/tmp/knowslink-bot-catalog-review-8e46c5a",
     "snapshot_head": "8e46c5a846e6d190e484e48be40b3dc368001a2b",
     "read_only": true
   }
