@@ -1,0 +1,5 @@
+$ timeout 60 env -u GROK_HOME -u XDG_CONFIG_HOME -u XDG_DATA_HOME -u XDG_STATE_HOME HOME=/tmp/knowslink-install-qa-5506d64/home-market PATH=/tmp/knowslink-install-qa-5506d64/home-node22/.local/node/node-v22.22.2-linux-x64/bin:/home/shin/.local/bin:/usr/bin:/bin /home/shin/.local/bin/grok plugin marketplace add /tmp/knowslink-install-qa-5506d64/extract-market
+exit:0
+----- stdout -----
+Added marketplace source: extract-market (/tmp/knowslink-install-qa-5506d64/extract-market)
+----- stderr -----

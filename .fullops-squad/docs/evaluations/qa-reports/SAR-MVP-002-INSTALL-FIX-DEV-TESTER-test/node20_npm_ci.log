@@ -1,0 +1,11 @@
+$ env -u GROK_HOME HOME=/tmp/knowslink-install-qa-5506d64/home-node20 npm_config_cache=/tmp/knowslink-install-qa-5506d64/npm-cache-node20 PATH=/tmp/knowslink-install-qa-5506d64/home-node20/.local/node/node-v20.19.2-linux-x64/bin:/usr/bin:/bin npm ci --prefix /tmp/knowslink-install-qa-5506d64/adapters-node20
+exit:1
+----- stdout -----
+----- stderr -----
+npm error code EBADENGINE
+npm error engine Unsupported engine
+npm error engine Not compatible with your version of node/npm: @knowslink/adapters@0.0.0
+npm error notsup Not compatible with your version of node/npm: @knowslink/adapters@0.0.0
+npm error notsup Required: {"node":">=22.22.2 <23","npm":">=10.9.7 <11"}
+npm error notsup Actual:   {"npm":"10.8.2","node":"v20.19.2"}
+npm error A complete log of this run can be found in: /tmp/knowslink-install-qa-5506d64/npm-cache-node20/_logs/2026-10-03T16_07_06_336Z-debug-0.log

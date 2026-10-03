@@ -1,0 +1,85 @@
+{
+  "returncode": 0,
+  "stderr_empty": true,
+  "stderr_len": 0,
+  "stdout_len": 1273,
+  "nonjson": [],
+  "ids": [
+    1,
+    2,
+    3
+  ],
+  "messages": [
+    {
+      "result": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "tools": {
+            "listChanged": true
+          }
+        },
+        "serverInfo": {
+          "name": "knowslink",
+          "version": "0.1.0"
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 1
+    },
+    {
+      "result": {
+        "tools": [
+          {
+            "name": "knowslink_status",
+            "description": "Report KnowsLink connector readiness without reading credentials or contacting relay. Actual Grok Bot connection remains held.",
+            "inputSchema": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "type": "object",
+              "properties": {}
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "openWorldHint": false
+            },
+            "execution": {
+              "taskSupport": "forbidden"
+            }
+          },
+          {
+            "name": "knowslink_pull_once",
+            "description": "Process one synthetic loopback relay message: verify, durable persist, ACK, shared claim, KnowsLink owner gate, minimal denied result. No calendar effects or model-visible payload. Default held.",
+            "inputSchema": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "type": "object",
+              "properties": {}
+            },
+            "annotations": {
+              "readOnlyHint": false,
+              "destructiveHint": false,
+              "idempotentHint": false,
+              "openWorldHint": false
+            },
+            "execution": {
+              "taskSupport": "forbidden"
+            }
+          }
+        ]
+      },
+      "jsonrpc": "2.0",
+      "id": 2
+    },
+    {
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"state\":\"held\",\"transport\":\"pull\",\"actualConnection\":\"held\",\"webhook\":false,\"evidenceFetch\":false}"
+          }
+        ],
+        "isError": false
+      },
+      "jsonrpc": "2.0",
+      "id": 3
+    }
+  ]
+}

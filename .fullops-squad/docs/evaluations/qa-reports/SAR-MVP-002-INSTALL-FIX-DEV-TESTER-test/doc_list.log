@@ -1,0 +1,15 @@
+$ timeout 30 env -u GROK_HOME -u XDG_CONFIG_HOME -u XDG_DATA_HOME -u XDG_STATE_HOME HOME=/tmp/knowslink-install-qa-5506d64/home-install PATH=/tmp/knowslink-install-qa-5506d64/home-node22/.local/node/node-v22.22.2-linux-x64/bin:/home/shin/.local/bin:/usr/bin:/bin /home/shin/.local/bin/grok plugin list --json
+exit:0
+----- stdout -----
+[
+  {
+    "status": "installed",
+    "name": "knowslink",
+    "repo_key": "knowslink-07ec00a3",
+    "version": "0.1.0",
+    "path": "/tmp/knowslink-install-qa-5506d64/home-install/.grok/installed-plugins/knowslink-07ec00a3",
+    "source": "/tmp/knowslink-install-qa-5506d64/extract-install/knowslink",
+    "marketplace": null
+  }
+]
+----- stderr -----
