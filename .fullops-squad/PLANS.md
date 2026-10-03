@@ -92,3 +92,12 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 이전 첫 요청 대기 기록은 당시 이력이다. 현재 SAR-SETUP-001 진행 자료는 coor·designer·dev 브랜치에 있다.
 - ops·tester만 쉬고 깨끗한 동기화 대상이다. coor·designer·dev는 기존 SAR 인계와 작업을 보존하기 위해 완료 후 동기화한다.
 - 새 coordinator는 [갱신과 인계 기록](docs/exec-plans/phases/FULLOPS-UPDATE-099.md)을 읽고 기존 Run을 연결한다.
+
+## FullOps 0.9.9 coordinator 인계 — 2026-10-03
+
+- 운영 동기화 기준: coor `3fde6f2`, main 준비 `bb31169`, 검증 `3d91754`. 병합 충돌은 기존 SAR 기록과 최신 역할 marker를 모두 보존해 해결했다. 제품 산출물은 main에 병합하지 않았다.
+- Run `run_8ca8bc058ab7`을 현재 coordinator에 연결했다. designer 결과 `481d8ac8ac80a0c59bf35a0857eb9599ba6c50d7`의 지시서와 답 원문을 반영했다. 기존 승인·QA·원천·검사 기준 `729446d8da57`은 유지한다.
+- 이전 dev Dispatch `ctx_ab5236bf8b40`는 failed이며 worker-show의 exactWorker observation `exited`, terminal exitCause `operator_close`를 확인했다. 작업 트리는 깨끗하며 완료 코드 SHA는 없다. 이전 user_takeover 기록은 유지한다.
+- SAR-SETUP-001-DEV를 같은 키로 force 재선정했다. D02와 범위 답변에 근거해 override-role dev를 기록했다. Jev API 키 부재로 implementation/dev와 codex gpt-6.1-sol high 폴백을 기록했다. 기존 결과는 prior 파일로 보존했다. 갱신 산출물은 지시서의 D03을 유지한다.
+- 같은 Task `task_a7fd5d1b8806`를 retry-of로 새 세션에서 재개한다. 이전 세션 종료 및 0.9.8 캐시 경로 오류 때문에 세션을 재사용하지 않는다. dev가 기술 계획·구현·테스트·문서 갱신을 수행한다.
+- designer 후속 세션은 병합 검토까지 retain한다. tester는 성공 완료 SHA 이후 배정한다. 병합 전 서로 다른 구현·리뷰 세션 ID와 깨끗한 read-only detached snapshot, fixed-SHA 리뷰·lint·테스트 게이트를 확인한다.
