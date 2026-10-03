@@ -1,0 +1,199 @@
+{
+  "base": "1314e7fcd02d0c4b13dd86ba2be72fa0f153129c",
+  "head": "437f1432a158670a485413c1aba159debc3759e5",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "dev worker (Claude Opus 5.5, session bac29ce7-11bc-46ce-8331-c354bf56ade2), 구현 OPS 세션과 별도",
+  "conclusion": "437f143 배포 설정에 미해결 critical/high 없음. medium 5건·low 6건은 미해결이며 M2·M3은 expose 전 해결을 권고한다. Access 앱·DNS·connector·공개 negative·이메일 로그인은 미실행이므로 공개 수락은 held다.",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "OPS 결정 기록 3줄을 현재 Cloudflare 읽기 전용 관찰·reusable policy 비재사용 결정과 대조했다. 이메일·비밀값 없음"
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D11/D13 상태를 draft로 바꾼 변경이 실제 파일 존재와 일치함을 확인했다"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "status": "added",
+      "insertions": 60,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "증거 표를 OPS 실제 세션 기록과 대조했다. restore-verify 437f143 재실행 확인. 권한명 표기 차이를 M2로 기록"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 39,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "11장 절차를 beta.sh·access_apply.py와 대조했다. 서두·9·10장의 계획/미작성 표기와 11장 모순을 M1로, 갱신·rollback 부재를 M5로 기록"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "현재 상태 표를 서버 읽기 전용 확인(배포 HEAD 437f143, connector 미기동, DNS 없음)과 대조했다. 최소 권한 오기를 M2로 기록"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "added",
+      "insertions": 44,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "seed 출력·180초 만료·qa-fixture 0600을 adapters/src/synthetic.ts와 대조했다. 5단계 표현을 L6으로 기록"
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "status": "added",
+      "insertions": 103,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Access 앱·reusable policy 본문을 현재 API 스키마와 대조했다. 비밀 비출력·0600 검사 확인. 사후 검증 범위를 L1로 기록"
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "status": "added",
+      "insertions": 106,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "prepare·backup·restore-verify·tunnel·expose 전 경로를 검토했다. bash -n 통과. expose 게이트 약점을 M3, 기타를 L2~L4로 기록"
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "더미 env로 docker compose config 병합을 재실행했다. cloudflared env 제거·user·ro 마운트·relay loopback·Postgres internal 확인"
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "local·regression을 라이브 서버에 읽기 전용으로 재실행해 exit 0을 확인했다. public은 DNS 부재로 실행 대상 없음"
+    },
+    {
+      "path": "deploy/knowslink/tunnel/config.yml.tmpl",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "OCR 확장자 제외 파일을 직접 검토했다. 공식 Origin parameters 문서와 필드명 일치, cloudflared 2026.9.1 ingress validate·rule 매칭 확인. 빈 audTag도 validate 통과함을 재현(M3 근거)"
+    }
+  ],
+  "findings": [
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "start_line": 14,
+      "end_line": 15,
+      "severity": "medium",
+      "category": "documentation",
+      "resolved": false,
+      "content": "M1: 서두가 '상태는 계획, DNS·Tunnel·컨테이너를 만들거나 바꾸지 않았다, D11/D13 미작성'이라고 하고 92·133-136·143행도 미실행·미작성으로 남아 있다. 11장·D13(Tunnel 생성, 로컬 스택 기동, D11/D13 draft)과 모순된다. 운영자가 현재 상태를 잘못 판단할 수 있다. 서두·9·10장을 역사적 기록으로 표시하거나 현재 상태로 갱신한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "start_line": 36,
+      "end_line": 36,
+      "severity": "medium",
+      "category": "documentation",
+      "resolved": false,
+      "content": "M2: 최소 권한을 'Access: Apps and Policies Edit 하나'로 적었다. access_apply.py는 GET /access/identity_providers를 호출하므로 'Access: Organizations, Identity Providers, and Groups Read'(또는 Identity Providers Read)도 필요하다(공식 API token permissions 문서). 실행 기록은 'Write'로 표기해 이름도 다르다. 이 권한만 부여하면 apply가 HTTP 403으로 멈춘다(fail-closed, 보안 영향 없음). 권한 목록을 정정한다."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "start_line": 193,
+      "end_line": 200,
+      "severity": "medium",
+      "category": "security",
+      "resolved": false,
+      "content": "M3: expose 게이트는 access.aud 파일 존재와 config.yml의 'required: true' 문자열만 본다. 라이브 Access 앱이 HOST에 owner 정책 하나만 붙어 있는지, config의 audTag가 현재 access.aud와 같은지, teamName이 비어 있지 않은지 확인하지 않는다. 빈 audTag로 렌더링한 설정도 ingress validate를 통과함을 재현했다. dig 실패도 pipefail과 !로 '레코드 없음'으로 처리된다(route dns가 기존 레코드를 덮어쓰지 않아 영향은 제한적). 원점 JWT가 불일치 시 거부하므로 high는 아니다. expose 전에 읽기 전용 API로 앱·정책을 재확인하고 audTag·teamName을 비교한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "start_line": 171,
+      "end_line": 177,
+      "severity": "medium",
+      "category": "documentation",
+      "resolved": false,
+      "content": "M5: 배포 SHA 갱신·코드 rollback 절차가 없다. beta.sh prepare는 기존 체크아웃이 있으면 거부하고, 11.3은 철회와 격리 복원 검증만 다루며 라이브 DB 복구 절차가 없다. D13은 '구성은 실행 기록의 SHA'라고 하나 실행 기록에 배포 SHA가 없다(읽기 전용 확인 결과 배포 HEAD는 437f143). 갱신·rollback 명령과 배포 SHA를 기록한다."
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "start_line": 61,
+      "end_line": 77,
+      "severity": "low",
+      "category": "security",
+      "resolved": false,
+      "content": "L1: 사전 중복 검사는 apps 첫 페이지의 domain만 보고 destinations는 보지 않는다. 사후 검증은 정책 ID만 확인하고 destinations·overrides(behavior public은 Access 우회)·allowed_idps를 확인하지 않는다. GET /accounts의 첫 계정을 쓴다. 스크립트가 직접 생성하므로 현재 위험은 낮다. 사후 검증에 destinations==[public HOST]와 overrides 부재를 더한다."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "start_line": 119,
+      "end_line": 121,
+      "severity": "low",
+      "category": "bug",
+      "resolved": false,
+      "content": "L2: prepare의 8080 점유 검사가 [::]:8080·*:8080을 놓친다. verify.py local이 이후 보완한다."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "start_line": 140,
+      "end_line": 159,
+      "severity": "low",
+      "category": "bug",
+      "resolved": false,
+      "content": "L3: backup 실패 시 부분 dump가 남는다. restore-verify는 public 테이블 수만 세며 행 수를 라이브와 비교하지 않는다."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "start_line": 167,
+      "end_line": 174,
+      "severity": "low",
+      "category": "security",
+      "resolved": false,
+      "content": "L4: owner-login이 합성 owner Basic 값을 터미널에 출력한다. D11은 본인 터미널 전용으로 제한하지만 agent가 실행하면 세션 기록에 남는다. agent 실행 금지를 D12에 명시한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "start_line": 23,
+      "end_line": 32,
+      "severity": "low",
+      "category": "documentation",
+      "resolved": false,
+      "content": "L5: Cloudflare 읽기 전용 재확인은 요약 표만 있고 비밀 없는 원시 호출 기록이 없다. access_apply.py도 생성 결과 ID 외 호출 기록을 남기지 않는다. 독립 재현을 위해 경로·상태코드만 남기는 기록을 권고한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "start_line": 65,
+      "end_line": 65,
+      "severity": "low",
+      "category": "documentation",
+      "resolved": false,
+      "content": "L6: 5단계가 'username과 basic-auth value를 비밀번호 칸에 입력'으로 읽힌다. username은 사용자 이름 칸, value는 비밀번호 칸으로 나눠 적는다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "2191cc9b-76ef-4522-9fad-d2c9f017bfbc",
+    "reviewer_session": "bac29ce7-11bc-46ce-8331-c354bf56ade2",
+    "snapshot_path": "/tmp/knowslink-beta-review-437f143",
+    "snapshot_head": "437f1432a158670a485413c1aba159debc3759e5",
+    "read_only": true
+  }
+}
