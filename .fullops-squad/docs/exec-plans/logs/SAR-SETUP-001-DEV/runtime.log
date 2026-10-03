@@ -1,0 +1,178 @@
+code SHA: 929832aa0ecd
+command: make verify-runtime
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc
+
+python3 scripts/verify_runtime.py
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json up --build --wait --wait-timeout 120 relay; exit: 0
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.08kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.2s
+
+#4 [relay internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 1.2s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load build context
+#6 transferring context: 551B done
+#6 DONE 0.0s
+
+#7 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#7 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#7 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#7 DONE 0.1s
+
+#8 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#8 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#8 DONE 0.1s
+
+#9 [migrate stage-1 3/5] WORKDIR /app
+#9 CACHED
+
+#10 [migrate build 4/7] RUN go mod download
+#10 CACHED
+
+#11 [migrate build 5/7] COPY cmd ./cmd
+#11 CACHED
+
+#12 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#12 CACHED
+
+#13 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#13 CACHED
+
+#14 [migrate build 6/7] COPY internal ./internal
+#14 CACHED
+
+#15 [migrate build 2/7] WORKDIR /src
+#15 CACHED
+
+#16 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#16 CACHED
+
+#17 [migrate build 3/7] COPY go.mod go.sum ./
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:55c28e0a55c798cb1f9db0cd5dfc5df2a8aaf0b97f0a2fb88f42e3b83b3ec13c 0.0s done
+#19 exporting config sha256:707915018b60c36abe6c92b72abc87799cabb0df96f82151837d5bf8ebc3ef74 0.0s done
+#19 exporting attestation manifest sha256:07fada9cdcfa866dee2eeafaa69ac312cac98edf054a078c8f2d839a4cffbd0a
+#19 exporting attestation manifest sha256:07fada9cdcfa866dee2eeafaa69ac312cac98edf054a078c8f2d839a4cffbd0a 0.1s done
+#19 exporting manifest list sha256:bf10b2bfcad4a6611f131a4e8a239ad85251e4ce70288a02cc9a87d33b89ea57 0.1s done
+#19 naming to docker.io/library/knowslink-check-5723d80e17-migrate:latest
+#19 naming to docker.io/library/knowslink-check-5723d80e17-migrate:latest 0.0s done
+#19 unpacking to docker.io/library/knowslink-check-5723d80e17-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:8c5869b73460a9722ea593f581ce5b24caf63725c8ef4141e96e9dec9f25a921 0.0s done
+#20 exporting config sha256:68e89c18c38a6480786b976d67e687432b355b3194e071cd4879cdcc8954e401 0.0s done
+#20 exporting attestation manifest sha256:aa7927005abe01dd5f59a89f1eb5ff194b6a65c6627f72d3cd4e3bd2f2533894 0.1s done
+#20 exporting manifest list sha256:774c79891983ce746a1ad6e4473d79dd412354026aab3b5fe29124ed905b4236 0.1s done
+#20 naming to docker.io/library/knowslink-check-5723d80e17-relay:latest done
+#20 unpacking to docker.io/library/knowslink-check-5723d80e17-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-check-5723d80e17-relay Building
+ Image knowslink-check-5723d80e17-migrate Building
+ Image knowslink-check-5723d80e17-migrate Built
+ Image knowslink-check-5723d80e17-relay Built
+ Network knowslink-check-5723d80e17_database Creating
+ Network knowslink-check-5723d80e17_database Created
+ Network knowslink-check-5723d80e17_ingress Creating
+ Network knowslink-check-5723d80e17_ingress Created
+ Container knowslink-check-5723d80e17-postgres-1 Creating
+ Container knowslink-check-5723d80e17-postgres-1 Created
+ Container knowslink-check-5723d80e17-migrate-1 Creating
+ Container knowslink-check-5723d80e17-migrate-1 Created
+ Container knowslink-check-5723d80e17-relay-1 Creating
+ Container knowslink-check-5723d80e17-relay-1 Created
+ Container knowslink-check-5723d80e17-postgres-1 Starting
+ Container knowslink-check-5723d80e17-postgres-1 Started
+ Container knowslink-check-5723d80e17-postgres-1 Waiting
+ Container knowslink-check-5723d80e17-postgres-1 Healthy
+ Container knowslink-check-5723d80e17-migrate-1 Starting
+ Container knowslink-check-5723d80e17-migrate-1 Started
+ Container knowslink-check-5723d80e17-migrate-1 Waiting
+ Container knowslink-check-5723d80e17-migrate-1 Exited
+ Container knowslink-check-5723d80e17-relay-1 Starting
+ Container knowslink-check-5723d80e17-relay-1 Started
+ Container knowslink-check-5723d80e17-migrate-1 Waiting
+ Container knowslink-check-5723d80e17-relay-1 Waiting
+ Container knowslink-check-5723d80e17-postgres-1 Waiting
+ Container knowslink-check-5723d80e17-migrate-1 Exited
+ Container knowslink-check-5723d80e17-postgres-1 Healthy
+ Container knowslink-check-5723d80e17-relay-1 Healthy
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json logs migrate; exit: 0
+migrate-1  | 2026/10/03 03:05:16 no SQL migrations; no-op (no business schema exists)
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json exec -T postgres psql -U knowslink -d knowslink -Atc 'SELECT count(*) FROM information_schema.tables WHERE table_schema='"'"'public'"'"''; exit: 0
+0
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 0
+ok
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json exec -T relay env DATABASE_URL= /app/relay; exit: 1
+2026/10/03 03:05:23 DATABASE_URL is required
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/relay; exit: 1
+2026/10/03 03:05:23 database ping failed
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json exec -T relay env DATABASE_URL= /app/migrate; exit: 1
+2026/10/03 03:05:23 DATABASE_URL is required
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/migrate; exit: 1
+2026/10/03 03:05:23 database ping failed
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json stop postgres; exit: 0
+ Container knowslink-check-5723d80e17-postgres-1 Stopping
+ Container knowslink-check-5723d80e17-postgres-1 Stopped
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 1
+wget: server returned error: HTTP/1.1 503 Service Unavailable
+command: docker compose --env-file .env.example -p knowslink-check-5723d80e17 -f /home/shin/orca/workspaces/KnowsLink/fullops-dev/compose.yaml -f /tmp/knowslink-runtime-unhbj_6_/compose.json down; exit: 0
+ Container knowslink-check-5723d80e17-relay-1 Stopping
+ Container knowslink-check-5723d80e17-relay-1 Stopped
+ Container knowslink-check-5723d80e17-relay-1 Removing
+ Container knowslink-check-5723d80e17-relay-1 Removed
+ Container knowslink-check-5723d80e17-migrate-1 Stopping
+ Container knowslink-check-5723d80e17-migrate-1 Stopped
+ Container knowslink-check-5723d80e17-migrate-1 Removing
+ Container knowslink-check-5723d80e17-migrate-1 Removed
+ Container knowslink-check-5723d80e17-postgres-1 Stopping
+ Container knowslink-check-5723d80e17-postgres-1 Stopped
+ Container knowslink-check-5723d80e17-postgres-1 Removing
+ Container knowslink-check-5723d80e17-postgres-1 Removed
+ Network knowslink-check-5723d80e17_database Removing
+ Network knowslink-check-5723d80e17_ingress Removing
+ Network knowslink-check-5723d80e17_database Removed
+ Network knowslink-check-5723d80e17_ingress Removed
+command: docker run --rm --network none -e TUNNEL_TOKEN= cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4 tunnel --no-autoupdate run; exit: 255
+"cloudflared tunnel run" requires the ID or name of the tunnel to run as the last command line argument or in the configuration file.
+See 'cloudflared tunnel run --help'.
+command: npm run start --prefix adapters; exit: 0
+
+> @knowslink/adapters@0.0.0 start
+> node dist/index.js
+
+{"state":"unimplemented","transport":"pull","webhook":false,"evidenceFetch":false}
+PASS: local startup, empty SQL no-op, readiness, missing settings, DB failure, disabled Tunnel, inert adapter
+
+exit: 0

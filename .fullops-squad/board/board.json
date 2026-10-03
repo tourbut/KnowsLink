@@ -1,12 +1,12 @@
 {
   "title": "KnowsLink",
-  "summary": "Silent Agent Relay 기획 원천을 확보하고 프로젝트 초기 구성과 lint 과제를 시작한다. FullOps 0.9.10 규약을 동기화했다.",
+  "summary": "최신 KnowsLink 서비스 기획 반입. 초기 골격을 유지하고 MVP 개발 준비를 진행한다.",
   "phases": [
     {
       "name": "운영 기반 구성",
       "status": "done",
       "deliverables": [],
-      "note": "FullOps 0.9.8 문서 기준 적용. 새 coordinator 세션에서 첫 요청 대기. FullOps 0.9.10 적용."
+      "note": "FullOps 0.9.10 역할 동기화 완료. 기존 역할별 제품 진행·QA 인계는 보존한다."
     },
     {
       "name": "제품 기획·요구사항",
@@ -20,7 +20,7 @@
     },
     {
       "name": "기술 설계",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D03",
         "D05",
@@ -29,21 +29,21 @@
         "D09",
         "D10"
       ],
-      "note": "Go·TypeScript·Postgres·Compose 초기 구성과 lint 구현 착수."
+      "note": "D03 초기 구성 기술 정본 작성과 독립 검토 완료."
     },
     {
       "name": "구현",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D08"
       ],
-      "note": "SAR-SETUP-001-DEV 초기 개발 골격 구성."
+      "note": "검토 후보 9c96232를 main에 병합. 초기 골격과 제품 lint 수락."
     },
     {
       "name": "QA",
-      "status": "todo",
+      "status": "done",
       "deliverables": [],
-      "note": "tester 담당. 구현 SHA 준비 후 검증."
+      "note": "독립 QA·최종 리뷰 통과. main 등록 product-lint 통과, ERROR/WARNING 0."
     },
     {
       "name": "배포·이행",
@@ -54,6 +54,15 @@
         "D13"
       ],
       "note": "ops 담당. 배포 환경 미정."
+    },
+    {
+      "name": "서비스 MVP 개발 준비",
+      "status": "active",
+      "deliverables": [
+        "D01",
+        "D02"
+      ],
+      "note": "최신 원천 7bc9ea1 확인. designer 제품 요구·완료 조건·기능 인계 준비."
     }
   ]
 }

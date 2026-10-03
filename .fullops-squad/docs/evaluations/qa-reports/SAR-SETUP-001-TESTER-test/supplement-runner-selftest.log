@@ -1,0 +1,30 @@
+## 2026-10-03T13:12:30+0900 cwd=$SUPP
+$ true
+
+[exit 0]
+
+## 2026-10-03T13:12:30+0900 cwd=$SUPP
+$ false
+
+[exit 1]
+
+## 2026-10-03T13:12:30+0900 cwd=$SUPP
+$ sh -c exit 7
+
+[exit 7]
+
+## 2026-10-03T13:12:30+0900 cwd=$SUPP
+$ sh -c echo out; echo err >&2; exit 2
+out
+err
+[exit 2]
+
+## 2026-10-03T13:12:38+0900 cwd=$SUPP
+$ false
+
+[exit 1]
+
+## 2026-10-03T13:12:38+0900 cwd=$SUPP
+$ false
+
+[exit 1]

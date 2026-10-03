@@ -25,6 +25,14 @@
 - Human-side NL is a **render** of the structured envelope (`render.hint`), not the wire format.
 - Invent thin `relay.v1` (ASMTP-shaped mailbox + A2A Task–inspired); not a full ASMTP/A2A clone.
 
+### A2A gap review — locked (2026-10-03)
+
+- A2A gap review is complete against the public **A2A v0.3.0 concepts**. This is not a wire-compatibility claim; the delta from any later/latest revision was **not rechecked**.
+- Verdict: `relay.v1` is **Task-inspired, not an A2A clone**. **No A2A wire is imported.**
+- Do **not** add `taskId`, `contextId`, `parts`, `artifacts`, or A2A state enums to `relay.v1`.
+- Do not treat `role:user`, an AgentCard, or push as owner approval. Push is not a reason to enable the MVP webhook; the MVP webhook remains OFF.
+- Optional later documentation only (not written now): intent capability notes, an out-of-envelope observation view, and per-intent result schema examples.
+
 ### Scope
 
 - **Hospital / closed-net out of scope.** Personal public-net only. No self-host hospital assumptions.

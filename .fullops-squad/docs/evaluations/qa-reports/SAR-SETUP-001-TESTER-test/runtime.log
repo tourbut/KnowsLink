@@ -1,0 +1,176 @@
+## 2026-10-03T13:06:43+0900 cwd=$SCRATCH/clone
+$ make verify-runtime
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc
+
+python3 scripts/verify_runtime.py
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json up --build --wait --wait-timeout 120 relay; exit: 0
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.38kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.2s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 1.2s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 13.53kB done
+#6 DONE 0.1s
+
+#7 [migrate build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#7 DONE 0.1s
+
+#8 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#8 DONE 0.1s
+
+#9 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#9 CACHED
+
+#10 [migrate build 6/7] COPY internal ./internal
+#10 CACHED
+
+#11 [migrate build 3/7] COPY go.mod go.sum ./
+#11 CACHED
+
+#12 [migrate build 2/7] WORKDIR /src
+#12 CACHED
+
+#13 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#13 CACHED
+
+#14 [migrate build 5/7] COPY cmd ./cmd
+#14 CACHED
+
+#15 [migrate stage-1 3/5] WORKDIR /app
+#15 CACHED
+
+#16 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#16 CACHED
+
+#17 [migrate build 4/7] RUN go mod download
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [relay] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:4db8df87a3657bc8553794cffc5e2343085e1a3b423f5c8298043fbea3985dc5 0.0s done
+#19 exporting config sha256:3950a7552c1ff7fbe7049683416825662168783b96052d1dae26e2831fee7d1a
+#19 exporting config sha256:3950a7552c1ff7fbe7049683416825662168783b96052d1dae26e2831fee7d1a 0.0s done
+#19 exporting attestation manifest sha256:ed6f99fbf2cdec67105276e43bf0db5ad357a2cb88b8aeacb19643cde51bfb5b 0.1s done
+#19 exporting manifest list sha256:9a501756d8891a14bc15121ab939b60e5c84c8730d9da14569c1b9ac520d6500
+#19 exporting manifest list sha256:9a501756d8891a14bc15121ab939b60e5c84c8730d9da14569c1b9ac520d6500 0.0s done
+#19 naming to docker.io/library/knowslink-check-8429dc84f9-relay:latest done
+#19 unpacking to docker.io/library/knowslink-check-8429dc84f9-relay:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:206ff06e357928f45dc21a86f3602331168448f3ac4fd3b3ed3173c62ad94610 0.0s done
+#20 exporting config sha256:033c0991368eea19e7b650c5f93917ecab782fcda67e675e235b7bafb7c69790 0.0s done
+#20 exporting attestation manifest sha256:316b20b5c6e3ff0758e8ff83f8c934d33e49c45dc7a90baaede6e6a1bcc7a1b5 0.1s done
+#20 exporting manifest list sha256:f086fee46c669ab0712e66bfbb6015f486be5c720f39990e550b95ad995e0db3 0.0s done
+#20 naming to docker.io/library/knowslink-check-8429dc84f9-migrate:latest done
+#20 unpacking to docker.io/library/knowslink-check-8429dc84f9-migrate:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-check-8429dc84f9-relay Building
+ Image knowslink-check-8429dc84f9-migrate Building
+ Image knowslink-check-8429dc84f9-migrate Built
+ Image knowslink-check-8429dc84f9-relay Built
+ Network knowslink-check-8429dc84f9_ingress Creating
+ Network knowslink-check-8429dc84f9_ingress Created
+ Network knowslink-check-8429dc84f9_database Creating
+ Network knowslink-check-8429dc84f9_database Created
+ Container knowslink-check-8429dc84f9-postgres-1 Creating
+ Container knowslink-check-8429dc84f9-postgres-1 Created
+ Container knowslink-check-8429dc84f9-migrate-1 Creating
+ Container knowslink-check-8429dc84f9-migrate-1 Created
+ Container knowslink-check-8429dc84f9-relay-1 Creating
+ Container knowslink-check-8429dc84f9-relay-1 Created
+ Container knowslink-check-8429dc84f9-postgres-1 Starting
+ Container knowslink-check-8429dc84f9-postgres-1 Started
+ Container knowslink-check-8429dc84f9-postgres-1 Waiting
+ Container knowslink-check-8429dc84f9-postgres-1 Healthy
+ Container knowslink-check-8429dc84f9-migrate-1 Starting
+ Container knowslink-check-8429dc84f9-migrate-1 Started
+ Container knowslink-check-8429dc84f9-migrate-1 Waiting
+ Container knowslink-check-8429dc84f9-migrate-1 Exited
+ Container knowslink-check-8429dc84f9-relay-1 Starting
+ Container knowslink-check-8429dc84f9-relay-1 Started
+ Container knowslink-check-8429dc84f9-relay-1 Waiting
+ Container knowslink-check-8429dc84f9-postgres-1 Waiting
+ Container knowslink-check-8429dc84f9-migrate-1 Waiting
+ Container knowslink-check-8429dc84f9-postgres-1 Healthy
+ Container knowslink-check-8429dc84f9-migrate-1 Exited
+ Container knowslink-check-8429dc84f9-relay-1 Healthy
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json logs migrate; exit: 0
+migrate-1  | 2026/10/03 04:06:50 no SQL migrations; no-op (no business schema exists)
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json exec -T postgres psql -U knowslink -d knowslink -Atc 'SELECT count(*) FROM information_schema.tables WHERE table_schema='"'"'public'"'"''; exit: 0
+0
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 0
+ok
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json exec -T relay env DATABASE_URL= /app/relay; exit: 1
+2026/10/03 04:06:57 DATABASE_URL is required
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/relay; exit: 1
+2026/10/03 04:06:57 database ping failed
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json exec -T relay env DATABASE_URL= /app/migrate; exit: 1
+2026/10/03 04:06:57 DATABASE_URL is required
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/migrate; exit: 1
+2026/10/03 04:06:57 database ping failed
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json stop postgres; exit: 0
+ Container knowslink-check-8429dc84f9-postgres-1 Stopping
+ Container knowslink-check-8429dc84f9-postgres-1 Stopped
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 1
+wget: server returned error: HTTP/1.1 503 Service Unavailable
+command: docker compose --env-file .env.example -p knowslink-check-8429dc84f9 -f $SCRATCH/clone/compose.yaml -f /tmp/knowslink-runtime-it4e_i0s/compose.json down; exit: 0
+ Container knowslink-check-8429dc84f9-relay-1 Stopping
+ Container knowslink-check-8429dc84f9-relay-1 Stopped
+ Container knowslink-check-8429dc84f9-relay-1 Removing
+ Container knowslink-check-8429dc84f9-relay-1 Removed
+ Container knowslink-check-8429dc84f9-migrate-1 Stopping
+ Container knowslink-check-8429dc84f9-migrate-1 Stopped
+ Container knowslink-check-8429dc84f9-migrate-1 Removing
+ Container knowslink-check-8429dc84f9-migrate-1 Removed
+ Container knowslink-check-8429dc84f9-postgres-1 Stopping
+ Container knowslink-check-8429dc84f9-postgres-1 Stopped
+ Container knowslink-check-8429dc84f9-postgres-1 Removing
+ Container knowslink-check-8429dc84f9-postgres-1 Removed
+ Network knowslink-check-8429dc84f9_database Removing
+ Network knowslink-check-8429dc84f9_ingress Removing
+ Network knowslink-check-8429dc84f9_database Removed
+ Network knowslink-check-8429dc84f9_ingress Removed
+command: docker run --rm --network none -e TUNNEL_TOKEN= cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4 tunnel --no-autoupdate run; exit: 255
+"cloudflared tunnel run" requires the ID or name of the tunnel to run as the last command line argument or in the configuration file.
+See 'cloudflared tunnel run --help'.
+command: npm run start --prefix adapters; exit: 0
+
+> @knowslink/adapters@0.0.0 start
+> node dist/index.js
+
+{"state":"unimplemented","transport":"pull","webhook":false,"evidenceFetch":false}
+PASS: local startup, empty SQL no-op, readiness, missing settings, DB failure, disabled Tunnel, inert adapter
+[exit 0]

@@ -1,0 +1,996 @@
+{
+  "base": "f94510f48a050c08254ad028ac66a14a96946b3a",
+  "head": "59be02d029c3cf53e3591871871ed8595b4ca4d2",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Claude Code claude-opus-5-5 (Orca task task_bea67a9755f1, dispatch ctx_dab52fc0aa32, session 16770bb9-ba07-47b6-b468-02ce49ad1ca4)",
+  "conclusion": "차단: critical/high 0, medium 1 미해결, low 5(1 해결). 제품 경로는 0cc10b0과 동일해 기존 독립 리뷰·독립 QA를 재사용할 수 있고 새 QA 러너는 올바르다. 그러나 main 기준 f94510f의 FullOps lint가 원천 스냅샷 DOC-003 ERROR 7로 종료코드 1이므로 이 refs의 main 병합 수락을 차단한다. main에 원천 exclude 준비 커밋을 먼저 반영한 뒤 새 키로 lint·check를 다시 해야 한다.",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 100,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "전체 diff를 읽었다. SAR 설계·DEV·QA·리뷰·증거 보완 기록이 실제 커밋·Dispatch·SHA(0cc10b0, 85c2a6a, 51f0d54, 68c5c9e)와 일치한다. 75-76행의 to_dev/to_tester 지시서 경로는 현재 빈 인박스다(low)."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "diff를 읽었다. JSON 유효. 단계 상태는 실제 진행과 대체로 맞지만 '운영 기반 구성' note가 main의 0.9.10 문구보다 오래된 문구로 바뀌고 '기술 설계'·'구현' note가 이미 끝난 대기 상태를 말한다(low)."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "추가된 front matter와 교훈 3줄을 읽었다. 내용이 D02·QA 보고서·실행 기록과 일치하고 비밀값이 없다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "추가된 front matter와 교훈 3줄을 읽었다. 내용이 D02·QA 보고서·실행 기록과 일치하고 비밀값이 없다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "추가된 front matter와 교훈 3줄을 읽었다. 내용이 D02·QA 보고서·실행 기록과 일치하고 비밀값이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "added",
+      "insertions": 71,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "added",
+      "insertions": 62,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-REVIEW-route.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-context.json",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-documents-find.json",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-find.json",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-model-dev.json",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-route.json",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-INTEGRATION-REVIEW-route.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-context.json",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-documents-find.json",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-find.json",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-model-tester.json",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-route.prior-1791000028335065469.json",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-model-designer.json",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SETUP-001-route.json",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON 구조·route·role·model·error 필드를 읽었다. fallback과 API 실패가 PLANS·실행 기록의 서술과 일치한다. prior 파일은 이전 판정 보존이다. 키·비밀값 패턴 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/lint-729446d8da57.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰 기록이다. 82910be 이후 변경 없음. result 50/50 reviewed, independence(01a0ffa6≠ba47d7dc), lint 두 파일 ERROR 0을 직접 확인했다. 재사용 근거로 쓴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/lint.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰 기록이다. 82910be 이후 변경 없음. result 50/50 reviewed, independence(01a0ffa6≠ba47d7dc), lint 두 파일 ERROR 0을 직접 확인했다. 재사용 근거로 쓴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/preview.json",
+      "status": "added",
+      "insertions": 330,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰 기록이다. 82910be 이후 변경 없음. result 50/50 reviewed, independence(01a0ffa6≠ba47d7dc), lint 두 파일 ERROR 0을 직접 확인했다. 재사용 근거로 쓴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "status": "added",
+      "insertions": 88,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰 기록이다. 82910be 이후 변경 없음. result 50/50 reviewed, independence(01a0ffa6≠ba47d7dc), lint 두 파일 ERROR 0을 직접 확인했다. 재사용 근거로 쓴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/result.json",
+      "status": "added",
+      "insertions": 448,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰 기록이다. 82910be 이후 변경 없음. result 50/50 reviewed, independence(01a0ffa6≠ba47d7dc), lint 두 파일 ERROR 0을 직접 확인했다. 재사용 근거로 쓴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/rules.json",
+      "status": "added",
+      "insertions": 99,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰 기록이다. 82910be 이후 변경 없음. result 50/50 reviewed, independence(01a0ffa6≠ba47d7dc), lint 두 파일 ERROR 0을 직접 확인했다. 재사용 근거로 쓴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/fullops-c2e8e9b-pass.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON을 읽었다. base/head/summary가 QA 보고서 표와 일치한다(f1f0848 ERROR 1 DOC-003, c2e8e9b ERROR 0, injected commands product-lint failed exit 2)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/fullops-f1f0848-error1.json",
+      "status": "added",
+      "insertions": 37,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON을 읽었다. base/head/summary가 QA 보고서 표와 일치한다(f1f0848 ERROR 1 DOC-003, c2e8e9b ERROR 0, injected commands product-lint failed exit 2)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/fullops-injected.json",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "JSON을 읽었다. base/head/summary가 QA 보고서 표와 일치한다(f1f0848 ERROR 1 DOC-003, c2e8e9b ERROR 0, injected commands product-lint failed exit 2)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/inject.py",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "직접 읽었다. 인자로 받은 임시 복사본 경로의 파일 2개에 4종 위반을 append만 한다. 알 수 없는 kind는 종료한다. 원복은 로그의 git checkout -- . 뒤 git status --porcelain 빈 값과 make lint 0으로 확인했다(injection.log, supplement-rerun-injection.log)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/run.py",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "직접 읽었다. 셸 없이 subprocess.run(list) 실행, stdout+stderr 기록, [exit N] 기록 후 sys.exit(returncode)로 실제 종료코드를 반환한다. 최초 버전(f1f0848)과 diff는 sys.exit 한 줄과 주석이다. selftest 로그의 0/1/7/2 반환과 일치한다. 비밀값 출력 경로 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "status": "added",
+      "insertions": 113,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. 대상 SHA 0cc10b0, 수락 기준별 판정, 명령 종료코드 표가 로그의 [exit N] 집계와 일치한다. 보완 절은 최초 기록을 보존하고 러너 결함·수정·재실행 한계를 정확히 적었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. 시나리오가 D02 수락 기준 전부를 덮고 통과 조건이 로그와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/fullops-checkpoint-initial.json",
+      "status": "added",
+      "insertions": 44,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/fullops-checkpoint.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "main 측 추가 절(하위 워크트리 적용)을 읽었다. main f94510f와 같은 내용이며 후보가 삭제하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-DEV.md",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. 절차·결과가 QA 보고서와 일치한다. 31행 QA 보고서 링크의 상대경로가 한 단계 부족해 깨졌다(low). 14행 to_tester.md는 현재 빈 인박스다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. designer lint 차단·coor 결정·원천 보존 기록이 PLANS와 일치한다. 17행 지시서 링크는 현재 빈 인박스를 가리킨다(low)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-SETUP-001-question.md",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. 사용자 요청 원문·dev 질문이 D02·PLANS와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-SETUP-001-request.md",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. 사용자 요청 원문·dev 질문이 D02·PLANS와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "status": "added",
+      "insertions": 102,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. 수락 기준 10개, 범위·비범위, 원천 링크가 유효하다. 기존 리뷰와 QA의 판정 기준과 같다. status review는 수락 대기 상태와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "status": "added",
+      "insertions": 67,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/architecture.md",
+      "status": "added",
+      "insertions": 131,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/assets/architecture-diagram.html",
+      "status": "added",
+      "insertions": 250,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다. script 태그 없음을 확인했다. HTML은 Google Fonts 외부 링크만 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/business-model.md",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "status": "added",
+      "insertions": 164,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/mvp-checklist.md",
+      "status": "added",
+      "insertions": 58,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "status": "added",
+      "insertions": 125,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "status": "added",
+      "insertions": 385,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/source.json",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-SETUP-001-DEV-REVIEW.md",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체를 읽었다. 기존 리뷰 지시서이며 범위·기준 refs·소유권이 기존 리뷰 결과와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "헤더·절 구조를 읽었다. 0e2fd2e에서 삭제된 to_tester.md 비어 있지 않은 115줄 전부가 로그에 보존됨을 확인했다. designer 로그도 지시서와 완료 보고를 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+      "status": "added",
+      "insertions": 175,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "헤더·절 구조를 읽었다. 0e2fd2e에서 삭제된 to_tester.md 비어 있지 않은 115줄 전부가 로그에 보존됨을 확인했다. designer 로그도 지시서와 완료 보고를 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+      "status": "added",
+      "insertions": 173,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "헤더·절 구조를 읽었다. 0e2fd2e에서 삭제된 to_tester.md 비어 있지 않은 115줄 전부가 로그에 보존됨을 확인했다. designer 로그도 지시서와 완료 보고를 보존한다."
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/lint/lint.json",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "diff를 읽었다. dev 제품 경로 소유가 project.md와 일치한다. summary가 main의 '검증 책임과 후속 인계' 문구에서 이전 문구로 돌아갔으나 본문 72행 절은 남아 있다(low)."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "diff를 읽었다. 기술 스택·버전·명령이 기존 리뷰가 확인한 go.mod·Makefile·compose.yaml과 같은 0cc10b0 내용이다. 미구현 범위와 검증 한계를 명시한다."
+    },
+    {
+      "path": ".gitignore",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".nvmrc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "Dockerfile",
+      "status": "added",
+      "insertions": 17,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "Makefile",
+      "status": "added",
+      "insertions": 37,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 64,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "adapters/eslint.config.mjs",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "adapters/package-lock.json",
+      "status": "added",
+      "insertions": 1358,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "adapters/tsconfig.json",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "cmd/migrate/main.go",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "cmd/migrate/main_test.go",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "added",
+      "insertions": 85,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "cmd/relay/main_test.go",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "compose.yaml",
+      "status": "added",
+      "insertions": 57,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "db/migrations/.gitkeep",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "db/queries/.gitkeep",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "internal/config/config.go",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "internal/config/config_test.go",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "status": "added",
+      "insertions": 53,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "sqlc.yaml",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".env.example",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/boundary.log",
+      "status": "added",
+      "insertions": 193,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/fullops.log",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/injection.log",
+      "status": "added",
+      "insertions": 271,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/live.log",
+      "status": "added",
+      "insertions": 203,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/main.log",
+      "status": "added",
+      "insertions": 149,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/runtime.log",
+      "status": "added",
+      "insertions": 176,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/scope.log",
+      "status": "added",
+      "insertions": 176,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/supplement-rerun-injection.log",
+      "status": "added",
+      "insertions": 118,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/supplement-rerun.log",
+      "status": "added",
+      "insertions": 416,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/supplement-runner-selftest.log",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/verify.log",
+      "status": "added",
+      "insertions": 187,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 QA 로그(rule.json exclude). 전문 열람 대신 명령·[exit N] 집계를 QA 보고서 표와 대조했다. 기대 외 비정상 종료 없음, 비밀값 패턴은 더미 example-local-only뿐이다. 내용 전문 검토는 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/checks.log",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/clean-checkout-initial.log",
+      "status": "added",
+      "insertions": 65,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/clean-checkout.log",
+      "status": "added",
+      "insertions": 209,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/environment.log",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/install.log",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/lint-injection.log",
+      "status": "added",
+      "insertions": 147,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/runtime-initial.log",
+      "status": "added",
+      "insertions": 383,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/runtime.log",
+      "status": "added",
+      "insertions": 178,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/assets/architecture-screenshot.webp",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "외부 원천의 바이너리 그림. 40e9929 이후 변경 없음, file로 PNG/WebP 2560x1442 형식만 확인했다. 원본 보존 대상이며 텍스트 리뷰 대상이 아니다. 내용은 architecture.svg와 문서로 대체 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/assets/architecture.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "외부 원천의 바이너리 그림. 40e9929 이후 변경 없음, file로 PNG/WebP 2560x1442 형식만 확인했다. 원본 보존 대상이며 텍스트 리뷰 대상이 아니다. 내용은 architecture.svg와 문서로 대체 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/assets/architecture.svg",
+      "status": "added",
+      "insertions": 197,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "외부 원천 스냅샷(service-design@404ff83). 0cc35f0/40e9929 이후 변경 없음(git diff --quiet 729446d 59be02d -- sources 종료코드 0). 원본 보존 대상이므로 내용 수정 대상이 아니다. D02의 인용과 대조했다. script 태그 없음을 확인했다. HTML은 Google Fonts 외부 링크만 있다."
+    },
+    {
+      "path": ".npmrc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "secret_exclude",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "go.mod",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    },
+    {
+      "path": "go.sum",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "제품·DEV 증거 경로가 기존 독립 리뷰 head 0cc10b0과 바이트 동일하다(git diff 0cc10b0 59be02d에 없음, main 측 e825dc7..f94510f 변경 없음). 기존 리뷰 SAR-SETUP-001-DEV-099(base dbe0b40, head 0cc10b083771, reviewer 세션 ba47d7dc)의 reviewed 판정과 low 2건을 원래 SHA와 함께 재사용했다."
+    }
+  ],
+  "findings": [
+    {
+      "path": ".fullops-squad/lint/lint.json",
+      "severity": "medium",
+      "resolved": false,
+      "content": "main 기준 f94510f의 lint.json에는 원천 스냅샷 exclude(729446d)가 없다. 지정 기준으로 lint.py를 실행하면 보존 대상 외부 원천 Markdown 7개에 DOC-003 ERROR 7건이 나고 종료코드 1이다. 후보의 lint.json 변경은 LINT-001대로 병합 후에만 적용된다. 제품 결함은 아니지만 필수 lint 게이트가 ERROR이므로 이 refs의 병합 수락을 차단한다. 원천을 고치지 말고 coor가 원천 exclude만 담은 준비 커밋을 main에 먼저 반영한 뒤 새 base로 lint·리뷰를 다시 하거나, 하네스 기준의 명시 예외 결정을 받아야 한다. 기준 729446d8da57의 같은 snapshot lint는 ERROR 0이다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "start_line": 36,
+      "end_line": 46,
+      "severity": "low",
+      "resolved": false,
+      "content": "기존 리뷰 SAR-SETUP-001-DEV-099(head 0cc10b0)의 미해결 low를 그대로 이월한다. DB ping 실패 원인 유실(cmd/migrate/main.go:43-63 동일). 수락을 막지 않는다."
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "start_line": 22,
+      "end_line": 35,
+      "severity": "low",
+      "resolved": false,
+      "content": "기존 리뷰 SAR-SETUP-001-DEV-099의 미해결 low를 이월한다. assert 기반 판정은 python3 -O에서 제거된다. 현재 Makefile 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER-test/run.py",
+      "start_line": 11,
+      "end_line": 11,
+      "severity": "low",
+      "resolved": true,
+      "content": "최초 러너(f1f0848)는 하위 종료코드를 로그에만 남기고 자신은 0으로 끝났다. 68c5c9e의 sys.exit(p.returncode)로 해결됐다. selftest(0/1/7/2)와 같은 SHA 재실행 로그로 확인했다. 기존 판정은 로그의 [exit N]에서 내렸으므로 유효하다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "start_line": 31,
+      "end_line": 31,
+      "severity": "low",
+      "resolved": false,
+      "content": "링크 ../evaluations/qa-reports/SAR-SETUP-001-TESTER.md가 phases/ 기준으로 존재하지 않는다. ../../evaluations/... 이어야 한다. 기록 탐색만 영향받는다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "start_line": 75,
+      "end_line": 76,
+      "severity": "low",
+      "resolved": false,
+      "content": "PLANS.md 75-76행, phases/SAR-SETUP-001.md 17행, phases/SAR-SETUP-001-TESTER.md 14행이 handovers/to_dev.md·to_tester.md를 지시서로 가리킨다. 두 파일은 이제 빈 인박스이고 원문은 handovers/logs/에 보존됐다. 당시 기록이지만 독자가 빈 파일에 도달한다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "severity": "low",
+      "resolved": false,
+      "content": "병합 결과 '운영 기반 구성' note가 main의 'FullOps 0.9.10 운영 규약 적용' 문구 대신 0.9.9 준비 문구로 돌아갔다. '기술 설계'·'구현' note는 이미 끝난 리뷰·수락 대기를 말한다. orca-agents.md summary도 main 문구에서 이전 문구로 돌아갔다. 현황판 표시만 영향받는다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a0ffa6-bcbc-7383-a8e5-f14521f0dfa3",
+    "reviewer_session": "16770bb9-ba07-47b6-b468-02ce49ad1ca4",
+    "snapshot_path": "/tmp/SAR-SETUP-001-integration-review-59be02d",
+    "snapshot_head": "59be02d029c3cf53e3591871871ed8595b4ca4d2",
+    "read_only": true,
+    "qa_runner_session": "79757149-a624-459d-ae5d-76e9a22c85bc",
+    "prior_reviewer_session": "ba47d7dc-4c3e-472c-bdaa-3afa95e7a285"
+  }
+}

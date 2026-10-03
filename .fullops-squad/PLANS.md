@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, FULLOPS-UPDATE-0.9.10]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -74,6 +74,7 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - D03은 dev 책임이다. 잠긴 Go·TypeScript·Postgres·Compose·DB tooling·Go UI 선택을 유지한다.
 - dev 지시서: `handovers/to_dev.md` (`SAR-SETUP-001-DEV`, ready).
 - tester 지시서: `handovers/to_tester.md` (`SAR-SETUP-001-TESTER`, dev 완료 SHA 대기).
+- tester 독립 QA(SAR-SETUP-001-TESTER): dev SHA `0cc10b0`에서 SETUP-01–04·LINT-01–03·DOC-01·SCOPE-01 통과, 결함 없음. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md). main 병합은 coor가 판단한다.
 - 역할별 Jev find/code·documents 및 context는 API 실패로 fallback했다. 문서를 수동으로 좁히고 모두 keep했다. 원천은 수정하지 않았다.
 - coor 후속: 설계 커밋을 역할 워크트리에 반영하고 실제 dispatch 복귀 정보를 기록한다. dev 완료 후 tester를 dispatch한다.
 - 상세 근거와 검증: `docs/exec-plans/phases/SAR-SETUP-001.md`. 제품 기능·배포와 제품 테스트는 수행하지 않았다.
@@ -93,6 +94,33 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - ops·tester만 쉬고 깨끗한 동기화 대상이다. coor·designer·dev는 기존 SAR 인계와 작업을 보존하기 위해 완료 후 동기화한다.
 - 새 coordinator는 [갱신과 인계 기록](docs/exec-plans/phases/FULLOPS-UPDATE-099.md)을 읽고 기존 Run을 연결한다.
 
+## FullOps 0.9.9 coordinator 인계 — 2026-10-03
+
+- 운영 동기화 기준: coor `3fde6f2`, main 준비 `bb31169`, 검증 `3d91754`. 병합 충돌은 기존 SAR 기록과 최신 역할 marker를 모두 보존해 해결했다. 제품 산출물은 main에 병합하지 않았다.
+- Run `run_8ca8bc058ab7`을 현재 coordinator에 연결했다. designer 결과 `481d8ac8ac80a0c59bf35a0857eb9599ba6c50d7`의 지시서와 답 원문을 반영했다. 기존 승인·QA·원천·검사 기준 `729446d8da57`은 유지한다.
+- 이전 dev Dispatch `ctx_ab5236bf8b40`는 failed이며 worker-show의 exactWorker observation `exited`, terminal exitCause `operator_close`를 확인했다. 작업 트리는 깨끗하며 완료 코드 SHA는 없다. 이전 user_takeover 기록은 유지한다.
+- SAR-SETUP-001-DEV를 같은 키로 force 재선정했다. D02와 범위 답변에 근거해 override-role dev를 기록했다. Jev API 키 부재로 implementation/dev와 codex gpt-6.1-sol high 폴백을 기록했다. 기존 결과는 prior 파일로 보존했다. 갱신 산출물은 지시서의 D03을 유지한다.
+- 같은 Task `task_a7fd5d1b8806`를 retry-of로 새 세션에서 재개한다. 이전 세션 종료 및 0.9.8 캐시 경로 오류 때문에 세션을 재사용하지 않는다. dev가 기술 계획·구현·테스트·문서 갱신을 수행한다.
+- designer 후속 세션은 병합 검토까지 retain한다. tester는 성공 완료 SHA 이후 배정한다. 병합 전 서로 다른 구현·리뷰 세션 ID와 깨끗한 read-only detached snapshot, fixed-SHA 리뷰·lint·테스트 게이트를 확인한다.
+
+- 재개 영수증: Task `task_a7fd5d1b8806`, Dispatch `ctx_67f98ed4cd42`, terminal `term_cf9a131a-84f0-40fa-91a2-c5bd7e0fb28f`. effective codex gpt-6.1-sol high, turn_started 확인. 기존 ready Task는 retry-of를 거절하므로 dispatch-show로 이전 실패를 확인한 후 같은 Task를 ready 상태에서 시작했다. 과제는 복제하지 않았다.
+- 이전 질문 reply는 dispatch_inactive로 거절됐다. 답 원문은 designer 커밋과 최신 dev 지시서에 보존하여 새 세션에 전달했다. dev 워크트리는 종료와 깨끗한 상태를 확인한 후 준비 HEAD `dbe0b40`까지 fast-forward했다. designer 진행 브랜치는 변경하지 않았다.
+- 운영 변경의 lint: HEAD `dbe0b40`, 기준 `729446d8da57`, 종료코드 0, ERROR 0, WARNING 1(LINT-000), 실행 불가 0. 제품 코드 변경은 없으므로 제품 테스트는 적용하지 않았다.
+## SAR-SETUP-001-DEV 구현 결과 — 2026-10-03
+
+- 초기 Go relay·별도 SQL-only migrate·TypeScript adapter·Compose·제품 lint를 구현했다. 업무 MVP와 운영 배포는 후속이다.
+- 코드 체크포인트 `929832aa0ecd`에서 직접 검사·위반 주입·깨끗한 clone 재현·로컬 DB runtime을 통과했다. FullOps 기준 `729446d8da57`의 lint는 ERROR 0, WARNING 2, 실행 불가 0이다.
+- D03은 review다. 독립 QA·고정 SHA 독립 코드 리뷰와 병합 수락은 대기한다. 최종 완료 SHA는 현재 Dispatch의 worker_done으로 coordinator에게 전달한다.
+- 상세 근거와 한계: [실행 기록](docs/exec-plans/phases/SAR-SETUP-001-DEV.md).
+
+## 완료 회신 처리와 독립 QA 보류 — 2026-10-03
+
+- `msg_3d94315c55fc`는 Task `task_a7fd5d1b8806` / Dispatch `ctx_67f98ed4cd42`의 성공 완료 회신이다. 보고 SHA `0cc10b083771be9b3423833b222c57d426315333`를 확인하고 coor 준비 브랜치에 통합했다. main 수락·병합은 아직 수행하지 않았다. dev 세션은 리뷰·수락까지 retain했다.
+- 보고 검증: 제품 lint·race test·빌드·Compose·DB 기동·깨끗한 clone 재현 성공. 위반 4종의 실패와 원복 성공을 보고했다. FullOps 기준 `729446d8da57`에서 ERROR 0, WARNING 2, 실행 불가 0이다. 코드가 없는 업무 SQL·sqlc 생성과 UI 직접 시각 검수는 미적용이다.
+- 다음 배정은 기존 `SAR-SETUP-001-TESTER`다. Jev 키가 연결되기 전 implementation/tester override와 claude-opus-5-5 medium 폴백을 기록했다. Task `task_83afe3153820` / Dispatch `ctx_ace07a0460f8`는 `agent_readiness`에서 `Agent startup blocked: agent-trust-workspace`로 실패했다. QA는 시작되지 않았다. 영수증의 복구 명령으로 실패 세션을 release했다. 신뢰 승인은 사용자에게 맡기며 권한을 우회하거나 모델을 임의 대체하지 않는다. 같은 과제를 재개하며 QA 기록을 복제하지 않는다.
+- 고정 SHA 독립 리뷰 준비 경로: `docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/`. snapshot: `/tmp/SAR-SETUP-001-review-0cc10b0`, detached HEAD `0cc10b083771be9b3423833b222c57d426315333`. 리뷰는 아직 미완료이며 check 통과나 수락으로 표시하지 않는다.
+- main `.fullops-squad/.env`를 coor·designer·dev·ops·tester에 심볼릭 링크했다. Jev api_key 로더로 여섯 체크아웃의 키 존재를 확인했다. 키 값은 출력하지 않았다. 이전 폴백 기록은 당시 사실로 보존한다.
+
 ## FullOps 0.9.10 업데이트 — FULLOPS-UPDATE-0.9.10
 
 - 설치 버전은 갱신 전후 0.9.10이다. 레포 적용 버전 0.9.9의 미적용 릴리스를 회수한다.
@@ -106,3 +134,82 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 
 사용자 요청으로 FullOps 0.9.10 준비 커밋을 이 역할 브랜치에 병합했다. 위 동기화 보류는 당시 기록이다.
 기존 제품 자료·지시서·실패 기록과 역할별 프로젝트 기준을 보존했다. 실행 중 세션은 다음 시작 시 새 플러그인 규약을 읽는다.
+
+## FullOps 0.9.10 coordinator 재개 — 2026-10-03
+
+- Run run_8ca8bc058ab7을 새 coordinator terminal term_98d5ec21-4481-4db6-9add-f19b566c1ff8에 연결했다. 미처리 메시지는 없다. 기존 완료와 실패를 보존한다.
+- 사용자가 tester Claude workspace 신뢰 승인을 완료했다고 확인했다. 같은 QA Task task_83afe3153820를 재개한다. 최신 Jev 선정은 claude-sonnet-5-5 high다.
+- 독립 코드 리뷰 SAR-SETUP-001-DEV-REVIEW는 별도 검토 세션에서 수행한다. Jev 선정은 claude-opus-5-5 medium이다. 구현자 Dispatch ctx_67f98ed4cd42와 다른 실제 세션 ID를 확보한다.
+- 검증 대상은 기존 완료 SHA 0cc10b083771be9b3423833b222c57d426315333이다. 준비 리뷰 dbe0b40076af4d440bb263ca4d02d671780d2514..0cc10b0과 read-only detached snapshot /tmp/SAR-SETUP-001-review-0cc10b0을 유지한다. 제품 코드·원천은 변경하지 않는다.
+- QA와 리뷰가 성공하기 전 main 수락·병합은 보류한다.
+
+- QA 재개 영수증: Task task_83afe3153820, Dispatch ctx_8bc7450abd67, terminal term_706e0b83-208c-469f-b671-1e30fa93da31. effective claude-sonnet-5-5 high와 turn_started를 확인했다. tester 준비 병합 c9ae79f에서 PLANS와 board 충돌을 기존 기록 보존으로 해결했다.
+- 리뷰 배정 영수증: Task task_158decad4fc0, Dispatch ctx_53a98f9ed8f8, terminal term_34cd4a57-7b87-4170-a5cb-d661215a1922. effective claude-opus-5-5 medium과 turn_started를 확인했다. 같은 체크아웃의 리뷰 디렉터리만 worker가 소유한다.
+
+### 독립 코드 리뷰 완료 — 2026-10-03
+
+- msg_2ea9b1d5e1ab은 Task task_158decad4fc0 / Dispatch ctx_53a98f9ed8f8의 성공 회신이다. 결과 커밋 85c2a6a를 확인했다. 검토 head는 0cc10b083771be9b3423833b222c57d426315333이다.
+- 실제 구현자 Codex 세션 01a0ffa6-bcbc-7383-a8e5-f14521f0dfa3와 검토자 Claude 세션 ba47d7dc-4c3e-472c-bdaa-3afa95e7a285가 다르다. 읽기 전용 detached snapshot을 사용했다.
+- 검토 50/50, skipped 0, critical/high/medium 0, low 2다. low는 DB 오류 원인 유실과 Compose 검사 assert 사용이며 초기 구성 수락을 차단하지 않는다는 검토 결론을 기록했다.
+- 지시서 lint 기준 729446d8da57과 리뷰 기준 dbe0b40 양쪽 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0이다. review.py check 종료코드 0이다. 상세 보고서는 docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md다.
+- 검토 세션을 release한다. 독립 QA QA-01과 최종 수락은 아직 대기한다.
+
+### QA 완료 회신과 증거 보완 — 2026-10-03
+
+- msg_e6af94920990은 Task task_83afe3153820 / Dispatch ctx_8bc7450abd67의 성공 회신이다. tester 완료 SHA는 51f0d54dedd139564c87fb4555f9f47c371de569다. 제품 수락 기준 전부 통과, 결함 0, lint ERROR 0 / WARNING 2 / 실행 불가 0을 보고했다.
+- QA 로그 러너가 실제 하위 종료코드를 기록하지만 자신의 종료코드를 0으로 바꾸는 증거 결함을 확인했다. 세션의 종료코드 보존 지시에 맞게 같은 tester 세션에 좁은 보완 후속을 배정한다. 기존 결과와 실패는 보존하며 새 과제로 전체 제품 QA를 복제하지 않는다.
+- main에 있는 0.9.10 하위 워크트리 동기화와 검증 기록이 coor 준비 브랜치에서 빠져 있어 원본 그대로 회수했다. 기존 제품·운영 기록을 삭제하지 않는다.
+
+- 증거 보완 후속 영수증: Task task_38a1f068f7a9 / Dispatch ctx_a0b3241794f3. 같은 tester terminal term_706e0b83-208c-469f-b671-1e30fa93da31과 실제 Claude 세션을 재사용했고 turn_started를 확인했다.
+
+### 독립 QA 증거 보완 완료와 통합 후보 — 2026-10-03
+
+- msg_8791a1f6af0e은 Task task_38a1f068f7a9 / Dispatch ctx_a0b3241794f3의 성공 회신이다. 완료 SHA 68c5c9e8eaafaa13a9af407432792bdfeef8f046을 coor에 병합했다.
+- run.py는 이제 하위 종료코드를 그대로 반환한다. 0/1/2/7 전파와 같은 dev SHA의 필수 make 명령 및 주입·원복을 재검증했다. 기존 로그와 최초 runner 한계는 보존했다. 최종 lint 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0이다.
+- worker-release 결과는 reused external_terminal이라 retained다. Orca가 안전하게 release하지 않는 세션은 강제로 종료하지 않는다.
+- main과 실제 최종 통합 후보의 refs가 기존 제품 리뷰 refs와 달라 최종 독립 통합 리뷰를 수행한다. 제품 파일 동일성과 기존 QA·리뷰 증거를 재사용하고 신규 QA runner 및 미검토 기획·운영 기록을 확인한다.
+
+- 최종 통합 리뷰 영수증: Task task_bea67a9755f1 / Dispatch ctx_dab52fc0aa32 / terminal term_720f0fb4-2f5d-4f79-b325-c25d672bf685. effective claude-opus-5-5 medium과 turn_started를 확인했다. 고정 후보 59be02d와 main 기준 f94510f를 사용한다.
+### 하위 워크트리 동기화 완료 — 2026-10-03
+
+사용자 요청으로 coor·designer·dev·ops·tester 모두 FullOps 0.9.10을 반영했다. 위 보류는 당시 기록이다.
+기존 역할 작업과 coor 미추적 리뷰 폴더를 보존했다. 상세 SHA와 검증은 업데이트 기록을 따른다. 원격 push는 수행하지 않았다.
+
+## SAR 초기 구성 통합 검사 준비 — 2026-10-03
+
+기존 coor 결정 729446d8da57의 외부 원천 전용 lint 제외를 main에 먼저 반영한다. 원본 외부 문서에는 front matter를 추가하지 않는다. 제품 코드와 작성 문서의 검사는 유지한다. 이 준비는 제품 수락이나 제품 코드 병합이 아니다. 실제 main 기준 통합 리뷰는 이 준비 커밋을 조상으로 갖는 새 후보에서 수행한다.
+
+### 최종 통합 리뷰의 원천 준비 결함 — 2026-10-03
+
+- reviewer 질문 msg_2af0c5e13279에서 0.9.10 DOC-003이 exclude보다 먼저 적용됨을 확인했다. 기존 source exclude만으로 외부 원문을 보호하지 못한다. 이전 729446d 기준은 이미 반입한 원천이 diff에 없어 통과한 것이며 제외가 DOC-003을 막았다는 과거 해석을 바로잡는다.
+- main 준비 fa971df는 source exclude만 추가했다. 준비 lint ERROR 0/WARNING 2다. 기존 원천 스냅샷을 원문 그대로 main 3eb7647에 반입하고 coor 9c96232에 병합했다. 원천과 후보의 byte-level Git diff는 0이다.
+- 원천 반입 자체의 lint는 ERROR 7/WARNING 1/종료코드 1이며 /tmp/SAR-SETUP-001-source-import-lint.json에 보존한다. 원문 Markdown hard break의 git diff --check 실패도 유지한다. 원천을 stamp하거나 whitespace를 바꾸지 않는다. 제품 수락으로 표시하지 않는다.
+- 제품 통합의 실제 최종 refs는 main 준비 3eb7647938111c9f13ad523760aeb7e90c7fa7f3..9c96232e6230e00319c33ff77637c80923e2438b다. 새 read-only snapshot /tmp/SAR-SETUP-001-integration-review-9c96232와 SAR-SETUP-001-INTEGRATION-SOURCE 기록으로 게이트를 확인한다. 이전 두 리뷰의 차단 결과는 덮어쓰지 않는다.
+
+## SAR-SETUP-001 초기 구성 수락과 main 병합 완료 — 2026-10-03
+
+- msg_54fa321f61b6은 Task task_bea67a9755f1 / Dispatch ctx_dab52fc0aa32의 성공 회신이다. 최종 리뷰 커밋은 50caf7b다. 실제 refs 3eb7647..9c96232에서 검토 94, skipped 11, critical/high/medium 0, 미해결 low 6이다. skipped는 원시 QA 로그이며 명령·종료코드 집계를 확인했다. lint와 review check 종료코드 0이다.
+- 구현·QA 러너·각 검토자의 실제 세션이 다르며 fixed-SHA detached snapshot이 깨끗하고 읽기 전용임을 확인했다. 제품 경로는 기존 독립 리뷰·QA 대상 0cc10b0과 같다. 독립 QA와 종료코드 증거 보완은 통과했다.
+- coor는 기존 초기 구성 범위만 수락했다. main을 검토된 head 9c96232e6230e00319c33ff77637c80923e2438b로 fast-forward했다. 검토 범위 이후 커밋은 제품 병합에 포함하지 않았다. main에서 make install과 make lint를 직접 실행해 각각 종료코드 0을 확인했다.
+- 최종 리뷰: docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md. QA: docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md. 최종 리뷰 세션을 release했고 reclaimable worker는 없다. tester 재사용 세션은 Orca external_terminal 정책으로 retained이며 강제로 종료하지 않았다.
+- 완료 지시서 정본은 handovers/logs/2026-10-03_to_dev.md, handovers/logs/2026-10-03_to_tester.md다. 빈 인박스는 진행 과제가 아니다.
+- low 후속 담당: DB 오류 분류와 Compose assert는 dev, QA 실행 기록 상대 링크는 tester, 과거 인박스 경로는 기록 당시 이력으로 보존한다. FullOps DOC-003 exclude 순서는 플러그인 유지보수 대상이며 로컬 캐시를 수정하지 않는다. 현재 board 상태는 coor가 완료로 갱신한다.
+- 제품 전체 MVP·업무 SQL·sqlc 생성·UI·실제 Tunnel·운영 배포는 이번 초기 구성 수락 범위 밖이다. 원격 push는 수행하지 않았다. 후속 기능 범위는 새 요청으로 확정한다. 상설 워크트리 동기화는 실제 idle·clean 확인 뒤 진행한다. retained/user-owned 세션은 임의 변경하지 않는다.
+
+### 최종 운영 기록 검사
+
+- main 운영 기록 커밋 7c996fb에서 기준 9c96232의 FullOps lint 종료코드 0, ERROR 0, WARNING 0, 실행 불가 0을 확인했다. 등록 명령 product-lint: make lint도 passed다. 결과는 docs/exec-plans/logs/SAR-SETUP-001-COOR/main-final-product-lint.json이다.
+- coor 운영 기록 HEAD 9ccf89e에서 지시서 기준 729446d8da57의 lint 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0을 확인했다. WARNING은 과거 기준의 빈 commands와 변경 설정 안내이며 main 제품 lint 통과와 구분한다. 결과는 같은 폴더의 coor-final-lint.json이다.
+- 산출물 strict는 문제 0, 경고 0, 미작성 11이다. 초기 구성은 D02/D03만 작성하며 미작성 전체 MVP 산출물을 완료로 표시하지 않는다. main과 coor 작업 트리는 깨끗하다. 마지막 증거 등록 뒤 지시서 기준의 coor lint를 다시 확인한다.
+
+## SAR-SETUP-001-INTEGRATION-REVIEW 배정 완료 확인
+
+- 상태: 배정과 검토 완료. Run run_8ca8bc058ab7, Task task_bea67a9755f1, Dispatch ctx_dab52fc0aa32에 배정했고 turn_started를 확인했다.
+- 성공 완료 회신은 msg_54fa321f61b6이다. 최종 리뷰 결과는 커밋 50caf7b와 docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md에 있다. 검토된 후보는 main에 병합했다.
+- 신규 배정 보류 사유: 이 과제는 이미 성공 완료했고 검토 세션도 release했다. Stop hook의 미배정 판정은 실제 배정 영수증과 다르다. 같은 완료 검토를 중복 배정하지 않는다. 제품 정지나 미완료 과제로 변경하지 않는다.
+
+## SAR-PREP-002 — 최신 서비스 기획 반입과 MVP 개발 준비
+
+- 사용자 요청으로 service-design main의 silent-agent-relay를 최신 SHA 7bc9ea190ea549fae8b047e850247a19322fc9c3에 고정했다. product.md와 decisions.md의 A2A gap review 잠금만 바뀌었다. 원문 바이트를 반입하며 이전 원문은 Git 이력으로 보존한다.
+- Jev product → designer, codex gpt-6.1-sol high다. 전체 서비스 제품 규칙·MVP 범위·사용자 완료 조건과 기능별 후속 인계를 준비한다. 기존 SAR-SETUP-001 골격과 검증은 재사용한다.
+- 이번 요청의 완료 범위는 개발 준비다. 전체 MVP 구현이나 운영 배포는 시작하지 않는다. 기술 계획은 dev의 후속 기능 구현 과제에서 수행한다.

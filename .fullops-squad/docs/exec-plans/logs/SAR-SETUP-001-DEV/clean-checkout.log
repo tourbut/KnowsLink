@@ -1,0 +1,209 @@
+Cloning into '/tmp/knowslink-clean-bfvikiem/checkout'...
+done.
+HEAD is now at 929832a fix: preserve safe command evidence and normalize validation logs
+code SHA: 929832aa0ecd0a7f1576ad8c20315a9d93900416
+command: make install
+go mod download
+npm ci --prefix adapters
+
+added 97 packages, and audited 98 packages in 1s
+
+31 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+exit: 0
+command: make lint test build verify
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
+Checking formatting...
+All matched files use Prettier code style!
+python3 scripts/check_compose.py
+Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
+python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.014s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.013s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.014s
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc
+
+python3 scripts/verify_setup.py
+command: ['make', 'lint']; exit: 0
+make[1]: Entering directory '/tmp/knowslink-clean-bfvikiem/checkout'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
+Checking formatting...
+All matched files use Prettier code style!
+python3 scripts/check_compose.py
+Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
+python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+make[1]: Leaving directory '/tmp/knowslink-clean-bfvikiem/checkout'
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+Go formatting violations:
+cmd/relay/lint_probe.go
+make[1]: Leaving directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+make[1]: *** [Makefile:11: lint-go] Error 1
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+/tmp/knowslink-lint-zh6d2ulj/repo/adapters/src/lint_probe.ts
+  1:7  error  'unusedProbe' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+make[1]: Leaving directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+make[1]: *** [Makefile:17: lint-adapters] Error 1
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+src/lint_probe.ts(1,14): error TS2322: Type 'number' is not assignable to type 'string'.
+make[1]: Leaving directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+make[1]: *** [Makefile:17: lint-adapters] Error 2
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+make[1]: Leaving directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+[warn] src/lint_probe.ts
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+make[1]: *** [Makefile:17: lint-adapters] Error 1
+command: ['make', 'lint']; exit: 0
+make[1]: Entering directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
+Checking formatting...
+All matched files use Prettier code style!
+python3 scripts/check_compose.py
+Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
+python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+make[1]: Leaving directory '/tmp/knowslink-lint-zh6d2ulj/repo'
+PASS: format, lint, type errors fail registered integrated command; restored copy passes
+exit: 0
+command: npm run start --prefix adapters
+
+> @knowslink/adapters@0.0.0 start
+> node dist/index.js
+
+{"state":"unimplemented","transport":"pull","webhook":false,"evidenceFetch":false}
+exit: 0
+git status --porcelain: ''
