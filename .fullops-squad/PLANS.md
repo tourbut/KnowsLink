@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -108,3 +108,17 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 코드 체크포인트 `929832aa0ecd`에서 직접 검사·위반 주입·깨끗한 clone 재현·로컬 DB runtime을 통과했다. FullOps 기준 `729446d8da57`의 lint는 ERROR 0, WARNING 2, 실행 불가 0이다.
 - D03은 review다. 독립 QA·고정 SHA 독립 코드 리뷰와 병합 수락은 대기한다. 최종 완료 SHA는 현재 Dispatch의 worker_done으로 coordinator에게 전달한다.
 - 상세 근거와 한계: [실행 기록](docs/exec-plans/phases/SAR-SETUP-001-DEV.md).
+
+## FullOps 0.9.10 업데이트 — FULLOPS-UPDATE-0.9.10
+
+- 설치 버전은 갱신 전후 0.9.10이다. 레포 적용 버전 0.9.9의 미적용 릴리스를 회수한다.
+- 공통 기준 0.3.2, 핸드오버와 시나리오 기준, 업데이트 연결과 역할별 검증 인계를 반영한다.
+- DEV 관련 회귀와 최종 수락을 구분한다. tester는 안정된 통합 후보의 독립 전체 QA를 맡고 designer는 직접 시각 검수를 맡는다.
+- 증거는 원래 SHA·조건과 의존성 동일성을 확인해 재사용한다. 기존 실패와 제품 정지는 유지한다.
+- 모든 역할 워크트리의 동기화는 보류한다. coor가 진행 과제·활성 세션·깨끗한 상태를 확인한 뒤 준비 커밋을 전달한다.
+- 상세 적용·검증·보류 담당과 재개 조건은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md)을 따른다.
+
+### 하위 워크트리 적용 — 2026-10-03
+
+사용자 요청으로 FullOps 0.9.10 준비 커밋을 이 역할 브랜치에 병합했다. 위 동기화 보류는 당시 기록이다.
+기존 제품 자료·지시서·실패 기록과 역할별 프로젝트 기준을 보존했다. 실행 중 세션은 다음 시작 시 새 플러그인 규약을 읽는다.

@@ -3,8 +3,8 @@ title: FullOps Squad 하네스 지도
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099]
-summary: KnowsLink 작업 규약과 역할별 참조 문서를 안내한다
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10]
+summary: 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다
 ---
 
 # FullOps Squad — 하네스 지도
@@ -25,6 +25,7 @@ summary: KnowsLink 작업 규약과 역할별 참조 문서를 안내한다
 | Orca 착수 확인·회신·검토 | `orca-agents.md` · `fullops-orca` 스킬 |
 | 코드 변경의 lint 게이트 | `lint/README.md` · `lint/lint.json` |
 | 병합 전 delegate 코드·문서 검토 | `review/rule.json` · `fullops-review` 스킬 |
+| 플러그인 설치·레포 적용 갱신 | `update-fullops` 스킬 · `docs/exec-plans/phases/FULLOPS-UPDATE-<버전>.md` |
 | 과거 결정·교훈 | `contexts/<role>.md` |
 | 산출물과 원천 매핑 | `docs/deliverables/README.md` |
 | 외부 스킬 설정 | `docs/agents/{issue-tracker,triage-labels,domain}.md` |
