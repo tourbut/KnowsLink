@@ -1,3 +1,12 @@
+---
+title: SAR-MVP-002-DEV 리뷰
+status: draft
+updated: 2026-10-03
+owner: ops
+tasks: [SAR-MVP-002-DEV-REVIEW]
+summary: Grok Bot 플러그인 고정 SHA 독립 코드 문서 리뷰 결과
+---
+
 # SAR-MVP-002-DEV 리뷰
 
 - 검토자 / CLI / 모델: ops 독립 검토자 / Claude Code / claude-sonnet-5-5. 세션 `0f2048f7-ec36-47bb-8707-f202b5c14e02`.

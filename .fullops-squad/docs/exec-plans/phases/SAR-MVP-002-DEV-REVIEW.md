@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-03
 owner: ops
 tasks: [SAR-MVP-002-DEV-REVIEW]
-summary: "Grok Bot 플러그인 고정 SHA의 독립 리뷰 범위·재현·결론을 기록한다"
+summary: Grok Bot 플러그인 고정 SHA의 독립 리뷰 범위와 재현 결론을 기록한다
 ---
 
 # SAR-MVP-002-DEV-REVIEW — 독립 리뷰 실행 기록
