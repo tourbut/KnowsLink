@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-001-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D03",
+    "D09"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "tester": 0,
+        "ops": 0,
+        "dev": 1
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.51,
+      "D02": 0.59,
+      "D03": 0.74,
+      "D04": 0.53,
+      "D05": 0.6,
+      "D06": 0.55,
+      "D07": 0.67,
+      "D08": 0.66,
+      "D09": 0.69,
+      "D10": 0.77,
+      "D11": 0.6,
+      "D12": 0.69,
+      "D13": 0.59
+    }
+  },
+  "usage": {
+    "input_tokens": 2301,
+    "output_tokens": 314,
+    "cost": 9.6642e-05
+  },
+  "error": null,
+  "latency_seconds": 0.252,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0,
+      "claude claude-sonnet-5-5 high": 0.01,
+      "claude claude-opus-5-5 medium": 0.15,
+      "codex gpt-6.1-sol medium": 0.6799999999999999,
+      "claude claude-opus-5-5 high": 0.07,
+      "codex gpt-6.1-sol high": 0.09
+    },
+    "usage": {
+      "input_tokens": 794,
+      "output_tokens": 66,
+      "cost": 3.3348e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}

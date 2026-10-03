@@ -9,9 +9,9 @@ summary: 로컬 합성 요청의 안전 전달과 human-gate를 끝까지 구현
 
 # SAR-MVP-001-DEV — 로컬 합성 요청의 안전 전달과 human-gate를 끝까지 구현한다
 
-- 작성일: 2026-10-03. From / To: designer / dev. 작업 상태: queued.
-- 배정 전 준비 문서다. 이번 SAR-PREP-002에서 구현을 시작하거나 dispatch하지 않는다.
-- 담당 브랜치: fullops/dev. 예정 워크트리: /home/shin/orca/workspaces/KnowsLink/fullops-dev.
+- 작성일: 2026-10-03. From / To: designer / dev. 작업 상태: ready.
+- 사용자 2026-10-03 MVP 구현 시작 지시로 착수한다. 준비 지시서의 제품 요구·검증 조건은 유지한다.
+- 담당 브랜치와 실제 워크트리는 신규 dev 세션 배정 영수증으로 고정한다. 기존 user-owned dev 체크아웃은 보존한다.
 - 담당 repo id·실제 경로·복귀 Run/Task/Dispatch/terminal은 coor가 배정 시 확인해 기록한다. 아직 DEV Dispatch가 없으며 SAR-PREP-002의 worker capability를 재사용하지 않는다.
 - 병합 책임자: coor. 기본 브랜치: main.
 - 선행 조건: 사용자의 구현 시작 지시, coor의 준비 커밋 반영과 실제 idle/clean 확인, 동일 과제 지시서·원천·규칙 접근 확인.
@@ -109,3 +109,9 @@ A2A 검토 범위는 공개 v0.3.0 개념이다. 최신 delta 재검토·wire �
 ## 완료 보고
 
 아직 실행하지 않았다. 배정된 DEV가 브랜치·고정 SHA, 기술 판단·범위 차이, D02 ID별 실제 구현/검증, lint ERROR/WARNING/실행 불가, DB·UI 실행 경로, 후속 QA·시각 검수·독립 리뷰, held 담당·재개 조건을 작성한다.
+
+## 사용자 실행 지시와 서버 경계 — 2026-10-03
+
+사용자가 MVP 구현 시작과 이 서버의 Docker 컨테이너·Cloudflare Tunnel 운영을 승인했다. 기술 구현은 이 첫 과제부터 수행하고 운영 작업은 ops가 병행 준비한다. DEV는 자신의 체크아웃에서 별도 Compose project로 합성 데이터만 검증하며 기존 MyPortfolio 등 다른 컨테이너·볼륨·기존 tunnel route를 변경하지 않는다. 이번 기능의 수락 뒤 현재 서버의 고정 배포 체크아웃에 Docker로 올린다. 공개 hostname은 coor가 사용자 답변으로 전달한다. 사용자 지정 hostname·필수 인증·안전 제한과 수락된 SHA가 준비되면 기존 실행 승인을 근거로 Tunnel 연결을 진행하며 같은 배포 승인을 다시 요청하지 않는다.
+
+제품 코드·기술 정본·구성 파일은 DEV 소유다. OPS의 서버 사전조사는 읽기 전용이며 운영 compose/scripts 수정은 DEV 후보 완료 뒤 수행한다. 미정 상품·공개 정책을 임의 확정하지 않는다. 실제 벤더 인터페이스나 데이터 연결에 필요한 정보는 coor로 질문한다. 첫 과제의 로컬 합성 흐름은 이를 기다리지 않는다.
