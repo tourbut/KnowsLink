@@ -416,3 +416,6 @@ Cloudflare/cloudflare-one 스킬·Tunnel reference를 읽었다. cloudflare docs
 OPS중간437f143/msg_8d549d2746f2에서 로컬beta·합성auth/CSRF·backup/isolatedrestore·공유서비스불변을 보고했다. 별도knowslinkTunnel만생성했고Access/DNS/connector는미실행이다. 공개protected확인전노출금지로회신했다. 배포설정 독립리뷰task_470cc6941994/ctx_fa48cdc4605a/term_8c7472ba-0ebb-42ae-99dd-95b4dac6e0a9를별도ClaudeOpus5.5high세션에배정했다. base1314e7f/head437f143 readonlysnapshot이며실제구현자OPSsession2191cc9b-76ef-4522-9fad-d2c9f017bfbc다.
 
 CloudflareOAuth콜백HTTP200을수신했지만Codex가OSDBussecret저장소에서대기하고login키링locked=true임을확인했다. 사용자가OS터미널에서직접로그인하는방법을요청해대기중우리login프로세스를종료하고file저장override·최소scope명령을안내했다. 사용자가로그인완료하면같은fileoverride로실제auth상태/계정조회를검증한다. authcode/token은Git/기록에저장하지않는다.
+
+
+베타 독립 QA task_34fd68aad62b/ctx_0821628cf2cc/term_85644521-b9d5-46e0-93db-5ecd1907fa53를 새 Grok4.7high 세션에 배정했다. ready prompt/input_accepted 및 실제 live/working을 확인했다. 사용자가 원격터미널로그인 무반응을 보고했고 실제 사용자 명령이 기본keyring store인 codex mcp login cloudflare임을확인했다. 사용자프로세스는중지하지않고 Ctrl+C뒤file store override와 --no-browser·hidden Callback URL 입력방법을안내했다. file store 실제 auth는아직not_logged_in이다. 외부protected연결은인증회복·독립리뷰/QA후에수행한다.
