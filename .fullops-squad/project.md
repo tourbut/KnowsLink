@@ -3,8 +3,8 @@ title: KnowsLink 프로젝트 기준
 status: draft
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-SETUP-001-DEV]
-summary: 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령을 정의한다
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
+summary: 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령 및 검증 책임을 정의한다
 ---
 
 # KnowsLink 프로젝트 기준
@@ -17,7 +17,7 @@ summary: 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령�
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
-| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.1`; Ponytail full |
+| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.2`; Ponytail full |
 | 보안·코딩 규칙 | [코딩](rules/common/coding-style.md), [테스트](rules/common/testing.md), [보안](rules/common/security.md) |
 | 문서 언어 | 한국어 |
 | 이슈 트래커 | 로컬 `PLANS.md`·역할 인박스. GitHub Issues/Projects 연동은 미설정 |
@@ -51,3 +51,13 @@ summary: 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령�
 기존 프로젝트 규칙은 없으므로 공통 규칙을 기본값으로 적용한다. 이후 기술 정본이 생기면 연결하며 보안·권한·리뷰 수락 기준은 낮추지 않는다.
 변경한 동작과 실패·경계 조건을 검증한다. 초기 구성의 직접 테스트와 독립 기능 QA를 구분한다. `/healthz` 외 업무 API와 human-gate는 미구현이다. 실제 SQL이 없어 migration 적용과 sqlc 생성 성공을 주장하지 않는다.
 작업 지시서에는 적용 문서와 기준 SHA를 남기고 worker와 검토자가 같은 버전을 읽도록 한다.
+
+## 검증 담당과 후속 인계
+
+DEV는 변경 동작의 자동 검사·관련 회귀·필요한 짧은 실행 확인을 완료한다. DEV 완료와 제품 최종 수락은 구분한다.
+독립 전체 QA는 tester가 안정된 고정 통합 후보에서 수행한다. 직접 시각 검수는 designer가 담당한다. 별도 ART 역할은 구성하지 않는다.
+coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인계 조건을 지시서에 기록한다.
+캡처는 지정 시각 항목에만 만든다. 영상은 정지 화면으로 판정할 수 없는 항목에만 만든다.
+변경 없는 증거는 관련 의존성의 동일성을 확인하고 원래 실행 SHA·조건을 연결해 재사용한다. 새 SHA에서 실행한 결과로 표시하지 않는다.
+재검증은 변경 영향·새 실패·증거 결함·미충족 조건이 있을 때 수행한다. 기존 실패·held·미해결 critical/high·제품 정지·최종 플랫폼과 사람 평가 기준은 유지한다.
+보류 항목에는 담당과 재개 조건을 남긴다. 상세 반복 범위는 [공통 테스트 기준](rules/common/testing.md)을 따른다.
