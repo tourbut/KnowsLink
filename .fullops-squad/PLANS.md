@@ -501,3 +501,11 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 공용 gate·완료 수집·종료 확인 수정은 설치된 글로벌 hook에 적용된다. integration pending 0건으로 빈 SHA/키 복구 대상이 없다. 기존 실패·held와 작업 중단을 유지한다.
 - 현재 coordinator는 이전 Run에 bound 상태가 아니므로 check 종료코드 1을 보존한다. 업데이트를 위해 Run을 재배정하거나 제품 worker를 시작하지 않는다. 새 coordinator 세션에서 현재 터미널로 Run을 정상 바인딩한 뒤 진행한다.
 - main/coor의 깨끗한 체크아웃에 운영 기록을 반영한다. dev는 직전 idle 확인 이후 새 작업 미배정이며 안전 상태를 재확인해 동기화한다. designer/ops/tester는 실제 유휴 확인 전 동기화 예약, 담당 coor, 다음 착수 전 최신 main 포함 확인.
+
+## SAR-MVP-002-DEV 재개 — 2026-10-03
+
+- 사용자는 이전 세션 01a100fe-1d01-7c42-a1fd-3aba74a51ef4의 제품 작업 재개를 요청했다. FullOps 업데이트는 이번 범위에서 제외한다.
+- 기존 백로그 002와 정규 DEV 인박스를 재사용한다. 목표·제품 규칙·승인 범위가 같으므로 기존 implementation/dev 라우팅 및 탐색 근거를 재사용한다. 기준 ref는 최신 main dbdd70086971285b790683f362702e5a9ff55acd다.
+- Run run_8ca8bc058ab7을 현재 coordinator term_8b2f910b-c0dc-41de-bceb-03865daa87eb에 연결했다. 과거 coordinator 인계 Task task_3c3978705656/ctx_26348a86f1c7는 failed이며 exactWorker exited/operator_close를 확인했다. 해당 인계는 현재 사용자의 직접 재개 요청으로 이 coordinator가 이어받는다. 실패 기록을 보존하고 중복 coordinator를 시작하지 않는다.
+- DEV 현재 터미널 term_4a246708-ae2a-4884-8766-52755e98de08의 tui-idle=true와 깨끗한 체크아웃을 확인했다. 기존 사용자 터미널을 보존하고 별도 DEV 세션에서 기술 조사·계획·가능한 구현·검증을 수행한다.
+- 실제 업무 발송·실데이터·유료 API 호출·운영 활성화 및 DEC-02 정책은 계속 보류한다. 완료 SHA의 필수 리뷰·QA를 확인한 뒤 main/origin에 통합한다. designer/ops/tester의 동기화는 실제 유휴 확인 후 처리한다.
