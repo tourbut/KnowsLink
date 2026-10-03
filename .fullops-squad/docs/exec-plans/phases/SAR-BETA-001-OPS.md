@@ -94,11 +94,31 @@ critical/high는 없었다. 신규 N1~N5를 처리했다.
 | N3·N4 | D12 11.3과 D13에 `rev-parse` 정본, 수동 이동 미기록, `check` 없는 SHA에서 `expose` 금지를 명시했다 |
 | N5 | `selftest`가 `teamName` 값만 바꾼 설정을 거부하는지 검사한다 |
 
-## 아직 실행하지 않은 것 (held)
+## 보호된 연결 적용 (구성 `28bd1bb`, 독립 리뷰 `7ba9df0`, tester-public gate PASS 후 coordinator 재개 지시)
 
-- Access 앱·reusable policy 생성: MCP와 `cert.pem`에 Access 쓰기 권한이 없다. 필요한 최소 권한을 coordinator에 ask했다. 최소 권한은 `Access: Apps and Policies Edit`와 `Access: Organizations, Identity Providers, and Groups Read` 두 개다(리뷰 M2로 정정).
-- DNS `link.knowslog.com`·connector 기동·공개 negative 검사·사용자 이메일 로그인(인간 검사): Access 보호 확인 전에는 하지 않는다.
-- 원점 JWT 거부의 동작 검증: Access가 앞단에서 먼저 차단하므로 공개 경로로는 원점 거부를 독립 관찰할 수 없다. 설정 존재와 `ingress validate`만 확인했고, 동작 확인은 인증된 요청 성공과 cloudflared 로그로만 가능하다. 이 한계를 숨기지 않는다.
+관리 연결은 coordinator가 저장한 Codex file-store OAuth(공식 `https://mcp.cloudflare.com/mcp`)를 로컬 일회성 bridge로 사용했다. scopes에 `access-app.write`·`access-policy.write`·`access-idp.read`가 있다. 부여 범위가 최소 권한보다 넓다(`dns.write`·`argotunnel.write`·`access-idp.write`). 이번 작업은 Access 앱·정책 쓰기만 사용했다. 토큰은 출력·저장하지 않았다.
+
+| 단계 | 결과 |
+|---|---|
+| 계정 | `GET /accounts` 계정 1개, `knowslog.com` zone의 account와 일치(첫 항목 임의 선택 아님) |
+| reusable policy | `knowslink-beta-owner-only`: allow, include 이메일 1개, exclude 0, require 0. 기존 `knowslog-bot - Production`은 사용·변경하지 않음 |
+| Access 앱 | self-hosted, 대상 `link.knowslog.com` 하나, 정책 1개, IdP 1개(One-time PIN), 세션 24h, 우회 옵션 없음 |
+| `access_apply.py apply` 내부 검증 | 사후 GET으로 정책 ID 하나·aud 일치 확인(exit 0) |
+| `bridge snapshot` | 읽기 GET으로 `access.live.json`(0600) 저장 |
+| `beta.sh render-config` | exit 0, `ingress validate` OK. `access.required: true`, teamName `scshin88`, audTag 1개 |
+| `access_apply.py check` | exit 0 — 앱·정책·aud·teamName·Tunnel audTag 일치 |
+| `beta.sh expose` | exit 0. DNS 부재 확인 → `cloudflared tunnel route dns`(덮어쓰기 없음) → connector 기동. MCP DNS GET: `link` proxied CNAME → `knowslink` Tunnel, 기존 3개 불변 |
+| connector 로그 | `Registered tunnel connection` 4개(icn05·icn06·icn07, quic) |
+| 공개 negative (미인증, `curl --resolve`로 1.1.1.1/8.8.8.8 엣지 IP 사용) | `/healthz`·`/owner`·`/v1/registry`·가짜 `Cf-Access-Jwt-Assertion`·가짜 service-token 헤더·임의 Bearer `/v1/contacts` 모두 302 → `https://scshin88.cloudflareaccess.com/…`. 본문 143B, relay 내용 없음. 80 포트는 301 https |
+| `verify.py regression`·`local` | exit 0 (orca/s8 200, mcp 401, 호스트 cloudflared PID 506937, `myportfolio` 불변; relay loopback, 제한, 권한) |
+
+로컬 resolver의 NXDOMAIN 음성 캐시 때문에 노출 직후 `verify.py public`은 `gaierror`(exit 1)로 실패했다. 이는 보호 실패가 아니라 이름 해석 실패다. 캐시 TTL이 지난 뒤 `verify.py public`을 다시 실행했다. 결과는 exit 0이고 5개 프로브(`/healthz`·`/owner`·`/v1/registry`·가짜 JWT 헤더·가짜 service-token 헤더)가 모두 302였다. 같은 시점 `verify.py regression`·`local`도 exit 0이고 `knowslink-cloudflared-1`·relay·postgres가 Up(healthy)였다. `PYTHONOPTIMIZE`는 설정하지 않았다.
+
+## held·남은 인간 검사
+
+- 사용자 본인 이메일의 OTP 로그인 확인: **인간 검사, 미실행**. 접속·시험 절차는 [D11](../../operations/user-guide.md)이다.
+- 원점 JWT 거부 단독 관측: Access가 앞에서 차단하므로 공개 경로로는 불가하다. 설정 일치(`check`)와 `ingress validate`로만 확인했다.
+- 전체 공개 한도·실제 신원·실데이터·실제 벤더·무제한 공개는 held다. 공개 수락 근거가 아니다.
 
 ## 산출물
 
