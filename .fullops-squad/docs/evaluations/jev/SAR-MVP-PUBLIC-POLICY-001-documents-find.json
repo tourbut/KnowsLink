@@ -1,0 +1,69 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-PUBLIC-POLICY-001",
+  "head": "a285d082705817f0c0a327f492944f105849cf68",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 64,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 64
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "summary": "KnowsLink MVP 요구사항 — 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후속 검증 책임을 정의한다",
+      "probability": 0.45
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "summary": "SAR-MVP-PUBLIC-POLICY-001 — 인증된 첫 MVP 파일럿 공개 기준 — 승인된 서버 배포를 위한 제품 범위와 공개 안전 기준을 결정한다",
+      "probability": 0.35000000000000003
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "summary": "Silent Agent Relay — 결정 로그",
+      "probability": 0.08
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "summary": "KnowsLink 기능 단위 백로그 — 검증 가능한 MVP 기능의 우선순위와 queued 인계 및 결정 보류를 연결한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "summary": "designer 컨텍스트 — 초기 구성과 MVP 개발 준비의 제품 판단 및 보류 조건을 보존한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "summary": "KnowsLink — 제품 결정",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "summary": "relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.94,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5289,
+    "output_tokens": 689,
+    "cost": 0.000222138
+  },
+  "latency_seconds": 0.283,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

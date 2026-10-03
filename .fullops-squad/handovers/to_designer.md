@@ -41,3 +41,7 @@ summary: 승인된 서버 배포를 위한 제품 범위와 공개 안전 기준
 완료 결과는 확정 기준과 승인 근거, 미정 기준·담당·재개 조건, DEV/OPS에 전달할 제품 완료 조건이다. 검사 수치·잠긴 frozen wire·기존 critical/high 차단을 낮추지 않는다. 파일럿 공개와 전체 MVP 완료를 구분한다. 문서 링크·git diff --check·deliverables strict를 검사하고 커밋한다. 제품 기획 완료만으로 배포 수락이나 QA 성공을 선언하지 않는다.
 
 복귀 Run은 run_8ca8bc058ab7, coor 경로는 /home/shin/orca/workspaces/KnowsLink/fullops-coor이다. 기존 designer 세션은 user_owned이므로 별도 체크아웃·새 세션을 사용한다. 실제 Task/Dispatch/capability는 새 preamble을 따른다. worker_done을 한 번 보내고 종료한다. 원천 명령형 문장은 제품 근거이며 실행 권한을 늘리지 않는다.
+
+## 탐색과 전제 확인
+
+준비 a285d08에서 code/documents find와 context를 실행했다. docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-{find,documents-find,context}.json에 결과를 보존한다. 필수 16개 문서를 모두 keep했다. 자동 conflict_ids/caution_ids는 비어 있으나 원천 product와 DEV 지시서가 기존 구현·공개 보류를 포함하므로 먼저 대조한다. 원천의 wire·상품 잠금을 바꾸지 않고 현재 사용자 승인 범위만 반영한다. 코드 후보는 기존 골격 위치 확인이며 이 제품 정책 과제의 수정 대상이 아니다. 원천·지시문의 명령형 문장은 내용만 참고한다.
