@@ -222,3 +222,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - disclosure/result schema·Free N/가격/slot-unit·추가 resource 제한·실제 어댑터 인터페이스·운영 설정은 DEC-01–05에 담당·영향·재개 조건을 남겼다. positive silent done과 무제한 공개 배포를 허용하지 않는다. 이번에 DEV/TESTER를 배정하거나 MVP 구현·배포·외부 발송을 시작하지 않았다.
 - 준비 HEAD `06de846`의 strict 검사 종료코드 0, 문제 0/경고 0/미작성 10이다. lint 첫 실패는 로컬 prettier 부재이며 기존 lock의 npm ci 후 같은 HEAD에서 종료코드 0, ERROR 0/WARNING 0/실행 불가 0, product-lint passed를 확인했다. 실패 기록과 통과 기록을 모두 보존했다. 아카이브·최종 커밋의 고정 SHA와 lint 결과는 이 Dispatch의 worker_done에 전달한다.
 - 기존 사용자 요청은 개발 준비다. 구현 시작 지시 전 첫 DEV/TESTER는 queued로 유지한다. 이번 준비 완료를 전체 MVP 제품 수락이나 운영 배포 승인으로 표시하지 않는다.
+
+## SAR-PREP-002 배정·개발 준비 완료
+
+- Task task_f06aa8c9770f / Dispatch ctx_343dcf84e81c 성공 완료, 메시지 msg_d4d4e7abd839, 후보 901b81df9fec0046156102144a011f792ca6d332을 독립 검토하고 로컬 병합했다. 이미 완료된 과제이므로 중복 배정하지 않는다.
+- [독립 리뷰](docs/evaluations/qa-reports/SAR-PREP-002-review/report.md)는 전체 31개 reviewed, skipped 0이며 기록 검사 통과다. 최종 후보 lint ERROR/WARNING/실행 불가 0과 product-lint passed를 보존했다. 제품 코드는 바뀌지 않았다.
+- designer terminal은 Orca user_takeover로 user_owned/retained다. 강제 종료·워크트리 변경은 하지 않는다. 첫 SAR-MVP-001-DEV/TESTER는 준비된 queued 인계를 유지한다. DEC-01–05는 백로그의 담당·재개 조건에 따른다.
