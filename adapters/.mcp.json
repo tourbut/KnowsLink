@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "knowslink": {
+      "command": "node",
+      "args": ["${GROK_PLUGIN_ROOT}/dist/plugin.js"],
+      "env": {
+        "KNOWSLINK_MODE": "held"
+      }
+    }
+  }
+}
