@@ -4,7 +4,7 @@ title: KnowsLink 서비스 개요
 status: review
 updated: 2026-10-03
 owner: designer
-tasks: [SAR-PREP-002]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001]
 downstream: [D02]
 summary: KnowsLink의 가치와 freemium 방향 및 미정 결정의 담당과 재개 조건을 정리한다
 ---
@@ -29,7 +29,7 @@ MVP 피칭에서 메시지 볼륨 과금·Slack-seat형 과금·마켓플레이�
 
 MVP는 등록·페어링·철회, frozen `relay.v1`, 짧은 TTL 큐, lease·ACK·공유 실행 claim, receipt, 인간 approve/deny까지 포함한다. 첫 Go 기능 구현을 ingest/queue-only로 줄이지 않는다. TypeScript 어댑터는 pull-default다. 대상 우선순위는 Grok Bot, Claude Code, Codex, Dots다. MVP의 최소 어댑터 범위는 pull stub 1개다. 실제 제품 연결은 외부 인터페이스 확인이 필요하다.
 
-집 미니서버의 Go relay·Postgres·Docker Compose와 Cloudflare Tunnel ingress 방향은 원천의 확정 조건이다. 기술 계획과 구현 설정은 dev와 ops가 맡는다. 운영 배포와 외부 발송은 이번 요청의 승인 범위가 아니다.
+집 미니서버의 Go relay·Postgres·Docker Compose와 Cloudflare Tunnel ingress 방향은 원천의 확정 조건이다. 기술 계획과 구현 설정은 dev와 ops가 맡는다. 초기 SAR-PREP-002에서는 운영 배포를 승인하지 않았다. 2026-10-03 사용자는 현재 서버 Docker·Cloudflare Tunnel과 `link.knowslog.com` 첫 인증 파일럿 배포를 승인했다. 현재 공개 제품 기준과 선행 조건은 [D02 DEC-03](product-specs/SAR-MVP.md#첫-인증-파일럿의-공개-제품-기준--dec-03)을 따른다. 실제 외부 업무 발송·실데이터·유료화는 첫 파일럿에 포함하지 않는다.
 
 SAR-SETUP-001 초기 골격·제품 lint·독립 QA·main 수락은 완료됐다. 업무 SQL, 사용자 등록·페어링 동작, human-gate UI, 실제 어댑터, 운영 Tunnel은 아직 완료되지 않았다. 이번 문서는 제품 기획의 개발 준비 결과다. 제품 MVP 구현 완료를 뜻하지 않는다.
 
@@ -47,7 +47,7 @@ owner는 에이전트와 키를 관리하고 상대 초대를 명시적으로 �
 | 일정 disclosure·출력 allowlist·범위 수치 | designer, dev는 구현 가능성 근거 제공 | 실데이터 silent 조회·정보 반환 보류 | 반환 필드·window·granularity·누적 한도와 정책 승인 기록 확보 |
 | 자원·rate·추가 size·concurrency 수치 | designer가 정책 결정, dev가 측정 근거 제공 | 무제한 공개 배포 금지 | 수치·단위·적용 범위·검증 근거 확정 |
 | 실제 어댑터 인터페이스 | dev | 제품별 실제 연결 보류 | 지원 인터페이스·권한·통합 가능성 확인 |
-| 운영 설정·배포 시점·외부 발송 | ops와 coor, 사용자가 실행 승인 | 운영 공개 보류 | 안전 제한·수락 SHA·운영 설정·명시적 실행 승인 확보 |
+| 운영 설정·배포 시점·외부 발송 | ops와 coor, 사용자가 실행 승인 | 운영 공개 보류 | 안전 제한 확정·수락 SHA·운영 설정 검증. 현재 서버 Docker·Tunnel 첫 파일럿 승인은 확보됐으며 범위 확대에는 새 승인 필요 |
 
 미정 결정은 개발 준비와 합성 데이터의 로컬 검증을 막지 않는다. 보류된 경로를 허용하는 기본값으로 바꾸지 않는다.
 

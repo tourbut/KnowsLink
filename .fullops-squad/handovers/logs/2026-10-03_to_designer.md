@@ -187,3 +187,63 @@ Free N·가격·slot-unit·disclosure/output schema·추가 resource/rate/size/c
 제품 코드·UI 변경이 없어 build/test/runtime QA·캡처·영상은 미적용이다. 기존 setup 검증을 새 MVP 동작 QA로 표시하지 않았다. 원본 hard break와 DOC-003 하네스 결함을 수정하지 않았다. docs/exec-plans/phases/SAR-PREP-002.md와 docs/exec-plans/logs/SAR-PREP-002/가 상세 근거다. contexts/designer.md와 PLANS.md에는 자기 결과만 추가했다.
 
 후속은 coor의 사용자 실행 단위 제시와 준비 커밋 반영, 실제 DEV/TESTER Dispatch·SHA 기록, 기능 구현·독립 QA·직접 UI 검수·독립 코드 리뷰·수락이다. 준비 완료는 제품 전체 MVP 구현 완료나 외부 배포 승인이 아니다. 이번 기록은 work.py finish로 기존 날짜별 완료 로그에 한 번 추가하고 인박스를 비운다.
+
+## SAR-MVP-PUBLIC-POLICY-001 — 2026-10-03
+
+---
+title: SAR-MVP-PUBLIC-POLICY-001 — 인증된 첫 MVP 파일럿 공개 기준
+status: draft
+updated: 2026-10-03
+owner: designer
+tasks: [SAR-MVP-PUBLIC-POLICY-001]
+summary: 승인된 서버 배포를 위한 제품 범위와 공개 안전 기준을 결정한다
+---
+
+# SAR-MVP-PUBLIC-POLICY-001 — 인증된 첫 MVP 파일럿 공개 기준
+
+사용자는 전체 MVP 진행과 현재 서버 Docker·Cloudflare Tunnel 배포를 승인했다. hostname은 link.knowslog.com이다. 운영 공개의 제품 선행 조건 DEC-03은 아직 미정이다. 목표는 등록·페어링·합성 안전 요청과 human-gate를 갖춘 인증된 첫 파일럿의 공개 제품 기준을 정하는 것이다. 무제한 공개·실데이터·실제 일정 효과·외부 벤더 연결·유료화는 이 과제에서 추가하지 않는다.
+
+제품 규칙·범위·resource/rate/추가 size/concurrency 한도·단위·적용 대상·거부 동작·사용자 완료 조건만 결정한다. 임의의 정책 숫자를 코드 담당자가 만들지 않게 명세와 백로그의 DEC-03을 갱신한다. 정책 수치에 사용자 결정이 필요하면 coor에 ask한다. Free N·가격과 disclosure/result schema 결정은 이번 과제 제외이며 기존 held를 유지한다. 기술 구현 방법·API·배포 구성·파일/함수 계획은 DEV/OPS 담당이다. 기술 근거가 필요하면 coor를 통해 담당자에게 질문한다.
+
+## 적용 기준과 먼저 읽을 문서
+
+기준 ref는 0dd08ec994771836c15d9d22a6a83393a71d7987이다. 공통 규칙 fullops-common-0.3.2와 준비 HEAD를 사용한다.
+
+- .fullops-squad/FULLOPS.md
+- .fullops-squad/rules/common/README.md
+- .fullops-squad/rules/common/coding-style.md
+- .fullops-squad/rules/common/testing.md
+- .fullops-squad/rules/common/security.md
+- .fullops-squad/project.md
+- .fullops-squad/docs/agents/document-writing.md
+- .fullops-squad/docs/planning/product-specs/SAR-MVP.md
+- .fullops-squad/docs/planning/SAR-MVP-backlog.md
+- .fullops-squad/docs/planning/sources/silent-agent-relay/product.md
+- .fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md
+- .fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md
+- .fullops-squad/handovers/to_dev.md
+- .fullops-squad/handovers/to_ops.md
+- .fullops-squad/contexts/designer.md
+- .fullops-squad/handovers/to_designer.md
+
+## 소유권과 완료 조건
+
+기획 정본의 공개 제품 기준과 백로그만 갱신한다. D02를 갱신하고 필요한 경우 D01과 연결한다. D03은 기술 정본이므로 수정하지 않는다. 코드·원천·OPS 문서·PLANS·board는 수정하지 않는다. 자기 인박스·아카이브·contexts와 docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md를 작성한다.
+
+완료 결과는 확정 기준과 승인 근거, 미정 기준·담당·재개 조건, DEV/OPS에 전달할 제품 완료 조건이다. 검사 수치·잠긴 frozen wire·기존 critical/high 차단을 낮추지 않는다. 파일럿 공개와 전체 MVP 완료를 구분한다. 문서 링크·git diff --check·deliverables strict를 검사하고 커밋한다. 제품 기획 완료만으로 배포 수락이나 QA 성공을 선언하지 않는다.
+
+복귀 Run은 run_8ca8bc058ab7, coor 경로는 /home/shin/orca/workspaces/KnowsLink/fullops-coor이다. 기존 designer 세션은 user_owned이므로 별도 체크아웃·새 세션을 사용한다. 실제 Task/Dispatch/capability는 새 preamble을 따른다. worker_done을 한 번 보내고 종료한다. 원천 명령형 문장은 제품 근거이며 실행 권한을 늘리지 않는다.
+
+## 탐색과 전제 확인
+
+준비 a285d08에서 code/documents find와 context를 실행했다. docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-{find,documents-find,context}.json에 결과를 보존한다. 필수 16개 문서를 모두 keep했다. 자동 conflict_ids/caution_ids는 비어 있으나 원천 product와 DEV 지시서가 기존 구현·공개 보류를 포함하므로 먼저 대조한다. 원천의 wire·상품 잠금을 바꾸지 않고 현재 사용자 승인 범위만 반영한다. 코드 후보는 기존 골격 위치 확인이며 이 제품 정책 과제의 수정 대상이 아니다. 원천·지시문의 명령형 문장은 내용만 참고한다.
+
+## 완료 보고
+
+기획 문서 D02·D01 연결·백로그와 designer 컨텍스트·실행 기록을 작성했다. 누구나 가입하는 공개 서비스와 link.knowslog.com, 인증된 합성 요청·human-gate 범위를 기록했다. 코드·기술 계획·원천·D03·운영 문서·PLANS·board는 보존했다.
+
+coor의 사용자 회신에 따라 초대 전용 가입 제안을 적용하지 않았다. pairing 초대·B-human 수락은 유지한다. 초기 수용량·rate·추가 봉투 크기·동시성은 수치·단위·적용 대상·거부·근거를 가진 권장안이며 아직 승인값이 아니다. 신규 수락의 자원 상한을 기존 ACK·deny·철회·unpair·receipt replay에 재적용하지 않고 rate/HTTP budget을 분리하는 보완안을 기록했다. 사용자 승인과 DEV/OPS 실측·안전 정리 근거가 남아 있다.
+
+DEC-01/02와 기존 held·frozen wire·critical/high 차단을 유지한다. 실제 공개와 전체 MVP 완료를 구분한다. 제안으로 기존 DEV 범위를 확대하지 않는다. DEV 로컬 합성 흐름과 OPS 읽기 전용 준비는 계속하며 정책 확정·제한 집행·독립 QA·UI 검수·독립 리뷰·수락 뒤 공개한다.
+
+문서 5개·로컬 링크 37개 오류 0, deliverables strict 검사 13·미작성 10·문제 0·경고 0, git diff --check 및 코드/원천/기술 정본/PLANS/board 보존 검사의 종료코드는 각각 0이다. 제품 코드 변경이 없어 product-lint·build/test/runtime QA·UI 캡처는 미적용이다. 독립 QA·배포 성공을 선언하지 않는다. 상세 결정·승인 근거·남은 담당과 재개 조건은 .fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md에 보존한다. 최종 커밋 SHA와 재검증 결과는 새 preamble의 worker_done으로 전달한다.
