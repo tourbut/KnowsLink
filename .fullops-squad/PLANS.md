@@ -377,3 +377,6 @@ RF-01 실패 리뷰 138b8b3/msg_5d7ee3dd44ba는 coor 후보에 보존하고 inte
 
 
 RF-01 DEV 완료 msg_1face39bb094/78b1d92는 독립 검증 대기로 hold하고 coor 후보에 반영했다. parentRouting의 Deliver==agent 검사와 실제 이전 State fixture RED/GREEN·HTTP 회귀가 보고됐다. 새 최종 독립 리뷰 Task task_0db76f85c652 / Dispatch ctx_8325694cc588 / term_ea702e9f-96fc-4ff1-a1a1-dd2c27376619를 새 Codex gpt-6.1-sol high 세션에 배정하고 turn_started를 확인했다. base0e4b5de/head78b1d92 및 읽기 전용 snapshot /tmp/knowslink-mvp-review-78b1d92다. QA는 실행 중이므로 변경하지 않고 현재 과제 완료 뒤 narrow 새 SHA 재검증을 예약했다.
+
+
+QA36bd4ae/msg_904473017979는 legacy high 보존으로 hold하고 coor 후보에 통합했다. 종료·clean tester를 11e3ff3으로 동기화했다. 같은 key의 짧은 narrow 후속으로 최근 완료 Grok4.7 high 세션을 재사용했다. Task task_4384293252b1 / Dispatch ctx_2627c1c7c6fd / terminal term_849b3e3a-68dc-436c-9002-c838535d61ba, input_accepted다. 제품78b1d92 독립 QA 결과는 TESTER-FINAL에 별도 작성하며 기존 QA를 덮어쓰지 않는다. 실제 동작 확인 뒤 완료를 기다린다.
