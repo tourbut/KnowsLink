@@ -17,7 +17,7 @@ summary: 본인 전용 합성 베타 배포 준비의 근거와 검증 증거 �
 ## 적용한 외부 근거
 
 - Cloudflare 스킬 `cloudflare-one`: 현재 문서·API 스키마를 조회한 뒤 설정한다는 규칙, Access 기본 deny, 새 공개 정책을 먼저 좁게 둔다는 규칙을 적용했다.
-- 공식 docs MCP(`search_cloudflare_documentation`)와 Context7 `/cloudflare/cloudflare-docs`: Tunnel 원점 `originRequest.access.required/teamName/audTag`, reusable policy와 email selector, OTP는 이메일 제한과 함께만 쓴다는 경고, `tunnel route dns`는 DNS만 만들고 connector가 꺼져 있으면 노출하지 않는다는 설명, Access 쓰기 권한 이름(`Access: Apps and Policies Write`)을 확인했다. 비공개 코드·이메일·비밀값은 조회문에 넣지 않았다.
+- 공식 docs MCP(`search_cloudflare_documentation`)와 Context7 `/cloudflare/cloudflare-docs`: Tunnel 원점 `originRequest.access.required/teamName/audTag`, reusable policy와 email selector, OTP는 이메일 제한과 함께만 쓴다는 경고, `tunnel route dns`는 DNS만 만들고 connector가 꺼져 있으면 노출하지 않는다는 설명, Access 쓰기 권한 이름을 확인했다. 문서의 API 표기는 `Access: Apps and Policies Write`이고 토큰 화면의 표기는 `Edit`이다. 같은 권한이다. 비공개 코드·이메일·비밀값은 조회문에 넣지 않았다.
 - Cloudflare API MCP 스키마 검색으로 self-hosted app 생성 필드(`destinations`·`policies`·`allowed_idps` 등)를 확인했다.
 
 ## 읽기 전용 재확인 (2026-10-03)
@@ -49,9 +49,43 @@ summary: 본인 전용 합성 베타 배포 준비의 근거와 검증 증거 �
 | `access_apply.py selftest` | 통과(본문 모양·이메일 단독 allow 판정) |
 | 공유 서비스 회귀 | `verify.py regression` 여러 번 통과: 코드 200/200/401, PID 506937, `myportfolio` 상태 불변 |
 
+## 읽기 전용 Cloudflare 호출 원시 기록 (비밀 없음)
+
+모두 Cloudflare API MCP `execute`의 GET이며 응답 `success: true`였다.
+
+| 경로 | 상태 | 요지 |
+|---|---|---|
+| `/accounts` | 200 | 계정 1개 |
+| `/accounts/{id}/access/organizations` | 200 | auth_domain `scshin88.cloudflareaccess.com` |
+| `/accounts/{id}/access/apps` | 200 | 0개 |
+| `/accounts/{id}/access/policies` | 200 | reusable 1개 |
+| `/accounts/{id}/access/identity_providers` | 200 | One-time PIN 1개 |
+| `/accounts/{id}/cfd_tunnel?is_deleted=false` | 200 | `orca` 1개(healthy, 연결 4) |
+| `/zones?name=knowslog.com` | 200 | active, 권한 목록에 edit/write 없음 |
+| `/zones/{id}/dns_records?per_page=100` | 200 | proxied CNAME 3개(mcp·orca·s8) |
+
+## 독립 리뷰 대응 (dev 리뷰 f625c4e, 대상 437f143)
+
+미해결 critical/high는 없었다. medium·low는 다음처럼 처리했다.
+
+| ID | 처리 |
+|---|---|
+| M1 | D12 서두·6장·9장·10장을 역사적 기록으로 표시하고 현재 상태를 11장·D13으로 연결했다 |
+| M2 | 최소 권한에 IdP 읽기를 추가했다(D12·D13·본 문서) |
+| M3 | `access_apply.py check`를 추가하고 `beta.sh expose`가 호출한다. live 앱·정책·`aud`·`teamName`·Tunnel `audTag`를 비교한다. `dig` 실패는 중단한다. `selftest`가 깨진 앱·설정을 거부하는지 검사한다. 임시 상태 디렉터리와 더미 이메일로 `check`의 통과·거부(정책 2개)를 직접 실행해 확인했다 |
+| M5 | `beta.sh deploy <sha>`(백업·이력·마이그레이션 차이 시 중단·재빌드·검증)와 rollback 절차를 D12 11.3에 추가했다 |
+| L1 | 사후 검증이 destinations·IdP 수·우회 옵션·`aud`를 본다. 앱 목록은 `per_page=100`이다(상한: 100개 초과 계정은 미지원). 토큰이 계정 하나만 볼 때만 진행한다 |
+| L2 | 8080 점유 검사가 `0.0.0.0`·`*`·`[::]`를 포함한다 |
+| L3 | backup 실패 시 부분 dump를 삭제하고, backup·restore-verify가 `relay_state` 행 수를 출력해 비교한다 |
+| L4 | D12 11.5와 D11이 owner-login을 사용자 본인만 실행하도록 명시했다 |
+| L5 | 위 원시 기록 표를 추가했다 |
+| L6 | D11 5단계를 칸별로 분리했다 |
+
+재검증(수정 SHA에서): `beta.sh deploy 437f143`(rollback, exit 0)·`beta.sh deploy <수정 SHA>`(no-op 이동, exit 0)·`verify.py local` 통과·`restore-verify` `tables=2 relay_state_rows=1` exit 0·`verify.py regression` 불변. rollback 대상에 `deploy` 명령이 없어 앞으로 이동은 수동 체크아웃이 필요했다(D12 11.3에 한계로 기록).
+
 ## 아직 실행하지 않은 것 (held)
 
-- Access 앱·reusable policy 생성: MCP와 `cert.pem`에 Access 쓰기 권한이 없다. 필요한 최소 권한을 coordinator에 ask했다.
+- Access 앱·reusable policy 생성: MCP와 `cert.pem`에 Access 쓰기 권한이 없다. 필요한 최소 권한을 coordinator에 ask했다. 최소 권한은 `Access: Apps and Policies Edit`와 `Access: Organizations, Identity Providers, and Groups Read` 두 개다(리뷰 M2로 정정).
 - DNS `link.knowslog.com`·connector 기동·공개 negative 검사·사용자 이메일 로그인(인간 검사): Access 보호 확인 전에는 하지 않는다.
 - 원점 JWT 거부의 동작 검증: Access가 앞단에서 먼저 차단하므로 공개 경로로는 원점 거부를 독립 관찰할 수 없다. 설정 존재와 `ingress validate`만 확인했고, 동작 확인은 인증된 요청 성공과 cloudflared 로그로만 가능하다. 이 한계를 숨기지 않는다.
 

@@ -11,8 +11,7 @@ summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검�
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
-이 문서는 현재 서버의 Docker와 `link.knowslog.com` Cloudflare Tunnel 배포 계획이다. 상태는 **계획**이다. 이전 OPS Dispatch가 2026-10-03에 수행한 읽기 전용 조사 초안을 보존한다. 이번 retry Dispatch는 서버 조사를 재실행하지 않았다. 원본 명령 로그와 개별 종료코드가 초안에 없으므로 아래 관찰을 새 검증 통과로 해석하지 않는다. DNS·Tunnel·컨테이너를 만들거나 바꾸지 않았다.
-배포·이행 증거가 없으므로 D11(사용자설명서)과 D13(인수인계서)은 미작성으로 유지한다. 이 문서도 배포 완료 근거가 아니다.
+이 문서는 현재 서버의 Docker와 `link.knowslog.com` Cloudflare Tunnel 배포 정본이다. 현재 상태는 11장과 [D13](transition.md)을 따른다. 1~10장은 2026-10-03 이전 OPS Dispatch의 **역사적 계획·관찰 기록**이다. 그 Dispatch가 2026-10-03에 수행한 읽기 전용 조사 초안을 보존한다. 당시 retry Dispatch는 서버 조사를 재실행하지 않았다. 원본 명령 로그와 개별 종료코드가 초안에 없으므로 2장 관찰을 새 검증 통과로 해석하지 않는다. 당시에는 DNS·Tunnel·컨테이너를 만들거나 바꾸지 않았다. 이후 SAR-BETA-001-OPS가 로컬 스택과 `knowslink` Tunnel을 만들었다(11장). D11·D13은 작성됐다. 이 문서도 공개 배포 완료 근거가 아니다.
 비밀값·토큰·`cert.pem` 내용은 기록하지 않는다. 존재·권한·경로만 기록한다.
 
 **역사적 기록**: 이전 Dispatch는 `a6a10c7`을 C1 high 때문에 배포 금지로 기록했다. 이 결정은 그 당시 후보에만 해당한다. C1/RF-01 high는 해소됐다. 수락 후보는 main `557ebc3`, 제품 `78b1d92`, QA `659f4b0`, 최종 리뷰 `311381f`, 직접 UI 검수 `e238777`이다. 본인 전용 합성 베타의 구성과 검증은 11장에 기록한다. 전체 공개 한도·실제 신원·실데이터 held는 유지한다.
@@ -87,9 +86,9 @@ ingress:
 
 백업 보관 기간·암호화 저장소·복구 목표는 운영 재개 전 확정할 항목이다. 임의로 최근 7개 정책을 확정하지 않는다. 업무 행 삭제는 WAL/backup 완전 삭제가 아니다. 백업 삭제 보장을 제품 완료로 표시하지 않는다.
 
-## 6. 적용 절차 (사용자 재개 지시·선행 조건 충족·후속 Dispatch 뒤)
+## 6. 적용 절차 (역사적 계획 — 실제 절차는 11장)
 
-현재는 모든 단계가 미실행이다. 각 단계의 종료코드를 보존한다. 실패하면 중단하고 보고한다.
+당시 계획이며 이 순서로 실행하지 않았다. 11장의 `beta.sh`가 대체한다. 각 단계의 종료코드를 보존한다. 실패하면 중단하고 보고한다.
 배포 루트에서 모든 명령에 `docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file /home/shin/deploy/knowslink/.env`를 공통 적용한다. override가 실제로 존재하고 소유권이 확정된 경우에만 사용한다. `config --quiet`로 병합 구성을 검사한다. `config` 전문은 비밀값을 출력하므로 저장하지 않는다. 준비 문서의 명령은 실행 증거가 아니다.
 
 1. 사전 확인: 8080 비어 있음, `link.knowslog.com` 레코드 충돌 없음(Cloudflare DNS API 목록·공개 A/AAAA 조회), `docker compose ls`의 기존 프로젝트 상태를 기록한다. 레코드가 이미 있으면 덮어쓰지 않고 coor에 ask한다.
@@ -130,17 +129,17 @@ DNS 판정 근거: [Cloudflare CNAME flattening](https://developers.cloudflare.c
 
 | 항목 | 상태 |
 |---|---|
-| 이전 서버 관찰 보존·운영 계획(D12 초안) | 기록 완료. 새 서버 검증은 미실행 |
-| DNS·Tunnel·컨테이너 변경 | **미실행** |
+| 이전 서버 관찰 보존·운영 계획(D12 초안) | 역사적 기록으로 보존 |
+| DNS·Tunnel·컨테이너 변경 | 로컬 컨테이너와 `knowslink` Tunnel은 생성됐다. DNS·connector는 **미실행** |
 | 수락 SHA 배포·공개 health 검증 | 로컬 배포는 11장 참조. 공개 연결은 Access 보호 확인 전까지 held. 기존 a6a10c7 금지는 역사적 기록 |
-| D11 사용자설명서·D13 인수인계서 | 미작성 |
+| D11 사용자설명서·D13 인수인계서 | 작성됨(draft). 공개 연결 전 상태를 반영 |
 
 ## 10. 개정 근거와 검증 범위
 
 2026-10-03 retry에서 이전 미추적 초안을 보존하여 수정했다. 지시서 기준 ref는 `0dd08ec994771836c15d9d22a6a83393a71d7987`이며 공통 규칙은 `fullops-common-0.3.2`다.
 OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제품 정본은 coordinator 체크아웃 `/home/shin/orca/workspaces/KnowsLink/fullops-coor`에서 읽었다. 대상은 README.md, .fullops-squad/project.md, docs/design-docs/architecture.md·interface-design.md·database-design.md, docs/exec-plans/phases/SAR-MVP-001-DEV.md, docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md다. 문서 경로는 `.fullops-squad/` 기준이다. 제품 SHA는 a6a10c7이고 QA 기록 SHA는 c59537b다. 원천 파일은 수정하지 않았다.
 
-이 단계는 D12 계획 문서 검사만 수행한다. 실제 서버·DNS·Tunnel·복원·health/auth 검증을 재실행하지 않았다. 원래 관찰에는 새 PASS나 종료코드를 붙이지 않았다. D11/D13은 미작성이다. 현재 사용자 지시에 따라 이번 기록 완료 뒤 운영·후속 기능을 시작하지 않는다.
+당시 단계는 D12 계획 문서 검사만 수행했다. 원래 관찰에는 새 PASS나 종료코드를 붙이지 않았다. 이번 SAR-BETA-001-OPS의 실행 증거는 [실행 기록](../exec-plans/phases/SAR-BETA-001-OPS.md)에 있다.
 
 관련 원천: [D02](../planning/product-specs/SAR-MVP.md), [기능·held](../planning/SAR-MVP-backlog.md), [실행 기록](../exec-plans/phases/SAR-DEPLOY-001-OPS.md), [산출물 인덱스](../deliverables/README.md).
 
@@ -163,13 +162,14 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 ### 11.2 노출 순서 (보호 먼저)
 
 1. 로컬 기동·검증·백업·격리 복원을 끝낸다. 공개 DNS는 없다.
-2. `CF_API_TOKEN_FILE=<0600> python3 access_apply.py apply`로 Access 앱을 만든다. `access.aud`가 저장된다.
+2. `CF_API_TOKEN_FILE=<0600> python3 access_apply.py apply`로 Access 앱을 만든다. `access.aud`가 저장된다. 필요한 권한은 `Access: Apps and Policies Edit`(쓰기)와 `Access: Organizations, Identity Providers, and Groups Read`(IdP 목록 읽기)다. 토큰은 계정 하나만 볼 수 있어야 한다. 관리 MCP로 쓰는 경우 같은 두 권한이 필요하다.
 3. `beta.sh render-config`로 AUD를 넣은 `config.yml`을 만든다. `cloudflared tunnel ingress validate`가 통과해야 한다.
-4. `beta.sh expose`: Access 기록·`access.required`·relay health·DNS 부재를 확인한 뒤에만 `tunnel route dns`(덮어쓰기 없음)와 connector를 시작한다.
+4. `beta.sh expose`: `access_apply.py check`가 live 앱·정책을 읽어 도메인·destinations·정책 1개(사용자 이메일 단독 allow)·IdP 1개·우회 옵션 없음·`aud`==기록값==Tunnel `audTag`·`teamName`을 검증한다. 토큰이 없으면 10분 이내의 읽기 전용 MCP 응답을 `access.live.json`으로 저장해 같은 검증을 쓴다. 이어서 relay health와 DNS 부재(`dig` 실패도 중단)를 확인한 뒤에만 `tunnel route dns`(덮어쓰기 없음)와 connector를 시작한다.
 5. `verify.py public`과 `verify.py regression`을 실행한다. 사용자가 마지막 이메일 로그인을 직접 확인한다(인간 검사).
 
 ### 11.3 중단·복귀
 
+- 구성 갱신·코드 rollback: `beta.sh deploy <sha>`. 먼저 백업(0600)하고 `deploy-history.log`에 이전→새 SHA를 남긴 뒤 detached 체크아웃을 옮겨 재빌드하고 `verify.py local`을 실행한다. `db/migrations`가 현재와 다르면 중단한다. 이 경우 본 문서 5장 3항(격리 DB 검증 뒤 복원)을 따른다. rollback도 같은 명령에 이전 SHA를 준다. 이전 SHA의 `beta.sh`에 `deploy`가 없으면 한계가 있다. 이 경우 `git -C /home/shin/deploy/knowslink checkout --detach <sha>`로 직접 옮기고 `beta.sh up`을 실행한다. 2026-10-03에 `437f143`으로의 rollback과 앞으로의 이동을 실제 실행했다(둘 다 exit 0, 백업 생성, 이력 기록).
 - 노출 중단: `beta.sh unexpose`(connector만 중지). 앱·DB·볼륨을 보존한다.
 - 전체 중지: `beta.sh stop`. `down -v`와 공유 자원 prune은 금지한다.
 - 전체 철회: `access_apply.py remove`, Cloudflare 대시보드에서 `link` CNAME과 `knowslink` Tunnel을 삭제한다. 기존 `orca` Tunnel·호스트 cloudflared는 건드리지 않는다.
@@ -178,3 +178,7 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 ### 11.4 held
 
 공개 한도(DEC-03)·실제 신원·실데이터·실제 벤더·무제한 공개·WAL/backup 삭제 보장은 held다. 자동 API 검사에 Access 토큰이 필요하면 사용자 정책을 넓히지 않고 단기 service token 승인을 별도로 요청한다.
+
+### 11.5 비밀 취급 주의
+
+`beta.sh owner-login`은 합성 Basic 값을 터미널에 출력한다. 사용자 본인만 자기 터미널에서 실행한다. agent·자동화는 실행하지 않는다. 출력이 세션 기록에 남는다. `access_apply.py`는 토큰·이메일·응답 본문을 출력하지 않는다.

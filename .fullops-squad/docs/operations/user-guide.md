@@ -20,10 +20,10 @@ summary: 본인 전용 합성 베타의 접속·합성 시험·종료 방법을 
    기대: `UI candidate: http://127.0.0.1:8080/owner/gates/<id>`가 출력된다. 이 gate는 생성 후 180초에 만료된다.
 2. 같은 터미널에서 로그인 값을 확인한다.
    `/home/shin/deploy/knowslink/deploy/knowslink/beta.sh owner-login`
-   기대: `username`과 `basic-auth value`가 출력된다. 합성 값이다. 다른 곳에 붙여 넣지 않는다.
+   기대: `username`과 `basic-auth value`가 출력된다. 합성 값이다. 다른 곳에 붙여 넣지 않는다. 이 명령은 사용자 본인이 자기 터미널에서만 실행한다. agent에게 실행시키지 않는다.
 3. 브라우저에서 `https://link.knowslog.com/owner/gates/<id>`를 연다. `<id>`는 1단계 출력에 있다.
 4. Cloudflare Access 화면에서 본인 이메일을 입력한다. 이메일로 온 일회용 코드를 입력한다. 기대: 소유자 화면의 HTTP Basic 로그인 창이 나온다.
-5. 2단계의 `username`과 `basic-auth value`를 비밀번호 칸에 입력한다. 기대: pending gate 내용이 나온다.
+5. 브라우저 로그인 창의 사용자 이름 칸에 2단계의 `username` 값을 입력한다. 비밀번호 칸에 `basic-auth value` 값을 입력한다. 기대: pending gate 내용이 나온다.
 6. Approve 또는 Deny를 누른다. 기대: 결정 결과 화면이 나온다. 페이지를 여는 GET 요청만으로는 결정되지 않는다.
 7. 만료된 gate는 1단계를 다시 실행한다.
 
