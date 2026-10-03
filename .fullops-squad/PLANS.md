@@ -73,3 +73,6 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 역할별 Jev find/code·documents 및 context는 API 실패로 fallback했다. 문서를 수동으로 좁히고 모두 keep했다. 원천은 수정하지 않았다.
 - coor 후속: 설계 커밋을 역할 워크트리에 반영하고 실제 dispatch 복귀 정보를 기록한다. dev 완료 후 tester를 dispatch한다.
 - 상세 근거와 검증: `docs/exec-plans/phases/SAR-SETUP-001.md`. 제품 기능·배포와 제품 테스트는 수행하지 않았다.
+- 지정 기준 lint는 기존 원천 DOC-003 7건으로 차단됐다. coor가 원천 보존 및 차단 기록 후 설계 완료를 허용했다. 시작 HEAD 기준 설계 검사 ERROR 0, WARNING 1이다.
+- coor 회신: 원천 전용 제외는 `729446d`에 기록했으며 기준 ref의 설정에는 아직 적용되지 않는다. dev는 제품 lint 등록과 함께 이 제약을 확인한다.
+- 후속 모델 배정: 사용자 요청으로 제거한 Astra 후보를 재사용하지 않는다. coor가 갱신한 후보를 사용한다.

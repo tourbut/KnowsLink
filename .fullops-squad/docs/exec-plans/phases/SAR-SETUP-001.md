@@ -51,12 +51,29 @@ API 실패를 자동 관련성·충돌 검증 통과로 보고하지 않는다. 
 - `deliverables.py --repo . --strict`: 종료코드 0. 검사 13, 미작성 12, 문제 0, 경고 0.
 - `git diff --check`: 종료코드 0.
 - `git diff --exit-code <기준 ref> HEAD -- .fullops-squad/rules/common`: 종료코드 0. 기준 ref와 적용 공통 규칙이 같다.
-- 위 검사는 설계 작업본을 대상으로 수행했다. 커밋 후 FullOps lint 결과는 아래에 추가한다.
+- 위 검사는 설계 작업본을 대상으로 수행했다. 커밋 후 FullOps lint 결과는 아래와 같다.
 제품 코드는 수정하지 않았다. 제품 빌드·lint·기능 테스트는 dev와 tester의 후속 과제이므로 실행하지 않는다.
 FullOps lint는 문서 검사 확인용으로 커밋 후 실행한다. 기준 ref의 제품 commands는 비어 있으므로 LINT-000은 후속 dev 과제에서 처리한다.
+
+### 커밋 검사와 원천 보존 결정
+
+검사 대상 HEAD: `916fb978d46b10eb9e4240f13ca4878c0b8ef6f5`.
+
+- 지정 기준 명령: `python3 <플러그인>/scripts/lint.py --repo . --from 00b4cb34ae6e9f9fbc0b733ecaa3a2095fbc88eb --out /tmp/SAR-SETUP-001-designer-lint.json`.
+- 지정 기준 결과: 종료코드 1, ERROR 7, WARNING 1, 실행 불가 0. 준비 커밋의 고정 원천 일곱 Markdown에 front matter가 없어 DOC-003이 발생했다.
+- 문서 규칙은 원본 외부 문서를 보존하도록 명시한다. 설계 역할은 원천 또는 lint 코드·설정을 변경하지 않았다.
+- coor에게 ask로 충돌을 전달했다. 회신은 원천 보존, 지정 기준 차단 명시, 시작 HEAD 기준 설계 변경 검사 후 설계 완료를 허용했다.
+- coor는 원천 전용 제외를 `729446d`에 기록했다고 알렸다. 이 워크트리에 반영했다고 주장하지 않는다. 기존 기준의 설정을 읽는 문제는 dev 지시서에 전달했다.
+- 보조 검사: 같은 lint 명령에 `--from 0cc35f0b2c83f781f57a001bd64cd41d6e31bab4 --out /tmp/SAR-SETUP-001-designer-only-lint.json` 사용.
+- 보조 결과: 종료코드 0, ERROR 0, WARNING 1, 실행 불가 0. WARNING은 기존 제품 lint commands 부재인 LINT-000이다. 지정 기준 통과로 해석하지 않는다.
+- `git diff --exit-code 0cc35f0b2c83f781f57a001bd64cd41d6e31bab4 HEAD -- .fullops-squad/docs/planning/sources/silent-agent-relay`: 종료코드 0. 원천 변경 없음.
+- 제품 코드 수정이 없으므로 코드 변경 done-gate는 이 설계 작업에 적용하지 않는다. 후속 dev의 코드 변경 게이트는 면제하지 않는다.
+- 최종 기록 커밋 뒤 같은 두 기준을 재검사하고 worker_done에 최종 SHA와 결과를 전달한다.
 
 ## 후속
 
 coor는 설계 커밋을 dev 워크트리에 전달하고 새 dispatch 복귀 정보를 기록한다. dev 완료 SHA를 tester에게 전달한다.
 dev는 실제 제품 검사 명령을 직접 실행해야 한다. merge-base의 빈 lint commands를 사용하는 FullOps 통과만으로 제품 lint 완료를 주장하지 않는다.
 설계 커밋의 최종 SHA와 lint 결과는 worker_done에 함께 전달한다.
+
+coor는 사용자 요청으로 Astra 후보를 제거했다고 알렸다. 후속 역할은 갱신된 후보로 배정한다.

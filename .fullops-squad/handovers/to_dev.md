@@ -17,7 +17,7 @@ summary: 잠긴 원천 결정에 맞는 초기 개발 환경과 실행 가능한
 - 담당 워크트리 / 브랜치: `/home/shin/orca/workspaces/KnowsLink/fullops-dev` / `fullops/dev`.
 - 병합 책임자 / 기본 브랜치: coor가 검토·병합을 조정하며 필요 시 ops에 배정 / `main`.
 - 복귀 워크트리 / 터미널: `/home/shin/orca/workspaces/KnowsLink/fullops-coor` / `term_89f25ea4-e70e-46c0-8514-e95f8cf81928`.
-- Run: `run_8ca8bc058ab7`. repo id와 해당 worker의 task id·dispatch id는 새 dispatch에서 coordinator가 실제 값으로 기록한다.
+- Run: `run_8ca8bc058ab7`. repo id와 해당 worker의 task id·dispatch id는 새 dispatch에서 coordinator가 실제 값으로 기록한다. 후속 모델은 coor가 갱신한 후보에서 선택하며 과거 Astra 배정을 재사용하지 않는다.
 - 완료 전송: 새 dispatch preamble의 from·capability·task id·dispatch id를 그대로 쓴다. 설계 worker의 lifecycle ID는 재사용하지 않는다.
 
 ## 적용 기준과 예외
@@ -93,6 +93,16 @@ Go 포맷 오류, TypeScript lint 오류·타입 오류는 임시 복제본 또�
 커밋한 깨끗한 상태에서 `python3 <플러그인>/scripts/lint.py --repo . --from 00b4cb34ae6e9f9fbc0b733ecaa3a2095fbc88eb --out <레포 밖 결과 경로>`를 실행한다.
 `git diff --check`와 `deliverables.py --repo . --strict`를 수행한다. `| tail`로 종료코드를 가리지 않는다.
 ERROR를 해결한다. WARNING·실행 불가와 사유, 대상 SHA, 명령·환경을 완료 보고에 쓴다. 필수 미검증이 있으면 수락 완료로 보고하지 않는다.
+
+### 기존 원천의 lint 차단과 coordinator 결정
+
+설계 커밋 `916fb978d46b`에서 지정 기준 `00b4cb3`의 FullOps lint는 원천 문서 일곱 개의 DOC-003으로 실패했다.
+문서 규칙은 원본 외부 문서를 보존하도록 정한다. 원천을 stamp하거나 바꿔서 오류를 없애지 않는다.
+coor는 원천을 보존하고 설계 변경만 시작 HEAD `0cc35f0`에서 별도 검사하도록 허용했다. 이 보조 검사는 지정 기준 통과를 대신하지 않는다.
+coor는 원천 전용 lint 제외를 커밋 `729446d`에 기록했다고 회신했다. worker는 해당 준비 커밋의 실제 내용과 반영 여부를 확인한다.
+FullOps는 기준 ref의 설정을 읽으므로 제외 설정이나 새 제품 commands를 현재 브랜치에 추가하는 것만으로 적용되지 않는다.
+지정 기준 결과를 숨기거나 기준 ref를 임의로 바꾸지 않는다. coor와 검사 설정의 적용 기준을 확인하고 원천 오류·제품 검사 결과를 구분해서 보고한다.
+이번 회신은 설계 문서 과제의 완료 허용이다. 제품 코드 변경의 done-gate 통과를 면제하지 않는다.
 
 ## 갱신할 산출물
 
