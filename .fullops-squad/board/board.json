@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "독립 리뷰에서 기존 human claim 재사용 high 재현. DEV 후속 수정·재검증 전 제품 수락 보류.",
+  "summary": "합성 MVP 수정·독립 QA·UI·최종 리뷰 통과. main 통합·임시 워크트리 정리 진행. 실제 배포 보류.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -33,7 +33,7 @@
     },
     {
       "name": "MVP 첫 기능 개발",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D03",
         "D05",
@@ -43,15 +43,15 @@
         "D09",
         "D10"
       ],
-      "note": "DEV a6a10c7 완료. QA·UI·리뷰 통과 후 병합·임시 DEV 워크트리 제거 예정."
+      "note": "제품78b1d92의 C1/RF-01 수정·독립 QA·리뷰 수락. 실제 서비스 확대는 후속 조건 필요."
     },
     {
       "name": "MVP 독립 QA·UI 검수·리뷰",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D04"
       ],
-      "note": "새 human claim 차단은 통과. 기존 claim token 재사용 high 미해결로 수락 차단."
+      "note": "최종 독립 QA659f4b0·리뷰311381f 통과. 기존 UI 재사용·원래 held 보존."
     },
     {
       "name": "실제 어댑터·일정 조회",

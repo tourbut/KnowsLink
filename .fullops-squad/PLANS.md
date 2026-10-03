@@ -383,3 +383,10 @@ QA36bd4ae/msg_904473017979는 legacy high 보존으로 hold하고 coor 후보에
 
 
 최종 리뷰311381f/msg_9ea52e0768fc는 base0e4b5de/head78b1d92에서 reviewed101/skipped25/pending0, 미해결 critical/high0, RF-01/C1 high 해소다. review.py check를 coor가 같은 고정 SHA로 통과 확인했다. 실제 fixture RED/GREEN·unit/race·Postgres/HTTP/TS·lint ERROR0/WARNING3·strict·공백 증거를 보존했다. 원래 실패·interrupted 기록을 그대로 유지했다. coor 후보에 리뷰를 반영했고 새 SHA 독립 QA 대기로 integration hold했다. QA 완료 후 합성 MVP 수락과 실제 공개/실벤더/배포 held를 구분해 main 통합한다.
+
+
+## 합성 MVP 구현 후보 수락·main 통합 준비 — 2026-10-03
+
+QA659f4b0/msg_4fed96367aa4는 고정78b1d92의 실제 이전 serialized fixture를 Postgres에 로드하여 authorize/H/R/consume 차단과 새 agent/owner/current-auth 정상 회귀를 확인했다. tester 형태 비교 실패 세 번과 최종 exit0을 구별해 보존했다. 제품 변경 없음·lint ERROR0/WARNING1·strict·공백 검사 통과다. 코드리뷰311381f는 critical/high0·RF-01/C1 해소·전체 fixed-SHA 커버리지 check 통과다. UIe238777/PNG동일성은 기존 실행 조건으로 재사용한다. QA-06 stale epoch는 원래 held를 보존하고 reviewer/DEV의 actual DB CAS 별도 증거와 구분한다.
+
+coor는 확정된 합성 MVP 구현·관련 QA/UI·공개 기획 문서(제안값 미확정)·OPS 문서 결과를 수락한다. 전체 서비스 완성·실제 공개 운영 배포·벤더 연결·신원/공개 한도·실데이터·24시간/WAL/backup held는 수락하지 않는다. 고정 검토 제품78b1d92와 최종 report/archive SHA만 병합하며 이후 결과 커밋의 제품 diff 무변경을 확인한다. 새 기능 배정 없이 main 일반 push와 완료 SHA 원격 조상 관계 확인 뒤 두 임시 워크트리를 제거한다.
