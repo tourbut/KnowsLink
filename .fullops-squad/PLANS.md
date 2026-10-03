@@ -83,3 +83,4 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 
 
 - 구현과 QA의 검사 기준은 원천 보존 설정을 포함한 준비 커밋 `729446d8da57`으로 갱신했다. 설계 단계의 원래 검사 실패 기록은 보존한다.
+- dev 새 세션 배정: Run `run_8ca8bc058ab7`, Task `task_a7fd5d1b8806`, Dispatch `ctx_ab5236bf8b40`, terminal `term_5c300e96-6aca-49ad-ad46-441c378b7cee`. 갱신된 후보에서 codex gpt-6.1-sol high를 선택했고 착수를 확인했다.
