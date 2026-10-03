@@ -457,3 +457,6 @@ main/origin/main9cd889c에 설정28bd1bb·최종 gate 리뷰7ba9df0·기존 리�
 
 
 public_ready 질문 msg_73e614f4a38e은 최신28bd1bb gate 독립PASS다. 정상·최적화 옵션의 aud 불일치 및 proof ID/missing/stale/future 조건 모두 차단을 확인했다. coor가 OPS에 승인된 단일 사용자 Access 정책/app·GET 검증·render·expose·HTTP/공유 회귀 적용 재개를 전달했다. 새 적용 실패 시 신규connector만 중지하여 접근 차단하며 shared 자원은 보존한다. tester 질문은 apply_complete를 회신할 때까지 열어 둔다.
+
+
+OPS msg_50844bc5b85b은 보호된 연결 적용 완료를 보고했다. 고정28bd1bb를 사용했고 단일 reusable email allow 정책·앱 domain/destinations·OTP IdP1개·GET aud/team 일치·required:true를 확인했다. 신규link DNS와 별도knowslink connector4연결을 만들었으며 기존 DNS3개/orca Tunnel/공유서비스는 보존됐다. edge 미인증·가짜JWT/service-token/Bearer는302Access, HTTP80은301https다. 서버 resolver의 NXDOMAIN 음성캐시로 실제publicresolver edge IP를 사용한 조건을 구별한다. tester 질문 msg_73e614f4a38e에 apply_complete를 회신해 외부 QA를 재개했다. 사용자는 공개URL에서 직접 이메일 로그인을 확인한다. 원점JWT 단독 관측과 인간 로그인은 아직미실행이며 전체성공으로 표시하지 않는다. OPS는 소스불변 최종 문서를 기록한다.
