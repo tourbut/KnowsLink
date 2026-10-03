@@ -83,6 +83,17 @@ summary: 본인 전용 합성 베타 배포 준비의 근거와 검증 증거 �
 
 재검증(수정 SHA에서): `beta.sh deploy 437f143`(rollback, exit 0)·`beta.sh deploy <수정 SHA>`(no-op 이동, exit 0)·`verify.py local` 통과·`restore-verify` `tables=2 relay_state_rows=1` exit 0·`verify.py regression` 불변. rollback 대상에 `deploy` 명령이 없어 앞으로 이동은 수동 체크아웃이 필요했다(D12 11.3에 한계로 기록).
 
+## 재리뷰 대응 (SAR-BETA-001-REVIEW-FINAL, 대상 f824015)
+
+critical/high는 없었다. 신규 N1~N5를 처리했다.
+
+| ID | 처리와 증거 |
+|---|---|
+| N1 | `access_apply.py`의 모든 게이트 검사를 `assert`에서 명시적 `need()`(SystemExit)로 바꿨다. `PYTHONOPTIMIZE=1`에서도 `selftest` exit 0이고 aud 불일치 `check`가 exit 1이다(임시 상태 디렉터리·더미 값으로 직접 실행). 정상 `check`는 exit 0이다 |
+| N2 | 스냅숏의 app·policy id가 `access.json`과 다르면 거부한다. 미래 mtime(음수 나이)도 거부한다. 직접 실행: 다른 app id exit 1, 미래 mtime exit 1, 11분 경과 exit 1 |
+| N3·N4 | D12 11.3과 D13에 `rev-parse` 정본, 수동 이동 미기록, `check` 없는 SHA에서 `expose` 금지를 명시했다 |
+| N5 | `selftest`가 `teamName` 값만 바꾼 설정을 거부하는지 검사한다 |
+
 ## 아직 실행하지 않은 것 (held)
 
 - Access 앱·reusable policy 생성: MCP와 `cert.pem`에 Access 쓰기 권한이 없다. 필요한 최소 권한을 coordinator에 ask했다. 최소 권한은 `Access: Apps and Policies Edit`와 `Access: Organizations, Identity Providers, and Groups Read` 두 개다(리뷰 M2로 정정).
