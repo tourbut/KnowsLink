@@ -1,0 +1,416 @@
+## 2026-10-03T13:12:38+0900 cwd=$SUPP/clone
+$ git rev-parse HEAD
+0cc10b083771be9b3423833b222c57d426315333
+[exit 0]
+
+## 2026-10-03T13:12:38+0900 cwd=$SUPP/clone
+$ git status --porcelain
+
+[exit 0]
+
+## 2026-10-03T13:12:38+0900 cwd=$SUPP/clone
+$ make install
+go mod download
+npm ci --prefix adapters
+
+added 97 packages, and audited 98 packages in 1s
+
+31 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[exit 0]
+
+## 2026-10-03T13:12:40+0900 cwd=$SUPP/clone
+$ make lint
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
+Checking formatting...
+All matched files use Prettier code style!
+python3 scripts/check_compose.py
+Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
+python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+[exit 0]
+
+## 2026-10-03T13:12:45+0900 cwd=$SUPP/clone
+$ make test
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.014s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.013s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.012s
+[exit 0]
+
+## 2026-10-03T13:12:47+0900 cwd=$SUPP/clone
+$ make build
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc
+
+[exit 0]
+
+## 2026-10-03T13:12:50+0900 cwd=$SUPP/clone
+$ git status --porcelain
+
+[exit 0]
+
+## 2026-10-03T13:12:50+0900 cwd=$SUPP/clone
+$ make verify
+python3 scripts/verify_setup.py
+command: ['make', 'lint']; exit: 0
+make[1]: Entering directory '$SUPP/clone'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
+Checking formatting...
+All matched files use Prettier code style!
+python3 scripts/check_compose.py
+Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
+python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+make[1]: Leaving directory '$SUPP/clone'
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-erm2jea7/repo'
+Go formatting violations:
+cmd/relay/lint_probe.go
+make[1]: Leaving directory '/tmp/knowslink-lint-erm2jea7/repo'
+make[1]: *** [Makefile:11: lint-go] Error 1
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-erm2jea7/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+/tmp/knowslink-lint-erm2jea7/repo/adapters/src/lint_probe.ts
+  1:7  error  'unusedProbe' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+make[1]: Leaving directory '/tmp/knowslink-lint-erm2jea7/repo'
+make[1]: *** [Makefile:17: lint-adapters] Error 1
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-erm2jea7/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+src/lint_probe.ts(1,14): error TS2322: Type 'number' is not assignable to type 'string'.
+make[1]: Leaving directory '/tmp/knowslink-lint-erm2jea7/repo'
+make[1]: *** [Makefile:17: lint-adapters] Error 2
+command: ['make', 'lint']; exit: 2
+make[1]: Entering directory '/tmp/knowslink-lint-erm2jea7/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+make[1]: Leaving directory '/tmp/knowslink-lint-erm2jea7/repo'
+[warn] src/lint_probe.ts
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+make[1]: *** [Makefile:17: lint-adapters] Error 1
+command: ['make', 'lint']; exit: 0
+make[1]: Entering directory '/tmp/knowslink-lint-erm2jea7/repo'
+go vet ./cmd/... ./internal/...
+go mod verify
+all modules verified
+npm run check --prefix adapters
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
+Checking formatting...
+All matched files use Prettier code style!
+python3 scripts/check_compose.py
+Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel
+python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+make[1]: Leaving directory '/tmp/knowslink-lint-erm2jea7/repo'
+PASS: format, lint, type errors fail registered integrated command; restored copy passes
+[exit 0]
+
+## 2026-10-03T13:13:07+0900 cwd=$SUPP/clone
+$ make verify-runtime
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc
+
+python3 scripts/verify_runtime.py
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json up --build --wait --wait-timeout 120 relay; exit: 0
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.43kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.0s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 13.53kB done
+#6 DONE 0.0s
+
+#7 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#7 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#7 DONE 0.1s
+
+#8 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#8 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#8 DONE 0.1s
+
+#9 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#9 CACHED
+
+#10 [migrate build 3/7] COPY go.mod go.sum ./
+#10 CACHED
+
+#11 [migrate build 2/7] WORKDIR /src
+#11 CACHED
+
+#12 [migrate stage-1 3/5] WORKDIR /app
+#12 CACHED
+
+#13 [migrate build 4/7] RUN go mod download
+#13 CACHED
+
+#14 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#14 CACHED
+
+#15 [migrate build 5/7] COPY cmd ./cmd
+#15 CACHED
+
+#16 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#16 CACHED
+
+#17 [migrate build 6/7] COPY internal ./internal
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [relay] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:81038db7b70c07761c21ea2b72481cdc3d6ee0fb9c5d489a90b2e17e4b5b22a8 0.0s done
+#19 exporting config sha256:2fbe046b1b69660ceb2ebc02b83b7956fc90b98f716a32f2c73e7c4c484ecab5
+#19 exporting config sha256:2fbe046b1b69660ceb2ebc02b83b7956fc90b98f716a32f2c73e7c4c484ecab5 0.0s done
+#19 exporting attestation manifest sha256:9a13b2db8777641cf8ec072295d1676fbbfa40b7d3e9b8878b7baf079d54d3b0 0.1s done
+#19 exporting manifest list sha256:8c09a1c6b44b716fff374fba013ec1c1122942fd6f0e15b744cc1fa9752e9bc5 0.0s done
+#19 naming to docker.io/library/knowslink-check-60c3bc8f68-relay:latest done
+#19 unpacking to docker.io/library/knowslink-check-60c3bc8f68-relay:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:dee5c02c4ecc46ac3d64590c0216d812173395cd54ae9d03b9fb47adea572bdd 0.0s done
+#20 exporting config sha256:c75e1ecf968c661cdf09297df4faa29903aa7c8a4713aa65714bc121b13e0cd8 0.0s done
+#20 exporting attestation manifest sha256:9b55a8c5bfeba5c83764d248a0362cd63177da63420c5324277fb20ed2b05711 0.1s done
+#20 exporting manifest list sha256:6811858d75929ccbc918800f8d9f30955e99e4861cab613464dbf7f54730a6af 0.0s done
+#20 naming to docker.io/library/knowslink-check-60c3bc8f68-migrate:latest done
+#20 unpacking to docker.io/library/knowslink-check-60c3bc8f68-migrate:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-check-60c3bc8f68-relay Building
+ Image knowslink-check-60c3bc8f68-migrate Building
+ Image knowslink-check-60c3bc8f68-migrate Built
+ Image knowslink-check-60c3bc8f68-relay Built
+ Network knowslink-check-60c3bc8f68_ingress Creating
+ Network knowslink-check-60c3bc8f68_ingress Created
+ Network knowslink-check-60c3bc8f68_database Creating
+ Network knowslink-check-60c3bc8f68_database Created
+ Container knowslink-check-60c3bc8f68-postgres-1 Creating
+ Container knowslink-check-60c3bc8f68-postgres-1 Created
+ Container knowslink-check-60c3bc8f68-migrate-1 Creating
+ Container knowslink-check-60c3bc8f68-migrate-1 Created
+ Container knowslink-check-60c3bc8f68-relay-1 Creating
+ Container knowslink-check-60c3bc8f68-relay-1 Created
+ Container knowslink-check-60c3bc8f68-postgres-1 Starting
+ Container knowslink-check-60c3bc8f68-postgres-1 Started
+ Container knowslink-check-60c3bc8f68-postgres-1 Waiting
+ Container knowslink-check-60c3bc8f68-postgres-1 Healthy
+ Container knowslink-check-60c3bc8f68-migrate-1 Starting
+ Container knowslink-check-60c3bc8f68-migrate-1 Started
+ Container knowslink-check-60c3bc8f68-migrate-1 Waiting
+ Container knowslink-check-60c3bc8f68-migrate-1 Exited
+ Container knowslink-check-60c3bc8f68-relay-1 Starting
+ Container knowslink-check-60c3bc8f68-relay-1 Started
+ Container knowslink-check-60c3bc8f68-migrate-1 Waiting
+ Container knowslink-check-60c3bc8f68-relay-1 Waiting
+ Container knowslink-check-60c3bc8f68-postgres-1 Waiting
+ Container knowslink-check-60c3bc8f68-postgres-1 Healthy
+ Container knowslink-check-60c3bc8f68-migrate-1 Exited
+ Container knowslink-check-60c3bc8f68-relay-1 Healthy
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json logs migrate; exit: 0
+migrate-1  | 2026/10/03 04:13:13 no SQL migrations; no-op (no business schema exists)
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json exec -T postgres psql -U knowslink -d knowslink -Atc 'SELECT count(*) FROM information_schema.tables WHERE table_schema='"'"'public'"'"''; exit: 0
+0
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 0
+ok
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json exec -T relay env DATABASE_URL= /app/relay; exit: 1
+2026/10/03 04:13:19 DATABASE_URL is required
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/relay; exit: 1
+2026/10/03 04:13:19 database ping failed
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json exec -T relay env DATABASE_URL= /app/migrate; exit: 1
+2026/10/03 04:13:19 DATABASE_URL is required
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json exec -T relay env DATABASE_URL=postgres://localhost:1/knowslink /app/migrate; exit: 1
+2026/10/03 04:13:20 database ping failed
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json stop postgres; exit: 0
+ Container knowslink-check-60c3bc8f68-postgres-1 Stopping
+ Container knowslink-check-60c3bc8f68-postgres-1 Stopped
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json exec -T relay wget -q -O - http://127.0.0.1:8080/healthz; exit: 1
+wget: server returned error: HTTP/1.1 503 Service Unavailable
+command: docker compose --env-file .env.example -p knowslink-check-60c3bc8f68 -f $SUPP/clone/compose.yaml -f /tmp/knowslink-runtime-nekrqltg/compose.json down; exit: 0
+ Container knowslink-check-60c3bc8f68-relay-1 Stopping
+ Container knowslink-check-60c3bc8f68-relay-1 Stopped
+ Container knowslink-check-60c3bc8f68-relay-1 Removing
+ Container knowslink-check-60c3bc8f68-relay-1 Removed
+ Container knowslink-check-60c3bc8f68-migrate-1 Stopping
+ Container knowslink-check-60c3bc8f68-migrate-1 Stopped
+ Container knowslink-check-60c3bc8f68-migrate-1 Removing
+ Container knowslink-check-60c3bc8f68-migrate-1 Removed
+ Container knowslink-check-60c3bc8f68-postgres-1 Stopping
+ Container knowslink-check-60c3bc8f68-postgres-1 Stopped
+ Container knowslink-check-60c3bc8f68-postgres-1 Removing
+ Container knowslink-check-60c3bc8f68-postgres-1 Removed
+ Network knowslink-check-60c3bc8f68_database Removing
+ Network knowslink-check-60c3bc8f68_ingress Removing
+ Network knowslink-check-60c3bc8f68_ingress Removed
+ Network knowslink-check-60c3bc8f68_database Removed
+command: docker run --rm --network none -e TUNNEL_TOKEN= cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4 tunnel --no-autoupdate run; exit: 255
+"cloudflared tunnel run" requires the ID or name of the tunnel to run as the last command line argument or in the configuration file.
+See 'cloudflared tunnel run --help'.
+command: npm run start --prefix adapters; exit: 0
+
+> @knowslink/adapters@0.0.0 start
+> node dist/index.js
+
+{"state":"unimplemented","transport":"pull","webhook":false,"evidenceFetch":false}
+PASS: local startup, empty SQL no-op, readiness, missing settings, DB failure, disabled Tunnel, inert adapter
+[exit 0]
+
+## 2026-10-03T13:13:21+0900 cwd=$SUPP/clone
+$ git status --porcelain
+
+[exit 0]
+
+## 2026-10-03T13:13:21+0900 cwd=$SUPP/clone
+$ git status --porcelain --ignored
+!! adapters/dist/
+!! adapters/node_modules/
+!! build/
+!! scripts/__pycache__/
+[exit 0]

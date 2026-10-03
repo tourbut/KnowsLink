@@ -1,0 +1,203 @@
+## 2026-10-03T13:07:26+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example -p knowslink-tester-qa up --build --wait relay
+ Image knowslink-tester-qa-relay Building
+ Image knowslink-tester-qa-migrate Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.35kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.0s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 551B done
+#6 DONE 0.0s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#7 DONE 0.0s
+
+#8 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#8 DONE 0.0s
+
+#9 [relay build 4/7] RUN go mod download
+#9 CACHED
+
+#10 [relay build 2/7] WORKDIR /src
+#10 CACHED
+
+#11 [relay stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#11 CACHED
+
+#12 [relay build 3/7] COPY go.mod go.sum ./
+#12 CACHED
+
+#13 [relay stage-1 2/5] RUN apk add --no-cache ca-certificates
+#13 CACHED
+
+#14 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#14 CACHED
+
+#15 [relay build 6/7] COPY internal ./internal
+#15 CACHED
+
+#16 [relay stage-1 3/5] WORKDIR /app
+#16 CACHED
+
+#17 [relay build 5/7] COPY cmd ./cmd
+#17 CACHED
+
+#18 [relay stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:914a47b0fa5a9c87c74212a875c9642f76bcb9a2d749f4a3d2c3f8f3024f15e8 0.0s done
+#19 exporting config sha256:8160b6652663d89b4ffa8c40fae02f337496d4239ecbc18eb1cfeb9e6c95ebce
+#19 exporting config sha256:8160b6652663d89b4ffa8c40fae02f337496d4239ecbc18eb1cfeb9e6c95ebce 0.0s done
+#19 exporting attestation manifest sha256:25516a85295782d6255abd3a8cd50e3135c3aac51acfd815a56a030876bd84d0 0.1s done
+#19 exporting manifest list sha256:c3cf0e78a86e6568a95f6d6396f74cb584c845389fd83daf1f766b18aa1701ee
+#19 exporting manifest list sha256:c3cf0e78a86e6568a95f6d6396f74cb584c845389fd83daf1f766b18aa1701ee 0.0s done
+#19 naming to docker.io/library/knowslink-tester-qa-migrate:latest 0.1s done
+#19 unpacking to docker.io/library/knowslink-tester-qa-migrate:latest
+#19 unpacking to docker.io/library/knowslink-tester-qa-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:b844a3eb516beb9f7c43dfb61d7a1c9ac1a1f13345414e4fd2f8cb74b2938676 0.0s done
+#20 exporting config sha256:5b2a11f55214de5080fbc3fb9cfc1966145e7d425d733cc7f2a72b1dbc518c71 0.0s done
+#20 exporting attestation manifest sha256:101a26424b03c9f8574fb4e519500d8fba6f4a953fcd37229336e015c125a132 0.1s done
+#20 exporting manifest list sha256:ab5b76f7587b89ee564ab2efa7b179bf7faf15f6c029e94d6075ed0b3e9fe820 0.0s done
+#20 naming to docker.io/library/knowslink-tester-qa-relay:latest 0.0s done
+#20 unpacking to docker.io/library/knowslink-tester-qa-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-tester-qa-migrate Built
+ Image knowslink-tester-qa-relay Built
+ Network knowslink-tester-qa_ingress Creating
+ Network knowslink-tester-qa_ingress Created
+ Network knowslink-tester-qa_database Creating
+ Network knowslink-tester-qa_database Created
+ Volume knowslink-tester-qa_postgres-data Creating
+ Volume knowslink-tester-qa_postgres-data Created
+ Container knowslink-tester-qa-postgres-1 Creating
+ Container knowslink-tester-qa-postgres-1 Created
+ Container knowslink-tester-qa-migrate-1 Creating
+ Container knowslink-tester-qa-migrate-1 Created
+ Container knowslink-tester-qa-relay-1 Creating
+ Container knowslink-tester-qa-relay-1 Created
+ Container knowslink-tester-qa-postgres-1 Starting
+ Container knowslink-tester-qa-postgres-1 Started
+ Container knowslink-tester-qa-postgres-1 Waiting
+ Container knowslink-tester-qa-postgres-1 Healthy
+ Container knowslink-tester-qa-migrate-1 Starting
+ Container knowslink-tester-qa-migrate-1 Started
+ Container knowslink-tester-qa-migrate-1 Waiting
+ Container knowslink-tester-qa-migrate-1 Exited
+ Container knowslink-tester-qa-relay-1 Starting
+ Container knowslink-tester-qa-relay-1 Started
+ Container knowslink-tester-qa-relay-1 Waiting
+ Container knowslink-tester-qa-postgres-1 Waiting
+ Container knowslink-tester-qa-migrate-1 Waiting
+ Container knowslink-tester-qa-postgres-1 Healthy
+ Container knowslink-tester-qa-migrate-1 Exited
+ Container knowslink-tester-qa-relay-1 Healthy
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example -p knowslink-tester-qa ps -a --format json
+{"Command":"\"/app/migrate\"","CreatedAt":"2026-10-03 13:07:27 +0900 KST","ExitCode":0,"Health":"","ID":"0df82153ec2c","Image":"knowslink-tester-qa-migrate","Labels":"com.docker.compose.service=migrate,com.docker.compose.image=sha256:c3cf0e78a86e6568a95f6d6396f74cb584c845389fd83daf1f766b18aa1701ee,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=$SCRATCH/clone","LocalVolumes":"0","Mounts":"","Name":"knowslink-tester-qa-migrate-1","Names":"knowslink-tester-qa-migrate-1","Networks":"knowslink-tester-qa_database","Ports":"","Project":"knowslink-tester-qa","Publishers":[],"RunningFor":"10 seconds ago","Service":"migrate","Size":"0B","State":"exited","Status":"Exited (0) 6 seconds ago"}
+{"Command":"\"docker-entrypoint.s…\"","CreatedAt":"2026-10-03 13:07:27 +0900 KST","ExitCode":0,"Health":"healthy","ID":"02327f22c1d2","Image":"postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24","Labels":"com.docker.compose.depends_on=,com.docker.compose.oneoff=False,com.docker.compose.project=knowslink-tester-qa,com.docker.compose.project.config_files=$SCRATCH/clone,com.docker.compose.version=5.1.3,com.docker.compose.config-hash=6d07c58e1f7bbab4eb1a0fbb8a72ec8f3de11c0108375d1324995462125aac86","LocalVolumes":"1","Mounts":"knowslink-test…","Name":"knowslink-tester-qa-postgres-1","Names":"knowslink-tester-qa-postgres-1","Networks":"knowslink-tester-qa_database","Ports":"5432/tcp","Project":"knowslink-tester-qa","Publishers":[{"URL":"","TargetPort":5432,"PublishedPort":0,"Protocol":"tcp"}],"RunningFor":"10 seconds ago","Service":"postgres","Size":"0B","State":"running","Status":"Up 9 seconds (healthy)"}
+{"Command":"\"/app/relay\"","CreatedAt":"2026-10-03 13:07:27 +0900 KST","ExitCode":0,"Health":"healthy","ID":"2c77ab57aabb","Image":"knowslink-tester-qa-relay","Labels":"com.docker.compose.project.config_files=$SCRATCH/clone,com.docker.compose.service=relay,com.docker.compose.container-number=1","LocalVolumes":"0","Mounts":"","Name":"knowslink-tester-qa-relay-1","Names":"knowslink-tester-qa-relay-1","Networks":"knowslink-tester-qa_database,knowslink-tester-qa_ingress","Ports":"127.0.0.1:18080-\u003e8080/tcp","Project":"knowslink-tester-qa","Publishers":[{"URL":"127.0.0.1","TargetPort":8080,"PublishedPort":18080,"Protocol":"tcp"}],"RunningFor":"10 seconds ago","Service":"relay","Size":"0B","State":"running","Status":"Up 5 seconds (healthy)"}
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ curl -sS -o /dev/null -w healthz %{http_code}\n http://127.0.0.1:18080/healthz
+healthz 200
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ curl -sS -o /dev/null -w POST /healthz %{http_code}\n -X POST http://127.0.0.1:18080/healthz
+POST /healthz 405
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ curl -sS -o /dev/null -w /v1/messages %{http_code}\n -X POST -d {} http://127.0.0.1:18080/v1/messages
+/v1/messages 404
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ curl -sS -o /dev/null -w /webhook %{http_code}\n -X POST -d {} http://127.0.0.1:18080/webhook
+/webhook 404
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ curl -sS -o /dev/null -w /approve %{http_code}\n http://127.0.0.1:18080/approve
+/approve 404
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example -p knowslink-tester-qa logs migrate
+migrate-1  | 2026/10/03 04:07:30 no SQL migrations; no-op (no business schema exists)
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example -p knowslink-tester-qa exec -T postgres psql -U knowslink -d knowslink -tAc select count(*) from information_schema.tables where table_schema='public'
+0
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example -p knowslink-tester-qa port postgres 5432
+invalid IP:0
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ docker ps --filter label=com.docker.compose.project=knowslink-tester-qa --format {{.Names}} {{.Ports}}
+knowslink-tester-qa-relay-1 127.0.0.1:18080->8080/tcp
+knowslink-tester-qa-postgres-1 5432/tcp
+[exit 0]
+
+## 2026-10-03T13:07:37+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example -p knowslink-tester-qa down -v
+ Container knowslink-tester-qa-relay-1 Stopping
+ Container knowslink-tester-qa-relay-1 Stopped
+ Container knowslink-tester-qa-relay-1 Removing
+ Container knowslink-tester-qa-relay-1 Removed
+ Container knowslink-tester-qa-migrate-1 Stopping
+ Container knowslink-tester-qa-migrate-1 Stopped
+ Container knowslink-tester-qa-migrate-1 Removing
+ Container knowslink-tester-qa-migrate-1 Removed
+ Container knowslink-tester-qa-postgres-1 Stopping
+ Container knowslink-tester-qa-postgres-1 Stopped
+ Container knowslink-tester-qa-postgres-1 Removing
+ Container knowslink-tester-qa-postgres-1 Removed
+ Volume knowslink-tester-qa_postgres-data Removing
+ Network knowslink-tester-qa_ingress Removing
+ Network knowslink-tester-qa_database Removing
+ Volume knowslink-tester-qa_postgres-data Removed
+ Network knowslink-tester-qa_ingress Removed
+ Network knowslink-tester-qa_database Removed
+[exit 0]
+
+## 2026-10-03T13:07:38+0900 cwd=$SCRATCH/clone
+$ docker ps -a --filter label=com.docker.compose.project=knowslink-tester-qa --format {{.Names}}
+
+[exit 0]

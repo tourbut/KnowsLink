@@ -1,0 +1,176 @@
+## 2026-10-03T13:07:45+0900 cwd=$SCRATCH/clone
+$ git diff --stat 729446d8da57 0cc10b083771be9b3423833b222c57d426315333 -- . :!.fullops-squad/docs/evaluations
+ .dockerignore                                      |    8 +
+ .env.example                                       |    6 +
+ .fullops-squad/FULLOPS.md                          |   14 +-
+ .fullops-squad/PLANS.md                            |   51 +-
+ .fullops-squad/board/board.json                    |   16 +-
+ .fullops-squad/contexts/designer.md                |   13 +
+ .fullops-squad/contexts/dev.md                     |   14 +
+ .fullops-squad/docs/deliverables/README.md         |   13 +-
+ .fullops-squad/docs/design-docs/architecture.md    |   71 +
+ .fullops-squad/docs/design-docs/tech-stack.md      |   62 +
+ .../exec-plans/logs/SAR-SETUP-001-DEV/checks.log   |   43 +
+ .../SAR-SETUP-001-DEV/clean-checkout-initial.log   |   65 +
+ .../logs/SAR-SETUP-001-DEV/clean-checkout.log      |  209 +++
+ .../logs/SAR-SETUP-001-DEV/environment.log         |   38 +
+ .../fullops-checkpoint-initial.json                |   44 +
+ .../logs/SAR-SETUP-001-DEV/fullops-checkpoint.json |   30 +
+ .../exec-plans/logs/SAR-SETUP-001-DEV/install.log  |   12 +
+ .../logs/SAR-SETUP-001-DEV/lint-injection.log      |  147 +++
+ .../logs/SAR-SETUP-001-DEV/runtime-initial.log     |  383 ++++++
+ .../exec-plans/logs/SAR-SETUP-001-DEV/runtime.log  |  178 +++
+ .../docs/exec-plans/phases/FULLOPS-UPDATE-099.md   |   65 +
+ .../docs/exec-plans/phases/SAR-SETUP-001-DEV.md    |   74 ++
+ .../docs/exec-plans/phases/SAR-SETUP-001.md        |   79 ++
+ .../docs/planning/SAR-SETUP-001-question.md        |   14 +
+ .../docs/planning/product-specs/SAR-SETUP-001.md   |  102 ++
+ .fullops-squad/fullops.json                        |    2 +-
+ .../handovers/logs/2026-10-03_to_designer.md       |   83 ++
+ .fullops-squad/handovers/logs/2026-10-03_to_dev.md |  175 +++
+ .fullops-squad/handovers/to_tester.md              |  141 ++
+ .fullops-squad/lint/README.md                      |    7 +-
+ .fullops-squad/lint/lint.json                      |    4 +-
+ .fullops-squad/orca-agents.md                      |   26 +-
+ .fullops-squad/project.md                          |   30 +-
+ .gitignore                                         |    4 +
+ .npmrc                                             |    1 +
+ .nvmrc                                             |    1 +
+ Dockerfile                                         |   17 +
+ Makefile                                           |   37 +
+ README.md                                          |   65 +-
+ adapters/eslint.config.mjs                         |    9 +
+ adapters/package-lock.json                         | 1358 ++++++++++++++++++++
+ adapters/package.json                              |   25 +
+ adapters/src/index.ts                              |    9 +
+ adapters/tsconfig.json                             |   13 +
+ cmd/migrate/main.go                                |   66 +
+ cmd/migrate/main_test.go                           |   24 +
+ cmd/relay/main.go                                  |   85 ++
+ cmd/relay/main_test.go                             |   32 +
+ compose.yaml                                       |   57 +
+ db/migrations/.gitkeep                             |    0
+ db/queries/.gitkeep                                |    0
+ go.mod                                             |   19 +
+ go.sum                                             |   51 +
+ internal/config/config.go                          |   36 +
+ internal/config/config_test.go                     |   38 +
+ scripts/check_compose.py                           |   36 +
+ scripts/verify_runtime.py                          |   74 ++
+ scripts/verify_setup.py                            |   53 +
+ sqlc.yaml                                          |   11 +
+ 59 files changed, 4305 insertions(+), 35 deletions(-)
+[exit 0]
+
+## 2026-10-03T13:07:45+0900 cwd=$SCRATCH/clone
+$ git diff --name-only 729446d8da57 0cc10b083771be9b3423833b222c57d426315333 -- .fullops-squad/docs/planning
+.fullops-squad/docs/planning/SAR-SETUP-001-question.md
+.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md
+[exit 0]
+
+## 2026-10-03T13:07:45+0900 cwd=$SCRATCH/clone
+$ git diff --quiet 729446d8da57 0cc10b083771be9b3423833b222c57d426315333 -- .fullops-squad/docs/planning/sources
+
+[exit 0]
+
+## 2026-10-03T13:07:45+0900 cwd=$SCRATCH/clone
+$ git diff --quiet 729446d8da57 0cc10b083771be9b3423833b222c57d426315333 -- .fullops-squad/lint/lint.json
+
+[exit 1]
+
+## 2026-10-03T13:07:45+0900 cwd=$SCRATCH/clone
+$ git diff --name-only 729446d8da57 0cc10b083771be9b3423833b222c57d426315333
+.dockerignore
+.env.example
+.fullops-squad/FULLOPS.md
+.fullops-squad/PLANS.md
+.fullops-squad/board/board.json
+.fullops-squad/contexts/designer.md
+.fullops-squad/contexts/dev.md
+.fullops-squad/docs/deliverables/README.md
+.fullops-squad/docs/design-docs/architecture.md
+.fullops-squad/docs/design-docs/tech-stack.md
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-context.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-documents-find.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-find.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-model-dev.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-DEV-route.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-context.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-documents-find.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-TESTER-find.json
+.fullops-squad/docs/evaluations/jev/SAR-SETUP-001-model-designer.json
+.fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-099/lint.json
+.fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-099/preservation-before.json
+.fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-099/template-comparison.txt
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/checks.log
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/clean-checkout-initial.log
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/clean-checkout.log
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/environment.log
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/fullops-checkpoint-initial.json
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/fullops-checkpoint.json
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/install.log
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/lint-injection.log
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/runtime-initial.log
+.fullops-squad/docs/exec-plans/logs/SAR-SETUP-001-DEV/runtime.log
+.fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md
+.fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-DEV.md
+.fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md
+.fullops-squad/docs/planning/SAR-SETUP-001-question.md
+.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md
+.fullops-squad/fullops.json
+.fullops-squad/handovers/logs/2026-10-03_to_designer.md
+.fullops-squad/handovers/logs/2026-10-03_to_dev.md
+.fullops-squad/handovers/to_tester.md
+.fullops-squad/lint/README.md
+.fullops-squad/lint/lint.json
+.fullops-squad/orca-agents.md
+.fullops-squad/project.md
+.gitignore
+.npmrc
+.nvmrc
+Dockerfile
+Makefile
+README.md
+adapters/eslint.config.mjs
+adapters/package-lock.json
+adapters/package.json
+adapters/src/index.ts
+adapters/tsconfig.json
+cmd/migrate/main.go
+cmd/migrate/main_test.go
+cmd/relay/main.go
+cmd/relay/main_test.go
+compose.yaml
+db/migrations/.gitkeep
+db/queries/.gitkeep
+go.mod
+go.sum
+internal/config/config.go
+internal/config/config_test.go
+scripts/check_compose.py
+scripts/verify_runtime.py
+scripts/verify_setup.py
+sqlc.yaml
+[exit 0]
+
+## 2026-10-03T13:07:45+0900 cwd=$SCRATCH/clone
+$ git grep -n -i go 1.27.1\|node 22.22.2\|postgres 17 -- README.md .fullops-squad/project.md .fullops-squad/docs/design-docs
+.fullops-squad/docs/design-docs/tech-stack.md:23:| Node·npm | Node 22.22.2 (`.nvmrc`), npm 10.9.7, package engines |
+.fullops-squad/docs/design-docs/tech-stack.md:35:초기 조회한 ESLint 9.39.3은 npm의 지원 종료 경고 때문에 채택하지 않았다. 최종 ESLint 10.12.0은 Node 22.22.2와 typescript-eslint 8.71.0의 peer 범위를 만족한다. npm 설치·실행으로 호환성을 확인한다.
+.fullops-squad/project.md:17:| 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
+README.md:9:Go 1.27.1, Node 22.22.2, npm 10.9.7, Python 3, GNU Make, Docker Engine와 Compose가 필요하다. Go 1.21 이상의 `go`는 `go.mod`에 지정한 도구 체인을 자동으로 내려받을 수 있다. Node 버전은 `.nvmrc`에 있다. Go 의존성은 `go.mod`·`go.sum`, adapter 의존성은 `adapters/package-lock.json`으로 고정한다.
+[exit 0]
+
+## 2026-10-03T13:07:45+0900 cwd=$SCRATCH/clone
+$ git grep -n make lint\|make verify -- .fullops-squad/docs/design-docs README.md
+.fullops-squad/docs/design-docs/architecture.md:59:| SETUP-03 | Compose 네 서비스와 의존 순서 | `make lint-config`, `make verify-runtime` |
+.fullops-squad/docs/design-docs/architecture.md:61:| LINT-01 | `make lint` | 정상 종료코드 0 |
+.fullops-squad/docs/design-docs/architecture.md:62:| LINT-02–03 | 등록된 통합 명령과 복제본 위반 주입 | `make verify`의 오류별 실패·원복 통과 |
+.fullops-squad/docs/design-docs/tech-stack.md:39:루트의 `make install`, `make lint`, `make test`, `make build`, `make verify`, `make verify-runtime`을 사용한다. 상세 절차는 [README](../../../README.md)에 있다.
+README.md:13:make lint
+README.md:16:make verify
+README.md:19:`make lint`는 Go 포맷·vet·module 무결성, TypeScript 포맷·ESLint·타입, YAML 포맷·Compose 구조, 검증 스크립트 문법을 검사한다. 자동 수정하지 않는다. Go 검사는 `cmd/`와 `internal/`로 한정한다. `node_modules`의 외부 Go 코드는 검사하지 않는다.
+README.md:21:`make verify`는 임시 복제본에서 Go 포맷과 TypeScript 포맷·lint·타입 위반을 주입한다. 등록된 `make lint`가 실패하고 원복 후 통과하는지 확인한다. 제품 파일을 바꾸지 않는다.
+README.md:41:make verify-runtime
+README.md:45:`make verify-runtime`은 고유 Compose 프로젝트와 임시 DB 저장소로 기동·no-op·상태 확인·필수 설정 누락·DB 오류를 검증한다. 검증 컨테이너를 종료한다. cloudflared는 네트워크를 차단한 별도 컨테이너에서 token 누락 실패만 확인한다. 실제 Tunnel은 연결하지 않는다.
+[exit 0]

@@ -74,6 +74,7 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - D03은 dev 책임이다. 잠긴 Go·TypeScript·Postgres·Compose·DB tooling·Go UI 선택을 유지한다.
 - dev 지시서: `handovers/to_dev.md` (`SAR-SETUP-001-DEV`, ready).
 - tester 지시서: `handovers/to_tester.md` (`SAR-SETUP-001-TESTER`, dev 완료 SHA 대기).
+- tester 독립 QA(SAR-SETUP-001-TESTER): dev SHA `0cc10b0`에서 SETUP-01–04·LINT-01–03·DOC-01·SCOPE-01 통과, 결함 없음. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md). main 병합은 coor가 판단한다.
 - 역할별 Jev find/code·documents 및 context는 API 실패로 fallback했다. 문서를 수동으로 좁히고 모두 keep했다. 원천은 수정하지 않았다.
 - coor 후속: 설계 커밋을 역할 워크트리에 반영하고 실제 dispatch 복귀 정보를 기록한다. dev 완료 후 tester를 dispatch한다.
 - 상세 근거와 검증: `docs/exec-plans/phases/SAR-SETUP-001.md`. 제품 기능·배포와 제품 테스트는 수행하지 않았다.
