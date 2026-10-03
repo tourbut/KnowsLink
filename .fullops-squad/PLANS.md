@@ -305,3 +305,8 @@ worker-release는 external_terminal 때문에 retained/processAction none을 반
 사용자는 현재 진행 과제만 완료·main 병합·원격 push한 뒤 새 작업을 시작하지 말라고 지시했다. SAR-MVP-001의 필수 QA·UI·독립 리뷰와 기존 공개 기획·OPS 사전조사 기록을 마무리한다. 다음 기능·공개 정책 수치 확정·제한 구현·실제 배포·벤더 연결은 시작하지 않는다. 보류 정책과 운영 인증을 합성 수락 PASS로 바꾸지 않는다.
 
 QA c59537b와 공개 기획 69dbec4를 coor 통합 후보에 반영했다. to_tester 충돌은 완료 아카이브 보존과 빈 인박스, orca-agents 충돌은 최신 사용자 지정 Grok와 즉시 공유 규칙 보존으로 해결했다. main에는 아직 병합하지 않았다. 코드 리뷰 Jev는 claude-opus-5-5 high를 선택했으나 Claude 사용량 한도 때문에 같은 고성능 후보의 codex gpt-6.1-sol high로 실행한다. 범위·독립성·critical/high 차단은 유지한다. OPS 기존 Dispatch는 operator_close 실패로 종료됐고 작성 중 ops-guide.md가 남아 있다. 같은 과제의 기록 마무리만 재개한다.
+
+- 기존 과제의 코드 리뷰 영수증: Task task_efacf4dfb2a8 / Dispatch ctx_005e493d18f5 / terminal term_977af925-59fd-4e9f-b47a-01621952b51c. effective codex gpt-6.1-sol high, 실제 snapshot 코드 열람을 확인했다. 기록 체크아웃은 coor, read-only detached head 31405e736a16be9d77239c6cdc6fdeb56892436f다.
+- 직접 UI 검수 영수증: Task task_911c61d88587 / Dispatch ctx_b7d073da41ef / terminal term_fd607972-ef9e-4be1-8fac-7dd3d9ac8245. 기존 designer 체크아웃에서 effective codex gpt-6.1-sol high와 7개 PNG 직접 열람을 확인했다.
+- OPS 기존 과제 마무리 영수증: Task task_85e5a5aa9960 / Dispatch ctx_78873a1ba765 / terminal term_9cab4795-870e-43e2-94bc-49d5eb44e3d9. task ready 상태가 retry-of를 거절해 dispatch-show로 기존 failed·exited를 확인하고 같은 Task로 시작했다. effective codex gpt-6.1-sol medium과 최신 후속 지시서 열람을 확인했다. CLI 기본 후보 밖 선택은 Claude 사용량 차단 해소와 기존 문서 마무리 목적이며 역할 소유권은 OPS다. 새 과제·배포는 시작하지 않는다.
+- coor 기준 0dd08ec lint 첫 실행은 product-lint passed이나 준비 리뷰 report.md front matter 부재 때문에 ERROR 1이었다. 해당 보고서 소유 reviewer에게 전달했다. WARNING 3은 기존 SIZE-001이다. 템플릿 완성·최종 통합 커밋 뒤 다시 검사한다.
