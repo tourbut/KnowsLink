@@ -3,232 +3,232 @@
   "head": "552586b6e886f95bffa9a000a031ea03070afedb",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "ops 독립 검토자 — Claude Code(claude-sonnet-5-5), 세션 0f2048f7-ec36-47bb-8707-f202b5c14e02, 워크트리 fullops-ops",
+  "conclusion": "수락 가능(조건부 범위: 코드·문서·공식 설치 근거 독립 리뷰). 고정 후보 552586b에서 미해결 critical/high 0건. medium 1·low 2는 실제 연결 재개 전 후속으로 남긴다. 후보는 실제 Grok Bot 계정·marketplace·hosted runtime 연결을 실행하지 않았고 held가 유지된다. 이 리뷰는 TESTER 독립 동작 QA와 실제 Bot 앱 설치 검증을 대체하지 않는다.",
   "files": [
     {
       "path": ".fullops-squad/PLANS.md",
       "status": "modified",
       "insertions": 8,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "coor 준비 커밋이 만든 변경. 8줄 추가는 재개 기록이며 DEV 지시·기준 ref와 일치한다. 511줄 SIZE-001 WARNING은 coor 소유 파일 크기이며 수락 차단이 아니다."
     },
     {
       "path": ".fullops-squad/board/board.json",
       "status": "modified",
       "insertions": 3,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "JSON 유효. summary/status/note가 재개 상태(active)와 일치한다. 비밀값 없음. board는 coor 소유이며 변경 요청 없음."
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "status": "modified",
       "insertions": 5,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 교훈 기록. 공통 Adapter/CLI 분리와 held·loopback·redirect 검사가 core.ts/index.ts/mcp.test.ts 실제 동작과 일치한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
       "status": "modified",
       "insertions": 9,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "SAR-MVP-002 연결 구조 문단. 공식 Cursor 플러그인 문서와 실제 소스(core.ts 분리, shared claim relay 집행)와 일치한다. Bot 설치 성공을 주장하지 않는다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "status": "modified",
       "insertions": 13,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "MCP 계약 문단을 mcp.ts와 대조했다. 도구 2개·입력 없음·held 기본·loopback root 한정·redirect 거부·출력 5필드·busy 동시성이 코드와 일치한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 13,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "모듈별 책임을 소스와 대조했다. index.ts CLI 보존, mcp.ts stdout 무소음(console.log/stdout 사용 없음), package_plugin.py 허용 목록·고정 timestamp 서술이 일치한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/tech-stack.md",
       "status": "modified",
       "insertions": 9,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "SDK 1.32.0·esbuild 0.28.2가 package.json·package-lock.json과 일치(npm ls 정상). Context7 근거와 버전 한계를 정직하게 적었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/lint-candidate.json",
       "status": "added",
       "insertions": 43,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "5bd1bd2 후보 lint JSON. ERROR 0/WARNING 2. 이후 5bd1bd2..552586b 사이 제품 소스 변경이 없음을 git diff로 확인해 coor의 552586b lint.json(WARNING 3)과 일관됨을 확인했다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/log-normalization.json",
       "status": "added",
       "insertions": 14,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "로그 두 개의 공백 정규화 해시 기록. 내용 변경 없이 줄 끝 공백만 제거했다는 설명이 로그 형식과 맞다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/official-sources.json",
       "status": "added",
       "insertions": 43,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "공식 URL 13개와 Context7 ID·버전 한계 기록. cursor.com/docs/reference/plugins, /docs/plugins, /help/grok-bot/connect-plugins를 직접 다시 조회해 manifest·mcp.json·marketplace·team marketplace 서술이 일치함을 확인했다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/verification.json",
       "status": "added",
       "insertions": 51,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검사별 HEAD/exit 0 연결을 확인했다. c4ebbec 이후 제품 소스(core/mcp/test/synthetic)는 불변이며 Makefile·README·package_plugin.py 변경은 make plugin(5bd1bd2)이 덮는다. 5bd1bd2..552586b에 제품 변경 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV.md",
       "status": "added",
       "insertions": 95,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "실행 기록. 지원 근거 표·검증 표·held 범위가 소스·README와 일치한다. line 85의 SEC-001(3번째 WARNING)은 문서가 더미 lease_token 문자열을 인용해 생긴 오탐이다."
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "status": "modified",
       "insertions": 9,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OPS 인계 문단. 계정·운영 연결을 실행하지 않았고 owner/admin·OPS·coor 후속 담당이 README 재개 조건과 일치한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
       "status": "modified",
       "insertions": 107,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 지시서·완료 보고 보존 로그. 재개 기준 SHA·범위가 현재 인박스와 모순되지 않는다. 비밀값 없음."
     },
     {
       "path": ".fullops-squad/handovers/to_dev.md",
       "status": "modified",
       "insertions": 0,
       "deletions": 68,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "인박스 비움(삭제 68줄). work.py finish 절차로 logs에 전문이 보존돼 있음을 확인했다."
     },
     {
       "path": "Makefile",
       "status": "modified",
       "insertions": 6,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "plugin 타깃이 build 의존 후 package_plugin.py --verify를 실행한다. test에 npm test 추가, py_compile에 package_plugin.py 포함. .PHONY 갱신 확인. 각 명령 실패는 target을 멈춘다."
     },
     {
       "path": "adapters/.cursor-plugin/plugin.json",
       "status": "added",
       "insertions": 10,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "name kebab-case, skills=\"./skills/\", mcpServers=\"./mcp.json\"이 공식 plugin reference와 일치한다. 비밀값 없음. description이 held를 명시한다."
     },
     {
       "path": "adapters/README.md",
       "status": "added",
       "insertions": 69,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "설치·held·합성 검사·도구 상태 서술을 mcp.ts/core.ts/package_plugin.py와 줄 단위로 대조했다. ZIP 직접 업로드 경로를 주장하지 않고(공식 문서에 없음) stdio/hosted Node 미확인을 명시한다. Node 범위가 engines와 일치한다. 불일치 없음."
     },
     {
       "path": "adapters/mcp.json",
       "status": "added",
       "insertions": 11,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "mcpServers 래퍼와 ${CURSOR_PLUGIN_ROOT} 사용이 공식 문서와 일치한다. env는 KNOWSLINK_MODE=held뿐이며 credential이 없다."
     },
     {
       "path": "adapters/package-lock.json",
       "status": "modified",
       "insertions": 1614,
       "deletions": 20,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "lockfile 1614줄 추가. 직접 diff 대신 npm ls --all 로 invalid/extraneous/missing 0, SDK 1.32.0·esbuild 0.28.2 고정, 96개 prod 패키지 전부 LICENSE 확보(패키징 통과)를 확인했다. 생성물이라 줄 단위 검토는 생략."
     },
     {
       "path": "adapters/package.json",
       "status": "modified",
       "insertions": 9,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "SDK 1.32.0 runtime pin, esbuild 0.28.2 dev pin, build=tsc+bundle:plugin, test=build+mcp.test. format:check에 plugin manifest·mcp.json 포함. 범위 연산자 없는 pin 확인."
     },
     {
       "path": "adapters/skills/knowslink/SKILL.md",
       "status": "added",
       "insertions": 16,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "frontmatter name/description 정상. 지시가 실제 동작(held·processed 의미·owner gate 독립·claim 비노출)과 일치하며 모델 입력으로 secret을 받지 않게 안내한다."
     },
     {
       "path": "adapters/src/core.ts",
       "status": "added",
       "insertions": 221,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "index.ts에서 이동한 Adapter. 변경은 redirect:\"error\", localAdapter 엄격 URL 검증(http·loopback host·userinfo/path/query/hash 거부), onGate 콜백뿐이며 서명·persist→ACK→claim→gate→authorize→denied 순서는 원본과 동일하다. relay http.go authorize/gate-consume/claim 서버 검사와 대조했다. findings 2건(F-02, F-03) 참조."
     },
     {
       "path": "adapters/src/index.ts",
       "status": "modified",
       "insertions": 5,
       "deletions": 203,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "CLI 진입점이 core를 재사용하고 core를 re-export한다. 직접 실행 가드 유지. import 부작용 없음. stdout 출력은 CLI 경로에만 있고 bundle(mcp.ts)은 index.ts를 import하지 않는다."
     },
     {
       "path": "adapters/src/mcp.test.ts",
       "status": "added",
       "insertions": 221,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "실제 SDK stdio initialize·tools 목록·held·production 값 held·unconfigured·잘못된 URL 5종·redirect 비추적·persist/ACK/claim/서명 실패 시 후속 호출 차단을 검사한다. stderr 빈 값을 단언한다. gate 대기 경로는 synthetic.ts SQL e2e가 맡는다. SEC-001 WARNING은 더미 lease 문자열 오탐."
     },
     {
       "path": "adapters/src/mcp.ts",
       "status": "added",
       "insertions": 67,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "도구 2개·입력 없음·annotations. 기본 held, busy 가드, catch로 상세 비노출, stdout은 SDK transport만 사용(console.log 없음). 설정은 환경에서만 읽는다. 장시간 차단 동작은 F-01."
     },
     {
       "path": "adapters/src/synthetic.ts",
       "status": "modified",
       "insertions": 50,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "SQL e2e가 bundle(plugin.js)을 stdio로 호출해 processed 5필드 출력을 단언한다. PEM은 mkdtemp 0600 파일로 쓰고 finally에서 제거한다. 기존 합성 흐름 유지. 로그 mcp-sql-mvp.txt PASS와 일치."
     },
     {
       "path": "scripts/package_plugin.py",
       "status": "added",
       "insertions": 62,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "허용 목록 5파일+생성 3파일, 심볼릭 링크·누락 거부, 고정 timestamp·권한. 재현 검사: 기록 SHA의 snapshot을 archive로 복사해 build+package 실행, ZIP 구성 8파일 확인, 압축 해제 bundle MCP 검사 exit 0. bundle은 node_modules 경로 정규화 후 DEV ZIP과 바이트 동일, 호스트 경로 0건."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/baseline-verify-mvp.txt",
@@ -236,8 +236,8 @@
       "insertions": 196,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 확장자 제외 로그. 기준 ref 기존 상태의 verify-mvp 비교용 원시 출력이며 log-normalization.json 해시 기록과 verification.json 연결로 존재를 확인했다. 줄 단위 검토 생략, 수락 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/deliverables-strict.txt",
@@ -245,8 +245,8 @@
       "insertions": 1,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 제외 로그 1줄. verification.json의 deliverables --strict exit 0 기록과 연결됨을 확인. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/fullops-candidate.txt",
@@ -254,8 +254,8 @@
       "insertions": 4,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 제외 로그 4줄. lint-candidate.json과 중복되는 요약이며 JSON 쪽을 검토했다. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/mcp-sql-mvp.txt",
@@ -263,8 +263,8 @@
       "insertions": 206,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 제외 로그. 끝줄 PASS와 Compose 자원 회수(down --volumes exit 0)를 직접 확인했다. 전체 줄 검토는 생략하며 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/package.txt",
@@ -272,8 +272,8 @@
       "insertions": 20,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 제외 로그. 실행 결과(PASS·sha256 0e671d1a…·exit=0)를 확인했고 독립 재현으로 보강했다. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/product-lint.txt",
@@ -281,8 +281,8 @@
       "insertions": 28,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 제외 로그. lint-candidate.json output_tail과 동일 명령이며 JSON을 검토했다. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/product-test.txt",
@@ -290,8 +290,8 @@
       "insertions": 24,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 제외 로그. go test 결과와 PASS 줄을 확인했다. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-DEV/strict-precommit.txt",
@@ -299,16 +299,44 @@
       "insertions": 1,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "OCR 제외 로그 1줄. 사전 커밋 strict 검사 기록이며 verification.json과 일치. 생략 영향 없음."
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "adapters/src/mcp.ts",
+      "start_line": 268,
+      "end_line": 283,
+      "category": "bug",
+      "severity": "medium",
+      "resolved": false,
+      "content": "F-01 knowslink_pull_once가 owner gate 결정 또는 메시지 exp까지(2초 폴링) 한 번의 tool 호출 안에서 대기한다. 호스트 MCP 요청 timeout이 이보다 짧으면 클라이언트는 timeout을 보지만 서버 작업은 계속되고 busy가 유지돼 이후 호출은 busy로 거부된다(취소 신호 미처리). claim은 재발급되지 않으므로 fail-safe이고 README가 busy·재시도 금지를 설명한다. 합성 시험은 timeout 240초로 통과했다. 실제 Bot 앱의 tool timeout은 미확인(held). 실제 연결 재개 전 TESTER/OPS가 앱 timeout을 확인하고 필요하면 DEV가 비차단 상태 조회로 바꾼다."
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "start_line": 170,
+      "end_line": 187,
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "F-02 gate가 approved가 아니거나(거절·만료·대기 만료) 시간이 끝나도 /v1/authorize로 진행하며, relay authorize는 claim 토큰만 검사한다(http.go). 현재는 authorize가 executable:false/disclosure:false 고정이고 결과도 denied뿐이라 효과가 없다. index.ts에서 이동한 기존 동작이다. disclosure policy나 calendar effect를 추가하는 후속 과제는 gate-consume 성공을 authorize 전제 조건으로 서버·어댑터 양쪽에서 강제해야 한다."
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "start_line": 204,
+      "end_line": 213,
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "F-03 RELAY_URL host 허용 목록에 DNS 이름 localhost가 있다. 비정상 hosts 설정이면 Bearer credential이 loopback 밖으로 갈 수 있다. 합성 모드·시험 키 한정이며 기본 held다. 숫자 loopback(127.0.0.1, [::1])만 허용하면 더 단단하다. 수락 차단 아님."
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "01a101f4-2c66-7843-a503-b808214ee39f",
+    "reviewer_session": "0f2048f7-ec36-47bb-8707-f202b5c14e02",
+    "snapshot_path": "/tmp/knowslink-plugin-review-552586b",
     "snapshot_head": "552586b6e886f95bffa9a000a031ea03070afedb",
     "read_only": true
   }

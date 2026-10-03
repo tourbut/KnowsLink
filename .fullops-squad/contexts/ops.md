@@ -33,3 +33,8 @@ reusable policy는 새로 만든다. 기존 `knowslog-bot - Production`은 다�
 
 구성 28bd1bb로 Access 앱·정책·DNS·connector를 적용했다. 관리 쓰기는 Codex file-store OAuth(공식 MCP)를 일회성 bridge로 사용했다. 로컬 resolver의 NXDOMAIN 음성 캐시는 `dig @1.1.1.1`+`curl --resolve`로 우회한다.
 사용자 이메일 로그인은 인간 검사로 남는다. 코드 변경 SHA에서 `expose`를 다시 하기 전 독립 리뷰와 `access_apply.py check`가 필요하다.
+
+## 2026-10-03 — SAR-MVP-002-DEV-REVIEW
+
+고정 SHA 552586b를 구현자 Codex 세션과 다른 세션에서 독립 검토했다. snapshot은 읽기 전용이므로 재현 build는 `git archive` 임시 사본에서 한다. `node_modules`를 symlink하면 bundle 주석 경로가 달라져 ZIP SHA가 바뀐다. 경로 정규화 후 동일성으로 판정하고, SHA 일치를 주장하려면 실제 디렉터리에서 `npm ci`를 쓴다.
+공식 Grok Bot connect 문서는 stdio MCP·ZIP 업로드·Node runtime을 언급하지 않는다. 설치 지원을 주장하지 않는다. 결과는 critical/high 0이며 후속 F-01 호스트 tool timeout 확인이 실제 연결 재개 조건이다.
