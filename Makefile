@@ -1,5 +1,5 @@
 # Reproducible development checks; every failure stops its target.
-.PHONY: install lint lint-go lint-adapters lint-config test build verify verify-runtime
+.PHONY: install lint lint-go lint-adapters lint-config test build verify verify-runtime verify-mvp generate schema
 
 install:
 	go mod download
@@ -19,7 +19,7 @@ lint-adapters:
 lint-config:
 	npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
 	python3 scripts/check_compose.py
-	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py
+	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py
 
 test:
 	go test -race ./cmd/... ./internal/...
@@ -35,3 +35,13 @@ verify:
 
 verify-runtime: build
 	python3 scripts/verify_runtime.py
+
+# Actual business SQL is generated with pinned sqlc.
+generate:
+	go run github.com/sqlc-dev/sqlc/cmd/sqlc@v1.30.0 generate
+
+verify-mvp: build
+	python3 scripts/verify_mvp.py
+
+schema:
+	python3 scripts/schema.py

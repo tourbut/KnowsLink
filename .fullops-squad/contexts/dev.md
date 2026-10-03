@@ -3,8 +3,8 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-SETUP-001-DEV]
-summary: 초기 구성의 기술 결정과 재현 검증·후속 수락 경계를 기록한다
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV]
+summary: 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다
 ---
 
 # dev 컨텍스트
@@ -15,3 +15,7 @@ summary: 초기 구성의 기술 결정과 재현 검증·후속 수락 경계�
 - `make lint`와 `make verify`는 제품 위반과 실패 전파를 검출한다. Go 검사 대상은 `cmd/`, `internal/`로 한정해 node_modules의 외부 Go 코드를 제외한다.
 - 코드 체크포인트 `929832aa0ecd`의 깨끗한 clone과 실제 로컬 runtime 검증을 통과했다. 빈 SQL no-op은 migration 적용 성공과 구분한다. 독립 QA·리뷰는 coordinator가 후속 배정한다.
 - 상세 근거: [실행 기록](../docs/exec-plans/phases/SAR-SETUP-001-DEV.md). FullOps 기준 commands의 부재와 제품 직접 검사 결과를 분리해서 보고한다.
+
+- 2026-10-03 SAR-MVP-001-DEV: shared Postgres singleton lock·epoch CAS로 합성 등록/pairing/relay/gate/result를 연결했다. 공개 규모의 성능과 실제 신원 인증은 후속이다.
+- claim은 한 번만 발급한다. 재시작·철회·세대 교체 후 receipt나 과거 gate로 실행권을 복구하지 않는다. 승인 후에도 disclosure/stub은 차단한다.
+- 검증·API·QA/UI 경로와 보류: [SAR-MVP-001-DEV 실행 기록](../docs/exec-plans/phases/SAR-MVP-001-DEV.md). PLANS/board와 독립 QA/UI/리뷰는 coor 후속이다.
