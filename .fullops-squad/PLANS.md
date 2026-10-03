@@ -513,3 +513,6 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - DEV 착수 영수증: Task task_12bfd0213594, Dispatch ctx_d575ace1846d, terminal term_35b3d13f-af21-4db7-99df-2b97b0748d5e. effective codex gpt-6.1-sol medium과 turn_started를 확인했다. worker_done 중심으로 대기하며 실행 중 DEV 체크아웃은 변경하지 않는다.
 
 - DEV 질문 msg_adb698fe0255: 원천에 Grok Bot 이름만 있어 xAI 공식 Bot과 설치 Grok CLI 중 대상을 확정할 수 없다. 사용자에게 대상 또는 URL을 확인 요청했다. 답 전까지 특정 제품을 확정하지 않고 후보 공식 조사와 대상 비의존 합성 검증만 진행하도록 회신했다. 담당은 사용자 대상 확인, dev 기술 조사, coor 답 전달이다. 실제 연결 held는 유지한다.
+
+- 사용자 답변으로 xAI 공식 Grok Bot(docs.x.ai/grok-bot)을 대상으로 확정했다. 이어서 Grok Bot에 붙일 플러그인 제작을 요청했다. 같은 DEV Dispatch에 공식 지원 확장 방식의 설치 가능한 패키지·구현·로컬 합성 검증·설치 문서까지 완료하도록 전달했다(msg_1d99c6fd5e89). 사용자 대상 질문은 해소됐다. 기존 실제 연결 held는 유지한다.
+- 같은 키의 Jev route를 사용자 최신 요청으로 force 갱신했다. implementation/dev, codex gpt-6.1-sol medium, 추천 D10/D05/D03이며 prior 원본을 보존했다. DEV 실행 인박스는 worker가 같은 과제의 최신 목표로 갱신하며 다른 과제를 배정하지 않는다.
