@@ -561,3 +561,7 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - coor 준비 통합의 adapters/Makefile/설치scripts는 고정5506d64 대비 diff0이다. 최종 lint 통과 후 main/origin에 SHA 보존 통합·일반push하고 조상 관계를 확인한다. coor 포함 실제 idle·clean 역할은 최신main으로 동기화하며 현재 작업인 역할은 보존한다.
 - 사용자 승인에 따라 푸시 확인 후 이슈1 댓글에 고정SHA·원인·Node준비·CLI설치/doctor·새Bot세션 statusheld와 회신 항목을 게시한다. Bot 앱 도구 부재의 원인은 미확정으로 명시하고 Linux/x86_64·같은shell PATH 전제를 보완한다. 실제 릴레이/DEC-02/calendar held 및 FullOps 업데이트 제외 유지.
 - 리뷰 low5건은 수락 차단이 아니다. DEV 담당 후속: F-01 오류 출력, F-02 검사 문구/실제host PATH 구분, F-03 GROK_CONFIG 계열 격리, F-04 기록 추정 표현, F-05 Node 아키텍처 안내. 댓글에 환경 전제와 미확정 표현을 보완하며 제품 변경은 이번 고정후보 이후 추가하지 않는다.
+
+- 통합 완료 main/origin/main 9c2e09881aa26d6d03c81fe07a4f4ead1785ae81: DEV5506d64·reviewa2dc281·QAa7e682b가 로컬/원격 main 조상이며 ls-remote 일치. 최종 lint exit0/product-lint passed/ERROR0/WARNING1(PLANS 길이)/실행불가0. coor 포함 다섯 역할 실제 유휴·clean 확인 후 main 동기화와 역할 원격 push 완료.
+- 사용자 승인 댓글 게시: https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5971011626. 고정9c2e098·원인·설치 명령·카탈로그/doctor·Node환경·statusheld·QA/실패회신 항목을 게시하고 read-back으로 확인했다. 실제 Bot 재시험 전까지 이슈 OPEN 유지. coor 전달 ZIP은 새 hash fb745c66…로 갱신해 QA와 일치 확인.
+- integration hold2건 resume 뒤 pending0. worker-release 결과 DEV/OPS는 user_takeover retained, TESTER는 external_terminal retained로 프로세스를 보존한다. 강제 종료하지 않는다. delivery_7e7d08091af2 ack 후 messages0. 새 제품 과제를 자동 배정하지 않는다.
