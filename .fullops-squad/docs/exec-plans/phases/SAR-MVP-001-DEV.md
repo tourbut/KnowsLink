@@ -99,3 +99,37 @@ WARNING은 http.go 487줄, integration_test.go 416줄, store.go 416줄의 SIZE-0
 SEC-001은 합성 DB password를 실행 시 무작위 생성해 해결했다. 원천과 lint 규칙은 유지했다.
 새 문서의 EOF 공백도 교정했다. 최종 아카이브 커밋 뒤 같은 기준 lint와 생성물 diff를 다시 확인한다.
 최종 문서 포함 SHA와 lint 결과는 worker_done 회신으로 고정한다.
+
+## deliver:human 인증 경계 high 수정 — 리뷰 후속
+
+기준 ref는 e554fe1이며 착수 HEAD는 95edad6이다. Dispatch는 ctx_ba1bc159d479, Task는 task_0bdd381fea98이다.
+재현 정본은 coor 체크아웃의 SAR-MVP-001-INTEGRATION-review/targeted.log와 reviewer 메시지 msg_4fbcac80f76c다. 해당 증거는 읽기만 했다.
+targeted.log는 `deliver:human` schedule.query를 B-agent가 pull·persist·ACK·claim해 transport=delivered가 되고 owner gate가 0개임을 종료코드 0으로 보였다.
+
+원인: Message가 `deliver`를 저장하지 않았다. ingest는 H 외 `deliver:human`도 수락했고 lease는 intent가 H인지만 확인했다.
+따라서 agent credential이 human 전달을 처리했다. protocol.md C1의 "Agent cred가 deliver:human 처리·owner 승인 대체 금지"를 위반한다.
+
+기술 계획과 결정:
+
+- Message에 `Deliver`를 저장한다. lease·persist/ACK(`leased`)·claim은 `deliver:agent`만 처리한다. 경로가 없는 배포 전 상태도 차단한다.
+- 직접 human inbox가 MVP에 없으므로 H 외 `deliver:human` send는 인증·서명 검증 뒤 403 `sender_not_allowed`로 거부한다. 영원히 queued로 남는 수락을 만들지 않는다.
+- H는 기존대로 owner gate 결정만 delivered로 바꾼다. agent 전달·R·gate consume·authorize 흐름은 바꾸지 않았다.
+- 제품 규칙·wire 계약·오류 코드 목록은 바꾸지 않았다. 직접 human inbox가 필요하면 designer의 후속 기능 결정이다.
+
+변경 파일: internal/relay/store.go, http.go, integration_test.go, protocol_test.go(`sign` 헬퍼 분리), D03/D05/D06/D09/D10.
+
+| 검사 | 명령 | 결과 |
+|---|---|---|
+| 수정 전 red | `python3 scripts/verify_mvp.py` (새 회귀 포함, 수정 전 코드) | exit 1; send 200 queued로 `agent_cannot_process_human_delivery` 실패 |
+| 설치 | `make install` | exit 0 |
+| lint | `make lint` | exit 0 |
+| unit/race | `make test` | exit 0 |
+| 빌드 | `make build` | exit 0 |
+| 실제 Postgres/HTTP·TS adapter | `make verify-mvp` | exit 0; 새 회귀 포함 TestPostgresSafety 6개·GateFailureStates 4개·Binding·PendingAccept 통과 |
+| sqlc 생성 | `make generate` 뒤 `git diff --exit-code -- internal/database` | exit 0, diff 0 |
+
+새 회귀는 직접 `deliver:human` send 403, B pull null, claim·receipt 403을 확인한다. 저장된 human 메시지에 위조 lease로 persist/ACK 409, delivered 상태에서 claim 403, gate·claim 0을 확인한다.
+기존 agent 전달·3번째 lease·claim 경합·owner gate CSRF·consume·R·철회·세대·clock 회귀는 같은 실행에서 통과했다.
+원시 로그는 Git 미추적 build/evidence/human-delivery-*.log다. verify-runtime은 설정·migration을 바꾸지 않아 재실행하지 않았다.
+
+보류와 후속: 독립 tester QA와 고정 SHA 코드 리뷰는 coor가 배정한다. owner UI 화면은 변경하지 않아 기존 시각 증거의 재사용 조건을 유지한다.

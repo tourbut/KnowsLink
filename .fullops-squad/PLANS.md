@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -74,7 +74,6 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - D03은 dev 책임이다. 잠긴 Go·TypeScript·Postgres·Compose·DB tooling·Go UI 선택을 유지한다.
 - dev 지시서: `handovers/to_dev.md` (`SAR-SETUP-001-DEV`, ready).
 - tester 지시서: `handovers/to_tester.md` (`SAR-SETUP-001-TESTER`, dev 완료 SHA 대기).
-- tester 독립 QA(SAR-SETUP-001-TESTER): dev SHA `0cc10b0`에서 SETUP-01–04·LINT-01–03·DOC-01·SCOPE-01 통과, 결함 없음. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md). main 병합은 coor가 판단한다.
 - 역할별 Jev find/code·documents 및 context는 API 실패로 fallback했다. 문서를 수동으로 좁히고 모두 keep했다. 원천은 수정하지 않았다.
 - coor 후속: 설계 커밋을 역할 워크트리에 반영하고 실제 dispatch 복귀 정보를 기록한다. dev 완료 후 tester를 dispatch한다.
 - 상세 근거와 검증: `docs/exec-plans/phases/SAR-SETUP-001.md`. 제품 기능·배포와 제품 테스트는 수행하지 않았다.
@@ -103,23 +102,12 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 같은 Task `task_a7fd5d1b8806`를 retry-of로 새 세션에서 재개한다. 이전 세션 종료 및 0.9.8 캐시 경로 오류 때문에 세션을 재사용하지 않는다. dev가 기술 계획·구현·테스트·문서 갱신을 수행한다.
 - designer 후속 세션은 병합 검토까지 retain한다. tester는 성공 완료 SHA 이후 배정한다. 병합 전 서로 다른 구현·리뷰 세션 ID와 깨끗한 read-only detached snapshot, fixed-SHA 리뷰·lint·테스트 게이트를 확인한다.
 
-- 재개 영수증: Task `task_a7fd5d1b8806`, Dispatch `ctx_67f98ed4cd42`, terminal `term_cf9a131a-84f0-40fa-91a2-c5bd7e0fb28f`. effective codex gpt-6.1-sol high, turn_started 확인. 기존 ready Task는 retry-of를 거절하므로 dispatch-show로 이전 실패를 확인한 후 같은 Task를 ready 상태에서 시작했다. 과제는 복제하지 않았다.
-- 이전 질문 reply는 dispatch_inactive로 거절됐다. 답 원문은 designer 커밋과 최신 dev 지시서에 보존하여 새 세션에 전달했다. dev 워크트리는 종료와 깨끗한 상태를 확인한 후 준비 HEAD `dbe0b40`까지 fast-forward했다. designer 진행 브랜치는 변경하지 않았다.
-- 운영 변경의 lint: HEAD `dbe0b40`, 기준 `729446d8da57`, 종료코드 0, ERROR 0, WARNING 1(LINT-000), 실행 불가 0. 제품 코드 변경은 없으므로 제품 테스트는 적용하지 않았다.
 ## SAR-SETUP-001-DEV 구현 결과 — 2026-10-03
 
 - 초기 Go relay·별도 SQL-only migrate·TypeScript adapter·Compose·제품 lint를 구현했다. 업무 MVP와 운영 배포는 후속이다.
 - 코드 체크포인트 `929832aa0ecd`에서 직접 검사·위반 주입·깨끗한 clone 재현·로컬 DB runtime을 통과했다. FullOps 기준 `729446d8da57`의 lint는 ERROR 0, WARNING 2, 실행 불가 0이다.
 - D03은 review다. 독립 QA·고정 SHA 독립 코드 리뷰와 병합 수락은 대기한다. 최종 완료 SHA는 현재 Dispatch의 worker_done으로 coordinator에게 전달한다.
 - 상세 근거와 한계: [실행 기록](docs/exec-plans/phases/SAR-SETUP-001-DEV.md).
-
-## 완료 회신 처리와 독립 QA 보류 — 2026-10-03
-
-- `msg_3d94315c55fc`는 Task `task_a7fd5d1b8806` / Dispatch `ctx_67f98ed4cd42`의 성공 완료 회신이다. 보고 SHA `0cc10b083771be9b3423833b222c57d426315333`를 확인하고 coor 준비 브랜치에 통합했다. main 수락·병합은 아직 수행하지 않았다. dev 세션은 리뷰·수락까지 retain했다.
-- 보고 검증: 제품 lint·race test·빌드·Compose·DB 기동·깨끗한 clone 재현 성공. 위반 4종의 실패와 원복 성공을 보고했다. FullOps 기준 `729446d8da57`에서 ERROR 0, WARNING 2, 실행 불가 0이다. 코드가 없는 업무 SQL·sqlc 생성과 UI 직접 시각 검수는 미적용이다.
-- 다음 배정은 기존 `SAR-SETUP-001-TESTER`다. Jev 키가 연결되기 전 implementation/tester override와 claude-opus-5-5 medium 폴백을 기록했다. Task `task_83afe3153820` / Dispatch `ctx_ace07a0460f8`는 `agent_readiness`에서 `Agent startup blocked: agent-trust-workspace`로 실패했다. QA는 시작되지 않았다. 영수증의 복구 명령으로 실패 세션을 release했다. 신뢰 승인은 사용자에게 맡기며 권한을 우회하거나 모델을 임의 대체하지 않는다. 같은 과제를 재개하며 QA 기록을 복제하지 않는다.
-- 고정 SHA 독립 리뷰 준비 경로: `docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/`. snapshot: `/tmp/SAR-SETUP-001-review-0cc10b0`, detached HEAD `0cc10b083771be9b3423833b222c57d426315333`. 리뷰는 아직 미완료이며 check 통과나 수락으로 표시하지 않는다.
-- main `.fullops-squad/.env`를 coor·designer·dev·ops·tester에 심볼릭 링크했다. Jev api_key 로더로 여섯 체크아웃의 키 존재를 확인했다. 키 값은 출력하지 않았다. 이전 폴백 기록은 당시 사실로 보존한다.
 
 ## FullOps 0.9.10 업데이트 — FULLOPS-UPDATE-0.9.10
 
@@ -134,6 +122,7 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 
 사용자 요청으로 FullOps 0.9.10 준비 커밋을 이 역할 브랜치에 병합했다. 위 동기화 보류는 당시 기록이다.
 기존 제품 자료·지시서·실패 기록과 역할별 프로젝트 기준을 보존했다. 실행 중 세션은 다음 시작 시 새 플러그인 규약을 읽는다.
+
 
 ## FullOps 0.9.10 coordinator 재개 — 2026-10-03
 
@@ -314,6 +303,7 @@ QA c59537b와 공개 기획 69dbec4를 coor 통합 후보에 반영했다. to_te
 ## FullOps 0.9.11 업데이트 — 2026-10-03
 
 Codex 설치 버전 0.9.11이 최신임을 확인했다. 레포 적용 버전을 0.9.10에서 0.9.11로 갱신했다. 이 릴리스는 글로벌 설치 편의 기능이므로 제품 코드·역할·검증 기준 변경은 해당 없음이다. 의존성 검사는 통과했다. [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md)을 따른다. 진행 중 worker와 기존 미추적 리뷰 증거를 보존한다. 역할 동기화는 coor가 실제 유휴·깨끗한 상태를 확인한 뒤 수행한다. 제품 작업 중지 지시는 유지하며 다음 운영은 새 coordinator 세션에서 이어간다.
+
 
 ## FullOps 0.9.12 업데이트 — 2026-10-03
 

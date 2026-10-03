@@ -47,6 +47,7 @@ B-owner 수락 전 pair는 pending이다. pending은 active 관계에 포함하�
 
 send는 strict structure·signature·principal·routing 뒤에 digest와 atomic idempotency를 검사한다.
 동일 key+digest는 receipt만 반환한다. exp·TTL·id 실패는 전체 작업 상태를 rollback한다.
+agent credential은 `deliver:agent` 메시지만 lease·persist·ACK·claim한다. `deliver:human`은 owner gate만 처리한다.
 lease는 delivered가 아니다. 공유 inbox에 원문을 저장한 뒤 ACK하고 하나의 claim token을 발급한다.
 claim 재발급은 하지 않는다. 재시작 후 이미 claimed인 요청은 중복 실행 대신 TTL까지 안전하게 정지한다.
 외부 도구 exactly-once나 crash 후 효과 재개를 주장하지 않는다.

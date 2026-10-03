@@ -46,6 +46,7 @@ type Message struct {
 	Receipt         Receipt
 	Key, Kid        string
 	Parent          string
+	Deliver         string
 	Envelope        json.RawMessage `json:"Envelope,omitempty"`
 	Inbox           json.RawMessage `json:"Inbox,omitempty"`
 	Generation      int64
@@ -287,7 +288,7 @@ func (st *State) parentFor(agent, id string, now time.Time) (*Message, error) {
 func (st *State) leaseMessage(agent string, now time.Time) (any, error) {
 	var selected *Message
 	for _, m := range st.Messages {
-		if m.Receipt.To == agent && m.Receipt.State == "queued" && m.Receipt.Intent != "relay.approval.request" && st.current(m) && now.Before(m.Receipt.Exp) {
+		if m.Receipt.To == agent && m.Receipt.State == "queued" && m.Deliver == "agent" && st.current(m) && now.Before(m.Receipt.Exp) {
 			if selected == nil || m.Receipt.Accepted.Before(selected.Receipt.Accepted) {
 				selected = m
 			}
@@ -309,7 +310,7 @@ func (st *State) leaseMessage(agent string, now time.Time) (any, error) {
 }
 func (st *State) leased(agent, id, token string, now time.Time) (*Message, error) {
 	m := st.Messages[id]
-	if m == nil || m.Receipt.To != agent || m.Receipt.State != "leased" || token == "" || m.LeaseToken != token || !now.Before(m.LeaseUntil) || !now.Before(m.Receipt.Exp) || !st.current(m) {
+	if m == nil || m.Receipt.To != agent || m.Deliver != "agent" || m.Receipt.State != "leased" || token == "" || m.LeaseToken != token || !now.Before(m.LeaseUntil) || !now.Before(m.Receipt.Exp) || !st.current(m) {
 		return nil, fault("invalid_lease")
 	}
 	return m, nil
@@ -343,6 +344,10 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 		}
 		generation = parent.Generation
 	} else {
+		// No owner inbox serves direct human delivery, so an agent credential must never process it (C1).
+		if e.Deliver != "agent" {
+			return nil, fault("sender_not_allowed")
+		}
 		pair := st.Pairs[pairID(e.From, e.To)]
 		if pair == nil || pair.State != "active" || e.From == e.To {
 			return nil, fault("human_invite_required")
@@ -406,7 +411,7 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 	if err != nil {
 		return nil, fault("invalid_schema")
 	}
-	m := &Message{Receipt: Receipt{e.ID, e.From, e.To, e.Intent, digest, exp, now, "queued"}, Key: e.Key, Kid: e.Sig.Kid, Envelope: raw, Generation: generation, Parent: e.ReplyTo}
+	m := &Message{Receipt: Receipt{e.ID, e.From, e.To, e.Intent, digest, exp, now, "queued"}, Key: e.Key, Kid: e.Sig.Kid, Envelope: raw, Generation: generation, Parent: e.ReplyTo, Deliver: e.Deliver}
 	if !st.current(m) {
 		return nil, fault("sender_not_allowed")
 	}
