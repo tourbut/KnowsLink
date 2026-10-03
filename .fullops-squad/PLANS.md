@@ -291,3 +291,11 @@ worker-stop은 user_owned 때문에 stop_unknown/no terminal closed를 반환했
 ## 완료 작업의 main 병합·원격 공유 상시 승인 — 2026-10-03
 
 사용자가 하위 역할 워크트리에 개발을 보내고 완료·확인 후 즉시 main에 병합하여 원격에 올리도록 지시했다. orca-agents.md에 필수 검사·독립 QA/UI/리뷰·수락 확인 뒤 main 병합과 origin/main push, idle/clean 역할 동기화, 임시 체크아웃 정리 순서를 기록했다. 동일 범위의 병합·push 승인을 다시 묻지 않는다. 현재 a6a10c7 MVP 후보는 Grok 독립 QA가 진행 중이며 필수 UI·리뷰·수락이 남아 있어 main에 공개하지 않는다. 운영 기록은 origin/fullops/coor로 공유한다.
+
+## Grok 독립 QA 결과 확인 — 2026-10-03
+
+msg_d2d32881ffc3은 Task task_bc9fa903d0d6 / Dispatch ctx_a7a06b6f1b0d의 성공 회신이다. 기록 SHA c59537b6fa0c7e008c4c6bdba0a251dd821d4ee8와 깨끗한 tester 체크아웃을 확인했다. 대상 제품은 a6a10c7이다. 보고서와 probe-results.json을 대조했고 세부 결과는 pass 31 / held 8 / fail 0이다. QA-01–11의 실행 항목이 통과했다는 의미이며 고의 stale epoch·designer 시각 판정 등 held까지 통과한 것은 아니다.
+
+unit/build/verify-mvp/probe 로그의 실제 [exit 0]을 확인했다. 초기 의존성 부재 lint 실패와 probe 기대값 수정 실패는 원본 기록에 보존한다. 최종 기준 lint ERROR 0/WARNING 3(SIZE-001)/실행 불가 0, product-lint passed다. 미해결 critical/high 제품 결함은 tester 보고에서 없다. QA-06-epoch-cas, Free N, 실제 adapter/A2A 현행 검토, WAL/backup 삭제, DEC-02/03, designer 시각 판정의 held를 보존한다. 코드 리뷰와 직접 UI 검수 및 필수 미충족 조건 해소 전 main 수락·임시 DEV 제거는 보류한다.
+
+worker-release는 external_terminal 때문에 retained/processAction none을 반환했다. 상설 tester 터미널과 체크아웃은 유지한다. QA 증거와 결과를 origin/fullops/tester로 공유하고 coordinator 현황도 원격에 반영한다. 완료 QA 보고서 정본은 tester의 docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md다.
