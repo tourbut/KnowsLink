@@ -38,9 +38,8 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 - `dev` `claude` `claude-opus-5-5` `high`: 원인 추적이 필요한 버그, 여러 모듈 구현
 - `dev` `codex` `gpt-6.1-sol` `high`: 공유 계약을 따르는 큰 기능 구현·리팩터링
 - `ops` `claude` `claude-sonnet-5-5` `high`: 기록 검사·형식 검증·여러 SHA의 충돌 없는 main 통합 조정
-- `tester` `claude` `claude-sonnet-5-5` `medium`: 단순 재현 단계 검증·짧은 수동 테스트
-- `tester` `claude` `claude-sonnet-5-5` `high`: 여러 시나리오의 테스트 코드 작성·회귀 검증
-- `tester` `claude` `claude-opus-5-5` `medium`: 모호한 재현 조건 분석·여러 모듈의 테스트 설계
+
+- `tester` `grok` `grok-4.7` `high`: 독립 QA·시나리오·회귀 검증. 사용자 2026-10-03 지정
 
 ## 라우팅 기준
 
@@ -78,3 +77,7 @@ coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인
 변경 없는 증거는 관련 의존성의 동일성을 확인하고 원래 실행 SHA·조건을 연결해 재사용한다. 새 SHA에서 실행한 결과로 표시하지 않는다.
 재검증은 변경 영향·새 실패·증거 결함·미충족 조건이 있을 때 수행한다. 기존 실패·held·미해결 critical/high·제품 정지·최종 플랫폼과 사람 평가 기준은 유지한다.
 보류 항목에는 담당과 재개 조건을 남긴다. 상세 반복 범위는 [공통 테스트 기준](rules/common/testing.md)을 따른다.
+
+## tester Grok 전환 — 2026-10-03
+
+사용자가 tester를 Grok 4.7 high로 지정했다. `grok --model grok-4.7 --reasoning-effort high`로 실행한다. Orca가 grok의 model 인자를 직접 받지 않으므로 기존 tester 체크아웃에서 해당 명령으로 터미널을 만들고 준비를 확인한 뒤 worker-start --terminal로 감독한다. Claude 사용량 한도 대기 과제는 같은 Task의 retry로 이어받는다.

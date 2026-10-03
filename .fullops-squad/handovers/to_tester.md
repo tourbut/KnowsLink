@@ -109,3 +109,7 @@ D01–D13 원천 변경은 없다. QA 시나리오·보고서·증거·실행 �
 DEV 성공 회신 msg_bcf340cb7ce8을 확인했다. 제품 고정 후보와 DEV 완료 SHA는 a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92다. 기존 tester 체크아웃을 이 SHA로 fast-forward했다. 준비 지시서·route만 추가한 QA HEAD는 배정 시 기록한다. 제품 경로는 고정 후보와 동일해야 한다. 새 세션으로 실행하되 기존 tester 워크트리를 사용한다. 이전 tester 세션은 idle이며 오래된 과제의 컨텍스트를 재사용하지 않는다.
 
 먼저 읽을 문서에 README.md, .fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md, .fullops-squad/handovers/logs/2026-10-03_to_dev.md를 추가한다. 기존 Jev 탐색과 필수 문서 근거를 재사용하며 실제 변경 API와 실행 경로는 완료 D03과 README에서 확인한다. 새 실제 preamble으로 복귀한다. Run은 run_8ca8bc058ab7이다. 실사용자 신원 인증·공개 운영 한도·singleton global lock 처리량은 DEV 보고에서 held이며 합성 후보 PASS와 구분한다. QA는 이 한계를 숨기지 않는다. make verify-mvp와 합성 seed 실행 경로를 재사용할 수 있으나 DEV 로그만으로 독립 QA를 대신하지 않는다.
+
+## 사용자 지정 Grok 재개 — 2026-10-03
+
+사용자가 tester 모델을 grok-4.7 high로 변경했다. 기존 Claude Dispatch ctx_6129fd1c9c83은 사용량 한도 때문에 QA를 실행하지 않았다. 사용자 전환 지시로 해당 터미널만 종료했고 process_exited·failed·operator_close를 확인했다. 같은 Task task_bc9fa903d0d6의 retry로 기존 tester 워크트리와 고정 제품 a6a10c7을 유지한다. 이전 preamble의 capability를 재사용하지 않는다. 새 Grok preamble으로 보고한다. 실제 Grok 모델과 effort는 실행 명령과 화면에서 확인한다.
