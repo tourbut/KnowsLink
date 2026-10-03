@@ -45,7 +45,7 @@ restore_verify() { # restore a dump into a throwaway container with no network; 
   dump=${1:?usage: beta.sh restore-verify <dump>}
   name=knowslink-restore-check
   docker rm -f $name >/dev/null 2>&1 || true
-  docker run -d --name $name --network none -e POSTGRES_PASSWORD="$(openssl rand -hex 12)" "$POSTGRES_IMAGE" >/dev/null
+  docker run -d --name $name --network none -e POSTGRES_HOST_AUTH_METHOD=trust "$POSTGRES_IMAGE" >/dev/null
   trap 'docker rm -f '$name' >/dev/null 2>&1' RETURN
   for _ in $(seq 30); do docker exec $name pg_isready -U postgres >/dev/null 2>&1 && break; sleep 1; done
   docker exec $name psql -U postgres -qc 'CREATE ROLE knowslink' -c 'CREATE DATABASE restored OWNER knowslink'
@@ -65,7 +65,7 @@ owner_login() { # browser HTTP Basic prompt values for the synthetic owner B; fo
 import json, sys
 owner = json.load(open(sys.argv[1]))["b"]["owner"]
 print("username:", owner["owner"])
-print("password:", owner["credential"])
+print("basic-auth value:", owner["credential"])
 PY
 }
 
