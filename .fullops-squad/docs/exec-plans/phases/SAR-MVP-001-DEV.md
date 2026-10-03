@@ -133,3 +133,38 @@ targeted.log는 `deliver:human` schedule.query를 B-agent가 pull·persist·ACK�
 원시 로그는 Git 미추적 build/evidence/human-delivery-*.log다. verify-runtime은 설정·migration을 바꾸지 않아 재실행하지 않았다.
 
 보류와 후속: 독립 tester QA와 고정 SHA 코드 리뷰는 coor가 배정한다. owner UI 화면은 변경하지 않아 기존 시각 증거의 재사용 조건을 유지한다.
+
+## RF-01 기존 human claim 부모 재사용 high 수정 — 리뷰 후속
+
+기준 ref는 5002db6이다. Task는 task_749e8b53d66e, Dispatch는 ctx_86589b96acca다.
+재현 정본은 고정 리뷰 138b8b3의 SAR-MVP-001-REVIEW-FIX-review/report.md·legacy-claim.log·legacy-claim-probe.txt다. 해당 증거는 읽기만 했다.
+a6a10c7 State 메서드로 claim한 human 요청을 새 코드가 읽으면 기존 ClaimToken의 authorize와 새 relay.result가 수락됐다. owner gate는 0개였다.
+
+원인: 이전 수정은 lease·persist·ACK·claim에만 `Deliver==agent`를 검사했다. 이미 발급된 claim을 다시 쓰는 `parentRouting`은 경로를 검사하지 않았다.
+`parentRouting`은 authorize·gate-consume(`parentFor`)·H·R의 유일한 부모 경계다. 이전 상태의 Message JSON에는 `Deliver`가 없어 빈 값으로 읽힌다.
+
+기술 계획과 결정:
+
+- `parentRouting`에 `Deliver == "agent"` 조건을 추가한다. human과 경로 미기록 claim은 한 곳에서 모두 403 `sender_not_allowed`로 거부된다.
+- 경로 미기록 이전 agent claim도 거부한다(fail-closed). 메시지 TTL이 최대 300초이므로 전환 영향은 그 이내의 재전송이다. 서명 원문으로 경로를 역추정하지 않는다.
+- 저장 형식·SQL·sqlc·wire·오류 코드·제품 규칙은 바꾸지 않았다. 새 claim·정상 agent 경로·owner gate·현재 권한 검사는 그대로다.
+
+변경 파일: internal/relay/store.go, integration_test.go, legacy_test.go, testdata/legacy_claims.json, D03/D05/D06/D09/D10, contexts/dev.md.
+fixture는 a6a10c7 detached worktree에서 `RELAY_LEGACY_SEED=1 go test ./internal/relay -run TestLegacyClaimsCannotReachParentBoundaries`로 생성했다.
+fixture에는 이전 메서드로 claim한 human 요청, 승인 gate가 있는 human 요청, 경로 미기록 agent 요청이 있다. 승인 gate 상태는 a6a10c7 owner POST 처리기와 같은 필드 변경으로 만들었다. 키는 테스트 전용 합성 값이다.
+
+| 검사 | 명령 | 결과 |
+|---|---|---|
+| fixture 생성 (a6a10c7) | `RELAY_LEGACY_SEED=1 go test ./internal/relay -run TestLegacyClaims... -v` | exit 0 |
+| 수정 전 red (5002db6 코드 + 새 회귀) | `go test ./internal/relay -run TestLegacyClaims... -v` | exit 1; legacy human authorize 수락 |
+| 수정 후 green | 같은 명령 | exit 0 |
+| lint | `make lint` | exit 0 |
+| unit/race | `make test` | exit 0 |
+| 실제 Postgres/HTTP·TS adapter | `make verify-mvp` | exit 0; 새 `legacy_unrouted_claim_parent_boundaries` 포함 PostgresSafety 7개 통과 |
+| sqlc 생성 | `make generate` 뒤 `git diff --exit-code -- internal/database` | exit 0, diff 0 |
+
+unit 회귀는 legacy human·경로 미기록 agent claim의 authorize·R·H 거부, 승인 gate의 consume 거부, completion·gate·claim 무변경을 확인한다. 같은 상태에서 새 agent 요청의 lease·persist·ACK·claim·authorize·R은 통과한다.
+HTTP 회귀는 경로를 지운 claim의 authorize·H·R·gate-consume 403과 경로 복구 뒤 200을 확인한다. HTTP 회귀의 수정 전 red는 실행하지 않았다. 결정적 red는 실제 이전 메서드 fixture의 unit 회귀다.
+원시 로그는 Git 미추적 build/evidence/legacy-*.log다. verify-runtime은 설정·migration을 바꾸지 않아 재실행하지 않았다.
+
+보류와 후속: 새 SHA의 독립 QA·독립 리뷰와 main 병합은 coor가 배정한다. owner UI는 변경하지 않았다. 전체 제품 수락은 보류다.

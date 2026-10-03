@@ -314,6 +314,37 @@ func TestPostgresSafety(t *testing.T) {
 			}
 		})
 	})
+	t.Run("legacy_unrouted_claim_parent_boundaries", func(t *testing.T) {
+		f := setup(t, pool)
+		receipt := f.send(f.message(firstID, "idempotency-key-01"), "agent_a", "", 200)
+		claim := f.deliver(firstID)
+		f.send(f.message(secondID, "idempotency-key-02"), "agent_a", "", 200)
+		secondClaim := f.deliver(secondID)
+		second := map[string]any{}
+		f.mutate(func(st *State) { second["digest"] = st.Messages[secondID].Receipt.Digest })
+		f.send(wire(t, f.private["agent_b"], gateID, "agent_b", "agent_b", "relay.approval.request", "approval-key-0001", secondID, map[string]any{"reason": "judgment_required", "request_digest": second["digest"]}, time.Now().Add(time.Minute)), "agent_b", secondClaim, 200)
+		// Claims stored before Message.Deliver load with an empty route and must not reach any parent boundary.
+		f.mutate(func(st *State) {
+			st.Gates[gateID].State = "approved"
+			st.Messages[firstID].Deliver, st.Messages[secondID].Deliver = "", ""
+		})
+		f.call("POST", "/v1/authorize", f.tokens["agent_b"], map[string]any{"id": firstID, "claim": claim}, 403)
+		h := wire(t, f.private["agent_b"], "0199a3f2-4c10-7a11-8b22-3344556677bb", "agent_b", "agent_b", "relay.approval.request", "approval-key-0002", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute))
+		f.send(h, "agent_b", claim, 403)
+		denied := wire(t, f.private["agent_b"], "0199a3f2-4c10-7a11-8b22-3344556677cc", "agent_b", "agent_a", "relay.result", "result-key-00001", firstID, map[string]any{"status": "denied"}, time.Now().Add(time.Minute))
+		f.send(denied, "agent_b", claim, 403)
+		f.call("POST", "/v1/gate-consume", f.tokens["agent_b"], map[string]any{"id": gateID, "claim": secondClaim}, 403)
+		f.mutate(func(st *State) {
+			if len(st.Gates) != 1 || st.Gates[gateID].Consumed || st.Messages[firstID].Completion != "" {
+				t.Fatal("legacy claim reached a parent boundary")
+			}
+			st.Messages[firstID].Deliver, st.Messages[secondID].Deliver = "agent", "agent"
+		})
+		// The same claims pass once the agent route is recorded, so only the route check denied them.
+		f.call("POST", "/v1/gate-consume", f.tokens["agent_b"], map[string]any{"id": gateID, "claim": secondClaim}, 200)
+		f.call("POST", "/v1/authorize", f.tokens["agent_b"], map[string]any{"id": firstID, "claim": claim}, 200)
+		f.send(denied, "agent_b", claim, 200)
+	})
 	t.Run("rotation_pop_and_key_reassignment", func(t *testing.T) {
 		f := setup(t, pool)
 		public, private, _ := ed25519.GenerateKey(rand.Reader)

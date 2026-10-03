@@ -270,7 +270,8 @@ func policy(intent string) string {
 }
 func (st *State) parentRouting(agent, id string) (*Message, error) {
 	m := st.Messages[id]
-	if m == nil || m.Receipt.To != agent || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == "relay.approval.request" || m.Receipt.State != "delivered" || !m.Claimed || !st.current(m) {
+	// The one parent boundary for authorize, gate-consume, H, and R: claims stored before Deliver existed fail closed (C1).
+	if m == nil || m.Receipt.To != agent || m.Deliver != "agent" || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == "relay.approval.request" || m.Receipt.State != "delivered" || !m.Claimed || !st.current(m) {
 		return nil, fault("sender_not_allowed")
 	}
 	return m, nil
