@@ -20,3 +20,7 @@ V-01 verified typed body와 정책·발신/대상·pending 승인/거절, V-02 �
 소유 파일은 docs/design-docs/mockups/의 D04 원천, docs/evaluations/qa-reports/SAR-MVP-001-UI.md, docs/exec-plans/phases/SAR-MVP-001-UI.md, 자기 contexts와 인박스·아카이브다. 코드·원천·PLANS·board·기존 QA 증거는 수정하지 않는다. 기존 PNG를 재사용하고 새 캡처·영상은 결함 판정에 필요한 경우만 만든다. 검사 결과 PASS/FAIL/held와 이미지 경로·고정 SHA를 기록한다. strict·git diff --check·필요 lint를 수행하고 소유 파일만 커밋한다. work.py finish와 새 preamble worker_done을 한 번 보내고 종료한다. 코드 결함은 coor에 보고한다.
 
 기존 designer 워크트리를 사용한다. 복귀 Run run_8ca8bc058ab7, coordinator 경로 /home/shin/orca/workspaces/KnowsLink/fullops-coor다. 지시서의 진행 중 작업은 이번 검수까지이며 후속 기능이나 배포를 시작하지 않는다.
+
+## 실패한 검수 기록 마무리 재개 — 2026-10-03
+
+이전 Dispatch ctx_b7d073da41ef는 failed이며 execution-host worker-show observation은 exited다. 기존 UI 보고서·D04·보완 PNG·실행 기록을 보존해 같은 과제를 마무리한다. 설치된 FullOps 0.9.12를 사용한다. 기준 ref는 준비 HEAD 0a5b044다. 기존 직접 열람은 원래 관찰로 유지하고 이번 세션에서 필요한 이미지만 직접 확인한다. 문서 front matter·상대 링크·strict·소유파일 커밋·work.py finish·새 worker_done을 완료한다. 기존 제품 후보 a6a10c7과 QA c59537b의 시각 검수이며 신규 코드 실행이 아니다. reviewer msg_4fbcac80f76c의 deliver:human 인증 경계 high는 DEV 수정·독립 재검증 대상이다. 이를 UI PASS로 해소하지 않는다. DEV 수정 후보가 UI에 영향을 주면 coor가 같은 과제 후속을 전달한다. 제품/기획/PLANS/board는 수정하지 않는다.
