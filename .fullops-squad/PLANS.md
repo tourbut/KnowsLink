@@ -433,3 +433,6 @@ OPS 질문 msg_74f34b608a8a의 기존 Claude MCP는 계정·zone 및 Access 읽�
 
 
 OPS msg_e6a4633d33a8은 새 Codex OAuth로 공식 MCP initialize/tools/list/call 연결 및 실제 계정/zone/Access/DNS/Tunnel 읽기 200을 보고했다. zone 계정 일치와 Access 수정 권한을 확인했다. 기존 readonly Claude 인증과 구별한다. 일회성 bridge 사용은 승인된 베타 배포 범위이며 고정 코드의 정책/app 본문과 실제 GET 검증을 사용한다. coor가 재리뷰·독립 QA 결과 전달 후에만 쓰기/노출을 재개하도록 회신했다. 인증값과 사용자 이메일은 기록하지 않는다.
+
+
+재리뷰 msg_db858e3e13a1/12a88b20a5cc6c5d12729d3628642eaec2e8f311는 base437f143/headf824015의 6/6 파일 검토와 lint ERROR0/WARNING0 및 check 통과다. 구현자 OPS2191cc9b와 다른 검토 세션941501bd이며 snapshot clean을 확인했다. 기존 M1/M2/M3/M5는 해소됐다. 신규 N1 medium은 PYTHONOPTIMIZE=1에서 assert-only verify_live의 aud 불일치 검사가 생략되는 실제 재현이다. 공개 전 수정을 OPS에 전달했다. N2–N5 low와 원래 L1 부분 해소는 보존한다. 리뷰 기록은 coor 후보에 반영했으나 OPS 조상과 공개 수락은 수정·새 SHA 검토/QA 대기로 보류한다.
