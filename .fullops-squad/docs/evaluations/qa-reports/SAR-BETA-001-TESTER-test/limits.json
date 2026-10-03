@@ -1,0 +1,68 @@
+{
+  "knowslink-postgres-1": {
+    "RestartPolicy": "unless-stopped",
+    "Memory": 536870912,
+    "NanoCpus": 1000000000,
+    "PidsLimit": 200,
+    "CapDrop": null,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": null,
+    "PortBindings": {},
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {
+        "max-file": "3",
+        "max-size": "10m"
+      }
+    }
+  },
+  "knowslink-relay-1": {
+    "RestartPolicy": "unless-stopped",
+    "Memory": 268435456,
+    "NanoCpus": 500000000,
+    "PidsLimit": 128,
+    "CapDrop": [
+      "ALL"
+    ],
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+      "no-new-privileges:true"
+    ],
+    "PortBindings": {
+      "8080/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "8080"
+        }
+      ]
+    },
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {
+        "max-file": "3",
+        "max-size": "10m"
+      }
+    }
+  },
+  "knowslink-migrate-1": {
+    "RestartPolicy": "no",
+    "Memory": 134217728,
+    "NanoCpus": 500000000,
+    "PidsLimit": null,
+    "CapDrop": [
+      "ALL"
+    ],
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+      "no-new-privileges:true"
+    ],
+    "PortBindings": {},
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {
+        "max-file": "3",
+        "max-size": "10m"
+      }
+    }
+  }
+}

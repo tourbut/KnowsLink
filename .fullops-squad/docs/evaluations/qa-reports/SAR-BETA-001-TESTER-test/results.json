@@ -1,0 +1,122 @@
+[
+  {
+    "name": "deploy-lineage",
+    "pass": true,
+    "detail": "head=f824015314c66bcab42940cfe3db2edabb22e1dd short=f824015 fixed_ancestor=True equal_fixed=False"
+  },
+  {
+    "name": "product-unchanged",
+    "pass": true,
+    "detail": "empty"
+  },
+  {
+    "name": "loopback-8080",
+    "pass": true,
+    "detail": "relay 127.0.0.1:8080 postgres unbound"
+  },
+  {
+    "name": "ss-loopback",
+    "pass": true,
+    "detail": "127.0.0.1:8080 only"
+  },
+  {
+    "name": "restart-limits",
+    "pass": true,
+    "detail": "unless-stopped memory caps drop"
+  },
+  {
+    "name": "log-limit",
+    "pass": true,
+    "detail": "10m x 3"
+  },
+  {
+    "name": "secret-mode",
+    "pass": true,
+    "detail": "env=600 cred=['600'] state=700"
+  },
+  {
+    "name": "verify-local",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "verify-regression-before",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "access-selftest",
+    "pass": true,
+    "detail": "exit 0 aud_absent=True"
+  },
+  {
+    "name": "NEG-no-auth",
+    "pass": true,
+    "detail": "401 invalid_auth"
+  },
+  {
+    "name": "NEG-agent-owner",
+    "pass": true,
+    "detail": "401 invalid_auth"
+  },
+  {
+    "name": "NEG-owner-still-active-before",
+    "pass": true,
+    "detail": "200"
+  },
+  {
+    "name": "NEG-agent-revoke",
+    "pass": true,
+    "detail": "401 invalid_auth"
+  },
+  {
+    "name": "NEG-owner-still-active-after",
+    "pass": true,
+    "detail": "200"
+  },
+  {
+    "name": "NEG-bad-csrf",
+    "pass": true,
+    "detail": "403 invalid_csrf"
+  },
+  {
+    "name": "NEG-csrf-no-decision",
+    "pass": true,
+    "detail": "states=1 unchanged=True"
+  },
+  {
+    "name": "backup",
+    "pass": true,
+    "detail": "f824015-20261003T110011Z.dump"
+  },
+  {
+    "name": "prior-backup-kept",
+    "pass": true,
+    "detail": "before=4 after=5"
+  },
+  {
+    "name": "restore-isolated",
+    "pass": true,
+    "detail": "tables=2 relay_state_rows=1"
+  },
+  {
+    "name": "expose-blocked",
+    "pass": true,
+    "detail": "exit 1 dns_empty=True"
+  },
+  {
+    "name": "verify-regression-after",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "deploy-stable",
+    "pass": true,
+    "detail": "f824015314c66bcab42940cfe3db2edabb22e1dd"
+  },
+  {
+    "name": "deploy-untouched",
+    "pass": true,
+    "detail": "checkout clean env unchanged baseline unchanged"
+  }
+]
