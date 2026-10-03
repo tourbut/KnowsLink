@@ -81,3 +81,11 @@ coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인
 ## tester Grok 전환 — 2026-10-03
 
 사용자가 tester를 Grok 4.7 high로 지정했다. `grok --model grok-4.7 --reasoning-effort high`로 실행한다. Orca가 grok의 model 인자를 직접 받지 않으므로 기존 tester 체크아웃에서 해당 명령으로 터미널을 만들고 준비를 확인한 뒤 worker-start --terminal로 감독한다. Claude 사용량 한도 대기 과제는 같은 Task의 retry로 이어받는다.
+
+## 완료 작업의 즉시 통합과 원격 공유 — 2026-10-03 사용자 지시
+
+사용자는 역할별 하위 워크트리에 개발을 배정하고, 완료 작업을 main에 즉시 병합해 origin에 올리도록 승인했다. 완료 보고를 받으면 coordinator는 해당 고정 SHA의 필수 검사·독립 QA·직접 시각 검수·독립 리뷰를 확인한다. 미해결 critical/high와 필수 실패가 없고 과제 수락 조건이 충족되면 main에 병합하고 origin/main에 push한다. 같은 범위의 병합·push 승인을 다시 묻지 않는다. worker_done만으로 필수 검증을 통과한 것으로 간주하지 않는다.
+
+작업 완료 커밋과 준비·운영 기록은 해당 원격 역할 브랜치에도 공유한다. 원격 변경을 확인하고 force-push 없이 반영한다. idle이며 작업 트리가 깨끗한 상설 역할 워크트리는 최신 main으로 동기화한다. 진행 중인 worker의 체크아웃은 변경하지 않고 다음 자연스러운 착수 시점에 동기화한다. 다른 역할이 최신 코드를 받을 때 origin/main과 관련 고정 SHA를 전달한다.
+
+상설 체크아웃 main과 coor/designer/dev/ops/tester를 우선 사용한다. 임시 워크트리는 결과·증거 병합과 원격 push를 확인한 뒤 Orca CLI로 정리한다. 미커밋 변경·진행 세션·필요한 검증 자료가 있으면 보존하고 재개 조건을 기록한다. 강제 reset·force-push·진행 작업 삭제는 하지 않는다.

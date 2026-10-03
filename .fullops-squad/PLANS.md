@@ -287,3 +287,7 @@ SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다
 worker-stop은 user_owned 때문에 stop_unknown/no terminal closed를 반환했다. 사용자 명시 전환 지시에 따라 해당 한도 대기 터미널만 닫았고 ptyKilled=true를 확인했다. Dispatch ctx_6129fd1c9c83은 failed/process_exited/operator_close이며 실제 QA 코드·증거는 생성하지 않았다. 같은 Task task_bc9fa903d0d6과 기존 tester 체크아웃에서 Grok retry를 수행한다. 원래 실패와 미실행 기록은 보존한다.
 
 - Grok 재개 영수증: 같은 Task task_bc9fa903d0d6 / 새 Dispatch ctx_a7a06b6f1b0d / terminal term_236edd67-8fbe-4960-90cc-d20e975b4a48. Grok 4.7 (high) 화면을 확인했다. Orca provider turn_started 관찰은 unsupported지만 실제 화면에서 QA-01–11 착수 응답과 규약·지시서 read_file 실행을 확인했다. 준비 HEAD 69870db는 모델/인계 문서만 추가했고 제품 diff는 a6a10c7 대비 비어 있다. 기존 tester 워크트리를 재사용하며 새 워크트리는 만들지 않았다. Claude의 18:10 대기 차단은 Grok 재개로 해소했으나 독립 QA 결과는 아직 대기한다.
+
+## 완료 작업의 main 병합·원격 공유 상시 승인 — 2026-10-03
+
+사용자가 하위 역할 워크트리에 개발을 보내고 완료·확인 후 즉시 main에 병합하여 원격에 올리도록 지시했다. orca-agents.md에 필수 검사·독립 QA/UI/리뷰·수락 확인 뒤 main 병합과 origin/main push, idle/clean 역할 동기화, 임시 체크아웃 정리 순서를 기록했다. 동일 범위의 병합·push 승인을 다시 묻지 않는다. 현재 a6a10c7 MVP 후보는 Grok 독립 QA가 진행 중이며 필수 UI·리뷰·수락이 남아 있어 main에 공개하지 않는다. 운영 기록은 origin/fullops/coor로 공유한다.
