@@ -1,0 +1,54 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV-FIX-REVIEW",
+  "head": "9c7c9c6fae4b2e30d7e80311c2dec4a301d05ef4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 58,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 58
+    }
+  ],
+  "candidates": [
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "summary": "Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP \"Command\" server.",
+      "probability": 0.58
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.35000000000000003
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.84,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3378,
+    "output_tokens": 629,
+    "cost": 0.000141876
+  },
+  "latency_seconds": 0.266,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

@@ -582,3 +582,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - OPS msg_d6ff730d8f52/96d9673 조건부 수락: 고정8e46c5a reviewed18/skipped0·critical/high0·medium2/low6·lint0/check0. F01 카드/개인UI 미확정과 기존AddMcpServer 부재 누락, F02 원인가설 단정, F04 잘못된Settings경로는 게시전 정정한다. 같은 DEV 후속FIX로 F03/F05 문서한계와 F06-F08 stale/상대prefix/기존파일 경계도 최소보완한다. 원본리뷰·진행QA·held를 보존한다. 새로운제품목표가 아니고 이전 DEV완료가 오래돼 fresh세션 선택, route opus5.5high.
 
 - same-root DEV 보완 착수: task_f616a824269c/ctx_24132a165238/term_11d3428c-4de9-4f30-90b5-1c63802cce30. fresh claude-opus-5-5 high·turn_started 확인. 원본 QA는 독립 고정8e46c5a를 계속 검사하고 새 수정은 완료SHA의 delta 리뷰·관련 회귀만 수행한다.
+
+- DEV FIX msg_cfdd64bb4439/423db6a2a388ea63610462f9d3a5f4c619dd781b 후보 수집·coor 준비SHA 보존병합. 등록 가설/개인UI·AddMcpServer 미확정 및 잘못된Settings 안내 정정, installer staged추출/절대prefix·비소유경로거절·기존bundle보존, 관련19회귀/held·lint0. 새ZIP d3037d20…e609. integration hold와DEV retain, delta OPS 리뷰를 준비한다. 원본QA 진행인 tester inbox는 보존하고 완료 후 수정범위의 좁은QA를 대기배정한다.
