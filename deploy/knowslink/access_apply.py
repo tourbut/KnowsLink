@@ -15,6 +15,12 @@ POLICY_NAME = "knowslink-beta-owner-only"
 APP_NAME = "KnowsLink beta (owner-only)"
 
 
+def need(condition, message):
+    """Explicit gate: unlike assert it still fails under PYTHONOPTIMIZE."""
+    if not condition:
+        raise SystemExit("Access check failed: " + message)
+
+
 def private_text(path):
     info = os.stat(path)
     if stat.S_IMODE(info.st_mode) & 0o077 or info.st_uid != os.getuid():
@@ -40,16 +46,16 @@ def only_owner(policy, email):
 
 
 def verify_live(app, policy, email, aud, team, config_text):
-    """Raise AssertionError unless the live Access app, policy and tunnel config agree and admit only the owner."""
-    assert app["type"] == "self_hosted" and app.get("domain") in (None, HOST), "app type or domain"
-    assert [(d["type"], d["uri"]) for d in app["destinations"]] == [("public", HOST)], "destinations"
-    assert [p["id"] for p in app["policies"]] == [policy["id"]], "app must carry only the owner policy"
-    assert only_owner(policy, email), "policy must allow only the owner email"
-    assert len(app.get("allowed_idps") or []) == 1, "exactly one identity provider"
-    assert not app.get("options_preflight_bypass") and not app.get("custom_pages"), "bypass options"
-    assert app["aud"] == aud, "app aud differs from the recorded aud"
-    assert re.search(rf"^\s+teamName: {re.escape(team)}$", config_text, re.M), "tunnel teamName"
-    assert re.findall(r"^\s+- ([0-9a-f]{64})$", config_text, re.M) == [aud], "tunnel audTag must be exactly the app aud"
+    """Exit unless the live Access app, policy and tunnel config agree and admit only the owner."""
+    need(app["type"] == "self_hosted" and app.get("domain") in (None, HOST), "app type or domain")
+    need([(d["type"], d["uri"]) for d in app["destinations"]] == [("public", HOST)], "destinations")
+    need([p["id"] for p in app["policies"]] == [policy["id"]], "app must carry only the owner policy")
+    need(only_owner(policy, email), "policy must allow only the owner email")
+    need(len(app.get("allowed_idps") or []) == 1, "exactly one identity provider")
+    need(not app.get("options_preflight_bypass") and not app.get("custom_pages"), "bypass options")
+    need(app["aud"] == aud, "app aud differs from the recorded aud")
+    need(re.search(rf"^\s+teamName: {re.escape(team)}$", config_text, re.M), "tunnel teamName")
+    need(re.findall(r"^\s+- ([0-9a-f]{64})$", config_text, re.M) == [aud], "tunnel audTag must be exactly the app aud")
 
 
 def selftest():
@@ -66,13 +72,13 @@ def selftest():
                    app | {"policies": [{"id": "q"}]}, app | {"destinations": []}):
         try:
             verify_live(broken, policy, email, aud, "team", config)
-        except AssertionError:
+        except SystemExit:
             continue
         raise SystemExit("verify_live accepted a broken app")
-    for broken_config in (config.replace(aud, ""), config.replace("team", "other")):
+    for broken_config in (config.replace(aud, ""), config.replace("teamName: team", "teamName: other")):
         try:
             verify_live(app, policy, email, aud, "team", broken_config)
-        except AssertionError:
+        except SystemExit:
             continue
         raise SystemExit("verify_live accepted a broken tunnel config")
     print("access_apply selftest ok")
@@ -96,14 +102,14 @@ def apply(token, email, account):
     if any(HOST in (app.get("domain") or "") for app in call(token, "GET", base + "/apps?per_page=100")):
         raise SystemExit(f"an Access app for {HOST} already exists; not overwriting")
     idps = [i for i in call(token, "GET", base + "/identity_providers") if i["type"] == "onetimepin"]
-    assert len(idps) == 1, "expected exactly one One-time PIN identity provider"
+    need(len(idps) == 1, "expected exactly one One-time PIN identity provider")
     named = [p for p in call(token, "GET", base + "/policies") if p["name"] == POLICY_NAME]
     policy = named[0] if named else call(token, "POST", base + "/policies", policy_body(email))
-    assert only_owner(policy, email), "existing policy does not allow only the owner email"
+    need(only_owner(policy, email), "existing policy does not allow only the owner email")
     app = call(token, "POST", base + "/apps", app_body(policy["id"], idps[0]["id"]))
     check = call(token, "GET", f"{base}/apps/{app['id']}")
-    assert check["aud"] == app["aud"]
-    assert [p["id"] for p in check["policies"]] == [policy["id"]], "app must carry only the owner policy"
+    need(check["aud"] == app["aud"], "created app aud differs")
+    need([p["id"] for p in check["policies"]] == [policy["id"]], "app must carry only the owner policy")
     with open(os.path.join(STATE, "access.json"), "w") as out:
         json.dump({"app": app["id"], "policy": policy["id"], "policy_created": not named}, out)
     with open(os.path.join(STATE, "access.aud"), "w") as out:
@@ -119,9 +125,11 @@ def live_snapshot(account):
         base = f"/accounts/{account or call(token, 'GET', '/accounts')[0]['id']}/access"
         return call(token, "GET", f"{base}/apps/{saved['app']}"), call(token, "GET", f"{base}/policies/{saved['policy']}")
     path = os.path.join(STATE, "access.live.json")
-    if time.time() - os.stat(path).st_mtime > 600:
-        raise SystemExit("access.live.json is older than 10 minutes; refresh it with a read-only call")
+    age = time.time() - os.stat(path).st_mtime
+    need(0 <= age <= 600, "access.live.json must be from the last 10 minutes; refresh it with a read-only call")
     snapshot = json.load(open(path))
+    need(snapshot["app"]["id"] == saved["app"] and snapshot["policy"]["id"] == saved["policy"],
+         "snapshot app/policy ids differ from access.json")
     return snapshot["app"], snapshot["policy"]
 
 
@@ -153,7 +161,7 @@ if __name__ == "__main__":
     elif command in ("apply", "remove"):
         token = private_text(os.environ["CF_API_TOKEN_FILE"])
         accounts = call(token, "GET", "/accounts")
-        assert len(accounts) == 1, "the token must see exactly one account"
+        need(len(accounts) == 1, "the token must see exactly one account")
         account = accounts[0]["id"]
         if command == "apply":
             apply(token, private_text(EMAIL_FILE), account)

@@ -169,7 +169,7 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 
 ### 11.3 중단·복귀
 
-- 구성 갱신·코드 rollback: `beta.sh deploy <sha>`. 먼저 백업(0600)하고 `deploy-history.log`에 이전→새 SHA를 남긴 뒤 detached 체크아웃을 옮겨 재빌드하고 `verify.py local`을 실행한다. `db/migrations`가 현재와 다르면 중단한다. 이 경우 본 문서 5장 3항(격리 DB 검증 뒤 복원)을 따른다. rollback도 같은 명령에 이전 SHA를 준다. 이전 SHA의 `beta.sh`에 `deploy`가 없으면 한계가 있다. 이 경우 `git -C /home/shin/deploy/knowslink checkout --detach <sha>`로 직접 옮기고 `beta.sh up`을 실행한다. 2026-10-03에 `437f143`으로의 rollback과 앞으로의 이동을 실제 실행했다(둘 다 exit 0, 백업 생성, 이력 기록).
+- 구성 갱신·코드 rollback: `beta.sh deploy <sha>`. 먼저 백업(0600)하고 `deploy-history.log`에 이전→새 SHA를 남긴 뒤 detached 체크아웃을 옮겨 재빌드하고 `verify.py local`을 실행한다. `db/migrations`가 현재와 다르면 중단한다. 이 경우 본 문서 5장 3항(격리 DB 검증 뒤 복원)을 따른다. rollback도 같은 명령에 이전 SHA를 준다. 현재 SHA의 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. `deploy-history.log`는 `beta.sh deploy`로 옮긴 기록만 담고 수동 체크아웃은 담지 않는다. `8a7ad36` 이전 SHA에는 `access_apply.py check`가 없다. 그 SHA의 `beta.sh expose`는 live 검증이 없는 이전 게이트다. 그러므로 `expose`는 `check` 명령이 있는 SHA에서만 실행한다. 이전 SHA의 `beta.sh`에 `deploy`가 없으면 한계가 있다. 이 경우 `git -C /home/shin/deploy/knowslink checkout --detach <sha>`로 직접 옮기고 `beta.sh up`을 실행한다. 2026-10-03에 `437f143`으로의 rollback과 앞으로의 이동을 실제 실행했다(둘 다 exit 0, 백업 생성, 이력 기록).
 - 노출 중단: `beta.sh unexpose`(connector만 중지). 앱·DB·볼륨을 보존한다.
 - 전체 중지: `beta.sh stop`. `down -v`와 공유 자원 prune은 금지한다.
 - 전체 철회: `access_apply.py remove`, Cloudflare 대시보드에서 `link` CNAME과 `knowslink` Tunnel을 삭제한다. 기존 `orca` Tunnel·호스트 cloudflared는 건드리지 않는다.

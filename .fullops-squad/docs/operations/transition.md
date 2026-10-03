@@ -16,7 +16,7 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 
 | 항목 | 상태 |
 |---|---|
-| 배포 SHA | 체크아웃 `/home/shin/deploy/knowslink`는 detached다. 제품 코드는 수락 제품 `78b1d92`와 동일하다. 현재 SHA는 `git -C /home/shin/deploy/knowslink rev-parse HEAD`와 `knowslink-state/deploy-history.log`로 확인한다. 갱신·rollback은 D12 11.3 |
+| 배포 SHA | 체크아웃 `/home/shin/deploy/knowslink`는 detached다. 제품 코드는 수락 제품 `78b1d92`와 동일하다. 현재 SHA의 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. `knowslink-state/deploy-history.log`는 `beta.sh deploy` 이동만 기록한다 갱신·rollback은 D12 11.3 |
 | 로컬 스택 | 기동·검증 완료. relay `127.0.0.1:8080`, Postgres 비게시 |
 | Tunnel | `knowslink` Tunnel 생성 완료. connector 미기동 |
 | Access 앱·정책 | **미생성** — Access 쓰기 권한이 필요하다 |
