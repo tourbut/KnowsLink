@@ -1,0 +1,42 @@
+# OPS override for the owner-only synthetic beta; limits are technical beta settings, not product policy.
+x-log: &log
+  driver: json-file
+  options: {max-size: 10m, max-file: "3"}
+services:
+  postgres:
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 200
+    logging: *log
+  migrate:
+    restart: "no"
+    mem_limit: 128m
+    cpus: 0.5
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    logging: *log
+  relay:
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    logging: *log
+  cloudflared:
+    restart: unless-stopped
+    user: "${KNOWSLINK_UID:?KNOWSLINK_UID is required}:${KNOWSLINK_GID:?KNOWSLINK_GID is required}"
+    command: [tunnel, --no-autoupdate, --config, /etc/cloudflared/config.yml, run]
+    environment: !reset {}
+    volumes:
+      - ${KNOWSLINK_STATE_DIR:?KNOWSLINK_STATE_DIR is required}/tunnel:/etc/cloudflared:ro
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 100
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    logging: *log
