@@ -190,4 +190,3 @@ command: ['node', 'adapters/dist/synthetic.js', 'http://127.0.0.1:59295', '--see
 command: ['docker', 'compose', '--project-name', 'knowslink-mvp-63b76f8d51', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-3k2n0nwr/test.yaml', 'down', '--volumes']; exit: 0
 PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused
 [exit 0]
-

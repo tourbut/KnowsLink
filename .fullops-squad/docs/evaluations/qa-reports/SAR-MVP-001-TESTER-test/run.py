@@ -6,6 +6,6 @@ t = time.strftime("%Y-%m-%dT%H:%M:%S%z")
 p = subprocess.run(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 out = "\n".join(l.rstrip() for l in p.stdout.splitlines())
 with open(log, "a") as f:
-    f.write(f"## {t} cwd={cwd}\n$ {' '.join(cmd)}\n{out}\n[exit {p.returncode}]\n\n")
+    f.write(f"## {t} cwd={cwd}\n$ {' '.join(cmd)}\n{out}\n[exit {p.returncode}]\n")
 print(f"exit={p.returncode} :: {' '.join(cmd)}")
 sys.exit(p.returncode)
