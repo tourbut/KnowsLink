@@ -54,7 +54,7 @@ def local():
     listeners = run("ss", "-ltnH")
     assert re.search(r"127\.0\.0\.1:8080\b", listeners) and not re.search(r"(0\.0\.0\.0|\[::\]|\*):8080\b", listeners)
     ports = run("docker", "ps", "--filter", "label=com.docker.compose.project=knowslink", "--format", "{{.Names}} {{.Ports}}")
-    assert "5432" not in ports and "->" in ports and ports.count("->") == 1, ports
+    assert "5432->" not in ports and ports.count("->") == 1, ports
     for name in ("postgres", "relay"):
         inspect = json.loads(run("docker", "inspect", f"knowslink-{name}-1"))[0]
         assert inspect["HostConfig"]["RestartPolicy"]["Name"] == "unless-stopped" and inspect["HostConfig"]["Memory"] > 0

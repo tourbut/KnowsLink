@@ -54,6 +54,21 @@ restore_verify() { # restore a dump into a throwaway container with no network; 
     "select 'tables='||count(*) from information_schema.tables where table_schema='public'"
 }
 
+seed() { # synthetic fixture on the server; adapters only talk to loopback. Gate expires 180 s after this runs
+  cd "$DEPLOY"
+  [ -d adapters/dist ] || { npm ci --prefix adapters --silent && npm run build --prefix adapters --silent; }
+  node adapters/dist/synthetic.js http://127.0.0.1:8080 --seed
+}
+
+owner_login() { # browser HTTP Basic prompt values for the synthetic owner B; for the beta owner's own terminal only
+  python3 - "$DEPLOY/build/qa-fixture.json" <<'PY'
+import json, sys
+owner = json.load(open(sys.argv[1]))["b"]["owner"]
+print("username:", owner["owner"])
+print("password:", owner["credential"])
+PY
+}
+
 tunnel_create() {
   [ ! -e "$STATE/tunnel.uuid" ] || die "tunnel already recorded"
   out=$(cloudflared tunnel create --credentials-file "$STATE/tunnel/new.json" knowslink 2>&1) || die "tunnel create failed"
@@ -81,9 +96,10 @@ expose() { # gate: protected Access app recorded, config requires the JWT, DNS r
 }
 
 case "${1:-}" in
-  prepare|up|stop|unexpose|backup|expose) "$1" "${@:2}" ;;
+  prepare|up|stop|unexpose|backup|expose|seed) "$1" "${@:2}" ;;
+  owner-login) owner_login ;;
   restore-verify) restore_verify "${@:2}" ;;
   tunnel-create) tunnel_create ;;
   render-config) render_config ;;
-  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|restore-verify <dump>|tunnel-create|render-config|expose" ;;
+  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|restore-verify <dump>|seed|owner-login|tunnel-create|render-config|expose" ;;
 esac
