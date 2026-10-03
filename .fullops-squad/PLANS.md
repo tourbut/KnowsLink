@@ -460,3 +460,6 @@ public_ready 질문 msg_73e614f4a38e은 최신28bd1bb gate 독립PASS다. 정상
 
 
 OPS msg_50844bc5b85b은 보호된 연결 적용 완료를 보고했다. 고정28bd1bb를 사용했고 단일 reusable email allow 정책·앱 domain/destinations·OTP IdP1개·GET aud/team 일치·required:true를 확인했다. 신규link DNS와 별도knowslink connector4연결을 만들었으며 기존 DNS3개/orca Tunnel/공유서비스는 보존됐다. edge 미인증·가짜JWT/service-token/Bearer는302Access, HTTP80은301https다. 서버 resolver의 NXDOMAIN 음성캐시로 실제publicresolver edge IP를 사용한 조건을 구별한다. tester 질문 msg_73e614f4a38e에 apply_complete를 회신해 외부 QA를 재개했다. 사용자는 공개URL에서 직접 이메일 로그인을 확인한다. 원점JWT 단독 관측과 인간 로그인은 아직미실행이며 전체성공으로 표시하지 않는다. OPS는 소스불변 최종 문서를 기록한다.
+
+
+공개 QA msg_78dab7200778/c993d599efab0bfdc5741bc9cb02053ca9afd856를 수락한다. 최신28bd1bb gate·공개 해석기 HTTPS8경로 미인증/가짜헤더302Access·HTTP301 및 공유서비스 회귀·로컬 GET/config 증명 대조가 통과했다. 제품/배포 소스 diff 없음, lint ERROR0/WARNING0와 strict 문제0이다. 기본 resolver NXDOMAIN에 따른 verify.py public exit1은 보존하고 public_http.py 성공과 구별한다. 인간 OTP 로그인과 IdP 타입의 tester 독립 GET 미관측·원점JWT 단독 관측은 미실행이다. OPS의 OTP 타입 실제 GET 근거는 별도 보존한다. report 결과는 제품 전체 완성 수락과 분리하여 main에 통합·push한다.
