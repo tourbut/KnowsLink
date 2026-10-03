@@ -1,0 +1,95 @@
+{
+  "product": "4262d02fdd7b0b57a804d9e550597852950ffeae",
+  "checks": [
+    {
+      "id": "REG-current-auth-agent-credential",
+      "result": "pass",
+      "detail": "agent credential on owner revoke 401"
+    },
+    {
+      "id": "REG-pair",
+      "result": "pass",
+      "detail": "invite 200, accept active"
+    },
+    {
+      "id": "FIX-direct-human-query",
+      "result": "pass",
+      "detail": "send 403 sender_not_allowed, stored f, pull 200 body-null true, claim 403, receipt 403, gates 0"
+    },
+    {
+      "id": "FIX-direct-human-commit",
+      "result": "pass",
+      "detail": "send 403 sender_not_allowed, stored f"
+    },
+    {
+      "id": "FIX-result-human-stays-schema",
+      "result": "pass",
+      "detail": "result deliver human 422 invalid_schema"
+    },
+    {
+      "id": "FIX-stored-human-transport",
+      "result": "pass",
+      "detail": "send 200, pull-null true, persist 409 invalid_lease, ack 409 invalid_lease, claim 403, claimed false, gates 0"
+    },
+    {
+      "id": "REG-agent-delivery",
+      "result": "pass",
+      "detail": "send 200, attempts 1, lease gap 30.0s, ack-before 409, persist 200, ack 200, transport delivered, claim 200, again 409"
+    },
+    {
+      "id": "REG-agent-restart",
+      "result": "pass",
+      "detail": "health 200, reclaim 409, fresh 200, leased-id-match true"
+    },
+    {
+      "id": "FIX-legacy-new-claim-denied",
+      "result": "pass",
+      "detail": "shape human:false, new claim 403"
+    },
+    {
+      "id": "FIX-legacy-claim-authorize-result",
+      "result": "fail",
+      "detail": "authorize 200 , result 200 , completion denied, gates 0"
+    },
+    {
+      "id": "REG-ttl",
+      "result": "pass",
+      "detail": "ttl 422 ttl_too_long, rollback 200"
+    },
+    {
+      "id": "REG-lease-max-attempts",
+      "result": "pass",
+      "detail": "send 200, transport failed:max_attempts"
+    },
+    {
+      "id": "REG-revoke",
+      "result": "pass",
+      "detail": "revoke 200, revoked-token false, rotate 200, old-restored false, fresh-leased true"
+    },
+    {
+      "id": "REG-unpair-generation",
+      "result": "pass",
+      "detail": "unpair 200, ack 409, generation 2, old 403, new 200"
+    },
+    {
+      "id": "REG-clock-unknown-auth",
+      "result": "pass",
+      "detail": "clock 503 abnormal_clock, health 200, unknown 401"
+    },
+    {
+      "id": "REG-owner-gate-open",
+      "result": "pass",
+      "detail": "parent 200, ack-before 409, pre-ack leased, H-without-claim 403, H 200 deliver human, H-not-pulled true"
+    },
+    {
+      "id": "REG-gate-csrf",
+      "result": "pass",
+      "detail": "page 200, agent 401, basic 200, csrf 403, get true, approve 303, redecision 409, consume 200 exec false disclosure false"
+    },
+    {
+      "id": "REG-approval-result",
+      "result": "pass",
+      "detail": "done 403, direction 403, optional 422, denied 200, duplicate 403 sender_not_allowed, completion denied, result-ack 200, next false"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+## 2026-10-03T18:50:26+0900 cwd=.
+$ make test
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	(cached)
+ok  	github.com/tourbut/KnowsLink/cmd/relay	(cached)
+ok  	github.com/tourbut/KnowsLink/internal/config	(cached)
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.060s
+[exit 0]
