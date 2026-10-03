@@ -374,3 +374,6 @@ reviewer escalation msg_5d70016552f0: 고정 4262d02는 새 human claim 경계�
 
 
 RF-01 실패 리뷰 138b8b3/msg_5d7ee3dd44ba는 coor 후보에 보존하고 integration hold했다. reviewer ctx_6d485a154a72는 출력 보존 후 release했다. DEV는 종료·clean 확인 후 최신 main과 증거/인계를 포함하는 5002db6으로 동기화했다. 같은 SAR-MVP-001-DEV 후속이지만 긴 이전 세션이므로 새 Claude Opus 5.5 high 세션을 선택했다. Task task_749e8b53d66e / Dispatch ctx_86589b96acca / terminal term_9657ed5d-824f-4d6d-8562-79d09a630eda, effective 모델과 turn_started를 확인했다. 원래 실패 리뷰는 성공으로 바꾸지 않는다. QA는 기존 고정 후보를 완료 중이다.
+
+
+RF-01 DEV 완료 msg_1face39bb094/78b1d92는 독립 검증 대기로 hold하고 coor 후보에 반영했다. parentRouting의 Deliver==agent 검사와 실제 이전 State fixture RED/GREEN·HTTP 회귀가 보고됐다. 새 최종 독립 리뷰 Task task_0db76f85c652 / Dispatch ctx_8325694cc588 / term_ea702e9f-96fc-4ff1-a1a1-dd2c27376619를 새 Codex gpt-6.1-sol high 세션에 배정하고 turn_started를 확인했다. base0e4b5de/head78b1d92 및 읽기 전용 snapshot /tmp/knowslink-mvp-review-78b1d92다. QA는 실행 중이므로 변경하지 않고 현재 과제 완료 뒤 narrow 새 SHA 재검증을 예약했다.
