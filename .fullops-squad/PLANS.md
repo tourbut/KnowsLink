@@ -543,3 +543,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 
 - 사용자 요청: 이슈1의 설치 실패를 진단·수정하고, 수락·GitHub 푸시 후 이슈 댓글에 재시험 절차를 남긴다. FullOps 업데이트 제외. 실제 외부 효과 held 유지.
 - 기준0b2d5c6. route implementation/dev, claude-opus-5-5 high, 추천 산출물 없음. fresh DEV 세션을 배정한다. Run run_8ca8bc058ab7, coordinator term_1db428fe-3b8f-43e5-89bd-3cadbd6720e9 재바인딩 완료. DEV 터미널 없음·clean 확인.
+
+- DEV 착수: Task task_f925b6ee48e7 / Dispatch ctx_487c0b7050ed / terminal term_1164c666-8d03-4c73-bcaa-210a14760801. effective claude-opus-5-5 high, turn_started 확인. 터미널 discoverability 경고는 실행 성공과 구분해 보존한다.
