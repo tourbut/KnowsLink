@@ -1,12 +1,12 @@
 ---
 id: D03
-title: KnowsLink 초기 기술 스택
+title: KnowsLink 기술 스택
 status: review
 updated: 2026-10-03
 owner: dev
 tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV]
 upstream: [D02]
-summary: 고정 도구 버전과 실제 SQL 및 JCS API 근거를 기록한다
+summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
 
 # KnowsLink 기술 스택

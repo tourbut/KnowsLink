@@ -35,13 +35,13 @@ Context7 /websites/sqlc_dev_en에서 pgx/v5 WithTx, FOR UPDATE, :execrows 계약
 | 검사 | 실제 결과·근거 |
 |---|---|
 | make lint | 종료코드 0; build/evidence/lint.log, 완료 커밋의 FullOps product-lint로 다시 고정한다 |
-| make test | 종료코드 0; build/evidence/unit-final.log, DB 환경 없음의 skip을 실제 DB 검사와 구분한다 |
+| make test | 종료코드 0; build/evidence/unit-gated.log, DB 환경 없음의 skip을 실제 DB 검사와 구분한다 |
 | make build | verify-runtime와 verify-mvp의 선행 target, 종료코드 0 |
 | make generate | 종료코드 0; sqlc v1.30.0 실제 schema와 쿼리 생성, build/evidence/generate.log |
 | make schema | 종료코드 0; 실제 migration SQL의 D08 생성 |
 | make verify | 종료코드 0; format/lint/type 위반 실패와 원복 통과, build/evidence/verify.log |
 | make verify-runtime | 종료코드 0; actual migration·2개 테이블·readiness·설정/DB 실패·네트워크 차단 Tunnel, build/evidence/runtime.log |
-| make verify-mvp | 종료코드 0의 후보 검사; Postgres race/claim/ACK/gate·TS HTTP·UI seed, build/evidence/mvp-candidate.log; 최종 추가 field/pair 검사는 mvp-fixed-code.log에 고정한다 |
+| make verify-mvp | 종료코드 0; integration build tag의 Postgres race/claim/ACK/gate·field/pair·TS HTTP·UI seed, build/evidence/mvp-gated.log |
 | deliverables.py --strict | 검사 13, 미작성 4, 문제 0, 경고 0; D04/D11–13은 후속 담당 |
 | git diff --check | 종료코드 0 |
 
@@ -87,3 +87,15 @@ coor의 DEC-03 제안은 운영 측정·poll/ACK·철회 처리·claim 회수 �
 DEC-04 실제 벤더 연결은 후속 dev다. DEC-05 Docker/Tunnel은 수락 후보 이후 OPS다.
 hostname 사용자 결정 link.knowslog.com을 수신했지만 기존 Tunnel과 다른 컨테이너는 변경하지 않았다.
 고정 SHA 독립 리뷰·tester QA·designer UI·critical/high 차단과 최종 수락은 coor가 후속 배정한다.
+
+## 완료 코드와 FullOps 게이트
+
+검증 제품 코드 SHA는 `93593bf449b4e7727ac61486b72c85fc58a1b2ac`다. 브랜치는 `tourbut/fullops-dev-mvp`다.
+제품 구현 커밋은 7f578e7이며 명시적 integration suite·무작위 시험 credential 보강은 93593bf다.
+같은 제품 코드의 make verify-mvp와 unit/race 및 sqlc 생성 검사 모두 종료코드 0이다.
+기준 ref lint는 head 93593bf에서 ERROR 0, WARNING 3, 실행 불가 0, product-lint passed/exit 0이다.
+WARNING은 http.go 487줄, integration_test.go 416줄, store.go 416줄의 SIZE-001이다. 보안·테스트 기준을 낮추지 않았다.
+첫 lint의 ANTI-004는 DB suite를 build tag로 분리하고 환경 부재를 fail로 바꿔 해결했다.
+SEC-001은 합성 DB password를 실행 시 무작위 생성해 해결했다. 원천과 lint 규칙은 유지했다.
+새 문서의 EOF 공백도 교정했다. 최종 아카이브 커밋 뒤 같은 기준 lint와 생성물 diff를 다시 확인한다.
+최종 문서 포함 SHA와 lint 결과는 worker_done 회신으로 고정한다.
