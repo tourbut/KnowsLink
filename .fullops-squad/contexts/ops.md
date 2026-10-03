@@ -38,3 +38,5 @@ reusable policy는 새로 만든다. 기존 `knowslog-bot - Production`은 다�
 
 고정 SHA 552586b를 구현자 Codex 세션과 다른 세션에서 독립 검토했다. snapshot은 읽기 전용이므로 재현 build는 `git archive` 임시 사본에서 한다. `node_modules`를 symlink하면 bundle 주석 경로가 달라져 ZIP SHA가 바뀐다. 경로 정규화 후 동일성으로 판정하고, SHA 일치를 주장하려면 실제 디렉터리에서 `npm ci`를 쓴다.
 공식 Grok Bot connect 문서는 stdio MCP·ZIP 업로드·Node runtime을 언급하지 않는다. 설치 지원을 주장하지 않는다. 결과는 critical/high 0이며 후속 F-01 호스트 tool timeout 확인이 실제 연결 재개 조건이다.
+
+리뷰 findings의 줄 번호는 파일별로 `cat -n`/`nl`을 따로 실행하거나 `sed -n`으로 확정한다. 여러 파일을 한 번에 출력하면 번호가 누적돼 존재하지 않는 줄이 기록된다(SAR-MVP-002-DEV-REVIEW F-01 보정). 기록 전에 `wc -l`로 범위를 대조한다.

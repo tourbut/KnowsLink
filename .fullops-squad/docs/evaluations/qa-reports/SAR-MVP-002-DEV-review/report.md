@@ -42,11 +42,11 @@ summary: Grok Bot 플러그인 고정 SHA 독립 코드 문서 리뷰 결과
 
 | ID | 심각도 | 파일·줄 | 설명 | 상태 |
 |---|---|---|---|---|
-| F-01 | medium | `adapters/src/mcp.ts:268-283` | `knowslink_pull_once`가 gate 결정이나 exp까지 한 호출에서 대기한다. 호스트 tool timeout이 더 짧으면 클라이언트는 timeout을 받고 서버 작업과 `busy`가 남는다. 취소 신호는 처리하지 않는다. claim은 재발급되지 않아 fail-safe다. README가 busy·재시도 금지를 설명한다. 실제 Bot 앱의 timeout은 미확인(held)이다. | 미해결. 실제 연결 재개 전 앱 timeout 확인과 필요 시 비차단 상태 조회 설계. |
+| F-01 | medium | `adapters/src/mcp.ts:47-62`, 연결 `adapters/src/core.ts:170-183` | `knowslink_pull_once` handler(mcp.ts:54의 `await adapter.once`, busy 49-50·60)가 core.ts:170-183 gate 폴링(sleep 182)을 기다려 gate 결정이나 exp까지 한 호출에서 대기한다. 호스트 tool timeout이 더 짧으면 클라이언트는 timeout을 받고 서버 작업과 `busy`가 남는다. 취소 신호는 처리하지 않는다. claim은 재발급되지 않아 fail-safe다. README가 busy·재시도 금지를 설명한다. 실제 Bot 앱의 timeout은 미확인(held)이다. | 미해결. 실제 연결 재개 전 앱 timeout 확인과 필요 시 비차단 상태 조회 설계. |
 | F-02 | low | `adapters/src/core.ts:170-187` | gate가 거절·만료·대기 만료여도 `/v1/authorize`로 진행한다. relay authorize는 claim만 검사한다. 현재 authorize는 `executable:false`/`disclosure:false` 고정이고 결과가 denied뿐이라 효과가 없다. 기존 동작을 이동한 것이다. | 미해결. disclosure·calendar effect 추가 과제는 gate-consume 성공을 authorize 전제로 강제해야 한다. |
 | F-03 | low | `adapters/src/core.ts:204-213` | host 허용 목록에 DNS 이름 `localhost`가 있다. 비정상 hosts 구성이면 Bearer가 loopback 밖으로 갈 수 있다. 합성 모드와 시험 키 한정이며 기본 held다. | 미해결. 숫자 loopback만 허용하면 더 단단하다. |
 
-critical 0, high 0, medium 1, low 2. 재현: F-01은 합성 relay에서 gate를 pending으로 두고 호스트 timeout보다 길게 대기시키는 구성이 필요하다. 이번 리뷰는 코드 경로와 서버 검사의 정적 대조로 확인했고 앱 timeout은 실행하지 않았다.
+critical 0, high 0, medium 1, low 2. 위치 보정: 최초 기록의 F-01 mcp.ts:268-283은 core.ts와 mcp.ts를 이어 붙인 `cat -n` 누적 번호였다. 실제 mcp.ts는 67줄이므로 47-62로 정정했다. F-02(core.ts:170-187)·F-03(core.ts:204-213)은 고정 snapshot에서 유효함을 다시 확인했다. 재현: F-01은 합성 relay에서 gate를 pending으로 두고 호스트 timeout보다 길게 대기시키는 구성이 필요하다. 이번 리뷰는 코드 경로와 서버 검사의 정적 대조로 확인했고 앱 timeout은 실행하지 않았다.
 
 lint WARNING 3건의 의미는 다음과 같다.
 

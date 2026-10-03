@@ -212,7 +212,7 @@
       "insertions": 67,
       "deletions": 0,
       "review_status": "reviewed",
-      "reason": "도구 2개·입력 없음·annotations. 기본 held, busy 가드, catch로 상세 비노출, stdout은 SDK transport만 사용(console.log 없음). 설정은 환경에서만 읽는다. 장시간 차단 동작은 F-01."
+      "reason": "도구 2개·입력 없음·annotations. 기본 held, busy 가드, catch로 상세 비노출, stdout은 SDK transport만 사용(console.log 없음). 설정은 환경에서만 읽는다. 장시간 차단 동작은 F-01(mcp.ts:47-62, core.ts:170-183)."
     },
     {
       "path": "adapters/src/synthetic.ts",
@@ -306,12 +306,12 @@
   "findings": [
     {
       "path": "adapters/src/mcp.ts",
-      "start_line": 268,
-      "end_line": 283,
+      "start_line": 47,
+      "end_line": 62,
       "category": "bug",
       "severity": "medium",
       "resolved": false,
-      "content": "F-01 knowslink_pull_once가 owner gate 결정 또는 메시지 exp까지(2초 폴링) 한 번의 tool 호출 안에서 대기한다. 호스트 MCP 요청 timeout이 이보다 짧으면 클라이언트는 timeout을 보지만 서버 작업은 계속되고 busy가 유지돼 이후 호출은 busy로 거부된다(취소 신호 미처리). claim은 재발급되지 않으므로 fail-safe이고 README가 busy·재시도 금지를 설명한다. 합성 시험은 timeout 240초로 통과했다. 실제 Bot 앱의 tool timeout은 미확인(held). 실제 연결 재개 전 TESTER/OPS가 앱 timeout을 확인하고 필요하면 DEV가 비차단 상태 조회로 바꾼다."
+      "content": "F-01 주 경로 mcp.ts:47-62(handler: busy 49-50·60, `adapter.once` await 54)와 연결 위치 core.ts:170-183(gate 폴링, 2초 sleep 182)에서 knowslink_pull_once가 owner gate 결정 또는 메시지 exp까지(2초 폴링) 한 번의 tool 호출 안에서 대기한다. 호스트 MCP 요청 timeout이 이보다 짧으면 클라이언트는 timeout을 보지만 서버 작업은 계속되고 busy가 유지돼 이후 호출은 busy로 거부된다(취소 신호 미처리). claim은 재발급되지 않으므로 fail-safe이고 README가 busy·재시도 금지를 설명한다. 합성 시험은 timeout 240초로 통과했다. 실제 Bot 앱의 tool timeout은 미확인(held). 실제 연결 재개 전 TESTER/OPS가 앱 timeout을 확인하고 필요하면 DEV가 비차단 상태 조회로 바꾼다."
     },
     {
       "path": "adapters/src/core.ts",

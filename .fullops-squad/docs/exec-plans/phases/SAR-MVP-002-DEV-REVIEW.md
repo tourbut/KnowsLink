@@ -29,3 +29,10 @@ summary: Grok Bot 플러그인 고정 SHA의 독립 리뷰 범위와 재현 결�
 critical 0·high 0·medium 1·low 2. 수락 가능하다. F-01은 pull_once의 장시간 차단과 호스트 timeout, F-02는 gate 미승인 시 authorize 진행(현재 효과 없음), F-03은 `localhost` 허용이다. 모두 실제 연결 재개 전·후속 과제 전·다음 수정 때 처리한다.
 
 실제 Grok Bot 계정·marketplace·hosted runtime·외부 연결은 held다. 이 리뷰는 TESTER 동작 QA와 실제 Bot 앱 설치 검증을 대체하지 않는다.
+
+## F-01 위치 보정 — 후속 기록
+
+- 원인: 최초 리뷰에서 core.ts와 mcp.ts를 한 번에 `cat -n`해 mcp.ts 줄 번호가 core.ts 221줄만큼 누적됐다. F-01이 실제 67줄인 mcp.ts의 268-283으로 기록됐다.
+- 정정: snapshot `552586b`(detached, clean, HEAD 일치 확인)에서 mcp.ts 47-62가 `knowslink_pull_once` handler다. busy 설정은 49-50, `adapter.once(true, () => {})` await는 54, finally의 busy 해제는 60이다. 그 await가 core.ts 170-183의 gate 폴링(approved 시 consume, pending 외 상태 break, 182의 2초 sleep)을 기다린다. result.json·report.md의 위치를 mcp.ts:47-62와 연결 core.ts:170-183으로 고쳤다.
+- 확인: F-02 core.ts:170-187(loop부터 authorize 185·denied 187)과 F-03 core.ts:204-213(loopback 검사, `localhost` 206)은 유효하다. 파일 항목 reason의 줄 참조도 확인했다.
+- 불변: 제품 SHA `552586b6e886f95bffa9a000a031ea03070afedb`, severity(medium 1·low 2), 수락 결론, reviewed 28/skipped 8은 바뀌지 않았다. 코드·빌드·QA는 반복하지 않았다.
