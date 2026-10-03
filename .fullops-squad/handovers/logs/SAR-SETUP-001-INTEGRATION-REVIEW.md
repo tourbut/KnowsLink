@@ -34,3 +34,9 @@ main 준비 기준은 fa971df3a36e다. 기존 승인된 외부 원천 전용 lin
 ## Coordinator 원본 원천 준비와 최종 refs
 
 0.9.10 DOC-003이 exclude보다 먼저 실행되어 기존 제외는 원천 front matter 오류를 막지 못한다. 앞선 INTEGRATION과 FINAL의 ERROR 7을 보존한다. 기존 외부 스냅샷 원문을 main 준비 커밋 3eb7647938111c9f13ad523760aeb7e90c7fa7f3에 그대로 반입했다. 원천 반입의 lint ERROR 7 및 원문 hard break의 whitespace 실패는 별도 기록하고 통과로 표시하지 않는다. 원문과의 무결성 diff는 0이다. 새 최종 head는 9c96232e6230e00319c33ff77637c80923e2438b, snapshot은 /tmp/SAR-SETUP-001-integration-review-9c96232, 최종 key는 SAR-SETUP-001-INTEGRATION-SOURCE다. 대응 리뷰 디렉터리를 소유권에 추가한다. 이 실제 base/head로 lint와 check를 완료한다. 기존 제품·QA 검토는 동일성 확인 뒤 재사용한다.
+
+## 완료 기록과 보관
+
+작업 상태: 완료. 검토와 main 병합 완료. 결과 커밋 50caf7b, 성공 회신 msg_54fa321f61b6.
+
+2026-10-03 사용자 요청으로 완료 지시서를 handovers/logs/에 보관했다. 기존 지시서 본문과 당시 기준·실패 이력은 보존했다. 상세 근거는 [완료 보고서](../../docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md)와 [진행 기록](../../PLANS.md)에 있다.

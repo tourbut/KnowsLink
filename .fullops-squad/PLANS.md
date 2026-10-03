@@ -251,3 +251,7 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 공개 정책 배정 영수증: Task task_9031cdaccb54 / Dispatch ctx_44f5c365fa4f / terminal term_3a8fde43-89ab-4038-a86e-17e370157e4d / 체크아웃 fullops-designer-pilot. effective codex gpt-6.1-sol medium과 turn_started를 확인했다. 사용자는 이후 새 체크아웃 생성 이유를 질문했다. user_owned 표시만으로 새 체크아웃이 필요하다는 판단은 과했으며 앞으로 기존 역할 워크트리를 우선 사용한다. 이미 진행 중인 DEV·designer 작업은 보존한다.
 - 사용자 공개 범위 결정: 누구나 가입하는 공개 서비스다. 초대 전용 파일럿으로 제한하지 않는다. msg_f6b3585a0e09 질문에 msg_240f0ed89175로 답변하고 delivery_7b7747de0eaa를 ack했다. 기획자는 요청·resource·동시 처리 한도의 구체적 권장안과 근거를 준비하고 제안값과 확정값을 구분한다. 실제 공개는 확정 기준·구현·독립 검증·고정 후보 수락 후 진행한다. 사용자에게 모든 수치를 처음부터 정하도록 요구하지 않는다.
 - 사용자가 다시 보낸 세션 ID는 오발송이라고 확인했다. 작업 목표나 기존 복귀 Run을 바꾸지 않는다.
+
+## 완료 리뷰 핸드오버 보관 — 2026-10-03
+
+사용자 요청으로 완료된 독립 리뷰 지시서 두 개를 handovers/logs/로 옮겼다. [개발 리뷰](handovers/logs/SAR-SETUP-001-DEV-REVIEW.md)는 85c2a6a와 msg_2ea9b1d5e1ab, [통합 리뷰](handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md)는 50caf7b와 msg_54fa321f61b6의 완료 근거를 연결했다. 본문과 과거 fixed-SHA 리뷰 파일 목록·경로는 당시 이력으로 보존했다. 진행 중 DEV·OPS·designer 및 대기 중 tester 인박스는 유지했다. 문서 이동만 수행했으므로 제품 코드 검사·테스트는 적용하지 않는다.
