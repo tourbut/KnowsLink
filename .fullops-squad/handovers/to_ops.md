@@ -77,7 +77,7 @@ coor에서 cloudflare_docs MCP와 Context7 /cloudflare/cloudflare-docs resolve/q
 
 OPS는 deploy/knowslink/와 필요한 배포/검증 스크립트, docs/operations D11/D12/D13, contexts/ops, OPS phase 및 인박스/로그를 소유한다. root 제품/compose/Dockerfile·기획·PLANS/board는 수정하지 않는다. 근거 없는 상품 수치는 확정하지 않는다. 사용자 승인 서버 밖 변경·타서비스 삭제는 금지한다.
 
-현재 서버/포트/DNS/Tunnel/account/Access 기존 자원을 읽기 전용 재확인하고 공유 서비스 baseline을 보존한다. 별도 knobslink Compose project와 /home/shin/deploy/knowslink detached 수락 SHA, 새 비밀값0600·DB 비게시·relay loopback·restart·자원 보호/복귀·민감 로그 최소화를 준비한다. 승인된 합성 beta 범위의 resource 제한은 기술 설정으로 기록하고 상품정책으로 확정하지 않는다. 운영 설정·실행 스크립트는 비밀값 없이 커밋하여 coordinator가 고정 SHA 독립 리뷰 후 main 통합하도록 보고한다. 배포 전 새 설정의 독립 검증/리뷰가 필요하면 같은 과제 중간 merge_ready/ask로 고정 커밋과 증거를 보내고 보호/수락 확인 전 외부 공개는 하지 않는다.
+현재 서버/포트/DNS/Tunnel/account/Access 기존 자원을 읽기 전용 재확인하고 공유 서비스 baseline을 보존한다. 별도 knowslink Compose project와 /home/shin/deploy/knowslink detached 수락 SHA, 새 비밀값0600·DB 비게시·relay loopback·restart·자원 보호/복귀·민감 로그 최소화를 준비한다. 승인된 합성 beta 범위의 resource 제한은 기술 설정으로 기록하고 상품정책으로 확정하지 않는다. 운영 설정·실행 스크립트는 비밀값 없이 커밋하여 coordinator가 고정 SHA 독립 리뷰 후 main 통합하도록 보고한다. 배포 전 새 설정의 독립 검증/리뷰가 필요하면 같은 과제 중간 merge_ready/ask로 고정 커밋과 증거를 보내고 보호/수락 확인 전 외부 공개는 하지 않는다.
 
 Access는 정확한 hostname 전체에 사용자 이메일만 allow인 reusable policy를 연결한다. 기존 앱/정책/IdP와 DNS를 덮어쓰지 않는다. 원점에서도 JWT 검증을 적용해 미인증 연결을 차단한다. API 자동 검사에 토큰이 필요하면 사용자 정책을 넓히지 않고 별도 최소 권한 단기 service-token 승인 필요를 질문한다. 무인 계정으로 사용자 OTP를 읽거나 대신 로그인하지 않는다. 로컬 인증/owner/CSRF·negative public Access·Tunnel·DNS·원점·기존 서비스 회귀·백업/격리 복구·노출 중단 rollback 검증을 범위에 맞게 기록한다. 사용자 본인의 마지막 이메일 로그인 확인은 인간 검사로 별도 구분한다. 로컬 기동은 가능해도 보호 미확인 공개는 held로 남긴다.
 

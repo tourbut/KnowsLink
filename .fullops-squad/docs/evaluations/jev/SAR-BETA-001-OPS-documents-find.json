@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-BETA-001-OPS",
+  "head": "716313fb8012584ad6aeb8054126c4b1e7f531e4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 88,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 88
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "summary": "SAR-BETA-001-OPS — 본인 전용 합성 베타 배포 준비·검증 및 보호된 공개 연결 — 본인 전용 합성 베타 배포 준비·검증 및 보호된 공개 연결",
+      "probability": 0.55
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.11
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "summary": "ops 컨텍스트 — 운영 준비의 수락 경계와 서버 관찰 재사용 원칙을 보존한다",
+      "probability": 0.11
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.09
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "summary": "운영자설명서 — 서버 관찰 이력과 배포·백업 계획 및 C1 high 배포 차단을 기록한다",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "summary": "SAR-DEPLOY-001-OPS 실행 기록 — OPS retry의 정본 대조와 D12 수정 및 문서 검증·중지 조건을 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+      "summary": "SAR-MVP-PUBLIC-POLICY-001 — 공개 제품 기준 결정 기록 — 공개 가입 확정과 DEC-03 제안값 및 승인·기술 근거 대기를 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "summary": "ops 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "summary": "<과제 키> — <목표> — 작업 범위와 검증 담당 및 최종 수락을 구분하는 지시서 양식",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.85,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 8023,
+    "output_tokens": 929,
+    "cost": 0.000336966
+  },
+  "latency_seconds": 0.276,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

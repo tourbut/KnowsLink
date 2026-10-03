@@ -401,3 +401,10 @@ main/origin/main 1f465cb에 고정 제품78b1d92·최종 리뷰311381f·QA659f4b
 현재 Run의 active worker는 없다. DEV/리뷰/designer의 release는 user_takeover, tester는 external_terminal 사유로 retained되므로 사용자 소유 터미널을 강제 종료하지 않았다. designer는 실제 tui-idle, dev/tester는 completion activity done·clean 확인 뒤 최신 main으로 동기화한다. ops의 사용자 기존 두 터미널은 tui-idle 확인 timeout이므로 워크트리를 변경하지 않고 main1f465cb와 이번 운영 완료 SHA 동기화를 예약한다. 다음 ops dispatch 전 idle/clean 확인·최신 main merge가 필수다. coor도 최신 main을 포함한다.
 
 합성 구현 검증 범위는 수락됐으며 서비스 전체 완성·실제 공개 배포는 보류다. 원래 held·제품 정책 결정·벤더/실데이터/신원·운영 장기 검증은 보존하고 새 기능/배포를 배정하지 않는다. 사용자 현재 과제 완료 뒤 중지 지시를 따른다.
+
+
+## SAR-BETA-001-OPS 본인 전용 베타 배포 재개 — 2026-10-03
+
+사용자는 베타 배포를 승인하고 본인이 테스트한다고 답했다. 사용자 제공 이메일은 로컬0600 파일에 보관하며 Git에 공개하지 않는다. 수락 main557ebc3의 합성 요청·owner gate만 대상으로 한다. 별도 server Docker/Tunnel link.knowslog.com과 본인만 allow인 Access 보호·origin JWT 검증을 준비한다. 누구나 가입 제품 방향과 기존 공개한도/실데이터/벤더 held를 변경하지 않는다. 관리 인증이 없으면 로컬 준비·검증을 완료한 뒤 최소권한 연결만 요청하며 보호 없는 외부 노출은 하지 않는다.
+
+Cloudflare/cloudflare-one 스킬·Tunnel reference를 읽었다. cloudflare docs MCP 검색, Context7 /cloudflare/cloudflare-docs resolve/query, cloudflared2026.8.3 tunnel list가 실제 통과했다. 관리 MCP·CF 토큰 환경변수는 현재 세션에 없으며 Access 쓰기 확인은 미완료다. orca Tunnel 공유 자원은 보존한다. OPS 이전 사용자 터미널2개가 실제 exited임을 확인해 clean ops를 main557ebc3에 동기화했다. Jev implementation→ops override 근거와 Sonnet5.5 high 배정 후보를 기록했다. 새 과제이므로 새 세션에 배정한다. 설정 고정 SHA 리뷰·독립 배포 QA 후 main 공유와 실제 접속을 구분해 수락한다.
