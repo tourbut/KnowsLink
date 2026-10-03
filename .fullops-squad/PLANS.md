@@ -463,3 +463,8 @@ OPS msg_50844bc5b85b은 보호된 연결 적용 완료를 보고했다. 고정28
 
 
 공개 QA msg_78dab7200778/c993d599efab0bfdc5741bc9cb02053ca9afd856를 수락한다. 최신28bd1bb gate·공개 해석기 HTTPS8경로 미인증/가짜헤더302Access·HTTP301 및 공유서비스 회귀·로컬 GET/config 증명 대조가 통과했다. 제품/배포 소스 diff 없음, lint ERROR0/WARNING0와 strict 문제0이다. 기본 resolver NXDOMAIN에 따른 verify.py public exit1은 보존하고 public_http.py 성공과 구별한다. 인간 OTP 로그인과 IdP 타입의 tester 독립 GET 미관측·원점JWT 단독 관측은 미실행이다. OPS의 OTP 타입 실제 GET 근거는 별도 보존한다. report 결과는 제품 전체 완성 수락과 분리하여 main에 통합·push한다.
+
+
+OPS 최종 msg_10b914e066b7/287f24db0c658f69928d0c84e2ad8b1335337a92는 deploy 및 제품 소스28bd1bb 불변이며 실제 운영 문서·완료 로그만 갱신했다. D11/D12/D13의 실제 상태·접근 절차·종료·원래held 및 미실행 인간검사를 확인하고 strict13종 문제0·공백검사 통과를 확인했다. 고정 코드 리뷰7ba9df0와 로컬/외부 독립 QA1762b43/c993d59를 재사용해 실제 배포·운영 기록을 수락한다. main에 일반push한 뒤 완료 SHA 조상 관계를 확인한다.
+
+사용자가 사이트 접속 불가를 보고했다. 진단 시 권한 DNS 두 개·1.1.1.1·8.8.8.8은 정상A를 반환했고 일반/직접/edge HTTPS가302Access로 성공했다. 사용자는 Tailscale 적용 중인 로컬망 문제로 보인다고 정정했다. coor는 실제 배포 변경이나 보호 완화 없이 유지한다. 최종 인간 OTP 로그인·owner gate 시험은 사용자 확인 대기다. 전체 공개·실데이터/실벤더/장기운영은 원래held를 유지하며 새 기능은 배정하지 않는다.
