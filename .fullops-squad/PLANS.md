@@ -195,3 +195,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 완료 지시서 정본은 handovers/logs/2026-10-03_to_dev.md, handovers/logs/2026-10-03_to_tester.md다. 빈 인박스는 진행 과제가 아니다.
 - low 후속 담당: DB 오류 분류와 Compose assert는 dev, QA 실행 기록 상대 링크는 tester, 과거 인박스 경로는 기록 당시 이력으로 보존한다. FullOps DOC-003 exclude 순서는 플러그인 유지보수 대상이며 로컬 캐시를 수정하지 않는다. 현재 board 상태는 coor가 완료로 갱신한다.
 - 제품 전체 MVP·업무 SQL·sqlc 생성·UI·실제 Tunnel·운영 배포는 이번 초기 구성 수락 범위 밖이다. 원격 push는 수행하지 않았다. 후속 기능 범위는 새 요청으로 확정한다. 상설 워크트리 동기화는 실제 idle·clean 확인 뒤 진행한다. retained/user-owned 세션은 임의 변경하지 않는다.
+
+### 최종 운영 기록 검사
+
+- main 운영 기록 커밋 7c996fb에서 기준 9c96232의 FullOps lint 종료코드 0, ERROR 0, WARNING 0, 실행 불가 0을 확인했다. 등록 명령 product-lint: make lint도 passed다. 결과는 docs/exec-plans/logs/SAR-SETUP-001-COOR/main-final-product-lint.json이다.
+- coor 운영 기록 HEAD 9ccf89e에서 지시서 기준 729446d8da57의 lint 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0을 확인했다. WARNING은 과거 기준의 빈 commands와 변경 설정 안내이며 main 제품 lint 통과와 구분한다. 결과는 같은 폴더의 coor-final-lint.json이다.
+- 산출물 strict는 문제 0, 경고 0, 미작성 11이다. 초기 구성은 D02/D03만 작성하며 미작성 전체 MVP 산출물을 완료로 표시하지 않는다. main과 coor 작업 트리는 깨끗하다. 마지막 증거 등록 뒤 지시서 기준의 coor lint를 다시 확인한다.
