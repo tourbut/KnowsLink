@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "초기 구성 독립 QA·제품 리뷰 완료. 외부 원천 보존 설정을 준비하고 최종 통합 리뷰를 진행한다.",
+  "summary": "SAR 초기 구성의 독립 QA·코드 리뷰·main 병합 완료. 업무 MVP와 배포는 후속 범위.",
   "phases": [
     {
       "name": "운영 기반 구성",
@@ -29,7 +29,7 @@
         "D09",
         "D10"
       ],
-      "note": "D03와 초기 구성의 기술 계획 작성 완료. 독립 검토 대기."
+      "note": "D03 초기 구성 기술 정본 작성과 독립 검토 완료."
     },
     {
       "name": "구현",
@@ -37,13 +37,13 @@
       "deliverables": [
         "D08"
       ],
-      "note": "dev 0cc10b0 초기 골격·제품 lint·직접 검증 완료. 수락 대기."
+      "note": "검토 후보 9c96232를 main에 병합. 초기 골격과 제품 lint 수락."
     },
     {
       "name": "QA",
-      "status": "active",
+      "status": "done",
       "deliverables": [],
-      "note": "독립 QA 통과. main f94510f 기준 고정 후보 59be02d 최종 리뷰 착수."
+      "note": "독립 QA·러너 증거 보완·최종 리뷰 통과. main 제품 lint 0."
     },
     {
       "name": "배포·이행",
