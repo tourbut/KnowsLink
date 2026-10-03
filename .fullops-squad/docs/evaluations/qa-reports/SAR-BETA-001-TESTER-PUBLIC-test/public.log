@@ -1,0 +1,59 @@
+{
+  "failed": [],
+  "statuses": [
+    {
+      "path": "/",
+      "headers": "none",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    },
+    {
+      "path": "/owner",
+      "headers": "none",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    },
+    {
+      "path": "/v1/registry",
+      "headers": "none",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    },
+    {
+      "path": "/healthz",
+      "headers": "none",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    },
+    {
+      "path": "/_probe",
+      "headers": "none",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    },
+    {
+      "path": "/healthz",
+      "headers": "fake-jwt",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    },
+    {
+      "path": "/healthz",
+      "headers": "service-token",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    },
+    {
+      "path": "/healthz",
+      "headers": "bearer",
+      "status": 302,
+      "location_host": "scshin88.cloudflareaccess.com"
+    }
+  ],
+  "http80": {
+    "status": 301,
+    "location_host": "link.knowslog.com",
+    "scheme": "https"
+  }
+}
+PUBLIC_EXIT:0
