@@ -1,0 +1,28 @@
+# Fixed installer boundary regressions, 2026-10-04, scratch clone of 76443df + working-tree installer/README; P1 = prefix from install-first.
+== rerun with stale package/ and stale marker in old bundle; unrelated file kept
+ok   rerun exit 0
+ok   rerun reuses node (no download/checksum line)
+ok   no STALE in new bundle
+ok   unrelated notes.txt and package/ kept
+ok   no stage dir left
+ok   env -i tools 2 / status held
+== relative prefix rejected before any change
+ok   relative exit 1
+ok   relative message
+ok   relative dir not created
+== node path is a user file: refused, file kept
+ok   nodefile exit 1
+ok   nodefile kept as file
+ok   nodefile nothing else created
+== knowslink path is a user dir without bundle: refused, kept
+ok   kdir exit 1
+== bad Node archive: old node and bundle kept, archive removed
+ok   badarchive exit 1
+ok   badarchive old node kept
+ok   badarchive old bundle kept
+ok   badarchive no stage/archive left
+== bundle extraction fails: old bundle kept
+ok   badextract exit 1 and old bundle kept
+== boundary check fails on new bundle: old bundle kept
+ok   badcheck exit 1 and old bundle kept
+regress fail=0
