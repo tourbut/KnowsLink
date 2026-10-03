@@ -17,7 +17,7 @@ summary: 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력�
 | D01 | 착수 | 사업계획서 | `docs/planning/business-plan.md` | review |
 | D02 | 분석 | 요구사항정의서 | `docs/planning/product-specs/` | review |
 | D03 | 설계 | 아키텍처설계서 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` | review |
-| D04 | 설계 | 화면설계서 | `docs/design-docs/mockups/` | 미작성 |
+| D04 | 설계 | 화면설계서 | `docs/design-docs/mockups/SAR-MVP-001-UI.md` | review |
 | D05 | 설계 | 인터페이스설계서 | `docs/design-docs/interface-design.md` | review |
 | D06 | 분석 | 엔티티정의서 | `docs/design-docs/data-model.md` 엔티티 절 | review |
 | D07 | 설계 | 데이터베이스설계서 | `docs/design-docs/database-design.md` | review |
