@@ -47,7 +47,8 @@ restore_verify() { # restore a dump into a throwaway container with no network; 
   docker rm -f $name >/dev/null 2>&1 || true
   docker run -d --name $name --network none -e POSTGRES_HOST_AUTH_METHOD=trust "$POSTGRES_IMAGE" >/dev/null
   trap 'docker rm -f '$name' >/dev/null 2>&1' RETURN
-  for _ in $(seq 30); do docker exec $name pg_isready -U postgres >/dev/null 2>&1 && break; sleep 1; done
+  # the image starts a temporary init server first; ready is the second "ready to accept connections"
+  for _ in $(seq 60); do [ "$(docker logs $name 2>&1 | grep -c 'ready to accept connections')" -ge 2 ] && break; sleep 1; done
   docker exec $name psql -U postgres -qc 'CREATE ROLE knowslink' -c 'CREATE DATABASE restored OWNER knowslink'
   docker exec -i $name pg_restore -U postgres -d restored --no-owner <"$dump"
   docker exec $name psql -U postgres -d restored -Atc \
