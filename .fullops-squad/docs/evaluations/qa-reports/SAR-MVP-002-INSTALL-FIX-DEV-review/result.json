@@ -3,96 +3,96 @@
   "head": "5506d646c47c2d64b35d1254ddfdec5e2003084d",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "ops 독립 검토자 — Claude Code(claude-sonnet-5-5), 세션 f0c560f5-2941-4a4d-96b1-855642ac193c, 워크트리 fullops-ops",
+  "conclusion": "수락 가능(범위: 설치 패키지·CLI 설치 경로·문서의 독립 코드 리뷰). 고정 후보 5506d64에서 미해결 critical/high/medium 0건이며 low 5건은 후속 개선이다. 독립 임시 HOME에서 ZIP 재현(SHA fb745c66…), grok validate·install·marketplace 설치·list·mcp doctor(healthy, 2 tools)·uninstall을 실행했고 사용자 ~/.grok은 바뀌지 않았다. 이전 ZIP 구성의 MCP 0개 결함도 재현했다. 실제 Bot 계정·앱 카탈로그·hosted Node·모델 경유 도구 호출은 검증하지 않았고 held 유지다. TESTER 독립 동작 QA와 원격 재시험을 대체하지 않는다.",
   "files": [
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
       "status": "added",
       "insertions": 136,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원인 표·수정·검증 표·댓글 초안을 snapshot의 실제 CLI 동작과 대조했다. 명령·기대 출력·ZIP SHA·항목 수 11개가 재현됐다. 34줄 원인 단정과 85-88줄 linux-x64 고정은 F-04·F-05로 기록한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
       "status": "added",
       "insertions": 72,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "지시서·완료 보고 전문 보존. 완료 보고의 SHA·ZIP 해시·검증/미검증 구분이 실행 기록과 일치한다."
     },
     {
       "path": ".fullops-squad/handovers/to_dev.md",
       "status": "modified",
       "insertions": 0,
       "deletions": 55,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "work.py finish에 의한 인박스 비움(55줄 삭제)이다. 전문이 logs에 보존돼 있어 손실이 없다."
     },
     {
       "path": ".fullops-squad/project.md",
       "status": "modified",
       "insertions": 3,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검증 명령 한 줄과 tasks·updated만 변경됐다. make verify-grok-plugin 설명(임시 HOME, ~/.grok 미변경)이 실제 동작과 일치한다. 독립 실행 전후 ~/.grok/installed-plugins 해시가 같았다."
     },
     {
       "path": "Makefile",
       "status": "modified",
       "insertions": 5,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "verify-grok-plugin: plugin 의존으로 build→ZIP→grok 검사 순서가 보장된다. lint-config py_compile에 새 스크립트가 포함됐다. 독립 실행 exit 0."
     },
     {
       "path": "adapters/.grok-plugin/plugin.json",
       "status": "added",
       "insertions": 8,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "grok plugin validate가 name knowslink, version 0.1.0, 1 skill dir, MCP servers를 인식한다. 기본 디렉터리 탐색은 CLI 안내서와 일치한다."
     },
     {
       "path": "adapters/.mcp.json",
       "status": "added",
       "insertions": 11,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "${GROK_PLUGIN_ROOT} 치환이 실제 설치본에서 동작함을 doctor JSON의 target 경로로 확인했다. KNOWSLINK_MODE=held, 비밀 없음. 경로를 틀리면 verify가 실패함(음성 시험)."
     },
     {
       "path": "adapters/README.md",
       "status": "modified",
       "insertions": 41,
       "deletions": 13,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Grok 설치·기대 결과·Node 22 절차를 처음부터 실행해 재현했다. marketplace 경로와 uninstall, 준비 폴더 삭제 후 동작도 확인했다. CLI와 앱 카탈로그를 구분하는 문장이 정확하다. linux-x64 고정은 F-05."
     },
     {
       "path": "adapters/package.json",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "format:check에 새 JSON 두 파일을 추가했다. npm run check exit 0."
     },
     {
       "path": "scripts/package_plugin.py",
       "status": "modified",
       "insertions": 3,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "FILES와 .grok-plugin/marketplace.json 추가가 최소다. 결정적 ZIP이며 SHA fb745c66…이 독립 환경에서 같다. 11개 항목에 credential·node_modules·.env가 없다. 마켓플레이스 add·install도 성공."
     },
     {
       "path": "scripts/verify_grok_plugin.py",
       "status": "added",
       "insertions": 39,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "임시 HOME 격리, validate/install/list/doctor 검증, 실패 전파(음성 2종: 잘못된 .mcp.json 경로, grok 부재 모두 exit 1)를 확인했다. 진단 출력 삼킴·held 문구 과장·환경 변수 격리 범위는 F-01~F-03."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-INSTALL-FIX-DEV/grok-inspect-before-after.txt",
@@ -100,8 +100,8 @@
       "insertions": 2,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OCR 제외 증거. 직접 읽었다. 이전 구성 mcpServers 0 → 수정 후 1을 독립 재현으로 확인했다(구성 재현 시 knowslink-<hash>, version null, mcpServers 0)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-INSTALL-FIX-DEV/node20-npm-ci-engine-strict.txt",
@@ -109,8 +109,8 @@
       "insertions": 7,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OCR 제외 증거. EBADENGINE exit 1 기록을 읽었다. Node/npm 둘 다 범위 밖이라 실패한다. 이 로그는 Node 20 환경이 없는 이 호스트에서 재실행하지 않았다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-INSTALL-FIX-DEV/product-lint.txt",
@@ -118,8 +118,8 @@
       "insertions": 28,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OCR 제외 증거. 직접 읽었고 lint.py(고정 5506d64)와 npm run check·lint-config를 독립 재실행해 exit 0을 확인했다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-INSTALL-FIX-DEV/product-test.txt",
@@ -127,8 +127,8 @@
       "insertions": 24,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OCR 제외 증거. 직접 읽었다. Go 테스트는 코어 불변이라 재실행하지 않았고 adapters 빌드와 MCP 시험은 독립 실행에서 PASS였다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-INSTALL-FIX-DEV/red-0b2d5c6-package.txt",
@@ -136,8 +136,8 @@
       "insertions": 7,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OCR 제외 증거. 이전 ZIP 구성에서 name knowslink-<hash>·version None임을 독립 재현으로 확인했다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-002-INSTALL-FIX-DEV/verify-grok-plugin.txt",
@@ -145,8 +145,8 @@
       "insertions": 23,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OCR 제외 증거. 직접 읽었다. 독립 실행 로그와 줄이 같고 ZIP SHA가 같다."
     },
     {
       "path": "adapters/.npmrc",
@@ -154,16 +154,62 @@
       "insertions": 1,
       "deletions": 0,
       "exclude_reason": "secret_exclude",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "engine-strict=true 한 줄. npm ci --prefix adapters에서도 적용됨은 DEV Node 20 로그로 확인했다. 현재 Node 22.22.2/npm 10.9.7에서는 통과한다."
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "start_line": 22,
+      "end_line": 24,
+      "category": "maintainability",
+      "severity": "low",
+      "resolved": false,
+      "content": "F-01 grok 헬퍼가 capture_output=True와 check=True를 함께 쓴다. 실패하면 CalledProcessError만 남고 grok의 stdout·stderr(doctor 진단)는 버려진다. 재현: 스크래치 사본의 .mcp.json 경로를 dist/missing.js로 바꿔 패키지한 뒤 verify를 실행하면 exit 1이지만 `grok mcp doctor` 실패 사유가 출력에 없다. 실패 전파는 정상(fail closed)이므로 수락 차단이 아니다. 실패 시 e.stdout/e.stderr를 출력하면 진단이 쉬워진다."
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "start_line": 33,
+      "end_line": 35,
+      "category": "documentation",
+      "severity": "low",
+      "resolved": false,
+      "content": "F-02 최종 PASS 문구의 `installed copy held`는 과장이다. 34줄은 설치본 dist/plugin.js를 시험 자체의 환경과 process.execPath로 실행한다. Grok이 설치본 .mcp.json의 KNOWSLINK_MODE=held와 PATH의 node로 서버를 띄웠을 때의 상태나 node 버전은 검사하지 않는다. held는 mcp.ts:7의 코드 기본값이라 안전에는 영향이 없다. 문구를 `installed bundle passes MCP held test`로 낮추거나 doctor의 command found 경로를 단언하면 정확해진다."
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "start_line": 19,
+      "end_line": 20,
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "F-03 격리가 HOME 재지정과 GROK_HOME 제거뿐이다. grok 바이너리 문자열에 GROK_CONFIG·GROK_CONFIG_PATH·GROK_MANAGED_CONFIG_URL이 있다. 개발자 셸에 설정돼 있으면 임시 HOME 밖 설정을 읽을 수 있다. 이 호스트에는 설정돼 있지 않아 누출은 재현하지 못했고(독립 실행 전후 ~/.grok/installed-plugins 해시 동일) 쓰기 영향은 미검증이다. 이 변수들도 environment.pop에 더하면 격리가 완전해진다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "start_line": 34,
+      "end_line": 34,
+      "category": "documentation",
+      "severity": "low",
+      "resolved": false,
+      "content": "F-04 34줄이 `Bot 앱 도구 목록에 InstallPlugin 등이 없던 것은 앱의 동적 카탈로그 문제`라고 원인을 단정한다. 136줄은 같은 노출을 재시험 전까지 미판정으로 둔다. 근거는 이슈 본문의 도구 목록 부재뿐이며 앱 내부 원인은 증명되지 않았다. `앱 카탈로그 문제로 보이며 재시험으로 판정`으로 낮추면 두 곳이 일치한다."
+    },
+    {
+      "path": "adapters/README.md",
+      "start_line": 10,
+      "end_line": 13,
+      "category": "portability",
+      "severity": "low",
+      "resolved": false,
+      "content": "F-05 Node 22 준비 절차가 linux-x64와 xz를 가정한다. 같은 명령이 실행 기록의 댓글 초안 85-88줄에도 있다. Bot 컴퓨터의 아키텍처와 xz 설치는 확인되지 않았다. 이슈 환경은 Node 20.19.2 Linux지만 arm64일 가능성은 배제하지 못한다. 실패 시 `uname -m`을 남기도록 재시험 댓글에 안내하거나 `uname -m`으로 파일명을 고르면 된다. 재시험 실패 시 원인 분류를 돕는 보강이며 차단이 아니다."
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "08407653-b74b-4e95-abc2-4074c29956cb",
+    "reviewer_session": "f0c560f5-2941-4a4d-96b1-855642ac193c",
+    "snapshot_path": "/tmp/knowslink-install-review-5506d64",
     "snapshot_head": "5506d646c47c2d64b35d1254ddfdec5e2003084d",
     "read_only": true
   }
