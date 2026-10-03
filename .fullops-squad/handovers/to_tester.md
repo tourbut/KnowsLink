@@ -27,6 +27,16 @@ Jev find/documents-find/context: docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DE
 - [x] 상대prefix는 변경전거절, prefix/node 사용자file·링크나 knowslink 비소유폴더 거절/내용보존. bundle 추출 실패와 env-i 검증 실패에서 기존bundle 보존·Ready없음·stage정리. 구현자 19회귀 스크립트만 복사실행한 것으로 독립QA를 대체하지 않는다.
 - [x] 변경범위의 실제실패 신호를 기록한다. swap 자체실패에서 무엇이 보존/미보장인지 관찰된범위와 문서주장을 구분한다. 테스트항목을 결과를 보고 줄이거나 의미를 바꾸지 않는다.
 - [x] docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md와 -test/에 간결한 명령·exit·assert·판정·재사용·미검증 기록. 실제app등록/개인UI/카탈로그/모델status호출은 미검증. 원본code/리뷰파일/타인박스/PLANS/board 수정금지.
-- [ ] 자기기록 lint --from착수HEAD exit0, work.py finish로 아카이브/인박스비움, commit 후 [완료] SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER | final SHA <전체Git해시> | 좁은경계판정·재사용·미검증 worker_done.
+- [x] 자기기록 lint --from착수HEAD exit0, work.py finish로 아카이브/인박스비움, commit 후 [완료] SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER | final SHA <전체Git해시> | 좁은경계판정·재사용·미검증 worker_done.
+
+## 완료 보고
+
+[완료] SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER | final SHA는 worker_done 본문이다.
+후보 `423db6a2a388ea63610462f9d3a5f4c619dd781b`를 기록 체크아웃 밖의 detached clone과 임시 prefix에서 검증했다. ZIP SHA256은 `d3037d2067c28bf278023a229797eb02111f8d8416bf200d23feff2bf250e609`다. 레포 밖 `env -i`는 도구 2개, held, stderr 길이 0이다.
+첫 설치와 재실행의 종료코드는 0이다. 상대 prefix, node 사용자 파일, node 링크, 비소유 knowslink, bundle 추출 실패, `env -i` 검증 실패는 종료코드 1이고 요구한 보존이 성립한다.
+swap이 이전 knowslink를 stage로 옮긴 뒤의 mv 실패와 SIGTERM은 종료코드 1이다. 이전 knowslink 디렉터리는 없다. FIX 기록의 모든 실패 보존 문장과 다르다. 등급은 low다. 새 critical/high는 없다. 제품 코드는 수정하지 않았다.
+원본 QA `87cfb7c0f2361e450df1ec82190185b8a0d2feb2`의 불변 core·UI 증거만 재사용했다. 원본 설치 성공은 이번 보존 경계의 결과로 쓰지 않았다. 실제 계정 등록, 개인 UI, 카탈로그, 모델 status, relay, 유료 inference는 미검증이다.
+`lint.py --from ebfd5295538b802db1721de71011933ef529a4f5`는 QA 커밋 `f59cfd1bbd9b62ee8621f6c6343acd0c93ee5c7c`에서 종료코드 0이다. product-lint 종료코드는 0이다. ERROR 0. WARNING 0. 실행 불가 0.
+보고서: [SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md).
 
 새결함은 직접고치지 않고 재현/수락영향으로 coor에 보고한다. 구현변경 후 남은실제계정재시험 단계와 로컬검증을 분리한다.
