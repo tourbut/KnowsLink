@@ -22,11 +22,11 @@ Jev find/documents-find/context: docs/evaluations/jev/SAR-MVP-002-BOT-CATALOG-DE
 
 ## 해야 할 일·소유권·완료
 
-- [ ] 별도 detached clone423db6a·임시절대prefix에서 실제 installer를 실행한다. 이미검증된 Node22 runtime을 시험prefix에 재사용해도 되며 실제단계를 기록한다. 최종ZIP SHA256 d3037d2067c28bf278023a229797eb02111f8d8416bf200d23feff2bf250e609, 출력command/argument가 실제준비파일을 가리키고 레포밖env-i statusheld/tools2/stderr0인지 독립assert.
-- [ ] old package/knowslink/STALE 및 기존bundle STALE이 새bundle로 섞이지 않음, prefix 무관file/old package 보존, 자기stage 정리, 재실행Ready 정상.
-- [ ] 상대prefix는 변경전거절, prefix/node 사용자file·링크나 knowslink 비소유폴더 거절/내용보존. bundle 추출 실패와 env-i 검증 실패에서 기존bundle 보존·Ready없음·stage정리. 구현자 19회귀 스크립트만 복사실행한 것으로 독립QA를 대체하지 않는다.
-- [ ] 변경범위의 실제실패 신호를 기록한다. swap 자체실패에서 무엇이 보존/미보장인지 관찰된범위와 문서주장을 구분한다. 테스트항목을 결과를 보고 줄이거나 의미를 바꾸지 않는다.
-- [ ] docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md와 -test/에 간결한 명령·exit·assert·판정·재사용·미검증 기록. 실제app등록/개인UI/카탈로그/모델status호출은 미검증. 원본code/리뷰파일/타인박스/PLANS/board 수정금지.
+- [x] 별도 detached clone423db6a·임시절대prefix에서 실제 installer를 실행한다. 이미검증된 Node22 runtime을 시험prefix에 재사용해도 되며 실제단계를 기록한다. 최종ZIP SHA256 d3037d2067c28bf278023a229797eb02111f8d8416bf200d23feff2bf250e609, 출력command/argument가 실제준비파일을 가리키고 레포밖env-i statusheld/tools2/stderr0인지 독립assert.
+- [x] old package/knowslink/STALE 및 기존bundle STALE이 새bundle로 섞이지 않음, prefix 무관file/old package 보존, 자기stage 정리, 재실행Ready 정상.
+- [x] 상대prefix는 변경전거절, prefix/node 사용자file·링크나 knowslink 비소유폴더 거절/내용보존. bundle 추출 실패와 env-i 검증 실패에서 기존bundle 보존·Ready없음·stage정리. 구현자 19회귀 스크립트만 복사실행한 것으로 독립QA를 대체하지 않는다.
+- [x] 변경범위의 실제실패 신호를 기록한다. swap 자체실패에서 무엇이 보존/미보장인지 관찰된범위와 문서주장을 구분한다. 테스트항목을 결과를 보고 줄이거나 의미를 바꾸지 않는다.
+- [x] docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md와 -test/에 간결한 명령·exit·assert·판정·재사용·미검증 기록. 실제app등록/개인UI/카탈로그/모델status호출은 미검증. 원본code/리뷰파일/타인박스/PLANS/board 수정금지.
 - [ ] 자기기록 lint --from착수HEAD exit0, work.py finish로 아카이브/인박스비움, commit 후 [완료] SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER | final SHA <전체Git해시> | 좁은경계판정·재사용·미검증 worker_done.
 
 새결함은 직접고치지 않고 재현/수락영향으로 coor에 보고한다. 구현변경 후 남은실제계정재시험 단계와 로컬검증을 분리한다.
