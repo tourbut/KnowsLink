@@ -9,7 +9,7 @@ summary: 첫 안전 전달 기능의 고정 후보를 독립 검증한다
 
 # SAR-MVP-001-TESTER — 첫 안전 전달 기능의 고정 후보를 독립 검증한다
 
-- 작성일: 2026-10-03. From / To: designer / tester. 작업 상태: queued.
+- 작성일: 2026-10-03. From / To: designer / tester. 작업 상태: ready.
 - 선행 조건: SAR-MVP-001-DEV 성공 worker_done, coor의 안정 통합 후보 고정과 QA 시작 지시, 동일 준비 문서·규칙·실행 가능한 합성 fixture 접근 확인.
 - 예정 브랜치/워크트리: fullops/tester, /home/shin/orca/workspaces/KnowsLink/fullops-tester.
 - repo id·실제 경로·Run/Task/Dispatch/terminal·DEV 완료 SHA·QA 대상 SHA는 배정 시 coor가 실제 값으로 기록한다. 아직 tester Dispatch가 없다.
@@ -103,3 +103,9 @@ D01–D13 원천 변경은 없다. QA 시나리오·보고서·증거·실행 �
 ## 완료 보고
 
 아직 실행하지 않았다. 배정된 tester가 브랜치/고정 SHA·DEV 대상 SHA·통합 후보 SHA, QA-01–11 판정·명령/종료코드, 결함 심각도와 재개 조건, UI 증거와 designer 인계, 독립성·증거 재사용 한계, lint ERROR/WARNING/실행 불가를 기록한다.
+
+## 고정 후보와 QA 착수 — 2026-10-03
+
+DEV 성공 회신 msg_bcf340cb7ce8을 확인했다. 제품 고정 후보와 DEV 완료 SHA는 a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92다. 기존 tester 체크아웃을 이 SHA로 fast-forward했다. 준비 지시서·route만 추가한 QA HEAD는 배정 시 기록한다. 제품 경로는 고정 후보와 동일해야 한다. 새 세션으로 실행하되 기존 tester 워크트리를 사용한다. 이전 tester 세션은 idle이며 오래된 과제의 컨텍스트를 재사용하지 않는다.
+
+먼저 읽을 문서에 README.md, .fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md, .fullops-squad/handovers/logs/2026-10-03_to_dev.md를 추가한다. 기존 Jev 탐색과 필수 문서 근거를 재사용하며 실제 변경 API와 실행 경로는 완료 D03과 README에서 확인한다. 새 실제 preamble으로 복귀한다. Run은 run_8ca8bc058ab7이다. 실사용자 신원 인증·공개 운영 한도·singleton global lock 처리량은 DEV 보고에서 held이며 합성 후보 PASS와 구분한다. QA는 이 한계를 숨기지 않는다. make verify-mvp와 합성 seed 실행 경로를 재사용할 수 있으나 DEV 로그만으로 독립 QA를 대신하지 않는다.
