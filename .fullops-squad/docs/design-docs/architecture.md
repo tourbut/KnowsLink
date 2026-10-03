@@ -4,7 +4,7 @@ title: 아키텍처설계서
 status: review
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-MVP-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -78,3 +78,11 @@ MVP-03–06은 protocol·transaction·durable inbox·race 검사에 연결된다
 MVP-08–11/15/16은 gate·authorize·result·retention·HTTP/UI 검사에 연결된다.
 MVP-12–14는 field 한도·registry·loopback stub·OFF 경계로 유지한다.
 실행 증거와 보류는 [SAR-MVP-001-DEV 기록](../exec-plans/phases/SAR-MVP-001-DEV.md)에 있다.
+
+## SAR-MVP-002 공식 Grok Bot 플러그인 준비
+
+사용자가 공식 Grok Bot을 확정했다. hosted 컴퓨터·MCP·Cursor connector policy의 공식 근거를 확인했다. 연결 구조는 Cursor plugin manifest·stdio MCP·skill이며 실제 account/hosted 연결은 held다. 준비 package는 [설치 문서](../../../adapters/README.md)를 따른다.
+
+공통 Adapter는 `adapters/src/core.ts`로 옮겼다. 기존 `index.ts` CLI와 새 MCP가 같은 서명·persist·ACK·claim·gate·deny를 재사용한다. relay·DB·UI·frozen wire는 변경하지 않았다. MCP는 payload·credential·claim을 모델에 노출하지 않고 원문 업무를 추론하거나 도구로 실행하지 않는다.
+
+Grok Bot의 같은 계정 Bot들은 파일과 command-line credential을 공유한다. KnowsLink AgentID/owner 분리는 제품 서버에서 집행한다. Bot 프로필·화면 분리나 vendor approval을 identity·owner approval 경계로 간주하지 않는다. plugin의 실제 설치와 최소 계정 권한·도달 경로를 후속 고정 버전에서 검증한다. shared claim 없는 다중 adapter 활성화는 허용하지 않는다.

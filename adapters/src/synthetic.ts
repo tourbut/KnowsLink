@@ -1,7 +1,12 @@
 // Synthetic QA seed and end-to-end adapter check; credentials stay in ignored local files only.
 import assert from "node:assert/strict";
 import { generateKeyPairSync, randomBytes, sign } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Adapter, signingBytes, uuid7, type Envelope } from "./index.js";
 
 const base = process.argv[2] ?? "http://127.0.0.1:8080";
@@ -103,6 +108,7 @@ async function main() {
   assert.equal(await source.once(false), false);
   const second = await sendQuery();
   let pending: Promise<boolean>;
+  let mcp: Client | undefined;
   if (seed) {
     const lease = await api<{ lease_token: string }>(
       "/v1/pull",
@@ -145,7 +151,49 @@ async function main() {
     );
     pending = Promise.resolve(true);
   } else {
-    pending = adapter.once(true);
+    const keyDirectory = await mkdtemp(join(tmpdir(), "knowslink-mcp-test-"));
+    const keyFile = join(keyDirectory, "key.pem");
+    await writeFile(keyFile, b.pem, { mode: 0o600 });
+    mcp = new Client({ name: "synthetic-relay", version: "1.0.0" });
+    await mcp.connect(
+      new StdioClientTransport({
+        command: process.execPath,
+        args: [fileURLToPath(new URL("./plugin.js", import.meta.url))],
+        env: {
+          KNOWSLINK_MODE: "synthetic-loopback",
+          RELAY_URL: base,
+          AGENT_CREDENTIAL: b.credential,
+          AGENT_ID: b.agent,
+          AGENT_KID: "key1",
+          AGENT_KEY_FILE: keyFile,
+        },
+        stderr: "pipe",
+      }),
+    );
+    pending = mcp
+      .callTool({ name: "knowslink_pull_once", arguments: {} }, undefined, {
+        timeout: 240000,
+      })
+      .then((result) => {
+        assert.equal(result.isError, false);
+        assert.deepEqual(result.content, [
+          {
+            type: "text",
+            text: JSON.stringify({
+              state: "processed",
+              transport: "pull",
+              actualConnection: "held",
+              webhook: false,
+              evidenceFetch: false,
+            }),
+          },
+        ]);
+        return true;
+      })
+      .finally(async () => {
+        await mcp?.close();
+        await rm(keyDirectory, { recursive: true });
+      });
   }
   let gate = "";
   for (let attempt = 0; attempt < 40 && !gate; attempt++) {

@@ -1,0 +1,51 @@
+{
+  "baseline": "dbdd70086971285b790683f362702e5a9ff55acd",
+  "prepared_head": "0f58336f5ec6c678dfdf416e1cc8fee3e1ef7472",
+  "implementation_head": "c4ebbecd3ef91be10ecbb517fe451e02769358bc",
+  "packaging_head": "5bd1bd2f4ea32af625831a284dadd1551821530e",
+  "checks": [
+    {
+      "command": "make lint",
+      "head": "c4ebbecd3ef91be10ecbb517fe451e02769358bc",
+      "exit_code": 0
+    },
+    {
+      "command": "make test",
+      "head": "c4ebbecd3ef91be10ecbb517fe451e02769358bc",
+      "exit_code": 0
+    },
+    {
+      "command": "make verify-mvp",
+      "head": "c4ebbecd3ef91be10ecbb517fe451e02769358bc",
+      "exit_code": 0
+    },
+    {
+      "command": "make plugin",
+      "head": "5bd1bd2f4ea32af625831a284dadd1551821530e",
+      "exit_code": 0
+    },
+    {
+      "command": "FullOps 0.9.13 lint.py --repo . --from dbdd70086971285b790683f362702e5a9ff55acd",
+      "head": "5bd1bd2f4ea32af625831a284dadd1551821530e",
+      "exit_code": 0
+    },
+    {
+      "command": "FullOps 0.9.13 deliverables.py --repo . --strict",
+      "head": "5bd1bd2f4ea32af625831a284dadd1551821530e",
+      "state": "completion documents updated; product code unchanged",
+      "exit_code": 0
+    }
+  ],
+  "artifact": "build/knowslink-grok-bot-plugin.zip",
+  "artifact_sha256": "0e671d1a89c141d896034fff31619b9cd2148b73b567adbc3a97126031989117",
+  "actual_connection": "held",
+  "independent_review": "coor follow-up",
+  "tester_qa": "coor follow-up",
+  "ui_unchanged_evidence": "9584aaf",
+  "files_unchanged_after_checks": [
+    "adapters/src/core.ts",
+    "adapters/src/mcp.ts",
+    "adapters/src/mcp.test.ts",
+    "adapters/src/synthetic.ts"
+  ]
+}

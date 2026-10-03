@@ -4,7 +4,7 @@ title: KnowsLink 기술 스택
 status: review
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV]
 upstream: [D02]
 summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
@@ -67,3 +67,11 @@ Context7 `/cyberphone/json-canonicalization`의 Go Transform·RFC8785·duplicate
 실제 Go module은 v0.0.0-20241213102144-19d51d7fe467이다. 공개 공식 소스의 lone surrogate 거부를 테스트로 대조했다.
 TypeScript는 Node 내장 crypto Ed25519와 UTF-16 key sort 및 JSON.stringify를 사용한다. 실제 Go signature와 TS 재검증이 HTTP 합성 검사에서 일치한다.
 API 문서를 고정 버전 근거로 확대 해석하지 않는다. 설치 소스·컴파일·실행을 함께 사용한다.
+
+## SAR-MVP-002 플러그인 스택 근거
+
+`@modelcontextprotocol/sdk` 1.32.0을 runtime dependency로 고정했다. `esbuild` 0.28.2는 개발 packaging dependency다. Node·TypeScript의 기존 버전은 유지한다. SDK protocol을 직접 재구현하지 않는다. esbuild는 SDK와 Adapter를 standalone ESM에 포함해 설치 대상의 npm 다운로드를 없앤다.
+
+Context7 `/modelcontextprotocol/typescript-sdk`의 registerTool·McpServer·stdio·Client 근거를 조회했다. 반환 자료는 main/v2도 섞여 있으므로 설치 1.32.0의 `dist/esm/server/mcp.d.ts`, `stdio.d.ts`와 실제 compile/handshake로 대조했다. `/websites/cursor`의 manifest·MCP 설치 경로 조회와 [공식 plugin reference](https://cursor.com/docs/reference/plugins)를 사용했다. 버전 없는 문서를 특정 Bot 앱 빌드 지원 증명으로 확대하지 않는다. Bot 앱 빌드·hosted Node는 미확인이다.
+
+공식 제품·CLI 구분, 라이브러리 설치 결과, package hash와 [검증 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)을 보존한다. Node SDK 설치·compile·로컬 MCP handshake는 실제 Grok Bot 계정 연결 증거가 아니다.

@@ -1,0 +1,24 @@
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	(cached)
+ok  	github.com/tourbut/KnowsLink/cmd/relay	(cached)
+ok  	github.com/tourbut/KnowsLink/internal/config	(cached)
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	(cached)
+npm test --prefix adapters
+
+> @knowslink/adapters@0.0.0 test
+> npm run build && node dist/mcp.test.js
+
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+
+  dist/plugin.js  1016.6kb
+
+⚡ Done in 100ms
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
