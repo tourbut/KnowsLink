@@ -471,3 +471,6 @@ OPS 최종 msg_10b914e066b7/287f24db0c658f69928d0c84e2ad8b1335337a92는 deploy �
 
 
 사용자는 이메일 로그인 후404를 보고했다. 현재 소스는 GET /owner와 /owner/gates/{id}만 UI로 등록하고 루트/는 등록하지 않았다. 직접loopback 요청도 /404, /owner401을 확인했다. 정상 소유자 화면 URL과 기존 사용자 터미널 owner-login 절차를 안내한다. 사용자 로그인 성공 보고는 Access 인간 확인 근거이며 owner 화면/합성 gate 시험은 아직 확인 전이다. OPS287f24와 QA c993d59는 origin/mainff351a5에 보존됐다. 사용자 소유 OPS 세션은 release 상태에 따라 강제 종료하지 않는다. 최종 기록 이후 역할 동기화는 실제 idle/clean 확인 후 재개하도록 예약한다.
+
+
+사용자가 직접 테스트를 요청해 coor가 배포28bd1bb의 실제 loopback HTTP와 HTTP Basic 소유자 화면으로 합성 승인/거절을 각각 실행했다. 기존 fixture 파일은 메모리에 보존했다가 복원했으며 credential을 출력하지 않았다. 두 시나리오 모두 seed 성공, 올바른 소유자 GET200, 다른 소유자 GET403 sender_not_allowed 재현, POST303, 결정 뒤 버튼 비활성, 중복POST409다. 실행 Python 종료코드0이다. 제품/배포 소스를 변경하지 않았다. 이 증거는 서버 HTTP 직접 실행이며 사용자 브라우저의 캐시 상태 관측이나 새 독립 tester QA로 표시하지 않는다. 사용자에게 이전 소유자 로그인 캐시와 새 요청의 소유자 불일치 가능성을 설명한다.
