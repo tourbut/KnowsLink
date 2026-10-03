@@ -141,3 +141,6 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 독립 코드 리뷰 SAR-SETUP-001-DEV-REVIEW는 별도 검토 세션에서 수행한다. Jev 선정은 claude-opus-5-5 medium이다. 구현자 Dispatch ctx_67f98ed4cd42와 다른 실제 세션 ID를 확보한다.
 - 검증 대상은 기존 완료 SHA 0cc10b083771be9b3423833b222c57d426315333이다. 준비 리뷰 dbe0b40076af4d440bb263ca4d02d671780d2514..0cc10b0과 read-only detached snapshot /tmp/SAR-SETUP-001-review-0cc10b0을 유지한다. 제품 코드·원천은 변경하지 않는다.
 - QA와 리뷰가 성공하기 전 main 수락·병합은 보류한다.
+
+- QA 재개 영수증: Task task_83afe3153820, Dispatch ctx_8bc7450abd67, terminal term_706e0b83-208c-469f-b671-1e30fa93da31. effective claude-sonnet-5-5 high와 turn_started를 확인했다. tester 준비 병합 c9ae79f에서 PLANS와 board 충돌을 기존 기록 보존으로 해결했다.
+- 리뷰 배정 영수증: Task task_158decad4fc0, Dispatch ctx_53a98f9ed8f8, terminal term_34cd4a57-7b87-4170-a5cb-d661215a1922. effective claude-opus-5-5 medium과 turn_started를 확인했다. 같은 체크아웃의 리뷰 디렉터리만 worker가 소유한다.
