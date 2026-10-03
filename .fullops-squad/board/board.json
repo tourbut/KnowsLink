@@ -1,68 +1,73 @@
 {
   "title": "KnowsLink",
-  "summary": "최신 서비스 기획의 MVP 명세·백로그·첫 DEV/TESTER 인계 준비 완료.",
+  "summary": "서비스 기획·MVP 개발 준비 완료. 첫 기능 개발·독립 QA 대기, 운영 배포 미착수.",
   "phases": [
     {
-      "name": "운영 기반 구성",
+      "name": "FullOps 운영 기반",
       "status": "done",
       "deliverables": [],
-      "note": "FullOps 0.9.10 역할 동기화 완료. 기존 역할별 제품 진행·QA 인계는 보존한다."
+      "note": "FullOps 0.9.10 적용·역할 동기화 완료."
     },
     {
-      "name": "제품 기획·요구사항",
+      "name": "초기 골격 설계",
+      "status": "done",
+      "deliverables": [
+        "D03"
+      ],
+      "note": "SAR-SETUP-001 기술 정본 검토 완료. MVP 기능 설계는 후속 dev 담당."
+    },
+    {
+      "name": "초기 골격 구현·QA",
+      "status": "done",
+      "deliverables": [],
+      "note": "후보 9c96232 로컬 main 수락. 골격 독립 QA·제품 lint 통과."
+    },
+    {
+      "name": "서비스 기획·MVP 개발 준비",
       "status": "done",
       "deliverables": [
         "D01",
-        "D02",
-        "D04"
+        "D02"
       ],
-      "note": "D02와 dev·tester 지시서 작성 완료."
+      "note": "원천 7bc9ea1, 명세·백로그·첫 인계 독립 검토 완료. D01/D02 review."
     },
     {
-      "name": "기술 설계",
-      "status": "done",
+      "name": "MVP 첫 기능 개발",
+      "status": "todo",
       "deliverables": [
         "D03",
         "D05",
         "D06",
         "D07",
+        "D08",
         "D09",
         "D10"
       ],
-      "note": "D03 초기 구성 기술 정본 작성과 독립 검토 완료."
+      "note": "SAR-MVP-001-DEV queued. 등록·페어링·안전 전달·human-gate. 미착수."
     },
     {
-      "name": "구현",
-      "status": "done",
+      "name": "MVP 독립 QA·UI 검수·리뷰",
+      "status": "todo",
       "deliverables": [
-        "D08"
+        "D04"
       ],
-      "note": "검토 후보 9c96232를 main에 병합. 초기 골격과 제품 lint 수락."
+      "note": "DEV 고정 후보 이후 tester QA·designer UI 검수·독립 리뷰. D04 미작성."
     },
     {
-      "name": "QA",
-      "status": "done",
+      "name": "실제 어댑터·일정 조회",
+      "status": "todo",
       "deliverables": [],
-      "note": "독립 QA·최종 리뷰 통과. main 등록 product-lint 통과, ERROR/WARNING 0."
+      "note": "백로그 002–006. 인터페이스·공개 정책 결정 필요. 일정 조회 003 held."
     },
     {
-      "name": "배포·이행",
+      "name": "운영 배포·이행",
       "status": "todo",
       "deliverables": [
         "D11",
         "D12",
         "D13"
       ],
-      "note": "ops 담당. 배포 환경 미정."
-    },
-    {
-      "name": "서비스 MVP 개발 준비",
-      "status": "done",
-      "deliverables": [
-        "D01",
-        "D02"
-      ],
-      "note": "원천 7bc9ea1, D01·MVP D02·백로그 독립 검토 완료. 첫 기능 인계 queued."
+      "note": "백로그 007. 운영 제한·설정·실행 승인 대기. 미착수."
     }
   ]
 }
