@@ -84,3 +84,11 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 
 - 구현과 QA의 검사 기준은 원천 보존 설정을 포함한 준비 커밋 `729446d8da57`으로 갱신했다. 설계 단계의 원래 검사 실패 기록은 보존한다.
 - dev 새 세션 배정: Run `run_8ca8bc058ab7`, Task `task_a7fd5d1b8806`, Dispatch `ctx_ab5236bf8b40`, terminal `term_5c300e96-6aca-49ad-ad46-441c378b7cee`. 갱신된 후보에서 codex gpt-6.1-sol high를 선택했고 착수를 확인했다.
+
+## FullOps 0.9.9 업데이트 — FULLOPS-UPDATE-099
+
+- 준비 기준은 `00b4cb34ae6e9f9fbc0b733ecaa3a2095fbc88eb`이다. 현재 Codex 플러그인은 0.9.9이며 필수 의존성을 확인했다.
+- 제품 기획 designer / 기술 계획 dev의 합의된 책임 분리를 marker로 활성화했다. coor·설계·tester와 역할 브랜치 매핑은 유지했다.
+- 이전 첫 요청 대기 기록은 당시 이력이다. 현재 SAR-SETUP-001 진행 자료는 coor·designer·dev 브랜치에 있다.
+- ops·tester만 쉬고 깨끗한 동기화 대상이다. coor·designer·dev는 기존 SAR 인계와 작업을 보존하기 위해 완료 후 동기화한다.
+- 새 coordinator는 [갱신과 인계 기록](docs/exec-plans/phases/FULLOPS-UPDATE-099.md)을 읽고 기존 Run을 연결한다.
