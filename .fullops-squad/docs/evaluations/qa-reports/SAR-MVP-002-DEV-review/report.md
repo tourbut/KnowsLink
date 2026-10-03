@@ -1,3 +1,12 @@
+---
+title: SAR-MVP-002-DEV 리뷰
+status: draft
+updated: 2026-10-03
+owner: coor
+tasks: [SAR-MVP-002-DEV]
+summary: 고정 후보 552586b 독립 리뷰 기록의 빈 양식이다
+---
+
 # SAR-MVP-002-DEV 리뷰
 
 - 검토자 / CLI / 모델:

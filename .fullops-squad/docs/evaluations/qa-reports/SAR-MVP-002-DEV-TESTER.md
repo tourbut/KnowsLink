@@ -109,7 +109,10 @@ MCP bundle의 synthetic pull은 owner approve 303 뒤 receipt completion `denied
 | ZIP inventory | 0 | [inventory.log](SAR-MVP-002-DEV-TESTER-test/inventory.log) |
 
 `verify-mvp.log`는 Compose progress의 줄 끝 공백 50줄을 제거한 파일이다. 원본 SHA256은 `23aa83a711454c0001f80a1bbd23bbf611f0f781e94b3dbd8cfea274bca6485b`다. 정규화 SHA256은 `485d152365bb40fc64ebb034cfc7910ea0cc73b67d7d1d52c99a0a2c9c64387f`다. 명령과 종료코드와 테스트 이름은 유지했다.
-기준 ref `dbdd70086971285b790683f362702e5a9ff55acd`의 FullOps lint와 `deliverables.py --strict`는 기록 커밋의 깨끗한 HEAD에서 실행한다. 그 종료코드는 같은 test 디렉터리에 남긴다.
+기준 ref `dbdd70086971285b790683f362702e5a9ff55acd`에서 기록 커밋 `02cef9e718358ba8c030dfc75a5eac09cbfb4288`의 FullOps lint 종료코드는 1이다. ERROR는 준비 커밋의 빈 리뷰 양식 `SAR-MVP-002-DEV-review/report.md`에 front matter가 없는 DOC-003이다.
+stamp가 그 파일의 front matter만 추가했다. 양식 본문과 빈 검토 결론은 유지했다. 이 파일은 완료된 독립 리뷰가 아니다.
+수정 뒤 lint 종료코드는 0이다. WARNING 3은 `PLANS.md` SIZE-001, phase 문서 SEC-001, `adapters/src/mcp.test.ts` SEC-001이다. PLANS와 제품 코드는 변경하지 않았다.
+같은 기준의 `deliverables.py --strict` 종료코드는 0이다. 로그는 [fullops-lint.json](SAR-MVP-002-DEV-TESTER-test/fullops-lint.json), [fullops-lint-first.txt](SAR-MVP-002-DEV-TESTER-test/fullops-lint-first.txt), [strict.log](SAR-MVP-002-DEV-TESTER-test/strict.log)다.
 
 ## 한계
 
