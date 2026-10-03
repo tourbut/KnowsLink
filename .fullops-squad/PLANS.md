@@ -233,6 +233,25 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 
 초기 골격의 설계·구현·QA 완료와 전체 MVP 진행 상태를 별도 단계로 표시했다. 서비스 기획·개발 준비는 완료다. 첫 SAR-MVP-001-DEV/TESTER는 queued이며 개발·독립 QA·직접 UI 검수·리뷰는 미착수다. D04–D13 미작성 산출물을 완료로 표시하지 않는다. 실제 연결·일정 조회와 운영 배포는 백로그의 선행 조건·DEC-01–05를 따른다. 현황판 데이터는 coor와 로컬 main에서 다시 생성한다.
 
-## MVP 구현과 현재 서버 운영 착수 — 2026-10-03
 
-사용자가 전체 MVP 진행 및 현재 서버의 Docker·Cloudflare Tunnel 배포를 승인했다. 첫 SAR-MVP-001-DEV를 실행하고 이후 안정 후보의 독립 QA·designer 직접 UI 검수·별도 세션 코드 리뷰를 수행한다. 현재 서버 Docker 29.4.3/Compose 5.1.3 사용 가능, 다른 프로젝트 컨테이너 가동 중이며 보존한다. ~/.cloudflared에 기존 인증·다른 서비스 route가 있으며 비밀값은 출력하지 않는다. KnowsLink hostname을 사용자에게 질문했고 구현·운영 준비는 병행한다. 기존 user-owned dev 세션은 건드리지 않고 새 dev 체크아웃·세션으로 시작한다.
+## FullOps 0.9.12 업데이트 — 2026-10-03
+
+Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적용 버전은 0.9.11이고 main은 0.9.10이다. 0.9.11은 글로벌 설치기 기능으로 제품 변경 해당 없음이다. 0.9.12의 즉시 main 병합·원격 공유와 역할 인박스 수명주기를 FULLOPS.md·orca-agents.md·핸드오버 템플릿에 적용한다. 업데이트 운영 문서는 main 기준의 별도 준비 브랜치에서 통합하며 미수락 제품 코드를 함께 올리지 않는다.
+
+| 과제/역할 | 완료 SHA 또는 상태 | 판정·담당·재개 조건 |
+|---|---|---|
+| SAR-MVP-001-DEV | a6a10c7 / msg_bcf340cb7ce8 | coor 통합 후보 포함, main 미병합. 독립 리뷰·UI 검수 미완료로 hold. coor가 필수 수락 조건 확인 뒤 병합·push한다. |
+| SAR-MVP-001-TESTER | c59537b / msg_d2d32881ffc3 | coor 통합 후보 포함, main 미병합. 미수락 제품 조상을 포함해 hold. coor가 DEV 수락과 필수 held 판정 뒤 병합·push한다. |
+| SAR-MVP-PUBLIC-POLICY-001 | 69dbec4 / msg_8bd2e3ced6fc | coor 통합 후보 포함, main 미병합. 별도 기획 검토 결론 미완료로 hold. coor가 문서 검토 뒤 제품 전체 수락과 분리해 통합한다. |
+| SAR-MVP-001-REVIEW | ctx_005e493d18f5 failed/exited | 작업명 지시서 보존. 보고서는 미완성 템플릿이다. coor가 새 세션에서 같은 과제 리뷰를 재개한 뒤 보존·정규 inbox 전환한다. |
+| SAR-MVP-001-UI / designer | ctx_b7d073da41ef failed, liveness unverifiable | 미추적 UI 증거 보존. coor가 실제 상태·완료 검수 확인 후 수락한다. 워크트리 동기화 보류다. |
+| SAR-DEPLOY-001-OPS / ops | 8a03b34, ctx_78873a1ba765 failed/exited | 미커밋 문서·아카이브 보존. coor가 기존 기록 마무리·검토 후 통합한다. 실제 배포는 시작하지 않는다. |
+| dev | 830131a, clean | 해당 워크트리의 실제 유휴 확인 후 운영 업데이트 main 동기화한다. |
+| tester | c59537b, clean, liveness unverifiable | 깨끗함만으로 유휴 판정하지 않는다. 실제 상태 확인 뒤 동기화한다. |
+| coor | 5b94be5, 미추적 리뷰 증거 | 누적 미수락 제품 조상을 main에 일괄 병합하지 않는다. 운영 준비 main을 merge하고 미추적 증거는 보존한다. |
+
+과거 완료 메시지 세 건을 기존 PLANS의 실제 메시지 ID와 SHA로 공용 integration 기록에 회수했다. 사유·담당·재개 조건을 갖춘 hold를 적용했다. pending이 비어도 hold의 제품 작업이 통합 완료됐다는 의미는 아니다. 다른 오래된 역할 SHA의 main 미포함 이력도 보존한다. 상설·임시 워크트리와 기존 Run run_8ca8bc058ab7을 유지한다. 새 제품 worker는 시작하지 않는다. 전체 제품 수락·실제 배포·새 기능은 이번 업데이트 범위 밖이다.
+
+[업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md)을 따른다. 다음 운영은 새 coordinator 세션에서 이어간다.
+
+운영 main 반영 SHA 66f7ffc와 origin/main 일반 push를 확인했다. coor c9b2a8e·유휴 dev 25f03ad 동기화 완료다. designer/ops는 미커밋 자료, tester 및 임시 체크아웃은 실제 상태 불명으로 동기화를 예약한다. coor가 다음 배정 전 처리한다. 제품 hold와 현재 작업 완료 뒤 중지 지시는 유지한다.
