@@ -1,0 +1,301 @@
+{
+ "State": {
+  "Owners": {
+   "owner_a": {
+    "Credential": "a5uCF3cW6-VSHm8sFWIysnICePDZP1C5G12DJG2kZbU",
+    "Active": true
+   },
+   "owner_b": {
+    "Credential": "GSEn_MRJSjHq4FTOmgjwFqN8nwm_9oc_lLHHXaSwyAM",
+    "Active": true
+   }
+  },
+  "Agents": {
+   "agent_a": {
+    "Owner": "owner_a",
+    "Credential": "UYB9EnsORoMddARGMSTcljHlJLxzUjBUEUd_mJODB8s",
+    "Keys": {
+     "key1": {
+      "Public": "19uyXxLSKtPrtDY5JImTR1fkA3U7ilOm9TTYzwwrU68=",
+      "Revoked": false,
+      "Changed": "0001-01-01T00:00:00Z"
+     }
+    }
+   },
+   "agent_b": {
+    "Owner": "owner_b",
+    "Credential": "yA8ethzx0oKivjdVik5QGWIofLFNosfaubuPOKhL8R0",
+    "Keys": {
+     "key1": {
+      "Public": "w+DcEO76VSIwteIDfCsSIGvnePaE9nVkFvNe+JTgcW0=",
+      "Revoked": false,
+      "Changed": "0001-01-01T00:00:00Z"
+     }
+    }
+   }
+  },
+  "Pairs": {
+   "agent_a/agent_b": {
+    "A": "agent_a",
+    "B": "agent_b",
+    "Inviter": "",
+    "Recipient": "",
+    "State": "active",
+    "Generation": 1
+   }
+  },
+  "Messages": {
+   "0199a3f2-4c10-7a11-8b22-334455667788": {
+    "Receipt": {
+     "id": "0199a3f2-4c10-7a11-8b22-334455667788",
+     "from": "agent_a",
+     "to": "agent_b",
+     "intent": "schedule.query",
+     "digest": "vch8k5W_ca7QSGs_jN-oiQQ4RxrKmv6MsRV6dzka3Ko",
+     "exp": "2026-10-03T10:04:00Z",
+     "accepted_at": "2026-10-03T10:00:00Z",
+     "transport": "delivered"
+    },
+    "Key": "legacy-request-01",
+    "Kid": "key1",
+    "Parent": "",
+    "Envelope": {
+     "body": {
+      "granularity_min": 30,
+      "window": {
+       "end": "2026-10-03T11:00:00Z",
+       "start": "2026-10-03T10:00:00Z"
+      }
+     },
+     "deliver": "human",
+     "exp": "2026-10-03T10:04:00Z",
+     "from": "agent_a",
+     "id": "0199a3f2-4c10-7a11-8b22-334455667788",
+     "idempotency_key": "legacy-request-01",
+     "intent": "schedule.query",
+     "sig": {
+      "alg": "Ed25519",
+      "kid": "key1",
+      "value": "Tber95iiGa0gfWuPIwhonuUKHjSvBLggkgbFC7KYA8440ZwBy_qnpgoy1SPIGG_5V4IVl61d3-RGGqoHiM1JBA"
+     },
+     "to": "agent_b",
+     "v": "relay.v1"
+    },
+    "Inbox": {
+     "body": {
+      "granularity_min": 30,
+      "window": {
+       "end": "2026-10-03T11:00:00Z",
+       "start": "2026-10-03T10:00:00Z"
+      }
+     },
+     "deliver": "human",
+     "exp": "2026-10-03T10:04:00Z",
+     "from": "agent_a",
+     "id": "0199a3f2-4c10-7a11-8b22-334455667788",
+     "idempotency_key": "legacy-request-01",
+     "intent": "schedule.query",
+     "sig": {
+      "alg": "Ed25519",
+      "kid": "key1",
+      "value": "Tber95iiGa0gfWuPIwhonuUKHjSvBLggkgbFC7KYA8440ZwBy_qnpgoy1SPIGG_5V4IVl61d3-RGGqoHiM1JBA"
+     },
+     "to": "agent_b",
+     "v": "relay.v1"
+    },
+    "Generation": 1,
+    "Attempts": 1,
+    "LeaseGeneration": 1,
+    "LeaseToken": "",
+    "LeaseUntil": "2026-10-03T10:00:30Z",
+    "Persisted": true,
+    "Claimed": true,
+    "ClaimToken": "mchtmKA5BizWAqyKM7P-P5-BtKFPgMYyX7zJ8Lue4FE",
+    "Completion": ""
+   },
+   "0199a3f2-4c10-7a11-8b22-334455667799": {
+    "Receipt": {
+     "id": "0199a3f2-4c10-7a11-8b22-334455667799",
+     "from": "agent_a",
+     "to": "agent_b",
+     "intent": "schedule.query",
+     "digest": "vch8k5W_ca7QSGs_jN-oiQQ4RxrKmv6MsRV6dzka3Ko",
+     "exp": "2026-10-03T10:04:00Z",
+     "accepted_at": "2026-10-03T10:00:00Z",
+     "transport": "delivered"
+    },
+    "Key": "legacy-request-02",
+    "Kid": "key1",
+    "Parent": "",
+    "Envelope": {
+     "body": {
+      "granularity_min": 30,
+      "window": {
+       "end": "2026-10-03T11:00:00Z",
+       "start": "2026-10-03T10:00:00Z"
+      }
+     },
+     "deliver": "human",
+     "exp": "2026-10-03T10:04:00Z",
+     "from": "agent_a",
+     "id": "0199a3f2-4c10-7a11-8b22-334455667799",
+     "idempotency_key": "legacy-request-02",
+     "intent": "schedule.query",
+     "sig": {
+      "alg": "Ed25519",
+      "kid": "key1",
+      "value": "RwvNEMIf42IFsClrdxdil_sktKfNPl1qTbNKoJwvXcOhljcWiq_j8jeG8RCkrPkoiDC3mKknbKfRRcoT8PfWBQ"
+     },
+     "to": "agent_b",
+     "v": "relay.v1"
+    },
+    "Inbox": {
+     "body": {
+      "granularity_min": 30,
+      "window": {
+       "end": "2026-10-03T11:00:00Z",
+       "start": "2026-10-03T10:00:00Z"
+      }
+     },
+     "deliver": "human",
+     "exp": "2026-10-03T10:04:00Z",
+     "from": "agent_a",
+     "id": "0199a3f2-4c10-7a11-8b22-334455667799",
+     "idempotency_key": "legacy-request-02",
+     "intent": "schedule.query",
+     "sig": {
+      "alg": "Ed25519",
+      "kid": "key1",
+      "value": "RwvNEMIf42IFsClrdxdil_sktKfNPl1qTbNKoJwvXcOhljcWiq_j8jeG8RCkrPkoiDC3mKknbKfRRcoT8PfWBQ"
+     },
+     "to": "agent_b",
+     "v": "relay.v1"
+    },
+    "Generation": 1,
+    "Attempts": 1,
+    "LeaseGeneration": 1,
+    "LeaseToken": "",
+    "LeaseUntil": "2026-10-03T10:00:30Z",
+    "Persisted": true,
+    "Claimed": true,
+    "ClaimToken": "UJezyUqhhDP7j6X8Ju-hZRPxju2a51rmwbpF6VZbksQ",
+    "Completion": ""
+   },
+   "0199a3f2-4c10-7a11-8b22-3344556677aa": {
+    "Receipt": {
+     "id": "0199a3f2-4c10-7a11-8b22-3344556677aa",
+     "from": "agent_b",
+     "to": "agent_b",
+     "intent": "relay.approval.request",
+     "digest": "w792GzgbuHsQ_pwU_wLvN8FnLPWHQTmCkOymOLGnkzo",
+     "exp": "2026-10-03T10:04:00Z",
+     "accepted_at": "2026-10-03T10:00:00Z",
+     "transport": "delivered"
+    },
+    "Key": "legacy-approval-01",
+    "Kid": "key1",
+    "Parent": "0199a3f2-4c10-7a11-8b22-334455667799",
+    "Generation": 1,
+    "Attempts": 0,
+    "LeaseGeneration": 0,
+    "LeaseToken": "",
+    "LeaseUntil": "0001-01-01T00:00:00Z",
+    "Persisted": true,
+    "Claimed": false,
+    "ClaimToken": "",
+    "Completion": ""
+   },
+   "0199a3f2-4c10-7a11-8b22-3344556677cc": {
+    "Receipt": {
+     "id": "0199a3f2-4c10-7a11-8b22-3344556677cc",
+     "from": "agent_a",
+     "to": "agent_b",
+     "intent": "schedule.query",
+     "digest": "-TNwtbdJ70dQdauZpvmzf9191MgCMa1epQcd-GQgRNQ",
+     "exp": "2026-10-03T10:04:00Z",
+     "accepted_at": "2026-10-03T10:00:00Z",
+     "transport": "delivered"
+    },
+    "Key": "legacy-request-03",
+    "Kid": "key1",
+    "Parent": "",
+    "Envelope": {
+     "body": {
+      "granularity_min": 30,
+      "window": {
+       "end": "2026-10-03T11:00:00Z",
+       "start": "2026-10-03T10:00:00Z"
+      }
+     },
+     "deliver": "agent",
+     "exp": "2026-10-03T10:04:00Z",
+     "from": "agent_a",
+     "id": "0199a3f2-4c10-7a11-8b22-3344556677cc",
+     "idempotency_key": "legacy-request-03",
+     "intent": "schedule.query",
+     "sig": {
+      "alg": "Ed25519",
+      "kid": "key1",
+      "value": "U3qOp5Ykq9a2vChwcINuDgw2WuRazUdWZjn9iTYxZQ60p2eE1WsYqW0kDDGNGZX8WOuuK10rM7TjMHyziPWdBQ"
+     },
+     "to": "agent_b",
+     "v": "relay.v1"
+    },
+    "Inbox": {
+     "body": {
+      "granularity_min": 30,
+      "window": {
+       "end": "2026-10-03T11:00:00Z",
+       "start": "2026-10-03T10:00:00Z"
+      }
+     },
+     "deliver": "agent",
+     "exp": "2026-10-03T10:04:00Z",
+     "from": "agent_a",
+     "id": "0199a3f2-4c10-7a11-8b22-3344556677cc",
+     "idempotency_key": "legacy-request-03",
+     "intent": "schedule.query",
+     "sig": {
+      "alg": "Ed25519",
+      "kid": "key1",
+      "value": "U3qOp5Ykq9a2vChwcINuDgw2WuRazUdWZjn9iTYxZQ60p2eE1WsYqW0kDDGNGZX8WOuuK10rM7TjMHyziPWdBQ"
+     },
+     "to": "agent_b",
+     "v": "relay.v1"
+    },
+    "Generation": 1,
+    "Attempts": 1,
+    "LeaseGeneration": 1,
+    "LeaseToken": "",
+    "LeaseUntil": "2026-10-03T10:00:30Z",
+    "Persisted": true,
+    "Claimed": true,
+    "ClaimToken": "gQrGHTC8zr_fsjb-cUtj1sMNseAJB8tchwzrbAaCTnY",
+    "Completion": ""
+   }
+  },
+  "Idempotency": {
+   "agent_a/legacy-request-01": "0199a3f2-4c10-7a11-8b22-334455667788",
+   "agent_a/legacy-request-02": "0199a3f2-4c10-7a11-8b22-334455667799",
+   "agent_a/legacy-request-03": "0199a3f2-4c10-7a11-8b22-3344556677cc",
+   "agent_b/legacy-approval-01": "0199a3f2-4c10-7a11-8b22-3344556677aa"
+  },
+  "Gates": {
+   "0199a3f2-4c10-7a11-8b22-3344556677aa": {
+    "ID": "0199a3f2-4c10-7a11-8b22-3344556677aa",
+    "Owner": "owner_b",
+    "Parent": "0199a3f2-4c10-7a11-8b22-334455667799",
+    "Digest": "vch8k5W_ca7QSGs_jN-oiQQ4RxrKmv6MsRV6dzka3Ko",
+    "From": "agent_a",
+    "To": "agent_b",
+    "Policy": "schedule.query: disclosure policy absent; deny even after gate approve",
+    "State": "approved",
+    "Generation": 1,
+    "Exp": "2026-10-03T10:04:00Z",
+    "Consumed": false
+   }
+  }
+ },
+ "PrivateA": "5KOiBBv6V97wpnxTNhsArOzMTZ6MEphv8xEVsDaiua3X27JfEtIq0+u0NjkkiZNHV+QDdTuKU6b1NNjPDCtTrw==",
+ "PrivateB": "QVnps6uEoA8GNxcbTqVm8XE5ThWIefgbODEkA1OMVCPD4NwQ7vpVIjC14gN8KxIga+d49oT2dWQW8174lOBxbQ=="
+}
