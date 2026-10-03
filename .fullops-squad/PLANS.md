@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098]
-summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이트 기록을 관리한다"
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-0.9.10]
+summary: 운영 계획과 FullOps 적용 및 역할 동기화 보류를 관리한다
 ---
 
 # KnowsLink 현재 계획
@@ -64,3 +64,12 @@ summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이�
 - 이전 첫 요청 대기 기록은 당시 이력이다. 현재 SAR-SETUP-001 진행 자료는 coor·designer·dev 브랜치에 있다.
 - ops·tester만 쉬고 깨끗한 동기화 대상이다. coor·designer·dev는 기존 SAR 인계와 작업을 보존하기 위해 완료 후 동기화한다.
 - 새 coordinator는 [갱신과 인계 기록](docs/exec-plans/phases/FULLOPS-UPDATE-099.md)을 읽고 기존 Run을 연결한다.
+
+## FullOps 0.9.10 업데이트 — FULLOPS-UPDATE-0.9.10
+
+- 설치 버전은 갱신 전후 0.9.10이다. 레포 적용 버전 0.9.9의 미적용 릴리스를 회수한다.
+- 공통 기준 0.3.2, 핸드오버와 시나리오 기준, 업데이트 연결과 역할별 검증 인계를 반영한다.
+- DEV 관련 회귀와 최종 수락을 구분한다. tester는 안정된 통합 후보의 독립 전체 QA를 맡고 designer는 직접 시각 검수를 맡는다.
+- 증거는 원래 SHA·조건과 의존성 동일성을 확인해 재사용한다. 기존 실패와 제품 정지는 유지한다.
+- 모든 역할 워크트리의 동기화는 보류한다. coor가 진행 과제·활성 세션·깨끗한 상태를 확인한 뒤 준비 커밋을 전달한다.
+- 상세 적용·검증·보류 담당과 재개 조건은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md)을 따른다.
