@@ -267,3 +267,5 @@ DEV 기술 회신 msg_976b4514120b는 raw envelope 32768 bytes와 frozen body JC
 msg_bcf340cb7ce8은 Task task_491be61b82eb / Dispatch ctx_66989e4a879d 성공 회신이다. 완료 SHA a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92와 깨끗한 DEV 체크아웃을 확인했다. 등록·키·페어링·안전 relay·receipt/lease/ACK/claim·human-gate·최소 result·합성 adapter와 D03/D05–D10을 보고했다. 자동 검증·product-lint 종료코드 0, lint ERROR 0/WARNING 3(파일 크기)/실행 불가 0이다. 독립 QA·UI·리뷰·수락·배포는 아직 완료되지 않았다. singleton global lock 처리량·실사용자 신원 인증·실벤더·공개 정책·운영 한도 held를 보존한다. DEV terminal은 user_owned/retained이므로 임의 종료하지 않는다.
 
 SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다. 기존 tester idle·clean 확인 후 a6a10c7로 fast-forward했다. 새 워크트리를 만들지 않으며 오래된 과제 대신 새 세션을 사용한다. QA 고정 제품 후보는 a6a10c7이고 추가 준비 문서는 제품 diff가 없는지 확인한다. 직접 UI 검수와 fixed-SHA 독립 리뷰는 같은 후보로 후속한다.
+
+- QA 배정 영수증: Task task_bc9fa903d0d6 / Dispatch ctx_6129fd1c9c83 / terminal term_5eefdb06-ccd5-44aa-8696-b160c5f51818. effective claude-sonnet-5-5 high와 turn_started를 확인했다. 기존 tester 체크아웃 준비 SHA 707298e의 제품 diff는 a6a10c7 대비 비어 있다.
