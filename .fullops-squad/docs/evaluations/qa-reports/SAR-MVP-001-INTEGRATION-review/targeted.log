@@ -1,0 +1,20 @@
+4e13d6c9e284490bc7382e169c48bed2d5e2e4010e1182e83ca2691f41c9f631
+
+[exit 0]
+CREATE TABLE
+INSERT 0 1
+
+[exit 0]
+=== RUN   TestReviewHumanDelivery
+    review_test.go:34: REPRODUCED: deliver=human; agent pull/persist/ACK/claim all 200; transport=delivered; zero owner gates
+--- PASS: TestReviewHumanDelivery (0.12s)
+=== RUN   TestReviewStaleEpochCAS
+    review_test.go:48: PASS: generated stale epoch CAS affects zero rows and preserves data; zero-row transaction save returns HTTP 503 and rolls back owner signup
+--- PASS: TestReviewStaleEpochCAS (0.07s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.209s
+
+[exit 0]
+knowslink-review-6f05d9843c
+
+[exit 0]

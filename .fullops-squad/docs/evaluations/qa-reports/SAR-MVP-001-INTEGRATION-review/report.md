@@ -1,3 +1,12 @@
+---
+title: SAR-MVP-001-INTEGRATION 리뷰
+status: draft
+updated: 2026-10-03
+owner: dev
+tasks: [SAR-MVP-001-REVIEW]
+summary: 중단된 고정 후보 리뷰 원본이며 후속 독립 리뷰에서 실제 수락을 판정한다
+---
+
 # SAR-MVP-001-INTEGRATION 리뷰
 
 - 검토자 / CLI / 모델:
