@@ -1,0 +1,6 @@
+[passed] product-lint: make lint
+WARNING SIZE-001 .fullops-squad/PLANS.md 522줄(이전 503, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SEC-001 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV.md:85 하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다
+WARNING SEC-001 adapters/src/mcp.test.ts:66 하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다
+head 64cd90703706 / 파일 32 / ERROR 0 / WARNING 3 / 실행 불가 0
+LINT_EXIT:0
