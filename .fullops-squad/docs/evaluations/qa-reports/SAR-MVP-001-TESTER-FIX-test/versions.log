@@ -1,0 +1,53 @@
+## 2026-10-03T18:50:19+0900 cwd=.
+$ git rev-parse HEAD
+9cf40ccecd235e8ea1e3432866683ca4740f3e46
+[exit 0]
+## 2026-10-03T18:50:19+0900 cwd=.
+$ git diff --exit-code 4262d02fdd7b0b57a804d9e550597852950ffeae HEAD -- . :(exclude).fullops-squad
+
+[exit 0]
+## 2026-10-03T18:50:19+0900 cwd=.
+$ git diff --exit-code d7e21490803f847f39693d4d98437fd562247cbe 4262d02fdd7b0b57a804d9e550597852950ffeae -- . :(exclude).fullops-squad
+
+[exit 0]
+## 2026-10-03T18:50:19+0900 cwd=.
+$ git diff --stat a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92 4262d02fdd7b0b57a804d9e550597852950ffeae -- . :(exclude).fullops-squad
+ internal/relay/http.go             |  2 +-
+ internal/relay/integration_test.go | 34 ++++++++++++++++++++++++++++++++++
+ internal/relay/protocol_test.go    |  4 ++++
+ internal/relay/store.go            | 11 ++++++++---
+ 4 files changed, 47 insertions(+), 4 deletions(-)
+[exit 0]
+## 2026-10-03T18:50:19+0900 cwd=.
+$ git diff --exit-code a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92 4262d02fdd7b0b57a804d9e550597852950ffeae -- compose.yaml .env.example Makefile sqlc.yaml Dockerfile adapters cmd db
+
+[exit 0]
+## 2026-10-03T18:57:08+0900 cwd=.
+$ go version
+go version go1.27.1 linux/amd64
+[exit 0]
+## 2026-10-03T18:57:09+0900 cwd=.
+$ node --version
+v22.22.2
+[exit 0]
+## 2026-10-03T18:57:09+0900 cwd=.
+$ python3 --version
+Python 3.12.3
+[exit 0]
+## 2026-10-03T18:57:09+0900 cwd=.
+$ make --version
+GNU Make 4.3
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+[exit 0]
+## 2026-10-03T18:57:09+0900 cwd=.
+$ docker version --format {{.Server.Version}}
+29.4.3
+[exit 0]
+## 2026-10-03T18:57:09+0900 cwd=.
+$ docker compose version
+Docker Compose version v5.1.3
+[exit 0]

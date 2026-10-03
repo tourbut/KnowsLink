@@ -1,0 +1,194 @@
+## 2026-10-03T18:50:56+0900 cwd=.
+$ make verify-mvp
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc
+
+python3 scripts/verify_mvp.py
+ Image knowslink-mvp-3c62d6cca4-migrate Building
+ Image knowslink-mvp-3c62d6cca4-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.09kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.2s
+
+#4 [relay internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 1.2s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 57.71kB done
+#6 transferring context: 57.71kB done
+#6 DONE 0.0s
+
+#7 [migrate build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#7 DONE 0.0s
+
+#8 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#8 DONE 0.1s
+
+#9 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#9 CACHED
+
+#10 [migrate build 4/7] RUN go mod download
+#10 CACHED
+
+#11 [migrate build 2/7] WORKDIR /src
+#11 CACHED
+
+#12 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#12 CACHED
+
+#13 [migrate build 5/7] COPY cmd ./cmd
+#13 CACHED
+
+#14 [migrate build 3/7] COPY go.mod go.sum ./
+#14 CACHED
+
+#15 [migrate build 6/7] COPY internal ./internal
+#15 CACHED
+
+#16 [migrate stage-1 3/5] WORKDIR /app
+#16 CACHED
+
+#17 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:5e7fb6ef52e437f8b5d59ff5f817c64eb448ee0305e0991b0b05f438cedfddbf 0.0s done
+#19 exporting config sha256:5dfd863dfe7e2031954245ae11caeae39b0d5e4a87ced2a09056ad7e223520ca 0.0s done
+#19 exporting attestation manifest sha256:40b6fb53e5ee730805e4a043bcefc473194b08a5b358f6c27837198eef60f571 0.1s done
+#19 exporting manifest list sha256:e4e2cf9123bc1ddeb8f5e3fb87413bc3250af3454f6091953f8083d4092e9b64
+#19 exporting manifest list sha256:e4e2cf9123bc1ddeb8f5e3fb87413bc3250af3454f6091953f8083d4092e9b64 0.0s done
+#19 naming to docker.io/library/knowslink-mvp-3c62d6cca4-migrate:latest done
+#19 unpacking to docker.io/library/knowslink-mvp-3c62d6cca4-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:bb857c7a3bab1a4e5f9c66ea88578b7c69fe0c506ab840f5faa05310ef630d56 0.0s done
+#20 exporting config sha256:cd4eac853fa2fa8007455f3e2c7712f0131401490fe62fdda06d11f2c327d733 0.0s done
+#20 exporting attestation manifest sha256:2d284d108f318245e8f37cdb55e3b6f774ba99556d1074a86ab4d551f986eda6 0.1s done
+#20 exporting manifest list sha256:c708425ae20c4089d7d6922e9b2542113d5bcbb70d05196d1a3f09c69244cdd6 0.0s done
+#20 naming to docker.io/library/knowslink-mvp-3c62d6cca4-relay:latest done
+#20 unpacking to docker.io/library/knowslink-mvp-3c62d6cca4-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-mvp-3c62d6cca4-migrate Built
+ Image knowslink-mvp-3c62d6cca4-relay Built
+ Network knowslink-mvp-3c62d6cca4_database Creating
+ Network knowslink-mvp-3c62d6cca4_database Created
+ Network knowslink-mvp-3c62d6cca4_ingress Creating
+ Network knowslink-mvp-3c62d6cca4_ingress Created
+ Volume knowslink-mvp-3c62d6cca4_postgres-data Creating
+ Volume knowslink-mvp-3c62d6cca4_postgres-data Created
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Creating
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Created
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Creating
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Created
+ Container knowslink-mvp-3c62d6cca4-relay-1 Creating
+ Container knowslink-mvp-3c62d6cca4-relay-1 Created
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Starting
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Started
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Waiting
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Healthy
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Starting
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Started
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Waiting
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Exited
+ Container knowslink-mvp-3c62d6cca4-relay-1 Starting
+ Container knowslink-mvp-3c62d6cca4-relay-1 Started
+ Container knowslink-mvp-3c62d6cca4-relay-1 Waiting
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Waiting
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Waiting
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Exited
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Healthy
+ Container knowslink-mvp-3c62d6cca4-relay-1 Healthy
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-3c62d6cca4', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-f39lnnwi/test.yaml', 'up', '--build', '--wait', 'relay']; exit: 0
+=== RUN   TestPostgresSafety
+=== RUN   TestPostgresSafety/auth_first_atomic_replay_and_rollback
+=== RUN   TestPostgresSafety/last_lease_ack_and_shared_claim_restart
+=== RUN   TestPostgresSafety/owner_gate_csrf_binding_and_no_effect
+=== RUN   TestPostgresSafety/unpair_generation_expiry_max_attempts_and_clock
+=== RUN   TestPostgresSafety/agent_cannot_process_human_delivery
+=== RUN   TestPostgresSafety/rotation_pop_and_key_reassignment
+PASS: isolated Postgres safety invariants
+--- PASS: TestPostgresSafety (0.78s)
+    --- PASS: TestPostgresSafety/auth_first_atomic_replay_and_rollback (0.18s)
+    --- PASS: TestPostgresSafety/last_lease_ack_and_shared_claim_restart (0.14s)
+    --- PASS: TestPostgresSafety/owner_gate_csrf_binding_and_no_effect (0.16s)
+    --- PASS: TestPostgresSafety/unpair_generation_expiry_max_attempts_and_clock (0.13s)
+    --- PASS: TestPostgresSafety/agent_cannot_process_human_delivery (0.09s)
+    --- PASS: TestPostgresSafety/rotation_pop_and_key_reassignment (0.07s)
+=== RUN   TestGateFailureStates
+=== RUN   TestGateFailureStates/denied
+=== RUN   TestGateFailureStates/expired
+=== RUN   TestGateFailureStates/revoked
+=== RUN   TestGateFailureStates/unavailable
+--- PASS: TestGateFailureStates (0.40s)
+    --- PASS: TestGateFailureStates/denied (0.12s)
+    --- PASS: TestGateFailureStates/expired (0.09s)
+    --- PASS: TestGateFailureStates/revoked (0.09s)
+    --- PASS: TestGateFailureStates/unavailable (0.09s)
+=== RUN   TestApprovalAndResultInstanceBinding
+--- PASS: TestApprovalAndResultInstanceBinding (0.19s)
+=== RUN   TestPendingAndConcurrentAccept
+--- PASS: TestPendingAndConcurrentAccept (0.14s)
+=== RUN   TestFrozenParsingAndSigning
+--- PASS: TestFrozenParsingAndSigning (0.01s)
+=== RUN   TestFrozenFieldLimits
+--- PASS: TestFrozenFieldLimits (0.03s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	2.569s
+command: ['go', 'test', '-tags=integration', '-race', '-count=1', '-v', './internal/relay']; exit: 0
+{"state":"waiting","gate":"01a1012c-d44f-7395-84a4-8faad76fdc70"}
+PASS: TS verify/persist/ACK/claim, policy deny, owner approve and denied result; no effects
+command: ['node', 'adapters/dist/synthetic.js', 'http://127.0.0.1:54587']; exit: 0
+QA credentials: build/qa-fixture.json (0600, ignored); owner UI: /owner
+UI candidate: http://127.0.0.1:54587/owner/gates/01a1012c-dd29-701f-8666-52229824cbca; expires 2026-10-03T09:54:19Z
+command: ['node', 'adapters/dist/synthetic.js', 'http://127.0.0.1:54587', '--seed']; exit: 0
+ Container knowslink-mvp-3c62d6cca4-relay-1 Stopping
+ Container knowslink-mvp-3c62d6cca4-relay-1 Stopped
+ Container knowslink-mvp-3c62d6cca4-relay-1 Removing
+ Container knowslink-mvp-3c62d6cca4-relay-1 Removed
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Stopping
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Stopped
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Removing
+ Container knowslink-mvp-3c62d6cca4-migrate-1 Removed
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Stopping
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Stopped
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Removing
+ Container knowslink-mvp-3c62d6cca4-postgres-1 Removed
+ Volume knowslink-mvp-3c62d6cca4_postgres-data Removing
+ Network knowslink-mvp-3c62d6cca4_ingress Removing
+ Network knowslink-mvp-3c62d6cca4_database Removing
+ Volume knowslink-mvp-3c62d6cca4_postgres-data Removed
+ Network knowslink-mvp-3c62d6cca4_database Removed
+ Network knowslink-mvp-3c62d6cca4_ingress Removed
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-3c62d6cca4', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-f39lnnwi/test.yaml', 'down', '--volumes']; exit: 0
+PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused
+[exit 0]
