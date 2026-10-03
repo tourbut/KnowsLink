@@ -51,3 +51,15 @@ main에는 제품 과제의 수락 전 산출물을 병합하지 않는다. main
 
 준비 커밋은 이 문서의 Git 이력으로 식별한다. 검증 결과와 동기화 영수증은 후속 운영 기록으로 연결한다.
 제품 코드 변경은 없다. 제품 테스트·빌드는 현재 main에 실행기가 없어 적용하지 않는다.
+
+## 적용 결과
+
+- 준비 커밋: `bb311695d020ee99a58c0112261eed4b545e48c2`. 아래 실제 SHA 기록이 정본이다.
+- main과 ops·tester에 준비 커밋을 push했다. ops·tester는 fast-forward로 반영했다.
+- coor·designer·dev의 HEAD와 진행 자료 해시는 변경 전 값과 같다. 모든 기존 인박스·컨텍스트·원천·검증 파일의 해시가 일치한다.
+- 준비 커밋의 지정 기준 FullOps lint: 종료코드 0, ERROR 0, WARNING 1, 실행 불가 0.
+- WARNING은 LINT-000이다. main에는 제품 검사 실행기가 없어 기존 commands를 비워 두었다. 진행 중 dev가 제품 검사 명령을 구성한다.
+- 산출물 strict: 검사 13, 미작성 13, 문제 0, 경고 0. 이는 main의 상태이며 역할 브랜치의 진행 산출물을 부정하지 않는다.
+- Git 공백 검사와 최종 setup dry-run을 통과했다. 역할 판정과 브랜치 고유성 검사를 통과했다.
+- 검증 근거: `docs/evaluations/qa-reports/FULLOPS-UPDATE-099/`의 lint.json, preservation-before.json, template-comparison.txt.
+- 후속 검증 기록 커밋도 main과 쉬는 ops·tester에 반영한다. coor·designer·dev에는 두 커밋 모두 완료 후 반영한다.
