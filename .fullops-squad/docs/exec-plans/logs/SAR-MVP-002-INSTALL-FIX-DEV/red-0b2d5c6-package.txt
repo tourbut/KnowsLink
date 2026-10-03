@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-dev/bfa917e0-8ffc-4713-8978-dc573c1a6a81/scratchpad/old/scripts/verify_grok_plugin.py", line 39, in <module>
+    main()
+  File "/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-dev/bfa917e0-8ffc-4713-8978-dc573c1a6a81/scratchpad/old/scripts/verify_grok_plugin.py", line 29, in main
+    assert [(plugin["name"], plugin["version"]) for plugin in plugins] == [("knowslink", "0.1.0")], plugins
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [{'status': 'installed', 'name': 'knowslink-2f0467f4', 'repo_key': 'knowslink-2f0467f4', 'version': None, 'path': '/tmp/knowslink-grok-45t0f0lq/home/.grok/installed-plugins/knowslink-2f0467f4', 'source': '/tmp/knowslink-grok-45t0f0lq/package/knowslink', 'marketplace': None}]
