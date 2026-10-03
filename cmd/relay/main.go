@@ -1,4 +1,4 @@
-// Relay starts a development readiness endpoint; no business API is implemented.
+// Relay serves local synthetic relay.v1 transport and owner human-gate UI.
 package main
 
 import (
@@ -13,6 +13,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/tourbut/KnowsLink/internal/config"
+	"github.com/tourbut/KnowsLink/internal/relay"
 )
 
 func main() {
@@ -44,15 +45,20 @@ func run(ctx context.Context) error {
 	if err != nil {
 		return errors.New("database ping failed")
 	}
+	mux := http.NewServeMux()
+	mux.Handle("/healthz", healthHandler(pool.Ping))
+	service := &relay.Service{Pool: pool}
+	go service.Cleanup(ctx)
+	mux.Handle("/", service.Handler())
 	server := &http.Server{
-		Addr: address, Handler: healthHandler(pool.Ping),
+		Addr: address, Handler: mux,
 		ReadHeaderTimeout: 5 * time.Second,
 		WriteTimeout:      10 * time.Second,
 		IdleTimeout:       30 * time.Second,
 	}
 	result := make(chan error, 1)
 	go func() { result <- server.ListenAndServe() }()
-	log.Print("development relay starting; only GET /healthz is available")
+	log.Print("local synthetic relay starting; vendor effects and disclosure disabled")
 	select {
 	case err := <-result:
 		if !errors.Is(err, http.ErrServerClosed) {

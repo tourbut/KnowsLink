@@ -18,12 +18,12 @@ summary: 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력�
 | D02 | 분석 | 요구사항정의서 | `docs/planning/product-specs/` | review |
 | D03 | 설계 | 아키텍처설계서 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` | review |
 | D04 | 설계 | 화면설계서 | `docs/design-docs/mockups/` | 미작성 |
-| D05 | 설계 | 인터페이스설계서 | `docs/design-docs/interface-design.md` | 미작성 |
-| D06 | 분석 | 엔티티정의서 | `docs/design-docs/data-model.md` 엔티티 절 | 미작성 |
-| D07 | 설계 | 데이터베이스설계서 | `docs/design-docs/data-model.md` DB 절 | 미작성 |
-| D08 | 구현 | 테이블정의서 | `docs/generated/db-schema.md` | 미작성 |
-| D09 | 설계 | CRUD정의서 | `docs/design-docs/data-model.md` CRUD 절 | 미작성 |
-| D10 | 설계·구현 | 프로그램설계서 | `docs/design-docs/module-design.md` | 미작성 |
+| D05 | 설계 | 인터페이스설계서 | `docs/design-docs/interface-design.md` | review |
+| D06 | 분석 | 엔티티정의서 | `docs/design-docs/data-model.md` 엔티티 절 | review |
+| D07 | 설계 | 데이터베이스설계서 | `docs/design-docs/database-design.md` | review |
+| D08 | 구현 | 테이블정의서 | `docs/generated/db-schema.md` | review |
+| D09 | 설계 | CRUD정의서 | `docs/design-docs/crud-design.md` | review |
+| D10 | 설계·구현 | 프로그램설계서 | `docs/design-docs/module-design.md` | review |
 | D11 | 이행 | 사용자설명서 | `docs/operations/user-guide.md` | 미작성 |
 | D12 | 이행 | 운영자설명서 | `docs/operations/ops-guide.md` | 미작성 |
 | D13 | 이행 | 인수인계서 | `docs/operations/transition.md` | 미작성 |

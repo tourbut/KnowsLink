@@ -1,0 +1,12 @@
+## 2026-10-03T15:57:26+0900 cwd=/home/shin/orca/workspaces/KnowsLink/fullops-tester
+$ bash -c go version; node -v; npm -v; python3 --version; make --version | head -1; docker version --format "{{.Server.Version}}"; docker compose version; git rev-parse HEAD; git rev-parse a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92; git diff --stat a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92 HEAD -- cmd internal adapters db Makefile compose.yaml scripts go.mod go.sum sqlc.yaml Dockerfile README.md
+go version go1.27.1 linux/amd64
+v22.22.2
+10.9.7
+Python 3.12.3
+GNU Make 4.3
+29.4.3
+Docker Compose version v5.1.3
+69870db66618202b8981eee55805f0020f421be8
+a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92
+[exit 0]
