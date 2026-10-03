@@ -1,0 +1,34 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/PLANS.md",
+        ".fullops-squad/contexts/ops.md",
+        ".fullops-squad/docs/deliverables/README.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+        ".fullops-squad/docs/operations/ops-guide.md",
+        ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+        ".fullops-squad/handovers/to_dev.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/board/board.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-DEPLOY-001-OPS-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-DEPLOY-001-OPS-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-DEPLOY-001-OPS-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-DEPLOY-001-OPS-route.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-DEV-route.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}
