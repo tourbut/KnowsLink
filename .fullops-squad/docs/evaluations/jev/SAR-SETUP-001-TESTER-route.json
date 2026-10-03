@@ -1,0 +1,28 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SETUP-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": null,
+  "usage": null,
+  "error": "Jev 생략: OPENROUTER_API_KEY is unavailable",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "기존 SAR-SETUP-001 설계에서 tester 독립 QA 책임과 지시서를 확정했다. dev 성공 완료 SHA를 확보했으므로 선행 조건이 충족됐다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "source": "fallback",
+    "error": "Jev 생략: OPENROUTER_API_KEY is unavailable"
+  },
+  "candidate_hash": "8527acf5ff5db24e0e698c045e752a77759feb7a775aa38b4324eea606c5e6fa"
+}
