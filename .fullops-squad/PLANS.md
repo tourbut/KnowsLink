@@ -201,3 +201,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - main 운영 기록 커밋 7c996fb에서 기준 9c96232의 FullOps lint 종료코드 0, ERROR 0, WARNING 0, 실행 불가 0을 확인했다. 등록 명령 product-lint: make lint도 passed다. 결과는 docs/exec-plans/logs/SAR-SETUP-001-COOR/main-final-product-lint.json이다.
 - coor 운영 기록 HEAD 9ccf89e에서 지시서 기준 729446d8da57의 lint 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0을 확인했다. WARNING은 과거 기준의 빈 commands와 변경 설정 안내이며 main 제품 lint 통과와 구분한다. 결과는 같은 폴더의 coor-final-lint.json이다.
 - 산출물 strict는 문제 0, 경고 0, 미작성 11이다. 초기 구성은 D02/D03만 작성하며 미작성 전체 MVP 산출물을 완료로 표시하지 않는다. main과 coor 작업 트리는 깨끗하다. 마지막 증거 등록 뒤 지시서 기준의 coor lint를 다시 확인한다.
+
+## SAR-SETUP-001-INTEGRATION-REVIEW 배정 완료 확인
+
+- 상태: 배정과 검토 완료. Run run_8ca8bc058ab7, Task task_bea67a9755f1, Dispatch ctx_dab52fc0aa32에 배정했고 turn_started를 확인했다.
+- 성공 완료 회신은 msg_54fa321f61b6이다. 최종 리뷰 결과는 커밋 50caf7b와 docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md에 있다. 검토된 후보는 main에 병합했다.
+- 신규 배정 보류 사유: 이 과제는 이미 성공 완료했고 검토 세션도 release했다. Stop hook의 미배정 판정은 실제 배정 영수증과 다르다. 같은 완료 검토를 중복 배정하지 않는다. 제품 정지나 미완료 과제로 변경하지 않는다.
