@@ -1,0 +1,140 @@
+{
+  "user_cache_observed": false,
+  "reproduction": "isolated-browser-contexts",
+  "chrome": "Google Chrome 148.0.7778.96",
+  "fixture_sha256": "d5c6e55306a5be50c961018400315ce1be2a56fc3dac07e83e7cf276eed7d3db",
+  "fixture_mode": "600",
+  "db_before": "1 37510",
+  "playwright_core": "loaded",
+  "existing_expired_count": 1,
+  "expiry_mode": "existing",
+  "expiry_gate": "01a1019b-eed5-70d4-9e94-6a4245c02485",
+  "approve_gate": "01a101ac-33dc-7a5d-8dd8-cb355e30c41d",
+  "deny_gate": "01a101ac-36f9-778e-928a-0bd5c77d0e84",
+  "db_after": "1 48856",
+  "exit": 0,
+  "checks": [
+    {
+      "id": "deploy_sha",
+      "ok": true
+    },
+    {
+      "id": "deploy_clean_before",
+      "ok": true
+    },
+    {
+      "id": "product_tree",
+      "ok": true
+    },
+    {
+      "id": "healthz_precondition",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "id": "browser_launched",
+      "ok": true,
+      "headless": true
+    },
+    {
+      "id": "expiry_existing",
+      "ok": true,
+      "status": 200,
+      "buttons": 0,
+      "posts": 0
+    },
+    {
+      "id": "seed_approve",
+      "ok": true,
+      "exit": 0,
+      "gate": "01a101ac-33dc-7a5d-8dd8-cb355e30c41d"
+    },
+    {
+      "id": "approve_dashboard",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "id": "approve_fresh",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "id": "approve_decided",
+      "ok": true,
+      "posts": "303"
+    },
+    {
+      "id": "approve_reload",
+      "ok": true
+    },
+    {
+      "id": "approve_no_schedule_effect",
+      "ok": true,
+      "completion": "empty"
+    },
+    {
+      "id": "seed_deny",
+      "ok": true,
+      "exit": 0,
+      "gate": "01a101ac-36f9-778e-928a-0bd5c77d0e84"
+    },
+    {
+      "id": "previous_owner_403",
+      "ok": true,
+      "status": 403
+    },
+    {
+      "id": "other_owner_403",
+      "ok": true,
+      "status": 403
+    },
+    {
+      "id": "fresh_context_200",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "id": "deny_dashboard",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "id": "deny_fresh",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "id": "deny_decided",
+      "ok": true,
+      "posts": "303"
+    },
+    {
+      "id": "deny_reload",
+      "ok": true
+    },
+    {
+      "id": "deny_no_schedule_effect",
+      "ok": true,
+      "completion": "empty"
+    },
+    {
+      "id": "fixture_restored",
+      "ok": true
+    },
+    {
+      "id": "db_single_row",
+      "ok": true,
+      "bytes_before": 37510,
+      "bytes_after": 48856
+    },
+    {
+      "id": "deploy_clean_after",
+      "ok": true
+    },
+    {
+      "id": "deploy_sha_after",
+      "ok": true
+    }
+  ]
+}

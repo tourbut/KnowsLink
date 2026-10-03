@@ -3,8 +3,8 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-03
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC]
-summary: "독립 QA의 재사용 경계와 SAR-MVP-001, SAR-BETA-001 로컬·공개 결과를 기록한다"
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER]
+summary: "독립 QA의 재사용 경계와 SAR-MVP-001, SAR-BETA-001, SAR-BETA-002 결과를 기록한다"
 ---
 
 # tester 컨텍스트
@@ -27,3 +27,6 @@ summary: "독립 QA의 재사용 경계와 SAR-MVP-001, SAR-BETA-001 로컬·공
 - 2026-10-03 SAR-BETA-001-TESTER-PUBLIC: `28bd1bb` gate의 aud 불일치와 proof 차단은 임시 상태에서 통과했다. `gates.py` 종료코드는 0이다.
 - 공개 negative는 공개 해석기와 `curl --resolve`에서 302 Access다. 기본 해석기 NXDOMAIN 때문에 `verify.py public` 종료코드는 1이다. 그 실행에는 상태코드가 없다.
 - 인간 이메일 로그인은 실행하지 않았다. 사용자 held다. 보고서: [SAR-BETA-001-TESTER-PUBLIC.md](../docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md). 제품 코드와 배포 소스는 수정하지 않았다.
+- 2026-10-03 SAR-BETA-002-TESTER: 배포 `28bd1bb`의 loopback에서 headless Chrome이 정확한 owner의 Approve, Deny, 새로고침, 기존 만료 gate 비활성, 다른 owner `403 sender_not_allowed`, 새 컨텍스트 200을 확인했다.
+- 이 결과는 격리된 브라우저 컨텍스트의 재현이다. 사용자 브라우저 캐시, 이메일 OTP, 공개 로그인 뒤 UI는 관측하지 않았다.
+- 판정·증거: [SAR-BETA-002-TESTER.md](../docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md). fixture는 복원했다. 제품 코드와 배포 소스는 수정하지 않았다.
