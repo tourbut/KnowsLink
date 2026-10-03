@@ -1,0 +1,34 @@
+{
+  "task_key": "SAR-BETA-001-REVIEW-FINAL",
+  "find_head": "4d48ce3a9b921b83501939ded0b26334c7c6f857",
+  "base": "437f1432a158670a485413c1aba159debc3759e5",
+  "head": "f824015314c66bcab42940cfe3db2edabb22e1dd",
+  "changed_existing": [
+    "deploy/knowslink/access_apply.py",
+    "deploy/knowslink/beta.sh"
+  ],
+  "new_files": [],
+  "candidates": [
+    "README.md",
+    "adapters/src/index.ts",
+    "deploy/knowslink/beta.sh",
+    "deploy/knowslink/verify.py",
+    "internal/relay/protocol.go",
+    "internal/relay/protocol_test.go",
+    "internal/relay/registry.go",
+    "internal/relay/registry.json",
+    "internal/relay/store.go",
+    "scripts/check_compose.py",
+    "scripts/schema.py",
+    "scripts/verify_mvp.py"
+  ],
+  "hits": [
+    "deploy/knowslink/beta.sh"
+  ],
+  "recall": 0.5,
+  "precision": 0.083,
+  "existence_status": "absent",
+  "existence_correct": false,
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
