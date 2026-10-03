@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-DEPLOY-001-OPS-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0,
+        "implementation": 1
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "ops": 0.6,
+        "dev": 0.03,
+        "tester": 0.37
+      },
+      "confidence": 0.4
+    },
+    "docs": {
+      "D01": 0.06,
+      "D02": 0.06,
+      "D03": 0.06,
+      "D04": 0.06,
+      "D05": 0.06,
+      "D06": 0.07,
+      "D07": 0.05,
+      "D08": 0.06,
+      "D09": 0.06,
+      "D10": 0.08,
+      "D11": 0.07,
+      "D12": 0.11,
+      "D13": 0.09
+    }
+  },
+  "usage": {
+    "input_tokens": 2370,
+    "output_tokens": 314,
+    "cost": 9.954e-05
+  },
+  "error": null,
+  "latency_seconds": 0.297,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "기존 OPS 완료 문서의 독립 검증이다. 구현자와 다른 새 세션이 맡고 제품 판단이나 코드 구현은 없다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

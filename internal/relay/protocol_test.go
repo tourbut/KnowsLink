@@ -25,6 +25,10 @@ func wire(t *testing.T, private ed25519.PrivateKey, id, from, to, intent, key, r
 	if reply != "" {
 		raw["reply_to"] = reply
 	}
+	return sign(t, private, raw)
+}
+func sign(t *testing.T, private ed25519.PrivateKey, raw map[string]any) []byte {
+	t.Helper()
 	data, _ := json.Marshal(raw)
 	e, err := Parse(data)
 	if err != nil {

@@ -1,0 +1,76 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-PUBLIC-POLICY-001",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D02",
+    "D01",
+    "D03"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "product": 0.88,
+        "implementation": 0.12
+      },
+      "confidence": 0.76
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.97,
+        "ops": 0.03,
+        "tester": 0
+      },
+      "confidence": 0.95
+    },
+    "docs": {
+      "D01": 0.75,
+      "D02": 0.82,
+      "D03": 0.64,
+      "D04": 0.52,
+      "D05": 0.5,
+      "D06": 0.48,
+      "D07": 0.53,
+      "D08": 0.53,
+      "D09": 0.53,
+      "D10": 0.6,
+      "D11": 0.49,
+      "D12": 0.63,
+      "D13": 0.48
+    }
+  },
+  "usage": {
+    "input_tokens": 2370,
+    "output_tokens": 314,
+    "cost": 9.954e-05
+  },
+  "error": null,
+  "latency_seconds": 0.264,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.55,
+      "codex gpt-6.1-sol high": 0.45
+    },
+    "usage": {
+      "input_tokens": 661,
+      "output_tokens": 34,
+      "cost": 2.7762e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1"
+}

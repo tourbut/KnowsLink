@@ -1,0 +1,77 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-001-UI",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "product": 0.75,
+        "implementation": 0.25
+      },
+      "confidence": 0.5
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "ops": 0.02,
+        "dev": 0.04,
+        "tester": 0.94
+      },
+      "confidence": 0.91
+    },
+    "docs": {
+      "D01": 0.22,
+      "D02": 0.42,
+      "D03": 0.12,
+      "D04": 0.82,
+      "D05": 0.1,
+      "D06": 0.12,
+      "D07": 0.07,
+      "D08": 0.08,
+      "D09": 0.09,
+      "D10": 0.11,
+      "D11": 0.11,
+      "D12": 0.1,
+      "D13": 0.11
+    }
+  },
+  "usage": {
+    "input_tokens": 2403,
+    "output_tokens": 314,
+    "cost": 0.000100926
+  },
+  "error": null,
+  "latency_seconds": 0.276,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "기존 과제의 직접 UI 검수는 등록 designer 역할 소유다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.31,
+      "codex gpt-6.1-sol high": 0.69
+    },
+    "usage": {
+      "input_tokens": 592,
+      "output_tokens": 34,
+      "cost": 2.4864e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1"
+}

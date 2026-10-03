@@ -20,7 +20,7 @@ API 정본은 [D05](interface-design.md), 저장 정본은 [D06/D07/D09](data-mo
 | registry | compiled seed SHA256·manifest 공개 | protocol test·TS once |
 | store | Postgres transaction·epoch·clock·current·sweep·ingest·lease | TestPostgresSafety |
 | HTTP owner | credential·PoP·pairing·Go template·CSRF decision | PostgresSafety, GateFailureStates |
-| HTTP agent | pull·shared persist·ACK·claim·authorize·result | PostgresSafety, ApprovalAndResultInstanceBinding |
+| HTTP agent | `deliver:agent` 전용 pull·shared persist·ACK·claim·authorize·result | PostgresSafety, ApprovalAndResultInstanceBinding |
 | cleanup | 유휴 payload·metadata 회수 | 동일 sweep 경계·runtime 기동 |
 | sqlc database | pgx/v5 LockRelay·SaveRelay 생성 | generate diff, 실제 Postgres |
 | TypeScript adapter | registry·signature 재검증, persist·ACK·claim·gate·denied result | synthetic.ts 실제 HTTP 검사 |
@@ -30,6 +30,7 @@ API 정본은 [D05](interface-design.md), 저장 정본은 [D06/D07/D09](data-mo
 `make test`는 외부 DB가 없어도 protocol과 기존 회귀를 수행한다. Postgres 검사는 integration build tag로 별도 실행하며 DB 환경이 없으면 실패한다.
 `make verify-mvp`는 별도 DB에서 12회 ingest 경합·8회 claim 경합·3번째 lease·late ACK·pool 재시작을 검사한다.
 권한 철회·세대 교체·TTL rollback·시계 이상·CSRF·중복 gate·M.id 재사용·잘못된 endpoint·optional 결과 거부를 검사한다.
+`agent_cannot_process_human_delivery`는 직접 `deliver:human` send 403과 저장된 human 전달의 agent pull·persist·ACK·claim 거부를 검사한다.
 TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 deny 및 최소 R 수신을 끝까지 수행한다.
 
 독립 QA는 tester가 고정 후보 SHA에서 QA-01–11을 수행한다.

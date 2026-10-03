@@ -1,0 +1,84 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-PUBLIC-POLICY-001",
+  "head": "a285d082705817f0c0a327f492944f105849cf68",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 23,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 23
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.85
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.04
+    },
+    {
+      "path": "Dockerfile",
+      "summary": "",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "summary": "Validate isolated example Compose settings and locked service boundaries.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/config/config_test.go",
+      "summary": "Configuration checks cover missing values, safe errors, and listen boundaries.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "summary": "Check local Compose readiness and safe failure without activating a Tunnel.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "summary": "Development adapter entry point; no polling, vendor API, or tool execution.",
+      "probability": 0.01
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay starts a development readiness endpoint; no business API is implemented.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "compose.yaml",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.95,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 2134,
+    "output_tokens": 279,
+    "cost": 8.9628e-05
+  },
+  "latency_seconds": 0.259,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

@@ -332,7 +332,7 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		return m.Receipt, nil
 	case "claim":
 		m := st.Messages[c.ID]
-		if m == nil || m.Receipt.To != principal || m.Receipt.State != "delivered" || !m.Persisted || len(m.Inbox) == 0 || !st.current(m) || !now.Before(m.Receipt.Exp) || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == "relay.approval.request" {
+		if m == nil || m.Receipt.To != principal || m.Receipt.State != "delivered" || !m.Persisted || len(m.Inbox) == 0 || !st.current(m) || !now.Before(m.Receipt.Exp) || m.Receipt.Intent == "relay.result" || m.Deliver != "agent" {
 			return nil, fault("sender_not_allowed")
 		}
 		if m.Claimed {

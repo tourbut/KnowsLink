@@ -5,9 +5,7 @@
   "route": "implementation",
   "role": "dev",
   "deliverables": [
-    "D10",
-    "D03",
-    "D09"
+    "D10"
   ],
   "thresholds": {
     "simple": 0.8,
@@ -18,62 +16,65 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.99,
-        "product": 0.01
+        "implementation": 1,
+        "product": 0
       },
-      "confidence": 0.98
+      "confidence": 1
     },
     "role": {
       "choice": "dev",
       "probabilities": {
-        "tester": 0,
+        "dev": 0.99,
         "ops": 0,
-        "dev": 1
+        "tester": 0.01
       },
-      "confidence": 1
+      "confidence": 0.99
     },
     "docs": {
-      "D01": 0.51,
-      "D02": 0.59,
-      "D03": 0.74,
-      "D04": 0.53,
-      "D05": 0.6,
-      "D06": 0.55,
-      "D07": 0.67,
-      "D08": 0.66,
-      "D09": 0.69,
-      "D10": 0.77,
-      "D11": 0.6,
-      "D12": 0.69,
-      "D13": 0.59
+      "D01": 0.1,
+      "D02": 0.13,
+      "D03": 0.42,
+      "D04": 0.1,
+      "D05": 0.34,
+      "D06": 0.34,
+      "D07": 0.15,
+      "D08": 0.21,
+      "D09": 0.35,
+      "D10": 0.72,
+      "D11": 0.17,
+      "D12": 0.34,
+      "D13": 0.26
     }
   },
   "usage": {
-    "input_tokens": 2301,
+    "input_tokens": 2399,
     "output_tokens": 314,
-    "cost": 9.6642e-05
+    "cost": 0.000100758
   },
   "error": null,
-  "latency_seconds": 0.252,
+  "latency_seconds": 0.265,
   "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "확정 C1 요구의 구현 결함 수정이며 기술 분석·구현·회귀는 dev 책임이다.",
   "model": {
-    "agent": "codex",
-    "provider": "openai",
-    "model": "gpt-6.1-sol",
-    "effort": "medium",
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
     "source": "jev",
     "probabilities": {
       "claude claude-sonnet-5-5 medium": 0,
-      "claude claude-sonnet-5-5 high": 0.01,
-      "claude claude-opus-5-5 medium": 0.15,
-      "codex gpt-6.1-sol medium": 0.6799999999999999,
-      "claude claude-opus-5-5 high": 0.07,
-      "codex gpt-6.1-sol high": 0.09
+      "claude claude-sonnet-5-5 high": 0.12,
+      "claude claude-opus-5-5 medium": 0.17,
+      "codex gpt-6.1-sol medium": 0.12,
+      "claude claude-opus-5-5 high": 0.58,
+      "codex gpt-6.1-sol high": 0.01
     },
     "usage": {
-      "input_tokens": 794,
+      "input_tokens": 790,
       "output_tokens": 66,
-      "cost": 3.3348e-05
+      "cost": 3.318e-05
     }
   },
   "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"

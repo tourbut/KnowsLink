@@ -22,7 +22,7 @@ summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한�
 | Agent | AgentID, Owner, credential SHA256, kid별 Keys | MVP-01 |
 | Key | 등록 공개키, Revoked, Changed; kid 영구 재할당 금지 | MVP-01/07 |
 | Pair | 정렬한 A/B ID, inviter/recipient, state, generation | MVP-02/07 |
-| Message | ID, frozen raw Envelope, shared Inbox, receipt, kid, pair generation, attempts, lease token/window/generation, claim token, completion | MVP-03–07/11/15 |
+| Message | ID, frozen raw Envelope, shared Inbox, receipt, kid, deliver 경로, pair generation, attempts, lease token/window/generation, claim token, completion | MVP-03–07/11/15 |
 | Receipt | id/from/to/intent/digest/exp/accepted_at/transport | MVP-04/05 |
 | Idempotency | from/key와 Message ID 연결 | MVP-04 |
 | Gate | H.id, owner, M.id, M.digest, endpoints, generation, policy, exp, state, consumed | MVP-09/10/16 |

@@ -45,7 +45,7 @@ agent ID는 lowercase ASCII다. 실제 사용자 신원 확인·회복·credenti
 | 메서드·경로 | principal | 계약 |
 |---|---|---|
 | GET /v1/registry | static | manifest·SHA256; compiled seed hash 검증 |
-| POST /v1/send | envelope.from agent | frozen relay.v1; receipt-only 결과 |
+| POST /v1/send | envelope.from agent | frozen relay.v1; receipt-only 결과. H 외 `deliver:human`은 403 sender_not_allowed |
 | POST /v1/pull | recipient agent | `{}`; envelope·lease_token·lease_until·generation·attempts 또는 null |
 | POST /v1/persist | recipient agent | `{id,token}`; shared durable inbox commit |
 | POST /v1/ack | recipient agent | `{id,token}`; persisted·유효 lease 확인 후 delivered |
@@ -53,6 +53,8 @@ agent ID는 lowercase ASCII다. 실제 사용자 신원 확인·회복·credenti
 | POST /v1/authorize | claim 보유 agent | `{id,claim}`; current-auth 재검사·executable/disclosure false |
 | GET /v1/receipts/{id} | 현재 endpoint agent | receipt metadata와 별도 completion |
 
+pull·persist·ACK·claim은 저장된 `deliver:agent` 메시지만 처리한다. human 전달은 owner gate 결정만 delivered로 바꾼다 (C1).
+직접 human inbox가 없으므로 H 외 `deliver:human` 요청은 수락하지 않는다. 배포 전 저장된 경로 미기록 메시지도 agent가 처리하지 못한다.
 H/R의 새 send는 wire 밖 `X-Execution-Claim` header에 부모 claim token을 요구한다.
 동일 서명 재전송은 인증·routing 뒤 receipt만 반환한다. 새로운 승인·실행권을 만들지 않는다.
 receipt transport는 queued/leased/delivered/failed:expired/failed:max_attempts/failed:revoked다.

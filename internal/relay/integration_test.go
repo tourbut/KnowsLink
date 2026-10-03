@@ -280,6 +280,40 @@ func TestPostgresSafety(t *testing.T) {
 		f.call("POST", "/v1/pull", f.tokens["agent_b"], map[string]any{}, 503)
 		_, _ = pool.Exec(context.Background(), `UPDATE relay_state SET clock=clock_timestamp()`)
 	})
+	t.Run("agent_cannot_process_human_delivery", func(t *testing.T) {
+		f := setup(t, pool)
+		raw := map[string]any{}
+		_ = json.Unmarshal(f.message(firstID, "idempotency-key-01"), &raw)
+		raw["deliver"] = "human"
+		f.send(sign(t, f.private["agent_a"], raw), "agent_a", "", 403)
+		if w := f.request("POST", "/v1/pull", f.tokens["agent_b"], []byte("{}"), ""); w.Code != 200 || strings.TrimSpace(w.Body.String()) != "null" {
+			t.Fatalf("agent leased human delivery: %d %s", w.Code, w.Body)
+		}
+		f.call("POST", "/v1/claim", f.tokens["agent_b"], map[string]any{"id": firstID}, 403)
+		f.call("GET", "/v1/receipts/"+firstID, f.tokens["agent_a"], nil, 403)
+		// A stored human delivery, including legacy state without a route, stays outside every agent transport step.
+		f.send(f.message(secondID, "idempotency-key-02"), "agent_a", "", 200)
+		f.mutate(func(st *State) { st.Messages[secondID].Deliver = "human" })
+		if w := f.request("POST", "/v1/pull", f.tokens["agent_b"], []byte("{}"), ""); strings.TrimSpace(w.Body.String()) != "null" {
+			t.Fatalf("agent leased stored human delivery: %s", w.Body)
+		}
+		f.mutate(func(st *State) {
+			m := st.Messages[secondID]
+			m.Receipt.State, m.LeaseToken, m.LeaseUntil = "leased", "forged-lease", time.Now().Add(time.Minute)
+		})
+		f.call("POST", "/v1/persist", f.tokens["agent_b"], map[string]any{"id": secondID, "token": "forged-lease"}, 409)
+		f.call("POST", "/v1/ack", f.tokens["agent_b"], map[string]any{"id": secondID, "token": "forged-lease"}, 409)
+		f.mutate(func(st *State) {
+			m := st.Messages[secondID]
+			m.Receipt.State, m.Persisted, m.Inbox = "delivered", true, m.Envelope
+		})
+		f.call("POST", "/v1/claim", f.tokens["agent_b"], map[string]any{"id": secondID}, 403)
+		f.mutate(func(st *State) {
+			if len(st.Gates) != 0 || st.Messages[secondID].Claimed {
+				t.Fatal("human delivery gained agent claim or gate")
+			}
+		})
+	})
 	t.Run("rotation_pop_and_key_reassignment", func(t *testing.T) {
 		f := setup(t, pool)
 		public, private, _ := ed25519.GenerateKey(rand.Reader)
