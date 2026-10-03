@@ -553,3 +553,11 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 완료 수집의 SHA null은 worker_done subject·깨끗한 DEV HEAD·전문 아카이브의 일치5506d64로 확인했다. coor가 Git 공용 통합 상태의 sha와 출처 메타데이터를 보완했다. 원래 완료 메시지와 hold는 보존했으며 플러그인 하네스 변경은 없다.
 
 - OPS msg_f3ced3927667/a2dc281f734278119fa664bb4624a09acd50d3f7 수락 가능. 고정5506d64 reviewed18/skipped0, critical/high/medium0·low5, lint0/check0. 실제 CLI 설치·marketplace·doctor2tools·실패전파를 독립 재현. F-01 진단출력·F-02 검증문구·F-03 GROK_CONFIG 격리·F-04 원인추정 표현·F-05 linux-x64 준비 가정은 low 후속이며 댓글에 앱 미확정·환경 전제와 아키텍처 확인을 보완한다. QA 수락 대기로 integration hold·OPS retain. 수집 SHA는 ZIP hash로 오인해 subject·HEAD·완료 전문의 a2dc281로 출처 보존 보완했다.
+
+## SAR-MVP-002-INSTALL-FIX-DEV 수락 — 2026-10-04
+
+- DEV5506d64·독립 OPS a2dc281·Grok QA a7e682bc6526e5a99ae81fdaf34f219783d0217f를 수락한다. 고정후보5506d64 리뷰18/skipped0, critical/high/medium0·low5, check0/lint0. 독립 QA는 별도 clone/임시HOME의 validate/install --trust/doctor 서버1·도구2·설치본held·Node22 성공0/Node20 EBADENGINE 실패1·marketplace·준비폴더 제거·trust 생략 실패를 확인했고 새 결함0이다.
+- msg_2951abf19898의 Task task_1ee72a2d3171 / Dispatch ctx_b52b9cd8fe28와 QA 전문·증거·빈 인박스·제품불변을 확인했다. Go/UI/relay 불변 증거는 이전 QA 재사용, 새 실제 Bot 계정/앱동적카탈로그/hostedNode 성공은 미검증이다. ZIP hash fb745c66b4e786f5267228099c3794763632381451bd37cf66a82111f9b14a75를 DEV·review·QA가 재현했다.
+- coor 준비 통합의 adapters/Makefile/설치scripts는 고정5506d64 대비 diff0이다. 최종 lint 통과 후 main/origin에 SHA 보존 통합·일반push하고 조상 관계를 확인한다. coor 포함 실제 idle·clean 역할은 최신main으로 동기화하며 현재 작업인 역할은 보존한다.
+- 사용자 승인에 따라 푸시 확인 후 이슈1 댓글에 고정SHA·원인·Node준비·CLI설치/doctor·새Bot세션 statusheld와 회신 항목을 게시한다. Bot 앱 도구 부재의 원인은 미확정으로 명시하고 Linux/x86_64·같은shell PATH 전제를 보완한다. 실제 릴레이/DEC-02/calendar held 및 FullOps 업데이트 제외 유지.
+- 리뷰 low5건은 수락 차단이 아니다. DEV 담당 후속: F-01 오류 출력, F-02 검사 문구/실제host PATH 구분, F-03 GROK_CONFIG 계열 격리, F-04 기록 추정 표현, F-05 Node 아키텍처 안내. 댓글에 환경 전제와 미확정 표현을 보완하며 제품 변경은 이번 고정후보 이후 추가하지 않는다.
