@@ -255,3 +255,9 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 ## 완료 리뷰 핸드오버 보관 — 2026-10-03
 
 사용자 요청으로 완료된 독립 리뷰 지시서 두 개를 handovers/logs/로 옮겼다. [개발 리뷰](handovers/logs/SAR-SETUP-001-DEV-REVIEW.md)는 85c2a6a와 msg_2ea9b1d5e1ab, [통합 리뷰](handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md)는 50caf7b와 msg_54fa321f61b6의 완료 근거를 연결했다. 본문과 과거 fixed-SHA 리뷰 파일 목록·경로는 당시 이력으로 보존했다. 진행 중 DEV·OPS·designer 및 대기 중 tester 인박스는 유지했다. 문서 이동만 수행했으므로 제품 코드 검사·테스트는 적용하지 않는다.
+
+## 공개 가입 기획 기록 완료 — 2026-10-03
+
+SAR-MVP-PUBLIC-POLICY-001의 성공 회신 msg_8bd2e3ced6fc와 완료 SHA 69dbec44c0193266f8f6c8499f22493e1e3c1722를 확인했다. D01·D02·백로그와 자기 기록을 갱신했다. 수치·자원 한도는 아직 제안이며 사용자 확정과 기술 근거·제한 구현·독립 검증·수락이 남았다. 제품 공개나 전체 MVP 완료가 아니다. 별도 검토와 coor 병합은 대기한다. terminal은 user_takeover에 따른 user_owned/retained 상태이므로 강제 종료하지 않는다.
+
+DEV 기술 회신 msg_976b4514120b는 raw envelope 32768 bytes와 frozen body JCS 16KiB의 별도 검사, polling과 ACK·철회·deny의 안전 budget 분리, pending/claim 회수 및 24h receipt 20000 처리량의 별도 측정 필요를 기록했다. 성능 보장이나 수치 확정으로 해석하지 않는다. 기존 DEV 범위를 유지한다.
