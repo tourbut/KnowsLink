@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "id": "FIX-load-fixture",
+      "result": "pass",
+      "detail": "1|4|true|true|approved|false"
+    },
+    {
+      "id": "REG-current-auth",
+      "result": "pass",
+      "detail": "401 invalid_auth"
+    },
+    {
+      "id": "FIX-legacy-human",
+      "result": "pass",
+      "detail": "authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed"
+    },
+    {
+      "id": "FIX-legacy-unrouted",
+      "result": "pass",
+      "detail": "authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed"
+    },
+    {
+      "id": "FIX-legacy-consume",
+      "result": "pass",
+      "detail": "403 sender_not_allowed"
+    },
+    {
+      "id": "FIX-legacy-unchanged",
+      "result": "pass",
+      "detail": "unchanged true"
+    },
+    {
+      "id": "REG-agent-delivery",
+      "result": "pass",
+      "detail": "send 200, persist 200, ack 200, claim 200, authorize 200"
+    },
+    {
+      "id": "REG-owner-approval-result",
+      "result": "pass",
+      "detail": "H 200, page 200, agent 401, csrf 403, approve 303, consume 200, result 200, completion denied"
+    },
+    {
+      "id": "FIX-legacy-still-denied",
+      "result": "pass",
+      "detail": "403 sender_not_allowed"
+    }
+  ]
+}

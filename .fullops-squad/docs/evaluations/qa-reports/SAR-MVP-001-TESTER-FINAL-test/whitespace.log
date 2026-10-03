@@ -1,0 +1,4 @@
+## 2026-10-03T19:19:11+0900 cwd=.
+$ bash -c git diff --check; e1=$?; git diff --cached --check; e2=$?; echo "diff $e1 cached $e2"; exit $((e1||e2))
+diff 0 cached 0
+[exit 0]
