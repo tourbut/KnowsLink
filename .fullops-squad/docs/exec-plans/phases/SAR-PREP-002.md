@@ -52,3 +52,25 @@ designer는 DEC-01–03의 제품 정책을 담당한다. dev는 DEC-04의 인�
 수동 대조에서 기존 setup의 업무 404·DB 테이블 0·adapter unimplemented·UI 없음은 새 기능의 수락 조건과 범위가 다름을 확인했다. 원문은 보존하고 후속 지시서에 먼저 확인할 이력으로 표시했다. 과거 commands 빈 값과 QA 러너 최초 한계도 최신 보완 근거와 분리했다.
 
 1차 검사 대상은 준비 문서 8개다. 로컬 링크 41개·요구사항 16개·metadata·queued 상태·필수 경로를 검사해 오류 0, 종료코드 0을 확인했다. 기준 ref 대비 원천·제품 경로·setup D02/D03·lint/board/fullops.json의 보존 검사는 각각 종료코드 0이다. deliverables.py --strict는 검사 13, 미작성 10, 문제 0, 경고 0, 종료코드 0이다. git diff --check와 스테이징 검사는 종료코드 0이다.
+
+## 문서 준비 검사 결과
+
+고정 준비 HEAD `06de8461a3c58658247184a79f88b7419e34d3be`에서 기준 `0dd08ec994771836c15d9d22a6a83393a71d7987`의 lint를 실행했다. 첫 실행은 product-lint 실패, ERROR 1, WARNING 0, 실행 불가 0, 종료코드 1이었다. 원인은 로컬 npm 의존성 부재이며 정확한 오류는 `sh: 1: prettier: not found`다. [첫 실패 기록](../logs/SAR-PREP-002/lint-prearchive.json)을 보존한다.
+
+기존 lock을 사용해 `npm ci --prefix adapters`를 실행했고 종료코드 0을 확인했다. 제품 파일·lock은 바뀌지 않았다. 설치 상태가 달라진 뒤 같은 HEAD와 기준으로 재실행했다. product-lint make lint passed, ERROR 0, WARNING 0, 실행 불가 0, lint 종료코드 0이다. [재검증 기록](../logs/SAR-PREP-002/lint-prearchive-retry.json)을 보존한다. 제품 검사를 낮추거나 원천을 수정하지 않았다.
+
+같은 준비 HEAD에서 `git diff --check 0dd08ec994771836c15d9d22a6a83393a71d7987 HEAD`와 `deliverables.py --repo . --strict`를 실행했다. 둘 다 종료코드 0이다. strict는 검사 13, 미작성 10, 문제 0, 경고 0이다. D01/D02/D03의 문서 작성 상태와 D04–D13 미작성 상태를 구분한다.
+
+[문서·요구사항 검사](../logs/SAR-PREP-002/document-check.txt), [원천 보존](../logs/SAR-PREP-002/preserved-source.txt), [제품 보존](../logs/SAR-PREP-002/preserved-product.txt), [setup·하네스 보존](../logs/SAR-PREP-002/preserved-setup-and-harness.txt)을 기록했다. 초기 문서 8개·링크 41개·요구사항 행 16개의 오류는 0이며 각 보존 명령 종료코드는 0이다. 인계 탐색 링크 추가 뒤 최종 변경 문서 검사와 최종 HEAD lint는 아카이브·커밋 이후 수행하고 실제 SHA와 결과를 worker_done에 보낸다. 이 체크포인트를 최종 커밋 검사로 표시하지 않는다.
+
+제품 코드·동작이 바뀌지 않아 build/test/runtime QA와 UI 캡처·영상은 미적용이다. setup 독립 QA를 반복하지 않았다. 이번 문서 검사와 등록 product-lint는 실제 실행했다. 문서 준비 수락 뒤 사용자 시작 지시, 기능 구현, 독립 QA·UI 직접 검수·독립 코드 리뷰와 운영 승인 조건은 후속에 남는다.
+
+## 아카이브와 최종 인계 준비
+
+work.py finish는 SAR-PREP-002 지시서와 완료 보고를 기존 날짜별 [designer 완료 아카이브](../../../handovers/logs/2026-10-03_to_designer.md)에 한 번 추가했다. designer 인박스는 비웠다. 기존 완료 기록은 보존했다. DEV/TESTER는 queued를 유지한다.
+
+아카이브 이후 문서 8개와 로컬 링크 53개를 검사해 오류 0, 종료코드 0을 확인했다. 완료 로그의 단일 추가·빈 designer 인박스·queued DEV/TESTER도 확인했다. [검사 결과](../logs/SAR-PREP-002/document-final-before-commit.txt)를 보존한다. strict·공백·원천·제품 보존 명령의 각 종료코드 0을 별도 실행 로그에 기록했다. 이 검사는 최종 커밋 전 문서 상태의 결과다.
+
+최종 커밋 이후 같은 기준 ref의 FullOps lint와 strict·공백·보존 검사를 실행한다. 최종 고정 SHA·실제 결과는 preamble worker_done으로 전달한다. 최종 lint JSON은 레포 밖 /tmp/SAR-PREP-002-validation/lint-final.json에 남기며, 이 문서의 체크포인트 JSON과 구분한다.
+
+최종 staging 검사에서 자체 문서 검사 로그 2개의 EOF 빈 줄을 검출해 종료코드 2였다. 두 로그의 마지막 빈 줄을 정리했다. 원천 hard break는 수정하지 않았다. 해당 커밋이 진행되지 않은 상태의 lint 시도는 dirty tree로 종료코드 2였으며 통과 증거로 사용하지 않는다. [실패 기록](../logs/SAR-PREP-002/final-commit-check-failure.txt)을 보존하고 깨끗한 최종 커밋에서 다시 검사한다.
