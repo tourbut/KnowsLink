@@ -1,0 +1,70 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-BETA-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D11"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.97
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "ops": 0.1,
+        "tester": 0.67,
+        "dev": 0.23
+      },
+      "confidence": 0.52
+    },
+    "docs": {
+      "D01": 0.29,
+      "D02": 0.31,
+      "D03": 0.52,
+      "D04": 0.36,
+      "D05": 0.39,
+      "D06": 0.37,
+      "D07": 0.28,
+      "D08": 0.26,
+      "D09": 0.33,
+      "D10": 0.54,
+      "D11": 0.65,
+      "D12": 0.83,
+      "D13": 0.73
+    }
+  },
+  "usage": {
+    "input_tokens": 2480,
+    "output_tokens": 314,
+    "cost": 0.00010416
+  },
+  "error": null,
+  "latency_seconds": 0.257,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "실제 배포 경계의 독립 동작 검증은 등록 tester 책임이다.",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "6291c22462a8546fe59764ec524bf0c07f61bfa4b220d7d4180a7caf9a964435"
+}

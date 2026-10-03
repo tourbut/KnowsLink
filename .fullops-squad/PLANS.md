@@ -411,3 +411,8 @@ Cloudflare/cloudflare-one 스킬·Tunnel reference를 읽었다. cloudflare docs
 
 
 베타 OPS Task task_0cc034d2aaa9 / Dispatch ctx_e0f114306c6c / terminal term_998a281c-6a63-40bf-a1bd-1cc7acbf578a, Claude Sonnet5.5 high effective와 turn_started를 확인했다. Codex 설정에 Cloudflare 관리·bindings/builds/observability 서버도 enabled로 존재하지만 이번 호스트의 callable 도구는 docs MCP만 노출된다. 관리 접속은 실제 프로토콜과 인증 상태를 별도로 진단한다. 설정 존재를 연결 성공으로 표시하지 않는다. 준비·리뷰·검증을 계속하고 보호 없는 공개는 하지 않는다.
+
+
+OPS중간437f143/msg_8d549d2746f2에서 로컬beta·합성auth/CSRF·backup/isolatedrestore·공유서비스불변을 보고했다. 별도knowslinkTunnel만생성했고Access/DNS/connector는미실행이다. 공개protected확인전노출금지로회신했다. 배포설정 독립리뷰task_470cc6941994/ctx_fa48cdc4605a/term_8c7472ba-0ebb-42ae-99dd-95b4dac6e0a9를별도ClaudeOpus5.5high세션에배정했다. base1314e7f/head437f143 readonlysnapshot이며실제구현자OPSsession2191cc9b-76ef-4522-9fad-d2c9f017bfbc다.
+
+CloudflareOAuth콜백HTTP200을수신했지만Codex가OSDBussecret저장소에서대기하고login키링locked=true임을확인했다. 사용자가OS터미널에서직접로그인하는방법을요청해대기중우리login프로세스를종료하고file저장override·최소scope명령을안내했다. 사용자가로그인완료하면같은fileoverride로실제auth상태/계정조회를검증한다. authcode/token은Git/기록에저장하지않는다.
