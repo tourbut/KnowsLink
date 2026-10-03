@@ -19,7 +19,7 @@ summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 |---|---|---|---|---|
 | Owner/Agent/Key | owner 가입·PoP 등록 | 현재 owner/agent 인증, key lookup | rotate/revoke | ID/kid 이력 유지 |
 | Pair | invite pending | contacts·routing | B-owner accept/deny, owner unpair | 재수락은 generation 증가 |
-| Message/Receipt/Idempotency | send의 동일 transaction | endpoint 권한·receipt-only | lease·persist·ACK·claim·R completion | payload exp/완료/철회; metadata 24h |
+| Message/Receipt/Idempotency | send의 동일 transaction | endpoint 권한·receipt-only | `deliver:agent`만 lease·persist·ACK·claim; H는 owner 결정; R completion | payload exp/완료/철회; metadata 24h |
 | Gate | 검증된 H send | owner UI, B-agent metadata | 결정 CAS·consume 1회 | 만료/철회/원문 부재 차단; metadata 24h |
 
 MVP-15의 최소 저장은 HTTP 응답·inbox·로그·adapter memory에도 적용한다.
