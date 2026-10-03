@@ -3,11 +3,13 @@ title: SAR-MVP-002-BOT-CATALOG-DEV 실행 기록
 status: draft
 updated: 2026-10-04
 owner: dev
-tasks: [SAR-MVP-002-BOT-CATALOG-DEV]
+tasks: [SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX]
 summary: 실제 Grok Bot 앱 카탈로그 미노출의 원인과 Command server 등록 조치·검증 및 재시험 댓글 초안을 기록한다
 ---
 
 # SAR-MVP-002-BOT-CATALOG-DEV — 실제 Grok Bot 도구 카탈로그 등록 실패 진단·조치
+
+> 정정(2026-10-04): 이 기록의 원인 단정·승인 카드 전제·`Settings → Plugins`·`/workspace` 유지 표현은 리뷰 F-01~F-05에 따라 [FIX 기록](SAR-MVP-002-BOT-CATALOG-DEV-FIX.md)에서 정정했다. 아래 댓글 초안은 게시하지 않는다. 본문은 원본으로 보존한다.
 
 ## 기준
 

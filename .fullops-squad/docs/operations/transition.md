@@ -4,7 +4,7 @@ title: 인수인계서
 status: draft
 updated: 2026-10-04
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -51,6 +51,6 @@ owner/admin은 승인된 marketplace 등록과 실제 Bot 앱의 설치·도구 
 
 ## SAR-MVP-002-BOT-CATALOG-DEV 앱 카탈로그 인계
 
-재시험에서 CLI 설치는 성공했지만 앱 카탈로그에 knowslink가 없었다. 원인은 앱 계정 등록 단계의 부재다. CLI plugin은 앱에 등록되지 않는다. `scripts/install_bot_mcp.sh`와 README의 Command server 등록 절차를 추가했다.
+재시험에서 CLI 설치는 성공했지만 앱 카탈로그에 knowslink가 없었다. 앱 계정 등록 단계의 부재는 미확정 가설이다. `scripts/install_bot_mcp.sh`와 README의 Command server 등록 절차를 추가했다. 리뷰 보완([FIX 기록](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md))에서 원인 단정과 `Settings → Plugins` 경로를 정정했다. Command 등록 근거는 Team Bots 문서에 한정된다. 개인 계정 UI·승인 카드·`AddMcpServer` 제공은 미확인이다.
 
-owner는 실제 계정에서 등록과 `knowslink_status` held 호출을 재시험한다. coor는 고정 SHA 독립 리뷰·TESTER QA 뒤 [재시험 댓글 초안](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md#재시험-댓글-초안-coor-게시)을 게시한다. 실제 앱 노출은 미검증이다. Remote HTTPS·Marketplace 발행·실제 relay는 별도 승인 전까지 held다.
+owner는 실제 계정에서 등록과 `knowslink_status` held 호출을 재시험한다. coor는 고정 SHA 독립 리뷰·필요한 QA 뒤 FIX 기록의 [재시험 댓글 초안](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md#재시험-댓글-초안-coor-게시)을 게시한다. 이전 실행 기록의 초안은 게시하지 않는다. 실제 앱 노출은 미검증이다. Remote HTTPS·Marketplace 발행·실제 relay는 별도 승인 전까지 held다.

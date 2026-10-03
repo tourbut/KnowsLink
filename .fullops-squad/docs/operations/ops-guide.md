@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-04
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -190,7 +190,8 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 ## 12. Grok Bot 앱 connector 등록 (SAR-MVP-002-BOT-CATALOG-DEV)
 
 1. owner는 Bot 컴퓨터의 레포 루트에서 `sh scripts/install_bot_mcp.sh`를 실행한다. 결과: 마지막에 Name·Type·Command·Arguments 등록 값이 출력된다.
-2. owner는 Bot 채팅에서 custom MCP server 추가를 요청하고 **Add MCP Server** 카드의 Type **Command**와 빈 환경 변수를 확인한 뒤 승인한다.
-3. owner는 새 대화에서 `knowslink_status`만 호출한다. 결과: `held`.
+2. owner는 Bot info pane의 **Setup → Plugins → Add**에서 custom MCP server를 추가한다. 그 화면이 없으면 Bot 채팅에서 추가를 요청한다. Type **Command**와 빈 환경 변수를 확인한 뒤 승인한다. 결과: Installed 목록에 knowslink가 보인다. 이 화면과 승인 카드는 공식 근거가 Team Bots에 한정되며 실제 계정에서 미확인이다.
+3. Command 등록 수단이 없거나 Bot이 `AddMcpServer` 같은 도구가 없다고 답하면 owner는 등록을 멈춘다. 실제 메뉴 항목·Bot 응답·도구 목록을 회신한다. 이슈1에서 같은 Bot은 `AddMcpServer`를 호출할 수 없었다.
+4. owner는 새 대화에서 `knowslink_status`만 호출한다. 결과: `held`.
 
-중단은 Installed 목록에서 knowslink를 삭제한다. 실제 relay·환경 변수·비밀값은 등록하지 않는다. 상세 절차는 [플러그인 문서](../../../adapters/README.md#grok-bot-앱-등록)를 따른다.
+컴퓨터 update·recover·Reset 뒤 `/workspace/.knowslink`의 Node 또는 bundle이 없으면 1단계를 다시 실행한다. `/workspace` 유지는 보장되지 않는다. 앱 등록 값은 같다. 중단은 Installed 목록에서 knowslink를 삭제한다. 실제 relay·환경 변수·비밀값은 등록하지 않는다. 상세 절차는 [플러그인 문서](../../../adapters/README.md#grok-bot-앱-등록)를 따른다.

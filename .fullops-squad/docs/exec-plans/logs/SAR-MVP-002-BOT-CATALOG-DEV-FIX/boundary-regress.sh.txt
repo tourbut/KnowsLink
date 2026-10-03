@@ -1,0 +1,64 @@
+#!/bin/sh
+# Boundary regressions for scripts/install_bot_mcp.sh. Run from a scratch clone; P1 is a prefix prepared by a first run.
+S="$1"; P1="$S/p1"; cd "$S/clone" || exit 2
+fail=0
+check() { if eval "$2"; then echo "ok   $1"; else echo "FAIL $1"; fail=1; fi; }
+copy() { rm -rf "$1"; mkdir -p "$1"; cp -a "$P1/node" "$P1/knowslink" "$1/"; }
+run() { KNOWSLINK_PREFIX="$1" sh scripts/install_bot_mcp.sh > "$S/logs/$2.txt" 2>&1; echo $? > "$S/logs/$2.rc"; }
+rc() { cat "$S/logs/$1.rc"; }
+stage_left() { ls -d "$1"/.stage.* 2>/dev/null | grep -q .; }
+
+echo "== rerun with stale package/ and stale marker in old bundle; unrelated file kept"
+P="$S/rerun"; copy "$P"; mkdir -p "$P/package/knowslink"; touch "$P/package/knowslink/STALE" "$P/knowslink/STALE"; echo keep > "$P/notes.txt"
+run "$P" rerun
+check "rerun exit 0" '[ "$(rc rerun)" = 0 ]'
+check "rerun reuses node (no download/checksum line)" '! grep -q "tar.gz: OK" "$S/logs/rerun.txt"'
+check "no STALE in new bundle" '[ -z "$(find "$P/knowslink" -name STALE)" ]'
+check "unrelated notes.txt and package/ kept" '[ "$(cat "$P/notes.txt")" = keep ] && [ -f "$P/package/knowslink/STALE" ]'
+check "no stage dir left" '! stage_left "$P"'
+check "env -i tools 2 / status held" 'grep -q "extracted standalone MCP test exit=0" "$S/logs/rerun.txt" && [ "$(grep -c ^PASS: "$S/logs/rerun.txt")" = 2 ]'
+
+echo "== relative prefix rejected before any change"
+rm -rf "$S/clone/rel"
+run "rel/pfx" relative
+check "relative exit 1" '[ "$(rc relative)" = 1 ]'
+check "relative message" 'grep -q "must be an absolute path" "$S/logs/relative.txt"'
+check "relative dir not created" '[ ! -e "$S/clone/rel" ]'
+
+echo "== node path is a user file: refused, file kept"
+P="$S/nodefile"; rm -rf "$P"; mkdir -p "$P"; echo mine > "$P/node"
+run "$P" nodefile
+check "nodefile exit 1" '[ "$(rc nodefile)" = 1 ]'
+check "nodefile kept as file" '[ -f "$P/node" ] && [ "$(cat "$P/node")" = mine ]'
+check "nodefile nothing else created" '[ "$(ls -A "$P")" = node ]'
+
+echo "== knowslink path is a user dir without bundle: refused, kept"
+P="$S/kdir"; copy "$P"; rm -rf "$P/knowslink"; mkdir "$P/knowslink"; echo mine > "$P/knowslink/x"
+run "$P" kdir
+check "kdir exit 1" '[ "$(rc kdir)" = 1 ] && [ "$(cat "$P/knowslink/x")" = mine ]'
+
+echo "== bad Node archive: old node and bundle kept, archive removed"
+P="$S/badarchive"; copy "$P"; printf '#!/bin/sh\necho v0.0.0\n' > "$P/node/bin/node.fake"; mv "$P/node/bin/node" "$P/node/bin/node.real"; mv "$P/node/bin/node.fake" "$P/node/bin/node"; chmod +x "$P/node/bin/node"
+mkdir -p "$S/shim"; printf '#!/bin/sh\nwhile [ $# -gt 1 ]; do [ "$1" = -o ] && { echo garbage > "$2"; exit 0; }; shift; done\n' > "$S/shim/curl"; chmod +x "$S/shim/curl"
+PATH="$S/shim:$PATH" run "$P" badarchive
+check "badarchive exit 1" '[ "$(rc badarchive)" = 1 ] && grep -q FAILED "$S/logs/badarchive.txt"'
+check "badarchive old node kept" '[ -f "$P/node/bin/node.real" ] && [ "$("$P/node/bin/node")" = v0.0.0 ]'
+check "badarchive old bundle kept" 'cmp -s "$P/knowslink/dist/plugin.js" "$P1/knowslink/dist/plugin.js"'
+check "badarchive no stage/archive left" '! stage_left "$P" && [ -z "$(find "$P" -name "*.tar.gz")" ]'
+rm -f "$S/shim/curl"
+
+echo "== bundle extraction fails: old bundle kept"
+P="$S/badextract"; copy "$P"; touch "$P/knowslink/OLD"
+REAL=$(command -v python3); printf '#!/bin/sh\n[ "$1 $2" = "-m zipfile" ] && { echo "shim: extract failed" >&2; exit 1; }\nexec %s "$@"\n' "$REAL" > "$S/shim/python3"; chmod +x "$S/shim/python3"
+PATH="$S/shim:$PATH" run "$P" badextract
+check "badextract exit 1 and old bundle kept" '[ "$(rc badextract)" = 1 ] && [ -f "$P/knowslink/OLD" ] && ! stage_left "$P"'
+rm -f "$S/shim/python3"
+
+echo "== boundary check fails on new bundle: old bundle kept"
+P="$S/badcheck"; copy "$P"; touch "$P/knowslink/OLD"
+printf '#!/bin/sh\n[ "$1" = -i ] && { echo "shim: env -i check failed" >&2; exit 1; }\nexec /usr/bin/env "$@"\n' > "$S/shim/env"; chmod +x "$S/shim/env"
+PATH="$S/shim:$PATH" run "$P" badcheck
+check "badcheck exit 1 and old bundle kept" '[ "$(rc badcheck)" = 1 ] && grep -q "shim: env -i" "$S/logs/badcheck.txt" && [ -f "$P/knowslink/OLD" ] && ! stage_left "$P"'
+rm -f "$S/shim/env"
+
+echo "regress fail=$fail"; exit $fail

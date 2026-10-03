@@ -1,0 +1,9 @@
+# Old installer (76443df == reviewed 8e46c5a) reproduces F-06/F-07/F-08 before the fix.
+$ KNOWSLINK_PREFIX=rel/pfx sh <old installer>
+  Command:     rel/pfx/node/bin/node
+  Arguments:   rel/pfx/knowslink/dist/plugin.js
+exit=0
+$ <prefix>/node is a user file, <prefix>/package/knowslink/STALE exists; sh <old installer>
+exit=0
+node is dir: yes
+STALE in bundle: <scratch>/oldnf/knowslink/STALE
