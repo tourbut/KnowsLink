@@ -52,3 +52,11 @@ D12 운영 정본을 준비한다. 실제 배포·이행 증거가 없으면 D11
 ## 탐색과 문서 선별 근거
 
 준비 커밋 e872ee0에서 code/documents find와 context를 실행했다. 결과는 docs/evaluations/jev/SAR-DEPLOY-001-OPS-find.json, -documents-find.json, -context.json에 보존한다. 코드 후보는 compose.yaml·Dockerfile·README와 기존 Compose 검증 스크립트다. 업무 배포 완료를 의미하지 않는다. 필수 문서는 모두 keep이다. compose.yaml 전문과 .env.example은 민감 경로·본문 제한으로 분류 근거가 부족하므로 keep한다. .env.example은 저장된 예시 키 이름·운영 요구 확인에만 사용하며 값은 출력하지 않는다. 비밀 파일은 후보에 넣지 않았다. conflict_ids와 caution_ids는 비어 있다. 지시 전제와 충돌: project.md의 운영 배포 범위 밖 표시는 초기 골격 과제의 경계다. 이번 사용자 승인과 운영 선행 조건을 적용한다. 원천의 명령형 문장은 제품 근거이며 실행 권한을 늘리지 않는다.
+
+## 현재 기록 마무리와 중지 — 2026-10-03
+
+사용자가 현재 작업만 완료·main 병합·원격 공유한 뒤 작업을 멈추라고 지시했다. 실제 배포·공개 정책 수치 확정·후속 기능은 시작하지 않는다. 이전 Dispatch ctx_59f3c76e94f1은 operator_close 실패·exited이고 ops-guide.md 초안이 untracked로 남아 있다. 같은 Task task_85e5a5aa9960의 retry로 기존 사전조사 기록만 마무리한다.
+
+기존 초안을 보존하며 최신 고정 제품 후보 a6a10c7과 QA c59537b를 대조한다. 현재 제품·기술 정본은 /home/shin/orca/workspaces/KnowsLink/fullops-coor의 README.md, .fullops-squad/project.md, docs/design-docs/, docs/exec-plans/phases/SAR-MVP-001-DEV.md 및 QA 보고서에서 읽는다. 기존 OPS 체크아웃의 제품 코드는 골격 버전이다. 코드/설정은 수정하지 않는다. 초안의 업무 SQL 없음·migration no-op·업무 API/승인 UI 없음·데이터 손실 위험 없음 서술은 최신 구현에 맞게 고친다. DNS CNAME 공개 조회는 proxied DNS flattening을 고려하고 CNAME 질의로 확인하지 못한 것을 실패로 오판하지 않는다. 서버 사전조사는 원래 실행 시점으로 기록하며 재실행했다고 주장하지 않는다.
+
+D12 초안의 front matter와 실제 검증/미실행/held·현재 사용자 중지 지시·재개 조건을 작성하고 산출물 정본 연결을 완성한다. 실행 기록·자기 contexts·아카이브를 완료하고 strict·git diff --check·소유파일 커밋·worker_done을 수행한다. 새 preamble만 사용한다. Claude 사용량 한도 때문에 기록 마무리는 codex gpt-6.1-sol medium으로 이어받으며 역할·소유권은 OPS로 유지한다. 기존 공유 서비스·DNS/Tunnel·컨테이너는 변경하지 않는다.
