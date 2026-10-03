@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "MVP 기존 DEV 배정을 이어받음. link.knowslog.com 확정, Docker·Tunnel 운영 준비.",
+  "summary": "OPS D12 독립 문서 검토 통과. MVP C1 high 수정의 독립 QA·코드 리뷰 대기. 실제 배포는 보류.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -47,11 +47,11 @@
     },
     {
       "name": "MVP 독립 QA·UI 검수·리뷰",
-      "status": "todo",
+      "status": "active",
       "deliverables": [
         "D04"
       ],
-      "note": "DEV 고정 후보 이후 tester QA·designer UI 검수·독립 리뷰. D04 미작성."
+      "note": "기존 QA·UI 완료 자료는 coor 후보에서 보존. C1 high 수정 d7e2149의 독립 QA·고정 SHA 코드 리뷰 진행 중."
     },
     {
       "name": "실제 어댑터·일정 조회",
@@ -67,7 +67,7 @@
         "D12",
         "D13"
       ],
-      "note": "link.knowslog.com 확정. OPS 서버 사전조사·운영 계획, 고정 후보 수락 대기."
+      "note": "D12 준비 f5a73a3·별도 세션 문서 리뷰 c0e37c0 통과. 실제 배포·D11/D13은 미실행; C1 수정 후보 독립 수락과 제품 held 해소 전 공개하지 않는다."
     }
   ]
 }

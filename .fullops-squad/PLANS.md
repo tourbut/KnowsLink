@@ -255,3 +255,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md)을 따른다. 다음 운영은 새 coordinator 세션에서 이어간다.
 
 운영 main 반영 SHA 66f7ffc와 origin/main 일반 push를 확인했다. coor c9b2a8e·유휴 dev 25f03ad 동기화 완료다. designer/ops는 미커밋 자료, tester 및 임시 체크아웃은 실제 상태 불명으로 동기화를 예약한다. coor가 다음 배정 전 처리한다. 제품 hold와 현재 작업 완료 뒤 중지 지시는 유지한다.
+
+## OPS 문서 독립 수락·main 통합 — 2026-10-03
+
+완료 f5a73a3와 별도 세션 리뷰 c0e37c0를 실제 main에 fast-forward로 통합했다. 리뷰 대상은 base ffca87c/head f5a73a3이며 13개 파일 reviewed·미해결 critical/high 없음·review check/lint 통과다. main의 같은 기준 product-lint와 FullOps lint도 통과했다. 역할 기록 수락이며 제품/배포 수락이 아니다. 원래 a6a10c7의 C1 high는 수정 d7e2149 후 독립 QA/리뷰 수락 전 차단한다. reviewer low F2의 board 상태를 정정했다. F3의 오래된 main 인박스 문구는 현재 coor의 실제 정규 인박스와 다르므로 실행하지 않고 최종 후보 통합 때 완료 아카이브·빈 inbox로 정리한다. 두 임시 워크트리 designer-pilot/dev-mvp는 사용자 지시에 따라 결과 main 병합·원격 반영·깨끗함·진행 세션 없음 확인 후 제거한다. 담당 coor다.
