@@ -1,0 +1,617 @@
+## 2026-10-03T19:13:00+0900 cwd=.
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/isolated.py
+ Image knowslink-final-092166c3e1-migrate Building
+ Image knowslink-final-092166c3e1-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.10kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.3s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 1.2s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 52.64kB 0.0s done
+#6 DONE 0.0s
+
+#7 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#7 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#7 DONE 0.1s
+
+#8 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#8 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#8 DONE 0.1s
+
+#9 [migrate build 4/7] RUN go mod download
+#9 CACHED
+
+#10 [migrate build 2/7] WORKDIR /src
+#10 CACHED
+
+#11 [migrate build 3/7] COPY go.mod go.sum ./
+#11 CACHED
+
+#12 [migrate build 5/7] COPY cmd ./cmd
+#12 CACHED
+
+#13 [relay build 6/7] COPY internal ./internal
+#13 DONE 0.1s
+
+#14 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#14 DONE 21.8s
+
+#15 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#15 CACHED
+
+#16 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#16 CACHED
+
+#17 [migrate stage-1 3/5] WORKDIR /app
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [relay] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:65aa10856b5bc80c01600dd0d98a5ddc9d32581de98a65cf43cfb21d5636e031 0.0s done
+#19 exporting config sha256:e0467cc64b6d7cc50cd7595fb6d8143dabd74b24dccfb0addc5994063ccbe5e1 0.0s done
+#19 exporting attestation manifest sha256:62f3a7eff06be4145df887f4016eeb85fc73a0e43aec09d8a86cfb0e04f94b12 0.1s done
+#19 exporting manifest list sha256:e0e7f309be7acfdc209146ce8915a4b8bdc151a9b22813f8955b09cf6507de0f
+#19 exporting manifest list sha256:e0e7f309be7acfdc209146ce8915a4b8bdc151a9b22813f8955b09cf6507de0f 0.0s done
+#19 naming to docker.io/library/knowslink-final-092166c3e1-relay:latest done
+#19 unpacking to docker.io/library/knowslink-final-092166c3e1-relay:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:0f2461cdea2e27923d7d2199a413dd6a4d0ea8fce7440e52334f9c9ea8a8bbc8 0.0s done
+#20 exporting config sha256:298928b860abf598e7aa7a8af87d5797eeaa1db6df7c0b25f2e77a3dcd93a761 0.0s done
+#20 exporting attestation manifest sha256:2db1cad6adbf4969e41df3619dc12661994435cf5013be01e13e9c43733f5989 0.1s done
+#20 exporting manifest list sha256:2d605d9f1fa9865058f5efdac4e4cbf0c593cfe1eb5943b291afdfc8201a1ec1 0.0s done
+#20 naming to docker.io/library/knowslink-final-092166c3e1-migrate:latest done
+#20 unpacking to docker.io/library/knowslink-final-092166c3e1-migrate:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-final-092166c3e1-migrate Built
+ Image knowslink-final-092166c3e1-relay Built
+ Network knowslink-final-092166c3e1_database Creating
+ Network knowslink-final-092166c3e1_database Created
+ Network knowslink-final-092166c3e1_ingress Creating
+ Network knowslink-final-092166c3e1_ingress Created
+ Volume knowslink-final-092166c3e1_postgres-data Creating
+ Volume knowslink-final-092166c3e1_postgres-data Created
+ Container knowslink-final-092166c3e1-postgres-1 Creating
+ Container knowslink-final-092166c3e1-postgres-1 Created
+ Container knowslink-final-092166c3e1-migrate-1 Creating
+ Container knowslink-final-092166c3e1-migrate-1 Created
+ Container knowslink-final-092166c3e1-relay-1 Creating
+ Container knowslink-final-092166c3e1-relay-1 Created
+ Container knowslink-final-092166c3e1-postgres-1 Starting
+ Container knowslink-final-092166c3e1-postgres-1 Started
+ Container knowslink-final-092166c3e1-postgres-1 Waiting
+ Container knowslink-final-092166c3e1-postgres-1 Healthy
+ Container knowslink-final-092166c3e1-migrate-1 Starting
+ Container knowslink-final-092166c3e1-migrate-1 Started
+ Container knowslink-final-092166c3e1-migrate-1 Waiting
+ Container knowslink-final-092166c3e1-migrate-1 Exited
+ Container knowslink-final-092166c3e1-relay-1 Starting
+ Container knowslink-final-092166c3e1-relay-1 Started
+ Container knowslink-final-092166c3e1-migrate-1 Waiting
+ Container knowslink-final-092166c3e1-relay-1 Waiting
+ Container knowslink-final-092166c3e1-postgres-1 Waiting
+ Container knowslink-final-092166c3e1-postgres-1 Healthy
+ Container knowslink-final-092166c3e1-migrate-1 Exited
+ Container knowslink-final-092166c3e1-relay-1 Healthy
+command: docker compose --project-name knowslink-final-092166c3e1 --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-7r1j71fq/test.yaml up --build --wait relay; exit: 0
+PASS FIX-load-fixture: rows 1
+FAIL FIX-fixture-shape: deliver absent false, claimed true
+PASS REG-current-auth: 401 invalid_auth
+PASS FIX-legacy-human: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-unrouted: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-consume: 403 sender_not_allowed
+PASS FIX-legacy-unchanged: unchanged true
+PASS REG-agent-delivery: send 200, persist 200, ack 200, claim 200, authorize 200
+PASS REG-owner-approval-result: H 200, page 200, agent 401, csrf 403, approve 303, consume 200, result 200, completion denied
+PASS FIX-legacy-still-denied: 403 sender_not_allowed
+PROBE fail 1 pass 9
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/probe.mjs; exit: 1
+ Container knowslink-final-092166c3e1-relay-1 Stopping
+ Container knowslink-final-092166c3e1-relay-1 Stopped
+ Container knowslink-final-092166c3e1-relay-1 Removing
+ Container knowslink-final-092166c3e1-relay-1 Removed
+ Container knowslink-final-092166c3e1-migrate-1 Stopping
+ Container knowslink-final-092166c3e1-migrate-1 Stopped
+ Container knowslink-final-092166c3e1-migrate-1 Removing
+ Container knowslink-final-092166c3e1-migrate-1 Removed
+ Container knowslink-final-092166c3e1-postgres-1 Stopping
+ Container knowslink-final-092166c3e1-postgres-1 Stopped
+ Container knowslink-final-092166c3e1-postgres-1 Removing
+ Container knowslink-final-092166c3e1-postgres-1 Removed
+ Network knowslink-final-092166c3e1_database Removing
+ Network knowslink-final-092166c3e1_ingress Removing
+ Volume knowslink-final-092166c3e1_postgres-data Removing
+ Volume knowslink-final-092166c3e1_postgres-data Removed
+ Network knowslink-final-092166c3e1_database Removed
+ Network knowslink-final-092166c3e1_ingress Removed
+command: docker compose --project-name knowslink-final-092166c3e1 --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-7r1j71fq/test.yaml down --volumes; exit: 0
+[exit 1]
+## 2026-10-03T19:15:17+0900 cwd=.
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/isolated.py
+ Image knowslink-final-42fc62b18d-migrate Building
+ Image knowslink-final-42fc62b18d-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.10kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [relay internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.1s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 1.34kB 0.0s done
+#6 DONE 0.0s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#7 DONE 0.0s
+
+#8 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#8 DONE 0.1s
+
+#9 [migrate build 3/7] COPY go.mod go.sum ./
+#9 CACHED
+
+#10 [migrate build 4/7] RUN go mod download
+#10 CACHED
+
+#11 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#11 CACHED
+
+#12 [migrate build 6/7] COPY internal ./internal
+#12 CACHED
+
+#13 [migrate build 2/7] WORKDIR /src
+#13 CACHED
+
+#14 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#14 CACHED
+
+#15 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#15 CACHED
+
+#16 [migrate stage-1 3/5] WORKDIR /app
+#16 CACHED
+
+#17 [migrate build 5/7] COPY cmd ./cmd
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [relay] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:686c2d553b38c267012b8adce2f409a3431f5bd7284edb78732ae6760b41134b 0.0s done
+#19 exporting config sha256:5389ace965b68d6f301274299b33d5b958a15838e54bc9d48e9f4caaf061f386 0.0s done
+#19 exporting attestation manifest sha256:c1f72703e38309bf41b42d5706dee17cdb9fcc86447f06632ac8a9271dc4aa2c
+#19 exporting attestation manifest sha256:c1f72703e38309bf41b42d5706dee17cdb9fcc86447f06632ac8a9271dc4aa2c 0.1s done
+#19 exporting manifest list sha256:99cad5fed1c591c390df5df20026babca37b670950c7a334380afc6900e0d073 0.0s done
+#19 naming to docker.io/library/knowslink-final-42fc62b18d-relay:latest
+#19 naming to docker.io/library/knowslink-final-42fc62b18d-relay:latest done
+#19 unpacking to docker.io/library/knowslink-final-42fc62b18d-relay:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:43c034dc93f4404da93d709de73f7012712b0aa17463f0944ee1209b5262c526 0.0s done
+#20 exporting config sha256:2ce2ecfc5b336a4f1d135d79aa3be54fe6baa8313fdfa6e263c7de198b602f9c 0.0s done
+#20 exporting attestation manifest sha256:72f7abee03c97249094ed0443cbe94465f597acda0e6e3cb8abb74165e1b6a05 0.1s done
+#20 exporting manifest list sha256:069486f9e334708a8715b8cf4053c75a4d08142deb96f788cc8859b55f6ee090 0.0s done
+#20 naming to docker.io/library/knowslink-final-42fc62b18d-migrate:latest 0.0s done
+#20 unpacking to docker.io/library/knowslink-final-42fc62b18d-migrate:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-final-42fc62b18d-migrate Built
+ Image knowslink-final-42fc62b18d-relay Built
+ Network knowslink-final-42fc62b18d_database Creating
+ Network knowslink-final-42fc62b18d_database Created
+ Network knowslink-final-42fc62b18d_ingress Creating
+ Network knowslink-final-42fc62b18d_ingress Created
+ Volume knowslink-final-42fc62b18d_postgres-data Creating
+ Volume knowslink-final-42fc62b18d_postgres-data Created
+ Container knowslink-final-42fc62b18d-postgres-1 Creating
+ Container knowslink-final-42fc62b18d-postgres-1 Created
+ Container knowslink-final-42fc62b18d-migrate-1 Creating
+ Container knowslink-final-42fc62b18d-migrate-1 Created
+ Container knowslink-final-42fc62b18d-relay-1 Creating
+ Container knowslink-final-42fc62b18d-relay-1 Created
+ Container knowslink-final-42fc62b18d-postgres-1 Starting
+ Container knowslink-final-42fc62b18d-postgres-1 Started
+ Container knowslink-final-42fc62b18d-postgres-1 Waiting
+ Container knowslink-final-42fc62b18d-postgres-1 Healthy
+ Container knowslink-final-42fc62b18d-migrate-1 Starting
+ Container knowslink-final-42fc62b18d-migrate-1 Started
+ Container knowslink-final-42fc62b18d-migrate-1 Waiting
+ Container knowslink-final-42fc62b18d-migrate-1 Exited
+ Container knowslink-final-42fc62b18d-relay-1 Starting
+ Container knowslink-final-42fc62b18d-relay-1 Started
+ Container knowslink-final-42fc62b18d-relay-1 Waiting
+ Container knowslink-final-42fc62b18d-postgres-1 Waiting
+ Container knowslink-final-42fc62b18d-migrate-1 Waiting
+ Container knowslink-final-42fc62b18d-postgres-1 Healthy
+ Container knowslink-final-42fc62b18d-migrate-1 Exited
+ Container knowslink-final-42fc62b18d-relay-1 Healthy
+command: docker compose --project-name knowslink-final-42fc62b18d --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-lu8xsaua/test.yaml up --build --wait relay; exit: 0
+PASS FIX-load-fixture: rows 1
+FAIL FIX-fixture-shape: deliver absent,absent,empty, claimed true
+PASS REG-current-auth: 401 invalid_auth
+PASS FIX-legacy-human: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-unrouted: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-consume: 403 sender_not_allowed
+PASS FIX-legacy-unchanged: unchanged true
+PASS REG-agent-delivery: send 200, persist 200, ack 200, claim 200, authorize 200
+PASS REG-owner-approval-result: H 200, page 200, agent 401, csrf 403, approve 303, consume 200, result 200, completion denied
+PASS FIX-legacy-still-denied: 403 sender_not_allowed
+PROBE fail 1 pass 9
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/probe.mjs; exit: 1
+ Container knowslink-final-42fc62b18d-relay-1 Stopping
+ Container knowslink-final-42fc62b18d-relay-1 Stopped
+ Container knowslink-final-42fc62b18d-relay-1 Removing
+ Container knowslink-final-42fc62b18d-relay-1 Removed
+ Container knowslink-final-42fc62b18d-migrate-1 Stopping
+ Container knowslink-final-42fc62b18d-migrate-1 Stopped
+ Container knowslink-final-42fc62b18d-migrate-1 Removing
+ Container knowslink-final-42fc62b18d-migrate-1 Removed
+ Container knowslink-final-42fc62b18d-postgres-1 Stopping
+ Container knowslink-final-42fc62b18d-postgres-1 Stopped
+ Container knowslink-final-42fc62b18d-postgres-1 Removing
+ Container knowslink-final-42fc62b18d-postgres-1 Removed
+ Network knowslink-final-42fc62b18d_database Removing
+ Volume knowslink-final-42fc62b18d_postgres-data Removing
+ Network knowslink-final-42fc62b18d_ingress Removing
+ Volume knowslink-final-42fc62b18d_postgres-data Removed
+ Network knowslink-final-42fc62b18d_database Removed
+ Network knowslink-final-42fc62b18d_ingress Removed
+command: docker compose --project-name knowslink-final-42fc62b18d --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-lu8xsaua/test.yaml down --volumes; exit: 0
+[exit 1]
+## 2026-10-03T19:16:28+0900 cwd=.
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/isolated.py
+ Image knowslink-final-51b7b6ad5a-migrate Building
+ Image knowslink-final-51b7b6ad5a-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.10kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.0s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load build context
+#6 transferring context: 1.34kB 0.0s done
+#6 DONE 0.0s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#7 DONE 0.1s
+
+#8 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#8 DONE 0.1s
+
+#9 [migrate build 5/7] COPY cmd ./cmd
+#9 CACHED
+
+#10 [migrate build 4/7] RUN go mod download
+#10 CACHED
+
+#11 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#11 CACHED
+
+#12 [migrate stage-1 3/5] WORKDIR /app
+#12 CACHED
+
+#13 [migrate build 6/7] COPY internal ./internal
+#13 CACHED
+
+#14 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#14 CACHED
+
+#15 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#15 CACHED
+
+#16 [migrate build 2/7] WORKDIR /src
+#16 CACHED
+
+#17 [migrate build 3/7] COPY go.mod go.sum ./
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:7270691ab22e19b422602d78fd5e2f7f07176ef98b76171a55b0ff0fe0e4391f 0.0s done
+#19 exporting config sha256:05d42d166bd7e4b87dd298165997356f98fb852f500bad01dd3253c37990848c
+#19 exporting config sha256:05d42d166bd7e4b87dd298165997356f98fb852f500bad01dd3253c37990848c 0.0s done
+#19 exporting attestation manifest sha256:6de02734e601bfa5dbbc1832a09e1e27f750be22ee1ef30691474f075de0f3ff
+#19 exporting attestation manifest sha256:6de02734e601bfa5dbbc1832a09e1e27f750be22ee1ef30691474f075de0f3ff 0.1s done
+#19 exporting manifest list sha256:15994d7224cc22d8b912f38da4c8ee98da0f8b13a4592c1e670dba6422bd6bf0 0.0s done
+#19 naming to docker.io/library/knowslink-final-51b7b6ad5a-migrate:latest 0.0s done
+#19 unpacking to docker.io/library/knowslink-final-51b7b6ad5a-migrate:latest
+#19 unpacking to docker.io/library/knowslink-final-51b7b6ad5a-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:a3b7e2f8660d3754d2533488a49231dc82d3ca413282af4049236e18230aeff3 0.0s done
+#20 exporting config sha256:4c93a6ddab7bfbef1c95c26f25666c9bd12fe1680ea406feb3dec55f6da50c00 0.0s done
+#20 exporting attestation manifest sha256:d54129109d23514ce1a7d449ef19bfff3dad613efce8774bd7a4d4c553b40bdc 0.1s done
+#20 exporting manifest list sha256:571a5f20384c770ba74432d94fae4c53d79f932ac159b71d399e3cd8ed86e09d 0.0s done
+#20 naming to docker.io/library/knowslink-final-51b7b6ad5a-relay:latest done
+#20 unpacking to docker.io/library/knowslink-final-51b7b6ad5a-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-final-51b7b6ad5a-migrate Built
+ Image knowslink-final-51b7b6ad5a-relay Built
+ Network knowslink-final-51b7b6ad5a_database Creating
+ Network knowslink-final-51b7b6ad5a_database Created
+ Network knowslink-final-51b7b6ad5a_ingress Creating
+ Network knowslink-final-51b7b6ad5a_ingress Created
+ Volume knowslink-final-51b7b6ad5a_postgres-data Creating
+ Volume knowslink-final-51b7b6ad5a_postgres-data Created
+ Container knowslink-final-51b7b6ad5a-postgres-1 Creating
+ Container knowslink-final-51b7b6ad5a-postgres-1 Created
+ Container knowslink-final-51b7b6ad5a-migrate-1 Creating
+ Container knowslink-final-51b7b6ad5a-migrate-1 Created
+ Container knowslink-final-51b7b6ad5a-relay-1 Creating
+ Container knowslink-final-51b7b6ad5a-relay-1 Created
+ Container knowslink-final-51b7b6ad5a-postgres-1 Starting
+ Container knowslink-final-51b7b6ad5a-postgres-1 Started
+ Container knowslink-final-51b7b6ad5a-postgres-1 Waiting
+ Container knowslink-final-51b7b6ad5a-postgres-1 Healthy
+ Container knowslink-final-51b7b6ad5a-migrate-1 Starting
+ Container knowslink-final-51b7b6ad5a-migrate-1 Started
+ Container knowslink-final-51b7b6ad5a-migrate-1 Waiting
+ Container knowslink-final-51b7b6ad5a-migrate-1 Exited
+ Container knowslink-final-51b7b6ad5a-relay-1 Starting
+ Container knowslink-final-51b7b6ad5a-relay-1 Started
+ Container knowslink-final-51b7b6ad5a-migrate-1 Waiting
+ Container knowslink-final-51b7b6ad5a-relay-1 Waiting
+ Container knowslink-final-51b7b6ad5a-postgres-1 Waiting
+ Container knowslink-final-51b7b6ad5a-migrate-1 Exited
+ Container knowslink-final-51b7b6ad5a-postgres-1 Healthy
+ Container knowslink-final-51b7b6ad5a-relay-1 Healthy
+command: docker compose --project-name knowslink-final-51b7b6ad5a --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-mf23e0gq/test.yaml up --build --wait relay; exit: 0
+FAIL FIX-load-fixture: 1|4|true|true|approved|false
+PASS REG-current-auth: 401 invalid_auth
+PASS FIX-legacy-human: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-unrouted: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-consume: 403 sender_not_allowed
+PASS FIX-legacy-unchanged: unchanged true
+PASS REG-agent-delivery: send 200, persist 200, ack 200, claim 200, authorize 200
+PASS REG-owner-approval-result: H 200, page 200, agent 401, csrf 403, approve 303, consume 200, result 200, completion denied
+PASS FIX-legacy-still-denied: 403 sender_not_allowed
+PROBE fail 1 pass 8
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/probe.mjs; exit: 1
+ Container knowslink-final-51b7b6ad5a-relay-1 Stopping
+ Container knowslink-final-51b7b6ad5a-relay-1 Stopped
+ Container knowslink-final-51b7b6ad5a-relay-1 Removing
+ Container knowslink-final-51b7b6ad5a-relay-1 Removed
+ Container knowslink-final-51b7b6ad5a-migrate-1 Stopping
+ Container knowslink-final-51b7b6ad5a-migrate-1 Stopped
+ Container knowslink-final-51b7b6ad5a-migrate-1 Removing
+ Container knowslink-final-51b7b6ad5a-migrate-1 Removed
+ Container knowslink-final-51b7b6ad5a-postgres-1 Stopping
+ Container knowslink-final-51b7b6ad5a-postgres-1 Stopped
+ Container knowslink-final-51b7b6ad5a-postgres-1 Removing
+ Container knowslink-final-51b7b6ad5a-postgres-1 Removed
+ Network knowslink-final-51b7b6ad5a_ingress Removing
+ Network knowslink-final-51b7b6ad5a_database Removing
+ Volume knowslink-final-51b7b6ad5a_postgres-data Removing
+ Volume knowslink-final-51b7b6ad5a_postgres-data Removed
+ Network knowslink-final-51b7b6ad5a_ingress Removed
+ Network knowslink-final-51b7b6ad5a_database Removed
+command: docker compose --project-name knowslink-final-51b7b6ad5a --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-mf23e0gq/test.yaml down --volumes; exit: 0
+[exit 1]
+## 2026-10-03T19:16:55+0900 cwd=.
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/isolated.py
+ Image knowslink-final-ed42769aa3-migrate Building
+ Image knowslink-final-ed42769aa3-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.10kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.0s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 1.34kB 0.0s done
+#6 DONE 0.0s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#7 DONE 0.0s
+
+#8 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#8 DONE 0.0s
+
+#9 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#9 CACHED
+
+#10 [migrate stage-1 3/5] WORKDIR /app
+#10 CACHED
+
+#11 [migrate build 4/7] RUN go mod download
+#11 CACHED
+
+#12 [migrate build 3/7] COPY go.mod go.sum ./
+#12 CACHED
+
+#13 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#13 CACHED
+
+#14 [migrate build 6/7] COPY internal ./internal
+#14 CACHED
+
+#15 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#15 CACHED
+
+#16 [migrate build 5/7] COPY cmd ./cmd
+#16 CACHED
+
+#17 [migrate build 2/7] WORKDIR /src
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:43f91eef722c0de0d28574c3e144d4b02f85d0ef697465784899be0814149574 0.0s done
+#19 exporting config sha256:7d90a15e644b9547eafecbe03a09d70239ec5c13678142b0266177e24b836694
+#19 exporting config sha256:7d90a15e644b9547eafecbe03a09d70239ec5c13678142b0266177e24b836694 0.0s done
+#19 exporting attestation manifest sha256:c52a9866afa5f4c2963a567e99967b2672050beb6c10646fa196c7d7630fcf94 0.1s done
+#19 exporting manifest list sha256:959b568450b7a5d5dd32cfb95b36ba7dd57a6a84a53cc82152989a771fafaf5b
+#19 exporting manifest list sha256:959b568450b7a5d5dd32cfb95b36ba7dd57a6a84a53cc82152989a771fafaf5b 0.0s done
+#19 naming to docker.io/library/knowslink-final-ed42769aa3-migrate:latest done
+#19 unpacking to docker.io/library/knowslink-final-ed42769aa3-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:3c9a26f5bf8d8f521972d85cf976be1a35fa0d54f7f3bddf90733d9acda5705a 0.0s done
+#20 exporting config sha256:fe263afa95aa7555ca45db135f2398fab0c6852048195da21334730e3d7b6568 0.0s done
+#20 exporting attestation manifest sha256:cf821cf84ee7d54df10981efaa49e13febf273572ced5b485ac280c93a5f5ea5 0.1s done
+#20 exporting manifest list sha256:c528408cc75b3f7da55b8ff041416b473f41953090273ea4a2b6479eba1e8ce6 0.0s done
+#20 naming to docker.io/library/knowslink-final-ed42769aa3-relay:latest done
+#20 unpacking to docker.io/library/knowslink-final-ed42769aa3-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-final-ed42769aa3-migrate Built
+ Image knowslink-final-ed42769aa3-relay Built
+ Network knowslink-final-ed42769aa3_ingress Creating
+ Network knowslink-final-ed42769aa3_ingress Created
+ Network knowslink-final-ed42769aa3_database Creating
+ Network knowslink-final-ed42769aa3_database Created
+ Volume knowslink-final-ed42769aa3_postgres-data Creating
+ Volume knowslink-final-ed42769aa3_postgres-data Created
+ Container knowslink-final-ed42769aa3-postgres-1 Creating
+ Container knowslink-final-ed42769aa3-postgres-1 Created
+ Container knowslink-final-ed42769aa3-migrate-1 Creating
+ Container knowslink-final-ed42769aa3-migrate-1 Created
+ Container knowslink-final-ed42769aa3-relay-1 Creating
+ Container knowslink-final-ed42769aa3-relay-1 Created
+ Container knowslink-final-ed42769aa3-postgres-1 Starting
+ Container knowslink-final-ed42769aa3-postgres-1 Started
+ Container knowslink-final-ed42769aa3-postgres-1 Waiting
+ Container knowslink-final-ed42769aa3-postgres-1 Healthy
+ Container knowslink-final-ed42769aa3-migrate-1 Starting
+ Container knowslink-final-ed42769aa3-migrate-1 Started
+ Container knowslink-final-ed42769aa3-migrate-1 Waiting
+ Container knowslink-final-ed42769aa3-migrate-1 Exited
+ Container knowslink-final-ed42769aa3-relay-1 Starting
+ Container knowslink-final-ed42769aa3-relay-1 Started
+ Container knowslink-final-ed42769aa3-postgres-1 Waiting
+ Container knowslink-final-ed42769aa3-migrate-1 Waiting
+ Container knowslink-final-ed42769aa3-relay-1 Waiting
+ Container knowslink-final-ed42769aa3-migrate-1 Exited
+ Container knowslink-final-ed42769aa3-postgres-1 Healthy
+ Container knowslink-final-ed42769aa3-relay-1 Healthy
+command: docker compose --project-name knowslink-final-ed42769aa3 --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-lf2v1l12/test.yaml up --build --wait relay; exit: 0
+PASS FIX-load-fixture: 1|4|true|true|approved|false
+PASS REG-current-auth: 401 invalid_auth
+PASS FIX-legacy-human: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-unrouted: authorize 403 sender_not_allowed, H 403 sender_not_allowed, R 403 sender_not_allowed
+PASS FIX-legacy-consume: 403 sender_not_allowed
+PASS FIX-legacy-unchanged: unchanged true
+PASS REG-agent-delivery: send 200, persist 200, ack 200, claim 200, authorize 200
+PASS REG-owner-approval-result: H 200, page 200, agent 401, csrf 403, approve 303, consume 200, result 200, completion denied
+PASS FIX-legacy-still-denied: 403 sender_not_allowed
+PROBE fail 0 pass 9
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/probe.mjs; exit: 0
+ Container knowslink-final-ed42769aa3-relay-1 Stopping
+ Container knowslink-final-ed42769aa3-relay-1 Stopped
+ Container knowslink-final-ed42769aa3-relay-1 Removing
+ Container knowslink-final-ed42769aa3-relay-1 Removed
+ Container knowslink-final-ed42769aa3-migrate-1 Stopping
+ Container knowslink-final-ed42769aa3-migrate-1 Stopped
+ Container knowslink-final-ed42769aa3-migrate-1 Removing
+ Container knowslink-final-ed42769aa3-migrate-1 Removed
+ Container knowslink-final-ed42769aa3-postgres-1 Stopping
+ Container knowslink-final-ed42769aa3-postgres-1 Stopped
+ Container knowslink-final-ed42769aa3-postgres-1 Removing
+ Container knowslink-final-ed42769aa3-postgres-1 Removed
+ Network knowslink-final-ed42769aa3_ingress Removing
+ Volume knowslink-final-ed42769aa3_postgres-data Removing
+ Network knowslink-final-ed42769aa3_database Removing
+ Volume knowslink-final-ed42769aa3_postgres-data Removed
+ Network knowslink-final-ed42769aa3_ingress Removed
+ Network knowslink-final-ed42769aa3_database Removed
+command: docker compose --project-name knowslink-final-ed42769aa3 --env-file .env.example -f compose.yaml -f /tmp/knowslink-final-lf2v1l12/test.yaml down --volumes; exit: 0
+[exit 0]
