@@ -279,3 +279,9 @@ SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다
 현재 DEV 완료 SHA a6a10c7은 보존되어 있지만 독립 QA는 Claude 사용량 한도로 대기한다. 직접 UI 검수와 fixed-SHA 코드 리뷰도 아직 완료되지 않았다. 검증 완료 조건을 충족하기 전 main 수락·임시 워크트리 제거는 수행하지 않는다. 완료 후 병합된 브랜치 포함 여부·깨끗한 작업 트리·진행 중 세션 없음·보고서 보존을 확인하고 Orca CLI로 임시 워크트리를 제거한다. 사용자 승인된 정리는 다시 승인받지 않는다. force 삭제·미커밋 작업 삭제는 하지 않는다.
 
 삭제된 기존 fullops-dev는 Orca CLI로 같은 경로에 복구하고 기존 fullops/dev 브랜치로 연결했다. 작업 트리는 깨끗하며 환경 링크를 복원했다. MVP 완료 코드는 별도 fullops-dev-mvp에서 검증 완료까지 보존한다.
+
+## tester Grok 4.7 high 전환 — 2026-10-03
+
+사용자가 tester를 Grok 4.7 high로 설정하고 Claude 사용량 한도로 막힌 QA를 재개하도록 지시했다. 모델 목록에서 grok-4.7과 로그인 상태, CLI --reasoning-effort 지원을 확인했다. 같은 사용자 실행 지시 범위에서 원본 /home/shin/Workspace/KnowsLink의 Grok 폴더 신뢰를 등록했다. 다른 폴더 신뢰나 권한 모드는 변경하지 않았다.
+
+worker-stop은 user_owned 때문에 stop_unknown/no terminal closed를 반환했다. 사용자 명시 전환 지시에 따라 해당 한도 대기 터미널만 닫았고 ptyKilled=true를 확인했다. Dispatch ctx_6129fd1c9c83은 failed/process_exited/operator_close이며 실제 QA 코드·증거는 생성하지 않았다. 같은 Task task_bc9fa903d0d6과 기존 tester 체크아웃에서 Grok retry를 수행한다. 원래 실패와 미실행 기록은 보존한다.
