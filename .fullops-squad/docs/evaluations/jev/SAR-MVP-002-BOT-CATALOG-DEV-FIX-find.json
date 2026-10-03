@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV-FIX",
+  "head": "7b04d9524ac55a1d3348de707cf7e1dcdc9e94a0",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 58,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 58
+    }
+  ],
+  "candidates": [
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "summary": "Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP \"Command\" server.",
+      "probability": 0.8200000000000001
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.12
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched.",
+      "probability": 0.01
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.94,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3736,
+    "output_tokens": 629,
+    "cost": 0.000156912
+  },
+  "latency_seconds": 0.316,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

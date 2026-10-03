@@ -578,3 +578,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - DEV msg_41ccf1c71482/8e46c5a846e6d190e484e48be40b3dc368001a2b 후보 수집·coor 준비SHA 보존 병합. 공식Team Bots Command MCP 계약·계정등록 누락과 실제개인UI 미확정을 구분했다. 신규installer x64/arm64 tar.gz checksum·고정/workspace Node/bundle·env-i tools2/held, 관련 low5 개선·D10/D12/D13 반영. DEV lint0/strict0. main 수락은 동일고정 독립리뷰/QA 후이며 integration hold·DEV retain. 실제 계정등록/카탈로그는 원격 재시험 전 미해결이다.
 
 - 독립 리뷰 OPS task_a202d6c90f04/ctx_90049d3ffb1d/term_454b6c5f-17a9-4670-a703-9aeb6ac944bd: fresh claude-sonnet-5-5 high·turn_started. 독립 QA TESTER task_b0af2ed7f94a/ctx_c06624b7d67a/term_3f3f5e3c-508c-427a-a8be-613b5360269e: fresh grok-4.7 high·tui-idle=true 뒤 input_accepted, turn관측unsupported. 진행중 체크아웃을 보존하며 worker_done으로 실제성공을 확인한다.
+
+- OPS msg_d6ff730d8f52/96d9673 조건부 수락: 고정8e46c5a reviewed18/skipped0·critical/high0·medium2/low6·lint0/check0. F01 카드/개인UI 미확정과 기존AddMcpServer 부재 누락, F02 원인가설 단정, F04 잘못된Settings경로는 게시전 정정한다. 같은 DEV 후속FIX로 F03/F05 문서한계와 F06-F08 stale/상대prefix/기존파일 경계도 최소보완한다. 원본리뷰·진행QA·held를 보존한다. 새로운제품목표가 아니고 이전 DEV완료가 오래돼 fresh세션 선택, route opus5.5high.

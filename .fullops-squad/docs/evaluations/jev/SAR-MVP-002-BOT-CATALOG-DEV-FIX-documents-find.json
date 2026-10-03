@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV-FIX",
+  "head": "7b04d9524ac55a1d3348de707cf7e1dcdc9e94a0",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 115,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 115
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/report.md",
+      "summary": "SAR-MVP-002-BOT-CATALOG-DEV 리뷰 — 실제 Bot 앱 Command MCP 등록 준비의 독립 리뷰 결과를 기록한다",
+      "probability": 0.26
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "summary": "SAR-MVP-002-DEV 리뷰 — Grok Bot 플러그인 고정 SHA 독립 코드 문서 리뷰 결과",
+      "probability": 0.23
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "summary": "SAR-MVP-002-BOT-CATALOG-DEV 실행 기록 — 실제 Grok Bot 앱 카탈로그 미노출의 원인과 Command server 등록 조치·검증 및 재시험 댓글 초안을 기록한다",
+      "probability": 0.16
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "summary": "SAR-MVP-002-INSTALL-FIX-DEV 실행 기록 — GitHub 이슈1의 Grok 설치 실패 원인과 수정·검증 및 재시험 댓글 초안을 기록한다",
+      "probability": 0.12
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.08
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다",
+      "probability": 0.03
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "summary": "SAR-MVP-002-INSTALL-FIX-DEV-TESTER — 설치 수정 후보의 실제 Grok CLI 독립 QA — 후보 5506d64의 실제 Grok CLI 설치와 Node 경계 및 ZIP hash를 독립 검증한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/report.md",
+      "summary": "SAR-MVP-001-INTEGRATION 리뷰 — 중단된 고정 후보 리뷰 원본이며 후속 독립 리뷰에서 실제 수락을 판정한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.94,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 9886,
+    "output_tokens": 1199,
+    "cost": 0.000415212
+  },
+  "latency_seconds": 0.318,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
