@@ -1,0 +1,1808 @@
+{
+  "base": "0e4b5de7fa5eccb6a4391dedce3742e1845d1d00",
+  "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef",
+  "prior_review_base": "ffca87c9ec501e9f313c50f60124b686d27af728",
+  "prior_review_head": "4262d02fdd7b0b57a804d9e550597852950ffeae",
+  "prior_coverage": {
+    "reviewed": 94,
+    "skipped": 19,
+    "total": 113
+  },
+  "coverage_counts": {
+    "reviewed": 101,
+    "skipped": 25
+  },
+  "strategies": {
+    "new_sha_direct_review": 25,
+    "prior_review_identical_blob": 94,
+    "delta_read_historical_archive_not_reaudited": 1,
+    "historical_log_integrity_and_summary": 6
+  },
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "5971ec2f98fca97e4ed77c8d52c7fd2742a6d38b",
+      "current_blob": "7155fccaa12d3deab6c4d3b79dcc920a64e0a317",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "56c4d0842696b945b7732ef82845065f053303a6",
+      "current_blob": "8e47d4e2662987f27373723ca44c35a85e68210a",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "861a828d79321aed8bd5a9c0298b9e847481e7b9",
+      "current_blob": "861a828d79321aed8bd5a9c0298b9e847481e7b9",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "7ff11583db77e96afb09751de1def2f2f673c0f6",
+      "current_blob": "467bb8d3f8390841993f17f7dc0aa7c1580ffb85",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "ffad1aac5e19dc6b7cc5711e9b41214b7a1fc6e6",
+      "current_blob": "ffad1aac5e19dc6b7cc5711e9b41214b7a1fc6e6",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "16c1abfa7055c3fd982699edce6b20a84ea4afb6",
+      "current_blob": "364e13ef113144f9e1e4c48e99b31ccfa25c5b8f",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "d2ad2dfc2b1b9628d83f7a0a543a1f442808a9f1",
+      "current_blob": "51113a49849c28f069235107062097b84220bdbd",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "bfb72c300b7d6ea7a0a087839d70ed4ddf5d370c",
+      "current_blob": "336796aa4b9936bf70ceecdb568f68344fe2a2db",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "e915572994bd5c65a452c6a87f267663ebf80d71",
+      "current_blob": "20a4f35685ddb1b48b88871a67ba19a32ce04c20",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "69e39e527c5bfefcaaa604796269f1b336b91df2",
+      "current_blob": "69e39e527c5bfefcaaa604796269f1b336b91df2",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "c1e9ff920ba681326c91d6b5d035990c9c72e5d9",
+      "current_blob": "55ea1a2bdca1ef46b2b9131f95586de0c234cb91",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "6189ab193384a3f4cd5d4abe0f3d80e6f146dd9c",
+      "current_blob": "6189ab193384a3f4cd5d4abe0f3d80e6f146dd9c",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "772bf7dae31ca38f5634f4cc3e593b128d8d0b2e",
+      "current_blob": "d7d1a06a77394d3533943b4ef8f1ab34a0328ace",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "21da2c4b8b0cd005cf74d4fc8a1ad6b5dba9d4b6",
+      "current_blob": "21da2c4b8b0cd005cf74d4fc8a1ad6b5dba9d4b6",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-DEPLOY-001-OPS-REVIEW-route.json",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "14847d1026e44ae7f26ee2761e7bfa38f4d1ae7d",
+      "current_blob": "14847d1026e44ae7f26ee2761e7bfa38f4d1ae7d",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-DEV-route.json",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "c3bb91735cbb79f7872c4a2aa4f3f4502147a5a8",
+      "current_blob": "c3bb91735cbb79f7872c4a2aa4f3f4502147a5a8",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-DEV-route.prior-1791018911605971997.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "f1c404ca0db64750c57e4fc042d6b72248cbe0fb",
+      "current_blob": "f1c404ca0db64750c57e4fc042d6b72248cbe0fb",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-REVIEW-FIX-route.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "08c5204aa04ae6546938e651ad5df59745e40c37",
+      "current_blob": "08c5204aa04ae6546938e651ad5df59745e40c37",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-REVIEW-route.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "b2e57c209ab7de8e7ca156222e52a510819933ae",
+      "current_blob": "b2e57c209ab7de8e7ca156222e52a510819933ae",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-TESTER-FIX-route.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "ef678e8e62dab2cfb14ea6efcf470ac5f95d8517",
+      "current_blob": "ef678e8e62dab2cfb14ea6efcf470ac5f95d8517",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-TESTER-model-tester.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "328546906109bbfc754665bd0ec9aa2ca1d1061b",
+      "current_blob": "328546906109bbfc754665bd0ec9aa2ca1d1061b",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-TESTER-route.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "aaf6644389061159c5f08f5376b4181ca04f5622",
+      "current_blob": "aaf6644389061159c5f08f5376b4181ca04f5622",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-UI-route.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "360492dd81eb386524fc499ddde38d7f1b9fd42f",
+      "current_blob": "360492dd81eb386524fc499ddde38d7f1b9fd42f",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-context.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "38fbc18482877d3dab2a28caaaeedcdabedd0557",
+      "current_blob": "38fbc18482877d3dab2a28caaaeedcdabedd0557",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-documents-find.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "159d2f83cc10c0c976662957c12a99a129bd7c88",
+      "current_blob": "159d2f83cc10c0c976662957c12a99a129bd7c88",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-find.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "7752e7270bcbc8b145be2f95d51e1a4d2e1e7f5e",
+      "current_blob": "7752e7270bcbc8b145be2f95d51e1a4d2e1e7f5e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-route.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "cb21eaf5e13159bb5101f4397ec48cabe02296b0",
+      "current_blob": "cb21eaf5e13159bb5101f4397ec48cabe02296b0",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "5ca3cf43b79bb4362e3d7516d393d43d705c2b9e",
+      "current_blob": "5ca3cf43b79bb4362e3d7516d393d43d705c2b9e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "0a4e92fc1e7fbb05af9fba234e77826bb1487f99",
+      "current_blob": "0a4e92fc1e7fbb05af9fba234e77826bb1487f99",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/preview.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "dd2f77e67580eaf67e751eb2fb7b738a706b9ea1",
+      "current_blob": "dd2f77e67580eaf67e751eb2fb7b738a706b9ea1",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/report.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "bb1d7af80719f3c0921482c13406f808ea9a1ca6",
+      "current_blob": "bb1d7af80719f3c0921482c13406f808ea9a1ca6",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/result.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "5fd4c4007349cf1946a20a70ceebf962b6544d74",
+      "current_blob": "5fd4c4007349cf1946a20a70ceebf962b6544d74",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/rules.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "747e6b00eb11fa7e0bd554455e415612b68ce658",
+      "current_blob": "747e6b00eb11fa7e0bd554455e415612b68ce658",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/check-status.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "0c20ffaf2363afd5bc54bd704e9d9ca1c67dcebf",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/evidence.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "493a99e7a67b2711c705bc104207ce8befeb7286",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/independence.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "873f1f1dd2db26f6f94b19ea9947bccb2a1ca34d",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/lint.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "05291e486138e7c393122d2bd0250fe71d134bf9",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/preview.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "8f52e2c639ba6b44c541f0f93ec6473a0f781d5b",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/record-validation.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "e2084fe46a6a98b75cfbdf994319a066cc128978",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "0c7c6711c51611a8bc2be03c654091584f632309",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/result.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "51923ab073a8209d3ab0f2aff3327859427e7d86",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/rules.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "cc14f2bffd18f863187e575474696bbe8757140b",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/isolated.py",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "871c7169321ffc41fb1548c15f7ae3143c8b1bc1",
+      "current_blob": "871c7169321ffc41fb1548c15f7ae3143c8b1bc1",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe-results.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "f7345ba4bef255987055923fd84865234e12c571",
+      "current_blob": "f7345ba4bef255987055923fd84865234e12c571",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.mjs",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "fcc12523969cdad030b26631c3827e0f4ca94e20",
+      "current_blob": "fcc12523969cdad030b26631c3827e0f4ca94e20",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/run.py",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "5ab1817c5e0ee80879764737c222f92b14e6cafb",
+      "current_blob": "5ab1817c5e0ee80879764737c222f92b14e6cafb",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.html",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "c76ddbd78cfd68923f9e7c437ba4f3762958e5ba",
+      "current_blob": "c76ddbd78cfd68923f9e7c437ba4f3762958e5ba",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.html",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "d6056459912733cd346d819eb3a6098c7a3a436e",
+      "current_blob": "d6056459912733cd346d819eb3a6098c7a3a436e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.html",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "057dfc79871fa3c1d12c2dc86aa40c9d7449e86f",
+      "current_blob": "057dfc79871fa3c1d12c2dc86aa40c9d7449e86f",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.html",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "8c4e5f4203f0f1b6edd800ef523e02fe42a6d843",
+      "current_blob": "8c4e5f4203f0f1b6edd800ef523e02fe42a6d843",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.html",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "61215956430bdee796bf46699a5c9bffd828dc54",
+      "current_blob": "61215956430bdee796bf46699a5c9bffd828dc54",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.html",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "23b1a05ed25fba99535ed1c4db3ae4f6a8324ecf",
+      "current_blob": "23b1a05ed25fba99535ed1c4db3ae4f6a8324ecf",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.html",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "08650b2ad7c9fbd5471c6d37efd78f3f8a05beea",
+      "current_blob": "08650b2ad7c9fbd5471c6d37efd78f3f8a05beea",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "9bcd921a24b4234233e053612d053767a46a8ff9",
+      "current_blob": "9bcd921a24b4234233e053612d053767a46a8ff9",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "669184a6a2eaf720c20cc8650d90defdac3009f4",
+      "current_blob": "669184a6a2eaf720c20cc8650d90defdac3009f4",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "5d630298524171354330faeab6b1b2cf5889c9fd",
+      "current_blob": "5d630298524171354330faeab6b1b2cf5889c9fd",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "bc8541379999caf67e2be1facb0e71be301dbc82",
+      "current_blob": "1f2f8cd21f7641c63358813d2c109bd5df2f1100",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "ae033f1d8811a3d060bb43cd829f9ad5bb6762c6",
+      "current_blob": "ae033f1d8811a3d060bb43cd829f9ad5bb6762c6",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "ad828033166cd823b3dfc54bf93dd36c66df2005",
+      "current_blob": "ad828033166cd823b3dfc54bf93dd36c66df2005",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "b87f2be5eaf20f28013e65df47748b50369e5b16",
+      "current_blob": "b87f2be5eaf20f28013e65df47748b50369e5b16",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "17ac19fd554ef3406fc5dc24f66076926c1df44e",
+      "current_blob": "17ac19fd554ef3406fc5dc24f66076926c1df44e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "b786baa13fc74745b2f55d01c785e6d46f8daacd",
+      "current_blob": "b786baa13fc74745b2f55d01c785e6d46f8daacd",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "2d44007fe9e313841bce2ff5e0330c172d851778",
+      "current_blob": "2d44007fe9e313841bce2ff5e0330c172d851778",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "9419014da7df0a6ecadcad2fb6d0cfd01065df35",
+      "current_blob": "9419014da7df0a6ecadcad2fb6d0cfd01065df35",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "68509a9d3d239831cf83d662d0ccf7daa4015dc4",
+      "current_blob": "68509a9d3d239831cf83d662d0ccf7daa4015dc4",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "7065b6bc45552943c0b79ba2c7a1f78f4ebfe66f",
+      "current_blob": "05ae1452a765e2aead94fd66836c2969ecb91309",
+      "same_head_blob": false,
+      "strategy": "delta_read_historical_archive_not_reaudited",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "56975b486c71ab60434f461aff096554401b6053",
+      "current_blob": "56975b486c71ab60434f461aff096554401b6053",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "status": "renamed",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "b99c3ec530862352141789a5a3843bb67f48b19b",
+      "current_blob": "b99c3ec530862352141789a5a3843bb67f48b19b",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "status": "renamed",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "3bf1155f254aff7095eace16aa1691d9a778cde0",
+      "current_blob": "3bf1155f254aff7095eace16aa1691d9a778cde0",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "current_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "current_blob": "400afce5333f9ee4a8fea0d154a624315ecea3d7",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "99cc92e6c47554c03b97f862e26772f17ce8a056",
+      "current_blob": "99cc92e6c47554c03b97f862e26772f17ce8a056",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "cde62e35b23e6d8ac0beac438a0c041c3e02ac3e",
+      "current_blob": "cde62e35b23e6d8ac0beac438a0c041c3e02ac3e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "Makefile",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "a948909405e772a350471cc8774805ea60fa6fbc",
+      "current_blob": "a948909405e772a350471cc8774805ea60fa6fbc",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "a88e93ef918b3284ab5a2f0e929ebcfaf4952bb0",
+      "current_blob": "a88e93ef918b3284ab5a2f0e929ebcfaf4952bb0",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "adapters/package-lock.json",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "88f38a462e4dc6b5347e117822397eca6676cde3",
+      "current_blob": "88f38a462e4dc6b5347e117822397eca6676cde3",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "c153717b8a2a3488388f181c6fe7b89a1e74620a",
+      "current_blob": "c153717b8a2a3488388f181c6fe7b89a1e74620a",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "44771536582f4e7bb1434040a335bd979ee6c395",
+      "current_blob": "44771536582f4e7bb1434040a335bd979ee6c395",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "c53324f03a5de54f446a64f9da411d131bda675d",
+      "current_blob": "c53324f03a5de54f446a64f9da411d131bda675d",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "2e1eb954f365eb1926fd8a10453c86a9643c216c",
+      "current_blob": "2e1eb954f365eb1926fd8a10453c86a9643c216c",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "db/migrations/00001_relay.sql",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "bc5f54bf318f6e6a9b817ae54a82934eaad2e675",
+      "current_blob": "bc5f54bf318f6e6a9b817ae54a82934eaad2e675",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "db/queries/relay.sql",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "23823d4705f395a2918697a92b56f21a47ca21d2",
+      "current_blob": "23823d4705f395a2918697a92b56f21a47ca21d2",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/database/db.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "bdf4241080cbef5575b4a4006b46f977613bca5c",
+      "current_blob": "bdf4241080cbef5575b4a4006b46f977613bca5c",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/database/models.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "181922e53daed106460b25965772f91e49da2f48",
+      "current_blob": "181922e53daed106460b25965772f91e49da2f48",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/database/relay.sql.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "36d20334ac3958ba1f415ea54911a5c899a50392",
+      "current_blob": "36d20334ac3958ba1f415ea54911a5c899a50392",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "622b8363027b31eebae8de1b3c23c7ea726b57b6",
+      "current_blob": "622b8363027b31eebae8de1b3c23c7ea726b57b6",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "b16c2966cf68756d70675525ab6fc54e7edf0d1c",
+      "current_blob": "b16c2966cf68756d70675525ab6fc54e7edf0d1c",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/integration_test.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "ff70a3ea09bf657c78e309dd15cee41e32637a7a",
+      "current_blob": "cd866a8ad7070c1788e0ae9a51827cf8fe6c4696",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/legacy_test.go",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "77860458b6c3cb853cfa707b0228287172e4ff33",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "4b2f9d9663f0da70f496747cc192305b9e2e5d2b",
+      "current_blob": "4b2f9d9663f0da70f496747cc192305b9e2e5d2b",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/protocol_test.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "ba596cb1b742c9e5fef4492217bcc5bbc71dd4be",
+      "current_blob": "ba596cb1b742c9e5fef4492217bcc5bbc71dd4be",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/registry.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "2dd5f543ba627f2f8a0ca3b06386ad302fc950f0",
+      "current_blob": "2dd5f543ba627f2f8a0ca3b06386ad302fc950f0",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/registry.json",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "e7d5fadb6960d89595164f822c7c4f72d1f3c304",
+      "current_blob": "e7d5fadb6960d89595164f822c7c4f72d1f3c304",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "b80f4ba5766864371b3f6b830a41469b1b6f2d6a",
+      "current_blob": "0f6fd3814710e3b8b9c4bda0d67a7fd0555de35e",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "internal/relay/testdata/legacy_claims.json",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "4315415301b721a080f3f35dd5e45af0639e73bb",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "scripts/schema.py",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "12e0c85bb65c8034349af059eb9f59d9ea9ed034",
+      "current_blob": "12e0c85bb65c8034349af059eb9f59d9ea9ed034",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "636014a4242bcd716fbaeff2499d5e6bea8d52b0",
+      "current_blob": "636014a4242bcd716fbaeff2499d5e6bea8d52b0",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "24433ddea13a0e264696fa57779af29e101dc90e",
+      "current_blob": "24433ddea13a0e264696fa57779af29e101dc90e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI-v01-pending-full.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "97efa9185256e419ea1e1e3e9ee950d919914085",
+      "current_blob": "97efa9185256e419ea1e1e3e9ee950d919914085",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/install.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "280ad48ab16ee7f1be91bd6bf82411e3e2319401",
+      "current_blob": "280ad48ab16ee7f1be91bd6bf82411e3e2319401",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "005cca134c394787f2e0a85ded4228b805e6906c",
+      "current_blob": "005cca134c394787f2e0a85ded4228b805e6906c",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "7b1be5e57de115462cb39ee62f309d58f78c5968",
+      "current_blob": "7b1be5e57de115462cb39ee62f309d58f78c5968",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/targeted.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "1d953e0d08f39645da93a66bda12866060d282a7",
+      "current_blob": "1d953e0d08f39645da93a66bda12866060d282a7",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/check.log",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "f3f2cad9a603ab4769e5fbfe2d89cfdae61aa6e9",
+      "same_head_blob": false,
+      "strategy": "historical_log_integrity_and_summary",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/install.log",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "0446f63440e45fec2aa98c234649ac00b9b434fb",
+      "same_head_blob": false,
+      "strategy": "historical_log_integrity_and_summary",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/legacy-claim-probe.txt",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "e463c0abd1b794d3407199f28c9413598951c358",
+      "same_head_blob": false,
+      "strategy": "new_sha_direct_review",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/legacy-claim.log",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "18bd12cd88b099bede4e0452565673091d114ce5",
+      "same_head_blob": false,
+      "strategy": "historical_log_integrity_and_summary",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/lint.log",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "5052e49f008697a2727442510f7d1a4355fb5ca7",
+      "same_head_blob": false,
+      "strategy": "historical_log_integrity_and_summary",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/mvp.log",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "305e62b4d5dac41f3e692eeb32a69e99eccaeb67",
+      "same_head_blob": false,
+      "strategy": "historical_log_integrity_and_summary",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/unit.log",
+      "status": "added",
+      "prior_entry": false,
+      "prior_status": null,
+      "prior_blob": null,
+      "current_blob": "f07d3ed010917a8ff6dd5036eb0ba146157998e5",
+      "same_head_blob": false,
+      "strategy": "historical_log_integrity_and_summary",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/build.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "744cde5171c845eddfe5fb3ece209346a892c83a",
+      "current_blob": "744cde5171c845eddfe5fb3ece209346a892c83a",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/install.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "e7770cc044af5f54ad70cd1b793faf83eb9e6af6",
+      "current_blob": "e7770cc044af5f54ad70cd1b793faf83eb9e6af6",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/lint.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "88c4236447be87c5e05b18950e3fe096741fa65b",
+      "current_blob": "88c4236447be87c5e05b18950e3fe096741fa65b",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "de323ee4f5dff9c7cb4d6ad3d98cea1a5f5f9b11",
+      "current_blob": "de323ee4f5dff9c7cb4d6ad3d98cea1a5f5f9b11",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "adfaec781bed4cd1c39a17eaf650d270de3678e1",
+      "current_blob": "adfaec781bed4cd1c39a17eaf650d270de3678e1",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "b514d2c43c4a7233498421531e120cd8228155de",
+      "current_blob": "b514d2c43c4a7233498421531e120cd8228155de",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "e939ca5f9c53474e15d8851278d5b07b53aedbda",
+      "current_blob": "e939ca5f9c53474e15d8851278d5b07b53aedbda",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "15c84cccda23b2033226d9a0a347652a717940b9",
+      "current_blob": "15c84cccda23b2033226d9a0a347652a717940b9",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "9f5b1549d77373d65692c358a04ea0f997ea419e",
+      "current_blob": "9f5b1549d77373d65692c358a04ea0f997ea419e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "87538f2208f0b2db69044fe45183abf95adc854e",
+      "current_blob": "87538f2208f0b2db69044fe45183abf95adc854e",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png",
+      "status": "binary",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "fdb291ed60627a3766d7a74f4cc7e9d9a4eda220",
+      "current_blob": "fdb291ed60627a3766d7a74f4cc7e9d9a4eda220",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/unit.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "767cf61d4520e7cfe23dfb1bf736c4bba55c7130",
+      "current_blob": "767cf61d4520e7cfe23dfb1bf736c4bba55c7130",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/verify-mvp.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "41acdbc6e8e0507263bcb48190a4545c0b545f84",
+      "current_blob": "41acdbc6e8e0507263bcb48190a4545c0b545f84",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/versions.log",
+      "status": "added",
+      "prior_entry": true,
+      "prior_status": "skipped",
+      "prior_blob": "b08bcb94decb54991c39dd0616b96cc0e7db5cfb",
+      "current_blob": "b08bcb94decb54991c39dd0616b96cc0e7db5cfb",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "skipped"
+    },
+    {
+      "path": "go.mod",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "d5f3b1e6095ada38e1e6e7476e852cfb1f80af04",
+      "current_blob": "d5f3b1e6095ada38e1e6e7476e852cfb1f80af04",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    },
+    {
+      "path": "go.sum",
+      "status": "modified",
+      "prior_entry": true,
+      "prior_status": "reviewed",
+      "prior_blob": "26850f8313c89b34d3769ec8fa60fab0054129f2",
+      "current_blob": "26850f8313c89b34d3769ec8fa60fab0054129f2",
+      "same_head_blob": true,
+      "strategy": "prior_review_identical_blob",
+      "review_status": "reviewed"
+    }
+  ],
+  "standards": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "sha256": "5fb41b7cdb0585330ccb749ea8728ea0dafe537586ed28d40e5a9aa5cd506451",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "sha256": "6b2cb7bc8809e3befac83bdf0ba1110d1fdf0f7ece38f0f2eee2a1d68a07333e",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "sha256": "a1351e7b72b8f8ce4071f9962b2ebec8649c1c7e2d84c117ced86b54c72cebbf",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "sha256": "78c2b6a10a1fb757eb60b8b290352a35ab2211177767c1c96f0ebcfb668b0b40",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "sha256": "4c2f3d0910dd96d38d7ece069b1478f772ea9411117386d2ed606a32bd8a636f",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "sha256": "c6933cf2fc4e79c1f5691c60bff4d434327301827b82aef08dca0d4e881ba9e0",
+      "same_as_record_checkout": true
+    },
+    {
+      "path": ".fullops-squad/review/rule.json",
+      "sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+      "same_as_record_checkout": true
+    }
+  ],
+  "original_artifacts_integrity": [
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI-v01-pending-full.png",
+      "sha256": "0410a33a19b93e53de837d3d0645a5edabbb9a69fa9916a8a567001e1756d503",
+      "bytes": 87675,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/install.log",
+      "sha256": "8920eb51650d845a95dc5fb60a2722b8e9ed833ef52dbff0efa3258a13a84c9a",
+      "bytes": 152,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.log",
+      "sha256": "edba3f3f958446b624ef5a901e45e17f45924c52fd3991f902329028f3b0e904",
+      "bytes": 642,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.log",
+      "sha256": "05c80d99a6c05378a241bed5f2a75202defac3a9083cbf3b534998689492d5fe",
+      "bytes": 642,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/targeted.log",
+      "sha256": "f55dc690e24336fe0b1bc46fdb31a7643dfa2ddb5aad2408bba9645a8616cfdc",
+      "bytes": 660,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/build.log",
+      "sha256": "5fc4a209208cb881f07e104e7b35574b4174d5fa335d620b94130fbe59646bf2",
+      "bytes": 291,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/install.log",
+      "sha256": "15c99f8f751cf568edd2b53838dcf52c3fcbf0aa0f95c59bee09de092e8a9105",
+      "bytes": 262,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/lint.log",
+      "sha256": "02edc353c317b3a2f9bb12687a47cf44655c695c89a9c065b73352e68e7de276",
+      "bytes": 4874,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.log",
+      "sha256": "05e2e600eef59835790584c869e4dc048e889c053b3494db81615ece2dcea622",
+      "bytes": 51931,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png",
+      "sha256": "f29706386c1456d94ba9db94d4973e1a8325e1b7e19a5f52b392c0e3dd7f8c29",
+      "bytes": 81993,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png",
+      "sha256": "522459c5d3de6c81b773a84970e1b958c8cdad4cfb9f21e6297dab22804ccf67",
+      "bytes": 84544,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png",
+      "sha256": "dc9e2a2288d9d3d8e6bb7f2c2333dd30e051a152580761dcd881f94301b0e7ff",
+      "bytes": 82872,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png",
+      "sha256": "9b1e80bde009173fa1283e629f484778340a9786b3e2636100388f476e21288a",
+      "bytes": 82576,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png",
+      "sha256": "e7d609c969440f78c3cfbc2551b06f005090358c86d7bc35d52b3f05bf35b156",
+      "bytes": 74469,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png",
+      "sha256": "f17b9389981cc5ab1578070fb99f399496d2eafa3723a8238c3b337445fe1159",
+      "bytes": 6378,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png",
+      "sha256": "369df16fac609761f6c6033c1613ba0e4634bc71c9ea7e0469e28fb920f08a4a",
+      "bytes": 74886,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/unit.log",
+      "sha256": "e7494730af6b575a0638d7cd12d9d56c590538fe5d194a54692e3b75a8b1c2fd",
+      "bytes": 429,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/verify-mvp.log",
+      "sha256": "5111bab4c4996f61ce138d9919e208ff4e62473dfa1d3e80bb1f0f7beeea5e5e",
+      "bytes": 9426,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/versions.log",
+      "sha256": "5f635dcb99355f430e6fe579c8af9b10579039bab359129f89b26501dcd842e3",
+      "bytes": 683,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": "go.mod",
+      "sha256": "d59fb714a7cf8f0fc47003d787eb3f7a98274bd3b6ca401b454ee7434be35c06",
+      "bytes": 607,
+      "matches_prior_evidence": true
+    },
+    {
+      "path": "go.sum",
+      "sha256": "e825702e21bbdfb1eb3268d4b1605a4f95e6cd1736a9eb2b50ee6c301183bb3c",
+      "bytes": 4714,
+      "matches_prior_evidence": true
+    }
+  ],
+  "reuse_dependencies": [
+    {
+      "path": "internal/relay/store.go",
+      "scope": "func (s *Service) transaction(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "65cbf1865c395ef77961e75d5bf42329afa84efc8591ffa6cd519966a18b1335",
+      "matched_bytes": 1365
+    },
+    {
+      "path": "internal/relay/store.go",
+      "scope": "func (st *State) current(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "0fa96e07f988b150753188c5e43389605de7c45662bbc35a02ac996648ab110f",
+      "matched_bytes": 1076
+    },
+    {
+      "path": "internal/relay/store.go",
+      "scope": "func (st *State) sweep(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "4f75c4f74b796d4ea6be68ecbeaf00fcab13050feed54d5b20baa18faafb3121",
+      "matched_bytes": 1357
+    },
+    {
+      "path": "internal/relay/http.go",
+      "scope": "var page =",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "f92a9999a3704d0688bab7d6fc501c4d4afb627ea8b1bb553c2f5c4c7cf1f640",
+      "matched_bytes": 1158
+    },
+    {
+      "path": "internal/relay/http.go",
+      "scope": "func (s *Service) gateView(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "03fcf962065ae3e699a50e1464ba0294bc08470151bf748370756774109a3c5d",
+      "matched_bytes": 1091
+    },
+    {
+      "path": "internal/relay/http.go",
+      "scope": "func (s *Service) gateDecision(",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "890f5f3b23025a7be56d8dbbf27a1b8af53c7f3ac5a994b4ff7c1659d7b8d3d9",
+      "matched_bytes": 1330
+    },
+    {
+      "path": "db/queries/relay.sql",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "5515bdeb83ba4f009fbe5308613229a55668e36d979f21fa01366c0fde282698"
+    },
+    {
+      "path": "internal/database/relay.sql.go",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "a0db982e8585ca7ef638352749345126d0a206da071561618ad6c7daf717e638"
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "afe0d45abfbe8de96447c77c7dfcc18e12aa75aa58f789e8c01176a24fa7cd08"
+    },
+    {
+      "path": "compose.yaml",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "31bb474598f29f0cc334ae594bfd9e24dbecc5eba798496601b4f8ae5613dc84"
+    },
+    {
+      "path": "Dockerfile",
+      "scope": "whole file",
+      "original_ref": "31405e736a16be9d77239c6cdc6fdeb56892436f",
+      "unchanged": true,
+      "sha256": "0d4910ef981013c4db94ae408f6eb814c21d0a4bffe3edcc2658ad97f374314e"
+    }
+  ],
+  "prior_reviews_preserved": [
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/check-status.json",
+      "sha256": "2a1eb830e39d1070b7944240dca51fedae2d224c28f5bd27ea25852eb9a5f116",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/check.log",
+      "sha256": "bf61e564ab101fe137a7c467e81a180c541cc664395f5a82c4cfb9014b0ec9c2",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/evidence.json",
+      "sha256": "b44a85402ad174c7296b1aad9373852a1c596bcc6e0c350bc881638163a6090a",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/independence.json",
+      "sha256": "39b40dacc809844272674e3575dcbe850cef0e70209f7015d75c06e7c24bc2f8",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/install.log",
+      "sha256": "827da416e4529ec45714f64baa4d2fa3f5bcf4b29cb2fd958fdf1f3c0b3bdd4a",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/legacy-claim-probe.txt",
+      "sha256": "da6ff1a10e9b5f385a12a37215d0b968d87206c6c419633d273c19ffa6c46fef",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/legacy-claim.log",
+      "sha256": "575e9907e66d3726c478c2107a383daf1221875559939812b1346bbc5fb76361",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/lint.json",
+      "sha256": "629e597d83242a1c90bbaab3a3cffd7d768c808b3c57f3d6a5f91b25eb247925",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/lint.log",
+      "sha256": "8a6d97c932544d590000417a952ee1878a5ea27fc0ccd18b813224dc9928169c",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/mvp.log",
+      "sha256": "1494556d74217c1702cc66e5ca394493b22cafba765af2fe57e844df04f940d6",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/preview.json",
+      "sha256": "a557e3b0755d11a5edc09292ce2966572f2241572f98a25a92292b39f6f86474",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/record-validation.json",
+      "sha256": "c9bde6ba3bbc21b0a89add9f1acd651abd4cd0671c2b89477696d6ab4ff62ae5",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "sha256": "890af8a0bc2514387ec3e465d5e00d51d30285c9030efddd52ef97b39d6d6264",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/result.json",
+      "sha256": "af423d025cd5d4d1376f3efa4609ba5c06eb339aa8e3ef91e1ec4866cf864308",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/rules.json",
+      "sha256": "6dec5a5f1bf6e4fcfdad8f57dd33e0ff5e7bec372f67f79801ad6fe503ee798c",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/unit.log",
+      "sha256": "4ac4a43ea2df5a249473d5131b460d9333f9cab07e32c138b9eace23dead762a",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/install.log",
+      "sha256": "8920eb51650d845a95dc5fb60a2722b8e9ed833ef52dbff0efa3258a13a84c9a",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.json",
+      "sha256": "3fd43ccbebab72f2385b7630d5b934a796d3357c7912bba44dcb27a9fef0dd44",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.log",
+      "sha256": "edba3f3f958446b624ef5a901e45e17f45924c52fd3991f902329028f3b0e904",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.json",
+      "sha256": "83ed9e4a9068e1bc775eb19052cd7bbca4c70a1a96f11ab929b7431de3a62f43",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.log",
+      "sha256": "05c80d99a6c05378a241bed5f2a75202defac3a9083cbf3b534998689492d5fe",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/preview.json",
+      "sha256": "e8170457d92ba7b60d20a19d0535f5da7869cccbc5222fe4f2be0537cf051eba",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/report.md",
+      "sha256": "bb9f30baf1b68836cd86c98b4730e18be85c4ed45180531fd75b512cb9c2f6ae",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/result.json",
+      "sha256": "39b4da9cd09486d5d576dafdd16b2e7d13f52be6147e0be840b05f7820875b45",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/rules.json",
+      "sha256": "243e9582fe27543430e26d35f7a5ce44c98e930db495b9012b2ee89ab5b85ee7",
+      "matches_fixed_head": true
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/targeted.log",
+      "sha256": "f55dc690e24336fe0b1bc46fdb31a7643dfa2ddb5aad2408bba9645a8616cfdc",
+      "matches_fixed_head": true
+    }
+  ],
+  "snapshot_clean": true,
+  "snapshot_detached": true,
+  "snapshot_writeable_tracked_files": [],
+  "qa_followup": {
+    "message": "msg_9aa228d35a66",
+    "prior_qa_report_sha": "36bd4ae",
+    "prior_product_head": "4262d02fdd7b0b57a804d9e550597852950ffeae",
+    "new_qa_head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef",
+    "new_qa_status": "coordinator reports narrow QA started; final not received",
+    "expected_report": "SAR-MVP-001-TESTER-FINAL.md"
+  },
+  "ops_accepted_main": "c0e37c0 already ancestor of base 0e4b5de; not re-reviewed"
+}

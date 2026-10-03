@@ -1,0 +1,10 @@
+cwd: /tmp/knowslink-mvp-review-78b1d92
+command: make test
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.032s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.018s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.022s
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.088s
+
+exit_code: 0

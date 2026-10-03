@@ -1,0 +1,10 @@
+cwd: /tmp/knowslink-mvp-review-78b1d92
+command: go test -count=1 -overlay /tmp/knowslink-final-review-probes/red-overlay.json ./internal/relay -run TestLegacyClaimsCannotReachParentBoundaries -v
+=== RUN   TestLegacyClaimsCannotReachParentBoundaries
+    legacy_test.go:122: authorize 0199a3f2-4c10-7a11-8b22-334455667788: legacy claim reused: <nil>
+--- FAIL: TestLegacyClaimsCannotReachParentBoundaries (0.00s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	0.006s
+FAIL
+
+exit_code: 1

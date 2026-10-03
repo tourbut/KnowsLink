@@ -1,0 +1,1072 @@
+{
+  "base": "0e4b5de7fa5eccb6a4391dedce3742e1845d1d00",
+  "head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Codex gpt-6.1-sol, separate actual session 01a10135-a619-7441-85a7-2ac49e68dad9",
+  "conclusion": "RF-01 및 신규 C1 human 우회 해소, 미해결 critical/high 0. 고정 78b1d92의 독립 코드 리뷰는 수락 가능. 제품 최종 수락은 coor의 새 SHA tester QA 확인 뒤이며 공개 정책·실벤더·실데이터·실제 배포 held를 유지한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 112,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 상태·인계·인덱스 변경을 실패 리뷰·RF-01 수정·OPS main 수락·D04 원천·제품/공개 held와 직접 대조했다. 기록 시점의 차단 상태를 보존하고 파일 소유 경계를 유지한다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 6,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 상태·인계·인덱스 변경을 실패 리뷰·RF-01 수정·OPS main 수락·D04 원천·제품/공개 held와 직접 대조했다. 기록 시점의 차단 상태를 보존하고 파일 소유 경계를 유지한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 상태·인계·인덱스 변경을 실패 리뷰·RF-01 수정·OPS main 수락·D04 원천·제품/공개 held와 직접 대조했다. 기록 시점의 차단 상태를 보존하고 파일 소유 경계를 유지한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 7,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 상태·인계·인덱스 변경을 실패 리뷰·RF-01 수정·OPS main 수락·D04 원천·제품/공개 held와 직접 대조했다. 기록 시점의 차단 상태를 보존하고 파일 소유 경계를 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 56,
+      "deletions": 47,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 기술 정본과 RF-01 diff를 Deliver==agent 부모 경계·legacy fail-closed·HTTP403·TTL 및 실제 fixture/회귀 실행과 대조했다. 구현·SQL/wire/UI 불변과 제품 기준 C1–C5의 일치를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 기술 정본과 RF-01 diff를 Deliver==agent 부모 경계·legacy fail-closed·HTTP403·TTL 및 실제 fixture/회귀 실행과 대조했다. 구현·SQL/wire/UI 불변과 제품 기준 C1–C5의 일치를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "added",
+      "insertions": 35,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 기술 정본과 RF-01 diff를 Deliver==agent 부모 경계·legacy fail-closed·HTTP403·TTL 및 실제 fixture/회귀 실행과 대조했다. 구현·SQL/wire/UI 불변과 제품 기준 C1–C5의 일치를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "added",
+      "insertions": 86,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 기술 정본과 RF-01 diff를 Deliver==agent 부모 경계·legacy fail-closed·HTTP403·TTL 및 실제 fixture/회귀 실행과 대조했다. 구현·SQL/wire/UI 불변과 제품 기준 C1–C5의 일치를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 기술 정본과 RF-01 diff를 Deliver==agent 부모 경계·legacy fail-closed·HTTP403·TTL 및 실제 fixture/회귀 실행과 대조했다. 구현·SQL/wire/UI 불변과 제품 기준 C1–C5의 일치를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-DEPLOY-001-OPS-REVIEW-route.json",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 16,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-DEV-route.json",
+      "status": "modified",
+      "insertions": 37,
+      "deletions": 36,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-DEV-route.prior-1791018911605971997.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-REVIEW-FIX-route.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-REVIEW-route.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-TESTER-FIX-route.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-TESTER-model-tester.json",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-TESTER-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-001-UI-route.json",
+      "status": "added",
+      "insertions": 77,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-context.json",
+      "status": "added",
+      "insertions": 221,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-documents-find.json",
+      "status": "added",
+      "insertions": 69,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-find.json",
+      "status": "added",
+      "insertions": 84,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-PUBLIC-POLICY-001-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: JSON 구문과 task/role/scope·기준 SHA·명시 override·과거 모델 선택 기록을 확인했다. 탐색 확률이나 과거 route 모델을 현재 실행·수락 증거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.json",
+      "status": "added",
+      "insertions": 50,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 기존 고정 refs·lint/rules/coverage 기록을 확인했다. report는 중단 템플릿이고 result는 pending이며 성공 리뷰로 취급하지 않았다. 원본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.json",
+      "status": "added",
+      "insertions": 50,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 기존 고정 refs·lint/rules/coverage 기록을 확인했다. report는 중단 템플릿이고 result는 pending이며 성공 리뷰로 취급하지 않았다. 원본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/preview.json",
+      "status": "added",
+      "insertions": 586,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 기존 고정 refs·lint/rules/coverage 기록을 확인했다. report는 중단 템플릿이고 result는 pending이며 성공 리뷰로 취급하지 않았다. 원본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/report.md",
+      "status": "added",
+      "insertions": 34,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 기존 고정 refs·lint/rules/coverage 기록을 확인했다. report는 중단 템플릿이고 result는 pending이며 성공 리뷰로 취급하지 않았다. 원본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/result.json",
+      "status": "added",
+      "insertions": 771,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 기존 고정 refs·lint/rules/coverage 기록을 확인했다. report는 중단 템플릿이고 result는 pending이며 성공 리뷰로 취급하지 않았다. 원본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/rules.json",
+      "status": "added",
+      "insertions": 129,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 기존 고정 refs·lint/rules/coverage 기록을 확인했다. report는 중단 템플릿이고 result는 pending이며 성공 리뷰로 취급하지 않았다. 원본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/check-status.json",
+      "status": "added",
+      "insertions": 22,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/evidence.json",
+      "status": "added",
+      "insertions": 370,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/independence.json",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/lint.json",
+      "status": "added",
+      "insertions": 50,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/preview.json",
+      "status": "added",
+      "insertions": 717,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/record-validation.json",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "status": "added",
+      "insertions": 214,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/result.json",
+      "status": "added",
+      "insertions": 961,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/rules.json",
+      "status": "added",
+      "insertions": 145,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/isolated.py",
+      "status": "added",
+      "insertions": 71,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe-results.json",
+      "status": "added",
+      "insertions": 229,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.mjs",
+      "status": "added",
+      "insertions": 426,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/run.py",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.html",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.html",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.html",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.html",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.html",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.html",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.html",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "status": "added",
+      "insertions": 114,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "status": "added",
+      "insertions": 85,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "status": "added",
+      "insertions": 170,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 기술 정본과 RF-01 diff를 Deliver==agent 부모 경계·legacy fail-closed·HTTP403·TTL 및 실제 fixture/회귀 실행과 대조했다. 구현·SQL/wire/UI 불변과 제품 기준 C1–C5의 일치를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+      "status": "added",
+      "insertions": 101,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+      "status": "added",
+      "insertions": 50,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 8,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "status": "modified",
+      "insertions": 55,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "status": "added",
+      "insertions": 22,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "status": "modified",
+      "insertions": 129,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: MVP 완료 전문과 수정 후속 및 원래 SHA·held를 발췌 대조했다. 초기 setup 등 누적 아카이브 전문의 중복 재감사는 생략했다. 현재 판정은 D02/D03/D05–D10·DEV 실행 기록·TESTER/UI 보고서·새 고정 후보 직접 검토에 근거한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+      "status": "modified",
+      "insertions": 306,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "변경된 DEV 수정·실패 리뷰·중복 finish 후속 전문은 직접 대조했다. 초기 setup을 포함한 누적 로그 전체 재감사는 생략한다. 전문·실패 근거 보존을 확인했으며 새 동작 PASS로 확장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+      "status": "modified",
+      "insertions": 126,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: MVP 완료 전문과 수정 후속 및 원래 SHA·held를 발췌 대조했다. 초기 setup 등 누적 아카이브 전문의 중복 재감사는 생략했다. 현재 판정은 D02/D03/D05–D10·DEV 실행 기록·TESTER/UI 보고서·새 고정 후보 직접 검토에 근거한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "status": "renamed",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "status": "renamed",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 117,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 94,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 상태·인계·인덱스 변경을 실패 리뷰·RF-01 수정·OPS main 수락·D04 원천·제품/공개 held와 직접 대조했다. 기록 시점의 차단 상태를 보존하고 파일 소유 경계를 유지한다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 7,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": "Makefile",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 59,
+      "deletions": 32,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 문서·상태 diff를 frozen C1–C5·MVP-01–16 및 실제 구현·QA/UI·제안/확정/held 경계와 대조했다. 과거 기록과 현재 수락·실제 공개를 구분하고 소유 범위 밖 정본은 수정하지 않는다."
+    },
+    {
+      "path": "adapters/package-lock.json",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 고정 의존성 diff·module/lock 정합성을 직접 검토했다. 실제 make install과 snapshot product-lint의 module verify·타입 검사 종료코드 0을 대조했다."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 고정 의존성 diff·module/lock 정합성을 직접 검토했다. 실제 make install과 snapshot product-lint의 module verify·타입 검사 종료코드 0을 대조했다."
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "status": "modified",
+      "insertions": 226,
+      "deletions": 8,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "status": "added",
+      "insertions": 203,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "db/migrations/00001_relay.sql",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "db/queries/relay.sql",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/database/db.go",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/database/models.go",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/database/relay.sql.go",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "added",
+      "insertions": 496,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/relay/integration_test.go",
+      "status": "added",
+      "insertions": 491,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 diff와 부모 호출 네 경계·실제 이전 signed State fixture·현재 권한·정상 agent/gate를 직접 검토했다. legacy RED/GREEN·explicit human/TTL overlay·unit/race·Postgres/HTTP verify-mvp 근거를 대조했다."
+    },
+    {
+      "path": "internal/relay/legacy_test.go",
+      "status": "added",
+      "insertions": 161,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 diff와 부모 호출 네 경계·실제 이전 signed State fixture·현재 권한·정상 agent/gate를 직접 검토했다. legacy RED/GREEN·explicit human/TTL overlay·unit/race·Postgres/HTTP verify-mvp 근거를 대조했다."
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "status": "added",
+      "insertions": 285,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/relay/protocol_test.go",
+      "status": "added",
+      "insertions": 117,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/relay/registry.go",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/relay/registry.json",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "added",
+      "insertions": 431,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 diff와 부모 호출 네 경계·실제 이전 signed State fixture·현재 권한·정상 agent/gate를 직접 검토했다. legacy RED/GREEN·explicit human/TTL overlay·unit/race·Postgres/HTTP verify-mvp 근거를 대조했다."
+    },
+    {
+      "path": "internal/relay/testdata/legacy_claims.json",
+      "status": "added",
+      "insertions": 301,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 78b1d92 diff와 부모 호출 네 경계·실제 이전 signed State fixture·현재 권한·정상 agent/gate를 직접 검토했다. legacy RED/GREEN·explicit human/TTL overlay·unit/race·Postgres/HTTP verify-mvp 근거를 대조했다."
+    },
+    {
+      "path": "scripts/schema.py",
+      "status": "added",
+      "insertions": 22,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "status": "added",
+      "insertions": 49,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 전체 제품 diff와 관련 호출·권한·오류·저장/경합 경계를 직접 검토했다. 고정 head의 lint/unit/race/Postgres·HTTP·TypeScript 실행 및 legacy claim targeted 재현과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI-v01-pending-full.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: view_image로 직접 관찰했다. 저장 증거의 SHA256·dimensions를 evidence.json에 기록했으며 새 서버 실행이나 새로운 시각 수락으로 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/install.log",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint-policy.log",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/lint.log",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/targeted.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원래 31405e7의 C1 재현과 stale epoch CAS zero-row·HTTP 503 rollback 로그를 직접 읽었다. 변경 없는 SQL/transaction/current/sweep 동일성은 evidence.json에 기록했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/check.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원래 4262d02 실패 리뷰의 원시 로그다. 고정 head의 내용·SHA256·종료 표식과 report/result를 대조했다. 새 SHA 실행으로 재분류하거나 전체 원시 출력을 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/install.log",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원래 4262d02 실패 리뷰의 원시 로그다. 고정 head의 내용·SHA256·종료 표식과 report/result를 대조했다. 새 SHA 실행으로 재분류하거나 전체 원시 출력을 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/legacy-claim-probe.txt",
+      "status": "added",
+      "insertions": 49,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원래 4262d02 리뷰 refs·coverage 113/94/19·actual independence·ERROR0·RF-01 high 차단·실행 근거를 직접 대조했다. 실패 판정과 interrupted 리뷰를 원문 보존하며 현재 후보의 통과로 덮어쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/legacy-claim.log",
+      "status": "added",
+      "insertions": 17,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원래 4262d02 실패 리뷰의 원시 로그다. 고정 head의 내용·SHA256·종료 표식과 report/result를 대조했다. 새 SHA 실행으로 재분류하거나 전체 원시 출력을 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/lint.log",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원래 4262d02 실패 리뷰의 원시 로그다. 고정 head의 내용·SHA256·종료 표식과 report/result를 대조했다. 새 SHA 실행으로 재분류하거나 전체 원시 출력을 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/mvp.log",
+      "status": "added",
+      "insertions": 193,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원래 4262d02 실패 리뷰의 원시 로그다. 고정 head의 내용·SHA256·종료 표식과 report/result를 대조했다. 새 SHA 실행으로 재분류하거나 전체 원시 출력을 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/unit.log",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원래 4262d02 실패 리뷰의 원시 로그다. 고정 head의 내용·SHA256·종료 표식과 report/result를 대조했다. 새 SHA 실행으로 재분류하거나 전체 원시 출력을 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/build.log",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/install.log",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/lint.log",
+      "status": "added",
+      "insertions": 81,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.log",
+      "status": "added",
+      "insertions": 772,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: designer의 원래 직접 시각 판정을 재사용한다. PNG 헤더·SHA256과 c59537b Git blob 동일성을 evidence.json에서 검증했다. 모든 PNG의 새 직접 열람이나 새 캡처는 하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: designer의 원래 직접 시각 판정을 재사용한다. PNG 헤더·SHA256과 c59537b Git blob 동일성을 evidence.json에서 검증했다. 모든 PNG의 새 직접 열람이나 새 캡처는 하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: designer의 원래 직접 시각 판정을 재사용한다. PNG 헤더·SHA256과 c59537b Git blob 동일성을 evidence.json에서 검증했다. 모든 PNG의 새 직접 열람이나 새 캡처는 하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: designer의 원래 직접 시각 판정을 재사용한다. PNG 헤더·SHA256과 c59537b Git blob 동일성을 evidence.json에서 검증했다. 모든 PNG의 새 직접 열람이나 새 캡처는 하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: view_image로 직접 관찰했다. 저장 증거의 SHA256·dimensions를 evidence.json에 기록했으며 새 서버 실행이나 새로운 시각 수락으로 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: designer의 원래 직접 시각 판정을 재사용한다. PNG 헤더·SHA256과 c59537b Git blob 동일성을 evidence.json에서 검증했다. 모든 PNG의 새 직접 열람이나 새 캡처는 하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: designer의 원래 직접 시각 판정을 재사용한다. PNG 헤더·SHA256과 c59537b Git blob 동일성을 evidence.json에서 검증했다. 모든 PNG의 새 직접 열람이나 새 캡처는 하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/unit.log",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/verify-mvp.log",
+      "status": "added",
+      "insertions": 192,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/versions.log",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 원시 로그 전문 재감사는 생략했다. 파일 존재·SHA256·실제 exit 표식·최종 요약을 evidence.json에 기록하고 원래 TESTER/DEV 보고서와 대조했다. 원래 실패와 held를 유지하며 새 후보 실행으로 바꾸지 않는다."
+    },
+    {
+      "path": "go.mod",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 고정 의존성 diff·module/lock 정합성을 직접 검토했다. 실제 make install과 snapshot product-lint의 module verify·타입 검사 종료코드 0을 대조했다."
+    },
+    {
+      "path": "go.sum",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "이전 SAR-MVP-001-REVIEW-FIX 4262d02 전체 검사 근거(94 reviewed/19 skipped)를 명시적으로 재사용한다. head Git blob이 같다. 이전 사유: 고정 의존성 diff·module/lock 정합성을 직접 검토했다. 실제 make install과 snapshot product-lint의 module verify·타입 검사 종료코드 0을 대조했다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/store.go",
+      "start_line": 271,
+      "end_line": 278,
+      "severity": "high",
+      "resolved": true,
+      "content": "RF-01: parentRouting에 저장 Deliver==agent를 요구한다. legacy human/경로 미기록 claim은 authorize·H·R·gate-consume 모두 거부된다. 실제 이전 fixture RED(exit1), 새 head GREEN(exit0), explicit human/TTL overlay(exit0) 및 실제 Postgres/HTTP 회귀(exit0)로 해소를 확인했다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "start_line": 288,
+      "end_line": 314,
+      "severity": "high",
+      "resolved": true,
+      "content": "원래 C1 신규 human agent 처리 우회는 해소 상태를 유지한다. 저장된 agent route를 lease/leased/claim에서 검사하고 H 외 직접 human send를 거부한다. 새 head verify-mvp의 agent_cannot_process_human_delivery와 owner gate/current-auth 회귀가 통과했다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "1043ed6a-289c-456a-a1bb-aeaf0b0d4a5d",
+    "reviewer_session": "01a10135-a619-7441-85a7-2ac49e68dad9",
+    "snapshot_path": "/tmp/knowslink-mvp-review-78b1d92",
+    "snapshot_head": "78b1d92c8aa626245d3349ffaf7367d28f1dd3ef",
+    "read_only": true
+  }
+}

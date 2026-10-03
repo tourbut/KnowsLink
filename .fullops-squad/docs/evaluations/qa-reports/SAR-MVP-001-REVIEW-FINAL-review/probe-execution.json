@@ -1,0 +1,35 @@
+[
+  {
+    "name": "legacy-red",
+    "command": [
+      "go",
+      "test",
+      "-count=1",
+      "-overlay",
+      "/tmp/knowslink-final-review-probes/red-overlay.json",
+      "./internal/relay",
+      "-run",
+      "TestLegacyClaimsCannotReachParentBoundaries",
+      "-v"
+    ],
+    "exit_code": 1,
+    "overlay": true
+  },
+  {
+    "name": "legacy-human-ttl",
+    "command": [
+      "go",
+      "test",
+      "-count=1",
+      "-race",
+      "-overlay",
+      "/tmp/knowslink-final-review-probes/human-overlay.json",
+      "./internal/relay",
+      "-run",
+      "TestLegacyClaimsCannotReachParentBoundaries|TestReviewLegacyFixtureAndTTL",
+      "-v"
+    ],
+    "exit_code": 0,
+    "overlay": true
+  }
+]
