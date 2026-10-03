@@ -371,3 +371,6 @@ QA task_33e3336872e4 / ctx_fcf73eae42eb / term_849b3e3a-68dc-436c-9002-c838535d6
 ## 수정 후보 legacy claim high — 2026-10-03
 
 reviewer escalation msg_5d70016552f0: 고정 4262d02는 새 human claim 경계를 차단하지만 기존 a6a10c7의 실제 State 메서드로 발급된 deliver:human ClaimToken을 authorize/relay.result가 수락한다. owner gates=0 재현으로 수락 차단이다. reviewer가 test-only overlay 증거·high 보고를 완료할 때까지 dev 체크아웃을 변경하지 않는다. 이후 같은 SAR-MVP-001-DEV의 새 구현 세션에 고정 증거를 인계하고 기존 claim 무효화와 parentRouting 경계를 담당 DEV가 수정한다. QA에는 현재 고정 후보 검증을 마무리하고 제품 수락과 구별하도록 전달했다. 새 후보에서 narrow 독립 재검증·고정 SHA 리뷰가 필요하다. coor가 계속 조정하며 임시 워크트리 정리는 원격 통합 후다.
+
+
+RF-01 실패 리뷰 138b8b3/msg_5d7ee3dd44ba는 coor 후보에 보존하고 integration hold했다. reviewer ctx_6d485a154a72는 출력 보존 후 release했다. DEV는 종료·clean 확인 후 최신 main과 증거/인계를 포함하는 5002db6으로 동기화했다. 같은 SAR-MVP-001-DEV 후속이지만 긴 이전 세션이므로 새 Claude Opus 5.5 high 세션을 선택했다. Task task_749e8b53d66e / Dispatch ctx_86589b96acca / terminal term_9657ed5d-824f-4d6d-8562-79d09a630eda, effective 모델과 turn_started를 확인했다. 원래 실패 리뷰는 성공으로 바꾸지 않는다. QA는 기존 고정 후보를 완료 중이다.
