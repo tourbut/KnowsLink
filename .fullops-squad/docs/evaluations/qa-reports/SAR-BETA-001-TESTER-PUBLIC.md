@@ -95,4 +95,7 @@ DEC-02 실데이터, DEC-03 공개 한도와 신원, 실adapter, 실제 벤더, 
 
 ## 정적 검사
 
-lint, strict, 공백 검사의 종료코드는 증거 커밋 뒤 깨끗한 트리에서 확인하고 이 절과 완료 보고에 갱신한다.
+증거 커밋 `6ba158b694efaef8bf211df19f63e1b990f44247`에서 `lint.py --from 9cd889cfd41dcf33627bdf40909a04c73ef658a2` 종료코드는 0이다. ERROR 0, WARNING 0, 실행 불가 0이다. product-lint는 passed다. 검사 파일 수는 0이다. QA 기록 경로는 lint 제외 목록에 있다.
+`deliverables.py --strict` 종료코드는 0이다. 검사 13, 미작성 0, 문제 0, 경고 0이다.
+`git diff --check`와 `git diff --cached --check` 종료코드는 0이다.
+제품 경로 diff는 비어 있다. 배포 체크아웃과 snapshot의 porcelain은 0줄이다.
