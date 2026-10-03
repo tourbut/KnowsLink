@@ -81,6 +81,8 @@ summary: 본인 전용 합성 베타 배포 준비의 근거와 검증 증거 �
 | L5 | 위 원시 기록 표를 추가했다 |
 | L6 | D11 5단계를 칸별로 분리했다 |
 
+재검증(수정 SHA에서): `beta.sh deploy 437f143`(rollback, exit 0)·`beta.sh deploy <수정 SHA>`(no-op 이동, exit 0)·`verify.py local` 통과·`restore-verify` `tables=2 relay_state_rows=1` exit 0·`verify.py regression` 불변. rollback 대상에 `deploy` 명령이 없어 앞으로 이동은 수동 체크아웃이 필요했다(D12 11.3에 한계로 기록).
+
 ## 아직 실행하지 않은 것 (held)
 
 - Access 앱·reusable policy 생성: MCP와 `cert.pem`에 Access 쓰기 권한이 없다. 필요한 최소 권한을 coordinator에 ask했다. 최소 권한은 `Access: Apps and Policies Edit`와 `Access: Organizations, Identity Providers, and Groups Read` 두 개다(리뷰 M2로 정정).
