@@ -11,6 +11,10 @@ import (
 	"time"
 )
 
+const firstID = "0199a3f2-4c10-7a11-8b22-334455667788"
+const secondID = "0199a3f2-4c10-7a11-8b22-334455667799"
+const gateID = "0199a3f2-4c10-7a11-8b22-3344556677aa"
+
 func wire(t *testing.T, private ed25519.PrivateKey, id, from, to, intent, key, reply string, body map[string]any, exp time.Time) []byte {
 	t.Helper()
 	deliver := "agent"

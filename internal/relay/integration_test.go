@@ -1,3 +1,5 @@
+//go:build integration
+
 // Isolated Postgres tests prove atomic replay, current authorization, transport races, and owner gate security.
 package relay
 
@@ -74,10 +76,6 @@ func (f *fixture) call(method, path, token string, body any, status int) map[str
 	return result
 }
 
-const firstID = "0199a3f2-4c10-7a11-8b22-334455667788"
-const secondID = "0199a3f2-4c10-7a11-8b22-334455667799"
-const gateID = "0199a3f2-4c10-7a11-8b22-3344556677aa"
-
 func (f *fixture) message(id, key string) []byte {
 	return wire(f.t, f.private["agent_a"], id, "agent_a", "agent_b", "schedule.query", key, "", queryBody(), time.Now().Add(180*time.Second))
 }
@@ -112,7 +110,7 @@ func (f *fixture) mutate(fn func(*State)) {
 func TestPostgresSafety(t *testing.T) {
 	databaseURL := os.Getenv("TEST_DATABASE_URL")
 	if databaseURL == "" {
-		t.Skip("run make verify-mvp for isolated Postgres evidence")
+		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
 	}
 	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
 		t.Fatal("isolated database marker required")
@@ -301,7 +299,7 @@ func TestPostgresSafety(t *testing.T) {
 func TestGateFailureStates(t *testing.T) {
 	databaseURL := os.Getenv("TEST_DATABASE_URL")
 	if databaseURL == "" {
-		t.Skip("run make verify-mvp")
+		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
 	}
 	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
 		t.Fatal("isolated database marker required")
@@ -341,7 +339,7 @@ func TestGateFailureStates(t *testing.T) {
 func TestApprovalAndResultInstanceBinding(t *testing.T) {
 	databaseURL := os.Getenv("TEST_DATABASE_URL")
 	if databaseURL == "" {
-		t.Skip("run make verify-mvp")
+		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
 	}
 	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
 		t.Fatal("isolated database marker required")
@@ -379,7 +377,7 @@ func TestApprovalAndResultInstanceBinding(t *testing.T) {
 func TestPendingAndConcurrentAccept(t *testing.T) {
 	databaseURL := os.Getenv("TEST_DATABASE_URL")
 	if databaseURL == "" {
-		t.Skip("run make verify-mvp")
+		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
 	}
 	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
 		t.Fatal("isolated database marker required")

@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 import socket
+import secrets
 import subprocess
 import tempfile
 import uuid
@@ -25,8 +26,9 @@ def free_port():
 
 def main():
     environment = dict(os.environ)
+    test_password = secrets.token_urlsafe(24)
     relay_port, database_port = free_port(), free_port()
-    environment.update(POSTGRES_PASSWORD="synthetic-only", DATABASE_URL="postgres://knowslink:synthetic-only@postgres:5432/knowslink?sslmode=disable", RELAY_PORT=str(relay_port), TUNNEL_TOKEN="", COMPOSE_PROFILES="")
+    environment.update(POSTGRES_PASSWORD=test_password, DATABASE_URL=f"postgres://knowslink:{test_password}@postgres:5432/knowslink?sslmode=disable", RELAY_PORT=str(relay_port), TUNNEL_TOKEN="", COMPOSE_PROFILES="")
     project = "knowslink-mvp-" + uuid.uuid4().hex[:10]
     with tempfile.TemporaryDirectory(prefix="knowslink-mvp-") as temporary:
         override = Path(temporary) / "test.yaml"
@@ -34,8 +36,8 @@ def main():
         compose = ["docker", "compose", "--project-name", project, "--env-file", ".env.example", "-f", "compose.yaml", "-f", str(override)]
         try:
             run(compose + ["up", "--build", "--wait", "relay"], environment)
-            tests = dict(environment, TEST_SYNTHETIC_DATABASE="1", TEST_DATABASE_URL=f"postgres://knowslink:synthetic-only@127.0.0.1:{database_port}/knowslink?sslmode=disable")
-            run(["go", "test", "-race", "-count=1", "-v", "./internal/relay"], tests)
+            tests = dict(environment, TEST_SYNTHETIC_DATABASE="1", TEST_DATABASE_URL=f"postgres://knowslink:{test_password}@127.0.0.1:{database_port}/knowslink?sslmode=disable")
+            run(["go", "test", "-tags=integration", "-race", "-count=1", "-v", "./internal/relay"], tests)
             run(["node", "adapters/dist/synthetic.js", f"http://127.0.0.1:{relay_port}"], environment)
             run(["node", "adapters/dist/synthetic.js", f"http://127.0.0.1:{relay_port}", "--seed"], environment)
         finally:

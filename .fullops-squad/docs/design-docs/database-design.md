@@ -27,4 +27,3 @@ JSON map 키는 transaction 내 uniqueness를 구현한다. 서로 다른 relay 
 receipt·멱등·gate metadata는 24h 뒤 삭제한다. Envelope와 Inbox는 만료·철회·응답 완료 후 먼저 지운다.
 1초 background 정리는 유휴 payload를 제거한다. 읽기·인가에서는 만료 원문을 즉시 사용할 수 없다.
 행 삭제는 Postgres WAL/backup의 완전 삭제가 아니다.
-
