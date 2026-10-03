@@ -1,3 +1,12 @@
+---
+title: SAR-SETUP-001-DEV-099 리뷰
+status: draft
+updated: 2026-10-03
+owner: dev
+tasks: [SAR-SETUP-001-DEV-REVIEW]
+summary: 고정 구현 SHA의 독립 코드 리뷰와 조건부 수락 근거를 기록한다
+---
+
 # SAR-SETUP-001-DEV-099 리뷰
 
 - 검토자 / CLI / 모델: Orca dispatch `ctx_53a98f9ed8f8`(task `task_158decad4fc0`) / Claude Code / `claude-opus-5-5`. 리뷰 세션 ID는 `ba47d7dc-4c3e-472c-bdaa-3afa95e7a285`이다.
