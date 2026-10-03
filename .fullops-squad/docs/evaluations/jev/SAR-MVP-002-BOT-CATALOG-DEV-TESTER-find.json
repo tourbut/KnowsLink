@@ -1,0 +1,49 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV-TESTER",
+  "head": "8594cda4672bf749c555189ee963f67b22ee663f",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 58,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 58
+    }
+  ],
+  "candidates": [
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "summary": "Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP \"Command\" server.",
+      "probability": 0.77
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.16
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.04
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.89,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3482,
+    "output_tokens": 629,
+    "cost": 0.000146244
+  },
+  "latency_seconds": 0.275,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

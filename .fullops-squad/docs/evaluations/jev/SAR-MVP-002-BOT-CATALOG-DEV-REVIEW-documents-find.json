@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV-REVIEW",
+  "head": "8594cda4672bf749c555189ee963f67b22ee663f",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 113,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 113
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "summary": "SAR-MVP-002-BOT-CATALOG-DEV 실행 기록 — 실제 Grok Bot 앱 카탈로그 미노출의 원인과 Command server 등록 조치·검증 및 재시험 댓글 초안을 기록한다",
+      "probability": 0.36
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "summary": "SAR-MVP-002-DEV 리뷰 — Grok Bot 플러그인 고정 SHA 독립 코드 문서 리뷰 결과",
+      "probability": 0.25
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+      "summary": "SAR-MVP-002-DEV-REVIEW — 독립 리뷰 실행 기록 — Grok Bot 플러그인 고정 SHA의 독립 리뷰 범위와 재현 결론을 기록한다",
+      "probability": 0.16
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.09
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV.md",
+      "summary": "SAR-MVP-002-DEV 실행 기록 — 공식 제품 후보와 안전 pull 준비 및 검증과 재개 조건을 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "summary": "<과제 키> 리뷰",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "summary": "KnowsLink lint 게이트 — 코드 lint와 일반 문서 메타데이터 검사의 실행 기준을 정의한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.84,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 9364,
+    "output_tokens": 1179,
+    "cost": 0.000393288
+  },
+  "latency_seconds": 0.289,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

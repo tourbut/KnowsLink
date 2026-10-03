@@ -574,3 +574,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - fresh DEV 착수 영수증: task_d0d56ebcf3c6 / ctx_44982314ed3f / term_b3c48e3a-4bdc-419d-bec3-57aebd7499f4. effective claude-opus-5-5 high·turn_started 확인. 기존 DEV user_takeover 세션은 보존한다. 새 과제이며 직전 구현 종료가 오래돼 새 세션을 쓴다.
 
 - coor가 앱 Manage plugins and skills의 추가 메뉴(URL MCP/Git 플러그인/없음)를 비차단 질문으로 확인 요청했다. 답 전까지 메뉴 존재를 가정하지 않고 DEV가 공식 계약 조사와 구체적 설치물 준비를 계속한다. 계정 권한과 UI 확인은 실제 앱 검증 근거로 남긴다. designer/ops/tester의 최신main8c95bde 동기화는 실제 유휴 재확인 후 다음 dispatch 전 처리한다. 진행DEV 체크아웃은 보존한다.
+
+- DEV msg_41ccf1c71482/8e46c5a846e6d190e484e48be40b3dc368001a2b 후보 수집·coor 준비SHA 보존 병합. 공식Team Bots Command MCP 계약·계정등록 누락과 실제개인UI 미확정을 구분했다. 신규installer x64/arm64 tar.gz checksum·고정/workspace Node/bundle·env-i tools2/held, 관련 low5 개선·D10/D12/D13 반영. DEV lint0/strict0. main 수락은 동일고정 독립리뷰/QA 후이며 integration hold·DEV retain. 실제 계정등록/카탈로그는 원격 재시험 전 미해결이다.

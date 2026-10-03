@@ -1,0 +1,84 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-BOT-CATALOG-DEV-REVIEW",
+  "head": "8594cda4672bf749c555189ee963f67b22ee663f",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 58,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 58
+    }
+  ],
+  "candidates": [
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "summary": "Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP \"Command\" server.",
+      "probability": 0.47000000000000003
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.18000000000000002
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.14
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.08
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched.",
+      "probability": 0.05
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/mcp.json",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/.mcp.json",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": ".dockerignore",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "summary": "Create or remove the owner-only Cloudflare Access app for link.knowslog.com; never prints the email or token.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "summary": "Grok Bot MCP connector: held by default; only explicit loopback synthetic pulls can run.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.86,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3375,
+    "output_tokens": 629,
+    "cost": 0.00014175
+  },
+  "latency_seconds": 0.35,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
