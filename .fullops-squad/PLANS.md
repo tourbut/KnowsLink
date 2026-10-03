@@ -269,3 +269,5 @@ msg_bcf340cb7ce8은 Task task_491be61b82eb / Dispatch ctx_66989e4a879d 성공 �
 SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다. 기존 tester idle·clean 확인 후 a6a10c7로 fast-forward했다. 새 워크트리를 만들지 않으며 오래된 과제 대신 새 세션을 사용한다. QA 고정 제품 후보는 a6a10c7이고 추가 준비 문서는 제품 diff가 없는지 확인한다. 직접 UI 검수와 fixed-SHA 독립 리뷰는 같은 후보로 후속한다.
 
 - QA 배정 영수증: Task task_bc9fa903d0d6 / Dispatch ctx_6129fd1c9c83 / terminal term_5eefdb06-ccd5-44aa-8696-b160c5f51818. effective claude-sonnet-5-5 high와 turn_started를 확인했다. 기존 tester 체크아웃 준비 SHA 707298e의 제품 diff는 a6a10c7 대비 비어 있다.
+
+- QA 착수 확인에서 Claude의 "You've hit your session limit · resets 6:10pm (Asia/Seoul)"를 확인했다. 2026-10-03 18:10 KST 자동 재개 대기이며 실제 QA는 시작하지 않았다. turn_started 영수증을 QA 실행 증거로 취급하지 않는다. 살아 있는 Dispatch를 중복 배정하거나 임의 종료하지 않는다.
