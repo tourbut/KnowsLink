@@ -1,0 +1,18 @@
+
+added 188 packages, and audited 189 packages in 2s
+
+65 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+Plugin: build/knowslink-grok-bot-plugin.zip; sha256: d3037d2067c28bf278023a229797eb02111f8d8416bf200d23feff2bf250e609
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+extracted standalone MCP test exit=0

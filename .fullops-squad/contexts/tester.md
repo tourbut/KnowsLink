@@ -3,7 +3,7 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-04
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER]
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER]
 summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다"
 ---
 
@@ -36,3 +36,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검�
 - 2026-10-04 SAR-MVP-002-BOT-CATALOG-DEV-TESTER: 후보 `8e46c5a846e6d190e484e48be40b3dc368001a2b`의 별도 clone에서 설치 첫 실행·재실행 종료코드는 0이다. ZIP SHA256은 `b7882df74537ad0bd32bdde45f9dd01677431ff74dda3312ef6c8fa650c00cad`다.
 - 레포 밖 `env -i` 프로브는 도구 2개, held, stderr 0이다. 미지원·다운로드·checksum·빌드 실패는 exit 1이고 Ready가 없다. 새 결함은 없다.
 - 판정·증거: [SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md). 실제 앱 등록·카탈로그·aarch64 실행은 미검증이다. 제품 코드는 수정하지 않았다.
+- 2026-10-04 SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER: 후보 `423db6a2a388ea63610462f9d3a5f4c619dd781b`의 별도 clone에서 ZIP SHA256은 `d3037d2067c28bf278023a229797eb02111f8d8416bf200d23feff2bf250e609`다. 레포 밖 `env -i`는 도구 2개, held, stderr 0이다.
+- swap 이전의 추출·`env -i` 실패는 기존 bundle을 남긴다. swap이 이전 트리를 stage로 옮긴 뒤의 mv 실패와 SIGTERM은 이전 `knowslink`를 지운다. 등급은 low다. critical/high는 없다.
+- 판정·증거: [SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md). 실제 계정·개인 UI·relay·유료 inference는 미검증이다. 제품 코드는 수정하지 않았다.
