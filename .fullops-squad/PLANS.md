@@ -526,3 +526,12 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - OPS msg_79dcc3908db3/09cd2ec6551b8434139d9baaa354da2fec609921 리뷰는 수락 가능, reviewed28/skipped8, critical/high0, medium1·low2, check0이다. F-01의 mcp.ts268-283 참조가 실제67줄 파일과 맞지 않아 같은 reviewer 세션에 좁은 위치 보완을 배정한다. 원래 판정·제품552586b는 유지하고 전체 리뷰/QA를 복제하지 않는다. 리뷰 SHA의 부모에 제품 후보가 포함돼 main 통합은 필수 TESTER QA와 위치 보완 뒤 수행한다. integration hold 담당coor, 조건은 두 수락 확인이다. F-01 실제 연결 전 tool timeout, F-02 effect 추가 전 gate enforcement, F-03 다음 adapter 수정 때 숫자 loopback 강화로 추적한다.
 
 - OPS 보완 msg_ad31dafdaef3/0055a5b992998a919e155db226a03eeb12e08a3f 수락: F-01 mcp.ts47-62와 core.ts170-183으로 위치 정정, 다른 findings 범위 유효, 제품·severity·결론 불변, 정확한 refs check0/lint0이다. 최초 줄 누적 출력 원인을 기록했다. work.py의 이미 아카이브된 키 거부 때문에 완료 로그는 REVIEW-F01 제목으로 보존됐고 운영 배정은 같은 root 과제의 좁은 후속이다. main 통합 hold는 부모 제품의 필수 QA만 대기하며 reviewer 세션 release 결과는 Orca 영수증을 따른다.
+
+## SAR-MVP-002-DEV 플러그인 패키지 수락 — 2026-10-03
+
+- DEV552586b, OPS 리뷰09cd2ec/위치 보완0055a5b, Grok QA0fb32cd45ee77bbe9bdad8629f4bf2bdff6b2264를 수락한다. 리뷰 reviewed28/skipped8, critical/high0, medium1/low2, check0이다. 독립 QA는 동일552586b의 ZIP SHA256 재현·압축 해제 MCP·loopback/redirect/실패 전파·busy·격리 실제 SQL/gate/result를 exit0으로 확인했고 새 판정 결함0이다.
+- QA msg_d57d88557b2c의 Task task_f231c5fe5e97/Dispatch ctx_132e5dc5953c와 완료 SHA를 확인했다. 완료 로그·빈 tester 인박스·제품 소스 불변·명령별 종료코드·고정 후보 연결·원래 UI9584aaf 재사용을 확인했다. concurrent.mjs는 임시 loopback 서버·시험 키만 쓰며 도구 결과·요청 수·busy 해제·비밀 미노출을 assert하고 자기 실패 코드를 숨기지 않는다. 기록 코드의 고정 /tmp/sar-mvp-002-clone SDK 경로는 해당 실행 환경 재현 전제이며 제품 패키지에 포함하지 않는다.
+- QA가 준비 중 빈 리뷰 양식의 front matter를 추가한 변경은 완성된 OPS 리뷰와 충돌했다. fd55627에서 완성된 OPS 보고서 전체를 보존해 해결했다. QA의 원래 SHA와 실패/stamp 기록은 조상과 QA 보고서에 보존한다. 보완된 고정552586b 리뷰 check를 다시 통과했고 후보 대비 제품 adapters/Makefile/package_plugin diff0을 확인했다.
+- 패키지는 build/knowslink-grok-bot-plugin.zip, SHA256 0e671d1a89c141d896034fff31619b9cd2148b73b567adbc3a97126031989117다. coor 전달 사본 해시도 같으며 재생성은 make plugin이다. 실제 Grok Bot marketplace 설치·hosted Node/stdio 지원·외부 연결은 미실행 held다. 기본 held·synthetic-loopback 전용 구현이며 실제 계정 사용 성공이나 전체 MVP 완료를 주장하지 않는다.
+- F-01은 실제 연결 전 앱 tool timeout 확인/필요 시 DEV 비차단 경로, F-02는 disclosure/calendar effect 추가 전 gate-consume 강제, F-03은 다음 adapter 수정 때 숫자 loopback 제한이다. 담당 DEV/OPS와 기존 DEC-02·calendar·exactly-once 보류를 유지한다. 후속 제품 과제는 이번 사용자 요청에 자동 배정하지 않는다.
+- 통합 대상은 main/origin/main이며 완료 SHA의 조상 관계를 확인한다. 이후 coor 포함 등록 역할을 실제 idle/clean일 때 동기화하고 진행/상태불명은 예약한다. 이번 세션은 FullOps 업데이트를 수행하지 않았다.
