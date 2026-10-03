@@ -24,7 +24,7 @@ summary: 고정 버전·API 근거·제품 검증 명령과 미적용 검사를 
 | TypeScript | 5.9.3, strict·NodeNext, npm lock |
 | ESLint | 10.12.0, `@eslint/js` 10.0.1, typescript-eslint 8.71.0, flat config |
 | Prettier | 3.6.2, 명시된 TS·JSON·설정·YAML 대상만 검사 |
-| Postgres | Compose의 17-alpine와 multi-platform digest, 호스트 포트 없음 |
+| Postgres | 검증 버전 17.11, Compose의 17-alpine와 multi-platform digest, 호스트 포트 없음 |
 | cloudflared | 2026.9.1와 multi-platform digest, 선택 profile |
 | 이미지 런타임 | Alpine 3.23와 digest, non-root UID/GID 65532 |
 | sqlc | config version 2, `sql_package: pgx/v5`; 업무 SQL 부재로 CLI 설치·생성 미적용 |

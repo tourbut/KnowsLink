@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -101,3 +101,10 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - SAR-SETUP-001-DEV를 같은 키로 force 재선정했다. D02와 범위 답변에 근거해 override-role dev를 기록했다. Jev API 키 부재로 implementation/dev와 codex gpt-6.1-sol high 폴백을 기록했다. 기존 결과는 prior 파일로 보존했다. 갱신 산출물은 지시서의 D03을 유지한다.
 - 같은 Task `task_a7fd5d1b8806`를 retry-of로 새 세션에서 재개한다. 이전 세션 종료 및 0.9.8 캐시 경로 오류 때문에 세션을 재사용하지 않는다. dev가 기술 계획·구현·테스트·문서 갱신을 수행한다.
 - designer 후속 세션은 병합 검토까지 retain한다. tester는 성공 완료 SHA 이후 배정한다. 병합 전 서로 다른 구현·리뷰 세션 ID와 깨끗한 read-only detached snapshot, fixed-SHA 리뷰·lint·테스트 게이트를 확인한다.
+
+## SAR-SETUP-001-DEV 구현 결과 — 2026-10-03
+
+- 초기 Go relay·별도 SQL-only migrate·TypeScript adapter·Compose·제품 lint를 구현했다. 업무 MVP와 운영 배포는 후속이다.
+- 코드 체크포인트 `929832aa0ecd`에서 직접 검사·위반 주입·깨끗한 clone 재현·로컬 DB runtime을 통과했다. FullOps 기준 `729446d8da57`의 lint는 ERROR 0, WARNING 2, 실행 불가 0이다.
+- D03은 review다. 독립 QA·고정 SHA 독립 코드 리뷰와 병합 수락은 대기한다. 최종 완료 SHA는 현재 Dispatch의 worker_done으로 coordinator에게 전달한다.
+- 상세 근거와 한계: [실행 기록](docs/exec-plans/phases/SAR-SETUP-001-DEV.md).

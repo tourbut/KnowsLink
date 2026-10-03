@@ -33,7 +33,7 @@ caveman full은 세션 응답에만 적용한다. ponytail full, orchestration, 
 
 | D02 ID | 결과와 명령 | 종료코드·증거 |
 |---|---|---|
-| SETUP-01 | `make install`, `make build`; Go module과 npm lock 사용 | 0, [install.log](../logs/SAR-SETUP-001-DEV/install.log), [checks.log](../logs/SAR-SETUP-001-DEV/checks.log); 깨끗한 체크아웃 재현 기록은 후속 절에 추가 |
+| SETUP-01 | `make install`, `make build`; Go module과 npm lock 사용 | 0, [install.log](../logs/SAR-SETUP-001-DEV/install.log), [checks.log](../logs/SAR-SETUP-001-DEV/checks.log), [clean-checkout.log](../logs/SAR-SETUP-001-DEV/clean-checkout.log); 설치·검사·빌드 후 Git 변경 없음 |
 | SETUP-02 | `make test`, `make verify-runtime`; 별도 migrate와 no-op, adapter 종료 확인 | 0, [checks.log](../logs/SAR-SETUP-001-DEV/checks.log), [runtime.log](../logs/SAR-SETUP-001-DEV/runtime.log) |
 | SETUP-03 | Compose config 구조 검사와 실제 로컬 컨테이너 기동 | 0, config는 네 서비스, runtime은 Tunnel 비활성의 postgres·migrate·relay |
 | SETUP-04 | 필수 Compose 값 누락, relay·migrate URL 누락·DB 실패, 빈 Tunnel token | 오류를 검출했다. Go 프로세스 1, cloudflared 255; [runtime.log](../logs/SAR-SETUP-001-DEV/runtime.log) |
@@ -64,3 +64,11 @@ Git 공백 검사를 위해 저장한 로그의 줄 끝 공백을 정규화했�
 업무 SQL이 없어 실제 migration Up 적용과 sqlc 생성은 미적용이다. 빈 SQL의 no-op을 migration 적용 성공으로 보고하지 않는다. 운영 Tunnel·배포·네 벤더 통합과 업무 MVP는 범위 밖이다. UI가 없어 직접 시각 검수는 미적용이며 UI 구현 뒤 수행한다.
 
 독립 QA와 고정 SHA의 독립 리뷰는 coordinator의 후속 과제다. 미해결 critical/high 차단은 유지한다. D03은 `review`이며 제품 수락이나 병합 승인으로 표시하지 않는다.
+
+## 완료 체크포인트
+
+제품 코드 체크포인트는 `929832aa0ecd0a7f1576ad8c20315a9d93900416`이다. 독립된 임시 Git clone의 깨끗한 detached checkout에서 설치·제품 lint·race test·빌드·위반 주입·adapter 실행을 모두 통과했다. 생성물과 의존성 설치 뒤 `git status --porcelain`은 빈 값이다. 같은 코드의 runtime 검증도 다시 통과했다.
+
+기준 ref `729446d8da57`의 FullOps lint는 코드 체크포인트에서 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0이다. [체크포인트 lint 결과](../logs/SAR-SETUP-001-DEV/fullops-checkpoint.json)를 보존한다. WARNING은 LINT-001과 LINT-000이다. 기준 ref의 commands는 비어 있어 새 제품 명령은 이 검사에서 실행하지 않았다. 직접 제품 검사와 깨끗한 체크아웃의 실행 근거를 별도로 제공한다.
+
+최종 완료 기록을 커밋한 뒤 같은 기준으로 FullOps lint를 다시 실행한다. 최종 SHA와 최종 결과 경로는 해당 SHA를 참조할 수 있는 worker_done 회신에 남긴다. 이 체크포인트 이후 제품 코드 변경은 없다.
