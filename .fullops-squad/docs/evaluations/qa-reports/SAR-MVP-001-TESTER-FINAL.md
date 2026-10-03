@@ -63,6 +63,7 @@ relay의 1초 retention은 영값 `Deliver`를 빈 문자열로 다시 저장한
 | `isolated.py` 2회 | 1 | 같은 로그. retention 재저장과 형태 조회가 겹쳤다. 제품 판정 아님 |
 | `isolated.py` 3회 | 1 | 같은 로그. 형태 값 `1\|4\|true\|true\|approved\|false`를 `t`로 비교했다. 제품 판정 아님 |
 | `isolated.py` 4회 | 0 | 같은 로그의 마지막 `[exit 0]`. project `knowslink-final-ed42769aa3`. `down --volumes` 종료코드 0. 판정 실행 |
+| FullOps `lint.py --from 4262d02` | 0 | [fullops-lint.json](SAR-MVP-001-TESTER-FINAL-test/fullops-lint.json). HEAD `f7ff0b26be890bd73852dc0e8498e66f1475ed0a`, ERROR 0, WARNING 1, 실행 불가 0. WARNING은 `SIZE-001` `internal/relay/integration_test.go` 478줄이다. 제품 파일이므로 수정하지 않았다 |
 
 `make verify-mvp`와 `make verify-runtime`은 실행하지 않았다. 설정, migration, adapter, cmd, db, owner HTML은 `4262d02`와 같다. 이번 실제 DB 증거는 고유 Compose의 HTTP probe다.
 앞의 세 probe에서 제품 호출은 이미 기대 거절과 정상 회귀를 반환했다. 실패 줄은 tester의 형태 비교다. 네 번째 실행만 판정이다.

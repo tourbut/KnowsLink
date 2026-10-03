@@ -29,7 +29,7 @@ summary: legacy claim 경계의 새 후보를 독립 재검증한다
 
 held: DEC-02, DEC-03, Free N, 실adapter, A2A 현행 검토, WAL 또는 backup 삭제, 고의 stale epoch를 유지한다. designer 시각 판정은 `e238777`이다.
 
-lint: 커밋 후 FullOps lint 결과의 HEAD, ERROR, WARNING, 실행 불가는 이 절의 다음 갱신에 남긴다. 기준 ref는 `4262d02`다.
+lint: 기준 ref `4262d02`. 보고 커밋 `f7ff0b26be890bd73852dc0e8498e66f1475ed0a`의 FullOps lint 종료코드는 0이다. ERROR 0, WARNING 1, 실행 불가 0. product-lint는 passed다. WARNING은 `SIZE-001` `internal/relay/integration_test.go` 478줄이다. 제품 파일이므로 수정하지 않았다. JSON은 증거 폴더의 `fullops-lint.json`이다.
 
 산출물: [QA 보고서](../docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md), [시나리오](../docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md), [증거](../docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL-test/), [컨텍스트](../contexts/tester.md).
 
