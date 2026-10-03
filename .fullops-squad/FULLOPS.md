@@ -3,7 +3,7 @@ title: FullOps Squad 하네스 지도
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098]
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099]
 summary: KnowsLink 작업 규약과 역할별 참조 문서를 안내한다
 ---
 
@@ -39,3 +39,15 @@ summary: KnowsLink 작업 규약과 역할별 참조 문서를 안내한다
 프로젝트 보안·아키텍처·테스트 기준이 외부 스킬보다 우선하며, 충돌은 지시서에 기록한다. 공통 기본값으로 기존 기준을 낮추지 않고 보안·권한·미해결 critical/high 차단을 임의 완화하지 않는다.
 ponytail full을 적용하되 검증·산출물·핸드오버 기록은 생략하지 않는다.
 하네스 플러그인 캐시는 읽기 전용 자원으로 취급한다. 개발 산출물은 이 레포에 Git으로 관리한다.
+
+## 제품 기획과 기술 계획의 책임
+
+제품 기획 역할은 designer다. 기술 계획 역할은 dev다. coordinator는 coor다.
+designer는 제품 목표·규칙·수치·방향·우선순위·사용자 완료 조건을 결정한다.
+dev는 기존 제품 요구 안의 기술 계획·구조/API·버그 분석·구현·테스트·기술 문서 갱신을 같은 과제에서 수행한다.
+coor는 요청 분류·인계·질문 전달·진행 관리·병합을 조정한다. 제품 판단이나 기술 판단을 대신하지 않는다.
+신규 개발 요청은 `jev_route.py`의 product/implementation/unresolved 책임 분류를 적용한다. setup 갱신·동기화·현황판 정리는 직접 처리한다.
+독립 코드 리뷰는 구현자와 다른 검토자의 별도 세션과 고정 SHA의 깨끗한 detached snapshot을 사용한다.
+snapshot은 읽기 전용으로 유지한다. 리뷰 결과는 별도 기록 체크아웃에 작성한다.
+tester의 독립 동작 QA와 필요한 직접 시각 검수를 유지한다. 미해결 critical/high는 수락·병합을 차단한다.
+전환 전 지시서·원천·리뷰·검증 기록은 보존한다. 상세 책임과 인계는 `orca-agents.md`를 따른다.

@@ -56,3 +56,11 @@ summary: "역할 워크트리와 Run, 초기 구성 및 플러그인 업데이�
 - 동기화 대상은 coor, designer, dev, ops, tester다. 이 역할들은 쉬고 있으며 작업 트리가 깨끗하다. 예약된 동기화는 없다.
 - 이 세션은 업데이트 전용이다. 새 coor 세션에서 Run `run_8ca8bc058ab7`을 연결한다.
 - Claude Code와 grok은 이전 설치 버전 0.9.7이다. 해당 CLI로 worker를 시작하기 전에 README의 업데이트 명령을 실행한다.
+
+## FullOps 0.9.9 업데이트 — FULLOPS-UPDATE-099
+
+- 준비 기준은 `00b4cb34ae6e9f9fbc0b733ecaa3a2095fbc88eb`이다. 현재 Codex 플러그인은 0.9.9이며 필수 의존성을 확인했다.
+- 제품 기획 designer / 기술 계획 dev의 합의된 책임 분리를 marker로 활성화했다. coor·설계·tester와 역할 브랜치 매핑은 유지했다.
+- 이전 첫 요청 대기 기록은 당시 이력이다. 현재 SAR-SETUP-001 진행 자료는 coor·designer·dev 브랜치에 있다.
+- ops·tester만 쉬고 깨끗한 동기화 대상이다. coor·designer·dev는 기존 SAR 인계와 작업을 보존하기 위해 완료 후 동기화한다.
+- 새 coordinator는 [갱신과 인계 기록](docs/exec-plans/phases/FULLOPS-UPDATE-099.md)을 읽고 기존 Run을 연결한다.
