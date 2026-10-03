@@ -442,3 +442,6 @@ OPS 질문 msg_a8c8ef680f26으로 N1–N5 수정 고정28bd1bb를 접수했다. 
 
 
 N1 수정 독립 검토 task_be8f037e8453/ctx_9779a5971c1d/term_5ef7be3a-3b11-40c1-a079-32cf45e09b48는 새 Claude Opus5.5 high 세션에서 ready/turn_started를 확인했다. basef824015/head28bd1bb readonly snapshot을 사용한다. tester에 새 영향 검증을 전달했으며 진행 중 checkout은 동기화하지 않았다.
+
+
+QA msg_0c6c6575f70c의 보고 SHA는1762b430bed1c0584fecd163ae81567a4a5d04a9다. 본문의 f824015는 검사 대상이며 보고 SHA와 구별한다. 고정 f824015에서 로컬 인증/CSRF·loopback·비게시 DB·백업/격리 복원·공유서비스 회귀와 expose/deploy 차단이 통과했다. 처음 SHA 이동에 따른 판정 실패와 이후 안정된 실행을 보고서가 구별했다. QA 기록은 coor 후보에 보존했으며 최신28bd1bb gate 검토·외부 보호 후속 QA 전 공개 수락은 보류한다. 새 gate는 독립 검토자가 안전한 임시 상태에서 확인하며 런타임 제품/Compose 불변 증거는 원래f824015로 재사용한다.
