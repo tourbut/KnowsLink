@@ -1,0 +1,22 @@
+# Local probes, 2026-10-04, HEAD 8c95bde + working tree, Node v22.22.2 staged by scripts/install_bot_mcp.sh (KNOWSLINK_PREFIX=<scratch>/bot)
+
+$ cd / && printf '<initialize, initialized, tools/list, tools/call knowslink_status>' | env -i <scratch>/bot/node/bin/node <scratch>/bot/knowslink/dist/plugin.js
+tools ['knowslink_pull_once', 'knowslink_status']
+status {'content': [{'type': 'text', 'text': '{"state":"held","transport":"pull","actualConnection":"held","webhook":false,"evidenceFetch":false}'}], 'isError': False}
+stderr_bytes=0
+
+$ PATH=<shim: uname prints Darwin/arm64>:$PATH KNOWSLINK_PREFIX=<scratch>/bot2 sh scripts/install_bot_mcp.sh
+unsupported platform: Darwin arm64
+exit=1   (<scratch>/bot2 not created)
+
+$ PATH=<shim: grok prints probe-stdout/probe-stderr, exit 3>:$PATH python3 scripts/verify_grok_plugin.py
+grok plugin validate /tmp/knowslink-grok-vjjx__rr/package/knowslink exit=3
+probe-stdout plugin validate /tmp/knowslink-grok-vjjx__rr/package/knowslink
+probe-stderr reason
+exit=1   (review F-01: grok output is now shown on failure)
+
+# Supporting (not a contract): strings of local grok 1.0.46 binary
+# `grok cursor-worker` = "Register this machine as a Cursor private worker"; its crate
+# xai-grok-cursor-worker has exec/, control/, extensibility/{skills,subagents,artifact}.rs
+# and InstallPluginArtifact (https download_url + sha256 digest into .cursor/plugins/cache).
+# No MCP module in that crate; nothing in it reads ~/.grok/installed-plugins into the app catalogue.

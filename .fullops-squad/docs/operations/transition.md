@@ -2,9 +2,9 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-03
+updated: 2026-10-04
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -48,3 +48,9 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 `make plugin`으로 `build/knowslink-grok-bot-plugin.zip`을 생성한다. package는 MCP·skill·Cursor manifest와 standalone bundle을 포함하며 기본 held다. [사용자 설치 문서](../../../adapters/README.md)에 marketplace 배포 선행 조건·도구 검색·Node·계정/secret·합성 검사와 실패 의미를 기록했다.
 
 owner/admin은 승인된 marketplace 등록과 실제 Bot 앱의 설치·도구 검색을 담당한다. DEV/OPS는 승인된 relay network·최소 권한·secret 전달을 확인한다. coor는 fixed-SHA 독립 리뷰·TESTER QA와 PLANS/board를 갱신한다. 계정·운영 연결은 이번 과제에서 실행하지 않았다. 문서 완료와 로컬 MCP 성공을 실제 Bot 연결 수락으로 표시하지 않는다. 자세한 지원 근거·검증 SHA·재개 조건은 [실행 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)을 따른다.
+
+## SAR-MVP-002-BOT-CATALOG-DEV 앱 카탈로그 인계
+
+재시험에서 CLI 설치는 성공했지만 앱 카탈로그에 knowslink가 없었다. 원인은 앱 계정 등록 단계의 부재다. CLI plugin은 앱에 등록되지 않는다. `scripts/install_bot_mcp.sh`와 README의 Command server 등록 절차를 추가했다.
+
+owner는 실제 계정에서 등록과 `knowslink_status` held 호출을 재시험한다. coor는 고정 SHA 독립 리뷰·TESTER QA 뒤 [재시험 댓글 초안](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md#재시험-댓글-초안-coor-게시)을 게시한다. 실제 앱 노출은 미검증이다. Remote HTTPS·Marketplace 발행·실제 relay는 별도 승인 전까지 held다.

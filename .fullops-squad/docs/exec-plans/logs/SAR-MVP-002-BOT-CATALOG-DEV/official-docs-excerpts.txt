@@ -1,0 +1,83 @@
+# Official Grok Bot docs excerpts, fetched 2026-10-04 from https://docs.x.ai/grok-bot/*.md (llms.txt index)
+
+## team-bots.md (99,123)
+### Plugins
+
+Plugins you add to a Team Bot are shared: the Bot can use them in every
+conversation, including Slack channels and group chats, without asking anyone
+first. Each teammate still uses their own account where a plugin needs one, so
+how a plugin signs in decides whose access the Bot uses:
+
+| Plugin | Whose access the Bot uses | Required setup for teammates |
+| --- | --- | --- |
+| Signs in with an account (OAuth) | The person talking to the Bot | Each teammate connects their own account the first time they need it |
+| Configured with a key or token | The Bot's own credential, the same for everyone | None |
+| Custom MCP server, **Remote HTTPS** | The Bot's own credential, or each person's sign-in if the server uses OAuth | None, or a one-time sign-in |
+| Custom MCP server, **Command** | Runs on the computer each conversation uses | None. A command that needs secrets works only in the owner's own chat |
+
+For example, a Bot that reads Datadog alerts and files Linear tickets could
+use a Datadog plugin configured with a read-only key, so nobody signs in, and
+a Linear plugin that each teammate connects, so tickets are created by the
+person who asked.
+
+A **Command** server runs on whichever computer the conversation uses; see
+[Where the work runs](#where-the-work-runs). Teammates can use the shell on
+those computers and read the server's command and arguments, so never put a
+credential in either. A Command server that needs environment variables, or
+whose arguments look like a credential, runs only in your own chat. For a
+custom server that needs secrets, choose **Remote HTTPS**.
+
+## computer-and-apps.md (/^## Connect an app/,/^## Work with files/)
+## Connect an app
+
+Connectors give a Bot a structured way to work with supported services.
+Connectors are installed as plugins from **Marketplace**.
+
+1. Open **Marketplace** from the sidebar.
+2. Browse the available plugins.
+3. Choose **Add**.
+4. Complete authentication in your browser if requested.
+5. In chat, type `@` to attach the connector to the task. Type `/` to reference
+   a saved skill.
+
+Prefer a connector when one is available: it is often more reliable than
+clicking through a website. Use the browser for services without a connector or
+for visual workflows a connector does not expose.
+
+Installed connectors are account-wide. Their availability is not isolated to
+one Bot.
+
+## Work with files
+
+## settings-and-notifications.md (85,97)
+## Plugins
+
+Plugins are not a settings section. Open **Marketplace** from the sidebar to
+discover plugins and packaged skills. To review what you have installed, choose
+**Your plugins** in Marketplace; **Manage plugins and skills** lists your
+**Installed** plugins and your **Private skills**.
+
+An installed plugin may still need browser authentication. Individual plugin
+tools can be enabled or disabled. On the Teams plan and the Enterprise plan,
+team-provided plugins may be required or restricted by an admin.
+
+See [Connect plugins](/grok-bot/computer-and-apps#connect-an-app) for the
+connection flow.
+
+## teams-and-enterprises.md (187,197)
+#### Connector policy
+
+Grok Bot inherits your team's Cursor connector policy. There is no separate
+Grok Bot connector list, and connectors appear as plugins in the app. Set which
+servers members can use from your Team Marketplace on the dashboard's
+[Plugins & MCPs page](https://cursor.com/dashboard/plugins), not on the Grok
+Bot page. The MCP allowlist is Enterprise only; see
+[MCP server trust management](https://cursor.com/docs/enterprise/model-and-integration-management#mcp-server-trust-management).
+Any permitted connector is available to every Bot a member runs, and a blocked
+one shows as **Disabled by team admin**. Pushing connectors to members, whether
+mandatory or default-on, is not available.
+
+## teams-and-enterprises.md (387,389)
+Tool I/O covers hosted connector calls only: MCP calls Cursor runs, such as
+Jira, Slack, and Linear. `stdio` servers on the Bot's computer and built-in
+tools report no payloads yet.

@@ -4,13 +4,14 @@
 
 ## 패키지 만들기
 
-레포 루트에서 `make install` 뒤 `make plugin`을 실행한다. 빌드 호스트에는 `.nvmrc`의 Node `22.22.2`와 npm `10.9.7`이 필요하다. `adapters/.npmrc`의 `engine-strict=true` 때문에 다른 버전에서는 `npm ci`가 `EBADENGINE`으로 실패한다. Node 20은 2026-04-30에 지원이 끝났으므로 허용 범위를 넓히지 않는다. Node 22가 없으면 아래 절차로 공식 배포본을 사용자 영역에 준비한다.
+레포 루트에서 `make install` 뒤 `make plugin`을 실행한다. 빌드 호스트에는 `.nvmrc`의 Node `22.22.2`와 npm `10.9.7`이 필요하다. `adapters/.npmrc`의 `engine-strict=true` 때문에 다른 버전에서는 `npm ci`가 `EBADENGINE`으로 실패한다. Node 20은 2026-04-30에 지원이 끝났으므로 허용 범위를 넓히지 않는다. Grok Bot 컴퓨터에서는 아래 [앱 등록](#grok-bot-앱-등록)의 스크립트가 Node를 준비한다. 다른 Linux 빌드 호스트에 Node 22가 없으면 다음 절차로 공식 배포본을 사용자 영역에 준비한다. `.tar.gz`는 gzip만 필요하다. `xz`가 없는 호스트에서도 동작한다. x86_64는 `x64`, aarch64는 `arm64` 배포본을 사용한다.
 
 ```sh
-curl -fsSLO https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-x64.tar.xz
-curl -fsSL https://nodejs.org/dist/v22.22.2/SHASUMS256.txt | grep ' node-v22.22.2-linux-x64.tar.xz$' | sha256sum -c -
-mkdir -p "$HOME/.local/node" && tar -xJf node-v22.22.2-linux-x64.tar.xz -C "$HOME/.local/node"
-export PATH="$HOME/.local/node/node-v22.22.2-linux-x64/bin:$PATH"
+arch=$(uname -m | sed 's/x86_64/x64/; s/aarch64/arm64/')
+curl -fsSLO "https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-$arch.tar.gz"
+curl -fsSL https://nodejs.org/dist/v22.22.2/SHASUMS256.txt | grep " node-v22.22.2-linux-$arch.tar.gz\$" | sha256sum -c -
+mkdir -p "$HOME/.local/node" && tar -xzf "node-v22.22.2-linux-$arch.tar.gz" -C "$HOME/.local/node"
+export PATH="$HOME/.local/node/node-v22.22.2-linux-$arch/bin:$PATH"
 ```
 
 `build/knowslink-grok-bot-plugin.zip`에는 Grok과 Cursor용 manifest·MCP 설정·skill·설치 문서·bundle·제3자 라이선스 고지가 있다. credential·원문 fixture·node_modules는 포함하지 않는다. bundle에 고정 SDK가 들어 있으므로 설치 대상에는 npm 설치가 필요 없다. MCP 서버는 Grok 프로세스 PATH의 `node`로 실행되므로 그 `node`도 `22.22.2`여야 한다. 생성 명령이 ZIP의 SHA256을 출력하고, 압축 해제한 standalone bundle의 MCP 경계 검사를 실행한다.
@@ -32,7 +33,34 @@ knowslink/
   THIRD_PARTY_NOTICES.txt
 ```
 
-## Grok 설치 경로
+## Grok Bot 앱 등록
+
+Grok Bot 앱의 도구 카탈로그는 계정에 등록된 connector만 읽는다. 등록 경로는 Marketplace plugin과 custom MCP server 두 가지다. custom MCP server의 종류는 **Remote HTTPS**와 **Command**다. **Command** server는 대화가 사용하는 Bot 컴퓨터에서 실행된다. 근거는 [Team Bots — Plugins](https://docs.x.ai/grok-bot/team-bots#plugins)와 [Connect an app](https://docs.x.ai/grok-bot/computer-and-apps#connect-an-app)이다. 아래의 `grok plugin install`은 Bot 컴퓨터의 Grok CLI(`~/.grok`)에만 설치한다. 앱 카탈로그에는 등록하지 않는다. 이슈1 재시험의 결과는 CLI doctor healthy, 앱 MCP 14개 중 knowslink 0개였다.
+
+KnowsLink는 새 공용 서비스 없이 **Command** server로 등록한다. Remote HTTPS는 공개 HTTPS endpoint와 별도 승인이 필요하다. Marketplace 등록은 팀 marketplace 또는 공개 발행과 별도 승인이 필요하다.
+
+1. Bot 컴퓨터의 레포 루트에서 같은 셸로 실행한다. `make`·Go·xz는 필요 없다. `curl`·`tar`·`gzip`·`sha256sum`·`python3`이 필요하다.
+
+   ```sh
+   sh scripts/install_bot_mcp.sh
+   ```
+
+   스크립트는 x86_64/aarch64용 Node `v22.22.2` `.tar.gz`를 고정 SHA256으로 확인한다. 그 뒤 `/workspace/.knowslink/node`에 풀고 bundle을 빌드·패키지·검증한다. bundle은 `/workspace/.knowslink/knowslink`에 둔다. 마지막으로 빈 환경(`env -i`)에서 그 Node와 bundle로 MCP 경계 검사를 실행한다. `/workspace`는 컴퓨터 update·recovery 뒤에도 유지되는 공유 작업 폴더다. 경로를 바꾸려면 `KNOWSLINK_PREFIX`를 지정한다. `~/.grok`와 앱 자격 증명은 바꾸지 않는다. 다시 실행하면 같은 Node를 재사용하고 bundle을 교체한다.
+
+2. 출력의 값으로 앱에 custom MCP server를 추가한다. 같은 Bot 채팅에서 다음과 같이 요청한다.
+
+   ```text
+   Add a custom MCP server called knowslink that runs: /workspace/.knowslink/node/bin/node /workspace/.knowslink/knowslink/dist/plugin.js
+   No environment variables, no headers.
+   ```
+
+   **Add MCP Server** 승인 카드에서 Name `knowslink`, Type **Command**, 위 command와 argument, 빈 환경 변수를 확인한 뒤 승인한다. 환경 변수가 없으므로 기본 `held`로 실행된다. 환경 변수가 있는 Command server는 owner 자신의 채팅에서만 실행된다. 비밀값은 command·argument·채팅에 넣지 않는다.
+
+3. **Marketplace → Your plugins**의 Installed 목록(앱 버전에 따라 **Settings → Plugins**)에서 knowslink를 확인한다. 새 대화에서 `@knowslink`로 connector를 붙이고 `knowslink_status`만 호출한다. 기대 결과는 `{"state":"held","transport":"pull","actualConnection":"held","webhook":false,"evidenceFetch":false}`다.
+
+제거는 같은 목록에서 knowslink를 삭제한다. 실제 앱 등록·호출은 실제 계정 재시험 전까지 미확인이다. 승인 카드의 정확한 필드명은 공식 문서에 없다. 카드가 Command 종류를 제공하지 않으면 카드 화면과 오류를 그대로 회신한다.
+
+## Grok CLI 설치 경로 (앱 카탈로그와 별개)
 
 Grok Bot 컴퓨터의 `grok` CLI(1.0.46에서 확인)는 `.grok-plugin/` 또는 `.claude-plugin/` manifest와 `.mcp.json`만 읽는다. `.cursor-plugin/`과 `mcp.json`은 읽지 않는다. 이 둘만 있던 커밋 `0b2d5c6`의 ZIP은 이름 `knowslink-<hash>`, MCP 서버 0개로 설치됐다. 근거는 `grok plugin --help`와 CLI가 함께 설치한 `~/.grok/docs/user-guide/09-plugins.md`다.
 
@@ -57,7 +85,7 @@ install은 파일을 `~/.grok/installed-plugins/`로 복사하므로 준비 폴�
 
 로컬 marketplace로도 설치할 수 있다. `grok plugin marketplace add /tmp/knowslink-plugin` 뒤 `grok plugin install knowslink --trust`를 실행한다. 새 Git 저장소 공개나 marketplace 발행은 별도 승인 대상이다.
 
-CLI 설치와 Bot 앱의 동적 도구 카탈로그(InstallPlugin·SearchPlugins 등) 노출은 다른 경로다. 앱 Marketplace UI·hosted runtime에서의 노출은 실제 계정 재시험 전까지 미확인이다. 로컬 준비 파일을 앱 Installed 성공으로 표시하지 않는다.
+CLI 설치는 Bot 앱의 도구 카탈로그에 등록하지 않는다. 앱 사용은 위 [앱 등록](#grok-bot-앱-등록)을 따른다. CLI doctor 성공을 앱 Installed 성공으로 표시하지 않는다.
 
 Cursor IDE의 로컬 개발 검사는 [공식 로컬 플러그인 절차](https://cursor.com/docs/plugins#test-plugins-locally)에 따라 `knowslink/`를 `~/.cursor/plugins/local/knowslink`에 복사하고 창을 reload한다. 이는 Cursor 검사이며 Grok 설치 증거가 아니다.
 

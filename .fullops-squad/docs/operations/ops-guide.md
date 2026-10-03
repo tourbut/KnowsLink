@@ -2,9 +2,9 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-03
+updated: 2026-10-04
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -186,3 +186,11 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 ### 11.6 적용 결과 (2026-10-03, 구성 `28bd1bb`)
 
 11.2의 1~5단계를 순서대로 실행했다. 2단계는 `access_apply.py`와 같은 본문 함수를 공식 Cloudflare MCP로 호출해 수행했다(`access.live.json`은 읽기 GET 응답). 결과·증거는 [실행 기록](../exec-plans/phases/SAR-BETA-001-OPS.md)에 있다. 로컬 resolver가 NXDOMAIN을 캐시하면(SOA TTL) `verify.py public`이 `Name or service not known`으로 실패할 수 있다. 이때는 `dig @1.1.1.1`로 엣지 IP를 얻어 `curl --resolve`를 쓴다.
+
+## 12. Grok Bot 앱 connector 등록 (SAR-MVP-002-BOT-CATALOG-DEV)
+
+1. owner는 Bot 컴퓨터의 레포 루트에서 `sh scripts/install_bot_mcp.sh`를 실행한다. 결과: 마지막에 Name·Type·Command·Arguments 등록 값이 출력된다.
+2. owner는 Bot 채팅에서 custom MCP server 추가를 요청하고 **Add MCP Server** 카드의 Type **Command**와 빈 환경 변수를 확인한 뒤 승인한다.
+3. owner는 새 대화에서 `knowslink_status`만 호출한다. 결과: `held`.
+
+중단은 Installed 목록에서 knowslink를 삭제한다. 실제 relay·환경 변수·비밀값은 등록하지 않는다. 상세 절차는 [플러그인 문서](../../../adapters/README.md#grok-bot-앱-등록)를 따른다.

@@ -17,11 +17,15 @@ def main():
         with ZipFile(ROOT / "build/knowslink-grok-bot-plugin.zip") as archive:
             archive.extractall(package)
         environment = {**os.environ, "HOME": str(home)}
-        environment.pop("GROK_HOME", None)
+        for name in ("GROK_HOME", "GROK_CONFIG", "GROK_CONFIG_PATH", "GROK_MANAGED_CONFIG_URL"):
+            environment.pop(name, None)
 
         def grok(*arguments):
             command = ["grok", *arguments]
-            return subprocess.run(command, cwd=temporary, env=environment, check=True, capture_output=True, text=True, timeout=120).stdout
+            result = subprocess.run(command, cwd=temporary, env=environment, capture_output=True, text=True, timeout=120)
+            if result.returncode:
+                raise SystemExit(f"{' '.join(command)} exit={result.returncode}\n{result.stdout}{result.stderr}")
+            return result.stdout
 
         grok("plugin", "validate", str(package / "knowslink"))
         grok("plugin", "install", str(package / "knowslink"), "--trust")
@@ -32,7 +36,7 @@ def main():
         assert doctor["healthy_count"] == 1 and checks.get("2 tools discovered"), doctor
         installed = Path(plugins[0]["path"]) / "dist/plugin.js"
         subprocess.run(["node", "adapters/dist/mcp.test.js", str(installed)], cwd=ROOT, check=True)
-    print("PASS: grok plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 2 tools, installed copy held", flush=True)
+    print("PASS: grok plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 2 tools; installed bundle held under this node", flush=True)
 
 
 if __name__ == "__main__":
