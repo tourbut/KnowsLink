@@ -1,3 +1,12 @@
+---
+title: SAR-SETUP-001-DEV-099 리뷰
+status: draft
+updated: 2026-10-03
+owner: dev
+tasks: [SAR-SETUP-001-DEV-REVIEW]
+summary: 고정 구현 SHA의 독립 코드 리뷰와 조건부 수락 근거를 기록한다
+---
+
 # SAR-SETUP-001-DEV-099 리뷰
 
 - 검토자 / CLI / 모델:
