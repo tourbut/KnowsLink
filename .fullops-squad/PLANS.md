@@ -161,3 +161,10 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - main에 있는 0.9.10 하위 워크트리 동기화와 검증 기록이 coor 준비 브랜치에서 빠져 있어 원본 그대로 회수했다. 기존 제품·운영 기록을 삭제하지 않는다.
 
 - 증거 보완 후속 영수증: Task task_38a1f068f7a9 / Dispatch ctx_a0b3241794f3. 같은 tester terminal term_706e0b83-208c-469f-b671-1e30fa93da31과 실제 Claude 세션을 재사용했고 turn_started를 확인했다.
+
+### 독립 QA 증거 보완 완료와 통합 후보 — 2026-10-03
+
+- msg_8791a1f6af0e은 Task task_38a1f068f7a9 / Dispatch ctx_a0b3241794f3의 성공 회신이다. 완료 SHA 68c5c9e8eaafaa13a9af407432792bdfeef8f046을 coor에 병합했다.
+- run.py는 이제 하위 종료코드를 그대로 반환한다. 0/1/2/7 전파와 같은 dev SHA의 필수 make 명령 및 주입·원복을 재검증했다. 기존 로그와 최초 runner 한계는 보존했다. 최종 lint 종료코드 0, ERROR 0, WARNING 2, 실행 불가 0이다.
+- worker-release 결과는 reused external_terminal이라 retained다. Orca가 안전하게 release하지 않는 세션은 강제로 종료하지 않는다.
+- main과 실제 최종 통합 후보의 refs가 기존 제품 리뷰 refs와 달라 최종 독립 통합 리뷰를 수행한다. 제품 파일 동일성과 기존 QA·리뷰 증거를 재사용하고 신규 QA runner 및 미검토 기획·운영 기록을 확인한다.
