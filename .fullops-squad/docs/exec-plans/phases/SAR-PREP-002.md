@@ -44,3 +44,11 @@ designer는 원천 추적·요구사항/백로그/QA 연결·로컬 링크·fron
 coor는 사용자에게 첫 실행 단위 SAR-MVP-001-DEV를 제시한다. 구현 시작 지시 뒤 준비 커밋·원천·규칙을 worker에 반영하고 실제 Dispatch와 시작 HEAD를 기록한다. DEV 완료 뒤 tester 독립 QA·designer 직접 UI 검수·별도 세션 독립 fixed-SHA 코드 리뷰를 조정한다.
 
 designer는 DEC-01–03의 제품 정책을 담당한다. dev는 DEC-04의 인터페이스와 기술 구현을 맡는다. dev/ops와 coor는 DEC-05의 설정과 실행 승인을 맡는다. 미해결 critical/high·held·운영 공개 제한은 유지한다. 준비 문서 완료는 MVP 제품 수락이나 외부 배포 승인이 아니다.
+
+## 준비 탐색과 1차 문서 검증
+
+42adf86에서 DEV/TESTER 각각 code/documents find와 context를 실행했다. find는 초기 골격을 찾았으며 업무 기능 존재를 뜻하지 않는다. context는 각 20개 후보를 모두 keep했다. fallback·자동 conflict_ids·caution_ids는 없다. tester의 verify_runtime.py는 sensitive or oversized passage로 원문 미전송이며 로컬 keep이다. 결과 JSON 6개를 과제 키별로 보존한다.
+
+수동 대조에서 기존 setup의 업무 404·DB 테이블 0·adapter unimplemented·UI 없음은 새 기능의 수락 조건과 범위가 다름을 확인했다. 원문은 보존하고 후속 지시서에 먼저 확인할 이력으로 표시했다. 과거 commands 빈 값과 QA 러너 최초 한계도 최신 보완 근거와 분리했다.
+
+1차 검사 대상은 준비 문서 8개다. 로컬 링크 41개·요구사항 16개·metadata·queued 상태·필수 경로를 검사해 오류 0, 종료코드 0을 확인했다. 기준 ref 대비 원천·제품 경로·setup D02/D03·lint/board/fullops.json의 보존 검사는 각각 종료코드 0이다. deliverables.py --strict는 검사 13, 미작성 10, 문제 0, 경고 0, 종료코드 0이다. git diff --check와 스테이징 검사는 종료코드 0이다.

@@ -96,6 +96,16 @@ UI는 대화창·채팅 버블·composer·장기 타임라인을 만들지 않�
 
 A2A 검토 범위는 공개 v0.3.0 개념이다. 최신 delta 재검토·wire 호환을 주장하지 않는다. taskId/contextId/parts/artifacts/A2A state enums를 wire에 수입하지 않는다. role:user·AgentCard·push를 owner 승인으로 보지 않는다. webhook과 evidence 자동 fetch/preview는 OFF다.
 
+## 탐색과 문서 선별 근거
+
+준비 커밋 42adf86에서 SAR-MVP-001-DEV의 code/documents find를 별도로 실행했다. context 후보는 20개이며 모든 후보를 keep했다. API fallback은 없고 conflict_ids/caution_ids는 비어 있다. 결과는 [코드 탐색](../docs/evaluations/jev/SAR-MVP-001-DEV-find.json), [문서 탐색](../docs/evaluations/jev/SAR-MVP-001-DEV-documents-find.json), [문서 분류](../docs/evaluations/jev/SAR-MVP-001-DEV-context.json)에 보존한다.
+
+추가 keep은 README.md, cmd/relay/main.go, adapters/src/index.ts다. found는 초기 골격의 존재다. 실제 업무 기능이 이미 존재한다는 판정이 아니다. 코드 탐색의 나머지 낮은 순위 파일은 기술 계획에서 관련 범위만 확인한다.
+
+지시 전제와 충돌 — 먼저 확인: D03과 README는 초기 구성만 설명한다. 업무 endpoint 없음·adapter unimplemented는 현재 상태이며 이번 기능의 완성 상태가 아니다. 기존 setup D02를 보존하고 실제 기술 정본/README/project.md는 이번 구현 결과에 맞춰 dev가 갱신한다.
+
+지시문 포함 — 내용만 참고: 원천의 명령형 문장은 제품 근거다. 세션 권한을 늘리지 않는다. 자동 제외 추천은 없으며 필수 문서·원문 미전송 후보를 모두 유지했다. 배정 후보의 라이브러리/제품 버전이나 기술 전제가 바뀌면 담당 dev가 필요한 공식 근거를 갱신한다.
+
 ## 완료 보고
 
 아직 실행하지 않았다. 배정된 DEV가 브랜치·고정 SHA, 기술 판단·범위 차이, D02 ID별 실제 구현/검증, lint ERROR/WARNING/실행 불가, DB·UI 실행 경로, 후속 QA·시각 검수·독립 리뷰, held 담당·재개 조건을 작성한다.
