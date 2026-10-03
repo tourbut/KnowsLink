@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-03
+updated: 2026-10-04
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002]
-summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV]
+summary: 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다
 ---
 
 # KnowsLink 현재 계획
@@ -538,3 +538,8 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 
 - 통합 완료 main/origin/main d27e11ce608a: DEV552586b·리뷰09cd2ec/0055a5b·QA0fb32cd 모두 로컬/원격 main의 조상 관계 exit0이다. 통합 후보 FullOps lint는 자기 exit0, product-lint 통과, ERROR0/WARNING3/실행불가0이며 strict13종문제0이다. tester 세션은 external_terminal retained로 보존했고 delivery_cbc6c0aa11e1을 ack했다. 이전 hold3건을 resume한 뒤 integration pending0이다.
 - coor는 main과 동일하고 designer/ops는 터미널 없음·clean, dev/tester는 실제 tui-idle=true·clean을 확인해 다섯 역할 모두 main으로 fast-forward했다. 마지막 운영 기록도 같은 역할에 반영하고 원격 역할 브랜치를 일반 push한다. 강제 종료·reset·force-push·새 제품 과제 배정은 하지 않는다.
+
+## SAR-MVP-002-INSTALL-FIX-DEV — 2026-10-04
+
+- 사용자 요청: 이슈1의 설치 실패를 진단·수정하고, 수락·GitHub 푸시 후 이슈 댓글에 재시험 절차를 남긴다. FullOps 업데이트 제외. 실제 외부 효과 held 유지.
+- 기준0b2d5c6. route implementation/dev, claude-opus-5-5 high, 추천 산출물 없음. fresh DEV 세션을 배정한다. Run run_8ca8bc058ab7, coordinator term_1db428fe-3b8f-43e5-89bd-3cadbd6720e9 재바인딩 완료. DEV 터미널 없음·clean 확인.

@@ -1,0 +1,84 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-002-INSTALL-FIX-DEV",
+  "head": "0b2d5c6b6d69cba1ac40cfd8b6a9d6a2ef2eb849",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 106,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 106
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.49
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "summary": "SAR-MVP-002-DEV-TESTER — Grok Bot 플러그인 로컬 독립 QA — 후보 552586b의 ZIP, stdio MCP 경계, 격리 SQL 연동 독립 검증을 기록한다",
+      "probability": 0.16
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.14
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.08
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV.md",
+      "summary": "SAR-MVP-002-DEV 실행 기록 — 공식 제품 후보와 안전 pull 준비 및 검증과 재개 조건을 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+      "summary": "FullOps 0.9.10 업데이트 적용 기록 — 설치와 레포 적용 버전을 구분하고 검증 정책 0.3.2의 적용 및 동기화 보류를 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/agents/issue-tracker.md",
+      "summary": "Issue tracker",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "summary": "coor 컨텍스트 — Grok Bot 플러그인 통합과 실제 연결 보류의 운영 원칙을 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "summary": "SAR-MVP-002-DEV 리뷰 — Grok Bot 플러그인 고정 SHA 독립 코드 문서 리뷰 결과",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.95,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 9265,
+    "output_tokens": 1109,
+    "cost": 0.00038913
+  },
+  "latency_seconds": 0.326,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
