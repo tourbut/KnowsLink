@@ -1,0 +1,87 @@
+[
+  {
+    "name": "live-head-before",
+    "pass": true,
+    "detail": "f824015314c66bcab42940cfe3db2edabb22e1dd"
+  },
+  {
+    "name": "access-selftest",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "missing-proof",
+    "pass": true,
+    "detail": "access.json absent"
+  },
+  {
+    "name": "stale-proof",
+    "pass": true,
+    "detail": "snapshot older than 10 minutes"
+  },
+  {
+    "name": "mismatched-aud",
+    "pass": true,
+    "detail": "app aud differs from the recorded aud"
+  },
+  {
+    "name": "foreign-email-rejected",
+    "pass": true,
+    "detail": "policy must allow only the owner email"
+  },
+  {
+    "name": "extra-idp",
+    "pass": true,
+    "detail": "exactly one identity provider"
+  },
+  {
+    "name": "expose-missing-aud",
+    "pass": true,
+    "detail": "exit 1"
+  },
+  {
+    "name": "expose-missing-jwt",
+    "pass": true,
+    "detail": "exit 1"
+  },
+  {
+    "name": "expose-stale-before-dns",
+    "pass": true,
+    "detail": "exit 1"
+  },
+  {
+    "name": "snapshot-clone",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "deploy-unknown-sha",
+    "pass": true,
+    "detail": "exit 1"
+  },
+  {
+    "name": "snapshot-commit",
+    "pass": true,
+    "detail": "exit 0"
+  },
+  {
+    "name": "snapshot-reset",
+    "pass": true,
+    "detail": "temporary checkout only"
+  },
+  {
+    "name": "deploy-migration-blocked",
+    "pass": true,
+    "detail": "exit 1"
+  },
+  {
+    "name": "snapshot-no-dump",
+    "pass": true,
+    "detail": "no dump"
+  },
+  {
+    "name": "live-unchanged",
+    "pass": true,
+    "detail": "head relay dns clean"
+  }
+]

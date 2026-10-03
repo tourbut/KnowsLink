@@ -1,0 +1,18 @@
+PASS live-head-before: f824015314c66bcab42940cfe3db2edabb22e1dd
+PASS access-selftest: exit 0
+PASS missing-proof: access.json absent
+PASS stale-proof: snapshot older than 10 minutes
+PASS mismatched-aud: app aud differs from the recorded aud
+PASS foreign-email-rejected: policy must allow only the owner email
+PASS extra-idp: exactly one identity provider
+PASS expose-missing-aud: exit 1
+PASS expose-missing-jwt: exit 1
+PASS expose-stale-before-dns: exit 1
+PASS snapshot-clone: exit 0
+PASS deploy-unknown-sha: exit 1
+PASS snapshot-commit: exit 0
+PASS snapshot-reset: temporary checkout only
+PASS deploy-migration-blocked: exit 1
+PASS snapshot-no-dump: no dump
+PASS live-unchanged: head relay dns clean
+failed=[]

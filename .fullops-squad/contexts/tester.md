@@ -3,8 +3,8 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-03
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX]
-summary: "독립 QA의 lint 구분과 SAR-MVP-001 수정 후보, RF-01 재검증 결과를 기록한다"
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER]
+summary: "독립 QA의 재사용 경계와 SAR-MVP-001, SAR-BETA-001 런타임 결과를 기록한다"
 ---
 
 # tester 컨텍스트
@@ -20,3 +20,7 @@ summary: "독립 QA의 lint 구분과 SAR-MVP-001 수정 후보, RF-01 재검증
 - 판정·증거: [SAR-MVP-001-TESTER-FIX.md](../docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md). 원래 held와 `a6a10c7` QA는 유지했다. 제품 코드는 수정하지 않았다.
 - 2026-10-03 SAR-MVP-001-TESTER-FINAL: 제품 `78b1d92`에서 legacy human·경로 미기록 claim의 authorize, H, R, consume은 `403 sender_not_allowed`다. 새 agent, owner gate, current-auth는 통과했다.
 - 판정·증거: [SAR-MVP-001-TESTER-FINAL.md](../docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md). `4262d02` 보고서와 원래 held는 유지했다.
+- 2026-10-03 SAR-BETA-001-TESTER: 판정 배포는 `f824015`다. `437f143`의 자손이고 제품 트리는 `78b1d92`와 같다. 검사 시작 체크아웃은 `437f143`이었고 reflog가 그 뒤를 바꿨다.
+- loopback, 비공개 Postgres, 0600, 자원 제한, 합성 인증 음성, 백업, 격리 복원, expose 차단, 공유 서비스 회귀는 통과했다. 공개 Access와 인간 로그인과 원래 held는 유지했다.
+- 판정·증거: [SAR-BETA-001-TESTER.md](../docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md). 제품 코드와 배포 설정은 수정하지 않았다.
+- `f824015`의 Access 증명 누락·불일치와 migration deploy 차단은 임시 상태와 임시 clone에서 통과했다. 라이브 체크아웃은 옮기지 않았다.
