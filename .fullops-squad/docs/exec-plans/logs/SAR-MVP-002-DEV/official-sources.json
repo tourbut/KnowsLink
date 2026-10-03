@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-03",
+  "sources": [
+    "https://docs.x.ai/grok-bot/overview",
+    "https://docs.x.ai/grok-bot/computer-and-apps",
+    "https://docs.x.ai/grok-bot/skills-routines-and-automations",
+    "https://docs.x.ai/grok-bot/security",
+    "https://docs.x.ai/grok-bot/get-started",
+    "https://docs.x.ai/grok-bot/teams-and-enterprises",
+    "https://cursor.com/docs/reference/plugins",
+    "https://cursor.com/docs/plugins",
+    "https://cursor.com/help/grok-bot/connect-plugins",
+    "https://docs.x.ai/build/overview",
+    "https://docs.x.ai/build/cli/headless-scripting",
+    "https://docs.x.ai/build/features/mcp-servers",
+    "https://docs.x.ai/developers/rest-api-reference/inference"
+  ],
+  "context7": [
+    {
+      "library_id": "/websites/x_ai_grok-bot",
+      "sequence": "resolve-library-id then query-docs",
+      "version": "live, unversioned"
+    },
+    {
+      "library_id": "/websites/cursor",
+      "sequence": "resolve-library-id then query-docs",
+      "version": "live, unversioned"
+    },
+    {
+      "library_id": "/modelcontextprotocol/typescript-sdk",
+      "sequence": "resolve-library-id then query-docs",
+      "version": "Context7 main/v2 mixed; installed 1.32.0 declarations and execution cross-checked"
+    }
+  ],
+  "local_cli": {
+    "version": "grok 1.0.46 (2765805b9442) [stable]",
+    "help_title": "Grok Build TUI",
+    "version_exit": 0,
+    "help_exit": 0
+  },
+  "target_confirmed_by": "coordinator message msg_1d99c6fd5e89; user selected docs.x.ai/grok-bot",
+  "bot_app_version": "not inspected; actual account connection held"
+}

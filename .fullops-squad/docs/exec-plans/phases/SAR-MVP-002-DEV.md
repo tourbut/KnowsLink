@@ -50,8 +50,8 @@ Orca ask에서 공식 docs.x.ai/grok-bot, 설치 CLI, 다른 대상 URL을 구�
 
 ## 후속과 재개 조건
 
-- coor/designer: 사용자에게 실제 제품 URL·앱/CLI 선택을 확인하고 정체성 근거를 전달한다. 대상 우선순위와 정책 변경은 DEV가 결정하지 않는다.
-- DEV: 대상 확정 뒤 지원 경로·버전·인증·network를 대조한다. Grok Bot shell 경로라면 승인된 컴퓨터에만 고정 artifact를 준비한다.
+- coor/designer: 공식 Grok Bot 대상과 플러그인 제작은 사용자에게 확인했다. 제품 우선순위와 정책 변경은 기존 책임을 유지한다.
+- DEV: 공식 plugin/MCP package와 설치 안내를 준비했다. 실제 앱 빌드·MCP discovery·hosted Node와 승인된 network는 실제 연결 재개 때 대조한다.
 - owner/OPS: 실제 연결 승인, 계정 권한, 안전 secret 전달, 격리 relay 도달 경로가 필요하다. hosted loopback은 이 개발 호스트의 loopback과 다르다. 현재 보호된 베타·Tunnel·Tailscale을 재설정하지 않는다.
 - coor: 고정 SHA 독립 리뷰·TESTER QA와 PLANS/board 갱신을 담당한다. actual connection held와 DEC-02의 무정책 deny·calendar stub·외부 exactly-once 비주장을 유지한다.
 
@@ -66,3 +66,30 @@ Cursor 공식 `.cursor-plugin/plugin.json`, `mcp.json`, skill 구조를 사용�
 Cursor plugin reference의 package 형식과 설치 경로는 [공식 문서](https://cursor.com/docs/reference/plugins)로 확인했다. Bot의 connector policy와 account-wide plugin 지원은 [Bot 공식 문서](https://docs.x.ai/grok-bot/teams-and-enterprises)를 따른다. Cursor team marketplace의 repository import와 로컬 개발 경로는 [공식 설치 문서](https://cursor.com/docs/plugins)다. 실제 Grok Bot 앱의 ZIP 직접 업로드나 Cursor IDE 로컬 import의 Bot 자동 전달은 확인되지 않았다. package 구조 검증과 실제 계정 설치/도구 검색은 구분한다.
 
 [사용자 설치 안내](../../../../adapters/README.md)에 artifact 구조, marketplace를 통한 owner/admin 설치, hosted runtime, synthetic-only 설정, 상태 의미와 actual connection held를 기록했다. 실제 marketplace 등록·계정 로그인·MCP 활성화·유료 호출·운영 연결은 실행하지 않았다.
+
+## 고정 SHA·검사별 종료코드·산출물
+
+제품 구현 후보는 `c4ebbecd3ef91be10ecbb517fe451e02769358bc`다. 패키징 검증과 제3자 라이선스 고지 후보는 `5bd1bd2f4ea32af625831a284dadd1551821530e`다. 후자에서 core/MCP/test/synthetic TS는 전자와 동일하다. 완료 기록 보존 커밋은 문서·로그·빈 인박스만 포함하며 최종 전체 SHA는 worker_done에 명시한다.
+
+| 명령 | 실행 대상 | 자기 종료코드 | 증거 |
+|---|---|---|---|
+| `make verify-mvp` (기존 경계) | 준비 `0f58336f5ec6c678dfdf416e1cc8fee3e1ef7472` | 0 | [baseline](../logs/SAR-MVP-002-DEV/baseline-verify-mvp.txt) |
+| `make lint` | `c4ebbecd3ef91be10ecbb517fe451e02769358bc` | 0 | [제품 검사](../logs/SAR-MVP-002-DEV/product-lint.txt) |
+| `make test` | 같은 구현 후보 | 0 | [Go race·SDK MCP](../logs/SAR-MVP-002-DEV/product-test.txt) |
+| `make verify-mvp` (MCP bundle 연동) | 같은 구현 후보 | 0 | [실제 SQL·gate·result](../logs/SAR-MVP-002-DEV/mcp-sql-mvp.txt) |
+| `make plugin` | `5bd1bd2f4ea32af625831a284dadd1551821530e` | 0 | [bundle·압축 해제 실행](../logs/SAR-MVP-002-DEV/package.txt) |
+| `lint.py --repo . --from dbdd70086971285b790683f362702e5a9ff55acd` (FullOps 0.9.13) | 같은 패키징 후보 | 0 | [고정 lint JSON](../logs/SAR-MVP-002-DEV/lint-candidate.json) |
+
+모든 검사 명령은 결과를 파일에 저장하고 `$?`를 즉시 보존한 뒤 그 코드로 종료했다. 완료된 로그의 tail 조회는 검사의 통과 근거로 사용하지 않았다. `make plugin`은 `make build`와 압축 해제한 standalone bundle의 실제 SDK initialize/discovery/tool 호출을 포함한다. 기존 Go race·SQL 회귀는 frozen field·current-auth·owner 분리·human routing·claim·gate 경계를 검증했다. MCP 경계 검사는 서명·persist·ACK·claim 실패 뒤 판단/결과가 실행되지 않음을 확인했다.
+
+FullOps candidate 결과는 ERROR 0, WARNING 2, 실행 불가 0이다. 등록 `product-lint: make lint`의 자기 exit도 0이다. SIZE-001은 준비 커밋이 이미 변경한 coor 소유 PLANS.md의 511줄 경고다. DEV는 PLANS를 변경하지 않았다. SEC-001은 테스트의 `lease_token: "synthetic-lease"` 더미이며 실제 credential이 아니다. 경고를 숨기거나 lint 설정을 완화하지 않았다.
+
+archive는 [build/knowslink-grok-bot-plugin.zip](../../../../build/knowslink-grok-bot-plugin.zip)이다. SHA256은 `0e671d1a89c141d896034fff31619b9cd2148b73b567adbc3a97126031989117`이다. 소스와 생성 명령은 Git에 보존하고 archive는 ignored build artifact로 유지한다. 같은 소스·고정 dependency에서 `make plugin`으로 재생성한다. package에는 runtime dependency의 LICENSE 전문을 THIRD_PARTY_NOTICES.txt로 포함한다. package SHA와 명령/HEAD/exit 연결은 [verification.json](../logs/SAR-MVP-002-DEV/verification.json)에 있다.
+
+공식 URL·Context7 library ID·버전 한계·제품 확정 메시지는 [official-sources.json](../logs/SAR-MVP-002-DEV/official-sources.json)에 보존했다. `npm install` 두 번의 종료코드는 0이며 각각 audit vulnerabilities 0이었다. `quick_validate.py adapters/skills/knowslink`도 exit 0이었다.
+
+D03(architecture/tech-stack), D05(interface), D10(module), D13(transition)의 실제 영향만 갱신했다. contexts/dev.md와 사용자 package README를 갱신했다. 기술 문서 front matter는 deliverables.py stamp로 썼다. 완료 기록을 갱신한 작업 트리에서 `deliverables.py --repo . --strict`는 exit 0이었다. [strict 로그](../logs/SAR-MVP-002-DEV/deliverables-strict.txt)에 보존했다.
+
+기존 Chrome QA `9584aaf`는 UI·Go 코드 변경 없음의 재사용 근거다. 새 Bot 앱 UI 검수·실제 plugin install·marketplace indexing·hosted stdio startup은 미실행이다. coor가 고정 후보의 독립 리뷰와 TESTER QA를 배정한다. 미해결 critical/high는 계속 수락 차단이다. 이번 worker 성공은 공식 plugin package 준비와 합성 로컬 검증 완료이며 actual connection 성공이나 전체 MVP 수락이 아니다.
+
+완료 로그를 staging한 첫 `git diff --cached --check`는 Compose progress의 줄 끝 공백 때문에 exit 2였다. 커밋이 만들어지지 않은 작업 트리에서 뒤따른 lint는 깨끗한 HEAD 조건으로 exit 2였다. 두 결과는 제품 검사 실패나 PASS가 아니다. 제품 로그의 줄 끝 공백만 정리했고 원본/정리본 SHA256을 log-normalization.json에 보존했다. 원본 `/tmp/SAR-MVP-002-DEV-*.log`는 그대로 남겼다. 내용·명령·종료코드·테스트 수는 바꾸지 않았다. 최종 커밋의 깨끗한 HEAD에서 lint를 다시 실행한다.

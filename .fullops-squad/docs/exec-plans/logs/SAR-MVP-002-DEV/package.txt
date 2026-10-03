@@ -1,0 +1,20 @@
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+
+  dist/plugin.js  1016.6kb
+
+⚡ Done in 85ms
+python3 scripts/package_plugin.py --verify
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+Plugin: build/knowslink-grok-bot-plugin.zip; sha256: 0e671d1a89c141d896034fff31619b9cd2148b73b567adbc3a97126031989117
+extracted standalone MCP test exit=0
