@@ -48,4 +48,4 @@ schema:
 	python3 scripts/schema.py
 
 plugin: build
-	python3 scripts/package_plugin.py
+	python3 scripts/package_plugin.py --verify

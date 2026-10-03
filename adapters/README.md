@@ -4,7 +4,7 @@
 
 ## 패키지 만들기
 
-레포 루트에서 `make install` 뒤 `make plugin`을 실행한다. `build/knowslink-grok-bot-plugin.zip`에는 standalone marketplace와 `knowslink/` 플러그인이 있다. manifest·MCP 설정·skill·설치 문서·bundle만 포함한다. credential·원문 fixture·node_modules는 포함하지 않는다. bundle에 고정 SDK가 들어 있으므로 설치 대상에서는 Node `>=22.22.2 <23`만 필요하다. 생성 명령이 ZIP의 SHA256을 출력한다.
+레포 루트에서 `make install` 뒤 `make plugin`을 실행한다. `build/knowslink-grok-bot-plugin.zip`에는 standalone marketplace와 `knowslink/` 플러그인이 있다. manifest·MCP 설정·skill·설치 문서·bundle·제3자 라이선스 고지를 포함한다. credential·원문 fixture·node_modules는 포함하지 않는다. bundle에 고정 SDK가 들어 있으므로 설치 대상에서는 Node `>=22.22.2 <23`만 필요하다. 생성 명령이 ZIP의 SHA256을 출력하고, 압축 해제한 standalone bundle의 MCP 경계 검사를 실행한다.
 
 ZIP을 빈 준비 폴더에 풀면 다음 구조를 얻는다.
 
@@ -17,6 +17,7 @@ knowslink/
   dist/plugin.js
   skills/knowslink/SKILL.md
   README.md
+  THIRD_PARTY_NOTICES.txt
 ```
 
 ## 공식 Grok Bot 설치 경로
