@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-03
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
 summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계를 관리한다
 ---
 
@@ -119,3 +119,17 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - 다음 배정은 기존 `SAR-SETUP-001-TESTER`다. Jev 키가 연결되기 전 implementation/tester override와 claude-opus-5-5 medium 폴백을 기록했다. Task `task_83afe3153820` / Dispatch `ctx_ace07a0460f8`는 `agent_readiness`에서 `Agent startup blocked: agent-trust-workspace`로 실패했다. QA는 시작되지 않았다. 영수증의 복구 명령으로 실패 세션을 release했다. 신뢰 승인은 사용자에게 맡기며 권한을 우회하거나 모델을 임의 대체하지 않는다. 같은 과제를 재개하며 QA 기록을 복제하지 않는다.
 - 고정 SHA 독립 리뷰 준비 경로: `docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/`. snapshot: `/tmp/SAR-SETUP-001-review-0cc10b0`, detached HEAD `0cc10b083771be9b3423833b222c57d426315333`. 리뷰는 아직 미완료이며 check 통과나 수락으로 표시하지 않는다.
 - main `.fullops-squad/.env`를 coor·designer·dev·ops·tester에 심볼릭 링크했다. Jev api_key 로더로 여섯 체크아웃의 키 존재를 확인했다. 키 값은 출력하지 않았다. 이전 폴백 기록은 당시 사실로 보존한다.
+
+## FullOps 0.9.10 업데이트 — FULLOPS-UPDATE-0.9.10
+
+- 설치 버전은 갱신 전후 0.9.10이다. 레포 적용 버전 0.9.9의 미적용 릴리스를 회수한다.
+- 공통 기준 0.3.2, 핸드오버와 시나리오 기준, 업데이트 연결과 역할별 검증 인계를 반영한다.
+- DEV 관련 회귀와 최종 수락을 구분한다. tester는 안정된 통합 후보의 독립 전체 QA를 맡고 designer는 직접 시각 검수를 맡는다.
+- 증거는 원래 SHA·조건과 의존성 동일성을 확인해 재사용한다. 기존 실패와 제품 정지는 유지한다.
+- 모든 역할 워크트리의 동기화는 보류한다. coor가 진행 과제·활성 세션·깨끗한 상태를 확인한 뒤 준비 커밋을 전달한다.
+- 상세 적용·검증·보류 담당과 재개 조건은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md)을 따른다.
+
+### 하위 워크트리 적용 — 2026-10-03
+
+사용자 요청으로 FullOps 0.9.10 준비 커밋을 이 역할 브랜치에 병합했다. 위 동기화 보류는 당시 기록이다.
+기존 제품 자료·지시서·실패 기록과 역할별 프로젝트 기준을 보존했다. 실행 중 세션은 다음 시작 시 새 플러그인 규약을 읽는다.
