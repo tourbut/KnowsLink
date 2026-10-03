@@ -271,3 +271,11 @@ SAR-MVP-001-TESTER route는 implementation → tester, claude-sonnet-5-5 high다
 - QA 배정 영수증: Task task_bc9fa903d0d6 / Dispatch ctx_6129fd1c9c83 / terminal term_5eefdb06-ccd5-44aa-8696-b160c5f51818. effective claude-sonnet-5-5 high와 turn_started를 확인했다. 기존 tester 체크아웃 준비 SHA 707298e의 제품 diff는 a6a10c7 대비 비어 있다.
 
 - QA 착수 확인에서 Claude의 "You've hit your session limit · resets 6:10pm (Asia/Seoul)"를 확인했다. 2026-10-03 18:10 KST 자동 재개 대기이며 실제 QA는 시작하지 않았다. turn_started 영수증을 QA 실행 증거로 취급하지 않는다. 살아 있는 Dispatch를 중복 배정하거나 임의 종료하지 않는다.
+
+## 상설 워크트리 유지와 임시 DEV 정리 승인 — 2026-10-03
+
+사용자는 fullops-dev-mvp의 작업 완료와 검증·리뷰 확인 뒤 병합하고 임시 워크트리를 제거하도록 지시했다. 상설 체크아웃은 main과 등록 coor/designer/dev/ops/tester만 유지한다. 새 과제는 기존 역할 워크트리의 새 세션을 우선 사용한다. 임시 designer-pilot도 결과 검토·병합과 필요한 후속 인계 뒤 같은 정리 원칙을 적용한다.
+
+현재 DEV 완료 SHA a6a10c7은 보존되어 있지만 독립 QA는 Claude 사용량 한도로 대기한다. 직접 UI 검수와 fixed-SHA 코드 리뷰도 아직 완료되지 않았다. 검증 완료 조건을 충족하기 전 main 수락·임시 워크트리 제거는 수행하지 않는다. 완료 후 병합된 브랜치 포함 여부·깨끗한 작업 트리·진행 중 세션 없음·보고서 보존을 확인하고 Orca CLI로 임시 워크트리를 제거한다. 사용자 승인된 정리는 다시 승인받지 않는다. force 삭제·미커밋 작업 삭제는 하지 않는다.
+
+삭제된 기존 fullops-dev는 Orca CLI로 같은 경로에 복구하고 기존 fullops/dev 브랜치로 연결했다. 작업 트리는 깨끗하며 환경 링크를 복원했다. MVP 완료 코드는 별도 fullops-dev-mvp에서 검증 완료까지 보존한다.
