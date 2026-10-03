@@ -511,3 +511,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 실제 업무 발송·실데이터·유료 API 호출·운영 활성화 및 DEC-02 정책은 계속 보류한다. 완료 SHA의 필수 리뷰·QA를 확인한 뒤 main/origin에 통합한다. designer/ops/tester의 동기화는 실제 유휴 확인 후 처리한다.
 
 - DEV 착수 영수증: Task task_12bfd0213594, Dispatch ctx_d575ace1846d, terminal term_35b3d13f-af21-4db7-99df-2b97b0748d5e. effective codex gpt-6.1-sol medium과 turn_started를 확인했다. worker_done 중심으로 대기하며 실행 중 DEV 체크아웃은 변경하지 않는다.
+
+- DEV 질문 msg_adb698fe0255: 원천에 Grok Bot 이름만 있어 xAI 공식 Bot과 설치 Grok CLI 중 대상을 확정할 수 없다. 사용자에게 대상 또는 URL을 확인 요청했다. 답 전까지 특정 제품을 확정하지 않고 후보 공식 조사와 대상 비의존 합성 검증만 진행하도록 회신했다. 담당은 사용자 대상 확인, dev 기술 조사, coor 답 전달이다. 실제 연결 held는 유지한다.
