@@ -1,0 +1,74 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-001-DEV",
+  "head": "42adf8683d79df4b52d6f40d072887fc8d9f432c",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 62,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 62
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "summary": "SAR-MVP-001-DEV — 로컬 합성 요청의 안전 전달과 human-gate를 끝까지 구현한다 — 로컬 합성 요청의 안전 전달과 human-gate를 끝까지 구현한다",
+      "probability": 0.6900000000000001
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "summary": "KnowsLink MVP 요구사항 — 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후속 검증 책임을 정의한다",
+      "probability": 0.09
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 초기 구성의 기술 결정과 재현 검증·후속 수락 경계를 기록한다",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "summary": "relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "summary": "SAR-PREP-002 — MVP 개발 준비 실행 기록 — 최신 원천의 MVP 개발 준비 결정과 문서 검증 및 후속 책임을 기록한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "summary": "KnowsLink 프로젝트 기준 — 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령 및 검증 책임을 정의한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "summary": "KnowsLink — 제품 결정",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-PREP-002-request.md",
+      "summary": "KnowsLink 서비스 기획 반입과 프로젝트 준비 요청 — 최신 서비스 기획을 기준으로 초기 골격 다음의 MVP 개발 준비 범위를 전달한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.89,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5686,
+    "output_tokens": 669,
+    "cost": 0.000238812
+  },
+  "latency_seconds": 0.276,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

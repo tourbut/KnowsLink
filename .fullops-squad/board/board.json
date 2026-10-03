@@ -1,59 +1,73 @@
 {
   "title": "KnowsLink",
-  "summary": "FullOps 0.9.10 검증 담당·반복 범위 적용. 기존 SAR 진행 자료와 역할 동기화 보류를 보존한다.",
+  "summary": "MVP 기존 DEV 배정을 이어받음. link.knowslog.com 확정, Docker·Tunnel 운영 준비.",
   "phases": [
     {
-      "name": "운영 기반 구성",
+      "name": "FullOps 운영 기반",
       "status": "done",
       "deliverables": [],
-      "note": "FullOps 0.9.10 운영 규약 적용. 역할별 진행 자료는 보존하며 동기화는 coor 확인 후 수행한다."
+      "note": "FullOps 0.9.10 적용·역할 동기화 완료."
     },
     {
-      "name": "제품 기획·요구사항",
-      "status": "todo",
+      "name": "초기 골격 설계",
+      "status": "done",
+      "deliverables": [
+        "D03"
+      ],
+      "note": "SAR-SETUP-001 기술 정본 검토 완료. MVP 기능 설계는 후속 dev 담당."
+    },
+    {
+      "name": "초기 골격 구현·QA",
+      "status": "done",
+      "deliverables": [],
+      "note": "후보 9c96232 로컬 main 수락. 골격 독립 QA·제품 lint 통과."
+    },
+    {
+      "name": "서비스 기획·MVP 개발 준비",
+      "status": "done",
       "deliverables": [
         "D01",
-        "D02",
-        "D04"
+        "D02"
       ],
-      "note": "designer 담당. 제품 목적·사용자 경험 미정."
+      "note": "원천 7bc9ea1, 명세·백로그·첫 인계 독립 검토 완료. D01/D02 review."
     },
     {
-      "name": "기술 설계",
-      "status": "todo",
+      "name": "MVP 첫 기능 개발",
+      "status": "active",
       "deliverables": [
         "D03",
         "D05",
         "D06",
         "D07",
+        "D08",
         "D09",
         "D10"
       ],
-      "note": "dev 담당. 기술 스택·코드·배포 경로 미정."
+      "note": "SAR-MVP-001-DEV 착수. 등록·페어링·안전 전달·human-gate 구현."
     },
     {
-      "name": "구현",
+      "name": "MVP 독립 QA·UI 검수·리뷰",
       "status": "todo",
       "deliverables": [
-        "D08"
+        "D04"
       ],
-      "note": "dev 담당. 제품 코드 없음."
+      "note": "DEV 고정 후보 이후 tester QA·designer UI 검수·독립 리뷰. D04 미작성."
     },
     {
-      "name": "QA",
+      "name": "실제 어댑터·일정 조회",
       "status": "todo",
       "deliverables": [],
-      "note": "tester 담당. 구현 SHA 준비 후 검증."
+      "note": "백로그 002–006. 인터페이스·공개 정책 결정 필요. 일정 조회 003 held."
     },
     {
-      "name": "배포·이행",
-      "status": "todo",
+      "name": "운영 배포·이행",
+      "status": "active",
       "deliverables": [
         "D11",
         "D12",
         "D13"
       ],
-      "note": "ops 담당. 배포 환경 미정."
+      "note": "link.knowslog.com 확정. OPS 서버 사전조사·운영 계획, 고정 후보 수락 대기."
     }
   ]
 }

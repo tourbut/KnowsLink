@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-001-DEV",
+  "head": "42adf8683d79df4b52d6f40d072887fc8d9f432c",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 23,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 23
+    }
+  ],
+  "candidates": [
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay starts a development readiness endpoint; no business API is implemented.",
+      "probability": 0.34
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.25
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "summary": "Development adapter entry point; no polling, vendor API, or tool execution.",
+      "probability": 0.24
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.07
+    },
+    {
+      "path": "go.mod",
+      "summary": "",
+      "probability": 0.02
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "compose.yaml",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/package.json",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "cmd/relay/main_test.go",
+      "summary": "Readiness checks prove DB failure is safe and business paths remain unavailable.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/config/config_test.go",
+      "summary": "Configuration checks cover missing values, safe errors, and listen boundaries.",
+      "probability": 0.01
+    },
+    {
+      "path": "cmd/migrate/main.go",
+      "summary": "Migrate applies SQL-only goose migrations separately from relay startup.",
+      "probability": 0.01
+    },
+    {
+      "path": "Dockerfile",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.88,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 2654,
+    "output_tokens": 279,
+    "cost": 0.000111468
+  },
+  "latency_seconds": 0.258,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
