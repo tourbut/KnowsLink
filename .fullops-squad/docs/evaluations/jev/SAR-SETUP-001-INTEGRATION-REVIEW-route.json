@@ -1,0 +1,79 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SETUP-001-INTEGRATION-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 0.99
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "tester": 0.1,
+        "ops": 0.55,
+        "dev": 0.34
+      },
+      "confidence": 0.33
+    },
+    "docs": {
+      "D01": 0.18,
+      "D02": 0.46,
+      "D03": 0.25,
+      "D04": 0.12,
+      "D05": 0.15,
+      "D06": 0.15,
+      "D07": 0.16,
+      "D08": 0.14,
+      "D09": 0.16,
+      "D10": 0.2,
+      "D11": 0.23,
+      "D12": 0.43,
+      "D13": 0.32
+    }
+  },
+  "usage": {
+    "input_tokens": 2270,
+    "output_tokens": 314,
+    "cost": 9.534e-05
+  },
+  "error": null,
+  "latency_seconds": 0.268,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "최신 통합 후보의 기술 검토다. 기획 결정을 추가하지 않고 구현자와 다른 독립 세션에서 검토한다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.02,
+      "claude claude-sonnet-5-5 high": 0.08,
+      "claude claude-opus-5-5 medium": 0.6,
+      "codex gpt-6.1-sol medium": 0.17,
+      "claude claude-opus-5-5 high": 0.12,
+      "codex gpt-6.1-sol high": 0.01
+    },
+    "usage": {
+      "input_tokens": 786,
+      "output_tokens": 66,
+      "cost": 3.3012e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}

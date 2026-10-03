@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "base": "f94510f48a050c08254ad028ac66a14a96946b3a",
+  "merge_base": "e825dc7c21d7892b2219830d234026612f0e4841",
+  "head": "59be02d029c3cf53e3591871871ed8595b4ca4d2",
+  "config_sha256": "f48d16fd2d720591364898e119a769c157766c600016187a0ad1f12b71cc5f63",
+  "commands": [],
+  "violations": [
+    {
+      "code": "LINT-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": ".fullops-squad/lint/lint.json",
+      "message": "이 브랜치의 lint 설정 변경은 적용하지 않았습니다. 병합 후 적용되니 변경 이유를 검토하세요"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/planning/sources/silent-agent-relay/README.md`로 다시 쓴다"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/architecture.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/planning/sources/silent-agent-relay/architecture.md`로 다시 쓴다"
+    },
+    {
+      "code": "DOC-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다",
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/assets/architecture-diagram.html"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/business-model.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/planning/sources/silent-agent-relay/business-model.md`로 다시 쓴다"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/planning/sources/silent-agent-relay/decisions.md`로 다시 쓴다"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/mvp-checklist.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/planning/sources/silent-agent-relay/mvp-checklist.md`로 다시 쓴다"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/planning/sources/silent-agent-relay/product.md`로 다시 쓴다"
+    },
+    {
+      "code": "DOC-003",
+      "severity": "ERROR",
+      "line": null,
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "message": "front matter: front matter 없음. `deliverables.py --stamp --path docs/planning/sources/silent-agent-relay/protocol.md`로 다시 쓴다"
+    },
+    {
+      "code": "LINT-000",
+      "severity": "WARNING",
+      "line": null,
+      "path": ".fullops-squad/lint/lint.json",
+      "message": "프로젝트 lint 명령이 등록되지 않았습니다. setup에서 기존 도구를 연결하세요"
+    }
+  ],
+  "summary": {
+    "files": 62,
+    "errors": 7,
+    "warnings": 3,
+    "unavailable": 0
+  }
+}

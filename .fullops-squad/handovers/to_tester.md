@@ -1,141 +1,105 @@
 ---
-title: SAR-SETUP-001-TESTER — dev 완료 SHA의 초기 구성과 lint 독립 검증
+title: SAR-MVP-001-TESTER — 첫 안전 전달 기능의 고정 후보를 독립 검증한다
 status: draft
 updated: 2026-10-03
 owner: tester
-tasks: [SAR-SETUP-001-TESTER]
-summary: dev 완료 SHA의 초기 구성과 lint 독립 검증
+tasks: [SAR-MVP-001-TESTER]
+summary: 첫 안전 전달 기능의 고정 후보를 독립 검증한다
 ---
 
-# SAR-SETUP-001-TESTER — dev 완료 SHA의 초기 구성과 lint 독립 검증
+# SAR-MVP-001-TESTER — 첫 안전 전달 기능의 고정 후보를 독립 검증한다
 
-- 작성일: 2026-10-03
-- From / To: designer / tester
-- 상태: blocked — dev 완료 SHA 대기
-- 승인된 범위: 이 지시서의 소유 파일에서 초기 구성·검증에 필요한 비파괴 작업 및 커밋.
-- 추가 승인이 필요한 행위: 외부 배포·발송, 운영 자원 변경, 레포 밖 영속 변경, 데이터·파일 삭제, force-push, 파일 소유권 밖 수정.
-- 담당 워크트리 / 브랜치: `/home/shin/orca/workspaces/KnowsLink/fullops-tester` / `fullops/tester`.
-- 병합 책임자 / 기본 브랜치: coor가 검토·병합을 조정하며 필요 시 ops에 배정 / `main`.
-- 복귀 워크트리 / 터미널: `/home/shin/orca/workspaces/KnowsLink/fullops-coor` / `term_89f25ea4-e70e-46c0-8514-e95f8cf81928`.
-- Run: `run_8ca8bc058ab7`. repo id와 해당 worker의 task id·dispatch id는 새 dispatch에서 coordinator가 실제 값으로 기록한다. 후속 모델은 coor가 갱신한 후보에서 선택하며 과거 Astra 배정을 재사용하지 않는다.
-- 완료 전송: 새 dispatch preamble의 from·capability·task id·dispatch id를 그대로 쓴다. 설계 worker의 lifecycle ID는 재사용하지 않는다.
+- 작성일: 2026-10-03. From / To: designer / tester. 작업 상태: queued.
+- 선행 조건: SAR-MVP-001-DEV 성공 worker_done, coor의 안정 통합 후보 고정과 QA 시작 지시, 동일 준비 문서·규칙·실행 가능한 합성 fixture 접근 확인.
+- 예정 브랜치/워크트리: fullops/tester, /home/shin/orca/workspaces/KnowsLink/fullops-tester.
+- repo id·실제 경로·Run/Task/Dispatch/terminal·DEV 완료 SHA·QA 대상 SHA는 배정 시 coor가 실제 값으로 기록한다. 아직 tester Dispatch가 없다.
+- 복귀: coor 워크트리 /home/shin/orca/workspaces/KnowsLink/fullops-coor. 새 실제 preamble으로 worker_done을 한 번 보낸다. 병합 책임자는 coor, 기본 브랜치는 main이다.
+- 승인 범위: 독립 합성 데이터 QA와 자기 시나리오·보고서·실행 로그·테스트 fixture·커밋. 제품 코드 수정·운영 배포·실데이터·외부 발송은 범위 밖이다.
 
-## 적용 기준과 예외
+## 목표와 적용 기준
 
-- 규칙: `fullops-common-0.3.1`; `.fullops-squad/rules/common/README.md` 및 coding-style.md, testing.md, security.md.
-- 정본: `.fullops-squad/project.md`, `.fullops-squad/docs/agents/document-writing.md`, `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md`.
-- 기준 ref: `729446d8da57`. 고정 원천은 준비 커밋 `0cc35f0`, 외부 원천 SHA `404ff834c0607055d63d2053bf7771d2f46ad3ae`다.
-- 착수 전에 coordinator가 이 지시서를 포함한 설계 커밋을 반영한다. worker와 검토자는 같은 원천·규칙 버전을 읽는다.
-- 예외: 없음. 원천의 확정 기술 선택은 project.md의 이전 미정 상태보다 구체적인 요구사항이다.
+첫 기능의 안전 전달과 human-gate를 DEV 검사와 독립적으로 판정한다. 초기 setup QA를 복제하지 않는다. 기존 증거는 원래 SHA·조건과 관련 의존성 동일성을 확인한 뒤 재사용한다. 새 기능의 C1–C5·UI 동작은 새 후보에서 검증한다.
 
-## 현재 상황과 확인 근거
-
-설계는 D02의 초기 구성·lint 범위만 확정했다. 제품 구현과 검증 결과는 아직 없다.
-선행 조건은 SAR-SETUP-001-DEV의 성공 완료 보고와 실제 완료 SHA다. coor가 그 SHA를 tester 워크트리에 반영한 뒤 dispatch한다.
-설계 SHA나 dev의 진행 중 브랜치를 완료 SHA 대신 검증하지 않는다. dev 수정 이후에는 수정된 SHA를 명시하고 영향을 받는 시나리오를 다시 검증한다.
+원천 service-design 7bc9ea190ea549fae8b047e850247a19322fc9c3, fullops-common-0.3.2, FULLOPS.md, project.md, 문서 규칙과 새 D02를 적용한다. 준비 기준 ref는 0dd08ec994771836c15d9d22a6a83393a71d7987이다. 테스트 대상은 DEV가 완료했다고 보고한 고정 SHA와 coor가 정한 고정 통합 후보를 함께 기록한다. 준비 ref를 실제 QA 대상 SHA로 사용하지 않는다.
 
 ## 먼저 읽을 문서
 
-먼저 이 지시서와 D02를 읽고 아래 keep 문서를 확인한다. 모든 경로는 레포 루트 기준이다.
+경로는 레포 루트 기준이다. 필수 후보 16개와 Jev 근거는 탐색 결과 절을 따른다.
 
-- `.fullops-squad/FULLOPS.md`
-- `.fullops-squad/rules/common/README.md`
-- `.fullops-squad/rules/common/coding-style.md`
-- `.fullops-squad/rules/common/testing.md`
-- `.fullops-squad/rules/common/security.md`
-- `.fullops-squad/project.md`
-- `.fullops-squad/docs/agents/document-writing.md`
-- `.fullops-squad/docs/planning/SAR-SETUP-001-request.md`
-- `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md`
-- `.fullops-squad/docs/planning/sources/silent-agent-relay/product.md`
-- `.fullops-squad/docs/planning/sources/silent-agent-relay/architecture.md`
-- `.fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md`
-- `.fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md`
-- `.fullops-squad/docs/planning/sources/silent-agent-relay/mvp-checklist.md`
-- `.fullops-squad/lint/README.md`
-- `.fullops-squad/docs/deliverables/README.md`
-- `.fullops-squad/contexts/tester.md`
-- `.fullops-squad/orca-agents.md`
-- `.fullops-squad/handovers/to_tester.md`
+- .fullops-squad/FULLOPS.md
+- .fullops-squad/rules/common/README.md
+- .fullops-squad/rules/common/coding-style.md
+- .fullops-squad/rules/common/testing.md
+- .fullops-squad/rules/common/security.md
+- .fullops-squad/project.md
+- .fullops-squad/docs/agents/document-writing.md
+- .fullops-squad/docs/planning/product-specs/SAR-MVP.md
+- .fullops-squad/docs/planning/SAR-MVP-backlog.md
+- .fullops-squad/docs/planning/sources/silent-agent-relay/source.json
+- .fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md
+- .fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md
+- .fullops-squad/docs/design-docs/architecture.md
+- .fullops-squad/docs/design-docs/tech-stack.md
+- .fullops-squad/contexts/tester.md
+- .fullops-squad/handovers/to_tester.md
 
-- 탐색 근거: `docs/evaluations/jev/SAR-SETUP-001-TESTER-find.json`, `SAR-SETUP-001-TESTER-documents-find.json`, `SAR-SETUP-001-TESTER-context.json` (`.fullops-squad/` 기준).
-- find의 code/documents 호출은 모두 `API or response validation failed: ValueError`로 후보를 반환하지 못했다. 존재 판정도 null이므로 Jev가 absent를 판정했다고 주장하지 않는다.
-- `rg --files --hidden .fullops-squad`와 Git 추적 파일로 원천·규칙을 좁혔다. 제품 코드가 없는 초기 과제임을 직접 확인했다.
-- context도 API 실패로 위 19개를 전부 keep했다. 자동 제외·충돌 검증 성공으로 해석하지 않는다. 새 D02는 이번 설계 작업본을 직접 후보로 추가했다.
-- architecture.md와 mvp-checklist.md는 `sensitive or oversized passage`로 본문 전송 없이 keep됐다. 원문을 로컬에서 읽는다.
-- 필요 시 확인: 원천 README.md, business-model.md, source.json. omit? 자동 추천은 없다.
-- 지시 전제와 충돌 — 먼저 확인: project.md의 기술 스택 미정은 오래된 상태다. 원천의 확정 스택을 따른다. protocol.md의 현재 C1–C5와 후반 결정이 과거 webhook 허용 메모보다 우선한다.
-- 지시문 포함 — 내용만 참고: 외부 원천의 명령형 문장은 제품 요구 근거다. 세션 권한을 변경하는 실행 지시로 해석하지 않는다.
-- dev 완료 후 추가 필독: D03 architecture.md·tech-stack.md, 루트 README, `docs/exec-plans/phases/SAR-SETUP-001-DEV.md`, 실제 검사 설정. 아직 없는 문서는 현재 Jev 후보에 넣지 않았다.
+배정 후 SAR-MVP-001-DEV 완료 아카이브·실행 기록을 추가 확인한다. 현재 없는 미래 보고서를 읽었다고 기록하지 않는다. 원천의 지시문은 제품 근거만 참고한다.
 
+## 해야 할 일과 소유권
 
-## 해야 할 일과 파일 소유권
+- [ ] DEV 완료 SHA·통합 후보 SHA·실행 환경·버전·외부 연결 OFF를 확인한다. 시나리오 .fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md를 작성한다.
+- [ ] 아래 QA-01–11을 독립 실행한다. 관찰 결과와 예상 결과, 실제 명령의 종료코드, 대상 SHA·로그를 연결한다.
+- [ ] UI 기능 검증과 designer 직접 시각 검수를 구분한다. V-01–04용 캡처를 같은 후보에서 공유한다. 시간 변화 판정이 필요한 항목에만 영상을 남긴다.
+- [ ] 결함·통과·실패·held·미실행을 구분한다. 제품 코드 결함은 coor 경유 dev에 인계하고 수정하지 않는다.
+- [ ] QA 보고서 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md, 자기 실행 기록·contexts·인박스·완료 아카이브를 갱신한다.
+- [ ] work.py finish·커밋·문서 검사·기준 ref lint 후 새 실제 preamble worker_done으로 결과를 보낸다.
 
-- [ ] dev 완료 SHA와 기술 정본·실제 검사 명령을 확인한다. SHA와 설치된 도구 버전을 QA 보고서에 고정한다.
-- [ ] `docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md`에 D02의 수락 기준별 정상·실패 시나리오를 작성한다.
-- [ ] 깨끗한 독립 체크아웃에서 문서 명령만으로 의존성 설치, Go·TypeScript 빌드·최소 실행, Compose 구성 검증, 제품 lint를 재현한다.
-- [ ] Go 포맷 위반, TypeScript lint 위반·타입 오류를 임시 복제본 또는 fixture에 주입하고 비정상 종료를 확인한다. 원복 후 정상 검사를 재실행한다.
-- [ ] 예시 환경 설정과 필수값 누락, 비밀값 비추적, Postgres 비공개, one-shot migration, API auto-up 부재, 외부 기능 비활성을 확인한다.
-- [ ] dev가 선택한 lint 도구가 실제 소유 소스를 검사하는지 확인한다. FullOps의 새 commands 연결을 읽고 등록 명령을 직접 재실행한다.
-- [ ] QA 보고서에 대상 SHA, 수락 기준별 통과·실패·미실행, 명령·종료코드·로그·한계를 남긴다. 코드 결함은 coor를 통해 dev에 전달한다.
-- [ ] 본인 실행 기록·contexts/tester.md·완료 보고를 작성하고 `work.py finish`로 보존한다. 변경을 커밋하고 필요한 FullOps 검사를 수행한다.
+QA 테스트가 필요하면 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/에 둔다. 제품 경로·DEV 코드·원천·기획 정본·lint 규칙·board는 수정하지 않는다. QA 러너는 하위 명령의 종료코드를 그대로 반환한다.
 
-소유 파일: `.fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md`, `.fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md`, `.fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md`, 본인 인박스·컨텍스트·완료 기록.
-검증에 필요한 최소 테스트 파일은 dev가 정본에 등록한 테스트 경로에서만 작성한다. 임시 위반은 검증 후 제거하고 제품 수정으로 커밋하지 않는다.
-제품 코드·lint 규칙·D02·D03·고정 원천은 수정하지 않는다. PLANS는 본인 과제 상태만 갱신한다.
+## 독립 수락 시나리오
 
-## 완료 기준과 검증
+| ID | D02 | 판정 항목과 통과 조건 |
+|---|---|---|
+| QA-01 | MVP-01/07 | owner 가입·PoP·rotate/revoke를 확인한다. agent credential의 owner 행위, URL/path kid·kid 재할당, 권한 불명과 이전 key 재사용을 차단한다. |
+| QA-02 | MVP-02/07 | 첫 B-human 수락·거절·미수락 전달 거부, pending의 active slot 비소모, 동시 accept 중복 방지, current active pair 재초대만 auto, unpair 재수락 새 세대를 확인한다. Free N은 추정하지 않는다. |
+| QA-03 | MVP-03/04/14 | frozen schema·서명·strict JSON·same parse object, 중복 키·잘못된 Unicode·비정규 값·unknown 필드·deliver:both·A2A wire 필드 거부를 확인한다. auth-first ingest와 인증 전 cache probe 거부를 확인한다. |
+| QA-04 | MVP-04/05 | 같은 key+digest의 receipt-only replay, 다른 digest conflict, TTL/id 실패 reservation rollback, 24h 기록과 원문 수명 구분을 확인한다. replay는 재enqueue/TTL 연장/실행권 갱신이 아니다. |
+| QA-05 | MVP-05/06/13 | MAX_TTL 300s, lease 30s와 exp 최소, 성공 lease grant만 attempts 증가, 3번째 lease window, 늦은/잘못된 세대 ACK를 확인한다. persist 실패·ACK 실패·claim 실패·재시작·경합에서 실행하지 않는다. delivered는 ACK 이후이며 claim 없이는 process하지 않는다. |
+| QA-06 | MVP-07 | enqueue/lease/ACK/approval consume/exec/result 공개 각각에서 revoke/unpair 경합과 epoch CAS를 확인한다. 철회 확정 전후 보장 범위를 구분한다. 기존 receipt로 새 관계 권한을 복구하지 않는다. 비정상 시계·권한 불명은 차단한다. |
+| QA-07 | MVP-08/09 | 무정책 schedule.query 공개 거부, 위험 액션 인간 게이트, schedule.commit stub 비실행을 확인한다. H의 parent/endpoint/digest/exp·실제 수신·현재 owner accept 결속, 중복 pending과 recursive escalate 차단을 확인한다. |
+| QA-08 | MVP-10/16 | verified M typed body+정책 표시, hint 불일치, 원문 부재, owner auth·CSRF, GET/link 비승인, 원자적 approve/deny·소비·만료·철회·다른 M.id 재사용 거부를 확인한다. approve로 disclosure나 stub을 활성화하지 않는다. |
+| QA-09 | MVP-11/15 | R.reply_to/from/to 결속·current auth·output allowlist를 확인한다. optional result/error의 미승인 데이터·일정 정보·stack trace 공개를 막는다. result 수신이 새 도구 실행/재귀 응답을 만들지 않는다. transport failure는 B 서명 결과가 아니다. |
+| QA-10 | MVP-12/13/14 | evidence 자동 fetch/preview와 webhook OFF, high priority 우회 없음, pull stub 한계, 벤더 코어 미수정, AgentCard/role:user/push의 승인 대체 없음과 A2A 비호환 잠금을 확인한다. 실제 adapter·운영 공개 성공은 주장하지 않는다. |
+| QA-11 | MVP-15/16 | 원문 exp/완료 후 정리와 receipt 24h의 구분, inbox/log/trace/model context 최소화를 확인한다. pending/결정 완료/expired/revoked/unavailable 상태와 caption이 의미를 전달한다. 지정 UI 캡처를 designer에게 인계한다. |
 
-D02의 SETUP-01–04, LINT-01–03, DOC-01, SCOPE-01을 독립 검증하면 QA-01의 근거가 된다.
-기존 제품 테스트는 없는 초기 레포다. dev가 만든 최소 검증과 위 시나리오를 실행하며 전체 relay 기능 테스트를 요구하지 않는다.
-다음 재현을 시나리오에 포함한다.
+QA-04/05의 시간·24h 보관 경계는 재현 가능한 시간 제어와 실제 저장 동작 근거를 함께 기록한다. 장시간 기다렸다고 꾸미지 않는다. 외부 도구 exactly-once나 WAL/backup 완전 삭제를 주장하지 않는다.
 
-1. 정상 설정: 명시된 설치·빌드·lint 명령이 성공한다. 같은 명령을 다시 실행해 추적 파일이 예상 밖으로 바뀌지 않는다.
-2. 오류 주입: Go 포맷, TypeScript lint와 타입 위반이 각각 검출된다. 통합 lint가 하위 실패를 0으로 바꾸지 않는다.
-3. 누락 설정: 실제 인증값 없이 예시 설정을 검증한다. 필수값이 없으면 해당 서비스가 안전하게 실패하거나 비활성이다.
-4. 설정 경계: Compose 네 서비스·migrate one-shot·Postgres 비공개·relay auto-up 금지·외부 Tunnel 미연결을 확인한다.
-5. 범위 경계: 업무 기능·승인 UI가 구현 완료로 표시되지 않았고 실데이터·webhook·evidence fetch·도구 실행이 비활성이다.
-6. 복구: 임시 변경을 제거한 뒤 정상 검사와 깨끗한 Git 상태를 확인한다.
+## 완료와 최종 수락의 구분
 
-FullOps lint는 기준 ref의 설정을 쓰므로 새 제품 검사 실행과 분리한다. dev 실행 로그만 재인용해서 독립 검증으로 표시하지 않는다.
-`python3 <플러그인>/scripts/lint.py --repo . --from 729446d8da57 --out <레포 밖 결과 경로>`를 깨끗한 커밋에서 실행한다.
-`git diff --check`, `deliverables.py --repo . --strict`를 실행한다. 명령 자신의 종료코드를 남기며 `| tail`로 가리지 않는다.
-제품 동작 판정은 dev SHA에, tester 추가 문서·테스트의 lint는 tester 최종 SHA에 각각 연결한다.
-필수 검사 실패 또는 미실행이면 수락 불가로 표시한다. Docker 기동을 못 했으면 구성 검증과 구분하고 미실행 사유를 쓴다.
-비밀값·실제 payload·운영 데이터는 증거에 넣지 않는다. 문서 메타데이터 검사는 의미적 수락을 대신하지 않는다.
+tester는 안정된 고정 후보에서 위 시나리오와 영향 회귀를 실행한다. 실행 불가·실패는 이유·담당·재개 조건을 기록한다. DEC-02 실데이터 positive silent done, DEC-03 운영 제한은 held이며 합성 흐름 PASS로 대체하지 않는다. 정책 없음 deny는 이번 001의 통과 조건이다.
 
-### 기존 원천의 lint 차단과 coordinator 결정
+제품 수정 뒤 변경 영향·새 실패·증거 결함·미충족 조건만 재검증한다. 의존성 동일성을 확인하지 않은 예전 골격 증거를 새 SHA QA로 표시하지 않는다. 전체 QA는 매 DEV 수정마다 반복하지 않는다.
 
-설계 커밋 `916fb978d46b`에서 지정 기준 `00b4cb3`의 FullOps lint는 원천 문서 일곱 개의 DOC-003으로 실패했다.
-문서 규칙은 원본 외부 문서를 보존하도록 정한다. 원천을 stamp하거나 바꿔서 오류를 없애지 않는다.
-coor는 원천을 보존하고 설계 변경만 시작 HEAD `0cc35f0`에서 별도 검사하도록 허용했다. 이 보조 검사는 지정 기준 통과를 대신하지 않는다.
-coor는 원천 전용 lint 제외를 커밋 `729446d`에 기록했다고 회신했다. worker는 해당 준비 커밋의 실제 내용과 반영 여부를 확인한다.
-FullOps는 기준 ref의 설정을 읽으므로 제외 설정이나 새 제품 commands를 현재 브랜치에 추가하는 것만으로 적용되지 않는다.
-지정 기준 결과를 숨기거나 기준 ref를 임의로 바꾸지 않는다. coor와 검사 설정의 적용 기준을 확인하고 원천 오류·제품 검사 결과를 구분해서 보고한다.
-이번 회신은 설계 문서 과제의 완료 허용이다. 제품 코드 변경의 done-gate 통과를 면제하지 않는다.
+검증은 실제 실행 가능한 DEV 명령·make lint/test/build와 새 업무 시나리오를 사용한다. 문서 검사 deliverables.py --strict, git diff --check, 깨끗한 완료 커밋 기준 ref의 FullOps lint를 수행한다. 로그는 명령 자신의 종료코드를 보존한다. | tail로 가리지 않는다.
 
-## 갱신할 산출물
+designer는 같은 후보의 V-01 승인 대기, V-02 approve/deny 결과, V-03 만료·철회, V-04 원문 부재·권한 불명 화면을 직접 시각 검수한다. 캡처 공유와 designer 판정은 별개다. coor는 독립 fixed-SHA 코드 리뷰와 QA·직접 UI 판정을 확인한 뒤 기능 수락을 조정한다. 미해결 critical/high와 필수 QA/UI 실패는 수락·병합을 차단한다.
 
-D01–D13 갱신 없음. QA 시나리오·보고서·실행 기록은 일반 문서로 stamp한다.
-D02의 수락 기준 ID를 QA 결과와 연결한다. 기술 설계 변경이 필요하면 coor를 통해 dev에 요청한다.
+## 갱신할 산출물과 제약
 
-## 기대 산출물
+D01–D13 원천 변경은 없다. QA 시나리오·보고서·증거·실행 기록이 기대 산출물이다. 실제 사용자 기능과 운영 공개가 없으므로 D11–D13을 완료로 표시하지 않는다.
 
-시나리오, dev 완료 SHA 대상 독립 QA 보고서, 실행 기록, 실제 명령의 종료코드, 실패 주입·원복 증거, 최종 커밋 SHA.
-결함마다 기대값·실제값·재현 절차·영향받은 수락 기준을 쓴다. 실패를 검사 규칙 완화로 해결하지 않는다.
+소유권 밖 수정·워크트리 밖 변경·삭제·force-push·설명되지 않는 검증 실패·제품 규칙 변경·실데이터/외부 연결 필요 시 coor에 ask한다. 제품 버그는 dev로 인계한다. 통과한 검사 뒤 새로운 영향이나 실패가 없으면 검사를 늘리지 않는다.
 
-## 제약·협업·후속
+## 탐색과 문서 선별 근거
 
-dev 완료 SHA 전에는 검증을 시작하지 않는다. coor가 새 dispatch의 복귀 정보를 제공한다.
-외부 배포·발송·운영 DB 사용·Tunnel 연결은 하지 않는다. 검증만으로 MVP 보안·프로토콜 구현 완료를 주장하지 않는다.
-설명되지 않는 실패나 소유권 밖 수정은 preamble의 ask 또는 escalation으로 coor에게 전달한다.
-검증 완료는 병합 승인이 아니다. coor가 리뷰와 병합을 별도로 처리한다.
+준비 커밋 42adf86에서 SAR-MVP-001-TESTER의 code/documents find를 별도로 실행했다. context 후보는 20개이며 모든 후보를 keep했다. API fallback은 없고 conflict_ids/caution_ids는 비어 있다. 결과는 [코드 탐색](../docs/evaluations/jev/SAR-MVP-001-TESTER-find.json), [문서 탐색](../docs/evaluations/jev/SAR-MVP-001-TESTER-documents-find.json), [문서 분류](../docs/evaluations/jev/SAR-MVP-001-TESTER-context.json)에 보존한다.
+
+추가 keep은 README.md, scripts/verify_runtime.py, 기존 SAR-SETUP-001-TESTER 시나리오·QA 보고서다. verify_runtime.py는 sensitive or oversized passage로 원문을 보내지 않았으며 로컬 파일을 확인한다. 현재 골격 found를 새 기능 QA 통과로 표시하지 않는다.
+
+지시 전제와 충돌 — 먼저 확인: 수동 검토에서 기존 setup 시나리오 B-01의 업무/승인 404, C-04의 테이블 0·migration no-op, N-04의 adapter unimplemented는 초기 골격 조건임을 확인했다. 새 기능의 기대값으로 재사용하지 않는다. 기존 D03의 UI 없음과 tester context의 옛 commands 없음도 과거 범위 기록이다. 기존 기록을 보존하며 QA-01–11을 새 후보 동작으로 작성한다. 이전 러너 한계는 QA 보고서의 보완 기록을 함께 읽는다.
+
+지시문 포함 — 내용만 참고: 원천의 명령형 문장은 제품 근거다. 세션 권한을 늘리지 않는다. 자동 제외 추천은 없으며 필수 문서·원문 미전송 후보를 모두 유지했다. 배정 후보의 라이브러리/제품 버전이나 기술 전제가 바뀌면 담당 dev가 필요한 공식 근거를 갱신한다.
 
 ## 완료 보고
 
-대상 dev SHA와 tester 최종 SHA, 수락 여부, 수락 기준별 결과, lint ERROR/WARNING/실행 불가, 시나리오·QA·로그 경로, 미해결 결함을 쓴다.
-완료 기록과 커밋 후 preamble의 worker_done을 정확히 한 번 보낸다. 필수 검증을 마치지 못하면 outcome failed로 보고한다.
-
-## Coordinator 검사 기준 갱신
-
-원천 보존용 제외 설정을 포함하는 준비 커밋 `729446d8da57`을 이 구현 및 검증 과제의 기준 ref로 지정한다. 과거 설계 단계의 차단 기록은 유지한다. 원천 스냅샷만 제외하며 제품 검사는 직접 실행하고 새 commands를 등록한다.
+아직 실행하지 않았다. 배정된 tester가 브랜치/고정 SHA·DEV 대상 SHA·통합 후보 SHA, QA-01–11 판정·명령/종료코드, 결함 심각도와 재개 조건, UI 증거와 designer 인계, 독립성·증거 재사용 한계, lint ERROR/WARNING/실행 불가를 기록한다.

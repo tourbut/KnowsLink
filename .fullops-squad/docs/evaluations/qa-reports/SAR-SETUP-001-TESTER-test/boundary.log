@@ -1,0 +1,193 @@
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example config --services
+postgres
+migrate
+relay
+[exit 0]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example --profile tunnel config --services
+postgres
+migrate
+relay
+cloudflared
+[exit 0]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ docker compose --env-file .env.example config --format json
+{
+  "name": "clone",
+  "networks": {
+    "database": {
+      "name": "clone_database",
+      "ipam": {},
+      "internal": true
+    },
+    "ingress": {
+      "name": "clone_ingress",
+      "ipam": {}
+    }
+  },
+  "services": {
+    "migrate": {
+      "build": {
+        "context": "$SCRATCH/clone",
+        "dockerfile": "Dockerfile"
+      },
+      "command": [
+        "/app/migrate"
+      ],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "DATABASE_URL": "postgres://knowslink:example-local-only@postgres:5432/knowslink?sslmode=disable"
+      },
+      "networks": {
+        "database": null
+      },
+      "restart": "no"
+    },
+    "postgres": {
+      "command": null,
+      "entrypoint": null,
+      "environment": {
+        "POSTGRES_DB": "knowslink",
+        "POSTGRES_PASSWORD": "example-local-only",
+        "POSTGRES_USER": "knowslink"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "pg_isready -U knowslink -d knowslink"
+        ],
+        "timeout": "3s",
+        "interval": "2s",
+        "retries": 20
+      },
+      "image": "postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "networks": {
+        "database": null
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "postgres-data",
+          "target": "/var/lib/postgresql/data",
+          "volume": {}
+        }
+      ]
+    },
+    "relay": {
+      "build": {
+        "context": "$SCRATCH/clone",
+        "dockerfile": "Dockerfile"
+      },
+      "command": null,
+      "depends_on": {
+        "migrate": {
+          "condition": "service_completed_successfully",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "DATABASE_URL": "postgres://knowslink:example-local-only@postgres:5432/knowslink?sslmode=disable",
+        "RELAY_ADDR": "0.0.0.0:8080"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "wget",
+          "-q",
+          "-O",
+          "/dev/null",
+          "http://127.0.0.1:8080/healthz"
+        ],
+        "timeout": "3s",
+        "interval": "5s",
+        "retries": 10
+      },
+      "networks": {
+        "database": null,
+        "ingress": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 8080,
+          "published": "8080",
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "volumes": {
+    "postgres-data": {
+      "name": "clone_postgres-data"
+    }
+  }
+}
+[exit 0]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ env -u POSTGRES_PASSWORD -u DATABASE_URL docker compose config
+error while interpolating services.postgres.environment.POSTGRES_PASSWORD: required variable POSTGRES_PASSWORD is missing a value: POSTGRES_PASSWORD is required
+[exit 1]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ env -u DATABASE_URL ./build/relay
+2026/10/03 13:07:10 DATABASE_URL is required
+[exit 1]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ env -u DATABASE_URL ./build/migrate
+2026/10/03 13:07:10 DATABASE_URL is required
+[exit 1]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ env DATABASE_URL=not-a-url ./build/relay
+2026/10/03 13:07:10 DATABASE_URL must be a Postgres URL with host and database
+[exit 1]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ git ls-files --error-unmatch .env
+error: pathspec '.env' did not match any file(s) known to git
+Did you forget to 'git add'?
+[exit 1]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ git check-ignore -v .env .env.local
+.gitignore:1:.env	.env
+.gitignore:2:.env.*	.env.local
+[exit 0]
+
+## 2026-10-03T13:07:10+0900 cwd=$SCRATCH/clone
+$ go test -race -count=1 -v ./cmd/... ./internal/...
+=== RUN   TestRejectInvalidMigrationSources
+--- PASS: TestRejectInvalidMigrationSources (0.01s)
+PASS
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.026s
+=== RUN   TestReadinessAndUnavailableBusinessPaths
+--- PASS: TestReadinessAndUnavailableBusinessPaths (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.025s
+=== RUN   TestDatabaseURL
+--- PASS: TestDatabaseURL (0.00s)
+=== RUN   TestListenAddress
+--- PASS: TestListenAddress (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/config	1.017s
+[exit 0]
+
+## 2026-10-03T13:07:12+0900 cwd=$SCRATCH/clone
+$ git grep -nEi (token|secret|password|api[_-]?key)\s*[:=]\s*['"]?[A-Za-z0-9+/_-]{12,} -- . :!adapters/package-lock.json :!.fullops-squad
+.env.example:2:POSTGRES_PASSWORD=example-local-only
+scripts/check_compose.py:9:    POSTGRES_PASSWORD="example-local-only",
+scripts/verify_runtime.py:18:        POSTGRES_PASSWORD="example-local-only",
+[exit 0]

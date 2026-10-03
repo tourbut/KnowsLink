@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "base": "729446d8da57b9be5397608315821990d4f4606d",
+  "merge_base": "729446d8da57b9be5397608315821990d4f4606d",
+  "head": "9ccf89e71468e4eafa580d1754ed400c6cb463d7",
+  "config_sha256": "1e5b922b7cdd4b950aeedf73effaeb8daaf252d4394e192ead1b11798142abbc",
+  "commands": [],
+  "violations": [
+    {
+      "code": "LINT-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": ".fullops-squad/lint/lint.json",
+      "message": "이 브랜치의 lint 설정 변경은 적용하지 않았습니다. 병합 후 적용되니 변경 이유를 검토하세요"
+    },
+    {
+      "code": "LINT-000",
+      "severity": "WARNING",
+      "line": null,
+      "path": ".fullops-squad/lint/lint.json",
+      "message": "프로젝트 lint 명령이 등록되지 않았습니다. setup에서 기존 도구를 연결하세요"
+    }
+  ],
+  "summary": {
+    "files": 58,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 0
+  }
+}
