@@ -3,8 +3,8 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-03
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER]
-summary: "독립 QA의 재사용 경계와 SAR-MVP-001, SAR-BETA-001, SAR-BETA-002 결과를 기록한다"
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER]
+summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다"
 ---
 
 # tester 컨텍스트
@@ -30,3 +30,6 @@ summary: "독립 QA의 재사용 경계와 SAR-MVP-001, SAR-BETA-001, SAR-BETA-0
 - 2026-10-03 SAR-BETA-002-TESTER: 배포 `28bd1bb`의 loopback에서 headless Chrome이 정확한 owner의 Approve, Deny, 새로고침, 기존 만료 gate 비활성, 다른 owner `403 sender_not_allowed`, 새 컨텍스트 200을 확인했다.
 - 이 결과는 격리된 브라우저 컨텍스트의 재현이다. 사용자 브라우저 캐시, 이메일 OTP, 공개 로그인 뒤 UI는 관측하지 않았다.
 - 판정·증거: [SAR-BETA-002-TESTER.md](../docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md). fixture는 복원했다. 제품 코드와 배포 소스는 수정하지 않았다.
+- 2026-10-03 SAR-MVP-002-DEV-TESTER: 후보 `552586b6e886f95bffa9a000a031ea03070afedb`의 별도 clone에서 ZIP SHA256은 `0e671d1a89c141d896034fff31619b9cd2148b73b567adbc3a97126031989117`이다. MCP 경계와 `make verify-mvp` 종료코드는 0이다.
+- 같은 프로세스의 겹친 pull은 `busy`다. 실제 Grok Bot 계정, marketplace, hosted runtime은 held다. 새 critical/high는 없다.
+- 판정·증거: [SAR-MVP-002-DEV-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md). UI·Go는 `9584aaf`와 같아 Chrome QA를 재사용했다. 제품 코드는 수정하지 않았다.
