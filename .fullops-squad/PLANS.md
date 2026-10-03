@@ -430,3 +430,6 @@ Cloudflare OAuth file 저장 로그인이 성공했다. 같은 override의 codex
 수정 독립 리뷰는 새 Claude Opus5.5 medium 세션에 배정했다. task_df231db29363/ctx_b100d949407f/term_5987db30-6c3a-4595-b411-25b038d8e7f2의 ready와 turn_started를 확인했다. 고정 base437f143/headf824015, readonly snapshot /tmp/knowslink-beta-review-f824015다. tester 진행 체크아웃을 변경하지 않고 새 배포 SHA와 변경 영향 검증을 전달했다.
 
 OPS 질문 msg_74f34b608a8a의 기존 Claude MCP는 계정·zone 및 Access 읽기 성공이지만 읽기 전용이다. coor는 이미 성공한 별도 Codex OAuth file 저장을 먼저 사용하도록 회신했다. 파일 모드0600과 필드 이름만 확인했으며 인증값은 출력하지 않았다. 실제 새 OAuth MCP 연결·권한 확인은 OPS 담당이다. 사용자 API 토큰 추가 요청과 외부 노출은 대기한다.
+
+
+OPS msg_e6a4633d33a8은 새 Codex OAuth로 공식 MCP initialize/tools/list/call 연결 및 실제 계정/zone/Access/DNS/Tunnel 읽기 200을 보고했다. zone 계정 일치와 Access 수정 권한을 확인했다. 기존 readonly Claude 인증과 구별한다. 일회성 bridge 사용은 승인된 베타 배포 범위이며 고정 코드의 정책/app 본문과 실제 GET 검증을 사용한다. coor가 재리뷰·독립 QA 결과 전달 후에만 쓰기/노출을 재개하도록 회신했다. 인증값과 사용자 이메일은 기록하지 않는다.
