@@ -1,0 +1,81 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-BETA-001-REVIEW-N1",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "tester": 0.56,
+        "ops": 0.11,
+        "dev": 0.33
+      },
+      "confidence": 0.33
+    },
+    "docs": {
+      "D01": 0.12,
+      "D02": 0.14,
+      "D03": 0.15,
+      "D04": 0.2,
+      "D05": 0.13,
+      "D06": 0.13,
+      "D07": 0.12,
+      "D08": 0.14,
+      "D09": 0.14,
+      "D10": 0.28,
+      "D11": 0.3,
+      "D12": 0.59,
+      "D13": 0.41
+    }
+  },
+  "usage": {
+    "input_tokens": 2468,
+    "output_tokens": 314,
+    "cost": 0.000103656
+  },
+  "error": null,
+  "latency_seconds": 0.363,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "기존 OPS 구현자와 별도의 기술 검토자 dev가 수정 경계를 독립 검토한다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.01,
+      "claude claude-sonnet-5-5 high": 0.14,
+      "claude claude-opus-5-5 medium": 0.33,
+      "codex gpt-6.1-sol medium": 0.09,
+      "claude claude-opus-5-5 high": 0.42,
+      "codex gpt-6.1-sol high": 0.01
+    },
+    "usage": {
+      "input_tokens": 756,
+      "output_tokens": 66,
+      "cost": 3.1752e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}

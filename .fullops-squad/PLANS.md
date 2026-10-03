@@ -436,3 +436,6 @@ OPS msg_e6a4633d33a8은 새 Codex OAuth로 공식 MCP initialize/tools/list/call
 
 
 재리뷰 msg_db858e3e13a1/12a88b20a5cc6c5d12729d3628642eaec2e8f311는 base437f143/headf824015의 6/6 파일 검토와 lint ERROR0/WARNING0 및 check 통과다. 구현자 OPS2191cc9b와 다른 검토 세션941501bd이며 snapshot clean을 확인했다. 기존 M1/M2/M3/M5는 해소됐다. 신규 N1 medium은 PYTHONOPTIMIZE=1에서 assert-only verify_live의 aud 불일치 검사가 생략되는 실제 재현이다. 공개 전 수정을 OPS에 전달했다. N2–N5 low와 원래 L1 부분 해소는 보존한다. 리뷰 기록은 coor 후보에 반영했으나 OPS 조상과 공개 수락은 수정·새 SHA 검토/QA 대기로 보류한다.
+
+
+OPS 질문 msg_a8c8ef680f26으로 N1–N5 수정 고정28bd1bb를 접수했다. 최적화 옵션에서도 aud 불일치 exit1, 정상 gate exit0, ID/mtime 거부를 보고했다. 새 key SAR-BETA-001-REVIEW-N1으로 narrow 독립 검토를 배정한다. Jev는 Opus5.5 high를 골랐으며 이전 medium 세션과 배정 설정이 달라 새 세션을 사용한다. tester 진행 checkout은 변경하지 않고 새 영향 검증을 전달한다.
