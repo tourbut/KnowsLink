@@ -1,0 +1,100 @@
+{
+  "base": "f824015314c66bcab42940cfe3db2edabb22e1dd",
+  "head": "28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "dev worker (Claude Opus 5.5, session fdfab4f3-8e18-4129-94b1-ac6f85ce216f, dispatch ctx_9779a5971c1d), 구현 OPS 세션 2191cc9b·이전 리뷰 941501bd·bac29ce7과 별도",
+  "conclusion": "28bd1bb에 미해결 critical/high 없음. 이전 N1-N5는 모두 해소: aud 불일치 등 10개 negative가 일반·-O·-OO·PYTHONOPTIMIZE=1에서 모두 exit 1, 정상 0(독립 실행), f824015 대조군은 N1·N2를 재현. 새 low 2건(R1 verify.py 증명 assert가 최적화 실행에서 사라짐, diff 밖; R2 문서 잔여 표현)은 미해결이며 expose를 막지 않는다. Access 앱·DNS·connector·공개 negative·이메일 로그인은 미실행이므로 공개 수락은 held다.",
+  "files": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "추가된 재리뷰 대응 표 N1-N5를 실제 코드 diff와 독립 실행 결과와 대조했다. 서술(need 전환, PYTHONOPTIMIZE aud 불일치 exit 1, 다른 app id·미래 mtime·11분 exit 1, selftest teamName 값만 변경)이 일치한다. OPS 자체 증거로만 인용한다"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "11.3에 rev-parse 정본, 수동 체크아웃 미기록, 8a7ad36 이전 SHA expose 금지가 추가됐다(N3·N4 해소). 실제 deploy-history.log 2줄·live HEAD 28bd1bb(수동 이동, 기록 없음)와 대조했다. 줄 끝 \"(둘 다 … 이력 기록)\" 잔여 표현은 R2"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "배포 SHA 칸이 rev-parse 정본과 로그 범위를 명시한다(N3 해소). \"기록한다 갱신·rollback\" 문장 경계 누락은 R2"
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "status": "modified",
+      "insertions": 28,
+      "deletions": 20,
+      "review_status": "reviewed",
+      "reason": "전체 파일을 읽었다. verify_live·apply·__main__의 모든 게이트 assert가 need()(SystemExit)로 바뀌었고 남은 assert는 selftest 63-65행뿐이다. live_snapshot은 0<=age<=600과 app/policy id 일치를 강제한다. selftest는 teamName 값만 바꾼다. 임시 상태 11개 사례 × 4개 최적화 모드를 독립 실행했다"
+    }
+  ],
+  "findings": [
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "start_line": 18,
+      "end_line": 58,
+      "severity": "medium",
+      "resolved": true,
+      "content": "N1(이전 리뷰): assert 게이트가 PYTHONOPTIMIZE에서 사라짐. need()로 바뀌어 aud 불일치 등 10개 negative가 일반·-O·-OO·PYTHONOPTIMIZE=1 모두 exit 1(독립 실행). f824015 대조군은 PYTHONOPTIMIZE aud 불일치 exit 0으로 재현됨"
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "start_line": 127,
+      "end_line": 133,
+      "severity": "low",
+      "resolved": true,
+      "content": "N2(이전 리뷰): 스냅숏 출처 미결합. 미래 mtime(+5분)·다른 app id·다른 policy id·11분 경과 모두 exit 1(4개 모드). f824015 대조군은 미래 mtime·다른 app id exit 0"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "start_line": 172,
+      "end_line": 172,
+      "severity": "low",
+      "resolved": true,
+      "content": "N3·N4(이전 리뷰): rev-parse 정본·수동 이동 미기록·check 없는 SHA expose 금지를 명시함. 잔여 표현은 R2"
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "start_line": 78,
+      "end_line": 78,
+      "severity": "low",
+      "resolved": true,
+      "content": "N5(이전 리뷰): selftest가 teamName 값만 바꾼 설정을 거부하는지 검사함. selftest 일반·-O exit 0, 독립 check team 사례 exit 1"
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "start_line": 45,
+      "end_line": 74,
+      "severity": "low",
+      "resolved": false,
+      "content": "R1(신규, diff 밖·이번 SHA 불변): verify.py의 local·regression·public 검사가 모두 assert다. PYTHONOPTIMIZE·-O 실행에서 검사가 사라지고 성공 메시지를 출력한다(언어 의미에 따른 정적 판단, 실행하지 않음). beta.sh deploy의 사후 local 증명과 공개 negative 증명이 거짓 통과할 수 있다. expose 게이트가 아니고 Access·원점 JWT가 별도로 막으므로 low. 명시적 검사로 바꾸거나 실행 기록에 PYTHONOPTIMIZE 미설정을 남기도록 권고"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "start_line": 172,
+      "end_line": 172,
+      "severity": "low",
+      "resolved": false,
+      "content": "R2(신규, 문서): 11.3 끝 \"(둘 다 exit 0, 백업 생성, 이력 기록)\"은 앞으로의 이동도 기록된 것처럼 읽힌다. 실제 로그는 8a7ad36->437f143과 수동 체크아웃 뒤 no-op 8a7ad36->8a7ad36뿐이다. transition.md 19행은 \"기록한다\"와 \"갱신·rollback\" 사이 마침표가 빠졌다. 동작 영향 없음"
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "2191cc9b-76ef-4522-9fad-d2c9f017bfbc",
+    "reviewer_session": "fdfab4f3-8e18-4129-94b1-ac6f85ce216f",
+    "snapshot_path": "/tmp/knowslink-beta-review-28bd1bb",
+    "snapshot_head": "28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2",
+    "read_only": true
+  }
+}

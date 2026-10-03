@@ -23,3 +23,4 @@ summary: 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기�
 - 2026-10-03 RF-01: 경로 검사는 transport뿐 아니라 이미 발급된 claim을 다시 쓰는 부모 경계(`parentRouting`)에도 둔다. 저장 형식이 바뀌면 이전 메서드로 만든 직렬화 상태를 fixture로 남겨 회귀한다.
 - 봉투 필드로 처리 주체가 갈리면 저장 상태에 경로를 남기고 lease·persist·ACK·claim 각 확정 지점에서 검사한다. intent 예외 목록에 기대지 않는다.
 - 2026-10-03 SAR-BETA-001-REVIEW-FINAL: 보안 게이트를 Python `assert`로 쓰면 `PYTHONOPTIMIZE`에서 모두 사라진다. 운영 게이트 리뷰에서는 `-O` 실행과 증거 파일의 미래 mtime·ID 결합을 직접 시험한다.
+- 2026-10-03 SAR-BETA-001-REVIEW-N1: 수정 검증은 negative 행렬을 일반·`-O`·`-OO`·`PYTHONOPTIMIZE=1`로 돌리고, 이전 SHA 파일을 대조군으로 같은 행렬에 넣어 검출력을 먼저 증명한다. 게이트만 고치면 같은 `assert` 패턴의 사후 증명(`verify.py`)이 남는다.
