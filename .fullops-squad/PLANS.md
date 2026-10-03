@@ -170,3 +170,11 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - main과 실제 최종 통합 후보의 refs가 기존 제품 리뷰 refs와 달라 최종 독립 통합 리뷰를 수행한다. 제품 파일 동일성과 기존 QA·리뷰 증거를 재사용하고 신규 QA runner 및 미검토 기획·운영 기록을 확인한다.
 
 - 최종 통합 리뷰 영수증: Task task_bea67a9755f1 / Dispatch ctx_dab52fc0aa32 / terminal term_720f0fb4-2f5d-4f79-b325-c25d672bf685. effective claude-opus-5-5 medium과 turn_started를 확인했다. 고정 후보 59be02d와 main 기준 f94510f를 사용한다.
+### 하위 워크트리 동기화 완료 — 2026-10-03
+
+사용자 요청으로 coor·designer·dev·ops·tester 모두 FullOps 0.9.10을 반영했다. 위 보류는 당시 기록이다.
+기존 역할 작업과 coor 미추적 리뷰 폴더를 보존했다. 상세 SHA와 검증은 업데이트 기록을 따른다. 원격 push는 수행하지 않았다.
+
+## SAR 초기 구성 통합 검사 준비 — 2026-10-03
+
+기존 coor 결정 729446d8da57의 외부 원천 전용 lint 제외를 main에 먼저 반영한다. 원본 외부 문서에는 front matter를 추가하지 않는다. 제품 코드와 작성 문서의 검사는 유지한다. 이 준비는 제품 수락이나 제품 코드 병합이 아니다. 실제 main 기준 통합 리뷰는 이 준비 커밋을 조상으로 갖는 새 후보에서 수행한다.
