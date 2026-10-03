@@ -236,3 +236,10 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 ## MVP 구현과 현재 서버 운영 착수 — 2026-10-03
 
 사용자가 전체 MVP 진행 및 현재 서버의 Docker·Cloudflare Tunnel 배포를 승인했다. 첫 SAR-MVP-001-DEV를 실행하고 이후 안정 후보의 독립 QA·designer 직접 UI 검수·별도 세션 코드 리뷰를 수행한다. 현재 서버 Docker 29.4.3/Compose 5.1.3 사용 가능, 다른 프로젝트 컨테이너 가동 중이며 보존한다. ~/.cloudflared에 기존 인증·다른 서비스 route가 있으며 비밀값은 출력하지 않는다. KnowsLink hostname을 사용자에게 질문했고 구현·운영 준비는 병행한다. 기존 user-owned dev 세션은 건드리지 않고 새 dev 체크아웃·세션으로 시작한다.
+
+## MVP 세션 복구와 hostname 확정 — 2026-10-03
+
+- 사용자 요청으로 이전 coor 세션 01a0ffe9-9a5f-7501-8258-771971d82a89의 작업을 이어받았다. 새 세션은 기존 Run run_8ca8bc058ab7을 run-use로 연결했다. 설치 0.9.11 스크립트 접근과 명령 실행을 확인했다. 레포 하네스의 plugin_version 0.9.10은 적용 이력으로 유지한다.
+- SAR-MVP-001-DEV는 Task task_491be61b82eb / Dispatch ctx_66989e4a879d / terminal term_a14d0b14-d989-4853-b53a-02e3ac904b53에서 작업 중이다. 실제 체크아웃은 fullops-dev-mvp이며 사용자 소유 세션으로 표시된다. 종료하거나 중복 배정하지 않는다. 상태 메시지 msg_9fd5d0cda327로 복귀와 hostname을 전달했다.
+- 사용자 확정 hostname은 link.knowslog.com이다. knowslog.com은 사용자 소유 Cloudflare 관리 도메인이다. cloudflared 로컬 인증을 통한 기존 orca tunnel 조회가 성공했고 활성 연결을 확인했다. 도메인 전체 DNS 관리 권한은 별도 확인한다.
+- SAR-DEPLOY-001-OPS는 implementation → ops, claude-sonnet-5-5 high로 분류했다. 기존 OPS 터미널 없음과 깨끗한 체크아웃을 확인했다. 오래된 완료 세션 대신 새 세션을 사용한다. 읽기 전용 서버 준비와 D12 운영 계획을 먼저 수행한다. 실제 운영 변경은 DEV 고정 후보 수락 이후 같은 과제의 후속으로 수행한다.
