@@ -570,3 +570,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 
 - 사용자 재시험 실패 조치 요청. 이슈1 댓글5971027648/5971034506: CLI1.0.40 설치·doctor2tools 성공, 실제 Bot 앱 동적카탈로그 검색0·status호출불가. 기존 CLI 수정 성공과 남은 앱 등록 실패를 구분한다. 원격 재시험 원본 보존.
 - route implementation/dev, claude-opus-5-5 high, D13/D10/D12. 기준4d6ccfd, fresh DEV. 공식 Bot 앱 등록 계약을 조사·진단·최소 구현하며 실제 Bot 호출 경로를 수락 기준으로 사용한다. 사용자 승인 이슈 댓글 후속을 유지하고 FullOps 업데이트·유료/실제릴레이는 제외한다.
+
+- fresh DEV 착수 영수증: task_d0d56ebcf3c6 / ctx_44982314ed3f / term_b3c48e3a-4bdc-419d-bec3-57aebd7499f4. effective claude-opus-5-5 high·turn_started 확인. 기존 DEV user_takeover 세션은 보존한다. 새 과제이며 직전 구현 종료가 오래돼 새 세션을 쓴다.
