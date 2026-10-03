@@ -4,7 +4,7 @@ title: KnowsLink MVP 요구사항
 status: review
 updated: 2026-10-03
 owner: designer
-tasks: [SAR-PREP-002]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001]
 upstream: [D01]
 downstream: [D03, D05, D06, D07, D09, D10]
 summary: 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후속 검증 책임을 정의한다
@@ -26,7 +26,7 @@ summary: 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후�
 
 Go relay와 TypeScript pull-default 어댑터를 사용한다. human-gate UI는 Go `net/http` + `html/template`로 relay가 직접 서빙한다. 별도 TypeScript frontend는 두지 않는다. Postgres와 별도 SQL-only `cmd/migrate`, `pgx/v5` + `pgxpool`, goose, sqlc는 원천의 잠긴 선택이다. 기술 파일·함수·API·테이블 설계는 이 문서에서 정하지 않는다.
 
-제외 범위는 장기 채팅 저장, 병원·폐쇄망, 벤더 코어 수정, 공식 cross-agent inbound API 가정, `schedule.commit` 실행 가능화, amend, evidence 자동 fetch/preview, optional webhook, latent KV/token-id handoff, 결제·구독 구현이다. Workers/DO는 현재 MVP 호스팅이 아니다. 운영 배포·Tunnel 연결·외부 발송은 별도 승인 전 실행하지 않는다.
+제외 범위는 장기 채팅 저장, 병원·폐쇄망, 벤더 코어 수정, 공식 cross-agent inbound API 가정, `schedule.commit` 실행 가능화, amend, evidence 자동 fetch/preview, optional webhook, latent KV/token-id handoff, 결제·구독 구현이다. Workers/DO는 현재 MVP 호스팅이 아니다. 2026-10-03 사용자는 현재 서버 Docker·Cloudflare Tunnel의 첫 파일럿 배포를 승인했다. 공개 hostname은 `link.knowslog.com`이다. 승인 근거는 [공개 기준 결정 기록](../../exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md)와 [OPS 지시서](../../../handovers/to_ops.md)다. 제품 공개 조건과 수락 SHA가 충족되면 같은 배포 승인을 다시 요청하지 않는다. 실제 외부 업무 발송·실데이터 연결은 이번 승인에 포함하지 않는다.
 
 ## 사용자 흐름
 
@@ -78,13 +78,13 @@ approve는 해당 요청의 인간 게이트 통과만 뜻한다. 일정 공개 
 
 ## 미정 결정과 기능 수락 경계
 
-[백로그의 결정 보류표](../SAR-MVP-backlog.md#미정-결정과-재개-조건)가 담당·영향·재개 조건의 정본이다. Free N·가격·slot-unit, disclosure·결과 schema·window/granularity/누적 한도, 추가 resource/rate/size/concurrency 수치를 만들지 않는다. 미니서버 설정과 어댑터 인터페이스는 담당 dev/ops의 기술 확인이다.
+[백로그의 결정 보류표](../SAR-MVP-backlog.md#미정-결정과-재개-조건)가 담당·영향·재개 조건의 정본이다. Free N·가격·slot-unit, disclosure·결과 schema·window/granularity/누적 한도는 기존 held를 유지한다. 추가 resource/rate/size/concurrency 수치는 아래 DEC-03 공개 기준에 승인 근거와 함께 기록한다. 미확정 수치를 DEV/OPS나 합성 fixture가 대신 결정하지 않는다. 미니서버 설정과 어댑터 인터페이스는 담당 dev/ops의 기술 확인이다.
 
 첫 기능은 합성 요청의 로컬 안전 전달과 human-gate다. 실제 calendar 조회·외부 부작용·실데이터 silent 성공은 수락 범위에 포함하지 않는다. `schedule.query`는 정책 없음의 거부를 검증한다. 승인과 정보 공개는 별개다. `schedule.commit`은 승인 후에도 실행하지 않는다. positive silent `done` 수락은 공개 정책과 output schema가 확정된 후속 기능에 남긴다.
 
 ## 검증 책임과 추적
 
-[백로그](../SAR-MVP-backlog.md)는 요구사항별 기능·담당·선행 조건을 연결한다. [DEV 준비 지시서](../../../handovers/to_dev.md)와 [TESTER 준비 지시서](../../../handovers/to_tester.md)는 queued다. 지금 dispatch하지 않는다.
+[백로그](../SAR-MVP-backlog.md)는 요구사항별 기능·담당·선행 조건을 연결한다. [DEV 지시서](../../../handovers/to_dev.md)는 사용자 구현 시작 승인으로 ready다. 실제 배정·진행 상태는 coor가 관리한다. [TESTER 준비 지시서](../../../handovers/to_tester.md)는 고정 구현 후보를 기다린다. 이전 준비 과제의 queued 상태를 현재 시작 금지로 해석하지 않는다.
 
 DEV는 같은 과제에서 기술 계획, 실제 기능 구현, 변경 동작 자동 검사·관련 회귀, 필요한 짧은 로컬 확인, D03과 필요한 D05–D10 갱신을 완료한다. tester는 DEV 완료 뒤 고정된 안정 통합 후보에서 독립 QA를 수행한다. designer는 같은 후보 UI를 직접 검수한다. 구현자와 다른 세션의 독립 fixed-SHA 코드 리뷰는 coor가 준비한다. 미해결 critical/high는 수락·병합을 차단한다.
 
@@ -93,3 +93,54 @@ DEV는 같은 과제에서 기술 계획, 실제 기능 구현, 변경 동작 �
 ## 개정 이력
 
 - 2026-10-03: SAR-PREP-002에서 새 MVP D02를 작성했다. A2A v0.3.0 잠금, C1–C5, 기능 수락 ID와 미정 결정의 경계를 연결했다. 기존 초기 구성 D02는 보존했다.
+
+## 첫 인증 파일럿의 공개 제품 기준 — DEC-03
+
+이 절은 SAR-MVP-PUBLIC-POLICY-001의 현재 제품 기준이다. 원천 `7bc9ea1`의 wire·상품·보안 잠금은 보존한다. 원천의 `relay.knowslog.com`은 이전 기술 호스트 기록이다. 이번 사용자 지정 공개 hostname `link.knowslog.com`을 적용하며 원천을 소급 수정하지 않는다.
+
+사용자 결정에 따라 누구나 가입할 수 있는 공개 서비스다. 초대 전용 가입이나 사전 owner 명단으로 제한하지 않는다. agent 사이의 pairing 초대와 B-human 수락은 기존대로 필수이며 서비스 가입 초대와 구분한다. 첫 공개 단계는 등록·owner 바인딩·페어링·합성 안전 요청·human-gate를 검증하는 인증 파일럿이다. 공개 URL은 누구나 업무를 실행할 수 있다는 뜻이 아니다. 누구나 가입 시작 경로에 접근할 수 있다. owner 인증과 키 PoP 등 등록 요건을 충족한 뒤 agent를 바인딩한다. 인증되지 않은 주체는 등록 변경·초대/수락·연락처·메시지·receipt·gate·결정 기록에 접근하지 못한다. agent credential은 owner 작업을 대체하지 못한다. owner는 자신의 에이전트와 관계 및 gate만 다룬다.
+
+실제 일정·개인정보·실벤더·외부 도구 효과를 연결하지 않는다. `schedule.query` 정책 없음은 deny다. approve는 해당 gate만 통과시키며 일정 공개나 `schedule.commit` 실행을 허용하지 않는다. `relay.result`의 기존 최소 status와 부모 binding을 유지한다. optional result/error 데이터와 positive silent done은 DEC-02 확정 전 보류한다. evidence 자동 fetch/preview·webhook은 OFF다.
+
+### 제한과 거부의 공통 의미
+
+기존 `body` JCS `16KiB`, intent `64 bytes`, hint `1024 UTF-8 bytes`, evidence `8`개, idempotency key `16–128 ASCII`를 유지한다. `MAX_TTL=300s`, lease `30s`, attempts `3`, receipt·멱등 `24h`, revoke metadata `≥24h`도 유지한다. 추가 전체 봉투 한도는 기존 body 한도를 대체하지 않는다. pending invite는 active pair 슬롯에 포함하지 않는다. 파일럿 자원 상한은 Free N·상품 slot-unit 결정이 아니다.
+
+한도를 넘으면 새 작업을 수락하지 않는다. 거부된 작업을 queued·delivered·approved·done으로 표시하지 않는다. 거부는 새 전달·실행권·gate·관계를 만들지 않으며 기존 요청의 TTL이나 권한을 연장하지 않는다. 동시 요청과 `priority:high`도 같은 한도를 지킨다. 현재 인증·권한 검사와 frozen receipt-only replay를 우회하는 제한 검사는 금지한다. 신규 등록·초대·enqueue의 수용량을 기존 요청 정리에 재적용하지 않는다. 기존 유효한 ACK·deny·철회·unpair·receipt-only replay는 자원 수용량이 가득 찼다는 이유만으로 거부하지 않는다. 이 경로도 인증·현재 권한·lease·만료·CSRF·봉투 한도와 남용 방어를 지킨다. DEV/OPS는 안전 정리 경로의 별도 rate·동시성 budget과 경계 검사 근거를 인계한다. 정확한 API·오류 코드·제한 구현 방법은 DEV/OPS가 정한다.
+
+### 초기 안전 한도 권장안 — 사용자 승인 전 제안값
+
+아래 수치는 운영 측정 결과나 확정값이 아니다. coor를 통해 사용자에게 초기 정책 묶음의 승인 또는 조정 값만 질문했다. 공개 가입을 유지하면서 무제한 운영을 피하기 위한 보수적인 초기 권장안이다. 두 agent의 합성 흐름과 gate를 운영하고 작은 서비스 수용량에서 검증하는 목적이다. 성능 보장·가입자 목표·Free N으로 사용하지 않는다.
+
+| 대상 | 제안값·단위 | 집계·경계와 거부 동작 |
+|---|---|---|
+| 등록 owner / agent | 서비스 전체 owner 100명 / agent 200개 | 삭제·철회만으로 필수 보존 중인 보안 기록을 없애지 않는다. 새 등록이 상한을 넘으면 등록을 거부한다. 누구나 같은 가입 조건을 적용받는다. |
+| active pair / pending invite | 서비스 전체 각각 400개 / 200개 | active는 현재 유효 관계, pending은 아직 결정되지 않은 초대다. pending은 active에 더하지 않는다. 중복 active 관계나 같은 pending 초대의 재시도는 새 개체를 만들지 않는다. 초과 신규 초대/수락을 거부하며 deny/unpair는 허용된 안전 종료 경로를 유지한다. |
+| 전달 대기 봉투 | 서비스 전체 queued+leased 합계 100개 | M/H/R 모두 해당 상태면 각각 한 개로 집계한다. delivered/terminal은 제외한다. 새 enqueue가 상한을 넘으면 거부한다. 유효한 receipt-only replay는 새 queue 자원을 소모하지 않는다. |
+| pending gate | 서비스 전체 100개 | 권위 있는 부모 M별 pending gate 한 개다. approved/denied/expired/revoked는 제외한다. 초과 신규 gate를 거부하고 기존 gate의 deny/철회는 보존한다. |
+| receipt·멱등 기록 | 서비스 전체 24h 보존 중인 수락 메시지 20000건 | 같은 메시지의 receipt와 멱등 기록은 함께 한 건이다. H/R도 새 수락 메시지면 집계한다. 초과 신규 수락을 거부한다. 기존 replay로 증가시키거나 보존을 24h 미만으로 줄이지 않는다. |
+| 익명 HTTP 시도 | source IP당 rolling 60s에 30회 | 인증 실패·거부 시도도 집계한다. 새 source IP로 서비스 전체 상한을 우회하지 못한다. NAT 공유 영향과 신뢰할 source IP 판별은 DEV/OPS 근거가 필요하다. |
+| 인증 HTTP 시도 | owner 또는 agent principal당 rolling 60s에 60회 | credential/키 교체로 같은 principal의 한도를 초기화하지 않는다. 신규 작업 40회와 기존 안전 정리 20회로 분리하는 보완안을 제안한다. replay·거부·pull/ACK·owner 작업도 해당 경로에 집계한다. |
+| 전체 HTTP 시도 | 서비스 전체 rolling 60s에 300회 | 익명·인증 시도의 합이다. 신규 작업 200회와 기존 안전 정리 100회로 분리하는 보완안을 제안한다. 비공개 운영 health 확인만 제외한다. 사용자 API를 health 예외로 우회하지 못한다. |
+| 추가 봉투 크기 | 봉투 전체 raw UTF-8 32KiB = 32768 bytes | JSON의 공백·sig·ext·trace·render·evidence를 포함한다. 기존 body JCS 16KiB는 별도로 지킨다. 초과 봉투를 수락하지 않는다. 압축·encoding 우회 방어는 DEV가 정한다. |
+| 진행 중 HTTP / 실행 claim | 서비스 전체 각각 20개 / 4개 | HTTP는 처리 시작부터 종료까지 집계한다. HTTP 20개 중 신규 작업 16개·기존 안전 정리 4개를 별도 유지하는 보완안을 제안한다. claim은 실행권 획득 뒤 처리 완료/중단까지 집계한다. 추가 동시 작업은 수락하지 않는다. 숨은 무제한 대기열을 만들지 않는다. |
+
+rolling 60s는 시각 t에서 `(t−60s,t]`에 시작한 시도를 뜻한다. 상한 값까지 허용하고 다음 시도를 거부한다. 적용 가능한 모든 한도를 만족해야 한다. 제한 시도도 rate에 포함하므로 재시도 폭주가 허용량을 늘리지 않는다. 시각·집계 상태가 불명확하면 새 작업은 fail-closed다. 새로운 process·credential·pair 세대가 서비스 전체 수용량이나 보존 중인 기록을 초기화하지 않는다.
+
+coor의 검토 요청에 따라 신규 수용량과 기존 안전 정리의 경계를 보완했다. 위 rate·HTTP 동시성의 분리값도 승인 전 제안이다. 신규 작업이 안전 정리의 budget을 소진하지 못한다. 안전 정리는 인증된 해당 기록에 대한 ACK·deny·철회·unpair·receipt 조회/replay다. pull은 새 lease를 만드는 신규 작업으로 집계한다. gate approve·새 H/R은 새 인가/수락을 만들므로 안전 정리 예외를 자동 적용하지 않는다. 제한이 가득 찼을 때 H/R 수락과 부모 종료의 연계 또는 필요한 예약량은 DEV 근거를 받은 뒤 제품 결정으로 확정한다.
+
+rate·HTTP 동시 한도와 안전 종료 경로의 충돌은 아직 기술 검증 전이다. DEV/OPS는 ACK·deny·철회·receipt 조회의 반복 실패가 기존 요청 종료나 권한 차단을 지연시키지 않는다는 근거를 제공한다. 필요하면 designer가 안전 종료 경로별 별도 한도를 사용자 결정에 포함한다. 이 검증 전에는 “모든 조건 확정”이나 “공개 가능”으로 표시하지 않는다.
+
+CPU·메모리·디스크·DB 보존 자원의 실제 보호 상한은 OPS가 현재 서버와 기존 서비스 보존 조건을 측정해 근거를 제공한다. designer는 그 근거가 요청 수용량·거부 동작 변경을 요구하면 제품 기준을 갱신한다. 장기 key revoke metadata와 기록 증가, 정상 polling·ACK·owner 작업의 budget, 부모/결과 관계가 가득 찬 queue에서 안전 종료되는지를 DEV/OPS가 확인한다. 임의의 CPU/RAM/디스크 값을 제품 정책으로 확정하지 않는다.
+
+### 사용자 완료 조건과 후속 담당
+
+- DEV는 MVP-01–16의 합성 흐름과 승인된 한도의 적용 대상·경계·거부·동시성·재시작 동작을 구현하고 검증한다. 수치가 미정이면 기존 로컬 합성 구현은 계속하되 공개 경로를 열지 않는다. 제안값만으로 현재 DEV 과제에 공개 한도 구현을 추가하지 않는다. 확정 기준과 coor 후속 인계가 있어야 제한 집행 범위를 반영한다.
+- tester는 coor가 지정한 고정 통합 후보에서 인증·owner/agent 권한 분리·공개 거부 경계·한도 이하/경계/초과·high priority·철회/만료·재시작을 독립 검증한다. 실제 데이터나 외부 효과 없이 수행한다.
+- designer는 같은 후보의 verified typed body·정책·만료/철회·원문 부재·approve/deny 상태를 직접 검수한다. 인증·제한 거부를 성공으로 표시하지 않는지도 확인한다.
+- OPS는 수락 SHA와 승인된 제품 한도를 적용한 인증 공개 후보를 검증한다. 기존 서버 서비스와 route를 보존한다. 설정·배포 방법·운영 자원 보호는 OPS의 기술 책임이다.
+- coor는 독립 QA·직접 UI 검수·별도 세션의 fixed-SHA 독립 리뷰·제한 집행 근거를 확인한다. 미해결 critical/high와 공개 선행 조건 실패는 수락·공개를 차단한다.
+
+제품 정책 문서 완료는 배포 성공이나 QA PASS가 아니다. 이 합성 파일럿 수락은 전체 MVP 완료가 아니다. 실벤더 연결과 실데이터 silent 업무 성공·유료화의 기존 held 및 재개 조건을 유지한다.
+
+- 2026-10-03: SAR-MVP-PUBLIC-POLICY-001에서 누구나 가입 가능한 인증 합성 파일럿 범위를 반영했다. DEC-03 수치는 승인 전 제안이며 신규 수락과 기존 안전 정리의 경계를 분리했다. 실제 공개와 전체 MVP 수락은 선언하지 않았다.

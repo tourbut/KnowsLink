@@ -1,0 +1,198 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "e872ee0eebe8e7683d1d6a6d692514f72f7a9572",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "4765bb0a01b0fe939cad86c43e4b1cd28b08821bf4af1c9d8dea27c4fd600f88",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-FULLOPS.md",
+      "c1-README.md",
+      "c2-coding-style.md",
+      "c3-testing.md",
+      "c4-security.md",
+      "c5-project.md",
+      "c6-document-writing.md",
+      "c7-SAR-MVP.md",
+      "c8-SAR-MVP-backlog.md",
+      "c9-to_dev.md",
+      "c10-ops.md",
+      "c11-to_ops.md",
+      "c12-compose.yaml",
+      "c13-Dockerfile"
+    ],
+    "recommended_ids": [
+      "c0-FULLOPS.md",
+      "c1-README.md",
+      "c2-coding-style.md",
+      "c3-testing.md",
+      "c4-security.md",
+      "c5-project.md",
+      "c6-document-writing.md",
+      "c7-SAR-MVP.md",
+      "c8-SAR-MVP-backlog.md",
+      "c9-to_dev.md",
+      "c10-ops.md",
+      "c11-to_ops.md",
+      "c12-compose.yaml",
+      "c13-Dockerfile"
+    ],
+    "signals": {
+      "c0-FULLOPS.md": {
+        "relevant": 0.26,
+        "evidence": 0.6,
+        "contradicts": 0.14,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-README.md": {
+        "relevant": 0.33,
+        "evidence": 0.61,
+        "contradicts": 0.15,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-coding-style.md": {
+        "relevant": 0.17,
+        "evidence": 0.39,
+        "contradicts": 0.07,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-testing.md": {
+        "relevant": 0.3,
+        "evidence": 0.57,
+        "contradicts": 0.1,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-security.md": {
+        "relevant": 0.76,
+        "evidence": 0.81,
+        "contradicts": 0.07,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-project.md": {
+        "relevant": 0.37,
+        "evidence": 0.62,
+        "contradicts": 0.28,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-document-writing.md": {
+        "relevant": 0.21,
+        "evidence": 0.64,
+        "contradicts": 0.12,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-SAR-MVP.md": {
+        "relevant": 0.2,
+        "evidence": 0.31,
+        "contradicts": 0.14,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-SAR-MVP-backlog.md": {
+        "relevant": 0.29,
+        "evidence": 0.44,
+        "contradicts": 0.18,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-to_dev.md": {
+        "relevant": 0.13,
+        "evidence": 0.29,
+        "contradicts": 0.29,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-ops.md": {
+        "relevant": 0.31,
+        "evidence": 0.1,
+        "contradicts": 0.13,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-to_ops.md": {
+        "relevant": 0.79,
+        "evidence": 0.74,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c13-Dockerfile": {
+        "relevant": 0.4,
+        "evidence": 0.5,
+        "contradicts": 0.19,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-FULLOPS.md": ".fullops-squad/FULLOPS.md",
+      "c1-README.md": ".fullops-squad/rules/common/README.md",
+      "c2-coding-style.md": ".fullops-squad/rules/common/coding-style.md",
+      "c3-testing.md": ".fullops-squad/rules/common/testing.md",
+      "c4-security.md": ".fullops-squad/rules/common/security.md",
+      "c5-project.md": ".fullops-squad/project.md",
+      "c6-document-writing.md": ".fullops-squad/docs/agents/document-writing.md",
+      "c7-SAR-MVP.md": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "c8-SAR-MVP-backlog.md": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "c9-to_dev.md": ".fullops-squad/handovers/to_dev.md",
+      "c10-ops.md": ".fullops-squad/contexts/ops.md",
+      "c11-to_ops.md": ".fullops-squad/handovers/to_ops.md",
+      "c12-compose.yaml": "compose.yaml",
+      "c13-Dockerfile": "Dockerfile"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_ops.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 35196,
+    "output_tokens": 988,
+    "cost": 0.001478232
+  },
+  "latency_seconds": 0.374,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-DEPLOY-001-OPS",
+  "role": "ops",
+  "unsent_sources": {
+    "compose.yaml": "sensitive or oversized passage"
+  },
+  "refused_paths": [
+    {
+      "path": ".env.example",
+      "reason": "sensitive path"
+    }
+  ]
+}

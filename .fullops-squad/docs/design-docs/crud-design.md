@@ -1,0 +1,27 @@
+---
+id: D09
+title: CRUD정의서
+status: review
+updated: 2026-10-03
+owner: dev
+tasks: [SAR-MVP-001-DEV]
+upstream: [D02]
+summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
+---
+
+# KnowsLink CRUD 정의
+
+[엔티티 정본](data-model.md)과 [DB 설계](database-design.md)를 따른다.
+
+
+
+| 엔티티 | Create | Read | Update | Delete·회수 |
+|---|---|---|---|---|
+| Owner/Agent/Key | owner 가입·PoP 등록 | 현재 owner/agent 인증, key lookup | rotate/revoke | ID/kid 이력 유지 |
+| Pair | invite pending | contacts·routing | B-owner accept/deny, owner unpair | 재수락은 generation 증가 |
+| Message/Receipt/Idempotency | send의 동일 transaction | endpoint 권한·receipt-only | lease·persist·ACK·claim·R completion | payload exp/완료/철회; metadata 24h |
+| Gate | 검증된 H send | owner UI, B-agent metadata | 결정 CAS·consume 1회 | 만료/철회/원문 부재 차단; metadata 24h |
+
+MVP-15의 최소 저장은 HTTP 응답·inbox·로그·adapter memory에도 적용한다.
+프로그램 종료 시 claim을 다른 worker에 재발급하지 않는다. 자동 복구보다 중복 처리 차단을 우선한다.
+실제 외부 효과와 positive silent done 재개는 DEC-02와 후속 업무 과제의 책임이다.

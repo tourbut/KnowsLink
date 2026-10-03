@@ -1,0 +1,9 @@
+## 2026-10-03T15:57:26+0900 cwd=/home/shin/orca/workspaces/KnowsLink/fullops-tester
+$ make test
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.015s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.020s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.012s
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.059s
+[exit 0]

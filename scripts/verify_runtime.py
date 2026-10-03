@@ -48,10 +48,10 @@ def main():
         compose += ["-f", str(ROOT / "compose.yaml"), "-f", str(override)]
         try:
             run(compose + ["up", "--build", "--wait", "--wait-timeout", "120", "relay"])
-            run(compose + ["logs", "migrate"], diagnostic="no SQL migrations; no-op")
+            run(compose + ["logs", "migrate"], diagnostic="SQL migrations completed")
             tables = run(compose + ["exec", "-T", "postgres", "psql", "-U", "knowslink", "-d", "knowslink", "-Atc",
                                    "SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"])
-            assert tables.strip() == "0", "empty migration must not create business or goose tables"
+            assert tables.strip() == "2", "relay_state and goose version table must exist"
             run(compose + ["exec", "-T", "relay", "wget", "-q", "-O", "-", "http://127.0.0.1:8080/healthz"], diagnostic="ok")
             for binary in ("relay", "migrate"):
                 run(compose + ["exec", "-T", "relay", "env", "DATABASE_URL=", f"/app/{binary}"],
@@ -62,12 +62,12 @@ def main():
             run(compose + ["exec", "-T", "relay", "wget", "-q", "-O", "-", "http://127.0.0.1:8080/healthz"],
                 expected=1, diagnostic="503")
         finally:
-            run(compose + ["down"])
+            run(compose + ["down", "--volumes"])
     run(["docker", "run", "--rm", "--network", "none", "-e", "TUNNEL_TOKEN=",
          cloudflared, "tunnel", "--no-autoupdate", "run"],
         expected=1, diagnostic="requires the ID or name of the tunnel")
-    run(["npm", "run", "start", "--prefix", "adapters"], diagnostic='"state":"unimplemented"')
-    print("PASS: local startup, empty SQL no-op, readiness, missing settings, DB failure, disabled Tunnel, inert adapter")
+    run(["npm", "run", "start", "--prefix", "adapters"], diagnostic='"state":"unconfigured"')
+    print("PASS: local startup, SQL migration, readiness, missing settings, DB failure, disabled Tunnel, unconfigured adapter")
 
 
 if __name__ == "__main__":

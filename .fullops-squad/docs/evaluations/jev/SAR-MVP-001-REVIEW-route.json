@@ -1,0 +1,79 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-001-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.92,
+        "product": 0.08
+      },
+      "confidence": 0.84
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "tester": 0.41,
+        "dev": 0.55,
+        "ops": 0.04
+      },
+      "confidence": 0.32
+    },
+    "docs": {
+      "D01": 0.27,
+      "D02": 0.38,
+      "D03": 0.33,
+      "D04": 0.19,
+      "D05": 0.32,
+      "D06": 0.35,
+      "D07": 0.31,
+      "D08": 0.32,
+      "D09": 0.31,
+      "D10": 0.47,
+      "D11": 0.21,
+      "D12": 0.31,
+      "D13": 0.31
+    }
+  },
+  "usage": {
+    "input_tokens": 2424,
+    "output_tokens": 314,
+    "cost": 0.000101808
+  },
+  "error": null,
+  "latency_seconds": 0.278,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "독립 코드 리뷰는 구현자와 다른 DEV 검토 세션의 고성능 모델이 맡으며 제품 기획자가 기술 승인하지 않는다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0,
+      "claude claude-sonnet-5-5 high": 0.01,
+      "claude claude-opus-5-5 medium": 0.04,
+      "codex gpt-6.1-sol medium": 0.04,
+      "claude claude-opus-5-5 high": 0.65,
+      "codex gpt-6.1-sol high": 0.26
+    },
+    "usage": {
+      "input_tokens": 815,
+      "output_tokens": 66,
+      "cost": 3.423e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}

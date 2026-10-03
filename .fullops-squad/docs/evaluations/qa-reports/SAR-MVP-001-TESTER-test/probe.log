@@ -1,0 +1,772 @@
+## 2026-10-03T16:06:17+0900 cwd=/home/shin/orca/workspaces/KnowsLink/fullops-tester
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/isolated.py
+ Image knowslink-qa-3cabe655af-migrate Building
+ Image knowslink-qa-3cabe655af-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.08kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#3 DONE 0.0s
+
+#4 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#4 DONE 0.0s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load build context
+#6 transferring context: 1.19kB 0.0s done
+#6 DONE 0.0s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#7 DONE 0.0s
+
+#8 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#8 DONE 0.1s
+
+#9 [relay build 3/7] COPY go.mod go.sum ./
+#9 CACHED
+
+#10 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#10 CACHED
+
+#11 [relay stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#11 CACHED
+
+#12 [relay build 5/7] COPY cmd ./cmd
+#12 CACHED
+
+#13 [relay build 6/7] COPY internal ./internal
+#13 CACHED
+
+#14 [relay stage-1 3/5] WORKDIR /app
+#14 CACHED
+
+#15 [relay build 2/7] WORKDIR /src
+#15 CACHED
+
+#16 [relay build 4/7] RUN go mod download
+#16 CACHED
+
+#17 [relay stage-1 2/5] RUN apk add --no-cache ca-certificates
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:5646c8f75b92a8dad801e069a068daf93b934ccb6cff37871a9f1d07353b2466 0.0s done
+#19 exporting config sha256:39d40521697226c55d73176e38770b89d900f88b3f73719803a85c1d1ca5520c
+#19 exporting config sha256:39d40521697226c55d73176e38770b89d900f88b3f73719803a85c1d1ca5520c 0.0s done
+#19 exporting attestation manifest sha256:90426938b752d062e39ad4c397869183a14077ef10cf25626f4a1fc57733c9ed 0.1s done
+#19 exporting manifest list sha256:7711c2adc088b65b68b90a149a46db7d20ff18b25402094d7e462583785ae820
+#19 exporting manifest list sha256:7711c2adc088b65b68b90a149a46db7d20ff18b25402094d7e462583785ae820 0.0s done
+#19 naming to docker.io/library/knowslink-qa-3cabe655af-migrate:latest done
+#19 unpacking to docker.io/library/knowslink-qa-3cabe655af-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:1d849be94c3df684ae0de827fbbeb1d953f8e32d8c8aac2ccf2af7463064ec23 0.0s done
+#20 exporting config sha256:688babdc8bfa2a23858294856346ffa2493cd599a1368d088e55be1c349a476f 0.0s done
+#20 exporting attestation manifest sha256:c8d83e02ec8914ac039dca300ed475050d1b3c10befe3fd9a4e0c5958da256c0 0.1s done
+#20 exporting manifest list sha256:fb15832ca378ad4cb398ae3dfb948809c76ac2e27596cb4274dde2eef34dc53d 0.0s done
+#20 naming to docker.io/library/knowslink-qa-3cabe655af-relay:latest done
+#20 unpacking to docker.io/library/knowslink-qa-3cabe655af-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-qa-3cabe655af-migrate Built
+ Image knowslink-qa-3cabe655af-relay Built
+ Network knowslink-qa-3cabe655af_database Creating
+ Network knowslink-qa-3cabe655af_database Created
+ Network knowslink-qa-3cabe655af_ingress Creating
+ Network knowslink-qa-3cabe655af_ingress Created
+ Volume knowslink-qa-3cabe655af_postgres-data Creating
+ Volume knowslink-qa-3cabe655af_postgres-data Created
+ Container knowslink-qa-3cabe655af-postgres-1 Creating
+ Container knowslink-qa-3cabe655af-postgres-1 Created
+ Container knowslink-qa-3cabe655af-migrate-1 Creating
+ Container knowslink-qa-3cabe655af-migrate-1 Created
+ Container knowslink-qa-3cabe655af-relay-1 Creating
+ Container knowslink-qa-3cabe655af-relay-1 Created
+ Container knowslink-qa-3cabe655af-postgres-1 Starting
+ Container knowslink-qa-3cabe655af-postgres-1 Started
+ Container knowslink-qa-3cabe655af-postgres-1 Waiting
+ Container knowslink-qa-3cabe655af-postgres-1 Healthy
+ Container knowslink-qa-3cabe655af-migrate-1 Starting
+ Container knowslink-qa-3cabe655af-migrate-1 Started
+ Container knowslink-qa-3cabe655af-migrate-1 Waiting
+ Container knowslink-qa-3cabe655af-migrate-1 Exited
+ Container knowslink-qa-3cabe655af-relay-1 Starting
+ Container knowslink-qa-3cabe655af-relay-1 Started
+ Container knowslink-qa-3cabe655af-migrate-1 Waiting
+ Container knowslink-qa-3cabe655af-relay-1 Waiting
+ Container knowslink-qa-3cabe655af-postgres-1 Waiting
+ Container knowslink-qa-3cabe655af-postgres-1 Healthy
+ Container knowslink-qa-3cabe655af-migrate-1 Exited
+ Container knowslink-qa-3cabe655af-relay-1 Healthy
+command: docker compose --project-name knowslink-qa-3cabe655af --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-13_5brmx/test.yaml up --build --wait relay; exit: 0
+PASS QA-01-signup: POST /v1/owners and PoP /v1/agents returned 200 for four synthetic owners
+PASS QA-01-agent-credential: agent credential on owner routes: 401,401,401,401
+PASS QA-01-url-kid: URL kid status 422 error invalid_schema
+PASS QA-01-rotate-reassign: wrong-pop 422, rotate 200, kid reuse 409 key_exists, previous key 401
+PASS QA-02-before-accept: invite pending, send 403 human_invite_required, contacts []
+PASS QA-02-deny: deny state denied, send 403
+PASS QA-02-active-reinvite: accept gen 1, reinvite active gen 1
+PASS QA-02-pending-concurrent: pending-contacts 0, accept 200,200,200,200,200,200,200,200, contacts ["qa_a_8404718f"]
+HELD QA-02-free-n: Free N, price, and slot-unit stay unset. This run does not estimate them.
+PASS QA-03-auth-before-cache: send 200, unauth 401, digest leaked false
+PASS QA-03-strict-schema: duplicate-key:422,deliver-both:422,unknown:422,taskId:422,role-user:422,bad-unicode:422,uppercase-from:422
+PASS QA-04-replay-rollback: replay 200 id-match true, conflict 409 idempotency_conflict, ttl 422 ttl_too_long, rollback 200, id 409 id_collision
+PASS QA-05-lease-30s: attempts 1, lease gap 30.0s
+PASS QA-05-exp-min-and-ack-before-persist: ack-before-persist 409, short attempts 1, until-exp 0.0s
+ Container knowslink-qa-3cabe655af-relay-1 Restarting
+ Container knowslink-qa-3cabe655af-relay-1 Started
+PASS QA-05-attempts-ack-claim-restart: attempts 2/3, late 409, delivered delivered, winners 1, restart 409
+PASS QA-05-max-attempts: transport failed:max_attempts
+FAIL QA-06-revoke-before-lease: revoke 200, pull-revoked 200 token false, rotate 200, pull-after false
+Cannot read properties of null (reading 'lease_token')
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.mjs; exit: 1
+ Container knowslink-qa-3cabe655af-relay-1 Stopping
+ Container knowslink-qa-3cabe655af-relay-1 Stopped
+ Container knowslink-qa-3cabe655af-relay-1 Removing
+ Container knowslink-qa-3cabe655af-relay-1 Removed
+ Container knowslink-qa-3cabe655af-migrate-1 Stopping
+ Container knowslink-qa-3cabe655af-migrate-1 Stopped
+ Container knowslink-qa-3cabe655af-migrate-1 Removing
+ Container knowslink-qa-3cabe655af-migrate-1 Removed
+ Container knowslink-qa-3cabe655af-postgres-1 Stopping
+ Container knowslink-qa-3cabe655af-postgres-1 Stopped
+ Container knowslink-qa-3cabe655af-postgres-1 Removing
+ Container knowslink-qa-3cabe655af-postgres-1 Removed
+ Network knowslink-qa-3cabe655af_ingress Removing
+ Network knowslink-qa-3cabe655af_database Removing
+ Volume knowslink-qa-3cabe655af_postgres-data Removing
+ Volume knowslink-qa-3cabe655af_postgres-data Removed
+ Network knowslink-qa-3cabe655af_database Removed
+ Network knowslink-qa-3cabe655af_ingress Removed
+command: docker compose --project-name knowslink-qa-3cabe655af --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-13_5brmx/test.yaml down --volumes; exit: 0
+[exit 1]
+
+## 2026-10-03T16:12:37+0900 cwd=/home/shin/orca/workspaces/KnowsLink/fullops-tester
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/isolated.py
+ Image knowslink-qa-0596bf6624-relay Building
+ Image knowslink-qa-0596bf6624-migrate Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.08kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#3 DONE 0.0s
+
+#4 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#4 DONE 0.0s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load build context
+#6 transferring context: 1.19kB done
+#6 DONE 0.0s
+
+#7 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#7 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#7 DONE 0.0s
+
+#8 [migrate build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#8 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#8 DONE 0.0s
+
+#9 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#9 CACHED
+
+#10 [migrate stage-1 3/5] WORKDIR /app
+#10 CACHED
+
+#11 [migrate build 6/7] COPY internal ./internal
+#11 CACHED
+
+#12 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#12 CACHED
+
+#13 [migrate build 3/7] COPY go.mod go.sum ./
+#13 CACHED
+
+#14 [migrate build 4/7] RUN go mod download
+#14 CACHED
+
+#15 [migrate build 2/7] WORKDIR /src
+#15 CACHED
+
+#16 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#16 CACHED
+
+#17 [migrate build 5/7] COPY cmd ./cmd
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:b99b846684623c2085c6f6d1591b37e8b855e38eabaac1aa43c283e3867d611b 0.1s done
+#19 exporting config sha256:bc02932323978a658e36201755329e09a655ff2ca4b6042c2de76665b4322d8a
+#19 exporting config sha256:bc02932323978a658e36201755329e09a655ff2ca4b6042c2de76665b4322d8a 0.0s done
+#19 exporting attestation manifest sha256:e0f145d61911775359f79b200985f37467258a53f83b5f584d0ddffb161fd37b 0.1s done
+#19 exporting manifest list sha256:52812a79348139c43a72b81190b55c6efb17343066e794c69f711dac0616a83c
+#19 exporting manifest list sha256:52812a79348139c43a72b81190b55c6efb17343066e794c69f711dac0616a83c 0.0s done
+#19 naming to docker.io/library/knowslink-qa-0596bf6624-migrate:latest done
+#19 unpacking to docker.io/library/knowslink-qa-0596bf6624-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:4f9fbad2f909255c52d1260ef47639dc05abe72a7c6da89d545f0fc01748dffa 0.1s done
+#20 exporting config sha256:50841c1886ebe2a9fce7af8b4bbaa5d2f460c67756a3e2185504380ce9a69dcc 0.0s done
+#20 exporting attestation manifest sha256:a15a1de6760f20dc1dc34b6fa367834b836783e12e84b11157381b88b79f08b8 0.1s done
+#20 exporting manifest list sha256:a7795636034a2661f22133a56ade45ad92462e98850e8d2f1897cab55b7528d2 0.0s done
+#20 naming to docker.io/library/knowslink-qa-0596bf6624-relay:latest done
+#20 unpacking to docker.io/library/knowslink-qa-0596bf6624-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-qa-0596bf6624-migrate Built
+ Image knowslink-qa-0596bf6624-relay Built
+ Network knowslink-qa-0596bf6624_database Creating
+ Network knowslink-qa-0596bf6624_database Created
+ Network knowslink-qa-0596bf6624_ingress Creating
+ Network knowslink-qa-0596bf6624_ingress Created
+ Volume knowslink-qa-0596bf6624_postgres-data Creating
+ Volume knowslink-qa-0596bf6624_postgres-data Created
+ Container knowslink-qa-0596bf6624-postgres-1 Creating
+ Container knowslink-qa-0596bf6624-postgres-1 Created
+ Container knowslink-qa-0596bf6624-migrate-1 Creating
+ Container knowslink-qa-0596bf6624-migrate-1 Created
+ Container knowslink-qa-0596bf6624-relay-1 Creating
+ Container knowslink-qa-0596bf6624-relay-1 Created
+ Container knowslink-qa-0596bf6624-postgres-1 Starting
+ Container knowslink-qa-0596bf6624-postgres-1 Started
+ Container knowslink-qa-0596bf6624-postgres-1 Waiting
+ Container knowslink-qa-0596bf6624-postgres-1 Healthy
+ Container knowslink-qa-0596bf6624-migrate-1 Starting
+ Container knowslink-qa-0596bf6624-migrate-1 Started
+ Container knowslink-qa-0596bf6624-migrate-1 Waiting
+ Container knowslink-qa-0596bf6624-migrate-1 Exited
+ Container knowslink-qa-0596bf6624-relay-1 Starting
+ Container knowslink-qa-0596bf6624-relay-1 Started
+ Container knowslink-qa-0596bf6624-postgres-1 Waiting
+ Container knowslink-qa-0596bf6624-migrate-1 Waiting
+ Container knowslink-qa-0596bf6624-relay-1 Waiting
+ Container knowslink-qa-0596bf6624-migrate-1 Exited
+ Container knowslink-qa-0596bf6624-postgres-1 Healthy
+ Container knowslink-qa-0596bf6624-relay-1 Healthy
+command: docker compose --project-name knowslink-qa-0596bf6624 --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-s42zip20/test.yaml up --build --wait relay; exit: 0
+PASS QA-01-signup: POST /v1/owners and PoP /v1/agents returned 200 for four synthetic owners
+PASS QA-01-agent-credential: agent credential on owner routes: 401,401,401,401
+PASS QA-01-url-kid: URL kid status 422 error invalid_schema
+PASS QA-01-rotate-reassign: wrong-pop 422, rotate 200, kid reuse 409 key_exists, previous key 401
+PASS QA-02-before-accept: invite pending, send 403 human_invite_required, contacts []
+PASS QA-02-deny: deny state denied, send 403
+PASS QA-02-active-reinvite: accept gen 1, reinvite active gen 1
+PASS QA-02-pending-concurrent: pending-contacts 0, accept 200,200,200,200,200,200,200,200, contacts ["qa_a_12a61000"]
+HELD QA-02-free-n: Free N, price, and slot-unit stay unset. This run does not estimate them.
+PASS QA-03-auth-before-cache: send 200, unauth 401, digest leaked false
+PASS QA-03-strict-schema: duplicate-key:422,deliver-both:422,unknown:422,taskId:422,role-user:422,bad-unicode:422,uppercase-from:422
+PASS QA-04-replay-rollback: replay 200 id-match true, conflict 409 idempotency_conflict, ttl 422 ttl_too_long, rollback 200, id 409 id_collision
+PASS QA-05-lease-30s: attempts 1, lease gap 30.0s
+PASS QA-05-exp-min-and-ack-before-persist: ack-before-persist 409, short attempts 1, until-exp 0.0s
+ Container knowslink-qa-0596bf6624-relay-1 Restarting
+ Container knowslink-qa-0596bf6624-relay-1 Started
+PASS QA-05-attempts-ack-claim-restart: attempts 2/3, late 409, delivered delivered, winners 1, restart 409
+PASS QA-05-max-attempts: transport failed:max_attempts
+PASS QA-06-revoke-before-lease: revoke 200, pull-revoked 200 token false, rotate 200, old-not-restored false, fresh 200 leased true
+PASS QA-06-unpair-generation: ack 409, generation 2, old 403, new 200
+PASS QA-06-abnormal-clock: clock 503 abnormal_clock, health 200
+PASS QA-06-unknown-auth: unknown credential 401
+HELD QA-06-epoch-cas: Concurrent accepts and claims showed one winner. A deliberate stale-epoch 503 was not forced from outside the transaction.
+PASS QA-07-query-deny-and-claim: pre-ack leased, persist 200, authorize false/false
+PASS QA-07-commit-stub: policy schedule.commit: human gate required; non-executable stub even after approve, executable false, done 403
+PASS QA-07-escalation-binding: no-claim 403, bound 200, duplicate 409 duplicate_gate, recursive 403, late-exp 422 expired
+PASS QA-08-ui-csrf-consume: hint-shown false, get true, agent 401, csrf 403, approve 303, consume 200 exec false
+PASS QA-08-deny-page: deny page has button false
+FAIL QA-09-result-binding: direction 403, result 422, stack 422, denied 200, duplicate 403 sender_not_allowed, completion denied
+PASS QA-09-result-not-command: intent relay.result, persist 200, ack 200, next false
+PASS QA-10-off-boundaries: evidence 200, older-normal-not-preempted true, webhook 404
+PASS QA-10-adapter-unconfigured: {"state":"unconfigured","transport":"pull","webhook":false,"evidenceFetch":false}
+HELD QA-10-real-adapter: Loopback TypeScript stub only. No vendor connection or public operation is claimed.
+HELD QA-10-a2a: A2A wire fields were rejected. No claim of a current A2A revision review or push webhook.
+ERROR:  column "data" does not exist
+LINE 1: SELECT data->'Messages'->'01a1009b-c7c2-720d-bfca-0553af437e...
+               ^
+Command failed: docker compose --project-name knowslink-qa-0596bf6624 --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-s42zip20/test.yaml exec -T postgres psql -U knowslink -d knowslink -v ON_ERROR_STOP=1 -t -A -c SELECT data->'Messages'->'01a1009b-c7c2-720d-bfca-0553af437ec5' ? 'Envelope'
+ERROR:  column "data" does not exist
+LINE 1: SELECT data->'Messages'->'01a1009b-c7c2-720d-bfca-0553af437e...
+               ^
+
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.mjs; exit: 1
+82411 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-lvd5gktv --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.html; exit: 0
+screenshot: v01-pending.html; exit: 0
+84966 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-cvyz9d_y --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.html; exit: 0
+screenshot: v02-approved.html; exit: 0
+82429 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-bbn7bmg2 --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.html; exit: 0
+screenshot: v02-denied.html; exit: 0
+ Container knowslink-qa-0596bf6624-relay-1 Stopping
+ Container knowslink-qa-0596bf6624-relay-1 Stopped
+ Container knowslink-qa-0596bf6624-relay-1 Removing
+ Container knowslink-qa-0596bf6624-relay-1 Removed
+ Container knowslink-qa-0596bf6624-migrate-1 Stopping
+ Container knowslink-qa-0596bf6624-migrate-1 Stopped
+ Container knowslink-qa-0596bf6624-migrate-1 Removing
+ Container knowslink-qa-0596bf6624-migrate-1 Removed
+ Container knowslink-qa-0596bf6624-postgres-1 Stopping
+ Container knowslink-qa-0596bf6624-postgres-1 Stopped
+ Container knowslink-qa-0596bf6624-postgres-1 Removing
+ Container knowslink-qa-0596bf6624-postgres-1 Removed
+ Volume knowslink-qa-0596bf6624_postgres-data Removing
+ Network knowslink-qa-0596bf6624_ingress Removing
+ Network knowslink-qa-0596bf6624_database Removing
+ Volume knowslink-qa-0596bf6624_postgres-data Removed
+ Network knowslink-qa-0596bf6624_database Removed
+ Network knowslink-qa-0596bf6624_ingress Removed
+command: docker compose --project-name knowslink-qa-0596bf6624 --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-s42zip20/test.yaml down --volumes; exit: 0
+[exit 1]
+
+## 2026-10-03T16:14:12+0900 cwd=/home/shin/orca/workspaces/KnowsLink/fullops-tester
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/isolated.py
+ Image knowslink-qa-66d7f100e8-migrate Building
+ Image knowslink-qa-66d7f100e8-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.08kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.0s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 transferring context: 1.19kB done
+#6 DONE 0.0s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#7 DONE 0.1s
+
+#8 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#8 DONE 0.1s
+
+#9 [relay build 3/7] COPY go.mod go.sum ./
+#9 CACHED
+
+#10 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#10 CACHED
+
+#11 [relay stage-1 3/5] WORKDIR /app
+#11 CACHED
+
+#12 [relay stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#12 CACHED
+
+#13 [relay stage-1 2/5] RUN apk add --no-cache ca-certificates
+#13 CACHED
+
+#14 [relay build 5/7] COPY cmd ./cmd
+#14 CACHED
+
+#15 [relay build 6/7] COPY internal ./internal
+#15 CACHED
+
+#16 [relay build 4/7] RUN go mod download
+#16 CACHED
+
+#17 [relay build 2/7] WORKDIR /src
+#17 CACHED
+
+#18 [relay stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [relay] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:b40531a754dda72be8414fedd64c33b38d3d76988142a75bdf414d5b37311f93 0.0s done
+#19 exporting config sha256:e2b17486a9e3e862d488ea5ea863bb3867809aafa41cabcc96252d6fd56be98b
+#19 exporting config sha256:e2b17486a9e3e862d488ea5ea863bb3867809aafa41cabcc96252d6fd56be98b 0.0s done
+#19 exporting attestation manifest sha256:0cf3ff9e1909aa26fcce802c2fd45668a0d86efae44498377f45bec77923197e 0.1s done
+#19 exporting manifest list sha256:797bca7f295d558fcbc32bb8654980585eee5907125cdac3aae37e81144dec76
+#19 exporting manifest list sha256:797bca7f295d558fcbc32bb8654980585eee5907125cdac3aae37e81144dec76 0.0s done
+#19 naming to docker.io/library/knowslink-qa-66d7f100e8-relay:latest done
+#19 unpacking to docker.io/library/knowslink-qa-66d7f100e8-relay:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:8bfb8ee1e66a1efac460c8d6731c4a71ac97a4580a694ceadcd61ac9bb73bcb2 0.0s done
+#20 exporting config sha256:20b2c3fec4f57c8e6f9754e82639f2b98e72b7521184fbb6cd56281da3dd1fa3 0.0s done
+#20 exporting attestation manifest sha256:401c436d6d6ba816c1f4ed0f3642a9d864d69a3ea046366bc08b35c18d9334a6 0.1s done
+#20 exporting manifest list sha256:b333233ea3aa4d148ba0459cdcdf875028f32b2507a4965b58e72c8d3cc04b24 0.0s done
+#20 naming to docker.io/library/knowslink-qa-66d7f100e8-migrate:latest done
+#20 unpacking to docker.io/library/knowslink-qa-66d7f100e8-migrate:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-qa-66d7f100e8-migrate Built
+ Image knowslink-qa-66d7f100e8-relay Built
+ Network knowslink-qa-66d7f100e8_database Creating
+ Network knowslink-qa-66d7f100e8_database Created
+ Network knowslink-qa-66d7f100e8_ingress Creating
+ Network knowslink-qa-66d7f100e8_ingress Created
+ Volume knowslink-qa-66d7f100e8_postgres-data Creating
+ Volume knowslink-qa-66d7f100e8_postgres-data Created
+ Container knowslink-qa-66d7f100e8-postgres-1 Creating
+ Container knowslink-qa-66d7f100e8-postgres-1 Created
+ Container knowslink-qa-66d7f100e8-migrate-1 Creating
+ Container knowslink-qa-66d7f100e8-migrate-1 Created
+ Container knowslink-qa-66d7f100e8-relay-1 Creating
+ Container knowslink-qa-66d7f100e8-relay-1 Created
+ Container knowslink-qa-66d7f100e8-postgres-1 Starting
+ Container knowslink-qa-66d7f100e8-postgres-1 Started
+ Container knowslink-qa-66d7f100e8-postgres-1 Waiting
+ Container knowslink-qa-66d7f100e8-postgres-1 Healthy
+ Container knowslink-qa-66d7f100e8-migrate-1 Starting
+ Container knowslink-qa-66d7f100e8-migrate-1 Started
+ Container knowslink-qa-66d7f100e8-migrate-1 Waiting
+ Container knowslink-qa-66d7f100e8-migrate-1 Exited
+ Container knowslink-qa-66d7f100e8-relay-1 Starting
+ Container knowslink-qa-66d7f100e8-relay-1 Started
+ Container knowslink-qa-66d7f100e8-migrate-1 Waiting
+ Container knowslink-qa-66d7f100e8-relay-1 Waiting
+ Container knowslink-qa-66d7f100e8-postgres-1 Waiting
+ Container knowslink-qa-66d7f100e8-migrate-1 Exited
+ Container knowslink-qa-66d7f100e8-postgres-1 Healthy
+ Container knowslink-qa-66d7f100e8-relay-1 Healthy
+command: docker compose --project-name knowslink-qa-66d7f100e8 --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-5q6cf4bb/test.yaml up --build --wait relay; exit: 0
+PASS QA-01-signup: POST /v1/owners and PoP /v1/agents returned 200 for four synthetic owners
+PASS QA-01-agent-credential: agent credential on owner routes: 401,401,401,401
+PASS QA-01-url-kid: URL kid status 422 error invalid_schema
+PASS QA-01-rotate-reassign: wrong-pop 422, rotate 200, kid reuse 409 key_exists, previous key 401
+PASS QA-02-before-accept: invite pending, send 403 human_invite_required, contacts []
+PASS QA-02-deny: deny state denied, send 403
+PASS QA-02-active-reinvite: accept gen 1, reinvite active gen 1
+PASS QA-02-pending-concurrent: pending-contacts 0, accept 200,200,200,200,200,200,200,200, contacts ["qa_a_e37e70f2"]
+HELD QA-02-free-n: Free N, price, and slot-unit stay unset. This run does not estimate them.
+PASS QA-03-auth-before-cache: send 200, unauth 401, digest leaked false
+PASS QA-03-strict-schema: duplicate-key:422,deliver-both:422,unknown:422,taskId:422,role-user:422,bad-unicode:422,uppercase-from:422
+PASS QA-04-replay-rollback: replay 200 id-match true, conflict 409 idempotency_conflict, ttl 422 ttl_too_long, rollback 200, id 409 id_collision
+PASS QA-05-lease-30s: attempts 1, lease gap 30.0s
+PASS QA-05-exp-min-and-ack-before-persist: ack-before-persist 409, short attempts 1, until-exp 0.0s
+ Container knowslink-qa-66d7f100e8-relay-1 Restarting
+ Container knowslink-qa-66d7f100e8-relay-1 Started
+PASS QA-05-attempts-ack-claim-restart: attempts 2/3, late 409, delivered delivered, winners 1, restart 409
+PASS QA-05-max-attempts: transport failed:max_attempts
+PASS QA-06-revoke-before-lease: revoke 200, pull-revoked 200 token false, rotate 200, old-not-restored false, fresh 200 leased true
+PASS QA-06-unpair-generation: ack 409, generation 2, old 403, new 200
+PASS QA-06-abnormal-clock: clock 503 abnormal_clock, health 200
+PASS QA-06-unknown-auth: unknown credential 401
+HELD QA-06-epoch-cas: Concurrent accepts and claims showed one winner. A deliberate stale-epoch 503 was not forced from outside the transaction.
+PASS QA-07-query-deny-and-claim: pre-ack leased, persist 200, authorize false/false
+PASS QA-07-commit-stub: policy schedule.commit: human gate required; non-executable stub even after approve, executable false, done 403
+PASS QA-07-escalation-binding: no-claim 403, bound 200, duplicate 409 duplicate_gate, recursive 403, late-exp 422 expired
+PASS QA-08-ui-csrf-consume: hint-shown false, get true, agent 401, csrf 403, approve 303, consume 200 exec false
+FAIL QA-08-deny-page: deny page has button false
+FAIL QA-09-result-binding: direction 403, result 422, stack 422, denied 422, duplicate 422 expired, completion
+FAIL QA-09-result-not-command: intent undefined, persist 409, ack 409, next false
+PASS QA-10-off-boundaries: evidence 200, older-normal-not-preempted true, webhook 404
+PASS QA-10-adapter-unconfigured: {"state":"unconfigured","transport":"pull","webhook":false,"evidenceFetch":false}
+HELD QA-10-real-adapter: Loopback TypeScript stub only. No vendor connection or public operation is claimed.
+HELD QA-10-a2a: A2A wire fields were rejected. No claim of a current A2A revision review or push webhook.
+PASS QA-11-exp-clears-original: transport failed:expired, completion "", envelope f, row t
+PASS QA-11-receipt-24h: 25h message present f, 23h envelope t; wall clock was not waited
+HELD QA-11-wal: Row removal is not a claim that WAL or backups were erased.
+PASS QA-11-captions: expired true, revoked true, unavailable true, auth 401
+HELD DEC-02: Positive silent done on real data stays held. Synthetic status done was rejected and is not a silent-done pass.
+HELD DEC-03: Public limits, real identity proof, and singleton throughput stay held. Synthetic pass does not replace them.
+HELD UI-designer: V-01–04 captures are shared for designer visual review. This probe does not record that review as passed.
+PROBE fail 3 held 8 pass 28
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.mjs; exit: 1
+81905 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-iktdjebz --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.html; exit: 0
+screenshot: v01-pending.html; exit: 0
+84455 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-qu515jgj --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.html; exit: 0
+screenshot: v02-approved.html; exit: 0
+7175 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-9zmx2bco --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.html; exit: 0
+screenshot: v02-denied.html; exit: 0
+82124 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-vh2a9ks3 --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.html; exit: 0
+screenshot: v03-expired.html; exit: 0
+73998 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-ffrxagdm --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.html; exit: 0
+screenshot: v03-revoked.html; exit: 0
+6378 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-ukbjp1p0 --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.html; exit: 0
+screenshot: v04-unauthorized.html; exit: 0
+74270 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-eotzn_wr --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.html; exit: 0
+screenshot: v04-unavailable.html; exit: 0
+ Container knowslink-qa-66d7f100e8-relay-1 Stopping
+ Container knowslink-qa-66d7f100e8-relay-1 Stopped
+ Container knowslink-qa-66d7f100e8-relay-1 Removing
+ Container knowslink-qa-66d7f100e8-relay-1 Removed
+ Container knowslink-qa-66d7f100e8-migrate-1 Stopping
+ Container knowslink-qa-66d7f100e8-migrate-1 Stopped
+ Container knowslink-qa-66d7f100e8-migrate-1 Removing
+ Container knowslink-qa-66d7f100e8-migrate-1 Removed
+ Container knowslink-qa-66d7f100e8-postgres-1 Stopping
+ Container knowslink-qa-66d7f100e8-postgres-1 Stopped
+ Container knowslink-qa-66d7f100e8-postgres-1 Removing
+ Container knowslink-qa-66d7f100e8-postgres-1 Removed
+ Network knowslink-qa-66d7f100e8_ingress Removing
+ Network knowslink-qa-66d7f100e8_database Removing
+ Volume knowslink-qa-66d7f100e8_postgres-data Removing
+ Volume knowslink-qa-66d7f100e8_postgres-data Removed
+ Network knowslink-qa-66d7f100e8_ingress Removed
+ Network knowslink-qa-66d7f100e8_database Removed
+command: docker compose --project-name knowslink-qa-66d7f100e8 --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-5q6cf4bb/test.yaml down --volumes; exit: 0
+[exit 1]
+
+## 2026-10-03T16:16:21+0900 cwd=/home/shin/orca/workspaces/KnowsLink/fullops-tester
+$ python3 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/isolated.py
+ Image knowslink-qa-0103c03a91-migrate Building
+ Image knowslink-qa-0103c03a91-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.08kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#3 DONE 0.0s
+
+#4 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#4 DONE 0.0s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load build context
+#6 transferring context: 1.19kB 0.0s done
+#6 DONE 0.0s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#7 DONE 0.0s
+
+#8 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#8 DONE 0.0s
+
+#9 [relay stage-1 3/5] WORKDIR /app
+#9 CACHED
+
+#10 [relay build 5/7] COPY cmd ./cmd
+#10 CACHED
+
+#11 [relay build 6/7] COPY internal ./internal
+#11 CACHED
+
+#12 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#12 CACHED
+
+#13 [relay stage-1 2/5] RUN apk add --no-cache ca-certificates
+#13 CACHED
+
+#14 [relay build 3/7] COPY go.mod go.sum ./
+#14 CACHED
+
+#15 [relay stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#15 CACHED
+
+#16 [relay build 2/7] WORKDIR /src
+#16 CACHED
+
+#17 [relay build 4/7] RUN go mod download
+#17 CACHED
+
+#18 [relay stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [relay] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:2ccb0c4ce42febd9833a9019a15abe9072e25f834357bd43ae33fcee28035c82 0.0s done
+#19 exporting config sha256:b8f7c8eaaf6fd3918214e03d99893ccefbd10f2197c6fa6ab09cab9f71ca6c71
+#19 exporting config sha256:b8f7c8eaaf6fd3918214e03d99893ccefbd10f2197c6fa6ab09cab9f71ca6c71 0.0s done
+#19 exporting attestation manifest sha256:f4487b0d96e32183e8e7f1fcf9e31de6420690382dc2e5e1bea27b73b9776de7 0.1s done
+#19 exporting manifest list sha256:b4dee2340d0f49c3ac869a727a61e71304e071a1be663f29d46f45e556ba9223
+#19 exporting manifest list sha256:b4dee2340d0f49c3ac869a727a61e71304e071a1be663f29d46f45e556ba9223 0.0s done
+#19 naming to docker.io/library/knowslink-qa-0103c03a91-relay:latest 0.0s done
+#19 unpacking to docker.io/library/knowslink-qa-0103c03a91-relay:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:68b245d3c8b92fbba4d718c61c16f7fd37e0111aa39c6a5f1b4584d235e85e56 0.0s done
+#20 exporting config sha256:54be817796d7108ecb9ab300e1416917209d983d220b1ce17983c1e0bc7bd0a5 0.0s done
+#20 exporting attestation manifest sha256:cce7f9c8842b809b9641c7e3463d87c643433a40730a3b84da3a119873608c8a 0.1s done
+#20 exporting manifest list sha256:f46554db6d5aff54d490d5587eb46c6bb271e48d276eb6134fd49d157a5b3ece 0.0s done
+#20 naming to docker.io/library/knowslink-qa-0103c03a91-migrate:latest done
+#20 unpacking to docker.io/library/knowslink-qa-0103c03a91-migrate:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-qa-0103c03a91-relay Built
+ Image knowslink-qa-0103c03a91-migrate Built
+ Network knowslink-qa-0103c03a91_database Creating
+ Network knowslink-qa-0103c03a91_database Created
+ Network knowslink-qa-0103c03a91_ingress Creating
+ Network knowslink-qa-0103c03a91_ingress Created
+ Volume knowslink-qa-0103c03a91_postgres-data Creating
+ Volume knowslink-qa-0103c03a91_postgres-data Created
+ Container knowslink-qa-0103c03a91-postgres-1 Creating
+ Container knowslink-qa-0103c03a91-postgres-1 Created
+ Container knowslink-qa-0103c03a91-migrate-1 Creating
+ Container knowslink-qa-0103c03a91-migrate-1 Created
+ Container knowslink-qa-0103c03a91-relay-1 Creating
+ Container knowslink-qa-0103c03a91-relay-1 Created
+ Container knowslink-qa-0103c03a91-postgres-1 Starting
+ Container knowslink-qa-0103c03a91-postgres-1 Started
+ Container knowslink-qa-0103c03a91-postgres-1 Waiting
+ Container knowslink-qa-0103c03a91-postgres-1 Healthy
+ Container knowslink-qa-0103c03a91-migrate-1 Starting
+ Container knowslink-qa-0103c03a91-migrate-1 Started
+ Container knowslink-qa-0103c03a91-migrate-1 Waiting
+ Container knowslink-qa-0103c03a91-migrate-1 Exited
+ Container knowslink-qa-0103c03a91-relay-1 Starting
+ Container knowslink-qa-0103c03a91-relay-1 Started
+ Container knowslink-qa-0103c03a91-postgres-1 Waiting
+ Container knowslink-qa-0103c03a91-migrate-1 Waiting
+ Container knowslink-qa-0103c03a91-relay-1 Waiting
+ Container knowslink-qa-0103c03a91-migrate-1 Exited
+ Container knowslink-qa-0103c03a91-postgres-1 Healthy
+ Container knowslink-qa-0103c03a91-relay-1 Healthy
+command: docker compose --project-name knowslink-qa-0103c03a91 --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-htp7jkwd/test.yaml up --build --wait relay; exit: 0
+PASS QA-01-signup: POST /v1/owners and PoP /v1/agents returned 200 for four synthetic owners
+PASS QA-01-agent-credential: agent credential on owner routes: 401,401,401,401
+PASS QA-01-url-kid: URL kid status 422 error invalid_schema
+PASS QA-01-rotate-reassign: wrong-pop 422, rotate 200, kid reuse 409 key_exists, previous key 401
+PASS QA-02-before-accept: invite pending, send 403 human_invite_required, contacts []
+PASS QA-02-deny: deny state denied, send 403
+PASS QA-02-active-reinvite: accept gen 1, reinvite active gen 1
+PASS QA-02-pending-concurrent: pending-contacts 0, accept 200,200,200,200,200,200,200,200, contacts ["qa_a_cca03be0"]
+HELD QA-02-free-n: Free N, price, and slot-unit stay unset. This run does not estimate them.
+PASS QA-03-auth-before-cache: send 200, unauth 401, digest leaked false
+PASS QA-03-strict-schema: duplicate-key:422,deliver-both:422,unknown:422,taskId:422,role-user:422,bad-unicode:422,uppercase-from:422
+PASS QA-04-replay-rollback: replay 200 id-match true, conflict 409 idempotency_conflict, ttl 422 ttl_too_long, rollback 200, id 409 id_collision
+PASS QA-05-lease-30s: attempts 1, lease gap 30.0s
+PASS QA-05-exp-min-and-ack-before-persist: ack-before-persist 409, short attempts 1, until-exp 0.0s
+ Container knowslink-qa-0103c03a91-relay-1 Restarting
+ Container knowslink-qa-0103c03a91-relay-1 Started
+PASS QA-05-attempts-ack-claim-restart: attempts 2/3, late 409, delivered delivered, winners 1, restart 409
+PASS QA-05-max-attempts: transport failed:max_attempts
+PASS QA-06-revoke-before-lease: revoke 200, pull-revoked 200 token false, rotate 200, old-not-restored false, fresh 200 leased true
+PASS QA-06-unpair-generation: ack 409, generation 2, old 403, new 200
+PASS QA-06-abnormal-clock: clock 503 abnormal_clock, health 200
+PASS QA-06-unknown-auth: unknown credential 401
+HELD QA-06-epoch-cas: Concurrent accepts and claims showed one winner. A deliberate stale-epoch 503 was not forced from outside the transaction.
+PASS QA-07-query-deny-and-claim: pre-ack leased, persist 200, authorize false/false
+PASS QA-07-commit-stub: policy schedule.commit: human gate required; non-executable stub even after approve, executable false, done 403
+PASS QA-07-escalation-binding: no-claim 403, bound 200, duplicate 409 duplicate_gate, recursive 403, late-exp 422 expired
+PASS QA-08-ui-csrf-consume: hint-shown false, get true, agent 401, csrf 403, approve 303, consume 200 exec false
+PASS QA-08-deny-page: deny-send 200 , denied true, button false
+PASS QA-09-result-binding: direction 403, result 422, stack 422, denied 200, duplicate 403 sender_not_allowed, completion denied
+PASS QA-09-result-not-command: intent relay.result, persist 200, ack 200, next false
+PASS QA-10-off-boundaries: evidence 200, older-normal-not-preempted true, webhook 404
+PASS QA-10-adapter-unconfigured: {"state":"unconfigured","transport":"pull","webhook":false,"evidenceFetch":false}
+HELD QA-10-real-adapter: Loopback TypeScript stub only. No vendor connection or public operation is claimed.
+HELD QA-10-a2a: A2A wire fields were rejected. No claim of a current A2A revision review or push webhook.
+PASS QA-11-exp-clears-original: transport failed:expired, completion "", envelope f, row t
+PASS QA-11-receipt-24h: 25h message present f, 23h envelope t; wall clock was not waited
+HELD QA-11-wal: Row removal is not a claim that WAL or backups were erased.
+PASS QA-11-captions: expired true, revoked true, unavailable true, auth 401
+HELD DEC-02: Positive silent done on real data stays held. Synthetic status done was rejected and is not a silent-done pass.
+HELD DEC-03: Public limits, real identity proof, and singleton throughput stay held. Synthetic pass does not replace them.
+HELD UI-designer: V-01–04 captures are shared for designer visual review. This probe does not record that review as passed.
+PROBE fail 0 held 8 pass 31
+command: node /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/probe.mjs; exit: 0
+81993 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-2lylq17n --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v01-pending.html; exit: 0
+screenshot: v01-pending.html; exit: 0
+84544 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-uybhiozz --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-approved.html; exit: 0
+screenshot: v02-approved.html; exit: 0
+82872 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-5_fanxwz --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v02-denied.html; exit: 0
+screenshot: v02-denied.html; exit: 0
+82576 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-75kza9k4 --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-expired.html; exit: 0
+screenshot: v03-expired.html; exit: 0
+74469 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-dpit8bje --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v03-revoked.html; exit: 0
+screenshot: v03-revoked.html; exit: 0
+6378 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-4kazewup --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unauthorized.html; exit: 0
+screenshot: v04-unauthorized.html; exit: 0
+74886 bytes written to file /home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png
+command: google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1280,900 --user-data-dir=/tmp/knowslink-chrome-3pwgk63z --screenshot=/home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.png file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/v04-unavailable.html; exit: 0
+screenshot: v04-unavailable.html; exit: 0
+ Container knowslink-qa-0103c03a91-relay-1 Stopping
+ Container knowslink-qa-0103c03a91-relay-1 Stopped
+ Container knowslink-qa-0103c03a91-relay-1 Removing
+ Container knowslink-qa-0103c03a91-relay-1 Removed
+ Container knowslink-qa-0103c03a91-migrate-1 Stopping
+ Container knowslink-qa-0103c03a91-migrate-1 Stopped
+ Container knowslink-qa-0103c03a91-migrate-1 Removing
+ Container knowslink-qa-0103c03a91-migrate-1 Removed
+ Container knowslink-qa-0103c03a91-postgres-1 Stopping
+ Container knowslink-qa-0103c03a91-postgres-1 Stopped
+ Container knowslink-qa-0103c03a91-postgres-1 Removing
+ Container knowslink-qa-0103c03a91-postgres-1 Removed
+ Volume knowslink-qa-0103c03a91_postgres-data Removing
+ Network knowslink-qa-0103c03a91_database Removing
+ Network knowslink-qa-0103c03a91_ingress Removing
+ Volume knowslink-qa-0103c03a91_postgres-data Removed
+ Network knowslink-qa-0103c03a91_database Removed
+ Network knowslink-qa-0103c03a91_ingress Removed
+command: docker compose --project-name knowslink-qa-0103c03a91 --env-file .env.example -f compose.yaml -f /tmp/knowslink-qa-htp7jkwd/test.yaml down --volumes; exit: 0
+[exit 0]

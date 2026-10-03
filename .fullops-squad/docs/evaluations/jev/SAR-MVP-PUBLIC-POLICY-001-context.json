@@ -1,0 +1,221 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "a285d082705817f0c0a327f492944f105849cf68",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "f15152f96dd9263fc18600e9c4ea6a549dbd0276a49a80261e018731677e2ceb",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-FULLOPS.md",
+      "c1-README.md",
+      "c2-coding-style.md",
+      "c3-testing.md",
+      "c4-security.md",
+      "c5-project.md",
+      "c6-document-writing.md",
+      "c7-SAR-MVP.md",
+      "c8-SAR-MVP-backlog.md",
+      "c9-product.md",
+      "c10-protocol.md",
+      "c11-decisions.md",
+      "c12-to_dev.md",
+      "c13-to_ops.md",
+      "c14-designer.md",
+      "c15-to_designer.md"
+    ],
+    "recommended_ids": [
+      "c0-FULLOPS.md",
+      "c1-README.md",
+      "c2-coding-style.md",
+      "c3-testing.md",
+      "c4-security.md",
+      "c5-project.md",
+      "c6-document-writing.md",
+      "c7-SAR-MVP.md",
+      "c8-SAR-MVP-backlog.md",
+      "c9-product.md",
+      "c10-protocol.md",
+      "c11-decisions.md",
+      "c12-to_dev.md",
+      "c13-to_ops.md",
+      "c14-designer.md",
+      "c15-to_designer.md"
+    ],
+    "signals": {
+      "c0-FULLOPS.md": {
+        "relevant": 0.17,
+        "evidence": 0.53,
+        "contradicts": 0.13,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-README.md": {
+        "relevant": 0.22,
+        "evidence": 0.53,
+        "contradicts": 0.13,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-coding-style.md": {
+        "relevant": 0.1,
+        "evidence": 0.25,
+        "contradicts": 0.1,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-testing.md": {
+        "relevant": 0.18,
+        "evidence": 0.49,
+        "contradicts": 0.11,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-security.md": {
+        "relevant": 0.46,
+        "evidence": 0.7,
+        "contradicts": 0.1,
+        "injection": 0.1,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-project.md": {
+        "relevant": 0.24,
+        "evidence": 0.56,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-document-writing.md": {
+        "relevant": 0.21,
+        "evidence": 0.69,
+        "contradicts": 0.13,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-SAR-MVP.md": {
+        "relevant": 0.4,
+        "evidence": 0.68,
+        "contradicts": 0.26,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-SAR-MVP-backlog.md": {
+        "relevant": 0.52,
+        "evidence": 0.77,
+        "contradicts": 0.24,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-product.md": {
+        "relevant": 0.56,
+        "evidence": 0.78,
+        "contradicts": 0.53,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-protocol.md": {
+        "relevant": 0.34,
+        "evidence": 0.59,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-decisions.md": {
+        "relevant": 0.5,
+        "evidence": 0.77,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c12-to_dev.md": {
+        "relevant": 0.22,
+        "evidence": 0.37,
+        "contradicts": 0.45,
+        "injection": 0.11,
+        "decision": "keep",
+        "reason": null
+      },
+      "c13-to_ops.md": {
+        "relevant": 0.2,
+        "evidence": 0.41,
+        "contradicts": 0.2,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c14-designer.md": {
+        "relevant": 0.51,
+        "evidence": 0.69,
+        "contradicts": 0.18,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c15-to_designer.md": {
+        "relevant": 0.61,
+        "evidence": 0.69,
+        "contradicts": 0.21,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-FULLOPS.md": ".fullops-squad/FULLOPS.md",
+      "c1-README.md": ".fullops-squad/rules/common/README.md",
+      "c2-coding-style.md": ".fullops-squad/rules/common/coding-style.md",
+      "c3-testing.md": ".fullops-squad/rules/common/testing.md",
+      "c4-security.md": ".fullops-squad/rules/common/security.md",
+      "c5-project.md": ".fullops-squad/project.md",
+      "c6-document-writing.md": ".fullops-squad/docs/agents/document-writing.md",
+      "c7-SAR-MVP.md": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "c8-SAR-MVP-backlog.md": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "c9-product.md": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "c10-protocol.md": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "c11-decisions.md": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "c12-to_dev.md": ".fullops-squad/handovers/to_dev.md",
+      "c13-to_ops.md": ".fullops-squad/handovers/to_ops.md",
+      "c14-designer.md": ".fullops-squad/contexts/designer.md",
+      "c15-to_designer.md": ".fullops-squad/handovers/to_designer.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_designer.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 40471,
+    "output_tokens": 1216,
+    "cost": 0.0016997820000000002
+  },
+  "latency_seconds": 0.442,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-MVP-PUBLIC-POLICY-001",
+  "role": "designer",
+  "unsent_sources": {},
+  "refused_paths": []
+}

@@ -1,59 +1,73 @@
 {
   "title": "KnowsLink",
-  "summary": "FullOps 0.9.9 책임 분리 적용. SAR 초기 구성의 기존 dev 과제를 재개한다. FullOps 0.9.10 규약을 동기화했다.",
+  "summary": "MVP 독립 QA 진행. 검증·수락 후 즉시 main 병합·원격 공유·임시 워크트리 정리.",
   "phases": [
     {
-      "name": "운영 기반 구성",
+      "name": "FullOps 운영 기반",
       "status": "done",
       "deliverables": [],
-      "note": "FullOps 0.9.12 운영 main 동기화 완료. 기존 제품 수락·보류는 유지한다."
+      "note": "FullOps 0.9.12 main 적용·원격 반영 완료. 제품 수락 및 역할 동기화 보류는 PLANS에서 추적한다."
     },
     {
-      "name": "제품 기획·요구사항",
+      "name": "초기 골격 설계",
+      "status": "done",
+      "deliverables": [
+        "D03"
+      ],
+      "note": "SAR-SETUP-001 기술 정본 검토 완료. MVP 기능 설계는 후속 dev 담당."
+    },
+    {
+      "name": "초기 골격 구현·QA",
+      "status": "done",
+      "deliverables": [],
+      "note": "골격 QA·리뷰·main 수락 완료. 완료 리뷰 지시서는 handovers/logs/에 보관."
+    },
+    {
+      "name": "서비스 기획·MVP 개발 준비",
       "status": "done",
       "deliverables": [
         "D01",
-        "D02",
-        "D04"
+        "D02"
       ],
-      "note": "D02와 dev·tester 지시서 작성 완료."
+      "note": "원천 7bc9ea1, 명세·백로그·첫 인계 독립 검토 완료. D01/D02 review."
     },
     {
-      "name": "기술 설계",
+      "name": "MVP 첫 기능 개발",
       "status": "active",
       "deliverables": [
         "D03",
         "D05",
         "D06",
         "D07",
+        "D08",
         "D09",
         "D10"
       ],
-      "note": "Go·TypeScript·Postgres·Compose 초기 구성과 lint 구현 착수."
+      "note": "DEV a6a10c7 완료. QA·UI·리뷰 통과 후 병합·임시 DEV 워크트리 제거 예정."
     },
     {
-      "name": "구현",
+      "name": "MVP 독립 QA·UI 검수·리뷰",
       "status": "active",
       "deliverables": [
-        "D08"
+        "D04"
       ],
-      "note": "SAR-SETUP-001-DEV 초기 개발 골격 구성."
+      "note": "Grok QA 실행 31 pass·8 held·0 fail. 직접 UI·코드 리뷰·필수 보류 확인 대기."
     },
     {
-      "name": "QA",
+      "name": "실제 어댑터·일정 조회",
       "status": "todo",
       "deliverables": [],
-      "note": "tester 담당. 구현 SHA 준비 후 검증."
+      "note": "백로그 002–006. 인터페이스·공개 정책 결정 필요. 일정 조회 003 held."
     },
     {
-      "name": "배포·이행",
-      "status": "todo",
+      "name": "운영 배포·이행",
+      "status": "active",
       "deliverables": [
         "D11",
         "D12",
         "D13"
       ],
-      "note": "ops 담당. 배포 환경 미정."
+      "note": "공개 가입 기획 기록 완료. 한도 제안 검토·사용자 결정·고정 후보 수락 대기."
     }
   ]
 }

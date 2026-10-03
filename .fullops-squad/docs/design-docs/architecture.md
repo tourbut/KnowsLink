@@ -1,71 +1,78 @@
 ---
 id: D03
-title: KnowsLink 초기 구성 아키텍처
+title: 아키텍처설계서
 status: review
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-SETUP-001-DEV]
+tasks: [SAR-MVP-001-DEV]
 upstream: [D02]
-summary: 초기 relay·SQL migration·adapter·Compose의 경계와 요구사항 추적을 정의한다
+summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
 
-# KnowsLink 초기 구성 아키텍처
+# KnowsLink 로컬 합성 MVP 아키텍처
 
-## 범위와 원천
+## 범위와 추적
 
-상위 요구사항은 [D02](../planning/product-specs/SAR-SETUP-001.md)다. 고정 원천은 [architecture.md](../planning/sources/silent-agent-relay/architecture.md), [decisions.md](../planning/sources/silent-agent-relay/decisions.md), [protocol.md](../planning/sources/silent-agent-relay/protocol.md)다. 검사 기준은 `729446d8da57`이며 규칙은 `fullops-common-0.3.1`이다.
+정본은 [D02 SAR-MVP](../planning/product-specs/SAR-MVP.md)와 고정 원천 service-design 7bc9ea1이다.
+fullops-common-0.3.2와 lint 기준 0dd08ec994771836c15d9d22a6a83393a71d7987을 적용한다.
+SAR-SETUP-001의 초기 골격 이력은 기존 실행 기록에 보존한다.
+이번 구현은 합성 데이터의 안전 전달·human-gate 후보다. 독립 QA·UI 검수·코드 리뷰·운영 수락은 후속이다.
 
-이 설계는 초기 개발 구성만 설명한다. 전체 기능 MVP의 human-gate 포함 결정과 C1–C5는 유지한다. 업무 기능이 구현되었다고 주장하지 않는다.
+## 실제 책임
 
-## 실제 구성
+- `cmd/relay`: pgxpool·readiness·HTTP API·Go html/template UI와 retention 정리 루프.
+- `cmd/migrate`: 별도 goose SQL-only Up. relay 기동은 migration을 실행하지 않는다.
+- `internal/relay/protocol.go`: strict JSON·closed seed schema·RFC8785·Ed25519·semantic digest.
+- `internal/relay/store.go`: shared Postgres 상태의 transaction·epoch CAS·current-auth·queue·receipt·lease·gate.
+- `internal/relay/http.go`: 별도 owner/agent 인증·PoP·pairing·durable inbox·ACK·claim·UI CSRF.
+- `internal/relay/registry.json`: 무결성 hash로 고정한 central seed revision. intent 추가는 실행 handler 등록이 아니다.
+- `internal/database`: sqlc v1.30.0의 pgx/v5 생성 코드.
+- `adapters/src/index.ts`: 합성 pull stub 1개. signature 재검증·shared inbox persist·ACK 성공·claim 뒤에만 판단한다.
 
-| 경로 | 책임 | 현재 동작 |
-|---|---|---|
-| `cmd/relay` | Go 개발 relay | 설정 확인, pgxpool DB ping, `GET /healthz`, 종료 신호 처리 |
-| `cmd/migrate` | 별도 one-shot migration | DB ping, goose SQL-only Up, 빈 SQL의 명시적 no-op |
-| `internal/config` | 환경 변수 검증 | Postgres URL·listen 주소 확인, 값이 없는 안전한 오류 |
-| `adapters/src` | TypeScript adapter 골격 | `unimplemented` 상태 출력 후 종료, 네트워크 연결 없음 |
-| `db/migrations`, `db/queries` | 향후 업무 SQL | 빈 디렉터리, 가짜 스키마·쿼리 없음 |
-| `sqlc.yaml` | 향후 query codegen | Postgres·pgx/v5, 출력 `internal/database` |
-| `Dockerfile`, `compose.yaml` | 로컬 개발 패키징 | 네 서비스와 기동 의존 순서 |
-| `Makefile`, `scripts/` | 직접 검증 | 제품 lint·test·build·위반 주입·로컬 runtime 검사 |
+## transaction과 인가
 
-## 기동과 실패 경계
+`relay_state`의 singleton 행은 업무 JSON과 authorization epoch를 보관한다.
+모든 읽기·수정은 `SELECT FOR UPDATE`와 `UPDATE WHERE epoch=expected`로 확정한다.
+철회·enqueue·lease·ACK·decision·consume·authorize·result 공개가 같은 직렬화 경계를 사용한다.
+DB 시계가 이전 확정 시각보다 뒤로 가면 fail-closed다. DB를 읽을 수 없으면 `unavailable`이다.
 
-Compose는 `postgres`의 healthcheck 성공을 기다린다. `migrate`는 별도 `/app/migrate` 프로세스로 실행한다. `relay`는 migrate의 종료코드 0을 기다린다. relay는 API 기동 중 migration을 호출하지 않는다.
+단일 행과 전체 상태 순회는 로컬 MVP의 처리량 한계다. 24h receipt 20000 등 미확정 제안의 성능을 보장하지 않는다.
+공개 운영 전에 제품 한도·인증을 확정하고 정규화 또는 처리량 측정과 독립 수락을 수행한다.
 
-relay는 기동 시 DB ping에 실패하면 종료코드 1로 종료한다. `/healthz`는 요청마다 DB ping을 수행한다. DB가 응답하지 않으면 일반 문구와 HTTP 503을 반환한다. 잘못된 설정과 DB 오류에는 URL·비밀번호·내부 드라이버 오류를 노출하지 않는다.
+## 안전 흐름
 
-relay는 업무 endpoint를 등록하지 않는다. ingest·approve·exec 요청은 HTTP 404다. TypeScript adapter는 pull 방향을 표시하되 polling이나 실행 권한을 제공하지 않는다.
+owner 가입은 로컬 합성용 opaque credential을 발급한다. agent credential과 분리한다.
+owner ID·AgentID·kid·pubkey에 묶인 PoP로 키를 등록한다. rotate는 이전 키를 원자적으로 revoke한다.
+B-owner 수락 전 pair는 pending이다. pending은 active 관계에 포함하지 않는다. 재수락은 새 세대다.
 
-goose provider는 전역 Go migration registry를 비활성화한다. migration 디렉터리의 Go 파일을 거부한다. 읽을 수 없는 디렉터리는 실패한다. 빈 SQL 디렉터리는 DB ping 뒤 명시적 no-op으로 종료한다. 업무 SQL을 추가한 뒤에는 SQL Up만 실행한다.
+send는 strict structure·signature·principal·routing 뒤에 digest와 atomic idempotency를 검사한다.
+동일 key+digest는 receipt만 반환한다. exp·TTL·id 실패는 전체 작업 상태를 rollback한다.
+lease는 delivered가 아니다. 공유 inbox에 원문을 저장한 뒤 ACK하고 하나의 claim token을 발급한다.
+claim 재발급은 하지 않는다. 재시작 후 이미 claimed인 요청은 중복 실행 대신 TTL까지 안전하게 정지한다.
+외부 도구 exactly-once나 crash 후 효과 재개를 주장하지 않는다.
 
-## 네트워크와 설정
+H는 현재 부모 receipt·실제 수신·claim token·digest·pair 세대에 결속한다.
+owner UI는 검증된 원요청 typed body와 deny/stub 정책을 표시한다. hint는 승인 근거가 아니다.
+POST와 owner credential에 묶인 CSRF token으로만 결정한다. consume은 한 번만 성공한다.
+approve 후에도 `authorize`의 executable/disclosure는 false다. schedule.commit과 schedule.query done은 실행하지 않는다.
+R은 새 B 서명이며 부모 endpoint를 반전한 결과다. optional result/error schema가 없으므로 해당 필드를 거부한다.
 
-Postgres는 internal `database` 네트워크에만 연결하고 호스트 포트를 게시하지 않는다. migrate도 이 네트워크에만 연결한다. relay는 `database`와 `ingress`에 연결한다. 호스트 게시 주소는 loopback이다.
+## 저장과 경계
 
-cloudflared는 선택 `tunnel` profile이며 `ingress`에만 연결한다. 기본 실행에서는 비활성이다. token 없는 실행은 실패한다. 검증 시 네트워크를 차단해 실제 Tunnel을 연결하지 않는다. 운영 hostname `relay.knowslog.com`의 ingress 설정은 후속 운영 과제다.
+원문·공유 inbox는 exp·철회·응답 완료에 삭제한다. 모든 읽기는 먼저 만료를 정리한다.
+유휴 서버도 1초 정리 루프로 payload를 지운다. DB 불가 시 정리는 중단하고 안전한 오류만 기록한다.
+receipt·idempotency metadata는 24h 유지한다. revoked key의 kid와 metadata는 재할당 방지를 위해 계속 유지한다.
+DB 삭제는 WAL·backup 완전 삭제가 아니다. payload·credential·키·tool 정보는 로그에 쓰지 않는다.
+webhook·evidence fetch·preview·벤더 연결은 없다. 실제 calendar와 유용한 silent done은 DEC-02 이후다.
 
-비밀값은 실행 환경에서 전달한다. `.env.example`에는 더미 DB 값과 빈 token만 있다. Docker build context는 Go 코드·module 파일·migration 디렉터리로 제한한다. 실제 `.env`, FullOps 자료, TypeScript 의존성을 이미지에 보내지 않는다. 런타임은 UID/GID `65532`다.
+Compose는 기존 네 서비스·private Postgres·loopback relay·선택 Tunnel을 유지한다.
+`make verify-mvp`만 고유 project의 시험 DB를 loopback 임시 포트로 연결한다. 종료 시 자기 project만 지운다.
+기존 컨테이너·볼륨·Tunnel은 수정하지 않는다. 공개 hostname 운영은 수락 후보 이후 OPS가 담당한다.
 
-HTTP timeout은 상태 확인 서버의 기술 기본값이다. frozen relay.v1의 TTL·lease·attempts·receipt 수치나 미결정 제품 rate/size 정책을 변경하지 않는다.
+## 요구사항 연결
 
-## 요구사항 추적
-
-| D02 ID | 구현 | 직접 검증 |
-|---|---|---|
-| SETUP-01 | Go module·npm lock·고정 도구 버전 | install·build, 깨끗한 체크아웃 재현 |
-| SETUP-02 | relay·별도 migrate·adapter·sqlc 설정 | unit test·로컬 DB 기동·no-op·adapter 실행 |
-| SETUP-03 | Compose 네 서비스와 의존 순서 | `make lint-config`, `make verify-runtime` |
-| SETUP-04 | 예시 값·필수 설정 실패·선택 Tunnel | config unit test·runtime 누락 검사·차단된 Tunnel 검사 |
-| LINT-01 | `make lint` | 정상 종료코드 0 |
-| LINT-02–03 | 등록된 통합 명령과 복제본 위반 주입 | `make verify`의 오류별 실패·원복 통과 |
-| DOC-01 | README·project.md·D03 | 경로 대조·deliverables strict·FullOps lint |
-| SCOPE-01 | health endpoint와 미구현 adapter | endpoint unit test·diff·원천 변경 없음 |
-| QA-01 | coordinator가 tester에 완료 SHA 전달 | 후속 독립 QA, 직접 검증으로 대체하지 않음 |
-
-## 후속과 검증 한계
-
-업무 SQL이 없어 실제 SQL migration 적용과 sqlc 생성은 미적용이다. C1–C5·frozen relay.v1의 업무 경로, 네 어댑터 통합, human-gate UI, 운영 Tunnel과 배포는 후속이다. UI가 없어 직접 시각 검수 대상은 없다. UI 구현 때 직접 시각 검수를 수행한다.
-
-검사 결과와 명령은 [실행 기록](../exec-plans/phases/SAR-SETUP-001-DEV.md)에 있다. 독립 리뷰·QA 및 미해결 critical/high 차단은 유지한다.
+MVP-01/02/07은 owner·key·pair·CAS와 Postgres 권한 검사에 연결된다.
+MVP-03–06은 protocol·transaction·durable inbox·race 검사에 연결된다.
+MVP-08–11/15/16은 gate·authorize·result·retention·HTTP/UI 검사에 연결된다.
+MVP-12–14는 field 한도·registry·loopback stub·OFF 경계로 유지한다.
+실행 증거와 보류는 [SAR-MVP-001-DEV 기록](../exec-plans/phases/SAR-MVP-001-DEV.md)에 있다.

@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 프로젝트 기준
-status: draft
+status: review
 updated: 2026-10-03
 owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
-summary: 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령 및 검증 책임을 정의한다
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV]
+summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다
 ---
 
 # KnowsLink 프로젝트 기준
@@ -13,7 +13,7 @@ summary: 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령 �
 |---|---|
 | 제품 목적 | 승인된 에이전트 사이의 선택적 인간개입 전달; SAR-SETUP-001 D02 |
 | 기본 브랜치·원격 | `main`, `origin` (`https://github.com/tourbut/KnowsLink.git`) |
-| 현재 상태 | 초기 Go relay·별도 migrate·TypeScript adapter·Compose·제품 lint 구성; 업무 MVP는 후속 |
+| 현재 상태 | 로컬 합성 relay.v1·owner gate·shared inbox·TypeScript stub 후보; 독립 수락·운영 공개는 후속 |
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
@@ -42,14 +42,17 @@ summary: 잠긴 기술 선택과 초기 제품 구성의 경로·검증 명령 �
 - unit/race test: `make test` (`./cmd/... ./internal/...`, 외부 node_modules의 Go 코드는 제외).
 - Go·TypeScript 빌드: `make build`.
 - lint 위반과 등록 명령의 실패 전파: `make verify` (임시 복제본).
-- 로컬 Compose·DB·빈 migration no-op·누락 설정·차단된 Tunnel·adapter: `make verify-runtime`.
+- 로컬 Compose·실제 SQL migration·누락 설정·차단된 Tunnel·미설정 adapter: `make verify-runtime`.
 - 개발 실행·중지: `docker compose --env-file .env.example up --build --wait relay`, `docker compose --env-file .env.example down`.
-- 운영 배포·실제 Tunnel 연결·업무 SQL 적용·sqlc 생성: 범위 밖 또는 업무 SQL 부재로 미적용.
+- 합성 업무 DB·경합·TypeScript/Go UI 연동: `make verify-mvp` (고유 Compose project, 자기 자원만 회수).
+- 실제 sqlc 생성: `make generate`; 생성물 diff는 `git diff --exit-code -- internal/database`.
+- D08 테이블 정의 생성: `make schema`.
+- 운영 배포·실제 Tunnel 연결: 후보 수락 뒤 OPS 담당.
 
 ## 공통 기준의 적용과 예외
 
 기존 프로젝트 규칙은 없으므로 공통 규칙을 기본값으로 적용한다. 이후 기술 정본이 생기면 연결하며 보안·권한·리뷰 수락 기준은 낮추지 않는다.
-변경한 동작과 실패·경계 조건을 검증한다. 초기 구성의 직접 테스트와 독립 기능 QA를 구분한다. `/healthz` 외 업무 API와 human-gate는 미구현이다. 실제 SQL이 없어 migration 적용과 sqlc 생성 성공을 주장하지 않는다.
+변경한 동작과 실패·경계 조건을 검증한다. DEV 자동 검증과 독립 기능 QA를 구분한다. 업무 API·Go owner UI·실제 singleton SQL·sqlc 생성이 후보에 포함된다. 공개 한도·실제 신원 인증·DEC-02 공개 정책·벤더 연결은 후속이다.
 작업 지시서에는 적용 문서와 기준 SHA를 남기고 worker와 검토자가 같은 버전을 읽도록 한다.
 
 ## 검증 담당과 후속 인계
