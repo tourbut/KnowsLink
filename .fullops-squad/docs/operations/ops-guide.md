@@ -4,9 +4,9 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-03
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS]
 upstream: [D02, D03]
-summary: 서버 관찰 이력과 배포·백업 계획 및 C1 high 배포 차단을 기록한다
+summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
@@ -15,7 +15,7 @@ summary: 서버 관찰 이력과 배포·백업 계획 및 C1 high 배포 차단
 배포·이행 증거가 없으므로 D11(사용자설명서)과 D13(인수인계서)은 미작성으로 유지한다. 이 문서도 배포 완료 근거가 아니다.
 비밀값·토큰·`cert.pem` 내용은 기록하지 않는다. 존재·권한·경로만 기록한다.
 
-현재 Dispatch `ctx_3c54fe7d2043`는 이전 완료 기록의 검증·커밋만 수행한다. coordinator 메시지 `msg_d89612ea9341`에 따라 `a6a10c7`은 수락·배포 후보가 아니다. 독립 reviewer가 agent credential로 `deliver:human`을 처리하는 C1 high 결함을 보고했다. DEV 수정과 새 고정 SHA의 독립 QA·리뷰·coor 수락 전에는 배포하지 않는다. 이전 QA 통과와 이번 D12 기록 완료는 이 결함의 해결이나 제품 수락을 의미하지 않는다.
+**역사적 기록**: 이전 Dispatch는 `a6a10c7`을 C1 high 때문에 배포 금지로 기록했다. 이 결정은 그 당시 후보에만 해당한다. C1/RF-01 high는 해소됐다. 수락 후보는 main `557ebc3`, 제품 `78b1d92`, QA `659f4b0`, 최종 리뷰 `311381f`, 직접 UI 검수 `e238777`이다. 본인 전용 합성 베타의 구성과 검증은 11장에 기록한다. 전체 공개 한도·실제 신원·실데이터 held는 유지한다.
 
 ## 1. 승인 범위와 선행 조건
 
@@ -132,7 +132,7 @@ DNS 판정 근거: [Cloudflare CNAME flattening](https://developers.cloudflare.c
 |---|---|
 | 이전 서버 관찰 보존·운영 계획(D12 초안) | 기록 완료. 새 서버 검증은 미실행 |
 | DNS·Tunnel·컨테이너 변경 | **미실행** |
-| 수락 SHA 배포·공개 health 검증 | 미실행·held. 기존 a6a10c7은 C1 high로 수락·배포 금지. 사용자 재개 지시와 후속 Dispatch가 필요 |
+| 수락 SHA 배포·공개 health 검증 | 로컬 배포는 11장 참조. 공개 연결은 Access 보호 확인 전까지 held. 기존 a6a10c7 금지는 역사적 기록 |
 | D11 사용자설명서·D13 인수인계서 | 미작성 |
 
 ## 10. 개정 근거와 검증 범위
@@ -143,3 +143,38 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 이 단계는 D12 계획 문서 검사만 수행한다. 실제 서버·DNS·Tunnel·복원·health/auth 검증을 재실행하지 않았다. 원래 관찰에는 새 PASS나 종료코드를 붙이지 않았다. D11/D13은 미작성이다. 현재 사용자 지시에 따라 이번 기록 완료 뒤 운영·후속 기능을 시작하지 않는다.
 
 관련 원천: [D02](../planning/product-specs/SAR-MVP.md), [기능·held](../planning/SAR-MVP-backlog.md), [실행 기록](../exec-plans/phases/SAR-DEPLOY-001-OPS.md), [산출물 인덱스](../deliverables/README.md).
+
+## 11. 본인 전용 합성 베타 (SAR-BETA-001-OPS)
+
+범위는 합성 데이터와 사용자 본인 이메일 한 개다. 이메일은 Git 미추적 `/tmp/knowslink-beta-owner-email`(0600)에서만 읽는다. 문서·로그·Git에 쓰지 않는다. 전체 가입 제품 규칙은 바꾸지 않는다. 이번 접근 집단만 제한한다.
+
+### 11.1 구성 (고정 파일: `deploy/knowslink/`)
+
+| 파일 | 역할 |
+|---|---|
+| `compose.ops.yaml` | restart `unless-stopped`, 자원 제한(postgres 512m·1 CPU, relay 256m·0.5 CPU, cloudflared 128m), 로그 10m×3, relay/migrate/cloudflared의 cap_drop ALL·no-new-privileges·read_only. 값은 기술 설정이며 상품 정책이 아니다 |
+| `tunnel/config.yml.tmpl` | `link.knowslog.com` → `http://relay:8080`, 나머지 404. `originRequest.access.required: true`와 teamName·audTag로 원점에서 Access JWT를 검증한다 |
+| `beta.sh` | prepare·up·stop·unexpose·backup·restore-verify·seed·owner-login·tunnel-create·render-config·expose |
+| `access_apply.py` | 사용자 이메일만 allow인 reusable policy와 self-hosted app을 만든다. 기존 앱·정책·IdP를 덮어쓰지 않는다 |
+| `verify.py` | baseline·regression(공유 서비스)·local·public(미인증 negative) |
+
+배포 체크아웃은 `/home/shin/deploy/knowslink`(detached)다. 상태는 `/home/shin/deploy/knowslink-state`(0700)에 둔다: `.env`(0600), `tunnel/`, `backups/`, `access.aud`. 체크아웃은 항상 깨끗하다. Compose project는 `knowslink`다.
+
+### 11.2 노출 순서 (보호 먼저)
+
+1. 로컬 기동·검증·백업·격리 복원을 끝낸다. 공개 DNS는 없다.
+2. `CF_API_TOKEN_FILE=<0600> python3 access_apply.py apply`로 Access 앱을 만든다. `access.aud`가 저장된다.
+3. `beta.sh render-config`로 AUD를 넣은 `config.yml`을 만든다. `cloudflared tunnel ingress validate`가 통과해야 한다.
+4. `beta.sh expose`: Access 기록·`access.required`·relay health·DNS 부재를 확인한 뒤에만 `tunnel route dns`(덮어쓰기 없음)와 connector를 시작한다.
+5. `verify.py public`과 `verify.py regression`을 실행한다. 사용자가 마지막 이메일 로그인을 직접 확인한다(인간 검사).
+
+### 11.3 중단·복귀
+
+- 노출 중단: `beta.sh unexpose`(connector만 중지). 앱·DB·볼륨을 보존한다.
+- 전체 중지: `beta.sh stop`. `down -v`와 공유 자원 prune은 금지한다.
+- 전체 철회: `access_apply.py remove`, Cloudflare 대시보드에서 `link` CNAME과 `knowslink` Tunnel을 삭제한다. 기존 `orca` Tunnel·호스트 cloudflared는 건드리지 않는다.
+- 데이터 복구: `beta.sh backup`(0600 dump)과 `beta.sh restore-verify <dump>`(네트워크 없는 임시 컨테이너에 복원)로 검증한다. 라이브 DB에는 적용하지 않는다.
+
+### 11.4 held
+
+공개 한도(DEC-03)·실제 신원·실데이터·실제 벤더·무제한 공개·WAL/backup 삭제 보장은 held다. 자동 API 검사에 Access 토큰이 필요하면 사용자 정책을 넓히지 않고 단기 service token 승인을 별도로 요청한다.

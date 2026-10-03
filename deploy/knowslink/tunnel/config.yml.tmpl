@@ -1,0 +1,13 @@
+# Rendered by beta.sh into the 0700 state directory; the credentials file never enters Git.
+tunnel: __TUNNEL_UUID__
+credentials-file: /etc/cloudflared/__TUNNEL_UUID__.json
+ingress:
+  - hostname: link.knowslog.com
+    service: http://relay:8080
+    originRequest:
+      access:
+        required: true
+        teamName: __TEAM_NAME__
+        audTag:
+          - __AUD_TAG__
+  - service: http_status:404

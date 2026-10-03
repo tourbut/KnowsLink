@@ -24,9 +24,9 @@ summary: 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력�
 | D08 | 구현 | 테이블정의서 | `docs/generated/db-schema.md` | review |
 | D09 | 설계 | CRUD정의서 | `docs/design-docs/crud-design.md` | review |
 | D10 | 설계·구현 | 프로그램설계서 | `docs/design-docs/module-design.md` | review |
-| D11 | 이행 | 사용자설명서 | `docs/operations/user-guide.md` | 미작성 |
+| D11 | 이행 | 사용자설명서 | `docs/operations/user-guide.md` | draft |
 | D12 | 이행 | 운영자설명서 | `docs/operations/ops-guide.md` | draft |
-| D13 | 이행 | 인수인계서 | `docs/operations/transition.md` | 미작성 |
+| D13 | 이행 | 인수인계서 | `docs/operations/transition.md` | draft |
 
 ## SAR-PREP-002의 현재 정본과 보존 이력
 
