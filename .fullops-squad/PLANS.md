@@ -247,3 +247,7 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - OPS 준비 배정 영수증: Run run_8ca8bc058ab7 / Task task_85e5a5aa9960 / Dispatch ctx_59f3c76e94f1 / terminal term_586f18f7-8ca2-46e5-b169-6ed5cef4dacf. effective claude-sonnet-5-5 high와 turn_started를 확인했다. OPS branch의 과거 기록 때문에 fast-forward가 실패했다. 기존 내용을 보존한 merge 2023144로 동기화했으며 PLANS의 빈 HEAD 충돌을 해결했다. worker 착수와 지시서 열람을 확인했다. 준비 SHA 전달이 착수보다 늦었던 점을 보완 메시지 msg_594acbf335db로 기록했다.
 
 - SAR-MVP-PUBLIC-POLICY-001을 product → designer, codex gpt-6.1-sol medium으로 분류했다. 승인된 파일럿 공개의 DEC-03 제품 기준만 결정한다. 기술 계획·구현·배포는 DEV/OPS에 유지한다. 기존 designer user-owned 체크아웃과 충돌을 피하도록 별도 새 체크아웃·세션을 사용한다. D03 추천은 기술 소유권 때문에 제외한다.
+
+- 공개 정책 배정 영수증: Task task_9031cdaccb54 / Dispatch ctx_44f5c365fa4f / terminal term_3a8fde43-89ab-4038-a86e-17e370157e4d / 체크아웃 fullops-designer-pilot. effective codex gpt-6.1-sol medium과 turn_started를 확인했다. 사용자는 이후 새 체크아웃 생성 이유를 질문했다. user_owned 표시만으로 새 체크아웃이 필요하다는 판단은 과했으며 앞으로 기존 역할 워크트리를 우선 사용한다. 이미 진행 중인 DEV·designer 작업은 보존한다.
+- 사용자 공개 범위 결정: 누구나 가입하는 공개 서비스다. 초대 전용 파일럿으로 제한하지 않는다. msg_f6b3585a0e09 질문에 msg_240f0ed89175로 답변하고 delivery_7b7747de0eaa를 ack했다. 기획자는 요청·resource·동시 처리 한도의 구체적 권장안과 근거를 준비하고 제안값과 확정값을 구분한다. 실제 공개는 확정 기준·구현·독립 검증·고정 후보 수락 후 진행한다. 사용자에게 모든 수치를 처음부터 정하도록 요구하지 않는다.
+- 사용자가 다시 보낸 세션 ID는 오발송이라고 확인했다. 작업 목표나 기존 복귀 Run을 바꾸지 않는다.
