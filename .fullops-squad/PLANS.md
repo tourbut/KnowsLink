@@ -252,3 +252,5 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 과거 완료 메시지 세 건을 기존 PLANS의 실제 메시지 ID와 SHA로 공용 integration 기록에 회수했다. 사유·담당·재개 조건을 갖춘 hold를 적용했다. pending이 비어도 hold의 제품 작업이 통합 완료됐다는 의미는 아니다. 다른 오래된 역할 SHA의 main 미포함 이력도 보존한다. 상설·임시 워크트리와 기존 Run run_8ca8bc058ab7을 유지한다. 새 제품 worker는 시작하지 않는다. 전체 제품 수락·실제 배포·새 기능은 이번 업데이트 범위 밖이다.
 
 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md)을 따른다. 다음 운영은 새 coordinator 세션에서 이어간다.
+
+운영 main 반영 SHA 66f7ffc와 origin/main 일반 push를 확인했다. coor c9b2a8e·유휴 dev 25f03ad 동기화 완료다. designer/ops는 미커밋 자료, tester 및 임시 체크아웃은 실제 상태 불명으로 동기화를 예약한다. coor가 다음 배정 전 처리한다. 제품 hold와 현재 작업 완료 뒤 중지 지시는 유지한다.

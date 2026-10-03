@@ -36,3 +36,13 @@ PLANS의 미통합 결과 표를 정본으로 사용한다. DEV·QA·공개 기�
 제품 코드 변경이 없으므로 제품 동작 테스트·시각 검수는 해당 없음이다. 운영 문서 메타데이터·Git 공백·JSON·역할 및 원격 보존·링크와 main 기준 lint를 확인한다. 준비 결과와 실제 통합·push·역할 동기화 결과는 아래에 이어 기록한다.
 
 준비 SHA `e6aed25b7eb6`의 main 기준 FullOps lint는 종료코드 0, product-lint passed, ERROR 0, WARNING 0, 실행 불가 0이다. JSON·역할/원격 보존·변경 문서 메타데이터·상대 링크·Git 공백 검사를 통과했다. 필수 정책 적용과 검증을 완료해 적용 버전을 0.9.12로 갱신한다. 이 버전은 제품 완료나 hold 해제를 뜻하지 않는다.
+
+## 실제 통합·원격·역할 동기화 결과
+
+운영 준비 SHA `e6aed25b7eb6`와 적용 버전 확정 SHA `66f7ffcaed4c230424962fe05779aac16d5cbe90`를 실제 main 체크아웃 `/home/shin/Workspace/KnowsLink`에서 fast-forward로 통합했다. origin/main 일반 push는 종료코드 0이다. fetch 뒤 origin/main이 66f7ffc이며 운영 준비 SHA의 로컬·원격 조상 관계를 확인했다. 미수락 제품 후보 a6a10c7·QA c59537b·기획 69dbec4는 main에 포함하지 않았다.
+
+coor는 main을 merge해 `c9b2a8e`로 동기화했다. 충돌은 최신 역할/모델·제품 상태·PLANS·미추적 증거를 유지하며 새 운영 정책을 통합해 해결했다. dev는 Orca terminal list가 0개이고 작업 트리가 깨끗함을 확인했다. main을 merge해 `25f03ad81d438b2cd816168770a4fe384fa1f9f8`로 동기화했다. 두 역할은 기존 HEAD와 운영 main을 모두 조상으로 보존한다.
+
+designer·ops는 미커밋 자료 때문에, tester는 liveness unverifiable 때문에 동기화를 예약했다. 임시 designer-pilot·dev-mvp도 실제 상태 불명과 제품 수락 대기 때문에 보존한다. 역할별 예약의 담당은 coor이며 실제 유휴·깨끗함을 확인한 다음 dispatch 전에 최신 main을 반영한다. 역할 브랜치 원격도 일반 push로 운영 준비를 공유한다. 실제 제품 hold는 유지한다.
+
+최종 기록 커밋에도 같은 main 기준 lint를 실행한다. coor는 사용자 미추적 자료를 유지하므로 같은 고정 HEAD의 깨끗한 검증 snapshot에서 검사한다. 새 coordinator 세션은 0.9.12 hook을 사용해야 한다. 이 세션이 참조하는 삭제된 0.9.11 hook 캐시는 수정하거나 우회하지 않는다.
