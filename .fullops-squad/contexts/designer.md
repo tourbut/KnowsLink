@@ -3,8 +3,8 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-03
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001]
-summary: 초기 구성과 MVP 개발 준비의 제품 판단 및 보류 조건을 보존한다
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI]
+summary: 제품 판단과 직접 UI 검수의 수락 및 보류 경계를 보존한다
 ---
 
 # designer 컨텍스트
@@ -22,3 +22,7 @@ summary: 초기 구성과 MVP 개발 준비의 제품 판단 및 보류 조건�
 - 2026-10-03: SAR-MVP-PUBLIC-POLICY-001은 link.knowslog.com의 누구나 가입 가능한 인증 합성 파일럿 기준이다. 가입 초대 제한을 추가하지 않으며 pairing 수락은 유지한다.
   DEC-03은 수용량/rate/size/concurrency 권장안 단계다. 신규 수락과 안전 정리 budget을 분리하고 DEV/OPS 근거 및 사용자 수치 승인 전 공개 held를 유지한다.
   결정·검증·재개 조건: [공개 정책 기록](../docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md).
+
+- 2026-10-03: SAR-MVP-001-UI의 기존 PNG 7개와 보완 PNG 1개를 직접 확인했다. 합성 V-01–04 시각 판정은 PASS다.
+  `invalid_auth`는 인증 실패 차단만 증명한다. `deliver:human` 인증 경계 high는 DEV 수정·독립 재검증 전 유지한다.
+  상세 관찰·재개·인계: [UI 실행 기록](../docs/exec-plans/phases/SAR-MVP-001-UI.md).

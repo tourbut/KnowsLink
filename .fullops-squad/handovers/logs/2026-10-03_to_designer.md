@@ -247,3 +247,72 @@ coor의 사용자 회신에 따라 초대 전용 가입 제안을 적용하지 �
 DEC-01/02와 기존 held·frozen wire·critical/high 차단을 유지한다. 실제 공개와 전체 MVP 완료를 구분한다. 제안으로 기존 DEV 범위를 확대하지 않는다. DEV 로컬 합성 흐름과 OPS 읽기 전용 준비는 계속하며 정책 확정·제한 집행·독립 QA·UI 검수·독립 리뷰·수락 뒤 공개한다.
 
 문서 5개·로컬 링크 37개 오류 0, deliverables strict 검사 13·미작성 10·문제 0·경고 0, git diff --check 및 코드/원천/기술 정본/PLANS/board 보존 검사의 종료코드는 각각 0이다. 제품 코드 변경이 없어 product-lint·build/test/runtime QA·UI 캡처는 미적용이다. 독립 QA·배포 성공을 선언하지 않는다. 상세 결정·승인 근거·남은 담당과 재개 조건은 .fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md에 보존한다. 최종 커밋 SHA와 재검증 결과는 새 preamble의 worker_done으로 전달한다.
+
+## SAR-MVP-001-UI — 2026-10-03
+
+---
+title: SAR-MVP-001-UI — 현재 후보 직접 UI 검수
+status: draft
+updated: 2026-10-03
+owner: designer
+tasks: [SAR-MVP-001-UI]
+summary: 기존 MVP 승인 화면의 V-01–04 시각 수락 조건을 확인한다
+---
+
+# SAR-MVP-001-UI — 현재 후보 직접 UI 검수
+
+사용자는 현재 작업의 완료·검증·병합·원격 공유 후 작업을 멈추라고 지시했다. 이번 검수는 기존 MVP 완료에 필요한 필수 검수이며 신규 기능·배포·정책 확정은 하지 않는다.
+
+제품 후보 a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92와 tester QA c59537b6fa0c7e008c4c6bdba0a251dd821d4ee8의 V-01–04 캡처를 직접 본다. .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-test/ui/의 pending·approved·denied·expired·revoked·unavailable·unauthorized PNG를 view_image 등 실제 시각 도구로 확인한다. HTML이나 tester 판정만으로 시각 검수 완료를 선언하지 않는다. 읽을 PNG는 기존 tester 체크아웃의 같은 경로에도 있다.
+
+먼저 FULLOPS.md, rules/common/README.md와 coding-style.md/testing.md/security.md, project.md, docs/agents/document-writing.md, docs/planning/product-specs/SAR-MVP.md, docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md, contexts/designer.md를 읽는다. 규칙 fullops-common-0.3.2, lint 기준 0dd08ec994771836c15d9d22a6a83393a71d7987이다. 기존 DEV/TESTER 탐색 근거와 관련 문서를 재사용한다. 후보에서 디자인 기준을 낮추지 않는다.
+
+V-01 verified typed body와 정책·발신/대상·pending 승인/거절, V-02 결정 결과와 중복 승인 불가, V-03 expired/revoked와 승인 불가, V-04 원문 부재/권한 불명 차단을 판정한다. hint 강조로 typed body가 숨거나 채팅 composer·버블·장기 timeline·색만 상태·GET 승인 링크가 있으면 실패다. unauthorized 캡처가 단순 invalid_auth라는 점은 기존 완료 조건과 대조한다.
+
+소유 파일은 docs/design-docs/mockups/의 D04 원천, docs/evaluations/qa-reports/SAR-MVP-001-UI.md, docs/exec-plans/phases/SAR-MVP-001-UI.md, 자기 contexts와 인박스·아카이브다. 코드·원천·PLANS·board·기존 QA 증거는 수정하지 않는다. 기존 PNG를 재사용하고 새 캡처·영상은 결함 판정에 필요한 경우만 만든다. 검사 결과 PASS/FAIL/held와 이미지 경로·고정 SHA를 기록한다. strict·git diff --check·필요 lint를 수행하고 소유 파일만 커밋한다. work.py finish와 새 preamble worker_done을 한 번 보내고 종료한다. 코드 결함은 coor에 보고한다.
+
+기존 designer 워크트리를 사용한다. 복귀 Run run_8ca8bc058ab7, coordinator 경로 /home/shin/orca/workspaces/KnowsLink/fullops-coor다. 지시서의 진행 중 작업은 이번 검수까지이며 후속 기능이나 배포를 시작하지 않는다.
+
+## 실패한 검수 기록 마무리 재개 — 2026-10-03
+
+이전 Dispatch ctx_b7d073da41ef는 failed이며 execution-host worker-show observation은 exited다. 기존 UI 보고서·D04·보완 PNG·실행 기록을 보존해 같은 과제를 마무리한다. 설치된 FullOps 0.9.12를 사용한다. 기준 ref는 준비 HEAD 0a5b044다. 기존 직접 열람은 원래 관찰로 유지하고 이번 세션에서 필요한 이미지만 직접 확인한다. 문서 front matter·상대 링크·strict·소유파일 커밋·work.py finish·새 worker_done을 완료한다. 기존 제품 후보 a6a10c7과 QA c59537b의 시각 검수이며 신규 코드 실행이 아니다. reviewer msg_4fbcac80f76c의 deliver:human 인증 경계 high는 DEV 수정·독립 재검증 대상이다. 이를 UI PASS로 해소하지 않는다. DEV 수정 후보가 UI에 영향을 주면 coor가 같은 과제 후속을 전달한다. 제품/기획/PLANS/board는 수정하지 않는다.
+
+## 완료 보고
+
+### 변경과 판정
+
+기존 실패 Dispatch의 D04·시각 판정·실행 기록·보완 PNG를 보존해 완성했다.
+이번 Dispatch `ctx_f6be2c2d0ce4`에서 기존 PNG 7개와 보완 PNG 1개를 `view_image`로 직접 확인했다.
+제품 후보 `a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92`, QA `c59537b6fa0c7e008c4c6bdba0a251dd821d4ee8`를 유지했다.
+캡처된 합성 V-01–04는 PASS다. `invalid_auth`는 인증 실패 차단만 증명한다.
+D04를 review 상태로 기록했다. 전체 MVP 수락이나 공개 승인이 아니다.
+제품 코드·기획 정책·PLANS·board·기존 QA 증거는 수정하지 않았다.
+소유 범위 밖 공유 산출물 인덱스의 D04 미작성 이력은 보존했다. coor에게 review 원천과의 대조를 인계한다.
+
+### 검증과 한계
+
+문서 커밋 `26e601d8d69394602945d9333acf8bd32a22c536`에서 `lint.py --from 0a5b044`를 수행했다.
+첫 실행은 `@types/node` 부재로 종료코드 1, ERROR 1이다. 기존 tester와 같은 환경 문제다.
+`npm ci --prefix adapters` 종료코드 0으로 Git 제외 의존성을 복구했다. 제품 소스·잠금 파일은 보존했다.
+같은 SHA의 재실행은 종료코드 0, product-lint passed, ERROR 0, WARNING 0, 실행 불가 0이다.
+전체 strict는 종료코드 0, 검사 13, 미작성 4, 문제 0, 경고 0이다.
+공유 인덱스 상태 때문에 strict가 새 D04를 건너뛰므로 D04 자체의 정규 메타데이터를 별도로 검사했다.
+변경 문서·인박스의 메타데이터와 로컬 링크, 원래 QA PNG 7개 바이트 일치 검사는 통과했다.
+제품 후보 대비 제품 diff와 git diff --check 종료코드는 0이다.
+검증 증거는 `/tmp/SAR-MVP-001-UI-validation/ctx_f6be2c2d0ce4/`다. 직접 종료코드를 유지했다.
+서버 QA·build/test/runtime·새 캡처·영상·모바일·키보드·스크린리더 검사는 반복하지 않았다.
+원래 캡처와 저장 HTML의 정지 렌더를 새 서버 실행 증거로 바꾸지 않았다.
+완료 기록 아카이브 후 최종 커밋을 만들고 같은 lint·strict·공백 검사를 실행한다.
+최종 고정 SHA와 최종 검사 결과는 새 preamble worker_done으로 전달한다.
+
+### 미해결 경계와 인계
+
+reviewer `msg_4fbcac80f76c`의 `deliver:human` 인증 경계 high는 미해결로 유지한다.
+이번 시각 PASS는 해당 high를 해소하지 않는다. DEV 수정·독립 재검증 전 제품 수락·병합을 차단한다.
+DEV 수정이 화면에 영향을 주면 coor가 같은 과제의 후속 검수를 배정한다.
+DEC-02·DEC-03·Free N·실adapter·A2A 현행 검토·WAL/backup 삭제·고의 stale epoch의 held를 유지한다.
+D04: [화면 기록](../../docs/design-docs/mockups/SAR-MVP-001-UI.md).
+판정: [직접 시각 검수](../../docs/evaluations/qa-reports/SAR-MVP-001-UI.md).
+상세 결정·검증: [실행 기록](../../docs/exec-plans/phases/SAR-MVP-001-UI.md).
+coor가 문서 결과의 통합과 제품 수락을 구분하고 필수 검수·병합·원격 공유를 처리한다.
+사용자의 현재 과제 완료 후 중지 지시를 유지한다. 후속 기능·배포를 시작하지 않는다.
