@@ -243,3 +243,5 @@ summary: 초기 구성과 lint 설계 결과 및 dev와 tester의 선행 관계�
 - SAR-MVP-001-DEV는 Task task_491be61b82eb / Dispatch ctx_66989e4a879d / terminal term_a14d0b14-d989-4853-b53a-02e3ac904b53에서 작업 중이다. 실제 체크아웃은 fullops-dev-mvp이며 사용자 소유 세션으로 표시된다. 종료하거나 중복 배정하지 않는다. 상태 메시지 msg_9fd5d0cda327로 복귀와 hostname을 전달했다.
 - 사용자 확정 hostname은 link.knowslog.com이다. knowslog.com은 사용자 소유 Cloudflare 관리 도메인이다. cloudflared 로컬 인증을 통한 기존 orca tunnel 조회가 성공했고 활성 연결을 확인했다. 도메인 전체 DNS 관리 권한은 별도 확인한다.
 - SAR-DEPLOY-001-OPS는 implementation → ops, claude-sonnet-5-5 high로 분류했다. 기존 OPS 터미널 없음과 깨끗한 체크아웃을 확인했다. 오래된 완료 세션 대신 새 세션을 사용한다. 읽기 전용 서버 준비와 D12 운영 계획을 먼저 수행한다. 실제 운영 변경은 DEV 고정 후보 수락 이후 같은 과제의 후속으로 수행한다.
+
+- OPS 준비 배정 영수증: Run run_8ca8bc058ab7 / Task task_85e5a5aa9960 / Dispatch ctx_59f3c76e94f1 / terminal term_586f18f7-8ca2-46e5-b169-6ed5cef4dacf. effective claude-sonnet-5-5 high와 turn_started를 확인했다. OPS branch의 과거 기록 때문에 fast-forward가 실패했다. 기존 내용을 보존한 merge 2023144로 동기화했으며 PLANS의 빈 HEAD 충돌을 해결했다. worker 착수와 지시서 열람을 확인했다. 준비 SHA 전달이 착수보다 늦었던 점을 보완 메시지 msg_594acbf335db로 기록했다.
