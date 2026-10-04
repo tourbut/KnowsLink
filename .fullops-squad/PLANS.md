@@ -631,3 +631,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - Grok 사전점검 회신5976609951 확인: private파일 오너배치가능, 기존MCP env제자리갱신없고삭제재등록필요. 이번시험은CLI우선으로서버재등록불필요. OPS기록의전달수단미확인은당시관측이며현재오너배치수단확인, 실제비밀파일전달은미완료다.
 
 - Grok 다음작업/조건부receive-reply 댓글 https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5976760103 게시·원문대조. 서버ready/actualGrok성공으로표시하지않았다. 설치결과와private폴더준비회신대기, 권한파일확보후실제공개검증·TTL송신협업을재개한다.
+
+- 사용자Orca browser직접발급지시로관리API token생성·0600저장. 계정한정ServiceTokens/Edit+AppsPolicies/Edit, active·2026-10-04T23:59:59Z만료·3GET성공. 값출력없음. 기존OPS권한차단해소후같은key freshSonnet5.5high재개(이전released), 실제공개인증/시험준비수행.
