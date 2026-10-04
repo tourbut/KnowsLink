@@ -1,0 +1,37 @@
+{
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT",
+  "find_head": "d65f8c678d4ab740a8a877d7960b051080cf584d",
+  "base": "f19c49852b48089ccc3b1539221be32c542f7f93",
+  "head": "c5e745ce474b4607846e76f62855172398de94c7",
+  "changed_existing": [
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+    "adapters/README.md"
+  ],
+  "new_files": [
+    "adapters/src/core.ts",
+    "adapters/src/trial-boundaries.test.ts"
+  ],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/rules/common/README.md",
+    "README.md",
+    "adapters/skills/knowslink/SKILL.md"
+  ],
+  "hits": [
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md"
+  ],
+  "recall": 0.333,
+  "precision": 0.143,
+  "existence_status": "found",
+  "existence_correct": true,
+  "context_omitted": [
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md"
+  ],
+  "context_wrong_omits": [
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md"
+  ]
+}

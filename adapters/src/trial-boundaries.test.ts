@@ -6,6 +6,8 @@ import { mkdtemp, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { generateKeyPairSync } from "node:crypto";
+import { setFlagsFromString } from "node:v8";
+import { runInNewContext } from "node:vm";
 import { TestTransport, testTransport } from "./test-transport.js";
 async function main() {
   const originalEnv = { ...process.env };
@@ -120,6 +122,41 @@ async function main() {
         Date.now() - start < 2000,
         "stream timeout must bound response body too",
       );
+      // Default 10s with forced GC: an unreferenced timeout signal or Response must not leave the body read pending.
+      setFlagsFromString("--expose-gc");
+      const gc = runInNewContext("gc") as () => void;
+      const collector = setInterval(gc, 100);
+      const defaults = new TestTransport(
+        `http://127.0.0.1:${address.port}`,
+        "test-only",
+        "trial_codex",
+        "key1",
+        pem,
+        "trial_grok",
+      );
+      const defaultStart = Date.now();
+      let guard: NodeJS.Timeout | undefined;
+      const outcome = await Promise.race([
+        defaults.request("/v1/registry").then(
+          () => "resolved",
+          (error: unknown) => error,
+        ),
+        new Promise((resolve) => {
+          guard = setTimeout(resolve, 13000, "pending");
+        }),
+      ]).finally(() => {
+        clearTimeout(guard);
+        clearInterval(collector);
+      });
+      const defaultElapsed = Date.now() - defaultStart;
+      assert(
+        outcome instanceof Error && outcome.name === "TimeoutError",
+        `default stream timeout outcome ${outcome instanceof Error ? outcome.name : String(outcome)}`,
+      );
+      assert(
+        defaultElapsed >= 9900 && defaultElapsed < 12000,
+        `default stream timeout took ${defaultElapsed}ms`,
+      );
       await assert.rejects(transport.request("/v1/send", {}), /too large/);
       await assert.rejects(transport.request("/v1/pull", {}));
     } finally {
@@ -128,7 +165,7 @@ async function main() {
       await once(listener, "close");
     }
     console.info(
-      "PASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms timeout; remote roundtrip unverified",
+      "PASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified",
     );
   } finally {
     globalThis.fetch = originalFetch;

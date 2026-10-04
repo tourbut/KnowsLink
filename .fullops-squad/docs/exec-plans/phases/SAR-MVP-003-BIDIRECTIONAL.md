@@ -27,6 +27,8 @@ fullops-common-0.3.2, FULLOPS.md, project.md, D03/D05/D10/D12, 문서 작성 규
 
 MCP는 기존 업무 도구 두 개와 시험 send/receive 두 개를 검색한다. 기본 held, 명시 `test-loopback`, 고정 origin `test-remote`를 분리한다. synthetic 업무 pull은 시험 remote 모드에서 실행되지 않는다. 각 HTTP 요청은 redirect 차단·10초 timeout·64 KiB 스트림 응답 상한을 적용한다. timeout은 header 이후 body에도 적용된다. receiver는 수동 pull이며 자동 wake·자동응답이 없다.
 
+> 정정 2026-10-04: 위 body timeout 문장은 `cd60e7f`의 실제 코드와 다르다. 기본 10초 경로에서 GC가 inline `AbortSignal.timeout`과 `Response`를 회수하면 멈춘 body 읽기가 끝나지 않는다. 100ms 시험은 GC 전에 끝나서 이 결함을 검출하지 못했다. 원인·수정·기본 10초 회귀는 [SAR-MVP-003-BIDIRECTIONAL-TIMEOUT 정정 기록](SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md)에 있다. 이 문서의 원본 문장과 증거는 보존한다.
+
 Codex CLI는 stdin 송신과 receive를 제공한다. private config launcher는 0600 owned regular file만 읽고 이전 agent credential 환경을 제거한다. Grok Command도 같은 launcher와 기존 고정 Node·standalone bundle을 사용한다. 안전한 파일 전달과 parent의 Command 변경 지원은 실제 계정 확인이 필요하다.
 
 ## API와 공식 근거

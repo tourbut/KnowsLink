@@ -1,0 +1,22 @@
+red build: adapters/src/core.ts from start HEAD f19c49852b48089ccc3b1539221be32c542f7f93, node v22.22.2. repro args: dist, gc|nogc, optional timeoutMs (default constructor when omitted). Server is a real local HTTP socket, not a fetch stub.
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist nogc
+{"gc":false,"out":"hung","ms":15010}
+exit=0
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist nogc
+{"gc":false,"out":"hung","ms":15011}
+exit=0
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist nogc
+{"gc":false,"out":"hung","ms":15010}
+exit=0
+$ node --expose-gc .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist gc 1000
+{"gc":true,"out":"hung","ms":6019}
+exit=0
+$ node --expose-gc .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist gc 3000
+{"gc":true,"out":"hung","ms":8016}
+exit=0
+$ node --trace-gc repro.mjs dist nogc (default 10000ms); Mark-Compact and result lines
+8245 ms: Mark-Compact (reduce) 7.4 (11.6) -> 6.7 (8.6) MB, pooled: 0 MB, 5.74 / 0.00 ms  (+ 5.8 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 13 ms) (average mu = 0.999, current mu = 0.999) finalize incremental marking via task; GC in old space requested
+{"gc":false,"out":"hung","ms":15011}
+$ env CLONE=$REPO RESULT_PATH=$SCRATCH/held-red.json node .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/observe.mjs held
+exit=1
+held ok False failed ['body timeout rejects', 'body timeout is about 10s'] [('body timeout rejects', 'hung'), ('body timeout is about 10s', '15000')]
