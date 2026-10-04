@@ -635,3 +635,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 사용자Orca browser직접발급지시로관리API token생성·0600저장. 계정한정ServiceTokens/Edit+AppsPolicies/Edit, active·2026-10-04T23:59:59Z만료·3GET성공. 값출력없음. 기존OPS권한차단해소후같은key freshSonnet5.5high재개(이전released), 실제공개인증/시험준비수행.
 
 - OPS 재개 task_380c8197a3aa/ctx_ef5d9b47c216/term_0b4fc069-91b9-485e-8fa6-70e8ddcf153c freshSonnet5.5high effective·turn_started확인. 착수e68a944, actualGrok송신전private전달/준비회신대기. 진행OPS체크아웃보존.
+
+- Grok 설치회신5977315409: reviewed0911c2c/hash일치·installer0·부모MCP재연결후tools2유지. 이번CLI시험은영향없으며MCP캐시갱신문제는분리. private폴더0700 box:box/파일미전달. actual송수신대기.
