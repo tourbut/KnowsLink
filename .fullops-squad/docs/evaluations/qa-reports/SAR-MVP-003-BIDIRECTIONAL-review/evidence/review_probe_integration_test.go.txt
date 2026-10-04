@@ -1,0 +1,52 @@
+//go:build integration
+
+// Reviewer-only probe (not part of product): machine-path traversal, business-pull crossover and allowlist removal.
+package relay
+
+import (
+	"context"
+	"os"
+	"testing"
+	"time"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+func TestReviewProbe(t *testing.T) {
+	pool, err := pgxpool.New(context.Background(), os.Getenv("TEST_DATABASE_URL"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer pool.Close()
+	f := setup(t, pool)
+	f.s.TestAgents = map[string]bool{"agent_a": true, "agent_b": true}
+	a := f.tokens["agent_a"]
+	for _, p := range [][2]string{
+		{"GET", "/v1/test/keys/../../owner"}, {"GET", "/v1/test/receipts/../../owner"}, {"POST", "/v1/test/send/../../owners"},
+		{"GET", "/v1/test/registry/../../owner"}, {"GET", "/v1/test/keys/agent_b/key1/x"}, {"POST", "/v1/test//pull"},
+		{"GET", "/v1/test/pull"}, {"POST", "/v1/test/registry"}, {"POST", "/v1/test/owners"}, {"GET", "/v1/test/contacts"},
+		{"GET", "/v1/test/gates/x"}, {"GET", "/v1/test/keys/agent_c/key1"}, {"POST", "/v1/test/claim/../authorize"},
+	} {
+		f.call(p[0], p[1], a, map[string]any{}, 403)
+	}
+	f.call("GET", "/v1/test/keys/agent_b/key1", a, nil, 200)
+	raw := wire(t, f.private["agent_a"], firstID, "agent_a", "agent_b", "relay.test.message", "probe-trial-key-01", "", map[string]any{"text": "ping"}, time.Now().Add(time.Minute))
+	if w := f.request("POST", "/v1/test/send", a, raw, ""); w.Code != 200 {
+		t.Fatal(w.Code, w.Body)
+	}
+	// Business pull path is not filtered: observe whether it leases the trial message.
+	lease := f.call("POST", "/v1/pull", f.tokens["agent_b"], map[string]any{}, 200)
+	if env, _ := lease["envelope"].(map[string]any); env != nil {
+		t.Logf("OBSERVED business /v1/pull leased trial intent %v", env["intent"])
+	}
+	// Allowlist removal must fail closed and clear payload.
+	f.s.TestAgents = map[string]bool{}
+	f.mutate(func(st *State) {})
+	f.mutate(func(st *State) {
+		if m := st.Messages[firstID]; m == nil || len(m.Envelope) != 0 || m.Receipt.State == "queued" || m.Receipt.State == "leased" {
+			t.Errorf("trial not cleared after allowlist removal: %+v", m)
+		} else {
+			t.Logf("OBSERVED after allowlist removal state=%s envelope=%d", m.Receipt.State, len(m.Envelope))
+		}
+	})
+}

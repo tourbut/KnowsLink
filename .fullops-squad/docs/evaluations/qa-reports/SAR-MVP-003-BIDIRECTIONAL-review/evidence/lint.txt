@@ -1,0 +1,5 @@
+[passed] product-lint: make lint
+WARNING SIZE-001 internal/relay/http.go 510줄(이전 487, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/store.go 438줄(이전 420, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+head cd60e7f87eb5 / 파일 41 / ERROR 0 / WARNING 2 / 실행 불가 0
+lint exit 0
