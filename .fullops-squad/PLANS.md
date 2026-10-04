@@ -613,3 +613,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - TESTER msg_ef12e8add110 / fa16893870fcaf33e968065e88f2e250a845d09c: 독립SQL·두MCP/CLI왕복 통과, 기본10초bodytimeout이15초pending medium·필수QA실패. main/운영배포 차단유지. timeout전용DEV수정→delta리뷰/좁은QA 후수락. QA메시지SHA/key누락은 원문·cleanHEAD·완료기록의고정fa168938로대조해추적한다. 제품수정아직없음.
 
 - timeoutDEV 후속 task_746f1ca2cbb3/ctx_c238cca512f9/term_2c3d7f57-9f32-4282-817a-679882a7d014: Jev추천 fresh Opus5.5high, effective·turn_started. 착수f19c498. QA원문/대상은보존하며 fixture/실network차이도진단. 새로운delta리뷰·기본10000ms좁은QA 전main배포차단.
+
+- timeoutDEV msg_de28d186377c/711f2532be423d1ca7707463a20fdc168f50bece: realsocket 기본10000ms RED3/3·QA15000, signal/response GC원인. core33줄최소수정·timercontroller/readrace/finally, 기본10004~10008·QA3/3 10001~10003·cleanup/busy0. 실제source수정, fixture결함아님. lint0. 최신delta리뷰·좁은QA준비, 실제왕복/운영未실행유지.

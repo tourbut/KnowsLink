@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-REVIEW",
+  "head": "0a4a7b7157453827dd96d50098e20b0384a49aeb",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 68,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 68
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/src/trial-boundaries.test.ts",
+      "summary": "Trial client checks held/config guards, fixed remote headers, streamed response bounds and timeout without contacting remote services.",
+      "probability": 0.45
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.29000000000000004
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.05
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "summary": "KnowsLink",
+      "probability": 0.04
+    },
+    {
+      "path": "adapters/eslint.config.mjs",
+      "summary": "Check adapter source and this flat configuration with recommended rules.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "summary": "Grok Bot MCP connector: held by default; only explicit loopback synthetic pulls can run.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "summary": "Check local Compose readiness and safe failure without activating a Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "summary": "Package relay validates frozen relay.v1 and preserves one parsed object for signing and processing.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "summary": "Synthetic QA seed and end-to-end adapter check; credentials stay in ignored local files only.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.91,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3504,
+    "output_tokens": 729,
+    "cost": 0.000147168
+  },
+  "latency_seconds": 0.298,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

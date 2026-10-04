@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER",
+  "head": "0a4a7b7157453827dd96d50098e20b0384a49aeb",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 122,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 122
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "summary": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT 정정 실행 기록 — 기본 10초 응답 본문 timeout이 GC 뒤 동작하지 않는 원인과 최소 수정 및 실제 10초 회귀를 기록한다",
+      "probability": 0.51
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "summary": "SAR-MVP-003-BIDIRECTIONAL-TESTER — 고정 양방향 시험 QA — cd60e7f의 격리 Postgres 왕복, held 경계, 10초 body timeout 실패를 기록한다",
+      "probability": 0.38
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "summary": "tester 컨텍스트 — 독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "summary": "KnowsLink",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.92,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 9994,
+    "output_tokens": 1269,
+    "cost": 0.000419748
+  },
+  "latency_seconds": 0.294,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0,
+        "implementation": 1
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.3,
+        "ops": 0,
+        "tester": 0.7
+      },
+      "confidence": 0.55
+    },
+    "docs": {
+      "D01": 0.09,
+      "D02": 0.1,
+      "D03": 0.1,
+      "D04": 0.1,
+      "D05": 0.09,
+      "D06": 0.09,
+      "D07": 0.08,
+      "D08": 0.09,
+      "D09": 0.1,
+      "D10": 0.28,
+      "D11": 0.11,
+      "D12": 0.25,
+      "D13": 0.21
+    }
+  },
+  "usage": {
+    "input_tokens": 2463,
+    "output_tokens": 314,
+    "cost": 0.000103446
+  },
+  "error": null,
+  "latency_seconds": 0.284,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "최신timeout수정에 독립 REVIEW 필요. 기존불변SQL/Go/전체MCP QA재사용.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

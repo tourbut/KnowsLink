@@ -1,0 +1,647 @@
+{
+  "base": "cd60e7f87eb5ce137eca887980f232b3f67a18d0",
+  "head": "711f2532be423d1ca7707463a20fdc168f50bece",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "",
+  "conclusion": "",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-context.json",
+      "status": "added",
+      "insertions": 126,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-documents-find.json",
+      "status": "added",
+      "insertions": 69,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-route.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-context.json",
+      "status": "added",
+      "insertions": 126,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-documents-find.json",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-route.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-context.json",
+      "status": "added",
+      "insertions": 112,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-documents-find-score.json",
+      "status": "added",
+      "insertions": 37,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-documents-find.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-find-score.json",
+      "status": "added",
+      "insertions": 34,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-find.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-route.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/held.mjs",
+      "status": "added",
+      "insertions": 161,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/live.mjs",
+      "status": "added",
+      "insertions": 142,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/closed.json",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/held.json",
+      "status": "added",
+      "insertions": 167,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/live.json",
+      "status": "added",
+      "insertions": 159,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/suite.json",
+      "status": "added",
+      "insertions": 49,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/summary.json",
+      "status": "added",
+      "insertions": 65,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/observe.mjs",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/run_observe.py",
+      "status": "added",
+      "insertions": 103,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/run_suite.py",
+      "status": "added",
+      "insertions": 116,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/session.mjs",
+      "status": "added",
+      "insertions": 158,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "status": "added",
+      "insertions": 128,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/jev-find-score.json",
+      "status": "added",
+      "insertions": 67,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/lint.json",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/preview.json",
+      "status": "added",
+      "insertions": 309,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/report.md",
+      "status": "added",
+      "insertions": 68,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/result.json",
+      "status": "added",
+      "insertions": 450,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/rules.json",
+      "status": "added",
+      "insertions": 91,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/cleanup.mjs",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/mcp-busy.mjs",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "status": "modified",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "status": "modified",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "status": "modified",
+      "insertions": 40,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "status": "modified",
+      "insertions": 31,
+      "deletions": 2,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/trial-boundaries.test.ts",
+      "status": "modified",
+      "insertions": 38,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/body-timeout-followup.txt",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/closed.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/compose-down.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/compose-recreate.log",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/compose-up.log",
+      "status": "added",
+      "insertions": 122,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/env-i.err",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/env-i.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/env-i.out",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/held.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/live.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/make-test.err",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/make-test.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/make-test.out",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-grok-plugin.err",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-grok-plugin.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-grok-plugin.out",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-mvp.err",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-mvp.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-mvp.out",
+      "status": "added",
+      "insertions": 156,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/access-plan-selftest.txt",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/lint.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/make-test.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/probe-verify-mvp.txt",
+      "status": "added",
+      "insertions": 215,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/review_probe_integration_test.go.txt",
+      "status": "added",
+      "insertions": 52,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/verify-mvp.txt",
+      "status": "added",
+      "insertions": 211,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/green.txt",
+      "status": "added",
+      "insertions": 34,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/red.txt",
+      "status": "added",
+      "insertions": 22,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/verify.txt",
+      "status": "added",
+      "insertions": 78,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "pending",
+      "reason": ""
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "",
+    "reviewer_session": "",
+    "snapshot_path": "",
+    "snapshot_head": "711f2532be423d1ca7707463a20fdc168f50bece",
+    "read_only": true
+  }
+}
