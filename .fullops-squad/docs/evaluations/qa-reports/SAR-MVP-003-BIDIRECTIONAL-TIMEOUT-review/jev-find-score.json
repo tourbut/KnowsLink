@@ -1,0 +1,34 @@
+{
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT",
+  "find_head": "d65f8c678d4ab740a8a877d7960b051080cf584d",
+  "base": "cd60e7f87eb5ce137eca887980f232b3f67a18d0",
+  "head": "711f2532be423d1ca7707463a20fdc168f50bece",
+  "changed_existing": [
+    "adapters/README.md",
+    "adapters/src/core.ts",
+    "adapters/src/trial-boundaries.test.ts"
+  ],
+  "new_files": [],
+  "candidates": [
+    "README.md",
+    "adapters/src/mcp.test.ts",
+    "adapters/src/synthetic.ts",
+    "adapters/src/test-transport.ts",
+    "adapters/src/trial-boundaries.test.ts",
+    "internal/relay/http.go",
+    "scripts/verify_mvp.py"
+  ],
+  "hits": [
+    "adapters/src/trial-boundaries.test.ts"
+  ],
+  "recall": 0.333,
+  "precision": 0.143,
+  "existence_status": "found",
+  "existence_correct": true,
+  "context_omitted": [
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md"
+  ],
+  "context_wrong_omits": [
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md"
+  ]
+}
