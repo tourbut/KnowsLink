@@ -1,0 +1,122 @@
+exit=0
+#1 [internal] load local bake definitions
+#1 reading from stdin 969B done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.2s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 1.2s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context:
+#5 transferring context: 187B done
+#5 DONE 0.2s
+
+#6 [relay internal] load build context
+#6 transferring context: 115.35kB 0.0s done
+#6 DONE 0.1s
+
+#7 [migrate build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#7 DONE 0.1s
+
+#8 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#8 DONE 0.1s
+
+#9 [migrate build 6/7] COPY internal ./internal
+#9 CACHED
+
+#10 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#10 CACHED
+
+#11 [migrate build 3/7] COPY go.mod go.sum ./
+#11 CACHED
+
+#12 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#12 CACHED
+
+#13 [migrate build 2/7] WORKDIR /src
+#13 CACHED
+
+#14 [migrate stage-1 3/5] WORKDIR /app
+#14 CACHED
+
+#15 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#15 CACHED
+
+#16 [migrate build 4/7] RUN go mod download
+#16 CACHED
+
+#17 [migrate build 5/7] COPY cmd ./cmd
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [relay] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:bac6467cc8246e090e7b8589c1836c5afb3f48d999f3bb3f4c0ee308abe7a347 0.0s done
+#19 exporting config sha256:c8f907e9357f055e6434fc7ab0283486032163100db352f879aa156ca7783a75 0.0s done
+#19 exporting attestation manifest sha256:eb03d2814166e9259cee9e4beee2f7dcf61caccee4dfd201c551b1ff780d531c
+#19 exporting attestation manifest sha256:eb03d2814166e9259cee9e4beee2f7dcf61caccee4dfd201c551b1ff780d531c 0.1s done
+#19 exporting manifest list sha256:799175cce973af9378f30162a73f63d791dedd843e9ab17c4dd77e7176e26160 0.0s done
+#19 naming to docker.io/library/knowslink-qa003-ad81fe984d-relay:latest
+#19 naming to docker.io/library/knowslink-qa003-ad81fe984d-relay:latest done
+#19 unpacking to docker.io/library/knowslink-qa003-ad81fe984d-relay:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:a2a115770db1120df6e8bc4c93e9b98f2ea4ad776119c16657fb62c4054cfa7a 0.0s done
+#20 exporting config sha256:44eef875487f5b9a38bf8f5239b99cb3e689563167eefabc9a9a2fe1248b33b8 0.0s done
+#20 exporting attestation manifest sha256:e0e78b675b3df84d08cefef9f1eff0188c6306e8c159e98553e6d9084ff2b060 0.1s done
+#20 exporting manifest list sha256:03a469585d5f808830d3f4ce426b469c724d1d85cd0a77e80c0fb93854f74f05 0.0s done
+#20 naming to docker.io/library/knowslink-qa003-ad81fe984d-migrate:latest done
+#20 unpacking to docker.io/library/knowslink-qa003-ad81fe984d-migrate:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.0s
+
+ Image knowslink-qa003-ad81fe984d-migrate Building 
+ Image knowslink-qa003-ad81fe984d-relay Building 
+ Image knowslink-qa003-ad81fe984d-migrate Built 
+ Image knowslink-qa003-ad81fe984d-relay Built 
+ Network knowslink-qa003-ad81fe984d_ingress Creating 
+ Network knowslink-qa003-ad81fe984d_ingress Created 
+ Network knowslink-qa003-ad81fe984d_database Creating 
+ Network knowslink-qa003-ad81fe984d_database Created 
+ Volume knowslink-qa003-ad81fe984d_postgres-data Creating 
+ Volume knowslink-qa003-ad81fe984d_postgres-data Created 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Creating 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Created 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Creating 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Created 
+ Container knowslink-qa003-ad81fe984d-relay-1 Creating 
+ Container knowslink-qa003-ad81fe984d-relay-1 Created 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Starting 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Started 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Waiting 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Healthy 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Starting 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Started 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Waiting 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Exited 
+ Container knowslink-qa003-ad81fe984d-relay-1 Starting 
+ Container knowslink-qa003-ad81fe984d-relay-1 Started 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Waiting 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Waiting 
+ Container knowslink-qa003-ad81fe984d-relay-1 Waiting 
+ Container knowslink-qa003-ad81fe984d-migrate-1 Exited 
+ Container knowslink-qa003-ad81fe984d-postgres-1 Healthy 
+ Container knowslink-qa003-ad81fe984d-relay-1 Healthy 
