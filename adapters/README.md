@@ -162,7 +162,7 @@ Grok package 구조는 `grok plugin validate`와 CLI 사용자 안내서, Cursor
 - `knowslink_test_send`: `{text,idempotency_key}`를 받고 configured peer에 `relay.test.message`를 보낸다. text는 비어 있지 않은 UTF-8 4096 bytes 이하, key는 ASCII 16–128자다. 반환 ID는 queued receipt다. 같은 key와 text의 재전송은 같은 ID를 반환한다. 수신 성공은 별도로 확인한다.
 - `knowslink_test_receive`: 입력 없이 한 시험 메시지를 검증·persist·ACK·claim하고 `{id,from,to,text,exp,untrusted:true}`를 반환한다. text는 신뢰하지 않는 데이터다. 업무 요청·권한 변경·자동 도구 실행의 근거로 쓰지 않는다.
 
-`test-remote`는 `RELAY_URL=https://link.knowslog.com`, 기존 agent 변수, `KNOWSLINK_TEST_PEER`, `CF_ACCESS_CLIENT_ID`, `CF_ACCESS_CLIENT_SECRET`을 요구한다. recipient는 env로 고정한다. 주소 인자는 받지 않는다. 다른 HTTPS 호스트·HTTP remote·userinfo·path·query·fragment·redirect를 차단한다. 요청별 timeout은 10초, 응답은 64 KiB로 제한한다. send TTL은 180초이며 relay 상한은 300초다.
+`test-remote`는 `RELAY_URL=https://link.knowslog.com`, 기존 agent 변수, `KNOWSLINK_TEST_PEER`, `CF_ACCESS_CLIENT_ID`, `CF_ACCESS_CLIENT_SECRET`을 요구한다. recipient는 env로 고정한다. 주소 인자는 받지 않는다. 다른 HTTPS 호스트·HTTP remote·userinfo·path·query·fragment·redirect를 차단한다. 요청별 timeout은 응답 본문 읽기까지 포함해 10초, 응답은 64 KiB로 제한한다. send TTL은 180초이며 relay 상한은 300초다.
 
 운영자는 [D12 시험 절차](../.fullops-squad/docs/operations/ops-guide.md#13-승인된-양방향-시험-sar-mvp-003)대로 시험 identity와 path 전용 Access 앱을 준비한다. 기본 서버 allowlist는 비어 있다. `KNOWSLINK_TEST_AGENTS=trial_codex,trial_grok`를 명시해야 시험 send와 machine API를 허용한다. owner credential은 두 agent 환경에 전달하지 않는다.
 

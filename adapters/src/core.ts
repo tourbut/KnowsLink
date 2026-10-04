@@ -61,9 +61,30 @@ export class Adapter {
     private readonly timeoutMs = 10000,
   ) {}
   async request<T>(path: string, body?: unknown, claim?: string): Promise<T> {
+    // The timer holds the controller strongly; an inline AbortSignal.timeout() can be garbage-collected and never fire.
+    const controller = new AbortController();
+    const timer = setTimeout(
+      () =>
+        controller.abort(
+          new DOMException("relay request timed out", "TimeoutError"),
+        ),
+      this.timeoutMs,
+    );
+    try {
+      return await this.fetchJson<T>(path, controller.signal, body, claim);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  private async fetchJson<T>(
+    path: string,
+    signal: AbortSignal,
+    body?: unknown,
+    claim?: string,
+  ): Promise<T> {
     const response = await fetch(`${this.base}${path}`, {
       redirect: "error",
-      signal: AbortSignal.timeout(this.timeoutMs),
+      signal,
       method: body === undefined ? "GET" : "POST",
       headers: {
         ...this.accessHeaders,
@@ -76,11 +97,19 @@ export class Adapter {
     if (!response.ok) throw new Error(`relay HTTP ${response.status}`);
     const reader = response.body?.getReader();
     if (!reader) throw new Error("empty relay response");
+    // undici reaches the body through a WeakRef to Response, so abort alone may never fail a stalled read.
+    const aborted = new Promise<never>((_resolve, reject) => {
+      if (signal.aborted) reject(signal.reason);
+      signal.addEventListener("abort", () => reject(signal.reason), {
+        once: true,
+      });
+    });
+    aborted.catch(() => undefined);
     const chunks: Uint8Array[] = [];
     let size = 0;
     try {
       while (true) {
-        const chunk = await reader.read();
+        const chunk = await Promise.race([reader.read(), aborted]);
         if (chunk.done) break;
         size += chunk.value.byteLength;
         if (size > 65536) throw new Error("relay response too large");

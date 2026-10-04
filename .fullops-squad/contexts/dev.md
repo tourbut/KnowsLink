@@ -32,3 +32,5 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 2026-10-04 SAR-MVP-003-BIDIRECTIONAL: 시험 text intent를 업무 intent와 분리하고 두 agent allowlist·path 전용 Access/원점 AUD 후보를 준비했다. mode 해제·철회·만료·claim 완료 시 원문은 삭제한다.
 - 오류 rollback에서 실행 allowlist도 복원해야 queued trial을 오삭제하지 않는다. 시험 claim은 업무 gate/result의 부모가 되지 못한다. 실제 원격 계정 수락과 로컬 MCP/SQL 왕복을 구분한다.
 - 기존 beta에 private trial credential/pair를 준비했으며 CF token·후보 배포·Grok parent 안전 전달은 후속이다. [기록](../docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md).
+
+- 2026-10-04 SAR-MVP-003-BIDIRECTIONAL-TIMEOUT: inline `AbortSignal.timeout()`과 reader만 남긴 `Response`는 GC로 회수될 수 있다. 그러면 멈춘 body 읽기가 끝나지 않는다. timer가 controller를 강하게 참조하고 read를 abort와 race한다. timeout 회귀는 짧은 값이 아니라 실제 기본값과 강제 GC로 검사한다. [기록](../docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md).

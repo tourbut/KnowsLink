@@ -1,0 +1,25 @@
+// MCP: stalled registry body in test-loopback -> failed near 10s, concurrent call busy, later call not busy.
+import { createServer } from "node:http";
+import { generateKeyPairSync } from "node:crypto";
+import { writeFile, mkdtemp } from "node:fs/promises";
+import { tmpdir } from "node:os"; import { join } from "node:path";
+const sdk = process.argv[2] + "/node_modules/@modelcontextprotocol/sdk/dist/esm/client";
+const { Client } = await import(sdk + "/index.js");
+const { StdioClientTransport } = await import(sdk + "/stdio.js");
+const dir = await mkdtemp(join(tmpdir(), "kl-busy-")); const key = join(dir, "k.pem");
+await writeFile(key, generateKeyPairSync("ed25519").privateKey.export({ format: "pem", type: "pkcs8" }), { mode: 0o600 });
+let hits = 0;
+const server = createServer((_q, r) => { hits += 1; r.writeHead(200, { "content-type": "application/json" }); if (hits === 1) { r.write('{"partial":true}'); return; } r.end("{}"); });
+await new Promise((ok) => server.listen(0, "127.0.0.1", ok));
+const env = { PATH: process.env.PATH, KNOWSLINK_MODE: "test-loopback", RELAY_URL: `http://127.0.0.1:${server.address().port}`, AGENT_CREDENTIAL: "test-only", AGENT_ID: "trial_codex", AGENT_KID: "key1", AGENT_KEY_FILE: key, KNOWSLINK_TEST_PEER: "trial_grok" };
+const client = new Client({ name: "busy-check", version: "0" });
+await client.connect(new StdioClientTransport({ command: process.execPath, args: [process.argv[2] + "/dist/plugin.js"], env, stderr: "pipe" }));
+const call = (opts) => client.callTool({ name: "knowslink_test_receive", arguments: {} }, undefined, opts).then((r) => JSON.parse(r.content[0].text).state ?? r.content[0].text);
+const start = Date.now();
+const first = call({ timeout: 30000 }).then((s) => ({ s, ms: Date.now() - start }));
+await new Promise((ok) => setTimeout(ok, 300));
+const second = await call();
+const firstDone = await first;
+const third = await call();
+console.log(JSON.stringify({ first: firstDone, concurrent: second, after: third, hits }));
+await client.close(); server.closeAllConnections(); server.close();

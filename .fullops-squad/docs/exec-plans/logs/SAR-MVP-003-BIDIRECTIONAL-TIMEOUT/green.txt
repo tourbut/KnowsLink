@@ -1,0 +1,34 @@
+green build: fixed adapters/src/core.ts, node v22.22.2. Same fixtures and args as red.txt.
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist nogc
+{"gc":false,"out":"TimeoutError","ms":10007}
+exit=0
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist nogc
+{"gc":false,"out":"TimeoutError","ms":10007}
+exit=0
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist nogc
+{"gc":false,"out":"TimeoutError","ms":10004}
+exit=0
+$ node --expose-gc .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist gc
+{"gc":true,"out":"TimeoutError","ms":10008}
+exit=0
+$ node --expose-gc .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist gc 1000
+{"gc":true,"out":"TimeoutError","ms":1008}
+exit=0
+$ node --expose-gc .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs adapters/dist gc 3000
+{"gc":true,"out":"TimeoutError","ms":3007}
+exit=0
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/cleanup.mjs adapters/dist
+{"out":"TimeoutError","ms":10015,"socketClosedAt":10022,"leftoverTimers":0,"unhandled":0,"next":{"ok":true}}
+exit=0
+$ node .fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/mcp-busy.mjs adapters
+{"first":{"s":"failed","ms":10022},"concurrent":"busy","after":"failed","hits":2}
+exit=0
+$ env CLONE=$REPO RESULT_PATH=$SCRATCH/held-g1.json node .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/observe.mjs held
+exit=0
+held ok True failed [] [('body timeout rejects', 'TimeoutError'), ('body timeout is about 10s', '10001')]
+$ env CLONE=$REPO RESULT_PATH=$SCRATCH/held-g2.json node .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/observe.mjs held
+exit=0
+held ok True failed [] [('body timeout rejects', 'TimeoutError'), ('body timeout is about 10s', '10003')]
+$ env CLONE=$REPO RESULT_PATH=$SCRATCH/held-g3.json node .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/observe.mjs held
+exit=0
+held ok True failed [] [('body timeout rejects', 'TimeoutError'), ('body timeout is about 10s', '10003')]
