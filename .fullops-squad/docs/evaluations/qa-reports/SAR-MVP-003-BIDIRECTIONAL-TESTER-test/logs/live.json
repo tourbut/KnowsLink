@@ -1,0 +1,159 @@
+{
+  "phase": "live",
+  "ok": true,
+  "ids": {
+    "codex_send": "01a104fe-2f22-7a8c-9ed8-8863e1d962b4",
+    "grok_receive": "01a104fe-2f22-7a8c-9ed8-8863e1d962b4",
+    "grok_reply": "01a104fe-2fde-771f-9959-e91f07a3ae67",
+    "codex_receive": "01a104fe-2fde-771f-9959-e91f07a3ae67",
+    "cli_send": "01a104fe-3073-74f3-9c20-1d6799450e25",
+    "cli_reply": "01a104fe-31b1-712c-95ee-a4f661328655"
+  },
+  "checks": [
+    {
+      "name": "mcp initialize",
+      "pass": true,
+      "detail": "2025-11-25"
+    },
+    {
+      "name": "mcp initialize",
+      "pass": true,
+      "detail": "2025-11-25"
+    },
+    {
+      "name": "two mcp pids differ",
+      "pass": true,
+      "detail": "551682/551689"
+    },
+    {
+      "name": "trial status is unverified",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "duplicate idempotency returns same id",
+      "pass": true,
+      "detail": "queued"
+    },
+    {
+      "name": "idempotency conflict fails closed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trial pull_once stays held",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sender does not receive own message",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "receive id from to text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reply id from to text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "queues empty after claim",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "codex stdin send",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "mcp initialize",
+      "pass": true,
+      "detail": "2025-11-25"
+    },
+    {
+      "name": "grok command receive matches codex send",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "codex receive matches grok reply",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "http duplicate same id",
+      "pass": true,
+      "detail": "200"
+    },
+    {
+      "name": "http idempotency conflict",
+      "pass": true,
+      "detail": "409:idempotency_conflict"
+    },
+    {
+      "name": "bad signature rejected",
+      "pass": true,
+      "detail": "422:invalid_signature"
+    },
+    {
+      "name": "ttl above 300s rejected",
+      "pass": true,
+      "detail": "422:ttl_too_long"
+    },
+    {
+      "name": "expired trial rejected",
+      "pass": true,
+      "detail": "422:expired"
+    },
+    {
+      "name": "cross agent rejected",
+      "pass": true,
+      "detail": "403:sender_not_allowed"
+    },
+    {
+      "name": "machine path rejects business intent",
+      "pass": true,
+      "detail": "403:sender_not_allowed"
+    },
+    {
+      "name": "missing auth rejected",
+      "pass": true,
+      "detail": "401:invalid_auth"
+    },
+    {
+      "name": "blocked /v1/test/owners",
+      "pass": true,
+      "detail": "403:sender_not_allowed"
+    },
+    {
+      "name": "blocked /v1/test/agents",
+      "pass": true,
+      "detail": "403:sender_not_allowed"
+    },
+    {
+      "name": "blocked /v1/test/invites",
+      "pass": true,
+      "detail": "403:sender_not_allowed"
+    },
+    {
+      "name": "blocked /v1/test/authorize",
+      "pass": true,
+      "detail": "403:sender_not_allowed"
+    },
+    {
+      "name": "blocked /v1/test/gate-consume",
+      "pass": true,
+      "detail": "403:sender_not_allowed"
+    },
+    {
+      "name": "command output hides credentials",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

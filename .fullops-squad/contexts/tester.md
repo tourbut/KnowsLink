@@ -3,7 +3,7 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-04
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER]
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER]
 summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다"
 ---
 
@@ -39,3 +39,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검�
 - 2026-10-04 SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER: 후보 `423db6a2a388ea63610462f9d3a5f4c619dd781b`의 별도 clone에서 ZIP SHA256은 `d3037d2067c28bf278023a229797eb02111f8d8416bf200d23feff2bf250e609`다. 레포 밖 `env -i`는 도구 2개, held, stderr 0이다.
 - swap 이전의 추출·`env -i` 실패는 기존 bundle을 남긴다. swap이 이전 트리를 stage로 옮긴 뒤의 mv 실패와 SIGTERM은 이전 `knowslink`를 지운다. 등급은 low다. critical/high는 없다.
 - 판정·증거: [SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md). 실제 계정·개인 UI·relay·유료 inference는 미검증이다. 제품 코드는 수정하지 않았다.
+- 2026-10-04 SAR-MVP-003-BIDIRECTIONAL-TESTER: 후보 `cd60e7f87eb5ce137eca887980f232b3f67a18d0`의 별도 clone에서 두 MCP와 Codex/Grok launcher 왕복 ID가 일치했다. SQL은 owner 2, trial 4, 업무 intent 0이다.
+- 기본 10초 body timeout은 첫 청크 뒤 멈춘 응답에서 request가 15초까지 끝나지 않았다. 등급은 medium이다. 제품 코드는 수정하지 않았다.
+- 판정·증거: [SAR-MVP-003-BIDIRECTIONAL-TESTER.md](../docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md). 실제 Grok 계정·Cloudflare·공개 왕복은 미검증이다. owner 화면 템플릿은 `78b1d92`와 같아 Chrome을 반복하지 않았다.

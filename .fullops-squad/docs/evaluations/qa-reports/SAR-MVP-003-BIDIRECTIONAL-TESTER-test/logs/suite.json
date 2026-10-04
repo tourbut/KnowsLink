@@ -1,0 +1,49 @@
+{
+  "codes": {
+    "make-test": 0,
+    "verify-mvp": 0,
+    "verify-grok-plugin": 0
+  },
+  "bare": {
+    "ok": true,
+    "names": [
+      "knowslink_pull_once",
+      "knowslink_status",
+      "knowslink_test_receive",
+      "knowslink_test_send"
+    ],
+    "status": "{\"state\":\"held\",\"transport\":\"pull\",\"actualConnection\":\"held\",\"webhook\":false,\"evidenceFetch\":false}",
+    "stderr_len": 0,
+    "exit": 0
+  },
+  "documents": {
+    "ok": false,
+    "missing": {
+      "exec": [],
+      "ops": [
+        "--node",
+        "--bundle",
+        "knowslink_test_send",
+        "knowslink_test_receive",
+        "knowslink_pull_once",
+        "idempotency_key",
+        "test-remote",
+        "untrusted"
+      ],
+      "readme": []
+    }
+  },
+  "grok_unchanged": true,
+  "grok_before": {
+    "/home/shin/.grok/config.toml": "25230ebf41576694b9219616e17b839781e990d60edfd86cbcf7b50212ad791b",
+    "/home/shin/.grok/trusted_folders.toml": "1f4eb552cb7eefe711b3bd00de814e29cbc114a20cbedad83c4bb299f7c81820",
+    "/home/shin/.grok/installed-plugins": "57650efb533c2026165dd0a180b865d91b9d36b549b5d0e9d005dfc90d94cfa6"
+  },
+  "grok_after": {
+    "/home/shin/.grok/config.toml": "25230ebf41576694b9219616e17b839781e990d60edfd86cbcf7b50212ad791b",
+    "/home/shin/.grok/trusted_folders.toml": "1f4eb552cb7eefe711b3bd00de814e29cbc114a20cbedad83c4bb299f7c81820",
+    "/home/shin/.grok/installed-plugins": "57650efb533c2026165dd0a180b865d91b9d36b549b5d0e9d005dfc90d94cfa6"
+  },
+  "clone_head": "cd60e7f87eb5ce137eca887980f232b3f67a18d0",
+  "clone_status": ""
+}

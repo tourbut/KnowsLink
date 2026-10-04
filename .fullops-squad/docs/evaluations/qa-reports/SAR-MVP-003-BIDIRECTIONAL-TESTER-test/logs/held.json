@@ -1,0 +1,167 @@
+{
+  "phase": "held",
+  "ok": false,
+  "ids": {},
+  "checks": [
+    {
+      "name": "source timeout 10s",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "source redirect error",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "source 64KiB",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "held transport absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "remote missing access reads no key",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "approved origin configures",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reject origin http://link.knowslog.com",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reject origin https://example.com",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reject origin https://127.0.0.1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reject origin https://link.knowslog.com/path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reject origin https://link.knowslog.com?x=1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reject origin https://user@link.knowslog.com",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reject origin https://link.knowslog.com:444",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "origin checks made no remote fetch",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "loopback rejects public origin",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "response above 64KiB rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "redirect rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "body timeout rejects",
+      "pass": false,
+      "detail": "hung"
+    },
+    {
+      "name": "body timeout is about 10s",
+      "pass": false,
+      "detail": "15001"
+    },
+    {
+      "name": "mcp initialize",
+      "pass": true,
+      "detail": "2025-11-25"
+    },
+    {
+      "name": "held discovery has four tools",
+      "pass": true,
+      "detail": "knowslink_pull_once,knowslink_status,knowslink_test_receive,knowslink_test_send"
+    },
+    {
+      "name": "default status held",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "knowslink_test_send held no effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "knowslink_test_receive held no effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "knowslink_pull_once held no effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "held made no canary connection",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "held stderr has no key",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mode 0644 launcher rejected",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "name": "rejected launcher hides sentinel",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "symlink config rejected",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "name": "0600 launcher replaces parent credential",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "launcher output hides parent secrets",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

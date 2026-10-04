@@ -1,0 +1,19 @@
+Node v22.22.2. Candidate adapters/dist/test-transport.js. Local server writes a partial JSON body and does not end it.
+
+Observer held phase: "body timeout rejects" detail hung. "body timeout is about 10s" detail 15001.
+
+Follow-up, default 6-argument TestTransport, stored timeoutMs 10000:
+first reader.read returned 16 bytes.
+The request promise was still pending at 12508 ms.
+The pending read rejected only after the server closed, with TypeError.
+
+Follow-up, explicit timeoutMs 100:
+the second read rejected with TimeoutError.
+The request settled as TimeoutError at 103 ms.
+
+Earlier sample, same default constructor:
+AbortSignal fired at 10001 ms with TimeoutError.
+The request promise was still pending at 12010 ms.
+
+Other samples with stored timeoutMs 10000 sometimes rejected with TimeoutError near 10002 ms and sometimes stayed pending past 12000 ms.
+The recorded observer failure stands.

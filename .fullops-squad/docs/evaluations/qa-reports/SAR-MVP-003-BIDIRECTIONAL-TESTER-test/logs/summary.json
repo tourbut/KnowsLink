@@ -1,0 +1,65 @@
+{
+  "project": "knowslink-qa003-ad81fe984d",
+  "relay_port": 45887,
+  "phases": {
+    "held": {
+      "exit": 1,
+      "ok": false,
+      "failed": [
+        "body timeout rejects",
+        "body timeout is about 10s"
+      ]
+    },
+    "live": {
+      "exit": 0,
+      "ok": true,
+      "ids": {
+        "codex_send": "01a104fe-2f22-7a8c-9ed8-8863e1d962b4",
+        "grok_receive": "01a104fe-2f22-7a8c-9ed8-8863e1d962b4",
+        "grok_reply": "01a104fe-2fde-771f-9959-e91f07a3ae67",
+        "codex_receive": "01a104fe-2fde-771f-9959-e91f07a3ae67",
+        "cli_send": "01a104fe-3073-74f3-9c20-1d6799450e25",
+        "cli_reply": "01a104fe-31b1-712c-95ee-a4f661328655"
+      },
+      "failed": []
+    },
+    "closed": {
+      "exit": 0,
+      "ok": true,
+      "failed": []
+    }
+  },
+  "up": 0,
+  "before": {
+    "owners": "0",
+    "gates": "0",
+    "trial": "0",
+    "business": "0",
+    "payload": "0"
+  },
+  "after_held": {
+    "owners": "0",
+    "gates": "0",
+    "trial": "0",
+    "business": "0",
+    "payload": "0"
+  },
+  "after_live": {
+    "owners": "2",
+    "gates": "0",
+    "trial": "4",
+    "business": "0",
+    "payload": "0"
+  },
+  "recreate": 0,
+  "allowlist_empty": false,
+  "after_closed": {
+    "owners": "2",
+    "gates": "0",
+    "trial": "4",
+    "business": "0",
+    "payload": "0"
+  },
+  "down": 0,
+  "error": ""
+}
