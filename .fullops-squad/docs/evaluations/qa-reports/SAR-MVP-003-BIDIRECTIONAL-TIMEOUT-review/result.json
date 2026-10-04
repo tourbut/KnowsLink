@@ -3,384 +3,384 @@
   "head": "711f2532be423d1ca7707463a20fdc168f50bece",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "Claude Code claude-opus-5-5 (high) ops 독립 검토 세션 c4c411b8-d66d-4356-981b-9e2279440b02 (원본 리뷰와 동일 reviewer)",
+  "conclusion": "수락 가능. 원본 QA medium(기본 10초 body timeout 미중단)은 해소됐다. delta 신규 critical/high/medium/low 0. target lint ERROR 0/WARNING 1(PLANS.md SIZE), make test exit 0, held observer 10003ms TimeoutError, cleanup 소켓 종료·타이머 0·unhandled 0. 제품 delta는 core.ts·시험·README 3개이며 Go/SQL/MCP는 cd60e7f와 동일해 0c36730 리뷰를 재사용한다. 원본 low 5건은 그대로 남는다. 실제 Grok·배포는 미검증.",
   "files": [
     {
       "path": ".fullops-squad/PLANS.md",
       "status": "modified",
       "insertions": 10,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "coor 진행 기록. 원본 리뷰·QA·TIMEOUT 상태 서술이 실제 SHA·결과와 일치, 비밀값 없음"
     },
     {
       "path": ".fullops-squad/board/board.json",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "coor 진행 기록. 원본 리뷰·QA·TIMEOUT 상태 서술이 실제 SHA·결과와 일치, 비밀값 없음"
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "status": "modified",
       "insertions": 2,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "교훈 추가만. TIMEOUT 원인·QA medium 서술이 실제 기록과 일치"
     },
     {
       "path": ".fullops-squad/contexts/tester.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "교훈 추가만. TIMEOUT 원인·QA medium 서술이 실제 기록과 일치"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-context.json",
       "status": "added",
       "insertions": 126,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-documents-find.json",
       "status": "added",
       "insertions": 69,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-REVIEW-route.json",
       "status": "added",
       "insertions": 66,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-context.json",
       "status": "added",
       "insertions": 126,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-documents-find.json",
       "status": "added",
       "insertions": 74,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TESTER-route.json",
       "status": "added",
       "insertions": 66,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-context.json",
       "status": "added",
       "insertions": 112,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-documents-find-score.json",
       "status": "added",
       "insertions": 37,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-documents-find.json",
       "status": "added",
       "insertions": 64,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-find-score.json",
       "status": "added",
       "insertions": 34,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-find.json",
       "status": "added",
       "insertions": 64,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-route.json",
       "status": "added",
       "insertions": 79,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 경로·점수 기록. 유효 JSON 확인, 수락 판단에 미사용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/held.mjs",
       "status": "added",
       "insertions": 161,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/live.mjs",
       "status": "added",
       "insertions": 142,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/closed.json",
       "status": "added",
       "insertions": 12,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/held.json",
       "status": "added",
       "insertions": 167,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/live.json",
       "status": "added",
       "insertions": 159,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/suite.json",
       "status": "added",
       "insertions": 49,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/summary.json",
       "status": "added",
       "insertions": 65,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/observe.mjs",
       "status": "added",
       "insertions": 16,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/run_observe.py",
       "status": "added",
       "insertions": 103,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/run_suite.py",
       "status": "added",
       "insertions": 116,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/session.mjs",
       "status": "added",
       "insertions": 158,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
       "status": "added",
       "insertions": 128,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/jev-find-score.json",
       "status": "added",
       "insertions": 67,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/lint.json",
       "status": "added",
       "insertions": 43,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/preview.json",
       "status": "added",
       "insertions": 309,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/report.md",
       "status": "added",
       "insertions": 68,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/result.json",
       "status": "added",
       "insertions": 450,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/rules.json",
       "status": "added",
       "insertions": 91,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/cleanup.mjs",
       "status": "added",
       "insertions": 21,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 재현·검증 증거. 직접 열람해 비밀값 없음, 결과가 실행기록 표와 일치. cleanup.mjs는 리뷰어가 재실행해 동일 결과"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/mcp-busy.mjs",
       "status": "added",
       "insertions": 25,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 재현·검증 증거. 직접 열람해 비밀값 없음, 결과가 실행기록 표와 일치. cleanup.mjs는 리뷰어가 재실행해 동일 결과"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/repro.mjs",
       "status": "added",
       "insertions": 19,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 재현·검증 증거. 직접 열람해 비밀값 없음, 결과가 실행기록 표와 일치. cleanup.mjs는 리뷰어가 재실행해 동일 결과"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
       "status": "added",
       "insertions": 74,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원인 2개(GC 회수된 timeout signal, WeakRef Response)·수정·검증표를 코드와 재실행 결과로 대조, 불일치 없음"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
       "status": "modified",
       "insertions": 2,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "원문 보존 후 정정 인용 2줄 추가만 확인"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
       "status": "modified",
       "insertions": 36,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "work.py finish 아카이브. to_ops 로그는 0c36730과 동일, dev/tester는 완료 보고 보존"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
       "status": "modified",
       "insertions": 36,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "work.py finish 아카이브. to_ops 로그는 0c36730과 동일, dev/tester는 완료 보고 보존"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
       "status": "modified",
       "insertions": 40,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "work.py finish 아카이브. to_ops 로그는 0c36730과 동일, dev/tester는 완료 보고 보존"
     },
     {
       "path": "adapters/README.md",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "'응답 본문 읽기까지 포함해 10초' 문구가 새 core 동작과 일치"
     },
     {
       "path": "adapters/src/core.ts",
       "status": "modified",
       "insertions": 31,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "33줄 delta 정밀 검토: timer가 controller 강참조, finally clearTimeout, signal.aborted 선검사, abort promise 빈 catch, read와 race, 기존 finally reader.cancel 유지. 스크래치 make test·held observer·cleanup 재실행 통과, cd60e7f core에 새 시험 적용 시 exit 1 확인"
     },
     {
       "path": "adapters/src/trial-boundaries.test.ts",
       "status": "modified",
       "insertions": 38,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "기본 6인자·실제 10초·100ms 강제 GC·13초 guard·9900–12000ms TimeoutError 단언. 이전 core에서 실패, 새 core에서 통과를 직접 확인"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/body-timeout-followup.txt",
@@ -388,8 +388,8 @@
       "insertions": 19,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/closed.log",
@@ -397,8 +397,8 @@
       "insertions": 2,
       "deletions": 0,
       "exclude_reason": "user_exclude",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/compose-down.log",
@@ -406,8 +406,8 @@
       "insertions": 20,
       "deletions": 0,
       "exclude_reason": "user_exclude",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/compose-recreate.log",
@@ -415,8 +415,8 @@
       "insertions": 8,
       "deletions": 0,
       "exclude_reason": "user_exclude",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/compose-up.log",
@@ -424,8 +424,8 @@
       "insertions": 122,
       "deletions": 0,
       "exclude_reason": "user_exclude",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/env-i.err",
@@ -433,8 +433,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/env-i.exit",
@@ -442,8 +442,8 @@
       "insertions": 1,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/env-i.out",
@@ -451,8 +451,8 @@
       "insertions": 3,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/held.log",
@@ -460,8 +460,8 @@
       "insertions": 2,
       "deletions": 0,
       "exclude_reason": "user_exclude",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/live.log",
@@ -469,8 +469,8 @@
       "insertions": 2,
       "deletions": 0,
       "exclude_reason": "user_exclude",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/make-test.err",
@@ -478,8 +478,8 @@
       "insertions": 4,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/make-test.exit",
@@ -487,8 +487,8 @@
       "insertions": 1,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/make-test.out",
@@ -496,8 +496,8 @@
       "insertions": 21,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-grok-plugin.err",
@@ -505,8 +505,8 @@
       "insertions": 4,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-grok-plugin.exit",
@@ -514,8 +514,8 @@
       "insertions": 1,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-grok-plugin.out",
@@ -523,8 +523,8 @@
       "insertions": 19,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-mvp.err",
@@ -532,8 +532,8 @@
       "insertions": 54,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-mvp.exit",
@@ -541,8 +541,8 @@
       "insertions": 1,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER-test/logs/verify-mvp.out",
@@ -550,8 +550,8 @@
       "insertions": 156,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 QA 기록. fa16893870fcaf33e968065e88f2e250a845d09c와 diff 0으로 불변 확인. held.mjs observer는 리뷰어가 711f253에서 1회 재실행해 통과"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/access-plan-selftest.txt",
@@ -559,8 +559,8 @@
       "insertions": 6,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/lint.txt",
@@ -568,8 +568,8 @@
       "insertions": 5,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/make-test.txt",
@@ -577,8 +577,8 @@
       "insertions": 26,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/probe-verify-mvp.txt",
@@ -586,8 +586,8 @@
       "insertions": 215,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/review_probe_integration_test.go.txt",
@@ -595,8 +595,8 @@
       "insertions": 52,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/evidence/verify-mvp.txt",
@@ -604,8 +604,8 @@
       "insertions": 211,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 기록. 0c36730106025be95709236b63f080a510a4aebe와 diff 0으로 불변 확인, 재사용 근거"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/green.txt",
@@ -613,8 +613,8 @@
       "insertions": 34,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 재현·검증 증거. 직접 열람해 비밀값 없음, 결과가 실행기록 표와 일치. cleanup.mjs는 리뷰어가 재실행해 동일 결과"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/red.txt",
@@ -622,8 +622,8 @@
       "insertions": 22,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 재현·검증 증거. 직접 열람해 비밀값 없음, 결과가 실행기록 표와 일치. cleanup.mjs는 리뷰어가 재실행해 동일 결과"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT/verify.txt",
@@ -631,16 +631,16 @@
       "insertions": 78,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 재현·검증 증거. 직접 열람해 비밀값 없음, 결과가 실행기록 표와 일치. cleanup.mjs는 리뷰어가 재실행해 동일 결과"
     }
   ],
   "findings": [],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "91bb4020-55f1-4789-85f4-b53d2b3ce838",
+    "reviewer_session": "c4c411b8-d66d-4356-981b-9e2279440b02",
+    "snapshot_path": "/tmp/knowslink-timeout-review-711f253",
     "snapshot_head": "711f2532be423d1ca7707463a20fdc168f50bece",
     "read_only": true
   }
