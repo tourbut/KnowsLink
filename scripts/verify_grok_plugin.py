@@ -33,10 +33,10 @@ def main():
         assert [(plugin["name"], plugin["version"]) for plugin in plugins] == [("knowslink", "0.1.0")], plugins
         doctor = json.loads(grok("mcp", "doctor", "knowslink", "--json"))
         checks = {check["label"]: check["passed"] for server in doctor["servers"] for check in server["checks"]}
-        assert doctor["healthy_count"] == 1 and checks.get("2 tools discovered"), doctor
+        assert doctor["healthy_count"] == 1 and checks.get("4 tools discovered"), doctor
         installed = Path(plugins[0]["path"]) / "dist/plugin.js"
         subprocess.run(["node", "adapters/dist/mcp.test.js", str(installed)], cwd=ROOT, check=True)
-    print("PASS: grok plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 2 tools; installed bundle held under this node", flush=True)
+    print("PASS: grok plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 4 tools; installed bundle held under this node", flush=True)
 
 
 if __name__ == "__main__":

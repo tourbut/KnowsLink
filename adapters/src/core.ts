@@ -54,15 +54,19 @@ export class Adapter {
   constructor(
     private readonly base: string,
     private readonly credential: string,
-    private readonly agent: string,
-    private readonly kid: string,
-    private readonly privateKey: string,
+    protected readonly agent: string,
+    protected readonly kid: string,
+    protected readonly privateKey: string,
+    private readonly accessHeaders: Record<string, string> = {},
+    private readonly timeoutMs = 10000,
   ) {}
   async request<T>(path: string, body?: unknown, claim?: string): Promise<T> {
     const response = await fetch(`${this.base}${path}`, {
       redirect: "error",
+      signal: AbortSignal.timeout(this.timeoutMs),
       method: body === undefined ? "GET" : "POST",
       headers: {
+        ...this.accessHeaders,
         Authorization: `Bearer ${this.credential}`,
         ...(claim ? { "X-Execution-Claim": claim } : {}),
         "Content-Type": "application/json",
@@ -70,7 +74,22 @@ export class Adapter {
       body: body === undefined ? undefined : JSON.stringify(body),
     });
     if (!response.ok) throw new Error(`relay HTTP ${response.status}`);
-    return (await response.json()) as T;
+    const reader = response.body?.getReader();
+    if (!reader) throw new Error("empty relay response");
+    const chunks: Uint8Array[] = [];
+    let size = 0;
+    try {
+      while (true) {
+        const chunk = await reader.read();
+        if (chunk.done) break;
+        size += chunk.value.byteLength;
+        if (size > 65536) throw new Error("relay response too large");
+        chunks.push(chunk.value);
+      }
+      return JSON.parse(Buffer.concat(chunks).toString("utf8")) as T;
+    } finally {
+      await reader.cancel();
+    }
   }
   async send(
     parent: Envelope,
@@ -98,27 +117,19 @@ export class Adapter {
     ).toString("base64url");
     return this.request("/v1/send", envelope, claim);
   }
-  async once(
-    gate: boolean,
-    onGate: (id: string) => void = (id) =>
-      console.info(JSON.stringify({ state: "waiting", gate: id })),
-  ): Promise<boolean> {
+  protected async verifyRegistry(): Promise<void> {
     const registry = await this.request<{ sha256: string; manifest: string }>(
       "/v1/registry",
     );
     if (
       registry.sha256 !==
-        "b9759a1ec4035281c704d23f35f78921d8b54d232fa4cd0f27002b183e5eafda" ||
+        "2b25c6b58fb6b6973de1c9bac19162834cfc9b678a0416ad39e2cffab3cde1e2" ||
       createHash("sha256").update(registry.manifest).digest("hex") !==
         registry.sha256
     )
       throw new Error("invalid registry revision");
-    const lease = await this.request<{
-      envelope: Envelope;
-      lease_token: string;
-    } | null>("/v1/pull", {});
-    if (!lease) return false;
-    const message = lease.envelope;
+  }
+  protected async verifyMessage(message: Envelope): Promise<void> {
     if (
       message.to !== this.agent ||
       message.v !== "relay.v1" ||
@@ -145,6 +156,20 @@ export class Adapter {
       )
     )
       throw new Error("invalid signature");
+  }
+  async once(
+    gate: boolean,
+    onGate: (id: string) => void = (id) =>
+      console.info(JSON.stringify({ state: "waiting", gate: id })),
+  ): Promise<boolean> {
+    await this.verifyRegistry();
+    const lease = await this.request<{
+      envelope: Envelope;
+      lease_token: string;
+    } | null>("/v1/pull", {});
+    if (!lease) return false;
+    const message = lease.envelope;
+    await this.verifyMessage(message);
     const delivery = { id: message.id, token: lease.lease_token };
     // Relay's shared Postgres inbox stores the verified immutable bytes before ACK.
     await this.request("/v1/persist", delivery);

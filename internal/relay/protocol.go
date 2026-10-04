@@ -156,6 +156,9 @@ func Parse(raw []byte) (*Envelope, error) {
 	}
 	valid := false
 	switch e.Intent {
+	case "relay.test.message":
+		value, ok := text(e.Body["text"])
+		valid = object(e.Body, []string{"text"}) && ok && strings.TrimSpace(value) != "" && len(value) <= 4096 && e.Deliver == "agent" && e.ReplyTo == "" && e.Evidence == nil && e.Ext == nil && e.Render == nil
 	case "schedule.query":
 		n, ok := e.Body["granularity_min"].(float64)
 		valid = object(e.Body, []string{"window", "granularity_min"}) && interval(e.Body["window"]) && ok && n > 0 && n == float64(int64(n))

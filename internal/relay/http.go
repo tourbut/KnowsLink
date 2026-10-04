@@ -77,7 +77,7 @@ func (s *Service) Handler() http.Handler {
 		mux.HandleFunc("POST /v1/"+path, s.operation(path))
 	}
 	mux.HandleFunc("POST /v1/send", func(w http.ResponseWriter, r *http.Request) {
-		raw, err := io.ReadAll(r.Body)
+		raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 64*1024))
 		if err != nil {
 			respond(w, nil, fault("invalid_json"))
 			return
@@ -176,6 +176,10 @@ func (s *Service) Handler() http.Handler {
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
 		w.Header().Set("Referrer-Policy", "no-referrer")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
+		if strings.HasPrefix(r.URL.Path, "/v1/test/") {
+			s.testHandler(mux).ServeHTTP(w, r)
+			return
+		}
 		mux.ServeHTTP(w, r)
 	})
 }
@@ -189,7 +193,7 @@ func respond(w http.ResponseWriter, result any, err error) {
 func (s *Service) operation(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var c command
-		raw, err := io.ReadAll(r.Body)
+		raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 64*1024))
 		if err != nil {
 			respond(w, nil, fault("invalid_json"))
 			return
@@ -206,6 +210,10 @@ func (s *Service) operation(path string) http.HandlerFunc {
 	}
 }
 func (st *State) operate(path, token string, c command, now time.Time) (any, error) {
+	testOnly := strings.HasPrefix(path, "test-")
+	if testOnly {
+		path = strings.TrimPrefix(path, "test-")
+	}
 	kind := "agent"
 	switch path {
 	case "agents", "keys", "key-revoke", "invite-decision", "unpair", "owner-revoke":
@@ -218,6 +226,17 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 	}
 	if err != nil {
 		return nil, err
+	}
+	if testOnly {
+		if !st.TestAgents[principal] {
+			return nil, fault("sender_not_allowed")
+		}
+		if path != "pull" {
+			m := st.Messages[c.ID]
+			if m == nil || m.Receipt.Intent != "relay.test.message" {
+				return nil, fault("sender_not_allowed")
+			}
+		}
 	}
 	switch path {
 	case "agents", "keys":
@@ -309,7 +328,7 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		st.sweep(now)
 		return p, nil
 	case "pull":
-		return st.leaseMessage(principal, now)
+		return st.leaseMessageFor(principal, now, testOnly)
 	case "persist", "ack":
 		m, err := st.leased(principal, c.ID, c.Token, now)
 		if err != nil {
@@ -340,6 +359,10 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		}
 		m.Claimed = true
 		m.ClaimToken = randomToken()
+		if m.Receipt.Intent == "relay.test.message" {
+			m.Envelope = nil
+			m.Inbox = nil
+		}
 		return map[string]string{"claim": m.ClaimToken, "policy": policy(m.Receipt.Intent)}, nil
 	case "gate-consume":
 		g := st.Gates[c.ID]
