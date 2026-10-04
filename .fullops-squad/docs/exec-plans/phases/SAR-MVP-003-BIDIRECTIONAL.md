@@ -106,3 +106,11 @@ python3 scripts/run_trial.py --config /workspace/.knowslink-trial/trial_grok/env
 ## 후속 담당
 
 coor는 final SHA 독립 OPS 리뷰·TESTER QA와 main 통합을 담당한다. OPS/coor는 24h token·trial path 앱·보호된 원점 후보·기존 relay 배포와 rollback을 담당한다. Grok parent/owner는 실제 app 설정과 안전 파일 수신을 확인한다. 실제 네 관측 ID가 확보되기 전 제품 왕복 수락은 미완료다. DEV 준비 완료와 이 실제 시험 수락을 구분한다.
+
+## 코드 체크포인트와 완료 gate
+
+코드·실행 증거 체크포인트는 `f0863575a9eee603d3bec29e6b32d1aa0d823933`다. 이 SHA의 제품 코드는 이후 완료 아카이브 SHA와 같다. 실험은 이 후보 코드의 작업 트리에서 수행했고 위 commit으로 고정했다. `lint.py --repo . --from f2849486ed48295e239714700e651d30c32f1c2c`는 이 체크포인트에서 exit 0이었다. product-lint passed, ERROR 0 / WARNING 2 / 실행 불가 0이다. WARNING은 기존 http.go 487→510줄과 store.go 420→438줄의 SIZE-001이다. 시험 route는 별도 test_messages.go로 분리했다. 기존 공통 상태를 이 과제에서 추가 리팩토링하지 않았다.
+
+[product lint JSON](../logs/SAR-MVP-003-BIDIRECTIONAL/product-lint.json)에 결과를 보존한다. 코드 Jev score recall 0.5 / precision 0.667, documents recall 0.167 / precision 0.083이다. 기존 검색 이후 새 trial 모듈과 산출물을 추가했으며 필요한 나머지 파일은 좁은 직접 탐색으로 보완했다. 두 score는 docs/evaluations/jev에 보존한다. 코드/문서 source-map 확인과 산출물 strict 검사도 완료했다.
+
+최종 아카이브 커밋의 전체 SHA는 worker_done에서 조회해 전달한다. 해당 SHA에서도 같은 착수 ref로 lint를 실행한다. commit 자체의 SHA를 자기 내용에 삽입하는 대신 별도 완료 메시지·FullOps gate 기록을 정본으로 둔다.
