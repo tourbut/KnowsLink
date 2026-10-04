@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-OPS",
+  "head": "8afbac0873f73d59dfb0eff388048b12a2160c81",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 68,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 68
+    }
+  ],
+  "candidates": [
+    {
+      "path": "deploy/knowslink/access_trial_plan.py",
+      "summary": "Render trial-only Access request bodies and a protected Tunnel candidate; never mutate live Cloudflare or deployment state.",
+      "probability": 0.78
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "summary": "Owner-only synthetic beta lifecycle for the separate \"knowslink\" Compose project; never touches other projects.",
+      "probability": 0.12
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.05
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/trial-setup.ts",
+      "summary": "Local beta operator prepares two trial identities, pairing and private files; owner credentials never reach the remote agent.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/test-transport.ts",
+      "summary": "Explicit trial-message transport for Codex and Grok; fixed HTTPS remote origin, paired peer, no business effects.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.94,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4398,
+    "output_tokens": 729,
+    "cost": 0.000184716
+  },
+  "latency_seconds": 0.35,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

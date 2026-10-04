@@ -1,0 +1,70 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.1,
+        "implementation": 0.9
+      },
+      "confidence": 0.8
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "ops": 0.35,
+        "dev": 0.64,
+        "tester": 0.01
+      },
+      "confidence": 0.46
+    },
+    "docs": {
+      "D01": 0.33,
+      "D02": 0.39,
+      "D03": 0.51,
+      "D04": 0.42,
+      "D05": 0.49,
+      "D06": 0.44,
+      "D07": 0.3,
+      "D08": 0.31,
+      "D09": 0.43,
+      "D10": 0.61,
+      "D11": 0.58,
+      "D12": 0.83,
+      "D13": 0.74
+    }
+  },
+  "usage": {
+    "input_tokens": 2575,
+    "output_tokens": 314,
+    "cost": 0.00010815
+  },
+  "error": null,
+  "latency_seconds": 0.277,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "기존 배포와 Access 운영적용은 등록 OPS 책임. 사용자 실제시험승인 내 필요한 인증/운영작업이며 별도서버나제품기능추가없다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}
