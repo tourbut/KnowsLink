@@ -615,3 +615,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - timeoutDEV 후속 task_746f1ca2cbb3/ctx_c238cca512f9/term_2c3d7f57-9f32-4282-817a-679882a7d014: Jev추천 fresh Opus5.5high, effective·turn_started. 착수f19c498. QA원문/대상은보존하며 fixture/실network차이도진단. 새로운delta리뷰·기본10000ms좁은QA 전main배포차단.
 
 - timeoutDEV msg_de28d186377c/711f2532be423d1ca7707463a20fdc168f50bece: realsocket 기본10000ms RED3/3·QA15000, signal/response GC원인. core33줄최소수정·timercontroller/readrace/finally, 기본10004~10008·QA3/3 10001~10003·cleanup/busy0. 실제source수정, fixture결함아님. lint0. 최신delta리뷰·좁은QA준비, 실제왕복/운영未실행유지.
+
+- timeout delta리뷰 task_58462c732b31/ctx_46daa4a743d8/term_5590df22-782f-4297-8216-08a914e26e3a 기존독립Opus세션 turn_started. 좁은QA task_645a350595f1/ctx_519e3633b1a8/term_49282f03-0b14-4ebe-8ebb-8e2fd55c1e5c freshGrok4.7high tui-idle→input_accepted. 착수a9b033d, fixed711f253. 원본전체QA복제금지.
