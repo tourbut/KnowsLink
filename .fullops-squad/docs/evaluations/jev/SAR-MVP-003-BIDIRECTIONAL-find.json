@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL",
+  "head": "5c813a7979c3c2e230b546260221d1d18dd947d9",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 58,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 58
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/src/mcp.ts",
+      "summary": "Grok Bot MCP connector: held by default; only explicit loopback synthetic pulls can run.",
+      "probability": 0.54
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.17
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "summary": "Package relay validates frozen relay.v1 and preserves one parsed object for signing and processing.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.05
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.04
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.04
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "summary": "Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP \"Command\" server.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/registry.json",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/.mcp.json",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/protocol_test.go",
+      "summary": "Frozen wire tests cover strict parsing, JCS, signed fields, and semantic replay boundaries.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.89,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3646,
+    "output_tokens": 629,
+    "cost": 0.000153132
+  },
+  "latency_seconds": 0.274,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

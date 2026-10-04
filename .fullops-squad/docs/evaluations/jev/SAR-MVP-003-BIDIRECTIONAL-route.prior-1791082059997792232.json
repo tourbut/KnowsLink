@@ -1,0 +1,61 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "unresolved",
+  "role": null,
+  "deliverables": [
+    "D10",
+    "D03",
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.73,
+        "product": 0.27
+      },
+      "confidence": 0.46
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "tester": 0,
+        "dev": 1,
+        "ops": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.21,
+      "D02": 0.38,
+      "D03": 0.64,
+      "D04": 0.36,
+      "D05": 0.57,
+      "D06": 0.42,
+      "D07": 0.29,
+      "D08": 0.27,
+      "D09": 0.51,
+      "D10": 0.73,
+      "D11": 0.5,
+      "D12": 0.6,
+      "D13": 0.5
+    }
+  },
+  "usage": {
+    "input_tokens": 2573,
+    "output_tokens": 314,
+    "cost": 0.000108066
+  },
+  "error": null,
+  "latency_seconds": 0.284,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": null,
+  "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+}

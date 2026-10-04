@@ -598,3 +598,6 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 최신 QA 3f71848ac893732181f01f79ce814e1407bf1058 수락 범위: 설치/재실행/거절/추출·env-i실패보존/ZIP d3037/레포밖 tools2·held 통과. swap실패 보존 assert 3개 실패는 리뷰 N02와 동일 low 미해결로 수락하며 전체 QA pass로 표시하지 않는다. ce0946dd delta리뷰는 critical/high/medium0으로 수락. 실제 계정 등록은 owner 재시험 대기. 원본8e46·96d9673·87cfb7c와 최신423db6a·ce0946dd·3f71848을 main 통합한다.
 
 - 제품·리뷰·QA를 main/origin 8f18707af794e8a7963e3f054bca87b576dc50bf에 일반push하고 6개 완료SHA 조상 확인. 이슈 댓글 https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5971769608 게시·원문 대조·OPEN 확인. 실제 Bot 등록/카탈로그/status는 미검증, owner 재시험 대기. lint ERROR0/WARNING1(SIZE001 기존 PLANS 증가). integration pending0, delivery_22bb3f2dbb12 ack. DEV2·OPS2 terminal release, TESTER2 user_requested/external_terminal retained. 남은 모든 역할 터미널 tui-idle 확인 후 깨끗한 브랜치 동기화한다.
+
+## SAR-MVP-003-BIDIRECTIONAL — 실제 메시지 왕복 시험
+사용자 승인: Codex→Grok Bot 수신 및 Grok→Codex 회신 시험. OpenAI dots 후속, 업무효과 제외. Grok작업은 issue1 댓글5975907733에 전달. 주소 사용자확정 link.knowslog.com, 현재302 Access 로그인. route implementation/dev 재선정(완료조건확정, 기존기술구현), Jev gpt-6.1-sol medium. 기존 main5c813a7에서 준비, DEV 구현·OPS독립리뷰·TESTER고정QA 후main push, 실제왕복증거 별도필요.

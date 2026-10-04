@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL",
+  "head": "5c813a7979c3c2e230b546260221d1d18dd947d9",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 118,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 118
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "summary": "relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)",
+      "probability": 0.29000000000000004
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.18000000000000002
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.08
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다",
+      "probability": 0.08
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "summary": "coor 컨텍스트 — Grok Bot 플러그인 통합과 실제 연결 보류의 운영 원칙을 기록한다",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "summary": "KnowsLink 프로젝트 기준 — 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.04
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "summary": "<과제 키> — <목표> — 작업 범위와 검증 담당 및 최종 수락을 구분하는 지시서 양식",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "summary": "SAR-MVP-002-BOT-CATALOG-DEV 실행 기록 — 실제 Grok Bot 앱 카탈로그 미노출의 원인과 Command server 등록 조치·검증 및 재시험 댓글 초안을 기록한다",
+      "probability": 0.01
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "summary": "KnowsLink MVP 요구사항 — 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후속 검증 책임을 정의한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.9,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 10144,
+    "output_tokens": 1229,
+    "cost": 0.000426048
+  },
+  "latency_seconds": 0.353,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
