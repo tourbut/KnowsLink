@@ -607,3 +607,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - DEV msg_c8c05861e244 / cd60e7f87eb5ce137eca887980f232b3f67a18d0 준비수락후보. 로컬두MCP/실제SQL왕복·관련회귀/lint0, 실제beta trial_codex/trial_grok credential/key/pair준비. 실제배포28bd1bb 유지. fixedSHA 리뷰/QA 수락 전main/배포 hold, coor담당. 고위험auth/data변경 fullops-review규정으로 OPS추천sonnet대신fresh Opus5.5high독립리뷰, TESTERfreshGrok4.7high. 실제시험24hServiceAuth/private전달 별도운영배정.
 
 - OPS독립리뷰 task_38a400288d85/ctx_3feab214aeea/term_5590df22-782f-4297-8216-08a914e26e3a: effectiveOpus5.5high·turn_started. TESTER freshGrok4.7high term_dab105e8-1cfc-4341-8072-bbf883b82ec3 tui-idle확인, 정규worker-start. fixedcd60e7f, 준비080c2df. 진행체크아웃변경금지.
+
+- OPS msg_4d0d7dbb1afa/0c36730106025be95709236b63f080a510a4aebe 수락가능: 고정cd60e7f 47/47 reviewed, critical/high/medium0·low5, targetlint0/check0, 별도Opus세션c4c411b8. low: 업무pull triallease혼입, claimpolicy라벨, unanchoredpath failclosed, keyfile권한/TOCTOU, errorbody미취소. 이번manualtrial경계에서 추적하며 D12권한검사·businesspull금지 적용. TESTER 수락뒤main/배포 운영 후속OPS 예약. 실제Grok未검증.
