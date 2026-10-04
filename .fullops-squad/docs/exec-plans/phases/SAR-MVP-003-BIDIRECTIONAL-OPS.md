@@ -169,3 +169,77 @@ coor가 TTL 180초에 맞춘 송신 협업을 한다. Grok이 준비 완료를 �
 - coor: 본 기록 병합, Grok 최종 댓글 게시(조건 충족 후), TTL 안의 Codex 송신 협업, private 전달 수단 확인.
 - 실제 Grok 왕복·공개 HTTPS 성공·공개 negative/positive는 미검증이다. 이번 결과는 배포와 loopback transport ready까지다.
 - 변경한 제품 소스는 없다. 변경 파일은 `.fullops-squad` 문서뿐이다(`git diff --stat 0911c2c -- . ':!.fullops-squad'` 비어 있음).
+
+
+# 재개 결과 (2026-10-04, 권한 확보 후 새 Dispatch task_380c8197a3aa)
+
+위 「차단」 절은 당시 기록이므로 그대로 둔다. 이 절이 현재 상태다. 착수 SHA는 `e68a94439e9d9abe9adf3f437ff3f643928814f8`이고 제품 소스는 `0911c2c`와 같다(`git diff 0911c2c -- adapters internal cmd` 비어 있음). 변경한 제품 소스는 없다.
+
+## 차단 해소
+
+coor가 사용자 승인 Orca browser로 `knowslink-trial-ops-24h` 사용자 API token을 발급했다. 계정 하나(`4d545b80…`)와 Access Service Tokens Edit·Apps and Policies Edit 두 권한만 가진다. 파일은 `/home/shin/deploy/knowslink-state/cf-service-token-api.env`(0600)다. 값은 메모리에서만 읽었고 출력·argv·Git에 남기지 않았다. 이 관리 token은 `verify` active이며 **2026-10-04T23:59:59Z에 만료**된다. 아래 service token 만료(2026-10-05T06:42:09Z)보다 빠르다. 종료 시 앱·policy 삭제에는 새 권한 또는 대시보드가 필요하다.
+
+## 적용 (GET 대조 완료)
+
+| 자원 | 이름 | ID |
+|---|---|---|
+| service token | `knowslink-trial-codex` | `283b0bdf-3c2b-4c99-b9ce-96516d226cd9` |
+| service token | `knowslink-trial-grok` | `647039da-10bb-4459-a595-6e0caa545adb` |
+| reusable policy | `knowslink-trial-agents` (`non_identity`, include 두 token만, exclude·require 없음) | `884305ff-26ef-4fc5-828a-8145e7a5706c` |
+| self_hosted 앱 | `KnowsLink trial messages`, `link.knowslog.com/v1/test/*`, policy 하나 | `84b33961-6f78-42d3-b27b-06e064a05c2b` (AUD `57fc4acf…`) |
+
+- 적용 전 baseline: token 0개, 앱 1개(owner-only), policy 2개로 이름 충돌이 없었다. 변경은 위 4개 생성뿐이다. root 앱 `bd210310…`(domain·AUD `cc80ae67…`·policy `a0d1a950…`)와 policy·IdP·team은 적용 뒤에도 같다.
+- 두 token 모두 `duration 24h`이고 `expires_at`은 **2026-10-05T06:42:09Z**다. client ID/secret은 응답에서 곧바로 0600 파일에 썼다: Codex는 `trial_codex/environment.json`, Grok은 `trial_grok/`과 `grok-export/`의 `environment.json`이다. 값을 출력하지 않았다.
+- 식별자·AUD·만료는 `trial-SAR-MVP-003-BIDIRECTIONAL/trial-access.json`(0600)에 있다.
+
+## Tunnel 적용
+
+`access_trial_plan.py tunnel`로 후보를 0600에 만들었다. 현재 cloudflared와 같은 pinned image `cloudflare/cloudflared:2026.9.1@sha256:b269e8ab…`(호스트 UID/GID)로 `ingress validate`가 `OK`였다. `ingress rule`은 `/v1/test/registry`·`/v1/test/keys`를 rule #0(`/v1/test/.*`)에, `/owner`·`/v1/pair`·`/v1/signup`을 rule #1(owner AUD)에 매칭했다. 둘 다 `required: true`다. 교체 직전 live config와 백업 `tunnel-bak-pre-trial/config.yml`은 동일했다(`cmp`). 백업을 유지한 채 `tunnel/config.yml`을 교체하고 knowslink connector만 재기동했다. 연결 등록 11건을 확인했다. relay·postgres·`beta.sh render-config`·`expose`는 쓰지 않았다.
+
+## 공개 HTTPS 검증 (link.knowslog.com, 값 없음)
+
+| 구분 | 요청 | 결과 |
+|---|---|---|
+| negative | CF header 없음, `/v1/test/registry` | 403 |
+| negative | 잘못된 CF header | 403 |
+| negative | 유효 CF + 잘못된 relay credential | 401 |
+| negative | 유효 CF + relay credential 없음 | 401 |
+| negative | 유효 CF만으로 `/owner`, `/v1/pair`, `/v1/owners` | 302 → Access 로그인 |
+| negative | 유효 CF + 유효 relay credential으로 업무 `/v1/registry`·`/v1/pull` | 302 → Access 로그인 |
+| negative | `/v1/test/../owner`·`/v1/test%2f..%2fowner` | 302 → Access 로그인 |
+| positive | 유효 CF + 유효 relay credential, registry | 200 |
+
+positive 왕복은 같은 호스트의 두 local client다. **실제 Grok이 아니다.** 합성 text이며 nonce는 `7fde09db2855`다. 업무 pull은 하지 않았다.
+
+| 단계 | 결과 |
+|---|---|
+| 사전 두 쪽 receive | 둘 다 `message:null` |
+| Codex send | id `01a105a7-6e54-7ca1-a9a4-7fbd362873de`, to=trial_grok, transport=queued |
+| Grok receive | 같은 id, from=trial_codex, text에 nonce 포함, `untrusted:true` |
+| Grok reply send | id `01a105a7-70d2-7aa7-83ea-50a841745d73`, text에 첫 id 포함 |
+| Codex receive | reply id 일치, nonce 일치 |
+| 사후 두 쪽 receive | 둘 다 `message:null` |
+
+공개 경로가 registry·keys(서명 검증)·send·pull·persist·ack·claim을 모두 통과했다. 이 단계의 검증은 `scripts/run_trial.py`(test-remote)와 `adapters/dist/trial-cli.js`(untracked 빌드, `tsc`)로 수행했다. 적용 뒤 `verify.py regression`·`local`·`public` 모두 exit 0이다. 공유 서비스 orca 200·s8 200·mcp 401, 호스트 cloudflared PID 506937은 불변이다. 공개 probe는 `/owner`·`/v1/registry`·`/healthz`가 302다.
+
+## Grok용 private 파일
+
+`grok-export/`는 0700, `environment.json`·`key.pem`은 0600·소유자 shin·regular file이고 심링크는 없다. `environment.json`에는 이제 `CF_ACCESS_CLIENT_ID/SECRET`이 있고 `AGENT_KEY_FILE`은 `/workspace/.knowslink-trial/trial_grok/key.pem`이다. 파일 두 개는 **만료 2026-10-05T06:42:09Z** 이후 쓸 수 없다. 외부 전달은 하지 않았다. 안전 채널은 coor·사용자가 담당한다. 전달하지 않는 것: `owners.json`, 관리 API token, Codex key·credential.
+
+## 만료·종료·복구 (시험 종료 전에는 token을 revoke하지 않는다)
+
+1. 시험이 끝나면 `knowslink-trial-codex`·`knowslink-trial-grok` 두 token만 revoke(삭제)한다. 앱 `84b33961-6f78-42d3-b27b-06e064a05c2b`와 policy `884305ff-26ef-4fc5-828a-8145e7a5706c`만 삭제한다. 다른 앱·policy는 건드리지 않는다. 관리 token이 만료되면 새 Access Edit 권한이나 대시보드를 쓴다.
+2. 원점 config를 `tunnel-bak-pre-trial/config.yml`에서 `tunnel/config.yml`로 복원하고(0600) knowslink connector만 재기동한다.
+3. 상태 `.env`의 `KNOWSLINK_TEST_AGENTS` 줄을 비우거나 제거하고 relay를 같은 Compose 인자로 갱신한다.
+4. 비정상 시 `beta.sh unexpose`가 connector를 멈춘다. 코드 rollback은 `beta.sh deploy 28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2`다.
+5. service token은 24h 뒤 자동 만료된다. 만료 뒤 이 앱·policy는 남지만 시험 경로는 거부로 돌아간다.
+
+## 미검증과 한계
+
+- actual Grok 왕복은 미검증이다. private 파일 수신 수단과 Grok 설치·준비 회신이 없다.
+- 수동 pull만 지원한다. 자동 wake는 없다. 메시지 TTL은 180초(상한 300초)를 유지한다.
+- 제품 전체 QA·loopback 재실행은 하지 않았다. 기존 리뷰·QA는 같은 제품 `0911c2c`에 재사용한다.
+
+## Grok 최종 댓글 초안 조건 갱신
+
+위 초안의 게시 조건 중 token·policy·app·원점 적용과 공개 negative/positive는 충족됐다. private 파일 수신 수단 확인이 남았다. `<…>` 자리는 coor가 게시 직전에 치환한다. 초안의 CLI 명령은 이번 검증과 같은 launcher를 쓴다. 만료는 **2026-10-05T06:42:09Z**이므로 그 전에 Grok 왕복을 끝내거나 token을 새로 만들어야 한다.

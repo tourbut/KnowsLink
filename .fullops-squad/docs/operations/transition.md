@@ -58,3 +58,7 @@ owner는 실제 계정에서 등록과 `knowslink_status` held 호출을 재시�
 ## 시험 운영 인수 (2026-10-04, SAR-MVP-003-BIDIRECTIONAL-OPS)
 
 현재 배포는 `0911c2c73468f8684260a277d4940a74d26bcf7d`이고 시험 allowlist는 `trial_codex,trial_grok`이다. 공개 `/v1/test/*`는 아직 root owner Access 아래에 있어 외부에서 열리지 않는다. 24h service token·trial 앱 생성은 `access-service-token.write` 권한 부재로 막혀 있다. 사용자가 권한이나 0600 API token 파일을 제공하면 OPS가 재개한다. 절차·rollback·종료는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)과 D12 13.5를 따른다. Grok 전용 private 파일은 `/home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL/grok-export/`에 있으며 전달 수단은 미확인이다.
+
+### 재개 결과 (2026-10-04)
+
+위 차단은 해소됐다. 24h machine token 두 개·trial policy·`/v1/test/*` 앱이 적용됐고 원점 Tunnel에 trial AUD rule이 들어갔다. 공개 negative(403·401·302)와 positive(두 local client의 HTTPS 왕복)가 통과했다. actual Grok은 미검증이다. 만료는 2026-10-05T06:42:09Z다. 그 시각 전에 시험을 끝내거나 token을 새로 만든다. 종료 시 token 두 개 revoke·앱과 policy 삭제·원점 config 복원·allowlist 비우기를 한다. Grok 전용 파일은 `grok-export/`에 CF 항목까지 준비됐고 외부 전달은 coor·사용자 안전 채널이 담당한다. 상세는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)의 「재개 결과」다.

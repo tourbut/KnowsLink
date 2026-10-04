@@ -244,3 +244,12 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 - 차단: 13.2의 3~7단계. 저장된 Cloudflare 권한 어디에도 `access-service-token.write`가 없다. 세션 MCP는 읽기 전용이고 Codex OAuth grant에는 service-token 범위가 없다. root owner 앱과 정책은 변경하지 않았다.
 - 준비: 요청 본문·원점 후보 구조 검증·Grok 전용 private 파일(`grok-export/`, CF 항목 제외)·재개와 종료 절차·Grok 최종 댓글 초안이 있다.
 - 미검증: 공개 HTTPS 성공·공개 negative/positive·실제 Grok 왕복. 상세와 증거는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)이다.
+
+### 13.6 차단 해소와 공개 검증 (2026-10-04, 재개 Dispatch)
+
+13.5의 차단은 해소됐다. 13.4·13.5의 당시 차단 기록은 보존한다. 범위 한정 관리 token(Service Tokens Edit·Apps and Policies Edit, 계정 하나, 만료 2026-10-04T23:59:59Z)으로 13.2의 3~7단계를 수행했다.
+
+- 적용: service token 2개(`knowslink-trial-codex`·`knowslink-trial-grok`, 24h, 만료 2026-10-05T06:42:09Z), reusable policy `knowslink-trial-agents`(`non_identity`, 두 token만), self_hosted 앱 `KnowsLink trial messages`(`link.knowslog.com/v1/test/*`). 원점 Tunnel은 `/v1/test/.*` trial AUD rule을 앞에 둔 후보로 교체했고 백업 `tunnel-bak-pre-trial`을 유지한다. 앱·policy 변경은 root owner 앱·정책·IdP·team에 영향이 없다.
+- 공개 negative: 무인증·잘못된 CF 403, 유효 CF+잘못된 relay credential 401, token만으로 owner·pair·business 경로 302. 공개 positive: 두 local client가 registry/keys/send/pull로 합성 text를 왕복했다. 실제 Grok은 아니다.
+- 종료: token 두 개만 revoke하고 앱·policy만 삭제한다. 원점 config를 복원하고 allowlist를 비운다. 관리 token이 먼저 만료되므로 삭제에는 새 권한이나 대시보드가 필요하다.
+- 현재 차단 중 남은 것: Grok 전용 파일의 안전 전달과 Grok 설치 회신이다. 증거·ID·절차는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)의 「재개 결과」를 따른다.
