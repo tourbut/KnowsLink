@@ -1,0 +1,74 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TESTER",
+  "head": "196af3f3a87892c70be7e994df835b0ccf6b530e",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 119,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 119
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "summary": "SAR-MVP-003-BIDIRECTIONAL 실행 기록 — 승인된 시험 메시지 구현과 로컬 양방향 증거 및 실제 Grok 접속 차단·댓글 초안을 기록한다",
+      "probability": 0.5
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.19
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "summary": "tester 컨텍스트 — 독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다",
+      "probability": 0.17
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "summary": "KnowsLink 프로젝트 기준 — 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "summary": "테스트 시나리오 — 조작 테스트의 통과 조건과 시나리오 밖 검증 인계를 정의한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "summary": "공통 테스트 기준",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+      "summary": "tester 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.86,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 9776,
+    "output_tokens": 1239,
+    "cost": 0.000410592
+  },
+  "latency_seconds": 0.306,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

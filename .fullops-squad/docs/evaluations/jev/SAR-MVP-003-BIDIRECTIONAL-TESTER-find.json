@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TESTER",
+  "head": "196af3f3a87892c70be7e994df835b0ccf6b530e",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 68,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 68
+    }
+  ],
+  "candidates": [
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.27
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.24000000000000002
+    },
+    {
+      "path": "adapters/src/test-transport.ts",
+      "summary": "Explicit trial-message transport for Codex and Grok; fixed HTTPS remote origin, paired peer, no business effects.",
+      "probability": 0.17
+    },
+    {
+      "path": "adapters/src/trial-check.ts",
+      "summary": "Two independent stdio MCP agents exchange trial messages over the real isolated Postgres relay.",
+      "probability": 0.14
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "summary": "Load a private trial environment without exposing credentials in shell arguments; launch Codex CLI or Grok MCP.",
+      "probability": 0.08
+    },
+    {
+      "path": "internal/relay/test_messages_test.go",
+      "summary": "Trial-message regression covers explicit enablement, strict text schema, signature, replay, TTL and one-use receive.",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/src/trial-boundaries.test.ts",
+      "summary": "Trial client checks held/config guards, fixed remote headers, streamed response bounds and timeout without contacting remote services.",
+      "probability": 0.01
+    },
+    {
+      "path": "go.mod",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "summary": "Check local Compose readiness and safe failure without activating a Tunnel.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/mcp.test.ts",
+      "summary": "Exercise the actual SDK stdio handshake, default hold, URL guard, and redirect rejection.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "summary": "Synthetic QA seed and end-to-end adapter check; credentials stay in ignored local files only.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.85,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3600,
+    "output_tokens": 729,
+    "cost": 0.0001512
+  },
+  "latency_seconds": 0.268,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

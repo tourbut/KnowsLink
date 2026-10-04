@@ -603,3 +603,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 사용자 승인: Codex→Grok Bot 수신 및 Grok→Codex 회신 시험. OpenAI dots 후속, 업무효과 제외. Grok작업은 issue1 댓글5975907733에 전달. 주소 사용자확정 link.knowslog.com, 현재302 Access 로그인. route implementation/dev 재선정(완료조건확정, 기존기술구현), Jev gpt-6.1-sol medium. 기존 main5c813a7에서 준비, DEV 구현·OPS독립리뷰·TESTER고정QA 후main push, 실제왕복증거 별도필요.
 
 - DEV 착수 task_25cd9eb02947 / ctx_b9b69b35ca16 / term_c7fedd9a-4850-4b1b-ba26-825392720b52. fresh codex gpt-6.1-sol medium effective/turn_started 확인. 준비f284948. background discoverability 경고는 있으나 시작정상, focus 강제전환하지 않는다. Grok 주소확정 댓글5975921044.
+
+- DEV msg_c8c05861e244 / cd60e7f87eb5ce137eca887980f232b3f67a18d0 준비수락후보. 로컬두MCP/실제SQL왕복·관련회귀/lint0, 실제beta trial_codex/trial_grok credential/key/pair준비. 실제배포28bd1bb 유지. fixedSHA 리뷰/QA 수락 전main/배포 hold, coor담당. 고위험auth/data변경 fullops-review규정으로 OPS추천sonnet대신fresh Opus5.5high독립리뷰, TESTERfreshGrok4.7high. 실제시험24hServiceAuth/private전달 별도운영배정.

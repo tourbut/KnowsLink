@@ -1,0 +1,309 @@
+{
+  "schema_version": "1",
+  "mode": "range",
+  "repository": "/home/shin/orca/workspaces/KnowsLink/fullops-coor",
+  "from": "f2849486ed48295e239714700e651d30c32f1c2c",
+  "to": "cd60e7f87eb5ce137eca887980f232b3f67a18d0",
+  "merge_base": "f2849486ed48295e239714700e651d30c32f1c2c",
+  "total_files": 47,
+  "reviewable_count": 38,
+  "excluded_count": 9,
+  "total_insertions": 2278,
+  "total_deletions": 88,
+  "reviewable_files": [
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 2
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 25,
+      "deletions": 2
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 1
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-documents-find-score.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MVP-003-BIDIRECTIONAL-find-score.json",
+      "status": "added",
+      "insertions": 67,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/product-lint.json",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "status": "added",
+      "insertions": 116,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 43,
+      "deletions": 1
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "status": "modified",
+      "insertions": 80,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 41
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 20,
+      "deletions": 2
+    },
+    {
+      "path": "adapters/package-lock.json",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 2
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "status": "modified",
+      "insertions": 41,
+      "deletions": 16
+    },
+    {
+      "path": "adapters/src/mcp.test.ts",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "status": "modified",
+      "insertions": 75,
+      "deletions": 1
+    },
+    {
+      "path": "adapters/src/test-transport.ts",
+      "status": "added",
+      "insertions": 166,
+      "deletions": 0
+    },
+    {
+      "path": "adapters/src/trial-boundaries.test.ts",
+      "status": "added",
+      "insertions": 142,
+      "deletions": 0
+    },
+    {
+      "path": "adapters/src/trial-check.ts",
+      "status": "added",
+      "insertions": 116,
+      "deletions": 0
+    },
+    {
+      "path": "adapters/src/trial-cli.ts",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0
+    },
+    {
+      "path": "adapters/src/trial-setup.ts",
+      "status": "added",
+      "insertions": 129,
+      "deletions": 0
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1
+    },
+    {
+      "path": "compose.yaml",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0
+    },
+    {
+      "path": "deploy/knowslink/access_trial_plan.py",
+      "status": "added",
+      "insertions": 91,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "modified",
+      "insertions": 26,
+      "deletions": 3
+    },
+    {
+      "path": "internal/relay/integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/registry.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "internal/relay/registry.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 21,
+      "deletions": 3
+    },
+    {
+      "path": "internal/relay/test_messages.go",
+      "status": "added",
+      "insertions": 117,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/test_messages_integration_test.go",
+      "status": "added",
+      "insertions": 59,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/test_messages_test.go",
+      "status": "added",
+      "insertions": 116,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "status": "added",
+      "insertions": 35,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1
+    }
+  ],
+  "excluded_files": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/access-plan.txt",
+      "status": "added",
+      "insertions": 31,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/adapter.txt",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/grok-cli.txt",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/lint-direct.txt",
+      "status": "added",
+      "insertions": 31,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/real-sql-mcp-final.txt",
+      "status": "added",
+      "insertions": 213,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/real-sql-mcp.txt",
+      "status": "added",
+      "insertions": 216,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/runtime-readiness.txt",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/standalone.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/logs/SAR-MVP-003-BIDIRECTIONAL/unit.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    }
+  ],
+  "fullops_review_schema_version": 2
+}

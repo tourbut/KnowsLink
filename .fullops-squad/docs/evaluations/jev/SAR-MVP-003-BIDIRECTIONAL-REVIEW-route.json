@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.64,
+        "ops": 0.02,
+        "tester": 0.34
+      },
+      "confidence": 0.47
+    },
+    "docs": {
+      "D01": 0.11,
+      "D02": 0.15,
+      "D03": 0.21,
+      "D04": 0.16,
+      "D05": 0.2,
+      "D06": 0.26,
+      "D07": 0.15,
+      "D08": 0.15,
+      "D09": 0.21,
+      "D10": 0.27,
+      "D11": 0.15,
+      "D12": 0.27,
+      "D13": 0.22
+    }
+  },
+  "usage": {
+    "input_tokens": 2477,
+    "output_tokens": 314,
+    "cost": 0.000104034
+  },
+  "error": null,
+  "latency_seconds": 0.287,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "구현자와 다른 OPS 세션이 fixedSHA 독립리뷰를 담당한다. 인증/데이터변경 위험은 fullops-review 고성능 모델 규정 적용.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}
