@@ -605,3 +605,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - DEV 착수 task_25cd9eb02947 / ctx_b9b69b35ca16 / term_c7fedd9a-4850-4b1b-ba26-825392720b52. fresh codex gpt-6.1-sol medium effective/turn_started 확인. 준비f284948. background discoverability 경고는 있으나 시작정상, focus 강제전환하지 않는다. Grok 주소확정 댓글5975921044.
 
 - DEV msg_c8c05861e244 / cd60e7f87eb5ce137eca887980f232b3f67a18d0 준비수락후보. 로컬두MCP/실제SQL왕복·관련회귀/lint0, 실제beta trial_codex/trial_grok credential/key/pair준비. 실제배포28bd1bb 유지. fixedSHA 리뷰/QA 수락 전main/배포 hold, coor담당. 고위험auth/data변경 fullops-review규정으로 OPS추천sonnet대신fresh Opus5.5high독립리뷰, TESTERfreshGrok4.7high. 실제시험24hServiceAuth/private전달 별도운영배정.
+
+- OPS독립리뷰 task_38a400288d85/ctx_3feab214aeea/term_5590df22-782f-4297-8216-08a914e26e3a: effectiveOpus5.5high·turn_started. TESTER freshGrok4.7high term_dab105e8-1cfc-4341-8072-bbf883b82ec3 tui-idle확인, 정규worker-start. fixedcd60e7f, 준비080c2df. 진행체크아웃변경금지.
