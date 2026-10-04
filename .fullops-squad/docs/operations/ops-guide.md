@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-04
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -237,3 +237,10 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 현재 차단은 trial service token과 path 앱·trial AUD의 부재, 후보 미배포, Grok parent의 환경 변경/secure-file 지원 회신 미도착이다. secret 안전 전달 채널도 아직 확인하지 않았다. DEV는 이 값을 추측하거나 Access를 해제하지 않았다. 신규 비용은 발생하지 않았다. 코드·로컬 왕복·배포 절차·댓글 초안은 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)에 연결한다.
 
 근거: [Cloudflare Service tokens](https://developers.cloudflare.com/cloudflare-one/access-controls/service-credentials/service-tokens/)의 두 header·Service Auth, [Application paths](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)의 구체 path 우선순위, [Grok Team Bots](https://docs.x.ai/grok-bot/team-bots)의 Command 실행 위치·owner chat secrets 경계를 확인했다. API 본문은 2026-10-04 Cloudflare OpenAPI search로 대조했다. 문서 지원을 실제 계정 지원으로 확대하지 않는다.
+
+### 13.5 실제 운영 결과 (2026-10-04, SAR-MVP-003-BIDIRECTIONAL-OPS)
+
+- 완료: 기존 배포를 `0911c2c73468f8684260a277d4940a74d26bcf7d`로 이동했다(`beta.sh deploy` exit 0, DB 백업 `28bd1bb-20261004T044744Z.dump`, migration 동일). 상태 `.env`에 `KNOWSLINK_TEST_AGENTS=trial_codex,trial_grok`만 추가했다. 실제 두 시험 key로 loopback 왕복을 확인했다. 공유 서비스 회귀와 공개 무인증 probe(302)는 불변이다.
+- 차단: 13.2의 3~7단계. 저장된 Cloudflare 권한 어디에도 `access-service-token.write`가 없다. 세션 MCP는 읽기 전용이고 Codex OAuth grant에는 service-token 범위가 없다. root owner 앱과 정책은 변경하지 않았다.
+- 준비: 요청 본문·원점 후보 구조 검증·Grok 전용 private 파일(`grok-export/`, CF 항목 제외)·재개와 종료 절차·Grok 최종 댓글 초안이 있다.
+- 미검증: 공개 HTTPS 성공·공개 negative/positive·실제 Grok 왕복. 상세와 증거는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)이다.

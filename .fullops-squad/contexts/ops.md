@@ -40,3 +40,7 @@ reusable policy는 새로 만든다. 기존 `knowslog-bot - Production`은 다�
 공식 Grok Bot connect 문서는 stdio MCP·ZIP 업로드·Node runtime을 언급하지 않는다. 설치 지원을 주장하지 않는다. 결과는 critical/high 0이며 후속 F-01 호스트 tool timeout 확인이 실제 연결 재개 조건이다.
 
 리뷰 findings의 줄 번호는 파일별로 `cat -n`/`nl`을 따로 실행하거나 `sed -n`으로 확정한다. 여러 파일을 한 번에 출력하면 번호가 누적돼 존재하지 않는 줄이 기록된다(SAR-MVP-002-DEV-REVIEW F-01 보정). 기록 전에 `wc -l`로 범위를 대조한다.
+
+## 2026-10-04 — SAR-MVP-003-BIDIRECTIONAL-OPS
+
+배포 `0911c2c`와 시험 allowlist 적용, 실제 key loopback 왕복은 완료했다. Cloudflare service token 쓰기 권한은 저장된 어떤 grant에도 없다. 세션 cloudflare MCP는 읽기 전용(쓰기 1010)이고 Codex file-store OAuth에는 `access-service-token.*` scope가 없다. 빈 본문 POST는 자원을 만들지 않고 권한만 확인한다. 만료된 OAuth는 refresh하지 않는다(다른 도구 credential 회전). 시험 relay의 idempotency key는 16~128자 ASCII다. 상세는 phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md.
