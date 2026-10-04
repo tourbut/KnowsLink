@@ -4,7 +4,7 @@ title: 인수인계서
 status: draft
 updated: 2026-10-04
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -54,3 +54,7 @@ owner/admin은 승인된 marketplace 등록과 실제 Bot 앱의 설치·도구 
 재시험에서 CLI 설치는 성공했지만 앱 카탈로그에 knowslink가 없었다. 앱 계정 등록 단계의 부재는 미확정 가설이다. `scripts/install_bot_mcp.sh`와 README의 Command server 등록 절차를 추가했다. 리뷰 보완([FIX 기록](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md))에서 원인 단정과 `Settings → Plugins` 경로를 정정했다. Command 등록 근거는 Team Bots 문서에 한정된다. 개인 계정 UI·승인 카드·`AddMcpServer` 제공은 미확인이다.
 
 owner는 실제 계정에서 등록과 `knowslink_status` held 호출을 재시험한다. coor는 고정 SHA 독립 리뷰·필요한 QA 뒤 FIX 기록의 [재시험 댓글 초안](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md#재시험-댓글-초안-coor-게시)을 게시한다. 이전 실행 기록의 초안은 게시하지 않는다. 실제 앱 노출은 미검증이다. Remote HTTPS·Marketplace 발행·실제 relay는 별도 승인 전까지 held다.
+
+## 시험 운영 인수 (2026-10-04, SAR-MVP-003-BIDIRECTIONAL-OPS)
+
+현재 배포는 `0911c2c73468f8684260a277d4940a74d26bcf7d`이고 시험 allowlist는 `trial_codex,trial_grok`이다. 공개 `/v1/test/*`는 아직 root owner Access 아래에 있어 외부에서 열리지 않는다. 24h service token·trial 앱 생성은 `access-service-token.write` 권한 부재로 막혀 있다. 사용자가 권한이나 0600 API token 파일을 제공하면 OPS가 재개한다. 절차·rollback·종료는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)과 D12 13.5를 따른다. Grok 전용 private 파일은 `/home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL/grok-export/`에 있으며 전달 수단은 미확인이다.
