@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "base": "f2849486ed48295e239714700e651d30c32f1c2c",
+  "merge_base": "f2849486ed48295e239714700e651d30c32f1c2c",
+  "head": "cd60e7f87eb5ce137eca887980f232b3f67a18d0",
+  "config_sha256": "af02d2745ece65b55a56b7e4d5ebfc65cde83333bb170e39a54231f3f64c1bc0",
+  "commands": [
+    {
+      "name": "product-lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json\n\nChecking formatting...\nAll matched files use Prettier code style!\n\n> @knowslink/adapters@0.0.0 lint\n> eslint src eslint.config.mjs\n\n\n> @knowslink/adapters@0.0.0 typecheck\n> tsc --noEmit\n\nnpm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml\nChecking formatting...\nAll matched files use Prettier code style!\npython3 scripts/check_compose.py\nCompose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel\nsh -n scripts/install_bot_mcp.sh\npython3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "510줄(이전 487, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/http.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "438줄(이전 420, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/store.go"
+    }
+  ],
+  "summary": {
+    "files": 41,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 0
+  }
+}
