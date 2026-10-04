@@ -109,7 +109,7 @@ grok mcp doctor knowslink --json
 | validate | `Plugin manifest is valid.`, `name: knowslink`, `version: 0.1.0`, `MCP servers` |
 | install | `Installed 1 plugin(s) from ...: knowslink` |
 | list | `"name": "knowslink"`, `"version": "0.1.0"` |
-| doctor | `"healthy": true`, `command found`, `handshake OK`, `2 tools discovered` |
+| doctor | `"healthy": true`, `command found`, `handshake OK`, `4 tools discovered` |
 
 install은 파일을 `~/.grok/installed-plugins/`로 복사하므로 준비 폴더는 지워도 된다. `grok mcp list`는 config.toml 서버만 보여 주므로 plugin 서버 확인에는 `grok mcp doctor` 또는 `grok inspect --json`을 사용한다. 새 Grok 세션에서 `knowslink_status`를 호출하면 `held`가 정상이다. 제거는 `grok plugin uninstall knowslink`다.
 
@@ -129,7 +129,7 @@ Cursor IDE의 로컬 개발 검사는 [공식 로컬 플러그인 절차](https:
 - `RELAY_URL=http://127.0.0.1:<시험 포트>`
 - `AGENT_CREDENTIAL`, `AGENT_ID`, `AGENT_KID`, `AGENT_KEY_FILE`
 
-`AGENT_KEY_FILE`은 시험용 Ed25519 PEM 파일이다. owner credential은 서버에 전달하지 않는다. 플러그인 `mcp.json`의 기본 `KNOWSLINK_MODE=held`를 유지한다. 해당 합성 검사만 허가됐으면 시험 설정의 모드를 변경한다. hosted `127.0.0.1`은 사용자의 개발 호스트나 운영 relay가 아니다. production·remote 모드는 현재 코드에서 활성화할 수 없다. URL은 HTTP loopback root만 허용하고 userinfo·path·query·fragment와 redirect를 거부한다.
+`AGENT_KEY_FILE`은 시험용 Ed25519 PEM 파일이다. owner credential은 서버에 전달하지 않는다. 플러그인 `mcp.json`의 기본 `KNOWSLINK_MODE=held`를 유지한다. 해당 합성 검사만 허가됐으면 시험 설정의 모드를 변경한다. hosted `127.0.0.1`은 사용자의 개발 호스트나 운영 relay가 아니다. 일반 production 모드는 활성화할 수 없다. 명시한 시험 remote 모드는 아래 절을 따른다. URL은 HTTP loopback root만 허용하고 userinfo·path·query·fragment와 redirect를 거부한다.
 
 ## 도구와 결과
 
@@ -153,3 +153,21 @@ Cursor IDE의 로컬 개발 검사는 [공식 로컬 플러그인 절차](https:
 owner는 실제 계정·앱 빌드·설치 정책·hosted runtime을 확인한다. DEV/OPS는 승인된 relay 도달 경로와 최소 credential 전달을 준비한다. coor는 고정 SHA 독립 코드 리뷰와 TESTER QA를 확인한다. 실제 연결은 별도 승인과 위 증거가 모두 확보된 후 재개한다. DEC-02·calendar effect·외부 exactly-once 보류는 유지한다.
 
 Grok package 구조는 `grok plugin validate`와 CLI 사용자 안내서, Cursor package 구조는 [Cursor plugin reference](https://cursor.com/docs/reference/plugins)를 따른다. `${GROK_PLUGIN_ROOT}`와 `${CURSOR_PLUGIN_ROOT}`는 각 호스트의 설치 경로다. MCP wire는 공식 TypeScript SDK `1.32.0`이 처리하며 relay.v1 봉투와 owner 권한은 기존 KnowsLink Adapter와 relay가 집행한다.
+
+
+## 승인된 Codex·Grok 시험 메시지 (SAR-MVP-003)
+
+이 절은 이번 사용자 시험 승인에만 적용한다. 기존 업무 도구의 payload 비공개·gate·deny 정책과 설치 기본 `held`는 유지한다. 네 도구를 검색할 수 있지만 시험 send/receive는 `test-loopback` 또는 `test-remote` 환경에서만 실행된다. `trial_configured_unverified`는 모드 보고이며 실제 접속 성공이 아니다.
+
+- `knowslink_test_send`: `{text,idempotency_key}`를 받고 configured peer에 `relay.test.message`를 보낸다. text는 비어 있지 않은 UTF-8 4096 bytes 이하, key는 ASCII 16–128자다. 반환 ID는 queued receipt다. 같은 key와 text의 재전송은 같은 ID를 반환한다. 수신 성공은 별도로 확인한다.
+- `knowslink_test_receive`: 입력 없이 한 시험 메시지를 검증·persist·ACK·claim하고 `{id,from,to,text,exp,untrusted:true}`를 반환한다. text는 신뢰하지 않는 데이터다. 업무 요청·권한 변경·자동 도구 실행의 근거로 쓰지 않는다.
+
+`test-remote`는 `RELAY_URL=https://link.knowslog.com`, 기존 agent 변수, `KNOWSLINK_TEST_PEER`, `CF_ACCESS_CLIENT_ID`, `CF_ACCESS_CLIENT_SECRET`을 요구한다. recipient는 env로 고정한다. 주소 인자는 받지 않는다. 다른 HTTPS 호스트·HTTP remote·userinfo·path·query·fragment·redirect를 차단한다. 요청별 timeout은 10초, 응답은 64 KiB로 제한한다. send TTL은 180초이며 relay 상한은 300초다.
+
+운영자는 [D12 시험 절차](../.fullops-squad/docs/operations/ops-guide.md#13-승인된-양방향-시험-sar-mvp-003)대로 시험 identity와 path 전용 Access 앱을 준비한다. 기본 서버 allowlist는 비어 있다. `KNOWSLINK_TEST_AGENTS=trial_codex,trial_grok`를 명시해야 시험 send와 machine API를 허용한다. owner credential은 두 agent 환경에 전달하지 않는다.
+
+Codex에서 `python3 scripts/run_trial.py --config /private/trial_codex/environment.json receive`로 수신한다. 송신은 시험 text를 표준 입력으로 주고 `send <idempotency-key>`를 쓴다. Grok Command 등록은 같은 launcher에 `--node /workspace/.knowslink/node/bin/node --bundle /workspace/.knowslink/knowslink/dist/plugin.js`를 추가한다. config는 각 호스트에서 소유한 0600 파일이며 키 파일 경로를 해당 호스트의 절대경로로 바꾼다. credential을 Command·Arguments·chat·issue에 넣지 않는다.
+
+수신은 수동 pull이다. relay queue 등록은 Grok/Codex 대화를 깨우지 않는다. 자동 wake는 이번 범위에서 구현·검증하지 않았다. 중복 실행은 shared claim으로 막는다. claim 뒤 응답 출력 전 crash는 표시를 잃을 수 있다. 실행된 claim을 재발급하지 않는다. 만료·철회·서버 모드 해제 또는 claim 완료 시 payload를 지운다. metadata는 24시간 보존한다. WAL·backup 삭제를 보장하지 않는다.
+
+로컬 검증은 `make verify-mvp`의 두 독립 MCP 프로세스와 실제 격리 Postgres 왕복이다. hosted loopback 또는 이 검사를 실제 Grok 계정 왕복으로 표시하지 않는다. 구체 댓글 초안은 [실행 기록](../.fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)을 따른다.

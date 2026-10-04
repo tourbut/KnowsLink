@@ -2,9 +2,9 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-03
+updated: 2026-10-04
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -86,3 +86,17 @@ MVP-12–14는 field 한도·registry·loopback stub·OFF 경계로 유지한다
 공통 Adapter는 `adapters/src/core.ts`로 옮겼다. 기존 `index.ts` CLI와 새 MCP가 같은 서명·persist·ACK·claim·gate·deny를 재사용한다. relay·DB·UI·frozen wire는 변경하지 않았다. MCP는 payload·credential·claim을 모델에 노출하지 않고 원문 업무를 추론하거나 도구로 실행하지 않는다.
 
 Grok Bot의 같은 계정 Bot들은 파일과 command-line credential을 공유한다. KnowsLink AgentID/owner 분리는 제품 서버에서 집행한다. Bot 프로필·화면 분리나 vendor approval을 identity·owner approval 경계로 간주하지 않는다. plugin의 실제 설치와 최소 계정 권한·도달 경로를 후속 고정 버전에서 검증한다. shared claim 없는 다중 adapter 활성화는 허용하지 않는다.
+
+## SAR-MVP-003 승인된 양방향 시험
+
+이번 시험은 사용자 승인된 Codex↔Grok 시험 text만 전달한다. 이전 SAR-MVP-002의 actual held는 이 범위에서만 명시 모드로 재개한다. 업무 disclosure·calendar·dots·자동 wake는 범위 밖이다.
+
+`relay.test.message`는 기존 relay.v1 서명·pairing·TTL·idempotency와 저장소를 재사용한다. registry revision은 `relay.v1-test-2026-10-04`이며 기존 네 intent의 schema를 보존한다. 시험 intent는 body.text만 허용한다. evidence·ext·render·reply_to를 시험 권한 확장 통로로 쓰지 못한다. trial을 H/R·authorize·gate-consume 부모로 쓰는 것도 차단한다.
+
+서버 `KNOWSLINK_TEST_AGENTS`는 기본 빈 값이다. 명시한 두 서로 다른 AgentID만 시험 envelope의 양쪽 endpoint로 허용한다. `State.TestAgents`는 DB로 직렬화하지 않는 실행 설정이다. 정상 transaction과 오류 rollback에서 같은 설정을 적용한다. config를 해제하면 current 검사가 fail-closed로 payload와 claim을 제거한다.
+
+machine 경로는 `/v1/test/*`다. relay agent 인증·시험 allowlist·active pair·서명을 유지한다. 시험 pull은 business 메시지를 제외한다. persist/ACK/claim은 시험 message ID만 허용한다. 가입·owner·pairing·키변경·business send·authorize는 machine 경로에서 차단한다.
+
+시험 receive는 configured peer와 서명을 확인하고 shared persist→ACK→claim 뒤에만 text를 노출한다. claim 시 원문·inbox를 삭제한다. 반환 text는 `untrusted:true`이며 실행 권한을 만들지 않는다. claim 뒤 출력 전 crash는 표시를 잃을 수 있다. 새로운 key로 자동 재전송하지 않는다.
+
+remote는 기존 `https://link.knowslog.com`만 사용한다. prefix 전용 Service Auth 앱과 distinct agent service tokens를 준비한다. Tunnel의 더 구체적인 path rule은 trial AUD만 검증한다. root/owner rule은 기존 owner AUD를 유지한다. 실제 적용은 독립 fixed-SHA 검토 후 OPS/coor가 수행한다. [D12](../operations/ops-guide.md#13-승인된-양방향-시험-sar-mvp-003)와 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)을 따른다.

@@ -47,7 +47,11 @@ func run(ctx context.Context) error {
 	}
 	mux := http.NewServeMux()
 	mux.Handle("/healthz", healthHandler(pool.Ping))
-	service := &relay.Service{Pool: pool}
+	testAgents, err := relay.TestAgentAllowlist(os.Getenv("KNOWSLINK_TEST_AGENTS"))
+	if err != nil {
+		return err
+	}
+	service := &relay.Service{Pool: pool, TestAgents: testAgents}
 	go service.Cleanup(ctx)
 	mux.Handle("/", service.Handler())
 	server := &http.Server{

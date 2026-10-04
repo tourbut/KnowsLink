@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-04
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -195,3 +195,45 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 4. owner는 새 대화에서 `knowslink_status`만 호출한다. 결과: `held`.
 
 컴퓨터 update·recover·Reset 뒤 `/workspace/.knowslink`의 Node 또는 bundle이 없으면 1단계를 다시 실행한다. `/workspace` 유지는 보장되지 않는다. 앱 등록 값은 같다. 중단은 Installed 목록에서 knowslink를 삭제한다. 실제 relay·환경 변수·비밀값은 등록하지 않는다. 상세 절차는 [플러그인 문서](../../../adapters/README.md#grok-bot-앱-등록)를 따른다.
+
+## 13. 승인된 양방향 시험 (SAR-MVP-003)
+
+이번 사용자 요청은 Codex↔Grok 시험 text와 기존 `https://link.knowslog.com` 재사용을 승인했다. 11.4의 실제 벤더 held 중 이 시험 범위만 재개한다. 업무 effect·disclosure·dots·FullOps 갱신·공개 가입 제품 정책은 바꾸지 않는다. DEV 준비물과 실제 적용·계정 QA는 분리한다.
+
+### 13.1 확인된 현재 상태
+
+2026-10-04 DEV가 기존 배포 HEAD `28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2`와 relay/postgres healthy·knowslink Tunnel Up을 확인했다. 공개 registry는 Access 302다. Cloudflare GET은 기존 `KnowsLink beta (owner-only)` 앱 한 개와 owner allow policy 한 개를 반환했다. service token은 0개이며 trial path 앱은 없다. 실제 배포는 새 trial API를 포함하지 않는다.
+
+DEV는 기존 로컬 beta에서 `trial_codex`와 `trial_grok`의 신규 시험 identity·Ed25519 PoP·pair를 준비했다. `/home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL`은 0700이다. 두 agent의 하위 `environment.json`과 `key.pem`은 0600이다. `owners.json`은 운영자에게만 둔다. 원격 agent에 owner 기록을 보내지 않는다. Access ID/secret은 아직 없다. 이 등록은 합성 beta owner 등록이며 실제 Grok 계정 신원 검증이 아니다.
+
+### 13.2 고정 SHA 배포와 machine Access 준비
+
+1. coor는 전체 40자리 `REVIEWED_SHA`의 독립 리뷰·QA·필수 gate를 확인한다. 기존 11.3의 `beta.sh deploy "$REVIEWED_SHA"`로 백업 후 기존 knowslink 배포를 이동한다. DB migration은 변경하지 않았다. 공유 서비스와 볼륨은 보존한다.
+2. OPS는 상태 `.env`에 `KNOWSLINK_TEST_AGENTS=trial_codex,trial_grok`만 추가한다. 0600을 유지한다. 기존 Compose 인자로 relay를 갱신한다. 명시 allowlist가 없으면 trial을 거부하는 것이 정상이다.
+3. 기존 계정에서 `knowslink-trial-codex`, `knowslink-trial-grok` 이름의 서로 다른 service token을 24h 유효기간으로 만든다. 생성 본문은 `python3 deploy/knowslink/access_trial_plan.py tokens`로 확인한다. API 경로는 `/accounts/{account_id}/access/service_tokens`다. 생성 응답의 client secret은 한 번만 안전한 로컬 파일에 저장한다. 응답 전문을 터미널·issue·chat·Git에 기록하지 않는다. 필요한 계정 권한은 Access service-token 쓰기와 Apps/Policies 쓰기다. 새 서비스·DNS·Tunnel·유료 자원은 만들지 않는다.
+4. 실제 두 token UUID로 `python3 deploy/knowslink/access_trial_plan.py policy --codex-token "$CODEX_TOKEN_UUID" --grok-token "$GROK_TOKEN_UUID"`를 실행한다. reusable policy 생성 경로는 `/accounts/{account_id}/access/policies`다. decision은 `non_identity`(Service Auth)이며 include는 이 두 token만 사용한다. `any_valid_service_token`, bypass, everyone은 사용하지 않는다.
+5. 생성 policy UUID로 `python3 deploy/knowslink/access_trial_plan.py app --policy "$TRIAL_POLICY_UUID"`를 실행한다. `/accounts/{account_id}/access/apps`에 별도 self_hosted 앱을 생성한다. domain과 public destination은 `link.knowslog.com/v1/test/*`다. 기존 root owner 앱·이메일 policy·IdP·team 조직 설정을 변경하지 않는다. 생성 뒤 GET으로 destination·policy ID·decision·두 token UUID·trial AUD를 대조한다. 기존 root 앱과 trial 외 service-token 거부도 확인한다.
+6. `python3 deploy/knowslink/access_trial_plan.py tunnel --uuid "$KNOWSLINK_TUNNEL_UUID" --team scshin88 --owner-aud "$OWNER_AUD" --trial-aud "$TRIAL_AUD"`로 후보를 생성한다. 기존 Tunnel을 재사용한다. `/v1/test/.*` 첫 rule은 trial AUD만, 나머지 hostname rule은 기존 owner AUD만 검증한다. 둘 다 `access.required: true`다. 후보를 0600에 두고 현재 cloudflared UID로 pinned image의 `ingress validate`와 `ingress rule`을 검증한다. 상태 config를 백업 후 교체하고 knowslink connector만 재기동한다. 기존 `beta.sh render-config`는 시험 entry를 만들지 않으므로 활성 시험 중 사용하지 않는다. 기존 `expose`는 DNS 최초 생성용이므로 재실행하지 않는다. 이번 path 후보는 11.2의 단일 AUD 검사로 대체 검증하지 않는다.
+7. 공개 negative는 credential 없이·잘못된 service token으로 시험 API를 거부하는지 확인한다. 실제 token+잘못된 relay agent token도 거부해야 한다. 실제 두 credential로 registry/keys/send/pull을 검증한다. token만으로 owner/signup/business API를 열 수 없어야 한다. 원격 성공은 이 검증과 실제 Grok 왕복 ID가 확보된 뒤에만 기록한다.
+
+### 13.3 안전한 credential 전달과 실행
+
+운영자는 각 `environment.json`에 그 agent 전용 `CF_ACCESS_CLIENT_ID`와 `CF_ACCESS_CLIENT_SECRET`을 넣는다. Codex와 Grok credential을 섞지 않는다. 서버 관리자가 승인한 secret 전달 채널로 Grok의 자기 key/config만 전달한다. Grok 파일 경로는 `/workspace/.knowslink-trial/trial_grok/key.pem` 같은 실제 절대경로로 바꾸고 config의 `AGENT_KEY_FILE`도 맞춘다. parent 폴더 0700·파일 0600을 확인한다. private host 파일을 issue 첨부로 보내지 않는다.
+
+Codex 수신:
+
+```sh
+python3 scripts/run_trial.py --config /home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL/trial_codex/environment.json receive
+```
+
+Codex 송신은 표준 입력에 시험 text만 주고 `send sar-mvp-003-codex-round-1`을 사용한다. uncertain retry는 같은 text와 key만 사용한다. Grok Command 등록은 Python launcher·config 경로·고정 Node 경로·standalone bundle 경로만 argv에 넣는다. 비밀값은 argv에 넣지 않는다. owner/admin이 기존 `user-knowslink` 등록의 Command·환경 지원을 확인한 뒤 교체한다. 미지원이면 같은 launcher의 CLI 수동 pull을 사용한다. Grok 부모 컴퓨터의 hostname/loopback을 서버로 오인하지 않는다.
+
+Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 ID를 포함한다. Grok reply ID는 Codex receive ID와 같아야 한다. 각 단계는 180초 TTL 안에 수행한다. `empty`는 네트워크 성공이나 유실 확정이 아니다. 기본 모드를 held로 바꾸면 송수신 도구가 멈춘다. 네트워크 queue가 대화를 자동 wake하지 않는다.
+
+### 13.4 중단·복귀와 차단 조건
+
+시험 종료 시 machine token을 disable/revoke하고 trial path 앱·policy만 제거한다. 기존 owner Tunnel config 백업을 복원한다. 상태 `.env`의 시험 allowlist를 비워 relay를 갱신한다. 필요하면 `owners.json`의 자기 owner credential을 운영자 로컬에서만 사용해 시험 owner를 revoke한다. pair·키·claim 권한의 철회를 확인한다. 기존 owner Access·Tunnel·DNS·업무 DB·공유 서비스를 삭제하지 않는다.
+
+현재 차단은 trial service token과 path 앱·trial AUD의 부재, 후보 미배포, Grok parent의 환경 변경/secure-file 지원 회신 미도착이다. secret 안전 전달 채널도 아직 확인하지 않았다. DEV는 이 값을 추측하거나 Access를 해제하지 않았다. 신규 비용은 발생하지 않았다. 코드·로컬 왕복·배포 절차·댓글 초안은 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)에 연결한다.
+
+근거: [Cloudflare Service tokens](https://developers.cloudflare.com/cloudflare-one/access-controls/service-credentials/service-tokens/)의 두 header·Service Auth, [Application paths](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)의 구체 path 우선순위, [Grok Team Bots](https://docs.x.ai/grok-bot/team-bots)의 Command 실행 위치·owner chat secrets 경계를 확인했다. API 본문은 2026-10-04 Cloudflare OpenAPI search로 대조했다. 문서 지원을 실제 계정 지원으로 확대하지 않는다.

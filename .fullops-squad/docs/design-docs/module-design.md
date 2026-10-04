@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-04
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -59,3 +59,16 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 - `scripts/verify_grok_plugin.py`: CLI 설치 검사다. 앱 카탈로그 증거가 아니다. 실패 시 grok 출력을 표시하고 `GROK_CONFIG*` 변수를 제거한다.
 
 근거·가설·검증은 [실행 기록](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md)과 리뷰 보완 [FIX 기록](../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md)을 따른다. 원인 판정은 FIX 기록이 우선한다.
+
+## SAR-MVP-003 시험 transport 모듈
+
+- `internal/relay/test_messages.go`: 두 시험 identity allowlist와 machine prefix 허용 경로를 집행한다. normal mux에 넘기는 request copy에서 owner API 진입을 차단한다.
+- `protocol.go`/`registry.json`: 시험 text closed schema와 별도 registry revision을 추가한다. 기존 업무 intent는 유지한다.
+- `store.go`/`http.go`: current-auth·서명·active pair·TTL·중복을 재사용한다. 시험 전용 pull·persist·ACK·claim을 집행하고 claim 시 payload를 삭제한다. rollback도 동일 allowlist를 적용한다.
+- `adapters/src/core.ts`: 서명과 registry 검증을 synthetic/test receive가 공유한다. redirect 차단·요청 timeout·응답 스트림 상한을 공통 request에 적용한다.
+- `test-transport.ts`/`mcp.ts`: configured peer로만 trial send한다. 수신 text는 claim 뒤 untrusted data로 반환한다. 기존 업무 pull 도구는 synthetic 모드를 유지한다.
+- `trial-cli.ts`/`scripts/run_trial.py`: Codex 송신 stdin·수신 CLI와 private env 로딩을 제공한다. mode·credential은 tool/argv로 받지 않는다. launcher는 0600 소유 regular config를 요구하고 이전 agent env를 상속하지 않는다.
+- `trial-setup.ts`: local beta operator만 두 신규 시험 owner/agent·Ed25519 PoP·pair를 등록한다. private 목적지 재사용을 거부한다. agent별 키와 config를 분리하고 owner 기록은 운영자에게만 둔다.
+- `deploy/knowslink/access_trial_plan.py`: 단기 distinct service token·reusable non_identity policy·path 앱 본문과 보호된 Tunnel 후보를 생성한다. live mutation은 수행하지 않는다.
+
+검증은 TestTrialMessageSafety·TestTrialSchemaAndConfiguration·TestTrialHTTP, trial-boundaries.test.ts, trial-check.ts로 연결된다. `make verify-mvp`는 기존 업무/gate 회귀와 두 독립 MCP 프로세스의 실제 Postgres 왕복을 함께 검사한다. `make verify-grok-plugin`은 네 tool을 기대한다. default held·실제 계정 수락의 분리는 계속 유지한다. [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)에 ID·명령·exit code·남은 실제 조건을 기록한다.

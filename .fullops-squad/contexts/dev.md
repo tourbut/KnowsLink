@@ -1,10 +1,10 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-03
+updated: 2026-10-04
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV]
-summary: 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기록한다
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL]
+summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
 # dev 컨텍스트
@@ -28,3 +28,7 @@ summary: 합성 MVP의 권한 경계와 검증 및 후속 수락 조건을 기�
 - 2026-10-03 SAR-MVP-002-DEV: 사용자가 공식 Grok Bot을 확정했다. Cursor manifest·stdio MCP·skill·standalone bundle을 준비하며 actual connection은 held다.
 - 공통 Adapter와 direct-run CLI를 분리해야 bundle의 stdout에 CLI 출력이 섞이지 않는다. 기본 held와 synthetic-loopback·redirect 차단을 실제 MCP handshake로 검사한다.
 - 지원 근거·package·검증·owner/admin 설치·독립 리뷰/QA 후속은 [실행 기록](../docs/exec-plans/phases/SAR-MVP-002-DEV.md)에 보존한다.
+
+- 2026-10-04 SAR-MVP-003-BIDIRECTIONAL: 시험 text intent를 업무 intent와 분리하고 두 agent allowlist·path 전용 Access/원점 AUD 후보를 준비했다. mode 해제·철회·만료·claim 완료 시 원문은 삭제한다.
+- 오류 rollback에서 실행 allowlist도 복원해야 queued trial을 오삭제하지 않는다. 시험 claim은 업무 gate/result의 부모가 되지 못한다. 실제 원격 계정 수락과 로컬 MCP/SQL 왕복을 구분한다.
+- 기존 beta에 private trial credential/pair를 준비했으며 CF token·후보 배포·Grok parent 안전 전달은 후속이다. [기록](../docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md).

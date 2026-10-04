@@ -72,13 +72,17 @@ type State struct {
 	Messages    map[string]*Message
 	Idempotency map[string]string
 	Gates       map[string]*Gate
+	TestAgents  map[string]bool `json:"-"`
 }
 
 func newState() *State {
-	return &State{map[string]*Owner{}, map[string]*Agent{}, map[string]*Pair{}, map[string]*Message{}, map[string]string{}, map[string]*Gate{}}
+	return &State{map[string]*Owner{}, map[string]*Agent{}, map[string]*Pair{}, map[string]*Message{}, map[string]string{}, map[string]*Gate{}, nil}
 }
 
-type Service struct{ Pool *pgxpool.Pool }
+type Service struct {
+	Pool       *pgxpool.Pool
+	TestAgents map[string]bool
+}
 
 func randomToken() string {
 	b := make([]byte, 32)
@@ -117,6 +121,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if err = json.Unmarshal(row.Data, state); err != nil {
 		return nil, fault("unavailable")
 	}
+	state.TestAgents = s.TestAgents
 	state.sweep(now)
 	value, opErr := operation(state, now)
 	// Even a rejected request commits only cleanup, never partial operation state.
@@ -125,6 +130,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		if err = json.Unmarshal(row.Data, state); err != nil {
 			return nil, fault("unavailable")
 		}
+		state.TestAgents = s.TestAgents
 		state.sweep(now)
 	}
 	raw, err := json.Marshal(state)
@@ -141,6 +147,9 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	return value, opErr
 }
 func (st *State) current(m *Message) bool {
+	if m.Receipt.Intent == "relay.test.message" && (!st.TestAgents[m.Receipt.From] || !st.TestAgents[m.Receipt.To]) {
+		return false
+	}
 	a, b := st.Agents[m.Receipt.From], st.Agents[m.Receipt.To]
 	if a == nil || b == nil {
 		return false
@@ -271,7 +280,7 @@ func policy(intent string) string {
 func (st *State) parentRouting(agent, id string) (*Message, error) {
 	m := st.Messages[id]
 	// The one parent boundary for authorize, gate-consume, H, and R: claims stored before Deliver existed fail closed (C1).
-	if m == nil || m.Receipt.To != agent || m.Deliver != "agent" || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == "relay.approval.request" || m.Receipt.State != "delivered" || !m.Claimed || !st.current(m) {
+	if m == nil || m.Receipt.To != agent || m.Deliver != "agent" || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == "relay.approval.request" || m.Receipt.Intent == "relay.test.message" || m.Receipt.State != "delivered" || !m.Claimed || !st.current(m) {
 		return nil, fault("sender_not_allowed")
 	}
 	return m, nil
@@ -287,8 +296,14 @@ func (st *State) parentFor(agent, id string, now time.Time) (*Message, error) {
 	return m, nil
 }
 func (st *State) leaseMessage(agent string, now time.Time) (any, error) {
+	return st.leaseMessageFor(agent, now, false)
+}
+func (st *State) leaseMessageFor(agent string, now time.Time, testOnly bool) (any, error) {
 	var selected *Message
 	for _, m := range st.Messages {
+		if testOnly && m.Receipt.Intent != "relay.test.message" {
+			continue
+		}
 		if m.Receipt.To == agent && m.Receipt.State == "queued" && m.Deliver == "agent" && st.current(m) && now.Before(m.Receipt.Exp) {
 			if selected == nil || m.Receipt.Accepted.Before(selected.Receipt.Accepted) {
 				selected = m
@@ -317,6 +332,9 @@ func (st *State) leased(agent, id, token string, now time.Time) (*Message, error
 	return m, nil
 }
 func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) (any, error) {
+	if e.Intent == "relay.test.message" && (!st.TestAgents[e.From] || !st.TestAgents[e.To]) {
+		return nil, fault("sender_not_allowed")
+	}
 	a := st.Agents[e.From]
 	if agent != e.From || a == nil {
 		return nil, fault("sender_not_allowed")

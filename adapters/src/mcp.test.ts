@@ -127,6 +127,8 @@ async function check(
     assert.deepEqual(tools.tools.map((tool) => tool.name).sort(), [
       "knowslink_pull_once",
       "knowslink_status",
+      "knowslink_test_receive",
+      "knowslink_test_send",
     ]);
     const status = await client.callTool({
       name: "knowslink_status",

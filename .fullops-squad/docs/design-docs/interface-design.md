@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-03
+updated: 2026-10-04
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -96,3 +96,26 @@ Cursor plugin manifest·stdio MCP·skill을 패키지에 포함한다. SDK는 MC
 합성 pull은 한 delivery의 검증·persist·ACK·claim 후 owner gate를 만든다. 승인 뒤에도 최소 denied R을 보낸다. control result는 ACK까지만 수행하고 재응답하지 않는다. tool 출력은 state·transport·actualConnection·webhook·evidenceFetch만 포함하며 원문·claim·lease·gate ID·credential을 숨긴다. processing busy/failure/empty는 업무 done과 구분한다. 같은 프로세스의 동시 pull은 busy로 거부한다. 공유 claim은 계속 relay가 집행한다.
 
 Grok Bot Auto Review/Allow once는 KnowsLink owner approve를 대신하지 않는다. 공식 Bot 앱의 실제 도구 검색·hosted Node·network·credential은 후속 확인 대상이다. Cursor IDE 로컬 plugin loading 검사를 Bot 설치 성공으로 표시하지 않는다.
+
+## SAR-MVP-003 시험 메시지 계약
+
+이번 사용자 승인 범위에서 `relay.test.message`를 추가했다. `body`는 `{text:string}`만 허용하며 UTF-8 1–4096 bytes의 비공백 text가 필요하다. deliver는 agent다. reply_to·evidence·ext·render는 허용하지 않는다. envelope 나머지 서명·UUIDv7·idempotency key·TTL 계약은 기존 relay.v1과 같다. registry hash는 변경된 manifest의 compiled SHA256이다.
+
+서버는 명시한 `KNOWSLINK_TEST_AGENTS` 두 agent와 active pair를 검사한다. 시험 envelope는 기존 `/v1/send`에서도 allowlist를 요구한다. machine prefix는 다음 동작만 제공한다. 모든 경로에 agent credential과 시험 allowlist가 필요하다.
+
+| 경로 | 계약 |
+|---|---|
+| GET /v1/test/registry | 시험 revision manifest·SHA256 |
+| GET /v1/test/keys/{agent}/{kid} | 시험 allowlist 상대의 등록 공개키, 기존 pair 검사 |
+| POST /v1/test/send | 서명된 relay.test.message만 허용, receipt-only 결과 |
+| POST /v1/test/pull | 시험 intent의 lease만 반환 |
+| POST /v1/test/persist·ack·claim | 시험 ID만 허용, 기존 lease/recipient/TTL/current 검사 |
+| GET /v1/test/receipts/{id} | 자기 endpoint의 시험 receipt metadata |
+
+HTTP 입력은 64 KiB로 제한한다. 시험 payload는 claim 직후 삭제한다. lease/persist/ACK만으로 text를 model에 노출하지 않는다. 시험 부모로 gate나 업무 result를 만들 수 없다. 수동 회신은 별도 trial send이며 첫 ID를 text에 넣어 대조한다.
+
+MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL·credential 입력은 없다. `knowslink_test_receive`는 입력이 없다. 성공 출력은 `{state:received,message:{id,from,to,text,exp,untrusted:true}}`이며 빈 queue는 `{state:empty,message:null}`다. 원문 노출 예외는 이 승인된 시험 도구에만 적용한다.
+
+`test-loopback`은 HTTP loopback root만 허용한다. `test-remote`는 `https://link.knowslog.com` root와 별도 CF Access header 두 개를 요구한다. relay request는 `/v1/test/` prefix로 변환한다. redirect와 다른 URL을 거부한다. timeout은 body 스트림까지 요청별 10초이며 응답 상한은 64 KiB다. 인증 실패 상세·lease·claim·credential을 tool error에 반환하지 않는다.
+
+`trial_configured_unverified`는 모드 보고일 뿐이다. 실제 remote 수락은 네 관측 ID와 인증된 호출 증거가 모두 있어야 한다. 세부 변수·Codex launcher·Grok 준비는 [adapter 문서](../../../adapters/README.md#승인된-codexgrok-시험-메시지-sar-mvp-003)를 따른다.
