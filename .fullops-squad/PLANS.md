@@ -617,3 +617,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - timeoutDEV msg_de28d186377c/711f2532be423d1ca7707463a20fdc168f50bece: realsocket 기본10000ms RED3/3·QA15000, signal/response GC원인. core33줄최소수정·timercontroller/readrace/finally, 기본10004~10008·QA3/3 10001~10003·cleanup/busy0. 실제source수정, fixture결함아님. lint0. 최신delta리뷰·좁은QA준비, 실제왕복/운영未실행유지.
 
 - timeout delta리뷰 task_58462c732b31/ctx_46daa4a743d8/term_5590df22-782f-4297-8216-08a914e26e3a 기존독립Opus세션 turn_started. 좁은QA task_645a350595f1/ctx_519e3633b1a8/term_49282f03-0b14-4ebe-8ebb-8e2fd55c1e5c freshGrok4.7high tui-idle→input_accepted. 착수a9b033d, fixed711f253. 원본전체QA복제금지.
+
+- timeout delta리뷰 msg_d029ea314a34/b15740de6f2a0a09d2652005bbe2c072815895fe 수락: 고정711f253 75/75 reviewed, 새finding0·원본medium해소, real10s TimeoutError10003·GC regression oldfail/newpass·cleanup0·targetlint0/check0. 원본리뷰누락정정, 원본low5 보존. TESTER좁은QA 후main통합, 실제Grok/Access/배포미검증.
