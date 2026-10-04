@@ -609,3 +609,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - OPS독립리뷰 task_38a400288d85/ctx_3feab214aeea/term_5590df22-782f-4297-8216-08a914e26e3a: effectiveOpus5.5high·turn_started. TESTER freshGrok4.7high term_dab105e8-1cfc-4341-8072-bbf883b82ec3 tui-idle확인, 정규worker-start. fixedcd60e7f, 준비080c2df. 진행체크아웃변경금지.
 
 - OPS msg_4d0d7dbb1afa/0c36730106025be95709236b63f080a510a4aebe 수락가능: 고정cd60e7f 47/47 reviewed, critical/high/medium0·low5, targetlint0/check0, 별도Opus세션c4c411b8. low: 업무pull triallease혼입, claimpolicy라벨, unanchoredpath failclosed, keyfile권한/TOCTOU, errorbody미취소. 이번manualtrial경계에서 추적하며 D12권한검사·businesspull금지 적용. TESTER 수락뒤main/배포 운영 후속OPS 예약. 실제Grok未검증.
+
+- TESTER msg_ef12e8add110 / fa16893870fcaf33e968065e88f2e250a845d09c: 독립SQL·두MCP/CLI왕복 통과, 기본10초bodytimeout이15초pending medium·필수QA실패. main/운영배포 차단유지. timeout전용DEV수정→delta리뷰/좁은QA 후수락. QA메시지SHA/key누락은 원문·cleanHEAD·완료기록의고정fa168938로대조해추적한다. 제품수정아직없음.

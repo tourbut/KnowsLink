@@ -1,0 +1,79 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "tester": 0.26,
+        "dev": 0.74,
+        "ops": 0
+      },
+      "confidence": 0.61
+    },
+    "docs": {
+      "D01": 0.07,
+      "D02": 0.09,
+      "D03": 0.08,
+      "D04": 0.06,
+      "D05": 0.08,
+      "D06": 0.07,
+      "D07": 0.07,
+      "D08": 0.08,
+      "D09": 0.09,
+      "D10": 0.25,
+      "D11": 0.1,
+      "D12": 0.22,
+      "D13": 0.15
+    }
+  },
+  "usage": {
+    "input_tokens": 2568,
+    "output_tokens": 314,
+    "cost": 0.000107856
+  },
+  "error": null,
+  "latency_seconds": 0.291,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "인증된 구현의 필수 QA 실패를 같은 DEV 기술책임으로 수정한다. 범위/완료조건은 유지한다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.01,
+      "claude claude-sonnet-5-5 high": 0.22,
+      "claude claude-opus-5-5 medium": 0.12,
+      "codex gpt-6.1-sol medium": 0.04,
+      "claude claude-opus-5-5 high": 0.6,
+      "codex gpt-6.1-sol high": 0.01
+    },
+    "usage": {
+      "input_tokens": 856,
+      "output_tokens": 66,
+      "cost": 3.5952e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}

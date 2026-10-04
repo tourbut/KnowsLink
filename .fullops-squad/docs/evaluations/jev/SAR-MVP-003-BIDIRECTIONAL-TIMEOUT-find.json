@@ -1,0 +1,64 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT",
+  "head": "d65f8c678d4ab740a8a877d7960b051080cf584d",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 68,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 68
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/src/test-transport.ts",
+      "summary": "Explicit trial-message transport for Codex and Grok; fixed HTTPS remote origin, paired peer, no business effects.",
+      "probability": 0.62
+    },
+    {
+      "path": "adapters/src/trial-boundaries.test.ts",
+      "summary": "Trial client checks held/config guards, fixed remote headers, streamed response bounds and timeout without contacting remote services.",
+      "probability": 0.23
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/mcp.test.ts",
+      "summary": "Exercise the actual SDK stdio handshake, default hold, URL guard, and redirect rejection.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "summary": "Synthetic QA seed and end-to-end adapter check; credentials stay in ignored local files only.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.95,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3518,
+    "output_tokens": 729,
+    "cost": 0.000147756
+  },
+  "latency_seconds": 0.265,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
