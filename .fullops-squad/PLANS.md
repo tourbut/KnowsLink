@@ -705,3 +705,11 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - RATE-FIX 착수 task_8c3fd6fcc56b/ctx_6407d8fcefa7/term_b516f045-bbd5-4fe7-9840-a6deb007de79 새Opus5.5high effective·turn_started. DEV 실제두terminalidle·clean 확인 뒤 시작b643e73·원격push. 진행DEV는변경하지않는다.
 - UI Orca 캡처blank가간헐지속: escalation/질문msg_8d3777e2f711. coor의CF탭 병행으로visible surface경합가능성을확인해coor브라우저조작을중지하고UI전용page독점복구를회신했다. 지속시같은fixed59/실제localhost fixture의별도Chromium/Playwright 직접시각관측을허용한다. Orca DOM/flow와대체engine/PNG를구분하고합성/소스변경/하네스갱신없음. 실제수락기준은그대로다.
 - CF읽기현재상태: 기존One설정 DOM은로그인상태·요금제미선택을재확인했다. 새CF 계정/결제정보 읽기전용탭은alert/image만표시해Workersplan/EmailSending상태를확인하지못했다. 일시goto runtime_unavailable 뒤othercommands는응답하지만UI독점복구를위해추가브라우저조회중지. 결제·구독·설정·토큰생성없음.
+
+
+## SAR-PUBLIC-IDENTITY-001-UI 통합 보류 — 2026-10-05
+
+- 완료 메시지 `msg_4be88ea84692`, UI 결과 SHA `cf0ab09c073e6543fb07701d79f2bf120f921cbc`, fixed 제품 `59b66ada8b36802484cc6d7e22523257b50572cc`다. 로컬 fixture UX01–03은 직접 시각 PASS이며 실제 이메일·운영 공개·최종 노우↔다닷은 미실행이다. Orca 캡처 장애와 승인된 별도 Chromium 보완은 UI 보고에 보존했다.
+- 사용자 Stop hook의 통합 요청에 따라 fullops-orca merge 조건을 확인했다. main은 `94533b207b456c0560800fe30a7c90b2b5887c6e`다. UI 결과 SHA는 선행 제품59/코드a446와 coor 준비·검토 기록을 조상으로 포함한다. 이 SHA를 그대로 병합하면 UI 문서만 별도로 수락할 수 없다. squash/cherry-pick으로 완료 SHA 조상 관계를 없애지 않는다.
+- 현재 UI 결과 SHA의 독립 fixed-snapshot 리뷰가 없다. 원래 F1 medium의 main 수락 보류와 원본 독립 QA 대기는 유지한다. UI 검수자의 자기 검토를 독립 리뷰로 대신하지 않았다. 단순히 전체 서비스 수락 전이라는 이유로 문서를 보류한 것이 아니며, 실제 이메일/운영 미실행을 로컬 코드 단계의 추가 선행 조건으로 만들지 않는다.
+- `integration.py hold`에 같은 사유를 등록했다. 담당은 coor이며 DEV F1 수정 후보 delta 리뷰·좁은 QA와 TESTER 원본 독립 QA의 수락 근거를 연결한다. 재개 조건은 이 선행 검수와 UI 최신 SHA의 별도 세션 리뷰 통과다. 이후 검토 범위만 SHA 보존 main 병합·origin/main 일반 push·조상 확인을 수행하고 idle/clean 역할을 동기화한다. 진행 worker와 사용자 체크아웃은 그대로 유지한다.
