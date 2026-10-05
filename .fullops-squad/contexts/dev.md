@@ -1,9 +1,9 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-04
+updated: 2026-10-05
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV]
 summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
@@ -34,3 +34,7 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 기존 beta에 private trial credential/pair를 준비했으며 CF token·후보 배포·Grok parent 안전 전달은 후속이다. [기록](../docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md).
 
 - 2026-10-04 SAR-MVP-003-BIDIRECTIONAL-TIMEOUT: inline `AbortSignal.timeout()`과 reader만 남긴 `Response`는 GC로 회수될 수 있다. 그러면 멈춘 body 읽기가 끝나지 않는다. timer가 controller를 강하게 참조하고 read를 abort와 race한다. timeout 회귀는 짧은 값이 아니라 실제 기본값과 강제 GC로 검사한다. [기록](../docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md).
+
+- 2026-10-05 SAR-PUBLIC-IDENTITY-001-DEV: 회원 신원은 relay 이메일 코드+표준 SMTP로 구현했다. Access OTP는 D02 한도·로그아웃 재확인을 relay가 집행할 수 없어 쓰지 않았다. 확인 전 owner 미생성, 회원 owner는 bearer 없음.
+- 거부 요청까지 세는 rate 목록은 flood에서 상태를 키운다. 첫 거부에서 멈추고 limit+1개만 보관한다. 안내 재시도 시각에 실제 허용되는지 함께 검사한다.
+- `http.CrossOriginProtection`은 Node adapter 호출에 영향이 없다. 공개 후보는 `KNOWSLINK_SYNTHETIC_SIGNUP`을 비운다. [기록](../docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md).
