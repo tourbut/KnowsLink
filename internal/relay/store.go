@@ -72,16 +72,26 @@ type State struct {
 	Messages    map[string]*Message
 	Idempotency map[string]string
 	Gates       map[string]*Gate
+	Members     map[string]*Member
+	Identities  map[string]string
+	Sessions    map[string]*Session
+	Challenges  map[string]*Challenge
+	Rates       map[string][]time.Time
 	TestAgents  map[string]bool `json:"-"`
 }
 
 func newState() *State {
-	return &State{map[string]*Owner{}, map[string]*Agent{}, map[string]*Pair{}, map[string]*Message{}, map[string]string{}, map[string]*Gate{}, nil}
+	return &State{Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
+		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}}
 }
 
 type Service struct {
 	Pool       *pgxpool.Pool
 	TestAgents map[string]bool
+	// SyntheticSignup keeps the local /v1/owners fixture; public members come only from verified email.
+	SyntheticSignup bool
+	Mail            Mailer
+	ClientIPHeader  string
 }
 
 func randomToken() string {
@@ -188,6 +198,7 @@ func (st *State) current(m *Message) bool {
 	return pair != nil && pair.State == "active" && pair.Generation == m.Generation
 }
 func (st *State) sweep(now time.Time) {
+	st.sweepIdentity(now)
 	for id, m := range st.Messages {
 		if now.Sub(m.Receipt.Accepted) >= 24*time.Hour {
 			delete(st.Idempotency, m.Receipt.From+"/"+m.Key)

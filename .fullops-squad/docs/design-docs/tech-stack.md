@@ -2,9 +2,9 @@
 id: D03
 title: KnowsLink 기술 스택
 status: review
-updated: 2026-10-03
+updated: 2026-10-05
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV]
 upstream: [D02]
 summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
@@ -28,6 +28,7 @@ summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 | cloudflared | 2026.9.1와 multi-platform digest, 선택 profile |
 | 이미지 런타임 | Alpine 3.23와 digest, non-root UID/GID 65532 |
 | sqlc | config version 2, `sql_package: pgx/v5`; CLI v1.30.0; LockRelay·SaveRelay 실제 생성 |
+| 이메일 신원 | Go 표준 `net/smtp`·`crypto/tls`·`net/mail`·`mime/quotedprintable`, `http.CrossOriginProtection`(Go 1.25+). 새 의존성 없음 |
 | 보조 도구 | Python 3 표준 라이브러리, GNU Make, Docker Compose |
 
 의존성 검증과 생성물은 `go.sum`, `adapters/package-lock.json`으로 고정한다. goose 의존성 검사 과정에서 다운로드된 SQLite 테스트 의존성은 제품 저장소로 사용하지 않는다. 런타임은 pgx Postgres만 연결한다.

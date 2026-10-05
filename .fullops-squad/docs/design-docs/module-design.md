@@ -2,9 +2,9 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-04
+updated: 2026-10-05
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -72,3 +72,19 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 - `deploy/knowslink/access_trial_plan.py`: 단기 distinct service token·reusable non_identity policy·path 앱 본문과 보호된 Tunnel 후보를 생성한다. live mutation은 수행하지 않는다.
 
 검증은 TestTrialMessageSafety·TestTrialSchemaAndConfiguration·TestTrialHTTP, trial-boundaries.test.ts, trial-check.ts로 연결된다. `make verify-mvp`는 기존 업무/gate 회귀와 두 독립 MCP 프로세스의 실제 Postgres 왕복을 함께 검사한다. `make verify-grok-plugin`은 네 tool을 기대한다. default held·실제 계정 수락의 분리는 계속 유지한다. [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)에 ID·명령·exit code·남은 실제 조건을 기록한다.
+
+## SAR-PUBLIC-IDENTITY-001 신원 모듈
+
+- `internal/relay/identity.go`: 이메일 정규화·마스킹, rolling 한도(`take`/`hit`), 코드 발급·검증, 회원·owner 바인딩, 세션 수명, 정리.
+- `internal/relay/member.go`: 시작·확인·홈·재확인·로그아웃 화면과 HTTP 상태. 메일 발송은 lock 밖에서 수행한다.
+- `internal/relay/mail.go`: 표준 `net/smtp` submission. implicit TLS와 STARTTLS를 지원한다. PLAIN 인증은 TLS 또는 localhost에서만 보낸다.
+- `internal/relay/http.go`: `http.CrossOriginProtection`, 합성 가입 설정, Basic owner와 회원 세션이 공유하는 gate 화면.
+- `cmd/relay/main.go`: SMTP·발신 주소·client IP header·합성 가입 설정을 읽는다. 값은 출력하지 않는다.
+- `scripts/mail_sink.py`: 로컬 QA 전용 SMTP sink. 받은 메일을 0600 파일로 저장한다. 실제 발송 서비스가 아니다.
+
+| 검사 | 내용 |
+|---|---|
+| `TestNormalizeEmail`, `TestRollingWindowBoundary`, `TestSendLimits` | 주소 형식·별칭·rolling 경계·all-or-nothing·거부 집계·60s/5/20/100 한도·NAT 분리·rate key 원문 미보관 |
+| `TestCodeVerificationAndMembers`, `TestSessionLifetime` | 오답 5회·만료·재사용·확인 전 owner 미생성·재로그인 연속성·issuer 분리·회원 100 수용량·절대/무활동 수명 |
+| `TestSMTPMailer` | 설정 오류의 비밀값 미노출·이름 표기 거부·실제 SMTP 대화·연결 실패 |
+| `TestEmailIdentity`(integration) | 실제 Postgres HTTP 흐름: 가입·홈·재로그인·재시작·동시 첫 가입·1회 코드·로그아웃 재사용 차단·전체 로그아웃 재확인·무활동 만료·agent credential 유지·발송 실패·429·client IP header·cross-site 403·회원 gate 격리와 결정·합성 가입 차단 |

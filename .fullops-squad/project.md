@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 프로젝트 기준
 status: review
-updated: 2026-10-04
+updated: 2026-10-05
 owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV]
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV]
 summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다
 ---
 
@@ -13,7 +13,7 @@ summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계�
 |---|---|
 | 제품 목적 | 승인된 에이전트 사이의 선택적 인간개입 전달; SAR-SETUP-001 D02 |
 | 기본 브랜치·원격 | `main`, `origin` (`https://github.com/tourbut/KnowsLink.git`) |
-| 현재 상태 | 로컬 합성 relay.v1·owner gate·shared inbox·TypeScript stub 후보; 독립 수락·운영 공개는 후속 |
+| 현재 상태 | 로컬 합성 relay.v1·owner gate·shared inbox·TypeScript stub 후보와 일반 이메일 신원·세션·자기 owner 홈 후보(SAR-PUBLIC-IDENTITY-001); 독립 수락·운영 공개는 후속 |
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
@@ -54,7 +54,7 @@ summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계�
 ## 공통 기준의 적용과 예외
 
 기존 프로젝트 규칙은 없으므로 공통 규칙을 기본값으로 적용한다. 이후 기술 정본이 생기면 연결하며 보안·권한·리뷰 수락 기준은 낮추지 않는다.
-변경한 동작과 실패·경계 조건을 검증한다. DEV 자동 검증과 독립 기능 QA를 구분한다. 업무 API·Go owner UI·실제 singleton SQL·sqlc 생성이 후보에 포함된다. 공개 한도·실제 신원 인증·DEC-02 공개 정책·벤더 연결은 후속이다.
+변경한 동작과 실패·경계 조건을 검증한다. DEV 자동 검증과 독립 기능 QA를 구분한다. 업무 API·Go owner UI·실제 singleton SQL·sqlc 생성이 후보에 포함된다. 일반 이메일 코드 신원·세션·신원 한도는 SAR-PUBLIC-IDENTITY-001 후보다. agent 연결·관계·실메시지 한도·DEC-02 공개 정책·벤더 연결은 후속이다.
 작업 지시서에는 적용 문서와 기준 SHA를 남기고 worker와 검토자가 같은 버전을 읽도록 한다.
 
 ## 검증 담당과 후속 인계
