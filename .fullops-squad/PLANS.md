@@ -665,3 +665,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 일반 서비스 제품 과제 착수: task_c21892048d9c/ctx_000841343790/term_81e70a12-62bc-40a4-9ecc-35c3e27643c3. 새 Codex gpt-6.1-sol high effective·turn_started 확인, designer 시작608fe06. 일반 이메일 입력 대기와 별개로 요구·기능 순서·다음 구현 인계 진행. dots 정식 공식 문서 확인, 사용자 dot 이름 다닷.
 
 - SAR-PUBLIC-SERVICE-OPS-READINESS: 일반 서비스 제품 결정에 필요한 실제 서버 자원·신원 공급자·원점 보호·복구/rollback 근거를 별도 OPS 읽기 전용 과제로 배정한다. route implementation/ops Sonnet5.5high, D12. CF/서버 쓰기·메일 발송 없이 조사하며 designer 기획과 파일 소유권을 분리한다.
+
+- OPS 읽기 전용 준비 착수: task_22ac345acfc3/ctx_fe22da7866ab/term_e1e384e2-ecb1-442b-ad19-19229a1d095d, 새 Sonnet5.5high effective·turn_started. 시작6865988. designer ctx_000841343790에 운영 조사와 공식 dots OAuth/MCP 근거를 전달했다. 두 진행 체크아웃은 동기화하지 않는다.
