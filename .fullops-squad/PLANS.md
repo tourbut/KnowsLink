@@ -684,3 +684,7 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 역할 동기화 예약: OPS 기존 사용자 소유 term_bccf5a8b의 idle을 확인하지 못했다. OPS 체크아웃 db10f81을 유지하고 최신 main94533b2 동기화를 예약한다. 상태 확인·clean 확인 후 다음 OPS 착수 전에 반영한다. 모든 역할 동기화 완료로 표시하지 않는다.
 
 - identity 구현 착수: task_568f0a5f227c/ctx_cae2f16a8f1d/term_34307275-a118-4e27-a016-2c46bef7c70b. 새 Claude Opus5.5high effective·turn_started 확인. DEV 시작d7745d5는 origin/main945 포함·clean·원격 역할 push 완료. 제품 PS01–04·신원/세션·자기 owner 구현과 자동 검사 진행. 실제 일반 이메일 확인과 노우↔다닷 최종 운영 시험은 후속이다.
+
+- 추가 역할 동기화 확인: TESTER는 현재 terminal0·clean이므로 main94533b2로 fast-forward·원격push 완료. designer는 새 term_70c0653d가 agent-hooks-review-prompt 상태여서 기존1233e4c 체크아웃을 보존한다. 최신 main94533b2 반영은 실제 idle 확인 뒤 다음 착수 전에 예약한다. DEV 구현 진행 체크아웃은 유지한다.
+
+- 운영 시험 대상·같은 일반 이메일·분리 agent/키·최초 명시 수락·기존 CLI 증거와 구분을 이슈 댓글5994796681에 게시했다. 일반 회원용 설치 안내 준비 뒤 노우 작업을 이어 안내한다. 현재 이전 시험 인증/루프 재사용은 요구하지 않는다.
