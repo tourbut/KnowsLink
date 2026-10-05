@@ -37,7 +37,7 @@ func setup(t *testing.T, pool *pgxpool.Pool) *fixture {
 	if _, err := pool.Exec(ctx, `UPDATE relay_state SET data='{}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
 		t.Fatal(err)
 	}
-	f := &fixture{&Service{Pool: pool}, nil, map[string]string{}, map[string]string{}, map[string]ed25519.PrivateKey{}, t}
+	f := &fixture{&Service{Pool: pool, SyntheticSignup: true}, nil, map[string]string{}, map[string]string{}, map[string]ed25519.PrivateKey{}, t}
 	f.handler = f.s.Handler()
 	for _, id := range []string{"agent_a", "agent_b", "agent_c"} {
 		owner := f.call("POST", "/v1/owners", "", map[string]any{}, 200)

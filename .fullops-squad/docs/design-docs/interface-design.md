@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-04
+updated: 2026-10-05
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -119,3 +119,32 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 `test-loopback`은 HTTP loopback root만 허용한다. `test-remote`는 `https://link.knowslog.com` root와 별도 CF Access header 두 개를 요구한다. relay request는 `/v1/test/` prefix로 변환한다. redirect와 다른 URL을 거부한다. timeout은 body 스트림까지 요청별 10초이며 응답 상한은 64 KiB다. 인증 실패 상세·lease·claim·credential을 tool error에 반환하지 않는다.
 
 `trial_configured_unverified`는 모드 보고일 뿐이다. 실제 remote 수락은 네 관측 ID와 인증된 호출 증거가 모두 있어야 한다. 세부 변수·Codex launcher·Grok 준비는 [adapter 문서](../../../adapters/README.md#승인된-codexgrok-시험-메시지-sar-mvp-003)를 따른다.
+
+## SAR-PUBLIC-IDENTITY-001 회원 화면과 세션
+
+상위 요구사항은 [D02 일반 이메일 서비스](../planning/product-specs/SAR-PUBLIC-SERVICE.md) PS-01–04다. 회원 화면은 Go `html/template` form이며 JSON API가 아니다. 모든 쓰기는 POST다. cross-origin 브라우저 쓰기는 403이다.
+
+| 메서드·경로 | 인증 | 계약 |
+|---|---|---|
+| GET / | 없음 | 이메일 입력 화면. 유효 세션이면 303 `/home`. `n=logout|all|expired`는 고정 안내만 표시 |
+| POST /auth/start | 없음 | form `email`. 유효하면 코드 메일 발송 후 303 `/auth/verify`와 `__Host-kl_pending`(600s). 형식 오류 422, 한도 429, 발송 실패·미설정 503 |
+| GET /auth/verify | pending cookie | 확인 대기 화면. 코드가 없거나 만료면 410 |
+| POST /auth/verify | pending cookie | form `code`. 성공 303 `/home`과 `__Host-kl_session`. 오답 401(남은 횟수), 만료·5회 오답·재사용 401, 회원 수용량 503, 비활성 403, 한도 429 |
+| GET /home | session | 마스킹 이메일·회원 ID·자기 agent·관계·gate·세션 동작 |
+| POST /auth/logout | session | 현재 세션 삭제, 303 `/?n=logout` |
+| POST /auth/reauth | session | 회원 이메일로 새 코드 발송, 303 `/auth/verify` |
+| POST /auth/logout-all | session | 최근 5분 확인이 있으면 회원의 모든 세션 삭제(303 `/?n=all`). 없으면 403 |
+| GET·POST /home/gates/{id} | session | 기존 gate 화면과 결정. CSRF는 세션 token HMAC. 다른 회원 gate 조회 403, 결정 409 |
+
+세션이 없거나 만료된 회원 경로는 303 `/?n=expired`다. HTTP Basic 창을 띄우지 않는다. 회원 세션 cookie는 `/v1` owner·agent API의 credential이 아니다(401). `POST /v1/owners`는 합성 가입 설정이 없으면 403이다.
+
+확인 메일은 `text/plain; charset=UTF-8` quoted-printable이다. 제목은 `KnowsLink 확인 코드`다. 본문은 6자리 코드와 10분·1회 안내다. 링크는 넣지 않는다. 메일 보안 검사기가 링크를 열어 코드를 소모하는 문제를 피한다.
+
+설정은 다음 환경 변수다. 값은 로그와 오류에 출력하지 않는다.
+
+| 변수 | 의미 |
+|---|---|
+| `KNOWSLINK_SMTP_URL` | `smtps://user:secret@host:465` 또는 `smtp://[user:secret@]host:port`. 비우면 코드 발송은 503 |
+| `KNOWSLINK_MAIL_FROM` | 발신 주소 하나. 이름 표기는 거부 |
+| `KNOWSLINK_CLIENT_IP_HEADER` | 빈 값 또는 `CF-Connecting-IP`. Tunnel만 relay에 닿을 때만 설정 |
+| `KNOWSLINK_SYNTHETIC_SIGNUP` | `1`일 때만 `/v1/owners` 합성 가입 허용. 공개 후보는 비움 |

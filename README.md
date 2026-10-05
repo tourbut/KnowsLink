@@ -62,10 +62,25 @@ docker compose -p knowslink-qa-local --env-file .env.example down
 
 `down`은 자기 QA volume을 보존한다. `--volumes`는 해당 합성 project를 폐기할 때만 추가한다.
 
+## 일반 이메일 로그인 확인 (SAR-PUBLIC-IDENTITY-001)
+
+회원 화면은 `/`(시작)·`/auth/verify`(확인)·`/home`(자기 owner 홈)이다. relay가 6자리 코드를 SMTP로 보낸다. 계약은 [D05](.fullops-squad/docs/design-docs/interface-design.md#sar-public-identity-001-회원-화면과-세션)다.
+로컬 화면 검수는 `scripts/mail_sink.py`의 QA 전용 SMTP sink를 사용한다. 실제 메일을 보내지 않는다.
+
+```sh
+python3 scripts/mail_sink.py build/qa-mail --port 2525
+DATABASE_URL='postgres://knowslink:<password>@127.0.0.1:<port>/knowslink?sslmode=disable' \
+RELAY_ADDR=127.0.0.1:18082 KNOWSLINK_SMTP_URL=smtp://127.0.0.1:2525 KNOWSLINK_MAIL_FROM=noreply@knowslog.com \
+./build/relay
+```
+
+브라우저로 `http://localhost:18082/`를 연다. cookie가 `Secure`이므로 `localhost` 또는 HTTPS 주소를 사용한다. 받은 메일은 `build/qa-mail/*.eml`(0600)에 있다. 코드는 캡처·로그에 남기지 않는다.
+`KNOWSLINK_SYNTHETIC_SIGNUP=1`은 로컬 합성 fixture(`/v1/owners`)에만 쓴다. 공개 후보는 이 값을 비운다. 운영 SMTP 값은 Git 미추적 `.env`로만 제공한다.
+
 ## API와 adapter
 
 계약은 [D05](.fullops-squad/docs/design-docs/interface-design.md)다.
-API Bearer credential은 owner/agent 역할을 구분한다. 가입은 합성용이며 실사용자 신원 인증은 아니다.
+API Bearer credential은 owner/agent 역할을 구분한다. `/v1/owners` 가입은 합성용이며 실사용자 신원 인증이 아니다. 실제 회원은 이메일 코드 확인으로만 만든다.
 key PoP는 owner ID·AgentID·kid·public에 묶인 Ed25519다. rotation은 이전 키를 revoke한다.
 accept/approve/revoke는 owner만 수행한다. pending invite는 active pair slot이 아니다.
 
@@ -78,7 +93,7 @@ adapter는 registry·signature를 재검증한 뒤 shared persist·ACK·claim을
 
 ## 운영 경계와 저장
 
-기존 `DATABASE_URL`, `POSTGRES_PASSWORD`, `RELAY_ADDR`, `RELAY_PORT`, `MIGRATIONS_DIR`, `TUNNEL_TOKEN` 설정을 유지한다.
+기존 `DATABASE_URL`, `POSTGRES_PASSWORD`, `RELAY_ADDR`, `RELAY_PORT`, `MIGRATIONS_DIR`, `TUNNEL_TOKEN` 설정을 유지한다. 신원 설정은 `KNOWSLINK_SMTP_URL`, `KNOWSLINK_MAIL_FROM`, `KNOWSLINK_CLIENT_IP_HEADER`, `KNOWSLINK_SYNTHETIC_SIGNUP`이다.
 기본 cloudflared profile은 OFF다. Postgres는 private network에 있고 relay는 loopback에만 게시한다.
 공개 hostname 연결은 수락된 후보 이후 OPS 과제다. 공개 한도·신원 인증·독립 QA/UI/리뷰 없이 이 합성 후보를 공개하지 않는다.
 

@@ -64,7 +64,11 @@ func (s *Service) Handler() http.Handler {
 		writeJSON(w, 200, map[string]any{"sha256": RegistrySHA256, "manifest": string(registry)})
 	})
 	mux.HandleFunc("POST /v1/owners", func(w http.ResponseWriter, r *http.Request) {
-		// Local synthetic signup is not a production identity verification service.
+		// Local synthetic signup is not identity verification; public deployments leave it off so it cannot mint members or owners.
+		if !s.SyntheticSignup {
+			respond(w, nil, fault("sender_not_allowed"))
+			return
+		}
 		result, err := s.transaction(r.Context(), func(st *State, _ time.Time) (any, error) {
 			token := randomToken()
 			id := "owner_" + randomToken()
@@ -169,8 +173,11 @@ func (s *Service) Handler() http.Handler {
 		respond(w, result, err)
 	})
 	mux.HandleFunc("GET /owner", s.ownerPage)
-	mux.HandleFunc("GET /owner/gates/{id}", s.gatePage)
-	mux.HandleFunc("POST /owner/gates/{id}", s.gateDecision)
+	mux.HandleFunc("GET /owner/gates/{id}", s.gatePage(basicOwner))
+	mux.HandleFunc("POST /owner/gates/{id}", s.gateDecision(basicOwner))
+	s.memberRoutes(mux)
+	// Stdlib Sec-Fetch-Site/Origin check rejects cross-origin browser writes; non-browser agent calls carry neither header.
+	protected := http.NewCrossOriginProtection().Handler(mux)
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
@@ -180,7 +187,7 @@ func (s *Service) Handler() http.Handler {
 			s.testHandler(mux).ServeHTTP(w, r)
 			return
 		}
-		mux.ServeHTTP(w, r)
+		protected.ServeHTTP(w, r)
 	})
 }
 func respond(w http.ResponseWriter, result any, err error) {
@@ -396,12 +403,30 @@ func csrf(token, id string) string {
 	return base64.RawURLEncoding.EncodeToString(mac.Sum(nil))
 }
 
-var page = template.Must(template.New("gate").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>KnowsLink 승인</title><style>body{font:18px system-ui;max-width:760px;margin:40px auto;padding:20px;color:#17232b;background:#f5f7f8}section{background:white;padding:24px;border:1px solid #bbc5cd}pre{white-space:pre-wrap;overflow-wrap:anywhere}button{font:inherit;padding:12px;margin:8px}dt{font-weight:bold}a{color:#164da0}</style><h1>KnowsLink 요청 승인</h1><section><h2>상태: {{.State}}</h2><dl><dt>발신 에이전트</dt><dd>{{.From}}</dd><dt>대상 에이전트</dt><dd>{{.To}}</dd><dt>원요청 ID</dt><dd>{{.Parent}}</dd><dt>Intent</dt><dd>{{.Intent}}</dd><dt>만료</dt><dd>{{.Exp}}</dd><dt>적용 정책</dt><dd>{{.Policy}}</dd></dl><h2>검증된 typed body</h2><pre>{{.Body}}</pre><p>Approve는 인간 게이트만 통과합니다. 정보 공개나 일정 실행을 허용하지 않습니다.</p>{{if .Active}}<form method="post"><input type="hidden" name="csrf" value="{{.CSRF}}"><button name="decision" value="approve">Approve 승인</button><button name="decision" value="deny">Deny 거절</button></form>{{else}}<p>승인·거절 버튼 비활성: {{.State}}</p>{{end}}<a href="/owner">Owner 작업 화면</a></section></html>`))
+var page = template.Must(template.New("gate").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>KnowsLink 승인</title><style>body{font:18px system-ui;max-width:760px;margin:40px auto;padding:20px;color:#17232b;background:#f5f7f8}section{background:white;padding:24px;border:1px solid #bbc5cd}pre{white-space:pre-wrap;overflow-wrap:anywhere}button{font:inherit;padding:12px;margin:8px}dt{font-weight:bold}a{color:#164da0}</style><h1>KnowsLink 요청 승인</h1><section><h2>상태: {{.State}}</h2><dl><dt>발신 에이전트</dt><dd>{{.From}}</dd><dt>대상 에이전트</dt><dd>{{.To}}</dd><dt>원요청 ID</dt><dd>{{.Parent}}</dd><dt>Intent</dt><dd>{{.Intent}}</dd><dt>만료</dt><dd>{{.Exp}}</dd><dt>적용 정책</dt><dd>{{.Policy}}</dd></dl><h2>검증된 typed body</h2><pre>{{.Body}}</pre><p>Approve는 인간 게이트만 통과합니다. 정보 공개나 일정 실행을 허용하지 않습니다.</p>{{if .Active}}<form method="post"><input type="hidden" name="csrf" value="{{.CSRF}}"><button name="decision" value="approve">Approve 승인</button><button name="decision" value="deny">Deny 거절</button></form>{{else}}<p>승인·거절 버튼 비활성: {{.State}}</p>{{end}}<a href="{{.Back}}">작업 화면으로 돌아가기</a></section></html>`))
 
-func (s *Service) gateView(r *http.Request) (any, error) {
+// ownerAuth returns the CSRF key, the owner resolver, and the page to return to.
+type ownerAuth func(r *http.Request) (string, func(*State, time.Time) (string, error), string)
+
+func basicOwner(r *http.Request) (string, func(*State, time.Time) (string, error), string) {
 	token := ownerToken(r)
+	return token, func(st *State, _ time.Time) (string, error) { return st.principal(token, "owner") }, "/owner"
+}
+func sessionOwner(r *http.Request) (string, func(*State, time.Time) (string, error), string) {
+	token := readCookie(r, sessionCookie)
+	return token, func(st *State, now time.Time) (string, error) {
+		id, _, err := st.session(token, now)
+		if err != nil {
+			return "", err
+		}
+		return st.Members[id].Owner, nil
+	}, "/home"
+}
+
+func (s *Service) gateView(r *http.Request, auth ownerAuth) (any, error) {
+	token, resolve, back := auth(r)
 	return s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		owner, err := st.principal(token, "owner")
+		owner, err := resolve(st, now)
 		if err != nil {
 			return nil, err
 		}
@@ -409,7 +434,7 @@ func (s *Service) gateView(r *http.Request) (any, error) {
 		if g == nil || g.Owner != owner {
 			return nil, fault("sender_not_allowed")
 		}
-		view := map[string]any{"State": g.State, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": g.Exp, "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": false, "Body": "원문 부재: 승인 불가"}
+		view := map[string]any{"State": g.State, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": g.Exp, "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": false, "Body": "원문 부재: 승인 불가", "Back": back}
 		m := st.Messages[g.Parent]
 		if m != nil && len(m.Envelope) > 0 {
 			e, err := Parse(m.Envelope)
@@ -434,58 +459,73 @@ func ownerError(w http.ResponseWriter, err error) {
 	}
 	http.Error(w, err.Error(), statusFor(err))
 }
-func (s *Service) gatePage(w http.ResponseWriter, r *http.Request) {
-	view, err := s.gateView(r)
-	if err != nil {
-		ownerError(w, err)
+
+// gateError sends members back to email login instead of the owner Basic prompt.
+func gateError(w http.ResponseWriter, r *http.Request, back string, err error) {
+	if back == "/home" && err.Error() == "invalid_auth" {
+		expired(w, r)
 		return
 	}
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	_ = page.Execute(w, view)
+	ownerError(w, err)
 }
-func (s *Service) gateDecision(w http.ResponseWriter, r *http.Request) {
-	token := ownerToken(r)
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "invalid_schema", 422)
-		return
-	}
-	if !hmac.Equal([]byte(r.PostForm.Get("csrf")), []byte(csrf(token, r.PathValue("id")))) {
-		http.Error(w, "invalid_csrf", 403)
-		return
-	}
-	_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		owner, err := st.principal(token, "owner")
+func (s *Service) gatePage(auth ownerAuth) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		view, err := s.gateView(r, auth)
 		if err != nil {
-			return nil, err
+			_, _, back := auth(r)
+			gateError(w, r, back, err)
+			return
 		}
-		g := st.Gates[r.PathValue("id")]
-		if g == nil || g.Owner != owner || g.State != "pending" || !now.Before(g.Exp) {
-			return nil, fault("invalid_gate")
-		}
-		m := st.Messages[g.Parent]
-		h := st.Messages[g.ID]
-		if m == nil || h == nil || len(m.Envelope) == 0 || !st.current(m) || !st.current(h) || m.Generation != g.Generation || m.Receipt.Digest != g.Digest {
-			return nil, fault("invalid_gate")
-		}
-		decision := r.PostForm.Get("decision")
-		if decision != "approve" && decision != "deny" {
-			return nil, fault("invalid_schema")
-		}
-		h.Receipt.State = "delivered"
-		h.Persisted = true
-		h.Envelope = nil
-		h.Inbox = nil
-		g.State = "denied"
-		if decision == "approve" {
-			g.State = "approved"
-		}
-		return nil, nil
-	})
-	if err != nil {
-		ownerError(w, err)
-		return
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		_ = page.Execute(w, view)
 	}
-	http.Redirect(w, r, r.URL.Path, http.StatusSeeOther)
+}
+func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		token, resolve, back := auth(r)
+		r.Body = http.MaxBytesReader(w, r.Body, 8*1024)
+		if err := r.ParseForm(); err != nil {
+			http.Error(w, "invalid_schema", 422)
+			return
+		}
+		if !hmac.Equal([]byte(r.PostForm.Get("csrf")), []byte(csrf(token, r.PathValue("id")))) {
+			http.Error(w, "invalid_csrf", 403)
+			return
+		}
+		_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
+			owner, err := resolve(st, now)
+			if err != nil {
+				return nil, err
+			}
+			g := st.Gates[r.PathValue("id")]
+			if g == nil || g.Owner != owner || g.State != "pending" || !now.Before(g.Exp) {
+				return nil, fault("invalid_gate")
+			}
+			m := st.Messages[g.Parent]
+			h := st.Messages[g.ID]
+			if m == nil || h == nil || len(m.Envelope) == 0 || !st.current(m) || !st.current(h) || m.Generation != g.Generation || m.Receipt.Digest != g.Digest {
+				return nil, fault("invalid_gate")
+			}
+			decision := r.PostForm.Get("decision")
+			if decision != "approve" && decision != "deny" {
+				return nil, fault("invalid_schema")
+			}
+			h.Receipt.State = "delivered"
+			h.Persisted = true
+			h.Envelope = nil
+			h.Inbox = nil
+			g.State = "denied"
+			if decision == "approve" {
+				g.State = "approved"
+			}
+			return nil, nil
+		})
+		if err != nil {
+			gateError(w, r, back, err)
+			return
+		}
+		http.Redirect(w, r, r.URL.Path, http.StatusSeeOther)
+	}
 }
 
 var dashboard = template.Must(template.New("owner").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><title>KnowsLink Owner</title><h1>KnowsLink Owner 작업 화면</h1><p>가입·키·초대 관리는 인증된 /v1 API를 사용합니다. 원문은 요청 만료 또는 완료 후 지워집니다.</p><h2>등록 에이전트</h2><ul>{{range .Agents}}<li>{{.}}</li>{{end}}</ul><h2>승인 요청</h2><ul>{{range .Gates}}<li><a href="/owner/gates/{{.ID}}">{{.Parent}}</a> 상태: {{.State}}</li>{{end}}</ul></html>`))

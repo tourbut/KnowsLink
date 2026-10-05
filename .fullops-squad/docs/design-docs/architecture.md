@@ -2,9 +2,9 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-04
+updated: 2026-10-05
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -100,3 +100,43 @@ machine 경로는 `/v1/test/*`다. relay agent 인증·시험 allowlist·active 
 시험 receive는 configured peer와 서명을 확인하고 shared persist→ACK→claim 뒤에만 text를 노출한다. claim 시 원문·inbox를 삭제한다. 반환 text는 `untrusted:true`이며 실행 권한을 만들지 않는다. claim 뒤 출력 전 crash는 표시를 잃을 수 있다. 새로운 key로 자동 재전송하지 않는다.
 
 remote는 기존 `https://link.knowslog.com`만 사용한다. prefix 전용 Service Auth 앱과 distinct agent service tokens를 준비한다. Tunnel의 더 구체적인 path rule은 trial AUD만 검증한다. root/owner rule은 기존 owner AUD를 유지한다. 실제 적용은 독립 fixed-SHA 검토 후 OPS/coor가 수행한다. [D12](../operations/ops-guide.md#13-승인된-양방향-시험-sar-mvp-003)와 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)을 따른다.
+
+## SAR-PUBLIC-IDENTITY-001 일반 이메일 신원과 세션
+
+상위 요구사항은 [D02 일반 이메일 서비스](../planning/product-specs/SAR-PUBLIC-SERVICE.md)의 PS-01–04와 신원 관련 PS-11이다. 화면 기준은 [UX-01–03](mockups/SAR-PUBLIC-SERVICE-UX.md)이다. 제품 고정 SHA는 `1233e4c3167f722d51f99cb2ef495691734be714`다. 기술 계획과 근거는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md)에 있다.
+
+### 신원 제공자 선택
+
+relay가 이메일 확인 코드를 직접 발급하고 검증한다. 발송은 표준 SMTP submission이다. 운영 후보 경로는 Cloudflare Email Service SMTP(`smtp.mx.cloudflare.net:465`, implicit TLS)다. 다른 SMTP 제공자도 같은 설정으로 쓸 수 있다.
+
+Cloudflare Access One-time PIN을 회원 신원으로 쓰지 않는다. 이유는 다음과 같다.
+
+- D02의 오답 5회·재발송 60s·이메일/IP/전체 시간당 한도를 relay가 관측하거나 집행할 수 없다.
+- relay 로그아웃 뒤에도 Access 세션 cookie로 이메일 재확인 없이 다시 들어올 수 있다.
+- root 정책을 모든 OTP 이메일로 열어야 한다. Zero Trust 좌석 한도와 요금은 미확인이다(OPS 준비 보고 `0313deae`).
+
+기존 owner-only Access 앱과 Basic owner UI는 운영 관리 경계로 유지한다. 일반 회원 인증으로 사용하지 않는다.
+
+### 회원·owner·세션 경계
+
+- 회원은 `(issuer, 정규화 이메일)` 하나에 묶인다. issuer는 `knowslink-email-otp`다. 다른 issuer의 같은 이메일은 자동 병합하지 않는다.
+- 정규화는 앞뒤 공백 제거와 전체 소문자화다. `+tag`와 점 별칭은 별도 신원으로 유지한다. 제공자별 별칭 규칙을 추측해 계정을 합치지 않는다.
+- 코드 확인 성공 전에는 회원과 owner를 만들지 않는다. 첫 확인이 회원과 owner를 같은 transaction에서 만든다. 회원 owner는 bearer credential이 없다.
+- 같은 global row lock이 동시 첫 가입을 직렬화한다. identity index가 같은 신원의 두 번째 회원 생성을 막는다.
+- 브라우저 세션은 random token의 SHA256만 저장한다. cookie는 `__Host-kl_session`, `Secure`, `HttpOnly`, `SameSite=Strict`다.
+- 세션 수명은 절대 12h, 무활동 60분이다. 전체 로그아웃은 최근 5분 안의 이메일 확인을 요구한다.
+- 로그아웃은 브라우저 세션만 지운다. agent credential·키·pair는 세션과 수명이 분리돼 있다.
+- 쓰기 요청은 Go 표준 `http.CrossOriginProtection`이 `Sec-Fetch-Site`/`Origin`으로 cross-origin 브라우저 요청을 거부한다. 회원 gate 결정은 기존 HMAC CSRF를 세션 token에 결속한다.
+- `/v1/owners` 합성 가입은 `KNOWSLINK_SYNTHETIC_SIGNUP=1`일 때만 동작한다. 공개 후보는 이 값을 비워 두어 외부 owner 발급 우회를 막는다.
+
+### 한도 집행
+
+한도는 `State.Rates`의 시각 목록으로 계산한다. 창은 `(t−window,t]`다. 발송 한도는 모든 bucket이 허용할 때만 한 번에 차감한다(`take`). HTTP rate는 거부된 요청도 센다(`hit`). 로그아웃은 신규 작업 budget과 다른 정리 budget을 사용한다. rate key에는 이메일 원문 대신 SHA256을 쓴다.
+
+메일 발송은 lock 밖에서 수행한다. 발송 전에 budget과 코드를 확정한다. 발송 실패는 spent budget을 유지하고 보내지 못한 코드를 지운다.
+
+### 다음 agent·원격 MCP 연결의 신원 경계
+
+회원 ID(`mem_…`)가 사용자별 권한의 주체다. 다음 기능 SAR-PUBLIC-AGENTS-001은 세션과 최근 재인증으로 연결 승인을 발급하고 agent를 회원 owner에 묶는다. 이메일은 agent 식별자·contacts·receipt에 넣지 않는다.
+
+향후 다닷의 원격 MCP/OAuth는 같은 회원 ID에 OAuth grant를 연결한다. 후보는 relay를 OAuth 2.1 authorization server로 두는 방식과 Access Managed OAuth다. 두 방식 모두 이번 범위에서 구현하지 않는다. 선택 전에 대상 client의 RFC 8707·9728 지원을 실제로 확인한다. 회원 확인 수단은 이번 이메일 코드 로그인을 재사용한다.

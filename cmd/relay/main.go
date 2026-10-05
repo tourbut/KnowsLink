@@ -51,7 +51,19 @@ func run(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	service := &relay.Service{Pool: pool, TestAgents: testAgents}
+	service := &relay.Service{Pool: pool, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1"}
+	if smtpURL := os.Getenv("KNOWSLINK_SMTP_URL"); smtpURL != "" {
+		if service.Mail, err = relay.SMTPMailer(smtpURL, os.Getenv("KNOWSLINK_MAIL_FROM")); err != nil {
+			return err
+		}
+	}
+	// Trust the edge client-IP header only behind the Tunnel; otherwise rate keys use the socket address.
+	switch header := os.Getenv("KNOWSLINK_CLIENT_IP_HEADER"); header {
+	case "", "CF-Connecting-IP":
+		service.ClientIPHeader = header
+	default:
+		return errors.New("KNOWSLINK_CLIENT_IP_HEADER must be empty or CF-Connecting-IP")
+	}
 	go service.Cleanup(ctx)
 	mux.Handle("/", service.Handler())
 	server := &http.Server{
@@ -62,7 +74,7 @@ func run(ctx context.Context) error {
 	}
 	result := make(chan error, 1)
 	go func() { result <- server.ListenAndServe() }()
-	log.Print("local synthetic relay starting; vendor effects and disclosure disabled")
+	log.Printf("relay starting; vendor effects and disclosure disabled; email login configured=%t; synthetic signup=%t", service.Mail != nil, service.SyntheticSignup)
 	select {
 	case err := <-result:
 		if !errors.Is(err, http.ErrServerClosed) {
