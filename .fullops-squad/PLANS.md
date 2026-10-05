@@ -688,3 +688,7 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 추가 역할 동기화 확인: TESTER는 현재 terminal0·clean이므로 main94533b2로 fast-forward·원격push 완료. designer는 새 term_70c0653d가 agent-hooks-review-prompt 상태여서 기존1233e4c 체크아웃을 보존한다. 최신 main94533b2 반영은 실제 idle 확인 뒤 다음 착수 전에 예약한다. DEV 구현 진행 체크아웃은 유지한다.
 
 - 운영 시험 대상·같은 일반 이메일·분리 agent/키·최초 명시 수락·기존 CLI 증거와 구분을 이슈 댓글5994796681에 게시했다. 일반 회원용 설치 안내 준비 뒤 노우 작업을 이어 안내한다. 현재 이전 시험 인증/루프 재사용은 요구하지 않는다.
+
+- identity DEV 완료 msg_7097a88ffb04/59b66ada8b36802484cc6d7e22523257b50572cc(코드a446d89), 실제 provider e0666abc-1cf2-49ac-a288-45a8043404bc. 이메일 OTP/SMTP·회원바인딩·세션/홈·synthetic 기본거부, DEV 검사exit0·selflint ERROR0/WARNING5. 전문archive/빈인박스/clean 확인. coor 후보에는 통합했으나 main 수락은 독립 리뷰·QA·직접UI·실제 이메일 조건 후속이다. 운영 SMTP/이메일 없음은 실제 확인만 미실행이다.
+- SAR-PUBLIC-IDENTITY-001-REVIEW: full route dev/Opus5.5high, base94533b2/head59b66ad read-only detached snapshot과 정규 DEV 인박스로 별도 coor 기록 세션 준비. SAR-PUBLIC-IDENTITY-001-TESTER: full route tester/Grok4.7high, 별도 detached59 fixture 실행 환경과 정규 QA 인박스 준비. 필수 실패·critical/high 차단, 실제 사람/공개 PASS와 fixture 분리.
+- Cloudflare Email Service 공식 pricing/SMTP 확인: 임의 수신자 발송은 Workers Paid 필요, 계정 verified destination 발송은 모든 plan 무료. 신규 유료 구독은 실행하지 않았다. SMTP 제공자 독립 구현이며 실제 운영 발송 설정·기존 유료plan 여부·DNS·인증 권한은 OPS 후속이다. https://developers.cloudflare.com/email-service/platform/pricing/ 및 changelog/2026-06-08-smtp-submission/ 근거.

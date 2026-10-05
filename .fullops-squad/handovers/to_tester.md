@@ -63,3 +63,11 @@ coor는 별도 fixed-SHA 리뷰를 맡고 designer는 직접 시각 검수를 �
 ## 완료 보고
 
 실행 worker가 독립 관측과 PASS/FAIL/BLOCKED·후보 SHA·남은 사람 확인 및 운영 검증을 작성한다.
+
+## coor 고정 후보·실행 확정
+
+- 상태 ready. DEV 결과59b66ada8b36802484cc6d7e22523257b50572cc, 제품 코드a446d89ff288c4243ad6d7f8780a778517154584. 기준94533b207b456c0560800fe30a7c90b2b5887c6e. main 수락 전 독립 QA 후보이다.
+- 실제 제품 검증 checkout은 /tmp/knowslink-public-identity-qa-59b66ad, 깨끗한 detached59다. tester 상설 checkout은 지시서/기록 전용 준비 커밋이다. 코드 후보와 기록 SHA를 혼동하지 않는다. 임시 PostgreSQL·로컬 SMTP sink·loopback 서비스를 독립적으로 시작·검증·정리하며 기존 운영 자원을 변경하지 않는다.
+- 새 Grok4.7high 세션이 QA-P01–07 중 자동/fixture 범위를 끝낸다. 운영 SMTP·실제 사용자 이메일·공개 후보가 아직 없어 실제 일반 이메일 사람 확인/공개 검증만 미실행으로 남긴다. fixture PASS를 실제 사람 PASS로 표시하지 않는다.
+- 먼저 읽을 코드 추가: internal/relay/identity.go, member.go, mail.go, identity_test.go, identity_integration_test.go, scripts/mail_sink.py. README 실제 sink 절차와 DEV 실행 기록을 읽고 독립 검사를 설계한다. 기존 context 지도 뒤 추가된 신원 구현 파일이라는 근거다.
+- 원본 DEV 검사 모두exit0은 참고다. 자신의 실제 명령/종료코드/기대·관측/실행 SHA를 보존한다. 제품 코드를 고치지 않는다. fixture 네트워크·SMTP·DB로 재시작/동시성/경계·권한을 검사한다. 실제 주소·코드·cookie를 로그나 캡처에 남기지 않는다.

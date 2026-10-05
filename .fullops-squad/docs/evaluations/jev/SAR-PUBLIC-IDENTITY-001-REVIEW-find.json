@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-REVIEW",
+  "head": "50568b467faa9a4cadd010442b1805ed65a6164c",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 74,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 74
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/identity.go",
+      "summary": "Email identity binds one verified address to one member and owner; browser sessions never carry agent authority.",
+      "probability": 0.3
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.29000000000000004
+    },
+    {
+      "path": "internal/relay/identity_test.go",
+      "summary": "Identity unit checks cover address normalization, rolling limits, one-use codes, member continuity, sessions, and SMTP.",
+      "probability": 0.16
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.05
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.03
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/test_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/mail.go",
+      "summary": "SMTP submission sends verification codes through any provider; credentials stay in the URL and are never logged.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/mail_sink.py",
+      "summary": "Local QA SMTP sink: stores each received message as a 0600 file. Never use as a real mail service.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/registry.json",
+      "summary": "",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.84,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4297,
+    "output_tokens": 789,
+    "cost": 0.000180474
+  },
+  "latency_seconds": 0.271,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
