@@ -261,3 +261,7 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 - 공개 negative: 무인증·잘못된 CF 403, 유효 CF+잘못된 relay credential 또는 없음 401, owner·pair·signup·업무 경로 302. positive: registry 200(두 agent), 두 local client의 HTTPS 왕복 통과(실제 Grok 아님).
 - Grok 전달 묶음: `/home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL/knowslink-grok-trial-20261005.tar.gz`(0600). `key.pem`·`environment.json` 두 개만 담는다. 외부 전달은 하지 않았다.
 - 관리 token은 service token보다 약 8시간 먼저 만료된다. 종료 정리(token revoke·앱·policy 삭제)는 그 전에 하거나 새 권한을 받는다. 증거와 Grok 댓글 초안은 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md)이다.
+
+### 13.8 시험 종료 (2026-10-05, SAR-MVP-003-TRIAL-CLEANUP)
+
+실제 Grok 왕복이 확정된 뒤 13.4의 종료 절차를 실행했다. service token 두 개를 revoke하고 trial 앱·policy만 삭제했다. 원점 Tunnel config를 백업에서 복원(0600)하고 knowslink connector만 재기동했다. 상태 `.env`의 `KNOWSLINK_TEST_AGENTS` 줄을 제거하고 relay를 같은 Compose 인자로 갱신했다. root owner 앱·policy 3건은 전체 JSON 해시가 변경 전과 같다. 공유 서비스 회귀(`verify.py regression`·`public`·`local`)는 통과했다. 사용자 private 시험 파일은 삭제하지 않았고 안의 CF 자격은 더는 연결되지 않는다. 관리 token은 2026-10-05T23:59:59Z에 만료된다. 증거는 [실행 기록](../exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md)이다.
