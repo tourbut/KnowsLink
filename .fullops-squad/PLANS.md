@@ -643,3 +643,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - Grok인증ready댓글 https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5977433403 게시·원문대조. private파일key/environment은grok-export에있고외부미전달. 실제왕복未완료, 새actualreplykey sar-mvp-003-grok-actual-round-1. 사용자원래요청인Orca발급완료·CFactive·secret화면종료/임시snapshot삭제. 관리token내일08:59KST만료,시험service는15:42KST만료.
 
 - 2026-10-05 사용자재개: 이전진행못함. 현재08:04UTC service/admin만료·실제Grok未실행확인. Orca브라우저동일최소관리API token재발급active/0600·만료2026-10-05T23:59:59Z. OPS-RENEW routeopsSonnet5.5high fresh,인증24h갱신/private두파일tar묶음/public검증재개.
+
+- OPS-RENEW task_55c56687078d/ctx_44832730a4a5/term_bccf5a8b-0062-4649-92a0-d06a8ae93ecd freshSonnet5.5high effective·turn_started. 착수4132354, 갱신/private묶음/public검증, actualGrok준비전송신대기.
