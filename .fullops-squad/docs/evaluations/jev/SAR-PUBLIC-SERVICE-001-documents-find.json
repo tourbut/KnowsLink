@@ -1,0 +1,54 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-SERVICE-001",
+  "head": "6c0d132d26dac22693f1c1ffb986fc4f61bdbd09",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 129,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 129
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "summary": "KnowsLink MVP 요구사항 — 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후속 검증 책임을 정의한다",
+      "probability": 0.84
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+      "summary": "SAR-MVP-PUBLIC-POLICY-001 — 공개 제품 기준 결정 기록 — 공개 가입 확정과 DEC-03 제안값 및 승인·기술 근거 대기를 기록한다",
+      "probability": 0.09999999999999999
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "summary": "KnowsLink — 제품 결정",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "summary": "KnowsLink 기능 단위 백로그 — 검증 가능한 MVP 기능의 우선순위와 queued 인계 및 결정 보류를 연결한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "summary": "KnowsLink",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.91,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 11464,
+    "output_tokens": 1339,
+    "cost": 0.000481488
+  },
+  "latency_seconds": 0.306,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

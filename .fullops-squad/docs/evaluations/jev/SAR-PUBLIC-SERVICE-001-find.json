@@ -1,0 +1,84 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-SERVICE-001",
+  "head": "6c0d132d26dac22693f1c1ffb986fc4f61bdbd09",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 68,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 68
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.6
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.2
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.04
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "summary": "Check local Compose readiness and safe failure without activating a Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "summary": "Package relay validates frozen relay.v1 and preserves one parsed object for signing and processing.",
+      "probability": 0.02
+    },
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "summary": "Create or remove the owner-only Cloudflare Access app for link.knowslog.com; never prints the email or token.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.9,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4289,
+    "output_tokens": 729,
+    "cost": 0.000180138
+  },
+  "latency_seconds": 0.328,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
