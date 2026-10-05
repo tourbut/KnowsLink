@@ -83,24 +83,37 @@ func (st *State) take(now time.Time, buckets ...bucket) (bool, time.Time) {
 }
 
 // hit counts every request, including rejected ones, as the HTTP rate rows require.
+// Callers list the principal bucket first. A request its principal refuses never spends the shared budget.
+// A request a later bucket refuses is recorded only where earlier buckets already hold hits in the window,
+// so rotating sources cannot open new keys or keep a full shared budget saturated by themselves.
 // It stops at the first full bucket and keeps at most limit+1 hits, so a flood cannot grow state without bound.
-// Callers list the principal bucket first: a request its own principal already refuses never spends the shared budget.
 func (st *State) hit(now time.Time, buckets ...bucket) (bool, time.Time) {
-	for _, b := range buckets {
-		kept := []time.Time{}
+	kept := make([][]time.Time, len(buckets))
+	for i, b := range buckets {
 		for _, t := range st.Rates[b.key] {
 			if t.After(now.Add(-b.window)) {
-				kept = append(kept, t)
+				kept[i] = append(kept[i], t)
 			}
 		}
-		kept = append(kept, now)
-		if len(kept) > b.limit {
-			kept = kept[len(kept)-b.limit-1:]
-			st.Rates[b.key] = kept
-			// The next request is counted too, so two of the kept hits must leave the window.
-			return false, kept[1].Add(b.window)
+		if len(kept[i]) < b.limit {
+			continue
 		}
-		st.Rates[b.key] = kept
+		for _, earlier := range kept[:i] {
+			if len(earlier) == 0 {
+				return false, kept[i][len(kept[i])-b.limit].Add(b.window)
+			}
+		}
+		for j := range i {
+			st.Rates[buckets[j].key] = append(kept[j], now)
+		}
+		full := append(kept[i], now)
+		full = full[len(full)-b.limit-1:]
+		st.Rates[b.key] = full
+		// The next request is counted too, so two of the kept hits must leave the window.
+		return false, full[1].Add(b.window)
+	}
+	for i, b := range buckets {
+		st.Rates[b.key] = append(kept[i], now)
 	}
 	return true, time.Time{}
 }

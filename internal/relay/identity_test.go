@@ -332,3 +332,27 @@ func TestRatePrincipalIsolation(t *testing.T) {
 		t.Fatal("no recovery after window")
 	}
 }
+
+// Once the shared budget is full, refused requests from rotating sources open no new keys and do not extend saturation.
+func TestRateStateBoundedUnderRotation(t *testing.T) {
+	st, now := newState(), time.Date(2026, 10, 5, 0, 0, 0, 0, time.UTC)
+	st.hit(now, anonymousRate("198.51.100.1")...) // existing principal under its own limit
+	for i := 0; i < 199; i++ {
+		st.hit(now, anonymousRate(fmt.Sprintf("192.0.2.%d", i%7))...)
+	}
+	keys := len(st.Rates)
+	later := now.Add(30 * time.Second)
+	for i := 0; i < 10000; i++ {
+		if ok, retry := st.hit(later, anonymousRate(fmt.Sprintf("2001:db8::%x", i))...); ok || !retry.Equal(now.Add(time.Minute)) {
+			t.Fatal("fresh source passed a full shared budget", retry)
+		}
+		st.hit(later, anonymousRate("198.51.100.1")...)
+	}
+	if len(st.Rates) != keys || len(st.Rates["http:new"]) != 201 || len(st.Rates["http:ip:198.51.100.1"]) != 31 {
+		t.Fatal("state grew", len(st.Rates)-keys, len(st.Rates["http:new"]), len(st.Rates["http:ip:198.51.100.1"]))
+	}
+	// Only those 29 hits at +30s stay in the window after the first minute.
+	if ok, retry := st.hit(now.Add(time.Minute), anonymousRate("203.0.113.9")...); !ok {
+		t.Fatal("rotation extended saturation", retry)
+	}
+}

@@ -131,7 +131,7 @@ Cloudflare Access One-time PIN을 회원 신원으로 쓰지 않는다. 이유�
 
 ### 한도 집행
 
-한도는 `State.Rates`의 시각 목록으로 계산한다. 창은 `(t−window,t]`다. 발송 한도는 모든 bucket이 허용할 때만 한 번에 차감한다(`take`). HTTP rate는 거부된 요청도 센다(`hit`). `hit`은 principal(익명 IP·회원) bucket을 먼저 기록하고 첫 거부에서 멈춘다. 자기 principal 한도로 거부된 요청은 전체 budget을 쓰지 않는다. 한 principal은 rolling 60s에 전체 budget에 최대 자기 한도(30·40·정리 20)만 기여한다. 전체 200·정리 100은 독립 principal들의 합으로만 포화한다. 로그아웃은 신규 작업 budget과 다른 정리 budget을 사용한다. rate key에는 이메일 원문 대신 SHA256을 쓴다.
+한도는 `State.Rates`의 시각 목록으로 계산한다. 창은 `(t−window,t]`다. 발송 한도는 모든 bucket이 허용할 때만 한 번에 차감한다(`take`). HTTP rate는 거부된 요청도 센다(`hit`). `hit`은 principal(익명 IP·회원) bucket을 먼저 기록하고 첫 거부에서 멈춘다. 자기 principal 한도로 거부된 요청은 전체 budget을 쓰지 않는다. 한 principal은 rolling 60s에 전체 budget에 최대 자기 한도(30·40·정리 20)만 기여한다. 전체 200·정리 100은 독립 principal들의 합으로만 포화한다. 공유 bucket이 거부한 요청은 앞 principal bucket에 창 안 기록이 이미 있을 때만 두 bucket에 기록한다. 기록이 없는 새 principal의 요청은 어디에도 기록하지 않는다. 그래서 source를 바꾸는 거부 요청은 새 rate key를 만들지 않고 공유 포화를 연장하지 않는다. 로그아웃은 신규 작업 budget과 다른 정리 budget을 사용한다. rate key에는 이메일 원문 대신 SHA256을 쓴다.
 
 메일 발송은 lock 밖에서 수행한다. 발송 전에 budget과 코드를 확정한다. 발송 실패는 spent budget을 유지하고 보내지 못한 코드를 지운다.
 
