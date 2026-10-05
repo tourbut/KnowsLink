@@ -1,13 +1,34 @@
 ---
 title: KnowsLink 기능 단위 백로그
 status: draft
-updated: 2026-10-03
+updated: 2026-10-05
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001]
-summary: 검증 가능한 MVP 기능의 우선순위와 queued 인계 및 결정 보류를 연결한다
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001]
+summary: 일반 서비스 기능 순서와 현재 인박스 및 후속 대기와 기존 held를 연결한다
 ---
 
 # KnowsLink 기능 단위 백로그
+
+## 현재 일반 서비스 작업 순서 — SAR-PUBLIC-SERVICE-001
+
+현재 제품 정본은 [일반 서비스 D02](product-specs/SAR-PUBLIC-SERVICE.md)이며 기존 MVP와 frozen 안전 경계는 함께 적용한다. 사용자 지시는 일반 서비스 완성 뒤 OpenAI dot “다닷” 연결이다. 아래 이전 MVP 기능·DEC 표는 당시 범위와 held 기록이다. 이번 순서와 DEC-03 기본값이 충돌하는 항목에 우선한다. 과거 미승인 수치를 승인됐다고 소급하지 않는다.
+
+| 키·담당 | 제품 완료 조건 | 선행·현재 상태 |
+|---|---|---|
+| SAR-PUBLIC-IDENTITY-001-DEV, dev | PS-01–04, 신원/세션 남용 제한과 자기 owner UI. 일반 이메일 실제 확인·재로그인·교차 계정 거부 | [DEV 인박스](../../handovers/to_dev.md) ready. coor가 최신 main 포함과 dispatch 기준 SHA를 고정한다. |
+| SAR-PUBLIC-IDENTITY-001-TESTER, tester | 같은 후보의 일반 이메일·세션·회원 분리 독립 QA | [TESTER 인박스](../../handovers/to_tester.md) waiting. DEV 고정 후보와 허가된 일반 이메일 환경 이후 실행한다. |
+| SAR-PUBLIC-SERVICE-OPS-READINESS, ops | 신원 제공자·owner-origin 경계·공유 서비스·실제 자원·복구 근거 | 완료 SHA `0313deae0dec9af813b70ee9685e1a6d0a2b84d7`를 확인했다. 신원 바인딩·자원/처리량·백업 복구 미충족을 후속 공개 조건으로 반영한다. OPS 후속 인박스 작성은 coor가 한다. |
+| SAR-PUBLIC-AGENTS-001-DEV, dev | PS-04–07·연결/키/관계 한도와 계정 비활성화. 일반 사용자가 자기 클라이언트에서 연결·회전·철회 | identity 기능 수락 뒤 coor가 PLANS 대기에서 현재 DEV 인박스로 옮긴다. |
+| SAR-PUBLIC-MESSAGES-001-DEV, dev | PS-08–11, 실제 일반 신원 두 클라이언트 왕복·실패·기존 gate 회귀 | agents 기능 수락·지원 실제 클라이언트 확인 뒤 준비한다. |
+| SAR-PUBLIC-SERVICE-OPS, ops | PS-12/13 배포 후보·자원 보호·일반 신원 공개 경계·격리 복구·기존 owner/공유 회귀 | readiness 완료 아카이브 뒤 빈 OPS 인박스에 작성한다. 수락된 구현 SHA·독립 검증 전 공개 변경은 하지 않는다. |
+| SAR-PUBLIC-SERVICE-ACCEPT-001, coor/tester/designer/reviewer | PS-01–13 전체 수락. fixed-SHA 독립 QA·read-only 별도 세션 리뷰·직접 UI/일반 이메일 사람 확인·운영 근거 | 각 기능 후보를 수락한 뒤 하나의 운영 후보에서 확인한다. 미해결 critical/high와 필수 실패는 차단한다. |
+| SAR-DOTS-DADAT-001, dev/ops/tester | PS-14. 동일 이메일의 Grok Bot “노우”↔다닷 일반 온보딩·별도 agent 자격·지원 앱 도구/연결 상태·양쪽 관련 ID 왕복 | 일반 서비스 수락 이후, 계정 화면·사용자 연결 동의 확보. 자동 wake·이벤트는 별도 제품 범위 결정이다. |
+
+새 과제는 각 역할 인박스가 비면 작성한다. PLANS·board의 관리자는 coor다. designer는 이 표와 [실행 기록](../exec-plans/phases/SAR-PUBLIC-SERVICE-001.md)에 대기 제안을 남기며 coor가 PLANS에 반영한다. 과제명 파일·logs를 현재 지시서로 dispatch하지 않는다.
+
+새 DEC-03은 일반 서비스 D02의 2026-10-05 운영 기본값이다. DEV/OPS 기술 근거가 공개 조건이다. DEC-01 상품·DEC-02 실일정 disclosure는 held다. DEC-04는 실제 지원 클라이언트·다닷 인터페이스 확인이다. 기존 수동 시험을 자동 wake 성공으로 바꾸지 않는다. 사용자 이메일 입력·다닷 계정 연결·새 비용/실데이터 별도 승인은 해당 사람 확인/외부 경로만 대기시킨다.
+
+## 이전 MVP 실행·결정 기록
 
 ## 실행 기준
 
@@ -70,3 +91,5 @@ QA 보고서와 시나리오 파일은 tester 실행 시 작성한다. 현재 �
 - 2026-10-03: SAR-PREP-002에서 검증 가능한 기능과 결정 보류를 분리했다. 첫 기능 DEV/TESTER를 queued로 준비했다.
 
 - 2026-10-03: SAR-MVP-PUBLIC-POLICY-001에서 공개 가입·link.knowslog.com·인증 합성 파일럿 범위와 DEC-03 제안값·확정 조건을 정리했다. 사용자 승인과 기술 근거 전에는 공개 held를 유지한다.
+
+- 2026-10-05: 일반 서비스의 검증 가능한 기능 순서·ready 인박스·진행 OPS 보존과 PLANS 후속 제안을 추가했다.

@@ -1,0 +1,248 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "82a92f559bcd38e9388ec69809a3bf0adb240cb0",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "bb92ee80ff86de869417abdcbd662312120a05b4c6791317e2a7379c7552a873",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-MVP.md",
+      "c2-SAR-PUBLIC-SERVICE-UX.md",
+      "c3-FULLOPS.md",
+      "c4-project.md",
+      "c5-tester.md",
+      "c6-SAR-PUBLIC-SERVICE-001.md",
+      "c7-README.md",
+      "c8-ops-guide.md",
+      "c9-README.md",
+      "c10-http.go",
+      "c11-verify.py",
+      "c12-verify_mvp.py",
+      "c13-verify_runtime.py",
+      "c14-synthetic.ts",
+      "c15-run_trial.py",
+      "c16-config.go",
+      "c17-integration_test.go",
+      "required_4",
+      "required_6",
+      "required_7",
+      "required_8",
+      "required_9"
+    ],
+    "recommended_ids": [
+      "c0-SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-MVP.md",
+      "c2-SAR-PUBLIC-SERVICE-UX.md",
+      "c3-FULLOPS.md",
+      "c4-project.md",
+      "c5-tester.md",
+      "c6-SAR-PUBLIC-SERVICE-001.md",
+      "c7-README.md",
+      "c8-ops-guide.md",
+      "c9-README.md",
+      "c10-http.go",
+      "c11-verify.py",
+      "c12-verify_mvp.py",
+      "c13-verify_runtime.py",
+      "c14-synthetic.ts",
+      "c15-run_trial.py",
+      "c16-config.go",
+      "c17-integration_test.go",
+      "required_4",
+      "required_6",
+      "required_7",
+      "required_8",
+      "required_9"
+    ],
+    "signals": {
+      "c0-SAR-PUBLIC-SERVICE.md": {
+        "relevant": 0.83,
+        "evidence": 0.9,
+        "contradicts": 0.2,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-SAR-MVP.md": {
+        "relevant": 0.43,
+        "evidence": 0.67,
+        "contradicts": 0.34,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-SAR-PUBLIC-SERVICE-UX.md": {
+        "relevant": 0.76,
+        "evidence": 0.9,
+        "contradicts": 0.17,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-FULLOPS.md": {
+        "relevant": 0.25,
+        "evidence": 0.57,
+        "contradicts": 0.18,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-project.md": {
+        "relevant": 0.28,
+        "evidence": 0.61,
+        "contradicts": 0.5,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-tester.md": {
+        "relevant": 0.29,
+        "evidence": 0.49,
+        "contradicts": 0.26,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-SAR-PUBLIC-SERVICE-001.md": {
+        "relevant": 0.71,
+        "evidence": 0.81,
+        "contradicts": 0.39,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-README.md": {
+        "relevant": 0.32,
+        "evidence": 0.6,
+        "contradicts": 0.2,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-ops-guide.md": {
+        "relevant": 0.2,
+        "evidence": 0.31,
+        "contradicts": 0.29,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-README.md": {
+        "relevant": 0.17,
+        "evidence": 0.26,
+        "contradicts": 0.59,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-http.go": {
+        "relevant": 0.48,
+        "evidence": 0.44,
+        "contradicts": 0.26,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-verify.py": {
+        "relevant": 0.13,
+        "evidence": 0.16,
+        "contradicts": 0.57,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c14-synthetic.ts": {
+        "relevant": 0.54,
+        "evidence": 0.43,
+        "contradicts": 0.29,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c15-run_trial.py": {
+        "relevant": 0.2,
+        "evidence": 0.25,
+        "contradicts": 0.29,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c16-config.go": {
+        "relevant": 0.1,
+        "evidence": 0.14,
+        "contradicts": 0.12,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c17-integration_test.go": {
+        "relevant": 0.27,
+        "evidence": 0.32,
+        "contradicts": 0.39,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-PUBLIC-SERVICE.md": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-MVP.md": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "c2-SAR-PUBLIC-SERVICE-UX.md": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "c3-FULLOPS.md": ".fullops-squad/FULLOPS.md",
+      "c4-project.md": ".fullops-squad/project.md",
+      "c5-tester.md": ".fullops-squad/contexts/tester.md",
+      "c6-SAR-PUBLIC-SERVICE-001.md": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "c7-README.md": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "c8-ops-guide.md": ".fullops-squad/docs/operations/ops-guide.md",
+      "c9-README.md": "README.md",
+      "c10-http.go": "internal/relay/http.go",
+      "c11-verify.py": "deploy/knowslink/verify.py",
+      "c12-verify_mvp.py": "scripts/verify_mvp.py",
+      "c13-verify_runtime.py": "scripts/verify_runtime.py",
+      "c14-synthetic.ts": "adapters/src/synthetic.ts",
+      "c15-run_trial.py": "scripts/run_trial.py",
+      "c16-config.go": "internal/config/config.go",
+      "c17-integration_test.go": "internal/relay/integration_test.go",
+      "required_4": ".fullops-squad/handovers/to_tester.md",
+      "required_6": ".fullops-squad/rules/common/README.md",
+      "required_7": ".fullops-squad/rules/common/coding-style.md",
+      "required_8": ".fullops-squad/rules/common/security.md",
+      "required_9": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 53907,
+    "output_tokens": 1216,
+    "cost": 0.002264094
+  },
+  "latency_seconds": 0.446,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-PUBLIC-IDENTITY-001-TESTER",
+  "role": "tester",
+  "unsent_sources": {
+    "scripts/verify_mvp.py": "sensitive or oversized passage",
+    "scripts/verify_runtime.py": "sensitive or oversized passage"
+  },
+  "refused_paths": []
+}

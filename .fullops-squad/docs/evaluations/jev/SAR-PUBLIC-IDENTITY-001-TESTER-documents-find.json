@@ -1,0 +1,64 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-TESTER",
+  "head": "82a92f559bcd38e9388ec69809a3bf0adb240cb0",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 135,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 135
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-TESTER — 일반 이메일 신원과 세션 및 회원 경계를 독립 검증한다 — 고정 후보의 일반 이메일 신원과 세션 및 회원 분리 독립 QA를 인계한다",
+      "probability": 0.81
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "summary": "일반 이메일 서비스 제품 결정과 인계 — 일반 서비스 제품 결정과 OPS 근거 및 역할별 인계와 검증 결과를 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "summary": "KnowsLink 일반 이메일 서비스 수락 기준 — 일반 이메일 서비스 기준과 동일 이메일 노우 다닷 운영 시험 및 후속 수락을 정의한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "summary": "테스트 시나리오 — 조작 테스트의 통과 조건과 시나리오 밖 검증 인계를 정의한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-DEV — 일반 이메일 가입과 세션 및 자기 owner 화면을 구현한다 — 일반 이메일 신원과 세션 및 자기 owner UI의 구현과 검증을 인계한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "summary": "tester 컨텍스트 — 독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.82,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 12168,
+    "output_tokens": 1399,
+    "cost": 0.000511056
+  },
+  "latency_seconds": 0.34,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
