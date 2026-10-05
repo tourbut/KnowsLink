@@ -64,3 +64,7 @@ summary: 실제 Grok 왕복 확정 뒤 승인된 D12 종료 절차로 시험 인
 ## 5. 완료 판정
 
 trial 인증·앱·policy 정리와 기존 owner 보호 복귀, 공유 회귀 통과로 지시서 완료 기준을 충족했다. 실패하거나 건너뛴 단계는 없다. 변경한 파일은 이 기록과 인박스·logs뿐이다. issue 최종 댓글과 main 병합은 coor가 한다.
+
+## coor 종료 확인
+
+worker 보고 이후 [Grok 정리 댓글](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993825445)에서 시험 파일 제거 보고를 확인했다. 위 4절의 미확인은 worker 보고 시점의 관측이다. coor는 고정 SHA `2182401680806f4938cf8ad46a9f04c644e60bf5`의 제품 변경 없음·완료 기록·자원 대조·회귀 결과를 검수했다. [최종 이슈 댓글](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993872965)을 게시하고 원문을 대조했다.

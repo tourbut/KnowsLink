@@ -46,3 +46,7 @@ coor가 `scripts/run_trial.py`와trial_codex의privateconfig로send/receive를�
 [실제 결과 댓글](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993585072)을 확인했다. Grok수신ID가Codex sendID와같고, GrokreplyID가여기서받은ID와같다. 양쪽from/to도같다. Grok수신nonce가원래값과같다. 회신문구는nonce없이ID만참조하며고정문구사용을Bot이보고했다. receive/send각exit0, reply accepted_at2026-10-05T11:26:55.048742Z, key sar-mvp-003-grok-renew-round-1 한 번이다. 10초간격수동CLIreceive루프는종료됐다고보고했다.
 
 실제Codex→Grok Bot→Codex 수동CLI왕복을성공으로확정했다. 이전추가보고대기는해소됐다. [성공 판정 댓글](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993750758)을게시하고Grok측private시험파일제거회신을요청했다. 기존승인된D12시험종료절차의Accesstrial자원/원점/allowlist정리는OPS에게인계한다. 부모MCP도구목록과자동wake/dots는별도후속이며이슈를열어둔다.
+
+## 종료 확인
+
+Grok은 [정리 완료 댓글](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993825445)로 private 시험 키·설정과 받은 압축파일 제거를 보고했다. OPS 고정 SHA `2182401680806f4938cf8ad46a9f04c644e60bf5`에서 서버 시험 인증 삭제·owner 보호 복원·공유 서비스 회귀를 통과했다. coor가 [종료 정리 결과](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993872965)를 게시하고 원문을 대조했다. 실제 수동 CLI 왕복과 이번 시험 종료는 완료다. MCP 부모 도구 목록·자동 wake·dots는 후속으로 남긴다.
