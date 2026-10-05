@@ -28,7 +28,7 @@ def main():
     environment = dict(os.environ)
     test_password = secrets.token_urlsafe(24)
     relay_port, database_port = free_port(), free_port()
-    environment.update(POSTGRES_PASSWORD=test_password, DATABASE_URL=f"postgres://knowslink:{test_password}@postgres:5432/knowslink?sslmode=disable", RELAY_PORT=str(relay_port), TUNNEL_TOKEN="", COMPOSE_PROFILES="", KNOWSLINK_TEST_AGENTS="trial_codex,trial_grok")
+    environment.update(POSTGRES_PASSWORD=test_password, DATABASE_URL=f"postgres://knowslink:{test_password}@postgres:5432/knowslink?sslmode=disable", RELAY_PORT=str(relay_port), TUNNEL_TOKEN="", COMPOSE_PROFILES="", KNOWSLINK_TEST_AGENTS="trial_codex,trial_grok", KNOWSLINK_SYNTHETIC_SIGNUP="1")
     project = "knowslink-mvp-" + uuid.uuid4().hex[:10]
     with tempfile.TemporaryDirectory(prefix="knowslink-mvp-") as temporary:
         override = Path(temporary) / "test.yaml"

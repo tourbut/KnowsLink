@@ -84,6 +84,7 @@ func (st *State) take(now time.Time, buckets ...bucket) (bool, time.Time) {
 
 // hit counts every request, including rejected ones, as the HTTP rate rows require.
 // It stops at the first full bucket and keeps at most limit+1 hits, so a flood cannot grow state without bound.
+// Callers list the principal bucket first: a request its own principal already refuses never spends the shared budget.
 func (st *State) hit(now time.Time, buckets ...bucket) (bool, time.Time) {
 	for _, b := range buckets {
 		kept := []time.Time{}
@@ -105,13 +106,13 @@ func (st *State) hit(now time.Time, buckets ...bucket) (bool, time.Time) {
 }
 
 func anonymousRate(ip string) []bucket {
-	return []bucket{{"http:new", 200, time.Minute}, {"http:ip:" + ip, 30, time.Minute}}
+	return []bucket{{"http:ip:" + ip, 30, time.Minute}, {"http:new", 200, time.Minute}}
 }
 func memberRate(member string) []bucket {
-	return []bucket{{"http:new", 200, time.Minute}, {"http:member:" + member, 40, time.Minute}}
+	return []bucket{{"http:member:" + member, 40, time.Minute}, {"http:new", 200, time.Minute}}
 }
 func cleanupRate(member string) []bucket {
-	return []bucket{{"cleanup", 100, time.Minute}, {"cleanup:member:" + member, 20, time.Minute}}
+	return []bucket{{"cleanup:member:" + member, 20, time.Minute}, {"cleanup", 100, time.Minute}}
 }
 
 // NormalizeEmail accepts one bare address and lowercases it. Plus/dot aliases stay distinct identities.

@@ -4,6 +4,7 @@ package relay
 import (
 	"bufio"
 	"context"
+	"fmt"
 	"net"
 	"strings"
 	"testing"
@@ -286,5 +287,48 @@ func TestSMTPMailer(t *testing.T) {
 	closed, _ := SMTPMailer("smtp://127.0.0.1:1", "noreply@knowslog.com")
 	if err := closed(context.Background(), "a@b.co", "s", "b"); err == nil || strings.Contains(err.Error(), "127.0.0.1") {
 		t.Fatal("unreachable server", err)
+	}
+}
+
+// A principal refused by its own bucket must not spend the shared budget; only independent principals together fill it.
+func TestRatePrincipalIsolation(t *testing.T) {
+	st, now := newState(), time.Date(2026, 10, 5, 0, 0, 0, 0, time.UTC)
+	allowed := func(b []bucket) bool { ok, _ := st.hit(now, b...); return ok }
+	for i := 1; i <= 1000; i++ {
+		if allowed(anonymousRate("198.51.100.1")) != (i <= 30) {
+			t.Fatal("own IP limit", i)
+		}
+		if allowed(memberRate("mem_flood")) != (i <= 40) {
+			t.Fatal("own member limit", i)
+		}
+		if allowed(cleanupRate("mem_flood")) != (i <= 20) {
+			t.Fatal("own cleanup limit", i)
+		}
+	}
+	if !allowed(anonymousRate("203.0.113.9")) || !allowed(memberRate("mem_other")) || !allowed(cleanupRate("mem_other")) {
+		t.Fatal("one refused principal blocked others")
+	}
+	// Shared new budget: 30+40+1+1 used; 128 more independent hits reach exactly 200, the next one is refused.
+	for i := 0; i < 128; i++ {
+		if !allowed(anonymousRate(fmt.Sprintf("192.0.2.%d", i))) {
+			t.Fatal("below shared limit", i)
+		}
+	}
+	if allowed(anonymousRate("192.0.2.200")) || allowed(memberRate("mem_late")) {
+		t.Fatal("shared new limit not enforced")
+	}
+	// Shared cleanup: 20+1 used; 79 more reach 100.
+	for i := 0; i < 79; i++ {
+		if !allowed(cleanupRate(fmt.Sprintf("mem_%d", i))) {
+			t.Fatal("below cleanup limit", i)
+		}
+	}
+	if allowed(cleanupRate("mem_late")) {
+		t.Fatal("shared cleanup limit not enforced")
+	}
+	// Rolling window: the minute-old hits leave at now+window and everyone recovers.
+	now = now.Add(time.Minute)
+	if !allowed(anonymousRate("198.51.100.1")) || !allowed(memberRate("mem_late")) || !allowed(cleanupRate("mem_late")) {
+		t.Fatal("no recovery after window")
 	}
 }

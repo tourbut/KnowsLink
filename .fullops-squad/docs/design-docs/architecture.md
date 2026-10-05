@@ -4,7 +4,7 @@ title: 아키텍처설계서
 status: review
 updated: 2026-10-05
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -127,11 +127,11 @@ Cloudflare Access One-time PIN을 회원 신원으로 쓰지 않는다. 이유�
 - 세션 수명은 절대 12h, 무활동 60분이다. 전체 로그아웃은 최근 5분 안의 이메일 확인을 요구한다.
 - 로그아웃은 브라우저 세션만 지운다. agent credential·키·pair는 세션과 수명이 분리돼 있다.
 - 쓰기 요청은 Go 표준 `http.CrossOriginProtection`이 `Sec-Fetch-Site`/`Origin`으로 cross-origin 브라우저 요청을 거부한다. 회원 gate 결정은 기존 HMAC CSRF를 세션 token에 결속한다.
-- `/v1/owners` 합성 가입은 `KNOWSLINK_SYNTHETIC_SIGNUP=1`일 때만 동작한다. 공개 후보는 이 값을 비워 두어 외부 owner 발급 우회를 막는다.
+- `/v1/owners` 합성 가입은 `KNOWSLINK_SYNTHETIC_SIGNUP=1`일 때만 동작한다. `.env.example`과 공개 후보는 이 값을 비워 두어 외부 owner 발급 우회를 막는다. 격리 로컬 fixture 실행만 셸에서 명시적으로 `1`을 준다.
 
 ### 한도 집행
 
-한도는 `State.Rates`의 시각 목록으로 계산한다. 창은 `(t−window,t]`다. 발송 한도는 모든 bucket이 허용할 때만 한 번에 차감한다(`take`). HTTP rate는 거부된 요청도 센다(`hit`). 로그아웃은 신규 작업 budget과 다른 정리 budget을 사용한다. rate key에는 이메일 원문 대신 SHA256을 쓴다.
+한도는 `State.Rates`의 시각 목록으로 계산한다. 창은 `(t−window,t]`다. 발송 한도는 모든 bucket이 허용할 때만 한 번에 차감한다(`take`). HTTP rate는 거부된 요청도 센다(`hit`). `hit`은 principal(익명 IP·회원) bucket을 먼저 기록하고 첫 거부에서 멈춘다. 자기 principal 한도로 거부된 요청은 전체 budget을 쓰지 않는다. 한 principal은 rolling 60s에 전체 budget에 최대 자기 한도(30·40·정리 20)만 기여한다. 전체 200·정리 100은 독립 principal들의 합으로만 포화한다. 로그아웃은 신규 작업 budget과 다른 정리 budget을 사용한다. rate key에는 이메일 원문 대신 SHA256을 쓴다.
 
 메일 발송은 lock 밖에서 수행한다. 발송 전에 budget과 코드를 확정한다. 발송 실패는 spent budget을 유지하고 보내지 못한 코드를 지운다.
 

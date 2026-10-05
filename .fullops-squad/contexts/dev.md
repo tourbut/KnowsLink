@@ -38,3 +38,5 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 2026-10-05 SAR-PUBLIC-IDENTITY-001-DEV: 회원 신원은 relay 이메일 코드+표준 SMTP로 구현했다. Access OTP는 D02 한도·로그아웃 재확인을 relay가 집행할 수 없어 쓰지 않았다. 확인 전 owner 미생성, 회원 owner는 bearer 없음.
 - 거부 요청까지 세는 rate 목록은 flood에서 상태를 키운다. 첫 거부에서 멈추고 limit+1개만 보관한다. 안내 재시도 시각에 실제 허용되는지 함께 검사한다.
 - `http.CrossOriginProtection`은 Node adapter 호출에 영향이 없다. 공개 후보는 `KNOWSLINK_SYNTHETIC_SIGNUP`을 비운다. [기록](../docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md).
+
+- 2026-10-05 SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX: 거부까지 세는 다단 rate는 principal bucket을 먼저 둔다. 공유 bucket이 앞이면 한 source의 이미 거부된 요청이 전체를 고갈시킨다. 예시 env는 위험 기능을 닫고 격리 검사만 셸로 opt-in한다. [기록](../docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md).
