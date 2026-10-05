@@ -1,0 +1,38 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/contexts/designer.md",
+        ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+        ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+        ".fullops-squad/docs/planning/business-plan.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+        ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+        ".fullops-squad/handovers/to_designer.md",
+        ".fullops-squad/handovers/to_dev.md",
+        ".fullops-squad/handovers/to_tester.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-TESTER-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-TESTER-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-TESTER-find.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}
