@@ -661,3 +661,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - CLEANUP msg_c09e182d48cc/2182401680806f4938cf8ad46a9f04c644e60bf5 수락: trial token2·앱·정책 삭제/GET404, 백업 Tunnel cmp일치·allowlist비움·owner JSON3 불변, public/local/shared 회귀0. 제품변경없음·인박스빈상태·전문archive확인. Grok 파일제거댓글5993825445 확인, 최종댓글5993872965 게시·원문대조. 실제 수동 CLI 왕복과 시험 종료 완료. 자동wake/MCPtools/dots는 후속, issueOPEN유지. main/origin 통합 뒤 쉬는 clean 역할 동기화한다.
 
 - SAR-PUBLIC-SERVICE-001: 사용자 일반 이메일 시험→일반 서비스 완성→OpenAI dot “다닷” 연결 요청. Jev product/designer gpt-6.1-sol high, D01/D02 기준·실행 인계 준비를 새 세션에 배정한다. 일반 이메일은 비밀 없는 사용자 입력 대기. 기존 합성 가입/owner-only 운영과 실제 서비스 가입·인증 수락을 구분한다. FullOps 업데이트 제외.
+
+- 일반 서비스 제품 과제 착수: task_c21892048d9c/ctx_000841343790/term_81e70a12-62bc-40a4-9ecc-35c3e27643c3. 새 Codex gpt-6.1-sol high effective·turn_started 확인, designer 시작608fe06. 일반 이메일 입력 대기와 별개로 요구·기능 순서·다음 구현 인계 진행. dots 정식 공식 문서 확인, 사용자 dot 이름 다닷.
