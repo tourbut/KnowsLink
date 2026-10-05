@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-SERVICE-OPS-READINESS",
+  "head": "272546aebe26b4c638207c06b7bb92ad396b7552",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 68,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 68
+    }
+  ],
+  "candidates": [
+    {
+      "path": "deploy/knowslink/access_apply.py",
+      "summary": "Create or remove the owner-only Cloudflare Access app for link.knowslog.com; never prints the email or token.",
+      "probability": 0.67
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.12
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "summary": "Owner-only synthetic beta lifecycle for the separate \"knowslink\" Compose project; never touches other projects.",
+      "probability": 0.05
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "summary": "Check local Compose readiness and safe failure without activating a Tunnel.",
+      "probability": 0.03
+    },
+    {
+      "path": "cmd/relay/main_test.go",
+      "summary": "Readiness checks prove DB failure is safe and business paths remain unavailable.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "summary": "Validate isolated example Compose settings and locked service boundaries.",
+      "probability": 0.01
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "deploy/knowslink/access_trial_plan.py",
+      "summary": "Render trial-only Access request bodies and a protected Tunnel candidate; never mutate live Cloudflare or deployment state.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.94,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 3890,
+    "output_tokens": 729,
+    "cost": 0.00016338
+  },
+  "latency_seconds": 0.283,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

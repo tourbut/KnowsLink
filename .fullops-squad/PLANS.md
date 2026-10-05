@@ -663,3 +663,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - SAR-PUBLIC-SERVICE-001: 사용자 일반 이메일 시험→일반 서비스 완성→OpenAI dot “다닷” 연결 요청. Jev product/designer gpt-6.1-sol high, D01/D02 기준·실행 인계 준비를 새 세션에 배정한다. 일반 이메일은 비밀 없는 사용자 입력 대기. 기존 합성 가입/owner-only 운영과 실제 서비스 가입·인증 수락을 구분한다. FullOps 업데이트 제외.
 
 - 일반 서비스 제품 과제 착수: task_c21892048d9c/ctx_000841343790/term_81e70a12-62bc-40a4-9ecc-35c3e27643c3. 새 Codex gpt-6.1-sol high effective·turn_started 확인, designer 시작608fe06. 일반 이메일 입력 대기와 별개로 요구·기능 순서·다음 구현 인계 진행. dots 정식 공식 문서 확인, 사용자 dot 이름 다닷.
+
+- SAR-PUBLIC-SERVICE-OPS-READINESS: 일반 서비스 제품 결정에 필요한 실제 서버 자원·신원 공급자·원점 보호·복구/rollback 근거를 별도 OPS 읽기 전용 과제로 배정한다. route implementation/ops Sonnet5.5high, D12. CF/서버 쓰기·메일 발송 없이 조사하며 designer 기획과 파일 소유권을 분리한다.

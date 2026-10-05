@@ -1,0 +1,39 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-SERVICE-OPS-READINESS",
+  "head": "272546aebe26b4c638207c06b7bb92ad396b7552",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 130,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 130
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "summary": "운영자설명서 — 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다",
+      "probability": 0.97
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+      "summary": "SAR-MVP-003-TRIAL-CLEANUP 실행 기록 — 실제 Grok 왕복 확정 뒤 승인된 D12 종료 절차로 시험 인증과 앱 및 정책을 정리하고 원점 복원과 공유 서비스 회귀를 확인한 결과를 기록한다",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.92,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 11130,
+    "output_tokens": 1349,
+    "cost": 0.00046746
+  },
+  "latency_seconds": 0.377,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
