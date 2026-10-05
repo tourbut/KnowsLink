@@ -1,0 +1,70 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-003-TRIAL-CLEANUP",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D11"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.01,
+        "implementation": 0.99
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.09,
+        "ops": 0.84,
+        "tester": 0.07
+      },
+      "confidence": 0.75
+    },
+    "docs": {
+      "D01": 0.15,
+      "D02": 0.18,
+      "D03": 0.17,
+      "D04": 0.14,
+      "D05": 0.16,
+      "D06": 0.16,
+      "D07": 0.13,
+      "D08": 0.13,
+      "D09": 0.15,
+      "D10": 0.21,
+      "D11": 0.52,
+      "D12": 0.69,
+      "D13": 0.56
+    }
+  },
+  "usage": {
+    "input_tokens": 2463,
+    "output_tokens": 314,
+    "cost": 0.000103446
+  },
+  "error": null,
+  "latency_seconds": 0.273,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "D12와 기존 OPS 지시서의 승인된 시험 종료 운영 절차이며 제품 코드 변경 없음",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

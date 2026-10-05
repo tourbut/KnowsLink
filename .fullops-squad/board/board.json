@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "Grok 파일 설치 확인. 실제 relay에서 Codex 송신·trial_grok 회신 수신 완료, Grok측 ID 보고 대조 대기.",
+  "summary": "실제 Codex↔Grok 수동 CLI 왕복 성공 확정. 시험 임시 인증 정리와 owner 보호 복귀를 진행한다.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -57,7 +57,7 @@
       "name": "실제 어댑터·일정 조회",
       "status": "active",
       "deliverables": [],
-      "note": "실제 relay 송신·trial_grok 회신 수신 ID 일치. Grok측 receive/send 보고 대조 대기."
+      "note": "실제 Codex↔Grok 수동 CLI 왕복 성공. 자동 wake·MCP 도구 목록·dots는 후속."
     },
     {
       "name": "운영 배포·이행",
@@ -67,7 +67,7 @@
         "D12",
         "D13"
       ],
-      "note": "Grok 파일 설치·인증 정상. 실제 회신 수신 완료, 시험 종료·운영 이행은 후속."
+      "note": "실제 왕복 시험 종료. 시험 인증 정리·owner 원점 복귀·공유 서비스 회귀 진행."
     }
   ]
 }

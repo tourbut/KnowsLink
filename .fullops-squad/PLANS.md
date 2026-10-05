@@ -653,3 +653,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - SAR-MVP-003-PRIVATE-DOWNLOAD 배정 취소/보류: 사용자가 임시 HTTPS 다운로드 링크 대신 맥북 로컬의 SCP 다운로드 명령 제공으로 전환했다. 명령과 existingprivate archive존재(539bytes)를확인해안내완료. 임시서버/경로/Access/DNS변경과workerdispatch는실행하지않았다. 불필요한새route생성파일은삭제했다. 다시HTTPS링크를명시요청하면새착수한다. 기존실제Grok파일전달·준비회신대기상태는동일하여board프로젝트단계변경없음.
 
 - 실제round: Grok준비5993472191 확인→Codex send01a10bd1-0aa4-7f2a-88dc-2af44cdd66d6(11:26:51Z/TTL180)→trial_grok reply01a10bd1-164b-79ae-9c7e-337807e0c1dc 여기수신. from/to·참조sendID일치, nonce회신없음/ID기반대조. 송신5993505386·수신확인5993526732 게시. Grok실제receive/send댓글ID대조추가대기. 자동wake/MCP도구캐시/dots未검증. coor운영실행기록SAR-MVP-003-ACTUAL-TRIAL.md.
+
+- 실제Grok최종댓글5993585072 대조완료: 양쪽send/receiveID일치·nonce수신일치·exit0/수동루프종료. 실제Codex→Grok→Codex성공확정댓글5993750758. 자동wake/MCPtools4/dots별도후속,시험끝Grokprivate제거요청·D12승인종료OPS-TRIAL-CLEANUP배정.

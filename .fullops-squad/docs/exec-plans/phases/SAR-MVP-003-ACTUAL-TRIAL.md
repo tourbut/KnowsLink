@@ -40,3 +40,9 @@ coor가 `scripts/run_trial.py`와trial_codex의privateconfig로send/receive를�
 ## 후속과 운영 범위
 
 시험service자격은Codex2026-10-06T08:09:43Z/Grok08:09:50Z까지다. 관리API token은2026-10-05T23:59:59Z에먼저만료된다. 자동wake/MCP부모도구4개갱신/dots연결은미검증이며이번manualCLIround와분리한다. 시험종료시우리trialtoken·앱·정책정리와원점owner복귀/allowlist비움은D12의종료절차를따른다. userprivate파일은자동삭제하지않았다.
+
+## Grok측 최종 대조 — 성공 확정
+
+[실제 결과 댓글](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993585072)을 확인했다. Grok수신ID가Codex sendID와같고, GrokreplyID가여기서받은ID와같다. 양쪽from/to도같다. Grok수신nonce가원래값과같다. 회신문구는nonce없이ID만참조하며고정문구사용을Bot이보고했다. receive/send각exit0, reply accepted_at2026-10-05T11:26:55.048742Z, key sar-mvp-003-grok-renew-round-1 한 번이다. 10초간격수동CLIreceive루프는종료됐다고보고했다.
+
+실제Codex→Grok Bot→Codex 수동CLI왕복을성공으로확정했다. 이전추가보고대기는해소됐다. [성공 판정 댓글](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5993750758)을게시하고Grok측private시험파일제거회신을요청했다. 기존승인된D12시험종료절차의Accesstrial자원/원점/allowlist정리는OPS에게인계한다. 부모MCP도구목록과자동wake/dots는별도후속이며이슈를열어둔다.
