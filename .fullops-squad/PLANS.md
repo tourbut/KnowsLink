@@ -696,3 +696,8 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 독립 리뷰 착수: SAR-PUBLIC-IDENTITY-001-REVIEW task_6cfcf7f4d2f6/ctx_5d0cf2d4375e/term_fc0c5c69-e676-4579-a4f6-fe9695b1d9e0. 새Opus5.5high effective·turn_started, 준비746ecd9, 기록coor/readonlyfixed59. 후보 main통합은 필수 수락 대기다.
 - 독립 QA 착수: task_7620e452863e/ctx_8f58271be6d2/term_c80991d3-dc87-4fed-b553-423f410ec29a. 직접 Grok4.7high 기동·tui-idle·input_accepted, 초기 실제출력 파일읽기/Thinking과4.7high 확인. Grok turnStart는호스트unsupported라 observed로표시하지 않는다. 원래DEV delivery8e12는검수hold 기록 뒤ack. source59 fixture와 실제확인 미실행 분리.
 - SAR-PUBLIC-IDENTITY-001-UI: 규약에 따른designer 직접 UX 검수로 책임 override를 기록했다. 새Codex6.1Solhigh, 동일candidate59 별도fixture와 신규 전용브라우저page로 준비한다. 기존designer 사용자소유hookprompt는보존하고 coor의별도기록세션을쓴다. 제품/기술 수치·코드/권한변경없음.
+
+- 직접 UI 검수 착수: task_1a9cb470bd74/ctx_a3efa466a50f/term_d2bd3e58-a200-464b-b69b-15d9a938c857. 새 Codex6.1Solhigh effective·turn_started, 준비1207bdf. 같은 fixed59의 별도UIfixture·새page, 기록coor만 사용한다. 기존designer checkout/hookprompt·사용자CF페이지는보존한다.
+
+- 독립리뷰 msg_8d3d9f9bcee9/25b110fb694d9ccdce6a3b445d6936159b7437d5 조건부수락: actual reviewer0bf1508f vs구현e0666abc, fixed59 31/31 reviewed·critical/high0·check0·lint ERROR0/WARNING5. F1medium 단일source가공유newbudget을고갈하는실제재현으로 공개/main수락은수정후보delta리뷰·좁은QA대기. F2low는기술개선/잔여위험판단, F3gate rate는AGENTS, F4예시synthetic복사위험은default닫힘으로보완. 원본QA/UI는같은fixed59에서끝내고변경영향만재검증한다. integration hold와원문결과보존.
+- SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX fullroute implementation/dev Opus5.5high, 새세션으로기존규칙내F1/동형cleanup·F4수정과F2기술판단을진행한다. 원본큰DEV세션은13분이상쉬었으므로재사용하지않는다. 기존검토/QA/UI수락기준은유지한다.
