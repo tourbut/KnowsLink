@@ -1,0 +1,41 @@
+{
+  "candidate": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "phase1": {
+    "ip_a_first_30": {
+      "422": 30
+    },
+    "ip_a_next_170": {
+      "429": 170
+    },
+    "buckets_before_other": {
+      "http_new": 200,
+      "ip_a": 31,
+      "ip_b": 0
+    },
+    "ip_b_first_status": 429,
+    "http_new_after_other": 201,
+    "ip_b_after_other": 0
+  },
+  "phase2": {
+    "signup_start": 303,
+    "signup_start_location": "/auth/verify",
+    "signup_verify": 303,
+    "http_new_after_signup": 2,
+    "flood_allowed": {
+      "422": 30
+    },
+    "flood_rejected": {
+      "429": 168
+    },
+    "http_new_before_home": 200,
+    "home_status": 429,
+    "fresh_ip_status": 429,
+    "logout_status": 303,
+    "logout_location": "/?n=logout",
+    "cleanup_bucket": 1,
+    "member_bucket": 0,
+    "member_rate_keys": 0
+  },
+  "relay_log_contains_code": false,
+  "qa_porcelain_empty": true
+}
