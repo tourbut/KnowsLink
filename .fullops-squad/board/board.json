@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "시험 인증 갱신·공개 HTTPS 검증 완료. Grok용 파일 묶음 준비, 실제 왕복은 전달과 준비 회신 대기.",
+  "summary": "Grok 파일 설치 확인. 실제 relay에서 Codex 송신·trial_grok 회신 수신 완료, Grok측 ID 보고 대조 대기.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -57,7 +57,7 @@
       "name": "실제 어댑터·일정 조회",
       "status": "active",
       "deliverables": [],
-      "note": "시험 transport·독립 QA 수락. 실제 Grok 왕복은 private 파일 전달·수동 수신 준비 회신 대기."
+      "note": "실제 relay 송신·trial_grok 회신 수신 ID 일치. Grok측 receive/send 보고 대조 대기."
     },
     {
       "name": "운영 배포·이행",
@@ -67,7 +67,7 @@
         "D12",
         "D13"
       ],
-      "note": "시험 인증 10월 6일 17:09 KST까지 갱신·공개 검증 완료. Grok 파일 전달·준비 회신 대기."
+      "note": "Grok 파일 설치·인증 정상. 실제 회신 수신 완료, 시험 종료·운영 이행은 후속."
     }
   ]
 }
