@@ -15,7 +15,7 @@ summary: 일반 이메일 서비스의 실제 신원 보호와 서버 자원 및
 
 적용 규칙은 `fullops-common-0.3.2`, FULLOPS.md, project.md, orca-agents.md, 문서 작성·coding-style/testing/security 규칙이다.
 
-이번 작업은 읽기 전용이다. 서버·Cloudflare 설정 쓰기, 새 token 발급, 인증 해제, agent secret 발급, 메일 발송, 제품 수정은 하지 않았다. 관리 API token(`state/cf-service-token-api.env`, 0600)은 Python 메모리에서 GET 요청에만 썼다. 이메일·secret·사용자 데이터는 출력하지 않았다. 관측 시각은 2026-10-05T12:10Z–12:30Z다. 임의 성능 보장과 제품 수치는 만들지 않았다.
+이번 작업은 읽기 전용이다. 서버·Cloudflare 설정 쓰기, 새 token 발급, 인증 해제, agent secret 발급, 메일 발송, 제품 수정은 하지 않았다. 관리 API token(`state/cf-service-token-api.env`, 0600)은 Python 메모리에서 GET 요청에만 썼다. 이메일·secret·사용자 데이터는 출력하지 않았다. 서버 읽기 전용 명령은 2026-10-05T12:11:29Z(첫 `date -u`)부터 약 12:14Z까지 실행했다. 이 문서는 12:15:30Z에 썼고 12:15:51Z에 커밋했다(8장의 시각 근거). 정정 전 문장 "12:10Z–12:30Z"는 틀렸다. 임의 성능 보장과 제품 수치는 만들지 않았다.
 
 ## 1. 신원 보호: 현재 무엇이 있는가
 
@@ -33,21 +33,21 @@ summary: 일반 이메일 서비스의 실제 신원 보호와 서버 자원 및
 ### 1.1 relay가 아는 신원과 Access의 신원
 
 - relay 코드(`internal/relay/http.go`)는 `Authorization: Bearer`(agent/owner API)와 HTTP Basic(owner UI)만 읽는다. `Cf-Access-Jwt-Assertion`, 이메일, `X-Forwarded-*`를 읽는 코드는 없다(`grep` 결과 0건).
-- 그러므로 현재 이메일 신원은 Cloudflare 가장자리에서만 존재한다. relay 안의 owner는 합성 owner credential이다. 합성 owner token과 실제 이메일 신원은 연결되어 있지 않다.
+- 그러므로 relay는 현재 이메일 신원을 사용하지 않는다. relay 안의 owner는 합성 owner credential이다. 합성 owner token과 실제 이메일 신원은 연결되어 있지 않다. 이것은 relay 코드의 관측이다. Access가 신원을 전달할 수 없다는 뜻이 아니다.
 - 지금 Access 정책은 사용자 본인 이메일 한 개만 통과시킨다. 일반 사용자는 로그인 단계에서 거부된다.
-- `originRequest.access.required: true`는 Access가 붙인 JWT를 cloudflared가 검증하게 한다. 이것은 "Access를 거쳤다"는 증명이다. 누가 로그인했는지를 relay에 전달하지 않는다.
+- `originRequest.access.required: true`는 Access가 붙인 JWT를 cloudflared가 검증하게 한다. 공식 문서는 Access가 모든 L7 요청에 `Cf-Access-Jwt-Assertion` 헤더로 JWT를 보내고, IdP 로그인의 JWT payload에 사용자 신원 claim이 들어간다고 설명한다([origin-parameters](https://developers.cloudflare.com/tunnel/reference/origin-parameters/), [application-token](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/application-token/)). 따라서 claim은 relay로 전달될 수 있다. 이 서버에서 relay가 그 헤더를 실제로 받는지는 인증된 요청이 필요해 시험하지 않았다. 미확인이다. 현재 관측은 relay 코드가 그 헤더를 읽지 않는다는 것뿐이다. relay는 `127.0.0.1:8080`에서도 열려 있으므로 헤더 값의 서명 재검증 여부는 DEV가 정한다.
 
 ### 1.2 일반 이메일 지원 방식의 선택지 (Cloudflare 공식 문서 근거)
 
 - 선택 A. 가장자리에서 Access로 이메일 신원을 받는다. 정책에서 모든 One-time PIN 이메일을 허용하는 방식이다. 공식 문서는 `Include → Everyone`과 `Include → Login Methods = One-time PIN`을 "누구나 접근 가능한 구성"으로 분류한다. 그러므로 이 구성은 root 앱을 모두 공개로 바꾼다. relay가 JWT의 이메일 claim을 읽어 owner에 묶는 구현이 필요하다. 현재 이 구현은 없다. 해당 구현은 DEV 범위다.
 - 선택 B. relay가 직접 이메일 신원을 확인한다(자체 OTP 또는 링크). 이 방식은 relay가 메일을 발송해야 한다. 발송 경로(Cloudflare Email Service 또는 외부)·도메인 SPF/DKIM/DMARC·발송 한도가 모두 미확정이다. 이번 작업은 실메일을 발송하지 않았고 발송 자원을 조사하지 않았다(zone 읽기 권한 없음).
 - 선택 C. Cloudflare를 IdP로 쓴다. 2026-05-19 changelog에서 Cloudflare 계정 로그인을 지원한다. 일반 사용자는 Cloudflare 계정이 있어야 한다. 일반 서비스 후보로는 맞지 않을 가능성이 높다. 이 판단은 designer 몫이다.
-- 어느 선택이든 Access 앱은 root에서 경로별로 나눠야 한다. Cloudflare 공식 문서(Application paths)는 더 구체적인 path가 우선한다고 설명한다. 이전 시험(D12 13장)에서 `/v1/test/*` 별도 앱으로 root owner 앱을 바꾸지 않고 경로를 분리한 실적이 있다.
+- 어느 선택이든 Access 앱은 root에서 경로별로 나눠야 한다. 더 구체적인 path가 우선한다는 설명은 이번에 직접 조회하지 않았고 D12 13장이 인용한 Application paths 문서에 의존한다(미재확인). 이전 시험(D12 13장)에서 `/v1/test/*` 별도 앱으로 root owner 앱을 바꾸지 않고 경로를 분리한 실적이 있다.
 - 이메일 로그인 사용자 수 제한(Zero Trust Free 요금제의 좌석 한도)은 이번에 공식 문서 검색으로 확인하지 못했다. 미확인이다. 공개 전에 계정의 실제 요금제와 좌석 한도를 사용자가 대시보드에서 확인해야 한다.
 
 ### 1.3 agent·원격 MCP 연결
 
-- 현재 service token은 0개다. 이전 시험의 관리 token 범위는 만료일 2026-10-05T23:59:59Z까지다. 토큰 확인 결과 `active`다.
+- 현재 service token은 0개다. 관리 token은 `GET /user/tokens/verify`에서 `active`이고 2026-10-05T23:59:59Z에 만료된다. 이 token의 권한 목록은 403으로 읽지 못했다. 이전 Dispatch 기록상 Apps and Policies Edit 범위였으나 이번에 쓰기를 시험하지 않았으므로 현재 권한은 미확인이다. 지금 새 token 발급이 필요하다는 뜻이 아니다.
 - 비브라우저 client(agent, CLI, MCP)는 지금 Access의 302를 받는다. 로그인 페이지를 완료하지 못한다.
 - 선택 1. service token(`CF-Access-Client-Id/Secret`)을 별도 경로 앱의 `non_identity` 정책으로 허용한다. 시험에서 검증한 방식이다. 사용자별 발급·철회를 Cloudflare API가 관리한다. 일반 사용자 수만큼 token을 발급하는 구조는 맞지 않는다. 시험은 24h token 두 개였다.
 - 선택 2. Access Managed OAuth를 켠다(공식 changelog 2026-03-20). 비브라우저 client가 401과 `WWW-Authenticate`로 OAuth 발견 endpoint(RFC 8414·9728)를 받는다. 사용자 브라우저 로그인으로 token을 얻는다. 같은 정책이 적용된다. client는 RFC 8707을 지원해야 한다. 문서는 self-hosted 앱에서 opt-in이고 MCP server는 Access JWT를 검증해야 한다고 설명한다. 이 방식이 실제 Grok·OpenAI dot client와 호환되는지는 이번에 시험하지 않았다. 미확인이다.
@@ -109,7 +109,7 @@ summary: 일반 이메일 서비스의 실제 신원 보호와 서버 자원 및
 ### 5.1 선행 조건 (모두 충족되기 전에 공개 경로를 열지 않는다)
 
 1. **신원 방식 결정(designer)**: 1.2의 A/B/C 중 하나. 결정 전에는 Access 정책을 넓히지 않는다.
-2. **relay의 신원 연결(DEV)**: 선택 A라면 relay가 Access JWT를 서명·`aud`·`exp`로 검증하고 이메일 claim을 owner로 매핑해야 한다. 선택 B라면 메일 발송과 OTP 검증이 있어야 한다. 현재 두 가지 모두 없다.
+2. **relay의 신원 연결(DEV)**: 선택 A라면 relay가 Access JWT의 이메일 claim을 읽어 owner로 매핑해야 한다. cloudflared가 원점 규칙(`access.required`)에서 JWT를 이미 검증한다. relay의 서명·`aud`·`exp` 재검증은 추가 방어로서 DEV가 결정한다. 선택 B라면 메일 발송과 OTP 검증이 있어야 한다. 현재 두 가지 모두 없다.
 3. **agent·MCP 연결 방식 결정(designer·DEV)**: 1.3의 선택 1–3 중 하나. Managed OAuth를 쓰려면 실제 대상 client(Grok, OpenAI dot)가 RFC 8707·9728 흐름을 지원하는지 DEV가 먼저 시험한다.
 4. **필요 권한 확인(사용자)**: 아래 5.3 표.
 5. **서버 보호 한도**: 익명 접근이 가능한 hostname에 대한 가장자리 rate limit·bot 보호가 필요한지 결정한다. 이번에 zone 읽기 권한이 없어 WAF·rate limit 규칙의 현재 상태를 확인하지 못했다. 미확인이다.
@@ -136,13 +136,13 @@ rollback 순서 (실패 시, 역순):
 4. 코드 문제면 `beta.sh deploy <이전 SHA>`(migration 동일일 때만). 비호환이면 D12 5장 3항: 현재 DB 추가 백업 → 격리 복원 검증 → 데이터 손실 범위를 확인한 뒤 적용.
 5. 다른 project(`myportfolio`)·호스트 cloudflared·`orca` Tunnel은 건드리지 않는다. `down -v`와 공유 자원 prune은 금지다.
 
-기존 root를 `everyone`·bypass·모든 OTP 허용으로 바꾸는 조사는 여기서 하지 않았고 적용도 하지 않았다. 그 변경은 relay가 JWT 신원을 검증하는 코드가 배포되기 전에는 실행하면 안 된다. 현재 relay는 Access 신원을 보지 않으므로 root를 열면 익명 사용자가 Bearer/Basic 인증 앞단까지 도달한다.
+기존 root를 `everyone`·bypass·모든 OTP 허용으로 바꾸는 조사는 여기서 하지 않았고 적용도 하지 않았다. 그 변경은 relay가 JWT 신원을 검증하는 코드가 배포되기 전에는 실행하면 안 된다. 현재 relay는 Access claim을 읽지 않으므로 root를 열어도 이메일 신원이 relay 인증에 반영되지 않는다. 익명 사용자가 Bearer/Basic 인증 앞단까지 도달한다.
 
 ### 5.3 필요 권한·외부 입력
 
 | 항목 | 현재 | 필요 |
 |---|---|---|
-| 관리 API token | 읽기: Access 앱·정책 GET 성공, service tokens GET 성공 | Access Apps and Policies Edit (새 경로 앱·정책). Managed OAuth는 앱 `PUT`(Apps and Policies Edit). 만료 2026-10-05T23:59:59Z이므로 새 token이 필요하다. |
+| 관리 API token | 읽기: Access 앱·정책 GET 성공, service tokens GET 성공 | Access Apps and Policies Edit (새 경로 앱·정책). Managed OAuth는 앱 `PUT`(Apps and Policies Edit). 현재 token은 `active`이고 2026-10-05T23:59:59Z에 만료된다. 만료 전에 끝나는 작업에는 새 발급이 필요 없다. 쓰기 권한 보유는 미확인이다. 만료 뒤나 부족한 권한이 확인된 때만 새 token을 요청한다. |
 | IdP | 목록 읽기 불가(빈 응답) | Access: Organizations, Identity Providers, and Groups Read (확인용). 새 IdP 추가에는 Write. |
 | Zero Trust 조직 | `GET access/organizations` 403 | 같은 Organizations 권한(세션·로그인 설정 확인). |
 | Tunnel 목록 API | `GET cfd_tunnel` 결과 빈 배열(권한 부족) | 필요 없음. `cloudflared tunnel list/info`(cert.pem)가 대체 관측이다. |
@@ -172,8 +172,54 @@ rollback 순서 (실패 시, 역순):
 | `access_apply.py selftest` | exit 0 |
 | `cloudflared tunnel list/info` | knowslink 연결 4개, connector 2026.9.1 |
 | Cloudflare GET | token verify `active`(만료 2026-10-05T23:59:59Z), 앱·정책·service token 목록 성공, 나머지는 5.3의 403 |
-| 공식 문서 확인 | Managed OAuth(2026-03-20), Tunnel `access` originRequest, Access 정책 순서·오설정 주의, Cloudflare IdP(2026-05-19), Application token(JWT claim) |
+| 공식 문서 확인 | 8.4의 URL 표(조회일 2026-10-05) |
 | 변경 | 서버·Cloudflare·제품 코드 변경 없음. 이 기록과 D12 14장, 인박스·logs만 바뀐다. |
+
+## 8. 정정 기록 (후속 지시, 원본 `2267a4a3aa56fedeac12d28b5c453ef4da74bbc1`)
+
+원본 보고에서 아래 네 가지를 정정했다. 새 서버 측정으로 과거 근거를 대체하지 않았다.
+
+### 8.1 시각
+
+- 원본 문장 "관측 시각은 12:10Z–12:30Z"는 틀렸다. 같은 보고의 `worker_done`이 12:16:16Z이므로 12:30Z는 존재할 수 없다.
+- 실제 명령 기록으로 확인한 시각이다. 첫 서버 명령 `date -u`가 12:11:29Z였다. `cloudflared tunnel list`의 경고 줄이 12:12:36Z였다. Cloudflare GET 스크립트의 마지막 수정이 12:13:49Z(파일 mtime)였다. 이 기록은 12:15:30Z(mtime)에 썼고 12:15:51Z에 커밋했다. lint 결과 파일이 12:16:03Z였다.
+- 그러므로 서버·Cloudflare 읽기 전용 관측 구간은 12:11:29Z부터 약 12:14Z까지다. 개별 표 값의 초 단위 시각은 기록하지 않았다. 따라서 표의 값은 이 구간의 한 시점 값이다.
+- 공식 문서 조회는 12:12:36Z(`cloudflared` 경고 줄) 이후 12:13:49Z(스크립트 수정) 이전이다. 개별 조회 시각은 기록하지 않았다. 조회 날짜는 2026-10-05다.
+
+### 8.2 JWT 전달
+
+1.1의 문장을 바로잡았다. 공식 문서는 Access가 JWT를 `Cf-Access-Jwt-Assertion` 헤더로 보내고 cloudflared가 `access.required`일 때 검증한다고 설명한다. IdP 로그인의 JWT에는 신원 claim이 들어가고, service token 로그인은 payload가 다르다(세부 claim은 확인하지 않았다). 이 서버의 관측은 "relay 코드가 이 헤더·claim을 읽지 않는다"(grep 0건)까지다. 헤더가 relay에 실제 도달하는지는 인증된 요청이 필요해 확인하지 않았다(미확인). 코드는 재구현하지 않았다.
+
+### 8.3 active token
+
+관리 token은 지금 `active`이고 2026-10-05T23:59:59Z에 만료 예정이다. 현재 새 발급이 필요하다고 기록하지 않는다. 5.3 표를 이 기준으로 고쳤다. 현재 권한 목록은 403이라 읽지 못했고 쓰기는 시험하지 않았다.
+
+### 8.4 직접 조회한 Cloudflare 공식 문서 (2026-10-05, 문서 검색 도구)
+
+| URL | 확인한 내용 | 사용한 위치 |
+|---|---|---|
+| https://developers.cloudflare.com/tunnel/reference/origin-parameters/ | `access.required/teamName/audTag`: cloudflared가 JWT를 검증하고 Access가 `Cf-Access-Jwt-Assertion`을 보낸다 | 1.1, 5.1-9 |
+| https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/application-token/ | Access가 인증된 요청의 origin에 token을 포함한다. payload는 IdP 로그인과 service token에서 다르다. Tunnel 연결이 아니면 origin이 검증해야 한다 | 1.1, 8.2 |
+| https://developers.cloudflare.com/cloudflare-one/access-controls/policies/ | 정책 평가 순서. `Include Everyone`과 `Login Methods = One-time PIN`은 누구나 접근하는 구성 | 1.2 선택 A |
+| https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/managed-oauth/ | Managed OAuth: self-hosted 앱 opt-in, RFC 8707 지원 client 필요, MCP server는 Access JWT를 검증해야 한다 | 1.3 선택 2 |
+| https://developers.cloudflare.com/changelog/post/2026-03-20-managed-oauth/ | 비브라우저 client는 302 대신 401과 `WWW-Authenticate`(RFC 8414·9728)를 받는다 | 1.3 선택 2 |
+| https://developers.cloudflare.com/cloudflare-one/access-controls/ai-controls/linked-apps/ | self-hosted MCP 서버는 `Cf-Access-Jwt-Assertion`으로 사용자 JWT를 받는다 | 1.3 |
+| https://developers.cloudflare.com/changelog/post/2026-05-19-cloudflare-as-identity-provider/ | Cloudflare 계정을 IdP로 쓸 수 있다. 신규 Zero Trust 계정의 기본 IdP | 1.2 선택 C |
+| https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/ | OTP 설정과 필요한 IdP 권한 | 5.3 |
+
+직접 확인하지 못했거나 근거를 얻지 못한 항목이다.
+
+- Zero Trust Free 요금제의 좌석 한도: 검색 결과가 없었다. 미확인이다.
+- Application paths의 path 우선순위: 이번에 조회하지 않았다. D12 13장 인용에 의존한다.
+- Managed OAuth와 Grok Bot·OpenAI dot client의 호환, 이 서버에서 relay로의 헤더 도달: 미확인이다. 위 문서가 일반 지원을 설명해도 이 계정·client의 지원으로 확대하지 않는다.
+
+### 8.5 최종 운영 E2E 조건
+
+최종 운영 E2E는 사용자 본인의 동일한 일반 이메일 한 개로 가입한 한 owner 아래에서 수행한다. 두 agent는 Grok Bot "노우"와 OpenAI dot "다닷"이다. 이메일 두 개를 필수 조건으로 만들지 않는다. 운영 owner 계정이 아닌 일반 사용자 계정이다. 이전 trial token 두 개와 `KNOWSLINK_TEST_AGENTS` allowlist를 되살리지 않는다. 노우↔다닷 사이 pairing과 human-gate는 같은 owner 안의 두 agent로 진행한다. 이 조건에서 ops가 확인할 사항은 다음과 같다.
+
+1. 한 이메일 신원이 한 owner에 묶이고(1.1의 DEV 구현 필요), 같은 owner에 agent 두 개가 등록된다. 이것이 허용되는지는 제품 규칙(designer)과 현재 relay 모델(DEV)이 확인한다. ops는 확인하지 않았다.
+2. 각 플랫폼이 Access를 어떻게 통과하는지(브라우저 로그인, Managed OAuth, 또는 agent 경로 보호)는 1.3의 선택에 달렸고 현재 미확정이다.
+3. 실제 가입·로그인·메일 발송은 이번 읽기 전용 조사에 포함하지 않았다.
 
 ## 완료 판정
 
