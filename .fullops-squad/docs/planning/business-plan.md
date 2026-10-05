@@ -2,11 +2,11 @@
 id: D01
 title: KnowsLink 서비스 개요
 status: review
-updated: 2026-10-03
+updated: 2026-10-05
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001]
 downstream: [D02]
-summary: KnowsLink의 가치와 freemium 방향 및 미정 결정의 담당과 재개 조건을 정리한다
+summary: 일반 서비스 가치와 수락 후 동일 이메일 노우 다닷 연결 및 상품 보류를 정의한다
 ---
 
 # KnowsLink 서비스 개요
@@ -27,11 +27,19 @@ MVP 피칭에서 메시지 볼륨 과금·Slack-seat형 과금·마켓플레이�
 
 ## MVP 범위와 개발 준비 상태
 
-MVP는 등록·페어링·철회, frozen `relay.v1`, 짧은 TTL 큐, lease·ACK·공유 실행 claim, receipt, 인간 approve/deny까지 포함한다. 첫 Go 기능 구현을 ingest/queue-only로 줄이지 않는다. TypeScript 어댑터는 pull-default다. 대상 우선순위는 Grok Bot, Claude Code, Codex, Dots다. MVP의 최소 어댑터 범위는 pull stub 1개다. 실제 제품 연결은 외부 인터페이스 확인이 필요하다.
+MVP는 등록·페어링·철회, frozen `relay.v1`, 짧은 TTL 큐, lease·ACK·공유 실행 claim, receipt, 인간 approve/deny까지 포함한다. 첫 Go 기능 구현을 ingest/queue-only로 줄이지 않는다. TypeScript 어댑터는 pull-default다. 초기 원천의 대상 우선순위는 Grok Bot, Claude Code, Codex, Dots였다. 2026-10-05 사용자 지시에 따른 현재 순서는 일반 서비스 수락 뒤 OpenAI dot “다닷” 연결이다. MVP의 최소 어댑터 범위는 pull stub 1개다. 실제 제품 연결은 외부 인터페이스 확인이 필요하다.
 
 집 미니서버의 Go relay·Postgres·Docker Compose와 Cloudflare Tunnel ingress 방향은 원천의 확정 조건이다. 기술 계획과 구현 설정은 dev와 ops가 맡는다. 초기 SAR-PREP-002에서는 운영 배포를 승인하지 않았다. 2026-10-03 사용자는 현재 서버 Docker·Cloudflare Tunnel과 `link.knowslog.com` 첫 인증 파일럿 배포를 승인했다. 현재 공개 제품 기준과 선행 조건은 [D02 DEC-03](product-specs/SAR-MVP.md#첫-인증-파일럿의-공개-제품-기준--dec-03)을 따른다. 실제 외부 업무 발송·실데이터·유료화는 첫 파일럿에 포함하지 않는다.
 
-SAR-SETUP-001 초기 골격·제품 lint·독립 QA·main 수락은 완료됐다. 업무 SQL, 사용자 등록·페어링 동작, human-gate UI, 실제 어댑터, 운영 Tunnel은 아직 완료되지 않았다. 이번 문서는 제품 기획의 개발 준비 결과다. 제품 MVP 구현 완료를 뜻하지 않는다.
+SAR-SETUP-001의 골격 수락과 이후 합성 MVP·owner-only 운영, 실제 Codex/Grok 수동 CLI 시험 및 시험 종료 기록은 보존한다. 현재 합성 owner 발급은 이메일 신원 검증이 아니다. 일반 회원 서비스와 실제 다닷 연결은 미완료다. 이번 문서는 일반 서비스 구현의 제품 기준이며 구현 완료를 뜻하지 않는다.
+
+## 일반 서비스 완성 결정 — 2026-10-05
+
+사용자는 일반 이메일로 시험하고 일반 서비스가 가능한 수준까지 완성한 뒤 OpenAI dot “다닷”을 연결하도록 지시했다. 최종 운영 시험은 사용자 동일 일반 이메일로 연결한 공식 xAI Grok Bot “노우”↔다닷이다. 두 agent는 같은 owner에 귀속되지만 식별자·키·credential은 별개다. 현재 범위는 누구나 시작 가능한 이메일 가입·로그인, 회원별 agent/키/관계 관리, 실제 클라이언트의 비민감 메시지 왕복, 실패 표시, 안전한 운영과 복구다. 관리 오너 아이디·공유 Service Auth·운영 서버 수동 파일 배치를 일반 사용자에게 요구하지 않는다.
+
+[일반 서비스 D02](product-specs/SAR-PUBLIC-SERVICE.md)는 PS-01–14와 이번 위임 범위에서 정한 초기 운영 기본값을 정의한다. 과거 DEC-03 제안에 사용자 승인이 있었다고 소급하지 않는다. DEV/OPS는 기술 근거와 보호값을 확인하고 일반 서비스 후보를 구현한다. 독립 QA·사람 로그인 UI 확인·별도 세션 fixed-SHA 리뷰·운영 검증 전에는 전체 서비스를 수락하지 않는다.
+
+기존 어댑터 전체 확장을 일반 서비스 선행 조건으로 요구하지 않는다. 검증된 Codex/Grok 경로를 일반 신원으로 먼저 연결하고 일반 서비스 수락 뒤 다닷을 우선 연결한다. Free N·가격·slot-unit, 실일정 disclosure·silent 업무효과, 결제·임의 업무 외부 발송은 계속 보류한다. 서비스 연결 확인 text의 명시적 송수신 승인은 해당 범위에만 적용한다.
 
 ## 사용자 성공 조건과 후속
 
@@ -45,7 +53,7 @@ owner는 에이전트와 키를 관리하고 상대 초대를 명시적으로 �
 |---|---|---|---|
 | Free N·Pro 가격·슬롯 단위 | designer가 사용자 결정을 coor 경유 수집 | 유료화·슬롯 상품 정책 보류 | 사용자 결정과 원천 변경 근거 확보 |
 | 일정 disclosure·출력 allowlist·범위 수치 | designer, dev는 구현 가능성 근거 제공 | 실데이터 silent 조회·정보 반환 보류 | 반환 필드·window·granularity·누적 한도와 정책 승인 기록 확보 |
-| 자원·rate·추가 size·concurrency 수치 | designer가 정책 결정, dev가 측정 근거 제공 | 무제한 공개 배포 금지 | 수치·단위·적용 범위·검증 근거 확정 |
+| 자원·rate·추가 size·concurrency 수치 | designer가 정책 결정, dev가 측정 근거 제공 | 무제한 공개 배포 금지 | [일반 서비스 D02](product-specs/SAR-PUBLIC-SERVICE.md)의 새 기본값·단위·거부 기준과 DEV/OPS 검증 근거 적용 |
 | 실제 어댑터 인터페이스 | dev | 제품별 실제 연결 보류 | 지원 인터페이스·권한·통합 가능성 확인 |
 | 운영 설정·배포 시점·외부 발송 | ops와 coor, 사용자가 실행 승인 | 운영 공개 보류 | 안전 제한 확정·수락 SHA·운영 설정 검증. 현재 서버 Docker·Tunnel 첫 파일럿 승인은 확보됐으며 범위 확대에는 새 승인 필요 |
 
@@ -54,3 +62,5 @@ owner는 에이전트와 키를 관리하고 상대 초대를 명시적으로 �
 ## 개정 이력
 
 - 2026-10-03: SAR-PREP-002에서 최신 원천의 제품 가치·사업 방향·미정 결정과 개발 준비 범위를 정리했다.
+
+- 2026-10-05: SAR-PUBLIC-SERVICE-001에서 일반 서비스 완성과 수락 후 다닷 연결을 새 범위로 반영했다. 이전 실벤더 제외는 이 범위에 한해 대체하며 실데이터 업무·상품 held는 유지한다.

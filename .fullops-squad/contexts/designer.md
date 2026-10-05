@@ -1,10 +1,10 @@
 ---
 title: designer 컨텍스트
 status: draft
-updated: 2026-10-03
+updated: 2026-10-05
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI]
-summary: 제품 판단과 직접 UI 검수의 수락 및 보류 경계를 보존한다
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001]
+summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보류 경계를 보존한다
 ---
 
 # designer 컨텍스트
@@ -26,3 +26,7 @@ summary: 제품 판단과 직접 UI 검수의 수락 및 보류 경계를 보존
 - 2026-10-03: SAR-MVP-001-UI의 기존 PNG 7개와 보완 PNG 1개를 직접 확인했다. 합성 V-01–04 시각 판정은 PASS다.
   `invalid_auth`는 인증 실패 차단만 증명한다. `deliver:human` 인증 경계 high는 DEV 수정·독립 재검증 전 유지한다.
   상세 관찰·재개·인계: [UI 실행 기록](../docs/exec-plans/phases/SAR-MVP-001-UI.md).
+
+- 2026-10-05: SAR-PUBLIC-SERVICE-001은 일반 서비스 기반 수락 뒤 동일 이메일의 Grok Bot “노우”↔OpenAI dot “다닷” 운영 시험이다. agentID·키·credential과 관계 수락은 각각 유지한다.
+  새 운영 기본값·복구 목표는 이번 위임 결정이다. 과거 DEC-03 미승인과 실일정·상품 held는 소급하지 않는다. 인증/API/DB/MCP의 기술 선택은 DEV/OPS 책임이다.
+  상세 판단·OPS 근거·기능 인계·검증: [일반 서비스 실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md).

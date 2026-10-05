@@ -2,12 +2,12 @@
 id: D02
 title: KnowsLink MVP 요구사항
 status: review
-updated: 2026-10-03
+updated: 2026-10-05
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001]
 upstream: [D01]
 downstream: [D03, D05, D06, D07, D09, D10]
-summary: 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후속 검증 책임을 정의한다
+summary: frozen MVP 규칙과 일반 서비스 확장 정본 및 과거 파일럿 경계를 연결한다
 ---
 
 # KnowsLink MVP 요구사항
@@ -16,9 +16,15 @@ summary: 최신 원천의 전체 MVP 규칙과 사용자 수락 조건 및 후�
 
 이 문서는 전체 MVP의 제품 요구사항이다. 원천은 service-design `7bc9ea190ea549fae8b047e850247a19322fc9c3`이며 [source.json](../sources/silent-agent-relay/source.json)에 고정돼 있다. [제품 결정](../sources/silent-agent-relay/product.md), [frozen 프로토콜](../sources/silent-agent-relay/protocol.md), [결정 로그](../sources/silent-agent-relay/decisions.md), [MVP 체크리스트](../sources/silent-agent-relay/mvp-checklist.md)를 따른다.
 
-[SAR-SETUP-001 D02](SAR-SETUP-001.md)는 초기 구성과 lint의 이력이다. 초기 골격 수락을 전체 MVP 수락으로 소급하지 않는다. 업무 동작은 아직 미구현이다. 이 문서의 상태는 review다. 원천의 잠긴 결정과 이번 기획 정리는 별도 제품 승인 근거를 혼동하지 않는다.
+[SAR-SETUP-001 D02](SAR-SETUP-001.md)는 초기 구성과 lint의 이력이다. 초기 골격 수락을 전체 MVP 수락으로 소급하지 않는다. 합성 MVP·owner-only 운영과 실제 수동 CLI 왕복 이력은 보존한다. 일반 회원 서비스는 미완료다. 이 문서의 상태는 review다. 원천의 잠긴 결정과 이번 기획 정리는 별도 제품 승인 근거를 혼동하지 않는다.
 
 제품 기획 담당은 designer다. 기술 계획·구조/API·구현·관련 회귀·기술 문서 갱신은 dev가 같은 기능 과제에서 맡는다. 적용 기준은 `fullops-common-0.3.2`, [project.md](../../../project.md), [문서 규칙](../../agents/document-writing.md)이다. 준비 과제 기준 ref는 `0dd08ec994771836c15d9d22a6a83393a71d7987`이다.
+
+## 현재 일반 서비스 확장 정본
+
+2026-10-05 사용자 지시는 일반 이메일 서비스 완성 뒤 OpenAI dot “다닷” 연결이다. 현재 확장 요구와 수락 기준은 [일반 서비스 D02](SAR-PUBLIC-SERVICE.md)다. PS-01–14는 아래 MVP-01–16에 추가된다. 실제 일반 신원·연결 확인 메시지·새 운영 기본값은 이 확장 정본을 따른다. 실일정 공개·결제·임의 업무 외부 발송·유료화의 보류와 frozen wire는 유지한다.
+
+아래 DEC-03 파일럿 절과 수치 제안은 2026-10-03 당시 결정 기록이다. 이번 새 운영 기본값이 해당 공개 한도를 대체한다. 과거 제안이 승인됐다고 소급하지 않는다. 어댑터 우선순위는 일반 서비스 수락 뒤 다닷을 우선 연결하는 사용자 지시로 갱신한다. 이전 QA와 시험 자격은 실제 일반 회원 서비스 수락 증거가 아니다.
 
 ## 포함과 제외
 
@@ -59,7 +65,7 @@ approve는 해당 요청의 인간 게이트 통과만 뜻한다. 일정 공개 
 | MVP-10 | approve/deny, C2; W Escalate/C2 | UI는 검증된 M typed body+정책을 표시한다. 원문 없으면 승인 불가다. owner 인증·CSRF 방어를 적용한다. GET/링크만으로 승인하지 않는다. 봉투 밖 기록은 owner, M.id, digest, endpoints, pair 세대, 정책, 만료, 결정·소비를 결속한다. 결정·소비는 원자적이며 수명은 `≤min(M.exp,H.exp)`다. 같은 digest의 다른 M.id에는 재사용하지 않는다. |
 | MVP-11 | result binding·최소화, C4; W Agent completion/C4 | `R.reply_to=M.id`, `R.from=M.to`, `R.to=M.from`과 현재 공개 권한·부모 intent별 output allowlist를 확인한다. 허용되지 않은 일정 제목·참석자·위치·원본 객체·stack trace를 반환하지 않는다. 허용 schema 확정 전 optional result/error 데이터를 열지 않는다. 결과를 도구 명령으로 실행하지 않는다. transport 실패를 B-서명 결과로 위조하지 않는다. |
 | MVP-12 | OFF 경계·자원, C5; W Nested/C5 | evidence ref 수신이 자동 fetch/preview를 일으키지 않는다. webhook은 OFF다. high priority도 제한을 우회하지 않는다. 추가 rate/size/concurrency 수치는 TBD며 무제한 운영 배포는 차단한다. body JCS `16KiB`, intent `64bytes`, hint `1024 UTF-8 bytes`, evidence `8`, key `16–128 ASCII`의 기존 한도는 유지한다. |
-| MVP-13 | 어댑터; P 범위, D stack | TypeScript pull stub 1개로 수신·persist·ACK·claim·gate·결과 흐름을 로컬 검증한다. 실제 대상은 Grok Bot, Claude Code, Codex, Dots 순서다. 공식 inbound API·벤더 코어 패치를 전제로 하지 않는다. 실제 제품 연결을 stub 성공으로 보고하지 않는다. |
+| MVP-13 | 어댑터; P 범위, D stack | TypeScript pull stub 1개로 수신·persist·ACK·claim·gate·결과 흐름을 로컬 검증한다. 초기 원천 순서는 Grok Bot, Claude Code, Codex, Dots다. 현재 후속 우선순위는 일반 서비스 D02를 따른다. 공식 inbound API·벤더 코어 패치를 전제로 하지 않는다. 실제 제품 연결을 stub 성공으로 보고하지 않는다. |
 | MVP-14 | A2A 잠금; D A2A gap review | 검토 완료 범위는 공개 A2A v0.3.0 개념이다. 최신 개정판 delta를 재검토했다고 하지 않는다. wire 비호환이며 `taskId/contextId/parts/artifacts/A2A state enums`를 추가하지 않는다. `role:user`·AgentCard·push는 owner 승인이 아니다. push로 webhook을 활성화하지 않는다. |
 | MVP-15 | 저장·기밀 최소화; W C4, architecture 저장 | exp 또는 전달·응답 완료 뒤 원문을 클리어한다. receipt 24h는 원문 24h 저장이 아니다. inbox/log/trace/model context를 최소화한다. digest를 익명화 데이터로 간주하지 않는다. DB 행 삭제를 WAL/backup 완전 삭제로 표시하지 않는다. |
 | MVP-16 | UI 사용자 판정; P Human-gate UI | owner가 발신·대상 에이전트, intent·typed body, 적용 정책, 만료·유효 상태, approve/deny 결과를 확인한다. pending/approved/denied/expired/revoked/unavailable 상태를 혼동하지 않는다. hint와 실제 요청이 달라도 실제 검증 본문이 판단 근거다. |
@@ -74,7 +80,7 @@ approve는 해당 요청의 인간 게이트 통과만 뜻한다. 일정 공개 
 
 최소 owner 작업 화면과 approve/deny 화면을 사용한다. 메시지 대화창·채팅 버블·입력 composer·장기 대화 타임라인을 만들지 않는다. render.hint를 요청 제목으로만 크게 보여주고 검증 본문을 숨기지 않는다. 승인 버튼을 GET 링크로 만들지 않는다. 색만으로 승인·거절·만료를 구분하지 않는다. 만료나 권한 확인 실패 상태에서 활성 승인 버튼을 보이지 않는다.
 
-별도 아트 에셋이나 장식 목업은 현재 필요하지 않다. D04는 미작성 상태를 유지한다. DEV의 UI 후보가 준비되면 designer가 MVP-16을 직접 시각 검수한다. 정상 승인 대기, 결정 완료, 만료·철회·원문 부재 화면을 캡처한다. 시간 변화가 정지 화면으로 판정되지 않을 때만 짧은 영상을 만든다.
+별도 아트 에셋이나 장식 목업은 현재 필요하지 않다. 기존 D04와 일반 서비스의 [화면 수락 기준](../../design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md)을 연결한다. DEV의 UI 후보가 준비되면 designer가 MVP-16을 직접 시각 검수한다. 정상 승인 대기, 결정 완료, 만료·철회·원문 부재 화면을 캡처한다. 시간 변화가 정지 화면으로 판정되지 않을 때만 짧은 영상을 만든다.
 
 ## 미정 결정과 기능 수락 경계
 
@@ -144,3 +150,5 @@ CPU·메모리·디스크·DB 보존 자원의 실제 보호 상한은 OPS가 �
 제품 정책 문서 완료는 배포 성공이나 QA PASS가 아니다. 이 합성 파일럿 수락은 전체 MVP 완료가 아니다. 실벤더 연결과 실데이터 silent 업무 성공·유료화의 기존 held 및 재개 조건을 유지한다.
 
 - 2026-10-03: SAR-MVP-PUBLIC-POLICY-001에서 누구나 가입 가능한 인증 합성 파일럿 범위를 반영했다. DEC-03 수치는 승인 전 제안이며 신규 수락과 기존 안전 정리의 경계를 분리했다. 실제 공개와 전체 MVP 수락은 선언하지 않았다.
+
+- 2026-10-05: SAR-PUBLIC-SERVICE-001 일반 서비스 확장 정본을 연결했다. 기존 DEC-03 제안은 당시 기록으로 보존한다.
