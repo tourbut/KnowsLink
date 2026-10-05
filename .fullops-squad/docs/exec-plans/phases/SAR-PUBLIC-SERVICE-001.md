@@ -69,4 +69,12 @@ context가 README.md와 project.md의 기존 합성/실벤더 제외 설명을 �
 
 ## 검사 결과와 완료 인계
 
-검사 완료 후 실제 결과·SHA를 기록한다.
+준비 SHA `608fe06cf0d67d97a483bd088d9834c34049fb6f`는 레포 밖 shared clone의 detached snapshot에서 기준 `6c0d132`로 lint를 실행했다. 종료코드 0, ERROR 0, WARNING 1, 실행 불가 0이며 등록 product-lint `make lint`가 통과했다. WARNING은 기준 이후 coor가 작성한 기존 PLANS의 SIZE-001(663줄/500줄)이다. designer는 PLANS를 수정하지 않았다.
+
+첫 snapshot lint는 재사용 node_modules symlink가 untracked여서 exit 2였다. local info/exclude로 분리한 다음 실행은 설치된 MCP SDK/zod 의존성 누락으로 exit 1이었다. 두 실패의 `.initial`·`.dependencies-missing` 로그와 종료코드를 보존했다. 잠금 파일대로 snapshot과 작업 체크아웃에서 `make install`을 실행해 각각 exit 0을 확인했다. 제품 코드와 잠금 파일은 바뀌지 않았다. 원인을 해결한 뒤 같은 준비 SHA와 기준에서 위 ERROR 0을 확인했다. 실패를 PASS로 바꾸어 기록하지 않았다.
+
+제품/인계 체크포인트 `07ccd07405135efcad0b324737681f254ee70dab`에서 `deliverables.py --strict`는 검사 13·미작성 0·문제 0·경고 0·exit 0이다. `git diff 608fe06 --check`도 exit 0이다. 같은 HEAD에서 기준 `6c0d132` lint는 ERROR 0·WARNING 1·실행 불가 0·exit 0이고 product-lint가 통과했다. 결과 JSON은 레포 밖 `checkpoint-lint.json`이다.
+
+문서 audit는 변경/신규 파일 16개·로컬 링크 54개·PS 요구사항 14개·UX 항목 8개에서 오류 0·exit 0이다. DEV/TESTER 본문 과제 키와 여섯 Jev 결과를 확인했다. 제품 코드·D03·원천·OPS 인박스·PLANS/board 보존을 확인했다. 문장·새 기본값/과거 제안·일반 서비스/최종 운영 E2E·기술 책임·미실행 경계도 직접 대조했다. 최종 아카이브 뒤 같은 검사를 최종 SHA에서 확인하며 그 SHA는 worker_done에 고정한다.
+
+현재 과제의 완료 보고 전문을 `handovers/to_designer.md`에 작성했다. `work.py finish`는 exit 0이었다. `handovers/logs/2026-10-05_to_designer.md`의 전문과 저장한 원 인박스가 일치했고 과제 marker는 한 개다. 자기 인박스는 0 byte다. 보존/빈 인박스 검사는 exit 0이었다. 이 문서 과제는 완료이며 전체 일반 서비스/최종 노우↔다닷 운영 시험은 후속이다. coor는 DEV ready·TESTER 후보 대기 지시서를 사용하고 OPS/agents/messages/전체 수락/다닷 과제를 PLANS에 대기시킨다. 진행 designer 체크아웃에 main/OPS를 merge하지 않았다.
