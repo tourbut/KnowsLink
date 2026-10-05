@@ -17,8 +17,8 @@ summary: 일반 서비스 기능 순서와 현재 인박스 및 후속 대기와
 |---|---|---|
 | SAR-PUBLIC-IDENTITY-001-DEV, dev | PS-01–04, 신원/세션 남용 제한과 자기 owner UI. 일반 이메일 실제 확인·재로그인·교차 계정 거부 | [DEV 인박스](../../handovers/to_dev.md) ready. coor가 최신 main 포함과 dispatch 기준 SHA를 고정한다. |
 | SAR-PUBLIC-IDENTITY-001-TESTER, tester | 같은 후보의 일반 이메일·세션·회원 분리 독립 QA | [TESTER 인박스](../../handovers/to_tester.md) waiting. DEV 고정 후보와 허가된 일반 이메일 환경 이후 실행한다. |
-| SAR-PUBLIC-SERVICE-OPS-READINESS, ops | 신원 제공자·owner-origin 경계·공유 서비스·실제 자원·복구 근거 | 완료 SHA `2267a4a3aa56fedeac12d28b5c453ef4da74bbc1`를 확인했다. 신원 바인딩·자원/처리량·백업 복구 미충족을 후속 공개 조건으로 반영한다. OPS 후속 인박스 작성은 coor가 한다. |
-| SAR-PUBLIC-AGENTS-001-DEV, dev | PS-04–07·연결/키/관계 한도. 일반 사용자가 자기 클라이언트에서 연결·회전·철회 | identity 기능 수락 뒤 coor가 PLANS 대기에서 현재 DEV 인박스로 옮긴다. |
+| SAR-PUBLIC-SERVICE-OPS-READINESS, ops | 신원 제공자·owner-origin 경계·공유 서비스·실제 자원·복구 근거 | 완료 SHA `0313deae0dec9af813b70ee9685e1a6d0a2b84d7`를 확인했다. 신원 바인딩·자원/처리량·백업 복구 미충족을 후속 공개 조건으로 반영한다. OPS 후속 인박스 작성은 coor가 한다. |
+| SAR-PUBLIC-AGENTS-001-DEV, dev | PS-04–07·연결/키/관계 한도와 계정 비활성화. 일반 사용자가 자기 클라이언트에서 연결·회전·철회 | identity 기능 수락 뒤 coor가 PLANS 대기에서 현재 DEV 인박스로 옮긴다. |
 | SAR-PUBLIC-MESSAGES-001-DEV, dev | PS-08–11, 실제 일반 신원 두 클라이언트 왕복·실패·기존 gate 회귀 | agents 기능 수락·지원 실제 클라이언트 확인 뒤 준비한다. |
 | SAR-PUBLIC-SERVICE-OPS, ops | PS-12/13 배포 후보·자원 보호·일반 신원 공개 경계·격리 복구·기존 owner/공유 회귀 | readiness 완료 아카이브 뒤 빈 OPS 인박스에 작성한다. 수락된 구현 SHA·독립 검증 전 공개 변경은 하지 않는다. |
 | SAR-PUBLIC-SERVICE-ACCEPT-001, coor/tester/designer/reviewer | PS-01–13 전체 수락. fixed-SHA 독립 QA·read-only 별도 세션 리뷰·직접 UI/일반 이메일 사람 확인·운영 근거 | 각 기능 후보를 수락한 뒤 하나의 운영 후보에서 확인한다. 미해결 critical/high와 필수 실패는 차단한다. |

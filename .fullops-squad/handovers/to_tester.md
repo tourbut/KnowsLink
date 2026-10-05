@@ -27,9 +27,16 @@ summary: 고정 후보의 일반 이메일 신원과 세션 및 회원 분리 �
 - `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md` (판단 근거·진행 OPS 조사·후속).
 - `.fullops-squad/docs/operations/ops-guide.md` (현재 owner-only 운영과 readiness 후속).
 
+
+탐색 근거: `docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-TESTER-find.json`, `SAR-PUBLIC-IDENTITY-001-TESTER-documents-find.json`, `SAR-PUBLIC-IDENTITY-001-TESTER-context.json` (HEAD `82a92f5`, 정상·fallback 없음). 문서와 코드는 별도 탐색했다.
+
+keep 추가: `.fullops-squad/contexts/tester.md`, `.fullops-squad/docs/evaluations/scenarios/README.md`, `README.md`, `internal/relay/http.go`, `deploy/knowslink/verify.py`, `scripts/verify_mvp.py`, `scripts/verify_runtime.py`, `adapters/src/synthetic.ts`, `scripts/run_trial.py`, `internal/config/config.go`, `internal/relay/integration_test.go`.
+
+필수 규칙과 제품 정본은 제외하지 않는다. 큰/민감 가능 passage로 원문을 미송신한 검증 스크립트도 keep이다.
+
 ### 지시 전제와 충돌 — 먼저 확인
 
-기존 `/v1/owners`의 합성 owner 발급·owner UI Basic 인증·공개 owner-only Access를 일반 회원 신원으로 취급하지 않는다. 기존 DEC-03 수치는 당시 미승인 제안이다. 이번 D02의 새 기본값으로 구현한다. 실제 공개는 신원·자원·독립 수락 근거 전까지 차단한다. OPS의 `SAR-PUBLIC-SERVICE-OPS-READINESS`는 별도 조사로 진행 중이다. 기술 근거가 제품 수치 조정을 요구하면 coor를 통해 designer에게 전달한다. 독립 구현은 이메일 입력 대기로 중지하지 않는다.
+기존 `/v1/owners`의 합성 owner 발급·owner UI Basic 인증·공개 owner-only Access를 일반 회원 신원으로 취급하지 않는다. 기존 DEC-03 수치는 당시 미승인 제안이다. 이번 D02의 새 기본값으로 구현한다. 실제 공개는 신원·자원·독립 수락 근거 전까지 차단한다. OPS의 `SAR-PUBLIC-SERVICE-OPS-READINESS`는 별도 조사로 진행 중이다. 기술 근거가 제품 수치 조정을 요구하면 coor를 통해 designer에게 전달한다. 독립 구현은 이메일 입력 대기로 중지하지 않는다. README.md/project.md의 이전 합성 범위와 현재 제품 확장 범위를 구분한다. deploy/knowslink/verify.py의 기존 공개 302 기대는 일반 이메일 positive 인증 증거가 아니다. 필요한 기술 안내/검사 갱신은 DEV/OPS가 맡는다. OPS 정정 근거 SHA는 `0313deae0dec9af813b70ee9685e1a6d0a2b84d7`다.
 
 ## 해야 할 일과 독립 판정
 

@@ -20,7 +20,7 @@ summary: 일반 이메일 서비스 기준과 동일 이메일 노우 다닷 운
 
 ## 운영 조사 근거 반영
 
-OPS의 `2267a4a3aa56fedeac12d28b5c453ef4da74bbc1`에서 `SAR-PUBLIC-SERVICE-OPS-READINESS.md`를 `git show`로 읽었다. 해당 결과는 coor가 통합할 자료이며 진행 designer 체크아웃에 merge하지 않았다. 기록 경로는 통합 후 `docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md`다.
+OPS의 `0313deae0dec9af813b70ee9685e1a6d0a2b84d7`에서 `SAR-PUBLIC-SERVICE-OPS-READINESS.md`를 `git show`로 읽었다. 해당 결과는 coor가 통합할 자료이며 진행 designer 체크아웃에 merge하지 않았다. 기록 경로는 통합 후 `docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md`다.
 
 조사 시점에는 relay가 Access JWT/이메일을 읽지 않고 Basic/Bearer 합성 신원만 읽었다. root 정책은 관리 이메일 하나만 허용했다. managed OAuth는 꺼져 있고 trial token은 없었다. IdP/조직/좌석·DNS/WAF 일부는 권한 부족으로 미확인이다. 따라서 단순 root everyone 변경은 PS-01/04를 충족하지 못한다. 일반 회원 신원 바인딩과 비브라우저 agent 인증 경계를 먼저 구현·검증한다. 일반 사용자의 Cloudflare 계정 가입을 필수로 요구하지 않는다. 신원 제공자·Access/직접 인증·MCP 연결 선택은 DEV/OPS의 기술 책임이다.
 
@@ -33,7 +33,7 @@ OPS의 `2267a4a3aa56fedeac12d28b5c453ef4da74bbc1`에서 `SAR-PUBLIC-SERVICE-OPS-
 | ID | 확정 제품 기준 | 관찰 가능한 완료 조건 |
 |---|---|---|
 | PS-01 이메일 신원 | 가입·로그인은 이메일 소유 확인을 통과해야 한다. 단순 문자열 입력이나 합성 owner 발급은 인증이 아니다. | 사용자의 일반 이메일 한 계정이 실제 확인 수단으로 가입한다. 타 회원 권한 분리는 별도 독립 fixture로 검증할 수 있다. 미확인·위조·만료·재사용 수단은 보호 화면과 owner 생성을 허용하지 않는다. |
-| PS-02 신원 연속성 | 같은 검증 신원으로 재로그인하면 같은 회원과 owner를 사용한다. 대소문자·별칭 처리는 DEV가 제공자 근거로 정한다. 이메일만 같다는 이유로 다른 인증 발급자의 계정을 자동 병합하지 않는다. | 새 브라우저 로그인과 동시 첫 가입이 중복 owner를 만들지 않는다. 재로그인 후 자기 agent·관계·receipt가 보인다. 같은 이메일의 Grok Bot과 다닷은 같은 회원/owner 아래 별도 agent로 연결한다. |
+| PS-02 신원 연속성 | 같은 검증 신원으로 재로그인하면 같은 회원과 owner를 사용한다. 대소문자·별칭 처리는 DEV가 제공자 근거로 정한다. 이메일만 같다는 이유로 다른 인증 발급자의 계정을 자동 병합하지 않는다. | 새 브라우저 로그인과 동시 첫 가입이 중복 owner를 만들지 않는다. 재로그인 후 자기 agent·관계·receipt가 보인다. 같은 이메일의 Grok Bot “노우”와 다닷은 같은 회원/owner 아래 별도 agent로 연결한다. xAI/OpenAI 계정의 이메일 표시는 KnowsLink 이메일 검증을 대신하지 않는다. |
 | PS-03 세션과 복구 | 로그아웃은 현재 브라우저 세션을 무효화한다. 전체 로그아웃은 회원의 모든 브라우저 세션을 무효화한다. 이메일 재확인으로 로그인 복구한다. | 뒤로 가기·기존 세션 재사용은 보호 데이터에 접근하지 못한다. 만료 후 로그인으로 복귀한다. 로그아웃은 별도 연결한 agent 키를 철회하지 않으며 화면이 이를 설명한다. |
 | PS-04 소유권 분리 | owner는 자기 agent·키·관계·gate·상태만 관리한다. agent 인증은 owner 승인·관리자 권한을 대체하지 못한다. 같은 owner의 두 agent도 식별자·키·credential과 인가 대상을 분리한다. | 계정 A가 B의 식별자를 바꾸어 조회·수정·초대 결정·gate 결정을 시도하면 거부된다. 일반 회원은 운영 설정·다른 회원 명단·민감 로그를 볼 수 없다. |
 | PS-05 일반 연결 | 회원은 화면에서 agent를 만들고 지원되는 클라이언트를 연결한다. 운영 관리자 아이디·공유 서버 SSH·서버 파일 수동 배치를 요구하지 않는다. | 클라이언트가 자기 환경에서 키를 준비하고 회원이 대상 agent와 연결 권한을 확인한다. 연결 실패·취소·기한 만료는 미연결로 남는다. 사용자가 자기 클라이언트에서 안내된 설치를 실행하는 것은 허용한다. |

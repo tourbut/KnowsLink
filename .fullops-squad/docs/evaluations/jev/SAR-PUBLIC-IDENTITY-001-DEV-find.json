@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV",
+  "head": "82a92f559bcd38e9388ec69809a3bf0adb240cb0",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 68,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 68
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.38
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.15000000000000002
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.09999999999999999
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.09
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.03
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.03
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.02
+    },
+    {
+      "path": "cmd/migrate/main.go",
+      "summary": "Migrate applies SQL-only goose migrations separately from relay startup.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.84,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4486,
+    "output_tokens": 729,
+    "cost": 0.000188412
+  },
+  "latency_seconds": 0.285,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

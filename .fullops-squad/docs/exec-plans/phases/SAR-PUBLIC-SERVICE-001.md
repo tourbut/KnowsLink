@@ -29,7 +29,7 @@ summary: 일반 서비스 제품 결정과 OPS 근거 및 역할별 인계와 �
 
 ## OPS 근거와 책임 충돌 처리
 
-OPS 완료 SHA `2267a4a3aa56fedeac12d28b5c453ef4da74bbc1`의 `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md`를 `git show`로 읽었다. coor 메시지 `msg_119b5ae89755`와 실제 기록을 대조했다. 진행 체크아웃에는 merge하지 않았다. 기록 전문과 D12 반영은 coor가 통합한다.
+OPS 완료 SHA `0313deae0dec9af813b70ee9685e1a6d0a2b84d7`의 `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md`를 `git show`로 읽었다. 최초 `2267a4a` 기록과 정정 SHA `0313deae`의 차이를 읽었다. `msg_119b5ae89755`와 정정 전달 `msg_427f431c06fc`를 대조했다. 관측 시각은 12:11:29Z부터 약 12:14Z까지다. Access JWT/header는 전달 가능하지만 relay가 미사용하며 실서버 도달은 미확인이다. 관리 token은 관측 시 active이며 만료 전 사용 가능하나 현재 쓰기 권한은 미확인이다. 진행 체크아웃에는 merge하지 않았다. 기록 전문과 D12 반영은 coor가 통합한다.
 
 현재 relay는 Access JWT/email을 읽지 않고 합성 Basic/Bearer만 읽는다. root는 관리 이메일 한 개이고 OAuth는 꺼져 있다. server 자원은 유휴 관측이며 단일 jsonb 행의 실제 수용량·처리량은 미측정이다. swap 약 99% 관측과 shared service 보호를 공개 전에 확인한다. 자동 백업·별도 저장 사본이 없고 최신 복원은 미검증이다. D02의 RPO 24h/RTO 4h·일일 백업·별도 저장 사본·암호화·7일 보존은 후속 구현/복구 검사 기준으로 새로 정했다. 현재 충족으로 표시하지 않는다.
 
@@ -43,7 +43,7 @@ OPS는 착수 체크아웃의 빈 인박스와 달리 coor에서 readiness가 �
 
 | 대기 키·역할 | 목표·선행 | 완료 조건·재개 조건 |
 |---|---|---|
-| SAR-PUBLIC-AGENTS-001-DEV, dev | identity 기능 수락 뒤 자기 클라이언트 연결·키·관계 구현 | PS-04–07, 해당 PS-11, UX-04/05. 별도 agent 자격·같은 owner 첫 수락·회전/철회·타 회원 거부. DEV 인박스 finish 뒤 작성한다. |
+| SAR-PUBLIC-AGENTS-001-DEV, dev | identity 기능 수락 뒤 자기 클라이언트 연결·키·관계 구현 | PS-04–07, 해당 PS-11, UX-04/05와 계정 비활성화/전체 자격 철회. 별도 agent 자격·같은 owner 첫 수락·회전/철회·타 회원 거부. DEV 인박스 finish 뒤 작성한다. |
 | SAR-PUBLIC-MESSAGES-001-DEV, dev | agents 기능 수락 뒤 실제 연결 확인 왕복·실패·gate | PS-08–11, UX-06/07. 기술 중간 왕복과 최종 노우↔다닷을 구분한다. 실제 클라이언트 인터페이스 근거가 필요하다. |
 | SAR-PUBLIC-SERVICE-OPS, ops | readiness 결과·수락 구현 SHA 뒤 안전 운영·공개 검증 | PS-12/13. 신원/agent 원점 경계·자원 상한·부하 근거·백업/격리 복원·공유서비스 회귀·rollback. root owner 보존·정리 budget·재시작/복원 철회 불변을 검증한다. 일반 signup 우회를 차단한 뒤 공개를 확대한다. |
 | SAR-PUBLIC-SERVICE-ACCEPT-001, coor/tester/designer/reviewer | 안정된 운영 후보에서 기능 전체 수락 | PS-01–13, UX-01–07. 독립 fixed-SHA QA·별도 read-only 세션 리뷰·실제 이메일 사람 로그인·OPS 근거. critical/high·필수 실패는 수락 차단이다. |
@@ -54,6 +54,12 @@ OPS 인계는 실제 적용 전에 필요한 권한·좌석/요금제·IdP·DNS/
 ## 공식 dots 근거의 범위
 
 D02에 2026-10-05 열람한 공식 URL을 기록했다. 계정의 supported plugins와 연결 컴퓨터는 지원 경로 후보이며 다닷 실제 화면/설치 증거가 아니다. 사용자별 원격 MCP 인증은 공식 OAuth 2.1/PKCE·metadata·token 검증 계약을 확인했다. DEV가 신원 연속성과 최소 권한을 함께 설계한다. MCP Events는 dots의 명시적 구독과 callback/webhook을 안내한다. relay optional webhook OFF는 이번에 유지한다. CLI pull·앱 설치만으로 자동 wake를 주장하지 않는다.
+
+## 후속 인계 탐색 근거
+
+제품 문서 체크포인트 `82a92f559bcd38e9388ec69809a3bf0adb240cb0`에서 DEV/TESTER 각각 code-find·documents-find·context를 실행했다. 모두 정상이며 fallback은 없다. 결과는 `docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-{DEV,TESTER}-{find,documents-find,context}.json` 여섯 파일에 보존했다. source passage가 크거나 민감할 수 있어 미송신된 verify_mvp.py/verify_runtime.py는 제외하지 않고 필수 keep으로 유지했다.
+
+context가 README.md와 project.md의 기존 합성/실벤더 제외 설명을 충돌 후보로 골랐다. TESTER의 deploy/knowslink/verify.py도 현재 공개 probe의 302 기대를 갖는다. 일반 신원 positive를 기존 모두 302 결과만으로 PASS 처리하지 않도록 인계에 명시했다. 현재 제품 요구가 우선이며 관련 기술 안내와 검사 갱신은 DEV/OPS 책임이다. DEV의 adapters/README.md만 omit? 추천이라 필요 시 확인으로 분리했다. 새 검증/기술 작업에서 유용하면 제외 추천을 무시하고 완료 보고에 근거를 남긴다.
 
 ## 문서 검증과 한계
 
