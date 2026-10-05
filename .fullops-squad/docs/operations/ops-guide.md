@@ -268,13 +268,13 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 
 ## 14. 일반 이메일 서비스 운영 준비 근거 (SAR-PUBLIC-SERVICE-OPS-READINESS)
 
-이 장은 읽기 전용 관측과 제안이다. 서버·Cloudflare 설정·제품 코드는 바꾸지 않았다. 관측은 2026-10-05T12:10Z–12:30Z, 배포 체크아웃 `0911c2c73468f8684260a277d4940a74d26bcf7d` 기준이다. 증거와 전체 표는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md)이다. 13장의 시험 종료 상태는 유지된다. 이 장은 공개 수락 근거가 아니며 D13을 수락으로 바꾸지 않는다.
+이 장은 읽기 전용 관측과 제안이다. 서버·Cloudflare 설정·제품 코드는 바꾸지 않았다. 서버 읽기 전용 관측은 2026-10-05T12:11:29Z부터 약 12:14Z까지, 배포 체크아웃 `0911c2c73468f8684260a277d4940a74d26bcf7d` 기준이다. 증거와 전체 표는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md)이다. 13장의 시험 종료 상태는 유지된다. 이 장은 공개 수락 근거가 아니며 D13을 수락으로 바꾸지 않는다.
 
 ### 14.1 실제 신원 보호 (관측)
 
 - Access 앱은 `KnowsLink beta (owner-only)` 한 개다. `link.knowslog.com` 전체를 덮고 정책은 사용자 이메일 한 개만 허용한다. 무인증 경로는 모두 302 → Access 로그인이다. service token과 trial 앱·policy는 없다.
-- relay는 Access JWT·이메일을 읽지 않는다. Bearer(API)와 Basic(owner UI)만 읽는다. 이메일 신원은 가장자리에만 있고 합성 owner credential과 연결되지 않는다.
-- 그러므로 root를 모든 이메일 허용으로 넓히면 익명 사용자가 relay 인증 앞단까지 도달한다. relay가 JWT를 검증하고 신원을 owner에 묶는 코드(DEV)가 배포되기 전에는 넓히지 않는다.
+- relay는 Access JWT·이메일을 읽지 않는다. Bearer(API)와 Basic(owner UI)만 읽는다. 그래서 relay는 이메일 신원을 쓰지 않고 합성 owner credential과 실제 이메일이 연결되지 않는다. 공식 문서상 Access는 `Cf-Access-Jwt-Assertion` 헤더로 JWT를 보내고 cloudflared가 `access.required`에서 검증한다. claim은 relay로 전달될 수 있다. 이 서버에서 헤더 도달은 미확인이다([근거 URL](../exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md)).
+- 그러므로 root를 모든 이메일 허용으로 넓혀도 이메일 신원이 relay 인증에 반영되지 않고 익명 사용자가 Bearer/Basic 앞단까지 도달한다. relay가 claim을 읽어 owner에 묶는 코드(DEV)가 배포되기 전에는 넓히지 않는다.
 - Managed OAuth는 꺼져 있다(`oauth_configuration` 비어 있음). Cloudflare 공식 문서는 비브라우저 client용 Managed OAuth(2026-03-20)를 설명한다. 실제 Grok·OpenAI dot client와의 호환은 미확인이다.
 
 ### 14.2 자원·DB·복구 (관측)
@@ -285,7 +285,11 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 
 ### 14.3 공개 전 선행 조건과 rollback 순서
 
-선행 조건: 신원 방식과 agent·MCP 연결 방식의 제품 결정, relay의 JWT 신원 연결, 가장자리 rate limit·bot 보호 결정, 백업 체계(일정·별도 위치·암호화·복원 시험), DEC-03 한도 구현 검증, 독립 QA·리뷰. 새 관리 token(현재 token은 2026-10-05T23:59:59Z에 만료)과 읽기 권한(IdP, 조직, zone)이 필요하다.
+선행 조건: 신원 방식과 agent·MCP 연결 방식의 제품 결정, relay의 JWT 신원 연결, 가장자리 rate limit·bot 보호 결정, 백업 체계(일정·별도 위치·암호화·복원 시험), DEC-03 한도 구현 검증, 독립 QA·리뷰. 관리 token은 현재 `active`이고 2026-10-05T23:59:59Z에 만료 예정이다. 새 발급은 지금 필요하지 않다. 만료 뒤 작업이나 부족한 권한(IdP·조직·zone 읽기)이 확인된 때만 요청한다.
+
+### 14.4 최종 운영 E2E 조건
+
+최종 운영 E2E는 사용자 본인의 동일한 일반 이메일 한 개로 가입한 한 owner 아래에서 Grok Bot 노우와 OpenAI dot 다닷 두 agent를 연결해 수행한다. 이메일 두 개는 필수가 아니다. 이전 trial token과 allowlist는 되살리지 않는다. 공식 문서 URL·조회일(2026-10-05)과 미확인 항목은 실행 기록 8장이다.
 
 적용 순서: 새 백업과 복원 검증 → `beta.sh deploy <SHA>` → 새 경로 Access 앱·정책(기존 root 앱 불변) → 후보 `config.yml` 검증·교체 → negative/positive·회귀 검증 → 노출 확대는 마지막.
 
