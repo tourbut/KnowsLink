@@ -2,9 +2,9 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-04
+updated: 2026-10-05
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -62,3 +62,7 @@ owner는 실제 계정에서 등록과 `knowslink_status` held 호출을 재시�
 ### 재개 결과 (2026-10-04)
 
 위 차단은 해소됐다. 24h machine token 두 개·trial policy·`/v1/test/*` 앱이 적용됐고 원점 Tunnel에 trial AUD rule이 들어갔다. 공개 negative(403·401·302)와 positive(두 local client의 HTTPS 왕복)가 통과했다. actual Grok은 미검증이다. 만료는 2026-10-05T06:42:09Z다. 그 시각 전에 시험을 끝내거나 token을 새로 만든다. 종료 시 token 두 개 revoke·앱과 policy 삭제·원점 config 복원·allowlist 비우기를 한다. Grok 전용 파일은 `grok-export/`에 CF 항목까지 준비됐고 외부 전달은 coor·사용자 안전 채널이 담당한다. 상세는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)의 「재개 결과」다.
+
+### 만료 갱신 (2026-10-05, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW)
+
+service token 두 개가 만료돼 24h로 갱신했다. UUID·secret은 그대로다. 새 만료는 **2026-10-06T08:09:43Z(codex)·08:09:50Z(grok)**이다. 공개 negative·positive와 두 local client 왕복이 다시 통과했다(실제 Grok 아님). Grok 전달용 묶음은 `/home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL/knowslink-grok-trial-20261005.tar.gz`이며 외부 전달은 coor·사용자가 한다. 관리 token은 2026-10-05T23:59:59Z에 먼저 만료되므로 종료 정리를 그 전에 하거나 새 권한을 받는다. 상세는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md)이다.
