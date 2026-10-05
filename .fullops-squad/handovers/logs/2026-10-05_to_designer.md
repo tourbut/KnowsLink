@@ -91,3 +91,66 @@ D01 `docs/planning/business-plan.md`, 기존 D02 `docs/planning/product-specs/SA
 ### 완료 처리와 복귀
 
 브랜치는 fullops/designer다. 이 전문과 전체 지시서를 work.py finish로 `handovers/logs/2026-10-05_to_designer.md`에 한 번 보존하고 자기 인박스를 비운다. 최종 완료 커밋의 SHA·lint/strict·전문 일치·빈 인박스·깨끗한 상태를 다시 확인해 현재 Run의 worker_done으로 보낸다. 보고 SHA는 worker_done의 고정 값이 정본이며 체크포인트를 최종 SHA로 바꾸어 쓰지 않는다. coor가 문서 검토·main 통합·다음 역할 배정을 수행한다. 이번 문서 완료는 제품 수락과 별개다.
+
+## SAR-PUBLIC-IDENTITY-001-UI — 2026-10-05
+
+---
+title: SAR-PUBLIC-IDENTITY-001-UI — 고정 이메일 신원 후보의 UX01–03을 실제 브라우저에서 직접 검수한다
+status: draft
+updated: 2026-10-05
+owner: designer
+tasks: [SAR-PUBLIC-IDENTITY-001-UI]
+summary: 고정 이메일 신원 후보의 UX01–03을 실제 브라우저에서 직접 검수한다
+---
+
+# SAR-PUBLIC-IDENTITY-001-UI — 일반 이메일 가입·세션 직접 시각 검수
+
+- 상태 completed. 고정 제품 후보59b66ada8b36802484cc6d7e22523257b50572cc, 코드a446d89ff288c4243ad6d7f8780a778517154584, 기준94533b207b456c0560800fe30a7c90b2b5887c6e.
+- 소유: 기록 checkout /home/shin/orca/workspaces/KnowsLink/fullops-coor의 이 designer 인박스·해당 logs 전문, docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md와 필요한 UI 증거, 자기 실행 기록뿐. 제품 코드·다른 기록·PLANS/board·다른 인박스·GitHub·CF·배포는 수정하지 않는다.
+- 복귀 term_1db428fe-3b8f-43e5-89bd-3cadbd6720e9, Run run_8ca8bc058ab7. 새 세션 dispatch preamble을 사용한다.
+
+## 적용 기준과 예외
+
+fullops-common-0.3.2, FULLOPS.md/project.md/document-writing.md/orca-agents.md, coding-style/testing/security. 제품 SAR-PUBLIC-SERVICE PS01–04·해당PS11·UX01–03과 frozen SAR-MVP C1–C5. 사용자 일반 서비스 구현 지시에 따른 직접 UI 검수다. 새로운 제품수치/화면/코드 구현이나 기술 승인을 맡지 않는다. 최종 시험은 같은 일반 이메일의 노우↔다닷이다. 이번 로컬 fixture 직접 UI를 실제 사람 이메일/운영 시험 PASS로 대체하지 않는다.
+
+## 먼저 읽을 문서
+
+필수 규칙과 제품/UX 정본, DEV 실행 기록 SAR-PUBLIC-IDENTITY-001-DEV.md, README의 일반 이메일 로그인 확인 절차, 사용자 가이드, internal/relay/member.go·identity.go·http.go·scripts/mail_sink.py. 탐색 근거는 coor가 아래 추가한다.
+
+## 지시 전제와 충돌
+
+기존 owner-only Basic 화면은 일반 회원 가입 화면이 아니다. 이번 UX03 범위는 신원·세션·자기 owner·로그아웃이다. agent/key/pair/회원 비활성화는 다음 기능이다. 준비 중 표시는 실패로 바꾸지 말고 기능이 아직 미구현이라는 표시와 실제 성공버튼 없음 여부를 검사한다. 실제 이메일·운영 SMTP 미설정은 실제 확인만 미실행이다. fixture의 로컬 SMTP 받은 코드로 직접 브라우저 시각/흐름 검사 자체를 수행한다. 자동 QA/보안 리뷰는 별도 담당이므로 전체를 중복하지 않는다.
+
+## 해야 할 일·완료 기준
+
+1. 자신의 제품 실행 checkout /tmp/knowslink-public-identity-ui-59b66ad의 detached59를 확인하고 별도 임시 PostgreSQL·SMTP sink·loopback relay를 시작한다. 기존 운영 서비스/QA의 임시 환경을 변경하지 않는다. 코드를 수정하지 않는다. 필요한 실행/fixture 준비를 독립 수행한다.
+2. Orca 실제 내장 브라우저에 새 전용 페이지를 열어 그 page ID를 명시적으로 제어한다. 사용자 기존 Cloudflare/다른 페이지를 탐색하거나 변경하지 않는다. orca-cli browser reference를 읽는다.
+3. UX01 시작 화면의 일반 이메일 입력·로그인 절차, UX02 확인대기·마스킹·오답·만료·제한·발송 실패의 안내와 다음 동작, UX03 실제 회원 홈·빈 agent/관계 준비중·현재 로그아웃·전체 로그아웃/재확인·오래된 세션 화면을 직접 확인한다. 기존 회원 gate 영향 화면은 변경 영향에 필요한 범위만 확인한다.
+4. 성공/실패의 문구·입력 레이블·가독성·레이아웃·키보드·모바일 폭을 판정한다. 테스트는 기능 판정에 필요한 최소 조작으로 한다. 실제 직접 화면 관측과 자동 근거를 구분한다. 스타일 변경을 새로 구현하지 않는다. 새 장식·별도 frontend·채팅 UI를 요구하지 않는다.
+5. 필요한 화면만 캡처하고 이메일·코드·cookie·token은 캡처/보고 전에 숨긴다. dummy fixture도 값 전문을 보고하지 않는다. 보고에 환경·실제 후보SHA·브라우저page ID·경로/근거·PASS/FAIL/미실행·심각도/재현을 쓴다. 단계별 필수 실패/미해결critical/high가 있으면 수락 불가를 보고하고 임의 수정하지 않는다.
+6. 자신의 임시 실행 자원을 정리하고 다른 사용자 자료를 보존한다. 이 인박스에 전문 완료 보고를 쓰고 work.py finish --role designer --key SAR-PUBLIC-IDENTITY-001-UI로 보존한다. 자신의 소유 파일만 commit하고 다른 root/reviewer 기록을 함께 add/commit하지 않는다. fixed59·결과SHA·독립관측/실제확인미실행·finding을 이 Run worker_done으로 회신한다.
+
+## 완료 보고
+
+실행 완료: 고정 제품 `59b66ada8b36802484cc6d7e22523257b50572cc`의 로컬 fixture UX01–03 직접 시각 검수는 PASS다. 구현은 `a446d89ff288c4243ad6d7f8780a778517154584`, 준비는 `1207bdf4542fac98d228f86de79aad9f4e126ce8`, 기준은 `94533b207b456c0560800fe30a7c90b2b5887c6e`다. 후보 checkout은 작업 전후 깨끗한 detached 상태였다.
+
+- [x] 자기 PostgreSQL 17·SMTP sink·loopback relay를 시작했다. 후보에서 별도 바이너리를 빌드했고 운영·다른 QA 환경은 변경하지 않았다.
+- [x] Orca page `56050624-50c1-4700-b313-a3ed78e71059`를 새로 만들고 모든 페이지 동작에 명시했다. 기존 Cloudflare 페이지를 조작하지 않았다.
+- [x] 실제 브라우저에서 코드 발송·입력·오답·재발송 제한·만료·회원 홈·재확인·전체 종료·재로그인·현재 종료·메일 실패를 확인했다. 같은 fixture 회원 ID와 빈 목록의 연속성을 확인했다.
+- [x] Orca 직접 정상 PNG 2개를 확인했다. 반복 blank를 escalation/ask로 보고했다. coordinator가 허용한 별도 실제 Chromium `147.0.7727.15`·Playwright core `1.63.0`의 새 context에서 같은 fixed59 서비스로 보완했다. 최종 PNG 15개를 직접 열어 지정 390/1280 폭·레이블·문구·오류·키보드·레이아웃을 검수했다. 보완 PNG를 Orca PNG로 표시하지 않았다.
+- [x] 이메일·코드·cookie·token을 가린 보고와 증거를 작성했다. 실제 화면 관측과 자동 DOM/overflow/continuity 근거를 구분했다.
+- [x] 자기 실행 자원·메일·DB anonymous volume·전용 page를 정리했다. 세 loopback port 종료를 확인했다. 제품 코드·제품 수치·기술 승인·PLANS/board·다른 인박스·GitHub·CF·배포를 변경하지 않았다.
+
+변경 이유와 판단: 로컬 신원 기능 단계의 직접 UI 근거를 보완했다. Orca blank 캡처는 제품 결함으로 단정하지 않았다. 독점 표시 복구도 불안정해 이 Dispatch의 coordinator ask 답변에 따라 실제 별도 Chromium을 사용했다. 제품 렌더링을 합성하거나 수락 기준을 낮추지 않았다. 초기 DB bootstrap 감지와 SMTP 동일 port 재기동 실패는 자기 환경에서 복구했다. 최종 브라우저 명령은 exit 0이며 전체 과정의 미실행과 실패를 실행 기록에 남겼다.
+
+Finding: 새로운 UI critical/high는 없다. low F-UI-01은 기존 회원 gate가 만료 시각을 Go 기본 UTC·중복 `+0000`으로 표시하는 가독성 문제다. 만료·원문 부재·승인 비활성·홈 복귀는 유지돼 이번 신원 UX를 차단하지 않는다. 후속 DEV gate 표시 과제에서 검토한다. 별도 보안 리뷰의 F1/F4/F2는 이 UI 결과로 해소하지 않는다.
+
+검증과 미실행: 독립 후보 Go 빌드 exit 0, 최종 실제 Chromium 상태별 흐름 exit 0, 직접 PNG 검수 PASS다. challenge 기한·session Verified·자기 fixture budget은 상태 화면 검사에 맞춰 조정했다. 10분/12시간 실시간 대기와 전체 보안·한도 QA로 보고하지 않는다. 실제 사람 이메일·운영 SMTP·공개 배포·QA-P06 공개 확인·QA-P07 사람 확인·최종 동일 이메일 노우↔다닷은 미실행이다. 제품 코드 변경이 없으므로 product-lint 적용 대상은 없다. 보고·링크·증거 형식과 Git 공백 검사 결과는 자체 검증 근거에 남긴다.
+
+수락 경계: 이 결과는 로컬 신원 코드 단계의 UX 근거다. coor가 독립 리뷰·QA와 연결해 코드 통합을 판단하고, OPS는 수락 후보로 공개 운영·SMTP·외부 확인을 수행한다. 운영 최종 수락이 완료돼야만 로컬 코드 단계 검수가 가능하다는 순환 조건으로 읽지 않는다. 전체 일반 서비스 PASS와 실제 이메일/노우↔다닷 수락은 그대로 후속이다. 새 보안 수정 후보의 UI delta는 별도 과제다.
+
+산출물: `docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md`, 같은 위치의 `SAR-PUBLIC-IDENTITY-001-UI-evidence/`, `docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md`. 이 인박스와 결과 전문은 work.py finish로 보존한다. 소유 파일만 커밋하며 결과 SHA와 fixed59·finding·미실행은 이 Run worker_done으로 직접 회신한다. 기본 브랜치 병합·push·역할 동기화는 coordinator 담당이다.
+
+## coor 탐색 근거
+
+SAR-PUBLIC-IDENTITY-001-UI-{find,documents-find,context}.json은 코드/문서를 분리한20개 후보와 필수 규칙의 근거다. keep은 README·member.go·mail_sink.py·identity.go·http.go·실행준비 compose/main/verify_mvp, DEV 실행 기록·이번 UX/제품 정본·필수규칙이다. 이전UI 보고·로그와 담당 context는 과거 기준/실패의 참고다. 현재후보59를 직접 확인한다. context의 추천을 참고하되 필수정본·passage 미송신자료를 제외하지 않는다. 기존trial 조작 run_trial.py는 필요시 확인만 하며 종료된trial을실행하지 않는다.
