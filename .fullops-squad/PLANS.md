@@ -667,3 +667,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - SAR-PUBLIC-SERVICE-OPS-READINESS: 일반 서비스 제품 결정에 필요한 실제 서버 자원·신원 공급자·원점 보호·복구/rollback 근거를 별도 OPS 읽기 전용 과제로 배정한다. route implementation/ops Sonnet5.5high, D12. CF/서버 쓰기·메일 발송 없이 조사하며 designer 기획과 파일 소유권을 분리한다.
 
 - OPS 읽기 전용 준비 착수: task_22ac345acfc3/ctx_fe22da7866ab/term_e1e384e2-ecb1-442b-ad19-19229a1d095d, 새 Sonnet5.5high effective·turn_started. 시작6865988. designer ctx_000841343790에 운영 조사와 공식 dots OAuth/MCP 근거를 전달했다. 두 진행 체크아웃은 동기화하지 않는다.
+
+- 운영 E2E 대상 사용자 확정: 공식 Grok Bot 이름 노우 ↔ OpenAI dot 이름 다닷. 둘 다 같은 본인 일반 이메일로 가입/연결하며 agentID·키·credential은 각각 유지한다. Codex↔Grok 기존 CLI 증거는 보존하되 운영 최종 수락으로 대체하지 않는다. designer/OPS 진행 dispatch에 원문과 변경조건 전달.
