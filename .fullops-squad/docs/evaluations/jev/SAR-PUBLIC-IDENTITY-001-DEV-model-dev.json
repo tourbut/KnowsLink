@@ -1,0 +1,26 @@
+{
+  "version": "jev-model-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV",
+  "role": "dev",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0,
+      "claude claude-sonnet-5-5 high": 0,
+      "claude claude-opus-5-5 medium": 0.01,
+      "codex gpt-6.1-sol medium": 0.12,
+      "claude claude-opus-5-5 high": 0.19,
+      "codex gpt-6.1-sol high": 0.68
+    },
+    "usage": {
+      "input_tokens": 2448,
+      "output_tokens": 66,
+      "cost": 0.000102816
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}

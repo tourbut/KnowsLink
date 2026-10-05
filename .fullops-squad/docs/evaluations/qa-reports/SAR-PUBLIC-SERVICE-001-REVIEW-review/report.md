@@ -21,6 +21,6 @@ PS-01–14와 운영 기본값·확인/세션/남용·소유권·재시작·철�
 
 ## 검증과 한계
 
-고정 SHA의 worker `final-lint.json`을 검토 디렉터리에 그대로 복사했다. SHA 일치·ERROR 0·WARNING 1·실행 불가 0을 확인했다. 경고는 기존 PLANS SIZE-001이다. 이 lint는 기준 6c0d132에서 실행한 근거이며 608fe06에서 새로 실행한 것으로 표시하지 않는다. product-lint 통과 기록과 deliverables strict·local link audit 54개·archive·diff 검사의 exit 0 및 audit 오류 0을 대조했다. 제품 코드가 바뀌지 않아 기존 제품 전체 QA를 다시 실행하지 않았다.
+worker final-lint의 기준은 6c0d132였고 최초 review check는 리뷰 기준608fe06과 달라 실패했다. 이를 통과로 처리하지 않았다. 같은 고정1233e4c의 깨끗한 designer 체크아웃에서 기준608fe06으로 lint를 다시 실행했다. 새 lint.json은 ERROR 0·WARNING 0·실행 불가 0이며 product-lint가 통과했다. 새 실행은 리뷰 기록의 정확한 base/head 조건을 충족하기 위한 것이다. 원본 worker 검증 결과는 유지한다. deliverables strict·local link audit 54개·archive·diff 검사 exit 0 및 audit 오류 0을 대조했다. 제품 동작이 바뀌지 않아 기존 제품 전체 QA는 다시 실행하지 않았다.
 
 미해결 critical/high는 없다. 이 문서 결과와 첫 실행 지시서를 수락한다. 일반 이메일 실제 인증·새 제품 구현·독립 동작 QA·직접 UI·공개 운영 수락·노우↔다닷 실제 왕복은 미실행 후속이다. 문서 검토 통과를 서비스 완성이나 실제 로그인 성공으로 보고하지 않는다. 현재 Cloudflare dashboard에 요금제 미선택 안내가 표시되므로 기술 담당자가 공개 준비 때 실제 요금제/좌석 조건을 확인한다. 계정 상태 관측은 제품 정책 값의 성능 근거가 아니다.

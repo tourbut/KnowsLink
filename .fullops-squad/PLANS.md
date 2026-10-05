@@ -675,3 +675,7 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - OPS 준비 보고 정정 후속 task_632d48851535/ctx_fd1251b662f6: 같은 Sonnet5.5high 터미널에서 짧은 후속·turn_started 확인, 시작b37b35e. 원본msg_f654cc59206c/2267a4a의 관측시각·JWT전달설명·관리token조건·공식URL 정정 뒤 최종main수락. 공개 설정/제품은 변경하지 않는다.
 
 - OPS 준비 근거 수락: 원본2267a4a + 정정0313deae0dec9af813b70ee9685e1a6d0a2b84d7/msg_af633aeece9d. 서버/CF쓰기없음·제품변경없음·selflint0/전문archive/빈인박스. 실제 신원바인딩 부재·백업자동화/복원 후속·서버자원/권한미확인 근거를 designer에게 전달했다. 최초보고시각 등 정정확인. 일반서비스 수락아님. main통합 후 designer 진행 체크아웃은 유지하고 최신main을 다음자연스러운착수전동기화한다.
+
+- SAR-PUBLIC-SERVICE-001 msg_84a8b9e8fe3e/1233e4c3167f722d51f99cb2ef495691734be714 수락: PS01–14·UX01–08·동일 이메일 노우↔다닷·새 운영기본값/과거held 구분·DEV/QA 정규인계·OPS후속대기. 독립 coor provider세션01a101f1 vs designer01a10bf3, read-only detached1233 snapshot17/17 reviewed·critical/high0·reviewcheck통과. 최초lint base불일치는 같은fixed1233/기준608fe06 재실행ERROR0/WARNING0으로해소. 실제구현/로그인/플랫폼왕복은후속.
+- 일반 서비스 대기 과제: SAR-PUBLIC-AGENTS-001-DEV(identity 기능 수락/DEV인박스finish 뒤), SAR-PUBLIC-MESSAGES-001-DEV(agents·실제클라이언트근거 뒤), SAR-PUBLIC-SERVICE-OPS(수락구현SHA·QA 뒤 인증/공유서비스/백업·복원·rollback), SAR-PUBLIC-SERVICE-ACCEPT-001(안정운영후보 전체PS01–13), SAR-DOTS-DADAT-001(일반서비스 수락 뒤 동일이메일 노우↔다닷 실제 온보딩/왕복). 현재identity DEV ready·TESTER fixed후보waiting이며 새배정은정규인박스만사용한다.
+- coor 추가 읽기 관측: 로그인된 Orca CF One 설정화면에 “아직 선택한 요금제가 없습니다” 표시. seat/결제 조건은 미확인이고 요금제변경/구독은 실행하지 않았다. DEV/OPS가 신원기술 선택/공개 준비 때 실제지원·비용조건을 확인한다. 사용자이메일전문은기록하지않는다.
