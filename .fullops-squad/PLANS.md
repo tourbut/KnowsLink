@@ -669,3 +669,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - OPS 읽기 전용 준비 착수: task_22ac345acfc3/ctx_fe22da7866ab/term_e1e384e2-ecb1-442b-ad19-19229a1d095d, 새 Sonnet5.5high effective·turn_started. 시작6865988. designer ctx_000841343790에 운영 조사와 공식 dots OAuth/MCP 근거를 전달했다. 두 진행 체크아웃은 동기화하지 않는다.
 
 - 운영 E2E 대상 사용자 확정: 공식 Grok Bot 이름 노우 ↔ OpenAI dot 이름 다닷. 둘 다 같은 본인 일반 이메일로 가입/연결하며 agentID·키·credential은 각각 유지한다. Codex↔Grok 기존 CLI 증거는 보존하되 운영 최종 수락으로 대체하지 않는다. designer/OPS 진행 dispatch에 원문과 변경조건 전달.
+
+- OPS readiness2267a4a 원격main 수락 전 보고 정정: 관측종료시각이 worker_done보다 미래인 오류·JWT 전달과 relay 미사용 설명·active token 만료조건·공식 URL을 짧은 같은과제 후속으로 수정한다. coor 기계적 병합만 수행했고 새 공개/설정변경 없음. 수정본 lint 뒤 원본과 함께 main 통합한다.
