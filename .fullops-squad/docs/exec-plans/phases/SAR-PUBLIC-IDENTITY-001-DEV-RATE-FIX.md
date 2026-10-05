@@ -12,7 +12,7 @@ summary: 독립 리뷰 F1 rate 격리와 F4 예시 설정 수정 및 F2 판단�
 ## 기준
 
 - 준비 SHA `b643e73fb2d740b8845db53c2f2f73f894d87b24`(브랜치 `fullops/dev`). 원본 후보 `59b66ada8b36802484cc6d7e22523257b50572cc`. 독립 리뷰 `25b110fb694d9ccdce6a3b445d6936159b7437d5`. lint 기준 `59b66ada8b36802484cc6d7e22523257b50572cc`.
-- 수정 코드 SHA `689ba3f090200c144648cd41a40585902fe2ab8c`. 이 기록·인박스 보고는 뒤의 문서 커밋이다. 문서 커밋은 제품 코드를 바꾸지 않는다.
+- 수정 코드 SHA `689ba3f090200c144648cd41a40585902fe2ab8c`(순서 격리), `8c7ea9487bc581b04d5340e317950fe889c35b5a`(상태 크기 보완, coordinator 후속 요청). 이 기록·인박스 보고는 뒤의 문서 커밋이다. 문서 커밋은 제품 코드를 바꾸지 않는다.
 - Task `task_8c3fd6fcc56b`, Dispatch `ctx_6407d8fcefa7`, coordinator `term_1db428fe-3b8f-43e5-89bd-3cadbd6720e9`, Run `run_8ca8bc058ab7`.
 - 적용 규칙: `fullops-common-0.3.2`, FULLOPS.md, project.md, orca-agents.md, document-writing.md, coding-style/testing/security. Ponytail full. 예외 없음.
 - 제품 기준: D02 [일반 이메일 서비스](../../planning/product-specs/SAR-PUBLIC-SERVICE.md) PS-01–04·PS-11 운영 기본값, frozen C1–C5. 제품 수치는 바꾸지 않았다.
@@ -33,6 +33,20 @@ summary: 독립 리뷰 F1 rate 격리와 F4 예시 설정 수정 및 F2 판단�
 - 결과: 한 principal은 rolling 60s에 공유 budget에 최대 자기 한도(익명 30·회원 40·정리 20)만 기여한다. 전체 200·정리 100은 독립 principal 7개(익명)·5개(정리) 이상의 합으로만 포화한다.
 
 수치 30/40/20/200/100, `(t−window,t]`, limit+1 보관, 재시도 시각, `State.Rates`의 Postgres 영속은 바꾸지 않았다. 발송 한도 `take`는 all-or-nothing이라 같은 문제가 없다(기존 `TestRollingWindowBoundary`의 partial spend 검사).
+
+### 상태 크기 보완 (`8c7ea94`)
+
+coordinator 후속 요청으로 순서 변경의 cardinality 영향을 확인했다. 원래 shared-first 순서는 공유 bucket이 차면 principal key를 만들지 않았다. 순서만 바꾸면 공유 포화 중 source를 바꾸는 거부 요청마다 새 `http:ip:*` key가 생겼다. `sweepIdentity`는 rate를 1시간 보관하므로 singleton 상태 행이 계속 커진다. 같은 거부가 공유 bucket도 갱신해 포화를 연장했다.
+
+`hit`을 다음처럼 바꿨다.
+
+- principal bucket이 거부: principal에만 기록한다(limit+1 보관). 이 key는 이미 창 안 기록이 있다.
+- principal은 허용, 공유 bucket이 거부: principal에 창 안 기록이 이미 있으면 두 bucket에 모두 기록한다. 기록이 없는 새 principal이면 어디에도 기록하지 않는다.
+- 모두 허용: 모두 기록한다.
+
+결과: 새 key는 허용된 요청으로만 생긴다. 원래 구현과 같은 상한이다(분당 신규 최대 200·정리 최대 100 key, 1시간 보관). 기존 principal은 공유 포화 중에도 자기 거부를 계속 집계한다. 공유 bucket에는 창마다 최대 자기 한도만 더한다. 기록하지 않는 경우의 재시도 시각은 공유 bucket의 창 안 기록이 한도 아래로 내려가는 시각이다.
+
+제외 범위: 공유 포화 중 처음 나타난 principal의 거부 요청은 자기 bucket에 집계되지 않는다. 이 요청은 자원을 만들지 않는다. 원래 구현도 이 경우 principal에 집계하지 않았다. 1분 창 key를 1시간 보관하는 sweep은 원래 동작이며 바꾸지 않았다.
 
 ### 남은 위험
 
@@ -62,8 +76,8 @@ summary: 독립 리뷰 F1 rate 격리와 F4 예시 설정 수정 및 F2 판단�
 
 | 파일 | 변경 |
 |---|---|
-| `internal/relay/identity.go` | `anonymousRate`·`memberRate`·`cleanupRate`의 bucket 순서와 `hit` 주석 |
-| `internal/relay/identity_test.go` | `TestRatePrincipalIsolation` |
+| `internal/relay/identity.go` | `anonymousRate`·`memberRate`·`cleanupRate`의 bucket 순서, `hit`의 공유 거부 기록 조건 |
+| `internal/relay/identity_test.go` | `TestRatePrincipalIsolation`, `TestRateStateBoundedUnderRotation` |
 | `internal/relay/identity_integration_test.go` | `TestEmailIdentity/refused_principal_does_not_spend_shared_rate` |
 | `.env.example`, `scripts/verify_mvp.py`, `scripts/check_compose.py` | 합성 가입 기본 닫힘, 격리 검사 opt-in, 기본값 검사 |
 | `README.md`, D03 architecture, D05 interface, D10 module-design, `contexts/dev.md` | rate 순서·기본 닫힘·QA opt-in·검사 목록 |
@@ -88,12 +102,23 @@ summary: 독립 리뷰 F1 rate 격리와 F4 예시 설정 수정 및 F2 판단�
 | `make verify-mvp` 2회차 | 같음 | 0 | 전체 PASS: `TestEmailIdentity` 6개, `TestRatePrincipalIsolation`, PostgresSafety·Gate·Trial(`TestTrialHTTP` 포함), TS synthetic/seed/trial-check. `down --volumes` 정리 |
 | `git diff --cached --check` | 커밋 전 | 0 | — |
 
+### 상태 크기 보완 검증 (HEAD `8c7ea94`)
+
+| 명령 | 대상 | 종료코드 | 결과 |
+|---|---|---|---|
+| `go test -count=1 -run TestRateStateBoundedUnderRotation ./internal/relay/` | `689ba3f`의 `identity.go` + 새 검사 | 1 | RED: 첫 판 검사에서 `state grew 10000 201`(새 key 10000개). 고친 검사에서 `fresh source passed a full shared budget 2026-10-05 00:01:30`(거부가 포화를 30초 연장) |
+| `go test -race -count=1 ./internal/relay/` | 수정 후 | 0 | PASS |
+| `make lint`·`make test`·`make build`·`make verify`·`make verify-runtime` | `8c7ea94` 코드 | 각 0 | PASS |
+| `make verify-mvp` | 같음 | 0 | 전체 PASS: `TestEmailIdentity` 6개, `TestRatePrincipalIsolation`, `TestRateStateBoundedUnderRotation`, `TestTrialHTTP` 포함 기존 검사, TS 검사. 정리 완료 |
+| `git diff --cached --check` | 커밋 전 | 0 | — |
+
 `TestTrialHTTP` 실패는 변경하지 않은 `/v1/test` lease 경로다. 같은 세션의 수정 전 RED 실행과 2회차 실행에서는 PASS했다. 이번 수정과 무관한 기존 간헐 실패로 판단한다. 원인은 조사하지 않았다. 후속 확인 대상으로 남긴다.
 
 `make generate`·`make schema`는 SQL·migration 변경이 없어 실행하지 않았다. `make verify-grok-plugin`은 adapter 변경이 없어 실행하지 않았다.
 
 ### 검사가 증명하는 것
 
+- 단위(회전): 공유 포화 뒤 새 IPv6 source 10000개의 거부는 rate key 수를 늘리지 않는다. 공유 bucket은 201개, 기존 principal은 31개로 유지된다. 재시도 시각은 원래 포화 기록 기준 60초 뒤이며 그때 다른 source가 허용된다.
 - 단위: 한 IP·회원이 1000회 보내도 자기 30/40/20번째까지 허용하고 다음을 거부한다. 다른 IP·회원의 신규·정리는 허용된다. 독립 principal의 합이 정확히 200에서 허용, 201번째에서 거부된다. 정리는 100에서 같다. 60초 뒤 모두 회복한다.
 - 통합(실제 Postgres HTTP): 한 IP의 verify 250회와 한 회원의 home 250회·logout-all 150회 뒤에도 자기 요청은 429다. 같은 DB의 새 Service(재시작)에서도 429가 유지된다. 다른 IP의 가입 시작 303, 다른 회원의 home 200·로그아웃 303이 허용된다.
 - 재시도 시각·limit+1 보관·all-or-nothing 발송은 기존 `TestRollingWindowBoundary`·`TestSendLimits`가 계속 PASS한다.
@@ -109,7 +134,7 @@ summary: 독립 리뷰 F1 rate 격리와 F4 예시 설정 수정 및 F2 판단�
 - 화면 HTML·문구·상태코드 매핑은 바꾸지 않았다. UX-01–03 화면 증거는 그대로 유효하다.
 - 바뀐 동작은 429 발생 조건뿐이다. 한 source·회원의 자기 한도 초과 뒤에도 다른 source·회원은 429가 되지 않는다. 59b66ad에서 "다른 source도 429"를 기대한 QA 시나리오가 있으면 이 후보에서는 실패가 정상이다.
 - 수정 후보에서 README 독립 QA 실행(seed)을 할 때는 `KNOWSLINK_SYNTHETIC_SIGNUP=1`을 셸에 준다. 59b66ad의 `.env.example`은 기본 `1`이라 이 차이가 있다. 값 없이 실행하면 seed는 403으로 실패한다.
-- 후속 delta 리뷰·QA 범위: `identity.go` bucket 순서, 새 두 검사, `.env.example`·두 검사 스크립트, README 실행 명령.
+- 후속 delta 리뷰·QA 범위: `identity.go` bucket 순서와 `hit` 기록 조건, 새 세 검사, `.env.example`·두 검사 스크립트, README 실행 명령.
 
 ## OPS 인계 (비밀값 없음)
 
