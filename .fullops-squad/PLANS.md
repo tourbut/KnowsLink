@@ -649,3 +649,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - RENEW msg_0a9a41526a76/b8d676f333a235624e213ac2d3b056dee78c405a 수락: PUTduration24h로UUID/secret유지갱신·grok만료2026-10-06T08:09:50Z. publicnegative403/401/owner302·positive200/두localclients왕복통과(실제Grok아님), 제품불변·linter0. coor privatearchive두regular0600 basename/key/config·소유권확인. actualGrok파일전달/준비회신뒤TTL180 송신대기.
 
 - 재개댓글 https://github.com/tourbut/KnowsLink/issues/1#issuecomment-5990646229 게시·원문대조. 로컬private tar한개전달→Grok준비회신→Codex송신협업. 서비스갱신완료/실제Grok未실행구분. 관리token만료2026-10-05T23:59:59Z, 후속종료정리권한필요조건보존.
+
+- SAR-MVP-003-PRIVATE-DOWNLOAD 배정 취소/보류: 사용자가 임시 HTTPS 다운로드 링크 대신 맥북 로컬의 SCP 다운로드 명령 제공으로 전환했다. 명령과 existingprivate archive존재(539bytes)를확인해안내완료. 임시서버/경로/Access/DNS변경과workerdispatch는실행하지않았다. 불필요한새route생성파일은삭제했다. 다시HTTPS링크를명시요청하면새착수한다. 기존실제Grok파일전달·준비회신대기상태는동일하여board프로젝트단계변경없음.
