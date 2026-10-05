@@ -3,248 +3,248 @@
   "head": "59b66ada8b36802484cc6d7e22523257b50572cc",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "Claude Opus 5.5 (claude-opus-5-5), Claude Code session 0bf1508f-7a43-4fc1-ba68-5f396b0546c4, fullops-review + open-code-review-delegate",
+  "conclusion": "조건부 수락 가능(기술 리뷰 기준). 미해결 critical/high 없음. medium 1(F1 단일 source의 전체 rate 포화 DoS)은 공개 전 수정 또는 edge 완화·designer 판단이 필요하다. low 3은 잔여 위험·다음 단계·운영 설정 항목이다. 실제 운영 SMTP·일반 이메일 사람 확인은 미실행이며 PASS로 보지 않는다.",
   "files": [
     {
       "path": ".fullops-squad/PLANS.md",
       "status": "modified",
       "insertions": 3,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/board/board.json",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "JSON 유효성·역할/상태 일치·비밀값 부재 확인"
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "status": "modified",
       "insertions": 6,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
       "status": "modified",
       "insertions": 42,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
       "status": "modified",
       "insertions": 6,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/design-docs/data-model.md",
       "status": "modified",
       "insertions": 9,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/design-docs/database-design.md",
       "status": "modified",
       "insertions": 5,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "status": "modified",
       "insertions": 31,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 18,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/design-docs/tech-stack.md",
       "status": "modified",
       "insertions": 3,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-route.json",
       "status": "added",
       "insertions": 83,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "JSON 유효성·역할/상태 일치·비밀값 부재 확인"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-route.prior-1791204132648680142.json",
       "status": "added",
       "insertions": 61,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "JSON 유효성·역할/상태 일치·비밀값 부재 확인"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md",
       "status": "added",
       "insertions": 135,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "status": "modified",
       "insertions": 40,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
       "status": "added",
       "insertions": 98,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": ".fullops-squad/handovers/to_dev.md",
       "status": "modified",
       "insertions": 0,
       "deletions": 72,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "완료 인박스 비움(logs로 보존) 확인"
     },
     {
       "path": ".fullops-squad/project.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": "Makefile",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "py_compile 대상에 mail_sink.py 추가만"
     },
     {
       "path": "README.md",
       "status": "modified",
       "insertions": 17,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "문서 주장과 코드 동작(경로·상태코드·cookie·한도·미구현 범위) 대조, 깨진 참조·모순 없음"
     },
     {
       "path": "cmd/relay/main.go",
       "status": "modified",
       "insertions": 14,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "환경변수 4개 파싱, CLIENT_IP_HEADER allowlist, 값 비로그 확인"
     },
     {
       "path": "compose.yaml",
       "status": "modified",
       "insertions": 4,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "relay env 4개 전달, 기본 빈 값, 게시 포트 loopback 유지"
     },
     {
       "path": "internal/relay/http.go",
       "status": "modified",
       "insertions": 91,
       "deletions": 51,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "/v1/owners SyntheticSignup gate, CrossOriginProtection 적용 범위(/v1/test 기존 우회 유지), basic/session ownerAuth, gate CSRF HMAC(세션 token), 빈 token 거부 확인"
     },
     {
       "path": "internal/relay/identity.go",
       "status": "added",
       "insertions": 271,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "정규화·take/hit·Challenge 발급/검증(hmac.Equal, 5회 삭제)·회원/owner 바인딩·세션 절대/무활동·sweep 확인. F1·F2 기록"
     },
     {
       "path": "internal/relay/identity_integration_test.go",
       "status": "added",
       "insertions": 330,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "TestEmailIdentity 5개 하위 검사의 단언 확인, scratch verify-mvp에서 PASS"
     },
     {
       "path": "internal/relay/identity_test.go",
       "status": "added",
       "insertions": 290,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "단위 검사 범위(경계·발송 한도·코드·세션·SMTP) 확인, scratch 사본에서 -race PASS"
     },
     {
       "path": "internal/relay/integration_test.go",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "기존 fixture에 SyntheticSignup:true만 추가, 기존 회귀 의미 유지"
     },
     {
       "path": "internal/relay/mail.go",
       "status": "added",
       "insertions": 90,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "smtps implicit TLS·STARTTLS·비loopback 평문 거부, PlainAuth, 헤더 주입(to는 NormalizeEmail+Rcpt 검증, subject B-encoding), 비밀 비로그 확인"
     },
     {
       "path": "internal/relay/member.go",
       "status": "added",
       "insertions": 333,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "start/verify/reauth/logout/logout-all/home/gate 라우트, __Host- cookie 속성, fixation 교체, 발송 실패 롤백, 오류 분기 확인. F3 기록"
     },
     {
       "path": "internal/relay/store.go",
       "status": "modified",
       "insertions": 12,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "State map 추가·newState·구 JSON 호환(키 부재 시 빈 map), opErr 롤백이 sweep만 커밋, principal의 빈 token 거부로 credential 없는 회원 owner 우회 불가 확인"
     },
     {
       "path": "scripts/mail_sink.py",
       "status": "added",
       "insertions": 53,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "로컬 QA sink, 기본 127.0.0.1, 0600/0700, 코드 비출력 확인"
     },
     {
       "path": ".env.example",
@@ -252,16 +252,53 @@
       "insertions": 7,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "OCR unsupported_ext 제외 파일을 직접 검토. SYNTHETIC_SIGNUP=1 예시값과 공개 후보 비움 안내 확인(F4)"
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "internal/relay/identity.go",
+      "start_line": 87,
+      "end_line": 112,
+      "category": "security",
+      "severity": "medium",
+      "resolved": false,
+      "content": "hit()는 공유 http:new(200/60s) bucket을 per-IP/per-member bucket보다 먼저 기록한다. IP 한도(30/60s)로 이미 거부되는 단일 익명 source가 계속 전체 bucket을 채워 모든 source의 /auth/start·/auth/verify와 모든 회원의 /home·/auth/reauth(memberRate도 http:new 공유)를 막는다. 재현: scratch review_repro_test.go에서 한 IP 200회 뒤 다른 IP와 회원 hit 모두 거부(CONFIRMED). 약 3.4 req/s로 무기한 유지 가능. 권고: principal bucket을 먼저 평가해 그 단계 거부는 전체 bucket에 기록하지 않거나, D02 \"거부도 집계\"의 전체 bucket 적용 범위를 designer가 명확히 한다. edge rate limit(OPS 인계 6)은 완화책이다."
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "start_line": 162,
+      "end_line": 178,
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "타인이 피해자 이메일로 재발송하면 피해자의 기존 코드가 즉시 무효화되고 이메일 5/h·전체 100/h 발송 budget이 소모된다. 피해자 로그인 방해가 가능하다. 또한 이메일별 누적 오답 상한이 없어 5회×5발송/h로 하루 최대 600회 추측(일 약 6e-4, 연 약 20% 탈취 확률)이 열린다. 코드는 D02 기본값과 일치하므로 결함이 아니라 잔여 위험이다. designer의 이메일별 일 누적 실패 상한 검토를 권고한다."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "start_line": 64,
+      "end_line": 65,
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "/home/gates/{id} GET·POST는 principal rate(신규 40·정리 20)를 세지 않는다. DEV 실행 기록이 미구현으로 명시했고 현재 회원 owner는 agent를 연결할 수 없어 gate가 생기지 않는다. 다음 AGENTS 단계에서 approve=신규, deny=정리 budget 적용이 필요하다."
+    },
+    {
+      "path": ".env.example",
+      "start_line": 8,
+      "end_line": 8,
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "예시 env가 KNOWSLINK_SYNTHETIC_SIGNUP=1을 기본으로 둔다. 공개 후보 .env를 예시에서 복사하면 /v1/owners가 신원 확인 없이 owner credential을 발급한다. 또한 기존 deploy/knowslink/beta.sh seed는 새 코드에서 403이 된다(DEV OPS 인계 4에 기록). OPS 공개 검증에 /v1/owners 403 확인을 넣을 것을 권고한다."
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "e0666abc-1cf2-49ac-a288-45a8043404bc",
+    "reviewer_session": "0bf1508f-7a43-4fc1-ba68-5f396b0546c4",
+    "snapshot_path": "/tmp/knowslink-public-identity-review-59b66ad",
     "snapshot_head": "59b66ada8b36802484cc6d7e22523257b50572cc",
     "read_only": true
   }
