@@ -22,7 +22,7 @@ coordinator 상태 메시지 `msg_47cb347d1391`은 원본 QA를 끝내고 F1 공
 2. 임시 PostgreSQL, loopback sink, loopback relay로 `probe.py`를 실행했다. 종료코드는 0이다. 157통과, 0실패, 2건너뜀이다.
 3. QA checkout에서 `npm ci --prefix adapters`를 실행했다. 종료코드는 0이다. 이어서 `make verify-mvp`를 실행했다. 종료코드는 0이다.
 4. 프로브가 끝난 뒤 `f1_observe.py`로 F1만 한 번 관측했다. 종료코드는 0이다. 157개 check를 다시 돌리지 않았다.
-5. 시나리오, QA 보고, 이 실행 기록, 인박스 완료 보고를 작성했다. `work.py finish`는 이 기록 커밋과 lint 뒤에 인박스를 보존한다.
+5. 시나리오, QA 보고, 이 실행 기록, 인박스 완료 보고를 작성했다. 기록 커밋 lint 종료코드는 0이다. `work.py finish`가 인박스를 `handovers/logs/2026-10-05_to_tester.md`에 보존하고 인박스를 비웠다.
 
 ## 결과
 
