@@ -1,0 +1,69 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.03,
+        "implementation": 0.97
+      },
+      "confidence": 0.93
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "ops": 0.6,
+        "tester": 0,
+        "dev": 0.4
+      },
+      "confidence": 0.4
+    },
+    "docs": {
+      "D01": 0.22,
+      "D02": 0.22,
+      "D03": 0.25,
+      "D04": 0.21,
+      "D05": 0.24,
+      "D06": 0.26,
+      "D07": 0.18,
+      "D08": 0.2,
+      "D09": 0.23,
+      "D10": 0.32,
+      "D11": 0.39,
+      "D12": 0.73,
+      "D13": 0.63
+    }
+  },
+  "usage": {
+    "input_tokens": 2442,
+    "output_tokens": 314,
+    "cost": 0.000102564
+  },
+  "error": null,
+  "latency_seconds": 0.264,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "기존 승인된 배포·인증 운영의 만료 갱신이며 제품 구현/범위 변경 없음",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}
