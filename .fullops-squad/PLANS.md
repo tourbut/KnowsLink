@@ -713,3 +713,21 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 사용자 Stop hook의 통합 요청에 따라 fullops-orca merge 조건을 확인했다. main은 `94533b207b456c0560800fe30a7c90b2b5887c6e`다. UI 결과 SHA는 선행 제품59/코드a446와 coor 준비·검토 기록을 조상으로 포함한다. 이 SHA를 그대로 병합하면 UI 문서만 별도로 수락할 수 없다. squash/cherry-pick으로 완료 SHA 조상 관계를 없애지 않는다.
 - 현재 UI 결과 SHA의 독립 fixed-snapshot 리뷰가 없다. 원래 F1 medium의 main 수락 보류와 원본 독립 QA 대기는 유지한다. UI 검수자의 자기 검토를 독립 리뷰로 대신하지 않았다. 단순히 전체 서비스 수락 전이라는 이유로 문서를 보류한 것이 아니며, 실제 이메일/운영 미실행을 로컬 코드 단계의 추가 선행 조건으로 만들지 않는다.
 - `integration.py hold`에 같은 사유를 등록했다. 담당은 coor이며 DEV F1 수정 후보 delta 리뷰·좁은 QA와 TESTER 원본 독립 QA의 수락 근거를 연결한다. 재개 조건은 이 선행 검수와 UI 최신 SHA의 별도 세션 리뷰 통과다. 이후 검토 범위만 SHA 보존 main 병합·origin/main 일반 push·조상 확인을 수행하고 idle/clean 역할을 동기화한다. 진행 worker와 사용자 체크아웃은 그대로 유지한다.
+
+
+## Cloudflare Workers Free 제한 — 2026-10-05
+
+- 사용자는 Workers Free만 사용하도록 지시했다. 유료 플랜 전환·구독·초과 사용 과금 설정은 허용하지 않는다. 이번 세션에서는 요금제 조회만 수행했으며 유료 전환은 실행하지 않았다.
+- 현재 relay는 기존 서버의 Go·Postgres·Compose와 Cloudflare Tunnel 구조다. Workers 배포 또는 전체 이전은 수행하지 않았다. 기존 서버·도메인·봇 이용 비용까지 무료라고 표시하지 않는다.
+- 공식 Workers Free 한도는 계정 합산 100,000 요청/일과 요청당 CPU 10ms다. 노우·다닷 2개 클라이언트가 각각 10초마다 1회 조회하면 하루 17,280 요청이다. 추가 API·다른 Worker 사용량과 CPU 실측은 별도로 확인한다. 이 계산은 운영 부하 시험 결과가 아니다.
+- Cloudflare Email Service의 임의 수신자 발송은 Workers Paid가 필요하므로 일반 회원 인증메일의 운영 제공자로 채택하지 않는다. 계정의 verified destination 무료 발송만으로 일반 서비스 수락을 선언하지 않는다. 제공자 독립 SMTP 구현은 유지하고 무료 외부 SMTP를 검토한다. Resend Free는 공식 가격표상 월 3,000건·일 100건이며 계정·발신 도메인 인증·실제 수신 검증은 미실행이다.
+- 근거: https://developers.cloudflare.com/workers/platform/limits/ 및 https://developers.cloudflare.com/email-service/platform/pricing/ 및 https://resend.com/pricing (2026-10-05 확인).
+- SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG의 route는 생성했으나 아직 배정하지 않았다. 사용자 비용 제한과 무료 운영 가능성 질의에 먼저 답하기 위해 배정을 보류한다. 담당 coor. 재개 시 정규 DEV 지시서에 Free 제한을 포함하고 미해명 invalid_lease 실패의 원인 분석을 이어간다. 기존 코드 수락 보류와 실제 이메일·공개·노우↔다닷 미실행 상태는 유지한다.
+
+
+## 완료 회신 수신 처리 — 2026-10-05
+
+- delivery_a4b5f296b3b6의 완료 두 건을 확인했다. DEV RATE-FIX msg_509a9d6c850c의 전체 SHA는 f364d48417b58c69969a4765b88324724eeb5c78이다. TESTER msg_bd03da8a2a54의 전체 SHA는 9e2654d5ecf4c770d8234d693139e21249d8adcb이다. 두 결과는 coor 후보 HEAD의 조상이며 main/origin main 수락은 아직 아니다.
+- RATE-FIX는 F1 예산 고갈과 F4 기본 설정을 수정했다. 미해명 TestTrialHTTP invalid_lease 실패 1건 때문에 수락 보류를 유지한다. 담당 coor와 dev. 재개 조건은 원인 분석·필요 수정·고정 최종 후보의 독립 delta 리뷰와 좁은 QA 통과다.
+- TESTER의 원본 fixed59 fixture는 157통과·0실패이며 F1 medium을 별도로 재현했다. 변경 후보의 검증과 독립 결과 리뷰가 남아 있으므로 수락 보류를 유지한다. 담당 coor와 tester. 실제 공개·사람 이메일·최종 노우↔다닷은 미실행이다.
+- 두 완료 메시지의 integration hold를 유지한 뒤 delivery를 ack한다. ack는 수신 처리이며 코드 수락·배포·병합 완료를 뜻하지 않는다. Workers Free 제한과 DEV-TRIAL-DIAG의 배정 보류·재개 조건은 앞 절을 따른다.

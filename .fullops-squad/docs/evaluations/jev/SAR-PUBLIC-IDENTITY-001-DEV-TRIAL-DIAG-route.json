@@ -1,0 +1,76 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0,
+        "implementation": 1
+      },
+      "confidence": 0.99
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.99,
+        "tester": 0.01,
+        "ops": 0
+      },
+      "confidence": 0.99
+    },
+    "docs": {
+      "D01": 0.09,
+      "D02": 0.1,
+      "D03": 0.09,
+      "D04": 0.12,
+      "D05": 0.09,
+      "D06": 0.1,
+      "D07": 0.09,
+      "D08": 0.11,
+      "D09": 0.1,
+      "D10": 0.27,
+      "D11": 0.11,
+      "D12": 0.21,
+      "D13": 0.32
+    }
+  },
+  "usage": {
+    "input_tokens": 2721,
+    "output_tokens": 314,
+    "cost": 0.000114282
+  },
+  "error": null,
+  "latency_seconds": 0.4,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0,
+      "claude claude-sonnet-5-5 high": 0.01,
+      "claude claude-opus-5-5 medium": 0.01,
+      "codex gpt-6.1-sol medium": 0.01,
+      "claude claude-opus-5-5 high": 0.97,
+      "codex gpt-6.1-sol high": 0
+    },
+    "usage": {
+      "input_tokens": 1014,
+      "output_tokens": 66,
+      "cost": 4.2588e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}
