@@ -701,3 +701,7 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 
 - 독립리뷰 msg_8d3d9f9bcee9/25b110fb694d9ccdce6a3b445d6936159b7437d5 조건부수락: actual reviewer0bf1508f vs구현e0666abc, fixed59 31/31 reviewed·critical/high0·check0·lint ERROR0/WARNING5. F1medium 단일source가공유newbudget을고갈하는실제재현으로 공개/main수락은수정후보delta리뷰·좁은QA대기. F2low는기술개선/잔여위험판단, F3gate rate는AGENTS, F4예시synthetic복사위험은default닫힘으로보완. 원본QA/UI는같은fixed59에서끝내고변경영향만재검증한다. integration hold와원문결과보존.
 - SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX fullroute implementation/dev Opus5.5high, 새세션으로기존규칙내F1/동형cleanup·F4수정과F2기술판단을진행한다. 원본큰DEV세션은13분이상쉬었으므로재사용하지않는다. 기존검토/QA/UI수락기준은유지한다.
+
+- RATE-FIX 착수 task_8c3fd6fcc56b/ctx_6407d8fcefa7/term_b516f045-bbd5-4fe7-9840-a6deb007de79 새Opus5.5high effective·turn_started. DEV 실제두terminalidle·clean 확인 뒤 시작b643e73·원격push. 진행DEV는변경하지않는다.
+- UI Orca 캡처blank가간헐지속: escalation/질문msg_8d3777e2f711. coor의CF탭 병행으로visible surface경합가능성을확인해coor브라우저조작을중지하고UI전용page독점복구를회신했다. 지속시같은fixed59/실제localhost fixture의별도Chromium/Playwright 직접시각관측을허용한다. Orca DOM/flow와대체engine/PNG를구분하고합성/소스변경/하네스갱신없음. 실제수락기준은그대로다.
+- CF읽기현재상태: 기존One설정 DOM은로그인상태·요금제미선택을재확인했다. 새CF 계정/결제정보 읽기전용탭은alert/image만표시해Workersplan/EmailSending상태를확인하지못했다. 일시goto runtime_unavailable 뒤othercommands는응답하지만UI독점복구를위해추가브라우저조회중지. 결제·구독·설정·토큰생성없음.
