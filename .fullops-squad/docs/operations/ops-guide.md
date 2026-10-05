@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-05
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -265,3 +265,28 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 ### 13.8 시험 종료 (2026-10-05, SAR-MVP-003-TRIAL-CLEANUP)
 
 실제 Grok 왕복이 확정된 뒤 13.4의 종료 절차를 실행했다. service token 두 개를 revoke하고 trial 앱·policy만 삭제했다. 원점 Tunnel config를 백업에서 복원(0600)하고 knowslink connector만 재기동했다. 상태 `.env`의 `KNOWSLINK_TEST_AGENTS` 줄을 제거하고 relay를 같은 Compose 인자로 갱신했다. root owner 앱·policy 3건은 전체 JSON 해시가 변경 전과 같다. 공유 서비스 회귀(`verify.py regression`·`public`·`local`)는 통과했다. 사용자 private 시험 파일은 삭제하지 않았고 안의 CF 자격은 더는 연결되지 않는다. 관리 token은 2026-10-05T23:59:59Z에 만료된다. 증거는 [실행 기록](../exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md)이다.
+
+## 14. 일반 이메일 서비스 운영 준비 근거 (SAR-PUBLIC-SERVICE-OPS-READINESS)
+
+이 장은 읽기 전용 관측과 제안이다. 서버·Cloudflare 설정·제품 코드는 바꾸지 않았다. 관측은 2026-10-05T12:10Z–12:30Z, 배포 체크아웃 `0911c2c73468f8684260a277d4940a74d26bcf7d` 기준이다. 증거와 전체 표는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md)이다. 13장의 시험 종료 상태는 유지된다. 이 장은 공개 수락 근거가 아니며 D13을 수락으로 바꾸지 않는다.
+
+### 14.1 실제 신원 보호 (관측)
+
+- Access 앱은 `KnowsLink beta (owner-only)` 한 개다. `link.knowslog.com` 전체를 덮고 정책은 사용자 이메일 한 개만 허용한다. 무인증 경로는 모두 302 → Access 로그인이다. service token과 trial 앱·policy는 없다.
+- relay는 Access JWT·이메일을 읽지 않는다. Bearer(API)와 Basic(owner UI)만 읽는다. 이메일 신원은 가장자리에만 있고 합성 owner credential과 연결되지 않는다.
+- 그러므로 root를 모든 이메일 허용으로 넓히면 익명 사용자가 relay 인증 앞단까지 도달한다. relay가 JWT를 검증하고 신원을 owner에 묶는 코드(DEV)가 배포되기 전에는 넓히지 않는다.
+- Managed OAuth는 꺼져 있다(`oauth_configuration` 비어 있음). Cloudflare 공식 문서는 비브라우저 client용 Managed OAuth(2026-03-20)를 설명한다. 실제 Grok·OpenAI dot client와의 호환은 미확인이다.
+
+### 14.2 자원·DB·복구 (관측)
+
+- 호스트 4 CPU, RAM 13,906 MiB(가용 6,002), swap 4,095 MiB 중 4,074 사용, `/` 가용 312 GB. swap 압력은 개발 도구 프로세스에서 온다. KnowsLink 컨테이너는 한도의 약 3–7%를 쓴다(유휴). `myportfolio` 컨테이너에는 한도가 없다.
+- DB는 8.3 MB다. 모든 업무 상태가 `relay_state` 한 행(7,202 byte)의 jsonb다. 처리량·행 크기 상한은 미측정이다. 부하 시험은 DEV 소유다.
+- 자동 백업이 없다. 최신 dump는 `0911c2c` 배포 직전(2026-10-04T04:47Z)이다. 같은 디스크에만 있다. 보관 기간·암호화·복구 목표는 정해지지 않았다.
+
+### 14.3 공개 전 선행 조건과 rollback 순서
+
+선행 조건: 신원 방식과 agent·MCP 연결 방식의 제품 결정, relay의 JWT 신원 연결, 가장자리 rate limit·bot 보호 결정, 백업 체계(일정·별도 위치·암호화·복원 시험), DEC-03 한도 구현 검증, 독립 QA·리뷰. 새 관리 token(현재 token은 2026-10-05T23:59:59Z에 만료)과 읽기 권한(IdP, 조직, zone)이 필요하다.
+
+적용 순서: 새 백업과 복원 검증 → `beta.sh deploy <SHA>` → 새 경로 Access 앱·정책(기존 root 앱 불변) → 후보 `config.yml` 검증·교체 → negative/positive·회귀 검증 → 노출 확대는 마지막.
+
+rollback 순서(역순): 새 앱·정책 삭제 → `config.yml` 백업 복원과 connector 재기동 → 필요하면 `beta.sh unexpose` → 코드 `beta.sh deploy <이전 SHA>`(migration 동일일 때만, 아니면 5장 3항) → 공유 서비스는 건드리지 않는다.
