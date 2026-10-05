@@ -37,12 +37,13 @@ sqlc는 v1.30.0이며 pgx/v5를 생성한다. `make generate` 뒤 `git diff --ex
 ```sh
 POSTGRES_PASSWORD=example-local-only \
 DATABASE_URL='postgres://knowslink:example-local-only@postgres:5432/knowslink?sslmode=disable' \
-RELAY_PORT=18081 COMPOSE_PROFILES= \
+RELAY_PORT=18081 COMPOSE_PROFILES= KNOWSLINK_SYNTHETIC_SIGNUP=1 \
 docker compose -p knowslink-qa-local --env-file .env.example up --build --wait relay
 node adapters/dist/synthetic.js http://127.0.0.1:18081 --seed
 ```
 
 seed는 두 owner/agent·active pair·정책 없음 denied 결과·별도 pending gate를 만든다.
+`.env.example`은 합성 가입을 닫는다. seed가 쓰는 `/v1/owners`는 위처럼 셸에서 `KNOWSLINK_SYNTHETIC_SIGNUP=1`을 준 격리 실행에서만 열린다. 값이 없으면 seed는 403으로 실패한다.
 `build/qa-fixture.json`은 0600 권한의 Git 미추적 파일이다. owner credential·agent credential·합성 private key가 있으므로 외부로 보내거나 로그에 출력하지 않는다.
 브라우저에서 seed가 출력한 `/owner/gates/<id>`를 연다. HTTP Basic username은 fixture의 `b.owner.owner`, password는 `b.owner.credential`이다.
 원요청은 생성 후 180초 만료다. 화면을 늦게 열면 seed를 다시 실행한다.
@@ -75,7 +76,7 @@ RELAY_ADDR=127.0.0.1:18082 KNOWSLINK_SMTP_URL=smtp://127.0.0.1:2525 KNOWSLINK_MA
 ```
 
 브라우저로 `http://localhost:18082/`를 연다. cookie가 `Secure`이므로 `localhost` 또는 HTTPS 주소를 사용한다. 받은 메일은 `build/qa-mail/*.eml`(0600)에 있다. 코드는 캡처·로그에 남기지 않는다.
-`KNOWSLINK_SYNTHETIC_SIGNUP=1`은 로컬 합성 fixture(`/v1/owners`)에만 쓴다. 공개 후보는 이 값을 비운다. 운영 SMTP 값은 Git 미추적 `.env`로만 제공한다.
+`KNOWSLINK_SYNTHETIC_SIGNUP=1`은 격리 로컬 합성 fixture(`/v1/owners`)에서 셸로만 준다. `.env.example`과 공개 후보는 이 값을 비운다. 운영 SMTP 값은 Git 미추적 `.env`로만 제공한다.
 
 ## API와 adapter
 

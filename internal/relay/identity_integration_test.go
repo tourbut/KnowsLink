@@ -299,6 +299,39 @@ func TestEmailIdentity(t *testing.T) {
 		}
 	})
 
+	t.Run("refused_principal_does_not_spend_shared_rate", func(t *testing.T) {
+		s, mail := identityService(t, pool)
+		alice, bob := newBrowser(s, "192.0.2.90"), newBrowser(s, "192.0.2.91")
+		login(t, alice, mail, "alice@example.com")
+		login(t, bob, mail, "bob@example.com")
+		s.mutateState(t, func(st *State) {
+			st.Rates = map[string][]time.Time{}
+			for _, session := range st.Sessions {
+				session.Verified = session.Verified.Add(-reauthWindow)
+			}
+		})
+		// Each flood exceeds the shared budget on its own: 250 > 200 new and 150 > 100 cleanup.
+		flood := newBrowser(s, "198.51.100.7")
+		for i := 0; i < 250; i++ {
+			flood.do("POST", "/auth/verify", url.Values{"code": {"000000"}})
+			alice.do("GET", "/home", nil)
+		}
+		for i := 0; i < 150; i++ {
+			alice.do("POST", "/auth/logout-all", nil)
+		}
+		expect(t, flood.do("POST", "/auth/verify", url.Values{"code": {"000000"}}), 429)
+		expect(t, alice.do("GET", "/home", nil), 429)
+		expect(t, alice.do("POST", "/auth/logout-all", nil), 429)
+		// A new process on the same database keeps the counts; other principals still log in, load home, and log out.
+		restarted := &Service{Pool: pool, Mail: mail.send}
+		flood.h, alice.h, bob.h = restarted.Handler(), restarted.Handler(), restarted.Handler()
+		expect(t, flood.do("POST", "/auth/verify", url.Values{"code": {"000000"}}), 429)
+		expect(t, alice.do("GET", "/home", nil), 429)
+		expect(t, newBrowser(restarted, "203.0.113.50").do("POST", "/auth/start", url.Values{"email": {"carol@example.com"}}), 303, "/auth/verify")
+		expect(t, bob.do("GET", "/home", nil), 200, "회원 식별자")
+		expect(t, bob.do("POST", "/auth/logout", nil), 303, "/?n=logout")
+	})
+
 	t.Run("member_gate_isolation_and_decision", func(t *testing.T) {
 		f := setup(t, pool)
 		mail := &inbox{codes: map[string]string{}}
