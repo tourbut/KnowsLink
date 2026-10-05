@@ -32,7 +32,16 @@ fullops-common-0.3.2·FULLOPS.md/project.md/document-writing.md/orca-agents.md·
 
 ## 완료 보고
 
-실행 DEV가작성한다.
+- 결과: succeeded. 수정 코드 SHA `689ba3f090200c144648cd41a40585902fe2ab8c`. 준비 `b643e73`, 원본 후보 `59b66ad`, 독립 리뷰 `25b110f`는 보존했다. 최종 문서 SHA는 이 보고를 보존한 뒤의 커밋이며 worker_done에 쓴다. 상세는 [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md)이다.
+- F1 수정: `anonymousRate`·`memberRate`·`cleanupRate`의 bucket을 principal 먼저로 바꿨다. 자기 principal 한도로 거부된 요청은 공유 신규·정리 budget을 쓰지 않는다. 한 principal은 rolling 60s에 공유 budget에 최대 30·40·정리 20만 기여한다. 30/40/20/200/100, 거부 집계, rolling, 재시도 시각, Postgres 영속은 그대로다. 정리 경로도 같은 문제(한 회원의 logout-all 403 반복이 정리 100을 고갈)가 있어 함께 고쳤다.
+- F4 수정: `.env.example`의 `KNOWSLINK_SYNTHETIC_SIGNUP`을 빈 값으로 바꿨다. `verify_mvp.py`는 격리 Compose에 `=1`을 명시한다. `check_compose.py`가 예시 기본값이 닫혔는지 검사한다. README QA 실행 명령에 셸 opt-in을 넣었다. `beta.sh`는 수정하지 않았다.
+- F2 판단: 변경 없음. 재발송 무효화는 D02 규칙이다. 6자리는 화면·D05·user-guide 문구이고 59 UI/QA가 병행 중이라 바꾸지 않았다. 잔여 위험은 하루 약 6×10⁻⁴, 1년 약 20%(지속 표적 공격)다. 다음 후보의 기술 대안은 8자리(하루 약 6×10⁻⁶)다. 이메일별 일 누적 실패 상한은 designer 검토다. F3는 AGENTS 단계로 보존했다.
+- RED: 수정 전 코드에서 `TestRatePrincipalIsolation` exit 1(`one refused principal blocked others`), `make verify-mvp` exit 2(새 통합 하위 검사 `got 429 want 303`), 수정 전 `.env.example`의 `check_compose.py` exit 1(`Synthetic signup must be closed by default`).
+- PASS: `go test -race ./internal/relay/` 0, `check_compose.py` 0, `make lint` 0, `make test` 0, `make build` 0, `make verify` 0, `make verify-runtime` 0, `make verify-mvp` 2회차 0(`TestEmailIdentity` 6개·`TestRatePrincipalIsolation`·기존 검사 전체). `git diff --cached --check` 0. FullOps lint `--from 59b66ad`는 최종 clean SHA에서 실행하고 worker_done에 쓴다.
+- 관측: `make verify-mvp` 1회차 exit 2. 변경하지 않은 `TestTrialHTTP`가 `POST /v1/test/persist got 409 invalid_lease`로 1회 실패했다. 수정 전 RED 실행과 2회차에서는 PASS했다. 기존 간헐 실패로 판단하며 원인은 조사하지 않았다.
+- 미실행: 실제 운영 SMTP·일반 이메일 사람 로그인, 원본 전체 QA·UI 직접 검수(59에서 병행), 서버 배포·CF 쓰기.
+- QA/UI 인계: 화면 HTML·문구·상태코드 매핑 변경 없음. 바뀐 것은 429 발생 조건뿐이다. 한 source·회원의 자기 한도 초과 뒤 다른 source·회원은 429가 아니다. 수정 후보에서 README seed를 실행할 때 셸에 `KNOWSLINK_SYNTHETIC_SIGNUP=1`을 준다. 59의 `.env.example`은 기본 1이었다.
+- OPS 인계: 새 코드 배포 뒤 owner-only 베타 `beta.sh seed`의 `/v1/owners`는 403이다. 베타 seed 유지에는 그 베타 `.env`에만 `=1`을 둔다. 공개 검증에 `/v1/owners` 403 확인을 추가한다. 독립 IP 다수의 합 포화·IPv6 회전은 edge rate limit로 완화한다.
 
 ## coor 탐색 근거
 
