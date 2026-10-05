@@ -40,11 +40,11 @@ keep 추가: `.fullops-squad/contexts/tester.md`, `.fullops-squad/docs/evaluatio
 
 ## 해야 할 일과 독립 판정
 
-- [ ] QA-P01: 일반 이메일 하나의 실제 확인·가입·로그인과 자기 owner 바인딩을 검사한다. 미확인·만료·재사용·오답·발송 실패·위조 신원을 거부한다.
-- [ ] QA-P02: 재로그인과 동시 첫 가입의 동일 회원 연속성을 검사한다. 다른 발급자 신원의 이메일 문자열 일치만으로 병합하지 않는다.
-- [ ] QA-P03: 현재/전체 로그아웃·만료·브라우저 뒤로 가기·옛 세션 재사용·이메일 재확인 복구를 검사한다. agent 연결은 별도 수명임을 확인한다.
-- [ ] QA-P04: 독립 fixture의 A/B owner 식별자를 바꾸어 조회·수정·gate 결정·관리자 화면 접근을 시도한다. agent credential로 owner 승인 경계를 넘지 못하는지 확인한다.
-- [ ] QA-P05: PS-11의 확인 발송/오답/세션 기본값을 이하·경계·초과·동시 요청·재시작에서 검사한다. 기존 owner/합성 업무/gate 영향 회귀를 수행한다.
+- [x] QA-P01: 일반 이메일 하나의 실제 확인·가입·로그인과 자기 owner 바인딩을 검사한다. 미확인·만료·재사용·오답·발송 실패·위조 신원을 거부한다.
+- [x] QA-P02: 재로그인과 동시 첫 가입의 동일 회원 연속성을 검사한다. 다른 발급자 신원의 이메일 문자열 일치만으로 병합하지 않는다.
+- [x] QA-P03: 현재/전체 로그아웃·만료·브라우저 뒤로 가기·옛 세션 재사용·이메일 재확인 복구를 검사한다. agent 연결은 별도 수명임을 확인한다.
+- [x] QA-P04: 독립 fixture의 A/B owner 식별자를 바꾸어 조회·수정·gate 결정·관리자 화면 접근을 시도한다. agent credential로 owner 승인 경계를 넘지 못하는지 확인한다.
+- [x] QA-P05: PS-11의 확인 발송/오답/세션 기본값을 이하·경계·초과·동시 요청·재시작에서 검사한다. 기존 owner/합성 업무/gate 영향 회귀를 수행한다.
 - [ ] QA-P06: 실제 공개 후보의 signup 우회와 현재 owner-only 경계를 검사한다. OPS 공개 준비 전에는 미실행이며 이 후보의 운영 PASS를 선언하지 않는다.
 - [ ] QA-P07: UX-01–03의 실패·다음 동작 표시를 확인하고 designer의 직접 검수와 사용자 일반 이메일 사람 확인에 후보 SHA·필요 캡처를 인계한다.
 
@@ -62,7 +62,12 @@ coor는 별도 fixed-SHA 리뷰를 맡고 designer는 직접 시각 검수를 �
 
 ## 완료 보고
 
-실행 worker가 독립 관측과 PASS/FAIL/BLOCKED·후보 SHA·남은 사람 확인 및 운영 검증을 작성한다.
+[완료] SAR-PUBLIC-IDENTITY-001-TESTER. 최종 기록 SHA는 worker_done 본문에 적는다.
+후보 `59b66ada8b36802484cc6d7e22523257b50572cc`를 `/tmp/knowslink-public-identity-qa-59b66ad`의 detached checkout에서 검증했다. 기록 준비 HEAD는 `746ecd9193e9283369267d51e110ccdb87927af4`다.
+fixture QA-P01–P05는 통과다. `probe.py`는 157통과, 0실패, 2건너뜀이고 종료코드는 0이다. `npm ci --prefix adapters`와 `make verify-mvp`의 종료코드는 0이다.
+F1 medium을 관측했다. 한 source의 거부 170회 뒤 공유 `http:new` 길이는 200이고 다른 source 버킷은 0인데 첫 요청은 429다. 기존 `/home`은 429이고 logout은 303이다. 제품 코드는 수정하지 않았다.
+일반 서비스 수락은 BLOCKED다. QA-P06 공개 경계와 QA-P07의 designer 검수·실제 사용자 이메일은 미실행이다. fixture 통과를 그 두 항목의 통과로 쓰지 않는다.
+보고서: [SAR-PUBLIC-IDENTITY-001-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md).
 
 ## coor 고정 후보·실행 확정
 
