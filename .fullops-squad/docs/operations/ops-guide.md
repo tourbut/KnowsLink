@@ -2,9 +2,9 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-04
+updated: 2026-10-05
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -253,3 +253,11 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 - 공개 negative: 무인증·잘못된 CF 403, 유효 CF+잘못된 relay credential 401, token만으로 owner·pair·business 경로 302. 공개 positive: 두 local client가 registry/keys/send/pull로 합성 text를 왕복했다. 실제 Grok은 아니다.
 - 종료: token 두 개만 revoke하고 앱·policy만 삭제한다. 원점 config를 복원하고 allowlist를 비운다. 관리 token이 먼저 만료되므로 삭제에는 새 권한이나 대시보드가 필요하다.
 - 현재 차단 중 남은 것: Grok 전용 파일의 안전 전달과 Grok 설치 회신이다. 증거·ID·절차는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)의 「재개 결과」를 따른다.
+
+### 13.7 만료 갱신 (2026-10-05, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW)
+
+13.6의 service token 두 개는 2026-10-05T06:42:09Z에 만료됐다. 새 범위 한정 관리 token(Service Tokens Edit·Apps and Policies Edit, 계정 하나, 만료 2026-10-05T23:59:59Z)으로 두 token에 `PUT /accounts/{account_id}/access/service_tokens/{id}`를 `duration: "24h"`로 보냈다. UUID와 client secret(`client_secret_version` 1)은 바뀌지 않았다. 새 만료는 codex 2026-10-06T08:09:43Z, grok 2026-10-06T08:09:50Z다. 공식 `refresh`는 만료를 1년 연장하므로 24h 범위에서 쓰지 않았다. 앱·policy·Tunnel·`environment.json`의 CF 항목은 변경하지 않았다.
+
+- 공개 negative: 무인증·잘못된 CF 403, 유효 CF+잘못된 relay credential 또는 없음 401, owner·pair·signup·업무 경로 302. positive: registry 200(두 agent), 두 local client의 HTTPS 왕복 통과(실제 Grok 아님).
+- Grok 전달 묶음: `/home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL/knowslink-grok-trial-20261005.tar.gz`(0600). `key.pem`·`environment.json` 두 개만 담는다. 외부 전달은 하지 않았다.
+- 관리 token은 service token보다 약 8시간 먼저 만료된다. 종료 정리(token revoke·앱·policy 삭제)는 그 전에 하거나 새 권한을 받는다. 증거와 Grok 댓글 초안은 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md)이다.
