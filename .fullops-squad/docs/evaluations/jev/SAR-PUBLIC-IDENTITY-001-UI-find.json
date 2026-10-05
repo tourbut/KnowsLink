@@ -1,0 +1,74 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-UI",
+  "head": "746ecd9193e9283369267d51e110ccdb87927af4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 74,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 74
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.52
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.3
+    },
+    {
+      "path": "scripts/mail_sink.py",
+      "summary": "Local QA SMTP sink: stores each received message as a 0600 file. Never use as a real mail service.",
+      "probability": 0.05
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "summary": "Email identity binds one verified address to one member and owner; browser sessions never carry agent authority.",
+      "probability": 0.04
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "summary": "Load a private trial environment without exposing credentials in shell arguments; launch Codex CLI or Grok MCP.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.01
+    },
+    {
+      "path": "compose.yaml",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.88,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4409,
+    "output_tokens": 789,
+    "cost": 0.000185178
+  },
+  "latency_seconds": 0.272,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
