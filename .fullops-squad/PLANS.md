@@ -671,3 +671,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 운영 E2E 대상 사용자 확정: 공식 Grok Bot 이름 노우 ↔ OpenAI dot 이름 다닷. 둘 다 같은 본인 일반 이메일로 가입/연결하며 agentID·키·credential은 각각 유지한다. Codex↔Grok 기존 CLI 증거는 보존하되 운영 최종 수락으로 대체하지 않는다. designer/OPS 진행 dispatch에 원문과 변경조건 전달.
 
 - OPS readiness2267a4a 원격main 수락 전 보고 정정: 관측종료시각이 worker_done보다 미래인 오류·JWT 전달과 relay 미사용 설명·active token 만료조건·공식 URL을 짧은 같은과제 후속으로 수정한다. coor 기계적 병합만 수행했고 새 공개/설정변경 없음. 수정본 lint 뒤 원본과 함께 main 통합한다.
+
+- OPS 준비 보고 정정 후속 task_632d48851535/ctx_fd1251b662f6: 같은 Sonnet5.5high 터미널에서 짧은 후속·turn_started 확인, 시작b37b35e. 원본msg_f654cc59206c/2267a4a의 관측시각·JWT전달설명·관리token조건·공식URL 정정 뒤 최종main수락. 공개 설정/제품은 변경하지 않는다.
