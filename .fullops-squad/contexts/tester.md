@@ -1,10 +1,10 @@
 ---
 title: tester 컨텍스트
 status: draft
-updated: 2026-10-05
+updated: 2026-10-06
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER]
-summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검증 결과를 기록한다"
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER]
+summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원 rate 격리 검증 결과를 기록한다"
 ---
 
 # tester 컨텍스트
@@ -45,3 +45,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인 검�
 - 2026-10-05 SAR-PUBLIC-IDENTITY-001-TESTER: 후보 `59b66ada8b36802484cc6d7e22523257b50572cc`의 fixture QA-P01–P05는 157통과 0실패다. `make verify-mvp` 종료코드는 0이다.
 - 거부 170회가 공유 `http:new` 200을 채운 뒤 다른 source와 `/home`은 429이고 logout은 303이다. 등급은 medium이다. 제품 코드는 수정하지 않았다.
 - QA-P06과 사람 QA-P07은 미실행이다. 일반 서비스 수락은 BLOCKED다. 보고서: [SAR-PUBLIC-IDENTITY-001-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md).
+- 2026-10-06 SAR-PUBLIC-IDENTITY-001-FIX-TESTER: 후보 `eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de`의 별도 checkout에서 rate 격리와 trial lease 회수 검사가 통과했다. `make verify-mvp` 종료코드는 0이다.
+- 첫 `make test` 종료코드 2는 손상된 zod 추출이다. 검증된 재설치의 product-test 종료코드는 0이다. 제품 코드는 수정하지 않았다.
+- 실제 이메일·공개·노우↔다닷은 미실행이다. 원본 F1은 `59b66ad`에 둔다. 보고서: [SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md).

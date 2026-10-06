@@ -1,0 +1,10 @@
+first npm ci exit 0
+installed adapters/node_modules/zod/v4/classic/compat.js size 1090
+non-ascii bytes 9 inside the ZodFirstPartyTypeKind deprecation comment
+package-lock zod 4.6.5 integrity sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==
+registry tarball matched that integrity
+tarball member package/v4/classic/compat.js size 1090 and non-ascii 0
+second npm ci exit 0
+installed file byte-equal to the tarball member
+first make test exit 2 because esbuild rejected the damaged comment
+second make test exit 0 on the verified install

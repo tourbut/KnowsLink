@@ -1,0 +1,18 @@
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.013s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.016s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.012s
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.925s
+npm test --prefix adapters
+
+> @knowslink/adapters@0.0.0 test
+> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js
+
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js

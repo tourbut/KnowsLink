@@ -1,0 +1,83 @@
+{
+  "candidate": "eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de",
+  "checkout": "/tmp/knowslink-identity-final-qa-eb2e34b",
+  "detached": true,
+  "head_unchanged": true,
+  "tracked_tree_clean_before_and_after": true,
+  "commands": [
+    {
+      "name": "npm ci --prefix adapters",
+      "exit": 0,
+      "note": "first extract damaged zod compat.js"
+    },
+    {
+      "name": "go test -race -count=1 -v -run TestRatePrincipalIsolation|TestRateStateBoundedUnderRotation|TestRollingWindowBoundary|TestSendLimits ./internal/relay/",
+      "exit": 0
+    },
+    {
+      "name": "make lint",
+      "exit": 0
+    },
+    {
+      "name": "make test",
+      "exit": 2,
+      "note": "GNU make exit after esbuild rejected damaged zod comment; Go packages had passed"
+    },
+    {
+      "name": "npm ci --prefix adapters",
+      "exit": 0,
+      "note": "rerun byte-equal to verified registry tarball"
+    },
+    {
+      "name": "make test",
+      "exit": 0,
+      "note": "product-test verdict"
+    },
+    {
+      "name": "make verify-mvp",
+      "exit": 0,
+      "project": "knowslink-mvp-697ca71a30"
+    }
+  ],
+  "verify_mvp_order": [
+    {
+      "command": "compose up --build --wait relay",
+      "exit": 0
+    },
+    {
+      "command": "compose stop relay",
+      "exit": 0
+    },
+    {
+      "command": "go test -tags=integration -race -count=1 -v ./internal/relay",
+      "exit": 0
+    },
+    {
+      "command": "compose up --wait relay",
+      "exit": 0
+    },
+    {
+      "command": "node adapters/dist/synthetic.js",
+      "exit": 0
+    },
+    {
+      "command": "node adapters/dist/synthetic.js --seed",
+      "exit": 0
+    },
+    {
+      "command": "node adapters/dist/trial-check.js",
+      "exit": 0
+    },
+    {
+      "command": "compose down --volumes",
+      "exit": 0
+    }
+  ],
+  "not_run": [
+    "real email",
+    "public exposure",
+    "final know-dadat",
+    "full 157 fixture repeat",
+    "new visual inspection"
+  ]
+}
