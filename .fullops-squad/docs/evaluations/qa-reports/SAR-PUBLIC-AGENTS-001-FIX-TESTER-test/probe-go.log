@@ -1,0 +1,18 @@
+=== RUN   TestQAAgentsFix
+=== RUN   TestQAAgentsFix/policy
+    qa_agents_fix_probe_test.go:134: clock-fixture: invite operation time plus one hour, not a real wait
+    qa_agents_fix_probe_test.go:134: clock-fixture: pending Exp moved before the database clock
+    qa_agents_fix_probe_test.go:134: clock-fixture: Exp set two minutes ahead, then accepted immediately
+=== RUN   TestQAAgentsFix/retention
+    qa_agents_fix_probe_test.go:135: key-record loop clears request budgets between rotations
+    qa_agents_fix_probe_test.go:135: clock-fixture: key Changed moved back 30 days, not a real 30-day wait
+    qa_agents_fix_probe_test.go:135: clock-fixture: revoked Changed cleared to zero, not a real 24h wait
+    qa_agents_fix_probe_test.go:135: clock-fixture: revoked Changed moved 25h back, not a real 24h wait
+    qa_agents_fix_probe_test.go:135: clock-fixture: saturated revoked records moved 25h back, not a real 24h wait
+=== RUN   TestQAAgentsFix/rate
+--- PASS: TestQAAgentsFix (3.62s)
+    --- PASS: TestQAAgentsFix/policy (1.00s)
+    --- PASS: TestQAAgentsFix/retention (2.23s)
+    --- PASS: TestQAAgentsFix/rate (0.39s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	4.640s
