@@ -49,14 +49,14 @@ summary: POLICY 48d12fa 관찰 조건과 4a 구현을 대조하고 반복 초대
 
 ## 자동 검증 증거
 
-레포 루트에서 실행했다. 명령의 원래 종료코드를 저장했고 파이프로 가리지 않았다. 로그는 [QA 증거](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/)이며 대상 SHA는 `head.txt`의 제품 커밋 `f9af9bf`다. 로그 후행 공백만 정규화했다. 4a와 원본 d1 검사 기록은 다시 쓰지 않았다.
+레포 루트에서 실행했다. 명령의 원래 종료코드를 저장했고 파이프로 가리지 않았다. 로그는 [QA 증거](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/)이며 대상 SHA는 `head.txt`의 `6d016e5`다. 첫 실행 `f9af9bf`의 로그는 커밋 `225f4de`에 남아 있고 `exits.txt`에 두 실행을 모두 적었다. 로그 후행 공백만 정규화했다. 4a와 원본 d1 검사 기록은 다시 쓰지 않았다.
 
 | 명령 | 결과·대상 |
 |---|---|
 | make lint | exit 0 |
 | make test | exit 0. Go race 전체와 adapter 검사 |
 | make verify-mvp | exit 0. 고유 Compose project의 격리 Postgres·migration·Go integration race(PASS 55·FAIL 0)·TS 왕복. 그 project의 relay는 integration 동안 정지한다. 기존 `knowslink-*` 컨테이너·Tunnel은 건드리지 않았다 |
-| 390×844 폭 측정 | `mobile-width.json`. 새 안내 상태의 홈과 두 거부 화면이 scrollWidth 390, 넘침 요소 0 |
+| 390×844 폭 측정 | `mobile-width.json`(f9af9bf). 새 안내 상태의 홈과 두 거부 화면이 scrollWidth 390, 넘침 요소 0. 6d016e5와 테스트 외 제품 diff가 0이라 재사용했다 |
 
 새 검사와 검출력:
 
@@ -65,7 +65,17 @@ summary: POLICY 48d12fa 관찰 조건과 4a 구현을 대조하고 반복 초대
 - `TestMemberPagesShowNextSteps` 확장: 관계 상태별 안내·수동 새 초대·종료 관계의 철회 버튼 부재(변형 시 실패 확인)·철회 agent 보존 안내·키 포화 카드·거부 화면의 생성 버튼.
 - `TestPublicAgentHTTP` 두 하위 검사 확장: 실제 Postgres HTTP의 notice redirect 3종과 반대 방향 반복의 기한 불변, 종료 관계 화면, owner 기록 포화 409 안내, 키 기록 포화 connect 409 안내·생성 버튼·연결 미생성.
 
-FullOps lint·strict·`git diff --check`·고정 SHA 결과는 아래 완료 기록에 남긴다.
+### 재실행 이유
+
+깨끗한 HEAD `225f4de`의 `lint.py --repo . --from 4a1b80a`는 exit 1이었다. ERROR 4는 모두 ANTI-004이며 원문은 [fullops-lint-initial.log](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint-initial.log)에 보존했다. 원인은 새 검사의 지역 helper 이름 `pending()`이 skip 표식 패턴과 일치한 것이다. 건너뛴 검사는 없었다. `6d016e5`에서 helper를 `pendingCount`로 바꾸고 두 정책 검사를 `policy_test.go`로 옮겼다. 제품 코드는 바뀌지 않았다. 검사 코드가 바뀌었으므로 make lint/test/verify-mvp를 다시 실행했고 모두 exit 0, integration PASS 55·FAIL 0이다.
+
+### 경고와 규모
+
+- SIZE-001: `member_agents.go` 312줄(이전 266)과 `member.go` 339줄(이전 328)은 안내 문구 추가 때문이다. 문구는 제품 조건 원문의 필수 안내라 줄이지 않았다. 분할은 한 파일에 같이 있는 거부 흐름을 흩어 놓으므로 하지 않았다. 검사 파일 `connections_integration_test.go`(446)·`connections_test.go`는 기존 초과이며, 새 정책 검사는 별도 파일로 분리했다. `PLANS.md`는 기존 누적 초과에 자기 결과만 추가했다.
+- SIZE-002: 추가 줄 대부분은 검사 로그 증거(verify-mvp 약 300줄)·검사 코드·기술 문서다. 제품 코드는 3파일 +100/−23줄이다. 하나의 제품 답 반영이라 분할하지 않았다.
+- DEP·DESIGN: 의존성 변경 0. 기존 Go 문자열 memberStyle·template만 사용했고 별도 theme·Tailwind·shadcn·디자인 lint는 해당 없음이다. DESIGN 규칙이 Go 문자열 CSS를 보지 않으므로 폭 측정을 남겼다.
+
+FullOps lint 최종 결과·strict·`git diff --check`·고정 SHA는 완료 기록과 worker_done에 남긴다.
 
 ## 기술 판단과 미변경
 

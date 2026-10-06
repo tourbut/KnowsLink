@@ -1,4 +1,13 @@
+# run 1: product commit f9af9bf (logs kept in commit 225f4de)
 make lint exit 0
 make test exit 0
 make verify-mvp exit 0 (Go integration race PASS 55, FAIL 0)
 mobile width node measure.cjs exit 0
+# FullOps lint at clean HEAD 225f4de --from 4a1b80a: exit 1, ERROR 4 ANTI-004 (fullops-lint-initial.*)
+# cause: local test helper pending() matched the skip-marker pattern; not a skipped test
+# fix 6d016e5: rename helper to pendingCount, move policy tests to policy_test.go; product code identical to f9af9bf
+# run 2: commit 6d016e5 (current logs)
+make lint exit 0
+make test exit 0
+make verify-mvp exit 0 (Go integration race PASS 55, FAIL 0)
+# mobile width reused: non-test product diff f9af9bf..6d016e5 is empty

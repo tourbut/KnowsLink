@@ -1,9 +1,9 @@
 go test -race ./cmd/... ./internal/...
 ok  	github.com/tourbut/KnowsLink/cmd/migrate	(cached)
-ok  	github.com/tourbut/KnowsLink/cmd/relay	1.016s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	(cached)
 ok  	github.com/tourbut/KnowsLink/internal/config	(cached)
 ?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
-ok  	github.com/tourbut/KnowsLink/internal/relay	2.214s
+ok  	github.com/tourbut/KnowsLink/internal/relay	2.071s
 npm test --prefix adapters
 
 > @knowslink/adapters@0.0.0 test
@@ -20,7 +20,7 @@ npm test --prefix adapters
 
   dist/plugin.js  1.5mb ⚠️
 
-⚡ Done in 69ms
+⚡ Done in 75ms
 PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
 PASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified
 PASS: local connection PoP, private directory/files, no overwrite, credential storage, one-use completion, URL boundary
