@@ -1,0 +1,14 @@
+=== RUN   TestQAMessagesIndependent
+    qa_messages_probe_test.go:369: local node/mcp exit 1 node:internal/modules/run_main:123
+            triggerUncaughtException(
+            ^
+        
+        AssertionError [ERR_ASSERTION]: The input did not match the regular expression /"state":"held"/. Input:
+        
+        '[{"type":"text","text":"{\\"state\\":\\"held\\",\\"transport\\":\\"pull\\",\\"actualConnection\\":\\"held\\",\\"webhook\\":false,\\"evidenceFetch\\":false}"}]'
+        
+            at file:///home/shin/orca/workspaces/KnowsLink/fullops-te
+--- FAIL: TestQAMessagesIndependent (1.60s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	1.624s
+FAIL

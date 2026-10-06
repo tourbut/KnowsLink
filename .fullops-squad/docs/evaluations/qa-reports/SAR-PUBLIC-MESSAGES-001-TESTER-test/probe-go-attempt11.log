@@ -1,0 +1,8 @@
+=== RUN   TestQAMessagesIndependent
+    qa_messages_probe_test.go:378: {"state":"qa_local_node_mcp_pass","request":"01a1115a-d0ed-7102-8af1-18bcfd899a17","received":"01a1115a-d0ed-7102-8af1-18bcfd899a17","reply":"01a1115a-d1fa-7c44-82ea-0b768294f39e","replyReceived":"01a1115a-d1fa-7c44-82ea-0b768294f39e","exact4096":"01a1115a-d2cd-74b6-b724-b92746c53e42","held":"default_mcp","actualGrok":"unverified","actualDadot":"unverified","realMail":"unverified"}
+    qa_messages_probe_test.go:776: HTTP admission leaked before the concurrency check: new=1 cleanup=0; a full relay snapshot can outlive the 2s release transaction until the 30s expiry
+    qa_messages_probe_test.go:851: HTTP admission leaked
+--- FAIL: TestQAMessagesIndependent (22.56s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	22.615s
+FAIL

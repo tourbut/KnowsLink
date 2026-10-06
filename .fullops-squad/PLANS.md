@@ -1026,3 +1026,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - Task `task_3a9d433b5e6b` / Dispatch `ctx_fb39c38db415`는 사용자 중단으로 fence했다. worker-stop은 external terminal 때문에 stop_unknown/processAction none이고 명시적 worker-abandon은 abandoned/processAction none이다. 외부 터미널은 보존됐으며 프로세스 종료나 worker_done을 주장하지 않는다. coordinator가 기록 보존·일반 push·마감 운영을 수행한다. receipt와 실제 최종HEAD lint JSON은 `docs/evaluations/qa-reports/COOR/tester-token-closeout/`에 있다.
 - 기존 제품 suite lint/test/verify-mvp exit0과 독립 probe exit1(H1 high·form deny 분류 medium·receipt cap 거절 뒤 HTTP 행 잔류 medium)을 구분한다. 새 잔류 결함은 msg_78c8fcd13251로 같은 DEV-FIX-2에 추가했다. 진행 DEV 인박스에 같은 내용을 보완하며 제품/기술 원인 판단은 DEV가 한다.
 - 담당 coor/DEV/OPS. DEV-FIX-2는 계속한다. FIX-TESTER는 사용자 토큰 제한과 새 fixed SHA의 독립 QA 부재로 보류한다. 재개 조건은 사용자 허용 검증 수단과 최종 후보의 좁은 독립 QA다. 필수 QA를 면제하지 않는다. H2 high·원본 실패·새 fixed 필수 리뷰/QA/UI 영향 확인 전 main 제품 수락은 계속 차단한다. 실메일/공개/실24h/외부 플랫폼/노우↔다닷은 미검증이다.
+
+## SAR-PUBLIC-MESSAGES-001-TESTER — 2026-10-06
+
+- 고정 `09c523da8a3407288d9f5d711e1834af12bc7808`를 별도 clone에서 PS08–11 독립 QA했다. 프로브 종료코드는 1이다. H-1 high, M-1 medium, receipt 상한 뒤 신규 HTTP 행 1개 잔류가 재현됐다. 제품 코드는 수정하지 않았다. H-1은 main 수락을 차단한다.
+- `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다. 이 통과는 격리 fixture다. 실메일, 공개, 벽시계 24시간, 운영 부하와 복원, PS13, PS14, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다.
+
+- 마감 기록 병합 검사에서 원본 probe4/6 및 verify-mvp stdout의 trailing whitespace로 전체 git diff --cached --check exit2가 나왔다. 원본 외부 로그는 수정하지 않는다. 로그를 제외한 문서/운영 변경 diff 검사를 따로 수행하고 실패 원문은 원본 blob으로 보존한다. 실제 tester 최종60b lint는 ERROR0/WARNING1/실행불가0 및 product-lint/test passed이며 기존 실행JSON을 복사했다.

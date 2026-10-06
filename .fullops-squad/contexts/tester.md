@@ -3,8 +3,8 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER]
-summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원 rate 격리, 회원 agent 연결 QA 결과를 기록한다"
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-TESTER]
+summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원, agent, 메시지 PS08–11 QA 결과를 기록한다"
 ---
 
 # tester 컨텍스트
@@ -54,3 +54,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 - 2026-10-06 SAR-PUBLIC-AGENTS-001-FIX-TESTER: 후보 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 별도 clone에서 보존, rate, POLICY 관찰 조건 프로브 종료코드는 0이다. 1차 종료코드 1은 프로브 기대값이다.
 - 원본 QA `bcb06b8`과 UI FAIL `d165178`은 그 SHA에 둔다. 벽시계 24시간, 실제 메일, 공개, 노우↔다닷은 미실행이다.
 - 제품 코드는 수정하지 않았다. 보고서: [SAR-PUBLIC-AGENTS-001-FIX-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md).
+- 2026-10-06 SAR-PUBLIC-MESSAGES-001-TESTER: 후보 `09c523da8a3407288d9f5d711e1834af12bc7808`의 별도 clone에서 PS08–11 프로브 종료코드는 1이다. H-1 high, M-1 medium, receipt 상한 뒤 신규 HTTP 행 1개 잔류를 재현했다.
+- `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다. 이 통과는 격리 fixture다. 제품 코드는 수정하지 않았다.
+- 실메일, 공개, 벽시계 24시간, 운영 부하와 복원, PS13, PS14, 노우↔다닷은 미실행이다. H-1은 main 수락을 차단한다. 보고서: [SAR-PUBLIC-MESSAGES-001-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md).

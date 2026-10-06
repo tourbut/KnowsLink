@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -152,3 +152,9 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 
 기본 MCP 도구는7개이며 기능 활성은 각 모드의 명시 설정에 따른다. bundle에 CLI 진입점이 실행되지 않도록 text.js 이름도 확인한다. connect.ts의 relayBase는 core.ts에 옮겨 bundle에서 연결 CLI가 실행되는 import 부작용을 제거했다. 원본 실패와 교정 증거를 실행 기록에 보존한다.
 로컬 실제 프로세스 왕복을 실제 Grok Bot/다닷 계정·실메일·운영 공개·사람 직접 UI PASS로 표시하지 않는다. OPS 독립 보안 리뷰·TESTER QA·designer UX06/07 직접 검수는 동일 고정 후보의 후속이다.
+
+## SAR-PUBLIC-MESSAGES-001-TESTER 독립 QA
+
+독립 QA는 후보 `09c523da8a3407288d9f5d711e1834af12bc7808`의 detached clone에서 일반 회원 HTTP, 로컬 Node/MCP, 격리 Postgres를 확인했다. DEV 자동 검사의 종료코드 0을 이 QA의 통과로 쓰지 않았다.
+프로브 종료코드는 1이다. H-1 high는 익명 slow body가 인증 전에 신규 16과 정리 4 프로세스 슬롯을 점유한다. M-1 medium은 `POST /home/gates/{id}`의 deny가 본문 파싱 전에 신규 작업으로 분류된다. receipt 20000 거절 뒤에는 신규 HTTP 행 1개가 30초 만료까지 남을 수 있다.
+`make lint`, `make test`, `make verify-mvp`의 종료코드는 0이다. 이 결과는 격리 fixture다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다. 실메일, 공개, 노우↔다닷은 확인하지 않았다. H-1은 main 수락을 차단한다.

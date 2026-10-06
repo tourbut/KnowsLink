@@ -1,0 +1,15 @@
+=== RUN   TestQAMessagesIndependent
+    qa_messages_probe_test.go:369: local node/mcp exit 1 node:internal/modules/run_main:123
+            triggerUncaughtException(
+            ^
+        
+        AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+        
+        null !== 1
+        
+            at file:///home/shin/orca/workspaces/KnowsLink/fullops-tester/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/qa-roundtrip.mjs:29:8
+            at process.processTicksAndRejections (node:internal/process/task_queues:10
+--- FAIL: TestQAMessagesIndependent (343.82s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	343.842s
+FAIL
