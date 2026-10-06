@@ -71,3 +71,9 @@ coor가 고정 후보 SHA를 받은 뒤 별도 OPS 세션에서 보안·자원 �
 
 원본 실패와 최종 실행은 [QA 증거](../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV/)에 보존했다. .exit는 Python subprocess 또는 원래 exec 반환 종료코드다. 후행 공백만 제거했다. 직접 실행의 최종 lint/test/MVP/plugin은 모두 exit0다. 격리 Compose DB·container·network는 종료 후 회수했다.
 고정 코드 커밋은 증거 head.txt에 기록한다. 완료 metadata/archive 최종 HEAD의 FullOps 결과는 레포 밖 고정 파일과 같은 Run worker_done에 연결한다. SHA를 자기 커밋 본문에 순환 기록하지 않는다.
+
+## 고정 후보 게이트와 규모
+
+코드 SHA `ef5c571cb56364b59944197a14830124b033433f`에서 lint.py --from `7efbaa349a5857eb1eac859a955ec3a09c91f800`는 exit0이다. product-lint/product-test 각 exit0이며 ERROR0·WARNING11·실행불가0이다. fullops-code.json/log/exit와 head.txt를 QA 증거에 보존했다. 마지막 metadata/archive 커밋에서도 같은 기준 게이트를 다시 실행한다.
+SIZE-001 8개는 PLANS933/core316/connections_test390/http632/member341/member_agents316/integration403/store490이다. 불필요 wrapper를 삭제하고 새 wire/capacity/receipt 파일로 경계를 분리했다. 기존 frozen·권한 handler를 더 분할하는 무관한 변경은 줄였다. 새 통합 파일은6개 실제 process/DB 검사와 최소 helper다. SIZE-002는2081추가줄/400예산이다. 예상 제품12–18파일 대비 실제20파일은 중앙 HTTP budget·cleanup과 CLI bundle 근본 원인 수정 때문이다. 전체75파일은 제품20/문서16/증거39이며 선행 coordinator board/Jev는 DEV 생성분이 아니다. 같은 권한·용량 경로를 나누어 미완료 상태로 릴리스하지 않는다.
+SEC-001 1개는 시험용 ClaimToken=active이며 실제 비밀이 아니다. SLOP-004 1개는 plugin 검증의 사용자 PASS 출력이다. DEP0·DESIGN0·새 의존성/lock/version0이다. Go template 스타일은 이 정규식 검사로 직접 시각 수락하지 않는다. 독립 reviewer는 경고와 분할 판단을 검토한다.
