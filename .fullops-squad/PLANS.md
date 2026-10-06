@@ -856,3 +856,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - POLICY msg_04d9f4745598/48d12fae2dce35d92606b264313148f0a635b64e 제품답을보존했다. pending/active반복은수/세대/기한불변, 종료뒤수동재초대는새세대/새수락, 키기록포화는새agent/관계재수락, owner기록포화는최소24h보존/실제정리뒤수동재시도·홈철회목록정리안내를정한다. 새차단/쿨다운/상품quota/수치/운영승인은없다. 구현조건표원문을줄이지않고DEV-POLICY-FIX인박스에서그대로전달한다. route Opus5.5high, 이전DEV는긴빌드/테스트로그와10분이상대기로cache이득이작아새세션을선택했다. QA/UI원본실패와필수delta검수대기를유지한다.
 - QA에handoff msg_9161a46153fb로현재기록checkout의frontmatter없는상속OPS준비양식을metadata-only stamp하도록허용했다. 제품fixed d1·실행조건불변·원래실패/본문보존·완성OPS70f26bc충돌해결원칙을명시했다.
+
+## SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 결과 (DEV, 2026-10-06)
+
+- POLICY 48d12fa 두 관찰 조건표를 4a 코드와 대조했다. 관계 반복·재초대·세대·한도·보존 의미는 이미 일치해 재구현하지 않았고 TestRelationshipPolicy·TestSaturationGuidance로 고정했다.
+- 회원 화면만 바꿨다. 반복 초대 notice 3종, 종료 관계의 수동 새 초대, 키 기록 포화의 새 agent 교체 안내·생성 버튼, owner 기록 포화의 최소 24h 보존·정리 뒤 재시도, 철회 agent 목록 정리 안내, 철회 전 경고. `/v1/*` wire 불변.
+- 제품 커밋 f9af9bf: make lint/test/verify-mvp exit 0(integration PASS 55·FAIL 0), 390px 넘침 0. 상세·고정 SHA는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)과 worker_done.
+- 후속: OPS 독립 delta 리뷰(`/v1/invite-decision` Generation 미결속 판단 포함), TESTER 좁은 QA, designer 새 안내 직접 재검수. 원본 d1 UI FAIL·4a 기록 불변.

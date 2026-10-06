@@ -4,7 +4,7 @@ title: CRUD정의서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
@@ -51,3 +51,14 @@ agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다.
 | Pair | 기존 pair 한도 유지 | 삭제되는 agent를 포함한 pair만 같은 sweep에서 삭제. invite-decision·unpair는 없는 agent를 가리키는 pair를 403으로 거부 |
 
 철회·취소·거절·unpair는 기록을 늘리지 않는다. 상한 포화 중에도 정리 budget으로 처리한다.
+
+### SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 관계 반복과 재초대
+
+| 동작 | 상태 변경 |
+|---|---|
+| 유효 pending·active에 같은/반대 방향 초대 | 없음. 기존 Pair를 반환한다(수·세대·기한·수신자 불변). 회원 rate는 소비한다 |
+| 거절·만료·철회 Pair에 수동 초대 | 한도·현재 agent/owner 검사 뒤 같은 Pair 키에 `Generation+1`, 새 24h 기한의 pending. 초대자는 새 제출자 |
+| 상한 초과 재초대 | 없음(409). 세대 증가 없음 |
+| 종료된 초대의 늦은 결정 | 없음(403). 회원 화면은 Generation 일치도 검사한다 |
+
+기록 보호 포화의 생성 거부·철회 허용·24h 삭제 규칙은 DEV-FIX 표와 같다. 이번 과제는 거부 안내만 바꿨다.

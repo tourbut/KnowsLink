@@ -1,0 +1,24 @@
+{
+ "purpose": "POLICY-FIX narrow DEV check of new guidance states rendered from the same Go templates at 390x844, not a designer visual PASS",
+ "engine": "/usr/bin/google-chrome via playwright-core 1.63.0 (read-only existing install), viewport 390x844",
+ "states": "home with invite-pending notice, key-full live agent, revoked agent retention note, outgoing pending pair, ended pair with re-invite; key-record refusal with create control; owner-record refusal",
+ "sha": "f9af9bf201ed4cee606dcd2feda9e4493e23bdf1",
+ "results": {
+  "home.html": {
+   "sw": 390,
+   "cw": 390,
+   "over": []
+  },
+  "refusal-key-full.html": {
+   "sw": 390,
+   "cw": 390,
+   "over": []
+  },
+  "refusal-records.html": {
+   "sw": 390,
+   "cw": 390,
+   "over": []
+  }
+ },
+ "note": "sw=documentElement.scrollWidth, cw=clientWidth, over=elements whose right edge exceeds the viewport. Screenshots were inspected by DEV only and are not stored as visual evidence."
+}
