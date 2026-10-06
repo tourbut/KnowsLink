@@ -1,0 +1,15 @@
+{
+  "head": "3096e0203dbdb0f3cc898db7a8fe230fc8c8ef26",
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "458798c2ee15c179edacfd6f94ebb9896d26f411",
+    "HEAD"
+  ],
+  "exit": 2,
+  "stdout": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:1: trailing whitespace.\n+ Container knowslink-ui-fix-33ddf7-postgres-1 Stopping \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:2: trailing whitespace.\n+ Container knowslink-ui-fix-33ddf7-postgres-1 Stopped \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:3: trailing whitespace.\n+ Container knowslink-ui-fix-33ddf7-postgres-1 Removing \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:4: trailing whitespace.\n+ Container knowslink-ui-fix-33ddf7-postgres-1 Removed \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:5: trailing whitespace.\n+ Volume knowslink-ui-fix-33ddf7_postgres-data Removing \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:6: trailing whitespace.\n+ Network knowslink-ui-fix-33ddf7_ingress Removing \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:7: trailing whitespace.\n+ Network knowslink-ui-fix-33ddf7_database Removing \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:8: trailing whitespace.\n+ Volume knowslink-ui-fix-33ddf7_postgres-data Removed \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:9: trailing whitespace.\n+ Network knowslink-ui-fix-33ddf7_ingress Removed \n.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/cleanup-compose.txt:10: trailing whitespace.\n+ Network knowslink-ui-fix-33ddf7_database Removed \n",
+  "stderr": "",
+  "rawCleanupLog": " Container knowslink-ui-fix-33ddf7-postgres-1 Stopping \n Container knowslink-ui-fix-33ddf7-postgres-1 Stopped \n Container knowslink-ui-fix-33ddf7-postgres-1 Removing \n Container knowslink-ui-fix-33ddf7-postgres-1 Removed \n Volume knowslink-ui-fix-33ddf7_postgres-data Removing \n Network knowslink-ui-fix-33ddf7_ingress Removing \n Network knowslink-ui-fix-33ddf7_database Removing \n Volume knowslink-ui-fix-33ddf7_postgres-data Removed \n Network knowslink-ui-fix-33ddf7_ingress Removed \n Network knowslink-ui-fix-33ddf7_database Removed \n\nCOMMAND_EXIT:0\n",
+  "rerunReason": "Docker Compose progress trailing whitespace normalized; command exit 0 and raw output retained here"
+}

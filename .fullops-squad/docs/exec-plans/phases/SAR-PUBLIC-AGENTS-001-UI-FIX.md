@@ -34,3 +34,7 @@ D03은 기술 아키텍처여서 보존했다. 실제 D04 화면 원천과 desig
 ## 완료·인계
 
 제품 수락은 coor가 고정 TESTER/OPS 결과와 합쳐 결정한다. 실메일·실제 24h·운영 공개/배포·운영 부하/복원·노우↔다닷은 별도 후속이다. worker 완료 전문을 현재 인박스에 기록하고 work.py finish로 로그에 보존한다. 빈 인박스·로그 전문 일치를 확인한 뒤 커밋·role push·최종 clean HEAD lint를 완료하고 worker_done을 한 번 보낸다.
+
+## 공백 검사 초기 실패와 재실행
+
+첫 기록 3096e02의 staged 공백 검사는 Docker Compose 정리 로그 10줄의 후행 공백으로 exit 2였다. 체크 실패 뒤 셸이 계속돼 첫 커밋이 생성됐다. 원본 출력·재현 exit 2·명령·정리 로그 원문을 [diffcheck-initial.json](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/diffcheck-initial.json)에 보존했다. 정리 로그의 줄 끝 공백만 정규화했다. 정리 명령의 COMMAND_EXIT:0과 제품/PNG/관측은 바꾸지 않았다. 이후 공백 검사를 기준 ref부터 다시 실행한다.
