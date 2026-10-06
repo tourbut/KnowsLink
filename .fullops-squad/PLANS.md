@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-04
+updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV]
-summary: 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14]
+summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
 # KnowsLink 현재 계획
@@ -692,3 +692,12 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - identity DEV 완료 msg_7097a88ffb04/59b66ada8b36802484cc6d7e22523257b50572cc(코드a446d89), 실제 provider e0666abc-1cf2-49ac-a288-45a8043404bc. 이메일 OTP/SMTP·회원바인딩·세션/홈·synthetic 기본거부, DEV 검사exit0·selflint ERROR0/WARNING5. 전문archive/빈인박스/clean 확인. coor 후보에는 통합했으나 main 수락은 독립 리뷰·QA·직접UI·실제 이메일 조건 후속이다. 운영 SMTP/이메일 없음은 실제 확인만 미실행이다.
 - SAR-PUBLIC-IDENTITY-001-REVIEW: full route dev/Opus5.5high, base94533b2/head59b66ad read-only detached snapshot과 정규 DEV 인박스로 별도 coor 기록 세션 준비. SAR-PUBLIC-IDENTITY-001-TESTER: full route tester/Grok4.7high, 별도 detached59 fixture 실행 환경과 정규 QA 인박스 준비. 필수 실패·critical/high 차단, 실제 사람/공개 PASS와 fixture 분리.
 - Cloudflare Email Service 공식 pricing/SMTP 확인: 임의 수신자 발송은 Workers Paid 필요, 계정 verified destination 발송은 모든 plan 무료. 신규 유료 구독은 실행하지 않았다. SMTP 제공자 독립 구현이며 실제 운영 발송 설정·기존 유료plan 여부·DNS·인증 권한은 OPS 후속이다. https://developers.cloudflare.com/email-service/platform/pricing/ 및 changelog/2026-06-08-smtp-submission/ 근거.
+
+## FullOps 0.9.14 운영 업데이트 — 2026-10-06
+
+- 기준 ref는 `94533b207b456c0560800fe30a7c90b2b5887c6e`다. 실제 Codex 설치는 전후 0.9.14이며 레포 적용 0.9.13의 누락 항목을 회수한다. main의 깨끗한 체크아웃에서 운영 파일만 준비한다. coor 후보 c8856eb의 미수락 신원 제품·실패·검수 보류를 main에 병합하지 않는다.
+- 기존 역할 setup dry-run과 실행은 생성 0개다. 공통 0.3.3·lint 테스트 증거·SIZE-002·SLOP/DESIGN WARNING·UI 핸드오버·리뷰 양식·보드 뷰어를 반영한다. 상세 판정과 검증은 docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md를 따른다.
+- Orca 실제 역할 terminal 조회에서 designer/dev/ops/tester는 terminal 0개이며 Git clean이다. 과거 worker 완료·user-owned·unverifiable 기록은 보존한다. 최신 main 통합 뒤 상태를 재확인하고 가능한 역할만 동기화한다. coor는 현재 업데이트 세션 외 터미널 상태를 확인한다.
+- 제품 worker 착수·실제 이메일·외부 발송·배포는 이번 범위가 아니다. 기존 Workers Free 제한과 제품 수락 보류를 유지한다. 다음 개발은 새 coordinator 세션에서 이어간다.
+
+- 업데이트 준비 cf55ea1의 새 설정 고정 HEAD에서 product-lint·product-test 모두 exit 0, ERROR/WARNING/실행 불가 0이다. 기존 lockfile npm ci로 main의 누락 의존성을 복원했다. 문서 strict 13개·문제 0과 보드 생성·JS 문법을 통과했다. 필수 적용 완료로 레포 plugin_version을 0.9.14로 확정한다. 운영 변경만 main/origin에 공유하며 모든 역할의 기존 작업을 보존해 동기화한다.
