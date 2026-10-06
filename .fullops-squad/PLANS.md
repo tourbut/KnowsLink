@@ -783,3 +783,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - main/origin 통합을 지금 수행한다. 원본제품59b66ad·원본리뷰25b110f·RATE-FIXf364d484·원본TESTER9e2654d·UIcf0ab09·RATE리뷰77dd464·DEV진단00a1384·최신리뷰952f680·좁은QAe8d8b22의 SHA 조상 관계를 확인한다. 제품 전체 운영 수락은 아니다.
 - 남은 low: F2 재발송/누적추측(제품규칙 변경은designer), F3 회원gate rate(AGENTS DEV), F-UI-01 시각표시(DEV), L1/L2 아카이브 상대링크(원본소유자/운영), Q1 설치손상 인과 표현(증거상 관측으로해석). 필수 실패나 critical/high를 낮춰 수락하지 않았다.
 - 후속 대기: SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, 일반서비스 OPS·전체수락·노우↔다닷은 기존 PLANS 선행조건에 따라 진행한다. 이번 요청의 신원 코드 통합 뒤 새 제품 과제를 자동 배정하지 않는다. 실제 이메일·운영 공개·노우↔다닷은 미검증이며 Workers Free·기존 서버/Tunnel 제한을 유지한다.
+
+- 최초 main 통합45c2916의 product-lint/product-test는0이지만 FullOps는 TRIAL-REVIEW report.md의 front matter 누락 DOC-003으로 exit1이다. coor가 검사 실패 뒤push를 시작한 운영 순서 오류를 확인했다. 이 실패를 보존하고 보고서 본문은 바꾸지 않고 문서 metadata만 stamp해 즉시 수정한다. 초기 실패JSON은 SAR-PUBLIC-IDENTITY-001-final/main-integration-initial-lint.json에 보존한다. 최종 통합 검사를 다시 통과시키기 전 완료로 보고하지 않는다.
