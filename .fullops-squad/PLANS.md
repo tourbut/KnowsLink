@@ -869,3 +869,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - coor의최종bcb06b QA기록HEAD 검사: 기준d2 FullOps exit0, product-lint/product-test0·ERROR0/WARNING8/실행불가0. 기존규모/테스트script-only/합성token경고는원본리뷰의같은근거로유지한다. 원본JSON은 SAR-PUBLIC-AGENTS-001-COOR/original-qa-bcb-lint.json에보존했다. QA release는external_terminal retained이므로사용자소유터미널을강제종료하지않았다.
 
 - 최종검수 route FIX-REVIEW/FIX-TESTER/UI-FIX를준비했으며DEV-POLICY-FIX고정완료SHA대기로미배정이다. OPS Sonnet추천대신인증/현재권한/C1/동시성보존을다루는fullops-review의고성능규정으로별도Opus5.5high를적용한다. QA는사용자지정Grok4.7high, UI는designer Codex6.1Solhigh다. 원본d1 QA bcb/시각FAIL d165와수정4a/제품답48을연결하고변경영향만검증한다. 담당coor, 재개조건최신성공후보·기록/원천일치·빈인박스확인이다.
+## SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 결과 (DEV, 2026-10-06)
+
+- POLICY 48d12fa 두 관찰 조건표를 4a 코드와 대조했다. 관계 반복·재초대·세대·한도·보존 의미는 이미 일치해 재구현하지 않았고 TestRelationshipPolicy·TestSaturationGuidance로 고정했다.
+- 회원 화면만 바꿨다. 반복 초대 notice 3종, 종료 관계의 수동 새 초대, 키 기록 포화의 새 agent 교체 안내·생성 버튼, owner 기록 포화의 최소 24h 보존·정리 뒤 재시도, 철회 agent 목록 정리 안내, 철회 전 경고. `/v1/*` wire 불변.
+- 제품 커밋 f9af9bf: make lint/test/verify-mvp exit 0(integration PASS 55·FAIL 0), 390px 넘침 0. 상세·고정 SHA는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)과 worker_done.
+- 후속: OPS 독립 delta 리뷰(`/v1/invite-decision` Generation 미결속 판단 포함), TESTER 좁은 QA, designer 새 안내 직접 재검수. 원본 d1 UI FAIL·4a 기록 불변.

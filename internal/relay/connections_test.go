@@ -332,14 +332,14 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 	}
 	// Refusals keep the safe problem text and add the next step it names.
 	w := httptest.NewRecorder()
-	refused(w, "내 agent", refusal{422, safeProblem(fault("reauth_required")), true})
+	refused(w, "내 agent", refusal{422, safeProblem(fault("reauth_required")), true, false})
 	has(w.Body.String(), `role="alert"`, `action="/auth/reauth"`, `href="/home"`, "자기 홈으로 돌아가기")
 	w = httptest.NewRecorder()
-	refused(w, "내 agent", refusal{422, safeProblem(fault("unsupported_client")), false})
+	refused(w, "내 agent", refusal{422, safeProblem(fault("unsupported_client")), false, false})
 	has(w.Body.String(), `href="/home"`)
 	lacks(w.Body.String(), "/auth/reauth")
 	w = httptest.NewRecorder()
-	refused(w, "내 agent", refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", false})
+	refused(w, "내 agent", refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", false, false})
 	has(w.Body.String(), `href="/"`, "로그인 화면으로 이동")
 	// Cancel appears only while the connection can still be cancelled.
 	for _, state := range []string{"waiting", "prepared", "approved", "consumed", "cancelled", "expired"} {
@@ -352,7 +352,56 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 	// Fingerprints wrap inside the card, and invite deadlines use the KST clock.
 	exp := time.Date(2026, 10, 7, 4, 19, 59, 162233000, time.UTC)
 	body := page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_a", Status: "연결 완료", Keys: []memberKey{{"key_1", "SHA256:7_B9RdVzaKQSQRTfdqCvAAAAAAAAAAAAAAAAAAAAAAAAAAA", "활성"}}}},
-		"Pairs": []memberPair{{&Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: "pending", Generation: 1, Exp: exp}, true}, {&Pair{A: "agent_a", B: "agent_c", State: "active"}, false}}})
+		"Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: "pending", Generation: 1, Exp: exp}, Incoming: true}, {Pair: &Pair{A: "agent_a", B: "agent_c", State: "active"}}}})
 	has(body, "<code>SHA256:7_B9", "초대 기한: 2026-10-07 13:19:59 KST", "초대 기한: 없음", "overflow-wrap:anywhere", "input,select{display:block;width:100%")
 	lacks(body, "+0000 UTC")
+
+	// Each relationship state names its next step; only an open relationship offers unpair, and an ended one offers
+	// a manual re-invite from the member's own live agent and never an automatic reconnection.
+	for _, c := range []struct {
+		state    string
+		incoming bool
+		own      string
+		want     string
+	}{
+		{"pending", true, "agent_a", "받은 초대입니다"},
+		{"pending", false, "agent_a", "같은 초대를 다시 보내도 새 초대가 생기거나 기한이 바뀌지 않습니다"},
+		{"active", false, "agent_a", `action="/home/unpair"`},
+		{"denied", false, "agent_a", "연결이 끝났습니다"},
+		{"expired", true, "agent_a", "연결이 끝났습니다"},
+		{"revoked", false, "agent_a", "상대가 새로 수락해야 합니다"},
+		{"revoked", false, "", "연결이 끝났습니다"},
+	} {
+		body := page(200, "home", map[string]any{"Title": "홈", "Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: c.state, Generation: 2}, Incoming: c.incoming, Own: c.own, Other: "agent_b"}}})
+		has(body, c.want)
+		open := c.state == "pending" || c.state == "active"
+		if open != strings.Contains(body, `action="/home/unpair"`) {
+			t.Fatal("unpair control", c.state)
+		}
+		reinvite := `<input type="hidden" name="agent" value="agent_a"><input type="hidden" name="target" value="agent_b"><button>새 초대 보내기</button>`
+		if (!open && c.own != "") != strings.Contains(body, reinvite) {
+			t.Fatal("re-invite control", c.state, c.own)
+		}
+		if (c.state == "pending" && c.incoming) != strings.Contains(body, `action="/home/invite-decision"`) {
+			t.Fatal("decision control", c.state)
+		}
+		lacks(body, "자동")
+	}
+	// Agent cards: a revoked agent explains retention and disappearance; a key-full agent offers replacement, not connect.
+	body = page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_r", Status: "철회"}}})
+	has(body, "최소 24시간 보존", "목록에서 사라질 수 있습니다", "권한이 돌아오거나 백업까지 영구 삭제된 것은 아닙니다", "새 agent를 연결하고 상대와 새로 수락")
+	lacks(body, `action="/home/agent-revoke"`)
+	body = page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_f", Status: "연결 완료", KeyFull: true}}})
+	has(body, "새 키를 더 연결할 수 없습니다", "새 agent를 만들어 따로 연결", "되돌릴 수 없습니다", `action="/home/agent-revoke"`)
+	lacks(body, `action="/home/connect"`)
+	lacks(body, "24시간 보존")
+	body = page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_l", Status: "미연결"}}})
+	has(body, `action="/home/connect"`, "되돌릴 수 없습니다")
+	// A replacement refusal offers the new-agent control beside the way back home.
+	w = httptest.NewRecorder()
+	refused(w, "내 agent", refusal{409, keyRecordsFull, false, true})
+	has(w.Body.String(), `action="/home/agents"`, "새 agent 만들기", `href="/home"`)
+	w = httptest.NewRecorder()
+	refused(w, "내 agent", refusal{409, agentProblem("records"), false, false})
+	lacks(w.Body.String(), `action="/home/agents"`)
 }

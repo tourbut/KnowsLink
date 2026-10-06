@@ -14,6 +14,8 @@ import (
 type memberPair struct {
 	*Pair
 	Incoming bool
+	// Own and Other name the member's live agent and the counterpart for a manual re-invite; Own is "" when none.
+	Own, Other string
 }
 
 // Deadline shows the invite deadline in the same KST form as connection deadlines.
@@ -27,6 +29,7 @@ func (p memberPair) Deadline() string {
 type memberAgent struct {
 	ID, Status string
 	Keys       []memberKey
+	KeyFull    bool // the key record cap is reached; only a new agent can take a new key
 }
 type memberKey struct{ Kid, Fingerprint, Status string }
 
@@ -40,7 +43,7 @@ func ownAgents(st *State, owner string) []memberAgent {
 		if a.Owner != owner {
 			continue
 		}
-		v := memberAgent{ID: id, Status: "미연결"}
+		v := memberAgent{ID: id, Status: "미연결", KeyFull: len(a.Keys) >= agentKeyRecords}
 		if activeKeys(a) > 0 {
 			v.Status = "연결 완료"
 		}
@@ -74,6 +77,47 @@ func safeProblem(err error) string {
 		return "처리할 수 없습니다. 대상과 현재 권한·상태를 확인하세요. 새 권한은 생성되지 않았습니다."
 	}
 }
+
+// Record and active-limit refusals name the actual limit and the next step that can work; none promises an exact
+// cleanup time, payment, or that revoking a key or waiting frees key space on a live agent (C1).
+var agentLimits = map[string]string{
+	"active":  "활성 agent는 회원당 5개입니다. 새 agent를 만들려면 쓰지 않는 agent를 먼저 철회하세요. 철회한 agent의 키와 관계는 끝나며 되돌릴 수 없습니다.",
+	"records": "철회한 agent 기록을 보존하는 중이라 지금은 새 agent를 만들 수 없습니다. 기존 agent와 키는 그대로입니다. 필요하면 쓰지 않는 agent를 철회하세요. 철회 기록은 최소 24시간 보존된 뒤 정리됩니다. 정리되어 홈 목록에서 사라진 뒤 다시 시도하세요.",
+}
+
+const keyRecordsFull = "이 agent에는 새 키를 더 연결할 수 없습니다(키 기록 보호 상한). 키를 철회하거나 기다려도 이 agent에 새 키 공간은 생기지 않습니다. 새 agent를 만들어 따로 연결하고, 각 상대와 새로 초대·수락하세요. 기존 키와 관계는 철회하기 전까지 그대로입니다."
+
+// connectLimit explains a connect capacity refusal; create reports whether a replacement agent can be made now.
+func connectLimit(st *State, owner, agent, mode string) (problem string, create bool) {
+	a := st.Agents[agent]
+	switch {
+	case a != nil && len(a.Keys) >= agentKeyRecords:
+		if limit := st.agentLimit(owner); limit != "" {
+			return keyRecordsFull + " 지금은 새 agent도 만들 수 없습니다. " + agentProblem(limit), false
+		}
+		return keyRecordsFull, true
+	case a != nil && mode == "register" && activeKeys(a) >= 3:
+		return "활성 키는 agent당 3개입니다. 쓰지 않는 키를 철회하거나 회전 방식으로 연결하세요.", false
+	}
+	return safeProblem(fault("capacity")), false
+}
+func agentProblem(limit string) string {
+	if m := agentLimits[limit]; m != "" {
+		return m
+	}
+	return safeProblem(fault("capacity"))
+}
+
+// inviteNotice tells the inviter whether the submit made a new pending invite or kept the current one unchanged.
+func inviteNotice(before string) string {
+	switch before {
+	case "pending":
+		return "invite-pending"
+	case "active":
+		return "invite-active"
+	}
+	return "invited"
+}
 func (s *Service) agentRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /home/agents", s.memberAction("create"))
 	mux.HandleFunc("POST /home/connect", s.memberAction("connect"))
@@ -97,15 +141,15 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			}
 			id, session, retry, e := s.memberHit(st, r, now, rates)
 			if !retry.IsZero() {
-				return refusal{429, limited(retry), false}, nil
+				return refusal{429, limited(retry), false, false}, nil
 			}
 			if e != nil {
-				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", false}, nil
+				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", false, false}, nil
 			}
 			owner := st.Members[id].Owner
 			// Return refusals as values: rejected work must commit its request budget.
 			fail := func(e error) (any, error) {
-				return refusal{statusFor(e), safeProblem(e), e.Error() == "reauth_required"}, nil
+				return refusal{statusFor(e), safeProblem(e), e.Error() == "reauth_required", false}, nil
 			}
 			if parseErr != nil {
 				return fail(fault("invalid_schema"))
@@ -118,14 +162,18 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			agent := r.FormValue("agent")
 			switch path {
 			case "create":
-				if !st.agentCapacity(owner) {
-					return fail(fault("capacity"))
+				if limit := st.agentLimit(owner); limit != "" {
+					return refusal{status: 409, problem: agentProblem(limit)}, nil
 				}
 				agent = fmt.Sprintf("agent_%x", sha256.Sum256([]byte(randomToken())))[:28] // Avoid email-derived IDs and cross-member name collisions.
 				st.Agents[agent] = &Agent{Owner: owner, Keys: map[string]*Key{}}
 				return "/home", nil
 			case "connect":
 				t, e := st.beginConnection(owner, agent, r.FormValue("client"), r.FormValue("mode"), now)
+				if e != nil && e.Error() == "capacity" {
+					problem, create := connectLimit(st, owner, agent, r.FormValue("mode"))
+					return refusal{status: 409, problem: problem, create: create}, nil
+				}
 				if e != nil {
 					return fail(e)
 				}
@@ -164,9 +212,16 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 						return fail(fault("sender_not_allowed"))
 					}
 				}
+				before := ""
+				if p := st.Pairs[pairID(c.Agent, c.Target)]; p != nil {
+					before = p.State
+				}
 				_, e := st.operateAs(path, owner, "owner", c, now, false)
 				if e != nil {
 					return fail(e)
+				}
+				if path == "invites" {
+					return "/home?n=" + inviteNotice(before), nil
 				}
 			}
 			return "/home", nil
@@ -175,7 +230,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
 			} else {
-				refused(w, "내 agent", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false})
+				refused(w, "내 agent", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
 			}
 			return
 		}
@@ -193,14 +248,14 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		id, _, retry, e := s.memberHit(st, r, now, memberRate)
 		if !retry.IsZero() {
-			return refusal{429, limited(retry), false}, nil
+			return refusal{429, limited(retry), false, false}, nil
 		}
 		if e != nil {
 			return nil, e
 		}
 		c := st.Connections[r.PathValue("id")]
 		if c == nil || c.Owner != st.Members[id].Owner {
-			return refusal{403, "연결을 조회할 수 없습니다.", false}, nil
+			return refusal{403, "연결을 조회할 수 없습니다.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
 		return map[string]any{"Title": "agent 연결 확인", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
@@ -209,7 +264,7 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 		if err.Error() == "invalid_auth" {
 			expired(w, r)
 		} else {
-			refused(w, "연결 확인", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false})
+			refused(w, "연결 확인", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
 		}
 		return
 	}

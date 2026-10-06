@@ -50,3 +50,6 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV-FIX: 철회 기록 정리는 C1 kid 재할당 금지와 함께 판단한다. 살아 있는 agent의 철회 키는 지우지 않고, 다시 발급되지 않는 무작위 agent ID 전체만 24h 뒤 키·pair와 함께 지운다. 증가 상한은 신규 기록만 거부하고 철회는 항상 허용한다.
 - transaction이 오류로 되돌릴 때도 rate 기록은 저장한다. 세션 확인과 budget 소비는 `memberHit` 한 곳에서 한다. 새 회원 처리기는 이 helper를 쓴다.
 - Go 문자열 CSS는 DESIGN lint가 보지 않는다. 회원 화면 변경 뒤 같은 template 상태를 390×844로 렌더링해 scrollWidth를 확인한다. 이 측정은 designer 시각 판정을 대신하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md)
+
+- 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX: 제품 답이 오면 관찰 조건표를 한 행씩 기존 코드에 대조한다. 관계 의미는 이미 일치했고 차이는 화면 안내뿐이었다. 일치하는 동작은 재구현하지 않고 State 행렬 검사와 변형 실패로 고정한다.
+- 같은 409 `capacity`라도 사용자 다음 동작이 다르면 회원 계층에서 실제 한도(`agentLimit`·`connectLimit`)로 안내를 나눈다. `/v1/*` wire 오류 코드는 바꾸지 않는다. `refusal` 같은 위치 지정 struct literal에 필드를 더하면 모든 호출을 함께 고친다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)

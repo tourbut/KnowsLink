@@ -30,7 +30,10 @@ type Connection struct {
 func connectionBytes(token string, c *Connection) []byte {
 	return []byte("KNOWSLINK-CONNECT\x00" + token + "\x00" + c.Owner + "\x00" + c.Agent + "\x00" + c.Client + "\x00" + c.Mode + "\x00" + c.Kid + "\x00" + c.Public)
 }
-func (st *State) agentCapacity(owner string) bool {
+func (st *State) agentCapacity(owner string) bool { return st.agentLimit(owner) == "" }
+
+// agentLimit names the limit refusing a new agent for owner: "total", "active", "records", or "" when one fits.
+func (st *State) agentLimit(owner string) string {
 	total, own, records := 0, 0, 0
 	for _, a := range st.Agents {
 		if a.Owner == owner {
@@ -43,7 +46,15 @@ func (st *State) agentCapacity(owner string) bool {
 			}
 		}
 	}
-	return total < 200 && own < 5 && records < ownerAgentRecords
+	switch {
+	case total >= 200:
+		return "total"
+	case records >= ownerAgentRecords:
+		return "records"
+	case own >= 5:
+		return "active"
+	}
+	return ""
 }
 func (st *State) pairCapacity(a, b string, active bool) bool {
 	total, ownA, ownB := 0, 0, 0

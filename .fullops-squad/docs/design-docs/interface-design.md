@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -182,3 +182,13 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 - 회원 거부 화면은 같은 안전 문구와 함께 다음 동작을 제공한다. 세션 무효(401)는 로그인 화면 링크다. 그 밖의 거부·429·503은 자기 홈 링크다. 재확인 필요(키·연결 권한 변경, 전체 로그아웃)는 `POST /auth/reauth` 버튼도 표시한다.
 - 연결 화면의 취소 버튼은 waiting·prepared·approved에서만 표시한다. 홈의 관계 초대 기한은 연결 기한과 같은 `YYYY-MM-DD HH:MM:SS KST`다. 기한이 없는 기존 관계는 `없음`이다.
 - 키 지문은 `<code>`로 표시하고 화면 전체에 `overflow-wrap:anywhere`를 적용한다. select는 본문 글꼴 18px·전체 폭이다. 기존 memberStyle 안의 변경이며 새 theme·의존성은 없다.
+
+### SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 반복 초대·기록 포화 안내
+
+- `/v1/*` wire·상태 코드·오류 코드는 바꾸지 않았다. 아래는 회원 HTML 경로의 안내 변경이다.
+- `POST /home/invites` 성공은 `/home?n=invited`(새 pending), `/home?n=invite-pending`(같은/반대 방향의 기존 pending 유지), `/home?n=invite-active`(현재 active 유지)로 303 이동한다. 홈은 해당 안내를 `role="status"`로 표시한다. 반복 제출은 기한·세대를 바꾸지 않는다.
+- 홈 관계 목록: 받은 pending은 수락 전 메시지 불가를, 보낸 pending은 반복해도 기한이 바뀌지 않음을 안내한다. 거절·만료·철회 관계는 연결 종료·메시지 불가·새 초대와 새 수락 필요를 안내한다. 자기 살아 있는 agent가 있으면 같은 상대에 대한 `새 초대 보내기` 버튼(기존 `POST /home/invites`)을 표시한다. 종료 관계에는 관계 철회 버튼을 표시하지 않는다. 자동 재연결은 없다.
+- `POST /home/agents` 409: owner 기록 포화는 철회 기록의 최소 24시간 보존·정리 뒤 홈에서 사라진 다음 다시 시도하라고 안내한다. 활성 5개는 철회 선택과 복구 불가를 안내한다. 전체 200개는 기존 운영 한도 문구다.
+- `POST /home/connect` 409: 키 기록 포화는 키 철회·대기로 공간이 생기지 않음과 새 agent 연결·각 상대 새 수락을 안내한다. 새 agent를 만들 수 있으면 거부 화면에 `새 agent 만들기` 버튼을 함께 표시한다. 만들 수 없으면 그 한도 안내를 덧붙인다. 활성 키 3개의 등록은 키 철회 또는 회전을 안내한다.
+- 홈 agent 카드: 철회 agent는 최소 24시간 보존 뒤 정리되면 목록에서 사라질 수 있음과 권한 복구·백업 영구 삭제가 아님을 표시한다. 키 기록 포화 agent는 연결 수단 발급 대신 교체 안내를 표시한다. agent 철회 버튼 앞에 모든 키·관계 종료와 복구 불가를 표시한다.
+- 상품 quota·결제·정확한 정리 시각은 표시하지 않는다. 상대 이메일·회원 존재·추가 기술값은 노출하지 않는다.
