@@ -1,0 +1,58 @@
+{
+  "task_key": "SAR-PUBLIC-AGENTS-001-DEV",
+  "find_head": "d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b",
+  "base": "d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b",
+  "head": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+  "changed_existing": [
+    "README.md",
+    "adapters/README.md",
+    "adapters/package.json",
+    "internal/relay/http.go",
+    "internal/relay/identity_integration_test.go",
+    "internal/relay/legacy_test.go",
+    "internal/relay/member.go",
+    "internal/relay/store.go",
+    "internal/relay/test_messages_test.go"
+  ],
+  "new_files": [
+    "adapters/src/connect.test.ts",
+    "adapters/src/connect.ts",
+    "internal/relay/api_rate.go",
+    "internal/relay/connections.go",
+    "internal/relay/connections_integration_test.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/member_agents.go"
+  ],
+  "candidates": [
+    "README.md",
+    "adapters/.mcp.json",
+    "adapters/README.md",
+    "adapters/src/core.ts",
+    "deploy/knowslink/access_apply.py",
+    "internal/relay/http.go",
+    "internal/relay/identity.go",
+    "internal/relay/legacy_test.go",
+    "internal/relay/member.go",
+    "internal/relay/registry.json",
+    "internal/relay/store.go",
+    "scripts/mail_sink.py"
+  ],
+  "hits": [
+    "README.md",
+    "adapters/README.md",
+    "internal/relay/http.go",
+    "internal/relay/legacy_test.go",
+    "internal/relay/member.go",
+    "internal/relay/store.go"
+  ],
+  "recall": 0.667,
+  "precision": 0.5,
+  "existence_status": "absent",
+  "existence_correct": false,
+  "context_omitted": [
+    "adapters/README.md"
+  ],
+  "context_wrong_omits": [
+    "adapters/README.md"
+  ]
+}

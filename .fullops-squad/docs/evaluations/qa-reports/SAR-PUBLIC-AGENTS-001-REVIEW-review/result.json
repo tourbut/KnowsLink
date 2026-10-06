@@ -3,272 +3,272 @@
   "head": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "OPS claude-opus-5-5 high, Claude Code session 50b08fc6-fec2-44ef-91ec-b921315867f9 (task_cc3d65402f06/ctx_c8eb7eba79f3)",
+  "conclusion": "critical/high 0. d1eef9b 보안 리뷰는 로컬 후보 main 수락 조건으로 수락 가능. M1(철회 기록 무한 보존)은 공개 전 차단 후속, L1·L3 DEV 후속, L2 designer 판단. 최종 수락은 TESTER QA·designer UI 검수와 함께 판단.",
   "files": [
     {
       "path": ".fullops-squad/PLANS.md",
       "status": "modified",
       "insertions": 12,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 착수·후속 인계 append만 확인. 리뷰/QA/UI 대기와 MESSAGES 보류가 실행 기록과 일치한다. 비밀값 없음."
     },
     {
       "path": ".fullops-squad/board/board.json",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "note 한 줄 변경. coor 소유 현황판 문구이며 상태 값 변경 없음을 확인했다."
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "status": "modified",
       "insertions": 6,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 교훈 3줄. grant 분리·Generation 검사·cleanup budget 서술이 코드와 일치한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
       "status": "modified",
       "insertions": 10,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "연결 경계 절. 발급→PoP→지문 확인→1회 완료, key credential, 한도 서술을 connections.go·member_agents.go와 대조했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
       "status": "modified",
       "insertions": 14,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "상태 변경 표를 코드와 대조했다. 철회 agent·키·pair의 삭제가 없다는 점은 M1 finding으로 기록한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/data-model.md",
       "status": "modified",
       "insertions": 11,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "신규 필드 설명을 store.go 구조체와 대조했다. 보존량 상한 후속 표기를 확인했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/database-design.md",
       "status": "modified",
       "insertions": 8,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "JSONB 필드 추가·migration 없음·rollback 위험·보존량 후속 기재를 확인했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "status": "modified",
       "insertions": 26,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "경로·입력·상태코드·PoP 바이트열을 member_agents.go·connections.go·connect.ts와 대조했다. 429 재시도 시각 표시는 /v1/connect에서 고정 60초다(L3)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 14,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "파일 책임과 테스트 이름이 실제 테스트 함수와 일치함을 확인했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-context.json",
       "status": "added",
       "insertions": 197,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev context 기록. JSON 유효·과제 키·head 필드를 확인했다. 제품 동작에 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-documents-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev 문서 find 기록. JSON 유효·과제 키를 확인했다. 제품 동작 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev code find 기록. check가 jev-find-score를 계산하는 입력이다. JSON 유효를 확인했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-route.json",
       "status": "added",
       "insertions": 80,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Jev route 기록(implementation/dev). JSON 유효·역할 일치를 확인했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV/exits.json",
       "status": "added",
       "insertions": 12,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "1차·보완 make lint/test/verify-mvp와 strict 종료코드 0을 로그 끝 PASS 줄과 대조했다. 후행 공백 정규화 사유가 있다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
       "status": "added",
       "insertions": 86,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "실행 기록 전문을 읽고 구현 주장(상태 기계·한도·rate·보존·WARNING8 근거)을 코드와 대조했다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_dev.md",
       "status": "modified",
       "insertions": 110,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 완료 로그 append 110줄. 지시서·완료 보고 전문 보존과 비밀값 부재를 확인했다."
     },
     {
       "path": ".fullops-squad/project.md",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "tasks와 범위 문장 갱신. 검증 명령 정본은 변경 없음."
     },
     {
       "path": "README.md",
       "status": "modified",
       "insertions": 18,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "회원 연결 절차(stdin 입력·stty·HTTPS/loopback·0700/0600·회전 복구)를 connect.ts와 대조했다."
     },
     {
       "path": "adapters/README.md",
       "status": "modified",
       "insertions": 6,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "로컬 연결 안내 링크·책임 범위 서술을 확인했다. MCP 기본 동작 변경 없음."
     },
     {
       "path": "adapters/package.json",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "test script에 connect.test.js 추가만 있다. dependencies·version·lock 변경 0을 diff로 확인했다(DEP-001 근거 충족)."
     },
     {
       "path": "adapters/src/connect.test.ts",
       "status": "added",
       "insertions": 120,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "실제 Node crypto·HTTP fixture·URL 경계·0700/0600·wx·1회 완료 검사를 읽었다. SEC-001은 \"a\".repeat(43) 합성 token이다."
     },
     {
       "path": "adapters/src/connect.ts",
       "status": "added",
       "insertions": 197,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "URL 경계(userinfo/path/query/hash/비loopback http 거부)·redirect:error·stdin 128자 상한·mkdir 0700·wx 0600·complete 시 lstat 소유자/권한/symlink 검사·PoP 바이트열을 서버와 대조했다."
     },
     {
       "path": "internal/relay/api_rate.go",
       "status": "added",
       "insertions": 45,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "/v1 rate 미들웨어. agent/owner principal·익명 IP·cleanup 경로 분리와 /v1/connect 예외를 검토했다."
     },
     {
       "path": "internal/relay/connections.go",
       "status": "added",
       "insertions": 183,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "grant 상태 기계·PoP 결속·kid 재사용 금지·rotate 전체 철회·register 3키·agent/pair 용량·sweep을 검토했다."
     },
     {
       "path": "internal/relay/connections_integration_test.go",
       "status": "added",
       "insertions": 326,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "TestPublicAgentHTTP 하위 테스트의 교차 owner·재인증·CSRF·회전·옛 credential 전 API 401·동시 수락·세대·만료·malformed rate를 읽고 reviewer scratch에서 verify-mvp로 재실행했다."
     },
     {
       "path": "internal/relay/connections_test.go",
       "status": "added",
       "insertions": 206,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "단위 경계(key3·agent200/5·pair400/20·pending200/10/24h·PoP 결속·직렬화 복원)를 읽고 make test로 재실행했다."
     },
     {
       "path": "internal/relay/http.go",
       "status": "modified",
       "insertions": 35,
       "deletions": 6,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "operateAs 분리·용량 검사·invites revoked 검사·deny/accept 분기·decodeCommand·rateAPI 배선·statusFor를 검토했다."
     },
     {
       "path": "internal/relay/identity_integration_test.go",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "구조체 필드명 지정으로의 기계적 변경만 확인했다."
     },
     {
       "path": "internal/relay/legacy_test.go",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "구조체 필드명 지정으로의 기계적 변경만 확인했다."
     },
     {
       "path": "internal/relay/member.go",
       "status": "modified",
       "insertions": 5,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "connection·home 템플릿(html/template 자동 이스케이프, 지문 표시 조건, 세대 hidden 입력)과 memberPair Incoming 계산을 검토했다."
     },
     {
       "path": "internal/relay/member_agents.go",
       "status": "added",
       "insertions": 267,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "세션 owner 결정·재인증·rate·CSRF 경로·confirm/cancel 소유 검사·agent 철회·세대 검사·connectAPI rate 선택을 검토했다."
     },
     {
       "path": "internal/relay/store.go",
       "status": "modified",
       "insertions": 17,
       "deletions": 7,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "Key.Credential·Agent.Revoked·Pair.Exp·Connections 추가, principal의 키별 credential·revoked 제외, current()의 revoked 차단을 검토했다."
     },
     {
       "path": "internal/relay/test_messages_test.go",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "구조체 필드명 지정으로의 기계적 변경만 확인했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV/lint-corrected.log",
@@ -277,7 +277,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 원시 로그(rule.json exclude). 개별 열람 대신 exits.json 종료코드와 로그 끝 PASS/명령 줄, 비밀값 패턴 grep(credential/token 값 없음)으로 존재·무결성을 대조했다. reviewer scratch에서 동일 d1eef9b로 make lint/test(lint.py)·make verify-mvp를 재실행했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV/mvp-corrected.log",
@@ -286,7 +286,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 원시 로그(rule.json exclude). 개별 열람 대신 exits.json 종료코드와 로그 끝 PASS/명령 줄, 비밀값 패턴 grep(credential/token 값 없음)으로 존재·무결성을 대조했다. reviewer scratch에서 동일 d1eef9b로 make lint/test(lint.py)·make verify-mvp를 재실행했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV/product-lint.log",
@@ -295,7 +295,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 원시 로그(rule.json exclude). 개별 열람 대신 exits.json 종료코드와 로그 끝 PASS/명령 줄, 비밀값 패턴 grep(credential/token 값 없음)으로 존재·무결성을 대조했다. reviewer scratch에서 동일 d1eef9b로 make lint/test(lint.py)·make verify-mvp를 재실행했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV/product-test.log",
@@ -304,7 +304,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 원시 로그(rule.json exclude). 개별 열람 대신 exits.json 종료코드와 로그 끝 PASS/명령 줄, 비밀값 패턴 grep(credential/token 값 없음)으로 존재·무결성을 대조했다. reviewer scratch에서 동일 d1eef9b로 make lint/test(lint.py)·make verify-mvp를 재실행했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV/test-corrected.log",
@@ -313,7 +313,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 원시 로그(rule.json exclude). 개별 열람 대신 exits.json 종료코드와 로그 끝 PASS/명령 줄, 비밀값 패턴 grep(credential/token 값 없음)으로 존재·무결성을 대조했다. reviewer scratch에서 동일 d1eef9b로 make lint/test(lint.py)·make verify-mvp를 재실행했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV/verify-mvp.log",
@@ -322,15 +322,46 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 원시 로그(rule.json exclude). 개별 열람 대신 exits.json 종료코드와 로그 끝 PASS/명령 줄, 비밀값 패턴 grep(credential/token 값 없음)으로 존재·무결성을 대조했다. reviewer scratch에서 동일 d1eef9b로 make lint/test(lint.py)·make verify-mvp를 재실행했다."
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "internal/relay/connections.go",
+      "start_line": 158,
+      "end_line": 183,
+      "severity": "medium",
+      "resolved": false,
+      "content": "M1: 철회된 agent·key·pair 기록을 삭제하지 않는다. 최근 재인증 회원이 create(40/60s)·agent-revoke(20/60s)·rotate를 반복하면 단일 JSONB 상태와 principal() 순회 비용이 무한히 커진다. 공개 전 보존량 보호값·정리 또는 상한과 포화 테스트가 필요하다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "start_line": 187,
+      "end_line": 191,
+      "severity": "low",
+      "resolved": false,
+      "content": "L1: 무효 세션의 GET /home/connections/{id}가 오류 반환으로 rollback되어 익명 rate에 집계되지 않는다(PS-11 실패 집계와 차이, 기존 homePage 동일 패턴)."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "severity": "low",
+      "resolved": false,
+      "content": "L2: 거절·만료 뒤 같은 대상에게 즉시 재초대가 새 세대 pending을 만든다. 수신자 차단 수단이 없다. PS 67행 '반복 초대' 범위는 designer 판단이 필요하다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "start_line": 258,
+      "end_line": 263,
+      "severity": "low",
+      "resolved": false,
+      "content": "L3: /v1/connect/* 429가 고정 Retry-After 60과 error만 반환한다. 실제 retry_at을 주지 않아 interface-design의 재시도 시각 표시와 다르다."
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "01a10f52-ac0f-75a0-b253-9a926a8e5650",
+    "reviewer_session": "50b08fc6-fec2-44ef-91ec-b921315867f9",
+    "snapshot_path": "/tmp/knowslink-agents-review-d1eef9b",
     "snapshot_head": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
     "read_only": true
   }

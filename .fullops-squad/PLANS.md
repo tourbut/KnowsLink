@@ -814,3 +814,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 독립 검수 착수: OPS Task task_cc3d65402f06 / ctx_c8eb7eba79f3 / term_6eef1e8a-8a7b-4424-8d36-ad8af4b91ca0, 새Opus5.5high effective·turn_started·규칙읽기 확인. UI Task task_8398bc20dd2b / ctx_f6a28123e265 / term_92bdb7e0-d2bc-4e95-bb6c-1f6f3ca3ec6f, 새Codex6.1Solhigh effective·turn_started·인박스읽기 확인. QA Task task_a77c67d558a4 / ctx_8acfa5ac3fc0 / term_153ac340-8b4b-4888-acca-d745418bdc80, 새Grok4.7high 화면·tui-idle 뒤input_accepted·실제규칙읽기 확인. Grok turnStart는unsupported이며관찰됨으로표시하지않는다.
 - 세검수는동일fixed d1eef9b·별도read-only리뷰snapshot/QA fixture/UI fixture와기록체크아웃을사용한다. coor는브라우저를조작하지않는다. DEV 완료세션은hold기록뒤release했으며준비d111fd4를등록역할과일반push로공유했다. main/origin dc60fbf 제품수락은아직이며필수검수뒤즉시통합한다. 진행중OPS/QA/designer는변경하지않고최신main동기화를완료뒤예약한다.
+## SAR-PUBLIC-AGENTS-001-REVIEW 결과 (OPS, 2026-10-06)
+
+- 고정 d2f7ba5..d1eef9b 독립 보안 delegate 리뷰를 완료했다. 리뷰 세션 50b08fc6-fec2-44ef-91ec-b921315867f9, DEV 세션 01a10f52-ac0f-75a0-b253-9a926a8e5650, snapshot /tmp/knowslink-agents-review-d1eef9b(read-only, clean)다. critical/high 0, review.py check exit0.
+- 보류 후속: M1 medium 철회 agent·key·pair 기록 무한 보존은 공개 전 차단 조건이다(OPS 보존량 보호값·DEV 정리 또는 상한과 포화 테스트). L1 무효 세션 GET 익명 rate 미집계·L3 /v1/connect 429 retry_at 누락은 DEV 후속 후보다. L2 거절 뒤 재초대 허용 범위는 coor 경유 designer 판단이다. 결과: [리뷰 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md).

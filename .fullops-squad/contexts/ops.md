@@ -1,9 +1,9 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-03
+updated: 2026-10-06
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW]
 summary: 운영 준비의 수락 경계와 서버 관찰 재사용 원칙을 보존한다
 ---
 
@@ -44,3 +44,7 @@ reusable policy는 새로 만든다. 기존 `knowslog-bot - Production`은 다�
 ## 2026-10-04 — SAR-MVP-003-BIDIRECTIONAL-OPS
 
 배포 `0911c2c`와 시험 allowlist 적용, 실제 key loopback 왕복은 완료했다. Cloudflare service token 쓰기 권한은 저장된 어떤 grant에도 없다. 세션 cloudflare MCP는 읽기 전용(쓰기 1010)이고 Codex file-store OAuth에는 `access-service-token.*` scope가 없다. 빈 본문 POST는 자원을 만들지 않고 권한만 확인한다. 만료된 OAuth는 refresh하지 않는다(다른 도구 credential 회전). 시험 relay의 idempotency key는 16~128자 ASCII다. 상세는 phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md.
+
+## 2026-10-06 — SAR-PUBLIC-AGENTS-001-REVIEW
+
+단일 JSONB 상태에서는 활성 한도와 별도로 철회 기록의 보존량을 확인한다. 활성 개수 한도만으로 상태 크기가 제한되지 않는다. 핵심 인가 테스트가 통합 전용이면 reviewer scratch에서 verify-mvp를 직접 재실행한다.
