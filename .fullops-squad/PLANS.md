@@ -762,3 +762,6 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 
 - OPS 독립 리뷰 msg_34123fdbc2c3 / SHA77dd4646bb938e334e5cc266dcb05fd7ae73bcc0 수신. fixed9c915dc, 64 reviewed/53 skipped 전117개 기록, critical/high0, F1medium·F4low 해소, lint0·test0·verify-mvp0·check0을 확인했다. 원본 TESTER/UI 기록의 범위와 무결성은 적합하며 fixed59 결과로만 재사용한다. F2/F3/F-UI-01과 새 L1 아카이브 상대링크 low는 남긴다.
 - 리뷰 SHA77dd464는 미수락 제품 조상을 포함하므로 main 개별 문서 병합도 보류한다. 담당coor, 재개 조건은 DEV invalid_lease 원인 분석·최종 후보 delta 리뷰·좁은QA 수락이다. report 결론의 실제 이메일 조건은 전체 일반 서비스 수락의 후속 운영 조건으로 유지한다. 승인된 로컬 코드 단계에 추가 선행 조건으로 확대하지 않는다. UI 판정·사용자 인수 지시의 동일 경계를 따른다.
+
+- DEV msg_ee10f820f78e / 최종00a13840d2cf3d5833c686bde0d832d439bc57b7(코드2111ff4) 수신. 원인은 verify-mvp가 서로 다른 allowlist의 두 writer를 같은 DB에 두어 Cleanup이 시험lease를 회수한 검사 격리 결함이다. 제품 규칙·TestTrialHTTP는 변경하지 않았다. 기존 실패 보존, 실행중4/40실패·정지0/40 및 결정적 회수 검사·정지200회PASS 근거를 확인했다. make lint/test/verify-mvp0, FullOps ERROR0/WARNING1 보고.
+- 최종 통합 후보 eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de를 고정했다. OPS 최신 delta 리뷰와 TESTER 좁은 QA를 정규 빈 인박스에 준비한다. 원본59/RATE9c 리뷰와 기존 QA/UI는 SHA·조건을 구분해 재사용한다. 새 OPS는 앞 리뷰 종료와 범위 변경에 따라 별도 세션이며 Opus5.5high 규정 override를 유지한다.
