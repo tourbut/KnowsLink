@@ -1,0 +1,142 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "c947baacad1b9bde74fa1ab1b4a863d4090eb3c8",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "d397717de24241591709f6d1d5caab6bd4c32ae7a54bc4916c29577300535e90",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-cleanup_admission.go",
+      "c1-capacity.go",
+      "c2-store.go",
+      "c4-http.go",
+      "c5-admission_integration_test.go",
+      "c6-report.md",
+      "c7-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-cleanup_admission.go",
+      "c1-capacity.go",
+      "c2-store.go",
+      "c4-http.go",
+      "c5-admission_integration_test.go",
+      "c6-report.md",
+      "c7-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c1-capacity.go": {
+        "relevant": 0.62,
+        "evidence": 0.64,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-store.go": {
+        "relevant": 0.36,
+        "evidence": 0.26,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-http.go": {
+        "relevant": 0.18,
+        "evidence": 0.21,
+        "contradicts": 0.15,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-admission_integration_test.go": {
+        "relevant": 0.67,
+        "evidence": 0.65,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-report.md": {
+        "relevant": 0.8,
+        "evidence": 0.84,
+        "contradicts": 0.19,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md": {
+        "relevant": 0.31,
+        "evidence": 0.61,
+        "contradicts": 0.55,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-cleanup_admission.go": "internal/relay/cleanup_admission.go",
+      "c1-capacity.go": "internal/relay/capacity.go",
+      "c2-store.go": "internal/relay/store.go",
+      "c4-http.go": "internal/relay/http.go",
+      "c5-admission_integration_test.go": "internal/relay/admission_integration_test.go",
+      "c6-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "c7-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 19461,
+    "output_tokens": 456,
+    "cost": 0.0008173620000000001
+  },
+  "latency_seconds": 1.228,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV-FIX-2",
+  "role": "dev",
+  "unsent_sources": {
+    "internal/relay/cleanup_admission.go": "sensitive or oversized passage"
+  },
+  "refused_paths": [
+    {
+      "path": "internal/relay/connect.go",
+      "reason": "[Errno 2] No such file or directory: '/home/shin/orca/workspaces/KnowsLink/fullops-coor/internal/relay/connect.go'"
+    }
+  ]
+}

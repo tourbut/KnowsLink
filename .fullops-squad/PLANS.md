@@ -996,3 +996,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 후속: DEV가 H-2(권장 L-2·/v1/connect 정리 경로 확인)를 고치고 자기 대상 반복·타 owner flood 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키·별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다.
 
 - FIX-REVIEW msg_d5687c98688e/c2193bc0dec2be1b68092f4de21099777feee10d 수신. cleanHEAD/origin동일·빈인박스/archive·actual별도3cee세션·read-onlydfc snapshot·최종HEADlint/test0를확인하고COOR에영속화했다. 원checkexit1/새H2high·53reviewed/38skipped와실제Postgres flood재현18/18 실패를보존한다. 원H1/M1 익명범위해소와H2별도실패를구분했다. SHA추출null을실제fullSHA/근거와함께보완하고coor에SHA보존merge했다. 동일DEV 후속에서H2·권장L2/connect정리누락을해결하고새fixed delta/좁은QA·필요UI수락뒤main통합한다. 현재UI는dfc UX07 검수를마무리하고원QA는09c를유지한다.
+
+- DEV-FIX-2 route implementation/dev Opus5.5high·새세션을준비했다. 이전DEV-FIX는종료·긴검사로그/대기후새원인H2로fresh를선택한다. 기준dfc/원OPS c219·역할정규빈인박스·H2/권장L2/connect누락/공정성회귀를한지시서에묶었다. coor의connect.go 탐색오기는원거부JSON에보존하고실제connections.go/member_agents.go를필수보완했다. 이전DEV자체PASS/H2독립실패의시간순서를유지한다. OPS FIX-REVIEW release는retained(user_takeover)/processAction none이며강제종료하지않는다. QA원본60분최근출력은보고서/최종검사정리중을관측했다. 아직main제품수락보류다.

@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV-FIX-2",
+  "head": "c947baacad1b9bde74fa1ab1b4a863d4090eb3c8",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 92,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 92
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "summary": "Cleanup admission rests on an honored credential and the caller's own record, so rejected or anonymous cleanup is new work.",
+      "probability": 0.6900000000000001
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/cleanup_admission_test.go",
+      "summary": "Cleanup admission classification: honored credential, same-origin form, gate CSRF, valid body and own record.",
+      "probability": 0.04
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "summary": "Shared message and HTTP capacity keep new work bounded while reserving independent cleanup admission.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "summary": "Load a private trial environment without exposing credentials in shell arguments; launch Codex CLI or Grok MCP.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/api_rate.go",
+      "summary": "Rate refusals expose the same rounded retry instant to JSON clients; shared admission spends the stable principal budget.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.85,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5676,
+    "output_tokens": 969,
+    "cost": 0.000238392
+  },
+  "latency_seconds": 0.497,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
