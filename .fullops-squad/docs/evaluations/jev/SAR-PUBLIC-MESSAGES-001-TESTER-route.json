@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.02,
+        "implementation": 0.98
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "tester": 0.81,
+        "ops": 0,
+        "dev": 0.19
+      },
+      "confidence": 0.72
+    },
+    "docs": {
+      "D01": 0.17,
+      "D02": 0.2,
+      "D03": 0.27,
+      "D04": 0.21,
+      "D05": 0.24,
+      "D06": 0.28,
+      "D07": 0.24,
+      "D08": 0.2,
+      "D09": 0.29,
+      "D10": 0.46,
+      "D11": 0.21,
+      "D12": 0.41,
+      "D13": 0.34
+    }
+  },
+  "usage": {
+    "input_tokens": 2492,
+    "output_tokens": 314,
+    "cost": 0.000104664
+  },
+  "error": null,
+  "latency_seconds": 0.556,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "이미 확정된 제품 명세에 따른 고정 후보 후속 검수 담당, DEV 완료 전 미배정",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "6291c22462a8546fe59764ec524bf0c07f61bfa4b220d7d4180a7caf9a964435"
+}

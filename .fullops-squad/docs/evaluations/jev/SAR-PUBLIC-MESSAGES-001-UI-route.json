@@ -1,0 +1,75 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-UI",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.95
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.37,
+        "tester": 0.63,
+        "ops": 0
+      },
+      "confidence": 0.43
+    },
+    "docs": {
+      "D01": 0.2,
+      "D02": 0.22,
+      "D03": 0.24,
+      "D04": 0.37,
+      "D05": 0.24,
+      "D06": 0.24,
+      "D07": 0.18,
+      "D08": 0.22,
+      "D09": 0.25,
+      "D10": 0.38,
+      "D11": 0.27,
+      "D12": 0.39,
+      "D13": 0.38
+    }
+  },
+  "usage": {
+    "input_tokens": 2483,
+    "output_tokens": 314,
+    "cost": 0.000104286
+  },
+  "error": null,
+  "latency_seconds": 0.666,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "이미 확정된 제품 명세에 따른 고정 후보 후속 검수 담당, DEV 완료 전 미배정",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.17,
+      "codex gpt-6.1-sol high": 0.83
+    },
+    "usage": {
+      "input_tokens": 572,
+      "output_tokens": 34,
+      "cost": 2.4024e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1"
+}
