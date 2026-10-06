@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "base": "b5a44fc72671648f3667e6b4567665630259a040",
+  "merge_base": "b5a44fc72671648f3667e6b4567665630259a040",
+  "head": "c2193bc0dec2be1b68092f4de21099777feee10d",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json\n\nChecking formatting...\nAll matched files use Prettier code style!\n\n> @knowslink/adapters@0.0.0 lint\n> eslint src eslint.config.mjs\n\n\n> @knowslink/adapters@0.0.0 typecheck\n> tsc --noEmit\n\nnpm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml\nChecking formatting...\nAll matched files use Prettier code style!\npython3 scripts/check_compose.py\nCompose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed\nsh -n scripts/install_bot_mcp.sh\npython3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go test -race ./cmd/... ./internal/...\nok  \tgithub.com/tourbut/KnowsLink/cmd/migrate\t(cached)\nok  \tgithub.com/tourbut/KnowsLink/cmd/relay\t1.040s\nok  \tgithub.com/tourbut/KnowsLink/internal/config\t(cached)\n?   \tgithub.com/tourbut/KnowsLink/internal/database\t[no test files]\nok  \tgithub.com/tourbut/KnowsLink/internal/relay\t4.382s\nnpm test --prefix adapters\n\n> @knowslink/adapters@0.0.0 test\n> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js && node dist/connect.test.js\n\n\n> @knowslink/adapters@0.0.0 build\n> tsc && npm run bundle:plugin\n\n\n> @knowslink/adapters@0.0.0 bundle:plugin\n> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=dist/plugin.js\n\nPASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output\nPASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified\nPASS: local connection PoP, private directory/files, no overwrite, credential storage, one-use completion, URL boundary\n\n  dist/plugin.js  1.5mb ⚠️\n\n⚡ Done in 79ms"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "990줄(이전 982, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added_lines": 10,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 0
+  }
+}

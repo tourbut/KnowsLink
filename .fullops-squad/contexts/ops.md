@@ -3,7 +3,7 @@ title: ops 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW]
 summary: 운영 준비의 수락 경계·서버 관찰 재사용·리뷰 재현 원칙을 보존한다
 ---
 
@@ -53,3 +53,7 @@ reusable policy는 새로 만든다. 기존 `knowslog-bot - Production`은 다�
 
 전역 동시 슬롯은 획득 시점이 인증·rate 앞이면 비인증 slow body가 비용 없이 슬롯을 묶는다. 슬롯을 잡은 뒤 본문을 읽는 순서를 먼저 본다. DB 없는 `(&Service{}).Handler()`와 raw TCP 연결로 재현할 수 있다. 정리 경로 분류는 경로뿐 아니라 인증 principal 여부도 확인한다.
 review.py check는 미해결 high에서 첫 실패로 멈춘다. 나머지 기록 조건은 result.json 사본에서 high만 임시 resolved로 바꾼 probe로 확인하고 바로 복원한다. probe 결과를 수락 근거로 쓰지 않는다.
+
+## 2026-10-06 — SAR-PUBLIC-MESSAGES-001-FIX-REVIEW
+
+예약 슬롯을 DB 판정 전에 고르는 구조는 "슬롯을 잡은 채 판정을 기다리는 시간"을 본다. 자격만 확인하고 소유·rate를 DB에서 판정하면 유효 자격 하나의 반복 요청이 예약 슬롯을 계속 점유한다. 재현은 전역 row lock을 잡은 결정적 시험과 lock 없는 flood의 신규/정리 대조 두 가지로 한다.

@@ -986,3 +986,13 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - UI-FIX 착수 Task task_2e87829b57d2/ctx_6468a05f27bf/term_218a079f-e0cd-434c-b297-2386eef8bbbf fresh Codex6.1Solhigh actual화면·input_accepted/turn_started·규약/정규인박스읽기를확인했다. 준비359653a를idleclean designer에명시SHA ff/일반push하고main조상을확인했다. 최초git-C의HEAD ff는자기HEAD여서no-op였고명시359653a로착수전에정정했다. startupupdate확인만invocation으로끈기존승인실행모드를재사용했다. 등록모델선정외coor모델전파/설치/요금/전역설정변경없다. OPS는b5기록checkout/dfc read-only·UI는359기록checkout/dfc격리fixture·QA는a744기록checkout/09c 원본진행이며서로덮어쓰지않는다.
 
 - FIX-TESTER도fullroute implementation/tester·Grok4.7high를준비했다. 원TESTER task_3a9d433b5e6b의09c QA가아직진행중이라미배정이다. 담당coor, 재개조건원본최종SHA/증거/finish/빈인박스확인이다. 원본인박스를덮어쓰지않는다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-REVIEW OPS 독립 delta 보안 리뷰 결과 — 2026-10-06
+
+- OPS 세션 `3cee40a4-bf54-4f2c-bad3-1559b8f6b006`(Claude Code, claude-opus-5-5)가 수정 DEV `9ebf9a10-609b-475a-b1cd-f9edad84c9a1`·원 DEV `01a11106-b736-7db1-b518-a65b64dbc5fb`과 별도로 `09c523d..dfc70caa748a90614b02d48c78b4651345938339`을 검토했다. snapshot `/tmp/knowslink-messages-fix-review-dfc70ca`는 읽기만 했고 detached·clean을 유지했다.
+- 결론은 수락 불가다. 원 H-1(익명 slow body)·M-1(익명·위조 정리 입장)·F-UI-MSG-01(gate Deny 405)은 해소됐다. 새 미해결 high H-2: `internal/relay/capacity.go:159-215` 로컬 정리 채널을 유효 자격만으로 고르고, 자기 기록·rate는 DB 입장 transaction 안에서 판정한다. 인증 회원 하나의 타 owner·lease 없는 정리 flood로 유효 정리 18/18이 429 capacity다(신규 flood 대조 0/18, agent 자격만으로도 18/18). PS-11 정리 budget 위반이다.
+- low L-1 확장(커밋마다 자격 색인 재생성)·L-2(색인 stale/restart/Store 순서)를 기록했다. 기존 L-A/L-B와 공개 전 합성 가입 unset·운영 DB 합성 owner 0 조건을 보존한다. `/v1/connect/*` 정리 경로가 HTTP 정리 분류에 없는 점(09c와 같음)을 H-2 수정 범위 확인으로 남긴다.
+- 검사: dfc70ca scratch에서 make install exit0, lint.py --from 09c523d exit0(ERROR0/WARNING5/실행불가0, product-lint/test exit0), make verify-mvp 2회 exit0(PASS 42·FAIL/SKIP 0, 리뷰 H-2 시험 포함). review.py check는 H-2로 exit1(정상 차단). 형식 probe는 쓰지 않았다. [리뷰 기록](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md).
+- 후속: DEV가 H-2(권장 L-2·/v1/connect 정리 경로 확인)를 고치고 자기 대상 반복·타 owner flood 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키·별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다.
+
+- FIX-REVIEW msg_d5687c98688e/c2193bc0dec2be1b68092f4de21099777feee10d 수신. cleanHEAD/origin동일·빈인박스/archive·actual별도3cee세션·read-onlydfc snapshot·최종HEADlint/test0를확인하고COOR에영속화했다. 원checkexit1/새H2high·53reviewed/38skipped와실제Postgres flood재현18/18 실패를보존한다. 원H1/M1 익명범위해소와H2별도실패를구분했다. SHA추출null을실제fullSHA/근거와함께보완하고coor에SHA보존merge했다. 동일DEV 후속에서H2·권장L2/connect정리누락을해결하고새fixed delta/좁은QA·필요UI수락뒤main통합한다. 현재UI는dfc UX07 검수를마무리하고원QA는09c를유지한다.
