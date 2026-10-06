@@ -1,0 +1,486 @@
+=== RUN   TestReviewSlowBodyHoldsSlots
+    zz_review_slot_test.go:45: cleanup probe after 4 anonymous slow bodies: 429 {"error":"capacity","retry_at":"2026-10-06T12:29:18Z"}
+    zz_review_slot_test.go:53: new-work probe after 16 anonymous slow bodies: 429 {"error":"capacity","retry_at":"2026-10-06T12:29:19Z"}
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53630: runtime error: invalid memory address or nil pointer dereference
+goroutine 16 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00c40?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee77860?, {0x1242ae8, 0x318d0ee00c40}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00c40}, 0x318d0ee77a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14c30}, 0x318d0edc4c80)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14c30?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14c30?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0acf0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53444: runtime error: invalid memory address or nil pointer dereference
+goroutine 34 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0efaa000?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ef09860?, {0x1242ae8, 0x318d0efaa000}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0efaa000}, 0x318d0ef09a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0efa2000}, 0x318d0edc4dc0)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0efa2000?}, 0x318d0ef09ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0efa2000?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0edb2090, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53538: runtime error: invalid memory address or nil pointer dereference
+goroutine 52 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00620?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee4f860?, {0x1242ae8, 0x318d0ee00620}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00620}, 0x318d0ee4fa48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee145a0}, 0x318d0efac780)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee145a0?}, 0x318d0ed82ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee145a0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ef822d0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53620: runtime error: invalid memory address or nil pointer dereference
+goroutine 15 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00d20?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee71860?, {0x1242ae8, 0x318d0ee00d20}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00d20}, 0x318d0ee71a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14d20}, 0x318d0f00c780)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14d20?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14d20?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0ac60, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53586: runtime error: invalid memory address or nil pointer dereference
+goroutine 11 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee008c0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee5f860?, {0x1242ae8, 0x318d0ee008c0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee008c0}, 0x318d0ee5fa48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14870}, 0x318d0f00c8c0)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14870?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14870?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0a7e0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53546: runtime error: invalid memory address or nil pointer dereference
+goroutine 27 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ef50ee0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0efcd860?, {0x1242ae8, 0x318d0ef50ee0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ef50ee0}, 0x318d0efcda48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ef69680}, 0x318d0edc4f00)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ef69680?}, 0x318d0efc3ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ef69680?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ef1a3f0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53590: runtime error: invalid memory address or nil pointer dereference
+goroutine 12 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee009a0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee59860?, {0x1242ae8, 0x318d0ee009a0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee009a0}, 0x318d0ee59a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14960}, 0x318d0edc5040)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14960?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14960?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0a900, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53594: runtime error: invalid memory address or nil pointer dereference
+goroutine 13 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00b60?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee75860?, {0x1242ae8, 0x318d0ee00b60}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00b60}, 0x318d0ee75a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14b40}, 0x318d0edc5180)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14b40?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14b40?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0aa20, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53608: runtime error: invalid memory address or nil pointer dereference
+goroutine 14 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00a80?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee5b860?, {0x1242ae8, 0x318d0ee00a80}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00a80}, 0x318d0ee5ba48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14a50}, 0x318d0edc52c0)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14a50?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14a50?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0aab0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53500: runtime error: invalid memory address or nil pointer dereference
+goroutine 26 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00380?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee21860?, {0x1242ae8, 0x318d0ee00380}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00380}, 0x318d0ee21a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee142d0}, 0x318d0edc5400)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee142d0?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee142d0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ef1a360, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53470: runtime error: invalid memory address or nil pointer dereference
+goroutine 50 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0efaa0e0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ef0b860?, {0x1242ae8, 0x318d0efaa0e0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0efaa0e0}, 0x318d0ef0ba48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0efa20f0}, 0x318d0edc5540)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0efa20f0?}, 0x318d0efc6ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0efa20f0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ef82090, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53486: runtime error: invalid memory address or nil pointer dereference
+goroutine 51 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ef50cb0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ef0f860?, {0x1242ae8, 0x318d0ef50cb0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ef50cb0}, 0x318d0ef0fa48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ef69590}, 0x318d0edc5680)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ef69590?}, 0x318d0ed81ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ef69590?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ef82120, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53520: runtime error: invalid memory address or nil pointer dereference
+goroutine 6 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00460?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee1b860?, {0x1242ae8, 0x318d0ee00460}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00460}, 0x318d0ee1ba48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee143c0}, 0x318d0edc57c0)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee143c0?}, 0x318d0ed81ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee143c0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0a240, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53458: runtime error: invalid memory address or nil pointer dereference
+goroutine 35 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0efaa1c0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0efd1860?, {0x1242ae8, 0x318d0efaa1c0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0efaa1c0}, 0x318d0efd1a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0efa21e0}, 0x318d0efac8c0)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0efa21e0?}, 0x318d0ed82ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0efa21e0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0edb21b0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53548: runtime error: invalid memory address or nil pointer dereference
+goroutine 8 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0edd25b0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee4b860?, {0x1242ae8, 0x318d0edd25b0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0edd25b0}, 0x318d0ee4ba48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0edf00f0}, 0x318d0f00ca00)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0edf00f0?}, 0x318d0ed82ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0edf00f0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0a510, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53506: runtime error: invalid memory address or nil pointer dereference
+goroutine 37 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0edd24d0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0efcf860?, {0x1242ae8, 0x318d0edd24d0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0edd24d0}, 0x318d0efcfa48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0edf0000}, 0x318d0edc5900)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0edf0000?}, 0x318d0edeaae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0edf0000?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0edb23f0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53634: runtime error: invalid memory address or nil pointer dereference
+goroutine 38 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0edd2690?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee4d860?, {0x1242ae8, 0x318d0edd2690}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0edd2690}, 0x318d0ee4da48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0edf01e0}, 0x318d0ee7e140)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0edf01e0?}, 0x318d0ed82ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0edf01e0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0edb25a0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53580: runtime error: invalid memory address or nil pointer dereference
+goroutine 10 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee007e0?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee5d860?, {0x1242ae8, 0x318d0ee007e0}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee007e0}, 0x318d0ee5da48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14780}, 0x318d0edc5a40)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14780?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14780?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0a6c0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53534: runtime error: invalid memory address or nil pointer dereference
+goroutine 7 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00540?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee1d860?, {0x1242ae8, 0x318d0ee00540}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00540}, 0x318d0ee1da48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee144b0}, 0x318d0efaca00)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee144b0?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee144b0?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0a2d0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+2026/10/06 21:29:18 http: panic serving 127.0.0.1:53564: runtime error: invalid memory address or nil pointer dereference
+goroutine 9 [running]:
+net/http.(*conn).serve.func1()
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:1939 +0xbb
+panic({0x11a9750?, 0x12b4f30?})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/runtime/panic.go:859 +0x125
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Acquire(0x0, {0x1242ae8?, 0x318d0ee00700?})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:599 +0x50
+github.com/jackc/pgx/v5/pgxpool.(*Pool).BeginTx(0x318d0ee51860?, {0x1242ae8, 0x318d0ee00700}, {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}, {0x0, ...}, ...})
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:807 +0x2f
+github.com/jackc/pgx/v5/pgxpool.(*Pool).Begin(...)
+	/home/shin/go/pkg/mod/github.com/jackc/pgx/v5@v5.10.0/pgxpool/pool.go:799
+github.com/tourbut/KnowsLink/internal/relay.(*Service).transaction(0x318d0ef00500, {0x1242ae8, 0x318d0ee00700}, 0x318d0ee51a48)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/store.go:125 +0x85
+github.com/tourbut/KnowsLink/internal/relay.(*Service).boundedHTTP.func2({0x1241370, 0x318d0ee14690}, 0x318d0f00cb40)
+	/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-ops/9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce/scratchpad/repro/internal/relay/capacity.go:164 +0xbab
+net/http.HandlerFunc.ServeHTTP(0x823ca0?, {0x1241370?, 0x318d0ee14690?}, 0x318d0efc2ae8?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2338 +0x29
+net/http.serverHandler.ServeHTTP({0x10?}, {0x1241370?, 0x318d0ee14690?}, 0x1?)
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3413 +0x8e
+net/http.(*conn).serve(0x318d0ee0a5a0, {0x1242a78, 0x318d0edac120})
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:2137 +0x6dc
+created by net/http.(*Server).Serve in goroutine 22
+	/home/shin/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.1.linux-amd64/src/net/http/server.go:3581 +0x4fd
+--- PASS: TestReviewSlowBodyHoldsSlots (0.41s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	0.423s

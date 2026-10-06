@@ -1,0 +1,14 @@
+[passed] product-lint: make lint
+[passed] product-test: make test
+WARNING SIZE-001 .fullops-squad/PLANS.md 940줄(이전 920, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 adapters/src/core.ts 316줄(이전 269, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/connections_test.go 390줄(이전 389, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/http.go 632줄(이전 573, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/member.go 341줄(이전 339, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/member_agents.go 316줄(이전 312, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/public_messages_integration_test.go 403줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SEC-001 internal/relay/public_text_test.go:213 하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다
+WARNING SIZE-001 internal/relay/store.go 490줄(이전 461, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SLOP-004 scripts/verify_grok_plugin.py:39 디버그 출력 잔재 의심. 필요한 사용자 출력인지 확인하고 디버그 잔재는 제거한다
+WARNING SIZE-002  변경 추가 2095줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요
+head 09c523da8a34 / 파일 33 / ERROR 0 / WARNING 11 / 실행 불가 0

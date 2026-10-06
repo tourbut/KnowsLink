@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV]
-summary: 현재 과제·MESSAGES 구현 및 독립 검수 대기와 수락·운영 보류를 기록한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW]
+summary: 현재 과제·MESSAGES 후보 OPS 리뷰 high 차단과 수락·운영 보류를 기록한다
 ---
 
 # KnowsLink 현재 계획
@@ -944,3 +944,13 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 검수착수: OPS task_d7266a3de10f/ctx_658cd66d5c90/term_a1a67fea-381e-43c3-a490-9ab6f57533f9 fresh Opus5.5high effective·turn_started·규약/양식읽기. QA task_3a9d433b5e6b/ctx_fb39c38db415/term_605dc960-19c5-4a99-b3b4-37953788a75f fresh Grok4.7high actualUI·신뢰check·input_accepted·인박스읽기, turnStart unsupported. UI task_f37e47dda648/ctx_b2c603e79536/term_ae55d3eb-c9e5-464e-9d58-9a166f30f357 fresh Codex6.1Solhigh actualUI·turn_started·규약읽기. 같은fixed09c523d/read-only snapshot·기록checkout 준비a744를 전달했다.
 - UI 기동ctx33b/ctxbd9는Codex0.160.0 업데이트선택화면에서failed이며receipt대로release했다. ctx0c99 수동실행은CLI권한옵션누락으로첫파일읽기의bwrap실패/승인대기에막혔다. dirty0과실제interactive prompt를확인하고stop_unknown→명시abandon으로fence했으며이번coor가생성한그터미널만정리했다. 기존진행작업/사용자터미널은변경하지않았다. 기존Orca DEV의실제 argv(--no-daemon/기존승인된bypass모드)를대조해같은실행모드로수정하고업데이트확인만이번실행의 -c check_for_update_on_startup=false로끄고동일Task retry에성공했다. 전역설정·설치·구독·과금은변경하지않았다. 공식근거: https://learn.chatgpt.com/docs/config-file/config-reference . 최초기동실패/현재착수receipt는COOR에보존했다.
 - DEV37f9a1e는독립검수뒤병합까지retain했다. delivery_2f7e642e1a2a를처리/ack했고제품integration hold를유지한다. coor후속운영기록은진행3역할checkout을변경하지않고원래fixed/원본검사를유지한다. main/origin68b0d6a에는아직MESSAGES제품을통합하지않았다.
+
+## SAR-PUBLIC-MESSAGES-001-REVIEW-2 OPS 독립 보안 리뷰 결과 — 2026-10-06
+
+- OPS 세션 `9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce`(Claude Code, claude-opus-5-5)가 DEV 세션 `01a11106-b736-7db1-b518-a65b64dbc5fb`과 별도로 `7efbaa3..09c523da8a3407288d9f5d711e1834af12bc7808`을 검토했다. snapshot `/tmp/knowslink-messages-review-09c523d`는 읽기만 했고 detached·clean을 유지했다.
+- 결론은 수락 불가다. 미해결 high H-1: `internal/relay/capacity.go:147-155` boundedHTTP가 로컬 HTTP 슬롯을 먼저 잡고 본문을 읽는다. 익명 slow body 4개로 정리(ACK·revoke·deny·unpair·logout), 16개로 신규 작업이 429 capacity가 된다. rate를 소비하지 않는다. PS-11 정리 budget 보장 위반이며 이 후보의 회귀다. 재현 slot-repro exit0.
+- 미해결 medium M-1(정리 입장의 경로만 판정·익명 허용), low L-1(요청당 전역 lock 트랜잭션 2개 추가·OPS 측정 대상)을 기록했다. 기존 low L-A/L-B와 공개 전 합성 가입 unset·운영 DB 합성 owner 0 조건을 보존한다. 인가·text/receipt·답장·gate·queue/claim 경계의 다른 critical/high는 없다.
+- 검사: 09c523d scratch에서 make install exit0, lint.py --from 7efbaa3 exit0(ERROR0/WARNING11/실행불가0, product-lint/test exit0), make verify-mvp exit0(PASS 39·FAIL/SKIP 0). review.py check는 H-1로 exit1(정상 차단)이다. 기록 형식 probe는 exit0(51/38/89)이다. [리뷰 기록](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-2-review/report.md).
+- 후속: DEV가 H-1(권장 M-1 포함)을 고치고 slow body 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키와 별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다. TESTER QA·designer UX06/07 검수는 coor 판단이다.
+
+- OPS 원본 msg_22a669fe781e/6e1dac284e2fa8b42e16a5e8e59b11e0354a282b 수신. 실제cleanHEAD·빈인박스·별도세션9bc44cbf·fixed09c read-only/clean·최종pass gate6e를확인했다. H1 high/M1 medium·원본review.check exit1·형식probe는수락근거아님을보존한다. 추출SHA null과실제fullSHA/원문/HEAD 근거를함께보완한다. DEV37/OPS6e는hold이며main/origin68b제품수락차단유지. QA/UI는현재09c 원본검사를계속하고실패/원본증거를보존하도록 msg39f2/msgcfbb로안내했다. 새DEV-FIX route는Opus5.5high추천을따르며오래된DEV캐시/새모델·원인분석범위로fresh세션을사용한다.

@@ -1,0 +1,63 @@
+{
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV",
+  "find_head": "7efbaa349a5857eb1eac859a955ec3a09c91f800",
+  "base": "7efbaa349a5857eb1eac859a955ec3a09c91f800",
+  "head": "09c523da8a3407288d9f5d711e1834af12bc7808",
+  "changed_existing": [
+    "README.md",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/connect.ts",
+    "adapters/src/core.ts",
+    "adapters/src/mcp.test.ts",
+    "adapters/src/mcp.ts",
+    "cmd/relay/main.go",
+    "internal/relay/api_rate.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/http.go",
+    "internal/relay/member.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/protocol.go",
+    "internal/relay/store.go",
+    "scripts/verify_grok_plugin.py"
+  ],
+  "new_files": [
+    "adapters/src/public-check.ts",
+    "adapters/src/text.ts",
+    "internal/relay/capacity.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/public_messages_integration_test.go",
+    "internal/relay/public_text.go",
+    "internal/relay/public_text_test.go"
+  ],
+  "candidates": [
+    "Makefile",
+    "README.md",
+    "adapters/README.md",
+    "adapters/src/connect.ts",
+    "adapters/src/core.ts",
+    "cmd/relay/main.go",
+    "internal/relay/connections.go",
+    "internal/relay/member.go",
+    "internal/relay/protocol.go",
+    "internal/relay/store.go",
+    "internal/relay/test_messages_test.go",
+    "scripts/verify_mvp.py"
+  ],
+  "hits": [
+    "README.md",
+    "adapters/README.md",
+    "adapters/src/connect.ts",
+    "adapters/src/core.ts",
+    "cmd/relay/main.go",
+    "internal/relay/member.go",
+    "internal/relay/protocol.go",
+    "internal/relay/store.go"
+  ],
+  "recall": 0.5,
+  "precision": 0.667,
+  "existence_status": "found",
+  "existence_correct": true,
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
