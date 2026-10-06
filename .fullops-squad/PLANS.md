@@ -801,3 +801,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 사용자 다음 작업 진행 요청으로 기존 대기 AGENTS를 재개한다. 기준 main/origin d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b, 신원 로컬 코드 수락과 실제 이메일/공개 미검증을 구분한다. 제품 정본이 허용한 독립 구현을 진행하며 실제 화면/이메일 대기는 후속으로 유지한다.
 - Jev implementation/dev, 새 Codex gpt-6.1-sol medium을 선정했다. coordinator 모델을 전파한 것이 아니라 등록 후보의 독립 route 결과다. 기존 DEV terminal0·clean·최신 main 조상을 확인했다. 새 기능이고 이전 DEV 세션이 종료돼 fresh 세션을 사용한다. 정규 빈 인박스에 기술 계획·구현·검증·인계를 함께 작성했다. route의 UX06 언급은 MESSAGES 후속이므로 실행 범위를 UX04–05로 정정했다.
 - 완료 고정 후보의 별도 보안 리뷰·TESTER 교차계정/회전/철회/한도 QA·designer UI 검수 뒤 main 수락한다. Workers Free·서버/Tunnel·실메일/공개/최종 노우↔다닷 후속 조건을 유지한다. MESSAGES는 AGENTS 수락 뒤 대기하며 자동 배정하지 않는다.
+
+- 착수 영수증: Task task_23b84e8ba5e6 / Dispatch ctx_69e4d4d35bc6 / terminal term_0aba2c49-1807-4297-9741-cfbf48908530. fresh Codex gpt-6.1-sol medium effective·turn_started 및 규약/지시서 확인 응답을 확인했다. 준비 fe642109a0ba main/origin 일반push·5역할 동기화를 완료했다. 준비 lint/test0·ERROR0/WARNING1(누적PLANS). worker_done 중심으로 대기하고 진행DEV 체크아웃은 변경하지 않는다. discoverability 경고는 착수성공과 구분하며 focus를 강제하지 않는다.
