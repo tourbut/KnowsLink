@@ -1,0 +1,121 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "6ce4fdbc5575e1cdc00fef44cf2017bdbc4a623c",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "f6799fb19970dae6c4a0be7ddb2980953ca3d0199952ebbfedaab2ab91a891a5",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-PUBLIC-SERVICE-UX.md",
+      "c2-report.md",
+      "c3-SAR-PUBLIC-AGENTS-001-UI.md",
+      "c4-protocol.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-PUBLIC-SERVICE-UX.md",
+      "c2-report.md",
+      "c3-SAR-PUBLIC-AGENTS-001-UI.md",
+      "c4-protocol.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-SAR-PUBLIC-SERVICE.md": {
+        "relevant": 0.17,
+        "evidence": 0.35,
+        "contradicts": 0.23,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-SAR-PUBLIC-SERVICE-UX.md": {
+        "relevant": 0.37,
+        "evidence": 0.51,
+        "contradicts": 0.2,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-report.md": {
+        "relevant": 0.43,
+        "evidence": 0.65,
+        "contradicts": 0.21,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-SAR-PUBLIC-AGENTS-001-UI.md": {
+        "relevant": 0.29,
+        "evidence": 0.49,
+        "contradicts": 0.21,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-protocol.md": {
+        "relevant": 0.17,
+        "evidence": 0.27,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-PUBLIC-SERVICE.md": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-PUBLIC-SERVICE-UX.md": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "c2-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "c3-SAR-PUBLIC-AGENTS-001-UI.md": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "c4-protocol.md": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_designer.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_designer.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 18016,
+    "output_tokens": 380,
+    "cost": 0.0007566720000000001
+  },
+  "latency_seconds": 0.43,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-PUBLIC-AGENTS-001-POLICY",
+  "role": "designer",
+  "unsent_sources": {},
+  "refused_paths": []
+}

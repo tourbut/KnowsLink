@@ -831,3 +831,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 역할 검수 작업은 완료했다. 대상 제품은 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`다. [직접 관측·판정](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md)을 정본으로 사용한다.
 - UX04–05 시각 수락은 FAIL/보류다. medium F-UI-01 모바일 지문 가독성과 F-UI-02 오류 뒤 다음 동작을 DEV에 인계한다. 수정된 고정 SHA와 해당 실제 화면이 준비되면 designer가 영향 범위만 재검수한다. 새 과제 dispatch는 coor가 현재 역할 인박스의 사용 상태를 확인한 뒤 정한다.
 - 합성 상태 PASS는 독립 QA·보안 리뷰·실제 이메일·운영 공개·노우↔다닷의 미검증을 해제하지 않는다. 자기 fixture 자원은 회수했고 사용자 기존 탭·인증값·운영 자원은 보존했다. 제품 코드와 제품 규칙은 변경하지 않았다.
+
+- 원본 UI msg_9daccf1f3945/d1651784c4338efeb0d6141467d563c6b354e4a5를hold로보존하고coor후보에SHA보존반영했다. 제품경로diff0·빈인박스/자원회수·최종lint/test0와원본DOC003/보정근거를확인했다. 보고서충돌은완성OPS70f26bc의본문/metadata를그대로유지했고UImetadata-only정정은원본SHA와증거로남겼다. UImedium2FAIL은수정/재검수대기이며원본PASS로바꾸지않는다.
+- 빈designer인박스에L2 POLICY제품판단을준비했다. route Codex6.1Solhigh·새세션이다. 이전UI는25분이상실행과큰브라우저로그가있고새제품판단범위여서fresh를선택했다. D09/D10추천은기술소유라제외하고D02/필요UX05만갱신한다. 답을DEV-FIX에그대로전달하고현재기술구현을유지한다.
