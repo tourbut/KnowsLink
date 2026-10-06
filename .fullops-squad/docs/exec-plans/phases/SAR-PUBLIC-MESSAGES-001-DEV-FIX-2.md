@@ -56,6 +56,7 @@ summary: OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정
 | OPS H-2 재현 시험 원문 | fixed dfc70ca | exit0 = 재현. A 4/4·own 429 capacity, B new 0/18·foreign 18/18, C no-lease 18/18 (control-dfc-review-repro) |
 | 같은 재현 시험 | 수정 코드 `0ae40d5` | exit1 `not reproduced: held 0`. 이 시험이 row lock을 10s 넘게 잡아 probe가 503이 된다. 정리 채널 점유 0/4 (fix-review-repro) |
 | 새 flood 회귀의 변형 | `0ae40d5` + 로컬 자기 기록 대조·owner 상한 제거 | exit1 `attack admission: new 0 clean 4` (control-h2-mutant) |
+| 종료 실패 회수 변형(orphans 저장 제거) | `c8ac921` + 변형 | exit1 `/v1/key-revoke: 200, 0 orphaned admissions` (control-orphan-mutant). 같은 시험의 수정 코드 실행은 exit0 (fix-orphan) |
 
 새·변경 검사:
 - `TestValidCredentialCleanupFlood`(통합): A. 전역 row lock을 잡은 채 타 owner 키 철회 4·agent lease 없는 ACK 4는 신규 채널 8개로 대기한다. 같은 owner의 자기 키 철회 4는 정리 슬롯 1개만 잡고 3개는 즉시 429 capacity다. 다른 owner 3명의 자기 철회가 나머지 정리 슬롯 3개를 잡는다. lock을 풀면 모두 200이다. rate는 타 owner 신규 4·no-lease 신규 4·반복 owner cleanup 1·다른 owner 각 1이다. B. lock 없이 48 연결 flood(타 owner·no-lease·자기 반복·신규 대조) 중 다른 owner의 유효 정리 18회가 모두 200이다. 종료 뒤 공유 기록·로컬 채널·owner 표시가 0이다.
@@ -72,9 +73,11 @@ summary: OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정
 
 | 검사 | 대상 HEAD | 결과 |
 |---|---|---|
-| make lint | 코드 `0ae40d5` | exit0 (lint-final) |
-| make test | 코드 `0ae40d5` | exit0, Go race·adapter 시험 (test-final) |
-| make verify-mvp | 코드 `0ae40d5`(코드 경로 무변경 확인). 시험 파일 분리 뒤 재실행은 mvp-split | exit0. Go 통합 `--- PASS` 45·FAIL/SKIP 0, 실제 Node/MCP·Go owner UI. flood B 4종 모두 유효 정리 거부 0/18(최대 3.0s). 자기 Compose container·volume·network 회수 (mvp-final) |
+| make lint / make test / make verify-mvp | 중간 코드 `0ae40d5` | exit0 / exit0 / exit0, `--- PASS` 45·FAIL/SKIP 0, flood B 4종 0/18 (lint-final·test-final·mvp-final) |
+| make verify-mvp | 시험 파일 분리 `09efaf3` | exit0, `--- PASS` 45·FAIL/SKIP 0 (mvp-split) |
+| make lint | 최종 코드 `c8ac921` | FINAL_LINT (lint-final2) |
+| make test | 최종 코드 `c8ac921` | FINAL_TEST (test-final2) |
+| make verify-mvp | 최종 코드 `c8ac921` | FINAL_MVP (mvp-final2) |
 | FullOps lint.py --from dfc70ca, deliverables strict, diff check | 기록 마지막 HEAD | 완료 보고에 기록한다. 기록 안에 자기 SHA를 순환 기록하지 않는다 |
 
 ## 경고 처리와 산출물

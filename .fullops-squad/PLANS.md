@@ -1001,7 +1001,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 ## SAR-PUBLIC-MESSAGES-001-DEV-FIX-2 DEV 결과 — 2026-10-06
 
-- 기준 fixed `dfc70caa748a90614b02d48c78b4651345938339`의 OPS FIX-REVIEW H-2를 같은 과제에서 분석·수정·검증했다. 코드 `0ae40d51dd1c6bab35b74bca812d7db581d55585`.
-- 수정: DB 전 로컬 정리 채널 선택에 커밋 snapshot의 자기 기록 대조를 적용했다. owner당 동시 정리 1개를 로컬·공유 기록에 둔다. snapshot은 commit 순서로만 교체하고 종료 실패 공유 기록은 다음 commit이 회수한다. `/v1/invite-decision` deny를 정리 분류에 추가했다. `/v1/connect/{cancel,…}` 경로는 존재하지 않음을 확인했다.
+- 기준 fixed `dfc70caa748a90614b02d48c78b4651345938339`의 OPS FIX-REVIEW H-2를 같은 과제에서 분석·수정·검증했다. 최종 코드 `c8ac921c5949cb263278e3f7cea4c120123cf8f3`(H-2 수정 `0ae40d5`, 시험 분리·종료 실패 회귀 추가).
+- 수정: DB 전 로컬 정리 채널 선택에 커밋 snapshot의 자기 기록 대조를 적용했다. owner당 동시 정리 1개를 로컬·공유 기록에 둔다. snapshot은 commit 순서로만 교체하고 종료 실패 공유 기록은 다음 commit이 회수한다. `/v1/invite-decision` deny를 정리 분류에 추가했다. `/v1/connect/{cancel,…}` 경로는 존재하지 않음을 확인했다. coor 추가 인계의 TESTER 원본 `st.HTTP` 잔류(medium, 09c 17차)도 같은 종료 transaction 실패 경로로 확인하고 회수 회귀를 추가했다. 원본 QA 실패와 새 fixed 독립 QA 보류는 그대로다.
 - 검증: OPS 재현 시험은 dfc70ca에서 재현(exit0), 수정 코드에서 미재현(exit1). 새 flood 회귀는 변형에서 exit1. 결과와 최종 검사는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md)에 있다.
 - 보존: OPS H-2 high·review check exit1, L-1·L-A·L-B, 공개 전 합성 가입 unset·운영 DB 합성 owner 0. 후속은 coor 배정의 OPS 별도 세션 delta 리뷰·TESTER 좁은 QA·필요 UI 수락 뒤 main 판정이다.

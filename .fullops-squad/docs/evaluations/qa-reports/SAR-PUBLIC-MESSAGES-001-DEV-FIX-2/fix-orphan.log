@@ -1,0 +1,9 @@
+HEAD c8ac921c5949cb263278e3f7cea4c120123cf8f3 worktree-diff:
+?? .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2/control-orphan-mutant.exit
+?? .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2/control-orphan-mutant.log
+?? .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2/fix-orphan.log
+command: go test -tags=integration -race -count=1 -v -run 'TestFailedFinishReclaimedAtNextCommit' ./internal/relay
+=== RUN   TestFailedFinishReclaimedAtNextCommit
+--- PASS: TestFailedFinishReclaimedAtNextCommit (4.20s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	5.216s

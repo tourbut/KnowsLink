@@ -1,0 +1,9 @@
+HEAD c8ac921c5949cb263278e3f7cea4c120123cf8f3 worktree-diff:
+ M internal/relay/capacity.go
+command: go test -tags=integration -race -count=1 -v -run 'TestFailedFinishReclaimedAtNextCommit' ./internal/relay
+=== RUN   TestFailedFinishReclaimedAtNextCommit
+    cleanup_flood_integration_test.go:207: /v1/key-revoke: 200, 0 orphaned admissions
+--- FAIL: TestFailedFinishReclaimedAtNextCommit (2.19s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	2.219s
+FAIL
