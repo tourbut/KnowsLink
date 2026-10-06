@@ -40,20 +40,25 @@ func setup(t *testing.T, pool *pgxpool.Pool) *fixture {
 	f := &fixture{&Service{Pool: pool, SyntheticSignup: true}, nil, map[string]string{}, map[string]string{}, map[string]ed25519.PrivateKey{}, t}
 	f.handler = f.s.Handler()
 	for _, id := range []string{"agent_a", "agent_b", "agent_c"} {
-		owner := f.call("POST", "/v1/owners", "", map[string]any{}, 200)
-		f.tokens[id+"_owner"] = owner["credential"].(string)
-		f.owners[id] = owner["owner"].(string)
-		public, private, _ := ed25519.GenerateKey(rand.Reader)
-		f.private[id] = private
-		encoded := base64.RawURLEncoding.EncodeToString(public)
-		proof := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, popBytes(f.owners[id], id, "key1", encoded)))
-		agent := f.call("POST", "/v1/agents", f.tokens[id+"_owner"], map[string]any{"agent": id, "kid": "key1", "public": encoded, "proof": proof}, 200)
-		f.tokens[id] = agent["credential"].(string)
+		f.addAgent(id)
 	}
 	f.call("POST", "/v1/invites", f.tokens["agent_a"], map[string]any{"agent": "agent_a", "target": "agent_b"}, 200)
 	f.call("POST", "/v1/invite-decision", f.tokens["agent_b"], map[string]any{"agent": "agent_a", "target": "agent_b", "decision": "accept"}, 401)
 	f.call("POST", "/v1/invite-decision", f.tokens["agent_b_owner"], map[string]any{"agent": "agent_a", "target": "agent_b", "decision": "accept"}, 200)
 	return f
+}
+
+// addAgent registers a synthetic owner with one agent id and its key1, recording both credentials.
+func (f *fixture) addAgent(id string) {
+	owner := f.call("POST", "/v1/owners", "", map[string]any{}, 200)
+	f.tokens[id+"_owner"] = owner["credential"].(string)
+	f.owners[id] = owner["owner"].(string)
+	public, private, _ := ed25519.GenerateKey(rand.Reader)
+	f.private[id] = private
+	encoded := base64.RawURLEncoding.EncodeToString(public)
+	proof := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, popBytes(f.owners[id], id, "key1", encoded)))
+	agent := f.call("POST", "/v1/agents", f.tokens[id+"_owner"], map[string]any{"agent": id, "kid": "key1", "public": encoded, "proof": proof}, 200)
+	f.tokens[id] = agent["credential"].(string)
 }
 func (f *fixture) request(method, path, token string, body []byte, claim string) *httptest.ResponseRecorder {
 	req := httptest.NewRequest(method, path, strings.NewReader(string(body)))

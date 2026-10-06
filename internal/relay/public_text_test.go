@@ -2,6 +2,7 @@
 package relay
 
 import (
+	"context"
 	"crypto/ed25519"
 	"crypto/rand"
 	"encoding/base64"
@@ -224,22 +225,33 @@ func TestSharedCapacitiesAndCleanupClassification(t *testing.T) {
 		if clean {
 			limit = 4
 		}
+		owner := func(i int) string {
+			if clean {
+				return fmt.Sprint("owner-", i)
+			}
+			return ""
+		}
 		for i := 0; i < limit; i++ {
-			if !st.enterHTTP(fmt.Sprintf("%t-%d", clean, i), clean, now) {
+			if !st.enterHTTP(fmt.Sprintf("%t-%d", clean, i), owner(i), now) {
 				t.Fatal("early admission refusal")
 			}
 		}
-		if st.enterHTTP("excess", clean, now) {
+		if st.enterHTTP("excess", owner(limit), now) {
 			t.Fatal("HTTP cap")
 		}
+	}
+	// Review H2: one owner holds at most one shared cleanup admission across processes.
+	delete(st.HTTP, "true-3")
+	if st.enterHTTP("same-owner", "owner-0", now) || !st.enterHTTP("other-owner", "owner-9", now) {
+		t.Fatal("per-owner shared cleanup")
 	}
 	raw, _ := json.Marshal(st)
 	restored := newState()
 	_ = json.Unmarshal(raw, restored)
-	if restored.enterHTTP("restart", false, now) {
+	if restored.enterHTTP("restart", "", now) || restored.enterHTTP("restart-clean", "owner-1", now) {
 		t.Fatal("restart bypass")
 	}
-	if !restored.enterHTTP("recovered", false, now.Add(30*time.Second)) {
+	if !restored.enterHTTP("recovered", "", now.Add(30*time.Second)) {
 		t.Fatal("crash recovery")
 	}
 	for _, c := range []struct {
@@ -248,9 +260,11 @@ func TestSharedCapacitiesAndCleanupClassification(t *testing.T) {
 	}{
 		{"/v1/pull", "{}", false}, {"/v1/ack", "{}", true}, {"/home/gates/id/deny", "decision=deny", true},
 		{"/home/gates/id?decision=deny", "decision=approve", false}, {"/home/invite-deny", "decision=deny", true},
+		{"/v1/invite-decision", `{"decision":"deny"}`, true}, {"/v1/invite-decision", `{"decision":"accept"}`, false},
 	} {
 		r := httptest.NewRequest("POST", c.path, strings.NewReader(c.body))
 		r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+		r = r.WithContext(context.WithValue(r.Context(), requestBodyKey{}, []byte(c.body)))
 		if cleanupRequest(r) != c.clean {
 			t.Fatal("cleanup classification", c.path)
 		}
