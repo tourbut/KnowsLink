@@ -78,3 +78,9 @@ D03/D05/D06/D07/D09/D10·README·adapter 안내·project·DEV context를 갱신�
 첫 커밋의 Docker 로그에는 후행 공백이 있어 archive diff 검사가 실패했다. 원 로그의 내용과 종료코드는 유지하고 후행 공백만 제거했다. 수정 뒤 diff 검사는 exit0이다. 원 출력은 `/tmp/knowslink-agents-mvp-final.log`, Git 증거의 정규화 이유는 exits.json에 있다.
 
 FullOps WARNING8 처리: SIZE-001은 기존 PLANS807·http571·member312·store458 및 새 integration304줄이다. 권한 발급/확인/사용/철회와 state 복원까지 한 후보로 검증해야 하므로 분리하지 않았다. SIZE-002 추가1584줄은 UI·client·새 자동 회귀·기술 원천을 포함한다. 최초 예상12–18파일보다 최종30파일이 큰 이유는 QA 명령 로그3개와 테스트/원천/완료 기록을 함께 보존했기 때문이다. DEP-001은 package.json의 test script에 connect.test.js만 추가한 경고다. dependency/version/lock 변경은0이다. SEC-001은 Node fixture의 `"a".repeat(43)` 합성 token이며 실제 자격이나 재사용 가능한 운영 값이 아니다. DESIGN 경고는0이며 별도 theme/Tailwind/shadcn·디자인 전용 lint는 해당 없음이다.
+
+## 완료 게이트의 입력 rate 보완
+
+최종 점검에서 malformed connection JSON과 잘못된 회원 form이 기존 decode 조기 반환으로 request budget을 우회했다. 입력 검사 실패를 값으로 반환하도록 바꾸어 anonymous/member rate를 먼저 저장한다. invalid member session도 익명 budget을 소비한다. 실제 Postgres에서 malformed prepare30회는422,31번째는429인 회귀를 추가했다. 이 보완 뒤 제품 코드 고정 SHA는 아래 최종 게이트 기록을 사용한다. 앞의2ac91a7 검증은 당시 후보의 기록으로 보존한다.
+
+보완 뒤 make lint·make test·make verify-mvp는 모두 exit0이다. malformed connection 회귀를 포함해 전체 기존 회귀를 다시 실행했다. 원래1차 증거는 보존하고 `lint-corrected.log`, `test-corrected.log`, `mvp-corrected.log`와 exits.json에 보완 증거를 추가했다. 최종 SHA는 이 보완을 포함한 브랜치 HEAD와 worker_done이다. 빈 DEV 인박스와 work.py finish 기록은 유지한다.

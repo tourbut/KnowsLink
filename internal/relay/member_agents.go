@@ -80,15 +80,15 @@ func (s *Service) agentRoutes(mux *http.ServeMux) {
 func (s *Service) memberAction(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.Body = http.MaxBytesReader(w, r.Body, 8192)
-		if err := r.ParseForm(); err != nil {
-			render(w, 422, "head", map[string]any{"Title": "내 agent", "Problem": "입력 크기나 형식이 올바르지 않습니다."})
-			return
-		}
+		parseErr := r.ParseForm()
 		token := readCookie(r, sessionCookie)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 			id, session, e := st.session(token, now)
 			if e != nil {
-				return nil, e
+				if ok, retry := st.hit(now, anonymousRate(s.clientIP(r))...); !ok {
+					return refusal{429, limited(retry)}, nil
+				}
+				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요."}, nil
 			}
 			owner := st.Members[id].Owner
 			clean := path == "cancel" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
@@ -101,6 +101,9 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			}
 			// Return refusals as values: rejected work must commit its request budget.
 			fail := func(e error) (any, error) { return refusal{statusFor(e), safeProblem(e)}, nil }
+			if parseErr != nil {
+				return fail(fault("invalid_schema"))
+			}
 			if path == "create" || path == "connect" || path == "confirm" || path == "key-revoke" || path == "agent-revoke" {
 				if now.Sub(session.Verified) >= reauthWindow {
 					return fail(fault("reauth_required"))
@@ -213,10 +216,7 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 func (s *Service) connectAPI(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var c struct{ Token, Client, Kid, Public, Proof string }
-		if err := decodeCommand(w, r, &c); err != nil {
-			respond(w, nil, err)
-			return
-		}
+		parseErr := decodeCommand(w, r, &c)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 			conn, e := st.connection(c.Token, now)
 			rates := anonymousRate(s.clientIP(r))
@@ -230,6 +230,9 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 			}
 			if ok, retry := st.hit(now, rates...); !ok {
 				return map[string]string{"error": "rate_limited", "retry_at": retry.Format(time.RFC3339)}, nil
+			}
+			if parseErr != nil {
+				return map[string]string{"error": parseErr.Error()}, nil
 			}
 			if e != nil {
 				return map[string]string{"error": e.Error()}, nil

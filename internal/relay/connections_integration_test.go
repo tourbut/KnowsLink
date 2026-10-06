@@ -206,6 +206,20 @@ func TestPublicAgentHTTP(t *testing.T) {
 		})
 		expect(t, a.do("POST", "/home/agents", nil), 409)
 	})
+	t.Run("malformed_connection_requests_spend_anonymous_budget", func(t *testing.T) {
+		s, _ := identityService(t, pool)
+		for i := 0; i < 31; i++ {
+			r := httptest.NewRequest("POST", "/v1/connect/prepare", strings.NewReader("{"))
+			w := httptest.NewRecorder()
+			s.Handler().ServeHTTP(w, r)
+			expected := 422
+			if i == 30 {
+				expected = 429
+			}
+			expect(t, w, expected)
+		}
+	})
+
 	t.Run("concurrent_agent_capacity_and_restart", func(t *testing.T) {
 		s, mail := identityService(t, pool)
 		a := newBrowser(s, "192.0.2.88")
