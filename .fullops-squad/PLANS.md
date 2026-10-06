@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
 summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
@@ -879,3 +879,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV-POLICY-FIX msg_b3dd3979dc40/83e0bfb907085bade31a193ab91ca723feb7d7ad 수신. 실제cleanHEAD·빈인박스·원본실패/검증을확인하고coor에SHA보존반영했다. 추출SHA null과보완출처를함께보존했다. 고정후보 458798c2ee15c179edacfd6f94ebb9896d26f411에서 독립FIX-REVIEW/FIX-TESTER/UI-FIX를배정한다. 원래lint3769e9d만으로최종83e를주장하지않고누락고정HEAD검사를coor가한번보완한다. 필수검수·원본UIFAIL해소전main통합보류다.
 
 - 최종83e0bfb의누락고정HEAD FullOps를완료했다. 기준4a exit0·product-lint/test0·ERROR0/WARNING6/실행불가0, 원본JSON은COOR/policy-fix-83e0bfb-lint.json에보존했다. 기존3769e9d의검사는원래SHA로유지한다. 검수준비빈report를dispatch전metadata-only stamp했다.
+
+## SAR-PUBLIC-AGENTS-001-UI-FIX — designer 완료 결과
+
+- fixed 458798c의 F-UI-01–04·POLICY 안내는 좁은 직접 UI PASS다. [보고서](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md)·PNG 62개·Orca 장애 2개·manifest·cleanup을 보존했다. 제품 변경 0이고 원본 d1/d165 UI FAIL·OPS/QA 원실행은 유지한다.
+- 남은 담당과 재개 조건: TESTER의 fixed 정책 독립 QA, OPS delta/운영 조건, coor의 합성 후보 통합 수락. 실메일·운영 공개·실24h·부하/복원·노우↔다닷은 후속으로 유지한다. 새 designer 과제는 없다. 완료 전문은 work.py finish 뒤 날짜별 designer 로그에서 확인한다.

@@ -3,7 +3,7 @@ title: 일반 이메일 서비스 화면 수락 기준
 status: draft
 updated: 2026-10-06
 owner: designer
-tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY]
+tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
 summary: 관계 재초대와 키·agent 기록 포화 및 교체·철회 목록 정리의 상태와 다음 동작을 정의한다
 ---
 
@@ -57,3 +57,7 @@ designer는 고정 후보에서 키/agent 기록 포화의 오류와 다음 동�
 coor가 안정된 후보 SHA·운영 환경·일반 QA 계정 사용 권한을 제공한다. designer는 UX-01–07을 같은 후보에서 직접 확인한다. 사용자도 일반 이메일로 실제 가입/로그인·로그아웃·재로그인을 확인한다. TESTER 자동 결과와 이 사람 확인은 별도로 기록한다. UX-08은 일반 서비스 수락 뒤 새 과제에서 두 플랫폼의 실제 일반 온보딩·명시적 관계 수락·노우→다닷 수신·다닷→노우 회신 ID와 앱 도구 상태를 확인한다. 두 다른 이메일을 사용자에게 요구하지 않는다.
 
 필요한 캡처는 확인 대기/실패, 자기 홈, 연결 상태, 관계 수락/철회, receipt 실패/답장, gate 만료/철회다. 이메일·코드·연결 수단·key/token은 캡처 전에 가린다. 기한 변화가 정지 캡처로 판정되지 않을 때만 짧은 영상을 만든다. 기존 gate 캡처는 관련 의존성 동일성을 확인했을 때 원래 SHA의 증거로 재사용한다. 새 이메일 인증과 연결 화면은 기존 합성 캡처로 대체하지 않는다.
+
+## SAR-PUBLIC-AGENTS-001-UI-FIX의 직접 재검수
+
+고정 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 F-UI-01–04와 POLICY 새 안내는 [직접 재검수 보고](SAR-PUBLIC-AGENTS-001-UI-FIX.md)의 좁은 시각 조건에서 PASS다. 원본 d1/d165 UI FAIL과 원본 QA/OPS 실행 기록은 그대로 보존했다. 독립 TESTER/OPS·main 통합·일반 서비스 공개 수락은 별도다. 제품 규칙과 디자인 방향은 바꾸지 않았다.

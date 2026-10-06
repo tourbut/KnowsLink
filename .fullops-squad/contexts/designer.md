@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
 summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보류 경계를 보존한다
 ---
 
@@ -42,3 +42,7 @@ summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보
 - 2026-10-06: 같은 POLICY 추가 지시에서 키 기록 포화는 새 agent 연결·새 관계 수락으로 처리한다. owner 기록 포화는 필요한 철회·최소 24h 보존·실제 정리 뒤 수동 재시도를 안내한다.
   기술 보호값은 DEV 소유이고 상품 quota가 아니다. 기존 활성 자격은 임의 철회하지 않으며 철회 목록의 사라짐은 권한 복구나 영구 백업 삭제가 아니다.
   추가 제품 답과 독립 관찰 조건: [POLICY 실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md#기록-보호의-추가-제품-답과-관찰-조건).
+
+- 2026-10-06: SAR-PUBLIC-AGENTS-001-UI-FIX는 fixed 458798c의 F-UI-01–04와 POLICY 안내를 actual desktop1280/mobile390에서 직접 확인해 좁은 UI PASS로 기록했다.
+  원본 d1/d165 FAIL·QA/OPS 실행 65개 파일은 byte 동일이다. 제어 25h fixture와 실제 sweep을 실운영 24h로 확대하지 않는다.
+  직접 근거·한계·인계: [UI-FIX 보고](../docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md).
