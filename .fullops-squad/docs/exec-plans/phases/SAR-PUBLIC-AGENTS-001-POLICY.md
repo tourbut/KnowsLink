@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-06
 owner: designer
 tasks: [SAR-PUBLIC-AGENTS-001-POLICY]
-summary: L2再초대와 기록 보호의 교체·목록 정리 제품 답 및 DEV·QA 관찰 조건을 기록한다
+summary: L2 재초대와 기록 보호의 교체·목록 정리 제품 답 및 DEV·QA 관찰 조건을 기록한다
 ---
 
 # SAR-PUBLIC-AGENTS-001-POLICY — 관계 초대의 제품 판단과 기술 인계
@@ -102,3 +102,9 @@ DEV는 기술값·API·정리/포화 구현과 자동 검사를 맡는다. TESTE
 첫 POLICY finish는 이미 exit 0이었다. 추가 지시 뒤 같은 키의 finish 재실행은 exit 1, `이미 아카이브된 과제입니다. 기록을 확인하세요`로 거부됐다. 원본 로그·인박스는 보존됐다. coordinator의 preamble ask 답변은 원래 Task/Dispatch를 유지하고 현재 역할 인박스의 추가분만 `SAR-PUBLIC-AGENTS-001-POLICY-SUPPLEMENT` 기록 키로 finish하는 방식을 허용했다. 이 키는 같은 제품 과제의 추가 기록이며 새 dispatch·제품 배정이 아니다. 원래 POLICY 항목의 전문은 바꾸지 않는다.
 
 추가 지시 `msg_750122334b74`와 DEV-FIX fixed `4a1b80aec8fa6a06144d51f3a5609927a2644928`를 연결했다. 읽은 DEV 기록은 해당 고정 SHA와 byte 동일하다. 새 제품 조건의 구현 준수·독립 QA·직접 UI PASS는 선언하지 않는다. 추가 완료 전문도 날짜별 같은 designer 로그에 별도 항목으로 보존한다.
+
+추가 기록 HEAD `a111972011a0e1ece18b2bbcf499eb40f0e8ec75`의 FullOps lint는 지시서 기준 d165178에서 exit 0, ERROR 0·WARNING 1·실행 불가 0이다. 등록 product-lint·product-test도 각각 exit 0이다. [추가 기록 원본 JSON](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/supplement-record-lint.json)에 보존했다. WARNING은 기존 PLANS 844줄(기준 ref 819줄, 상한 500줄)이다. 기존 기록을 임의 삭제하지 않았다. 초기 완료 직전 3aa073b의 검사도 [추가 지시 전 결과](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/pre-handoff-final-lint.json)에 보존했다.
+
+추가 strict는 exit 0(13개·문제 0·경고 0)이다. 공백·원본 리뷰/UI·첫 아카이브 byte 동일·로컬 링크 존재 확인도 exit 0이다. 정책 동작·교체의 독립 QA·실제 화면·OPS 실제 자원/복원 검증은 미실행이며 고정 수정 후보의 후속이다. 같은 Dispatch의 전체 최종 SHA와 검사 결과는 worker_done으로 고정한다.
+
+SUPPLEMENT의 `work.py finish`도 exit 0이다. 같은 designer 날짜 로그에 추가 지시·제품 답·검증 전문을 보존했다. 빈 인박스·추가 전문 일치·기존 로그 전체 prefix 불변을 확인했다(exit 0). 원 Task/Dispatch는 유지하며 worker_done은 아직 보내지 않았다.
