@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-REVIEW",
+  "head": "c6f0848b36b310be1fb41daff5e2b1111d2a2bf4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 89,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 89
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.47000000000000003
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "summary": "Public text checks pin the separate wire, one related reply, erased payloads, current authorization and shared capacities.",
+      "probability": 0.09999999999999999
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.08
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "summary": "Public connection-check text uses a separate signed wire, current member authorization and the shared short-lived inbox.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.04
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.03
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/eslint.config.mjs",
+      "summary": "Check adapter source and this flat configuration with recommended rules.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/policy_test.go",
+      "summary": "Policy checks pin the agreed re-invite rules and the record saturation guidance (SAR-PUBLIC-AGENTS-001-POLICY).",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/test_messages_test.go",
+      "summary": "Trial-message regression covers explicit enablement, strict text schema, signature, replay, TTL and one-use receive.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.85,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5093,
+    "output_tokens": 939,
+    "cost": 0.000213906
+  },
+  "latency_seconds": 0.325,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

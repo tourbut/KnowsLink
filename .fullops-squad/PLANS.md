@@ -938,3 +938,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - DEV 완료 msg_1f2a202e32d0/37f9a1ed733866f99c56bed50e807d96cddcc328 수신. 실제cleanHEAD·빈인박스·origin역할 동일·최종HEAD FullOps ERROR0/WARNING11/product-lint/test0·로컬Node/MCP/plugin 원실행을 확인했다. 실제DEV 세션은 01a11106-b736-7db1-b518-a65b64dbc5fb다. 최종JSON을 COOR에 영속화했다. 독립 필수 검수 대기로 integration hold이며 전체PS08/13/실메일/공개/노우↔다닷 PASS가 아니다.
 - coor 병합 c6f0848의 PLANS 충돌 처리에서 잘못된 문서 삭제를 검수준비 diff로 발견했다. main에 미반영이다. 68b0d6a/f210b56/37f9a1e의 원본 Git 3-way를 다시 대조해 summary는 현재coor 값을 유지하고 append는 양쪽 전문을 보존했다. 기존914줄 삭제를 복원했다. 제품diff0을 확인하고 새fixed 후보를 사용한다. c6 준비리뷰는 미배정이며 원래preview/result와 실패를 보존한다. member_receipts.go 오기 탐색실패는 원본context JSON에 유지하고 실제 member_receipt.go를 수동필수후보로 보완한다.
+
+- 검수 대상은 복원 fixed `09c523da8a3407288d9f5d711e1834af12bc7808`이다. DEV37f9a1e 대비 제품diff0과 PLANS 원본/새 기록 보존을 확인했다. OPS는 새 REVIEW-2 기록과 read-only snapshot /tmp/knowslink-messages-review-09c523d를 사용한다. TESTER/UI도 같은fixed이다. 이전c6 준비양식과 오기context는 실패/미배정 그대로보존한다. 준비문서와 제품후보는 역할에만 공유하며 필수검수 전 main/origin68b0d6a에 제품을 넣지 않는다.

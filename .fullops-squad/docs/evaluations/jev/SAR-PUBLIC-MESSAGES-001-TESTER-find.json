@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-TESTER",
+  "head": "c6f0848b36b310be1fb41daff5e2b1111d2a2bf4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 89,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 89
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.25
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.13
+    },
+    {
+      "path": "adapters/src/trial-check.ts",
+      "summary": "Two independent stdio MCP agents exchange trial messages over the real isolated Postgres relay.",
+      "probability": 0.12
+    },
+    {
+      "path": "adapters/src/public-check.ts",
+      "summary": "Real local CLI and independent MCP processes check member text against the isolated Go/Postgres service; no vendor account claims.",
+      "probability": 0.09999999999999999
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.08
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "summary": "Public text checks pin the separate wire, one related reply, erased payloads, current authorization and shared capacities.",
+      "probability": 0.08
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.04
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/test_messages_test.go",
+      "summary": "Trial-message regression covers explicit enablement, strict text schema, signature, replay, TTL and one-use receive.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "summary": "Load a private trial environment without exposing credentials in shell arguments; launch Codex CLI or Grok MCP.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "summary": "Explicit member connection-check CLI/MCP transport: private onboarding folder, signed short text, manual receive and no automatic reply.",
+      "probability": 0.01
+    },
+    {
+      "path": ".dockerignore",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.84,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5074,
+    "output_tokens": 939,
+    "cost": 0.000213108
+  },
+  "latency_seconds": 0.287,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

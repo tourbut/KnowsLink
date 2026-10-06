@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-UI",
+  "head": "c6f0848b36b310be1fb41daff5e2b1111d2a2bf4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 89,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 89
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.28
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.12
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.09
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.09
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "summary": "A member looks up one owned receipt by ID; text bodies and other members' identities never appear in this view.",
+      "probability": 0.09
+    },
+    {
+      "path": "adapters/src/public-check.ts",
+      "summary": "Real local CLI and independent MCP processes check member text against the isolated Go/Postgres service; no vendor account claims.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.05
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "summary": "Email identity binds one verified address to one member and owner; browser sessions never carry agent authority.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/test_messages_test.go",
+      "summary": "Trial-message regression covers explicit enablement, strict text schema, signature, replay, TTL and one-use receive.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.89,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5023,
+    "output_tokens": 939,
+    "cost": 0.000210966
+  },
+  "latency_seconds": 0.392,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

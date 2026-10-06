@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-REVIEW",
+  "head": "c6f0848b36b310be1fb41daff5e2b1111d2a2bf4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 177,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 177
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-DEV — 일반 text·receipt·gate·자원 보호 — 일반 text·receipt·gate·자원 보호의 분석과 구현·검증을 기록한다",
+      "probability": 0.67
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "summary": "일반 서비스 제품 기준 독립 검토 — 고정 제품 문서와 실행 인계의 사용자 요구 및 독립성 및 검증 근거를 검수한다",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "summary": "ops 컨텍스트 — 운영 준비의 수락 경계와 서버 관찰 재사용 원칙을 보존한다",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "summary": "공통 보안 기준",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "summary": "KnowsLink 일반 이메일 서비스 수락 기준 — 일반 서비스 관계 재초대와 기록 포화의 교체·철회 목록 정리 수락 조건을 정의한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "summary": "<과제 키> 리뷰",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.02
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "summary": "<과제 키> — <목표> — 역할 인박스의 작업 범위와 검증·UI·변경 보고 양식",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "summary": "KnowsLink",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "summary": "ops 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.82,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 15750,
+    "output_tokens": 1819,
+    "cost": 0.0006615
+  },
+  "latency_seconds": 0.384,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
