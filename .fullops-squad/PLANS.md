@@ -811,3 +811,9 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회·명시적 관계와 한도를 구현했다. 자동 검증·기술 문서와 인박스 전문은 DEV 완료 로그로 보존한다. 고정 후보의 독립 OPS 보안 delta 리뷰·TESTER 교차 계정/연결/키/관계/한도 QA·designer UX-04–05 직접 검수는 coor 배정 대기다. 실제 이메일·공개·Grok Bot/다닷 실제 계정·일반 text/UX-06·운영 보존/복구 수락은 후속이다. 독립 필수 검사와 미해결 critical/high가 통합을 차단한다. 상세는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md)을 따른다.
 
 - DEV 완료 msg_3e760463c64c/d1eef9bb90b9726149980320c42fb1fdbcaf584a를수신했다. clean·빈인박스·실행보고를확인하고coor에SHA보존반영했다. PLANS의coor착수/route기록과DEV완료인계를모두보존해충돌해결했다. integration hold는독립리뷰/QA/UI수락대기다. 별도읽기전용 detached d1snapshot과세역할정규인박스를준비했으며actualDEVsession01a10f52-ac0f-75a0-b253-9a926a8e5650를독립성기준에남겼다.
+
+## SAR-PUBLIC-AGENTS-001-UI — designer 결과와 후속
+
+- 역할 검수 작업은 완료했다. 대상 제품은 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`다. [직접 관측·판정](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md)을 정본으로 사용한다.
+- UX04–05 시각 수락은 FAIL/보류다. medium F-UI-01 모바일 지문 가독성과 F-UI-02 오류 뒤 다음 동작을 DEV에 인계한다. 수정된 고정 SHA와 해당 실제 화면이 준비되면 designer가 영향 범위만 재검수한다. 새 과제 dispatch는 coor가 현재 역할 인박스의 사용 상태를 확인한 뒤 정한다.
+- 합성 상태 PASS는 독립 QA·보안 리뷰·실제 이메일·운영 공개·노우↔다닷의 미검증을 해제하지 않는다. 자기 fixture 자원은 회수했고 사용자 기존 탭·인증값·운영 자원은 보존했다. 제품 코드와 제품 규칙은 변경하지 않았다.
