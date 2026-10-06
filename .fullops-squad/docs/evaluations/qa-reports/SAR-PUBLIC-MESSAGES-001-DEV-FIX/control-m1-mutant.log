@@ -1,0 +1,161 @@
+ Image knowslink-mvp-92a235886a-migrate Building
+ Image knowslink-mvp-92a235886a-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.35kB done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.0s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#6 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#6 DONE 0.1s
+
+#7 [migrate internal] load build context
+#7 transferring context: 318.94kB 0.0s done
+#7 DONE 0.1s
+
+#8 [migrate build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#8 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#8 DONE 0.1s
+
+#9 [migrate build 2/7] WORKDIR /src
+#9 CACHED
+
+#10 [migrate build 3/7] COPY go.mod go.sum ./
+#10 CACHED
+
+#11 [migrate build 4/7] RUN go mod download
+#11 CACHED
+
+#12 [relay build 5/7] COPY cmd ./cmd
+#12 CACHED
+
+#13 [relay build 6/7] COPY internal ./internal
+#13 DONE 0.1s
+
+#14 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#14 DONE 25.3s
+
+#15 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#15 CACHED
+
+#16 [migrate stage-1 3/5] WORKDIR /app
+#16 CACHED
+
+#17 [relay stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#17 DONE 0.1s
+
+#18 [relay stage-1 5/5] COPY db/migrations ./db/migrations
+#18 DONE 0.0s
+
+#19 [migrate] exporting to image
+#19 exporting layers
+#19 exporting layers 1.8s done
+#19 exporting manifest sha256:06fbbaf642025fdd88d6ebb815a640b20dcc1ae2b8fc154e2c5747826054e6fc 0.0s done
+#19 exporting config sha256:07f9e450e5f3268f6f379581cda162d23c4c81e55e9929babb863bf276289eb0 0.0s done
+#19 exporting attestation manifest sha256:4de7eb7345b73d9ec7380e9a2415467c993b09ef5721743932d5f2bea48e5cec
+#19 exporting attestation manifest sha256:4de7eb7345b73d9ec7380e9a2415467c993b09ef5721743932d5f2bea48e5cec 0.1s done
+#19 exporting manifest list sha256:dff47caadf81d3e135e021a1aed601161e89cc2833528885e700b116d37b3211 0.0s done
+#19 naming to docker.io/library/knowslink-mvp-92a235886a-migrate:latest
+#19 naming to docker.io/library/knowslink-mvp-92a235886a-migrate:latest 0.0s done
+#19 unpacking to docker.io/library/knowslink-mvp-92a235886a-migrate:latest
+#19 unpacking to docker.io/library/knowslink-mvp-92a235886a-migrate:latest 0.3s done
+#19 DONE 2.3s
+
+#20 [relay] exporting to image
+#20 exporting layers 1.8s done
+#20 exporting manifest sha256:9c1db667f2142393c23addc9e8b0f1d4fdf4120884f272422954ac0eeacd3612 0.0s done
+#20 exporting config sha256:8d61fcb2a3f4545df5df8b8731d97e65ce9480e80fb8985f0265f00dfc30a9b3 0.0s done
+#20 exporting attestation manifest sha256:02b3751b871f5924d841a2417af6fc9900336e105eca845731e0927c2a1ef785 0.1s done
+#20 exporting manifest list sha256:833619cbb8e27f4e9bcd0d2dec4e437c9224e1c979936b6e8abe64947c692c06 0.0s done
+#20 naming to docker.io/library/knowslink-mvp-92a235886a-relay:latest done
+#20 unpacking to docker.io/library/knowslink-mvp-92a235886a-relay:latest 0.2s done
+#20 DONE 2.4s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-mvp-92a235886a-migrate Built
+ Image knowslink-mvp-92a235886a-relay Built
+ Network knowslink-mvp-92a235886a_database Creating
+ Network knowslink-mvp-92a235886a_database Created
+ Network knowslink-mvp-92a235886a_ingress Creating
+ Network knowslink-mvp-92a235886a_ingress Created
+ Volume knowslink-mvp-92a235886a_postgres-data Creating
+ Volume knowslink-mvp-92a235886a_postgres-data Created
+ Container knowslink-mvp-92a235886a-postgres-1 Creating
+ Container knowslink-mvp-92a235886a-postgres-1 Created
+ Container knowslink-mvp-92a235886a-migrate-1 Creating
+ Container knowslink-mvp-92a235886a-migrate-1 Created
+ Container knowslink-mvp-92a235886a-relay-1 Creating
+ Container knowslink-mvp-92a235886a-relay-1 Created
+ Container knowslink-mvp-92a235886a-postgres-1 Starting
+ Container knowslink-mvp-92a235886a-postgres-1 Started
+ Container knowslink-mvp-92a235886a-postgres-1 Waiting
+ Container knowslink-mvp-92a235886a-postgres-1 Healthy
+ Container knowslink-mvp-92a235886a-migrate-1 Starting
+ Container knowslink-mvp-92a235886a-migrate-1 Started
+ Container knowslink-mvp-92a235886a-migrate-1 Waiting
+ Container knowslink-mvp-92a235886a-migrate-1 Exited
+ Container knowslink-mvp-92a235886a-relay-1 Starting
+ Container knowslink-mvp-92a235886a-relay-1 Started
+ Container knowslink-mvp-92a235886a-migrate-1 Waiting
+ Container knowslink-mvp-92a235886a-relay-1 Waiting
+ Container knowslink-mvp-92a235886a-postgres-1 Waiting
+ Container knowslink-mvp-92a235886a-postgres-1 Healthy
+ Container knowslink-mvp-92a235886a-migrate-1 Exited
+ Container knowslink-mvp-92a235886a-relay-1 Healthy
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-92a235886a', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-qeh57r8y/test.yaml', 'up', '--build', '--wait', 'relay']; exit: 0
+ Container knowslink-mvp-92a235886a-relay-1 Stopping
+ Container knowslink-mvp-92a235886a-relay-1 Stopped
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-92a235886a', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-qeh57r8y/test.yaml', 'stop', 'relay']; exit: 0
+=== RUN   TestHTTPConcurrencyAcrossInstances
+--- PASS: TestHTTPConcurrencyAcrossInstances (0.35s)
+=== RUN   TestHTTPSlowBodyAndCleanupAdmission
+    public_messages_integration_test.go:549: admitted 4 want 7
+--- FAIL: TestHTTPSlowBodyAndCleanupAdmission (5.81s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	6.194s
+FAIL
+command: ['go', 'test', '-tags=integration', '-race', '-count=1', '-v', '-run', 'TestHTTPSlowBodyAndCleanupAdmission|TestHTTPConcurrencyAcrossInstances', './internal/relay']; exit: 1
+ Container knowslink-mvp-92a235886a-relay-1 Stopping
+ Container knowslink-mvp-92a235886a-relay-1 Stopped
+ Container knowslink-mvp-92a235886a-relay-1 Removing
+ Container knowslink-mvp-92a235886a-relay-1 Removed
+ Container knowslink-mvp-92a235886a-migrate-1 Stopping
+ Container knowslink-mvp-92a235886a-migrate-1 Stopped
+ Container knowslink-mvp-92a235886a-migrate-1 Removing
+ Container knowslink-mvp-92a235886a-migrate-1 Removed
+ Container knowslink-mvp-92a235886a-postgres-1 Stopping
+ Container knowslink-mvp-92a235886a-postgres-1 Stopped
+ Container knowslink-mvp-92a235886a-postgres-1 Removing
+ Container knowslink-mvp-92a235886a-postgres-1 Removed
+ Volume knowslink-mvp-92a235886a_postgres-data Removing
+ Network knowslink-mvp-92a235886a_database Removing
+ Network knowslink-mvp-92a235886a_ingress Removing
+ Volume knowslink-mvp-92a235886a_postgres-data Removed
+ Network knowslink-mvp-92a235886a_database Removed
+ Network knowslink-mvp-92a235886a_ingress Removed
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-92a235886a', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-qeh57r8y/test.yaml', 'down', '--volumes']; exit: 0
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-dev/9ebf9a10-609b-475a-b1cd-f9edad84c9a1/scratchpad/mut/scripts/control.py", line 50, in <module>
+    main()
+  File "/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-dev/9ebf9a10-609b-475a-b1cd-f9edad84c9a1/scratchpad/mut/scripts/control.py", line 42, in main
+    run(["go", "test", "-tags=integration", "-race", "-count=1", "-v", "-run", "TestHTTPSlowBodyAndCleanupAdmission|TestHTTPConcurrencyAcrossInstances", "./internal/relay"], tests)
+  File "/tmp/claude-1000/-home-shin-orca-workspaces-KnowsLink-fullops-dev/9ebf9a10-609b-475a-b1cd-f9edad84c9a1/scratchpad/mut/scripts/control.py", line 18, in run
+    raise RuntimeError("synthetic verification command failed")
+RuntimeError: synthetic verification command failed

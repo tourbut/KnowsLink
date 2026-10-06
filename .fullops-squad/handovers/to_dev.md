@@ -40,3 +40,7 @@ Workers Free만허용하며유료전환/구독/초과과금은금지다. 서버/
 브랜치/fullSHA·H1/M1원인/수정/재현회귀·원본실패·최종HEAD각명령exit/경고·기술문서/증거·미검증·후속담당/재개조건을전문으로쓸것.
 
 Jev context 충돌 가능성: 원DEV 실행 기록의 자체 PASS는 H1/M1 발견 전 조건이다. 현재 독립OPS H1/M1 미해결과 원본 check exit1이 이번 수정 전제이며 과거 검사를 덮어쓰지 않는다. keep 후보는 지시서의 먼저읽기 범위에 포함한다.
+
+## 같은 과제 추가 수정 — F-UI-MSG-01
+
+2026-10-06 designer handoff msg_6194f4825058: fixed09c 일반회원 실제gate에서 Deny 거절 뒤 `/home/gates/<id>/deny` GET이405 Method Not Allowed로끝나고결과/홈복귀가없다. canonical `/home/gates/<id>`는denied이므로거절은저장됐다. 키보드Enter도같은실패다. UX07 medium이며현재DEV-FIX에서원인분석/수정·실제form/redirect/다음동작자동회귀를함께완료한다. 제품규칙/UX정본은변경하지않는다. 원본UI실패/증거는designer가보존한다. 새fixed후영향UX07는designer가직접재검수한다. H1/M1 보호·정리budget·인가/CSRF·deny기한정책은유지한다. 기술방법은DEV가정한다.

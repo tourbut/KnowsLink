@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
 summary: 현재 과제·MESSAGES 후보 OPS 리뷰 high 차단과 수락·운영 보류를 기록한다
 ---
 
@@ -954,3 +954,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 후속: DEV가 H-1(권장 M-1 포함)을 고치고 slow body 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키와 별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다. TESTER QA·designer UX06/07 검수는 coor 판단이다.
 
 - OPS 원본 msg_22a669fe781e/6e1dac284e2fa8b42e16a5e8e59b11e0354a282b 수신. 실제cleanHEAD·빈인박스·별도세션9bc44cbf·fixed09c read-only/clean·최종pass gate6e를확인했다. H1 high/M1 medium·원본review.check exit1·형식probe는수락근거아님을보존한다. 추출SHA null과실제fullSHA/원문/HEAD 근거를함께보완한다. DEV37/OPS6e는hold이며main/origin68b제품수락차단유지. QA/UI는현재09c 원본검사를계속하고실패/원본증거를보존하도록 msg39f2/msgcfbb로안내했다. 새DEV-FIX route는Opus5.5high추천을따르며오래된DEV캐시/새모델·원인분석범위로fresh세션을사용한다.
+
+## SAR-PUBLIC-MESSAGES-001-DEV-FIX DEV 수정 후보 — 2026-10-06
+
+- DEV가 OPS REVIEW-2 H-1(slow body 슬롯 점유)·M-1(경로만 보는 정리 입장)과 designer F-UI-MSG-01(gate Deny 뒤 405)을 같은 과제에서 고쳤다. 본문은 슬롯 전 10s·상한 안에서 받고, 정리 budget은 검증된 자기 기록에만 쓴다. Deny 뒤 정식 gate 화면으로 303한다. [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md).
+- 원 09c 리뷰·QA/UI 실패는 그대로 보존한다. coor 후속: 새 fixed SHA의 OPS delta 리뷰·TESTER 좁은 QA·designer UX07 재검수 뒤 main 판정. Tunnel/edge 본문 완충·L-1 실측은 OPS 공개 전 조건이다.
