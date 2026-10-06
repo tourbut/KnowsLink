@@ -185,7 +185,7 @@ func (s *Service) Handler() http.Handler {
 	s.textRoutes(mux)
 	mux.HandleFunc("GET /home/receipts", s.memberReceipt)
 	// Stdlib Sec-Fetch-Site/Origin check rejects cross-origin browser writes; non-browser agent calls carry neither header.
-	protected := http.NewCrossOriginProtection().Handler(mux)
+	protected := crossOrigin.Handler(mux)
 	ratedTest := s.testHandler(mux)
 	return s.boundedHTTP(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
@@ -610,7 +610,8 @@ func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 			gateError(w, r, back, err)
 			return
 		}
-		http.Redirect(w, r, r.URL.Path, http.StatusSeeOther)
+		// Both decisions land on the canonical gate page; /deny is POST-only and its GET would end in 405.
+		http.Redirect(w, r, back+"/gates/"+r.PathValue("id"), http.StatusSeeOther)
 	}
 }
 

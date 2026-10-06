@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -96,6 +97,7 @@ func newState() *State {
 type Service struct {
 	httpOnce           sync.Once
 	httpNew, httpClean chan struct{}
+	live               atomic.Pointer[map[string]time.Time]
 	Pool               *pgxpool.Pool
 	TestAgents         map[string]bool
 	// SyntheticSignup keeps the local /v1/owners fixture; public members come only from verified email.
@@ -166,6 +168,8 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if err = tx.Commit(ctx); err != nil {
 		return nil, fault("unavailable")
 	}
+	live := state.liveCredentials()
+	s.live.Store(&live)
 	return value, opErr
 }
 func (st *State) current(m *Message) bool {

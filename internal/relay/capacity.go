@@ -25,7 +25,8 @@ func (s *Service) requestHit(st *State, r *http.Request, now time.Time, buckets 
 }
 
 // Classify the authenticated request once, before schema, CSRF or route rejection, without trusting the request's claimed agent ID.
-func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time) []bucket {
+// Only a verified principal ending its own record spends cleanup budget; anonymous, foreign or malformed cleanup is new work.
+func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, cleanable bool) ([]bucket, bool) {
 	principal := ""
 	switch {
 	case strings.HasPrefix(r.URL.Path, "/home") || r.URL.Path == "/auth/reauth" || r.URL.Path == "/auth/logout" || r.URL.Path == "/auth/logout-all":
@@ -52,12 +53,12 @@ func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time) []bu
 		principal, _ = st.principal(ownerToken(r), "owner")
 	}
 	if principal == "" {
-		return anonymousRate(s.clientIP(r))
+		return anonymousRate(s.clientIP(r)), false
 	}
-	if cleanupRequest(r) {
-		return cleanupRate(principal)
+	if cleanable && st.cleanupTarget(r, principal, now) {
+		return cleanupRate(principal), true
 	}
-	return memberRate(principal)
+	return memberRate(principal), false
 }
 
 type requestBodyKey struct{}
@@ -65,6 +66,14 @@ type requestBodyKey struct{}
 func httpBody(r *http.Request) []byte {
 	raw, _ := r.Context().Value(requestBodyKey{}).([]byte)
 	return raw
+}
+
+// commandBody reads an empty body as {} like the /v1 operation handlers.
+func commandBody(r *http.Request) []byte {
+	if raw := httpBody(r); len(raw) > 0 {
+		return raw
+	}
+	return []byte("{}")
 }
 
 func (st *State) messageCapacity(gate bool) bool {
@@ -121,7 +130,8 @@ func (st *State) enterHTTP(token string, clean bool, now time.Time) bool {
 }
 
 // Local channels also bound requests waiting for DB admission; shared records enforce the limit across relay processes.
-// Request contexts and socket body reads finish within 10s; 30s admission expiry recovers crashed processes conservatively.
+// The capped body is received before any slot, under the same 10s deadline as the request context, so a slow or
+// anonymous sender holds only its own connection, like header reception. 30s admission expiry recovers crashed processes.
 func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 	s.httpOnce.Do(func() { s.httpNew = make(chan struct{}, 16); s.httpClean = make(chan struct{}, 4) })
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -133,15 +143,25 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		defer cancel()
 		r = r.WithContext(ctx)
 		_ = http.NewResponseController(w).SetReadDeadline(time.Now().Add(10 * time.Second))
-		// Explicit deny paths need no body reads to reserve cleanup. Legacy decision forms start in new-work admission.
 		limit := int64(rawEnvelopeLimit)
-		if strings.Contains(r.Header.Get("Content-Type"), "application/x-www-form-urlencoded") || strings.HasPrefix(r.URL.Path, "/v1/connect/") {
+		form := strings.Contains(r.Header.Get("Content-Type"), "application/x-www-form-urlencoded")
+		if form || strings.HasPrefix(r.URL.Path, "/v1/connect/") {
 			limit = 8192
 		}
-		r.Body = http.MaxBytesReader(w, r.Body, limit)
-		clean := cleanupRequest(r)
+		raw, readErr := io.ReadAll(http.MaxBytesReader(w, r.Body, limit))
+		r.Body = io.NopCloser(bytes.NewReader(raw))
+		r = r.WithContext(context.WithValue(r.Context(), requestBodyKey{}, raw))
+		var formErr error
+		if form {
+			formErr = r.ParseForm()
+			r.Body = io.NopCloser(bytes.NewReader(raw))
+		}
+		credential := ""
+		if readErr == nil && formErr == nil {
+			credential = cleanupCredential(r)
+		}
 		queue := s.httpNew
-		if clean {
+		if s.liveCredential(credential) {
 			queue = s.httpClean
 		}
 		select {
@@ -151,20 +171,14 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			capacityResponse(w, r)
 			return
 		}
-		// Read only after local admission. Even malformed bodies then spend the authenticated/anonymous request budget.
-		raw, readErr := io.ReadAll(r.Body)
-		r.Body = io.NopCloser(bytes.NewReader(raw))
-		r = r.WithContext(context.WithValue(r.Context(), requestBodyKey{}, raw))
-		if strings.Contains(r.Header.Get("Content-Type"), "application/x-www-form-urlencoded") {
-			_ = r.ParseForm()
-			r.Body = io.NopCloser(bytes.NewReader(raw))
-		}
-		clean = cleanupRequest(r)
-		token := randomToken()
+		// Even malformed bodies spend the authenticated/anonymous request budget once they reach admission.
+		token, clean := randomToken(), false
 		v, err := s.transaction(ctx, func(st *State, now time.Time) (any, error) {
-			if ok, retry := st.hit(now, s.requestBuckets(st, r, now)...); !ok {
+			buckets, cleanup := s.requestBuckets(st, r, now, credential != "")
+			if ok, retry := st.hit(now, buckets...); !ok {
 				return retry, nil
 			}
+			clean = cleanup
 			return st.enterHTTP(token, clean, now), nil
 		})
 		if err != nil {
@@ -188,6 +202,17 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			defer done()
 			_, _ = s.transaction(finishCtx, func(st *State, _ time.Time) (any, error) { delete(st.HTTP, token); return nil, nil })
 		}()
+		// A live credential that no longer proves its own cleanup target hands the reserved local slot back.
+		if queue == s.httpClean && !clean {
+			select {
+			case s.httpNew <- struct{}{}:
+				<-s.httpClean
+				queue = s.httpNew
+			default:
+				capacityResponse(w, r)
+				return
+			}
+		}
 		if readErr != nil {
 			respond(w, nil, fault("invalid_json"))
 			return
