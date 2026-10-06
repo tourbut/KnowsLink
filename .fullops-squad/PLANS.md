@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI]
-summary: MESSAGES 원본검수 실패·DEV 수정·새fixed 수락과 운영 보류를 보존한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW]
+summary: 현재 과제·MESSAGES 수정 후보 OPS 리뷰 high 차단과 수락·운영 보류를 기록한다
 ---
 
 # KnowsLink 현재 계획
@@ -980,3 +980,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV-FIX msg_6b9431a59c0c/dfc70caa748a90614b02d48c78b4651345938339(제품1fdeaa13) 수신. 실제cleanHEAD/origin동일·빈인박스/아카이브·actualClaude세션9ebf9a10-609b-475a-b1cd-f9edad84c9a1·최종HEAD lint/test0/ERROR0/WARNING5를확인하고최종JSON을COOR에보존했다. 추출기가코드SHA1fdeaa를골라원문finalHEAD dfc70과대조한sha_source를보존해수정했다. 기존H1/M1/FUI/초기mvp/DOC003실패는그대로다. coor merge2dd2584의충돌처리script가줄수assert로중단한뒤셸이continue해marker를커밋한운영오류를확인했다. main/원격에는미반영이며즉시양쪽PLANS전문/완료추가인계를보존하고marker를제거했다. 이후변경명령은set-e로중단전파한다. 새fixed검수전main수락hold다.
 
 - 수정 후독립검수는fixeddfc70/09c기준이며OPS·designer 정규빈인박스/새read-only snapshot·route/find/doc/context를준비했다. UI context충돌은원09c FAIL과새dfc 자동통과의검수경계로해소하고원본실패/새직접검수전제를명시했다. QA는현재원본검수진행이라인박스를덮어쓰지않으며원본완료뒤좁은FIX-TESTER를배정한다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-REVIEW OPS 독립 delta 보안 리뷰 결과 — 2026-10-06
+
+- OPS 세션 `3cee40a4-bf54-4f2c-bad3-1559b8f6b006`(Claude Code, claude-opus-5-5)가 수정 DEV `9ebf9a10-609b-475a-b1cd-f9edad84c9a1`·원 DEV `01a11106-b736-7db1-b518-a65b64dbc5fb`과 별도로 `09c523d..dfc70caa748a90614b02d48c78b4651345938339`을 검토했다. snapshot `/tmp/knowslink-messages-fix-review-dfc70ca`는 읽기만 했고 detached·clean을 유지했다.
+- 결론은 수락 불가다. 원 H-1(익명 slow body)·M-1(익명·위조 정리 입장)·F-UI-MSG-01(gate Deny 405)은 해소됐다. 새 미해결 high H-2: `internal/relay/capacity.go:159-215` 로컬 정리 채널을 유효 자격만으로 고르고, 자기 기록·rate는 DB 입장 transaction 안에서 판정한다. 인증 회원 하나의 타 owner·lease 없는 정리 flood로 유효 정리 18/18이 429 capacity다(신규 flood 대조 0/18, agent 자격만으로도 18/18). PS-11 정리 budget 위반이다.
+- low L-1 확장(커밋마다 자격 색인 재생성)·L-2(색인 stale/restart/Store 순서)를 기록했다. 기존 L-A/L-B와 공개 전 합성 가입 unset·운영 DB 합성 owner 0 조건을 보존한다. `/v1/connect/*` 정리 경로가 HTTP 정리 분류에 없는 점(09c와 같음)을 H-2 수정 범위 확인으로 남긴다.
+- 검사: dfc70ca scratch에서 make install exit0, lint.py --from 09c523d exit0(ERROR0/WARNING5/실행불가0, product-lint/test exit0), make verify-mvp 2회 exit0(PASS 42·FAIL/SKIP 0, 리뷰 H-2 시험 포함). review.py check는 H-2로 exit1(정상 차단). 형식 probe는 쓰지 않았다. [리뷰 기록](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md).
+- 후속: DEV가 H-2(권장 L-2·/v1/connect 정리 경로 확인)를 고치고 자기 대상 반복·타 owner flood 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키·별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다.

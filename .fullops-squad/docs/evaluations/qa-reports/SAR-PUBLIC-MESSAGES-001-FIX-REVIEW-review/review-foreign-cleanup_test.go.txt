@@ -1,0 +1,104 @@
+//go:build integration
+
+// FIX-REVIEW repro (OPS, not product code): a live credential sending a cleanup path for another owner's record
+// holds the local cleanup channel for its whole DB admission before the transaction reclassifies it as new work.
+package relay
+
+import (
+	"context"
+	"net/http"
+	"net/http/httptest"
+	"strings"
+	"sync"
+	"sync/atomic"
+	"testing"
+	"time"
+)
+
+func TestReviewForeignCleanupHoldsCleanupChannel(t *testing.T) {
+	pool := messagePool(t)
+	f := setup(t, pool)
+	f.mutate(func(st *State) { st.Rates = map[string][]time.Time{} })
+	next := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { w.WriteHeader(200) })
+	h := f.s.boundedHTTP(next)
+	foreign := `{"agent":"agent_a","kid":"key1"}` // agent_b's owner does not own agent_a
+	serve := func(path, token, body string) (int, string) {
+		r := httptest.NewRequest("POST", path, strings.NewReader(body))
+		r.Header.Set("Authorization", "Bearer "+token)
+		w := httptest.NewRecorder()
+		h.ServeHTTP(w, r)
+		return w.Code, w.Body.String()
+	}
+
+	// A. Deterministic: while DB admission waits (row lock held), 4 foreign-target requests fill the cleanup channel.
+	tx, err := pool.Begin(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err = tx.Exec(context.Background(), "SELECT 1 FROM relay_state WHERE singleton = true FOR UPDATE"); err != nil {
+		t.Fatal(err)
+	}
+	var wg sync.WaitGroup
+	codes := make(chan int, 4)
+	for range 4 {
+		wg.Add(1)
+		go func() { defer wg.Done(); c, _ := serve("/v1/key-revoke", f.tokens["agent_b_owner"], foreign); codes <- c }()
+	}
+	deadline := time.Now().Add(3 * time.Second)
+	for len(f.s.httpClean) < 4 && time.Now().Before(deadline) {
+		time.Sleep(10 * time.Millisecond)
+	}
+	held := len(f.s.httpClean)
+	code, body := serve("/v1/key-revoke", f.tokens["agent_a_owner"], foreign) // agent_a's owner: valid own cleanup
+	_ = tx.Rollback(context.Background())
+	wg.Wait()
+	close(codes)
+	var foreignCodes []int
+	for c := range codes {
+		foreignCodes = append(foreignCodes, c)
+	}
+	t.Logf("A: foreign-target requests holding cleanup channel during admission = %d/4; valid own cleanup -> %d %s; foreign final codes %v", held, code, strings.TrimSpace(body), foreignCodes)
+	f.mutate(func(st *State) {
+		t.Logf("A: rates cleanup:member:agent_b=%d http:member:agent_b=%d cleanup:member:agent_a=%d", len(st.Rates["cleanup:member:"+f.owners["agent_b"]]), len(st.Rates["http:member:"+f.owners["agent_b"]]), len(st.Rates["cleanup:member:"+f.owners["agent_a"]]))
+		st.Rates = map[string][]time.Time{}
+	})
+	if held != 4 || code != 429 || !strings.Contains(body, "capacity") {
+		t.Fatalf("not reproduced: held %d, own cleanup %d %s", held, code, body)
+	}
+
+	// B. Realistic, no lock held: one authenticated principal floods for 3s; a valid own cleanup probes 18 times.
+	flood := func(path, token, body string) (capacity, rate int) {
+		f.mutate(func(st *State) { st.Rates = map[string][]time.Time{} })
+		var stop atomic.Bool
+		var fw sync.WaitGroup
+		for range 48 {
+			fw.Add(1)
+			go func() {
+				defer fw.Done()
+				for !stop.Load() {
+					serve(path, token, body)
+				}
+			}()
+		}
+		time.Sleep(200 * time.Millisecond)
+		for range 18 {
+			c, b := serve("/v1/key-revoke", f.tokens["agent_a_owner"], foreign)
+			switch {
+			case c == 429 && strings.Contains(b, "capacity"):
+				capacity++
+			case c == 429:
+				rate++
+			}
+			time.Sleep(150 * time.Millisecond)
+		}
+		stop.Store(true)
+		fw.Wait()
+		return capacity, rate
+	}
+	c1, r1 := flood("/v1/pull", f.tokens["agent_b"], "{}")
+	c2, r2 := flood("/v1/key-revoke", f.tokens["agent_b_owner"], foreign)
+	// C. Public-member path: an agent credential acks a lease it does not hold (no owner credential needed).
+	c3, r3 := flood("/v1/ack", f.tokens["agent_b"], `{"id":"none","token":"none"}`)
+	t.Logf("C: agent-credential no-lease ACK flood -> own cleanup capacity429 %d/18 rate429 %d", c3, r3)
+	t.Logf("B: new-work flood -> own cleanup capacity429 %d/18 rate429 %d; foreign-cleanup flood -> capacity429 %d/18 rate429 %d", c1, r1, c2, r2)
+}

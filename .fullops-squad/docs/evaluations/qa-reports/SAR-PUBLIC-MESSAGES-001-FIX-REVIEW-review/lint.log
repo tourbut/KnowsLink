@@ -1,0 +1,8 @@
+[passed] product-lint: make lint
+[passed] product-test: make test
+WARNING SIZE-001 .fullops-squad/PLANS.md 961줄(이전 940, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/identity_integration_test.go 359줄(이전 333, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/public_messages_integration_test.go 407줄(이전 403, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/store.go 494줄(이전 490, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-002  변경 추가 568줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요
+head dfc70caa748a / 파일 16 / ERROR 0 / WARNING 5 / 실행 불가 0
