@@ -765,3 +765,6 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 
 - DEV msg_ee10f820f78e / 최종00a13840d2cf3d5833c686bde0d832d439bc57b7(코드2111ff4) 수신. 원인은 verify-mvp가 서로 다른 allowlist의 두 writer를 같은 DB에 두어 Cleanup이 시험lease를 회수한 검사 격리 결함이다. 제품 규칙·TestTrialHTTP는 변경하지 않았다. 기존 실패 보존, 실행중4/40실패·정지0/40 및 결정적 회수 검사·정지200회PASS 근거를 확인했다. make lint/test/verify-mvp0, FullOps ERROR0/WARNING1 보고.
 - 최종 통합 후보 eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de를 고정했다. OPS 최신 delta 리뷰와 TESTER 좁은 QA를 정규 빈 인박스에 준비한다. 원본59/RATE9c 리뷰와 기존 QA/UI는 SHA·조건을 구분해 재사용한다. 새 OPS는 앞 리뷰 종료와 범위 변경에 따라 별도 세션이며 Opus5.5high 규정 override를 유지한다.
+
+- 最新 후보 리뷰 착수: Task task_5c53d2c3739c / Dispatch ctx_ade6aee10fe1 / terminal term_8c0b2a5c-4c76-43f2-a3e2-658109e5053d. 새 Opus5.5high effective·turn_started 확인. 좁은 QA 착수: Task task_42132cbbc82a / Dispatch ctx_80045eb5c01a / terminal term_c83cb286-86ec-4232-bf5a-5fb7850efbfa. 새 Grok4.7high tui-idle 확인 뒤 input_accepted, Grok turnStart 관측 unsupported를 보존한다. TESTER 준비824c875의 PLANS 충돌은 한쪽 빈 영역을 확인하고 신규 기록과 과거 기록을 보존했다.
+- coordinator의 fixed eb2e34b lint는 ERROR0/WARNING1(기존 PLANS)/실행불가0이며 product-lint·product-test 모두 exit0이다. candidate-lint.json에 원출력을 보존했다. 현재 리뷰/QA 완료 전 main 수락은 보류다. DEV 완료 세션은 보고 수신·hold 기록 후release했고 원본delivery를ack했다.
