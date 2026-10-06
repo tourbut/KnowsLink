@@ -841,3 +841,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 리뷰 M1·L1·L3과 designer F-UI-01–04를 같은 DEV 후속에서 수정했다. 철회 agent는 24h 뒤 키·pair와 함께 삭제한다. 살아 있는 agent의 철회 키는 C1 때문에 유지한다. owner agent 기록 10·agent 키 기록 20의 기술 상한은 신규만 거부하고 철회를 허용한다.
 - 거부 요청도 rate를 저장하고 무효 세션은 익명 budget을 쓴다. connect 429는 실제 retry_at·Retry-After를 준다. 거부 화면에 홈/로그인·재확인 동작을 추가했고 모바일 지문 넘침을 고쳤다.
 - 후속 대기: OPS delta 리뷰, TESTER 보존/철회/rate 좁은 QA, designer 변경 화면 좁은 재검수와 키 기록 포화·철회 agent 표시 제품 판단, L2 designer 결정. gate·시작 화면 rate 미적용은 MESSAGES 후속 후보다. 상세: [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md).
+
+- DEV-FIX msg_371319f19427/4a1b80aec8fa6a06144d51f3a5609927a2644928(제품85fb40e) 수신. M1 철회agent24h정리·agent기록10/owner·키기록20/agent 기술보호, L1 rate저장/무효세션budget, L3 실제retry_at, F-UI01–04 보완과최종lint/test/verify-mvp/strict0를확인했다. code변경동일성/최종독립검증은아직대기다. 원래shortSHA추출null은실제Git/보고/원문과대조해sha_source에null과근거를보존해보완했다. coorPLANS와DEV결과를함께보존해merge충돌해결했다.
+- POLICY에handoff msg_750122334b74로키기록포화시새agent/관계재수락의다음동작과철회agent최소24h뒤홈정리표시를추가제품판단으로연결했다. 기존활성agent5/키3제품값은변경하지않고기술보호를상품quota로표시하지않는다. 제품답/필요추가구현뒤고정후보delta리뷰·좁은QA/UI수락까지main보류다.
