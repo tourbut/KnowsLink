@@ -81,24 +81,20 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.Body = http.MaxBytesReader(w, r.Body, 8192)
 		parseErr := r.ParseForm()
-		token := readCookie(r, sessionCookie)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			id, session, e := st.session(token, now)
+			clean := path == "cancel" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
+			rates := memberRate
+			if clean {
+				rates = cleanupRate
+			}
+			id, session, retry, e := s.memberHit(st, r, now, rates)
+			if !retry.IsZero() {
+				return refusal{429, limited(retry)}, nil
+			}
 			if e != nil {
-				if ok, retry := st.hit(now, anonymousRate(s.clientIP(r))...); !ok {
-					return refusal{429, limited(retry)}, nil
-				}
 				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요."}, nil
 			}
 			owner := st.Members[id].Owner
-			clean := path == "cancel" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
-			rates := memberRate(id)
-			if clean {
-				rates = cleanupRate(id)
-			}
-			if ok, retry := st.hit(now, rates...); !ok {
-				return refusal{429, limited(retry)}, nil
-			}
 			// Return refusals as values: rejected work must commit its request budget.
 			fail := func(e error) (any, error) { return refusal{statusFor(e), safeProblem(e)}, nil }
 			if parseErr != nil {
@@ -142,12 +138,12 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if a == nil || a.Owner != owner {
 					return fail(fault("sender_not_allowed"))
 				}
-				a.Revoked = true
-				a.Credential = ""
-				for _, k := range a.Keys {
-					k.Revoked = true
-					k.Changed = now
+				if !a.Revoked {
+					a.Revoked = true
+					a.Changed = now
 				}
+				a.Credential = ""
+				revokeKeys(a, now)
 				st.sweep(now)
 			default:
 				c := command{Agent: agent, Target: r.FormValue("target"), Kid: r.FormValue("kid"), Decision: r.FormValue("decision")}
@@ -185,12 +181,12 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 }
 func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, e := st.session(readCookie(r, sessionCookie), now)
+		id, _, retry, e := s.memberHit(st, r, now, memberRate)
+		if !retry.IsZero() {
+			return refusal{429, limited(retry)}, nil
+		}
 		if e != nil {
 			return nil, e
-		}
-		if ok, retry := st.hit(now, memberRate(id)...); !ok {
-			return refusal{429, limited(retry)}, nil
 		}
 		c := st.Connections[r.PathValue("id")]
 		if c == nil || c.Owner != st.Members[id].Owner {
@@ -229,7 +225,7 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 				}
 			}
 			if ok, retry := st.hit(now, rates...); !ok {
-				return map[string]string{"error": "rate_limited", "retry_at": retry.Format(time.RFC3339)}, nil
+				return retry, nil
 			}
 			if parseErr != nil {
 				return map[string]string{"error": parseErr.Error()}, nil
@@ -255,10 +251,11 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 			}
 			return result, nil
 		})
+		if retry, ok := value.(time.Time); ok {
+			rateLimited(w, retry)
+			return
+		}
 		if v, ok := value.(map[string]string); ok && v["error"] != "" {
-			if v["retry_at"] != "" {
-				w.Header().Set("Retry-After", fmt.Sprint(60))
-			}
 			respond(w, nil, fault(v["error"]))
 			return
 		}

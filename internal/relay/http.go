@@ -285,11 +285,11 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		if a.Keys[c.Kid] != nil {
 			return nil, fault("key_exists")
 		}
+		if len(a.Keys) >= agentKeyRecords {
+			return nil, fault("capacity")
+		}
 		if path == "keys" {
-			for _, k := range a.Keys {
-				k.Revoked = true
-				k.Changed = now
-			}
+			revokeKeys(a, now)
 		}
 		a.Keys[c.Kid] = &Key{Public: public, Changed: now}
 		st.sweep(now)
@@ -299,8 +299,10 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		if a == nil || a.Owner != principal || a.Keys[c.Kid] == nil {
 			return nil, fault("sender_not_allowed")
 		}
-		a.Keys[c.Kid].Revoked = true
-		a.Keys[c.Kid].Changed = now
+		if k := a.Keys[c.Kid]; !k.Revoked {
+			k.Revoked = true
+			k.Changed = now
+		}
 		st.sweep(now)
 		return map[string]string{"state": "revoked"}, nil
 	case "owner-revoke":
@@ -329,7 +331,7 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		return p, nil
 	case "invite-decision":
 		p := st.Pairs[pairID(c.Agent, c.Target)]
-		if p == nil || st.Agents[p.Recipient].Owner != principal || (c.Decision != "accept" && c.Decision != "deny") {
+		if p == nil || st.Agents[p.A] == nil || st.Agents[p.B] == nil || st.Agents[p.Recipient].Owner != principal || (c.Decision != "accept" && c.Decision != "deny") {
 			return nil, fault("sender_not_allowed")
 		}
 		if p.State == "active" && c.Decision == "accept" {
@@ -349,7 +351,7 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		return p, nil
 	case "unpair":
 		p := st.Pairs[pairID(c.Agent, c.Target)]
-		if p == nil || (st.Agents[p.A].Owner != principal && st.Agents[p.B].Owner != principal) {
+		if p == nil || st.Agents[p.A] == nil || st.Agents[p.B] == nil || (st.Agents[p.A].Owner != principal && st.Agents[p.B].Owner != principal) {
 			return nil, fault("sender_not_allowed")
 		}
 		p.State = "revoked"

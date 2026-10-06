@@ -214,15 +214,27 @@ func expired(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/?n=expired", http.StatusSeeOther)
 }
 
+// memberHit resolves the browser session and spends one request from the member's budget, or from the source IP's
+// anonymous budget when the session is invalid, so failed and refused requests count too (PS-11).
+// A non-zero retry means the budget refused the request; the transaction keeps the spent budget even on error.
+func (s *Service) memberHit(st *State, r *http.Request, now time.Time, rates func(string) []bucket) (string, *Session, time.Time, error) {
+	id, session, err := st.session(readCookie(r, sessionCookie), now)
+	buckets := anonymousRate(s.clientIP(r))
+	if err == nil {
+		buckets = rates(id)
+	}
+	_, retry := st.hit(now, buckets...)
+	return id, session, retry, err
+}
+
 func (s *Service) homePage(w http.ResponseWriter, r *http.Request) {
-	token := readCookie(r, sessionCookie)
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, session, err := st.session(token, now)
+		id, session, retry, err := s.memberHit(st, r, now, memberRate)
+		if !retry.IsZero() {
+			return map[string]any{"Title": "내 KnowsLink", "Problem": limited(retry), "limited": true}, nil
+		}
 		if err != nil {
 			return nil, err
-		}
-		if ok, retry := st.hit(now, memberRate(id)...); !ok {
-			return map[string]any{"Title": "내 KnowsLink", "Problem": limited(retry), "limited": true}, nil
 		}
 		m := st.Members[id]
 		agents, pairs, gates := []string{}, []memberPair{}, []*Gate{}
@@ -264,14 +276,14 @@ func (s *Service) homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
-	token, ip := readCookie(r, sessionCookie), s.clientIP(r)
+	ip := s.clientIP(r)
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, err := st.session(token, now)
+		id, _, retry, err := s.memberHit(st, r, now, memberRate)
+		if !retry.IsZero() {
+			return started{Retry: retry, Limited: true}, nil
+		}
 		if err != nil {
 			return nil, err
-		}
-		if ok, retry := st.hit(now, memberRate(id)...); !ok {
-			return started{Retry: retry, Limited: true}, nil
 		}
 		email := st.Members[id].Email
 		pending, code, retry, ok := st.startChallenge(email, ip, now)
@@ -299,12 +311,12 @@ func (s *Service) logout(all bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		token := readCookie(r, sessionCookie)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			id, session, err := st.session(token, now)
+			id, session, retry, err := s.memberHit(st, r, now, cleanupRate)
+			if !retry.IsZero() {
+				return refusal{429, limited(retry)}, nil
+			}
 			if err != nil {
 				return nil, err
-			}
-			if ok, retry := st.hit(now, cleanupRate(id)...); !ok {
-				return refusal{429, limited(retry)}, nil
 			}
 			if all && now.Sub(session.Verified) >= reauthWindow {
 				return refusal{403, "모든 브라우저에서 로그아웃하려면 5분 안에 이메일을 다시 확인해야 합니다."}, nil

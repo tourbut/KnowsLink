@@ -217,7 +217,122 @@ func TestPublicAgentHTTP(t *testing.T) {
 				expected = 429
 			}
 			expect(t, w, expected)
+			if i == 30 {
+				// The connect API reports the actual retry instant like the /v1 rate limiter, not a fixed 60s.
+				var body map[string]string
+				_ = json.Unmarshal(w.Body.Bytes(), &body)
+				retryAt, e1 := time.Parse(time.RFC3339, body["retry_at"])
+				header, e2 := http.ParseTime(w.Header().Get("Retry-After"))
+				if body["error"] != "rate_limited" || e1 != nil || e2 != nil || !header.Equal(retryAt) || !retryAt.After(time.Now()) || retryAt.After(time.Now().Add(time.Minute+time.Second)) {
+					t.Fatal("connect 429 retry", body, w.Header().Get("Retry-After"))
+				}
+			}
 		}
+	})
+	t.Run("invalid_session_pages_spend_anonymous_budget", func(t *testing.T) {
+		s, _ := identityService(t, pool)
+		stale := &browser{t, s.Handler(), "192.0.2.77", map[string]string{sessionCookie: "stale-session"}}
+		for i := 0; i < 30; i++ {
+			path := "/home/connections/unknown"
+			if i%2 == 1 {
+				path = "/home"
+			}
+			expect(t, stale.do("GET", path, nil), 303, "/?n=expired")
+			stale.cookies[sessionCookie] = "stale-session"
+		}
+		// A restarted relay reads the committed budget: invalid-session GETs were not rolled back.
+		stale.h = (&Service{Pool: pool}).Handler()
+		for _, path := range []string{"/home/connections/unknown", "/home"} {
+			expect(t, stale.do("GET", path, nil), 429, "이후 다시 시도")
+		}
+		expect(t, stale.do("POST", "/auth/logout", nil), 429)
+		expect(t, stale.do("POST", "/auth/reauth", nil), 429)
+	})
+	t.Run("revoked_record_saturation_concurrency_restart_and_retention", func(t *testing.T) {
+		s, mail := identityService(t, pool)
+		a := newBrowser(s, "192.0.2.66")
+		member := login(t, a, mail, "churn@example.com")
+		ids := func() (live, revoked []string) {
+			s.mutateState(t, func(st *State) {
+				for id, ag := range st.Agents {
+					if ag.Revoked {
+						revoked = append(revoked, id)
+					} else {
+						live = append(live, id)
+					}
+				}
+				st.Rates = map[string][]time.Time{}
+			})
+			return
+		}
+		for round := 0; round < 2; round++ {
+			n := 5 - 4*round
+			for i := 0; i < n; i++ {
+				expect(t, a.do("POST", "/home/agents", nil), 303)
+			}
+			live, _ := ids()
+			for _, id := range live {
+				expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {id}}), 303)
+			}
+		}
+		// Six revoked records and no active agent: the record cap, not the active cap of 5, admits exactly 4.
+		var wg sync.WaitGroup
+		codes := make(chan int, 8)
+		for i := 0; i < 8; i++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				b := &browser{t, s.Handler(), "192.0.2.66", map[string]string{sessionCookie: a.cookies[sessionCookie]}}
+				codes <- b.do("POST", "/home/agents", nil).Code
+			}()
+		}
+		wg.Wait()
+		close(codes)
+		wins := 0
+		for c := range codes {
+			if c == 303 {
+				wins++
+			} else if c != 409 {
+				t.Fatal(c)
+			}
+		}
+		live, revoked := ids()
+		if wins != ownerAgentRecords-6 || len(live) != 4 || len(revoked) != 6 {
+			t.Fatal("record cap race", wins, len(live), len(revoked))
+		}
+		a.h = (&Service{Pool: pool}).Handler()
+		expect(t, a.do("POST", "/home/agents", nil), 409, "운영 한도")
+		// Saturation never blocks cleanup, and revoking adds no record.
+		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
+		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {revoked[0]}}), 303)
+		s.mutateState(t, func(st *State) {
+			owner := st.Members[member].Owner
+			if len(st.Agents) != ownerAgentRecords || st.agentCapacity(owner) {
+				t.Fatal("cleanup changed records", len(st.Agents))
+			}
+			for _, ag := range st.Agents {
+				if ag.Revoked && ag.Changed.IsZero() {
+					t.Fatal("revocation time missing")
+				}
+			}
+			// The first six revocations pass the 24h retention; the latest one stays.
+			for _, id := range revoked {
+				st.Agents[id].Changed = st.Agents[id].Changed.Add(-revokedRetention)
+			}
+			st.Rates = map[string][]time.Time{}
+		})
+		expect(t, a.do("POST", "/home/agents", nil), 303)
+		expect(t, a.do("GET", "/home", nil), 200, "철회")
+		s.mutateState(t, func(st *State) {
+			for _, id := range revoked {
+				if st.Agents[id] != nil {
+					t.Fatal("expired revoked agent retained")
+				}
+			}
+			if st.Agents[live[0]] == nil || !st.Agents[live[0]].Revoked {
+				t.Fatal("revoked agent deleted before 24h")
+			}
+		})
 	})
 
 	t.Run("concurrent_agent_capacity_and_restart", func(t *testing.T) {
