@@ -1,0 +1,1059 @@
+{
+  "base": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Claude Opus 5.5 (claude-opus-5-5), Claude Code session 886fc5cf-5392-4129-a2e6-f8bfdbf36950, OPS dispatch ctx_dda6a6213308, fullops-review + open-code-review-delegate",
+  "conclusion": "delta 기술 리뷰 기준 조건부 수락 가능. 미해결 critical/high 없음. 원본 F1 medium과 F4 low는 9c915dc에서 해소를 확인했다. 새 발견은 low 1(아카이브 지시서 상대 링크 깨짐)이며 F2/F3/F-UI-01 low는 그대로 남는다. lint ERROR 0·WARNING 5, make test·verify-mvp exit 0. invalid_lease 원인 진단은 별도 DEV 진행 중이며 이 리뷰는 그 해소나 main 수락을 선언하지 않는다. 원본 TESTER/UI는 59b66ad 결과이며 9c915dc의 새 QA·시각 검수가 아니다.",
+  "files": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "0.9.14 절과 fullops-common-0.3.3 표기가 rules/common/README.md·project.md와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 63,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "delta 항목을 읽었다. RATE-FIX·TESTER·UI 결과를 main 수락으로 쓰지 않고 invalid_lease 보류·Workers Free 제한·재개 조건을 유지한다. SIZE-001 744줄은 기존 경고."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "세 note 변경이 PLANS 상태(0.9.14 적용, Workers Free, UI PASS·F1 검수 대기)와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/board/index.html",
+      "status": "modified",
+      "insertions": 69,
+      "deletions": 17,
+      "review_status": "reviewed",
+      "reason": "0.9.14 board.py 고정 뷰어 생성물이다. 문서 뷰어 마크업 diff를 훑었고 외부 스크립트·비밀값 추가가 없음을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "RATE-FIX 교훈 한 줄이 실제 수정·실행 기록과 일치한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "TESTER 157/0·F1 medium·P06/P07 미실행 서술이 TESTER 보고·result.json과 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "한도 집행 서술(principal 먼저, 공유 거부 시 기존 principal만 기록, 새 key 미생성)이 실제 hit 동작과 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "KNOWSLINK_SYNTHETIC_SIGNUP 표 행이 .env.example·verify_mvp·README와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "새 검사 두 행과 TestEmailIdentity 범위 서술이 실제 테스트 이름·수치와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/FULLOPS-UPDATE-0.9.14/final-command-lint.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "0.9.14 lint 증거 JSON. base/head(cf55ea1·94533b2→08cf165)와 ERROR 0·실행 불가 0을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/FULLOPS-UPDATE-0.9.14/final-diff-lint.json",
+      "status": "added",
+      "insertions": 45,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "0.9.14 lint 증거 JSON. base/head(cf55ea1·94533b2→08cf165)와 ERROR 0·실행 불가 0을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/FULLOPS-UPDATE-0.9.14/preflight-lint.json",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "0.9.14 lint 증거 JSON. base/head(cf55ea1·94533b2→08cf165)와 ERROR 0·실행 불가 0을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-context.json",
+      "status": "added",
+      "insertions": 211,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-documents-find.json",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-find.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-route.json",
+      "status": "added",
+      "insertions": 78,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-context.json",
+      "status": "added",
+      "insertions": 265,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-documents-find.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-TESTER-route.json",
+      "status": "added",
+      "insertions": 63,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-context.json",
+      "status": "added",
+      "insertions": 265,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-documents-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-find.json",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-route.json",
+      "status": "added",
+      "insertions": 75,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Jev route/find/context 탐색 근거. JSON 유효성과 비밀값·이메일 원문 부재를 확인했다. 수락 판단에는 쓰지 않으며 원본 보존만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/jev-find-score.json",
+      "status": "added",
+      "insertions": 53,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 25b110f의 기록 파일. result.json 독립성(e0666abc vs 0bf1508f)·F1–F4·lint ERROR 0을 확인하고 재사용 근거로 연결했다. 원본은 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/lint.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 25b110f의 기록 파일. result.json 독립성(e0666abc vs 0bf1508f)·F1–F4·lint ERROR 0을 확인하고 재사용 근거로 연결했다. 원본은 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/preview.json",
+      "status": "added",
+      "insertions": 205,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 25b110f의 기록 파일. result.json 독립성(e0666abc vs 0bf1508f)·F1–F4·lint ERROR 0을 확인하고 재사용 근거로 연결했다. 원본은 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "status": "added",
+      "insertions": 133,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 독립 리뷰 25b110f. 재사용 근거로 읽었고 F1–F4 내용을 이번 delta 판정에 연결했다. 원본 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/result.json",
+      "status": "added",
+      "insertions": 305,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 25b110f의 기록 파일. result.json 독립성(e0666abc vs 0bf1508f)·F1–F4·lint ERROR 0을 확인하고 재사용 근거로 연결했다. 원본은 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/rules.json",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 리뷰 25b110f의 기록 파일. result.json 독립성(e0666abc vs 0bf1508f)·F1–F4·lint ERROR 0을 확인하고 재사용 근거로 연결했다. 원본은 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/f1-result.json",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 TESTER 증거. result.json 집계(157/0/2)·skip 사유·f1-result 수치를 보고서와 대조했고 이메일 원문·DB URL 부재를 확인했다. probe.py·f1_observe.py는 fixture 전용(example.com 등, 임시 비밀번호)이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/f1_observe.py",
+      "status": "added",
+      "insertions": 296,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 TESTER 증거. result.json 집계(157/0/2)·skip 사유·f1-result 수치를 보고서와 대조했고 이메일 원문·DB URL 부재를 확인했다. probe.py·f1_observe.py는 fixture 전용(example.com 등, 임시 비밀번호)이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/probe.py",
+      "status": "added",
+      "insertions": 1012,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 TESTER 증거. result.json 집계(157/0/2)·skip 사유·f1-result 수치를 보고서와 대조했고 이메일 원문·DB URL 부재를 확인했다. probe.py·f1_observe.py는 fixture 전용(example.com 등, 임시 비밀번호)이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/result.json",
+      "status": "added",
+      "insertions": 963,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 TESTER 증거. result.json 집계(157/0/2)·skip 사유·f1-result 수치를 보고서와 대조했고 이메일 원문·DB URL 부재를 확인했다. probe.py·f1_observe.py는 fixture 전용(example.com 등, 임시 비밀번호)이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "status": "added",
+      "insertions": 72,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 59b66ad TESTER 보고. result.json 159건(ok 157, skipped 2: p06/p07)과 f1-result.json 수치가 본문과 일치한다. 미실행·BLOCKED 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/cleanup.json",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/playwright-observations.json",
+      "status": "added",
+      "insertions": 315,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/validation.json",
+      "status": "added",
+      "insertions": 290,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 59b66ad UI 보고. 참조 PNG 전부 존재, validation.json/visual.exit 0/cleanup.json 일치, pw-04·pw-11 직접 열람으로 본문 서술 확인. 실제 이메일·P06/P07 미실행 보존."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "status": "added",
+      "insertions": 35,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "QA-P01–P07 시나리오가 지시서 항목·probe.py check id와 대응한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "status": "added",
+      "insertions": 61,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "운영 업데이트 실행 기록. 제품 코드 무변경·lint/test exit 0 주장이 세 lint 증거 JSON과 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "status": "added",
+      "insertions": 144,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "F1/F4 수정·F2 판단·RED/GREEN·invalid_lease 1회 관측·미실행·OPS 인계를 코드와 커밋 689ba3f/8c7ea94와 대조했다. 남은 위험(독립 IP 7개 이상 합 포화, 기존 principal의 포화 연장 상한) 서술이 정확하다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "TESTER 수행 순서·종료코드·정리 서술이 보고·증거와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "status": "added",
+      "insertions": 56,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "UI 실행·환경 오류·Orca blank 보완·정리 서술이 보고·증거와 일치한다. 제품 코드 무변경 주장 확인."
+    },
+    {
+      "path": ".fullops-squad/fullops.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "plugin_version 0.9.14가 설치 플러그인 캐시 버전과 일치한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "SIZE-002·UI 디자인·DEP-001 양식 추가가 review/_REPORT.md와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "status": "modified",
+      "insertions": 63,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "UI 지시서·완료 전문 보존과 Orca page ID가 UI 보고와 일치함을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "status": "modified",
+      "insertions": 116,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원본 DEV/REVIEW/RATE-FIX 지시서·완료 전문 보존을 확인했다. 세션 ID e0666abc·0bf1508f 확인. 상대 링크 3개 깨짐(low L1)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "59b66ad의 to_tester.md 전문 보존(체크 표시 외 동일, P06/P07 미체크 유지)을 확인했다. 상대 링크 1개 깨짐(low L1)."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 65,
+      "review_status": "reviewed",
+      "reason": "삭제는 work.py finish 아카이브 결과다. logs/2026-10-05_to_tester.md에 전문 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "status": "modified",
+      "insertions": 50,
+      "deletions": 6,
+      "review_status": "reviewed",
+      "reason": "0.9.14 SIZE-002·SLOP·DESIGN·kind test 안내가 lint.json과 일치한다."
+    },
+    {
+      "path": ".fullops-squad/lint/lint.json",
+      "status": "modified",
+      "insertions": 151,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "product-test(kind test)·max_diff_added 400·SLOP/DESIGN 규칙 추가. merge-base 설정으로 실행되어 LINT-001 WARNING이 정상 발생했다. product-test는 별도 make test로 같은 HEAD에서 확인했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "0.3.3 표기와 product-lint/product-test 연결이 lint.json·Makefile과 일치한다. 디자인 lint 미구성 한계를 명시한다."
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "SIZE/DEP/UI 항목 추가. 이번 report.md가 이 양식을 따른다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "규칙 묶음 0.3.3 표기만 바뀌었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "의존성 순서·UI 디자인 일관성 절 추가. lint/README 디자인 절 링크 유효."
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "QA 실행 명령의 셸 opt-in과 403 안내가 .env.example·verify_mvp·architecture/interface 문서와 일치한다."
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "status": "modified",
+      "insertions": 27,
+      "deletions": 13,
+      "review_status": "reviewed",
+      "reason": "hit/anonymousRate/memberRate/cleanupRate diff를 줄 단위로 검토했다. take·within·sweepIdentity(1시간 prune)·member.go 다섯 호출부를 대조했다. 리뷰어 무작위 불변식 검사(200 seed×3000 요청: limit+1 상한, principal 거부의 공유 미소비, 거부 요청의 새 key 미생성, 창 안 허용≤한도, retry>now) PASS. 원본 F1 해소 확인."
+    },
+    {
+      "path": "internal/relay/identity_integration_test.go",
+      "status": "modified",
+      "insertions": 33,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "refused_principal_does_not_spend_shared_rate의 flood 250/150·재시작 Service·다른 IP start 303·다른 회원 home 200/logout 303을 검토했다. Verified 당김은 logout-all 403 경로로 정리 budget만 세게 하는 의도와 일치. verify-mvp(knowslink-mvp-481713b41f) PASS."
+    },
+    {
+      "path": "internal/relay/identity_test.go",
+      "status": "modified",
+      "insertions": 68,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "TestRatePrincipalIsolation·TestRateStateBoundedUnderRotation의 수치(30+40+1+1+128=200, 20+1+79=100, 201/31 보관, retry=now+60s)를 코드와 대조했다. scratch clone make test와 verify-mvp에서 PASS."
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "셸 KNOWSLINK_SYNTHETIC_SIGNUP 제거 뒤 relay 값이 빈 값인지 단언한다. make lint의 lint-config에서 실행되어 PASS 출력(synthetic signup closed)을 확인했다."
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "격리 Compose에만 KNOWSLINK_SYNTHETIC_SIGNUP=1을 준다. compose.yaml의 relay 환경 전달과 셸 우선 순위를 확인했고 verify-mvp의 synthetic/seed/trial-check exit 0을 관측했다."
+    },
+    {
+      "path": ".env.example",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "OCR 제외(user_exclude)이나 직접 읽었다. KNOWSLINK_SYNTHETIC_SIGNUP 빈 값으로 원본 F4 해소. 다른 키 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/01-start-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/02-verify-mobile.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/04-start-focused.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/05-wrong-code.txt",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/06-send-result.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/07-resend-limited.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/08-expired-code.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/09-home.txt",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/11-reauth-home.txt",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/12-reauth-pending.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/13-reauth-complete.txt",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/14-logout-all.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/15-old-session.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/16-relogin-home.txt",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/17-current-logout.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/18-exclusive-orca.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/19-mail-failed.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/fixture-events.jsonl",
+      "status": "added",
+      "insertions": 22,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/orca-capture-blank.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/orca-commands.jsonl",
+      "status": "added",
+      "insertions": 183,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-desktop.txt",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-mobile.txt",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-02-pending-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-02-pending-mobile.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-03-wrong-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-03-wrong-mobile.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-04-resend-limited-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "reviewed",
+      "reason": "직접 열람했다. 보고서의 429 재시도 안내와 F-UI-01(UTC +0000 중복) 서술과 일치한다. 원본 59b66ad 기록 검토이며 새 SHA 시각 검수가 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-04-resend-limited-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-05-code-expired-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-05-code-expired-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-desktop.txt",
+      "status": "added",
+      "insertions": 33,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-mobile.txt",
+      "status": "added",
+      "insertions": 33,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-07-reauth-home-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-07-reauth-home-desktop.txt",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-08-reauth-pending-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-08-reauth-pending-desktop.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-09-logout-all-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-09-logout-all-desktop.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-10-old-session-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-10-old-session-desktop.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-11-expired-member-gate-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "reviewed",
+      "reason": "직접 열람했다. 보고서의 429 재시도 안내와 F-UI-01(UTC +0000 중복) 서술과 일치한다. 원본 59b66ad 기록 검토이며 새 SHA 시각 검수가 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-11-expired-member-gate-desktop.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-12-current-logout-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-12-current-logout-desktop.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-13-mail-failed-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 이미지 증거(rule.json exclude). PNG 시그니처·크기(390/1280 폭)를 전수 확인했고 보고서 참조 파일 누락이 없다. validation.json(json_and_png_format PASS)와 대조했다. 개별 시각 재판정은 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-13-mail-failed-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/visual.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/visual.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원본 59b66ad UI 원시 증거(rule.json exclude). 전 파일에 이메일 주소·6자리 코드 패턴 부재를 검사했고 visual.exit=0·visual.log 종료 문구·cleanup.json·validation.json을 보고서와 대조했다. 개별 정독은 생략했다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/identity.go",
+      "start_line": 85,
+      "end_line": 130,
+      "category": "security",
+      "severity": "medium",
+      "resolved": true,
+      "content": "원본 F1(25b110f): 공유 bucket 선기록으로 단일 source가 전체 신규·정리 budget을 고갈. 9c915dc에서 principal 우선 순서와 공유 거부 기록 조건으로 해소를 확인했다. 단위·통합 검사와 리뷰어 무작위 불변식 검사 PASS. 독립 IP 다수의 합 포화와 기존 principal의 자기 한도 내 포화 연장은 D02 전체 한도의 의도된 잔여 위험이며 edge 완화(OPS) 대상이다."
+    },
+    {
+      "path": ".env.example",
+      "start_line": 8,
+      "end_line": 8,
+      "category": "security",
+      "severity": "low",
+      "resolved": true,
+      "content": "원본 F4: 예시 env의 합성 가입 기본 열림. 9c915dc에서 빈 값으로 닫히고 check_compose.py가 기본값을 단언한다. beta.sh seed 403과 공개 /v1/owners 403 확인은 OPS 인계로 남는다."
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "원본 F2 유지: 재발송 무효화·이메일별 누적 오답 상한 부재(하루 약 6e-4, 1년 약 20%). DEV가 D02 규칙·6자리 문구 의존으로 변경하지 않은 판단과 8자리 대안을 기록했다. 일 누적 실패 상한은 designer 결정 대상이다."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "start_line": 64,
+      "end_line": 65,
+      "category": "security",
+      "severity": "low",
+      "resolved": false,
+      "content": "원본 F3 유지: /home/gates/{id} principal rate 미적용. SAR-PUBLIC-AGENTS-001 범위로 보존됐다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "other",
+      "severity": "low",
+      "resolved": false,
+      "content": "원본 F-UI-01 유지: 회원 gate 만료 시각이 Go 기본 UTC 문자열과 +0000 중복으로 표시된다(pw-11 직접 확인). 후속 gate 표시 과제의 DEV 담당."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "start_line": 83,
+      "end_line": 194,
+      "category": "documentation",
+      "severity": "low",
+      "resolved": false,
+      "content": "L1(신규): to_<role>.md에서 쓴 ../docs/... 상대 링크가 logs/로 아카이브된 뒤 깨진다. to_dev 로그 83·148·194행, to_tester 로그 81행. 올바른 경로는 ../../docs/...다(같은 파일 추가 보고 절은 이미 ../../). 원본 기록 소유자(coor/dev) 또는 work.py finish 처리에서 정정한다. 이 리뷰는 원본을 수정하지 않았다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "0695c42b-0a85-4cc7-90dc-f227379db7b2",
+    "reviewer_session": "886fc5cf-5392-4129-a2e6-f8bfdbf36950",
+    "snapshot_path": "/tmp/knowslink-identity-rate-review-9c915dc",
+    "snapshot_head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+    "read_only": true
+  }
+}
