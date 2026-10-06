@@ -35,3 +35,7 @@ Workers Free만허용·유료플랜/구독/초과과금금지·기존서버/Tunn
 ## 탐색 보완·지시 전제와 충돌 — 먼저 확인
 
 coor가Jev에쓴 internal/relay/connect.go는없는경로다. 원거부JSON을보존하며실제 internal/relay/connections.go·member_agents.go·connections_integration_test.go가필수keep이다. 기존DEV-FIX 자동PASS는H2발견전조건이며현재독립FIX-REVIEW high/checkexit1을우선한다. sensitive/oversized로Jev미전송된cleanup_admission.go는직접읽는다. 기술전제는이번과제에서분석하고제품규칙변경만coor경유질문한다.
+
+## 원본 TESTER 마감 후 추가 근거
+
+사용자가 Grok 토큰 만료로 원본 TESTER 추가 실행을 중단했다. coordinator 마감 기록과 msg_78c8fcd13251을 참고한다. 기록60b9892/제품09c의 독립 probe17차 exit1은 보존한다. receipt20000 거절409 뒤 신규 st.HTTP 행1개가 해제 transaction2초 timeout으로30초 만료까지 잔류한 medium 결함을 같은 FIX-2의 공통 admission/Store 원인 분석·수정·검사에 포함한다. 원본 QA 로그/프로브는 fullops-tester에서 읽기만 한다. 새 H2 후보의 독립 QA는 보류이며 DEV 자체 검사로 대체하지 않는다.

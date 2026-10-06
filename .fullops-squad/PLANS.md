@@ -1019,3 +1019,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - UI-FIX msg_3778d8e04011/ef669bdd69b51fbf83eb007f2f6b5f1654003924 수신. cleanHEAD/origin동일·빈인박스/archive·actualdesigner세션01a11163-faf5-7741-b384-9fbe4c31a2f7·최종HEADlint/test/strict/diff/productdiff0와42PNG/원본216보존을확인한다. 최종원본을COOR/ui-fix-final-ef669bdd에영속화하고추출null/verifiedfullSHA를함께기록했다. coor에SHA보존merge했으며main은H2high로차단한다. 정상클릭/Enter/390px/결과200/홈복귀좁은PASS와new rate포화뒤조회429인L-UI-FIX-1 제외를구분한다. 새H2후보의관련경계QA/시각의존성·영향을확인하기전전체수락하지않는다. 원FAIL/최초worker_done오류/Chrome회수실패를보존하며기존사용자/운영자원은변경하지않는다.
 
 - coor가UI-FIX 42PNG의manifest hash와원본216파일 hash를현재통합checkout에서직접대조해모두동일함을확인했다. 자기cleanup의공유8container동일·listener닫힘/자기자료회수도대조했다. release는external_terminal retained/processAction none으로강제종료하지않는다. ef669 원본기록의독립최종검토/새H2후보 UI의존성·영향확인을후속에유지한다. 원본QA는09c 최종기록검사중이며DEV-FIX-2는283기록checkout에서진행중이다.
+
+## SAR-PUBLIC-MESSAGES-001-TESTER 사용자 중단·기존 증거 마감 — 2026-10-06
+
+- 사용자 지시: Grok 토큰 만료로 해당 세션은 진행한 부분까지만 마무리한다. 추가 Grok 실행·유료 전환·새 QA dispatch는 하지 않는다. 기록 HEAD `60b9892d4e09032012a4feea9220a1833b1f9c90`의 기존 QA 보고서·17차 exit1·초기 실패·전문 완료 로그·빈 인박스를 보존한다. 원본 후보09c의 QA 보고서는 독립 QA 완료/제품 수락 차단으로 작성됐다. 이것은 새 H2 수정 후보의 QA 완료가 아니다.
+- Task `task_3a9d433b5e6b` / Dispatch `ctx_fb39c38db415`는 사용자 중단으로 fence했다. worker-stop은 external terminal 때문에 stop_unknown/processAction none이고 명시적 worker-abandon은 abandoned/processAction none이다. 외부 터미널은 보존됐으며 프로세스 종료나 worker_done을 주장하지 않는다. coordinator가 기록 보존·일반 push·마감 운영을 수행한다. receipt와 실제 최종HEAD lint JSON은 `docs/evaluations/qa-reports/COOR/tester-token-closeout/`에 있다.
+- 기존 제품 suite lint/test/verify-mvp exit0과 독립 probe exit1(H1 high·form deny 분류 medium·receipt cap 거절 뒤 HTTP 행 잔류 medium)을 구분한다. 새 잔류 결함은 msg_78c8fcd13251로 같은 DEV-FIX-2에 추가했다. 진행 DEV 인박스에 같은 내용을 보완하며 제품/기술 원인 판단은 DEV가 한다.
+- 담당 coor/DEV/OPS. DEV-FIX-2는 계속한다. FIX-TESTER는 사용자 토큰 제한과 새 fixed SHA의 독립 QA 부재로 보류한다. 재개 조건은 사용자 허용 검증 수단과 최종 후보의 좁은 독립 QA다. 필수 QA를 면제하지 않는다. H2 high·원본 실패·새 fixed 필수 리뷰/QA/UI 영향 확인 전 main 제품 수락은 계속 차단한다. 실메일/공개/실24h/외부 플랫폼/노우↔다닷은 미검증이다.
