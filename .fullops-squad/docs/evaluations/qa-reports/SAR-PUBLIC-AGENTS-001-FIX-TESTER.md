@@ -93,4 +93,16 @@ D12 운영 수락, 실제 메일, 공개 서버, 운영 데이터 정리, 복원
 
 ## 기록 검사
 
-LINT_PENDING
+기록 커밋 `f7a09c962c23a4f87d775c6d797bb4c0d40f387e`에서 `lint.py --from 458798c2ee15c179edacfd6f94ebb9896d26f411`의 종료코드는 0이다.
+merge_base는 기준 `458798c2ee15c179edacfd6f94ebb9896d26f411`과 같다.
+product-lint의 `make lint`는 passed다. product-test의 `make test`는 passed다.
+ERROR는 0이다. WARNING은 1이다. 실행 불가는 0이다.
+검사 파일은 3개다. 추가 줄은 34다. 세 파일은 `.fullops-squad/PLANS.md`, `.fullops-squad/docs/design-docs/module-design.md`, `.fullops-squad/docs/operations/user-guide.md`다. 평가 기록과 인수인계, 역할 문맥은 lint 제외 경로다.
+WARNING은 SIZE-001이다. `.fullops-squad/PLANS.md`는 885줄이다. 이전 blob은 877줄이다. 상한은 500줄이다.
+늘어난 8줄은 이 QA의 결과 절이다. PLANS는 coor 소유라 이 QA가 줄이지 않았다.
+SIZE-002는 없다. DEP 경고는 없다.
+설정 해시는 `9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6`다.
+JSON은 [fullops-lint-f7a09c9.json](SAR-PUBLIC-AGENTS-001-FIX-TESTER-test/fullops-lint-f7a09c9.json)이다.
+이 문단을 넣기 전 깨끗한 `f7a09c962c23a4f87d775c6d797bb4c0d40f387e`에서 `deliverables.py --strict`는 검사 13, 미작성 0, 문제 0, 경고 0이다.
+같은 트리의 `git diff --check` 종료코드는 0이다.
+이 문단이 들어간 커밋은 위 lint의 HEAD가 아니다.
