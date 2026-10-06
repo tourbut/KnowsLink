@@ -844,3 +844,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - DEV-FIX msg_371319f19427/4a1b80aec8fa6a06144d51f3a5609927a2644928(제품85fb40e) 수신. M1 철회agent24h정리·agent기록10/owner·키기록20/agent 기술보호, L1 rate저장/무효세션budget, L3 실제retry_at, F-UI01–04 보완과최종lint/test/verify-mvp/strict0를확인했다. code변경동일성/최종독립검증은아직대기다. 원래shortSHA추출null은실제Git/보고/원문과대조해sha_source에null과근거를보존해보완했다. coorPLANS와DEV결과를함께보존해merge충돌해결했다.
 - POLICY에handoff msg_750122334b74로키기록포화시새agent/관계재수락의다음동작과철회agent최소24h뒤홈정리표시를추가제품판단으로연결했다. 기존활성agent5/키3제품값은변경하지않고기술보호를상품quota로표시하지않는다. 제품답/필요추가구현뒤고정후보delta리뷰·좁은QA/UI수락까지main보류다.
+
+- POLICY question msg_5271f741b674: 추가handoff수신전원본finish성공으로같은키두번째finish가중복아카이브거부다. reply msg_b0e9c87e41bb로원본전문을보존하고현재정규인박스추가분만POLICY-SUPPLEMENT 기록키finish를허용했다. 같은Task/Dispatch/원본과연결하며worker_done은제품답·전체SHA로한번만보낸다. 원본로그재작성/새제품배정이아니다.
