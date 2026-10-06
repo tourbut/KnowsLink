@@ -1,0 +1,11 @@
+# go test ./internal/relay -run TestOpsProbe -v -count=1 (scratch clone 458798c + probe file only); exit 0
+=== RUN   TestOpsProbeDeletedIDReuse
+    zz_ops_probe_test.go:26: re-register deleted member agent ID+kid via synthetic owner: err=<nil> owner=true
+--- PASS: TestOpsProbeDeletedIDReuse (0.00s)
+=== RUN   TestOpsProbeAPIDecisionGeneration
+    zz_ops_probe_test.go:39: API accept without generation: err=<nil> state=active generation=2
+--- PASS: TestOpsProbeAPIDecisionGeneration (0.00s)
+=== RUN   TestOpsProbeRetryCeil
+--- PASS: TestOpsProbeRetryCeil (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	0.006s

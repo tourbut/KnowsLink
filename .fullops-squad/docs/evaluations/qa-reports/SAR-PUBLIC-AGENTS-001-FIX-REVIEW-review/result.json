@@ -3,704 +3,704 @@
   "head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
   "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
   "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "OPS Orca dispatch ctx_c958c7ee3895 (task task_663b9832129e, Run run_8ca8bc058ab7) / Claude Code / claude-opus-5-5, session 7dc8e8e4-8768-433e-a3d1-c36e6155cc43",
+  "conclusion": "수락 가능. 고정 458798c(제품 코드 6d016e5와 동일)의 d1eef9b 대비 delta에서 원본 M1(철회 기록 무한 증가)·L1(무효 세션 rate rollback)·L3(connect 429 retry_at)이 해소됐고 L2는 POLICY 답대로 구현됐다. critical/high 0, medium 0, 미해결 low 2(L-A 합성 owner 경로의 삭제 ID 재등록, L-B owner API Generation 미결속)는 공개 배포에서 합성 가입이 꺼진 조건에서만 무해하며 차단 사유가 아니다. lint --from d1 exit 0(ERROR 0·WARNING 8·실행 불가 0). 원본 QA/UI FAIL·held 기록은 바꾸지 않았고 UI 직접 재검수·TESTER 독립 QA·OPS 실제 자원/복원 수락은 별도다.",
   "files": [
     {
       "path": ".fullops-squad/PLANS.md",
       "status": "modified",
       "insertions": 71,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 역할 기록 추가다. 삭제 줄은 front matter tasks/updated/summary 갱신뿐이며 기존 기록을 지우지 않았다."
     },
     {
       "path": ".fullops-squad/board/board.json",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 역할 기록 추가다. 삭제 줄은 front matter tasks/updated/summary 갱신뿐이며 기존 기록을 지우지 않았다."
     },
     {
       "path": ".fullops-squad/contexts/designer.md",
       "status": "modified",
       "insertions": 14,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 역할 기록 추가다. 삭제 줄은 front matter tasks/updated/summary 갱신뿐이며 기존 기록을 지우지 않았다."
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "status": "modified",
       "insertions": 8,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 역할 기록 추가다. 삭제 줄은 front matter tasks/updated/summary 갱신뿐이며 기존 기록을 지우지 않았다."
     },
     {
       "path": ".fullops-squad/contexts/ops.md",
       "status": "modified",
       "insertions": 6,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 역할 기록 추가다. 삭제 줄은 front matter tasks/updated/summary 갱신뿐이며 기존 기록을 지우지 않았다."
     },
     {
       "path": ".fullops-squad/contexts/tester.md",
       "status": "modified",
       "insertions": 5,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 역할 기록 추가다. 삭제 줄은 front matter tasks/updated/summary 갱신뿐이며 기존 기록을 지우지 않았다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
       "status": "modified",
       "insertions": 22,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/data-model.md",
       "status": "modified",
       "insertions": 9,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/database-design.md",
       "status": "modified",
       "insertions": 8,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "status": "modified",
       "insertions": 21,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
       "status": "modified",
       "insertions": 7,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
       "status": "added",
       "insertions": 88,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
       "status": "modified",
       "insertions": 23,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 29,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-context.json",
       "status": "added",
       "insertions": 164,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-documents-find.json",
       "status": "added",
       "insertions": 84,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-find.json",
       "status": "added",
       "insertions": 84,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-route.json",
       "status": "added",
       "insertions": 79,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-context.json",
       "status": "added",
       "insertions": 165,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-documents-find.json",
       "status": "added",
       "insertions": 59,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-route.json",
       "status": "added",
       "insertions": 80,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-FIX-REVIEW-route.json",
       "status": "added",
       "insertions": 66,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-FIX-TESTER-route.json",
       "status": "added",
       "insertions": 65,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-context.json",
       "status": "added",
       "insertions": 121,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-documents-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-find.json",
       "status": "added",
       "insertions": 89,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-route.json",
       "status": "added",
       "insertions": 76,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-context.json",
       "status": "added",
       "insertions": 170,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-documents-find.json",
       "status": "added",
       "insertions": 69,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-find.json",
       "status": "added",
       "insertions": 64,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-route.json",
       "status": "added",
       "insertions": 66,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-context.json",
       "status": "added",
       "insertions": 170,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-documents-find.json",
       "status": "added",
       "insertions": 59,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-find.json",
       "status": "added",
       "insertions": 74,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-route.json",
       "status": "added",
       "insertions": 66,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-FIX-route.json",
       "status": "added",
       "insertions": 75,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-context.json",
       "status": "added",
       "insertions": 169,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-documents-find.json",
       "status": "added",
       "insertions": 64,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-find.json",
       "status": "added",
       "insertions": 69,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-route.json",
       "status": "added",
       "insertions": 77,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. JSON 구조와 과제 키·후보 목록을 확인했다. Jev 탐색 보조 기록이며 판정·제외 근거로 쓰지 않았다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-COOR/original-qa-bcb-lint.json",
       "status": "added",
       "insertions": 100,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/fullops-lint.json",
       "status": "added",
       "insertions": 93,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/mobile-width.json",
       "status": "added",
       "insertions": 34,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint-initial.json",
       "status": "added",
       "insertions": 114,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint.json",
       "status": "added",
       "insertions": 86,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/mobile-width.json",
       "status": "added",
       "insertions": 24,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/pre-handoff-final-lint.json",
       "status": "added",
       "insertions": 51,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/record-lint.json",
       "status": "added",
       "insertions": 51,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/supplement-record-lint.json",
       "status": "added",
       "insertions": 51,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실행 기록 JSON의 head/base·명령 종료 상태·ERROR 수를 읽고 해당 문서의 서술과 대조했다. 제품 판정은 원래 SHA 기준으로만 사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/jev-find-score.json",
       "status": "added",
       "insertions": 58,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 d2f7ba5..d1eef9b OPS 리뷰 기록이다. 70f26bc와 458798c 사이 diff 0으로 원본 SHA 기록 보존을 확인하고 M1/L1/L2/L3 원문을 이번 delta 판정의 기준으로 재사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/lint.json",
       "status": "added",
       "insertions": 100,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 d2f7ba5..d1eef9b OPS 리뷰 기록이다. 70f26bc와 458798c 사이 diff 0으로 원본 SHA 기록 보존을 확인하고 M1/L1/L2/L3 원문을 이번 delta 판정의 기준으로 재사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/preview.json",
       "status": "added",
       "insertions": 258,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 d2f7ba5..d1eef9b OPS 리뷰 기록이다. 70f26bc와 458798c 사이 diff 0으로 원본 SHA 기록 보존을 확인하고 M1/L1/L2/L3 원문을 이번 delta 판정의 기준으로 재사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
       "status": "added",
       "insertions": 100,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 d2f7ba5..d1eef9b OPS 리뷰 기록이다. 70f26bc와 458798c 사이 diff 0으로 원본 SHA 기록 보존을 확인하고 M1/L1/L2/L3 원문을 이번 delta 판정의 기준으로 재사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/result.json",
       "status": "added",
       "insertions": 368,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 d2f7ba5..d1eef9b OPS 리뷰 기록이다. 70f26bc와 458798c 사이 diff 0으로 원본 SHA 기록 보존을 확인하고 M1/L1/L2/L3 원문을 이번 delta 판정의 기준으로 재사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/rules.json",
       "status": "added",
       "insertions": 70,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 d2f7ba5..d1eef9b OPS 리뷰 기록이다. 70f26bc와 458798c 사이 diff 0으로 원본 SHA 기록 보존을 확인하고 M1/L1/L2/L3 원문을 이번 delta 판정의 기준으로 재사용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/fullops-lint-9c915dc-1cf8f57.json",
       "status": "added",
       "insertions": 107,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 QA bcb06b8 기록이다. bcb06b8 대비 diff 0, probe-failures의 중간 실패 원문·재실행 사유와 최종 PROBE_EXIT 0을 확인했다. 원본 QA를 최신 SHA 실행으로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/fullops-lint-9c915dc-4c75938.json",
       "status": "added",
       "insertions": 100,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 QA bcb06b8 기록이다. bcb06b8 대비 diff 0, probe-failures의 중간 실패 원문·재실행 사유와 최종 PROBE_EXIT 0을 확인했다. 원본 QA를 최신 SHA 실행으로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/fullops-lint-d111fd4-4c75938.json",
       "status": "added",
       "insertions": 51,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 QA bcb06b8 기록이다. bcb06b8 대비 diff 0, probe-failures의 중간 실패 원문·재실행 사유와 최종 PROBE_EXIT 0을 확인했다. 원본 QA를 최신 SHA 실행으로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
       "status": "added",
       "insertions": 47,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 QA bcb06b8 기록이다. bcb06b8 대비 diff 0, probe-failures의 중간 실패 원문·재실행 사유와 최종 PROBE_EXIT 0을 확인했다. 원본 QA를 최신 SHA 실행으로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/run_probe.py",
       "status": "added",
       "insertions": 104,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 QA bcb06b8 기록이다. bcb06b8 대비 diff 0, probe-failures의 중간 실패 원문·재실행 사유와 최종 PROBE_EXIT 0을 확인했다. 원본 QA를 최신 SHA 실행으로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
       "status": "added",
       "insertions": 151,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 QA bcb06b8 기록이다. bcb06b8 대비 diff 0, probe-failures의 중간 실패 원문·재실행 사유와 최종 PROBE_EXIT 0을 확인했다. 원본 QA를 최신 SHA 실행으로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/cleanup.json",
       "status": "added",
       "insertions": 59,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 UI d165178 기록(FAIL/보류)이다. d165178 대비 diff 0, evidence.json 33개 PNG sha256 일치, cleanup.json의 자기 프로세스 정리 기록을 확인했다. 원본 결과를 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/evidence.json",
       "status": "added",
       "insertions": 333,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 UI d165178 기록(FAIL/보류)이다. d165178 대비 diff 0, evidence.json 33개 PNG sha256 일치, cleanup.json의 자기 프로세스 정리 기록을 확인했다. 원본 결과를 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-corrected-f2f56b6.json",
       "status": "added",
       "insertions": 100,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 UI d165178 기록(FAIL/보류)이다. d165178 대비 diff 0, evidence.json 33개 PNG sha256 일치, cleanup.json의 자기 프로세스 정리 기록을 확인했다. 원본 결과를 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-initial-f9c5ede.json",
       "status": "added",
       "insertions": 107,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 UI d165178 기록(FAIL/보류)이다. d165178 대비 diff 0, evidence.json 33개 PNG sha256 일치, cleanup.json의 자기 프로세스 정리 기록을 확인했다. 원본 결과를 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/review-metadata-only.json",
       "status": "added",
       "insertions": 9,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 UI d165178 기록(FAIL/보류)이다. d165178 대비 diff 0, evidence.json 33개 PNG sha256 일치, cleanup.json의 자기 프로세스 정리 기록을 확인했다. 원본 결과를 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
       "status": "added",
       "insertions": 47,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 원본 QA bcb06b8 기록이다. bcb06b8 대비 diff 0, probe-failures의 중간 실패 원문·재실행 사유와 최종 PROBE_EXIT 0을 확인했다. 원본 QA를 최신 SHA 실행으로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
       "status": "added",
       "insertions": 97,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
       "status": "added",
       "insertions": 95,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
       "status": "added",
       "insertions": 110,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
       "status": "added",
       "insertions": 46,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
       "status": "modified",
       "insertions": 32,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 제품 정본·기술 문서와 코드(상수·sweep·안내 문구·Generation 검사)의 일치를 확인했다. 제품 수치 변경은 없다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
       "status": "added",
       "insertions": 215,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 삭제 0줄의 append-only 로그다. 지시서·완료 보고 전문 보존을 확인했다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_dev.md",
       "status": "modified",
       "insertions": 148,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 삭제 0줄의 append-only 로그다. 지시서·완료 보고 전문 보존을 확인했다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
       "status": "modified",
       "insertions": 64,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 삭제 0줄의 append-only 로그다. 지시서·완료 보고 전문 보존을 확인했다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
       "status": "modified",
       "insertions": 70,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 삭제 0줄의 append-only 로그다. 지시서·완료 보고 전문 보존을 확인했다."
     },
     {
       "path": "README.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 반복 초대 유지·수동 재초대·키 기록 20·owner 기록 10·최소 24h 보존 안내가 코드 상수와 일치한다."
     },
     {
       "path": "internal/relay/api_rate.go",
       "status": "modified",
       "insertions": 9,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. rateLimited가 실제 retry 시각을 초 단위 올림해 Retry-After와 retry_at에 같은 값을 준다(L3 해소). scratch 프로브로 올림 경계를 확인했다."
     },
     {
       "path": "internal/relay/connections.go",
       "status": "modified",
       "insertions": 59,
       "deletions": 9,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. revokedRetention 24h·owner 기록 10·키 기록 20, agentLimit 순서(total→records→active), revokeKeys의 최초 철회 시각 유지, sweep의 legacy Changed=now 시작·24h 경계 삭제·삭제 agent의 pair만 삭제를 읽었다. 삭제 뒤 nil 역참조 경로(prepareConnection·current·ingest·gate·keys)는 모두 nil 검사나 10분 연결 기한으로 안전하다. 합성 owner 경로의 ID 재등록은 L-A로 기록했다."
     },
     {
       "path": "internal/relay/connections_integration_test.go",
       "status": "modified",
       "insertions": 140,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 실제 Postgres 동시 생성 8건 중 4건 허용, 재시작 상한 유지, 무효 세션 익명 budget 집계, 24h 삭제를 읽었다. 실행 증거는 DEV-POLICY-FIX verify-mvp(6d016e5, PASS 55·FAIL 0)를 의존성 동일로 재사용했다."
     },
     {
       "path": "internal/relay/connections_test.go",
       "status": "modified",
       "insertions": 201,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. TestRevokedRecordRetention의 회전 반복 상한·포화 중 철회·반복 철회 시각·30일 kid 유지·JSON 재시작 24h 경계·pair 삭제 범위를 읽었다."
     },
     {
       "path": "internal/relay/http.go",
       "status": "modified",
       "insertions": 10,
       "deletions": 8,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. 합성 agents/keys의 키 기록 상한, key-revoke 반복 시 Changed 유지, invite-decision·unpair의 삭제 agent pair 403. /v1/invite-decision Generation 미결속은 owner bearer가 필요하고 회원 owner는 Credential이 비어 공개 경로에서 쓸 수 없음을 확인했다(L-B)."
     },
     {
       "path": "internal/relay/member.go",
       "status": "modified",
       "insertions": 63,
       "deletions": 29,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. memberHit가 무효 세션을 익명 IP budget에 집계하고 error 경로도 Rates를 커밋한다. refusal 템플릿은 html/template 자동 escape를 쓰며 Back은 고정값 두 개뿐이다. 홈의 Own/Other는 이미 표시되는 자기 관계의 식별자만 쓴다."
     },
     {
       "path": "internal/relay/member_agents.go",
       "status": "modified",
       "insertions": 98,
       "deletions": 36,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. connectLimit은 beginConnection의 소유자 검사 뒤에만 실행되어 타인 agent 정보를 노출하지 않는다. agent-revoke는 최초 Changed만 기록한다. invite-decision·unpair는 같은 transaction에서 Generation 일치를 검사한다. connect 429는 rateLimited를 공용 사용한다."
     },
     {
       "path": "internal/relay/policy_test.go",
       "status": "added",
       "insertions": 258,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. TestSaturationGuidance·TestRelationshipPolicy가 POLICY 두 표의 State 단위 행을 고정한다. 금지 문구(결제·quota·정확히) 검사를 확인했다."
     },
     {
       "path": "internal/relay/store.go",
       "status": "modified",
       "insertions": 4,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검토함. Agent.Changed JSON 필드 추가(마이그레이션 없음). 거부 transaction은 원본 재로드·sweep 뒤 Rates만 보존해 부분 상태를 남기지 않는다(L1 해소)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/01-verify.png",
@@ -708,8 +708,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/02-home-empty.png",
@@ -717,8 +717,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/03-home-two-unconnected.png",
@@ -726,8 +726,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/04-connection-waiting.png",
@@ -735,8 +735,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/05-prepared-fingerprint.png",
@@ -744,8 +744,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/06-approved-not-connected.png",
@@ -753,8 +753,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/07-consumed-complete.png",
@@ -762,8 +762,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/08-home-two-connected.png",
@@ -771,8 +771,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/09-pair-pending.png",
@@ -780,8 +780,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/10-pair-active.png",
@@ -789,8 +789,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/11-pair-revoked.png",
@@ -798,8 +798,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/12-pair-denied.png",
@@ -807,8 +807,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/13-connection-cancelled.png",
@@ -816,8 +816,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/14-connection-expired.png",
@@ -825,8 +825,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/15-unsupported-error.png",
@@ -834,8 +834,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/16-permission-error.png",
@@ -843,8 +843,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/17-rotation-keys.png",
@@ -852,8 +852,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/18-mobile-home.png",
@@ -861,8 +861,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/19-mobile-agent.png",
@@ -870,8 +870,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/20-cross-sender-pending.png",
@@ -879,8 +879,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/21-cross-recipient-pending.png",
@@ -888,8 +888,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/22-cross-active-sender.png",
@@ -897,8 +897,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/23-cross-sender-revoked.png",
@@ -906,8 +906,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/24-cross-recipient-revoked.png",
@@ -915,8 +915,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/25-reauth-required.png",
@@ -924,8 +924,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/26-reauth-wrong-code.png",
@@ -933,8 +933,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/26a-reauth-rate.png",
@@ -942,8 +942,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/27-selected-key-revoked.png",
@@ -951,8 +951,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/28-agent-revoked.png",
@@ -960,8 +960,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/29-logout-preserves-agent-note.png",
@@ -969,8 +969,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/30-relogin-key-still-active.png",
@@ -978,8 +978,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/orca-full-blank.png",
@@ -987,8 +987,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/orca-viewport-1x1.png",
@@ -996,8 +996,8 @@
       "insertions": 0,
       "deletions": 0,
       "exclude_reason": "binary",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "skipped",
+      "reason": "원본 UI d165178의 raw PNG 증거(바이너리). evidence.json manifest 33개 sha256과 파일 33개가 모두 일치하고 d165178 대비 diff 0이다. 직접 시각 판정은 designer 책임이며 원본 FAIL/보류를 바꾸지 않는다. 판정 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/exits.txt",
@@ -1006,7 +1006,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/fullops-lint.log",
@@ -1015,7 +1015,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/head.txt",
@@ -1024,7 +1024,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/lint.log",
@@ -1033,7 +1033,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/test.log",
@@ -1042,7 +1042,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/verify-mvp.log",
@@ -1051,7 +1051,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/exits.txt",
@@ -1060,7 +1060,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint-initial.log",
@@ -1069,7 +1069,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint.log",
@@ -1078,7 +1078,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/head.txt",
@@ -1087,7 +1087,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/lint.log",
@@ -1096,7 +1096,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/test.log",
@@ -1105,7 +1105,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/verify-mvp.log",
@@ -1114,7 +1114,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/clone-after.txt",
@@ -1123,7 +1123,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/clone-before.txt",
@@ -1132,7 +1132,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/docker-after-verify.txt",
@@ -1141,7 +1141,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/docker-after.txt",
@@ -1150,7 +1150,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/docker-before.txt",
@@ -1159,7 +1159,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/lint.log",
@@ -1168,7 +1168,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-go.log",
@@ -1177,7 +1177,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe_test.go.src",
@@ -1186,7 +1186,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/test.log",
@@ -1195,7 +1195,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/verify-mvp.log",
@@ -1204,7 +1204,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/worktrees-before-record.txt",
@@ -1213,7 +1213,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/worktrees-closeout.txt",
@@ -1222,7 +1222,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/artifact-check.txt",
@@ -1231,7 +1231,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/cleanup-compose.txt",
@@ -1240,7 +1240,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/fixture-mutations.txt",
@@ -1249,7 +1249,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-corrected-f2f56b6.txt",
@@ -1258,7 +1258,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-initial-f9c5ede.txt",
@@ -1267,7 +1267,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/product-unchanged.txt",
@@ -1276,7 +1276,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/strict.txt",
@@ -1285,15 +1285,32 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다. OPS 확인: 같은 폴더 head/exits·lint JSON과 대조했다. DEV-FIX head 85fb40e·exits 0, DEV-POLICY-FIX head 6d016e5·run2 lint/test/verify-mvp 0, TESTER clone 전후 d1eef9b·probe PASS, UI strict/artifact/product-unchanged exit 0. 비밀값 패턴 검색 0건. 생략 영향 없음."
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "internal/relay/connections.go",
+      "start_line": 216,
+      "end_line": 225,
+      "severity": "low",
+      "resolved": false,
+      "content": "L-A: sweep이 철회 24h 뒤 회원 agent를 삭제하면 그 ID는 tombstone 없이 비게 된다. 합성 owner bearer가 있으면 /v1/agents로 같은 agent ID와 같은 kid를 다시 등록할 수 있다(scratch 프로브 err=nil). 회원 owner는 bearer가 없고 공개 후보는 KNOWSLINK_SYNTHETIC_SIGNUP을 비우므로 공개 경로에서는 재현되지 않는다. 철회 agent의 envelope은 즉시 비워지고 pair도 삭제되므로 옛 메시지 위조·관계 승계는 없다. 코드 주석의 \"never issued again\"은 합성 경로에서 강제되지 않는다. 합성 가입을 켜거나 legacy 합성 owner가 남은 DB에서는 C1 재사용 금지가 깨진다. 공개 전 OPS는 합성 owner 0을 확인하고, DEV는 후속에서 agent_ 접두사 예약 또는 삭제 ID tombstone을 검토한다."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "start_line": 332,
+      "end_line": 350,
+      "severity": "low",
+      "resolved": false,
+      "content": "L-B: /v1/invite-decision은 Generation을 받지 않는다. 거절 뒤 새 pending(세대 2)에 늦게 온 API accept가 그대로 active를 만든다(scratch 프로브). 회원 화면은 같은 transaction에서 Generation 일치를 검사하고, owner bearer는 합성 owner에게만 있으므로 공개 경로는 회원 화면뿐이다. DEV 판단에 동의한다: 공개 경로 제한으로 PS-07 요구를 충족한다. 단 이 충족은 KNOWSLINK_SYNTHETIC_SIGNUP 미설정과 합성 owner 부재라는 배포 조건에 의존한다. owner API를 공개하려면 Generation 필드를 먼저 추가해야 한다."
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "01a10f52-ac0f-75a0-b253-9a926a8e5650,e1275961-b0bc-4c1d-ad9c-5b3682464a89,2ca6140e-15e7-4c1a-8564-94f88ded0af7",
+    "reviewer_session": "7dc8e8e4-8768-433e-a3d1-c36e6155cc43",
+    "snapshot_path": "/tmp/knowslink-agents-review-458798c",
     "snapshot_head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
     "read_only": true
   }

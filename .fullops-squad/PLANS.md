@@ -879,3 +879,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV-POLICY-FIX msg_b3dd3979dc40/83e0bfb907085bade31a193ab91ca723feb7d7ad 수신. 실제cleanHEAD·빈인박스·원본실패/검증을확인하고coor에SHA보존반영했다. 추출SHA null과보완출처를함께보존했다. 고정후보 458798c2ee15c179edacfd6f94ebb9896d26f411에서 독립FIX-REVIEW/FIX-TESTER/UI-FIX를배정한다. 원래lint3769e9d만으로최종83e를주장하지않고누락고정HEAD검사를coor가한번보완한다. 필수검수·원본UIFAIL해소전main통합보류다.
 
 - 최종83e0bfb의누락고정HEAD FullOps를완료했다. 기준4a exit0·product-lint/test0·ERROR0/WARNING6/실행불가0, 원본JSON은COOR/policy-fix-83e0bfb-lint.json에보존했다. 기존3769e9d의검사는원래SHA로유지한다. 검수준비빈report를dispatch전metadata-only stamp했다.
+
+## SAR-PUBLIC-AGENTS-001-FIX-REVIEW 결과 (OPS, 2026-10-06)
+
+- 고정 d1eef9b..458798c2ee15c179edacfd6f94ebb9896d26f411 독립 보안 delta 리뷰를 완료했다. 리뷰 세션 7dc8e8e4-8768-433e-a3d1-c36e6155cc43이며 DEV 세션 3개와 다르다. snapshot /tmp/knowslink-agents-review-458798c는 리뷰 전후 clean·detached이며 읽기만 했다. 제품 코드는 6d016e5와 같다.
+- 원본 M1·L1·L3 해소, L2는 POLICY대로 구현이다. critical/high 0·medium 0이다. 미해결 low 2건: L-A 합성 owner의 /v1/agents가 24h 삭제된 회원 agent ID·kid를 재등록할 수 있다. L-B /v1/invite-decision Generation 미결속은 공개 경로 제한으로 PS-07을 충족한다는 DEV 판단에 동의한다. 두 건 모두 KNOWSLINK_SYNTHETIC_SIGNUP 미설정·합성 owner 0을 전제로 한다.
+- scratch clone lint --from d1: 설치 전 exit 1(tsc not found, 원본 보존) → make install 뒤 exit 0, head 458798c, ERROR 0·WARNING 8·실행 불가 0. review.py check exit 0(87 reviewed·65 skipped). verify-mvp는 6d016e5 run 2를 제품·의존성 diff 0으로 재사용했다. [리뷰 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-REVIEW-review/report.md)
+- 후속: 공개 전 OPS가 운영 DB 합성 owner 0개를 확인한다(L-A/L-B 전제). DEV 후속에서 agent_ 접두사 예약 또는 삭제 ID tombstone, owner API Generation 필드를 검토한다. TESTER 독립 QA·designer UI 재검수·OPS 실제 자원/복원 수락은 별도이며 이 리뷰 완료는 main 제품 수락이 아니다.
