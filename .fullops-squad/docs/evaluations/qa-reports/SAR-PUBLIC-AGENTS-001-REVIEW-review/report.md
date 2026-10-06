@@ -1,3 +1,12 @@
+---
+title: SAR-PUBLIC-AGENTS-001-REVIEW 리뷰
+status: draft
+updated: 2026-10-06
+owner: ops
+tasks: [SAR-PUBLIC-AGENTS-001-REVIEW]
+summary: 미완료 리뷰 양식이며 실제 검토 결과와 수락 판단은 OPS 후속 기록을 따른다
+---
+
 # SAR-PUBLIC-AGENTS-001-REVIEW 리뷰
 
 - 검토자 / CLI / 모델:
