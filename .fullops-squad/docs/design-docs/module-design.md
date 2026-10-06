@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -131,3 +131,9 @@ POLICY 48d12fa의 관계 반복·재초대 의미는 기준 4a 코드와 이미 
 TestRelationshipPolicy는 State 단위 관계 행렬이다. 같은/반대 방향 pending 반복의 수·세대·기한·수신자 불변, pending 메시지 거부, 발신 owner 결정 거부, 기한 직전 수락과 기한 도달 거부, 만료 뒤 새 기한·새 세대, active 반복 불변, 양측 각각의 unpair와 옛 메시지·옛 결정 거부, 양방향 재초대의 새 수락과 새 세대, 거절 뒤 늦은 수락 거부와 pending slot 해제, 타 owner 결정·unpair 거부, 같은 owner 자동 수락 없음, 송신 pending 상한의 다음 재초대가 세대를 만들지 않음, 재시작 뒤 상태 유지, 비활성 owner·철회 agent 재초대 거부를 확인한다.
 TestSaturationGuidance는 키 기록 포화의 교체 안내와 생성 가능 여부, owner 기록 포화의 24h 보존 전후, 보존 중·정리 뒤 옛 키 credential 거부, 활성 키 3개·활성 agent 5개 안내, 결제·정확한 시각 문구 부재를 확인한다.
 integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 방향 반복의 기한 불변, 종료 관계의 새 초대 버튼, owner 기록 포화 409 안내, 키 기록 포화 connect 409의 교체 안내·생성 버튼·연결 미생성을 확인한다.
+
+## SAR-PUBLIC-AGENTS-001-FIX-TESTER 독립 QA
+
+독립 QA는 후보 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 detached clone에서 회원 HTTP와 Postgres 행을 확인했다. DEV의 `TestRelationshipPolicy` 통과를 이 QA의 통과로 쓰지 않았다.
+보존, rate, POLICY 두 관찰 표의 프로브 종료코드는 0이다. 새 critical/high는 없다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다.
+원본 d1 QA와 UI FAIL은 원래 SHA에 둔다. 이 절은 그 판정을 바꾸지 않는다. 운영 공개와 실제 메일은 확인하지 않았다.

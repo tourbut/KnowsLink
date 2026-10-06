@@ -895,3 +895,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 남은 담당과 재개 조건: TESTER의 fixed 정책 독립 QA, OPS delta/운영 조건, coor의 합성 후보 통합 수락. 실메일·운영 공개·실24h·부하/복원·노우↔다닷은 후속으로 유지한다. 새 designer 과제는 없다. 완료 전문은 work.py finish 뒤 날짜별 designer 로그에서 확인한다.
 
 - UI-FIX msg_1324c3837625/c9b425062f2526663177b11df62e171308c846e3 수신. fixed458의필수FUI01–04·POLICY두표직접시각PASS·제품diff0·원본65파일보존·자기fixture정리를확인했다. 정상PNG62개/장애2개는직접열람·manifest로연결됐고실24h/실메일PASS가아니다. D03오기는actualD04/designerUX원천으로정정했고DEV정본은변경없다. finalreportlint증거c1b2는원래HEAD로유지하며최종통합후보검사에서기록마지막SHA도포함한다. coorSHA보존반영·원본FAIL불변, QA와기록자체검토대기hold다.
+## SAR-PUBLIC-AGENTS-001-FIX-TESTER — 2026-10-06
+
+- 고정 `458798c2ee15c179edacfd6f94ebb9896d26f411`를 별도 clone에서 보존, rate, POLICY 관찰 조건만 독립 QA했다. 최종 프로브 종료코드는 0이다. 1차 종료코드 1은 프로브 기대값이고 제품 결함이 아니다. 새 critical/high는 없다.
+- 원본 QA `bcb06b89bcb36d69a99cbeef3d94e4a9ffe88361`와 UI FAIL `d1651784c4338efeb0d6141467d563c6b354e4a5`는 그 SHA에 둔다. 실제 이메일, 운영 공개, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다.

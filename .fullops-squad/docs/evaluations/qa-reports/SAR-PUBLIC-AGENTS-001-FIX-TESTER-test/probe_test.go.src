@@ -1,0 +1,909 @@
+//go:build integration
+
+// Independent QA for retention, rate, and the POLICY observation rows.
+// The runner copies this file into the detached candidate for one run. Product source stays unchanged.
+package relay
+
+import (
+	"context"
+	"crypto/ed25519"
+	"encoding/base64"
+	"encoding/json"
+	"fmt"
+	"net"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
+	"os"
+	"regexp"
+	"strings"
+	"sync"
+	"testing"
+	"time"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+var fixAgentIDs = regexp.MustCompile(`<h3><code>(agent_[a-f0-9]+)</code></h3>`)
+
+func fixLoad(t *testing.T, pool *pgxpool.Pool) *State {
+	t.Helper()
+	var raw []byte
+	if err := pool.QueryRow(context.Background(), `SELECT data FROM relay_state`).Scan(&raw); err != nil {
+		t.Fatal(err)
+	}
+	st := newState()
+	if err := json.Unmarshal(raw, st); err != nil {
+		t.Fatal(err)
+	}
+	return st
+}
+
+func fixClearRates(t *testing.T, s *Service) {
+	t.Helper()
+	s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
+}
+
+func fixCreate(t *testing.T, b *browser, seen map[string]bool) string {
+	t.Helper()
+	expect(t, b.do("POST", "/home/agents", nil), 303)
+	w := b.do("GET", "/home", nil)
+	expect(t, w, 200)
+	var created string
+	for _, match := range fixAgentIDs.FindAllStringSubmatch(w.Body.String(), -1) {
+		if seen[match[1]] {
+			continue
+		}
+		if created != "" {
+			t.Fatal("ambiguous new agent")
+		}
+		created = match[1]
+	}
+	if created == "" {
+		t.Fatal("missing new agent")
+	}
+	seen[created] = true
+	return created
+}
+
+func fixPair(t *testing.T, pool *pgxpool.Pool, a, b string) *Pair {
+	t.Helper()
+	p := fixLoad(t, pool).Pairs[pairID(a, b)]
+	if p == nil {
+		t.Fatal("missing pair")
+	}
+	return p
+}
+
+func fixPending(st *State) int {
+	n := 0
+	for _, p := range st.Pairs {
+		if p.State == "pending" {
+			n++
+		}
+	}
+	return n
+}
+
+func fixSend(t *testing.T, h http.Handler, private ed25519.PrivateKey, cred, from, to, key string, n, status int) {
+	t.Helper()
+	raw := wire(t, private, fmt.Sprintf("0199a3f2-4c10-7a11-8b22-%012d", n), from, to, "schedule.query", key, "", queryBody(), time.Now().Add(time.Minute))
+	publicCall(t, h, "/v1/send", cred, json.RawMessage(raw), status)
+}
+
+func fixConnect(t *testing.T, s *Service, b *browser, agent, kid, mode string) (ed25519.PrivateKey, string) {
+	t.Helper()
+	fixClearRates(t, s)
+	token, id := browserGrant(t, b, agent, mode)
+	private, proof := clientPrepare(t, s.Handler(), token, kid)
+	expect(t, b.do("POST", "/home/confirm", url.Values{"connection": {id}}), 303)
+	out := publicCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, 200)
+	cred, _ := out["credential"].(string)
+	if cred == "" || out["kid"] != kid {
+		t.Fatal("complete shape")
+	}
+	return private, cred
+}
+
+func fixInvite(t *testing.T, b *browser, from, to string, status int, notice string) {
+	t.Helper()
+	expect(t, b.do("POST", "/home/invites", url.Values{"agent": {from}, "target": {to}}), status, notice)
+}
+
+func fixDecide(t *testing.T, b *browser, a, target, decision string, generation int64, status int) {
+	t.Helper()
+	form := url.Values{"agent": {a}, "target": {target}, "decision": {decision}, "generation": {fmt.Sprint(generation)}}
+	expect(t, b.do("POST", "/home/invite-decision", form), status)
+}
+
+func fixUnpair(t *testing.T, b *browser, a, target string, generation int64, status int) {
+	t.Helper()
+	form := url.Values{"agent": {a}, "target": {target}, "generation": {fmt.Sprint(generation)}}
+	expect(t, b.do("POST", "/home/unpair", form), status)
+}
+
+func TestQAAgentsFix(t *testing.T) {
+	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" || os.Getenv("TEST_DATABASE_URL") == "" {
+		t.Fatal("isolated database required")
+	}
+	pool, err := pgxpool.New(context.Background(), os.Getenv("TEST_DATABASE_URL"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(pool.Close)
+	t.Run("policy", func(t *testing.T) { fixPolicy(t, pool) })
+	t.Run("retention", func(t *testing.T) { fixRetention(t, pool) })
+	t.Run("rate", func(t *testing.T) { fixRate(t, pool) })
+}
+
+func fixPolicy(t *testing.T, pool *pgxpool.Pool) {
+	t.Helper()
+	s, mail := identityService(t, pool)
+	alice := &browser{t, s.Handler(), "198.51.100.10", map[string]string{}}
+	bob := &browser{t, s.Handler(), "198.51.100.11", map[string]string{}}
+	carol := &browser{t, s.Handler(), "198.51.100.12", map[string]string{}}
+	memberA := login(t, alice, mail, "qa-fix-a@example.test")
+	login(t, bob, mail, "qa-fix-b@example.test")
+	login(t, carol, mail, "qa-fix-c@example.test")
+	seenA, seenB := map[string]bool{}, map[string]bool{}
+	fixClearRates(t, s)
+	aAgent := fixCreate(t, alice, seenA)
+	bAgent := fixCreate(t, bob, seenB)
+	private, cred := fixConnect(t, s, alice, aAgent, "key1", "register")
+	fixConnect(t, s, bob, bAgent, "key1", "register")
+	fixClearRates(t, s)
+
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invited")
+	first := fixPair(t, pool, aAgent, bAgent)
+	if first.State != "pending" || first.Generation != 1 || first.Recipient != bAgent || fixPending(fixLoad(t, pool)) != 1 {
+		t.Fatal("first invite", first.State, first.Generation)
+	}
+	exp := first.Exp
+	expect(t, alice.do("GET", "/home?n=invited", nil), 200, "수락하기 전에는 메시지를 주고받을 수 없습니다")
+	if strings.Contains(alice.do("GET", "/home", nil).Body.String(), "수신 owner로 수락") {
+		t.Fatal("inviter saw the accept control")
+	}
+	expect(t, bob.do("GET", "/home", nil), 200, "받은 초대입니다", "수신 owner로 수락", "수신 owner로 거절")
+	fixSend(t, s.Handler(), private, cred, aAgent, bAgent, "qa-fix-pending-0001", 11, 403)
+
+	// Same-direction and opposite-direction repeats keep the count, generation, recipient, and deadline.
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invite-pending")
+	fixInvite(t, bob, bAgent, aAgent, 303, "/home?n=invite-pending")
+	expect(t, alice.do("GET", "/home?n=invite-pending", nil), 200, "이미 대기 중인 초대", "기한도 그대로", "받은 초대라면")
+	expect(t, bob.do("GET", "/home", nil), 200, "받은 초대입니다")
+	repeated := fixPair(t, pool, aAgent, bAgent)
+	if repeated.Generation != 1 || !repeated.Exp.Equal(exp) || repeated.State != "pending" || repeated.Recipient != bAgent || fixPending(fixLoad(t, pool)) != 1 {
+		t.Fatal("repeat changed the invite")
+	}
+	st := fixLoad(t, pool)
+	if len(st.Rates["http:member:"+memberA]) < 2 {
+		t.Fatal("repeat was not counted in the member rate", len(st.Rates["http:member:"+memberA]))
+	}
+	// In-process clock one hour later. This is not a wall-clock wait.
+	t.Log("clock-fixture: invite operation time plus one hour, not a real wait")
+	s.mutateState(t, func(st *State) {
+		owner := st.Agents[aAgent].Owner
+		q, e := st.operateAs("invites", owner, "owner", command{Agent: aAgent, Target: bAgent}, time.Now().Add(time.Hour), false)
+		p, _ := q.(*Pair)
+		if e != nil || p == nil || p.Generation != 1 || !p.Exp.Equal(exp) || p.State != "pending" {
+			t.Fatal("later clock extended the pending invite", e)
+		}
+	})
+	fixDecide(t, alice, aAgent, bAgent, "accept", 1, 403)
+	if fixPair(t, pool, aAgent, bAgent).State != "pending" {
+		t.Fatal("inviter accept changed the invite")
+	}
+	fixDecide(t, carol, aAgent, bAgent, "accept", 1, 403)
+	if fixPair(t, pool, aAgent, bAgent).State != "pending" || fixPair(t, pool, aAgent, bAgent).Generation != 1 {
+		t.Fatal("foreign owner changed the invite")
+	}
+	fixClearRates(t, s)
+
+	// Deadline reached: stored Exp is moved before the database clock. This is not a 24h wait.
+	t.Log("clock-fixture: pending Exp moved before the database clock")
+	s.mutateState(t, func(st *State) {
+		st.Pairs[pairID(aAgent, bAgent)].Exp = time.Now().Add(-time.Minute)
+	})
+	fixDecide(t, bob, aAgent, bAgent, "accept", 1, 403)
+	expired := fixPair(t, pool, aAgent, bAgent)
+	if expired.State != "expired" || expired.Generation != 1 || fixPending(fixLoad(t, pool)) != 0 {
+		t.Fatal("expired invite still pending", expired.State)
+	}
+	fixClearRates(t, s)
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invited")
+	renewed := fixPair(t, pool, aAgent, bAgent)
+	if renewed.Generation != 2 || renewed.State != "pending" || !renewed.Exp.After(time.Now().Add(23*time.Hour)) {
+		t.Fatal("re-invite after expiry", renewed.Generation, renewed.Exp)
+	}
+	fixDecide(t, bob, aAgent, bAgent, "accept", 1, 403)
+	if fixPair(t, pool, aAgent, bAgent).Generation != 2 || fixPair(t, pool, aAgent, bAgent).State != "pending" {
+		t.Fatal("old generation accept changed the new invite")
+	}
+	// Before the new deadline the recipient can accept. Two minutes is still before Exp.
+	t.Log("clock-fixture: Exp set two minutes ahead, then accepted immediately")
+	s.mutateState(t, func(st *State) {
+		st.Pairs[pairID(aAgent, bAgent)].Exp = time.Now().Add(2 * time.Minute)
+	})
+	fixDecide(t, bob, aAgent, bAgent, "accept", 2, 303)
+	if fixPair(t, pool, aAgent, bAgent).State != "active" || fixPair(t, pool, aAgent, bAgent).Generation != 2 {
+		t.Fatal("accept before deadline failed")
+	}
+	activeRaw := wire(t, private, "0199a3f2-4c10-7a11-8b22-000000000012", aAgent, bAgent, "schedule.query", "qa-fix-active-00001", "", queryBody(), time.Now().Add(time.Minute))
+	publicCall(t, s.Handler(), "/v1/send", cred, json.RawMessage(activeRaw), 200)
+	publicCall(t, s.Handler(), "/v1/send", cred, json.RawMessage(activeRaw), 200)
+	if messages := len(fixLoad(t, pool).Messages); messages != 1 {
+		t.Fatal("receipt replay created another message", messages)
+	}
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invite-active")
+	fixInvite(t, bob, bAgent, aAgent, 303, "/home?n=invite-active")
+	expect(t, alice.do("GET", "/home?n=invite-active", nil), 200, "이미 연결된 관계", "현재 관계를 그대로")
+	active := fixPair(t, pool, aAgent, bAgent)
+	if active.State != "active" || active.Generation != 2 || fixPending(fixLoad(t, pool)) != 0 {
+		t.Fatal("active repeat changed the relationship")
+	}
+
+	// Alice unpair, manual re-invite, old decision refused, Bob's new accept required.
+	fixUnpair(t, alice, aAgent, bAgent, 2, 303)
+	if fixPair(t, pool, aAgent, bAgent).State != "revoked" {
+		t.Fatal("sender unpair")
+	}
+	fixSend(t, s.Handler(), private, cred, aAgent, bAgent, "qa-fix-after-unpair1", 14, 403)
+	home := alice.do("GET", "/home", nil)
+	expect(t, home, 200, "연결이 끝났습니다", "새 초대 보내기", "상대가 새로 수락해야 합니다")
+	if strings.Contains(home.Body.String(), `action="/home/unpair"`) {
+		t.Fatal("ended relationship still offered unpair")
+	}
+	fixClearRates(t, s)
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invited")
+	if fixPair(t, pool, aAgent, bAgent).Generation != 3 || fixPair(t, pool, aAgent, bAgent).State != "pending" {
+		t.Fatal("re-invite after sender unpair")
+	}
+	fixDecide(t, bob, aAgent, bAgent, "accept", 2, 403)
+	fixSend(t, s.Handler(), private, cred, aAgent, bAgent, "qa-fix-before-new1", 15, 403)
+	fixDecide(t, bob, aAgent, bAgent, "accept", 3, 303)
+	if fixPair(t, pool, aAgent, bAgent).State != "active" || fixPair(t, pool, aAgent, bAgent).Generation != 3 {
+		t.Fatal("new accept")
+	}
+	publicCall(t, s.Handler(), "/v1/send", cred, json.RawMessage(activeRaw), 403)
+	fixSend(t, s.Handler(), private, cred, aAgent, bAgent, "qa-fix-gen3-0000001", 17, 200)
+
+	// Bob unpair, then Bob's manual re-invite waits for Alice.
+	fixUnpair(t, bob, aAgent, bAgent, 3, 303)
+	fixInvite(t, bob, bAgent, aAgent, 303, "/home?n=invited")
+	turned := fixPair(t, pool, aAgent, bAgent)
+	if turned.Generation != 4 || turned.State != "pending" || turned.Recipient != aAgent {
+		t.Fatal("opposite re-invite", turned.Generation, turned.Recipient)
+	}
+	fixDecide(t, bob, aAgent, bAgent, "accept", 4, 403)
+	fixDecide(t, alice, aAgent, bAgent, "accept", 4, 303)
+	if fixPair(t, pool, aAgent, bAgent).Generation != 4 || fixPair(t, pool, aAgent, bAgent).State != "active" {
+		t.Fatal("recipient of the opposite re-invite")
+	}
+
+	// Deny frees the pending slot. A late accept does not change the next invite.
+	fixUnpair(t, alice, aAgent, bAgent, 4, 303)
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invited")
+	deniedGen := fixPair(t, pool, aAgent, bAgent).Generation
+	fixDecide(t, bob, aAgent, bAgent, "deny", deniedGen, 303)
+	if fixPair(t, pool, aAgent, bAgent).State != "denied" || fixPending(fixLoad(t, pool)) != 0 {
+		t.Fatal("deny did not free the slot")
+	}
+	fixDecide(t, bob, aAgent, bAgent, "accept", deniedGen, 403)
+	if fixPair(t, pool, aAgent, bAgent).State != "denied" || fixPair(t, pool, aAgent, bAgent).Generation != deniedGen {
+		t.Fatal("late accept revived the denied invite")
+	}
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invited")
+	raceGen := fixPair(t, pool, aAgent, bAgent).Generation
+	if raceGen != deniedGen+1 || fixPair(t, pool, aAgent, bAgent).State != "pending" {
+		t.Fatal("manual invite after deny")
+	}
+	bobCookie := bob.cookies[sessionCookie]
+	var wg sync.WaitGroup
+	codes := make(chan int, 2)
+	for _, decision := range []string{"accept", "deny"} {
+		wg.Add(1)
+		go func(decision string) {
+			defer wg.Done()
+			other := &browser{t, s.Handler(), "198.51.100.13", map[string]string{sessionCookie: bobCookie}}
+			form := url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {decision}, "generation": {fmt.Sprint(raceGen)}}
+			codes <- other.do("POST", "/home/invite-decision", form).Code
+		}(decision)
+	}
+	wg.Wait()
+	close(codes)
+	wins, losses := 0, 0
+	for code := range codes {
+		if code == 303 {
+			wins++
+		} else if code == 403 {
+			losses++
+		} else {
+			t.Fatal("race status", code)
+		}
+	}
+	raced := fixPair(t, pool, aAgent, bAgent)
+	if wins != 1 || losses != 1 || raced.Generation != raceGen || (raced.State != "active" && raced.State != "denied") || len(fixLoad(t, pool).Pairs) != 1 {
+		t.Fatal("decision race", wins, losses, raced.State, raced.Generation)
+	}
+	if raced.State == "active" {
+		fixDecide(t, bob, aAgent, bAgent, "deny", raceGen, 403)
+		if fixPair(t, pool, aAgent, bAgent).State != "active" {
+			t.Fatal("late deny changed the accepted relationship")
+		}
+	} else {
+		fixDecide(t, bob, aAgent, bAgent, "accept", raceGen, 403)
+		if fixPair(t, pool, aAgent, bAgent).State != "denied" {
+			t.Fatal("late accept changed the denied invite")
+		}
+	}
+
+	// Eight accepts of one fresh pending produce one active relationship.
+	if raced.State != "denied" {
+		fixUnpair(t, alice, aAgent, bAgent, raceGen, 303)
+	}
+	fixInvite(t, alice, aAgent, bAgent, 303, "/home?n=invited")
+	concGen := fixPair(t, pool, aAgent, bAgent).Generation
+	bobCookie = bob.cookies[sessionCookie]
+	var conc sync.WaitGroup
+	for i := 0; i < 8; i++ {
+		conc.Add(1)
+		go func() {
+			defer conc.Done()
+			other := &browser{t, s.Handler(), "198.51.100.14", map[string]string{sessionCookie: bobCookie}}
+			form := url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"accept"}, "generation": {fmt.Sprint(concGen)}}
+			if other.do("POST", "/home/invite-decision", form).Code != 303 {
+				t.Error("concurrent accept")
+			}
+		}()
+	}
+	conc.Wait()
+	if t.Failed() || fixPair(t, pool, aAgent, bAgent).State != "active" || fixPair(t, pool, aAgent, bAgent).Generation != concGen || len(fixLoad(t, pool).Pairs) != 1 {
+		t.Fatal("concurrent accept produced another relationship")
+	}
+
+	// Same owner: two agents stay pending until that owner accepts, including the re-accept.
+	fixClearRates(t, s)
+	same := fixCreate(t, alice, seenA)
+	fixInvite(t, alice, aAgent, same, 303, "/home?n=invited")
+	samePair := fixPair(t, pool, aAgent, same)
+	if samePair.State != "pending" || samePair.Generation != 1 {
+		t.Fatal("same owner auto-accepted")
+	}
+	expect(t, alice.do("GET", "/home", nil), 200, "수신 owner로 수락")
+	fixDecide(t, alice, aAgent, same, "accept", 1, 303)
+	fixUnpair(t, alice, aAgent, same, 1, 303)
+	fixInvite(t, alice, aAgent, same, 303, "/home?n=invited")
+	if fixPair(t, pool, aAgent, same).State != "pending" || fixPair(t, pool, aAgent, same).Generation != 2 {
+		t.Fatal("same-owner re-invite")
+	}
+	fixDecide(t, alice, aAgent, same, "accept", 1, 403)
+	fixDecide(t, alice, aAgent, same, "accept", 2, 303)
+
+	// Caps: the next attempt creates no generation. Cleanup remains available while the new budget is full.
+	fixUnpair(t, alice, aAgent, bAgent, concGen, 303)
+	s.mutateState(t, func(st *State) {
+		foreign := "own_fix_foreign"
+		st.Owners[foreign] = &Owner{Active: true}
+		for i := 0; i < 10; i++ {
+			id := fmt.Sprintf("agent_pad_%d", i)
+			st.Agents[id] = &Agent{Owner: foreign, Keys: map[string]*Key{}}
+			st.Pairs[pairID(aAgent, id)] = &Pair{A: aAgent, B: id, Inviter: aAgent, Recipient: id, State: "pending", Generation: 1, Exp: time.Now().Add(time.Hour)}
+		}
+	})
+	heldGen := fixPair(t, pool, aAgent, bAgent).Generation
+	fixClearRates(t, s)
+	fixInvite(t, alice, aAgent, bAgent, 409, "")
+	if fixPair(t, pool, aAgent, bAgent).Generation != heldGen || fixPair(t, pool, aAgent, bAgent).State != "revoked" {
+		t.Fatal("sender pending cap created a generation")
+	}
+	s.mutateState(t, func(st *State) {
+		for id := range st.Pairs {
+			if strings.HasPrefix(id, "agent_pad_") || strings.Contains(id, "agent_pad_") {
+				delete(st.Pairs, id)
+			}
+		}
+		foreign := "own_fix_foreign"
+		left := st.Agents["agent_pad_0"]
+		right := st.Agents["agent_pad_1"]
+		if left == nil || right == nil {
+			t.Fatal("pad agents")
+		}
+		for i := 0; i < 200; i++ {
+			id := fmt.Sprintf("padpair-%d", i)
+			st.Pairs[id] = &Pair{A: "agent_pad_0", B: "agent_pad_1", Inviter: "agent_pad_0", Recipient: "agent_pad_1", State: "pending", Generation: 1, Exp: time.Now().Add(time.Hour)}
+			_ = left
+			_ = right
+			_ = foreign
+		}
+	})
+	fixInvite(t, alice, aAgent, bAgent, 409, "")
+	if fixPair(t, pool, aAgent, bAgent).Generation != heldGen {
+		t.Fatal("total pending cap created a generation")
+	}
+	s.mutateState(t, func(st *State) {
+		for id := range st.Pairs {
+			if strings.HasPrefix(id, "padpair-") || strings.Contains(id, "agent_pad_") {
+				delete(st.Pairs, id)
+			}
+		}
+		fixInviteBack := st.Pairs[pairID(aAgent, bAgent)]
+		fixInviteBack.State = "pending"
+		fixInviteBack.Exp = time.Now().Add(time.Hour)
+		owner := st.Agents[aAgent].Owner
+		for i := 0; i < 20; i++ {
+			id := fmt.Sprintf("agent_act_%d", i)
+			st.Agents[id] = &Agent{Owner: owner, Keys: map[string]*Key{}}
+			st.Pairs[pairID(aAgent, id)] = &Pair{A: aAgent, B: id, State: "active", Generation: 1, Exp: time.Now().Add(time.Hour)}
+		}
+	})
+	fixDecide(t, bob, aAgent, bAgent, "accept", heldGen, 409)
+	if fixPair(t, pool, aAgent, bAgent).State != "pending" || fixPair(t, pool, aAgent, bAgent).Generation != heldGen {
+		t.Fatal("owner active cap accepted")
+	}
+	s.mutateState(t, func(st *State) {
+		for id := range st.Pairs {
+			if strings.Contains(id, "agent_act_") {
+				delete(st.Pairs, id)
+			}
+		}
+		for i := 0; i < 400; i++ {
+			st.Pairs[fmt.Sprintf("actpair-%d", i)] = &Pair{A: "agent_pad_0", B: "agent_pad_1", State: "active", Generation: 1}
+		}
+	})
+	fixDecide(t, bob, aAgent, bAgent, "accept", heldGen, 409)
+	if fixPair(t, pool, aAgent, bAgent).State != "pending" {
+		t.Fatal("total active cap accepted")
+	}
+	s.mutateState(t, func(st *State) {
+		for id := range st.Pairs {
+			if strings.HasPrefix(id, "actpair-") || strings.Contains(id, "agent_act_") || strings.Contains(id, "agent_pad_") {
+				delete(st.Pairs, id)
+			}
+		}
+		st.Rates = map[string][]time.Time{}
+		st.Rates["http:new"] = make([]time.Time, 201)
+		for i := range st.Rates["http:new"] {
+			st.Rates["http:new"][i] = time.Now()
+		}
+	})
+	fixInvite(t, alice, aAgent, bAgent, 429, "")
+	fixDecide(t, bob, aAgent, bAgent, "deny", heldGen, 303)
+	if fixPair(t, pool, aAgent, bAgent).State != "denied" {
+		t.Fatal("deny during new-budget saturation")
+	}
+	s.mutateState(t, func(st *State) {
+		st.Pairs[pairID(aAgent, bAgent)].State = "pending"
+		st.Pairs[pairID(aAgent, bAgent)].Exp = time.Now().Add(time.Hour)
+		st.Rates = map[string][]time.Time{}
+		st.Rates["cleanup:member:"+memberA] = make([]time.Time, 20)
+		for i := range st.Rates["cleanup:member:"+memberA] {
+			st.Rates["cleanup:member:"+memberA][i] = time.Now()
+		}
+	})
+	// Alice is not the recipient, so her unpair is the cleanup path under test.
+	fixUnpair(t, alice, aAgent, bAgent, heldGen, 429)
+	if fixPair(t, pool, aAgent, bAgent).State != "pending" {
+		t.Fatal("cleanup budget exhaustion was reported as success")
+	}
+
+	// Restart keeps the ended boundary. Re-login does not restore it.
+	restarted := &browser{t: t, h: (&Service{Pool: pool}).Handler(), ip: "198.51.100.10", cookies: map[string]string{sessionCookie: alice.cookies[sessionCookie]}}
+	expect(t, restarted.do("GET", "/home", nil), 200, "관계 세대: "+fmt.Sprint(heldGen))
+	again := &browser{t, s.Handler(), "198.51.100.15", map[string]string{}}
+	s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
+	if login(t, again, mail, "qa-fix-a@example.test") != memberA {
+		t.Fatal("re-login changed the member")
+	}
+	if fixPair(t, pool, aAgent, bAgent).State != "pending" || fixPair(t, pool, aAgent, bAgent).Generation != heldGen {
+		t.Fatal("re-login restored a relationship")
+	}
+
+	// A revoked agent and an inactive owner cannot be revived by a re-invite.
+	fixClearRates(t, s)
+	spare := fixCreate(t, bob, seenB)
+	fixInvite(t, alice, aAgent, spare, 303, "/home?n=invited")
+	spareGen := fixPair(t, pool, aAgent, spare).Generation
+	expect(t, bob.do("POST", "/home/agent-revoke", url.Values{"agent": {spare}}), 303)
+	fixInvite(t, alice, aAgent, spare, 403, "")
+	if p := fixLoad(t, pool).Pairs[pairID(aAgent, spare)]; p == nil || p.Generation != spareGen || p.State == "active" {
+		t.Fatal("revoked agent revived")
+	}
+	s.mutateState(t, func(st *State) {
+		st.Owners[st.Agents[bAgent].Owner].Active = false
+	})
+	before := fixPair(t, pool, aAgent, bAgent).Generation
+	fixInvite(t, alice, aAgent, bAgent, 403, "")
+	if fixPair(t, pool, aAgent, bAgent).Generation != before {
+		t.Fatal("inactive owner re-invite created a generation")
+	}
+}
+
+func fixRetention(t *testing.T, pool *pgxpool.Pool) {
+	t.Helper()
+	s, mail := identityService(t, pool)
+	alice := &browser{t, s.Handler(), "198.51.100.20", map[string]string{}}
+	bob := &browser{t, s.Handler(), "198.51.100.21", map[string]string{}}
+	login(t, alice, mail, "qa-fix-keep-a@example.test")
+	login(t, bob, mail, "qa-fix-keep-b@example.test")
+	seenA, seenB := map[string]bool{}, map[string]bool{}
+	fixClearRates(t, s)
+	live := fixCreate(t, alice, seenA)
+	peer := fixCreate(t, bob, seenB)
+	private, cred := fixConnect(t, s, alice, live, "key1", "register")
+	fixConnect(t, s, bob, peer, "key1", "register")
+	publicCall(t, s.Handler(), "/v1/pull", cred, map[string]string{}, 200)
+	fixClearRates(t, s)
+	fixInvite(t, alice, live, peer, 303, "/home?n=invited")
+	fixDecide(t, bob, live, peer, "accept", 1, 303)
+	fixSend(t, s.Handler(), private, cred, live, peer, "qa-fix-keep-send01", 31, 200)
+
+	// Rotate once, then the revoked kid cannot be prepared again.
+	_, cred2 := fixConnect(t, s, alice, live, "key2", "rotate")
+	publicCall(t, s.Handler(), "/v1/pull", cred, map[string]string{}, 401)
+	publicCall(t, s.Handler(), "/v1/pull", cred2, map[string]string{}, 200)
+	fixClearRates(t, s)
+	token, _ := browserGrant(t, alice, live, "register")
+	public, privateNew, err := ed25519.GenerateKey(nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	info := publicCall(t, s.Handler(), "/v1/connect/info", "", map[string]string{"token": token, "client": supportedClient}, 200)
+	reused := &Connection{Owner: info["owner"].(string), Agent: info["agent"].(string), Client: supportedClient, Mode: info["mode"].(string), Kid: "key1", Public: encodePublic(public)}
+	proof := signFix(token, reused, privateNew)
+	reusedCall := publicCall(t, s.Handler(), "/v1/connect/prepare", "", map[string]string{"token": token, "client": supportedClient, "kid": "key1", "public": reused.Public, "proof": proof}, 409)
+	if reusedCall["error"] != "key_exists" {
+		t.Fatal("revoked kid was issued again", reusedCall["error"])
+	}
+	if _, ok := fixLoad(t, pool).Agents[live].Keys["key1"]; !ok {
+		t.Fatal("revoked kid was deleted")
+	}
+
+	// Nineteen further rotations reach the key-record cap. Rate buckets are cleared so this loop is not a rate test.
+	t.Log("key-record loop clears request budgets between rotations")
+	var last string
+	for i := 3; i <= agentKeyRecords; i++ {
+		_, last = fixConnect(t, s, alice, live, fmt.Sprintf("key%d", i), "rotate")
+	}
+	if got := len(fixLoad(t, pool).Agents[live].Keys); got != agentKeyRecords {
+		t.Fatal("key records", got)
+	}
+	publicCall(t, s.Handler(), "/v1/pull", last, map[string]string{}, 200)
+	fixClearRates(t, s)
+	expect(t, alice.do("POST", "/home/connect", url.Values{"agent": {live}, "client": {supportedClient}, "mode": {"rotate"}}), 409, "기다려도 이 agent에 새 키 공간은 생기지 않습니다", `action="/home/agents"`, `href="/home"`)
+	openConnections := 0
+	for _, connection := range fixLoad(t, pool).Connections {
+		if connection.Agent == live && connection.State != "consumed" && connection.State != "cancelled" && connection.State != "expired" {
+			openConnections++
+		}
+	}
+	if len(fixLoad(t, pool).Agents[live].Keys) != agentKeyRecords || openConnections != 0 {
+		t.Fatal("key-cap refusal changed records", openConnections)
+	}
+	expect(t, alice.do("GET", "/home", nil), 200, "새 키를 더 연결할 수 없습니다", "새 agent를 만들어 따로 연결")
+	for _, banned := range []string{"결제", "업그레이드", "요금", "quota"} {
+		if strings.Contains(alice.do("GET", "/home", nil).Body.String(), banned) {
+			t.Fatal("quota wording", banned)
+		}
+	}
+	// Selective revoke still works, and a 30-day fixture does not free a live agent's revoked kid.
+	expect(t, alice.do("POST", "/home/key-revoke", url.Values{"agent": {live}, "kid": {"key2"}}), 303)
+	if fixLoad(t, pool).Agents[live].Keys["key1"] == nil || len(fixLoad(t, pool).Agents[live].Keys) != agentKeyRecords {
+		t.Fatal("revoke removed a key record")
+	}
+	t.Log("clock-fixture: key Changed moved back 30 days, not a real 30-day wait")
+	s.mutateState(t, func(st *State) {
+		for _, key := range st.Agents[live].Keys {
+			key.Changed = time.Now().Add(-30 * 24 * time.Hour)
+		}
+	})
+	expect(t, alice.do("GET", "/home", nil), 200)
+	if len(fixLoad(t, pool).Agents[live].Keys) != agentKeyRecords || fixLoad(t, pool).Agents[live].Keys["key1"] == nil {
+		t.Fatal("30-day fixture deleted a live agent's revoked kid")
+	}
+
+	// Active product limit is separate from the record cap.
+	for liveAgents(fixLoad(t, pool), aliceOwner(t, pool, live)) < 5 {
+		fixClearRates(t, s)
+		fixCreate(t, alice, seenA)
+	}
+	fixClearRates(t, s)
+	expect(t, alice.do("POST", "/home/agents", nil), 409, "회원당 5개", "철회")
+	if strings.Contains(lastBody(t, alice), "결제") {
+		t.Fatal("active limit used payment wording")
+	}
+
+	// Legacy revocation without Changed starts retention at the next sweep and is not deleted then.
+	owner := aliceOwner(t, pool, live)
+	revokeFiller(t, s, alice, pool, owner, live)
+	fixClearRates(t, s)
+	legacy := fixCreate(t, alice, seenA)
+	fixClearRates(t, s)
+	expect(t, alice.do("POST", "/home/agent-revoke", url.Values{"agent": {legacy}}), 303)
+	expect(t, alice.do("GET", "/home", nil), 200, "최소 24시간 보존", "목록에서 사라질 수 있습니다", "권한이 돌아오거나 백업까지 영구 삭제된 것은 아닙니다")
+	t.Log("clock-fixture: revoked Changed cleared to zero, not a real 24h wait")
+	s.mutateState(t, func(st *State) { st.Agents[legacy].Changed = time.Time{} })
+	expect(t, alice.do("GET", "/home", nil), 200, legacy)
+	if kept := fixLoad(t, pool).Agents[legacy]; kept == nil || kept.Changed.IsZero() {
+		t.Fatal("legacy first sweep deleted the agent or left Changed empty")
+	}
+	t.Log("clock-fixture: revoked Changed moved 25h back, not a real 24h wait")
+	s.mutateState(t, func(st *State) {
+		st.Agents[legacy].Changed = time.Now().Add(-25 * time.Hour)
+	})
+	expect(t, alice.do("GET", "/home", nil), 200)
+	if fixLoad(t, pool).Agents[legacy] != nil || strings.Contains(lastBody(t, alice), legacy) {
+		t.Fatal("expired revoked agent stayed listed")
+	}
+
+	// A connected agent keeps its credential until revoke, and the deleted record cannot authorize later.
+	fixClearRates(t, s)
+	doomed := fixCreate(t, alice, seenA)
+	_, doomedCred := fixConnect(t, s, alice, doomed, "key1", "register")
+	publicCall(t, s.Handler(), "/v1/pull", doomedCred, map[string]string{}, 200)
+	fixClearRates(t, s)
+	expect(t, alice.do("POST", "/home/agent-revoke", url.Values{"agent": {doomed}}), 303)
+	publicCall(t, s.Handler(), "/v1/pull", doomedCred, map[string]string{}, 401)
+	for {
+		records, liveN, filler := ownerShape(fixLoad(t, pool), owner, live)
+		if records >= ownerAgentRecords {
+			break
+		}
+		fixClearRates(t, s)
+		if liveN >= 5 {
+			if filler == "" {
+				t.Fatal("active cap left no filler to revoke")
+			}
+			expect(t, alice.do("POST", "/home/agent-revoke", url.Values{"agent": {filler}}), 303)
+			continue
+		}
+		fixCreate(t, alice, seenA)
+	}
+	beforeRecords, _, _ := ownerShape(fixLoad(t, pool), owner, live)
+	fixClearRates(t, s)
+	expect(t, alice.do("POST", "/home/agents", nil), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "자기 홈으로 돌아가기")
+	for _, banned := range []string{"결제", "업그레이드", "요금", "quota"} {
+		if strings.Contains(lastBody(t, alice), banned) {
+			t.Fatal("record cap used payment wording", banned)
+		}
+	}
+	if records, _, _ := ownerShape(fixLoad(t, pool), owner, live); records != beforeRecords {
+		t.Fatal("record refusal changed the count", beforeRecords, records)
+	}
+	publicCall(t, s.Handler(), "/v1/pull", last, map[string]string{}, 200)
+	victim := ""
+	for id, agent := range fixLoad(t, pool).Agents {
+		if agent.Owner == owner && !agent.Revoked && id != live {
+			victim = id
+			break
+		}
+	}
+	if victim == "" {
+		for id, agent := range fixLoad(t, pool).Agents {
+			if agent.Owner == owner && id != live {
+				victim = id
+				break
+			}
+		}
+	}
+	if victim == "" {
+		t.Fatal("no record to revoke")
+	}
+	fixClearRates(t, s)
+	expect(t, alice.do("POST", "/home/agent-revoke", url.Values{"agent": {victim}}), 303)
+	if records, _, _ := ownerShape(fixLoad(t, pool), owner, live); records != beforeRecords {
+		t.Fatal("revoke during saturation changed the record count", records)
+	}
+	publicCall(t, s.Handler(), "/v1/pull", last, map[string]string{}, 200)
+	t.Log("clock-fixture: saturated revoked records moved 25h back, not a real 24h wait")
+	s.mutateState(t, func(st *State) {
+		for _, agent := range st.Agents {
+			if agent.Owner == owner && agent.Revoked {
+				agent.Changed = time.Now().Add(-25 * time.Hour)
+			}
+		}
+	})
+	expect(t, alice.do("GET", "/home", nil), 200)
+	if fixLoad(t, pool).Agents[doomed] != nil || strings.Contains(lastBody(t, alice), doomed) {
+		t.Fatal("24h fixture left the revoked agent")
+	}
+	publicCall(t, s.Handler(), "/v1/pull", doomedCred, map[string]string{}, 401)
+	fixClearRates(t, s)
+	renewed := fixCreate(t, alice, seenA)
+	if renewed == doomed || renewed == legacy || fixLoad(t, pool).Pairs[pairID(renewed, peer)] != nil {
+		t.Fatal("manual retry inherited an agent or a relationship")
+	}
+	newPrivate, newCred := fixConnect(t, s, alice, renewed, "key1", "register")
+	fixClearRates(t, s)
+	fixInvite(t, alice, renewed, peer, 303, "/home?n=invited")
+	if p := fixPair(t, pool, renewed, peer); p.State != "pending" || p.Generation != 1 {
+		t.Fatal("new agent relationship", p.State, p.Generation)
+	}
+	fixSend(t, s.Handler(), newPrivate, newCred, renewed, peer, "qa-fix-new-agent-001", 41, 403)
+	keptGen := fixPair(t, pool, live, peer).Generation
+	fixDecide(t, bob, renewed, peer, "accept", 1, 303)
+	fixSend(t, s.Handler(), newPrivate, newCred, renewed, peer, "qa-fix-new-agent-002", 42, 200)
+	if fixPair(t, pool, live, peer).Generation != keptGen || fixPair(t, pool, live, peer).State != "active" {
+		t.Fatal("new acceptance changed the existing relationship")
+	}
+	publicCall(t, s.Handler(), "/v1/pull", last, map[string]string{}, 200)
+	publicCall(t, s.Handler(), "/v1/pull", cred, map[string]string{}, 401)
+}
+
+func ownerShape(st *State, owner, keep string) (records int, liveN int, filler string) {
+	for id, agent := range st.Agents {
+		if agent.Owner != owner {
+			continue
+		}
+		records++
+		if !agent.Revoked {
+			liveN++
+			if id != keep && filler == "" {
+				filler = id
+			}
+		}
+	}
+	return records, liveN, filler
+}
+
+func revokeFiller(t *testing.T, s *Service, b *browser, pool *pgxpool.Pool, owner, keep string) {
+	t.Helper()
+	_, _, filler := ownerShape(fixLoad(t, pool), owner, keep)
+	if filler == "" {
+		t.Fatal("no filler agent")
+	}
+	fixClearRates(t, s)
+	expect(t, b.do("POST", "/home/agent-revoke", url.Values{"agent": {filler}}), 303)
+}
+
+func fixRate(t *testing.T, pool *pgxpool.Pool) {
+	t.Helper()
+	fixRollback(t, pool)
+	fixAnonymous(t, pool)
+	fixConnectRate(t, pool)
+	fixMemberAggregate(t, pool)
+}
+
+func fixRollback(t *testing.T, pool *pgxpool.Pool) {
+	t.Helper()
+	s, _ := identityService(t, pool)
+	s.mutateState(t, func(st *State) {
+		st.Agents["agent_rate_due"] = &Agent{Owner: "own_rate_fix", Keys: map[string]*Key{}, Revoked: true, Changed: time.Now().Add(-25 * time.Hour)}
+		st.Agents["agent_rate_keep"] = &Agent{Owner: "own_rate_fix", Keys: map[string]*Key{}, Revoked: true, Changed: time.Now()}
+		st.Agents["agent_rate_legacy"] = &Agent{Owner: "own_rate_fix", Keys: map[string]*Key{}, Revoked: true}
+	})
+	_, err := s.transaction(context.Background(), func(st *State, now time.Time) (any, error) {
+		st.hit(now, anonymousRate("198.51.100.77")...)
+		st.Agents["agent_phantom"] = &Agent{Owner: "own_rate_fix", Keys: map[string]*Key{}}
+		if kept := st.Agents["agent_rate_keep"]; kept != nil {
+			kept.Owner = "hijacked"
+		}
+		return nil, fault("invalid_schema")
+	})
+	if err == nil || err.Error() != "invalid_schema" {
+		t.Fatal("error path did not return the refusal", err)
+	}
+	st := fixLoad(t, pool)
+	if st.Agents["agent_phantom"] != nil || st.Agents["agent_rate_due"] != nil {
+		t.Fatal("failed transaction kept partial state or an expired revoked agent")
+	}
+	kept := st.Agents["agent_rate_keep"]
+	legacy := st.Agents["agent_rate_legacy"]
+	if kept == nil || kept.Owner != "own_rate_fix" || legacy == nil || legacy.Changed.IsZero() || len(st.Rates["http:ip:198.51.100.77"]) != 1 {
+		t.Fatal("failed transaction did not keep the rate and the swept original row")
+	}
+}
+
+func fixAnonymous(t *testing.T, pool *pgxpool.Pool) {
+	t.Helper()
+	s, _ := identityService(t, pool)
+	h := s.Handler()
+	ip := "198.51.100.50"
+	for i := 0; i < 30; i++ {
+		path := "/home"
+		if i%2 == 1 {
+			path = "/home/connections/unknown"
+		}
+		expect(t, fixCall(t, h, "GET", ip, path, "", "", map[string]string{sessionCookie: "stale-session"}), 303, "/?n=expired")
+	}
+	expect(t, fixCall(t, h, "GET", ip, "/home", "", "", map[string]string{sessionCookie: "stale-session"}), 429, "이후 다시 시도")
+	restarted := (&Service{Pool: pool}).Handler()
+	for _, call := range []struct{ method, path string }{
+		{"GET", "/home"},
+		{"GET", "/home/connections/unknown"},
+		{"POST", "/auth/logout"},
+		{"POST", "/auth/reauth"},
+	} {
+		expect(t, fixCall(t, restarted, call.method, ip, call.path, "", "", map[string]string{sessionCookie: "stale-session"}), 429)
+	}
+	expect(t, fixCall(t, restarted, "GET", "198.51.100.51", "/home", "", "", map[string]string{sessionCookie: "stale-session"}), 303, "/?n=expired")
+}
+
+func fixConnectRate(t *testing.T, pool *pgxpool.Pool) {
+	t.Helper()
+	s, _ := identityService(t, pool)
+	h := s.Handler()
+	ip := "198.51.100.60"
+	for i := 0; i < 30; i++ {
+		expect(t, fixCall(t, h, "POST", ip, "/v1/connect/prepare", "{", "application/json", nil), 422)
+	}
+	w := fixCall(t, h, "POST", ip, "/v1/connect/prepare", "{", "application/json", nil)
+	expect(t, w, 429)
+	header, err := http.ParseTime(w.Header().Get("Retry-After"))
+	var payload map[string]string
+	if json.Unmarshal(w.Body.Bytes(), &payload) != nil || err != nil || payload["error"] != "rate_limited" {
+		t.Fatal("connect 429 deadline missing", err)
+	}
+	retryAt, err := time.Parse(time.RFC3339, payload["retry_at"])
+	if err != nil || !header.Equal(retryAt) || !retryAt.After(time.Now().Add(-time.Second)) || retryAt.After(time.Now().Add(90*time.Second)) {
+		t.Fatal("connect retry_at does not match Retry-After", payload["retry_at"], w.Header().Get("Retry-After"))
+	}
+	expect(t, fixCall(t, h, "POST", ip, "/v1/connect/prepare", "{", "application/json", nil), 429)
+	expect(t, fixCall(t, h, "POST", "198.51.100.61", "/v1/connect/prepare", "{", "application/json", nil), 422)
+}
+
+func fixMemberAggregate(t *testing.T, pool *pgxpool.Pool) {
+	t.Helper()
+	s, mail := identityService(t, pool)
+	alice := &browser{t, s.Handler(), "198.51.100.70", map[string]string{}}
+	member := login(t, alice, mail, "qa-fix-rate-a@example.test")
+	fixClearRates(t, s)
+	before := len(fixLoad(t, pool).Agents)
+	for i := 0; i < 40; i++ {
+		expect(t, fixCall(t, alice.h, "POST", alice.ip, "/home/agents", "%", "application/x-www-form-urlencoded", alice.cookies), 422)
+	}
+	if len(fixLoad(t, pool).Agents) != before || len(fixLoad(t, pool).Rates["http:member:"+member]) < 40 {
+		t.Fatal("invalid form did not aggregate the member rate without creating an agent")
+	}
+	expect(t, fixCall(t, alice.h, "POST", alice.ip, "/home/agents", "%", "application/x-www-form-urlencoded", alice.cookies), 429, "이후 다시 시도")
+	if len(fixLoad(t, pool).Agents) != before {
+		t.Fatal("rate refusal created an agent")
+	}
+	bob := &browser{t, s.Handler(), "198.51.100.71", map[string]string{}}
+	login(t, bob, mail, "qa-fix-rate-b@example.test")
+	expect(t, bob.do("POST", "/home/agents", nil), 303)
+	alice.h = (&Service{Pool: pool}).Handler()
+	expect(t, alice.do("POST", "/home/agents", nil), 429)
+}
+
+func fixCall(t *testing.T, h http.Handler, method, ip, path, body, contentType string, cookies map[string]string) *httptest.ResponseRecorder {
+	t.Helper()
+	req := httptest.NewRequest(method, path, strings.NewReader(body))
+	req.RemoteAddr = net.JoinHostPort(ip, "40000")
+	if contentType != "" {
+		req.Header.Set("Content-Type", contentType)
+	}
+	for name, value := range cookies {
+		req.AddCookie(&http.Cookie{Name: name, Value: value})
+	}
+	w := httptest.NewRecorder()
+	h.ServeHTTP(w, req)
+	return w
+}
+
+func aliceOwner(t *testing.T, pool *pgxpool.Pool, agent string) string {
+	t.Helper()
+	return fixLoad(t, pool).Agents[agent].Owner
+}
+
+func liveAgents(st *State, owner string) int {
+	n := 0
+	for _, agent := range st.Agents {
+		if agent.Owner == owner && !agent.Revoked {
+			n++
+		}
+	}
+	return n
+}
+
+func lastBody(t *testing.T, b *browser) string {
+	t.Helper()
+	return b.do("GET", "/home", nil).Body.String()
+}
+
+func encodePublic(public ed25519.PublicKey) string {
+	return base64.RawURLEncoding.EncodeToString(public)
+}
+
+func signFix(token string, c *Connection, private ed25519.PrivateKey) string {
+	return base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, connectionBytes(token, c)))
+}
