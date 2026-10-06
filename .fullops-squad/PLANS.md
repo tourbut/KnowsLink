@@ -862,3 +862,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`를 별도 clone에서 독립 QA했다. `make lint`, `make test`, `make verify-mvp`, 격리 Postgres 프로브의 종료코드는 0이다. 새 critical/high는 없다. 제품 코드는 수정하지 않았다.
 - 실제 이메일, 운영 공개, 플랫폼, 노우↔다닷은 미실행이다. 화면 캡처는 designer 범위다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md)와 [시나리오](docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md)에 있다.
+
+- 원본QA msg_2fc3f489450b/bcb06b89bcb36d69a99cbeef3d94e4a9ffe88361 수신. 실제d1 격리Postgres/Node검사·make lint/test/verify-mvp/독립프로브0·제품diff0·빈인박스/공유컨테이너불변을확인했다. 프로브기대값준비실패와상속DOC003/metadata-only보정은원문보존했다. 결과의추출SHA null은fullSHA원문/actualcleanHEAD/아카이브와대조해sha_source에null/근거를보존해보완했다. coor에SHA보존반영하며OPS완성보고서를유지해문서충돌을해결했다. 최신수정영향과원본QA/UI기록의독립delta리뷰는후속검수다.
+- QA기록보고의통과lint JSON은4c75938(아카이브전)이며최종bcb와HEAD가달라 coor가tui-idle/clean을확인하고최종bcb에서기준d2의필수lint를한번검증한다. 누락고정HEAD증거를해소하기위한검사이며전체동작QA를반복하지않는다. 다음review.prepare의빈양식은dispatch전coor가metadata를stamp해상속DOC003재발을막는다. 원래실패를통과로바꾸지않는다.
