@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY]
 summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보류 경계를 보존한다
 ---
 
@@ -34,3 +34,7 @@ summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보
 - 2026-10-06: SAR-PUBLIC-AGENTS-001-UI의 d1eef9b 연결·키·관계를 격리 fixture와 실제 브라우저에서 직접 확인했다. 모바일 지문 overflow와 오류 뒤 복귀 부재로 UX 시각 수락은 FAIL/보류다.
   제품 코드·제품 규칙과 사용자 자격·운영 자원은 보존했다. Orca blank PNG는 실패 근거이며 실제 Playwright PNG와 구분한다.
   상세 관측·마스킹·미검증·DEV 후속: [직접 검수 보고](../docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md).
+
+- 2026-10-06: SAR-PUBLIC-AGENTS-001-POLICY는 pending/active 반복의 새 초대를 금지하고 거절·만료·양측 철회 뒤 수동 재초대를 허용한다. 새 세대와 수신 owner의 새 수락 전 메시지 거부를 유지한다.
+  차단·쿨다운·새 수치는 추가하지 않았다. 수신측 반복 노출 위험과 원본 UI FAIL/보류·실제 운영 후속은 유지한다.
+  제품 답·DEV/QA 관찰 조건·검증: [POLICY 실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md).

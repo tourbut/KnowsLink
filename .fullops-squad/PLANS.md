@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY]
 summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
@@ -834,3 +834,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 원본 UI msg_9daccf1f3945/d1651784c4338efeb0d6141467d563c6b354e4a5를hold로보존하고coor후보에SHA보존반영했다. 제품경로diff0·빈인박스/자원회수·최종lint/test0와원본DOC003/보정근거를확인했다. 보고서충돌은완성OPS70f26bc의본문/metadata를그대로유지했고UImetadata-only정정은원본SHA와증거로남겼다. UImedium2FAIL은수정/재검수대기이며원본PASS로바꾸지않는다.
 - 빈designer인박스에L2 POLICY제품판단을준비했다. route Codex6.1Solhigh·새세션이다. 이전UI는25분이상실행과큰브라우저로그가있고새제품판단범위여서fresh를선택했다. D09/D10추천은기술소유라제외하고D02/필요UX05만갱신한다. 답을DEV-FIX에그대로전달하고현재기술구현을유지한다.
+
+## SAR-PUBLIC-AGENTS-001-POLICY — designer 제품 답과 후속 (2026-10-06)
+
+- D02 PS-07과 UX-05의 모호성을 해소했다. 유효 pending/active 반복은 새 초대·세대·기한 연장 없이 현재 상태를 유지한다. 거절·만료·양측 중 어느 쪽 철회 뒤에는 기존 한도 안의 새 수동 초대를 허용한다. 새 세대·수신 owner의 새 수락 전 메시지 거부·자동 복구 금지를 유지한다. 새 차단·쿨다운·제품 수치는 추가하지 않는다.
+- coor는 [제품 답 전문과 관찰 조건](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md)을 진행 중 DEV-FIX에 전달한다. DEV는 기술 설계·구현과 영향 자동 검사를 맡는다. 담당 TESTER/designer의 후속은 DEV 수정 고정 SHA·필수 검사 근거·빈 역할 인박스가 준비되면 재개한다. 새 현재 지시서나 task별 dispatch 파일은 만들지 않았다.
+- 원본 d1eef9b UI FAIL/보류·M1 공개 차단·metadata 원실패와 모든 증거를 유지한다. 제품 답 완료는 구현 준수·일반 서비스 전체 수락이나 운영 공개가 아니다. 수신 owner 반복 노출 위험은 남으며 PS-11/12 남용·자원 공개 전 검증을 유지한다. 실제 남용/보호 실패는 coor 경유 designer의 별도 제품 변경 판단으로 인계한다.
