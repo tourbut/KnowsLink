@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-AGENTS-001-FIX-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.03,
+        "implementation": 0.97
+      },
+      "confidence": 0.94
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.27,
+        "tester": 0.58,
+        "ops": 0.15
+      },
+      "confidence": 0.37
+    },
+    "docs": {
+      "D01": 0.16,
+      "D02": 0.19,
+      "D03": 0.2,
+      "D04": 0.22,
+      "D05": 0.19,
+      "D06": 0.23,
+      "D07": 0.17,
+      "D08": 0.16,
+      "D09": 0.2,
+      "D10": 0.31,
+      "D11": 0.16,
+      "D12": 0.38,
+      "D13": 0.31
+    }
+  },
+  "usage": {
+    "input_tokens": 2529,
+    "output_tokens": 314,
+    "cost": 0.000106218
+  },
+  "error": null,
+  "latency_seconds": 0.376,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "기존 구현과 독립된 OPS 보안 리뷰 기록이며 기술 구현/제품 책임은 바꾸지 않는다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

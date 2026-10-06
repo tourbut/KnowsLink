@@ -1,9 +1,9 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX]
 summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
@@ -42,3 +42,14 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 2026-10-05 SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX: 거부까지 세는 다단 rate는 principal bucket을 먼저 둔다. 공유 bucket이 앞이면 한 source의 이미 거부된 요청이 전체를 고갈시킨다. 단, 공유 bucket이 거부한 새 principal은 기록하지 않아야 source 회전으로 key가 늘지 않는다. 예시 env는 위험 기능을 닫고 격리 검사만 셸로 opt-in한다. [기록](../docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md).
 
 - 2026-10-06 SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG: 같은 DB를 쓰는 다른 relay 프로세스의 정리 sweep은 자기 시험 allowlist로 남의 trial lease를 회수한다. 간헐 실패는 재실행 PASS로 닫지 않고 외부 writer부터 찾는다. Go integration 검사 동안 Compose relay를 멈춘다. [기록](../docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md)
+
+- 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV: grant 발급·새키 PoP·owner 지문 확인·client1회 완료를 분리했다. 키별 credential을 철회 인가에 묶고 같은 agent의 rate를 공유한다.
+- pair 결정 UI는 현재 Generation을 검사한다. 옛 화면의 수락을 새 초대에 적용하지 않는다. 신규 포화 중 철회·거절은 별도 cleanup budget을 쓴다.
+- 상세 근거와 독립 QA/UI 후속: [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md). 실메일·공개·외부 계정·일반 text는 미실행이다.
+
+- 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV-FIX: 철회 기록 정리는 C1 kid 재할당 금지와 함께 판단한다. 살아 있는 agent의 철회 키는 지우지 않고, 다시 발급되지 않는 무작위 agent ID 전체만 24h 뒤 키·pair와 함께 지운다. 증가 상한은 신규 기록만 거부하고 철회는 항상 허용한다.
+- transaction이 오류로 되돌릴 때도 rate 기록은 저장한다. 세션 확인과 budget 소비는 `memberHit` 한 곳에서 한다. 새 회원 처리기는 이 helper를 쓴다.
+- Go 문자열 CSS는 DESIGN lint가 보지 않는다. 회원 화면 변경 뒤 같은 template 상태를 390×844로 렌더링해 scrollWidth를 확인한다. 이 측정은 designer 시각 판정을 대신하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md)
+
+- 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX: 제품 답이 오면 관찰 조건표를 한 행씩 기존 코드에 대조한다. 관계 의미는 이미 일치했고 차이는 화면 안내뿐이었다. 일치하는 동작은 재구현하지 않고 State 행렬 검사와 변형 실패로 고정한다.
+- 같은 409 `capacity`라도 사용자 다음 동작이 다르면 회원 계층에서 실제 한도(`agentLimit`·`connectLimit`)로 안내를 나눈다. `/v1/*` wire 오류 코드는 바꾸지 않는다. `refusal` 같은 위치 지정 struct literal에 필드를 더하면 모든 호출을 함께 고친다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)

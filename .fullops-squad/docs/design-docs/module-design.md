@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -90,3 +90,50 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 | `TestCodeVerificationAndMembers`, `TestSessionLifetime` | 오답 5회·만료·재사용·확인 전 owner 미생성·재로그인 연속성·issuer 분리·회원 100 수용량·절대/무활동 수명 |
 | `TestSMTPMailer` | 설정 오류의 비밀값 미노출·이름 표기 거부·실제 SMTP 대화·연결 실패 |
 | `TestEmailIdentity`(integration) | 실제 Postgres HTTP 흐름: 가입·홈·재로그인·재시작·동시 첫 가입·1회 코드·로그아웃 재사용 차단·전체 로그아웃 재확인·무활동 만료·agent credential 유지·발송 실패·429·client IP header·cross-site 403·회원 gate 격리와 결정·합성 가입 차단·한 IP/회원 flood(신규 250·정리 150) 뒤 재시작에도 자기 429 유지와 다른 source 가입 시작·다른 회원 홈·로그아웃 허용 |
+
+## SAR-PUBLIC-AGENTS-001 모듈·검증
+
+| 파일 | 책임 | 검사 |
+|---|---|---|
+| connections.go | owner/agent/client bound PoP·10분 grant·key credential·quota·pending expiry | TestConnectionApprovalAndKeyCredentials, TestConnectionFailureExpiryAndCancellation, TestAgentAndPairCapacity |
+| member_agents.go·member.go | 자기 agent/지문·지원 client·확인/취소·관계 세대 UI | TestPublicAgentHTTP; UX-04–05 직접 검수 후속 |
+| api_rate.go | agent API stable principal·별도 cleanup budget·DB 재시작 유지 | 기존 TestEmailIdentity, TestPublicAgentHTTP·TestPostgresSafety |
+| http.go·store.go | 공용 owner 동작과 키별 current-auth·철회·pair cap | 기존 업무/게이트/시험 회귀와 새 key credential 검사 |
+| adapters/src/connect.ts | Node local prepare/complete·로컬 private key·0700/0600 설정 | connect.test.ts 실제 HTTP·PoP·파일 권한·URL·1회 완료 |
+
+TestPublicAgentHTTP는 실제 Postgres에서 타 회원 ID 바꿔치기·agent로 owner권한 우회·cross-origin 확인·재인증·회전·철회된 credential의 send/pull/persist/ACK/claim/authorize/gate-consume/result·same-owner 명시 수락·동시 수락·새 세대와 옛 화면 거부·pending 만료·동시 agent cap·정리 budget·재시작·동시1회 완료·취소/만료를 검사한다. make verify-mvp의 relay-stop → Go → relay-up 순서를 유지했다. 과거 invalid_lease 원인 근거는 기존 실행 기록을 유지한다.
+Node 검사는 mock relay와 실제 crypto/파일 I/O를 사용한다. Go 검사는 actual Postgres HTTP다. 실메일·실제 플랫폼·공개·독립 QA·직접 시각 검수와 구분한다. 새 라이브러리는 없다. 기존 버전의 stdlib Ed25519·crypto·filesystem·Adapter.request 사용 근거를 재사용했다.
+
+## SAR-PUBLIC-AGENTS-001-DEV-FIX 모듈·검증
+
+| 파일 | 변경 | 검사 |
+|---|---|---|
+| connections.go | 보존 상수, agent·키 기록 상한, `revokeKeys`, 철회 agent 24h 삭제와 관련 pair 삭제 | TestRevokedRecordRetention, TestPublicAgentHTTP/revoked_record_saturation_concurrency_restart_and_retention |
+| store.go | Agent.Changed. 거부 transaction도 rate 기록을 저장 | TestPublicAgentHTTP/invalid_session_pages_spend_anonymous_budget |
+| member.go·member_agents.go | `memberHit`: 세션 확인과 회원/익명 budget 소비를 한 곳에서 수행. connect 429 응답 공용화. agent 철회 시각 기록 | 같은 integration, malformed_connection_requests_spend_anonymous_budget |
+| api_rate.go | `rateLimited`: 실제 retry 시각을 초 단위 올림으로 header·body에 표시 | malformed_connection_requests_spend_anonymous_budget, 기존 TestEmailIdentity |
+| http.go | 합성 keys 경로 키 기록 상한, 반복 key-revoke의 철회 시각 유지, 없는 agent pair 거부 | TestRevokedRecordRetention |
+| member.go·member_agents.go(UI) | `refusal` template·`refused`: 거부 화면의 홈/로그인 링크와 재확인 버튼. 지문 `<code>`, 줄바꿈·select 스타일, 열린 연결만 취소, `memberPair.Deadline` KST | TestMemberPagesShowNextSteps, 기존 TestPublicAgentHTTP·TestEmailIdentity 문구 검사; designer 좁은 재검수 후속 |
+
+TestRevokedRecordRetention은 State 단위 검사다. 회전 반복의 키 기록 상한, 포화 중 철회 허용, 반복 철회 시각 유지, 30일 뒤에도 살아 있는 agent의 철회 kid 유지, owner agent 기록 상한, JSON 재시작 뒤 24h 삭제와 관련 pair 삭제, 살아 있는 pair 세대 유지, 기존 철회 agent의 보존 시작, 없는 agent pair의 nil 역참조 방지, 합성 키 경로 상한을 확인한다.
+integration은 실제 Postgres HTTP에서 동시 생성 8건 중 기록 상한이 정확히 4건만 허용하는지, 재시작 뒤 상한 유지, 포화 중 agent 철회 303, 24h 경과 agent만 삭제되는지를 확인한다. 무효 세션 GET 30회 뒤 재시작한 relay에서 GET·logout·reauth가 429인지 확인한다. connect 429의 retry_at과 Retry-After가 같고 60초 안의 미래 시각인지 확인한다.
+
+## SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 모듈·검증
+
+POLICY 48d12fa의 관계 반복·재초대 의미는 기준 4a 코드와 이미 일치했다. 코드 의미는 바꾸지 않았다. 관찰 조건을 결정적 검사로 고정하고 회원 화면의 상태·다음 동작 안내만 추가했다.
+
+| 파일 | 변경 | 검사 |
+|---|---|---|
+| connections.go | `agentLimit`: 새 agent를 막는 한도 이름(total·records·active)을 반환한다. `agentCapacity`는 이 함수를 사용한다. 한도 값·순서 집행은 같다 | TestSaturationGuidance, 기존 TestAgentAndPairCapacity·TestRevokedRecordRetention |
+| member_agents.go | `agentLimits`·`keyRecordsFull`·`connectLimit`·`agentProblem`: create·connect의 409를 실제 한도별 안내로 바꾼다. `inviteNotice`: 초대 제출 결과를 새 pending·기존 pending 유지·active 유지로 구분한다. `memberAgent.KeyFull`, `memberPair.Own/Other` | TestSaturationGuidance, TestMemberPagesShowNextSteps, TestPublicAgentHTTP 두 하위 검사 |
+| member.go | `refusal.create`와 거부 화면의 새 agent 만들기 버튼, 초대 notice 3종, 홈의 철회 agent 보존 안내·철회 전 경고·키 기록 포화 안내, 관계 상태별 안내·종료 관계의 수동 새 초대 버튼, 종료 관계의 관계 철회 버튼 제거 | TestMemberPagesShowNextSteps, TestPublicAgentHTTP |
+
+TestRelationshipPolicy는 State 단위 관계 행렬이다. 같은/반대 방향 pending 반복의 수·세대·기한·수신자 불변, pending 메시지 거부, 발신 owner 결정 거부, 기한 직전 수락과 기한 도달 거부, 만료 뒤 새 기한·새 세대, active 반복 불변, 양측 각각의 unpair와 옛 메시지·옛 결정 거부, 양방향 재초대의 새 수락과 새 세대, 거절 뒤 늦은 수락 거부와 pending slot 해제, 타 owner 결정·unpair 거부, 같은 owner 자동 수락 없음, 송신 pending 상한의 다음 재초대가 세대를 만들지 않음, 재시작 뒤 상태 유지, 비활성 owner·철회 agent 재초대 거부를 확인한다.
+TestSaturationGuidance는 키 기록 포화의 교체 안내와 생성 가능 여부, owner 기록 포화의 24h 보존 전후, 보존 중·정리 뒤 옛 키 credential 거부, 활성 키 3개·활성 agent 5개 안내, 결제·정확한 시각 문구 부재를 확인한다.
+integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 방향 반복의 기한 불변, 종료 관계의 새 초대 버튼, owner 기록 포화 409 안내, 키 기록 포화 connect 409의 교체 안내·생성 버튼·연결 미생성을 확인한다.
+
+## SAR-PUBLIC-AGENTS-001-FIX-TESTER 독립 QA
+
+독립 QA는 후보 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 detached clone에서 회원 HTTP와 Postgres 행을 확인했다. DEV의 `TestRelationshipPolicy` 통과를 이 QA의 통과로 쓰지 않았다.
+보존, rate, POLICY 두 관찰 표의 프로브 종료코드는 0이다. 새 critical/high는 없다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다.
+원본 d1 QA와 UI FAIL은 원래 SHA에 둔다. 이 절은 그 판정을 바꾸지 않는다. 운영 공개와 실제 메일은 확인하지 않았다.

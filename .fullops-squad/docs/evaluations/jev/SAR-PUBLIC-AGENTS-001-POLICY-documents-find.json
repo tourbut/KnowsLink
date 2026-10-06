@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-POLICY",
+  "head": "6ce4fdbc5575e1cdc00fef44cf2017bdbc4a623c",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 164,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 164
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.35000000000000003
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "summary": "일반 회원 agent 연결과 키 및 관계의 구현·검증 기록 — 일반 회원 agent 연결·키별 자격·관계·한도와 자동 검증 및 후속 QA를 기록한다",
+      "probability": 0.26
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "summary": "designer 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "summary": "SAR-PUBLIC-AGENTS-001-REVIEW 독립 보안 delegate 리뷰 — 고정 후보 d1eef9b의 회원 agent 연결·키별 credential·관계·한도 변경을 별도 세션에서 검토한 결과를 기록한다",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "summary": "SAR-BETA-002-TESTER — 루프백 소유자 브라우저 독립 QA 보고서 — 배포 28bd1bb의 loopback Chrome에서 소유자 승인, 거절, 만료, 권한 불일치를 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "summary": "relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md",
+      "summary": "FullOps 0.9.11 업데이트 적용 기록 — Codex 최신 설치와 글로벌 설치기 릴리스의 레포 적용 및 기존 작업 보존을 기록한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.02
+    },
+    {
+      "path": "AGENTS.md",
+      "summary": "",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "summary": "SAR-PUBLIC-AGENTS-001-DEV-FIX — AGENTS 보존량·rate 발견의 원인 수정과 관련 검증 — AGENTS 보존량·rate 발견의 원인 수정과 관련 검증",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "summary": "공통 테스트 기준",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "summary": "KnowsLink — 제품 결정",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.27,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 14459,
+    "output_tokens": 1690,
+    "cost": 0.000607278
+  },
+  "latency_seconds": 0.348,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

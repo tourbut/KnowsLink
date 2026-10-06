@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-POLICY",
+  "head": "6ce4fdbc5575e1cdc00fef44cf2017bdbc4a623c",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 81,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 81
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.38
+    },
+    {
+      "path": "internal/relay/connections.go",
+      "summary": "Member connections bind a short approval to one owner, agent, client and new key; only confirmed PoP creates credentials.",
+      "probability": 0.08
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "summary": "Connection and quota checks cover key-bound credentials, expiry, owner isolation and exact capacity boundaries.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "summary": "Package relay validates frozen relay.v1 and preserves one parsed object for signing and processing.",
+      "probability": 0.05
+    },
+    {
+      "path": "internal/relay/legacy_test.go",
+      "summary": "Legacy state regression: claims issued before Message.Deliver existed must never reopen agent processing (C1).",
+      "probability": 0.05
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/registry.json",
+      "summary": "",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/trial-boundaries.test.ts",
+      "summary": "Trial client checks held/config guards, fixed remote headers, streamed response bounds and timeout without contacting remote services.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/.mcp.json",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.29,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4770,
+    "output_tokens": 860,
+    "cost": 0.00020034
+  },
+  "latency_seconds": 0.302,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

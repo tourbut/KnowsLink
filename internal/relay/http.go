@@ -48,6 +48,10 @@ func statusFor(err error) int {
 		return 403
 	case "idempotency_conflict", "id_collision", "duplicate_gate", "duplicate_result", "already_claimed", "invalid_lease", "invalid_gate", "key_exists":
 		return 409
+	case "rate_limited":
+		return 429
+	case "capacity":
+		return 409
 	case "unavailable", "abnormal_clock":
 		return 503
 	default:
@@ -176,15 +180,18 @@ func (s *Service) Handler() http.Handler {
 	mux.HandleFunc("GET /owner/gates/{id}", s.gatePage(basicOwner))
 	mux.HandleFunc("POST /owner/gates/{id}", s.gateDecision(basicOwner))
 	s.memberRoutes(mux)
+	s.agentRoutes(mux)
 	// Stdlib Sec-Fetch-Site/Origin check rejects cross-origin browser writes; non-browser agent calls carry neither header.
 	protected := http.NewCrossOriginProtection().Handler(mux)
+	ratedTest := s.rateAPI(s.testHandler(mux))
+	protected = s.rateAPI(protected)
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
 		w.Header().Set("Referrer-Policy", "no-referrer")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		if strings.HasPrefix(r.URL.Path, "/v1/test/") {
-			s.testHandler(mux).ServeHTTP(w, r)
+			ratedTest.ServeHTTP(w, r)
 			return
 		}
 		protected.ServeHTTP(w, r)
@@ -245,6 +252,10 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 			}
 		}
 	}
+	return st.operateAs(path, principal, kind, c, now, testOnly)
+}
+
+func (st *State) operateAs(path, principal, kind string, c command, now time.Time, testOnly bool) (any, error) {
 	switch path {
 	case "agents", "keys":
 		if !agentPattern.MatchString(c.Agent) || !kidPattern.MatchString(c.Kid) {
@@ -264,20 +275,23 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		}
 		credential := ""
 		if a == nil {
+			if !st.agentCapacity(principal) {
+				return nil, fault("capacity")
+			}
 			credential = randomToken()
-			a = &Agent{principal, hashToken(credential), map[string]*Key{}}
+			a = &Agent{Owner: principal, Credential: hashToken(credential), Keys: map[string]*Key{}}
 			st.Agents[c.Agent] = a
 		}
 		if a.Keys[c.Kid] != nil {
 			return nil, fault("key_exists")
 		}
-		if path == "keys" {
-			for _, k := range a.Keys {
-				k.Revoked = true
-				k.Changed = now
-			}
+		if len(a.Keys) >= agentKeyRecords {
+			return nil, fault("capacity")
 		}
-		a.Keys[c.Kid] = &Key{public, false, now}
+		if path == "keys" {
+			revokeKeys(a, now)
+		}
+		a.Keys[c.Kid] = &Key{Public: public, Changed: now}
 		st.sweep(now)
 		return map[string]string{"agent": c.Agent, "credential": credential}, nil
 	case "key-revoke":
@@ -285,8 +299,10 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		if a == nil || a.Owner != principal || a.Keys[c.Kid] == nil {
 			return nil, fault("sender_not_allowed")
 		}
-		a.Keys[c.Kid].Revoked = true
-		a.Keys[c.Kid].Changed = now
+		if k := a.Keys[c.Kid]; !k.Revoked {
+			k.Revoked = true
+			k.Changed = now
+		}
 		st.sweep(now)
 		return map[string]string{"state": "revoked"}, nil
 	case "owner-revoke":
@@ -295,7 +311,7 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		return map[string]string{"state": "revoked"}, nil
 	case "invites":
 		a, b := st.Agents[c.Agent], st.Agents[c.Target]
-		if a == nil || b == nil || c.Agent == c.Target || (kind == "agent" && principal != c.Agent) || (kind == "owner" && a.Owner != principal) || !st.Owners[b.Owner].Active {
+		if a == nil || b == nil || a.Revoked || b.Revoked || c.Agent == c.Target || (kind == "agent" && principal != c.Agent) || (kind == "owner" && a.Owner != principal) || !st.Owners[b.Owner].Active {
 			return nil, fault("sender_not_allowed")
 		}
 		id := pairID(c.Agent, c.Target)
@@ -303,16 +319,19 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		if p != nil && (p.State == "active" || p.State == "pending") {
 			return p, nil
 		}
+		if !st.pairCapacity(a.Owner, b.Owner, false) {
+			return nil, fault("capacity")
+		}
 		generation := int64(1)
 		if p != nil {
 			generation = p.Generation + 1
 		}
-		p = &Pair{c.Agent, c.Target, c.Agent, c.Target, "pending", generation}
+		p = &Pair{A: c.Agent, B: c.Target, Inviter: c.Agent, Recipient: c.Target, State: "pending", Generation: generation, Exp: now.Add(24 * time.Hour)}
 		st.Pairs[id] = p
 		return p, nil
 	case "invite-decision":
 		p := st.Pairs[pairID(c.Agent, c.Target)]
-		if p == nil || st.Agents[p.Recipient].Owner != principal || (c.Decision != "accept" && c.Decision != "deny") {
+		if p == nil || st.Agents[p.A] == nil || st.Agents[p.B] == nil || st.Agents[p.Recipient].Owner != principal || (c.Decision != "accept" && c.Decision != "deny") {
 			return nil, fault("sender_not_allowed")
 		}
 		if p.State == "active" && c.Decision == "accept" {
@@ -321,14 +340,18 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 		if p.State != "pending" {
 			return nil, fault("sender_not_allowed")
 		}
-		p.State = "denied"
 		if c.Decision == "accept" {
+			if !st.pairCapacity(st.Agents[p.A].Owner, st.Agents[p.B].Owner, true) {
+				return nil, fault("capacity")
+			}
 			p.State = "active"
+		} else {
+			p.State = "denied"
 		}
 		return p, nil
 	case "unpair":
 		p := st.Pairs[pairID(c.Agent, c.Target)]
-		if p == nil || (st.Agents[p.A].Owner != principal && st.Agents[p.B].Owner != principal) {
+		if p == nil || st.Agents[p.A] == nil || st.Agents[p.B] == nil || (st.Agents[p.A].Owner != principal && st.Agents[p.B].Owner != principal) {
 			return nil, fault("sender_not_allowed")
 		}
 		p.State = "revoked"
@@ -556,4 +579,12 @@ func (s *Service) ownerPage(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	_ = dashboard.Execute(w, view)
+}
+
+func decodeCommand(w http.ResponseWriter, r *http.Request, target any) error {
+	raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 8192))
+	if err != nil {
+		return fault("invalid_json")
+	}
+	return Strict(raw, target)
 }

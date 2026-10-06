@@ -3,7 +3,7 @@ title: KnowsLink 프로젝트 기준
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14]
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV]
 summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 ---
 
@@ -54,7 +54,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 ## 공통 기준의 적용과 예외
 
 기존 프로젝트 규칙은 없으므로 공통 규칙을 기본값으로 적용한다. 이후 기술 정본이 생기면 연결하며 보안·권한·리뷰 수락 기준은 낮추지 않는다.
-변경한 동작과 실패·경계 조건을 검증한다. DEV 자동 검증과 독립 기능 QA를 구분한다. 업무 API·Go owner UI·실제 singleton SQL·sqlc 생성이 후보에 포함된다. 일반 이메일 코드 신원·세션·신원 한도는 SAR-PUBLIC-IDENTITY-001 후보다. agent 연결·관계·실메시지 한도·DEC-02 공개 정책·벤더 연결은 후속이다.
+변경한 동작과 실패·경계 조건을 검증한다. DEV 자동 검증과 독립 기능 QA를 구분한다. 업무 API·Go owner UI·실제 singleton SQL·sqlc 생성이 후보에 포함된다. 일반 이메일 코드 신원·세션·신원 한도는 SAR-PUBLIC-IDENTITY-001 후보다. SAR-PUBLIC-AGENTS-001은 회원 agent 연결·키별 credential·관계·해당 한도의 DEV 후보다. 독립 수락·실메시지 한도·DEC-02 공개 정책·벤더 연결은 후속이다.
 작업 지시서에는 적용 문서와 기준 SHA를 남기고 worker와 검토자가 같은 버전을 읽도록 한다.
 
 ## 검증 담당과 후속 인계

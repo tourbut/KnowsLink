@@ -2,11 +2,11 @@
 id: D04
 title: 화면설계서
 status: review
-updated: 2026-10-03
+updated: 2026-10-06
 owner: designer
-tasks: [SAR-MVP-001-UI]
+tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX]
 upstream: [D02]
-summary: 합성 승인 화면의 구조와 상태 및 직접 시각 수락 경계를 기록한다
+summary: 합성 승인과 일반 회원 연결 화면의 기록 및 직접 시각 수락 경계를 보존한다
 ---
 
 # SAR-MVP-001-UI — 합성 human-gate 화면 기록
@@ -77,3 +77,11 @@ DEC-02·DEC-03·Free N·실adapter·A2A 현행 검토·WAL/backup 삭제·고의
 reviewer `msg_4fbcac80f76c`가 보고한 `deliver:human` 인증 경계 high는 미해결이다.
 이 시각 PASS는 해당 high를 해소하지 않는다. DEV 수정과 독립 재검증 전 제품 수락·병합을 차단한다.
 coor에게 문서 결과의 통합과 제품 수락의 구분을 인계한다. 현재 과제 검수·병합 후 중지 지시를 유지한다.
+
+## SAR-PUBLIC-AGENTS-001-UI의 직접 검수 결과
+
+2026-10-06 제품 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`의 일반 회원 UX04–05를 실제 격리 localhost에서 직접 검수했다. [과제별 관측과 판정](SAR-PUBLIC-AGENTS-001-UI.md)이 이번 결과 정본이다. 연결·키·관계 상태는 확인했으며 모바일 지문과 오류 뒤 복귀의 medium 두 건으로 전체 시각 수락은 FAIL/보류다. 기존 합성 gate와 제품 규칙 및 운영 공개의 보류 조건은 유지한다.
+
+## SAR-PUBLIC-AGENTS-001-UI-FIX의 직접 재검수
+
+고정 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 F-UI-01–04와 POLICY 새 안내는 [직접 재검수 보고](SAR-PUBLIC-AGENTS-001-UI-FIX.md)의 좁은 시각 조건에서 PASS다. 원본 d1/d165 UI FAIL과 원본 QA/OPS 실행 기록은 그대로 보존했다. 독립 TESTER/OPS·main 통합·일반 서비스 공개 수락은 별도다. 제품 규칙과 디자인 방향은 바꾸지 않았다.

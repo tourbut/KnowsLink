@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-UI-FIX",
+  "head": "b3d8494ade25c4ce80fbb0149f55aca01c27af08",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 82,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 82
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.32
+    },
+    {
+      "path": "internal/relay/policy_test.go",
+      "summary": "Policy checks pin the agreed re-invite rules and the record saturation guidance (SAR-PUBLIC-AGENTS-001-POLICY).",
+      "probability": 0.26
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
+      "probability": 0.13
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.04
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "summary": "Validate isolated example Compose settings and locked service boundaries.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.93,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5093,
+    "output_tokens": 869,
+    "cost": 0.000213906
+  },
+  "latency_seconds": 0.315,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

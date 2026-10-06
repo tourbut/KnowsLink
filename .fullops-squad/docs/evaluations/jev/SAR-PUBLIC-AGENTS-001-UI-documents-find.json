@@ -1,0 +1,64 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-UI",
+  "head": "7baadde919d92c320beec7f521f1c49949554fdb",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 158,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 158
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "summary": "일반 회원 agent 연결과 키 및 관계의 구현·검증 기록 — 일반 회원 agent 연결·키별 자격·관계·한도와 자동 검증 및 후속 QA를 기록한다",
+      "probability": 0.67
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "summary": "일반 이메일 서비스 화면 수락 기준 — 일반 이메일 인증과 에이전트 연결 및 노우 다닷 시험의 화면 수락 항목을 정의한다",
+      "probability": 0.18000000000000002
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "summary": "일반 이메일 신원 후보의 직접 UI 검수 결과 — 고정 후보의 로컬 fixture UX01–03 시각 PASS와 Orca 캡처 장애 및 실제 확인 미실행을 구분한다",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "summary": "designer 컨텍스트 — 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보류 경계를 보존한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "summary": "일반 이메일 신원 직접 UI 검수 실행 기록 — 독립 실행 환경과 Orca 캡처 복구 및 별도 Chromium 시각 검수와 정리를 보존한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "summary": "SAR-MVP-001-UI — 직접 시각 검수 — 고정 합성 후보의 PNG 직접 관찰과 시각 판정 및 인증 high의 미해결 경계를 기록한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.25,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 13916,
+    "output_tokens": 1630,
+    "cost": 0.000584472
+  },
+  "latency_seconds": 0.364,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

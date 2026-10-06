@@ -19,18 +19,22 @@ type Owner struct {
 	Active     bool
 }
 type Key struct {
-	Public  []byte
-	Revoked bool
-	Changed time.Time
+	Public     []byte
+	Revoked    bool
+	Changed    time.Time
+	Credential string
 }
 type Agent struct {
 	Owner      string
 	Credential string
 	Keys       map[string]*Key
+	Revoked    bool
+	Changed    time.Time
 }
 type Pair struct {
 	A, B, Inviter, Recipient, State string
 	Generation                      int64
+	Exp                             time.Time
 }
 type Receipt struct {
 	ID       string    `json:"id"`
@@ -77,12 +81,13 @@ type State struct {
 	Sessions    map[string]*Session
 	Challenges  map[string]*Challenge
 	Rates       map[string][]time.Time
+	Connections map[string]*Connection
 	TestAgents  map[string]bool `json:"-"`
 }
 
 func newState() *State {
 	return &State{Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
-		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}}
+		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}, Connections: map[string]*Connection{}}
 }
 
 type Service struct {
@@ -134,14 +139,16 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	state.TestAgents = s.TestAgents
 	state.sweep(now)
 	value, opErr := operation(state, now)
-	// Even a rejected request commits only cleanup, never partial operation state.
+	// Even a rejected request commits only cleanup and its spent request budget, never partial operation state.
 	if opErr != nil {
+		rates := state.Rates
 		state = newState()
 		if err = json.Unmarshal(row.Data, state); err != nil {
 			return nil, fault("unavailable")
 		}
 		state.TestAgents = s.TestAgents
 		state.sweep(now)
+		state.Rates = rates
 	}
 	raw, err := json.Marshal(state)
 	if err != nil {
@@ -161,7 +168,7 @@ func (st *State) current(m *Message) bool {
 		return false
 	}
 	a, b := st.Agents[m.Receipt.From], st.Agents[m.Receipt.To]
-	if a == nil || b == nil {
+	if a == nil || b == nil || a.Revoked || b.Revoked {
 		return false
 	}
 	ownerA, ownerB := st.Owners[a.Owner], st.Owners[b.Owner]
@@ -199,6 +206,7 @@ func (st *State) current(m *Message) bool {
 }
 func (st *State) sweep(now time.Time) {
 	st.sweepIdentity(now)
+	st.sweepConnections(now)
 	for id, m := range st.Messages {
 		if now.Sub(m.Receipt.Accepted) >= 24*time.Hour {
 			delete(st.Idempotency, m.Receipt.From+"/"+m.Key)
@@ -269,8 +277,13 @@ func (st *State) principal(token, kind string) (string, error) {
 	} else {
 		for id, a := range st.Agents {
 			o := st.Owners[a.Owner]
-			if o != nil && o.Active && a.Credential == hash {
-				return id, nil
+			if o == nil || !o.Active || a.Revoked {
+				continue
+			}
+			for _, k := range a.Keys {
+				if !k.Revoked && (k.Credential == hash || (a.Credential == hash && a.Credential != "")) {
+					return id, nil
+				}
 			}
 		}
 	}

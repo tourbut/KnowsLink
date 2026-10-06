@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -148,3 +148,47 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | `KNOWSLINK_MAIL_FROM` | 발신 주소 하나. 이름 표기는 거부 |
 | `KNOWSLINK_CLIENT_IP_HEADER` | 빈 값 또는 `CF-Connecting-IP`. Tunnel만 relay에 닿을 때만 설정 |
 | `KNOWSLINK_SYNTHETIC_SIGNUP` | `1`일 때만 `/v1/owners` 합성 가입 허용. `.env.example`·공개 후보는 비움. 격리 로컬 fixture(`make verify-mvp`, README QA 실행)만 셸에서 `1`을 준다 |
+
+## SAR-PUBLIC-AGENTS-001 회원 agent·키·관계
+
+일반 회원은 owner bearer·Basic을 쓰지 않는다. 기존 Secure 세션과 CrossOriginProtection으로 회원 POST를 보호한다. 권한·한도 실패는 새 자원을 만들지 않으며 거부 요청 rate를 저장한다. 429는 재시도 시각을 표시한다. 정리 요청도 현재 세션·대상 소유권을 요구한다.
+
+| 메서드·경로 | 입력·동작 |
+|---|---|
+| POST /home/agents | 새 무작위 ID의 미연결 자기 agent. 5분 재인증 |
+| POST /home/connect | agent, client=node-local, mode=register 또는 rotate. 5분 재인증. 화면에서만 grant token 1회 표시 |
+| GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음 |
+| POST /home/confirm | connection=grant hash. 5분 재인증·prepared 상태 검사. 아직 키 미활성 |
+| POST /home/cancel | 자기 grant 무효화. 별도 정리 budget |
+| POST /home/key-revoke | agent,kid. 5분 재인증·선택 키 철회 |
+| POST /home/agent-revoke | agent. 5분 재인증·모든 키/자격/관계 철회·slot 회수 |
+| POST /home/invites | agent,target. 자기 발신·상대 active agent 검사. 반복은 현재 pair 반환 |
+| POST /home/invite-decision | agent,target,decision=accept 또는 deny,generation. 수신 owner·현재 세대 검사 |
+| POST /home/unpair | agent,target,generation. 양측 owner·현재 세대 검사 |
+| POST /v1/connect/info | token,client. 유효 grant의 owner·agent·client·mode·기한·상태. 이메일 없음 |
+| POST /v1/connect/prepare | token,client,kid,public,proof. 새 키 PoP 저장; 기존 kid 재사용 금지 |
+| POST /v1/connect/complete | token,client,proof. approved·PoP·기한·cap 재검사 뒤 key-specific credential을 한 번 반환 |
+
+연결 PoP는 UTF-8 `KNOWSLINK-CONNECT\0<token>\0<owner>\0<agent>\0<client>\0<mode>\0<kid>\0<public>`의 Ed25519 서명이다. public/proof는 base64url-no-pad다. private key 입력은 없다. grant는 10분·1회다. register는 활성 최대3개이며 rotate는 완료 때 기존 키 전체를 철회한다. 발급·준비 실패는 기존 활성 키를 철회하지 않는다.
+`/v1/connect/*` 입력은 8192 bytes이며 strict JSON이다. 유효 grant는 해당 회원 principal 40/60s, 무효 grant는 source IP 30/60s를 적용한다. 다른 agent API는 stable agent principal을 쓴다. 신규 전체200·정리 전체100/60s와 principal 정리20/60s를 적용한다. 성공은 200, 회원 상태 변경은303, invalid_auth401·권한403·cap409·입력422·rate429다.
+연결 완료 응답을 잃으면 token 재사용으로 credential을 복구하지 않는다. 새 회전으로 복구한다. grant 만료는 완료된 키를 철회하지 않는다. 일반 text·원격 MCP OAuth·외부 계정 성공은 별도 과제다.
+
+### SAR-PUBLIC-AGENTS-001-DEV-FIX 보존 상한과 rate 응답
+
+- `/v1/connect/*`의 429는 `/v1/*` rate와 같은 응답이다. body는 `{"error":"rate_limited","retry_at":"<RFC3339 UTC>"}`이다. `Retry-After`는 같은 시각의 HTTP-date다. 두 값은 실제 재시도 가능 시각을 초 단위로 올림한 값이다. 이전의 고정 60초 header와 retry_at 없는 body는 제거했다.
+- 회원 세션 경로는 무효 세션 요청도 source IP 익명 budget 30/60s에 집계한다. 대상은 `GET /home`, `GET /home/connections/{id}`, `POST /auth/reauth`, `POST /auth/logout`, `POST /auth/logout-all`과 기존 회원 POST다. 무효 세션 GET은 기존처럼 `/?n=expired`로 303 이동한다. budget을 넘으면 429와 재시도 시각을 표시한다.
+- agent 생성과 키 연결은 기술 보존 상한도 검사한다. owner당 agent 기록(활성+철회) 10개, agent당 키 기록(활성+철회) 20개다. 상한이면 `POST /home/agents`·`/home/connect`·`/v1/connect/complete`·합성 `/v1/agents`·`/v1/keys`가 409 `capacity`다. 철회 요청은 기록을 늘리지 않으므로 상한에서도 허용한다.
+- 철회 agent는 철회 시각부터 24h 뒤 키·관계와 함께 삭제된다. 그 뒤 홈 목록과 관계 목록에서 사라진다. 삭제된 agent·pair를 가리키는 옛 화면 요청은 403이다.
+- 회원 거부 화면은 같은 안전 문구와 함께 다음 동작을 제공한다. 세션 무효(401)는 로그인 화면 링크다. 그 밖의 거부·429·503은 자기 홈 링크다. 재확인 필요(키·연결 권한 변경, 전체 로그아웃)는 `POST /auth/reauth` 버튼도 표시한다.
+- 연결 화면의 취소 버튼은 waiting·prepared·approved에서만 표시한다. 홈의 관계 초대 기한은 연결 기한과 같은 `YYYY-MM-DD HH:MM:SS KST`다. 기한이 없는 기존 관계는 `없음`이다.
+- 키 지문은 `<code>`로 표시하고 화면 전체에 `overflow-wrap:anywhere`를 적용한다. select는 본문 글꼴 18px·전체 폭이다. 기존 memberStyle 안의 변경이며 새 theme·의존성은 없다.
+
+### SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 반복 초대·기록 포화 안내
+
+- `/v1/*` wire·상태 코드·오류 코드는 바꾸지 않았다. 아래는 회원 HTML 경로의 안내 변경이다.
+- `POST /home/invites` 성공은 `/home?n=invited`(새 pending), `/home?n=invite-pending`(같은/반대 방향의 기존 pending 유지), `/home?n=invite-active`(현재 active 유지)로 303 이동한다. 홈은 해당 안내를 `role="status"`로 표시한다. 반복 제출은 기한·세대를 바꾸지 않는다.
+- 홈 관계 목록: 받은 pending은 수락 전 메시지 불가를, 보낸 pending은 반복해도 기한이 바뀌지 않음을 안내한다. 거절·만료·철회 관계는 연결 종료·메시지 불가·새 초대와 새 수락 필요를 안내한다. 자기 살아 있는 agent가 있으면 같은 상대에 대한 `새 초대 보내기` 버튼(기존 `POST /home/invites`)을 표시한다. 종료 관계에는 관계 철회 버튼을 표시하지 않는다. 자동 재연결은 없다.
+- `POST /home/agents` 409: owner 기록 포화는 철회 기록의 최소 24시간 보존·정리 뒤 홈에서 사라진 다음 다시 시도하라고 안내한다. 활성 5개는 철회 선택과 복구 불가를 안내한다. 전체 200개는 기존 운영 한도 문구다.
+- `POST /home/connect` 409: 키 기록 포화는 키 철회·대기로 공간이 생기지 않음과 새 agent 연결·각 상대 새 수락을 안내한다. 새 agent를 만들 수 있으면 거부 화면에 `새 agent 만들기` 버튼을 함께 표시한다. 만들 수 없으면 그 한도 안내를 덧붙인다. 활성 키 3개의 등록은 키 철회 또는 회전을 안내한다.
+- 홈 agent 카드: 철회 agent는 최소 24시간 보존 뒤 정리되면 목록에서 사라질 수 있음과 권한 복구·백업 영구 삭제가 아님을 표시한다. 키 기록 포화 agent는 연결 수단 발급 대신 교체 안내를 표시한다. agent 철회 버튼 앞에 모든 키·관계 종료와 복구 불가를 표시한다.
+- 상품 quota·결제·정확한 정리 시각은 표시하지 않는다. 상대 이메일·회원 존재·추가 기술값은 노출하지 않는다.

@@ -1,0 +1,69 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-UI",
+  "head": "7baadde919d92c320beec7f521f1c49949554fdb",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 81,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 81
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/member_agents.go",
+      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
+      "probability": 0.64
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.17
+    },
+    {
+      "path": "internal/relay/connections.go",
+      "summary": "Member connections bind a short approval to one owner, agent, client and new key; only confirmed PoP creates credentials.",
+      "probability": 0.11
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/connect.ts",
+      "summary": "Local Node onboarding keeps private keys and credentials in a new 0700 directory; stdout contains only public status.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "summary": "Check local Compose readiness and safe failure without activating a Tunnel.",
+      "probability": 0.01
+    },
+    {
+      "path": "sqlc.yaml",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.25,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4751,
+    "output_tokens": 860,
+    "cost": 0.000199542
+  },
+  "latency_seconds": 0.27,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

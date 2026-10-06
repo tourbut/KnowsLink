@@ -2,9 +2,9 @@
 id: D06
 title: 엔티티정의서
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
@@ -40,3 +40,20 @@ Inbox는 원문과 같은 Postgres transaction에서 저장한다. ACK는 Inbox 
 회원 owner는 bearer credential이 없다. 회원 이메일은 로그인 매핑에만 쓴다. agent ID·contacts·receipt·rate key·로그에 넣지 않는다. 미확인 이메일은 Challenge의 최대 10분 동안만 남는다. 확인 코드와 세션 token 원문은 DB에 저장하지 않는다. 계정 비활성화·30일 정리는 후속 기능이다.
 
 DB 정본은 [D07](database-design.md), CRUD 정본은 [D09](crud-design.md)다.
+
+## SAR-PUBLIC-AGENTS-001 연결·권한 필드
+
+- Agent.Revoked: 자기 agent 전체 철회. owner 비활성 또는 revoked agent는 인증·현재 메시지·pair 대상에서 제외한다. agent 생성 자체는 활성 등록 slot을 소비하며 키가 없으면 미연결이다.
+- Key.Credential: 공개 회원 연결의 key별 bearer SHA256. 기존 Key.Public/Revoked/Changed는 유지한다. 일반 회원 Agent.Credential은 비어 있다. 키 철회 기록은 kid 재할당 금지와 최소24h 철회 근거로 보존한다.
+- Connection map key: random grant token의 SHA256. 값은 Owner/Agent/Client/Mode/Kid/Public/State/Exp다. private key와 원 token은 저장하지 않는다. waiting/prepared/approved/consumed/cancelled/expired 상태를 쓴다. token 만료는 기존 연결 키의 수명을 바꾸지 않는다. 만료 뒤24h에는 연결 상태 기록을 제거한다.
+- Pair.Exp: pending 수명24h. 기존 Exp가 없는 pending은 첫 sweep에서24h를 부여한다. 만료/거절/철회 뒤 재초대는 Generation 증가다. 활성 pair의 Exp는 초대 당시 표시용이다.
+- Rate: 같은 stable 회원/agent principal의 key가 회전·재시작으로 초기화되지 않는다. 거절·철회는 cleanup bucket을 쓴다. 이메일은 agent ID·grant·pair·contacts에 없다.
+회원 비활성화 UI와 최대30일 계정 매핑 삭제는 이번 과제에서 새로 구현하지 않았다. 기존 owner 비활성 경계와 새 agent/key/pair 철회 경계는 유지한다. 운영 보존량 상한·복원 뒤 철회 검증은 OPS/공개 수락 후속이다.
+
+## SAR-PUBLIC-AGENTS-001-DEV-FIX 철회 기록 보존
+
+- Agent.Changed: agent 철회 시각이다. 반복 철회는 이 값을 바꾸지 않는다. 이 필드가 없는 기존 철회 agent는 첫 sweep 시각을 철회 시각으로 기록한다. 따라서 배포 직후 삭제되지 않고 24h를 보존한다.
+- 철회 agent는 Changed부터 24h 뒤 sweep에서 삭제된다. 그 agent의 Key와 그 agent를 포함한 Pair도 같은 sweep에서 삭제된다. 회원 agent ID는 무작위이며 다시 발급되지 않는다. 따라서 삭제로 `(from,kid)`가 재할당되지 않는다(C1).
+- 살아 있는 agent의 철회 Key는 삭제하지 않는다. kid 영구 재할당 금지를 지킨다. Key.Changed는 첫 철회 시각이며 이후 회전·반복 철회로 바뀌지 않는다.
+- 살아 있는 두 agent 사이의 거절·만료·철회 Pair는 유지한다. 재초대는 계속 이전 Generation보다 큰 세대를 받는다.
+- 기술 보존 상한: owner당 agent 기록 10개(활성 5 포함), agent당 키 기록 20개(활성 3 포함)다. 제품 quota가 아니다. 상한은 새 agent·키만 거부하고 철회는 허용한다. 키 기록이 찬 agent는 새 agent로 교체한다.

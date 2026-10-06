@@ -171,3 +171,9 @@ Codex에서 `python3 scripts/run_trial.py --config /private/trial_codex/environm
 수신은 수동 pull이다. relay queue 등록은 Grok/Codex 대화를 깨우지 않는다. 자동 wake는 이번 범위에서 구현·검증하지 않았다. 중복 실행은 shared claim으로 막는다. claim 뒤 응답 출력 전 crash는 표시를 잃을 수 있다. 실행된 claim을 재발급하지 않는다. 만료·철회·서버 모드 해제 또는 claim 완료 시 payload를 지운다. metadata는 24시간 보존한다. WAL·backup 삭제를 보장하지 않는다.
 
 로컬 검증은 `make verify-mvp`의 두 독립 MCP 프로세스와 실제 격리 Postgres 왕복이다. hosted loopback 또는 이 검사를 실제 Grok 계정 왕복으로 표시하지 않는다. 구체 댓글 초안은 [실행 기록](../.fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)을 따른다.
+
+## 일반 회원의 로컬 연결
+
+[SAR-PUBLIC-AGENTS 절차](../README.md#일반-회원-agent키관계-sar-public-agents-001)를 따른다. 지원 구현은 Node 22 로컬 CLI `dist/connect.js`다. relay는 개인키를 받지 않는다. CLI는 준비와 완료를 분리하고 owner가 자기 브라우저에서 지문을 확인할 때까지 키를 활성화하지 않는다.
+
+키별 credential과 권한 대상 agent는 분리된다. 기존 MCP 기본 held·시험 모드를 바꾸지 않았다. 새 `agent.json`은 클라이언트의 비공개 설정이며 배포 bundle·Git·도구 출력에 포함하지 않는다. 같은 owner의 다른 agent credential을 복사해서 공유하지 않는다. 외부 앱 설치·Grok Bot 실제 계정·다닷·원격 OAuth·일반 text 도구는 후속 검증이다.

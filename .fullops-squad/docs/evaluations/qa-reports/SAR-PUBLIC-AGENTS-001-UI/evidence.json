@@ -1,0 +1,333 @@
+{
+  "task": "SAR-PUBLIC-AGENTS-001-UI",
+  "fixed_sha": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+  "baseline": "d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b",
+  "fixture": "/tmp/knowslink-agents-ui-d1eef9b",
+  "project": "knowslink-agents-ui-d1eef9b-8398",
+  "ports": {
+    "postgres": 57187,
+    "relay": 59219,
+    "smtp": 52591
+  },
+  "engine": "Chromium 147.0.7727.15",
+  "playwright": "1.60.0 (existing cache, read-only)",
+  "viewports": [
+    "1280x900",
+    "390x844"
+  ],
+  "orca_page": "5821c251-81fd-480c-86f3-996591415053",
+  "capture_method": "actual browser screenshot(fullPage/mask) or locator.screenshot; direct view_image review; no mock server HTML or code substitution",
+  "mobile_measurement": {
+    "innerWidth": 390,
+    "scrollWidth": 596,
+    "readonly_input_width": 250,
+    "readonly_input_font": "18px",
+    "select_font": "13.3333px",
+    "keyboard_selectionStart": 0,
+    "keyboard_selectionEnd": 28,
+    "id_length": 28
+  },
+  "fixture_fields_changed": [
+    "one Connections.Exp set to now minus 1 second",
+    "Sessions.Verified set to now minus 6 minutes"
+  ],
+  "pngs": [
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/01-verify.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "3a780160db6e79df801846a0d5343a1821aae6089fc3b485d59bdbc0089bbbf2",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/02-home-empty.png",
+      "dimensions": [
+        1280,
+        2312
+      ],
+      "sha256": "1c18debd390b0a6e0a6741906eea9ff1f215dd1faa8b5e0b810da9485914fd28",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/03-home-two-unconnected.png",
+      "dimensions": [
+        1280,
+        3187
+      ],
+      "sha256": "264d1f88c7b0431df691b4ac9630bd5b507f6feb9522921d8390cb25bb43a126",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/04-connection-waiting.png",
+      "dimensions": [
+        1280,
+        1001
+      ],
+      "sha256": "cf7d3b724bc356cf563c35a1113148e96762c02c111048d5a952d0c319cea861",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/05-prepared-fingerprint.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "c79440a852d06fc25f97936564a08a48a2ee5a3a752b36010a1706b74d837ecc",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/06-approved-not-connected.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "aa6a1e850e1f5bfdf0ecd312ade5e2959fdf9b0b2947767dc35e879bbb0c177c",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/07-consumed-complete.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "46e3ce6b1ff9f3209cd8256500eba132a0b89c39c60736b2616a6fa45b76a9c1",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/08-home-two-connected.png",
+      "dimensions": [
+        1280,
+        3503
+      ],
+      "sha256": "888caecb6ba2d7bdfb9e45bd57c60329d38978fd5f55db371e6101cd8412ff3b",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/09-pair-pending.png",
+      "dimensions": [
+        1280,
+        3779
+      ],
+      "sha256": "3b2961b040c72714c30d0a240f69e3715ebda807fd5b163fd1b322c81e64972a",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/10-pair-active.png",
+      "dimensions": [
+        1280,
+        3709
+      ],
+      "sha256": "000a1d5f38b07a2e85f35ac1adbee30c1c8040edcd485109e4b8b2114379ba2f",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/11-pair-revoked.png",
+      "dimensions": [
+        1280,
+        3709
+      ],
+      "sha256": "1ed12cf2473661b274dbb819ffc17c96b5bd3bc1fd75691e5ba9a05ff0609c4e",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/12-pair-denied.png",
+      "dimensions": [
+        1280,
+        3709
+      ],
+      "sha256": "ba7f81db5bd7e5af93b100a5d58ec2f01392c7a80b070f9c72c51cd87d48c2eb",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/13-connection-cancelled.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "5c6136cf635e78b7609e3a05705a7d0a07c9349dd09681153fe6b876a07b7fbf",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/14-connection-expired.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "723c62ecdbd132f3dbadc4d4a3fe07b709200fceab4ebe5e36cbf0001d32090a",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/15-unsupported-error.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "28776d88bbfd5364216000ff8d5f242617d08211fe6900ceb6eecbcd09b7152f",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/16-permission-error.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "ac252913a014e80afd27451b2c21fe096c4554db3c2464a7ccd19cd9c9a402c1",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/17-rotation-keys.png",
+      "dimensions": [
+        1280,
+        3779
+      ],
+      "sha256": "4d1e6a8c8ef554f9ba17e14fee4b27789fde7d2d294038329a8e5b920d13347c",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/18-mobile-home.png",
+      "dimensions": [
+        596,
+        4361
+      ],
+      "sha256": "23b7decd1c57fbb2b9724db15f109ea7e403abdca7268516fbd50c85ad35ea94",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/19-mobile-agent.png",
+      "dimensions": [
+        300,
+        805
+      ],
+      "sha256": "c40004275bdfe03b6a695d9e7a988cd9543f41e20dea77f8d3b1f6dc7e0c083f",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/20-cross-sender-pending.png",
+      "dimensions": [
+        760,
+        775
+      ],
+      "sha256": "d66c3427a0fa527e4ca6fe9e364e8a7df39aeed90e85c3c78d4a7e7627299dc9",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/21-cross-recipient-pending.png",
+      "dimensions": [
+        760,
+        1110
+      ],
+      "sha256": "54b4deb783f5584a7cdd18397f8acbb7866a79314f85f2c914b15a58b533de67",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/22-cross-active-sender.png",
+      "dimensions": [
+        760,
+        775
+      ],
+      "sha256": "b34184ad066e10e9706e80fc81e427e3bc6b749df13d9eabfbca6c7c7a69e4ee",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/23-cross-sender-revoked.png",
+      "dimensions": [
+        760,
+        775
+      ],
+      "sha256": "bb434297c87178e5bf1a154784a4d180fe66fcb8b231dec104ee2e237ce6f86c",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/24-cross-recipient-revoked.png",
+      "dimensions": [
+        760,
+        1040
+      ],
+      "sha256": "37b37e615d7f8a27105f4fed3dd9162283cdf85631dbc10a33555c0d05e942ca",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/25-reauth-required.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "e6b864784fb943ff43663e5dfa28f39e86554e89f4f52ec7224a6127e26fe315",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/26-reauth-wrong-code.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "31fd4a5f1b067eaf33a9ecc89edb6ad6429e20c9a1fc681eac202af6c3759713",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/26a-reauth-rate.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "c0f489977cb728b5eb335f9bd6ccee3e41589806cf1bf708a8b4c42d87d8eec8",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/27-selected-key-revoked.png",
+      "dimensions": [
+        710,
+        610
+      ],
+      "sha256": "7946986ac30e4a561573e7daad154de3f4929f07f5ed842245d1ee3945fd6abd",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/28-agent-revoked.png",
+      "dimensions": [
+        710,
+        349
+      ],
+      "sha256": "10a0a9c3caa5bc09cd3a739b18bb76e2202d3a9c70cc75c196beeee8941e27a1",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/29-logout-preserves-agent-note.png",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "sha256": "e0e86ba1c0f3fbc211a75b3086eb7d853df22022add5ae4a400dfbcde6d1a2c7",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/30-relogin-key-still-active.png",
+      "dimensions": [
+        710,
+        610
+      ],
+      "sha256": "a6564244a970b109e184ac677880c755c77e098c9e5d47512c66cd3501b766cf",
+      "evidence": "directly viewed actual localhost UI"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/orca-full-blank.png",
+      "dimensions": [
+        1265,
+        843
+      ],
+      "sha256": "702499e024a73a6791d9b1f0b582ce8f1fd6be42db3949e41365c784a6bb6795",
+      "evidence": "browser failure only"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/orca-viewport-1x1.png",
+      "dimensions": [
+        1,
+        1
+      ],
+      "sha256": "9195530aa2c8cee04a21994f0664a93a0f56bea1cb2889a478b0f5bd5922edee",
+      "evidence": "browser failure only"
+    }
+  ]
+}

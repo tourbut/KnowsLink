@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
 summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
@@ -805,3 +805,99 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 착수 영수증: Task task_23b84e8ba5e6 / Dispatch ctx_69e4d4d35bc6 / terminal term_0aba2c49-1807-4297-9741-cfbf48908530. fresh Codex gpt-6.1-sol medium effective·turn_started 및 규약/지시서 확인 응답을 확인했다. 준비 fe642109a0ba main/origin 일반push·5역할 동기화를 완료했다. 준비 lint/test0·ERROR0/WARNING1(누적PLANS). worker_done 중심으로 대기하고 진행DEV 체크아웃은 변경하지 않는다. discoverability 경고는 착수성공과 구분하며 focus를 강제하지 않는다.
 
 - 후속 route 세 건을 준비했으며 DEV 고정 완료SHA 대기로 미배정이다. SAR-PUBLIC-AGENTS-001-REVIEW는 OPS 독립기록이며 Jev Sonnet5.5high 대신 fullops-review의 인증/권한/데이터/동시성 고성능 규정으로 별도 Claude Opus5.5high를 적용한다. SAR-PUBLIC-AGENTS-001-TESTER는 사용자 지정 Grok4.7high, SAR-PUBLIC-AGENTS-001-UI는 designer Codex6.1Solhigh다. 담당 coor, 재개 조건 DEV 성공후보·필수검증근거 및 빈 역할인박스 확인이다.
+
+## SAR-PUBLIC-AGENTS-001-DEV 후속 인계 (2026-10-06)
+
+DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회·명시적 관계와 한도를 구현했다. 자동 검증·기술 문서와 인박스 전문은 DEV 완료 로그로 보존한다. 고정 후보의 독립 OPS 보안 delta 리뷰·TESTER 교차 계정/연결/키/관계/한도 QA·designer UX-04–05 직접 검수는 coor 배정 대기다. 실제 이메일·공개·Grok Bot/다닷 실제 계정·일반 text/UX-06·운영 보존/복구 수락은 후속이다. 독립 필수 검사와 미해결 critical/high가 통합을 차단한다. 상세는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md)을 따른다.
+
+- DEV 완료 msg_3e760463c64c/d1eef9bb90b9726149980320c42fb1fdbcaf584a를수신했다. clean·빈인박스·실행보고를확인하고coor에SHA보존반영했다. PLANS의coor착수/route기록과DEV완료인계를모두보존해충돌해결했다. integration hold는독립리뷰/QA/UI수락대기다. 별도읽기전용 detached d1snapshot과세역할정규인박스를준비했으며actualDEVsession01a10f52-ac0f-75a0-b253-9a926a8e5650를독립성기준에남겼다.
+
+- 독립 검수 착수: OPS Task task_cc3d65402f06 / ctx_c8eb7eba79f3 / term_6eef1e8a-8a7b-4424-8d36-ad8af4b91ca0, 새Opus5.5high effective·turn_started·규칙읽기 확인. UI Task task_8398bc20dd2b / ctx_f6a28123e265 / term_92bdb7e0-d2bc-4e95-bb6c-1f6f3ca3ec6f, 새Codex6.1Solhigh effective·turn_started·인박스읽기 확인. QA Task task_a77c67d558a4 / ctx_8acfa5ac3fc0 / term_153ac340-8b4b-4888-acca-d745418bdc80, 새Grok4.7high 화면·tui-idle 뒤input_accepted·실제규칙읽기 확인. Grok turnStart는unsupported이며관찰됨으로표시하지않는다.
+- 세검수는동일fixed d1eef9b·별도read-only리뷰snapshot/QA fixture/UI fixture와기록체크아웃을사용한다. coor는브라우저를조작하지않는다. DEV 완료세션은hold기록뒤release했으며준비d111fd4를등록역할과일반push로공유했다. main/origin dc60fbf 제품수락은아직이며필수검수뒤즉시통합한다. 진행중OPS/QA/designer는변경하지않고최신main동기화를완료뒤예약한다.
+## SAR-PUBLIC-AGENTS-001-REVIEW 결과 (OPS, 2026-10-06)
+
+- 고정 d2f7ba5..d1eef9b 독립 보안 delegate 리뷰를 완료했다. 리뷰 세션 50b08fc6-fec2-44ef-91ec-b921315867f9, DEV 세션 01a10f52-ac0f-75a0-b253-9a926a8e5650, snapshot /tmp/knowslink-agents-review-d1eef9b(read-only, clean)다. critical/high 0, review.py check exit0.
+- 보류 후속: M1 medium 철회 agent·key·pair 기록 무한 보존은 공개 전 차단 조건이다(OPS 보존량 보호값·DEV 정리 또는 상한과 포화 테스트). L1 무효 세션 GET 익명 rate 미집계·L3 /v1/connect 429 retry_at 누락은 DEV 후속 후보다. L2 거절 뒤 재초대 허용 범위는 coor 경유 designer 판단이다. 결과: [리뷰 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md).
+
+- 독립 리뷰 msg_f67d82ace4e0/70f26bc0799e65e4647731612a8d3a7c098a5fec를 수락 가능한 기록으로 확인했다. 33 reviewed/6 skipped, actual50b08fc6 vs DEV01a10f52, 고정d1 snapshot clean/read-only, lint/test/verify-mvp/check0·critical/high0이다. M1 철회 기록 무한 증가(public차단), L1 무효세션GET rate rollback, L3 connect429 retry_at은 동일AGENTS의 DEV-FIX로 처리한다. route Opus5.5high·새세션, 이전DEV가종료되고범위가변해 fresh를선택했다. 원본QA/UI는동일d1을마무리하고 수정 영향만 후속으로검사한다. L2 거절/만료후재초대는designer UI완료후빈인박스에서제품판단하며그전까지미확정이다. 담당coor/DEV/designer, 재개조건은수정후보·제품답·독립delta검수다.
+
+- DEV-FIX 착수 Task task_356146f610c0 / ctx_3bec7b292d75 / term_27d9b21d-cff6-445a-b16e-559a58a97449, 새ClaudeOpus5.5high effective·turn_started. 준비b5df23b를DEV에ff/push해인박스전달했다. 정상완료를기다리며진행DEV/QA/UI체크아웃을변경하지않는다. coor가상대checkout의HEAD를merge해첫동기화가no-op였으나명시b5df23b로바로ff를완료한뒤착수했다.
+
+- UI question msg_fb30bec590d1: fixed d1 UX04–05는mobile지문overflow(F-UI-01medium)와오류뒤복귀동작부재(F-UI-02medium)로FAIL/보류다. coor는상속빈OPS양식metadata만stamp하도록reply msg_548ebe9bb1f7로허용하고DOC003원실패/본문불변/최종재검증보존을요구했다. 완성OPS70f26bc본문은coor에보존돼있으며UI양식보정과통합시그완성본문을유지한다. 필수UI두건과관련low03/04를진행중같은DEV-FIX에handoff해인박스갱신·수정·관련재검수인계를요청했다. 원본UI최종보고뒤designer빈인박스에서L2판단을배정한다.
+
+- SAR-PUBLIC-AGENTS-001-POLICY는리뷰L2의거절/만료뒤재초대범위제품판단route를준비한다. designer현재UI인박스사용중이므로미배정이며보고전문finish/빈인박스확인뒤배정한다. 기존제품PS07과남용방어의해석및DEV/QA관찰조건만정하고기술구현은DEV-FIX에유지한다. 담당coor/designer, 재개조건UI기록완료다.
+## SAR-PUBLIC-AGENTS-001-UI — designer 결과와 후속
+
+- 역할 검수 작업은 완료했다. 대상 제품은 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`다. [직접 관측·판정](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md)을 정본으로 사용한다.
+- UX04–05 시각 수락은 FAIL/보류다. medium F-UI-01 모바일 지문 가독성과 F-UI-02 오류 뒤 다음 동작을 DEV에 인계한다. 수정된 고정 SHA와 해당 실제 화면이 준비되면 designer가 영향 범위만 재검수한다. 새 과제 dispatch는 coor가 현재 역할 인박스의 사용 상태를 확인한 뒤 정한다.
+- 합성 상태 PASS는 독립 QA·보안 리뷰·실제 이메일·운영 공개·노우↔다닷의 미검증을 해제하지 않는다. 자기 fixture 자원은 회수했고 사용자 기존 탭·인증값·운영 자원은 보존했다. 제품 코드와 제품 규칙은 변경하지 않았다.
+
+- 원본 UI msg_9daccf1f3945/d1651784c4338efeb0d6141467d563c6b354e4a5를hold로보존하고coor후보에SHA보존반영했다. 제품경로diff0·빈인박스/자원회수·최종lint/test0와원본DOC003/보정근거를확인했다. 보고서충돌은완성OPS70f26bc의본문/metadata를그대로유지했고UImetadata-only정정은원본SHA와증거로남겼다. UImedium2FAIL은수정/재검수대기이며원본PASS로바꾸지않는다.
+- 빈designer인박스에L2 POLICY제품판단을준비했다. route Codex6.1Solhigh·새세션이다. 이전UI는25분이상실행과큰브라우저로그가있고새제품판단범위여서fresh를선택했다. D09/D10추천은기술소유라제외하고D02/필요UX05만갱신한다. 답을DEV-FIX에그대로전달하고현재기술구현을유지한다.
+
+- POLICY 착수 Task task_9ff87558884b / ctx_94d86ca2989c / term_3199de66-0713-4643-bf0b-5194bd6c160b, 새Codex6.1Solhigh effective·turn_started 및지시서확인응답. 준비53aab5d를designer에ff/일반push했다. 제품답대기와기술DEV-FIX를병행하며진행checkout은변경하지않는다.
+## SAR-PUBLIC-AGENTS-001-DEV-FIX 결과 (DEV, 2026-10-06)
+
+- 리뷰 M1·L1·L3과 designer F-UI-01–04를 같은 DEV 후속에서 수정했다. 철회 agent는 24h 뒤 키·pair와 함께 삭제한다. 살아 있는 agent의 철회 키는 C1 때문에 유지한다. owner agent 기록 10·agent 키 기록 20의 기술 상한은 신규만 거부하고 철회를 허용한다.
+- 거부 요청도 rate를 저장하고 무효 세션은 익명 budget을 쓴다. connect 429는 실제 retry_at·Retry-After를 준다. 거부 화면에 홈/로그인·재확인 동작을 추가했고 모바일 지문 넘침을 고쳤다.
+- 후속 대기: OPS delta 리뷰, TESTER 보존/철회/rate 좁은 QA, designer 변경 화면 좁은 재검수와 키 기록 포화·철회 agent 표시 제품 판단, L2 designer 결정. gate·시작 화면 rate 미적용은 MESSAGES 후속 후보다. 상세: [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md).
+
+- DEV-FIX msg_371319f19427/4a1b80aec8fa6a06144d51f3a5609927a2644928(제품85fb40e) 수신. M1 철회agent24h정리·agent기록10/owner·키기록20/agent 기술보호, L1 rate저장/무효세션budget, L3 실제retry_at, F-UI01–04 보완과최종lint/test/verify-mvp/strict0를확인했다. code변경동일성/최종독립검증은아직대기다. 원래shortSHA추출null은실제Git/보고/원문과대조해sha_source에null과근거를보존해보완했다. coorPLANS와DEV결과를함께보존해merge충돌해결했다.
+- POLICY에handoff msg_750122334b74로키기록포화시새agent/관계재수락의다음동작과철회agent최소24h뒤홈정리표시를추가제품판단으로연결했다. 기존활성agent5/키3제품값은변경하지않고기술보호를상품quota로표시하지않는다. 제품답/필요추가구현뒤고정후보delta리뷰·좁은QA/UI수락까지main보류다.
+
+- POLICY question msg_5271f741b674: 추가handoff수신전원본finish성공으로같은키두번째finish가중복아카이브거부다. reply msg_b0e9c87e41bb로원본전문을보존하고현재정규인박스추가분만POLICY-SUPPLEMENT 기록키finish를허용했다. 같은Task/Dispatch/원본과연결하며worker_done은제품답·전체SHA로한번만보낸다. 원본로그재작성/새제품배정이아니다.
+## SAR-PUBLIC-AGENTS-001-POLICY — designer 제품 답과 후속 (2026-10-06)
+
+- D02 PS-07과 UX-05의 모호성을 해소했다. 유효 pending/active 반복은 새 초대·세대·기한 연장 없이 현재 상태를 유지한다. 거절·만료·양측 중 어느 쪽 철회 뒤에는 기존 한도 안의 새 수동 초대를 허용한다. 새 세대·수신 owner의 새 수락 전 메시지 거부·자동 복구 금지를 유지한다. 새 차단·쿨다운·제품 수치는 추가하지 않는다.
+- coor는 [제품 답 전문과 관찰 조건](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md)을 진행 중 DEV-FIX에 전달한다. DEV는 기술 설계·구현과 영향 자동 검사를 맡는다. 담당 TESTER/designer의 후속은 DEV 수정 고정 SHA·필수 검사 근거·빈 역할 인박스가 준비되면 재개한다. 새 현재 지시서나 task별 dispatch 파일은 만들지 않았다.
+- 원본 d1eef9b UI FAIL/보류·M1 공개 차단·metadata 원실패와 모든 증거를 유지한다. 제품 답 완료는 구현 준수·일반 서비스 전체 수락이나 운영 공개가 아니다. 수신 owner 반복 노출 위험은 남으며 PS-11/12 남용·자원 공개 전 검증을 유지한다. 실제 남용/보호 실패는 coor 경유 designer의 별도 제품 변경 판단으로 인계한다.
+- 같은 과제 추가 지시 msg_750122334b74의 기록 보호 UX를 반영했다. 키 기록 포화는 새 agent 연결·새 관계 수락으로 처리한다. owner 기록 포화는 명시적 철회·최소 24h 보존·실제 정리 뒤 수동 재시도를 안내한다. 기술 보호값과 기존 활성 한도를 구분하고 상품 quota로 표시하지 않는다. 철회 목록 정리의 시각·즉시 공간·백업 영구 삭제·권한 복구를 약속하지 않는다.
+- 추가 조건도 DEV 구현·TESTER 독립 QA·designer 직접 시각·OPS 실제 자원/복원 검증의 고정 후보 후속이다. DEV-FIX 4a1b80a의 기술 기록을 읽기만 했으며 새 제품 답의 과거 준수나 독립 PASS를 선언하지 않았다. 원래 제품 답·첫 finish 로그를 보존하고 같은 Dispatch의 추가 결과를 연결한다.
+
+- POLICY msg_04d9f4745598/48d12fae2dce35d92606b264313148f0a635b64e 제품답을보존했다. pending/active반복은수/세대/기한불변, 종료뒤수동재초대는새세대/새수락, 키기록포화는새agent/관계재수락, owner기록포화는최소24h보존/실제정리뒤수동재시도·홈철회목록정리안내를정한다. 새차단/쿨다운/상품quota/수치/운영승인은없다. 구현조건표원문을줄이지않고DEV-POLICY-FIX인박스에서그대로전달한다. route Opus5.5high, 이전DEV는긴빌드/테스트로그와10분이상대기로cache이득이작아새세션을선택했다. QA/UI원본실패와필수delta검수대기를유지한다.
+- QA에handoff msg_9161a46153fb로현재기록checkout의frontmatter없는상속OPS준비양식을metadata-only stamp하도록허용했다. 제품fixed d1·실행조건불변·원래실패/본문보존·완성OPS70f26bc충돌해결원칙을명시했다.
+
+- DEV-POLICY-FIX 착수 Task task_46a93d37ac6f / ctx_acf917e530e7 / term_1e7f7bec-d32a-42fe-84ff-9ee7549419be, freshOpus5.5high effective·turn_started·규약/인박스읽기확인. 이전DEV-FIX는새세션으로옮기는시점에출력보존/release했다. 준비0a83bbb를DEV에ff/일반push했다. 진행DEV/QA checkout은변경하지않으며latest고정후보 delta보안/QA/UI를대기한다.
+## SAR-PUBLIC-AGENTS-001-TESTER — 2026-10-06
+
+- 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`를 별도 clone에서 독립 QA했다. `make lint`, `make test`, `make verify-mvp`, 격리 Postgres 프로브의 종료코드는 0이다. 새 critical/high는 없다. 제품 코드는 수정하지 않았다.
+- 실제 이메일, 운영 공개, 플랫폼, 노우↔다닷은 미실행이다. 화면 캡처는 designer 범위다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md)와 [시나리오](docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md)에 있다.
+
+- 원본QA msg_2fc3f489450b/bcb06b89bcb36d69a99cbeef3d94e4a9ffe88361 수신. 실제d1 격리Postgres/Node검사·make lint/test/verify-mvp/독립프로브0·제품diff0·빈인박스/공유컨테이너불변을확인했다. 프로브기대값준비실패와상속DOC003/metadata-only보정은원문보존했다. 결과의추출SHA null은fullSHA원문/actualcleanHEAD/아카이브와대조해sha_source에null/근거를보존해보완했다. coor에SHA보존반영하며OPS완성보고서를유지해문서충돌을해결했다. 최신수정영향과원본QA/UI기록의독립delta리뷰는후속검수다.
+- QA기록보고의통과lint JSON은4c75938(아카이브전)이며최종bcb와HEAD가달라 coor가tui-idle/clean을확인하고최종bcb에서기준d2의필수lint를한번검증한다. 누락고정HEAD증거를해소하기위한검사이며전체동작QA를반복하지않는다. 다음review.prepare의빈양식은dispatch전coor가metadata를stamp해상속DOC003재발을막는다. 원래실패를통과로바꾸지않는다.
+
+- coor의최종bcb06b QA기록HEAD 검사: 기준d2 FullOps exit0, product-lint/product-test0·ERROR0/WARNING8/실행불가0. 기존규모/테스트script-only/합성token경고는원본리뷰의같은근거로유지한다. 원본JSON은 SAR-PUBLIC-AGENTS-001-COOR/original-qa-bcb-lint.json에보존했다. QA release는external_terminal retained이므로사용자소유터미널을강제종료하지않았다.
+
+- 최종검수 route FIX-REVIEW/FIX-TESTER/UI-FIX를준비했으며DEV-POLICY-FIX고정완료SHA대기로미배정이다. OPS Sonnet추천대신인증/현재권한/C1/동시성보존을다루는fullops-review의고성능규정으로별도Opus5.5high를적용한다. QA는사용자지정Grok4.7high, UI는designer Codex6.1Solhigh다. 원본d1 QA bcb/시각FAIL d165와수정4a/제품답48을연결하고변경영향만검증한다. 담당coor, 재개조건최신성공후보·기록/원천일치·빈인박스확인이다.
+## SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 결과 (DEV, 2026-10-06)
+
+- POLICY 48d12fa 두 관찰 조건표를 4a 코드와 대조했다. 관계 반복·재초대·세대·한도·보존 의미는 이미 일치해 재구현하지 않았고 TestRelationshipPolicy·TestSaturationGuidance로 고정했다.
+- 회원 화면만 바꿨다. 반복 초대 notice 3종, 종료 관계의 수동 새 초대, 키 기록 포화의 새 agent 교체 안내·생성 버튼, owner 기록 포화의 최소 24h 보존·정리 뒤 재시도, 철회 agent 목록 정리 안내, 철회 전 경고. `/v1/*` wire 불변.
+- 제품 커밋 f9af9bf: make lint/test/verify-mvp exit 0(integration PASS 55·FAIL 0), 390px 넘침 0. 상세·고정 SHA는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)과 worker_done.
+- 후속: OPS 독립 delta 리뷰(`/v1/invite-decision` Generation 미결속 판단 포함), TESTER 좁은 QA, designer 새 안내 직접 재검수. 원본 d1 UI FAIL·4a 기록 불변.
+
+- DEV-POLICY-FIX msg_b3dd3979dc40/83e0bfb907085bade31a193ab91ca723feb7d7ad 수신. 실제cleanHEAD·빈인박스·원본실패/검증을확인하고coor에SHA보존반영했다. 추출SHA null과보완출처를함께보존했다. 고정후보 458798c2ee15c179edacfd6f94ebb9896d26f411에서 독립FIX-REVIEW/FIX-TESTER/UI-FIX를배정한다. 원래lint3769e9d만으로최종83e를주장하지않고누락고정HEAD검사를coor가한번보완한다. 필수검수·원본UIFAIL해소전main통합보류다.
+
+- 최종83e0bfb의누락고정HEAD FullOps를완료했다. 기준4a exit0·product-lint/test0·ERROR0/WARNING6/실행불가0, 원본JSON은COOR/policy-fix-83e0bfb-lint.json에보존했다. 기존3769e9d의검사는원래SHA로유지한다. 검수준비빈report를dispatch전metadata-only stamp했다.
+
+- 최신검수착수: OPS task_663b9832129e/ctx_c958c7ee3895/term_c2e23fbf-01ce-4bf4-a440-f4796d8d922b 새Opus5.5high effective·turn_started·규약읽기확인. UI task_33ddf712fa70/ctx_f2dd9d1df05f/term_08f6072e-7820-4136-bef5-c70886c2eb62 새Codex6.1Solhigh effective·turn_started·인박스읽기확인. QA task_8c20365d019a/ctx_0553efe89909/term_b027817e-0927-48a9-946b-4d30a09651b4 새Grok4.7high actualUI·tui-idle·input_accepted확인, turnStart unsupported. 고정458798c/읽기전용snapshot, 준비f0b69a9을clean·idle3역할ff/일반push했다. main/origin dc60fbf조상확인. 진행역할checkout은변경하지않는다. DEV83완료세션은리뷰까지retain했다. discoverability경고는착수실패가아니다.
+## SAR-PUBLIC-AGENTS-001-FIX-REVIEW 결과 (OPS, 2026-10-06)
+
+- 고정 d1eef9b..458798c2ee15c179edacfd6f94ebb9896d26f411 독립 보안 delta 리뷰를 완료했다. 리뷰 세션 7dc8e8e4-8768-433e-a3d1-c36e6155cc43이며 DEV 세션 3개와 다르다. snapshot /tmp/knowslink-agents-review-458798c는 리뷰 전후 clean·detached이며 읽기만 했다. 제품 코드는 6d016e5와 같다.
+- 원본 M1·L1·L3 해소, L2는 POLICY대로 구현이다. critical/high 0·medium 0이다. 미해결 low 2건: L-A 합성 owner의 /v1/agents가 24h 삭제된 회원 agent ID·kid를 재등록할 수 있다. L-B /v1/invite-decision Generation 미결속은 공개 경로 제한으로 PS-07을 충족한다는 DEV 판단에 동의한다. 두 건 모두 KNOWSLINK_SYNTHETIC_SIGNUP 미설정·합성 owner 0을 전제로 한다.
+- scratch clone lint --from d1: 설치 전 exit 1(tsc not found, 원본 보존) → make install 뒤 exit 0, head 458798c, ERROR 0·WARNING 8·실행 불가 0. review.py check exit 0(87 reviewed·65 skipped). verify-mvp는 6d016e5 run 2를 제품·의존성 diff 0으로 재사용했다. [리뷰 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-REVIEW-review/report.md)
+- 후속: 공개 전 OPS가 운영 DB 합성 owner 0개를 확인한다(L-A/L-B 전제). DEV 후속에서 agent_ 접두사 예약 또는 삭제 ID tombstone, owner API Generation 필드를 검토한다. TESTER 독립 QA·designer UI 재검수·OPS 실제 자원/복원 수락은 별도이며 이 리뷰 완료는 main 제품 수락이 아니다.
+
+- 독립FIX-REVIEW msg_8119d5db7ae4/b6f2442507c6536bbd5bc3f3ec768c52c5c75a84 수신. actual리뷰7dc8e8e4는DEV3세션과다름·458snapshot clean/detached·reviewcheck87/65/152통과·fixedlint458 ERROR0/WARNING8/test0를확인했다. 원래M1/L1/L3해소, L2제품답준수, critical/high/medium0. 남은low L-A삭제ID합성owner재등록/L-B합성API Generation미결속은새원문재현으로보존했다. 공개전OPS 합성owner0·합성가입unset확인이필수이며운영PASS아니다. 최신QA/UI와리뷰기록자체검사대기로hold·coor SHA보존반영. 원래추출null과fullSHA출처를함께보존했다.
+## SAR-PUBLIC-AGENTS-001-UI-FIX — designer 완료 결과
+
+- fixed 458798c의 F-UI-01–04·POLICY 안내는 좁은 직접 UI PASS다. [보고서](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md)·PNG 62개·Orca 장애 2개·manifest·cleanup을 보존했다. 제품 변경 0이고 원본 d1/d165 UI FAIL·OPS/QA 원실행은 유지한다.
+- 남은 담당과 재개 조건: TESTER의 fixed 정책 독립 QA, OPS delta/운영 조건, coor의 합성 후보 통합 수락. 실메일·운영 공개·실24h·부하/복원·노우↔다닷은 후속으로 유지한다. 새 designer 과제는 없다. 완료 전문은 work.py finish 뒤 날짜별 designer 로그에서 확인한다.
+
+- UI-FIX msg_1324c3837625/c9b425062f2526663177b11df62e171308c846e3 수신. fixed458의필수FUI01–04·POLICY두표직접시각PASS·제품diff0·원본65파일보존·자기fixture정리를확인했다. 정상PNG62개/장애2개는직접열람·manifest로연결됐고실24h/실메일PASS가아니다. D03오기는actualD04/designerUX원천으로정정했고DEV정본은변경없다. finalreportlint증거c1b2는원래HEAD로유지하며최종통합후보검사에서기록마지막SHA도포함한다. coorSHA보존반영·원본FAIL불변, QA와기록자체검토대기hold다.
+## SAR-PUBLIC-AGENTS-001-FIX-TESTER — 2026-10-06
+
+- 고정 `458798c2ee15c179edacfd6f94ebb9896d26f411`를 별도 clone에서 보존, rate, POLICY 관찰 조건만 독립 QA했다. 최종 프로브 종료코드는 0이다. 1차 종료코드 1은 프로브 기대값이고 제품 결함이 아니다. 새 critical/high는 없다.
+- 원본 QA `bcb06b89bcb36d69a99cbeef3d94e4a9ffe88361`와 UI FAIL `d1651784c4338efeb0d6141467d563c6b354e4a5`는 그 SHA에 둔다. 실제 이메일, 운영 공개, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다.
+
+- FIX-TESTER msg_7c714a9c8930/a87dbf30cb52aa3cd03840ab6ae6fc226f20377a 수신. 실제fixed458 clone·제품diff0·TestQAAgentsFix policy/retention/rate 독립PASS·첫기대값오류원문보존·자기fixture정리·빈인박스확인. 최종a87 lint ERROR0/WARNING1/product-lint/test0 JSON은/tmp에서COOR/fixed-qa-a87dbf3-lint.json으로보존해영속화했다. null추출/fullSHA출처둘다보존. coor에SHA보존반영, QA/UI/OPS기록자체독립검토와최종통합검사뒤main수락한다. 실제메일/실24h/공개/운영자원/노우↔다닷은후속이다.

@@ -1,0 +1,46 @@
+{
+  "task_key": "SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX",
+  "find_head": "b32543411ab063eeb6329c47c6349c1cdd298648",
+  "base": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+  "head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
+  "changed_existing": [
+    "README.md",
+    "internal/relay/api_rate.go",
+    "internal/relay/connections.go",
+    "internal/relay/connections_integration_test.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/http.go",
+    "internal/relay/member.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/store.go"
+  ],
+  "new_files": [
+    "internal/relay/policy_test.go"
+  ],
+  "candidates": [
+    "README.md",
+    "adapters/src/core.ts",
+    "internal/relay/cleanup.go",
+    "internal/relay/connections.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/protocol.go",
+    "internal/relay/registry.go",
+    "internal/relay/registry.json",
+    "internal/relay/store.go",
+    "scripts/package_plugin.py",
+    "scripts/schema.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [
+    "README.md",
+    "internal/relay/connections.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/store.go"
+  ],
+  "recall": 0.444,
+  "precision": 0.333,
+  "existence_status": "absent",
+  "existence_correct": false,
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

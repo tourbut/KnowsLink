@@ -1,0 +1,158 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "b3d8494ade25c4ce80fbb0149f55aca01c27af08",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "2dbb9ed0207e6fe004f55b24427473301923373a822a690e80fd921341f5ee78",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-PUBLIC-SERVICE-UX.md",
+      "c2-SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "c3-SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "c4-SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "c5-report.md",
+      "c6-SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "c7-SAR-PUBLIC-AGENTS-001-UI.md",
+      "required_0",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6",
+      "required_7"
+    ],
+    "recommended_ids": [
+      "c0-SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-PUBLIC-SERVICE-UX.md",
+      "c2-SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "c3-SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "c4-SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "c5-report.md",
+      "c6-SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "c7-SAR-PUBLIC-AGENTS-001-UI.md",
+      "required_0",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6",
+      "required_7"
+    ],
+    "signals": {
+      "c0-SAR-PUBLIC-SERVICE.md": {
+        "relevant": 0.61,
+        "evidence": 0.76,
+        "contradicts": 0.26,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-SAR-PUBLIC-SERVICE-UX.md": {
+        "relevant": 0.71,
+        "evidence": 0.8,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-SAR-PUBLIC-AGENTS-001-POLICY.md": {
+        "relevant": 0.82,
+        "evidence": 0.89,
+        "contradicts": 0.27,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-SAR-PUBLIC-AGENTS-001-DEV-FIX.md": {
+        "relevant": 0.75,
+        "evidence": 0.85,
+        "contradicts": 0.43,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md": {
+        "relevant": 0.8,
+        "evidence": 0.86,
+        "contradicts": 0.29,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-report.md": {
+        "relevant": 0.34,
+        "evidence": 0.47,
+        "contradicts": 0.74,
+        "injection": 0.05,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      },
+      "c6-SAR-PUBLIC-AGENTS-001-TESTER.md": {
+        "relevant": 0.22,
+        "evidence": 0.33,
+        "contradicts": 0.87,
+        "injection": 0.03,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      },
+      "c7-SAR-PUBLIC-AGENTS-001-UI.md": {
+        "relevant": 0.27,
+        "evidence": 0.39,
+        "contradicts": 0.7,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [
+      "c5-report.md",
+      "c6-SAR-PUBLIC-AGENTS-001-TESTER.md"
+    ],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-PUBLIC-SERVICE.md": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "c1-SAR-PUBLIC-SERVICE-UX.md": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "c2-SAR-PUBLIC-AGENTS-001-POLICY.md": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "c3-SAR-PUBLIC-AGENTS-001-DEV-FIX.md": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "c4-SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "c5-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "c6-SAR-PUBLIC-AGENTS-001-TESTER.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "c7-SAR-PUBLIC-AGENTS-001-UI.md": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_2": ".fullops-squad/handovers/to_tester.md",
+      "required_3": ".fullops-squad/project.md",
+      "required_4": ".fullops-squad/rules/common/README.md",
+      "required_5": ".fullops-squad/rules/common/coding-style.md",
+      "required_6": ".fullops-squad/rules/common/security.md",
+      "required_7": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 30723,
+    "output_tokens": 608,
+    "cost": 0.0012903659999999998
+  },
+  "latency_seconds": 0.477,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-PUBLIC-AGENTS-001-FIX-TESTER",
+  "role": "tester",
+  "unsent_sources": {},
+  "refused_paths": []
+}

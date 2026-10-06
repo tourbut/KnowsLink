@@ -1,0 +1,14 @@
+[passed] product-lint: make lint
+[passed] product-test: make test
+WARNING SIZE-001 .fullops-squad/PLANS.md 819줄(이전 796, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+ERROR DOC-003 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md front matter: front matter 없음. `deliverables.py --stamp --path docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md`로 다시 쓴다
+WARNING DEP-001 adapters/package.json 의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요
+WARNING SEC-001 adapters/src/connect.test.ts:20 하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다
+WARNING SIZE-001 internal/relay/connections_integration_test.go 317줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/http.go 571줄(이전 544, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/member.go 312줄(이전 311, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/store.go 458줄(이전 448, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-002  변경 추가 1747줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요
+head f9c5eded2db2 / 파일 28 / ERROR 1 / WARNING 8 / 실행 불가 0
+
+exit 1
