@@ -38,3 +38,7 @@ summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보
 - 2026-10-06: SAR-PUBLIC-AGENTS-001-POLICY는 pending/active 반복의 새 초대를 금지하고 거절·만료·양측 철회 뒤 수동 재초대를 허용한다. 새 세대와 수신 owner의 새 수락 전 메시지 거부를 유지한다.
   차단·쿨다운·새 수치는 추가하지 않았다. 수신측 반복 노출 위험과 원본 UI FAIL/보류·실제 운영 후속은 유지한다.
   제품 답·DEV/QA 관찰 조건·검증: [POLICY 실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md).
+
+- 2026-10-06: 같은 POLICY 추가 지시에서 키 기록 포화는 새 agent 연결·새 관계 수락으로 처리한다. owner 기록 포화는 필요한 철회·최소 24h 보존·실제 정리 뒤 수동 재시도를 안내한다.
+  기술 보호값은 DEV 소유이고 상품 quota가 아니다. 기존 활성 자격은 임의 철회하지 않으며 철회 목록의 사라짐은 권한 복구나 영구 백업 삭제가 아니다.
+  추가 제품 답과 독립 관찰 조건: [POLICY 실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md#기록-보호의-추가-제품-답과-관찰-조건).
