@@ -213,3 +213,73 @@ D02 PS-05/06/11 상세 절과 UX-04/05에 상태·관리 복귀·새 생성·수
 추가 문서 고정 `a111972011a0e1ece18b2bbcf499eb40f0e8ec75`에서 지시서 기준 d165178의 FullOps lint는 exit 0, ERROR 0·WARNING 1·실행 불가 0이다. product-lint·product-test도 각각 exit 0이다. `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/supplement-record-lint.json`에 원본을 보존했다. WARNING은 기존 PLANS 844줄(기준 ref 819줄, 상한 500줄)이다. strict exit 0(13개·문제 0·경고 0), 공백·원본 리뷰/UI·첫 archive byte 동일·로컬 링크 존재 확인도 exit 0이다. 추가 handoff 직전 3aa073b의 lint JSON도 pre-handoff-final-lint.json으로 보존했다.
 
 이 SUPPLEMENT의 현재 지시서·추가 제품 답·완료 보고를 work.py finish로 같은 날짜 designer 로그에 별도 append한다. 첫 POLICY 항목의 전문은 변경하지 않는다. 빈 인박스·추가 전문 일치·기존 로그 prefix 불변을 확인한 뒤 커밋한다. 최종 깨끗한 HEAD에서 같은 lint를 재검사하고 원래 Task/Dispatch의 worker_done을 정확히 한 번 보낸다. 원 제품 답과 추가 답 전체의 고정 SHA·인계는 실행 기록과 PLANS를 따른다.
+
+## SAR-PUBLIC-AGENTS-001-UI-FIX — 2026-10-06
+
+---
+title: SAR-PUBLIC-AGENTS-001-UI-FIX — AGENTS 수정 화면과 제품 답 직접 재검수
+status: draft
+updated: 2026-10-06
+owner: designer
+tasks: [SAR-PUBLIC-AGENTS-001-UI-FIX]
+summary: AGENTS 수정 화면과 제품 답 직접 재검수
+---
+
+# SAR-PUBLIC-AGENTS-001-UI-FIX — AGENTS 수정 화면과 제품 답 직접 재검수
+
+- 작성일: 2026-10-06
+- From / To: coor / designer
+- 상태: completed
+- 승인된 범위: 로컬 비파괴 검수·격리 합성 fixture·필요한 기록 작성. 실제 메일·공개·배포·외부 계정·운영 데이터 정리·과금 금지.
+- 담당 repo id: 818c78e5-d51c-4ff4-aa88-70e9ee185fbb; 워크트리 /home/shin/orca/workspaces/KnowsLink/fullops-designer, 브랜치 fullops/designer.
+- 병합 책임자 / 기본 브랜치: coor / main
+- 복귀: coor /home/shin/orca/workspaces/KnowsLink/fullops-coor / term_6895aaf1-7b43-4fe0-a416-76f1255a5946 / run_8ca8bc058ab7. task/dispatch는 preamble 실제 값.
+
+## 현재 상황과 확인 근거
+
+고정 검수 후보 `458798c2ee15c179edacfd6f94ebb9896d26f411`. 원본 DEV d1eef9b, 원본 OPS 70f26bc, 원본 QA bcb06b8, 원본 UI d165178 FAIL, DEV-FIX 4a1b80a, 제품 답48d12fa, DEV-POLICY-FIX83e0bfb를 모두 포함한다. 제품 코드 최종6d016e5와 후보의 제품 동일성을 확인한다. 원본 실패·held·실행 SHA를 보존한다. 원본 QA/UI를 최신 SHA 실행으로 바꾸지 않는다.
+
+## 적용 기준과 예외
+
+fullops-common-0.3.3의 README/coding-style/testing/security, FULLOPS, project, document-writing, review/rule.json을 직접 읽는다. 제품 정본 D02 PS07·PS07-I 및 기록 보호 조건과 UX04–05, POLICY48의 두 관찰표를 적용한다. 기준은 위 fixed 후보, 예외 없음. Workers Free·기존 서버/Compose/Tunnel 유지. ponytail full. 기술 수정은 DEV, 제품 규칙 변경은 designer로 coor 경유 질문한다.
+
+## 먼저 읽을 문서
+
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md`
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md`
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md` 전체 두 관찰표
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md`
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md`
+- 원본 OPS report, TESTER report/probe-failures, UI 보고서의 관련 항목. Jev 추천은 탐색 보조이며 제외 권한이 아니다.
+
+## 제약·완료 처리
+
+인박스는 현재 to_designer.md만 사용한다. 역할 기록만 수정하고 제품 코드는 수정하지 않는다. PLANS에 자기 결과를 append하며 원본을 삭제하지 않는다. work.py finish로 실제 지시서/전문을 보존·빈 인박스·커밋·공유 role push 뒤 전체 40자리 SHA로 worker_done 한 번 보낸다. 완료와 main 제품 수락은 구분한다. 실패도 원문·실행 exit·재실행 사유를 보존한다. 예정 규모 보고서/시나리오/필요 증거뿐이며 SIZE/DEP 경고를 설명한다. 이미지·로그는 비밀값 없이 판정에 필요한 범위만 만든다.
+## 해야 할 일과 파일 소유권
+
+- [x] 고정 458798c2ee15c179edacfd6f94ebb9896d26f411 자신의 격리 합성 relay/DB/smtp fixture·자신이 새로 만든 browser tab으로 실제 화면을 직접 본다. 기존 사용자 브라우저/공유 컨테이너는 건드리지 않는다.
+- [x] 원본 d165178 UI F-UI-01 mobile390 fingerprint 넘침, F-UI-02 refusal/reverify/unsupported/forbidden 복귀·다음행동, F-UI-03 종료 연결취소 버튼 부재, F-UI-04 KST deadline/select가독성을 desktop1280/mobile390에서 좁게 다시검수한다. 원본FAIL/PNG/blank Orca 실패는 보존한다.
+- [x] POLICY48 두 표와 새 안내: pending/active 반복notice와 받은/보낸결정위치, 종료관계 수동 새초대/새수락, 키 포화시 live revoked kid 공간미복구·새agent/새pair, owner기록포화 최소24h/실제cleanup/manualretry, revokedagent홈에서 사라질수있음·복구/영구삭제보장없음, revoke전경고를 직접 검수한다.
+- [x] 각 필수항목에 실제봤던 fixedSHA·fixture조건·PNG와 PASS/FAIL을 연결한다. 영상은 필요없다. bearer/session/code/private key를 이미지 전 마스킹하고 이미지들을 직접 열어 판정한다. 공개fingerprint는식별내용이므로보존. Orca screenshot blank/1px면 원래실패증거보존 후 기존처럼 설치된 Playwright/Chromium fallback을 사용한다.
+- [x] 보고서/PNG manifest/cleanup은 docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md 및 sibling folder, qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX에 남긴다. 기존 unchangedUI는 의존성같을때 d1 원래실행으로재사용한다. 기술수정 필요는 coor/DEV로 정확한항목 보고한다.
+
+## 디자인 기준·완료 기준·산출물
+
+D02/UX04–05/POLICY48이정본. memberStyle/Go template 재사용, 새theme·Tailwind·shadcn·공용theme전환·디자인lint없음. DESIGN자동검사미지원 영향과 직접검수근거를보고한다. 제품기획판단만담당하고코드수정금지. 필수UI FAIL해소및새안내제품조건준수여야수락가능. D03 UX원천/직접검수기록을갱신하되원본FAIL을PASS로덮지않는다. clean 기록HEAD FullOps --from 458798c2ee15c179edacfd6f94ebb9896d26f411·strict·diffcheck와원래exit를보존. 실제메일/공개/실24h운영/노우↔다닷미검증.
+
+## 탐색·문서 분류 근거
+
+`docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-FIX-find.json`, `-documents-find.json`, `-context.json`을 사용한다. keep 목록은 먼저 읽을 문서와 공통 규약이다. 지시 전제와 충돌 — 먼저 확인: 원본 OPS/QA/UI 기록은 과거 d1의 M1/L1/L3·UI FAIL을 설명한다. 최신후보가그실패를해소했는지검수하며과거결과는바꾸지않는다. 실제내용이현재전제와달라진경우coor에ask한다.
+
+## 완료 보고
+
+- 역할 작업: 완료. 제품 fixed `458798c2ee15c179edacfd6f94ebb9896d26f411`의 직접 좁은 UI 재검수는 PASS다. F-UI-01–04와 POLICY 두 관찰표의 새 사용자 안내를 실제 desktop1280/mobile390에서 확인했다. main/일반 서비스 최종 수락은 별도다.
+- 변경 이유: 원본 medium UI 실패의 수정과 새 POLICY 안내의 준수를 직접 판정해야 했다. 보고서·시나리오·PNG 62개·Orca 장애 2개·manifest·비밀값 없는 상태/fixture·cleanup을 작성했다. UX/D04 원천에는 새 근거 링크만 추가했다. 제품 코드·수치·기술 문서·의존성 변경은 0이다.
+- 실제 관측: 지문은 CLI와 일치하고 모바일 width는 390/390이다. 거부 화면의 홈/로그인·재확인 버튼이 실제 복귀를 제공한다. 종료 연결의 취소 버튼은 없고 KST/select 18px이 읽힌다. 반복 pending/active notice·받은/보낸 결정·거절/만료/양측 철회·수동 새 초대/새 수락을 확인했다. 키/owner 포화는 기존 권한을 임의 종료하지 않고 관리·교체·최소 24h/실제 정리/수동 재시도를 안내한다. 철회 전 경고와 철회 목록 사라짐의 의미도 확인했다.
+- 실행: 새 detached clone·자기 Postgres/SMTP/relay와 실제 이메일 코드 경로의 별도 합성 회원 context를 사용했다. 실제 Node 연결 두 번의 prepare/complete는 각각 exit 0이었다. 시간·포화는 own relay 정지 중 own DB fixture를 제어했다. 25h 제어 뒤 실제 sweep과 수동 새 생성도 확인했다. 운영 DB/공유 컨테이너/사용자 탭/인증값은 보존했다. 자기 자원·메일·개인키·password 파일은 회수했고 기존 서비스 ID는 같았다.
+- 범위·충돌: 지시서 D03 UX 표기는 실제 매핑의 D04로 연결했다. DEV 소유 D03은 보존했다. 직접 시각 지시와 허가된 기존 Playwright fallback을 적용했다. Orca 1px/blank는 PASS 근거에서 제외했다. 35번의 새 발신 B 역할과 47번의 실제 mobile viewport에 맞춰 새 파일명만 보정했다. 원본 UI/QA/OPS 65개 파일은 전후 byte 동일이다. 원본 d1/d165 UI FAIL을 PASS로 덮지 않았다.
+- 검증: 기록 `c1b2df18b1a287e63fd7150c50b20c02018fe2e8`에서 FullOps --from fixed는 exit 0, ERROR 0·WARNING 1·실행 불가 0이다. product-lint/product-test도 각각 exit 0이다. strict 13개·문제 0·경고 0, exit 0이다. 제품 동일·원본 보존·PNG/JSON·로컬 링크는 exit 0이다. staged 공백 초기 exit 2는 Docker 진행 로그 후행 공백이며 원문을 diffcheck-initial.json에 보존한 뒤 줄 끝만 정규화했다. ref-to-HEAD 공백 재검사는 exit 0이다.
+- 경고: SIZE-001은 누적 PLANS 886줄(기준 877, 상한 500)이다. 자기 결과만 append하고 기존 통합/실패 기록은 삭제하지 않았다. lint 대상 5파일·추가147줄로 SIZE-002와 DEP 경고는 없다. Git 첫 기록 80파일/추가474줄 중 64개는 binary PNG다. 지정한 직접 증거를 제품 변경 과제로 분리하거나 삭제하지 않았다. DESIGN은 Go 문자열 CSS를 검사하지 못해 실제 PNG로 확인했다.
+- 산출물: docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md와 sibling PNG, docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX의 manifest/scenario/state/fixture/cleanup/검사, docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md다. 실제 D04와 designer UX 원천을 stamp로 연결했다.
+- 미검증·후속: API/race/모든 rate·인가의 독립 QA는 TESTER, 보안 delta와 실제 운영 자원/복원은 OPS, main 수락/통합은 coor다. 실메일·실24h·운영 공개/배포·운영 데이터 정리·노우↔다닷·실메시지·OS clipboard/스크린리더 전체는 실행하지 않았다. 기존 held와 원본 QA/UI 실행 SHA는 유지한다. 새 designer 과제는 없다.
+- 완료 보존: work.py finish로 이 지시서/결과 전문을 날짜별 designer 로그에 append하고 인박스를 비운다. 전문 일치와 기존 prefix 보존을 확인한다. 최종 clean HEAD에서 같은 lint를 다시 실행한 뒤 role push와 preamble worker_done 한 번으로 고정 SHA·결정·인계 링크를 보낸다.

@@ -85,3 +85,5 @@ POLICY 첫 표의 상태·방향·다음 동작과 두 번째 표의 기록 보�
 strict·공백·제품 무변경·원본 65개 보존·PNG/JSON/로컬 링크 검사와 깨끗한 기록 HEAD의 FullOps `--from 458798c2ee15c179edacfd6f94ebb9896d26f411` 결과는 이번 [검증 폴더](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/)와 [실행 기록](../../exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md)에 보존한다. 등록 product-lint/product-test와 lint 원 명령의 종료코드를 따로 남긴다. 파이프로 종료코드를 가리지 않는다.
 
 실제 이메일·운영 공개/배포·실제 24h 운영 경과·운영 데이터 정리·부하/복원·노우↔다닷·앱/OAuth·실메시지·스크린리더 전체·OS clipboard는 미검증이다. 기존 PS-13·운영 공개 held와 원본 QA/UI의 실행 SHA를 유지한다. 남은 담당은 고정 후보 독립 TESTER QA·OPS delta 리뷰/운영 조건 및 coor 통합이다. 새 UI 코드 수정 요청은 없다.
+
+기록 `c1b2df18b1a287e63fd7150c50b20c02018fe2e8`의 FullOps lint는 exit 0, ERROR 0·WARNING 1·실행 불가 0이다. product-lint/product-test는 각각 exit 0이다. WARNING은 기존 누적 PLANS 886줄이다. SIZE-002·DEP 경고는 없다. [원본 검사 JSON](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/record-lint.json)을 보존했다. strict는 13개·문제 0·경고 0, exit 0이다. Compose 로그 초기 공백 실패 exit 2와 정규화 이유는 [실행 기록](../../exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md#공백-검사-초기-실패와-재실행)에 있다.

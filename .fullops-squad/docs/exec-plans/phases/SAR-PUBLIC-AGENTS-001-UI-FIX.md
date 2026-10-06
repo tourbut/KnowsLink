@@ -38,3 +38,11 @@ D03은 기술 아키텍처여서 보존했다. 실제 D04 화면 원천과 desig
 ## 공백 검사 초기 실패와 재실행
 
 첫 기록 3096e02의 staged 공백 검사는 Docker Compose 정리 로그 10줄의 후행 공백으로 exit 2였다. 체크 실패 뒤 셸이 계속돼 첫 커밋이 생성됐다. 원본 출력·재현 exit 2·명령·정리 로그 원문을 [diffcheck-initial.json](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/diffcheck-initial.json)에 보존했다. 정리 로그의 줄 끝 공백만 정규화했다. 정리 명령의 COMMAND_EXIT:0과 제품/PNG/관측은 바꾸지 않았다. 이후 공백 검사를 기준 ref부터 다시 실행한다.
+
+## 커밋 후 검사와 완료 기록
+
+기록 HEAD `c1b2df18b1a287e63fd7150c50b20c02018fe2e8`의 FullOps `--from 458798c2ee15c179edacfd6f94ebb9896d26f411`은 exit 0이다. ERROR 0·WARNING 1·실행 불가 0이며 등록 product-lint/product-test도 각각 exit 0이다. 원본 [JSON](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/record-lint.json)과 [출력](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/record-lint.txt)을 보존한다.
+
+유일한 WARNING은 SIZE-001의 기존 누적 PLANS 886줄(기준 877, 상한 500)이다. designer는 자기 결과만 append했다. 기존 통합/실패 기록을 삭제하거나 coor 문서를 분할하지 않았다. 실제 lint 대상은 5파일·추가 147줄이다. SIZE-002·DEP 경고는 없고 의존성 변경도 0이다. 실제 Git 첫 기록은 80파일·추가 474줄이며 64개는 binary PNG다. 보고서·시나리오·두 viewport/상태의 직접 증거와 보존 대조가 지시된 결과여서 별도 제품 과제로 분리하지 않았다.
+
+strict는 exit 0(13개·문제 0·경고 0)이다. 초기 Compose 로그 후행 공백은 원문과 exit 2를 보존한 뒤 정규화했다. 최종 ref-to-HEAD 공백 검사는 exit 0이다. 이 기록 보존과 work.py finish 뒤 새 깨끗한 HEAD에서 같은 lint를 마지막으로 실행하고 preamble worker_done에 전체 SHA·결정·인계 링크를 고정한다.
