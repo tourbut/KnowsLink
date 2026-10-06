@@ -173,23 +173,47 @@ func TestCleanupSnapshotAcrossProcessesAndRestart(t *testing.T) {
 	}
 }
 
-// A shared admission whose finish transaction failed is reclaimed at the process's next commit, so the per-owner
-// cleanup record does not lock that owner out until the 30s crash expiry.
+// TESTER probe and H-2: a finish transaction that times out (2s) behind the row lock, as with a large relay state, leaves
+// its shared admission to the process's next commit instead of the 30s expiry, so neither the owner's cleanup slot nor a
+// new-work slot stays occupied.
 func TestFailedFinishReclaimedAtNextCommit(t *testing.T) {
 	pool := messagePool(t)
 	f := setup(t, pool)
-	f.mutate(func(st *State) {
-		st.HTTP["orphan"] = admission{true, time.Now().Add(20 * time.Second), f.owners["agent_a"]}
-	})
-	f.s.orphans.Store("orphan", nil)
-	f.mutate(func(st *State) {})
-	f.mutate(func(st *State) {
-		if _, ok := st.HTTP["orphan"]; ok || !st.enterHTTP("next", f.owners["agent_a"], time.Now()) {
-			t.Fatal("orphaned cleanup admission kept the owner's slot")
+	f.mutate(func(st *State) { st.Rates = map[string][]time.Time{} })
+	ctx := context.Background()
+	rollback := func() {}
+	next := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		tx, err := pool.Begin(ctx)
+		if err == nil {
+			_, err = tx.Exec(ctx, "SELECT 1 FROM relay_state WHERE singleton = true FOR UPDATE")
+			rollback = func() { _ = tx.Rollback(ctx) }
 		}
-		delete(st.HTTP, "next")
+		if err != nil {
+			t.Error(err)
+		}
+		w.WriteHeader(200)
 	})
-	if _, ok := f.s.orphans.Load("orphan"); ok {
-		t.Fatal("reclaimed token kept")
+	orphans := func() (n int) { f.s.orphans.Range(func(any, any) bool { n++; return true }); return n }
+	for _, c := range []struct{ path, token, body string }{
+		{"/v1/key-revoke", f.tokens["agent_a_owner"], `{"agent":"agent_a","kid":"key1"}`},
+		{"/v1/pull", f.tokens["agent_b"], "{}"},
+	} {
+		r := httptest.NewRequest("POST", c.path, strings.NewReader(c.body))
+		r.Header.Set("Authorization", "Bearer "+c.token)
+		w := httptest.NewRecorder()
+		f.s.boundedHTTP(next).ServeHTTP(w, r) // the finish waits 2s on the held lock and fails
+		rollback()
+		if w.Code != 200 || orphans() != 1 {
+			t.Fatalf("%s: %d, %d orphaned admissions", c.path, w.Code, orphans())
+		}
+		f.mutate(func(st *State) {
+			if len(st.HTTP) != 0 || !st.enterHTTP("next", f.owners["agent_a"], time.Now()) {
+				t.Fatalf("%s: failed finish kept %d shared admissions", c.path, len(st.HTTP))
+			}
+			delete(st.HTTP, "next")
+		})
+		if orphans() != 0 {
+			t.Fatal("reclaimed token kept")
+		}
 	}
 }

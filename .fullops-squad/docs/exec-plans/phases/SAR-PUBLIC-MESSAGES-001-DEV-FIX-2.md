@@ -33,6 +33,14 @@ summary: OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정
 - 막 철회된 자격: snapshot이 아직 유효로 보면 owner당 1개 슬롯을 한 transaction 동안 쓴다. transaction이 신규로 판정하면 기존처럼 신규 슬롯으로 돌려준다.
 - 종료 실패 기록: 경합에서 종료 transaction(2s)이 실패하면 공유 기록이 30s 남아 그 owner의 정리를 막았다(첫 flood 실행에서 13/18 capacity로 발견). 실패 token을 `Service.orphans`에 두고 같은 프로세스의 다음 commit이 지운다. crash 회수 30s는 그대로다.
 
+### coor 추가 인계: TESTER 원본 QA의 HTTP 입장 기록 잔류(medium)
+
+- 출처: coor handoff(사용자의 Grok tester 중단 뒤 원본 증거 추가). 원본 QA 기록 `60b9892`, 후보 `09c523d`, `TestQAMessagesIndependent` 17차 exit1. 원본 로그·`probe_test.go.src`는 fullops-tester 체크아웃에서 읽기만 했다. 원본 실패는 바꾸지 않는다.
+- 현상: receipt 20000 거절(409) 뒤 신규 `st.HTTP` 기록 1개가 남았다. 남은 기록은 30s 만료까지 신규 16 중 1개를 차지한다.
+- 원인: 20000개 메시지 상태는 transaction마다 JSON 왕복 비용이 크다. 종료 transaction의 2s 기한 안에 row lock·처리를 끝내지 못하면 오류를 버리고 기록을 30s 만료에 맡겼다. H-2 첫 flood 실행의 13/18 실패와 같은 경로다.
+- 수정: 위 L-2의 `orphans`·`reclaim`이다. 종료 실패 token은 같은 프로세스의 다음 commit(입장 transaction 10s 기한, 1s sweep)이 지운다. 신규·정리 기록 모두 해당한다. 상태 크기 자체의 비용은 L-1(전역 lock·전체 JSON)로 보존한다.
+- 회귀: `TestFailedFinishReclaimedAtNextCommit`이 handler 안에서 실제 row lock을 잡아 종료 transaction을 2s 기한으로 실패시킨다. 정리(`/v1/key-revoke`)와 신규(`/v1/pull`) 모두 다음 commit에서 공유 기록 0, 같은 owner 재입장 가능, orphan 0을 확인한다. 새 fixed 독립 QA는 TESTER 후속이며 이 DEV 검사로 대체하지 않는다.
+
 ### /v1/connect·정리 caller 대조
 
 - `/v1/connect/`에는 `info`·`prepare`·`complete`만 있다(`member_agents.go` `agentRoutes`). `/v1/connect/{cancel,key-revoke,agent-revoke,unpair}` 경로는 없다. cancel·key-revoke·agent-revoke·unpair는 `/home/*` `memberAction`이며 이미 정리 분류·cleanupRate·reauth·현재 owner 검사를 쓴다. 변경하지 않았다.
@@ -52,7 +60,7 @@ summary: OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정
 새·변경 검사:
 - `TestValidCredentialCleanupFlood`(통합): A. 전역 row lock을 잡은 채 타 owner 키 철회 4·agent lease 없는 ACK 4는 신규 채널 8개로 대기한다. 같은 owner의 자기 키 철회 4는 정리 슬롯 1개만 잡고 3개는 즉시 429 capacity다. 다른 owner 3명의 자기 철회가 나머지 정리 슬롯 3개를 잡는다. lock을 풀면 모두 200이다. rate는 타 owner 신규 4·no-lease 신규 4·반복 owner cleanup 1·다른 owner 각 1이다. B. lock 없이 48 연결 flood(타 owner·no-lease·자기 반복·신규 대조) 중 다른 owner의 유효 정리 18회가 모두 200이다. 종료 뒤 공유 기록·로컬 채널·owner 표시가 0이다.
 - `TestCleanupSnapshotAcrossProcessesAndRestart`(통합): 다른 Service에서 만든 owner 자격은 이 프로세스의 다음 commit 전까지 정리 채널을 쓰지 않는다. 재시작한 빈 Service도 같다. 한 번 commit하면 owner를 정확히 찾는다.
-- `TestFailedFinishReclaimedAtNextCommit`(통합): 종료 실패 token의 Clean 기록이 다음 commit에서 지워지고 같은 owner가 다시 입장한다.
+- `TestFailedFinishReclaimedAtNextCommit`(통합): 실제 row lock으로 종료 transaction을 실패시킨 정리·신규 기록이 다음 commit에서 지워지고 같은 owner가 다시 입장한다.
 - `TestRememberKeepsNewestCommit`(unit): 늦게 저장되는 이전 commit이 새 snapshot을 덮지 않는다.
 - `TestCleanupAdmissionNeedsVerifiedOwnRecord`(unit): 12개 행렬마다 로컬 `cleanupOwner`가 transaction 판정과 같다. 세션 쿠키의 /v1 사용·agent 자격의 /owner 사용·idle 만료 세션은 정리 채널을 쓰지 않는다.
 - `TestSharedCapacitiesAndCleanupClassification`(unit): owner당 공유 Clean 1, `/v1/invite-decision` deny/accept 분류, 재시작 직렬화 뒤 Clean 상한.
