@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-04
+updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV]
-summary: 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14]
+summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
 # KnowsLink 현재 계획
@@ -701,3 +701,12 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 
 - 독립리뷰 msg_8d3d9f9bcee9/25b110fb694d9ccdce6a3b445d6936159b7437d5 조건부수락: actual reviewer0bf1508f vs구현e0666abc, fixed59 31/31 reviewed·critical/high0·check0·lint ERROR0/WARNING5. F1medium 단일source가공유newbudget을고갈하는실제재현으로 공개/main수락은수정후보delta리뷰·좁은QA대기. F2low는기술개선/잔여위험판단, F3gate rate는AGENTS, F4예시synthetic복사위험은default닫힘으로보완. 원본QA/UI는같은fixed59에서끝내고변경영향만재검증한다. integration hold와원문결과보존.
 - SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX fullroute implementation/dev Opus5.5high, 새세션으로기존규칙내F1/동형cleanup·F4수정과F2기술판단을진행한다. 원본큰DEV세션은13분이상쉬었으므로재사용하지않는다. 기존검토/QA/UI수락기준은유지한다.
+
+## FullOps 0.9.14 운영 업데이트 — 2026-10-06
+
+- 기준 ref는 `94533b207b456c0560800fe30a7c90b2b5887c6e`다. 실제 Codex 설치는 전후 0.9.14이며 레포 적용 0.9.13의 누락 항목을 회수한다. main의 깨끗한 체크아웃에서 운영 파일만 준비한다. coor 후보 c8856eb의 미수락 신원 제품·실패·검수 보류를 main에 병합하지 않는다.
+- 기존 역할 setup dry-run과 실행은 생성 0개다. 공통 0.3.3·lint 테스트 증거·SIZE-002·SLOP/DESIGN WARNING·UI 핸드오버·리뷰 양식·보드 뷰어를 반영한다. 상세 판정과 검증은 docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md를 따른다.
+- Orca 실제 역할 terminal 조회에서 designer/dev/ops/tester는 terminal 0개이며 Git clean이다. 과거 worker 완료·user-owned·unverifiable 기록은 보존한다. 최신 main 통합 뒤 상태를 재확인하고 가능한 역할만 동기화한다. coor는 현재 업데이트 세션 외 터미널 상태를 확인한다.
+- 제품 worker 착수·실제 이메일·외부 발송·배포는 이번 범위가 아니다. 기존 Workers Free 제한과 제품 수락 보류를 유지한다. 다음 개발은 새 coordinator 세션에서 이어간다.
+
+- 업데이트 준비 cf55ea1의 새 설정 고정 HEAD에서 product-lint·product-test 모두 exit 0, ERROR/WARNING/실행 불가 0이다. 기존 lockfile npm ci로 main의 누락 의존성을 복원했다. 문서 strict 13개·문제 0과 보드 생성·JS 문법을 통과했다. 필수 적용 완료로 레포 plugin_version을 0.9.14로 확정한다. 운영 변경만 main/origin에 공유하며 모든 역할의 기존 작업을 보존해 동기화한다.

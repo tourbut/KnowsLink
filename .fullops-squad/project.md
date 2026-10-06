@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 프로젝트 기준
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV]
-summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계를 정의한다
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14]
+summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 ---
 
 # KnowsLink 프로젝트 기준
@@ -17,7 +17,7 @@ summary: 로컬 합성 MVP의 실제 구성과 검사 명령 및 수락 경계�
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
-| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.2`; Ponytail full |
+| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.3`; Ponytail full |
 | 보안·코딩 규칙 | [코딩](rules/common/coding-style.md), [테스트](rules/common/testing.md), [보안](rules/common/security.md) |
 | 문서 언어 | 한국어 |
 | 이슈 트래커 | 로컬 `PLANS.md`·역할 인박스. GitHub Issues/Projects 연동은 미설정 |
@@ -66,3 +66,9 @@ coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인
 변경 없는 증거는 관련 의존성의 동일성을 확인하고 원래 실행 SHA·조건을 연결해 재사용한다. 새 SHA에서 실행한 결과로 표시하지 않는다.
 재검증은 변경 영향·새 실패·증거 결함·미충족 조건이 있을 때 수행한다. 기존 실패·held·미해결 critical/high·제품 정지·최종 플랫폼과 사람 평가 기준은 유지한다.
 보류 항목에는 담당과 재개 조건을 남긴다. 상세 반복 범위는 [공통 테스트 기준](rules/common/testing.md)을 따른다.
+
+## FullOps 0.9.14 검사 연결
+
+검사 정본은 루트 Makefile과 adapters/package.json 및 adapters/eslint.config.mjs다. `product-lint`는 `make lint`, kind `lint`, cwd `.`다. Go 포맷·vet·module 무결성, adapter Prettier·ESLint·타입 검사와 설정 검사를 유지한다. ESLint recommended의 미사용 검사도 유지한다. `product-test`는 `make test`, kind `test`, cwd `.`다. Go race와 adapter 테스트를 같은 HEAD에서 실행하고 FullOps 결과에 종료코드를 남긴다.
+
+현재 UI는 Go template의 일반 CSS이며 Tailwind v4·React·Vue·Svelte·shadcn 설정은 없다. shadcn 설치는 해당 없음이다. 서비스의 별도 디자인 lint·공용 테마 전환은 미구성이다. DESIGN 기본 규칙은 Go 문자열 안의 CSS를 검사하지 않으므로 실제 UI 시각 검수와 제품 기준을 대신하지 않는다. 후속 UI 변경 담당 dev가 정본·공용 컴포넌트·예외와 적용 가능한 검사 또는 미실행 사유를 정규 지시서에 기록한다. 이 운영 업데이트는 제품 UI를 변경하지 않는다.
