@@ -1,0 +1,1399 @@
+{
+  "base": "a7443d59f9408cad257a2daa25d569ae0707bbeb",
+  "head": "f154165bc1c196b96e790b37bf798b1479de5080",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "coor / Codex gpt-6.1-sol medium",
+  "conclusion": "원본 UI 기록은 보존·통합 가능한 근거다. UX07 FAIL/H1high/M1medium은 수정후별도검수 전 제품main 수락을 차단한다. 직접 UI 재검수를 대신하지 않는다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "status": "added",
+      "insertions": 99,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/archive-verification.json",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser.py",
+      "status": "added",
+      "insertions": 107,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/cleanup.json",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/manifest.json",
+      "status": "added",
+      "insertions": 1044,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/observations.json",
+      "status": "added",
+      "insertions": 1162,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/original-dev-preserved.json",
+      "status": "added",
+      "insertions": 182,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-lint.json",
+      "status": "added",
+      "insertions": 58,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/run.py",
+      "status": "added",
+      "insertions": 301,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/source-identity.json",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement-navigation.json",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement-result.json",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement.py",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/text-normalization.json",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/validation-initial.json",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/validation.json",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "status": "added",
+      "insertions": 70,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "status": "modified",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 36,
+      "review_status": "reviewed",
+      "reason": "고정f154의 문서diff·QA 스크립트/실행조건·JSON원관측·SHA/해시·초기FAIL/미검증·전문아카이브와 소유권/제품diff0를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-gate-refusal-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-gate-refusal-desktop.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-gate-refusal-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-gate-refusal-mobile.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-receipt-refusal-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-receipt-refusal-desktop.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-receipt-refusal-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/foreign-receipt-refusal-mobile.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-approved-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-approved-desktop.txt",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-approved-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-approved-mobile.txt",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-capacity-error-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-capacity-error-desktop.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-capacity-error-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-capacity-error-mobile.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-csrf-error-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-csrf-error-desktop.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-csrf-error-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-csrf-error-mobile.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-denied-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-denied-desktop.txt",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-denied-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-denied-mobile.txt",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-deny-redirect-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-deny-redirect-desktop.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-deny-redirect-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-deny-redirect-mobile.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-expired-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-expired-desktop.txt",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-expired-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-expired-mobile.txt",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-invalid-signature-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-invalid-signature-desktop.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-invalid-signature-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-invalid-signature-mobile.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-pending-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-pending-desktop.txt",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-pending-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-pending-mobile.txt",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-revoked-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-revoked-desktop.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-revoked-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-revoked-mobile.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-unavailable-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-unavailable-desktop.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-unavailable-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/gate-unavailable-mobile.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/home-tool-guidance-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/home-tool-guidance-desktop.txt",
+      "status": "added",
+      "insertions": 97,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/home-tool-guidance-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/home-tool-guidance-mobile.txt",
+      "status": "added",
+      "insertions": 97,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-delivered-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-delivered-desktop.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-delivered-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-delivered-mobile.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-desktop-initial-fixture.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-desktop-initial-fixture.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-desktop.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-mobile-initial-fixture.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-mobile-initial-fixture.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-expired-mobile.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-leased-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-leased-desktop.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-leased-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-leased-mobile.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-manual-refresh-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-manual-refresh-mobile.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-max-attempts-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-max-attempts-desktop.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-max-attempts-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-max-attempts-mobile.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-queued-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-queued-desktop.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-queued-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-queued-mobile.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-rate-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-rate-desktop.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-rate-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-rate-mobile.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-delivered-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-delivered-desktop.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-delivered-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-delivered-mobile.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-queued-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-queued-desktop.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-queued-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-reply-queued-mobile.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-revoked-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-revoked-desktop.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-revoked-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/receipt-revoked-mobile.txt",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/reply-parent-id-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/reply-parent-id-desktop.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/reply-parent-id-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI/reply-parent-id-mobile.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-fifth.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-fifth.log",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-fourth.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-fourth.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-initial.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-initial.log",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-second.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-second.log",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-sixth.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-sixth.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-third.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/browser-run-third.log",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/cleanup.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/finish.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/finish.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/fixture-runbook.txt",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/guard-rejection.txt",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-diff.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-diff.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-fullops.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-fullops.log",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-head.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-strict.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/record-strict.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/relay.log",
+      "status": "added",
+      "insertions": 56,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/setup.log",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/smtp.log",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/staged-diffcheck-initial.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/staged-diffcheck-initial.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/staged-diffcheck.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/staged-diffcheck.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement-second.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement-second.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement.log",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 시각/실행 증거. manifest49PNG SHA256·관측/405·명령별초기실패/최종exit·cleanup·원본보존 hash를 대조했다. 화면 시각은 designer 원래fixed09c 판정이며 coor가 직접재검수하지 않았다."
+    }
+  ],
+  "findings": [
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "severity": "low",
+      "resolved": false,
+      "content": "모든 유효390px 화면 scrollWidth390이라는 문장의 범위를 제한해야 한다. 원본 gate-deny-redirect-mobile 관측은 effective viewport/scroll980이며405 FAIL이다. 정상화면390px PASS와 해당실패화면을 구분하고 수정후UX07에서 실제viewport390을 재확인한다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a11134-479c-7bb2-bc5c-c080b6ecab36",
+    "reviewer_session": "01a10ed4-154b-7572-9160-7630e9ac42bc",
+    "snapshot_path": "/tmp/knowslink-messages-ui-record-f154165",
+    "snapshot_head": "f154165bc1c196b96e790b37bf798b1479de5080",
+    "read_only": true
+  }
+}
