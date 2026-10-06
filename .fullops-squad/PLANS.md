@@ -925,3 +925,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자의 작업 진행 요청으로 AGENTS 뒤 MESSAGES 대기를 재개한다. 기준 main/origin `7efbaa349a5857eb1eac859a955ec3a09c91f800`, integration pending 0·메시지 미처리 0·DEV clean/터미널 0·인박스 비어있음을 확인했다.
 - route implementation/dev 정상(0.91/1.00), 추천 Codex gpt-6.1-sol high를 적용한다. 새 과제이고 이전 DEV는 release됐으므로 새 세션이다. coordinator의 medium을 제품 worker에 전파하지 않았다. 정규 to_dev 지시서에 PS08–11/UX06–07·frozen·권한/세대·한도·원실패보존·Free 제한을 연결했다.
 - DEV 기술 분석/계획/구현/검사 뒤 안정 fixed 후보의 OPS 독립 보안 리뷰·TESTER QA·designer 직접 UI를 준비한다. 실제클라이언트 근거·로컬코드 수락과 PS13/실메일/공개/노우↔다닷은 분리한다. 제품 규칙 질문은 designer, 기술 판단은 DEV다.
+
+- DEV 착수: task_9bfa155253cb / ctx_ada2f1ae237d / term_01cce282-9d7b-405f-8b5d-d93561da95d1. 새 Codex gpt-6.1-sol high effective·turn_started·지시서/정본 확인 착수와 실제 경로를 확인했다. 준비 f210b565dd3d0a0a43af9e9a3b1fceb43dcdaf93은 main/origin과 5역할에 ff/일반push됐다. discoverability 경고는 준비 실패가 아니다. 진행 DEV 체크아웃은 변경하지 않으며 worker_done 중심으로 기다린다. coor의 후속 운영 기록은 DEV 완료 뒤 최신 main 포함을 보완한다.
