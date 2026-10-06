@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-06T11:32:56.520375+00:00",
+  "main_before": "07bd499969242d02662c3871be1936f6c8232b35",
+  "review_checks_before_removal": [
+    {
+      "key": "SAR-PUBLIC-AGENTS-001-REVIEW",
+      "base": "d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b",
+      "head": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+      "exit": 0,
+      "stdout": "jev_find score: recall 0.375 / precision 0.857 / 존재 판정 False\n기록 검사 통과: reviewed=33, skipped=6, total=39, lint WARNING=8\n",
+      "stderr": ""
+    },
+    {
+      "key": "SAR-PUBLIC-AGENTS-001-FIX-REVIEW",
+      "base": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+      "head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
+      "exit": 0,
+      "stdout": "jev_find score: recall 0.2 / precision 0.333 / 존재 판정 True\n기록 검사 통과: reviewed=87, skipped=65, total=152, lint WARNING=8\n",
+      "stderr": ""
+    },
+    {
+      "key": "SAR-PUBLIC-AGENTS-001-FINAL-RECORDS",
+      "base": "458798c2ee15c179edacfd6f94ebb9896d26f411",
+      "head": "69038f4b4f092db3c51a084e8920ae8bbdd82bb5",
+      "exit": 0,
+      "stdout": "기록 검사 통과: reviewed=49, skipped=75, total=124, lint WARNING=1\n",
+      "stderr": ""
+    }
+  ],
+  "removed": [
+    {
+      "path": "/tmp/knowslink-agents-review-d1eef9b",
+      "head": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+      "clean": true,
+      "ancestor_origin_main": true,
+      "idle_shell_handles": [
+        "term_034bb1ef-3cd1-40bf-98c9-394c65f68f2c"
+      ],
+      "restore_command": "git worktree add --detach /tmp/knowslink-agents-review-d1eef9b d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+      "close": {
+        "exit": 0,
+        "response": {
+          "id": "833efbac-185e-455a-86ca-8eb2a8e5521e",
+          "ok": true,
+          "result": {
+            "closed": 1,
+            "stopped": 1,
+            "retiredSurfaces": true
+          },
+          "_meta": {
+            "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+          }
+        }
+      },
+      "remove": {
+        "exit": 0,
+        "response": {
+          "id": "545ed0dd-68ef-4cff-a31f-3bdf48f70ea5",
+          "ok": true,
+          "result": {
+            "removed": true
+          },
+          "_meta": {
+            "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+          }
+        }
+      }
+    },
+    {
+      "path": "/tmp/knowslink-agents-review-458798c",
+      "head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
+      "clean": true,
+      "ancestor_origin_main": true,
+      "idle_shell_handles": [
+        "term_d88b0b26-9b7c-40a1-a5ac-f45d636b1303"
+      ],
+      "restore_command": "git worktree add --detach /tmp/knowslink-agents-review-458798c 458798c2ee15c179edacfd6f94ebb9896d26f411",
+      "close": {
+        "exit": 0,
+        "response": {
+          "id": "20ee270b-8fc8-4ba7-aa3f-33d63a2fc656",
+          "ok": true,
+          "result": {
+            "closed": 1,
+            "stopped": 1,
+            "retiredSurfaces": true
+          },
+          "_meta": {
+            "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+          }
+        }
+      },
+      "remove": {
+        "exit": 0,
+        "response": {
+          "id": "5ed60e59-eafb-4ae8-94fc-e64df4308671",
+          "ok": true,
+          "result": {
+            "removed": true
+          },
+          "_meta": {
+            "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+          }
+        }
+      }
+    },
+    {
+      "path": "/tmp/knowslink-agents-final-records-69038f4",
+      "head": "69038f4b4f092db3c51a084e8920ae8bbdd82bb5",
+      "clean": true,
+      "ancestor_origin_main": true,
+      "idle_shell_handles": [
+        "term_494b9600-63d2-4fac-988c-f0625e67c03f",
+        "term_24ce9a79-d120-4577-8112-f3c7cffaa2c5"
+      ],
+      "restore_command": "git worktree add --detach /tmp/knowslink-agents-final-records-69038f4 69038f4b4f092db3c51a084e8920ae8bbdd82bb5",
+      "close": {
+        "exit": 0,
+        "response": {
+          "id": "3955e85d-96fc-4ba7-89ac-fcd68ac894ea",
+          "ok": true,
+          "result": {
+            "closed": 2,
+            "stopped": 2,
+            "retiredSurfaces": true
+          },
+          "_meta": {
+            "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+          }
+        }
+      },
+      "remove": {
+        "exit": 0,
+        "response": {
+          "id": "241bb5a2-c5c4-4889-b5b6-d975c709a256",
+          "ok": true,
+          "result": {
+            "removed": true
+          },
+          "_meta": {
+            "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+          }
+        }
+      }
+    }
+  ],
+  "remaining_worktrees": [
+    {
+      "path": "/home/shin/Workspace/KnowsLink",
+      "branch": "refs/heads/main"
+    },
+    {
+      "path": "/home/shin/orca/workspaces/KnowsLink/fullops-coor",
+      "branch": "refs/heads/fullops/coor"
+    },
+    {
+      "path": "/home/shin/orca/workspaces/KnowsLink/fullops-designer",
+      "branch": "refs/heads/fullops/designer"
+    },
+    {
+      "path": "/home/shin/orca/workspaces/KnowsLink/fullops-dev",
+      "branch": "refs/heads/fullops/dev"
+    },
+    {
+      "path": "/home/shin/orca/workspaces/KnowsLink/fullops-ops",
+      "branch": "refs/heads/fullops/ops"
+    },
+    {
+      "path": "/home/shin/orca/workspaces/KnowsLink/fullops-tester",
+      "branch": "refs/heads/fullops/tester"
+    }
+  ]
+}

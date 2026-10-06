@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR]
-summary: 현재 과제·원본 보류 이력과 AGENTS 로컬 코드 통합 수락을 기록한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06]
+summary: 현재 과제·AGENTS 로컬 수락과 임시 리뷰 워크트리 정리를 기록한다
 ---
 
 # KnowsLink 현재 계획
@@ -910,3 +910,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 실제idle상태확인뒤coor/dev/ops/designer/tester5역할을14e로ff/일반push했다. 모두clean·진행worker없음·동기화예약없음이다. DEV/OPS/UI owned세션은release했다. TESTER 외부Grok3터미널은tui-idle=true·retained이며강제종료하지않았다. 현재완료delivery f13는처리뒤ack한다.
 - 유효AGENTS hold10건은위로컬코드수락조건으로resume했다. 기존hold와SHA null추출출처는history/sha_source에보존했다. 원래UIFAIL을PASS로바꾸지않았다. 공개/실메일/운영자원/실24h/복원/최종노우↔다닷은아직미검증이다. OPS lowL-A 삭제ID합성재등록·L-B 합성ownerAPI Generation미결속은미해결이며공개전합성가입unset·운영DB합성owner0확인이필수다. 이작업은운영배포나합성데이터삭제를수행하지않았다.
 - 다음독립제품은기존SAR-PUBLIC-MESSAGES-001이며이번AGENTS수락뒤자동배정하지않는다. 활성제품worker0·등록역할인박스비어있음. read-only detached리뷰snapshot3개는review.py check의직접경로검증에필요해유지한다. 근거아카이브방식을바꾸기전강제정리하지않는다. 이수락운영기록도main에공유하고유휴역할에동기화한다.
+
+
+## 임시 리뷰 워크트리 정리 — 2026-10-06
+
+- 사용자의 현재 정리 요청에 따라 앞의 snapshot 3개 유지 결정을 변경했다. 대상은 `/tmp/knowslink-agents-review-d1eef9b`(원본 리뷰), `/tmp/knowslink-agents-review-458798c`(수정 delta 리뷰), `/tmp/knowslink-agents-final-records-69038f4`(최종 기록 리뷰)다. 모두 detached·clean·ignored 자료 0이며 origin/main의 조상이다. 실행 중 worker는 없고 대기 셸 4개만 있었다.
+- 제거 직전 review.py check 3개는 종료코드 0이었다. 셸을 종료한 뒤 Orca worktree rm을 force 없이 실행했다. Git·Orca 양쪽에서 main 및 coor/designer/dev/ops/tester 6개만 남았고 임시 경로는 없다. [실행 영수증](docs/evaluations/qa-reports/FULLOPS-WORKTREE-CLEANUP-2026-10-06/receipt.json)에 고정 full SHA·검사 결과·제거 결과를 보존했다.
+- 기존 리뷰 report/result와 원본 실패는 수정하지 않았다. 직접 경로를 검사하는 review.py check는 재검사 전에 snapshot을 재생성해야 한다. 영수증의 restore_command로 같은 경로에 같은 SHA를 detached 체크아웃하고 읽기 전용으로 검사한다. 검사 뒤 깨끗한 임시 snapshot을 제거한다. 기존 검사 통과를 제거 뒤의 검사 통과로 주장하지 않는다.
+- 운영 기록만 변경했다. 제품·실메일·운영 공개·실24h·노우↔다닷의 수락 상태는 앞의 기록을 따른다. 이 기록은 main/origin에 통합하고 유휴 clean 역할을 동기화한다.
