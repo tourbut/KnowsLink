@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "base": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+  "merge_base": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+  "head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "failed",
+      "exit_code": 2,
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json\n\nsh: 1: prettier: not found\nmake: *** [Makefile:17: lint-adapters] Error 127"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "failed",
+      "exit_code": 2,
+      "output_tail": "go test -race ./cmd/... ./internal/...\nok  \tgithub.com/tourbut/KnowsLink/cmd/migrate\t1.014s\nok  \tgithub.com/tourbut/KnowsLink/cmd/relay\t1.016s\nok  \tgithub.com/tourbut/KnowsLink/internal/config\t1.016s\n?   \tgithub.com/tourbut/KnowsLink/internal/database\t[no test files]\nok  \tgithub.com/tourbut/KnowsLink/internal/relay\t1.928s\nnpm test --prefix adapters\n\n> @knowslink/adapters@0.0.0 test\n> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js && node dist/connect.test.js\n\n\n> @knowslink/adapters@0.0.0 build\n> tsc && npm run bundle:plugin\n\nsh: 1: tsc: not found\nmake: *** [Makefile:27: test] Error 127"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "877줄(이전 807, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "446줄(이전 317, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/connections_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "389줄(이전 203, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/connections_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "573줄(이전 571, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/http.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "339줄(이전 312, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/member.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "312줄(이전 261, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/member_agents.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "461줄(이전 458, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/store.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 1505줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 24,
+    "added_lines": 1505,
+    "errors": 2,
+    "warnings": 8,
+    "unavailable": 0
+  }
+}

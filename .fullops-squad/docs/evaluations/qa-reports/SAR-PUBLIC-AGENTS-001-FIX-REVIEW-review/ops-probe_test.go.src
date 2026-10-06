@@ -1,0 +1,52 @@
+package relay
+
+import (
+	"crypto/ed25519"
+	"crypto/rand"
+	"encoding/base64"
+	"testing"
+	"time"
+)
+
+// OPS probe 1: after the 24h sweep deletes a revoked member agent, a synthetic owner (bearer credential)
+// can register the same agent ID and kid through /v1/agents (operateAs "agents").
+func TestOpsProbeDeletedIDReuse(t *testing.T) {
+	st, now := connectionFixture()
+	st.Agents["agent_a"].Keys["k1"] = &Key{Revoked: true, Changed: now}
+	st.Agents["agent_a"].Revoked, st.Agents["agent_a"].Changed = true, now
+	st.Owners["synthetic"] = &Owner{Credential: hashToken("syn"), Active: true}
+	st.sweep(now.Add(revokedRetention))
+	if st.Agents["agent_a"] != nil {
+		t.Fatal("not deleted")
+	}
+	pub, priv, _ := ed25519.GenerateKey(rand.Reader)
+	p := base64.RawURLEncoding.EncodeToString(pub)
+	proof := base64.RawURLEncoding.EncodeToString(ed25519.Sign(priv, popBytes("synthetic", "agent_a", "k1", p)))
+	_, e := st.operateAs("agents", "synthetic", "owner", command{Agent: "agent_a", Kid: "k1", Public: p, Proof: proof}, now.Add(revokedRetention), false)
+	t.Logf("re-register deleted member agent ID+kid via synthetic owner: err=%v owner=%v", e, st.Agents["agent_a"] != nil && st.Agents["agent_a"].Owner == "synthetic")
+}
+
+// OPS probe 2: the owner API invite-decision has no generation; a late decision applies to the current pending.
+func TestOpsProbeAPIDecisionGeneration(t *testing.T) {
+	st, now := connectionFixture()
+	st.Owners["other"] = &Owner{Active: true}
+	st.Agents["agent_b"] = &Agent{Owner: "other", Keys: map[string]*Key{}}
+	st.operateAs("invites", "owner", "owner", command{Agent: "agent_a", Target: "agent_b"}, now, false)
+	st.operateAs("invite-decision", "other", "owner", command{Agent: "agent_a", Target: "agent_b", Decision: "deny"}, now, false)
+	st.operateAs("invites", "owner", "owner", command{Agent: "agent_a", Target: "agent_b"}, now, false)
+	_, e := st.operateAs("invite-decision", "other", "owner", command{Agent: "agent_a", Target: "agent_b", Decision: "accept"}, now, false)
+	p := st.Pairs[pairID("agent_a", "agent_b")]
+	t.Logf("API accept without generation: err=%v state=%s generation=%d", e, p.State, p.Generation)
+}
+
+// OPS probe 3: rate limited retry instant rounds up to a whole second.
+func TestOpsProbeRetryCeil(t *testing.T) {
+	r := time.Date(2026, 10, 6, 1, 2, 3, 1, time.UTC)
+	if got := r.Add(time.Second - 1).Truncate(time.Second); !got.Equal(time.Date(2026, 10, 6, 1, 2, 4, 0, time.UTC)) {
+		t.Fatal(got)
+	}
+	r = time.Date(2026, 10, 6, 1, 2, 3, 0, time.UTC)
+	if got := r.Add(time.Second - 1).Truncate(time.Second); !got.Equal(r) {
+		t.Fatal(got)
+	}
+}
