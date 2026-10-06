@@ -749,3 +749,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 사용자 진행 요청으로 DEV-TRIAL-DIAG의 비용 질의 배정 보류를 해제한다. 기존 route implementation/dev, Claude Opus5.5 high를 유지한다. DEV terminal 0·clean·최신 main 조상 관계를 확인했다. 과거 user-owned 터미널 핸들은 재사용하지 않는다. 지난 구현과 시간이 떨어져 새 세션을 선택한다.
 - 정규 빈 to_dev 인박스에 진단·필요 수정·관련 검증을 함께 작성했다. 기존 f364d484 invalid_lease 실패·원본 TESTER9e2654d·UIcf0ab09·리뷰25b110f와 main 수락 보류를 유지한다. integration status의 pending0은 보류 해소나 제품 수락을 뜻하지 않는다.
 - 다음은 최종 후보의 독립 delta 리뷰·좁은 QA와 기존 TESTER/UI 결과의 독립 기록 검토다. 필수 실패를 해소한 고정 SHA만 main/origin에 통합한다. 실제 이메일·운영 공개·노우↔다닷은 후속 미검증이다. Workers Free·기존 서버/Tunnel 제한을 유지한다.
+
+- DEV 진단 착수 영수증: Task `task_8703a6250fa8`, Dispatch `ctx_5f78e35e77c2`, terminal `term_86f19c57-8604-4aba-b470-283475d852c8`. 새 Claude Opus5.5 high effective·turn_started를 확인했다. 준비 merge ff1e670의 PLANS 충돌은 기존 내용과 신규 인수 기록을 모두 보존해 해결했다. 진행 DEV checkout은 변경하지 않는다. 터미널 discoverability 경고는 시작 성공과 구분하고 focus를 강제하지 않는다.
