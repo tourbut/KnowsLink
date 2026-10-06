@@ -940,3 +940,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - coor 병합 c6f0848의 PLANS 충돌 처리에서 잘못된 문서 삭제를 검수준비 diff로 발견했다. main에 미반영이다. 68b0d6a/f210b56/37f9a1e의 원본 Git 3-way를 다시 대조해 summary는 현재coor 값을 유지하고 append는 양쪽 전문을 보존했다. 기존914줄 삭제를 복원했다. 제품diff0을 확인하고 새fixed 후보를 사용한다. c6 준비리뷰는 미배정이며 원래preview/result와 실패를 보존한다. member_receipts.go 오기 탐색실패는 원본context JSON에 유지하고 실제 member_receipt.go를 수동필수후보로 보완한다.
 
 - 검수 대상은 복원 fixed `09c523da8a3407288d9f5d711e1834af12bc7808`이다. DEV37f9a1e 대비 제품diff0과 PLANS 원본/새 기록 보존을 확인했다. OPS는 새 REVIEW-2 기록과 read-only snapshot /tmp/knowslink-messages-review-09c523d를 사용한다. TESTER/UI도 같은fixed이다. 이전c6 준비양식과 오기context는 실패/미배정 그대로보존한다. 준비문서와 제품후보는 역할에만 공유하며 필수검수 전 main/origin68b0d6a에 제품을 넣지 않는다.
+
+## SAR-PUBLIC-MESSAGES-001-TESTER — 2026-10-06
+
+- 고정 `09c523da8a3407288d9f5d711e1834af12bc7808`를 별도 clone에서 PS08–11 독립 QA했다. 프로브 종료코드는 1이다. H-1 high, M-1 medium, receipt 상한 뒤 신규 HTTP 행 1개 잔류가 재현됐다. 제품 코드는 수정하지 않았다. H-1은 main 수락을 차단한다.
+- `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다. 이 통과는 격리 fixture다. 실메일, 공개, 벽시계 24시간, 운영 부하와 복원, PS13, PS14, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다.

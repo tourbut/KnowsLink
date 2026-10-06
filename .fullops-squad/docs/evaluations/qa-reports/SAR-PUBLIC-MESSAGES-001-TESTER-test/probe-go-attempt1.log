@@ -1,0 +1,15 @@
+# github.com/tourbut/KnowsLink/internal/relay [github.com/tourbut/KnowsLink/internal/relay.test]
+internal/relay/qa_messages_probe_test.go:29:6: memberKey redeclared in this block
+	internal/relay/member_agents.go:34:6: other declaration of memberKey
+internal/relay/qa_messages_probe_test.go:51:58: too many values in struct literal of type memberKey
+internal/relay/qa_messages_probe_test.go:111:71: member.agent undefined (type memberKey has no field or method agent)
+internal/relay/qa_messages_probe_test.go:111:214: member.kid undefined (type memberKey has no field or method kid, but does have field Kid)
+internal/relay/qa_messages_probe_test.go:112:80: member.private undefined (type memberKey has no field or method private)
+internal/relay/qa_messages_probe_test.go:126:66: member.agent undefined (type memberKey has no field or method agent)
+internal/relay/qa_messages_probe_test.go:126: member.kid undefined (type memberKey has no field or method kid, but does have field Kid)
+internal/relay/qa_messages_probe_test.go:133:24: member.private undefined (type memberKey has no field or method private)
+internal/relay/qa_messages_probe_test.go:342:10: keyA.agent undefined (type memberKey has no field or method agent)
+internal/relay/qa_messages_probe_test.go:342:34: keyB.agent undefined (type memberKey has no field or method agent)
+internal/relay/qa_messages_probe_test.go:342:34: too many errors
+FAIL	github.com/tourbut/KnowsLink/internal/relay [build failed]
+FAIL

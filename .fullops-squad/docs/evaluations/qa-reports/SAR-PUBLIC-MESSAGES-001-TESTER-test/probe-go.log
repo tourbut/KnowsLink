@@ -1,0 +1,12 @@
+=== RUN   TestQAMessagesIndependent
+    qa_messages_probe_test.go:393: {"state":"qa_local_node_mcp_pass","request":"01a11167-8255-7ac7-991d-67b6c0a95d9f","received":"01a11167-8255-7ac7-991d-67b6c0a95d9f","reply":"01a11167-836e-7c3c-86c9-7ec4d996ac20","replyReceived":"01a11167-836e-7c3c-86c9-7ec4d996ac20","exact4096":"01a11167-842d-78ac-a430-b3b4cd39b4a8","held":"default_mcp","actualGrok":"unverified","actualDadot":"unverified","realMail":"unverified"}
+    qa_messages_probe_test.go:791: HTTP admission leaked before the concurrency check: new=1 cleanup=0; a full relay snapshot can outlive the 2s release transaction until the 30s expiry
+    qa_messages_probe_test.go:921: admission while new slots are held: send=429 formDeny=429 pathDeny=403
+    qa_messages_probe_test.go:921: admission while cleanup slots are held: ack=429
+    qa_messages_probe_test.go:921: H-1 high: 16 anonymous slow POST /v1/text/send bodies occupy the new-work process slots before authentication; a later request is HTTP 429 for up to the 10s body deadline
+    qa_messages_probe_test.go:921: M-1 medium: POST /home/gates/{id} decision=deny is classified as new work before the body is parsed, so it returns HTTP 429 while new-work slots are full; the cleanup budget does not admit that form
+    qa_messages_probe_test.go:921: H-1 high: 4 anonymous slow POST /v1/text/ack bodies occupy the cleanup process slots before authentication; a later cleanup request is HTTP 429
+--- FAIL: TestQAMessagesIndependent (23.20s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	23.254s
+FAIL
