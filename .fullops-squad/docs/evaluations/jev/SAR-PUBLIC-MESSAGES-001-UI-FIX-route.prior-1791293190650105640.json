@@ -1,0 +1,59 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-UI-FIX",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "unresolved",
+  "role": null,
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.78,
+        "product": 0.22
+      },
+      "confidence": 0.56
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "ops": 0.04,
+        "tester": 0.65,
+        "dev": 0.31
+      },
+      "confidence": 0.48
+    },
+    "docs": {
+      "D01": 0.11,
+      "D02": 0.11,
+      "D03": 0.1,
+      "D04": 0.62,
+      "D05": 0.1,
+      "D06": 0.09,
+      "D07": 0.07,
+      "D08": 0.08,
+      "D09": 0.1,
+      "D10": 0.12,
+      "D11": 0.11,
+      "D12": 0.14,
+      "D13": 0.14
+    }
+  },
+  "usage": {
+    "input_tokens": 2567,
+    "output_tokens": 314,
+    "cost": 0.000107814
+  },
+  "error": null,
+  "latency_seconds": 0.3,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": null,
+  "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+}
