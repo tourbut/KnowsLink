@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-FIX-REVIEW",
+  "head": "b3d8494ade25c4ce80fbb0149f55aca01c27af08",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 82,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 82
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/policy_test.go",
+      "summary": "Policy checks pin the agreed re-invite rules and the record saturation guidance (SAR-PUBLIC-AGENTS-001-POLICY).",
+      "probability": 0.48
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.31
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.04
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.03
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.92,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5046,
+    "output_tokens": 869,
+    "cost": 0.000211932
+  },
+  "latency_seconds": 0.341,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

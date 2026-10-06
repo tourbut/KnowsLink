@@ -1,0 +1,59 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-FIX-TESTER",
+  "head": "b3d8494ade25c4ce80fbb0149f55aca01c27af08",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 82,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 82
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/policy_test.go",
+      "summary": "Policy checks pin the agreed re-invite rules and the record saturation guidance (SAR-PUBLIC-AGENTS-001-POLICY).",
+      "probability": 0.5700000000000001
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.24000000000000002
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "summary": "Connection and quota checks cover key-bound credentials, expiry, owner isolation and exact capacity boundaries.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.91,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5053,
+    "output_tokens": 869,
+    "cost": 0.000212226
+  },
+  "latency_seconds": 0.31,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

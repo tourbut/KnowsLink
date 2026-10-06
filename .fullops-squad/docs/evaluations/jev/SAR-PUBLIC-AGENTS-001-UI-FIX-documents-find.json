@@ -1,0 +1,54 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-UI-FIX",
+  "head": "b3d8494ade25c4ce80fbb0149f55aca01c27af08",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 173,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 173
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "summary": "SAR-PUBLIC-AGENTS-001-UI-FIX — AGENTS 수정 화면과 제품 답 직접 재검수 — AGENTS 수정 화면과 제품 답 직접 재검수",
+      "probability": 0.84
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
+      "summary": "SAR-PUBLIC-AGENTS-001-UI — 고정 후보 직접 UI 검수 기록 — 일반 회원 연결 화면의 격리 실행·직접 관측·장애·완료 처리와 후속을 기록한다",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "summary": "designer 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "summary": "KnowsLink 일반 이메일 서비스 수락 기준 — 일반 서비스 관계 재초대와 기록 포화의 교체·철회 목록 정리 수락 조건을 정의한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "summary": "일반 이메일 서비스 화면 수락 기준 — 관계 재초대와 키·agent 기록 포화 및 교체·철회 목록 정리의 상태와 다음 동작을 정의한다",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.93,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 15565,
+    "output_tokens": 1779,
+    "cost": 0.00065373
+  },
+  "latency_seconds": 0.368,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

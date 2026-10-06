@@ -49,3 +49,7 @@ fullops-common-0.3.3의 README/coding-style/testing/security, FULLOPS, project, 
 ## 완료 기준과 산출물
 
 누락/pending0·미해결critical/high0·고정SHA일치·lintERROR0·실행불가0(예외는영향근거)여야 수락 가능. 실패 발견 시 coor로 정확한 재현·경로·심각도 보고한다. D12/D13 운영 부담·보존/복원 위험의 인계만 기록하며 실제 운영 자원/복원 PASS를 만들지 않는다. 제품 수치 변경 금지. 갱신할 산출물 없음(독립 리뷰 기록). UI 직접 시각 판정은 designer 책임. 새 라이브러리/테마 없음.
+
+## 탐색·문서 분류 근거
+
+`docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-FIX-REVIEW-find.json`, `-documents-find.json`, `-context.json`을 사용한다. keep 목록은 먼저 읽을 문서와 공통 규약이다. 지시 전제와 충돌 — 먼저 확인: 원본 OPS/QA/UI 기록은 과거 d1의 M1/L1/L3·UI FAIL을 설명한다. 최신후보가그실패를해소했는지검수하며과거결과는바꾸지않는다. 실제내용이현재전제와달라진경우coor에ask한다.

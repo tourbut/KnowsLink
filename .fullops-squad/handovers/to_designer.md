@@ -48,3 +48,7 @@ fullops-common-0.3.3의 README/coding-style/testing/security, FULLOPS, project, 
 ## 디자인 기준·완료 기준·산출물
 
 D02/UX04–05/POLICY48이정본. memberStyle/Go template 재사용, 새theme·Tailwind·shadcn·공용theme전환·디자인lint없음. DESIGN자동검사미지원 영향과 직접검수근거를보고한다. 제품기획판단만담당하고코드수정금지. 필수UI FAIL해소및새안내제품조건준수여야수락가능. D03 UX원천/직접검수기록을갱신하되원본FAIL을PASS로덮지않는다. clean 기록HEAD FullOps --from 458798c2ee15c179edacfd6f94ebb9896d26f411·strict·diffcheck와원래exit를보존. 실제메일/공개/실24h운영/노우↔다닷미검증.
+
+## 탐색·문서 분류 근거
+
+`docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-FIX-find.json`, `-documents-find.json`, `-context.json`을 사용한다. keep 목록은 먼저 읽을 문서와 공통 규약이다. 지시 전제와 충돌 — 먼저 확인: 원본 OPS/QA/UI 기록은 과거 d1의 M1/L1/L3·UI FAIL을 설명한다. 최신후보가그실패를해소했는지검수하며과거결과는바꾸지않는다. 실제내용이현재전제와달라진경우coor에ask한다.
