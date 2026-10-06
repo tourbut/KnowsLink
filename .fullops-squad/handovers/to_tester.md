@@ -35,16 +35,25 @@ coor PLANS/board·원본 QA/UI/리뷰·제품 코드·운영 설정은 수정하
 
 ## 완료 보고
 
-고정 SHA·기준·범위·검증 명령/종료코드·실패/미실행·lint HEAD/ERROR/WARNING/실행 불가·산출물·남은 low/후속을 전문으로 쓴다. SIZE/DEP 경고는 근거를 남긴다. finish로 지시서와 결과 전문을 logs에 보존하고 인박스를 비운다. 커밋 뒤 preamble의 worker_done을 한 번 보내고 idle한다.
+판정 후보는 `eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de`다. 실행 위치는 `/tmp/knowslink-identity-final-qa-eb2e34b`다. 시작과 끝의 HEAD는 같고 추적 트리는 비어 있다. 좁은 QA는 통과다. 새 critical/high는 없다.
+기준은 `fullops-common-0.3.3`, `project.md`, coding-style, testing, security다. lint 기준은 `9c915dc71e2a872243ffec294126d4668b4d32a4`다. 원본 리뷰 `25b110f`와 RATE 리뷰 `77dd464`를 재사용했다. 원본 TESTER `9e2654d`와 UI `cf0ab09`는 `59b66ad`로 연결했다.
+`member.go`와 `http.go` blob은 `59b66ad`와 같다. `identity.go`의 변경은 `hit`과 세 rate 함수다. UI 템플릿은 바꾸지 않아 새 시각 검수를 하지 않았다.
+명령과 종료코드는 다음과 같다. `npm ci` 1회 0, rate 단위 네 검사 0, `make lint` 0, `make test` 1회 2, `npm ci` 2회 0, `make test` 2회 0, `make verify-mvp` 0. 1회차 2는 손상된 zod `compat.js`에 대한 GNU make 종료코드다. registry tarball과 2회차 설치는 바이트가 같다. product-test 판정은 2회차 0이다.
+`make verify-mvp` 프로젝트 `knowslink-mvp-697ca71a30`의 하위 8개 명령 종료코드는 모두 0이다. 순서는 up --build --wait, stop relay, Go integration, up --wait, synthetic, seed, trial-check, down --volumes다.
+`TestRatePrincipalIsolation`, `TestRateStateBoundedUnderRotation`, `TestRollingWindowBoundary`, `TestSendLimits`, `TestEmailIdentity/refused_principal_does_not_spend_shared_rate`, `TestTrialHTTP`, `TestTrialForeignAllowlistRevokesLease`가 PASS했다. 거부된 principal은 다른 IP·회원·정리를 막지 않았다. 외국 allowlist의 빈 transaction은 409 `invalid_lease`다. 이 1회를 옛 순서의 간헐 실패 해소로 기록하지 않았다.
+기존 relay, cloudflared, postgres 컨테이너 ID는 유지됐다. 이 실행은 자기 project만 내렸다.
+미실행은 실제 이메일, 운영 공개, 최종 노우↔다닷, 157 fixture 재실행, 새 시각 검수, `make generate`, `make schema`, `make verify-grok-plugin`, `make verify-runtime`이다. F2, F3, 다수 IP의 D02 공유 한도, `beta.sh` 합성 가입은 기존 후속이다.
+산출물은 QA 보고서, 시나리오, 실행 기록, `qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/`다. 제품 코드와 원본 fixture와 PLANS와 board는 수정하지 않았다.
+FullOps lint HEAD, ERROR, WARNING, 실행 불가, SIZE/DEP 근거는 커밋 뒤 이 절에 덧붙인다.
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 별도 detached 고정 후보 `/tmp/knowslink-identity-final-qa-eb2e34b`를 실행하고 검증 전후 추적 트리·HEAD가 동일한지 확인한다.
-- [ ] RATE-FIX 변경 영향만 독립 검증한다. 거부된 동일 principal이 공유 예산을 고갈하지 않는지, 다른 principal·기존 회원·cleanup 접근과 shared 한도·회전 시 상태 상한을 확인한다. 기존 테스트는 직접 실행하며 구현자 보고만 복사하지 않는다.
-- [ ] TestTrialHTTP 원인과 변경된 verify-mvp 격리 순서를 확인한다. 자기 격리 DB에서 새 결정적 foreign-allowlist 회수 검사와 기존 Trial·관련 회귀를 실행한다. 테스트 완화·우연한 재실행 PASS로 간헐 실패 해소를 선언하지 않는다.
-- [ ] make verify-mvp의 stop relay → Go integration → up --wait relay → TS 검사와 정리를 확인한다. 고정 후보 product-lint/product-test 증거를 남긴다. 명령 자신의 종료코드를 보존한다.
-- [ ] 원본 QA/UI의 변경 없는 의존성은 동일성을 확인해 원래59 SHA로 재사용한다. 전체157개 fixture 검사를 새 과제로 반복하지 않는다. 실제 이메일/공개/사람 확인은 미실행으로 유지한다.
-- [ ] 시나리오·QA 보고서·상세 실행 기록과 필요한 최소 probe/증거만 기록하고 finish·커밋·worker_done으로 복귀한다.
+- [x] 별도 detached 고정 후보 `/tmp/knowslink-identity-final-qa-eb2e34b`를 실행하고 검증 전후 추적 트리·HEAD가 동일한지 확인한다.
+- [x] RATE-FIX 변경 영향만 독립 검증한다. 거부된 동일 principal이 공유 예산을 고갈하지 않는지, 다른 principal·기존 회원·cleanup 접근과 shared 한도·회전 시 상태 상한을 확인한다. 기존 테스트는 직접 실행하며 구현자 보고만 복사하지 않는다.
+- [x] TestTrialHTTP 원인과 변경된 verify-mvp 격리 순서를 확인한다. 자기 격리 DB에서 새 결정적 foreign-allowlist 회수 검사와 기존 Trial·관련 회귀를 실행한다. 테스트 완화·우연한 재실행 PASS로 간헐 실패 해소를 선언하지 않는다.
+- [x] make verify-mvp의 stop relay → Go integration → up --wait relay → TS 검사와 정리를 확인한다. 고정 후보 product-lint/product-test 증거를 남긴다. 명령 자신의 종료코드를 보존한다.
+- [x] 원본 QA/UI의 변경 없는 의존성은 동일성을 확인해 원래59 SHA로 재사용한다. 전체157개 fixture 검사를 새 과제로 반복하지 않는다. 실제 이메일/공개/사람 확인은 미실행으로 유지한다.
+- [x] 시나리오·QA 보고서·상세 실행 기록과 필요한 최소 probe/증거만 기록하고 finish·커밋·worker_done으로 복귀한다.
 
 TESTER는 자기 시나리오·QA 보고서/최소 검사 스크립트·실행 기록·인박스·컨텍스트만 수정한다. 제품·원본 증거는 수정하지 않는다. 검증할 API/한도 수치는 원본 D02와 현재 구현의 확정 규칙을 따른다.
 완료 조건은 좁은 변경 영향 QA의 독립 통과/실패 판정과 fixed `eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de`의 직접 실행 증거다. 필수 실패와 critical/high는 수락을 차단한다. 사용자 실제 이메일/공개/최종 노우↔다닷은 후속 운영 수락이다.

@@ -1,0 +1,14 @@
+✘ [ERROR] Expected "*/" to terminate multi-line comment
+
+    node_modules/zod/v4/classic/compat.js:32:0:
+      32 │
+         ╵ ^
+
+  The multi-line comment starts here:
+
+    node_modules/zod/v4/classic/compat.js:28:0:
+      28 │ /** @deprecated Do not use. Stub definition, only included for zod...
+         ╵ ~~
+
+1 error
+make: *** [Makefile:27: test] Error 1
