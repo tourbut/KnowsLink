@@ -103,3 +103,9 @@ JSON은 [fullops-lint-b8c5f2e.json](SAR-PUBLIC-MESSAGES-001-TESTER-test/fullops-
 이 문단을 넣기 전 깨끗한 `b8c5f2ea65b78871f8494985722b5dd1ff6d4e13`에서 `deliverables.py --strict`는 검사 13, 미작성 0, 문제 0, 경고 0이다.
 같은 트리의 `git diff --check` 종료코드는 0이다.
 이 문단이 들어간 커밋은 위 lint의 HEAD가 아니다.
+그 커밋 `39a6dcbbac911040098d3aa873513d8d63918b26`를 같은 기준 `09c523da8a3407288d9f5d711e1834af12bc7808`으로 lint했다. 종료코드는 0이다.
+product-lint와 product-test는 passed다. ERROR는 0이다. WARNING은 1이다. 실행 불가는 0이다.
+검사 파일은 3개다. 추가 줄은 17이다. SIZE-001은 `.fullops-squad/PLANS.md` 947줄, 이전 940줄, 상한 500줄이다.
+이 수는 `b8c5f2ea65b78871f8494985722b5dd1ff6d4e13`의 lint와 같다. JSON은 [fullops-lint-39a6dcb.json](SAR-PUBLIC-MESSAGES-001-TESTER-test/fullops-lint-39a6dcb.json)이다.
+`deliverables.py --strict`는 검사 13, 미작성 0, 문제 0, 경고 0이다. `git diff --check` 종료코드는 0이다.
+이 문장이 들어 있는 커밋은 `39a6dcbbac911040098d3aa873513d8d63918b26`를 lint한 다음의 기록이다. 그 커밋 자체는 이 문단의 lint HEAD가 아니다.
