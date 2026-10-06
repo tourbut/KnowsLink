@@ -1,0 +1,920 @@
+//go:build integration
+
+// Independent member-agent QA. Copied into the detached candidate only for this run.
+package relay
+
+import (
+	"bytes"
+	"crypto/ed25519"
+	"crypto/rand"
+	"crypto/sha256"
+	"encoding/base64"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"regexp"
+	"strings"
+	"sync"
+	"syscall"
+	"testing"
+	"time"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+func scrubQA(s string) string {
+	s = regexp.MustCompile(`-----BEGIN [^-]+-----[\s\S]*?-----END [^-]+-----`).ReplaceAllString(s, "[pem]")
+	s = regexp.MustCompile(`[A-Za-z0-9_:+/=.-]{32,}`).ReplaceAllString(s, "[redacted]")
+	return s
+}
+
+func qaStatus(t *testing.T, w *httptest.ResponseRecorder, status int, contains ...string) {
+	t.Helper()
+	blob := w.Body.String() + w.Header().Get("Location")
+	if w.Code != status {
+		t.Fatalf("got %d want %d: %s", w.Code, status, scrubQA(blob))
+	}
+	for _, s := range contains {
+		if !strings.Contains(blob, s) {
+			t.Fatalf("missing %q in %s", s, scrubQA(blob))
+		}
+	}
+}
+
+func qaCall(t *testing.T, h http.Handler, path, token string, body any, status int, ip string) map[string]any {
+	t.Helper()
+	raw, err := json.Marshal(body)
+	if err != nil {
+		t.Fatal(err)
+	}
+	req := httptest.NewRequest(http.MethodPost, path, bytes.NewReader(raw))
+	req.RemoteAddr = ip + ":40000"
+	if token != "" {
+		req.Header.Set("Authorization", "Bearer "+token)
+	}
+	w := httptest.NewRecorder()
+	h.ServeHTTP(w, req)
+	if w.Code != status {
+		t.Fatalf("%s got %d want %d: %s", path, w.Code, status, scrubQA(w.Body.String()))
+	}
+	out := map[string]any{}
+	text := strings.TrimSpace(w.Body.String())
+	if text != "" && text != "null" {
+		if err = json.Unmarshal(w.Body.Bytes(), &out); err != nil {
+			t.Fatalf("%s body: %s", path, scrubQA(text))
+		}
+	}
+	return out
+}
+
+func clearRates(t *testing.T, s *Service) {
+	t.Helper()
+	s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
+}
+
+func signConnect(token string, c Connection, private ed25519.PrivateKey) string {
+	return base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, connectionBytes(token, &c)))
+}
+
+func approveKey(t *testing.T, s *Service, b *browser, agent, kid, mode string) (ed25519.PrivateKey, string) {
+	t.Helper()
+	clearRates(t, s)
+	token, id := browserGrant(t, b, agent, mode)
+	private, proof := clientPrepare(t, s.Handler(), token, kid)
+	qaStatus(t, b.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}), http.StatusSeeOther)
+	out := qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, http.StatusOK, "198.51.100.40")
+	cred, _ := out["credential"].(string)
+	if cred == "" || out["agent"] != agent || out["kid"] != kid || out["state"] != "connected" || len(out) != 4 {
+		t.Fatal("complete response shape")
+	}
+	qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, http.StatusUnauthorized, "198.51.100.40")
+	return private, cred
+}
+
+func activeKeyCount(t *testing.T, s *Service, agent string) int {
+	t.Helper()
+	n := 0
+	s.mutateState(t, func(st *State) {
+		if st.Agents[agent] == nil {
+			t.Fatal("missing agent")
+		}
+		n = activeKeys(st.Agents[agent])
+	})
+	return n
+}
+
+func qid(n int) string {
+	return fmt.Sprintf("0199a3f2-4c10-7a11-8b22-%012d", n)
+}
+
+func anotherAgent(t *testing.T, b *browser, exclude string) string {
+	t.Helper()
+	created := browserAgent(t, b)
+	if created != exclude {
+		return created
+	}
+	w := b.do(http.MethodGet, "/home", nil)
+	ids := regexp.MustCompile(`<h3><code>(agent_[a-f0-9]+)</code></h3>`).FindAllStringSubmatch(w.Body.String(), -1)
+	for _, match := range ids {
+		if match[1] != exclude {
+			return match[1]
+		}
+	}
+	t.Fatal("no distinct agent")
+	return ""
+}
+
+func freshOwnAgent(t *testing.T, b *browser, seen map[string]bool) string {
+	t.Helper()
+	qaStatus(t, b.do(http.MethodPost, "/home/agents", nil), http.StatusSeeOther)
+	w := b.do(http.MethodGet, "/home", nil)
+	qaStatus(t, w, http.StatusOK, "미연결")
+	ids := regexp.MustCompile(`<h3><code>(agent_[a-f0-9]+)</code></h3>`).FindAllStringSubmatch(w.Body.String(), -1)
+	var created string
+	for _, match := range ids {
+		if !seen[match[1]] {
+			if created != "" {
+				t.Fatal("ambiguous new agent")
+			}
+			created = match[1]
+		}
+	}
+	if created == "" {
+		t.Fatal("missing new agent")
+	}
+	seen[created] = true
+	return created
+}
+
+func runCLI(t *testing.T, root, stdin string, args ...string) (int, string, string) {
+	t.Helper()
+	cmd := exec.Command("node", append([]string{"adapters/dist/connect.js"}, args...)...)
+	cmd.Dir = root
+	cmd.Stdin = strings.NewReader(stdin)
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	err := cmd.Run()
+	if err == nil {
+		return 0, stdout.String(), stderr.String()
+	}
+	var exitErr *exec.ExitError
+	if errors.As(err, &exitErr) {
+		return exitErr.ExitCode(), stdout.String(), stderr.String()
+	}
+	t.Fatal(err)
+	return 1, "", ""
+}
+
+func filePerm(t *testing.T, path string) os.FileMode {
+	t.Helper()
+	info, err := os.Lstat(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if info.Mode()&os.ModeSymlink != 0 {
+		t.Fatal("symlink")
+	}
+	stat, ok := info.Sys().(*syscall.Stat_t)
+	if !ok || int(stat.Uid) != os.Getuid() {
+		t.Fatal("owner")
+	}
+	return info.Mode().Perm()
+}
+
+func TestQAAgentsIndependent(t *testing.T) {
+	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" || os.Getenv("TEST_DATABASE_URL") == "" {
+		t.Fatal("isolated database required")
+	}
+	pool, err := pgxpool.New(t.Context(), os.Getenv("TEST_DATABASE_URL"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(pool.Close)
+	newBrowser := func(s *Service, ip string) *browser { return &browser{t, s.Handler(), ip, map[string]string{}} }
+
+	t.Run("cross_owner_pop_swap_reauth_cancel_expiry_once", func(t *testing.T) {
+		s, mail := identityService(t, pool)
+		alice := newBrowser(s, "203.0.113.10")
+		bob := newBrowser(s, "203.0.113.11")
+		aliceID := login(t, alice, mail, "qa-alice@example.test")
+		bobID := login(t, bob, mail, "qa-bob@example.test")
+		agent := browserAgent(t, alice)
+		other := anotherAgent(t, alice, agent)
+		qaStatus(t, bob.do(http.MethodPost, "/home/connect", url.Values{"agent": {agent}, "client": {supportedClient}, "mode": {"register"}}), http.StatusForbidden)
+		qaStatus(t, alice.do(http.MethodPost, "/home/connect", url.Values{"agent": {agent}, "client": {"other"}, "mode": {"register"}}), http.StatusUnprocessableEntity, "미지원")
+		clearRates(t, s)
+		grant := alice.do(http.MethodPost, "/home/connect", url.Values{"agent": {agent}, "client": {supportedClient}, "mode": {"register"}})
+		qaStatus(t, grant, http.StatusOK, "연결 대기", "개인키는 자기 클라이언트에만", "node adapters/dist/connect.js prepare", "발급만으로 연결되지 않습니다")
+		if strings.Contains(grant.Body.String(), "BEGIN ") {
+			t.Fatal("private key on grant page")
+		}
+		token := regexp.MustCompile(`readonly value="([A-Za-z0-9_-]{43})"`).FindStringSubmatch(grant.Body.String())[1]
+		id := hashToken(token)
+		page := alice.do(http.MethodGet, "/home/connections/"+id, nil)
+		qaStatus(t, page, http.StatusOK, "상태: waiting", "공개키 준비 전입니다", "아직 연결되지 않았습니다")
+		qaStatus(t, bob.do(http.MethodGet, "/home/connections/"+id, nil), http.StatusForbidden, "연결을 조회할 수 없습니다")
+		info := qaCall(t, s.Handler(), "/v1/connect/info", "", map[string]string{"token": token, "client": supportedClient}, http.StatusOK, "203.0.113.12")
+		public, private, e := ed25519.GenerateKey(rand.Reader)
+		if e != nil {
+			t.Fatal(e)
+		}
+		pub := base64.RawURLEncoding.EncodeToString(public)
+		base := Connection{Owner: info["owner"].(string), Agent: info["agent"].(string), Client: supportedClient, Mode: info["mode"].(string), Kid: "key1", Public: pub}
+		swapped := base
+		swapped.Owner = "owner_other"
+		qaCall(t, s.Handler(), "/v1/connect/prepare", "", map[string]string{"token": token, "client": supportedClient, "kid": "key1", "public": pub, "proof": signConnect(token, swapped, private)}, http.StatusUnprocessableEntity, "203.0.113.12")
+		swapped = base
+		swapped.Agent = other
+		qaCall(t, s.Handler(), "/v1/connect/prepare", "", map[string]string{"token": token, "client": supportedClient, "kid": "key1", "public": pub, "proof": signConnect(token, swapped, private)}, http.StatusUnprocessableEntity, "203.0.113.12")
+		qaCall(t, s.Handler(), "/v1/connect/prepare", "", map[string]string{"token": token, "client": "other", "kid": "key1", "public": pub, "proof": signConnect(token, base, private)}, http.StatusForbidden, "203.0.113.12")
+		altPub, altPriv, e := ed25519.GenerateKey(rand.Reader)
+		if e != nil {
+			t.Fatal(e)
+		}
+		swapped = base
+		swapped.Public = base64.RawURLEncoding.EncodeToString(altPub)
+		qaCall(t, s.Handler(), "/v1/connect/prepare", "", map[string]string{"token": token, "client": supportedClient, "kid": "key1", "public": pub, "proof": signConnect(token, swapped, altPriv)}, http.StatusUnprocessableEntity, "203.0.113.12")
+		if activeKeyCount(t, s, agent) != 0 {
+			t.Fatal("swap created a key")
+		}
+		proof := signConnect(token, base, private)
+		qaCall(t, s.Handler(), "/v1/connect/prepare", "", map[string]string{"token": token, "client": supportedClient, "kid": "key1", "public": pub, "proof": proof}, http.StatusOK, "203.0.113.12")
+		qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, http.StatusForbidden, "203.0.113.12")
+		qaStatus(t, alice.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}, "Sec-Fetch-Site", "cross-site"), http.StatusForbidden)
+		qaStatus(t, bob.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}), http.StatusUnauthorized)
+		qaStatus(t, alice.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}), http.StatusSeeOther)
+		qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": "other", "proof": proof}, http.StatusForbidden, "203.0.113.12")
+		out := qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, http.StatusOK, "203.0.113.12")
+		cred, _ := out["credential"].(string)
+		qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, http.StatusUnauthorized, "203.0.113.12")
+		if cred == "" || activeKeyCount(t, s, agent) != 1 {
+			t.Fatal("completion")
+		}
+		for _, path := range []string{"/v1/agents", "/v1/keys", "/v1/key-revoke", "/v1/owner-revoke"} {
+			qaCall(t, s.Handler(), path, cred, map[string]string{"agent": agent, "kid": "key1"}, http.StatusUnauthorized, "203.0.113.13")
+		}
+		qaStatus(t, bob.do(http.MethodPost, "/home/agents", nil), http.StatusSeeOther)
+		home := alice.do(http.MethodGet, "/home", nil)
+		qaStatus(t, home, http.StatusOK, "연결 완료", "활성")
+		if strings.Contains(home.Body.String(), "qa-alice@example.test") || strings.Contains(home.Body.String(), cred) {
+			t.Fatal("home leaked email or credential")
+		}
+		clearRates(t, s)
+		token, id = browserGrant(t, alice, agent, "register")
+		clientPrepare(t, s.Handler(), token, "key2")
+		var bobOwner string
+		s.mutateState(t, func(st *State) {
+			bobOwner = st.Members[bobID].Owner
+			st.Agents["agent_bobswap"] = &Agent{Owner: bobOwner, Keys: map[string]*Key{}}
+			st.Connections[id].Agent = "agent_bobswap"
+		})
+		qaCall(t, s.Handler(), "/v1/connect/info", "", map[string]string{"token": token, "client": supportedClient}, http.StatusUnauthorized, "203.0.113.14")
+		s.mutateState(t, func(st *State) {
+			st.Connections[id].Agent = agent
+			st.Connections[id].Owner = bobOwner
+		})
+		qaStatus(t, bob.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}), http.StatusSeeOther)
+		qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": "not-a-proof"}, http.StatusUnauthorized, "203.0.113.14")
+		if activeKeyCount(t, s, agent) != 1 || activeKeyCount(t, s, other) != 0 {
+			t.Fatal("tampered grant created a key")
+		}
+		_ = aliceID
+		clearRates(t, s)
+		token, id = browserGrant(t, alice, agent, "register")
+		_, proof = clientPrepare(t, s.Handler(), token, "key3")
+		qaStatus(t, alice.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}), http.StatusSeeOther)
+		var wg sync.WaitGroup
+		wins := make(chan bool, 8)
+		for i := 0; i < 8; i++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				body, _ := json.Marshal(map[string]string{"token": token, "client": supportedClient, "proof": proof})
+				req := httptest.NewRequest(http.MethodPost, "/v1/connect/complete", bytes.NewReader(body))
+				req.RemoteAddr = "203.0.113.15:40000"
+				w := httptest.NewRecorder()
+				s.Handler().ServeHTTP(w, req)
+				wins <- w.Code == http.StatusOK
+			}()
+		}
+		wg.Wait()
+		close(wins)
+		n := 0
+		for win := range wins {
+			if win {
+				n++
+			}
+		}
+		if n != 1 || activeKeyCount(t, s, agent) != 2 {
+			t.Fatal("concurrent complete", n)
+		}
+		clearRates(t, s)
+		token, id = browserGrant(t, alice, agent, "register")
+		s.mutateState(t, func(st *State) {
+			for _, session := range st.Sessions {
+				session.Verified = session.Verified.Add(-reauthWindow)
+			}
+		})
+		qaStatus(t, alice.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}), http.StatusUnprocessableEntity, "5분")
+		qaStatus(t, alice.do(http.MethodPost, "/home/connect", url.Values{"agent": {agent}, "client": {supportedClient}, "mode": {"register"}}), http.StatusUnprocessableEntity, "5분")
+		qaStatus(t, alice.do(http.MethodPost, "/home/key-revoke", url.Values{"agent": {agent}, "kid": {"key1"}}), http.StatusUnprocessableEntity, "5분")
+		qaStatus(t, alice.do(http.MethodPost, "/home/agent-revoke", url.Values{"agent": {agent}}), http.StatusUnprocessableEntity, "5분")
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusUnprocessableEntity, "5분")
+		qaStatus(t, alice.do(http.MethodPost, "/home/cancel", url.Values{"connection": {id}}), http.StatusSeeOther)
+		qaCall(t, s.Handler(), "/v1/connect/info", "", map[string]string{"token": token, "client": supportedClient}, http.StatusUnauthorized, "203.0.113.16")
+		if activeKeyCount(t, s, agent) != 2 {
+			t.Fatal("cancel created or removed a key")
+		}
+		clearRates(t, s)
+		s.mutateState(t, func(st *State) {
+			for _, session := range st.Sessions {
+				session.Verified = time.Now()
+			}
+		})
+		token, id = browserGrant(t, alice, agent, "register")
+		clientPrepare(t, s.Handler(), token, "key9")
+		s.mutateState(t, func(st *State) { st.Connections[id].Exp = time.Now().Add(-time.Second) })
+		qaStatus(t, alice.do(http.MethodGet, "/home/connections/"+id, nil), http.StatusOK, "만료")
+		qaCall(t, s.Handler(), "/v1/connect/info", "", map[string]string{"token": token, "client": supportedClient}, http.StatusUnauthorized, "203.0.113.17")
+		if activeKeyCount(t, s, agent) != 2 {
+			t.Fatal("expiry created a key")
+		}
+	})
+
+	t.Run("keys_rotation_revoke_and_old_credential", func(t *testing.T) {
+		s, mail := identityService(t, pool)
+		alice := newBrowser(s, "203.0.113.20")
+		login(t, alice, mail, "qa-keys@example.test")
+		agent := browserAgent(t, alice)
+		creds := map[string]string{}
+		var oldPrivate ed25519.PrivateKey
+		for i, kid := range []string{"key1", "key2", "key3"} {
+			private, cred := approveKey(t, s, alice, agent, kid, "register")
+			creds[kid] = cred
+			if i == 0 {
+				oldPrivate = private
+			}
+			qaCall(t, s.Handler(), "/v1/pull", cred, map[string]string{}, http.StatusOK, "203.0.113.21")
+		}
+		if activeKeyCount(t, s, agent) != 3 {
+			t.Fatal("three keys")
+		}
+		clearRates(t, s)
+		qaStatus(t, alice.do(http.MethodPost, "/home/connect", url.Values{"agent": {agent}, "client": {supportedClient}, "mode": {"register"}}), http.StatusConflict, "운영 한도")
+		clearRates(t, s)
+		qaStatus(t, alice.do(http.MethodPost, "/home/key-revoke", url.Values{"agent": {agent}, "kid": {"key2"}}), http.StatusSeeOther)
+		qaCall(t, s.Handler(), "/v1/pull", creds["key2"], map[string]string{}, http.StatusUnauthorized, "203.0.113.22")
+		qaCall(t, s.Handler(), "/v1/pull", creds["key1"], map[string]string{}, http.StatusOK, "203.0.113.22")
+		qaCall(t, s.Handler(), "/v1/pull", creds["key3"], map[string]string{}, http.StatusOK, "203.0.113.22")
+		home := alice.do(http.MethodGet, "/home", nil)
+		qaStatus(t, home, http.StatusOK, "key2", "철회", "key1", "활성")
+		if activeKeyCount(t, s, agent) != 2 {
+			t.Fatal("selective revoke")
+		}
+		clearRates(t, s)
+		token, id := browserGrant(t, alice, agent, "register")
+		public, private, e := ed25519.GenerateKey(rand.Reader)
+		if e != nil {
+			t.Fatal(e)
+		}
+		pub := base64.RawURLEncoding.EncodeToString(public)
+		info := qaCall(t, s.Handler(), "/v1/connect/info", "", map[string]string{"token": token, "client": supportedClient}, http.StatusOK, "203.0.113.23")
+		c := Connection{Owner: info["owner"].(string), Agent: info["agent"].(string), Client: supportedClient, Mode: info["mode"].(string), Kid: "keyfail", Public: pub}
+		qaCall(t, s.Handler(), "/v1/connect/prepare", "", map[string]string{"token": token, "client": supportedClient, "kid": "keyfail", "public": pub, "proof": signConnect(token, c, private) + "x"}, http.StatusUnprocessableEntity, "203.0.113.23")
+		qaStatus(t, alice.do(http.MethodPost, "/home/cancel", url.Values{"connection": {id}}), http.StatusSeeOther)
+		qaCall(t, s.Handler(), "/v1/connect/info", "", map[string]string{"token": token, "client": supportedClient}, http.StatusUnauthorized, "203.0.113.23")
+		qaCall(t, s.Handler(), "/v1/pull", creds["key1"], map[string]string{}, http.StatusOK, "203.0.113.23")
+		if activeKeyCount(t, s, agent) != 2 {
+			t.Fatal("failed connection changed keys")
+		}
+		_, fresh := approveKey(t, s, alice, agent, "key4", "rotate")
+		if activeKeyCount(t, s, agent) != 1 {
+			t.Fatal("rotation left old keys")
+		}
+		restarted := (&Service{Pool: pool}).Handler()
+		for _, path := range []string{"/v1/pull", "/v1/persist", "/v1/ack", "/v1/claim", "/v1/authorize", "/v1/gate-consume"} {
+			for _, cred := range []string{creds["key1"], creds["key2"], creds["key3"]} {
+				qaCall(t, restarted, path, cred, map[string]string{}, http.StatusUnauthorized, "203.0.113.24")
+			}
+		}
+		for _, intent := range []string{"schedule.query", "relay.result"} {
+			body := queryBody()
+			reply := ""
+			if intent == "relay.result" {
+				body = map[string]any{"status": "denied"}
+				reply = qid(1)
+			}
+			message := wire(t, oldPrivate, qid(2), agent, "agent_other", intent, "qa-old-"+intent, reply, body, time.Now().Add(time.Minute))
+			qaCall(t, restarted, "/v1/send", creds["key1"], json.RawMessage(message), http.StatusUnauthorized, "203.0.113.24")
+		}
+		qaCall(t, restarted, "/v1/pull", fresh, map[string]string{}, http.StatusOK, "203.0.113.25")
+		qaCall(t, restarted, "/v1/pull", creds["key1"], map[string]string{}, http.StatusUnauthorized, "203.0.113.25")
+	})
+
+	t.Run("relationships_cross_same_concurrent_generation", func(t *testing.T) {
+		s, mail := identityService(t, pool)
+		alice := newBrowser(s, "198.51.100.10")
+		bob := newBrowser(s, "198.51.100.11")
+		login(t, alice, mail, "qa-rel-a@example.test")
+		login(t, bob, mail, "qa-rel-b@example.test")
+		aAgent := browserAgent(t, alice)
+		bAgent := browserAgent(t, bob)
+		private, cred := approveKey(t, s, alice, aAgent, "key1", "register")
+		_, _ = approveKey(t, s, bob, bAgent, "key1", "register")
+		clearRates(t, s)
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {aAgent}, "target": {bAgent}}), http.StatusSeeOther)
+		aliceHome := alice.do(http.MethodGet, "/home", nil)
+		bobHome := bob.do(http.MethodGet, "/home", nil)
+		qaStatus(t, aliceHome, http.StatusOK, "발신", aAgent, "수신", bAgent, "상태: pending", "관계 세대: 1")
+		if strings.Contains(aliceHome.Body.String(), "수신 owner로 수락") {
+			t.Fatal("inviter saw accept")
+		}
+		qaStatus(t, bobHome, http.StatusOK, "수신 owner로 수락", "수신 owner로 거절", "상태: pending", "관계 세대: 1")
+		decision := url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"accept"}, "generation": {"1"}}
+		qaStatus(t, alice.do(http.MethodPost, "/home/invite-decision", decision), http.StatusForbidden)
+		s.mutateState(t, func(st *State) {
+			p := st.Pairs[pairID(aAgent, bAgent)]
+			if p == nil || p.State != "pending" || p.Generation != 1 {
+				t.Fatal("implicit or foreign accept")
+			}
+		})
+		denied := wire(t, private, qid(10), aAgent, bAgent, "schedule.query", "qa-rel-deny-00001", "", queryBody(), time.Now().Add(time.Minute))
+		qaCall(t, s.Handler(), "/v1/send", cred, json.RawMessage(denied), http.StatusForbidden, "198.51.100.12")
+		qaStatus(t, bob.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"deny"}, "generation": {"1"}}), http.StatusSeeOther)
+		s.mutateState(t, func(st *State) {
+			if st.Pairs[pairID(aAgent, bAgent)].State != "denied" {
+				t.Fatal("deny")
+			}
+		})
+		clearRates(t, s)
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {aAgent}, "target": {bAgent}}), http.StatusSeeOther)
+		qaStatus(t, bob.do(http.MethodPost, "/home/invite-decision", decision), http.StatusForbidden)
+		qaStatus(t, bob.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"accept"}, "generation": {"2"}}), http.StatusSeeOther)
+		accepted := wire(t, private, qid(11), aAgent, bAgent, "schedule.query", "qa-rel-accept-0001", "", queryBody(), time.Now().Add(time.Minute))
+		qaCall(t, s.Handler(), "/v1/send", cred, json.RawMessage(accepted), http.StatusOK, "198.51.100.12")
+		qaStatus(t, alice.do(http.MethodPost, "/home/unpair", url.Values{"agent": {aAgent}, "target": {bAgent}, "generation": {"2"}}), http.StatusSeeOther)
+		revoked := wire(t, private, qid(12), aAgent, bAgent, "schedule.query", "qa-rel-revoke-0001", "", queryBody(), time.Now().Add(time.Minute))
+		qaCall(t, s.Handler(), "/v1/send", cred, json.RawMessage(revoked), http.StatusForbidden, "198.51.100.12")
+		clearRates(t, s)
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {aAgent}, "target": {bAgent}}), http.StatusSeeOther)
+		qaStatus(t, bob.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"accept"}, "generation": {"3"}}), http.StatusSeeOther)
+		qaStatus(t, bob.do(http.MethodPost, "/home/unpair", url.Values{"agent": {aAgent}, "target": {bAgent}, "generation": {"3"}}), http.StatusSeeOther)
+		s.mutateState(t, func(st *State) {
+			if st.Pairs[pairID(aAgent, bAgent)].State != "revoked" || st.Pairs[pairID(aAgent, bAgent)].Generation != 3 {
+				t.Fatal("recipient revoke")
+			}
+		})
+		clearRates(t, s)
+		seen := map[string]bool{aAgent: true}
+		one := freshOwnAgent(t, alice, seen)
+		two := freshOwnAgent(t, alice, seen)
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {one}, "target": {two}}), http.StatusSeeOther)
+		same := alice.do(http.MethodGet, "/home", nil)
+		qaStatus(t, same, http.StatusOK, "수신 owner로 수락", "상태: pending")
+		s.mutateState(t, func(st *State) {
+			if st.Pairs[pairID(one, two)].State != "pending" {
+				t.Fatal("same owner implicit accept")
+			}
+		})
+		form := url.Values{"agent": {one}, "target": {two}, "decision": {"accept"}, "generation": {"1"}}
+		var wg sync.WaitGroup
+		codes := make(chan int, 8)
+		cookie := alice.cookies[sessionCookie]
+		for i := 0; i < 8; i++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				req := httptest.NewRequest(http.MethodPost, "/home/invite-decision", strings.NewReader(form.Encode()))
+				req.RemoteAddr = "198.51.100.19:40000"
+				req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+				req.AddCookie(&http.Cookie{Name: sessionCookie, Value: cookie})
+				w := httptest.NewRecorder()
+				s.Handler().ServeHTTP(w, req)
+				codes <- w.Code
+			}()
+		}
+		wg.Wait()
+		close(codes)
+		for code := range codes {
+			if code != http.StatusSeeOther {
+				t.Fatal(code)
+			}
+		}
+		s.mutateState(t, func(st *State) {
+			p := st.Pairs[pairID(one, two)]
+			n := 0
+			for _, pair := range st.Pairs {
+				if (pair.A == one || pair.B == one) && (pair.A == two || pair.B == two) {
+					n++
+				}
+			}
+			if p.State != "active" || p.Generation != 1 || n != 1 {
+				t.Fatal("concurrent accept", p.State, p.Generation, n)
+			}
+		})
+		qaStatus(t, alice.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {one}, "target": {two}, "decision": {"accept"}, "generation": {"0"}}), http.StatusForbidden)
+	})
+
+	t.Run("capacity_pending_active_restart_cleanup", func(t *testing.T) {
+		s, mail := identityService(t, pool)
+		alice := newBrowser(s, "203.0.113.30")
+		bob := newBrowser(s, "203.0.113.31")
+		login(t, alice, mail, "qa-cap-a@example.test")
+		login(t, bob, mail, "qa-cap-b@example.test")
+		clearRates(t, s)
+		s.mutateState(t, func(st *State) {
+			st.Owners["owner_foreign"] = &Owner{Active: true}
+			for i := 0; i < 200; i++ {
+				st.Agents[fmt.Sprintf("agent_f%03d", i)] = &Agent{Owner: "owner_foreign", Keys: map[string]*Key{}}
+			}
+		})
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusConflict, "운영 한도")
+		alice.h = (&Service{Pool: pool}).Handler()
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusConflict, "운영 한도")
+		s.mutateState(t, func(st *State) { st.Agents["agent_f000"].Revoked = true })
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusSeeOther)
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusConflict, "운영 한도")
+		s.mutateState(t, func(st *State) { st.Owners["owner_foreign"].Active = false })
+		for i := 0; i < 4; i++ {
+			qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusSeeOther)
+		}
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusConflict, "운영 한도")
+		var own []string
+		var owner string
+		s.mutateState(t, func(st *State) {
+			for id, a := range st.Agents {
+				if a.Owner != "owner_foreign" && !a.Revoked && st.Members != nil {
+					for _, m := range st.Members {
+						if m.Owner == a.Owner && strings.Contains(m.Email, "qa-cap-a") {
+							own = append(own, id)
+							owner = a.Owner
+						}
+					}
+				}
+			}
+			if len(own) != 5 || st.agentCapacity(owner) {
+				t.Fatal("owner cap", len(own))
+			}
+		})
+		clearRates(t, s)
+		qaStatus(t, alice.do(http.MethodPost, "/home/agent-revoke", url.Values{"agent": {own[0]}}), http.StatusSeeOther)
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusSeeOther)
+		qaStatus(t, bob.do(http.MethodPost, "/home/agents", nil), http.StatusSeeOther)
+		s.mutateState(t, func(st *State) { st.Owners["owner_foreign"].Active = true })
+		qaStatus(t, bob.do(http.MethodPost, "/home/agents", nil), http.StatusConflict, "운영 한도")
+		s.mutateState(t, func(st *State) { st.Owners["owner_foreign"].Active = false })
+		aAgent, bAgent := own[1], browserAgent(t, bob)
+		clearRates(t, s)
+		for i := 0; i < 10; i++ {
+			stKey := fmt.Sprintf("pending-own-%02d", i)
+			s.mutateState(t, func(st *State) {
+				st.Pairs[stKey] = &Pair{A: aAgent, B: bAgent, State: "pending", Exp: time.Now().Add(time.Hour)}
+			})
+		}
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {aAgent}, "target": {bAgent}}), http.StatusConflict, "운영 한도")
+		s.mutateState(t, func(st *State) {
+			for i := 0; i < 10; i++ {
+				st.Pairs[fmt.Sprintf("pending-own-%02d", i)].Exp = time.Now().Add(-2 * time.Second)
+			}
+		})
+		spare := own[2]
+		qaStatus(t, alice.do(http.MethodPost, "/home/agent-revoke", url.Values{"agent": {spare}}), http.StatusSeeOther)
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {aAgent}, "target": {bAgent}}), http.StatusSeeOther)
+		s.mutateState(t, func(st *State) {
+			p := st.Pairs[pairID(aAgent, bAgent)]
+			if p.State != "pending" || p.Generation != 1 || !p.Exp.After(time.Now().Add(23*time.Hour)) || !p.Exp.Before(time.Now().Add(25*time.Hour)) {
+				t.Fatal("pending 24h")
+			}
+			st.Owners["owner_foreign"].Active = true
+			for i := 0; i < 200; i++ {
+				st.Pairs[fmt.Sprintf("pending-global-%03d", i)] = &Pair{A: "agent_f001", B: "agent_f002", State: "pending", Exp: time.Now().Add(time.Hour)}
+			}
+		})
+		cAgent := own[3]
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {aAgent}, "target": {cAgent}}), http.StatusConflict, "운영 한도")
+		s.mutateState(t, func(st *State) {
+			for i := 0; i < 200; i++ {
+				st.Pairs[fmt.Sprintf("pending-global-%03d", i)].Exp = time.Now().Add(-2 * time.Second)
+			}
+			st.Pairs[pairID(aAgent, bAgent)].Exp = time.Now().Add(-2 * time.Second)
+		})
+		qaStatus(t, alice.do(http.MethodPost, "/home/agent-revoke", url.Values{"agent": {own[4]}}), http.StatusSeeOther)
+		qaStatus(t, alice.do(http.MethodPost, "/home/invites", url.Values{"agent": {aAgent}, "target": {bAgent}}), http.StatusSeeOther)
+		s.mutateState(t, func(st *State) {
+			p := st.Pairs[pairID(aAgent, bAgent)]
+			if p.Generation != 2 || p.State != "pending" {
+				t.Fatal("expiry reused generation", p.Generation, p.State)
+			}
+		})
+		qaStatus(t, alice.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"accept"}, "generation": {"1"}}), http.StatusForbidden)
+		s.mutateState(t, func(st *State) {
+			if st.Pairs[pairID(aAgent, bAgent)].State != "pending" {
+				t.Fatal("old generation mutated pair")
+			}
+			for i := 0; i < 20; i++ {
+				st.Pairs[fmt.Sprintf("active-own-%02d", i)] = &Pair{A: aAgent, B: bAgent, State: "active"}
+			}
+		})
+		qaStatus(t, bob.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"accept"}, "generation": {"2"}}), http.StatusConflict, "운영 한도")
+		s.mutateState(t, func(st *State) {
+			if st.Pairs[pairID(aAgent, bAgent)].State != "pending" {
+				t.Fatal("rejected accept mutated pair")
+			}
+			for i := 0; i < 20; i++ {
+				delete(st.Pairs, fmt.Sprintf("active-own-%02d", i))
+			}
+			st.Owners["owner_foreign"].Active = true
+			for i := 0; i < 400; i++ {
+				st.Pairs[fmt.Sprintf("active-global-%03d", i)] = &Pair{A: "agent_f001", B: "agent_f002", State: "active"}
+			}
+		})
+		qaStatus(t, bob.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"accept"}, "generation": {"2"}}), http.StatusConflict)
+		s.mutateState(t, func(st *State) {
+			if st.Pairs[pairID(aAgent, bAgent)].State != "pending" {
+				t.Fatal("global cap mutated pair")
+			}
+			for i := 0; i < 400; i++ {
+				delete(st.Pairs, fmt.Sprintf("active-global-%03d", i))
+			}
+			st.Rates = map[string][]time.Time{}
+			st.Rates["http:new"] = make([]time.Time, 201)
+			for i := range st.Rates["http:new"] {
+				st.Rates["http:new"][i] = time.Now()
+			}
+		})
+		qaStatus(t, alice.do(http.MethodPost, "/home/agents", nil), http.StatusTooManyRequests, "이후 다시 시도")
+		qaStatus(t, bob.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {aAgent}, "target": {bAgent}, "decision": {"deny"}, "generation": {"2"}}), http.StatusSeeOther)
+		qaStatus(t, alice.do(http.MethodPost, "/home/key-revoke", url.Values{"agent": {aAgent}, "kid": {"missing"}}), http.StatusForbidden)
+		s.mutateState(t, func(st *State) {
+			if len(st.Rates["http:member:"+owner]) != 0 {
+				t.Fatal("saturated shared budget recorded a new member hit")
+			}
+			if st.Pairs[pairID(aAgent, bAgent)].State != "denied" {
+				t.Fatal("cleanup deny")
+			}
+		})
+	})
+
+	t.Run("malformed_rate_and_rotation_budget", func(t *testing.T) {
+		s, mail := identityService(t, pool)
+		alice := newBrowser(s, "203.0.113.40")
+		bob := newBrowser(s, "203.0.113.41")
+		login(t, alice, mail, "qa-rate-a@example.test")
+		login(t, bob, mail, "qa-rate-b@example.test")
+		clearRates(t, s)
+		for i := 0; i < 41; i++ {
+			req := httptest.NewRequest(http.MethodPost, "/home/agents", strings.NewReader("%"))
+			req.RemoteAddr = "203.0.113.40:40000"
+			req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+			req.AddCookie(&http.Cookie{Name: sessionCookie, Value: alice.cookies[sessionCookie]})
+			w := httptest.NewRecorder()
+			s.Handler().ServeHTTP(w, req)
+			want := http.StatusUnprocessableEntity
+			if i == 40 {
+				want = http.StatusTooManyRequests
+			}
+			qaStatus(t, w, want)
+		}
+		s.mutateState(t, func(st *State) {
+			if len(st.Agents) != 0 {
+				t.Fatal("malformed form created an agent")
+			}
+		})
+		qaStatus(t, bob.do(http.MethodPost, "/home/agents", nil), http.StatusSeeOther)
+		for i := 0; i < 31; i++ {
+			req := httptest.NewRequest(http.MethodPost, "/home/agents", strings.NewReader(""))
+			req.RemoteAddr = "203.0.113.42:40000"
+			w := httptest.NewRecorder()
+			s.Handler().ServeHTTP(w, req)
+			want := http.StatusUnauthorized
+			if i == 30 {
+				want = http.StatusTooManyRequests
+			}
+			qaStatus(t, w, want)
+		}
+		req := httptest.NewRequest(http.MethodPost, "/home/agents", strings.NewReader(""))
+		req.RemoteAddr = "203.0.113.43:40000"
+		w := httptest.NewRecorder()
+		s.Handler().ServeHTTP(w, req)
+		qaStatus(t, w, http.StatusUnauthorized)
+		for i := 0; i < 31; i++ {
+			req = httptest.NewRequest(http.MethodPost, "/v1/connect/prepare", strings.NewReader("{"))
+			req.RemoteAddr = "203.0.113.44:40000"
+			w = httptest.NewRecorder()
+			s.Handler().ServeHTTP(w, req)
+			want := http.StatusUnprocessableEntity
+			if i == 30 {
+				want = http.StatusTooManyRequests
+			}
+			qaStatus(t, w, want)
+		}
+		req = httptest.NewRequest(http.MethodPost, "/v1/connect/prepare", strings.NewReader("{"))
+		req.RemoteAddr = "203.0.113.45:40000"
+		w = httptest.NewRecorder()
+		s.Handler().ServeHTTP(w, req)
+		qaStatus(t, w, http.StatusUnprocessableEntity)
+		s.mutateState(t, func(st *State) {
+			st.Rates["http:new"] = make([]time.Time, 201)
+			now := time.Now()
+			for i := range st.Rates["http:new"] {
+				st.Rates["http:new"][i] = now
+			}
+			delete(st.Rates, "http:ip:203.0.113.46")
+		})
+		req = httptest.NewRequest(http.MethodPost, "/v1/connect/prepare", strings.NewReader("{"))
+		req.RemoteAddr = "203.0.113.46:40000"
+		w = httptest.NewRecorder()
+		s.Handler().ServeHTTP(w, req)
+		qaStatus(t, w, http.StatusTooManyRequests)
+		s.mutateState(t, func(st *State) {
+			if len(st.Rates["http:ip:203.0.113.46"]) != 0 || len(st.Rates["http:new"]) != 201 {
+				t.Fatal("fresh malformed request extended saturation", len(st.Rates["http:ip:203.0.113.46"]), len(st.Rates["http:new"]))
+			}
+		})
+		clearRates(t, s)
+		s.mutateState(t, func(st *State) {
+			for _, session := range st.Sessions {
+				session.Verified = time.Now()
+			}
+		})
+		alice.h = s.Handler()
+		agent := browserAgent(t, alice)
+		_, cred := approveKey(t, s, alice, agent, "key1", "register")
+		clearRates(t, s)
+		for i := 0; i < 40; i++ {
+			qaCall(t, s.Handler(), "/v1/pull", cred, map[string]string{}, http.StatusOK, "203.0.113.47")
+		}
+		var agentID = agent
+		var before int
+		s.mutateState(t, func(st *State) { before = len(st.Rates["http:member:"+agentID]) })
+		if before != 40 {
+			t.Fatal("budget", before)
+		}
+		s.mutateState(t, func(st *State) {
+			kept := st.Rates["http:member:"+agentID]
+			st.Rates = map[string][]time.Time{("http:member:" + agentID): kept}
+			for _, session := range st.Sessions {
+				session.Verified = time.Now()
+			}
+		})
+		token, connID := browserGrant(t, alice, agent, "rotate")
+		_, proof := clientPrepare(t, s.Handler(), token, "key2")
+		qaStatus(t, alice.do(http.MethodPost, "/home/confirm", url.Values{"connection": {connID}}), http.StatusSeeOther)
+		rotated := qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, http.StatusOK, "203.0.113.47")
+		fresh, _ := rotated["credential"].(string)
+		if fresh == "" || fresh == cred || activeKeyCount(t, s, agent) != 1 {
+			t.Fatal("rotation")
+		}
+		var after int
+		s.mutateState(t, func(st *State) { after = len(st.Rates["http:member:"+agentID]) })
+		if after != before {
+			t.Fatal("rotation reset budget", before, after)
+		}
+		qaCall(t, s.Handler(), "/v1/pull", fresh, map[string]string{}, http.StatusTooManyRequests, "203.0.113.48")
+		qaCall(t, (&Service{Pool: pool}).Handler(), "/v1/pull", fresh, map[string]string{}, http.StatusTooManyRequests, "203.0.113.48")
+		s.mutateState(t, func(st *State) {
+			if len(st.Rates["http:member:"+agentID]) != 41 {
+				t.Fatal("rejection reset budget", len(st.Rates["http:member:"+agentID]))
+			}
+		})
+		qaCall(t, s.Handler(), "/v1/pull", cred, map[string]string{}, http.StatusUnauthorized, "203.0.113.49")
+	})
+
+	t.Run("node_cli_prepare_confirm_complete", func(t *testing.T) {
+		root, err := os.Getwd()
+		if err != nil {
+			t.Fatal(err)
+		}
+		for {
+			if _, err = os.Stat(filepath.Join(root, "go.mod")); err == nil {
+				break
+			}
+			parent := filepath.Dir(root)
+			if parent == root {
+				t.Fatal("clone root")
+			}
+			root = parent
+		}
+		cli := filepath.Join(root, "adapters", "dist", "connect.js")
+		if _, err = os.Stat(cli); err != nil {
+			t.Fatal("connect.js missing")
+		}
+		s, mail := identityService(t, pool)
+		var sawPrivate bool
+		wrapped := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			raw, readErr := io.ReadAll(io.LimitReader(r.Body, 1<<20))
+			if readErr != nil {
+				t.Errorf("body: %v", readErr)
+			}
+			if bytes.Contains(raw, []byte("BEGIN PRIVATE")) {
+				sawPrivate = true
+			}
+			r.Body = io.NopCloser(bytes.NewReader(raw))
+			s.Handler().ServeHTTP(w, r)
+		})
+		srv := httptest.NewServer(wrapped)
+		t.Cleanup(srv.Close)
+		alice := &browser{t, s.Handler(), "203.0.113.60", map[string]string{}}
+		login(t, alice, mail, "qa-cli@example.test")
+		agent := browserAgent(t, alice)
+		clearRates(t, s)
+		token, id := browserGrant(t, alice, agent, "register")
+		folder := filepath.Join(t.TempDir(), "client")
+		kept := filepath.Join(t.TempDir(), "existing")
+		if err = os.Mkdir(kept, 0o700); err != nil {
+			t.Fatal(err)
+		}
+		if err = os.WriteFile(filepath.Join(kept, "keep.txt"), []byte("keep"), 0o600); err != nil {
+			t.Fatal(err)
+		}
+		code, stdout, stderr := runCLI(t, root, token+"\n", "prepare", "http://127.0.0.1:1/nope", folder)
+		if code != 1 || stdout != "" || stderr != "연결 실패. 아직 사용할 새 자격이 없습니다. 브라우저 상태·기한을 확인하세요. 완료 응답을 잃었다면 새 연결·회전으로 복구하세요.\n" {
+			t.Fatalf("bad url %d %s %s", code, scrubQA(stdout), scrubQA(stderr))
+		}
+		code, stdout, stderr = runCLI(t, root, token+"\n", "prepare", srv.URL, kept)
+		if code != 1 || stdout != "" {
+			t.Fatalf("existing dir %d %s", code, scrubQA(stdout))
+		}
+		raw, err := os.ReadFile(filepath.Join(kept, "keep.txt"))
+		if err != nil || string(raw) != "keep" {
+			t.Fatal("existing file changed")
+		}
+		code, stdout, stderr = runCLI(t, root, token+"\n", "prepare", srv.URL, folder)
+		if code != 0 || stderr != "" {
+			t.Fatalf("prepare %d %s", code, scrubQA(stderr))
+		}
+		if strings.Contains(stdout, token) || strings.Contains(stdout, "PRIVATE") || strings.Contains(stderr, token) {
+			t.Fatal("prepare leaked secret")
+		}
+		if !strings.HasPrefix(stdout, "상태: 공개키 준비 완료\n지문: SHA256:") || !strings.Contains(stdout, "\n자기 브라우저에서 확인: "+srv.URL+"/home/connections/") || strings.Count(stdout, "\n") != 3 {
+			t.Fatalf("guidance %s", scrubQA(stdout))
+		}
+		fp := strings.TrimPrefix(strings.Split(strings.Split(stdout, "지문: ")[1], "\n")[0], "SHA256:")
+		page := alice.do(http.MethodGet, "/home/connections/"+id, nil)
+		qaStatus(t, page, http.StatusOK, "공개키 확인", fp)
+		if filePerm(t, folder) != 0o700 || filePerm(t, filepath.Join(folder, "private.pem")) != 0o600 || filePerm(t, filepath.Join(folder, "pending.json")) != 0o600 {
+			t.Fatal("modes")
+		}
+		sum := sha256.Sum256(mustRead(t, filepath.Join(folder, "private.pem")))
+		code, stdout, _ = runCLI(t, root, token+"\n", "prepare", srv.URL, folder)
+		if code != 1 || stdout != "" || sha256.Sum256(mustRead(t, filepath.Join(folder, "private.pem"))) != sum {
+			t.Fatal("prepare reuse overwrote key")
+		}
+		code, stdout, stderr = runCLI(t, root, "", "complete", folder)
+		if code != 1 || stdout != "" || stderr != "연결 실패. 아직 사용할 새 자격이 없습니다. 브라우저 상태·기한을 확인하세요. 완료 응답을 잃었다면 새 연결·회전으로 복구하세요.\n" {
+			t.Fatalf("early complete %d %s %s", code, scrubQA(stdout), scrubQA(stderr))
+		}
+		if _, err = os.Stat(filepath.Join(folder, "agent.json")); !os.IsNotExist(err) {
+			t.Fatal("agent.json before confirm")
+		}
+		qaStatus(t, alice.do(http.MethodPost, "/home/confirm", url.Values{"connection": {id}}), http.StatusSeeOther)
+		code, stdout, stderr = runCLI(t, root, "", "complete", folder)
+		if code != 0 || stderr != "" || stdout != "상태: 연결 완료. agent.json·private.pem은 이 클라이언트에만 보관하세요. idle pull은 10초 이상 간격입니다.\n" {
+			t.Fatalf("complete %d %s %s", code, scrubQA(stdout), scrubQA(stderr))
+		}
+		if strings.Contains(stdout, token) || strings.Contains(stdout, "PRIVATE") || strings.Contains(stdout, "credential") {
+			t.Fatal("complete leaked secret")
+		}
+		if filePerm(t, filepath.Join(folder, "agent.json")) != 0o600 {
+			t.Fatal("agent.json mode")
+		}
+		agentJSON := mustRead(t, filepath.Join(folder, "agent.json"))
+		var saved map[string]string
+		if err = json.Unmarshal(agentJSON, &saved); err != nil || saved["credential"] == "" || saved["agent"] != agent {
+			t.Fatal("agent.json shape")
+		}
+		if strings.Contains(string(mustRead(t, filepath.Join(folder, "pending.json"))), saved["credential"]) || strings.Contains(string(mustRead(t, filepath.Join(folder, "pending.json"))), token) {
+			t.Fatal("pending retained secret")
+		}
+		before := sha256.Sum256(agentJSON)
+		code, _, _ = runCLI(t, root, "", "complete", folder)
+		if code != 1 || sha256.Sum256(mustRead(t, filepath.Join(folder, "agent.json"))) != before {
+			t.Fatal("second complete changed agent.json")
+		}
+		qaCall(t, s.Handler(), "/v1/pull", saved["credential"], map[string]string{}, http.StatusOK, "203.0.113.61")
+		qaCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": "again"}, http.StatusUnauthorized, "203.0.113.61")
+		if sawPrivate {
+			t.Fatal("client sent private material")
+		}
+		if activeKeyCount(t, s, agent) != 1 {
+			t.Fatal("cli key")
+		}
+	})
+}
+
+func mustRead(t *testing.T, path string) []byte {
+	t.Helper()
+	raw, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return raw
+}

@@ -858,3 +858,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - QA에handoff msg_9161a46153fb로현재기록checkout의frontmatter없는상속OPS준비양식을metadata-only stamp하도록허용했다. 제품fixed d1·실행조건불변·원래실패/본문보존·완성OPS70f26bc충돌해결원칙을명시했다.
 
 - DEV-POLICY-FIX 착수 Task task_46a93d37ac6f / ctx_acf917e530e7 / term_1e7f7bec-d32a-42fe-84ff-9ee7549419be, freshOpus5.5high effective·turn_started·규약/인박스읽기확인. 이전DEV-FIX는새세션으로옮기는시점에출력보존/release했다. 준비0a83bbb를DEV에ff/일반push했다. 진행DEV/QA checkout은변경하지않으며latest고정후보 delta보안/QA/UI를대기한다.
+## SAR-PUBLIC-AGENTS-001-TESTER — 2026-10-06
+
+- 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`를 별도 clone에서 독립 QA했다. `make lint`, `make test`, `make verify-mvp`, 격리 Postgres 프로브의 종료코드는 0이다. 새 critical/high는 없다. 제품 코드는 수정하지 않았다.
+- 실제 이메일, 운영 공개, 플랫폼, 노우↔다닷은 미실행이다. 화면 캡처는 designer 범위다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md)와 [시나리오](docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md)에 있다.
