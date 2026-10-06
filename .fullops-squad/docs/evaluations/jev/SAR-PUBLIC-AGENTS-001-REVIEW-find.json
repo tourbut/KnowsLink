@@ -1,0 +1,64 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-REVIEW",
+  "head": "7baadde919d92c320beec7f521f1c49949554fdb",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 81,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 81
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/connections.go",
+      "summary": "Member connections bind a short approval to one owner, agent, client and new key; only confirmed PoP creates credentials.",
+      "probability": 0.54
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.24000000000000002
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
+      "probability": 0.12
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "summary": "Connection and quota checks cover key-bound credentials, expiry, owner isolation and exact capacity boundaries.",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/src/connect.ts",
+      "summary": "Local Node onboarding keeps private keys and credentials in a new 0700 directory; stdout contains only public status.",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/src/connect.test.ts",
+      "summary": "Local onboarding tests verify PoP bytes, private-file permissions, one-use completion and safe URL selection.",
+      "probability": 0.02
+    },
+    {
+      "path": "sqlc.yaml",
+      "summary": "",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.26,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4758,
+    "output_tokens": 860,
+    "cost": 0.000199836
+  },
+  "latency_seconds": 0.316,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
