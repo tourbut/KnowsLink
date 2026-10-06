@@ -893,3 +893,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - fixed 458798c의 F-UI-01–04·POLICY 안내는 좁은 직접 UI PASS다. [보고서](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md)·PNG 62개·Orca 장애 2개·manifest·cleanup을 보존했다. 제품 변경 0이고 원본 d1/d165 UI FAIL·OPS/QA 원실행은 유지한다.
 - 남은 담당과 재개 조건: TESTER의 fixed 정책 독립 QA, OPS delta/운영 조건, coor의 합성 후보 통합 수락. 실메일·운영 공개·실24h·부하/복원·노우↔다닷은 후속으로 유지한다. 새 designer 과제는 없다. 완료 전문은 work.py finish 뒤 날짜별 designer 로그에서 확인한다.
+
+- UI-FIX msg_1324c3837625/c9b425062f2526663177b11df62e171308c846e3 수신. fixed458의필수FUI01–04·POLICY두표직접시각PASS·제품diff0·원본65파일보존·자기fixture정리를확인했다. 정상PNG62개/장애2개는직접열람·manifest로연결됐고실24h/실메일PASS가아니다. D03오기는actualD04/designerUX원천으로정정했고DEV정본은변경없다. finalreportlint증거c1b2는원래HEAD로유지하며최종통합후보검사에서기록마지막SHA도포함한다. coorSHA보존반영·원본FAIL불변, QA와기록자체검토대기hold다.
