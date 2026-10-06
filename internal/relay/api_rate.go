@@ -36,10 +36,17 @@ func (s *Service) rateAPI(next http.Handler) http.Handler {
 			return
 		}
 		if retry := value.(time.Time); !retry.IsZero() {
-			w.Header().Set("Retry-After", retry.Format(http.TimeFormat))
-			writeJSON(w, 429, map[string]string{"error": "rate_limited", "retry_at": retry.Format(time.RFC3339)})
+			rateLimited(w, retry)
 			return
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+// rateLimited gives every JSON API the same actual retry instant, rounded up to the whole second both formats carry
+// so a client retrying at it is not refused (and counted) again.
+func rateLimited(w http.ResponseWriter, retry time.Time) {
+	retry = retry.Add(time.Second - 1).Truncate(time.Second)
+	w.Header().Set("Retry-After", retry.Format(http.TimeFormat))
+	writeJSON(w, 429, map[string]string{"error": "rate_limited", "retry_at": retry.Format(time.RFC3339)})
 }

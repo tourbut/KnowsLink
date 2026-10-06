@@ -16,6 +16,14 @@ type memberPair struct {
 	Incoming bool
 }
 
+// Deadline shows the invite deadline in the same KST form as connection deadlines.
+func (p memberPair) Deadline() string {
+	if p.Exp.IsZero() {
+		return "없음"
+	}
+	return clock(p.Exp)
+}
+
 type memberAgent struct {
 	ID, Status string
 	Keys       []memberKey
@@ -81,26 +89,24 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.Body = http.MaxBytesReader(w, r.Body, 8192)
 		parseErr := r.ParseForm()
-		token := readCookie(r, sessionCookie)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			id, session, e := st.session(token, now)
+			clean := path == "cancel" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
+			rates := memberRate
+			if clean {
+				rates = cleanupRate
+			}
+			id, session, retry, e := s.memberHit(st, r, now, rates)
+			if !retry.IsZero() {
+				return refusal{429, limited(retry), false}, nil
+			}
 			if e != nil {
-				if ok, retry := st.hit(now, anonymousRate(s.clientIP(r))...); !ok {
-					return refusal{429, limited(retry)}, nil
-				}
-				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요."}, nil
+				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", false}, nil
 			}
 			owner := st.Members[id].Owner
-			clean := path == "cancel" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
-			rates := memberRate(id)
-			if clean {
-				rates = cleanupRate(id)
-			}
-			if ok, retry := st.hit(now, rates...); !ok {
-				return refusal{429, limited(retry)}, nil
-			}
 			// Return refusals as values: rejected work must commit its request budget.
-			fail := func(e error) (any, error) { return refusal{statusFor(e), safeProblem(e)}, nil }
+			fail := func(e error) (any, error) {
+				return refusal{statusFor(e), safeProblem(e), e.Error() == "reauth_required"}, nil
+			}
 			if parseErr != nil {
 				return fail(fault("invalid_schema"))
 			}
@@ -123,7 +129,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if e != nil {
 					return fail(e)
 				}
-				return map[string]any{"Title": "agent 연결 대기", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "Exp": clock(now.Add(connectionTTL))}, nil
+				return map[string]any{"Title": "agent 연결 대기", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
 			case "confirm", "cancel":
 				c := st.Connections[r.FormValue("connection")]
 				if c == nil || c.Owner != owner || !now.Before(c.Exp) || c.State == "consumed" || c.State == "cancelled" {
@@ -142,12 +148,12 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if a == nil || a.Owner != owner {
 					return fail(fault("sender_not_allowed"))
 				}
-				a.Revoked = true
-				a.Credential = ""
-				for _, k := range a.Keys {
-					k.Revoked = true
-					k.Changed = now
+				if !a.Revoked {
+					a.Revoked = true
+					a.Changed = now
 				}
+				a.Credential = ""
+				revokeKeys(a, now)
 				st.sweep(now)
 			default:
 				c := command{Agent: agent, Target: r.FormValue("target"), Kid: r.FormValue("kid"), Decision: r.FormValue("decision")}
@@ -169,13 +175,13 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
 			} else {
-				render(w, 503, "head", map[string]any{"Title": "내 agent", "Problem": "일시적으로 처리할 수 없습니다."})
+				refused(w, "내 agent", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false})
 			}
 			return
 		}
 		switch v := value.(type) {
 		case refusal:
-			render(w, v.status, "head", map[string]any{"Title": "내 agent", "Problem": v.problem})
+			refused(w, "내 agent", v)
 		case string:
 			http.Redirect(w, r, v, 303)
 		default:
@@ -185,16 +191,16 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 }
 func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, e := st.session(readCookie(r, sessionCookie), now)
+		id, _, retry, e := s.memberHit(st, r, now, memberRate)
+		if !retry.IsZero() {
+			return refusal{429, limited(retry), false}, nil
+		}
 		if e != nil {
 			return nil, e
 		}
-		if ok, retry := st.hit(now, memberRate(id)...); !ok {
-			return refusal{429, limited(retry)}, nil
-		}
 		c := st.Connections[r.PathValue("id")]
 		if c == nil || c.Owner != st.Members[id].Owner {
-			return refusal{403, "연결을 조회할 수 없습니다."}, nil
+			return refusal{403, "연결을 조회할 수 없습니다.", false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
 		return map[string]any{"Title": "agent 연결 확인", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
@@ -203,12 +209,12 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 		if err.Error() == "invalid_auth" {
 			expired(w, r)
 		} else {
-			render(w, 503, "head", map[string]any{"Title": "연결 확인", "Problem": "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."})
+			refused(w, "연결 확인", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false})
 		}
 		return
 	}
 	if v, ok := value.(refusal); ok {
-		render(w, v.status, "head", map[string]any{"Title": "연결 확인", "Problem": v.problem})
+		refused(w, "연결 확인", v)
 		return
 	}
 	render(w, 200, "connection", value.(map[string]any))
@@ -229,7 +235,7 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 				}
 			}
 			if ok, retry := st.hit(now, rates...); !ok {
-				return map[string]string{"error": "rate_limited", "retry_at": retry.Format(time.RFC3339)}, nil
+				return retry, nil
 			}
 			if parseErr != nil {
 				return map[string]string{"error": parseErr.Error()}, nil
@@ -255,10 +261,11 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 			}
 			return result, nil
 		})
+		if retry, ok := value.(time.Time); ok {
+			rateLimited(w, retry)
+			return
+		}
 		if v, ok := value.(map[string]string); ok && v["error"] != "" {
-			if v["retry_at"] != "" {
-				w.Header().Set("Retry-After", fmt.Sprint(60))
-			}
 			respond(w, nil, fault(v["error"]))
 			return
 		}

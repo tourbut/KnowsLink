@@ -14,14 +14,15 @@ import (
 
 var kst = time.FixedZone("KST", 9*60*60)
 
-const memberStyle = `<style>body{font:18px system-ui;max-width:760px;margin:40px auto;padding:20px;color:#17232b;background:#f5f7f8}section{background:white;padding:24px;border:1px solid #bbc5cd;margin-bottom:16px}label{display:block;font-weight:bold}input,button{font:inherit;padding:12px;margin:8px 0}input{width:100%;box-sizing:border-box}dt{font-weight:bold}code{overflow-wrap:anywhere}.note{border-left:6px solid #164da0;padding-left:12px}.problem{border-left:6px solid #a01616;padding-left:12px}a{color:#164da0}</style>`
+const memberStyle = `<style>body{font:18px system-ui;max-width:760px;margin:40px auto;padding:20px;color:#17232b;background:#f5f7f8;overflow-wrap:anywhere}section{background:white;padding:24px;border:1px solid #bbc5cd;margin-bottom:16px}label{display:block;font-weight:bold}input,button,select{font:inherit;padding:12px;margin:8px 0}input,select{display:block;width:100%;box-sizing:border-box}dt{font-weight:bold}code{overflow-wrap:anywhere}.note{border-left:6px solid #164da0;padding-left:12px}.problem{border-left:6px solid #a01616;padding-left:12px}a{color:#164da0}</style>`
 
 var memberPages = template.Must(template.New("member").Parse(`
 {{define "head"}}<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{{.Title}}</title>` + memberStyle + `<h1>{{.Title}}</h1>{{if .Problem}}<p class="problem" role="alert">문제: {{.Problem}}</p>{{end}}{{if .Notice}}<p class="note" role="status">안내: {{.Notice}}</p>{{end}}{{end}}
+{{define "refusal"}}{{template "head" .}}<section>{{if .Reauth}}<form method="post" action="/auth/reauth"><button>이메일 다시 확인</button></form>{{end}}<p><a href="{{.Back}}">{{if eq .Back "/"}}로그인 화면으로 이동{{else}}자기 홈으로 돌아가기{{end}}</a></p></section></html>{{end}}
 {{define "start"}}{{template "head" .}}<section><h2>이메일로 가입·로그인</h2><p>처음이면 가입하고, 이미 가입했다면 같은 회원으로 로그인합니다. 관리자 아이디, 서버 접속, 별도 초대는 필요하지 않습니다.</p><form method="post" action="/auth/start"><label for="email">이메일 주소</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required value="{{.Email}}"><button>확인 코드 받기</button></form><p>6자리 확인 코드는 10분 동안 한 번만 쓸 수 있습니다. 코드를 확인하기 전에는 로그인되지 않습니다.</p></section></html>{{end}}
 {{define "verify"}}{{template "head" .}}<section><h2>확인 대기</h2><p>{{.Masked}} 주소로 확인 코드를 요청했습니다. 메일 발송은 신원 확인이 아닙니다. 아직 로그인되지 않았습니다.</p><form method="post" action="/auth/verify"><label for="code">6자리 확인 코드</label><input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required><button>확인하고 로그인</button></form><p>코드는 {{.Exp}}까지 유효합니다. 5번 틀리면 새 코드를 받아야 합니다.</p><form method="post" action="/auth/start"><input type="hidden" name="email" value="{{.Email}}"><button>코드 다시 받기</button></form><p>다시 받기는 이전 요청 60초 뒤부터 가능합니다. 새 코드를 받으면 이전 코드는 쓸 수 없습니다.</p><p><a href="/">다른 주소로 시작</a></p></section></html>{{end}}
-{{define "connection"}}{{template "head" .}}<section><p>대상 agent: <code>{{.Agent}}</code></p><p>클라이언트: {{.Client}} / 연결 방식: {{.Mode}}</p><p>개인키는 자기 클라이언트에만 보관합니다. relay에 보내지 마세요.</p><p>권한: 이 agent의 송신·수신만 허용합니다. owner 승인·운영 관리자 권한은 없습니다.</p><p>기한: {{.Exp}} (최대 10분·1회 사용)</p>{{if .Token}}<h2>상태: 연결 대기</h2><p>자기 클라이언트 컴퓨터에서 저장소의 adapters를 설치한 뒤 실행하세요.</p><code>node adapters/dist/connect.js prepare &lt;서비스 URL&gt; &lt;새 비공개 폴더&gt;</code><p>아래 수단을 클라이언트의 비공개 표준입력에 넣으세요. 대화·로그·캡처에 넣지 마세요. 발급만으로 연결되지 않습니다.</p><label>연결 수단<input readonly value="{{.Token}}"></label><p><a href="/home/connections/{{.ConnectionID}}">공개키 준비 상태 확인</a></p>{{else}}<p>상태: {{.State}}</p>{{if eq .State "prepared"}}<h2>공개키 확인</h2><p>지문: <code>{{.Fingerprint}}</code></p><p>클라이언트에 표시된 지문과 같은지 확인하세요. 다르면 취소하세요.</p><form method="post" action="/home/confirm"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>대상·지문 확인 후 연결 승인</button></form>{{else if eq .State "approved"}}<p>승인 대기 완료. 아직 새 키가 연결되지 않았습니다. 자기 클라이언트에서 다음 명령을 실행하세요.</p><code>node adapters/dist/connect.js complete &lt;새 비공개 폴더&gt;</code>{{else if eq .State "consumed"}}<p>연결 완료. 클라이언트가 수신한 자격을 자기 환경에 보관합니다.</p>{{else if eq .State "expired"}}<p>만료. 새 키가 연결되지 않았습니다. 홈에서 다시 시작하세요.</p>{{else if eq .State "cancelled"}}<p>취소. 새 키가 연결되지 않았습니다.</p>{{else}}<p>공개키 준비 전입니다. 아직 연결되지 않았습니다.</p>{{end}}{{end}}{{if ne .State "consumed"}}<form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>연결 취소</button></form>{{end}}<a href="/home">자기 홈으로 돌아가기</a></section></html>{{end}}
-{{define "home"}}{{template "head" .}}<section><h2>내 신원</h2><dl><dt>확인된 이메일</dt><dd>{{.Masked}}</dd><dt>회원 식별자</dt><dd><code>{{.Member}}</code></dd><dt>세션</dt><dd>최대 {{.Absolute}}까지 유지됩니다. 60분 동안 활동이 없으면 먼저 끝납니다.</dd></dl></section><section><h2>내 agent</h2><p>활성 agent는 회원당 5개입니다. 연결은 Node 22가 있는 자기 클라이언트 컴퓨터에서 실행합니다. 다닷·외부 앱 실제 연결은 후속 검증입니다.</p><form method="post" action="/home/agents"><button>새 agent 만들기</button></form>{{if not .AgentDetails}}<p>아직 연결한 agent가 없습니다.</p>{{end}}{{range .AgentDetails}}{{$agent := .ID}}<section><h3><code>{{.ID}}</code></h3><p>상태: {{.Status}}</p><label>복사용 agent 식별자<input readonly value="{{.ID}}"></label>{{range .Keys}}<p>키 <code>{{.Kid}}</code> / {{.Fingerprint}} / 상태: {{.Status}}</p>{{if eq .Status "활성"}}<form method="post" action="/home/key-revoke"><input type="hidden" name="agent" value="{{$agent}}"><input type="hidden" name="kid" value="{{.Kid}}"><button>선택한 키 철회</button></form>{{end}}{{end}}{{if ne .Status "철회"}}<form method="post" action="/home/connect"><input type="hidden" name="agent" value="{{.ID}}"><label>지원 클라이언트<select name="client"><option value="node-local">Node 22 로컬 클라이언트</option></select></label><label>연결 방식<select name="mode"><option value="register">새 키 등록 (활성 최대 3개)</option><option value="rotate">회전 (완료 시 기존 키 전체 철회)</option></select></label><button>연결 수단 발급</button></form><form method="post" action="/home/agent-revoke"><input type="hidden" name="agent" value="{{.ID}}"><button>이 agent와 모든 키·관계 철회</button></form>{{end}}</section>{{end}}<p>키·연결 권한 변경에는 5분 안의 이메일 재확인이 필요합니다. 개인키는 클라이언트에만 보관합니다.</p><form method="post" action="/auth/reauth"><button>이메일 다시 확인</button></form></section><section><h2>관계</h2><p>가입 초대가 아닙니다. 상대 agent 식별자로 초대하고, 수신 owner가 명시적으로 수락해야 메시지를 허용합니다. 같은 owner의 두 agent도 수락해야 합니다.</p><form method="post" action="/home/invites"><label for="from-agent">내 발신 agent 식별자</label><input id="from-agent" name="agent" required maxlength="128"><label for="target-agent">상대 agent 식별자</label><input id="target-agent" name="target" required maxlength="128"><button>관계 초대</button></form>{{if .Pairs}}{{range .Pairs}}<section><p>발신 <code>{{.Inviter}}</code> / 수신 <code>{{.Recipient}}</code></p><p>상태: {{.State}} / 관계 세대: {{.Generation}} / 초대 기한: {{.Exp}}</p>{{if and (eq .State "pending") .Incoming}}<form method="post" action="/home/invite-decision"><input type="hidden" name="agent" value="{{.A}}"><input type="hidden" name="target" value="{{.B}}"><input type="hidden" name="generation" value="{{.Generation}}"><button name="decision" value="accept">수신 owner로 수락</button><button name="decision" value="deny">수신 owner로 거절</button></form>{{end}}<form method="post" action="/home/unpair"><input type="hidden" name="agent" value="{{.A}}"><input type="hidden" name="target" value="{{.B}}"><input type="hidden" name="generation" value="{{.Generation}}"><button>관계 철회</button></form></section>{{end}}{{else}}<p>관계가 없습니다.</p>{{end}}<p>수락 전·철회 후 메시지는 거부됩니다. pending은 24시간 후 만료됩니다.</p></section><section><h2>승인 요청</h2>{{if .Gates}}<ul>{{range .Gates}}<li><a href="/home/gates/{{.ID}}">{{.Parent}}</a> 상태: {{.State}}</li>{{end}}</ul>{{else}}<p>승인 요청이 없습니다.</p>{{end}}</section><section><h2>로그아웃</h2><p>로그아웃과 전체 로그아웃은 브라우저 세션만 끝냅니다. 별도로 연결한 agent의 키와 자격은 철회하지 않습니다.</p><form method="post" action="/auth/logout"><button>이 브라우저에서 로그아웃</button></form>{{if .Recent}}<form method="post" action="/auth/logout-all"><button>모든 브라우저에서 로그아웃</button></form>{{else}}<p>모든 브라우저에서 로그아웃하려면 5분 안에 이메일을 다시 확인해야 합니다.</p><form method="post" action="/auth/reauth"><button>이메일 다시 확인</button></form>{{end}}<h3>계정 비활성화</h3><p>상태: 준비 중. 아직 요청할 수 없습니다.</p></section></html>{{end}}
+{{define "connection"}}{{template "head" .}}<section><p>대상 agent: <code>{{.Agent}}</code></p><p>클라이언트: {{.Client}} / 연결 방식: {{.Mode}}</p><p>개인키는 자기 클라이언트에만 보관합니다. relay에 보내지 마세요.</p><p>권한: 이 agent의 송신·수신만 허용합니다. owner 승인·운영 관리자 권한은 없습니다.</p><p>기한: {{.Exp}} (최대 10분·1회 사용)</p>{{if .Token}}<h2>상태: 연결 대기</h2><p>자기 클라이언트 컴퓨터에서 저장소의 adapters를 설치한 뒤 실행하세요.</p><code>node adapters/dist/connect.js prepare &lt;서비스 URL&gt; &lt;새 비공개 폴더&gt;</code><p>아래 수단을 클라이언트의 비공개 표준입력에 넣으세요. 대화·로그·캡처에 넣지 마세요. 발급만으로 연결되지 않습니다.</p><label>연결 수단<input readonly value="{{.Token}}"></label><p><a href="/home/connections/{{.ConnectionID}}">공개키 준비 상태 확인</a></p>{{else}}<p>상태: {{.State}}</p>{{if eq .State "prepared"}}<h2>공개키 확인</h2><p>지문: <code>{{.Fingerprint}}</code></p><p>클라이언트에 표시된 지문과 같은지 확인하세요. 다르면 취소하세요.</p><form method="post" action="/home/confirm"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>대상·지문 확인 후 연결 승인</button></form>{{else if eq .State "approved"}}<p>승인 대기 완료. 아직 새 키가 연결되지 않았습니다. 자기 클라이언트에서 다음 명령을 실행하세요.</p><code>node adapters/dist/connect.js complete &lt;새 비공개 폴더&gt;</code>{{else if eq .State "consumed"}}<p>연결 완료. 클라이언트가 수신한 자격을 자기 환경에 보관합니다.</p>{{else if eq .State "expired"}}<p>만료. 새 키가 연결되지 않았습니다. 홈에서 다시 시작하세요.</p>{{else if eq .State "cancelled"}}<p>취소. 새 키가 연결되지 않았습니다.</p>{{else}}<p>공개키 준비 전입니다. 아직 연결되지 않았습니다.</p>{{end}}{{end}}{{if or (eq .State "waiting") (eq .State "prepared") (eq .State "approved")}}<form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>연결 취소</button></form>{{end}}<a href="/home">자기 홈으로 돌아가기</a></section></html>{{end}}
+{{define "home"}}{{template "head" .}}<section><h2>내 신원</h2><dl><dt>확인된 이메일</dt><dd>{{.Masked}}</dd><dt>회원 식별자</dt><dd><code>{{.Member}}</code></dd><dt>세션</dt><dd>최대 {{.Absolute}}까지 유지됩니다. 60분 동안 활동이 없으면 먼저 끝납니다.</dd></dl></section><section><h2>내 agent</h2><p>활성 agent는 회원당 5개입니다. 연결은 Node 22가 있는 자기 클라이언트 컴퓨터에서 실행합니다. 다닷·외부 앱 실제 연결은 후속 검증입니다.</p><form method="post" action="/home/agents"><button>새 agent 만들기</button></form>{{if not .AgentDetails}}<p>아직 연결한 agent가 없습니다.</p>{{end}}{{range .AgentDetails}}{{$agent := .ID}}<section><h3><code>{{.ID}}</code></h3><p>상태: {{.Status}}</p><label>복사용 agent 식별자<input readonly value="{{.ID}}"></label>{{range .Keys}}<p>키 <code>{{.Kid}}</code> / <code>{{.Fingerprint}}</code> / 상태: {{.Status}}</p>{{if eq .Status "활성"}}<form method="post" action="/home/key-revoke"><input type="hidden" name="agent" value="{{$agent}}"><input type="hidden" name="kid" value="{{.Kid}}"><button>선택한 키 철회</button></form>{{end}}{{end}}{{if ne .Status "철회"}}<form method="post" action="/home/connect"><input type="hidden" name="agent" value="{{.ID}}"><label>지원 클라이언트<select name="client"><option value="node-local">Node 22 로컬 클라이언트</option></select></label><label>연결 방식<select name="mode"><option value="register">새 키 등록 (활성 최대 3개)</option><option value="rotate">회전 (완료 시 기존 키 전체 철회)</option></select></label><button>연결 수단 발급</button></form><form method="post" action="/home/agent-revoke"><input type="hidden" name="agent" value="{{.ID}}"><button>이 agent와 모든 키·관계 철회</button></form>{{end}}</section>{{end}}<p>키·연결 권한 변경에는 5분 안의 이메일 재확인이 필요합니다. 개인키는 클라이언트에만 보관합니다.</p><form method="post" action="/auth/reauth"><button>이메일 다시 확인</button></form></section><section><h2>관계</h2><p>가입 초대가 아닙니다. 상대 agent 식별자로 초대하고, 수신 owner가 명시적으로 수락해야 메시지를 허용합니다. 같은 owner의 두 agent도 수락해야 합니다.</p><form method="post" action="/home/invites"><label for="from-agent">내 발신 agent 식별자</label><input id="from-agent" name="agent" required maxlength="128"><label for="target-agent">상대 agent 식별자</label><input id="target-agent" name="target" required maxlength="128"><button>관계 초대</button></form>{{if .Pairs}}{{range .Pairs}}<section><p>발신 <code>{{.Inviter}}</code> / 수신 <code>{{.Recipient}}</code></p><p>상태: {{.State}} / 관계 세대: {{.Generation}} / 초대 기한: {{.Deadline}}</p>{{if and (eq .State "pending") .Incoming}}<form method="post" action="/home/invite-decision"><input type="hidden" name="agent" value="{{.A}}"><input type="hidden" name="target" value="{{.B}}"><input type="hidden" name="generation" value="{{.Generation}}"><button name="decision" value="accept">수신 owner로 수락</button><button name="decision" value="deny">수신 owner로 거절</button></form>{{end}}<form method="post" action="/home/unpair"><input type="hidden" name="agent" value="{{.A}}"><input type="hidden" name="target" value="{{.B}}"><input type="hidden" name="generation" value="{{.Generation}}"><button>관계 철회</button></form></section>{{end}}{{else}}<p>관계가 없습니다.</p>{{end}}<p>수락 전·철회 후 메시지는 거부됩니다. pending은 24시간 후 만료됩니다.</p></section><section><h2>승인 요청</h2>{{if .Gates}}<ul>{{range .Gates}}<li><a href="/home/gates/{{.ID}}">{{.Parent}}</a> 상태: {{.State}}</li>{{end}}</ul>{{else}}<p>승인 요청이 없습니다.</p>{{end}}</section><section><h2>로그아웃</h2><p>로그아웃과 전체 로그아웃은 브라우저 세션만 끝냅니다. 별도로 연결한 agent의 키와 자격은 철회하지 않습니다.</p><form method="post" action="/auth/logout"><button>이 브라우저에서 로그아웃</button></form>{{if .Recent}}<form method="post" action="/auth/logout-all"><button>모든 브라우저에서 로그아웃</button></form>{{else}}<p>모든 브라우저에서 로그아웃하려면 5분 안에 이메일을 다시 확인해야 합니다.</p><form method="post" action="/auth/reauth"><button>이메일 다시 확인</button></form>{{end}}<h3>계정 비활성화</h3><p>상태: 준비 중. 아직 요청할 수 없습니다.</p></section></html>{{end}}
 `))
 
 var notices = map[string]string{
@@ -214,15 +215,27 @@ func expired(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/?n=expired", http.StatusSeeOther)
 }
 
+// memberHit resolves the browser session and spends one request from the member's budget, or from the source IP's
+// anonymous budget when the session is invalid, so failed and refused requests count too (PS-11).
+// A non-zero retry means the budget refused the request; the transaction keeps the spent budget even on error.
+func (s *Service) memberHit(st *State, r *http.Request, now time.Time, rates func(string) []bucket) (string, *Session, time.Time, error) {
+	id, session, err := st.session(readCookie(r, sessionCookie), now)
+	buckets := anonymousRate(s.clientIP(r))
+	if err == nil {
+		buckets = rates(id)
+	}
+	_, retry := st.hit(now, buckets...)
+	return id, session, retry, err
+}
+
 func (s *Service) homePage(w http.ResponseWriter, r *http.Request) {
-	token := readCookie(r, sessionCookie)
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, session, err := st.session(token, now)
+		id, session, retry, err := s.memberHit(st, r, now, memberRate)
+		if !retry.IsZero() {
+			return refusal{429, limited(retry), false}, nil
+		}
 		if err != nil {
 			return nil, err
-		}
-		if ok, retry := st.hit(now, memberRate(id)...); !ok {
-			return map[string]any{"Title": "내 KnowsLink", "Problem": limited(retry), "limited": true}, nil
 		}
 		m := st.Members[id]
 		agents, pairs, gates := []string{}, []memberPair{}, []*Gate{}
@@ -255,23 +268,22 @@ func (s *Service) homePage(w http.ResponseWriter, r *http.Request) {
 		render(w, 503, "start", startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
 		return
 	}
-	v := value.(map[string]any)
-	if v["limited"] == true {
-		render(w, 429, "head", v)
+	if v, ok := value.(refusal); ok {
+		refused(w, "내 KnowsLink", v)
 		return
 	}
-	render(w, 200, "home", v)
+	render(w, 200, "home", value.(map[string]any))
 }
 
 func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
-	token, ip := readCookie(r, sessionCookie), s.clientIP(r)
+	ip := s.clientIP(r)
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, err := st.session(token, now)
+		id, _, retry, err := s.memberHit(st, r, now, memberRate)
+		if !retry.IsZero() {
+			return started{Retry: retry, Limited: true}, nil
+		}
 		if err != nil {
 			return nil, err
-		}
-		if ok, retry := st.hit(now, memberRate(id)...); !ok {
-			return started{Retry: retry, Limited: true}, nil
 		}
 		email := st.Members[id].Email
 		pending, code, retry, ok := st.startChallenge(email, ip, now)
@@ -283,7 +295,7 @@ func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
 	}
 	result := value.(started)
 	if result.Limited {
-		render(w, 429, "head", map[string]any{"Title": "내 KnowsLink", "Problem": limited(result.Retry)})
+		refused(w, "내 KnowsLink", refusal{429, limited(result.Retry), false})
 		return
 	}
 	s.deliverCode(w, r, result)
@@ -292,6 +304,17 @@ func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
 type refusal struct {
 	status  int
 	problem string
+	reauth  bool
+}
+
+// refused shows a refusal with the next step its problem names: back home (login when the session is gone)
+// and, when the refusal asks for it, the email re-check.
+func refused(w http.ResponseWriter, title string, v refusal) {
+	back := "/home"
+	if v.status == 401 {
+		back = "/"
+	}
+	render(w, v.status, "refusal", map[string]any{"Title": title, "Problem": v.problem, "Back": back, "Reauth": v.reauth})
 }
 
 // logout uses the separate cleanup budget so saturated new-work limits never block ending a session.
@@ -299,15 +322,15 @@ func (s *Service) logout(all bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		token := readCookie(r, sessionCookie)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			id, session, err := st.session(token, now)
+			id, session, retry, err := s.memberHit(st, r, now, cleanupRate)
+			if !retry.IsZero() {
+				return refusal{429, limited(retry), false}, nil
+			}
 			if err != nil {
 				return nil, err
 			}
-			if ok, retry := st.hit(now, cleanupRate(id)...); !ok {
-				return refusal{429, limited(retry)}, nil
-			}
 			if all && now.Sub(session.Verified) >= reauthWindow {
-				return refusal{403, "모든 브라우저에서 로그아웃하려면 5분 안에 이메일을 다시 확인해야 합니다."}, nil
+				return refusal{403, "모든 브라우저에서 로그아웃하려면 5분 안에 이메일을 다시 확인해야 합니다.", true}, nil
 			}
 			for key, other := range st.Sessions {
 				if key == hashToken(token) || (all && other.Member == id) {
@@ -320,8 +343,8 @@ func (s *Service) logout(all bool) http.HandlerFunc {
 			expired(w, r)
 			return
 		}
-		if refused := value.(refusal); refused.status != 0 {
-			render(w, refused.status, "head", map[string]any{"Title": "내 KnowsLink", "Problem": refused.problem})
+		if v := value.(refusal); v.status != 0 {
+			refused(w, "내 KnowsLink", v)
 			return
 		}
 		setCookie(w, sessionCookie, "", -1)

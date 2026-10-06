@@ -10,6 +10,18 @@ import (
 const connectionTTL = 10 * time.Minute
 const supportedClient = "node-local"
 
+// A revoked agent stays at least the frozen 24h revoke-metadata period, then the sweep deletes it with its keys and pairs.
+// Member agent IDs are random and never issued again, so deleting the whole agent cannot reassign a (from,kid) (C1).
+// Revoked keys of a live agent are never deleted, for the same reason.
+// The record caps are technical state protection, not product quotas: they hold the active limits (agent 5, key 3)
+// plus revoked records, so churn cannot grow the single state row without bound. New agents and keys are refused
+// at a cap; revocation never adds a record and stays available. A key-saturated agent is replaced by a new agent.
+const (
+	revokedRetention  = 24 * time.Hour
+	ownerAgentRecords = 10
+	agentKeyRecords   = 20
+)
+
 type Connection struct {
 	Owner, Agent, Client, Mode, Kid, Public, State string
 	Exp                                            time.Time
@@ -19,8 +31,11 @@ func connectionBytes(token string, c *Connection) []byte {
 	return []byte("KNOWSLINK-CONNECT\x00" + token + "\x00" + c.Owner + "\x00" + c.Agent + "\x00" + c.Client + "\x00" + c.Mode + "\x00" + c.Kid + "\x00" + c.Public)
 }
 func (st *State) agentCapacity(owner string) bool {
-	total, own := 0, 0
+	total, own, records := 0, 0, 0
 	for _, a := range st.Agents {
+		if a.Owner == owner {
+			records++
+		}
 		if !a.Revoked && st.Owners[a.Owner] != nil && st.Owners[a.Owner].Active {
 			total++
 			if a.Owner == owner {
@@ -28,7 +43,7 @@ func (st *State) agentCapacity(owner string) bool {
 			}
 		}
 	}
-	return total < 200 && own < 5
+	return total < 200 && own < 5 && records < ownerAgentRecords
 }
 func (st *State) pairCapacity(a, b string, active bool) bool {
 	total, ownA, ownB := 0, 0, 0
@@ -57,6 +72,16 @@ func (st *State) pairCapacity(a, b string, active bool) bool {
 	}
 	return total < 200 && ownA < 10
 }
+
+// revokeKeys keeps the first revocation time as each key's revoke metadata.
+func revokeKeys(a *Agent, now time.Time) {
+	for _, k := range a.Keys {
+		if !k.Revoked {
+			k.Revoked = true
+			k.Changed = now
+		}
+	}
+}
 func activeKeys(a *Agent) int {
 	n := 0
 	for _, k := range a.Keys {
@@ -74,7 +99,7 @@ func (st *State) beginConnection(owner, agent, client, mode string, now time.Tim
 	if client != supportedClient || (mode != "register" && mode != "rotate") {
 		return "", fault("unsupported_client")
 	}
-	if mode == "register" && activeKeys(a) >= 3 {
+	if (mode == "register" && activeKeys(a) >= 3) || len(a.Keys) >= agentKeyRecords {
 		return "", fault("capacity")
 	}
 	for _, c := range st.Connections {
@@ -138,14 +163,11 @@ func (st *State) completeConnection(token, client, proof string, now time.Time) 
 	if a.Keys[c.Kid] != nil {
 		return nil, fault("key_exists")
 	}
-	if c.Mode == "register" && activeKeys(a) >= 3 {
+	if (c.Mode == "register" && activeKeys(a) >= 3) || len(a.Keys) >= agentKeyRecords {
 		return nil, fault("capacity")
 	}
 	if c.Mode == "rotate" {
-		for _, k := range a.Keys {
-			k.Revoked = true
-			k.Changed = now
-		}
+		revokeKeys(a, now)
 	}
 	credential := randomToken()
 	a.Keys[c.Kid] = &Key{Public: public, Changed: now, Credential: hashToken(credential)}
@@ -178,6 +200,23 @@ func (st *State) sweepConnections(now time.Time) {
 		a, b := st.Agents[p.A], st.Agents[p.B]
 		if a != nil && b != nil && (a.Revoked || b.Revoked || st.Owners[a.Owner] == nil || st.Owners[b.Owner] == nil || !st.Owners[a.Owner].Active || !st.Owners[b.Owner].Active) {
 			p.State = "revoked"
+		}
+	}
+	deleted := map[string]bool{}
+	for id, a := range st.Agents {
+		if a.Revoked && a.Changed.IsZero() {
+			a.Changed = now // A revocation saved before its time was recorded starts the full retention now.
+		}
+		if a.Revoked && now.Sub(a.Changed) >= revokedRetention {
+			delete(st.Agents, id)
+			deleted[id] = true
+		}
+	}
+	// Pairs go with their agent so no relationship path dereferences a deleted agent.
+	// Pairs between live agents stay, so a new invite always gets a later generation.
+	for id, p := range st.Pairs {
+		if deleted[p.A] || deleted[p.B] {
+			delete(st.Pairs, id)
 		}
 	}
 }

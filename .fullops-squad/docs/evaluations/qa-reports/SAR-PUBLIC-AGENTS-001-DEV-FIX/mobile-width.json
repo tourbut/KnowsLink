@@ -1,0 +1,34 @@
+{
+ "purpose": "F-UI-01 narrow DEV check: same template states rendered at 390x844, not a designer visual PASS",
+ "engine": "/usr/bin/google-chrome via playwright-core 1.63.0 (read-only existing install), viewport 390x844",
+ "states": "home with two agents (active+revoked keys, real Ed25519 fingerprints) and one pending pair; prepared connection page",
+ "old_sha": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+ "new_sha": "85fb40e643aa1f08e1c7b2c41eac199853517cba",
+ "results": {
+  "old-home.html": {
+   "sw": 595,
+   "cw": 390,
+   "over": [],
+   "selectFont": "13.3333px"
+  },
+  "new-home.html": {
+   "sw": 390,
+   "cw": 390,
+   "over": [],
+   "selectFont": "18px"
+  },
+  "old-prepared.html": {
+   "sw": 390,
+   "cw": 390,
+   "over": [],
+   "selectFont": null
+  },
+  "new-prepared.html": {
+   "sw": 390,
+   "cw": 390,
+   "over": [],
+   "selectFont": null
+  }
+ },
+ "note": "sw=documentElement.scrollWidth, cw=clientWidth. old home 595 reproduces designer 596; new home 390 equals viewport."
+}

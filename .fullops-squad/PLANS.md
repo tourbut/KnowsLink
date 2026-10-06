@@ -836,3 +836,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 빈designer인박스에L2 POLICY제품판단을준비했다. route Codex6.1Solhigh·새세션이다. 이전UI는25분이상실행과큰브라우저로그가있고새제품판단범위여서fresh를선택했다. D09/D10추천은기술소유라제외하고D02/필요UX05만갱신한다. 답을DEV-FIX에그대로전달하고현재기술구현을유지한다.
 
 - POLICY 착수 Task task_9ff87558884b / ctx_94d86ca2989c / term_3199de66-0713-4643-bf0b-5194bd6c160b, 새Codex6.1Solhigh effective·turn_started 및지시서확인응답. 준비53aab5d를designer에ff/일반push했다. 제품답대기와기술DEV-FIX를병행하며진행checkout은변경하지않는다.
+## SAR-PUBLIC-AGENTS-001-DEV-FIX 결과 (DEV, 2026-10-06)
+
+- 리뷰 M1·L1·L3과 designer F-UI-01–04를 같은 DEV 후속에서 수정했다. 철회 agent는 24h 뒤 키·pair와 함께 삭제한다. 살아 있는 agent의 철회 키는 C1 때문에 유지한다. owner agent 기록 10·agent 키 기록 20의 기술 상한은 신규만 거부하고 철회를 허용한다.
+- 거부 요청도 rate를 저장하고 무효 세션은 익명 budget을 쓴다. connect 429는 실제 retry_at·Retry-After를 준다. 거부 화면에 홈/로그인·재확인 동작을 추가했고 모바일 지문 넘침을 고쳤다.
+- 후속 대기: OPS delta 리뷰, TESTER 보존/철회/rate 좁은 QA, designer 변경 화면 좁은 재검수와 키 기록 포화·철회 agent 표시 제품 판단, L2 designer 결정. gate·시작 화면 rate 미적용은 MESSAGES 후속 후보다. 상세: [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md).

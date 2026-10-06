@@ -29,6 +29,7 @@ type Agent struct {
 	Credential string
 	Keys       map[string]*Key
 	Revoked    bool
+	Changed    time.Time
 }
 type Pair struct {
 	A, B, Inviter, Recipient, State string
@@ -138,14 +139,16 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	state.TestAgents = s.TestAgents
 	state.sweep(now)
 	value, opErr := operation(state, now)
-	// Even a rejected request commits only cleanup, never partial operation state.
+	// Even a rejected request commits only cleanup and its spent request budget, never partial operation state.
 	if opErr != nil {
+		rates := state.Rates
 		state = newState()
 		if err = json.Unmarshal(row.Data, state); err != nil {
 			return nil, fault("unavailable")
 		}
 		state.TestAgents = s.TestAgents
 		state.sweep(now)
+		state.Rates = rates
 	}
 	raw, err := json.Marshal(state)
 	if err != nil {
