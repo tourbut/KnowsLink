@@ -50,4 +50,4 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 - 실제 이메일·공개·노우↔다닷은 미실행이다. 원본 F1은 `59b66ad`에 둔다. 보고서: [SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md).
 - 2026-10-06 SAR-PUBLIC-AGENTS-001-TESTER: 후보 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`의 별도 clone에서 교차 계정, 키 회전·철회, 관계, 한도, rate, Node CLI가 통과했다. `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다.
 - 프로브 중간 실패는 기대값 오류였다. 제품 코드는 수정하지 않았다. 새 critical/high는 없다.
-- 실제 이메일·공개·노우↔다닷은 미실행이다. 보고서: [SAR-PUBLIC-AGENTS-001-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md).
+- 실제 이메일·공개·노우↔다닷은 미실행이다. 상속 리뷰 양식은 front matter만 보정했고 H1 이후 원문은 같다. 보고서: [SAR-PUBLIC-AGENTS-001-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md).

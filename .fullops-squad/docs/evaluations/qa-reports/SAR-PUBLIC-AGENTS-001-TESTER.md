@@ -120,14 +120,29 @@ Node CLI:
 
 프로브 전후와 verify-mvp 뒤의 컨테이너 ID는 같다. `knowslink-relay-1`은 `dfcd9d187117`, `knowslink-cloudflared-1`은 `07077b9ef5e4`, `knowslink-postgres-1`은 `bc3482dc52f2`, `knowslink-migrate-1`은 `b4ef4f742466`이다.
 프로브 프로젝트는 `knowslink-agentsqa-<8 hex>`이고 실행 끝에서 `down --volumes` 했다. verify-mvp 프로젝트 `knowslink-mvp-c03730a729`도 `down --volumes` 뒤 남아 있지 않다.
-후보 clone과 `/tmp/knowslink-agents-review-d1eef9b`의 HEAD는 후보와 같고 porcelain은 비어 있다. 기록 checkout은 `fullops/tester`다. designer checkout의 기존 변경은 이 QA가 만들지 않았고 수정하지 않았다.
+후보 clone과 `/tmp/knowslink-agents-review-d1eef9b`의 HEAD는 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`이고 porcelain은 비어 있다. 마감 확인 시각 2026-10-06T13:52:47+09:00에 coor는 `df112d10b24bf9ab389ee9d7246632849a605af9`, designer는 `48d12fae2dce35d92606b264313148f0a635b64e`, dev는 `0a83bbb68aabe9f1e6d8d146de82d2509ac073af`, ops는 `70f26bc0799e65e4647731612a8d3a7c098a5fec`이다. 네 체크아웃의 porcelain은 비어 있다. 이 QA는 그 체크아웃을 수정하지 않았다.
 
 ## 미실행과 남은 항목
 
 실제 운영 SMTP, 일반 사용자 이메일, 운영 공개, Cloudflare 쓰기, 최종 노우↔다닷, Grok 계정, 다닷 실제 연결은 미실행이다. 일반 서비스 수락은 이 QA로 완료하지 않는다.
 영상과 전체 UI 캡처는 designer 소유라 하지 않았다. HTML 문구만 동작 확인에 사용했다.
 `make generate`, `make schema`, `make verify-grok-plugin`, `make verify-runtime`은 SQL과 플러그인 설치 차이가 없어 실행하지 않았다.
-LINT_PENDING
+
+## FullOps lint
+
+기록 체크아웃 `fullops/tester`에서 플러그인 `lint.py`를 깨끗한 HEAD로 실행했다. 각 실행의 product-lint(`make lint`)와 product-test(`make test`) 종료코드는 0이다.
+
+보정 전 head `1cf8f573a632bb5050be7ef946f576eb463b2089`, 기준 `9c915dc71e2a872243ffec294126d4668b4d32a4`의 결과는 ERROR 1, WARNING 8, 실행 불가 0이다. `lint.py` 종료코드는 1이다. ERROR는 `docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md`의 DOC-003이다. 그 파일은 부모 `d111fd4fde1538492c3c335e78ed510408718b2e`에 이미 있던 빈 리뷰 양식이다. product-lint와 product-test는 통과했다.
+
+coor 메시지 `msg_9161a46153fb`가 이 양식의 metadata만 보정하도록 허용했다. `deliverables.py --stamp --path docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md --owner ops --status draft --task SAR-PUBLIC-AGENTS-001-REVIEW --summary 미완료 리뷰 양식`을 실행했다. H1 `# SAR-PUBLIC-AGENTS-001-REVIEW 리뷰`부터 원문 30줄은 보정 전과 같다. front matter와 제목 앞의 빈 줄만 추가됐다. 제품 코드, 고정 후보, fixture, 실행 조건은 그대로다. ops 체크아웃 `70f26bc0799e65e4647731612a8d3a7c098a5fec`는 수정하지 않았다.
+
+보정 커밋 `4c7593802f3b6091389c147c701f1af079b7dd1d`의 기준 `9c915dc71e2a872243ffec294126d4668b4d32a4` 결과는 ERROR 0, WARNING 8, 실행 불가 0이다. `lint.py` 종료코드는 0이다. 파일 31개, 추가 1928줄이다. DOC-003은 없다. WARNING은 `PLANS.md` SIZE-001 818줄(이전 744, 상한 500), `adapters/package.json` DEP-001, `adapters/src/connect.test.ts:20` SEC-001, `connections_integration_test.go` 317줄, `http.go` 571줄, `member.go` 312줄, `store.go` 458줄, SIZE-002 1928줄이다.
+
+같은 head의 기준 `d111fd4fde1538492c3c335e78ed510408718b2e` 결과는 ERROR 0, WARNING 1, 실행 불가 0이다. `lint.py` 종료코드는 0이다. 파일 1개, 추가 5줄이다. WARNING은 `PLANS.md` SIZE-001 818줄(이전 813, 상한 500)이다.
+
+`PLANS.md`는 coor 소유다. 이 QA는 결과 절만 추가했고 헤더를 깎지 않았다. DEP-001, SEC-001, 제품 파일의 SIZE-001, SIZE-002는 기준 `9c915dc71e2a872243ffec294126d4668b4d32a4` 이후의 제품 변경이다. 이 QA는 그 파일을 수정하지 않았다. SEC-001은 제품 테스트의 더미 의심이다.
+
+산출물 strict는 이 문서를 고친 뒤 실행했다. 결과는 검사 13, 미작성 0, 문제 0, 경고 0, 종료코드 0이다.
 
 ## 산출물
 
