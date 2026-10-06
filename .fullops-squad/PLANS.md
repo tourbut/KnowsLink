@@ -820,3 +820,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 보류 후속: M1 medium 철회 agent·key·pair 기록 무한 보존은 공개 전 차단 조건이다(OPS 보존량 보호값·DEV 정리 또는 상한과 포화 테스트). L1 무효 세션 GET 익명 rate 미집계·L3 /v1/connect 429 retry_at 누락은 DEV 후속 후보다. L2 거절 뒤 재초대 허용 범위는 coor 경유 designer 판단이다. 결과: [리뷰 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md).
 
 - 독립 리뷰 msg_f67d82ace4e0/70f26bc0799e65e4647731612a8d3a7c098a5fec를 수락 가능한 기록으로 확인했다. 33 reviewed/6 skipped, actual50b08fc6 vs DEV01a10f52, 고정d1 snapshot clean/read-only, lint/test/verify-mvp/check0·critical/high0이다. M1 철회 기록 무한 증가(public차단), L1 무효세션GET rate rollback, L3 connect429 retry_at은 동일AGENTS의 DEV-FIX로 처리한다. route Opus5.5high·새세션, 이전DEV가종료되고범위가변해 fresh를선택했다. 원본QA/UI는동일d1을마무리하고 수정 영향만 후속으로검사한다. L2 거절/만료후재초대는designer UI완료후빈인박스에서제품판단하며그전까지미확정이다. 담당coor/DEV/designer, 재개조건은수정후보·제품답·독립delta검수다.
+
+- DEV-FIX 착수 Task task_356146f610c0 / ctx_3bec7b292d75 / term_27d9b21d-cff6-445a-b16e-559a58a97449, 새ClaudeOpus5.5high effective·turn_started. 준비b5df23b를DEV에ff/push해인박스전달했다. 정상완료를기다리며진행DEV/QA/UI체크아웃을변경하지않는다. coor가상대checkout의HEAD를merge해첫동기화가no-op였으나명시b5df23b로바로ff를완료한뒤착수했다.
