@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-AGENTS-001-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.01,
+        "implementation": 0.99
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.4,
+        "tester": 0.19,
+        "ops": 0.41
+      },
+      "confidence": 0.11
+    },
+    "docs": {
+      "D01": 0.2,
+      "D02": 0.23,
+      "D03": 0.26,
+      "D04": 0.22,
+      "D05": 0.26,
+      "D06": 0.32,
+      "D07": 0.25,
+      "D08": 0.21,
+      "D09": 0.28,
+      "D10": 0.32,
+      "D11": 0.2,
+      "D12": 0.34,
+      "D13": 0.31
+    }
+  },
+  "usage": {
+    "input_tokens": 2484,
+    "output_tokens": 314,
+    "cost": 0.000104328
+  },
+  "error": null,
+  "latency_seconds": 0.265,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "DEV 구현과 독립된 보안 리뷰 기록을 기존 OPS 역할에 배정한다. 제품 책임이나 기술 구현 소유권은 바꾸지 않는다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

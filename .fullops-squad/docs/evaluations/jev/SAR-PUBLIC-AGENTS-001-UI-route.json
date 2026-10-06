@@ -1,0 +1,77 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-AGENTS-001-UI",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.06,
+        "implementation": 0.94
+      },
+      "confidence": 0.87
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "tester": 0.92,
+        "dev": 0.08,
+        "ops": 0
+      },
+      "confidence": 0.88
+    },
+    "docs": {
+      "D01": 0.18,
+      "D02": 0.21,
+      "D03": 0.21,
+      "D04": 0.51,
+      "D05": 0.19,
+      "D06": 0.22,
+      "D07": 0.15,
+      "D08": 0.16,
+      "D09": 0.2,
+      "D10": 0.39,
+      "D11": 0.31,
+      "D12": 0.33,
+      "D13": 0.37
+    }
+  },
+  "usage": {
+    "input_tokens": 2503,
+    "output_tokens": 314,
+    "cost": 0.000105126
+  },
+  "error": null,
+  "latency_seconds": 0.256,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "orca-agents의 직접 시각 검수 책임인 designer에게 UX04–05 검수를 배정한다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.23,
+      "codex gpt-6.1-sol high": 0.77
+    },
+    "usage": {
+      "input_tokens": 594,
+      "output_tokens": 34,
+      "cost": 2.4948e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1"
+}
