@@ -1033,3 +1033,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다. 이 통과는 격리 fixture다. 실메일, 공개, 벽시계 24시간, 운영 부하와 복원, PS13, PS14, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다.
 
 - 마감 기록 병합 검사에서 원본 probe4/6 및 verify-mvp stdout의 trailing whitespace로 전체 git diff --cached --check exit2가 나왔다. 원본 외부 로그는 수정하지 않는다. 로그를 제외한 문서/운영 변경 diff 검사를 따로 수행하고 실패 원문은 원본 blob으로 보존한다. 실제 tester 최종60b lint는 ERROR0/WARNING1/실행불가0 및 product-lint/test passed이며 기존 실행JSON을 복사했다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-TESTER — 배정 보류
+
+- 담당: coor/tester. route의 implementation/tester·Grok4.7high 선정 기록은 유지한다.
+- 보류 사유: 사용자가 Grok 토큰 만료로 TESTER 추가 실행을 중단하고 기존 세션의 진행분까지만 마감하도록 지시했다. 이 과제는 dispatch하지 않는다. DEV-FIX-2 최종 후보도 아직 확정되지 않았다.
+- 재개 조건: 최종 고정 SHA와 사용자 허용 검증 수단을 확보한 뒤 좁은 독립 QA를 배정한다. 기존 QA60b의 원본 후보09c 실패·새 후보 QA 미실행·main 수락 차단을 유지한다. 유료 전환이나 임의 모델 교체로 재개하지 않는다.
