@@ -33,11 +33,11 @@ Jev find의 absent 판정은 낮은 확신의 추천이다. 실제 integration t
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 실제 실패 경로와 호출자를 추적하고 같은 과제에 짧은 기술 계획을 기록한다.
-- [ ] 실패 원인을 재현하거나 결정적인 원인 근거를 남긴다. 제품·테스트·시간/격리 조건을 구분한다.
-- [ ] 기존 제품 규칙 안에서 필요한 최소 수정을 수행한다. 테스트 결함이면 계약 근거를 남긴다.
-- [ ] 변경 동작과 실패·경계·관련 회귀를 검증하고 최종 코드 SHA와 증거를 인계한다.
-- [ ] 실행 기록과 완료 전문을 작성하고 work.py finish로 정규 인박스를 보존·비운다.
+- [x] 실제 실패 경로와 호출자를 추적하고 같은 과제에 짧은 기술 계획을 기록한다.
+- [x] 실패 원인을 재현하거나 결정적인 원인 근거를 남긴다. 제품·테스트·시간/격리 조건을 구분한다.
+- [x] 기존 제품 규칙 안에서 필요한 최소 수정을 수행한다. 테스트 결함이면 계약 근거를 남긴다.
+- [x] 변경 동작과 실패·경계·관련 회귀를 검증하고 최종 코드 SHA와 증거를 인계한다.
+- [x] 실행 기록과 완료 전문을 작성하고 work.py finish로 정규 인박스를 보존·비운다.
 
 DEV는 관련 제품 코드·테스트·검증 스크립트와 자기 기술 문서·과제 기록을 수정할 수 있다. coor PLANS/board와 원본 QA/UI/리뷰 증거는 수정하지 않는다. 예상 변경은 관련 소수 파일이다. SIZE/DEP 경고는 실제 규모와 이유를 보고한다.
 
@@ -56,3 +56,15 @@ Workers Free만 허용한다. 유료 전환·구독·초과 과금은 금지한�
 ## 완료 보고
 
 원인·변경 이유·브랜치·고정 SHA·검증 명령/종료코드·lint HEAD/ERROR/WARNING/실행 불가·증거 경로·한계·후속을 전문으로 쓴다. 원본 실패를 보존한다. fullops-work의 finish와 커밋 뒤 preamble의 worker_done을 한 번 보내고 idle한다.
+
+### 결과 — 2026-10-06 (dev)
+
+- 결과: succeeded. 브랜치 `fullops/dev`. 고정 코드 SHA `2111ff4f0bb6ba9deba2e4df1db64a122defcd84`(시작 `ff1e670`, RATE-FIX 후보 `f364d48` 포함). 이 보고와 finish 보존은 뒤의 문서 커밋이며 코드를 바꾸지 않는다. 상세는 [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md)이다.
+- 원인: `make verify-mvp`가 Compose relay를 실행한 채 같은 Postgres로 Go integration 검사를 돌렸다. relay의 1초 `Cleanup` sweep은 자기 allowlist `trial_codex,trial_grok`으로 `current`를 판정한다. 그래서 검사의 `agent_a→agent_b` 시험 메시지를 `failed:revoked`로 바꾸고 lease를 지운다. tick이 send~claim 구간(약 0.1초)에 들어가면 persist/ack `409 invalid_lease`, claim 403, pull nil panic이 난다. 제품 결함이 아닌 검사 격리 결함 + 1초 tick 시간 조건이다. RATE-FIX 변경과 무관하다.
+- 근거: 수정 전 순서 재현에서 relay 실행 4/40 실패, 정지 0/40. `-count=200`에서 relay 실행은 원래와 같은 `:54: POST /v1/test/persist got 409 invalid_lease`로 실패했다. 정지 상태는 200회 PASS다. 결정적 검사 `TestTrialForeignAllowlistRevokesLease`가 다른 allowlist의 빈 transaction 한 번 뒤 persist `409 invalid_lease`를 고정한다.
+- 수정: `scripts/verify_mvp.py`가 Go integration 검사 동안 `compose stop relay`, 뒤에 `compose up --wait relay`를 실행한다. 새 integration 검사 1개, README·D10 문구, contexts/dev. 제품 코드와 `TestTrialHTTP`는 바꾸지 않았다. UI 영향 없음.
+- 검증(명령 자신의 종료코드): `make lint` 0, `go vet -tags=integration ./internal/relay/` 0, `make test` 0, 수정 후 `make verify-mvp` 0(8개 command 모두 0, Go integration 전체·TS 3개 PASS, `down --volumes`), `git diff --check` 0.
+- FullOps lint `--from 9c915dc71e2a872243ffec294126d4668b4d32a4`: HEAD `2111ff4f0bb6`, 파일 6, ERROR 0, WARNING 1, 실행 불가 0. product-lint·product-test passed. WARNING은 `PLANS.md` SIZE-001(751줄)이며 coor 소유 파일의 기준 이후 변경이다. DEV는 수정하지 않았다.
+- 미실행: `make build/verify/verify-runtime/generate/schema/verify-grok-plugin`(제품 코드·SQL·adapter·런타임 설정 변경 없음, verify-mvp의 build는 실행). 실제 운영·배포·Cloudflare 쓰기·실제 노우↔다닷 시험 없음. 기존 `knowslink-*` 컨테이너·Tunnel 미접촉.
+- 증거: 실행 기록의 재현·검증 표. 원시 로그는 레포 밖 세션 scratch(`repro-before.log`, `repro-count200.log`, `verify-mvp.log`, `fullops-lint.log`)다.
+- 후속: coor의 독립 delta 리뷰·좁은 QA. 범위는 `verify_mvp.py` 순서, 새 integration 검사, README·D10 문구다. 원본 QA/UI/리뷰와 RATE-FIX 원래 실패 기록은 보존했다.
