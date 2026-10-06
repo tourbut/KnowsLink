@@ -75,9 +75,9 @@ summary: OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정
 |---|---|---|
 | make lint / make test / make verify-mvp | 중간 코드 `0ae40d5` | exit0 / exit0 / exit0, `--- PASS` 45·FAIL/SKIP 0, flood B 4종 0/18 (lint-final·test-final·mvp-final) |
 | make verify-mvp | 시험 파일 분리 `09efaf3` | exit0, `--- PASS` 45·FAIL/SKIP 0 (mvp-split) |
-| make lint | 최종 코드 `c8ac921` | FINAL_LINT (lint-final2) |
-| make test | 최종 코드 `c8ac921` | FINAL_TEST (test-final2) |
-| make verify-mvp | 최종 코드 `c8ac921` | FINAL_MVP (mvp-final2) |
+| make lint | 최종 코드 `c8ac921` | exit0 (lint-final2) |
+| make test | 최종 코드 `c8ac921` | exit0, Go race·adapter 시험 (test-final2) |
+| make verify-mvp | 최종 코드 `c8ac921` | exit0. Go 통합 `--- PASS` 45·FAIL/SKIP/DATA RACE 0, 실제 Node/MCP·Go owner UI. flood B 4종 유효 정리 거부 0/18(최대 3.2s). 자기 Compose 자원 회수 (mvp-final2) |
 | FullOps lint.py --from dfc70ca, deliverables strict, diff check | 기록 마지막 HEAD | 완료 보고에 기록한다. 기록 안에 자기 SHA를 순환 기록하지 않는다 |
 
 ## 경고 처리와 산출물
