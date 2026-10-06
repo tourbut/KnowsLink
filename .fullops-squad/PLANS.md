@@ -3,8 +3,13 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
+<<<<<<< HEAD
 tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI]
 summary: MESSAGES 원본검수 실패·DEV 수정·새fixed 수락과 운영 보류를 보존한다
+=======
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
+summary: 현재 과제·MESSAGES 후보 OPS 리뷰 high 차단과 수락·운영 보류를 기록한다
+>>>>>>> dfc70caa748a90614b02d48c78b4651345938339
 ---
 
 # KnowsLink 현재 계획
@@ -955,6 +960,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - OPS 원본 msg_22a669fe781e/6e1dac284e2fa8b42e16a5e8e59b11e0354a282b 수신. 실제cleanHEAD·빈인박스·별도세션9bc44cbf·fixed09c read-only/clean·최종pass gate6e를확인했다. H1 high/M1 medium·원본review.check exit1·형식probe는수락근거아님을보존한다. 추출SHA null과실제fullSHA/원문/HEAD 근거를함께보완한다. DEV37/OPS6e는hold이며main/origin68b제품수락차단유지. QA/UI는현재09c 원본검사를계속하고실패/원본증거를보존하도록 msg39f2/msgcfbb로안내했다. 새DEV-FIX route는Opus5.5high추천을따르며오래된DEV캐시/새모델·원인분석범위로fresh세션을사용한다.
 
+<<<<<<< HEAD
 - DEV-FIX 착수 task_a2b1a8572849/ctx_e82f453519f1/term_9ecee66b-80c1-4914-834d-a11a2d39fb97 fresh Opus5.5high effective·turn_started·규약/인박스읽기를확인했다. DEV clean후준비9fd8665를ff/일반push하고main/origin68b조상을확인한뒤dispatch했다. 같은명령안의sync+dispatch는PreToolUse 최신main검사로착수전차단되어동기화를별도완료하고정규dispatch했으며우회하지않았다. 원리뷰H1/M1/원실패·QA/UI현재09c를유지한다.
 - OPS 원본 기록최종6e의pass파일은HEAD만기록해 kind별최종JSON이부족했다. coor가clean6e에서 --froma744를한번보완해ERROR0/WARNING1/product-lint/test0 JSON을COOR/ops-final-6e1dac2-lint.json에보존했다. 원리뷰check exit1은그대로다. DEV원본/OPS원본 release 시도는 실제 retained(reason user_takeover)/processAction none으로 반환됐다. 이어 실제 terminal read는 둘 다 exited/출력없음이었다. 닫았다고 주장하지 않으며 새DEV-FIX만 active이고 원본 기록/실패는 보존했다. 진행DEV-FIX/QA/UI checkout은변경하지않는다.
 
@@ -971,3 +977,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 같은 MESSAGES 수정의 FIX-REVIEW/FIX-TESTER/UI-FIX 후속 route를준비했다. 담당coor, 현재미배정이며DEV-FIX 완료고정SHA·필수증거와해당역할빈인박스가재개조건이다. OPS Sonnet추천은인증/인가/공유동시성위험에대한fullops-review 고성능규정으로fresh Opus5.5high를적용한다. TESTER Grok4.7high·designer Codex6.1Solhigh는각등록후보선정이다. 원본UI 실제검수세션01a11134-479c-7bb2-bc5c-c080b6ecab36을Dispatch ctx_b2c603e79536의실제세션파일과대조했다. 이전세션/과거실패를재작성하지않는다.
 
 - 원본UI f154의 별도coor기록리뷰는22 reviewed/133 skipped·critical/high/medium0·low R-UI-1이다. fixeddetached/read-only snapshot·실제작성자/검토자세션차이·49PNG/정본9/DEV원본45 hash·초기exit/최종exit·cleanup/코드diff0/전문archive를대조했다. check0·동일f154의리뷰base a744보완lint/test0·ERROR0/WARNING2다. R-UI-1: Deny405 모바일오류화면은effectiveviewport980이므로정상390px PASS와구분하고수정후직접확인한다. 원본제품H1/M1/F-UI-MSG-01은그대로이며기록수락으로main제품을수락하지않는다. 임시f154 snapshot은최종증거검사/원격통합뒤Orca정리예정이다.
+=======
+## SAR-PUBLIC-MESSAGES-001-DEV-FIX DEV 수정 후보 — 2026-10-06
+
+- DEV가 OPS REVIEW-2 H-1(slow body 슬롯 점유)·M-1(경로만 보는 정리 입장)과 designer F-UI-MSG-01(gate Deny 뒤 405)을 같은 과제에서 고쳤다. 본문은 슬롯 전 10s·상한 안에서 받고, 정리 budget은 검증된 자기 기록에만 쓴다. Deny 뒤 정식 gate 화면으로 303한다. [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md).
+- 원 09c 리뷰·QA/UI 실패는 그대로 보존한다. coor 후속: 새 fixed SHA의 OPS delta 리뷰·TESTER 좁은 QA·designer UX07 재검수 뒤 main 판정. Tunnel/edge 본문 완충·L-1 실측은 OPS 공개 전 조건이다.
+>>>>>>> dfc70caa748a90614b02d48c78b4651345938339

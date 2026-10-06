@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: SAR-PUBLIC-MESSAGES-001-DEV-FIX — HTTP 입장 H1/M1 원인 수정과 안전 정리 보호 회귀 검사
 status: draft
@@ -44,3 +45,5 @@ Jev context 충돌 가능성: 원DEV 실행 기록의 자체 PASS는 H1/M1 발�
 ## 같은 과제 추가 수정 — F-UI-MSG-01
 
 2026-10-06 designer handoff msg_6194f4825058: fixed09c 일반회원 실제gate에서 Deny 거절 뒤 `/home/gates/<id>/deny` GET이405 Method Not Allowed로끝나고결과/홈복귀가없다. canonical `/home/gates/<id>`는denied이므로거절은저장됐다. 키보드Enter도같은실패다. UX07 medium이며현재DEV-FIX에서원인분석/수정·실제form/redirect/다음동작자동회귀를함께완료한다. 제품규칙/UX정본은변경하지않는다. 원본UI실패/증거는designer가보존한다. 새fixed후영향UX07는designer가직접재검수한다. H1/M1 보호·정리budget·인가/CSRF·deny기한정책은유지한다. 기술방법은DEV가정한다.
+=======
+>>>>>>> dfc70caa748a90614b02d48c78b4651345938339

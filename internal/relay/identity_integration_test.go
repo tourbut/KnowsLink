@@ -360,4 +360,32 @@ func TestEmailIdentity(t *testing.T) {
 		expect(t, bob.do("POST", "/auth/logout", nil), 303)
 		expect(t, bob.do("GET", "/home/gates/"+gateID, nil), 303, "/?n=expired")
 	})
+
+	// F-UI-MSG-01: the rendered Deny button posts to /deny; the result must reopen the canonical gate page with a way home.
+	t.Run("member_gate_deny_form_returns_to_result", func(t *testing.T) {
+		f := setup(t, pool)
+		mail := &inbox{codes: map[string]string{}}
+		f.s.Mail = mail.send
+		f.handler = f.s.Handler()
+		bob := &browser{t, f.handler, "192.0.2.82", map[string]string{}}
+		bobMember := login(t, bob, mail, "bob@example.com")
+		f.mutate(func(st *State) { st.Agents["agent_b"].Owner = st.Members[bobMember].Owner })
+		receipt := f.send(f.message(firstID, "idempotency-key-01"), "agent_a", "", 200)
+		claim := f.deliver(firstID)
+		h := wire(t, f.private["agent_b"], gateID, "agent_b", "agent_b", "relay.approval.request", "approval-key-0001", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute))
+		f.send(h, "agent_b", claim, 200)
+		page := bob.do("GET", "/home/gates/"+gateID, nil).Body.String()
+		action := regexp.MustCompile(`formaction="([^"]+)"`).FindStringSubmatch(page)
+		token := regexp.MustCompile(`name="csrf" value="([^"]+)"`).FindStringSubmatch(page)
+		if action == nil || token == nil || action[1] != "/home/gates/"+gateID+"/deny" {
+			t.Fatalf("deny form missing: %s", page)
+		}
+		w := bob.do("POST", action[1], url.Values{"csrf": {token[1]}, "decision": {"deny"}})
+		expect(t, w, 303)
+		if w.Header().Get("Location") != "/home/gates/"+gateID {
+			t.Fatalf("deny redirected to %q", w.Header().Get("Location"))
+		}
+		expect(t, bob.do("GET", w.Header().Get("Location"), nil), 200, "상태: denied", "승인·거절 버튼 비활성", `href="/home"`)
+		expect(t, bob.do("GET", "/home", nil), 200, "/home/gates/"+gateID)
+	})
 }

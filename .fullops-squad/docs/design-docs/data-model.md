@@ -4,7 +4,7 @@ title: 엔티티정의서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
@@ -61,4 +61,4 @@ DB 정본은 [D07](database-design.md), CRUD 정본은 [D09](crud-design.md)다.
 ## SAR-PUBLIC-MESSAGES-001 엔티티·보존
 
 Message는 frozen 업무 또는 별도 knowslink.text 원문을 저장한다. Message.Parent는 text 원요청 ID, ReplyID는 수락된 관련 답장 ID다. text에는 claim을 만들지 않는다. ACK 후 completion=received이고 답장 ACK 후 원요청 completion=reply_received다. 원문은 ACK·TTL·철회·lease 실패에 지운다. receipt/멱등은 수락부터24h이며 개인정보·text·credential을 metadata에 넣지 않는다.
-State.HTTP는 무작위 입장 token을 키로 하는 `{Clean,Exp}` map이다. HTTP 신규16·정리4의 공유 수용량을 센다. 정상 종료 때 삭제하고 Exp(30s) 뒤 sweep한다. 기존 직렬화 상태는 빈 map/ReplyID로 복원한다. Member·Owner·Agent·Pair와 기존 key 보존 규칙은 바꾸지 않는다.
+State.HTTP는 무작위 입장 token을 키로 하는 `{Clean,Exp}` map이다. HTTP 신규16·정리4의 공유 수용량을 센다. Clean=true는 검증된 principal의 자기 기록 정리 요청만 기록한다(SAR-PUBLIC-MESSAGES-001-DEV-FIX). 로컬 채널 선택용 유효 자격 색인은 프로세스 메모리의 파생값이며 저장하지 않는다. 정상 종료 때 삭제하고 Exp(30s) 뒤 sweep한다. 기존 직렬화 상태는 빈 map/ReplyID로 복원한다. Member·Owner·Agent·Pair와 기존 key 보존 규칙은 바꾸지 않는다.

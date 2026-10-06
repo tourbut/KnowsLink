@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
 summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
@@ -57,3 +57,6 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 2026-10-06 SAR-PUBLIC-MESSAGES-001-DEV: 일반 text는 knowslink.text.v1로 분리하고 Message·현재 인가·lease를 재사용했다. receipt 조회는 자기 agent·요청별 metadata만 표시한다.
 - bundle에 새 CLI를 import하면 import.meta.url 조건도 bundle URL이 된다. 공통 helper를 core로 옮기고 CLI 파일명을 확인한다. HTTP rate는 공통 입장에서 한 번 차감해 schema/CSRF 오류도 집계한다.
 - 실제 로컬 Node CLI/MCP 왕복·한도/재시작/철회와 외부 플랫폼·실메일·독립 QA/직접 UI 수락을 구분한다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md).
+
+- 2026-10-06 SAR-PUBLIC-MESSAGES-001-DEV-FIX: 슬롯은 본문 수신 뒤 잡는다. 슬롯 안 본문 읽기는 익명 slow body로 전체를 막는다. 예약 채널은 위조할 수 없는 근거(커밋 상태의 유효 자격 색인)로만 고르고 transaction이 다시 판정한다.
+- 예약 budget 분류는 경로가 아니라 "검증된 principal이 자기 기록을 정리하는가"로 한다. 회귀 검사는 원 결함 코드 대조군과 경로만 분류하는 변형으로 검출력을 먼저 증명한다. POST 전용 하위 경로로 303하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md)

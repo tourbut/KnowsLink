@@ -229,7 +229,11 @@ func TestPublicHTTPAdmissionAndGateSafety(t *testing.T) {
 	f.handler = (&Service{Pool: pool}).Handler()
 	expect(t, f.request("POST", "/v1/pull", f.tokens["agent_b"], []byte("{}"), ""), 429)
 	expect(t, post("/owner/gates/"+gateID, "approve"), 429)
-	expect(t, post("/owner/gates/"+gateID+"/deny", "deny"), 303)
+	w = post("/owner/gates/"+gateID+"/deny", "deny")
+	expect(t, w, 303)
+	if w.Header().Get("Location") != "/owner/gates/"+gateID {
+		t.Fatalf("owner deny redirected to %q", w.Header().Get("Location"))
+	}
 	f.mutate(func(st *State) {
 		if st.Gates[gateID].State != "denied" {
 			t.Fatal("deny while full")
@@ -370,7 +374,8 @@ func TestHTTPConcurrencyAcrossInstances(t *testing.T) {
 	})
 	handlers := []http.Handler{f.s.boundedHTTP(next), (&Service{Pool: pool}).boundedHTTP(next)}
 	call := func(h http.Handler, path string) int {
-		r := httptest.NewRequest("POST", path, strings.NewReader("{}"))
+		// Cleanup admission needs the caller's own target; an empty revoke would be new work.
+		r := httptest.NewRequest("POST", path, strings.NewReader(`{"agent":"agent_a","kid":"key1"}`))
 		r.Header.Set("Authorization", "Bearer "+f.tokens["agent_a_owner"])
 		w := httptest.NewRecorder()
 		h.ServeHTTP(w, r)
