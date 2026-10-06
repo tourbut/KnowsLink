@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX]
 summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
@@ -46,3 +46,7 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV: grant 발급·새키 PoP·owner 지문 확인·client1회 완료를 분리했다. 키별 credential을 철회 인가에 묶고 같은 agent의 rate를 공유한다.
 - pair 결정 UI는 현재 Generation을 검사한다. 옛 화면의 수락을 새 초대에 적용하지 않는다. 신규 포화 중 철회·거절은 별도 cleanup budget을 쓴다.
 - 상세 근거와 독립 QA/UI 후속: [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md). 실메일·공개·외부 계정·일반 text는 미실행이다.
+
+- 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV-FIX: 철회 기록 정리는 C1 kid 재할당 금지와 함께 판단한다. 살아 있는 agent의 철회 키는 지우지 않고, 다시 발급되지 않는 무작위 agent ID 전체만 24h 뒤 키·pair와 함께 지운다. 증가 상한은 신규 기록만 거부하고 철회는 항상 허용한다.
+- transaction이 오류로 되돌릴 때도 rate 기록은 저장한다. 세션 확인과 budget 소비는 `memberHit` 한 곳에서 한다. 새 회원 처리기는 이 helper를 쓴다.
+- Go 문자열 CSS는 DESIGN lint가 보지 않는다. 회원 화면 변경 뒤 같은 template 상태를 390×844로 렌더링해 scrollWidth를 확인한다. 이 측정은 designer 시각 판정을 대신하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md)

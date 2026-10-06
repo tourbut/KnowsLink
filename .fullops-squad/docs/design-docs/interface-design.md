@@ -179,3 +179,6 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 - 회원 세션 경로는 무효 세션 요청도 source IP 익명 budget 30/60s에 집계한다. 대상은 `GET /home`, `GET /home/connections/{id}`, `POST /auth/reauth`, `POST /auth/logout`, `POST /auth/logout-all`과 기존 회원 POST다. 무효 세션 GET은 기존처럼 `/?n=expired`로 303 이동한다. budget을 넘으면 429와 재시도 시각을 표시한다.
 - agent 생성과 키 연결은 기술 보존 상한도 검사한다. owner당 agent 기록(활성+철회) 10개, agent당 키 기록(활성+철회) 20개다. 상한이면 `POST /home/agents`·`/home/connect`·`/v1/connect/complete`·합성 `/v1/agents`·`/v1/keys`가 409 `capacity`다. 철회 요청은 기록을 늘리지 않으므로 상한에서도 허용한다.
 - 철회 agent는 철회 시각부터 24h 뒤 키·관계와 함께 삭제된다. 그 뒤 홈 목록과 관계 목록에서 사라진다. 삭제된 agent·pair를 가리키는 옛 화면 요청은 403이다.
+- 회원 거부 화면은 같은 안전 문구와 함께 다음 동작을 제공한다. 세션 무효(401)는 로그인 화면 링크다. 그 밖의 거부·429·503은 자기 홈 링크다. 재확인 필요(키·연결 권한 변경, 전체 로그아웃)는 `POST /auth/reauth` 버튼도 표시한다.
+- 연결 화면의 취소 버튼은 waiting·prepared·approved에서만 표시한다. 홈의 관계 초대 기한은 연결 기한과 같은 `YYYY-MM-DD HH:MM:SS KST`다. 기한이 없는 기존 관계는 `없음`이다.
+- 키 지문은 `<code>`로 표시하고 화면 전체에 `overflow-wrap:anywhere`를 적용한다. select는 본문 글꼴 18px·전체 폭이다. 기존 memberStyle 안의 변경이며 새 theme·의존성은 없다.

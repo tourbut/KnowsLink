@@ -113,6 +113,7 @@ Node 검사는 mock relay와 실제 crypto/파일 I/O를 사용한다. Go 검사
 | member.go·member_agents.go | `memberHit`: 세션 확인과 회원/익명 budget 소비를 한 곳에서 수행. connect 429 응답 공용화. agent 철회 시각 기록 | 같은 integration, malformed_connection_requests_spend_anonymous_budget |
 | api_rate.go | `rateLimited`: 실제 retry 시각을 초 단위 올림으로 header·body에 표시 | malformed_connection_requests_spend_anonymous_budget, 기존 TestEmailIdentity |
 | http.go | 합성 keys 경로 키 기록 상한, 반복 key-revoke의 철회 시각 유지, 없는 agent pair 거부 | TestRevokedRecordRetention |
+| member.go·member_agents.go(UI) | `refusal` template·`refused`: 거부 화면의 홈/로그인 링크와 재확인 버튼. 지문 `<code>`, 줄바꿈·select 스타일, 열린 연결만 취소, `memberPair.Deadline` KST | TestMemberPagesShowNextSteps, 기존 TestPublicAgentHTTP·TestEmailIdentity 문구 검사; designer 좁은 재검수 후속 |
 
 TestRevokedRecordRetention은 State 단위 검사다. 회전 반복의 키 기록 상한, 포화 중 철회 허용, 반복 철회 시각 유지, 30일 뒤에도 살아 있는 agent의 철회 kid 유지, owner agent 기록 상한, JSON 재시작 뒤 24h 삭제와 관련 pair 삭제, 살아 있는 pair 세대 유지, 기존 철회 agent의 보존 시작, 없는 agent pair의 nil 역참조 방지, 합성 키 경로 상한을 확인한다.
 integration은 실제 Postgres HTTP에서 동시 생성 8건 중 기록 상한이 정확히 4건만 허용하는지, 재시작 뒤 상한 유지, 포화 중 agent 철회 303, 24h 경과 agent만 삭제되는지를 확인한다. 무효 세션 GET 30회 뒤 재시작한 relay에서 GET·logout·reauth가 429인지 확인한다. connect 429의 retry_at과 Retry-After가 같고 60초 안의 미래 시각인지 확인한다.

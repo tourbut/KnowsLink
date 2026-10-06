@@ -820,3 +820,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 보류 후속: M1 medium 철회 agent·key·pair 기록 무한 보존은 공개 전 차단 조건이다(OPS 보존량 보호값·DEV 정리 또는 상한과 포화 테스트). L1 무효 세션 GET 익명 rate 미집계·L3 /v1/connect 429 retry_at 누락은 DEV 후속 후보다. L2 거절 뒤 재초대 허용 범위는 coor 경유 designer 판단이다. 결과: [리뷰 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md).
 
 - 독립 리뷰 msg_f67d82ace4e0/70f26bc0799e65e4647731612a8d3a7c098a5fec를 수락 가능한 기록으로 확인했다. 33 reviewed/6 skipped, actual50b08fc6 vs DEV01a10f52, 고정d1 snapshot clean/read-only, lint/test/verify-mvp/check0·critical/high0이다. M1 철회 기록 무한 증가(public차단), L1 무효세션GET rate rollback, L3 connect429 retry_at은 동일AGENTS의 DEV-FIX로 처리한다. route Opus5.5high·새세션, 이전DEV가종료되고범위가변해 fresh를선택했다. 원본QA/UI는동일d1을마무리하고 수정 영향만 후속으로검사한다. L2 거절/만료후재초대는designer UI완료후빈인박스에서제품판단하며그전까지미확정이다. 담당coor/DEV/designer, 재개조건은수정후보·제품답·독립delta검수다.
+
+## SAR-PUBLIC-AGENTS-001-DEV-FIX 결과 (DEV, 2026-10-06)
+
+- 리뷰 M1·L1·L3과 designer F-UI-01–04를 같은 DEV 후속에서 수정했다. 철회 agent는 24h 뒤 키·pair와 함께 삭제한다. 살아 있는 agent의 철회 키는 C1 때문에 유지한다. owner agent 기록 10·agent 키 기록 20의 기술 상한은 신규만 거부하고 철회를 허용한다.
+- 거부 요청도 rate를 저장하고 무효 세션은 익명 budget을 쓴다. connect 429는 실제 retry_at·Retry-After를 준다. 거부 화면에 홈/로그인·재확인 동작을 추가했고 모바일 지문 넘침을 고쳤다.
+- 후속 대기: OPS delta 리뷰, TESTER 보존/철회/rate 좁은 QA, designer 변경 화면 좁은 재검수와 키 기록 포화·철회 agent 표시 제품 판단, L2 designer 결정. gate·시작 화면 rate 미적용은 MESSAGES 후속 후보다. 상세: [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md).
