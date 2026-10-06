@@ -918,3 +918,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 제거 직전 review.py check 3개는 종료코드 0이었다. 셸을 종료한 뒤 Orca worktree rm을 force 없이 실행했다. Git·Orca 양쪽에서 main 및 coor/designer/dev/ops/tester 6개만 남았고 임시 경로는 없다. [실행 영수증](docs/evaluations/qa-reports/FULLOPS-WORKTREE-CLEANUP-2026-10-06/receipt.json)에 고정 full SHA·검사 결과·제거 결과를 보존했다.
 - 기존 리뷰 report/result와 원본 실패는 수정하지 않았다. 직접 경로를 검사하는 review.py check는 재검사 전에 snapshot을 재생성해야 한다. 영수증의 restore_command로 같은 경로에 같은 SHA를 detached 체크아웃하고 읽기 전용으로 검사한다. 검사 뒤 깨끗한 임시 snapshot을 제거한다. 기존 검사 통과를 제거 뒤의 검사 통과로 주장하지 않는다.
 - 운영 기록만 변경했다. 제품·실메일·운영 공개·실24h·노우↔다닷의 수락 상태는 앞의 기록을 따른다. 이 기록은 main/origin에 통합하고 유휴 clean 역할을 동기화한다.
+
+
+## SAR-PUBLIC-MESSAGES-001-DEV 재개 — 2026-10-06
+
+- 사용자의 작업 진행 요청으로 AGENTS 뒤 MESSAGES 대기를 재개한다. 기준 main/origin `7efbaa349a5857eb1eac859a955ec3a09c91f800`, integration pending 0·메시지 미처리 0·DEV clean/터미널 0·인박스 비어있음을 확인했다.
+- route implementation/dev 정상(0.91/1.00), 추천 Codex gpt-6.1-sol high를 적용한다. 새 과제이고 이전 DEV는 release됐으므로 새 세션이다. coordinator의 medium을 제품 worker에 전파하지 않았다. 정규 to_dev 지시서에 PS08–11/UX06–07·frozen·권한/세대·한도·원실패보존·Free 제한을 연결했다.
+- DEV 기술 분석/계획/구현/검사 뒤 안정 fixed 후보의 OPS 독립 보안 리뷰·TESTER QA·designer 직접 UI를 준비한다. 실제클라이언트 근거·로컬코드 수락과 PS13/실메일/공개/노우↔다닷은 분리한다. 제품 규칙 질문은 designer, 기술 판단은 DEV다.

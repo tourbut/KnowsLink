@@ -1,0 +1,181 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "7efbaa349a5857eb1eac859a955ec3a09c91f800",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "40f8de54c0426cbb18ad955afbb72d36c77fb85368f36a62724e85b699be2f8b",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-connections.go",
+      "c1-protocol.go",
+      "c2-test_messages.go",
+      "c3-member.go",
+      "c4-store.go",
+      "c5-core.ts",
+      "c6-connect.ts",
+      "c7-README.md",
+      "c8-SAR-PUBLIC-SERVICE.md",
+      "c9-SAR-PUBLIC-SERVICE-UX.md",
+      "c10-SAR-PUBLIC-AGENTS-001-DEV.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-connections.go",
+      "c1-protocol.go",
+      "c2-test_messages.go",
+      "c3-member.go",
+      "c4-store.go",
+      "c5-core.ts",
+      "c6-connect.ts",
+      "c7-README.md",
+      "c8-SAR-PUBLIC-SERVICE.md",
+      "c9-SAR-PUBLIC-SERVICE-UX.md",
+      "c10-SAR-PUBLIC-AGENTS-001-DEV.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-connections.go": {
+        "relevant": 0.53,
+        "evidence": 0.7,
+        "contradicts": 0.53,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-protocol.go": {
+        "relevant": 0.44,
+        "evidence": 0.55,
+        "contradicts": 0.26,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-test_messages.go": {
+        "relevant": 0.2,
+        "evidence": 0.28,
+        "contradicts": 0.26,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-member.go": {
+        "relevant": 0.17,
+        "evidence": 0.27,
+        "contradicts": 0.22,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-store.go": {
+        "relevant": 0.5,
+        "evidence": 0.55,
+        "contradicts": 0.16,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-core.ts": {
+        "relevant": 0.5,
+        "evidence": 0.54,
+        "contradicts": 0.18,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-README.md": {
+        "relevant": 0.19,
+        "evidence": 0.39,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-SAR-PUBLIC-SERVICE.md": {
+        "relevant": 0.47,
+        "evidence": 0.69,
+        "contradicts": 0.34,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-SAR-PUBLIC-SERVICE-UX.md": {
+        "relevant": 0.81,
+        "evidence": 0.9,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-SAR-PUBLIC-AGENTS-001-DEV.md": {
+        "relevant": 0.2,
+        "evidence": 0.6,
+        "contradicts": 0.72,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-connections.go": "internal/relay/connections.go",
+      "c1-protocol.go": "internal/relay/protocol.go",
+      "c2-test_messages.go": "internal/relay/test_messages.go",
+      "c3-member.go": "internal/relay/member.go",
+      "c4-store.go": "internal/relay/store.go",
+      "c5-core.ts": "adapters/src/core.ts",
+      "c6-connect.ts": "adapters/src/connect.ts",
+      "c7-README.md": "adapters/README.md",
+      "c8-SAR-PUBLIC-SERVICE.md": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "c9-SAR-PUBLIC-SERVICE-UX.md": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "c10-SAR-PUBLIC-AGENTS-001-DEV.md": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 31733,
+    "output_tokens": 760,
+    "cost": 0.001332786
+  },
+  "latency_seconds": 0.325,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV",
+  "role": "dev",
+  "unsent_sources": {
+    "adapters/src/connect.ts": "sensitive or oversized passage"
+  },
+  "refused_paths": []
+}

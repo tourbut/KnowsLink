@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV",
+  "head": "7efbaa349a5857eb1eac859a955ec3a09c91f800",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 82,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 82
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/connections.go",
+      "summary": "Member connections bind a short approval to one owner, agent, client and new key; only confirmed PoP creates credentials.",
+      "probability": 0.31
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.17
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.15000000000000002
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "summary": "Package relay validates frozen relay.v1 and preserves one parsed object for signing and processing.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "internal/relay/test_messages_test.go",
+      "summary": "Trial-message regression covers explicit enablement, strict text schema, signature, replay, TTL and one-use receive.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.03
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.02
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "summary": "One synthetic pull adapter verifies signatures, persists a shared inbox, ACKs, then claims before judgment.",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/src/connect.ts",
+      "summary": "Local Node onboarding keeps private keys and credentials in a new 0700 directory; stdout contains only public status.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.92,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5016,
+    "output_tokens": 869,
+    "cost": 0.000210672
+  },
+  "latency_seconds": 0.293,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

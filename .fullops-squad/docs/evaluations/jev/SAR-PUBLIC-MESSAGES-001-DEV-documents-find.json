@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV",
+  "head": "7efbaa349a5857eb1eac859a955ec3a09c91f800",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 175,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 175
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "summary": "KnowsLink 일반 이메일 서비스 수락 기준 — 일반 서비스 관계 재초대와 기록 포화의 교체·철회 목록 정리 수락 조건을 정의한다",
+      "probability": 0.39
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "summary": "일반 회원 agent 연결과 키 및 관계의 구현·검증 기록 — 일반 회원 agent 연결·키별 자격·관계·한도와 자동 검증 및 후속 QA를 기록한다",
+      "probability": 0.13
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — FullOps 규약 지도와 0.9.14 검사·문서 뷰어 기준",
+      "probability": 0.12
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다",
+      "probability": 0.11
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "summary": "KnowsLink 프로젝트 기준 — 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "summary": "relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "summary": "철회 기록 보존·rate·회원 화면 후속 수정 기록 — 철회 agent 24h 정리와 기록 상한, 거부 요청 rate 저장, connect 429 재시도 시각, 회원 화면 F-UI-01–04 수정과 검증을 기록한다",
+      "probability": 0.02
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "summary": "일반 이메일 서비스 화면 수락 기준 — 관계 재초대와 키·agent 기록 포화 및 교체·철회 목록 정리의 상태와 다음 동작을 정의한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "summary": "KnowsLink MVP 요구사항 — frozen MVP 규칙과 일반 서비스 확장 정본 및 과거 파일럿 경계를 연결한다",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.93,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 15856,
+    "output_tokens": 1799,
+    "cost": 0.000665952
+  },
+  "latency_seconds": 0.366,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
