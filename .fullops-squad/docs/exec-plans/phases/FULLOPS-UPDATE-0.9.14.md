@@ -37,3 +37,11 @@ Codex 플러그인 설치와 현재 레포의 누락된 0.9.14 운영 변경을 
 ## 보류와 재개
 
 필수 레포 적용과 역할 동기화를 구분한다. 역할 checkout에 진행 세션·변경·충돌이 있으면 coor가 최신 main SHA와 사유를 PLANS에 예약한다. 실제 idle·clean 확인 후 다음 dispatch 전에 동기화한다. 기존 invalid_lease 실패·제품 수락·사람 이메일·운영 공개·노우↔다닷 검증은 기존 담당과 재개 조건을 유지한다. 다음 제품 작업은 새 coordinator 세션에서 진행한다.
+
+## 검증 결과
+
+- 초기 main의 make lint와 make test는 종료코드 2다. adapter node_modules의 MCP SDK·zod 누락으로 TypeScript TS2307이 발생했다. 제품 코드를 수정하지 않았다. 기존 lockfile의 `npm ci --prefix adapters`로 188개 패키지를 설치했으며 종료코드 0이다. lockfile·의존성 선언 변경은 없다.
+- 준비 SHA `cf55ea1d05a5`의 실제 전체 값은 아래 보존 JSON의 head에서 확인한다. `lint.py --repo <main> --from HEAD`는 새 설정 기준으로 product-lint와 kind test의 product-test를 모두 실행했다. 종료코드 0, ERROR 0, WARNING 0, 실행 불가 0이다. 파일 차이 검사는 최종 SHA에서 최초 기준 94533b2로 별도 수행한다.
+- `deliverables.py --strict`는 13개, 문제 0, 경고 0이다. git diff --check는 종료코드 0이다. board.py 종료코드 0, HTML은 설치 패키지 제공본과 byte 동일하다. 데이터 JSON·13개 산출물과 생성 JS·inline JS 문법을 확인했다. 실제 브라우저 조작은 이번 레포에서 재실행하지 않았다. 제공 패키지의 뷰어 검증과 구분한다.
+- 고정 HEAD 검사 JSON은 docs/evaluations/FULLOPS-UPDATE-0.9.14/preflight-lint.json에 보존한다. command의 kind·exit_code·원출력으로 확인한다. 파이프라인으로 명령 종료코드를 가리지 않았다.
+- 운영 파일만 변경했으며 DEP-001 대상 의존성 변경은 없다. 코드 설계 판단·제품 UI·공개 정책 변경은 없다. 필수 적용·관련 검사 통과 후 plugin_version을 0.9.14로 갱신했다. 기존 제품 후보와 실패 수락은 그대로다.

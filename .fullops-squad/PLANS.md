@@ -686,3 +686,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 기존 역할 setup dry-run과 실행은 생성 0개다. 공통 0.3.3·lint 테스트 증거·SIZE-002·SLOP/DESIGN WARNING·UI 핸드오버·리뷰 양식·보드 뷰어를 반영한다. 상세 판정과 검증은 docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md를 따른다.
 - Orca 실제 역할 terminal 조회에서 designer/dev/ops/tester는 terminal 0개이며 Git clean이다. 과거 worker 완료·user-owned·unverifiable 기록은 보존한다. 최신 main 통합 뒤 상태를 재확인하고 가능한 역할만 동기화한다. coor는 현재 업데이트 세션 외 터미널 상태를 확인한다.
 - 제품 worker 착수·실제 이메일·외부 발송·배포는 이번 범위가 아니다. 기존 Workers Free 제한과 제품 수락 보류를 유지한다. 다음 개발은 새 coordinator 세션에서 이어간다.
+
+- 업데이트 준비 cf55ea1의 새 설정 고정 HEAD에서 product-lint·product-test 모두 exit 0, ERROR/WARNING/실행 불가 0이다. 기존 lockfile npm ci로 main의 누락 의존성을 복원했다. 문서 strict 13개·문제 0과 보드 생성·JS 문법을 통과했다. 필수 적용 완료로 레포 plugin_version을 0.9.14로 확정한다. 운영 변경만 main/origin에 공유하며 모든 역할의 기존 작업을 보존해 동기화한다.
