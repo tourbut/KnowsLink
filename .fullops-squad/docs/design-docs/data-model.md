@@ -4,7 +4,7 @@ title: 엔티티정의서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
@@ -57,3 +57,8 @@ DB 정본은 [D07](database-design.md), CRUD 정본은 [D09](crud-design.md)다.
 - 살아 있는 agent의 철회 Key는 삭제하지 않는다. kid 영구 재할당 금지를 지킨다. Key.Changed는 첫 철회 시각이며 이후 회전·반복 철회로 바뀌지 않는다.
 - 살아 있는 두 agent 사이의 거절·만료·철회 Pair는 유지한다. 재초대는 계속 이전 Generation보다 큰 세대를 받는다.
 - 기술 보존 상한: owner당 agent 기록 10개(활성 5 포함), agent당 키 기록 20개(활성 3 포함)다. 제품 quota가 아니다. 상한은 새 agent·키만 거부하고 철회는 허용한다. 키 기록이 찬 agent는 새 agent로 교체한다.
+
+## SAR-PUBLIC-MESSAGES-001 엔티티·보존
+
+Message는 frozen 업무 또는 별도 knowslink.text 원문을 저장한다. Message.Parent는 text 원요청 ID, ReplyID는 수락된 관련 답장 ID다. text에는 claim을 만들지 않는다. ACK 후 completion=received이고 답장 ACK 후 원요청 completion=reply_received다. 원문은 ACK·TTL·철회·lease 실패에 지운다. receipt/멱등은 수락부터24h이며 개인정보·text·credential을 metadata에 넣지 않는다.
+State.HTTP는 무작위 입장 token을 키로 하는 `{Clean,Exp}` map이다. HTTP 신규16·정리4의 공유 수용량을 센다. 정상 종료 때 삭제하고 Exp(30s) 뒤 sweep한다. 기존 직렬화 상태는 빈 map/ReplyID로 복원한다. Member·Owner·Agent·Pair와 기존 key 보존 규칙은 바꾸지 않는다.

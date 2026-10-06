@@ -2,9 +2,9 @@
 id: D03
 title: KnowsLink 기술 스택
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV]
 upstream: [D02]
 summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
@@ -76,3 +76,8 @@ API 문서를 고정 버전 근거로 확대 해석하지 않는다. 설치 소�
 Context7 `/modelcontextprotocol/typescript-sdk`의 registerTool·McpServer·stdio·Client 근거를 조회했다. 반환 자료는 main/v2도 섞여 있으므로 설치 1.32.0의 `dist/esm/server/mcp.d.ts`, `stdio.d.ts`와 실제 compile/handshake로 대조했다. `/websites/cursor`의 manifest·MCP 설치 경로 조회와 [공식 plugin reference](https://cursor.com/docs/reference/plugins)를 사용했다. 버전 없는 문서를 특정 Bot 앱 빌드 지원 증명으로 확대하지 않는다. Bot 앱 빌드·hosted Node는 미확인이다.
 
 공식 제품·CLI 구분, 라이브러리 설치 결과, package hash와 [검증 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)을 보존한다. Node SDK 설치·compile·로컬 MCP handshake는 실제 Grok Bot 계정 연결 증거가 아니다.
+
+## SAR-PUBLIC-MESSAGES-001 근거 재사용
+
+새 의존성·버전·lock·frontend를 추가하지 않았다. Node22 crypto/fs/child_process와 기존 MCP SDK1.32.0 registerTool·stdio Client 패턴을 재사용했다. public text JCS/서명은 실제 Go·Node 왕복으로 대조한다.
+Context7 Go resolve가 `Monthly quota exceeded`로 실패했다. 공식 [net/http go1.27.1](https://pkg.go.dev/net/http@go1.27.1)·[context](https://pkg.go.dev/context@go1.27.1)와 설치 소스의 MaxBytesReader·ResponseController.SetReadDeadline·WithTimeout을 확인했다. TimeoutHandler가 handler goroutine 완료를 보장하지 않는 점을 고려해 handler 전체를 동기 처리하고 실제 socket body deadline을 건다. bounded 채널과 공유 DB 입장 record를 쓰며 숨은 무제한 요청 대기열을 만들지 않는다. 단일 상태 row lock의 처리량 한계는 OPS 실측 후속이다.

@@ -4,7 +4,7 @@ title: 아키텍처설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -148,3 +148,12 @@ PS-04–07·해당 PS-11과 UX-04–05를 구현한다. 기존 singleton 직렬�
 회원 키는 Key.Credential 해시에 묶인다. agent-wide legacy credential은 일반 연결 완료 시 제거한다. 선택 철회와 회전은 철회 키 credential의 모든 API 인증을 막는다. 기존 합성 owner credential API는 회귀 호환을 유지한다. 합성 키 회전은 기존 전체 철회 동작이다.
 관계·키·agent 한도는 state 변경 경계에서 검사한다. HTTP rate는 DB에 저장한 stable 회원/agent principal로 집계한다. 신규·정리 budget을 분리한다. 새 key credential이나 relay 재시작은 budget을 초기화하지 않는다. pending과 active slot은 분리한다. same-owner pair도 수신 owner의 첫 수락을 요구한다. 브라우저 결정은 pair 세대를 비교한다.
 실제 이메일·외부 계정·공개·일반 text·다닷·OAuth·처리량 보장은 후속이다. HTTP 동시 수용 16/4·claim 4·queue/gate/receipt 용량은 MESSAGES/공개 수락 후속 범위다. 이번 과제의 경합은 기존 DB row lock으로 직렬화했다. 상세 구현·검증·인계는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md)에 있다.
+
+## SAR-PUBLIC-MESSAGES-001 일반 text·gate·보호
+
+PS-08–11·UX-06/07의 일반 회원 text는 `knowslink.text.v1`·`/v1/text/*`로 업무 relay.v1과 분리한다. 시험 allowlist·Service Auth·owner 공유 자격을 쓰지 않는다. 양쪽 검증 회원 owner·현재 agent/key·active pair·관계 세대를 수락·lease·persist·ACK·답장마다 확인한다. text는 business claim/H/R 부모가 되지 않는다.
+명시 송신·한 원요청의 관련 답장 1회만 지원한다. 최대 4096 UTF-8 bytes·TTL 180s다. 원문은 수신 persist→ACK 또는 만료·철회·3회 lease 실패에 지운다. ACK 후 출력 전에 client가 죽으면 text 표시를 잃을 수 있다. 자동 재송신·재답장·wake·장기 타임라인은 없다. receipt·멱등 metadata는 24h 보존한다.
+공통 수락 경계가 queue100·pending gate100·receipt20000과 claim4를 검사한다. high priority와 재시작도 상한을 우회하지 못한다. replay는 새 slot을 쓰지 않는다. H/R이 포화하면 수락하지 않는다. 이미 수락한 부모는 TTL에서 failed:expired로 안전 종료하고 claim을 해제한다. 성공 처리를 약속하지 않는다.
+HTTP 신규16·정리4는 즉시 거부하는 프로세스 채널과 공유 JSONB 입장 기록으로 제한한다. 정상 종료는 기록을 지우고 crash는 30s 뒤 회수한다. DB context·socket body read는 10s다. 모든 입장 요청의 신원별 rate를 schema·CSRF·route 검사 전에 한 번 차감한다. 입장 전 로컬 동시 상한 거부는 DB 대기열을 만들지 않는다. 정리도 인증·CSRF·현재 권한 검사를 통과해야 한다. 명시 deny 경로는 신규 슬롯이 포화해도 수신한다.
+회원 gate GET/POST가 검증본문·서명·digest·현재 세대·기한을 검사한다. hint는 escaped 참고 데이터다. approve는 인간 게이트만 통과시키며 query disclosure deny·commit 실행 불가를 유지한다.
+실제 로컬 Node CLI/MCP·일반 신원 HTTP·격리 Postgres 증거는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md)에 있다. 운영 배포·실메일·실제 Grok Bot/다닷·독립 QA·직접 시각 수락·실부하와 복원은 후속이다. 단일 행 lock의 처리량 한계는 유지한다.

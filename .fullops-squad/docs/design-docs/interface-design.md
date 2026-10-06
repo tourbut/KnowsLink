@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -192,3 +192,21 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 - `POST /home/connect` 409: 키 기록 포화는 키 철회·대기로 공간이 생기지 않음과 새 agent 연결·각 상대 새 수락을 안내한다. 새 agent를 만들 수 있으면 거부 화면에 `새 agent 만들기` 버튼을 함께 표시한다. 만들 수 없으면 그 한도 안내를 덧붙인다. 활성 키 3개의 등록은 키 철회 또는 회전을 안내한다.
 - 홈 agent 카드: 철회 agent는 최소 24시간 보존 뒤 정리되면 목록에서 사라질 수 있음과 권한 복구·백업 영구 삭제가 아님을 표시한다. 키 기록 포화 agent는 연결 수단 발급 대신 교체 안내를 표시한다. agent 철회 버튼 앞에 모든 키·관계 종료와 복구 불가를 표시한다.
 - 상품 quota·결제·정확한 정리 시각은 표시하지 않는다. 상대 이메일·회원 존재·추가 기술값은 노출하지 않는다.
+
+## SAR-PUBLIC-MESSAGES-001 — PS08–11/UX06–07
+
+| 경로 | 권한·결과 |
+|---|---|
+| POST /v1/text/send | from agent의 현재 key credential. knowslink.text.v1 서명·양측 일반 회원·active pair·세대 확인. receipt만 반환 |
+| POST /v1/text/pull | 자기 일반 회원 agent. text만 lease하며 frozen /v1/pull은 text를 제외 |
+| POST /v1/text/persist, /v1/text/ack | text 수신 agent·현재 유효 lease. durable persist 뒤 ACK. ACK에 원문 삭제 |
+| GET /v1/receipts/{id} | 현재 endpoint agent. receipt·completion·reply_to·reply_id metadata. 본문 없음 |
+| GET /home/receipts?agent=…&id=… | 회원 세션. 선택 agent 소유권·endpoint 확인. 자기 실패 metadata는 권한 철회 후에도 표시 |
+| POST /home/gates/{id}/deny, /owner/gates/{id}/deny | 현재 gate owner·csrf·decision=deny. 별도 정리 입장. approve 입력은 거부 |
+| POST /home/invite-deny | 현재 수신 owner·세대·decision=deny. 신규 포화 중 정리 입장 |
+
+text wire의 필수 필드는 `v,id,from,to,text,exp,idempotency_key,sig`다. `reply_to`만 선택이다. v는 `knowslink.text.v1`, sig는 `{alg:Ed25519,kid,value}`다. ID는 UUIDv7, key는 printable ASCII 16–128자다. raw 최대32768 bytes, text 최대4096 UTF-8 bytes다. 시간은 UTC 초 형식이며 TTL≤180s다. reply_to의 null·빈 값·미지 필드·중복 JSON·lone surrogate는 거부한다.
+서명 bytes는 `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0<kid>\0`와 JCS(`v,id,from,to,text,exp,idempotency_key,reply_to`)다. reply_to 부재는 서명에서 빈 문자열로 정규화한다. digest는 JCS(`v,from,to,text,reply_to`)의 SHA256 base64url이다. ID·exp는 재시도 digest에 넣지 않는다. 업무 wire·registry는 바꾸지 않았다.
+관련 답장은 실제 persist/ACK된 원요청의 endpoint를 반전하고 같은 현재 세대·부모 기한 안에서 한 번만 수락한다. 같은 key/내용은 현재 인가 뒤 receipt만 반환한다. 다른 내용은409 idempotency_conflict다. 답장의 ACK 뒤 부모 completion은 reply_received다. queued·leased는 수신 완료가 아니다.
+한도는409 capacity, HTTP 동시/rate는429·retry_at/Retry-After, TTL은422 expired/ttl_too_long, 키는401 invalid_auth 또는422 invalid_signature, 관계·세대는403이다. 한도 실패는 새 receipt를 만들지 않는다. `/home`은 가능한 복구 동작을 표시한다. agent receipt는 현재 인가가 없으면403이고 자기 회원 화면에서 실패를 조회한다.
+Node CLI는 `text.js send <folder> <peer> <key> --confirmed [request-id]`, `receive <folder>`, `receipt <folder> <id>`다. 본문은 비공개 stdin이다. MCP는 public-node와 자기 폴더를 명시한 경우만 knowslink_text_send/receive/receipt를 허용한다. send는 해당 송신의 명시 승인 confirmed:true를 요구한다. 수신 text는 untrusted:true다. 정상 idle pull은10s 이상이다. 실제 외부 앱/계정 수락은 후속이다.

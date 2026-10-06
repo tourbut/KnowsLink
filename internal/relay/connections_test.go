@@ -385,7 +385,9 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 		if (c.state == "pending" && c.incoming) != strings.Contains(body, `action="/home/invite-decision"`) {
 			t.Fatal("decision control", c.state)
 		}
-		lacks(body, "자동")
+		// New receipt guidance describes absent wake; keep the original relation assertion scoped to relations.
+		relation := strings.Split(strings.Split(body, "<h2>관계</h2>")[1], "<h2>연결 확인·receipt</h2>")[0]
+		lacks(relation, "자동")
 	}
 	// Agent cards: a revoked agent explains retention and disappearance; a key-full agent offers replacement, not connect.
 	body = page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_r", Status: "철회"}}})

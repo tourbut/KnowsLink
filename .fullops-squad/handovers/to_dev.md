@@ -41,10 +41,10 @@ Jev code/doc find·context 결과는 docs/evaluations/jev/SAR-PUBLIC-MESSAGES-00
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 기존 일반 연결·text/relay/MCP/Node CLI·receipt/gate 흐름과 실제 지원 인터페이스 근거를 확인하고 짧은 기술 계획을 실행 기록에 쓴다. 실제 클라이언트 호환성을 문서나 fixture만으로 주장하지 않는다.
-- [ ] PS-08/09의 비민감 연결 확인 text(4096 UTF-8 bytes·TTL180s)·관련 답장·요청/답장 ID·현재 수신/처리/실패 상태와 수동 pull 안내를 일반 회원 경로에 구현한다. frozen relay.v1 업무 wire와 분리하며 자기 agent·현재 활성 관계·키·세대를 매 단계 확인한다.
-- [ ] PS-10 회원 human gate의 검증된 typed body·정책·기한·현재 권한 approve/deny와 PS-11의 메시지/gate/receipt/HTTP·claim 자원 상한 및 안전 정리 budget을 구현한다. 기존 신원/AGENTS 한도는 재사용한다.
-- [ ] 변경 동작·오류·경계·동시성·재시작·high priority·타회원 거부·철회/재수락·idempotency 충돌·XSS/신뢰하지 않는 text·안전 정리 포화 회귀를 자동 검사한다. 자기 격리 fixture/자원만 사용하고 회수한다.
+- [x] 기존 일반 연결·text/relay/MCP/Node CLI·receipt/gate 흐름과 실제 지원 인터페이스 근거를 확인하고 짧은 기술 계획을 실행 기록에 쓴다. 실제 클라이언트 호환성을 문서나 fixture만으로 주장하지 않는다.
+- [x] PS-08/09의 비민감 연결 확인 text(4096 UTF-8 bytes·TTL180s)·관련 답장·요청/답장 ID·현재 수신/처리/실패 상태와 수동 pull 안내를 일반 회원 경로에 구현한다. frozen relay.v1 업무 wire와 분리하며 자기 agent·현재 활성 관계·키·세대를 매 단계 확인한다.
+- [x] PS-10 회원 human gate의 검증된 typed body·정책·기한·현재 권한 approve/deny와 PS-11의 메시지/gate/receipt/HTTP·claim 자원 상한 및 안전 정리 budget을 구현한다. 기존 신원/AGENTS 한도는 재사용한다.
+- [x] 변경 동작·오류·경계·동시성·재시작·high priority·타회원 거부·철회/재수락·idempotency 충돌·XSS/신뢰하지 않는 text·안전 정리 포화 회귀를 자동 검사한다. 자기 격리 fixture/자원만 사용하고 회수한다.
 - [ ] 영향 기술 산출물·실행 기록·PLANS·context를 갱신하고 최종 커밋·일반 역할push·고정HEAD lint/test·strict 검사 후 완료 전문과 worker_done을 보낸다.
 
 DEV 소유: cmd/·internal/·adapters/·db/·scripts/·제품 설정과 기술 docs/design-docs(기획 mockups 제외)·QA 자동 검사·docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md 및 자기 context/PLANS/인박스·아카이브. 제품 기획/UX 정본과 타 역할 인박스는 수정하지 않는다. 예상 범위는 relay·adapter·회원 UI·관련 검사/기술 문서이며 실제 규모와 SIZE 경고 처리 근거를 완료 보고에 쓴다. 추측한 모듈/기능은 추가하지 않는다.
@@ -70,3 +70,7 @@ Workers Free만 허용한다. 유료 플랜·구독·초과 과금은 금지한�
 ## 완료 보고
 
 브랜치/full SHA·변경 이유·기술 판단·실제 클라이언트 근거·검증한 것/미검증·산출물·명령 exit·원본 실패·SLOP/DEP/DESIGN/SIZE 처리·후속 담당/재개조건을 전문으로 남긴다. work.py finish로 로그 보존·인박스 비움·최종 커밋 뒤 동일 Run으로 worker_done을 보낸다.
+
+## DEV 기술 계획
+
+기준과 분석·짧은 계획은 `docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md`에 기록했다. 별도 knowslink.text.v1·기존 shared Message·회원 receipt·공통 용량·Node CLI/MCP를 같은 과제로 구현한다. 제품 정본·frozen relay.v1은 유지한다.

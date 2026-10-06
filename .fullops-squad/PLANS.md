@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV]
 summary: 현재 과제·AGENTS 로컬 수락과 임시 리뷰 워크트리 정리를 기록한다
 ---
 
@@ -925,3 +925,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자의 작업 진행 요청으로 AGENTS 뒤 MESSAGES 대기를 재개한다. 기준 main/origin `7efbaa349a5857eb1eac859a955ec3a09c91f800`, integration pending 0·메시지 미처리 0·DEV clean/터미널 0·인박스 비어있음을 확인했다.
 - route implementation/dev 정상(0.91/1.00), 추천 Codex gpt-6.1-sol high를 적용한다. 새 과제이고 이전 DEV는 release됐으므로 새 세션이다. coordinator의 medium을 제품 worker에 전파하지 않았다. 정규 to_dev 지시서에 PS08–11/UX06–07·frozen·권한/세대·한도·원실패보존·Free 제한을 연결했다.
 - DEV 기술 분석/계획/구현/검사 뒤 안정 fixed 후보의 OPS 독립 보안 리뷰·TESTER QA·designer 직접 UI를 준비한다. 실제클라이언트 근거·로컬코드 수락과 PS13/실메일/공개/노우↔다닷은 분리한다. 제품 규칙 질문은 designer, 기술 판단은 DEV다.
+
+## SAR-PUBLIC-MESSAGES-001-DEV 구현 후보 — 2026-10-06
+
+- DEV가 정규 인박스에서 PS08–11/UX06–07의 별도 일반 text wire·관련 답장·회원 receipt·검증본문 gate·공통 queue/gate/receipt/HTTP/claim 상한을 구현했다. 실제 로컬 Node CLI/MCP·일반 신원 HTTP·격리 Postgres를 검사한다. 상세/원본 실패/고정 SHA는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md)과 DEV 완료 로그에 기록한다.
+- coor 후속: 최종 worker_done full SHA에서 OPS의 별도 세션 독립 보안 리뷰·TESTER PS08–11 QA·designer UX06/07 직접 UI를 배정한다. 미해결 critical/high와 필수 실패는 main 수락을 차단한다. 로컬 프로세스 근거를 실제 Grok Bot/다닷 계정 왕복으로 대체하지 않는다.
+- OPS 공개 수락은 실메일·공유 서비스/Free 제한·실제 상태 크기/CPU/부하·백업/복원·철회 상태·입장 crash 회수를 확인한 뒤 재개한다. PS13 전 다닷 PS14·최종 노우↔다닷은 대기다. 운영 배포·실메일 발송·외부 계정 연결·실24h·운영 자료 삭제는 이번 DEV에서 수행하지 않았다.

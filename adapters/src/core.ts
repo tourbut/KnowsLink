@@ -94,7 +94,7 @@ export class Adapter {
       },
       body: body === undefined ? undefined : JSON.stringify(body),
     });
-    if (!response.ok) throw new Error(`relay HTTP ${response.status}`);
+
     const reader = response.body?.getReader();
     if (!reader) throw new Error("empty relay response");
     // undici reaches the body through a WeakRef to Response, so abort alone may never fail a stalled read.
@@ -115,7 +115,38 @@ export class Adapter {
         if (size > 65536) throw new Error("relay response too large");
         chunks.push(chunk.value);
       }
-      return JSON.parse(Buffer.concat(chunks).toString("utf8")) as T;
+      const value: unknown = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+      if (!response.ok) {
+        const error = value as { error?: unknown; retry_at?: unknown };
+        const known = new Set([
+          "invalid_auth",
+          "sender_not_allowed",
+          "human_invite_required",
+          "invalid_signature",
+          "expired",
+          "ttl_too_long",
+          "idempotency_conflict",
+          "id_collision",
+          "duplicate_result",
+          "invalid_lease",
+          "capacity",
+          "rate_limited",
+          "invalid_schema",
+          "invalid_json",
+          "unavailable",
+        ]);
+        const code =
+          typeof error?.error === "string" && known.has(error.error)
+            ? ` ${error.error}`
+            : "";
+        const retry =
+          typeof error?.retry_at === "string" &&
+          /^[0-9TZ:.-]+$/.test(error.retry_at)
+            ? ` retry_at=${error.retry_at}`
+            : "";
+        throw new Error(`relay HTTP ${response.status}${code}${retry}`);
+      }
+      return value as T;
     } finally {
       await reader.cancel();
     }
@@ -272,4 +303,22 @@ export async function localAdapter(): Promise<Adapter | null> {
     AGENT_KID,
     await readFile(AGENT_KEY_FILE, "utf8"),
   );
+}
+
+export function relayBase(raw: string): string {
+  const u = new URL(raw);
+  if (
+    u.username ||
+    u.password ||
+    u.pathname !== "/" ||
+    u.search ||
+    u.hash ||
+    !(
+      u.protocol === "https:" ||
+      (u.protocol === "http:" &&
+        ["localhost", "127.0.0.1", "[::1]"].includes(u.hostname))
+    )
+  )
+    throw new Error("invalid relay URL");
+  return u.origin;
 }

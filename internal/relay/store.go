@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"sync"
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -62,6 +63,7 @@ type Message struct {
 	Claimed         bool
 	ClaimToken      string
 	Completion      string
+	ReplyID         string
 }
 type Gate struct {
 	ID, Owner, Parent, Digest, From, To, Policy, State string
@@ -81,18 +83,21 @@ type State struct {
 	Sessions    map[string]*Session
 	Challenges  map[string]*Challenge
 	Rates       map[string][]time.Time
+	HTTP        map[string]admission
 	Connections map[string]*Connection
 	TestAgents  map[string]bool `json:"-"`
 }
 
 func newState() *State {
 	return &State{Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
-		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}, Connections: map[string]*Connection{}}
+		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}, Connections: map[string]*Connection{}, HTTP: map[string]admission{}}
 }
 
 type Service struct {
-	Pool       *pgxpool.Pool
-	TestAgents map[string]bool
+	httpOnce           sync.Once
+	httpNew, httpClean chan struct{}
+	Pool               *pgxpool.Pool
+	TestAgents         map[string]bool
 	// SyntheticSignup keeps the local /v1/owners fixture; public members come only from verified email.
 	SyntheticSignup bool
 	Mail            Mailer
@@ -185,9 +190,16 @@ func (st *State) current(m *Message) bool {
 	if !recipientKey {
 		return false
 	}
+	if m.Receipt.Intent == publicTextIntent && (!st.publicOwner(a.Owner) || !st.publicOwner(b.Owner)) {
+		return false
+	}
 	key := a.Keys[m.Kid]
 	if key == nil || key.Revoked {
 		return false
+	}
+	if m.Receipt.Intent == publicTextIntent && m.Parent != "" {
+		parent := st.Messages[m.Parent]
+		return parent != nil && parent.Parent == "" && parent.Receipt.Intent == publicTextIntent && parent.Generation == m.Generation && st.current(parent)
 	}
 	if m.Receipt.Intent == "relay.result" {
 		parent := st.Messages[m.Parent]
@@ -205,6 +217,11 @@ func (st *State) current(m *Message) bool {
 	return pair != nil && pair.State == "active" && pair.Generation == m.Generation
 }
 func (st *State) sweep(now time.Time) {
+	for token, a := range st.HTTP {
+		if !now.Before(a.Exp) {
+			delete(st.HTTP, token)
+		}
+	}
 	st.sweepIdentity(now)
 	st.sweepConnections(now)
 	for id, m := range st.Messages {
@@ -224,6 +241,9 @@ func (st *State) sweep(now time.Time) {
 			m.ClaimToken = ""
 		}
 		if !now.Before(m.Receipt.Exp) {
+			if m.Completion == "" && m.Claimed {
+				m.Completion = "failed:expired"
+			}
 			if m.Receipt.State != "delivered" {
 				m.Receipt.State = "failed:expired"
 			}
@@ -304,7 +324,7 @@ func policy(intent string) string {
 func (st *State) parentRouting(agent, id string) (*Message, error) {
 	m := st.Messages[id]
 	// The one parent boundary for authorize, gate-consume, H, and R: claims stored before Deliver existed fail closed (C1).
-	if m == nil || m.Receipt.To != agent || m.Deliver != "agent" || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == "relay.approval.request" || m.Receipt.Intent == "relay.test.message" || m.Receipt.State != "delivered" || !m.Claimed || !st.current(m) {
+	if m == nil || m.Receipt.To != agent || m.Deliver != "agent" || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == "relay.approval.request" || m.Receipt.Intent == "relay.test.message" || m.Receipt.Intent == publicTextIntent || m.Receipt.State != "delivered" || !m.Claimed || !st.current(m) {
 		return nil, fault("sender_not_allowed")
 	}
 	return m, nil
@@ -323,8 +343,14 @@ func (st *State) leaseMessage(agent string, now time.Time) (any, error) {
 	return st.leaseMessageFor(agent, now, false)
 }
 func (st *State) leaseMessageFor(agent string, now time.Time, testOnly bool) (any, error) {
+	return st.leaseMatching(agent, now, testOnly, false)
+}
+func (st *State) leaseMatching(agent string, now time.Time, testOnly, publicOnly bool) (any, error) {
 	var selected *Message
 	for _, m := range st.Messages {
+		if (m.Receipt.Intent == publicTextIntent) != publicOnly {
+			continue
+		}
 		if testOnly && m.Receipt.Intent != "relay.test.message" {
 			continue
 		}
@@ -437,6 +463,9 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 	}
 	if parent != nil && exp.After(parent.Receipt.Exp) {
 		return nil, fault("expired")
+	}
+	if !st.messageCapacity(e.Intent == "relay.approval.request") {
+		return nil, fault("capacity")
 	}
 	if e.Intent == "relay.approval.request" {
 		if len(parent.Envelope) == 0 {

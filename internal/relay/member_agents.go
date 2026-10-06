@@ -122,7 +122,7 @@ func (s *Service) agentRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /home/agents", s.memberAction("create"))
 	mux.HandleFunc("POST /home/connect", s.memberAction("connect"))
 	mux.HandleFunc("GET /home/connections/{id}", s.connectionPage)
-	for _, path := range []string{"confirm", "cancel", "key-revoke", "agent-revoke", "invites", "invite-decision", "unpair"} {
+	for _, path := range []string{"invite-deny", "confirm", "cancel", "key-revoke", "agent-revoke", "invites", "invite-decision", "unpair"} {
 		mux.HandleFunc("POST /home/"+path, s.memberAction(path))
 	}
 	for _, path := range []string{"info", "prepare", "complete"} {
@@ -130,6 +130,10 @@ func (s *Service) agentRoutes(mux *http.ServeMux) {
 	}
 }
 func (s *Service) memberAction(path string) http.HandlerFunc {
+	denying := path == "invite-deny"
+	if denying {
+		path = "invite-decision"
+	}
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.Body = http.MaxBytesReader(w, r.Body, 8192)
 		parseErr := r.ParseForm()
@@ -151,7 +155,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			fail := func(e error) (any, error) {
 				return refusal{statusFor(e), safeProblem(e), e.Error() == "reauth_required", false}, nil
 			}
-			if parseErr != nil {
+			if parseErr != nil || (denying && r.PostForm.Get("decision") != "deny") {
 				return fail(fault("invalid_schema"))
 			}
 			if path == "create" || path == "connect" || path == "confirm" || path == "key-revoke" || path == "agent-revoke" {
@@ -289,7 +293,7 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 					}
 				}
 			}
-			if ok, retry := st.hit(now, rates...); !ok {
+			if ok, retry := s.requestHit(st, r, now, rates...); !ok {
 				return retry, nil
 			}
 			if parseErr != nil {
