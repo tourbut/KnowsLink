@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG",
+  "head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 74,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 74
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/identity.go",
+      "summary": "Email identity binds one verified address to one member and owner; browser sessions never carry agent authority.",
+      "probability": 0.18000000000000002
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.14
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.09
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.08
+    },
+    {
+      "path": "adapters/src/trial-boundaries.test.ts",
+      "summary": "Trial client checks held/config guards, fixed remote headers, streamed response bounds and timeout without contacting remote services.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "internal/relay/test_messages_test.go",
+      "summary": "Trial-message regression covers explicit enablement, strict text schema, signature, replay, TTL and one-use receive.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/identity_test.go",
+      "summary": "Identity unit checks cover address normalization, rolling limits, one-use codes, member continuity, sessions, and SMTP.",
+      "probability": 0.05
+    },
+    {
+      "path": "adapters/src/trial-check.ts",
+      "summary": "Two independent stdio MCP agents exchange trial messages over the real isolated Postgres relay.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "summary": "Load a private trial environment without exposing credentials in shell arguments; launch Codex CLI or Grok MCP.",
+      "probability": 0.03
+    },
+    {
+      "path": "adapters/src/test-transport.ts",
+      "summary": "Explicit trial-message transport for Codex and Grok; fixed HTTPS remote origin, paired peer, no business effects.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.23,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4492,
+    "output_tokens": 790,
+    "cost": 0.000188664
+  },
+  "latency_seconds": 0.27,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

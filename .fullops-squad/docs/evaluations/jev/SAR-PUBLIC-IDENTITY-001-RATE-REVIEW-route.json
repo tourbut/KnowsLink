@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-RATE-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.01,
+        "implementation": 0.99
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "tester": 0.43,
+        "ops": 0.46,
+        "dev": 0.11
+      },
+      "confidence": 0.19
+    },
+    "docs": {
+      "D01": 0.12,
+      "D02": 0.12,
+      "D03": 0.11,
+      "D04": 0.15,
+      "D05": 0.11,
+      "D06": 0.14,
+      "D07": 0.1,
+      "D08": 0.11,
+      "D09": 0.12,
+      "D10": 0.17,
+      "D11": 0.11,
+      "D12": 0.25,
+      "D13": 0.25
+    }
+  },
+  "usage": {
+    "input_tokens": 2567,
+    "output_tokens": 314,
+    "cost": 0.000107814
+  },
+  "error": null,
+  "latency_seconds": 0.281,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "구현 DEV와 별도 세션인 OPS가 기존 후보와 QA/UI 기록의 독립 리뷰를 담당한다. 인증·공유 rate 변경은 fullops-review에 따라 고성능 모델로 검토한다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-05
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -147,4 +147,4 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | `KNOWSLINK_SMTP_URL` | `smtps://user:secret@host:465` 또는 `smtp://[user:secret@]host:port`. 비우면 코드 발송은 503 |
 | `KNOWSLINK_MAIL_FROM` | 발신 주소 하나. 이름 표기는 거부 |
 | `KNOWSLINK_CLIENT_IP_HEADER` | 빈 값 또는 `CF-Connecting-IP`. Tunnel만 relay에 닿을 때만 설정 |
-| `KNOWSLINK_SYNTHETIC_SIGNUP` | `1`일 때만 `/v1/owners` 합성 가입 허용. 공개 후보는 비움 |
+| `KNOWSLINK_SYNTHETIC_SIGNUP` | `1`일 때만 `/v1/owners` 합성 가입 허용. `.env.example`·공개 후보는 비움. 격리 로컬 fixture(`make verify-mvp`, README QA 실행)만 셸에서 `1`을 준다 |

@@ -4,6 +4,7 @@ package relay
 import (
 	"bufio"
 	"context"
+	"fmt"
 	"net"
 	"strings"
 	"testing"
@@ -286,5 +287,72 @@ func TestSMTPMailer(t *testing.T) {
 	closed, _ := SMTPMailer("smtp://127.0.0.1:1", "noreply@knowslog.com")
 	if err := closed(context.Background(), "a@b.co", "s", "b"); err == nil || strings.Contains(err.Error(), "127.0.0.1") {
 		t.Fatal("unreachable server", err)
+	}
+}
+
+// A principal refused by its own bucket must not spend the shared budget; only independent principals together fill it.
+func TestRatePrincipalIsolation(t *testing.T) {
+	st, now := newState(), time.Date(2026, 10, 5, 0, 0, 0, 0, time.UTC)
+	allowed := func(b []bucket) bool { ok, _ := st.hit(now, b...); return ok }
+	for i := 1; i <= 1000; i++ {
+		if allowed(anonymousRate("198.51.100.1")) != (i <= 30) {
+			t.Fatal("own IP limit", i)
+		}
+		if allowed(memberRate("mem_flood")) != (i <= 40) {
+			t.Fatal("own member limit", i)
+		}
+		if allowed(cleanupRate("mem_flood")) != (i <= 20) {
+			t.Fatal("own cleanup limit", i)
+		}
+	}
+	if !allowed(anonymousRate("203.0.113.9")) || !allowed(memberRate("mem_other")) || !allowed(cleanupRate("mem_other")) {
+		t.Fatal("one refused principal blocked others")
+	}
+	// Shared new budget: 30+40+1+1 used; 128 more independent hits reach exactly 200, the next one is refused.
+	for i := 0; i < 128; i++ {
+		if !allowed(anonymousRate(fmt.Sprintf("192.0.2.%d", i))) {
+			t.Fatal("below shared limit", i)
+		}
+	}
+	if allowed(anonymousRate("192.0.2.200")) || allowed(memberRate("mem_late")) {
+		t.Fatal("shared new limit not enforced")
+	}
+	// Shared cleanup: 20+1 used; 79 more reach 100.
+	for i := 0; i < 79; i++ {
+		if !allowed(cleanupRate(fmt.Sprintf("mem_%d", i))) {
+			t.Fatal("below cleanup limit", i)
+		}
+	}
+	if allowed(cleanupRate("mem_late")) {
+		t.Fatal("shared cleanup limit not enforced")
+	}
+	// Rolling window: the minute-old hits leave at now+window and everyone recovers.
+	now = now.Add(time.Minute)
+	if !allowed(anonymousRate("198.51.100.1")) || !allowed(memberRate("mem_late")) || !allowed(cleanupRate("mem_late")) {
+		t.Fatal("no recovery after window")
+	}
+}
+
+// Once the shared budget is full, refused requests from rotating sources open no new keys and do not extend saturation.
+func TestRateStateBoundedUnderRotation(t *testing.T) {
+	st, now := newState(), time.Date(2026, 10, 5, 0, 0, 0, 0, time.UTC)
+	st.hit(now, anonymousRate("198.51.100.1")...) // existing principal under its own limit
+	for i := 0; i < 199; i++ {
+		st.hit(now, anonymousRate(fmt.Sprintf("192.0.2.%d", i%7))...)
+	}
+	keys := len(st.Rates)
+	later := now.Add(30 * time.Second)
+	for i := 0; i < 10000; i++ {
+		if ok, retry := st.hit(later, anonymousRate(fmt.Sprintf("2001:db8::%x", i))...); ok || !retry.Equal(now.Add(time.Minute)) {
+			t.Fatal("fresh source passed a full shared budget", retry)
+		}
+		st.hit(later, anonymousRate("198.51.100.1")...)
+	}
+	if len(st.Rates) != keys || len(st.Rates["http:new"]) != 201 || len(st.Rates["http:ip:198.51.100.1"]) != 31 {
+		t.Fatal("state grew", len(st.Rates)-keys, len(st.Rates["http:new"]), len(st.Rates["http:ip:198.51.100.1"]))
+	}
+	// Only those 29 hits at +30s stay in the window after the first minute.
+	if ok, retry := st.hit(now.Add(time.Minute), anonymousRate("203.0.113.9")...); !ok {
+		t.Fatal("rotation extended saturation", retry)
 	}
 }

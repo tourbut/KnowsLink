@@ -1,0 +1,290 @@
+{
+  "task": "SAR-PUBLIC-IDENTITY-001-UI",
+  "fixed": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "metadata_and_links": "PASS",
+  "json_and_png_format": "PASS",
+  "text_secret_check": "PASS",
+  "product_checkout_unchanged": true,
+  "whitespace_exit": 0,
+  "visual_command_exit": 0,
+  "direct_visual_result": "PASS",
+  "new_ui_critical_high": 0,
+  "low_findings": [
+    "F-UI-01"
+  ],
+  "actual_email": "NOT_RUN",
+  "operating_public_test": "NOT_RUN",
+  "product_lint": "NOT_APPLICABLE: no product code changes",
+  "files": [
+    {
+      "path": "01-start-mobile.txt",
+      "bytes": 650,
+      "sha256": "ed659fc0d3fc46b0f1061ee8d3cc565ab2573853807f01f7cf58cb26c45f6bbb"
+    },
+    {
+      "path": "02-verify-mobile.txt",
+      "bytes": 880,
+      "sha256": "985d71f6543e6914e47a3324a2b1a838bfccff761f7d6ab8616e67e72993760f"
+    },
+    {
+      "path": "04-start-focused.png",
+      "bytes": 42968,
+      "sha256": "56688490b795b47953278bb41eda76931b60e530720555ddb6cd889b4a6d1ddb"
+    },
+    {
+      "path": "05-wrong-code.txt",
+      "bytes": 965,
+      "sha256": "3f4054d3fd0a5409e8af25842d12201954409e53e23b5c6a5a479155d8905a1c"
+    },
+    {
+      "path": "06-send-result.txt",
+      "bytes": 880,
+      "sha256": "b5fe871cd115ce10ea792d4d559f56cca0a0deeacdc23ac8a4d1197e38957394"
+    },
+    {
+      "path": "07-resend-limited.txt",
+      "bytes": 822,
+      "sha256": "b737769cd1d4104d2d5bb437f419242f4c4fe46a6ff23fc0498292c94f76e7c1"
+    },
+    {
+      "path": "08-expired-code.txt",
+      "bytes": 783,
+      "sha256": "4b17f678f5b52a863f5efaffae9ac475a0d4bdd92c30e99b10541969bf263919"
+    },
+    {
+      "path": "09-home.txt",
+      "bytes": 1575,
+      "sha256": "4560a134f3e7ecc3c4bbc28c02faf4dca3ff7dadd28f1d676f46d4e955b7bcd6"
+    },
+    {
+      "path": "11-reauth-home.txt",
+      "bytes": 1697,
+      "sha256": "1d4d4838223839c39b99a4363d2993e45a567ba74f22da38aa54e7fc6cbb11b8"
+    },
+    {
+      "path": "12-reauth-pending.txt",
+      "bytes": 880,
+      "sha256": "beb65f23c37b04f02f1efc8cf1d0c47f2451fb93f32fc4dde1384e4e725977f9"
+    },
+    {
+      "path": "13-reauth-complete.txt",
+      "bytes": 1575,
+      "sha256": "1da120648a2f711b438d4370dcefb4df48bbbab4c3e3e7c102bb2630e22803c0"
+    },
+    {
+      "path": "14-logout-all.txt",
+      "bytes": 792,
+      "sha256": "54e068d1c48841df238ead921a29e7ced95ddeb4b32308ef96ab433e1d09cdff"
+    },
+    {
+      "path": "15-old-session.txt",
+      "bytes": 738,
+      "sha256": "1be37a405d491da078dcfb4d449149094322812acfb9a75e4fe6ed11bf459833"
+    },
+    {
+      "path": "16-relogin-home.txt",
+      "bytes": 1575,
+      "sha256": "ee1a207d95077d5ca62ed9cee08eaf27379934a8606d1b6f67c497062d718cb8"
+    },
+    {
+      "path": "17-current-logout.txt",
+      "bytes": 766,
+      "sha256": "a5397e926edfb7dac6f67b7c9e55212dba68d455bb601432fd4ceed1636cc4cf"
+    },
+    {
+      "path": "18-exclusive-orca.png",
+      "bytes": 46573,
+      "sha256": "9dc9be489443a7912b0b24e3be590023365cfbca6e1d7315c1e33cf698a662b3"
+    },
+    {
+      "path": "19-mail-failed.txt",
+      "bytes": 853,
+      "sha256": "1e61dba2699f2d6dd0abbcfaa6fa5a12f127eddeb2f449847473236355fe6e64"
+    },
+    {
+      "path": "cleanup.json",
+      "bytes": 297,
+      "sha256": "865cde3418b1714f2191d5bef365b799f57219a0e26bcc40c7668a286418ecab"
+    },
+    {
+      "path": "fixture-events.jsonl",
+      "bytes": 2074,
+      "sha256": "9fa4459d8c0c5868e49605be690714cfcfc4342b091f2a52a27edaf3efa28a60"
+    },
+    {
+      "path": "orca-capture-blank.png",
+      "bytes": 2742,
+      "sha256": "1419bcae72a59a6a4596d7a17c023c15653f3bfe317d87e155d219b8ff4d9cd2"
+    },
+    {
+      "path": "orca-commands.jsonl",
+      "bytes": 20069,
+      "sha256": "5825c2d3bbb8bd1dd6c8cf6eceaad467d880950e2076dc6668abd1612e28f5b0"
+    },
+    {
+      "path": "playwright-observations.json",
+      "bytes": 6272,
+      "sha256": "2fe5c31a0500ce7dcef74f85bfe50f3dc1281d0402b5f833ccea9fae2515ce4c"
+    },
+    {
+      "path": "pw-01-start-desktop.png",
+      "bytes": 42886,
+      "sha256": "338bede57c786890cce71f249702eb41117cc0f56589f09aa4bb4918735d3654"
+    },
+    {
+      "path": "pw-01-start-desktop.txt",
+      "bytes": 392,
+      "sha256": "a2aaa3440cc619fefecf9b28c0057e3798e98c4616dd40d9f62d17da353436df"
+    },
+    {
+      "path": "pw-01-start-mobile.png",
+      "bytes": 38717,
+      "sha256": "170ce57ad09e367ce2d55e03a3681eca53e859b97887def8df869af10c1a1bd7"
+    },
+    {
+      "path": "pw-01-start-mobile.txt",
+      "bytes": 392,
+      "sha256": "a2aaa3440cc619fefecf9b28c0057e3798e98c4616dd40d9f62d17da353436df"
+    },
+    {
+      "path": "pw-02-pending-mobile.png",
+      "bytes": 47179,
+      "sha256": "85118b8afd04878394781632def5d2502e50552b7626cfc3432fabd464a92ab9"
+    },
+    {
+      "path": "pw-02-pending-mobile.txt",
+      "bytes": 518,
+      "sha256": "afb3e8107a226b8da1932da4fcd4d908ebfadec0aaaa8c598e9bfb65e264d408"
+    },
+    {
+      "path": "pw-03-wrong-mobile.png",
+      "bytes": 51968,
+      "sha256": "3a0af03dd441a5f8f72836afa488fb7adbf5b6ec357e6d608d10bd785ee36ba3"
+    },
+    {
+      "path": "pw-03-wrong-mobile.txt",
+      "bytes": 580,
+      "sha256": "5a6dd6618a52a7604828e8c5cc951cf74328af1db8849e7ca1cba80b37cbb59e"
+    },
+    {
+      "path": "pw-04-resend-limited-mobile.png",
+      "bytes": 47075,
+      "sha256": "a7dd65d2ff970dce4fda85d20f37e005a2b663262dddbbeb550c4a247a11f797"
+    },
+    {
+      "path": "pw-04-resend-limited-mobile.txt",
+      "bytes": 481,
+      "sha256": "6b70bf45ad3011820e8d4908c271c449a97d36ba57668ae6ae65819250c67877"
+    },
+    {
+      "path": "pw-05-code-expired-mobile.png",
+      "bytes": 47255,
+      "sha256": "1af4d0b963c978599ceb1d439e9e4311de3dfa6b7a5990cd00c58ae103a9aa05"
+    },
+    {
+      "path": "pw-05-code-expired-mobile.txt",
+      "bytes": 502,
+      "sha256": "093bb0fa9915192b1de76c1761084f081e7769cec24573fd5aa91a14ee04d307"
+    },
+    {
+      "path": "pw-06-home-desktop.png",
+      "bytes": 98549,
+      "sha256": "bbce46fa12b2b394fc1cfa68e0ce1a4bcdb3e58a4328290204a75882ee604336"
+    },
+    {
+      "path": "pw-06-home-desktop.txt",
+      "bytes": 828,
+      "sha256": "b38588fed21940c740828036f83423dfaa375c4672169e45e324427dcb62ddc2"
+    },
+    {
+      "path": "pw-06-home-mobile.png",
+      "bytes": 90209,
+      "sha256": "a0c263f9419067768e4a016adf2ead57cac2638d0d451e5c5262d50f9d81c9b0"
+    },
+    {
+      "path": "pw-06-home-mobile.txt",
+      "bytes": 828,
+      "sha256": "b38588fed21940c740828036f83423dfaa375c4672169e45e324427dcb62ddc2"
+    },
+    {
+      "path": "pw-07-reauth-home-desktop.png",
+      "bytes": 106739,
+      "sha256": "d0c4b09940b984b72ae9b5d4e3409fed496efe00d40060c706b93dce1c6fb650"
+    },
+    {
+      "path": "pw-07-reauth-home-desktop.txt",
+      "bytes": 919,
+      "sha256": "1151fb68b1f4fe13d792d9f8e2fe1e5e889d3b8d7fa869a0f7a4f26a7ccdbf33"
+    },
+    {
+      "path": "pw-08-reauth-pending-desktop.png",
+      "bytes": 50136,
+      "sha256": "9f8e4a45375324a17b8e4e3c1ac8bc3b5b4e967fd01279ba4294ed53728dd5eb"
+    },
+    {
+      "path": "pw-08-reauth-pending-desktop.txt",
+      "bytes": 518,
+      "sha256": "3d610b71f6e313cc6cc97a8ca524afd4953471f2f1702659ca9d2c90495c5647"
+    },
+    {
+      "path": "pw-09-logout-all-desktop.png",
+      "bytes": 53677,
+      "sha256": "09358bbe2a7197749a0be70529f0c833850e3c1a6fdb0a1f3043fb6db6e6361f"
+    },
+    {
+      "path": "pw-09-logout-all-desktop.txt",
+      "bytes": 510,
+      "sha256": "f196f291715e2ed9fb69bbec1b69963e16d4ea5cdb4d05037d72ac0940b56e76"
+    },
+    {
+      "path": "pw-10-old-session-desktop.png",
+      "bytes": 48398,
+      "sha256": "f1dd3b17f1e41eb45b48d865a64dee7788875b17f3c2bd4c5794550439982572"
+    },
+    {
+      "path": "pw-10-old-session-desktop.txt",
+      "bytes": 456,
+      "sha256": "94e23fe375b9ab7334f23f0f000d80f0f330fa9192163f4bea62128148120d9e"
+    },
+    {
+      "path": "pw-11-expired-member-gate-desktop.png",
+      "bytes": 60031,
+      "sha256": "25a565b422fc47fd82c96f253aee890b11f5e770a499b329ff52f0caf4e2d48b"
+    },
+    {
+      "path": "pw-11-expired-member-gate-desktop.txt",
+      "bytes": 430,
+      "sha256": "852ea904c3b9740e7317aff08fc0b4e156d2c6e5c2c947c9ba79a689727aafef"
+    },
+    {
+      "path": "pw-12-current-logout-desktop.png",
+      "bytes": 51630,
+      "sha256": "5dd26c93c97db8273aa66adf312b87b3ab9066aca437ff5d16f2d9f065524977"
+    },
+    {
+      "path": "pw-12-current-logout-desktop.txt",
+      "bytes": 484,
+      "sha256": "46f1369de2d18c5f51a02e3d40691d735b24612103f933fc1389980fc2b583e2"
+    },
+    {
+      "path": "pw-13-mail-failed-mobile.png",
+      "bytes": 48130,
+      "sha256": "ff2a5931243152b392b5740e93bf1203cadce40ab594fffaf706465bccbf974d"
+    },
+    {
+      "path": "pw-13-mail-failed-mobile.txt",
+      "bytes": 512,
+      "sha256": "656e6fef616733fe35c392832dd69f128f3dfe5f9f1ed3a9e4c678bc5ad3ebde"
+    },
+    {
+      "path": "visual.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "visual.log",
+      "bytes": 486,
+      "sha256": "2e358042baf211e63e8072b7aeeda7e8dc1710b0792bb1f2a8c4d38d5703277f"
+    }
+  ]
+}

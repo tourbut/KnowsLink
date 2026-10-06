@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX",
+  "head": "25b110fb694d9ccdce6a3b445d6936159b7437d5",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 74,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 74
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/identity.go",
+      "summary": "Email identity binds one verified address to one member and owner; browser sessions never carry agent authority.",
+      "probability": 0.6900000000000001
+    },
+    {
+      "path": "internal/relay/identity_test.go",
+      "summary": "Identity unit checks cover address normalization, rolling limits, one-use codes, member continuity, sessions, and SMTP.",
+      "probability": 0.15000000000000002
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.04
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.02
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.01
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "summary": "Owner-only synthetic beta lifecycle for the separate \"knowslink\" Compose project; never touches other projects.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.95,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 4296,
+    "output_tokens": 789,
+    "cost": 0.000180432
+  },
+  "latency_seconds": 0.289,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

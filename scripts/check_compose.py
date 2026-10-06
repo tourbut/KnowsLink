@@ -11,6 +11,7 @@ environment.update(
     TUNNEL_TOKEN="",
     RELAY_PORT="8080",
 )
+environment.pop("KNOWSLINK_SYNTHETIC_SIGNUP", None)
 command = [
     "docker", "compose", "--env-file", ".env.example", "--profile", "tunnel",
     "config", "--format", "json",
@@ -28,9 +29,10 @@ assert services["relay"]["depends_on"]["migrate"]["condition"] == "service_compl
 assert services["relay"]["ports"][0]["host_ip"] == "127.0.0.1"
 assert services["cloudflared"]["profiles"] == ["tunnel"]
 assert services["cloudflared"]["environment"]["TUNNEL_TOKEN"] == ""
+assert services["relay"]["environment"]["KNOWSLINK_SYNTHETIC_SIGNUP"] == "", "Synthetic signup must be closed by default"
 for variable in ("DATABASE_URL", "POSTGRES_PASSWORD"):
     missing = dict(environment)
     missing[variable] = ""
     failure = subprocess.run(command, env=missing, text=True, capture_output=True)
     assert failure.returncode != 0 and f"{variable} is required" in failure.stderr
-print("Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel")
+print("Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed")

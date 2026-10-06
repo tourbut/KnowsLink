@@ -1,0 +1,66 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.99
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "tester": 0.59,
+        "ops": 0.02,
+        "dev": 0.39
+      },
+      "confidence": 0.39
+    },
+    "docs": {
+      "D01": 0.13,
+      "D02": 0.13,
+      "D03": 0.13,
+      "D04": 0.12,
+      "D05": 0.13,
+      "D06": 0.13,
+      "D07": 0.12,
+      "D08": 0.12,
+      "D09": 0.14,
+      "D10": 0.48,
+      "D11": 0.16,
+      "D12": 0.28,
+      "D13": 0.26
+    }
+  },
+  "usage": {
+    "input_tokens": 2568,
+    "output_tokens": 314,
+    "cost": 0.000107856
+  },
+  "error": null,
+  "latency_seconds": 0.312,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "구현 DEV와 별도 OPS 세션의 고정 최종 SHA 독립 delta 리뷰. 기술 변경은 검증 격리와 lease/동시성 경로여서 fullops-review 고성능 검토 기준을 적용한다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
+}

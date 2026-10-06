@@ -1,0 +1,53 @@
+{
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV",
+  "find_head": "82a92f559bcd38e9388ec69809a3bf0adb240cb0",
+  "base": "94533b207b456c0560800fe30a7c90b2b5887c6e",
+  "head": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "changed_existing": [
+    "Makefile",
+    "README.md",
+    "cmd/relay/main.go",
+    "compose.yaml",
+    "internal/relay/http.go",
+    "internal/relay/integration_test.go",
+    "internal/relay/store.go"
+  ],
+  "new_files": [
+    ".env.example",
+    "internal/relay/identity.go",
+    "internal/relay/identity_integration_test.go",
+    "internal/relay/identity_test.go",
+    "internal/relay/mail.go",
+    "internal/relay/member.go",
+    "scripts/mail_sink.py"
+  ],
+  "candidates": [
+    ".gitignore",
+    "Makefile",
+    "README.md",
+    "adapters/README.md",
+    "adapters/src/core.ts",
+    "cmd/migrate/main.go",
+    "cmd/relay/main.go",
+    "internal/config/config.go",
+    "internal/relay/http.go",
+    "internal/relay/store.go",
+    "scripts/verify_mvp.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [
+    "Makefile",
+    "README.md",
+    "cmd/relay/main.go",
+    "internal/relay/http.go",
+    "internal/relay/store.go"
+  ],
+  "recall": 0.714,
+  "precision": 0.417,
+  "existence_status": "found",
+  "existence_correct": true,
+  "context_omitted": [
+    "adapters/README.md"
+  ],
+  "context_wrong_omits": []
+}

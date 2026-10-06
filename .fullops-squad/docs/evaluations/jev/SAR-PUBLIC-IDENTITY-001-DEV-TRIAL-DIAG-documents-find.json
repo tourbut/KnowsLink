@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG",
+  "head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 146,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 146
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-DEV 실행 기록 — 일반 이메일 코드 신원과 세션 및 자기 owner 홈의 기술 선택과 구현 및 검증과 인계를 기록한다",
+      "probability": 0.47000000000000003
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.21000000000000002
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-TESTER — 이메일 신원 fixture 시나리오 — 고정 후보의 fixture 신원 시나리오와 미실행 공개·사람 확인을 구분한다",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-TESTER — 고정 신원 QA — 후보 59b66ad의 fixture 통과, F1 medium 관측, 공개·사람 확인 BLOCKED를 기록한다",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "summary": "공통 테스트 기준",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "summary": "<과제 키> — <목표> — 역할 인박스의 작업 범위와 검증·UI·변경 보고 양식",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-TESTER — 독립 QA 실행 기록 — 고정 후보의 독립 QA 순서와 F1 관측 및 남은 공개 검증을 기록한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "summary": "SAR-MVP-003-BIDIRECTIONAL-TIMEOUT 정정 실행 기록 — 기본 10초 응답 본문 timeout이 GC 뒤 동작하지 않는 원인과 최소 수정 및 실제 10초 회귀를 기록한다",
+      "probability": 0.02
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+      "summary": "SAR-BETA-001-TESTER-PUBLIC — 최신 gate와 보호된 공개 연결의 좁은 QA 시나리오 — 최신 Access gate와 공개 negative HTTP의 좁은 QA 절차와 통과 조건을 정의한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX 실행 기록 — 독립 리뷰 F1 rate 격리와 F4 예시 설정 수정 및 F2 판단과 검증 및 인계를 기록한다",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.21,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 12803,
+    "output_tokens": 1510,
+    "cost": 0.000537726
+  },
+  "latency_seconds": 0.315,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

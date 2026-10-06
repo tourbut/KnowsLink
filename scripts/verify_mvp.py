@@ -28,7 +28,7 @@ def main():
     environment = dict(os.environ)
     test_password = secrets.token_urlsafe(24)
     relay_port, database_port = free_port(), free_port()
-    environment.update(POSTGRES_PASSWORD=test_password, DATABASE_URL=f"postgres://knowslink:{test_password}@postgres:5432/knowslink?sslmode=disable", RELAY_PORT=str(relay_port), TUNNEL_TOKEN="", COMPOSE_PROFILES="", KNOWSLINK_TEST_AGENTS="trial_codex,trial_grok")
+    environment.update(POSTGRES_PASSWORD=test_password, DATABASE_URL=f"postgres://knowslink:{test_password}@postgres:5432/knowslink?sslmode=disable", RELAY_PORT=str(relay_port), TUNNEL_TOKEN="", COMPOSE_PROFILES="", KNOWSLINK_TEST_AGENTS="trial_codex,trial_grok", KNOWSLINK_SYNTHETIC_SIGNUP="1")
     project = "knowslink-mvp-" + uuid.uuid4().hex[:10]
     with tempfile.TemporaryDirectory(prefix="knowslink-mvp-") as temporary:
         override = Path(temporary) / "test.yaml"
@@ -37,7 +37,10 @@ def main():
         try:
             run(compose + ["up", "--build", "--wait", "relay"], environment)
             tests = dict(environment, TEST_SYNTHETIC_DATABASE="1", TEST_DATABASE_URL=f"postgres://knowslink:{test_password}@127.0.0.1:{database_port}/knowslink?sslmode=disable")
+            # Go tests own the database: the relay's 1s cleanup sweep with its own allowlist would revoke their trial leases.
+            run(compose + ["stop", "relay"], environment)
             run(["go", "test", "-tags=integration", "-race", "-count=1", "-v", "./internal/relay"], tests)
+            run(compose + ["up", "--wait", "relay"], environment)
             run(["node", "adapters/dist/synthetic.js", f"http://127.0.0.1:{relay_port}"], environment)
             run(["node", "adapters/dist/synthetic.js", f"http://127.0.0.1:{relay_port}", "--seed"], environment)
             run(["node", "adapters/dist/trial-check.js", f"http://127.0.0.1:{relay_port}"], environment)

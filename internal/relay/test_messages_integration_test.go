@@ -57,3 +57,32 @@ func TestTrialHTTP(t *testing.T) {
 	f.call("POST", "/v1/test/claim", f.tokens["agent_b"], map[string]any{"id": firstID}, 403)
 	f.call("GET", "/v1/test/receipts/"+firstID, f.tokens["agent_c"], nil, 403)
 }
+
+// A second relay with another allowlist on the same database sweeps foreign trial leases as revoked.
+// make verify-mvp therefore stops the Compose relay (allowlist trial_codex,trial_grok) during Go integration tests.
+func TestTrialForeignAllowlistRevokesLease(t *testing.T) {
+	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" || os.Getenv("TEST_DATABASE_URL") == "" {
+		t.Fatal("isolated database required")
+	}
+	pool, err := pgxpool.New(context.Background(), os.Getenv("TEST_DATABASE_URL"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer pool.Close()
+	f := setup(t, pool)
+	f.s.TestAgents = map[string]bool{"agent_a": true, "agent_b": true}
+	raw := wire(t, f.private["agent_a"], firstID, "agent_a", "agent_b", "relay.test.message", "trial-foreign-key-01", "", map[string]any{"text": "ping"}, time.Now().Add(time.Minute))
+	if w := f.request("POST", "/v1/test/send", f.tokens["agent_a"], raw, ""); w.Code != 200 {
+		t.Fatal(w.Code, w.Body)
+	}
+	lease := f.call("POST", "/v1/test/pull", f.tokens["agent_b"], map[string]any{}, 200)
+	// Same no-op transaction as Service.Cleanup in a relay started with the verify-mvp allowlist.
+	foreign := &Service{Pool: pool, TestAgents: map[string]bool{"trial_codex": true, "trial_grok": true}}
+	if _, err := foreign.transaction(context.Background(), func(*State, time.Time) (any, error) { return nil, nil }); err != nil {
+		t.Fatal(err)
+	}
+	result := f.call("POST", "/v1/test/persist", f.tokens["agent_b"], map[string]any{"id": firstID, "token": lease["lease_token"]}, 409)
+	if result["error"] != "invalid_lease" {
+		t.Fatal("foreign sweep", result)
+	}
+}

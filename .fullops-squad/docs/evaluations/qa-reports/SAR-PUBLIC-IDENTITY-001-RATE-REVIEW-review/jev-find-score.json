@@ -1,0 +1,46 @@
+{
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX",
+  "find_head": "25b110fb694d9ccdce6a3b445d6936159b7437d5",
+  "base": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "changed_existing": [
+    "README.md",
+    "internal/relay/identity.go",
+    "internal/relay/identity_integration_test.go",
+    "internal/relay/identity_test.go",
+    "scripts/check_compose.py",
+    "scripts/verify_mvp.py"
+  ],
+  "new_files": [
+    ".env.example"
+  ],
+  "candidates": [
+    ".gitignore",
+    "Makefile",
+    "README.md",
+    "deploy/knowslink/beta.sh",
+    "internal/config/config.go",
+    "internal/relay/cleanup.go",
+    "internal/relay/identity.go",
+    "internal/relay/identity_test.go",
+    "internal/relay/member.go",
+    "scripts/verify_mvp.py"
+  ],
+  "hits": [
+    "README.md",
+    "internal/relay/identity.go",
+    "internal/relay/identity_test.go",
+    "scripts/verify_mvp.py"
+  ],
+  "recall": 0.667,
+  "precision": 0.4,
+  "existence_status": "found",
+  "existence_correct": true,
+  "context_omitted": [
+    ".gitignore",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "internal/config/config.go"
+  ],
+  "context_wrong_omits": []
+}
