@@ -45,3 +45,17 @@ Codex 플러그인 설치와 현재 레포의 누락된 0.9.14 운영 변경을 
 - `deliverables.py --strict`는 13개, 문제 0, 경고 0이다. git diff --check는 종료코드 0이다. board.py 종료코드 0, HTML은 설치 패키지 제공본과 byte 동일하다. 데이터 JSON·13개 산출물과 생성 JS·inline JS 문법을 확인했다. 실제 브라우저 조작은 이번 레포에서 재실행하지 않았다. 제공 패키지의 뷰어 검증과 구분한다.
 - 고정 HEAD 검사 JSON은 docs/evaluations/FULLOPS-UPDATE-0.9.14/preflight-lint.json에 보존한다. command의 kind·exit_code·원출력으로 확인한다. 파이프라인으로 명령 종료코드를 가리지 않았다.
 - 운영 파일만 변경했으며 DEP-001 대상 의존성 변경은 없다. 코드 설계 판단·제품 UI·공개 정책 변경은 없다. 필수 적용·관련 검사 통과 후 plugin_version을 0.9.14로 갱신했다. 기존 제품 후보와 실패 수락은 그대로다.
+
+## main 통합과 역할 동기화 확인
+
+운영 변경은 main `08cf165e7e2e3208cd14b9ea1bff9da134d1fd51`에 커밋하고 origin/main에 일반 push했다. fetch와 ls-remote가 같은 SHA를 반환하며 준비 cf55ea1의 조상 관계를 확인했다. 최초 기준 94533b2의 최종 lint는 product-lint 통과, ERROR 0, WARNING 2, 실행 불가 0이다. 경고는 LINT-001 설정 변경 안내와 누적 PLANS SIZE-001이다. 설정 도입 이후 기준 cf55ea1의 같은 HEAD lint는 product-lint·product-test 모두 통과, ERROR 0, WARNING 1, 실행 불가 0이다. 경고는 누적 PLANS 길이다. 두 결과는 같은 평가 폴더의 final-diff-lint.json·final-command-lint.json에 보존한다.
+
+Orca 역할 terminal 조회에서 designer/dev/ops/tester는 0개이며 Git clean이었다. coor의 다른 터미널은 셸 프롬프트 상태이며 현재 업데이트 세션만 작업 중이었다. 다섯 역할에 main을 반영했다. coor/dev/tester의 PLANS·project 충돌은 각 역할의 기존 제품 기록·과제 키와 새 운영 절을 모두 보존해 해결했다. 제품 파일은 main으로 가져오지 않았다. 역할의 동기화 결과는 다음과 같다.
+
+- coor `d86712ae8c15812972af40a15e39ef6706af8142`
+- designer `08cf165e7e2e3208cd14b9ea1bff9da134d1fd51`
+- dev `b80ba9857296038e23251886fceef9297665dbcc`
+- ops `08cf165e7e2e3208cd14b9ea1bff9da134d1fd51`
+- tester `e12ef97fc5e74c2788d32854610170d4b4e0bc14`
+
+이 기록의 후속 main 커밋도 모든 역할에 반영한다. 진행 중 worker 동기화 예약은 없다. 제품 후보의 기존 실패·검수 보류는 유지하며 해당 후보를 이번 업데이트로 수락하지 않는다. 다음 개발은 새 coordinator 세션에서 진행한다.
