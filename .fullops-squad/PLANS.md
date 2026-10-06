@@ -755,3 +755,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 병렬 독립 검토 SAR-PUBLIC-IDENTITY-001-RATE-REVIEW를 정규 빈 OPS 인박스에 준비한다. 고정9c915dc의 원본59 이후 RATE-FIX와 TESTER/UI 기록을 검토한다. DEV 진단과 코드 소유권이 겹치지 않는다. Jev OPS Sonnet 추천 대신 인증·공유 rate 위험을 다루는 fullops-review 기준의 별도 Opus5.5 high를 적용한다. invalid_lease 해소·최종 main 수락은 아직 아니다.
 
 - OPS 리뷰 첫 Task task_85f7c3846cae / Dispatch ctx_365a939c0f04는 agent_readiness timeout이다. 실제 terminal 출력에서 Bun1.4.3 `Segmentation fault (core dumped)`와 셸 복귀를 확인했다. 과제는 시작되지 않았다. 영수증의 worker-release로 정리하고 같은 Task의 retry-of로 재개한다. 원본 실패를 보존하며 제품·범위·모델을 변경하지 않는다.
+
+- OPS 재개 영수증: 같은 Task task_85f7c3846cae / Dispatch ctx_dda6a6213308 / terminal term_438d1e65-97c9-4cf0-87b4-ed6034d4b426. 새 Opus5.5 high effective·turn_started 확인. DEV/OPS 진행 checkout은 보존한다. 원본 identity 완료 Dispatch ctx_cae2f16a8f1d는 이미 완료 근거를 인수했고 closed_exited_terminal로 release했다.
