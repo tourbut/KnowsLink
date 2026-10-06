@@ -2,9 +2,9 @@
 id: D07
 title: 데이터베이스설계서
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
@@ -30,3 +30,9 @@ receipt·멱등·gate metadata는 24h 뒤 삭제한다. Envelope와 Inbox는 만
 
 SAR-PUBLIC-IDENTITY-001은 새 migration 없이 같은 JSON에 Member·Identity·Session·Challenge·Rate map을 추가했다. 이전 상태에는 이 key가 없으므로 빈 map으로 읽는다. 따라서 rollback은 코드 복귀만으로 가능하다. 단, 이전 코드는 새 key를 버리고 저장한다. 회원·세션은 사라진다.
 세션 무활동 갱신은 회원 화면 요청마다 행을 다시 쓴다. 회원 100명 규모의 처리량은 미측정이다. 정규화와 부하 측정은 공개 수락 전 후속 과제다.
+
+## SAR-PUBLIC-AGENTS-001 저장 변경
+
+Connection map·Key.Credential·Agent.Revoked·Pair.Exp를 같은 JSONB에 추가한다. 실제 table·SQL·sqlc 계약과 migration은 바뀌지 않았다. 따라서 D08 테이블 정의 생성은 해당 없음이다. 기존 상태는 빈 Connection map과 false Revoked로 읽는다. 기존 pending Exp는 첫 sweep에서24h로 보강한다.
+grant 완료·key credential 등록·기존 key 철회는 한 transaction이다. 동시 완료는 한 번만 credential을 반환한다. agent200/owner5·키3·active pair400/owner20·pending200/송신owner10은 같은 lock에서 집행한다. pair 수락 실패는 pending을 바꾸지 않는다. 재시작에도 한도·grant 사용·철회·rate를 유지한다.
+이전 코드로 rollback하면 추가 JSON 필드를 버릴 수 있다. 특히 key별 credential·agent 철회 필드의 손실은 보안 rollback이 아니다. 공개 전에 OPS는 해당 SHA의 전체 스키마를 보존하고 철회 상태가 불명확하면 재연결·재수락 전 차단해야 한다. 레코드 보존량과 전체 처리량 검증은 공개 수락 후속이다.

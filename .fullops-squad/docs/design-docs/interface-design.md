@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -148,3 +148,27 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | `KNOWSLINK_MAIL_FROM` | 발신 주소 하나. 이름 표기는 거부 |
 | `KNOWSLINK_CLIENT_IP_HEADER` | 빈 값 또는 `CF-Connecting-IP`. Tunnel만 relay에 닿을 때만 설정 |
 | `KNOWSLINK_SYNTHETIC_SIGNUP` | `1`일 때만 `/v1/owners` 합성 가입 허용. `.env.example`·공개 후보는 비움. 격리 로컬 fixture(`make verify-mvp`, README QA 실행)만 셸에서 `1`을 준다 |
+
+## SAR-PUBLIC-AGENTS-001 회원 agent·키·관계
+
+일반 회원은 owner bearer·Basic을 쓰지 않는다. 기존 Secure 세션과 CrossOriginProtection으로 회원 POST를 보호한다. 권한·한도 실패는 새 자원을 만들지 않으며 거부 요청 rate를 저장한다. 429는 재시도 시각을 표시한다. 정리 요청도 현재 세션·대상 소유권을 요구한다.
+
+| 메서드·경로 | 입력·동작 |
+|---|---|
+| POST /home/agents | 새 무작위 ID의 미연결 자기 agent. 5분 재인증 |
+| POST /home/connect | agent, client=node-local, mode=register 또는 rotate. 5분 재인증. 화면에서만 grant token 1회 표시 |
+| GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음 |
+| POST /home/confirm | connection=grant hash. 5분 재인증·prepared 상태 검사. 아직 키 미활성 |
+| POST /home/cancel | 자기 grant 무효화. 별도 정리 budget |
+| POST /home/key-revoke | agent,kid. 5분 재인증·선택 키 철회 |
+| POST /home/agent-revoke | agent. 5분 재인증·모든 키/자격/관계 철회·slot 회수 |
+| POST /home/invites | agent,target. 자기 발신·상대 active agent 검사. 반복은 현재 pair 반환 |
+| POST /home/invite-decision | agent,target,decision=accept 또는 deny,generation. 수신 owner·현재 세대 검사 |
+| POST /home/unpair | agent,target,generation. 양측 owner·현재 세대 검사 |
+| POST /v1/connect/info | token,client. 유효 grant의 owner·agent·client·mode·기한·상태. 이메일 없음 |
+| POST /v1/connect/prepare | token,client,kid,public,proof. 새 키 PoP 저장; 기존 kid 재사용 금지 |
+| POST /v1/connect/complete | token,client,proof. approved·PoP·기한·cap 재검사 뒤 key-specific credential을 한 번 반환 |
+
+연결 PoP는 UTF-8 `KNOWSLINK-CONNECT\0<token>\0<owner>\0<agent>\0<client>\0<mode>\0<kid>\0<public>`의 Ed25519 서명이다. public/proof는 base64url-no-pad다. private key 입력은 없다. grant는 10분·1회다. register는 활성 최대3개이며 rotate는 완료 때 기존 키 전체를 철회한다. 발급·준비 실패는 기존 활성 키를 철회하지 않는다.
+`/v1/connect/*` 입력은 8192 bytes이며 strict JSON이다. 유효 grant는 해당 회원 principal 40/60s, 무효 grant는 source IP 30/60s를 적용한다. 다른 agent API는 stable agent principal을 쓴다. 신규 전체200·정리 전체100/60s와 principal 정리20/60s를 적용한다. 성공은 200, 회원 상태 변경은303, invalid_auth401·권한403·cap409·입력422·rate429다.
+연결 완료 응답을 잃으면 token 재사용으로 credential을 복구하지 않는다. 새 회전으로 복구한다. grant 만료는 완료된 키를 철회하지 않는다. 일반 text·원격 MCP OAuth·외부 계정 성공은 별도 과제다.

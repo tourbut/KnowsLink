@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV]
 summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
@@ -801,3 +801,7 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 사용자 다음 작업 진행 요청으로 기존 대기 AGENTS를 재개한다. 기준 main/origin d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b, 신원 로컬 코드 수락과 실제 이메일/공개 미검증을 구분한다. 제품 정본이 허용한 독립 구현을 진행하며 실제 화면/이메일 대기는 후속으로 유지한다.
 - Jev implementation/dev, 새 Codex gpt-6.1-sol medium을 선정했다. coordinator 모델을 전파한 것이 아니라 등록 후보의 독립 route 결과다. 기존 DEV terminal0·clean·최신 main 조상을 확인했다. 새 기능이고 이전 DEV 세션이 종료돼 fresh 세션을 사용한다. 정규 빈 인박스에 기술 계획·구현·검증·인계를 함께 작성했다. route의 UX06 언급은 MESSAGES 후속이므로 실행 범위를 UX04–05로 정정했다.
 - 완료 고정 후보의 별도 보안 리뷰·TESTER 교차계정/회전/철회/한도 QA·designer UI 검수 뒤 main 수락한다. Workers Free·서버/Tunnel·실메일/공개/최종 노우↔다닷 후속 조건을 유지한다. MESSAGES는 AGENTS 수락 뒤 대기하며 자동 배정하지 않는다.
+
+## SAR-PUBLIC-AGENTS-001-DEV 후속 인계 (2026-10-06)
+
+DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회·명시적 관계와 한도를 구현했다. 자동 검증·기술 문서와 인박스 전문은 DEV 완료 로그로 보존한다. 고정 후보의 독립 OPS 보안 delta 리뷰·TESTER 교차 계정/연결/키/관계/한도 QA·designer UX-04–05 직접 검수는 coor 배정 대기다. 실제 이메일·공개·Grok Bot/다닷 실제 계정·일반 text/UX-06·운영 보존/복구 수락은 후속이다. 독립 필수 검사와 미해결 critical/high가 통합을 차단한다. 상세는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md)을 따른다.

@@ -30,8 +30,8 @@ func seedLegacy(t *testing.T) {
 	st := newState()
 	st.Owners["owner_a"] = &Owner{hashToken("legacy_owner_a"), true}
 	st.Owners["owner_b"] = &Owner{hashToken("legacy_owner_b"), true}
-	st.Agents["agent_a"] = &Agent{"owner_a", hashToken("legacy_agent_a"), map[string]*Key{"key1": {Public: publicA}}}
-	st.Agents["agent_b"] = &Agent{"owner_b", hashToken("legacy_agent_b"), map[string]*Key{"key1": {Public: publicB}}}
+	st.Agents["agent_a"] = &Agent{Owner: "owner_a", Credential: hashToken("legacy_agent_a"), Keys: map[string]*Key{"key1": {Public: publicA}}}
+	st.Agents["agent_b"] = &Agent{Owner: "owner_b", Credential: hashToken("legacy_agent_b"), Keys: map[string]*Key{"key1": {Public: publicB}}}
 	st.Pairs[pairID("agent_a", "agent_b")] = &Pair{A: "agent_a", B: "agent_b", State: "active", Generation: 1}
 	exp := legacyNow.Add(240 * time.Second)
 	send := func(private ed25519.PrivateKey, raw []byte, deliver, claim string) {

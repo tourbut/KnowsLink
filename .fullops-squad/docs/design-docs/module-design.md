@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -90,3 +90,16 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 | `TestCodeVerificationAndMembers`, `TestSessionLifetime` | 오답 5회·만료·재사용·확인 전 owner 미생성·재로그인 연속성·issuer 분리·회원 100 수용량·절대/무활동 수명 |
 | `TestSMTPMailer` | 설정 오류의 비밀값 미노출·이름 표기 거부·실제 SMTP 대화·연결 실패 |
 | `TestEmailIdentity`(integration) | 실제 Postgres HTTP 흐름: 가입·홈·재로그인·재시작·동시 첫 가입·1회 코드·로그아웃 재사용 차단·전체 로그아웃 재확인·무활동 만료·agent credential 유지·발송 실패·429·client IP header·cross-site 403·회원 gate 격리와 결정·합성 가입 차단·한 IP/회원 flood(신규 250·정리 150) 뒤 재시작에도 자기 429 유지와 다른 source 가입 시작·다른 회원 홈·로그아웃 허용 |
+
+## SAR-PUBLIC-AGENTS-001 모듈·검증
+
+| 파일 | 책임 | 검사 |
+|---|---|---|
+| connections.go | owner/agent/client bound PoP·10분 grant·key credential·quota·pending expiry | TestConnectionApprovalAndKeyCredentials, TestConnectionFailureExpiryAndCancellation, TestAgentAndPairCapacity |
+| member_agents.go·member.go | 자기 agent/지문·지원 client·확인/취소·관계 세대 UI | TestPublicAgentHTTP; UX-04–05 직접 검수 후속 |
+| api_rate.go | agent API stable principal·별도 cleanup budget·DB 재시작 유지 | 기존 TestEmailIdentity, TestPublicAgentHTTP·TestPostgresSafety |
+| http.go·store.go | 공용 owner 동작과 키별 current-auth·철회·pair cap | 기존 업무/게이트/시험 회귀와 새 key credential 검사 |
+| adapters/src/connect.ts | Node local prepare/complete·로컬 private key·0700/0600 설정 | connect.test.ts 실제 HTTP·PoP·파일 권한·URL·1회 완료 |
+
+TestPublicAgentHTTP는 실제 Postgres에서 타 회원 ID 바꿔치기·agent로 owner권한 우회·cross-origin 확인·재인증·회전·철회된 credential의 send/pull/persist/ACK/claim/authorize/gate-consume/result·same-owner 명시 수락·동시 수락·새 세대와 옛 화면 거부·pending 만료·동시 agent cap·정리 budget·재시작·동시1회 완료·취소/만료를 검사한다. make verify-mvp의 relay-stop → Go → relay-up 순서를 유지했다. 과거 invalid_lease 원인 근거는 기존 실행 기록을 유지한다.
+Node 검사는 mock relay와 실제 crypto/파일 I/O를 사용한다. Go 검사는 actual Postgres HTTP다. 실메일·실제 플랫폼·공개·독립 QA·직접 시각 검수와 구분한다. 새 라이브러리는 없다. 기존 버전의 stdlib Ed25519·crypto·filesystem·Adapter.request 사용 근거를 재사용했다.

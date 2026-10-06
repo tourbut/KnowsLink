@@ -2,9 +2,9 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
@@ -29,3 +29,15 @@ summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 MVP-15의 최소 저장은 HTTP 응답·inbox·로그·adapter memory에도 적용한다.
 프로그램 종료 시 claim을 다른 worker에 재발급하지 않는다. 자동 복구보다 중복 처리 차단을 우선한다.
 실제 외부 효과와 positive silent done 재개는 DEC-02와 후속 업무 과제의 책임이다.
+
+## SAR-PUBLIC-AGENTS-001 상태 변경
+
+| 대상 | 생성·읽기 | 변경·회수 |
+|---|---|---|
+| Agent | 회원 세션으로 무작위 ID·미연결 상태 생성 | 자기 최근 재인증으로 전체 철회; 활성 slot 회수 |
+| Connection | 자기 세션으로10분 grant, 유효 token으로 info/prepare | 지문 확인 후 approved; client PoP complete 한 번만 키 생성; cancel/expire는 미연결; 만료 뒤24h 삭제 |
+| Key | prepared 새 공개키·PoP, owner 확인 뒤 key별 credential | register 활성 최대3, rotate 기존 키 전체 철회, selected revoke; kid 재사용 금지 |
+| Pair | agent ID 초대 pending; owner 홈의 발신/수신 상태 | 수신 owner accept/deny; 양측 unpair; UI는 Generation 검사; 24h pending expire; 재초대 새 세대 |
+| Rate | 회원·agent stable principal의 성공/거부 요청 | 신규와 정리 분리; window 뒤 회수; 재시작 유지 |
+
+agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다. 기존 owner 상태 기계의 operateAs를 회원 세션 경로가 재사용한다. 이메일/회원 디렉터리 공개 조회는 없다. fixture와 외부 계정 설치 성공을 구분한다.
