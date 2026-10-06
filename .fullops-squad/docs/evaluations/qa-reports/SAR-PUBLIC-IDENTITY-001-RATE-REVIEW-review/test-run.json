@@ -1,0 +1,70 @@
+{
+  "head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "checkout": "scratch clone of fullops-ops, detached, git status --porcelain empty before and after",
+  "commands": [
+    {
+      "name": "npm ci --prefix adapters",
+      "exit_code": 0,
+      "note": "adapter 의존성 복원(무시 대상 node_modules만 생성)"
+    },
+    {
+      "name": "make test",
+      "kind": "test",
+      "started": "2026-10-06T10:40:40+09:00",
+      "exit_code": 0
+    },
+    {
+      "name": "make verify-mvp",
+      "started": "2026-10-06T10:41:05+09:00",
+      "finished": "2026-10-06T10:42:13+09:00",
+      "compose_project": "knowslink-mvp-481713b41f",
+      "exit_code": 0,
+      "down_volumes_exit": 0
+    },
+    {
+      "name": "go test -race -count=1 -run TestReviewHitInvariants|TestRate ./internal/relay/",
+      "exit_code": 0,
+      "note": "git archive 9c915dc 사본 + 리뷰어 전용 review_rate_repro_test.go(200 seed x 3000 요청). 후보에 포함되지 않음"
+    }
+  ],
+  "go_passed": [
+    "TestApprovalAndResultInstanceBinding",
+    "TestCodeVerificationAndMembers",
+    "TestEmailIdentity",
+    "TestEmailIdentity/concurrent_first_signup_and_one_use_code",
+    "TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives",
+    "TestEmailIdentity/member_gate_isolation_and_decision",
+    "TestEmailIdentity/refused_principal_does_not_spend_shared_rate",
+    "TestEmailIdentity/send_failure_limits_and_csrf",
+    "TestEmailIdentity/verified_signup_home_and_continuity",
+    "TestFrozenFieldLimits",
+    "TestFrozenParsingAndSigning",
+    "TestGateFailureStates",
+    "TestGateFailureStates/denied",
+    "TestGateFailureStates/expired",
+    "TestGateFailureStates/revoked",
+    "TestGateFailureStates/unavailable",
+    "TestLegacyClaimsCannotReachParentBoundaries",
+    "TestNormalizeEmail",
+    "TestPendingAndConcurrentAccept",
+    "TestPostgresSafety",
+    "TestPostgresSafety/agent_cannot_process_human_delivery",
+    "TestPostgresSafety/auth_first_atomic_replay_and_rollback",
+    "TestPostgresSafety/last_lease_ack_and_shared_claim_restart",
+    "TestPostgresSafety/legacy_unrouted_claim_parent_boundaries",
+    "TestPostgresSafety/owner_gate_csrf_binding_and_no_effect",
+    "TestPostgresSafety/rotation_pop_and_key_reassignment",
+    "TestPostgresSafety/unpair_generation_expiry_max_attempts_and_clock",
+    "TestRatePrincipalIsolation",
+    "TestRateStateBoundedUnderRotation",
+    "TestRollingWindowBoundary",
+    "TestSMTPMailer",
+    "TestSendLimits",
+    "TestSessionLifetime",
+    "TestTrialHTTP",
+    "TestTrialMessageSafety",
+    "TestTrialSchemaAndConfiguration"
+  ],
+  "go_failed": [],
+  "invalid_lease_observed": false
+}

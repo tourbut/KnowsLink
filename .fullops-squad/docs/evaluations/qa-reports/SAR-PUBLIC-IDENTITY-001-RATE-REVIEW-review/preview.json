@@ -1,0 +1,773 @@
+{
+  "schema_version": "1",
+  "mode": "range",
+  "repository": "/home/shin/orca/workspaces/KnowsLink/fullops-ops",
+  "from": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "to": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "merge_base": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "total_files": 117,
+  "reviewable_count": 64,
+  "excluded_count": 53,
+  "total_insertions": 7589,
+  "total_deletions": 137,
+  "reviewable_files": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 63,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/board/index.html",
+      "status": "modified",
+      "insertions": 69,
+      "deletions": 17
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 2
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 2
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/FULLOPS-UPDATE-0.9.14/final-command-lint.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/FULLOPS-UPDATE-0.9.14/final-diff-lint.json",
+      "status": "added",
+      "insertions": 45,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/FULLOPS-UPDATE-0.9.14/preflight-lint.json",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-context.json",
+      "status": "added",
+      "insertions": 211,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-documents-find.json",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-find.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX-route.json",
+      "status": "added",
+      "insertions": 78,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-context.json",
+      "status": "added",
+      "insertions": 265,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-documents-find.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-REVIEW-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-TESTER-route.json",
+      "status": "added",
+      "insertions": 63,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-context.json",
+      "status": "added",
+      "insertions": 265,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-documents-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-find.json",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-UI-route.json",
+      "status": "added",
+      "insertions": 75,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/jev-find-score.json",
+      "status": "added",
+      "insertions": 53,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/lint.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/preview.json",
+      "status": "added",
+      "insertions": 205,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "status": "added",
+      "insertions": 133,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/result.json",
+      "status": "added",
+      "insertions": 305,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/rules.json",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/f1-result.json",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/f1_observe.py",
+      "status": "added",
+      "insertions": 296,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/probe.py",
+      "status": "added",
+      "insertions": 1012,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER-test/result.json",
+      "status": "added",
+      "insertions": 963,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "status": "added",
+      "insertions": 72,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/cleanup.json",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/playwright-observations.json",
+      "status": "added",
+      "insertions": 315,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/validation.json",
+      "status": "added",
+      "insertions": 290,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "status": "added",
+      "insertions": 35,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "status": "added",
+      "insertions": 61,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "status": "added",
+      "insertions": 144,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "status": "added",
+      "insertions": 56,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/fullops.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "status": "modified",
+      "insertions": 63,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "status": "modified",
+      "insertions": 116,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 65
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "status": "modified",
+      "insertions": 50,
+      "deletions": 6
+    },
+    {
+      "path": ".fullops-squad/lint/lint.json",
+      "status": "modified",
+      "insertions": 151,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 4
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 2
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "status": "modified",
+      "insertions": 27,
+      "deletions": 13
+    },
+    {
+      "path": "internal/relay/identity_integration_test.go",
+      "status": "modified",
+      "insertions": 33,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/identity_test.go",
+      "status": "modified",
+      "insertions": 68,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    }
+  ],
+  "excluded_files": [
+    {
+      "path": ".env.example",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/01-start-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/02-verify-mobile.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/04-start-focused.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/05-wrong-code.txt",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/06-send-result.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/07-resend-limited.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/08-expired-code.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/09-home.txt",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/11-reauth-home.txt",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/12-reauth-pending.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/13-reauth-complete.txt",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/14-logout-all.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/15-old-session.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/16-relogin-home.txt",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/17-current-logout.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/18-exclusive-orca.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/19-mail-failed.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/fixture-events.jsonl",
+      "status": "added",
+      "insertions": 22,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/orca-capture-blank.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/orca-commands.jsonl",
+      "status": "added",
+      "insertions": 183,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-desktop.txt",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-01-start-mobile.txt",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-02-pending-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-02-pending-mobile.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-03-wrong-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-03-wrong-mobile.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-04-resend-limited-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-04-resend-limited-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-05-code-expired-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-05-code-expired-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-desktop.txt",
+      "status": "added",
+      "insertions": 33,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-06-home-mobile.txt",
+      "status": "added",
+      "insertions": 33,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-07-reauth-home-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-07-reauth-home-desktop.txt",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-08-reauth-pending-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-08-reauth-pending-desktop.txt",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-09-logout-all-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-09-logout-all-desktop.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-10-old-session-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-10-old-session-desktop.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-11-expired-member-gate-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-11-expired-member-gate-desktop.txt",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-12-current-logout-desktop.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-12-current-logout-desktop.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-13-mail-failed-mobile.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/pw-13-mail-failed-mobile.txt",
+      "status": "added",
+      "insertions": 12,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/visual.exit",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI-evidence/visual.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    }
+  ],
+  "fullops_review_schema_version": 2
+}

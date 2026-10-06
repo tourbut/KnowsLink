@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "base": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "merge_base": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "config_sha256": "af02d2745ece65b55a56b7e4d5ebfc65cde83333bb170e39a54231f3f64c1bc0",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json\n\nChecking formatting...\nAll matched files use Prettier code style!\n\n> @knowslink/adapters@0.0.0 lint\n> eslint src eslint.config.mjs\n\n\n> @knowslink/adapters@0.0.0 typecheck\n> tsc --noEmit\n\nnpm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml\nChecking formatting...\nAll matched files use Prettier code style!\npython3 scripts/check_compose.py\nCompose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed\nsh -n scripts/install_bot_mcp.sh\npython3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py"
+    }
+  ],
+  "violations": [
+    {
+      "code": "LINT-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": ".fullops-squad/lint/lint.json",
+      "message": "이 브랜치의 lint 설정 변경은 적용하지 않았습니다. 병합 후 적용되니 변경 이유를 검토하세요"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "744줄(이전 684, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "333줄(이전 303, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/identity_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "332줄(이전 272, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/identity_test.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 744줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 23,
+    "added_lines": 744,
+    "errors": 0,
+    "warnings": 5,
+    "unavailable": 0
+  }
+}
