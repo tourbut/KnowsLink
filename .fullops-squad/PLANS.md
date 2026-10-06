@@ -978,3 +978,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 원 09c 리뷰·QA/UI 실패는 그대로 보존한다. coor 후속: 새 fixed SHA의 OPS delta 리뷰·TESTER 좁은 QA·designer UX07 재검수 뒤 main 판정. Tunnel/edge 본문 완충·L-1 실측은 OPS 공개 전 조건이다.
 
 - DEV-FIX msg_6b9431a59c0c/dfc70caa748a90614b02d48c78b4651345938339(제품1fdeaa13) 수신. 실제cleanHEAD/origin동일·빈인박스/아카이브·actualClaude세션9ebf9a10-609b-475a-b1cd-f9edad84c9a1·최종HEAD lint/test0/ERROR0/WARNING5를확인하고최종JSON을COOR에보존했다. 추출기가코드SHA1fdeaa를골라원문finalHEAD dfc70과대조한sha_source를보존해수정했다. 기존H1/M1/FUI/초기mvp/DOC003실패는그대로다. coor merge2dd2584의충돌처리script가줄수assert로중단한뒤셸이continue해marker를커밋한운영오류를확인했다. main/원격에는미반영이며즉시양쪽PLANS전문/완료추가인계를보존하고marker를제거했다. 이후변경명령은set-e로중단전파한다. 새fixed검수전main수락hold다.
+
+- 수정 후독립검수는fixeddfc70/09c기준이며OPS·designer 정규빈인박스/새read-only snapshot·route/find/doc/context를준비했다. UI context충돌은원09c FAIL과새dfc 자동통과의검수경계로해소하고원본실패/새직접검수전제를명시했다. QA는현재원본검수진행이라인박스를덮어쓰지않으며원본완료뒤좁은FIX-TESTER를배정한다.

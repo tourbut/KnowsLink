@@ -1,0 +1,148 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "ac25c83d832b067a698882be3909cdaae0042c73",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "44df05810d51c256e02ca803d65bd37e6c3eda602f3fb6b450f94ce004a1fcd8",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-cleanup_admission.go",
+      "c1-capacity.go",
+      "c2-http.go",
+      "c3-store.go",
+      "c4-cleanup_admission_test.go",
+      "c5-admission_integration_test.go",
+      "c6-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "c7-report.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-cleanup_admission.go",
+      "c1-capacity.go",
+      "c2-http.go",
+      "c3-store.go",
+      "c4-cleanup_admission_test.go",
+      "c5-admission_integration_test.go",
+      "c6-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "c7-report.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c1-capacity.go": {
+        "relevant": 0.75,
+        "evidence": 0.7,
+        "contradicts": 0.22,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-http.go": {
+        "relevant": 0.46,
+        "evidence": 0.32,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-store.go": {
+        "relevant": 0.37,
+        "evidence": 0.3,
+        "contradicts": 0.28,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-cleanup_admission_test.go": {
+        "relevant": 0.76,
+        "evidence": 0.65,
+        "contradicts": 0.2,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-admission_integration_test.go": {
+        "relevant": 0.82,
+        "evidence": 0.74,
+        "contradicts": 0.24,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md": {
+        "relevant": 0.73,
+        "evidence": 0.83,
+        "contradicts": 0.34,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-report.md": {
+        "relevant": 0.57,
+        "evidence": 0.75,
+        "contradicts": 0.38,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-cleanup_admission.go": "internal/relay/cleanup_admission.go",
+      "c1-capacity.go": "internal/relay/capacity.go",
+      "c2-http.go": "internal/relay/http.go",
+      "c3-store.go": "internal/relay/store.go",
+      "c4-cleanup_admission_test.go": "internal/relay/cleanup_admission_test.go",
+      "c5-admission_integration_test.go": "internal/relay/admission_integration_test.go",
+      "c6-SAR-PUBLIC-MESSAGES-001-DEV-FIX.md": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "c7-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-2-review/report.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_ops.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_ops.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 19326,
+    "output_tokens": 532,
+    "cost": 0.0008116919999999999
+  },
+  "latency_seconds": 0.373,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-REVIEW",
+  "role": "ops",
+  "unsent_sources": {
+    "internal/relay/cleanup_admission.go": "sensitive or oversized passage"
+  },
+  "refused_paths": []
+}

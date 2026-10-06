@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-UI-FIX",
+  "head": "ac25c83d832b067a698882be3909cdaae0042c73",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 92,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 92
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.26
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.21000000000000002
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.09999999999999999
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "summary": "A member looks up one owned receipt by ID; text bodies and other members' identities never appear in this view.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "summary": "Cleanup admission rests on an honored credential and the caller's own record, so rejected or anonymous cleanup is new work.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.03
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/schema.py",
+      "summary": "Generate D08 directly from the committed SQL migration, preserving stamped metadata.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "summary": "Public text checks pin the separate wire, one related reply, erased payloads, current authorization and shared capacities.",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.81,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5047,
+    "output_tokens": 969,
+    "cost": 0.000211974
+  },
+  "latency_seconds": 0.275,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
