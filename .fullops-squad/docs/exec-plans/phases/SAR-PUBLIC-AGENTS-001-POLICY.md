@@ -69,3 +69,9 @@ designer는 DEV 수정 후보의 실제 관계 화면을 직접 확인한다. pe
 - `git diff --check`: exit 0. 문서 변경의 공백을 검사했다.
 - `deliverables.py --repo . --strict`: exit 0. 검사 13·미작성 0·문제 0·경고 0이다.
 - 정책 동작·실제 브라우저·실제 이메일·운영 검증은 미실행이다. 문서 변경 과제이며 DEV 구현과 고정 후보의 독립 검증이 선행해야 한다. 기존 관측을 새 PASS로 바꾸지 않는다.
+
+- 깨끗한 기록 HEAD `1de5de129697d138b9c5fb59432c30e8b99bfb4d`에서 `lint.py --repo . --from d1651784c4338efeb0d6141467d563c6b354e4a5 --out <레포 밖 JSON>`은 exit 0이다. ERROR 0·WARNING 1·실행 불가 0이며 등록 product-lint(`make lint`)·product-test(`make test`) 모두 exit 0이다. 원본 JSON은 [record-lint.json](../../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/record-lint.json)에 보존했다.
+- WARNING은 SIZE-001의 기존 누적 PLANS 842줄(기준 ref 819줄, 상한 500줄)이다. 이번 designer는 자기 결과만 추가했다. 기존 통합·실패 기록을 임의 삭제하거나 타 역할 소유 문서를 분할하지 않는다. 경고는 coor의 별도 정리 판단 대상으로 유지한다. SIZE-002·DEP-001은 없다. 제품 코드·의존성 변경은 0이다.
+- 기록 시작 HEAD 대비 문서 파일만 바뀌었다. 제품 기본값 표의 값 열은 전후 동일하다. 원본 리뷰·UI 보고서 byte 동일과 UI 증거 폴더 diff 0을 확인했다. 새 원천 문서의 로컬 링크도 존재한다. 이 정적 대조는 exit 0이다.
+- 완료 전문은 `work.py finish --repo . --role designer --key SAR-PUBLIC-AGENTS-001-POLICY`로 보존한다. finish 뒤 빈 인박스와 로그 전문 일치를 확인하고 커밋한다. 최종 깨끗한 HEAD의 동일 lint 재검사 결과와 고정 SHA는 worker_done에 기록한다. 새 정책 동작이 검증됐다는 뜻은 아니다.
+- `work.py finish`는 exit 0이다. [완료 로그](../../../handovers/logs/2026-10-06_to_designer.md)에 지시서·제품 답·완료 보고 전문을 보존했다. 보존 전 인박스 전문과 로그 추가분의 일치 및 빈 인박스를 확인했다(exit 0).
