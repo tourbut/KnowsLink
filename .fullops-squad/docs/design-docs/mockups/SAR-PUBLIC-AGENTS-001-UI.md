@@ -80,3 +80,9 @@ PNG 경로는 모두 [캡처 폴더](SAR-PUBLIC-AGENTS-001-UI/) 기준이다. �
 기존 UX01–03 증거는 이번 실행 PASS로 재사용하지 않았다. `memberStyle`·start/verify template은 기준 diff에서 동일하지만 home template과 데이터는 변경됐다. 변경된 홈과 이번 흐름의 가입·오답·재로그인은 직접 관측했다. 과거 59b66ad의 신원 전체 QA/시각 근거는 원래 SHA의 [기존 기록](../../exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md)으로만 유지한다.
 
 실제 일반 이메일 로그인·공개 서비스·운영 배포·Grok Bot 노우와 OpenAI dot 다닷·앱 설치/권한·OAuth·실메시지 왕복·자동 wake는 미검증이다. 24시간 초대 만료·실제 10분 타이머·오프라인·큰 수용량·동시성·모든 API 철회 경계·모든 세션 종료·스크린리더·OS clipboard는 이번 직접 시각 범위에서 미검증이다. 독립 TESTER·OPS와 사용자 실제 확인 조건은 그대로 남는다.
+
+## 상속된 리뷰 양식 보정과 검사 통과
+
+초기 기록 f9c5ede의 FullOps는 상속된 OPS 리뷰 빈 양식의 DOC-003 한 건으로 실패했다. product-lint/product-test는 exit 0이었다. coor는 preamble ask 답변으로 해당 파일의 metadata-only stamp를 허용했다. OPS 완성 보고서 70f26bc는 coor가 통합 때 유지한다. 빈 양식의 본문과 판정은 바꾸지 않았다. 원 본문 SHA256과 일치 검사는 exit 0이며 `review-metadata-only.json`에 보존했다. stamp의 front matter 구분 개행을 본문에서 분리해 비교했다. 이 예외는 UX FAIL이나 OPS 리뷰 완료를 PASS로 바꾸지 않는다.
+
+기록 고정 `f2f56b6a57309eb675eb9a23dc68782d815408a6`의 FullOps lint는 exit 0, ERROR 0/WARNING 8/실행 불가 0이다. 등록 product-lint/product-test도 모두 exit 0이다. 기준 ref는 지시서의 d2f7ba5다. 최종 완료 로그 커밋 HEAD의 재검사 결과는 worker_done과 별도 final lint JSON으로 고정한다. 최종 기록 SHA와 제품 fixedSHA를 혼동하지 않는다.

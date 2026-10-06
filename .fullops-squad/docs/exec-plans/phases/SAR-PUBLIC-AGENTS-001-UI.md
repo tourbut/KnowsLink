@@ -38,3 +38,9 @@ strict deliverables·Git 공백·PNG/JSON 형식·마스킹·민감값 비노출
 WARNING 8은 기존 제품 SIZE-001 5건, SIZE-002 1건, DEP-001 1건, SEC-001 1건이다. DEV가 기록한 기존 이유를 유지한다. 추가 줄 수는 기존 제품 변경과 이번 관측·문서·증거가 기준 ref 이후에 함께 포함된 결과다. 이번 역할은 라이브러리·dependency/version/lock을 바꾸지 않았다. 실제 CLI 검수·기존 source 읽기는 범위를 늘린 제품 변경이 아니다. 큰 증거 묶음은 같은 고정 SHA의 지정 상태를 추적하기 위해 한 결과로 보존했다.
 
 문서 strict는 검사 13/미작성 0/문제 0/경고 0, exit 0이다. PNG 33개의 manifest·형식과 task JSON 검사는 exit 0이다. UI PNG 31개는 직접 열었고 인증값은 마스킹했다. 작업 시작 대비 제품 diff와 Git 공백 검사도 exit 0이다. 자기 자원 정리의 첫 확인은 Playwright SIGTERM 종료 지연으로 실패했다. 해당 자기 프로세스 그룹에만 SIGKILL을 보낸 뒤 정리 JSON에서 종료·port 폐쇄·Compose 자원 부재를 확인했다. 사용자 프로세스에는 신호를 보내지 않았다.
+
+## 상속된 리뷰 양식 보정과 검사 통과
+
+초기 기록 f9c5ede의 FullOps는 상속된 OPS 리뷰 빈 양식의 DOC-003 한 건으로 실패했다. product-lint/product-test는 exit 0이었다. coor는 preamble ask 답변으로 해당 파일의 metadata-only stamp를 허용했다. OPS 완성 보고서 70f26bc는 coor가 통합 때 유지한다. 빈 양식의 본문과 판정은 바꾸지 않았다. 원 본문 SHA256과 일치 검사는 exit 0이며 `review-metadata-only.json`에 보존했다. stamp의 front matter 구분 개행을 본문에서 분리해 비교했다. 이 예외는 UX FAIL이나 OPS 리뷰 완료를 PASS로 바꾸지 않는다.
+
+기록 고정 `f2f56b6a57309eb675eb9a23dc68782d815408a6`의 FullOps lint는 exit 0, ERROR 0/WARNING 8/실행 불가 0이다. 등록 product-lint/product-test도 모두 exit 0이다. 기준 ref는 지시서의 d2f7ba5다. 최종 완료 로그 커밋 HEAD의 재검사 결과는 worker_done과 별도 final lint JSON으로 고정한다. 최종 기록 SHA와 제품 fixedSHA를 혼동하지 않는다.
