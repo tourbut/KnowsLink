@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV-FIX",
+  "head": "c9ff19d923e81f2ed44d4c0f42c4ea60fde8f645",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 89,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 89
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/capacity.go",
+      "summary": "Shared message and HTTP capacity keep new work bounded while reserving independent cleanup admission.",
+      "probability": 0.5
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.14
+    },
+    {
+      "path": "internal/relay/http.go",
+      "summary": "HTTP API separates owner credentials from agent credentials and serves escaped approval forms.",
+      "probability": 0.06999999999999999
+    },
+    {
+      "path": "internal/relay/api_rate.go",
+      "summary": "Rate refusals expose the same rounded retry instant to JSON clients; shared admission spends the stable principal budget.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "summary": "Public text checks pin the separate wire, one related reply, erased payloads, current authorization and shared capacities.",
+      "probability": 0.02
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "summary": "Relay serves local synthetic relay.v1 transport and owner human-gate UI.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "summary": "Package relay validates frozen relay.v1 and preserves one parsed object for signing and processing.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "summary": "Public connection-check text uses a separate signed wire, current member authorization and the shared short-lived inbox.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.95,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5515,
+    "output_tokens": 939,
+    "cost": 0.00023163
+  },
+  "latency_seconds": 0.326,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
