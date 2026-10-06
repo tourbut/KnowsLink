@@ -1,0 +1,10 @@
+HEAD 0ae40d51dd1c6bab35b74bca812d7db581d55585 worktree-diff:
+ M internal/relay/capacity.go
+ M internal/relay/cleanup_admission.go
+command: go test -tags=integration -race -count=1 -v -run 'TestValidCredentialCleanupFlood' ./internal/relay
+=== RUN   TestValidCredentialCleanupFlood
+    admission_integration_test.go:236: attack admission: new 0 clean 4
+--- FAIL: TestValidCredentialCleanupFlood (5.20s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	5.219s
+FAIL

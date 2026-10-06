@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -143,8 +143,8 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 | 파일·모듈 | 책임 | 자동 검사 |
 |---|---|---|
 | public_text.go | 별도 closed wire·서명·digest·양측 회원/현재 권한·1회 관련 답장·text 전용 HTTP | TestPublicTextWire, TestPublicTextRoundtripAndCurrentAuth, TestPublicTextTTLAndLeaseFailures, TestPublicMessageHTTPBoundaries |
-| capacity.go·store.go | 공통 queue100/gate100/receipt20000/claim4·shared HTTP16/4·본문 선수신 입장·TTL 정리·현재 세대·커밋 뒤 유효 자격 색인 | TestSharedCapacitiesAndCleanupClassification, TestSharedMessageCapacityHTTP, TestSharedExecutionClaimHTTP, TestHTTPConcurrencyAcrossInstances, TestHTTPSlowBodyAndCleanupAdmission |
-| cleanup_admission.go | 정리 입장 판정: 무상태 자격·같은 출처·gate CSRF·본문(cleanupCredential), 자기 기록(cleanupTarget), 로컬 채널용 유효 자격 색인 | TestCleanupAdmissionNeedsVerifiedOwnRecord, TestHTTPSlowBodyAndCleanupAdmission |
+| capacity.go·store.go | 공통 queue100/gate100/receipt20000/claim4·shared HTTP16/4·owner당 Clean 1·본문 선수신 입장·TTL 정리·현재 세대·commit 순서 snapshot(remember)·종료 실패 기록 회수(reclaim) | TestSharedCapacitiesAndCleanupClassification, TestSharedMessageCapacityHTTP, TestSharedExecutionClaimHTTP, TestHTTPConcurrencyAcrossInstances, TestHTTPSlowBodyAndCleanupAdmission, TestValidCredentialCleanupFlood, TestFailedFinishReclaimedAtNextCommit |
+| cleanup_admission.go | 정리 입장 판정: 무상태 자격·같은 출처·gate CSRF·본문(cleanupCredential), 자기 기록(cleanupTarget), 커밋 snapshot의 자격 색인(kind·principal)으로 DB 전 자기 기록 대조와 공정성 owner 결정(cleanupOwner) | TestCleanupAdmissionNeedsVerifiedOwnRecord, TestRememberKeepsNewestCommit, TestCleanupSnapshotAcrossProcessesAndRestart, TestValidCredentialCleanupFlood |
 | member_receipt.go·member.go | 자기 agent/요청별 metadata·queued/수신/답장/실패 구분·수동 안내 | TestMemberReceiptView, TestPublicNodeProcesses, TestPublicMessageHTTPBoundaries |
 | http.go·member_agents.go·api_rate.go | 공통 rate 차감·gate 검증본문/서명·deny 입장·현재 owner/CSRF·결정 뒤 정식 gate 화면 | TestPublicHTTPAdmissionAndGateSafety, TestEmailIdentity/member_gate_deny_form_returns_to_result와 기존 신원/gate 회귀 |
 | adapters text.ts·core.ts·connect.ts | private 연결 폴더·명시 text CLI·서명 확인·persist/ACK·안전 오류 코드·relayBase 재사용 | TestPublicNodeProcesses의 실제 Node CLI/MCP + 기존 adapter 검사 |

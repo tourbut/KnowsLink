@@ -1,0 +1,11 @@
+HEAD dfc70caa748a90614b02d48c78b4651345938339 worktree-diff:
+?? internal/relay/review_foreign_cleanup_test.go
+command: go test -tags=integration -race -count=1 -v -run 'TestReviewForeignCleanupHoldsCleanupChannel' ./internal/relay
+=== RUN   TestReviewForeignCleanupHoldsCleanupChannel
+    review_foreign_cleanup_test.go:60: A: foreign-target requests holding cleanup channel during admission = 4/4; valid own cleanup -> 429 {"error":"capacity","retry_at":"2026-10-06T14:17:39Z"}; foreign final codes [200 200 200 200]
+    review_foreign_cleanup_test.go:62: A: rates cleanup:member:agent_b=0 http:member:agent_b=4 cleanup:member:agent_a=0
+    review_foreign_cleanup_test.go:102: C: agent-credential no-lease ACK flood -> own cleanup capacity429 18/18 rate429 0
+    review_foreign_cleanup_test.go:103: B: new-work flood -> own cleanup capacity429 0/18 rate429 0; foreign-cleanup flood -> capacity429 18/18 rate429 0
+--- PASS: TestReviewForeignCleanupHoldsCleanupChannel (37.70s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	38.729s
