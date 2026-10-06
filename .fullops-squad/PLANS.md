@@ -742,3 +742,10 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 업데이트 준비 cf55ea1의 새 설정 고정 HEAD에서 product-lint·product-test 모두 exit 0, ERROR/WARNING/실행 불가 0이다. 기존 lockfile npm ci로 main의 누락 의존성을 복원했다. 문서 strict 13개·문제 0과 보드 생성·JS 문법을 통과했다. 필수 적용 완료로 레포 plugin_version을 0.9.14로 확정한다. 운영 변경만 main/origin에 공유하며 모든 역할의 기존 작업을 보존해 동기화한다.
 
 - 운영 main/origin `08cf165e7e2e3208cd14b9ea1bff9da134d1fd51` 일반 push·fetch·ls-remote·조상 확인 완료. 같은 HEAD product-lint·product-test exit 0, ERROR 0, 실행 불가 0이다. 기존 PLANS SIZE-001과 설정 도입 LINT-001 안내는 유지한다. 다섯 역할 실제 terminal·clean 확인 후 최신 main 포함 완료. coor/dev/tester의 문서 충돌은 기존 기록·과제 키와 새 규약을 함께 보존했다. 상세 역할 SHA는 업데이트 기록에 있다. 이번 운영 후속 기록도 역할에 반영한다. 동기화 예약은 없으며 미수락 신원 제품은 main에 포함하지 않았다.
+
+## 신원 서비스 coordinator 인수와 진단 재개 — 2026-10-06
+
+- 새 coordinator terminal `term_6895aaf1-7b43-4fe0-a416-76f1255a5946`에 기존 Run을 연결했다. 미처리 메시지는 0이다. 실제 coor HEAD는 9c915dc71e2a872243ffec294126d4668b4d32a4, main/origin은 e7346247897c56d3d8dacf73e7fa41e1949d397f다. 0.9.14 업데이트는 반복하지 않는다.
+- 사용자 진행 요청으로 DEV-TRIAL-DIAG의 비용 질의 배정 보류를 해제한다. 기존 route implementation/dev, Claude Opus5.5 high를 유지한다. DEV terminal 0·clean·최신 main 조상 관계를 확인했다. 과거 user-owned 터미널 핸들은 재사용하지 않는다. 지난 구현과 시간이 떨어져 새 세션을 선택한다.
+- 정규 빈 to_dev 인박스에 진단·필요 수정·관련 검증을 함께 작성했다. 기존 f364d484 invalid_lease 실패·원본 TESTER9e2654d·UIcf0ab09·리뷰25b110f와 main 수락 보류를 유지한다. integration status의 pending0은 보류 해소나 제품 수락을 뜻하지 않는다.
+- 다음은 최종 후보의 독립 delta 리뷰·좁은 QA와 기존 TESTER/UI 결과의 독립 기록 검토다. 필수 실패를 해소한 고정 SHA만 main/origin에 통합한다. 실제 이메일·운영 공개·노우↔다닷은 후속 미검증이다. Workers Free·기존 서버/Tunnel 제한을 유지한다.
