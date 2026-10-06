@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV]
-summary: 현재 과제·MESSAGES 구현 및 독립 검수 대기와 수락·운영 보류를 기록한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW]
+summary: 현재 과제·MESSAGES 후보 OPS 리뷰 high 차단과 수락·운영 보류를 기록한다
 ---
 
 # KnowsLink 현재 계획
@@ -940,3 +940,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - coor 병합 c6f0848의 PLANS 충돌 처리에서 잘못된 문서 삭제를 검수준비 diff로 발견했다. main에 미반영이다. 68b0d6a/f210b56/37f9a1e의 원본 Git 3-way를 다시 대조해 summary는 현재coor 값을 유지하고 append는 양쪽 전문을 보존했다. 기존914줄 삭제를 복원했다. 제품diff0을 확인하고 새fixed 후보를 사용한다. c6 준비리뷰는 미배정이며 원래preview/result와 실패를 보존한다. member_receipts.go 오기 탐색실패는 원본context JSON에 유지하고 실제 member_receipt.go를 수동필수후보로 보완한다.
 
 - 검수 대상은 복원 fixed `09c523da8a3407288d9f5d711e1834af12bc7808`이다. DEV37f9a1e 대비 제품diff0과 PLANS 원본/새 기록 보존을 확인했다. OPS는 새 REVIEW-2 기록과 read-only snapshot /tmp/knowslink-messages-review-09c523d를 사용한다. TESTER/UI도 같은fixed이다. 이전c6 준비양식과 오기context는 실패/미배정 그대로보존한다. 준비문서와 제품후보는 역할에만 공유하며 필수검수 전 main/origin68b0d6a에 제품을 넣지 않는다.
+
+## SAR-PUBLIC-MESSAGES-001-REVIEW-2 OPS 독립 보안 리뷰 결과 — 2026-10-06
+
+- OPS 세션 `9bc44cbf-9e5c-4a16-a098-ae2fe4cab6ce`(Claude Code, claude-opus-5-5)가 DEV 세션 `01a11106-b736-7db1-b518-a65b64dbc5fb`과 별도로 `7efbaa3..09c523da8a3407288d9f5d711e1834af12bc7808`을 검토했다. snapshot `/tmp/knowslink-messages-review-09c523d`는 읽기만 했고 detached·clean을 유지했다.
+- 결론은 수락 불가다. 미해결 high H-1: `internal/relay/capacity.go:147-155` boundedHTTP가 로컬 HTTP 슬롯을 먼저 잡고 본문을 읽는다. 익명 slow body 4개로 정리(ACK·revoke·deny·unpair·logout), 16개로 신규 작업이 429 capacity가 된다. rate를 소비하지 않는다. PS-11 정리 budget 보장 위반이며 이 후보의 회귀다. 재현 slot-repro exit0.
+- 미해결 medium M-1(정리 입장의 경로만 판정·익명 허용), low L-1(요청당 전역 lock 트랜잭션 2개 추가·OPS 측정 대상)을 기록했다. 기존 low L-A/L-B와 공개 전 합성 가입 unset·운영 DB 합성 owner 0 조건을 보존한다. 인가·text/receipt·답장·gate·queue/claim 경계의 다른 critical/high는 없다.
+- 검사: 09c523d scratch에서 make install exit0, lint.py --from 7efbaa3 exit0(ERROR0/WARNING11/실행불가0, product-lint/test exit0), make verify-mvp exit0(PASS 39·FAIL/SKIP 0). review.py check는 H-1로 exit1(정상 차단)이다. 기록 형식 probe는 exit0(51/38/89)이다. [리뷰 기록](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-2-review/report.md).
+- 후속: DEV가 H-1(권장 M-1 포함)을 고치고 slow body 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키와 별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다. TESTER QA·designer UX06/07 검수는 coor 판단이다.

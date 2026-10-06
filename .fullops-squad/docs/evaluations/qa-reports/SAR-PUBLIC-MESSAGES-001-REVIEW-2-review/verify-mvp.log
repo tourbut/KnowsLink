@@ -1,0 +1,321 @@
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+
+  dist/plugin.js  1.5mb ⚠️
+
+⚡ Done in 109ms
+python3 scripts/verify_mvp.py
+ Image knowslink-mvp-49be4da382-migrate Building
+ Image knowslink-mvp-49be4da382-relay Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.38kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.2s
+
+#4 [relay internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 2.4s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.1s
+
+#6 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#6 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#6 DONE 0.1s
+
+#7 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#7 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#7 DONE 0.1s
+
+#8 [migrate internal] load build context
+#8 transferring context: 308.44kB 0.0s done
+#8 DONE 0.1s
+
+#9 [relay build 3/7] COPY go.mod go.sum ./
+#9 CACHED
+
+#10 [relay build 4/7] RUN go mod download
+#10 CACHED
+
+#11 [relay build 2/7] WORKDIR /src
+#11 CACHED
+
+#12 [relay build 5/7] COPY cmd ./cmd
+#12 CACHED
+
+#13 [migrate build 6/7] COPY internal ./internal
+#13 DONE 0.1s
+
+#14 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#14 DONE 24.8s
+
+#15 [relay stage-1 2/5] RUN apk add --no-cache ca-certificates
+#15 CACHED
+
+#16 [relay stage-1 3/5] WORKDIR /app
+#16 CACHED
+
+#17 [relay stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#17 CACHED
+
+#18 [relay stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:e706bd2e9babde38e4dbd5506a3b3d6f8705e987150466c74407b99b16f3ece4 0.0s done
+#19 exporting config sha256:cec2f8656ac319652851adb36fd91292a352eaa625f6aab33354261e62efa5a7 0.0s done
+#19 exporting attestation manifest sha256:3bba52cfc6f41fca3f4340b12187b60c291be215134ab5f0f617b313afded0d1 0.1s done
+#19 exporting manifest list sha256:0ae356e9aa274314de06c5018bd1a5ac8af543e6a9ad22e576e23d13d685e1ae
+#19 exporting manifest list sha256:0ae356e9aa274314de06c5018bd1a5ac8af543e6a9ad22e576e23d13d685e1ae 0.0s done
+#19 naming to docker.io/library/knowslink-mvp-49be4da382-migrate:latest done
+#19 unpacking to docker.io/library/knowslink-mvp-49be4da382-migrate:latest 0.0s done
+#19 DONE 0.3s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:820cc5a5ad540cb1e1f35d342c687e775c067097834ace64dc5360f0d0b1514f 0.0s done
+#20 exporting config sha256:ace59985c372a020ef2fee1b006a06492579f1eb11a0eb63a1c85dc077b58d73 0.0s done
+#20 exporting attestation manifest sha256:4f11456796c1c869e1cec158d9cea7660774f46e0f93cb2982a00d663c0b70ed 0.1s done
+#20 exporting manifest list sha256:4dd566f1563becca83d0a941d2ed160652bc76fdf9e72b51dbf4df1bdbecfd2a 0.0s done
+#20 naming to docker.io/library/knowslink-mvp-49be4da382-relay:latest done
+#20 unpacking to docker.io/library/knowslink-mvp-49be4da382-relay:latest 0.0s done
+#20 DONE 0.3s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.1s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knowslink-mvp-49be4da382-migrate Built
+ Image knowslink-mvp-49be4da382-relay Built
+ Network knowslink-mvp-49be4da382_database Creating
+ Network knowslink-mvp-49be4da382_database Created
+ Network knowslink-mvp-49be4da382_ingress Creating
+ Network knowslink-mvp-49be4da382_ingress Created
+ Volume knowslink-mvp-49be4da382_postgres-data Creating
+ Volume knowslink-mvp-49be4da382_postgres-data Created
+ Container knowslink-mvp-49be4da382-postgres-1 Creating
+ Container knowslink-mvp-49be4da382-postgres-1 Created
+ Container knowslink-mvp-49be4da382-migrate-1 Creating
+ Container knowslink-mvp-49be4da382-migrate-1 Created
+ Container knowslink-mvp-49be4da382-relay-1 Creating
+ Container knowslink-mvp-49be4da382-relay-1 Created
+ Container knowslink-mvp-49be4da382-postgres-1 Starting
+ Container knowslink-mvp-49be4da382-postgres-1 Started
+ Container knowslink-mvp-49be4da382-postgres-1 Waiting
+ Container knowslink-mvp-49be4da382-postgres-1 Healthy
+ Container knowslink-mvp-49be4da382-migrate-1 Starting
+ Container knowslink-mvp-49be4da382-migrate-1 Started
+ Container knowslink-mvp-49be4da382-migrate-1 Waiting
+ Container knowslink-mvp-49be4da382-migrate-1 Exited
+ Container knowslink-mvp-49be4da382-relay-1 Starting
+ Container knowslink-mvp-49be4da382-relay-1 Started
+ Container knowslink-mvp-49be4da382-migrate-1 Waiting
+ Container knowslink-mvp-49be4da382-relay-1 Waiting
+ Container knowslink-mvp-49be4da382-postgres-1 Waiting
+ Container knowslink-mvp-49be4da382-migrate-1 Exited
+ Container knowslink-mvp-49be4da382-postgres-1 Healthy
+ Container knowslink-mvp-49be4da382-relay-1 Healthy
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-49be4da382', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-5e_xpati/test.yaml', 'up', '--build', '--wait', 'relay']; exit: 0
+ Container knowslink-mvp-49be4da382-relay-1 Stopping
+ Container knowslink-mvp-49be4da382-relay-1 Stopped
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-49be4da382', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-5e_xpati/test.yaml', 'stop', 'relay']; exit: 0
+=== RUN   TestPublicAgentHTTP
+=== RUN   TestPublicAgentHTTP/onboarding_owner_isolation_rotation_and_all_revoked_paths
+=== RUN   TestPublicAgentHTTP/same_owner_first_accept_generation_pending_expiry_and_cleanup_budget
+=== RUN   TestPublicAgentHTTP/malformed_connection_requests_spend_anonymous_budget
+=== RUN   TestPublicAgentHTTP/invalid_session_pages_spend_anonymous_budget
+=== RUN   TestPublicAgentHTTP/revoked_record_saturation_concurrency_restart_and_retention
+=== RUN   TestPublicAgentHTTP/concurrent_agent_capacity_and_restart
+=== RUN   TestPublicAgentHTTP/concurrent_completion_cancel_expire_and_reauth
+--- PASS: TestPublicAgentHTTP (2.24s)
+    --- PASS: TestPublicAgentHTTP/onboarding_owner_isolation_rotation_and_all_revoked_paths (0.52s)
+    --- PASS: TestPublicAgentHTTP/same_owner_first_accept_generation_pending_expiry_and_cleanup_budget (0.31s)
+    --- PASS: TestPublicAgentHTTP/malformed_connection_requests_spend_anonymous_budget (0.29s)
+    --- PASS: TestPublicAgentHTTP/invalid_session_pages_spend_anonymous_budget (0.28s)
+    --- PASS: TestPublicAgentHTTP/revoked_record_saturation_concurrency_restart_and_retention (0.34s)
+    --- PASS: TestPublicAgentHTTP/concurrent_agent_capacity_and_restart (0.17s)
+    --- PASS: TestPublicAgentHTTP/concurrent_completion_cancel_expire_and_reauth (0.33s)
+=== RUN   TestConnectionApprovalAndKeyCredentials
+--- PASS: TestConnectionApprovalAndKeyCredentials (0.01s)
+=== RUN   TestConnectionFailureExpiryAndCancellation
+=== RUN   TestConnectionFailureExpiryAndCancellation/cancelled
+=== RUN   TestConnectionFailureExpiryAndCancellation/expired
+=== RUN   TestConnectionFailureExpiryAndCancellation/consumed
+--- PASS: TestConnectionFailureExpiryAndCancellation (0.01s)
+    --- PASS: TestConnectionFailureExpiryAndCancellation/cancelled (0.00s)
+    --- PASS: TestConnectionFailureExpiryAndCancellation/expired (0.00s)
+    --- PASS: TestConnectionFailureExpiryAndCancellation/consumed (0.00s)
+=== RUN   TestAgentAndPairCapacity
+--- PASS: TestAgentAndPairCapacity (0.00s)
+=== RUN   TestRevokedRecordRetention
+--- PASS: TestRevokedRecordRetention (0.05s)
+=== RUN   TestMemberPagesShowNextSteps
+--- PASS: TestMemberPagesShowNextSteps (0.01s)
+=== RUN   TestEmailIdentity
+=== RUN   TestEmailIdentity/verified_signup_home_and_continuity
+=== RUN   TestEmailIdentity/concurrent_first_signup_and_one_use_code
+=== RUN   TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives
+=== RUN   TestEmailIdentity/send_failure_limits_and_csrf
+2026/10/06 21:31:42 verification mail not sent
+2026/10/06 21:31:42 verification mail not sent
+=== RUN   TestEmailIdentity/refused_principal_does_not_spend_shared_rate
+=== RUN   TestEmailIdentity/member_gate_isolation_and_decision
+--- PASS: TestEmailIdentity (5.37s)
+    --- PASS: TestEmailIdentity/verified_signup_home_and_continuity (0.19s)
+    --- PASS: TestEmailIdentity/concurrent_first_signup_and_one_use_code (0.10s)
+    --- PASS: TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives (0.28s)
+    --- PASS: TestEmailIdentity/send_failure_limits_and_csrf (0.33s)
+    --- PASS: TestEmailIdentity/refused_principal_does_not_spend_shared_rate (3.95s)
+    --- PASS: TestEmailIdentity/member_gate_isolation_and_decision (0.52s)
+=== RUN   TestNormalizeEmail
+--- PASS: TestNormalizeEmail (0.00s)
+=== RUN   TestRollingWindowBoundary
+--- PASS: TestRollingWindowBoundary (0.00s)
+=== RUN   TestSendLimits
+--- PASS: TestSendLimits (0.01s)
+=== RUN   TestCodeVerificationAndMembers
+--- PASS: TestCodeVerificationAndMembers (0.00s)
+=== RUN   TestSessionLifetime
+--- PASS: TestSessionLifetime (0.00s)
+=== RUN   TestSMTPMailer
+--- PASS: TestSMTPMailer (0.00s)
+=== RUN   TestRatePrincipalIsolation
+--- PASS: TestRatePrincipalIsolation (0.05s)
+=== RUN   TestRateStateBoundedUnderRotation
+--- PASS: TestRateStateBoundedUnderRotation (0.65s)
+=== RUN   TestPostgresSafety
+=== RUN   TestPostgresSafety/auth_first_atomic_replay_and_rollback
+=== RUN   TestPostgresSafety/last_lease_ack_and_shared_claim_restart
+=== RUN   TestPostgresSafety/owner_gate_csrf_binding_and_no_effect
+=== RUN   TestPostgresSafety/unpair_generation_expiry_max_attempts_and_clock
+=== RUN   TestPostgresSafety/agent_cannot_process_human_delivery
+=== RUN   TestPostgresSafety/legacy_unrouted_claim_parent_boundaries
+=== RUN   TestPostgresSafety/rotation_pop_and_key_reassignment
+PASS: isolated Postgres safety invariants
+--- PASS: TestPostgresSafety (2.47s)
+    --- PASS: TestPostgresSafety/auth_first_atomic_replay_and_rollback (0.51s)
+    --- PASS: TestPostgresSafety/last_lease_ack_and_shared_claim_restart (0.42s)
+    --- PASS: TestPostgresSafety/owner_gate_csrf_binding_and_no_effect (0.46s)
+    --- PASS: TestPostgresSafety/unpair_generation_expiry_max_attempts_and_clock (0.27s)
+    --- PASS: TestPostgresSafety/agent_cannot_process_human_delivery (0.22s)
+    --- PASS: TestPostgresSafety/legacy_unrouted_claim_parent_boundaries (0.45s)
+    --- PASS: TestPostgresSafety/rotation_pop_and_key_reassignment (0.15s)
+=== RUN   TestGateFailureStates
+=== RUN   TestGateFailureStates/denied
+=== RUN   TestGateFailureStates/expired
+=== RUN   TestGateFailureStates/revoked
+=== RUN   TestGateFailureStates/unavailable
+--- PASS: TestGateFailureStates (0.94s)
+    --- PASS: TestGateFailureStates/denied (0.26s)
+    --- PASS: TestGateFailureStates/expired (0.23s)
+    --- PASS: TestGateFailureStates/revoked (0.22s)
+    --- PASS: TestGateFailureStates/unavailable (0.23s)
+=== RUN   TestApprovalAndResultInstanceBinding
+--- PASS: TestApprovalAndResultInstanceBinding (0.46s)
+=== RUN   TestPendingAndConcurrentAccept
+--- PASS: TestPendingAndConcurrentAccept (0.24s)
+=== RUN   TestLegacyClaimsCannotReachParentBoundaries
+--- PASS: TestLegacyClaimsCannotReachParentBoundaries (0.02s)
+=== RUN   TestSaturationGuidance
+--- PASS: TestSaturationGuidance (0.00s)
+=== RUN   TestRelationshipPolicy
+--- PASS: TestRelationshipPolicy (0.00s)
+=== RUN   TestFrozenParsingAndSigning
+--- PASS: TestFrozenParsingAndSigning (0.01s)
+=== RUN   TestFrozenFieldLimits
+--- PASS: TestFrozenFieldLimits (0.02s)
+=== RUN   TestPublicNodeProcesses
+    public_messages_integration_test.go:90: {"state":"public_node_process_roundtrip_pass","request":"01a11132-eff0-71c7-95c6-a7f65b4c0984","received":"01a11132-eff0-71c7-95c6-a7f65b4c0984","reply":"01a11132-f0f3-7995-b85d-d4f7ef8f5ab0","replyReceived":"01a11132-f0f3-7995-b85d-d4f7ef8f5ab0","actualGrok":"unverified","actualDadot":"unverified"}
+--- PASS: TestPublicNodeProcesses (1.85s)
+=== RUN   TestPublicMessageHTTPBoundaries
+--- PASS: TestPublicMessageHTTPBoundaries (0.91s)
+=== RUN   TestPublicHTTPAdmissionAndGateSafety
+--- PASS: TestPublicHTTPAdmissionAndGateSafety (0.31s)
+=== RUN   TestSharedMessageCapacityHTTP
+--- PASS: TestSharedMessageCapacityHTTP (2.25s)
+=== RUN   TestSharedExecutionClaimHTTP
+--- PASS: TestSharedExecutionClaimHTTP (0.67s)
+=== RUN   TestHTTPConcurrencyAcrossInstances
+--- PASS: TestHTTPConcurrencyAcrossInstances (0.35s)
+=== RUN   TestPublicTextWire
+--- PASS: TestPublicTextWire (0.02s)
+=== RUN   TestPublicTextRoundtripAndCurrentAuth
+--- PASS: TestPublicTextRoundtripAndCurrentAuth (0.02s)
+=== RUN   TestPublicTextTTLAndLeaseFailures
+--- PASS: TestPublicTextTTLAndLeaseFailures (0.01s)
+=== RUN   TestSharedCapacitiesAndCleanupClassification
+--- PASS: TestSharedCapacitiesAndCleanupClassification (2.24s)
+=== RUN   TestMemberReceiptView
+--- PASS: TestMemberReceiptView (0.00s)
+=== RUN   TestTrialHTTP
+--- PASS: TestTrialHTTP (0.59s)
+=== RUN   TestTrialForeignAllowlistRevokesLease
+--- PASS: TestTrialForeignAllowlistRevokesLease (0.20s)
+=== RUN   TestTrialMessageSafety
+--- PASS: TestTrialMessageSafety (0.02s)
+=== RUN   TestTrialSchemaAndConfiguration
+--- PASS: TestTrialSchemaAndConfiguration (0.01s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	23.045s
+command: ['go', 'test', '-tags=integration', '-race', '-count=1', '-v', './internal/relay']; exit: 0
+ Container knowslink-mvp-49be4da382-postgres-1 Running
+ Container knowslink-mvp-49be4da382-postgres-1 Waiting
+ Container knowslink-mvp-49be4da382-postgres-1 Healthy
+ Container knowslink-mvp-49be4da382-migrate-1 Starting
+ Container knowslink-mvp-49be4da382-migrate-1 Started
+ Container knowslink-mvp-49be4da382-migrate-1 Waiting
+ Container knowslink-mvp-49be4da382-migrate-1 Exited
+ Container knowslink-mvp-49be4da382-relay-1 Starting
+ Container knowslink-mvp-49be4da382-relay-1 Started
+ Container knowslink-mvp-49be4da382-postgres-1 Waiting
+ Container knowslink-mvp-49be4da382-migrate-1 Waiting
+ Container knowslink-mvp-49be4da382-relay-1 Waiting
+ Container knowslink-mvp-49be4da382-postgres-1 Healthy
+ Container knowslink-mvp-49be4da382-migrate-1 Exited
+ Container knowslink-mvp-49be4da382-relay-1 Healthy
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-49be4da382', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-5e_xpati/test.yaml', 'up', '--wait', 'relay']; exit: 0
+PASS: TS verify/persist/ACK/claim, policy deny, owner approve and denied result; no effects
+command: ['node', 'adapters/dist/synthetic.js', 'http://127.0.0.1:36809']; exit: 0
+QA credentials: build/qa-fixture.json (0600, ignored); owner UI: /owner
+UI candidate: http://127.0.0.1:36809/owner/gates/01a11133-3e41-772e-bb3d-df9a683863ae; expires 2026-10-06T12:35:13Z
+command: ['node', 'adapters/dist/synthetic.js', 'http://127.0.0.1:36809', '--seed']; exit: 0
+{"state":"local_two_agent_roundtrip_pass","codex_send":"01a11133-4107-718d-9c6c-9232e0824f85","grok_received":"01a11133-4107-718d-9c6c-9232e0824f85","grok_reply":"01a11133-420a-7502-af1e-b4f4ffefbcaf","codex_received":"01a11133-420a-7502-af1e-b4f4ffefbcaf","actualGrok":"unverified","duplicate":"same_receipt","second_pull":"empty"}
+command: ['node', 'adapters/dist/trial-check.js', 'http://127.0.0.1:36809']; exit: 0
+ Container knowslink-mvp-49be4da382-relay-1 Stopping
+ Container knowslink-mvp-49be4da382-relay-1 Stopped
+ Container knowslink-mvp-49be4da382-relay-1 Removing
+ Container knowslink-mvp-49be4da382-relay-1 Removed
+ Container knowslink-mvp-49be4da382-migrate-1 Stopping
+ Container knowslink-mvp-49be4da382-migrate-1 Stopped
+ Container knowslink-mvp-49be4da382-migrate-1 Removing
+ Container knowslink-mvp-49be4da382-migrate-1 Removed
+ Container knowslink-mvp-49be4da382-postgres-1 Stopping
+ Container knowslink-mvp-49be4da382-postgres-1 Stopped
+ Container knowslink-mvp-49be4da382-postgres-1 Removing
+ Container knowslink-mvp-49be4da382-postgres-1 Removed
+ Volume knowslink-mvp-49be4da382_postgres-data Removing
+ Network knowslink-mvp-49be4da382_ingress Removing
+ Network knowslink-mvp-49be4da382_database Removing
+ Volume knowslink-mvp-49be4da382_postgres-data Removed
+ Network knowslink-mvp-49be4da382_database Removed
+ Network knowslink-mvp-49be4da382_ingress Removed
+command: ['docker', 'compose', '--project-name', 'knowslink-mvp-49be4da382', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-5e_xpati/test.yaml', 'down', '--volumes']; exit: 0
+PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused
