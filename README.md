@@ -22,6 +22,7 @@ make verify-mvp
 
 `make test`는 unit/race 회귀를 수행한다. Postgres 검사는 integration build tag로 별도 실행한다. DB 환경이 없으면 해당 실행은 실패한다.
 `make verify-mvp`는 실제 별도 Compose project에서 SQL migration·Postgres 경합·Go UI·TypeScript stub을 끝까지 검사한다.
+Go integration 검사 동안 그 project의 relay를 멈춘다. relay의 1초 정리 sweep은 자기 시험 allowlist로 검사용 trial lease를 회수한다. TypeScript 검사 전에 relay를 다시 시작한다.
 시험 전용 override는 자기 Postgres만 loopback 임시 포트에 연결한다. 제품 Postgres는 호스트 포트를 게시하지 않는다.
 검사 종료는 자기 project의 컨테이너·볼륨만 회수한다. 다른 컨테이너·기존 Tunnel을 바꾸지 않는다.
 `make verify`는 등록 product-lint에 실제 위반을 주입하고 실패 전파를 확인한다.

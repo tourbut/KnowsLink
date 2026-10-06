@@ -37,7 +37,10 @@ def main():
         try:
             run(compose + ["up", "--build", "--wait", "relay"], environment)
             tests = dict(environment, TEST_SYNTHETIC_DATABASE="1", TEST_DATABASE_URL=f"postgres://knowslink:{test_password}@127.0.0.1:{database_port}/knowslink?sslmode=disable")
+            # Go tests own the database: the relay's 1s cleanup sweep with its own allowlist would revoke their trial leases.
+            run(compose + ["stop", "relay"], environment)
             run(["go", "test", "-tags=integration", "-race", "-count=1", "-v", "./internal/relay"], tests)
+            run(compose + ["up", "--wait", "relay"], environment)
             run(["node", "adapters/dist/synthetic.js", f"http://127.0.0.1:{relay_port}"], environment)
             run(["node", "adapters/dist/synthetic.js", f"http://127.0.0.1:{relay_port}", "--seed"], environment)
             run(["node", "adapters/dist/trial-check.js", f"http://127.0.0.1:{relay_port}"], environment)
