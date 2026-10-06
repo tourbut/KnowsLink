@@ -774,3 +774,12 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - msg_145bdac4530a는 완료 뒤 capability revoked로 거절된 OPS 중복 worker_done이다. body x·SHA 없음, 새 결과로 취급하지 않는다. 유효 원본msg_d01880c473ec/952f680의 수락과hold를 유지한다. 거절 원문을 integration hold로 보존하고 delivery572f를 수신처리한다.
 
 - Git 공용 integration의 RATE-FIX msg_509a9d6c850c와 RATE-REVIEW msg_34123fdbc2c3 SHA null을 보완했다. 원래 extracted null을 sha_source에 보존하고 원문·보고서·실제 Git 커밋 대조의 f364d484와77dd464를 등록했다. 원래 완료 메시지·실패·hold를 바꾸지 않았다. DEV 진단은 추출된 코드2111ff4와 최종00a1384 둘 다 검수·통합 추적한다.
+
+## SAR-PUBLIC-IDENTITY-001 로컬 코드 수락 — 2026-10-06
+
+- 최종 고정 제품 eb2e34b의 RATE-FIX·lease 검사 격리를 수락한다. 원본59 독립 리뷰25b110f, RATE delta77dd464, 최신 delta952f680과 좁은 QAe8d8b22를 연결했다. 최신 제품 delta critical/high/medium0, 필수 lint/test/verify-mvp0이다. 원본 TESTER9e2654d/UIcf0ab09는 원래59/조건으로 재사용한다. 기존 F1 실패와 invalid_lease 실패·Bun startup 실패·QA 첫설치 실패를 그대로 보존한다.
+- 좁은 QA msg_54f01891dfe1/e8d8b22: rate 격리·상태상한·foreign allowlist 회수·stop/Go/up/TS 8개명령0 확인. 첫 make test2는 설치파일 손상 관측이며 재설치 뒤 동일lock/tarball 대조와 test0을 확인했다. 실제 실패를 전체PASS로 재작성하지 않았다.
+- 별도 coor 세션01a10ed4의 고정 QAe8d8b22 기록 리뷰는 actual Grok01a10eeb와 독립이다. read-only detached snapshot, 36개 중8 reviewed/28 skipped, critical/high/medium0·lowQ1(설치손상 원인 표현 미확정), check0·lint/test0을 보존했다. 원시 증거의 존재·HEAD·clean·각rc·8개command를 대조했다.
+- main/origin 통합을 지금 수행한다. 원본제품59b66ad·원본리뷰25b110f·RATE-FIXf364d484·원본TESTER9e2654d·UIcf0ab09·RATE리뷰77dd464·DEV진단00a1384·최신리뷰952f680·좁은QAe8d8b22의 SHA 조상 관계를 확인한다. 제품 전체 운영 수락은 아니다.
+- 남은 low: F2 재발송/누적추측(제품규칙 변경은designer), F3 회원gate rate(AGENTS DEV), F-UI-01 시각표시(DEV), L1/L2 아카이브 상대링크(원본소유자/운영), Q1 설치손상 인과 표현(증거상 관측으로해석). 필수 실패나 critical/high를 낮춰 수락하지 않았다.
+- 후속 대기: SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, 일반서비스 OPS·전체수락·노우↔다닷은 기존 PLANS 선행조건에 따라 진행한다. 이번 요청의 신원 코드 통합 뒤 새 제품 과제를 자동 배정하지 않는다. 실제 이메일·운영 공개·노우↔다닷은 미검증이며 Workers Free·기존 서버/Tunnel 제한을 유지한다.

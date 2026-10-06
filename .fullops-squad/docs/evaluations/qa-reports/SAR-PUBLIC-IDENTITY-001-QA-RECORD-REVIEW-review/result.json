@@ -1,0 +1,339 @@
+{
+  "base": "eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de",
+  "head": "e8d8b22c777f61cb30d831d1b97bb1b012023be8",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "coor / Codex gpt-6.1-sol medium / 01a10ed4-154b-7572-9160-7630e9ac42bc",
+  "conclusion": "QA 결과 기록 수락 가능. critical/high/medium 없음. 원본 eb2e34b의 좁은 독립 QA와 기존 리뷰·UI 근거를 연결해 로컬 코드 통합 가능. 실제 운영 수락은 미완료.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "coor가 작성한 운영 배정·대기 기록이다. 제품 변경과 QA 결과가 아니며 별도 OPS 최신 delta 리뷰·현재 PLANS에서 시점별 상태를 연결한다. QA 기록 독립 리뷰의 범위에서 제외한다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "skipped",
+      "reason": "coor가 작성한 운영 배정·대기 기록이다. 제품 변경과 QA 결과가 아니며 별도 OPS 최신 delta 리뷰·현재 PLANS에서 시점별 상태를 연결한다. QA 기록 독립 리뷰의 범위에서 제외한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/SAR-PUBLIC-IDENTITY-001-final/candidate-lint.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-route.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "자동 라우팅 추천 원본을 JSON·등록 역할·비밀값 부재로 확인했다. 제품 수락 근거가 아니므로 의미 판정에서 제외한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/fullops-lint.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/results.json",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "status": "added",
+      "insertions": 95,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "status": "added",
+      "insertions": 37,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "status": "added",
+      "insertions": 45,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "status": "added",
+      "insertions": 72,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot에서 문서·JSON·범위·명령/종료코드·기존 실패/미실행 보존·관련 원천과 링크를 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "status": "modified",
+      "insertions": 53,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "coor가 작성한 운영 배정·대기 기록이다. 제품 변경과 QA 결과가 아니며 별도 OPS 최신 delta 리뷰·현재 PLANS에서 시점별 상태를 연결한다. QA 기록 독립 리뷰의 범위에서 제외한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/docker-after.txt",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/docker-before.txt",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/exits.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/head-after.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/head-before.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-lint.out",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-lint.rc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-test-corrupt.err",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-test-corrupt.out",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-test-corrupt.rc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-test.err",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-test.out",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/make-test.rc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/npm-ci-rerun.rc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/npm-ci.rc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/rate-unit.out",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/rate-unit.rc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/status-after.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/status-before.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/verify-mvp.err",
+      "status": "added",
+      "insertions": 71,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/verify-mvp.out",
+      "status": "added",
+      "insertions": 190,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/verify-mvp.rc",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/versions.txt",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER-test/zod-install.txt",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 실행 증거. 전 파일 열람·존재·HEAD/clean·rc와 verify-mvp 8개 exit0 및 최초 exit2를 결과JSON/보고서와 대조했다. 새 검사·제품 파일이 아니므로 별도 행별 리뷰는 생략한다."
+    }
+  ],
+  "findings": [
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "start_line": 37,
+      "severity": "low",
+      "resolved": false,
+      "content": "첫 npm ci 뒤 손상된 설치 파일과 재설치 복구는 확인됐으나, npm ci가 손상을 일으킨 원인까지 입증하지 않았다. 설치 후 손상 관측으로 해석한다. 실패 원본과 성공한 동일 lock 재설치 증거는 보존되어 QA 수락을 차단하지 않는다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a10eeb-77ba-7c30-8fd3-daac89a6c5ad",
+    "reviewer_session": "01a10ed4-154b-7572-9160-7630e9ac42bc",
+    "snapshot_path": "/tmp/knowslink-identity-qa-record-review-e8d8b22",
+    "snapshot_head": "e8d8b22c777f61cb30d831d1b97bb1b012023be8",
+    "read_only": true
+  }
+}
