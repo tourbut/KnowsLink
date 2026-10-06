@@ -753,3 +753,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - DEV 진단 착수 영수증: Task `task_8703a6250fa8`, Dispatch `ctx_5f78e35e77c2`, terminal `term_86f19c57-8604-4aba-b470-283475d852c8`. 새 Claude Opus5.5 high effective·turn_started를 확인했다. 준비 merge ff1e670의 PLANS 충돌은 기존 내용과 신규 인수 기록을 모두 보존해 해결했다. 진행 DEV checkout은 변경하지 않는다. 터미널 discoverability 경고는 시작 성공과 구분하고 focus를 강제하지 않는다.
 
 - 병렬 독립 검토 SAR-PUBLIC-IDENTITY-001-RATE-REVIEW를 정규 빈 OPS 인박스에 준비한다. 고정9c915dc의 원본59 이후 RATE-FIX와 TESTER/UI 기록을 검토한다. DEV 진단과 코드 소유권이 겹치지 않는다. Jev OPS Sonnet 추천 대신 인증·공유 rate 위험을 다루는 fullops-review 기준의 별도 Opus5.5 high를 적용한다. invalid_lease 해소·최종 main 수락은 아직 아니다.
+
+- OPS 리뷰 첫 Task task_85f7c3846cae / Dispatch ctx_365a939c0f04는 agent_readiness timeout이다. 실제 terminal 출력에서 Bun1.4.3 `Segmentation fault (core dumped)`와 셸 복귀를 확인했다. 과제는 시작되지 않았다. 영수증의 worker-release로 정리하고 같은 Task의 retry-of로 재개한다. 원본 실패를 보존하며 제품·범위·모델을 변경하지 않는다.
