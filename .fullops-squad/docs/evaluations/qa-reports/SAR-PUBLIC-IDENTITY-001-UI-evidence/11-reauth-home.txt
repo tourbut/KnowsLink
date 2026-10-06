@@ -1,0 +1,42 @@
+- heading "내 KnowsLink" [level=1, ref=e1]
+- generic
+  - heading "내 신원" [level=2, ref=e2]
+  - DescriptionList
+    - term "확인된 이메일"
+    - definition
+      - StaticText "[이메일 가림]"
+    - term "회원 식별자"
+    - definition
+      - code
+        - StaticText "mem_zXklU-PMUr7g69lZYvlkYh"
+    - term "세션"
+    - definition
+      - StaticText "최대 2026-10-06 10:30:19 KST까지 유지됩니다. 60분 동안 활동이 없으면 먼저 끝납니다."
+- generic
+  - heading "내 agent" [level=2, ref=e3]
+  - paragraph
+    - StaticText "아직 연결한 agent가 없습니다."
+  - heading "새 agent 연결" [level=3, ref=e4]
+  - paragraph
+    - StaticText "상태: 준비 중. 화면에서 agent를 연결하는 기능은 다음 단계에서 제공합니다. 지금은 연결할 수 없습니다."
+- generic
+  - heading "관계" [level=2, ref=e5]
+  - paragraph
+    - StaticText "관계가 없습니다."
+- generic
+  - heading "승인 요청" [level=2, ref=e6]
+  - paragraph
+    - StaticText "승인 요청이 없습니다."
+- generic
+  - heading "로그아웃" [level=2, ref=e7]
+  - paragraph
+    - StaticText "로그아웃과 전체 로그아웃은 브라우저 세션만 끝냅니다. 별도로 연결한 agent의 키와 자격은 철회하지 않습니다."
+  - form
+    - button "이 브라우저에서 로그아웃" [ref=e9]
+  - paragraph
+    - StaticText "모든 브라우저에서 로그아웃하려면 5분 안에 이메일을 다시 확인해야 합니다."
+  - form
+    - button "이메일 다시 확인" [ref=e10]
+  - heading "계정 비활성화" [level=3, ref=e8]
+  - paragraph
+    - StaticText "상태: 준비 중. 아직 요청할 수 없습니다."

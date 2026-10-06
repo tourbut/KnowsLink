@@ -1,0 +1,315 @@
+{
+  "fixed": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "engine": "147.0.7727.15",
+  "playwright": "1.63.0",
+  "headless": true,
+  "page": "isolated context; no persistent profile",
+  "base": "http://localhost:52731",
+  "observations": [
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "keyboard",
+      "result": "email Tab reaches send button"
+    },
+    {
+      "kind": "capture",
+      "name": "01-start-mobile",
+      "path": "http://localhost:52731/",
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "kind": "capture",
+      "name": "01-start-desktop",
+      "path": "http://localhost:52731/",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/start",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "02-pending-mobile",
+      "path": "http://localhost:52731/auth/verify",
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 401
+    },
+    {
+      "kind": "capture",
+      "name": "03-wrong-mobile",
+      "path": "http://localhost:52731/auth/verify",
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/auth/start",
+      "status": 429
+    },
+    {
+      "kind": "capture",
+      "name": "04-resend-limited-mobile",
+      "path": "http://localhost:52731/auth/start",
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 410
+    },
+    {
+      "kind": "capture",
+      "name": "05-code-expired-mobile",
+      "path": "http://localhost:52731/auth/verify",
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/start",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/home",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "06-home-mobile",
+      "path": "http://localhost:52731/home",
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "kind": "capture",
+      "name": "06-home-desktop",
+      "path": "http://localhost:52731/home",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/home",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "07-reauth-home-desktop",
+      "path": "http://localhost:52731/home",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/auth/reauth",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "08-reauth-pending-desktop",
+      "path": "http://localhost:52731/auth/verify",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/home",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/logout-all",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "09-logout-all-desktop",
+      "path": "http://localhost:52731/?n=all",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "10-old-session-desktop",
+      "path": "http://localhost:52731/?n=expired",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/start",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/verify",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/home",
+      "status": 200
+    },
+    {
+      "kind": "continuity",
+      "sameMember": true,
+      "sameEmptyAgentAndRelations": true
+    },
+    {
+      "kind": "response",
+      "path": "/home/gates/ui-expired-gate",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "11-expired-member-gate-desktop",
+      "path": "http://localhost:52731/home/gates/ui-expired-gate",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/home",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/logout",
+      "status": 303
+    },
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "capture",
+      "name": "12-current-logout-desktop",
+      "path": "http://localhost:52731/?n=logout",
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "kind": "response",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "kind": "response",
+      "path": "/auth/start",
+      "status": 503
+    },
+    {
+      "kind": "capture",
+      "name": "13-mail-failed-mobile",
+      "path": "http://localhost:52731/auth/start",
+      "dimensions": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    }
+  ],
+  "exit": 0
+}

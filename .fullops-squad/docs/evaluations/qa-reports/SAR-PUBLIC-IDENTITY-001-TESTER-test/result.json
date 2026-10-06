@@ -1,0 +1,963 @@
+{
+  "candidate": "59b66ada8b36802484cc6d7e22523257b50572cc",
+  "qa_checkout": "/tmp/knowslink-public-identity-qa-59b66ad",
+  "passed": 157,
+  "failed": 0,
+  "skipped": 2,
+  "checks": [
+    {
+      "id": "env-mail-dir-mode",
+      "ok": true,
+      "note": "0o700",
+      "http": null
+    },
+    {
+      "id": "p01-start",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p07-ux01-start",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p01-security-headers",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p03-anonymous-home",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p01-bad-format",
+      "ok": true,
+      "note": "",
+      "http": 422
+    },
+    {
+      "id": "p04-synthetic-closed",
+      "ok": true,
+      "note": "",
+      "http": 403
+    },
+    {
+      "id": "p04-sessionless-agent-api",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p01-no-member-before-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p07-ux02-verify",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p01-verify-mask",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p01-wrong-code",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p01-verified-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p07-ux03-home",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p01-home-hides-address",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p03-cookie-flags",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p01-code-reuse",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p04-owner-screen-without-session",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p04-member-cookie-is-not-admin",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p04-session-cookie-is-not-agent",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p02-relogin-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-relogin-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p02-relogin-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-relogin-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p02-same-member",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p02-other-issuer-not-merged",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p03-restart-keeps-session",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-agent-before-logout",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-logout",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-logout-notice",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-old-session-rejected",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-agent-survives-logout",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-second-browser-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-second-browser-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-second-browser-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-second-browser-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-second-browser-same-member",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p03-logout-all-fresh",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-right-still-anonymous",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-live-peer-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-live-peer-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-live-peer-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-live-peer-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-peer-same-member",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p03-live-current-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-live-current-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-live-current-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-live-current-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-logout-all-revokes-peer",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-stale-login-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-stale-login-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-stale-login-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-stale-login-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-reauth-required",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-logout-all-stale",
+      "ok": true,
+      "note": "",
+      "http": 403
+    },
+    {
+      "id": "p03-reauth-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-reauth-restores-logout-all",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-reauth-peer-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-reauth-peer-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-reauth-peer-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-reauth-peer-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-logout-all-after-reauth",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p03-idle-over-login-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-idle-over-login-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-idle-over-login-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-idle-over-login-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-idle-over",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-agent-survives-idle",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p02-concurrent-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-concurrent-start-one-member",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-concurrent-same-email",
+      "ok": true,
+      "note": "statuses [303, 303]",
+      "http": null
+    },
+    {
+      "id": "p02-one-use-parallel",
+      "ok": true,
+      "note": "wins 1",
+      "http": null
+    },
+    {
+      "id": "p04-alice-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p04-alice-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p04-alice-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p04-alice-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p04-bob-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p04-bob-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p04-bob-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p04-bob-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p04-home-hides-other-member",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p04-other-gate-read",
+      "ok": true,
+      "note": "",
+      "http": 403
+    },
+    {
+      "id": "p04-other-gate-decide",
+      "ok": true,
+      "note": "",
+      "http": 409
+    },
+    {
+      "id": "p04-own-gate-link",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p04-own-gate-without-body",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p04-cross-site-decision",
+      "ok": true,
+      "note": "",
+      "http": 403
+    },
+    {
+      "id": "p04-cross-site-did-not-approve",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p04-agent-bearer-not-owner-page",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p02-dot-base-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-dot-base-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p02-dot-base-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-dot-base-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p02-dot-alias-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-dot-alias-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p02-dot-alias-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-dot-alias-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p02-plus-alias-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-plus-alias-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p02-plus-alias-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p02-plus-alias-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p02-dot-and-plus-distinct",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "p01-five-wrong-then-expired",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p01-expired-code",
+      "ok": true,
+      "note": "",
+      "http": 401
+    },
+    {
+      "id": "p01-cross-site-start",
+      "ok": true,
+      "note": "",
+      "http": 403
+    },
+    {
+      "id": "p01-mismatched-origin",
+      "ok": true,
+      "note": "",
+      "http": 403
+    },
+    {
+      "id": "p03-idle-inside-login-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-idle-inside-login-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-idle-inside-login-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-idle-inside-login-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-idle-inside",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-absolute-over-login-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-over-login-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-absolute-over-login-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-over-login-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-absolute-over",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-boundary-login-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-boundary-login-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-absolute-boundary-login-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-boundary-login-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-absolute-boundary",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-inside-login-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-inside-login-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p03-absolute-inside-login-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p03-absolute-inside-login-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p03-absolute-inside",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p05-resend-immediate",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-resend-after-61s",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-email-hour-cap",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-email-cap-survives-restart",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-ip-hour-cap",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-anonymous-30",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-anonymous-isolates-source",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-principal-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-principal-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p05-principal-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-principal-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p05-principal-40",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-cleanup-separate",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-global-login-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-global-login-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p05-global-login-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-global-login-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p05-global-http-200",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-global-send-100",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-existing-at-capacity-start",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-existing-at-capacity-binding",
+      "ok": true,
+      "note": "stored challenge matches the sink message",
+      "http": null
+    },
+    {
+      "id": "p05-existing-at-capacity-verify",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p05-existing-at-capacity-home",
+      "ok": true,
+      "note": "",
+      "http": 200
+    },
+    {
+      "id": "p05-member-cap-100",
+      "ok": true,
+      "note": "",
+      "http": 503
+    },
+    {
+      "id": "p05-default-ip-30",
+      "ok": true,
+      "note": "",
+      "http": 429
+    },
+    {
+      "id": "p05-header-honored-only-when-configured",
+      "ok": true,
+      "note": "",
+      "http": 303
+    },
+    {
+      "id": "p01-send-failure",
+      "ok": true,
+      "note": "",
+      "http": 503
+    },
+    {
+      "id": "p01-mail-unconfigured",
+      "ok": true,
+      "note": "",
+      "http": 503
+    },
+    {
+      "id": "p01-cleartext-non-loopback-refused",
+      "ok": true,
+      "note": "",
+      "http": 503
+    },
+    {
+      "id": "p05-bad-ip-header-rejected",
+      "ok": true,
+      "note": "",
+      "http": 1
+    },
+    {
+      "id": "env-qa-tree-clean",
+      "ok": true,
+      "note": "",
+      "http": null
+    },
+    {
+      "id": "env-relay-log-redacted",
+      "ok": true,
+      "note": "matches 0",
+      "http": null
+    },
+    {
+      "id": "p06-public-boundary",
+      "ok": null,
+      "skipped": true,
+      "note": "\uc6b4\uc601 \uacf5\uac1c \ud6c4\ubcf4\uc640 \ud604\uc7ac hostname\uc758 owner-only \uacbd\uacc4\ub294 \uc774 Run\uc5d0 \uc5c6\ub2e4. \ub85c\uceec synthetic 403\uc740 \uacf5\uac1c PASS\uac00 \uc544\ub2c8\ub2e4."
+    },
+    {
+      "id": "p07-human-email-and-designer-ui",
+      "ok": null,
+      "skipped": true,
+      "note": "\uc2e4\uc81c \uc0ac\uc6a9\uc790 \uc774\uba54\uc77c\uacfc designer\uc758 \uc9c1\uc811 \ud654\uba74 \uac80\uc218\ub294 \ubbf8\uc2e4\ud589\uc774\ub2e4. HTML \ubb38\uad6c \uac80\uc0ac\ub294 fixture \uc790\ub3d9 \uadfc\uac70\ub2e4."
+    }
+  ]
+}
