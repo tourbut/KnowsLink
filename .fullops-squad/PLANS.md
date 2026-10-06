@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
 summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
@@ -889,3 +889,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 후속: 공개 전 OPS가 운영 DB 합성 owner 0개를 확인한다(L-A/L-B 전제). DEV 후속에서 agent_ 접두사 예약 또는 삭제 ID tombstone, owner API Generation 필드를 검토한다. TESTER 독립 QA·designer UI 재검수·OPS 실제 자원/복원 수락은 별도이며 이 리뷰 완료는 main 제품 수락이 아니다.
 
 - 독립FIX-REVIEW msg_8119d5db7ae4/b6f2442507c6536bbd5bc3f3ec768c52c5c75a84 수신. actual리뷰7dc8e8e4는DEV3세션과다름·458snapshot clean/detached·reviewcheck87/65/152통과·fixedlint458 ERROR0/WARNING8/test0를확인했다. 원래M1/L1/L3해소, L2제품답준수, critical/high/medium0. 남은low L-A삭제ID합성owner재등록/L-B합성API Generation미결속은새원문재현으로보존했다. 공개전OPS 합성owner0·합성가입unset확인이필수이며운영PASS아니다. 최신QA/UI와리뷰기록자체검사대기로hold·coor SHA보존반영. 원래추출null과fullSHA출처를함께보존했다.
+## SAR-PUBLIC-AGENTS-001-UI-FIX — designer 완료 결과
+
+- fixed 458798c의 F-UI-01–04·POLICY 안내는 좁은 직접 UI PASS다. [보고서](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md)·PNG 62개·Orca 장애 2개·manifest·cleanup을 보존했다. 제품 변경 0이고 원본 d1/d165 UI FAIL·OPS/QA 원실행은 유지한다.
+- 남은 담당과 재개 조건: TESTER의 fixed 정책 독립 QA, OPS delta/운영 조건, coor의 합성 후보 통합 수락. 실메일·운영 공개·실24h·부하/복원·노우↔다닷은 후속으로 유지한다. 새 designer 과제는 없다. 완료 전문은 work.py finish 뒤 날짜별 designer 로그에서 확인한다.

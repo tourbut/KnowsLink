@@ -1,0 +1,81 @@
+[
+  {
+    "command": [
+      "git",
+      "diff",
+      "--exit-code",
+      "6d016e5",
+      "458798c2ee15c179edacfd6f94ebb9896d26f411",
+      "--",
+      ".",
+      ":(exclude).fullops-squad"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--exit-code",
+      "458798c2ee15c179edacfd6f94ebb9896d26f411",
+      "--",
+      "cmd",
+      "internal",
+      "adapters",
+      "db",
+      "scripts",
+      "deploy",
+      "Makefile",
+      "go.mod",
+      "go.sum",
+      "compose.yaml",
+      "Dockerfile"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/tmp/knowslink-ui-fix-458798c-33ddf7/src",
+      "diff",
+      "--exit-code",
+      "458798c2ee15c179edacfd6f94ebb9896d26f411"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "/home/shin/.codex/plugins/cache/fullops-squad/fullops-squad/0.9.14/scripts/deliverables.py",
+      "--repo",
+      ".",
+      "--strict"
+    ],
+    "exit": 0,
+    "stdout": "검사: 13 / 미작성: 0 / 문제: 0 / 경고: 0\n",
+    "stderr": ""
+  },
+  {
+    "command": "JSON/PNG SHA256, original 65 files, changed report local-link checks",
+    "exit": 0,
+    "images": 64,
+    "originalFiles": 65
+  }
+]
