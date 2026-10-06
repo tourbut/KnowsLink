@@ -1,0 +1,84 @@
+{
+  "id": "8571061f-29b1-4f45-a065-1661215745ea",
+  "ok": true,
+  "result": {
+    "runId": "run_8ca8bc058ab7",
+    "taskId": "task_3a9d433b5e6b",
+    "dispatchId": "ctx_fb39c38db415",
+    "state": "ready",
+    "stage": "input_accepted",
+    "turnStart": "unsupported",
+    "setup": {
+      "requested": "not_applicable",
+      "effective": "not_applicable",
+      "source": "existing_worktree",
+      "hookFound": false,
+      "startupPolicy": "start-immediately",
+      "state": "not_applicable"
+    },
+    "launch": {
+      "requested": {
+        "agent": null,
+        "model": null,
+        "effort": null
+      },
+      "effective": {
+        "agent": null,
+        "model": null,
+        "effort": null
+      }
+    },
+    "mode": {
+      "mode": "terminal",
+      "preferred": "terminal",
+      "reason": "user_default",
+      "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+    },
+    "timeoutMs": 90000,
+    "effects": [
+      {
+        "kind": "worktree",
+        "action": "reused",
+        "id": "818c78e5-d51c-4ff4-aa88-70e9ee185fbb::/home/shin/orca/workspaces/KnowsLink/fullops-tester"
+      },
+      {
+        "kind": "setup",
+        "action": "not_applicable",
+        "state": "not_applicable"
+      },
+      {
+        "kind": "terminal",
+        "role": "agent",
+        "action": "reused",
+        "id": "term_605dc960-19c5-4a99-b3b4-37953788a75f"
+      },
+      {
+        "kind": "dispatch_input",
+        "role": "agent",
+        "id": "term_605dc960-19c5-4a99-b3b4-37953788a75f",
+        "state": "accepted"
+      }
+    ],
+    "prompt": {
+      "requestId": "565e0dca-3f4b-4b26-a77a-4bfcf0a2d6c1",
+      "stages": [
+        "input_accepted"
+      ],
+      "provider": "unsupported",
+      "observation": "unsupported",
+      "processIncarnation": "1c55e1b9-d36b-4a98-b0d3-a6b8974cad1b",
+      "generation": 413,
+      "baselineWorkingSequence": 0,
+      "baselineExplicitWorkingStartedAt": null,
+      "baselinePermissionSequence": 0
+    },
+    "residualResources": [],
+    "mutation": {
+      "requestId": "565e0dca-3f4b-4b26-a77a-4bfcf0a2d6c1",
+      "replayed": false
+    }
+  },
+  "_meta": {
+    "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "be920fd7-1b78-4b60-b467-26b529df0751",
+  "ok": true,
+  "result": {
+    "runId": "run_8ca8bc058ab7",
+    "taskId": "task_f37e47dda648",
+    "dispatchId": "ctx_33b0a8cee142",
+    "state": "failed",
+    "stage": "agent_readiness",
+    "failedStage": "agent_readiness",
+    "lastError": "Agent startup blocked: agent-update-prompt",
+    "setup": {
+      "requested": "not_applicable",
+      "effective": "not_applicable",
+      "source": "existing_worktree",
+      "hookFound": false,
+      "startupPolicy": "start-immediately",
+      "state": "not_applicable"
+    },
+    "launch": {
+      "requested": {
+        "agent": "codex",
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      },
+      "effective": {
+        "agent": "codex",
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      }
+    },
+    "mode": {
+      "mode": "terminal",
+      "preferred": "terminal",
+      "reason": "user_default",
+      "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+    },
+    "effects": [
+      {
+        "kind": "worktree",
+        "action": "reused",
+        "id": "818c78e5-d51c-4ff4-aa88-70e9ee185fbb::/home/shin/orca/workspaces/KnowsLink/fullops-designer"
+      },
+      {
+        "kind": "setup",
+        "action": "not_applicable",
+        "state": "not_applicable"
+      },
+      {
+        "kind": "terminal",
+        "role": "agent",
+        "action": "created",
+        "id": "term_197f4ae4-c6ce-4b25-8277-e252ff59bbb2",
+        "surface": "background",
+        "warning": "Terminal term_197f4ae4-c6ce-4b25-8277-e252ff59bbb2 is running, but Orca could not make it discoverable. Run `orca terminal focus --terminal term_197f4ae4-c6ce-4b25-8277-e252ff59bbb2` to reveal and focus it."
+      }
+    ],
+    "residualResources": [
+      {
+        "kind": "terminal",
+        "role": "agent",
+        "action": "created",
+        "id": "term_197f4ae4-c6ce-4b25-8277-e252ff59bbb2",
+        "surface": "background",
+        "warning": "Terminal term_197f4ae4-c6ce-4b25-8277-e252ff59bbb2 is running, but Orca could not make it discoverable. Run `orca terminal focus --terminal term_197f4ae4-c6ce-4b25-8277-e252ff59bbb2` to reveal and focus it."
+      }
+    ],
+    "recovery": "This start created a terminal that never ran the Task. Close it with: orca orchestration worker-release --dispatch ctx_33b0a8cee142",
+    "mutation": {
+      "requestId": "b0390ab6-1182-4d0e-bc75-962323e769ab",
+      "replayed": false
+    }
+  },
+  "_meta": {
+    "runtimeId": "5283a0df-0be4-4a5d-b892-f64ef325fd82"
+  }
+}
