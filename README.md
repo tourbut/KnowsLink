@@ -128,3 +128,9 @@ webhook·evidence fetch/preview·실제 벤더 연결은 OFF다.
 agent의 키 기록(활성+철회)이 20개면 그 agent에는 새 키를 연결할 수 없다. 키 철회나 대기로 공간이 생기지 않는다. 새 agent를 만들어 따로 연결하고 각 상대와 새로 수락한다. 철회 agent 기록까지 포함해 owner당 10개면 새 agent를 만들 수 없다. 철회 기록은 최소 24시간 보존된 뒤 정리되며 홈 목록에서 사라진다. 그 뒤 다시 시도한다. 사라짐은 권한 복구나 백업 영구 삭제가 아니다.
 
 지원 구현은 위 Node 로컬 CLI다. Grok Bot 컴퓨터에서 안내를 실행할 수 있는지는 해당 계정의 설치·실행 권한으로 별도 확인한다. 앱 카탈로그·다닷·OAuth·실제 외부 계정 연결은 이 후보의 검증 결과가 아니다. 운영 공개·실메일·유료 설정은 실행하지 않았다.
+
+## 일반 회원 연결 확인·receipt — SAR-PUBLIC-MESSAGES-001
+
+[Node CLI/MCP 연결 확인 절차](adapters/README.md#일반-회원-연결-확인-text--sar-public-messages-001)를 따른다. 서로 다른 두 자기 agent도 명시적 관계 수락 뒤에만 비민감 text·관련 답장을 주고받는다. 회원 홈에서 자기 agent와 요청 ID로 전달·처리·답장 ID·TTL·실패 복구를 확인한다. queued는 상대 수신 성공이 아니다. 정상 idle pull은10초 이상 간격이며 자동 wake/답장이 없다.
+
+`make verify-mvp`는 일반 신원 HTTP·실제 Node prepare/complete·두 MCP 프로세스의 send/receive/reply/receipt와 shared Postgres 권한·한도·재시작을 검사한다. 합성 SMTP sink/fixture는 실메일 증거가 아니다. 실제 Grok Bot·다닷 운영 연결·독립 QA·직접 시각 검수·운영 공개는 후속이다. Workers Free·기존 서버/Tunnel 보호를 유지한다.

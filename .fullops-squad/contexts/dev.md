@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV]
 summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
@@ -53,3 +53,7 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 
 - 2026-10-06 SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX: 제품 답이 오면 관찰 조건표를 한 행씩 기존 코드에 대조한다. 관계 의미는 이미 일치했고 차이는 화면 안내뿐이었다. 일치하는 동작은 재구현하지 않고 State 행렬 검사와 변형 실패로 고정한다.
 - 같은 409 `capacity`라도 사용자 다음 동작이 다르면 회원 계층에서 실제 한도(`agentLimit`·`connectLimit`)로 안내를 나눈다. `/v1/*` wire 오류 코드는 바꾸지 않는다. `refusal` 같은 위치 지정 struct literal에 필드를 더하면 모든 호출을 함께 고친다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)
+
+- 2026-10-06 SAR-PUBLIC-MESSAGES-001-DEV: 일반 text는 knowslink.text.v1로 분리하고 Message·현재 인가·lease를 재사용했다. receipt 조회는 자기 agent·요청별 metadata만 표시한다.
+- bundle에 새 CLI를 import하면 import.meta.url 조건도 bundle URL이 된다. 공통 helper를 core로 옮기고 CLI 파일명을 확인한다. HTTP rate는 공통 입장에서 한 번 차감해 schema/CSRF 오류도 집계한다.
+- 실제 로컬 Node CLI/MCP 왕복·한도/재시작/철회와 외부 플랫폼·실메일·독립 QA/직접 UI 수락을 구분한다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md).

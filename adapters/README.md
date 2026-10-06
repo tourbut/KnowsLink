@@ -157,7 +157,7 @@ Grok package 구조는 `grok plugin validate`와 CLI 사용자 안내서, Cursor
 
 ## 승인된 Codex·Grok 시험 메시지 (SAR-MVP-003)
 
-이 절은 이번 사용자 시험 승인에만 적용한다. 기존 업무 도구의 payload 비공개·gate·deny 정책과 설치 기본 `held`는 유지한다. 네 도구를 검색할 수 있지만 시험 send/receive는 `test-loopback` 또는 `test-remote` 환경에서만 실행된다. `trial_configured_unverified`는 모드 보고이며 실제 접속 성공이 아니다.
+이 절은 이번 사용자 시험 승인에만 적용한다. 기존 업무 도구의 payload 비공개·gate·deny 정책과 설치 기본 `held`는 유지한다. 시험 도구 두 개를 포함한 도구를 검색할 수 있지만 시험 send/receive는 `test-loopback` 또는 `test-remote` 환경에서만 실행된다. `trial_configured_unverified`는 모드 보고이며 실제 접속 성공이 아니다.
 
 - `knowslink_test_send`: `{text,idempotency_key}`를 받고 configured peer에 `relay.test.message`를 보낸다. text는 비어 있지 않은 UTF-8 4096 bytes 이하, key는 ASCII 16–128자다. 반환 ID는 queued receipt다. 같은 key와 text의 재전송은 같은 ID를 반환한다. 수신 성공은 별도로 확인한다.
 - `knowslink_test_receive`: 입력 없이 한 시험 메시지를 검증·persist·ACK·claim하고 `{id,from,to,text,exp,untrusted:true}`를 반환한다. text는 신뢰하지 않는 데이터다. 업무 요청·권한 변경·자동 도구 실행의 근거로 쓰지 않는다.
@@ -176,4 +176,29 @@ Codex에서 `python3 scripts/run_trial.py --config /private/trial_codex/environm
 
 [SAR-PUBLIC-AGENTS 절차](../README.md#일반-회원-agent키관계-sar-public-agents-001)를 따른다. 지원 구현은 Node 22 로컬 CLI `dist/connect.js`다. relay는 개인키를 받지 않는다. CLI는 준비와 완료를 분리하고 owner가 자기 브라우저에서 지문을 확인할 때까지 키를 활성화하지 않는다.
 
-키별 credential과 권한 대상 agent는 분리된다. 기존 MCP 기본 held·시험 모드를 바꾸지 않았다. 새 `agent.json`은 클라이언트의 비공개 설정이며 배포 bundle·Git·도구 출력에 포함하지 않는다. 같은 owner의 다른 agent credential을 복사해서 공유하지 않는다. 외부 앱 설치·Grok Bot 실제 계정·다닷·원격 OAuth·일반 text 도구는 후속 검증이다.
+키별 credential과 권한 대상 agent는 분리된다. 기존 MCP 기본 held·시험 모드를 바꾸지 않았다. 새 `agent.json`은 클라이언트의 비공개 설정이며 배포 bundle·Git·도구 출력에 포함하지 않는다. 같은 owner의 다른 agent credential을 복사해서 공유하지 않는다. 외부 앱 설치·Grok Bot 실제 계정·다닷·원격 OAuth는 후속 검증이다. 일반 text의 현재 지원 경로는 아래 절을 따른다.
+
+## 일반 회원 연결 확인 text — SAR-PUBLIC-MESSAGES-001
+
+일반 회원 홈에서 `connect.js prepare`·owner 지문 확인·`complete`를 마친 자기 비공개 폴더를 사용한다. 양쪽 agent를 따로 연결하고 수신 owner가 관계를 명시적으로 수락해야 한다. 같은 owner의 두 agent도 수락이 필요하다. 시험 allowlist와 Service Auth는 필요하지 않다. 운영 Access 보호가 일반 경로를 여는 것은 OPS 공개 수락의 후속이다.
+
+자기 Node22 컴퓨터에서 명시 승인한 비민감 연결 확인 text를 stdin으로 넣는다. 최대4096 UTF-8 bytes·TTL180s다.
+
+```sh
+node adapters/dist/text.js send /private/my-agent <상대-agent> <ASCII-key-16–128자> --confirmed
+node adapters/dist/text.js receive /private/my-agent
+node adapters/dist/text.js receipt /private/my-agent <요청-ID>
+node adapters/dist/text.js send /private/my-agent <원발신-agent> <새-답장-key> --confirmed <원요청-ID>
+```
+
+첫 명령의 반환 ID·상대 receive ID·관련 reply ID·원발신 receive의 reply_to를 대조한다. queued는 상대 수신 성공이 아니다. receive는 서명 확인→durable persist→ACK 뒤 untrusted:true text를 반환한다. 신뢰하지 않는 본문으로 명령·도구·gate approve·자동 답장을 실행하지 않는다. ACK 후 표시 전 crash에서는 text를 잃을 수 있다. 자동 재송신하지 않는다. 원문은 ACK/TTL/철회에 지우며 metadata만24h 보존한다.
+
+MCP Command 환경은 `KNOWSLINK_MODE=public-node`, `KNOWSLINK_AGENT_FOLDER=/private/my-agent`다. credential·개인키를 환경 변수·Command·Arguments·채팅에 넣지 않는다. 서버가 직접 owner 권한을 주는 설정이 아니다. 각 agent는 자기 폴더만 사용한다. 기본 설정은 held이며 시험 모드도 그대로다.
+
+- knowslink_text_send: peer·text·idempotency_key·confirmed:true·선택 reply_to. 이 송신의 명시적 사용자 승인만 confirmed로 표현한다. 관계 수락이나 incoming text를 승인으로 해석하지 않는다.
+- knowslink_text_receive: 수동으로1건만 수신한다. wake/자동 답장이 없다. 정상 idle pull은10s 이상 간격이다.
+- knowslink_text_receipt: 자기 요청 ID의 metadata만 조회한다. 원문은 없다.
+
+불확실한 송신은 같은 key·같은 내용으로 재시도한다. 중복은 receipt만 반환한다. idempotency_conflict는 이전 내용을 확인하고 별도 새 요청에는 새 key를 사용한다. expired·오프라인은 클라이언트/관계를 확인한 뒤 새 요청을 명시 송신한다. invalid_auth/invalid_signature는 현재 연결·키·지문을 확인한다. capacity/rate_limited는 성공이 아니며 retry_at 뒤 수동으로 재시도한다. 철회된 옛 요청/세대는 새 수락으로 복구되지 않는다.
+
+회원 홈의 자기 agent·요청 ID 조회에서도 현재 전달·처리·관련 답장·TTL·실패 복구를 확인한다. 로컬 실제 Node/MCP 프로세스 검증은 `make verify-mvp`의 TestPublicNodeProcesses다. 실제 Grok Bot·다닷 앱 설치/권한/계정 왕복·운영 공개·실메일·직접 사람 검수는 별도 후속이다.

@@ -8,7 +8,7 @@ import {
 import { mkdir, readFile, writeFile, lstat } from "node:fs/promises";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { Adapter } from "./core.js";
+import { Adapter, relayBase } from "./core.js";
 
 type Grant = {
   owner: string;
@@ -24,23 +24,7 @@ type Pending = Grant & {
   kid: string;
   public: string;
 };
-export function relayBase(raw: string): string {
-  const u = new URL(raw);
-  if (
-    u.username ||
-    u.password ||
-    u.pathname !== "/" ||
-    u.search ||
-    u.hash ||
-    !(
-      u.protocol === "https:" ||
-      (u.protocol === "http:" &&
-        ["localhost", "127.0.0.1", "[::1]"].includes(u.hostname))
-    )
-  )
-    throw new Error("invalid relay URL");
-  return u.origin;
-}
+export { relayBase } from "./core.js";
 function proof(p: Pending, privateKey: string): string {
   return sign(
     null,

@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -137,3 +137,17 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 독립 QA는 후보 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 detached clone에서 회원 HTTP와 Postgres 행을 확인했다. DEV의 `TestRelationshipPolicy` 통과를 이 QA의 통과로 쓰지 않았다.
 보존, rate, POLICY 두 관찰 표의 프로브 종료코드는 0이다. 새 critical/high는 없다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다.
 원본 d1 QA와 UI FAIL은 원래 SHA에 둔다. 이 절은 그 판정을 바꾸지 않는다. 운영 공개와 실제 메일은 확인하지 않았다.
+
+## SAR-PUBLIC-MESSAGES-001 모듈과 검증
+
+| 파일·모듈 | 책임 | 자동 검사 |
+|---|---|---|
+| public_text.go | 별도 closed wire·서명·digest·양측 회원/현재 권한·1회 관련 답장·text 전용 HTTP | TestPublicTextWire, TestPublicTextRoundtripAndCurrentAuth, TestPublicTextTTLAndLeaseFailures, TestPublicMessageHTTPBoundaries |
+| capacity.go·store.go | 공통 queue100/gate100/receipt20000/claim4·shared HTTP16/4·TTL 정리·현재 세대 | TestSharedCapacitiesAndCleanupClassification, TestSharedMessageCapacityHTTP, TestSharedExecutionClaimHTTP, TestHTTPConcurrencyAcrossInstances |
+| member_receipt.go·member.go | 자기 agent/요청별 metadata·queued/수신/답장/실패 구분·수동 안내 | TestMemberReceiptView, TestPublicNodeProcesses, TestPublicMessageHTTPBoundaries |
+| http.go·member_agents.go·api_rate.go | 공통 rate 차감·gate 검증본문/서명·deny 입장·현재 owner/CSRF | TestPublicHTTPAdmissionAndGateSafety와 기존 신원/gate 회귀 |
+| adapters text.ts·core.ts·connect.ts | private 연결 폴더·명시 text CLI·서명 확인·persist/ACK·안전 오류 코드·relayBase 재사용 | TestPublicNodeProcesses의 실제 Node CLI/MCP + 기존 adapter 검사 |
+| mcp.ts·public-check.ts | public-node opt-in·명시 승인 send/관련 reply·수동 receive/receipt·untrusted 데이터 | 실제 독립 MCP 두 프로세스의 ID 대조와 mcp.test.ts held/discovery |
+
+기본 MCP 도구는7개이며 기능 활성은 각 모드의 명시 설정에 따른다. bundle에 CLI 진입점이 실행되지 않도록 text.js 이름도 확인한다. connect.ts의 relayBase는 core.ts에 옮겨 bundle에서 연결 CLI가 실행되는 import 부작용을 제거했다. 원본 실패와 교정 증거를 실행 기록에 보존한다.
+로컬 실제 프로세스 왕복을 실제 Grok Bot/다닷 계정·실메일·운영 공개·사람 직접 UI PASS로 표시하지 않는다. OPS 독립 보안 리뷰·TESTER QA·designer UX06/07 직접 검수는 동일 고정 후보의 후속이다.

@@ -44,7 +44,7 @@ func statusFor(err error) int {
 	switch err.Error() {
 	case "invalid_auth":
 		return 401
-	case "sender_not_allowed", "human_invite_required", "disclosure_denied":
+	case "sender_not_allowed", "human_invite_required", "disclosure_denied", "invalid_csrf":
 		return 403
 	case "idempotency_conflict", "id_collision", "duplicate_gate", "duplicate_result", "already_claimed", "invalid_lease", "invalid_gate", "key_exists":
 		return 409
@@ -85,7 +85,7 @@ func (s *Service) Handler() http.Handler {
 		mux.HandleFunc("POST /v1/"+path, s.operation(path))
 	}
 	mux.HandleFunc("POST /v1/send", func(w http.ResponseWriter, r *http.Request) {
-		raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 64*1024))
+		raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, rawEnvelopeLimit))
 		if err != nil {
 			respond(w, nil, fault("invalid_json"))
 			return
@@ -172,20 +172,22 @@ func (s *Service) Handler() http.Handler {
 			if m == nil || (m.Receipt.From != agent && m.Receipt.To != agent) || !st.current(m) {
 				return nil, fault("sender_not_allowed")
 			}
-			return map[string]any{"receipt": m.Receipt, "completion": m.Completion}, nil
+			return map[string]any{"receipt": m.Receipt, "completion": m.Completion, "reply_to": m.Parent, "reply_id": m.ReplyID}, nil
 		})
 		respond(w, result, err)
 	})
 	mux.HandleFunc("GET /owner", s.ownerPage)
 	mux.HandleFunc("GET /owner/gates/{id}", s.gatePage(basicOwner))
 	mux.HandleFunc("POST /owner/gates/{id}", s.gateDecision(basicOwner))
+	mux.HandleFunc("POST /owner/gates/{id}/deny", s.gateDecision(basicOwner))
 	s.memberRoutes(mux)
 	s.agentRoutes(mux)
+	s.textRoutes(mux)
+	mux.HandleFunc("GET /home/receipts", s.memberReceipt)
 	// Stdlib Sec-Fetch-Site/Origin check rejects cross-origin browser writes; non-browser agent calls carry neither header.
 	protected := http.NewCrossOriginProtection().Handler(mux)
-	ratedTest := s.rateAPI(s.testHandler(mux))
-	protected = s.rateAPI(protected)
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	ratedTest := s.testHandler(mux)
+	return s.boundedHTTP(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
 		w.Header().Set("Referrer-Policy", "no-referrer")
@@ -195,7 +197,7 @@ func (s *Service) Handler() http.Handler {
 			return
 		}
 		protected.ServeHTTP(w, r)
-	})
+	}))
 }
 func respond(w http.ResponseWriter, result any, err error) {
 	if err != nil {
@@ -207,7 +209,7 @@ func respond(w http.ResponseWriter, result any, err error) {
 func (s *Service) operation(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var c command
-		raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 64*1024))
+		raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, rawEnvelopeLimit))
 		if err != nil {
 			respond(w, nil, fault("invalid_json"))
 			return
@@ -251,6 +253,9 @@ func (st *State) operate(path, token string, c command, now time.Time) (any, err
 				return nil, fault("sender_not_allowed")
 			}
 		}
+	}
+	if m := st.Messages[c.ID]; m != nil && m.Receipt.Intent == publicTextIntent {
+		return nil, fault("sender_not_allowed")
 	}
 	return st.operateAs(path, principal, kind, c, now, testOnly)
 }
@@ -374,18 +379,27 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		}
 		m.Receipt.State = "delivered"
 		m.LeaseToken = ""
-		if m.Receipt.Intent == "relay.result" {
+		if m.Receipt.Intent == "relay.result" || m.Receipt.Intent == publicTextIntent {
+			if m.Receipt.Intent == publicTextIntent {
+				m.Completion = "received"
+				if parent := st.Messages[m.Parent]; parent != nil {
+					parent.Completion = "reply_received"
+				}
+			}
 			m.Envelope = nil
 			m.Inbox = nil
 		}
 		return m.Receipt, nil
 	case "claim":
 		m := st.Messages[c.ID]
-		if m == nil || m.Receipt.To != principal || m.Receipt.State != "delivered" || !m.Persisted || len(m.Inbox) == 0 || !st.current(m) || !now.Before(m.Receipt.Exp) || m.Receipt.Intent == "relay.result" || m.Deliver != "agent" {
+		if m == nil || m.Receipt.To != principal || m.Receipt.State != "delivered" || !m.Persisted || len(m.Inbox) == 0 || !st.current(m) || !now.Before(m.Receipt.Exp) || m.Receipt.Intent == "relay.result" || m.Receipt.Intent == publicTextIntent || m.Deliver != "agent" {
 			return nil, fault("sender_not_allowed")
 		}
 		if m.Claimed {
 			return nil, fault("already_claimed")
+		}
+		if !st.claimCapacity() {
+			return nil, fault("capacity")
 		}
 		m.Claimed = true
 		m.ClaimToken = randomToken()
@@ -426,7 +440,7 @@ func csrf(token, id string) string {
 	return base64.RawURLEncoding.EncodeToString(mac.Sum(nil))
 }
 
-var page = template.Must(template.New("gate").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>KnowsLink 승인</title><style>body{font:18px system-ui;max-width:760px;margin:40px auto;padding:20px;color:#17232b;background:#f5f7f8}section{background:white;padding:24px;border:1px solid #bbc5cd}pre{white-space:pre-wrap;overflow-wrap:anywhere}button{font:inherit;padding:12px;margin:8px}dt{font-weight:bold}a{color:#164da0}</style><h1>KnowsLink 요청 승인</h1><section><h2>상태: {{.State}}</h2><dl><dt>발신 에이전트</dt><dd>{{.From}}</dd><dt>대상 에이전트</dt><dd>{{.To}}</dd><dt>원요청 ID</dt><dd>{{.Parent}}</dd><dt>Intent</dt><dd>{{.Intent}}</dd><dt>만료</dt><dd>{{.Exp}}</dd><dt>적용 정책</dt><dd>{{.Policy}}</dd></dl><h2>검증된 typed body</h2><pre>{{.Body}}</pre><p>Approve는 인간 게이트만 통과합니다. 정보 공개나 일정 실행을 허용하지 않습니다.</p>{{if .Active}}<form method="post"><input type="hidden" name="csrf" value="{{.CSRF}}"><button name="decision" value="approve">Approve 승인</button><button name="decision" value="deny">Deny 거절</button></form>{{else}}<p>승인·거절 버튼 비활성: {{.State}}</p>{{end}}<a href="{{.Back}}">작업 화면으로 돌아가기</a></section></html>`))
+var page = template.Must(template.New("gate").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>KnowsLink 승인</title><style>body{font:18px system-ui;max-width:760px;margin:40px auto;padding:20px;color:#17232b;background:#f5f7f8;overflow-wrap:anywhere}section{background:white;padding:24px;border:1px solid #bbc5cd}pre{white-space:pre-wrap;overflow-wrap:anywhere}button{font:inherit;padding:12px;margin:8px}dt{font-weight:bold}a{color:#164da0}</style><h1>KnowsLink 요청 승인</h1><section><h2>상태: {{.State}}</h2><dl><dt>발신 에이전트</dt><dd>{{.From}}</dd><dt>대상 에이전트</dt><dd>{{.To}}</dd><dt>원요청 ID</dt><dd>{{.Parent}}</dd><dt>Intent</dt><dd>{{.Intent}}</dd><dt>만료</dt><dd>{{.Exp}}</dd><dt>적용 정책</dt><dd>{{.Policy}}</dd></dl>{{if .Hint}}<h2>참고 hint (판단 근거가 아님)</h2><pre>{{.Hint}}</pre>{{end}}<h2>검증된 typed body</h2><pre>{{.Body}}</pre><p>Approve는 인간 게이트만 통과합니다. 정보 공개나 일정 실행을 허용하지 않습니다.</p>{{if .Active}}<form method="post"><input type="hidden" name="csrf" value="{{.CSRF}}"><button name="decision" value="approve">Approve 승인</button><button name="decision" value="deny" formaction="{{.Deny}}">Deny 거절</button></form>{{else}}<p>승인·거절 버튼 비활성: {{.State}}</p>{{end}}<a href="{{.Back}}">작업 화면으로 돌아가기</a></section></html>`))
 
 // ownerAuth returns the CSRF key, the owner resolver, and the page to return to.
 type ownerAuth func(r *http.Request) (string, func(*State, time.Time) (string, error), string)
@@ -446,10 +460,59 @@ func sessionOwner(r *http.Request) (string, func(*State, time.Time) (string, err
 	}, "/home"
 }
 
+func (s *Service) gateOwner(st *State, r *http.Request, now time.Time, auth ownerAuth, clean bool) (string, error) {
+	_, resolve, back := auth(r)
+	if back == "/home" {
+		rates := memberRate
+		if clean {
+			rates = cleanupRate
+		}
+		id, _, retry, err := s.memberHit(st, r, now, rates)
+		if !retry.IsZero() {
+			return "", &budgetError{retry}
+		}
+		if err != nil {
+			return "", err
+		}
+		return st.Members[id].Owner, nil
+	}
+	owner, err := resolve(st, now)
+	rates := anonymousRate(s.clientIP(r))
+	if err == nil {
+		rates = memberRate(owner)
+		if clean {
+			rates = cleanupRate(owner)
+		}
+	}
+	if ok, retry := s.requestHit(st, r, now, rates...); !ok {
+		return "", &budgetError{retry}
+	}
+	return owner, err
+}
+
+type budgetError struct{ retry time.Time }
+
+func (e *budgetError) Error() string { return "rate_limited" }
+
+func verifiedGate(st *State, g *Gate, now time.Time) (*Envelope, bool) {
+	m, h := st.Messages[g.Parent], st.Messages[g.ID]
+	if m == nil || h == nil || len(m.Envelope) == 0 {
+		return nil, false
+	}
+	e, err := Parse(m.Envelope)
+	if err != nil {
+		return nil, false
+	}
+	a := st.Agents[e.From]
+	if a == nil || a.Keys[e.Sig.Kid] == nil || !e.Verify(a.Keys[e.Sig.Kid].Public) || e.Digest() != m.Receipt.Digest || e.ID != m.Receipt.ID || e.From != g.From || e.To != g.To || m.Generation != g.Generation || g.Digest != m.Receipt.Digest {
+		return nil, false
+	}
+	return e, g.State == "pending" && st.current(m) && st.current(h) && now.Before(g.Exp) && now.Before(m.Receipt.Exp)
+}
 func (s *Service) gateView(r *http.Request, auth ownerAuth) (any, error) {
-	token, resolve, back := auth(r)
+	token, _, back := auth(r)
 	return s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		owner, err := resolve(st, now)
+		owner, err := s.gateOwner(st, r, now, auth, false)
 		if err != nil {
 			return nil, err
 		}
@@ -457,21 +520,13 @@ func (s *Service) gateView(r *http.Request, auth ownerAuth) (any, error) {
 		if g == nil || g.Owner != owner {
 			return nil, fault("sender_not_allowed")
 		}
-		view := map[string]any{"State": g.State, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": g.Exp, "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": false, "Body": "원문 부재: 승인 불가", "Back": back}
-		m := st.Messages[g.Parent]
-		if m != nil && len(m.Envelope) > 0 {
-			e, err := Parse(m.Envelope)
-			if err != nil {
-				return nil, fault("unavailable")
-			}
-			a := st.Agents[e.From]
-			if a == nil || a.Keys[e.Sig.Kid] == nil || !e.Verify(a.Keys[e.Sig.Kid].Public) {
-				return nil, fault("unavailable")
-			}
+		view := map[string]any{"State": g.State, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": clock(g.Exp), "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": false, "Body": "원문 부재: 승인 불가", "Back": back, "Deny": back + "/gates/" + g.ID + "/deny"}
+		if e, active := verifiedGate(st, g, now); e != nil {
 			body, _ := json.MarshalIndent(e.Body, "", "  ")
-			view["Body"] = string(body)
-			view["Intent"] = e.Intent
-			view["Active"] = g.State == "pending" && st.current(m) && now.Before(g.Exp)
+			view["Body"], view["Intent"], view["Active"] = string(body), e.Intent, active
+			if e.Render != nil {
+				view["Hint"] = e.Render["hint"]
+			}
 		}
 		return view, nil
 	})
@@ -485,8 +540,16 @@ func ownerError(w http.ResponseWriter, err error) {
 
 // gateError sends members back to email login instead of the owner Basic prompt.
 func gateError(w http.ResponseWriter, r *http.Request, back string, err error) {
+	if e, ok := err.(*budgetError); ok {
+		refused(w, "승인 요청", refusal{status: 429, problem: limited(e.retry)})
+		return
+	}
 	if back == "/home" && err.Error() == "invalid_auth" {
 		expired(w, r)
+		return
+	}
+	if back == "/home" {
+		refused(w, "승인 요청", refusal{status: statusFor(err), problem: "현재 권한·원문·기한을 확인하세요. 승인되지 않았습니다."})
 		return
 	}
 	ownerError(w, err)
@@ -505,28 +568,28 @@ func (s *Service) gatePage(auth ownerAuth) http.HandlerFunc {
 }
 func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		token, resolve, back := auth(r)
+		token, _, back := auth(r)
 		r.Body = http.MaxBytesReader(w, r.Body, 8*1024)
-		if err := r.ParseForm(); err != nil {
-			http.Error(w, "invalid_schema", 422)
-			return
-		}
-		if !hmac.Equal([]byte(r.PostForm.Get("csrf")), []byte(csrf(token, r.PathValue("id")))) {
-			http.Error(w, "invalid_csrf", 403)
-			return
-		}
+		parseErr := r.ParseForm()
 		_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			owner, err := resolve(st, now)
+			owner, err := s.gateOwner(st, r, now, auth, r.PostForm.Get("decision") == "deny")
 			if err != nil {
 				return nil, err
 			}
+			if parseErr != nil || (strings.HasSuffix(r.URL.Path, "/deny") && r.PostForm.Get("decision") != "deny") {
+				return nil, fault("invalid_schema")
+			}
+			if !hmac.Equal([]byte(r.PostForm.Get("csrf")), []byte(csrf(token, r.PathValue("id")))) {
+				return nil, fault("invalid_csrf")
+			}
+
 			g := st.Gates[r.PathValue("id")]
 			if g == nil || g.Owner != owner || g.State != "pending" || !now.Before(g.Exp) {
 				return nil, fault("invalid_gate")
 			}
 			m := st.Messages[g.Parent]
 			h := st.Messages[g.ID]
-			if m == nil || h == nil || len(m.Envelope) == 0 || !st.current(m) || !st.current(h) || m.Generation != g.Generation || m.Receipt.Digest != g.Digest {
+			if _, active := verifiedGate(st, g, now); !active || m == nil || h == nil {
 				return nil, fault("invalid_gate")
 			}
 			decision := r.PostForm.Get("decision")

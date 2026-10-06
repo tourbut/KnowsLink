@@ -4,7 +4,7 @@ title: CRUD정의서
 status: review
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
@@ -62,3 +62,17 @@ agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다.
 | 종료된 초대의 늦은 결정 | 없음(403). 회원 화면은 Generation 일치도 검사한다 |
 
 기록 보호 포화의 생성 거부·철회 허용·24h 삭제 규칙은 DEV-FIX 표와 같다. 이번 과제는 거부 안내만 바꿨다.
+
+## SAR-PUBLIC-MESSAGES-001 — PS08–11 CRUD
+
+| 동작 | 조회·변경·삭제 |
+|---|---|
+| 일반 text 송신 | 현재 양측 Member/Owner/Agent/Key/Pair 확인. 새 Message+Idempotency를 원자 생성. 동일 key/digest는 receipt만 조회 |
+| 관련 답장 | 현재 전달된 원요청·세대·기한 확인. 답장 Message 생성과 Parent.ReplyID를 원자 확정. 두 번째 답장은 거부 |
+| text receive | text 전용 lease·durable persist·ACK. ACK에 Envelope/Inbox 삭제, completion received. 관련 부모는 reply_received |
+| 회원 receipt | 세션·선택 agent 소유권·endpoint 확인. metadata만 조회. 타 회원/임의 agent는 거부 |
+| gate GET/approve/deny | 본문 서명·digest·현재 권한·세대·기한 확인. GET은 결정 없음. POST csrf. deny는 정리 budget |
+| 한도·안전 정리 | 포화는 신규 자원 생성 없음. ACK·deny·철회·unpair·로그아웃은 별도 입장/rate. 부모 TTL에서 claim 종료 |
+| HTTP 입장 | 신원별 request budget 한 번 차감. 공유 HTTP map 입장/종료 삭제·30s crash 정리. 신규16/정리4 |
+
+동작·실패·경합·재시작 근거는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md)에 연결한다. 운영 자료 삭제는 수행하지 않았다.

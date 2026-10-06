@@ -129,6 +129,9 @@ async function check(
       "knowslink_status",
       "knowslink_test_receive",
       "knowslink_test_send",
+      "knowslink_text_receipt",
+      "knowslink_text_receive",
+      "knowslink_text_send",
     ]);
     const status = await client.callTool({
       name: "knowslink_status",

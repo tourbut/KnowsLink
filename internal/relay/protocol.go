@@ -114,6 +114,9 @@ func interval(value any) bool {
 	return ok && ok2 && b.After(a)
 }
 func Parse(raw []byte) (*Envelope, error) {
+	if len(raw) > rawEnvelopeLimit {
+		return nil, fault("invalid_schema")
+	}
 	e := new(Envelope)
 	if err := Strict(raw, e); err != nil {
 		return nil, err
