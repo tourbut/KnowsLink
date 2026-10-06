@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-AGENTS-001-DEV",
+  "head": "d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 158,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 158
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.37
+    },
+    {
+      "path": "AGENTS.md",
+      "summary": "",
+      "probability": 0.22
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "summary": "일반 이메일 서비스 화면 수락 기준 — 일반 이메일 인증과 에이전트 연결 및 노우 다닷 시험의 화면 수락 항목을 정의한다",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — 현재 과제와 보류 및 FullOps 0.9.14 운영 적용",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "summary": "인터페이스설계서 — owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-DEV 실행 기록 — 일반 이메일 코드 신원과 세션 및 자기 owner 홈의 기술 선택과 구현 및 검증과 인계를 기록한다",
+      "probability": 0.04
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "summary": "KnowsLink",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "summary": "<과제 키> — <목표> — 역할 인박스의 작업 범위와 검증·UI·변경 보고 양식",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "summary": "엔티티정의서 — shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — FullOps 규약 지도와 0.9.14 검사·문서 뷰어 기준",
+      "probability": 0.02
+    }
+  ],
+  "existence": {
+    "found_probability": 0.23,
+    "status": "absent"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 13896,
+    "output_tokens": 1630,
+    "cost": 0.000583632
+  },
+  "latency_seconds": 0.356,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

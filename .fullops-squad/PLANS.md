@@ -794,3 +794,10 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - identity 관련 유효 hold8건을 재개했다. 원래 hold를 hold_history로 보존하고 로컬 코드 수락 단계와 실제 운영 미완료를 구분했다. 원본review SHA null도25b110f 출처로 보완했다. 거절된 중복 msg_145bdac4530a는 새결과가 아니며 보존만한다. 이전 다른제품hold는변경하지않았다.
 - 이번 유효 완료 worker는release했다. Grok TESTER는 external_terminal retained로강제종료하지않았으며현재idle다. reclaimable0, 마지막QA delivery74490 ack·미처리0이다. 새과제는배정하지않았다. 원본 실패·검증대상·사용자자료·기존서버/Tunnel·Workers Free 제한을보존했다.
 - 실제 일반 이메일 확인·무료운영 SMTP·공개 QA-P06/사람QA-P07·agent/관계/메시지 기능·최종 노우↔다닷은후속이다. 일반서비스전체수락으로표시하지않는다. 다음착수는 기존대기SAR-PUBLIC-AGENTS-001-DEV의 제품정본·정규인박스·최신main을확인한다.
+
+
+## SAR-PUBLIC-AGENTS-001-DEV 착수 준비 — 2026-10-06
+
+- 사용자 다음 작업 진행 요청으로 기존 대기 AGENTS를 재개한다. 기준 main/origin d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b, 신원 로컬 코드 수락과 실제 이메일/공개 미검증을 구분한다. 제품 정본이 허용한 독립 구현을 진행하며 실제 화면/이메일 대기는 후속으로 유지한다.
+- Jev implementation/dev, 새 Codex gpt-6.1-sol medium을 선정했다. coordinator 모델을 전파한 것이 아니라 등록 후보의 독립 route 결과다. 기존 DEV terminal0·clean·최신 main 조상을 확인했다. 새 기능이고 이전 DEV 세션이 종료돼 fresh 세션을 사용한다. 정규 빈 인박스에 기술 계획·구현·검증·인계를 함께 작성했다. route의 UX06 언급은 MESSAGES 후속이므로 실행 범위를 UX04–05로 정정했다.
+- 완료 고정 후보의 별도 보안 리뷰·TESTER 교차계정/회전/철회/한도 QA·designer UI 검수 뒤 main 수락한다. Workers Free·서버/Tunnel·실메일/공개/최종 노우↔다닷 후속 조건을 유지한다. MESSAGES는 AGENTS 수락 뒤 대기하며 자동 배정하지 않는다.
