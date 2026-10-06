@@ -879,3 +879,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV-POLICY-FIX msg_b3dd3979dc40/83e0bfb907085bade31a193ab91ca723feb7d7ad 수신. 실제cleanHEAD·빈인박스·원본실패/검증을확인하고coor에SHA보존반영했다. 추출SHA null과보완출처를함께보존했다. 고정후보 458798c2ee15c179edacfd6f94ebb9896d26f411에서 독립FIX-REVIEW/FIX-TESTER/UI-FIX를배정한다. 원래lint3769e9d만으로최종83e를주장하지않고누락고정HEAD검사를coor가한번보완한다. 필수검수·원본UIFAIL해소전main통합보류다.
 
 - 최종83e0bfb의누락고정HEAD FullOps를완료했다. 기준4a exit0·product-lint/test0·ERROR0/WARNING6/실행불가0, 원본JSON은COOR/policy-fix-83e0bfb-lint.json에보존했다. 기존3769e9d의검사는원래SHA로유지한다. 검수준비빈report를dispatch전metadata-only stamp했다.
+
+- 최신검수착수: OPS task_663b9832129e/ctx_c958c7ee3895/term_c2e23fbf-01ce-4bf4-a440-f4796d8d922b 새Opus5.5high effective·turn_started·규약읽기확인. UI task_33ddf712fa70/ctx_f2dd9d1df05f/term_08f6072e-7820-4136-bef5-c70886c2eb62 새Codex6.1Solhigh effective·turn_started·인박스읽기확인. QA task_8c20365d019a/ctx_0553efe89909/term_b027817e-0927-48a9-946b-4d30a09651b4 새Grok4.7high actualUI·tui-idle·input_accepted확인, turnStart unsupported. 고정458798c/읽기전용snapshot, 준비f0b69a9을clean·idle3역할ff/일반push했다. main/origin dc60fbf조상확인. 진행역할checkout은변경하지않는다. DEV83완료세션은리뷰까지retain했다. discoverability경고는착수실패가아니다.
