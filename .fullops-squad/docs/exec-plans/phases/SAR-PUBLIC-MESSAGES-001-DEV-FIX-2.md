@@ -66,13 +66,13 @@ summary: OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정
 |---|---|---|
 | make lint | 코드 `0ae40d5` | exit0 (lint-final) |
 | make test | 코드 `0ae40d5` | exit0, Go race·adapter 시험 (test-final) |
-| make verify-mvp | 코드 `0ae40d5`(코드 경로 무변경 확인) | exit0. Go 통합 `--- PASS` 45·FAIL/SKIP 0, 실제 Node/MCP·Go owner UI. flood B 4종 모두 유효 정리 거부 0/18(최대 3.0s). 자기 Compose container·volume·network 회수 (mvp-final) |
+| make verify-mvp | 코드 `0ae40d5`(코드 경로 무변경 확인). 시험 파일 분리 뒤 재실행은 mvp-split | exit0. Go 통합 `--- PASS` 45·FAIL/SKIP 0, 실제 Node/MCP·Go owner UI. flood B 4종 모두 유효 정리 거부 0/18(최대 3.0s). 자기 Compose container·volume·network 회수 (mvp-final) |
 | FullOps lint.py --from dfc70ca, deliverables strict, diff check | 기록 마지막 HEAD | 완료 보고에 기록한다. 기록 안에 자기 SHA를 순환 기록하지 않는다 |
 
 ## 경고 처리와 산출물
 
 - 예상 규모: 제품 Go 약 +120/−35줄, 회귀 시험 약 +280줄이다. 실제: 제품 +122/−35, 전체 internal +404/−69다.
-- SIZE: store.go 522·public_messages_integration_test 428은 기존 SIZE-001 대상이다. 새 시험은 `admission_integration_test.go`에 두었다. 무관한 분할은 하지 않았다. DEP·SLOP·DESIGN 처리는 최종 lint 결과로 보고한다. template·CSS 변경 없음.
+- SIZE-001: store.go 508(이전 494)·integration_test 481(이전 478)·public_messages_integration_test 410(이전 407)·PLANS(coor 누적)은 기존 대상이며 증가는 owner 공정성·회수 코드와 fixture helper·owner 4명 변경이다. 새 H-2/L-2 시험은 `cleanup_flood_integration_test.go`(195줄)로 분리해 `admission_integration_test.go`를 300줄 아래(183)로 유지했다. 무관한 분할은 하지 않았다. SIZE-002(추가 약 1.9천 줄)는 대부분 증거 로그이며 제품·시험 코드는 같은 입장 경계라 나누지 않았다. ERROR·DEP·SLOP·DESIGN 0, template·CSS 변경 없음.
 - 기술 산출물: D10 module-design, D03 architecture, D05 interface-design, D06 data-model, D07 database-design(선택 JSONB 필드 Owner, table·SQL·migration 무변경), D09 crud-design을 갱신했다. D03 tech-stack은 새 기술·의존성이 없어 변경 없음이다. D08 테이블 정의는 변경 없음이다.
 
 ## 미검증·인계
