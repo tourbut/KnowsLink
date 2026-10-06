@@ -875,3 +875,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 회원 화면만 바꿨다. 반복 초대 notice 3종, 종료 관계의 수동 새 초대, 키 기록 포화의 새 agent 교체 안내·생성 버튼, owner 기록 포화의 최소 24h 보존·정리 뒤 재시도, 철회 agent 목록 정리 안내, 철회 전 경고. `/v1/*` wire 불변.
 - 제품 커밋 f9af9bf: make lint/test/verify-mvp exit 0(integration PASS 55·FAIL 0), 390px 넘침 0. 상세·고정 SHA는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)과 worker_done.
 - 후속: OPS 독립 delta 리뷰(`/v1/invite-decision` Generation 미결속 판단 포함), TESTER 좁은 QA, designer 새 안내 직접 재검수. 원본 d1 UI FAIL·4a 기록 불변.
+
+- DEV-POLICY-FIX msg_b3dd3979dc40/83e0bfb907085bade31a193ab91ca723feb7d7ad 수신. 실제cleanHEAD·빈인박스·원본실패/검증을확인하고coor에SHA보존반영했다. 추출SHA null과보완출처를함께보존했다. 고정후보 458798c2ee15c179edacfd6f94ebb9896d26f411에서 독립FIX-REVIEW/FIX-TESTER/UI-FIX를배정한다. 원래lint3769e9d만으로최종83e를주장하지않고누락고정HEAD검사를coor가한번보완한다. 필수검수·원본UIFAIL해소전main통합보류다.

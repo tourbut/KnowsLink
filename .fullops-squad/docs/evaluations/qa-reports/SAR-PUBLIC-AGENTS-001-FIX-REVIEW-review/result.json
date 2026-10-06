@@ -1,0 +1,1300 @@
+{
+  "base": "d1eef9bb90b9726149980320c42fb1fdbcaf584a",
+  "head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.11 (a758d9c) linux/amd64\nbuilt at: 2026-09-29T14:33:46Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "",
+  "conclusion": "",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 71,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 2,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 2,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "modified",
+      "insertions": 22,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 21,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 3,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "status": "added",
+      "insertions": 88,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "status": "modified",
+      "insertions": 23,
+      "deletions": 3,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 29,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-context.json",
+      "status": "added",
+      "insertions": 164,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-documents-find.json",
+      "status": "added",
+      "insertions": 84,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-find.json",
+      "status": "added",
+      "insertions": 84,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-FIX-route.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-context.json",
+      "status": "added",
+      "insertions": 165,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-documents-find.json",
+      "status": "added",
+      "insertions": 59,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX-route.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-FIX-REVIEW-route.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-FIX-TESTER-route.json",
+      "status": "added",
+      "insertions": 65,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-context.json",
+      "status": "added",
+      "insertions": 121,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-documents-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-find.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-POLICY-route.json",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-context.json",
+      "status": "added",
+      "insertions": 170,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-documents-find.json",
+      "status": "added",
+      "insertions": 69,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-find.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-REVIEW-route.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-context.json",
+      "status": "added",
+      "insertions": 170,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-documents-find.json",
+      "status": "added",
+      "insertions": 59,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-find.json",
+      "status": "added",
+      "insertions": 74,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-TESTER-route.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-FIX-route.json",
+      "status": "added",
+      "insertions": 75,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-context.json",
+      "status": "added",
+      "insertions": 169,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-documents-find.json",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-find.json",
+      "status": "added",
+      "insertions": 69,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLIC-AGENTS-001-UI-route.json",
+      "status": "added",
+      "insertions": 77,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-COOR/original-qa-bcb-lint.json",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/fullops-lint.json",
+      "status": "added",
+      "insertions": 93,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/mobile-width.json",
+      "status": "added",
+      "insertions": 34,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint-initial.json",
+      "status": "added",
+      "insertions": 114,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint.json",
+      "status": "added",
+      "insertions": 86,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/mobile-width.json",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/pre-handoff-final-lint.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/record-lint.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-POLICY/supplement-record-lint.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/jev-find-score.json",
+      "status": "added",
+      "insertions": 58,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/lint.json",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/preview.json",
+      "status": "added",
+      "insertions": 258,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/result.json",
+      "status": "added",
+      "insertions": 368,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/rules.json",
+      "status": "added",
+      "insertions": 70,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/fullops-lint-9c915dc-1cf8f57.json",
+      "status": "added",
+      "insertions": 107,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/fullops-lint-9c915dc-4c75938.json",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/fullops-lint-d111fd4-4c75938.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/run_probe.py",
+      "status": "added",
+      "insertions": 104,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "status": "added",
+      "insertions": 151,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/cleanup.json",
+      "status": "added",
+      "insertions": 59,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/evidence.json",
+      "status": "added",
+      "insertions": 333,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-corrected-f2f56b6.json",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-initial-f9c5ede.json",
+      "status": "added",
+      "insertions": 107,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/review-metadata-only.json",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "status": "added",
+      "insertions": 97,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "status": "added",
+      "insertions": 95,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "status": "added",
+      "insertions": 110,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
+      "status": "added",
+      "insertions": 46,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "status": "modified",
+      "insertions": 32,
+      "deletions": 4,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "status": "added",
+      "insertions": 215,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_dev.md",
+      "status": "modified",
+      "insertions": 148,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "status": "modified",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "status": "modified",
+      "insertions": 70,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/api_rate.go",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 2,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/connections.go",
+      "status": "modified",
+      "insertions": 59,
+      "deletions": 9,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/connections_integration_test.go",
+      "status": "modified",
+      "insertions": 140,
+      "deletions": 4,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "status": "modified",
+      "insertions": 201,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 8,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/member.go",
+      "status": "modified",
+      "insertions": 63,
+      "deletions": 29,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "modified",
+      "insertions": 98,
+      "deletions": 36,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/policy_test.go",
+      "status": "added",
+      "insertions": 258,
+      "deletions": 0,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 1,
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/01-verify.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/02-home-empty.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/03-home-two-unconnected.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/04-connection-waiting.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/05-prepared-fingerprint.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/06-approved-not-connected.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/07-consumed-complete.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/08-home-two-connected.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/09-pair-pending.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/10-pair-active.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/11-pair-revoked.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/12-pair-denied.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/13-connection-cancelled.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/14-connection-expired.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/15-unsupported-error.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/16-permission-error.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/17-rotation-keys.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/18-mobile-home.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/19-mobile-agent.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/20-cross-sender-pending.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/21-cross-recipient-pending.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/22-cross-active-sender.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/23-cross-sender-revoked.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/24-cross-recipient-revoked.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/25-reauth-required.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/26-reauth-wrong-code.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/26a-reauth-rate.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/27-selected-key-revoked.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/28-agent-revoked.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/29-logout-preserves-agent-note.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/30-relogin-key-still-active.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/orca-full-blank.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI/orca-viewport-1x1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "pending",
+      "reason": ""
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/exits.txt",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/fullops-lint.log",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/head.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/lint.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/test.log",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-FIX/verify-mvp.log",
+      "status": "added",
+      "insertions": 296,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/exits.txt",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint-initial.log",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/fullops-lint.log",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/head.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/lint.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/test.log",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX/verify-mvp.log",
+      "status": "added",
+      "insertions": 297,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/clone-after.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/clone-before.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/docker-after-verify.txt",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/docker-after.txt",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/docker-before.txt",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/lint.log",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-go.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe_test.go.src",
+      "status": "added",
+      "insertions": 920,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/test.log",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/verify-mvp.log",
+      "status": "added",
+      "insertions": 290,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/worktrees-before-record.txt",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/worktrees-closeout.txt",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/artifact-check.txt",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/cleanup-compose.txt",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/fixture-mutations.txt",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-corrected-f2f56b6.txt",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/lint-initial-f9c5ede.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/product-unchanged.txt",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI/strict.txt",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "",
+    "reviewer_session": "",
+    "snapshot_path": "",
+    "snapshot_head": "458798c2ee15c179edacfd6f94ebb9896d26f411",
+    "read_only": true
+  }
+}
