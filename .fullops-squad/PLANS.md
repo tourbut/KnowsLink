@@ -867,3 +867,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - QA기록보고의통과lint JSON은4c75938(아카이브전)이며최종bcb와HEAD가달라 coor가tui-idle/clean을확인하고최종bcb에서기준d2의필수lint를한번검증한다. 누락고정HEAD증거를해소하기위한검사이며전체동작QA를반복하지않는다. 다음review.prepare의빈양식은dispatch전coor가metadata를stamp해상속DOC003재발을막는다. 원래실패를통과로바꾸지않는다.
 
 - coor의최종bcb06b QA기록HEAD 검사: 기준d2 FullOps exit0, product-lint/product-test0·ERROR0/WARNING8/실행불가0. 기존규모/테스트script-only/합성token경고는원본리뷰의같은근거로유지한다. 원본JSON은 SAR-PUBLIC-AGENTS-001-COOR/original-qa-bcb-lint.json에보존했다. QA release는external_terminal retained이므로사용자소유터미널을강제종료하지않았다.
+
+- 최종검수 route FIX-REVIEW/FIX-TESTER/UI-FIX를준비했으며DEV-POLICY-FIX고정완료SHA대기로미배정이다. OPS Sonnet추천대신인증/현재권한/C1/동시성보존을다루는fullops-review의고성능규정으로별도Opus5.5high를적용한다. QA는사용자지정Grok4.7high, UI는designer Codex6.1Solhigh다. 원본d1 QA bcb/시각FAIL d165와수정4a/제품답48을연결하고변경영향만검증한다. 담당coor, 재개조건최신성공후보·기록/원천일치·빈인박스확인이다.

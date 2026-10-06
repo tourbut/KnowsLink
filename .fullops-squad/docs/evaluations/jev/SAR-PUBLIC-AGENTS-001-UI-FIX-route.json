@@ -1,0 +1,75 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-AGENTS-001-UI-FIX",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "product": 0.06,
+        "implementation": 0.94
+      },
+      "confidence": 0.88
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "ops": 0.01,
+        "dev": 0.1,
+        "tester": 0.89
+      },
+      "confidence": 0.85
+    },
+    "docs": {
+      "D01": 0.11,
+      "D02": 0.14,
+      "D03": 0.11,
+      "D04": 0.27,
+      "D05": 0.1,
+      "D06": 0.11,
+      "D07": 0.09,
+      "D08": 0.1,
+      "D09": 0.11,
+      "D10": 0.23,
+      "D11": 0.18,
+      "D12": 0.3,
+      "D13": 0.34
+    }
+  },
+  "usage": {
+    "input_tokens": 2570,
+    "output_tokens": 314,
+    "cost": 0.00010794
+  },
+  "error": null,
+  "latency_seconds": 0.331,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "직접 시각 검수 책임인 designer에게 원본 FAIL 변경 영향만 재검수시킨다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.2,
+      "codex gpt-6.1-sol high": 0.8
+    },
+    "usage": {
+      "input_tokens": 659,
+      "output_tokens": 34,
+      "cost": 2.7678e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1"
+}
