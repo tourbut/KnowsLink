@@ -17,8 +17,8 @@ func TestTrialMessageSafety(t *testing.T) {
 	st := newState()
 	st.Owners["a"] = &Owner{hashToken("owner-a"), true}
 	st.Owners["b"] = &Owner{hashToken("owner-b"), true}
-	st.Agents["agent_a"] = &Agent{"a", hashToken("token-a"), map[string]*Key{"key1": {Public: pa}}}
-	st.Agents["agent_b"] = &Agent{"b", hashToken("token-b"), map[string]*Key{"key1": {Public: pb}}}
+	st.Agents["agent_a"] = &Agent{Owner: "a", Credential: hashToken("token-a"), Keys: map[string]*Key{"key1": {Public: pa}}}
+	st.Agents["agent_b"] = &Agent{Owner: "b", Credential: hashToken("token-b"), Keys: map[string]*Key{"key1": {Public: pb}}}
 	st.Pairs[pairID("agent_a", "agent_b")] = &Pair{A: "agent_a", B: "agent_b", State: "active", Generation: 1}
 	message := func(id, key, text string, exp time.Time) *Envelope {
 		raw := wire(t, sa, id, "agent_a", "agent_b", "relay.test.message", key, "", map[string]any{"text": text}, exp)

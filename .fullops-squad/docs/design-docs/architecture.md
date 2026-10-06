@@ -2,9 +2,9 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-05
+updated: 2026-10-06
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -140,3 +140,11 @@ Cloudflare Access One-time PIN을 회원 신원으로 쓰지 않는다. 이유�
 회원 ID(`mem_…`)가 사용자별 권한의 주체다. 다음 기능 SAR-PUBLIC-AGENTS-001은 세션과 최근 재인증으로 연결 승인을 발급하고 agent를 회원 owner에 묶는다. 이메일은 agent 식별자·contacts·receipt에 넣지 않는다.
 
 향후 다닷의 원격 MCP/OAuth는 같은 회원 ID에 OAuth grant를 연결한다. 후보는 relay를 OAuth 2.1 authorization server로 두는 방식과 Access Managed OAuth다. 두 방식 모두 이번 범위에서 구현하지 않는다. 선택 전에 대상 client의 RFC 8707·9728 지원을 실제로 확인한다. 회원 확인 수단은 이번 이메일 코드 로그인을 재사용한다.
+
+## SAR-PUBLIC-AGENTS-001 일반 회원 연결 경계
+
+PS-04–07·해당 PS-11과 UX-04–05를 구현한다. 기존 singleton 직렬화·회원 세션·Go template·Ed25519를 재사용한다. 새 dependency·migration·frontend·frozen wire 변경은 없다.
+회원 화면은 세션에서 owner를 결정한다. agent ID는 이메일과 무관한 무작위 식별자다. 연결은 발급 → 새 공개키 PoP 준비 → 최근 재인증 owner의 지문 확인 → 클라이언트의 1회 완료 순서다. 발급·준비·승인만으로 새 agent 권한을 만들지 않는다. grant는 owner·agent·node-local·등록/회전에 결속하고 10분 뒤 사용할 수 없다.
+회원 키는 Key.Credential 해시에 묶인다. agent-wide legacy credential은 일반 연결 완료 시 제거한다. 선택 철회와 회전은 철회 키 credential의 모든 API 인증을 막는다. 기존 합성 owner credential API는 회귀 호환을 유지한다. 합성 키 회전은 기존 전체 철회 동작이다.
+관계·키·agent 한도는 state 변경 경계에서 검사한다. HTTP rate는 DB에 저장한 stable 회원/agent principal로 집계한다. 신규·정리 budget을 분리한다. 새 key credential이나 relay 재시작은 budget을 초기화하지 않는다. pending과 active slot은 분리한다. same-owner pair도 수신 owner의 첫 수락을 요구한다. 브라우저 결정은 pair 세대를 비교한다.
+실제 이메일·외부 계정·공개·일반 text·다닷·OAuth·처리량 보장은 후속이다. HTTP 동시 수용 16/4·claim 4·queue/gate/receipt 용량은 MESSAGES/공개 수락 후속 범위다. 이번 과제의 경합은 기존 DB row lock으로 직렬화했다. 상세 구현·검증·인계는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md)에 있다.

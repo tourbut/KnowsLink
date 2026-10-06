@@ -106,3 +106,21 @@ webhook·evidence fetch/preview·실제 벤더 연결은 OFF다.
 
 [D02](.fullops-squad/docs/planning/product-specs/SAR-MVP.md), [D03](.fullops-squad/docs/design-docs/architecture.md), [실행 기록](.fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md)을 따른다.
 초기 골격 이력은 [SAR-SETUP-001-DEV](.fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-DEV.md)에 보존한다.
+
+## 일반 회원 agent·키·관계 (SAR-PUBLIC-AGENTS-001)
+
+이메일 확인 뒤 `/home`에서 새 agent를 만든다. 자기 agent만 관리할 수 있다. 회원당 활성 agent는 5개다. 연결 권한 변경에는 5분 안의 이메일 재확인이 필요하다.
+
+1. 홈에서 Node 22 로컬 클라이언트와 등록 또는 회전을 선택한다. 회전은 완료 시 기존 키를 모두 철회한다.
+2. **자기 클라이언트 컴퓨터**에 저장소를 준비하고 `npm ci --prefix adapters`, `npm run build --prefix adapters`를 실행한다. 관리자 계정·공유 서버 SSH·서버 파일 배치는 필요하지 않다.
+3. `node adapters/dist/connect.js prepare <서비스 URL> <새 비공개 폴더>`를 실행한다. 연결 수단은 argv·대화·로그 대신 비공개 표준입력으로 넣고 입력을 끝낸다. 터미널 입력 반향은 먼저 끈다 (`stty -echo`; 입력 후 `stty echo`). URL은 HTTPS root 또는 loopback HTTP root만 허용한다. 개인키는 로컬에서 생성한다.
+4. CLI가 표시한 자기 브라우저 연결 확인 주소를 연다. 대상·클라이언트·권한·공개키 지문·기한을 확인하고 승인한다. 지문이 다르면 취소한다.
+5. `node adapters/dist/connect.js complete <새 비공개 폴더>`를 실행한다. 연결 수단은 최대 10분·1회다. 완료 전에는 새 키와 agent credential이 활성화되지 않는다.
+
+로컬 폴더는 0700이며 `private.pem`, `pending.json`, `agent.json`은 0600이다. `agent.json`의 relay·agent·kid·credential과 `private.pem`은 자기 adapter의 설정으로만 사용한다. 로컬 `RELAY_URL`, `AGENT_ID`, `AGENT_KID`, `AGENT_CREDENTIAL`, `AGENT_KEY_FILE`에 대응한다. 개인키·credential을 모델 대화·Git·캡처에 넣지 않는다. 기존 합성 adapter 모드와 시험 allowlist를 일반 메시지 성공으로 사용하지 않는다. 일반 text·실제 왕복은 MESSAGES 후속이다.
+
+실패·취소·만료는 새 키를 연결하지 않는다. 완료 응답을 잃으면 자격을 다시 조회할 수 없다. 홈에서 새 연결을 **회전**으로 진행해 잃은 키를 철회한다. 홈에서 키별 지문·활성/철회를 확인하고 선택 철회할 수 있다. 키당 credential을 분리하므로 철회 키의 송신·pull·ACK·claim·authorize·result는 거부된다. 로그아웃은 키를 철회하지 않는다. 정상 idle pull 간격은 10초 이상이다.
+
+관계 초대는 상대 agent 식별자만 사용한다. 상대 이메일과 회원 디렉터리는 없다. 수신 owner만 수락·거절하며 양측이 철회할 수 있다. 같은 owner의 두 agent도 명시적으로 수락해야 한다. pending은 24시간 뒤 만료되며 재초대는 새 세대다. 옛 화면의 결정은 새 세대에 적용되지 않는다. 포화 중에도 거절·키/agent 철회·관계 철회는 별도 정리 budget을 사용한다.
+
+지원 구현은 위 Node 로컬 CLI다. Grok Bot 컴퓨터에서 안내를 실행할 수 있는지는 해당 계정의 설치·실행 권한으로 별도 확인한다. 앱 카탈로그·다닷·OAuth·실제 외부 계정 연결은 이 후보의 검증 결과가 아니다. 운영 공개·실메일·유료 설정은 실행하지 않았다.

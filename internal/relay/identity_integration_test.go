@@ -217,7 +217,7 @@ func TestEmailIdentity(t *testing.T) {
 		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
 		login(t, two, mail, "owner@example.com")
 		s.mutateState(t, func(st *State) {
-			st.Agents["agent_kept"] = &Agent{st.Members[member].Owner, hashToken("agent-secret"), map[string]*Key{"key1": {Public: make([]byte, 32)}}}
+			st.Agents["agent_kept"] = &Agent{Owner: st.Members[member].Owner, Credential: hashToken("agent-secret"), Keys: map[string]*Key{"key1": {Public: make([]byte, 32)}}}
 		})
 		old := map[string]string{}
 		for k, v := range one.cookies {

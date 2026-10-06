@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV]
 summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
@@ -805,3 +805,7 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 착수 영수증: Task task_23b84e8ba5e6 / Dispatch ctx_69e4d4d35bc6 / terminal term_0aba2c49-1807-4297-9741-cfbf48908530. fresh Codex gpt-6.1-sol medium effective·turn_started 및 규약/지시서 확인 응답을 확인했다. 준비 fe642109a0ba main/origin 일반push·5역할 동기화를 완료했다. 준비 lint/test0·ERROR0/WARNING1(누적PLANS). worker_done 중심으로 대기하고 진행DEV 체크아웃은 변경하지 않는다. discoverability 경고는 착수성공과 구분하며 focus를 강제하지 않는다.
 
 - 후속 route 세 건을 준비했으며 DEV 고정 완료SHA 대기로 미배정이다. SAR-PUBLIC-AGENTS-001-REVIEW는 OPS 독립기록이며 Jev Sonnet5.5high 대신 fullops-review의 인증/권한/데이터/동시성 고성능 규정으로 별도 Claude Opus5.5high를 적용한다. SAR-PUBLIC-AGENTS-001-TESTER는 사용자 지정 Grok4.7high, SAR-PUBLIC-AGENTS-001-UI는 designer Codex6.1Solhigh다. 담당 coor, 재개 조건 DEV 성공후보·필수검증근거 및 빈 역할인박스 확인이다.
+
+## SAR-PUBLIC-AGENTS-001-DEV 후속 인계 (2026-10-06)
+
+DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회·명시적 관계와 한도를 구현했다. 자동 검증·기술 문서와 인박스 전문은 DEV 완료 로그로 보존한다. 고정 후보의 독립 OPS 보안 delta 리뷰·TESTER 교차 계정/연결/키/관계/한도 QA·designer UX-04–05 직접 검수는 coor 배정 대기다. 실제 이메일·공개·Grok Bot/다닷 실제 계정·일반 text/UX-06·운영 보존/복구 수락은 후속이다. 독립 필수 검사와 미해결 critical/high가 통합을 차단한다. 상세는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md)을 따른다.
