@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI]
-summary: MESSAGES 원본검수 실패·DEV 수정·새fixed 수락과 운영 보류를 보존한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX]
+summary: MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다
 ---
 
 # KnowsLink 현재 계획
@@ -982,3 +982,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 수정 후독립검수는fixeddfc70/09c기준이며OPS·designer 정규빈인박스/새read-only snapshot·route/find/doc/context를준비했다. UI context충돌은원09c FAIL과새dfc 자동통과의검수경계로해소하고원본실패/새직접검수전제를명시했다. QA는현재원본검수진행이라인박스를덮어쓰지않으며원본완료뒤좁은FIX-TESTER를배정한다.
 
 - FIX-REVIEW 착수 Task task_779403155dcc/ctx_e220f302752b/term_b37f317f-21cb-4606-8ea2-834ba12ac438 fresh Opus5.5high effective/turn_started·규약/인박스/원리뷰읽기확인. 수정준비b5a44fc의lint/test0·ERROR0/WARNING5를COOR에보존했다. DEV-FIX release는transcript captured/closed_agent_terminal이다. designer원본terminal은retained후실제exited(operator_close)관측이며임의종료하지않았다. UI-FIX model-only기록만으로dispatch hook이route키부재를차단해착수전fullroute를보완했다. unresolved의tester추정은직접시각담당designer 정본근거로override/reason/prior보존했다. 진행OPS/QA는변경하지않는다.
+
+- UI-FIX 착수 Task task_2e87829b57d2/ctx_6468a05f27bf/term_218a079f-e0cd-434c-b297-2386eef8bbbf fresh Codex6.1Solhigh actual화면·input_accepted/turn_started·규약/정규인박스읽기를확인했다. 준비359653a를idleclean designer에명시SHA ff/일반push하고main조상을확인했다. 최초git-C의HEAD ff는자기HEAD여서no-op였고명시359653a로착수전에정정했다. startupupdate확인만invocation으로끈기존승인실행모드를재사용했다. 등록모델선정외coor모델전파/설치/요금/전역설정변경없다. OPS는b5기록checkout/dfc read-only·UI는359기록checkout/dfc격리fixture·QA는a744기록checkout/09c 원본진행이며서로덮어쓰지않는다.
