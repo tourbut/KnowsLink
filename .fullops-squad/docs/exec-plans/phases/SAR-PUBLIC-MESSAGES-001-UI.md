@@ -55,3 +55,16 @@ designer는 수정된 고정 후보의 Deny 직후 상태·홈 복귀와 변경 
 실메일·운영 공개·실24h·실제 노우↔다닷·부하/복원·전체PS13/14는 기존 담당과 재개 조건을 유지한다.
 
 최초 staged 공백 검사는 Deny405 텍스트 snapshot2개의 EOF 빈 줄로 exit2였다. 원문 로그·exit·원래 텍스트를 보존하고 EOF만 정규화했다. PNG·제품 동작·판정은 바꾸지 않았다.
+
+## 첫 기록 SHA의 검사 결과
+
+기록 SHA는 `f27a3e0247ab3d269bc81085b19743d8a02383de`다.
+FullOps `--from 09c523da8a3407288d9f5d711e1834af12bc7808` exit0이다.
+등록 product-lint `make lint`와 product-test `make test`는 각각 exit0이다.
+ERROR0·WARNING2·unavailable0이며 strict는13종·미작성0·문제0·경고0·exit0이다.
+`git diff --check 09c523da8a3407288d9f5d711e1834af12bc7808 HEAD` exit0이다.
+원래 출력·종료코드·HEAD는 QA 증거의 `record-*` 파일에 보존했다.
+SIZE-001은 누적 PLANS948줄이며 첫 작업 전940줄이었다.
+SIZE-002는 요구된 상태별 캡처의 텍스트·manifest·검수 기록을 포함한1334 추가 줄이다.
+기존 누적 이력과 초기 실패를 보존한다. 제품 파일·의존성 변경은0이다.
+이 검사는 첫 기록 SHA에만 해당한다. 완료 로그를 포함한 최종 SHA 검사는 worker_done의 별도 원본 경로로 연결한다.

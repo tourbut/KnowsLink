@@ -283,3 +283,83 @@ D02/UX04–05/POLICY48이정본. memberStyle/Go template 재사용, 새theme·Ta
 - 산출물: docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md와 sibling PNG, docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX의 manifest/scenario/state/fixture/cleanup/검사, docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md다. 실제 D04와 designer UX 원천을 stamp로 연결했다.
 - 미검증·후속: API/race/모든 rate·인가의 독립 QA는 TESTER, 보안 delta와 실제 운영 자원/복원은 OPS, main 수락/통합은 coor다. 실메일·실24h·운영 공개/배포·운영 데이터 정리·노우↔다닷·실메시지·OS clipboard/스크린리더 전체는 실행하지 않았다. 기존 held와 원본 QA/UI 실행 SHA는 유지한다. 새 designer 과제는 없다.
 - 완료 보존: work.py finish로 이 지시서/결과 전문을 날짜별 designer 로그에 append하고 인박스를 비운다. 전문 일치와 기존 prefix 보존을 확인한다. 최종 clean HEAD에서 같은 lint를 다시 실행한 뒤 role push와 preamble worker_done 한 번으로 고정 SHA·결정·인계 링크를 보낸다.
+
+## SAR-PUBLIC-MESSAGES-001-UI — 2026-10-06
+
+---
+title: SAR-PUBLIC-MESSAGES-001-UI — 일반 회원 메시지·gate 직접 UI 검수
+status: draft
+updated: 2026-10-06
+owner: coor
+tasks: [SAR-PUBLIC-MESSAGES-001-UI]
+summary: 일반 회원 메시지·gate fixed 후보 직접 UI 검수 인계
+---
+
+# SAR-PUBLIC-MESSAGES-001-UI — 일반 회원 메시지·gate 직접 UI 검수
+
+- 상태: ready. fixed 09c523da8a3407288d9f5d711e1834af12bc7808
+- 담당: designer / /home/shin/orca/workspaces/KnowsLink/fullops-designer / fullops/designer
+- 복귀: repo 818c78e5-d51c-4ff4-aa88-70e9ee185fbb / fullops-coor / term_6895aaf1-7b43-4fe0-a416-76f1255a5946 / run_8ca8bc058ab7. Task/Dispatch는 preamble 기준.
+
+## 적용 기준과 먼저 읽을 문서
+
+fullops-common-0.3.3의 README·coding-style/testing/security, FULLOPS·project·document-writing·contexts/designer를 전달 SHA에서 읽는다. 제품 기준은 docs/planning/product-specs/SAR-PUBLIC-SERVICE.md PS08–11·PS04/06/07와 SAR-MVP.md C1–C5 및 docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md UX06/07다. DEV 실행 기록 docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md와 logs/2026-10-06_to_dev.md의 최신 과제·DEV QA 증거/mobile-width.py·README/adapters README를 읽는다. Jev code/doc/context도 이 키로 준비한다.
+
+## 해야 할 일과 완료 기준
+
+- [x] fixed 09c523d을 별도격리clone·자기fixture에서 실제 브라우저로 직접 검수한다. DEV 자동검사/390px 측정을 직접시각 PASS로 대신하지 않는다. UX06/07의 실제 UI가 단순공개fixture와 달라질 수 있어 일반회원 세션/자기receipt/검증gate를 대상으로 한다. 비밀값·이메일·코드·key/credential은 출력/캡처 전에 가린다.
+- [x] UX06: 선택agent·명시송신 도구안내·요청ID/관련답장ID·queued/실제수신/회신·TTL/manual pull·offline/expired/rate/revoked/invalid-key/conflict 상태와 실제 가능한 다음동작을 직접 확인한다. 자유 composer/채팅버블/장기timeline/queued성공오인 배너를 추가하지 않는다.
+- [x] UX07: 검증 typed-body·정책·발신/대상·기한이 판단근거이고 hint/HTML/명령이 실행되지 않음을 확인한다. 원문부재/만료/철회 approve비활성·deny·오류 뒤 복구안내, 회원권한분리를 실제 화면에서 확인한다. 긴ID·390px모바일·키보드이동·읽을 수 있는 오류를 확인한다.
+- [x] 지정 시각조건의 캡처·manifest·고정SHA·실제장애/초기실패·정상fixture·자기cleanup을 보존한다. 시간변화가 정지화면으로 판정되지 않는 경우만 영상이다. 변경없는 UI는 관련의존성 동일성과 원래SHA/조건을 연결해 재사용한다. 새 UI는 기존 AGENTS PASS로 대체하지 않는다.
+- [x] 보고서 docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md와 필요한 시각증거·자기실행기록을 작성한다. final 기록HEAD FullOps --from09c523d lint/test·strict·diff exit/HEAD/경고를 남긴다. work.py finish로 전문아카이브/빈인박스·최종커밋·일반push 뒤 worker_done fullSHA/증거/수락·미검증·후속을 보고한다.
+
+## 소유권·제약·후속
+
+designer는 새직접검수보고/시각증거·자기context/PLANS·인박스/완료로그만 작성한다. 코드·기술정본·타인인박스·기존실패/리뷰는 수정하지 않는다. 새제품판단이 필요한 때만 coor로 질문한다. theme/designlint/Tailwind/shadcn은 현스택에 없으며 기존Go template/memberStyle·UX정본을 기준으로 직접판정한다. OPS/TESTER 검사와 직접시각PASS는 분리한다. Workers Free 유지, 과금/유료전환/구독/운영배포/실메일/외부계정/공유서버/Tunnel/운영자료삭제는 수행하지 않는다. 로컬격리검사·자기fixture회수·문서커밋·일반push는 승인됐다. 실제운영 PS08/13/14·실메일/공개/실24h/노우↔다닷은 미검증으로 기록한다.
+
+## 갱신할 산출물과 완료 보고
+
+D04 직접검수기록 연결만 실제영향에 따라 갱신한다. 제품/UX규칙은 변경하지 않는다. final fullSHA·고정대상·직접판정/실패·캡처manifest·명령exit/경고·미검증·후속담당/재개조건을 전문으로 작성한다. front matter는 deliverables stamp를 쓴다.
+
+추가 필수 확인: internal/relay/member_receipt.go가 실제 경로다. context의 member_receipts.go 거부는 오기이며 원본 JSON을 보존했다. keep 후보인 public_text.go/capacity.go/http.go/store.go/adapters/src/text.ts는 관련 검수에 읽고, omit? 후보 adapters/README.md도 실제 지원 인터페이스의 필수 근거로 읽는다. designer의 capacity/store omit?는 필요 시 확인이다. c6f0848 준비 리뷰는 coor PLANS 병합 오류 발견 뒤 미배정으로 남았으며 현재 새 fixed09c523d에서만 검수한다.
+
+
+## 완료 보고
+
+SAR-PUBLIC-MESSAGES-001-UI 직접 검수를 완료했다.
+Task는 `task_f37e47dda648`, Dispatch는 `ctx_b2c603e79536`이다.
+대상은 fixed `09c523da8a3407288d9f5d711e1834af12bc7808`이다.
+fullops-common-0.3.3·FULLOPS·제품 PS04/06/07/08–11·MVP C1–C5·UX06/07과 지정 실제 경로를 읽었다.
+별도 detached clone·자기 Postgres17·기존 SMTP sink·실제 relay·Chrome 일반회원 두 세션을 사용했다.
+자기 receipt·verified gate의 desktop1280×900·mobile390×844 캡처를 직접 확인했다.
+DEV 자동검사와 폭 측정은 직접 시각 PASS의 근거로 대신하지 않았다.
+
+수락은 UX06 로컬 시각 조건 PASS, UX07 FAIL/보류다.
+F-UI-MSG-01 medium은 정상 pending gate에서 Deny를 누른 직후 GET `/home/gates/<id>/deny`가405를 반환하는 결함이다.
+화면은 Method Not Allowed뿐이며 저장된 gate는 denied다.
+canonical gate 결과는 정상이다. 마우스 desktop/mobile와 키보드 Enter에서 재현했다.
+coor의 OPS H-1 high/M-1 medium 발견과 DEV-FIX 안내도 읽고 보존했다.
+제품 전체 수락은 보류다. 코드·기술 정본·제품/UX 규칙·타인 인박스는 변경하지 않았다.
+
+보고서는 `docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md`다.
+시각 증거는 같은 이름 폴더의 PNG49개다. 유효 조건47개와 초기 fixture 오류2개를 구분했다.
+`docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/manifest.json`은 조건·SHA·크기·직접판정·해시를 연결한다.
+같은 증거 폴더에 원래 장애/초기 실패·명령별 exit·SQL fixture 절차·관측·privacy·cleanup·DEV45파일 보존을 기록했다.
+자기 container/volume·relay/SMTP listener·Chrome context/profile·메일·비밀 설정·clone을 회수했다.
+공유8개 container의 ID/이름은 같다. 운영 서버·DB·외부 계정·실메일은 사용하지 않았다.
+
+첫 기록 SHA `f27a3e0247ab3d269bc81085b19743d8a02383de`의 FullOps --from09c523d는 exit0이다.
+등록 product-lint/product-test 각각 exit0, ERROR0·WARNING2·unavailable0이다.
+strict13종·미작성0·문제0·경고0·exit0, ref-to-HEAD diff exit0이다.
+원래 출력과 exit는 QA의 `record-*`로 보존했다.
+SIZE-001 누적 PLANS와 SIZE-002 요구된 상태별 증거 규모는 삭제로 숨기지 않았다.
+현재 인박스 전문을 work.py finish로 보존하고 빈 인박스를 확인한다.
+완료 로그를 포함한 마지막 기록 SHA는 별도로 필수검사 후 일반 push한다.
+그 최종 fullSHA·검사 원본 경로·원격 동일성은 worker_done으로 직접 보고한다.
+자기 SHA를 자기 커밋에 순환 기록하지 않는다. coor는 마지막 검사 원본을 통합 증거로 보존한다.
+
+실메일·운영 PS08/13/14·운영 공개/배포·실24h·실제 노우↔다닷·부하/복원은 미검증이다.
+schedule.commit 개별 화면·전체 API 독립 QA·스크린리더 전체·OS clipboard는 이번 PASS 범위가 아니다.
+DEV가 F-UI-MSG-01과 OPS 결함을 수정한다. coor가 새 fixed SHA와 정규 인박스로 재배정한다.
+designer는 수정된 Deny 직후 결과·홈 복귀와 영향 UI를 재검수한다.
+후속은 PLANS에 대기시켰으며 기존09c FAIL·OPS finding·초기 실패는 보존한다.
