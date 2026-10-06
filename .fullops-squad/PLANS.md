@@ -899,3 +899,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 고정 `458798c2ee15c179edacfd6f94ebb9896d26f411`를 별도 clone에서 보존, rate, POLICY 관찰 조건만 독립 QA했다. 최종 프로브 종료코드는 0이다. 1차 종료코드 1은 프로브 기대값이고 제품 결함이 아니다. 새 critical/high는 없다.
 - 원본 QA `bcb06b89bcb36d69a99cbeef3d94e4a9ffe88361`와 UI FAIL `d1651784c4338efeb0d6141467d563c6b354e4a5`는 그 SHA에 둔다. 실제 이메일, 운영 공개, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다.
+
+- FIX-TESTER msg_7c714a9c8930/a87dbf30cb52aa3cd03840ab6ae6fc226f20377a 수신. 실제fixed458 clone·제품diff0·TestQAAgentsFix policy/retention/rate 독립PASS·첫기대값오류원문보존·자기fixture정리·빈인박스확인. 최종a87 lint ERROR0/WARNING1/product-lint/test0 JSON은/tmp에서COOR/fixed-qa-a87dbf3-lint.json으로보존해영속화했다. null추출/fullSHA출처둘다보존. coor에SHA보존반영, QA/UI/OPS기록자체독립검토와최종통합검사뒤main수락한다. 실제메일/실24h/공개/운영자원/노우↔다닷은후속이다.
