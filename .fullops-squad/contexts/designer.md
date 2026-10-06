@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI]
 summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보류 경계를 보존한다
 ---
 
@@ -46,3 +46,7 @@ summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보
 - 2026-10-06: SAR-PUBLIC-AGENTS-001-UI-FIX는 fixed 458798c의 F-UI-01–04와 POLICY 안내를 actual desktop1280/mobile390에서 직접 확인해 좁은 UI PASS로 기록했다.
   원본 d1/d165 FAIL·QA/OPS 실행 65개 파일은 byte 동일이다. 제어 25h fixture와 실제 sweep을 실운영 24h로 확대하지 않는다.
   직접 근거·한계·인계: [UI-FIX 보고](../docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md).
+
+- 2026-10-06: SAR-PUBLIC-MESSAGES-001-UI는 fixed09c의 실제 일반회원 receipt·gate를 자기SQL/SMTP·Chrome에서 직접 검수했다. UX06 로컬PASS, UX07 Deny 뒤405로 FAIL/보류다.
+  F-UI-MSG-01 medium은 거절 저장 뒤 결과·홈 복귀 부재다. 제품 코드·규칙은 보존하며 원본OPS high/medium과 fixture 초기실패도 유지한다.
+  직접 증거49PNG·manifest·회수·DEV후속: [MESSAGES 보고](../docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md).

@@ -1,0 +1,26 @@
+연결 확인·receipt
+선택 agent
+agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+요청 ID
+0199a3f2-4c10-7a11-8b22-334455667788
+발신 agent
+agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+수신 agent
+agent_b_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+원요청 ID (답장인 경우)
+관련 답장 ID
+전달 상태
+failed:max_attempts — 수신 확인 3회가 끝났습니다. 클라이언트 상태를 확인한 뒤 새 key로 명시 송신하세요.
+처리 상태
+아직 처리 결과가 없습니다.
+관련 답장 전달
+아직 관련 답장이 없습니다.
+기한 / TTL
+2026-10-06 21:45:26 KST / 179.254743초 (text 최대 180초)
+
+자동 wake는 없습니다. 수신 client에서 수동 receive를 실행하세요. 정상 idle pull은 10초 이상 간격입니다. queued는 상대 수신 성공이 아닙니다.
+
+명시 송신·답장은 자기 agent client에서 실행합니다. 불확실한 재시도는 같은 key·같은 내용으로 receipt만 조회합니다. key 충돌이면 이전 내용을 확인하고 별도 새 요청에 새 key를 쓰세요. 한도 초과는 새 요청이 아닙니다. 잘못된 키는 현재 연결·지문을 확인하세요.
+
+현재 상태 수동 확인
+자기 홈으로 돌아가기

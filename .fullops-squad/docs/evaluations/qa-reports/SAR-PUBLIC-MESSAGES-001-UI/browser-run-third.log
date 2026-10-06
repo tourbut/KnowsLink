@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/shin/orca/workspaces/KnowsLink/fullops-designer/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/run.py", line 294, in <module>
+    main()
+  File "/home/shin/orca/workspaces/KnowsLink/fullops-designer/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/run.py", line 201, in main
+    login(browser, member, 'a')
+  File "/home/shin/orca/workspaces/KnowsLink/fullops-designer/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/run.py", line 175, in login
+    message = email.message_from_bytes(messages[-1].read_bytes(), policy=email.policy.default)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'message_from_bytes'

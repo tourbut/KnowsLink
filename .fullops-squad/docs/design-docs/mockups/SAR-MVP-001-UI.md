@@ -4,12 +4,18 @@ title: 화면설계서
 status: review
 updated: 2026-10-06
 owner: designer
-tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX]
+tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI]
 upstream: [D02]
 summary: 합성 승인과 일반 회원 연결 화면의 기록 및 직접 시각 수락 경계를 보존한다
 ---
 
 # SAR-MVP-001-UI — 합성 human-gate 화면 기록
+
+## 일반회원 메시지·gate의 새 직접 기록
+
+고정 `09c523da8a3407288d9f5d711e1834af12bc7808`의 일반회원 UX06/07은 [MESSAGES 직접 검수](SAR-PUBLIC-MESSAGES-001-UI.md)에 있다.
+UX06은 좁은 로컬 시각 조건에서 PASS다. UX07은 Deny 뒤405의 F-UI-MSG-01 medium으로 FAIL/보류다.
+기존 합성 gate·AGENTS 검수의 원래 SHA와 판정은 유지한다. 이 연결은 제품/UX 규칙을 바꾸지 않는다.
 
 ## 기준과 범위
 

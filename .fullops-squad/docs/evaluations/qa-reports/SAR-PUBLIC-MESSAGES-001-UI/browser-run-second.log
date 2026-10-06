@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/shin/orca/workspaces/KnowsLink/fullops-designer/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/run.py", line 291, in <module>
+    main()
+  File "/home/shin/orca/workspaces/KnowsLink/fullops-designer/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/run.py", line 198, in main
+    login(browser, member, 'a')
+  File "/home/shin/orca/workspaces/KnowsLink/fullops-designer/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/run.py", line 173, in login
+    code = re.search(r'코드: (\d{6})', messages[-1].read_text()).group(1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'group'

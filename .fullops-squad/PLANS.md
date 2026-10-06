@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-UI]
 summary: 현재 과제·MESSAGES 구현 및 독립 검수 대기와 수락·운영 보류를 기록한다
 ---
 
@@ -940,3 +940,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - coor 병합 c6f0848의 PLANS 충돌 처리에서 잘못된 문서 삭제를 검수준비 diff로 발견했다. main에 미반영이다. 68b0d6a/f210b56/37f9a1e의 원본 Git 3-way를 다시 대조해 summary는 현재coor 값을 유지하고 append는 양쪽 전문을 보존했다. 기존914줄 삭제를 복원했다. 제품diff0을 확인하고 새fixed 후보를 사용한다. c6 준비리뷰는 미배정이며 원래preview/result와 실패를 보존한다. member_receipts.go 오기 탐색실패는 원본context JSON에 유지하고 실제 member_receipt.go를 수동필수후보로 보완한다.
 
 - 검수 대상은 복원 fixed `09c523da8a3407288d9f5d711e1834af12bc7808`이다. DEV37f9a1e 대비 제품diff0과 PLANS 원본/새 기록 보존을 확인했다. OPS는 새 REVIEW-2 기록과 read-only snapshot /tmp/knowslink-messages-review-09c523d를 사용한다. TESTER/UI도 같은fixed이다. 이전c6 준비양식과 오기context는 실패/미배정 그대로보존한다. 준비문서와 제품후보는 역할에만 공유하며 필수검수 전 main/origin68b0d6a에 제품을 넣지 않는다.
+
+## SAR-PUBLIC-MESSAGES-001-UI — designer 원본 검수 완료
+
+- fixed `09c523da8a3407288d9f5d711e1834af12bc7808`의 실제 일반회원·receipt·gate를 격리 PostgreSQL/SMTP·Chrome에서 직접 검수했다. UX06은 로컬시각 PASS다. UX07은 Deny 뒤405의 F-UI-MSG-01 medium으로 FAIL/보류다. [직접 보고서](docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md)·유효PNG47개/초기fixture2개·manifest·원본실패·cleanup을 보존한다. 제품·기술·제품/UX 규칙 변경은0이다.
+- coor follow-up msg_cfbbb3035700의 OPS H-1 high/M-1 medium과 새 F-UI-MSG-01을 유지한다. msg_6194f4825058로 새결함을 직접 전달했고 coor msg_0ffac7f56129가 현재DEV-FIX에 추가했다. 원본09c FAIL을 새후보 PASS로 덮어쓰지 않는다. 전체제품 수락/운영공개는 보류다.
+- 다음 designer 과제는 대기다. 담당 designer, 목표는 DEV-FIX 새fixed의 Deny 직후결과·홈복귀 및 변경영향 UX07 직접재검수다. 선행은 DEV 수정·고정SHA·coor 정규인박스 dispatch다. 현재과제 work.py finish·빈인박스 뒤에만 재개한다. TESTER/OPS 독립검사·실메일/공개/실24h/노우↔다닷은 기존후속을 유지한다.

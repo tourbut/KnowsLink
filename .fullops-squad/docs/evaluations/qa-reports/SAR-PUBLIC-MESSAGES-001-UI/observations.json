@@ -1,0 +1,1162 @@
+{
+  "events": [
+    {
+      "fixtureProcess": "previous relay already exited"
+    },
+    {
+      "fixtureMutation": "initial unchanged host relay startup",
+      "privateDatabaseOnly": true
+    },
+    {
+      "browserLogin": "a",
+      "realStartVerify": true,
+      "smtp": "private local sink"
+    },
+    {
+      "browserLogin": "b",
+      "realStartVerify": true,
+      "smtp": "private local sink"
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "receiptKeyboardTab": [
+        {
+          "tag": "BUTTON",
+          "text": "현재 상태 수동 확인"
+        },
+        {
+          "tag": "A",
+          "text": "자기 홈으로 돌아가기"
+        },
+        {
+          "tag": "BODY",
+          "text": "연결 확인·receipt\n선택 agent\nagent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n요청 ID\n0199a3f2-4c10-7a11-8b22-334455667788\n발신 agent\nagent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n수신 agent\nagent_b_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n원요청 ID (답장인 경우)\n관련 답장 ID\n전달 상태\nqueued — 대기 중. 상대 수신이 확인되지 않았습니다.\n처리 상태\n아직 처리 결과가 없습니다.\n관련 답장 전달\n아직 관련 답장이 없습니다.\n기한 / TTL\n2026-10-06 21:45:18 KST / 179.100027초 (text 최대 180초)\n\n자동 wake는 없습니다. 수신 client에서 수동 receive를 실행하세요. 정상 idle pull은 10초 이상 간격입니다. queued는 상대 수신 성공이 아닙니다.\n\n명시 송신·답장은 자기 agent client에서 실행합니다. 불확실한 재시도는 같은 key·같은 내용으로 receipt만 조회합니다. key 충돌이면 이전 내용을 확인하고 별도 새 요청에 새 key를 쓰세요. 한도 초과는 새 요청이 아닙니다. 잘못된 키는 현재 연결·지문을 확인하세요.\n\n현재 상태 수동 확인\n자기 홈으로 돌아가기"
+        }
+      ]
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 409,
+      "error": "idempotency_conflict"
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 401,
+      "error": "invalid_auth"
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "controlled text expiration; actual sweep",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "controlled key revocation; actual sweep",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/text/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "three leases elapsed; actual sweep",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "controlled new-work rate saturation",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "gateKeyboardTab": [
+        {
+          "tag": "BUTTON",
+          "text": "Approve 승인"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Deny 거절"
+        },
+        {
+          "tag": "A",
+          "text": "작업 화면으로 돌아가기"
+        }
+      ]
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "denyRedirectPath": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny"
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "fixtureMutation": "controlled gate expiration; actual sweep",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "fixtureMutation": "controlled gate key revocation; actual sweep",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "fixtureMutation": "remove parent raw body; actual unavailable gate",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "fixtureMutation": "invalid signed parent fixture; actual verification failure",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "fixtureMutation": "controlled 16 shared new-work slots",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureProcess": "previous relay already exited"
+    },
+    {
+      "fixtureMutation": "supplement fixture startup",
+      "privateDatabaseOnly": true
+    },
+    {
+      "browserLogin": "a",
+      "realStartVerify": true,
+      "smtp": "private local sink"
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "normalize expired acceptance metadata to TTL180; initial negative fixture kept",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "schedule.query"
+    },
+    {
+      "api": "/v1/pull",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/persist",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/ack",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/claim",
+      "status": 200,
+      "error": null
+    },
+    {
+      "api": "/v1/send",
+      "status": 200,
+      "intent": "relay.approval.request"
+    },
+    {
+      "denyKeyboardEnterResult": {
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+        "status": 405,
+        "text": "Method Not Allowed\n",
+        "storedGateState": "denied",
+        "networkResponses": [
+          {
+            "url": "http://localhost:46743/",
+            "status": 200
+          },
+          {
+            "url": "http://localhost:46743/auth/verify",
+            "status": 200
+          },
+          {
+            "url": "http://localhost:46743/home",
+            "status": 200
+          },
+          {
+            "url": "http://localhost:46743/home/receipts",
+            "status": 200
+          },
+          {
+            "url": "http://localhost:46743/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+            "status": 200
+          },
+          {
+            "url": "http://localhost:46743/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+            "status": 405
+          }
+        ]
+      }
+    },
+    {
+      "canonicalDeniedRecovery": true
+    },
+    {
+      "homeRecoveryPath": "/home"
+    }
+  ],
+  "captures": [
+    {
+      "name": "receipt-queued-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1265,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-queued-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "home-tool-guidance-desktop",
+      "path": "/home",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "home-tool-guidance-mobile",
+      "path": "/home",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "foreign-receipt-refusal-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "foreign-receipt-refusal-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-manual-refresh-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-leased-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-leased-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-delivered-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-delivered-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-reply-queued-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-reply-queued-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-reply-delivered-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-reply-delivered-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "reply-parent-id-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667799",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "reply-parent-id-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667799",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-expired-desktop-initial-fixture",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false,
+      "fixtureLimitation": "accepted_at was not shifted; negative TTL is fixture error, not product defect"
+    },
+    {
+      "name": "receipt-expired-mobile-initial-fixture",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false,
+      "fixtureLimitation": "accepted_at was not shifted; negative TTL is fixture error, not product defect"
+    },
+    {
+      "name": "receipt-revoked-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-revoked-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-max-attempts-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-max-attempts-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-rate-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-rate-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "foreign-gate-refusal-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "foreign-gate-refusal-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-pending-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": true
+    },
+    {
+      "name": "gate-pending-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": true
+    },
+    {
+      "name": "gate-approved-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-approved-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-deny-redirect-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-deny-redirect-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 980,
+      "scroll": 980,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-denied-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-denied-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-expired-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-expired-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-revoked-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-revoked-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-unavailable-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-unavailable-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-invalid-signature-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-invalid-signature-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-csrf-error-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-csrf-error-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-capacity-error-desktop",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "gate-capacity-error-mobile",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-expired-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 1280,
+      "scroll": 1265,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-expired-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    }
+  ]
+}
