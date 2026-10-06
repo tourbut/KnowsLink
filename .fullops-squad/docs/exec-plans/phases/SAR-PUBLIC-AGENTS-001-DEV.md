@@ -44,8 +44,8 @@ Go template CSS에는 별도 theme/Tailwind/shadcn·디자인 전용 lint가 없
 | make test | exit0. Go race·연결/한도 단위·MCP/시험/로컬 CLI 검증 |
 | make verify-mvp | exit0. 실제 격리 Postgres·migration·Go integration race·TS synthetic/seed/trial 왕복 |
 | git diff --check | exit0 |
-| strict deliverables | 완료 게이트에서 실행·결과 기록 |
-| FullOps lint --from d2f7ba5… | 코드 커밋 뒤 실행·결과 기록 |
+| strict deliverables | exit0. 검사13·미작성0·문제0·경고0 |
+| FullOps lint --from d2f7ba5… | 코드 HEAD `2ac91a7d05fccbcdbab3fa7e1733eafd4c8a8606`에서 exit0. ERROR0·WARNING8·실행불가0. 등록 product-lint/product-test 모두 passed |
 
 TestPublicAgentHTTP는 타 회원 agent/grant 바꿔치기·agent로 owner권한 우회·5분 재인증·cross-origin·완료 전 권한 부재·동시 grant 완료1회·회전·선택 철회·옛 credential send/pull/persist/ACK/claim/authorize/gate-consume/result 거부·동일 owner 명시 수락·동시 수락·옛 화면/새 세대·pending만료·동시 owner agent cap·재시작·포화 중 정리를 검증했다.
 TestConnectionApprovalAndKeyCredentials·TestConnectionFailureExpiryAndCancellation·TestAgentAndPairCapacity는 key3·agent200/5·pair400/20·pending200/10/24h의 경계/초과·PoP·token/client/owner 결속·철회와 직렬화 복원을 검사했다. connect.test.ts는 실제 Node crypto·HTTP fixture·0700/0600·덮어쓰기 금지·URL·1회 완료를 검사했다. 기존 신원·gate·업무·시험 회귀도 같은 검증에서 실행했다.
@@ -71,3 +71,10 @@ DEV 완료는 최종 수락이 아니다. coor는 최종 고정 SHA에서 별도
 
 보안 경계를 연결 발급·사용·철회·공유 HTTP·회원 UI·클라이언트·회귀까지 하나의 후보에서 검사해야 하므로 한 과제로 유지했다. SIZE 경고를 허용하되 테스트·원천 문서·독립 검수는 생략하지 않았다. 최종 수치는 완료 보고에 기록한다.
 D03/D05/D06/D07/D09/D10·README·adapter 안내·project·DEV context를 갱신했다. D08은 schema 변경 없음으로 유지했다. 제품 D02·UX 정본과 board는 변경하지 않았다.
+
+## 고정 코드와 게이트 기록
+
+코드 고정 SHA는 `2ac91a7d05fccbcdbab3fa7e1733eafd4c8a8606`다. 이후 완료 기록·로그 정리 커밋은 제품 코드를 바꾸지 않는다. 최종 통합 SHA는 worker_done payload와 브랜치 HEAD를 사용한다. 같은 최종 HEAD에서 FullOps 게이트를 다시 실행한다.
+첫 커밋의 Docker 로그에는 후행 공백이 있어 archive diff 검사가 실패했다. 원 로그의 내용과 종료코드는 유지하고 후행 공백만 제거했다. 수정 뒤 diff 검사는 exit0이다. 원 출력은 `/tmp/knowslink-agents-mvp-final.log`, Git 증거의 정규화 이유는 exits.json에 있다.
+
+FullOps WARNING8 처리: SIZE-001은 기존 PLANS807·http571·member312·store458 및 새 integration304줄이다. 권한 발급/확인/사용/철회와 state 복원까지 한 후보로 검증해야 하므로 분리하지 않았다. SIZE-002 추가1584줄은 UI·client·새 자동 회귀·기술 원천을 포함한다. 최초 예상12–18파일보다 최종30파일이 큰 이유는 QA 명령 로그3개와 테스트/원천/완료 기록을 함께 보존했기 때문이다. DEP-001은 package.json의 test script에 connect.test.js만 추가한 경고다. dependency/version/lock 변경은0이다. SEC-001은 Node fixture의 `"a".repeat(43)` 합성 token이며 실제 자격이나 재사용 가능한 운영 값이 아니다. DESIGN 경고는0이며 별도 theme/Tailwind/shadcn·디자인 전용 lint는 해당 없음이다.
