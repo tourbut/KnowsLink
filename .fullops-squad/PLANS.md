@@ -856,3 +856,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - POLICY msg_04d9f4745598/48d12fae2dce35d92606b264313148f0a635b64e 제품답을보존했다. pending/active반복은수/세대/기한불변, 종료뒤수동재초대는새세대/새수락, 키기록포화는새agent/관계재수락, owner기록포화는최소24h보존/실제정리뒤수동재시도·홈철회목록정리안내를정한다. 새차단/쿨다운/상품quota/수치/운영승인은없다. 구현조건표원문을줄이지않고DEV-POLICY-FIX인박스에서그대로전달한다. route Opus5.5high, 이전DEV는긴빌드/테스트로그와10분이상대기로cache이득이작아새세션을선택했다. QA/UI원본실패와필수delta검수대기를유지한다.
 - QA에handoff msg_9161a46153fb로현재기록checkout의frontmatter없는상속OPS준비양식을metadata-only stamp하도록허용했다. 제품fixed d1·실행조건불변·원래실패/본문보존·완성OPS70f26bc충돌해결원칙을명시했다.
+
+- DEV-POLICY-FIX 착수 Task task_46a93d37ac6f / ctx_acf917e530e7 / term_1e7f7bec-d32a-42fe-84ff-9ee7549419be, freshOpus5.5high effective·turn_started·규약/인박스읽기확인. 이전DEV-FIX는새세션으로옮기는시점에출력보존/release했다. 준비0a83bbb를DEV에ff/일반push했다. 진행DEV/QA checkout은변경하지않으며latest고정후보 delta보안/QA/UI를대기한다.
