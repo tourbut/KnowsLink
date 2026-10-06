@@ -1,0 +1,59 @@
+{
+  "fixture": "/tmp/knowslink-agents-ui-d1eef9b",
+  "project": "knowslink-agents-ui-d1eef9b-8398",
+  "processes": {
+    "smtp": {
+      "pid": 4129200,
+      "final_state": "absent",
+      "terminated": true,
+      "note": "SIGTERM first; remaining dedicated Playwright groups required SIGKILL"
+    },
+    "relay": {
+      "pid": 4160617,
+      "final_state": "absent",
+      "terminated": true,
+      "note": "SIGTERM first; remaining dedicated Playwright groups required SIGKILL"
+    },
+    "playwright-beta": {
+      "pid": 4152929,
+      "final_state": "absent",
+      "terminated": true,
+      "note": "SIGTERM first; remaining dedicated Playwright groups required SIGKILL"
+    },
+    "playwright-alpha": {
+      "pid": 4157349,
+      "final_state": "absent",
+      "terminated": true,
+      "note": "SIGTERM first; remaining dedicated Playwright groups required SIGKILL"
+    }
+  },
+  "existing_user_resources": "untouched",
+  "ports_closed": {
+    "relayport": true,
+    "smtpport": true
+  },
+  "compose_exit": 0,
+  "remaining_containers": 0,
+  "remaining_volumes": 0,
+  "remaining_networks": 0,
+  "private_fixture_resources_removed": [
+    "fixture.json",
+    "private-browser-single",
+    "fixture.env",
+    "private-client-b",
+    "prepared-c.json",
+    "private-client-a-rotated",
+    "private-client-c",
+    "beta-control.json",
+    "prepared-a.json",
+    "grant-expired.json",
+    "private-client-a",
+    "prepared-b.json",
+    "grant-a.json",
+    "grant-cancelled.json",
+    "private-browser",
+    "private-mail",
+    "prepared-a-rotated.json"
+  ],
+  "own_orca_page_closed": "5821c251-81fd-480c-86f3-996591415053"
+}

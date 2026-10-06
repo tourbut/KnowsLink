@@ -826,3 +826,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - UI question msg_fb30bec590d1: fixed d1 UX04–05는mobile지문overflow(F-UI-01medium)와오류뒤복귀동작부재(F-UI-02medium)로FAIL/보류다. coor는상속빈OPS양식metadata만stamp하도록reply msg_548ebe9bb1f7로허용하고DOC003원실패/본문불변/최종재검증보존을요구했다. 완성OPS70f26bc본문은coor에보존돼있으며UI양식보정과통합시그완성본문을유지한다. 필수UI두건과관련low03/04를진행중같은DEV-FIX에handoff해인박스갱신·수정·관련재검수인계를요청했다. 원본UI최종보고뒤designer빈인박스에서L2판단을배정한다.
 
 - SAR-PUBLIC-AGENTS-001-POLICY는리뷰L2의거절/만료뒤재초대범위제품판단route를준비한다. designer현재UI인박스사용중이므로미배정이며보고전문finish/빈인박스확인뒤배정한다. 기존제품PS07과남용방어의해석및DEV/QA관찰조건만정하고기술구현은DEV-FIX에유지한다. 담당coor/designer, 재개조건UI기록완료다.
+## SAR-PUBLIC-AGENTS-001-UI — designer 결과와 후속
+
+- 역할 검수 작업은 완료했다. 대상 제품은 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`다. [직접 관측·판정](docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md)을 정본으로 사용한다.
+- UX04–05 시각 수락은 FAIL/보류다. medium F-UI-01 모바일 지문 가독성과 F-UI-02 오류 뒤 다음 동작을 DEV에 인계한다. 수정된 고정 SHA와 해당 실제 화면이 준비되면 designer가 영향 범위만 재검수한다. 새 과제 dispatch는 coor가 현재 역할 인박스의 사용 상태를 확인한 뒤 정한다.
+- 합성 상태 PASS는 독립 QA·보안 리뷰·실제 이메일·운영 공개·노우↔다닷의 미검증을 해제하지 않는다. 자기 fixture 자원은 회수했고 사용자 기존 탭·인증값·운영 자원은 보존했다. 제품 코드와 제품 규칙은 변경하지 않았다.
