@@ -3,8 +3,8 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER]
-summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원 rate 격리 검증 결과를 기록한다"
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER]
+summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원 rate 격리, 회원 agent 연결 QA 결과를 기록한다"
 ---
 
 # tester 컨텍스트
@@ -48,3 +48,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 - 2026-10-06 SAR-PUBLIC-IDENTITY-001-FIX-TESTER: 후보 `eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de`의 별도 checkout에서 rate 격리와 trial lease 회수 검사가 통과했다. `make verify-mvp` 종료코드는 0이다.
 - 첫 `make test` 종료코드 2는 손상된 zod 추출이다. 검증된 재설치의 product-test 종료코드는 0이다. 제품 코드는 수정하지 않았다.
 - 실제 이메일·공개·노우↔다닷은 미실행이다. 원본 F1은 `59b66ad`에 둔다. 보고서: [SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md).
+- 2026-10-06 SAR-PUBLIC-AGENTS-001-TESTER: 후보 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`의 별도 clone에서 교차 계정, 키 회전·철회, 관계, 한도, rate, Node CLI가 통과했다. `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다.
+- 프로브 중간 실패는 기대값 오류였다. 제품 코드는 수정하지 않았다. 새 critical/high는 없다.
+- 실제 이메일·공개·노우↔다닷은 미실행이다. 보고서: [SAR-PUBLIC-AGENTS-001-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md).

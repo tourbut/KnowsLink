@@ -50,4 +50,18 @@ Workers Free만 허용한다. 유료 전환/구독/초과 과금·실메일·운
 
 ## 완료 보고
 
-검증·관측·finding·fixedSHA·기록HEAD·미검증·산출물·후속을전문으로적는다.
+검증: 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`를 `/tmp/knowslink-agents-qa-d1eef9b`에서 검사했다. `make lint` 0, `make test` 0, `make verify-mvp` 0, 격리 Postgres `TestQAAgentsIndependent` 0이다. verify-mvp 프로젝트는 `knowslink-mvp-c03730a729`이고 stop relay, Go integration, up relay, synthetic, seed, trial-check, down의 종료코드는 모두 0이다.
+
+관측: 교차 owner, PoP 치환, 저장 grant의 다른 owner 치환, 1회·동시 complete, 5분 재인증, cancel, 만료가 확인됐다. 키 3개, 선택 철회, 실패 연결의 기존 키 유지, rotate 뒤 옛 credential의 pull, persist, ack, claim, authorize, gate-consume, send가 401이다. 다른 회원 초대는 수신 owner만 수락하고, 같은 owner 두 agent는 명시적 수락 전까지 pending이다. 동시 수락은 쌍 1개와 세대 1을 유지한다. agent 200/5, pending 200/10, active 400/20, 24시간, 공유 예산이 찬 뒤의 deny가 확인됐다. 깨진 요청은 rate를 소비하고, 빈 principal은 찬 `http:new`를 늘리지 않으며, credential 회전은 `http:member:<agentId>`를 유지한다. Node prepare, confirm, complete는 0700/0600, 안내 문장, 키 미출력, 파일 보존, 1회 완료를 만족한다.
+
+finding: 새 critical/high는 없다. 프로브 중간 실패는 기대값 오류이며 원문은 `docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md`에 있다. 제품 코드는 수정하지 않았다. 저장 owner를 바꾼 confirm이 303이어도 complete는 401이고 자격은 나오지 않는다.
+
+fixedSHA: `d1eef9bb90b9726149980320c42fb1fdbcaf584a`. 기준은 `d2f7ba5aeb6644fd2b27fe6ada5b61db5976933b`다.
+
+기록HEAD: 이 완료 보고를 아카이브한 뒤 `fullops/tester`에 커밋한다. 커밋 전 checkout은 `d111fd4fde1538492c3c335e78ed510408718b2e`다.
+
+미검증: 실제 이메일, 운영 SMTP, 운영 공개, Cloudflare 쓰기, 플랫폼, Grok 계정, 다닷 실제 연결, 최종 노우↔다닷, 영상과 전체 UI 캡처. `make generate`, `make schema`, `make verify-grok-plugin`, `make verify-runtime`은 SQL과 플러그인 차이가 없어 실행하지 않았다.
+
+산출물: `docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md`, `docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md`, `docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/`.
+
+후속: 일반 서비스 수락은 이 QA로 완료하지 않는다. UI 판정은 designer, 보안 리뷰와 main 통합은 coor 범위다. LINT_PENDING
