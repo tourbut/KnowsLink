@@ -1,0 +1,26 @@
+QA sink on 127.0.0.1:52489; messages in /tmp/sar-messages-ui-i_vd4wvl/mail
+QA sink on 127.0.0.1:52489; messages in /tmp/sar-messages-ui-i_vd4wvl/mail
+stored message 1791290439226069907.eml
+QA sink on 127.0.0.1:52489; messages in /tmp/sar-messages-ui-i_vd4wvl/mail
+stored message 1791290456812274332.eml
+QA sink on 127.0.0.1:52489; messages in /tmp/sar-messages-ui-i_vd4wvl/mail
+stored message 1791290474662216048.eml
+stored message 1791290475465850556.eml
+Traceback (most recent call last):
+  File "/tmp/sar-messages-ui-i_vd4wvl/snapshot/scripts/mail_sink.py", line 53, in <module>
+    main()
+  File "/tmp/sar-messages-ui-i_vd4wvl/snapshot/scripts/mail_sink.py", line 46, in main
+    with socketserver.ThreadingTCPServer((args.listen, args.port), Sink) as server:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+QA sink on 127.0.0.1:55925; messages in /tmp/sar-messages-ui-i_vd4wvl/mail
+stored message 1791290537266698283.eml
+stored message 1791290538078401710.eml
+QA sink on 127.0.0.1:33643; messages in /tmp/sar-messages-ui-i_vd4wvl/mail
+stored message 1791290666151169582.eml
+QA sink on 127.0.0.1:41477; messages in /tmp/sar-messages-ui-i_vd4wvl/mail
+stored message 1791290718829587317.eml

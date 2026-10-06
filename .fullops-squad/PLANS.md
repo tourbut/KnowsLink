@@ -959,3 +959,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - OPS 원본 기록최종6e의pass파일은HEAD만기록해 kind별최종JSON이부족했다. coor가clean6e에서 --froma744를한번보완해ERROR0/WARNING1/product-lint/test0 JSON을COOR/ops-final-6e1dac2-lint.json에보존했다. 원리뷰check exit1은그대로다. DEV원본/OPS원본 release 시도는 실제 retained(reason user_takeover)/processAction none으로 반환됐다. 이어 실제 terminal read는 둘 다 exited/출력없음이었다. 닫았다고 주장하지 않으며 새DEV-FIX만 active이고 원본 기록/실패는 보존했다. 진행DEV-FIX/QA/UI checkout은변경하지않는다.
 
 - UI 중간 handoff msg_6194f4825058의 F-UI-MSG-01 medium을같은DEV-FIX에추가했다. fixed09c의Deny는저장되지만redirect뒤/deny GET405·결과/홈복귀없음이며키보드Enter도재현됐다. 원본UI검수는계속하며실패를보존한다. 새fixed UX07 직접재검수와좁은QA가재개조건이다. 제품규칙변경이아닌기술오류이며coor가코드를대신수정하지않는다.
+
+## SAR-PUBLIC-MESSAGES-001-UI — designer 원본 검수 완료
+
+- fixed `09c523da8a3407288d9f5d711e1834af12bc7808`의 실제 일반회원·receipt·gate를 격리 PostgreSQL/SMTP·Chrome에서 직접 검수했다. UX06은 로컬시각 PASS다. UX07은 Deny 뒤405의 F-UI-MSG-01 medium으로 FAIL/보류다. [직접 보고서](docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md)·유효PNG47개/초기fixture2개·manifest·원본실패·cleanup을 보존한다. 제품·기술·제품/UX 규칙 변경은0이다.
+- coor follow-up msg_cfbbb3035700의 OPS H-1 high/M-1 medium과 새 F-UI-MSG-01을 유지한다. msg_6194f4825058로 새결함을 직접 전달했고 coor msg_0ffac7f56129가 현재DEV-FIX에 추가했다. 원본09c FAIL을 새후보 PASS로 덮어쓰지 않는다. 전체제품 수락/운영공개는 보류다.
+- 다음 designer 과제는 대기다. 담당 designer, 목표는 DEV-FIX 새fixed의 Deny 직후결과·홈복귀 및 변경영향 UX07 직접재검수다. 선행은 DEV 수정·고정SHA·coor 정규인박스 dispatch다. 현재과제 work.py finish·빈인박스 뒤에만 재개한다. TESTER/OPS 독립검사·실메일/공개/실24h/노우↔다닷은 기존후속을 유지한다.

@@ -1,0 +1,7 @@
+Fixed snapshot: git clone --no-hardlinks --no-checkout from local repository, then git checkout --detach 09c523da8a3407288d9f5d711e1834af12bc7808.
+Own Postgres: docker run private unique name sar-messages-ui-28d645895e, pinned postgres17 image from compose.yaml, generated password, loopback port36423. No operational .env.
+Migration/build: go run ./cmd/migrate; go build -o private relay ./cmd/relay. Each exit0 in setup.log.
+Execution: private SMTP from unchanged scripts/mail_sink.py; relay DATABASE_URL/RELAY_ADDR/KNOWSLINK_SMTP_URL local-only; KNOWSLINK_SYNTHETIC_SIGNUP and KNOWSLINK_TEST_AGENTS empty.
+Browser: python3 run.py, runs1-5 exit1, run6 exit0; python3 supplement.py, first exit1, second exit0. Each stdout/stderr and real exit saved separately.
+Private config and mailbox lived in /tmp/sar-messages-ui-i_vd4wvl (0700), private.json0600; all removed after captures. Scripts require fresh same-scope fixture setup to rerun.
+Cleanup: docker rm -f -v sar-messages-ui-28d645895e exit0; own processes/profile/mail/config/snapshot removed; shared8 containers unchanged.
