@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-04
+updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV]
-summary: 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14]
+summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
 # KnowsLink 현재 계획
@@ -679,3 +679,10 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - SAR-PUBLIC-SERVICE-001 msg_84a8b9e8fe3e/1233e4c3167f722d51f99cb2ef495691734be714 수락: PS01–14·UX01–08·동일 이메일 노우↔다닷·새 운영기본값/과거held 구분·DEV/QA 정규인계·OPS후속대기. 독립 coor provider세션01a101f1 vs designer01a10bf3, read-only detached1233 snapshot17/17 reviewed·critical/high0·reviewcheck통과. 최초lint base불일치는 같은fixed1233/기준608fe06 재실행ERROR0/WARNING0으로해소. 실제구현/로그인/플랫폼왕복은후속.
 - 일반 서비스 대기 과제: SAR-PUBLIC-AGENTS-001-DEV(identity 기능 수락/DEV인박스finish 뒤), SAR-PUBLIC-MESSAGES-001-DEV(agents·실제클라이언트근거 뒤), SAR-PUBLIC-SERVICE-OPS(수락구현SHA·QA 뒤 인증/공유서비스/백업·복원·rollback), SAR-PUBLIC-SERVICE-ACCEPT-001(안정운영후보 전체PS01–13), SAR-DOTS-DADAT-001(일반서비스 수락 뒤 동일이메일 노우↔다닷 실제 온보딩/왕복). 현재identity DEV ready·TESTER fixed후보waiting이며 새배정은정규인박스만사용한다.
 - coor 추가 읽기 관측: 로그인된 Orca CF One 설정화면에 “아직 선택한 요금제가 없습니다” 표시. seat/결제 조건은 미확인이고 요금제변경/구독은 실행하지 않았다. DEV/OPS가 신원기술 선택/공개 준비 때 실제지원·비용조건을 확인한다. 사용자이메일전문은기록하지않는다.
+
+## FullOps 0.9.14 운영 업데이트 — 2026-10-06
+
+- 기준 ref는 `94533b207b456c0560800fe30a7c90b2b5887c6e`다. 실제 Codex 설치는 전후 0.9.14이며 레포 적용 0.9.13의 누락 항목을 회수한다. main의 깨끗한 체크아웃에서 운영 파일만 준비한다. coor 후보 c8856eb의 미수락 신원 제품·실패·검수 보류를 main에 병합하지 않는다.
+- 기존 역할 setup dry-run과 실행은 생성 0개다. 공통 0.3.3·lint 테스트 증거·SIZE-002·SLOP/DESIGN WARNING·UI 핸드오버·리뷰 양식·보드 뷰어를 반영한다. 상세 판정과 검증은 docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md를 따른다.
+- Orca 실제 역할 terminal 조회에서 designer/dev/ops/tester는 terminal 0개이며 Git clean이다. 과거 worker 완료·user-owned·unverifiable 기록은 보존한다. 최신 main 통합 뒤 상태를 재확인하고 가능한 역할만 동기화한다. coor는 현재 업데이트 세션 외 터미널 상태를 확인한다.
+- 제품 worker 착수·실제 이메일·외부 발송·배포는 이번 범위가 아니다. 기존 Workers Free 제한과 제품 수락 보류를 유지한다. 다음 개발은 새 coordinator 세션에서 이어간다.
