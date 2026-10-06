@@ -757,3 +757,5 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - OPS 리뷰 첫 Task task_85f7c3846cae / Dispatch ctx_365a939c0f04는 agent_readiness timeout이다. 실제 terminal 출력에서 Bun1.4.3 `Segmentation fault (core dumped)`와 셸 복귀를 확인했다. 과제는 시작되지 않았다. 영수증의 worker-release로 정리하고 같은 Task의 retry-of로 재개한다. 원본 실패를 보존하며 제품·범위·모델을 변경하지 않는다.
 
 - OPS 재개 영수증: 같은 Task task_85f7c3846cae / Dispatch ctx_dda6a6213308 / terminal term_438d1e65-97c9-4cf0-87b4-ed6034d4b426. 새 Opus5.5 high effective·turn_started 확인. DEV/OPS 진행 checkout은 보존한다. 원본 identity 완료 Dispatch ctx_cae2f16a8f1d는 이미 완료 근거를 인수했고 closed_exited_terminal로 release했다.
+
+- 후속 좁은 QA `SAR-PUBLIC-IDENTITY-001-FIX-TESTER` route implementation/tester를 준비했다. DEV 진단 완료 고정 SHA와 원인 근거를 받은 뒤 정규 tester 인박스에서 배정한다. 원본 전체 QA를 복제하지 않고 F1 rate/cleanup 및 lease 변경 영향만 검증한다. 현재 선행 DEV 완료 대기이며 미배정이다.
