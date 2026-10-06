@@ -49,3 +49,11 @@ HTTP/store 공통경계는 변경됐으므로 전체의존성동일을 주장하
 coor는 고정dfc의독립TESTER/OPS와좁은UI결과·마지막SHA검사를확인한뒤main판정을진행한다.
 
 증거 검사 최초 exit1은 desktop의 scrollWidth1265를 viewport1280과 같다고 요구한 검사 오류다. 수직 scrollbar 폭을 반영해 `scrollWidth <= viewport`로 확인했다. mobile은 실제390/390을 계속 요구했다. `integrity-initial.json`과 후속 `prearchive-integrity.json`을 보존하며 제품 실패로 바꾸지 않는다.
+
+## Archive 뒤 추가 인계
+
+coordinator-followup.json의msg_23b8de8f85ac는OPS msg_d5687c98688e/c219의H2high를전달한다.
+유효credential의타대상/no-lease cleanup flood와유효정리18/18의429는OPS관측이며designer재현이아니다.
+이번dfc시각조건PASS는유지하되제품전체수락/main통합은차단한다. 동일DEV후속수정과새fixed독립QA/OPS가필요하다.
+첫archive SHA3b31b8f의lint/test/strict/diff/productdiff exit0·ERROR0/WARNING2를record-3b31b8f-*로보존한다.
+추가인계기록의마지막SHA도검사한다. 원래전문archive와빈인박스는유지하며다시finish하지않는다.

@@ -23,6 +23,11 @@ owner 경로도 자기 자격의 좁은 desktop 조건에서 denied 결과 GET20
 원본 mobile Deny 오류의 effectiveviewport980과 [R-UI-1](../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md)도 보존한다.
 원 OPS H-1 high·M-1 medium·review check exit1을 이 UI 과제로 해소하지 않는다.
 제품 전체 수락·main 통합은 coor가 독립 TESTER/OPS 결과와 함께 판단한다.
+2026-10-06 coor 후속 `msg_23b8de8f85ac`는 독립 OPS의 새 H2 high와 유효 정리18/18의429를 전달했다.
+유효 credential의 타 대상/no-lease cleanup flood가 DB 입장 동안 로컬 정리 슬롯을 점유한다는 결과다.
+이는 [coor 원메시지](../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/coordinator-followup.json)의 인계이며 designer가 flood를 실행한 결과가 아니다.
+**H2 high가 남아 있으므로 dfc의 제품 전체 수락·main 통합은 계속 차단한다.**
+같은 DEV 과제의 후속 수정과 새 fixed의 독립 수락이 필요하다. 이번 dfc의 좁은 시각 판정/PNG는 보존한다.
 
 ## 기준과 독립 실행
 

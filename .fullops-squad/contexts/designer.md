@@ -54,3 +54,7 @@ summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보
 - 2026-10-06: SAR-PUBLIC-MESSAGES-001-UI-FIX는 fixed dfc70ca의 정상 Deny 클릭/Enter desktop1280/mobile390와 owner desktop을 직접 확인해 좁은 UI PASS로 기록했다.
   신규 rate 포화 뒤 denied 저장/결과GET429는 즉시결과PASS에서 제외한다. 원09c FAIL·viewport980·OPS H1/M1·216개원천을 보존했다.
   직접42PNG·실패/회수·재사용 경계·인계: [UI-FIX 보고](../docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md).
+
+- 2026-10-06: UI-FIX archive 뒤 coor msg_23b8de8f85ac가 dfc의 OPS H2 high와 유효정리18/18의429를 인계했다. 정상Deny 시각PASS는 전체제품수락이 아니다.
+  같은DEV후속수정·새fixed독립수락 전 main을 차단한다. 원dfc캡처/완료전문·빈인박스를 보존하고 다음후보는UI의존성/영향만 확인한다.
+  원메시지·담당·재개조건: [UI-FIX phase](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md).

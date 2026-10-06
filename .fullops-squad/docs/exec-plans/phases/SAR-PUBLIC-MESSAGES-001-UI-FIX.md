@@ -67,3 +67,18 @@ SIZE 경고가 있으면 누적 PLANS·필수 상태별 검수 기록의 증가 
 DEP0·새 의존성0·제품 CSS변경0이다. theme/design lint가 미구성이므로 별도 디자인 검사 PASS를 주장하지 않는다.
 
 증거 검사 최초 exit1은 desktop의 scrollWidth1265를 viewport1280과 같다고 요구한 검사 오류다. 수직 scrollbar 폭을 반영해 `scrollWidth <= viewport`로 확인했다. mobile은 실제390/390을 계속 요구했다. `integrity-initial.json`과 후속 `prearchive-integrity.json`을 보존하며 제품 실패로 바꾸지 않는다.
+
+## Archive 뒤 coor 후속과 마지막 검사
+
+첫 archive HEAD `3b31b8f2463d11f94932fee5609f4b984b7271cd`의 FullOps --fromdfc는exit0이다.
+product-lint/product-test 각각exit0·ERROR0/WARNING2/unavailable0이다. strict13종·문제/경고0·diff/productdiff exit0이다.
+원본을 QA의 `record-3b31b8f-*`에 보존했다. SIZE-001은 누적PLANS993줄, SIZE-002는추가2669줄이다.
+추가줄은 요구된42상태PNG의동반텍스트·보고서·기록이다. 제품코드0·DEP0이며필수상태/원실패삭제나규칙완화로숨기지않는다.
+
+그 뒤 체크포인트에서coor `msg_23b8de8f85ac`를받았다. OPS `msg_d5687c98688e`/c219 결과의H2high가dfc에남아있다.
+유효credential의타대상/no-lease cleanup flood가DB입장중로컬정리슬롯을점유해유효정리18/18이429라는인계다.
+이수치는coor/OPS원관측이다. designer의자기시각fixture결과나새QA PASS로사용하지않는다.
+동일DEV 후속수정·새fixed의독립QA/OPS가필요하며제품전체수락/main통합은차단한다.
+현재dfc의정상Deny직접판정과캡처는보존한다. 다음후보는UI의존성동일성/영향만후속확인한다.
+원완료전문/빈인박스를다시작성하거나finish하지않고phase/QA/PLANS에추가인계를연결했다.
+이추가문서의최종cleanHEAD도필수검사를한번실행한뒤일반push하고worker_done으로회신한다.
