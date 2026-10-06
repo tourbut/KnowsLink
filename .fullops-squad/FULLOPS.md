@@ -1,10 +1,10 @@
 ---
 title: FullOps Squad 하네스 지도
 status: draft
-updated: 2026-10-03
+updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10]
-summary: 작업 규약과 역할별 참조 및 업데이트 절차를 안내한다
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14]
+summary: FullOps 규약 지도와 0.9.14 검사·문서 뷰어 기준
 ---
 
 # FullOps Squad — 하네스 지도
@@ -64,3 +64,7 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 완료 메시지는 Git 공용 디렉터리의 fullops-integration에 보존된다. `integration.py --repo <레포> status`로 미통합 결과를 확인한다. 검수 대기·실패·충돌·원격 오류·사용자 제한은 PLANS.md에 메시지 ID·SHA·사유·담당·재개 조건을 기록한다. 같은 내용을 `integration.py hold`로 남긴다. 조건 충족 시 resume하고 병합·push를 이어간다. 성공 결과를 통합한 뒤 release·ack하고 다음 독립 과제를 배정한다. 사용자의 현재 과제 완료 뒤 중지 지시는 유지한다.
 
 기존 활성 과제명 지시서는 작업 중 이동하지 않는다. 해당 과제 완료 뒤 logs에 보존하고 다음 과제부터 정규 역할 인박스를 사용한다.
+
+## FullOps 0.9.14 검사와 보드
+
+공통 기준은 `fullops-common-0.3.3`이다. 기존 lint·포맷·타입 검사를 유지하며 테스트를 `kind: test`로 연결한다. 변경 규모·의존성·디자인 검토는 lint 안내와 핸드오버·리뷰 양식을 따른다. 현황판 원천 문서 뷰어는 board.py가 제공하는 고정 HTML을 사용한다.

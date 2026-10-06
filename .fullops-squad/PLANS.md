@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-04
+updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV]
-summary: 제품 진행과 설치 실패 수정 및 GitHub 재시험 인계를 관리한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14]
+summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
 ---
 
 # KnowsLink 현재 계획
@@ -731,3 +731,12 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - RATE-FIX는 F1 예산 고갈과 F4 기본 설정을 수정했다. 미해명 TestTrialHTTP invalid_lease 실패 1건 때문에 수락 보류를 유지한다. 담당 coor와 dev. 재개 조건은 원인 분석·필요 수정·고정 최종 후보의 독립 delta 리뷰와 좁은 QA 통과다.
 - TESTER의 원본 fixed59 fixture는 157통과·0실패이며 F1 medium을 별도로 재현했다. 변경 후보의 검증과 독립 결과 리뷰가 남아 있으므로 수락 보류를 유지한다. 담당 coor와 tester. 실제 공개·사람 이메일·최종 노우↔다닷은 미실행이다.
 - 두 완료 메시지의 integration hold를 유지한 뒤 delivery를 ack한다. ack는 수신 처리이며 코드 수락·배포·병합 완료를 뜻하지 않는다. Workers Free 제한과 DEV-TRIAL-DIAG의 배정 보류·재개 조건은 앞 절을 따른다.
+
+## FullOps 0.9.14 운영 업데이트 — 2026-10-06
+
+- 기준 ref는 `94533b207b456c0560800fe30a7c90b2b5887c6e`다. 실제 Codex 설치는 전후 0.9.14이며 레포 적용 0.9.13의 누락 항목을 회수한다. main의 깨끗한 체크아웃에서 운영 파일만 준비한다. coor 후보 c8856eb의 미수락 신원 제품·실패·검수 보류를 main에 병합하지 않는다.
+- 기존 역할 setup dry-run과 실행은 생성 0개다. 공통 0.3.3·lint 테스트 증거·SIZE-002·SLOP/DESIGN WARNING·UI 핸드오버·리뷰 양식·보드 뷰어를 반영한다. 상세 판정과 검증은 docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md를 따른다.
+- Orca 실제 역할 terminal 조회에서 designer/dev/ops/tester는 terminal 0개이며 Git clean이다. 과거 worker 완료·user-owned·unverifiable 기록은 보존한다. 최신 main 통합 뒤 상태를 재확인하고 가능한 역할만 동기화한다. coor는 현재 업데이트 세션 외 터미널 상태를 확인한다.
+- 제품 worker 착수·실제 이메일·외부 발송·배포는 이번 범위가 아니다. 기존 Workers Free 제한과 제품 수락 보류를 유지한다. 다음 개발은 새 coordinator 세션에서 이어간다.
+
+- 업데이트 준비 cf55ea1의 새 설정 고정 HEAD에서 product-lint·product-test 모두 exit 0, ERROR/WARNING/실행 불가 0이다. 기존 lockfile npm ci로 main의 누락 의존성을 복원했다. 문서 strict 13개·문제 0과 보드 생성·JS 문법을 통과했다. 필수 적용 완료로 레포 plugin_version을 0.9.14로 확정한다. 운영 변경만 main/origin에 공유하며 모든 역할의 기존 작업을 보존해 동기화한다.
