@@ -957,3 +957,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - DEV-FIX 착수 task_a2b1a8572849/ctx_e82f453519f1/term_9ecee66b-80c1-4914-834d-a11a2d39fb97 fresh Opus5.5high effective·turn_started·규약/인박스읽기를확인했다. DEV clean후준비9fd8665를ff/일반push하고main/origin68b조상을확인한뒤dispatch했다. 같은명령안의sync+dispatch는PreToolUse 최신main검사로착수전차단되어동기화를별도완료하고정규dispatch했으며우회하지않았다. 원리뷰H1/M1/원실패·QA/UI현재09c를유지한다.
 - OPS 원본 기록최종6e의pass파일은HEAD만기록해 kind별최종JSON이부족했다. coor가clean6e에서 --froma744를한번보완해ERROR0/WARNING1/product-lint/test0 JSON을COOR/ops-final-6e1dac2-lint.json에보존했다. 원리뷰check exit1은그대로다. DEV원본/OPS원본 release 시도는 실제 retained(reason user_takeover)/processAction none으로 반환됐다. 이어 실제 terminal read는 둘 다 exited/출력없음이었다. 닫았다고 주장하지 않으며 새DEV-FIX만 active이고 원본 기록/실패는 보존했다. 진행DEV-FIX/QA/UI checkout은변경하지않는다.
+
+- UI 중간 handoff msg_6194f4825058의 F-UI-MSG-01 medium을같은DEV-FIX에추가했다. fixed09c의Deny는저장되지만redirect뒤/deny GET405·결과/홈복귀없음이며키보드Enter도재현됐다. 원본UI검수는계속하며실패를보존한다. 새fixed UX07 직접재검수와좁은QA가재개조건이다. 제품규칙변경이아닌기술오류이며coor가코드를대신수정하지않는다.
