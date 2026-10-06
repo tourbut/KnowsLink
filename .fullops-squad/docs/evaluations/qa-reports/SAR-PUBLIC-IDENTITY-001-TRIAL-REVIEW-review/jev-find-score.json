@@ -1,0 +1,35 @@
+{
+  "task_key": "SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG",
+  "find_head": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "base": "9c915dc71e2a872243ffec294126d4668b4d32a4",
+  "head": "eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de",
+  "changed_existing": [
+    "README.md",
+    "internal/relay/test_messages_integration_test.go",
+    "scripts/verify_mvp.py"
+  ],
+  "new_files": [],
+  "candidates": [
+    "README.md",
+    "adapters/src/test-transport.ts",
+    "adapters/src/trial-boundaries.test.ts",
+    "adapters/src/trial-check.ts",
+    "internal/config/config.go",
+    "internal/relay/cleanup.go",
+    "internal/relay/http.go",
+    "internal/relay/identity.go",
+    "internal/relay/identity_test.go",
+    "internal/relay/store.go",
+    "internal/relay/test_messages_test.go",
+    "scripts/run_trial.py"
+  ],
+  "hits": [
+    "README.md"
+  ],
+  "recall": 0.333,
+  "precision": 0.083,
+  "existence_status": "absent",
+  "existence_correct": false,
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

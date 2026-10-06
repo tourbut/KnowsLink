@@ -1,0 +1,11 @@
+{
+  "head": "eb2e34b93fe8d20fa1cd9166f73ff68d14bf17de",
+  "checkout": "scratch clone of fullops-ops, detached at head, git status --porcelain empty before and after",
+  "commands": [
+    {"name": "npm ci --prefix adapters", "exit_code": 0, "note": "adapter 의존성 복원(무시 대상 node_modules만 생성)"},
+    {"name": "lint.py --from 9c915dc --out lint.json", "kind": "lint", "exit_code": 0, "note": "product-lint(make lint) exit 0, product-test(make test) exit 0, ERROR 0, WARNING 1 SIZE-001, 실행 불가 0"},
+    {"name": "make verify-mvp", "exit_code": 0, "compose_project": "knowslink-mvp-a3723f3371", "steps": ["up --build --wait relay exit 0", "stop relay exit 0", "go test -tags=integration -race -count=1 -v ./internal/relay exit 0", "up --wait relay exit 0", "synthetic.js exit 0", "synthetic.js --seed exit 0", "trial-check.js exit 0", "down --volumes exit 0"]}
+  ],
+  "go_passed": ["TestEmailIdentity", "TestNormalizeEmail", "TestRollingWindowBoundary", "TestSendLimits", "TestCodeVerificationAndMembers", "TestSessionLifetime", "TestSMTPMailer", "TestRatePrincipalIsolation", "TestRateStateBoundedUnderRotation", "TestPostgresSafety", "TestGateFailureStates", "TestApprovalAndResultInstanceBinding", "TestPendingAndConcurrentAccept", "TestLegacyClaimsCannotReachParentBoundaries", "TestFrozenParsingAndSigning", "TestFrozenFieldLimits", "TestTrialHTTP", "TestTrialForeignAllowlistRevokesLease", "TestTrialMessageSafety", "TestTrialSchemaAndConfiguration"],
+  "not_run": ["make build", "make verify", "make verify-runtime", "TestTrialHTTP 반복 통계 재현(DEV 40/40·count=200 기록 재사용)", "같은 allowlist 음성 대조(코드 추론으로 대체)"]
+}
