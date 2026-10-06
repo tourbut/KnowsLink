@@ -145,11 +145,17 @@ func TestPublicAgentHTTP(t *testing.T) {
 			st.Rates = map[string][]time.Time{}
 		})
 		form := url.Values{"agent": {one}, "target": {two}, "generation": {"1"}}
-		expect(t, a.do("POST", "/home/invites", form), 303)
+		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invited")
+		var exp time.Time
+		s.mutateState(t, func(st *State) { exp = st.Pairs[pairID(one, two)].Exp })
+		// Repeats from either side keep the pending invite and say so.
+		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invite-pending")
+		expect(t, a.do("POST", "/home/invites", url.Values{"agent": {two}, "target": {one}}), 303, "/home?n=invite-pending")
+		expect(t, a.do("GET", "/home?n=invite-pending", nil), 200, "이미 대기 중인 초대", "기한도 그대로", "받은 초대입니다")
 		s.mutateState(t, func(st *State) {
 			p := st.Pairs[pairID(one, two)]
-			if p.State != "pending" || p.Generation != 1 {
-				t.Fatal("implicit accept")
+			if p.State != "pending" || p.Generation != 1 || !p.Exp.Equal(exp) || len(st.Pairs) != 1 {
+				t.Fatal("implicit accept or repeat changed the invite")
 			}
 		})
 		decision := url.Values{"agent": {one}, "target": {two}, "decision": {"accept"}, "generation": {"1"}}
@@ -182,12 +188,15 @@ func TestPublicAgentHTTP(t *testing.T) {
 		expect(t, a.do("POST", "/home/invites", form), 429)
 		expect(t, a.do("POST", "/home/unpair", form), 303)
 		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
+		expect(t, a.do("GET", "/home", nil), 200, "연결이 끝났습니다", "새 초대 보내기")
+		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
 		expect(t, a.do("POST", "/home/invites", form), 303)
 		expect(t, a.do("POST", "/home/invite-decision", decision), 403)
 		decision.Set("generation", "2")
 		expect(t, a.do("POST", "/home/invite-decision", decision), 303)
+		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invite-active")
 		s.mutateState(t, func(st *State) {
-			if st.Pairs[pairID(one, two)].Generation != 2 {
+			if st.Pairs[pairID(one, two)].Generation != 2 || st.Pairs[pairID(one, two)].State != "active" {
 				t.Fatal("old generation reused")
 			}
 			st.Rates = map[string][]time.Time{}
@@ -301,7 +310,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			t.Fatal("record cap race", wins, len(live), len(revoked))
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", nil), 409, "운영 한도")
+		expect(t, a.do("POST", "/home/agents", nil), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "자기 홈으로 돌아가기")
 		// Saturation never blocks cleanup, and revoking adds no record.
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {revoked[0]}}), 303)
@@ -322,7 +331,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			st.Rates = map[string][]time.Time{}
 		})
 		expect(t, a.do("POST", "/home/agents", nil), 303)
-		expect(t, a.do("GET", "/home", nil), 200, "철회")
+		expect(t, a.do("GET", "/home", nil), 200, "철회", "최소 24시간 보존", "목록에서 사라질 수 있습니다")
 		s.mutateState(t, func(st *State) {
 			for _, id := range revoked {
 				if st.Agents[id] != nil {
@@ -331,6 +340,18 @@ func TestPublicAgentHTTP(t *testing.T) {
 			}
 			if st.Agents[live[0]] == nil || !st.Agents[live[0]].Revoked {
 				t.Fatal("revoked agent deleted before 24h")
+			}
+			// Saturate a live agent's key records: connect refuses with the replacement path.
+			for i := 0; i < agentKeyRecords; i++ {
+				st.Agents[live[1]].Keys[fmt.Sprint("k", i)] = &Key{Revoked: true, Changed: time.Now()}
+			}
+			st.Rates = map[string][]time.Time{}
+		})
+		expect(t, a.do("GET", "/home", nil), 200, "새 키를 더 연결할 수 없습니다")
+		expect(t, a.do("POST", "/home/connect", url.Values{"agent": {live[1]}, "client": {supportedClient}, "mode": {"rotate"}}), 409, "기다려도 이 agent에 새 키 공간은 생기지 않습니다", `action="/home/agents"`, `href="/home"`)
+		s.mutateState(t, func(st *State) {
+			if len(st.Agents[live[1]].Keys) != agentKeyRecords || len(st.Connections) != 0 {
+				t.Fatal("key-full refusal changed records", len(st.Connections))
 			}
 		})
 	})
