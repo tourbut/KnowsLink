@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
-summary: 현재 과제와 보류 및 FullOps 0.9.14 운영 적용
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR]
+summary: 현재 과제·원본 보류 이력과 AGENTS 로컬 코드 통합 수락을 기록한다
 ---
 
 # KnowsLink 현재 계획
@@ -901,3 +901,12 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 원본 QA `bcb06b89bcb36d69a99cbeef3d94e4a9ffe88361`와 UI FAIL `d1651784c4338efeb0d6141467d563c6b354e4a5`는 그 SHA에 둔다. 실제 이메일, 운영 공개, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다.
 
 - FIX-TESTER msg_7c714a9c8930/a87dbf30cb52aa3cd03840ab6ae6fc226f20377a 수신. 실제fixed458 clone·제품diff0·TestQAAgentsFix policy/retention/rate 독립PASS·첫기대값오류원문보존·자기fixture정리·빈인박스확인. 최종a87 lint ERROR0/WARNING1/product-lint/test0 JSON은/tmp에서COOR/fixed-qa-a87dbf3-lint.json으로보존해영속화했다. null추출/fullSHA출처둘다보존. coor에SHA보존반영, QA/UI/OPS기록자체독립검토와최종통합검사뒤main수락한다. 실제메일/실24h/공개/운영자원/노우↔다닷은후속이다.
+
+
+## SAR-PUBLIC-AGENTS-001 로컬 코드 main 수락 — 2026-10-06
+
+- 수락 제품은 fixed458(DEV 마지막 제품6d016e5와diff0)다. 원본 OPS d2..d1 및 새 OPS d1..458 수락, FIX-TESTER a87의 독립policy/retention/rate PASS, UI-FIX c9의 필수FUI01–04/POLICY직접PASS, coor FINAL-RECORDS 458..690의독립기록검사49reviewed/75skipped/124와fixedlint0를확인했다. 미해결critical/high/medium0이다. 과거 d1/d165 UIFAIL과모든초기실패는원본SHA로남았다.
+- main/origin/main은 `14e0131ca0c6611246145f9f287ecb3894c0cb8a`다. 일반push/fetch일치와AGENTS유효완료10개SHA의main/origin조상관계를확인했다. 현재main FullOps --fromdc60 exit0·ERROR0/WARNING10/실행불가0·product-lint/test0, strict13/문제0/경고0·공백0이다. 원본은COOR/main-14e0131-lint.json이다. DEP는package testscript추가뿐·새dependency0, SEC는비활성합성testtokenfixture라는원본OPS수락근거를재사용한다. SIZE는기존모듈/추적성·필수검사누적이며삭제로숨기지않았다.
+- 실제idle상태확인뒤coor/dev/ops/designer/tester5역할을14e로ff/일반push했다. 모두clean·진행worker없음·동기화예약없음이다. DEV/OPS/UI owned세션은release했다. TESTER 외부Grok3터미널은tui-idle=true·retained이며강제종료하지않았다. 현재완료delivery f13는처리뒤ack한다.
+- 유효AGENTS hold10건은위로컬코드수락조건으로resume했다. 기존hold와SHA null추출출처는history/sha_source에보존했다. 원래UIFAIL을PASS로바꾸지않았다. 공개/실메일/운영자원/실24h/복원/최종노우↔다닷은아직미검증이다. OPS lowL-A 삭제ID합성재등록·L-B 합성ownerAPI Generation미결속은미해결이며공개전합성가입unset·운영DB합성owner0확인이필수다. 이작업은운영배포나합성데이터삭제를수행하지않았다.
+- 다음독립제품은기존SAR-PUBLIC-MESSAGES-001이며이번AGENTS수락뒤자동배정하지않는다. 활성제품worker0·등록역할인박스비어있음. read-only detached리뷰snapshot3개는review.py check의직접경로검증에필요해유지한다. 근거아카이브방식을바꾸기전강제정리하지않는다. 이수락운영기록도main에공유하고유휴역할에동기화한다.
