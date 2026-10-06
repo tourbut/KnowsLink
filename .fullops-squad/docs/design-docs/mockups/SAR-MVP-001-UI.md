@@ -4,9 +4,9 @@ title: 화면설계서
 status: review
 updated: 2026-10-06
 owner: designer
-tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI]
+tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX]
 upstream: [D02]
-summary: 합성 승인과 일반 회원 연결 화면의 기록 및 직접 시각 수락 경계를 보존한다
+summary: 합성 gate와 일반회원 수정 후보의 직접 시각 판정 및 수락 경계를 연결한다
 ---
 
 # SAR-MVP-001-UI — 합성 human-gate 화면 기록
@@ -91,3 +91,7 @@ coor에게 문서 결과의 통합과 제품 수락의 구분을 인계한다. �
 ## SAR-PUBLIC-AGENTS-001-UI-FIX의 직접 재검수
 
 고정 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 F-UI-01–04와 POLICY 새 안내는 [직접 재검수 보고](SAR-PUBLIC-AGENTS-001-UI-FIX.md)의 좁은 시각 조건에서 PASS다. 원본 d1/d165 UI FAIL과 원본 QA/OPS 실행 기록은 그대로 보존했다. 독립 TESTER/OPS·main 통합·일반 서비스 공개 수락은 별도다. 제품 규칙과 디자인 방향은 바꾸지 않았다.
+
+## SAR-PUBLIC-MESSAGES-001-UI-FIX의 직접 재검수
+
+고정 `dfc70caa748a90614b02d48c78b4651345938339`의 정상 Deny 클릭/Enter desktop1280/mobile390와 owner desktop은 [직접 재검수 보고](SAR-PUBLIC-MESSAGES-001-UI-FIX.md)의 좁은 시각 조건에서 PASS다. canonical 결과GET200·denied 저장·결정 비활성·실제 홈 복귀를 확인했다. 신규 rate 포화의 결과GET429는 즉시결과PASS에서 제외한다. 원09c UX07 FAIL·405·viewport980·OPS 원실패를 보존했다. 전체API/OPS수락·main통합·운영공개는별도이며제품/UX규칙은바꾸지않았다.

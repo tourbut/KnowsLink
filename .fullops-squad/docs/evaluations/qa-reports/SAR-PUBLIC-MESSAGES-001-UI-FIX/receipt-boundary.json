@@ -1,0 +1,58 @@
+{
+  "captures": [
+    {
+      "name": "receipt-http-rate-desktop",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+      "viewport": 1280,
+      "scroll": 1280,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    },
+    {
+      "name": "receipt-http-rate-mobile",
+      "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+      "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+      "viewport": 390,
+      "scroll": 390,
+      "scripts": 0,
+      "injected": false,
+      "approve": false
+    }
+  ],
+  "events": [
+    {
+      "fixtureProcess": "previous relay already exited"
+    },
+    {
+      "fixtureMutation": "receipt HTTP boundary follow-up reset only own rates",
+      "privateDatabaseOnly": true
+    },
+    {
+      "browserLogin": "a",
+      "realStartVerify": true,
+      "smtp": "private local sink"
+    },
+    {
+      "fixtureMutation": "new member-owned keys and accepted pair; preserve real browser sessions",
+      "privateDatabaseOnly": true
+    },
+    {
+      "api": "/v1/text/send",
+      "status": 200,
+      "error": null
+    },
+    {
+      "fixtureMutation": "own new rate saturation before receipt GET",
+      "privateDatabaseOnly": true
+    },
+    {
+      "fixtureMutation": "clear own rate condition after receipt display",
+      "privateDatabaseOnly": true
+    }
+  ],
+  "actualReceiptGET": 429,
+  "homeClick": "/home",
+  "scope": "HTTP rate/error view only; UX06 source evidence reused with original SHA"
+}

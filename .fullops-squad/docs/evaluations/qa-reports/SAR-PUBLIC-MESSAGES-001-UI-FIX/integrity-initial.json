@@ -1,0 +1,8 @@
+{
+  "exit": 1,
+  "failedCheck": "scrollWidth == viewport for every PNG",
+  "actualDesktopViewport": 1280,
+  "actualDesktopScrollWidth": 1265,
+  "reason": "desktop vertical scrollbar reduces document width; no horizontal overflow",
+  "correction": "scrollWidth <= viewport; mobile viewport and scrollWidth must both be 390"
+}

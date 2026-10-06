@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/tmp/sar-messages-ui-fix-vnsxs7mb/qa/recheck.txt", line 120, in <module>
+    if b is not None:b.close()
+                     ^^^^^^^^^
+  File "/tmp/sar-messages-ui-fix-vnsxs7mb/qa/browser.py", line 107, in close
+    self.profile.cleanup()
+  File "/usr/lib/python3.12/tempfile.py", line 1089, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "/usr/lib/python3.12/tempfile.py", line 1069, in _rmtree
+    _rmtree(name, onexc=onexc)
+  File "/usr/lib/python3.12/shutil.py", line 785, in rmtree
+    _rmtree_safe_fd(fd, path, onexc)
+  File "/usr/lib/python3.12/shutil.py", line 697, in _rmtree_safe_fd
+    onexc(os.rmdir, fullname, err)
+  File "/usr/lib/python3.12/shutil.py", line 695, in _rmtree_safe_fd
+    os.rmdir(entry.name, dir_fd=topfd)
+OSError: [Errno 39] Directory not empty: 'Default'

@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI]
-summary: MESSAGES 원본검수 실패·DEV 수정·새fixed 수락과 운영 보류를 보존한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX]
+summary: 기존 진행 기록과 수정 gate 직접 재검수의 완료·보류·후속을 보존한다
 ---
 
 # KnowsLink 현재 계획
@@ -982,3 +982,12 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 수정 후독립검수는fixeddfc70/09c기준이며OPS·designer 정규빈인박스/새read-only snapshot·route/find/doc/context를준비했다. UI context충돌은원09c FAIL과새dfc 자동통과의검수경계로해소하고원본실패/새직접검수전제를명시했다. QA는현재원본검수진행이라인박스를덮어쓰지않으며원본완료뒤좁은FIX-TESTER를배정한다.
 
 - FIX-REVIEW 착수 Task task_779403155dcc/ctx_e220f302752b/term_b37f317f-21cb-4606-8ea2-834ba12ac438 fresh Opus5.5high effective/turn_started·규약/인박스/원리뷰읽기확인. 수정준비b5a44fc의lint/test0·ERROR0/WARNING5를COOR에보존했다. DEV-FIX release는transcript captured/closed_agent_terminal이다. designer원본terminal은retained후실제exited(operator_close)관측이며임의종료하지않았다. UI-FIX model-only기록만으로dispatch hook이route키부재를차단해착수전fullroute를보완했다. unresolved의tester추정은직접시각담당designer 정본근거로override/reason/prior보존했다. 진행OPS/QA는변경하지않는다.
+
+## SAR-PUBLIC-MESSAGES-001-UI-FIX — designer 직접 재검수 완료
+
+- 제품 fixed `dfc70caa748a90614b02d48c78b4651345938339`의 실제 일반회원·자기 gate에서 Deny 클릭/Enter desktop1280/mobile390 네 조건의 즉시 canonical GET200·denied 저장·결정 비활성·실제 홈 복귀는 좁은 시각 PASS다. owner desktop도 같은 결과와 `/owner` 복귀를 확인했다. [직접 보고](docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md)·42PNG/manifest·원실패/회수 근거를 보존한다.
+- CSRF/타회원403·신규16/정리4 포화429·cleanup/receipt rate429는 안전 오류/다음 동작을 보인다. 신규 rate200 포화에서는 Deny 저장 뒤 결과GET429가 된다. L-UI-FIX-1로 immediate200 PASS에서 제외하고 포화 해제 뒤 실제 홈/denied 복귀를 기록했다. 전체포화/API/경합수락은 TESTER·OPS와 별도다.
+- 원09c UX07 FAIL·F-UI-MSG-01 medium·mobile effectiveviewport980/R-UI-1·원OPS H1/M1/checkexit1과 원천216파일은 byte 동일이다. UX06 표시/wire의 변경 없는 원관측은 원09c SHA/조건으로만 재사용한다. 공통capacity/store/http 변경에 대해 전체의존성동일·새전체UX06 PASS를 주장하지 않는다.
+- 첫40PNG/18관측 run은 profile cleanup Errno39로exit1이며원로그를유지했다. 자기회수보완·receipt429/홈후속exit0·자기container/volume/clone/비밀/context회수·공유8container동일을확인했다. 제품/코드/규칙·기술정본·타인인박스변경0이다.
+- 현재designer지시서와완료전문은work.py finish로archive하고인박스를비운다. 최종clean archiveHEAD를--fromdfc lint/test·strict/diff검사하고일반역할push한다. fullSHA·실제마지막결과/경고와레포밖원본을worker_done으로인계한다.
+- 후속담당/재개조건: coor가dfc의OPS delta·TESTER 좁은QA·기록검토·마지막SHA검사를모아main통합을판정한다. L-UI-FIX-1의제한을함께보존한다. 다음제품과제는기존대기이며정규인박스가비고통합/수락기준을확인한뒤별도dispatch한다. 실메일/운영PS08/13/14·실24h·노우↔다닷·부하/복원·전체API/스크린리더는미검증이다.

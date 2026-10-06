@@ -1,0 +1,29 @@
+KnowsLink 요청 승인
+상태: pending
+발신 에이전트
+agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+대상 에이전트
+agent_b_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+원요청 ID
+0199a3f2-4c10-7a11-8b22-334455667788
+Intent
+schedule.query
+만료
+2026-10-06 22:33:12 KST
+적용 정책
+schedule.query: disclosure policy absent; deny even after gate approve
+참고 hint (판단 근거가 아님)
+이 hint는 실제 본문과 다릅니다. <script>window.uiInjected=true</script> $(touch /tmp/should-not-run)
+검증된 typed body
+{
+  "granularity_min": 30,
+  "window": {
+    "end": "2026-10-03T11:00:00Z",
+    "start": "2026-10-03T10:00:00Z"
+  }
+}
+
+Approve는 인간 게이트만 통과합니다. 정보 공개나 일정 실행을 허용하지 않습니다.
+
+Approve 승인Deny 거절
+작업 화면으로 돌아가기

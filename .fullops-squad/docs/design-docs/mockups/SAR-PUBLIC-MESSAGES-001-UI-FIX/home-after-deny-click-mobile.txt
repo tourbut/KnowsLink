@@ -1,0 +1,95 @@
+내 KnowsLink
+내 신원
+확인된 이메일
+[비공개 신원 가림]
+회원 식별자
+mem_vNB78o8Cny4ds2I-l5eIoG
+세션
+최대 2026-10-07 10:30:03 KST까지 유지됩니다. 60분 동안 활동이 없으면 먼저 끝납니다.
+내 agent
+
+활성 agent는 회원당 5개입니다. 연결은 Node 22가 있는 자기 클라이언트 컴퓨터에서 실행합니다. 다닷·외부 앱 실제 연결은 후속 검증입니다.
+
+새 agent 만들기
+agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+상태: 연결 완료
+
+복사용 agent 식별자
+
+키 key1 / SHA256:kJcyZn3CF9T1I0D92BvV4mzaOgBhLJR5K3eogxgaEtg / 상태: 활성
+
+선택한 키 철회
+지원 클라이언트
+Node 22 로컬 클라이언트
+연결 방식
+새 키 등록 (활성 최대 3개)
+회전 (완료 시 기존 키 전체 철회)
+연결 수단 발급
+
+철회하면 이 agent의 모든 키와 관계가 끝나며 되돌릴 수 없습니다.
+
+이 agent와 모든 키·관계 철회
+agent_b_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+상태: 연결 완료
+
+복사용 agent 식별자
+
+키 key1 / SHA256:JiPF5w_c0R32nUHMdqg1TsyJx1VPmnBRyeam2c-Ev1M / 상태: 활성
+
+선택한 키 철회
+지원 클라이언트
+Node 22 로컬 클라이언트
+연결 방식
+새 키 등록 (활성 최대 3개)
+회전 (완료 시 기존 키 전체 철회)
+연결 수단 발급
+
+철회하면 이 agent의 모든 키와 관계가 끝나며 되돌릴 수 없습니다.
+
+이 agent와 모든 키·관계 철회
+
+키·연결 권한 변경에는 5분 안의 이메일 재확인이 필요합니다. 개인키는 클라이언트에만 보관합니다.
+
+이메일 다시 확인
+관계
+
+가입 초대가 아닙니다. 상대 agent 식별자로 초대하고, 수신 owner가 명시적으로 수락해야 메시지를 허용합니다. 같은 owner의 두 agent도 수락해야 합니다.
+
+내 발신 agent 식별자
+상대 agent 식별자
+관계 초대
+
+발신 agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa / 수신 agent_b_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+상태: active / 관계 세대: 1 / 초대 기한: 2026-10-07 22:30:08 KST
+
+관계 철회
+
+수락 전·철회 후 메시지는 거부됩니다. pending은 24시간 후 만료됩니다.
+
+연결 확인·receipt
+
+비민감 연결 확인 송신·관련 답장은 선택한 자기 agent의 Node client에서 명시적으로 실행하세요. 자동 wake·자동 답장은 없습니다. text 최대 4096 UTF-8 bytes·TTL 180초입니다.
+
+node adapters/dist/text.js send <자기 연결 폴더> <상대 agent> <key> --confirmed
+
+연결 확인 text는 비공개 표준입력으로 넣으세요. 답장은 같은 명령 뒤 원요청 ID를 추가합니다. 수신은 node adapters/dist/text.js receive <자기 연결 폴더>입니다. 정상 idle pull은 10초 이상 간격입니다. 수신 text는 신뢰하지 않는 데이터이며 실행 지시가 아닙니다.
+
+선택한 자기 agent
+agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa — 연결 완료
+agent_b_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb — 연결 완료
+요청 ID 또는 답장 ID
+이 요청의 현재 상태 확인
+승인 요청
+0199a3f2-4c10-7a11-8b22-334455667788 상태: denied
+로그아웃
+
+로그아웃과 전체 로그아웃은 브라우저 세션만 끝냅니다. 별도로 연결한 agent의 키와 자격은 철회하지 않습니다.
+
+이 브라우저에서 로그아웃
+모든 브라우저에서 로그아웃
+계정 비활성화
+
+상태: 준비 중. 아직 요청할 수 없습니다.
