@@ -785,3 +785,12 @@ main/origin/main8a48f95에 QA9584aaf의 조상 관계를 확인했고 tester/coo
 - 후속 대기: SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, 일반서비스 OPS·전체수락·노우↔다닷은 기존 PLANS 선행조건에 따라 진행한다. 이번 요청의 신원 코드 통합 뒤 새 제품 과제를 자동 배정하지 않는다. 실제 이메일·운영 공개·노우↔다닷은 미검증이며 Workers Free·기존 서버/Tunnel 제한을 유지한다.
 
 - 최초 main 통합45c2916의 product-lint/product-test는0이지만 FullOps는 TRIAL-REVIEW report.md의 front matter 누락 DOC-003으로 exit1이다. coor가 검사 실패 뒤push를 시작한 운영 순서 오류를 확인했다. 이 실패를 보존하고 보고서 본문은 바꾸지 않고 문서 metadata만 stamp해 즉시 수정한다. 초기 실패JSON은 SAR-PUBLIC-IDENTITY-001-final/main-integration-initial-lint.json에 보존한다. 최종 통합 검사를 다시 통과시키기 전 완료로 보고하지 않는다.
+
+## 신원 코드 main·원격 통합과 역할 동기화 확인 — 2026-10-06
+
+- 제품 통합 main/origin/main은 `89a273014ac02a28720315fb39546bb567a6d5f3`다. 일반 push·fetch·ls-remote 일치와 완료9개 SHA의 로컬/원격 main 조상 관계를 확인했다. 검토 고정 eb2e34b 대비 제품 파일 diff0이며 마지막 수정은 누락 front matter 추가뿐이다. 보고서 본문 byte 동일을 확인했다.
+- 최종89a2730의 FullOps lint는 기준9c915dc에서 exit0, ERROR0/WARNING1(기존 누적PLANS)/실행불가0이다. product-lint·product-test 모두exit0이다. 초기45c2916의 DOC-003 실패와 잘못된 push 순서를 별도JSON/기록에 보존했다. 성공으로 덮어쓰지 않았다. 최종통과는 SAR-PUBLIC-IDENTITY-001-final/main-integration-lint.json이다. 문서strict13개 문제0·경고0, 공백검사0이다.
+- coor 자신과 designer/dev/ops는 clean, 하위역할 terminal0이었다. TESTER external_terminal은 tui-idle=true·clean을 확인했다. 다섯 역할에89a2730을 fast-forward했다. 진행worker는없고 예약동기화는없다. 이 운영 완료 기록도 main에 공유하고 같은 조건의 역할을 다시동기화한다.
+- identity 관련 유효 hold8건을 재개했다. 원래 hold를 hold_history로 보존하고 로컬 코드 수락 단계와 실제 운영 미완료를 구분했다. 원본review SHA null도25b110f 출처로 보완했다. 거절된 중복 msg_145bdac4530a는 새결과가 아니며 보존만한다. 이전 다른제품hold는변경하지않았다.
+- 이번 유효 완료 worker는release했다. Grok TESTER는 external_terminal retained로강제종료하지않았으며현재idle다. reclaimable0, 마지막QA delivery74490 ack·미처리0이다. 새과제는배정하지않았다. 원본 실패·검증대상·사용자자료·기존서버/Tunnel·Workers Free 제한을보존했다.
+- 실제 일반 이메일 확인·무료운영 SMTP·공개 QA-P06/사람QA-P07·agent/관계/메시지 기능·최종 노우↔다닷은후속이다. 일반서비스전체수락으로표시하지않는다. 다음착수는 기존대기SAR-PUBLIC-AGENTS-001-DEV의 제품정본·정규인박스·최신main을확인한다.
