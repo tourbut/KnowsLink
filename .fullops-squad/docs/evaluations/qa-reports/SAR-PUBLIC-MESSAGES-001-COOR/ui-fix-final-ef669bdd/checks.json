@@ -1,0 +1,54 @@
+{
+  "strict": {
+    "HEAD": "ef669bdd69b51fbf83eb007f2f6b5f1654003924",
+    "command": [
+      "/usr/bin/python3",
+      "/home/shin/.codex/plugins/cache/fullops-squad/fullops-squad/0.9.14/scripts/deliverables.py",
+      "--repo",
+      "/home/shin/orca/workspaces/KnowsLink/fullops-designer",
+      "--strict"
+    ],
+    "exit": 0
+  },
+  "diff": {
+    "HEAD": "ef669bdd69b51fbf83eb007f2f6b5f1654003924",
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "dfc70caa748a90614b02d48c78b4651345938339",
+      "HEAD"
+    ],
+    "exit": 0
+  },
+  "product-diff": {
+    "HEAD": "ef669bdd69b51fbf83eb007f2f6b5f1654003924",
+    "command": [
+      "git",
+      "diff",
+      "--exit-code",
+      "dfc70caa748a90614b02d48c78b4651345938339",
+      "HEAD",
+      "--",
+      "cmd",
+      "internal",
+      "adapters",
+      "db",
+      "scripts",
+      "go.mod",
+      "go.sum",
+      "compose.yaml",
+      "Dockerfile",
+      "Makefile",
+      "sqlc.yaml"
+    ],
+    "exit": 0
+  },
+  "archive": {
+    "HEAD": "ef669bdd69b51fbf83eb007f2f6b5f1654003924",
+    "originalPrefixPreserved": true,
+    "emptyInbox": true,
+    "original216FilesPreserved": true,
+    "completedTaskArchiveNotRewritten": true
+  }
+}

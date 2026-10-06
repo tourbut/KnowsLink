@@ -363,3 +363,90 @@ schedule.commit 개별 화면·전체 API 독립 QA·스크린리더 전체·OS 
 DEV가 F-UI-MSG-01과 OPS 결함을 수정한다. coor가 새 fixed SHA와 정규 인박스로 재배정한다.
 designer는 수정된 Deny 직후 결과·홈 복귀와 영향 UI를 재검수한다.
 후속은 PLANS에 대기시켰으며 기존09c FAIL·OPS finding·초기 실패는 보존한다.
+
+## SAR-PUBLIC-MESSAGES-001-UI-FIX — 2026-10-06
+
+---
+title: SAR-PUBLIC-MESSAGES-001-UI-FIX — 수정 gate Deny 직후 결과·홈 복귀와 영향 UI 직접 재검수
+status: draft
+updated: 2026-10-06
+owner: designer
+tasks: [SAR-PUBLIC-MESSAGES-001-UI-FIX]
+summary: 수정 gate Deny 직후 결과·홈 복귀와 영향 UI 직접 재검수
+---
+
+# SAR-PUBLIC-MESSAGES-001-UI-FIX — 수정 gate 결과·홈 복귀와 영향 UI 직접 재검수
+
+- 상태: ready. fixed dfc70caa748a90614b02d48c78b4651345938339. 원본09c UX07 FAIL/UI기록f154·원OPS H1/M1/checkexit1은불변이다.
+- 담당 designer / /home/shin/orca/workspaces/KnowsLink/fullops-designer / fullops/designer.
+- 복귀 coor / term_6895aaf1-7b43-4fe0-a416-76f1255a5946 / run_8ca8bc058ab7 / repo818c78e5-d51c-4ff4-aa88-70e9ee185fbb. Task/Dispatch는preamble기준.
+
+## 적용 기준과 먼저 읽을 문서
+
+fullops-common-0.3.3 네규칙·FULLOPS/project/document-writing/contexts/designer·제품SAR-PUBLIC-SERVICE PS04/06/07/08–11·MVP C1–C5·UX06/07와 memberStyle 기준을읽는다. DEV-FIX phase/QA/완료로그·원UI보고/manifest/supplement와 UI-RECORD-REVIEW report를읽는다. 새capacity/cleanup_admission/http/store/member/member_receipt 관련영향과UI정본·Jev결과를읽는다.
+
+## 해야 할 일과 완료 기준
+
+- [x] 정확한fixed를별도격리clone/자기fixture에서실제일반회원로그인·자기gate로직접검수한다. Deny클릭/keyboardEnter직후canonical결과200·denied저장·결정버튼비활성·홈복귀실제클릭을desktop1280/mobile390에서확인한다. owner쪽deny변경도좁게확인한다. 기존CSRF/권한/만료정책을바꾸지않는다.
+- [x] 원기록low R-UI-1은Deny405 mobile화면effectiveviewport980이다. 수정된실제390px을확인하고폭/긴ID/typedbody/keyboard/안전오류·원문부재·철회/만료 approve비활성을영향범위로재검수한다. HTTP입장수정이CSRF/429/cleanup결과화면에준영향을좁게확인한다. snapshot폭자동검사를직접시각PASS로삼지않는다.
+- [x] 변경없는UX06/의존성의diff0를확인하면원fixed09c의원래조건/근거만연결해재사용한다. 새실행PASS로바꾸지않는다. API전체권한/경합/rateQA는tester이며자기fixture화면PASS와구분한다.
+- [x] 지정시각항목PNG/manifest와실제봤던fixedSHA/조건/직접PASSFAIL·초기장애/원실패·마스킹/자기cleanup을보존한다. 영상은정지화면으로판정불가할때만. 보고서docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md 및같은키QA/phase/context/PLANS를작성하고필요D04연결만갱신한다. 원UI/OPS결과·제품규칙/코드/기술정본·타인인박스는변경하지않는다.
+- [ ] 최종기록HEAD의FullOps --fromdfc70 lint/test·strict/diff exit/경고/HEAD·work.py finish전문/빈인박스·일반push뒤worker_done fullSHA/근거/미검증/후속을보고한다. 마지막JSON레포밖이면coor영속화경로를보고한다.
+
+## 제약·검수 경계
+
+theme/designlint/Tailwind/shadcn미구성이다. 기존Go template/memberStyle/UX정본을유지한다. 자유composer/채팅버블/장기timeline/queued성공오인표시를추가하지않는다. 직접시각검수만수행하고제품/기술판단은대신하지않는다. Workers Free·서버/Tunnel유지·유료전환/구독/초과과금/운영배포/실메일/외부계정/운영자료삭제금지. 자기격리로컬검수/자기자원회수/문서커밋·일반push는승인됐다. 실메일/PS08/13/14실운영·실24h/노우↔다닷·부하/복원·전체API/스크린리더는미검증으로유지한다. 실패는그대로보고하고정상원본을재작성하지않는다.
+
+## 지시 전제와 충돌 — 먼저 확인
+
+원UI보고의UX07 FAIL은09c 대상이며원본그대로유지한다. 이번dfc 후보의DEV자동통과는직접시각수락이아니므로실제새화면으로재검수한다. 원FAIL/모바일viewport980를새PASS로덮어쓰지않는다. sensitive/oversized code passage는Jev미전송이므로필수keep으로직접읽는다.
+
+## 적용 기준과 예외
+
+기준 ref/실제 제품은 `dfc70caa748a90614b02d48c78b4651345938339`다. 기록 시작은 `359653a`다.
+fullops-common-0.3.3·FULLOPS/project/document-writing·designer context·PS04/06/07/08–11·C1–C5·UX06/07을 직접 적용했다.
+정본은 이번 지시서의 원래 경로이며 Jev 미전송 cleanup_admission을 직접 읽었다. 원UI conflict는 원09c FAIL임을 유지했다.
+DEV-FIX phase/QA/완료 전문·원UI report/manifest/supplement·UI-RECORD-REVIEW와 변경된 공통 경계를 직접 확인했다.
+시각 조작은 원UI에서 사용한 기존 Chrome CDP/SQL/서명 QA helper를 임시 복사해 재사용했다. 제품이나 레포 QA 코드를 수정하지 않았다.
+Orca blank PNG의 원래 장애가 있는 embedded 경로를 반복하지 않고 허가된 자기 localhost fixture에서 직접 PNG를 확인했다.
+전체API/경합/rate/OPS수락은 후속 담당이며 이 화면 관측으로 대신하지 않는다.
+
+## 완료 보고
+
+고정 `dfc70caa748a90614b02d48c78b4651345938339`를 별도 clean detached clone·자기 Postgres17/SMTP·비영속 Chrome에서 직접 재검수했다.
+일반회원은 실제 `/auth/start`·메일 코드·`/auth/verify`로 로그인했다. 합성 agent/키/관계는 자기 SQL fixture이며 부모/claim/H는 실제 서명 HTTP다.
+정상 Deny 클릭/Enter의 desktop1280/mobile390 네 조건에서 즉시 canonical GET200·denied 저장·결정 비활성·실제 `/home` 클릭을 확인했다.
+owner desktop도 자기 Basic 자격의 canonical GET200·denied·비활성·실제 `/owner` 복귀다. owner 모바일은 실행하지 않았다.
+이 좁은 조건에서 F-UI-MSG-01 수정은 직접 시각 PASS다. 원09c UX07 FAIL·405·viewport980/R-UI-1과 원OPS H1/M1/checkexit1은 불변이다.
+
+pending/approved·긴128자ID/36자요청·typedbody·hint 경고·Tab/Enter·expired/revoked/unavailable/잘못된서명 승인불가를 직접 확인했다.
+CSRF/타회원403·신규16/정리4 동시포화429·cleanup/receipt rate429는 안전 오류와 홈 링크를 보인다.
+신규 rate200 포화 뒤 유효 Deny는 denied 저장되지만 canonical 결과GET429다. L-UI-FIX-1로 즉시200 PASS에서 제외한다.
+자기 포화를 해제한 뒤 실제 홈 클릭·canonical denied GET200을 확인했다. rate 예외·제품수치·기술수정방법은 결정하지 않았다.
+coor는 이 결과조회 제한을 TESTER/OPS 경계결과와 함께 연결한다. 모든 포화조건이나 전체QA PASS를 주장하지 않는다.
+
+42PNG를 모두 직접 열었으며20mobile은 실제 viewport/scrollWidth390이다. 자동 폭측정은 시각판정을 대신하지 않는다.
+원UX06 표시/wire의 변경 없는 소스는 원09c SHA·조건·원manifest로만 재사용한다. 새로운 전체UX06 실행 PASS가 아니다.
+공통capacity/store/http는 변경됐으므로 전체의존성동일성을 주장하지 않고 영향오류화면만 새 실행했다.
+첫 run은40PNG/18관측 저장 뒤 profile cleanup Errno39로exit1이다. 원log/exit를 유지하고 별도회수로 보완했다.
+회수의 최초 argv 자기문자열 오분류와 증거검사의 최초 desktop scrollbar 동일폭 assertion 오류도 보존했다.
+후속 receipt 실제GET429/홈 클릭은exit0이다. 제품 assertion 실패와 QA/회수 장애를 구분했다.
+
+원UI/DEV-FIX/OPS 원천216파일은SHA256 byte 동일이다. 이전designer완료로그는prefixhash를보존해append만한다.
+이메일/code/CSRF/연결입력은가렸고개인키/token/메일은Git에남기지않았다.
+자기container/익명volume·relay/SMTP listener·Chrome context/profile·메일·비밀CFG·clone/binary를회수했다. 공유8container ID/이름은 전후 같다.
+제품 코드·제품/UX규칙·기술정본·타인인박스변경은0이다. 별도theme/designlint·Tailwind/shadcn은미구성이며기존Go template/memberStyle을유지했다.
+
+산출물은 `docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md`, 같은 키의 QA report/42PNG/manifest/원관측/원실패/cleanup·phase다.
+D04에는새보고서연결만추가했다. designer context·PLANS에판정/한계/담당/재개조건을append했다.
+strict 사전검사는13종·미작성0·문제0·경고0·exit0이다. 제품diff는dispatch359653a/fixeddfc 대비0이며42PNG hash와원본216파일을대조했다.
+
+마지막 체크리스트의 최종기록 게이트는 archive commit 뒤 실행한다. 이 전문은 archive 이후 다시 쓰지 않는다.
+`work.py finish`로지시서·이완료전문을날짜별로그에보존하고빈인박스·기존prefix를대조한다.
+최종clean archiveHEAD에서FullOps --fromdfc의product-lint/product-test·strict·ref-to-HEAD diff를실행하고명령자신의exit/경고/HEAD를레포밖JSON/log에남긴다.
+일반역할push뒤remote exactSHA·clean상태를확인한다. 실제최종fullSHA·검사결과/경고·외부원본경로·coor영속화경로는worker_done으로보고한다.
+자기SHA를자기커밋에순환기록하지않는다. 이외부증거가마지막체크리스트의완료근거다.
+
+실메일·운영PS08/13/14·운영공개/배포·실24h·노우↔다닷·부하/복원·전체API/스크린리더·schedule.commit/OS clipboard·사람로그인은미검증이다.
+coor는fixeddfc의OPS delta·TESTER 좁은QA·기록검토·마지막SHA검사를모아main통합을판정한다.
+L-UI-FIX-1과원09c/OPS 실패를함께보존한다. 다음제품과제는PLANS에서대기하고자동착수하지않는다.

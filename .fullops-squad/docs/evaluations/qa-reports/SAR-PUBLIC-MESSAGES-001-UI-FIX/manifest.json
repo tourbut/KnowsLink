@@ -1,0 +1,935 @@
+{
+  "browser": "Google Chrome 148.0.7778.96",
+  "method": "isolated detached clone; own PostgreSQL17/SMTP; real email start/verify and CDP; direct view_image review",
+  "maskedBeforeCapture": [
+    "email text",
+    "email/code/CSRF/connection token inputs"
+  ],
+  "video": "not needed: static state and actual button navigation sufficient",
+  "captures": [
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-before-deny-click-desktop.png",
+      "sha256": "179194e2e9dfe3ab333bab4f8b27a7d58e12183ca6a7130758a7218bd4690653",
+      "pixels": [
+        1280,
+        1266
+      ],
+      "capturedUTC": "2026-10-06T13:30:05.116281+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-before-deny-click-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": true
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-deny-click-immediate-desktop.png",
+      "sha256": "1b1dfd75e112268d3a883f6a5178446241bb968024d81e55353e0b36b247508d",
+      "pixels": [
+        1280,
+        1240
+      ],
+      "capturedUTC": "2026-10-06T13:30:05.675803+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-deny-click-immediate-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/home-after-deny-click-desktop.png",
+      "sha256": "3b70258cebca2ae9749988a7d1ef70d0b26df03f9de9c7974d9833a6f6b17261",
+      "pixels": [
+        1280,
+        4970
+      ],
+      "capturedUTC": "2026-10-06T13:30:06.325076+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "home-after-deny-click-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-before-deny-enter-desktop.png",
+      "sha256": "1977c6c08f6474c67acb05ef501b23d3cd4085092d8e1de984adf9d81a6c9b36",
+      "pixels": [
+        1280,
+        1266
+      ],
+      "capturedUTC": "2026-10-06T13:30:06.955219+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-before-deny-enter-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": true
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-deny-enter-immediate-desktop.png",
+      "sha256": "b8017e6bf733e263768c51d24610c7d9a65f69286de6691b8392d769f70c13b1",
+      "pixels": [
+        1280,
+        1240
+      ],
+      "capturedUTC": "2026-10-06T13:30:08.268942+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-deny-enter-immediate-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/home-after-deny-enter-desktop.png",
+      "sha256": "e367326181cb662aea20198dcacaccc3ab76a66b3e2f7739b05591e1cf0baabf",
+      "pixels": [
+        1280,
+        4970
+      ],
+      "capturedUTC": "2026-10-06T13:30:08.885664+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "home-after-deny-enter-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-before-deny-click-mobile.png",
+      "sha256": "bc68d21eeb571e9d6ab17e09467fbdcfc85c5758fc0c3242f0e7179c84fb9762",
+      "pixels": [
+        390,
+        1660
+      ],
+      "capturedUTC": "2026-10-06T13:30:09.504374+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-before-deny-click-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": true
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-deny-click-immediate-mobile.png",
+      "sha256": "0b4c7389588032cb9cc7103c2a3b96933837cee53891b6ed28b420dd21ae5c8a",
+      "pixels": [
+        390,
+        1634
+      ],
+      "capturedUTC": "2026-10-06T13:30:10.017416+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-deny-click-immediate-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/home-after-deny-click-mobile.png",
+      "sha256": "eff013901de85e7875b66c928c2eb8fa06e3c1f00eb5e68680e7eefe2813f615",
+      "pixels": [
+        390,
+        6058
+      ],
+      "capturedUTC": "2026-10-06T13:30:10.710619+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "home-after-deny-click-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-before-deny-enter-mobile.png",
+      "sha256": "3faac4c3b8e7bc1201b8419b592014dd2feadf80e6fa405eefd5828e989b8e99",
+      "pixels": [
+        390,
+        1660
+      ],
+      "capturedUTC": "2026-10-06T13:30:11.421246+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-before-deny-enter-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": true
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-deny-enter-immediate-mobile.png",
+      "sha256": "21ada64fcbffd8cbe3a7158101ebb9f54c265e9b02e0da5b9bc771e66263a353",
+      "pixels": [
+        390,
+        1634
+      ],
+      "capturedUTC": "2026-10-06T13:30:12.156497+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-deny-enter-immediate-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/home-after-deny-enter-mobile.png",
+      "sha256": "df2fe8d7bbd8f6163c1dc165ef6b05a1597ca87bb5f038b40e35ee97d30c57f8",
+      "pixels": [
+        390,
+        6058
+      ],
+      "capturedUTC": "2026-10-06T13:30:12.658367+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "home-after-deny-enter-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-pending-desktop.png",
+      "sha256": "a4bde6109177c924f8222c7ff896ea66e3391464030b99a62ac7fff83589f0c7",
+      "pixels": [
+        1280,
+        1266
+      ],
+      "capturedUTC": "2026-10-06T13:30:13.340188+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-pending-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": true
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-pending-mobile.png",
+      "sha256": "bf66910fa11756b08937850462bef73d009e21a38f2033375d6f8d86762c5919",
+      "pixels": [
+        390,
+        1660
+      ],
+      "capturedUTC": "2026-10-06T13:30:13.490348+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-pending-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": true
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/foreign-gate-refusal-desktop.png",
+      "sha256": "70e882b34aca4389bb20060a8e112609e16675b5ee78040ee8969bdefc85be48",
+      "pixels": [
+        1280,
+        900
+      ],
+      "capturedUTC": "2026-10-06T13:30:13.750346+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "foreign-gate-refusal-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/foreign-gate-refusal-mobile.png",
+      "sha256": "64a026b5b87763c059e38b7e9771ef5bc4a2ba80c5670e5ca3a30d7c45e38e2b",
+      "pixels": [
+        390,
+        844
+      ],
+      "capturedUTC": "2026-10-06T13:30:13.802289+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "foreign-gate-refusal-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-approved-desktop.png",
+      "sha256": "f3e35b59d2ed244f4491a1f5827900925d9d244483e05a1f3a0911e0f973bb77",
+      "pixels": [
+        1280,
+        1240
+      ],
+      "capturedUTC": "2026-10-06T13:30:14.355275+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-approved-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-approved-mobile.png",
+      "sha256": "1b00ea695e11bca1efac56b043e22723d204e939035b2f8f4b0ef667cc406d8d",
+      "pixels": [
+        390,
+        1634
+      ],
+      "capturedUTC": "2026-10-06T13:30:14.452616+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-approved-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-expired-desktop.png",
+      "sha256": "0bc502fdb4664ef80351409cb93fdf4356c566b6c47654cd1e1d29de208e5fbb",
+      "pixels": [
+        1280,
+        1240
+      ],
+      "capturedUTC": "2026-10-06T13:30:15.511298+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-expired-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-expired-mobile.png",
+      "sha256": "8bdedc8cf986a21849ac45a47ada2f1bb335856d4cbebd47daa552e562e52cc3",
+      "pixels": [
+        390,
+        1634
+      ],
+      "capturedUTC": "2026-10-06T13:30:15.648007+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-expired-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-revoked-desktop.png",
+      "sha256": "69382e193d32d65cb2352c437b1b437722975429a5fa2d87cc0a2c61c0683ff9",
+      "pixels": [
+        1280,
+        943
+      ],
+      "capturedUTC": "2026-10-06T13:30:16.843712+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-revoked-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-revoked-mobile.png",
+      "sha256": "2d218622b6d778a74fb5c7ce7b44b1375ba82c70ef5c08230953a510fbcf295a",
+      "pixels": [
+        390,
+        1235
+      ],
+      "capturedUTC": "2026-10-06T13:30:16.936880+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-revoked-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-unavailable-desktop.png",
+      "sha256": "270868549f31d542c309ebadbf41af5fbcb8a7b037e47590e682f1ac3ce9745f",
+      "pixels": [
+        1280,
+        943
+      ],
+      "capturedUTC": "2026-10-06T13:30:18.021430+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-unavailable-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-unavailable-mobile.png",
+      "sha256": "471796445972f8d2186017c9412f1d843fc4ae6089b8d3942c571e7d72cee58d",
+      "pixels": [
+        390,
+        1235
+      ],
+      "capturedUTC": "2026-10-06T13:30:18.101552+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-unavailable-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-invalid-signature-desktop.png",
+      "sha256": "eeac5a876b14040fc65d9ef3912405c28d50855a6d3ab3c853f44afca6d1047f",
+      "pixels": [
+        1280,
+        943
+      ],
+      "capturedUTC": "2026-10-06T13:30:19.342661+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-invalid-signature-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-invalid-signature-mobile.png",
+      "sha256": "858c84dc09c395b729ab0e259c438fff57d4a503013670d53c7bae1cde519275",
+      "pixels": [
+        390,
+        1235
+      ],
+      "capturedUTC": "2026-10-06T13:30:19.437737+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-invalid-signature-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-csrf-error-desktop.png",
+      "sha256": "70e882b34aca4389bb20060a8e112609e16675b5ee78040ee8969bdefc85be48",
+      "pixels": [
+        1280,
+        900
+      ],
+      "capturedUTC": "2026-10-06T13:30:20.479228+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-csrf-error-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-csrf-error-mobile.png",
+      "sha256": "64a026b5b87763c059e38b7e9771ef5bc4a2ba80c5670e5ca3a30d7c45e38e2b",
+      "pixels": [
+        390,
+        844
+      ],
+      "capturedUTC": "2026-10-06T13:30:20.538071+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-csrf-error-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-new-capacity-approve-desktop.png",
+      "sha256": "3f64137a42d2645824dc041d4b743504a8101feab76e6e2f095460d9e1012326",
+      "pixels": [
+        1280,
+        900
+      ],
+      "capturedUTC": "2026-10-06T13:30:22.168290+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-new-capacity-approve-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-new-capacity-approve-mobile.png",
+      "sha256": "9893cdc98d09b63797de6d18035aeb79e2ccf6b7b8ca8f684ad0bff6d4a9b7a5",
+      "pixels": [
+        390,
+        844
+      ],
+      "capturedUTC": "2026-10-06T13:30:22.221221+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-new-capacity-approve-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-cleanup-capacity-deny-desktop.png",
+      "sha256": "3f64137a42d2645824dc041d4b743504a8101feab76e6e2f095460d9e1012326",
+      "pixels": [
+        1280,
+        900
+      ],
+      "capturedUTC": "2026-10-06T13:30:23.917684+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-cleanup-capacity-deny-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-cleanup-capacity-deny-mobile.png",
+      "sha256": "9893cdc98d09b63797de6d18035aeb79e2ccf6b7b8ca8f684ad0bff6d4a9b7a5",
+      "pixels": [
+        390,
+        844
+      ],
+      "capturedUTC": "2026-10-06T13:30:23.970574+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-cleanup-capacity-deny-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-cleanup-rate-deny-desktop.png",
+      "sha256": "658bb82fbe501000459551fca3279e86f3e642ac22d92122b5bdc79d75f1d350",
+      "pixels": [
+        1280,
+        900
+      ],
+      "capturedUTC": "2026-10-06T13:30:25.587719+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-cleanup-rate-deny-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-cleanup-rate-deny-mobile.png",
+      "sha256": "b03e83e56376c5cde43c41ce02161f31dae713340e8d3fecf7f8b61547a2dd46",
+      "pixels": [
+        390,
+        844
+      ],
+      "capturedUTC": "2026-10-06T13:30:25.651176+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-cleanup-rate-deny-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa/deny",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-new-rate-deny-desktop.png",
+      "sha256": "6a12ec2d79a99c84653eed5a633a12d07c5ee884d1e1f1373a48a5ee71f1d09a",
+      "pixels": [
+        1280,
+        900
+      ],
+      "capturedUTC": "2026-10-06T13:30:27.179748+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-new-rate-deny-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "LIMITED-result-GET429-after-stored-denied",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-new-rate-deny-mobile.png",
+      "sha256": "7aee30df25eb4cdb87d9e5a5967833dc1a487979caf74d837cf4f61b19588979",
+      "pixels": [
+        390,
+        844
+      ],
+      "capturedUTC": "2026-10-06T13:30:27.234503+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-new-rate-deny-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "LIMITED-result-GET429-after-stored-denied",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-denied-after-rate-recovery-desktop.png",
+      "sha256": "680e3d581b4ccdedaf40bee5525b5a8282914b9cd22d6c1bbf6f406a0e2677bd",
+      "pixels": [
+        1280,
+        1240
+      ],
+      "capturedUTC": "2026-10-06T13:30:27.989005+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-denied-after-rate-recovery-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/gate-denied-after-rate-recovery-mobile.png",
+      "sha256": "e914f631d580e7cdbe7620e170eed27fe8fb4d9694d365d5a06c6af72c5cd7ba",
+      "pixels": [
+        390,
+        1634
+      ],
+      "capturedUTC": "2026-10-06T13:30:28.077677+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "gate-denied-after-rate-recovery-mobile",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/home/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/owner-gate-before-deny-desktop.png",
+      "sha256": "a55a42631f6e7db39faab10192a0637ceaa24f852beb2c16ede6d4b8089b2687",
+      "pixels": [
+        1280,
+        1266
+      ],
+      "capturedUTC": "2026-10-06T13:30:29.232733+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "owner-gate-before-deny-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/owner/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": true
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/owner-gate-deny-immediate-desktop.png",
+      "sha256": "8acb6b4118d63c9f5132e6ace14f9665d0220fe89c6f2d7bad215de08cdd6f8d",
+      "pixels": [
+        1280,
+        1240
+      ],
+      "capturedUTC": "2026-10-06T13:30:29.789749+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "owner-gate-deny-immediate-desktop",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "path": "/owner/gates/0199a3f2-4c10-7a11-8b22-3344556677aa",
+        "viewport": 1280,
+        "scroll": 1265,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/receipt-http-rate-desktop.png",
+      "sha256": "9b8ed4c8e4efadf1525b373160a085c08ecdd01d9269021f5bff384b0ac844b8",
+      "pixels": [
+        1280,
+        900
+      ],
+      "capturedUTC": "2026-10-06T13:33:46.016500+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "receipt-http-rate-desktop",
+        "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "viewport": 1280,
+        "scroll": 1280,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX/receipt-http-rate-mobile.png",
+      "sha256": "8d9961e33d116b6419fc9fcaa85087fbfc6112b56c35d4d861e8403fcff7c3f6",
+      "pixels": [
+        390,
+        844
+      ],
+      "capturedUTC": "2026-10-06T13:33:46.057832+00:00",
+      "fixedSHA": "dfc70caa748a90614b02d48c78b4651345938339",
+      "condition": {
+        "name": "receipt-http-rate-mobile",
+        "path": "/home/receipts?agent=agent_a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&id=0199a3f2-4c10-7a11-8b22-334455667788",
+        "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+        "viewport": 390,
+        "scroll": 390,
+        "scripts": 0,
+        "injected": false,
+        "approve": false
+      },
+      "directVisualVerdict": "PASS-local-condition",
+      "directlyViewed": true
+    }
+  ]
+}

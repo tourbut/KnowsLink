@@ -1000,3 +1000,20 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV-FIX-2 route implementation/dev Opus5.5high·새세션을준비했다. 이전DEV-FIX는종료·긴검사로그/대기후새원인H2로fresh를선택한다. 기준dfc/원OPS c219·역할정규빈인박스·H2/권장L2/connect누락/공정성회귀를한지시서에묶었다. coor의connect.go 탐색오기는원거부JSON에보존하고실제connections.go/member_agents.go를필수보완했다. 이전DEV자체PASS/H2독립실패의시간순서를유지한다. OPS FIX-REVIEW release는retained(user_takeover)/processAction none이며강제종료하지않는다. QA원본60분최근출력은보고서/최종검사정리중을관측했다. 아직main제품수락보류다.
 
 - DEV-FIX-2 착수 task_d6eb6d8df272/ctx_07a9030f9c9f/term_98ae7a1a-0215-4f2b-a51c-6092818dda98 fresh Opus5.5high effective/turn_started·정규지시서읽기를확인한다. DEV idleclean dfc를준비283695e로명시SHA ff/일반push하고actualorigin/main을fetch해조상을확인한뒤배정했다. H2수락차단·원본dfc/09c 검수·현재QA/UI 진행은유지한다. OPS원결과hold/보완SHA/최종JSON을기록하고delivery_d1d3dea5dbb1을ack했다. 진행3역할checkout은변경하지않는다.
+
+## SAR-PUBLIC-MESSAGES-001-UI-FIX — designer 직접 재검수 완료
+
+- 제품 fixed `dfc70caa748a90614b02d48c78b4651345938339`의 실제 일반회원·자기 gate에서 Deny 클릭/Enter desktop1280/mobile390 네 조건의 즉시 canonical GET200·denied 저장·결정 비활성·실제 홈 복귀는 좁은 시각 PASS다. owner desktop도 같은 결과와 `/owner` 복귀를 확인했다. [직접 보고](docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md)·42PNG/manifest·원실패/회수 근거를 보존한다.
+- CSRF/타회원403·신규16/정리4 포화429·cleanup/receipt rate429는 안전 오류/다음 동작을 보인다. 신규 rate200 포화에서는 Deny 저장 뒤 결과GET429가 된다. L-UI-FIX-1로 immediate200 PASS에서 제외하고 포화 해제 뒤 실제 홈/denied 복귀를 기록했다. 전체포화/API/경합수락은 TESTER·OPS와 별도다.
+- 원09c UX07 FAIL·F-UI-MSG-01 medium·mobile effectiveviewport980/R-UI-1·원OPS H1/M1/checkexit1과 원천216파일은 byte 동일이다. UX06 표시/wire의 변경 없는 원관측은 원09c SHA/조건으로만 재사용한다. 공통capacity/store/http 변경에 대해 전체의존성동일·새전체UX06 PASS를 주장하지 않는다.
+- 첫40PNG/18관측 run은 profile cleanup Errno39로exit1이며원로그를유지했다. 자기회수보완·receipt429/홈후속exit0·자기container/volume/clone/비밀/context회수·공유8container동일을확인했다. 제품/코드/규칙·기술정본·타인인박스변경0이다.
+- 현재designer지시서와완료전문은work.py finish로archive하고인박스를비운다. 최종clean archiveHEAD를--fromdfc lint/test·strict/diff검사하고일반역할push한다. fullSHA·실제마지막결과/경고와레포밖원본을worker_done으로인계한다.
+- 후속담당/재개조건: coor가dfc의OPS delta·TESTER 좁은QA·기록검토·마지막SHA검사를모아main통합을판정한다. L-UI-FIX-1의제한을함께보존한다. 다음제품과제는기존대기이며정규인박스가비고통합/수락기준을확인한뒤별도dispatch한다. 실메일/운영PS08/13/14·실24h·노우↔다닷·부하/복원·전체API/스크린리더는미검증이다.
+
+### UI-FIX archive 뒤 H2 high 후속 인계
+
+- coor `msg_23b8de8f85ac`는독립OPS `msg_d5687c98688e`/c219의새H2high를전달했다. dfc에서유효credential의타대상/no-lease cleanup flood가DB입장중로컬정리슬롯을점유해유효정리18/18이429라는결과다. designer는flood재현/보안수락을대신하지않고[원메시지](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/coordinator-followup.json)를보존했다.
+- dfc의정상Deny직후결과/홈·390px·Enter직접시각판정과42PNG는유지한다. H2high로제품전체수락/main통합은차단한다. 담당DEV의같은과제후속수정·새fixed·독립OPS/TESTER검증뒤coor가재개한다. designer의다음후보확인은UI의존성동일성과영향범위만수행한다.
+- 첫archive3b31b8f의FullOps --fromdfc/product-lint/test·strict/diff/productdiff는exit0·ERROR0/WARNING2다. 원완료전문/빈인박스를보존하고추가인계문서의마지막SHA검사/일반push뒤worker_done으로회신한다. 다음과제현재인박스dispatch는coor가새fixed근거로별도처리한다.
+
+- UI-FIX msg_3778d8e04011/ef669bdd69b51fbf83eb007f2f6b5f1654003924 수신. cleanHEAD/origin동일·빈인박스/archive·actualdesigner세션01a11163-faf5-7741-b384-9fbe4c31a2f7·최종HEADlint/test/strict/diff/productdiff0와42PNG/원본216보존을확인한다. 최종원본을COOR/ui-fix-final-ef669bdd에영속화하고추출null/verifiedfullSHA를함께기록했다. coor에SHA보존merge했으며main은H2high로차단한다. 정상클릭/Enter/390px/결과200/홈복귀좁은PASS와new rate포화뒤조회429인L-UI-FIX-1 제외를구분한다. 새H2후보의관련경계QA/시각의존성·영향을확인하기전전체수락하지않는다. 원FAIL/최초worker_done오류/Chrome회수실패를보존하며기존사용자/운영자원은변경하지않는다.

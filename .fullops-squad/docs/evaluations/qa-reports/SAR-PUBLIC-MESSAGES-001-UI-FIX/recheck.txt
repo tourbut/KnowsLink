@@ -1,0 +1,123 @@
+"""Reuse original browser and signed fixture helpers for the fixed candidate's changed UI boundary."""
+import base64, hashlib, json, os, signal, subprocess, time
+from datetime import datetime, timedelta, timezone
+import run as f
+
+b = None
+sink = None
+observations = []
+path = '/home/gates/' + f.GATE
+
+def current(session):
+    return b.evaluate(session, "({path:location.pathname,text:document.body.innerText,buttons:Array.from(document.querySelectorAll('button')).map(x=>x.value)})")
+
+def capture(session, name, widths=(1280,390)):
+    for width in widths:
+        label=name+('-mobile' if width==390 else '-desktop')
+        metrics=b.capture(session,f.IMAGES,label,width)
+        f.captures.append({'name':label,'sha':'dfc70caa748a90614b02d48c78b4651345938339','path':current(session)['path'],**metrics})
+
+def decide(session, decision='deny', enter=False):
+    start=len(b.responses)
+    if enter:
+        b.evaluate(session, 'document.querySelector("button[value=deny]").focus()')
+        for kind in ['keyDown','keyUp']:
+            b.call('Input.dispatchKeyEvent',{'type':kind,'key':'Enter','code':'Enter','windowsVirtualKeyCode':13,'text':'\r' if kind=='keyDown' else ''},session)
+    else:
+        b.evaluate(session,'document.querySelector("button[value='+decision+']").click()')
+    time.sleep(.3)
+    view=current(session)
+    view['storedGateState']=f.state()['Gates'][f.GATE]['State']
+    view['networkResponses']=b.responses[start:]
+    return view
+
+def fresh():
+    keys,tokens=f.seed()
+    f.gate(keys,tokens)
+    b.navigate(member,f.BASE+path)
+
+def home(session,expected):
+    b.evaluate(session,"document.querySelector('a').click()")
+    time.sleep(.2)
+    actual=b.evaluate(session,'location.pathname')
+    assert actual==expected,(actual,expected)
+    return actual
+
+try:
+    sink=subprocess.Popen(['python3',str(f.ROOT/'snapshot/scripts/mail_sink.py'),str(f.ROOT/'mail'),'--port',str(f.CFG['smtp_port'])],stdout=(f.ROOT/'smtp.log').open('a'),stderr=subprocess.STDOUT)
+    f.CFG['smtp_pid']=sink.pid
+    time.sleep(.2)
+    f.mutate(lambda st:None,'isolated fixed startup')
+    b=f.Browser()
+    member,other=b.new(),b.new()
+    f.login(b,member,'a');f.login(b,other,'b')
+    for width in (1280,390):
+        for enter in (False,True):
+            b.viewport(member,width);fresh()
+            method='enter' if enter else 'click'
+            capture(member,'gate-before-deny-'+method,(width,))
+            value=decide(member,enter=enter)
+            assert value['path']==path and '상태: denied' in value['text'] and not value['buttons']
+            assert value['storedGateState']=='denied'
+            assert any(r['url'].endswith(path) and r['status']==200 for r in value['networkResponses'])
+            assert not any(r['status']==405 for r in value['networkResponses'])
+            capture(member,'gate-deny-'+method+'-immediate',(width,))
+            value['homeClickPath']=home(member,'/home')
+            capture(member,'home-after-deny-'+method,(width,))
+            observations.append({'scenario':'deny-'+method,'width':width,**value})
+    fresh()
+    focus=[]
+    b.evaluate(member,'document.activeElement.blur()')
+    for _ in range(3):
+        for kind in ['keyDown','keyUp']:
+            b.call('Input.dispatchKeyEvent',{'type':kind,'key':'Tab','code':'Tab','windowsVirtualKeyCode':9},member)
+        focus.append(b.evaluate(member,'({tag:document.activeElement.tagName,text:document.activeElement.innerText})'))
+    observations.append({'scenario':'keyboard-tab','focus':focus})
+    capture(member,'gate-pending')
+    b.navigate(other,f.BASE+path);capture(other,'foreign-gate-refusal')
+    observations.append({'scenario':'foreign-gate-refusal','text':current(other)['text'],'networkResponses':b.responses[-3:]})
+    v=decide(member,'approve');assert v['storedGateState']=='approved' and not v['buttons']
+    observations.append({'scenario':'approved',**v});capture(member,'gate-approved')
+    for scenario in ['expired','revoked','unavailable','invalid-signature']:
+        fresh()
+        if scenario=='expired': f.mutate(lambda st:st['Gates'][f.GATE].update(Exp=f.instant(datetime.now(timezone.utc)-timedelta(seconds=1))),'past gate expiration; actual sweep')
+        if scenario=='revoked': f.mutate(lambda st:st['Agents'][f.AGENT]['Keys']['key1'].update(Revoked=True),'own key revocation; actual sweep')
+        if scenario=='unavailable': f.mutate(lambda st:st['Messages'][f.REQUEST].pop('Envelope',None),'own parent body removed')
+        if scenario=='invalid-signature':f.mutate(lambda st:st['Messages'][f.REQUEST].update(Envelope={'invalid':'signature'}),'own parent verification failure')
+        b.navigate(member,f.BASE+path);v=current(member);assert not v['buttons']
+        observations.append({'scenario':scenario,**v});capture(member,'gate-'+scenario)
+    for scenario in ['csrf-error','new-capacity-approve','cleanup-capacity-deny','cleanup-rate-deny','new-rate-deny']:
+        fresh()
+        if scenario=='csrf-error':b.evaluate(member,"document.querySelector('input[name=csrf]').value='invalid'")
+        if scenario=='new-capacity-approve': f.mutate(lambda st:st['HTTP'].update({str(i):{'Clean':False,'Exp':f.instant(datetime.now(timezone.utc)+timedelta(seconds=20))} for i in range(16)}),'own 16 new HTTP records')
+        if scenario=='cleanup-capacity-deny': f.mutate(lambda st:st['HTTP'].update({str(i):{'Clean':True,'Exp':f.instant(datetime.now(timezone.utc)+timedelta(seconds=20))} for i in range(4)}),'own 4 cleanup HTTP records')
+        if scenario=='cleanup-rate-deny': f.mutate(lambda st:st['Rates'].update({'cleanup':[f.instant()]*100}),'own cleanup rate saturated')
+        if scenario=='new-rate-deny': f.mutate(lambda st:st['Rates'].update({'http:new':[f.instant()]*200}),'own new rate saturated; valid deny uses cleanup')
+        v=decide(member,'approve' if scenario=='new-capacity-approve' else 'deny')
+        observations.append({'scenario':scenario,**v});capture(member,'gate-'+scenario)
+        if scenario!='new-rate-deny':assert v['storedGateState']=='pending'
+        else:assert v['storedGateState']=='denied'
+        f.mutate(lambda st:(st['Rates'].clear(),st['HTTP'].clear()),'clear only own saturation fixture')
+        observations[-1]['homeClickPath']=home(member,'/home')
+        if scenario=='new-rate-deny':
+            b.navigate(member,f.BASE+path);capture(member,'gate-denied-after-rate-recovery')
+            observations.append({'scenario':'denied-after-rate-recovery',**current(member)})
+    fresh()
+    owner_token=f.encoded(os.urandom(32))
+    owner_id=f.state()['Gates'][f.GATE]['Owner']
+    f.mutate(lambda st:st['Owners'][owner_id].update(Credential=f.encoded(hashlib.sha256(owner_token.encode()).digest())),'own owner credential for narrow owner gate regression')
+    owner=b.new()
+    b.call('Network.setExtraHTTPHeaders',{'headers':{'Authorization':'Basic '+base64.b64encode(('owner:'+owner_token).encode()).decode()}},owner)
+    ownerpath='/owner/gates/'+f.GATE
+    b.navigate(owner,f.BASE+ownerpath);capture(owner,'owner-gate-before-deny',(1280,))
+    v=decide(owner)
+    assert v['path']==ownerpath and v['storedGateState']=='denied' and not v['buttons']
+    assert any(r['status']==200 and r['url'].endswith(ownerpath) for r in v['networkResponses'])
+    capture(owner,'owner-gate-deny-immediate',(1280,));v['homeClickPath']=home(owner,'/owner')
+    observations.append({'scenario':'owner-deny',**v})
+finally:
+    (f.EVIDENCE/'observations.json').write_text(json.dumps({'events':f.events,'captures':f.captures,'observations':observations},ensure_ascii=False,indent=2)+'\n')
+    if b is not None:b.close()
+    try:os.kill(f.CFG['relay_pid'],signal.SIGTERM)
+    except ProcessLookupError: f.events.append({'fixtureProcess':'relay already ended'})
+    if sink is not None:sink.terminate();sink.wait(timeout=10)
