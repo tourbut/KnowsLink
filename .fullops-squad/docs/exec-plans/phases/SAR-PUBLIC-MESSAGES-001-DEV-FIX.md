@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-06
 owner: dev
 tasks: [SAR-PUBLIC-MESSAGES-001-DEV-FIX]
-summary: "OPS REVIEW-2의 slow-body 슬롯 점유(H-1)·경로만 보는 정리 입장(M-1)과 designer F-UI-MSG-01 gate Deny 405의 원인·수정·회귀 검증을 기록한다"
+summary: OPS REVIEW-2의 slow-body 슬롯 점유(H-1)·경로만 보는 정리 입장(M-1)과 designer F-UI-MSG-01 gate Deny 405의 원인·수정·회귀 검증을 기록한다
 ---
 
 # SAR-PUBLIC-MESSAGES-001-DEV-FIX — HTTP 입장 H1/M1·gate Deny 405 수정 기록
@@ -60,7 +60,7 @@ summary: "OPS REVIEW-2의 slow-body 슬롯 점유(H-1)·경로만 보는 정리 
 - `TestEmailIdentity/member_gate_deny_form_returns_to_result`(통합): 실제 렌더된 form의 formaction·csrf로 Deny를 보내 303 `/home/gates/{id}`, 그 화면 200 `상태: denied`·버튼 비활성·`href="/home"`, 홈 목록 유지를 확인한다. `TestPublicHTTPAdmissionAndGateSafety`는 owner deny Location을 확인한다.
 - 기존 `TestHTTPConcurrencyAcrossInstances`의 정리 요청은 이제 자기 키 대상 본문을 보낸다. 빈 `{}` 철회는 신규 작업이기 때문이다. 두 인스턴스 16/4 경합·종료 회수 의미는 같다.
 
-원본 실패 보존: mvp-first(exit2)는 새 시험이 slow 연결 종료 직후 rate를 확인한 경쟁이었다. 본문을 완성하고 응답을 읽도록 고쳤다. mvp-second(exit2)는 5번째 정리 요청의 rate 기대값 오류였다. 로컬 채널 거부는 rate를 쓰지 않는 기존 규칙이 맞다. 두 실패 모두 시험 작성 오류이며 제품 결함이 아니다. 대조군·변형은 파일 분리 전 동일 로직 트리에서 실행했다. 원 재현의 수정 측(review-repro-fix)은 코드 SHA에서 다시 실행했다.
+원본 실패 보존: mvp-first(exit2)는 새 시험이 slow 연결 종료 직후 rate를 확인한 경쟁이었다. 본문을 완성하고 응답을 읽도록 고쳤다. mvp-second(exit2)는 5번째 정리 요청의 rate 기대값 오류였다. 로컬 채널 거부는 rate를 쓰지 않는 기존 규칙이 맞다. 두 실패 모두 시험 작성 오류이며 제품 결함이 아니다. 아카이브 커밋 `4e64efd`의 첫 FullOps 게이트는 exit1이었다(DOC-003, 이 기록의 summary 따옴표 형식). `deliverables.py --stamp`로 front matter를 다시 써서 고쳤다(fullops-archive-4e64efd). 대조군·변형은 파일 분리 전 동일 로직 트리에서 실행했다. 원 재현의 수정 측(review-repro-fix)은 코드 SHA에서 다시 실행했다.
 
 ## 경고 처리와 산출물
 
