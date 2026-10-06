@@ -87,3 +87,9 @@ UI 템플릿 blob이 `59b66ad`와 같으므로 `cf0ab09`의 로컬 fixture 시�
 실제 운영 SMTP, 일반 사용자 이메일, 운영 공개, Cloudflare 쓰기, 최종 노우↔다닷은 미실행이다. 일반 서비스 수락은 이 QA로 완료하지 않는다.
 F2 재발송 무효화와 누적 추측, F3 회원 gate 경로 rate, 독립 IP 다수가 공유 200을 채우는 D02 한도, `beta.sh`의 합성 가입 부재는 이 후보에서 새로 고치지 않았다. 새 결함으로 승격하지 않는다.
 전체 157 fixture 재실행과 통계 40회 재현은 하지 않았다. `make generate`, `make schema`, `make verify-grok-plugin`, `make verify-runtime`은 이 변경의 SQL·adapter·런타임 설정 차이가 없어 실행하지 않았다.
+
+## FullOps lint
+
+내용 커밋 `40f8f3d69fd9abe0ddf32ac530a9227fc1a819c4`에서 lint.py 종료코드는 0이다. 기준은 `9c915dc71e2a872243ffec294126d4668b4d32a4`다. ERROR 0, WARNING 1, 실행 불가 0이다.
+등록 명령 product-lint와 product-test의 종료코드는 모두 0이다. 검사 파일 8개, 추가 228줄이다.
+WARNING은 SIZE-001이다. `.fullops-squad/PLANS.md`는 767줄이고 기준 blob은 744줄이며 상한은 500줄이다. 이 QA 커밋은 PLANS.md를 수정하지 않았다. DEP-001은 없다.

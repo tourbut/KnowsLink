@@ -42,4 +42,4 @@ summary: 후보 eb2e34b에서 실행한 좁은 QA 명령과 종료코드와 한�
 좁은 QA는 통과다. 새 critical/high는 없다. 상세 판정은 [QA 보고서](../../evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md)다.
 `TestTrialHTTP`를 완화하지 않았다. 새 검사는 409 `invalid_lease`를 기대한다. 이 1회를 옛 relay-up 순서의 간헐 실패 해소로 기록하지 않는다.
 실제 이메일, 운영 공개, 최종 노우↔다닷, 157 fixture 재실행, 새 시각 검수는 미실행이다. F2, F3, 다수 IP의 D02 공유 한도, `beta.sh` 합성 가입은 기존 후속이다.
-FullOps lint HEAD, ERROR, WARNING, 실행 불가는 커밋 뒤 이 기록과 QA 보고서에 덧붙인다.
+내용 커밋 `40f8f3d69fd9abe0ddf32ac530a9227fc1a819c4`의 FullOps lint 종료코드는 0이다. ERROR 0, WARNING 1, 실행 불가 0이다. product-lint와 product-test 종료코드는 0이다. WARNING은 기존 PLANS.md 길이(SIZE-001, 767줄, 기준 744, 상한 500)다. 이 QA는 PLANS.md를 수정하지 않았다. DEP-001은 없다.
