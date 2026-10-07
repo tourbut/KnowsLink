@@ -27,7 +27,7 @@ func (s *Service) requestHit(st *State, r *http.Request, now time.Time, buckets 
 
 // Classify the authenticated request once, before schema, CSRF or route rejection, without trusting the request's claimed agent ID.
 // Only a verified principal ending its own record spends cleanup budget; anonymous, foreign or malformed cleanup is new work.
-// cleanOwner names the owner that cleanup acts for, the unit of cleanup fairness, and is "" for new work.
+// cleanOwner names the unit of cleanup fairness, the owner or its agents (agentsUnit), and is "" for new work.
 func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, cleanable bool) (buckets []bucket, cleanOwner string) {
 	principal, owner := "", ""
 	switch {
@@ -52,7 +52,7 @@ func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, clea
 		var err error
 		principal, err = st.principal(bearer(r), "agent")
 		if err == nil {
-			owner = st.Agents[principal].Owner
+			owner = agentsUnit(st.Agents[principal].Owner)
 		} else {
 			principal, _ = st.principal(ownerToken(r), "owner")
 			owner = principal
@@ -126,7 +126,8 @@ func cleanupRequest(r *http.Request) bool {
 	return false
 }
 
-// enterHTTP records one shared admission; cleanOwner != "" takes the cleanup budget, at most one per owner across processes.
+// enterHTTP records one shared admission; cleanOwner != "" takes the cleanup budget, at most one per fairness unit
+// across processes.
 func (st *State) enterHTTP(token, cleanOwner string, now time.Time) bool {
 	clean := cleanOwner != ""
 	n, limit := 0, 16
@@ -149,14 +150,19 @@ func (st *State) enterHTTP(token, cleanOwner string, now time.Time) bool {
 }
 
 // Local channels also bound requests waiting for DB admission; shared records enforce the limit across relay processes.
-// Only a cleanup the last committed state proves to be the caller's own record waits on the cleanup channel, and each
-// owner holds at most one cleanup slot locally and in shared records, so neither a foreign, lease-less or rate-limited
-// cleanup nor one member repeating its own valid cleanup can starve other owners' cleanup. The capped body is received
-// before any slot, under the same 10s deadline as the request context, so a slow or anonymous sender holds only its own
-// connection, like header reception. 30s admission expiry recovers crashed processes.
+// Only a cleanup the committed state proves to be the caller's own record waits on the cleanup channel, and each owner
+// holds at most one cleanup slot for its own control and one for its agents' ACKs, locally and in shared records, so
+// neither a foreign, lease-less or rate-limited cleanup nor one member repeating its own valid cleanup can starve other
+// owners' cleanup. A snapshot that cannot prove a cleanup credential is reread once, so a commit by another process or
+// a restart does not refuse valid cleanup as new work. The capped body is received before any slot, under the same 10s
+// deadline as the request context, so a slow or anonymous sender holds only its own connection, like header reception.
+// 30s admission expiry recovers crashed processes.
 func (s *Service) boundedHTTP(next http.Handler) http.Handler {
-	s.httpOnce.Do(func() { s.httpNew = make(chan struct{}, 16); s.httpClean = make(chan struct{}, 4) })
+	s.httpOnce.Do(func() {
+		s.httpNew, s.httpClean, s.reading = make(chan struct{}, 16), make(chan struct{}, 4), make(chan struct{}, 1)
+	})
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		arrived := time.Now()
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
 		w.Header().Set("Referrer-Policy", "no-referrer")
@@ -183,7 +189,12 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			credential = cleanupCredential(r)
 		}
 		queue := s.httpNew
-		if owner := s.cleanupOwner(r, credential); owner != "" {
+		owner := s.cleanupOwner(r, credential)
+		if owner == "" && credential != "" {
+			s.refresh(ctx, arrived)
+			owner = s.cleanupOwner(r, credential)
+		}
+		if owner != "" {
 			if _, busy := s.cleaning.LoadOrStore(owner, nil); busy {
 				capacityResponse(w, r)
 				return

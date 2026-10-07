@@ -34,6 +34,23 @@ func (q *Queries) LockRelay(ctx context.Context) (LockRelayRow, error) {
 	return i, err
 }
 
+const readRelay = `-- name: ReadRelay :one
+SELECT epoch, clock, data FROM relay_state WHERE singleton = true
+`
+
+type ReadRelayRow struct {
+	Epoch int64
+	Clock pgtype.Timestamptz
+	Data  []byte
+}
+
+func (q *Queries) ReadRelay(ctx context.Context) (ReadRelayRow, error) {
+	row := q.db.QueryRow(ctx, readRelay)
+	var i ReadRelayRow
+	err := row.Scan(&i.Epoch, &i.Clock, &i.Data)
+	return i, err
+}
+
 const saveRelay = `-- name: SaveRelay :execrows
 UPDATE relay_state SET data = $1, epoch = epoch + 1, clock = $2
 WHERE singleton = true AND epoch = $3
