@@ -1116,3 +1116,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - idle/clean OPS·designer·tester는 준비9b7149d로 fast-forward/각 역할 일반 push했다. 세 역할의 정규 인박스에 최종 후보 대기 지시서를 보존했다. 아직 dispatch하지 않았으며 탐색 패킷/고정 SHA는 DEV 최종 결과 뒤 갱신한다. live/working DEV는 변경하지 않았다.
 - 운영 .env에서 정확한 KNOWSLINK_SMTP_URL/KNOWSLINK_MAIL_FROM 키도 없음을 값 없이 확인했다. 시험 signup/agents 키도 없다. 기존 무료 SMTP 제공자와 비공개 설정 경로를 사용자에게 요청했으며 코드 수락 검수는 별도로 계속한다. 실제 수신/운영 공개는 미완료다.
+
+- 사용자 답변: 기존 SMTP 설정 없음. 공개 준비안에 Resend Free의 공식 SMTP·한도·유료 초과 옵션 분리와 비공개 설정/실수신 검증 순서를 기록했다. 계정/DNS/키 발급·실발송은 실행하지 않았다. 코드 검수는 계속한다.

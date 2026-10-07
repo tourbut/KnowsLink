@@ -37,3 +37,19 @@ summary: 기존 보호된 운영 배포의 백업·격리 복원과 공개 선�
 ## 남은 입력과 완료 경계
 
 실제SMTP 설정/무료제공자·발신도메인검증·실수신,필요Cloudflare설정권한·공개수락시험은미완료다. 최종코드main수락과공개준비문서/백업검증을완료하더라도이항목이없는동안현재보호된서버를공개완료로표시하지않는다.
+
+## 무료 SMTP 준비안 — 2026-10-07
+
+사용자는 기존 SMTP 제공자와 비공개 설정 파일이 없다고 답했다. 아직 계정 생성·DNS 변경·키 발급·메일 발송은 하지 않았다.
+
+Resend Free를 기존 SMTP 구현과 연결할 수 있는 후보로 확인했다. [공식 한도 문서](https://resend.com/docs/knowledge-base/account-quotas-and-limits)는 하루 100통·월 3,000통과 검증 도메인 최대 3개를 안내한다. 하루는 UTC 자정 기준이며 수신도 한도에 포함된다. [요금 문서](https://resend.com/pricing)의 초과 과금은 유료 플랜 옵션이다. Free를 유지하고 유료 전환·Transactional Overages·추가 상품을 활성화하지 않는다. 발송 제한에 도달하면 유료로 전환하지 않는다.
+
+[공식 SMTP 문서](https://resend.com/docs/send-with-smtp)는 검증 도메인·API key와 smtp.resend.com, 사용자명 resend, TLS 포트465를 안내한다. 현재 internal/relay/mail.go의 smtps URL 처리와 compose.yaml의 환경 연결로 설정 가능하다는 판단이며 실제 연결·발송 검증은 아직 하지 않았다. 새 SDK나 중계 Worker는 필요하지 않다.
+
+준비 순서:
+1. 사용자 계정에서 Free 플랜과 발신 도메인을 준비한다. 제공자가 요청하는 검증 DNS만 적용하고 기존 수신 MX·서버·Tunnel을 유지한다.
+2. 발신 도메인 검증 뒤 필요한 발송 권한의 키를 비공개로 보관한다. 키는 채팅·Git·쉘 인자·로그로 전달하지 않는다.
+3. 수락한 main의 보호된 배포 적용 때 /home/shin/deploy/knowslink-state/.env의 KNOWSLINK_SMTP_URL과 KNOWSLINK_MAIL_FROM을 설정한다. URL은 smtps://resend:URL_ENCODED_API_KEY@smtp.resend.com:465 형태이며 발신 주소는 검증한 도메인의 bare 주소다. 실제 값은 문서에 쓰지 않고 파일0600을 유지한다.
+4. 합성 가입/시험 agent 설정이 비었음을 확인한다. 사용자 본인의 허가된 실제 메일 수신·코드 로그인·발송 실패 안내·기존 보호/공유 서비스 회귀를 검증한다. 이 실제 검증 전에는 공개 수락으로 표시하지 않는다.
+
+무료 제공자의 한도는 새 제품 quota 약속이 아니다. 실제 초기 발송량·한도 오류와 안내는 공개 수락 때 담당 OPS/designer가 확인한다. 제공자/계정/도메인/발송 키가 아직 없으므로 이 준비안은 실행 대기다.
