@@ -1177,3 +1177,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - D11의 새 text 안내 연결과 L-1·L-A·L-B·운영 크기/CPU·edge·SMTP·실메일·외부플랫폼/노우↔다닷·실24h는 해당 담당 후속이다. D12/D13의 기존0911 백업/복원 준비를 새 공개 수락으로 바꾸지 않는다. reviewer release 뒤 managed snapshot 정리는 coor가 맡는다.
 
 - 최종 OPS 완료 msg_d368199e3694 / 0ab5f2f 통합: fixed d089 정적 검토 완료, 새 critical/high0·M-UTF8-01 medium 미해결. 사용자 핵심 기능 우선 배포 지시에 따라 medium은 후속 최소 수정으로 남긴다. QA/UI 미완료를 수락 PASS로 변경하지 않는다. 세 검수자의 현재 결과 마감 완료, 새 검증 배정 없음.
+
+## SAR-GOOGLE-LOGIN-001-DEV — 핵심 가입 기능 전환
+
+- 사용자 확정: Google 로그인 첫 가입과 기존 회원 기능 연결, 기능 구현에 집중하고 빠르게 출시한다. SMTP/메일서버 작업은 이 로그인에 필요 없다. implementation→dev route, gpt-6.1-sol medium 원추천을 따른다. 새로운 역할 전체 모델 전파는 하지 않는다.
+- 사용자 지정 Google 계정으로 OAuth 프로젝트 등록을 승인했다. coor가 Google Cloud 로그인 화면을 열었으며 사용자 직접 로그인 대기다. 결제/유료전환 없이 앱 등록과 callback 설정만 진행한다. 비밀은 비공개 환경 파일에 저장한다. DEV는 외부 자격 대기 없이 구현·좁은 인증 검사·배포 인계를 끝낸다.
