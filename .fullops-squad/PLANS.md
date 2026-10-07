@@ -1182,3 +1182,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 사용자 확정: Google 로그인 첫 가입과 기존 회원 기능 연결, 기능 구현에 집중하고 빠르게 출시한다. SMTP/메일서버 작업은 이 로그인에 필요 없다. implementation→dev route, gpt-6.1-sol medium 원추천을 따른다. 새로운 역할 전체 모델 전파는 하지 않는다.
 - 사용자 지정 Google 계정으로 OAuth 프로젝트 등록을 승인했다. coor가 Google Cloud 로그인 화면을 열었으며 사용자 직접 로그인 대기다. 결제/유료전환 없이 앱 등록과 callback 설정만 진행한다. 비밀은 비공개 환경 파일에 저장한다. DEV는 외부 자격 대기 없이 구현·좁은 인증 검사·배포 인계를 끝낸다.
+
+- DEV 착수 task_b6d97ae13af1/ctx_49065abbe2b8/term_015cd3d2-eaff-4966-8c68-3ed6fffcf92c: fresh GPT-6.1-Sol medium requested/effective·turn_started와 실제 지시서/원천 읽기를 확인했다. 이전 큰 세션을 재사용하지 않았다. 준비3b183a5/동일 packet HEAD·원천 미커밋 복사 경로를 명시했으며 진행 중 DEV는 변경하지 않는다.
+- Google 콘솔의 실제 지정 계정 로그인과 기존 knowslog-bot 프로젝트를 확인했다. 사용자 승인 범위에서 KnowsLink 전용 새 OAuth 프로젝트를 준비하며 기존 Bot 클라이언트·브랜딩·결제는 변경하지 않는다. 추가 광범위 검수는 배포 선행조건이 아니다.
