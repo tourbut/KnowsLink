@@ -1,0 +1,39 @@
+---
+title: SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW — DEV FIX-2 고정 후보의 독립 delta 보안 리뷰
+status: draft
+updated: 2026-10-07
+owner: ops
+tasks: [SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW]
+summary: DEV FIX-2 고정 후보의 독립 delta 보안 리뷰
+---
+
+# SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW — DEV FIX-2 고정 후보의 독립 delta 보안 리뷰
+
+## 대상·기준·복귀
+
+- 담당 OPS. 인증/인가·공유DB·동시성의 high 위험이므로 fullops-review 규정에 따라 fresh Claude Opus5.5 high를 적용한다. route Sonnet 추천 원본을 보존한다. DEV 구현자 실제세션05c78055-8d3a-4f8d-94cc-2c7b6916057b와 다른 실제 리뷰 세션을 기록한다.
+- base dfc70caa748a90614b02d48c78b4651345938339 / head 758e9f638501f11000ed17c558a9eb54b4350eb3. 독립 detached clean read-only snapshot은 /tmp/knowslink-messages-fix2-review-758e9f6이다. 구현 제품은 c8ac921이다.
+- 결과는 fullops-ops checkout의 이 과제 -review 디렉터리와 PLANS/context/현재지시서에만 작성한다. 제품코드·기획정본·타인 inbox·원본 실패는 수정하지 않는다. install/실행은 snapshot에서 복사한 별도 자기 scratch에서 한다.
+- 복귀 coor term_6895aaf1-7b43-4fe0-a416-76f1255a5946 / Run run_8ca8bc058ab7. Task/Dispatch/worker_done 권한은 새 preamble을 따른다.
+
+## 적용 기준과 먼저 읽을 문서
+
+fullops-common-0.3.3 README/coding-style/testing/security·FULLOPS·project·document-writing·orca-agents·contexts/ops와 review/rule.json을 읽는다. 제품 기준 SAR-PUBLIC-SERVICE.md PS11/운영 기본값·SAR-PUBLIC-SERVICE-UX.md UX06/07이다. DEV-FIX-2 실행 기록·완료 archive/최종lint COOR/dev-fix-2-final/lint.json, 원 FIX-REVIEW-review/report.md/result.json/review-foreign-cleanup_test.go.txt, 원 TESTER 보고서/probe17, UI-FIX 보고서를 읽는다. 탐색 code/doc/context의 추천은 참고이며 필수 기준을 제외하지 않는다. 외부 새 SDK/의존성은 없으며 기존 표준 Go 버전 근거를 재사용한다.
+
+## 리뷰와 완료 조건
+
+- fullops-review 및 open-code-review-delegate를 적용한다. 준비된 preview/rules/result/report를 읽고 모든 diff 파일 reviewed/skipped 사유를 기록한다. 별도 실제세션·detached SHA·read_only·적용 규칙/예외·판정 근거를 기록한다. OCR LLM을 호출하지 않는다.
+- H2 유효 자격의 foreign/no-lease/self-repeat/idempotent flood의 새 fixed 해소를 독립 확인한다. DB 전 snapshot 자기대상 판정과 transaction 판정 불일치, owner당1 제한의 PS11 적합성과 동시 ACK/deny/revoke/logout, 악성 자기반복이 자기 유효 정리를 굶기는지 확인한다. 권한/CSRF/현재키/관계세대/lease·rate·신규16/정리4·body8/32KiB·10s/30s를 검토한다. 근거 없는 제품규칙 변경이 발견되면 high/medium 여부와 designer 질문 필요를 보고한다.
+- L2 CAS commit 시각 동일/역전, multi-instance 새 자격·stale/restart nil과 신규16 포화의 유효 정리 가용성, revoked 자격 분류, orphan token/상태 공간의 bounded 여부·다른 인스턴스 commit·2s 종료 실패/회수10s와 실제1s sweep를 검토한다. TESTER receipt20000 HTTP 잔류 동일원인의 수정 근거를 대조한다. /v1/connect 경로 존재 및 모든 cleanup sibling caller를 실제 코드에서 확인한다.
+- 기존 재현을 재사용하고 변경 영향에 필요한 좁은 독립 검사를 자기 격리 scratch에서 수행한다. DEV 자체PASS를 독립 리뷰/QA로 대체하지 않는다. 원본dfc H2 checkexit1·QA09c probeexit1·UI 원FAIL·초기실패는 그대로 남긴다. 새 결론은 새 fixed에만 적용한다. L1/L-A/L-B·합성가입unset/운영DBowner0 조건을 보존한다.
+- 후보 최종HEAD lint/test는 기존 정확한758 JSON과 provenance를 확인한다. 검사 보완 필요 시 clean scratch fixed에서 lint.py --fromdfc를 실행해 JSON을 현재 reviewdir에 둔다. warning5(SIZE/증거규모)의 수락 영향·DEP/SLOP/DESIGN 해당없음/예외를 판단한다. 이 검증은 실제 Grok/다닷/실메일/공개/24h/운영부하·복원이 아니다.
+- result/report 작성 뒤 review.py check --fromdfc --to758 --task-key SAR-PUBLIC-MESSAGES-001-DEV-FIX-2를 실행한다. 미해결 critical/high면 exit1 차단을 유지한다. 형식probe로 실패를 PASS로 바꾸지 않는다. 보고서와 검증 로그/exit·cleanup·무결성·원본 보존을 연결한다.
+- 현재 인박스에 완료 전문을 쓰고 work.py finish로 archive·빈 inbox·기록 최종HEAD에서 FullOps lint/test·strict·diff·일반push를 완료한다. 최종fullSHA/리뷰결론/실패·제약·다음 담당·재개조건을 실제 worker_done으로 회신한다. 완료 뒤 idle, 다른 작업을 시작하지 않는다.
+
+## 제약·후속
+
+Workers Free만 허용한다. 유료전환/구독/초과과금·공유서버/Tunnel변경·운영배포/실메일·외부계정/운영자료삭제는 금지다. 자기 fixture만 사용/회수한다. 기존 사용자 터미널은 종료하지 않는다. Grok TESTER는 사용자 토큰 만료 중단으로 후속 QA 보류다. 이 리뷰를 좁은 TESTER QA나 전체 제품수락으로 표기하지 않는다. 담당coor가 독립 QA의 허용수단·designer UI영향 확인과 함께 main을 판정한다. 코드 수정은 같은 DEV 후속으로 인계한다.
+
+## 탐색 보완·지시 전제와 충돌 — 먼저 확인
+
+Jev keep code/doc 목록은 이 과제 context.json에 있다. 민감/크기 제한으로 미전송된 cleanup_admission.go는 필수 직접읽기다. 원 FIX-REVIEW report의 dfc H2 미해결과 DEV 새fixed 자체PASS는 다른 SHA/시점이며 충돌하는 판정은 원본high를 보존하고 새758에서 독립 확인한다. README가 높은 code 추천으로 나왔지만 실제수정capacity/store/cleanup_* 전체와 caller/test를 우선 필수검토한다. 원 QA09c 실패·UI dfc 좁은PASS도 새758 전체수락이 아니다.

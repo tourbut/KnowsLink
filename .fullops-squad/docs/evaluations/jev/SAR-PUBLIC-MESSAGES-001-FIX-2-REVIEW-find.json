@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW",
+  "head": "f7232452a4b49b45513fad08d464e62455f4830b",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 93,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 93
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.44
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.09999999999999999
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.08
+    },
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "summary": "Cleanup admission rests on an honored credential and the caller's own record, so rejected, foreign or anonymous cleanup is new work.",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.04
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "summary": "Package a standalone Cursor/Grok Bot plugin with a strict file allowlist and no credentials.",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "summary": "Validate isolated example Compose settings and locked service boundaries.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "summary": "Public text checks pin the separate wire, one related reply, erased payloads, current authorization and shared capacities.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "summary": "Public connection-check text uses a separate signed wire, current member authorization and the shared short-lived inbox.",
+      "probability": 0.02
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives.",
+      "probability": 0.01
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "summary": "Email identity binds one verified address to one member and owner; browser sessions never carry agent authority.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.83,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5505,
+    "output_tokens": 979,
+    "cost": 0.00023121
+  },
+  "latency_seconds": 0.695,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

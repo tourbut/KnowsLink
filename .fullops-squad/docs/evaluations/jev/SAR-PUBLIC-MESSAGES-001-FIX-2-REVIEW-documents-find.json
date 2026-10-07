@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW",
+  "head": "f7232452a4b49b45513fad08d464e62455f4830b",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 191,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 191
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "summary": "유효 자격 정리 flood H-2 수정 기록 — OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정리가 DB 입장 동안 정리 채널 점유)와 L-2의 원인·수정·회귀 검증을 기록한다",
+      "probability": 0.59
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다",
+      "probability": 0.09
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-FIX-REVIEW 리뷰 — 수정 후보 dfc70ca의 독립 delta 보안 리뷰로 H-1·M-1·F-UI는 해소됐고 새 high H-2로 수락 불가",
+      "probability": 0.09
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "summary": "<과제 키> 리뷰",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-DEV-FIX-2 — 유효자격 정리 flood H2 원인 수정과 모든 정리 경로 보호 회귀 — 유효자격 정리 flood H2 원인 수정과 모든 정리 경로 보호 회귀",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "summary": "ops 컨텍스트 — 운영 준비의 수락 경계·서버 관찰 재사용·리뷰 재현 원칙을 보존한다",
+      "probability": 0.03
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "summary": "공통 보안 기준",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-review/report.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-REVIEW 리뷰 — 일반 회원 메시지 후보 고정SHA의 독립 보안 리뷰 결과",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — FullOps 규약 지도와 0.9.14 검사·문서 뷰어 기준",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.83,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 17526,
+    "output_tokens": 1959,
+    "cost": 0.000736092
+  },
+  "latency_seconds": 0.79,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

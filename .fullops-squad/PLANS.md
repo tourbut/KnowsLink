@@ -1052,3 +1052,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 수정: DB 전 로컬 정리 채널 선택에 커밋 snapshot의 자기 기록 대조를 적용했다. owner당 동시 정리 1개를 로컬·공유 기록에 둔다. snapshot은 commit 순서로만 교체하고 종료 실패 공유 기록은 다음 commit이 회수한다. `/v1/invite-decision` deny를 정리 분류에 추가했다. `/v1/connect/{cancel,…}` 경로는 존재하지 않음을 확인했다. coor 추가 인계의 TESTER 원본 `st.HTTP` 잔류(medium, 09c 17차)도 같은 종료 transaction 실패 경로로 확인하고 회수 회귀를 추가했다. 원본 QA 실패와 새 fixed 독립 QA 보류는 그대로다.
 - 검증: OPS 재현 시험은 dfc70ca에서 재현(exit0), 수정 코드에서 미재현(exit1). 새 flood 회귀는 변형에서 exit1. 결과와 최종 검사는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md)에 있다.
 - 보존: OPS H-2 high·review check exit1, L-1·L-A·L-B, 공개 전 합성 가입 unset·운영 DB 합성 owner 0. 후속은 coor 배정의 OPS 별도 세션 delta 리뷰·TESTER 좁은 QA·필요 UI 수락 뒤 main 판정이다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW 준비 — 2026-10-07
+
+- 사용자 다음 진행 요청으로 OPS 독립 delta 리뷰를 준비한다. fixed758e9f6·basedfc·fresh별도Opus5.5high·read-only detached /tmp/knowslink-messages-fix2-review-758e9f6·별도OPS 기록 checkout을 사용한다. route ops 추천/Sonnet은 보존하고 fullops-review 위험도 규정으로 모델을 상향한다. 정상OPS 인박스0·clean을 확인했다. 원 OPS 사용자 소유 터미널은 유지한다.
+- DEV758 제품을coor에SHA보존반영했으며 main68b 제품수락은 아직보류다. PLANS append양쪽·task메타데이터union·원QA증거를보존했다. 완료 DEV inbox의coor추가인계는 COOR/dev-fix-2-final/coordinator-handover-supplement.md로 보존하고인박스를비웠다. 원 DEV 전문archive도 유지한다.
+- Grok FIX-TESTER 사용자 중단 보류는유지한다. 담당coor, 새독립OPS 결론·사용자 허용독립QA·designer UI영향확인 뒤main판정한다. 이 리뷰의좁은검사는TESTER QA 면제가아니다.

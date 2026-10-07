@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "base": "dfc70caa748a90614b02d48c78b4651345938339",
+  "merge_base": "dfc70caa748a90614b02d48c78b4651345938339",
+  "head": "758e9f638501f11000ed17c558a9eb54b4350eb3",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json\n\nChecking formatting...\nAll matched files use Prettier code style!\n\n> @knowslink/adapters@0.0.0 lint\n> eslint src eslint.config.mjs\n\n\n> @knowslink/adapters@0.0.0 typecheck\n> tsc --noEmit\n\nnpm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml\nChecking formatting...\nAll matched files use Prettier code style!\npython3 scripts/check_compose.py\nCompose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed\nsh -n scripts/install_bot_mcp.sh\npython3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go test -race ./cmd/... ./internal/...\nok  \tgithub.com/tourbut/KnowsLink/cmd/migrate\t(cached)\nok  \tgithub.com/tourbut/KnowsLink/cmd/relay\t(cached)\nok  \tgithub.com/tourbut/KnowsLink/internal/config\t(cached)\n?   \tgithub.com/tourbut/KnowsLink/internal/database\t[no test files]\nok  \tgithub.com/tourbut/KnowsLink/internal/relay\t(cached)\nnpm test --prefix adapters\n\n> @knowslink/adapters@0.0.0 test\n> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js && node dist/connect.test.js\n\n\n> @knowslink/adapters@0.0.0 build\n> tsc && npm run bundle:plugin\n\n\n> @knowslink/adapters@0.0.0 bundle:plugin\n> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=dist/plugin.js\n\nPASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output\nPASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified\nPASS: local connection PoP, private directory/files, no overwrite, credential storage, one-use completion, URL boundary\n\n  dist/plugin.js  1.5mb ⚠️\n\n⚡ Done in 64ms"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1007줄(이전 961, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "481줄(이전 478, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "410줄(이전 407, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/public_messages_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "508줄(이전 494, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/store.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 1935줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 69,
+    "added_lines": 1935,
+    "errors": 0,
+    "warnings": 5,
+    "unavailable": 0
+  }
+}
