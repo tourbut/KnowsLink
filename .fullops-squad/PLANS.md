@@ -1185,3 +1185,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - DEV 착수 task_b6d97ae13af1/ctx_49065abbe2b8/term_015cd3d2-eaff-4966-8c68-3ed6fffcf92c: fresh GPT-6.1-Sol medium requested/effective·turn_started와 실제 지시서/원천 읽기를 확인했다. 이전 큰 세션을 재사용하지 않았다. 준비3b183a5/동일 packet HEAD·원천 미커밋 복사 경로를 명시했으며 진행 중 DEV는 변경하지 않는다.
 - Google 콘솔의 실제 지정 계정 로그인과 기존 knowslog-bot 프로젝트를 확인했다. 사용자 승인 범위에서 KnowsLink 전용 새 OAuth 프로젝트를 준비하며 기존 Bot 클라이언트·브랜딩·결제는 변경하지 않는다. 추가 광범위 검수는 배포 선행조건이 아니다.
+
+- Google 등록 실작업: knowslink-auth 생성, KnowsLink 브랜딩/승인도메인 knowslog.com, Web OAuth client와 운영 callback을 생성했다. clientID/secret/redirect는 운영 state/.env0600에 저장했다. 값은 Git/대화에 넣지 않았고 기존 knowslog-bot·결제 설정은 변경하지 않았다. Google 앱은 현재 테스트 상태로 지정 사용자부터 로그인 확인한다. 일반 공개 상태는 아직 아니다. DEV 구현 배포와 사용자 실제 로그인 후 그록봇 연결을 진행한다.
