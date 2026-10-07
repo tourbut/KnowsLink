@@ -1087,3 +1087,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 플랫폼화면은`This content can’t be shown`/일부cybersecurity요청안내를표시했다. 원출력의차단을우회하거나다른모델로동일차단내용을생성하지않는다. 최종result/report/check와worker_done은없으며준비pending을통과로바꾸지않는다. 원화면/bounded transcript/stop/abandon receipt는COOR/fix2-sol-block에보존했다.
 - 구조화handoff msg_e592729e1868로추가분석중단·기실행증거운영마감을전달했다. 직접terminal send 마감지시는PreToolUse FullOps가Run/worker_done추적밖실행위험으로차단했다. 호출은실행되지않았으며우회하지않았다. 그후stop_unknown(external/processAction none)→명시abandoned로fence했다. 외부Sol터미널은종료/worker_done했다고주장하지않는다. 원현재지시서도미완료inbox로보존한다.
 - 담당coor/OPS. 현재보류사유는Sol 플랫폼출력차단/최종독립리뷰미완료다. 재개에는차단된내용을생성하지않는허용검토범위와실제독립결론/고정SHA·coverage·검증근거가필요하다. 기존Claude quota부분결과·원dfc H2high·QA09c실패는보존한다. Grok QA중단·UI-FIX-2 OPS결론대기·main68b 수락보류를유지한다.
+
+## SAR-PUBLIC-MESSAGES-001-DEV-FIX-3 — 최종 main 수락 후 공개 준비
+
+- 사용자가최종코드main병합/공개준비를지시했고Sol 독립QA 모델변경도명시승인했다. 기존Grok세션은재개하지않으며추가결제/플랜변경없다.
+- Sol기실행관측의정상사용자정리/동일DB시각snapshot/갱신전포화동작은제품적합성수락이아니다. DEV-FIX-3에원인분석·최소수정·기능회귀·기술산출물을묶었다. 플랫폼차단콘텐츠를다시생성/우회하지않고기존저장된로컬기능관측과자체앱정상동작만다룬다. 별도고정SHA정적리뷰·Sol독립QA·designer확인뒤main수락/일반push/조상확인/유휴clean역할sync를수행한다.
+- 공개준비는Free·기존서버Tunnel에서필수환경/이메일/검증·복구절차를준비하는범위이며자동공개/실메일발송은아직실행하지않는다. 과거fail/검수미완료·334원본hash를보존한다.
