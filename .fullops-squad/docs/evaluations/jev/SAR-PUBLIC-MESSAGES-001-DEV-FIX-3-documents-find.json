@@ -1,0 +1,79 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV-FIX-3",
+  "head": "866b8ebd867369c5497c488eb16c814751679a64",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 194,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 194
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-DEV-FIX-3 — 일반 사용자 정리 동작과 snapshot 일관성의 최종 회귀 수정 — 일반 사용자 정리 동작과 snapshot 일관성의 최종 회귀 수정",
+      "probability": 0.72
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "summary": "유효 자격 정리 flood H-2 수정 기록 — OPS FIX-REVIEW H-2(유효 자격의 타 owner·lease 없는·반복 정리가 DB 입장 동안 정리 채널 점유)와 L-2의 원인·수정·회귀 검증을 기록한다",
+      "probability": 0.08
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다",
+      "probability": 0.060000000000000005
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "summary": "FullOps 공통 개발 규칙",
+      "probability": 0.05
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다",
+      "probability": 0.02
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-DEV — 일반 text·receipt·gate·자원 보호 — 일반 text·receipt·gate·자원 보호의 분석과 구현·검증을 기록한다",
+      "probability": 0.02
+    },
+    {
+      "path": "GEMINI.md",
+      "summary": "",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "summary": "KnowsLink",
+      "probability": 0.01
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.01
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.89,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 17363,
+    "output_tokens": 1989,
+    "cost": 0.000729246
+  },
+  "latency_seconds": 0.561,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}

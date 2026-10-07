@@ -1,0 +1,89 @@
+{
+  "version": "jev-find-v1",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-DEV-FIX-3",
+  "head": "866b8ebd867369c5497c488eb16c814751679a64",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 93,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 93
+    }
+  ],
+  "candidates": [
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.6
+    },
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "summary": "Cleanup admission rests on an honored credential and the caller's own record, so rejected, foreign or anonymous cleanup is new work.",
+      "probability": 0.09
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "summary": "Cleanup removes expired payloads and retained metadata even when no client polls.",
+      "probability": 0.08
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.05
+    },
+    {
+      "path": "internal/relay/cleanup_admission_test.go",
+      "summary": "Cleanup admission classification: honored credential, same-origin form, gate CSRF, valid body and own record.",
+      "probability": 0.04
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.03
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "summary": "Verify synthetic MVP in a private Compose project without touching existing services or Tunnel.",
+      "probability": 0.03
+    },
+    {
+      "path": "internal/relay/member.go",
+      "summary": "Member pages run email verification, sessions, logout, and the self-owner home without owner Basic auth or SSH.",
+      "probability": 0.02
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.02
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "summary": "Check local Compose readiness and safe failure without activating a Tunnel.",
+      "probability": 0.01
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.01
+    }
+  ],
+  "existence": {
+    "found_probability": 0.87,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5116,
+    "output_tokens": 979,
+    "cost": 0.000214872
+  },
+  "latency_seconds": 0.508,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917"
+}
