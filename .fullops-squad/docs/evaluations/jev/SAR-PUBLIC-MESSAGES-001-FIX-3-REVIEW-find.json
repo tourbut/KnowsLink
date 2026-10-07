@@ -1,0 +1,144 @@
+{
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW",
+  "role": "ops",
+  "head": "cebc32c2e3ae3b15ff5fd7238de1c5ab96eaf7b4",
+  "attempt": "1ca6bc4bed6140fe92d75ba371fdd315",
+  "instruction_sha256": "0e7b41dbc34acea0fc45b2c379c798596eaa245e9bc0872201cdfcd05c89a092",
+  "options": {
+    "policy": "find-v2",
+    "scope": "code",
+    "limit": 12
+  },
+  "input_sha256": "5ee56fd1a5d1cb6af13baf9fa50a0624ec075c4ac495d91e88a1c1e95ca18180",
+  "version": "jev-find-v1",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 94,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 94
+    }
+  ],
+  "candidates": [
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.35000000000000003,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 0
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure.",
+      "probability": 0.06999999999999999,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 1
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "summary": "Public connection-check text uses a separate signed wire, current member authorization and the shared short-lived inbox.",
+      "probability": 0.060000000000000005,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 2
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.05,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 3
+    },
+    {
+      "path": "internal/relay/store.go",
+      "summary": "Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 4
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 5
+    },
+    {
+      "path": "adapters/eslint.config.mjs",
+      "summary": "Check adapter source and this flat configuration with recommended rules.",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 6
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "summary": "Load a private trial environment without exposing credentials in shell arguments; launch Codex CLI or Grok MCP.",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 7
+    },
+    {
+      "path": "adapters/src/public-check.ts",
+      "summary": "Real local CLI and independent MCP processes check member text against the isolated Go/Postgres service; no vendor account claims.",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 8
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "summary": "Validate isolated example Compose settings and locked service boundaries.",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 9
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "summary": "Public text checks pin the separate wire, one related reply, erased payloads, current authorization and shared capacities.",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 10
+    },
+    {
+      "path": "internal/relay/cleanup_unit_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 11
+    }
+  ],
+  "existence": {
+    "found_probability": 0.89,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5647,
+    "output_tokens": 989,
+    "cost": 0.000237174,
+    "known_cost": 0.000237174,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.75,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "remaining_candidates": [],
+  "presented_files": 94,
+  "partial": false,
+  "ranking_status": "single_batch",
+  "fallback": null,
+  "input_partial": true,
+  "instruction_chars": 4786,
+  "elapsed_seconds": 1.395
+}

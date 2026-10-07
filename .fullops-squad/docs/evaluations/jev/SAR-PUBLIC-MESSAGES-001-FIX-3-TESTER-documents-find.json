@@ -1,0 +1,88 @@
+{
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER",
+  "role": "tester",
+  "head": "cebc32c2e3ae3b15ff5fd7238de1c5ab96eaf7b4",
+  "attempt": "17a764b1de5c430b9235b82643c1b00d",
+  "instruction_sha256": "00b1b50559db0a715f1fc154568298fdb3ce8839ba2d39fb1d535a60c5b56ba4",
+  "options": {
+    "policy": "find-v2",
+    "scope": "documents",
+    "limit": 12
+  },
+  "input_sha256": "6e5e069862566b27b62d711bc3744caeaf5799c4d4f9abf898262e9a68608721",
+  "version": "jev-find-v1",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 201,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 201
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER — 최종 후보 PS08–11과 수정된 정상 사용자 동작의 독립 QA — 최종 후보 PS08–11과 수정된 정상 사용자 동작의 독립 QA",
+      "probability": 0.73,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "summary": "일반 사용자 정리 동작과 snapshot 일관성 수정 기록 — Sol 관측(같은 commit 시각 snapshot 역전·갱신 전 포화 거부·agent ACK의 owner 정리 차단)의 원인·최소 수정·회귀·검증을 기록한다",
+      "probability": 0.16,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 1
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-TESTER — PS08–11 시나리오 — 후보 09c523d의 text, receipt, gate, 한도, 정리 예산을 격리 프로세스로 확인한다",
+      "probability": 0.04,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 2
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "summary": "tester 컨텍스트 — 독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원, agent, 메시지 PS08–11 QA 결과를 기록한다",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 3
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-TESTER — PS08–11 독립 QA — 후보 09c523d의 PS08–11은 H-1 high로 수락이 차단되고 M-1과 HTTP 슬롯 잔류도 재현됐다",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 4
+    }
+  ],
+  "existence": {
+    "found_probability": 0.86,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 18460,
+    "output_tokens": 2059,
+    "cost": 0.00077532,
+    "known_cost": 0.00077532,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.764,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "remaining_candidates": [],
+  "presented_files": 201,
+  "partial": false,
+  "ranking_status": "single_batch",
+  "fallback": null,
+  "input_partial": true,
+  "instruction_chars": 4904,
+  "elapsed_seconds": 1.713
+}

@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-07
 owner: coor
 tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
-summary: MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다
+summary: 사용자 배포 우선 지시와 고정 후보 적용 상태를 기록한다
 ---
 
 # KnowsLink 현재 계획
@@ -1131,3 +1131,15 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - msg_438673240ba8 / delivery_d0d0ea9b507a의 authentic worker_done은 최종8011dfa0ade890ffad49fda8e41d18129893d8f0·코드5d1924cd137d를 보고했다. 실제 구현 세션 aa85544d-18c3-43d3-95d0-b729aa9e9e8c, clean/원격 역할 동일 SHA·전문 archive/빈 DEV inbox를 확인했다. parser의 final HEAD 인식 누락은 원문을 보존한 채 검증된 SHA/source를 integration 원장에 보완했다.
 - 검수 후보 d08903a55c3638128827010400e66e9d45b61d7c는 coor에서 DEV 결과와 기존 준비를 SHA 보존 병합한 후보이며 main 수락이 아니다. PLANS 양쪽 append를 보존했다. 기존 FIX2 pending 리뷰 템플릿의 원문 byte/hash/원 SHA를 COOR/dev-fix-3-final에 보존하고 현재 템플릿에는 메타데이터만 추가했다. 본문과 result의 pending 판정은 그대로다. 원8011의 lint ERROR1·중간실패/334 원본 증거도 유지한다.
 - hold 담당 coor: 최종 후보 별도 Sol 정적 리뷰·승인된 Sol 독립 QA·designer 영향 검수와 기록 수락이 남았다. 조건 충족 뒤 main 병합/일반push/조상 확인/idleclean 역할 sync한다. DEV는 수정 후속을 위해 retain하며 실제 사용자 소유 터미널을 강제종료하지 않는다.
+
+- 고정 후보 d089/준비 cebc32c의 최신 route 원추천을 fixed-recommendation.json에 보존했다. OPS와 tester는 사용자 Sol 지정과 위험도에 따라 gpt-6.1-sol high를 적용한다. designer는 여러 사용자 흐름의 최종 제품/UI 수락 범위에 맞는 등록 high 후보를 적용하고 원 Jev medium 추천을 보존했다. coordinator 모델을 역할 전체에 전파하지 않는다.
+
+## 사용자 우선순위 변경: 배포 먼저 — 2026-10-07
+
+- 사용자는 추가 테스트로 인한 지연을 중단하고 먼저 배포한 뒤 문제를 수정하라고 명시했다. 추가 QA·UI·정적 탐색 확대를 중단하고 현재 결과로 마감하도록 세 실제 dispatch에 전달했다. 기존 실패·pending과 원본 증거는 그대로 보존한다.
+- 배포 대상은 d08903a55c3638128827010400e66e9d45b61d7c다. 기존 자동 lint/test PASS를 재사용한다. DB migration diff는 없고 기존 배포 checkout은 clean이다. beta.sh deploy로 새 DB 백업 후 기존 서버의 보호된 배포를 실행했다. main 통합과 최종 독립 수락 상태는 별도로 기록한다.
+- 현재 SMTP 제공자·발신 주소 설정이 없으므로 실제 이메일 가입과 일반 사용자 공개 완료는 아니다. 기존 Access/Tunnel·Free 제한과 운영 DB를 유지한다. 실패 시 이전0911c2c로 코드 복귀한다. 배포 로그: docs/evaluations/qa-reports/COOR/open-readiness/deploy-d089.log.
+- 실제 착수: OPS task_886bd365fe36/ctx_4dade3f47e35는 startup receipt unobserved이나 별도 세션01a116a3의 실제 transcript에서 착수를 확인했다. tester task_9008a370c374/ctx_ec701389e83c와 designer task_10854c470b69/ctx_4e5af8d74738은 turn_started와 실제 원천 읽기를 확인했다. 세 역할 체크아웃은 진행 중이므로 동기화하지 않는다.
+
+- 배포 결과: beta.sh deploy exit0, 운영 checkout d08903a55c3638128827010400e66e9d45b61d7c, migrate exit0·relay healthy·health200. 외부health302로 기존Access 보호를 확인했다. DB 사전백업을 생성했고 운영 볼륨/Tunnel은 유지했다.
+- 사용자 지시로 추가 독립 QA·UI 완료 대기를 배포/main 반영의 선행조건에서 제외했다. 이것은 기존검증의 PASS 판정이나 과거 실패 변경이 아니다. 최종 독립 검수는 현재 결과 마감 중이며 잔여 문제는 배포 뒤 수정한다. main을 d089로 fast-forward하고 origin/main에 일반push했다. 진행 중 OPS/tester/designer는 동기화하지 않고 후속 완료 시 현재main조상/clean 여부를 확인한다.
