@@ -1100,4 +1100,3 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 수정: snapshot을 (commit 시각, epoch) 순서로만 교체한다. 신규 포화 중 증명 못한 정리 자격은 lock 없는 단일 재조회 뒤 판정한다. 공정성 단위를 owner 제어와 그 owner의 agent ACK로 나눴다. persist 전 ACK는 handler와 같이 신규다. 제품 수치·wire·응답 코드는 그대로다.
 - 검증: 새 회귀는 758에서 RED, 최종 코드에서 PASS다. 변형 4개가 모두 검출된다. 최종 코드의 make lint/test/verify-mvp exit0, Go 통합 PASS 47. 중간 `9620723` verify-mvp 실패와 원인은 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md)에 보존했다.
 - 후속 담당 coor: 별도 고정 SHA 정적 리뷰·사용자 승인 Sol 독립 QA·designer UI 영향 확인 뒤 main 판정. 원 실패·Sol 차단 기록·334 hash·미해결 high 차단을 유지한다.
-

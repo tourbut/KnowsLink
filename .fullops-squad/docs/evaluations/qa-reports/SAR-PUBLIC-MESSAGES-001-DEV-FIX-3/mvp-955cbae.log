@@ -15,8 +15,8 @@ npm run build --prefix adapters
 
 ⚡ Done in 77ms
 python3 scripts/verify_mvp.py
- Image knowslink-mvp-1ea0468695-relay Building 
- Image knowslink-mvp-1ea0468695-migrate Building 
+ Image knowslink-mvp-1ea0468695-relay Building
+ Image knowslink-mvp-1ea0468695-migrate Building
 #1 [internal] load local bake definitions
 #1 reading from stdin 1.08kB done
 #1 DONE 0.0s
@@ -107,39 +107,39 @@ python3 scripts/verify_mvp.py
 
 #22 [migrate] resolving provenance for metadata file
 #22 DONE 0.1s
- Image knowslink-mvp-1ea0468695-migrate Built 
- Image knowslink-mvp-1ea0468695-relay Built 
- Network knowslink-mvp-1ea0468695_database Creating 
- Network knowslink-mvp-1ea0468695_database Created 
- Network knowslink-mvp-1ea0468695_ingress Creating 
- Network knowslink-mvp-1ea0468695_ingress Created 
- Volume knowslink-mvp-1ea0468695_postgres-data Creating 
- Volume knowslink-mvp-1ea0468695_postgres-data Created 
- Container knowslink-mvp-1ea0468695-postgres-1 Creating 
- Container knowslink-mvp-1ea0468695-postgres-1 Created 
- Container knowslink-mvp-1ea0468695-migrate-1 Creating 
- Container knowslink-mvp-1ea0468695-migrate-1 Created 
- Container knowslink-mvp-1ea0468695-relay-1 Creating 
- Container knowslink-mvp-1ea0468695-relay-1 Created 
- Container knowslink-mvp-1ea0468695-postgres-1 Starting 
- Container knowslink-mvp-1ea0468695-postgres-1 Started 
- Container knowslink-mvp-1ea0468695-postgres-1 Waiting 
- Container knowslink-mvp-1ea0468695-postgres-1 Healthy 
- Container knowslink-mvp-1ea0468695-migrate-1 Starting 
- Container knowslink-mvp-1ea0468695-migrate-1 Started 
- Container knowslink-mvp-1ea0468695-migrate-1 Waiting 
- Container knowslink-mvp-1ea0468695-migrate-1 Exited 
- Container knowslink-mvp-1ea0468695-relay-1 Starting 
- Container knowslink-mvp-1ea0468695-relay-1 Started 
- Container knowslink-mvp-1ea0468695-migrate-1 Waiting 
- Container knowslink-mvp-1ea0468695-relay-1 Waiting 
- Container knowslink-mvp-1ea0468695-postgres-1 Waiting 
- Container knowslink-mvp-1ea0468695-migrate-1 Exited 
- Container knowslink-mvp-1ea0468695-postgres-1 Healthy 
- Container knowslink-mvp-1ea0468695-relay-1 Healthy 
+ Image knowslink-mvp-1ea0468695-migrate Built
+ Image knowslink-mvp-1ea0468695-relay Built
+ Network knowslink-mvp-1ea0468695_database Creating
+ Network knowslink-mvp-1ea0468695_database Created
+ Network knowslink-mvp-1ea0468695_ingress Creating
+ Network knowslink-mvp-1ea0468695_ingress Created
+ Volume knowslink-mvp-1ea0468695_postgres-data Creating
+ Volume knowslink-mvp-1ea0468695_postgres-data Created
+ Container knowslink-mvp-1ea0468695-postgres-1 Creating
+ Container knowslink-mvp-1ea0468695-postgres-1 Created
+ Container knowslink-mvp-1ea0468695-migrate-1 Creating
+ Container knowslink-mvp-1ea0468695-migrate-1 Created
+ Container knowslink-mvp-1ea0468695-relay-1 Creating
+ Container knowslink-mvp-1ea0468695-relay-1 Created
+ Container knowslink-mvp-1ea0468695-postgres-1 Starting
+ Container knowslink-mvp-1ea0468695-postgres-1 Started
+ Container knowslink-mvp-1ea0468695-postgres-1 Waiting
+ Container knowslink-mvp-1ea0468695-postgres-1 Healthy
+ Container knowslink-mvp-1ea0468695-migrate-1 Starting
+ Container knowslink-mvp-1ea0468695-migrate-1 Started
+ Container knowslink-mvp-1ea0468695-migrate-1 Waiting
+ Container knowslink-mvp-1ea0468695-migrate-1 Exited
+ Container knowslink-mvp-1ea0468695-relay-1 Starting
+ Container knowslink-mvp-1ea0468695-relay-1 Started
+ Container knowslink-mvp-1ea0468695-migrate-1 Waiting
+ Container knowslink-mvp-1ea0468695-relay-1 Waiting
+ Container knowslink-mvp-1ea0468695-postgres-1 Waiting
+ Container knowslink-mvp-1ea0468695-migrate-1 Exited
+ Container knowslink-mvp-1ea0468695-postgres-1 Healthy
+ Container knowslink-mvp-1ea0468695-relay-1 Healthy
 command: ['docker', 'compose', '--project-name', 'knowslink-mvp-1ea0468695', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-31mtgwlo/test.yaml', 'up', '--build', '--wait', 'relay']; exit: 0
- Container knowslink-mvp-1ea0468695-relay-1 Stopping 
- Container knowslink-mvp-1ea0468695-relay-1 Stopped 
+ Container knowslink-mvp-1ea0468695-relay-1 Stopping
+ Container knowslink-mvp-1ea0468695-relay-1 Stopped
 command: ['docker', 'compose', '--project-name', 'knowslink-mvp-1ea0468695', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-31mtgwlo/test.yaml', 'stop', 'relay']; exit: 0
 === RUN   TestHTTPSlowBodyAndCleanupAdmission
 --- PASS: TestHTTPSlowBodyAndCleanupAdmission (1.04s)
@@ -307,21 +307,21 @@ PASS: isolated Postgres safety invariants
 PASS
 ok  	github.com/tourbut/KnowsLink/internal/relay	91.379s
 command: ['go', 'test', '-tags=integration', '-race', '-count=1', '-v', './internal/relay']; exit: 0
- Container knowslink-mvp-1ea0468695-postgres-1 Running 
- Container knowslink-mvp-1ea0468695-postgres-1 Waiting 
- Container knowslink-mvp-1ea0468695-postgres-1 Healthy 
- Container knowslink-mvp-1ea0468695-migrate-1 Starting 
- Container knowslink-mvp-1ea0468695-migrate-1 Started 
- Container knowslink-mvp-1ea0468695-migrate-1 Waiting 
- Container knowslink-mvp-1ea0468695-migrate-1 Exited 
- Container knowslink-mvp-1ea0468695-relay-1 Starting 
- Container knowslink-mvp-1ea0468695-relay-1 Started 
- Container knowslink-mvp-1ea0468695-relay-1 Waiting 
- Container knowslink-mvp-1ea0468695-postgres-1 Waiting 
- Container knowslink-mvp-1ea0468695-migrate-1 Waiting 
- Container knowslink-mvp-1ea0468695-postgres-1 Healthy 
- Container knowslink-mvp-1ea0468695-migrate-1 Exited 
- Container knowslink-mvp-1ea0468695-relay-1 Healthy 
+ Container knowslink-mvp-1ea0468695-postgres-1 Running
+ Container knowslink-mvp-1ea0468695-postgres-1 Waiting
+ Container knowslink-mvp-1ea0468695-postgres-1 Healthy
+ Container knowslink-mvp-1ea0468695-migrate-1 Starting
+ Container knowslink-mvp-1ea0468695-migrate-1 Started
+ Container knowslink-mvp-1ea0468695-migrate-1 Waiting
+ Container knowslink-mvp-1ea0468695-migrate-1 Exited
+ Container knowslink-mvp-1ea0468695-relay-1 Starting
+ Container knowslink-mvp-1ea0468695-relay-1 Started
+ Container knowslink-mvp-1ea0468695-relay-1 Waiting
+ Container knowslink-mvp-1ea0468695-postgres-1 Waiting
+ Container knowslink-mvp-1ea0468695-migrate-1 Waiting
+ Container knowslink-mvp-1ea0468695-postgres-1 Healthy
+ Container knowslink-mvp-1ea0468695-migrate-1 Exited
+ Container knowslink-mvp-1ea0468695-relay-1 Healthy
 command: ['docker', 'compose', '--project-name', 'knowslink-mvp-1ea0468695', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-31mtgwlo/test.yaml', 'up', '--wait', 'relay']; exit: 0
 PASS: TS verify/persist/ACK/claim, policy deny, owner approve and denied result; no effects
 command: ['node', 'adapters/dist/synthetic.js', 'http://127.0.0.1:42771']; exit: 0
@@ -330,23 +330,23 @@ UI candidate: http://127.0.0.1:42771/owner/gates/01a11684-d2be-7435-8847-8f1d7e0
 command: ['node', 'adapters/dist/synthetic.js', 'http://127.0.0.1:42771', '--seed']; exit: 0
 {"state":"local_two_agent_roundtrip_pass","codex_send":"01a11684-d5f8-7692-adeb-a90ed946479a","grok_received":"01a11684-d5f8-7692-adeb-a90ed946479a","grok_reply":"01a11684-d71b-7e3e-93de-e7c5cd067db7","codex_received":"01a11684-d71b-7e3e-93de-e7c5cd067db7","actualGrok":"unverified","duplicate":"same_receipt","second_pull":"empty"}
 command: ['node', 'adapters/dist/trial-check.js', 'http://127.0.0.1:42771']; exit: 0
- Container knowslink-mvp-1ea0468695-relay-1 Stopping 
- Container knowslink-mvp-1ea0468695-relay-1 Stopped 
- Container knowslink-mvp-1ea0468695-relay-1 Removing 
- Container knowslink-mvp-1ea0468695-relay-1 Removed 
- Container knowslink-mvp-1ea0468695-migrate-1 Stopping 
- Container knowslink-mvp-1ea0468695-migrate-1 Stopped 
- Container knowslink-mvp-1ea0468695-migrate-1 Removing 
- Container knowslink-mvp-1ea0468695-migrate-1 Removed 
- Container knowslink-mvp-1ea0468695-postgres-1 Stopping 
- Container knowslink-mvp-1ea0468695-postgres-1 Stopped 
- Container knowslink-mvp-1ea0468695-postgres-1 Removing 
- Container knowslink-mvp-1ea0468695-postgres-1 Removed 
- Volume knowslink-mvp-1ea0468695_postgres-data Removing 
- Network knowslink-mvp-1ea0468695_database Removing 
- Network knowslink-mvp-1ea0468695_ingress Removing 
- Volume knowslink-mvp-1ea0468695_postgres-data Removed 
- Network knowslink-mvp-1ea0468695_database Removed 
- Network knowslink-mvp-1ea0468695_ingress Removed 
+ Container knowslink-mvp-1ea0468695-relay-1 Stopping
+ Container knowslink-mvp-1ea0468695-relay-1 Stopped
+ Container knowslink-mvp-1ea0468695-relay-1 Removing
+ Container knowslink-mvp-1ea0468695-relay-1 Removed
+ Container knowslink-mvp-1ea0468695-migrate-1 Stopping
+ Container knowslink-mvp-1ea0468695-migrate-1 Stopped
+ Container knowslink-mvp-1ea0468695-migrate-1 Removing
+ Container knowslink-mvp-1ea0468695-migrate-1 Removed
+ Container knowslink-mvp-1ea0468695-postgres-1 Stopping
+ Container knowslink-mvp-1ea0468695-postgres-1 Stopped
+ Container knowslink-mvp-1ea0468695-postgres-1 Removing
+ Container knowslink-mvp-1ea0468695-postgres-1 Removed
+ Volume knowslink-mvp-1ea0468695_postgres-data Removing
+ Network knowslink-mvp-1ea0468695_database Removing
+ Network knowslink-mvp-1ea0468695_ingress Removing
+ Volume knowslink-mvp-1ea0468695_postgres-data Removed
+ Network knowslink-mvp-1ea0468695_database Removed
+ Network knowslink-mvp-1ea0468695_ingress Removed
 command: ['docker', 'compose', '--project-name', 'knowslink-mvp-1ea0468695', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', '/tmp/knowslink-mvp-31mtgwlo/test.yaml', 'down', '--volumes']; exit: 0
 PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused

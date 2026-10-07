@@ -76,6 +76,8 @@ summary: Sol 관측(같은 commit 시각 snapshot 역전·갱신 전 포화 거�
 
 - 예상 규모: 제품 Go 약 +90/−30줄, 회귀 시험 약 +190줄. 실제: 제품 +95/−34(생성 sqlc 17·SQL 3 포함), 시험 +188/−13이다.
 - SIZE-001: `store.go` 524(이전 522)는 기존 대상이며 증가는 필드 2개다. 새 회귀는 `cleanup_unit_integration_test.go`(153줄)로 분리해 `cleanup_flood_integration_test.go`를 221줄로 유지했다. DEP 0: 새 의존성 없음. SLOP·DESIGN 해당 없음: template·CSS 변경 없음. 최종 FullOps lint의 ERROR·WARNING은 완료 보고에 원문대로 남긴다.
+- FullOps lint `--from 758`(문서 커밋 `55c7714`): product-lint·product-test passed, ERROR 1·WARNING 4·실행 불가 0. ERROR DOC-003은 coor가 보존한 Sol 진행분 `SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/report.md`(front matter 없음)다. 원 증거라 수정하지 않았다. SEC-001 `cleanup_admission_test.go:22`는 시험 fixture의 lease 문자열 `"lease"`이며 비밀값이 아니다. SIZE-001 `PLANS.md`(coor 누적)·`store.go`(기존 대상)와 SIZE-002(추가 대부분이 증거 로그와 758 이후 coor 기록)는 위 규모 설명과 같다.
+- `git diff --check`: Compose 진행 출력의 행 끝 공백만 이 과제의 mvp 로그 3개에서 지웠다. 내용은 바꾸지 않았다. `SAR-PUBLIC-MESSAGES-001-TESTER-test`의 기존 로그 공백은 원 증거라 그대로다.
 - 기술 산출물: D03 architecture, D05 interface-design, D06 data-model, D07 database-design(`ReadRelay` 읽기 질의, table·migration 무변경), D09 crud-design, D10 module-design을 갱신했다. D03 tech-stack은 새 기술이 없어 변경 없음이다. D08 테이블 정의는 변경 없음이다.
 - D12/D13은 OPS 소유라 수정하지 않았다. 이행 조건은 아래 미검증·인계에 연결한다. 운영 수락을 만들지 않는다.
 
