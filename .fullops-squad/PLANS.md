@@ -1149,3 +1149,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 결정: 핵심 기능을 기준으로 먼저 열고 운영에서 점점 보완한다. 검증의 완전성을 기다리느라 출시를 지연하지 않는다. 이 결정은 이전의 광범위 최종 수락 대기보다 우선한다.
 - 배포 전 확인은 빌드·기동·변경된 핵심 경로의 최소 확인과 알려진 권한/비밀 노출·데이터 손실 차단 문제에 한정한다. 통과한 전체 테스트와 동일 SHA 검증을 반복하지 않는다. 비차단 경고·문서 확대·전체 UI/부하/외부 연동 검증은 배포 뒤 개선 목록으로 보낸다. 신규 프레임워크·검증 과제를 추가하지 않는다.
 - 다음 출시의 실제 장애물은 SMTP 부재다. 현재 최신 제품 코드 d089는 기존 보호 서버에 배포됐고 main/origin/main에 반영됐다. 무료 SMTP 설정과 발신 도메인을 확보하면 이메일 가입/로그인 한 경로를 실제로 확인한 뒤 핵심 서비스 공개를 진행한다. 기존 Tunnel·Workers Free·비밀값 비공개를 유지한다.
+
+- tester escalation msg_a953c62d6e34 / delivery_6234a305a467 처리: 후보 d089의 lint/test/build exit0, 독립 verify-mvp는 Node segmentation fault exit2로 integration 전에 종료했다. 새 QA 소스는 unused import 컴파일 exit1이다. 전체 PS08–11·cleanup/snapshot 독립 판정은 미검증이다. 제품 PASS/실패로 대체하지 않는다. 사용자 지시대로 재실행·확대 없이 현재 원본 로그/보고서 마감과 최종 authentic worker_done만 요청했다(reply msg_97b6b3fe82fd). 현재 배포 정상 상태는 유지한다.
