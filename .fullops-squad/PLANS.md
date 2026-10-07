@@ -1168,3 +1168,12 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 대기 담당 coor/designer/reviewer/tester: 사용자 검수 재개 요청과 고정 SHA가 후속 재개 조건이다. 이 기록으로 필수 독립 검수를 PASS로 바꾸지 않는다.
 
 - UI 중단 msg_3fd3268e5203 / SHA5cd5888의 기록만 통합한다. PNG0·직접 UI 미검증·helper IndexError2를 보존하고 재실행하지 않는다. 제품 코드 변경0이며 기존 배포를 유지한다.
+## SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW — 독립 정적 검토 완료, UTF-8 수정 요청
+
+- OPS 실제 세션 `01a116a3-2a1d-7961-92fa-33417bc9c46c`가 구현자 `aa85544d-18c3-43d3-95d0-b729aa9e9e8c`와 별도 세션에서 fixed `d08903a55c3638128827010400e66e9d45b61d7c`를 읽기 전용 managed detached snapshot으로 검토했다. 기준 main `68b0d6a0c854fdaec6828a232dd3945814be1404`, 기록 준비 HEAD `cebc32c2e3ae3b15ff5fd7238de1c5ab96eaf7b4`다.
+- [독립 리뷰 report/result/check](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW-review/report.md): 전체702개 coverage·reviewed75/skipped627·제품32개 전부 검토. 기존 H-1/H-2·snapshot 역전/stale/restart·owner-agent 정리 분리·finish 회수의 정적 수정 근거를 확인했다. 후보 exact lint/test 각exit0·ERROR0/WARNING14/실행불가0, 원334 및 UI91 manifest 해시 동일이다. 독립 실행 QA·직접 시각 수락으로 대신 쓰지 않는다.
+- 수정 요청 `M-UTF8-01` medium: `adapters/src/text.ts:215–218`의 청크별 `String(chunk)`이 분할 UTF-8 stdin을 변형한다. stdlib 확인에서 `한`3bytes가 `���`9bytes가 된다. 제품 코드는 수정하지 않았다. 새 critical/high0이며 원 SHA의 high/실패/pending·차단 기록은 유지한다. 기록 check 통과가 main/공개 승인이라는 뜻은 아니다.
+- 대기 담당 coor/DEV: 기존 요구 안의 좁은 기술 후속으로 streaming decode 또는 bytes 상한 후 단일 decode와 분할 한글/emoji·4096bytes 회귀를 작성한다. 새 fixed SHA의 검사·독립 delta 리뷰와 tester/designer 결과를 확인한 뒤 main 판정한다. 새 과제는 이 OPS inbox를 재사용해 시작하지 않는다.
+- D11의 새 text 안내 연결과 L-1·L-A·L-B·운영 크기/CPU·edge·SMTP·실메일·외부플랫폼/노우↔다닷·실24h는 해당 담당 후속이다. D12/D13의 기존0911 백업/복원 준비를 새 공개 수락으로 바꾸지 않는다. reviewer release 뒤 managed snapshot 정리는 coor가 맡는다.
+
+- 최종 OPS 완료 msg_d368199e3694 / 0ab5f2f 통합: fixed d089 정적 검토 완료, 새 critical/high0·M-UTF8-01 medium 미해결. 사용자 핵심 기능 우선 배포 지시에 따라 medium은 후속 최소 수정으로 남긴다. QA/UI 미완료를 수락 PASS로 변경하지 않는다. 세 검수자의 현재 결과 마감 완료, 새 검증 배정 없음.

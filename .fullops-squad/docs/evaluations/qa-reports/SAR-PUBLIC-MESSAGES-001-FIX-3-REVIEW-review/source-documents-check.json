@@ -1,0 +1,1035 @@
+{
+  "snapshot": "/home/shin/orca/workspaces/KnowsLink/.fullops-review-4e43dd6838fe4b8e938312708eaf0bcd",
+  "read_paths": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/agents/document-writing.md",
+    ".fullops-squad/docs/deliverables/README.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/crud-design.md",
+    ".fullops-squad/docs/design-docs/data-model.md",
+    ".fullops-squad/docs/design-docs/database-design.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/design-docs/tech-stack.md",
+    ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+    ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-3-final/candidate-lint.json",
+    ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-3-final/pending-template-preservation.json",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/lint-955cbae.exit",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/lint-final.exit",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/mvp-955cbae.exit",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/mvp-9620723-flake.exit",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/mvp-9620723-flake.log",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/mvp-final.exit",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/mvp-final.log",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/red-758-equal-time.log",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/red-758.log",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/test-955cbae.exit",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/test-final.exit",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/original-hashes.json",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/provenance.json",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-2-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/manifest.json",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/manifest.json",
+    ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+    ".fullops-squad/docs/generated/db-schema.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/docs/operations/user-guide.md",
+    ".fullops-squad/docs/planning/business-plan.md",
+    ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+    ".fullops-squad/handovers/to_ops.md",
+    ".fullops-squad/orca-agents.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/rules/common/README.md",
+    ".fullops-squad/rules/common/coding-style.md",
+    ".fullops-squad/rules/common/security.md",
+    ".fullops-squad/rules/common/testing.md",
+    "README.md",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/connect.ts",
+    "adapters/src/core.ts",
+    "adapters/src/mcp.test.ts",
+    "adapters/src/mcp.ts",
+    "adapters/src/public-check.ts",
+    "adapters/src/text.ts",
+    "cmd/relay/main.go",
+    "db/queries/relay.sql",
+    "internal/database/relay.sql.go",
+    "internal/relay/admission_integration_test.go",
+    "internal/relay/api_rate.go",
+    "internal/relay/capacity.go",
+    "internal/relay/cleanup_admission.go",
+    "internal/relay/cleanup_admission_test.go",
+    "internal/relay/cleanup_flood_integration_test.go",
+    "internal/relay/cleanup_unit_integration_test.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/http.go",
+    "internal/relay/identity_integration_test.go",
+    "internal/relay/integration_test.go",
+    "internal/relay/member.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/protocol.go",
+    "internal/relay/public_messages_integration_test.go",
+    "internal/relay/public_text.go",
+    "internal/relay/public_text_test.go",
+    "internal/relay/store.go",
+    "scripts/verify_grok_plugin.py"
+  ],
+  "local_file_links": [
+    {
+      "source": ".fullops-squad/FULLOPS.md",
+      "target": "docs/agents/document-writing.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/FULLOPS.md",
+      "target": "rules/common/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-SETUP-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PREP-002.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-REVIEW-review/report.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/FULLOPS-WORKTREE-CLEANUP-2026-10-06/receipt.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-2-review/report.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/coordinator-followup.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/PLANS.md",
+      "target": "docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/contexts/ops.md",
+      "target": "../docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/deliverables/README.md",
+      "target": "../planning/business-plan.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/deliverables/README.md",
+      "target": "../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/deliverables/README.md",
+      "target": "../planning/product-specs/SAR-SETUP-001.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/deliverables/README.md",
+      "target": "../planning/SAR-MVP-backlog.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../exec-plans/phases/SAR-MVP-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../../../adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../operations/ops-guide.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/architecture.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/crud-design.md",
+      "target": "data-model.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/crud-design.md",
+      "target": "database-design.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/crud-design.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/crud-design.md",
+      "target": "../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/data-model.md",
+      "target": "../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/data-model.md",
+      "target": "database-design.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/data-model.md",
+      "target": "crud-design.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/database-design.md",
+      "target": "data-model.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/database-design.md",
+      "target": "../generated/db-schema.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/interface-design.md",
+      "target": "../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/interface-design.md",
+      "target": "../../../adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/interface-design.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/interface-design.md",
+      "target": "../../../adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/interface-design.md",
+      "target": "../planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "SAR-PUBLIC-MESSAGES-001-UI.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/coordinator-followup.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "SAR-PUBLIC-SERVICE-UX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/snapshot-identity.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/source-identity.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/manifest.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/original-preserved.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/cleanup.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "SAR-PUBLIC-SERVICE-UX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/source-identity.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/manifest.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/supplement-result.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/original-dev-preserved.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/cleanup.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "target": "../../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "target": "../../planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "target": "../../planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "target": "SAR-PUBLIC-AGENTS-001-UI.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "target": "../../planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "target": "SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "interface-design.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "data-model.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../../../adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/module-design.md",
+      "target": "../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "target": "../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "target": "../../../README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "target": "../exec-plans/phases/SAR-SETUP-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "../../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "SAR-PUBLIC-MESSAGES-001-TESTER-test/probe_test.go.src",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "SAR-PUBLIC-MESSAGES-001-TESTER-test/",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "SAR-PUBLIC-MESSAGES-001-TESTER-test/admission-defects.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "SAR-PUBLIC-MESSAGES-001-TESTER-test/fullops-lint-b8c5f2e.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "SAR-PUBLIC-MESSAGES-001-TESTER-test/fullops-lint-39a6dcb.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "target": "../../design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "target": "../qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2/",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX/",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md",
+      "target": "../../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV/",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/generated/db-schema.md",
+      "target": "../design-docs/data-model.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "transition.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-BETA-001-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../planning/SAR-MVP-backlog.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../deliverables/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-BETA-001-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../../../adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/ops-guide.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "ops-guide.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "user-guide.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../../../adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-DEV.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/transition.md",
+      "target": "../exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/user-guide.md",
+      "target": "transition.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/operations/user-guide.md",
+      "target": "ops-guide.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "sources/silent-agent-relay/source.json",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "sources/silent-agent-relay/product.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "sources/silent-agent-relay/decisions.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "sources/silent-agent-relay/business-model.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "SAR-MVP-backlog.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/business-plan.md",
+      "target": "product-specs/SAR-PUBLIC-SERVICE.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "../../exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "../../exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "../../exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "../../design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "../../design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "../../exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "target": "../../design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/orca-agents.md",
+      "target": "rules/common/testing.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/project.md",
+      "target": "rules/common/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/project.md",
+      "target": "rules/common/coding-style.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/project.md",
+      "target": "rules/common/testing.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/project.md",
+      "target": "rules/common/security.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/project.md",
+      "target": "../adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/project.md",
+      "target": "rules/common/testing.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/README.md",
+      "target": "coding-style.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/README.md",
+      "target": "testing.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/README.md",
+      "target": "security.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/README.md",
+      "target": "ECC-LICENSE.txt",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/coding-style.md",
+      "target": "README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/coding-style.md",
+      "target": "../../lint/README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/security.md",
+      "target": "README.md",
+      "exists": true
+    },
+    {
+      "source": ".fullops-squad/rules/common/testing.md",
+      "target": "README.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": ".fullops-squad/docs/design-docs/interface-design.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": ".fullops-squad/docs/design-docs/interface-design.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": ".fullops-squad/docs/design-docs/architecture.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-DEV.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "adapters/README.md",
+      "exists": true
+    },
+    {
+      "source": "adapters/README.md",
+      "target": "../.fullops-squad/docs/operations/ops-guide.md",
+      "exists": true
+    },
+    {
+      "source": "adapters/README.md",
+      "target": "../.fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "exists": true
+    },
+    {
+      "source": "adapters/README.md",
+      "target": "../README.md",
+      "exists": true
+    }
+  ],
+  "missing_links": [],
+  "anchors": "not automatically rendered; required PS08–11/UX06–07 located directly",
+  "external_links": "historical source references only; no external fetching",
+  "d11_followup": "public release needs user-guide link to member text instructions in README/adapters README"
+}

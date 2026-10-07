@@ -1,0 +1,15 @@
+{
+  "finding": "M-UTF8-01",
+  "method": "stdlib primitive check; no product CLI/server/network execution",
+  "command": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import assert from 'node:assert/strict'; const raw=Buffer.from('한'); const actual=String(raw.subarray(0,1))+String(raw.subarray(1)); assert.notEqual(actual,'한'); assert.equal(actual,'���'); console.log(JSON.stringify({source:'한',decodedByChunk:actual,bytes:raw.length,decodedBytes:Buffer.byteLength(actual)}));"
+  ],
+  "cwd": "/home/shin/orca/workspaces/KnowsLink/fullops-ops",
+  "exit_code": 0,
+  "stdout": "{\"source\":\"한\",\"decodedByChunk\":\"���\",\"bytes\":3,\"decodedBytes\":9}",
+  "stderr": "",
+  "fixed_source_sha": "d08903a55c3638128827010400e66e9d45b61d7c"
+}
