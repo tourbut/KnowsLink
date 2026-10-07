@@ -1,0 +1,122 @@
+//go:build integration
+
+// Independent ordinary-member roundtrip and self-cleanup through actual handlers while new admission is full.
+package relay
+
+import (
+	"context"
+	"encoding/json"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
+	"os"
+	"strings"
+	"testing"
+	"time"
+)
+
+func TestQACrossOwnerRoundtripAndCleanup(t *testing.T) {
+	pool := messagePool(t)
+	s, mail := identityService(t, pool)
+	h := s.Handler()
+	server := httptest.NewServer(h)
+	defer server.Close()
+	a := &browser{t, h, "192.0.2.60", map[string]string{}}
+	b := &browser{t, h, "192.0.2.61", map[string]string{}}
+	login(t, a, mail, "fix3-a@example.test")
+	login(t, b, mail, "fix3-b@example.test")
+	aa, af := onboard(t, a, s, server.URL, os.Getenv("QA_CLONE"))
+	ba, bf := onboard(t, b, s, server.URL, os.Getenv("QA_CLONE"))
+	var ao, bo string
+	s.mutateState(t, func(st *State) { ao, bo = st.Agents[aa].Owner, st.Agents[ba].Owner })
+	if ao == bo {
+		t.Fatal("fixture owners must differ")
+	}
+	expect(t, a.do("POST", "/home/invites", url.Values{"agent": {aa}, "target": {ba}}), 303)
+	expect(t, a.do("POST", "/home/invite-decision", url.Values{"agent": {aa}, "target": {ba}, "generation": {"1"}, "decision": {"accept"}}), 403)
+	expect(t, b.do("POST", "/home/invite-decision", url.Values{"agent": {aa}, "target": {ba}, "generation": {"1"}, "decision": {"accept"}}), 303)
+	code, output := runNode(t, os.Getenv("QA_CLONE"), "", "node", os.Getenv("QA_ROUNDTRIP"), af, bf, aa, ba)
+	if code != 0 {
+		t.Fatalf("cross-owner Node/MCP exit %d: %s", code, nodeFailure(output, loadMember(t, af).credential))
+	}
+	var roundtrip struct{ State, Request, Received, Reply, ReplyReceived string }
+	if json.Unmarshal([]byte(output), &roundtrip) != nil || roundtrip.State != "qa_local_node_mcp_pass" || roundtrip.Request == "" || roundtrip.Request != roundtrip.Received || roundtrip.Reply == "" || roundtrip.Reply != roundtrip.ReplyReceived {
+		t.Fatal("cross-owner roundtrip identity")
+	}
+	t.Log("cross-owner", strings.TrimSpace(output))
+	expect(t, a.do("GET", "/home/receipts?agent="+aa+"&id="+roundtrip.Request, nil), 200, "reply_received", roundtrip.Reply)
+	expect(t, b.do("GET", "/home/receipts?agent="+aa+"&id="+roundtrip.Request, nil), 403)
+	ca, _ := onboard(t, a, s, server.URL, os.Getenv("QA_CLONE"))
+	expect(t, a.do("POST", "/home/invites", url.Values{"agent": {ca}, "target": {ba}}), 303)
+	_, pendingConnection := browserGrant(t, a, aa, "rotate")
+	key := loadMember(t, bf)
+	clearRates(t, s)
+	s.mutateState(t, func(st *State) {
+		for i := range 16 {
+			st.HTTP["qa-fixed-full-"+qaID(i)] = admission{Clean: false, Exp: time.Now().Add(time.Minute)}
+		}
+	})
+	restarted := &Service{Pool: pool, Mail: mail.send}
+	a.h = restarted.Handler()
+	b.h = a.h
+	if restarted.live.Load() != nil {
+		t.Fatal("restart fixture already has a snapshot")
+	}
+	for range 16 {
+		restarted.httpNew <- struct{}{}
+	}
+	defer func() {
+		for range 16 {
+			<-restarted.httpNew
+		}
+	}()
+	check := func(name, path string, actor *browser, form url.Values, state func(*State) bool) {
+		t.Helper()
+		response := actor.do("POST", path, form)
+		expect(t, response, 303)
+		var valid bool
+		s.mutateState(t, func(st *State) {
+			valid = state(st)
+			if len(st.HTTP) != 16 {
+				t.Errorf("%s admission rows=%d want 16", name, len(st.HTTP))
+			}
+		})
+		if !valid {
+			t.Fatalf("%s status 303 without expected state", name)
+		}
+		t.Logf("normal cleanup %s: HTTP 303, expected state true, local new=16, shared new=16", name)
+	}
+	check("cancel", "/home/cancel", a, url.Values{"connection": {pendingConnection}}, func(st *State) bool { return st.Connections[pendingConnection].State == "cancelled" })
+	check("invite-deny", "/home/invite-deny", b, url.Values{"agent": {ca}, "target": {ba}, "generation": {"1"}, "decision": {"deny"}}, func(st *State) bool { return st.Pairs[pairID(ca, ba)].State == "denied" })
+	check("unpair", "/home/unpair", a, url.Values{"agent": {aa}, "target": {ba}, "generation": {"1"}}, func(st *State) bool { return st.Pairs[pairID(aa, ba)].State == "revoked" })
+	check("key-revoke", "/home/key-revoke", b, url.Values{"agent": {ba}, "kid": {key.kid}}, func(st *State) bool { return st.Agents[ba].Keys[key.kid].Revoked })
+	check("agent-revoke", "/home/agent-revoke", b, url.Values{"agent": {ba}}, func(st *State) bool { return st.Agents[ba].Revoked })
+	as, bs := hashToken(a.cookies[sessionCookie]), hashToken(b.cookies[sessionCookie])
+	check("logout", "/auth/logout", a, nil, func(st *State) bool { return st.Sessions[as] == nil })
+	check("logout-all", "/auth/logout-all", b, nil, func(st *State) bool { return st.Sessions[bs] == nil })
+	if _, err := pool.Exec(context.Background(), "SELECT 1"); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestQASnapshotSameTimeOrder(t *testing.T) {
+	s := &Service{}
+	at := time.Now().UTC()
+	latest := newState()
+	s.remember(latest, at, 11)
+	s.remember(newState(), at, 10)
+	if s.live.Load().st != latest || s.live.Load().epoch != 11 {
+		t.Fatal("same DB time older epoch replaced latest")
+	}
+	t.Log("same DB time: observed epoch=11 after late epoch=10; expected epoch=11")
+	s.remember(newState(), at, 12)
+	if s.live.Load().epoch != 12 {
+		t.Fatal("same DB time newer epoch rejected")
+	}
+	t.Log("same DB time: observed epoch=12 after newer epoch=12; expected epoch=12")
+	s.remember(newState(), at.Add(time.Microsecond), 1)
+	if s.live.Load().epoch != 1 || !s.live.Load().at.After(at) {
+		t.Fatal("later restored DB commit rejected")
+	}
+	t.Log("later DB time with restored epoch: observed epoch=1; expected epoch=1")
+}

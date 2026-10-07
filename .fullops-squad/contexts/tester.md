@@ -57,3 +57,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 - 2026-10-06 SAR-PUBLIC-MESSAGES-001-TESTER: 후보 `09c523da8a3407288d9f5d711e1834af12bc7808`의 별도 clone에서 PS08–11 프로브 종료코드는 1이다. H-1 high, M-1 medium, receipt 상한 뒤 신규 HTTP 행 1개 잔류를 재현했다.
 - `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다. 이 통과는 격리 fixture다. 제품 코드는 수정하지 않았다.
 - 실메일, 공개, 벽시계 24시간, 운영 부하와 복원, PS13, PS14, 노우↔다닷은 미실행이다. H-1은 main 수락을 차단한다. 보고서: [SAR-PUBLIC-MESSAGES-001-TESTER.md](../docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md).
+
+- 2026-10-07 SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER: d089 기본 lint/test/build exit 0이나 runtime 재빌드 exit 2, tester QA 컴파일 exit 1이다. 사용자 중단으로 독립 기능 QA는 미완료다.
+- 원 실패와 78개 파일 해시를 보존했다. 자기 DB와 scratch를 회수하고 managed snapshot은 남겼다. [상세 보고서](../docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md).

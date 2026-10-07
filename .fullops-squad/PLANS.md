@@ -1151,3 +1151,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 다음 출시의 실제 장애물은 SMTP 부재다. 현재 최신 제품 코드 d089는 기존 보호 서버에 배포됐고 main/origin/main에 반영됐다. 무료 SMTP 설정과 발신 도메인을 확보하면 이메일 가입/로그인 한 경로를 실제로 확인한 뒤 핵심 서비스 공개를 진행한다. 기존 Tunnel·Workers Free·비밀값 비공개를 유지한다.
 
 - tester escalation msg_a953c62d6e34 / delivery_6234a305a467 처리: 후보 d089의 lint/test/build exit0, 독립 verify-mvp는 Node segmentation fault exit2로 integration 전에 종료했다. 새 QA 소스는 unused import 컴파일 exit1이다. 전체 PS08–11·cleanup/snapshot 독립 판정은 미검증이다. 제품 PASS/실패로 대체하지 않는다. 사용자 지시대로 재실행·확대 없이 현재 원본 로그/보고서 마감과 최종 authentic worker_done만 요청했다(reply msg_97b6b3fe82fd). 현재 배포 정상 상태는 유지한다.
+## SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER 중단 결과 — 2026-10-07
+
+- 실제 Sol 세션 `01a116a7-1869-7503-9c40-e5c45acfae97`·managed clean detached d089 snapshot·자기 scratch를 확인했다. lint/test/build exit 0이며 verify-mvp는 Node 재빌드 exit 2다. 독립 QA는 tester unused import 컴파일 exit 1로 assertion 미실행이다.
+- 사용자 중단 메시지 `msg_0aa33027c858`로 추가 테스트·재실행·탐색을 멈췄다. 전체 PS08–11·FIX3 정상 정리·DB snapshot 독립 검수는 미완료다. 원본 78개 해시 동일·자기 DB down exit 0·scratch 회수·snapshot 보존이다.
+- coor 담당: 사용자 배포 지시와 QA 미완료를 구분한다. [보고서](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md). 후속 QA는 새 명시 지시로 재개한다. 기존 운영/vendor 미검증과 원 SHA 실패는 유지한다.
+
+- msg_7854f226a3ad의 QA 중단 기록6b80495를 제품 변경 없이 통합했다. 미완료/Node exit2/시험 컴파일 exit1을 보존하며 재실행하지 않는다. OPS 정적 리뷰의 CLI UTF-8 청크 경계 medium M-UTF8-01은 배포 뒤 DEV 최소 수정 목록이다. critical/high 새 발견0은 기능 QA PASS를 뜻하지 않는다.

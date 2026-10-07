@@ -1,0 +1,261 @@
+--- preserved-09c-probe
++++ fixed-candidate-probe
+@@ -1,5 +1,6 @@
+ //go:build integration
+
++// Independent PS08–11 QA adapted from the preserved 09c probe for verified cleanup admission.
+ package relay
+
+ import (
+@@ -10,8 +11,7 @@
+        "encoding/json"
+        "encoding/pem"
+        "fmt"
+-       "io"
+-       "net/http"
++               "net/http"
+        "net/http/httptest"
+        "net/url"
+        "os"
+@@ -19,8 +19,7 @@
+        "path/filepath"
+        "strings"
+        "sync"
+-       "sync/atomic"
+-       "testing"
++               "testing"
+        "time"
+ )
+
+@@ -214,116 +213,6 @@
+        mustCode(t, postAgent(t, handler, "/v1/text/persist", token, "", body), 200)
+        mustCode(t, postAgent(t, handler, "/v1/text/ack", token, "", body), 200)
+        return true
+-}
+-
+-type blockReader struct{ release <-chan struct{} }
+-
+-func (b blockReader) Read([]byte) (int, error) {
+-       <-b.release
+-       return 0, io.EOF
+-}
+-func (b blockReader) Close() error { return nil }
+-
+-func holdSlow(t *testing.T, handler http.Handler, count int, path string) func() {
+-       t.Helper()
+-       release := make(chan struct{})
+-       var once sync.Once
+-       stop := func() { once.Do(func() { close(release) }) }
+-       var finished atomic.Int32
+-       codes := make([]int, count)
+-       var group sync.WaitGroup
+-       for i := 0; i < count; i++ {
+-               group.Add(1)
+-               go func(index int) {
+-                       defer group.Done()
+-                       request := httptest.NewRequest(http.MethodPost, path, blockReader{release})
+-                       request.ContentLength = -1
+-                       request.RemoteAddr = "198.51.100.10:40000"
+-                       request.Header.Set("Content-Type", "application/json")
+-                       response := httptest.NewRecorder()
+-                       handler.ServeHTTP(response, request)
+-                       codes[index] = response.Code
+-                       finished.Add(1)
+-               }(i)
+-       }
+-       time.Sleep(100 * time.Millisecond)
+-       deadline := time.Now().Add(3 * time.Second)
+-       var response *httptest.ResponseRecorder
+-       for {
+-               request := httptest.NewRequest(http.MethodPost, path, strings.NewReader("{}"))
+-               request.RemoteAddr = "198.51.100.11:40000"
+-               request.Header.Set("Content-Type", "application/json")
+-               response = httptest.NewRecorder()
+-               handler.ServeHTTP(response, request)
+-               if response.Code == http.StatusTooManyRequests && strings.Contains(response.Body.String(), `"error":"capacity"`) {
+-                       break
+-               }
+-               if time.Now().After(deadline) {
+-                       done := finished.Load()
+-                       stop()
+-                       group.Wait()
+-                       t.Fatalf("slow bodies did not fill %s: finished-before-release %d codes %v last %d %s", path, done, codes, response.Code, response.Body.String())
+-               }
+-               time.Sleep(20 * time.Millisecond)
+-       }
+-       return func() {
+-               stop()
+-               group.Wait()
+-       }
+-}
+-
+-func formStatus(handler http.Handler, path string, form url.Values, cookies map[string]string) int {
+-       request := httptest.NewRequest(http.MethodPost, path, strings.NewReader(form.Encode()))
+-       request.RemoteAddr = "192.0.2.40:40000"
+-       request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+-       for name, value := range cookies {
+-               request.AddCookie(&http.Cookie{Name: name, Value: value})
+-       }
+-       response := httptest.NewRecorder()
+-       handler.ServeHTTP(response, request)
+-       return response.Code
+-}
+-
+-func preserveAdmissionDefects(t *testing.T, service *Service, owner *browser, gate string) []string {
+-       t.Helper()
+-       clearRates(t, service)
+-       side := (&Service{Pool: service.Pool, Mail: service.Mail}).Handler()
+-       defects := []string{}
+-       releaseNew := holdSlow(t, side, 16, "/v1/text/send")
+-       heldSend := postAgent(t, side, "/v1/text/send", "not-a-member-credential", "", []byte("{"))
+-       if heldSend.Code == http.StatusTooManyRequests {
+-               defects = append(defects, "H-1 high: 16 anonymous slow POST /v1/text/send bodies occupy the new-work process slots before authentication; a later request is HTTP 429 for up to the 10s body deadline")
+-       }
+-       formDeny := formStatus(side, "/home/gates/"+gate, url.Values{"csrf": {"bad"}, "decision": {"deny"}}, owner.cookies)
+-       if formDeny == http.StatusTooManyRequests {
+-               defects = append(defects, "M-1 medium: POST /home/gates/{id} decision=deny is classified as new work before the body is parsed, so it returns HTTP 429 while new-work slots are full; the cleanup budget does not admit that form")
+-       }
+-       pathDeny := formStatus(side, "/home/gates/"+gate+"/deny", url.Values{"csrf": {"bad"}, "decision": {"deny"}}, owner.cookies)
+-       if pathDeny == http.StatusTooManyRequests {
+-               defects = append(defects, "M-1 impact: POST /home/gates/{id}/deny was also HTTP 429 while only new-work slots were held")
+-       } else if pathDeny != http.StatusForbidden {
+-               releaseNew()
+-               t.Fatalf("explicit /deny returned %d", pathDeny)
+-       }
+-       releaseNew()
+-       t.Logf("admission while new slots are held: send=%d formDeny=%d pathDeny=%d", heldSend.Code, formDeny, pathDeny)
+-       releaseClean := holdSlow(t, side, 4, "/v1/text/ack")
+-       heldAck := postAgent(t, side, "/v1/text/ack", "not-a-member-credential", "", []byte("{"))
+-       if heldAck.Code == http.StatusTooManyRequests {
+-               defects = append(defects, "H-1 high: 4 anonymous slow POST /v1/text/ack bodies occupy the cleanup process slots before authentication; a later cleanup request is HTTP 429")
+-       }
+-       releaseClean()
+-       t.Logf("admission while cleanup slots are held: ack=%d", heldAck.Code)
+-       if path := os.Getenv("QA_DEFECTS"); path != "" {
+-               raw, _ := json.Marshal(defects)
+-               if err := os.WriteFile(path, append(raw, '\n'), 0600); err != nil {
+-                       t.Fatal(err)
+-               }
+-       }
+-       for _, defect := range defects {
+-               t.Error(defect)
+-       }
+-       return defects
+ }
+
+ func deliverBusiness(t *testing.T, handler http.Handler, token string) (string, string, map[string]any) {
+@@ -790,85 +679,10 @@
+        if occupiedNew != 0 || occupiedClean != 0 {
+                t.Errorf("HTTP admission leaked before the concurrency check: new=%d cleanup=%d; a full relay snapshot can outlive the 2s release transaction until the 30s expiry", occupiedNew, occupiedClean)
+        }
+-       entered := make(chan bool, 20)
+-       releaseNew, releaseClean := make(chan struct{}), make(chan struct{})
+-       var release sync.Once
+-       unblock := func() { release.Do(func() { close(releaseNew); close(releaseClean) }) }
+-       defer unblock()
+-       next := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+-               clean := cleanupRequest(r)
+-               entered <- clean
+-               if clean {
+-                       <-releaseClean
+-               } else {
+-                       <-releaseNew
+-               }
+-               w.WriteHeader(http.StatusOK)
+-       })
+-       handlers := []http.Handler{service.boundedHTTP(next), (&Service{Pool: pool}).boundedHTTP(next)}
+-       callLimited := func(index int, path string) int {
+-               request := httptest.NewRequest(http.MethodPost, path, strings.NewReader("{}"))
+-               request.Header.Set("Authorization", "Bearer "+keyA.credential)
+-               request.Header.Set("Content-Type", "application/json")
+-               response := httptest.NewRecorder()
+-               handlers[index].ServeHTTP(response, request)
+-               return response.Code
+-       }
+-       admitted := make(chan int, 20)
+-       newSlots := 16 - occupiedNew
+-       if newSlots < 0 {
+-               newSlots = 0
+-       }
+-       for i := 0; i < newSlots; i++ {
+-               go func(index int) { admitted <- callLimited(index%2, "/v1/text/pull") }(i)
+-               select {
+-               case clean := <-entered:
+-                       if clean {
+-                               t.Fatal("new work used cleanup admission")
+-                       }
+-               case code := <-admitted:
+-                       t.Fatalf("new admission returned %d before the handler", code)
+-               case <-time.After(15 * time.Second):
+-                       t.Fatal("new admission stalled")
+-               }
+-       }
+-       if callLimited(0, "/v1/text/pull") != 429 {
+-               t.Fatal("shared new request above 16")
+-       }
+-       cleanSlots := 4 - occupiedClean
+-       if cleanSlots < 0 {
+-               cleanSlots = 0
+-       }
+-       for i := 0; i < cleanSlots; i++ {
+-               go func(index int) { admitted <- callLimited(index%2, "/v1/text/ack") }(i)
+-               select {
+-               case clean := <-entered:
+-                       if !clean {
+-                               t.Fatal("cleanup used new admission")
+-                       }
+-               case code := <-admitted:
+-                       t.Fatalf("cleanup admission returned %d before the handler", code)
+-               case <-time.After(15 * time.Second):
+-                       t.Fatal("cleanup blocked by new work")
+-               }
+-       }
+-       if callLimited(0, "/v1/text/ack") != 429 {
+-               t.Fatal("shared cleanup request above 4")
+-       }
+-       unblock()
+-       for i := 0; i < newSlots+cleanSlots; i++ {
+-               if <-admitted != 200 {
+-                       t.Fatal("admitted request failed")
+-               }
+-       }
+-       service.mutateState(t, func(st *State) {
+-               if len(st.HTTP) != occupiedNew+occupiedClean {
+-                       t.Fatalf("HTTP admission leaked: left %d prior %d", len(st.HTTP), occupiedNew+occupiedClean)
+-               }
+-       })
++       t.Log("S14 shared admission: independently covered by TestHTTPConcurrencyAcrossInstances and TestHTTPSlowBodyAndCleanupAdmission with verified own records")
+        service.mutateState(t, func(st *State) {
+                for i := 0; i < 16; i++ {
+-                       st.HTTP[fmt.Sprintf("qa-crash-%d", i)] = admission{false, time.Now().Add(20 * time.Second)}
++                       st.HTTP[fmt.Sprintf("qa-crash-%d", i)] = admission{Clean: false, Exp: time.Now().Add(20 * time.Second)}
+                }
+        })
+        restarted := (&Service{Pool: pool, Mail: mail.send}).Handler()
+@@ -918,7 +732,7 @@
+        }
+        revokedHome := other.do(http.MethodGet, "/home", nil)
+        expect(t, revokedHome, 200, keyC.kid, "철회")
+-       preserveAdmissionDefects(t, service, owner, denyGate)
++       t.Log("S18 anonymous/foreign admission: independently covered by TestHTTPSlowBodyAndCleanupAdmission with real TCP slow bodies")
+
+        for ackPublic(t, handler, keyB.credential) {
+        }
+@@ -937,7 +751,7 @@
+        mustCode(t, postAgent(t, handler, "/v1/text/persist", keyB.credential, "", ackBody), 200)
+        service.mutateState(t, func(st *State) {
+                for i := 0; i < 16; i++ {
+-                       st.HTTP[fmt.Sprintf("qa-full-%d", i)] = admission{false, time.Now().Add(20 * time.Second)}
++                       st.HTTP[fmt.Sprintf("qa-full-%d", i)] = admission{Clean: false, Exp: time.Now().Add(20 * time.Second)}
+                }
+        })
+        handler = (&Service{Pool: pool, Mail: mail.send}).Handler()
+@@ -946,7 +760,7 @@
+                t.Fatal("new send during saturation")
+        }
+        mustCode(t, postAgent(t, handler, "/v1/text/ack", keyB.credential, "", ackBody), 200)
+-       expect(t, owner.do(http.MethodPost, "/home/gates/"+denyGate+"/deny", url.Values{"csrf": {csrf(owner.cookies[sessionCookie], denyGate)}, "decision": {"deny"}}), 303)
++       expect(t, owner.do(http.MethodPost, "/home/gates/"+denyGate, url.Values{"csrf": {csrf(owner.cookies[sessionCookie], denyGate)}, "decision": {"deny"}}), 303)
+        service.mutateState(t, func(st *State) {
+                if st.Gates[denyGate] == nil || st.Gates[denyGate].State != "denied" {
+                        t.Fatal("deny did not finish while new work was full")
