@@ -1125,3 +1125,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 수정: snapshot을 (commit 시각, epoch) 순서로만 교체한다. 신규 포화 중 증명 못한 정리 자격은 lock 없는 단일 재조회 뒤 판정한다. 공정성 단위를 owner 제어와 그 owner의 agent ACK로 나눴다. persist 전 ACK는 handler와 같이 신규다. 제품 수치·wire·응답 코드는 그대로다.
 - 검증: 새 회귀는 758에서 RED, 최종 코드에서 PASS다. 변형 4개가 모두 검출된다. 최종 코드의 make lint/test/verify-mvp exit0, Go 통합 PASS 47. 중간 `9620723` verify-mvp 실패와 원인은 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md)에 보존했다.
 - 후속 담당 coor: 별도 고정 SHA 정적 리뷰·사용자 승인 Sol 독립 QA·designer UI 영향 확인 뒤 main 판정. 원 실패·Sol 차단 기록·334 hash·미해결 high 차단을 유지한다.
+
+## DEV-FIX-3 완료 회신 처리 — 2026-10-07
+
+- msg_438673240ba8 / delivery_d0d0ea9b507a의 authentic worker_done은 최종8011dfa0ade890ffad49fda8e41d18129893d8f0·코드5d1924cd137d를 보고했다. 실제 구현 세션 aa85544d-18c3-43d3-95d0-b729aa9e9e8c, clean/원격 역할 동일 SHA·전문 archive/빈 DEV inbox를 확인했다. parser의 final HEAD 인식 누락은 원문을 보존한 채 검증된 SHA/source를 integration 원장에 보완했다.
+- 검수 후보 d08903a55c3638128827010400e66e9d45b61d7c는 coor에서 DEV 결과와 기존 준비를 SHA 보존 병합한 후보이며 main 수락이 아니다. PLANS 양쪽 append를 보존했다. 기존 FIX2 pending 리뷰 템플릿의 원문 byte/hash/원 SHA를 COOR/dev-fix-3-final에 보존하고 현재 템플릿에는 메타데이터만 추가했다. 본문과 result의 pending 판정은 그대로다. 원8011의 lint ERROR1·중간실패/334 원본 증거도 유지한다.
+- hold 담당 coor: 최종 후보 별도 Sol 정적 리뷰·승인된 Sol 독립 QA·designer 영향 검수와 기록 수락이 남았다. 조건 충족 뒤 main 병합/일반push/조상 확인/idleclean 역할 sync한다. DEV는 수정 후속을 위해 retain하며 실제 사용자 소유 터미널을 강제종료하지 않는다.
