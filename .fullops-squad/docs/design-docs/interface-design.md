@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-06
+updated: 2026-10-07
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -205,7 +205,7 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | POST /home/gates/{id}/deny, /owner/gates/{id}/deny | 현재 gate owner·csrf·decision=deny. 검증된 자기 gate만 별도 정리 입장. 결과는 303 `/home|/owner/gates/{id}`(정식 gate 화면). approve 입력은 거부 |
 | POST /home/invite-deny | 현재 수신 owner·세대·decision=deny. 자기 수신 초대만 신규 포화 중 정리 입장 |
 
-정리 입장 경로(ACK·키/agent/owner 철회·unpair·cancel·invite/gate deny·logout)는 검증된 자격·같은 출처·gate CSRF·유효 본문·자기 기록을 모두 만족할 때만 정리 budget을 쓴다. 나머지 요청은 같은 경로라도 신규 입장·신규 rate다. 이 분류는 DB 입장 전 로컬 채널 선택에도 같은 커밋 snapshot으로 적용한다. owner당 동시 정리 입장은 1개이며 초과 요청은 DB 호출 없이 기존 `429 capacity`(Retry-After 1)다. `POST /v1/invite-decision`의 `decision:deny`도 `/home/invite-decision` deny와 같은 정리 경로다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2). 응답 코드와 wire는 바꾸지 않았다. 본문은 입장 전에 10s 기한·8/32KiB 상한으로 수신한다.
+정리 입장 경로(ACK·키/agent/owner 철회·unpair·cancel·invite/gate deny·logout)는 검증된 자격·같은 출처·gate CSRF·유효 본문·자기 기록을 모두 만족할 때만 정리 budget을 쓴다. 나머지 요청은 같은 경로라도 신규 입장·신규 rate다. 이 분류는 DB 입장 전 로컬 채널 선택에도 같은 커밋 snapshot으로 적용한다. owner 자신의 제어와 그 owner의 agent ACK는 각각 동시 정리 입장 1개이며 초과 요청은 DB 호출 없이 기존 `429 capacity`(Retry-After 1)다. ACK는 handler와 같이 persist된 lease만 정리다. persist 전 ACK는 신규 입장이다. 신규 입장이 가득 찼을 때 snapshot이 증명하지 못한 정리 자격은 커밋 상태를 한 번 다시 읽은 뒤 판정한다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-3). `POST /v1/invite-decision`의 `decision:deny`도 `/home/invite-decision` deny와 같은 정리 경로다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2). 응답 코드와 wire는 바꾸지 않았다. 본문은 입장 전에 10s 기한·8/32KiB 상한으로 수신한다.
 
 text wire의 필수 필드는 `v,id,from,to,text,exp,idempotency_key,sig`다. `reply_to`만 선택이다. v는 `knowslink.text.v1`, sig는 `{alg:Ed25519,kid,value}`다. ID는 UUIDv7, key는 printable ASCII 16–128자다. raw 최대32768 bytes, text 최대4096 UTF-8 bytes다. 시간은 UTC 초 형식이며 TTL≤180s다. reply_to의 null·빈 값·미지 필드·중복 JSON·lone surrogate는 거부한다.
 서명 bytes는 `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0<kid>\0`와 JCS(`v,id,from,to,text,exp,idempotency_key,reply_to`)다. reply_to 부재는 서명에서 빈 문자열로 정규화한다. digest는 JCS(`v,from,to,text,reply_to`)의 SHA256 base64url이다. ID·exp는 재시도 digest에 넣지 않는다. 업무 wire·registry는 바꾸지 않았다.

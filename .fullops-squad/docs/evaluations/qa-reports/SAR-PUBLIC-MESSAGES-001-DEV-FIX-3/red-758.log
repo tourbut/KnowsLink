@@ -1,0 +1,14 @@
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull/stale
+    cleanup_flood_integration_test.go:253: own revoke before the sweep: 429 {"error":"capacity","retry_at":"2026-10-07T13:10:38Z"}
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull/restart
+    cleanup_flood_integration_test.go:253: own revoke before the sweep: 429 {"error":"capacity","retry_at":"2026-10-07T13:10:38Z"}
+--- FAIL: TestCleanupProvenWhileSnapshotStaleAndNewFull (0.15s)
+    --- FAIL: TestCleanupProvenWhileSnapshotStaleAndNewFull/stale (0.07s)
+    --- FAIL: TestCleanupProvenWhileSnapshotStaleAndNewFull/restart (0.07s)
+=== RUN   TestOwnerControlNotHeldByOwnAgentAcks
+    cleanup_flood_integration_test.go:310: cleanup slots 1 want 2
+--- FAIL: TestOwnerControlNotHeldByOwnAgentAcks (5.09s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	5.245s
+FAIL

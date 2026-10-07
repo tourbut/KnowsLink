@@ -1,0 +1,18 @@
+package relay
+
+import (
+	"testing"
+	"time"
+)
+
+// Temporary RED probe against the 758 remember(st, at) API; not committed.
+func TestRED758EqualCommitTimeKeepsNewer(t *testing.T) {
+	older, newer := newState(), newState()
+	s := &Service{}
+	at := time.Now()
+	s.remember(newer, at) // later commit stored first
+	s.remember(older, at) // earlier commit at the same DB time stored late
+	if s.live.Load().st != newer {
+		t.Fatal("equal DB time: a late older snapshot replaced the newer one")
+	}
+}

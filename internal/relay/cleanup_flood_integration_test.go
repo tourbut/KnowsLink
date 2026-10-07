@@ -144,7 +144,8 @@ func TestValidCredentialCleanupFlood(t *testing.T) {
 }
 
 // Review L2: the local snapshot learns another process's new credential and a restarted process's state at its next
-// commit, which the 1s retention sweep guarantees; until then that cleanup is new work, never a foreign cleanup slot.
+// commit; until then cleanupOwner alone never grants a cleanup slot. boundedHTTP rereads before refusing it as new
+// work (TestCleanupProvenWhileSnapshotStaleAndNewFull).
 func TestCleanupSnapshotAcrossProcessesAndRestart(t *testing.T) {
 	pool := messagePool(t)
 	f := setup(t, pool)

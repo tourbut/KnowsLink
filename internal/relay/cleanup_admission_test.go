@@ -17,8 +17,12 @@ func TestCleanupAdmissionNeedsVerifiedOwnRecord(t *testing.T) {
 	st.Sessions[hashToken("session-b")] = &Session{Member: "agent_b", Created: now, Seen: now}
 	st.Gates["gate"] = &Gate{Owner: "agent_a", State: "pending"}
 	st.Agents["agent_c"].Revoked = true
+	for id, persisted := range map[string]bool{"persisted": true, "unpersisted": false} {
+		st.Messages[id] = &Message{Receipt: Receipt{ID: id, From: "agent_a", To: "agent_b", Intent: "relay.request", State: "leased", Exp: now.Add(time.Minute)},
+			Kid: "key1", Generation: 1, Deliver: "agent", LeaseToken: "lease", LeaseUntil: now.Add(30 * time.Second), Persisted: persisted}
+	}
 	s := &Service{}
-	s.remember(st, now)
+	s.remember(st, now, 1)
 	live := st.liveCredentials()
 	for token, want := range map[string]bool{"agent_a": true, "session-a": true, "agent_c": false, "invented": false, "": false} {
 		if _, ok := live[hashToken(token)]; ok != want {
@@ -52,6 +56,9 @@ func TestCleanupAdmissionNeedsVerifiedOwnRecord(t *testing.T) {
 		{request("/v1/key-revoke", `{"agent":`, "", "agent_a"), "", "agent_a", false},
 		{request("/v1/key-revoke", revoke, "", "agent_a", "Sec-Fetch-Site", "cross-site"), "", "agent_a", true},
 		{request("/v1/ack", `{"id":"none","token":"none"}`, "", "agent_b"), "agent_b", "agent_b", false},
+		{request("/v1/ack", `{"id":"persisted","token":"lease"}`, "", "agent_b"), "agent_b", "agent_b", true},
+		// FIX-2 (Sol): the ACK handler refuses an unpersisted lease (409 invalid_lease), so it is new work.
+		{request("/v1/ack", `{"id":"unpersisted","token":"lease"}`, "", "agent_b"), "agent_b", "agent_b", false},
 		{request("/v1/pull", "{}", "", "agent_a"), "", "agent_a", false},
 		{request("/home/gates/gate/deny", deny, "session-a", ""), "session-a", "agent_a", true},
 		{request("/home/gates/gate/deny", deny, "session-b", ""), "", "agent_b", false},
@@ -71,8 +78,10 @@ func TestCleanupAdmissionNeedsVerifiedOwnRecord(t *testing.T) {
 			t.Fatalf("%s local cleanup owner %q", c.r.URL.Path, got)
 		}
 	}
-	if s.cleanupOwner(request("/v1/key-revoke", revoke, "", "agent_a"), "agent_a") != st.Agents["agent_a"].Owner {
-		t.Fatal("cleanup fairness owner")
+	// An owner's agents share one fairness unit apart from the owner's own control.
+	if s.cleanupOwner(request("/home/unpair", "agent=agent_a&target=agent_b", "session-a", ""), "session-a") != "agent_a" ||
+		s.cleanupOwner(request("/v1/ack", `{"id":"persisted","token":"lease"}`, "", "agent_b"), "agent_b") != agentsUnit("agent_b") {
+		t.Fatal("cleanup fairness unit")
 	}
 	// A session cookie does not authorize /v1, an agent credential does not authorize /owner, and expiry is honored.
 	if s.cleanupOwner(request("/v1/key-revoke", revoke, "", "session-a"), "session-a") != "" ||
@@ -81,23 +90,35 @@ func TestCleanupAdmissionNeedsVerifiedOwnRecord(t *testing.T) {
 	}
 	st.Sessions[hashToken("session-a")].Seen = now.Add(-sessionIdle)
 	s.live.Store(nil)
-	s.remember(st, now)
+	s.remember(st, now, 1)
 	if s.cleanupOwner(request("/home/unpair", "agent=agent_a&target=agent_b", "session-a", ""), "session-a") != "" {
 		t.Fatal("idle session kept cleanup channel")
 	}
 }
 
-// Review L2: a goroutine storing an earlier commit late cannot replace the newer committed snapshot.
+// Review L2 and FIX-2 (Sol): a goroutine storing an earlier commit late cannot replace the newer committed snapshot,
+// even at the same DB time, and a DB restored to a lower epoch still refreshes at its next, later commit.
 func TestRememberKeepsNewestCommit(t *testing.T) {
 	st, _, now := textFixture()
 	s := &Service{}
-	s.remember(st, now)
-	s.remember(newState(), now.Add(-time.Millisecond))
-	if s.live.Load().st != st {
-		t.Fatal("older commit replaced newer snapshot")
+	s.remember(st, now, 5)
+	for _, older := range []struct {
+		at    time.Time
+		epoch int64
+	}{{now.Add(-time.Millisecond), 4}, {now, 4}, {now, 5}} {
+		s.remember(newState(), older.at, older.epoch)
+		if s.live.Load().st != st {
+			t.Fatal("older commit replaced newer snapshot", older)
+		}
 	}
-	s.remember(newState(), now.Add(time.Millisecond))
-	if s.live.Load().st == st {
-		t.Fatal("newer commit not stored")
+	for _, newer := range []struct {
+		at    time.Time
+		epoch int64
+	}{{now, 6}, {now.Add(time.Millisecond), 1}} {
+		next := newState()
+		s.remember(next, newer.at, newer.epoch)
+		if s.live.Load().st != next {
+			t.Fatal("newer commit not stored", newer)
+		}
 	}
 }

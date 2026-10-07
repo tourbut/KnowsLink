@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-07
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
 summary: MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다
 ---
 
@@ -1118,3 +1118,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 운영 .env에서 정확한 KNOWSLINK_SMTP_URL/KNOWSLINK_MAIL_FROM 키도 없음을 값 없이 확인했다. 시험 signup/agents 키도 없다. 기존 무료 SMTP 제공자와 비공개 설정 경로를 사용자에게 요청했으며 코드 수락 검수는 별도로 계속한다. 실제 수신/운영 공개는 미완료다.
 
 - 사용자 답변: 기존 SMTP 설정 없음. 공개 준비안에 Resend Free의 공식 SMTP·한도·유료 초과 옵션 분리와 비공개 설정/실수신 검증 순서를 기록했다. 계정/DNS/키 발급·실발송은 실행하지 않았다. 코드 검수는 계속한다.
+
+## SAR-PUBLIC-MESSAGES-001-DEV-FIX-3 DEV 결과 — 2026-10-07
+
+- 기준 fixed `758e9f638501f11000ed17c558a9eb54b4350eb3`의 Sol 관측 3건을 같은 과제에서 분석·수정·검증했다. 최종 코드 `5d1924c`(수정 `955cbae`, 시험 분리 `9620723`, 재조회 범위 축소 `5d1924c`).
+- 수정: snapshot을 (commit 시각, epoch) 순서로만 교체한다. 신규 포화 중 증명 못한 정리 자격은 lock 없는 단일 재조회 뒤 판정한다. 공정성 단위를 owner 제어와 그 owner의 agent ACK로 나눴다. persist 전 ACK는 handler와 같이 신규다. 제품 수치·wire·응답 코드는 그대로다.
+- 검증: 새 회귀는 758에서 RED, 최종 코드에서 PASS다. 변형 4개가 모두 검출된다. 최종 코드의 make lint/test/verify-mvp exit0, Go 통합 PASS 47. 중간 `9620723` verify-mvp 실패와 원인은 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md)에 보존했다.
+- 후속 담당 coor: 별도 고정 SHA 정적 리뷰·사용자 승인 Sol 독립 QA·designer UI 영향 확인 뒤 main 판정. 원 실패·Sol 차단 기록·334 hash·미해결 high 차단을 유지한다.

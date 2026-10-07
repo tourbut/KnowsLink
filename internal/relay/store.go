@@ -98,8 +98,10 @@ type Service struct {
 	httpOnce           sync.Once
 	httpNew, httpClean chan struct{}
 	live               atomic.Pointer[committed]
-	cleaning           sync.Map // owners holding the local cleanup channel
-	orphans            sync.Map // shared admission tokens whose finish transaction failed
+	reading            chan struct{} // one snapshot refresh read at a time
+	readAt             time.Time     // start of the last refresh read, guarded by reading
+	cleaning           sync.Map      // fairness units holding the local cleanup channel
+	orphans            sync.Map      // shared admission tokens whose finish transaction failed
 	Pool               *pgxpool.Pool
 	TestAgents         map[string]bool
 	// SyntheticSignup keeps the local /v1/owners fixture; public members come only from verified email.
@@ -175,7 +177,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	for _, token := range orphans {
 		s.orphans.Delete(token)
 	}
-	s.remember(state, now)
+	s.remember(state, now, row.Epoch+1)
 	return value, opErr
 }
 

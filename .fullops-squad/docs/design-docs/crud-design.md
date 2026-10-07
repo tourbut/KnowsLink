@@ -2,9 +2,9 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-06
+updated: 2026-10-07
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
@@ -73,7 +73,7 @@ agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다.
 | 회원 receipt | 세션·선택 agent 소유권·endpoint 확인. metadata만 조회. 타 회원/임의 agent는 거부 |
 | gate GET/approve/deny | 본문 서명·digest·현재 권한·세대·기한 확인. GET은 결정 없음. POST csrf. 자기 gate deny는 정리 budget. 결정 뒤 정식 gate 화면 |
 | 한도·안전 정리 | 포화는 신규 자원 생성 없음. ACK·deny·철회·unpair·로그아웃은 별도 입장/rate. 부모 TTL에서 claim 종료 |
-| HTTP 입장 | 본문 수신 뒤 입장. 신원별 request budget 한 번 차감. 공유 HTTP map 입장/종료 삭제·30s crash 정리. 신규16/정리4. 정리는 검증된 자기 기록만, owner당 동시 1개(로컬·공유). 종료 실패 기록은 다음 commit이 삭제 |
+| HTTP 입장 | 본문 수신 뒤 입장. 신원별 request budget 한 번 차감. 공유 HTTP map 입장/종료 삭제·30s crash 정리. 신규16/정리4. 정리는 검증된 자기 기록만, owner 제어·agent ACK 단위별 동시 1개(로컬·공유). persist 전 ACK는 신규. 신규 포화 중 snapshot이 증명 못한 정리 자격은 lock 없는 1회 재조회(DEV-FIX-3). 종료 실패 기록은 다음 commit이 삭제 |
 
 동작·실패·경합·재시작 근거는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md)에 연결한다. 운영 자료 삭제는 수행하지 않았다.
 

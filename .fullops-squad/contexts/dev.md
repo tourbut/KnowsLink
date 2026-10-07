@@ -1,9 +1,9 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-06
+updated: 2026-10-07
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
 summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
@@ -63,3 +63,5 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 
 - 2026-10-06 SAR-PUBLIC-MESSAGES-001-DEV-FIX-2: 예약 슬롯을 DB 입장 전에 고르면 그 판정도 transaction과 같은 자기 기록 대조여야 한다. 자격 유효성만 보면 유효 자격 하나의 타 대상 flood가 DB 대기 동안 예약을 모두 잡는다. rate는 transaction 안이라 슬롯을 지키지 못한다.
 - 예약 budget에는 공정성 단위(owner)당 동시 상한을 둔다. 자기 대상 반복도 flood다. 공유 기록에 단위별 상한을 두면 종료 실패 기록이 그 단위를 막으므로 다음 commit에서 회수한다. 커밋 snapshot은 commit 시각 순서로만 교체한다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md)
+- 2026-10-07 SAR-PUBLIC-MESSAGES-001-DEV-FIX-3: commit 시각은 같을 수 있다. snapshot 순서는 (시각, epoch)로 둔다. 시각을 앞에 두어야 낮은 epoch로 복원된 DB에서도 갱신된다. 예약 분류는 handler의 상태 조건(ACK의 persist)까지 맞춘다.
+- 공정성 단위는 "누가 누구를 막을 수 있는가"로 나눈다. agent ACK와 owner 제어가 한 단위면 agent가 자기 철회를 막는다. 증명 못한 자격의 재조회는 실제 거부 지점(신규 포화)에서만 한다. 무조건 재조회는 lock 대기 중 pool을 기다려 신규 입장을 늦췄다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md)

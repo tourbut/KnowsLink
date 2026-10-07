@@ -2,10 +2,14 @@
 package relay
 
 import (
+	"context"
 	"crypto/hmac"
+	"encoding/json"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/tourbut/KnowsLink/internal/database"
 )
 
 var crossOrigin = http.NewCrossOriginProtection()
@@ -47,7 +51,7 @@ func (st *State) cleanupTarget(r *http.Request, principal string, now time.Time)
 	switch r.URL.Path {
 	case "/v1/ack", "/v1/test/ack", "/v1/text/ack":
 		m, err := st.leased(principal, c.ID, c.Token, now)
-		return err == nil && (m.Receipt.Intent == publicTextIntent) == (r.URL.Path == "/v1/text/ack")
+		return err == nil && m.Persisted && (m.Receipt.Intent == publicTextIntent) == (r.URL.Path == "/v1/text/ack")
 	case "/v1/owner-revoke":
 		return st.Owners[principal] != nil
 	case "/auth/logout", "/auth/logout-all":
@@ -77,10 +81,12 @@ func gatePath(path string) string {
 	return ""
 }
 
-// committed is the last state this process committed, with the credentials it still honors, for the pre-DB channel choice.
+// committed is the newest relay state this process committed or read, with the credentials it still honors, for the
+// pre-DB channel choice. at and epoch are the commit's DB time and row epoch.
 type committed struct {
 	st    *State
 	at    time.Time
+	epoch int64
 	creds map[string]honored
 }
 
@@ -90,16 +96,42 @@ type honored struct {
 	exp      time.Time
 }
 
-// remember keeps the newest commit. Transactions commit in row-lock order with non-decreasing DB time, so a slower
-// goroutine storing an earlier commit cannot replace a later one.
-func (s *Service) remember(st *State, at time.Time) {
-	next := &committed{st, at, st.liveCredentials()}
+// remember keeps the newest commit. Transactions commit in row-lock order with non-decreasing DB time and an epoch that
+// grows by one, so (time, epoch) orders commits even at the same DB time, and a slower goroutine storing an earlier
+// commit cannot replace a later one. Time leads so a DB restored to a lower epoch still refreshes at its next commit.
+func (s *Service) remember(st *State, at time.Time, epoch int64) {
+	next := &committed{st, at, epoch, st.liveCredentials()}
 	for {
 		old := s.live.Load()
-		if old != nil && at.Before(old.at) || s.live.CompareAndSwap(old, next) {
+		if old != nil && (at.Before(old.at) || at.Equal(old.at) && epoch <= old.epoch) || s.live.CompareAndSwap(old, next) {
 			return
 		}
 	}
+}
+
+// refresh reads the committed relay state when no read has started since the request arrived, so a cleanup that another
+// process's commit or a restart made provable is judged on current records instead of waiting for the 1s sweep. One
+// read runs at a time and covers every request that arrived before it started; the read takes no lock or slot, so
+// invented credentials add at most one concurrent read per process, and waiters hold only their own connection.
+func (s *Service) refresh(ctx context.Context, arrived time.Time) {
+	select {
+	case s.reading <- struct{}{}:
+		defer func() { <-s.reading }()
+	case <-ctx.Done():
+		return
+	}
+	if !s.readAt.Before(arrived) {
+		return
+	}
+	started := time.Now()
+	row, err := database.New(s.Pool).ReadRelay(ctx)
+	st := newState()
+	if err != nil || json.Unmarshal(row.Data, st) != nil {
+		return
+	}
+	st.TestAgents = s.TestAgents
+	s.remember(st, row.Clock.Time.UTC(), row.Epoch)
+	s.readAt = started
 }
 
 // liveCredentials indexes the credentials the committed state still honors, so the pre-DB channel choice cannot be won by
@@ -138,9 +170,9 @@ func (st *State) liveCredentials() map[string]honored {
 }
 
 // cleanupOwner mirrors requestBuckets against the last committed state, read only and without a transaction. It returns
-// the owner whose own record this cleanup ends, or "" when the request is new work: an invented, foreign or lease-less
-// cleanup never reaches the reserved local channel. A stale or missing snapshot only sends cleanup to the new channel;
-// any local commit, at least the 1s retention sweep, refreshes it.
+// the fairness unit whose own record this cleanup ends, or "" when the request is new work: an invented, foreign or
+// lease-less cleanup never reaches the reserved local channel. boundedHTTP refreshes a stale or missing snapshot once
+// before it refuses a cleanup credential for full new work.
 func (s *Service) cleanupOwner(r *http.Request, token string) string {
 	c := s.live.Load()
 	if c == nil || token == "" {
@@ -155,9 +187,13 @@ func (s *Service) cleanupOwner(r *http.Request, token string) string {
 	}
 	switch h.kind {
 	case "agent":
-		return c.st.Agents[h.id].Owner
+		return agentsUnit(c.st.Agents[h.id].Owner)
 	case "session":
 		return c.st.Members[h.id].Owner
 	}
 	return h.id
 }
+
+// agentsUnit is the cleanup fairness unit of an owner's agents. Their ACKs share one slot apart from the owner's own
+// revoke, unpair, deny and logout, so an agent repeating ACKs cannot keep its owner from revoking it.
+func agentsUnit(owner string) string { return owner + "/agents" }
