@@ -13,7 +13,7 @@ base: 68b0d6a0c854fdaec6828a232dd3945814be1404
 
 ## 대상·기준·복귀
 
-- 상태 blocked. DEV-FIX-3 최종 SHA와 안정된 검수 후보 확정 전 착수하지 않는다. 실제 후보·독립 세션·snapshot 경로는 coordinator가 dispatch 전에 고정한다. 이 과제는 이전에 배정하지 않았으며 기존 UI-FIX 완료 기록과 다르다.
+- 상태: ready. DEV 최종 코드·보고서와 후보 검증을 확인했으며 아래 고정 SHA로 착수한다.
 - 담당 designer. 기존 route의 Codex gpt-6.1-sol high를 사용한다. 사용자 소유의 기존 터미널·모델 선택 화면은 변경하지 않고 fresh 세션에서 수행한다.
 - 공통 fullops-common-0.3.3 README/coding-style/testing/security, FULLOPS·project·document-writing·orca-agents·contexts/designer와 SAR-PUBLIC-SERVICE.md PS11 및 mockups/SAR-PUBLIC-SERVICE-UX.md UX06/07을 따른다. 기본 main 68b0d6a0c854fdaec6828a232dd3945814be1404와 고정 후보의 같은 문서를 읽는다.
 - 복귀 coor /home/shin/orca/workspaces/KnowsLink/fullops-coor, terminal term_a8a1fa04-50ab-448d-94e7-11e8ee3c77f1, Run run_8ca8bc058ab7. 실제 Task/Dispatch 권한은 새 preamble을 따른다.
@@ -39,6 +39,14 @@ base: 68b0d6a0c854fdaec6828a232dd3945814be1404
 ## 제약과 후속
 
 Workers Free·기존 서버/Tunnel을 유지한다. 유료 전환·실메일·운영 공개·실제 외부 계정·사용자 자료 삭제는 금지다. 자기 격리 fixture만 만들고 회수한다. 제품 코드는 수정하지 않는다. 실메일/운영 공개/실24h/노우↔다닷/부하·복원은 미검증으로 구분한다. 기존 플랫폼 차단 출력을 재생성하지 않는다. 필요한 코드 수정은 coordinator를 통해 같은 DEV 후속으로 인계한다. 완료 뒤 idle이며 다른 작업을 시작하지 않는다.
+
+## 고정 후보와 실제 독립 snapshot 착수
+
+- 최종 검수 후보: `d08903a55c3638128827010400e66e9d45b61d7c`. 구현 완료 SHA8011dfa0ade890ffad49fda8e41d18129893d8f0, 제품 코드5d1924cd137d7be088cc6fb6c444c6a6c606c412. 실제 구현 세션 `aa85544d-18c3-43d3-95d0-b729aa9e9e8c`와 다른 실제 Codex 세션에서 수행한다.
+- 후보 FullOps lint/test: COOR/dev-fix-3-final/candidate-lint.json, 기준main68b·HEADd089·ERROR0/WARNING14/실행불가0·product-lint/test passed. SEC 경고의 시험 fixture와 기존 SIZE/SLOP 경고의 수락 영향은 해당 검수 담당이 판단한다. 원8011의 DOC-003 ERROR1은 원 기록으로 보존했다. 이전 미완료 템플릿 원문을 COOR/dev-fix-3-final/fix2-pending-report.original.txt에 byte/hash로 보존하고 현재 파일에는 메타데이터만 추가했다. pending 본문/result를 PASS로 바꾸지 않았다.
+- 첫 단계에서 자신의 실제 세션 ID(CODEX_THREAD_ID 또는 실제 세션 metadata)를 확인한다. 임의 UUID를 만들지 않는다. `review.py snapshot --repo . --key <이 과제 키> --to d08903a55c3638128827010400e66e9d45b61d7c --implementer-session aa85544d-18c3-43d3-95d0-b729aa9e9e8c --reviewer-session <실제 자기 ID> --owner coor`로 별도 clean detached snapshot을 만들고 HEAD/detached/clean/read_only를 기록한다. 이후 제품 읽기는 그 snapshot에서 수행한다. install·실행은 자기 scratch에만 하고 snapshot은 수정하지 않는다.
+- OPS는 해당 snapshot 생성 뒤 `review.py prepare --repo . --key SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW --from 68b0d6a0c854fdaec6828a232dd3945814be1404 --to d08903a55c3638128827010400e66e9d45b61d7c`를 실행하고 생성 report를 내용 작성 전 stamp한다. 후보 lint JSON을 review 폴더의 lint.json으로 연결한다. check에는 같은 base/head와 --task-key SAR-PUBLIC-MESSAGES-001-DEV-FIX-3를 쓴다. tester/designer는 자신의 QA 정본에 독립성/provenance를 기록한다.
+- 배정 준비 후 SHA가 바뀌어 패킷의 HEAD가 역할 기록 HEAD와 다르면 원 결과를 history에 보존하고 현재 역할 SHA에서 find/context/packet을 갱신한다. 결과/읽기 후보/미확인은 완료 전에 packet-outcomes.json에 실제 확인으로 기록한다. 준비 문서의 변경은 후보 제품 SHA를 바꾸지 않는다.
 
 ## 완료 보고
 
