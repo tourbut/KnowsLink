@@ -3,8 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-07
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
-summary: MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2]
+summary: 현재 과제와 사용자 검증 중단에 따른 미완료 및 담당·재개 조건을 관리한다
 ---
 
 # KnowsLink 현재 계획
@@ -1131,3 +1131,12 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - msg_438673240ba8 / delivery_d0d0ea9b507a의 authentic worker_done은 최종8011dfa0ade890ffad49fda8e41d18129893d8f0·코드5d1924cd137d를 보고했다. 실제 구현 세션 aa85544d-18c3-43d3-95d0-b729aa9e9e8c, clean/원격 역할 동일 SHA·전문 archive/빈 DEV inbox를 확인했다. parser의 final HEAD 인식 누락은 원문을 보존한 채 검증된 SHA/source를 integration 원장에 보완했다.
 - 검수 후보 d08903a55c3638128827010400e66e9d45b61d7c는 coor에서 DEV 결과와 기존 준비를 SHA 보존 병합한 후보이며 main 수락이 아니다. PLANS 양쪽 append를 보존했다. 기존 FIX2 pending 리뷰 템플릿의 원문 byte/hash/원 SHA를 COOR/dev-fix-3-final에 보존하고 현재 템플릿에는 메타데이터만 추가했다. 본문과 result의 pending 판정은 그대로다. 원8011의 lint ERROR1·중간실패/334 원본 증거도 유지한다.
 - hold 담당 coor: 최종 후보 별도 Sol 정적 리뷰·승인된 Sol 독립 QA·designer 영향 검수와 기록 수락이 남았다. 조건 충족 뒤 main 병합/일반push/조상 확인/idleclean 역할 sync한다. DEV는 수정 후속을 위해 retain하며 실제 사용자 소유 터미널을 강제종료하지 않는다.
+
+- 고정 후보 d089/준비 cebc32c의 최신 route 원추천을 fixed-recommendation.json에 보존했다. OPS와 tester는 사용자 Sol 지정과 위험도에 따라 gpt-6.1-sol high를 적용한다. designer는 여러 사용자 흐름의 최종 제품/UI 수락 범위에 맞는 등록 high 후보를 적용하고 원 Jev medium 추천을 보존했다. coordinator 모델을 역할 전체에 전파하지 않는다.
+
+## SAR-PUBLIC-MESSAGES-001-UI-FIX-2 — 사용자 추가 검증 중단 마감
+
+- coor msg_cd93755728ec의 사용자 지시로 새 테스트·전체 재실행·탐색 확대를 중단했다. 대상 d089, 실제 designer 세션01a116a7-4f1c-7650-bfce-dcb8a8447971의 managed clean detached snapshot은 coor 소유로 보존한다.
+- 자기 build/migration exit0 뒤 helper 초기화가 IndexError: 2로 exit1이었다. 브라우저/로그인/캡처는 미실행이며 새 UI PASS는 없다. 자기 fixture/process/mail/secret을 회수했다. 원193자료 hash는 같다. 상세는 docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md다.
+- worker outcome failed로 현재 결과를 archive/role push한다. 미검증·원실패·pending 리뷰·운영/벤더 보류를 유지한다. 배포는 같은 사용자 지시에 따라 coor가 별도로 진행한다.
+- 대기 담당 coor/designer/reviewer/tester: 사용자 검수 재개 요청과 고정 SHA가 후속 재개 조건이다. 이 기록으로 필수 독립 검수를 PASS로 바꾸지 않는다.

@@ -1,0 +1,98 @@
+{
+  "scope": "own fixture only",
+  "scratch": "/tmp/sar-ui-fix2-geuphtf_",
+  "snapshot_retained": "/home/shin/orca/workspaces/KnowsLink/.fullops-review-6d231f846a6e48e0a1abde16806535ed",
+  "snapshot_owner": "coor",
+  "snapshot_read_only": true,
+  "processes": [
+    {
+      "name": "relay_pid",
+      "pid": 2647256,
+      "terminated": true
+    },
+    {
+      "name": "smtp_pid",
+      "pid": 2647262,
+      "terminated": true
+    }
+  ],
+  "container": "sar-ui-fix2-geuphtf_",
+  "container_removed": true,
+  "own_volume_removed": true,
+  "shared_before": [
+    [
+      "07077b9ef5e4",
+      "knowslink-cloudflared-1"
+    ],
+    [
+      "40149fcb9511",
+      "myportfolio-postgres-1"
+    ],
+    [
+      "7c5b97e219be",
+      "myportfolio-worker-1"
+    ],
+    [
+      "924e6a637f82",
+      "myportfolio-redis-1"
+    ],
+    [
+      "bc3482dc52f2",
+      "knowslink-postgres-1"
+    ],
+    [
+      "c8dd2937d721",
+      "myportfolio-viewer-1"
+    ],
+    [
+      "d4cc85256080",
+      "myportfolio-beat-1"
+    ],
+    [
+      "dfcd9d187117",
+      "knowslink-relay-1"
+    ]
+  ],
+  "shared_after": [
+    [
+      "07077b9ef5e4",
+      "knowslink-cloudflared-1"
+    ],
+    [
+      "40149fcb9511",
+      "myportfolio-postgres-1"
+    ],
+    [
+      "7c5b97e219be",
+      "myportfolio-worker-1"
+    ],
+    [
+      "924e6a637f82",
+      "myportfolio-redis-1"
+    ],
+    [
+      "bc3482dc52f2",
+      "knowslink-postgres-1"
+    ],
+    [
+      "c8dd2937d721",
+      "myportfolio-viewer-1"
+    ],
+    [
+      "d4cc85256080",
+      "myportfolio-beat-1"
+    ],
+    [
+      "e039eda1c4c0",
+      "knowslink-relay-1"
+    ]
+  ],
+  "shared_unchanged": false,
+  "secrets_and_mail_removed": true,
+  "browser_started": false,
+  "binary_sha256": {
+    "relay": "dad948f65562d951fb3e487081a872b72a8923f6d714e338260fe575f9d378bb",
+    "migrate": "dcc1bc26d21a53de584592369960dbdf151220a6ef40fb87b3877dba63643cc9"
+  },
+  "scratch_removed": true
+}

@@ -1,0 +1,38 @@
+{
+  "snapshot": "/home/shin/orca/workspaces/KnowsLink/.fullops-review-6d231f846a6e48e0a1abde16806535ed",
+  "scratch": "/tmp/sar-ui-fix2-geuphtf_",
+  "container": "sar-ui-fix2-geuphtf_",
+  "loopback_db_port": 32769,
+  "loopback_relay_port": 54979,
+  "loopback_smtp_port": 37181,
+  "relay_pid": 2647256,
+  "smtp_pid": 2647262,
+  "synthetic_signup": false,
+  "test_allowlist": false,
+  "secrets_recorded": false,
+  "build_commands": [
+    {
+      "args": [
+        "go",
+        "build",
+        "-o",
+        "<scratch>/relay",
+        "./cmd/relay"
+      ],
+      "cwd": "/home/shin/orca/workspaces/KnowsLink/.fullops-review-6d231f846a6e48e0a1abde16806535ed",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "go",
+        "build",
+        "-o",
+        "<scratch>/migrate",
+        "./cmd/migrate"
+      ],
+      "cwd": "/home/shin/orca/workspaces/KnowsLink/.fullops-review-6d231f846a6e48e0a1abde16806535ed",
+      "exit_code": 0
+    }
+  ],
+  "migrate_exit": 0
+}
