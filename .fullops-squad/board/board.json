@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "일반 이메일 서비스 완성 뒤 같은 본인 이메일의 Grok Bot 노우와 OpenAI dot 다닷을 연결해 운영 왕복을 검증한다.",
+  "summary": "Google 로그인으로 핵심 가입 기능을 먼저 출시하고 Grok Bot 연결을 이어간다.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -67,16 +67,16 @@
         "D12",
         "D13"
       ],
-      "note": "사용자 지시로 d089 최신 수정본 기존 서버 배포 완료. migrate0·relay healthy·health200·외부Access302. DB 백업/Tunnel 유지. SMTP 없어 이메일 가입·일반 공개 미완료."
+      "note": "Google 로그인 포함 main a9a0db4 기존 서버 배포 완료. DB backup·migrate0·relay healthy·health200. 기존 Tunnel/Access 유지. Google 앱 testing, 지정 사용자 실제 로그인 대기."
     },
     {
-      "name": "일반 이메일 서비스 전환",
+      "name": "일반 회원 서비스 전환",
       "status": "active",
       "deliverables": [
         "D01",
         "D02"
       ],
-      "note": "DEV-FIX-3 d089 서버 배포/main 반영 완료. 최종 Sol 리뷰 기록·QA/UI 중단 기록 모두 main 통합, 미검증 보존. 새 critical/high0, CLI UTF-8 medium은 후속 최소 수정. 핵심 기능 먼저 공개·점진 보완, SMTP 준비 필요."
+      "note": "사용자 결정으로 SMTP 대신 Google 가입·로그인 구현017bf45와 인증 delta 독립 리뷰 수락·main/origin/main 반영·서버 배포 완료. Orca 로그인 화면 열림, 지정 계정 실제 로그인 대기. 기존 전체 QA/UI 미완료·UTF8 medium·vendor 미검증 보존."
     }
   ]
 }

@@ -1188,3 +1188,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV 구현 완료 후보 `3ae2878`: Google issuer/sub 자동 가입·같은 owner·세션·Google 재확인과 signed-provider/Postgres 좁은 검사 exit 0. 완료 archive 후 등록 lint/test를 실행하고 최종 SHA를 authentic worker_done으로 인계한다. coor 후속은 인증 delta 고정 SHA 독립 리뷰·필요한 로그인 직접 확인·실제 Google 1경로·main 통합과 기존 서버 배포다. 광범위 QA/외부 메일/UTF8 과제는 재개하지 않는다. [DEV 실행 기록](docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md).
 
 - 최종 authentic DEV msg_c7bf94476ac4 / 017bf456c3ab0f7367b1e3980b48f949ce250856: clean 역할·원격 SHA·최종 등록 lint/test exit0 ERROR0/WARNING6 확인. 별도 coor 세션의 managed detached 인증 delta 리뷰 수락/check 통과다. 기존 DEV 실행 결과를 재사용하며 추가 전체 QA/UI 재실행은 없다. main 통합 뒤 기존 서버에 배포하고 지정 Google 사용자 실로그인을 확인한다.
+
+- main/origin/main `a9a0db49745542727611ee863e0beeb03c53288e`에 최종 DEV017bf456 조상을 확인했다. beta.sh deploy exit0: 새 DB backup·migrate0·relay healthy·local health200·private Postgres 확인. 기존 Tunnel 유지. 로그는 COOR/open-readiness/deploy-google-a9a0db4.log다. 배포 SHA와 인증 리뷰 SHA는 구분한다.
+- 실제 지정계정 로그인은 아직 미검증이다. Orca page9702beb5-03de-4bf7-9fe3-99e5f1a67c8c에 서비스 root를 열었다. 현재 기존 owner-only Cloudflare Access 이메일 OTP 화면이며 사용자가 직접 통과한 뒤 Google 가입을 진행한다. Google 앱 testing·기존 Access 보호가 유지되어 일반 공개 완료는 아니다. 새 workerctx_49065abbe2b8 정상 release·원문 archive 보존 후 delivery_d3ee50f3f264 ACK했다.
