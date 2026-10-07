@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-07
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -162,3 +162,15 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 ## SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER 독립 QA 중단 기록
 
 고정 d089의 [독립 보고서](../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md)와 [시나리오](../evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md)를 연결한다. 기본 lint·unit/race·build는 exit 0이다. runtime 재빌드와 tester QA 컴파일이 실패했고 사용자 지시로 추가 검증을 중단했다. 전체 PS08–11과 정상 cleanup/snapshot의 독립 기능 판정은 미검증이다. 기존 실패·운영/vendor 제한은 유지한다.
+
+## SAR-GOOGLE-LOGIN-001 인증 모듈
+
+최신 사용자 Google 우선 출시 지시를 적용한다. 원 이메일 기획의 과거 수락 결과는 바꾸지 않는다.
+
+- `google.go`: OIDC discovery와 `oauth2` code 교환·PKCE를 사용한다. `coreos/go-oidc/v3` v3.17.0이 RS256 서명·Google issuer·client audience·expiry를 검증한다. 서버는 nonce·최근 iat·검증 이메일·비어 있지 않은 sub를 추가 확인한다. 동일 issuer의 Google 표준 issuer 변형은 라이브러리가 검증하고 저장 키는 `https://accounts.google.com|sub`로 고정한다.
+- `State.GoogleAttempts`: state 해시로 10분짜리 nonce·PKCE verifier·현재 세션 해시·재확인 회원을 저장한다. callback은 별도 `__Host-kl_google` Secure/HttpOnly/SameSite=Lax cookie를 대조한다. 시도는 교환 전에 transaction으로 한 번 소비하고 만료 기록은 기존 sweep에서 제거한다. raw token·OAuth 자격은 state에 저장하지 않는다.
+- `identity.go/signIn`: 이메일 흐름과 Google 흐름이 회원 한도·owner 생성·세션 발급을 공유한다. Google 신원은 issuer/sub로만 매핑한다. 이메일 회원과 자동 병합하지 않는다. 재확인은 시작한 기존 세션과 같은 회원의 Google 신원만 허용한다. callback 전에 logout·세션 만료·owner 비활성이 발생하면 재확인을 거부한다.
+- `member.go`: Google-only에서 이메일 폼을 숨긴다. Google 회원의 `/auth/reauth`는 Google로 연결한다. 로그인·재확인 모두 명시 계정 선택·동의와 새 nonce에 연결된 최근 발급 ID token으로 신원을 확인한다. Google 비밀번호 재입력을 보장하지 않는다. 세션 발급 뒤 완료 화면에서 홈 링크를 누르게 하여 Strict 세션 cookie를 유지한다. 기존 CSRF/rate/기간·철회·owner/agent 권한을 재사용한다. CSP는 POST 로그인 redirect에 필요한 `https://accounts.google.com`만 form-action에 추가한다.
+- `cmd/relay/main.go`, `compose.yaml`: 세 Google env를 relay에 전달한다. 일부 설정·HTTP 또는 잘못된 callback URL·discovery 실패는 기동 실패다. 정확한 env·콘솔 URI와 로컬 HTTPS 조건은 [README](../../../README.md#google-가입로그인-sar-google-login-001)를 따른다.
+
+`TestGoogleTokenVerification`은 실제 RSA/JWK로 정상·위조 서명·issuer/audience/expiry/nonce/iat/이메일 거부를 확인한다. `TestGoogleIdentityContinuityAndReauth`는 이메일 미병합·동일 신원·회원 한도·owner·세션 회전과 재확인 거부를 확인한다. `TestGoogleAttemptAndConfiguration`은 state/cookie/재사용/만료·설정 거부를 확인한다. `TestGoogleHTTP`는 격리 Postgres와 signed local provider에서 SMTP 없는 전체 인증 delta를 확인한다. 실제 Google 계정과 직접 브라우저 확인·독립 코드 리뷰는 coor 후속이다. 상세 실행은 [DEV 기록](../exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md)에 남긴다.

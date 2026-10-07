@@ -70,7 +70,7 @@ func safeProblem(err error) string {
 	case "unsupported_client":
 		return "미지원 클라이언트입니다. Node 22 로컬 클라이언트를 선택하세요."
 	case "reauth_required":
-		return "이 작업은 5분 안의 이메일 재확인이 필요합니다. 홈에서 이메일을 다시 확인하세요."
+		return "이 작업은 5분 안의 로그인 신원 재확인이 필요합니다. 홈에서 로그인 신원을 다시 확인하세요."
 	case "invalid_auth":
 		return "연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다."
 	default:

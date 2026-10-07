@@ -1,0 +1,96 @@
+{
+  "task_key": "SAR-GOOGLE-LOGIN-001-DEV",
+  "role": "dev",
+  "head": "3b183a5304734d4c50f60d3e26da23e057fd9971",
+  "attempt": "58fe2507fee041d797df00bafce55d3d",
+  "instruction_sha256": "8520d84d8abf169f0f4b3ab33ba419fc42c7408b8bc16f778b350bd7ce550ba9",
+  "options": {
+    "policy": "find-v2",
+    "scope": "documents",
+    "limit": 6
+  },
+  "input_sha256": "8009596b82f98c76db35ed7fa05b1d4aa3c90dd7422b1b6a5a50d088e691a88f",
+  "version": "jev-find-v1",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 206,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 206
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "summary": "SAR-GOOGLE-LOGIN-001-DEV — Google 첫 로그인 자동 가입을 기존 회원·세션·agent 기능에 연결한다 — Google 첫 로그인 자동 가입을 기존 회원·세션·agent 기능에 연결한다",
+      "probability": 0.72,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 0
+    },
+    {
+      "path": "README.md",
+      "summary": "KnowsLink",
+      "probability": 0.060000000000000005,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 1
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — FullOps 규약 지도와 0.9.14 검사·문서 뷰어 기준",
+      "probability": 0.060000000000000005,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 2
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다",
+      "probability": 0.05,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 3
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "summary": "dev 완료 기록 — 지시서와 완료 보고를 보존한다.",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 4
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md",
+      "summary": "SAR-PUBLIC-IDENTITY-001-DEV 실행 기록 — 일반 이메일 코드 신원과 세션 및 자기 owner 홈의 기술 선택과 구현 및 검증과 인계를 기록한다",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 5
+    }
+  ],
+  "existence": {
+    "found_probability": 0.9,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 18836,
+    "output_tokens": 2109,
+    "cost": 0.000791112,
+    "known_cost": 0.000791112,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.556,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "remaining_candidates": [],
+  "presented_files": 206,
+  "partial": false,
+  "ranking_status": "single_batch",
+  "fallback": null,
+  "input_partial": true,
+  "instruction_chars": 4558,
+  "elapsed_seconds": 1.287
+}

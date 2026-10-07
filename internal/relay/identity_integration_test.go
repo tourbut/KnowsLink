@@ -240,7 +240,7 @@ func TestEmailIdentity(t *testing.T) {
 			}
 			st.Rates = map[string][]time.Time{}
 		})
-		expect(t, two.do("GET", "/home", nil), 200, "이메일 다시 확인", "<code>agent_kept</code>")
+		expect(t, two.do("GET", "/home", nil), 200, "로그인 신원 다시 확인", "<code>agent_kept</code>")
 		expect(t, two.do("POST", "/auth/logout-all", nil), 403, "5분 안에")
 		third := newBrowser(s, "203.0.113.3")
 		login(t, third, mail, "owner@example.com")

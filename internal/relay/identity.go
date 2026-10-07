@@ -212,8 +212,20 @@ func (st *State) verifyChallenge(pending, code, current string, now time.Time) v
 		return verifyResult{Problem: "wrong", Remaining: codeAttempts - c.Attempts}
 	}
 	delete(st.Challenges, id)
-	key := emailIssuer + "|" + c.Email
+	return st.signIn(emailIssuer, c.Email, c.Email, hashToken(current), "", now)
+}
+
+// signIn maps only the verified issuer/subject and rotates browser authority.
+func (st *State) signIn(issuer, subject, email, currentHash, requiredMember string, now time.Time) verifyResult {
+	key := issuer + "|" + subject
 	member := st.Identities[key]
+	if requiredMember != "" {
+		previous := st.Sessions[currentHash]
+		if member != requiredMember || previous == nil || previous.Member != member ||
+			!now.Before(previous.Created.Add(sessionAbsolute)) || !now.Before(previous.Seen.Add(sessionIdle)) {
+			return verifyResult{Problem: "identity_mismatch"}
+		}
+	}
 	if member == "" {
 		active := 0
 		for _, m := range st.Members {
@@ -226,17 +238,15 @@ func (st *State) verifyChallenge(pending, code, current string, now time.Time) v
 		}
 		member = "mem_" + randomToken()[:22]
 		owner := "owner_" + randomToken()
-		// Member owners have no bearer credential; only a verified browser session reaches them.
 		st.Owners[owner] = &Owner{"", true}
-		st.Members[member] = &Member{owner, c.Email, emailIssuer, true, now}
+		st.Members[member] = &Member{owner, email, issuer, true, now}
 		st.Identities[key] = member
 	}
-	if m := st.Members[member]; !m.Active || st.Owners[m.Owner] == nil || !st.Owners[m.Owner].Active {
+	m := st.Members[member]
+	if m == nil || !m.Active || st.Owners[m.Owner] == nil || !st.Owners[m.Owner].Active {
 		return verifyResult{Problem: "inactive"}
 	}
-	if current != "" {
-		delete(st.Sessions, hashToken(current))
-	}
+	delete(st.Sessions, currentHash)
 	token := randomToken()
 	st.Sessions[hashToken(token)] = &Session{member, now, now, now}
 	return verifyResult{Session: token}
@@ -259,6 +269,11 @@ func (st *State) session(token string, now time.Time) (string, *Session, error) 
 }
 
 func (st *State) sweepIdentity(now time.Time) {
+	for id, attempt := range st.GoogleAttempts {
+		if !now.Before(attempt.Exp) {
+			delete(st.GoogleAttempts, id)
+		}
+	}
 	for id, c := range st.Challenges {
 		if !now.Before(c.Exp) {
 			delete(st.Challenges, id)

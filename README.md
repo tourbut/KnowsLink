@@ -64,6 +64,20 @@ docker compose -p knowslink-qa-local --env-file .env.example down
 
 `down`은 자기 QA volume을 보존한다. `--volumes`는 해당 합성 project를 폐기할 때만 추가한다.
 
+## Google 가입·로그인 (SAR-GOOGLE-LOGIN-001)
+
+Google 첫 로그인은 일반 회원과 자기 owner를 자동으로 만든다. 재로그인은 같은 Google issuer/sub의 기존 agent·관계를 사용한다. 이메일 주소가 같은 기존 이메일 회원과 자동 병합하지 않는다. Google 비밀번호는 Google 화면에서만 입력한다.
+
+1. Google Auth Platform에서 **Web application** OAuth client를 만든다. scope는 `openid email`이다. JS origin 등록은 이 서버 흐름에 필요하지 않다.
+2. 운영 Authorized redirect URI를 `https://link.knowslog.com/auth/google/callback`으로 등록한다. 테스트 모드에서는 로그인할 Google 계정을 Test users에 등록한다.
+3. Git 미추적 `.env`에 `KNOWSLINK_GOOGLE_CLIENT_ID`, `KNOWSLINK_GOOGLE_CLIENT_SECRET`, `KNOWSLINK_GOOGLE_REDIRECT_URL`을 제공한다. redirect 값은 콘솔의 URI와 문자 단위로 같아야 한다. Compose가 relay로 전달한다. 비밀값을 명령 인자·로그·Git에 넣지 않는다.
+4. `/`의 **Google로 계속**을 누른다. Google 계정 선택·동의를 완료한 뒤 **자기 홈으로 이동**을 누른다. callback 완료 화면의 링크는 기존 Strict 세션 cookie를 유지한다.
+5. 권한 작업 전에 홈의 **로그인 신원 다시 확인**을 누르면 같은 Google 신원을 다시 확인한다. 타 Google 계정 선택은 거부한다. 5분 최근 인증·12시간 세션·60분 유휴 만료와 기존 로그아웃·철회 규칙을 유지한다.
+
+SMTP 없이 Google-only로 쓸 수 있다. 세 env가 모두 비어 있으면 Google 로그인은 비활성이다. 일부만 설정하거나 잘못된 redirect를 넣으면 relay 시작이 실패한다. 설정 완료 시 기동 서버의 Google HTTPS discovery/token/JWK 접근이 필요하다. callback은 `GET /auth/google/callback`이며 proxy가 이 경로를 relay로 전달해야 한다.
+
+로컬 Google 브라우저 시험은 별도 HTTPS origin을 사용한다. 예를 들어 `https://localhost:8443/auth/google/callback`을 콘솔에 추가하고 같은 값을 env로 준다. 로컬 TLS proxy는 별도로 준비한다. plain HTTP Compose 주소는 Google 로그인 redirect로 사용할 수 없다. 실제 자격·사용자 계정으로 Google 로그인을 끝내는 확인은 운영 담당자가 수행한다.
+
 ## 일반 이메일 로그인 확인 (SAR-PUBLIC-IDENTITY-001)
 
 회원 화면은 `/`(시작)·`/auth/verify`(확인)·`/home`(자기 owner 홈)이다. relay가 6자리 코드를 SMTP로 보낸다. 계약은 [D05](.fullops-squad/docs/design-docs/interface-design.md#sar-public-identity-001-회원-화면과-세션)다.
@@ -82,7 +96,7 @@ RELAY_ADDR=127.0.0.1:18082 KNOWSLINK_SMTP_URL=smtp://127.0.0.1:2525 KNOWSLINK_MA
 ## API와 adapter
 
 계약은 [D05](.fullops-squad/docs/design-docs/interface-design.md)다.
-API Bearer credential은 owner/agent 역할을 구분한다. `/v1/owners` 가입은 합성용이며 실사용자 신원 인증이 아니다. 실제 회원은 이메일 코드 확인으로만 만든다.
+API Bearer credential은 owner/agent 역할을 구분한다. `/v1/owners` 가입은 합성용이며 실사용자 신원 인증이 아니다. 실제 회원은 Google 신원 확인 또는 설정된 이메일 코드 확인으로 만든다.
 key PoP는 owner ID·AgentID·kid·public에 묶인 Ed25519다. rotation은 이전 키를 revoke한다.
 accept/approve/revoke는 owner만 수행한다. pending invite는 active pair slot이 아니다.
 
@@ -109,7 +123,7 @@ webhook·evidence fetch/preview·실제 벤더 연결은 OFF다.
 
 ## 일반 회원 agent·키·관계 (SAR-PUBLIC-AGENTS-001)
 
-이메일 확인 뒤 `/home`에서 새 agent를 만든다. 자기 agent만 관리할 수 있다. 회원당 활성 agent는 5개다. 연결 권한 변경에는 5분 안의 이메일 재확인이 필요하다.
+로그인 신원 확인 뒤 `/home`에서 새 agent를 만든다. 자기 agent만 관리할 수 있다. 회원당 활성 agent는 5개다. 연결 권한 변경에는 5분 안의 로그인 신원 재확인이 필요하다.
 
 1. 홈에서 Node 22 로컬 클라이언트와 등록 또는 회전을 선택한다. 회전은 완료 시 기존 키를 모두 철회한다.
 2. **자기 클라이언트 컴퓨터**에 저장소를 준비하고 `npm ci --prefix adapters`, `npm run build --prefix adapters`를 실행한다. 관리자 계정·공유 서버 SSH·서버 파일 배치는 필요하지 않다.
