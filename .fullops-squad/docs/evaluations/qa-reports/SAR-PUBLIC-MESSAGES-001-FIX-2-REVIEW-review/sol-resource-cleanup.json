@@ -1,0 +1,47 @@
+{
+  "container": "knowslink-fix2-sol-0840341bb6",
+  "steps": [
+    {
+      "label": "sol-postgres-up",
+      "exit": 0
+    },
+    {
+      "label": "sol-migrate",
+      "exit": 0
+    },
+    {
+      "label": "sol-probe-format",
+      "exit": 0
+    },
+    {
+      "label": "sol-narrow-tests",
+      "exit": 0
+    },
+    {
+      "label": "sol-postgres-cleanup",
+      "exit": 0
+    }
+  ],
+  "shared_before": [
+    "dfcd9d187117 knowslink-relay-1",
+    "07077b9ef5e4 knowslink-cloudflared-1",
+    "bc3482dc52f2 knowslink-postgres-1",
+    "7c5b97e219be myportfolio-worker-1",
+    "d4cc85256080 myportfolio-beat-1",
+    "c8dd2937d721 myportfolio-viewer-1",
+    "40149fcb9511 myportfolio-postgres-1",
+    "924e6a637f82 myportfolio-redis-1"
+  ],
+  "shared_after": [
+    "dfcd9d187117 knowslink-relay-1",
+    "07077b9ef5e4 knowslink-cloudflared-1",
+    "bc3482dc52f2 knowslink-postgres-1",
+    "7c5b97e219be myportfolio-worker-1",
+    "d4cc85256080 myportfolio-beat-1",
+    "c8dd2937d721 myportfolio-viewer-1",
+    "40149fcb9511 myportfolio-postgres-1",
+    "924e6a637f82 myportfolio-redis-1"
+  ],
+  "shared_unchanged": true,
+  "container_removed": true
+}

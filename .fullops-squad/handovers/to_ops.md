@@ -41,3 +41,15 @@ Jev keep code/doc 목록은 이 과제 context.json에 있다. 민감/크기 제
 ## 사용자 지정 Sol 재개 — 2026-10-07
 
 사용자가 최종 리뷰를 GPT Sol로 진행하도록 지정했다. 기존Task task_35b064a0376e의stopped ctx_ec664741c95a를정식retry한다. 새실제Codex 세션을사용하며원Claude 세션b9bbe917의quota/부분lint 증거는 COOR/fix2-review-quota와원지시서기록에보존했다. 같은fixed758/base dfc와read-only snapshot/리뷰키를유지한다. 원result/report는pending 준비템플릿이며원독립FIX-REVIEW의high 결과는수정하지않는다. 원Claude부분검증은출처를분리하고직접코드판단/coverage/필요재현·결론/check·최종기록을완료한다. 모델지정은최종리뷰에한정하며Grok TESTER 중단/좁은QA보류를해제하지않는다.
+
+## Sol 실제 착수와 짧은 검토 계획
+
+실제 리뷰 세션은 `01a115b4-ac62-7e52-9f79-f4701fc85002`다. 고정 snapshot의 detached·clean·HEAD를 확인했다. 원본 실패 증거의 byte hash를 먼저 보존했다.
+1. diff 전체 파일과 cleanup sibling caller를 읽고 권한·정리 공정성·snapshot·orphan 경계를 판단한다.
+2. 자기 scratch와 격리 Postgres에서 필요한 flood 회귀와 동일 commit 시각·stale/new16·동시 자기 정리·orphan 회수를 좁게 확인한다.
+3. 파일 coverage와 새 후보 결론을 기록하고 review check를 실행한다. 원본 high와 Grok QA 보류를 유지한다.
+4. 지시서·완료 전문을 archive하고 마지막 기록 커밋을 lint/test·strict·diff 검사한 뒤 일반 push와 worker_done을 수행한다.
+
+## Coordinator 운영 보류 기록 — 2026-10-07
+
+Sol 실제세션의진행분은이checkout의review 디렉터리에보존한다. 플랫폼TUI는`This content can’t be shown`/일부cybersecurity요청안내를표시했다. 최종result/report/check·worker_done이없으며pending결과를수락으로바꾸지않는다. 이문단은coor가작성한운영관측이며worker완료보고가아니다. Dispatch ctx_6429d136d397는stop_unknown후명시abandon으로fence했고external터미널은종료했다고주장하지않는다. 원본검사로그와좁은검사exit0/cleanup은진행분일뿐최종리뷰수락이아니다. 현재인박스는미완료지시서로보존한다.
