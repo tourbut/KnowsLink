@@ -1,0 +1,27 @@
+{
+  "candidateSHA": "d08903a55c3638128827010400e66e9d45b61d7c",
+  "reviewerSession": "01a116a7-4f1c-7650-bfce-dcb8a8447971",
+  "captures": [],
+  "directVisualVerdict": "UNVERIFIED",
+  "actualBrowserStarted": false,
+  "normalDenyClickEnterDesktop1280Mobile390": "not executed",
+  "cleanupErrorHomeReturn": "not executed",
+  "stoppedBy": "coordinator message msg_cd93755728ec, user instruction stop extra verification",
+  "browserAttemptExitCode": 1,
+  "failure": "fixture helper path initialization IndexError: 2; before browser/first login",
+  "originalEvidence": [
+    {
+      "sha": "09c523da8a3407288d9f5d711e1834af12bc7808",
+      "manifest": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI/manifest.json",
+      "result": "UX06 original PASS; UX07 original FAIL; no new execution"
+    },
+    {
+      "sha": "dfc70caa748a90614b02d48c78b4651345938339",
+      "manifest": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX/manifest.json",
+      "result": "original narrow normal Deny PASS; new-rate result GET429 LIMITED; H2 high original remains historical"
+    }
+  ],
+  "dependencyIdentity": "source-identity.json",
+  "video": "not created; no browser run",
+  "finalProductAcceptance": "not assessed by this worker"
+}

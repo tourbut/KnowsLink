@@ -5,6 +5,8 @@ updated: 2026-10-07
 owner: coor
 tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
 summary: 핵심 기능 우선 출시와 최소 배포 확인으로 개발 방향을 전환한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2]
+summary: 현재 과제와 사용자 검증 중단에 따른 미완료 및 담당·재개 조건을 관리한다
 ---
 
 # KnowsLink 현재 계획
@@ -1158,3 +1160,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - coor 담당: 사용자 배포 지시와 QA 미완료를 구분한다. [보고서](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md). 후속 QA는 새 명시 지시로 재개한다. 기존 운영/vendor 미검증과 원 SHA 실패는 유지한다.
 
 - msg_7854f226a3ad의 QA 중단 기록6b80495를 제품 변경 없이 통합했다. 미완료/Node exit2/시험 컴파일 exit1을 보존하며 재실행하지 않는다. OPS 정적 리뷰의 CLI UTF-8 청크 경계 medium M-UTF8-01은 배포 뒤 DEV 최소 수정 목록이다. critical/high 새 발견0은 기능 QA PASS를 뜻하지 않는다.
+## SAR-PUBLIC-MESSAGES-001-UI-FIX-2 — 사용자 추가 검증 중단 마감
+
+- coor msg_cd93755728ec의 사용자 지시로 새 테스트·전체 재실행·탐색 확대를 중단했다. 대상 d089, 실제 designer 세션01a116a7-4f1c-7650-bfce-dcb8a8447971의 managed clean detached snapshot은 coor 소유로 보존한다.
+- 자기 build/migration exit0 뒤 helper 초기화가 IndexError: 2로 exit1이었다. 브라우저/로그인/캡처는 미실행이며 새 UI PASS는 없다. 자기 fixture/process/mail/secret을 회수했다. 원193자료 hash는 같다. 상세는 docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md다.
+- worker outcome failed로 현재 결과를 archive/role push한다. 미검증·원실패·pending 리뷰·운영/벤더 보류를 유지한다. 배포는 같은 사용자 지시에 따라 coor가 별도로 진행한다.
+- 대기 담당 coor/designer/reviewer/tester: 사용자 검수 재개 요청과 고정 SHA가 후속 재개 조건이다. 이 기록으로 필수 독립 검수를 PASS로 바꾸지 않는다.
+
+- UI 중단 msg_3fd3268e5203 / SHA5cd5888의 기록만 통합한다. PNG0·직접 UI 미검증·helper IndexError2를 보존하고 재실행하지 않는다. 제품 코드 변경0이며 기존 배포를 유지한다.

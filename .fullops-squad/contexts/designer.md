@@ -1,10 +1,10 @@
 ---
 title: designer 컨텍스트
 status: draft
-updated: 2026-10-06
+updated: 2026-10-07
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX]
-summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보류 경계를 보존한다
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2]
+summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 보존한다
 ---
 
 # designer 컨텍스트
@@ -58,3 +58,7 @@ summary: 제품 판단과 일반 서비스 및 직접 UI 검수의 수락과 보
 - 2026-10-06: UI-FIX archive 뒤 coor msg_23b8de8f85ac가 dfc의 OPS H2 high와 유효정리18/18의429를 인계했다. 정상Deny 시각PASS는 전체제품수락이 아니다.
   같은DEV후속수정·새fixed독립수락 전 main을 차단한다. 원dfc캡처/완료전문·빈인박스를 보존하고 다음후보는UI의존성/영향만 확인한다.
   원메시지·담당·재개조건: [UI-FIX phase](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md).
+
+- 2026-10-07: UI-FIX-2는 실제 별도 세션/managed d089 snapshot과 자기 빌드/migration 뒤 사용자 추가 검증 중단으로 마감했다. helper 초기화 exit1이며 새 브라우저/PNG/UI PASS는 없다.
+  원09c FAIL·원dfc 좁은 PASS/GET429 제한·pending/운영/벤더 보류를 유지한다. 제품은 읽기 전용이며 자기 fixture만 회수했다.
+  현재 결과·재개 담당: [UI-FIX-2 보고](../docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md).
