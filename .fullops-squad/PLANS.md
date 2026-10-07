@@ -1078,3 +1078,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 사용자가최종리뷰를GPT Sol로지정했다. 담당OPS, 같은Task task_35b064a0376e/stopped ctx_ec664741c95a의정식retry에새Codex gpt-6.1-sol high를사용한다. route원추천/Claude부분실패와pending준비결과·실제세션증거는보존한다. 역할전체모델설정/구독/유료전환은변경하지않는다.
 - fixed758/base dfc·read-only snapshot을유지하고정규OPS inbox의같은과제후속으로지시했다. 최종review/check와별도QA/UI/main판정은기존기준을유지한다. Grok QA 사용자중단은이모델선정으로해제되지않는다.
+
+- Sol정식retry 착수: task_35b064a0376e/ctx_6429d136d397/term_437fcf22-f9a4-4706-bc5c-2be5deb1d3e7. fresh Codex의실제launcher는gpt-6.1-sol/model_reasoning_effort high이며tui-idle satisfied와provider codex/turn_started를확인했다. --terminal 재사용형receipt의requested/effective null을모델증거로쓰지않는다. 기존승인된실행모드와이번startup update확인해제를사용하며전역설정/설치/과금변경없다. 준비ad16ef4를idleclean OPS에ff/일반push했다. 원Claude중단증거는유지한다.
