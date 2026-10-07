@@ -1080,3 +1080,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - fixed758/base dfc·read-only snapshot을유지하고정규OPS inbox의같은과제후속으로지시했다. 최종review/check와별도QA/UI/main판정은기존기준을유지한다. Grok QA 사용자중단은이모델선정으로해제되지않는다.
 
 - Sol정식retry 착수: task_35b064a0376e/ctx_6429d136d397/term_437fcf22-f9a4-4706-bc5c-2be5deb1d3e7. fresh Codex의실제launcher는gpt-6.1-sol/model_reasoning_effort high이며tui-idle satisfied와provider codex/turn_started를확인했다. --terminal 재사용형receipt의requested/effective null을모델증거로쓰지않는다. 기존승인된실행모드와이번startup update확인해제를사용하며전역설정/설치/과금변경없다. 준비ad16ef4를idleclean OPS에ff/일반push했다. 원Claude중단증거는유지한다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW — Sol 진행분 보존·플랫폼 차단
+
+- 사용자지정Sol retry ctx_6429d136d397/task_35b064a0376e의실제reviewer세션01a115b4-ac62-7e52-9f79-f4701fc85002는구현자05c78055와별도다. fixed758/base dfc·read-only snapshot·original334 hashes·candidate evidence/coverage inventory·좁은검사와자기Postgres정리exit0을저장했다. 부분증거는OPS bd87c7ae4b670e7fee88c33540c4af1adbe933cb에coor 운영마감으로커밋/일반push했다. 이것은worker최종완료SHA가아니다.
+- 플랫폼화면은`This content can’t be shown`/일부cybersecurity요청안내를표시했다. 원출력의차단을우회하거나다른모델로동일차단내용을생성하지않는다. 최종result/report/check와worker_done은없으며준비pending을통과로바꾸지않는다. 원화면/bounded transcript/stop/abandon receipt는COOR/fix2-sol-block에보존했다.
+- 구조화handoff msg_e592729e1868로추가분석중단·기실행증거운영마감을전달했다. 직접terminal send 마감지시는PreToolUse FullOps가Run/worker_done추적밖실행위험으로차단했다. 호출은실행되지않았으며우회하지않았다. 그후stop_unknown(external/processAction none)→명시abandoned로fence했다. 외부Sol터미널은종료/worker_done했다고주장하지않는다. 원현재지시서도미완료inbox로보존한다.
+- 담당coor/OPS. 현재보류사유는Sol 플랫폼출력차단/최종독립리뷰미완료다. 재개에는차단된내용을생성하지않는허용검토범위와실제독립결론/고정SHA·coverage·검증근거가필요하다. 기존Claude quota부분결과·원dfc H2high·QA09c실패는보존한다. Grok QA중단·UI-FIX-2 OPS결론대기·main68b 수락보류를유지한다.
