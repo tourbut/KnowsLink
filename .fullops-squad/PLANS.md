@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-06
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
 summary: MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다
 ---
 
@@ -1045,3 +1045,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - msg_8a27d8a69cbe / task_d6eb6d8df272 / ctx_07a9030f9c9f의 실제 worker_done succeeded를 처리했다. 최종 `758e9f638501f11000ed17c558a9eb54b4350eb3`의 DEV HEAD/origin 동일·clean·완료 전문 archive·빈 인박스·최종 lint JSON을 대조했다. 실제 DEV 세션은05c78055-8d3a-4f8d-94cc-2c7b6916057b다. final ERROR0/WARNING5/실행불가0·product-lint/test passed 원본은 COOR/dev-fix-2-final/lint.json에 보존했다. SHA 추출null과 실제fullSHA/출처를 integration ledger에 함께 보완했다.
 - DEV는 H2 자기 기록 분류·owner당 동시정리1·commit 순서·실패 종료 회수 및 QA 원본HTTP 잔류 경로를 수정하고 코드c8ac921에서 MVP45 PASS를 보고했다. 같은 owner 정리 제한·stale snapshot의 신규채널 fallback은 독립 리뷰 대상이다. 기존 high/원본실패를 DEV 자체PASS로 해제하지 않는다.
 - integration hold 담당coor: fixed758의 별도세션 OPS delta 수락, 사용자 허용 좁은 독립 QA, UI 의존성/영향 확인 뒤 main 판정한다. TESTER 사용자 중단과 FIX-TESTER 보류는 유지한다. DEV release는retained(user_takeover)/processAction none이며 강제종료하지 않았다. main/origin68b에는 아직 이 제품 후보를 반영하지 않았다.
+
+## SAR-PUBLIC-MESSAGES-001-DEV-FIX-2 DEV 결과 — 2026-10-06
+
+- 기준 fixed `dfc70caa748a90614b02d48c78b4651345938339`의 OPS FIX-REVIEW H-2를 같은 과제에서 분석·수정·검증했다. 최종 코드 `c8ac921c5949cb263278e3f7cea4c120123cf8f3`(H-2 수정 `0ae40d5`, 시험 분리·종료 실패 회귀 추가).
+- 수정: DB 전 로컬 정리 채널 선택에 커밋 snapshot의 자기 기록 대조를 적용했다. owner당 동시 정리 1개를 로컬·공유 기록에 둔다. snapshot은 commit 순서로만 교체하고 종료 실패 공유 기록은 다음 commit이 회수한다. `/v1/invite-decision` deny를 정리 분류에 추가했다. `/v1/connect/{cancel,…}` 경로는 존재하지 않음을 확인했다. coor 추가 인계의 TESTER 원본 `st.HTTP` 잔류(medium, 09c 17차)도 같은 종료 transaction 실패 경로로 확인하고 회수 회귀를 추가했다. 원본 QA 실패와 새 fixed 독립 QA 보류는 그대로다.
+- 검증: OPS 재현 시험은 dfc70ca에서 재현(exit0), 수정 코드에서 미재현(exit1). 새 flood 회귀는 변형에서 exit1. 결과와 최종 검사는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md)에 있다.
+- 보존: OPS H-2 high·review check exit1, L-1·L-A·L-B, 공개 전 합성 가입 unset·운영 DB 합성 owner 0. 후속은 coor 배정의 OPS 별도 세션 delta 리뷰·TESTER 좁은 QA·필요 UI 수락 뒤 main 판정이다.

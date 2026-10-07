@@ -1,0 +1,11 @@
+HEAD 0ae40d51dd1c6bab35b74bca812d7db581d55585 worktree-diff:
+?? internal/relay/review_foreign_cleanup_test.go
+command: go test -tags=integration -race -count=1 -v -run 'TestReviewForeignCleanupHoldsCleanupChannel' ./internal/relay
+=== RUN   TestReviewForeignCleanupHoldsCleanupChannel
+    review_foreign_cleanup_test.go:60: A: foreign-target requests holding cleanup channel during admission = 0/4; valid own cleanup -> 503 {"error":"unavailable"}; foreign final codes [503 503 503 503]
+    review_foreign_cleanup_test.go:62: A: rates cleanup:member:agent_b=0 http:member:agent_b=0 cleanup:member:agent_a=0
+    review_foreign_cleanup_test.go:66: not reproduced: held 0, own cleanup 503 {"error":"unavailable"}
+--- FAIL: TestReviewForeignCleanupHoldsCleanupChannel (13.13s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	13.153s
+FAIL

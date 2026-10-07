@@ -7,6 +7,7 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+	"time"
 )
 
 // Review M1: cleanup admission needs an honored credential, same-origin form, gate CSRF, valid body and the caller's own record.
@@ -17,10 +18,10 @@ func TestCleanupAdmissionNeedsVerifiedOwnRecord(t *testing.T) {
 	st.Gates["gate"] = &Gate{Owner: "agent_a", State: "pending"}
 	st.Agents["agent_c"].Revoked = true
 	s := &Service{}
+	s.remember(st, now)
 	live := st.liveCredentials()
-	s.live.Store(&live)
 	for token, want := range map[string]bool{"agent_a": true, "session-a": true, "agent_c": false, "invented": false, "": false} {
-		if s.liveCredential(token) != want {
+		if _, ok := live[hashToken(token)]; ok != want {
 			t.Fatal("live credential", token)
 		}
 	}
@@ -65,5 +66,38 @@ func TestCleanupAdmissionNeedsVerifiedOwnRecord(t *testing.T) {
 		if st.cleanupTarget(c.r, c.principal, now) != c.own {
 			t.Fatal("own cleanup target", c.r.URL.Path, c.principal)
 		}
+		// Review H2: the pre-DB channel choice applies the same own-record check to the committed snapshot.
+		if got := s.cleanupOwner(c.r, c.credential); (got != "") != (c.credential != "" && c.own) {
+			t.Fatalf("%s local cleanup owner %q", c.r.URL.Path, got)
+		}
+	}
+	if s.cleanupOwner(request("/v1/key-revoke", revoke, "", "agent_a"), "agent_a") != st.Agents["agent_a"].Owner {
+		t.Fatal("cleanup fairness owner")
+	}
+	// A session cookie does not authorize /v1, an agent credential does not authorize /owner, and expiry is honored.
+	if s.cleanupOwner(request("/v1/key-revoke", revoke, "", "session-a"), "session-a") != "" ||
+		s.cleanupOwner(request("/owner/gates/gate/deny", "", "", "agent_a"), "agent_a") != "" {
+		t.Fatal("credential kind crossed paths")
+	}
+	st.Sessions[hashToken("session-a")].Seen = now.Add(-sessionIdle)
+	s.live.Store(nil)
+	s.remember(st, now)
+	if s.cleanupOwner(request("/home/unpair", "agent=agent_a&target=agent_b", "session-a", ""), "session-a") != "" {
+		t.Fatal("idle session kept cleanup channel")
+	}
+}
+
+// Review L2: a goroutine storing an earlier commit late cannot replace the newer committed snapshot.
+func TestRememberKeepsNewestCommit(t *testing.T) {
+	st, _, now := textFixture()
+	s := &Service{}
+	s.remember(st, now)
+	s.remember(newState(), now.Add(-time.Millisecond))
+	if s.live.Load().st != st {
+		t.Fatal("older commit replaced newer snapshot")
+	}
+	s.remember(newState(), now.Add(time.Millisecond))
+	if s.live.Load().st == st {
+		t.Fatal("newer commit not stored")
 	}
 }

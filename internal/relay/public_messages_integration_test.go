@@ -223,7 +223,7 @@ func TestPublicHTTPAdmissionAndGateSafety(t *testing.T) {
 	// Shared global new-work saturation survives another Service; cleanup admission and rate stay independent.
 	f.mutate(func(st *State) {
 		for i := 0; i < 16; i++ {
-			st.HTTP[fmt.Sprint("busy", i)] = admission{false, time.Now().Add(20 * time.Second)}
+			st.HTTP[fmt.Sprint("busy", i)] = admission{Exp: time.Now().Add(20 * time.Second)}
 		}
 	})
 	f.handler = (&Service{Pool: pool}).Handler()
@@ -373,17 +373,20 @@ func TestHTTPConcurrencyAcrossInstances(t *testing.T) {
 		w.WriteHeader(200)
 	})
 	handlers := []http.Handler{f.s.boundedHTTP(next), (&Service{Pool: pool}).boundedHTTP(next)}
-	call := func(h http.Handler, path string) int {
+	f.addAgent("agent_d")
+	f.addAgent("agent_e")
+	f.mutate(func(st *State) { st.Rates = map[string][]time.Time{} })
+	call := func(h http.Handler, path, revoker string) int {
 		// Cleanup admission needs the caller's own target; an empty revoke would be new work.
-		r := httptest.NewRequest("POST", path, strings.NewReader(`{"agent":"agent_a","kid":"key1"}`))
-		r.Header.Set("Authorization", "Bearer "+f.tokens["agent_a_owner"])
+		r := httptest.NewRequest("POST", path, strings.NewReader(`{"agent":"`+revoker+`","kid":"key1"}`))
+		r.Header.Set("Authorization", "Bearer "+f.tokens[revoker+"_owner"])
 		w := httptest.NewRecorder()
 		h.ServeHTTP(w, r)
 		return w.Code
 	}
 	done := make(chan int, 20)
 	for i := 0; i < 16; i++ {
-		go func(index int) { done <- call(handlers[index%2], "/v1/registry") }(i)
+		go func(index int) { done <- call(handlers[index%2], "/v1/registry", "agent_a") }(i)
 		select {
 		case clean := <-entered:
 			if clean {
@@ -393,11 +396,12 @@ func TestHTTPConcurrencyAcrossInstances(t *testing.T) {
 			t.Fatal("new admission stalled")
 		}
 	}
-	if call(handlers[0], "/v1/registry") != 429 {
+	if call(handlers[0], "/v1/registry", "agent_a") != 429 {
 		t.Fatal("17th shared HTTP request")
 	}
-	for i := 0; i < 4; i++ {
-		go func(index int) { done <- call(handlers[index%2], "/v1/key-revoke") }(i)
+	// Each owner holds at most one shared cleanup admission, so four owners fill the four cleanup records.
+	for i, id := range []string{"agent_a", "agent_b", "agent_c", "agent_d"} {
+		go func(index int) { done <- call(handlers[index%2], "/v1/key-revoke", id) }(i)
 		select {
 		case clean := <-entered:
 			if !clean {
@@ -407,7 +411,7 @@ func TestHTTPConcurrencyAcrossInstances(t *testing.T) {
 			t.Fatal("cleanup blocked by new work")
 		}
 	}
-	if call(handlers[0], "/v1/key-revoke") != 429 {
+	if call(handlers[0], "/v1/key-revoke", "agent_e") != 429 {
 		t.Fatal("5th shared cleanup request")
 	}
 	unblock()

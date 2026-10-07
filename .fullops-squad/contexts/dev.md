@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-06
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
 summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
 ---
 
@@ -60,3 +60,6 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 
 - 2026-10-06 SAR-PUBLIC-MESSAGES-001-DEV-FIX: 슬롯은 본문 수신 뒤 잡는다. 슬롯 안 본문 읽기는 익명 slow body로 전체를 막는다. 예약 채널은 위조할 수 없는 근거(커밋 상태의 유효 자격 색인)로만 고르고 transaction이 다시 판정한다.
 - 예약 budget 분류는 경로가 아니라 "검증된 principal이 자기 기록을 정리하는가"로 한다. 회귀 검사는 원 결함 코드 대조군과 경로만 분류하는 변형으로 검출력을 먼저 증명한다. POST 전용 하위 경로로 303하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md)
+
+- 2026-10-06 SAR-PUBLIC-MESSAGES-001-DEV-FIX-2: 예약 슬롯을 DB 입장 전에 고르면 그 판정도 transaction과 같은 자기 기록 대조여야 한다. 자격 유효성만 보면 유효 자격 하나의 타 대상 flood가 DB 대기 동안 예약을 모두 잡는다. rate는 transaction 안이라 슬롯을 지키지 못한다.
+- 예약 budget에는 공정성 단위(owner)당 동시 상한을 둔다. 자기 대상 반복도 flood다. 공유 기록에 단위별 상한을 두면 종료 실패 기록이 그 단위를 막으므로 다음 commit에서 회수한다. 커밋 snapshot은 commit 시각 순서로만 교체한다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md)

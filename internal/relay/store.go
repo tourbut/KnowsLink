@@ -97,7 +97,9 @@ func newState() *State {
 type Service struct {
 	httpOnce           sync.Once
 	httpNew, httpClean chan struct{}
-	live               atomic.Pointer[map[string]time.Time]
+	live               atomic.Pointer[committed]
+	cleaning           sync.Map // owners holding the local cleanup channel
+	orphans            sync.Map // shared admission tokens whose finish transaction failed
 	Pool               *pgxpool.Pool
 	TestAgents         map[string]bool
 	// SyntheticSignup keeps the local /v1/owners fixture; public members come only from verified email.
@@ -145,6 +147,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	}
 	state.TestAgents = s.TestAgents
 	state.sweep(now)
+	orphans := s.reclaim(state)
 	value, opErr := operation(state, now)
 	// Even a rejected request commits only cleanup and its spent request budget, never partial operation state.
 	if opErr != nil {
@@ -155,6 +158,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		}
 		state.TestAgents = s.TestAgents
 		state.sweep(now)
+		s.reclaim(state)
 		state.Rates = rates
 	}
 	raw, err := json.Marshal(state)
@@ -168,9 +172,21 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if err = tx.Commit(ctx); err != nil {
 		return nil, fault("unavailable")
 	}
-	live := state.liveCredentials()
-	s.live.Store(&live)
+	for _, token := range orphans {
+		s.orphans.Delete(token)
+	}
+	s.remember(state, now)
 	return value, opErr
+}
+
+// reclaim drops shared admissions this process failed to finish, at its next commit (the 1s sweep at the latest).
+func (s *Service) reclaim(st *State) (tokens []string) {
+	s.orphans.Range(func(token, _ any) bool {
+		delete(st.HTTP, token.(string))
+		tokens = append(tokens, token.(string))
+		return true
+	})
+	return tokens
 }
 func (st *State) current(m *Message) bool {
 	if m.Receipt.Intent == "relay.test.message" && (!st.TestAgents[m.Receipt.From] || !st.TestAgents[m.Receipt.To]) {

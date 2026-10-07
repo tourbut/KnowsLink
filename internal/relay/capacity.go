@@ -13,6 +13,7 @@ import (
 type admission struct {
 	Clean bool
 	Exp   time.Time
+	Owner string `json:",omitempty"`
 }
 
 type requestBudgetKey struct{}
@@ -26,18 +27,22 @@ func (s *Service) requestHit(st *State, r *http.Request, now time.Time, buckets 
 
 // Classify the authenticated request once, before schema, CSRF or route rejection, without trusting the request's claimed agent ID.
 // Only a verified principal ending its own record spends cleanup budget; anonymous, foreign or malformed cleanup is new work.
-func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, cleanable bool) ([]bucket, bool) {
-	principal := ""
+// cleanOwner names the owner that cleanup acts for, the unit of cleanup fairness, and is "" for new work.
+func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, cleanable bool) (buckets []bucket, cleanOwner string) {
+	principal, owner := "", ""
 	switch {
 	case strings.HasPrefix(r.URL.Path, "/home") || r.URL.Path == "/auth/reauth" || r.URL.Path == "/auth/logout" || r.URL.Path == "/auth/logout-all":
 		principal, _, _ = st.session(readCookie(r, sessionCookie), now)
+		if principal != "" {
+			owner = st.Members[principal].Owner
+		}
 	case strings.HasPrefix(r.URL.Path, "/v1/connect/"):
 		var c struct{ Token, Client, Kid, Public, Proof string }
 		if Strict(httpBody(r), &c) == nil {
 			if conn, err := st.connection(c.Token, now); err == nil {
 				for id, m := range st.Members {
 					if m.Owner == conn.Owner {
-						principal = id
+						principal, owner = id, conn.Owner
 						break
 					}
 				}
@@ -46,19 +51,23 @@ func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, clea
 	case strings.HasPrefix(r.URL.Path, "/v1/"):
 		var err error
 		principal, err = st.principal(bearer(r), "agent")
-		if err != nil {
+		if err == nil {
+			owner = st.Agents[principal].Owner
+		} else {
 			principal, _ = st.principal(ownerToken(r), "owner")
+			owner = principal
 		}
 	case strings.HasPrefix(r.URL.Path, "/owner"):
 		principal, _ = st.principal(ownerToken(r), "owner")
+		owner = principal
 	}
 	if principal == "" {
-		return anonymousRate(s.clientIP(r)), false
+		return anonymousRate(s.clientIP(r)), ""
 	}
 	if cleanable && st.cleanupTarget(r, principal, now) {
-		return cleanupRate(principal), true
+		return cleanupRate(principal), owner
 	}
-	return memberRate(principal), false
+	return memberRate(principal), ""
 }
 
 type requestBodyKey struct{}
@@ -103,6 +112,10 @@ func cleanupRequest(r *http.Request) bool {
 	if r.Method != "POST" {
 		return false
 	}
+	if r.URL.Path == "/v1/invite-decision" {
+		var c command
+		return Strict(commandBody(r), &c) == nil && c.Decision == "deny"
+	}
 	switch r.URL.Path {
 	case "/v1/ack", "/v1/test/ack", "/v1/text/ack", "/v1/key-revoke", "/v1/unpair", "/v1/owner-revoke", "/home/key-revoke", "/home/agent-revoke", "/home/unpair", "/home/cancel", "/auth/logout", "/auth/logout-all", "/home/invite-deny":
 		return true
@@ -112,26 +125,35 @@ func cleanupRequest(r *http.Request) bool {
 	}
 	return false
 }
-func (st *State) enterHTTP(token string, clean bool, now time.Time) bool {
+
+// enterHTTP records one shared admission; cleanOwner != "" takes the cleanup budget, at most one per owner across processes.
+func (st *State) enterHTTP(token, cleanOwner string, now time.Time) bool {
+	clean := cleanOwner != ""
 	n, limit := 0, 16
 	if clean {
 		limit = 4
 	}
 	for _, a := range st.HTTP {
 		if a.Clean == clean && now.Before(a.Exp) {
+			if clean && a.Owner == cleanOwner {
+				return false
+			}
 			n++
 		}
 	}
 	if n >= limit {
 		return false
 	}
-	st.HTTP[token] = admission{clean, now.Add(30 * time.Second)}
+	st.HTTP[token] = admission{clean, now.Add(30 * time.Second), cleanOwner}
 	return true
 }
 
 // Local channels also bound requests waiting for DB admission; shared records enforce the limit across relay processes.
-// The capped body is received before any slot, under the same 10s deadline as the request context, so a slow or
-// anonymous sender holds only its own connection, like header reception. 30s admission expiry recovers crashed processes.
+// Only a cleanup the last committed state proves to be the caller's own record waits on the cleanup channel, and each
+// owner holds at most one cleanup slot locally and in shared records, so neither a foreign, lease-less or rate-limited
+// cleanup nor one member repeating its own valid cleanup can starve other owners' cleanup. The capped body is received
+// before any slot, under the same 10s deadline as the request context, so a slow or anonymous sender holds only its own
+// connection, like header reception. 30s admission expiry recovers crashed processes.
 func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 	s.httpOnce.Do(func() { s.httpNew = make(chan struct{}, 16); s.httpClean = make(chan struct{}, 4) })
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -161,7 +183,12 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			credential = cleanupCredential(r)
 		}
 		queue := s.httpNew
-		if s.liveCredential(credential) {
+		if owner := s.cleanupOwner(r, credential); owner != "" {
+			if _, busy := s.cleaning.LoadOrStore(owner, nil); busy {
+				capacityResponse(w, r)
+				return
+			}
+			defer s.cleaning.Delete(owner)
 			queue = s.httpClean
 		}
 		select {
@@ -174,12 +201,12 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		// Even malformed bodies spend the authenticated/anonymous request budget once they reach admission.
 		token, clean := randomToken(), false
 		v, err := s.transaction(ctx, func(st *State, now time.Time) (any, error) {
-			buckets, cleanup := s.requestBuckets(st, r, now, credential != "")
+			buckets, owner := s.requestBuckets(st, r, now, credential != "")
 			if ok, retry := st.hit(now, buckets...); !ok {
 				return retry, nil
 			}
-			clean = cleanup
-			return st.enterHTTP(token, clean, now), nil
+			clean = owner != ""
+			return st.enterHTTP(token, owner, now), nil
 		})
 		if err != nil {
 			respond(w, nil, err)
@@ -200,7 +227,9 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		defer func() {
 			finishCtx, done := context.WithTimeout(context.WithoutCancel(ctx), 2*time.Second)
 			defer done()
-			_, _ = s.transaction(finishCtx, func(st *State, _ time.Time) (any, error) { delete(st.HTTP, token); return nil, nil })
+			if _, err := s.transaction(finishCtx, func(st *State, _ time.Time) (any, error) { delete(st.HTTP, token); return nil, nil }); err != nil {
+				s.orphans.Store(token, nil) // the next commit reclaims it, so one owner's slot does not wait for the 30s expiry
+			}
 		}()
 		// A live credential that no longer proves its own cleanup target hands the reserved local slot back.
 		if queue == s.httpClean && !clean {

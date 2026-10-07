@@ -20,6 +20,8 @@ import (
 func TestHTTPSlowBodyAndCleanupAdmission(t *testing.T) {
 	pool := messagePool(t)
 	f := setup(t, pool)
+	f.addAgent("agent_d")
+	f.addAgent("agent_e")
 	f.mutate(func(st *State) { st.Rates = map[string][]time.Time{} })
 	release := make(chan struct{})
 	var once sync.Once
@@ -143,23 +145,32 @@ func TestHTTPSlowBodyAndCleanupAdmission(t *testing.T) {
 	if clean := inFlight(7); clean != 0 {
 		t.Fatalf("%d rejected cleanup requests took cleanup admission", clean)
 	}
-	for range 4 {
-		send("/v1/key-revoke", f.tokens["agent_a_owner"], revoke)
+	own := func(id string) string { return `{"agent":"` + id + `","kid":"key1"}` }
+	for _, id := range []string{"agent_a", "agent_b", "agent_c", "agent_d"} {
+		send("/v1/key-revoke", f.tokens[id+"_owner"], own(id))
 	}
 	if clean := inFlight(11); clean != 4 {
 		t.Fatalf("own cleanup admitted %d of 4", clean)
 	}
-	// The fifth meets the full local cleanup channel and is refused before DB admission, spending no rate.
-	r := httptest.NewRequest("POST", "/v1/key-revoke", strings.NewReader(revoke))
-	r.Header.Set("Authorization", "Bearer "+f.tokens["agent_a_owner"])
-	w := httptest.NewRecorder()
-	f.s.boundedHTTP(next).ServeHTTP(w, r)
-	if w.Code != 429 {
-		t.Fatalf("5th cleanup got %d", w.Code)
+	// A fifth owner meets the full local cleanup channel and the first owner's repeat meets its own held cleanup slot.
+	// Both are refused before DB admission, spending no rate.
+	for _, id := range []string{"agent_e", "agent_a"} {
+		r := httptest.NewRequest("POST", "/v1/key-revoke", strings.NewReader(own(id)))
+		r.Header.Set("Authorization", "Bearer "+f.tokens[id+"_owner"])
+		w := httptest.NewRecorder()
+		f.s.boundedHTTP(next).ServeHTTP(w, r)
+		if w.Code != 429 || !strings.Contains(w.Body.String(), "capacity") {
+			t.Fatalf("%s extra cleanup got %d", id, w.Code)
+		}
 	}
 	f.mutate(func(st *State) {
-		if len(st.Rates["cleanup:member:"+f.owners["agent_b"]]) != 0 || len(st.Rates["http:member:"+f.owners["agent_b"]]) != 2 || len(st.Rates["cleanup:member:"+f.owners["agent_a"]]) != 4 {
+		if len(st.Rates["http:member:"+f.owners["agent_b"]]) != 2 || len(st.Rates["cleanup:member:"+f.owners["agent_e"]]) != 0 {
 			t.Fatalf("cleanup budget spent by rejected requests: %v", st.Rates)
+		}
+		for _, id := range []string{"agent_a", "agent_b", "agent_c", "agent_d"} {
+			if len(st.Rates["cleanup:member:"+f.owners[id]]) != 1 {
+				t.Fatalf("own cleanup budget %s: %v", id, st.Rates)
+			}
 		}
 	})
 	unblock()
