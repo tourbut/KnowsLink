@@ -11,7 +11,7 @@ summary: DEV FIX-2 고정 후보의 독립 delta 보안 리뷰
 
 ## 대상·기준·복귀
 
-- 담당 OPS. 인증/인가·공유DB·동시성의 high 위험이므로 fullops-review 규정에 따라 fresh Claude Opus5.5 high를 적용한다. route Sonnet 추천 원본을 보존한다. DEV 구현자 실제세션05c78055-8d3a-4f8d-94cc-2c7b6916057b와 다른 실제 리뷰 세션을 기록한다.
+- 담당 OPS. 인증/인가·공유DB·동시성의 high 위험이므로 fullops-review 규정에 따라 사용자 지정 fresh GPT gpt-6.1-sol high를 적용한다. route Sonnet/Claude 추천과 사용량중단 원본을 보존한다. DEV 구현자 실제세션05c78055-8d3a-4f8d-94cc-2c7b6916057b와 다른 실제 리뷰 세션을 기록한다.
 - base dfc70caa748a90614b02d48c78b4651345938339 / head 758e9f638501f11000ed17c558a9eb54b4350eb3. 독립 detached clean read-only snapshot은 /tmp/knowslink-messages-fix2-review-758e9f6이다. 구현 제품은 c8ac921이다.
 - 결과는 fullops-ops checkout의 이 과제 -review 디렉터리와 PLANS/context/현재지시서에만 작성한다. 제품코드·기획정본·타인 inbox·원본 실패는 수정하지 않는다. install/실행은 snapshot에서 복사한 별도 자기 scratch에서 한다.
 - 복귀 coor term_6895aaf1-7b43-4fe0-a416-76f1255a5946 / Run run_8ca8bc058ab7. Task/Dispatch/worker_done 권한은 새 preamble을 따른다.
@@ -37,3 +37,7 @@ Workers Free만 허용한다. 유료전환/구독/초과과금·공유서버/Tun
 ## 탐색 보완·지시 전제와 충돌 — 먼저 확인
 
 Jev keep code/doc 목록은 이 과제 context.json에 있다. 민감/크기 제한으로 미전송된 cleanup_admission.go는 필수 직접읽기다. 원 FIX-REVIEW report의 dfc H2 미해결과 DEV 새fixed 자체PASS는 다른 SHA/시점이며 충돌하는 판정은 원본high를 보존하고 새758에서 독립 확인한다. README가 높은 code 추천으로 나왔지만 실제수정capacity/store/cleanup_* 전체와 caller/test를 우선 필수검토한다. 원 QA09c 실패·UI dfc 좁은PASS도 새758 전체수락이 아니다.
+
+## 사용자 지정 Sol 재개 — 2026-10-07
+
+사용자가 최종 리뷰를 GPT Sol로 진행하도록 지정했다. 기존Task task_35b064a0376e의stopped ctx_ec664741c95a를정식retry한다. 새실제Codex 세션을사용하며원Claude 세션b9bbe917의quota/부분lint 증거는 COOR/fix2-review-quota와원지시서기록에보존했다. 같은fixed758/base dfc와read-only snapshot/리뷰키를유지한다. 원result/report는pending 준비템플릿이며원독립FIX-REVIEW의high 결과는수정하지않는다. 원Claude부분검증은출처를분리하고직접코드판단/coverage/필요재현·결론/check·최종기록을완료한다. 모델지정은최종리뷰에한정하며Grok TESTER 중단/좁은QA보류를해제하지않는다.

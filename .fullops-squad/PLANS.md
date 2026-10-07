@@ -1073,3 +1073,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 마지막실제assistant turn은 `You've hit your session limit · resets 6pm (Asia/Seoul)`이었다. worker_done/최종리뷰result/report/check는없다. fleet live/PTY live는사용량대기TUI였으며완료나제품PASS가아니다. 명시quota 최종turn을근거로worker-stop 회복처리를수행했다. 기존사용자소유OPS터미널은변경하지않았다.
 - 담당coor/ops. 보류사유Claude 사용량한도, 표시된재개시각2026-10-07 18:00 Asia/Seoul. 과제지시서/현재OPS inbox·읽기전용snapshot·scratch·원본실패를보존한다. 최종판정미완료이므로work.py finish나worker_done을대신작성하지않는다. 재개조건사용량회복뒤같은Task의정식retry와실제세션/고정SHA근거갱신이다. 유료플랜전환/초과과금·임의모델교체는하지않는다.
 - SAR-PUBLIC-MESSAGES-001-UI-FIX-2는OPS결론대기미배정으로유지한다. SAR-PUBLIC-MESSAGES-001-FIX-TESTER는사용자Grok중단으로보류한다. main68b 수락차단과모든원실패/미검증을유지한다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW — 사용자 지정 GPT Sol 재개
+
+- 사용자가최종리뷰를GPT Sol로지정했다. 담당OPS, 같은Task task_35b064a0376e/stopped ctx_ec664741c95a의정식retry에새Codex gpt-6.1-sol high를사용한다. route원추천/Claude부분실패와pending준비결과·실제세션증거는보존한다. 역할전체모델설정/구독/유료전환은변경하지않는다.
+- fixed758/base dfc·read-only snapshot을유지하고정규OPS inbox의같은과제후속으로지시했다. 최종review/check와별도QA/UI/main판정은기존기준을유지한다. Grok QA 사용자중단은이모델선정으로해제되지않는다.

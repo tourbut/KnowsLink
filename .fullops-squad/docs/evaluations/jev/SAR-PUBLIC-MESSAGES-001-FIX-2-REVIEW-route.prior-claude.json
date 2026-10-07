@@ -53,23 +53,11 @@
   "latency_seconds": 0.999,
   "response_model": "typesafe/jev-1.13-20260917",
   "model": {
-    "agent": "codex",
-    "provider": "openai",
-    "model": "gpt-6.1-sol",
-    "effort": "high",
-    "source": "user_override"
-  },
-  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
-  "model_prior": {
     "agent": "claude",
     "provider": "anthropic",
     "model": "claude-sonnet-5-5",
     "effort": "high",
     "source": "only"
   },
-  "user_override": {
-    "request": "최종 리뷰 gpt sol로 진행해",
-    "scope": "same Task retry for final independent review only",
-    "reason": "Claude reviewer quota stopped; explicit user model selection"
-  }
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3"
 }
