@@ -1066,3 +1066,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 담당designer/coor. fixed758의UI의존성/영향·owner당1/429재시도·홈/receipt와원dfc42PNG 재사용범위를확인한다. Jev 초기dev추천은원본backup으로보존하고orca-agents 직접UI 소유규정에따라designer로감사가능 override했다.
 - 현재미배정/보류사유: OPS FIX-2-REVIEW가안정fixed의보안/제품규칙적합성을검토중이다. 수정이필요하면새fixed에UI검수를묶기위해결론을기다린다. 정상designer 인박스0/clean이다. 기존사용자소유Codex터미널의사용량모델전환안내를관측했으나임의선택/모델교체/종료하지않았다.
 - 재개조건: OPS결론과고정후보·관련화면영향확정뒤정규designer인박스/별도착수로좁은시각검수한다. Grok독립QA는사용자중단보류유지다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW — Claude 사용량 한도 보류
+
+- task_35b064a0376e/ctx_ec664741c95a의 별도 reviewer 실제세션b9bbe917-a81a-4c4c-a5df-7278c7907f16이코드를검토하고fixed758 scratch의make install0·FullOps lint/test0(ERROR0/WARNING5/실행불가0)을확인했다. 원본JSON/exit·bounded transcript는 COOR/fix2-review-quota에보존했다.
+- 마지막실제assistant turn은 `You've hit your session limit · resets 6pm (Asia/Seoul)`이었다. worker_done/최종리뷰result/report/check는없다. fleet live/PTY live는사용량대기TUI였으며완료나제품PASS가아니다. 명시quota 최종turn을근거로worker-stop 회복처리를수행했다. 기존사용자소유OPS터미널은변경하지않았다.
+- 담당coor/ops. 보류사유Claude 사용량한도, 표시된재개시각2026-10-07 18:00 Asia/Seoul. 과제지시서/현재OPS inbox·읽기전용snapshot·scratch·원본실패를보존한다. 최종판정미완료이므로work.py finish나worker_done을대신작성하지않는다. 재개조건사용량회복뒤같은Task의정식retry와실제세션/고정SHA근거갱신이다. 유료플랜전환/초과과금·임의모델교체는하지않는다.
+- SAR-PUBLIC-MESSAGES-001-UI-FIX-2는OPS결론대기미배정으로유지한다. SAR-PUBLIC-MESSAGES-001-FIX-TESTER는사용자Grok중단으로보류한다. main68b 수락차단과모든원실패/미검증을유지한다.
