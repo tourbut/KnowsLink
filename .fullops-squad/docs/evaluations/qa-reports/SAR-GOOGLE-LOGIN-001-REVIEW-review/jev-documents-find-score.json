@@ -1,0 +1,45 @@
+{
+  "task_key": "SAR-GOOGLE-LOGIN-001-DEV",
+  "find_head": "3b183a5304734d4c50f60d3e26da23e057fd9971",
+  "base": "abf2de1e3f0501e56b41f9d909514f591b656d4c",
+  "head": "017bf456c3ab0f7367b1e3980b48f949ce250856",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+    "README.md"
+  ],
+  "new_files": [
+    "internal/relay/google.go",
+    "internal/relay/google_integration_test.go",
+    "internal/relay/google_test.go"
+  ],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV.md",
+    ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+    ".fullops-squad/handovers/to_dev.md",
+    "README.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+    "README.md"
+  ],
+  "recall": 0.6,
+  "precision": 0.5,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

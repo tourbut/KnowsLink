@@ -1,0 +1,53 @@
+{
+  "task_key": "SAR-GOOGLE-LOGIN-001-DEV",
+  "find_head": "3b183a5304734d4c50f60d3e26da23e057fd9971",
+  "base": "abf2de1e3f0501e56b41f9d909514f591b656d4c",
+  "head": "017bf456c3ab0f7367b1e3980b48f949ce250856",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "README.md",
+    "cmd/relay/main.go",
+    "compose.yaml",
+    "go.mod",
+    "go.sum",
+    "internal/relay/http.go",
+    "internal/relay/identity.go",
+    "internal/relay/identity_integration_test.go",
+    "internal/relay/member.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/store.go"
+  ],
+  "new_files": [
+    "internal/relay/google.go",
+    "internal/relay/google_integration_test.go",
+    "internal/relay/google_test.go"
+  ],
+  "candidates": [
+    "README.md",
+    "compose.yaml",
+    "go.mod",
+    "internal/config/config.go",
+    "internal/relay/identity.go",
+    "internal/relay/member.go"
+  ],
+  "hits": [
+    "README.md",
+    "compose.yaml",
+    "go.mod",
+    "internal/relay/identity.go",
+    "internal/relay/member.go"
+  ],
+  "recall": 0.455,
+  "precision": 0.833,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
