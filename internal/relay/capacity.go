@@ -153,8 +153,8 @@ func (st *State) enterHTTP(token, cleanOwner string, now time.Time) bool {
 // Only a cleanup the committed state proves to be the caller's own record waits on the cleanup channel, and each owner
 // holds at most one cleanup slot for its own control and one for its agents' ACKs, locally and in shared records, so
 // neither a foreign, lease-less or rate-limited cleanup nor one member repeating its own valid cleanup can starve other
-// owners' cleanup. A snapshot that cannot prove a cleanup credential is reread once, so a commit by another process or
-// a restart does not refuse valid cleanup as new work. The capped body is received before any slot, under the same 10s
+// owners' cleanup. A snapshot that cannot prove a cleanup credential is reread once while new work is full, so a commit
+// by another process or a restart does not refuse valid cleanup as new work. The capped body is received before any slot, under the same 10s
 // deadline as the request context, so a slow or anonymous sender holds only its own connection, like header reception.
 // 30s admission expiry recovers crashed processes.
 func (s *Service) boundedHTTP(next http.Handler) http.Handler {
@@ -190,7 +190,9 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		}
 		queue := s.httpNew
 		owner := s.cleanupOwner(r, credential)
-		if owner == "" && credential != "" {
+		// Only when new work is full would an unproven cleanup be refused; then reread before refusing it. Otherwise it
+		// waits as new work, its transaction judges the shared budget exactly and its commit refreshes the snapshot.
+		if owner == "" && credential != "" && len(s.httpNew) == cap(s.httpNew) {
 			s.refresh(ctx, arrived)
 			owner = s.cleanupOwner(r, credential)
 		}

@@ -172,7 +172,7 @@ func (st *State) liveCredentials() map[string]honored {
 // cleanupOwner mirrors requestBuckets against the last committed state, read only and without a transaction. It returns
 // the fairness unit whose own record this cleanup ends, or "" when the request is new work: an invented, foreign or
 // lease-less cleanup never reaches the reserved local channel. boundedHTTP refreshes a stale or missing snapshot once
-// before it treats a cleanup credential as new work.
+// before it refuses a cleanup credential for full new work.
 func (s *Service) cleanupOwner(r *http.Request, token string) string {
 	c := s.live.Load()
 	if c == nil || token == "" {
