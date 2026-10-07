@@ -1093,3 +1093,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자가최종코드main병합/공개준비를지시했고Sol 독립QA 모델변경도명시승인했다. 기존Grok세션은재개하지않으며추가결제/플랜변경없다.
 - Sol기실행관측의정상사용자정리/동일DB시각snapshot/갱신전포화동작은제품적합성수락이아니다. DEV-FIX-3에원인분석·최소수정·기능회귀·기술산출물을묶었다. 플랫폼차단콘텐츠를다시생성/우회하지않고기존저장된로컬기능관측과자체앱정상동작만다룬다. 별도고정SHA정적리뷰·Sol독립QA·designer확인뒤main수락/일반push/조상확인/유휴clean역할sync를수행한다.
 - 공개준비는Free·기존서버Tunnel에서필수환경/이메일/검증·복구절차를준비하는범위이며자동공개/실메일발송은아직실행하지않는다. 과거fail/검수미완료·334원본hash를보존한다.
+
+## SAR-PUBLIC-MESSAGES-001-DEV-FIX-3 DEV 결과 — 2026-10-07
+
+- 기준 fixed `758e9f638501f11000ed17c558a9eb54b4350eb3`의 Sol 관측 3건을 같은 과제에서 분석·수정·검증했다. 최종 코드 `5d1924c`(수정 `955cbae`, 시험 분리 `9620723`, 재조회 범위 축소 `5d1924c`).
+- 수정: snapshot을 (commit 시각, epoch) 순서로만 교체한다. 신규 포화 중 증명 못한 정리 자격은 lock 없는 단일 재조회 뒤 판정한다. 공정성 단위를 owner 제어와 그 owner의 agent ACK로 나눴다. persist 전 ACK는 handler와 같이 신규다. 제품 수치·wire·응답 코드는 그대로다.
+- 검증: 새 회귀는 758에서 RED, 최종 코드에서 PASS다. 변형 4개가 모두 검출된다. 최종 코드의 make lint/test/verify-mvp exit0, Go 통합 PASS 47. 중간 `9620723` verify-mvp 실패와 원인은 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md)에 보존했다.
+- 후속 담당 coor: 별도 고정 SHA 정적 리뷰·사용자 승인 Sol 독립 QA·designer UI 영향 확인 뒤 main 판정. 원 실패·Sol 차단 기록·334 hash·미해결 high 차단을 유지한다.
+

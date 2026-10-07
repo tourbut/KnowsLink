@@ -1,0 +1,11 @@
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull/stale
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull/restart
+--- PASS: TestCleanupProvenWhileSnapshotStaleAndNewFull (0.30s)
+    --- PASS: TestCleanupProvenWhileSnapshotStaleAndNewFull/stale (0.15s)
+    --- PASS: TestCleanupProvenWhileSnapshotStaleAndNewFull/restart (0.15s)
+=== RUN   TestOwnerControlNotHeldByOwnAgentAcks
+    cleanup_flood_integration_test.go:348: owner revoke refused 0/18 during its agent's ACK flood
+--- PASS: TestOwnerControlNotHeldByOwnAgentAcks (8.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	9.337s

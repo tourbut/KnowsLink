@@ -2,9 +2,9 @@
 id: D07
 title: 데이터베이스설계서
 status: review
-updated: 2026-10-06
+updated: 2026-10-07
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
@@ -46,6 +46,6 @@ sweep은 모든 transaction 시작과 1초 cleanup loop에서 실행한다. 철�
 
 ## SAR-PUBLIC-MESSAGES-001 저장과 복구
 
-기존 relay_state JSONB에 Message.ReplyID와 State.HTTP를 추가했다. table·SQL·migration·sqlc 생성물은 바꾸지 않았다. D08 실제 테이블 정의도 변경 없음이다. 원문은 text ACK/만료/철회에 삭제하며 receipt·멱등은24h 보존한다. HTTP 입장 기록은 정상 종료 시 삭제하고30s 만료로 crash를 회수한다. SAR-PUBLIC-MESSAGES-001-DEV-FIX-2는 같은 JSONB 기록에 선택 필드 Owner를 추가했다. table·SQL·migration·sqlc는 바꾸지 않았다. 종료 transaction이 실패한 기록은 같은 프로세스의 다음 commit이 지운다.
+기존 relay_state JSONB에 Message.ReplyID와 State.HTTP를 추가했다. table·SQL·migration·sqlc 생성물은 바꾸지 않았다. D08 실제 테이블 정의도 변경 없음이다. 원문은 text ACK/만료/철회에 삭제하며 receipt·멱등은24h 보존한다. HTTP 입장 기록은 정상 종료 시 삭제하고30s 만료로 crash를 회수한다. SAR-PUBLIC-MESSAGES-001-DEV-FIX-2는 같은 JSONB 기록에 선택 필드 Owner를 추가했다. table·SQL·migration·sqlc는 바꾸지 않았다. 종료 transaction이 실패한 기록은 같은 프로세스의 다음 commit이 지운다. SAR-PUBLIC-MESSAGES-001-DEV-FIX-3은 읽기 전용 sqlc 질의 `ReadRelay`(`SELECT epoch, clock, data`, lock 없음)를 추가했다. 정리 입장 snapshot 재조회만 사용한다. table·migration·D08은 바꾸지 않았다. Owner 값에 agent ACK 단위 `<owner>/agents`가 추가됐다.
 queue100·gate100·receipt20000·claim4의 판단과 수락·claim 확정은 동일 row lock·DB 시계를 사용한다. HTTP 신규16/정리4도 동일 상태에 저장하므로 프로세스 교체·다중 relay로 초기화하지 않는다. 입장 기록이 남은 재시작은 보수적으로 거부한다. 현재1초 sweep·권한 철회·세대·epoch CAS를 유지한다. H/R 포화 시 부모는 기존 TTL에서 failed:expired가 되고 claim을 지운다.
 실제 크기·CPU·처리량·백업/WAL 완전 삭제·운영 복원은 이번 로컬 회귀로 보장하지 않는다. OPS 공개 수락에서 측정한다. 이전 SHA로 rollback한 후보는 일반 text 도구를 제공하지 않는다. 권한 상태가 증명되지 않으면 재인증·새 연결·새 관계 수락 전 전달을 열지 않는다.
