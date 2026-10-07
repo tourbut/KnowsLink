@@ -1,0 +1,42 @@
+=== RUN   TestHTTPSlowBodyAndCleanupAdmission
+--- PASS: TestHTTPSlowBodyAndCleanupAdmission (1.09s)
+=== RUN   TestCleanupAdmissionNeedsVerifiedOwnRecord
+--- PASS: TestCleanupAdmissionNeedsVerifiedOwnRecord (0.00s)
+=== RUN   TestRememberKeepsNewestCommit
+--- PASS: TestRememberKeepsNewestCommit (0.00s)
+=== RUN   TestValidCredentialCleanupFlood
+    cleanup_flood_integration_test.go:128: B foreign owner revoke: valid cleanup refused 0/18, slowest 2.569s
+    cleanup_flood_integration_test.go:128: B agent no-lease ack: valid cleanup refused 0/18, slowest 3.221s
+    cleanup_flood_integration_test.go:128: B own repeated revoke: valid cleanup refused 0/18, slowest 1.229s
+    cleanup_flood_integration_test.go:128: B new work control: valid cleanup refused 0/18, slowest 2.074s
+--- PASS: TestValidCredentialCleanupFlood (127.72s)
+=== RUN   TestCleanupSnapshotAcrossProcessesAndRestart
+--- PASS: TestCleanupSnapshotAcrossProcessesAndRestart (0.13s)
+=== RUN   TestFailedFinishReclaimedAtNextCommit
+--- PASS: TestFailedFinishReclaimedAtNextCommit (4.15s)
+=== RUN   TestHTTPConcurrencyAcrossInstances
+--- PASS: TestHTTPConcurrencyAcrossInstances (0.44s)
+=== RUN   TestSharedCapacitiesAndCleanupClassification
+--- PASS: TestSharedCapacitiesAndCleanupClassification (2.62s)
+=== RUN   TestReviewFix2EqualCommitTime
+    sol_review_probe_test.go:27: OBSERVED: equal DB timestamps allow a late older snapshot to replace a newer snapshot
+--- PASS: TestReviewFix2EqualCommitTime (0.00s)
+=== RUN   TestReviewFix2StaleAndNilWithNew16
+=== RUN   TestReviewFix2StaleAndNilWithNew16/stale
+    sol_review_probe_test.go:82: OBSERVED: valid cleanup before refresh=429 capacity; after actual 1s sweep=200 while local new16 remain full
+=== RUN   TestReviewFix2StaleAndNilWithNew16/restart
+    sol_review_probe_test.go:82: OBSERVED: valid cleanup before refresh=429 capacity; after actual 1s sweep=200 while local new16 remain full
+--- PASS: TestReviewFix2StaleAndNilWithNew16 (2.39s)
+    --- PASS: TestReviewFix2StaleAndNilWithNew16/stale (1.19s)
+    --- PASS: TestReviewFix2StaleAndNilWithNew16/restart (1.20s)
+=== RUN   TestReviewFix2SameOwnerAgentFlood
+    sol_review_probe_test.go:133: OBSERVED deterministic: agent ACK (handler invalid_lease 409) prevents own owner's key-revoke before DB, 429 capacity
+    sol_review_probe_test.go:161: OBSERVED lock-free same-owner revoke admission: capacity429=18/18 admitted=0 other=0
+    sol_review_probe_test.go:166: ACK cleanup rate attempts=8; owner's cleanup rate attempts=0
+    sol_review_probe_test.go:173: after attacker stops: actual key-revoke=200; other owners retain their cleanup slots
+--- PASS: TestReviewFix2SameOwnerAgentFlood (1.84s)
+=== RUN   TestReviewFix2OrphanOtherInstanceAndSweep
+    sol_review_probe_test.go:216: OBSERVED: other-instance commit retains local orphan; successful own 1s sweep removes token and shared admission
+--- PASS: TestReviewFix2OrphanOtherInstanceAndSweep (1.14s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	142.598s
