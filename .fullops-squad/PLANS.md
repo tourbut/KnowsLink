@@ -1182,3 +1182,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 사용자 확정: Google 로그인 첫 가입과 기존 회원 기능 연결, 기능 구현에 집중하고 빠르게 출시한다. SMTP/메일서버 작업은 이 로그인에 필요 없다. implementation→dev route, gpt-6.1-sol medium 원추천을 따른다. 새로운 역할 전체 모델 전파는 하지 않는다.
 - 사용자 지정 Google 계정으로 OAuth 프로젝트 등록을 승인했다. coor가 Google Cloud 로그인 화면을 열었으며 사용자 직접 로그인 대기다. 결제/유료전환 없이 앱 등록과 callback 설정만 진행한다. 비밀은 비공개 환경 파일에 저장한다. DEV는 외부 자격 대기 없이 구현·좁은 인증 검사·배포 인계를 끝낸다.
+
+- DEV 구현 완료 후보 `3ae2878`: Google issuer/sub 자동 가입·같은 owner·세션·Google 재확인과 signed-provider/Postgres 좁은 검사 exit 0. 완료 archive 후 등록 lint/test를 실행하고 최종 SHA를 authentic worker_done으로 인계한다. coor 후속은 인증 delta 고정 SHA 독립 리뷰·필요한 로그인 직접 확인·실제 Google 1경로·main 통합과 기존 서버 배포다. 광범위 QA/외부 메일/UTF8 과제는 재개하지 않는다. [DEV 실행 기록](docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md).

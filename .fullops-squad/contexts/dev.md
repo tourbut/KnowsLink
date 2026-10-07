@@ -65,3 +65,6 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 - 예약 budget에는 공정성 단위(owner)당 동시 상한을 둔다. 자기 대상 반복도 flood다. 공유 기록에 단위별 상한을 두면 종료 실패 기록이 그 단위를 막으므로 다음 commit에서 회수한다. 커밋 snapshot은 commit 시각 순서로만 교체한다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md)
 - 2026-10-07 SAR-PUBLIC-MESSAGES-001-DEV-FIX-3: commit 시각은 같을 수 있다. snapshot 순서는 (시각, epoch)로 둔다. 시각을 앞에 두어야 낮은 epoch로 복원된 DB에서도 갱신된다. 예약 분류는 handler의 상태 조건(ACK의 persist)까지 맞춘다.
 - 공정성 단위는 "누가 누구를 막을 수 있는가"로 나눈다. agent ACK와 owner 제어가 한 단위면 agent가 자기 철회를 막는다. 증명 못한 자격의 재조회는 실제 거부 지점(신규 포화)에서만 한다. 무조건 재조회는 lock 대기 중 pool을 기다려 신규 입장을 늦췄다. [실행 기록](../docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md)
+
+- 2026-10-07 SAR-GOOGLE-LOGIN-001-DEV: Google issuer/sub와 이메일 신원을 분리하고 기존 owner/세션 발급을 공유했다. Google reauth는 시작한 세션·동일 회원에 묶는다.
+- OAuth GET callback용 시도 cookie만 Lax다. Strict 세션은 유지하고 완료 화면의 홈 링크로 계속한다. 최근 ID token 재검증은 Google 비밀번호 재입력을 보장하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md).
