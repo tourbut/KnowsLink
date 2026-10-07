@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-07
 owner: coor
 tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
-summary: 사용자 배포 우선 지시와 고정 후보 적용 상태를 기록한다
+summary: 핵심 기능 우선 출시와 최소 배포 확인으로 개발 방향을 전환한다
 ---
 
 # KnowsLink 현재 계획
@@ -1143,3 +1143,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 배포 결과: beta.sh deploy exit0, 운영 checkout d08903a55c3638128827010400e66e9d45b61d7c, migrate exit0·relay healthy·health200. 외부health302로 기존Access 보호를 확인했다. DB 사전백업을 생성했고 운영 볼륨/Tunnel은 유지했다.
 - 사용자 지시로 추가 독립 QA·UI 완료 대기를 배포/main 반영의 선행조건에서 제외했다. 이것은 기존검증의 PASS 판정이나 과거 실패 변경이 아니다. 최종 독립 검수는 현재 결과 마감 중이며 잔여 문제는 배포 뒤 수정한다. main을 d089로 fast-forward하고 origin/main에 일반push했다. 진행 중 OPS/tester/designer는 동기화하지 않고 후속 완료 시 현재main조상/clean 여부를 확인한다.
+
+## 개발 방향: 핵심 기능 우선 공개·점진 보완 — 2026-10-07
+
+- 사용자 결정: 핵심 기능을 기준으로 먼저 열고 운영에서 점점 보완한다. 검증의 완전성을 기다리느라 출시를 지연하지 않는다. 이 결정은 이전의 광범위 최종 수락 대기보다 우선한다.
+- 배포 전 확인은 빌드·기동·변경된 핵심 경로의 최소 확인과 알려진 권한/비밀 노출·데이터 손실 차단 문제에 한정한다. 통과한 전체 테스트와 동일 SHA 검증을 반복하지 않는다. 비차단 경고·문서 확대·전체 UI/부하/외부 연동 검증은 배포 뒤 개선 목록으로 보낸다. 신규 프레임워크·검증 과제를 추가하지 않는다.
+- 다음 출시의 실제 장애물은 SMTP 부재다. 현재 최신 제품 코드 d089는 기존 보호 서버에 배포됐고 main/origin/main에 반영됐다. 무료 SMTP 설정과 발신 도메인을 확보하면 이메일 가입/로그인 한 경로를 실제로 확인한 뒤 핵심 서비스 공개를 진행한다. 기존 Tunnel·Workers Free·비밀값 비공개를 유지한다.
