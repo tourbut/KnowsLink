@@ -1111,3 +1111,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 담당 OPS/coor. 사용자 지정 GPT Sol high를 최종 고정 후보의 별도 세션 정적 코드·규약·정본 추적성 리뷰에 적용한다. 원 Sonnet 추천을 별도 원본에 보존했다. 기존 FIX-2-REVIEW는 coordinator 운영 failed 마감으로 전문 archive했다. 원 pending result/report와 플랫폼 차단·부분 검사·원래 실패는 변하지 않는다. worker_done을 대신 작성하지 않았다.
 - 현재 미배정 사유: DEV-FIX-3 최종 SHA 미확정. 재개 조건 최종 SHA/자동 검증과 별도 실제 reviewer 세션·clean detached snapshot 확보다. tester의 독립 QA와 designer의 필요한 직접 UI 검수는 별도다.
+
+## 최종 검수 준비 동기화 — 2026-10-07
+
+- idle/clean OPS·designer·tester는 준비9b7149d로 fast-forward/각 역할 일반 push했다. 세 역할의 정규 인박스에 최종 후보 대기 지시서를 보존했다. 아직 dispatch하지 않았으며 탐색 패킷/고정 SHA는 DEV 최종 결과 뒤 갱신한다. live/working DEV는 변경하지 않았다.
+- 운영 .env에서 정확한 KNOWSLINK_SMTP_URL/KNOWSLINK_MAIL_FROM 키도 없음을 값 없이 확인했다. 시험 signup/agents 키도 없다. 기존 무료 SMTP 제공자와 비공개 설정 경로를 사용자에게 요청했으며 코드 수락 검수는 별도로 계속한다. 실제 수신/운영 공개는 미완료다.
