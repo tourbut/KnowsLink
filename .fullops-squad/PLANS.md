@@ -1191,3 +1191,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - main/origin/main `a9a0db49745542727611ee863e0beeb03c53288e`에 최종 DEV017bf456 조상을 확인했다. beta.sh deploy exit0: 새 DB backup·migrate0·relay healthy·local health200·private Postgres 확인. 기존 Tunnel 유지. 로그는 COOR/open-readiness/deploy-google-a9a0db4.log다. 배포 SHA와 인증 리뷰 SHA는 구분한다.
 - 실제 지정계정 로그인은 아직 미검증이다. Orca page9702beb5-03de-4bf7-9fe3-99e5f1a67c8c에 서비스 root를 열었다. 현재 기존 owner-only Cloudflare Access 이메일 OTP 화면이며 사용자가 직접 통과한 뒤 Google 가입을 진행한다. Google 앱 testing·기존 Access 보호가 유지되어 일반 공개 완료는 아니다. 새 workerctx_49065abbe2b8 정상 release·원문 archive 보존 후 delivery_d3ee50f3f264 ACK했다.
+
+## Google 실제 로그인 완료 — 2026-10-08
+
+- 사용자가 직접 Google 로그인을 완료했다. coor는 운영a9a0db4의 실제 callback 완료 화면과 홈 링크를 통한 Strict 세션의 자기 홈 진입을 확인했다. 확인된 masked 이메일·회원 식별자·세션이 표시되며 아직 agent는 없다. 합성 검사와 구분되는 실제 사용자 가입 근거는 COOR/open-readiness/google-real-login.json이다.
+- 다음은 그록봇 노우 연결이다. 기존 GitHub 이슈 Bot 또는 Grok 앱 중 실제 사용자 대상 확인을 요청했다. 연결 경로가 확인되면 새 일반 회원 agent·키 연결을 이어간다. 종료된 trial 자격을 재사용하지 않는다. Google testing·기존 Access 보호와 전체 QA/UI 미완료·UTF8 medium·외부 Bot 왕복 미검증은 유지한다.
