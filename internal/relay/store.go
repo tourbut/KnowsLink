@@ -73,24 +73,25 @@ type Gate struct {
 	Consumed                                           bool
 }
 type State struct {
-	Owners      map[string]*Owner
-	Agents      map[string]*Agent
-	Pairs       map[string]*Pair
-	Messages    map[string]*Message
-	Idempotency map[string]string
-	Gates       map[string]*Gate
-	Members     map[string]*Member
-	Identities  map[string]string
-	Sessions    map[string]*Session
-	Challenges  map[string]*Challenge
-	Rates       map[string][]time.Time
-	HTTP        map[string]admission
-	Connections map[string]*Connection
-	TestAgents  map[string]bool `json:"-"`
+	GoogleAttempts map[string]*googleAttempt
+	Owners         map[string]*Owner
+	Agents         map[string]*Agent
+	Pairs          map[string]*Pair
+	Messages       map[string]*Message
+	Idempotency    map[string]string
+	Gates          map[string]*Gate
+	Members        map[string]*Member
+	Identities     map[string]string
+	Sessions       map[string]*Session
+	Challenges     map[string]*Challenge
+	Rates          map[string][]time.Time
+	HTTP           map[string]admission
+	Connections    map[string]*Connection
+	TestAgents     map[string]bool `json:"-"`
 }
 
 func newState() *State {
-	return &State{Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
+	return &State{GoogleAttempts: map[string]*googleAttempt{}, Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
 		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}, Connections: map[string]*Connection{}, HTTP: map[string]admission{}}
 }
 
@@ -104,8 +105,9 @@ type Service struct {
 	orphans            sync.Map      // shared admission tokens whose finish transaction failed
 	Pool               *pgxpool.Pool
 	TestAgents         map[string]bool
-	// SyntheticSignup keeps the local /v1/owners fixture; public members come only from verified email.
+	// SyntheticSignup keeps the local /v1/owners fixture; public members require verified identity.
 	SyntheticSignup bool
+	Google          *GoogleLogin
 	Mail            Mailer
 	ClientIPHeader  string
 }

@@ -3,9 +3,12 @@ module github.com/tourbut/KnowsLink
 go 1.27.1
 
 require (
+	github.com/coreos/go-oidc/v3 v3.17.0
 	github.com/cyberphone/json-canonicalization v0.0.0-20241213102144-19d51d7fe467
+	github.com/go-jose/go-jose/v4 v4.1.3
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/pressly/goose/v3 v3.28.0
+	golang.org/x/oauth2 v0.36.0
 	golang.org/x/text v0.41.0
 )
 

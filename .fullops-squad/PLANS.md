@@ -3,10 +3,8 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-07
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
-summary: 핵심 기능 우선 출시와 최소 배포 확인으로 개발 방향을 전환한다
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2]
-summary: 현재 과제와 사용자 검증 중단에 따른 미완료 및 담당·재개 조건을 관리한다
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV]
+summary: Google 인증 후보 수락 및 기존 서버 배포와 실제 로그인 확인
 ---
 
 # KnowsLink 현재 계획
@@ -1187,3 +1185,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - Google 콘솔의 실제 지정 계정 로그인과 기존 knowslog-bot 프로젝트를 확인했다. 사용자 승인 범위에서 KnowsLink 전용 새 OAuth 프로젝트를 준비하며 기존 Bot 클라이언트·브랜딩·결제는 변경하지 않는다. 추가 광범위 검수는 배포 선행조건이 아니다.
 
 - Google 등록 실작업: knowslink-auth 생성, KnowsLink 브랜딩/승인도메인 knowslog.com, Web OAuth client와 운영 callback을 생성했다. clientID/secret/redirect는 운영 state/.env0600에 저장했다. 값은 Git/대화에 넣지 않았고 기존 knowslog-bot·결제 설정은 변경하지 않았다. Google 앱은 현재 테스트 상태로 지정 사용자부터 로그인 확인한다. 일반 공개 상태는 아직 아니다. DEV 구현 배포와 사용자 실제 로그인 후 그록봇 연결을 진행한다.
+- DEV 구현 완료 후보 `3ae2878`: Google issuer/sub 자동 가입·같은 owner·세션·Google 재확인과 signed-provider/Postgres 좁은 검사 exit 0. 완료 archive 후 등록 lint/test를 실행하고 최종 SHA를 authentic worker_done으로 인계한다. coor 후속은 인증 delta 고정 SHA 독립 리뷰·필요한 로그인 직접 확인·실제 Google 1경로·main 통합과 기존 서버 배포다. 광범위 QA/외부 메일/UTF8 과제는 재개하지 않는다. [DEV 실행 기록](docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md).
+
+- 최종 authentic DEV msg_c7bf94476ac4 / 017bf456c3ab0f7367b1e3980b48f949ce250856: clean 역할·원격 SHA·최종 등록 lint/test exit0 ERROR0/WARNING6 확인. 별도 coor 세션의 managed detached 인증 delta 리뷰 수락/check 통과다. 기존 DEV 실행 결과를 재사용하며 추가 전체 QA/UI 재실행은 없다. main 통합 뒤 기존 서버에 배포하고 지정 Google 사용자 실로그인을 확인한다.
