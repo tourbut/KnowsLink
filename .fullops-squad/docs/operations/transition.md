@@ -2,9 +2,9 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-05
+updated: 2026-10-07
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -66,3 +66,7 @@ owner는 실제 계정에서 등록과 `knowslink_status` held 호출을 재시�
 ### 만료 갱신 (2026-10-05, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW)
 
 service token 두 개가 만료돼 24h로 갱신했다. UUID·secret은 그대로다. 새 만료는 **2026-10-06T08:09:43Z(codex)·08:09:50Z(grok)**이다. 공개 negative·positive와 두 local client 왕복이 다시 통과했다(실제 Grok 아님). Grok 전달용 묶음은 `/home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL/knowslink-grok-trial-20261005.tar.gz`이며 외부 전달은 coor·사용자가 한다. 관리 token은 2026-10-05T23:59:59Z에 먼저 만료되므로 종료 정리를 그 전에 하거나 새 권한을 받는다. 상세는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md)이다.
+
+## 2026-10-07 최종 코드 수락과 공개 준비
+
+사용자 요청으로 최종 main 수락과 공개 준비를 진행한다. [공개 준비 실행 기록](../exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md)의 고정 SHA·실제 백업/격리 복원·현재 보호상태·배포/복귀 절차를 따른다. 기존 배포0911c2c는유지됐고새서비스/실메일은아직미검증이다. 과거시험의미완료/완료는원래시점으로보존한다. 이 연결은 운영 공개 수락이 아니다.

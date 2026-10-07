@@ -2,9 +2,9 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-05
+updated: 2026-10-07
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -294,3 +294,7 @@ Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 
 적용 순서: 새 백업과 복원 검증 → `beta.sh deploy <SHA>` → 새 경로 Access 앱·정책(기존 root 앱 불변) → 후보 `config.yml` 검증·교체 → negative/positive·회귀 검증 → 노출 확대는 마지막.
 
 rollback 순서(역순): 새 앱·정책 삭제 → `config.yml` 백업 복원과 connector 재기동 → 필요하면 `beta.sh unexpose` → 코드 `beta.sh deploy <이전 SHA>`(migration 동일일 때만, 아니면 5장 3항) → 공유 서비스는 건드리지 않는다.
+
+## 2026-10-07 최종 코드 수락과 공개 준비
+
+사용자 요청으로 최종 main 수락과 공개 준비를 진행한다. [공개 준비 실행 기록](../exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md)의 고정 SHA·실제 백업/격리 복원·현재 보호상태·배포/복귀 절차를 따른다. 기존 배포0911c2c는유지됐고새서비스/실메일은아직미검증이다. 과거시험의미완료/완료는원래시점으로보존한다. 이 연결은 운영 공개 수락이 아니다.

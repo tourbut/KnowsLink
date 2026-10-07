@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-06
+updated: 2026-10-07
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP]
 summary: MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다
 ---
 
@@ -1100,3 +1100,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 담당tester/coor. 사용자Sol 독립QA 명시승인으로route Grok원추천을backup에보존하고 gpt-6.1-sol high 사용자override를기록했다. 새QA는구현자/최종리뷰와별도실제세션/격리후보에서수행한다. 기존Grok종료/원QA실패를보존한다.
 - 보류사유: DEV-FIX-3 최종fixed 미확정. 재개조건최종fullSHA/자동검증·해당역할정규빈inbox/clean확인이다. 신규요금/플랜변경없다.
+
+## Coordinator 실행 복구 — 2026-10-07
+
+- 플러그인 캐시 0.9.14의 flow_gate/done_gate 누락으로 명령이 차단됐으나 현재 설치 1.0.0의 정상 훅으로 실행이 복구됐다. 레포 적용 0.9.14·공통 기준 0.3.3과 원래 실패 기록은 유지한다. 하네스 업데이트를 반복하지 않았다.
+- Run run_8ca8bc058ab7을 실제 coordinator term_a8a1fa04-50ab-448d-94e7-11e8ee3c77f1에 다시 연결했다. 미처리 메시지 0건이며 DEV task_5cafac50986b/ctx_6b892c0481e1은 live/working이다. 진행 중 DEV 체크아웃을 변경하지 않는다.
+- 공개 준비에서 실제 운영 DB 백업·격리 복원·기존 보호상태 확인을 완료했다. 상세와 한계는 docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md를 따른다. final SHA 리뷰·승인된 Sol 독립 QA·designer 영향 검수 전 main68b 수락 차단은 유지한다.
