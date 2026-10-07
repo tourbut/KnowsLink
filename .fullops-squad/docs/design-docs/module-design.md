@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-07
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -158,3 +158,7 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 독립 QA는 후보 `09c523da8a3407288d9f5d711e1834af12bc7808`의 detached clone에서 일반 회원 HTTP, 로컬 Node/MCP, 격리 Postgres를 확인했다. DEV 자동 검사의 종료코드 0을 이 QA의 통과로 쓰지 않았다.
 프로브 종료코드는 1이다. H-1 high는 익명 slow body가 인증 전에 신규 16과 정리 4 프로세스 슬롯을 점유한다. M-1 medium은 `POST /home/gates/{id}`의 deny가 본문 파싱 전에 신규 작업으로 분류된다. receipt 20000 거절 뒤에는 신규 HTTP 행 1개가 30초 만료까지 남을 수 있다.
 `make lint`, `make test`, `make verify-mvp`의 종료코드는 0이다. 이 결과는 격리 fixture다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다. 실메일, 공개, 노우↔다닷은 확인하지 않았다. H-1은 main 수락을 차단한다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER 독립 QA 중단 기록
+
+고정 d089의 [독립 보고서](../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md)와 [시나리오](../evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md)를 연결한다. 기본 lint·unit/race·build는 exit 0이다. runtime 재빌드와 tester QA 컴파일이 실패했고 사용자 지시로 추가 검증을 중단했다. 전체 PS08–11과 정상 cleanup/snapshot의 독립 기능 판정은 미검증이다. 기존 실패·운영/vendor 제한은 유지한다.

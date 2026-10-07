@@ -1,0 +1,780 @@
+//go:build integration
+
+// Independent PS08–11 QA adapted from the preserved 09c probe for verified cleanup admission.
+package relay
+
+import (
+	"context"
+	"crypto/ed25519"
+	"crypto/x509"
+	"encoding/base64"
+	"encoding/json"
+	"encoding/pem"
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"strings"
+	"sync"
+	"testing"
+	"time"
+)
+
+func qaID(n int) string {
+	return fmt.Sprintf("0199a3f2-4c10-7a11-8b22-%012x", n)
+}
+
+type qaCredential struct {
+	agent, kid, credential string
+	private                ed25519.PrivateKey
+}
+
+func loadMember(t *testing.T, folder string) qaCredential {
+	t.Helper()
+	var meta struct {
+		Agent, Kid, Credential string
+	}
+	raw, err := os.ReadFile(filepath.Join(folder, "agent.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err = json.Unmarshal(raw, &meta); err != nil {
+		t.Fatal(err)
+	}
+	block, _ := pem.Decode(mustRead(t, filepath.Join(folder, "private.pem")))
+	parsed, err := x509.ParsePKCS8PrivateKey(block.Bytes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return qaCredential{meta.Agent, meta.Kid, meta.Credential, parsed.(ed25519.PrivateKey)}
+}
+
+func mustRead(t *testing.T, path string) []byte {
+	t.Helper()
+	raw, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return raw
+}
+
+func nodeFailure(output, secret string) string {
+	if strings.Contains(output, "PRIVATE") || (secret != "" && strings.Contains(output, secret)) {
+		return "output withheld"
+	}
+	if len(output) > 400 {
+		return output[:400]
+	}
+	return output
+}
+
+func runNode(t *testing.T, dir, stdin string, args ...string) (int, string) {
+	t.Helper()
+	command := exec.Command(args[0], args[1:]...)
+	command.Dir = dir
+	command.Stdin = strings.NewReader(stdin)
+	out, err := command.CombinedOutput()
+	if err == nil {
+		return 0, string(out)
+	}
+	exit, ok := err.(*exec.ExitError)
+	if !ok {
+		t.Fatal(err)
+	}
+	return exit.ExitCode(), string(out)
+}
+
+func postAgent(t *testing.T, h http.Handler, path, token, claim string, body []byte) *httptest.ResponseRecorder {
+	t.Helper()
+	request := httptest.NewRequest(http.MethodPost, path, strings.NewReader(string(body)))
+	request.RemoteAddr = "192.0.2.77:40000"
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Authorization", "Bearer "+token)
+	if claim != "" {
+		request.Header.Set("X-Execution-Claim", claim)
+	}
+	response := httptest.NewRecorder()
+	h.ServeHTTP(response, request)
+	return response
+}
+
+func mustCode(t *testing.T, response *httptest.ResponseRecorder, status int) map[string]any {
+	t.Helper()
+	if response.Code != status {
+		t.Fatalf("status %d want %d", response.Code, status)
+	}
+	if strings.TrimSpace(response.Body.String()) == "" || response.Body.String() == "null\n" {
+		return nil
+	}
+	var value any
+	if err := json.Unmarshal(response.Body.Bytes(), &value); err != nil {
+		t.Fatal(err)
+	}
+	object, _ := value.(map[string]any)
+	return object
+}
+
+func signText(t *testing.T, member qaCredential, id, to, key, reply, text string, exp time.Time) []byte {
+	t.Helper()
+	envelope := &PublicText{V: "knowslink.text.v1", ID: id, From: member.agent, To: to, Text: text, Exp: exp.UTC().Format("2006-01-02T15:04:05Z"), Key: key, ReplyTo: reply, Sig: Signature{Alg: "Ed25519", Kid: member.kid}}
+	envelope.Sig.Value = base64.RawURLEncoding.EncodeToString(ed25519.Sign(member.private, envelope.signingBytes()))
+	raw, err := json.Marshal(envelope)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return raw
+}
+
+func memberWire(t *testing.T, member qaCredential, id, to, intent, key, reply string, body map[string]any, exp time.Time, priority string) []byte {
+	t.Helper()
+	deliver := "agent"
+	if intent == "relay.approval.request" {
+		deliver = "human"
+	}
+	raw := map[string]any{"v": "relay.v1", "id": id, "from": member.agent, "to": to, "intent": intent, "body": body, "deliver": deliver, "exp": exp.UTC().Format("2006-01-02T15:04:05Z"), "idempotency_key": key, "sig": map[string]any{"alg": "Ed25519", "kid": member.kid, "value": ""}}
+	if reply != "" {
+		raw["reply_to"] = reply
+	}
+	if priority != "" {
+		raw["priority"] = priority
+	}
+	return sign(t, member.private, raw)
+}
+
+func queryWindow() map[string]any {
+	return map[string]any{"window": map[string]any{"start": "2026-10-06T10:00:00Z", "end": "2026-10-06T11:00:00Z"}, "granularity_min": 30}
+}
+
+func onboard(t *testing.T, browserClient *browser, service *Service, server, clone string) (string, string) {
+	t.Helper()
+	before := map[string]bool{}
+	service.mutateState(t, func(st *State) {
+		for id := range st.Agents {
+			before[id] = true
+		}
+	})
+	expect(t, browserClient.do(http.MethodPost, "/home/agents", nil), 303)
+	agent := ""
+	service.mutateState(t, func(st *State) {
+		for id := range st.Agents {
+			if !before[id] {
+				agent = id
+			}
+		}
+	})
+	if agent == "" {
+		t.Fatal("agent was not created")
+	}
+	token, connection := browserGrant(t, browserClient, agent, "register")
+	folder := filepath.Join(t.TempDir(), "client")
+	code, output := runNode(t, clone, token+"\n", "node", "adapters/dist/connect.js", "prepare", server, folder)
+	if code != 0 || strings.Contains(output, token) || strings.Contains(output, "PRIVATE") {
+		t.Fatalf("prepare exit %d %s", code, nodeFailure(output, token))
+	}
+	expect(t, browserClient.do(http.MethodPost, "/home/confirm", url.Values{"connection": {connection}}), 303)
+	code, output = runNode(t, clone, "", "node", "adapters/dist/connect.js", "complete", folder)
+	if code != 0 || strings.Contains(output, "PRIVATE") {
+		t.Fatalf("complete exit %d %s", code, nodeFailure(output, ""))
+	}
+	return agent, folder
+}
+
+func clearRates(t *testing.T, service *Service) {
+	t.Helper()
+	service.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
+}
+
+func ackPublic(t *testing.T, handler http.Handler, token string) bool {
+	t.Helper()
+	response := postAgent(t, handler, "/v1/text/pull", token, "", []byte("{}"))
+	if response.Code != 200 {
+		t.Fatal(response.Code)
+	}
+	var lease struct {
+		Envelope json.RawMessage `json:"envelope"`
+		Token    string          `json:"lease_token"`
+	}
+	if json.Unmarshal(response.Body.Bytes(), &lease) != nil {
+		t.Fatal("lease json")
+	}
+	if len(lease.Envelope) == 0 || string(lease.Envelope) == "null" {
+		return false
+	}
+	var envelope struct {
+		ID string `json:"id"`
+	}
+	if json.Unmarshal(lease.Envelope, &envelope) != nil || envelope.ID == "" {
+		t.Fatal("lease id")
+	}
+	body, _ := json.Marshal(map[string]string{"id": envelope.ID, "token": lease.Token})
+	mustCode(t, postAgent(t, handler, "/v1/text/persist", token, "", body), 200)
+	mustCode(t, postAgent(t, handler, "/v1/text/ack", token, "", body), 200)
+	return true
+}
+
+func deliverBusiness(t *testing.T, handler http.Handler, token string) (string, string, map[string]any) {
+	t.Helper()
+	lease := mustCode(t, postAgent(t, handler, "/v1/pull", token, "", []byte("{}")), 200)
+	encoded, _ := json.Marshal(lease["envelope"])
+	var envelope struct {
+		ID string `json:"id"`
+	}
+	if json.Unmarshal(encoded, &envelope) != nil || envelope.ID == "" {
+		t.Fatal("business lease")
+	}
+	leaseToken, _ := lease["lease_token"].(string)
+	body, _ := json.Marshal(map[string]string{"id": envelope.ID, "token": leaseToken})
+	mustCode(t, postAgent(t, handler, "/v1/persist", token, "", body), 200)
+	receipt := mustCode(t, postAgent(t, handler, "/v1/ack", token, "", body), 200)
+	return envelope.ID, leaseToken, receipt
+}
+
+func TestQAMessagesIndependent(t *testing.T) {
+	clone := os.Getenv("QA_CLONE")
+	script := os.Getenv("QA_ROUNDTRIP")
+	if clone == "" || script == "" {
+		t.Fatal("probe paths required")
+	}
+	pool := messagePool(t)
+	service, mail := identityService(t, pool)
+	if len(service.TestAgents) != 0 {
+		t.Fatal("general fixture has a test allowlist")
+	}
+	handler := service.Handler()
+	server := httptest.NewServer(handler)
+	defer server.Close()
+	owner := &browser{t, handler, "192.0.2.40", map[string]string{}}
+	other := &browser{t, handler, "192.0.2.41", map[string]string{}}
+	login(t, owner, mail, "qa-msg-a@example.test")
+	login(t, other, mail, "qa-msg-b@example.test")
+	agentA, folderA := onboard(t, owner, service, server.URL, clone)
+	agentB, folderB := onboard(t, owner, service, server.URL, clone)
+	agentC, folderC := onboard(t, other, service, server.URL, clone)
+	keyA, keyB, keyC := loadMember(t, folderA), loadMember(t, folderB), loadMember(t, folderC)
+	if keyA.agent != agentA || keyB.agent != agentB || keyC.agent != agentC || keyA.credential == keyB.credential || keyA.kid == keyB.kid {
+		t.Fatal("member agents do not have separate credentials")
+	}
+
+	expect(t, owner.do(http.MethodPost, "/home/invites", url.Values{"agent": {agentA}, "target": {agentB}}), 303)
+	home := owner.do(http.MethodGet, "/home", nil)
+	expect(t, home, 200, "수신 owner로 수락", "관계 세대: 1")
+	if strings.Contains(home.Body.String(), "qa-msg-b@example.test") || strings.Contains(home.Body.String(), "<textarea") {
+		t.Fatal("home exposed the other member or a composer")
+	}
+	expect(t, owner.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {agentA}, "target": {agentB}, "generation": {"0"}, "decision": {"accept"}}), 403)
+	pending := signText(t, keyA, qaID(1), agentB, "qa-pending-send-01", "", "before accept", time.Now().Add(180*time.Second))
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", pending), 403)
+	expect(t, owner.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {agentA}, "target": {agentB}, "generation": {"1"}, "decision": {"accept"}}), 303)
+
+	code, output := runNode(t, clone, "", "node", script, folderA, folderB, agentA, agentB)
+	if code != 0 || strings.Contains(output, keyA.credential) || strings.Contains(output, "PRIVATE") {
+		t.Fatalf("local node/mcp exit %d %s", code, nodeFailure(output, keyA.credential))
+	}
+	var roundtrip struct {
+		State, Request, Received, Reply, ReplyReceived, Exact4096 string
+	}
+	if json.Unmarshal([]byte(strings.TrimSpace(output)), &roundtrip) != nil || roundtrip.State != "qa_local_node_mcp_pass" || roundtrip.Request != roundtrip.Received || roundtrip.Reply != roundtrip.ReplyReceived || roundtrip.Request == "" || roundtrip.Reply == "" {
+		t.Fatal("roundtrip ids")
+	}
+	t.Log(strings.TrimSpace(output))
+	receiptPage := owner.do(http.MethodGet, "/home/receipts?agent="+agentA+"&id="+roundtrip.Request, nil)
+	expect(t, receiptPage, 200, "reply_received", roundtrip.Reply, "180", "자동 wake는 없습니다", "queued는 상대 수신 성공이 아닙니다", "수동 receive")
+	if strings.Contains(receiptPage.Body.String(), "<textarea") || strings.Contains(receiptPage.Body.String(), "QA connection check") || strings.Contains(receiptPage.Body.String(), "QA related reply") {
+		t.Fatal("receipt showed a composer or message text")
+	}
+	expect(t, other.do(http.MethodGet, "/home/receipts?agent="+agentA+"&id="+roundtrip.Request, nil), 403)
+	service.mutateState(t, func(st *State) {
+		for _, message := range st.Messages {
+			if message.Receipt.Intent == publicTextIntent && (len(message.Envelope) > 0 || len(message.Inbox) > 0) {
+				t.Fatal("text body retained after ACK")
+			}
+		}
+	})
+
+	clearRates(t, service)
+	var dbNow time.Time
+	if err := service.Pool.QueryRow(context.Background(), "SELECT clock_timestamp()").Scan(&dbNow); err != nil {
+		t.Fatal(err)
+	}
+	now := dbNow.UTC()
+	exactTTL := now.Add(180 * time.Second).Truncate(time.Second)
+	overTTL := now.Add(181 * time.Second).Truncate(time.Second).Add(time.Second)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, qaID(2), agentB, "qa-ttl-exact-180s", "", "ttl boundary", exactTTL)), 200)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, qaID(3), agentB, "qa-ttl-over-181ss", "", "ttl over", overTTL)), 422)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, qaID(4), agentB, "qa-ttl-already-exp", "", "expired", now.Add(-time.Second))), 422)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, qaID(5), agentB, "qa-text-over-4097", "", strings.Repeat("b", 4097), now.Add(180*time.Second))), 422)
+	scripted := signText(t, keyA, qaID(6), agentB, "qa-text-script-key", "", "<script>alert(1)</script>", now.Add(180*time.Second))
+	scriptReceipt := mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", scripted), 200)
+	scriptPage := owner.do(http.MethodGet, "/home/receipts?agent="+agentA+"&id="+scriptReceipt["id"].(string), nil)
+	expect(t, scriptPage, 200, "queued — 대기 중", "수신이 확인되지 않았습니다")
+	if strings.Contains(scriptPage.Body.String(), "<script>") {
+		t.Fatal("receipt HTML executed text")
+	}
+	same := signText(t, keyA, qaID(7), agentB, "qa-idem-race-key01", "", "same body", now.Add(170*time.Second))
+	codes := make(chan int, 8)
+	var group sync.WaitGroup
+	for i := 0; i < 8; i++ {
+		group.Add(1)
+		go func() {
+			defer group.Done()
+			codes <- postAgent(t, handler, "/v1/text/send", keyA.credential, "", same).Code
+		}()
+	}
+	group.Wait()
+	close(codes)
+	for status := range codes {
+		if status != 200 {
+			t.Fatal("idempotent race", status)
+		}
+	}
+	service.mutateState(t, func(st *State) {
+		if st.Idempotency[agentA+"/qa-idem-race-key01"] == "" {
+			t.Fatal("missing idempotent receipt")
+		}
+		count := 0
+		for _, message := range st.Messages {
+			if message.Key == "qa-idem-race-key01" {
+				count++
+			}
+		}
+		if count != 1 {
+			t.Fatal("idempotent race created", count)
+		}
+	})
+	conflict := signText(t, keyA, qaID(8), agentB, "qa-idem-race-key01", "", "other body", now.Add(170*time.Second))
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", conflict), 409)
+	parent := mustCode(t, postAgent(t, handler, "/v1/text/pull", keyB.credential, "", []byte("{}")), 200)
+	parentEncoded, _ := json.Marshal(parent["envelope"])
+	var parentEnv struct {
+		ID string `json:"id"`
+	}
+	_ = json.Unmarshal(parentEncoded, &parentEnv)
+	parentToken, _ := parent["lease_token"].(string)
+	parentBody, _ := json.Marshal(map[string]string{"id": parentEnv.ID, "token": parentToken})
+	mustCode(t, postAgent(t, handler, "/v1/text/persist", keyB.credential, "", parentBody), 200)
+	mustCode(t, postAgent(t, handler, "/v1/text/ack", keyB.credential, "", parentBody), 200)
+	reply := mustCode(t, postAgent(t, handler, "/v1/text/send", keyB.credential, "", signText(t, keyB, qaID(9), agentA, "qa-one-reply-key01", parentEnv.ID, "one reply", now.Add(120*time.Second))), 200)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyB.credential, "", signText(t, keyB, qaID(10), agentA, "qa-two-reply-key01", parentEnv.ID, "second reply", now.Add(120*time.Second))), 409)
+	if reply["id"] == "" {
+		t.Fatal("reply id")
+	}
+	mustCode(t, postAgent(t, handler, "/v1/claim", keyB.credential, "", []byte(`{"id":"`+roundtrip.Request+`"}`)), 403)
+
+	expiredID := qaID(11)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, expiredID, agentB, "qa-expire-offline1", "", "offline", now.Add(30*time.Second))), 200)
+	service.mutateState(t, func(st *State) { st.Messages[expiredID].Receipt.Exp = time.Now().Add(-time.Second) })
+	expect(t, owner.do(http.MethodGet, "/home/receipts?agent="+agentA+"&id="+expiredID, nil), 200, "failed:expired", "오프라인", "새 key로 명시 송신")
+	service.mutateState(t, func(st *State) {
+		if len(st.Messages[expiredID].Envelope) != 0 {
+			t.Fatal("expired text retained")
+		}
+	})
+	for ackPublic(t, handler, keyB.credential) {
+	}
+	attemptsID := qaID(12)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, attemptsID, agentB, "qa-max-attempts01", "", "attempts", now.Add(160*time.Second))), 200)
+	for i := 0; i < 3; i++ {
+		leasedTry := mustCode(t, postAgent(t, handler, "/v1/text/pull", keyB.credential, "", []byte("{}")), 200)
+		leasedRaw, _ := json.Marshal(leasedTry["envelope"])
+		var leasedEnv struct {
+			ID string `json:"id"`
+		}
+		if json.Unmarshal(leasedRaw, &leasedEnv) != nil || leasedEnv.ID != attemptsID {
+			t.Fatal("max-attempts leased", leasedEnv.ID)
+		}
+		service.mutateState(t, func(st *State) { st.Messages[attemptsID].LeaseUntil = time.Now().Add(-time.Second) })
+		service.mutateState(t, func(st *State) {})
+	}
+	expect(t, owner.do(http.MethodGet, "/home/receipts?agent="+agentA+"&id="+attemptsID, nil), 200, "failed:max_attempts")
+
+	trial := memberWire(t, keyA, qaID(13), agentB, "relay.test.message", "qa-trial-not-general", "", map[string]any{"text": "ping"}, now.Add(time.Minute), "")
+	mustCode(t, postAgent(t, handler, "/v1/send", keyA.credential, "", trial), 403)
+	mustCode(t, postAgent(t, handler, "/v1/test/send", keyA.credential, "", trial), 403)
+
+	expect(t, owner.do(http.MethodPost, "/home/invites", url.Values{"agent": {agentA}, "target": {agentC}}), 303)
+	expect(t, owner.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {agentA}, "target": {agentC}, "generation": {"1"}, "decision": {"accept"}}), 403)
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, qaID(14), agentC, "qa-other-member-01", "", "cross", now.Add(time.Minute))), 403)
+	expect(t, other.do(http.MethodPost, "/home/invite-deny", url.Values{"agent": {agentA}, "target": {agentC}, "generation": {"1"}, "decision": {"deny"}}), 303)
+	expect(t, owner.do(http.MethodPost, "/home/invites", url.Values{"agent": {agentA}, "target": {agentC}}), 303)
+	expect(t, other.do(http.MethodPost, "/home/invite-decision", url.Values{"agent": {agentA}, "target": {agentC}, "generation": {"1"}, "decision": {"accept"}}), 403)
+	expect(t, other.do(http.MethodPost, "/home/invite-deny", url.Values{"agent": {agentA}, "target": {agentC}, "generation": {"2"}, "decision": {"deny"}}), 303)
+
+	clearRates(t, service)
+	queryRaw := memberWire(t, keyA, qaID(20), agentB, "schedule.query", "qa-query-key-0001", "", queryWindow(), now.Add(2*time.Minute), "")
+	queryReceipt := mustCode(t, postAgent(t, handler, "/v1/send", keyA.credential, "", queryRaw), 200)
+	queryID, _, _ := deliverBusiness(t, handler, keyB.credential)
+	if queryID != qaID(20) {
+		t.Fatal("query delivery id")
+	}
+	claimBody, _ := json.Marshal(map[string]string{"id": queryID})
+	claim := mustCode(t, postAgent(t, handler, "/v1/claim", keyB.credential, "", claimBody), 200)
+	claimToken, _ := claim["claim"].(string)
+	if !strings.Contains(claim["policy"].(string), "deny") {
+		t.Fatal("query policy")
+	}
+	gateRaw := memberWire(t, keyB, qaID(21), agentB, "relay.approval.request", "qa-gate-key-00001", queryID, map[string]any{"reason": "judgment_required", "request_digest": queryReceipt["digest"]}, now.Add(time.Minute), "")
+	mustCode(t, postAgent(t, handler, "/v1/send", keyB.credential, claimToken, gateRaw), 200)
+	expect(t, other.do(http.MethodGet, "/home/gates/"+qaID(21), nil), 403)
+	expect(t, owner.do(http.MethodGet, "/home/gates/"+qaID(21), nil), 200, "granularity_min", "검증된 typed body", "Approve는 인간 게이트만 통과")
+	expect(t, owner.do(http.MethodPost, "/home/gates/"+qaID(21), url.Values{"csrf": {"bad"}, "decision": {"approve"}}), 403)
+	expect(t, owner.do(http.MethodPost, "/home/gates/"+qaID(21), url.Values{"csrf": {csrf(owner.cookies[sessionCookie], qaID(21))}, "decision": {"approve"}}, "Sec-Fetch-Site", "cross-site"), 403)
+	service.mutateState(t, func(st *State) {
+		if st.Gates[qaID(21)].State != "pending" {
+			t.Fatal("GET or bad CSRF approved the gate")
+		}
+	})
+	expect(t, owner.do(http.MethodPost, "/home/gates/"+qaID(21), url.Values{"csrf": {csrf(owner.cookies[sessionCookie], qaID(21))}, "decision": {"approve"}}), 303)
+	consumed := mustCode(t, postAgent(t, handler, "/v1/gate-consume", keyB.credential, "", []byte(`{"id":"`+qaID(21)+`","claim":"`+claimToken+`"}`)), 200)
+	if consumed["executable"] != false || consumed["disclosure"] != false {
+		t.Fatal("approve enabled an effect")
+	}
+	authorized := mustCode(t, postAgent(t, handler, "/v1/authorize", keyB.credential, "", []byte(`{"id":"`+queryID+`","claim":"`+claimToken+`"}`)), 200)
+	if authorized["executable"] != false || !strings.Contains(authorized["policy"].(string), "deny") {
+		t.Fatal("authorize policy")
+	}
+	done := memberWire(t, keyB, qaID(22), agentA, "relay.result", "qa-result-done-001", queryID, map[string]any{"status": "done"}, now.Add(time.Minute), "")
+	mustCode(t, postAgent(t, handler, "/v1/send", keyB.credential, "", done), 403)
+
+	commitRaw := memberWire(t, keyA, qaID(23), agentB, "schedule.commit", "qa-commit-key-001", "", map[string]any{"slot": map[string]any{"start": "2026-10-06T12:00:00Z", "end": "2026-10-06T13:00:00Z"}, "timezone": "Asia/Seoul", "commitment": "connection-check"}, now.Add(2*time.Minute), "")
+	mustCode(t, postAgent(t, handler, "/v1/send", keyA.credential, "", commitRaw), 200)
+	commitID, _, _ := deliverBusiness(t, handler, keyB.credential)
+	commitClaim := mustCode(t, postAgent(t, handler, "/v1/claim", keyB.credential, "", []byte(`{"id":"`+commitID+`"}`)), 200)
+	if !strings.Contains(commitClaim["policy"].(string), "non-executable") {
+		t.Fatal("commit policy")
+	}
+	commitAuth := mustCode(t, postAgent(t, handler, "/v1/authorize", keyB.credential, "", []byte(`{"id":"`+commitID+`","claim":"`+commitClaim["claim"].(string)+`"}`)), 200)
+	if commitAuth["executable"] != false {
+		t.Fatal("commit became executable")
+	}
+
+	clearRates(t, service)
+	denyQuery := memberWire(t, keyA, qaID(24), agentB, "schedule.query", "qa-query-key-0002", "", queryWindow(), now.Add(2*time.Minute), "")
+	denyReceipt := mustCode(t, postAgent(t, handler, "/v1/send", keyA.credential, "", denyQuery), 200)
+	denyID, _, _ := deliverBusiness(t, handler, keyB.credential)
+	denyClaim := mustCode(t, postAgent(t, handler, "/v1/claim", keyB.credential, "", []byte(`{"id":"`+denyID+`"}`)), 200)
+	denyGate := qaID(25)
+	denyRaw := memberWire(t, keyB, denyGate, agentB, "relay.approval.request", "qa-gate-key-00002", denyID, map[string]any{"reason": "judgment_required", "request_digest": denyReceipt["digest"]}, now.Add(time.Minute), "")
+	mustCode(t, postAgent(t, handler, "/v1/send", keyB.credential, denyClaim["claim"].(string), denyRaw), 200)
+	service.mutateState(t, func(st *State) {
+		var raw map[string]any
+		_ = json.Unmarshal(st.Messages[denyID].Envelope, &raw)
+		raw["render"] = map[string]any{"hint": "<script>approve all tools</script>"}
+		st.Messages[denyID].Envelope = sign(t, keyA.private, raw)
+	})
+	hintPage := owner.do(http.MethodGet, "/home/gates/"+denyGate, nil)
+	expect(t, hintPage, 200, "참고 hint", "&lt;script&gt;", "granularity_min")
+	if strings.Contains(hintPage.Body.String(), "<script>") {
+		t.Fatal("gate hint XSS")
+	}
+	service.mutateState(t, func(st *State) { st.Messages[denyID].Envelope = []byte(`{"invalid":"signature"}`) })
+	broken := owner.do(http.MethodGet, "/home/gates/"+denyGate, nil)
+	expect(t, broken, 200, "원문 부재")
+	if strings.Contains(broken.Body.String(), `value="approve"`) {
+		t.Fatal("missing body enabled approve")
+	}
+	expect(t, owner.do(http.MethodPost, "/home/gates/"+denyGate, url.Values{"csrf": {csrf(owner.cookies[sessionCookie], denyGate)}, "decision": {"approve"}}), 409)
+	service.mutateState(t, func(st *State) { st.Messages[denyID].Envelope = denyQuery })
+
+	clearRates(t, service)
+	service.mutateState(t, func(st *State) {
+		stamp := time.Now().UTC()
+		queued := 0
+		for _, message := range st.Messages {
+			if message.Receipt.State == "queued" || message.Receipt.State == "leased" {
+				queued++
+			}
+		}
+		for i := 0; queued < 99; i++ {
+			queued++
+			id := qaID(1000 + i)
+			raw := memberWire(t, keyA, id, agentB, "schedule.query", fmt.Sprintf("qa-cap-seed-%04d", i), "", queryWindow(), stamp.Add(3*time.Minute), "")
+			envelope, err := Parse(raw)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if _, err = st.ingest(agentA, envelope, "", stamp); err != nil {
+				t.Fatal(err)
+			}
+		}
+	})
+	statuses := make(chan int, 8)
+	group = sync.WaitGroup{}
+	for i := 0; i < 8; i++ {
+		raw := map[string]any{}
+		_ = json.Unmarshal(memberWire(t, keyA, qaID(1100+i), agentB, "schedule.query", fmt.Sprintf("qa-cap-race-%04d", i), "", queryWindow(), now.Add(3*time.Minute), ""), &raw)
+		raw["priority"] = "high"
+		body := sign(t, keyA.private, raw)
+		group.Add(1)
+		go func() {
+			defer group.Done()
+			statuses <- postAgent(t, handler, "/v1/send", keyA.credential, "", body).Code
+		}()
+	}
+	group.Wait()
+	close(statuses)
+	wins := 0
+	for status := range statuses {
+		if status == 200 {
+			wins++
+		} else if status != 409 {
+			t.Fatal("queue race", status)
+		}
+	}
+	if wins != 1 {
+		t.Fatal("high priority won extra queue slots", wins)
+	}
+	mustCode(t, postAgent(t, handler, "/v1/send", keyA.credential, "", memberWire(t, keyA, qaID(1110), agentB, "schedule.query", "qa-cap-overflow01", "", queryWindow(), now.Add(3*time.Minute), "high")), 409)
+	_, _, _ = deliverBusiness(t, handler, keyB.credential)
+	mustCode(t, postAgent(t, handler, "/v1/send", keyA.credential, "", memberWire(t, keyA, qaID(1111), agentB, "schedule.query", "qa-cap-after-ack1", "", queryWindow(), now.Add(3*time.Minute), "")), 200)
+	service.mutateState(t, func(st *State) {
+		for id, message := range st.Messages {
+			if strings.HasPrefix(message.Key, "qa-cap-") {
+				delete(st.Idempotency, message.Receipt.From+"/"+message.Key)
+				delete(st.Messages, id)
+			}
+		}
+	})
+
+	clearRates(t, service)
+	service.mutateState(t, func(st *State) {
+		for _, message := range st.Messages {
+			message.ClaimToken = ""
+		}
+	})
+	claimIDs := []string{}
+	for i := 0; i < 5; i++ {
+		id := qaID(1200 + i)
+		claimIDs = append(claimIDs, id)
+		mustCode(t, postAgent(t, handler, "/v1/send", keyA.credential, "", memberWire(t, keyA, id, agentB, "schedule.query", fmt.Sprintf("qa-claim-key-%04d", i), "", queryWindow(), now.Add(3*time.Minute), "")), 200)
+		got, _, _ := deliverBusiness(t, handler, keyB.credential)
+		if got != id {
+			t.Fatal("claim setup order")
+		}
+	}
+	claimCodes := make(chan int, 5)
+	group = sync.WaitGroup{}
+	for _, id := range claimIDs {
+		body := []byte(`{"id":"` + id + `"}`)
+		group.Add(1)
+		go func() {
+			defer group.Done()
+			claimCodes <- postAgent(t, handler, "/v1/claim", keyB.credential, "", body).Code
+		}()
+	}
+	group.Wait()
+	close(claimCodes)
+	claimWins := 0
+	for status := range claimCodes {
+		if status == 200 {
+			claimWins++
+		} else if status != 409 {
+			t.Fatal("claim race", status)
+		}
+	}
+	if claimWins != 4 {
+		t.Fatal("claim winners", claimWins)
+	}
+	handler = (&Service{Pool: pool, Mail: mail.send}).Handler()
+	owner.h, other.h = handler, handler
+	unclaimed := ""
+	service.mutateState(t, func(st *State) {
+		for _, id := range claimIDs {
+			if !st.Messages[id].Claimed {
+				unclaimed = id
+			} else {
+				st.Messages[id].Receipt.Exp = time.Now().Add(-time.Second)
+			}
+		}
+	})
+	mustCode(t, postAgent(t, handler, "/v1/claim", keyB.credential, "", []byte(`{"id":"`+unclaimed+`"}`)), 200)
+	service.mutateState(t, func(st *State) {
+		for _, id := range claimIDs {
+			if id != unclaimed && (st.Messages[id].Completion != "failed:expired" || st.Messages[id].ClaimToken != "") {
+				t.Fatal("claimed work blocked safe expiry")
+			}
+		}
+		for id, message := range st.Messages {
+			if strings.HasPrefix(message.Key, "qa-claim-") {
+				delete(st.Idempotency, message.Receipt.From+"/"+message.Key)
+				delete(st.Messages, id)
+			}
+		}
+	})
+
+	oversize := make([]byte, rawEnvelopeLimit+1)
+	for i := range oversize {
+		oversize[i] = 'a'
+	}
+	if postAgent(t, handler, "/v1/text/send", keyA.credential, "", oversize).Code == 200 {
+		t.Fatal("raw over 32768 accepted")
+	}
+	exactRaw := make([]byte, rawEnvelopeLimit)
+	for i := range exactRaw {
+		exactRaw[i] = '{'
+	}
+	if postAgent(t, handler, "/v1/send", keyA.credential, "", exactRaw).Code == 200 {
+		t.Fatal("raw boundary accepted as a message")
+	}
+
+	service.mutateState(t, func(st *State) {
+		accepted := time.Now().UTC()
+		for i := 0; len(st.Messages) < 20000; i++ {
+			id := fmt.Sprintf("0199a3f2-4c10-7a11-8b23-%012x", i)
+			st.Messages[id] = &Message{Receipt: Receipt{ID: id, State: "delivered", Accepted: accepted}, Key: "qa-fill"}
+		}
+	})
+	if postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, qaID(1300), agentB, "qa-receipt-cap-001", "", "over receipt", now.Add(time.Minute))).Code != 409 {
+		t.Fatal("receipt cap")
+	}
+	service.mutateState(t, func(st *State) {
+		left := 0
+		for id, message := range st.Messages {
+			if message.Key == "qa-fill" {
+				left++
+				delete(st.Messages, id)
+			}
+		}
+		if left == 0 {
+			t.Fatal("receipt fillers were already gone")
+		}
+		gateExp := time.Now().UTC().Add(time.Hour)
+		for i := 0; i < 100; i++ {
+			st.Gates[fmt.Sprintf("qa-gate-fill-%d", i)] = &Gate{ID: fmt.Sprintf("qa-gate-fill-%d", i), State: "pending", Exp: gateExp}
+		}
+	})
+	service.mutateState(t, func(st *State) {
+		if st.Messages[denyID] != nil {
+			st.Messages[denyID].Claimed = true
+			st.Messages[denyID].ClaimToken = "qa-gate-cap-claim"
+		}
+	})
+	if postAgent(t, handler, "/v1/send", keyB.credential, "qa-gate-cap-claim", memberWire(t, keyB, qaID(1301), agentB, "relay.approval.request", "qa-gate-cap-key01", denyID, map[string]any{"reason": "judgment_required", "request_digest": denyReceipt["digest"]}, now.Add(time.Minute), "")).Code != 409 {
+		t.Fatal("gate cap")
+	}
+	service.mutateState(t, func(st *State) {
+		for id := range st.Gates {
+			if strings.HasPrefix(id, "qa-gate-fill-") {
+				delete(st.Gates, id)
+			}
+		}
+	})
+
+	clearRates(t, service)
+	occupiedNew, occupiedClean := 0, 0
+	service.mutateState(t, func(st *State) {
+		for _, slot := range st.HTTP {
+			if !time.Now().Before(slot.Exp) {
+				continue
+			}
+			if slot.Clean {
+				occupiedClean++
+			} else {
+				occupiedNew++
+			}
+		}
+	})
+	if occupiedNew != 0 || occupiedClean != 0 {
+		t.Errorf("HTTP admission leaked before the concurrency check: new=%d cleanup=%d; a full relay snapshot can outlive the 2s release transaction until the 30s expiry", occupiedNew, occupiedClean)
+	}
+	t.Log("S14 shared admission: independently covered by TestHTTPConcurrencyAcrossInstances and TestHTTPSlowBodyAndCleanupAdmission with verified own records")
+	service.mutateState(t, func(st *State) {
+		for i := 0; i < 16; i++ {
+			st.HTTP[fmt.Sprintf("qa-crash-%d", i)] = admission{Clean: false, Exp: time.Now().Add(20 * time.Second)}
+		}
+	})
+	restarted := (&Service{Pool: pool, Mail: mail.send}).Handler()
+	if postAgent(t, restarted, "/v1/text/pull", keyB.credential, "", []byte("{}")).Code != 429 {
+		t.Fatal("restart kept no shared cap")
+	}
+	service.mutateState(t, func(st *State) {
+		for id, slot := range st.HTTP {
+			slot.Exp = time.Now().Add(-time.Second)
+			st.HTTP[id] = slot
+		}
+	})
+	recovered := postAgent(t, restarted, "/v1/text/pull", keyB.credential, "", []byte("{}"))
+	if recovered.Code != 200 {
+		t.Fatal("expired crash slot was not recovered")
+	}
+	var recoveredLease struct {
+		Envelope json.RawMessage `json:"envelope"`
+		Token    string          `json:"lease_token"`
+	}
+	_ = json.Unmarshal(recovered.Body.Bytes(), &recoveredLease)
+	if len(recoveredLease.Envelope) > 0 && string(recoveredLease.Envelope) != "null" {
+		var recoveredID struct {
+			ID string `json:"id"`
+		}
+		if json.Unmarshal(recoveredLease.Envelope, &recoveredID) != nil || recoveredID.ID == "" {
+			t.Fatal("recovery lease")
+		}
+		body, _ := json.Marshal(map[string]string{"id": recoveredID.ID, "token": recoveredLease.Token})
+		mustCode(t, postAgent(t, restarted, "/v1/text/persist", keyB.credential, "", body), 200)
+		mustCode(t, postAgent(t, restarted, "/v1/text/ack", keyB.credential, "", body), 200)
+	}
+
+	clearRates(t, service)
+	for i := 0; i < 40; i++ {
+		if postAgent(t, handler, "/v1/text/send", keyC.credential, "", []byte("{")).Code != 422 {
+			t.Fatal("rate setup", i)
+		}
+	}
+	if postAgent(t, handler, "/v1/text/send", keyC.credential, "", []byte("{")).Code != 429 {
+		t.Fatal("41st new request")
+	}
+	expect(t, owner.do(http.MethodPost, "/home/agents", nil), 303)
+	expect(t, other.do(http.MethodPost, "/home/key-revoke", url.Values{"agent": {agentC}, "kid": {keyC.kid}}), 303)
+	if postAgent(t, handler, "/v1/text/pull", keyC.credential, "", []byte("{}")).Code != 401 {
+		t.Fatal("revoked key")
+	}
+	revokedHome := other.do(http.MethodGet, "/home", nil)
+	expect(t, revokedHome, 200, keyC.kid, "철회")
+	t.Log("S18 anonymous/foreign admission: independently covered by TestHTTPSlowBodyAndCleanupAdmission with real TCP slow bodies")
+
+	for ackPublic(t, handler, keyB.credential) {
+	}
+	leasedRaw := signText(t, keyA, qaID(1400), agentB, "qa-cleanup-ack-01", "", "cleanup ack", now.Add(2*time.Minute))
+	mustCode(t, postAgent(t, handler, "/v1/text/send", keyA.credential, "", leasedRaw), 200)
+	leased := mustCode(t, postAgent(t, handler, "/v1/text/pull", keyB.credential, "", []byte("{}")), 200)
+	leasedEnvelope, _ := json.Marshal(leased["envelope"])
+	var leasedID struct {
+		ID string `json:"id"`
+	}
+	if json.Unmarshal(leasedEnvelope, &leasedID) != nil || leasedID.ID != qaID(1400) {
+		t.Fatal("cleanup lease", leasedID.ID)
+	}
+	leasedToken, _ := leased["lease_token"].(string)
+	ackBody, _ := json.Marshal(map[string]string{"id": qaID(1400), "token": leasedToken})
+	mustCode(t, postAgent(t, handler, "/v1/text/persist", keyB.credential, "", ackBody), 200)
+	service.mutateState(t, func(st *State) {
+		for i := 0; i < 16; i++ {
+			st.HTTP[fmt.Sprintf("qa-full-%d", i)] = admission{Clean: false, Exp: time.Now().Add(20 * time.Second)}
+		}
+	})
+	handler = (&Service{Pool: pool, Mail: mail.send}).Handler()
+	owner.h = handler
+	if postAgent(t, handler, "/v1/text/send", keyA.credential, "", signText(t, keyA, qaID(1401), agentB, "qa-full-new-send1", "", "blocked", now.Add(time.Minute))).Code != 429 {
+		t.Fatal("new send during saturation")
+	}
+	mustCode(t, postAgent(t, handler, "/v1/text/ack", keyB.credential, "", ackBody), 200)
+	expect(t, owner.do(http.MethodPost, "/home/gates/"+denyGate, url.Values{"csrf": {csrf(owner.cookies[sessionCookie], denyGate)}, "decision": {"deny"}}), 303)
+	service.mutateState(t, func(st *State) {
+		if st.Gates[denyGate] == nil || st.Gates[denyGate].State != "denied" {
+			t.Fatal("deny did not finish while new work was full")
+		}
+		if st.Messages[qaID(1400)] == nil || st.Messages[qaID(1400)].Receipt.State != "delivered" {
+			t.Fatal("ACK did not finish while new work was full")
+		}
+	})
+	expect(t, owner.do(http.MethodPost, "/home/unpair", url.Values{"agent": {agentA}, "target": {agentB}, "generation": {"1"}}), 303)
+	expect(t, owner.do(http.MethodPost, "/auth/logout", nil), 303, "/?n=logout")
+	service.mutateState(t, func(st *State) {
+		if st.Pairs[pairID(agentA, agentB)] == nil || st.Pairs[pairID(agentA, agentB)].State != "revoked" {
+			t.Fatal("unpair did not finish while new work was full")
+		}
+	})
+	expect(t, owner.do(http.MethodGet, "/home/receipts?agent="+agentA+"&id="+roundtrip.Request, nil), 429, "동시 처리 한도에 도달했습니다")
+}

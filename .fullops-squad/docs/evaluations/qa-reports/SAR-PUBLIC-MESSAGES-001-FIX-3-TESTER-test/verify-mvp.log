@@ -1,0 +1,10 @@
+mkdir -p build
+go build -trimpath -o build/relay ./cmd/relay
+go build -trimpath -o build/migrate ./cmd/migrate
+npm run build --prefix adapters
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+Segmentation fault (core dumped)
+make: *** [Makefile:33: build] Error 139

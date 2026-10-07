@@ -1,0 +1,18 @@
+[
+  {
+    "path": "fixture-logs/probe-postgres-up.log",
+    "raw_sha256": "242bfe75ab5d04526d3ea5fd425e5b281740a401ace16f885e42b5be9823906d",
+    "raw_gzip": "fixture-logs/probe-postgres-up.log.gz",
+    "change": "Compose 진행 출력의 행 끝 공백만 제거했다. raw bytes는 gzip에 보존했다."
+  },
+  {
+    "path": "fixture-logs/probe-postgres-down.log",
+    "raw_sha256": "c0461757c8dca0565842c122b424e3e7713ae1e1c6d1a2c081517b1f99af787d",
+    "raw_gzip": "fixture-logs/probe-postgres-down.log.gz",
+    "change": "Compose 진행 출력의 행 끝 공백만 제거했다. raw bytes는 gzip에 보존했다."
+  },
+  {
+    "path": "probe-adaptation.diff",
+    "change": "diff 표시의 tab만 8 spaces로 풀었다. 실행 소스는 .src에 그대로 보존했다."
+  }
+]
