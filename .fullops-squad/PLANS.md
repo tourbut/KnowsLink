@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-07
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW]
 summary: MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다
 ---
 
@@ -1106,3 +1106,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 플러그인 캐시 0.9.14의 flow_gate/done_gate 누락으로 명령이 차단됐으나 현재 설치 1.0.0의 정상 훅으로 실행이 복구됐다. 레포 적용 0.9.14·공통 기준 0.3.3과 원래 실패 기록은 유지한다. 하네스 업데이트를 반복하지 않았다.
 - Run run_8ca8bc058ab7을 실제 coordinator term_a8a1fa04-50ab-448d-94e7-11e8ee3c77f1에 다시 연결했다. 미처리 메시지 0건이며 DEV task_5cafac50986b/ctx_6b892c0481e1은 live/working이다. 진행 중 DEV 체크아웃을 변경하지 않는다.
 - 공개 준비에서 실제 운영 DB 백업·격리 복원·기존 보호상태 확인을 완료했다. 상세와 한계는 docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md를 따른다. final SHA 리뷰·승인된 Sol 독립 QA·designer 영향 검수 전 main68b 수락 차단은 유지한다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW — 최종 코드 대기
+
+- 담당 OPS/coor. 사용자 지정 GPT Sol high를 최종 고정 후보의 별도 세션 정적 코드·규약·정본 추적성 리뷰에 적용한다. 원 Sonnet 추천을 별도 원본에 보존했다. 기존 FIX-2-REVIEW는 coordinator 운영 failed 마감으로 전문 archive했다. 원 pending result/report와 플랫폼 차단·부분 검사·원래 실패는 변하지 않는다. worker_done을 대신 작성하지 않았다.
+- 현재 미배정 사유: DEV-FIX-3 최종 SHA 미확정. 재개 조건 최종 SHA/자동 검증과 별도 실제 reviewer 세션·clean detached snapshot 확보다. tester의 독립 QA와 designer의 필요한 직접 UI 검수는 별도다.

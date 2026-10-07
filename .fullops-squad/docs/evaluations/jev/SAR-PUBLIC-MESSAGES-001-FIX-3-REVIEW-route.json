@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "ops": 0.75,
+        "dev": 0.24,
+        "tester": 0.01
+      },
+      "confidence": 0.62
+    },
+    "docs": {
+      "D01": 0.13,
+      "D02": 0.13,
+      "D03": 0.18,
+      "D04": 0.17,
+      "D05": 0.17,
+      "D06": 0.2,
+      "D07": 0.18,
+      "D08": 0.21,
+      "D09": 0.19,
+      "D10": 0.38,
+      "D11": 0.18,
+      "D12": 0.49,
+      "D13": 0.44
+    }
+  },
+  "usage": {
+    "input_tokens": 2559,
+    "output_tokens": 314,
+    "cost": 0.000107478
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.673,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "구현자와 별도 세션에서 최종 고정 후보의 정적 코드 리뷰를 OPS에게 배정한다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "user_override"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "b1bfdd03f05522b3462b6e79d691247c082244ac",
+  "requires_packet": true,
+  "model_prior": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "user_override": {
+    "request": "최종 리뷰 gpt sol로 진행해",
+    "scope": "final fixed candidate independent static review",
+    "additional_payment": false
+  }
+}
