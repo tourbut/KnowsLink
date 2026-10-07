@@ -1039,3 +1039,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 담당: coor/tester. route의 implementation/tester·Grok4.7high 선정 기록은 유지한다.
 - 보류 사유: 사용자가 Grok 토큰 만료로 TESTER 추가 실행을 중단하고 기존 세션의 진행분까지만 마감하도록 지시했다. 이 과제는 dispatch하지 않는다. DEV-FIX-2 최종 후보도 아직 확정되지 않았다.
 - 재개 조건: 최종 고정 SHA와 사용자 허용 검증 수단을 확보한 뒤 좁은 독립 QA를 배정한다. 기존 QA60b의 원본 후보09c 실패·새 후보 QA 미실행·main 수락 차단을 유지한다. 유료 전환이나 임의 모델 교체로 재개하지 않는다.
+
+## SAR-PUBLIC-MESSAGES-001-DEV-FIX-2 완료 수신·독립 검수 대기 — 2026-10-07
+
+- msg_8a27d8a69cbe / task_d6eb6d8df272 / ctx_07a9030f9c9f의 실제 worker_done succeeded를 처리했다. 최종 `758e9f638501f11000ed17c558a9eb54b4350eb3`의 DEV HEAD/origin 동일·clean·완료 전문 archive·빈 인박스·최종 lint JSON을 대조했다. 실제 DEV 세션은05c78055-8d3a-4f8d-94cc-2c7b6916057b다. final ERROR0/WARNING5/실행불가0·product-lint/test passed 원본은 COOR/dev-fix-2-final/lint.json에 보존했다. SHA 추출null과 실제fullSHA/출처를 integration ledger에 함께 보완했다.
+- DEV는 H2 자기 기록 분류·owner당 동시정리1·commit 순서·실패 종료 회수 및 QA 원본HTTP 잔류 경로를 수정하고 코드c8ac921에서 MVP45 PASS를 보고했다. 같은 owner 정리 제한·stale snapshot의 신규채널 fallback은 독립 리뷰 대상이다. 기존 high/원본실패를 DEV 자체PASS로 해제하지 않는다.
+- integration hold 담당coor: fixed758의 별도세션 OPS delta 수락, 사용자 허용 좁은 독립 QA, UI 의존성/영향 확인 뒤 main 판정한다. TESTER 사용자 중단과 FIX-TESTER 보류는 유지한다. DEV release는retained(user_takeover)/processAction none이며 강제종료하지 않았다. main/origin68b에는 아직 이 제품 후보를 반영하지 않았다.
