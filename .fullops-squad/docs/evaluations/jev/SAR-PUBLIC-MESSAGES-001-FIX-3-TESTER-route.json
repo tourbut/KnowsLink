@@ -1,0 +1,75 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "ops": 0,
+        "dev": 0.03,
+        "tester": 0.97
+      },
+      "confidence": 0.95
+    },
+    "docs": {
+      "D01": 0.13,
+      "D02": 0.15,
+      "D03": 0.15,
+      "D04": 0.21,
+      "D05": 0.14,
+      "D06": 0.16,
+      "D07": 0.13,
+      "D08": 0.15,
+      "D09": 0.16,
+      "D10": 0.35,
+      "D11": 0.21,
+      "D12": 0.41,
+      "D13": 0.4
+    }
+  },
+  "usage": {
+    "input_tokens": 2550,
+    "output_tokens": 314,
+    "cost": 0.0001071
+  },
+  "error": null,
+  "latency_seconds": 0.666,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "user_override"
+  },
+  "candidate_hash": "6291c22462a8546fe59764ec524bf0c07f61bfa4b220d7d4180a7caf9a964435",
+  "model_prior": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "only"
+  },
+  "user_override": {
+    "request": "Sol로 독립 QA 진행",
+    "scope": "final fixed candidate independent QA",
+    "additional_payment": false
+  }
+}
