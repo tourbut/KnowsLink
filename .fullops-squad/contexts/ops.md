@@ -1,10 +1,10 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-06
+updated: 2026-10-07
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW]
-summary: 운영 준비의 수락 경계·서버 관찰 재사용·리뷰 재현 원칙을 보존한다
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW]
+summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
 # ops 컨텍스트
@@ -57,3 +57,9 @@ review.py check는 미해결 high에서 첫 실패로 멈춘다. 나머지 기�
 ## 2026-10-06 — SAR-PUBLIC-MESSAGES-001-FIX-REVIEW
 
 예약 슬롯을 DB 판정 전에 고르는 구조는 "슬롯을 잡은 채 판정을 기다리는 시간"을 본다. 자격만 확인하고 소유·rate를 DB에서 판정하면 유효 자격 하나의 반복 요청이 예약 슬롯을 계속 점유한다. 재현은 전역 row lock을 잡은 결정적 시험과 lock 없는 flood의 신규/정리 대조 두 가지로 한다.
+
+## 2026-10-07 — SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW
+
+fixed d089의 제품32파일을 별도 실제 세션/read-only snapshot에서 검토했다. 기존 입장 결함의 정적 수정 근거와 원334/UI91 해시를 확인했다. 기록 check와 기능/시각/main 수락을 구분한다.
+CLI stdin은 Buffer 청크마다 String으로 바꾸면 UTF-8 원문을 잃는다. M-UTF8-01 medium은 DEV의 streaming decode/byte 상한 회귀 후속이며 제품 코드 수정 없이 보고했다.
+공정성 단위는 owner 제어와 소속 agent ACK 두 개다. 같은 DB 시각의 snapshot은 epoch로 구분한다. 원 low·운영/실메일/플랫폼·새 QA/UI 조건은 보존한다.

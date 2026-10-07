@@ -1131,3 +1131,13 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - msg_438673240ba8 / delivery_d0d0ea9b507a의 authentic worker_done은 최종8011dfa0ade890ffad49fda8e41d18129893d8f0·코드5d1924cd137d를 보고했다. 실제 구현 세션 aa85544d-18c3-43d3-95d0-b729aa9e9e8c, clean/원격 역할 동일 SHA·전문 archive/빈 DEV inbox를 확인했다. parser의 final HEAD 인식 누락은 원문을 보존한 채 검증된 SHA/source를 integration 원장에 보완했다.
 - 검수 후보 d08903a55c3638128827010400e66e9d45b61d7c는 coor에서 DEV 결과와 기존 준비를 SHA 보존 병합한 후보이며 main 수락이 아니다. PLANS 양쪽 append를 보존했다. 기존 FIX2 pending 리뷰 템플릿의 원문 byte/hash/원 SHA를 COOR/dev-fix-3-final에 보존하고 현재 템플릿에는 메타데이터만 추가했다. 본문과 result의 pending 판정은 그대로다. 원8011의 lint ERROR1·중간실패/334 원본 증거도 유지한다.
 - hold 담당 coor: 최종 후보 별도 Sol 정적 리뷰·승인된 Sol 독립 QA·designer 영향 검수와 기록 수락이 남았다. 조건 충족 뒤 main 병합/일반push/조상 확인/idleclean 역할 sync한다. DEV는 수정 후속을 위해 retain하며 실제 사용자 소유 터미널을 강제종료하지 않는다.
+
+- 고정 후보 d089/준비 cebc32c의 최신 route 원추천을 fixed-recommendation.json에 보존했다. OPS와 tester는 사용자 Sol 지정과 위험도에 따라 gpt-6.1-sol high를 적용한다. designer는 여러 사용자 흐름의 최종 제품/UI 수락 범위에 맞는 등록 high 후보를 적용하고 원 Jev medium 추천을 보존했다. coordinator 모델을 역할 전체에 전파하지 않는다.
+
+## SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW — 독립 정적 검토 완료, UTF-8 수정 요청
+
+- OPS 실제 세션 `01a116a3-2a1d-7961-92fa-33417bc9c46c`가 구현자 `aa85544d-18c3-43d3-95d0-b729aa9e9e8c`와 별도 세션에서 fixed `d08903a55c3638128827010400e66e9d45b61d7c`를 읽기 전용 managed detached snapshot으로 검토했다. 기준 main `68b0d6a0c854fdaec6828a232dd3945814be1404`, 기록 준비 HEAD `cebc32c2e3ae3b15ff5fd7238de1c5ab96eaf7b4`다.
+- [독립 리뷰 report/result/check](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW-review/report.md): 전체702개 coverage·reviewed75/skipped627·제품32개 전부 검토. 기존 H-1/H-2·snapshot 역전/stale/restart·owner-agent 정리 분리·finish 회수의 정적 수정 근거를 확인했다. 후보 exact lint/test 각exit0·ERROR0/WARNING14/실행불가0, 원334 및 UI91 manifest 해시 동일이다. 독립 실행 QA·직접 시각 수락으로 대신 쓰지 않는다.
+- 수정 요청 `M-UTF8-01` medium: `adapters/src/text.ts:215–218`의 청크별 `String(chunk)`이 분할 UTF-8 stdin을 변형한다. stdlib 확인에서 `한`3bytes가 `���`9bytes가 된다. 제품 코드는 수정하지 않았다. 새 critical/high0이며 원 SHA의 high/실패/pending·차단 기록은 유지한다. 기록 check 통과가 main/공개 승인이라는 뜻은 아니다.
+- 대기 담당 coor/DEV: 기존 요구 안의 좁은 기술 후속으로 streaming decode 또는 bytes 상한 후 단일 decode와 분할 한글/emoji·4096bytes 회귀를 작성한다. 새 fixed SHA의 검사·독립 delta 리뷰와 tester/designer 결과를 확인한 뒤 main 판정한다. 새 과제는 이 OPS inbox를 재사용해 시작하지 않는다.
+- D11의 새 text 안내 연결과 L-1·L-A·L-B·운영 크기/CPU·edge·SMTP·실메일·외부플랫폼/노우↔다닷·실24h는 해당 담당 후속이다. D12/D13의 기존0911 백업/복원 준비를 새 공개 수락으로 바꾸지 않는다. reviewer release 뒤 managed snapshot 정리는 coor가 맡는다.

@@ -1,0 +1,173 @@
+{
+  "base": "68b0d6a0c854fdaec6828a232dd3945814be1404",
+  "head": "d08903a55c3638128827010400e66e9d45b61d7c",
+  "independence": {
+    "implementer_session": "aa85544d-18c3-43d3-95d0-b729aa9e9e8c",
+    "reviewer_session": "01a116a3-2a1d-7961-92fa-33417bc9c46c",
+    "snapshot_path": "/home/shin/orca/workspaces/KnowsLink/.fullops-review-4e43dd6838fe4b8e938312708eaf0bcd",
+    "snapshot_head": "d08903a55c3638128827010400e66e9d45b61d7c",
+    "read_only": true
+  },
+  "original_files": 334,
+  "original_mismatches": [],
+  "historical_ui": [
+    {
+      "manifest": "SAR-PUBLIC-MESSAGES-001-UI/manifest.json",
+      "captures": 49,
+      "mismatches": [],
+      "direct_visual_review": "not performed; historical designer verdict only"
+    },
+    {
+      "manifest": "SAR-PUBLIC-MESSAGES-001-UI-FIX/manifest.json",
+      "captures": 42,
+      "mismatches": [],
+      "direct_visual_review": "not performed; historical designer verdict only"
+    }
+  ],
+  "parsed_json_files": 145,
+  "candidate_lint_sha256": "28ba93ecc307dedcc3294383bd6d6ec9944334c1ddf2fc2b64683afcd26f2213",
+  "lint_summary": {
+    "files": 144,
+    "added_lines": 6325,
+    "errors": 0,
+    "warnings": 14,
+    "unavailable": 0
+  },
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json\n\nChecking formatting...\nAll matched files use Prettier code style!\n\n> @knowslink/adapters@0.0.0 lint\n> eslint src eslint.config.mjs\n\n\n> @knowslink/adapters@0.0.0 typecheck\n> tsc --noEmit\n\nnpm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml\nChecking formatting...\nAll matched files use Prettier code style!\npython3 scripts/check_compose.py\nCompose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed\nsh -n scripts/install_bot_mcp.sh\npython3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go test -race ./cmd/... ./internal/...\nok  \tgithub.com/tourbut/KnowsLink/cmd/migrate\t(cached)\nok  \tgithub.com/tourbut/KnowsLink/cmd/relay\t1.015s\nok  \tgithub.com/tourbut/KnowsLink/internal/config\t(cached)\n?   \tgithub.com/tourbut/KnowsLink/internal/database\t[no test files]\nok  \tgithub.com/tourbut/KnowsLink/internal/relay\t4.610s\nnpm test --prefix adapters\n\n> @knowslink/adapters@0.0.0 test\n> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js && node dist/connect.test.js\n\n\n> @knowslink/adapters@0.0.0 build\n> tsc && npm run bundle:plugin\n\n\n> @knowslink/adapters@0.0.0 bundle:plugin\n> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=dist/plugin.js\n\nPASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output\nPASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified\nPASS: local connection PoP, private directory/files, no overwrite, credential storage, one-use completion, URL boundary\n\n  dist/plugin.js  1.5mb ⚠️\n\n⚡ Done in 93ms"
+    }
+  ],
+  "dev_logs": [
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/lint-final.log",
+      "sha256": "fe9c7ad138fc09803e8d0ad22a917c0ccd340c66cbe594e44d3ae11f3b36d303",
+      "exit": "0",
+      "pass_tests": 0,
+      "fail_tests": 0,
+      "data_race": false,
+      "provenance": "DEV execution; reused with code parity, not reviewer/tester execution"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/test-final.log",
+      "sha256": "64441aeb6be4336fee868d23d5ab2c9dcdc32d12bba88d93dc7c4cc9450ab5be",
+      "exit": "0",
+      "pass_tests": 0,
+      "fail_tests": 0,
+      "data_race": false,
+      "provenance": "DEV execution; reused with code parity, not reviewer/tester execution"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/mvp-final.log",
+      "sha256": "eefd16cd536b494641f667c14304ac0c1c09433f3bdebe4ecb6d110cc25d9ac6",
+      "exit": "0",
+      "pass_tests": 77,
+      "fail_tests": 0,
+      "data_race": false,
+      "provenance": "DEV execution; reused with code parity, not reviewer/tester execution"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3/mvp-9620723-flake.log",
+      "sha256": "5947e23fc4e86533508e4c756294cd3e2511bbb811707833c307ecb60a8a990c",
+      "exit": "2",
+      "pass_tests": 76,
+      "fail_tests": 1,
+      "data_race": false,
+      "provenance": "DEV execution; reused with code parity, not reviewer/tester execution"
+    }
+  ],
+  "pending_template_original": {
+    "source_path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/report.md",
+    "source_sha": "bd87c7ae4b670e7fee88c33540c4af1adbe933cb",
+    "sha256": "14e7fe46ede45cd4777d8a4a90030306f817af87a93d64d7882d6b4d9d57bc0b",
+    "bytes": 1764,
+    "status": "original pending template; no final review",
+    "repair": "front matter only; body and pending result unchanged; original byte copy preserved"
+  },
+  "git_checks": [
+    {
+      "command": [
+        "git",
+        "-C",
+        "/home/shin/orca/workspaces/KnowsLink/.fullops-review-4e43dd6838fe4b8e938312708eaf0bcd",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "d08903a55c3638128827010400e66e9d45b61d7c",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/home/shin/orca/workspaces/KnowsLink/.fullops-review-4e43dd6838fe4b8e938312708eaf0bcd",
+        "symbolic-ref",
+        "-q",
+        "HEAD"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/home/shin/orca/workspaces/KnowsLink/.fullops-review-4e43dd6838fe4b8e938312708eaf0bcd",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "5d1924cd137d7be088cc6fb6c444c6a6c606c412",
+        "d08903a55c3638128827010400e66e9d45b61d7c",
+        "--",
+        "cmd",
+        "internal",
+        "adapters",
+        "db",
+        "scripts",
+        "go.mod",
+        "go.sum",
+        "compose.yaml",
+        "Makefile"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "external_execution": false
+}

@@ -1,0 +1,112 @@
+{
+  "task_key": "SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW",
+  "role": "ops",
+  "head": "cebc32c2e3ae3b15ff5fd7238de1c5ab96eaf7b4",
+  "attempt": "1ca6bc4bed6140fe92d75ba371fdd315",
+  "instruction_sha256": "0e7b41dbc34acea0fc45b2c379c798596eaa245e9bc0872201cdfcd05c89a092",
+  "options": {
+    "policy": "find-v2",
+    "scope": "documents",
+    "limit": 12
+  },
+  "input_sha256": "04941f8aad01cf5543ae62a517c073d05a5cc113e7d950b3474cbf3030bb0ccf",
+  "version": "jev-find-v1",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 201,
+  "scope": "documents",
+  "passes": [
+    {
+      "level": "file",
+      "options": 201
+    }
+  ],
+  "candidates": [
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW — 최종 후보의 독립 정적 코드 리뷰와 main 수락 근거 — 최종 후보의 독립 정적 코드 리뷰와 main 수락 근거",
+      "probability": 0.63,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "summary": "일반 사용자 정리 동작과 snapshot 일관성 수정 기록 — Sol 관측(같은 commit 시각 snapshot 역전·갱신 전 포화 거부·agent ACK의 owner 정리 차단)의 원인·최소 수정·회귀·검증을 기록한다",
+      "probability": 0.23,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 1
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "summary": "<과제 키> 리뷰",
+      "probability": 0.04,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 2
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "summary": "KnowsLink 현재 계획 — MESSAGES 수정 후보 독립검수·원본 실패·main 수락 보류를 보존한다",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 3
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/report.md",
+      "summary": "SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW 리뷰 — 이전 독립 리뷰의 미완료 템플릿이며 최종 결과가 아니다",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 4
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — FullOps 규약 지도와 0.9.14 검사·문서 뷰어 기준",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 5
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink Grok Bot 플러그인",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 6
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "summary": "KnowsLink",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 7
+    }
+  ],
+  "existence": {
+    "found_probability": 0.88,
+    "status": "found"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 18400,
+    "output_tokens": 2059,
+    "cost": 0.0007728,
+    "known_cost": 0.0007728,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.65,
+  "error": null,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "remaining_candidates": [],
+  "presented_files": 201,
+  "partial": false,
+  "ranking_status": "single_batch",
+  "fallback": null,
+  "input_partial": true,
+  "instruction_chars": 4786,
+  "elapsed_seconds": 1.611
+}

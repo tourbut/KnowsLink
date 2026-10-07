@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "/home/shin/.codex/plugins/cache/fullops-squad/fullops-squad/1.0.0/scripts/review.py",
+    "check",
+    "--repo",
+    "/home/shin/orca/workspaces/KnowsLink/fullops-ops",
+    "--key",
+    "SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW",
+    "--from",
+    "68b0d6a0c854fdaec6828a232dd3945814be1404",
+    "--to",
+    "d08903a55c3638128827010400e66e9d45b61d7c",
+    "--task-key",
+    "SAR-PUBLIC-MESSAGES-001-DEV-FIX-3"
+  ],
+  "exit_code": 0,
+  "stdout": "jev_find score (code changed-file overlap): recall 0.226 / precision 0.583\njev_find score (documents changed-file overlap): recall 0.19 / precision 0.8\n기록 검사 통과: reviewed=75, skipped=627, total=702, lint WARNING=14\n",
+  "stderr": "",
+  "meaning": "review record gate only; medium fix requested, not merge/public acceptance"
+}
