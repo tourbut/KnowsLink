@@ -37,3 +37,9 @@ Web application OAuth client와 `openid email` scope를 사용한다. Client Sec
 coor는 고정 SHA의 인증 delta 독립 리뷰·필요한 로그인 직접 시각 확인·main 통합/기존 서버 배포를 맡는다. D02 이메일 전용 설명과 D12/D13 환경 안내의 갱신 필요를 coor에 전달했다. DEV는 D10 영향 절과 README/env만 갱신했다. 과거 전체 QA/UTF8 판정은 유지한다.
 
 coor는 2026-10-07 status로 실제 OAuth Web client 생성과 운영 callback 등록·비공개 env 저장 완료를 알렸다. 실제 자격은 DEV에 전달하지 않았고 DEV 검사는 합성 provider를 유지했다. 로컬 Google callback은 실제 client에 아직 등록하지 않았다.
+
+## 최종 게이트 교정
+
+최초 완료 후보 `800123e`에서 FullOps 실행은 exit 1이었다. 등록 `product-lint: make lint`와 `product-test: make test`는 둘 다 exit 0이다. 실패 원인은 기존 PLANS.md front matter의 중복 tasks/summary와 형식 불일치 `DOC-003` 한 건이었다. task 상태를 기록한 PLANS가 변경 대상이므로 stamp로 해당 문서의 메타데이터만 정규화했다. 계획 본문의 기존 사용자 자료는 보존했다. 깨끗한 최종 HEAD 통과 기록이 필요하여 이 교정 커밋 뒤 게이트를 재실행한다. 전체 QA/실메일 검사를 추가하지 않는다.
+
+최초 WARNING 6건의 판단: PLANS/member/store 기존 큰 파일의 좁은 델타이며 쪼개기 리팩토링은 하지 않는다. 신규 의존은 검증된 OIDC/token 검증에 필요하다. `google_integration_test.go`의 `local-fixture` ClientSecret은 실제 자격이 없는 합성 provider 전용 더미다. secret 노출이 아니다. SIZE-002의 657줄은 약 300줄의 서명/실제 Postgres 회귀와 설정/기술 인계를 포함한다. 이 이유로 인증 거부 검사나 원 자료를 삭제하지 않는다.
