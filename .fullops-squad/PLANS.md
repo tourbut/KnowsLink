@@ -1313,3 +1313,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 추가 지시: 서버 접속 정보는 루트 .env.server의 IP/USER/PW다. main 원본과 coor 복사의 동일성을 확인한 뒤 main을 정본으로 역할 5곳에 SymbolicLink를 구성했다. Git 공용 info/exclude에 /.env.server를 추가했고 비밀값은 출력하지 않았다. 로컬 Docker 실행 컨테이너는 0개다. DEV에게 로컬 Docker 재기동 금지와 운영 서버의 격리 DB/포트에서 직접 검증하는 변경을 전달했다.
 
 - DEV 중간 인계 msg_1c3996c73c99 수신: Google 연결 구현·finish/archive를 b8fce7e99fb7cc02ae7f0cc11bf9bb7407002bf6에 보존했다. 로컬 격리 컨테이너 제거와 재기동 중단을 보고했다. 사용자 최신 지시에 따라 .env.server 비공개 SSH로 운영 서버 별도 공간의 등록 검사·좁은 격리 검증을 수행 중이며, 아직 최종 worker_done이나 수락 SHA는 아니다.
+
+- DEV 서버 검사 중간 보고 msg_cb7e7b6c4ee5: 구현 후보 b8fce7e를 서버 별도 임시 디렉터리에서 make lint/test exit0, 격리 Postgres17 migration 및 GoogleDeviceHTTP·GoogleHTTP·EmailIdentity race integration exit0으로 검증했다. 임시 DB 컨테이너 제거와 기존 운영 서비스·DB·계정·Tunnel 불변을 보고했다. 최종 SHA 게이트·worker_done은 아직 대기다.
