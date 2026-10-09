@@ -1206,3 +1206,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 운영 전용 작업이며 제품 worker·이슈 모드·영상 도구를 시작하지 않는다. 다음 개발은 새 coordinator 세션에서 진행한다.
 - main과 등록 역할은 clean이며 하위 네 역할의 Orca 세션·터미널은 0개다. 검증·독립 리뷰 뒤 main 통합·push와 유휴 역할 동기화를 진행한다.
 - 상세 적용 판정·검증·남은 조건은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md)을 따른다.
+
+### FULLOPS-UPDATE-1.2.0 완료·통합
+
+- 수락 SHA `7d307d033153d9516913cda301dfc6a6be953520`: product-lint·product-test exit 0, 독립 리뷰 9/9 accepted, review check exit 0.
+- main·origin/main에 같은 SHA로 통합·일반 push했고 fetch·조상 관계를 확인했다. coor와 clean·inactive 하위 네 역할을 동기화했다.
+- 레포 적용 버전은 1.2.0이며 기존 coor/standard·제품 보류를 유지한다. 완료 기록·리뷰 증거의 후속 기록 커밋도 같은 통합 절차로 전달한다.
+- 필수 적용·역할 동기화 보류는 없다. 리뷰 snapshot 정리만 coor 담당으로 보류한다. collaboration 검토자에 Orca dispatch가 없어 도구의 release 확인이 불가능하다. 검토자 종료·증거·clean 상태를 도구가 확인할 때 cleanup을 재개한다.
+- 후속 개발은 새 coordinator 세션에서 진행한다. 이슈 자동 모드 활성화와 제품 배포는 이번 요청에 포함되지 않는다.

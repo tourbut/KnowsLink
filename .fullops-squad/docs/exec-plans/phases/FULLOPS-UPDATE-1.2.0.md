@@ -45,3 +45,15 @@ main과 등록 다섯 역할은 시작 시 clean이다. Orca 조회에서 하위
 제품 서비스 공개·Google 정책·외부 에이전트 왕복·기존 QA/UI 보류를 이번 업데이트로 수락하지 않는다. 이슈 실환경 wake·Unity Player·Windows/macOS·실제 영상·새 세션 hook은 이 Linux 업데이트에서 검증하지 않는다. 다음 개발은 새 coordinator 세션에서 진행한다.
 
 필수 적용의 보류가 생기면 coor가 사유·담당·재개 조건을 PLANS.md와 이 기록에 남긴다. 역할 동기화는 레포 적용과 구분하며 실행 중·dirty·상태 불명 역할은 덮어쓰지 않는다.
+
+## 검증·수락·통합 결과
+
+문서 strict는 13개 검사, 문제 0개, 경고 0개다. git diff --check와 staged 공백 검사는 종료코드 0이다. 세 관리 블록은 설치 패키지의 operating_block과 동일하다. 역할·remote/base·lint 명령·review/rule.json·project.md의 기존 내용 보존을 확인했다. board.py는 종료코드 0이며 제공 board HTML과 byte 동일하다. 제품 의존성 선언 변경은 없다.
+
+수락 SHA는 `7d307d033153d9516913cda301dfc6a6be953520`다. 지정 기준 ref의 lint는 product-lint·product-test 모두 passed/exit_code 0이다. ERROR 0, WARNING 1, 실행 불가 0이다. 경고는 기존 누적 PLANS.md SIZE-001 1208줄(이전 1198, 상한 500)이며 독립 검토자가 기존 이력 보존을 수락했다. 로그와 종료코드는 정본 리뷰 폴더 lint.json에 보존한다. 명령의 종료코드를 파이프로 가리지 않았다.
+
+별도 collaboration 세션 `/root/fullops_update_review`가 고정 clean detached snapshot에서 변경 9개 전부 검토했다. skipped 0, findings 0, accepted다. review.py check는 종료코드 0이다. 리뷰·규칙·preview·lint·인계 점검은 `docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/`에 보존한다. 리뷰는 이 수락 SHA의 운영 변경에 대한 것이며 제품 공개 수락이나 후속 구현 검토가 아니다.
+
+기본 main은 수락 SHA를 fast-forward로 통합했고 origin/main 일반 push가 성공했다. fetch 뒤 main과 origin/main의 같은 SHA 및 수락 SHA의 조상 관계를 확인했다. clean·inactive인 designer/dev/ops/tester를 같은 main으로 fast-forward했다. coor도 수락 SHA다. 역할 동기화 예약은 없다. 이 절과 리뷰 증거를 보존하는 후속 기록 커밋도 main과 등록 역할에 반영한다.
+
+필수 레포 적용 보류는 없다. 리뷰 snapshot 정리만 보류한다. snapshot은 `/home/shin/orca/workspaces/KnowsLink/.fullops-review-f8c5e896696f4a3cbcd2c293a1f74d83`다. collaboration 검토자는 Orca reviewer dispatch가 없어 cleanup 도구의 release 확인 조건을 충족하지 못한다. 담당은 coor다. 도구가 해당 검토자의 종료·live 독립성·증거 hash·clean 상태를 확인할 수 있을 때 정리를 재개한다. 임의 dispatch를 만들거나 사용자 공간을 삭제하지 않는다.

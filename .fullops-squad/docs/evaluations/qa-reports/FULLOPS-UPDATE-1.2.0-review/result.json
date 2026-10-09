@@ -1,0 +1,97 @@
+{
+  "base": "cdcb3c12e2456136feebf6bf06aedc0e5d3de95d",
+  "head": "7d307d033153d9516913cda301dfc6a6be953520",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.12.12 (182898cf) linux/amd64\nbuilt at: 2026-10-05T06:44:01Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "/root/fullops_update_review (실제 collaboration agent ID; Codex 독립 리뷰 세션)",
+  "conclusion": "accepted",
+  "files": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "status": "modified",
+      "insertions": 19,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "설치 1.2.0의 관리 블록·모드 기본값·기존 책임 분리·선택 기능 제한과 정본 링크를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "추가된 업데이트 절과 실제 diff를 확인했다. 기존 Google 로그인·Grok 후속·QA/UI 보류 기록을 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "JSON 구성과 단일 note 변경을 확인했다. 기존 phase 상태·제품 현황을 보존하고 업데이트 검증·통합 진행을 명시한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "릴리스 다섯 개의 기존 레포 적용과 조건부·해당 없음·보류 구분, 고정 기준 SHA·완료 조건을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/fullops.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "plugin_version만 0.9.14에서 1.2.0으로 변경했다. 역할·브랜치·origin/main과 coor/standard 기본값을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "기존 작업·예외·검증 양식을 보존하면서 고정 SHA·attempt·탐색 패킷 처리 근거를 추가했다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "status": "modified",
+      "insertions": 26,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "세션 선택·new/reopen·bind-inbox·탐색·전송 receipt·독립 리뷰·인계·이슈 예외를 릴리스와 설치 CLI 정의에 대조했다."
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "status": "modified",
+      "insertions": 21,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "독립성·fixed SHA·패킷 처리·인계 의미 점검·테스트 수준·cleanup 기록 항목과 한국어 메타데이터를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "status": "modified",
+      "insertions": 21,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "관리 블록과 lite/standard/full 기본값·필수 검사·merge-base 정책·skipped 의미를 1.2.0 릴리스 및 설정에 대조했다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a11e60-1352-7e61-9d99-244d22218e95",
+    "reviewer_session": "/root/fullops_update_review",
+    "snapshot_path": "/home/shin/orca/workspaces/KnowsLink/.fullops-review-f8c5e896696f4a3cbcd2c293a1f74d83",
+    "snapshot_head": "7d307d033153d9516913cda301dfc6a6be953520",
+    "read_only": true
+  },
+  "summary": {
+    "total_files": 9,
+    "reviewed_files": 9,
+    "skipped_files": 0,
+    "coverage_rate": 1.0
+  }
+}
