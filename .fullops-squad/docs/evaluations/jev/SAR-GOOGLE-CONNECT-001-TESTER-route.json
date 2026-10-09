@@ -1,0 +1,92 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-GOOGLE-CONNECT-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.01,
+        "ops": 0.02,
+        "tester": 0.97
+      },
+      "confidence": 0.95
+    },
+    "docs": {
+      "D01": 0.13,
+      "D02": 0.13,
+      "D03": 0.15,
+      "D04": 0.2,
+      "D05": 0.15,
+      "D06": 0.17,
+      "D07": 0.13,
+      "D08": 0.12,
+      "D09": 0.14,
+      "D10": 0.23,
+      "D11": 0.16,
+      "D12": 0.51,
+      "D13": 0.4
+    }
+  },
+  "usage": {
+    "input_tokens": 2507,
+    "output_tokens": 314,
+    "cost": 0.000105294
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.688,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "필수 독립 검수 역할. Grok 주간 한도0으로 미착수이며 등록된 Claude Sonnet high를 사용한다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.02,
+      "claude claude-sonnet-5-5 high": 0.95,
+      "grok grok-4.7 high": 0.03
+    },
+    "usage": {
+      "input_tokens": 679,
+      "output_tokens": 42,
+      "cost": 2.8518e-05
+    }
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "3ee3bd8523b589d267aac872f0c9842e90b0075a",
+  "requires_packet": true,
+  "attempt": "8cc35b1d14d84a9ca2e9cf175b0cb6d5",
+  "instruction_sha256": "6e605f78aa3ed9a99c02c85224ddadf8a739dfce8aa0c9b2af21001c0335baea",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "e01959614074cd425f1a529ffb0f93e68ba8dfeef0a48172848ac83d9c26cd33"
+}
