@@ -1297,3 +1297,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 등록 역할 5곳은 해당 main을 포함하며 clean이다. coor `d7a7807`, dev `e3771e3`는 기존 WIP를 보존한 merge이며 나머지 세 역할은 fast-forward다. 다섯 역할 원격 push와 fetch 후 동일성을 확인했다.
 - coor PLANS 충돌은 기존 진행본 보존 절과 업데이트 절을 모두 유지해 해결했다. `.env` 링크 5개와 1.3.0/lite/off 설정을 다시 확인했다. 역할 동기화 예약은 없다.
 - 이 통합 결과의 후속 기록 커밋도 main과 역할에 전달한다. 제품 검사 미실행과 snapshot 정리 보류는 유지한다. 다음 개발은 새 coordinator 세션에서 진행한다.
+
+
+## 대기 작업 재개 — SAR-GOOGLE-CONNECT-001-DEV
+
+- 사용자 2026-10-09 “대기 작업 진행해”로 Google 연결 작업을 우선 재개했다. 확정 제품 목표는 유지하며 구현·기술 계획·lite 검증은 DEV 같은 과제다.
+- 현재 Run `run_86e0e674b5a0`, 복귀 `term_e61d3e14-29e9-4954-943a-4a75707c82de`. 이전 Linux 경로·Run·터미널은 사용하지 않는다.
+- DEV 기준 `f9f7675be6c9502bd6ab2f810bd42ff62a26a174`, 현재 역할 인박스 `handovers/to_dev.md`에 재개 지시를 통합했다. Jev는 implementation/dev·gpt-6.1-sol medium을 추천했다.
+- 다음은 독립 리뷰·필요한 좁은 QA와 운영 인계, 실제 노우 연결·왕복 확인이다. UTF-8 medium 후속과 자동 wake/MCP 도구 목록/dots는 선행 연결 작업 뒤에 처리한다. 제품 검사 환경(make 부재)은 DEV가 필수 검사 유지 조건으로 복구한다.
