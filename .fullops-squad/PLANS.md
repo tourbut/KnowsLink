@@ -1358,3 +1358,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - reviewer 착수: task_7ff31487613a / ctx_05872a4a4535 / term_b8e83f65-833a-4a55-87e7-65a5cdb7b715. requested/effective Claude sonnet5.5 medium, turn_started·정본 인박스/FULLOPS 읽기 확인. 준비4692252. 정규 route 적용, 기존 세션 미재사용.
 - 운영 사전 확인: 현재04a65b2와 Tunnel원본hash 불변. 별도 bundle 후보 전달/ref 생성만 수행, db/migrations 동일. 새 shared baseline 저장. Access앱 GET200 두 대상 유지. 운영 적용은 review 수락 대기.
 
+
+## Google 연결002 운영 반영·실계정 대기
+
+- main/origin ba3754d에 DEV dbbe2f17과 tester98f08a96 통합·조상 확인. 운영 bundle 배포·백업·health 통과. Tunnel allowlist+404 적용 뒤 두 KnowsLink Access 앱만202/success로 제거, 목록0 확인. 익명 root200/자체Google화면, home303자체로그인, bad poll401JSON, owner/admin/test/unknown404. 추가 과금/결제동의 없음. 상세 SAR-GOOGLE-CONNECT-002-LIVE.md.
+- 현재세션 실제 MCP connect waiting, OrcaGoogle로그인 사용자 진행 대기. Bot도 main갱신/빌드/9도구/실제connect waiting 확인. 실등록·관계·왕복은 사용자 로그인 뒤 coor가 계속한다. 만료 시 기존키 보존 후 새 요청 폴더로 재시작한다.
+- 신규 두worker 정상 release/완료ack, integration pending0. snapshot cleanup은 release identity 확인 실패로 보류, coor가 정본체크아웃/Orca정체성 확인 후 재개. 강제삭제 안함.
+- 역할 상태 조회: dev/tester done·clean으로 최신 main 동기화 가능. ops/designer clean이지만 실제 agent상태 unknown으로 동기화 예약. 다음 dispatch 전에 최신main 포함 확인. 기존 user_owned 터미널 유지.
+
