@@ -1214,3 +1214,12 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 레포 적용 버전은 1.2.0이며 기존 coor/standard·제품 보류를 유지한다. 완료 기록·리뷰 증거의 후속 기록 커밋도 같은 통합 절차로 전달한다.
 - 필수 적용·역할 동기화 보류는 없다. 리뷰 snapshot 정리만 coor 담당으로 보류한다. collaboration 검토자에 Orca dispatch가 없어 도구의 release 확인이 불가능하다. 검토자 종료·증거·clean 상태를 도구가 확인할 때 cleanup을 재개한다.
 - 후속 개발은 새 coordinator 세션에서 진행한다. 이슈 자동 모드 활성화와 제품 배포는 이번 요청에 포함되지 않는다.
+
+## 임시 워크트리 정리 — FULLOPS-WORKTREE-CLEANUP-2026-10-09
+
+- 사용자 요청으로 임시 detached 워크트리 9개를 Orca CLI에서 제거했다. 기준 SHA는 `3238ac3d0d1adac3c6eb734e48ec45a664a25447`이다. main과 coor/designer/dev/ops/tester 상설 워크트리 6개는 유지했다.
+- 삭제 직전에 미커밋·미추적·ignored 파일 없음, Orca inactive·터미널 0개·agent 0개, 해당 경로의 프로세스 cwd 없음, 각 HEAD의 main·fetch 후 origin/main 조상 관계를 확인했다. 강제 삭제는 사용하지 않았다.
+- 제거 대상은 `.fullops-review-*` 5개와 `/tmp/knowslink-messages-*` 4개다. QA·리뷰 증거 1,261개 파일의 SHA-256 동일성을 확인했다. 제품 코드·기존 QA 실패·보류·수락 상태는 변경하지 않았다.
+- 기존 snapshot은 역할 워크트리 또는 collaboration 세션에서 검토했다. snapshot-bound Orca dispatch가 없어 `review.py cleanup`의 release 계약을 충족할 수 없다. 이번 사용자 요청의 운영 정리로 제거하고 Git 공용 디렉터리의 `fullops-snapshots/*.json`에 실제 removed 상태와 정리 근거를 기록했다. 신규 리뷰 통과나 historical check 통과로 표시하지 않는다. 과거 snapshot 경로의 실시간 검사는 재사용할 수 없으며, 재검토 시 새 snapshot을 만든다.
+- 상세 삭제 전 조건·경로·HEAD·증거 해시는 Git 공용 디렉터리의 `fullops-worktree-cleanup-2026-10-09.json`에 보존했다. 이전 업데이트의 snapshot 정리 보류는 이번 운영 정리로 종료한다.
+- 제품 코드 변경이 없으므로 product-lint·product-test 재실행은 적용하지 않는다. 운영 기록을 main에 fast-forward 통합·일반 push하고 유휴 역할을 동기화한다.
