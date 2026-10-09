@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-09
 owner: coor
 tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0]
-summary: FullOps 규약 지도와 coor/standard 및 1.2.0 운영 계약
+summary: FullOps 규약 지도와 coor/lite 및 1.2.0 운영 계약
 ---
 
 <!-- fullops-mode:start -->
@@ -82,5 +82,5 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 
 ## FullOps 1.2.0 적용
 
-현재 레포는 기존 coor/standard를 유지한다. 1.0.0 이후의 고정 기준 SHA·attempt·탐색 패킷·전송 receipt·독립 리뷰 계약은 [역할 운영 문서](orca-agents.md)의 해당 절을 따른다. 업데이트만으로 운영 모드를 바꾸거나 테스트 범위를 줄이지 않는다.
+현재 레포는 사용자 2026-10-09 지시에 따라 coor/lite를 사용한다. 1.0.0 이후의 고정 기준 SHA·attempt·탐색 패킷·전송 receipt·독립 리뷰 계약은 [역할 운영 문서](orca-agents.md)의 해당 절을 따른다. 업데이트만으로 운영 모드를 바꾸거나 테스트 범위를 줄이지 않는다.
 선택형 GitHub 이슈 작업은 사용자 요청 때만 활성화한다. 모션그래픽 요청이 있을 때만 fullops-motion을 사용한다. 기존 제품 보류·실패·진행 중 인박스는 유지한다.

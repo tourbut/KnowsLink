@@ -1242,3 +1242,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 다음 담당은 사용자/노우다. token 파일을 노우 컴퓨터에 비공개로 전달하고 새 `member-001` 폴더에서 prepare를 실행한다. 사용자가 지문을 대조·승인한 뒤 complete와 public-node MCP 전환을 진행한다. 만료 시 같은 미연결 agent에서 새 연결 수단을 발급하며 새 agent를 중복 생성하지 않는다. 실제 prepare/complete·MCP 등록·왕복은 아직 미검증이다.
 - 증거: `docs/evaluations/qa-reports/COOR/open-readiness/nou-public-access.json`. 제품 코드는 변경하지 않았으며 등록 product-lint/product-test 재실행은 적용하지 않는다. 현재 운영 config는 state에 있으며 `beta.sh render-config`는 기존 owner-only 템플릿으로 덮어쓰므로 그대로 실행하지 않는다.
 - rollback은 state의 `tunnel/config.before-nou-public-20261009.yml`을 `tunnel/config.yml`로 복원하고 KnowsLink cloudflared만 재시작한 뒤 새 API 앱·재사용 policy를 삭제한다. 원래 root 앱·정책·Tunnel·운영 DB와 공유 서비스는 보존한다.
+
+## Google 로그인만 사용하는 연결 흐름 — SAR-GOOGLE-CONNECT-001
+
+- 사용자 확정: 양쪽에서 Google 로그인으로 연결하며 Cloudflare 로그인·token 파일 수동 전달을 사용자에게 요구하지 않는다. 기존 복잡한 노우 연결 안내를 중단하고 지원 클라이언트의 로그인·로컬 키 연결을 단순화한다. 기존 일반 회원·agent별 키/credential 분리와 동의·권한 검사를 유지한다.
+- 사용자 지시의 `lit`는 지원 값 `lite`로 적용했다. 정본 `fullops.json.test_level=lite`이며 coor 모드와 역할은 유지한다. 보안·데이터 손실 방지·필수 등록 lint/test·독립 리뷰 기준은 유지한다. 과거 standard 검증 기록은 당시 사실로 보존한다.
+- 새 기술 계획·구현·좁은 회귀는 DEV의 같은 과제다. 제품 목표는 사용자 지시로 확정됐다. 새 제품 규칙/범위 질문만 기획 역할에 전달한다. 실제 외부 플랫폼 제약은 확인한 근거와 함께 보고하며 설치·로그인·연결·왕복 성공을 구분한다.
+- 기존 노우 agent `agent_af951c12bcd21106357539`는 미연결이며 이전 10분짜리 grant는 자동 만료된다. 기존 사용자 자료·Google 신원·운영 DB를 보존하고 종료한 trial 자격은 재사용하지 않는다. 후속 DEV 인박스는 `handovers/to_dev.md`를 사용한다.
