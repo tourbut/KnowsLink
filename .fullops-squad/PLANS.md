@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-09
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0]
 summary: 기존 제품 계획 보존과 FullOps 1.2.0 운영 적용·통합
 ---
 
@@ -1260,3 +1260,12 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 지시의 `lit`는 지원 값 `lite`로 적용했다. 정본 `fullops.json.test_level=lite`이며 coor 모드와 역할은 유지한다. 보안·데이터 손실 방지·필수 등록 lint/test·독립 리뷰 기준은 유지한다. 과거 standard 검증 기록은 당시 사실로 보존한다.
 - 새 기술 계획·구현·좁은 회귀는 DEV의 같은 과제다. 제품 목표는 사용자 지시로 확정됐다. 새 제품 규칙/범위 질문만 기획 역할에 전달한다. 실제 외부 플랫폼 제약은 확인한 근거와 함께 보고하며 설치·로그인·연결·왕복 성공을 구분한다.
 - 기존 노우 agent `agent_af951c12bcd21106357539`는 미연결이며 이전 10분짜리 grant는 자동 만료된다. 기존 사용자 자료·Google 신원·운영 DB를 보존하고 종료한 trial 자격은 재사용하지 않는다. 후속 DEV 인박스는 `handovers/to_dev.md`를 사용한다.
+
+
+## FullOps 1.3.0 업데이트 — FULLOPS-UPDATE-1.3.0
+
+- 기준 ref: `f970905e428103dfc5dfef856aa0d00fc516696e`. 실제 Codex 설치는 업데이트 전후 1.3.0, 레포 적용은 1.2.0이다.
+- 1.2.1은 이슈 모드 OFF로 복구 대상이 없다. 1.3.0의 테스트 5단계·선택형 위임 규약을 적용한다. coor/lite와 누락 기본값 off를 명시적으로 유지한다.
+- 사용자 추가 요청으로 main의 비공개 `.fullops-squad/.env`를 역할 5곳에 심볼릭 링크했다. 값은 출력·Git에 기록하지 않는다. tester에 기존 Sonnet 식별자의 medium/high 후보를 추가하고 Grok 후보를 보존한다.
+- 기존 Google 연결 과제 중지·진행본·인박스·제품 QA 보류를 유지한다. coor의 기존 미통합 WIP는 제품 수락하지 않는다. 업데이트 커밋만 main에 전달하며 기존 SHA 보존 병합과 충돌하면 coor가 통합을 보류한다.
+- 상세 판정과 검증은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md)에 남긴다. 다음 개발은 새 coordinator 세션에서 진행한다.
