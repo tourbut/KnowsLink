@@ -2,9 +2,9 @@
 id: D03
 title: KnowsLink 기술 스택
 status: review
-updated: 2026-10-06
+updated: 2026-10-10
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-GOOGLE-CONNECT-002-DEV]
 upstream: [D02]
 summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
@@ -82,3 +82,6 @@ Context7 `/modelcontextprotocol/typescript-sdk`의 registerTool·McpServer·stdi
 새 의존성·버전·lock·frontend를 추가하지 않았다. Node22 crypto/fs/child_process와 기존 MCP SDK1.32.0 registerTool·stdio Client 패턴을 재사용했다. public text JCS/서명은 실제 Go·Node 왕복으로 대조한다.
 Context7 Go resolve가 `Monthly quota exceeded`로 실패했다. 공식 [net/http go1.27.1](https://pkg.go.dev/net/http@go1.27.1)·[context](https://pkg.go.dev/context@go1.27.1)와 설치 소스의 MaxBytesReader·ResponseController.SetReadDeadline·WithTimeout을 확인했다. TimeoutHandler가 handler goroutine 완료를 보장하지 않는 점을 고려해 handler 전체를 동기 처리하고 실제 socket body deadline을 건다. bounded 채널과 공유 DB 입장 record를 쓰며 숨은 무제한 요청 대기열을 만들지 않는다. 단일 상태 row lock의 처리량 한계는 OPS 실측 후속이다.
 SAR-PUBLIC-MESSAGES-001-DEV-FIX에서 Context7 Go resolve는 다시 `Monthly quota exceeded`였다. 설치된 go1.27.1의 `go doc net/http.CrossOriginProtection.Check`와 [공식 문서](https://pkg.go.dev/net/http@go1.27.1#CrossOriginProtection.Check)로 `Check(*Request) error`를 확인했다. 같은 보호 인스턴스를 mux와 정리 분류에서 재사용한다. 새 의존성은 없다.
+## Google 연결 비용 경계 — SAR-GOOGLE-CONNECT-002-DEV
+
+기존 Cloudflare Tunnel·도메인·Google OIDC·Node MCP bundle을 재사용한다. Access 가입·청구 동의와 새 의존성은 추가하지 않는다. Node22.22.2의 fs.promises.mkdir recursive는 Google 연결의 상위폴더 준비에만 사용한다. 최종 비공개 폴더의 exclusive 생성·ACL 검사는 유지한다. 운영 경계와 복구는 [D12](../operations/ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)를 따른다.

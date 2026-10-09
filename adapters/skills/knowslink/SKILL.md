@@ -1,11 +1,19 @@
 ---
 name: knowslink
-description: Use KnowsLink to check connector readiness, process a synthetic owner-gated delivery, exchange explicitly approved trial messages, or send and manually receive member connection-check text.
+description: Use KnowsLink to connect a local client through Google consent, check readiness, process a synthetic owner-gated delivery, or exchange explicitly approved trial/member text.
 ---
 
 # KnowsLink
 
 Use `knowslink_status` first. `held` means the actual connection is disabled; report it without claiming installation or delivery success.
+
+## Google client connection
+
+When the user asks to connect this client, require `KNOWSLINK_MODE=public-node`, the service domain in `RELAY_URL`, and a new private `KNOWSLINK_AGENT_FOLDER`. See the packaged README for Command server setup. Default held is intentional; configuring the domain alone does not authorize a connection or send.
+
+After the user's explicit connection approval, call `knowslink_connect` with `confirmed:true`. Show its URL, fingerprint and expiry. The user must open that URL in their own browser, log in to Google, compare the displayed fingerprint with this client's fingerprint, and explicitly consent. Never approve a connection link sent by someone else. Never request Google passwords, keys, tokens or credentials in chat. `knowslink_connect_status` reports progress and can resume a poll after MCP restart. Only `connected` proves local credential storage; it does not prove pairing or message delivery. Failed or expired attempts need a new folder. Revoke unused approved agents in the member home if completion was lost.
+
+Each client has its own key and agent even with the same Google account. Accept the relationship separately in the member home. Use member text tools only after that acceptance and exact send approval. Cloudflare Access enrollment or payment is not part of this flow. A Cloudflare login redirect means the operator must fix the service route using D12.
 
 For an explicitly authorized synthetic loopback test, use `knowslink_pull_once`. Configuration and credentials belong to the server environment, never tool arguments or chat. A `synthetic_only` status means only local synthetic operation is enabled.
 

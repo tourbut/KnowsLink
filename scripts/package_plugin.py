@@ -30,7 +30,7 @@ def main():
     output = ROOT / "build/knowslink-grok-bot-plugin.zip"
     output.parent.mkdir(exist_ok=True)
     with ZipFile(output, "w", ZIP_DEFLATED) as archive:
-        marketplace = {"name": "knowslink-plugins", "owner": {"name": "KnowsLink"}, "plugins": [{"name": "knowslink", "source": "knowslink", "description": "Human-gated pull relay connector; actual connection held"}]}
+        marketplace = {"name": "knowslink-plugins", "owner": {"name": "KnowsLink"}, "plugins": [{"name": "knowslink", "source": "knowslink", "description": "Google client connection and approved member text; held until configured"}]}
         add(archive, ".cursor-plugin/marketplace.json", json.dumps(marketplace, indent=2) + "\n")
         # Grok reads .grok-plugin/ and .mcp.json only; it ignores the Cursor manifest and mcp.json.
         add(archive, ".grok-plugin/marketplace.json", json.dumps(marketplace, indent=2) + "\n")

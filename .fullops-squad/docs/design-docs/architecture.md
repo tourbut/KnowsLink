@@ -4,7 +4,7 @@ title: 아키텍처설계서
 status: review
 updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -161,3 +161,8 @@ HTTP 신규16·정리4는 즉시 거부하는 프로세스 채널과 공유 JSON
 ## Google 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV
 
 Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시작 요청을 보낸다. 브라우저에는 token hash인 공개 연결 ID만 노출한다. 기존 Google issuer/sub 회원·Strict 세션을 재사용한다. Google callback은 요청의 회원만 바인딩하고, 최근 인증 상태의 명시적 동의가 별도 agent를 만든다. Node가 동일 키로 승인 상태를 조회하고 기존 signed complete로 자기 credential을 받아 로컬에 저장한다. 관계 요청·수락은 기존 권한 경계를 유지한다. 새 IdP·의존성·SQL 테이블은 없다. Cloudflare 사용자 경로 개방과 관리자 보호의 운영 변경은 D12에서 별도로 수행한다.
+## 비용 없는 공개 연결 경계 — SAR-GOOGLE-CONNECT-002-DEV
+
+기존 Tunnel·도메인 HTTPS와 Google 세션 및 서명·회원 소유권을 재사용한다. 새 Access 가입·원격 OAuth 서비스·유료 보안 계층은 필요 없다. `beta.sh render-public-config`는 public-ingress allowlist와404 fallback만 가진 별도 후보를 생성한다. owner/admin/test와 미허용 경로는 원점에 도달하지 않는다. edge의 기존 두 KnowsLink Access 앱 제거는 coor가 ingress 차단을 먼저 확인한 뒤 수행한다. 운영 적용·복구 정본은 [D12](../operations/ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)다.
+
+기존 Device cap2000과 만료 뒤24h 보존을 유지한다. 신규 연결 포화의 medium 한계는 남으며 기존 회원/키 사용·철회에는 이 cap을 적용하지 않는다. 자동 parent 폴더 생성은 Google 클라이언트 시작에만 적용하고 최종 키 폴더 exclusive 생성·ACL은 유지한다. SQL·의존성·UI는 변경하지 않는다.

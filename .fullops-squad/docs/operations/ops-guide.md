@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-10
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -322,3 +322,21 @@ Cloudflare의 [Access 경로 우선순위](https://developers.cloudflare.com/clo
 좁은 운영 검사는 익명 root/connect의 Cloudflare 로그인 redirect 부재, 실제 Google callback·동의·로컬 저장·자기 홈 한 흐름, 세션 없는 홈의 서비스 로그인, 잘못된 token/proof의 401/422 JSON을 확인한다. `/owner`, `/v1/owners`, 정확한 관리자 `/v1/keys`, `/v1/authorize`의 보호와 위조 JWT 거부를 확인한다. 기존 trial/shared 호스트 회귀를 확인한다. 실제 외부 Bot 설치와 같은 Google 계정의 별도 두 키·관계 수락·왕복 전달은 후속 수락 증거로 남긴다.
 
 복구할 때 먼저 기존 보호 ingress와 Access 대상을 함께 복원하여 새 공개 연결을 중단한다. 이전 수락 코드로 되돌리되 현재 DB·키·credential·폐기 기록은 보존한다. 과거 DB 백업을 덮어쓰지 않는다. 이전 코드가 새 JSON 필드를 버릴 수 있으므로 대기 요청은 새로 시작하고, 완료된 키와 폐기 상태를 별도 확인한다.
+## 비용 없는 Tunnel 적용 — SAR-GOOGLE-CONNECT-002-DEV
+
+이 절이 새 Google 연결의 운영 적용 정본이다. 위 SAR-GOOGLE-CONNECT-001의 Access 앱 생성·Bypass 계획은 Access를 유지하는 별도 선택지의 이력이다. 이번 경로는 Access 가입·유료 요금제·초과 자동 과금 동의 없이 기존 Tunnel과 도메인을 사용한다. 공개 고정 IP를 구매하지 않는다. 기존 Google callback과 운영 .env·DB·키·credential을 보존한다. DEV는 후보만 제공하며 실제 적용은 coor가 수행한다.
+
+coor msg_3319725732d2에서 로그인된 dashboard API GET은 success였다. 현재 대상은 `fc81b205-d4d1-445e-a2bd-384a2ed82f62` member agent API와 `bd210310-fd5e-4e6e-8cb4-d36d618cbebd` owner-only 앱이다. root owner 앱이 Google/home을 막는다. 과거 trial 앱 ID는404이며 새 Access 정책을 만들 필요가 없다. 앱 UI의 요금제 gate는 무료 활성화가 필수라는 근거로 사용하지 않는다. API 변경도 현재 세션 권한·응답을 다시 확인하고 이 두 KnowsLink 앱에만 한정한다.
+
+1. 고정 SHA 독립 리뷰·좁은 QA 후 현재 배포 코드와 Tunnel config 및 두 앱의 full app/policies를 비공개 위치에 백업한다. coor가 확보한 원본 config SHA256은 `40ce65ea1450329ac73c9b3188f12966b99ea562fae31c334e06dd92b06cf283`이다. 적용 직전 일치 여부를 확인한다. 앱 백업 SHA256은 coor 비공개 증거를 따른다. 다른 호스트·서비스의 기준 상태도 기록한다.
+2. `KNOWSLINK_DEPLOY=<수락 checkout> KNOWSLINK_STATE_DIR=<기존 비공개 상태> bash deploy/knowslink/beta.sh render-public-config`를 실행한다. `tunnel/config.public.yml`0600만 새로 만들고 기존 파일이 있으면 거부한다. 기존 config·DNS·컨테이너·Access는 변경하지 않는다. 검증 실패 후보는 적용하지 않는다. 서버 PATH에 cloudflared가 없으면 기존 pinned cloudflared 이미지의 동일 바이너리를 비공개 임시 도구 경로에 준비하거나 후보를 같은 이미지의 `tunnel --config <후보> ingress validate`로 검사한다. 새 유료 도구는 필요 없다.
+3. 후보는 member allowlist 하나와 `http_status:404` catch-all이다. `/owner`, 모든 관리자 POST, `/v1/test/*`, `/healthz`와 미허용 경로는 relay로 전달하지 않는다. origin은 계속 loopback이며 공개 Postgres 포트는 없다. 이 과제에서 trial API 코드·설정 계약은 그대로지만 현재 운영 trial 앱은 부재다. 비활성 trial을 공개 경로로 복구하지 않는다. 나중에 trial을 재활성화하면 기존 독립 인증을 검증한 구체적 경로만 404 앞에 추가한다. shared host가 같은 config에 있으면 전체 후보로 덮지 말고 KnowsLink 호스트에만 member rule과 명시적 hostname 404 fallback을 병합한다. 다른 호스트 규칙과 마지막 catch-all을 보존한다.
+4. 실제 cloudflared `ingress validate`와 `ingress rule <URL>`로 `/`, `/auth/google/callback`, `/home`, `/connect/<43자 ID>`, `/v1/connect/start`, `/v1/text/send`, `/v1/keys/agent/key`, `/v1/receipts/<UUID>`의 relay 선택을 확인한다. `/owner`, `/v1/owners`, 정확한 `/v1/keys`, `/v1/authorize`, `/v1/test/pull`, `/healthz`, 미등록 경로는404 선택을 확인한다. allowlist rule의 `required:false`만 바꿔서는 edge Access가 해제되지 않는다.
+5. 먼저 검증된 ingress를 적용해 owner/admin/test의404 차단을 확인한다. 그 뒤 백업한 두 KnowsLink Access 앱만 제거한다. 정책·IdP·다른 앱은 그대로 둔다. 광범위 Everyone 허용·새 Bypass 앱·Access 청구 동의를 만들지 않는다. API가 권한·요금제 제한으로 거부하면 추가 결제 없이 blocker로 기록한다. 경로 제한 없이 Access만 먼저 제거하지 않는다. 기존 `beta.sh expose`는 owner-only bootstrap용이므로 이 전환에 사용하지 않는다. 기존 DNS는 유지하고 검증된 config로 해당 cloudflared 서비스만 재기동한다.
+6. 외부 익명 root/connect에서 Cloudflare 로그인 redirect가 사라졌는지 확인한다. 세션 없는 home은 서비스 로그인을 요구하고 잘못된 token/proof는401/422 JSON이어야 한다. owner/admin/test/미허용 경로는404여야 한다. 실제 Google 로그인·동의·로컬 저장, 두 클라이언트의 별도 키·관계 수락·명시 승인 text 왕복을 coor·사용자가 확인한다. 다른 공유 호스트의 기존 응답도 확인한다. 합성 검사는 이 수락을 대신하지 않는다.
+
+공식 근거는 [Tunnel 첫 일치 및 catch-all](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/)과 [Access application 경로](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)다. Context7 Cloudflare 조회는 quota 초과여서 공식 문서로 대체했다. UI는 변경하지 않았으므로 직접 시각 수락은 기존 Google/동의 흐름에 한정된다.
+
+복구는 먼저 cloudflared를 중지해 외부 노출을 닫는다. 기존 config와 앱 백업을 복원하고 실제 앱 응답의 새/기존 ID·aud와 origin 검사를 대조한 뒤 재노출한다. 삭제한 앱을 재생성하면 aud가 달라질 수 있으므로 과거 aud를 그대로 신뢰하지 않는다. Access 복구가 막히면 Tunnel을 중지한 채 유지하거나 member allowlist+404 상태로만 복구한다. owner/admin을 무인증 fallback으로 열지 않는다. 코드 복귀는 `beta.sh deploy <직전 수락 코드>`의 backup/migration diff 검사를 사용한다. 과거 DB를 덮지 않고 기존 키·철회 상태를 보존한다.
+
+익명 시작의 2000개 상한은 만료 뒤24h tombstone을 포함한다. 공격자가 새 Device 연결을 포화시킬 수 있는 medium 한계는 남는다. 상태 상한과 replay 보존을 유지하며 조기 삭제·IP 정책 변경은 이 최소 과제에서 하지 않는다. 기존 키의 메시지와 기존 회원 로그인·철회는 이 cap에 묶이지 않는다. 신규 연결이 막히면 요청 rate·capacity와 보존 기간을 확인하고 한도 상향이나 DB 삭제로 우회하지 않는다.
