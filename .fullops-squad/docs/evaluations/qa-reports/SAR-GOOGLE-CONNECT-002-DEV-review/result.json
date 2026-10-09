@@ -1,0 +1,349 @@
+{
+  "base": "5af28c9fcfc289a845f9730aed34d32308e8b5a6",
+  "head": "dbbe2f17f353282430f28b6e3ed98e72d4450e69",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.13 (fabbdb29) windows/amd64\nbuilt at: 2026-10-08T11:52:18Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Claude Sonnet 5.5 (Claude Code, tester) — AI 검토",
+  "conclusion": "accepted",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-002-DEV-packet-manual-read.json",
+      "status": "added",
+      "insertions": 1703,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "packet/route 증거 JSON. 존재·SHA·outcomes 완료 상태를 요약으로 확인했고 제품 동작 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-002-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 565,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "packet/route 증거 JSON. 존재·SHA·outcomes 완료 상태를 요약으로 확인했고 제품 동작 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-002-DEV-packet.json",
+      "status": "added",
+      "insertions": 5716,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "packet/route 증거 JSON. 존재·SHA·outcomes 완료 상태를 요약으로 확인했고 제품 동작 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-002-DEV-route.json",
+      "status": "added",
+      "insertions": 105,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "packet/route 증거 JSON. 존재·SHA·outcomes 완료 상태를 요약으로 확인했고 제품 동작 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-GOOGLE-CONNECT-002-DEV-route-cf213a895f5845569ff3d8c4943d3a5a.json",
+      "status": "added",
+      "insertions": 96,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "packet/route 증거 JSON. 존재·SHA·outcomes 완료 상태를 요약으로 확인했고 제품 동작 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-checks.sh",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "서버 격리 검사 스크립트 전체 읽음: 고유 이름 자원만 생성·정리, 운영 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 19,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전체 읽음. 과거 Access 계획은 이력, 최신 D12 절이 정본임을 확인."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+      "status": "modified",
+      "insertions": 157,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "완료 지시서 보존 로그. 최신 무과금 결정과 이력 구분 확인."
+    },
+    {
+      "path": "Makefile",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "adapters/.cursor-plugin/plugin.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "adapters/.grok-plugin/plugin.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "adapters/src/login.ts",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "deploy/knowslink/test_public_config.sh",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "internal/relay/device_test.go",
+      "status": "modified",
+      "insertions": 37,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 관련 파일 읽음, 아래 report 발견 사항 참조."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-bot-install.log",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-cloudflared.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-install.log",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-integration.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-migration.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-product-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/server-product-test.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/windows-login.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/windows-mcp.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "content": "`/home(/.*)?`가 `/home/../owner`를 rule0으로 매칭한다(실제 cloudflared 2026.9.1). relay의 http.ServeMux가 경로를 정리해 301로 /owner를 되돌리고 그 요청은 rule1 404이며 owner 인증도 필요해 노출은 없다. 기존 allowlist 상속.",
+      "severity": "low",
+      "resolved": true
+    },
+    {
+      "path": "deploy/knowslink/test_public_config.sh",
+      "content": "`stat -c %a` 0600 검사는 Windows Git Bash에서 NTFS 모드 때문에 실패(exit1)한다. 서버/Linux `make lint`에서는 통과. 제품 결함 아님, Windows에서 make lint 직접 실행 불가 한계.",
+      "severity": "low",
+      "resolved": true
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "content": "validator 실패 뒤 config.public.yml 후보가 남아 다음 render가 거부된다. 기존 live 파일은 불변이며 D12가 실패 후보 미적용을 지시. 운영자가 후보를 지우고 재실행해야 함.",
+      "severity": "low",
+      "resolved": true
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "content": "익명 Device cap2000/만료 뒤24h로 신규 연결 포화 DoS medium 잔여 한계. D12에 명시됐고 coor 인지 필요. 이 과제 범위에서 수락.",
+      "severity": "medium",
+      "resolved": true
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a1218c-e248-7962-a471-d3a01468503b",
+    "reviewer_session": "c6511eeb-207c-46e2-8d42-33378e01d5bc",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-cc9106055782446d9d25f1550a55304b",
+    "snapshot_head": "dbbe2f17f353282430f28b6e3ed98e72d4450e69",
+    "read_only": true
+  }
+}
