@@ -1311,3 +1311,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 보류 운영 작업 완료: 사용자 대기 작업 진행 요청으로 FullOps 1.3.0 리뷰 snapshot을 Orca worktree rm으로 제거했다. reviewer 종료·clean/ignored 없음·main/origin 조상·관련 명령행 프로세스 0을 확인했다. 정본 리뷰 증거 5개 SHA-256을 Git 공용 fullops-snapshots 기록에 보존했다. 과거 live snapshot check나 제품 검증 성공으로 표시하지 않는다.
 
 - 사용자 추가 지시: 서버 접속 정보는 루트 .env.server의 IP/USER/PW다. main 원본과 coor 복사의 동일성을 확인한 뒤 main을 정본으로 역할 5곳에 SymbolicLink를 구성했다. Git 공용 info/exclude에 /.env.server를 추가했고 비밀값은 출력하지 않았다. 로컬 Docker 실행 컨테이너는 0개다. DEV에게 로컬 Docker 재기동 금지와 운영 서버의 격리 DB/포트에서 직접 검증하는 변경을 전달했다.
+
+- DEV 중간 인계 msg_1c3996c73c99 수신: Google 연결 구현·finish/archive를 b8fce7e99fb7cc02ae7f0cc11bf9bb7407002bf6에 보존했다. 로컬 격리 컨테이너 제거와 재기동 중단을 보고했다. 사용자 최신 지시에 따라 .env.server 비공개 SSH로 운영 서버 별도 공간의 등록 검사·좁은 격리 검증을 수행 중이며, 아직 최종 worker_done이나 수락 SHA는 아니다.
