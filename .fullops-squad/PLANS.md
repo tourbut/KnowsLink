@@ -9,6 +9,17 @@ summary: 기존 제품 계획 보존과 FullOps 1.2.0 운영 적용·통합
 
 # KnowsLink 현재 계획
 
+## Windows 워크트리 복원 — FULLOPS-WORKTREE-RESTORE-2026-10-09
+
+- 기준 ref는 `694bced1847cd8cd7fceb65b4e1956f1c5c3a032`다. 사용자가 현재 로컬 레포의 기존 FullOps 워크트리 재설정을 요청했다.
+- Orca에서 coor/designer/dev/ops/tester 상설 워크트리를 복원했다. designer/dev/ops/tester의 부모는 coor다. 실제 경로는 `orca-agents.md`의 Windows 복원 표를 따른다.
+- 각 역할은 기존 원격 `origin/fullops/<역할>`을 추적한다. 복원 원본 coor `dfa38cbd6dc20f6ba4a4f8a3dbc06e0479ee8795`, dev `0ed1d7bc228364708671278812453d5f8f2f3bfe`의 미완료 Google 연결 인계는 보존한다. WIP는 main에 병합하지 않는다.
+- 기존 coor/테스트 lite·역할·모델 후보를 유지했다. 사용자 중지 지시를 유지하고 새 worker·이슈 자동 모드·배포를 시작하지 않았다.
+- Codex 호스트 의존성 검사는 exit 0이다. 각 역할의 Git 브랜치·원격 추적·main 조상 관계·clean 상태와 PowerShell 작업 경로를 확인한다. Git 공용 디렉터리의 미통합 완료 결과는 0건이다.
+- 비공개 환경 파일은 현재 로컬 원본에 없다. 환경 연결 도구는 변경 없이 종료했다. Grok 폴더 신뢰는 사용자 승인 전에는 추가하지 않는다.
+- 제품 코드 변경은 없다. 이번 변경은 워크트리 구성과 운영 문서이므로 product-lint/product-test 및 제품 독립 리뷰는 재실행하지 않는다. 운영 기록은 main에 커밋·일반 push하고 유휴 역할에 동기화한다.
+- 후속 Google 연결 개발은 사용자 재개 지시 후 `fullops/dev`의 `handovers/to_dev.md`부터 확인한다. 오래된 Linux 경로·Run·터미널 핸들은 새 환경의 실측 주소로 갱신한다.
+
 ## 운영
 
 - orchestration Run: `run_8ca8bc058ab7`
