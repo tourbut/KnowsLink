@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "18061d2e8db44b8a8b4bc7b241139182",
+  "base": "f8cf858e1ce6daad2d6ec5ffc9943366869c4901",
+  "merge_base": "f8cf858e1ce6daad2d6ec5ffc9943366869c4901",
+  "head": "1c877ba1d3171a9eb590d58ab88f220bab448f10",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "ce37e1c7862ba45cce674333319979fd565132bc7fc67df68bdf2bc25907cc5c",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 환경에 make 실행 파일이 없어 등록 명령을 시작하지 못했다. 변경 범위는 운영 문서와 하네스 JSON이며 제품 코드·의존성·필수 검사 설정 변경이 없어 이번 운영 수락의 제품 동작 검사는 해당 없음이다. 이 명령은 PASS가 아니며 제품 변경 수락 전 make가 있는 환경에서 실행해야 한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 환경에 make 실행 파일이 없어 등록 명령을 시작하지 못했다. 변경 범위는 운영 문서와 하네스 JSON이며 제품 코드·의존성·필수 검사 설정 변경이 없어 이번 운영 수락의 제품 동작 검사는 해당 없음이다. 이 명령은 PASS가 아니며 제품 변경 수락 전 make가 있는 환경에서 실행해야 한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1273줄(이전 1262, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 7,
+    "added_lines": 112,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}

@@ -3,7 +3,7 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-09
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0]
 summary: 기존 제품 계획 보존과 FullOps 1.2.0 운영 적용·통합
 ---
 
@@ -1260,3 +1260,22 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 지시의 `lit`는 지원 값 `lite`로 적용했다. 정본 `fullops.json.test_level=lite`이며 coor 모드와 역할은 유지한다. 보안·데이터 손실 방지·필수 등록 lint/test·독립 리뷰 기준은 유지한다. 과거 standard 검증 기록은 당시 사실로 보존한다.
 - 새 기술 계획·구현·좁은 회귀는 DEV의 같은 과제다. 제품 목표는 사용자 지시로 확정됐다. 새 제품 규칙/범위 질문만 기획 역할에 전달한다. 실제 외부 플랫폼 제약은 확인한 근거와 함께 보고하며 설치·로그인·연결·왕복 성공을 구분한다.
 - 기존 노우 agent `agent_af951c12bcd21106357539`는 미연결이며 이전 10분짜리 grant는 자동 만료된다. 기존 사용자 자료·Google 신원·운영 DB를 보존하고 종료한 trial 자격은 재사용하지 않는다. 후속 DEV 인박스는 `handovers/to_dev.md`를 사용한다.
+
+
+## FullOps 1.3.0 업데이트 — FULLOPS-UPDATE-1.3.0
+
+- 기준 ref: `f970905e428103dfc5dfef856aa0d00fc516696e`. 실제 Codex 설치는 업데이트 전후 1.3.0, 레포 적용은 1.2.0이다.
+- 1.2.1은 이슈 모드 OFF로 복구 대상이 없다. 1.3.0의 테스트 5단계·선택형 위임 규약을 적용한다. coor/lite와 누락 기본값 off를 명시적으로 유지한다.
+- 사용자 추가 요청으로 main의 비공개 `.fullops-squad/.env`를 역할 5곳에 심볼릭 링크했다. 값은 출력·Git에 기록하지 않는다. tester에 기존 Sonnet 식별자의 medium/high 후보를 추가하고 Grok 후보를 보존한다.
+- 기존 Google 연결 과제 중지·진행본·인박스·제품 QA 보류를 유지한다. coor의 기존 미통합 WIP는 제품 수락하지 않는다. 업데이트 커밋만 main에 전달하며 기존 SHA 보존 병합과 충돌하면 coor가 통합을 보류한다.
+- 상세 판정과 검증은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md)에 남긴다. 다음 개발은 새 coordinator 세션에서 진행한다.
+
+- 관련 운영 검사와 환경 링크 검증은 통과했다. 제품 lint/test는 Windows make 부재로 실행 불가이며 통과로 표시하지 않는다. 제품 코드 변경은 없어 이번 운영 변경의 제품 동작 검사는 해당 없음이다. main에서 업데이트만 독립 커밋하여 기존 WIP를 수락하지 않는다.
+
+
+### 고정 SHA 독립 수락
+
+- 수락 SHA `1c877ba1d3171a9eb590d58ab88f220bab448f10`: 별도 실제 세션 `01a12043-f31e-77a3-b7fb-6c34aa4eac2d`가 clean detached snapshot에서 9개 파일을 검토했다. 발견 사항 0이며 review.py check 종료코드 0이다.
+- 정본 증거는 `docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/`다. 최신 snapshot lint는 종료코드 1·ERROR 0·WARNING 1·실행 불가 2다. 제품 검사 통과가 아닌 운영 변경 수락이다.
+- main의 별도 업데이트 커밋을 일반 push하고 등록 역할에 merge한다. coor/dev의 기존 WIP는 역할에만 보존한다.
+- snapshot 정리만 보류한다. 경로는 `D:/workspace/.fullops-review-4593b803224141149975eb9c7d38fd03`이며 담당은 coor다. collaboration 검토자는 실제 Orca dispatch가 없어 cleanup의 release 계약을 충족하지 못한다. 검토자 종료·clean·정본 증거 보존을 확인했으며 도구가 release를 확인하거나 사용자가 운영 정리를 요청하면 재개한다. 임의 dispatch를 만들지 않는다.
