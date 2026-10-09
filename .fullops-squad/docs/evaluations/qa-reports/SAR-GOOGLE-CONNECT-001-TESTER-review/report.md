@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-10
 owner: tester
 tasks: [SAR-GOOGLE-CONNECT-001-TESTER]
-summary: 고정 SHA 152217f의 Google 클라이언트 연결 변경 독립 리뷰, 서버 lint 증거 검증, 수락 결론
+summary: "고정 SHA 152217f의 Google 클라이언트 연결 변경 독립 리뷰, 서버 lint 증거 검증, 수락 결론"
 ---
 
 # SAR-GOOGLE-CONNECT-001-TESTER 리뷰
