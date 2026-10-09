@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-07
+updated: 2026-10-09
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV]
-summary: Google 인증 후보 수락 및 기존 서버 배포와 실제 로그인 확인
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0]
+summary: 기존 제품 계획 보존과 FullOps 1.2.0 운영 적용·통합
 ---
 
 # KnowsLink 현재 계획
@@ -1196,3 +1196,13 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 사용자가 직접 Google 로그인을 완료했다. coor는 운영a9a0db4의 실제 callback 완료 화면과 홈 링크를 통한 Strict 세션의 자기 홈 진입을 확인했다. 확인된 masked 이메일·회원 식별자·세션이 표시되며 아직 agent는 없다. 합성 검사와 구분되는 실제 사용자 가입 근거는 COOR/open-readiness/google-real-login.json이다.
 - 다음은 그록봇 노우 연결이다. 기존 GitHub 이슈 Bot 또는 Grok 앱 중 실제 사용자 대상 확인을 요청했다. 연결 경로가 확인되면 새 일반 회원 agent·키 연결을 이어간다. 종료된 trial 자격을 재사용하지 않는다. Google testing·기존 Access 보호와 전체 QA/UI 미완료·UTF8 medium·외부 Bot 왕복 미검증은 유지한다.
+
+## FullOps 1.2.0 업데이트 — FULLOPS-UPDATE-1.2.0
+
+- 기준 ref: `cdcb3c12e2456136feebf6bf06aedc0e5d3de95d`.
+- 업데이트 전 실제 Codex 설치 1.2.0, 레포 적용 0.9.14. marketplace 갱신과 설치 명령은 1.2.0을 확인했다.
+- 누락된 1.0.0–1.2.0 운영 규약을 적용한다. 기존 coor/standard·역할·모델·원격·제품 실패·보류·인박스는 보존한다.
+- Codex 의존성 초기 검사는 실패했다. `deps.py --host codex`로 복구한 뒤 호스트 검사가 통과했다.
+- 운영 전용 작업이며 제품 worker·이슈 모드·영상 도구를 시작하지 않는다. 다음 개발은 새 coordinator 세션에서 진행한다.
+- main과 등록 역할은 clean이며 하위 네 역할의 Orca 세션·터미널은 0개다. 검증·독립 리뷰 뒤 main 통합·push와 유휴 역할 동기화를 진행한다.
+- 상세 적용 판정·검증·남은 조건은 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md)을 따른다.

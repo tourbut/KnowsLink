@@ -1,11 +1,22 @@
 ---
 title: FullOps Squad 하네스 지도
 status: draft
-updated: 2026-10-06
+updated: 2026-10-09
 owner: coor
-tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14]
-summary: FullOps 규약 지도와 0.9.14 검사·문서 뷰어 기준
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0]
+summary: FullOps 규약 지도와 coor/standard 및 1.2.0 운영 계약
 ---
+
+<!-- fullops-mode:start -->
+## 운영 모드와 테스트 범위
+
+`fullops.json`의 mode·primary_role·primary_branch·test_level이 정본이다. mode 누락은 coor, 테스트 레벨 누락은 standard다.
+coor에서는 기존 조율·배정 책임을 유지한다. dev에서는 주 담당자가 직접 기술 계획·구현·검증을 수행하고 필요한 전문가를 배정·통합한다.
+dev 주 담당자는 제품 범위 판단을 사용자/기획 담당과 확인하고, 작성자와 다른 세션의 고정 SHA 리뷰를 받는다. 부모 dispatch나 가짜 worker_done은 만들지 않는다.
+아래 coor 전용 배정/직접 설계 제한은 dev 주 담당자의 직접 개발에 적용하지 않는다. 라우팅·인박스·독립 리뷰·통합·산출물 보존은 두 모드에서 유지한다.
+테스트 범위는 rules/common/testing.md의 레벨을 따르고, 모드 전환 뒤에는 새 세션을 시작한다. 기존 worker 공간과 기록은 보존하며 다음 배정 전에 동기화한다.
+<!-- fullops-mode:end -->
+
 
 # FullOps Squad — 하네스 지도
 
@@ -68,3 +79,8 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 ## FullOps 0.9.14 검사와 보드
 
 공통 기준은 `fullops-common-0.3.3`이다. 기존 lint·포맷·타입 검사를 유지하며 테스트를 `kind: test`로 연결한다. 변경 규모·의존성·디자인 검토는 lint 안내와 핸드오버·리뷰 양식을 따른다. 현황판 원천 문서 뷰어는 board.py가 제공하는 고정 HTML을 사용한다.
+
+## FullOps 1.2.0 적용
+
+현재 레포는 기존 coor/standard를 유지한다. 1.0.0 이후의 고정 기준 SHA·attempt·탐색 패킷·전송 receipt·독립 리뷰 계약은 [역할 운영 문서](orca-agents.md)의 해당 절을 따른다. 업데이트만으로 운영 모드를 바꾸거나 테스트 범위를 줄이지 않는다.
+선택형 GitHub 이슈 작업은 사용자 요청 때만 활성화한다. 모션그래픽 요청이 있을 때만 fullops-motion을 사용한다. 기존 제품 보류·실패·진행 중 인박스는 유지한다.

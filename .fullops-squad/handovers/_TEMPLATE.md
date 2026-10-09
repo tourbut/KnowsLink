@@ -1,10 +1,10 @@
 ---
 title: <과제 키> — <목표>
 status: draft
-updated: 2026-10-06
+updated: 2026-10-09
 owner: coor
-tasks: [FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14]
-summary: 역할 인박스의 작업 범위와 검증·UI·변경 보고 양식
+tasks: [FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0]
+summary: 역할 인박스의 범위·검증·고정 SHA·attempt·탐색 패킷 양식
 ---
 
 # <과제 키> — <목표>
@@ -82,3 +82,14 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 완료 메시지는 Git 공용 디렉터리의 fullops-integration에 보존된다. `integration.py --repo <레포> status`로 미통합 결과를 확인한다. 검수 대기·실패·충돌·원격 오류·사용자 제한은 PLANS.md에 메시지 ID·SHA·사유·담당·재개 조건을 기록한다. 같은 내용을 `integration.py hold`로 남긴다. 조건 충족 시 resume하고 병합·push를 이어간다. 성공 결과를 통합한 뒤 release·ack하고 다음 독립 과제를 배정한다. 사용자의 현재 과제 완료 뒤 중지 지시는 유지한다.
 
 기존 활성 과제명 지시서는 작업 중 이동하지 않는다. 해당 과제 완료 뒤 logs에 보존하고 다음 과제부터 정규 역할 인박스를 사용한다.
+
+## 고정 기준과 탐색 패킷
+
+- Task key / Purpose / attempt / 기준 40자리 SHA:
+- 테스트 레벨 / 검사별 담당·대상·시점:
+- route 인박스 연결 / packet·find·context 경로:
+- direct_edit / impact_check / document_read / document_update의 경로·구간·근거:
+- partial / unknown / 남은 필수·충돌·주의 확인 목록:
+- 완료 시 packet-outcomes.json의 path/category별 completed/no_change와 사유:
+
+현재 attempt는 역할 인박스에 연결한다. 기준·원천 변경 시 탐색을 force 갱신하고 이전 결과를 보존한다. unknown·누락은 완료로 처리하지 않는다. 세션 선택·전송 receipt·재작업·리뷰 수명은 orca-agents.md의 `FullOps 1.0.0 이후의 인계·완료 계약`을 따른다.

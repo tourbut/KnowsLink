@@ -1,11 +1,19 @@
 ---
 title: Orca 역할 배정
 status: draft
-updated: 2026-10-03
+updated: 2026-10-09
 owner: coor
-tasks: [SAR-SETUP-001, FULLOPS-UPDATE-099, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10]
-summary: 역할별 책임과 Astra를 제외한 모델 후보 및 라우팅 기준을 정의한다
+tasks: [SAR-SETUP-001, FULLOPS-UPDATE-099, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-1.2.0]
+summary: 기존 역할과 제품·기술 책임 분리 및 고정 기준 인계·완료 계약
 ---
+
+<!-- fullops-mode:start -->
+## 운영 책임
+
+현재 모드·주 담당자·테스트 레벨은 fullops.json을 읽는다. FULLOPS.md의 운영 모드 절을 우선 적용한다.
+dev 주 담당자는 직접 구현과 전문가 배정·통합을 맡는다. dispatched dev-worker는 기존 worker 권한과 worker_done 계약을 따른다.
+<!-- fullops-mode:end -->
+
 
 # Orca 역할 배정
 
@@ -101,3 +109,18 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 완료 메시지는 Git 공용 디렉터리의 fullops-integration에 보존된다. `integration.py --repo <레포> status`로 미통합 결과를 확인한다. 검수 대기·실패·충돌·원격 오류·사용자 제한은 PLANS.md에 메시지 ID·SHA·사유·담당·재개 조건을 기록한다. 같은 내용을 `integration.py hold`로 남긴다. 조건 충족 시 resume하고 병합·push를 이어간다. 성공 결과를 통합한 뒤 release·ack하고 다음 독립 과제를 배정한다. 사용자의 현재 과제 완료 뒤 중지 지시는 유지한다.
 
 기존 활성 과제명 지시서는 작업 중 이동하지 않는다. 해당 과제 완료 뒤 logs에 보존하고 다음 과제부터 정규 역할 인박스를 사용한다.
+
+## FullOps 1.0.0 이후의 인계·완료 계약
+
+새 과제는 fresh 세션을 기본으로 한다. 같은 역할·관련 과제·작은 기존 컨텍스트·동일 모델/effort이고 직전 완료 후 몇 분 이내인 짧은 후속만 retain한다. 오래 기다린 후속, 큰 컨텍스트, 붙이기 실패는 새 세션을 사용한다. 새 세션 착수 확인 후 이전 완료 세션을 release한다. 독립 리뷰는 항상 작성자와 다른 세션을 사용한다.
+
+1. 새 지시서는 `work.py new --base <40자리 고정 SHA>`로 만든다. 같은 과제 재작업은 `work.py reopen --base <고정 SHA>`로 attempt를 갱신하고 최초 보고·SHA를 보존한다.
+2. spec에는 `Task key`와 `Purpose`를 명시한다. 지시서 작성 후 `jev_route.py --repo <루트> --key <과제 키> --bind-inbox --role <역할>`로 현재 인박스·attempt에 연결한다.
+3. 탐색 패킷의 direct_edit/impact_check/document_read/document_update 경로·근거·partial/unknown과 남은 확인 목록을 worker에게 전달한다. 같은 입력의 탐색은 재사용한다. worker SHA·원천·지시가 바뀌면 find/context/packet을 force 갱신하고 이전 결과를 보존한다.
+4. worker는 완료 전에 path/category별 completed/no_change와 사유를 packet-outcomes.json에 기록한다. unknown·누락은 완료로 처리하지 않는다. 동적 호출과 지원하지 않는 Markdown anchor는 직접 확인한다.
+5. lint는 같은 checkout에서 직렬 실행한다. 중단 후 lock이 남으면 실제 lint 종료를 확인하고 해당 checkout의 Git 디렉터리 안 fullops-lint.lock만 제거한 뒤 재검사한다. 현재 HEAD와 지시서 기준 SHA의 통과 근거를 확인한다.
+6. 완료 전송은 현재 task/dispatch로 `orchestration send --json`을 사용한다. 실제 성공 전달 receipt를 확인한다. failed 완료와 전송 실패를 구분한다. ask는 완료가 아니다. 전송 실패는 같은 dispatch에서 재시도한다.
+7. 신규 리뷰는 `review.py snapshot`으로 명시 과제·40자리 SHA·별도 세션·clean detached 공간을 만든다. 결과·보고서·lint는 snapshot 밖에 쓴다. 검토·증거 보존·reviewer release 후 `review.py cleanup`으로 관리된 snapshot만 정리한다. historical check는 신규 수락 근거가 아니다.
+8. 리뷰 보고서는 이전 대화를 참조하지 않고 정본 인덱스에서 현재 요구·결정 이유·구조·구현/미완료·실행/검증·운영/복구·다음 작업을 찾은 경로와 점검 결과를 기록한다. 누락·오래된 정보·깨진 링크·미지원 anchor를 구분한다.
+
+제품 기획과 기술 계획의 기존 책임 분리 및 역할 인박스·main 통합 규약을 유지한다. 선택형 이슈 모드는 사용자 요청 때만 활성화한다. 자동 이슈 과제 `GH-<저장소 ID>-<번호>-A<attempt>`는 draft PR과 integration hold까지 처리하며 main 병합은 사용자 판단을 기다린다.

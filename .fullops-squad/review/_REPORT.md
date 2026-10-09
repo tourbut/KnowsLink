@@ -1,3 +1,12 @@
+---
+title: <과제 키> 리뷰
+status: draft
+updated: 2026-10-09
+owner: coor
+tasks: [FULLOPS-UPDATE-1.2.0]
+summary: 독립 고정 SHA 리뷰와 탐색 처리·대화 미참조 인계 점검 양식
+---
+
 # <과제 키> 리뷰
 
 - 검토자 / CLI / 모델:
@@ -28,3 +37,15 @@ UI 작업의 디자인 기준·검증 항목이 비어 있으면 수정 요청�
 ## 검토 결론
 
 수락 가능 여부와 근거를 적는다. check 통과는 AI 검토의 내용·테스트 성공을 자동 보증하지 않는다.
+
+## 독립성과 인계 점검
+
+- 구현자 실제 세션 ID / 검토자 별도 실제 세션 ID:
+- 관리된 clean detached snapshot 경로 / 고정 40자리 SHA / 읽기 전용 확인:
+- 현재 attempt·packet의 path/category별 처리 근거 / partial·unknown 해소:
+- 대화 미참조 점검: 정본 인덱스에서 요구·결정 이유·구조·구현/미완료·실행/검증·운영/복구·다음 작업을 찾은 경로/절과 확인·미확인·해당 없음:
+- 누락·오래된 정보·깨진 링크·미지원 anchor / skipped 사유와 영향:
+- 테스트 레벨 / 필수 검사와 skipped 사유 / 원래 SHA의 재사용 증거:
+- 검토·증거 보존·reviewer release·관리된 snapshot cleanup 결과:
+
+historical check는 보존 증거 확인이며 신규 SHA의 수락 리뷰를 대신하지 않는다.
