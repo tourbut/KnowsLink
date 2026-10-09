@@ -1,0 +1,23 @@
+{
+  "version": "jev-model-v1",
+  "task_key": "SAR-GOOGLE-CONNECT-002-TESTER",
+  "role": "tester",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.16,
+      "claude claude-sonnet-5-5 high": 0.39,
+      "grok grok-4.7 high": 0.45
+    },
+    "usage": {
+      "input_tokens": 653,
+      "output_tokens": 42,
+      "cost": 2.7426e-05
+    }
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c"
+}

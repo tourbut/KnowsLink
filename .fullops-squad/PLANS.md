@@ -1338,3 +1338,19 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 독립 리뷰 수락 잔여: medium 링크 지문 비교 생략 시 공격자 키 승인, medium 익명 Device 요청2000 상한/24h 보존에 따른 신규 연결 고갈. low 타 기존 회원 callback 회귀검사 보강 권고, low complete 응답 손실 시 키 없는 agent 잔류. 실제 테스트에서 직접 시작한 링크·지문을 비교하고 키/agent 분리 및 관계 수락을 확인한다. 코드 후속은 DEV에 배정한다.
 
 - 후속 공개 probe: 서버에서 익명 root/home/connect-start/owner는 모두 HTTP403이다. Google 연결을 아직 시작할 수 없다. 역할 동기화는 dev/tester user_owned·stale, designer/ops 실제 세션 미확인으로 최신 main 반영을 예약한다. 기준 origin/main 999d414이며 다음 dispatch 전에 상태와 clean을 확인한다.
+
+
+## 비용 없는 최소 연결 보완 — SAR-GOOGLE-CONNECT-002-DEV
+
+- 사용자 확정: 기존 Linux 서버·Cloudflare Tunnel·자기 도메인·KnowsLink 봇 플러그인 설치·Google 로그인 등록·두 agent 대화. 추가 과금 가능성 있는 서비스/무료초과 자동청구/Cloudflare Access 활성화 방식 금지. billing 동의나 활성화는 실행하지 않았다.
+- 기존 구현을 재사용하는 implementation/dev로 Jev 라우팅했다. 기준5af28c9, 준비fc09f00. task_73d249b1bcff/ctx_9dc5e970a7f8/term_d43388e6-2ffc-4cce-bda4-e77fb8f4baa0, 실제 requested/effective Codex gpt-6.1-sol medium 및 turn_started/지시서 읽기 확인. 이전 완료 터미널 재사용은 placement 사전검사/agent_unconfigured로 dispatch 생성 없이 거부되어 새 세션에 한 번 배정했다.
+- DEV 소유는 최소 코드·배포자료·설치안내·영향검사·기술문서다. 실제 운영 적용·웹/봇 조작·실계정 수락은 coor다. 로컬 Docker 금지, 서버격리검증, lite/off 유지. 현재 원천 handovers/to_dev.md와 packet을 따르며 partial/unknown은 DEV가 보완한다.
+- 사용자 지시로 웹은 Orca 브라우저만, Grok Bot 앱만 computer-use로 조작한다. 사용자가 로그인한 Cloudflare profile을 재사용한다. 삭제된 과거page는 재사용하지 않고 새page1be7aa03-4508-442a-8e25-5a84d57b07b2를 열었다.
+- 공식 Cloudflare Tunnel 문서는 공인IP 구매 없이 outbound tunnel과 공개 hostname으로 목적을 충족함을 설명한다. Context7은 quota 초과여서 공식문서를 확인했다. 기존 Tunnel/DNS/Google callback 재사용을 우선한다.
+- Orca browser 실제 dashboard network에서 GET /api/v4/accounts/<account>/access/apps 200을 관측하고 동일endpoint를 로그인세션으로 읽었다. 앱 관리 UI 요금제 gate와 달리 readAPI는 success다. 현재 KnowsLink 관련2개앱만 존재: member API fc81b205-d4d1-445e-a2bd-384a2ed82f62 및 owner-only bd210310-fd5e-4e6e-8cb4-d36d618cbebd. trial 과거ID는404. 이 사실과 origin deny-first 후 정확한 앱만 백업/제거하는 최소대안을 DEV에 msg_3319725732d2로 전달했다. 실제 변경 전 기술 인계·독립 리뷰를 기다린다.
+
+## Google 연결002 독립 수락 준비
+
+- DEV 완료 msg_f7acdec985b0, dbbe2f17f353282430f28b6e3ed98e72d4450e69. 실제 구현자01a1218c-e248-7962-a471-d3a01468503b. clean 서버 최종HEAD lint/test ERROR0 WARNING0 실행불가0 확인. 운영 실제 적용은 대기한다.
+- 독립 리뷰 SAR-GOOGLE-CONNECT-002-TESTER는 fresh tester 세션. 기존 완료 세션은 user_owned이므로 건드리지 않는다. terminal show에서 idle, Git clean 확인 후 main5af28c9로 FF했다. Jev 정규 route는 claude-sonnet-5-5 medium을 선택했다. 선행 model-only의 Grok 선택은 정규 route로 대체하며 Grok 한도0 이력도 보존한다. base5af28c9→dbbe2f1 고정 snapshot 리뷰·lite QA 후 coor가 무과금 D12 적용/실Google/Bot 왕복을 수행한다.
+
