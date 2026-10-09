@@ -1323,3 +1323,16 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - Node 22/make/race compiler와 격리 DB로 Windows 필수 검사 환경을 복구했다. 측정·packet outcomes·운영 인계는 DEV 실행 기록 및 QA 보고를 따른다. 완료 SHA는 worker_done에 고정한다.
 - 부모는 고정 SHA 독립 리뷰·좁은 QA·main 통합과 D12의 Access/ingress 적용을 맡는다. 실제 Google/외부 Bot·공유 호스트 운영 수락과 기존 held/fail은 유지한다. 다른 인박스와 과제는 변경하지 않았다.
 - 최신 사용자 지시를 전달한 coor 메시지에 따라 로컬 Docker 작업을 중단했다. 운영 서버의 격리 임시 소스/DB에서 b8fce7e 등록 lint/test 및 좁은 OAuth 검사는 모두 exit0이다. 기존 서비스·DB·키·Tunnel을 보존했으며 최종 SHA의 게이트도 서버 clean clone에서 수행한다.
+
+
+## 1차 실제 통합테스트 — SAR-GOOGLE-CONNECT-001-LIVE
+
+- 사용자 2026-10-10 요청: 열린 PC의 Grok Bot을 컴퓨터 사용으로 조작한다. 같은 Google 계정으로 노우 Bot과 현재 Codex 세션을 서로 다른 agent/키로 연결하고 관계 수락 뒤 시험 대화를 왕복한다. 시험 대화 발송은 사용자 요청 범위다.
+- DEV 152217f와 tester 44e9e457을 main에 SHA 보존 병합하고 일반 push했다. origin/main 6ebe4af에 두 결과가 포함된다. review.py check는 reviewed36/skipped21/total57로 통과했다. 서버 등록 검사와 독립 좁은 QA exit0를 수락했다. 실제 Google/Bot 성공은 아직 아니다.
+- tester 원 완료 msg_b9bf41c793db는 여러 SHA를 포함해 integration parser가 sha null로 남긴다. 실제 수락 SHA는 44e9e457de661e0e7c9e7b82a1ae75a3dc30b44f다. 완료 dispatch에 정정 메시지는 dispatch_inactive로 거부됐다. 가짜 완료 회신이나 receipt를 만들지 않는다. coor가 후속 정정 계약을 확인한다.
+- DEV/tester 인박스는 완료 역할의 비운 파일을 반영한다. 각 전문은 기존 날짜별 archive로 보존하며 중복 아카이브하지 않는다. tester release는 user_takeover retained, processAction none이다. 현재 리뷰 snapshot은 release 정리 계약 해결까지 보존한다.
+- 운영 배포: 서버 Git origin은 사라진 옛 역할 경로여서 fetch 실패했다. origin을 바꾸지 않고 main Git bundle을 비공개 SSH/SFTP로 전송해 고정 04a65b2를 받았다. SQL migration 변경 없음 확인, a9a0db4-20261009T162500Z.dump 백업(8352bytes/TOC23/relay_state1), relay만 재빌드·교체, migrate exit0, relay healthy, 기존 local verify exit0다. 공유 서비스·DB·키·OAuth 설정·Tunnel은 보존했다. 로컬 Docker는 사용하지 않았다.
+- Grok Bot UI의 노우 대화에서 기존 connector가 없는 bundle을 참조해 error/도구0임을 확인했다. 사용자 승인 범위로 새 깨끗한 /workspace/KnowsLink-it-20261010 checkout 04a65b2를 빌드하도록 전달했다. Bot은 Node22.22.2/npm10.9.7, 빌드exit0, connector connected/실제 도구9개(connect/status 포함)를 보고했다. 기존 checkout/키 폴더를 보존하고 새 google-it-20261010 폴더를 사용한다. 로그인 시작과 메시지 발송은 아직 하지 않았다.
+- 현재 Codex 세션의 Node22.22.2 빌드는 완료했다. 기본 PATH의 Node24는 engines 불일치로 설치/빌드 실패했으므로 사용자 로컬 KnowsLinkDevTools의 Node22를 명시한다. 비밀 키를 복사하지 않는다.
+- 운영 공개 보류: 현재 Chrome Cloudflare One의 기존 계정에서 앱 목록 대신 활성 요금제 필요 화면이 나온다. 다른 계정은 목록에 없다. 사용자에게 기존 Access 관리 화면 또는 .env.server의 CF_API_TOKEN을 요청했다. 유료 요금제 선택이나 광범위 보호 해제는 하지 않는다. 새 공개 ingress는 Access 변경과 검증을 함께 할 수 있을 때 적용한다.
+- 독립 리뷰 수락 잔여: medium 링크 지문 비교 생략 시 공격자 키 승인, medium 익명 Device 요청2000 상한/24h 보존에 따른 신규 연결 고갈. low 타 기존 회원 callback 회귀검사 보강 권고, low complete 응답 손실 시 키 없는 agent 잔류. 실제 테스트에서 직접 시작한 링크·지문을 비교하고 키/agent 분리 및 관계 수락을 확인한다. 코드 후속은 DEV에 배정한다.
