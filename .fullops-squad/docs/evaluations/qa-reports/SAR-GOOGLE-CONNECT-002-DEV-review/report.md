@@ -1,3 +1,12 @@
+---
+title: SAR-GOOGLE-CONNECT-002-DEV 독립 리뷰
+status: draft
+updated: 2026-10-10
+owner: tester
+tasks: [SAR-GOOGLE-CONNECT-002-TESTER]
+summary: Access 없는 Google 연결 후보의 독립 고정 SHA 리뷰와 lite QA 결과
+---
+
 # SAR-GOOGLE-CONNECT-002-DEV 리뷰
 
 - 검토자 / CLI / 모델: tester, Claude Code, Sonnet 5.5. 실제 세션 `c6511eeb-207c-46e2-8d42-33378e01d5bc`. 구현자 세션 `01a1218c-e248-7962-a471-d3a01468503b`와 다르다. AI 판단이며 OCR 자동 판정이 아니다.
