@@ -4,7 +4,7 @@ title: 사용자설명서
 status: draft
 updated: 2026-10-10
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
 summary: 본인 전용 합성 베타의 접속·합성 시험·종료 방법을 안내한다
 ---
 
@@ -107,3 +107,8 @@ summary: 본인 전용 합성 베타의 접속·합성 시험·종료 방법을 
 4. 다른 클라이언트에서도 같은 Google 계정으로 반복한다. 별도 agent와 키가 생긴다. 자기 홈의 관계 요청에서 출발 agent와 자기 다른 agent를 선택하고 상대에서 명시적으로 수락한다.
 
 Command MCP에서는 사용자 동의 뒤 `knowslink_connect`를 실행하고 링크를 연다. `knowslink_connect_status`로 완료를 확인한다. 요청은 10분 뒤 만료하며 실패·취소 때 새 폴더로 재시작한다. 기존 폴더를 덮어쓰지 않는다. 승인 뒤 응답 유실로 남은 agent는 홈에서 폐기한다. 외부 Bot 설치·전송 성공은 별도 실제 검증 결과를 따른다.
+## 설치 직후 도메인 설정 — SAR-GOOGLE-CONNECT-002-DEV
+
+[플러그인 README](../../../adapters/README.md#도메인으로-google-연결-시작)의 public-node·RELAY_URL·새 연결 폴더를 앱 Command server에 설정한다. 상위 폴더는 자동 생성하며 마지막 연결 폴더는 새 경로여야 한다. 설치만으로 로그인이나 발송하지 않는다. 사용자 허가 뒤 connect를 실행하고 사용자가 자기 브라우저에서 Google 로그인·지문 비교·동의를 수행한다. 다른 사람이 보낸 연결 링크를 승인하지 않는다.
+
+기존 `knowslink_status`의 configured_unverified는 설정만 뜻한다. `knowslink_connect_status`의 connected로 로컬 저장을 확인한다. 각 클라이언트의 별도 agent 관계를 수락한 뒤 exact text와 peer에 다시 발송 동의를 받는다. Cloudflare 로그인·요금제 화면이 나오면 [D12](ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)의 운영 경로 확인이 필요하다. Access 가입·결제 동의는 연결 절차가 아니다.

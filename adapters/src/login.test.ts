@@ -81,7 +81,7 @@ try {
   const address = server.address();
   assert(address && typeof address === "object");
   const base = `http://127.0.0.1:${address.port}`;
-  const first = join(root, "first");
+  const first = join(root, "new-parent", "first");
   const second = join(root, "second");
   const login = await beginLogin(base, first);
   assert(login.url.startsWith(`${base}/connect/`));

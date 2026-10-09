@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -180,3 +180,9 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 `internal/relay/device.go`는 시작·서명 조회·동의 페이지와 agent 생성을 담당한다. `google.go`는 기존 callback 검증 후 연결 회원을 고정한다. `member_agents.go`와 `member.go`는 기존 최근 인증·Origin 검사 및 자기 홈 선택 UI를 재사용한다. `adapters/src/login.ts`는 로컬 키 생성·승인 대기·기존 complete·자동 저장을 담당한다. `private-files.ts`는 connect/text의 파일 검사를 공유하고 Windows .NET ACL로 소유자와 접근자를 검사한다. 새 패키지는 없다.
 
 Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 결합, 명시적 동의, 만료, replay, 별도 agent를 확인한다. Node login 검사는 실제 HTTP 서명과 자동 저장·권한을 확인한다. `.gitattributes`의 LF는 Windows gofmt 및 동결 registry digest를 동일하게 유지한다. `check_public_ingress.py`는 공개 경로와 관리자 경로 분리를 assert로 검사한다. 실계정·외부 Bot 검증은 부모 QA/OPS 인계다.
+## Google 연결 최소 보완 — SAR-GOOGLE-CONNECT-002-DEV
+
+- `login.ts/beginLogin`: 상위 폴더가 없으면 mkdir recursive로 생성한다. 마지막 키 폴더는 기존 privateDirectory exclusive 생성과 Windows ACL/POSIX 검사를 유지한다. 기존 폴더 덮어쓰기를 거부한다.
+- `beta.sh/render-public-config`: Access 파일 없이 기존 UUID와 member ingress로 config.public.yml0600을 새로 생성하고 검증한다. live config를 변경하지 않으며 재생성·잘못된 UUID·검증 실패를 거부한다. `test_public_config.sh`가 make lint에 연결됐다.
+- 패키지 manifest·marketplace·skill·README는 Google 연결과 별도 명시적 text 승인을 안내한다. MCP 도구9개와 기본 held, trial 계약은 그대로다. SDK API 변경은 없다.
+- `TestDeviceCapacityRetention`은2000번째 허용, 다음 요청 거부, 회원 연결 제외, 만료 뒤24h 직전 보존과 경계 회복을 확인한다. `TestDeviceGoogleConnection`은 기존 다른 회원의 callback이 회원·세션·연결 소유권을 바꾸지 못하는 회귀를 포함한다. 신규 Device 포화의 medium 한계는 [D12](../operations/ops-guide.md)에 남긴다.

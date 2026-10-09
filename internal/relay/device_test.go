@@ -26,6 +26,10 @@ func deviceFixture(t *testing.T, st *State, now time.Time) (string, *Connection,
 
 func TestDeviceGoogleConnection(t *testing.T) {
 	st, now := connectionFixture()
+	foreignMember := st.signIn(googleIssuer, "existing-foreign", "foreign@example.test", "", "", now)
+	if foreignMember.Problem != "" {
+		t.Fatal("foreign member fixture")
+	}
 	var agents, credentials []string
 	for range 2 {
 		token, c, private := deviceFixture(t, st, now)
@@ -42,6 +46,10 @@ func TestDeviceGoogleConnection(t *testing.T) {
 		members := len(st.Members)
 		if foreign := st.finishGoogleLogin(attempt, "foreign-subject", "foreign@example.test", now); foreign.Problem == "" || len(st.Members) != members || c.Owner != owner {
 			t.Fatal("other Google account claimed connection")
+		}
+		sessions := len(st.Sessions)
+		if foreign := st.finishGoogleLogin(attempt, "existing-foreign", "foreign@example.test", now); foreign.Problem == "" || len(st.Members) != members || len(st.Sessions) != sessions || c.Owner != owner || c.State != "prepared" {
+			t.Fatal("existing foreign member replaced binding or gained a session")
 		}
 		if err := st.approveDevice(id, "other-owner", now); err == nil {
 			t.Fatal("foreign approval")
@@ -80,11 +88,39 @@ func TestDeviceGoogleConnection(t *testing.T) {
 		}
 		agents, credentials = append(agents, c.Agent), append(credentials, credential)
 	}
-	if agents[0] == agents[1] || credentials[0] == credentials[1] || len(st.Members) != 1 {
+	if agents[0] == agents[1] || credentials[0] == credentials[1] || len(st.Members) != 2 {
 		t.Fatal("clients must share member but have independent agents and credentials")
 	}
 	if len(st.Pairs) != 0 {
 		t.Fatal("onboarding silently paired agents")
+	}
+}
+
+func TestDeviceCapacityRetention(t *testing.T) {
+	st, now := connectionFixture()
+	token, c, private := deviceFixture(t, st, now)
+	for i := range 1998 {
+		state := []string{"requested", "prepared", "consumed", "cancelled"}[i%4]
+		st.Connections[randomToken()] = &Connection{Device: true, State: state, Exp: c.Exp}
+	}
+	// Member-started connections do not consume the anonymous device budget.
+	st.Connections["member"] = &Connection{State: "waiting", Exp: c.Exp}
+	newToken := randomToken()
+	proof := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, deviceBytes(newToken, c)))
+	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, now); err != nil {
+		t.Fatal("member connections consumed device capacity or 2000th request was rejected")
+	}
+	newToken = randomToken()
+	proof = base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, deviceBytes(newToken, c)))
+	retained := c.Exp.Add(24*time.Hour - time.Nanosecond)
+	st.sweepConnections(retained)
+	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, retained); err == nil || len(st.Connections) != 2001 || st.Connections[hashToken(token)] == nil {
+		t.Fatal("capacity or 24h tombstone retention changed")
+	}
+	cleared := c.Exp.Add(24 * time.Hour)
+	st.sweepConnections(cleared)
+	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, cleared); err != nil || len(st.Connections) != 1 {
+		t.Fatal("anonymous capacity did not recover after retention")
 	}
 }
 

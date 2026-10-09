@@ -88,6 +88,21 @@ render_config() { # needs access.aud from access_apply.py
   cloudflared tunnel --config "$STATE/tunnel/config.yml" ingress validate
 }
 
+render_public_config() { # render-only, no Access subscription or live config changes
+  uuid=$(<"$STATE/tunnel.uuid")
+  [[ "$uuid" =~ ^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$ ]] || die "invalid tunnel UUID"
+  candidate="$STATE/tunnel/config.public.yml"
+  (umask 077; set -C
+    {
+      printf 'tunnel: %s\ncredentials-file: /etc/cloudflared/%s.json\ningress:\n' "$uuid" "$uuid"
+      sed 's/^/  /' "$DEPLOY/deploy/knowslink/tunnel/public-ingress.yml" || exit 1
+      printf '  - service: http_status:404\n'
+    } >"$candidate"
+  ) || die "candidate exists or cannot be written; live config unchanged"
+  cloudflared tunnel --config "$candidate" ingress validate
+  echo "rendered public candidate; D12 review and edge app removal required before activation"
+}
+
 deploy() { # deploy <sha>: backup, move the detached checkout, rebuild. Also the rollback path (see D12 11.3)
   sha=${1:?usage: beta.sh deploy <sha>}
   current=$(git -C "$DEPLOY" rev-parse HEAD)
@@ -120,7 +135,8 @@ case "${1:-}" in
   restore-verify) restore_verify "${@:2}" ;;
   tunnel-create) tunnel_create ;;
   render-config) render_config ;;
-  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|deploy <sha>|restore-verify <dump>|seed|owner-login|tunnel-create|render-config|expose" ;;
+  render-public-config) render_public_config ;;
+  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|deploy <sha>|restore-verify <dump>|seed|owner-login|tunnel-create|render-config|render-public-config|expose" ;;
 esac
   exit
 }

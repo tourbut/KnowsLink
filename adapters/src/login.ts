@@ -5,8 +5,8 @@ import {
   randomBytes,
   sign,
 } from "node:crypto";
-import { readFile, writeFile } from "node:fs/promises";
-import { join, basename } from "node:path";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { join, basename, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { setTimeout } from "node:timers/promises";
 import { Adapter, relayBase } from "./core.js";
@@ -32,6 +32,7 @@ function deviceProof(p: Login, key: string): string {
 }
 export async function beginLogin(base: string, folder: string) {
   base = relayBase(base);
+  await mkdir(dirname(folder), { recursive: true, mode: 0o700 });
   await privateDirectory(folder);
   const keys = generateKeyPairSync("ed25519");
   const key = keys.privateKey

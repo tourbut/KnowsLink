@@ -4,7 +4,7 @@ title: 인수인계서
 status: draft
 updated: 2026-10-10
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -84,3 +84,8 @@ service token 두 개가 만료돼 24h로 갱신했다. UUID·secret은 그대�
 Google 회원 인증과 클라이언트 로컬 키를 연결하고 명시적 동의 뒤 자동 저장하는 구현을 전달한다. 같은 Google 회원의 두 클라이언트는 별도 agent·키·credential을 사용하고 자동 pairing은 없다. D03/D05/D06/D09/D10/D11/D12와 실행 보고를 함께 검토한다. D07/D08 SQL 변경은 없다.
 
 부모는 worker_done의 고정 SHA로 독립 리뷰와 좁은 QA를 수행하고 main 통합 및 D12 운영 변경을 담당한다. 로컬 합성 OAuth/Postgres와 화면 검증은 실제 Google·외부 Bot 성공 증거가 아니다. 기존 held/fail 제품 판정은 유지한다. 운영 자격·개인키·기존 WIP는 보존했다. 실제 두 클라이언트 가입·관계 수락·왕복 전달 및 관리자 보호/공유 호스트 회귀를 운영 수락 조건으로 남긴다.
+## 비용 없는 Google 연결 인계 — SAR-GOOGLE-CONNECT-002-DEV
+
+DEV는 별도 public config 후보 생성, 설치 안내, Google 연결의 parent 폴더 생성 및 회귀를 보완한다. D03 D10 D11 D12를 함께 갱신한다. 기존 DB·Google 자격·키·trial 코드·기본 held·비명시 발송 금지는 보존한다. 운영 config·Access·DNS·Bot UI는 DEV가 변경하지 않는다.
+
+coor는 고정 결과 SHA 독립 리뷰·좁은 QA 뒤 [D12의 새 적용 절차](ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)로 allowlist+404를 먼저 적용하고 백업한 두 KnowsLink 앱만 제거한다. 실제 Google·독립 두 클라이언트·관계 수락·명시적 양방향 text와 공유 호스트 회귀를 확인한다. 익명 신규 Device 포화의 medium 한계는 남는다. 복구 시 먼저 Tunnel을 닫고 config/앱/aud를 재검증한다. 기존 DB 백업을 덮지 않는다.

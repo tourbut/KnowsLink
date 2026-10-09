@@ -1,6 +1,20 @@
 # KnowsLink Grok Bot 플러그인
 
-공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.0`이며 실제 계정 연결은 held다. 설치만으로 relay를 호출하지 않는다. 명시적으로 선택한 로컬 합성 모드만 작동한다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
+공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.0`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 계정의 로그인·왕복 성공은 별도 수락 증거가 필요하다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
+
+## 도메인으로 Google 연결 시작
+
+앱 Command server 등록 후 다음 환경을 설정하고 MCP를 다시 시작한다. ZIP manifest의 기본 `KNOWSLINK_MODE=held`도 이 값으로 바꾼다. 자격 값은 도구 인자나 채팅에 넣지 않는다.
+
+```text
+KNOWSLINK_MODE=public-node
+RELAY_URL=https://link.knowslog.com
+KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink-connect/nou/new-google-client
+```
+
+상위 폴더는 자동 생성하며 마지막 연결 폴더는 아직 없어야 한다. 각 클라이언트는 다른 새 폴더를 사용한다. 사용자 허가 뒤 `knowslink_connect`에 `confirmed:true`를 전달한다. 반환된 URL을 사용자가 자기 브라우저에서 열고 Google 로그인한다. 실행한 클라이언트의 지문과 화면 지문을 비교한 뒤 명시적으로 동의한다. 다른 사람이 보낸 연결 링크는 승인하지 않는다. `knowslink_connect_status`의 `connected`를 확인한다. 개인키·credential은 해당 컴퓨터에만 자동 저장된다. 이 설정에는 Cloudflare Access token이 필요 없다.
+
+root/connect가 Cloudflare 로그인이나 요금제 화면으로 이동하면 서비스 연결이 준비되지 않은 것이다. 관리자에게 [D12의 비용 없는 적용 절차](../.fullops-squad/docs/operations/ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)를 전달한다. 플러그인에서 결제·Access 가입을 진행하지 않는다. 관계 수락과 exact text 발송 동의는 연결 뒤에도 별도로 필요하다.
 
 ## 패키지 만들기
 
