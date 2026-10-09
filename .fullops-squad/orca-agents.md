@@ -3,14 +3,14 @@ title: Orca 역할 배정
 status: draft
 updated: 2026-10-09
 owner: coor
-tasks: [SAR-SETUP-001, FULLOPS-UPDATE-099, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-1.2.0]
+tasks: [SAR-SETUP-001, FULLOPS-UPDATE-099, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0]
 summary: 기존 역할과 제품·기술 책임 분리 및 고정 기준 인계·완료 계약
 ---
 
 <!-- fullops-mode:start -->
 ## 운영 책임
 
-현재 모드·주 담당자·테스트 레벨은 fullops.json을 읽는다. FULLOPS.md의 운영 모드 절을 우선 적용한다.
+현재 모드·주 담당자·테스트 레벨·하위 위임 레벨은 fullops.json을 읽는다. FULLOPS.md의 운영 모드 절을 우선 적용한다.
 dev 주 담당자는 직접 구현과 전문가 배정·통합을 맡는다. dispatched dev-worker는 기존 worker 권한과 worker_done 계약을 따른다.
 <!-- fullops-mode:end -->
 
@@ -26,7 +26,7 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 | designer | 제품 기획·요구사항·사용자 경험; `docs/planning/`, `docs/design-docs/mockups/` | `fullops/designer` | `codex` | 모델 후보 | 기획 과제 발생 시 `worker-start --run` |
 | dev | 기술 설계·구현·직접 검증; `docs/design-docs/` 기술 문서, `cmd/`, `internal/`, `adapters/`, `db/`, `scripts/`, 루트 Go·sqlc·Make·Docker·Compose 설정 | `fullops/dev` | `claude` 또는 `codex` | 모델 후보 | 기술 설계·구현 과제 발생 시 `worker-start --run` |
 | ops | 배포·통합·운영; `docs/operations/`, 향후 배포 설정 경로 | `fullops/ops` | `claude` | 모델 후보 | 운영 과제 발생 시 `worker-start --run` |
-| tester | 재현·테스트·회귀 검증; `docs/evaluations/scenarios/`, `docs/evaluations/qa-reports/`, 향후 테스트 경로 | `fullops/tester` | `claude` | 모델 후보 | 구현 SHA 준비 후 `worker-start --run` |
+| tester | 재현·테스트·회귀 검증; `docs/evaluations/scenarios/`, `docs/evaluations/qa-reports/`, 향후 테스트 경로 | `fullops/tester` | `claude` 또는 `grok` | 모델 후보 | 구현 SHA 준비 후 `worker-start --run` |
 
 문서 경로는 `.fullops-squad/` 기준이다. 제품 경로는 레포 루트 기준이다. SAR-SETUP-001-DEV의 초기 구성·직접 검증 파일은 dev 소유다. 독립 QA의 시나리오·보고서는 tester 소유다. 운영 배포의 파일 소유권은 후속 ops 지시서에서 정한다.
 원격은 `origin`, 기준 브랜치는 `main`이다. 상설 워크트리만 구성하고 이번 setup에서는 에이전트 세션을 시작하지 않는다.
@@ -66,6 +66,8 @@ coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 �
 - `dev` `codex` `gpt-6.1-sol` `high`: 공유 계약을 따르는 큰 기능 구현·리팩터링
 - `ops` `claude` `claude-sonnet-5-5` `high`: 기록 검사·형식 검증·여러 SHA의 충돌 없는 main 통합 조정
 
+- `tester` `claude` `claude-sonnet-5-5` `medium`: 명확한 재현·좁은 핵심 경로 검증. 사용자 2026-10-09 추가
+- `tester` `claude` `claude-sonnet-5-5` `high`: 실패 경계·연동 회귀 검증. 사용자 2026-10-09 추가
 - `tester` `grok` `grok-4.7` `high`: 독립 QA·시나리오·회귀 검증. 사용자 2026-10-03 지정
 
 ## 라우팅 기준

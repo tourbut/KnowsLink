@@ -3,18 +3,18 @@ title: FullOps Squad 하네스 지도
 status: draft
 updated: 2026-10-09
 owner: coor
-tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0]
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0]
 summary: FullOps 규약 지도와 coor/lite 및 1.2.0 운영 계약
 ---
 
 <!-- fullops-mode:start -->
-## 운영 모드와 테스트 범위
+## 운영 모드와 작업 범위
 
-`fullops.json`의 mode·primary_role·primary_branch·test_level이 정본이다. mode 누락은 coor, 테스트 레벨 누락은 standard다.
+`fullops.json`의 mode·primary_role·primary_branch·test_level·subagent_level이 정본이다. mode 누락은 coor, 테스트 레벨 누락은 standard, 하위 위임 레벨 누락은 off다.
 coor에서는 기존 조율·배정 책임을 유지한다. dev에서는 주 담당자가 직접 기술 계획·구현·검증을 수행하고 필요한 전문가를 배정·통합한다.
 dev 주 담당자는 제품 범위 판단을 사용자/기획 담당과 확인하고, 작성자와 다른 세션의 고정 SHA 리뷰를 받는다. 부모 dispatch나 가짜 worker_done은 만들지 않는다.
 아래 coor 전용 배정/직접 설계 제한은 dev 주 담당자의 직접 개발에 적용하지 않는다. 라우팅·인박스·독립 리뷰·통합·산출물 보존은 두 모드에서 유지한다.
-테스트 범위는 rules/common/testing.md의 레벨을 따르고, 모드 전환 뒤에는 새 세션을 시작한다. 기존 worker 공간과 기록은 보존하며 다음 배정 전에 동기화한다.
+테스트 범위는 rules/common/testing.md, 선택형 하위 위임은 rules/delegation.md의 레벨을 따른다. 두 레벨은 독립적이다. 모드 전환 뒤에는 새 세션을 시작한다. 기존 worker 공간과 기록은 보존하며 다음 배정 전에 동기화한다.
 <!-- fullops-mode:end -->
 
 
