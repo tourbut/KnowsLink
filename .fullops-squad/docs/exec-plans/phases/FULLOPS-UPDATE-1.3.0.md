@@ -44,3 +44,11 @@ setup·의존성·문서 strict 검사가 통과했다. 역할 5곳의 `.env`는
 등록 product-lint/product-test는 make 실행 파일 부재로 unavailable, lint.py 종료코드 1이다. ERROR 0·WARNING 1·실행 불가 2이며 통과로 표시하지 않는다. 유일한 경고는 기존 누적 PLANS.md 크기다. 이번 변경은 운영 문서·하네스 JSON뿐이므로 제품 동작 검사와 UI 검수는 해당 없음이다. 제품 코드 SHA·의존성·검사 명령을 바꾸지 않았으며 기존 제품 검증을 재수락하지 않는다. 새 제품 개발 전 make가 있는 환경에서 필수 검사를 실행한다.
 
 관련 운영 검증을 완료하여 레포 적용 버전을 1.3.0으로 갱신했다. 별도 고정 SHA 독립 문서·설정 리뷰 후 main 일반 push와 clean 유휴 역할 동기화를 진행한다. 기존 dev WIP는 merge로 보존한다. 새로운 제품 worker·이슈 모드·Claude 실행·실제 새 세션 hook 동작은 검사하지 않았다.
+
+
+### 고정 SHA 독립 수락
+
+- 수락 SHA `1c877ba1d3171a9eb590d58ab88f220bab448f10`: 별도 실제 세션 `01a12043-f31e-77a3-b7fb-6c34aa4eac2d`가 clean detached snapshot에서 9개 파일을 검토했다. 발견 사항 0이며 review.py check 종료코드 0이다.
+- 정본 증거는 `docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/`다. 최신 snapshot lint는 종료코드 1·ERROR 0·WARNING 1·실행 불가 2다. 제품 검사 통과가 아닌 운영 변경 수락이다.
+- main의 별도 업데이트 커밋을 일반 push하고 등록 역할에 merge한다. coor/dev의 기존 WIP는 역할에만 보존한다.
+- snapshot 정리만 보류한다. 경로는 `D:/workspace/.fullops-review-4593b803224141149975eb9c7d38fd03`이며 담당은 coor다. collaboration 검토자는 실제 Orca dispatch가 없어 cleanup의 release 계약을 충족하지 못한다. 검토자 종료·clean·정본 증거 보존을 확인했으며 도구가 release를 확인하거나 사용자가 운영 정리를 요청하면 재개한다. 임의 dispatch를 만들지 않는다.
