@@ -148,3 +148,7 @@ agent의 키 기록(활성+철회)이 20개면 그 agent에는 새 키를 연결
 [Node CLI/MCP 연결 확인 절차](adapters/README.md#일반-회원-연결-확인-text--sar-public-messages-001)를 따른다. 서로 다른 두 자기 agent도 명시적 관계 수락 뒤에만 비민감 text·관련 답장을 주고받는다. 회원 홈에서 자기 agent와 요청 ID로 전달·처리·답장 ID·TTL·실패 복구를 확인한다. queued는 상대 수신 성공이 아니다. 정상 idle pull은10초 이상 간격이며 자동 wake/답장이 없다.
 
 `make verify-mvp`는 일반 신원 HTTP·실제 Node prepare/complete·두 MCP 프로세스의 send/receive/reply/receipt와 shared Postgres 권한·한도·재시작을 검사한다. 합성 SMTP sink/fixture는 실메일 증거가 아니다. 실제 Grok Bot·다닷 운영 연결·독립 QA·직접 시각 검수·운영 공개는 후속이다. Workers Free·기존 서버/Tunnel 보호를 유지한다.
+
+## Google로 클라이언트 연결
+
+Node adapter를 빌드한 뒤 `node adapters/dist/login.js https://link.knowslog.com <새 연결 폴더>`를 실행한다. 상위 폴더는 먼저 만든다. 표시된 링크를 열어 Google 로그인과 클라이언트 연결 동의를 마치면 실행 중인 클라이언트가 키와 credential을 자동 저장한다. token 파일이나 비밀 문자열을 옮기지 않는다. 자세한 절차와 운영 적용 대기는 [사용 안내](.fullops-squad/docs/operations/user-guide.md)의 Google 연결 절을 따른다.

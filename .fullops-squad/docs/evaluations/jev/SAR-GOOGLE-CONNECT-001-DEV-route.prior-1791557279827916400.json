@@ -18,10 +18,10 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.97,
-        "product": 0.03
+        "implementation": 0.83,
+        "product": 0.17
       },
-      "confidence": 0.94
+      "confidence": 0.66
     },
     "role": {
       "choice": "dev",
@@ -33,38 +33,41 @@
       "confidence": 1
     },
     "docs": {
-      "D01": 0.3,
-      "D02": 0.33,
-      "D03": 0.64,
-      "D04": 0.41,
-      "D05": 0.63,
-      "D06": 0.56,
-      "D07": 0.42,
-      "D08": 0.5,
-      "D09": 0.57,
-      "D10": 0.82,
-      "D11": 0.52,
-      "D12": 0.59,
-      "D13": 0.55
+      "D01": 0.46,
+      "D02": 0.63,
+      "D03": 0.77,
+      "D04": 0.67,
+      "D05": 0.77,
+      "D06": 0.66,
+      "D07": 0.55,
+      "D08": 0.62,
+      "D09": 0.74,
+      "D10": 0.86,
+      "D11": 0.71,
+      "D12": 0.68,
+      "D13": 0.73
     }
   },
   "usage": {
-    "input_tokens": 2467,
+    "input_tokens": 2496,
     "output_tokens": 314,
-    "cost": 0.000103614
+    "cost": 0.000104832
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [
+    "D02",
+    "D04",
     "D06",
+    "D07",
     "D08",
     "D09",
     "D11",
     "D12",
     "D13"
   ],
-  "latency_seconds": 0.689,
+  "latency_seconds": 0.725,
   "response_model": "typesafe/jev-1.13-20260917",
   "model": {
     "agent": "codex",
@@ -75,27 +78,27 @@
     "probabilities": {
       "claude claude-sonnet-5-5 medium": 0,
       "claude claude-sonnet-5-5 high": 0.01,
-      "claude claude-opus-5-5 medium": 0.08,
-      "codex gpt-6.1-sol medium": 0.55,
-      "claude claude-opus-5-5 high": 0.23,
-      "codex gpt-6.1-sol high": 0.13
+      "claude claude-opus-5-5 medium": 0.04,
+      "codex gpt-6.1-sol medium": 0.44,
+      "claude claude-opus-5-5 high": 0.22,
+      "codex gpt-6.1-sol high": 0.29
     },
     "usage": {
-      "input_tokens": 756,
+      "input_tokens": 785,
       "output_tokens": 66,
-      "cost": 3.1752e-05
+      "cost": 3.297e-05
     }
   },
   "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
-  "head": "f6daf938e80ed28c9e9500baad6fa3c61ecd502c",
+  "head": "f9f7675be6c9502bd6ab2f810bd42ff62a26a174",
   "requires_packet": true,
   "attempt": "d5a1fab9baf24084b01f5c4e66f359fa",
-  "instruction_sha256": "b4ccb221c09f5a6859dd4f94bf91e0d0a5856ad74730684d2e02f2675bd1bbd1",
+  "instruction_sha256": "7e428d9fcfd6b065bca25801070fb3b891da64a6f42bfcf04eb54a69749c6a36",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "52cfaa0e5ee2089731c8df9552c8cccbe225a344cfe2975d332341a81ecb27f9"
+  "input_sha256": "e56b3d0da57e6391081bb202c0b863dd2cb1b82cae759c2660f5eeb5b796faed"
 }

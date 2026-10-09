@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-09
+updated: 2026-10-10
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0]
-summary: 기존 제품 계획 보존과 FullOps 1.2.0 운영 적용·통합
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV]
+summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
@@ -1287,3 +1287,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 등록 역할 5곳은 해당 main을 포함하며 clean이다. coor `d7a7807`, dev `e3771e3`는 기존 WIP를 보존한 merge이며 나머지 세 역할은 fast-forward다. 다섯 역할 원격 push와 fetch 후 동일성을 확인했다.
 - coor PLANS 충돌은 기존 진행본 보존 절과 업데이트 절을 모두 유지해 해결했다. `.env` 링크 5개와 1.3.0/lite/off 설정을 다시 확인했다. 역할 동기화 예약은 없다.
 - 이 통합 결과의 후속 기록 커밋도 main과 역할에 전달한다. 제품 검사 미실행과 snapshot 정리 보류는 유지한다. 다음 개발은 새 coordinator 세션에서 진행한다.
+
+## SAR-GOOGLE-CONNECT-001-DEV Windows 구현 결과
+
+- 기준 f9f7675, 착수 f6daf93의 전달 packet/inbox를 보존하고 Google 전용 클라이언트 시작·동의·자동 저장을 구현했다. 같은 Google 회원의 별도 두 agent와 키 및 명시적 관계 수락을 유지한다.
+- Node 22/make/race compiler와 격리 DB로 Windows 필수 검사 환경을 복구했다. 측정·packet outcomes·운영 인계는 DEV 실행 기록 및 QA 보고를 따른다. 완료 SHA는 worker_done에 고정한다.
+- 부모는 고정 SHA 독립 리뷰·좁은 QA·main 통합과 D12의 Access/ingress 적용을 맡는다. 실제 Google/외부 Bot·공유 호스트 운영 수락과 기존 held/fail은 유지한다. 다른 인박스와 과제는 변경하지 않았다.

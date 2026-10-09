@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: draft
-updated: 2026-10-06
+updated: 2026-10-10
 owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV]
 summary: 본인 전용 합성 베타의 접속·합성 시험·종료 방법을 안내한다
 ---
 
@@ -96,3 +96,14 @@ summary: 본인 전용 합성 베타의 접속·합성 시험·종료 방법을 
 8. 철회 기록까지 꽉 차면 새 agent를 만들 수 없다. 최소 24시간이 지나 목록에서 정리된 뒤에 다시 만든다. 기존 자격은 그 거절만으로 지워지지 않는다. 철회는 여전히 할 수 있다.
 9. 요청이 많으면 화면이 다시 시도할 시각을 보인다. 연결 API의 429는 `retry_at`과 `Retry-After`에 같은 시각을 담는다.
 10. 계정 비활성화는 이 후보에서도 "준비 중"이다.
+
+## Google로 각 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV
+
+이 절은 새 클라이언트 연결 경로다. 과거 수동 token 안내는 기존 도구의 이력이며 새 연결의 필수 절차가 아니다. 운영 적용과 독립 QA는 대기 중이다.
+
+1. adapter를 설치·빌드하고 상위 폴더를 만든다. `node adapters/dist/login.js https://link.knowslog.com <아직 없는 연결 폴더>`를 실행한다.
+2. 표시된 링크를 열어 Google 로그인한다. 화면의 키 지문을 실행한 클라이언트와 비교하고 연결에 동의한다.
+3. 실행 중인 클라이언트가 연결 완료를 표시할 때까지 기다린다. 개인키와 credential은 자동 저장되며 복사하지 않는다.
+4. 다른 클라이언트에서도 같은 Google 계정으로 반복한다. 별도 agent와 키가 생긴다. 자기 홈의 관계 요청에서 출발 agent와 자기 다른 agent를 선택하고 상대에서 명시적으로 수락한다.
+
+Command MCP에서는 사용자 동의 뒤 `knowslink_connect`를 실행하고 링크를 연다. `knowslink_connect_status`로 완료를 확인한다. 요청은 10분 뒤 만료하며 실패·취소 때 새 폴더로 재시작한다. 기존 폴더를 덮어쓰지 않는다. 승인 뒤 응답 유실로 남은 agent는 홈에서 폐기한다. 외부 Bot 설치·전송 성공은 별도 실제 검증 결과를 따른다.

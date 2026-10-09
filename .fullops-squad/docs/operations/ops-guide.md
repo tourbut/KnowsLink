@@ -2,9 +2,9 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-07
+updated: 2026-10-10
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -306,3 +306,19 @@ rollback 순서(역순): 새 앱·정책 삭제 → `config.yml` 백업 복원�
 운영 env 정본은 `/home/shin/deploy/knowslink-state/.env`0600이다. `KNOWSLINK_GOOGLE_CLIENT_ID`, `KNOWSLINK_GOOGLE_CLIENT_SECRET`, `KNOWSLINK_GOOGLE_REDIRECT_URL`을 Compose가 relay에 전달한다. 값은 Git/대화/로그에 남기지 않는다. callback은 `https://link.knowslog.com/auth/google/callback`이다. Google discovery/token/JWK HTTPS egress가 필요하다. 기존 Tunnel·Access와 Postgres volume은 유지한다.
 
 제품 후보017bf456의 독립 인증 delta 리뷰와 기존 lint/test를 확인했다. main 통합 뒤 `beta.sh deploy <수락 SHA>`로 사전 DB backup·migration diff 거부·기동 확인을 수행한다. 이번 변경은 DB migration이 없다. 이전 제품 배포d08903a55c3638128827010400e66e9d45b61d7c로 코드 복귀할 때는 새 Google env 세 개를 비공개 환경에서 비활성화한다. 실제 사용자 로그인은 배포 뒤 `/`의 Google로 계속 → Google 화면의 선택/동의 → 자기 홈 링크로 확인한다. 일반 공개·Grok Bot 실연결 완료는 별도 기록한다.
+
+## Google 연결 공개 경로 적용 — SAR-GOOGLE-CONNECT-001-DEV
+
+이 절은 OPS 실행 계획이다. DEV는 운영 계정·환경·Access·Tunnel을 변경하지 않았다. 이전 owner-only `access_apply.py`나 beta Access 초기화 도구를 그대로 재실행하지 않는다. 먼저 현재 Access application ID·aud·destinations·정책·IdP와 Tunnel config를 비밀값 없이 백업하고 shared/trial 호스트 기준 상태를 기록한다. Google redirect는 기존 `/auth/google/callback`이며 새 scope·secret은 없다.
+
+1. 기존 호스트 전체 owner Access application의 보호 대상을 `link.knowslog.com/owner`와 `link.knowslog.com/v1`로 좁힌다. 같은 application ID·aud·owner 정책·IdP를 유지하고 실제 API 응답에서도 보존을 확인한다. 이전 도메인이 남아 있으면 `/owner` 보호를 함께 유지한다. 호스트 전체 Everyone 허용은 만들지 않는다.
+2. 더 구체적인 공개 경로 `/v1/connect`, `/v1/text`, `/v1/keys/*`, `/v1/receipts/*`에 Bypass Everyone application을 구성한다. 정확한 관리자 POST `/v1/keys`는 기존 owner 보호 아래 둔다. 기존 `/v1/test/*` trial application과 aud는 보존한다. 경로 우선순위를 실제 Access 설정과 요청으로 확인한다.
+3. `/`, `/auth/*`, `/home`, `/home/*`, `/connect/*`가 다른 광범위 application에 잡히지 않게 한다. 서비스는 자체 Google 세션·Origin·최근 인증·회원 소유권 검사를 계속 적용한다. 세션 없는 홈은 서비스 로그인으로 이동해야 한다.
+4. `deploy/knowslink/tunnel/public-ingress.yml` fragment를 기존 owner 보호 fallback 앞에 삽입한다. 기존 tunnel UUID·credentials 경로·trial 및 다른 호스트와 `required:true` fallback을 보존한다. origin loopback, 비공개 Postgres, 관리자 Basic/Bearer 보호도 유지한다.
+5. 변경 파일에 `cloudflared tunnel ingress validate`와 `cloudflared tunnel ingress rule <URL>` 검사를 수행한다. 공개 경로와 owner/admin/test/미등록 경로를 각각 확인한 뒤 두 계층을 함께 적용한다. fragment 자체는 edge Access application을 바꾸지 않는다.
+
+Cloudflare의 [Access 경로 우선순위](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)와 [Tunnel 첫 일치 규칙](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/)을 근거로 한다. Context7 조회는 월간 quota 초과여서 공식 문서를 확인했다. DEV의 regex self-check는 실제 edge 검사를 대신하지 않는다.
+
+좁은 운영 검사는 익명 root/connect의 Cloudflare 로그인 redirect 부재, 실제 Google callback·동의·로컬 저장·자기 홈 한 흐름, 세션 없는 홈의 서비스 로그인, 잘못된 token/proof의 401/422 JSON을 확인한다. `/owner`, `/v1/owners`, 정확한 관리자 `/v1/keys`, `/v1/authorize`의 보호와 위조 JWT 거부를 확인한다. 기존 trial/shared 호스트 회귀를 확인한다. 실제 외부 Bot 설치와 같은 Google 계정의 별도 두 키·관계 수락·왕복 전달은 후속 수락 증거로 남긴다.
+
+복구할 때 먼저 기존 보호 ingress와 Access 대상을 함께 복원하여 새 공개 연결을 중단한다. 이전 수락 코드로 되돌리되 현재 DB·키·credential·폐기 기록은 보존한다. 과거 DB 백업을 덮어쓰지 않는다. 이전 코드가 새 JSON 필드를 버릴 수 있으므로 대기 요청은 새로 시작하고, 완료된 키와 폐기 상태를 별도 확인한다.

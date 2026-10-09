@@ -25,6 +25,7 @@ const (
 type Connection struct {
 	Owner, Agent, Client, Mode, Kid, Public, State string
 	Exp                                            time.Time
+	Device                                         bool // Client-started requests never put the private polling token in a browser.
 }
 
 func connectionBytes(token string, c *Connection) []byte {

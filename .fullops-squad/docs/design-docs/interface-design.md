@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-07
+updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -212,3 +212,17 @@ text wire의 필수 필드는 `v,id,from,to,text,exp,idempotency_key,sig`다. `r
 관련 답장은 실제 persist/ACK된 원요청의 endpoint를 반전하고 같은 현재 세대·부모 기한 안에서 한 번만 수락한다. 같은 key/내용은 현재 인가 뒤 receipt만 반환한다. 다른 내용은409 idempotency_conflict다. 답장의 ACK 뒤 부모 completion은 reply_received다. queued·leased는 수신 완료가 아니다.
 한도는409 capacity, HTTP 동시/rate는429·retry_at/Retry-After, TTL은422 expired/ttl_too_long, 키는401 invalid_auth 또는422 invalid_signature, 관계·세대는403이다. 한도 실패는 새 receipt를 만들지 않는다. `/home`은 가능한 복구 동작을 표시한다. agent receipt는 현재 인가가 없으면403이고 자기 회원 화면에서 실패를 조회한다.
 Node CLI는 `text.js send <folder> <peer> <key> --confirmed [request-id]`, `receive <folder>`, `receipt <folder> <id>`다. 본문은 비공개 stdin이다. MCP는 public-node와 자기 폴더를 명시한 경우만 knowslink_text_send/receive/receipt를 허용한다. send는 해당 송신의 명시 승인 confirmed:true를 요구한다. 수신 text는 untrusted:true다. 정상 idle pull은10s 이상이다. 실제 외부 앱/계정 수락은 후속이다.
+
+## Google 연결 API — SAR-GOOGLE-CONNECT-001-DEV
+
+| 경로/도구 | 입력과 결과 | 경계 |
+|---|---|---|
+| POST `/v1/connect/start` | token, client, kid, public, proof → requested, exp | node-local만 허용; token 32 bytes; Ed25519 proof |
+| POST `/v1/connect/poll` | 같은 서명 입력 → state, exp; 승인 후 owner, agent | token·키·client 결합; 만료/취소/소비 거부 |
+| GET `/connect/{id}` | token SHA-256 base64url ID → 로그인/동의 화면 | 키 지문·만료 표시; 타 회원 거부 |
+| POST `/auth/google` | 선택적 connection ID | 기존 state/nonce/PKCE 검증; 회원 재바인딩 금지 |
+| POST `/home/device-confirm` | connection ID | Google 최근 인증·동일 Origin·세션·명시적 동의 |
+| `knowslink_connect` | confirmed:true | public-node 설정에서 로컬 키 생성; 공개 링크만 반환 |
+| `knowslink_connect_status` | 없음 | waiting/connected/failed; credential 반환 안 함 |
+
+device proof 바이트는 `KNOWSLINK-DEVICE\0token\0client\0kid\0public` UTF-8이며 서명과 공개키는 base64url이다. 시작·조회 본문은 8192 bytes로 제한한다. 기존 익명 30/min, 회원 40/min, 공유 200/min 및 신규 요청 budget을 재사용한다. 보존 중 Device 요청은 최대 2000개다. 요청 수명은 10분이며 기존 최근 인증 실패는 422다. 기존 prepare/complete·text·owner API 계약은 유지한다.

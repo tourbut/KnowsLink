@@ -2,9 +2,9 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-07
+updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -157,3 +157,7 @@ PS-08–11·UX-06/07의 일반 회원 text는 `knowslink.text.v1`·`/v1/text/*`�
 HTTP 신규16·정리4는 즉시 거부하는 프로세스 채널과 공유 JSONB 입장 기록으로 제한한다. 정상 종료는 기록을 지우고 crash는 30s 뒤 회수한다. DB context·socket body read는 10s다. 8/32KiB 상한 본문은 모든 슬롯보다 먼저 같은 10s 기한 안에서 수신한다. 느린 송신자는 자기 연결만 점유한다. 이 점유는 header 수신과 같은 연결 계층이며 DB·공유 상태를 만들지 않는다. 모든 입장 요청의 신원별 rate를 schema·CSRF·route 검사 전에 한 번 차감한다. 입장 전 로컬 동시 상한 거부는 DB 대기열을 만들지 않는다. 정리 입장(로컬 정리 채널·공유 Clean 기록·cleanup rate)은 검증된 principal이 같은 출처·gate CSRF·유효 본문으로 자기 기록을 정리할 때만 쓴다. 익명·잘못된 자격·타 owner 기록·CSRF·잘못된 본문은 신규로 집계한다. 로컬 채널은 이 프로세스의 마지막 커밋 상태 snapshot에서 자격 색인과 자기 기록 대조(cleanupTarget)를 모두 통과한 요청만 정리 채널로 고른다. 타 owner·lease 없는·위조 정리는 DB 입장을 기다리는 동안에도 신규 채널만 쓴다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2 H-2). 공정성 단위는 owner 자신의 제어(철회·unpair·deny·logout)와 그 owner의 agent ACK 두 개다. 각 단위는 로컬 정리 채널과 공유 Clean 기록에서 각각 동시 1개만 쓴다. agent의 ACK 반복은 owner의 자기 agent 철회를 막지 못한다. 자기 대상 반복·rate 초과 정리도 다른 owner의 정리를 막지 못한다. transaction이 다시 판정하며 판정이 신규로 바뀌면 정리 슬롯을 신규 슬롯으로 돌려준다. snapshot은 (DB commit 시각, epoch) 순서로만 교체한다. 같은 commit 시각에도 늦게 저장된 이전 snapshot이 최신을 덮지 않는다. 신규 채널이 가득 찬 상태에서 snapshot이 정리 자격을 증명하지 못하면 거부 전에 커밋 상태를 한 번 다시 읽는다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-3). 신규 채널에 여유가 있으면 신규로 대기하고 transaction이 공유 budget을 판정한다. 이 읽기는 lock·슬롯 없는 단일 조회이며 프로세스당 동시 1개다. 요청 도착 뒤 시작한 읽기를 공유한다. 다른 프로세스의 새 자격과 재시작 직후 빈 snapshot도 1s sweep을 기다리지 않는다. 위조·타 owner 정리는 다시 읽어도 신규 채널을 쓴다. 종료 transaction이 실패한 공유 기록은 30s 만료 전에 같은 프로세스의 다음 commit이 지운다. 명시 deny 경로는 신규 슬롯이 포화해도 수신한다. gate 결정 뒤에는 정식 gate 화면으로 303한다.
 회원 gate GET/POST가 검증본문·서명·digest·현재 세대·기한을 검사한다. hint는 escaped 참고 데이터다. approve는 인간 게이트만 통과시키며 query disclosure deny·commit 실행 불가를 유지한다.
 실제 로컬 Node CLI/MCP·일반 신원 HTTP·격리 Postgres 증거는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md)에 있다. 운영 배포·실메일·실제 Grok Bot/다닷·독립 QA·직접 시각 수락·실부하와 복원은 후속이다. 단일 행 lock의 처리량 한계는 유지한다.
+
+## Google 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV
+
+Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시작 요청을 보낸다. 브라우저에는 token hash인 공개 연결 ID만 노출한다. 기존 Google issuer/sub 회원·Strict 세션을 재사용한다. Google callback은 요청의 회원만 바인딩하고, 최근 인증 상태의 명시적 동의가 별도 agent를 만든다. Node가 동일 키로 승인 상태를 조회하고 기존 signed complete로 자기 credential을 받아 로컬에 저장한다. 관계 요청·수락은 기존 권한 경계를 유지한다. 새 IdP·의존성·SQL 테이블은 없다. Cloudflare 사용자 경로 개방과 관리자 보호의 운영 변경은 D12에서 별도로 수행한다.

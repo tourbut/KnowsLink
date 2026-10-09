@@ -1,10 +1,10 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-07
+updated: 2026-10-10
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
-summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수락 경계를 기록한다
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
+summary: Google 클라이언트 연결 구현·검증과 독립 검토 및 운영 인계
 ---
 
 # dev 컨텍스트
@@ -68,3 +68,6 @@ summary: 합성 MVP와 승인된 시험 transport의 권한·검증·운영 수�
 
 - 2026-10-07 SAR-GOOGLE-LOGIN-001-DEV: Google issuer/sub와 이메일 신원을 분리하고 기존 owner/세션 발급을 공유했다. Google reauth는 시작한 세션·동일 회원에 묶는다.
 - OAuth GET callback용 시도 cookie만 Lax다. Strict 세션은 유지하고 완료 화면의 홈 링크로 계속한다. 최근 ID token 재검증은 Google 비밀번호 재입력을 보장하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md).
+
+- 2026-10-10 SAR-GOOGLE-CONNECT-001-DEV: Google callback은 회원만 고정하고 전용 명시적 동의가 별도 agent를 만든다. 공개 URL은 token hash이며 credential은 서명한 클라이언트만 수집한다.
+- Windows 파일 비공개성은 POSIX mode로 확인할 수 없다. 소유자와 ACL을 검사하며 .NET ACL은 WindowsPS module 충돌을 피한다. [실행 기록](../docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md).

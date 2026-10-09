@@ -2,9 +2,9 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-07
+updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -174,3 +174,9 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 - `cmd/relay/main.go`, `compose.yaml`: 세 Google env를 relay에 전달한다. 일부 설정·HTTP 또는 잘못된 callback URL·discovery 실패는 기동 실패다. 정확한 env·콘솔 URI와 로컬 HTTPS 조건은 [README](../../../README.md#google-가입로그인-sar-google-login-001)를 따른다.
 
 `TestGoogleTokenVerification`은 실제 RSA/JWK로 정상·위조 서명·issuer/audience/expiry/nonce/iat/이메일 거부를 확인한다. `TestGoogleIdentityContinuityAndReauth`는 이메일 미병합·동일 신원·회원 한도·owner·세션 회전과 재확인 거부를 확인한다. `TestGoogleAttemptAndConfiguration`은 state/cookie/재사용/만료·설정 거부를 확인한다. `TestGoogleHTTP`는 격리 Postgres와 signed local provider에서 SMTP 없는 전체 인증 delta를 확인한다. 실제 Google 계정과 직접 브라우저 확인·독립 코드 리뷰는 coor 후속이다. 상세 실행은 [DEV 기록](../exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md)에 남긴다.
+
+## Google 연결 모듈 — SAR-GOOGLE-CONNECT-001-DEV
+
+`internal/relay/device.go`는 시작·서명 조회·동의 페이지와 agent 생성을 담당한다. `google.go`는 기존 callback 검증 후 연결 회원을 고정한다. `member_agents.go`와 `member.go`는 기존 최근 인증·Origin 검사 및 자기 홈 선택 UI를 재사용한다. `adapters/src/login.ts`는 로컬 키 생성·승인 대기·기존 complete·자동 저장을 담당한다. `private-files.ts`는 connect/text의 파일 검사를 공유하고 Windows .NET ACL로 소유자와 접근자를 검사한다. 새 패키지는 없다.
+
+Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 결합, 명시적 동의, 만료, replay, 별도 agent를 확인한다. Node login 검사는 실제 HTTP 서명과 자동 저장·권한을 확인한다. `.gitattributes`의 LF는 Windows gofmt 및 동결 registry digest를 동일하게 유지한다. `check_public_ingress.py`는 공개 경로와 관리자 경로 분리를 assert로 검사한다. 실계정·외부 Bot 검증은 부모 QA/OPS 인계다.

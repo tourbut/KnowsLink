@@ -1,0 +1,8 @@
+# OPS inserts this rule before the existing owner-protected fallback; preserve trial and other host rules.
+# This fragment alone does not change edge Access applications. Follow D12 before activation.
+- hostname: link.knowslog.com
+  path: '^(/|/auth/(google(/callback)?|start|verify|reauth|logout(-all)?)|/home(/.*)?|/connect/[A-Za-z0-9_-]{43}|/v1/connect/(start|poll|info|prepare|complete)|/v1/text/(send|pull|persist|ack)|/v1/keys/[a-z][a-z0-9_:-]*/[A-Za-z0-9_:-]+|/v1/receipts/[0-9a-f-]+)$'
+  service: http://relay:8080
+  originRequest:
+    access:
+      required: false
