@@ -1249,3 +1249,13 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 지시의 `lit`는 지원 값 `lite`로 적용했다. 정본 `fullops.json.test_level=lite`이며 coor 모드와 역할은 유지한다. 보안·데이터 손실 방지·필수 등록 lint/test·독립 리뷰 기준은 유지한다. 과거 standard 검증 기록은 당시 사실로 보존한다.
 - 새 기술 계획·구현·좁은 회귀는 DEV의 같은 과제다. 제품 목표는 사용자 지시로 확정됐다. 새 제품 규칙/범위 질문만 기획 역할에 전달한다. 실제 외부 플랫폼 제약은 확인한 근거와 함께 보고하며 설치·로그인·연결·왕복 성공을 구분한다.
 - 기존 노우 agent `agent_af951c12bcd21106357539`는 미연결이며 이전 10분짜리 grant는 자동 만료된다. 기존 사용자 자료·Google 신원·운영 DB를 보존하고 종료한 trial 자격은 재사용하지 않는다. 후속 DEV 인박스는 `handovers/to_dev.md`를 사용한다.
+
+
+## 로컬 환경 이전을 위한 진행본 보존 — 2026-10-09
+
+- 사용자가 작업 중지 후 각 브랜치 원격 보존을 요청했다. 기능 개발·검증·배포는 재개하지 않는다.
+- SAR-GOOGLE-CONNECT-001-DEV의 지시서와 Jev 탐색 기록을 fullops/coor 및 fullops/dev에 WIP로 커밋한다. 제품 코드 변경은 없다. 기존 main 기준은 c3f918dfb89c6c670075cddf7a1cc351d1397bf2다.
+- Dispatch ctx_e94e33423e49는 worker-stop에서 user_owned 때문에 stop_unknown을 반환했다. 이후 interrupt를 전달했다. terminal preview에서 Shutting down, Codex 종료 메시지와 셸 프롬프트를 확인했다. 오래된 dispatch 상태를 성공 완료로 바꾸지 않는다.
+- 로컬에서는 fullops/dev의 handovers/to_dev.md부터 읽는다. 기능은 미구현이며 새 환경의 경로·터미널·Run을 다시 확인한 뒤 사용자 재개 지시에 따라 진행한다. 과거 핸들을 재사용하지 않는다.
+- .fullops-squad/.env, 운영 /home/shin/deploy/knowslink-state, DB·키·OAuth/Cloudflare 자격은 Git 이전 대상이 아니다. 필요 시 별도 안전한 경로로 이전한다. 만료된 연결 token은 재사용하지 않는다.
+- 다른 역할 및 main에는 새 변경이 없다. 각 브랜치의 기존 HEAD를 원격과 확인한다. 미완료 진행본을 main에 병합하지 않는다.
