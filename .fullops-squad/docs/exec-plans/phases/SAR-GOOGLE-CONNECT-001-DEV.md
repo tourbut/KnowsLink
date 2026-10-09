@@ -34,3 +34,7 @@ Windows 검사 환경은 사용자 로컬 도구 폴더에 Node 22.22.2/npm 10�
 로컬 Node HTTP 검사와 격리 Postgres 17/합성 RSA OAuth 검사는 실제 Google 계정 성공이 아니다. 직접 Chrome 화면 검수는 실제 Service handler에 합성 회원·세션·연결을 넣은 일회성 localhost fixture였다. desktop과 mobile 390×844에서 지문/동의 버튼을 읽었고 실제 document scrollWidth=clientWidth=375였다. 동의 후 approved와 잘못된 요청 거부 화면을 확인했다. 캡처 파일은 저장하지 않았으며 부모의 독립 시각 QA는 남는다.
 
 새 런타임 의존성은 없다. 변경 규모는 trust-boundary 검증과 Windows ACL 및 회귀 검사·운영 문서 때문이다. 기존 큰 module을 별도 재구성하지 않았다. Context7 Node/Cloudflare 조회는 monthly quota 초과였고 공식 Node fs 및 Cloudflare 경로 우선순위/Tunnel 문서를 확인했다. 운영 계정·DB·실사용자 환경과 비공개 .env 링크를 보존했다. 부모가 고정 SHA 리뷰·좁은 QA·main 통합·OPS 적용을 맡는다.
+
+## 운영 서버 검증으로 전환
+
+최신 coor 메시지 msg_641fb3898ab1/msg_d9bb45f4a345에 따라 로컬 Docker 사용을 중단하고 .env.server로 비공개 SSH 접속했다. 구현 b8fce7e의 별도 임시 디렉터리에서 등록 make lint=0, make test=0을 확보했다. 별도 합성 Postgres17/임의 loopback 포트의 migration=0, GoogleDeviceHTTP/GoogleHTTP/EmailIdentity race integration=0이다. 기존 운영 DB·회원·키·Tunnel·다른 서비스를 보존하고 임시 컨테이너만 제거했다. 서버 로그·도구 버전·제한은 QA 보고의 최신 절을 따른다. 최종 문서 commit의 clean clone에서 등록 게이트를 실행한다.

@@ -1293,3 +1293,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 기준 f9f7675, 착수 f6daf93의 전달 packet/inbox를 보존하고 Google 전용 클라이언트 시작·동의·자동 저장을 구현했다. 같은 Google 회원의 별도 두 agent와 키 및 명시적 관계 수락을 유지한다.
 - Node 22/make/race compiler와 격리 DB로 Windows 필수 검사 환경을 복구했다. 측정·packet outcomes·운영 인계는 DEV 실행 기록 및 QA 보고를 따른다. 완료 SHA는 worker_done에 고정한다.
 - 부모는 고정 SHA 독립 리뷰·좁은 QA·main 통합과 D12의 Access/ingress 적용을 맡는다. 실제 Google/외부 Bot·공유 호스트 운영 수락과 기존 held/fail은 유지한다. 다른 인박스와 과제는 변경하지 않았다.
+- 최신 사용자 지시를 전달한 coor 메시지에 따라 로컬 Docker 작업을 중단했다. 운영 서버의 격리 임시 소스/DB에서 b8fce7e 등록 lint/test 및 좁은 OAuth 검사는 모두 exit0이다. 기존 서비스·DB·키·Tunnel을 보존했으며 최종 SHA의 게이트도 서버 clean clone에서 수행한다.
