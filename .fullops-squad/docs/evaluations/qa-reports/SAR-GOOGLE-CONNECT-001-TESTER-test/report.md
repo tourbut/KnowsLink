@@ -77,3 +77,7 @@ DEV 증거 재사용과 직접 실행의 구분: DEV의 `make lint`·`make test`
 ## 재현
 
 `device_tester_qa_integration_test.go`를 SHA `152217f`의 `internal/relay/`에 복사한다. 격리 Postgres 17을 띄우고 `TEST_SYNTHETIC_DATABASE=1`·`TEST_DATABASE_URL`을 설정해 `go run ./cmd/migrate` 뒤 `go test -race -tags integration ./internal/relay -run TestTesterGoogleDeviceBoundaries -count=1 -v`를 실행한다. 운영 `DATABASE_URL`을 쓰지 않는다.
+
+## tester 체크아웃 lint.py 시도(done-gate)
+
+HEAD `165ec4c`(이 체크아웃은 제품 변경 없이 기록만 추가)에서 `lint.py --repo . --from f9f7675…`를 실행했다. 첫 실행은 `make`·Node 미탐색으로 실행 불가였다. 둘째 실행은 로컬 도구(Node 22.22.2, GNU Make 4.4.1)를 PATH에 넣었다. 첫 번째 ERROR(DOC-003)는 report.md front matter 형식이었고 `deliverables.py --stamp`로 고쳤다. 남은 ERROR 2건은 `product-lint`(gofmt가 `internal/relay` 전체 파일을 나열)와 `product-test`(`TestFrozenParsingAndSigning`의 `registry integrity failure`)다. 원인은 이 체크아웃의 `core.autocrlf=true`로 Go 파일이 CRLF 작업 사본이라는 점이다(`git ls-files --eol`: `i/lf w/crlf`). 이 체크아웃의 HEAD에는 DEV가 추가한 `.gitattributes`(eol=lf)가 아직 없다. 이 두 실패는 변경하지 않은 제품 파일의 환경 문제이며 내 변경과 무관하다. 검토 SHA의 등록 lint/test 증거는 위 리뷰의 서버 clean clone `lint.json`(exit 0)이다. 이 체크아웃에서 통과 기록을 만들지 못했으므로 done-gate 통과로 주장하지 않는다. 필요하면 main 통합 뒤 이 체크아웃을 최신 main으로 동기화하여 재실행한다.
