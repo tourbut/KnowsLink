@@ -1,0 +1,164 @@
+{
+  "at": "2026-10-09T08:06:30.004500+00:00",
+  "checks": [
+    {
+      "method": "POST",
+      "path": "/v1/connect/info",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/prepare",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/complete",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v1/text/send",
+      "status": 422,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_schema"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v1/text/pull",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v1/text/persist",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v1/text/ack",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/v1/keys/agent_test/key_test",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/v1/receipts/probe",
+      "status": 401,
+      "content_type": "application/json",
+      "error": {
+        "error": "invalid_auth"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/home",
+      "status": 302,
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "method": "GET",
+      "path": "/owner",
+      "status": 302,
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/owners",
+      "status": 302,
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/connect/unknown",
+      "status": 403,
+      "content_type": "",
+      "error": "non-json"
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "status": 302,
+      "content_type": "text/html; charset=UTF-8"
+    }
+  ],
+  "positive_connection": {
+    "info_http": 200,
+    "client": "actual Node fetch",
+    "agent": "agent_af951c12bcd21106357539",
+    "state": "waiting",
+    "exp": "2026-10-09T08:18:32Z",
+    "prepare_complete": "pending Bot key generation and human fingerprint approval"
+  },
+  "earlier_probes": [
+    "403 text/plain immediately after tunnel restart; subsequent probes reach relay JSON",
+    "probe assertion initially omitted expected invalid_schema 422; corrected expectation without product change"
+  ],
+  "owner_access_app_policy_unchanged": true,
+  "python_default_user_agent": "403 text/plain; Node fetch reaches real grant",
+  "existing_checks": [
+    {
+      "command": "python3 deploy/knowslink/verify.py local",
+      "exit_code": 0,
+      "stdout": "local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 deploy/knowslink/verify.py public",
+      "exit_code": 0,
+      "stdout": "unauthenticated /healthz False -> 302\nunauthenticated /owner False -> 302\nunauthenticated /v1/registry False -> 302\nunauthenticated /healthz True -> 302\nunauthenticated /healthz True -> 302\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 deploy/knowslink/verify.py regression",
+      "exit_code": 0,
+      "stdout": "shared services unchanged: {'orca.knowslog.com': 200, 's8.knowslog.com': 200, 'mcp.knowslog.com': 401} pids ['506937']\n",
+      "stderr": ""
+    }
+  ],
+  "cloudflare": {
+    "account": "4d545b8037b67ac95d83fe4276ce4aca",
+    "api_app": "fc81b205-d4d1-445e-a2bd-384a2ed82f62",
+    "api_policy": "a3771092-fff3-46df-9748-017187fbd779",
+    "destinations": [
+      "link.knowslog.com/v1/connect/*",
+      "link.knowslog.com/v1/text/*",
+      "link.knowslog.com/v1/keys/*",
+      "link.knowslog.com/v1/receipts/*"
+    ]
+  },
+  "tunnel_config_sha256": "40ce65ea1450329ac73c9b3188f12966b99ea562fae31c334e06dd92b06cf283",
+  "deployed_sha": "a9a0db49745542727611ee863e0beeb03c53288e"
+}

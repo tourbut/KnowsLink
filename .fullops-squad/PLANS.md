@@ -1232,3 +1232,13 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - coor는 Orca에 Cloudflare 로그인과 KnowsLink 홈 탭을 열고 사용자 직접 Cloudflare 로그인을 요청했다. 담당은 coor/ops이며 로그인 완료 또는 유효한 제한 관리 권한 확보가 재개 조건이다. 기존 root Access 보호·Tunnel·운영 DB는 변경하지 않았다.
 - 이후 연결 API의 좁은 접근 범위와 origin JWT 검사를 함께 검토·검증하고 새 일반 회원 agent 연결을 진행한다. 공식 근거는 [Access 경로 우선순위](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)와 [Tunnel origin Access 검사](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/origin-parameters/)다. 이번 조사에서 제품 코드와 운영 설정을 변경하지 않았다.
 - 다음 Bot 안내는 새 private 하위 폴더를 지정한다. `connect.ts`의 prepare는 기존 폴더를 거부하므로 이미 존재하는 `nou/`를 대상 폴더로 그대로 사용하지 않는다. 연결 token·credential·개인키·세션 cookie는 공개 이슈에 전달하지 않는다. 새 댓글은 아직 게시하지 않았다.
+
+### SAR-NOU-PUBLIC-CONNECT-001 — 연결 API 접근 준비 완료
+
+- 사용자가 Cloudflare 로그인과 Google 신원 재확인을 완료했다. Cloudflare MCP의 현재 계정 접근으로 기존 owner-only 앱·정책을 조회했으며 적용 전후 두 객체가 동일하다. 만료된 파일 token은 재사용하거나 새로 발급하지 않았다.
+- 새 재사용 policy `knowslink-member-agent-api`와 앱 `KnowsLink member agent API`를 만들었다. Access 예외는 `/v1/connect/*`, `/v1/text/*`, `/v1/keys/*`, `/v1/receipts/*` 네 경로뿐이다. origin ingress는 실제 연결 3개·text 4개·키 조회·receipt 조회만 정규식으로 매칭하며 나머지 경로의 기존 Access JWT 검사를 유지한다. KnowsLink cloudflared만 재시작했다.
+- ingress 후보 검증·허용/거부 11경로 검사, 공개 음성 14검사, 기존 local/public/shared regression이 통과했다. 실제 Node fetch에서 새 일반 회원 grant info HTTP 200·waiting을 확인했다. Python 기본 User-Agent의 403은 별도 관측이며 Node의 정상 접근과 구분한다. 초기 앱 생성은 domain과 destinations 불일치로 거절됐고 일치시킨 재요청에서 성공했다. 중복 policy/app은 만들지 않았다.
+- 노우용 `agent_af951c12bcd21106357539`를 실제 사용자 회원 홈에서 생성했다. 아직 미연결이다. 연결 token은 `2026-10-09T08:18:32Z`까지 최대 10분·1회 유효하며 운영 state의 `nou-connect-token.txt` 0600에만 보존했다. token·세션·개인키·credential은 Git·공개 댓글에 기록하지 않았다.
+- 다음 담당은 사용자/노우다. token 파일을 노우 컴퓨터에 비공개로 전달하고 새 `member-001` 폴더에서 prepare를 실행한다. 사용자가 지문을 대조·승인한 뒤 complete와 public-node MCP 전환을 진행한다. 만료 시 같은 미연결 agent에서 새 연결 수단을 발급하며 새 agent를 중복 생성하지 않는다. 실제 prepare/complete·MCP 등록·왕복은 아직 미검증이다.
+- 증거: `docs/evaluations/qa-reports/COOR/open-readiness/nou-public-access.json`. 제품 코드는 변경하지 않았으며 등록 product-lint/product-test 재실행은 적용하지 않는다. 현재 운영 config는 state에 있으며 `beta.sh render-config`는 기존 owner-only 템플릿으로 덮어쓰므로 그대로 실행하지 않는다.
+- rollback은 state의 `tunnel/config.before-nou-public-20261009.yml`을 `tunnel/config.yml`로 복원하고 KnowsLink cloudflared만 재시작한 뒤 새 API 앱·재사용 policy를 삭제한다. 원래 root 앱·정책·Tunnel·운영 DB와 공유 서비스는 보존한다.
