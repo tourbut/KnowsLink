@@ -1305,3 +1305,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 현재 Run `run_86e0e674b5a0`, 복귀 `term_e61d3e14-29e9-4954-943a-4a75707c82de`. 이전 Linux 경로·Run·터미널은 사용하지 않는다.
 - DEV 기준 `f9f7675be6c9502bd6ab2f810bd42ff62a26a174`, 현재 역할 인박스 `handovers/to_dev.md`에 재개 지시를 통합했다. Jev는 implementation/dev·gpt-6.1-sol medium을 추천했다.
 - 다음은 독립 리뷰·필요한 좁은 QA와 운영 인계, 실제 노우 연결·왕복 확인이다. UTF-8 medium 후속과 자동 wake/MCP 도구 목록/dots는 선행 연결 작업 뒤에 처리한다. 제품 검사 환경(make 부재)은 DEV가 필수 검사 유지 조건으로 복구한다.
+
+- DEV 착수 확인: Run run_86e0e674b5a0 / task_6cd04d6a9097 / dispatch ctx_0b917bf8a813 / term_21a94832-aacf-411f-abe4-3c8ab2e4b37c. requested/effective 모두 Codex gpt-6.1-sol medium이며 turn_started와 지시서 읽기를 확인했다. 정상 worker 로그 재독 없이 worker_done을 기다린다.
