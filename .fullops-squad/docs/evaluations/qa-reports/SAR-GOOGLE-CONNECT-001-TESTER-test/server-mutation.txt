@@ -1,0 +1,7 @@
+# mutation runs on a disposable server copy (removed afterwards); outputs copied from the terminal
+run1 owner mutation (condition replaced with `if false {`): build failed "declared and not used: m" -> invalid, no result
+run1 proof mutation (deviceProof check removed from poll): FAIL TestTesterGoogleDeviceBoundaries "got 200 want 401" exit=1
+run2 owner mutation (m.Owner != c.Owner check removed), pre-hardening test: PASS exit=0  (shows the gap, review finding 3)
+run3 final test, normal source: PASS exit=0
+run3 owner mutation: FAIL "existing competing member got 200 session-kept=false members=2" exit=1
+run3 proof mutation: FAIL "got 200 want 401: {"exp":"...","state":"prepared"}" exit=1

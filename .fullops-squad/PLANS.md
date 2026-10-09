@@ -1,10 +1,10 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-09
+updated: 2026-10-10
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0]
-summary: 기존 제품 계획 보존과 FullOps 1.2.0 운영 적용·통합
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV]
+summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
@@ -1317,3 +1317,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV 서버 검사 중간 보고 msg_cb7e7b6c4ee5: 구현 후보 b8fce7e를 서버 별도 임시 디렉터리에서 make lint/test exit0, 격리 Postgres17 migration 및 GoogleDeviceHTTP·GoogleHTTP·EmailIdentity race integration exit0으로 검증했다. 임시 DB 컨테이너 제거와 기존 운영 서비스·DB·계정·Tunnel 불변을 보고했다. 최종 SHA 게이트·worker_done은 아직 대기다.
 
 - DEV 최종 성공 msg_2331285825a8 / 152217f63cced85f620695961955d680ce27864e 수신. 실제 구현자 01a12123-fd98-7b80-880e-6c2802149a6d, 서버 clean-clone 최종 lint ERROR0/WARNING8/실행불가0·등록검사 exit0다. 필수 인증 리뷰·서버 lite QA까지 integration hold(coor)를 설정했다. DEV release는 user_takeover로 retained를 반환했으므로 사용자 소유 터미널을 강제 종료하지 않는다. tester Grok 후보는 실제 주간한도0으로 미착수 종료했고, 재라우팅이 등록된 Claude Sonnet5.5 high를 선택했다.
+## SAR-GOOGLE-CONNECT-001-DEV Windows 구현 결과
+
+- 기준 f9f7675, 착수 f6daf93의 전달 packet/inbox를 보존하고 Google 전용 클라이언트 시작·동의·자동 저장을 구현했다. 같은 Google 회원의 별도 두 agent와 키 및 명시적 관계 수락을 유지한다.
+- Node 22/make/race compiler와 격리 DB로 Windows 필수 검사 환경을 복구했다. 측정·packet outcomes·운영 인계는 DEV 실행 기록 및 QA 보고를 따른다. 완료 SHA는 worker_done에 고정한다.
+- 부모는 고정 SHA 독립 리뷰·좁은 QA·main 통합과 D12의 Access/ingress 적용을 맡는다. 실제 Google/외부 Bot·공유 호스트 운영 수락과 기존 held/fail은 유지한다. 다른 인박스와 과제는 변경하지 않았다.
+- 최신 사용자 지시를 전달한 coor 메시지에 따라 로컬 Docker 작업을 중단했다. 운영 서버의 격리 임시 소스/DB에서 b8fce7e 등록 lint/test 및 좁은 OAuth 검사는 모두 exit0이다. 기존 서비스·DB·키·Tunnel을 보존했으며 최종 SHA의 게이트도 서버 clean clone에서 수행한다.

@@ -24,6 +24,7 @@ type GoogleLogin struct {
 
 type googleAttempt struct {
 	Nonce, Verifier, CurrentHash, Member string
+	Connection                           string
 	Created, Exp                         time.Time
 }
 
@@ -61,6 +62,11 @@ func (s *Service) googleFailure(w http.ResponseWriter, status int, problem strin
 }
 
 func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth bool) {
+	r.Body = http.MaxBytesReader(w, r.Body, 8192)
+	if r.ParseForm() != nil {
+		s.googleFailure(w, 422, "로그인을 시작할 수 없습니다. 다시 시작하세요.")
+		return
+	}
 	if s.Google == nil {
 		s.googleFailure(w, 503, "Google 로그인이 아직 설정되지 않았습니다. 잠시 뒤 다시 시도하세요.")
 		return
@@ -77,6 +83,19 @@ func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth boo
 		a := &googleAttempt{Nonce: randomToken(), Verifier: oauth2.GenerateVerifier(), CurrentHash: hashToken(readCookie(r, sessionCookie)), Created: now, Exp: now.Add(codeTTL)}
 		if reauth {
 			a.Member = id
+		}
+		if connection := r.FormValue("connection"); connection != "" {
+			c := st.Connections[connection]
+			if c == nil || !c.Device || !now.Before(c.Exp) || (c.State != "requested" && c.State != "prepared") {
+				return nil, fault("invalid_auth")
+			}
+			if c.Owner != "" {
+				if sessionErr != nil || st.Members[id].Owner != c.Owner || st.Members[id].Issuer != googleIssuer {
+					return nil, fault("invalid_auth")
+				}
+				a.Member = id
+			}
+			a.Connection = connection
 		}
 		if st.GoogleAttempts == nil {
 			st.GoogleAttempts = map[string]*googleAttempt{}
@@ -164,10 +183,7 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	value, err = s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		if !now.Before(a.Exp) {
-			return verifyResult{Problem: "expired"}, nil
-		}
-		return st.signIn(googleIssuer, subject, email, a.CurrentHash, a.Member, now), nil
+		return st.finishGoogleLogin(a, subject, email, now), nil
 	})
 	if err != nil {
 		s.googleFailure(w, 503, "로그인을 완료하지 못했습니다. 다시 시작하세요.")
@@ -180,5 +196,39 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 	setCookie(w, sessionCookie, result.Session, int(sessionAbsolute/time.Second))
 	// A same-site click sends the Strict session; a redirect chain from Google may not.
-	render(w, 200, "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Notice": "신원을 확인했습니다. 자기 홈에서 계속하세요."})
+	next := "/home"
+	if a.Connection != "" {
+		next = "/connect/" + a.Connection
+	}
+	render(w, 200, "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Notice": "신원을 확인했습니다. 계속해서 연결을 확인하세요.", "Next": next})
+}
+
+// finishGoogleLogin binds a verified identity before browser consent; a different account cannot replace that binding.
+func (st *State) finishGoogleLogin(a *googleAttempt, subject, email string, now time.Time) verifyResult {
+	if !now.Before(a.Exp) {
+		return verifyResult{Problem: "expired"}
+	}
+	if a.Connection != "" {
+		c := st.Connections[a.Connection]
+		if c == nil || !c.Device || !now.Before(c.Exp) || (c.State != "requested" && c.State != "prepared") {
+			return verifyResult{Problem: "expired"}
+		}
+		// A competing account cannot bind an already claimed browser request or gain a session through it.
+		if c.Owner != "" {
+			m := st.Members[st.Identities[googleIssuer+"|"+subject]]
+			if m == nil || m.Owner != c.Owner {
+				return verifyResult{Problem: "invalid_auth"}
+			}
+		}
+	}
+	result := st.signIn(googleIssuer, subject, email, a.CurrentHash, a.Member, now)
+	if result.Problem == "" && a.Connection != "" {
+		id, _, e := st.session(result.Session, now)
+		if e != nil {
+			return verifyResult{Problem: "invalid_auth"}
+		}
+		c := st.Connections[a.Connection]
+		c.Owner, c.State = st.Members[id].Owner, "prepared"
+	}
+	return result
 }

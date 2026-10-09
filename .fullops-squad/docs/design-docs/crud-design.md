@@ -2,9 +2,9 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-07
+updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
@@ -78,3 +78,7 @@ agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다.
 동작·실패·경합·재시작 근거는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md)에 연결한다. 운영 자료 삭제는 수행하지 않았다.
 
 독립 QA `09c523da8a3407288d9f5d711e1834af12bc7808`는 위 표의 ACK, 경로 deny, unpair, 로그아웃이 신규 DB 슬롯 포화 중에도 동작함을 확인했다. `POST /home/gates/{id}` form deny는 그 정리 예산에 들어가지 않고 신규 슬롯이 가득하면 429다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다.
+
+## Google 연결 CRUD — SAR-GOOGLE-CONNECT-001-DEV
+
+start는 Device 요청만 생성한다. Google callback은 요청의 Owner와 prepared 상태를 갱신한다. 최근 인증된 동일 회원의 device-confirm만 독립 agent를 생성한다. 서명된 poll은 승인 전 회원·agent를 반환하지 않는다. 기존 complete는 키·credential을 생성하고 요청을 소비한다. 기존 cancel·revoke·cleanup을 재사용하며 관계 요청/수락은 변경하지 않는다. 타 회원 재바인딩, 타 키 조회, 만료·재실행은 거부한다. 상세 계약은 D05와 D06을 따른다.

@@ -1,10 +1,11 @@
 // Explicit member connection-check CLI/MCP transport: private onboarding folder, signed short text, manual receive and no automatic reply.
 import { createPublicKey, sign, verify } from "node:crypto";
-import { readFile, lstat } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Adapter, canonical, uuid7 } from "./core.js";
 import { relayBase } from "./core.js";
+import { privatePath } from "./private-files.js";
 
 export type TextEnvelope = {
   v: "knowslink.text.v1";
@@ -173,14 +174,7 @@ export class TextTransport extends Adapter {
 }
 export async function memberTransport(folder: string): Promise<TextTransport> {
   for (const name of ["", "agent.json", "private.pem"]) {
-    const st = await lstat(join(folder, name));
-    if (
-      st.isSymbolicLink() ||
-      (name ? !st.isFile() || st.size > 8192 : !st.isDirectory()) ||
-      (st.mode & 0o077) !== 0 ||
-      st.uid !== process.getuid?.()
-    )
-      throw new Error("private member folder required");
+    await privatePath(join(folder, name), name === "");
   }
   const c: { relay: string; agent: string; kid: string; credential: string } =
     JSON.parse(await readFile(join(folder, "agent.json"), "utf8"));

@@ -202,3 +202,11 @@ MCP Command 환경은 `KNOWSLINK_MODE=public-node`, `KNOWSLINK_AGENT_FOLDER=/pri
 불확실한 송신은 같은 key·같은 내용으로 재시도한다. 중복은 receipt만 반환한다. idempotency_conflict는 이전 내용을 확인하고 별도 새 요청에는 새 key를 사용한다. expired·오프라인은 클라이언트/관계를 확인한 뒤 새 요청을 명시 송신한다. invalid_auth/invalid_signature는 현재 연결·키·지문을 확인한다. capacity/rate_limited는 성공이 아니며 retry_at 뒤 수동으로 재시도한다. 철회된 옛 요청/세대는 새 수락으로 복구되지 않는다.
 
 회원 홈의 자기 agent·요청 ID 조회에서도 현재 전달·처리·관련 답장·TTL·실패 복구를 확인한다. 로컬 실제 Node/MCP 프로세스 검증은 `make verify-mvp`의 TestPublicNodeProcesses다. 실제 Grok Bot·다닷 앱 설치/권한/계정 왕복·운영 공개·실메일·직접 사람 검수는 별도 후속이다.
+
+## Google 연결 — SAR-GOOGLE-CONNECT-001-DEV
+
+`npm ci`와 `npm run build` 뒤 `node dist/login.js https://link.knowslog.com <새 연결 폴더>`를 실행한다. 상위 폴더는 먼저 만들고 연결 폴더는 아직 없는 경로로 지정한다. 공개 링크를 열어 Google 로그인 후 화면의 키 지문을 확인하고 연결에 동의한다. CLI는 자동 대기하며 완료되면 연결 폴더에 `private.pem`과 `agent.json`을 저장한다. 개인키·token·credential을 브라우저나 다른 클라이언트로 옮기지 않는다.
+
+Command MCP는 기존 `KNOWSLINK_MODE=public-node`, `RELAY_URL`, `KNOWSLINK_AGENT_FOLDER` 설정을 사용한다. 사용자의 동의를 받고 `knowslink_connect`에 `confirmed:true`를 전달한다. 결과의 링크와 지문을 사용자에게 보여 주고 `knowslink_connect_status`로 저장 완료를 확인한다. 기본 held/trial 모드는 그대로다. 같은 Google 계정으로 다른 클라이언트에서 반복하면 서로 다른 agent와 키가 생긴다. 자기 홈에서 출발 agent와 자기 다른 agent를 선택하여 관계를 요청하고 상대가 명시적으로 수락한다. 자동 pairing은 없다.
+
+요청은 10분 뒤 만료한다. 실패·취소·완료 응답 유실 때는 기존 폴더를 덮어쓰지 말고 새 폴더로 다시 시작한다. 이미 생성한 미사용 agent는 자기 홈에서 확인하고 폐기한다. POSIX 소유자·권한 검사와 Windows 상속 차단 ACL 검사를 적용한다. 운영의 공개 경로 적용은 별도 OPS 작업이며 이 DEV 결과는 실제 외부 Bot 연결 성공 증거가 아니다.

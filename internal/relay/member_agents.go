@@ -37,6 +37,9 @@ func fingerprint(public []byte) string {
 	sum := sha256.Sum256(public)
 	return "SHA256:" + base64.RawURLEncoding.EncodeToString(sum[:])
 }
+func newMemberAgentID() string {
+	return fmt.Sprintf("agent_%x", sha256.Sum256([]byte(randomToken())))[:28]
+}
 func ownAgents(st *State, owner string) []memberAgent {
 	agents := []memberAgent{}
 	for id, a := range st.Agents {
@@ -119,6 +122,10 @@ func inviteNotice(before string) string {
 	return "invited"
 }
 func (s *Service) agentRoutes(mux *http.ServeMux) {
+	mux.HandleFunc("POST /v1/connect/start", s.deviceAPI(true))
+	mux.HandleFunc("POST /v1/connect/poll", s.deviceAPI(false))
+	mux.HandleFunc("GET /connect/{id}", s.devicePage)
+	mux.HandleFunc("POST /home/device-confirm", s.memberAction("device-confirm"))
 	mux.HandleFunc("POST /home/agents", s.memberAction("create"))
 	mux.HandleFunc("POST /home/connect", s.memberAction("connect"))
 	mux.HandleFunc("GET /home/connections/{id}", s.connectionPage)
@@ -158,18 +165,26 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			if parseErr != nil || (denying && r.PostForm.Get("decision") != "deny") {
 				return fail(fault("invalid_schema"))
 			}
-			if path == "create" || path == "connect" || path == "confirm" || path == "key-revoke" || path == "agent-revoke" {
+			if path == "create" || path == "connect" || path == "confirm" || path == "device-confirm" || path == "key-revoke" || path == "agent-revoke" {
 				if now.Sub(session.Verified) >= reauthWindow {
 					return fail(fault("reauth_required"))
 				}
 			}
 			agent := r.FormValue("agent")
 			switch path {
+			case "device-confirm":
+				if st.Members[id].Issuer != googleIssuer {
+					return fail(fault("invalid_auth"))
+				}
+				if e := st.approveDevice(r.FormValue("connection"), owner, now); e != nil {
+					return fail(e)
+				}
+				return "/connect/" + r.FormValue("connection"), nil
 			case "create":
 				if limit := st.agentLimit(owner); limit != "" {
 					return refusal{status: 409, problem: agentProblem(limit)}, nil
 				}
-				agent = fmt.Sprintf("agent_%x", sha256.Sum256([]byte(randomToken())))[:28] // Avoid email-derived IDs and cross-member name collisions.
+				agent = newMemberAgentID() // Avoid email-derived IDs and cross-member name collisions.
 				st.Agents[agent] = &Agent{Owner: owner, Keys: map[string]*Key{}}
 				return "/home", nil
 			case "connect":
@@ -190,7 +205,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if path == "cancel" {
 					c.State = "cancelled"
 				} else {
-					if c.State != "prepared" {
+					if c.Device || c.State != "prepared" {
 						return fail(fault("sender_not_allowed"))
 					}
 					c.State = "approved"

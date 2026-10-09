@@ -19,6 +19,7 @@ lint-adapters:
 lint-config:
 	npm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml
 	python3 scripts/check_compose.py
+	python3 scripts/check_public_ingress.py
 	sh -n scripts/install_bot_mcp.sh
 	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py
 

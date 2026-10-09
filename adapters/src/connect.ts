@@ -5,10 +5,11 @@ import {
   generateKeyPairSync,
   sign,
 } from "node:crypto";
-import { mkdir, readFile, writeFile, lstat } from "node:fs/promises";
-import { join } from "node:path";
+import { readFile, writeFile } from "node:fs/promises";
+import { join, basename } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Adapter, relayBase } from "./core.js";
+import { privateDirectory, privatePath } from "./private-files.js";
 
 type Grant = {
   owner: string;
@@ -67,7 +68,7 @@ export async function prepare(
     Date.parse(grant.exp) <= Date.now()
   )
     throw new Error("invalid grant");
-  await mkdir(folder, { mode: 0o700 }); // Existing directories fail; never overwrite a working key.
+  await privateDirectory(folder);
   const keys = generateKeyPairSync("ed25519");
   const privateKey = keys.privateKey
     .export({ format: "pem", type: "pkcs8" })
@@ -103,23 +104,9 @@ export async function prepare(
   };
 }
 export async function complete(folder: string): Promise<void> {
-  const directory = await lstat(folder);
-  if (
-    !directory.isDirectory() ||
-    directory.isSymbolicLink() ||
-    (directory.mode & 0o077) !== 0 ||
-    directory.uid !== process.getuid?.()
-  )
-    throw new Error("private directory required");
+  await privatePath(folder, true);
   for (const name of ["private.pem", "pending.json"]) {
-    const st = await lstat(join(folder, name));
-    if (
-      !st.isFile() ||
-      st.isSymbolicLink() ||
-      (st.mode & 0o077) !== 0 ||
-      st.uid !== process.getuid?.()
-    )
-      throw new Error("private file required");
+    await privatePath(join(folder, name));
   }
   const p: Pending = JSON.parse(
     await readFile(join(folder, "pending.json"), "utf8"),
@@ -134,6 +121,12 @@ export async function complete(folder: string): Promise<void> {
     client: p.client,
     proof: proof(p, privateKey),
   });
+  if (
+    connected.agent !== p.agent ||
+    connected.kid !== p.kid ||
+    !/^[A-Za-z0-9_-]{43}$/.test(connected.credential)
+  )
+    throw new Error("invalid credential response");
   await writeFile(
     join(folder, "agent.json"),
     JSON.stringify({
@@ -170,6 +163,7 @@ async function main(): Promise<void> {
 }
 if (
   process.argv[1] &&
+  basename(process.argv[1]) === "connect.js" &&
   import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
   main().catch(() => {

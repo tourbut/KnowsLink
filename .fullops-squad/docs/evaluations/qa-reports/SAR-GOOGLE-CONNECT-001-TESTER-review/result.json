@@ -1,0 +1,515 @@
+{
+  "base": "f9f7675be6c9502bd6ab2f810bd42ff62a26a174",
+  "head": "152217f63cced85f620695961955d680ce27864e",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.13 (fabbdb29) windows/amd64\nbuilt at: 2026-10-08T11:52:18Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "claude claude-sonnet-5-5 high (tester, session b46475f6-dee2-49f6-936f-fe1513a39142)",
+  "conclusion": "accepted: 미해결 critical/high 없음. medium 2·low 2 권고. 서버 독립 QA와 mutation 확인 통과.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-context.json",
+      "status": "modified",
+      "insertions": 104,
+      "deletions": 195,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-documents-find.json",
+      "status": "modified",
+      "insertions": 473,
+      "deletions": 52,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-find.json",
+      "status": "modified",
+      "insertions": 185,
+      "deletions": 44,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 1094,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-packet.json",
+      "status": "modified",
+      "insertions": 1185,
+      "deletions": 412,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-route.json",
+      "status": "modified",
+      "insertions": 32,
+      "deletions": 36,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-route.prior-1791557194719817700.json",
+      "status": "added",
+      "insertions": 105,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GOOGLE-CONNECT-001-DEV-route.prior-1791557279827916400.json",
+      "status": "added",
+      "insertions": 104,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-GOOGLE-CONNECT-001-DEV-context-469d37f546fd43c49d553d192614a110.json",
+      "status": "added",
+      "insertions": 356,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-GOOGLE-CONNECT-001-DEV-documents-find-e1e055f5a47643bca5111b08079556fc.json",
+      "status": "added",
+      "insertions": 112,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-GOOGLE-CONNECT-001-DEV-find-e08fc790e6f347ec843eaa8aa29d06a9.json",
+      "status": "added",
+      "insertions": 112,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-GOOGLE-CONNECT-001-DEV-packet-11a54c0b735345b4a02c26759cc10c65.json",
+      "status": "added",
+      "insertions": 9814,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-GOOGLE-CONNECT-001-DEV-route-a03d22563c374937ad3e6adc0aa83285.json",
+      "status": "added",
+      "insertions": 101,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 Jev route/find/context/packet 증거 사본. 제품 동작과 무관하며 전문을 열지 않았다. packet-outcomes 요약(181 항목: completed 28/no_change 153)과 구현 head 일치만 확인했다. 영향: 추적성 세부는 미검증."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/report.md",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 보고와 실행 기록 전문을 읽고 서버 로그·lint 증거·종료코드와 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "status": "added",
+      "insertions": 40,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 보고와 실행 기록 전문을 읽고 서버 로그·lint 증거·종료코드와 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+      "status": "added",
+      "insertions": 277,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "work.py finish가 보존한 DEV 지시서·보고 전문 사본. 앞부분만 읽었고 제품 동작과 무관하다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 215,
+      "review_status": "reviewed",
+      "reason": "인박스 비움 삭제(215줄). work.py finish 보존본이 logs에 존재함을 확인."
+    },
+    {
+      "path": ".gitattributes",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff 전체를 읽음. 의존성 선언 변경 없음(test 스크립트만), ingress self-check를 로컬 실행(exit0)하고 허용/차단 경로를 정규식으로 대조."
+    },
+    {
+      "path": "Makefile",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff 전체를 읽음. 의존성 선언 변경 없음(test 스크립트만), ingress self-check를 로컬 실행(exit0)하고 허용/차단 경로를 정규식으로 대조."
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "문서 diff 전문을 읽고 코드 동작(Device/Google 결합·동의·poll·한도 2000·ingress)과 일치하는지 대조."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff 전체를 읽음. 의존성 선언 변경 없음(test 스크립트만), ingress self-check를 로컬 실행(exit0)하고 허용/차단 경로를 정규식으로 대조."
+    },
+    {
+      "path": "adapters/src/connect.test.ts",
+      "status": "modified",
+      "insertions": 23,
+      "deletions": 7,
+      "review_status": "reviewed",
+      "reason": "테스트 전체를 읽고 Linux 서버와 Windows 로컬(Node22.22.2)에서 직접 실행해 PASS 확인."
+    },
+    {
+      "path": "adapters/src/connect.ts",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 19,
+      "review_status": "reviewed",
+      "reason": "diff와 호출자(core.ts relayBase/request redirect:error, connect.ts complete, text.ts)를 직접 읽고 Windows ACL 경로를 로컬 실행으로 확인."
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "status": "added",
+      "insertions": 125,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "테스트 전체를 읽고 Linux 서버와 Windows 로컬(Node22.22.2)에서 직접 실행해 PASS 확인."
+    },
+    {
+      "path": "adapters/src/login.ts",
+      "status": "added",
+      "insertions": 158,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff와 호출자(core.ts relayBase/request redirect:error, connect.ts complete, text.ts)를 직접 읽고 Windows ACL 경로를 로컬 실행으로 확인."
+    },
+    {
+      "path": "adapters/src/mcp.test.ts",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "테스트 전체를 읽고 Linux 서버와 Windows 로컬(Node22.22.2)에서 직접 실행해 PASS 확인."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "status": "modified",
+      "insertions": 72,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff와 호출자(core.ts relayBase/request redirect:error, connect.ts complete, text.ts)를 직접 읽고 Windows ACL 경로를 로컬 실행으로 확인."
+    },
+    {
+      "path": "adapters/src/private-files.ts",
+      "status": "added",
+      "insertions": 56,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff와 호출자(core.ts relayBase/request redirect:error, connect.ts complete, text.ts)를 직접 읽고 Windows ACL 경로를 로컬 실행으로 확인."
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "diff와 호출자(core.ts relayBase/request redirect:error, connect.ts complete, text.ts)를 직접 읽고 Windows ACL 경로를 로컬 실행으로 확인."
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff 전체를 읽음. 의존성 선언 변경 없음(test 스크립트만), ingress self-check를 로컬 실행(exit0)하고 허용/차단 경로를 정규식으로 대조."
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "고정 SHA snapshot에서 diff와 전체 호출 흐름(connections.go sweep/complete, identity.go signIn, http.go Origin 보호)을 직접 읽고 서버 독립 QA로 검증."
+    },
+    {
+      "path": "internal/relay/connections.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 SHA snapshot에서 diff와 전체 호출 흐름(connections.go sweep/complete, identity.go signIn, http.go Origin 보호)을 직접 읽고 서버 독립 QA로 검증."
+    },
+    {
+      "path": "internal/relay/device.go",
+      "status": "added",
+      "insertions": 130,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 SHA snapshot에서 diff와 전체 호출 흐름(connections.go sweep/complete, identity.go signIn, http.go Origin 보호)을 직접 읽고 서버 독립 QA로 검증."
+    },
+    {
+      "path": "internal/relay/device_integration_test.go",
+      "status": "added",
+      "insertions": 136,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "테스트 전체를 읽고 서버 격리 DB에서 직접 실행. 기존 회원 경쟁 분기 미검증 간극을 mutation으로 확인(finding 3)."
+    },
+    {
+      "path": "internal/relay/device_test.go",
+      "status": "added",
+      "insertions": 156,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "테스트 전체를 읽고 서버 격리 DB에서 직접 실행. 기존 회원 경쟁 분기 미검증 간극을 mutation으로 확인(finding 3)."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "status": "modified",
+      "insertions": 55,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "고정 SHA snapshot에서 diff와 전체 호출 흐름(connections.go sweep/complete, identity.go signIn, http.go Origin 보호)을 직접 읽고 서버 독립 QA로 검증."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 SHA snapshot에서 diff와 전체 호출 흐름(connections.go sweep/complete, identity.go signIn, http.go Origin 보호)을 직접 읽고 서버 독립 QA로 검증."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "고정 SHA snapshot에서 diff와 전체 호출 흐름(connections.go sweep/complete, identity.go signIn, http.go Origin 보호)을 직접 읽고 서버 독립 QA로 검증."
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff 전체를 읽음. 의존성 선언 변경 없음(test 스크립트만), ingress self-check를 로컬 실행(exit0)하고 허용/차단 경로를 정규식으로 대조."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/integration.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/product-lint.log",
+      "status": "added",
+      "insertions": 31,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/product-test.log",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/server-exits.txt",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/server-integration.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/server-product-lint.log",
+      "status": "added",
+      "insertions": 31,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/server-product-test.log",
+      "status": "added",
+      "insertions": 27,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/device.go",
+      "content": "링크 기반 사회공학 잔여 위험: 공격자가 자기 공개키로 시작한 요청 링크를 피해자가 Google 로그인 후 지문 비교 없이 승인하면 피해자 계정에 공격자 키의 새 agent가 생긴다. 페이지가 경고하고 관계는 별도 수락이 필요하며 기존 agent 키는 바뀌지 않는다(설계 한계, 수락 가능).",
+      "start_line": 21,
+      "end_line": 45,
+      "severity": "medium",
+      "resolved": false
+    },
+    {
+      "path": "internal/relay/device.go",
+      "content": "익명 start가 보존 Device 요청 2000개 전역 상한을 쓰고 sweepConnections가 만료 뒤 24h까지 보존한다. 익명 한도(IP 30/min, 전역 200/min)로 약 10분이면 상한을 채워 최대 24h 동안 신규 클라이언트 연결이 capacity로 거부된다. 기존 키·이메일 로그인에는 영향 없음. 미결합·미소비 요청의 조기 삭제나 IP별 상한을 권고.",
+      "start_line": 36,
+      "end_line": 45,
+      "severity": "medium",
+      "resolved": false
+    },
+    {
+      "path": "internal/relay/device_test.go",
+      "content": "finishGoogleLogin의 기존 다른 회원 거부 분기(m.Owner != c.Owner)는 DEV 테스트가 새 subject만 써서 검증하지 않는다. 서버 mutation(해당 조건 제거)에서 DEV 검사는 통과했고 tester HTTP 검사만 실패했다. 제품 동작은 올바르다. 같은 시나리오 테스트를 DEV 회귀에 추가 권고.",
+      "start_line": 41,
+      "end_line": 45,
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "internal/relay/device.go",
+      "content": "동의 시 agent가 먼저 생성된다. 클라이언트가 complete 응답을 잃으면 키 없는 agent가 활성 5개·기록 10개 한도를 소비한다. 사용자 안내가 홈에서 폐기하라고 적었으며 새 연결 요청은 제한되지 않는다.",
+      "start_line": 47,
+      "end_line": 58,
+      "severity": "low",
+      "resolved": false
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a12123-fd98-7b80-880e-6c2802149a6d",
+    "reviewer_session": "b46475f6-dee2-49f6-936f-fe1513a39142",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-8493ad160dbd469aa860e952816924c9",
+    "snapshot_head": "152217f63cced85f620695961955d680ce27864e",
+    "read_only": true
+  }
+}

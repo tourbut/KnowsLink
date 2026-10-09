@@ -125,6 +125,8 @@ async function check(
     await client.connect(transport);
     const tools = await client.listTools();
     assert.deepEqual(tools.tools.map((tool) => tool.name).sort(), [
+      "knowslink_connect",
+      "knowslink_connect_status",
       "knowslink_pull_once",
       "knowslink_status",
       "knowslink_test_receive",

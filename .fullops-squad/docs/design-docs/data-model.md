@@ -2,9 +2,9 @@
 id: D06
 title: 엔티티정의서
 status: review
-updated: 2026-10-07
+updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
@@ -62,3 +62,7 @@ DB 정본은 [D07](database-design.md), CRUD 정본은 [D09](crud-design.md)다.
 
 Message는 frozen 업무 또는 별도 knowslink.text 원문을 저장한다. Message.Parent는 text 원요청 ID, ReplyID는 수락된 관련 답장 ID다. text에는 claim을 만들지 않는다. ACK 후 completion=received이고 답장 ACK 후 원요청 completion=reply_received다. 원문은 ACK·TTL·철회·lease 실패에 지운다. receipt/멱등은 수락부터24h이며 개인정보·text·credential을 metadata에 넣지 않는다.
 State.HTTP는 무작위 입장 token을 키로 하는 `{Clean,Exp,Owner}` map이다. Owner는 Clean 기록의 공정성 단위다. owner 자신의 제어는 owner ID, 그 owner의 agent ACK는 `<owner>/agents`이며 단위당 Clean 기록은 동시 1개다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, DEV-FIX-3). 신규 기록과 이전 기록은 Owner를 생략한다. HTTP 신규16·정리4의 공유 수용량을 센다. Clean=true는 검증된 principal의 자기 기록 정리 요청만 기록한다(SAR-PUBLIC-MESSAGES-001-DEV-FIX). 로컬 채널 선택용 커밋 snapshot((commit 시각, epoch) 순서)·자격 색인·단위별 로컬 정리 표시·마지막 재조회 시작 시각·종료 실패 token은 프로세스 메모리의 파생값이며 저장하지 않는다. 정상 종료 때 삭제하고 Exp(30s) 뒤 sweep한다. 기존 직렬화 상태는 빈 map/ReplyID로 복원한다. Member·Owner·Agent·Pair와 기존 key 보존 규칙은 바꾸지 않는다.
+
+## Google 연결 상태 — SAR-GOOGLE-CONNECT-001-DEV
+
+기존 relay state JSON의 Connection에 `Device bool`을 추가하고 GoogleAttempt에 `Connection string`을 추가한다. requested에서는 Owner/Agent가 비어 있다. Google callback은 Owner를 바인딩하고 prepared로 전환한다. 명시적 동의는 새 Agent를 생성하고 approved로 전환한다. 기존 complete가 키·credential을 저장하고 consumed로 전환한다. 취소·만료·소비 상태는 재사용하지 않는다. 같은 회원의 두 요청은 별도 agent와 키를 갖는다. 관계는 자동 생성하지 않는다. 승인 뒤 완료 응답이 유실되면 미사용 agent가 남을 수 있으므로 홈에서 폐기 후 새 요청을 시작한다. JSON 추가 필드이며 SQL migration은 없다. D07 물리 설계와 D08 생성 테이블 정의는 변경하지 않는다.

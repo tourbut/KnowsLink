@@ -5,10 +5,12 @@ import { z } from "zod";
 import { trialMode, testTransport } from "./test-transport.js";
 import { configuredMemberTransport } from "./text.js";
 import { localAdapter } from "./core.js";
+import { beginLogin, finishLogin, waitForLogin } from "./login.js";
 
 const server = new McpServer({ name: "knowslink", version: "0.1.0" });
 const synthetic = process.env.KNOWSLINK_MODE === "synthetic-loopback";
 let busy = false;
+let loginState = "idle";
 const result = (state: string, isError = false) => ({
   content: [
     {
@@ -27,6 +29,76 @@ const result = (state: string, isError = false) => ({
   ],
   isError,
 });
+server.registerTool(
+  "knowslink_connect",
+  {
+    description:
+      "Start connecting this client to your Google account after explicit user approval. Open returned URL in your own browser and compare the fingerprint before consent. Credentials save locally automatically; never paste keys or tokens. Requires public-node mode, RELAY_URL and a new KNOWSLINK_AGENT_FOLDER.",
+    inputSchema: { confirmed: z.literal(true) },
+    annotations: {
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
+  },
+  async () => {
+    const folder = process.env.KNOWSLINK_AGENT_FOLDER;
+    const base = process.env.RELAY_URL;
+    if (process.env.KNOWSLINK_MODE !== "public-node" || !folder || !base)
+      return result("held", true);
+    if (busy) return result("busy", true);
+    busy = true;
+    try {
+      const login = await beginLogin(base, folder);
+      loginState = "waiting";
+      void waitForLogin(folder)
+        .then(() => {
+          loginState = "connected";
+        })
+        .catch(() => {
+          loginState = "failed";
+        })
+        .finally(() => {
+          busy = false;
+        });
+      return {
+        content: [{ type: "text" as const, text: JSON.stringify(login) }],
+      };
+    } catch {
+      busy = false;
+      return result("failed", true);
+    }
+  },
+);
+server.registerTool(
+  "knowslink_connect_status",
+  {
+    description:
+      "Check client connection progress. If this MCP process restarted, resume one private-key-bound poll and save an approved credential. No secrets returned.",
+    inputSchema: {},
+    annotations: {
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
+  },
+  async () => {
+    const folder = process.env.KNOWSLINK_AGENT_FOLDER;
+    if (process.env.KNOWSLINK_MODE !== "public-node" || !folder)
+      return result("held", true);
+    if (loginState !== "idle")
+      return result(loginState, loginState === "failed");
+    if (busy) return result("busy", true);
+    busy = true;
+    try {
+      return result(await finishLogin(folder));
+    } catch {
+      return result("failed", true);
+    } finally {
+      busy = false;
+    }
+  },
+);
 server.registerTool(
   "knowslink_status",
   {
