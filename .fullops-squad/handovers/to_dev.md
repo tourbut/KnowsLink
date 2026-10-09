@@ -6,7 +6,7 @@ owner: dev
 tasks: [SAR-GOOGLE-CONNECT-001-DEV]
 summary: Google 로그인만으로 자기 클라이언트 agent 연결을 완료하고 Cloudflare 로그인과 token 파일 수동 전달을 제거한다
 attempt: d5a1fab9baf24084b01f5c4e66f359fa
-base: c3f918dfb89c6c670075cddf7a1cc351d1397bf2
+base: f9f7675be6c9502bd6ab2f810bd42ff62a26a174
 test_level: lite
 ---
 
@@ -15,8 +15,19 @@ test_level: lite
 - From / To: coor / dev. 상태: ready.
 - Task key: SAR-GOOGLE-CONNECT-001-DEV; Purpose: implementation.
 - 기준 SHA: c3f918dfb89c6c670075cddf7a1cc351d1397bf2; 테스트 레벨: lite.
-- 담당: repo 818c78e5-d51c-4ff4-aa88-70e9ee185fbb, /home/shin/orca/workspaces/KnowsLink/fullops-dev, fullops/dev.
-- 복귀: /home/shin/orca/workspaces/KnowsLink/fullops-coor, term_c0340e23-5ded-4b4f-9b21-3fb0ce8c17de, Run run_8ca8bc058ab7. task/dispatch는 실제 preamble을 따른다.
+- 담당: repo 0b08ec4c-9e3a-4613-8197-5a835e545335, C:/Users/shin/orca/workspaces/KnowsLink/dev, fullops/dev.
+- 복귀: C:/Users/shin/orca/workspaces/KnowsLink/coor, term_e61d3e14-29e9-4954-943a-4a75707c82de, Run run_86e0e674b5a0. task/dispatch는 실제 preamble을 따른다.
+
+## Windows 재개 지시 — 2026-10-09
+
+사용자 “대기 작업 진행해”로 이 과제의 중지를 해제했다. 제품 목표·확정 규칙·범위·완료 조건은 아래 원문을 유지한다. 기술 계획·구현·검증은 DEV가 같은 과제에서 끝낸다.
+
+- Purpose: implementation; Test level: lite; Subagent level: off. 선택형 재위임은 하지 않는다.
+- 현재 기준 ref: `f9f7675be6c9502bd6ab2f810bd42ff62a26a174`. 아래 과거 c3f918 기준과 Linux 복귀 주소는 역사 기록이며 이번 실행에는 사용하지 않는다. 최종 lint --from은 현재 기준 ref를 사용한다.
+- 원천·정본은 자기 체크아웃의 공통 규칙·project.md·아래 제품 규칙이다. API·라이브러리 문서가 필요하면 Context7으로 확인한다. 패킷의 오래된 producer와 partial은 근거를 확인하고 직접 탐색으로 보완한다.
+- Windows의 make 부재는 확인됐다. 필수 product-lint/product-test를 생략하거나 완화하지 않는다. 담당자가 기존 검사에 필요한 로컬 실행 환경을 복구하고 명령 자체의 종료코드를 보존한다. 설치·실행이 불가능하면 구현과 실행 가능한 검사를 끝낸 뒤 정확한 장애·남은 검사·재개 조건을 보고한다.
+- 비공개 `.env`는 main 파일의 심볼릭 링크다. 값을 출력하거나 Git에 넣지 않는다. 운영 서버·Google/Cloudflare 계정·DB 변경은 coor/ops에 인계한다. 운영 자격을 구현 선행조건으로 만들지 않는다.
+- 부모는 완료 후 고정 SHA 독립 리뷰·필요한 tester QA·운영 인계를 처리한다. 종료 전에 packet outcomes·work.py finish·커밋·등록 lint/test·authentic worker_done을 완료한다.
 
 ## 목표·확정 규칙·범위
 
