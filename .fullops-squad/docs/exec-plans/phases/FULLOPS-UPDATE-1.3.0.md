@@ -34,3 +34,13 @@ tester에 기존 레포의 `claude-sonnet-5-5` 식별자로 medium/high 후보�
 기존 coor와 dev에는 중지된 WIP가 있다. 업데이트의 작업 diff만 깨끗한 main에 적용하여 별도 커밋한다. 기존 coor와 dev WIP 커밋은 main에 병합하지 않는다. 검토한 main 커밋을 원격에 push하고 역할 브랜치에 병합한다. 유휴 clean 역할만 동기화하며 진행본은 보존한다.
 
 문서 strict 검사 13개는 문제 0·경고 0이다. 초기 stamp는 신규 문서 summary 누락으로 한 번 실패했으며 summary를 지정해 복구했다. 작업 트리에서 lint 실행은 clean 조건으로 거절됐으며 커밋 후 다시 실행한다.
+
+## 실행 결과
+
+main 기준 ref는 `f8cf858e1ce6daad2d6ec5ffc9943366869c4901`이다. coor WIP의 PLANS 문맥이 달라 전체 패치 검사는 실패했으며, main은 수정되지 않았다. PLANS에는 이번 새 절만 추가하고 다른 업데이트 diff를 적용해 기존 WIP를 분리했다.
+
+setup·의존성·문서 strict 검사가 통과했다. 역할 5곳의 `.env`는 실제 SymbolicLink이며 main 파일을 가리킨다. 다섯 링크 모두 git check-ignore로 비추적 상태를 확인했다. `.env.example`은 추적 파일이라 링크 대상이 아니다.
+
+등록 product-lint/product-test는 make 실행 파일 부재로 unavailable, lint.py 종료코드 1이다. ERROR 0·WARNING 1·실행 불가 2이며 통과로 표시하지 않는다. 유일한 경고는 기존 누적 PLANS.md 크기다. 이번 변경은 운영 문서·하네스 JSON뿐이므로 제품 동작 검사와 UI 검수는 해당 없음이다. 제품 코드 SHA·의존성·검사 명령을 바꾸지 않았으며 기존 제품 검증을 재수락하지 않는다. 새 제품 개발 전 make가 있는 환경에서 필수 검사를 실행한다.
+
+관련 운영 검증을 완료하여 레포 적용 버전을 1.3.0으로 갱신했다. 별도 고정 SHA 독립 문서·설정 리뷰 후 main 일반 push와 clean 유휴 역할 동기화를 진행한다. 기존 dev WIP는 merge로 보존한다. 새로운 제품 worker·이슈 모드·Claude 실행·실제 새 세션 hook 동작은 검사하지 않았다.
