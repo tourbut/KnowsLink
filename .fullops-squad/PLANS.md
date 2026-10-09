@@ -1307,3 +1307,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 다음은 독립 리뷰·필요한 좁은 QA와 운영 인계, 실제 노우 연결·왕복 확인이다. UTF-8 medium 후속과 자동 wake/MCP 도구 목록/dots는 선행 연결 작업 뒤에 처리한다. 제품 검사 환경(make 부재)은 DEV가 필수 검사 유지 조건으로 복구한다.
 
 - DEV 착수 확인: Run run_86e0e674b5a0 / task_6cd04d6a9097 / dispatch ctx_0b917bf8a813 / term_21a94832-aacf-411f-abe4-3c8ab2e4b37c. requested/effective 모두 Codex gpt-6.1-sol medium이며 turn_started와 지시서 읽기를 확인했다. 정상 worker 로그 재독 없이 worker_done을 기다린다.
+
+- 보류 운영 작업 완료: 사용자 대기 작업 진행 요청으로 FullOps 1.3.0 리뷰 snapshot을 Orca worktree rm으로 제거했다. reviewer 종료·clean/ignored 없음·main/origin 조상·관련 명령행 프로세스 0을 확인했다. 정본 리뷰 증거 5개 SHA-256을 Git 공용 fullops-snapshots 기록에 보존했다. 과거 live snapshot check나 제품 검증 성공으로 표시하지 않는다.
