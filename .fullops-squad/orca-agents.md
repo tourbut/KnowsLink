@@ -47,7 +47,7 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 개발·검증·배포는 사용자 재개 지시까지 중지한다.
 새 에이전트 세션은 시작하지 않았다. 기본 PowerShell 터미널의 실제 작업 경로를 확인했다.
 원본에는 비공개 `.fullops-squad/.env*`가 없다. `env_link.py --all`은 변경 없이 종료했다. 운영 자격과 DB는 별도 이전 대상이다.
-Grok의 원본 폴더 신뢰는 사용자 승인 후 등록한다. 승인 전에는 tester 실행 시 신뢰 확인이 필요하다.
+사용자 승인으로 Grok 신뢰 폴더에 `D:/workspace/KnowsLink`를 등록했다. tester 워크트리에서 신뢰 검사 exit 0을 확인했다.
 과거 Linux 경로·Run·터미널 핸들은 재사용하지 않는다. 다음 배정 전에 현재 경로와 새 런타임 주소를 확인한다.
 
 ## 모델 후보
