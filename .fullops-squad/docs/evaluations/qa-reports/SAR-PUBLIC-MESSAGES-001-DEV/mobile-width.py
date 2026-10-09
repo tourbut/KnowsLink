@@ -36,7 +36,7 @@ try:
   width=call('Runtime.evaluate',{'expression':'JSON.stringify({viewport:innerWidth,scroll:document.documentElement.scrollWidth,body:document.body.scrollWidth})','returnByValue':True},session)
   metrics=json.loads(width['result']['value']);metrics['page']=path.name;results.append(metrics)
   if metrics['viewport']!=390 or metrics['scroll']>390:raise RuntimeError(metrics)
-  if path.name=='receipt-failed:expired.html':
+  if path.name=='receipt-failed-expired.html':
    capture=call('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False},session)
    Path('/tmp/knowslink-messages-ui/receipt-mobile.png').write_bytes(base64.b64decode(capture['data']))
  Path('/tmp/knowslink-messages-ui/mobile-width.json').write_text(json.dumps({'viewport':'390x844','metrics':results,'visualAcceptance':'designer pending'},indent=2)+'\n')
