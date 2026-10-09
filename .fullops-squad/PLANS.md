@@ -1336,3 +1336,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 현재 Codex 세션의 Node22.22.2 빌드는 완료했다. 기본 PATH의 Node24는 engines 불일치로 설치/빌드 실패했으므로 사용자 로컬 KnowsLinkDevTools의 Node22를 명시한다. 비밀 키를 복사하지 않는다.
 - 운영 공개 보류: 현재 Chrome Cloudflare One의 기존 계정에서 앱 목록 대신 활성 요금제 필요 화면이 나온다. 다른 계정은 목록에 없다. 사용자에게 기존 Access 관리 화면 또는 .env.server의 CF_API_TOKEN을 요청했다. 유료 요금제 선택이나 광범위 보호 해제는 하지 않는다. 새 공개 ingress는 Access 변경과 검증을 함께 할 수 있을 때 적용한다.
 - 독립 리뷰 수락 잔여: medium 링크 지문 비교 생략 시 공격자 키 승인, medium 익명 Device 요청2000 상한/24h 보존에 따른 신규 연결 고갈. low 타 기존 회원 callback 회귀검사 보강 권고, low complete 응답 손실 시 키 없는 agent 잔류. 실제 테스트에서 직접 시작한 링크·지문을 비교하고 키/agent 분리 및 관계 수락을 확인한다. 코드 후속은 DEV에 배정한다.
+
+- 후속 공개 probe: 서버에서 익명 root/home/connect-start/owner는 모두 HTTP403이다. Google 연결을 아직 시작할 수 없다. 역할 동기화는 dev/tester user_owned·stale, designer/ops 실제 세션 미확인으로 최신 main 반영을 예약한다. 기준 origin/main 999d414이며 다음 dispatch 전에 상태와 clean을 확인한다.
