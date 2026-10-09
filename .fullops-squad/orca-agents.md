@@ -31,6 +31,25 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 문서 경로는 `.fullops-squad/` 기준이다. 제품 경로는 레포 루트 기준이다. SAR-SETUP-001-DEV의 초기 구성·직접 검증 파일은 dev 소유다. 독립 QA의 시나리오·보고서는 tester 소유다. 운영 배포의 파일 소유권은 후속 ops 지시서에서 정한다.
 원격은 `origin`, 기준 브랜치는 `main`이다. 상설 워크트리만 구성하고 이번 setup에서는 에이전트 세션을 시작하지 않는다.
 
+## Windows 워크트리 복원 — 2026-10-09
+
+원본 체크아웃은 `D:/workspace/KnowsLink`다. 아래 상설 워크트리는 Orca에 등록했다.
+
+| 역할 | 로컬 워크트리 | 원격 추적 브랜치 | Orca 부모 |
+|---|---|---|---|
+| coor | `C:/Users/shin/orca/workspaces/KnowsLink/coor` | `origin/fullops/coor` | 없음 |
+| designer | `C:/Users/shin/orca/workspaces/KnowsLink/designer` | `origin/fullops/designer` | coor |
+| dev | `C:/Users/shin/orca/workspaces/KnowsLink/dev` | `origin/fullops/dev` | coor |
+| ops | `C:/Users/shin/orca/workspaces/KnowsLink/ops` | `origin/fullops/ops` | coor |
+| tester | `C:/Users/shin/orca/workspaces/KnowsLink/tester` | `origin/fullops/tester` | coor |
+
+각 체크아웃은 기존 `fullops/<역할>` 브랜치를 사용한다. 기존 역할·모델 후보·coor 모드·테스트 lite를 유지한다.
+coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 개발·검증·배포는 사용자 재개 지시까지 중지한다.
+새 에이전트 세션은 시작하지 않았다. 기본 PowerShell 터미널의 실제 작업 경로를 확인했다.
+원본에는 비공개 `.fullops-squad/.env*`가 없다. `env_link.py --all`은 변경 없이 종료했다. 운영 자격과 DB는 별도 이전 대상이다.
+Grok의 원본 폴더 신뢰는 사용자 승인 후 등록한다. 승인 전에는 tester 실행 시 신뢰 확인이 필요하다.
+과거 Linux 경로·Run·터미널 핸들은 재사용하지 않는다. 다음 배정 전에 현재 경로와 새 런타임 주소를 확인한다.
+
 ## 모델 후보
 
 사용자가 제공한 후보의 약한 것부터 강한 순서를 유지한다. dev CLI는 선택한 후보에 따른다.
