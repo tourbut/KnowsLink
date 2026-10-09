@@ -1,0 +1,806 @@
+{
+  "task_key": "SAR-GOOGLE-CONNECT-001-TESTER",
+  "attempt": "8cc35b1d14d84a9ca2e9cf175b0cb6d5",
+  "packet_input_sha256": "971fda1b87458c0e3c438b879b5c51450d4673769a3e2b2d181f66c5542b9377",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 모드·독립 리뷰·integration 규칙을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "지시서 전문을 직접 읽고 범위·완료 조건을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 검증 명령·정본·lint/test 연결을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 적용 기준으로 기록했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "review 기준으로 적용했다. 이 SHA의 규칙 본문은 snapshot과 tester 체크아웃이 같다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "보안 경계 판정의 기준으로 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 범위와 담당 구분을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff를 읽었다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff의 Google 연결 CRUD 절을 읽고 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff의 API 표(proof 바이트, 2000개 상한, 한도)를 읽고 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff의 모듈 절을 읽고 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff의 Google 연결 적용·복귀 절을 읽고 ingress 조각과 대조했다. 이 문서는 수정하지 않았다(OPS 소유)."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "tester는 D12를 수정하지 않는다. 리뷰 결과와 QA는 qa-reports에 기록하고 운영 문서 갱신은 OPS 후속이다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff를 읽었다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff의 사용자 절차를 읽고 login.ts·mcp.ts 동작과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": ".fullops-squad/rules/delegation.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "packet 심볼 검색 추천이다. 열지 않았다. 이 리뷰의 변경 파일과 호출 흐름에 직접 관련이 없다고 파일명·과제 키로 판단했다. 열지 않은 영향은 과거 QA 맥락 미참조다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "고정 SHA diff를 읽었다."
+    },
+    {
+      "path": "adapters/src/connect.ts",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "tester는 제품 코드를 수정하지 않는다. 이 파일의 변경은 고정 SHA diff 전체를 읽는 리뷰(result.json reviewed)와 서버·로컬 QA로 검증했다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "tester는 제품 코드를 수정하지 않는다. 이 파일의 변경은 고정 SHA diff 전체를 읽는 리뷰(result.json reviewed)와 서버·로컬 QA로 검증했다."
+    },
+    {
+      "path": "internal/relay/cleanup_flood_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "이 SHA에서 변경되지 않은 호출자 테스트다. DEV 최종 `make test` exit0(검증한 lint 증거)에 포함되며 이번 lite QA에서는 `TestDevice`와 Google/이메일 integration만 다시 실행했다. connections_test.go는 헬퍼(connectionFixture, prepared)를 읽었다."
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "이 SHA에서 변경되지 않은 호출자 테스트다. DEV 최종 `make test` exit0(검증한 lint 증거)에 포함되며 이번 lite QA에서는 `TestDevice`와 Google/이메일 integration만 다시 실행했다. connections_test.go는 헬퍼(connectionFixture, prepared)를 읽었다."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "tester는 제품 코드를 수정하지 않는다. 이 파일의 변경은 고정 SHA diff 전체를 읽는 리뷰(result.json reviewed)와 서버·로컬 QA로 검증했다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "tester는 제품 코드를 수정하지 않는다. 이 파일의 변경은 고정 SHA diff 전체를 읽는 리뷰(result.json reviewed)와 서버·로컬 QA로 검증했다."
+    },
+    {
+      "path": "internal/relay/policy_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "이 SHA에서 변경되지 않은 호출자 테스트다. DEV 최종 `make test` exit0(검증한 lint 증거)에 포함되며 이번 lite QA에서는 `TestDevice`와 Google/이메일 integration만 다시 실행했다. connections_test.go는 헬퍼(connectionFixture, prepared)를 읽었다."
+    }
+  ],
+  "uncertainty_review": "packet은 partial이다. unknown 5건(PLANS.md, 2026-10-03 dev/tester 로그, adapters/src/connect.ts, internal/relay/google.go)은 크기 초과·민감·미해석으로 표시됐다. connect.ts와 google.go는 diff와 호출 흐름을 직접 전체로 읽고 서버·로컬에서 실행 검증했다. PLANS.md는 고정 SHA diff만 읽었다. 2026-10-03 로그는 열지 않았다(과거 인박스 보존본). 나머지 추천은 이름·과제 키로 관련성을 판단했고 열지 않은 항목은 reason에 명시했다. language-server 수준 의미 검증은 하지 않았다."
+}

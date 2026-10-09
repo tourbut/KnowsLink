@@ -1,0 +1,24 @@
+=== RUN   TestGoogleDeviceHTTP
+--- PASS: TestGoogleDeviceHTTP (0.50s)
+=== RUN   TestGoogleHTTP
+--- PASS: TestGoogleHTTP (0.33s)
+=== RUN   TestEmailIdentity
+=== RUN   TestEmailIdentity/verified_signup_home_and_continuity
+=== RUN   TestEmailIdentity/concurrent_first_signup_and_one_use_code
+=== RUN   TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives
+=== RUN   TestEmailIdentity/send_failure_limits_and_csrf
+2026/10/10 00:47:58 verification mail not sent
+2026/10/10 00:47:58 verification mail not sent
+=== RUN   TestEmailIdentity/refused_principal_does_not_spend_shared_rate
+=== RUN   TestEmailIdentity/member_gate_isolation_and_decision
+=== RUN   TestEmailIdentity/member_gate_deny_form_returns_to_result
+--- PASS: TestEmailIdentity (5.85s)
+    --- PASS: TestEmailIdentity/verified_signup_home_and_continuity (0.16s)
+    --- PASS: TestEmailIdentity/concurrent_first_signup_and_one_use_code (0.09s)
+    --- PASS: TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives (0.28s)
+    --- PASS: TestEmailIdentity/send_failure_limits_and_csrf (0.35s)
+    --- PASS: TestEmailIdentity/refused_principal_does_not_spend_shared_rate (4.13s)
+    --- PASS: TestEmailIdentity/member_gate_isolation_and_decision (0.50s)
+    --- PASS: TestEmailIdentity/member_gate_deny_form_returns_to_result (0.32s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	7.723s
