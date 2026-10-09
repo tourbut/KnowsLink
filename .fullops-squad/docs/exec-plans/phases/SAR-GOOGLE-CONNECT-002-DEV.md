@@ -27,3 +27,13 @@ Context7 Cloudflare resolve-library-id는 monthly quota 초과였다. 공식 Tun
 coor msg_3319725732d2는 dashboard API GET으로 현재 앱 두 개와 trial 앱404를 확인했다. 두 KnowsLink 앱만 백업·제거하고 새 Access 정책·가입·청구 동의를 만들지 않는 경로를 D12로 인계한다. 현재 trial은 운영에서 비활성이며 코드는 보존한다. 다른 호스트가 있으면 generated candidate를 통째로 덮지 않고 기존 config에 해당 호스트 블록만 병합한다.
 
 기존 medium 익명 신규연결 DoS 한계는 남는다. cap2000이 차면 최초 요청 만료 후24h까지 새 Device를 막을 수 있다. 기존 회원·기존 키 사용·철회는 이 cap에 묶이지 않는다. 한도를 키우거나 tombstone을 지우면 제품 보존/남용 정책이 바뀌므로 이 최소 과제에서는 변경하지 않는다.
+
+## 구현·검증 결과
+
+상위 폴더 자동 생성은 coor msg_abfa2dc567cd의 설치 직후 경계 요청을 반영했다. Node Context7 조회도 monthly quota 초과였고 [Node22 fs.promises.mkdir](https://nodejs.org/docs/latest-v22.x/api/fs.html#fspromisesmkdirpath-options)의 recursive/기존 경로 동작을 확인했다. 대상은 고정 Node22.22.2이며 최종 키 디렉터리의 privateDirectory exclusive 생성과 ACL은 그대로다. 기존 mcp.ts의9개 도구·public-node guard·승인 입력을 재사용해 SDK 변경은 없었다.
+
+제품 후보 b9e7717의 운영 서버 별도 clean clone에서 make install/lint/test가 모두0이다. 격리 Postgres17 migration·GoogleDeviceHTTP/GoogleHTTP/EmailIdentity race 통합, 실제 cloudflared2026.9.1의 member8/deny7 경로, 임시 Bot installer가 모두0이다. Windows Node22.22.2 login과 MCP stdio도0이다. 서버 전후 공유 컨테이너 이름/ID는 동일했다. 세부 명령·로그는 [QA 보고](../../evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md)를 따른다.
+
+packet은90파일93개 비선택쌍 모두 completed/no_change로 기록했다. partial·route 미결합·oversized3문서와 beta.sh unknown은 수동 검색/원천 확인으로 보완했다. 추가 후보 login/private-files/device_test/manifest/skill/packager/installer/Makefile과 앞 독립 리뷰를 확인했다. 원천 추적은 packet-manual-read.json에 남긴다. 다른 인박스·PLANS는 소유권에 따라 수정하지 않았다.
+
+새 기능·SQL·의존성·시각 변화는 없다. 기본 held·trial 코드·명시적 발송 동의를 유지했다. cap2000과 만료 뒤24h 정책의 medium 신규 연결 포화 한계는 D12에 남겼다. 실제 운영/Google/Bot/관계·대화 수락 및 고정 SHA 독립 리뷰는 coor 후속이다. 문서·완료로그 archive 후 최종 HEAD의 lint.py 등록 gate를 실행하고 Git 디렉터리 fullops-gate/google002-final-lint.json에 보존한다.

@@ -71,3 +71,7 @@ summary: Google 클라이언트 연결 구현·검증과 독립 검토 및 운�
 
 - 2026-10-10 SAR-GOOGLE-CONNECT-001-DEV: Google callback은 회원만 고정하고 전용 명시적 동의가 별도 agent를 만든다. 공개 URL은 token hash이며 credential은 서명한 클라이언트만 수집한다.
 - Windows 파일 비공개성은 POSIX mode로 확인할 수 없다. 소유자와 ACL을 검사하며 .NET ACL은 WindowsPS module 충돌을 피한다. [실행 기록](../docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md).
+
+- 2026-10-10 SAR-GOOGLE-CONNECT-002-DEV: Access 가입 없이 member allowlist+404 후보를 별도 생성한다. coor는 ingress 차단 확인 뒤 기존 두 KnowsLink 앱만 백업·제거한다. 기존 DB/키/자격과 trial 코드는 보존한다.
+- Google 연결은 parent 폴더만 자동 생성하고 최종 키 폴더 exclusive·ACL을 유지한다. cap2000/만료 뒤24h와 medium 신규연결 포화 한계를 보존하며 기존 다른 회원 callback·상한 회귀를 고정했다.
+- 서버 lint/test·격리 Google·실제cloudflared15경로·임시Bot설치와 Windows login/MCP가 통과했다. 실제 운영/Google/Bot/관계·왕복·독립 리뷰는 coor 후속이다. [실행 기록](../docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md).

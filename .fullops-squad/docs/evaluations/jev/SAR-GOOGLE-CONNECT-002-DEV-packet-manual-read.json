@@ -1,0 +1,1703 @@
+[
+  {
+    "path": ".fullops-squad/FULLOPS.md",
+    "sha256": "705edf97ac2434dd6be632de6b15b04be09f105c22f7bdec996718374ed3c470",
+    "line_count": 86,
+    "snippets": []
+  },
+  {
+    "path": ".fullops-squad/docs/operations/ops-guide.md",
+    "sha256": "248ec421e5ae4e6834b138f8919bf5eb420f37658808a6e937632a2e406686d4",
+    "line_count": 342,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR"
+      },
+      {
+        "line": 14,
+        "text": "이 문서는 현재 서버의 Docker와 `link.knowslog.com` Cloudflare Tunnel 배포 정본이다. 현재 상태는 11장과 [D13](transition.md)을 따른다. 1~10장은 2026-10-03 이전 OPS Dispatch의 **역사적 계획·관찰 기록**이다. 그 Dispatch가 2026-10-03에 수행한 읽기 전용 조사 초안을 보존한다. 당시 retry Dispatch는 서버 조사를 재실행하지"
+      },
+      {
+        "line": 36,
+        "text": "| cloudflared | 호스트 바이너리 `~/.local/bin/cloudflared` 2026.8.3(2026.9.3 권고 경고). 프로세스 1개가 `orca` Tunnel(`3e132faa-…`)을 `~/.cloudflared/config.yml`로 20일째 실행한다. 연결 3개(icn). |"
+      },
+      {
+        "line": 38,
+        "text": "| 인증 접근 범위 | `~/.cloudflared/cert.pem`(0600), `orca` 자격 파일(0400) 존재. `cloudflared tunnel list/info` 성공. Cloudflare API(MCP) 읽기: `knowslog.com` zone `active`, DNS 레코드 목록 200. **쓰기 권한은 시험하지 않았다.** `cert.pem`의 DNS 쓰기 범위는 읽기 전용으로 확인할 수 없다(후속 Di"
+      },
+      {
+        "line": 46,
+        "text": "1. 새 locally-managed Tunnel `knowslink`를 `cloudflared tunnel create knowslink`로 만든다. 기존 `cert.pem`을 사용한다. 자격 파일은 새 UUID 이름으로 생성되며 `orca` 파일을 건드리지 않는다."
+      },
+      {
+        "line": 47,
+        "text": "2. DEV 정본 `compose.yaml`의 `cloudflared` 서비스는 `TUNNEL_TOKEN`(remotely-managed Tunnel 전용 `--token`)을 쓴다. 이전 조사에서는 `cert.pem`의 존재와 읽기 접근만 확인했다. 별도 Tunnel 편집 토큰의 존재·쓰기 권한은 미확정이다. 따라서 `compose.yaml`을 고치지 않고 ops 소유 Compose override로 서비스 명령을 `tunn"
+      },
+      {
+        "line": 49,
+        "text": "4. 근거: Cloudflare 공식 문서의 locally-managed Tunnel 절차(`tunnel create` → `config.yml` → `tunnel route dns` → `tunnel run`)와 run parameter `--token`이 remotely-managed 전용이라는 설명. 기록 마무리에서 2026-10-03 공식 문서를 재확인했다: [설정 파일](https://developers.cloudfl"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/to_dev.md",
+    "sha256": "da9aa3d96e4b919c6d8420b9823f559f6e5008f5b601ecc4fcaad29ccc323527",
+    "line_count": 146,
+    "snippets": [
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-002-DEV — 추가 과금 없이 기존 Tunnel·도메인·플러그인·Google 인증 연결을 최소 보완한다"
+      },
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-002-DEV — 추가 과금 없이 기존 Tunnel·도메인·플러그인·Google 인증 연결을 최소 보완한다"
+      },
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-002-DEV — 추가 과금 없이 기존 Tunnel·도메인·플러그인·Google 인증 연결을 최소 보완한다"
+      },
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-002-DEV — 추가 과금 없이 기존 Tunnel·도메인·플러그인·Google 인증 연결을 최소 보완한다"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-002-DEV]"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-002-DEV]"
+      },
+      {
+        "line": 7,
+        "text": "summary: 추가 과금 없이 기존 Tunnel·도메인·플러그인·Google 인증 연결을 최소 보완한다"
+      },
+      {
+        "line": 7,
+        "text": "summary: 추가 과금 없이 기존 Tunnel·도메인·플러그인·Google 인증 연결을 최소 보완한다"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/project.md",
+    "sha256": "d444db14ea4861e0a4a7f919b4b5fd4a8a16833cf78b85123bd97d4653182397",
+    "line_count": 74,
+    "snippets": [
+      {
+        "line": 45,
+        "text": "- 로컬 Compose·실제 SQL migration·누락 설정·차단된 Tunnel·미설정 adapter: `make verify-runtime`."
+      },
+      {
+        "line": 51,
+        "text": "- Grok Bot 앱 Command server 준비: Bot 컴퓨터에서 `sh scripts/install_bot_mcp.sh` (`KNOWSLINK_PREFIX` 기본 `/workspace/.knowslink`). 앱 등록은 owner가 [README](../adapters/README.md#grok-bot-앱-등록)대로 실행한다."
+      },
+      {
+        "line": 52,
+        "text": "- 운영 배포·실제 Tunnel 연결: 후보 수락 뒤 OPS 담당."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/rules/common/README.md",
+    "sha256": "2c08a8b1fcaa796d7a5bd74b28d3ee68a6b92af6e591e71b9f64d418d92c1533",
+    "line_count": 41,
+    "snippets": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/coding-style.md",
+    "sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+    "line_count": 33,
+    "snippets": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/security.md",
+    "sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+    "line_count": 27,
+    "snippets": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/testing.md",
+    "sha256": "0c1e0d1af2e06a78abea5295cddf073d4efd18d32c066dd288530b3e5bafc528",
+    "line_count": 62,
+    "snippets": []
+  },
+  {
+    "path": ".fullops-squad/contexts/dev.md",
+    "sha256": "3910bc8dc69069514a1e9974e50f3a71800aeb8cd3dd5272a9d3065ebda41825",
+    "line_count": 73,
+    "snippets": [
+      {
+        "line": 6,
+        "text": "tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR"
+      },
+      {
+        "line": 7,
+        "text": "summary: Google 클라이언트 연결 구현·검증과 독립 검토 및 운영 인계"
+      },
+      {
+        "line": 69,
+        "text": "- 2026-10-07 SAR-GOOGLE-LOGIN-001-DEV: Google issuer/sub와 이메일 신원을 분리하고 기존 owner/세션 발급을 공유했다. Google reauth는 시작한 세션·동일 회원에 묶는다."
+      },
+      {
+        "line": 69,
+        "text": "- 2026-10-07 SAR-GOOGLE-LOGIN-001-DEV: Google issuer/sub와 이메일 신원을 분리하고 기존 owner/세션 발급을 공유했다. Google reauth는 시작한 세션·동일 회원에 묶는다."
+      },
+      {
+        "line": 70,
+        "text": "- OAuth GET callback용 시도 cookie만 Lax다. Strict 세션은 유지하고 완료 화면의 홈 링크로 계속한다. 최근 ID token 재검증은 Google 비밀번호 재입력을 보장하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md)."
+      },
+      {
+        "line": 70,
+        "text": "- OAuth GET callback용 시도 cookie만 Lax다. Strict 세션은 유지하고 완료 화면의 홈 링크로 계속한다. 최근 ID token 재검증은 Google 비밀번호 재입력을 보장하지 않는다. [실행 기록](../docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md)."
+      },
+      {
+        "line": 72,
+        "text": "- 2026-10-10 SAR-GOOGLE-CONNECT-001-DEV: Google callback은 회원만 고정하고 전용 명시적 동의가 별도 agent를 만든다. 공개 URL은 token hash이며 credential은 서명한 클라이언트만 수집한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/contexts/ops.md",
+    "sha256": "332026a5a1d46a02b33a73832746b78575328d84a1334583a0f49227747cd43c",
+    "line_count": 65,
+    "snippets": [
+      {
+        "line": 29,
+        "text": "Cloudflare API MCP는 읽기 전용이다. `cert.pem`은 Tunnel 생성 가능, Access 쓰기는 별도 토큰이 필요하다. Access 앱 확인 전에는 DNS·connector를 열지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/architecture.md",
+    "sha256": "222669724fc922e6f3a5db490a0f21ceb0629490201193dda0a3c600cf1420e4",
+    "line_count": 168,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESS"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESS"
+      },
+      {
+        "line": 84,
+        "text": "사용자가 공식 Grok Bot을 확정했다. hosted 컴퓨터·MCP·Cursor connector policy의 공식 근거를 확인했다. 연결 구조는 Cursor plugin manifest·stdio MCP·skill이며 실제 account/hosted 연결은 held다. 준비 package는 [설치 문서](../../../adapters/README.md)를 따른다."
+      },
+      {
+        "line": 161,
+        "text": "## Google 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 161,
+        "text": "## Google 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 161,
+        "text": "## Google 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 163,
+        "text": "Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시작 요청을 보낸다. 브라우저에는 token hash인 공개 연결 ID만 노출한다. 기존 Google issuer/sub 회원·Strict 세션을 재사용한다. Google callback은 요청의 회원만 바인딩하고, 최근 인증 상태의 명시적 동의가 별도 agent를 만든다. Node가 동일 키로 승인 상태를 조회하고 기존 signed complete로 자기 cr"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/crud-design.md",
+    "sha256": "55219c10ecec3ac0b79ae12acf43b682d3324f8d9ae0f32d90960a68ed019c40",
+    "line_count": 84,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TEST"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TEST"
+      },
+      {
+        "line": 82,
+        "text": "## Google 연결 CRUD — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 82,
+        "text": "## Google 연결 CRUD — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 82,
+        "text": "## Google 연결 CRUD — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 84,
+        "text": "start는 Device 요청만 생성한다. Google callback은 요청의 Owner와 prepared 상태를 갱신한다. 최근 인증된 동일 회원의 device-confirm만 독립 agent를 생성한다. 서명된 poll은 승인 전 회원·agent를 반환하지 않는다. 기존 complete는 키·credential을 생성하고 요청을 소비한다. 기존 cancel·revoke·cleanup을 재사용하며 관계 요청/수락은 변경하지"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/data-model.md",
+    "sha256": "dfc79d7d84fa9c58c3055e0ecb58a79942113113fdffc1cc49d198473f52e2e3",
+    "line_count": 68,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX"
+      },
+      {
+        "line": 66,
+        "text": "## Google 연결 상태 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 66,
+        "text": "## Google 연결 상태 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 66,
+        "text": "## Google 연결 상태 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 68,
+        "text": "기존 relay state JSON의 Connection에 `Device bool`을 추가하고 GoogleAttempt에 `Connection string`을 추가한다. requested에서는 Owner/Agent가 비어 있다. Google callback은 Owner를 바인딩하고 prepared로 전환한다. 명시적 동의는 새 Agent를 생성하고 approved로 전환한다. 기존 complete가 키·credential을 저"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/interface-design.md",
+    "sha256": "ddaa8c4795800aa80281c3dee569dad1369e8bea9fa42a1c2616e33710e2ed4b",
+    "line_count": 228,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBL"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBL"
+      },
+      {
+        "line": 90,
+        "text": "사용자가 공식 `docs.x.ai/grok-bot` 제품을 확정했다. 실제 연결은 held다. [설치 문서](../../../adapters/README.md)와 [조사·검증 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)을 따른다."
+      },
+      {
+        "line": 121,
+        "text": "`trial_configured_unverified`는 모드 보고일 뿐이다. 실제 remote 수락은 네 관측 ID와 인증된 호출 증거가 모두 있어야 한다. 세부 변수·Codex launcher·Grok 준비는 [adapter 문서](../../../adapters/README.md#승인된-codexgrok-시험-메시지-sar-mvp-003)를 따른다."
+      },
+      {
+        "line": 172,
+        "text": "연결 PoP는 UTF-8 `KNOWSLINK-CONNECT\\0<token>\\0<owner>\\0<agent>\\0<client>\\0<mode>\\0<kid>\\0<public>`의 Ed25519 서명이다. public/proof는 base64url-no-pad다. private key 입력은 없다. grant는 10분·1회다. register는 활성 최대3개이며 rotate는 완료 때 기존 키 전체를 철회한다. 발급·준비 실패는 기존"
+      },
+      {
+        "line": 216,
+        "text": "## Google 연결 API — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 216,
+        "text": "## Google 연결 API — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 216,
+        "text": "## Google 연결 API — SAR-GOOGLE-CONNECT-001-DEV"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+    "sha256": "a73fbf953230e30abddf5fafe2ec98113a38c2fc42cb80abcd51fb3487c952b9",
+    "line_count": 89,
+    "snippets": [
+      {
+        "line": 24,
+        "text": "실행 clone은 `/tmp/knowslink-ui-fix-458798c-33ddf7/src`다. Compose project는 `knowslink-ui-fix-33ddf7`이며 새 Postgres 17의 loopback port는 `44603`이다. 자기 host relay는 `56787`, 자기 SMTP sink는 `57199`다. 실제 주소 `http://localhost:56787/`에서 검수했다. 운영 DB·공유 컨테"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+    "sha256": "40e884141a521151fa29b2983b21909a8a9e4504be4b864db061b5386034abc4",
+    "line_count": 88,
+    "snippets": [
+      {
+        "line": 22,
+        "text": "고정 SHA의 새 clone `/tmp/knowslink-agents-ui-d1eef9b`를 사용했다. Compose project는 `knowslink-agents-ui-d1eef9b-8398`다. 새 Postgres 17의 loopback port는 `57187`, host relay는 `59219`, 자기 SMTP sink는 `52591`이다. 실제 주소는 `http://localhost:59219/`다. SMTP는 합성"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+    "sha256": "c34f993ed74894ac526e597fca79ee718ebc9600d1a7fc1ab27785d2cbb27580",
+    "line_count": 119,
+    "snippets": [
+      {
+        "line": 106,
+        "text": "공유8개 컨테이너의 ID/이름은 전후 동일이다. 운영 DB·서버·Tunnel·실메일·외부 계정은 사용하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+    "sha256": "df49f42a49250ebac2e9e6dd6ee5dc9c2009c3a677ff5e232c488d9051f5350f",
+    "line_count": 99,
+    "snippets": [
+      {
+        "line": 86,
+        "text": "공유8개 컨테이너의 ID·이름은 자기 정리 전후 동일하다. 기존 .env·운영 DB·서버·Tunnel·외부 계정은 사용하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/module-design.md",
+    "sha256": "5db360465cfb23f7de56b718ff04783444aa4fc54b345ad0d6708802e9e3b55a",
+    "line_count": 188,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SA"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SA"
+      },
+      {
+        "line": 28,
+        "text": "| Compose 검증 | 고유 project·private 제품 DB·loopback 시험 DB·Tunnel OFF | verify-mvp·verify-runtime |"
+      },
+      {
+        "line": 52,
+        "text": "[플러그인 설치 문서](../../../adapters/README.md)와 [공식 조사·실행 기록](../exec-plans/phases/SAR-MVP-002-DEV.md)에 버전·실패 수정·한계·후속 담당을 기록한다. TESTER 독립 QA와 fixed-SHA 독립 리뷰는 coor 후속이며 이번 자동 검사로 대체하지 않는다."
+      },
+      {
+        "line": 72,
+        "text": "- `deploy/knowslink/access_trial_plan.py`: 단기 distinct service token·reusable non_identity policy·path 앱 본문과 보호된 Tunnel 후보를 생성한다. live mutation은 수행하지 않는다."
+      },
+      {
+        "line": 166,
+        "text": "## SAR-GOOGLE-LOGIN-001 인증 모듈"
+      },
+      {
+        "line": 168,
+        "text": "최신 사용자 Google 우선 출시 지시를 적용한다. 원 이메일 기획의 과거 수락 결과는 바꾸지 않는다."
+      },
+      {
+        "line": 170,
+        "text": "- `google.go`: OIDC discovery와 `oauth2` code 교환·PKCE를 사용한다. `coreos/go-oidc/v3` v3.17.0이 RS256 서명·Google issuer·client audience·expiry를 검증한다. 서버는 nonce·최근 iat·검증 이메일·비어 있지 않은 sub를 추가 확인한다. 동일 issuer의 Google 표준 issuer 변형은 라이브러리가 검증하고 저장 키는 `"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+    "sha256": "284638f4d251f8c6268230f2839cfdd25af0c8ec45782352918a06688fa87c4c",
+    "line_count": 87,
+    "snippets": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+    "sha256": "a6ec750958416bff6402e7378639930af7158dc3097e94316327f0d9f8bd586c",
+    "line_count": 41,
+    "snippets": [
+      {
+        "line": 33,
+        "text": "Workers Free만허용·유료플랜/구독/초과과금금지·기존서버/Tunnel·wire·기존제품한도를유지한다. 운영배포/실메일/외부계정/실24h/운영자료삭제/노우↔다닷은이번과제가아니다. 승인된로컬비파괴개발/자기격리검사·자기자원회수·커밋/일반push는재승인없이완료한다. 새독립OPS 세션/read-only fixed리뷰·TESTER좁은QA·필요직접UI와최종main판정은coor후속이다. 제품/범위질문만coor경유designer로보내며"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+    "sha256": "6348f11a5e5920e3c28e13a022be783f6a86be26bd0dff5e6dfb5611492b14d7",
+    "line_count": 64,
+    "snippets": [
+      {
+        "line": 54,
+        "text": "| 다음 작업 | `PLANS.md` Google 실제 로그인 완료 및 FullOps 업데이트 절 | 확인. main 통합·push·유휴 역할 동기화 후 새 coordinator 세션에서 개발한다. |"
+      },
+      {
+        "line": 58,
+        "text": "제품 인계 문서 `docs/operations/transition.md`에는 과거 베타 상태와 후속 Google 결정이 함께 보존돼 있다. `project.md`의 현재 상태 요약은 최신 실제 Google 로그인까지 반영하지 않았다. 두 파일은 이번 diff에 없으며 이번 운영 업데이트의 새 결함으로 분류하지 않는다. 최신 제품 상태는 PLANS의 날짜별 절에서 찾았다. 이번 수락으로 제품 인계 전체의 최신성이나 실환경 공개를"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md",
+    "sha256": "7a9eeca74ba55e495ff0c772936c2baf2330e32b07fcd7547e67fc5d03d579e2",
+    "line_count": 95,
+    "snippets": [
+      {
+        "line": 32,
+        "text": "| 정확한 hostname | 앱 `destinations=[{type: public, uri: link.knowslog.com}]`, Tunnel ingress `link.knowslog.com`→`relay:8080`, 나머지 404. 경로 제한 없음(전체 경로 보호) |"
+      },
+      {
+        "line": 43,
+        "text": "| TLS | 엣지 TLS는 Cloudflare가 종료한다. Tunnel 원점은 Docker 내부 네트워크의 HTTP다 |"
+      },
+      {
+        "line": 53,
+        "text": "| M1 | medium | `ops-guide.md`:14-15, 92, 133-136, 143 | 서두와 9·10장이 \"계획, 컨테이너·Tunnel 미변경, D11/D13 미작성\"으로 남아 11장·D13과 모순된다. 운영자가 현재 상태를 잘못 판단할 수 있다 | 역사적 기록으로 표시하거나 현재 상태로 갱신 |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+    "sha256": "8bfcadb037c15dc88b7f8c2aa6b03bbe5e8a1072a13887ab76d488b33a5851a4",
+    "line_count": 126,
+    "snippets": [
+      {
+        "line": 96,
+        "text": "공개 DNS, Tunnel connector, Access 앱은 없다. 공개 negative와 본인 이메일 로그인은 held다. 인간 검사와 구분한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+    "sha256": "c5962f2d8b0bef0bdd9092c9894f764337a6317f76195a2e50b43a41318118a1",
+    "line_count": 110,
+    "snippets": [
+      {
+        "line": 17,
+        "text": "headless Google Chrome 148.0.7778.96이 정확한 owner의 dashboard, fresh gate, Approve, Deny, 새로고침을 확인했다."
+      },
+      {
+        "line": 36,
+        "text": "| 브라우저 | Google Chrome 148.0.7778.96, headless |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+    "sha256": "9bd6bba28d1d89f037364844b140aa1a1bd853488465593cd38322c932d89034",
+    "line_count": 63,
+    "snippets": [
+      {
+        "line": 32,
+        "text": "- **원래 서버 관찰**: 문서는 원본 명령 로그가 없다고 적는다. 원본 Claude 세션 `f4f63623-…` 기록에서 Docker 29.4.3·Compose 5.1.3, 메모리 13Gi/가용 7.0Gi, cloudflared 2026.8.3·PID 20일 가동, `orca` Tunnel `3e132faa…`, `hermes-9ae8f587` Exited(255), `myportfolio-master-viewer-1` C"
+      },
+      {
+        "line": 33,
+        "text": "- **미실행·held**: D12 9장과 실행 기록 모두 DNS·Tunnel·컨테이너 변경, 수락 SHA 배포, 공개 health 검증, DB 복원을 미실행으로 적는다. D11/D13 미작성과 인덱스(D12 draft) 일치. 공개 가입 `POST /v1/owners`가 무인증 합성 가입이므로 공개 정책·신원(DEC-03)이 held인 동안 공개 연결 보류라는 서술이 타당하다."
+      },
+      {
+        "line": 35,
+        "text": "- **문서 링크·비밀값·JSON**: 변경 Markdown의 상대 링크 전수 확인에서 깨진 링크 0. 변경 JSON 6개 모두 유효. 비밀값·토큰·capability·credential 패턴 검색에서 해당 없음. Tunnel UUID 접두·ID는 식별자이며 자격 파일 내용이 아니다. `.env.example`은 jev context에서 refused, `compose.yaml`은 unsent로 처리돼 있다."
+      },
+      {
+        "line": 47,
+        "text": "| low (F3) | `handovers/to_dev.md:115` | \"수락 뒤 … 기존 승인 근거로 Tunnel 연결\" 문구가 이후 중지 지시·D12 1장과 충돌할 수 있다. 실행 권한은 D12를 따른다. | 열림, coor |"
+      },
+      {
+        "line": 56,
+        "text": "- 미실행: 서버·Docker·DNS·Tunnel·DB 복원·공개 health/auth 재검증, C1 재현. 이 검토는 문서 리뷰이며 해당 실행은 범위 밖이다. 제품 코드는 base 대비 변경이 없어 `make test`·`make build`·runtime은 적용하지 않았다."
+      },
+      {
+        "line": 63,
+        "text": "**제품·배포 수락: 아님.** `a6a10c7`은 C1 high로 수락·배포가 금지된다. DEV 수정, 새 고정 SHA의 독립 QA·리뷰·직접 시각 검수·coor 수락, 사용자 재개 지시와 후속 Dispatch 전에는 DNS·Tunnel·컨테이너 변경을 하지 않는다. D11/D13은 미작성이며 held 항목(DEC-02/03 등)은 유지한다. check 통과는 기록 검사이며 내용·테스트 성공의 자동 보증이 아니다. 이 결과는"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+    "sha256": "9d4f61915fd667d657f5290591074c5c51e56a46c8c36eb60ee06cba2f6e1dce",
+    "line_count": 83,
+    "snippets": [
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA"
+      },
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-001-TESTER]"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-001-TESTER]"
+      },
+      {
+        "line": 7,
+        "text": "summary: 운영 서버 별도 공간과 Windows 로컬에서 Google 클라이언트 연결의 핵심 보안 경계를 짧게 독립 검증한 결과"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA"
+      },
+      {
+        "line": 17,
+        "text": "- 별도 공간은 서버의 `/tmp/kl-gc-tester560836`(권한 700)이다. 격리 DB는 `postgres:17` 컨테이너 3개(`kl-gc-tester560836`, `-2`, `-3`)이며 loopback 임의 포트·256MiB·1CPU·합성 계정이었다. 각 컨테이너는 EXIT trap과 라벨 `knowslink.tester.qa=tester560836`로 지웠다. 마지막 정리에서 라벨 컨테이너 없음·임시 디렉"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+    "sha256": "3602182f3bd7e55918a15ec3d5142c16cd2e689afe10a3a4a954d377f415a734",
+    "line_count": 36,
+    "snippets": [
+      {
+        "line": 2,
+        "text": "title: Google 인증 변경 독립 검토"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-LOGIN-001-REVIEW]"
+      },
+      {
+        "line": 7,
+        "text": "summary: 고정 Google 인증 변경을 수락하고 실제 로그인 확인을 기존 서버 배포 뒤 진행한다"
+      },
+      {
+        "line": 10,
+        "text": "# Google 인증 변경 독립 검토"
+      },
+      {
+        "line": 16,
+        "text": "전체 26개 (path,status)를 reviewed로 확인했다. skipped 0이며 coverage 100%다. `rules.json`의 Markdown/JSON/Go/YAML 규칙, `fullops-common-0.3.3`의 코딩·테스트·보안, project.md, archive 지시서의 범위·최신 사용자 Google 우선 출시 결정을 적용했다. 고정 SHA와 현재 공통 규칙은 동일하다."
+      },
+      {
+        "line": 18,
+        "text": "code exchange/issuer/audience/RS256/expiry 검증, nonce·최근 iat·검증 이메일, 브라우저 state cookie와 PKCE 및 단일 소비를 확인했다. 소비를 value로 반환하여 실패/취소도 transaction commit되는 경계를 확인했다. token exchange는 SQL lock 밖에서 수행하고 timeout을 적용한다. verifier의 생명주기는 startup contex"
+      },
+      {
+        "line": 20,
+        "text": "새 critical/high 발견은 없다. 기존 M-UTF8-01과 전체 QA/UI 미완료를 변경하거나 PASS로 처리하지 않는다. OAuth testing 및 기존 Access 보호 때문에 일반 공개 수락은 아니다. 실제 Google 로그인과 callback 접근은 배포 뒤 사용자가 직접 확인한다."
+      },
+      {
+        "line": 26,
+        "text": "SIZE-002 실제 추가664줄은 인증 거부 및 실제 서명/Postgres 회귀 약300줄과 설정·인계가 포함된 규모다. 범위는 단일 Google 인증이다. 기존 큰 파일 분할 리팩터링은 생략한다. DEP-001의 coreos/go-oidc v3.17.0/oauth2 v0.36.0/go-jose v4.1.3은 기존 OIDC 검증기가 없는 코드에서 사용자 token 검증 재발명을 피한다. 공식 문서와 고정 버전 소스 근거는 D"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+    "sha256": "8c9af7705aad74bb10e61e1ea82b2a564c0dd98e456739a3a97ff260bfce350d",
+    "line_count": 87,
+    "snippets": [
+      {
+        "line": 28,
+        "text": "합성 credential, CSRF, claim token, DB 비밀번호는 로그에 남기지 않았다. Tunnel profile은 켜지 않았다. Compose project는 종료 시 그 project만 `down --volumes` 했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+    "sha256": "1c0f77b6eb9ebe968d492c03585396031da736ff51e9083c79ada8ae7e79cc95",
+    "line_count": 139,
+    "snippets": [
+      {
+        "line": 28,
+        "text": "합성 credential, CSRF, claim token, DB 비밀번호는 로그에 남기지 않았다. Tunnel profile은 켜지 않았다. Compose project는 종료 시 그 project만 `down --volumes` 했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+    "sha256": "f5c16298a07af4be9ee632489cf72501d0d800b82ea7eeb5a080bb7ebb80a8d3",
+    "line_count": 114,
+    "snippets": [
+      {
+        "line": 26,
+        "text": "- 합성 credential, private key, `POSTGRES_PASSWORD`는 로그·HTML·PNG에 남기지 않았다. 저장 HTML의 CSRF 값은 `redacted`다. Tunnel profile은 켜지 않았다. 각 Compose project는 종료 시 그 project만 `down --volumes` 했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+    "sha256": "a114886ac4b0a93864e54bcd59c05631b33021131f0027bb407d77f28d4ae5de",
+    "line_count": 151,
+    "snippets": [
+      {
+        "line": 47,
+        "text": "Go 통합 로그의 관련 PASS는 `TestPublicAgentHTTP` 5개 하위, `TestEmailIdentity`, `TestGateFailureStates`, `TestPostgresSafety`, `TestTrialHTTP`, `TestTrialForeignAllowlistRevokesLease`다. 로그 끝은 `PASS: isolated Compose migration, Postgres races, TS adapt"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+    "sha256": "1ea3d0a7a08a862607a86e9f59d37db54df520f006f2ef36e08a76e435aba7f3",
+    "line_count": 37,
+    "snippets": [
+      {
+        "line": 25,
+        "text": "- 후보 HEAD 전후 동일과 clean 파일, 독립 Compose project 및 기존 relay/Tunnel/Postgres ID 보존을 확인했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+    "sha256": "55d58bd23ab3db2e97ef88a283a09ff6add0a746bdc10cb5057a85743ee4f27b",
+    "line_count": 71,
+    "snippets": [
+      {
+        "line": 63,
+        "text": "fixture `down --volumes`는 exit 0이다. Docker after 목록에 자기 project가 없다. QA용 Go source는 scratch에서 제거됐다. scratch 전체도 회수했다. Node/MCP는 QA 컴파일 실패 때문에 새 fixture에서 시작하지 않았다. 공유 서버·Tunnel·다른 역할 자원은 중지하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+    "sha256": "23ee6ba80678a47495012312143eb4f60ba4d2b7bb49257706d9b0935e0d5705",
+    "line_count": 117,
+    "snippets": [
+      {
+        "line": 107,
+        "text": "- 실행하지 않음: 운영 Tunnel/edge 본문 완충과 연결 수 상한, 실부하·상태 크기·CPU(L-1), 실제 브라우저 시각 검수(designer UX07), 실메일·실24h·외부 계정·운영 배포. `make verify-grok-plugin`은 adapter 변경이 없어 실행하지 않았다. edge 미검증을 통과 근거로 쓰지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+    "sha256": "6af4c759a7efd317d92b920adb00171a8f15647d7f6c1719ceacdd34fbf37e5b",
+    "line_count": 111,
+    "snippets": [
+      {
+        "line": 36,
+        "text": "`make verify-mvp`는 별도 project `knowslink-mvp-2862a643cf`를 만들고 끝에서 volume과 network를 지웠다. 로그의 마지막 줄은 `PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused`다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+    "sha256": "a253ef683d38bdc8c49b1ea20096a5d9ebc09b2d6c9fae380b0d429796ec69c5",
+    "line_count": 73,
+    "snippets": [
+      {
+        "line": 55,
+        "text": "Chrome은 시작하지 않았다. 다른 작업자의 터미널·운영 DB·Tunnel·외부 계정은 조작하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+    "sha256": "51cba18e0bd5283b3220e3d4fea2269e6ad2dfb8f778457bb20efe965283e325",
+    "line_count": 113,
+    "snippets": [
+      {
+        "line": 51,
+        "text": "| `make verify-runtime` | 0 (`PASS: local startup, empty SQL no-op, readiness, missing settings, DB failure, disabled Tunnel, inert adapter`) |"
+      },
+      {
+        "line": 76,
+        "text": "- 실제 Tunnel·운영 배포·네 벤더 어댑터·C1–C5 보안 동작은 범위 밖이며 검증하지 않았다."
+      },
+      {
+        "line": 109,
+        "text": "| `make verify-runtime` | 0 (`PASS: local startup, empty SQL no-op, readiness, missing settings, DB failure, disabled Tunnel, inert adapter`) |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+    "sha256": "4571d7f0e2cdb41f16e15b3454e49b78997002334e989287ec9fc6a2b4fe03ef",
+    "line_count": 41,
+    "snippets": [
+      {
+        "line": 22,
+        "text": "3. 고유 Compose project에서 relay를 띄운다. Postgres 비밀번호와 Tunnel token은 로그에 남기지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+    "sha256": "d3c7714b68794c20e847a7fe5346b6afdad01dcf13c7b2f337bfe436eeb35a2e",
+    "line_count": 51,
+    "snippets": [
+      {
+        "line": 18,
+        "text": "2. 실제 키·Tunnel token·운영 DB를 쓰지 않는다. 설정은 `.env.example`의 더미 값만 쓴다."
+      },
+      {
+        "line": 50,
+        "text": "- 실제 Tunnel 연결·운영 배포·네 벤더 어댑터: 범위 밖이다. 검증하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+    "sha256": "84a1100590d606f7c6a26a7320c8c1ef3905b07a09ab6997557ac8c23a3c4a17",
+    "line_count": 59,
+    "snippets": [
+      {
+        "line": 45,
+        "text": "제품 서비스 공개·Google 정책·외부 에이전트 왕복·기존 QA/UI 보류를 이번 업데이트로 수락하지 않는다. 이슈 실환경 wake·Unity Player·Windows/macOS·실제 영상·새 세션 hook은 이 Linux 업데이트에서 검증하지 않는다. 다음 개발은 새 coordinator 세션에서 진행한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+    "sha256": "959dd264ff5fd28ea5815634c149bb0f1b22826edf0d9b376f3822018073b790",
+    "line_count": 125,
+    "snippets": [
+      {
+        "line": 20,
+        "text": "- 공식 docs MCP(`search_cloudflare_documentation`)와 Context7 `/cloudflare/cloudflare-docs`: Tunnel 원점 `originRequest.access.required/teamName/audTag`, reusable policy와 email selector, OTP는 이메일 제한과 함께만 쓴다는 경고, `tunnel route dns`는 DNS만 만들고 conn"
+      },
+      {
+        "line": 47,
+        "text": "| Tunnel config | 임시 UUID·AUD로 렌더링한 설정을 `cloudflare/cloudflared:2026.9.1` 이미지에서 `ingress validate` exit 0, `ingress rule`이 `link.knowslog.com`→`relay:8080`로 매칭 |"
+      },
+      {
+        "line": 48,
+        "text": "| `beta.sh tunnel-create` | exit 0. 새 Tunnel `knowslink`. `cert.pem`의 Tunnel 쓰기 권한 확인. 자격 파일 0600을 상태 디렉터리에 두었다. `orca` Tunnel·호스트 cloudflared 불변 |"
+      },
+      {
+        "line": 75,
+        "text": "| M3 | `access_apply.py check`를 추가하고 `beta.sh expose`가 호출한다. live 앱·정책·`aud`·`teamName`·Tunnel `audTag`를 비교한다. `dig` 실패는 중단한다. `selftest`가 깨진 앱·설정을 거부하는지 검사한다. 임시 상태 디렉터리와 더미 이메일로 `check`의 통과·거부(정책 2개)를 직접 실행해 확인했다 |"
+      },
+      {
+        "line": 109,
+        "text": "| `access_apply.py check` | exit 0 — 앱·정책·aud·teamName·Tunnel audTag 일치 |"
+      },
+      {
+        "line": 110,
+        "text": "| `beta.sh expose` | exit 0. DNS 부재 확인 → `cloudflared tunnel route dns`(덮어쓰기 없음) → connector 기동. MCP DNS GET: `link` proxied CNAME → `knowslink` Tunnel, 기존 3개 불변 |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+    "sha256": "221ba3cc7e0b44e37aa4dcadddddb248a76a4e929409e533a1c035760ca76c96",
+    "line_count": 52,
+    "snippets": [
+      {
+        "line": 23,
+        "text": "- D12에 별도 project/Tunnel·고정 배포 경로·영속 볼륨·공통 Compose 인자·migration 호환성·dump/복원·health/auth 검증 계획을 기록했다. 공개 CNAME 응답 부재만으로 proxied DNS 실패를 판정하지 않도록 정정했다."
+      },
+      {
+        "line": 34,
+        "text": "준비 기록 완료와 실제 배포 완료를 구분한다. DNS·Tunnel·컨테이너 생성/변경·기존 서비스 재시작은 미실행이다. DEV 후보 배포와 D11/D13 이행은 held다. DEC-02/03 공개 정책·신원·운영 한도·실adapter·WAL/backup 삭제 보장은 이번 계획으로 확정하지 않는다."
+      },
+      {
+        "line": 44,
+        "text": "기술 계획은 기존 후보 SHA의 Compose·D05·QA 기록 대조, C1 high 배포 차단 반영, 문서 검사, 소유 파일 커밋이다. 고정 후보 `a6a10c7`의 파일을 `git show`로 읽었다. 업무 SQL·역할별 인증·UI와 이전 합성 QA 실행 결과를 확인했다. Cloudflare 공식 설정 파일·run parameters·CNAME flattening 문서는 다시 조회했다. 서버·비밀 파일·제품 코드·DNS·T"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+    "sha256": "6ce2e2018cb8b9c72d4aa4649859cd7886d6fcb68c982998c4ba5367a286dc07",
+    "line_count": 40,
+    "snippets": [
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-001-DEV 실행 기록"
+      },
+      {
+        "line": 2,
+        "text": "title: SAR-GOOGLE-CONNECT-001-DEV 실행 기록"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-001-DEV]"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-001-DEV]"
+      },
+      {
+        "line": 7,
+        "text": "summary: Google 클라이언트 연결 구현·검증과 독립 검토 및 운영 인계"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-GOOGLE-CONNECT-001-DEV 실행 기록"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-GOOGLE-CONNECT-001-DEV 실행 기록"
+      },
+      {
+        "line": 17,
+        "text": "2. Google 시도에 연결 ID를 묶는다. Google 인증 후 해당 회원에 요청을 고정한다. 최근 인증과 명시적인 지문 확인·동의 후 별도 agent를 만든다. 기존 completeConnection이 키 소유 증명과 한 번의 자격 발급을 담당한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+    "sha256": "45ce620877489db4c9822a044b681e108ea80cfd42ae5448c29ba70a93c2a1ee",
+    "line_count": 45,
+    "snippets": [
+      {
+        "line": 2,
+        "text": "title: Google 로그인 구현 실행 기록"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-GOOGLE-LOGIN-001-DEV]"
+      },
+      {
+        "line": 7,
+        "text": "summary: Google 신원과 기존 회원·세션 연결의 좁은 구현 및 검증·운영 설정을 인계한다"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-GOOGLE-LOGIN-001-DEV 실행 기록"
+      },
+      {
+        "line": 14,
+        "text": "기준 `abf2de1e3f0501e56b41f9d909514f591b656d4c`, 준비 packet SHA `3b183a5304734d4c50f60d3e26da23e057fd9971`을 사용했다. preamble의 실제 task/dispatch로 회신한다. Google issuer/sub 신원·자동 가입·기존 owner·세션·Google 재확인만 구현한다. 기존 미커밋 지시서와 Jev 자료는 보존한다."
+      },
+      {
+        "line": 16,
+        "text": "Google ID token 서명 검증을 재발명하지 않으려고 `github.com/coreos/go-oidc/v3` v3.17.0과 `golang.org/x/oauth2` v0.36.0을 추가했다. 하위 의존은 `go-jose/v4` v4.1.3이다. 기존 라이브러리에는 OIDC verifier가 없다. Context7 resolve는 monthly quota 오류였다. 대신 [Google OIDC](https://develo"
+      },
+      {
+        "line": 18,
+        "text": "기존 JSON state와 세션 발급을 공유한다. 10분 시도·nonce·PKCE·state/cookie·single-use 소비로 code 흐름을 보호한다. 최근 ID token을 다시 확인하는 Google 신원 확인이며 Google 비밀번호 재입력을 보장하지 않는다. 기존 Google 회원의 재확인은 원 세션·회원에 묶인다. 동일 이메일의 이메일 회원은 병합하지 않는다. Strict 세션 cookie를 유지하려고 callb"
+      },
+      {
+        "line": 27,
+        "text": "- `TEST_SYNTHETIC_DATABASE=1 TEST_DATABASE_URL=<isolated synthetic DB> go test -race -tags integration ./internal/relay -run '^(TestGoogleHTTP|TestEmailIdentity)$' -count=1`: exit 0. 실제 Postgres와 signed local OAuth provider를 사용했다. Google SM"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+    "sha256": "915b085effbe035a070e096691dae91bd93d5b4eed7a120075c2103b031a62f0",
+    "line_count": 170,
+    "snippets": [
+      {
+        "line": 23,
+        "text": "외부 도구·정보 공개·벤더 연결·Tunnel 변경은 수행하지 않는다."
+      },
+      {
+        "line": 43,
+        "text": "| make verify-runtime | 종료코드 0; actual migration·2개 테이블·readiness·설정/DB 실패·네트워크 차단 Tunnel, build/evidence/runtime.log |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+    "sha256": "0b1ce81433e1dbae367249840ff17207b9fff9164299354cae613a2a36b9a6ae",
+    "line_count": 109,
+    "snippets": [
+      {
+        "line": 14,
+        "text": "착수 HEAD는 `4132354`(기준 main `31cf1a5b6ab0e9ac607f86ad06d7ad797ceeab11` 위 지시서 커밋)다. 시작 시 작업 트리는 깨끗했다. 브랜치는 `fullops/ops`, Task는 task_55c56687078d, Dispatch는 ctx_44832730a4a5다. 제품 소스는 `0911c2c`와 같다(`git diff 0911c2c --stat -- adapters internal"
+      },
+      {
+        "line": 34,
+        "text": "갱신 뒤 GET으로 확인했다: trial policy `884305ff-26ef-4fc5-828a-8145e7a5706c`(`non_identity`, include 두 UUID만)와 앱 `84b33961-6f78-42d3-b27b-06e064a05c2b`(`link.knowslog.com/v1/test/*`, AUD `57fc4acf…`, policy 하나, 24h)는 바뀌지 않았다. root 앱·policy·Tunnel 설"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+    "sha256": "eac55f177fc78cd301d368cb7a765a326ecc3e70905535b37f871c73659b3301",
+    "line_count": 245,
+    "snippets": [
+      {
+        "line": 16,
+        "text": "적용 범위는 사용자 승인된 시험 text, `link.knowslog.com`, 제한된 24h machine 인증이다. 신규 비용·다른 서버·업무 effect·dots·FullOps 업데이트는 하지 않았다. root owner 앱·정책·IdP·Tunnel·DNS·공유 서비스는 바꾸지 않았다."
+      },
+      {
+        "line": 25,
+        "text": "| 원점 Tunnel 후보 적용 | **미실행**. trial AUD가 선행 조건이다. 후보 구조는 placeholder AUD로 검증했다. |"
+      },
+      {
+        "line": 69,
+        "text": "- `~/.cloudflared/cert.pem`은 Tunnel·DNS용이다. Access 쓰기에 쓰지 않는다."
+      },
+      {
+        "line": 195,
+        "text": "## Tunnel 적용"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+    "sha256": "c133782ba0bbe0f073839f3188419564c23fd1364e85f533b973143140dec66e",
+    "line_count": 118,
+    "snippets": [
+      {
+        "line": 56,
+        "text": "초기 Tunnel 검사는 컨테이너 기본 UID가 0700 임시 폴더를 읽지 못해 exit 1이었다. 기존 운영 방식과 같이 호스트 UID/GID를 지정하고 pinned image로 재실행해 통과했다. 이전 결과를 성공으로 바꾸지 않는다. 구현 중 이전 real-sql-mcp.txt도 보존하며 최신 코드 검증은 final 로그가 정본이다."
+      },
+      {
+        "line": 68,
+        "text": "배포는 `/home/shin/deploy/knowslink`의 `28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2`다. relay/postgres healthy·Tunnel Up이며 공개 registry는 302다. Cloudflare GET(200)은 root owner 앱 하나와 owner allow policy 하나를 반환했다. trial prefix 앱은 없고 service token은 0개다. "
+      },
+      {
+        "line": 78,
+        "text": "[D12 13장](../../operations/ops-guide.md#13-승인된-양방향-시험-sar-mvp-003)에 생성 본문·설정·배포·negative/positive 검사·rollback을 준비했다. 비용·서비스·DNS·Tunnel 생성은 필요하지 않다. 기존 Access를 해제하지 않는다. 실제 네트워크 trial message는 아직 보내지 않았다. UI를 변경하지 않았으며 독립 직접 시각 검수는 coor의 기존 "
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+    "sha256": "3cf91bb4de57068ea759ccaf355a4cdcf03315c1222e9a7c8c0e46110fa48eca",
+    "line_count": 70,
+    "snippets": [
+      {
+        "line": 14,
+        "text": "착수 HEAD는 `ccc17efcf251b08b6a84df7f3965ab889810396b`다. 브랜치는 `fullops/ops`, Task는 task_460d530b9673, Dispatch는 ctx_fc0f0f1c6aa7이다. 시작 시 작업 트리는 깨끗했다. 실제 Codex→Grok→Codex 왕복은 [성공 판정](SAR-MVP-003-ACTUAL-TRIAL.md)으로 확정됐다. 그 원본 기록은 바꾸지 않았다. 이번 작업은"
+      },
+      {
+        "line": 20,
+        "text": "| 관리 token | `/user/tokens/verify` active, 만료 2026-10-05T23:59:59Z. 계정 범위 한정이라 `/accounts`는 빈 목록이다. 계정 ID는 Tunnel 자격 파일의 `AccountTag`로 얻었다. |"
+      },
+      {
+        "line": 25,
+        "text": "| Tunnel config | 현재 live는 백업 `tunnel-bak-pre-trial/config.yml`에 `/v1/test/.*` trial AUD rule(9줄)만 더한 것이다. `diff`로 확인했다. 백업은 owner AUD hostname rule 하나와 404뿐이다. |"
+      },
+      {
+        "line": 33,
+        "text": "1. **Tunnel config 복원.** 시험 중 live config를 `tunnel-trial-active-ended/config.yml`(0700 폴더, 0600)에 보존했다. 백업 `tunnel-bak-pre-trial/config.yml`을 `tunnel/config.yml`에 0600으로 복사했다. `cmp`가 같다. 복원 전에 pinned `cloudflare/cloudflared:2026.9.1@sha256:"
+      },
+      {
+        "line": 44,
+        "text": "| root 불변 | owner 앱·owner policy·bot policy의 JSON SHA-256이 baseline과 모두 같다(`unchanged` 3건). IdP·team·Tunnel·DNS는 건드리지 않았다. |"
+      },
+      {
+        "line": 45,
+        "text": "| Tunnel/config | live `tunnel/config.yml`과 백업 `cmp` 일치, 0600. |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+    "sha256": "e5dfcf996bcf87ba0df991de67e534630abca437cf867ceb96186f73a3580040",
+    "line_count": 50,
+    "snippets": [
+      {
+        "line": 20,
+        "text": "사용자 배포 승인은 받은 지시서와 OPS 지시서에 기록돼 있다. 현재 서버 Docker·Cloudflare Tunnel 첫 배포와 `link.knowslog.com`을 적용한다. 원천의 `relay.knowslog.com`은 원문 보존 대상이며 현재 hostname과 구분한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+    "sha256": "2306d1427857dfa7ee18bd973ea9d0f72f88a7d7e24863d8b1f580bd4319dfa4",
+    "line_count": 110,
+    "snippets": [
+      {
+        "line": 63,
+        "text": "원본 UI FAIL/보류·M1 공개 차단·미해결 critical/high 차단과 PS-13 전체 수락은 유지한다. 실제 일반 이메일·운영 공개·노우↔다닷·실메시지·Workers Free와 기존 서버/Tunnel 제한은 확대하지 않는다. 실제메일·배포·외부 계정·과금·서버/Tunnel 변경은 수행하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+    "sha256": "2416763f961651bb89eb80f4bb3384c750e2da0105f5f743904b17812a32de20",
+    "line_count": 93,
+    "snippets": [
+      {
+        "line": 91,
+        "text": "- 미검증: 운영 Tunnel/edge와 실부하·상태 크기·CPU(L-1), 다수 실제 계정 공모(서로 다른 owner 4명 이상) 실측, 운영 배포·실메일·외부 계정·노우↔다닷·실24h. `make verify-grok-plugin`은 adapter 변경이 없어 실행하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+    "sha256": "19529ef3cad5538181b1416abf71f7389ac8bff0e54e45a7af07c117bfa10c42",
+    "line_count": 88,
+    "snippets": [
+      {
+        "line": 86,
+        "text": "- 미검증: 운영 Tunnel/edge·실부하·상태 크기·CPU(L-1, 재조회는 신규 포화 중 전체 JSON 단일 읽기를 더한다), 다수 실제 계정 공모, 운영 배포·실메일·외부 계정·노우↔다닷·실24h. `make verify-grok-plugin`은 adapter 변경이 없어 실행하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+    "sha256": "2585d95b9a162c8f1d2d53c91c14c7477c8166c81c8a8a869ad6d554f38ec456",
+    "line_count": 76,
+    "snippets": [
+      {
+        "line": 74,
+        "text": "- 미검증: 운영 Tunnel/edge 본문 완충과 연결 수 상한, 실부하·상태 크기·CPU(L-1), 실제 브라우저의 키보드 Enter 직접 확인, 운영 배포·실메일·외부 계정·노우↔다닷·실24h. `make verify-grok-plugin`은 adapter 변경이 없어 실행하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+    "sha256": "c450f61805ab76d20370e00c703ea92cc845c9e1d1409cfc9b08487f8b0d3cde",
+    "line_count": 55,
+    "snippets": [
+      {
+        "line": 14,
+        "text": "사용자는 최종 코드의 main 병합·origin/main 반영과 공개 준비를 요청했다. Sol 독립 QA도 승인했다. 이 준비는 운영 공개 완료가 아니다. 기존 서버/Tunnel·Workers Free를 유지한다. 유료 플랜/구독/초과과금은 허용하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+    "sha256": "5ff83b94e223a005e6baf3727bd74b098b3e008d08495779bb514a65032f8a3e",
+    "line_count": 226,
+    "snippets": [
+      {
+        "line": 28,
+        "text": "| Tunnel | `knowslink`: 연결 4개(icn01 1개, icn06 2개, icn07 1개), connector 2026.9.1, 시작 2026-10-05T11:47Z. 상태 `config.yml`은 `link.knowslog.com` → `http://relay:8080` 한 규칙과 404뿐이다. `originRequest.access.required: true`, `teamName: scshin88`, `au"
+      },
+      {
+        "line": 148,
+        "text": "| Tunnel 목록 API | `GET cfd_tunnel` 결과 빈 배열(권한 부족) | 필요 없음. `cloudflared tunnel list/info`(cert.pem)가 대체 관측이다. |"
+      },
+      {
+        "line": 202,
+        "text": "| https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/application-token/ | Access가 인증된 요청의 origin에 token을 포함한다. payload는 IdP 로그인과 service token에서 다르다. Tunnel 연결이 아니면 origin이 검증해야 한다 |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/operations/transition.md",
+    "sha256": "f39f004d8678663034c6ac7bce73503eaf08f9aded79a9736811947199db8b5e",
+    "line_count": 91,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGL"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGL"
+      },
+      {
+        "line": 21,
+        "text": "| Tunnel | `knowslink` Tunnel 연결 4개(icn05/06/07). 컨테이너 `knowslink-cloudflared-1` |"
+      },
+      {
+        "line": 23,
+        "text": "| 원점 JWT | Tunnel `originRequest.access.required: true`, teamName `scshin88`, audTag는 앱 aud와 일치 |"
+      },
+      {
+        "line": 24,
+        "text": "| DNS `link.knowslog.com` | proxied CNAME → `knowslink` Tunnel. 기존 레코드 3개 불변 |"
+      },
+      {
+        "line": 31,
+        "text": "- 상태 디렉터리 `/home/shin/deploy/knowslink-state`(0700): `.env`, Tunnel 자격 파일, `access.aud`, 백업. 모두 Git 미추적이다. 자격 파일을 공유 위치로 옮기지 않는다."
+      },
+      {
+        "line": 35,
+        "text": "- 보존 대상: `myportfolio` 프로젝트·볼륨, `orca` Tunnel, 호스트 cloudflared PID 506937, `~/.cloudflared/config.yml`."
+      },
+      {
+        "line": 46,
+        "text": "기존 베타·Access·Tunnel·Tailscale·배포 SHA는 변경하지 않았다. 사용자 확정 대상은 xAI 공식 Grok Bot이다. 설치된 Grok Build CLI와 inference API를 대체 대상으로 선택하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/operations/user-guide.md",
+    "sha256": "40259e5c8c616b8f5f5e5c7a05401c09b4b20fa6a3cc76a1683c282617b3d6da",
+    "line_count": 114,
+    "snippets": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]"
+      },
+      {
+        "line": 7,
+        "text": "tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]"
+      },
+      {
+        "line": 100,
+        "text": "## Google로 각 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 100,
+        "text": "## Google로 각 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV"
+      },
+      {
+        "line": 105,
+        "text": "2. 표시된 링크를 열어 Google 로그인한다. 화면의 키 지문을 실행한 클라이언트와 비교하고 연결에 동의한다."
+      },
+      {
+        "line": 107,
+        "text": "4. 다른 클라이언트에서도 같은 Google 계정으로 반복한다. 별도 agent와 키가 생긴다. 자기 홈의 관계 요청에서 출발 agent와 자기 다른 agent를 선택하고 상대에서 명시적으로 수락한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+    "sha256": "fa0adc00a1d35f00c93aa8d4d53a685c3b92458727801c09847ee756c5e19152",
+    "line_count": 95,
+    "snippets": [
+      {
+        "line": 51,
+        "text": "| SAR-MVP-007, P2 | 수락된 기능을 집 미니서버의 공개 ingress에 안전하게 준비한다. MVP-12/15, 원천 배포 잠금 | Compose·Postgres 비공개·별도 migration·Tunnel ingress·운영 문서 포함. 제한 없는 공개·승인 없는 배포·유료화 제외 | ops가 설정·수락 SHA·안전 제한·운영 절차를 검증한다. `link.knowslog.com`의 누구나 가입 가능한 첫 인증·합성"
+      },
+      {
+        "line": 73,
+        "text": "| DEC-05 | 미니서버 port/path/process manager, image/digest/env, Tunnel 운영 설정·공개 시점 | dev/ops가 기술 설정 결정, coor가 실행 승인 수집 | 운영 Tunnel·배포·외부 발송. 기존 로컬 설정은 골격 증거로만 재사용 | 수락된 고정 SHA·확정 제한 구현·운영 설정 검증. 현재 서버 Docker·Tunnel 첫 파일럿 승인은 확보됐으며 범위 확대에는 새 승인"
+      },
+      {
+        "line": 75,
+        "text": "DEC-01/02/04의 기존 held·queued와 재개 조건은 유지한다. DEC-03의 초기 수치는 제안이며 승인 전 기본값이 아니다. DEC-05의 서버 Docker·Tunnel 배포 승인은 확보됐고 hostname은 link.knowslog.com이다. 수락 SHA·제한 집행·운영 검증은 남아 있다. 각 보류는 해당 경로만 막는다. 001의 합성 데이터·로컬 폐쇄 검증과 문서 준비는 진행할 수 있다. 공개 정책이나 qu"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/business-plan.md",
+    "sha256": "f86232a420e13e52ee7b08825c387ce05ded3c3afeed6f62359489ec5d78151e",
+    "line_count": 66,
+    "snippets": [
+      {
+        "line": 32,
+        "text": "집 미니서버의 Go relay·Postgres·Docker Compose와 Cloudflare Tunnel ingress 방향은 원천의 확정 조건이다. 기술 계획과 구현 설정은 dev와 ops가 맡는다. 초기 SAR-PREP-002에서는 운영 배포를 승인하지 않았다. 2026-10-03 사용자는 현재 서버 Docker·Cloudflare Tunnel과 `link.knowslog.com` 첫 인증 파일럿 배포를 승인했다. 현재 "
+      },
+      {
+        "line": 58,
+        "text": "| 운영 설정·배포 시점·외부 발송 | ops와 coor, 사용자가 실행 승인 | 운영 공개 보류 | 안전 제한 확정·수락 SHA·운영 설정 검증. 현재 서버 Docker·Tunnel 첫 파일럿 승인은 확보됐으며 범위 확대에는 새 승인 필요 |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+    "sha256": "bfa5230d9c3156523dd2cacac6f100c5cef8caf7e46bade5dc1ef8da6284c670",
+    "line_count": 160,
+    "snippets": [
+      {
+        "line": 158,
+        "text": "사용자가 이메일 발송 설정 부재를 해결하기 위해 Google 가입·로그인을 선택했다. 핵심 기능을 먼저 출시하고 운영에서 보완한다. 이 명시 결정이 과거 이메일 코드 전용 가입 설명보다 우선한다. 처음 검증된 Google issuer/sub는 새 회원과 자기 owner를 만든다. 같은 issuer/sub의 재로그인은 기존 회원을 사용한다. 이메일만 같다는 이유로 기존 이메일 회원과 자동 병합하지 않는다. Google 신원 재확"
+      },
+      {
+        "line": 160,
+        "text": "이 절은 coordinator가 사용자의 확정 결정을 보존한 기록이다. 과거 실패·전체 QA/UI 미완료·운영/벤더 미검증을 PASS로 바꾸지 않는다. 구현017bf456와 독립 인증 delta 리뷰는 D10 및 SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md를 따른다. 지정 Google 테스트 사용자 실제 가입·홈 확인과 Grok Bot 연결은 다음 실행이다."
+      },
+      {
+        "line": 160,
+        "text": "이 절은 coordinator가 사용자의 확정 결정을 보존한 기록이다. 과거 실패·전체 QA/UI 미완료·운영/벤더 미검증을 PASS로 바꾸지 않는다. 구현017bf456와 독립 인증 delta 리뷰는 D10 및 SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md를 따른다. 지정 Google 테스트 사용자 실제 가입·홈 확인과 Grok Bot 연결은 다음 실행이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+    "sha256": "84dae446ef3885631045088ece616130a66860fc4584274b6a29d0f483e17f38",
+    "line_count": 102,
+    "snippets": [
+      {
+        "line": 46,
+        "text": "3. 네 Compose 서비스의 구성과 개발용 설정 예시를 제공한다. 실제 Tunnel 연결이나 운영 자원 변경은 수행하지 않는다."
+      },
+      {
+        "line": 62,
+        "text": "| SETUP-04 | 실제 키 없이 예시 설정으로 검사 가능하다. 필수값 누락 시 안전하게 실패하거나 해당 외부 서비스가 비활성이다 | 누락 설정 시나리오, 비밀값·실제 Tunnel token 미포함 확인 |"
+      },
+      {
+        "line": 84,
+        "text": "- CI·배포 자동화, 운영 Tunnel·DNS·미니서버 변경, 병원·폐쇄망 지원, 외부 메시지 발송은 필수 산출물이 아니다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+    "sha256": "274f169b48dd9b8ff7da1c4a7354635d009448faa23370fded046e401504f7cf",
+    "line_count": 67,
+    "snippets": [
+      {
+        "line": 40,
+        "text": "첫 Go 릴레이 구현은 ingest/queue-only가 아니라 **human-gate까지** 포함합니다: validate/auth/ingest, short queue, lease/ACK/exec claim, receipts, `relay.approval.request`, envelope 밖 approve/deny 경로. Human-gate MVP UI는 Go relay가 `net/http` + `html/template`로 "
+      },
+      {
+        "line": 50,
+        "text": "- **MVP stack (locked):** Docker Compose on the home mini-server with **Postgres**, one-shot `migrate` (`cmd/migrate`), **Go relay**, and `cloudflared` (Tunnel ingress only). Postgres is not publicly exposed. Cloudflare Tunnel serves **`rel"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+    "sha256": "064cc4f3ac62731a4cd4f4b8e5ecd84031d65080cb00ae74cc9c656120b0e2f1",
+    "line_count": 172,
+    "snippets": [
+      {
+        "line": 129,
+        "text": "- **Public HTTPS:** **Cloudflare Tunnel** as **edge ingress only** (TLS/public entry → local relay). Public host is **`relay.knowslog.com`** on `knowslog.com`; Tunnel ingress routes it to the home mini-server. Tunnel is not the application "
+      },
+      {
+        "line": 146,
+        "text": "- 미니서버의 port·path·process manager·Cloudflare Tunnel 설정은 이 SoT에서 정하지 않는다. 향후 구현 레포의 env/config로 둔다."
+      },
+      {
+        "line": 154,
+        "text": "- Compose 서비스는 **`postgres`**, one-shot **`migrate`** (`cmd/migrate`), **`relay`** (Go), **`cloudflared`** (Tunnel ingress only)로 구성한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+    "sha256": "dd2444f470245fa579ed3fedab29532d2e2fcab4ab6b3a703bda00b615c95c93",
+    "line_count": 127,
+    "snippets": [
+      {
+        "line": 119,
+        "text": "- **MVP 배포:** 집 **미니서버**에서 **Docker Compose**로 `postgres`, one-shot `migrate` (`cmd/migrate`), Go `relay`, `cloudflared` (Tunnel ingress only)를 실행한다. Postgres는 퍼블릭에 노출하지 않는다. **Cloudflare Tunnel**(퍼블릭 HTTPS 인그레스)의 공개 호스트는 **`relay.knowslog."
+      },
+      {
+        "line": 125,
+        "text": "- 미니서버 port·path·process manager·Cloudflare Tunnel 설정은 향후 구현 레포의 env/config로 미룬다. **Postgres tooling (잠금):** Go driver는 `jackc/pgx/v5` + `pgxpool`, migration은 `pressly/goose/v3`의 SQL-only 방식으로 별도 `cmd/migrate`에서 실행하며 API 기동 시 auto-up하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+    "sha256": "e09240a9b9dec1f894959e423a8d45360b4ed01e0059759a210c8c229067d6fb",
+    "line_count": 318,
+    "snippets": [
+      {
+        "line": 204,
+        "text": "사용자는 전체 MVP 진행과 현재 서버 Docker·Cloudflare Tunnel 배포를 승인했다. hostname은 link.knowslog.com이다. 운영 공개의 제품 선행 조건 DEC-03은 아직 미정이다. 목표는 등록·페어링·합성 안전 요청과 human-gate를 갖춘 인증된 첫 파일럿의 공개 제품 기준을 정하는 것이다. 무제한 공개·실데이터·실제 일정 효과·외부 벤더 연결·유료화는 이 과제에서 추가하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+    "sha256": "a451cf3beeacf5474ff53635226ab5f1020759072c0bc9d664448687da054bd2",
+    "line_count": 349,
+    "snippets": [
+      {
+        "line": 12,
+        "text": "title: SAR-DEPLOY-001-OPS — 현재 서버 Docker와 Tunnel 운영 준비"
+      },
+      {
+        "line": 20,
+        "text": "# SAR-DEPLOY-001-OPS — 현재 서버 Docker와 Tunnel 운영 준비"
+      },
+      {
+        "line": 24,
+        "text": "사용자는 2026-10-03 현재 서버의 Docker 컨테이너 배포와 Cloudflare Tunnel 연결을 승인했다. hostname은 link.knowslog.com이다. knowslog.com은 사용자가 소유하며 Cloudflare에서 관리한다. 동일 승인 범위의 배포 승인을 다시 묻지 않는다."
+      },
+      {
+        "line": 30,
+        "text": "DEV 고정 후보의 독립 QA·UI 검수·코드 리뷰 및 coor 수락이 운영 변경의 선행 조건이다. 이번 준비 단계에서는 실제 DNS·Tunnel·컨테이너를 생성·변경하지 않는다. 수락 SHA 전달 뒤 같은 과제의 후속 dispatch에서 운영 구성·배포·검증을 수행한다. 제품 미정 정책은 임의 결정하지 않는다."
+      },
+      {
+        "line": 72,
+        "text": "D12 초안의 front matter와 실제 검증/미실행/held·현재 사용자 중지 지시·재개 조건을 작성하고 산출물 정본 연결을 완성한다. 실행 기록·자기 contexts·아카이브를 완료하고 strict·git diff --check·소유파일 커밋·worker_done을 수행한다. 새 preamble만 사용한다. Claude 사용량 한도 때문에 기록 마무리는 codex gpt-6.1-sol medium으로 이어받으며 역할·소"
+      },
+      {
+        "line": 78,
+        "text": "이전 서버 조사 결과는 원래 2026-10-03 관찰로 보존했다. 원본 명령별 종료코드는 초안에 없으며 retry의 PASS로 주장하지 않는다. 이번 retry는 서버 Docker·DNS·Tunnel·서비스·비밀 파일·DEV 코드를 변경하지 않았다. 최신 제품 정본은 coordinator 체크아웃에서 읽기만 했다. 소유권 충돌이나 제품 규칙 확장은 없다. 인덱스 변경은 deliverables.py --stamp가 D12 한 행"
+      },
+      {
+        "line": 94,
+        "text": "변경 파일은 D12·D12 인덱스 한 행·실행 기록·OPS contexts·완료 아카이브·기존 finish가 비운 OPS 인박스다. 서버·Docker·DNS·Tunnel·기존 MyPortfolio 서비스·route·비밀값·DEV 코드·PLANS·board는 변경하지 않았다. 배포 금지·기존 held·직접 시각 검수·독립 리뷰·미해결 high 차단을 유지한다. main 통합·원격 공유는 coor가 처리한다. 제품 수락과 운영 재"
+      },
+      {
+        "line": 121,
+        "text": "13개 파일을 모두 reviewed했다. 미해결 critical/high는 없다. low 3건(F1 원본 관찰 근거 경로 연결, F2 board의 C1 hold 미반영, F3 to_dev의 오래된 Tunnel 진행 문구)은 수락을 막지 않으며 F2·F3은 coor 소유 파일이다. D12는 a6a10c7의 Compose·D05·QA c59537b·Cloudflare 공식 문서와 일치한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+    "sha256": "c2ee47006ac7c5bb7ce29f476105eeb203ee63536e1c4028df1964c79490f07a",
+    "line_count": 297,
+    "snippets": [
+      {
+        "line": 236,
+        "text": "- 현재 배포 SHA `28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2`, knowslink relay/postgres/Tunnel healthy, 공개 registry 302를 확인했다. machine token과 시험 agent 환경 변수는 없다. 비밀값은 읽거나 출력하지 않았다."
+      },
+      {
+        "line": 251,
+        "text": "변경: relay.test.message closed schema·명시 두 agent 서버 allowlist·시험 machine prefix·고정 HTTPS와 Access+agent 이중 credential·MCP 시험 송수신·Codex CLI·private config launcher·로컬 operator identity 준비·path 전용 Access/Tunnel 후보를 구현했다. signed relay.v1·pairing"
+      },
+      {
+        "line": 257,
+        "text": "실제 준비: 기존 배포 28bd1bb2bdd4b90d0c6f5d2a8d4ba3e00f630ff2의 local beta에 trial_codex·trial_grok credential/key/active pair를 /home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL에 0700/0600으로 만들었다. owner 기록은 로컬 운영자에게만 남겼고 값은 출력하지 않았다. "
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+    "sha256": "afc64dd6a935c47cfabdd99291c1726f5fb2aba1c1115cf39e1c2e7275124008",
+    "line_count": 299,
+    "snippets": [
+      {
+        "line": 236,
+        "text": "- [x] 완료(readonly baseline·state 0700/0600 직접확인) — 실제state와현재배포28bd1bb/기존rootAccess/정책/Tunnel/DNS·공유컨테이너를readonly확인·비밀없는baseline보존. /home/shin/deploy/knowslink-state/trial-SAR-MVP-003-BIDIRECTIONAL의DEV생성trial_codex/trial_grok key/config/pai"
+      },
+      {
+        "line": 237,
+        "text": "- [x] 완료(0911c2c deploy·allowlist·백업/health) — 기존beta.sh deploy로coor확인된origin/main reviewedSHA를반영하고 시험allowlist 두agent만명시. 기존DB백업/rollback/restart/health/logsecret없는근거. 새서버/Tunnel/DNS생성·초기expose재실행금지."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+    "sha256": "014a24af0d26a28ed7ca96cd15f544cbc2373ce8b7354554f98e773b38fcabbf",
+    "line_count": 214,
+    "snippets": [
+      {
+        "line": 147,
+        "text": "- 미실행: 실제 운영 SMTP·일반 사용자 이메일 사람 확인, 리뷰어의 `make test`/`verify`/`verify-runtime` 전체 재실행, designer UX·TESTER QA, 100명 처리량, edge/Tunnel 경계."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+    "sha256": "1f5aac867630885114bff361f014ffd37a24f5fe4b9a229092022a19a032a0ee",
+    "line_count": 187,
+    "snippets": [
+      {
+        "line": 45,
+        "text": "- 검증: 만료된 service token 두 개를 `PUT service_tokens/{id}` duration=24h로 갱신했다(공식 `refresh`는 1년 연장이라 제외). UUID `283b0bdf…`·`647039da…`와 secret(version 1)은 불변, 앱 `84b33961…`·policy `884305ff…`·Tunnel·owner 앱은 변경 없음. 공개 negative: 무인증/잘못된 CF 403, 유"
+      },
+      {
+        "line": 72,
+        "text": "우리trialtoken UUID codex283b0bdf-3c2b-4c99-b9ce-96516d226cd9/grok647039da-10bb-4459-a595-6e0caa545adb, trial앱84b33961-6f78-42d3-b27b-06e064a05c2b, reusablepolicy884305ff-26ef-4fc5-828a-8145e7a5706c. 이름/type/path/UUID검증전삭제금지. rootowner앱·정책·Id"
+      },
+      {
+        "line": 87,
+        "text": "결과: trial 앱·정책·service token 2개 삭제(GET 404, 목록에서 제거), root owner 앱·정책 3건 JSON 해시 불변. Tunnel config를 백업에서 복원(cmp 일치 0600, validate OK)하고 knowslink connector만 재기동, `KNOWSLINK_TEST_AGENTS` 줄 제거 후 relay 갱신(env 비어 있음, healthy). 로컬 trial 거부, 공개 o"
+      },
+      {
+        "line": 113,
+        "text": "- [ ] OPS 가이드·CLEANUP·beta/access/verify 도구를 읽어 현재 root owner 보호·Tunnel·IdP의 일반 이메일 지원 방식과 제한을 확인한다. 합성 owner token과 실제 이메일 신원을 구분한다. CF 설정 쓰기·인증 해제·agent secret 발급·메일 발송은 실행하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+    "sha256": "07ed0655e2e9a98c1511a837c0208efb6c644d7fb1fcc96920ce29d645e858c4",
+    "line_count": 452,
+    "snippets": [
+      {
+        "line": 43,
+        "text": "Workers Free만 허용한다. 유료 전환/구독/초과 과금·실메일·운영 공개/배포·외부 계정 연결·기존 서버/Tunnel/공유서비스 변경은 실행하지 않는다. localhost 격리 fixture·자기 신규 시험자원 생성/회수·기록·커밋·일반 역할push는 허가됐다. 사용자 자료/자격을 변경하지 않는다. 실제 이메일/플랫폼을 fixture PASS로 표시하지 않는다. 새 frontend·의존성·제품수치·scope변경 없이 검"
+      },
+      {
+        "line": 124,
+        "text": "소유권은 제품기획 D02/필요 UX정본과 자기인박스/contexts/로그/과제실행기록이다. PLANS는 자기결과만 추가한다. board/기술정본/코드/타역할기록을 변경하지 않는다. 실제메일/배포/외부계정/과금/서버/Tunnel 변경 없음. Workers Free 제한과 원본 UI FAIL·일반 서비스 후속 검증을 유지한다."
+      },
+      {
+        "line": 148,
+        "text": "원본 리뷰 L2·UI FAIL/보류·F-UI-01/02 medium·low·blank PNG·metadata 원실패와 보정 증거를 보존했다. M1 공개 차단·미해결 critical/high 차단·PS-13·실제 이메일/공개/노우↔다닷 후속·Workers Free와 기존 서버/Tunnel 제한은 유지한다. 실제메일·배포·외부 계정·과금·서버/Tunnel 변경은 없었다. 제품 답 완료와 구현 준수·전체 수락은 구분한다."
+      },
+      {
+        "line": 244,
+        "text": "fullops-common-0.3.3의 README/coding-style/testing/security, FULLOPS, project, document-writing, review/rule.json을 직접 읽는다. 제품 정본 D02 PS07·PS07-I 및 기록 보호 조건과 UX04–05, POLICY48의 두 관찰표를 적용한다. 기준은 위 fixed 후보, 예외 없음. Workers Free·기존 서버/Compose/Tu"
+      },
+      {
+        "line": 318,
+        "text": "designer는 새직접검수보고/시각증거·자기context/PLANS·인박스/완료로그만 작성한다. 코드·기술정본·타인인박스·기존실패/리뷰는 수정하지 않는다. 새제품판단이 필요한 때만 coor로 질문한다. theme/designlint/Tailwind/shadcn은 현스택에 없으며 기존Go template/memberStyle·UX정본을 기준으로 직접판정한다. OPS/TESTER 검사와 직접시각PASS는 분리한다. Workers"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+    "sha256": "10a4fde68b04ec504811b6b5b54fb31f6b0868fc8ddfe11ecae89b38f0335507",
+    "line_count": 384,
+    "snippets": [
+      {
+        "line": 114,
+        "text": "Workers Free만 허용한다. 유료 전환·구독·초과 과금은 금지한다. 기존 서버·Tunnel·사용자 자원은 변경하지 않는다. 실제 이메일·운영 공개·배포·Cloudflare 쓰기·최종 노우↔다닷 시험은 수행하지 않는다. 실제 확인은 전체 일반 서비스 수락의 운영 후속이며 로컬 코드 병합의 추가 선행 조건으로 확대하지 않는다."
+      },
+      {
+        "line": 184,
+        "text": "Workers Free만 허용한다. 유료 전환/구독/초과 과금·실메일·운영 공개/배포·외부 계정 연결·기존 서버/Tunnel/공유서비스 변경은 실행하지 않는다. localhost 격리 fixture·자기 신규 시험자원 생성/회수·기록·커밋·일반 역할push는 허가됐다. 사용자 자료/자격을 변경하지 않는다. 실제 이메일/플랫폼을 fixture PASS로 표시하지 않는다. 새 frontend·의존성·제품수치·scope변경 없이 검"
+      },
+      {
+        "line": 241,
+        "text": "fullops-common-0.3.3의 README/coding-style/testing/security, FULLOPS, project, document-writing, review/rule.json을 직접 읽는다. 제품 정본 D02 PS07·PS07-I 및 기록 보호 조건과 UX04–05, POLICY48의 두 관찰표를 적용한다. 기준은 위 fixed 후보, 예외 없음. Workers Free·기존 서버/Compose/Tu"
+      },
+      {
+        "line": 317,
+        "text": "OPS는 신규 리뷰 결과/증거·자기 실행 기록/context/PLANS·인박스/완료로그만 작성한다. 제품코드·기획/UX정본·frozen원천·타 역할 인박스는 수정하지 않는다. 로컬 fixture·실제 Node/MCP 프로세스 PASS와 실제 외부 플랫폼/운영PS08/13/14를 구분한다. 운영배포·실메일·실24h·외부계정·공유서버/Tunnel·운영자료삭제·유료전환/구독/초과과금은 수행하지 않는다. Workers Free 유지."
+      },
+      {
+        "line": 335,
+        "text": "- 미검증: 운영 Tunnel/edge 본문 완충, 실부하·상태 크기·백업/복원, 실메일·실24h·실제 Grok Bot/다닷·운영 공개. verify-grok-plugin은 DEV ef5c571 원실행(제품 diff 0)을 재사용했다."
+      },
+      {
+        "line": 383,
+        "text": "- 미검증: 운영 Tunnel/edge 본문 완충·연결 수 상한, 실부하·상태 크기·CPU, 실제 브라우저 시각, 실메일·실24h·외부 계정·운영 배포. verify-grok-plugin은 adapter 변경이 없어 실행하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+    "sha256": "863f3853a524ae44f20faeef1acb07105ff5fee1272f184cea7c63327821609d",
+    "line_count": 254,
+    "snippets": [
+      {
+        "line": 42,
+        "text": "Workers Free만 허용한다. 유료 전환·구독·초과 과금은 금지한다. 기존 서버·Tunnel·사용자 자원은 변경하지 않는다. 실제 이메일·운영 공개·배포·Cloudflare 쓰기·최종 노우↔다닷 시험은 수행하지 않는다. 실제 확인은 전체 일반 서비스 수락의 운영 후속이며 로컬 코드 병합의 추가 선행 조건으로 확대하지 않는다."
+      },
+      {
+        "line": 108,
+        "text": "Workers Free만 허용한다. 유료 전환/구독/초과 과금·실메일·운영 공개/배포·외부 계정 연결·기존 서버/Tunnel/공유서비스 변경은 실행하지 않는다. localhost 격리 fixture·자기 신규 시험자원 생성/회수·기록·커밋·일반 역할push는 허가됐다. 사용자 자료/자격을 변경하지 않는다. 실제 이메일/플랫폼을 fixture PASS로 표시하지 않는다. 새 frontend·의존성·제품수치·scope변경 없이 검"
+      },
+      {
+        "line": 171,
+        "text": "fullops-common-0.3.3의 README/coding-style/testing/security, FULLOPS, project, document-writing, review/rule.json을 직접 읽는다. 제품 정본 D02 PS07·PS07-I 및 기록 보호 조건과 UX04–05, POLICY48의 두 관찰표를 적용한다. 기준은 위 fixed 후보, 예외 없음. Workers Free·기존 서버/Compose/Tu"
+      },
+      {
+        "line": 240,
+        "text": "소유는 QA 시나리오/프로브/증거·자기 실행 기록/context/PLANS·인박스/완료로그다. 제품코드·기획/UX정본·frozen원천·타 역할 인박스·기존리뷰는 수정하지 않는다. 필수실패/critical/high는 main 수락 차단이다. 실메일·공개·실24h·운영부하/복원·외부플랫폼/최종노우↔다닷은 별도미검증으로 기록한다. Workers Free만허용하고 유료전환/구독/초과과금·운영배포/실메일/외부계정/공유서버/Tunnel/"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+    "sha256": "1c478a1b7dbb7e3979c9be3e3c831852db926a855244fa00abb890d69a1f5ff6",
+    "line_count": 321,
+    "snippets": [
+      {
+        "line": 37,
+        "text": "제품/자기tests·기술정본/phase/context/PLANS·자기inbox/logs만 수정한다. WorkersFree·유료전환/구독/초과과금금지·기존 공유서버/Tunnel 유지다. 운영배포/실메일/외부계정/운영자료삭제는 없다. 자기fixture만 회수한다. 별도 허용범위 정적리뷰·사용자 승인 Sol 독립QA·designer UI 영향 확인 뒤 coor가 main merge/origin/main 일반push/조상 확인/유휴c"
+      },
+      {
+        "line": 66,
+        "text": "미검증: 운영 Tunnel/edge, L-1 실부하·상태 크기·CPU(재조회는 신규 포화 중 전체 JSON 단일 읽기를 더한다), 다수 계정 공모 실측, 운영 배포·실메일·외부 계정·노우↔다닷·실24h, verify-grok-plugin(adapter 무변경)."
+      },
+      {
+        "line": 69,
+        "text": "## SAR-GOOGLE-LOGIN-001-DEV — 2026-10-07"
+      },
+      {
+        "line": 70,
+        "text": "<!-- fullops-attempt: SAR-GOOGLE-LOGIN-001-DEV 58fe2507fee041d797df00bafce55d3d -->"
+      },
+      {
+        "line": 73,
+        "text": "title: SAR-GOOGLE-LOGIN-001-DEV — Google 첫 로그인 자동 가입을 기존 회원·세션·agent 기능에 연결한다"
+      },
+      {
+        "line": 73,
+        "text": "title: SAR-GOOGLE-LOGIN-001-DEV — Google 첫 로그인 자동 가입을 기존 회원·세션·agent 기능에 연결한다"
+      },
+      {
+        "line": 77,
+        "text": "tasks: [SAR-GOOGLE-LOGIN-001-DEV]"
+      },
+      {
+        "line": 78,
+        "text": "summary: Google 첫 로그인 자동 가입을 기존 회원·세션·agent 기능에 연결한다"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+    "sha256": "e927591944ffe6aed9862fb40124b020f38362361180208eee61afd1b0a105a3",
+    "line_count": 305,
+    "snippets": [
+      {
+        "line": 297,
+        "text": "fixture `down --volumes`는 exit 0이다. Docker after 목록에 자기 project가 없다. QA용 Go source는 scratch에서 제거됐다. scratch 전체도 회수했다. Node/MCP는 QA 컴파일 실패 때문에 새 fixture에서 시작하지 않았다. 공유 서버·Tunnel·다른 역할 자원은 중지하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+    "sha256": "4bdcc1c61002e0634f825bb5acbe183a71109775719c4a6fcb0864a55b84882d",
+    "line_count": 277,
+    "snippets": [
+      {
+        "line": 9,
+        "text": "## SAR-GOOGLE-CONNECT-001-DEV — 2026-10-10"
+      },
+      {
+        "line": 9,
+        "text": "## SAR-GOOGLE-CONNECT-001-DEV — 2026-10-10"
+      },
+      {
+        "line": 10,
+        "text": "<!-- fullops-attempt: SAR-GOOGLE-CONNECT-001-DEV d5a1fab9baf24084b01f5c4e66f359fa -->"
+      },
+      {
+        "line": 10,
+        "text": "<!-- fullops-attempt: SAR-GOOGLE-CONNECT-001-DEV d5a1fab9baf24084b01f5c4e66f359fa -->"
+      },
+      {
+        "line": 13,
+        "text": "title: SAR-GOOGLE-CONNECT-001-DEV — Google 로그인만으로 자기 클라이언트 agent 연결을 완료하고 Cloudflare 로그인과 token 파일 수동 전달을 제거한다"
+      },
+      {
+        "line": 13,
+        "text": "title: SAR-GOOGLE-CONNECT-001-DEV — Google 로그인만으로 자기 클라이언트 agent 연결을 완료하고 Cloudflare 로그인과 token 파일 수동 전달을 제거한다"
+      },
+      {
+        "line": 13,
+        "text": "title: SAR-GOOGLE-CONNECT-001-DEV — Google 로그인만으로 자기 클라이언트 agent 연결을 완료하고 Cloudflare 로그인과 token 파일 수동 전달을 제거한다"
+      },
+      {
+        "line": 17,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-001-DEV]"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+    "sha256": "c5bc1842687707edf854ec6c891dd34eec828051ee146a72c51c4adddaef95bb",
+    "line_count": 63,
+    "snippets": [
+      {
+        "line": 9,
+        "text": "## SAR-GOOGLE-CONNECT-001-TESTER — 2026-10-10"
+      },
+      {
+        "line": 9,
+        "text": "## SAR-GOOGLE-CONNECT-001-TESTER — 2026-10-10"
+      },
+      {
+        "line": 10,
+        "text": "<!-- fullops-attempt: SAR-GOOGLE-CONNECT-001-TESTER 8cc35b1d14d84a9ca2e9cf175b0cb6d5 -->"
+      },
+      {
+        "line": 10,
+        "text": "<!-- fullops-attempt: SAR-GOOGLE-CONNECT-001-TESTER 8cc35b1d14d84a9ca2e9cf175b0cb6d5 -->"
+      },
+      {
+        "line": 13,
+        "text": "title: SAR-GOOGLE-CONNECT-001-TESTER — 고정 인증 변경의 독립 코드 리뷰와 운영 서버의 좁은 Google 연결 QA"
+      },
+      {
+        "line": 13,
+        "text": "title: SAR-GOOGLE-CONNECT-001-TESTER — 고정 인증 변경의 독립 코드 리뷰와 운영 서버의 좁은 Google 연결 QA"
+      },
+      {
+        "line": 13,
+        "text": "title: SAR-GOOGLE-CONNECT-001-TESTER — 고정 인증 변경의 독립 코드 리뷰와 운영 서버의 좁은 Google 연결 QA"
+      },
+      {
+        "line": 17,
+        "text": "tasks: [SAR-GOOGLE-CONNECT-001-TESTER]"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/orca-agents.md",
+    "sha256": "a89bd7dd864dd1c5686a81b6d7faae1feb27c80807d434eb32178531369cf52f",
+    "line_count": 147,
+    "snippets": [
+      {
+        "line": 47,
+        "text": "coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 개발·검증·배포는 사용자 재개 지시까지 중지한다."
+      }
+    ]
+  },
+  {
+    "path": "adapters/README.md",
+    "sha256": "995f521137403e801c8c35744594e79f14d120b3caaa5f0630524b3a5c9f77aa",
+    "line_count": 226,
+    "snippets": []
+  },
+  {
+    "path": "adapters/src/login.test.ts",
+    "sha256": "ae0a5e30447b16d35f6fc329b70f7a70de4405db6b6b744a6d51df1915c71844",
+    "line_count": 125,
+    "snippets": [
+      {
+        "line": 1,
+        "text": "// Local Google onboarding verifies device/complete PoP, automatic private storage, expiry and independent client keys."
+      },
+      {
+        "line": 34,
+        "text": "        \"KNOWSLINK-CONNECT\","
+      }
+    ]
+  },
+  {
+    "path": "adapters/src/mcp.ts",
+    "sha256": "8b04740970b7c4efec73d389554a95042eba1fbde1b7884ee172ee105462f508",
+    "line_count": 323,
+    "snippets": [
+      {
+        "line": 302,
+        "text": "function publicFailure(e: unknown) {"
+      }
+    ]
+  },
+  {
+    "path": "cmd/relay/main.go",
+    "sha256": "174942004076c615af0fa31be40bfe207a0ce4c5b9ec64690d907d1e5cd8dbc8",
+    "line_count": 114,
+    "snippets": [
+      {
+        "line": 56,
+        "text": "\tservice.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv(\"KNOWSLINK_GOOGLE_CLIENT_ID\"), os.Getenv(\"KNOWSLINK_GOOGLE_CLIENT_SECRET\"), os.Getenv(\"KNOWSLINK_GOOGLE_REDIRECT_URL\"))"
+      },
+      {
+        "line": 66,
+        "text": "\t// Trust the edge client-IP header only behind the Tunnel; otherwise rate keys use the socket address."
+      },
+      {
+        "line": 84,
+        "text": "\tlog.Printf(\"relay starting; vendor effects and disclosure disabled; email login configured=%t; google login configured=%t; synthetic signup=%t\", service.Mail != nil, service.Google != nil, service.SyntheticSignup)"
+      }
+    ]
+  },
+  {
+    "path": "deploy/knowslink/access_trial_plan.py",
+    "sha256": "22aab14ccd82333c1ea5666f83e73eada6bda0eb9014c07a28af3ce9c0ad663a",
+    "line_count": 91,
+    "snippets": [
+      {
+        "line": 1,
+        "text": "\"\"\"Render trial-only Access request bodies and a protected Tunnel candidate; never mutate live Cloudflare or deployment state.\"\"\""
+      }
+    ]
+  },
+  {
+    "path": "deploy/knowslink/beta.sh",
+    "sha256": "2f974968918beb8591cbba41ee142bc8cee282bdc6b4379fb4f62ef1e25e79bf",
+    "line_count": 142,
+    "snippets": []
+  },
+  {
+    "path": "deploy/knowslink/tunnel/public-ingress.yml",
+    "sha256": "07d70c71c9deee67aab319cdca84460631e667ac3f49611c8d84e2f05d1baaa6",
+    "line_count": 9,
+    "snippets": []
+  },
+  {
+    "path": "internal/relay/device.go",
+    "sha256": "1ebf82bb0b1e23c426d6c86edecee0c1645be02f72b41eb3b63ac9ba90df077c",
+    "line_count": 130,
+    "snippets": [
+      {
+        "line": 1,
+        "text": "// Client-started connections bind Google consent to a public key; only the originating private key can collect credentials."
+      },
+      {
+        "line": 114,
+        "text": "\t\t\treturn refusal{403, \"이 연결을 시작한 Google 계정으로 다시 시작하세요.\", false, false}, nil"
+      },
+      {
+        "line": 117,
+        "text": "\t\tv := map[string]any{\"Title\": \"내 클라이언트 연결\", \"ConnectionID\": r.PathValue(\"id\"), \"Fingerprint\": fingerprint(public), \"Exp\": clock(c.Exp), \"State\": c.State, \"Google\": s.Google != nil}"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/google_test.go",
+    "sha256": "1b4a4c12c7b2edeb3f5e1628aa04692fab44bd4d4bedccbcf7d020bb220fa13e",
+    "line_count": 176,
+    "snippets": [
+      {
+        "line": 1,
+        "text": "// Google checks use real RSA/JWK verification and deterministic member/session state, without external credentials."
+      }
+    ]
+  },
+  {
+    "path": "scripts/check_public_ingress.py",
+    "sha256": "ca0a9d057f72bf483a8bcee671bc4b7f40bd412fba8c00d43b9bba19c8071566",
+    "line_count": 19,
+    "snippets": [
+      {
+        "line": 1,
+        "text": "\"\"\"Check the render-only Google member ingress fragment without changing Cloudflare or deployment state.\"\"\""
+      },
+      {
+        "line": 19,
+        "text": "print(\"Public ingress: Google/member paths only; owner, administrative APIs and trial remain outside this rule\")"
+      }
+    ]
+  }
+]

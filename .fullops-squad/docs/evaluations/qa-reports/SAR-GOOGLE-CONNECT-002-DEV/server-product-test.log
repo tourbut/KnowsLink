@@ -1,0 +1,29 @@
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.013s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.015s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.013s
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	4.634s
+npm test --prefix adapters
+
+> @knowslink/adapters@0.0.0 test
+> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js && node dist/connect.test.js && node dist/login.test.js
+
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+
+  dist/plugin.js  1.5mb ⚠️
+
+⚡ Done in 89ms
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+PASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified
+PASS: local connection PoP, private directory/files, no overwrite, credential storage, one-use completion, URL boundary
+PASS: browser URL excludes private token, key-bound poll/complete, explicit approval, automatic local storage, distinct client keys, no overwrite, expiry
+
+EXIT=0
