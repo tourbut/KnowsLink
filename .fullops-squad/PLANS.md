@@ -1223,3 +1223,12 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 기존 snapshot은 역할 워크트리 또는 collaboration 세션에서 검토했다. snapshot-bound Orca dispatch가 없어 `review.py cleanup`의 release 계약을 충족할 수 없다. 이번 사용자 요청의 운영 정리로 제거하고 Git 공용 디렉터리의 `fullops-snapshots/*.json`에 실제 removed 상태와 정리 근거를 기록했다. 신규 리뷰 통과나 historical check 통과로 표시하지 않는다. 과거 snapshot 경로의 실시간 검사는 재사용할 수 없으며, 재검토 시 새 snapshot을 만든다.
 - 상세 삭제 전 조건·경로·HEAD·증거 해시는 Git 공용 디렉터리의 `fullops-worktree-cleanup-2026-10-09.json`에 보존했다. 이전 업데이트의 snapshot 정리 보류는 이번 운영 정리로 종료한다.
 - 제품 코드 변경이 없으므로 product-lint·product-test 재실행은 적용하지 않는다. 운영 기록을 main에 fast-forward 통합·일반 push하고 유휴 역할을 동기화한다.
+
+## 노우 일반 회원 연결 재개 — SAR-NOU-PUBLIC-CONNECT-001
+
+- 2026-10-09 사용자는 이전 작업 재개와 기존 GitHub 이슈 Bot 연결을 확정했다. 대상은 [이슈 1](https://github.com/tourbut/KnowsLink/issues/1)이며 자동 이슈 작업 모드는 활성화하지 않는다.
+- [노우 준비 회신](https://github.com/tourbut/KnowsLink/issues/1#issuecomment-6075178793)을 확인했다. `/workspace/KnowsLink`는 clean·HEAD `3238ac3d0d1adac3c6eb734e48ec45a664a25447`이며 Node `v22.22.2`와 일반 회원 connect/text 소스가 있다. `/workspace/.knowslink-connect/nou/`는 0700·box 소유·빈 폴더다. trial 자격과 receive 루프는 재사용하지 않았다.
+- 현재 로컬 relay health는 HTTP 200, 외부 health와 `/v1/connect/prepare`는 HTTP 302 Access 로그인이다. 관리 API token은 verify 결과 expired이며 만료 시각은 `2026-10-05T23:59:59Z`다. 비밀값은 기록하지 않았다.
+- coor는 Orca에 Cloudflare 로그인과 KnowsLink 홈 탭을 열고 사용자 직접 Cloudflare 로그인을 요청했다. 담당은 coor/ops이며 로그인 완료 또는 유효한 제한 관리 권한 확보가 재개 조건이다. 기존 root Access 보호·Tunnel·운영 DB는 변경하지 않았다.
+- 이후 연결 API의 좁은 접근 범위와 origin JWT 검사를 함께 검토·검증하고 새 일반 회원 agent 연결을 진행한다. 공식 근거는 [Access 경로 우선순위](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)와 [Tunnel origin Access 검사](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/origin-parameters/)다. 이번 조사에서 제품 코드와 운영 설정을 변경하지 않았다.
+- 다음 Bot 안내는 새 private 하위 폴더를 지정한다. `connect.ts`의 prepare는 기존 폴더를 거부하므로 이미 존재하는 `nou/`를 대상 폴더로 그대로 사용하지 않는다. 연결 token·credential·개인키·세션 cookie는 공개 이슈에 전달하지 않는다. 새 댓글은 아직 게시하지 않았다.
