@@ -1348,3 +1348,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 지시로 웹은 Orca 브라우저만, Grok Bot 앱만 computer-use로 조작한다. 사용자가 로그인한 Cloudflare profile을 재사용한다. 삭제된 과거page는 재사용하지 않고 새page1be7aa03-4508-442a-8e25-5a84d57b07b2를 열었다.
 - 공식 Cloudflare Tunnel 문서는 공인IP 구매 없이 outbound tunnel과 공개 hostname으로 목적을 충족함을 설명한다. Context7은 quota 초과여서 공식문서를 확인했다. 기존 Tunnel/DNS/Google callback 재사용을 우선한다.
 - Orca browser 실제 dashboard network에서 GET /api/v4/accounts/<account>/access/apps 200을 관측하고 동일endpoint를 로그인세션으로 읽었다. 앱 관리 UI 요금제 gate와 달리 readAPI는 success다. 현재 KnowsLink 관련2개앱만 존재: member API fc81b205-d4d1-445e-a2bd-384a2ed82f62 및 owner-only bd210310-fd5e-4e6e-8cb4-d36d618cbebd. trial 과거ID는404. 이 사실과 origin deny-first 후 정확한 앱만 백업/제거하는 최소대안을 DEV에 msg_3319725732d2로 전달했다. 실제 변경 전 기술 인계·독립 리뷰를 기다린다.
+
+## Google 연결002 독립 수락 준비
+
+- DEV 완료 msg_f7acdec985b0, dbbe2f17f353282430f28b6e3ed98e72d4450e69. 실제 구현자01a1218c-e248-7962-a471-d3a01468503b. clean 서버 최종HEAD lint/test ERROR0 WARNING0 실행불가0 확인. 운영 실제 적용은 대기한다.
+- 독립 리뷰 SAR-GOOGLE-CONNECT-002-TESTER는 fresh tester 세션. 기존 완료 세션은 user_owned이므로 건드리지 않는다. terminal show에서 idle, Git clean 확인 후 main5af28c9로 FF했다. Jev 정규 route는 claude-sonnet-5-5 medium을 선택했다. 선행 model-only의 Grok 선택은 정규 route로 대체하며 Grok 한도0 이력도 보존한다. base5af28c9→dbbe2f1 고정 snapshot 리뷰·lite QA 후 coor가 무과금 D12 적용/실Google/Bot 왕복을 수행한다.
+

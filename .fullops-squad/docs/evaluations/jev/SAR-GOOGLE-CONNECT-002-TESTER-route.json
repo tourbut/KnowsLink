@@ -1,0 +1,90 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-GOOGLE-CONNECT-002-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.15,
+        "ops": 0.03,
+        "tester": 0.82
+      },
+      "confidence": 0.73
+    },
+    "docs": {
+      "D01": 0.07,
+      "D02": 0.07,
+      "D03": 0.08,
+      "D04": 0.08,
+      "D05": 0.08,
+      "D06": 0.1,
+      "D07": 0.09,
+      "D08": 0.1,
+      "D09": 0.09,
+      "D10": 0.14,
+      "D11": 0.1,
+      "D12": 0.22,
+      "D13": 0.17
+    }
+  },
+  "usage": {
+    "input_tokens": 2464,
+    "output_tokens": 314,
+    "cost": 0.000103488
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.51,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "기존 DEV 결과를 검토하는 필수 독립 tester 역할이며 새로운 제품 개발이 아니다.",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "medium",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.45,
+      "claude claude-sonnet-5-5 high": 0.25,
+      "grok grok-4.7 high": 0.3
+    },
+    "usage": {
+      "input_tokens": 636,
+      "output_tokens": 42,
+      "cost": 2.6712e-05
+    }
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "85d09dde3edd2f310704d875256ccb1d421ee61d",
+  "requires_packet": true,
+  "attempt": "8bbd8d87e8f2475b9d706b4fa2c4b549",
+  "instruction_sha256": "63a904c126a45be746f3232b0def12e239e4f073a39dfd56a7f0cdbde03f6be7",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "93064b95045b8a351488ab8e3c8d94857f3a98456ea55b9b5082b04f7662fe96"
+}
