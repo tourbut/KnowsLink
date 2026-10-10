@@ -1401,3 +1401,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - standard 설정 동기화: 실제 dev 두 agent done·Git clean, ops/designer agent 없음·shell prompt·Git clean 확인 후 최신 main cc8145d를 병합했다. coor도 main 포함. tester는 active이므로 동기화 예약을 유지한다. main과 origin/main의 설정을 확인했다. 자동 수신 후보 af7627d의 고정 리뷰는 변경하지 않았다.
 
 - coor Windows 패키지 실패 해결: internal/relay/registry.json이 규칙 eol=lf와 달리 과거 CRLF로 남아 있었다. Git diff clean 확인 후 LF로만 정규화했고 제품 diff0이다. 같은 Node22 mcp.test.js와 package_plugin.py --verify 모두 exit0, zip hash a44fac276d9acd0581ba48298079c912dd453df050e2d509e7183068f5bb7205. 환경 복구이며 후보 코드 변경 없음. tester에게 msg_54da69476fc4로 전달했다.
+
+- 독립 리뷰 SAR-AUTO-RECEIVE-001-REVIEW의 기록 검사 reviewed32/skipped0/lint ERROR0 통과. DEV af7627d와 QA1221084를 main/origin559f3d2에 SHA 보존 통합했다. 실제 노우 설치·wake는 미검증이다. tester release는 external_terminal/retained이며 cleanup은 terminal 종료 미확인으로 보류한다. snapshot은 보존한다. reviewer 실제 세션01a1261a-d89d-7f03-8185-0553132b8265.
+- 리뷰 medium1/low2와 설치 새 MCP process 확인 안내를 같은 DEV 키 attempt8719bb3f로 재개한다. 실행 로직 변경 없이 문구·테스트 기대값·범위 제한 종료 안내만 수정한다. Jev Sonnet5.5 medium, fresh(이전 DEV/QA는 큰 문맥·오래된 완료), lite/standard. 후속 고정 SHA의 좁은 독립 리뷰 뒤 설치한다.
