@@ -1397,3 +1397,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - Linux 환경 비교: 기존 서버 고유 /tmp clean clone HEAD af7627d/Node22.22.2에서 npm ci/build와 package_plugin.py --verify exit0, 실제 extracted MCP test PASS. 로그는 Git 공용 fullops-gate/coor-af7627d-linux-package.log. clone/업로드 bundle 정리, 운영 서비스·DB·Docker 불변. Windows 패키지 실패 원인은 독립 tester 확인 중이다.
 
 - 사용자 2026-10-10 하위 위임 standard 지시를 setup.py dry-run 후 적용했다. test_level lite 유지. 설정만 main cc8145d/원격에 반영했다(후보 제품은 미통합). 부모별 동시 선택 작업2, 다음 배정부터 적용한다. 진행 중 tester/off 고정 snapshot과 인박스는 보존하고 최신 main 포함은 다음 dispatch 전 동기화한다. dev/ops/designer도 실제 idle·clean 확인 뒤 동기화한다.
+
+- standard 설정 동기화: 실제 dev 두 agent done·Git clean, ops/designer agent 없음·shell prompt·Git clean 확인 후 최신 main cc8145d를 병합했다. coor도 main 포함. tester는 active이므로 동기화 예약을 유지한다. main과 origin/main의 설정을 확인했다. 자동 수신 후보 af7627d의 고정 리뷰는 변경하지 않았다.
