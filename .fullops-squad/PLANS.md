@@ -1419,3 +1419,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 원 Google·키·관계·DB·Tunnel 보존, 신규과금/local Docker 금지. DEV는 격리 Linux 검증, 독립 tester QA/고정SHA 리뷰 뒤 운영 수락. Dots 공식 plugin/OAuth/MCP Events는 확인하고 실제호스트 설치/자동wake 지원은 증거로 구분한다. Context7 quota초과는 공식문서 대체. packet partial144/unknown11은 수동잔여 확인 및 outcomes 필요. server.go 부재는 http.go로 확인·보완했다. 제품/기술 수락 이전 준비자료는 coordinator가 main에 공유한다.
 
 - 실제 DEV 착수: task_c76a5ef82349 / ctx_e4490c0d8bef / term_6298e8b5-6e3d-415b-bc64-0e8bba44c2d0. fresh Codex gpt-6.1-sol high requested/effective 일치, input_accepted·turn_started·정본 인박스 읽기 확인. 준비4786a00 main/origin 통합 및 dev FF 후 배정했다. Dots MCP Events 공식 webhook 계약을 msg_01fdd28ed852로 전달했다(DEV 하위 Run run_5b1823734740 mailbox로 정상 전달 전환). 운영·실제 설치는 독립 검토 뒤 진행한다.
+
+- 독립 QA/리뷰 SAR-SSE-INSTALL-001-TESTER 정규 인박스 초안을 준비했다. Jev implementation→tester/Grok4.7 high, lite/standard. DEV final exact SHA·실제 implementer session 및 후보 탐색 packet 확정 전 dispatch하지 않는다. 리뷰는 별도 clean detached snapshot, 실제 호스트 설치/운영 확인은 후보 수락 후 coor 담당이다. 진행 DEV 체크아웃은 c442bca 이후 운영 기록 동기화 예약이다.

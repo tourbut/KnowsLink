@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SSE-INSTALL-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.19,
+        "ops": 0,
+        "tester": 0.81
+      },
+      "confidence": 0.72
+    },
+    "docs": {
+      "D01": 0.14,
+      "D02": 0.15,
+      "D03": 0.24,
+      "D04": 0.18,
+      "D05": 0.25,
+      "D06": 0.21,
+      "D07": 0.16,
+      "D08": 0.21,
+      "D09": 0.21,
+      "D10": 0.46,
+      "D11": 0.26,
+      "D12": 0.54,
+      "D13": 0.41
+    }
+  },
+  "usage": {
+    "input_tokens": 2614,
+    "output_tokens": 314,
+    "cost": 0.000109788
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.652,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.05,
+      "claude claude-sonnet-5-5 high": 0.33,
+      "grok grok-4.7 high": 0.62
+    },
+    "usage": {
+      "input_tokens": 786,
+      "output_tokens": 42,
+      "cost": 3.3012e-05
+    }
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "c442bcaed63b8a2e01fb858a99c2852e23ff9962",
+  "requires_packet": true
+}
