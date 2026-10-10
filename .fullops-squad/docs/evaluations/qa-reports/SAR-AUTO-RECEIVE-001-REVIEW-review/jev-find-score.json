@@ -1,0 +1,42 @@
+{
+  "task_key": "SAR-AUTO-RECEIVE-001-DEV",
+  "find_head": "81c2bec301f85ba8922b2a78140d832b068f7114",
+  "base": "dda6130d7023903175bbfa4036a7e052011e2c83",
+  "head": "af7627d8cca54df55e856f48d226f78dbf2b9d0f",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "adapters/README.md",
+    "adapters/package.json",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/inbox.ts",
+    "adapters/src/mcp.ts"
+  ],
+  "new_files": [
+    "adapters/src/grok-wake.ts",
+    "adapters/src/inbox.test.ts",
+    "adapters/src/inbox.ts"
+  ],
+  "candidates": [
+    "adapters/README.md",
+    "adapters/src/inbox.ts",
+    "adapters/src/mcp.ts"
+  ],
+  "hits": [
+    "adapters/README.md",
+    "adapters/src/inbox.ts",
+    "adapters/src/mcp.ts"
+  ],
+  "recall": 0.6,
+  "precision": 1.0,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
