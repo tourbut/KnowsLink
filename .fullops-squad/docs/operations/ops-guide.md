@@ -31,6 +31,9 @@ SSE는 Bearer header만 사용하며 URL query credential을 거부한다. raw A
 
 Remote 후보 배포에는 기존 Google redirect URL의 HTTPS origin을 사용한다. Host header·추가 전역 env를 신뢰하지 않는다. Google 미설정이면 fail-closed다. public ingress 후보에 MCP·well-known·정확 remote OAuth/consent 경로만 추가했으며 실제 Tunnel은 미변경이다. 외부 callback은 HTTPS443, 모든 DNS answer 공인주소 검사, pinning·TLS 검증·redirect 차단·5초 timeout·4KiB 응답 제한이다. 구독128/설치당4·재시도3회·lease15초·기본TTL1시간·최소1분, 실패 후 현재 pending 변화 또는 새 subscription을 통해 복구한다. 설치 키와 webhook secret을 포함하는 private DB/백업을 외부에 노출하지 않는다. 실제 Google 동의·계정 app ID·Dots 이벤트 왕복·동의 화면 시각 QA는 후보 수락 뒤 별도 실행한다.
 
+
+Refresh 재사용은 검증된 MAC의 installation/client/resource family만 철회하고 forged·다른 audience 입력으로는 철회할 수 없다. 거부 응답에도 철회가 DB에 commit된다. refresh 응답이 유실되어 이전 token을 다시 쓰면 재동의가 필요할 수 있으므로 호스트 OAuth 복구 절차를 따른다.
+
 ## 1. 승인 범위와 선행 조건
 
 - 사용자 승인: 현재 서버에서 Docker 컨테이너로 배포하고 Cloudflare Tunnel로 `link.knowslog.com`에 연결한다. `knowslog.com`은 사용자 소유이며 Cloudflare가 관리한다.

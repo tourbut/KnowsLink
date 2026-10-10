@@ -17,5 +17,10 @@
   "local_docker_used": false,
   "real_host_installation": false,
   "real_google_consent": false,
-  "notes": "Raw command logs preserve expected negative-control stderr. candidate-retry.log records actual exit0; inspection reads do not recast failures as passes. Final archive commit is checked again by lint.py; exact final SHA is in worker_done and git-dir/fullops-gate/pass.json."
+  "notes": "Raw command logs preserve expected negative-control stderr. candidate-retry.log records actual exit0; inspection reads do not recast failures as passes. Final archive commit is checked again by lint.py; exact final SHA is in worker_done and git-dir/fullops-gate/pass.json.",
+  "security_regression_sha": "e9ab92d13d5836ed01bbccd4dab4f3ee52a25822",
+  "security_product_source_sha": "1f7a23f595696e8b9dd84b9ddfe60714e251dbd0",
+  "security_regression_exit": 0,
+  "latest_recorded_gate_sha": "e9ab92d13d5836ed01bbccd4dab4f3ee52a25822",
+  "latest_recorded_gate_exit": 0
 }

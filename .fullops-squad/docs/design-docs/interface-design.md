@@ -24,6 +24,9 @@ summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 
 Remote 후보는 `/.well-known/oauth-protected-resource[/mcp]`, `/.well-known/oauth-authorization-server`, `/remote/oauth/{register,authorize,token,revoke}`, `/remote/consent/{id}`, `POST /mcp`다. Google 검증 뒤 명시적 consent, redirect exact match, PKCE S256, resource-bound access/refresh rotation을 적용한다. `/mcp`는 `initialize`, `server/discover`, `tools/list`, `tools/call`, `events/list`, `events/subscribe`, `events/unsubscribe`를 제공한다. 도구는 knowslink_status/send/receive/ack 네 개이며 local text 도구와 이름·Inbox 위치가 다르다. Event `knowslink.text.arrived`는 `{arrival:true}`만 담고 HMAC Standard Webhooks로 서명한다. callback은 public HTTPS443·주소별 DNS 검증·IP pinning·redirect 차단·challenge 검증을 통과해야 한다.
 
+
+Refresh 재사용은 검증된 MAC의 installation/client/resource family만 철회하고 forged·다른 audience 입력으로는 철회할 수 없다. 거부 응답에도 철회가 DB에 commit된다. refresh 응답이 유실되어 이전 token을 다시 쓰면 재동의가 필요할 수 있으므로 호스트 OAuth 복구 절차를 따른다.
+
 ## 인증과 오류
 
 상위 요구사항은 [D02 SAR-MVP](../planning/product-specs/SAR-MVP.md)다.

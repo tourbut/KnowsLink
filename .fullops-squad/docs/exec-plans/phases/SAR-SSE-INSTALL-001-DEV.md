@@ -99,3 +99,6 @@ partial packet의153개 nonoptional path/category를 [outcomes](../../evaluation
 - `knowslink-claude-plugin.zip`: `2b60e09f4fb0f401ef9a5793d807a60608a8d63045fb4fcc9d0a6eacc8e86e7d`
 - `knowslink-codex-plugin.zip`: `6925cfe68afcbad5a782023692b19f383106ec2d1a0048505772f4434396f432`
 - `knowslink-grok-bot-plugin.zip`: `0d265b6704824e0cbe12b8cc6c399e71df31d678b41f09c836ea8942035800db`
+
+
+보안 수정 후 `e9ab92d13d5836ed01bbccd4dab4f3ee52a25822`에서 실제 격리 `TestRemoteOAuthHTTP` exit0와 등록 gate exit0(product-lint0/product-test0, ERROR0/WARNING19/실행불가0)를 재확인했다. refresh replay 후 새 Service의401은 거부 응답과 DB 철회가 함께 유지됨을 확인한다. 원문은 DEV evidence의 e9ab92d 로그에 있다. 최종 archive commit에는 제품 변경이 없으며 마지막 exact-SHA gate 기록은 worker_done과 Git gate 파일에 고정한다.
