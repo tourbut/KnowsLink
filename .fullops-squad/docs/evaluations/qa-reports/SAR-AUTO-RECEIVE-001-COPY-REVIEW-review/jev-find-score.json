@@ -1,0 +1,41 @@
+{
+  "task_key": "SAR-AUTO-RECEIVE-001-DEV",
+  "find_head": "559f3d29b51ad47d189d4b01c46281445484d30f",
+  "base": "559f3d29b51ad47d189d4b01c46281445484d30f",
+  "head": "f8dd6659d7a22466e7c84a67431448fd7727e7c3",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "internal/relay/public_messages_integration_test.go"
+  ],
+  "new_files": [],
+  "candidates": [
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/inbox.ts",
+    "internal/relay/device.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/public_messages_integration_test.go",
+    "internal/relay/public_text.go",
+    "scripts/install_bot_mcp.sh"
+  ],
+  "hits": [
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "internal/relay/public_messages_integration_test.go"
+  ],
+  "recall": 1.0,
+  "precision": 0.375,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

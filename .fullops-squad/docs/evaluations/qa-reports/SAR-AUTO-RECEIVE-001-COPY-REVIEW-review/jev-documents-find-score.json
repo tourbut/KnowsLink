@@ -1,0 +1,44 @@
+{
+  "task_key": "SAR-AUTO-RECEIVE-001-DEV",
+  "find_head": "559f3d29b51ad47d189d4b01c46281445484d30f",
+  "base": "559f3d29b51ad47d189d4b01c46281445484d30f",
+  "head": "f8dd6659d7a22466e7c84a67431448fd7727e7c3",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+    ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+    ".fullops-squad/review/_REPORT.md",
+    "adapters/README.md"
+  ],
+  "hits": [
+    "adapters/README.md"
+  ],
+  "recall": 0.25,
+  "precision": 0.083,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
