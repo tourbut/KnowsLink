@@ -23,4 +23,3 @@ summary: 조정 역할의 제품 수락·검수·운영 보류와 다음 착수 
 
 - 2026-10-10: 무과금 Tunnel 도메인과 Google 등록으로 실제 노우 Bot↔현재 세션의 text 왕복/receipt를 수락했다. 실제 결과는 qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md.
 - 만료 연결은 기존 키 폴더를 지우지 않고 새 폴더로 시작한다. 같은 owner의 두 agent도 명시적 관계 수락을 유지한다.
-

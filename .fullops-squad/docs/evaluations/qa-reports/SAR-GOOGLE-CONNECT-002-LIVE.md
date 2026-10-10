@@ -49,4 +49,3 @@ reviewer와 DEV 신규 터미널은 정상 release했다. snapshot cleanup은 �
 1차 수락 범위인 기존 Tunnel·자기 도메인→Bot 플러그인→Google 등록→별도 키→명시적 관계 수락→실제 송수신 왕복은 통과했다. 새 결제·구독·요금 동의는 없다. 자동 wake·자동 답장·업무 실행·부하/장시간 시험은 범위 밖이며 실행하지 않았다. 익명 신규연결 포화 medium 한계와 snapshot cleanup 보류는 위 기록대로 유지한다.
 
 노우도 답장 receipt를 별도로 조회해 transport=delivered, completion=received를 확인했다. 추가 메시지는 보내지 않았다.
-
