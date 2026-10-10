@@ -1,7 +1,7 @@
 // Real HTTP arrival streams exercise push latency, reconnect catch-up, coalescing, serialized pull, fallback and cancellation.
 import assert from "node:assert/strict";
 import { generateKeyPairSync, sign } from "node:crypto";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdtemp, readdir, rm } from "node:fs/promises";
 import { createServer, type ServerResponse } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -49,7 +49,7 @@ const relay = createServer(async (req, res) => {
     active--;
     res.end(
       JSON.stringify(
-        queue[0] ? { envelope: queue[0], lease_token: "lease" } : null,
+        queue[0] ? { envelope: queue[0], lease_token: "test-lease" } : null,
       ),
     );
   } else if (req.url?.startsWith("/v1/keys/")) {
@@ -133,7 +133,7 @@ try {
     wait(() => queue.length === 0),
   ]);
   await wait(() => active === 0);
-  assert((await inbox.pending()).includes(`${pushed}.json`));
+  assert((await readdir(join(root, "inbox"))).includes(`${pushed}.json`));
   assert(pulls - count < 6, "duplicate doorbells must coalesce");
   assert.equal(maxActive, 1);
   for (const stream of streams) stream.end();

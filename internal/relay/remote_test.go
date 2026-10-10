@@ -313,7 +313,7 @@ func TestRemoteAdmissionAndEventVersions(t *testing.T) {
 	if st.remoteAdmission(token, now.Add(time.Hour)) != "" {
 		t.Fatal("admission kept expired token")
 	}
-	st.remote().Subscriptions["sub"] = &remoteSubscription{Install: id, Secret: "secret", Exp: now.Add(time.Hour)}
+	st.remote().Subscriptions["sub"] = &remoteSubscription{Install: id, Secret: "test-secret", Exp: now.Add(time.Hour)}
 	st.remote().Subscriptions["sub"].Seen = "bookkeeping"
 	if before != st.eventVersion(now) {
 		t.Fatal("subscription bookkeeping caused DB notification loop")
@@ -340,7 +340,7 @@ func TestRemoteSubscriptionIdentityAndExpiry(t *testing.T) {
 	if a == b || a != remoteSubscriptionID(id, input) {
 		t.Fatal("subscription identity is not deterministic and installation scoped")
 	}
-	st.Remote.Subscriptions[a] = &remoteSubscription{Install: id, URL: input.Delivery.URL, Secret: "private signing secret", OldSecret: "old secret", Rotated: now, Exp: now.Add(time.Hour)}
+	st.Remote.Subscriptions[a] = &remoteSubscription{Install: id, URL: input.Delivery.URL, Secret: "test-signing-secret", OldSecret: "test-old-secret", Rotated: now, Exp: now.Add(time.Hour)}
 	raw, _ := json.Marshal(st)
 	restored := newState()
 	_ = json.Unmarshal(raw, restored)
