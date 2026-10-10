@@ -187,7 +187,29 @@ Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시
 
 - MCP 명세는 logging·resources 알림의 사용 방식을 client에 맡긴다. 알림이 모델 턴을 시작한다는 계약은 없다([resources](https://modelcontextprotocol.io/specification/2025-06-18/server/resources)).
 - Grok Bot 공식 문서의 무인 실행은 routine뿐이다. schedule은 최소 5분 간격이다. event 시작은 Cursor 계정 통합(Slack·GitHub)에 한정된다([Skills and routines](https://docs.x.ai/grok-bot/skills-routines-and-automations)). MCP 알림·webhook·외부 inbound API로 대화를 깨우는 공식 기능은 없다.
-- Grok Bot 팀은 외부 wake를 “working on” 상태로 답했다([포럼 요청](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260)). 같은 글의 미공개 gateway 우회는 사용하지 않는다.
+- Cursor staff는 외부 wake를 “working on” 상태로 답했다([포럼 요청](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260)). 같은 답변이 미문서화 loopback gateway workaround를 연결했다. 이 경로의 선택형 사용은 아래 절이 정한다.
 - Command MCP process의 대화 사이 생존 여부는 공식 문서에 없다. 그래서 Bot 컴퓨터의 상시 수신은 `node dist/plugin.js watch <폴더>`(또는 `dist/text.js watch`)로도 제공한다. 같은 inbox를 MCP가 읽는다.
 
-따라서 현재 구현은 자동 수신·보존·표준 알림까지다. 노우 턴 자동 시작은 공식 호스트 기능(MCP 알림 기반 wake 또는 외부 trigger)이 생길 때까지 미지원이다. 5분 routine은 TTL 180s 안의 답장을 보장하지 못하고 사용량을 소비하므로 해결로 인정하지 않는다.
+따라서 기본 구현은 자동 수신·보존·표준 알림까지다. 공식 노우 턴 자동 시작은 공식 호스트 기능(MCP 알림 기반 wake 또는 외부 trigger)이 생길 때까지 없다. 5분 routine은 TTL 180s 안의 답장을 보장하지 못하고 사용량을 소비하므로 해결로 인정하지 않는다.
+
+### 선택형 loopback wake — 미문서화 gateway (attempt 0305914f)
+
+coor 재검토로 같은 과제를 다시 열었다. 직전 기록의 “미공개 gateway 우회는 사용 금지”는 사용자 지시가 아니었다. 소유한 Bot 컴퓨터의 인증된 loopback 인터페이스 사용 자체는 금지하지 않는다. 보안 우회·권한 확대·vendor core 수정은 계속 금지한다.
+
+| 구분 | 내용 |
+|---|---|
+| 공식 지원 없음 | Grok Bot 공식 문서에 외부 wake API가 없다. Cursor staff(Colin, CursorStaff 그룹)는 2026-08-18에 개발 중이라고 답했다. |
+| 미문서화 | staff 답변이 연결한 커뮤니티 글(adam91holt, 2026-08-12, [168199/8](https://forum.cursor.com/t/grok-bot-can-i-send-it-a-message-from-outside/168199/8)): Bot 컴퓨터 `127.0.0.1:1340`, `/home/box/sand-data/gateway.json`의 `token`, Bearer 인증 `POST /api/listAgents`·`/api/sendPrompt {agentId,prompt}`. 작성자는 live 설치에서 시험했다고 했다. 작성자 스스로 “undocumented internal API”라고 경고했다. |
+| 실제 미검증 | 본인 Bot 컴퓨터의 gateway 존재·port·token 필드·응답 코드·노우 턴 시작·진행 중 턴과의 관계·Update/Reset 뒤 유지. DEV는 Bot 컴퓨터에 접근하지 않았다. |
+| 불가·제외 | Bot 컴퓨터 밖에서 gateway 호출(port 공개·SSH tunnel·Tailscale), 받은 text를 prompt로 전달, 응답 본문 표시. |
+
+설계는 다음과 같다.
+
+- Bot 컴퓨터 안의 `plugin.js watch`(또는 MCP 자동 수신)가 `127.0.0.1`의 gateway만 호출한다. 기존 Bot 계정의 `box` 사용자로 실행하므로 token이 컴퓨터 밖으로 나가지 않는다. relay·서버·새 서비스는 관여하지 않는다.
+- `sendPrompt`는 사용자 권한 입력이다. 그래서 prompt는 고정 doorbell 문장과 검증한 UUID·대기 수만 담는다. 노우는 기존 `knowslink_text_receive`로 `untrusted:true` text를 읽는다. 받은 지시로 도구 실행·답장 승인이 생기지 않는다. 송신은 기존 `confirmed:true` 규칙을 따른다.
+- 대상은 `KNOWSLINK_GROK_WAKE_AGENT` UUID 하나다. 수신 범위는 기존 relay의 활성 관계·서명·`to` 검증 그대로다. 형식이 틀린 대상은 `invalid_config`로 wake만 멈춘다.
+- ID별 marker `<id>.wake`를 배타 생성해 재lease·재시작·여러 process의 중복 doorbell을 막는다. 연결 거절·token 없음은 marker를 지워 다음 loop에서 재시도한다. 4xx는 `rejected`, 5xx·무응답·timeout은 `uncertain`이며 자동 재전송하지 않는다. 결과는 marker와 `hostWake`에 남긴다. 전달(gateway 수락)과 노우의 실제 읽기·답장은 별도 증거다.
+- 기본 off다. 설치 전 `plugin.js wake-check`가 읽기 전용 `listAgents`로 gateway·token·agent ID를 확인한다. 출력은 UUID 목록뿐이다.
+- 남은 위험: gateway가 꺼진 동안 같은 컴퓨터의 다른 process가 port를 점유하면 token을 받을 수 있다. owner 단독 컴퓨터에서만 켠다. 노우 턴은 기존 사용량을 쓴다.
+
+제품 수락 조건은 그대로다. 실제 운영 도메인 송신 ID→Bot inbox→wake marker→노우 대화 표시를 UI 수신 유도 없이 대조하기 전에는 미완료다.

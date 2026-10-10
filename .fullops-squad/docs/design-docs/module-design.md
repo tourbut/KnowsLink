@@ -196,5 +196,6 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 | `adapters/src/text.ts` `receive(store)` | 서명 검증 뒤 persist/ACK 전에 store 호출. store 실패 시 ACK 없음 | ACK 시점 inbox 파일 확인, store를 ACK 뒤로 옮긴 변이에서 실패 |
 | `adapters/src/text.ts` CLI `watch` | MCP와 같은 inbox로 상시 수신, metadata만 출력 | `inbox.test.ts` 6 |
 | `adapters/src/mcp.ts` | logging capability, 연결 뒤·로그인 완료 뒤 loop 시작, status `autoReceive`, 수동 receive의 inbox 우선 | 실제 SDK stdio Client |
+| `adapters/src/inbox.ts` `GrokWake`·`Inbox` wake marker | 선택형 loopback `sendPrompt` doorbell(고정 문장·ID만), 요청마다 gateway token 읽기, retry/rejected/uncertain 구분, ID별 `.wake` 배타 claim·결과 기록, `wake-check` 읽기 전용 `listAgents` | `inbox.test.ts` 7: 거절→재시도, 수락, 중복·재시작 무재전송, 기본 off, 401 무재시도, 연결 reset uncertain, 잘못된 대상, token·text 비노출. retry 해제를 끈 변이에서 실패 |
 
 `inbox.test.ts`는 번들 `dist/plugin.js`를 SDK `StdioClientTransport`로 실행하고 로컬 relay 대역을 사용한다. 실제 운영 relay·Grok Bot 호출은 포함하지 않는다.

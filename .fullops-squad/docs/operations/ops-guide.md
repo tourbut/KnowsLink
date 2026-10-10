@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-10
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -340,3 +340,17 @@ coor msg_3319725732d2에서 로그인된 dashboard API GET은 success였다. 현
 복구는 먼저 cloudflared를 중지해 외부 노출을 닫는다. 기존 config와 앱 백업을 복원하고 실제 앱 응답의 새/기존 ID·aud와 origin 검사를 대조한 뒤 재노출한다. 삭제한 앱을 재생성하면 aud가 달라질 수 있으므로 과거 aud를 그대로 신뢰하지 않는다. Access 복구가 막히면 Tunnel을 중지한 채 유지하거나 member allowlist+404 상태로만 복구한다. owner/admin을 무인증 fallback으로 열지 않는다. 코드 복귀는 `beta.sh deploy <직전 수락 코드>`의 backup/migration diff 검사를 사용한다. 과거 DB를 덮지 않고 기존 키·철회 상태를 보존한다.
 
 익명 시작의 2000개 상한은 만료 뒤24h tombstone을 포함한다. 공격자가 새 Device 연결을 포화시킬 수 있는 medium 한계는 남는다. 상태 상한과 replay 보존을 유지하며 조기 삭제·IP 정책 변경은 이 최소 과제에서 하지 않는다. 기존 키의 메시지와 기존 회원 로그인·철회는 이 cap에 묶이지 않는다. 신규 연결이 막히면 요청 rate·capacity와 보존 기간을 확인하고 한도 상향이나 DB 삭제로 우회하지 않는다.
+
+## Bot 컴퓨터 loopback wake 운영 — SAR-AUTO-RECEIVE-001-DEV
+
+이 기능은 선택형이며 기본 off다. Grok Bot의 미문서화 loopback gateway를 사용한다. 공식 지원·실제 계정 검증 전에는 제품 수락 근거가 아니다. 서버·Tunnel·DB·relay 설정은 바꾸지 않는다.
+
+> 경고: port `1340`을 공개하거나 SSH tunnel·Tailscale로 외부에 열지 않는다. gateway token을 출력·전달하지 않는다. Bot 컴퓨터를 owner만 사용할 때만 켠다.
+
+1. owner는 Bot 컴퓨터에서 후보 SHA로 `sh scripts/install_bot_mcp.sh`를 실행한다.
+2. owner는 `plugin.js wake-check`를 실행한다. 결과: `state:"ok"`와 agent UUID 목록. 실패 값은 그대로 coor에 보고하고 활성화를 멈춘다.
+3. owner는 노우 대화의 UUID를 `KNOWSLINK_GROK_WAKE_AGENT`로 지정해 `configuredListed:true`를 확인한다.
+4. owner는 같은 변수로 `plugin.js watch <연결 폴더>`를 다시 시작한다.
+5. coor는 상대 agent의 실제 송신 ID와 `<연결 폴더>/inbox/<ID>.wake`의 `state`, 노우 대화의 doorbell·표시 ID를 각각 대조한다. `accepted_unverified`만으로 노우 표시를 주장하지 않는다.
+
+중지와 복구는 변수 없이 watcher를 다시 시작하는 것이다. `retry`가 계속되면 gateway·token 파일을 확인한다. `rejected`·`uncertain`은 자동 재전송하지 않으므로 inbox의 메시지를 수동 receive로 확인한다. Update/Reset 뒤에는 1–4단계를 반복한다. 상세 명령은 [플러그인 문서](../../../adapters/README.md#선택형-grok-bot-loopback-wake--미문서화-gateway)를 따른다.
