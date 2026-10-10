@@ -1386,3 +1386,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 공식 포럼168260 팀 답변은 wake 개발 중이며 문서화되지 않은 로컬 gateway 대안을 연결한다. 공식 지원 부재를 불가능으로 단정하지 않도록 DEV에 원문168199/8과 검토를 전달했다(msg_6be74ac87978). 실제 본인 VM 인터페이스 검증·로컬 전용·토큰 비노출·새 비용 없음·default-off/held 경계를 유지한다. 아직 실제 노우 wake 미검증이다.
 - 첫 DEV 결과81c2bec301f85ba8922b2a78140d832b068f7114/구현5308fa5 완료(msg_e0c3192198aa, delivery_7a072bfd18bb). 독립 QA 전·최종 후속 원문 검토 누락으로 integration hold, 기존 세션 retain. coor에 후보를 보존했으나 main에는 미통합이다.
 - 동일 키 attempt0305914fc3ed441e8299d6fb1b41290f로 reopen. 로컬 gateway 대안 검증/최소 bridge와 정확한 지원 상태를 보완한다. Jev Claude Opus5.5 high. 모델 tuple이 달라 fresh로 배정하고 착수 확인 후 이전 정상 완료 세션을 release한다. 실제 Bot 환경 검증 전에는 bridge default-off/held다.
+- 후속 실제 착수: run_f7da648722cb/task_7d49871223d7/ctx_11e956bd1efa, terminal term_472040d0-46e1-4b27-abb7-e5f63f0d8edd. fresh Claude Opus5.5 high requested/effective 일치, turn_started와 새 정본 인박스 읽기 확인. 기존 완료 dispatch ctx_66524f2d47ca는 착수 확인 뒤 정상 release 처리한다.
+
+- 후속 DEV 최종 af7627d8cca54df55e856f48d226f78dbf2b9d0f / msg_67eb64af6a18를 수신했다. 독립 QA·snapshot 리뷰 대기로 integration hold(coor), DEV retain 후 delivery_b789eabe0e92를 ack했다. 구현자 실제 세션 c1bdb696-62e1-4806-84e2-5dc48623fad1. 실제 노우 설치·wake는 아직 미검증이다.
