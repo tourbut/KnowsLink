@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "추가 결제 없이 Tunnel·도메인·Google 등록과 실제 Grok Bot 메시지 왕복을 확인했다.",
+  "summary": "Tunnel·Google 등록·수동 왕복 완료. 화면 조작 없는 자동 수신·호스트 전달을 보완한다.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -57,7 +57,7 @@
       "name": "실제 어댑터·일정 조회",
       "status": "active",
       "deliverables": [],
-      "note": "실제 MCP 9도구·Codex↔Grok Bot 왕복 수락. 자동 wake·dots·일정 조회는 후속."
+      "note": "자동 수신·호스트 전달 DEV 착수. 기존 왕복은 수동 수신이며 자동 wake 미검증."
     },
     {
       "name": "운영 배포·이행",
@@ -77,6 +77,16 @@
         "D02"
       ],
       "note": "Google 등록·별도 agent/키·관계 수락·실제 Bot 왕복의 1차 통합 수락 완료."
+    },
+    {
+      "name": "자동 메시지 수신",
+      "status": "active",
+      "deliverables": [
+        "D03",
+        "D05",
+        "D10"
+      ],
+      "note": "SAR-AUTO-RECEIVE-001: UI 조작 없는 자동 수신·호스트 전달 구현 및 독립 검증."
     }
   ]
 }

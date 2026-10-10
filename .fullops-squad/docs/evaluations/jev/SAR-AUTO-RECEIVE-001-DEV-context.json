@@ -1,0 +1,320 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "51eebe5c2b588147627afb8f1ab9ec2d166dd432",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "bb0e5aeb64a7b3e4b73915b0c8e0ebb98383b5f6ab50b7d76ab246cc55a382c7",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-mcp.ts",
+      "c1-text.ts",
+      "c2-connect.ts",
+      "c3-mcp.test.ts",
+      "c4-package.json",
+      "c5-README.md",
+      "c6-SKILL.md",
+      "c7-architecture.md",
+      "c8-interface-design.md",
+      "c9-SAR-PUBLIC-SERVICE.md",
+      "c10-SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-mcp.ts",
+      "c1-text.ts",
+      "c2-connect.ts",
+      "c3-mcp.test.ts",
+      "c4-package.json",
+      "c5-README.md",
+      "c6-SKILL.md",
+      "c7-architecture.md",
+      "c8-interface-design.md",
+      "c9-SAR-PUBLIC-SERVICE.md",
+      "c10-SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-mcp.ts": {
+        "relevant": 0.42,
+        "evidence": 0.48,
+        "contradicts": 0.2,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-text.ts": {
+        "relevant": 0.42,
+        "evidence": 0.68,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-package.json": {
+        "relevant": 0.52,
+        "evidence": 0.84,
+        "contradicts": 0.1,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-README.md": {
+        "relevant": 0.57,
+        "evidence": 0.76,
+        "contradicts": 0.36,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-SKILL.md": {
+        "relevant": 0.77,
+        "evidence": 0.87,
+        "contradicts": 0.26,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-architecture.md": {
+        "relevant": 0.71,
+        "evidence": 0.82,
+        "contradicts": 0.26,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-interface-design.md": {
+        "relevant": 0.81,
+        "evidence": 0.88,
+        "contradicts": 0.21,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-SAR-PUBLIC-SERVICE.md": {
+        "relevant": 0.56,
+        "evidence": 0.8,
+        "contradicts": 0.23,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-SAR-GOOGLE-CONNECT-002-LIVE.md": {
+        "relevant": 0.38,
+        "evidence": 0.67,
+        "contradicts": 0.47,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-mcp.ts": "adapters/src/mcp.ts",
+      "c1-text.ts": "adapters/src/text.ts",
+      "c2-connect.ts": "adapters/src/connect.ts",
+      "c3-mcp.test.ts": "adapters/src/mcp.test.ts",
+      "c4-package.json": "adapters/package.json",
+      "c5-README.md": "adapters/README.md",
+      "c6-SKILL.md": "adapters/skills/knowslink/SKILL.md",
+      "c7-architecture.md": ".fullops-squad/docs/design-docs/architecture.md",
+      "c8-interface-design.md": ".fullops-squad/docs/design-docs/interface-design.md",
+      "c9-SAR-PUBLIC-SERVICE.md": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "c10-SAR-GOOGLE-CONNECT-002-LIVE.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 29776,
+    "output_tokens": 684,
+    "cost": 0.001250592,
+    "known_cost": 0.001250592,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 1.155,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.682,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2696,
+        "output_tokens": 76,
+        "cost": 0.000113232
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.691,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2752,
+        "output_tokens": 76,
+        "cost": 0.000115584
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.72,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2814,
+        "output_tokens": 76,
+        "cost": 0.000118188
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.69,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3359,
+        "output_tokens": 76,
+        "cost": 0.000141078
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.695,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2975,
+        "output_tokens": 76,
+        "cost": 0.00012495
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.696,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3418,
+        "output_tokens": 76,
+        "cost": 0.000143556
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.704,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3316,
+        "output_tokens": 76,
+        "cost": 0.000139272
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.739,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4815,
+        "output_tokens": 76,
+        "cost": 0.00020223
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.466,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3631,
+        "output_tokens": 76,
+        "cost": 0.000152502
+      }
+    }
+  ],
+  "request_max_seconds": 0.739,
+  "task_key": "SAR-AUTO-RECEIVE-001-DEV",
+  "role": "dev",
+  "attempt": "7f31b4e6c8394e23abda722bb42ab009",
+  "instruction_sha256": "24edfb0e8c6f590d1c7d6c4da6151eb1c05675e309b7e159c01bd8d67ec7b345",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "adapters/src/mcp.ts",
+      "adapters/src/text.ts",
+      "adapters/src/connect.ts",
+      "adapters/src/mcp.test.ts",
+      "adapters/package.json",
+      "adapters/README.md",
+      "adapters/skills/knowslink/SKILL.md",
+      ".fullops-squad/docs/design-docs/architecture.md",
+      ".fullops-squad/docs/design-docs/interface-design.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md"
+    ],
+    "required": [],
+    "sources": {
+      "adapters/src/mcp.ts": "8b04740970b7c4efec73d389554a95042eba1fbde1b7884ee172ee105462f508",
+      "adapters/src/text.ts": "21106c0feb74cbe202b9bb97d27578641cdfed559adbc90230519b5cae2c2909",
+      "adapters/src/connect.ts": "568543f7a754aa58df16183505d1dbe79b24db3f0fc8a2d6b5802f197dbb81a5",
+      "adapters/src/mcp.test.ts": "dafe9a2ab57af8eed65a70a7b20785ba18dfada09a49942b4dfae6f2cbf9a592",
+      "adapters/package.json": "4cc08fd7d7c3af8fe3962bd9dfe176670103eca91cbb6dda104ec3dbff355927",
+      "adapters/README.md": "995f521137403e801c8c35744594e79f14d120b3caaa5f0630524b3a5c9f77aa",
+      "adapters/skills/knowslink/SKILL.md": "b57dda1b18f2c43c9f360e6534e6a6fa83158cd22fc077aba76dff7a5a178d16",
+      ".fullops-squad/docs/design-docs/architecture.md": "222669724fc922e6f3a5db490a0f21ceb0629490201193dda0a3c600cf1420e4",
+      ".fullops-squad/docs/design-docs/interface-design.md": "ddaa8c4795800aa80281c3dee569dad1369e8bea9fa42a1c2616e33710e2ed4b",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md": "1c46a5a173115c5e8fd7e07a9b9eb55559ba65ad6d7328b6681c67fd5b31fa65",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md": "2925710a2c0c9bbc9bcfb9735735ab0979b323b207da22692a79093fc67412eb"
+    }
+  },
+  "unsent_sources": {
+    "adapters/src/connect.ts": "sensitive or oversized passage",
+    "adapters/src/mcp.test.ts": "sensitive or oversized passage"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 2.927,
+  "input_partial": true,
+  "instruction_chars": 3707,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 3707
+  }
+}

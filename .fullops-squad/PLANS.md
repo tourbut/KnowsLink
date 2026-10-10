@@ -1373,3 +1373,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 요청01a12529-8ecb-765e-bbe8-aa60252bc523 → 노우 수신/관련 답장01a1252a-519f-7d9d-8cb0-2026e53cddf9 → 현재 세션 실제 수신. 원요청 delivered/reply_received, 노우 답장 receipt delivered/received. 실제 Tunnel·도메인·Google 등록·Bot 왕복의 1차 완료 조건 통과. 상세 SAR-GOOGLE-CONNECT-002-LIVE.md.
 - 추가 비용·결제동의·로컬 Docker 없음. 자동wake/자동답장/업무실행·부하/장시간 검증은 수행하지 않았다. medium 익명 신규연결 포화와 snapshot cleanup 보류는 유지한다. 다른 대기 기능을 이 과제에 추가하지 않는다.
 
+
+## 자동 수신 보완 — SAR-AUTO-RECEIVE-001
+
+- 사용자 2026-10-10 지시로 자동 수신·호스트 전달 개발을 시작한다. 앞선 수동 UI 유도 왕복은 자동 수신 수락 근거가 아니다. 재질문01a12591은 수신 전 180초 만료했다.
+- DEV 과제 SAR-AUTO-RECEIVE-001-DEV, 기준51eebe5, 테스트lite/off. Jev implementation→dev, Claude Opus5.5 medium. 오래된 기존 세션은 사용자 소유로 보존하고 fresh로 배정한다. 완료 후 독립 tester fixed SHA QA/리뷰, 실제 운영 도메인 수신을 확인한다.
+- 완료 조건은 수동 도구 호출·그록봇 UI 조작 없이 자동 수신·지속 보존·호스트 전달이다. 자동 저장/표준 알림과 실제 노우 wake/답장을 구별한다. 호스트 지원 경계는 공식 근거로 확인한다. 유료 API·추가 과금·로컬 Docker·vendor core 수정·임의 자동 업무 실행은 범위 밖이다.
