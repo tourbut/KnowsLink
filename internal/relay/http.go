@@ -60,6 +60,7 @@ func statusFor(err error) int {
 }
 func (s *Service) Handler() http.Handler {
 	mux := http.NewServeMux()
+	s.remoteRoutes(mux)
 	mux.HandleFunc("GET /v1/registry", func(w http.ResponseWriter, r *http.Request) {
 		if !RegistryValid() {
 			respond(w, nil, fault("unavailable"))
@@ -187,7 +188,7 @@ func (s *Service) Handler() http.Handler {
 	// Stdlib Sec-Fetch-Site/Origin check rejects cross-origin browser writes; non-browser agent calls carry neither header.
 	protected := crossOrigin.Handler(mux)
 	ratedTest := s.testHandler(mux)
-	return s.boundedHTTP(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	bounded := s.boundedHTTP(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self' https://accounts.google.com; frame-ancestors 'none'; base-uri 'none'")
 		w.Header().Set("Referrer-Policy", "no-referrer")
@@ -198,6 +199,10 @@ func (s *Service) Handler() http.Handler {
 		}
 		protected.ServeHTTP(w, r)
 	}))
+	root := http.NewServeMux()
+	root.HandleFunc("GET /v1/text/events", s.textEvents)
+	root.Handle("/", bounded)
+	return root
 }
 func respond(w http.ResponseWriter, result any, err error) {
 	if err != nil {

@@ -71,6 +71,7 @@ func run(ctx context.Context) error {
 		return errors.New("KNOWSLINK_CLIENT_IP_HEADER must be empty or CF-Connecting-IP")
 	}
 	go service.Cleanup(ctx)
+	go service.RemoteEvents(ctx)
 	mux.Handle("/", service.Handler())
 	server := &http.Server{
 		Addr: address, Handler: mux,

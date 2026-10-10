@@ -25,6 +25,7 @@ type GoogleLogin struct {
 type googleAttempt struct {
 	Nonce, Verifier, CurrentHash, Member string
 	Connection                           string
+	Remote                               string
 	Created, Exp                         time.Time
 }
 
@@ -96,6 +97,19 @@ func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth boo
 				a.Member = id
 			}
 			a.Connection = connection
+		}
+		if remote := r.FormValue("remote"); remote != "" {
+			pending := st.remote().Attempts[remote]
+			if pending == nil || !now.Before(pending.Exp) || a.Connection != "" {
+				return nil, fault("invalid_auth")
+			}
+			if pending.Owner != "" {
+				if sessionErr != nil || st.Members[id].Owner != pending.Owner || st.Members[id].Issuer != googleIssuer {
+					return nil, fault("invalid_auth")
+				}
+				a.Member = id
+			}
+			a.Remote = remote
 		}
 		if st.GoogleAttempts == nil {
 			st.GoogleAttempts = map[string]*googleAttempt{}
@@ -200,6 +214,9 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 	if a.Connection != "" {
 		next = "/connect/" + a.Connection
 	}
+	if a.Remote != "" {
+		next = "/remote/consent/" + a.Remote
+	}
 	render(w, 200, "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Notice": "신원을 확인했습니다. 계속해서 연결을 확인하세요.", "Next": next})
 }
 
@@ -221,6 +238,18 @@ func (st *State) finishGoogleLogin(a *googleAttempt, subject, email string, now 
 			}
 		}
 	}
+	if a.Remote != "" {
+		pending := st.remote().Attempts[a.Remote]
+		if pending == nil || !now.Before(pending.Exp) {
+			return verifyResult{Problem: "expired"}
+		}
+		if pending.Owner != "" {
+			m := st.Members[st.Identities[googleIssuer+"|"+subject]]
+			if m == nil || m.Owner != pending.Owner {
+				return verifyResult{Problem: "invalid_auth"}
+			}
+		}
+	}
 	result := st.signIn(googleIssuer, subject, email, a.CurrentHash, a.Member, now)
 	if result.Problem == "" && a.Connection != "" {
 		id, _, e := st.session(result.Session, now)
@@ -229,6 +258,13 @@ func (st *State) finishGoogleLogin(a *googleAttempt, subject, email string, now 
 		}
 		c := st.Connections[a.Connection]
 		c.Owner, c.State = st.Members[id].Owner, "prepared"
+	}
+	if result.Problem == "" && a.Remote != "" {
+		id, _, e := st.session(result.Session, now)
+		if e != nil {
+			return verifyResult{Problem: "invalid_auth"}
+		}
+		st.remote().Attempts[a.Remote].Owner = st.Members[id].Owner
 	}
 	return result
 }

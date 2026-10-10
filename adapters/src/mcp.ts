@@ -18,6 +18,7 @@ let busy = false;
 let loginState = "idle";
 let auto: AutoReceiver | null = null;
 let autoError: string | null = null;
+server.server.onclose = () => auto?.stop();
 // Automatic receive is on for a connected public-node folder unless KNOWSLINK_AUTO_RECEIVE=off. It only stores and announces text.
 async function startAuto(): Promise<void> {
   const folder = process.env.KNOWSLINK_AGENT_FOLDER;

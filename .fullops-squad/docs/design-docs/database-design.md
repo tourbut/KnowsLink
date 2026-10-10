@@ -2,14 +2,18 @@
 id: D07
 title: 데이터베이스설계서
 status: review
-updated: 2026-10-07
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
 
 # KnowsLink DB 설계
+
+## SAR-SSE-INSTALL-001 SSE 저장
+
+기존 JSONB State에 Streams map만 추가한다. 각 기록은 자기 agent와65초 기한이며 전체16/agent당2를 row lock에서 제한한다. 새 table·SQL migration·sqlc 생성물은 없다. NOTIFY는 빈 payload이고 업무 변경 transaction과 함께 commit한다. LISTEN 연결과 signal용 현재 상태 조회는 행을 수정하지 않는다. 원문 수신은 기존 row lock과 서명/현재 권한 검사를 유지한다. 이전 코드로 복귀하면 단기 stream 기록이 없어지므로 기존 SSE 연결을 먼저 종료한다. 영속 키·관계·철회 기록을 과거 백업으로 덮지 않는다.
 
 [엔티티 정본](data-model.md)을 따른다.
 
@@ -30,6 +34,11 @@ receipt·멱등·gate metadata는 24h 뒤 삭제한다. Envelope와 Inbox는 만
 
 SAR-PUBLIC-IDENTITY-001은 새 migration 없이 같은 JSON에 Member·Identity·Session·Challenge·Rate map을 추가했다. 이전 상태에는 이 key가 없으므로 빈 map으로 읽는다. 따라서 rollback은 코드 복귀만으로 가능하다. 단, 이전 코드는 새 key를 버리고 저장한다. 회원·세션은 사라진다.
 세션 무활동 갱신은 회원 화면 요청마다 행을 다시 쓴다. 회원 100명 규모의 처리량은 미측정이다. 정규화와 부하 측정은 공개 수락 전 후속 과제다.
+
+
+### Remote OAuth·Cloud 설치
+
+Remote와 Streams는 기존 relay_state JSON의 additive optional field다. 신규 SQL migration·새 DB/계정·운영 schema 변경은 없다. 과거 JSON은 nil map을 허용하고 최초 실제 remote consent가 설치만 추가한다. 기존 owner/agent/pair/message·generation은 유지한다. 새 서버 보관 개인키·callback secret은 DB 접근권한과 백업 비공개를 전제로 하며 Google token을 저장하지 않는다. 구독 상한128·설치당4, 설치 상한500을 둔다. 세부 만료/철회와 재시도는 REMOTE 기록을 따른다.
 
 ## SAR-PUBLIC-AGENTS-001 저장 변경
 

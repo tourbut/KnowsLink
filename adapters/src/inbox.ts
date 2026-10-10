@@ -113,6 +113,8 @@ export function safeError(e: unknown): string {
 
 export type AutoStatus = {
   state: "running" | "backoff";
+  receiveMode: "poll" | "sse";
+  signalState: "off" | "connecting" | "connected" | "backoff";
   lastSuccessAt?: string;
   lastError?: string;
   lastErrorAt?: string;
@@ -132,6 +134,13 @@ export class AutoReceiver {
   readonly status: AutoStatus;
   private chain: Promise<unknown> = Promise.resolve();
   private failures = 0;
+  private timer?: ReturnType<typeof setTimeout>;
+  private reconnect?: ReturnType<typeof setTimeout>;
+  private stream?: AbortController;
+  private stopped = true;
+  private ticking = false;
+  private signaled = false;
+  private streamFailures = 0;
   constructor(
     private readonly transport: TextTransport,
     readonly inbox: Inbox,
@@ -141,9 +150,15 @@ export class AutoReceiver {
     ) => Promise<void>,
     private readonly wake: GrokWake | "invalid" | null = null,
     private readonly idleMs = 10000,
+    private readonly receiveMode: "poll" | "sse" = process.env
+      .KNOWSLINK_RECEIVE_MODE === "sse"
+      ? "sse"
+      : "poll",
   ) {
     this.status = {
       state: "running",
+      receiveMode,
+      signalState: receiveMode === "sse" ? "connecting" : "off",
       hostNotice: "none",
       hostWake: {
         state: !wake ? "off" : wake === "invalid" ? "invalid_config" : "idle",
@@ -157,13 +172,59 @@ export class AutoReceiver {
     return run;
   }
   start(): void {
+    if (!this.stopped) return;
+    this.stopped = false;
     this.schedule(0);
+    if (this.receiveMode === "sse") void this.connectStream();
+  }
+  stop(): void {
+    this.stopped = true;
+    clearTimeout(this.timer);
+    clearTimeout(this.reconnect);
+    this.stream?.abort();
+  }
+  private signal(): void {
+    if (this.stopped || this.status.state === "backoff") return;
+    if (this.ticking) this.signaled = true;
+    else this.schedule(0);
+  }
+  private async connectStream(): Promise<void> {
+    if (this.stopped) return;
+    const controller = new AbortController();
+    this.stream = controller;
+    const timeout = setTimeout(() => controller.abort(), 65000);
+    timeout.unref();
+    this.status.signalState = "connecting";
+    try {
+      await this.transport.listen(() => {
+        this.streamFailures = 0;
+        this.status.signalState = "connected";
+        this.signal();
+      }, controller.signal);
+    } catch {
+      this.streamFailures++;
+    } finally {
+      clearTimeout(timeout);
+      this.stream = undefined;
+    }
+    if (this.stopped) return;
+    this.status.signalState = "backoff";
+    // Poll remains active during outages and heals missing notifications.
+    const delay = Math.min(60000, 1000 * 2 ** Math.min(this.streamFailures, 6));
+    this.reconnect = setTimeout(() => void this.connectStream(), delay);
+    this.reconnect.unref();
   }
   private schedule(ms: number): void {
+    if (this.stopped) return;
+    clearTimeout(this.timer);
     this.status.nextPollAt = new Date(Date.now() + ms).toISOString();
-    setTimeout(() => void this.tick(), ms).unref();
+    this.timer = setTimeout(() => void this.tick(), ms);
+    this.timer.unref();
   }
   private async tick(): Promise<void> {
+    if (this.stopped || this.ticking) return;
+    this.ticking = true;
+    this.signaled = false;
     let delay = this.idleMs;
     try {
       const fresh: { m?: ReceivedText } = {};
@@ -200,7 +261,8 @@ export class AutoReceiver {
       await this.ring(this.wake).catch(() => {
         this.status.hostWake = { state: "retry", lastError: "failed" };
       });
-    this.schedule(delay);
+    this.ticking = false;
+    this.schedule(this.signaled && this.status.state !== "backoff" ? 0 : delay);
   }
   // One doorbell per batch of unread IDs that have not rung yet.
   private async ring(wake: GrokWake): Promise<void> {

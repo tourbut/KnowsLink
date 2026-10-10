@@ -31,7 +31,7 @@ func (s *Service) requestHit(st *State, r *http.Request, now time.Time, buckets 
 func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, cleanable bool) (buckets []bucket, cleanOwner string) {
 	principal, owner := "", ""
 	switch {
-	case strings.HasPrefix(r.URL.Path, "/home") || strings.HasPrefix(r.URL.Path, "/connect/") || r.URL.Path == "/auth/reauth" || r.URL.Path == "/auth/logout" || r.URL.Path == "/auth/logout-all":
+	case strings.HasPrefix(r.URL.Path, "/home") || strings.HasPrefix(r.URL.Path, "/connect/") || strings.HasPrefix(r.URL.Path, "/remote/consent/") || r.URL.Path == "/auth/reauth" || r.URL.Path == "/auth/logout" || r.URL.Path == "/auth/logout-all":
 		principal, _, _ = st.session(readCookie(r, sessionCookie), now)
 		if principal != "" {
 			owner = st.Members[principal].Owner
@@ -60,6 +60,8 @@ func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, clea
 	case strings.HasPrefix(r.URL.Path, "/owner"):
 		principal, _ = st.principal(ownerToken(r), "owner")
 		owner = principal
+	case r.URL.Path == "/mcp":
+		principal = st.remoteAdmission(bearer(r), now)
 	}
 	if principal == "" {
 		return anonymousRate(s.clientIP(r)), ""

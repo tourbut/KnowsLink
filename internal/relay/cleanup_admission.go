@@ -150,7 +150,9 @@ func (st *State) liveCredentials() map[string]honored {
 		}
 		for _, k := range a.Keys {
 			if !k.Revoked {
-				live[k.Credential] = honored{kind: "agent", id: id}
+				if k.Credential != "" {
+					live[k.Credential] = honored{kind: "agent", id: id}
+				}
 				if a.Credential != "" {
 					live[a.Credential] = honored{kind: "agent", id: id}
 				}
@@ -166,6 +168,7 @@ func (st *State) liveCredentials() map[string]honored {
 			live[id] = honored{"session", session.Member, exp}
 		}
 	}
+	st.remoteCredentials(live)
 	return live
 }
 
@@ -181,7 +184,7 @@ func (s *Service) cleanupOwner(r *http.Request, token string) string {
 	h, ok := c.creds[hashToken(token)]
 	now := time.Now()
 	sessionPath := strings.HasPrefix(r.URL.Path, "/home") || strings.HasPrefix(r.URL.Path, "/auth")
-	if !ok || !h.exp.IsZero() && !now.Before(h.exp) || sessionPath != (h.kind == "session") ||
+	if !ok || h.kind == "remote" || !h.exp.IsZero() && !now.Before(h.exp) || sessionPath != (h.kind == "session") ||
 		h.kind == "agent" && (bearer(r) != token || strings.HasPrefix(r.URL.Path, "/owner")) || !c.st.cleanupTarget(r, h.id, now) {
 		return ""
 	}

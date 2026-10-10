@@ -1,6 +1,59 @@
-# KnowsLink Grok Bot 플러그인
+---
+title: KnowsLink 호스트별 설치
+status: draft
+updated: 2026-10-11
+owner: dev
+tasks: [SAR-SSE-INSTALL-001-DEV]
+summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계
+---
+
+# KnowsLink 플러그인
 
 공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.0`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 계정의 로그인·왕복 성공은 별도 수락 증거가 필요하다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
+
+## 호스트별 설치 — SAR-SSE-INSTALL-001
+
+`python3 scripts/package_plugin.py --verify`는 공통 standalone 런타임으로 다음 파일을 만든다. 의존성 설치와 빌드는 기존 절차를 따른다. 각 ZIP/MCPB는 파일 허용 목록만 포함한다. 개인키·credential·환경 파일·로그는 포함하지 않는다.
+
+| 대상 | 생성 파일 | 설치 계약과 확인 상태 |
+|---|---|---|
+| Grok Bot / Grok CLI / Cursor | `build/knowslink-grok-bot-plugin.zip` | 기존 패키지 구조 유지. Bot 앱은 아래 Command 등록을 사용한다. CLI 설치와 앱 등록은 별개다. |
+| Claude Code | `build/knowslink-claude-plugin.zip` | `.claude-plugin/plugin.json`과 로컬 MCP 설정. 공식 CLI manifest 검증 통과; 실제 Claude 대화 호출은 미검증이다. |
+| Claude Desktop | `build/knowslink-claude-desktop.mcpb` | MCPB 0.3의 `manifest.json`이 archive root에 있다. 앱 Extensions에서 설치한다. 실제 앱 설치·내장 Node 호환성은 미검증이다. |
+| Codex / ChatGPT desktop 로컬 실행 | `build/knowslink-codex-plugin.zip` | `.codex-plugin/plugin.json`과 repo marketplace. 아래 설치 준비가 필수다. 격리된 Codex CLI 설치·MCP 도구 9개 discovery를 확인했다. |
+| Dots / ChatGPT Work Cloud / web | `https://link.knowslog.com/mcp` 후보 + 등록 app 참조 ZIP | OAuth·MCP2·Events 서버 구현. 후보 배포·Custom MCP 앱 등록·Google 동의·실제 Dots 수신은 아직 미실행이다. |
+
+Claude Code와 Codex는 다음처럼 **아직 없는 절대 설치 경로**로 준비한다. `--host`는 `claude`, `codex`, `grok` 중 하나다. `--connect`를 생략하면 held를 유지한다.
+
+```sh
+python3 scripts/package_plugin.py --host codex --install-dir /absolute/knowslink-codex-01 --connect --verify
+```
+
+이 명령은 새 설치 폴더만 만든다. 호스트 설정·로그인·relay 연결은 실행하지 않는다. Node는 현재 PATH에서 찾으므로 먼저 지원 버전 `22.22.2`를 선택한다. MCP command와 bundle 경로는 절대 경로로 저장한다. Codex `0.162.0`은 MCP args의 plugin-root 변수를 치환하지 않아 이 준비 단계가 필요하다. 준비한 폴더는 설치 뒤에도 유지한다. 다른 컴퓨터로 옮기면 새 절대 경로로 다시 준비한다.
+
+`--connect`는 `public-node`, 서비스 URL, `<설치 경로>-private`를 설정한다. private 폴더는 설치 폴더 밖에 있으며 아직 생성하지 않는다. 이미 존재하는 설치/private 폴더를 재사용하거나 덮어쓰지 않는다. 기존 설치·키는 보존하고 호스트/인스턴스마다 새 경로를 지정한다. 아래 Google 연결 절차가 성공한 뒤에만 키와 agent가 생성된다.
+
+Claude Code는 `--host claude`로 준비한 뒤 세션 한정으로 `claude --plugin-dir /absolute/knowslink-claude-01/knowslink`를 사용한다. marketplace 방식은 `/plugin marketplace add /absolute/knowslink-claude-01` 후 `/plugin install knowslink@knowslink-plugins`다. 이 작업에서는 실제 사용자 설정을 바꾸지 않았다. [Claude 설치 문서](https://code.claude.com/docs/en/plugins), [manifest와 MCP 경로](https://code.claude.com/docs/en/plugins-reference).
+
+Codex는 준비한 폴더를 독립 작업 폴더로 열면 `.agents/plugins/marketplace.json`을 찾을 수 있다. 명령으로 확인하려면 별도 `CODEX_HOME` 디렉터리를 먼저 만들고 각 명령에 같은 경로를 지정한다. 사용자 기본 설정과 인증 파일은 복사하지 않는다. 실제 대화 사용에 필요한 호스트 로그인은 사용자가 수행한다.
+
+```sh
+CODEX_HOME=/absolute/knowslink-codex-home codex plugin marketplace add /absolute/knowslink-codex-01
+CODEX_HOME=/absolute/knowslink-codex-home codex plugin add knowslink@knowslink-plugins
+CODEX_HOME=/absolute/knowslink-codex-home codex mcp list --json
+```
+
+`mcp list`는 설정 확인이며 MCP 실행 성공 증거가 아니다. 도구 discovery와 실제 대화 호출을 따로 확인한다. 기본 사용자 설정으로 설치하려는 경우에도 먼저 설치 경로와 권한을 검토한다. [OpenAI 설치 문서](https://developers.openai.com/plugins/build/plugins), [로컬 MCP 지원](https://learn.chatgpt.com/docs/extend/mcp).
+
+Claude Desktop에서는 `.mcpb`를 열거나 **Settings → Extensions**에서 설치한다. 초기 mode는 held다. 연결하려면 extension 설정의 mode를 `public-node`로 바꾸고 새 절대 private folder를 지정한다. 폴더를 extension 설치 디렉터리 안에 두지 않는다. 사용자가 아래 Google 동의 절차를 완료해야 한다. 웹 Claude의 remote connector와 호환성은 이 local extension 검사로 입증하지 않는다. [Desktop 공식 문서](https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop).
+
+Dots Cloud는 후보 배포 뒤 **Plugins → Add custom MCP**에서 `https://link.knowslog.com/mcp`를 등록하고 연결 검토·Create as plugin을 거친다. Google 로그인 뒤 표시된 앱·별도 설치 agent/key의 서버 보관에 명시적으로 동의한다. 관계는 자동 생성하지 않으므로 회원 화면에서 새 agent의 상대 연결을 따로 승인한다. 기존 로컬 agent/key를 가져오지 않는다. 서버 private DB에 해당 설치의 서명키와 Inbox를 보관하며 OAuth 철회 또는 agent/key 철회 시 사용할 수 없다. 기존 로컬 Google begin/finish는 이 host OAuth 계약과 별개다. 실제 계정 등록·Google 동의·왕복은 후속 수락이다. [remote 연결 계약](https://developers.openai.com/plugins/deploy/connect-chatgpt), [인증 계약](https://developers.openai.com/plugins/build/auth).
+
+Cloud 개인/workspace 플러그인은 등록 결과의 실제 app ID를 `.app.json`으로 참조한다. 앱 URL의 `plugin_` 접두사는 제거하고 실제 `asdk_app_…`, `connector_…`, `templated_apps_…` ID를 사용한다. `python3 scripts/package_plugin.py --host openai-cloud --app-id "$KNOWSLINK_REGISTERED_APP_ID" --verify`로 `build/knowslink-openai-cloud-plugin.zip`을 만든다. ID 형식만 검사하며 계정 등록 여부는 host에서 확인해야 한다. 실 ID가 없는 현재 검증은 임시 합성 ID의 구조 self-check만 수행한다. Cloud ZIP에는 stdio process·bundled MCP·credential을 넣지 않는다. bundled MCP import는 HTTPS여도 Desktop only이기 때문이다. 공개 marketplace 제출은 별도 범위다. [패키지 계약](https://developers.openai.com/plugins/build/plugins), [app 참조와 Desktop only 제한](https://learn.chatgpt.com/docs/enterprise/plugin-management), [Dots 컴퓨터·앱](https://learn.chatgpt.com/docs/dots/computers-and-apps).
+
+기본 수신은 `KNOWSLINK_RECEIVE_MODE=poll`이며 10초 polling을 유지한다. `sse`는 `/v1/text/events`의 도착 신호로 기존 API pull을 깨우고 주기적 복구를 유지한다. 본문 수신·검증·private Inbox·ACK는 기존 경로를 사용한다. process가 살아 있을 때만 수신한다. relay SSE와 MCP log notice는 호스트 대화 시작을 보장하지 않는다. Grok의 선택형 gateway wake는 아래 default-off·loopback·metadata-only 규칙을 유지한다.
+
+OpenAI MCP Events는 relay SSE와 별도다. 원격 서버는 MCP 2.0 `2026-07-28` discovery·events methods와 지속 구독·HTTPS callback 검증·서명 webhook을 구현한다. 도착 이벤트는 본문을 포함하지 않으며 `knowslink_receive`가 기존 서명·lease·persist/ACK를 재사용해 설치별 durable Inbox로 받는다. `knowslink_ack`는 읽은 Inbox 항목만 삭제한다. 이벤트는 자동 답장·업무 실행 허가가 아니다. 실제 Dots turn과 이벤트 활성화는 계정·host 정책에 따라 별도로 검증한다. [MCP Events 공식 문서](https://developers.openai.com/plugins/build/mcp-events).
 
 ## 도메인으로 Google 연결 시작
 

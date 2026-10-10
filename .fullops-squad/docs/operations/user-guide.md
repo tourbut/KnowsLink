@@ -2,16 +2,29 @@
 id: D11
 title: 사용자설명서
 status: draft
-updated: 2026-10-10
-owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
+updated: 2026-10-11
+owner: dev
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV]
 summary: 본인 전용 합성 베타의 접속·합성 시험·종료 방법을 안내한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 사용자설명서 (D11)
 
+## SAR-SSE-INSTALL-001 수신 모드와 설치
+
+기본 자동 수신은 기존10초 polling이다. 지원하는 로컬 MCP 설치에서 `KNOWSLINK_RECEIVE_MODE=sse`를 설정하면 도착 신호 직후 동일 text API로 당겨온다. 주기 polling은 장애·신호 누락 복구를 계속 담당한다. `KNOWSLINK_RECEIVE_MODE=poll`로 기존 방식만 선택할 수 있다. `KNOWSLINK_AUTO_RECEIVE=off`는 기존처럼 자동 수신 전체를 끈다.
+
+`knowslink_status`의 receiveMode와 signalState를 확인한다. connected는 SSE 연결 상태이며 host turn·메시지 표시·답장 성공이 아니다. 수신된 text는 private Inbox에 저장되며 `knowslink_text_receive`가 untrusted 데이터로 표시한다. 새 메시지가 도구 실행이나 발송 동의를 만들지 않는다. Grok의 선택 loopback wake는 기본 off다.
+
+Grok Bot Command, Claude Code, Claude Desktop MCPB, Codex local은 [플러그인 설치 문서](../../../adapters/README.md)를 따른다. 각 설치에 새 private 폴더를 지정하고 사용자가 Google 로그인·지문 확인·동의를 수행한다. 기존 폴더·키를 다른 호스트로 복사하지 않는다. 같은 Google 계정이어도 새 agent와 키를 만들며 관계는 별도로 수락한다. 설치물 생성·CLI 검사는 실제 앱 설치나 Google 동의 성공과 구분한다.
+
 이 문서는 사용자 본인이 합성 데이터로 베타를 시험하는 방법이다. 서버는 `link.knowslog.com`이다. 접근은 사용자 본인 이메일 한 개로 제한한다. 실제 업무 데이터·실제 벤더·실제 일정은 입력하지 않는다.
 공개 연결은 2026-10-03에 적용됐다. 미인증 요청은 모두 Cloudflare Access 로그인으로 이동한다. 마지막 이메일 로그인은 사용자가 직접 확인하는 인간 검사다. 현재 상태는 [D13](transition.md)에서 확인한다.
+
+
+### Remote OAuth·Cloud 설치
+
+Dots/Work Cloud는 후보 배포 후 Custom MCP에 `https://link.knowslog.com/mcp`를 등록하고 Google 확인·새 설치 agent/key 서버 보관 동의를 완료한다. 기존 로컬 키·관계는 유지되며 새 agent의 관계는 회원 화면에서 별도 승인한다. registered app의 실제 ID를 얻은 후 `package_plugin.py --host openai-cloud --app-id "$KNOWSLINK_REGISTERED_APP_ID" --verify`로 private Cloud plugin을 만든다. 로컬 ZIP의 stdio 프로세스를 Cloud에 가져오지 않는다. Cloud tool receive는 server private Inbox, local text_receive는 local private Inbox다. 이벤트는 자동 답장 승인이 아니며 actual host registration/turn은 아직 미검증이다. [설치 정본](../../../adapters/README.md)을 따른다.
 
 ## 시험 절차
 

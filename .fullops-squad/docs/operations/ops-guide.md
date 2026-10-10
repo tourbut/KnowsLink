@@ -2,19 +2,37 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-10
-owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV]
+updated: 2026-10-11
+owner: dev
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
+## SAR-SSE-INSTALL-001 SSE 운영 후보
+
+이 절은 후보 적용 안내다. DEV는 현재 운영 배포·DB·키·관계·Tunnel을 변경하지 않는다. 고정 SHA 독립 리뷰·tester QA 뒤 coor/ops가 적용한다. 기존 ingress allowlist의 `/v1/text/(send|pull|persist|ack)`에 `events`를 추가한 후보를 제공한다. 기존 Google/owner/admin/trial 경계와 hostname·404 fallback을 보존한다. `check_public_ingress.py`와 실제 pinned cloudflared validate/rule로 자기 후보를 검사한 뒤 활성화한다.
+
+SSE는 Bearer header만 사용하며 URL query credential을 거부한다. raw Authorization·응답 본문을 access log에 넣지 않는다. 서버는 shared 전체16/agent당2 stream·55초 수명·65초 crash admission·15초 heartbeat를 적용한다. 전용 LISTEN DB connection이 최대16개 추가되므로 DB 연결 예산에 반영한다. 일반 HTTP pool/16신규·4정리 budget은 stream 동안 점유하지 않는다. callback/webhook Events와 SSE는 서로 다른 경로다.
+
+실제 domain에서는 자기 agent 연결·빈 ready/arrival·다른 agent 차단·철회·끊김·재연결·pending 복구를 확인한다. Bot 왕복은 메시지ID·Inbox·receipt·실제 host 관찰을 대조한다. 운영 적용 전에 원문·token 없는 증거 형식을 정한다. 설치·Google 수동 동의·host turn은 DEV 합성 검사의 통과로 대체하지 않는다.
+
+복구는 새 SSE 연결을 닫고 local receive mode를 poll로 돌린 뒤 수락 코드를 사용한다. DB·기존 키·철회·관계 상태를 과거 backup으로 덮지 않는다. 이전 코드가 새 JSON field를 버리는 특성을 먼저 확인한다. 신규 유료 서비스·Access 가입·결제 동의는 필요하지 않다.
+
 이 문서는 현재 서버의 Docker와 `link.knowslog.com` Cloudflare Tunnel 배포 정본이다. 현재 상태는 11장과 [D13](transition.md)을 따른다. 1~10장은 2026-10-03 이전 OPS Dispatch의 **역사적 계획·관찰 기록**이다. 그 Dispatch가 2026-10-03에 수행한 읽기 전용 조사 초안을 보존한다. 당시 retry Dispatch는 서버 조사를 재실행하지 않았다. 원본 명령 로그와 개별 종료코드가 초안에 없으므로 2장 관찰을 새 검증 통과로 해석하지 않는다. 당시에는 DNS·Tunnel·컨테이너를 만들거나 바꾸지 않았다. 이후 SAR-BETA-001-OPS가 로컬 스택과 `knowslink` Tunnel을 만들었다(11장). D11·D13은 작성됐다. 이 문서도 공개 배포 완료 근거가 아니다.
 비밀값·토큰·`cert.pem` 내용은 기록하지 않는다. 존재·권한·경로만 기록한다.
 
 **역사적 기록**: 이전 Dispatch는 `a6a10c7`을 C1 high 때문에 배포 금지로 기록했다. 이 결정은 그 당시 후보에만 해당한다. C1/RF-01 high는 해소됐다. 수락 후보는 main `557ebc3`, 제품 `78b1d92`, QA `659f4b0`, 최종 리뷰 `311381f`, 직접 UI 검수 `e238777`이다. 본인 전용 합성 베타의 구성과 검증은 11장에 기록한다. 전체 공개 한도·실제 신원·실데이터 held는 유지한다.
+
+
+### Remote OAuth·Cloud 설치
+
+Remote 후보 배포에는 기존 Google redirect URL의 HTTPS origin을 사용한다. Host header·추가 전역 env를 신뢰하지 않는다. Google 미설정이면 fail-closed다. public ingress 후보에 MCP·well-known·정확 remote OAuth/consent 경로만 추가했으며 실제 Tunnel은 미변경이다. 외부 callback은 HTTPS443, 모든 DNS answer 공인주소 검사, pinning·TLS 검증·redirect 차단·5초 timeout·4KiB 응답 제한이다. 구독128/설치당4·재시도3회·lease15초·기본TTL1시간·최소1분, 실패 후 현재 pending 변화 또는 새 subscription을 통해 복구한다. 설치 키와 webhook secret을 포함하는 private DB/백업을 외부에 노출하지 않는다. 실제 Google 동의·계정 app ID·Dots 이벤트 왕복·동의 화면 시각 QA는 후보 수락 뒤 별도 실행한다.
+
+
+Refresh 재사용은 검증된 MAC의 installation/client/resource family만 철회하고 forged·다른 audience 입력으로는 철회할 수 없다. 거부 응답에도 철회가 DB에 commit된다. refresh 응답이 유실되어 이전 token을 다시 쓰면 재동의가 필요할 수 있으므로 호스트 OAuth 복구 절차를 따른다.
 
 ## 1. 승인 범위와 선행 조건
 

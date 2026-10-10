@@ -1,9 +1,9 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-10
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
 ---
 
@@ -24,6 +24,10 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 증거 구분: 로컬 Node/MCP 왕복, 실제 외부 계정·Bot 왕복, 독립 QA·직접 UI 수락은 서로 다른 증거다.
 
 ## 최근 결정
+
+- 2026-10-11 SAR-SSE-INSTALL-001-DEV: SSE heartbeat는 DB polling 없이 LISTEN으로 대기한다. boundedHTTP의 read/write deadline은 handshake 뒤 명시적으로 해제하며 별도 stream 수명·write deadline으로 제한한다.
+- Dots는 공식 MCP2 Events·remote OAuth 경로로 연결한다. local stdio ZIP·Google local 등록과 구분하고 Cloud plugin은 실제 등록 app ID를 참조한다. 새 설치 키는 명시적 동의 뒤 private relay DB에 보관한다.
+- 임시 Postgres readiness는 TCP로 검사한다. initdb의 잠깐 열린 Unix socket 성공을 최종 서비스 준비로 오인하지 않는다. 원격 검사는 고유 /tmp clone·자기 DB만 사용하고 기존 서비스 ID를 대조한다.
 
 - 2026-10-10 SAR-AUTO-RECEIVE-001-DEV: 자동 pull→로컬 inbox→ACK→MCP 알림 후보 뒤, 선택형 loopback wake를 `grok-wake.ts`로 분리 구현했다. 미문서화 vendor 경로는 기본 off이고 지원 상태(공식 없음/미문서화/실제 미검증)를 문서에 구분한다.
 - 사용자 권한 입력(`sendPrompt`)에는 받은 text를 넣지 않는다. 고정 doorbell+검증 ID만 보내고 본문은 untrusted 도구 결과로 읽힌다. 결과는 retry(확실한 미전달)와 uncertain(재전송 금지)으로 나눈다.

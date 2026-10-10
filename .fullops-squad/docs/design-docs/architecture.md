@@ -2,14 +2,27 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-10
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
 
 # KnowsLink 로컬 합성 MVP 아키텍처
+
+## SAR-SSE-INSTALL-001 도착 신호
+
+기존 polling·signed text API·키·관계는 보존한다. SSE는 `GET /v1/text/events`에서 자기 agent의 빈 `ready`/`arrival` 신호만 보낸다. singleton transaction이 유효 queued text와 현재 public-agent 자격 변화에 대해 빈 Postgres NOTIFY를 commit한다. process 사이에도 LISTEN으로 전달하며 heartbeat에는 DB를 조회하지 않는다. LISTEN 확정 뒤 현재 상태를 읽어 연결 중 send 누락을 복구한다. 읽기 전용 현재 상태 조회는 업무 변경·수신 권한을 부여하지 않으며 본문 API는 기존 row lock에서 재검증한다.
+
+공유 Streams 기록은 전체16·agent당2, stream 수명55초·crash 입장 만료65초다. 연결은 pool을 점유하지 않는 전용 DB connection을 사용한다. handshake만 기존 HTTP/rate budget을 쓰며 일반 pull/ACK 용량을 유지한다. setup/read/write3초·heartbeat15초·취소 cleanup을 적용한다. signal에는 ID·본문·credential·키·회원 정보가 없다.
+
+Adapter 기본은 poll10초다. `KNOWSLINK_RECEIVE_MODE=sse`는 신호를 coalesce하고 같은 AutoReceiver의 serial pull을 깨운다. 재연결 catch-up과 주기 polling은 누락·장애를 복구한다. local Inbox 저장·서명 재검증·persist/ACK·metadata-only notice·선택 Grok wake의 기본 off를 유지한다. relay SSE와 Dots의 MCP2.0 webhook Events는 별도 계약이다. 구현 검증은 [DEV 기록](../exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md)을 따른다.
+
+
+### Remote OAuth·Cloud 설치
+
+Remote Cloud 경로는 기존 Google provider를 재사용한 OAuth 2.1 승인과 설치별 agent/key를 추가한다. `/mcp`의 stateless JSON-RPC는 local credential과 구분한 access token으로 권한을 검사한다. 별도 프로세스 LISTEN worker는 persistent subscription을 atomic claim하고 HTTPS webhook을 보낸다. local SSE와 같은 빈 DB notification을 이용하지만 외부 전달은 MCP2 Events 계약이다. 설치 개인키·Inbox·webhook secret은 private relay DB에 보관하며 동의 화면에 명시한다. 기존 키는 가져오지 않고 관계는 별도로 승인한다.
 
 ## 범위와 추적
 
