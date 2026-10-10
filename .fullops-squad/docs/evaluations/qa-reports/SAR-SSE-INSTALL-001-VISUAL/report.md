@@ -30,7 +30,7 @@ summary: 고정 febd의 Google 확인과 설치 승인·취소 화면을 desktop
 | Orca embedded page ID | `c1de83f5-2c16-4f6c-ad74-0e508af70166` |
 | Browser runtime ID | `7d495f42-7b90-4591-8523-d39e444844ff` |
 
-`git show <固定SHA>:internal/relay/remote_auth.go`의 `remotePage`와 `member.go:17`의 `memberStyle`을 읽었다. [source-manifest.json](source-manifest.json)에 원천·CSS·fixture의 SHA256을 남겼다. `render_check.go`는 같은 고정 Git blob을 Go `html/template`로 실제 실행한다. 저장된 HTML 4개와 출력 바이트가 모두 같았다. 현재 기록 HEAD와 고정 후보 사이 제품 diff도 0이다.
+`git show <고정 SHA>:internal/relay/remote_auth.go`의 `remotePage`와 `member.go:17`의 `memberStyle`을 읽었다. [source-manifest.json](source-manifest.json)에 원천·CSS·fixture의 SHA256을 남겼다. `render_check.go`는 같은 고정 Git blob을 Go `html/template`로 실제 실행한다. 저장된 HTML 4개와 출력 바이트가 모두 같았다. 현재 기록 HEAD와 고정 후보 사이 제품 diff도 0이다.
 
 `build_fixtures.py`는 합성 값과 기존 두 분기만 펼친다. 새 CSS·문구·DOM 구조는 추가하지 않는다. 클라이언트 이름은 `Synthetic Work client`다. 반환 URI는 예약 도메인 `client.example`의 37자 또는 545자 합성 주소다. 숨은 ID와 CSRF 값도 사용 불가능한 합성 값이다. 실제 서버·계정·DB·키를 사용하지 않았다.
 
@@ -79,6 +79,14 @@ partial의 route/find/documents-find 신원 불일치는 검색 신뢰 한계로
 
 등록 `product-lint`/`product-test`와 FullOps 최종 게이트 결과는 아래 완료 기록에 추가한다. Windows 기본 PATH에는 `make`가 없으며 임의 설치·전역 PATH 변경·운영 서버 사용은 하지 않는다. 별도 theme/design lint는 프로젝트에 미구성이며 Go 문자열 CSS의 시각 수락을 대신하지 않는다.
 
-검수에는 Orca embedded browser의 file preview만 사용했다. foreground/background helper, 웹 OS computer-use, 외부 브라우저, 실제 계정, 운영 DB, 새 유료 API, local Docker를 사용하지 않았다. 자동승인 거부를 재시도하거나 보호를 완화하지 않았다. 임시 브라우저 탭은 종료 시 정리한다. 보존된 HTML은 재현용 합성 QA fixture다.
+검수에는 Orca embedded browser의 file preview만 사용했다. foreground/background helper, 웹 OS computer-use, 외부 브라우저, 실제 계정, 운영 DB, 새 유료 API, local Docker를 사용하지 않았다. 자동승인 거부를 재시도하거나 보호를 완화하지 않았다. 임시 브라우저 탭을 닫았고 `orca tab list`의 빈 목록을 확인했다. 보존된 HTML은 재현용 합성 QA fixture다.
 
 coor는 이 좁은 합성 시각 PASS와 별도 tester의 고정 SHA 동작QA·독립 리뷰를 함께 확인한다. 실제 Google 동의·Dots 등록 ID·public callback·앱 실행·호스트 wake는 coor/사용자의 후속이다. 재개 조건은 후보 수락과 실제 앱 권한·등록 ID 및 승인된 실제 설치 환경이다. 제품 미완료 조건을 시각 PASS로 대체하지 않는다.
+
+## 완료 게이트 실행 기록
+
+첫 증거 커밋은 `d2c7ca91169da20ce74b5395b190f40bc0d2bb4f`다. 깨끗한 커밋에서 `lint.py --repo . --from febd1282df2e84a29fa0a53834569e7b9cc028e2`를 실제 실행했다. [initial-lint.json](initial-lint.json)의 결과는 exit1, ERROR 0, WARNING 1, 실행 불가 2다. `product-lint: make lint`와 `product-test: make test`는 실행 파일 부재로 unavailable이며 PASS가 아니다. 경고는 착수 준비 커밋에 포함된 coor의 `PLANS.md` 증가이며 이번 작업자가 변경하지 않았다. 후보·등록 명령·exclude·규칙을 수정하지 않았다.
+
+`deliverables.py --repo . --strict`는 13개 검사, 미작성 0, 문제 0, 경고 0으로 exit0이다. `gofmt -l render_check.go`의 출력은 비어 있다. 이 검사는 fixture Go 파일의 포맷 확인이며 제품 lint를 대신하지 않는다. 게이트 실행 환경 문의는 실제 Dispatch의 Orca ask로 보냈으며 결과와 담당·재개 조건을 최종 인계에 남긴다.
+
+실행 환경 문의 `msg_b6ab1e08a9df`는 600000ms에 응답 없이 만료되었다. 같은 메시지 ID로 대기를 재개했으며 중복 질문은 만들지 않았다. 응답 부재를 승인으로 취급하지 않았다. 필수 게이트의 미통과 때문에 작업 전체를 성공으로 보고하지 않는다. 조율자 coor가 승인된 `make` 실행 환경을 제공하고 이 기록 SHA에서 등록 두 명령과 FullOps lint를 통과시키면 완료 게이트를 재개한다. 기존 후보의 다른 세션 검증을 이번 기록 HEAD의 실행으로 바꾸지 않는다. 좁은 합성 시각 PASS 자체는 유지한다.

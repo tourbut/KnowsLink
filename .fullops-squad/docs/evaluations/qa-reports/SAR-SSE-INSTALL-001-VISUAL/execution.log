@@ -1,0 +1,42 @@
+SAR-SSE-INSTALL-001-VISUAL execution evidence
+UI source: febd1282df2e84a29fa0a53834569e7b9cc028e2
+Visual session: 01a126c0-2b8d-7332-8de2-e6ca9fb92f95
+Recording start: cdcc2a9b858fdec73fe487e06c9f874ef3b560b6
+
+python3 build_fixtures.py
+exit=0; four synthetic fixtures and source-manifest.json generated.
+
+go run .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/render_check.go
+exit=0; all four fixture byte streams match real Go html/template output from fixed git blobs.
+
+python3 capture.py desktop
+exit=0; four1280x800 PNGs and desktop-observations.json.
+python3 capture.py mobile [initial]
+exit=1; AssertionError at full_capture width ==390. Embedded full-screenshot excludes scrollbar and returns375.
+python3 capture.py mobile [clientWidth assertion correction]
+exit=0; four390x844 PNGs, two375x986 supplementary full PNGs, mobile-observations.json.
+python3 capture.py mobile bottom
+exit=0; two390x844 bottom PNGs and mobile-bottom-observations.json.
+
+Saved evidence validation
+exit=0; exact fixture/PNG SHA256, dimensions, eight normal conditions plus two bottom observations, no horizontal overflow, 52px button height and visible bottom buttons.
+git diff --quiet febd1282df2e84a29fa0a53834569e7b9cc028e2 HEAD -- internal cmd adapters scripts db Makefile go.mod go.sum
+exit=0; recording worktree product source equals fixed candidate.
+git diff --check
+exit=0.
+gofmt -l .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/render_check.go
+exit=0; empty output.
+python3 <installed FullOps>/scripts/deliverables.py --repo . --strict
+exit=0; 검사:13 / 미작성:0 / 문제:0 / 경고:0.
+
+python3 <installed FullOps>/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/designer --from febd1282df2e84a29fa0a53834569e7b9cc028e2 --out <temporary external JSON>
+head=d2c7ca91169da20ce74b5395b190f40bc0d2bb4f
+exit=1; ERROR0 / WARNING1 / unavailable2.
+[unavailable] product-lint: make lint
+[unavailable] product-test: make test
+WARNING SIZE-001 .fullops-squad/PLANS.md 1437 lines(previous1419; limit500); inherited coordinator preparation changes.
+JSON preserved as initial-lint.json. No unavailable command is a PASS.
+
+Cleanup
+orca tab close --index0 --json: closed=true.
+orca tab list --json: tabs=[]; no helper process or server was started.
