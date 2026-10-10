@@ -2,14 +2,26 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-10
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
 
 # KnowsLink 프로그램 책임과 검증
+
+## SAR-SSE-INSTALL-001 SSE 모듈
+
+| 모듈 | 책임 | 핵심 검사 |
+|---|---|---|
+| `text_events.go` | current-auth/pending 선택·shared stream 입장·전용 LISTEN·빈 SSE·heartbeat·취소 | TextEventSelectionAndAuthorization, TextEventSharedBudgetAndExpiry, TextEventsHTTP |
+| `store.go` transaction | public 자격/queue 변화 hash 비교·commit과 빈 NOTIFY 결속·Streams 만료 | cross-process HTTP 도착·철회·heartbeat 무변경 |
+| `core.ts` openEvents·`text.ts` listen | redirect 거부·Bearer header·UTF8/크기 제한·빈 frame schema·abort | events.test.ts의 실제 HTTP·분할 frame·payload frame 거부 |
+| `inbox.ts` AutoReceiver | 선택 SSE·coalesce·기존 serial·poll fallback·reconnect catch-up·stop | events.test.ts와 기존 inbox.test.ts |
+| `mcp.ts` | 기존 도구9개·자동 수신 상태·stdio close cleanup | 기존 MCP initialize/discovery/held와 Inbox 회귀 |
+
+상세 설정과 실패 경계는 [D05](interface-design.md#sar-sse-install-001-sse-계약), 실제 검사 결과는 [DEV 기록](../exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md)을 따른다.
 
 상위 요구사항은 [D02 SAR-MVP](../planning/product-specs/SAR-MVP.md)다.
 API 정본은 [D05](interface-design.md), 저장 정본은 [D06/D07/D09](data-model.md)다.
@@ -38,6 +50,11 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 독립 QA는 tester가 고정 후보 SHA에서 QA-01–11을 수행한다.
 직접 시각 검수는 designer가 V-01–04를 수행한다. DEV의 자동 HTML 검사는 독립 시각 검수를 대체하지 않는다.
 별도 fixed-SHA 코드 리뷰와 critical/high 차단은 coordinator가 담당한다.
+
+
+### Remote OAuth·Cloud 설치
+
+`remote_auth.go`는 metadata·DCR·PKCE·Google consent·token rotation/revocation·설치 권한을 담당한다. `remote_mcp.go`는 MCP discovery와 네 도구를 기존 ingest/lease/서명/persist/ACK에 연결한다. `remote_events.go`는 지속 구독·서명 callback·claim/retry·LISTEN 수명주기를 맡는다. `capacity.go`는 /mcp 설치별 member budget과 consent session budget을 적용한다. remote token은 기존 /v1 credential이나 reserved cleanup 권한이 아니다. `cmd/relay`가 Cleanup과 RemoteEvents의 공통 종료 context를 관리한다.
 
 ## SAR-MVP-002 플러그인 모듈과 검사
 

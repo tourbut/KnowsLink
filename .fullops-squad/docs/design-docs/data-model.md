@@ -2,14 +2,23 @@
 id: D06
 title: 엔티티정의서
 status: review
-updated: 2026-10-10
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
 
 # KnowsLink 업무 엔티티·DB·CRUD
+
+## SAR-SSE-INSTALL-001 SSE 상태
+
+`State.Streams`는 무작위 입장 ID를 키로 하는 `{Agent,Exp}` map이다. 원문·credential·키는 넣지 않는다. singleton lock에서 전체16/agent당2를 검사하고65초 기한을 부여한다. 연결은55초 이내에 끝나며 정상 취소/종료 때 해당 기록을 삭제한다. 정리 DB 장애는 Exp 이후 기존 sweep이 회수한다. 이전 JSON은 nil map으로 읽고 최초 입장 때만 생성한다. 기존 Agent/Key/Pair/Message/Inbox는 보존한다. 실제 table·migration·sqlc·D08은 바꾸지 않는다.
+
+
+### Remote OAuth·Cloud 설치
+
+선택 JSON `Remote`는 Clients/Attempts/Codes/Tokens/Installs/Subscriptions를 보유한다. token/code는 hash 인덱스다. 설치는 owner/별도agent/key/개인키/만료/private Inbox를 보유하며 기존 local private key를 복사하지 않는다. subscription은 installation binding, callback/secret/회전secret, 만료, pending/Seen, 안정 event ID, lease/attempt/next 시간을 보유한다. 철회·만료는 현재 owner/agent/key를 검사하고 설치 비밀·Inbox·구독을 제거한다. 관계 자동 생성은 없다.
 
 ## 엔티티 — D06
 

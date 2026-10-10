@@ -2,14 +2,27 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-10
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
 
 # KnowsLink HTTP·adapter 계약
+
+## SAR-SSE-INSTALL-001 SSE 계약
+
+`GET /v1/text/events`는 헤더 `Authorization: Bearer <현재 agent credential>`만 사용한다. query 인자·다른 agent 선택은 허용하지 않는다. 현재 Google 회원/owner·agent/key가 유효해야200 `text/event-stream`이다. 잘못된/철회 자격은401, 비활성 회원은403, 연결 한도는409, 기존 rate 제한은429, DB/LISTEN 장애는503이다. stream 확정 후 권한/DB 오류는 연결을 닫는다. 비밀값을 URL이나 오류에 반환하지 않는다.
+
+최초 `event: ready\ndata: {}\n\n`, 유효 queued text가 있으면 `event: arrival\ndata: {}\n\n`을 보낸다. heartbeat는 `: heartbeat\n\n`이다. 신호는 원문·메시지ID·발신자·credential을 포함하지 않는다. Last-Event-ID/replay 보장은 없다. 연결마다 현재 pending을 확인하며 본문은 기존 `/v1/text/pull`·keys·persist·ack API를 재사용한다. 키/관계/세대/TTL과 서명을 본문 수신 때 다시 확인한다.
+
+연결 수명55초·heartbeat15초·setup/read/write3초·공유 전체16/agent당2를 적용한다. 원문 API는 기존300s 상한 backoff와 retry_at 정책을 유지한다. `KNOWSLINK_RECEIVE_MODE=sse`가 신호를 직렬 pull로 변환하고 기본 poll10초는 유지한다. status는 `receiveMode:poll|sse`와 `signalState:off|connecting|connected|backoff`를 추가한다. signalState connected는 호스트 turn이나 답장 성공이 아니다.
+
+
+### Remote OAuth·Cloud 설치
+
+Remote 후보는 `/.well-known/oauth-protected-resource[/mcp]`, `/.well-known/oauth-authorization-server`, `/remote/oauth/{register,authorize,token,revoke}`, `/remote/consent/{id}`, `POST /mcp`다. Google 검증 뒤 명시적 consent, redirect exact match, PKCE S256, resource-bound access/refresh rotation을 적용한다. `/mcp`는 `initialize`, `server/discover`, `tools/list`, `tools/call`, `events/list`, `events/subscribe`, `events/unsubscribe`를 제공한다. 도구는 knowslink_status/send/receive/ack 네 개이며 local text 도구와 이름·Inbox 위치가 다르다. Event `knowslink.text.arrived`는 `{arrival:true}`만 담고 HMAC Standard Webhooks로 서명한다. callback은 public HTTPS443·주소별 DNS 검증·IP pinning·redirect 차단·challenge 검증을 통과해야 한다.
 
 ## 인증과 오류
 

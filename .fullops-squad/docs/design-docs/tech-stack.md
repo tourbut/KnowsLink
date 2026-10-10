@@ -2,14 +2,23 @@
 id: D03
 title: KnowsLink 기술 스택
 status: review
-updated: 2026-10-10
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-GOOGLE-CONNECT-002-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02]
 summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
 
 # KnowsLink 기술 스택
+
+## SAR-SSE-INSTALL-001 도착 신호 근거
+
+새 제품 dependency는 없다. pgx/v5 `5.10.0`의 ConnectConfig/WaitForNotification과 PostgreSQL17 LISTEN/NOTIFY를 사용한다. 표준 Go net/http ResponseController로 stream의 handshake deadline과 write deadline을 분리한다. Node22 fetch·AbortController·TextDecoder가 빈 SSE를 읽고 기존 SDK1.32.0 stdio 도구가 같은 API·Inbox를 재사용한다. Context7 resolve의 월간 quota 오류는 [DEV 기록](../exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md)에 보존하며 공식 docs와 설치 소스·실제 실행으로 보완한다. SDK1.32.0 stdio와 Dots MCP2.0 webhook Events 지원을 동일시하지 않는다.
+
+
+### Remote OAuth·Cloud 설치
+
+원격 MCP2 Events는 현재 설치된 TS SDK1.32.0의 stdio 기능과 별도 서버 경로다. 요청한 Cloud 지원을 위해 Go 표준 JSON/HTTP/crypto와 기존 pgx transaction/LISTEN으로 최소 stateless 프로토콜을 구현했다. 외부 SDK나 Standard Webhooks dependency를 추가하지 않고 HMAC-SHA256 경계를 테스트한다. 공식 OAuth·MCP Events URL과 실제 지원 범위는 INSTALL/REMOTE 보고서에 기록한다.
 
 ## 잠긴 선택과 실제 버전
 

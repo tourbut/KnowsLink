@@ -2,14 +2,18 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-10
+updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
 
 # KnowsLink CRUD 정의
+
+## SAR-SSE-INSTALL-001 SSE 입장
+
+현재 agent Bearer가 SSE에 입장할 때 공유 Streams 기록을 만든다. 기존 HTTP/rate 입장은 handshake 뒤 반납한다. LISTEN 확정 후와 NOTIFY 때만 현재 상태를 읽으며 heartbeat는 DB를 조회하지 않는다. 정상 종료는 자기 기록만 삭제하고 crash는65초 만료 sweep으로 회수한다. 신호는 Message를 lease·persist·ACK하거나 실행 권한을 만들지 않는다. 본문은 기존 text API와 private Inbox 저장 순서를 유지한다.
 
 [엔티티 정본](data-model.md)과 [DB 설계](database-design.md)를 따른다.
 
@@ -29,6 +33,11 @@ summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 MVP-15의 최소 저장은 HTTP 응답·inbox·로그·adapter memory에도 적용한다.
 프로그램 종료 시 claim을 다른 worker에 재발급하지 않는다. 자동 복구보다 중복 처리 차단을 우선한다.
 실제 외부 효과와 positive silent done 재개는 DEC-02와 후속 업무 과제의 책임이다.
+
+
+### Remote OAuth·Cloud 설치
+
+Remote consent만 새 설치 agent/key와 일회용 code를 생성한다. token exchange는 code를 소모하고 refresh 시 기존 token pair를 회전한다. remote receive는 기존 lease→서명 검사→persist→private server Inbox 기록→ACK를 한 transaction에서 commit하며 응답 유실에도 Inbox가 남는다. explicit remote ack는 Inbox만 삭제한다. subscription refresh는 동일 설치·이벤트·URL identity를 갱신하고 replacement secret의 짧은 이중서명을 허용한다. 이벤트는 권한을 다시 검사한 뒤 atomic lease로 발송하며 안정 ID의 제한 재시도를 수행한다.
 
 ## SAR-PUBLIC-AGENTS-001 상태 변경
 

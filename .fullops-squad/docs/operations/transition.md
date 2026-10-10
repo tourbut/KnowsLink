@@ -2,15 +2,26 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-10
-owner: ops
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
+updated: 2026-10-11
+owner: dev
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
 
+## SAR-SSE-INSTALL-001 인계 범위
+
+DEV 후보는 기존 polling·Google local 연결·키·관계·signed text API를 보존하면서 arrival-only SSE와 호스트별 최소 설치물을 추가한다. 설치 파일 준비와 실제 호스트 등록·Google 로그인·관계 수락·왕복을 구분한다. [DEV 기록](../exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md)의 기능 commit과 최종 worker_done SHA가 검증 기준이다. 과거 QA/운영 결과는 원래 SHA에 보존한다.
+
+coor는 안정된 최종 SHA에 독립 snapshot 리뷰와 tester QA를 배정한다. 운영 도메인 SSE·Bot 왕복·Google 수동 로그인·Grok/Claude/Codex/Dots 계정 설치는 후보 수락 뒤 coor/ops/사용자가 진행한다. 새 OAuth 동의 화면의 직접 시각 검수도 후속이다. 미해결 high·필수검사 실패는 수락을 차단한다. 원 DB·키·generation1 관계와 다른 서비스는 변경하지 않는다.
+
 이 문서는 베타 배포의 인수인계 상태를 기록한다. 배포 구성과 절차 정본은 [D12](ops-guide.md) 11장이다. 사용자 시험 절차는 [D11](user-guide.md)이다.
+
+
+### Remote OAuth·Cloud 설치
+
+후속 수락 순서는 exact-SHA 독립 리뷰·tester 격리 QA, 후보 배포 승인, Google consent 화면 시각 검수, 실제 host별 별도 설치/Google 연결, 새 관계 승인, text 왕복과 Dots Events 활성화다. Cloud 앱 등록 뒤 실제 app ID로 개인/workspace 참조 패키지를 생성한다. 공개 제출은 하지 않는다. Remote 설치의 키는 private relay DB에 새로 보관하며 기존 local 키를 이관하지 않는다. rollback은 코드/ingress 후보에 한정하고 기존 DB/키/관계를 삭제하지 않는다. 새 remote 사용 이후 이전 바이너리가 shared JSON을 다시 저장하면 선택 remote field를 보존하지 못하므로 rollback 전 remote 사용 중지·private DB backup/복구 계획이 필요하다.
 
 ## 현재 상태 (2026-10-03 보호 연결 적용 후)
 
