@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -226,3 +226,12 @@ Node CLI는 `text.js send <folder> <peer> <key> --confirmed [request-id]`, `rece
 | `knowslink_connect_status` | 없음 | waiting/connected/failed; credential 반환 안 함 |
 
 device proof 바이트는 `KNOWSLINK-DEVICE\0token\0client\0kid\0public` UTF-8이며 서명과 공개키는 base64url이다. 시작·조회 본문은 8192 bytes로 제한한다. 기존 익명 30/min, 회원 40/min, 공유 200/min 및 신규 요청 budget을 재사용한다. 보존 중 Device 요청은 최대 2000개다. 요청 수명은 10분이며 기존 최근 인증 실패는 422다. 기존 prepare/complete·text·owner API 계약은 유지한다.
+
+## 자동 수신 계약 — SAR-AUTO-RECEIVE-001-DEV
+
+- MCP 서버는 `logging` capability를 선언한다. 새 메시지마다 `notifications/message`를 보낸다. `level:notice`, `logger:knowslink`, `data:{event:"knowslink_text_received",id,from,pending,next}`다. text·key·lease token은 넣지 않는다.
+- `knowslink_status`는 `public-node`에서 기존 필드에 `autoReceive`를 더한다. 값은 `{state:running|backoff|stopped|off,lastSuccessAt,lastError,lastErrorAt,nextPollAt,lastReceivedId,hostNotice:none|sent_unverified|failed,pending}`다. `lastError`는 `relay HTTP <code>[ <reason>][ retry_at=...]`, `invalid text envelope|signature`, `unconfigured`, `failed` 중 하나다. relay를 호출하거나 credential을 읽지 않는다.
+- `knowslink_text_receive` 입력은 그대로 없다. 로컬 inbox의 가장 오래된 미확인 메시지를 먼저 반환한다. inbox가 비어 있으면 relay에서 한 건을 pull해 같은 inbox 경로로 반환한다. 출력은 `{state:received,message:{id,from,to,text,exp,reply_to?,untrusted:true,expired}}` 또는 `{state:empty,message:null}`다. 실패 출력은 기존 `publicFailure`와 같다.
+- 로컬 inbox는 `<KNOWSLINK_AGENT_FOLDER>/inbox/`다. private ACL/0700 폴더에 `<id>.json`(0600)과 읽음 표시 `<id>.read`를 둔다.
+- CLI `node dist/plugin.js watch <폴더>`(또는 `dist/text.js watch`)는 같은 loop를 상시 실행한다. stdout에는 `{event,id,from,pending}` 한 줄만 쓴다. CLI `receive`도 inbox를 먼저 읽는다.
+- 환경 `KNOWSLINK_AUTO_RECEIVE=off`는 MCP 자동 loop만 끈다. 수동 도구는 그대로 동작한다.

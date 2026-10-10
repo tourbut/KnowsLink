@@ -4,7 +4,7 @@ title: 아키텍처설계서
 status: review
 updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -166,3 +166,28 @@ Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시
 기존 Tunnel·도메인 HTTPS와 Google 세션 및 서명·회원 소유권을 재사용한다. 새 Access 가입·원격 OAuth 서비스·유료 보안 계층은 필요 없다. `beta.sh render-public-config`는 public-ingress allowlist와404 fallback만 가진 별도 후보를 생성한다. owner/admin/test와 미허용 경로는 원점에 도달하지 않는다. edge의 기존 두 KnowsLink Access 앱 제거는 coor가 ingress 차단을 먼저 확인한 뒤 수행한다. 운영 적용·복구 정본은 [D12](../operations/ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)다.
 
 기존 Device cap2000과 만료 뒤24h 보존을 유지한다. 신규 연결 포화의 medium 한계는 남으며 기존 회원/키 사용·철회에는 이 cap을 적용하지 않는다. 자동 parent 폴더 생성은 Google 클라이언트 시작에만 적용하고 최종 키 폴더 exclusive 생성·ACL은 유지한다. SQL·의존성·UI는 변경하지 않는다.
+
+## 자동 수신과 호스트 알림 — SAR-AUTO-RECEIVE-001-DEV
+
+사용자 요청 “자동수신 기능 보완해”로 회원 text의 수신·보존·호스트 알림만 재개한다. 자동 업무 실행·자동 답장·gate 승인은 범위 밖이다. relay·SQL·의존성은 변경하지 않는다.
+
+- `public-node` MCP는 연결 폴더가 있으면 process마다 자동 수신 loop 하나를 시작한다. `KNOWSLINK_AUTO_RECEIVE=off`로 끈다.
+- 순서는 pull→서명·만료·수신자 검증→로컬 private inbox 기록(fsync·rename)→relay persist→ACK→호스트 알림이다. 로컬 기록이 실패하면 ACK하지 않는다. relay가 같은 메시지를 다시 lease한다.
+- process 안의 모든 pull은 한 직렬 큐를 지난다. 자동 loop와 수동 receive는 병렬 lease를 만들지 않는다. 서로 다른 process(예: MCP 둘, MCP와 `text.js watch`)는 각자 loop를 가진다. 이 경우 relay lease와 ID 기반 중복 제거가 중복 표시를 막는다.
+- idle 간격은 10s다. 오류는 20s부터 2배씩 최대 300s backoff다. `retry_at`이 더 늦으면 그 시각을 따른다.
+- 같은 ID는 `.json` 또는 읽음 표시 `.read`가 있으면 다시 저장·알림하지 않는다. ACK는 다시 보낸다. 읽음 표시는 원문 없이 24h 보존한다.
+- 수신 뒤 TTL이 지나거나 관계가 철회돼도 이미 검증·보존한 text는 표시한다. `expired:true`이면 관련 답장은 relay가 거부한다. 철회 뒤 새 pull은 key 조회 실패로 끝나며 inbox에 들어가지 않는다.
+- ACK 후 표시 전 crash로 text를 잃던 기존 한계는 로컬 inbox로 해소한다. 단, 로컬 inbox의 수동 조회 뒤 표시 전 crash는 그 text를 잃을 수 있다.
+
+### Grok Bot 호스트 경계
+
+호스트 알림은 MCP 표준 `notifications/message`(logging capability)이며 `{event,id,from,pending,next}` metadata만 보낸다. text는 넣지 않는다. 상태의 `hostNotice: sent_unverified`는 process 밖으로 보냈다는 뜻이다. 호스트 표시나 노우 턴 시작을 뜻하지 않는다.
+
+공식 근거로 확인한 경계는 다음과 같다.
+
+- MCP 명세는 logging·resources 알림의 사용 방식을 client에 맡긴다. 알림이 모델 턴을 시작한다는 계약은 없다([resources](https://modelcontextprotocol.io/specification/2025-06-18/server/resources)).
+- Grok Bot 공식 문서의 무인 실행은 routine뿐이다. schedule은 최소 5분 간격이다. event 시작은 Cursor 계정 통합(Slack·GitHub)에 한정된다([Skills and routines](https://docs.x.ai/grok-bot/skills-routines-and-automations)). MCP 알림·webhook·외부 inbound API로 대화를 깨우는 공식 기능은 없다.
+- Grok Bot 팀은 외부 wake를 “working on” 상태로 답했다([포럼 요청](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260)). 같은 글의 미공개 gateway 우회는 사용하지 않는다.
+- Command MCP process의 대화 사이 생존 여부는 공식 문서에 없다. 그래서 Bot 컴퓨터의 상시 수신은 `node dist/plugin.js watch <폴더>`(또는 `dist/text.js watch`)로도 제공한다. 같은 inbox를 MCP가 읽는다.
+
+따라서 현재 구현은 자동 수신·보존·표준 알림까지다. 노우 턴 자동 시작은 공식 호스트 기능(MCP 알림 기반 wake 또는 외부 trigger)이 생길 때까지 미지원이다. 5분 routine은 TTL 180s 안의 답장을 보장하지 못하고 사용량을 소비하므로 해결로 인정하지 않는다.

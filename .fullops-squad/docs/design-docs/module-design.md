@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-10
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -186,3 +186,15 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 - `beta.sh/render-public-config`: Access 파일 없이 기존 UUID와 member ingress로 config.public.yml0600을 새로 생성하고 검증한다. live config를 변경하지 않으며 재생성·잘못된 UUID·검증 실패를 거부한다. `test_public_config.sh`가 make lint에 연결됐다.
 - 패키지 manifest·marketplace·skill·README는 Google 연결과 별도 명시적 text 승인을 안내한다. MCP 도구9개와 기본 held, trial 계약은 그대로다. SDK API 변경은 없다.
 - `TestDeviceCapacityRetention`은2000번째 허용, 다음 요청 거부, 회원 연결 제외, 만료 뒤24h 직전 보존과 경계 회복을 확인한다. `TestDeviceGoogleConnection`은 기존 다른 회원의 callback이 회원·세션·연결 소유권을 바꾸지 못하는 회귀를 포함한다. 신규 Device 포화의 medium 한계는 [D12](../operations/ops-guide.md)에 남긴다.
+
+## 자동 수신 모듈 — SAR-AUTO-RECEIVE-001-DEV
+
+| 모듈 | 책임 | 검증 |
+|---|---|---|
+| `adapters/src/inbox.ts` `Inbox` | private inbox 생성·확인, fsync·rename 저장, ID 중복 제거, rename claim 기반 1회 조회, 읽음 표시 24h 정리 | `inbox.test.ts` 2–3·6 |
+| `adapters/src/inbox.ts` `AutoReceiver` | process당 직렬 pull, 10s idle, 300s 상한 backoff·`retry_at`, drain, 상태·알림 결과 기록 | `inbox.test.ts` 1·4·병렬 |
+| `adapters/src/text.ts` `receive(store)` | 서명 검증 뒤 persist/ACK 전에 store 호출. store 실패 시 ACK 없음 | ACK 시점 inbox 파일 확인, store를 ACK 뒤로 옮긴 변이에서 실패 |
+| `adapters/src/text.ts` CLI `watch` | MCP와 같은 inbox로 상시 수신, metadata만 출력 | `inbox.test.ts` 6 |
+| `adapters/src/mcp.ts` | logging capability, 연결 뒤·로그인 완료 뒤 loop 시작, status `autoReceive`, 수동 receive의 inbox 우선 | 실제 SDK stdio Client |
+
+`inbox.test.ts`는 번들 `dist/plugin.js`를 SDK `StdioClientTransport`로 실행하고 로컬 relay 대역을 사용한다. 실제 운영 relay·Grok Bot 호출은 포함하지 않는다.

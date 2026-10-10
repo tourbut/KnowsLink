@@ -6,6 +6,7 @@ import { pathToFileURL } from "node:url";
 import { Adapter, canonical, uuid7 } from "./core.js";
 import { relayBase } from "./core.js";
 import { privatePath } from "./private-files.js";
+import { AutoReceiver, Inbox } from "./inbox.js";
 
 export type TextEnvelope = {
   v: "knowslink.text.v1";
@@ -17,6 +18,15 @@ export type TextEnvelope = {
   idempotency_key: string;
   reply_to?: string;
   sig: { alg: "Ed25519"; kid: string; value: string };
+};
+export type ReceivedText = {
+  id: string;
+  from: string;
+  to: string;
+  text: string;
+  exp: string;
+  reply_to?: string;
+  untrusted: true;
 };
 export function textSigningBytes(e: TextEnvelope): Buffer {
   return Buffer.from(
@@ -92,15 +102,10 @@ export class TextTransport extends Adapter {
     if (!/^[0-9a-f-]{36}$/.test(id)) throw new Error("invalid receipt ID");
     return this.request(`/v1/receipts/${encodeURIComponent(id)}`);
   }
-  async receive(): Promise<{
-    id: string;
-    from: string;
-    to: string;
-    text: string;
-    exp: string;
-    reply_to?: string;
-    untrusted: true;
-  } | null> {
+  // store runs after signature verification and before relay persist/ACK, so a local copy exists before the relay erases text.
+  async receive(
+    store?: (message: ReceivedText) => Promise<unknown>,
+  ): Promise<ReceivedText | null> {
     const lease = await this.request<{
       envelope: TextEnvelope;
       lease_token: string;
@@ -149,18 +154,7 @@ export class TextTransport extends Adapter {
       )
     )
       throw new Error("invalid text signature");
-    const delivery = { id: e.id, token: lease.lease_token };
-    await this.request("/v1/text/persist", delivery);
-    await this.request("/v1/text/ack", delivery);
-    const result: {
-      id: string;
-      from: string;
-      to: string;
-      text: string;
-      exp: string;
-      reply_to?: string;
-      untrusted: true;
-    } = {
+    const result: ReceivedText = {
       id: e.id,
       from: e.from,
       to: e.to,
@@ -169,6 +163,10 @@ export class TextTransport extends Adapter {
       untrusted: true,
     };
     if (e.reply_to) result.reply_to = e.reply_to;
+    if (store) await store(result);
+    const delivery = { id: e.id, token: lease.lease_token };
+    await this.request("/v1/text/persist", delivery);
+    await this.request("/v1/text/ack", delivery);
     return result;
   }
 }
@@ -200,6 +198,25 @@ export async function configuredMemberTransport(): Promise<TextTransport | null>
     return null;
   return memberTransport(process.env.KNOWSLINK_AGENT_FOLDER);
 }
+// Always-on receive into the same private inbox the MCP server reads; prints metadata only, never text.
+export async function watch(folder: string): Promise<void> {
+  const auto = new AutoReceiver(
+    await memberTransport(folder),
+    await Inbox.open(folder),
+    async (m, pending) => {
+      process.stdout.write(
+        JSON.stringify({
+          event: "knowslink_text_received",
+          id: m.id,
+          from: m.from,
+          pending,
+        }) + "\n",
+      );
+    },
+  );
+  auto.start();
+  setInterval(() => {}, 1 << 30);
+}
 async function main(): Promise<void> {
   const [, , action, folder, peer, key, confirmed, replyTo] = process.argv;
   if (!folder) throw new Error("usage");
@@ -212,8 +229,17 @@ async function main(): Promise<void> {
       if (Buffer.byteLength(input) > 4096) throw new Error("text too large");
     }
     result = await t.sendText(peer, input, key, true, replyTo);
-  } else if (action === "receive") result = await t.receive();
-  else if (action === "receipt" && peer) result = await t.receipt(peer);
+  } else if (action === "watch") {
+    await watch(folder);
+    return;
+  } else if (action === "receive") {
+    const inbox = await Inbox.open(folder);
+    result = await inbox.take();
+    if (!result) {
+      await t.receive((m) => inbox.store(m));
+      result = await inbox.take();
+    }
+  } else if (action === "receipt" && peer) result = await t.receipt(peer);
   else throw new Error("usage");
   process.stdout.write(JSON.stringify(result) + "\n");
 }
