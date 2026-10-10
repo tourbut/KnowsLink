@@ -1,0 +1,842 @@
+{
+  "task_key": "SAR-AUTO-RECEIVE-001-TESTER",
+  "attempt": "1c5542ce04914b9d93cfad64624462a7",
+  "packet_input_sha256": "b0b8829fa58dc9b2f11470a9d917c5edd8cd8da30dd3072408ddb8eb175cdeec",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "하네스 전문에서 lite, 하위 위임 off, finish와 리뷰 기록 위치를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D10은 module-design.md이고 D12는 ops-guide.md다. QA 기록 위치는 qa-reports다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "실행 기록의 로컬 검증과 노우 턴 미검증 구분을 읽었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "지시서의 고정 SHA, 금지 범위, lite 완료 기준을 읽고 그 범위에서 수행했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "검증 명령과 역할 경계를 확인했다. 제품 수정은 tester 범위 밖이다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "fullops-common-0.3.3 적용 범위와 충돌 시 우선 규칙을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 모듈을 재사용하고 의존성을 추가하지 않은 구현인지 대조했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "token 비출력, loopback 고정, 수신 원문을 권한 prompt로 올리지 않는 기준에 대조했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite는 변경 동작과 실패 경계이며 미실행 Bot 검증을 통과로 적지 않는 기준을 적용했다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "자동수신 절과 시험 절 185행의 범위를 구분했다. pkill과 payload 불일치를 발견으로 남겼다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "회원 자동수신 문단이 알림을 노우 턴으로 취급하지 않음을 확인했다."
+    },
+    {
+      "path": "adapters/src/grok-wake.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "전문을 읽었다. 기본 off, loopback, ID만 있는 doorbell, token 비노출을 확인했다."
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "store가 ACK 전이고 중복·claim·직렬 pull·backoff가 수동 조회와 충돌하지 않음을 확인했다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "알림 metadata와 inbox 우선 receive, auto.serial 경합 방지를 확인했다."
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "전문의 receive가 검증, store, persist, ACK 순서임을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "자동수신 맥락 문단이 구현과 미검증 Bot 후속과 맞다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "자동 수신과 호스트 알림 절이 코드의 저장·알림·노우 턴 구분과 맞다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "29행 inbox는 MVP 서버 저장 문장이다. 클라이언트 자동수신 계약이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "autoReceive 상태 계약이 status 출력과 맞다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "자동 수신 모듈 표가 grok-wake.ts와 inbox.test 시나리오와 맞다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "후보 SHA에 이미 반영돼 있다. 인덱스 D10 설계서는 다시 쓰지 않고 QA 보고서는 qa-reports에 별도로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "loopback wake 운영 절을 읽었다. 실제 운영 검증이 없어 D12를 추가 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "자동 수신, wake, inbox 검색이 0건이다. 이행 문서를 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "자동 수신, wake, inbox 검색이 0건이다. 기본 off 기능의 사용자 안내를 추가하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다섯 검색어(SAR-AUTO-RECEIVE, 자동 수신, hostNotice, KNOWSLINK_AUTO_RECEIVE, grok-wake)가 없다. 패킷의 줄 적중은 과거 receive, inbox, TESTER 문구이며 이번 자동수신 계약이 아니다. 전문 재독 없이 no_change로 남긴다."
+    },
+    {
+      "path": "adapters/eslint.config.mjs",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "자동수신 검색이 0건이고 diff에도 없다. 린트 설정 영향이 없다."
+    },
+    {
+      "path": "adapters/src/inbox.test.ts",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "제품 테스트를 수정하지 않았다. 고정 SHA의 dist 테스트를 실행해 통과를 확인했다."
+    },
+    {
+      "path": "adapters/src/inbox.test.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "수동 receive 없는 저장·ACK·알림과 중복·재시작·만료·철회·backoff·wake 경계가 exit 0이다."
+    },
+    {
+      "path": "internal/relay/cleanup_flood_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "177행 TESTER는 과거 probe 주석이다. 이번 제품 diff에 없고 자동수신 계약이 아니다."
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "자동수신 검색이 0건이고 diff에도 없다. 설정 검사 스크립트 영향이 없다."
+    }
+  ],
+  "uncertainty_review": "packet partial=true. find는 input_partial, documents-find는 partial이고 fallback은 local Git/keyword/symbol search다. context는 grok-wake.ts, inbox.test.ts, text.ts를 sensitive or oversized로 보내지 않았다. 세 파일은 전문을 읽고 inbox.test.js를 실행했다. unknown 경로 PLANS.md는 1377행 자동 수신 절만 읽었다. 2026-10-03_to_dev.md와 2026-10-03_to_tester.md는 자동수신 검색 0건이다. 2026-10-10_to_dev.md의 완료 보고와 Linux lint가 318274f임은 확인했고 이번 af7627d lint로 대체하지 않았다. coor msg_9ed204c7307a의 mcp.test.js exit 1은 clean af7627d와 Node 22.22.2에서 재현되지 않았다. msg_aef16591e294에 따라 review.py check --task-key는 SAR-AUTO-RECEIVE-001-DEV이고 tester 패킷은 이 outcomes와 finish가 검사한다."
+}

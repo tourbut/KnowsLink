@@ -1386,3 +1386,18 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 공식 포럼168260 팀 답변은 wake 개발 중이며 문서화되지 않은 로컬 gateway 대안을 연결한다. 공식 지원 부재를 불가능으로 단정하지 않도록 DEV에 원문168199/8과 검토를 전달했다(msg_6be74ac87978). 실제 본인 VM 인터페이스 검증·로컬 전용·토큰 비노출·새 비용 없음·default-off/held 경계를 유지한다. 아직 실제 노우 wake 미검증이다.
 - 첫 DEV 결과81c2bec301f85ba8922b2a78140d832b068f7114/구현5308fa5 완료(msg_e0c3192198aa, delivery_7a072bfd18bb). 독립 QA 전·최종 후속 원문 검토 누락으로 integration hold, 기존 세션 retain. coor에 후보를 보존했으나 main에는 미통합이다.
 - 동일 키 attempt0305914fc3ed441e8299d6fb1b41290f로 reopen. 로컬 gateway 대안 검증/최소 bridge와 정확한 지원 상태를 보완한다. Jev Claude Opus5.5 high. 모델 tuple이 달라 fresh로 배정하고 착수 확인 후 이전 정상 완료 세션을 release한다. 실제 Bot 환경 검증 전에는 bridge default-off/held다.
+- 후속 실제 착수: run_f7da648722cb/task_7d49871223d7/ctx_11e956bd1efa, terminal term_472040d0-46e1-4b27-abb7-e5f63f0d8edd. fresh Claude Opus5.5 high requested/effective 일치, turn_started와 새 정본 인박스 읽기 확인. 기존 완료 dispatch ctx_66524f2d47ca는 착수 확인 뒤 정상 release 처리한다.
+
+- 후속 DEV 최종 af7627d8cca54df55e856f48d226f78dbf2b9d0f / msg_67eb64af6a18를 수신했다. 독립 QA·snapshot 리뷰 대기로 integration hold(coor), DEV retain 후 delivery_b789eabe0e92를 ack했다. 구현자 실제 세션 c1bdb696-62e1-4806-84e2-5dc48623fad1. 실제 노우 설치·wake는 아직 미검증이다.
+
+- 독립 tester 착수: task_eb3c2a2da1f3 / ctx_030382e7ce30 / term_e9c116a2-ab24-4946-a58e-bdc210cb402a. Jev Grok4.7 high, fresh custom argv·ready 확인 뒤 tracked worker-start. 터미널에서 Grok4.7 high와 실제 작업 시작을 확인했다. 리뷰 고정af7627d, diff dda6130, 준비4e71cd6. 사용자 소유 기존 세션은 보존한다. 실제 Bot 설치 경로 답변은 대기다.
+
+- 설치 전 coor 사전검사: Node22 빌드 exit0, package_plugin.py --verify 및 mcp.test.js exit1(MCP synthetic boundary check failed). 필수 검사 실패로 설치·main 통합 보류, 독립 tester에게 msg_9ed204c7307a로 원인 확인을 전달했다. 리뷰 task-key는 원 구현 DEV packet을 검사하도록 msg_aef16591e294로 정정했다. tester 작업 packet은 QA 완료 SHA에서 별도 검사한다.
+
+- Linux 환경 비교: 기존 서버 고유 /tmp clean clone HEAD af7627d/Node22.22.2에서 npm ci/build와 package_plugin.py --verify exit0, 실제 extracted MCP test PASS. 로그는 Git 공용 fullops-gate/coor-af7627d-linux-package.log. clone/업로드 bundle 정리, 운영 서비스·DB·Docker 불변. Windows 패키지 실패 원인은 독립 tester 확인 중이다.
+
+- 사용자 2026-10-10 하위 위임 standard 지시를 setup.py dry-run 후 적용했다. test_level lite 유지. 설정만 main cc8145d/원격에 반영했다(후보 제품은 미통합). 부모별 동시 선택 작업2, 다음 배정부터 적용한다. 진행 중 tester/off 고정 snapshot과 인박스는 보존하고 최신 main 포함은 다음 dispatch 전 동기화한다. dev/ops/designer도 실제 idle·clean 확인 뒤 동기화한다.
+
+- standard 설정 동기화: 실제 dev 두 agent done·Git clean, ops/designer agent 없음·shell prompt·Git clean 확인 후 최신 main cc8145d를 병합했다. coor도 main 포함. tester는 active이므로 동기화 예약을 유지한다. main과 origin/main의 설정을 확인했다. 자동 수신 후보 af7627d의 고정 리뷰는 변경하지 않았다.
+
+- coor Windows 패키지 실패 해결: internal/relay/registry.json이 규칙 eol=lf와 달리 과거 CRLF로 남아 있었다. Git diff clean 확인 후 LF로만 정규화했고 제품 diff0이다. 같은 Node22 mcp.test.js와 package_plugin.py --verify 모두 exit0, zip hash a44fac276d9acd0581ba48298079c912dd453df050e2d509e7183068f5bb7205. 환경 복구이며 후보 코드 변경 없음. tester에게 msg_54da69476fc4로 전달했다.

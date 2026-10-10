@@ -1,0 +1,326 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "e5d861c0bf6cb096a08a2cfeb69bb625c13680da",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "3e1c923b065f67328e6d0c80e77f726583356981346f83c0c7eec6e372f8b8ba",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-inbox.ts",
+      "c1-grok-wake.ts",
+      "c2-inbox.test.ts",
+      "c3-mcp.ts",
+      "c4-text.ts",
+      "c5-README.md",
+      "c6-SKILL.md",
+      "c7-architecture.md",
+      "c8-interface-design.md",
+      "c9-ops-guide.md",
+      "c10-SAR-AUTO-RECEIVE-001-DEV.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6",
+      "required_7"
+    ],
+    "recommended_ids": [
+      "c0-inbox.ts",
+      "c1-grok-wake.ts",
+      "c2-inbox.test.ts",
+      "c3-mcp.ts",
+      "c4-text.ts",
+      "c5-README.md",
+      "c6-SKILL.md",
+      "c7-architecture.md",
+      "c8-interface-design.md",
+      "c9-ops-guide.md",
+      "c10-SAR-AUTO-RECEIVE-001-DEV.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6",
+      "required_7"
+    ],
+    "signals": {
+      "c0-inbox.ts": {
+        "relevant": 0.74,
+        "evidence": 0.75,
+        "contradicts": 0.26,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-mcp.ts": {
+        "relevant": 0.8,
+        "evidence": 0.78,
+        "contradicts": 0.5,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-text.ts": {
+        "relevant": 0.49,
+        "evidence": 0.57,
+        "contradicts": 0.22,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-README.md": {
+        "relevant": 0.63,
+        "evidence": 0.78,
+        "contradicts": 0.34,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-SKILL.md": {
+        "relevant": 0.89,
+        "evidence": 0.91,
+        "contradicts": 0.28,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-architecture.md": {
+        "relevant": 0.63,
+        "evidence": 0.76,
+        "contradicts": 0.27,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-interface-design.md": {
+        "relevant": 0.49,
+        "evidence": 0.73,
+        "contradicts": 0.24,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-ops-guide.md": {
+        "relevant": 0.22,
+        "evidence": 0.42,
+        "contradicts": 0.5,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-SAR-AUTO-RECEIVE-001-DEV.md": {
+        "relevant": 0.87,
+        "evidence": 0.91,
+        "contradicts": 0.33,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-inbox.ts": "adapters/src/inbox.ts",
+      "c1-grok-wake.ts": "adapters/src/grok-wake.ts",
+      "c2-inbox.test.ts": "adapters/src/inbox.test.ts",
+      "c3-mcp.ts": "adapters/src/mcp.ts",
+      "c4-text.ts": "adapters/src/text.ts",
+      "c5-README.md": "adapters/README.md",
+      "c6-SKILL.md": "adapters/skills/knowslink/SKILL.md",
+      "c7-architecture.md": ".fullops-squad/docs/design-docs/architecture.md",
+      "c8-interface-design.md": ".fullops-squad/docs/design-docs/interface-design.md",
+      "c9-ops-guide.md": ".fullops-squad/docs/operations/ops-guide.md",
+      "c10-SAR-AUTO-RECEIVE-001-DEV.md": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/docs/deliverables/README.md",
+      "required_2": ".fullops-squad/handovers/to_tester.md",
+      "required_3": ".fullops-squad/project.md",
+      "required_4": ".fullops-squad/rules/common/README.md",
+      "required_5": ".fullops-squad/rules/common/coding-style.md",
+      "required_6": ".fullops-squad/rules/common/security.md",
+      "required_7": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/deliverables/README.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 28046,
+    "output_tokens": 684,
+    "cost": 0.0011779319999999998,
+    "known_cost": 0.0011779319999999998,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 1.004,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.512,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2688,
+        "output_tokens": 76,
+        "cost": 0.000112896
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.603,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2521,
+        "output_tokens": 76,
+        "cost": 0.000105882
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.488,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2680,
+        "output_tokens": 76,
+        "cost": 0.00011256
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.575,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3226,
+        "output_tokens": 76,
+        "cost": 0.000135492
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.554,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3096,
+        "output_tokens": 76,
+        "cost": 0.000130032
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.54,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3285,
+        "output_tokens": 76,
+        "cost": 0.00013797
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.483,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3183,
+        "output_tokens": 76,
+        "cost": 0.000133686
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.517,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3972,
+        "output_tokens": 76,
+        "cost": 0.000166824
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.508,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3395,
+        "output_tokens": 76,
+        "cost": 0.00014259
+      }
+    }
+  ],
+  "request_max_seconds": 0.603,
+  "task_key": "SAR-AUTO-RECEIVE-001-TESTER",
+  "role": "tester",
+  "attempt": "1c5542ce04914b9d93cfad64624462a7",
+  "instruction_sha256": "96ac2a50431e1bded385f3c464ad298415509887f7bfd049440b84d428cd5034",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "adapters/src/inbox.ts",
+      "adapters/src/grok-wake.ts",
+      "adapters/src/inbox.test.ts",
+      "adapters/src/mcp.ts",
+      "adapters/src/text.ts",
+      "adapters/README.md",
+      "adapters/skills/knowslink/SKILL.md",
+      ".fullops-squad/docs/design-docs/architecture.md",
+      ".fullops-squad/docs/design-docs/interface-design.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md"
+    ],
+    "required": [
+      ".fullops-squad/docs/deliverables/README.md"
+    ],
+    "sources": {
+      "adapters/src/inbox.ts": "007f3ba9ea652425c82ff0b2ff0859dd18e6f5dc7be26da41a40f2a75e05926b",
+      "adapters/src/grok-wake.ts": "7c63b7fe25b5da30385fc4a6951e1b7a5bec2813dac9e2eeb73ec9d492b5f5fc",
+      "adapters/src/inbox.test.ts": "f9693d365576851d973cc7a34e6c50060bee5bca984e5b03f395bc811f3953b9",
+      "adapters/src/mcp.ts": "7d887a8ec446fca10e14d46f89fcf3513f40016540d04b1936e9d04628b76964",
+      "adapters/src/text.ts": "cc2b069a85b743c0d991511234d54498741e69a904a46ad287478a24edce27c3",
+      "adapters/README.md": "fac80706e4c5da5a7a063215b5803dd57dd3ca4f467a59d2ea2080e5a4193bb4",
+      "adapters/skills/knowslink/SKILL.md": "6c5e439c89adebbd7ccd7ea64497dcab0ff9619e3d526c63a388508020ee2bdb",
+      ".fullops-squad/docs/design-docs/architecture.md": "e08de2efd4c935ae7581d29b5998480e93b3834864665c90cc80b9d1ecb5f72f",
+      ".fullops-squad/docs/design-docs/interface-design.md": "08229a6d5176132b96bd98c090f28573e639989dd839ad58b7661bf1ead23a77",
+      ".fullops-squad/docs/operations/ops-guide.md": "baaafc86e2cb95dff890de79a6483c3fb4f7c0bbe25bdde520a040889e7c8a55",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md": "8ac5a2b69e3a2ed3648572f34598c0a41a48c9c0575ad1dda5ac4c6d0e40401c"
+    }
+  },
+  "unsent_sources": {
+    "adapters/src/grok-wake.ts": "sensitive or oversized passage",
+    "adapters/src/inbox.test.ts": "sensitive or oversized passage"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 3.183,
+  "input_partial": true,
+  "instruction_chars": 3698,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 3698
+  }
+}
