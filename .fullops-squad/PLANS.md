@@ -1395,3 +1395,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 설치 전 coor 사전검사: Node22 빌드 exit0, package_plugin.py --verify 및 mcp.test.js exit1(MCP synthetic boundary check failed). 필수 검사 실패로 설치·main 통합 보류, 독립 tester에게 msg_9ed204c7307a로 원인 확인을 전달했다. 리뷰 task-key는 원 구현 DEV packet을 검사하도록 msg_aef16591e294로 정정했다. tester 작업 packet은 QA 완료 SHA에서 별도 검사한다.
 
 - Linux 환경 비교: 기존 서버 고유 /tmp clean clone HEAD af7627d/Node22.22.2에서 npm ci/build와 package_plugin.py --verify exit0, 실제 extracted MCP test PASS. 로그는 Git 공용 fullops-gate/coor-af7627d-linux-package.log. clone/업로드 bundle 정리, 운영 서비스·DB·Docker 불변. Windows 패키지 실패 원인은 독립 tester 확인 중이다.
+
+- 사용자 2026-10-10 하위 위임 standard 지시를 setup.py dry-run 후 적용했다. test_level lite 유지. 설정만 main cc8145d/원격에 반영했다(후보 제품은 미통합). 부모별 동시 선택 작업2, 다음 배정부터 적용한다. 진행 중 tester/off 고정 snapshot과 인박스는 보존하고 최신 main 포함은 다음 dispatch 전 동기화한다. dev/ops/designer도 실제 idle·clean 확인 뒤 동기화한다.
