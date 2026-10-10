@@ -6,7 +6,7 @@ owner: tester
 tasks: [SAR-SSE-INSTALL-001-TESTER]
 summary: SSE 도착 신호·Google 인증·호스트별 설치의 독립 lite QA와 고정 SHA 리뷰
 attempt: c3903c515d954261b24465fe35d7abef
-base: c442bcaed63b8a2e01fb858a99c2852e23ff9962
+base: 4786a00a1274479ea5c3d80decccc0ea556c52e8
 subagent_level: standard
 test_level: lite
 ---
@@ -14,7 +14,7 @@ test_level: lite
 # SAR-SSE-INSTALL-001-TESTER — SSE 도착 신호·Google 인증·호스트별 설치의 독립 lite QA와 고정 SHA 리뷰
 
 - 작성일: 2026-10-11. From / To: coor / tester.
-- 상태: blocked — DEV 최종 exact SHA와 실제 구현자 session 확정 뒤에만 dispatch한다.
+- 상태: ready — DEV 최종 exact SHA와 실제 구현자 session을 확정했다.
 - 테스트 / 하위 위임: lite / standard(선택형 동시2). 제품 소유권은 없다.
 - 담당: repo 0b08ec4c-9e3a-4613-8197-5a835e545335, C:/Users/shin/orca/workspaces/KnowsLink/tester, fullops/tester.
 - 복귀: C:/Users/shin/orca/workspaces/KnowsLink/coor, terminal term_e61d3e14-29e9-4954-943a-4a75707c82de, run_dc9b4e6dd18a. task/dispatch는 실제 preamble 정본.
@@ -22,7 +22,7 @@ test_level: lite
 
 ## 현재 상황과 확인 근거
 
-사용자가 기존 polling 보존, SSE/API 도착 신호 추가, 최소 리팩토링, Grok Bot·Claude Code/앱·Codex·OpenAI Dots 플러그인 설치와 Google 인증을 요청했다. DEV SAR-SSE-INSTALL-001-DEV는 진행 중이다. 구현 최종 SHA·실제 구현자 session·정본 기술 로그는 완료 뒤 여기 확정한다. 기존 자동 수신 수락은 이번 SSE/OAuth 지원을 대신 증명하지 않는다.
+사용자가 기존 polling 보존, SSE/API 도착 신호 추가, 최소 리팩토링, Grok Bot·Claude Code/앱·Codex·OpenAI Dots 플러그인 설치와 Google 인증을 요청했다. DEV SAR-SSE-INSTALL-001-DEV는 진행 중이다. 구현 최종 SHA는 febd1282df2e84a29fa0a53834569e7b9cc028e2, 실제 구현자 session은 01a12678-994d-7680-a15c-83577943b52d다. 리뷰 기준은 준비 commit 4786a00a1274479ea5c3d80decccc0ea556c52e8이며 이전 제품 기준7a69068의 준비 문서는 coor 운영 기록이다. 기존 자동 수신 수락은 이번 SSE/OAuth 지원을 대신 증명하지 않는다.
 
 ## 적용 기준과 예외
 
@@ -32,9 +32,9 @@ fullops-common-0.3.3 README/coding-style/testing/security, project.md, docs/agen
 
 - .fullops-squad/FULLOPS.md, project.md, rules/common/README.md 및 연결 세 규칙.
 - docs/agents/document-writing.md, rules/delegation.md, review/rule.json, docs/deliverables/README.md.
-- SAR-SSE-INSTALL-001-DEV 최종 archived 지시서·기술 계획·검증 요약(경로는 후보 확정 때 기록).
+- .fullops-squad/handovers/logs/2026-10-11_to_dev.md의 해당 과제, docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md 및 INSTALL.md/REMOTE.md, docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/evidence.json.
 - 관련 정본 D03/D05/D10/D11/D12/D13 중 변경 절과 실제 구현 코드·호출자·검사.
-- 탐색 find/context/packet은 후보 확정 뒤 생성·연결한다. 현재 템플릿은 배정 불가다.
+- 탐색 find/context/packet은 이 준비에서 생성·연결한다. snapshot은 리뷰키 SAR-SSE-INSTALL-001-REVIEW로 생성한다. 실제 reviewer session을 조회한 뒤 prepare/snapshot/check한다.
 
 ## 해야 할 일과 파일 소유권
 
@@ -64,3 +64,14 @@ D12 검증/운영 인계 근거만 필요한 절에 연결한다. 제품 문서 
 컴퓨터 유즈는 Grok Bot 일회 설치 때만 coor가 사용한다. 메시지 송신 뒤 Grok UI로 수신을 확인하거나 유도하지 않는다. 임의 외부 메시지·새 유료 API·로컬 Docker·marketplace 제출 금지.
 
 검증한 것/실패/미실행, 명령 exit code·대상 SHA, implementer/reviewer 실제 session, snapshot, finding severity·수락 여부, packet outcomes, 로그/산출물을 보고한다. work.py finish로 원문과 완료 보고를 보존하고 인박스를 비운 뒤 실제 preamble의 worker_done으로 복귀한다.
+
+## 확정 검증 인계
+
+후보 exact SHA의 Git gate pass.json을 coor가 확인했다. product-lint/test0, ERROR0/WARNING19/unavailable0이며 Windows make shim은 같은 SHA의 clean Linux clone 검사를 전달한다. DEV evidence의 과거 SHA를 새 실행으로 바꾸지 말고 최종 게이트 증거를 Git dev fullops-gate/pass.json과 실제 명령 log에서 확인한다. repo 제품 dependency 변화0, SQL migration 변화0이다. 실제 desktop consent 스타일 검수는 자동승인 preview helper 차단 후 미실행이므로 독립 tester가 기존 Orca embedded browser 또는 안전한 foreground synthetic view로 desktop/mobile 확인한다. 사용자 Google 실제 로그인·실제 외부 app 등록은 후속 coor 담당이다.
+
+Cloud 패키지는 실제 OpenAI app ID가 있어야 생성한다. 실제 ID를 합성 값으로 만들어 배포하지 않는다. SSE/remote OAuth/Events source의 보안경계가 커진 이유와 SIZE-001/002·SEC-001 합성 whsec_ key 경고를 직접 판정한다. remote DB private-key custody 동의·backup 접근·refresh replay 전체 family 철회, callback SSRF/DNS/redirect·secret 서명·persistent subscription 검사와 claim/retry를 독립 리뷰한다.
+
+## 지시 전제와 충돌 — 먼저 확인
+
+context의 ops-guide 충돌 추천은 과거 held/중지·owner-only Access 이력과 새 SSE/remote 운영 후보를 함께 보존한 문서다. 현행 후보 절·Google 연결002 정본과 사용자의 개발 재개/무과금/서버 검증 요청을 대조한다. 이번 tester는 어디에도 운영 변경 권한이 없으므로 과거 운영 명령을 재실행하지 않는다. 실제 배포 수락 여부는 후보 QA 뒤 coor가 판단한다. 추가 제품 충돌이 발견되면 tracked ask로 보고한다. events.test.ts는 sensitive/oversized로 원문이 미전송되어 실제 snapshot에서 읽는다. 패킷의 seed는 리뷰/검증 대상이며 제품 편집 권한을 부여하지 않는다.
+
