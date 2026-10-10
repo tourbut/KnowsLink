@@ -407,6 +407,33 @@ func validVerifier(v string) bool {
 	return true
 }
 
+type remoteGrantRefusal struct{}
+
+func remoteRefreshToken(install, client, resource, nonce string, private []byte) string {
+	key := sha256.Sum256(append([]byte("KNOWSLINK-REMOTE-REFRESH\x00"), private...))
+	mac := hmac.New(sha256.New, key[:])
+	_, _ = mac.Write([]byte(install + "\x00" + client + "\x00" + resource + "\x00" + nonce))
+	return "r_" + install + "." + nonce + "." + base64.RawURLEncoding.EncodeToString(mac.Sum(nil))
+}
+
+// A verified old refresh token identifies its family without retaining an unbounded history of token hashes.
+func (st *State) remoteRefreshFamily(raw, client, resource string, now time.Time) string {
+	parts := strings.Split(raw, ".")
+	if len(parts) != 3 || !strings.HasPrefix(parts[0], "r_") || len(parts[0]) != 45 || len(parts[1]) != 43 || len(parts[2]) != 43 {
+		return ""
+	}
+	install := strings.TrimPrefix(parts[0], "r_")
+	i, err := st.remoteInstall(install, now)
+	if err != nil {
+		return ""
+	}
+	expected := remoteRefreshToken(install, client, resource, parts[1], i.Private)
+	if !hmac.Equal([]byte(raw), []byte(expected)) {
+		return ""
+	}
+	return install
+}
+
 func (st *State) exchangeRemote(form url.Values, resource string, now time.Time) (any, error) {
 	r := st.remote()
 	client := form.Get("client_id")
@@ -429,6 +456,14 @@ func (st *State) exchangeRemote(form url.Values, resource string, now time.Time)
 		delete(r.Codes, hashToken(form.Get("code")))
 	case "refresh_token":
 		t := r.Tokens[hashToken(form.Get("refresh_token"))]
+		if t == nil {
+			if family := st.remoteRefreshFamily(form.Get("refresh_token"), client, resource, now); family != "" {
+				r.Installs[family].Exp = now
+				st.sweepRemote(now)
+				// A refusal value commits family revocation; a transaction error would roll it back.
+				return remoteGrantRefusal{}, nil
+			}
+		}
 		if t == nil || t.Kind != "refresh" || !now.Before(t.Exp) || t.Client != client || t.Resource != resource {
 			return nil, fault("invalid_auth")
 		}
@@ -448,7 +483,8 @@ func (st *State) exchangeRemote(form url.Values, resource string, now time.Time)
 	}
 	i.Exp = now.Add(remoteLifetime)
 	c.Exp = now.Add(remoteLifetime)
-	access, refresh := randomToken(), randomToken()
+	access := randomToken()
+	refresh := remoteRefreshToken(install, client, resource, randomToken(), i.Private)
 	r.Tokens[hashToken(access)] = &remoteToken{install, client, resource, "access", now.Add(time.Hour)}
 	r.Tokens[hashToken(refresh)] = &remoteToken{install, client, resource, "refresh", now.Add(remoteLifetime)}
 	return map[string]any{"access_token": access, "token_type": "Bearer", "expires_in": 3600, "refresh_token": refresh, "scope": remoteScope, "resource": resource}, nil
@@ -463,7 +499,8 @@ func (s *Service) remoteToken(w http.ResponseWriter, r *http.Request) {
 	v, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		return st.exchangeRemote(r.PostForm, s.remoteOrigin()+"/mcp", now)
 	})
-	if err != nil {
+	_, refused := v.(remoteGrantRefusal)
+	if err != nil || refused {
 		writeJSON(w, 400, map[string]string{"error": "invalid_grant"})
 		return
 	}

@@ -132,8 +132,21 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		if err != nil || count != 0 {
 			t.Fatal("failed callback persisted active subscription", err)
 		}
-		form = url.Values{"client_id": {client.ID}, "token": {tokens.Refresh}}
-		expect(t, do(s, "POST", "/remote/oauth/revoke", form.Encode(), formType, "", false), 200)
+		if len(agents) == 1 {
+			form = url.Values{"grant_type": {"refresh_token"}, "client_id": {client.ID}, "resource": {"https://example.com/mcp"}, "refresh_token": {tokens.Refresh}}
+			w = do(s, "POST", "/remote/oauth/token", form.Encode(), formType, "", false)
+			expect(t, w, 200)
+			var rotated struct {
+				Access string `json:"access_token"`
+			}
+			_ = json.Unmarshal(w.Body.Bytes(), &rotated)
+			expect(t, do(s, "POST", "/remote/oauth/token", form.Encode(), formType, "", false), 400, "invalid_grant")
+			// This must remain revoked in a new transaction, rather than rolling the replay refusal back.
+			tokens.Access = rotated.Access
+		} else {
+			form = url.Values{"client_id": {client.ID}, "token": {tokens.Refresh}}
+			expect(t, do(s, "POST", "/remote/oauth/revoke", form.Encode(), formType, "", false), 200)
+		}
 		expect(t, do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":5,"method":"server/discover"}`, "application/json", tokens.Access, false), 401)
 	}
 	if len(agents) != 2 || agents[0] == "" || agents[0] == agents[1] {

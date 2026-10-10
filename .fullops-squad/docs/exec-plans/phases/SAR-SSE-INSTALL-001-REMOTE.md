@@ -21,6 +21,7 @@ summary: Google 계정의 설치별 원격 agent와 검증된 텍스트 Inbox �
 
 - `s.remoteRoutes(mux)`는 `/mcp`, OAuth metadata, DCR·authorize·token·revoke와 `/remote/consent/{id}`를 등록한다. HTTPS origin은 설정된 Google callback URL에서만 얻는다. 요청 Host는 origin 근거로 사용하지 않는다. Google 설정이 없으면 원격 경로가 실패한다.
 - OAuth는 public DCR client의 authorization-code·S256 PKCE를 지원한다. client·정확한 redirect URI·resource·scope를 묶는다. 60초 code는 한 번만 사용한다. access token은 1시간이다. refresh token은 30일이며 토큰 쌍을 원자적으로 회전한다. 토큰은 DB에 hash로만 저장한다. issuer identification을 metadata와 승인·거절 callback에 포함한다.
+- 이미 회전한 refresh token을 재사용하면 현재 token family·설치 key·구독도 철회한다. opaque refresh token의 family 식별자는 installation·client·resource·nonce에 domain-separated HMAC을 적용한다. 검증된 이전 token만 family를 철회할 수 있다. 무한 token-history tombstone을 저장하지 않는다. refusal을 transaction 값으로 반환하여 철회가 commit되도록 한다. access token은 계속 43자 random token을 사용한다.
 - Google 로그인은 remote attempt의 계정을 먼저 묶는다. 다른 Google 계정은 이미 묶인 요청을 바꾸지 못한다. 5분 이내 신원 확인과 session-bound CSRF가 있어야 명시적 연결 승인이 가능하다. 승인은 기존 agent·키·pair를 덮어쓰지 않는다. 새 agent의 pair는 사용자가 별도로 초대·수락한다.
 - 원격 전용 서명 개인 키와 webhook secret은 서버 비공개 DB에 보관한다. 동의 화면이 이 보관 위치를 명시한다. 기존 로컬 개인 키를 가져오지 않는다. 별도 배포 secret 없이 background webhook을 수행해야 하므로 새 애플리케이션 암호화 키를 만들지 않았다. DB와 백업의 접근 제어가 이 비밀값의 보안 경계다. key·agent·owner 철회 또는 설치 만료 시 private key·토큰·구독 secret을 삭제한다.
 - `knowslink_status`, `knowslink_send`, `knowslink_receive`, `knowslink_ack`를 제공한다. write tool에 approval 판단용 annotation을 제공한다. send에는 사용자의 명시적 요청이 필요하다. OAuth 연결과 arrival event가 자동 전송 권한을 부여하지 않는다.
@@ -45,6 +46,7 @@ Context7 `resolve-library-id`를 pgx v5 LISTEN API로 호출했다. 결과는 `M
 | https://developers.openai.com/plugins/build/mcp-server | Create the server, Define tools from user goals, Return useful results without UI, Security reminders. tool schema·annotation·structuredContent와 승인 경계에 적용했다. |
 | https://developers.openai.com/plugins/deploy/connect-chatgpt | Prepare the endpoint, Add the MCP server, Refresh metadata, Test the complete plugin. 공개 HTTPS 연결·도구 scan·인증·설치 검증은 후속 절차로 구분했다. |
 | https://developers.openai.com/plugins/build/plugins | Create a plugin manually, Configure authentication, Use automatic OAuth client registration. 패키지 worker가 등록된 실제 OpenAI connection ID를 사용한다. 임의 ID나 실사용 credential을 package에 넣지 않는다. |
+| https://www.rfc-editor.org/rfc/rfc9700.html#section-4.14.2 | Refresh Token Protection의 Recommendations. public client의 refresh replay 탐지와 active family 철회를 적용했다. MAC으로 family 정보를 검증하여 history 저장을 늘리지 않았다. |
 
 공식 MCP Events 문서는 Work web·desktop Cloud·Dots 지원을 명시한다. 일반 relay SSE와 이 webhook 경로는 다른 프로토콜이다. 실제 Dots 계정 연결·설치·event-triggered task 실행은 아직 검증하지 않았다.
 
@@ -58,6 +60,8 @@ Windows 작업 트리에서 다음 명령이 종료코드 0으로 통과했다. 
 - `go test -tags integration ./internal/relay -run '^$'`: 통합 테스트 컴파일만 확인했다. DB 실행 통과로 표시하지 않는다.
 
 `TestRemoteOAuthHTTP`는 isolated DB 전용 통합 테스트다. 기존 `TEST_SYNTHETIC_DATABASE=1`과 `TEST_DATABASE_URL` 보호 조건을 사용한다. 로컬 RSA/JWK Google provider로 실제 HTTP DCR·Google callback·consent·PKCE code exchange를 검증한다. 같은 Google 계정에서 설치별 agent가 다르고, 다른 Service 프로세스가 저장된 token을 인식하며, localhost callback이 실패하고 revoke가 접근을 끝내는지 확인한다. 부모가 Linux 격리 DB에서 이 테스트와 필수 검사를 실행한다.
+
+초기 후보 `3c523fc`와 부모 문서 후보 `515eabb`의 Linux 격리 DB 검사에서 `TestRemoteOAuthHTTP`, `TestTextEventsHTTP`, `TestPublicMessageHTTPBoundaries`, `TestPublicNodeProcesses`가 race 모드로 통과했다고 부모가 보고했다. 이후 자체 보안 점검에서 refresh replay가 active family를 철회해야 하는 경계를 발견했다. 같은 과제에서 이 경계를 보강하고 unit 검사를 통과했다. HTTP 통합 테스트에도 새 Service 요청에서 철회가 유지되는 조건을 추가했다. 변경 후 고정 SHA와 재검사는 부모 완료 기록을 정본으로 사용한다.
 
 부모가 커밋을 단독 소유한다. 이 worker는 git commit·branch·생산 DB·Tunnel·Google 설정·운영 key·유료 API·local Docker를 변경하지 않는다. 부모가 최종 SHA와 registered product-lint/product-test 결과를 부모 완료 보고에 남긴다. 새 동의 화면의 직접 시각 검수도 부모가 synthetic preview로 수행한다. 독립 fixed-SHA 리뷰와 tester 수락은 coordinator 후속이다.
 

@@ -34,6 +34,7 @@ func remoteFixture(t *testing.T, st *State, owner string, now time.Time) (string
 		t.Fatal(e)
 	}
 	token := v.(map[string]any)["access_token"].(string)
+	form.Set("refresh_token", v.(map[string]any)["refresh_token"].(string))
 	id, i, e := st.remotePrincipal(token, a.Resource, now)
 	if e != nil {
 		t.Fatal(e)
@@ -93,9 +94,6 @@ func TestRemoteOAuthIsolationAndRefresh(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
-	if _, e := st.exchangeRemote(rf, form.Get("resource"), now); e == nil {
-		t.Fatal("refresh replay")
-	}
 	access := rotated.(map[string]any)["access_token"].(string)
 	st.Agents[a.Agent].Keys[a.Kid].Revoked = true
 	st.sweepRemote(now)
@@ -104,6 +102,39 @@ func TestRemoteOAuthIsolationAndRefresh(t *testing.T) {
 	}
 	if _, _, e := st.remotePrincipal(other, form.Get("resource"), now); e != nil {
 		t.Fatal("revocation affected different installation")
+	}
+}
+
+func TestRemoteRefreshReplayRevokesOnlyVerifiedFamily(t *testing.T) {
+	st, _, now := textFixture()
+	id, _, _, form := remoteFixture(t, st, "agent_a", now)
+	_, _, other, otherForm := remoteFixture(t, st, "agent_b", now)
+	rf := url.Values{"grant_type": {"refresh_token"}, "client_id": {"client"}, "resource": {form.Get("resource")}, "refresh_token": {form.Get("refresh_token")}}
+	v, err := st.exchangeRemote(rf, form.Get("resource"), now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	access := v.(map[string]any)["access_token"].(string)
+	old := rf.Get("refresh_token")
+	rf.Set("refresh_token", old[:len(old)-1]+"!")
+	if _, err = st.exchangeRemote(rf, form.Get("resource"), now); err == nil || st.Remote.Installs[id] == nil {
+		t.Fatal("forged family token revoked authority")
+	}
+	rf.Set("refresh_token", old)
+	rf.Set("resource", "https://foreign.example/mcp")
+	if _, err = st.exchangeRemote(rf, form.Get("resource"), now); err == nil || st.Remote.Installs[id] == nil {
+		t.Fatal("wrong audience replay revoked authority")
+	}
+	rf.Set("resource", form.Get("resource"))
+	refusal, err := st.exchangeRemote(rf, form.Get("resource"), now)
+	if _, ok := refusal.(remoteGrantRefusal); !ok || err != nil {
+		t.Fatal("replay refusal must commit family revocation", err)
+	}
+	if _, _, err = st.remotePrincipal(access, form.Get("resource"), now); err == nil || st.Remote.Installs[id] != nil {
+		t.Fatal("old refresh replay left active access/key")
+	}
+	if _, _, err = st.remotePrincipal(other, otherForm.Get("resource"), now); err != nil {
+		t.Fatal("replay revoked other installation", err)
 	}
 }
 
