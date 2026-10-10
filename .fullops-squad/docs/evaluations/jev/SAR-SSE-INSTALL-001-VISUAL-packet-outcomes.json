@@ -1,0 +1,615 @@
+{
+  "packet_input_sha256": "8bcf7f52478587460341d3a34acd6ff91104fdbce57007b325438df9e599433f",
+  "attempt": "10e9aad1f3f24addad543a18cc892f06",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "고정 febd의 remotePage와 memberStyle을 git show로 추출했다. source-manifest의 blob/SHA256과 Go html/template 바이트 대조로 4개 fixture 동일성을 확인하고 1280×800·390×844 직접 검수했다. 제품은 읽기 전용이다."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "고정 febd의 remotePage와 memberStyle을 git show로 추출했다. source-manifest의 blob/SHA256과 Go html/template 바이트 대조로 4개 fixture 동일성을 확인하고 1280×800·390×844 직접 검수했다. 제품은 읽기 전용이다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "SAR-SSE-INSTALL-001 현재 절1431–1437을 확인했다. coor 소유 계획이며 이번 변경 허용 경로가 아니다. 결과와 남은 실제 설치 검증을 worker_done 및 QA 보고서로 인계한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: dev 컨텍스트 보관본 (2026-10-10까지)의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: coor 컨텍스트의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: dev 컨텍스트의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: ops 컨텍스트의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: tester 컨텍스트의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 아키텍처설계서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: CRUD정의서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 엔티티정의서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 데이터베이스설계서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 인터페이스설계서의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-AGENTS-001-UI-FIX — 수정 후보 직접 시각 재검수의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-AGENTS-001-UI — 일반 회원 연결·키·관계 직접 시각 검수의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-MESSAGES-001-UI-FIX — 수정 gate 직접 재검수의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-MESSAGES-001-UI — 일반회원 receipt·gate 직접 검수의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 프로그램설계서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: KnowsLink 기술 스택의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: FullOps 1.2.0 운영 업데이트 독립 리뷰의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-BETA-002-TESTER — 루프백 소유자 브라우저 독립 QA 보고서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-GOOGLE-CONNECT-002-DEV 독립 리뷰의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 비용 없는 Google 연결 DEV 검증의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 비용 없는 Google 연결 운영 적용의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: Google 인증 변경 독립 검토의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-MVP-002-INSTALL-FIX-DEV-TESTER — 설치 수정 후보의 실제 Grok CLI 독립 QA의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-MVP-002-INSTALL-FIX-DEV 리뷰의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-AGENTS-001-REVIEW 독립 보안 delegate 리뷰의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-IDENTITY-001-RATE-REVIEW 독립 delta 리뷰의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 일반 이메일 신원 후보의 직접 UI 검수 결과의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-MESSAGES-001-UI-FIX — QA 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: FULLOPS-UPDATE-1.2.0의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-BETA-001-OPS 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-GOOGLE-CONNECT-001-DEV 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 비용 없는 Google 클라이언트 연결 보완의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: Google 로그인 구현 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-MVP-002-BOT-CATALOG-DEV 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-MVP-002-INSTALL-FIX-DEV 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-MVP-003-BIDIRECTIONAL-OPS 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 철회 기록 보존·rate·회원 화면 후속 수정 기록의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 재초대·기록 포화 제품 답의 구현 대조와 회원 화면 안내 수정 기록의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 일반 회원 agent 연결과 키 및 관계의 구현·검증 기록의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-AGENTS-001-UI-FIX — 직접 시각 재검수 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-MESSAGES-001-UI-FIX — 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 일반 이메일 서비스 제품 결정과 인계의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-PUBLIC-SERVICE-OPS-READINESS 실행 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR-SSE-INSTALL-001 호스트 설치와 공식 계약 검증의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 운영자설명서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 인수인계서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 사용자설명서의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: KnowsLink 일반 이메일 서비스 수락 기준의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: ops 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: dev 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: ops 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: tester 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: dev 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: designer 완료 기록의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: ops 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: designer 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: dev 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: tester 완료 기록의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: dev 완료 기록의 관련 UI 참조 절을 확인했다. packet-audit.json에 해당 줄을 남겼다. 기존 memberStyle 사용과 과거 SHA 검수 이력이며 현재 remotePage의 대체 원천이 아니다. 과거 판정과 보류는 유지한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: SAR 초기 구성의 독립 코드 리뷰의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: 초기 통합 후보의 최종 독립 리뷰의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "동일 고정 febd와 별도 QA/리뷰·실계정 후속 경계를 확인했다. tester 정본은 읽기 전용이며 이번 시각 검수가 동작QA를 대신하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서의 필수 기준 원문과 관련 절을 확인했다. 독립 세션·고정 SHA·소유권·합성 시각 판정·미실행 경계에 적용했다. 원천 문서는 수정하지 않았다."
+    },
+    {
+      "path": "adapters/.claude-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "adapters/.claude-plugin/plugin.json의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "adapters/.codex-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "adapters/.codex-plugin/plugin.json의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "adapters/.cursor-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "adapters/.cursor-plugin/plugin.json의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "adapters/.grok-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "adapters/.grok-plugin/plugin.json의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "title: KnowsLink 호스트별 설치의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": "adapters/manifest.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "adapters/manifest.json의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "# KnowsLink의 제목·역할·remotePage/memberStyle/consent 직접 참조 부재를 확인했다. 과거 운영·인증·메시지·설치 자료이며 이번 고정 합성 HTML/CSS에 입력되지 않는다. 전체 재독·재검증·갱신 없이 원본을 보존한다."
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "adapters/src/login.test.ts의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "adapters/src/mcp.ts의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "cmd/relay/main.go의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "internal/relay/device.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "internal/relay/device.go의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "internal/relay/google_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "internal/relay/google_test.go의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "scripts/check_public_ingress.py의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "scripts/install_bot_mcp.sh의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "scripts/package_plugin.py의 역할과 렌더 참조를 좁게 확인했다. 이 파일은 remotePage/memberStyle 정의가 아니다. 고정 화면의 HTML/CSS는 remote_auth.go:312와 member.go:17에서 완결된다. 설치·인증·동작 분석은 별도 tester 범위다."
+    }
+  ],
+  "uncertainty_review": {
+    "packet_head": "b00b164fadbe821df54eae25577498c690cefc6e",
+    "worker_start_head": "cdcc2a9b858fdec73fe487e06c9f874ef3b560b6",
+    "fixed_ui_sha": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+    "reason": "producer route/find/documents-find identity mismatch는 검색 신뢰 한계로 유지한다. 자동 추천을 제품 결함으로 해석하지 않는다. 실제 고정 Git blob·template 정의·스타일 정의·byte-equivalent Go 렌더·8개 조건의 새 직접 관찰로 이번 UI 범위만 수동 보완했다. member.go oversized는 :17 스타일 정의를 직접 확인했다. member_auth.go는 후보 오기이며 사용하지 않았다. 전체 call graph·동적 호스트·실Google·실앱은 판정하지 않았다.",
+    "unknown_path_review": [
+      {
+        "path": ".fullops-squad/PLANS.md",
+        "exists": true,
+        "bytes": 279993,
+        "decision": "historical/current-plan reference; not render input"
+      },
+      {
+        "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+        "exists": true,
+        "bytes": 96750,
+        "decision": "historical/current-plan reference; not render input"
+      },
+      {
+        "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+        "exists": true,
+        "bytes": 69696,
+        "decision": "historical/current-plan reference; not render input"
+      },
+      {
+        "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+        "exists": true,
+        "bytes": 91583,
+        "decision": "historical/current-plan reference; not render input"
+      },
+      {
+        "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+        "exists": true,
+        "bytes": 66105,
+        "decision": "historical/current-plan reference; not render input"
+      },
+      {
+        "path": "internal/relay/member.go",
+        "exists": true,
+        "bytes": 31361,
+        "decision": "source definitions verified"
+      },
+      {
+        "path": "internal/relay/remote_auth.go",
+        "exists": true,
+        "bytes": 19882,
+        "decision": "source definitions verified"
+      }
+    ],
+    "remaining_context_policy": "93개 비선택 path/category 전부 제목·역할·직접 UI 참조를 대조했다. 관련 절만 읽고 역사 자료는 no_change 이유를 남겼다. packet-audit.json에 경로별 근거를 보존했다."
+  }
+}

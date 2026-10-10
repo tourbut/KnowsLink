@@ -1,0 +1,1208 @@
+[
+  {
+    "path": ".fullops-squad/FULLOPS.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 9350,
+    "title": "title: FullOps Squad 하네스 지도",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/agents/document-writing.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 3233,
+    "title": "title: 문서 작성 규칙",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 8378,
+    "title": "title: 화면설계서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 16360,
+    "title": "title: SSE 신호와 Google 인증 호스트 설치 구현",
+    "direct_ui_references": [
+      {
+        "line": 48,
+        "text": "UI는 SSE 경로에서 변경하지 않는다. 별도 디자인 lint/테마는 프로젝트에 없으므로 적용하지 않는다. 원격 OAuth 동의 화면은 기존 memberStyle과 보안 정책을 재사용한다. 합성 화면의 DEV 직접 검수와 실제 Google/독립 UI 수락을 구분한다. 운영 Google 계정·DB·키·관계·Tunnel·호스트 전역 설정은 변경하지 않는다."
+      },
+      {
+        "line": 80,
+        "text": "DEV는 Chrome에서 현재 Go template의 합성 값을 렌더링해 직접 확인했다. 최초 Google 확인/승인 화면을390×844·1280×800에서 확인했고 기존 memberStyle 재사용 뒤390×844에서 긴 callback URI의 줄바꿈·가로 overflow 없음(scrollWidth390)·승인/취소 버튼을 확인했다. 실제 Google 동의나 실제 relay 계정 승인은 실행하지 않았다. 최종 스타일의 de"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/to_designer.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 5216,
+    "title": "title: SAR-SSE-INSTALL-001-VISUAL — 새 Google OAuth 동의 화면의 독립 desktop/mobile 직접 시각 검수",
+    "direct_ui_references": [
+      {
+        "line": 23,
+        "text": "사용자 요청 SSE/API 수신과 Google 인증 호스트 설치 후보다. 새 remote OAuth 동의 화면은 기존 memberStyle을 재사용한다. DEV는 mobile synthetic 렌더와 긴 URI overflow를 확인했지만 최종 desktop preview는 background helper 자동승인 차단으로 미실행이다. 실제 Google 로그인/외부 Dots 설치는 합성 UI 검수와 구분한다."
+      },
+      {
+        "line": 25,
+        "text": "fullops-common-0.3.3 및 연결 coding/testing/security, project.md, document-writing.md, rules/delegation.md, orca-agents.md의 designer 직접 시각 검수 책임을 따른다. 예외·보호완화 없음. 기존 디자인 기준은 D04와 memberStyle이며 새 디자인/기획 승인은 범위 밖이다."
+      },
+      {
+        "line": 29,
+        "text": ".fullops-squad/FULLOPS.md, project.md, rules/common/README.md 및 세 연결 규칙, docs/agents/document-writing.md, docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md의 UI 검수 절, docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md, docs/design-docs/moc"
+      },
+      {
+        "line": 34,
+        "text": "- [ ] desktop1280×800 및 mobile390×844에서 최초 Google 확인과 설치 승인/취소 화면을 직접 렌더해 가독성·버튼구분·긴 callback URI 줄바꿈·가로 overflow·기존 memberStyle 재사용을 판정한다. 실제 로그인·승인 제출 없이 합성 fixture를 사용한다. 의미 있는 화면별 캡처와 viewport/source SHA를 보존한다."
+      },
+      {
+        "line": 44,
+        "text": "수동 탐색 보완: jev_find code가80파일 지도에서 unclear를 반환했다. 실제 rg는 internal/relay/remote_auth.go:312의 remotePage와 remoteConsent를 확인했다. 후보의 직접 시각 원천은 remotePage 및 memberStyle이며 없다고 단정하지 않는다. packet의 seed/read는 검사 대상일 뿐 제품 수정 권한이 아니다."
+      },
+      {
+        "line": 46,
+        "text": "memberStyle 정본은 rg로 확인한 internal/relay/member.go다. 최초 context의 member_auth.go는 존재하지 않는 후보로 거부되어 실제 member.go로 보완했다. 후보부재를 미해결 제품 결함으로 해석하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/project.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7684,
+    "title": "title: KnowsLink 프로젝트 기준",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/README.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4313,
+    "title": "# FullOps 공통 개발 규칙",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/coding-style.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 3544,
+    "title": "# 공통 코딩 스타일",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/security.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 2719,
+    "title": "# 공통 보안 기준",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/testing.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 6143,
+    "title": "title: 공통 테스트 기준",
+    "direct_ui_references": []
+  },
+  {
+    "path": "internal/relay/member.go",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 31361,
+    "title": "",
+    "direct_ui_references": [
+      {
+        "line": 17,
+        "text": "const memberStyle = `<style>body{font:18px system-ui;max-width:760px;margin:40px auto;padding:20px;color:#17232b;background:#f5f7f8;overflow-wrap:anywhere}section{background:white;padding:24px;border:1px solid #bbc5cd;margin-bottom:16px}lab"
+      },
+      {
+        "line": 20,
+        "text": "{{define \"head\"}}<!doctype html><html lang=\"ko\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width\"><title>{{.Title}}</title>` + memberStyle + `<h1>{{.Title}}</h1>{{if .Problem}}<p class=\"problem\" role=\"alert\">문제: {{.Pr"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/remote_auth.go",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 19882,
+    "title": "",
+    "direct_ui_references": [
+      {
+        "line": 197,
+        "text": "\tmux.HandleFunc(\"GET /remote/consent/{id}\", s.remoteConsent)"
+      },
+      {
+        "line": 198,
+        "text": "\tmux.HandleFunc(\"POST /remote/consent/{id}\", s.remoteConsent)"
+      },
+      {
+        "line": 309,
+        "text": "\thttp.Redirect(w, r, \"/remote/consent/\"+id, 303)"
+      },
+      {
+        "line": 312,
+        "text": "var remotePage = template.Must(template.New(\"remote\").Parse(`<!doctype html><html lang=\"ko\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width\"><title>KnowsLink 원격 연결</title>` + memberStyle + `<h1>원격 호스트 연결</h1><p>클라이언트"
+      },
+      {
+        "line": 372,
+        "text": "\t_ = remotePage.Execute(w, v)"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/PLANS.md",
+    "categories": [
+      "document_update"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 279993,
+    "title": "title: KnowsLink 현재 계획",
+    "direct_ui_references": [
+      {
+        "line": 1437,
+        "text": "- tester 실제 정본/규칙 읽기 착수도 확인했다(01a126ba, Grok4.7 high). 직접 시각 검수는 orca-agents.md 담당 규약에 따라 별도 designer SAR-SSE-INSTALL-001-VISUAL로 준비했다. Jev 최초 tester 추천은 역할 규약 근거로 designer override해 원본 보존, Codex gpt-6.1-sol high. synthetic OAuth 확인/승인·취소 d"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 12864,
+    "title": "title: dev 컨텍스트 보관본 (2026-10-10까지)",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/contexts/coor.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 1798,
+    "title": "title: coor 컨텍스트",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/contexts/dev.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4137,
+    "title": "title: dev 컨텍스트",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/contexts/ops.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 6124,
+    "title": "title: ops 컨텍스트",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/contexts/tester.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 11011,
+    "title": "title: tester 컨텍스트",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/architecture.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 31448,
+    "title": "title: 아키텍처설계서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/crud-design.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 8726,
+    "title": "title: CRUD정의서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/data-model.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 9128,
+    "title": "title: 엔티티정의서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/database-design.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7471,
+    "title": "title: 데이터베이스설계서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/interface-design.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 31440,
+    "title": "title: 인터페이스설계서",
+    "direct_ui_references": [
+      {
+        "line": 25,
+        "text": "Remote 후보는 `/.well-known/oauth-protected-resource[/mcp]`, `/.well-known/oauth-authorization-server`, `/remote/oauth/{register,authorize,token,revoke}`, `/remote/consent/{id}`, `POST /mcp`다. Google 검증 뒤 명시적 consent, redirect exact match, PKC"
+      },
+      {
+        "line": 200,
+        "text": "- 키 지문은 `<code>`로 표시하고 화면 전체에 `overflow-wrap:anywhere`를 적용한다. select는 본문 글꼴 18px·전체 폭이다. 기존 memberStyle 안의 변경이며 새 theme·의존성은 없다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 15078,
+    "title": "title: SAR-PUBLIC-AGENTS-001-UI-FIX — 수정 후보 직접 시각 재검수",
+    "direct_ui_references": [
+      {
+        "line": 77,
+        "text": "범위 밖 가입·로그아웃·회전·human-gate·신원 전체 UI는 이번 SHA에서 다시 PASS로 선언하지 않는다. memberStyle이 바뀌어 시각 의존성이 동일하지 않으므로 원본 d1의 PNG를 새 후보 시각 근거로 재사용하지 않았다. 기존 증거는 원래 SHA의 원실행으로 유지한다. 소스가 같은 Node CLI 정상 연결은 이번 좁은 흐름의 실제 준비 수단으로 실행했다."
+      },
+      {
+        "line": 81,
+        "text": "별도 theme·Tailwind·shadcn·디자인 lint는 없으며 해당 없음이다. FullOps DESIGN은 Go 문자열 CSS를 검사하지 못한다. 자동 DESIGN 통과를 모바일·시각 수락으로 해석하지 않았다. 기존 memberStyle/Go template 화면만 검수했다. 새 디자인 자산·제품 코드·의존성 변경은 0이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 15416,
+    "title": "title: SAR-PUBLIC-AGENTS-001-UI — 일반 회원 연결·키·관계 직접 시각 검수",
+    "direct_ui_references": [
+      {
+        "line": 80,
+        "text": "기존 UX01–03 증거는 이번 실행 PASS로 재사용하지 않았다. `memberStyle`·start/verify template은 기준 diff에서 동일하지만 home template과 데이터는 변경됐다. 변경된 홈과 이번 흐름의 가입·오답·재로그인은 직접 관측했다. 과거 59b66ad의 신원 전체 QA/시각 근거는 원래 SHA의 [기존 기록](../../exec-plans/phases/SAR-PUBLIC-IDENTITY-"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 12083,
+    "title": "title: SAR-PUBLIC-MESSAGES-001-UI-FIX — 수정 gate 직접 재검수",
+    "direct_ui_references": [
+      {
+        "line": 110,
+        "text": "기존 Go template/memberStyle·UX 정본을 유지했다. theme/design lint·Tailwind/shadcn은 미구성이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 11546,
+    "title": "title: SAR-PUBLIC-MESSAGES-001-UI — 일반회원 receipt·gate 직접 검수",
+    "direct_ui_references": [
+      {
+        "line": 91,
+        "text": "기존 Go template/memberStyle을 기준으로 판정했다. 별도 theme/design lint·Tailwind/shadcn은 해당 없음이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/module-design.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 32372,
+    "title": "title: 프로그램설계서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 10341,
+    "title": "title: KnowsLink 기술 스택",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7833,
+    "title": "title: FullOps 1.2.0 운영 업데이트 독립 리뷰",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7346,
+    "title": "title: SAR-BETA-002-TESTER — 루프백 소유자 브라우저 독립 QA 보고서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 10042,
+    "title": "title: SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7242,
+    "title": "title: SAR-GOOGLE-CONNECT-002-DEV 독립 리뷰",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4649,
+    "title": "title: 비용 없는 Google 연결 DEV 검증",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7944,
+    "title": "title: 비용 없는 Google 연결 운영 적용",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4708,
+    "title": "title: Google 인증 변경 독립 검토",
+    "direct_ui_references": [
+      {
+        "line": 28,
+        "text": "UI는 기존 memberStyle/template을 재사용한다. 새 색·테마·컴포넌트가 없고 전용 디자인 lint/테마 전환은 프로젝트에 미구성이다. Strict cookie를 유지하는 완료 화면 홈 링크는 실제 브라우저 확인이 남았다. Google 로그인 버튼·문구 외 전체 UI 검수는 재개하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 10750,
+    "title": "title: SAR-MVP-002-INSTALL-FIX-DEV-TESTER — 설치 수정 후보의 실제 Grok CLI 독립 QA",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 10029,
+    "title": "title: SAR-MVP-002-INSTALL-FIX-DEV 리뷰",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13115,
+    "title": "title: SAR-PUBLIC-AGENTS-001-REVIEW 독립 보안 delegate 리뷰",
+    "direct_ui_references": [
+      {
+        "line": 24,
+        "text": "- UI 디자인: Go template 일반 CSS이며 theme·Tailwind·shadcn·디자인 전용 lint가 없다. 기존 `memberStyle`을 재사용했다. DESIGN 경고 0은 Go 문자열 CSS를 검사하지 않은 결과이며 시각 근거가 아니다. 테마 전환은 해당 없음이다. UX-04–05 직접 시각 검수는 designer 후속이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 17008,
+    "title": "title: SAR-PUBLIC-IDENTITY-001-RATE-REVIEW 독립 delta 리뷰",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 11778,
+    "title": "title: 일반 이메일 신원 후보의 직접 UI 검수 결과",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4388,
+    "title": "title: SAR-PUBLIC-MESSAGES-001-UI-FIX — QA 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7634,
+    "title": "title: FULLOPS-UPDATE-1.2.0",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 11506,
+    "title": "title: SAR-BETA-001-OPS 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 5637,
+    "title": "title: SAR-GOOGLE-CONNECT-001-DEV 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 5176,
+    "title": "title: 비용 없는 Google 클라이언트 연결 보완",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 6252,
+    "title": "title: Google 로그인 구현 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 11954,
+    "title": "title: SAR-MVP-002-BOT-CATALOG-DEV 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 9694,
+    "title": "title: SAR-MVP-002-INSTALL-FIX-DEV 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 24214,
+    "title": "title: SAR-MVP-003-BIDIRECTIONAL-OPS 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 10782,
+    "title": "title: 철회 기록 보존·rate·회원 화면 후속 수정 기록",
+    "direct_ui_references": [
+      {
+        "line": 18,
+        "text": "계획: 기존 singleton sweep·transaction·memberStyle·Go template을 재사용한다. 새 라이브러리·migration·wire 필드는 없다. 예상 규모는 Go 6파일과 테스트 2파일, 기술 문서 6–8개였다. 실제 제품 변경은 8파일 +425/−77줄이다(테스트 +267). Context7 조회는 새 라이브러리가 없어 해당 없음이다."
+      },
+      {
+        "line": 63,
+        "text": "기존 Go template·memberStyle만 수정했다. 별도 theme·Tailwind·shadcn·디자인 전용 lint는 해당 없음이다. DESIGN 규칙은 Go 문자열 CSS를 검사하지 않으므로 아래 좁은 폭 측정을 남겼다. 이 측정은 designer 직접 시각 PASS가 아니다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 11667,
+    "title": "title: 재초대·기록 포화 제품 답의 구현 대조와 회원 화면 안내 수정 기록",
+    "direct_ui_references": [
+      {
+        "line": 16,
+        "text": "계획: 관찰 조건을 4a 코드에 한 행씩 대조한다. 이미 일치하는 동작은 재구현하지 않고 결정적 검사로 고정한다. 차이는 회원 화면의 상태·다음 동작 안내에만 있었다. 기존 Go template·memberStyle·`refusal`·notice 구조를 재사용한다. 새 라이브러리·migration·wire 필드·상태 필드는 없다. 예상 규모는 Go 3파일과 테스트 2파일, 기술 문서 5개였다. 실제 제품 변경은 5파일 +428"
+      },
+      {
+        "line": 76,
+        "text": "- DEP·DESIGN: 의존성 변경 0. 기존 Go 문자열 memberStyle·template만 사용했고 별도 theme·Tailwind·shadcn·디자인 lint는 해당 없음이다. DESIGN 규칙이 Go 문자열 CSS를 보지 않으므로 폭 측정을 남겼다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 12444,
+    "title": "title: 일반 회원 agent 연결과 키 및 관계의 구현·검증 기록",
+    "direct_ui_references": [
+      {
+        "line": 34,
+        "text": "홈의 새 agent/키·지문·상태·지원 client·재확인·관계 초대/수락/거절/철회를 구현했다. 연결 화면은 대상·권한·기한·지문·확인/취소·대기/완료/만료를 표시한다. 상태를 색만으로 구분하지 않는다. 입력에 label을 쓰고 긴 ID는 readonly 입력으로 복사할 수 있다. 기존 memberStyle을 재사용했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 6227,
+    "title": "title: SAR-PUBLIC-AGENTS-001-UI-FIX — 직접 시각 재검수 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 7159,
+    "title": "title: SAR-PUBLIC-MESSAGES-001-UI-FIX — 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13971,
+    "title": "title: 일반 이메일 서비스 제품 결정과 인계",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 27654,
+    "title": "title: SAR-PUBLIC-SERVICE-OPS-READINESS 실행 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13953,
+    "title": "title: SAR-SSE-INSTALL-001 호스트 설치와 공식 계약 검증",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13201,
+    "title": "title: SAR-SSE-INSTALL-001 원격 OAuth·MCP·도착 이벤트 구현",
+    "direct_ui_references": [
+      {
+        "line": 22,
+        "text": "- `s.remoteRoutes(mux)`는 `/mcp`, OAuth metadata, DCR·authorize·token·revoke와 `/remote/consent/{id}`를 등록한다. HTTPS origin은 설정된 Google callback URL에서만 얻는다. 요청 Host는 origin 근거로 사용하지 않는다. Google 설정이 없으면 원격 경로가 실패한다."
+      },
+      {
+        "line": 68,
+        "text": "부모는 synthetic consent를 390×844와 1280×800에서 직접 확인했다. 읽기·버튼 상태는 확인되었다. 긴 callback URI의 줄바꿈과 기존 화면 일관성을 위해 기존 `memberStyle`을 그대로 재사용했다. 새로운 CSS나 디자인 token은 추가하지 않았다. 스타일 적용 뒤 최종 확인은 부모가 수행한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/operations/ops-guide.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 59501,
+    "title": "title: 운영자설명서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/operations/transition.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13501,
+    "title": "title: 인수인계서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/operations/user-guide.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13283,
+    "title": "title: 사용자설명서",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 33212,
+    "title": "title: KnowsLink 일반 이메일 서비스 수락 기준",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 37712,
+    "title": "title: ops 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 39168,
+    "title": "title: dev 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 38739,
+    "title": "title: ops 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 25646,
+    "title": "title: tester 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 30636,
+    "title": "title: dev 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 56439,
+    "title": "title: designer 완료 기록",
+    "direct_ui_references": [
+      {
+        "line": 55,
+        "text": "- [x] 기존memberStyle정보구조·label/키보드/읽을수있는오류/긴ID복사·색외상태표시·세션종료와agent철회구분을관측한다. 정지캡처로판정가능한항목만PNG를만든다. 인증메일/코드/grant/token/privatekey는촬영전마스킹하고마스킹방법을기록한다."
+      },
+      {
+        "line": 268,
+        "text": "D02/UX04–05/POLICY48이정본. memberStyle/Go template 재사용, 새theme·Tailwind·shadcn·공용theme전환·디자인lint없음. DESIGN자동검사미지원 영향과 직접검수근거를보고한다. 제품기획판단만담당하고코드수정금지. 필수UI FAIL해소및새안내제품조건준수여야수락가능. D03 UX원천/직접검수기록을갱신하되원본FAIL을PASS로덮지않는다. clean 기록HEAD FullOps --f"
+      },
+      {
+        "line": 318,
+        "text": "designer는 새직접검수보고/시각증거·자기context/PLANS·인박스/완료로그만 작성한다. 코드·기술정본·타인인박스·기존실패/리뷰는 수정하지 않는다. 새제품판단이 필요한 때만 coor로 질문한다. theme/designlint/Tailwind/shadcn은 현스택에 없으며 기존Go template/memberStyle·UX정본을 기준으로 직접판정한다. OPS/TESTER 검사와 직접시각PASS는 분리한다. Workers"
+      },
+      {
+        "line": 386,
+        "text": "fullops-common-0.3.3 네규칙·FULLOPS/project/document-writing/contexts/designer·제품SAR-PUBLIC-SERVICE PS04/06/07/08–11·MVP C1–C5·UX06/07와 memberStyle 기준을읽는다. DEV-FIX phase/QA/완료로그·원UI보고/manifest/supplement와 UI-RECORD-REVIEW report를읽는다. 새capacity"
+      },
+      {
+        "line": 398,
+        "text": "theme/designlint/Tailwind/shadcn미구성이다. 기존Go template/memberStyle/UX정본을유지한다. 자유composer/채팅버블/장기timeline/queued성공오인표시를추가하지않는다. 직접시각검수만수행하고제품/기술판단은대신하지않는다. Workers Free·서버/Tunnel유지·유료전환/구독/초과과금/운영배포/실메일/외부계정/운영자료삭제금지. 자기격리로컬검수/자기자원회수/문서커밋·일반pu"
+      },
+      {
+        "line": 438,
+        "text": "제품 코드·제품/UX규칙·기술정본·타인인박스변경은0이다. 별도theme/designlint·Tailwind/shadcn은미구성이며기존Go template/memberStyle을유지했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 50585,
+    "title": "title: ops 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 38024,
+    "title": "title: designer 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 39978,
+    "title": "title: dev 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 43082,
+    "title": "title: tester 완료 기록",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 14776,
+    "title": "title: dev 완료 기록",
+    "direct_ui_references": [
+      {
+        "line": 120,
+        "text": "실제 host 설치·Google 동의·public callback 성공·Dots turn·MCPB runtime·독립 수락은 미실행이다. DEV는 최종 CSS의390px consent를 직접 확인했지만 desktop styled preview는 local 연결 오류와 background helper 자동승인 차단으로 후속 QA에 남긴다. 기존 memberStyle을 재사용하며 별도 디자인 lint는 미구성이라 적용하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4822,
+    "title": "title: SAR 초기 구성의 독립 코드 리뷰",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 6191,
+    "title": "title: 초기 통합 후보의 최종 독립 리뷰",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/handovers/to_tester.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 9182,
+    "title": "title: SAR-SSE-INSTALL-001-TESTER — SSE 도착 신호·Google 인증·호스트별 설치의 독립 lite QA와 고정 SHA 리뷰",
+    "direct_ui_references": []
+  },
+  {
+    "path": ".fullops-squad/orca-agents.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 16893,
+    "title": "title: Orca 역할 배정",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/.claude-plugin/plugin.json",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 253,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/.codex-plugin/plugin.json",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 582,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/.cursor-plugin/plugin.json",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 279,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/.grok-plugin/plugin.json",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 224,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/README.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 41896,
+    "title": "title: KnowsLink 호스트별 설치",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/manifest.json",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 1354,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/skills/knowslink/SKILL.md",
+    "categories": [
+      "document_read"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 8189,
+    "title": "# KnowsLink",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/src/login.test.ts",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4174,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "adapters/src/mcp.ts",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13402,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "cmd/relay/main.go",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 3585,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "internal/relay/device.go",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 4922,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "internal/relay/google_test.go",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 6450,
+    "title": "",
+    "direct_ui_references": []
+  },
+  {
+    "path": "scripts/check_public_ingress.py",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 1788,
+    "title": "",
+    "direct_ui_references": [
+      {
+        "line": 14,
+        "text": "             \"/remote/oauth/token\", \"/remote/oauth/revoke\", \"/remote/consent/\" + \"a\" * 43):"
+      },
+      {
+        "line": 19,
+        "text": "             \"/remote/oauth/unknown\", \"/remote/consent/short\", \"/.well-known/other\"):"
+      }
+    ]
+  },
+  {
+    "path": "scripts/install_bot_mcp.sh",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 3507,
+    "title": "# Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP \"Command\" server.",
+    "direct_ui_references": []
+  },
+  {
+    "path": "scripts/package_plugin.py",
+    "categories": [
+      "impact_check"
+    ],
+    "optional": false,
+    "exists": true,
+    "bytes": 13536,
+    "title": "",
+    "direct_ui_references": []
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "source_sha": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+  "session_id": "01a126c0-2b8d-7332-8de2-e6ca9fb92f95",
+  "terminal": "term_11fc1118-0e42-46ab-a7bb-77dccaa19315",
+  "task_id": "task_415d9cd925c6",
+  "dispatch_id": "ctx_4283f224b494",
+  "source": {
+    "internal/relay/remote_auth.go": {
+      "blob": "a142feb88cabf6892e6dd90d6f914ff5c1081231",
+      "sha256": "850987e638285c2fed8f7ab10866e0f2684ef7dd5e1b5376929783f44b105bec"
+    },
+    "internal/relay/member.go": {
+      "blob": "dd44c5bdf1cc2d0c3144d76e2769e27f608b4e3d",
+      "sha256": "849e8876781d267f8f867432a6cb1973d7b0a34e0110a1351714ee7e5d307970"
+    }
+  },
+  "member_style_sha256": "10445354b7ae9b70f3d37cd6e159ab820468b88b8e6c64f520f33e9466c6f7ec",
+  "fixtures": [
+    {
+      "path": "login.html",
+      "login": true,
+      "long_uri": false,
+      "redirect_length": 37,
+      "sha256": "f8c85d9d33b45cf7783bad6649df8fe5f1567c8d8b6eded5d75a1cce0561df6e"
+    },
+    {
+      "path": "consent.html",
+      "login": false,
+      "long_uri": false,
+      "redirect_length": 37,
+      "sha256": "cf1c63da13fcf8af5601e1a21ac76dc6e4987caf1ef5daead9af0fe179ddb79a"
+    },
+    {
+      "path": "login-long.html",
+      "login": true,
+      "long_uri": true,
+      "redirect_length": 545,
+      "sha256": "c6441a5c86ec1ebaf4f446b597fb6dd77c2838b3981602053db59cc01acf235f"
+    },
+    {
+      "path": "consent-long.html",
+      "login": false,
+      "long_uri": true,
+      "redirect_length": 545,
+      "sha256": "d7e856a37af76bc6b68bd124282439036e08753807b0220241c14237908d3077"
+    }
+  ],
+  "method": "Exact fixed git blobs; bounded template expansion; HTML-escaped synthetic values; no server or account"
+}
