@@ -130,6 +130,10 @@ func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	controller := http.NewResponseController(w)
+	// The admission body's read deadline must not cancel a live stream's background socket read.
+	if controller.SetReadDeadline(time.Time{}) != nil || controller.SetWriteDeadline(time.Time{}) != nil {
+		return
+	}
 	w.Header().Set("Content-Type", "text/event-stream")
 	w.Header().Set("X-Accel-Buffering", "no")
 	write := func(frame string) error {
@@ -139,7 +143,12 @@ func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 		if _, err := io.WriteString(w, frame); err != nil {
 			return err
 		}
-		return controller.Flush()
+		err := controller.Flush()
+		// Only writes have a 3s deadline; idle lifetime is bounded by ctx, not the next heartbeat.
+		if err == nil {
+			err = controller.SetWriteDeadline(time.Time{})
+		}
+		return err
 	}
 	last := ""
 	first := true
