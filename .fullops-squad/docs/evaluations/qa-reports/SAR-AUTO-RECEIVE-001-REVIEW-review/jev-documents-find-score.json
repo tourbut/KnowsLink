@@ -1,0 +1,56 @@
+{
+  "task_key": "SAR-AUTO-RECEIVE-001-DEV",
+  "find_head": "51eebe5c2b588147627afb8f1ab9ec2d166dd432",
+  "base": "dda6130d7023903175bbfa4036a7e052011e2c83",
+  "head": "af7627d8cca54df55e856f48d226f78dbf2b9d0f",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md"
+  ],
+  "new_files": [
+    "adapters/src/grok-wake.ts",
+    "adapters/src/inbox.test.ts",
+    "adapters/src/inbox.ts"
+  ],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/README.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+    ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/rules/common/README.md",
+    "adapters/skills/knowslink/SKILL.md"
+  ],
+  "hits": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    "adapters/skills/knowslink/SKILL.md"
+  ],
+  "recall": 0.444,
+  "precision": 0.333,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
