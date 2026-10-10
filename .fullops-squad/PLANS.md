@@ -1404,3 +1404,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 독립 리뷰 SAR-AUTO-RECEIVE-001-REVIEW의 기록 검사 reviewed32/skipped0/lint ERROR0 통과. DEV af7627d와 QA1221084를 main/origin559f3d2에 SHA 보존 통합했다. 실제 노우 설치·wake는 미검증이다. tester release는 external_terminal/retained이며 cleanup은 terminal 종료 미확인으로 보류한다. snapshot은 보존한다. reviewer 실제 세션01a1261a-d89d-7f03-8185-0553132b8265.
 - 리뷰 medium1/low2와 설치 새 MCP process 확인 안내를 같은 DEV 키 attempt8719bb3f로 재개한다. 실행 로직 변경 없이 문구·테스트 기대값·범위 제한 종료 안내만 수정한다. Jev Sonnet5.5 medium, fresh(이전 DEV/QA는 큰 문맥·오래된 완료), lite/standard. 후속 고정 SHA의 좁은 독립 리뷰 뒤 설치한다.
+
+- 안내 후속 실제 착수: task_31e468baad4b / ctx_840076bc26e0 / term_76bee30c-801a-4bbc-8b70-23532a9635c9. fresh Claude Sonnet5.5 medium requested/effective 일치, turn_started·대상 문구 검색 착수 확인. 이전 DEV ctx_11e956bd1efa release는 user_takeover retained를 반환해 사용자 소유 세션을 보존했다. tester ctx_030382e7ce30은 external_terminal retained, snapshot 정리는 종료 확인 대기다.
