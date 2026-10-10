@@ -1406,3 +1406,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 리뷰 medium1/low2와 설치 새 MCP process 확인 안내를 같은 DEV 키 attempt8719bb3f로 재개한다. 실행 로직 변경 없이 문구·테스트 기대값·범위 제한 종료 안내만 수정한다. Jev Sonnet5.5 medium, fresh(이전 DEV/QA는 큰 문맥·오래된 완료), lite/standard. 후속 고정 SHA의 좁은 독립 리뷰 뒤 설치한다.
 
 - 안내 후속 실제 착수: task_31e468baad4b / ctx_840076bc26e0 / term_76bee30c-801a-4bbc-8b70-23532a9635c9. fresh Claude Sonnet5.5 medium requested/effective 일치, turn_started·대상 문구 검색 착수 확인. 이전 DEV ctx_11e956bd1efa release는 user_takeover retained를 반환해 사용자 소유 세션을 보존했다. tester ctx_030382e7ce30은 external_terminal retained, snapshot 정리는 종료 확인 대기다.
+
+- 후속 f8dd6659d7a22466e7c84a67431448fd7727e7c3의 COPY-REVIEW를 coor 별도 세션으로 수락했다. reviewed18/skipped0, 정확한 SHA의 Linux make lint/test exit0, ERROR0/WARNING1(기존 PLANS 길이)/unavailable0. 원 Windows 미실행 기록은 보존한다. 실제 노우 일회 설치와 UI 유도 없는 자동 수신 검증은 계속 진행한다.
