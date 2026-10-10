@@ -1,0 +1,43 @@
+{
+  "manifest_version": "0.3",
+  "name": "knowslink",
+  "version": "0.1.0",
+  "description": "Private Google client connection and approved member text; held until configured.",
+  "author": { "name": "KnowsLink" },
+  "server": {
+    "type": "node",
+    "entry_point": "dist/plugin.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/plugin.js"],
+      "env": {
+        "KNOWSLINK_MODE": "${user_config.mode}",
+        "RELAY_URL": "${user_config.relay_url}",
+        "KNOWSLINK_AGENT_FOLDER": "${user_config.agent_folder}"
+      }
+    }
+  },
+  "user_config": {
+    "mode": {
+      "type": "string",
+      "title": "Connection mode",
+      "description": "Keep held until you explicitly want to connect; use public-node for Google connection.",
+      "default": "held"
+    },
+    "relay_url": {
+      "type": "string",
+      "title": "Relay URL",
+      "description": "Public KnowsLink service URL. Never enter credentials.",
+      "default": "https://link.knowslog.com"
+    },
+    "agent_folder": {
+      "type": "string",
+      "title": "New private connection folder",
+      "description": "An absolute, not-yet-existing folder outside the extension. Use a different folder for each installation; never paste a key.",
+      "default": ""
+    }
+  },
+  "compatibility": {
+    "runtimes": { "node": ">=22.22.2 <23" }
+  }
+}

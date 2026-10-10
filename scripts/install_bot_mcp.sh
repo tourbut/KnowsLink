@@ -58,7 +58,7 @@ PATH="$PREFIX/node/bin:$PATH"
 export PATH
 npm ci --prefix adapters
 npm run build --prefix adapters
-python3 scripts/package_plugin.py --verify
+python3 scripts/package_plugin.py --host grok --verify
 
 python3 -m zipfile -e build/knowslink-grok-bot-plugin.zip "$stage"
 # Same boundary test, run as the app would: staged node, new bundle, no inherited PATH or env.
@@ -72,4 +72,16 @@ Ready. Register in the Grok Bot app as a Custom MCP server:
   Command:     $node
   Arguments:   $PREFIX/knowslink/dist/plugin.js
   Environment: none (held is the default)
+
+For Google connection, restart this Command server with these non-secret settings:
+  KNOWSLINK_MODE=public-node
+  RELAY_URL=https://link.knowslog.com
+  KNOWSLINK_AGENT_FOLDER=$PREFIX/connections/<new-unique-installation>
+The final folder must not exist. Keep credentials outside $PREFIX/knowslink,
+which this installer replaces. Use a different folder for every host/instance.
+After explicit consent, call knowslink_connect with confirmed:true and have the
+user open its URL, compare the fingerprint, and approve Google connection.
+Check knowslink_connect_status for connected; pair acceptance is separate.
+Default receive remains polling. KNOWSLINK_RECEIVE_MODE=sse opts into arrival
+signals plus existing API pull and periodic recovery. Neither starts a host turn.
 EOF

@@ -16,9 +16,8 @@ def main():
         home.mkdir()
         with ZipFile(ROOT / "build/knowslink-grok-bot-plugin.zip") as archive:
             archive.extractall(package)
-        environment = {**os.environ, "HOME": str(home)}
-        for name in ("GROK_HOME", "GROK_CONFIG", "GROK_CONFIG_PATH", "GROK_MANAGED_CONFIG_URL"):
-            environment.pop(name, None)
+        environment = {name: value for name, value in os.environ.items() if name.upper() in {"PATH", "PATHEXT", "SYSTEMROOT", "WINDIR", "COMSPEC", "TEMP", "TMP"}}
+        environment.update({"HOME": str(home), "USERPROFILE": str(home), "APPDATA": str(home / "AppData/Roaming"), "LOCALAPPDATA": str(home / "AppData/Local"), "XDG_CONFIG_HOME": str(home / ".config")})
 
         def grok(*arguments):
             command = ["grok", *arguments]
@@ -33,10 +32,10 @@ def main():
         assert [(plugin["name"], plugin["version"]) for plugin in plugins] == [("knowslink", "0.1.0")], plugins
         doctor = json.loads(grok("mcp", "doctor", "knowslink", "--json"))
         checks = {check["label"]: check["passed"] for server in doctor["servers"] for check in server["checks"]}
-        assert doctor["healthy_count"] == 1 and checks.get("7 tools discovered"), doctor
+        assert doctor["healthy_count"] == 1 and checks.get("9 tools discovered"), doctor
         installed = Path(plugins[0]["path"]) / "dist/plugin.js"
         subprocess.run(["node", "adapters/dist/mcp.test.js", str(installed)], cwd=ROOT, check=True)
-    print("PASS: grok plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 7 tools; installed bundle held under this node", flush=True)
+    print("PASS: isolated Grok CLI plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 9 tools; installed bundle held under this node (not Grok Bot app registration)", flush=True)
 
 
 if __name__ == "__main__":
