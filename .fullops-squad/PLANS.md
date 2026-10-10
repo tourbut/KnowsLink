@@ -1417,3 +1417,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 사용자 2026-10-11 요청: 기존 polling 보존, SSE/API 도착신호 추가, 최소 리팩토링, Grok Bot·OpenAI Dots·Claude·Codex 플러그인 설치 및 Google 로그인 인증. Dots 제품링크 확인 https://openai.com/ko-KR/index/introducing-dots/. implementation→dev, Jev Codex gpt-6.1-sol high, lite/standard. 기준7a69068, attempt21a4cee08d734fa8a668bb0d785c0400. fresh 선택(기존 DEV는 오래된 완료세션). 새 run_dc9b4e6dd18a, 복귀 term_e61d3e14-29e9-4954-943a-4a75707c82de.
 - 원 Google·키·관계·DB·Tunnel 보존, 신규과금/local Docker 금지. DEV는 격리 Linux 검증, 독립 tester QA/고정SHA 리뷰 뒤 운영 수락. Dots 공식 plugin/OAuth/MCP Events는 확인하고 실제호스트 설치/자동wake 지원은 증거로 구분한다. Context7 quota초과는 공식문서 대체. packet partial144/unknown11은 수동잔여 확인 및 outcomes 필요. server.go 부재는 http.go로 확인·보완했다. 제품/기술 수락 이전 준비자료는 coordinator가 main에 공유한다.
+
+- 실제 DEV 착수: task_c76a5ef82349 / ctx_e4490c0d8bef / term_6298e8b5-6e3d-415b-bc64-0e8bba44c2d0. fresh Codex gpt-6.1-sol high requested/effective 일치, input_accepted·turn_started·정본 인박스 읽기 확인. 준비4786a00 main/origin 통합 및 dev FF 후 배정했다. Dots MCP Events 공식 webhook 계약을 msg_01fdd28ed852로 전달했다(DEV 하위 Run run_5b1823734740 mailbox로 정상 전달 전환). 운영·실제 설치는 독립 검토 뒤 진행한다.
