@@ -84,7 +84,7 @@ Node `C:/Users/shin/AppData/Local/KnowsLinkDevTools/node-v22.22.2-win-x64/node.e
 
 ### 구현
 
-1. `adapters/src/inbox.ts` `GrokWake`: `KNOWSLINK_GROK_WAKE_AGENT`가 UUID일 때만 켠다. `127.0.0.1:<port>/api/sendPrompt`에 고정 doorbell prompt(ID·대기 수만)를 보낸다. token은 매번 gateway 파일에서 읽는다. 연결 거절·token 없음=retry, 4xx=rejected, 5xx·무응답=uncertain.
+1. `adapters/src/grok-wake.ts` `GrokWake`(미문서화 vendor 경로를 분리해 route 변경 시 제거가 쉽다): `KNOWSLINK_GROK_WAKE_AGENT`가 UUID일 때만 켠다. `127.0.0.1:<port>/api/sendPrompt`에 고정 doorbell prompt(ID·대기 수만)를 보낸다. token은 매번 gateway 파일에서 읽는다. 연결 거절·token 없음=retry, 4xx=rejected, 5xx·무응답=uncertain.
 2. `Inbox.claimWake/markWake/releaseWake`: `<id>.wake` 배타 생성으로 중복을 막고 ID별 결과를 남긴다. retry만 marker를 지운다. 24h 정리.
 3. `AutoReceiver`: relay 결과와 무관하게 매 loop 끝에 미알림 ID를 한 번에 알린다. `status.hostWake`.
 4. `mcp.ts`·`text.ts`: MCP와 watcher가 같은 설정을 사용한다. `plugin.js wake-check`는 읽기 전용 listAgents로 UUID만 출력한다.

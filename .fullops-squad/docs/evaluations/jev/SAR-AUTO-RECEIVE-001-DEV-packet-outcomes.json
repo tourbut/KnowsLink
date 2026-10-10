@@ -32,7 +32,7 @@
     {"path": "adapters/README.md", "category": "document_read", "status": "completed", "reason": "자동 수신·watcher·Bot 앱 등록 절을 읽고 같은 준비물 경로와 watcher 명령을 재사용"},
     {"path": "adapters/skills/knowslink/SKILL.md", "category": "document_read", "status": "completed", "reason": "읽고 doorbell prompt를 승인으로 해석하지 않는 지침 한 문단을 추가"},
     {"path": "adapters/src/inbox.test.ts", "category": "impact_check", "status": "completed", "reason": "전문 수동 확인 후 시나리오 7(wake 거절/수락/중복/재시작/off/401/reset/invalid/wake-check/token 비노출) 추가. 기존 1–6 유지, exit 0"},
-    {"path": "adapters/src/inbox.ts", "category": "direct_edit", "status": "completed", "reason": "GrokWake, wake marker claim/mark/release, AutoReceiver.ring, hostWake 상태 추가"},
+    {"path": "adapters/src/inbox.ts", "category": "direct_edit", "status": "completed", "reason": "wake marker claim/mark/release, AutoReceiver.ring, hostWake 상태 추가. GrokWake는 새 adapters/src/grok-wake.ts로 분리(size 경고 대응, vendor 경로 격리)"},
     {"path": "adapters/src/inbox.ts", "category": "impact_check", "status": "completed", "reason": "store/take/prune 기존 동작 유지(.wake만 prune 대상 추가). 기존 시나리오 1–6 재통과"},
     {"path": "adapters/src/mcp.ts", "category": "direct_edit", "status": "completed", "reason": "MCP 자동 수신에 GrokWake.fromEnv 전달, plugin.js wake-check CLI 분기 추가"},
     {"path": "adapters/src/mcp.ts", "category": "impact_check", "status": "completed", "reason": "도구 입력·출력 계약 불변. status.autoReceive에 hostWake 필드만 추가. mcp.test.js PASS"},

@@ -4,7 +4,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { trialMode, testTransport } from "./test-transport.js";
 import { configuredMemberTransport, memberTransport, watch } from "./text.js";
-import { AutoReceiver, GrokWake, Inbox } from "./inbox.js";
+import { AutoReceiver, Inbox } from "./inbox.js";
+import { GrokWake } from "./grok-wake.js";
 import { localAdapter } from "./core.js";
 import { beginLogin, finishLogin, waitForLogin } from "./login.js";
 
