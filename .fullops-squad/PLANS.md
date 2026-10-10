@@ -1393,3 +1393,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 독립 tester 착수: task_eb3c2a2da1f3 / ctx_030382e7ce30 / term_e9c116a2-ab24-4946-a58e-bdc210cb402a. Jev Grok4.7 high, fresh custom argv·ready 확인 뒤 tracked worker-start. 터미널에서 Grok4.7 high와 실제 작업 시작을 확인했다. 리뷰 고정af7627d, diff dda6130, 준비4e71cd6. 사용자 소유 기존 세션은 보존한다. 실제 Bot 설치 경로 답변은 대기다.
 
 - 설치 전 coor 사전검사: Node22 빌드 exit0, package_plugin.py --verify 및 mcp.test.js exit1(MCP synthetic boundary check failed). 필수 검사 실패로 설치·main 통합 보류, 독립 tester에게 msg_9ed204c7307a로 원인 확인을 전달했다. 리뷰 task-key는 원 구현 DEV packet을 검사하도록 msg_aef16591e294로 정정했다. tester 작업 packet은 QA 완료 SHA에서 별도 검사한다.
+
+- Linux 환경 비교: 기존 서버 고유 /tmp clean clone HEAD af7627d/Node22.22.2에서 npm ci/build와 package_plugin.py --verify exit0, 실제 extracted MCP test PASS. 로그는 Git 공용 fullops-gate/coor-af7627d-linux-package.log. clone/업로드 bundle 정리, 운영 서비스·DB·Docker 불변. Windows 패키지 실패 원인은 독립 tester 확인 중이다.
