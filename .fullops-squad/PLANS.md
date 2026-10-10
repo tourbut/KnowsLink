@@ -1379,3 +1379,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 2026-10-10 지시로 자동 수신·호스트 전달 개발을 시작한다. 앞선 수동 UI 유도 왕복은 자동 수신 수락 근거가 아니다. 재질문01a12591은 수신 전 180초 만료했다.
 - DEV 과제 SAR-AUTO-RECEIVE-001-DEV, 기준51eebe5, 테스트lite/off. Jev implementation→dev, Claude Opus5.5 medium. 오래된 기존 세션은 사용자 소유로 보존하고 fresh로 배정한다. 완료 후 독립 tester fixed SHA QA/리뷰, 실제 운영 도메인 수신을 확인한다.
 - 완료 조건은 수동 도구 호출·그록봇 UI 조작 없이 자동 수신·지속 보존·호스트 전달이다. 자동 저장/표준 알림과 실제 노우 wake/답장을 구별한다. 호스트 지원 경계는 공식 근거로 확인한다. 유료 API·추가 과금·로컬 Docker·vendor core 수정·임의 자동 업무 실행은 범위 밖이다.
+
+- 실제 DEV 착수: run_f7da648722cb/task_3c37fc74d3b5/ctx_66524f2d47ca, terminal term_04f730de-d78a-4022-bb39-dea5f64f24d4. fresh Claude Opus5.5 medium의 requested/effective 일치, turn_started 및 정본 인박스 읽기 확인. 준비 dda6130 main/origin 통합 후 idle·clean dev 동기화. 기존 사용자 소유 세션 보존.
+- 독립 QA/리뷰 SAR-AUTO-RECEIVE-001-TESTER는 정규 인박스에 준비했으며 DEV 고정 완료 SHA가 선행조건이다. Jev tester/Grok4.7 high. 아직 배정하지 않았다. 운영 사전 확인: 배포 ba3754d 유지, relay/PG healthy·Tunnel up, Node22.22.2. 준비 기록은 코드 후보 수락 때 함께 통합한다.
+- DEV 중간 후보5308fa5의 핵심/회귀 검사 PASS. Windows lint-config의 기존 cloudflared stub/stat 권한 한계로 실패하여 질문msg_9441c58b56b1에 운영 서버 고유 임시 checkout 검증(B)을 회신했다. 배포/DB/서비스 변경은 허용하지 않았다.
+- 공식 포럼168260 팀 답변은 wake 개발 중이며 문서화되지 않은 로컬 gateway 대안을 연결한다. 공식 지원 부재를 불가능으로 단정하지 않도록 DEV에 원문168199/8과 검토를 전달했다(msg_6be74ac87978). 실제 본인 VM 인터페이스 검증·로컬 전용·토큰 비노출·새 비용 없음·default-off/held 경계를 유지한다. 아직 실제 노우 wake 미검증이다.
+- 첫 DEV 결과81c2bec301f85ba8922b2a78140d832b068f7114/구현5308fa5 완료(msg_e0c3192198aa, delivery_7a072bfd18bb). 독립 QA 전·최종 후속 원문 검토 누락으로 integration hold, 기존 세션 retain. coor에 후보를 보존했으나 main에는 미통합이다.
+- 동일 키 attempt0305914fc3ed441e8299d6fb1b41290f로 reopen. 로컬 gateway 대안 검증/최소 bridge와 정확한 지원 상태를 보완한다. Jev Claude Opus5.5 high. 모델 tuple이 달라 fresh로 배정하고 착수 확인 후 이전 정상 완료 세션을 release한다. 실제 Bot 환경 검증 전에는 bridge default-off/held다.

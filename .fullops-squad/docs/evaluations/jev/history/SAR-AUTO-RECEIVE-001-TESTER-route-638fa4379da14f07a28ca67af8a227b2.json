@@ -1,0 +1,84 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-AUTO-RECEIVE-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D10",
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.21,
+        "ops": 0.01,
+        "tester": 0.78
+      },
+      "confidence": 0.67
+    },
+    "docs": {
+      "D01": 0.26,
+      "D02": 0.24,
+      "D03": 0.39,
+      "D04": 0.28,
+      "D05": 0.38,
+      "D06": 0.36,
+      "D07": 0.35,
+      "D08": 0.38,
+      "D09": 0.4,
+      "D10": 0.59,
+      "D11": 0.35,
+      "D12": 0.55,
+      "D13": 0.47
+    }
+  },
+  "usage": {
+    "input_tokens": 2432,
+    "output_tokens": 314,
+    "cost": 0.000102144
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.658,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "구현 이후 고정 SHA의 독립 동작 QA와 별도 세션 리뷰는 tester 책임",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.01,
+      "claude claude-sonnet-5-5 high": 0.4,
+      "grok grok-4.7 high": 0.59
+    },
+    "usage": {
+      "input_tokens": 604,
+      "output_tokens": 42,
+      "cost": 2.5368e-05
+    }
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "dda6130d7023903175bbfa4036a7e052011e2c83",
+  "requires_packet": true
+}
