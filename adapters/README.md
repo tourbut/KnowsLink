@@ -215,7 +215,7 @@ MCP Command 환경은 `KNOWSLINK_MODE=public-node`, `KNOWSLINK_AGENT_FOLDER=/pri
 
 ### 자동 수신 — SAR-AUTO-RECEIVE-001-DEV
 
-`public-node` MCP는 연결 폴더가 있으면 시작 직후 자동 수신을 켠다. 수동 receive 호출 없이 10s마다 pull→서명 검증→`<연결 폴더>/inbox/` 기록→persist→ACK를 실행한다. 새 메시지마다 MCP `notifications/message`로 `{event,id,from,pending}`만 알린다. 끄려면 Command 환경에 `KNOWSLINK_AUTO_RECEIVE=off`를 추가한다.
+`public-node` MCP는 연결 폴더가 있으면 시작 직후 자동 수신을 켠다. 수동 receive 호출 없이 10s마다 pull→서명 검증→`<연결 폴더>/inbox/` 기록→persist→ACK를 실행한다. 새 메시지마다 MCP `notifications/message`로 `{event,id,from,pending,next}`만 알린다. `next`는 안내 문장이며 메시지 원문이 아니다. 끄려면 Command 환경에 `KNOWSLINK_AUTO_RECEIVE=off`를 추가한다.
 
 `knowslink_status`의 `autoReceive`로 상태를 확인한다. `state`(running/backoff/stopped/off), `lastSuccessAt`, `lastError`, `nextPollAt`, `lastReceivedId`, `pending`, `hostNotice`를 보여 준다. 비밀값과 text는 없다. `hostNotice:sent_unverified`는 알림을 보냈다는 뜻이다. Grok Bot이 화면에 표시했거나 노우의 턴을 시작했다는 뜻이 아니다.
 
@@ -254,6 +254,7 @@ watcher 출력에는 ID·발신자·대기 수만 있다. 같은 폴더에 MCP �
 
 설치와 활성화는 owner가 Bot 컴퓨터 터미널에서 한 번 실행한다. 앱 화면 설정은 바꾸지 않는다.
 
+0. 기존 Command MCP process는 파일 교체만으로 새 코드가 되지 않는다. 설치 뒤 MCP를 새 process로 다시 연결하거나 재시작하고 `knowslink_status`의 `autoReceive`가 보이는지 확인한다. 이 확인 전에는 watcher를 시작하지 않는다.
 1. 이 후보로 준비물을 갱신한다. KnowsLink checkout에서 후보 SHA를 checkout하고 `sh scripts/install_bot_mcp.sh`를 실행한다. 결과: `/workspace/.knowslink/knowslink/dist/plugin.js`가 교체된다.
 2. gateway와 agent ID를 읽기 전용으로 확인한다. prompt는 보내지 않는다.
 
@@ -263,15 +264,15 @@ watcher 출력에는 ID·발신자·대기 수만 있다. 같은 폴더에 MCP �
 
    결과: `{"state":"ok","agentIds":[...]}`. 응답의 UUID만 출력한다. 이름·token은 출력하지 않는다. `gateway_unreachable`·`gateway_token_unavailable`·`gateway HTTP 401`이면 이 기능을 사용할 수 없다. 그대로 보고한다.
 3. 노우 대화의 agent ID를 고른다. 같은 명령에 `KNOWSLINK_GROK_WAKE_AGENT=<UUID>`를 붙여 `"configuredListed":true`를 확인한다.
-4. 기존 watcher를 멈추고 wake 설정으로 다시 시작한다.
+4. 이 연결 폴더의 기존 watcher만 멈추고 wake 설정으로 다시 시작한다. 먼저 `ps -eo pid,args | grep 'plugin.js watch <연결 폴더>'`로 정확한 PID를 확인한다. 다른 연결 폴더의 watcher를 끝내지 않는다. `pkill -f`처럼 넓은 일치는 쓰지 않는다.
 
    ```sh
-   pkill -f 'plugin.js watch' ; KNOWSLINK_GROK_WAKE_AGENT=<UUID> nohup /workspace/.knowslink/node/bin/node /workspace/.knowslink/knowslink/dist/plugin.js watch <연결 폴더> >> <연결 폴더>/watch.log 2>&1 &
+   kill <확인한 PID> ; KNOWSLINK_GROK_WAKE_AGENT=<UUID> nohup /workspace/.knowslink/node/bin/node /workspace/.knowslink/knowslink/dist/plugin.js watch <연결 폴더> >> <연결 폴더>/watch.log 2>&1 &
    ```
 
 5. 상대 agent가 연결 확인 text를 보낸다. 그 송신 ID로 `<연결 폴더>/inbox/<ID>.wake`의 `state`를 확인한다. 노우 대화에 doorbell prompt가 나타나고 노우가 같은 ID를 표시했는지를 따로 확인한다.
 
-port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEWAY_FILE`(절대경로)로 바꾼다. 형식이 틀린 설정은 `invalid_config`로 wake만 멈추고 자동 수신은 계속한다. 중지는 `KNOWSLINK_GROK_WAKE_AGENT` 없이 watcher를 다시 시작한다. MCP Command 환경에도 같은 변수를 넣을 수 있지만 watcher 하나로 충분하다.
+port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEWAY_FILE`(절대경로)로 바꾼다. 형식이 틀린 설정은 `invalid_config`로 wake만 멈추고 자동 수신은 계속한다. 중지는 해당 연결 폴더 watcher의 정확한 PID만 확인해 끝내고 `KNOWSLINK_GROK_WAKE_AGENT` 없이 다시 시작한다. MCP Command 환경에도 같은 변수를 넣을 수 있지만 watcher 하나로 충분하다.
 
 한계: gateway가 꺼진 동안 같은 컴퓨터의 다른 process가 port를 점유하면 token을 받을 수 있다. Bot 컴퓨터를 owner 단독으로 사용하는 경우에만 켠다. 컴퓨터 Update/Reset은 watcher와 준비물을 지울 수 있다. 그 뒤 1–4단계를 다시 실행한다.
 
