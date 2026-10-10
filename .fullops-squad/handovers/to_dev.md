@@ -72,4 +72,10 @@ test_level: lite
 
 ## 완료 보고
 
-최종 SHA / 실제 세션 / 바뀐 파일·문구 / 검사 / 남은 실제 Bot 설치.
+- 실제 세션: f03195ef-5632-440e-990c-651f4f26c3ce (Claude Code, Sonnet 5.5). 최종 SHA는 worker_done에 기록한다.
+- medium1: member.go receipt 문장을 "자동 답장은 없습니다 + 자동 수신 시 로컬 inbox 자동 저장, 호스트 표시는 조건부, 안 보이면 수동 receive"로 바꾸고 public_messages_integration_test.go 기대 문장을 "자동 답장은 없습니다"로 맞췄다. 로직 변경 없음. "수동 receive"·"10초 이상"은 유지해 public_text_test.go 기대와 호환된다.
+- low1: adapters/README.md watcher 중지를 해당 연결 폴더 정확한 PID 확인 후 `kill <PID>`로 바꾸고 `pkill -f`를 제거했다.
+- low2: README와 SKILL.md 알림 필드를 event/id/from/pending/next로 맞췄다(next는 안내 문장, 원문 아님).
+- 설치 인계: wake 절 0단계에 기존 Command MCP process는 파일 교체만으로 갱신되지 않으니 새 process 재연결/재시작 후 status.autoReceive 확인, watcher 시작 전 필수로 명시했다.
+- 검사: go test ./internal/relay (PublicMessages|PublicText|Receipt) ok. lint.py --from 559f3d2: ERROR 0, WARNING 1(PLANS.md SIZE-001, 기존), product-lint/product-test(make)는 Windows에서 unavailable(기존 환경 한계, Linux 검증은 기존 리뷰 기록). D12·mockups 과거 기록은 변경하지 않았다.
+- 남은 일: 실제 Bot 설치와 수신 확인은 coor 후속.
