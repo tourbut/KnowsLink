@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "deployment_sha": "25adea2a209475b11c1203de4cf7f2d0bbad3544",
+  "product_sha": "f8dd6659d7a22466e7c84a67431448fd7727e7c3",
+  "ui_used_only_before_question_for_installation": true,
+  "grok_ui_read_or_operated_after_question": false,
+  "test_harness_exit_code": 0,
+  "events": [
+    {
+      "at": "2026-10-10T15:18:17.848Z",
+      "event": "connected",
+      "data": {
+        "manualReceiveCalled": false,
+        "questionNotSent": true
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:19.362Z",
+      "event": "before_send_status",
+      "data": {
+        "state": "public_node_configured_unverified",
+        "transport": "pull",
+        "actualConnection": "configured_unverified",
+        "webhook": false,
+        "evidenceFetch": false,
+        "autoReceive": {
+          "state": "stopped"
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:20.977Z",
+      "event": "send",
+      "data": {
+        "id": "01a12664-c5f6-756e-b18b-c3e6c3fbb973",
+        "from": "agent_943334beca406f0c3417d2",
+        "to": "agent_077c666294c4eb28b783f8",
+        "intent": "knowslink.text",
+        "digest": "bI6Mbmwwfn4NqdNxkmAY0BOYwV_bWQJyOoi4X_cX6OM",
+        "exp": "2026-10-10T15:21:20Z",
+        "accepted_at": "2026-10-10T15:18:21.099817Z",
+        "transport": "queued"
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:32.847Z",
+      "event": "receipt",
+      "data": {
+        "completion": "received",
+        "receipt": {
+          "id": "01a12664-c5f6-756e-b18b-c3e6c3fbb973",
+          "from": "agent_943334beca406f0c3417d2",
+          "to": "agent_077c666294c4eb28b783f8",
+          "intent": "knowslink.text",
+          "digest": "bI6Mbmwwfn4NqdNxkmAY0BOYwV_bWQJyOoi4X_cX6OM",
+          "exp": "2026-10-10T15:21:20Z",
+          "accepted_at": "2026-10-10T15:18:21.099817Z",
+          "transport": "delivered"
+        },
+        "reply_id": "",
+        "reply_to": ""
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:32.849Z",
+      "event": "status",
+      "data": {
+        "state": "public_node_configured_unverified",
+        "transport": "pull",
+        "actualConnection": "configured_unverified",
+        "webhook": false,
+        "evidenceFetch": false,
+        "autoReceive": {
+          "state": "running",
+          "hostNotice": "none",
+          "hostWake": {
+            "state": "off"
+          },
+          "nextPollAt": "2026-10-10T15:18:40.196Z",
+          "lastSuccessAt": "2026-10-10T15:18:30.196Z",
+          "pending": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:40.437Z",
+      "event": "automatic_notice",
+      "data": {
+        "event": "knowslink_text_received",
+        "id": "01a12665-0c5c-7728-9daf-65b0d9f6f994",
+        "from": "agent_077c666294c4eb28b783f8",
+        "pending": 1
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:44.489Z",
+      "event": "receipt",
+      "data": {
+        "completion": "reply_received",
+        "receipt": {
+          "id": "01a12664-c5f6-756e-b18b-c3e6c3fbb973",
+          "from": "agent_943334beca406f0c3417d2",
+          "to": "agent_077c666294c4eb28b783f8",
+          "intent": "knowslink.text",
+          "digest": "bI6Mbmwwfn4NqdNxkmAY0BOYwV_bWQJyOoi4X_cX6OM",
+          "exp": "2026-10-10T15:21:20Z",
+          "accepted_at": "2026-10-10T15:18:21.099817Z",
+          "transport": "delivered"
+        },
+        "reply_id": "01a12665-0c5c-7728-9daf-65b0d9f6f994",
+        "reply_to": ""
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:44.492Z",
+      "event": "automatic_store_before_read",
+      "data": {
+        "state": "public_node_configured_unverified",
+        "transport": "pull",
+        "actualConnection": "configured_unverified",
+        "webhook": false,
+        "evidenceFetch": false,
+        "autoReceive": {
+          "state": "running",
+          "hostNotice": "sent_unverified",
+          "hostWake": {
+            "state": "off"
+          },
+          "nextPollAt": "2026-10-10T15:18:50.482Z",
+          "lastSuccessAt": "2026-10-10T15:18:40.482Z",
+          "lastReceivedId": "01a12665-0c5c-7728-9daf-65b0d9f6f994",
+          "pending": 1
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:46.038Z",
+      "event": "receive",
+      "data": {
+        "state": "received",
+        "message": {
+          "id": "01a12665-0c5c-7728-9daf-65b0d9f6f994",
+          "from": "agent_077c666294c4eb28b783f8",
+          "to": "agent_943334beca406f0c3417d2",
+          "exp": "2026-10-10T15:21:20Z",
+          "untrusted": true,
+          "reply_to": "01a12664-c5f6-756e-b18b-c3e6c3fbb973",
+          "expired": false,
+          "textOmitted": true
+        }
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:46.039Z",
+      "event": "verified_related_automatic_reply",
+      "data": {
+        "requestId": "01a12664-c5f6-756e-b18b-c3e6c3fbb973",
+        "replyId": "01a12665-0c5c-7728-9daf-65b0d9f6f994",
+        "displayedFromStoredInbox": true
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:47.576Z",
+      "event": "final_receipt",
+      "data": {
+        "completion": "reply_received",
+        "receipt": {
+          "id": "01a12664-c5f6-756e-b18b-c3e6c3fbb973",
+          "from": "agent_943334beca406f0c3417d2",
+          "to": "agent_077c666294c4eb28b783f8",
+          "intent": "knowslink.text",
+          "digest": "bI6Mbmwwfn4NqdNxkmAY0BOYwV_bWQJyOoi4X_cX6OM",
+          "exp": "2026-10-10T15:21:20Z",
+          "accepted_at": "2026-10-10T15:18:21.099817Z",
+          "transport": "delivered"
+        },
+        "reply_id": "01a12665-0c5c-7728-9daf-65b0d9f6f994",
+        "reply_to": ""
+      }
+    },
+    {
+      "at": "2026-10-10T15:18:47.593Z",
+      "event": "closed",
+      "data": {}
+    }
+  ]
+}
