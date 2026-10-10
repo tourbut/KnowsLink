@@ -37,7 +37,7 @@ func (st *State) eventPending(agent string, now time.Time) string {
 func (st *State) eventVersion(now time.Time) [32]byte {
 	credentials, pending := map[string]string{}, map[string][]string{}
 	for token, p := range st.liveCredentials() {
-		if p.kind == "agent" && st.publicOwner(st.Agents[p.id].Owner) {
+		if (p.kind == "agent" || p.kind == "remote") && st.publicOwner(st.Agents[p.id].Owner) {
 			credentials[token] = p.id
 		}
 	}

@@ -73,6 +73,7 @@ type Gate struct {
 	Consumed                                           bool
 }
 type State struct {
+	Remote         *remoteState           `json:",omitempty"`
 	Streams        map[string]eventStream `json:",omitempty"`
 	GoogleAttempts map[string]*googleAttempt
 	Owners         map[string]*Owner
@@ -249,6 +250,7 @@ func (st *State) current(m *Message) bool {
 	return pair != nil && pair.State == "active" && pair.Generation == m.Generation
 }
 func (st *State) sweep(now time.Time) {
+	st.sweepRemote(now)
 	for id, stream := range st.Streams {
 		if !now.Before(stream.Exp) {
 			delete(st.Streams, id)
