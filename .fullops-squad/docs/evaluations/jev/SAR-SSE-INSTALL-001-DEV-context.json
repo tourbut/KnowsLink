@@ -1,0 +1,465 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "7a6906851b872fc52310a0ac6623527a4b0adb2b",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "39ca8fedeffa5a5f8cc41a2b13781fe457ad2eb7b1c12864455521080bb3586a",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-public_text.go",
+      "c2-connections.go",
+      "c3-inbox.ts",
+      "c4-text.ts",
+      "c5-mcp.ts",
+      "c6-login.ts",
+      "c7-README.md",
+      "c8-package_plugin.py",
+      "c9-install_bot_mcp.sh",
+      "c10-check_public_ingress.py",
+      "c11-architecture.md",
+      "c12-interface-design.md",
+      "c13-module-design.md",
+      "c14-ops-guide.md",
+      "c15-user-guide.md",
+      "c16-report.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-public_text.go",
+      "c2-connections.go",
+      "c3-inbox.ts",
+      "c4-text.ts",
+      "c5-mcp.ts",
+      "c6-login.ts",
+      "c7-README.md",
+      "c8-package_plugin.py",
+      "c9-install_bot_mcp.sh",
+      "c10-check_public_ingress.py",
+      "c11-architecture.md",
+      "c12-interface-design.md",
+      "c13-module-design.md",
+      "c14-ops-guide.md",
+      "c15-user-guide.md",
+      "c16-report.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-public_text.go": {
+        "relevant": 0.31,
+        "evidence": 0.52,
+        "contradicts": 0.2,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-connections.go": {
+        "relevant": 0.27,
+        "evidence": 0.42,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-inbox.ts": {
+        "relevant": 0.43,
+        "evidence": 0.62,
+        "contradicts": 0.14,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-text.ts": {
+        "relevant": 0.18,
+        "evidence": 0.33,
+        "contradicts": 0.15,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-mcp.ts": {
+        "relevant": 0.47,
+        "evidence": 0.64,
+        "contradicts": 0.32,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-README.md": {
+        "relevant": 0.66,
+        "evidence": 0.8,
+        "contradicts": 0.26,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-package_plugin.py": {
+        "relevant": 0.67,
+        "evidence": 0.75,
+        "contradicts": 0.45,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-install_bot_mcp.sh": {
+        "relevant": 0.61,
+        "evidence": 0.62,
+        "contradicts": 0.45,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-check_public_ingress.py": {
+        "relevant": 0.25,
+        "evidence": 0.52,
+        "contradicts": 0.26,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-architecture.md": {
+        "relevant": 0.39,
+        "evidence": 0.6,
+        "contradicts": 0.34,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c12-interface-design.md": {
+        "relevant": 0.36,
+        "evidence": 0.58,
+        "contradicts": 0.31,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c13-module-design.md": {
+        "relevant": 0.43,
+        "evidence": 0.7,
+        "contradicts": 0.4,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c14-ops-guide.md": {
+        "relevant": 0.24,
+        "evidence": 0.41,
+        "contradicts": 0.71,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c15-user-guide.md": {
+        "relevant": 0.1,
+        "evidence": 0.17,
+        "contradicts": 0.58,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c16-report.md": {
+        "relevant": 0.43,
+        "evidence": 0.65,
+        "contradicts": 0.14,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-public_text.go": "internal/relay/public_text.go",
+      "c2-connections.go": "internal/relay/connections.go",
+      "c3-inbox.ts": "adapters/src/inbox.ts",
+      "c4-text.ts": "adapters/src/text.ts",
+      "c5-mcp.ts": "adapters/src/mcp.ts",
+      "c6-login.ts": "adapters/src/login.ts",
+      "c7-README.md": "adapters/README.md",
+      "c8-package_plugin.py": "scripts/package_plugin.py",
+      "c9-install_bot_mcp.sh": "scripts/install_bot_mcp.sh",
+      "c10-check_public_ingress.py": "scripts/check_public_ingress.py",
+      "c11-architecture.md": ".fullops-squad/docs/design-docs/architecture.md",
+      "c12-interface-design.md": ".fullops-squad/docs/design-docs/interface-design.md",
+      "c13-module-design.md": ".fullops-squad/docs/design-docs/module-design.md",
+      "c14-ops-guide.md": ".fullops-squad/docs/operations/ops-guide.md",
+      "c15-user-guide.md": ".fullops-squad/docs/operations/user-guide.md",
+      "c16-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 47441,
+    "output_tokens": 1140,
+    "cost": 0.001992522,
+    "known_cost": 0.001992522,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 1.088,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.534,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3021,
+        "output_tokens": 76,
+        "cost": 0.000126882
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.534,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2797,
+        "output_tokens": 76,
+        "cost": 0.000117474
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.529,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2723,
+        "output_tokens": 76,
+        "cost": 0.000114366
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.526,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2753,
+        "output_tokens": 76,
+        "cost": 0.000115626
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.471,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2601,
+        "output_tokens": 76,
+        "cost": 0.000109242
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.544,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3299,
+        "output_tokens": 76,
+        "cost": 0.000138558
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.54,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2999,
+        "output_tokens": 76,
+        "cost": 0.000125958
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.502,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2780,
+        "output_tokens": 76,
+        "cost": 0.00011676
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.538,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2743,
+        "output_tokens": 76,
+        "cost": 0.000115206
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.505,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3359,
+        "output_tokens": 76,
+        "cost": 0.000141078
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.502,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3292,
+        "output_tokens": 76,
+        "cost": 0.000138264
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.551,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4054,
+        "output_tokens": 76,
+        "cost": 0.000170268
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.506,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4014,
+        "output_tokens": 76,
+        "cost": 0.000168588
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.497,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3367,
+        "output_tokens": 76,
+        "cost": 0.000141414
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.518,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3639,
+        "output_tokens": 76,
+        "cost": 0.000152838
+      }
+    }
+  ],
+  "request_max_seconds": 0.551,
+  "task_key": "SAR-SSE-INSTALL-001-DEV",
+  "role": "dev",
+  "attempt": "21a4cee08d734fa8a668bb0d785c0400",
+  "instruction_sha256": "254f24cef3822038dfa1e2dd603581d4ec202bc2eee3d5b3c6b8c76b88d01f86",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "internal/relay/public_text.go",
+      "internal/relay/server.go",
+      "internal/relay/connections.go",
+      "adapters/src/inbox.ts",
+      "adapters/src/text.ts",
+      "adapters/src/mcp.ts",
+      "adapters/src/login.ts",
+      "adapters/README.md",
+      "scripts/package_plugin.py",
+      "scripts/install_bot_mcp.sh",
+      "scripts/check_public_ingress.py",
+      ".fullops-squad/docs/design-docs/architecture.md",
+      ".fullops-squad/docs/design-docs/interface-design.md",
+      ".fullops-squad/docs/design-docs/module-design.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/operations/user-guide.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md"
+    ],
+    "required": [],
+    "sources": {
+      "internal/relay/public_text.go": "7625439028067c38639a3fc0936ef5e3b539676219f9dd20a9b26943e47fcc6b",
+      "internal/relay/server.go": "unavailable",
+      "internal/relay/connections.go": "0cd5843b07d0001f34a4e2e5d42bdb1c8d15fcf8a0d9000508addb6174e1bede",
+      "adapters/src/inbox.ts": "007f3ba9ea652425c82ff0b2ff0859dd18e6f5dc7be26da41a40f2a75e05926b",
+      "adapters/src/text.ts": "cc2b069a85b743c0d991511234d54498741e69a904a46ad287478a24edce27c3",
+      "adapters/src/mcp.ts": "7d887a8ec446fca10e14d46f89fcf3513f40016540d04b1936e9d04628b76964",
+      "adapters/src/login.ts": "78a51e26454dc7336753c074e232455c13daaaf69a3fa056ec87fd0a7fd39fba",
+      "adapters/README.md": "2fd63e2ad08f23bbc176c9acf4e9df3286d64a982f1e2fbb7e159540109fdc84",
+      "scripts/package_plugin.py": "895ee851c5ac0a6a9dab9002d654bc6ff7628dfc0b3cb644136dcc0f66c96760",
+      "scripts/install_bot_mcp.sh": "a73bcaa4c2a738d9a90ff1e4a92d175d9e462efd06324f6bdea0f1a232e7cabc",
+      "scripts/check_public_ingress.py": "ca0a9d057f72bf483a8bcee671bc4b7f40bd412fba8c00d43b9bba19c8071566",
+      ".fullops-squad/docs/design-docs/architecture.md": "e08de2efd4c935ae7581d29b5998480e93b3834864665c90cc80b9d1ecb5f72f",
+      ".fullops-squad/docs/design-docs/interface-design.md": "08229a6d5176132b96bd98c090f28573e639989dd839ad58b7661bf1ead23a77",
+      ".fullops-squad/docs/design-docs/module-design.md": "3583c48843ca1d99036205592f1bbeb28e343ac8a8fd6f5fbf1336498363cc24",
+      ".fullops-squad/docs/operations/ops-guide.md": "baaafc86e2cb95dff890de79a6483c3fb4f7c0bbe25bdde520a040889e7c8a55",
+      ".fullops-squad/docs/operations/user-guide.md": "40259e5c8c616b8f5f5e5c7a05401c09b4b20fa6a3cc76a1683c282617b3d6da",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md": "062ec2e5a5159cc6ca201abbdd530670eb88310b7dc1e3ec612ae5b355b7d281"
+    }
+  },
+  "unsent_sources": {
+    "adapters/src/login.ts": "sensitive or oversized passage"
+  },
+  "refused_paths": [
+    {
+      "path": "internal/relay/server.go",
+      "reason": "[WinError 2] 지정된 파일을 찾을 수 없습니다: 'C:\\\\Users\\\\shin\\\\orca\\\\workspaces\\\\KnowsLink\\\\coor\\\\internal\\\\relay\\\\server.go'"
+    }
+  ],
+  "elapsed_seconds": 4.549,
+  "input_partial": true,
+  "instruction_chars": 5739,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 5739
+  }
+}
