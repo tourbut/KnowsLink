@@ -76,6 +76,18 @@ export class Adapter {
       clearTimeout(timer);
     }
   }
+  // SSE carries only doorbells. Body retrieval keeps the signed JSON request path.
+  protected openEvents(signal: AbortSignal): Promise<Response> {
+    return fetch(`${this.base}/v1/text/events`, {
+      redirect: "error",
+      signal,
+      headers: {
+        ...this.accessHeaders,
+        Authorization: `Bearer ${this.credential}`,
+        Accept: "text/event-stream",
+      },
+    });
+  }
   private async fetchJson<T>(
     path: string,
     signal: AbortSignal,

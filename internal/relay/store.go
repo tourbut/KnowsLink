@@ -73,6 +73,7 @@ type Gate struct {
 	Consumed                                           bool
 }
 type State struct {
+	Streams        map[string]eventStream `json:",omitempty"`
 	GoogleAttempts map[string]*googleAttempt
 	Owners         map[string]*Owner
 	Agents         map[string]*Agent
@@ -150,6 +151,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		return nil, fault("unavailable")
 	}
 	state.TestAgents = s.TestAgents
+	beforeEvents := state.eventVersion(now)
 	state.sweep(now)
 	orphans := s.reclaim(state)
 	value, opErr := operation(state, now)
@@ -172,6 +174,12 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	changed, err := q.SaveRelay(ctx, database.SaveRelayParams{Data: raw, Clock: row.Now, Epoch: row.Epoch})
 	if err != nil || changed != 1 {
 		return nil, fault("unavailable")
+	}
+	if beforeEvents != state.eventVersion(now) {
+		// Empty notifications cross processes and become visible only with this commit.
+		if _, err = tx.Exec(ctx, "SELECT pg_notify('knowslink_text', '')"); err != nil {
+			return nil, fault("unavailable")
+		}
 	}
 	if err = tx.Commit(ctx); err != nil {
 		return nil, fault("unavailable")
@@ -241,6 +249,11 @@ func (st *State) current(m *Message) bool {
 	return pair != nil && pair.State == "active" && pair.Generation == m.Generation
 }
 func (st *State) sweep(now time.Time) {
+	for id, stream := range st.Streams {
+		if !now.Before(stream.Exp) {
+			delete(st.Streams, id)
+		}
+	}
 	for token, a := range st.HTTP {
 		if !now.Before(a.Exp) {
 			delete(st.HTTP, token)

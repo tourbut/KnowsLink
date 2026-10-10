@@ -42,6 +42,52 @@ function validText(text: string): boolean {
   );
 }
 export class TextTransport extends Adapter {
+  async listen(onSignal: () => void, signal: AbortSignal): Promise<void> {
+    const response = await this.openEvents(signal);
+    if (!response.ok) {
+      await response.body?.cancel();
+      throw new Error(`relay HTTP ${response.status}`);
+    }
+    if (
+      !response.headers.get("content-type")?.startsWith("text/event-stream")
+    ) {
+      await response.body?.cancel();
+      throw new Error("invalid arrival stream");
+    }
+    const reader = response.body?.getReader();
+    if (!reader) throw new Error("empty arrival stream");
+    const decoder = new TextDecoder("utf-8", { fatal: true });
+    let buffer = "";
+    let bytes = 0;
+    const aborted = new Promise<never>((_resolve, reject) => {
+      if (signal.aborted) reject(signal.reason);
+      signal.addEventListener("abort", () => reject(signal.reason), {
+        once: true,
+      });
+    });
+    aborted.catch(() => undefined);
+    try {
+      while (true) {
+        const chunk = await Promise.race([reader.read(), aborted]);
+        if (chunk.done) return;
+        bytes += chunk.value.byteLength;
+        buffer += decoder.decode(chunk.value, { stream: true });
+        if (bytes > 65536 || buffer.length > 4096)
+          throw new Error("arrival stream too large");
+        buffer = buffer.replace(/\r\n/g, "\n");
+        let end: number;
+        while ((end = buffer.indexOf("\n\n")) >= 0) {
+          const frame = buffer.slice(0, end);
+          buffer = buffer.slice(end + 2);
+          if (/^event: (ready|arrival)\ndata: \{\}$/.test(frame)) onSignal();
+          else if (!frame.startsWith(":"))
+            throw new Error("invalid arrival signal");
+        }
+      }
+    } finally {
+      await reader.cancel();
+    }
+  }
   async sendText(
     peer: string,
     text: string,

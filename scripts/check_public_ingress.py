@@ -8,7 +8,7 @@ assert pattern, "public path rule required"
 public = re.compile(pattern[1])
 for path in ("/", "/auth/google", "/auth/google/callback", "/auth/reauth", "/home", "/home/device-confirm",
              "/connect/" + "a" * 43, "/v1/connect/start", "/v1/connect/poll", "/v1/connect/complete",
-             "/v1/text/send", "/v1/keys/agent_a/key_a", "/v1/receipts/00000000-0000-7000-8000-000000000001"):
+             "/v1/text/send", "/v1/text/events", "/v1/keys/agent_a/key_a", "/v1/receipts/00000000-0000-7000-8000-000000000001"):
     assert public.fullmatch(path), f"member path blocked: {path}"
 for path in ("/owner", "/owner/gates/x", "/v1/owners", "/v1/agents", "/v1/keys", "/v1/key-revoke",
              "/v1/owner-revoke", "/v1/authorize", "/v1/test/pull", "/healthz", "/_probe", "/homepage",
