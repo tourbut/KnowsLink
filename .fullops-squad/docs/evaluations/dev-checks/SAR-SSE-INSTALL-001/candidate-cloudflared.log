@@ -1,0 +1,11 @@
+Validating rules from /tmp/knowslink-sse001-ctxe4490c0d/render-state/tunnel/config.public.yml
+OK
+rendered public candidate; D12 review and edge app removal required before activation
+/v1/text/events http://relay:8080 PASS
+/mcp http://relay:8080 PASS
+/.well-known/oauth-protected-resource/mcp http://relay:8080 PASS
+/remote/oauth/token http://relay:8080 PASS
+/remote/consent/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa http://relay:8080 PASS
+/owner http_status:404 PASS
+/v1/owners http_status:404 PASS
+/mcp/extra http_status:404 PASS

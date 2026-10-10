@@ -1,0 +1,21 @@
+{
+  "integration_sha": "515eabb9083ae542bce883caf6da164a17457dd2",
+  "registered_gate_sha": "bd411fba4fe33cfb835c133945bf71ebd5dd180d",
+  "product_source_sha": "3c523fca4d20f8e679c52b708f17ed0319f80a05",
+  "implementer_session": "01a12678-994d-7680-a15c-83577943b52d",
+  "base": "7a6906851b872fc52310a0ac6623527a4b0adb2b",
+  "candidate_retry_exit": 0,
+  "migration_exit": 0,
+  "integration_exit": 0,
+  "cloudflared_exit": 0,
+  "registered_gate_exit": 0,
+  "registered_errors": 0,
+  "registered_warnings": 19,
+  "unavailable": 0,
+  "shared_services_ids_unchanged": true,
+  "production_changed": false,
+  "local_docker_used": false,
+  "real_host_installation": false,
+  "real_google_consent": false,
+  "notes": "Raw command logs preserve expected negative-control stderr. candidate-retry.log records actual exit0; inspection reads do not recast failures as passes. Final archive commit is checked again by lint.py; exact final SHA is in worker_done and git-dir/fullops-gate/pass.json."
+}
