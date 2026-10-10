@@ -1421,3 +1421,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 실제 DEV 착수: task_c76a5ef82349 / ctx_e4490c0d8bef / term_6298e8b5-6e3d-415b-bc64-0e8bba44c2d0. fresh Codex gpt-6.1-sol high requested/effective 일치, input_accepted·turn_started·정본 인박스 읽기 확인. 준비4786a00 main/origin 통합 및 dev FF 후 배정했다. Dots MCP Events 공식 webhook 계약을 msg_01fdd28ed852로 전달했다(DEV 하위 Run run_5b1823734740 mailbox로 정상 전달 전환). 운영·실제 설치는 독립 검토 뒤 진행한다.
 
 - 독립 QA/리뷰 SAR-SSE-INSTALL-001-TESTER 정규 인박스 초안을 준비했다. Jev implementation→tester/Grok4.7 high, lite/standard. DEV final exact SHA·실제 implementer session 및 후보 탐색 packet 확정 전 dispatch하지 않는다. 리뷰는 별도 clean detached snapshot, 실제 호스트 설치/운영 확인은 후보 수락 후 coor 담당이다. 진행 DEV 체크아웃은 c442bca 이후 운영 기록 동기화 예약이다.
+
+- DEV 질문msg_b6a2f88e9a01에 reply msg_a2c713ebce83: 사용자 원요청에 Dots 설치·Google 인증이 포함되므로 같은 과제에서 최소 remote OAuth/MCP·도착신호 경로까지 구현한다. 기존 Google/relay 재사용과 기술 설계는 DEV 담당이다. 기능 단위 커밋으로 분리하되 최종 안정 후보에서 독립 QA한다. 기존 데이터 보존 additive migration만 필요성·복구/격리검증 근거를 남긴다. 실제 Dots 계정 접근 미확보는 최종 구현 검증 뒤 구체적인 사용자 단계로 구분한다. 질문 delivery_be624484287b 응답 후 ack 완료.
+
+- 사용자 2026-10-11 이슈 완료처리 요청: open 이슈 조회 결과 #1 한 건. 설치·Google 연결·실제 자동수신1차 수락 근거를 댓글6099406233에 남기고 state closed/state_reason completed read-back 확인했다. https://github.com/tourbut/KnowsLink/issues/1#issuecomment-6099406233. 초기 설치 이슈는 완료이며 Dots/SSE 신규 개발과 장시간/업데이트 검증까지 완료한 것으로 표시하지 않는다. 이슈 자동 모드는 활성화하지 않았다.
