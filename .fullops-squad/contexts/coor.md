@@ -20,3 +20,7 @@ summary: 조정 역할의 제품 수락·검수·운영 보류와 다음 착수 
 - fixed458의 보안·독립QA·직접UI와 결과기록검토를 수락했고 main/origin14e0131 일반push·완료10SHA조상·유휴clean5역할동기화를확인했다. 상세와실패·hold_history는PLANS 및 AGENTS report를따른다.
 - 원래 d1/d165 UIFAIL·초기lint/프로브실패는불변이다. 실제메일/공개/운영부하·복원/실24h/노우↔다닷은후속이다. OPS low L-A/L-B의 공개전합성가입unset·합성owner0 조건을유지한다. MESSAGES는자동배정하지않는다.
 - 새review.prepare 빈report는dispatch전metadata stamp한다. 최종기록HEAD증거가/tmp에만있으면실제HEAD를확인하고COOR증거로영속화한다. read-onlysnapshot에설치/검사를하지않고별도scratch에서실행한다.
+
+- 2026-10-10: 무과금 Tunnel 도메인과 Google 등록으로 실제 노우 Bot↔현재 세션의 text 왕복/receipt를 수락했다. 실제 결과는 qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md.
+- 만료 연결은 기존 키 폴더를 지우지 않고 새 폴더로 시작한다. 같은 owner의 두 agent도 명시적 관계 수락을 유지한다.
+

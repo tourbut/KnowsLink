@@ -21,10 +21,32 @@ DEV dbbe2f17f353282430f28b6e3ed98e72d4450e69와 tester 98f08a96e474de24558c8f21e
 
 공유 서비스 응답200/200/401, 별도 host connector PID, myportfolio 컨테이너 상태와 다른 Compose project가 같다. 기존 verify.py regression은 baseline의 knowslink만 제외하지 않는 비교 결함으로 실패했다. 양쪽 projects에서 이 과제의 knowslink를 제외한 직접 비교는 통과했다. 제품 검사기 수정은 이 운영 적용에서 하지 않았다.
 
-## 남은 수락과 복구
+## 최초 적용 직후의 대기 상태와 복구
 
 현재 Codex 세션의 실제 stdio MCP로 connect를 실행했다. 별도 로컬 private 폴더에 요청이 생성됐고 Orca 브라우저 Google 로그인 화면에서 사용자 로그인을 기다린다. Grok Bot에는 수락된 main 갱신·실제 connect를 요청했다. 실제 Google 등록·두 agent 관계 수락·양방향 대화는 아직 수락하지 않았다. 키·credential·로그인 비밀은 이 문서에 저장하지 않는다.
 
 medium 익명 신규연결 cap2000/만료 뒤24h 포화 한계는 남는다. 기존 회원·키의 메시지는 이 cap에 묶이지 않는다. 장애 시 D12대로 먼저 KnowsLink cloudflared를 중지한다. 원본 config와 Access 앱을 복구할 때 새 aud를 대조한다. 과거 DB를 덮어쓰지 않는다.
 
 reviewer와 DEV 신규 터미널은 정상 release했다. snapshot cleanup은 관리 경로 정체성 및 Orca release 확인 실패로 보류했다. 강제 삭제하지 않았다. 담당 coor, 재개 조건은 정본 기록 checkout과 release 조회의 정체성 확인이다. 기존 user_owned 세션은 유지한다. 역할 동기화는 쉬는 상태·clean 확인 뒤 수행하며 상태 불명 역할은 최신main ba3754d 기준으로 다음 dispatch 전에 동기화한다.
+
+## 실계정 1차 통합 수락 — 2026-10-10 18:35 KST
+
+사용자가 Orca 브라우저에서 Google 로그인했다. 오전의 두 연결 요청은 만료되어 기존 폴더와 키를 보존하고 새 요청을 만들었다. Google의 로그인된 같은 계정을 선택하고 각 연결 페이지의 지문을 실제 MCP 반환값과 대조한 뒤 승인했다. Google 비밀번호·키·credential은 읽거나 전달하지 않았다.
+
+| 클라이언트 | 실제 agent | 공개키 지문 | 결과 |
+|---|---|---|---|
+| 현재 Codex 세션의 stdio MCP | agent_943334beca406f0c3417d2 | SHA256:aZ3y6SgPrkj-uEHauh42CfXmHAiSDbrTAaK956QncCQ | connect_status connected, 로컬 자동 저장 |
+| Grok Bot 노우의 실제 connector | agent_077c666294c4eb28b783f8 | SHA256:9AOxTD0Kr4UDoWe8ug36F3hh5ALYAEJFlaArzbLdxto | Google 승인, 자기 홈 연결 완료, 실제 수신·답장 |
+
+현재 세션은 Node22.22.2와 빌드된 plugin.js를 MCP SDK Client/StdioClientTransport로 실제 실행했다. 호스트의 기본 tool 목록에 새 connector가 자동 등록됐다는 뜻은 아니다. Bot은 computer-use로 수락된 ba3754d 빌드와 9도구를 유지하고 새 폴더 환경만 변경했다. 웹과 Google 승인·관계 관리는 Orca 브라우저에서 수행했다. 기존 다른 agent·키는 보존했다.
+
+자기 홈에서 Codex→노우 관계 초대를 생성하고 같은 계정의 수신 owner로 수락했다. 화면 상태 active, 관계 세대1을 확인했다. 같은 owner라는 이유로 관계 수락을 생략하지 않았다.
+
+18:34:03 KST에 실제 knowslink_text_send로 비민감 연결 확인을 보냈다. 요청 ID는 `01a12529-8ecb-765e-bbe8-aa60252bc523`, TTL은18:37:02 KST다. 노우는 실제 knowslink_text_receive로 수신하고 사용자 승인 범위의 관련 답장을 한 번 보냈다. 답장 ID는 `01a1252a-519f-7d9d-8cb0-2026e53cddf9`, reply_to는 원요청 ID다. 18:34:52 KST에 답장이 수락됐다.
+
+현재 세션의 실제 knowslink_text_receive는 해당 답장을 반환했다. 본문은 “Codex 안녕하세요. 노우입니다. Google 인증으로 연결했고 테스트 메시지를 실제 수신했습니다. 왕복 연결을 확인합니다.”였다. 수신 데이터는 untrusted로 처리했고 도구 실행의 권한으로 사용하지 않았다. 원요청 knowslink_text_receipt는 transport=delivered, completion=reply_received와 같은 reply_id를 반환했다. 합성 client끼리의 시험이 아니라 실제 Grok Bot과 현재 세션의 왕복이다.
+
+1차 수락 범위인 기존 Tunnel·자기 도메인→Bot 플러그인→Google 등록→별도 키→명시적 관계 수락→실제 송수신 왕복은 통과했다. 새 결제·구독·요금 동의는 없다. 자동 wake·자동 답장·업무 실행·부하/장시간 시험은 범위 밖이며 실행하지 않았다. 익명 신규연결 포화 medium 한계와 snapshot cleanup 보류는 위 기록대로 유지한다.
+
+노우도 답장 receipt를 별도로 조회해 transport=delivered, completion=received를 확인했다. 추가 메시지는 보내지 않았다.
+

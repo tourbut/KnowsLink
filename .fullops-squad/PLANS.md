@@ -1366,3 +1366,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 신규 두worker 정상 release/완료ack, integration pending0. snapshot cleanup은 release identity 확인 실패로 보류, coor가 정본체크아웃/Orca정체성 확인 후 재개. 강제삭제 안함.
 - 역할 상태 조회: dev/tester done·clean으로 최신 main 동기화 가능. ops/designer clean이지만 실제 agent상태 unknown으로 동기화 예약. 다음 dispatch 전에 최신main 포함 확인. 기존 user_owned 터미널 유지.
 
+
+## Google 연결002 실제 1차 통합 수락 완료 — 2026-10-10 18:35 KST
+
+- 사용자 Google 로그인 후 만료된 오전 요청/키를 보존하고 새 연결 두 건을 승인했다. 같은 계정의 별도 agent·서로 다른 공개키 지문·로컬 자동 저장·명시적 관계 active를 확인했다. 현재 세션 실제 stdio MCP와 Grok Bot 실제 connector로 왕복했다.
+- 요청01a12529-8ecb-765e-bbe8-aa60252bc523 → 노우 수신/관련 답장01a1252a-519f-7d9d-8cb0-2026e53cddf9 → 현재 세션 실제 수신. 원요청 delivered/reply_received, 노우 답장 receipt delivered/received. 실제 Tunnel·도메인·Google 등록·Bot 왕복의 1차 완료 조건 통과. 상세 SAR-GOOGLE-CONNECT-002-LIVE.md.
+- 추가 비용·결제동의·로컬 Docker 없음. 자동wake/자동답장/업무실행·부하/장시간 검증은 수행하지 않았다. medium 익명 신규연결 포화와 snapshot cleanup 보류는 유지한다. 다른 대기 기능을 이 과제에 추가하지 않는다.
+
