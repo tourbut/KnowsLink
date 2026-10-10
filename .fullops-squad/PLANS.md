@@ -1425,3 +1425,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - DEV 질문msg_b6a2f88e9a01에 reply msg_a2c713ebce83: 사용자 원요청에 Dots 설치·Google 인증이 포함되므로 같은 과제에서 최소 remote OAuth/MCP·도착신호 경로까지 구현한다. 기존 Google/relay 재사용과 기술 설계는 DEV 담당이다. 기능 단위 커밋으로 분리하되 최종 안정 후보에서 독립 QA한다. 기존 데이터 보존 additive migration만 필요성·복구/격리검증 근거를 남긴다. 실제 Dots 계정 접근 미확보는 최종 구현 검증 뒤 구체적인 사용자 단계로 구분한다. 질문 delivery_be624484287b 응답 후 ack 완료.
 
 - 사용자 2026-10-11 이슈 완료처리 요청: open 이슈 조회 결과 #1 한 건. 설치·Google 연결·실제 자동수신1차 수락 근거를 댓글6099406233에 남기고 state closed/state_reason completed read-back 확인했다. https://github.com/tourbut/KnowsLink/issues/1#issuecomment-6099406233. 초기 설치 이슈는 완료이며 Dots/SSE 신규 개발과 장시간/업데이트 검증까지 완료한 것으로 표시하지 않는다. 이슈 자동 모드는 활성화하지 않았다.
+
+- 중간 상태 조회에서 ctx_e4490c0d8bef projection은 live/working/in_progress·attention 없음·nextAction none이다. resource는 user_owned/user_takeover retained로 보고되어 강제 release/터미널 종료/진행 checkout 동기화는 하지 않는다. 정상 완료 메시지 대기를 유지하고 settlement 뒤 실제 ownership receipt에 따라 정리한다. GitHub 이슈1은 완료 댓글 원문과 closed/completed 재조회 및 open 목록0까지 확인했다.
+
+- DEV 최종 febd1282df2e84a29fa0a53834569e7b9cc028e2 / msg_cfc58c20032b / delivery_764a18b4d048 수신. exact SHA gate product-lint/test0, ERROR0/WARNING19/unavailable0·clean·구현자01a12678-994d-7680-a15c-83577943b52d 확인. 독립 tester QA/fixed SHA 리뷰 대기로 integration hold, ctx_e4490c0d8bef retain receipt 확인. coor에서 후보를 보존해 QA준비하며 main 운영반영은 독립검증 수락 후다. Dots actual app 등록 ID·실제 cloud OAuth/Events·스타일 desktop 시각 수락은 후속이다.
