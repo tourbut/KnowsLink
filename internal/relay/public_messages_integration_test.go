@@ -88,7 +88,7 @@ func TestPublicNodeProcesses(t *testing.T) {
 		t.Fatal("actual local process IDs", err, out)
 	}
 	t.Log(strings.TrimSpace(out))
-	expect(t, b.do("GET", "/home/receipts?agent="+a+"&id="+evidence.Request, nil), 200, "reply_received", evidence.Reply, "180", "자동 wake는 없습니다")
+	expect(t, b.do("GET", "/home/receipts?agent="+a+"&id="+evidence.Request, nil), 200, "reply_received", evidence.Reply, "180", "자동 답장은 없습니다")
 	s.mutateState(t, func(st *State) {
 		for _, m := range st.Messages {
 			if m.Receipt.Intent == publicTextIntent && (len(m.Envelope) > 0 || len(m.Inbox) > 0) {
