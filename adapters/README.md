@@ -219,7 +219,7 @@ MCP Command 환경은 `KNOWSLINK_MODE=public-node`, `KNOWSLINK_AGENT_FOLDER=/pri
 
 `knowslink_status`의 `autoReceive`로 상태를 확인한다. `state`(running/backoff/stopped/off), `lastSuccessAt`, `lastError`, `nextPollAt`, `lastReceivedId`, `pending`, `hostNotice`를 보여 준다. 비밀값과 text는 없다. `hostNotice:sent_unverified`는 알림을 보냈다는 뜻이다. Grok Bot이 화면에 표시했거나 노우의 턴을 시작했다는 뜻이 아니다.
 
-Grok Bot은 MCP 알림·외부 이벤트로 대화를 깨우는 공식 기능을 제공하지 않는다. 공식 무인 실행은 최소 5분 간격 routine과 Slack·GitHub 계정 통합 trigger뿐이다. 따라서 노우는 다음 대화나 사용자 요청에서 `knowslink_text_receive`로 보관된 메시지를 확인한다. 근거와 한계는 [D03 자동 수신 절](../.fullops-squad/docs/design-docs/architecture.md#자동-수신과-호스트-알림--sar-auto-receive-001-dev)을 따른다.
+Grok Bot은 MCP 알림·외부 이벤트로 대화를 깨우는 공식 기능을 제공하지 않는다. 공식 무인 실행은 최소 5분 간격 routine과 Slack·GitHub 계정 통합 trigger뿐이다. 기본 설정에서 노우는 다음 대화나 사용자 요청에서 `knowslink_text_receive`로 보관된 메시지를 확인한다. 선택형 [loopback wake](#선택형-grok-bot-loopback-wake--미문서화-gateway)를 켜면 새 메시지 ID를 노우 대화에 알릴 수 있다. 근거와 한계는 [D03 자동 수신 절](../.fullops-squad/docs/design-docs/architecture.md#자동-수신과-호스트-알림--sar-auto-receive-001-dev)을 따른다.
 
 Command MCP process가 대화 사이에도 살아 있는지는 공식 문서에 없다. 대화가 없을 때도 수신하려면 Bot 컴퓨터에서 상시 watcher를 실행한다. MCP와 같은 inbox를 사용한다.
 
@@ -228,6 +228,52 @@ nohup /workspace/.knowslink/node/bin/node /workspace/.knowslink/knowslink/dist/p
 ```
 
 watcher 출력에는 ID·발신자·대기 수만 있다. 같은 폴더에 MCP 자동 수신과 watcher가 함께 돌면 각 process가 10s마다 pull한다. 중복 표시는 ID로 막는다. 재시작 뒤에도 미확인 메시지는 inbox에 남는다. 읽은 메시지는 원문 없는 표시만 24h 남는다.
+
+### 선택형 Grok Bot loopback wake — 미문서화 gateway
+
+> 경고: 이 기능은 Grok Bot의 미문서화 내부 API를 사용한다. 업데이트 뒤 route·파일 경로가 바뀔 수 있다. port `1340`을 공개하거나 SSH tunnel·Tailscale로 외부에 열지 않는다. gateway token을 출력·복사·채팅·issue에 넣지 않는다.
+
+지원 상태는 다음과 같다(2026-10-10 확인).
+
+| 항목 | 상태 | 근거 |
+|---|---|---|
+| 외부/컴퓨터에서 노우 대화 wake | 공식 지원 없음 | Cursor staff Colin(Community Support Engineer)의 [2026-08-18 답변](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260): “Wake mechanics is an area we're working on” |
+| Bot 컴퓨터 loopback gateway `127.0.0.1:1340`, `/home/box/sand-data/gateway.json`의 `token`, `POST /api/listAgents`, `POST /api/sendPrompt {agentId,prompt}` | 미문서화. staff가 “undocumented” workaround로 연결 | 커뮤니티 사용자 adam91holt의 [2026-08-12 글](https://forum.cursor.com/t/grok-bot-can-i-send-it-a-message-from-outside/168199/8): live 설치에서 두 route를 시험했다고 보고 |
+| 본인 Bot 컴퓨터의 gateway 존재·token 필드·응답 코드·노우 턴 시작 | 실제 미검증 | DEV는 Bot 컴퓨터에 접근하지 않았다. 아래 확인 명령으로 owner 환경에서 확인한다 |
+| 수신 본문을 노우 prompt로 직접 전달 | 사용하지 않음 | `sendPrompt`는 사용자 권한 입력이다. 받은 text를 넣으면 신뢰하지 않는 지시가 사용자 지시로 바뀐다 |
+
+동작은 다음과 같다. 기본은 off다.
+
+- watcher 또는 MCP 자동 수신 loop가 메시지를 inbox에 저장한 뒤, 아직 알리지 않은 미확인 ID를 모아 `sendPrompt`를 한 번 호출한다. 대상은 `KNOWSLINK_GROK_WAKE_AGENT`의 agent UUID 하나다. 주소는 `127.0.0.1`로 고정이다.
+- prompt는 고정 문장과 검증한 ID·대기 수만 담는다. 노우에게 `knowslink_text_receive`로 untrusted data를 표시하라고 요청한다. 받은 text의 지시 실행·다른 도구 실행·사용자 승인 없는 답장을 금지한다. 받은 text·발신자 이름은 넣지 않는다.
+- token은 매번 gateway 파일에서 읽고 `Authorization: Bearer` header로 loopback에만 보낸다. 상태·marker·로그·MCP 응답에 넣지 않는다. 응답 본문은 읽지 않는다.
+- 결과는 `<연결 폴더>/inbox/<id>.wake`(0600)에 `{state,lastAt,lastError}`로 남는다. MCP에서는 `knowslink_status.autoReceive.hostWake`로 보인다. `accepted_unverified`는 gateway가 HTTP 2xx로 받았다는 뜻이다. 노우가 읽었거나 답했다는 뜻이 아니다.
+- 연결 거절·token 파일 없음은 `retry`다. 다음 loop(10s)에 다시 알린다. 4xx는 `rejected`, 5xx·응답 없음·10s timeout은 `uncertain`이다. 두 상태는 중복 prompt를 막기 위해 자동 재전송하지 않는다. 메시지는 inbox에 남는다.
+- 같은 ID는 재lease·재시작·여러 process에서도 한 번만 알린다. marker는 24h 뒤 정리된다. 그때까지 읽지 않은 메시지는 다시 한 번 알린다.
+- 노우 턴은 사용자의 기존 Grok Bot 사용량을 쓴다. 새 서비스·포트·과금 설정은 없다.
+
+설치와 활성화는 owner가 Bot 컴퓨터 터미널에서 한 번 실행한다. 앱 화면 설정은 바꾸지 않는다.
+
+1. 이 후보로 준비물을 갱신한다. KnowsLink checkout에서 후보 SHA를 checkout하고 `sh scripts/install_bot_mcp.sh`를 실행한다. 결과: `/workspace/.knowslink/knowslink/dist/plugin.js`가 교체된다.
+2. gateway와 agent ID를 읽기 전용으로 확인한다. prompt는 보내지 않는다.
+
+   ```sh
+   /workspace/.knowslink/node/bin/node /workspace/.knowslink/knowslink/dist/plugin.js wake-check
+   ```
+
+   결과: `{"state":"ok","agentIds":[...]}`. 응답의 UUID만 출력한다. 이름·token은 출력하지 않는다. `gateway_unreachable`·`gateway_token_unavailable`·`gateway HTTP 401`이면 이 기능을 사용할 수 없다. 그대로 보고한다.
+3. 노우 대화의 agent ID를 고른다. 같은 명령에 `KNOWSLINK_GROK_WAKE_AGENT=<UUID>`를 붙여 `"configuredListed":true`를 확인한다.
+4. 기존 watcher를 멈추고 wake 설정으로 다시 시작한다.
+
+   ```sh
+   pkill -f 'plugin.js watch' ; KNOWSLINK_GROK_WAKE_AGENT=<UUID> nohup /workspace/.knowslink/node/bin/node /workspace/.knowslink/knowslink/dist/plugin.js watch <연결 폴더> >> <연결 폴더>/watch.log 2>&1 &
+   ```
+
+5. 상대 agent가 연결 확인 text를 보낸다. 그 송신 ID로 `<연결 폴더>/inbox/<ID>.wake`의 `state`를 확인한다. 노우 대화에 doorbell prompt가 나타나고 노우가 같은 ID를 표시했는지를 따로 확인한다.
+
+port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEWAY_FILE`(절대경로)로 바꾼다. 형식이 틀린 설정은 `invalid_config`로 wake만 멈추고 자동 수신은 계속한다. 중지는 `KNOWSLINK_GROK_WAKE_AGENT` 없이 watcher를 다시 시작한다. MCP Command 환경에도 같은 변수를 넣을 수 있지만 watcher 하나로 충분하다.
+
+한계: gateway가 꺼진 동안 같은 컴퓨터의 다른 process가 port를 점유하면 token을 받을 수 있다. Bot 컴퓨터를 owner 단독으로 사용하는 경우에만 켠다. 컴퓨터 Update/Reset은 watcher와 준비물을 지울 수 있다. 그 뒤 1–4단계를 다시 실행한다.
 
 불확실한 송신은 같은 key·같은 내용으로 재시도한다. 중복은 receipt만 반환한다. idempotency_conflict는 이전 내용을 확인하고 별도 새 요청에는 새 key를 사용한다. expired·오프라인은 클라이언트/관계를 확인한 뒤 새 요청을 명시 송신한다. invalid_auth/invalid_signature는 현재 연결·키·지문을 확인한다. capacity/rate_limited는 성공이 아니며 retry_at 뒤 수동으로 재시도한다. 철회된 옛 요청/세대는 새 수락으로 복구되지 않는다.
 

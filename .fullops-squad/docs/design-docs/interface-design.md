@@ -235,3 +235,7 @@ device proof 바이트는 `KNOWSLINK-DEVICE\0token\0client\0kid\0public` UTF-8�
 - 로컬 inbox는 `<KNOWSLINK_AGENT_FOLDER>/inbox/`다. private ACL/0700 폴더에 `<id>.json`(0600)과 읽음 표시 `<id>.read`를 둔다.
 - CLI `node dist/plugin.js watch <폴더>`(또는 `dist/text.js watch`)는 같은 loop를 상시 실행한다. stdout에는 `{event,id,from,pending}` 한 줄만 쓴다. CLI `receive`도 inbox를 먼저 읽는다.
 - 환경 `KNOWSLINK_AUTO_RECEIVE=off`는 MCP 자동 loop만 끈다. 수동 도구는 그대로 동작한다.
+- 선택형 loopback wake(attempt 0305914f, 기본 off): 환경 `KNOWSLINK_GROK_WAKE_AGENT=<UUID>`, 선택 `KNOWSLINK_GROK_GATEWAY_PORT`(기본 `1340`), `KNOWSLINK_GROK_GATEWAY_FILE`(절대경로, 기본 `/home/box/sand-data/gateway.json`, JSON의 `token`). 호출은 `POST http://127.0.0.1:<port>/api/sendPrompt`, header `Authorization: Bearer <token>`, 본문 `{agentId,prompt}`다. redirect는 따르지 않는다. timeout은 10s다. 응답 본문은 읽지 않는다. 이 route는 미문서화 커뮤니티 보고이며 vendor 계약이 아니다.
+- prompt는 고정 문장 `KnowsLink automatic receive: <N> unread message(s) in the local inbox (new IDs: <최대 10개 UUID>). ...`이다. 받은 text·발신자를 넣지 않는다.
+- `autoReceive.hostWake`는 `{state:off|invalid_config|idle|accepted_unverified|retry|rejected|uncertain,lastAt,lastError}`다. `lastError`는 `gateway_unreachable`, `gateway_token_unavailable`, `gateway_no_response`, `gateway HTTP <code>`, `failed` 중 하나다. 같은 값이 `<inbox>/<id>.wake`(0600)에 ID별로 남는다. retry만 marker를 지우고 다음 loop에서 다시 보낸다.
+- CLI `node dist/plugin.js wake-check`는 `POST /api/listAgents {}`만 호출한다. 출력은 `{state:"ok",agentIds,configuredAgent,configuredListed}` 또는 `{state:"failed"|"invalid_config",error?}`이며 실패는 exit 1이다. token·이름·기타 응답 필드는 출력하지 않는다.

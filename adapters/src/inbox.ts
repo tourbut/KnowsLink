@@ -9,6 +9,7 @@ import {
   writeFile,
 } from "node:fs/promises";
 import { join } from "node:path";
+import { GrokWake, type WakeResult } from "./grok-wake.js";
 import { privateDirectory, privatePath } from "./private-files.js";
 import type { ReceivedText, TextTransport } from "./text.js";
 
@@ -50,6 +51,25 @@ export class Inbox {
     await rename(tmp, file);
     return true;
   }
+  // Wake marker: exclusive creation is the claim, so MCP and watcher processes never ring the same ID twice.
+  async claimWake(id: string): Promise<boolean> {
+    try {
+      await (await open(join(this.dir, `${id}.wake`), "wx", 0o600)).close();
+      return true;
+    } catch (e) {
+      if ((e as NodeJS.ErrnoException).code === "EEXIST") return false;
+      throw e;
+    }
+  }
+  releaseWake(id: string): Promise<void> {
+    return rm(join(this.dir, `${id}.wake`), { force: true });
+  }
+  // The marker keeps the per-ID result (no text or token) so the owner can match a sender's message ID to its wake.
+  markWake(id: string, result: object): Promise<void> {
+    return writeFile(join(this.dir, `${id}.wake`), JSON.stringify(result), {
+      mode: 0o600,
+    });
+  }
   async pending(): Promise<string[]> {
     return (await readdir(this.dir))
       .filter((name) => /^[0-9a-f-]{36}\.json$/.test(name))
@@ -73,7 +93,7 @@ export class Inbox {
   }
   private async prune(): Promise<void> {
     for (const name of await readdir(this.dir)) {
-      if (!/\.(read|tmp)$/.test(name)) continue;
+      if (!/\.(read|tmp|wake)$/.test(name)) continue; // An unread message rings again after its wake marker ages out.
       const path = join(this.dir, name);
       const age = Date.now() - (await stat(path)).mtimeMs;
       if (age > (name.endsWith(".tmp") ? 3600000 : KEEP_READ_MS))
@@ -100,10 +120,16 @@ export type AutoStatus = {
   lastReceivedId?: string;
   // sent_unverified: the MCP notification left this process; it does not prove the host showed it or started a turn.
   hostNotice: "none" | "sent_unverified" | "failed";
+  // accepted_unverified: the gateway accepted the doorbell prompt; it does not prove the agent read or answered.
+  hostWake: {
+    state: "off" | "invalid_config" | "idle" | WakeResult;
+    lastAt?: string;
+    lastError?: string;
+  };
 };
 
 export class AutoReceiver {
-  readonly status: AutoStatus = { state: "running", hostNotice: "none" };
+  readonly status: AutoStatus;
   private chain: Promise<unknown> = Promise.resolve();
   private failures = 0;
   constructor(
@@ -113,8 +139,17 @@ export class AutoReceiver {
       m: ReceivedText,
       pending: number,
     ) => Promise<void>,
+    private readonly wake: GrokWake | "invalid" | null = null,
     private readonly idleMs = 10000,
-  ) {}
+  ) {
+    this.status = {
+      state: "running",
+      hostNotice: "none",
+      hostWake: {
+        state: !wake ? "off" : wake === "invalid" ? "invalid_config" : "idle",
+      },
+    };
+  }
   // Every relay pull in this process goes through here, so auto ticks and manual receive never lease in parallel.
   serial<T>(f: () => Promise<T>): Promise<T> {
     const run = this.chain.then(f, f);
@@ -160,6 +195,29 @@ export class AutoReceiver {
       if (retryAt)
         delay = Math.max(delay, Date.parse(retryAt) - Date.now() || 0);
     }
+    // Ring independently of relay health, so messages kept across a restart or a gateway outage still ring once.
+    if (this.wake instanceof GrokWake)
+      await this.ring(this.wake).catch(() => {
+        this.status.hostWake = { state: "retry", lastError: "failed" };
+      });
     this.schedule(delay);
+  }
+  // One doorbell per batch of unread IDs that have not rung yet.
+  private async ring(wake: GrokWake): Promise<void> {
+    const pending = (await this.inbox.pending()).map((n) => n.slice(0, 36));
+    const ids: string[] = [];
+    for (const id of pending) if (await this.inbox.claimWake(id)) ids.push(id);
+    if (!ids.length) return;
+    const r = await wake.ring(ids, pending.length);
+    const result = {
+      state: r.state,
+      lastAt: new Date().toISOString(),
+      lastError: r.error,
+    };
+    for (const id of ids)
+      await (r.state === "retry"
+        ? this.inbox.releaseWake(id)
+        : this.inbox.markWake(id, result));
+    this.status.hostWake = result;
   }
 }

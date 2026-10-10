@@ -7,6 +7,7 @@ import { Adapter, canonical, uuid7 } from "./core.js";
 import { relayBase } from "./core.js";
 import { privatePath } from "./private-files.js";
 import { AutoReceiver, Inbox } from "./inbox.js";
+import { GrokWake } from "./grok-wake.js";
 
 export type TextEnvelope = {
   v: "knowslink.text.v1";
@@ -213,6 +214,7 @@ export async function watch(folder: string): Promise<void> {
         }) + "\n",
       );
     },
+    GrokWake.fromEnv(process.env),
   );
   auto.start();
   setInterval(() => {}, 1 << 30);
