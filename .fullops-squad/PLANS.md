@@ -1399,3 +1399,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 2026-10-10 하위 위임 standard 지시를 setup.py dry-run 후 적용했다. test_level lite 유지. 설정만 main cc8145d/원격에 반영했다(후보 제품은 미통합). 부모별 동시 선택 작업2, 다음 배정부터 적용한다. 진행 중 tester/off 고정 snapshot과 인박스는 보존하고 최신 main 포함은 다음 dispatch 전 동기화한다. dev/ops/designer도 실제 idle·clean 확인 뒤 동기화한다.
 
 - standard 설정 동기화: 실제 dev 두 agent done·Git clean, ops/designer agent 없음·shell prompt·Git clean 확인 후 최신 main cc8145d를 병합했다. coor도 main 포함. tester는 active이므로 동기화 예약을 유지한다. main과 origin/main의 설정을 확인했다. 자동 수신 후보 af7627d의 고정 리뷰는 변경하지 않았다.
+
+- coor Windows 패키지 실패 해결: internal/relay/registry.json이 규칙 eol=lf와 달리 과거 CRLF로 남아 있었다. Git diff clean 확인 후 LF로만 정규화했고 제품 diff0이다. 같은 Node22 mcp.test.js와 package_plugin.py --verify 모두 exit0, zip hash a44fac276d9acd0581ba48298079c912dd453df050e2d509e7183068f5bb7205. 환경 복구이며 후보 코드 변경 없음. tester에게 msg_54da69476fc4로 전달했다.
