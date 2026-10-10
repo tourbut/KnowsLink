@@ -1389,3 +1389,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 후속 실제 착수: run_f7da648722cb/task_7d49871223d7/ctx_11e956bd1efa, terminal term_472040d0-46e1-4b27-abb7-e5f63f0d8edd. fresh Claude Opus5.5 high requested/effective 일치, turn_started와 새 정본 인박스 읽기 확인. 기존 완료 dispatch ctx_66524f2d47ca는 착수 확인 뒤 정상 release 처리한다.
 
 - 후속 DEV 최종 af7627d8cca54df55e856f48d226f78dbf2b9d0f / msg_67eb64af6a18를 수신했다. 독립 QA·snapshot 리뷰 대기로 integration hold(coor), DEV retain 후 delivery_b789eabe0e92를 ack했다. 구현자 실제 세션 c1bdb696-62e1-4806-84e2-5dc48623fad1. 실제 노우 설치·wake는 아직 미검증이다.
+
+- 독립 tester 착수: task_eb3c2a2da1f3 / ctx_030382e7ce30 / term_e9c116a2-ab24-4946-a58e-bdc210cb402a. Jev Grok4.7 high, fresh custom argv·ready 확인 뒤 tracked worker-start. 터미널에서 Grok4.7 high와 실제 작업 시작을 확인했다. 리뷰 고정af7627d, diff dda6130, 준비4e71cd6. 사용자 소유 기존 세션은 보존한다. 실제 Bot 설치 경로 답변은 대기다.
