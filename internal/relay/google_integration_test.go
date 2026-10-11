@@ -87,7 +87,7 @@ func TestGoogleHTTP(t *testing.T) {
 	}
 	expect(t, do("GET", "/", false), 200, "Google로 계속")
 	firstCallback := begin("/auth/google")
-	expect(t, do("GET", firstCallback, true), 200, "자기 홈으로 이동")
+	expect(t, do("GET", firstCallback, true), 200, "홈으로 이동")
 	first := cookies[sessionCookie].Value
 	if cookies[sessionCookie].SameSite != http.SameSiteStrictMode {
 		t.Fatal("session weakened")

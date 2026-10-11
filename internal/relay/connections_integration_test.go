@@ -151,7 +151,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		// Repeats from either side keep the pending invite and say so.
 		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invite-pending")
 		expect(t, a.do("POST", "/home/invites", url.Values{"agent": {two}, "target": {one}}), 303, "/home?n=invite-pending")
-		expect(t, a.do("GET", "/home?n=invite-pending", nil), 200, "이미 대기 중인 초대", "기한도 그대로", "받은 초대입니다")
+		expect(t, a.do("GET", "/home?n=invite-pending", nil), 200, "이미 대기 중인 초대", "기한도 그대로", "받은 초대")
 		s.mutateState(t, func(st *State) {
 			p := st.Pairs[pairID(one, two)]
 			if p.State != "pending" || p.Generation != 1 || !p.Exp.Equal(exp) || len(st.Pairs) != 1 {
@@ -310,7 +310,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			t.Fatal("record cap race", wins, len(live), len(revoked))
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", nil), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "자기 홈으로 돌아가기")
+		expect(t, a.do("POST", "/home/agents", nil), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "홈으로 돌아가기")
 		// Saturation never blocks cleanup, and revoking adds no record.
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {revoked[0]}}), 303)
