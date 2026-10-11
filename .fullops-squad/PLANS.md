@@ -1535,4 +1535,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - SAR-GROK-WEBHOOK-001-DEV: 사용자 메시지 없는 루틴 깨우기 후보 구현을 dev에 배정한다. 실제 대체 성공 전 기존 sendPrompt 유지. 새 세션 기본; 이전 과제와 목표·파일이 달라 재사용하지 않는다.
 - 이후 UI DEV 구현 → fixed-SHA tester QA/독립 리뷰·designer 직접 시각 검수 → main 병합/push → OPS 배포 및 실제 Bot webhook 시험 순서다. 무과금·로컬 Docker 금지·상태/증거 보존을 유지한다.
 - 기존 dev/designer 세션은 worker_done 종결 및 2026-10-11 현재 tui-idle=true, clean을 확인했다. user-owned 세션은 종료하지 않는다.
-`n- 모델 예외: designer Codex gpt-6.1-sol high 착수 ctx_cb02aaa948aa는 agent-hooks-review-prompt로 실패했다. 신뢰를 대신 승인하지 않고 기존 기록의 Claude Sonnet 5.5 high 대체를 사용한다. DEV는 동일 Codex trust 제약을 피하고 등록된 일반 기능 후보 Claude Opus 5.5 medium을 사용한다. 새 세션이며 추가 서비스 과금 없음.
+
+- 모델 예외: designer Codex gpt-6.1-sol high 착수 ctx_cb02aaa948aa는 agent-hooks-review-prompt로 실패했다. 신뢰를 대신 승인하지 않고 기존 기록의 Claude Sonnet 5.5 high 대체를 사용한다. DEV는 동일 Codex trust 제약을 피하고 등록된 일반 기능 후보 Claude Opus 5.5 medium을 사용한다. 새 세션이며 추가 서비스 과금 없음.
+
+- Run run_7176a2ad6ef1: designer task_fc89ee0cd35e/ctx_7fdc299d33a0/term_7990340d-d87c-4664-909c-8e9e5089beb8, dev task_a2eaa2bf9644/ctx_bcbfa2f4992f/term_654c49e4-752d-4664-a2c1-b5c4aae227e0. 두 세션 launch.effective·turn_started·지시서/원천 읽기 착수 확인. designer Codex 실패 터미널은 worker-release의 closed_agent_terminal로 정상 정리.
