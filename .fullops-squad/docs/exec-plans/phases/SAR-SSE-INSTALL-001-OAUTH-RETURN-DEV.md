@@ -44,9 +44,9 @@ Linux 서버의 기존 격리 경로를 사용했다. 고유 `/tmp/knowslink-oau
 
 | 검사 | 대상 | 결과 |
 |---|---|---|
-| `TestRemoteConsentBrowserReturn` 재현 | `9e9fccf`의 test와 기준 `remote_auth.go`를 합친 로컬 전용 commit `0359060` | exit1. Chrome 148이 위 CSP 위반을 보고했다. callback 미도착 |
-| `TestRemoteConsentBrowserReturn` 수정 | `9e9fccf8538d2b1090b18c24b88f3a54cc1643a2` | PASS. 합성 Google 재확인→승인→`https://callback.test/oauth` 도착, CSP 위반 0, state·iss·code 확인, PKCE token 교환 200, 사용한 consent 재방문 401 HTML 안내와 callback 미노출 |
-| 회귀 | 같은 SHA, `go test -race -tags integration` | `TestRemoteOAuthHTTP`, `TestGoogleHTTP`, `TestGoogleDeviceHTTP`, `TestTextEventsHTTP` PASS(종료코드 0) |
+| `TestRemoteConsentBrowserReturn` 재현 | `4960186`의 test와 기준 `remote_auth.go`를 합친 로컬 전용 commit `c9ecb77` | exit1. Chrome 148이 위 CSP 위반을 보고했다. callback 미도착 |
+| `TestRemoteConsentBrowserReturn` 수정 | `4960186a934a1da6fbf04b0c51391447f1bfed79` | PASS. 합성 Google 재확인→승인→`https://callback.test/oauth` 도착, CSP 위반 0, state·iss·code 확인, PKCE token 교환 200, 사용한 consent 재방문 401 HTML 안내와 callback 미노출 |
+| 회귀 | 같은 SHA, `go test -race -tags 'integration browser'` | `TestRemoteOAuthHTTP`, `TestGoogleHTTP`, `TestGoogleDeviceHTTP`, `TestTextEventsHTTP` PASS(종료코드 0) |
 | Windows unit | `go test ./internal/relay`, `go vet` (integration tag 포함) | 종료코드 0 |
 
 브라우저 검사는 `internal/relay/remote_browser_integration_test.go`에 있다. `go test -tags "integration browser"`와 `TEST_BROWSER`(Chromium 경로)로 실행한다. build tag로 분리하여 skip 표식을 쓰지 않는다. `TEST_BROWSER`가 없으면 실패한다. 드라이버 `internal/relay/testdata/consent_browser.mjs`는 Node 22 내장 WebSocket으로 CDP를 사용한다. 새 의존성은 없다. 하나의 TLS 테스트 서버가 Host로 relay·합성 Google·등록 호스트를 나눈다. Chromium `--host-resolver-rules`가 세 이름을 이 서버로 보낸다. 드라이버는 URL query를 출력하지 않는다. 기존 `TestRemoteOAuthHTTP`는 303 대신 반환 화면의 링크에서 callback을 읽도록 바꿨다.
@@ -56,6 +56,8 @@ Linux 서버의 기존 격리 경로를 사용했다. 고유 `/tmp/knowslink-oau
 1. Linux Chrome이 SSH 세션에서 첫 network navigation 때 OS keyring을 기다려 응답하지 않았다. `--password-store=basic`을 드라이버에 추가했다. 제품 결함이 아니다.
 2. Chromium이 callback host의 `/favicon.ico`도 요청하여 기록한 query를 덮었다. test가 `/oauth` 경로만 기록하도록 고쳤다.
 3. 원인 확인을 위해 DB 없는 scratch mock(동일 CSP·흐름)도 Windows Chrome과 Linux Chrome에서 실행했다. 303은 차단되고 반환 화면은 callback에 도착했다. mock은 레포에 넣지 않았다.
+
+실행 출력은 [browser-runs.log](../../evaluations/dev-checks/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV/browser-runs.log)에 있다. 이전 SHA `9e9fccf`에서도 같은 결과였다. 첫 등록 gate(`98c53e1`)는 product-lint·product-test 통과, ERROR ANTI-004(`t.Skip`)였다. 검사를 완화하지 않고 test를 build tag 파일로 옮겼다. WARNING SIZE-001(remote_auth.go 505줄, +2줄)은 기존 OAuth 경계 파일의 최소 수정이라 분할하지 않았다. PLANS.md 크기 경고는 coor 문서다. SLOP-004는 드라이버의 결과 JSON 출력 채널이며 디버그 잔재가 아니다.
 
 등록 lint/test의 최종 SHA 결과는 완료 보고와 Git 디렉터리의 `fullops-gate`가 정본이다.
 
