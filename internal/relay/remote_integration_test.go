@@ -209,6 +209,10 @@ func TestRemoteConsentBrowserReturn(t *testing.T) {
 			mu.Unlock()
 			http.Redirect(w, r, "https://example.com/auth/google/callback?code=fixture&state="+url.QueryEscape(r.URL.Query().Get("state")), 302)
 		case "callback.test":
+			if r.URL.Path != "/oauth" {
+				http.NotFound(w, r) // favicon
+				return
+			}
 			mu.Lock()
 			callback = r.URL.Query()
 			mu.Unlock()
