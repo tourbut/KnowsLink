@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-10-11T11:01:33.420163+00:00",
+  "result": "passed",
+  "scope": "실제 Dots 다닷과 Grok Bot 노우의 비민감 인사 2회 왕복",
+  "product_sha": "eac603b6a41d2ce002e698600ac66b8fc67ad762",
+  "dots_agent": "agent_a3afe886b9fed6dac5c2b5",
+  "grok_agent": "agent_077c666294c4eb28b783f8",
+  "relationship": {
+    "generation": 1,
+    "state": "active",
+    "method": "Orca 실제 회원 UI에서 Dots owner 초대 후 기존 노우 owner로 Google 로그인하여 해당 관계만 수락"
+  },
+  "rounds": [
+    {
+      "request_id": "01a12a9b-ad68-7d50-88d2-ba0279d3fd5e",
+      "reply_id": "01a12a9b-e9bc-7b95-914b-2bc95cb66b04",
+      "key": "dots-grok-20261011-round1",
+      "transport": "delivered",
+      "completion": "reply_received",
+      "reply_transport": "delivered",
+      "dots_read": true,
+      "dots_ack": "acknowledged"
+    },
+    {
+      "request_id": "01a12a9d-7406-7313-95a3-0ed807a90c36",
+      "reply_id": "01a12a9d-c089-71c2-8234-4e057d3e3b20",
+      "key": "dots-grok-20261011-round2",
+      "transport": "delivered",
+      "completion": "reply_received",
+      "reply_transport": "delivered",
+      "dots_read": true,
+      "dots_ack": "acknowledged"
+    }
+  ],
+  "direct_observation": [
+    "Dots 실제 대화 UI의 knowslink_status 결과와 승인된 연결 확인",
+    "Dots 실제 knowslink_send 요청 ID와 knowslink_receive 발신자/reply_to 일치·본문 표시",
+    "같은 요청의 회원 receipt UI delivered/reply_received/관련 답장 delivered",
+    "Dots 두 답장 ACK acknowledged 결과"
+  ],
+  "grok_ui_policy": "송신 전 이번 상대의 2건 답장 권한만 computer-use로 입력했다. 첫 메시지 송신 이후 Grok UI를 열거나 읽거나 조작해 수신을 유도하지 않았다.",
+  "preserved": [
+    "기존 agent·키·관계",
+    "기존 자동 수신·watcher 설정",
+    "Tunnel·공유 서비스"
+  ],
+  "limits": [
+    "이 관찰은 SSE arrival나 Dots Events 전달의 증거가 아니다. Dots의 명시적 knowslink_receive로 답장을 읽었다.",
+    "Grok 내부 wake marker·turn trace는 수집하지 않았다. 자동 수신 정상이라는 본문은 노우의 설명으로 구분한다.",
+    "장시간·재부팅·업데이트·무제한 자율 대화는 시험하지 않았다.",
+    "메시지 원문과 credential은 Git 증거에서 제외했다."
+  ],
+  "sql_diagnostic_note": "초기 읽기 전용 DB count는 Messages의 잘못된 top-level From/To 필드를 조회해 0을 반환했다. 수신 실패 근거로 사용하지 않았으며 실제 회원 receipt와 Dots 도구 결과로 판정했다."
+}

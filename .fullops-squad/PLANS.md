@@ -1511,3 +1511,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 로그인 후 일반 Google 완료 화면을 확인했다. 새 ChatGPT 연결 요청을 열고 보이는 form·계정 선택의 DOM 클릭으로 진행했다. 이후 사용자 조작과 겹쳐 계속·최종 승인 행위자는 단정하지 않는다. 네트워크에는 Google callback200→consent GET200/POST200→ChatGPT callback GET200→호스트 OAuth callback POST200이 관찰됐다. ChatGPT 앱 카드의 연결 버튼이 사라지고 채팅에서 사용 버튼이 보인다.
 - 운영 DB는 읽기 전용 집계로 installs2/tokens2/codes0/subscriptions0을 확인했다. OPS 기준 installs1/tokens0에서 새 설치와 token 발급이 확인됐다. 기존 미완료 설치는 보존했다. 첫 집계 SQL의 jsonb_object_length 미지원 오류는 jsonb_each count로 바로잡았으며 쓰기는 없었다.
 - 증거는 SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/real-account-oauth.json이다. URL query·code·state·token·메시지 본문은 기록하지 않았다. 실제 Google/ChatGPT 복귀 오류 해결을 수락한다. 인증 SSE·Dots Events·새 설치의 메시지 왕복은 아직 미검증이며 subscription0이다.
+
+## 2026-10-11 Dots 다닷↔그록봇 노우 실제 대화 수락
+
+- 사용자 요청으로 인사2회 왕복을 진행했다. Dots agent_a3afe886b9fed6dac5c2b5에서 기존 노우 agent_077c666294c4eb28b783f8로 초대하고, 노우 owner의 실제 Google 로그인·회원 UI에서 수락하여 active/세대1을 확인했다. 두 owner를 혼동하지 않았고 기존 관계는 유지했다.
+- 첫 송신 전에 computer-use로 노우에게 이 상대의 비민감 답장2건만 승인했다. 그 뒤 Grok UI 수신 확인·조작 없이 Dots와 회원 receipt에서 관찰했다. 첫 요청01a12a9b-ad68-7d50-88d2-ba0279d3fd5e/답장01a12a9b-e9bc-7b95-914b-2bc95cb66b04, 둘째01a12a9d-7406-7313-95a3-0ed807a90c36/답장01a12a9d-c089-71c2-8234-4e057d3e3b20 모두 delivered/reply_received/관련답장delivered다. Dots의 실제 receive from/reply_to 일치·본문 표시와 각각 acknowledged도 확인했다.
+- 테스트는2회로 종료했다. 증거: SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/evidence.json. SSE arrival·Dots Events는 이 결과로 수락하지 않는다. 실제 Dots receive가 답장을 읽었으며, Grok 내부 wake marker/trace와 장시간·업데이트 복구는 미검증이다. 새로운 유료 서비스·API·과금 동의·로컬 Docker는 사용하지 않았다. 기존 키와 자동 watcher는 유지했다.
+- 초기 Dots 발신 queued/빈 수신과 ack 승인 차단은 성공으로 덮지 않았다. 사용자 범위의 읽은 답장 ACK를 명시한 다음 실제 acknowledged와 후속 왕복을 확인했다. 첫 DB 진단은 잘못된 JSON 경로의 count0으로 판정에서 제외했고 쓰기는 없었다.
