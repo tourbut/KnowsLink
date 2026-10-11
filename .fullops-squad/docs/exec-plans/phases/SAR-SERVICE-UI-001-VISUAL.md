@@ -22,11 +22,11 @@ DEV가 구현한 회원 웹(고정 후보 `c7828b227b5715f7bdf02bff46bf9cf102a75
 3. `capture.py`로 29개 화면 × 3개 폭을 열어 DOM을 측정하고 PNG 149개(포커스 4개 포함)와 manifest를 저장했다.
 4. `keyboard.py`로 Tab·Enter·Space 입력과 렌더 색 대비를 측정했다.
 5. 홈·연결 관리·기기 승인·receipt·오류·로그인·확인 코드·gate·원격 동의 PNG를 직접 열어 판정했다.
-6. [시각 수락 보고](../../evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md)에 발견 11건과 D04 대조를 기록했다. D04에 수락 상태 한 절(14)을 추가했다.
+6. [시각 수락 보고](../../evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md)에 발견 12건과 D04 대조를 기록했다. D04에 수락 상태 한 절(14)을 추가했다.
 
 ## 결정
 
-- 제품 시각 수락: PASS. critical·high 0건. medium 1건(V-01 글자 링크 21px)·low 10건은 비차단 잔여다.
+- 제품 시각 수락: PASS. critical·high 0건. medium 1건(V-01 글자 링크 21px)·low 11건은 비차단 잔여다. tester의 low 3건(F1–F3)은 V-10·V-12·스크린 리더 미검증과 대조했다.
 - V-01은 좁은 DEV 수정을 권고한다. 수용 여부는 coor가 정한다.
 - 디자인 lint·테마 전환은 `project.md`가 미구성으로 정해 해당 없음이다.
 

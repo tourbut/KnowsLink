@@ -576,3 +576,5 @@ Jev context는 service-member-ui.md를 conflict로 표시했으나 구체적 이
 
 ## 고정 후보와 구현자 — 착수 정본
 고정 후보 c7828b227b5715f7bdf02bff46bf9cf102a758d9. 실제 구현자 Claude 세션5953ccd3-7f4f-4c5e-b63d-c02d36ee35ac, dispatch ctx_d554b501df04. DEV clean HEAD 일치 확인. 구현자 phase docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md의 시각 검수 환경 절을 먼저 읽는다. KNOWSLINK_UI_FIXTURE_DIR=<새 빈 폴더> go test ./internal/relay -run TestMemberUIFixtures -count=1로 29개 합성 HTML을 만든다. snapshot 자체에는 생성물을 쓰지 말고 고유 실행 clone 또는 별도 기록 역할의 동일 제품 바이트에서 생성한다. 기준 main8539ef5와 제품 diff를 확인한다. DEV는 agent 서버 안내문·짧은 날짜·200% 확대·실스크린리더 미적용/미검증을 기록했다. 수락 기준과 대조하고 차이의 영향과 후속을 남긴다. form golden의 추가 헤더 logout 1건은 명세4.2의 의도적 추가이며 실제 서버 보안 검사를 보존한다.
+
+- 추가(coor msg_9d7ebc9ef6b0 반영, 같은 attempt): tester의 low 3건(F1–F3)과 대조해 발견 V-12(low: 960px 미만에서 섹션 이동이 확인 필요 띠 위)를 추가했다. 합계는 medium 1건·low 11건이며 critical·high 0건과 PASS 판정은 그대로다. F1은 V-10과 같고 F2는 스크린 리더 미검증으로 남긴다. 위 완료 보고의 "low 10건"은 이 추가로 11건이 되었다.

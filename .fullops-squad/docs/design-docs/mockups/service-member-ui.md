@@ -403,4 +403,4 @@ DEV가 고정 SHA와 검수 환경을 제공하면 designer가 직접 확인한�
 
 ## 14. 구현 후 직접 시각 수락 기록
 
-고정 후보 `c7828b227b5715f7bdf02bff46bf9cf102a758d9`를 합성 fixture 29개 화면, Orca 내장 브라우저 1440·390·320에서 직접 검수했다. 판정은 시각 PASS이며 critical·high는 0건이다. D04 9절 44px 기준을 글자 링크가 채우지 못한 medium 1건(V-01)과 low 10건이 남는다. 실제 Google 로그인·실계정·200% 확대·스크린 리더는 미검증이다. 근거와 한계: [시각 수락 보고](../../evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md).
+고정 후보 `c7828b227b5715f7bdf02bff46bf9cf102a758d9`를 합성 fixture 29개 화면, Orca 내장 브라우저 1440·390·320에서 직접 검수했다. 판정은 시각 PASS이며 critical·high는 0건이다. D04 9절 44px 기준을 글자 링크가 채우지 못한 medium 1건(V-01)과 low 11건이 남는다. 실제 Google 로그인·실계정·200% 확대·스크린 리더는 미검증이다. 근거와 한계: [시각 수락 보고](../../evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md).
