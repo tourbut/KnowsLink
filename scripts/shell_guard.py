@@ -10,8 +10,9 @@ The only allowed recursive deletion is one standalone PowerShell command:
 for an existing path inside the workspace that is not the workspace, a drive root, .git, or a link.
 
 This is a pre-execution text check, not a complete security boundary: script files, aliases,
-generated code and deliberate obfuscation bypass it. Hook runners fail open when this script
-cannot start, so the hook command must keep resolving python3.
+generated code and deliberate obfuscation bypass it. Claude Code and Grok let the call run when
+this script cannot start (python3 unresolved, timeout); Codex blocks on exit 2 and treats any other failure as
+a non-blocking error. The hook command must keep resolving python3 and this file.
 """
 import json
 import os
@@ -27,7 +28,7 @@ LAUNCHER = re.compile(
     r'|(?<![\w-])(?:invoke-expression|iex|start-process|saps|eval|invoke-command|icm)(?=[\s"\'(]|$)', re.I)
 ENCODED = re.compile(r'(?<![\w-])-(?:e|ec|enc|encodedcommand)\s+[A-Za-z0-9+/=]{16,}', re.I)
 INTERPRETER = re.compile(r'(?<![\w.-])(?:python3?|py|node|deno|bun|ruby|perl)(?:\.exe)?(?=\s)', re.I)
-PROGRAM_DELETE = re.compile(r'rmtree|rmsync|rimraf|removeall|os\.remove|os\.unlink|\.unlink\(|rmdir\(|fs\.rm\b', re.I)
+PROGRAM_DELETE = re.compile(r'rmtree|rmsync|rmdirsync|unlinksync|rimraf|removeall|os\.remove|os\.unlink|\.unlink\(|rmdir\(|fs\.rm\b', re.I)
 DOTNET_DELETE = re.compile(r'\]::delete\(|\.delete\(\s*\$true', re.I)
 VERBS = {'rm', 'rmdir', 'rd', 'del', 'erase', 'ri', 'remove-item', 'unlink', 'shred', 'rimraf'}
 PREFIXES = {'sudo', 'doas', 'command', 'builtin', 'exec', 'nohup', 'time', 'env', 'xargs', 'nice', 'timeout',
@@ -97,7 +98,7 @@ def verb_of(words):
 
 def recursive(verb, args):
     for value, _ in args:
-        arg = value.lower()
+        arg = value.lower().split(':')[0]  # PowerShell switch value: -r:$true
         if arg in ('-r', '/s') or arg.startswith(('-rec', '--r')):
             return True
         if verb in ('rm', 'rmdir', 'rd', 'del', 'erase', 'ri', 'remove-item', 'shred') and re.fullmatch(r'-[a-z]{1,4}', arg) and 'r' in arg:
@@ -116,6 +117,19 @@ def targets(args):
         elif not value.startswith('-') and not re.fullmatch(r'/[A-Za-z]', value):
             out.append((value, single))
     return out
+
+
+def git_subcommand(args):
+    """First git argument that is not a global option or an option's value."""
+    skip = False
+    for value, _ in args:
+        if skip:
+            skip = False
+        elif value in ('-C', '-c', '--git-dir', '--work-tree', '--namespace', '--exec-path'):
+            skip = True
+        elif not value.startswith('-'):
+            return value
+    return None
 
 
 def same(a, b):
@@ -166,7 +180,7 @@ def check(command, root):
     if LAUNCHER.search(text) and DELETE_WORD.search(text):
         return ('cross-shell or indirect deletion: deletion text is passed to another shell or evaluator, '
                 'where the outer shell can expand variables to empty paths')
-    if DOTNET_DELETE.search(text) or (INTERPRETER.search(text) and PROGRAM_DELETE.search(text)):
+    if DOTNET_DELETE.search(text) or (INTERPRETER.search(text) and (PROGRAM_DELETE.search(text) or DELETE_WORD.search(text))):
         return 'programmatic deletion inside an inline command cannot be verified'
     commands = tokenize(text)
     if commands is None:
@@ -176,7 +190,7 @@ def check(command, root):
         args = words[at + 1:]
         if verb == 'find' and any(v.lower() in ('-delete', '-exec', '-execdir', '-ok') for v, _ in args) and DELETE_WORD.search(' '.join(v for v, _ in args)):
             return 'find with -delete/-exec deletion is an unverified recursive deletion'
-        if verb == 'git' and args and args[0][0] == 'clean' and not any(v in ('-n', '--dry-run') for v, _ in args):
+        if verb == 'git' and git_subcommand(args) == 'clean' and not any(v in ('-n', '--dry-run') for v, _ in args):
             return 'git clean deletes untracked files and evidence; use git clean -n to inspect'
         if verb == 'robocopy' and any(v.lower() in ('/mir', '/purge') for v, _ in args):
             return 'robocopy /MIR or /PURGE deletes destination files'

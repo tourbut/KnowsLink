@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 scripts/shell_guard.py",
+            "command": "python3 -c __import__('runpy').run_path(__import__('subprocess').check_output(['git','rev-parse','--show-toplevel'],text=True).strip()+'/scripts/shell_guard.py',run_name='__main__')",
             "timeout": 10
           }
         ]
