@@ -66,14 +66,15 @@ summary: Claude·Grok·Codex PreToolUse hook으로 교차 셸 삭제와 검증�
 - Claude Code: 이 세션에서 설정 저장 직후 차단을 확인했다. 새 세션은 시작할 때 읽는다. 병합 전에는 dev 체크아웃에만 있다. 다른 역할 체크아웃은 main 병합과 동기화 뒤 적용된다.
 - Grok: 새 세션이 시작할 때 읽는다. 실행 중인 Grok 세션은 `/hooks`의 Reload 또는 재시작이 필요하다. 워크트리 신뢰는 원본 `D:\workspace\KnowsLink` 신뢰로 충족된다. 실제 Grok 모델 세션의 tool call 차단은 비용 때문에 실행하지 않았다.
 - Codex: hook 신뢰 승인 전에는 실행되지 않는다. 사용자가 이 체크아웃에서 Codex를 시작해 hook 검토 화면의 Trust를 선택해야 한다. 신뢰 키에 파일 경로가 들어가므로 체크아웃마다 한 번 승인한다. 전역 설정은 수정하지 않았다.
-- hook 실행 실패(python3 미해결, timeout 10초 초과)는 세 CLI 모두 fail-open이다. python3는 Git Bash·pwsh·Windows PowerShell PATH에서 `Python313\python3.exe`로 해결됨을 확인했다.
+- hook 실행 실패(python3 미해결, timeout 10초 초과)는 Claude Code·Grok에서 셸 호출을 막지 않는다. Codex는 종료코드 2만 차단하고 그 밖의 실패는 비차단 오류다. python3는 Git Bash·pwsh·Windows PowerShell PATH에서 `Python313\python3.exe`로 해결됨을 확인했다.
 
 ## 알려진 우회와 한계
 
 - 문자열 검사이며 완전한 보안 경계가 아니다. 스크립트 파일 실행(`python cleanup.py`, `make <target>`), 별칭·함수 정의, 문자열 조합·인코딩 변형, 파일 쓰기 도구로 만든 스크립트는 우회한다. 셸 도구 이외(MCP·편집 도구)는 검사하지 않는다.
 - 경로 검사와 실제 실행 사이에는 시간 차가 있다(TOCTOU).
 - 오탐: 삭제 단어와 셸 실행 단어가 한 명령에 함께 있으면 거부한다. 예: 커밋 메시지·heredoc·`Remove-Item Env:X`와 `pwsh`의 조합. 커밋 메시지는 파일(`git commit -F`)로 전달한다.
-- Codex 프로젝트 hook은 session cwd 기준 상대경로라 하위 폴더에서 시작한 Codex에서는 실패하고 fail-open이다.
+- Codex 프로젝트 hook은 session cwd에서 실행된다. 상대경로 명령은 하위 폴더에서 python이 종료코드 2로 끝나 모든 셸 호출을 막았다(독립 검수 F4 실측, fail-open이 아니라 가용성 결함). 후속 수정(SAR-WINDOWS-SHELL-GUARD-001-FIX-DEV)으로 `.codex/hooks.json`이 `git rev-parse --show-toplevel` 루트의 guard를 호출한다. 큰따옴표·공백 없는 한 줄이라 `cmd /C` 인자 이스케이프 방식과 무관하다. Windows `cmd /C` 전용이며 repo·하위 폴더에서 deny/allow를 회귀로 확인했다. 실제 Codex 세션 실행은 hook 신뢰 승인이 필요해 확인하지 않았다.
+- 후속 수정 F1(`-r:$true`)·F2(인라인 인터프리터와 삭제 단어)·F3(`git -C . clean`)을 guard와 회귀에 반영했다. F5~F9는 잔여 한계로 남긴다(F7 오탐은 인라인 인터프리터와 삭제 단어 조합으로 늘었다).
 
 ## 실행하지 않은 검사
 

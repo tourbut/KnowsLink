@@ -75,6 +75,19 @@ DENY = [
     f'Remove-Item -LiteralPath "{TARGET}" -Recurse',
     f"Remove-Item -Path '{TARGET}' -Recurse",
     literal(TARGET, '-Recurse -Exclude x'),
+    # F1: switch value after a colon.
+    'Remove-Item -r:$true C:\\Users\\x\\Documents',
+    'Remove-Item -Recurse:$true -Force C:\\Users\\x',
+    # F2: inline interpreter running a shell or fs deletion.
+    'python -c "import os; os.system(\'rm -rf x\')"',
+    'python3 -c "import subprocess; subprocess.run([\'rm\', \'-rf\', \'x\'])"',
+    'node -e "require(\'child_process\').execSync(\'rm -rf x\')"',
+    'node -e "require(\'fs\').rmdirSync(\'x\')"',
+    'node -e "require(\'fs\').unlinkSync(\'x\')"',
+    # F3: git global options before clean.
+    'git -C . clean -fdx',
+    'git --no-pager clean -fdx',
+    'git -c core.x=1 -C sub clean -f',
 ]
 
 ALLOW = [
@@ -82,6 +95,12 @@ ALLOW = [
     'git log --oneline -5',
     'git rm --cached notes.txt',
     'git clean -n',
+    'git -C . clean -n',
+    'git --no-pager log -1',
+    'git -C . status',
+    'python3 -c "print(1)"',
+    'node -e "console.log(1)"',
+    'Get-ChildItem -r:$true C:\\x',
     'go test -race ./cmd/... ./internal/...',
     'go build -trimpath -o build/relay ./cmd/relay',
     'make lint',
@@ -135,6 +154,19 @@ class ShellGuardTest(unittest.TestCase):
         self.assertEqual(run({'tool_name': 'Bash', 'tool_input': {'command': ['bash', '-lc', 'rm -rf /']}})[0], 2)
         proc = subprocess.run([sys.executable, GUARD], input='not json', capture_output=True, text=True)
         self.assertEqual(proc.returncode, 2)
+
+    @unittest.skipUnless(os.name == 'nt', 'the Codex hook command is the Windows cmd /C form')
+    def test_codex_hook_from_subfolder(self):
+        # F4: Codex runs the hook with the session cwd, so the command must find the guard from a subfolder.
+        repo = os.path.dirname(os.path.dirname(GUARD))
+        with open(os.path.join(repo, '.codex', 'hooks.json'), encoding='utf-8') as f:
+            command = json.load(f)['hooks']['PreToolUse'][0]['hooks'][0]['command']
+        for text, code in (('git status', 0), ('rm -rf $X/', 2)):
+            for args in (command, ['cmd.exe', '/C', command]):
+                proc = subprocess.run(args, shell=isinstance(args, str), input=json.dumps(
+                    {'tool_name': 'Bash', 'tool_input': {'command': text}}), capture_output=True, text=True,
+                    cwd=os.path.join(repo, 'scripts'))
+                self.assertEqual(proc.returncode, code, (text, proc.stderr))
 
     def test_nothing_was_deleted(self):
         for path in (TARGET, LINK, OUTSIDE, os.path.join(WS, '.git')):
