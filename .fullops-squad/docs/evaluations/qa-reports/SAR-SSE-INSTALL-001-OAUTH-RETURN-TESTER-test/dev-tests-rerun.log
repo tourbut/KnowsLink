@@ -1,0 +1,13 @@
+=== RUN   TestGoogleDeviceHTTP
+--- PASS: TestGoogleDeviceHTTP (0.70s)
+=== RUN   TestGoogleHTTP
+--- PASS: TestGoogleHTTP (0.46s)
+=== RUN   TestRemoteConsentBrowserReturn
+    remote_browser_integration_test.go:92: browser: {"stage":"done","steps":["https://example.com/remote/consent/<id>","https://example.com/auth/google/callback","https://example.com/remote/consent/<id>","https://callback.test/oauth"],"csp":[]}
+--- PASS: TestRemoteConsentBrowserReturn (1.54s)
+=== RUN   TestRemoteOAuthHTTP
+--- PASS: TestRemoteOAuthHTTP (0.75s)
+=== RUN   TestTextEventsHTTP
+--- PASS: TestTextEventsHTTP (15.46s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	19.946s

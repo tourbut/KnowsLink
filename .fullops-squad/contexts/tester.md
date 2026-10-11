@@ -1,9 +1,9 @@
 ---
 title: tester 컨텍스트
 status: draft
-updated: 2026-10-10
+updated: 2026-10-11
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-GOOGLE-CONNECT-002-TESTER]
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-GOOGLE-CONNECT-002-TESTER, SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER]
 summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원, agent, 메시지 PS08–11 QA 결과를 기록한다"
 ---
 
@@ -63,3 +63,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 
 - 2026-10-10 SAR-GOOGLE-CONNECT-002-TESTER: 고정 후보 dbbe2f1 수락. 실제 cloudflared 26경로와 Node22 Windows 로그인 경계를 직접 확인했다.
 - test_public_config.sh는 Linux 전용(stat -c). Git Bash 경로 변환은 MSYS_NO_PATHCONV=1로 막는다. 실제 Google·Bot·왕복은 coor 후속. [리뷰](../docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md).
+- 2026-10-11 SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER: `eac603b` 승인 callback 복귀를 실제 Chromium·격리 PG·합성 Google/호스트로 독립 확인했다. 기준 handler는 form-action 위반으로 callback에 못 가고 수정본은 도착해 PKCE 교환 200이다.
+- 경계(만료·CSRF·계정 binding·한도·token 7종)는 안전하게 거부된다. 발견: 모든 실패가 같은 "만료" 문구(F1 medium), 반환 링크 24px(F2 low). 미해결 C/H 없음. 실Dots·실계정은 미검증이다.
+- Git Bash는 `/tmp/...` 인자를 Windows 경로로 바꾼다. 원격 경로를 넘기는 helper 호출에는 `MSYS_NO_PATHCONV=1`과 Windows 로컬 경로를 쓴다. 등록 `make`는 SHA 검사하는 shim으로 원격 클론에서 실행해 lint.py head를 맞췄다.

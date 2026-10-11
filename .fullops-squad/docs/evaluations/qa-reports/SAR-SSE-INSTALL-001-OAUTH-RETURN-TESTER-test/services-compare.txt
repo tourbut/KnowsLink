@@ -1,0 +1,27 @@
+--- before vs after (tester PG kept running by design)
+3a4
+> knowslink-tester-oauth001-d7e2c059 329e39c2e5f9
+diff_exit=1
+--- pre-existing services unchanged:
+identical
+knowslink-tester-oauth001-d7e2c059 Up 8 minutes 127.0.0.1:32791->5432/tcp
+clone
+dev-tests-rerun.log
+eac603b.bundle
+lint
+lint-install.log
+migration.log
+oauth_return_driver.mjs
+pgport.txt
+qa-run-full.log
+qa-run.log
+red-run.log
+repro
+services-after.txt
+services-before.txt
+services-with-tester-pg.txt
+shots
+shots-red
+zz_tester_oauth_return_integration_test.go
+
+EXIT=0
