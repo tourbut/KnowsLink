@@ -1,0 +1,45 @@
+{
+  "task_key": "SAR-SERVICE-UI-001-FIX-DEV",
+  "find_head": "5febcb355a175e89e6bc5ac87bfff42b6907e7db",
+  "base": "2e8b8b228568baa2d849831a0859063de55aa473",
+  "head": "295417acfdcd415ad0c768d164bd71dc07214ea9",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_dev.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+    ".fullops-squad/handovers/to_ops.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/rules/common/README.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md"
+  ],
+  "recall": 0.5,
+  "precision": 0.167,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
