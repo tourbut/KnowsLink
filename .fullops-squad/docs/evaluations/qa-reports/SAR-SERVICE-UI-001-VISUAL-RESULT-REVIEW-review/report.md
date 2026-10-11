@@ -1,3 +1,14 @@
+---
+title: 회원 UI 최초 시각 결과 리뷰 중단 기록
+status: draft
+updated: 2026-10-11
+owner: coor
+tasks: [SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW]
+summary: 구현자 세션 ID 오류로 중단한 최초 리뷰의 원본 템플릿을 보존하고 수락한 후속 리뷰를 연결한다
+---
+
+이 리뷰는 실제 구현자 ID를 이전 designer 세션으로 잘못 지정해 중단했다. 수락되지 않았다. 원본 템플릿을 아래 보존한다. 실제 세션8c3c9e7d의 고정 결과를 독립 검토한 [후속 REVIEW-2](../SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md)가 이를 supersede한다. 이 front matter는 후속 DEV lint에서 발견된 DOC-003을 수정한 운영 기록이며 제품 바이트는 바꾸지 않는다.
+
 # SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW 리뷰
 
 - 검토자 / CLI / 모델:
