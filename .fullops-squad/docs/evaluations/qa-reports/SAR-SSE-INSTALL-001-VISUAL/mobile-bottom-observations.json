@@ -1,0 +1,138 @@
+[
+  {
+    "case": "mobile-login-long-bottom",
+    "fixture": "login-long.html",
+    "metrics": {
+      "url": "file:///C:/Users/shin/orca/workspaces/KnowsLink/designer/.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/login-long.html",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "scrollY": 142,
+      "dpr": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "scrollHeight": 986,
+      "bodyStyle": {
+        "font": "18px system-ui",
+        "color": "rgb(23, 35, 43)",
+        "background": "rgb(245, 247, 248)",
+        "overflowWrap": "anywhere"
+      },
+      "buttons": [
+        {
+          "text": "Google 계정 확인",
+          "x": 20,
+          "y": 700.21875,
+          "width": 171.765625,
+          "height": 52,
+          "visible": true
+        }
+      ],
+      "links": [
+        {
+          "text": "내 agent 관리",
+          "y": 760.21875
+        }
+      ],
+      "text": "원격 호스트 연결\n\n클라이언트: Synthetic Work client\n\n반환 주소: https://client.example/oauth/callback/syntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegment?fixture=long&review=visual\n\n이 설치에 새 agent와 키를 만듭니다. 원격 서명용 개인 키와 구독 webhook 비밀값은 KnowsLink 서버의 비공개 DB에 보관합니다. 기존 로컬 개인 키는 가져오지 않습니다. 기존 agent와 관계는 유지됩니다. 연결한 상대에게 명시적으로 텍스트를 보내고 받을 수 있습니다. 이벤트는 도착 신호만 전송합니다. 자동 답장 권한은 부여하지 않습니다.\n\nGoogle 계정 확인\n내 agent 관리"
+    },
+    "snapshot": {
+      "origin": "file:///C:/Users/shin/orca/workspaces/KnowsLink/designer/.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/login-long.html",
+      "refs": {
+        "e1": {
+          "name": "원격 호스트 연결",
+          "role": "heading"
+        },
+        "e2": {
+          "name": "내 agent 관리",
+          "role": "link"
+        },
+        "e3": {
+          "name": "Google 계정 확인",
+          "role": "button"
+        }
+      },
+      "snapshot": "- heading \"원격 호스트 연결\" [level=1, ref=e1]\n- paragraph\n  - StaticText \"클라이언트: Synthetic Work client\"\n- paragraph\n  - StaticText \"반환 주소: https://client.example/oauth/callback/syntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegment?fixture=long&review=visual\"\n- paragraph\n  - StaticText \"이 설치에 새 agent와 키를 만듭니다. 원격 서명용 개인 키와 구독 webhook 비밀값은 KnowsLink 서버의 비공개 DB에 보관합니다. 기존 로컬 개인 키는 가져오지 않습니다. 기존 agent와 관계는 유지됩니다. 연결한 상대에게 명시적으로 텍스트를 보내고 받을 수 있습니다. 이벤트는 도착 신호만 전송합니다. 자동 답장 권한은 부여하지 않습니다.\"\n- form\n  - button \"Google 계정 확인\" [ref=e3]\n- link \"내 agent 관리\" [ref=e2]",
+      "browserPageId": "c1de83f5-2c16-4f6c-ad74-0e508af70166"
+    },
+    "capture": {
+      "path": "mobile-login-long-bottom.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "18ac1f794fd1bf12a622119756ff527fa5cdbf41c23544bb898ce81bc41e2dd1"
+    }
+  },
+  {
+    "case": "mobile-consent-long-bottom",
+    "fixture": "consent-long.html",
+    "metrics": {
+      "url": "file:///C:/Users/shin/orca/workspaces/KnowsLink/designer/.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/consent-long.html",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "scrollY": 142,
+      "dpr": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "scrollHeight": 986,
+      "bodyStyle": {
+        "font": "18px system-ui",
+        "color": "rgb(23, 35, 43)",
+        "background": "rgb(245, 247, 248)",
+        "overflowWrap": "anywhere"
+      },
+      "buttons": [
+        {
+          "text": "이 설치 연결 승인",
+          "x": 20,
+          "y": 700.21875,
+          "width": 172.984375,
+          "height": 52,
+          "visible": true
+        },
+        {
+          "text": "취소",
+          "x": 192.984375,
+          "y": 700.21875,
+          "width": 64,
+          "height": 52,
+          "visible": true
+        }
+      ],
+      "links": [
+        {
+          "text": "내 agent 관리",
+          "y": 760.21875
+        }
+      ],
+      "text": "원격 호스트 연결\n\n클라이언트: Synthetic Work client\n\n반환 주소: https://client.example/oauth/callback/syntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegment?fixture=long&review=visual\n\n이 설치에 새 agent와 키를 만듭니다. 원격 서명용 개인 키와 구독 webhook 비밀값은 KnowsLink 서버의 비공개 DB에 보관합니다. 기존 로컬 개인 키는 가져오지 않습니다. 기존 agent와 관계는 유지됩니다. 연결한 상대에게 명시적으로 텍스트를 보내고 받을 수 있습니다. 이벤트는 도착 신호만 전송합니다. 자동 답장 권한은 부여하지 않습니다.\n\n이 설치 연결 승인취소\n내 agent 관리"
+    },
+    "snapshot": {
+      "origin": "file:///C:/Users/shin/orca/workspaces/KnowsLink/designer/.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/consent-long.html",
+      "refs": {
+        "e1": {
+          "name": "원격 호스트 연결",
+          "role": "heading"
+        },
+        "e2": {
+          "name": "내 agent 관리",
+          "role": "link"
+        },
+        "e3": {
+          "name": "이 설치 연결 승인",
+          "role": "button"
+        },
+        "e4": {
+          "name": "취소",
+          "role": "button"
+        }
+      },
+      "snapshot": "- heading \"원격 호스트 연결\" [level=1, ref=e1]\n- paragraph\n  - StaticText \"클라이언트: Synthetic Work client\"\n- paragraph\n  - StaticText \"반환 주소: https://client.example/oauth/callback/syntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegmentsyntheticcallbacksegment?fixture=long&review=visual\"\n- paragraph\n  - StaticText \"이 설치에 새 agent와 키를 만듭니다. 원격 서명용 개인 키와 구독 webhook 비밀값은 KnowsLink 서버의 비공개 DB에 보관합니다. 기존 로컬 개인 키는 가져오지 않습니다. 기존 agent와 관계는 유지됩니다. 연결한 상대에게 명시적으로 텍스트를 보내고 받을 수 있습니다. 이벤트는 도착 신호만 전송합니다. 자동 답장 권한은 부여하지 않습니다.\"\n- form\n  - button \"이 설치 연결 승인\" [ref=e3]\n  - button \"취소\" [ref=e4]\n- link \"내 agent 관리\" [ref=e2]",
+      "browserPageId": "c1de83f5-2c16-4f6c-ad74-0e508af70166"
+    },
+    "capture": {
+      "path": "mobile-consent-long-bottom.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "0b7d952d704e1ebe6d7d34b4a3dd4793ea9a890bb3dad3ebc627f9815d7a1c68"
+    }
+  }
+]

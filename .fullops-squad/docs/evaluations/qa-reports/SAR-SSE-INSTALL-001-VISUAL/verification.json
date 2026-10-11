@@ -1,0 +1,100 @@
+{
+  "utc": "2026-10-10T17:09:10.638365+00:00",
+  "source_sha": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+  "worker_record_head": "cdcc2a9b858fdec73fe487e06c9f874ef3b560b6",
+  "commands": [
+    {
+      "args": [
+        "python3",
+        "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\designer\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-SSE-INSTALL-001-VISUAL\\build_fixtures.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "go",
+        "run",
+        "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\designer\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-SSE-INSTALL-001-VISUAL\\render_check.go"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "diff",
+        "--quiet",
+        "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+        "HEAD",
+        "--",
+        "internal",
+        "cmd",
+        "adapters",
+        "scripts",
+        "db",
+        "Makefile",
+        "go.mod",
+        "go.sum"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "checks": {
+    "independent_session": true,
+    "Go_template_byte_equivalence_4_fixtures": true,
+    "no_product_diff": true,
+    "fixture_and_PNG_hashes_match": true,
+    "actual_viewport_PNG_dimensions_match": true,
+    "horizontal_overflow_absent_all_10_observations": true,
+    "all_buttons_height_52_and_within_content_width": true,
+    "long_mobile_buttons_visible_after_scroll": true
+  },
+  "capture_runs": [
+    {
+      "command": "python3 capture.py desktop",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 capture.py mobile (initial)",
+      "exit_code": 1,
+      "reason": "Full screenshot was375px, not390px: scrollbar exclusion. AssertionError at full_capture width; not a product defect."
+    },
+    {
+      "command": "python3 capture.py mobile (corrected clientWidth assertion)",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 capture.py mobile bottom",
+      "exit_code": 0
+    }
+  ],
+  "visual_evidence_files": [
+    "desktop-consent-long.png",
+    "desktop-consent.png",
+    "desktop-login-long.png",
+    "desktop-login.png",
+    "mobile-consent-long-bottom.png",
+    "mobile-consent-long-full.png",
+    "mobile-consent-long.png",
+    "mobile-consent.png",
+    "mobile-login-long-bottom.png",
+    "mobile-login-long-full.png",
+    "mobile-login-long.png",
+    "mobile-login.png"
+  ]
+}
