@@ -1,9 +1,9 @@
 {
   "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS",
   "role": "ops",
-  "head": "82da8711fedce42aa1ba495a935fb1a926c0a2a6",
+  "head": "bbba78bef50a35a3a3f572a22613ed63f1e36069",
   "attempt": "f5a42297abfc45748fe3746cb2fc975e",
-  "instruction_sha256": "be15eef671e10c90717361a910b14aa2a06f4b4c08e67acd53919e9cbcc1ffae",
+  "instruction_sha256": "045801f97209c6a811d7c662a93111a91011705f6c2491ff53295de7b4747a09",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
@@ -15,7 +15,7 @@
     "parser": "search-map-v1",
     "input_chars": 24000
   },
-  "input_sha256": "563fb50f83065dc2f94a14261342433b0349f1016d00f13cb6a90ba963b1f77c",
+  "input_sha256": "9174fdce99d8a3fb9af5810a9ea5cf194f73ca65cc3e5e66f5320ab8d7bafa1f",
   "version": "jev-find-v2",
   "requested_model": "~typesafe/jev-latest",
   "files": 83,
@@ -38,7 +38,7 @@
     {
       "path": "deploy/knowslink/verify.py",
       "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives. | run(*command)  | fetch(scheme, host, path, headers=None, port=None)  | shared_state()  | baseline()  | regression()  | local()  | public() ",
-      "probability": 0.08,
+      "probability": 0.09,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 1
@@ -46,7 +46,7 @@
     {
       "path": "internal/relay/testdata/consent_browser.mjs",
       "summary": "Drives a real Chromium through synthetic remote consent with Node's built-in WebSocket; prints no URL query.",
-      "probability": 0.08,
+      "probability": 0.060000000000000005,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 2
@@ -62,36 +62,52 @@
     {
       "path": "internal/relay/device.go",
       "summary": "Client-started connections bind Google consent to a public key; only the originating private key can collect credentials.",
-      "probability": 0.03,
+      "probability": 0.02,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 4
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "summary": "",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 5
+    },
+    {
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 6
     }
   ],
   "existence": {
-    "found_probability": 0.81,
+    "found_probability": 0.79,
     "status": "found",
     "basis": "metadata map only; not repository absence"
   },
   "truncated": false,
   "usage": {
-    "input_tokens": 5751,
+    "input_tokens": 5764,
     "output_tokens": 867,
-    "cost": 0.000241542,
-    "known_cost": 0.000241542,
+    "cost": 0.000242088,
+    "known_cost": 0.000242088,
     "cost_status": "complete"
   },
-  "latency_seconds": 0.685,
+  "latency_seconds": 0.511,
   "error": null,
   "calls": [
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 5751,
+        "input_tokens": 5764,
         "output_tokens": 867,
-        "cost": 0.000241542
+        "cost": 0.000242088
       },
-      "latency_seconds": 0.685
+      "latency_seconds": 0.511
     }
   ],
   "semantic_search": true,
@@ -141,10 +157,8 @@
     "deploy/knowslink/access_trial_plan.py",
     "deploy/knowslink/test_public_config.sh",
     "deploy/knowslink/tunnel/config.yml.tmpl",
-    "deploy/knowslink/tunnel/public-ingress.yml",
     "go.mod",
     "go.sum",
-    "internal/config/config.go",
     "internal/database/db.go",
     "internal/database/models.go",
     "internal/database/relay.sql.go",
@@ -188,6 +202,6 @@
   "partial": false,
   "fallback": null,
   "input_partial": true,
-  "instruction_chars": 4567,
-  "elapsed_seconds": 2.121
+  "instruction_chars": 4666,
+  "elapsed_seconds": 11.38
 }

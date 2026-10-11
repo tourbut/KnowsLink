@@ -17,10 +17,10 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 1,
-        "product": 0
+        "implementation": 0.99,
+        "product": 0.01
       },
-      "confidence": 1
+      "confidence": 0.98
     },
     "role": {
       "choice": "ops",
@@ -32,35 +32,35 @@
       "confidence": 0.97
     },
     "docs": {
-      "D01": 0.15,
-      "D02": 0.12,
-      "D03": 0.18,
-      "D04": 0.14,
-      "D05": 0.14,
-      "D06": 0.13,
-      "D07": 0.12,
-      "D08": 0.14,
-      "D09": 0.14,
-      "D10": 0.31,
-      "D11": 0.24,
-      "D12": 0.9,
-      "D13": 0.85
+      "D01": 0.21,
+      "D02": 0.21,
+      "D03": 0.26,
+      "D04": 0.22,
+      "D05": 0.22,
+      "D06": 0.23,
+      "D07": 0.21,
+      "D08": 0.23,
+      "D09": 0.22,
+      "D10": 0.37,
+      "D11": 0.35,
+      "D12": 0.88,
+      "D13": 0.81
     }
   },
   "usage": {
-    "input_tokens": 2506,
+    "input_tokens": 2527,
     "output_tokens": 314,
-    "cost": 0.000105252
+    "cost": 0.000106134
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.738,
+  "latency_seconds": 0.495,
   "response_model": "typesafe/jev-1.13-20260917",
   "original_role": "ops",
   "original_route": "implementation",
-  "override_reason": "orca-agents.md의 ops 운영 배포 책임에 따른 독립 검수 후 기존 서버 최소 이행",
+  "override_reason": "project.md 배포·운영 책임, 독립 수락과 원격 main 통합 완료",
   "model": {
     "agent": "claude",
     "provider": "anthropic",
@@ -69,6 +69,15 @@
     "source": "only"
   },
   "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
-  "head": "1409bd61fd3b67e3802deac55eb7e31efba441dc",
-  "requires_packet": true
+  "head": "bbba78bef50a35a3a3f572a22613ed63f1e36069",
+  "requires_packet": true,
+  "attempt": "f5a42297abfc45748fe3746cb2fc975e",
+  "instruction_sha256": "045801f97209c6a811d7c662a93111a91011705f6c2491ff53295de7b4747a09",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "8858f1385ca1cbaba6ff71ab68b31cfe2591714f847d12b59838b762b6025e3b"
 }

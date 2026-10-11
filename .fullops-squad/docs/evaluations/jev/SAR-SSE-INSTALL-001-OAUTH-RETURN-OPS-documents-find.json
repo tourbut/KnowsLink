@@ -1,9 +1,9 @@
 {
   "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS",
   "role": "ops",
-  "head": "82da8711fedce42aa1ba495a935fb1a926c0a2a6",
+  "head": "bbba78bef50a35a3a3f572a22613ed63f1e36069",
   "attempt": "f5a42297abfc45748fe3746cb2fc975e",
-  "instruction_sha256": "be15eef671e10c90717361a910b14aa2a06f4b4c08e67acd53919e9cbcc1ffae",
+  "instruction_sha256": "045801f97209c6a811d7c662a93111a91011705f6c2491ff53295de7b4747a09",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
@@ -15,10 +15,10 @@
     "parser": "search-map-v1",
     "input_chars": 24000
   },
-  "input_sha256": "9780ae4388e30634b5a254e00d1ac5df7ae61ca6a3d5a149c1b40f9fe4cc1156",
+  "input_sha256": "4120790c53b64f06697311d68b8c60f961da0a417678ebbb75a47155281a2131",
   "version": "jev-find-v2",
   "requested_model": "~typesafe/jev-latest",
-  "files": 236,
+  "files": 238,
   "scope": "documents",
   "passes": [
     {
@@ -35,30 +35,30 @@
     },
     {
       "level": "file",
-      "options": 19
+      "options": 21
     }
   ],
   "candidates": [
     {
       "path": ".fullops-squad/contexts/ops.md",
       "summary": "ops 컨텍스트 — 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다 | ops 컨텍스트 | 2026-10-03 — SAR-DEPLOY-001-OPS | 2026-10-03 — 기록 마무리 재개 | 2026-10-03 — SAR-BETA-001-OPS",
-      "probability": 0.3,
+      "probability": 0.45,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
-      "summary": "SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 독립 리뷰 — DEV 최종 SHA eac603b의 OAuth 승인 callback 복귀 수정에 대한 고정 SHA 독립 리뷰. 미해결 critical/high 없음, medium 1·low 1 비차단 | SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 리뷰 | 검토 범위 | 발견 사항 | 검증 및 남은 제약",
-      "probability": 0.48,
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+      "summary": "SSE 운영 이행 기록의 독립 검토 — 고정 운영 기록의 배포·보존·검증 경계와 정본 연결을 검토한다 | 검토 결과 | 발견 사항과 한계 | 대화 미참조 인계 점검",
+      "probability": 0.42,
       "probability_scope": "batch",
       "batch_start": 74,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/docs/operations/ops-guide.md",
-      "summary": "운영자설명서 — 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다 | KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획 | SAR-SSE-INSTALL-001 운영 적용 결과 (2026-10-11, SAR-SSE-INSTALL-001-OPS) | SAR-SSE-INSTALL-001 SSE 운영 후보 | Remote OAuth·Cloud 설치",
-      "probability": 0.44,
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+      "summary": "SAR-SSE-INSTALL-001-OPS 운영 이행 실행 기록 — 수락 제품 121cde9를 기존 Linux 서버에 bundle로 최소 적용한 계획·순서·결과와 부모 후속 | SAR-SSE-INSTALL-001-OPS | 범위와 기준 | 순서와 결과 | 남은 일",
+      "probability": 0.5700000000000001,
       "probability_scope": "batch",
       "batch_start": 144,
       "batch_rank": 0
@@ -66,47 +66,47 @@
     {
       "path": ".fullops-squad/handovers/to_ops.md",
       "summary": "SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS — 독립 검수·main 수락 후 OAuth 브라우저 복귀 수정을 기존 서버에 보존 배포 — 독립 검수·main 수락 후 OAuth 브라우저 복귀 수정을 기존 서버에 보존 배포 | SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS — 검수된 OAuth 복귀 수정의 기존 서버 보존 배포 | 승인 범위와 보존 | 원천과 적용 기준 | 해야 할 일·소유권·완료 기준",
-      "probability": 0.87,
+      "probability": 0.8200000000000001,
       "probability_scope": "batch",
       "batch_start": 217,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/contexts/coor.md",
-      "summary": "coor 컨텍스트 — 조정 역할의 제품 수락·검수·운영 보류와 다음 착수 조건을 보존한다 | coor 컨텍스트 | AGENTS 로컬 코드 수락 — 2026-10-06",
-      "probability": 0.18000000000000002,
+      "path": ".fullops-squad/FULLOPS.md",
+      "summary": "FullOps Squad 하네스 지도 — FullOps 규약 지도와 coor/lite 및 1.2.0 운영 계약 | 운영 모드와 작업 범위 | FullOps Squad — 하네스 지도 | 제품 기획과 기술 계획의 책임 | 완료 결과의 통합과 역할 인박스 — FullOps 0.9.12",
+      "probability": 0.15000000000000002,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 1
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
-      "summary": "SSE 운영 이행 기록의 독립 검토 — 고정 운영 기록의 배포·보존·검증 경계와 정본 연결을 검토한다 | 검토 결과 | 발견 사항과 한계 | 대화 미참조 인계 점검",
-      "probability": 0.28,
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "summary": "SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 독립 리뷰 — DEV 최종 SHA eac603b의 OAuth 승인 callback 복귀 수정에 대한 고정 SHA 독립 리뷰. 미해결 critical/high 없음, medium 1·low 1 비차단 | SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 리뷰 | 검토 범위 | 발견 사항 | 검증 및 남은 제약",
+      "probability": 0.29000000000000004,
       "probability_scope": "batch",
       "batch_start": 74,
       "batch_rank": 1
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
-      "summary": "SAR-SSE-INSTALL-001-OPS 운영 이행 실행 기록 — 수락 제품 121cde9를 기존 Linux 서버에 bundle로 최소 적용한 계획·순서·결과와 부모 후속 | SAR-SSE-INSTALL-001-OPS | 범위와 기준 | 순서와 결과 | 남은 일",
-      "probability": 0.18000000000000002,
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "summary": "운영자설명서 — 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다 | KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획 | SAR-SSE-INSTALL-001 운영 적용 결과 (2026-10-11, SAR-SSE-INSTALL-001-OPS) | SAR-SSE-INSTALL-001 SSE 운영 후보 | Remote OAuth·Cloud 설치",
+      "probability": 0.35000000000000003,
       "probability_scope": "batch",
       "batch_start": 144,
       "batch_rank": 1
     },
     {
-      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
-      "summary": "tester 완료 기록 — 지시서와 완료 보고를 보존한다. | SAR-SSE-INSTALL-001-TESTER — 2026-10-11 | SAR-SSE-INSTALL-001-TESTER — SSE 도착 신호·Google 인증·호스트별 설치의 독립 lite QA와 고정 SHA 리뷰 | 현재 상황과 확인 근거 | 적용 기준과 예외",
-      "probability": 0.12,
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+      "summary": "ops 완료 기록 — 지시서와 완료 보고를 보존한다. | SAR-SSE-INSTALL-001-OPS — 2026-10-11 | SAR-SSE-INSTALL-001-OPS — 수락 후보의 기존 Linux 운영 이행과 보존 smoke | 사용자 요구와 승인 범위 | 운영 정본과 현재 확인 기준",
+      "probability": 0.18,
       "probability_scope": "batch",
       "batch_start": 217,
       "batch_rank": 1
     },
     {
-      "path": ".fullops-squad/FULLOPS.md",
-      "summary": "FullOps Squad 하네스 지도 — FullOps 규약 지도와 coor/lite 및 1.2.0 운영 계약 | 운영 모드와 작업 범위 | FullOps Squad — 하네스 지도 | 제품 기획과 기술 계획의 책임 | 완료 결과의 통합과 역할 인박스 — FullOps 0.9.12",
-      "probability": 0.14,
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "summary": "Google 인증 변경 독립 검토 — 고정 Google 인증 변경을 수락하고 실제 로그인 확인을 기존 서버 배포 뒤 진행한다 | Google 인증 변경 독립 검토 | 범위와 판단 | 검증 근거 재사용 | 대화 미참조 인계 점검",
+      "probability": 0.09999999999999999,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 2
@@ -114,7 +114,7 @@
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
       "summary": "SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 독립 Chromium QA — DEV 최종 SHA eac603b의 OAuth 승인 callback 복귀를 실제 Chromium·격리 Postgres·합성 Google/호스트로 독립 검증한 결과와 증거 | SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 독립 Chromium QA | 대상과 조건 | 결과 요약 | 독립 RED/GREEN 재현",
-      "probability": 0.18000000000000002,
+      "probability": 0.16,
       "probability_scope": "batch",
       "batch_start": 74,
       "batch_rank": 2
@@ -122,7 +122,7 @@
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
       "summary": "SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 실행 기록 — DEV 최종 SHA eac603b의 OAuth 승인 callback 복귀를 독립 리뷰·Chromium QA로 검증한 실행 기록 | SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER | 적용 기준 | 수행 | 결과",
-      "probability": 0.17,
+      "probability": 0.04,
       "probability_scope": "batch",
       "batch_start": 144,
       "batch_rank": 2
@@ -130,81 +130,84 @@
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
       "summary": "SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA — 운영 서버 별도 공간과 Windows 로컬에서 Google 클라이언트 연결의 핵심 보안 경계를 짧게 독립 검증한 결과 | SAR-GOOGLE-CONNECT-001-TESTER 좁은 독립 QA | 접근과 보존 | 실행한 검사와 종료코드 | tester 신규 검사가 덮는 경계",
-      "probability": 0.09,
+      "probability": 0.060000000000000005,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 3
     }
   ],
   "existence": {
-    "found_probability": 0.89,
+    "found_probability": 0.86,
     "status": "found",
     "basis": "metadata map only; not repository absence"
   },
   "truncated": false,
   "usage": {
-    "input_tokens": 38328,
-    "output_tokens": 2508,
-    "cost": 0.0016097760000000003,
-    "known_cost": 0.0016097760000000003,
+    "input_tokens": 38649,
+    "output_tokens": 2528,
+    "cost": 0.0016232580000000003,
+    "known_cost": 0.0016232580000000003,
     "cost_status": "complete"
   },
-  "latency_seconds": 2.086,
+  "latency_seconds": 2.141,
   "error": null,
   "calls": [
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 11327,
+        "input_tokens": 11340,
         "output_tokens": 777,
-        "cost": 0.000475734
+        "cost": 0.00047628
       },
-      "latency_seconds": 0.529
+      "latency_seconds": 0.5
     },
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 11642,
+        "input_tokens": 11615,
         "output_tokens": 737,
-        "cost": 0.000488964
-      },
-      "latency_seconds": 0.543
-    },
-    {
-      "model": "typesafe/jev-1.13-20260917",
-      "usage": {
-        "input_tokens": 11609,
-        "output_tokens": 767,
-        "cost": 0.000487578
+        "cost": 0.00048783
       },
       "latency_seconds": 0.526
     },
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 3750,
-        "output_tokens": 227,
-        "cost": 0.0001575
+        "input_tokens": 11661,
+        "output_tokens": 767,
+        "cost": 0.000489762
       },
-      "latency_seconds": 0.488
+      "latency_seconds": 0.559
+    },
+    {
+      "model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 4033,
+        "output_tokens": 247,
+        "cost": 0.000169386
+      },
+      "latency_seconds": 0.556
     }
   ],
   "semantic_search": true,
   "snapshot": "HEAD metadata; no worktree overlay",
-  "map_sha256": "3787158db3cb66d57aabeaf04e6c3672d668f0c1ce71619bc8bc03e82f94cfe2",
+  "map_sha256": "7b7bc76ef3fdebe95e1a2c5c680498833c94befd11c6f3aa68bbd5d9bf9270b9",
   "strategy": "batch",
   "seed_paths": [
     ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/designer.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
     ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
     ".fullops-squad/docs/operations/ops-guide.md",
     ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
     ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
-    ".fullops-squad/handovers/to_designer.md",
     ".fullops-squad/handovers/to_ops.md",
     ".fullops-squad/project.md",
     ".fullops-squad/rules/common/README.md",
@@ -217,23 +220,23 @@
   "response_model": "typesafe/jev-1.13-20260917",
   "ranking_status": "batch_only",
   "remaining_candidates": [
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
-    ".fullops-squad/contexts/tester.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
-    ".fullops-squad/PLANS.md",
-    ".fullops-squad/docs/agents/document-writing.md",
-    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/contexts/coor.md",
     ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
     ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
-    ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md"
   ],
   "unselected_files": [
     ".fullops-squad/PLANS.md",
     ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+    ".fullops-squad/contexts/coor.md",
     ".fullops-squad/contexts/designer.md",
     ".fullops-squad/contexts/dev.md",
     ".fullops-squad/contexts/tester.md",
@@ -272,7 +275,6 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
@@ -320,6 +322,8 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-FINAL-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
@@ -397,6 +401,7 @@
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
     ".fullops-squad/docs/generated/db-schema.md",
@@ -438,10 +443,9 @@
     ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
     ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
     ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
-    ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
     ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
     ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
-    ".fullops-squad/handovers/to_designer.md",
     ".fullops-squad/lint/README.md",
     ".fullops-squad/orca-agents.md",
     ".fullops-squad/project.md",
@@ -457,10 +461,10 @@
     "adapters/README.md",
     "adapters/skills/knowslink/SKILL.md"
   ],
-  "presented_files": 236,
+  "presented_files": 238,
   "partial": true,
   "fallback": "local Git/keyword/symbol search",
   "input_partial": true,
-  "instruction_chars": 4567,
-  "elapsed_seconds": 25.143
+  "instruction_chars": 4666,
+  "elapsed_seconds": 4.298
 }
