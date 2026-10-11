@@ -1,0 +1,42 @@
+{
+  "task_key": "SAR-SERVICE-UI-001-FIX-TESTER",
+  "find_head": "a072630206009cd87129ab2faf2c5001ba058b1d",
+  "base": "111cce03183b6e29e205a1aaa94371c295dcdcda",
+  "head": "c1ab9976f2f03c4af70960105fff29b1c6a08e86",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_tester.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/handovers/to_dev.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/review/_REPORT.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/tester.md"
+  ],
+  "recall": 0.5,
+  "precision": 0.083,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

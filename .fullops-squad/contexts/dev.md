@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV]
+tasks: [SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
 ---
 
@@ -25,6 +25,7 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 
 ## 최근 결정
 
+- 2026-10-11 SAR-SERVICE-UI-001-DEV: UI 재설계 전에 재설계 전 템플릿으로 form 계약(method·action·hidden·필드·button 라우팅) golden을 먼저 커밋한다. 이후 diff가 의도한 변경만인지 기계적으로 보인다. `memberStyle`은 OAuth 동의·gate 화면도 공유하므로 토큰 변경 시 함께 렌더한다. Orca 내장 브라우저 키 입력은 페이지를 한 번 클릭해 포커스를 준 뒤에만 전달된다.
 - 2026-10-11 SAR-GROK-WEBHOOK-001-DEV: webhook routine wake는 `KNOWSLINK_GROK_WEBHOOK_FILE`로만 켜고 그 process에서 `sendPrompt`와 배타다. 실패 fallback으로 이중 doorbell을 만들지 않는다. secret POST는 고정 host 정규식·`redirect: "manual"`로 다른 host 유출을 막는다. `AbortSignal.timeout`은 unref timer라 stub 검사에는 ref timer가 필요하다.
 - 2026-10-11 SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV: Chromium은 form 제출의 redirect에도 form-action을 적용한다. 외부 OAuth callback은 POST 303 대신 동일 출처 반환 화면(meta refresh+링크)으로 이동한다. 이 경계는 HTTP recorder가 아닌 실제 Chromium(`TEST_BROWSER`)으로 검사한다. SSH 세션의 Linux Chrome에는 `--password-store=basic`이 필요하다.
 - 2026-10-11 SAR-SSE-INSTALL-001-DEV: SSE heartbeat는 DB polling 없이 LISTEN으로 대기한다. boundedHTTP의 read/write deadline은 handshake 뒤 명시적으로 해제하며 별도 stream 수명·write deadline으로 제한한다.
@@ -34,3 +35,4 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 2026-10-10 SAR-AUTO-RECEIVE-001-DEV: 자동 pull→로컬 inbox→ACK→MCP 알림 후보 뒤, 선택형 loopback wake를 `grok-wake.ts`로 분리 구현했다. 미문서화 vendor 경로는 기본 off이고 지원 상태(공식 없음/미문서화/실제 미검증)를 문서에 구분한다.
 - 사용자 권한 입력(`sendPrompt`)에는 받은 text를 넣지 않는다. 고정 doorbell+검증 ID만 보내고 본문은 untrusted 도구 결과로 읽힌다. 결과는 retry(확실한 미전달)와 uncertain(재전송 금지)으로 나눈다.
 - 이전 보고의 금지 문구가 사용자 지시인지 확인한다. 아니면 정정한다. 실제 Bot 컴퓨터 확인은 coor/owner 후속이다. [실행 기록](../docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md).
+- 2026-10-11 SAR-SERVICE-UI-001-FIX-DEV: 44px 터치 기준은 버튼·입력만이 아니라 `a[href]` 전체를 DOM으로 측정한다. 모든 회원·gate·OAuth 화면이 `memberStyle` 하나를 쓰므로 공통 `a` 규칙 한 곳에서 고친다. [실행 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md).

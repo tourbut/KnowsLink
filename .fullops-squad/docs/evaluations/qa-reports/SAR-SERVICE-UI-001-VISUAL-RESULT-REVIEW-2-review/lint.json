@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "ded146cb0df2437fa9ab4bf4ec863995",
+  "base": "c2fd5f4c37f17c3833ea2e5d9134feeb01561257",
+  "merge_base": "030c5bd53c7645f06f5ac0b2ebbd11c4b31f5308",
+  "head": "1188f569111154c2e92103acbb4ee832ed6642dd",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 미설치. 이 결과는 시각 검수 문서/합성 캡처 도구만 변경하며 제품 바이트 c7828b2 동일. 제품 make gate는 독립 tester의 c7828b2 Linux 종료0 증거를 참조하며 본 결과의 실행으로 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 미설치. 이 결과는 시각 검수 문서/합성 캡처 도구만 변경하며 제품 바이트 c7828b2 동일. 제품 make gate는 독립 tester의 c7828b2 Linux 종료0 증거를 참조하며 본 결과의 실행으로 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 2,
+    "added_lines": 42,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

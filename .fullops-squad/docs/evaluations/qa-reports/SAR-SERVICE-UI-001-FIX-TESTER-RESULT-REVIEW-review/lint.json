@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "3e5f6ddcee744276993ec54cdcc061e7",
+  "base": "274c6ae4ebd57d691390aa22182c447511ac65f3",
+  "merge_base": "111cce03183b6e29e205a1aaa94371c295dcdcda",
+  "head": "c1ab9976f2f03c4af70960105fff29b1c6a08e86",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 미설치. 고정 tester 결과는 제품 변경0이며 제품295와609 동일성을 확인했다. 독립 tester gofmt/vet/go test 종료0 및 DEV609 Linux gate0 보고를 연결한다. 이 결과의 make 실행 성공으로 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 미설치. 고정 tester 결과는 제품 변경0이며 제품295와609 동일성을 확인했다. 독립 tester gofmt/vet/go test 종료0 및 DEV609 Linux gate0 보고를 연결한다. 이 결과의 make 실행 성공으로 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 1,
+    "added_lines": 14,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

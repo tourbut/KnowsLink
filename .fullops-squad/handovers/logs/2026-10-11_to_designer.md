@@ -436,3 +436,295 @@ fullops-common-0.3.3: rules/common/README.md와 coding-style.md, testing.md, sec
 - 미검증: 이메일 코드·오류 화면, 연결 관리·기기 승인·receipt·gate·refusal의 렌더 결과(템플릿 코드로만 확인), 에이전트 5개·긴 관계 목록, 다크 모드. 대비는 계산값이다. `frontend-design` 스킬은 이 환경에 없었다.
 - 후속: DEV가 명세 12절로 구현 계획·구현을 수행한다(dev 인박스는 coor 배정). 구현 후 designer가 고정 SHA에서 1440/390 직접 시각 검수를 한다. 이번 결과는 디자인 인계이며 UI 최종 수락이 아니다.
 - 하위 에이전트 사용: 없음. 사용자 계정·자격·서버 상태·삭제·이동 변경 0건.
+
+## SAR-SERVICE-UI-001-VISUAL — 2026-10-11
+<!-- fullops-attempt: SAR-SERVICE-UI-001-VISUAL f1d96e3cc69e458f9ccd7521778f59f2 -->
+
+---
+title: SAR-SERVICE-UI-001-VISUAL — 회원 웹 고정 후보 직접 시각 수락 검수
+status: draft
+updated: 2026-10-11
+owner: designer
+tasks: [SAR-SERVICE-UI-001-VISUAL]
+summary: 회원 웹 고정 후보 직접 시각 수락 검수
+attempt: f1d96e3cc69e458f9ccd7521778f59f2
+base: 8539ef5b6d3e7ed99259762c62d164b8ba40fab0
+subagent_level: standard
+test_level: lite
+---
+
+# SAR-SERVICE-UI-001-VISUAL — 회원 웹 직접 시각 수락 검수
+
+- 상태: queued. DEV 완료 고정 SHA와 실제 구현자 세션을 coor가 착수 전 추가한다. 지금 dispatch하지 않는다.
+- 역할/소유권: designer, C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. 본인 시각 QA·PNG·phase·contexts·packet outcomes와 인박스/로그만. 제품 코드·DEV·tester 공간 수정 금지. 판정 뒤 디자인 정본의 실제 수락 상태는 갱신 가능하다.
+- 복귀: run_7176a2ad6ef1, coor term_e61d3e14-29e9-4954-943a-4a75707c82de. 실제 task/dispatch는 preamble.
+- 기준: fullops-common-0.3.3과 세 규칙, project.md, FULLOPS.md, 문서 작성 규칙. frontend-design 실제 경로 C:/Users/shin/.agents/skills/frontend-design/SKILL.md. Ponytail full, test lite/subagent standard. Codex hook 사용자 Trust 미승인으로 등록 Claude Sonnet5.5 high 새 세션 예외. Trust 자동 승인 금지.
+- 제약: 추가 유료 서비스·로컬 Docker·삭제·이동·운영 변경 금지. DB/자격/agent/관계/공유 서비스/F: 증거 보존. 비밀값 출력 금지. 웹은 Orca 내장 브라우저만. Grok Bot 접근 금지. 실제 세션 로그아웃/agent 생성·폐기 금지.
+
+## 제품 시각 수락
+
+디자인 정본 docs/design-docs/mockups/service-member-ui.md의 IA·토큰·필수 R-01–09·수락 조건과 고정 후보를 직접 대조한다. DEV synthetic fixture와 Orca 내장 브라우저로 실제 login/home(4 agent, 빈 상태 가능)/연결·device·receipt/오류의1440·390 PNG를 보존하고320 overflow·키보드focus·44px 조작·contrast·한국어줄바꿈을 확인한다. 스크린샷 CLI JSON의 base64를 로그에 출력하지 말고 파일로 저장한다. 값은 합성 fixture만 사용하고 live 개인 정보는 캡처하지 않는다. 디자인 lint/테마 전환은 기존 지원 범위로 검증하거나 해당 없음 사유를 남긴다.
+
+직접 픽셀 관찰·DOM 측정·worker 보고를 구분한다. 실제 Google 인증 왕복 성공으로 확대하지 않는다. 좁은 디자인 수정 권고는 담당 DEV에 coor 경유 전달하고 직접 제품 코드를 바꾸지 않는다. 미해결 critical/high는 수락 차단이며 낮은 등급도 남긴다. 기능 QA/기술 리뷰는 별도 tester 담당이다.
+
+산출물 인덱스부터 대화 미참조 인계 점검, screenshot manifest·phase·contexts·packet outcomes·미검증을 기록한다. work.py finish로 전문 아카이브·인박스 비움 후 커밋한다. 완료 보고 첫 부분은 [완료] SAR-SERVICE-UI-001-VISUAL | 최종 SHA <실제 결과40자리>로 적는다. main/배포는 coor 후속이다.
+
+## 지시 전제와 충돌 — 먼저 확인
+Jev context는 service-member-ui.md를 conflict로 표시했으나 구체적 이유는 contradicts task만 반환했다. coor가 정본12절을 대조했다. R-01–09는 필수, R-10–11은 권장, R-12 다크모드·실접속·클라이언트복사는 후속으로 이번 범위 밖이다. 해당 없음인 후속 기능을 요구하지 않는다. 이 원천을 먼저 읽고 실제 불일치가 있으면 coor 경유 확인한다. 12.4의 실제 흐름 검수는 합성 fixture에서 수행하며 실계정 상태 변경은 하지 않는다. Google 인증 실제 왕복 미검증은 솔직히 남긴다. 이 해석은 기존 제품 범위를 줄이거나 넓히지 않는다.
+
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-SERVICE-UI-001-VISUAL-packet.json` / SHA `457b980413baf41d8c5bc661f906bcc2d71bffca` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.52, 'evidence': 0.77, 'contradicts': 0.15, 'injection': 0.04, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/agents/document-writing.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.24, 'evidence': 0.55, 'contradicts': 0.14, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 7, 213, 213 · inferred · 필수 · {'relevant': 0.89, 'evidence': 0.86, 'contradicts': 0.66, 'injection': 0.06, 'decision': 'conflict', 'reason': 'contradicts task'}
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md` (document_read) · 줄 6, 10, 24, 33, 55, 67, 92, 104, 105 · inferred · 필수 · {'relevant': 0.86, 'evidence': 0.91, 'contradicts': 0.36, 'injection': 0.05, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/handovers/to_designer.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 28, 28, 37, 37 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.73, 'evidence': 0.81, 'contradicts': 0.3, 'injection': 0.05, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.14, 'evidence': 0.32, 'contradicts': 0.18, 'injection': 0.05, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.46, 'evidence': 0.53, 'contradicts': 0.14, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.43, 'evidence': 0.56, 'contradicts': 0.13, 'injection': 0.1, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.55, 'evidence': 0.68, 'contradicts': 0.16, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/PLANS.md` (document_update) · 줄 전체/미확인 · unknown
+- `.fullops-squad/contexts/archive/dev-2026-10-10.md` (document_read) · 줄 55 · inferred
+- `.fullops-squad/contexts/designer.md` (document_read) · 줄 6, 6, 30, 32, 68, 70, 72 · inferred · {'relevant': 0.22, 'evidence': 0.34, 'contradicts': 0.35, 'injection': 0.12, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/contexts/dev.md` (document_read) · 줄 6, 28 · inferred
+- `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 119 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 7, 141 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 7 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md` (document_read) · 줄 18, 42 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md` (document_read) · 줄 35 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md` (document_read) · 줄 21 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md` (document_read) · 줄 6, 14, 31, 41 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_read) · 줄 7, 116, 145, 145, 145, 221, 227, 228, 232, 234, 234 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md` (document_read) · 줄 60 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md` (document_read) · 줄 16, 17 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md` (document_read) · 줄 18 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md` (document_read) · 줄 23 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md` (document_read) · 줄 6, 10, 77 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md` (document_read) · 줄 6, 10, 72 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md` (document_read) · 줄 23 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md` (document_read) · 줄 18 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md` (document_read) · 줄 15 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md` (document_read) · 줄 6, 10, 26, 28, 32, 48, 49, 66 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md` (document_read) · 줄 2, 6, 10 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md` (document_read) · 줄 2, 6, 10 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md` (document_read) · 줄 2, 6, 10, 21 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md` (document_read) · 줄 22 · inferred
+- `.fullops-squad/docs/operations/ops-guide.md` (document_read) · 줄 7, 305, 307, 312, 336 · inferred
+- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 7, 89 · inferred
+- `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 7 · inferred
+- `.fullops-squad/docs/planning/SAR-MVP-backlog.md` (document_read) · 줄 6, 12, 14, 20, 23, 24, 27 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 7, 40, 56, 66 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_read) · 줄 7, 25, 83, 154 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 7, 15, 23, 63, 76, 125, 128, 152 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md` (document_read) · 줄 209 · inferred
+- `.fullops-squad/handovers/_TEMPLATE.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_designer.md` (document_read) · 줄 9, 16, 20, 79, 87, 114 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_dev.md` (document_read) · 줄 16, 33, 35, 37, 51, 93, 125, 181 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_ops.md` (document_read) · 줄 90, 93, 97, 101, 116, 130, 144, 147, 151, 155, 171 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_tester.md` (document_read) · 줄 16, 33, 35, 37, 49 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_designer.md` (document_read) · 줄 35, 102, 105, 106, 142, 248, 249, 261, 306, 386 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_ops.md` (document_read) · 줄 37, 176, 245, 246, 304, 357 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_tester.md` (document_read) · 줄 100, 175, 176, 228 · inferred
+- `.fullops-squad/handovers/logs/2026-10-07_to_designer.md` (document_read) · 줄 29, 69, 76, 133, 182, 183, 184 · inferred
+- `.fullops-squad/handovers/logs/2026-10-07_to_dev.md` (document_read) · 줄 24, 108, 113, 148, 149, 229, 230 · inferred
+- `.fullops-squad/handovers/logs/2026-10-07_to_tester.md` (document_read) · 줄 48, 70, 75, 139, 180, 181, 182 · inferred
+- `.fullops-squad/handovers/logs/2026-10-11_to_designer.md` (document_read) · 줄 9, 10, 13, 17, 25, 49, 69, 77, 81, 143, 165, 166, 169, 173, 180, 210, 246, 257, 258, 268, 302, 304, 305, 308, 312, 320, 337, 343, 365, 377, 391, 392, 393, 400, 433 · inferred
+- `.fullops-squad/handovers/logs/2026-10-11_to_ops.md` (document_read) · 줄 124, 155, 186, 191, 204, 205, 210, 216 · inferred
+- `.fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md` (document_read) · 줄 45 · inferred
+- `.fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md` (document_read) · 줄 42 · inferred
+- `adapters/README.md` (document_read) · 줄 전체/미확인 · inferred
+- `adapters/skills/knowslink/SKILL.md` (document_read) · 줄 16 · inferred
+- `adapters/src/login.test.ts` (impact_check) · 줄 88, 95 · inferred
+- `adapters/src/mcp.ts` (impact_check) · 줄 78 · inferred
+- `internal/relay/connections_test.go` (impact_check) · 줄 335, 338, 409 · inferred
+- `internal/relay/device.go` (direct_edit) · 줄 11, 15 · inferred
+- `internal/relay/http.go` (direct_edit) · 줄 전체/미확인 · unknown
+- `internal/relay/member.go` (direct_edit) · 줄 전체/미확인 · unknown
+- `internal/relay/member_agents.go` (direct_edit) · 줄 61, 65, 68, 94, 119, 132, 140 · inferred
+- `internal/relay/member_pages.go` (direct_edit, impact_check) · 줄 60 · inferred
+- `internal/relay/member_receipt.go` (direct_edit) · 줄 전체/미확인 · inferred
+- `internal/relay/member_ui_test.go` (direct_edit, impact_check) · 줄 21, 96, 120, 161 · inferred
+- `internal/relay/policy_test.go` (impact_check) · 줄 22, 31, 59, 65, 68, 68 · inferred
+- `scripts/install_bot_mcp.sh` (impact_check) · 줄 83 · inferred
+미확인 11건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
+## 완료 보고
+- 판정: 제품 시각 PASS. critical·high 0건. medium 1건(V-01: 글자 링크 11종 높이 21px, D04 9절 44px 기준 미충족)과 low 10건(V-02–V-11)은 비차단 잔여다.
+- 고정 후보 SHA: `c7828b227b5715f7bdf02bff46bf9cf102a758d9`. 구현자 세션 `5953ccd3-7f4f-4c5e-b63d-c02d36ee35ac`. 기록 체크아웃 시작 HEAD `030c5bd`. 제품 바이트는 후보와 같다(`git diff` 비어 있음). 최종 기록 커밋 SHA는 worker_done에 적는다.
+- 직접 근거: Orca 내장 브라우저에서 합성 fixture 29개 화면 × 1440·390·320. PNG 149개(manifest 포함, 포커스 4개). DOM 측정 99개 키: overflow 0, 외부 자원 0, 라벨 없는 입력 0. 실제 Tab·Enter·Space로 건너뛰기 링크·summary 토글·위험 구역 포커스 확인. 렌더 색 대비가 D04 8.1 표와 같다.
+- 산출물: [시각 수락 보고](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md), 같은 폴더의 manifest.json·measurements.json·keyboard.json·capture.py·keyboard.py·png/. phase [실행 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md). D04에 14절(수락 기록) 추가. designer 컨텍스트와 packet-outcomes 86건.
+- 검증 명령: `go test ./internal/relay -run TestMemberUIFixtures -count=1`(scratchpad의 후보 export, 통과). 그 밖의 제품 검증은 DEV·tester 몫이며 재실행하지 않았다. 디자인 lint·테마 전환은 project.md가 미구성이라 해당 없음이다. 등록 lint 결과는 worker_done에 적는다.
+- 지시와 달라진 것: 없다. 첫 두 캡처 방식(뷰포트 설정 순서 오류, full-screenshot 타일 반복)의 결과는 폐기하고 스크롤 조각 방식으로 다시 찍었다. 폐기한 PNG는 이 과제가 만든 임시 결과이며 해당 폴더만 지웠다.
+- 미검증: 실제 Google 인증 왕복, 실계정 데이터, 운영 서버·응답 CSP 헤더, 200% 확대·텍스트 간격(A-08), 실제 스크린 리더, Chromium 외 엔진, 에이전트 5개·긴 관계 목록. V-07(home-empty의 "활성 /5")은 fixture 입력 누락이며 실제 서버 값은 직접 보지 않았다. 일부 화면 PNG는 열어 보지 않고 DOM 측정으로 판단했다(보고서 명시).
+- 후속: coor가 V-01을 DEV 좁은 수정으로 보낼지 수용할지 정한다. tester는 V-07을 실제 서버에서 확인한다. 배포 뒤 실제 로그인 화면 확인은 OPS 후속이다. 기능 QA·코드 리뷰는 tester 담당이다.
+- 하위 에이전트 사용: 없음. Codex hook Trust 승인 없음. 사용자 계정·자격·서버 상태·Grok UI·로컬 Docker·유료 서비스 변경 0건.
+
+## 고정 후보와 구현자 — 착수 정본
+고정 후보 c7828b227b5715f7bdf02bff46bf9cf102a758d9. 실제 구현자 Claude 세션5953ccd3-7f4f-4c5e-b63d-c02d36ee35ac, dispatch ctx_d554b501df04. DEV clean HEAD 일치 확인. 구현자 phase docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md의 시각 검수 환경 절을 먼저 읽는다. KNOWSLINK_UI_FIXTURE_DIR=<새 빈 폴더> go test ./internal/relay -run TestMemberUIFixtures -count=1로 29개 합성 HTML을 만든다. snapshot 자체에는 생성물을 쓰지 말고 고유 실행 clone 또는 별도 기록 역할의 동일 제품 바이트에서 생성한다. 기준 main8539ef5와 제품 diff를 확인한다. DEV는 agent 서버 안내문·짧은 날짜·200% 확대·실스크린리더 미적용/미검증을 기록했다. 수락 기준과 대조하고 차이의 영향과 후속을 남긴다. form golden의 추가 헤더 logout 1건은 명세4.2의 의도적 추가이며 실제 서버 보안 검사를 보존한다.
+
+- 추가(coor msg_9d7ebc9ef6b0 반영, 같은 attempt): tester의 low 3건(F1–F3)과 대조해 발견 V-12(low: 960px 미만에서 섹션 이동이 확인 필요 띠 위)를 추가했다. 합계는 medium 1건·low 11건이며 critical·high 0건과 PASS 판정은 그대로다. F1은 V-10과 같고 F2는 스크린 리더 미검증으로 남긴다. 위 완료 보고의 "low 10건"은 이 추가로 11건이 되었다.
+
+## SAR-SERVICE-UI-001-FIX-VISUAL — 2026-10-11
+<!-- fullops-attempt: SAR-SERVICE-UI-001-FIX-VISUAL 6e41d168df4f466e8401cf47727973b0 -->
+
+---
+title: SAR-SERVICE-UI-001-FIX-VISUAL — V-01 글자 링크44px 수정 직접 재측정·시각 수락
+status: draft
+updated: 2026-10-11
+owner: designer
+tasks: [SAR-SERVICE-UI-001-FIX-VISUAL]
+summary: V-01 글자 링크44px 수정 직접 재측정·시각 수락
+attempt: 6e41d168df4f466e8401cf47727973b0
+base: 2e8b8b228568baa2d849831a0859063de55aa473206009cd87129ab2faf2c5001ba058b1d
+subagent_level: standard
+test_level: lite
+---
+# SAR-SERVICE-UI-001-FIX-VISUAL — V-01 글자 링크44px 직접 재측정·제품 시각 수락
+
+- 상태 queued: DEV 최종 고정 SHA 및 실제 구현자 세션 확인 후 coor가 기입해 dispatch한다. 지금 임의 후보를 수락하지 않는다.
+- Purpose: product visual acceptance. Test level lite; Subagent level standard. 등록 Claude Sonnet5.5 high fresh. Codex Trust 미승인으로 대체하며 임의 신뢰 승인 금지.
+- 담당 C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. 복귀 run_7176a2ad6ef1/coor term_e61d3e14-29e9-4954-943a-4a75707c82de, task/dispatch는 실제 preamble.
+- 공통 기준 fullops-common-0.3.3/project.md/FULLOPS.md/document-writing, 기존 D04 요구 유지. 기준 a072630 및 후속 준비 커밋. Ponytail full.
+
+## 먼저 읽을 문서
+- .fullops-squad/FULLOPS.md / project.md / contexts/designer.md
+- .fullops-squad/rules/common/README.md 및 coding-style.md/testing.md/security.md
+- .fullops-squad/docs/agents/document-writing.md
+- .fullops-squad/docs/design-docs/mockups/service-member-ui.md
+- .fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md
+- .fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md
+- .fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md
+- .fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md (완료 후 추가)
+
+## 현재 상황과 범위
+기존 후보 c7828b2는 독립 QA/코드리뷰와 시각PASS를 받았으나 글자 링크11종 높이21px가 D04 9절44px 요구 미달이다. 기존 결과1188f569의 V-01을 실제 수정한 새 고정 후보만 재검수한다. 기존 low11/F1-F3과 미검증·과거 실패는 보존한다. 동일 제품 바이트 부분은 이전 SHA/근거 연결로 재사용하며 전체 QA/캡처를 복제하지 않는다.
+
+## 승인·제약
+실제 Linux .env.server 서버 사용 가능, 로컬 Docker·추가 유료서비스·삭제/이동/광범위정리·DB/state/key/agent/pair/credential 변경 금지. helper 자격은 메모리 처리하고 비밀값 출력 금지. 웹은 Orca 내장 브라우저만. Grok Bot 수신 UI 접근 금지. 합성 fixtures만 새 고유 실행 폴더에 생성하고 리뷰 snapshot은 read-only로 유지한다. 기존 사용자 세션과 증거를 보존한다.
+
+## 소유권과 완료 기준
+- [x] frontend-design 스킬과 기존 D04·시각 보고 V-01을 읽고 수정된 글자 링크11종만 Orca 내장 브라우저에서320/390/1440 직접 측정한다. 링크44px이상, 줄바꿈·overflow·인접 클릭영역·기존 버튼/skip-link에 시각 부작용 없음 확인. 필요한 대표 PNG만 저장·manifest hash, base64 출력 금지.
+- [x] 제품 시각 판정과 직접 픽셀/DOM측정/DEV보고를 구분한다. V-01 resolved는 실제 근거 있을 때만 후속 기록으로 연결하고 기존 발견을 삭제하지 않는다. 실제 Google/운영/스크린리더/200%는 하지 않은 경우 미검증 유지.
+- [x] 제품 코드 수정 금지. 이 QA/시각보고·필요시 D04 후속 수락 기록·phase/contexts만 소유. 별도 디자인lint/다크테마 미구성으로 해당없음이며 실제측정으로 보완한다.
+
+## 결과와 후속
+route D ID 없음. packet partial/unknown은 실제 필요한 영향 후보를 수동확인하여 outcomes에 적는다. 하위 위임은 작은 검수로 불필요하다. registered lint를 고정 결과에서 실행하고 unavailable은 이유를 남기며PASS하지 않는다. 완료 보고 전문·work.py finish·아카이브/빈인박스·커밋/push·worker_done까지 진행한다. 첫 완료문자열 [완료] SAR-SERVICE-UI-001-FIX-VISUAL | 최종 SHA <실제40자리>, 후보 SHA도 명시한다. main 통합/배포는 coor.
+
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-SERVICE-UI-001-FIX-VISUAL-packet.json` / SHA `295417acfdcd415ad0c768d164bd71dc07214ea9` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 7, 7, 406, 406 · inferred · 필수 · {'relevant': 0.27, 'evidence': 0.39, 'contradicts': 0.26, 'injection': 0.06, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md` (document_read) · 줄 2, 6, 10, 15, 36, 54, 58, 67, 68 · inferred · 필수 · {'relevant': 0.5, 'evidence': 0.74, 'contradicts': 0.5, 'injection': 0.06, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md` (document_read) · 줄 6, 6, 10, 10, 34 · inferred · 필수 · {'relevant': 0.67, 'evidence': 0.77, 'contradicts': 0.61, 'injection': 0.08, 'decision': 'conflict', 'reason': 'contradicts task'}
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md` (document_read) · 줄 6, 10, 15, 15, 23, 31, 41, 47 · inferred · 필수 · {'relevant': 0.74, 'evidence': 0.84, 'contradicts': 0.35, 'injection': 0.07, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/handovers/to_designer.md` (document_read) · 줄 2, 2, 6, 6, 13, 13, 25, 25, 26, 27, 28, 42, 42 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.5, 'evidence': 0.78, 'contradicts': 0.19, 'injection': 0.06, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/designer.md` (document_read) · 줄 6, 6, 30, 32, 68, 70, 72, 74, 76, 76 · inferred
+- `.fullops-squad/contexts/dev.md` (document_read) · 줄 6, 28, 38 · inferred
+- `.fullops-squad/contexts/tester.md` (document_read) · 줄 6, 71 · inferred
+- `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 119 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 7, 141 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 7 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md` (document_read) · 줄 18 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md` (document_read) · 줄 35 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md` (document_read) · 줄 21 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md` (document_read) · 줄 6, 14, 31, 41 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_read) · 줄 7, 116, 221, 227, 228, 232, 234, 234 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md` (document_read) · 줄 16, 17 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md` (document_read) · 줄 18 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md` (document_read) · 줄 23 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md` (document_read) · 줄 2, 6, 10, 25, 26 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md` (document_read) · 줄 6, 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md` (document_read) · 줄 6, 6, 10, 10, 12, 12 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md` (document_read) · 줄 6, 10, 77 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md` (document_read) · 줄 6, 10, 72 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md` (document_read) · 줄 23 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md` (document_read) · 줄 18 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md` (document_read) · 줄 15 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md` (document_read) · 줄 6, 10, 26, 28, 32, 48, 49, 66 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md` (document_read) · 줄 2, 6, 10 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md` (document_read) · 줄 2, 6, 10 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md` (document_read) · 줄 6, 10, 24, 33, 67, 92, 104, 105, 108 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md` (document_read) · 줄 2, 6, 10, 20, 26, 32 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md` (document_read) · 줄 2, 2, 6, 6, 10, 10, 21, 25, 25 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md` (document_read) · 줄 2, 6, 10, 21 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md` (document_read) · 줄 22 · inferred
+- `.fullops-squad/docs/operations/ops-guide.md` (document_read) · 줄 7, 305, 307, 312, 336 · inferred
+- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 7, 89 · inferred
+- `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 7 · inferred
+- `.fullops-squad/docs/planning/SAR-MVP-backlog.md` (document_read) · 줄 6, 12, 14, 20, 23, 24, 27 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 7, 40, 56, 66 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_read) · 줄 7, 25, 83, 154 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 7, 15, 23, 63, 76, 125, 128, 152 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_designer.md` (document_read) · 줄 9, 16, 20, 79, 87, 114 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_dev.md` (document_read) · 줄 16, 33, 35, 37, 51, 93, 125, 181 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_ops.md` (document_read) · 줄 90, 93, 97, 101, 116, 130, 144, 147, 151, 155, 171 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_tester.md` (document_read) · 줄 16, 33, 35, 37, 49 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_designer.md` (document_read) · 줄 35, 102, 105, 106, 142, 248, 249, 306, 386 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_ops.md` (document_read) · 줄 37, 176, 245, 246, 304, 357 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_tester.md` (document_read) · 줄 100, 175, 176, 228 · inferred
+- `.fullops-squad/handovers/logs/2026-10-07_to_designer.md` (document_read) · 줄 29, 69, 76, 133, 182, 183, 184 · inferred
+- `.fullops-squad/handovers/logs/2026-10-07_to_dev.md` (document_read) · 줄 24, 108, 113, 148, 149, 229, 230 · inferred
+- `.fullops-squad/handovers/logs/2026-10-07_to_tester.md` (document_read) · 줄 48, 70, 75, 139, 180, 181, 182 · inferred
+- `.fullops-squad/handovers/logs/2026-10-11_to_ops.md` (document_read) · 줄 124, 155, 186, 191, 204, 205, 210, 216 · inferred
+- `.fullops-squad/handovers/to_ops.md` (document_read) · 줄 2, 6, 14, 33, 38, 64, 122, 123, 131, 132, 136, 192, 193, 194, 195, 196, 212 · inferred
+- `.fullops-squad/handovers/to_tester.md` (document_read) · 줄 2, 6, 13, 25, 25, 26, 27, 28, 42, 47, 50, 51, 51, 69, 118, 119, 120, 121, 122, 122, 123, 123, 129, 169, 170, 171, 172, 173, 174, 175, 175, 187 · inferred
+- `internal/relay/member_pages.go` (direct_edit, impact_check) · 줄 60 · inferred · {'relevant': 0.39, 'evidence': 0.61, 'contradicts': 0.37, 'injection': 0.05, 'decision': 'keep', 'reason': None}
+- `internal/relay/member_ui_test.go` (direct_edit, impact_check) · 줄 21, 96, 120, 161 · inferred · {'relevant': 0.12, 'evidence': 0.17, 'contradicts': 0.31, 'injection': 0.06, 'decision': 'keep', 'reason': None}
+- `internal/relay/remote_auth.go` (impact_check) · 줄 전체/미확인 · unknown · {'relevant': 0.12, 'evidence': 0.13, 'contradicts': 0.5, 'injection': 0.05, 'decision': 'keep', 'reason': None}
+미확인 12건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
+## 완료 보고
+[완료] SAR-SERVICE-UI-001-FIX-VISUAL | 최종 SHA 77a09d7ce92031267b264a07a38a278283115236 (내용 커밋. 인박스 비움·아카이브 커밋은 그 뒤이며 worker_done에 실제 최종 HEAD를 적는다), 후보 SHA 295417acfdcd415ad0c768d164bd71dc07214ea9
+
+**결과**: V-01 resolved(시각 기준). 제품 시각 PASS 유지. 새 critical·high·medium 0건. low N-01(카드 마지막 글자 링크 아래 여백이 위보다 약간 큼, 비차단) 1건 추가.
+**직접 DOM 측정**: 후보 295417a에서 합성 fixture 29개를 새로 만들어 Orca 내장 브라우저 320·390·1440에서 87개 키, 모든 `details` 펼침으로 측정했다. 링크 198건(건너뛰기 81 + 그 외 117), 상호작용 요소 420건. 44px 미만 0건(최솟값 44), V-01 글자 링크 11종 모두 44–44.8px, 가로 overflow 0, 인접 상호작용 박스 겹침 0. 승인 요청 ID 링크는 하이픈에서 2줄로 접히며 박스·폭 안이다.
+**직접 픽셀 관찰**: PNG 26개를 저장했다. 연결 취소 버튼 아래 링크(간격 4px, 겹침 없음), 오류 화면 320·390, 확인 코드, 원격 동의, 홈 390·320을 열어 확인했다. 링크 글자 크기·밑줄은 그대로고 44px 터치 영역만 늘었다.
+**DEV 보고와 구분**: DEV의 87키·198링크·미달 0 주장과 직접 재측정 결과가 일치한다. 판정은 DEV 보고가 아니라 이번 직접 측정에 근거한다.
+**보존**: 원 보고서 V-01–V-12와 PASS 판정을 지우지 않고 후속 기록 절만 덧붙였다. D04 14절 뒤에 후속 한 단락을 덧붙였다. 제품 코드·PLANS.md·다른 역할 공간은 바꾸지 않았다.
+**검증**: 제품 바이트 `git diff 295417a HEAD -- internal adapters scripts go.mod` 비어 있음. 후보 fixture 테스트 통과(Go 1.27.1, Windows). lint: `lint.py --from 2e8b8b228568baa2d849831a0859063de55aa473` HEAD 77a09d7, ERROR 0 / WARNING 1(PLANS.md 줄 수, coor 준비 커밋에서 온 것) / 실행 불가 2(`make lint`·`make test`는 Windows에 make 없음. 대신 DEV의 Linux 609fcfd 종료코드 0 결과를 제품 바이트 동일 근거로 재사용하며 이번 SHA에서 재실행한 PASS가 아니다). DOC-003 오류 0건. 디자인 lint·다크 테마는 미구성이라 해당 없음이고 실제 측정으로 보완했다.
+**packet**: partial=True, unknown 12건. 핵심 문서는 읽었고 제품 코드(remote_auth.go 포함)는 읽지 않고 fixture 렌더 측정으로 영향을 확인했다. 과거 logs·관련 없는 문서 59건은 읽지 않았다고 outcomes에 적었다. [outcomes](../docs/evaluations/jev/SAR-SERVICE-UI-001-FIX-VISUAL-packet-outcomes.json).
+**한계·미검증**: 합성 fixture·`file://`·Chromium 한 엔진만이다. 실제 Google 왕복·실계정·운영 서버·운영 CSP 헤더·실제 스크린 리더·200% 확대·다크 모드는 하지 않았다. 키보드 포커스 외곽선은 이번에 다시 입력하지 않았다(링크가 `inline-flex`가 되어 외곽선 크기가 바뀔 수 있음, 직접 확인 안 함). 실제 서버 마크업이 fixture와 같다는 가정은 DEV `member_forms.golden` 근거다. 첫 측정 실행이 뷰포트 폭 불일치로 중단돼 폭 재확인 재시도를 넣고 다시 실행했다. 이 중단 실행의 PNG 2개는 다음 실행이 덮어썼다.
+**재개 조건**: main 통합·배포는 coor. 운영 배포 뒤 실제 렌더·키보드 포커스 확인은 OPS·사용자 세션이 필요하다. V-02–V-12·N-01은 선택 개선이며 DEV 판단이다.
+**증거**: [보고](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md) · [measurements.json](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/measurements.json) · [manifest.json](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/manifest.json) · [phase](../docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md). 검수 세션 059f2e8a-d31f-442f-a5af-ce1ac3255fe7, 구현자 세션 98481ab6-9f92-4bdd-ba02-c9881c19312c와 다르다.
+
+## 지시 전제와 충돌 — 먼저 확인
+Jev context는 member_pages.go/member_ui_test.go/remote_auth.go에 일반 conflict 수치를 반환했으며 구체적 reason은 없다. 현재 파일은 수정 전 후보의21px 링크와 버튼만44px 측정한 이전 테스트를 포함한다. 이는 V-01 발견 근거이며 미달을 수락 기준 완화로 해결하지 않는다. remote_auth.go는 새 UI 마크업 범위 밖이나 공통 스타일에 영향받는 원격 동의 글자 링크도44px 측정 대상이다. 새 최종 후보 diff와 D04 9절·V-01 원문을 먼저 대조한다. 과거 PASS는 V-01 잔여를 포함한 시각 판정이며 수정 후 실제 재측정이 필요하다. 실제 제품 규칙 충돌은 coor에 ask하고 임의 정본 변경하지 않는다.
+
+## 최종 고정 후보 — 착수 정본
+Review SHA: 295417acfdcd415ad0c768d164bd71dc07214ea9. Implementer session: 98481ab6-9f92-4bdd-ba02-c9881c19312c (ctx_4567096a3f21 실제 provider transcript 파일명 확인). Reviewer session은 본인의 실제 새 세션 ID를 사용한다. DEV 결과1e73308a2b3ebb5aeb14eb484651318deae4117c 및 제품609fcfd9b5049f093cec4162a3a83e4801d2e2df 포함. 후보295417a와 제품609fcfd 사이 제품 바이트 동일, 나머지는 coor 검수 준비·기록이다. review.py from은2e8b8b228568baa2d849831a0859063de55aa473, to는295417ac... 고정한다. 합성 fixtures는 이 후보에서 새 고유 실행 공간에 생성한다.
+DEV Windows lint의 DOC-003 1건은 coor 최초 중단 리뷰 report의 front matter 누락이었다. 4a65bac에서 원본 템플릿을 보존하고 중단·superseded 메타를 붙여 수정했다. 후보295에 포함되어 있으므로 최신 lint에서 오류0 확인한다. 과거 DEV lint 실패를 PASS로 바꾸지 않는다. Linux make gate는609fcfd의 실제 종료0이며 제품 동일성을 대조해 재사용한다. 새 DBintegration 미재실행은 CSS만 변경한 영향 경계로 원래 근거를 유지한다.
+Codex hook Trust 미승인으로 등록 Claude Sonnet5.5를 사용한다. tester medium/시각 high는 기존 독립 QA와 직접 시각 책임을 유지한다. queued 조건은 이 절의 고정 후보·실제 구현자 확인으로 충족됐다. 다른 보류는 main 통합 후 coor가 처리한다.

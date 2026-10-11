@@ -1,0 +1,422 @@
+{
+ "task_key": "SAR-SERVICE-UI-001-FIX-DEV",
+ "attempt": "63b11e3217af4852a1abe19766e7f2bd",
+ "packet_input_sha256": "81ea06387f7e50dd228b98b064f6e513c33572d779e132540ac2b919addbcc9a",
+ "uncertainty_review": "partial 패킷의 unknown(route 불일치, documents-find batch_only 잔여 후보, 누락된 PLANS.md)을 검색으로 처리했다. 링크 호출자는 internal 전체의 <a 검색으로 member_pages.go·http.go(gate·owner)·remote_auth.go 세 곳만 확인했고 모두 memberStyle을 쓴다(owner 작업 화면 dashboard 템플릿은 memberStyle이 없는 별도 최소 화면이며 이 과제의 회원 UI 범위 밖이다). 잔여 후보 문서는 과거 과제 기록이어서 수정하지 않았다.",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/architecture.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/interface-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/ops-guide.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서가 요구한 근거로 읽었다. V-01 수정 범위 밖이거나 이미 반영된 내용이어서 변경하지 않았다."
+  },
+  {
+   "path": "internal/relay/member_pages.go",
+   "category": "direct_edit",
+   "status": "completed",
+   "reason": "공통 memberStyle의 a 규칙에 44px 터치 영역을 추가하고 중복 .toc a 규칙을 제거했다."
+  },
+  {
+   "path": "internal/relay/member_pages.go",
+   "category": "impact_check",
+   "status": "completed",
+   "reason": "모든 member 템플릿의 a 호출자를 확인했다. 줄글 속 링크가 없고 .button·건너뛰기 링크와 겹쳐도 높이가 같거나 커지지 않는다."
+  },
+  {
+   "path": "internal/relay/member_ui_test.go",
+   "category": "direct_edit",
+   "status": "completed",
+   "reason": "fixture 렌더마다 44px 링크 규칙이 있는지 확인하는 회귀 검사를 추가했다."
+  },
+  {
+   "path": "internal/relay/member_ui_test.go",
+   "category": "impact_check",
+   "status": "completed",
+   "reason": "form golden 계약과 외부 자원 금지 검사는 그대로 통과한다."
+  },
+  {
+   "path": "internal/relay/remote_auth.go",
+   "category": "impact_check",
+   "status": "completed",
+   "reason": "OAuth 동의·반환 화면이 같은 memberStyle과 링크 2종을 쓴다. 마크업 변경 없이 공통 규칙이 적용되며 fixture remote-* 화면의 링크를 측정했다."
+  }
+ ]
+}

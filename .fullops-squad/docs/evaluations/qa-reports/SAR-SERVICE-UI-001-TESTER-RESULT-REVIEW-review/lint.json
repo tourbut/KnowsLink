@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "ce1383ee3f114e298ea4e17daf92f07d",
+  "base": "436d11bf4ce8990b5c76c1e2a4c6c95a13d1632f",
+  "merge_base": "030c5bd53c7645f06f5ac0b2ebbd11c4b31f5308",
+  "head": "04314a4f6f5e55daa406f5a0e04d3ce6b815da24",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows에 make가 없다. 이 결과 SHA의 제품 바이트는 c7828b2와 동일(git diff -- :!.fullops-squad 0건)하며 QA 기록/helper만 추가했다. c7828b2의 독립 Linux make lint/test 종료0을 별도 증거로 확인했다. 결과 SHA에서 실행한 PASS로 바꾸지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows에 make가 없다. 이 결과 SHA의 제품 바이트는 c7828b2와 동일(git diff -- :!.fullops-squad 0건)하며 QA 기록/helper만 추가했다. c7828b2의 독립 Linux make lint/test 종료0을 별도 증거로 확인했다. 결과 SHA에서 실행한 PASS로 바꾸지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 1,
+    "added_lines": 40,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

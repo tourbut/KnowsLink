@@ -3,7 +3,7 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-11
 owner: tester
-tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-GOOGLE-CONNECT-002-TESTER, SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER, SAR-GROK-WEBHOOK-001-TESTER]
+tasks: [SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-GOOGLE-CONNECT-002-TESTER, SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER, SAR-GROK-WEBHOOK-001-TESTER, SAR-SERVICE-UI-001-TESTER]
 summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원, agent, 메시지 PS08–11 QA 결과를 기록한다"
 ---
 
@@ -68,3 +68,9 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 - Git Bash는 `/tmp/...` 인자를 Windows 경로로 바꾼다. 원격 경로를 넘기는 helper 호출에는 `MSYS_NO_PATHCONV=1`과 Windows 로컬 경로를 쓴다. 등록 `make`는 SHA 검사하는 shim으로 원격 클론에서 실행해 lint.py head를 맞췄다.
 - 2026-10-11 SAR-GROK-WEBHOOK-001-TESTER: 고정 `b86f397` webhook wake를 snapshot 리뷰와 실제 fetch loopback 프로브 58건으로 확인했다. 미해결 C/H 없음, low F1: `EAI_AGAIN`·`ENETUNREACH`가 uncertain이라 그 ID의 깨우기가 24h 사라질 수 있다. 실Bot routine은 미검증.
 - 리뷰 packet이 대상 SHA보다 늦게 커밋되면 `review.py check --task-key`가 "탐색 패킷 없음"으로 실패한다. 리뷰 키로 check하고 packet은 `work.py finish` 뒤 확인한다. 인라인 삭제 명령은 shell_guard가 막으므로 tar `--exclude`로 대체한다.
+- 2026-10-11 SAR-SERVICE-UI-001-TESTER: 회원 웹 `c7828b2`를 snapshot 리뷰와 합성 fixture 29개 × 1440·390·320 브라우저 측정, Linux `make lint/test`로 확인했다. 미해결 C/H 없음, low 3건(OAuth 화면 main 없음, `code`의 aria-labelledby, 모바일 nav 순서). 실Google·실스크린 리더는 미검증.
+- Orca 브라우저에서 `set viewport`는 `goto` 뒤에 해야 적용된다. 앞에 두면 `innerWidth`가 창 폭 그대로라 측정이 무효가 된다. 측정 행마다 `iw`가 요청 폭과 같은지 먼저 확인한다.
+- 패킷이 대상 SHA 뒤 커밋이고 리뷰 키가 과제 키와 같으면 `review.py check`가 막힌다. `--task-key <없는 키>`로 실행하고 사유를 기록한다. 순수 이동 refactor는 `git diff`의 사라진 줄과 추가된 줄을 `comm`으로 비교해 DEV 증거 재사용 근거로 쓴다.
+- 2026-10-11 SAR-SERVICE-UI-001-FIX-TESTER: 후보 `295417a`의 V-01 수정은 독립 리뷰로 수락 가능하다. fixture 29종 × 320/390/1440에서 visible 링크 66개가 모두 44px 이상이다. 증거: [리뷰 보고서](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md).
+
+- 2026-10-11 coor 정정: 위 `--task-key <없는 키>` 기록은 잘못된 우회 지침이며 사용하지 않는다. 제품 리뷰는 실제 구현 과제 키에 연결한다. FIX-TESTER의 동일295417a를 실제 FIX-DEV로 check해 통과했다. 과거 실패는 FIX-TESTER phase에 보존, 후속 근거는 FIX-TESTER-RESULT-REVIEW/report.md다.

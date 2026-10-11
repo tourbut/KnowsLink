@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -113,7 +113,7 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 | 파일 | 책임 | 검사 |
 |---|---|---|
 | connections.go | owner/agent/client bound PoP·10분 grant·key credential·quota·pending expiry | TestConnectionApprovalAndKeyCredentials, TestConnectionFailureExpiryAndCancellation, TestAgentAndPairCapacity |
-| member_agents.go·member.go | 자기 agent/지문·지원 client·확인/취소·관계 세대 UI | TestPublicAgentHTTP; UX-04–05 직접 검수 후속 |
+| member_agents.go·member.go | 자기 agent/지문·지원 client·확인/취소 UI. 관계 세대는 hidden 값으로만 전달한다(SAR-SERVICE-UI-001-DEV 이후 화면 숫자 표시 없음) | TestPublicAgentHTTP; UX-04–05 직접 검수 후속 |
 | api_rate.go | agent API stable principal·별도 cleanup budget·DB 재시작 유지 | 기존 TestEmailIdentity, TestPublicAgentHTTP·TestPostgresSafety |
 | http.go·store.go | 공용 owner 동작과 키별 current-auth·철회·pair cap | 기존 업무/게이트/시험 회귀와 새 key credential 검사 |
 | adapters/src/connect.ts | Node local prepare/complete·로컬 private key·0700/0600 설정 | connect.test.ts 실제 HTTP·PoP·파일 권한·URL·1회 완료 |
@@ -143,7 +143,7 @@ POLICY 48d12fa의 관계 반복·재초대 의미는 기준 4a 코드와 이미 
 |---|---|---|
 | connections.go | `agentLimit`: 새 agent를 막는 한도 이름(total·records·active)을 반환한다. `agentCapacity`는 이 함수를 사용한다. 한도 값·순서 집행은 같다 | TestSaturationGuidance, 기존 TestAgentAndPairCapacity·TestRevokedRecordRetention |
 | member_agents.go | `agentLimits`·`keyRecordsFull`·`connectLimit`·`agentProblem`: create·connect의 409를 실제 한도별 안내로 바꾼다. `inviteNotice`: 초대 제출 결과를 새 pending·기존 pending 유지·active 유지로 구분한다. `memberAgent.KeyFull`, `memberPair.Own/Other` | TestSaturationGuidance, TestMemberPagesShowNextSteps, TestPublicAgentHTTP 두 하위 검사 |
-| member.go | `refusal.create`와 거부 화면의 새 agent 만들기 버튼, 초대 notice 3종, 홈의 철회 agent 보존 안내·철회 전 경고·키 기록 포화 안내, 관계 상태별 안내·종료 관계의 수동 새 초대 버튼, 종료 관계의 관계 철회 버튼 제거 | TestMemberPagesShowNextSteps, TestPublicAgentHTTP |
+| member.go | `refusal.create`와 거부 화면의 새 에이전트 만들기 버튼(당시 문구 "새 agent 만들기"), 초대 notice 3종, 홈의 철회 agent 보존 안내·철회 전 경고·키 기록 포화 안내, 관계 상태별 안내·종료 관계의 수동 새 초대 버튼, 종료 관계의 관계 철회 버튼 제거 | TestMemberPagesShowNextSteps, TestPublicAgentHTTP |
 
 TestRelationshipPolicy는 State 단위 관계 행렬이다. 같은/반대 방향 pending 반복의 수·세대·기한·수신자 불변, pending 메시지 거부, 발신 owner 결정 거부, 기한 직전 수락과 기한 도달 거부, 만료 뒤 새 기한·새 세대, active 반복 불변, 양측 각각의 unpair와 옛 메시지·옛 결정 거부, 양방향 재초대의 새 수락과 새 세대, 거절 뒤 늦은 수락 거부와 pending slot 해제, 타 owner 결정·unpair 거부, 같은 owner 자동 수락 없음, 송신 pending 상한의 다음 재초대가 세대를 만들지 않음, 재시작 뒤 상태 유지, 비활성 owner·철회 agent 재초대 거부를 확인한다.
 TestSaturationGuidance는 키 기록 포화의 교체 안내와 생성 가능 여부, owner 기록 포화의 24h 보존 전후, 보존 중·정리 뒤 옛 키 credential 거부, 활성 키 3개·활성 agent 5개 안내, 결제·정확한 시각 문구 부재를 확인한다.
@@ -217,3 +217,19 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 | `grok-wake.ts` webhook 모드(`KNOWSLINK_GROK_WEBHOOK_FILE`) | 비공개 `{url,key}` 파일을 요청마다 읽음, 고정 host URL만 허용, Bearer·`X-Automation-Key` POST 8s 단일 시도, 메타데이터만 전송, `sendPrompt`와 배타, `wake-check` 무전송 파일 검사 | `grok-wake.test.ts`: 2xx·3xx·4xx·5xx·DNS 실패·timeout, 불신 URL·짧은 key·0644 파일 무전송, 비UUID ID 제거, 결과에 key·URL ID 없음. URL host 완화·redirect follow·ENOTFOUND 분류 제거 변이에서 실패 |
 
 `inbox.test.ts`는 번들 `dist/plugin.js`를 SDK `StdioClientTransport`로 실행하고 로컬 relay 대역을 사용한다. 실제 운영 relay·Grok Bot 호출은 포함하지 않는다.
+
+## 회원 웹 상용 UI — SAR-SERVICE-UI-001-DEV
+
+디자인 정본은 D04 [service-member-ui.md](mockups/service-member-ui.md)다. 서버 상태·권한·rate·CSP는 바꾸지 않았다.
+
+| 파일·모듈 | 책임 | 자동 검사 |
+|---|---|---|
+| `member_pages.go` `memberStyle` | 회원 웹 디자인 토큰의 단일 정의(D04 8절 색·글꼴·간격·버튼·배지·포커스). gate 화면(`http.go` `page`)과 OAuth 동의 화면(`remote_auth.go`)이 같은 상수를 쓴다 | `TestMemberUIFixtures`: 외부 자원(`src=`·`<link`·`url(`·`<script`·`@import`) 0건 |
+| `member_pages.go` `badge`·`badges` | 상태를 글자·기호·색으로 함께 표시한다. 없는 상태(온라인·최근 접속)는 만들지 않는다 | 같은 검사의 전 상태 렌더 |
+| `member_pages.go` `memberPages` | 로그인·확인 코드·홈·연결 관리·기기 승인·receipt·거부 화면. 홈은 헤더·확인 필요 띠·섹션 이동·에이전트(접힘 행·위험 구역)·관계·승인 요청·연결 확인·계정 순서다 | `TestMemberPagesShowNextSteps`, integration 문구 검사 |
+| `member.go` `homePage` | 관계 정렬(받은 초대→보낸 초대→연결됨→종료), 활성 에이전트 수, 받은 초대·대기 승인 요청 건수 | integration `TestPublicAgentHTTP`·`TestEmailIdentity` |
+| `member_agents.go` `memberAgent.ActiveKeys`, `memberPair.Mine/Peer` | 접힌 행의 활성 키 수, 관계 행의 내 에이전트→상대 방향 | 위 검사 |
+| `testdata/member_forms.golden` | 재설계 전 템플릿에서 만든 form 계약(method·action·hidden 값·필드 이름·button 라우팅). 의도한 차이는 홈 헤더 로그아웃 form 1개 추가뿐이다 | `TestMemberUIFixtures` |
+
+시각 검수 자료: `KNOWSLINK_UI_FIXTURE_DIR=<빈 폴더> go test ./internal/relay -run TestMemberUIFixtures`가 합성 데이터의 29개 화면 HTML을 쓴다. 실제 계정·비밀값은 없다. 방법은 [실행 기록](../exec-plans/phases/SAR-SERVICE-UI-001-DEV.md)을 따른다.
+FullOps DESIGN 규칙은 Go 문자열 안의 CSS를 검사하지 않는다. 대신 위 렌더 검사와 Orca 내장 브라우저의 1440·390·320 폭 측정을 사용했다.

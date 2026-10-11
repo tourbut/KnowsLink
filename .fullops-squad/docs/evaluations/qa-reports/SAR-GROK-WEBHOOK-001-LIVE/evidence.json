@@ -1,0 +1,91 @@
+{
+  "task": "SAR-GROK-WEBHOOK-001",
+  "date": "2026-10-11",
+  "product_sha": "b86f39711c2f5240d37332f44a9930d4dc2653fa",
+  "accepted_main": "8539ef5b6d3e7ed99259762c62d164b8ba40fab0",
+  "verification_surface": "Dots knowslink_receive and authenticated KnowsLink member receipt in Orca browser",
+  "grok_ui_receipt_inspection": false,
+  "secret_handling": {
+    "incident": "Setup panel exposed the initial sender key in tool output. The value is not copied into repository evidence.",
+    "mitigation": "Requested old test routine deletion/key rotation. Bot reports deletion and replacement. New values transferred in memory through native secret-request cards with output hidden.",
+    "old_key_rejection_test": "not performed",
+    "credential_file": "/workspace/.knowslink/grok-webhook.json",
+    "file_state": "Bot reports regular file, current owner, mode0600; not independently read from Bot filesystem"
+  },
+  "probes": [
+    {
+      "nonce": "KL-WH-PROBE-20261011-1242",
+      "callback_id": "01a12aff-9f5f-785d-babc-50da8f8804b4",
+      "setup_report_id": "01a12b02-65ca-7aa3-ab5c-6b7f9799d38c",
+      "callback_received_by_dots": false,
+      "member_receipt_observed": "failed:expired",
+      "expires_kst": "2026-10-11 21:48:57 KST",
+      "note": "HTTP200 setup report and native routine success report are distinct from Dots receipt. Callback expired before the next receive. Do not count as a successful round trip."
+    },
+    {
+      "nonce": "KL-WH-PROBE-20261011-1300",
+      "setup_report_id": "01a12b0e-6dbb-7f01-9a90-fdf7c2f8fda5",
+      "callback_id": "01a12b0e-b584-7c6a-8591-e0f7bce046cf",
+      "callback_received_by_dots": true,
+      "dots_observed_kst": "2026-10-11 22:05",
+      "callback_report": {
+        "event": "knowslink_text_arrived",
+        "routine_marker": "seen",
+        "webhook_event_marker": "seen",
+        "receive": "succeeded",
+        "receive_state": "empty"
+      },
+      "member_receipt_observed": {
+        "transport": "delivered",
+        "completion": "received"
+      },
+      "note": "Actual callback read by Dots. Context markers and receive result are reported by the routine, not independently inspected Grok chat pixels. Native execution ID unavailable."
+    }
+  ],
+  "watcher_transition": "실제 입력 메시지 webhook routine 왕복 확인, 시험 예외 제거 설정 보고 확인.",
+  "user_turn_visual_verification": "not performed; reception is never induced or verified by opening Grok chat",
+  "cost": "Existing Bot account usage only; no additional paid service configured",
+  "residual": "Temporary DNS/routing failures can suppress same-ID wake for24h (tester F1 low). Messages remain in inbox.",
+  "watcher_report": {
+    "new_pid": 88404,
+    "receive_mode": "public-node, poll10s, automatic receive",
+    "bundle_hash": "ec2cfd24…bfa4c (truncated setup report; full digest not captured)",
+    "source_sha": "8539ef5b6d3e7ed99259762c62d164b8ba40fab0",
+    "wake_check": "state ok, mode webhook before/after",
+    "provenance": "Bot installation setup response and Dots received setup report; not a direct process/filesystem inspection by coordinator",
+    "message_id": "01a12b16-c19a-7bb2-b7f3-4cd8cdc32252",
+    "rollback": "/workspace/.knowslink/backup-pre-webhook-20261011-221012",
+    "old_pid": 43478,
+    "watcher_count": 1,
+    "existing_mcp": "25adea2 bundle and MCP config unchanged",
+    "member_receipt": {
+      "transport": "delivered",
+      "completion": "received"
+    }
+  },
+  "live_incoming_test": {
+    "nonce": "KL-WH-LIVE-20261011-1315",
+    "request_id": "01a12b26-9272-7667-90ca-73a0ba3fa2a2",
+    "reply_id": "01a12b27-23a3-757d-8ef2-4792bdef3331",
+    "dots_received_kst": "2026-10-11 22:29",
+    "reply_to": "01a12b26-9272-7667-90ca-73a0ba3fa2a2",
+    "reported_event": "knowslink_text_arrived",
+    "reported_routine": "yes",
+    "reported_received": "01a12b26-9272-7667-90ca-73a0ba3fa2a2",
+    "member_receipt": {
+      "transport": "delivered",
+      "completion": "reply_received"
+    },
+    "grok_chat_receipt_inspection": false,
+    "marker_provenance": "실제 답장 내용의 routine 보고. root native 실행 ID/픽셀 검사 아님",
+    "cleanup": "Bot 설정 완료 응답 확인: ACK/probe 예외 제거 저장, 일반 arrival receive/실행 내 요약만 유지, 임의 답장 없음. Dots 정리 보고 receive는 수신없음이므로 전달 완료로 주장하지 않음."
+  },
+  "cleanup_report": {
+    "provenance": "설정 완료 UI 응답만 확인. 수신 메시지 UI 검사 없음",
+    "wake_check": "state ok, mode webhook",
+    "watcher_count": 1,
+    "pid": 88404,
+    "dots_report": "Bot reports relay accepted; Dots delivery unverified",
+    "other_routines_keys_mcp": "Bot reports unchanged"
+  }
+}

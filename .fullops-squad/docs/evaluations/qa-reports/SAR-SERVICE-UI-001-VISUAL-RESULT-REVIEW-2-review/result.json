@@ -1,0 +1,1456 @@
+{
+  "base": "c2fd5f4c37f17c3833ea2e5d9134feeb01561257",
+  "head": "1188f569111154c2e92103acbb4ee832ed6642dd",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.13 (fabbdb29) windows/amd64\nbuilt at: 2026-10-08T11:52:18Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "coor 01a1203d-35f3-7ac2-9d7d-a2d8bd9823ed",
+  "conclusion": "시각 검수 기록 수락. 제품 후보는 V-01 최소 수정 및 최신 SHA 독립 검수 후 main 통합한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SERVICE-UI-001-VISUAL-packet-outcomes.json",
+      "status": "added",
+      "insertions": 524,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/capture.py",
+      "status": "added",
+      "insertions": 104,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/keyboard.json",
+      "status": "added",
+      "insertions": 917,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/keyboard.py",
+      "status": "added",
+      "insertions": 96,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/manifest.json",
+      "status": "added",
+      "insertions": 1343,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/measurements.json",
+      "status": "added",
+      "insertions": 3277,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+      "status": "added",
+      "insertions": 177,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+      "status": "added",
+      "insertions": 37,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      "status": "modified",
+      "insertions": 142,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 128,
+      "review_status": "reviewed",
+      "reason": "보고서·D04 대조·수집 스크립트·원시 JSON 요약·아카이브와 빈 인박스 확인. PNG149개는 manifest SHA256/크기를 전부 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-approved-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-approved-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-approved-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-cancelled-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-cancelled-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-cancelled-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-consumed-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-consumed-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-consumed-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-expired-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-expired-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-expired-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-1440-open-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-1440-open-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-1440-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-1440-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-320-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-320-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-320-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-390-open-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-390-open-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-prepared-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-1440-open-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-1440-open-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-1440-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-1440-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-320-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-320-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-320-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-390-open-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-390-open-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-token-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-waiting-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-waiting-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/connection-waiting-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-approved-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-approved-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-login-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-login-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-login-off-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-login-off-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-prepared-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-prepared-320-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-prepared-320-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-prepared-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/device-prepared-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/focus-danger-button-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/focus-danger-summary-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/focus-home-1440-skiplink.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/focus-home-390-skiplink.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/gate-active-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/gate-active-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/gate-active-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/gate-closed-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/gate-closed-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/gate-closed-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/google-complete-connect-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/google-complete-connect-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/google-complete-home-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/google-complete-home-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-open-s1of7.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-open-s2of7.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-open-s3of7.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-open-s4of7.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-open-s5of7.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-open-s6of7.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-open-s7of7.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-s1of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-s2of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-s3of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-1440-s4of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s1of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s2of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s3of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s4of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s5of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s6of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s7of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-320-s8of8.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s1of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s2of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s3of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s4of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s5of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s6of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s7of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s8of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-open-s9of9.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-s1of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-s2of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-s3of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-s4of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-390-s5of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-1440-open-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-1440-open-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-1440-open-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-1440-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-1440-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-1440-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-320-s1of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-320-s2of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-320-s3of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-320-s4of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-320-s5of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-open-s1of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-open-s2of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-open-s3of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-open-s4of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-open-s5of5.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-s1of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-s2of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-s3of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/home-empty-390-s4of4.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/receipt-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/receipt-320-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/receipt-320-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/receipt-320-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/receipt-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/receipt-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-create-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-create-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-limited-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-limited-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-limited-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-login-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-login-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-reauth-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/refusal-reauth-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/remote-consent-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/remote-consent-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/remote-login-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/remote-login-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-both-problem-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-both-problem-320-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-both-problem-320-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-both-problem-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-both-problem-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-google-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-google-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-logout-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-logout-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-none-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/start-none-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/verify-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/verify-320-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/verify-320-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/png/verify-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "8c3c9e7d-356c-4f8f-8bb8-dd14545e491d",
+    "reviewer_session": "01a1203d-35f3-7ac2-9d7d-a2d8bd9823ed",
+    "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-ac37660453004ddd8fc7ff55866c2588",
+    "snapshot_head": "1188f569111154c2e92103acbb4ee832ed6642dd",
+    "read_only": true
+  }
+}
