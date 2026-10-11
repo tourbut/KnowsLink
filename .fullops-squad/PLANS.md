@@ -1568,3 +1568,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - UI tester 결과04314a4와 designer 결과1188f569의 독립 root 결과 리뷰를 수락했다. designer 실제 세션8c3c9e7d를 provider dispatch transcript로 확인했다. 최초 root visual 리뷰의 implementer를 이전 세션으로 잘못 지정해 원본 보존·새 REVIEW-2를 완료하고 supersede했다. 새 check reviewed12/skipped149 통과, PNG149 manifest hash/크기 일치. 시각 PASS이나 V-01 글자 링크21px/44px 기준 미달은 수정하기로 했다.
 - SAR-SERVICE-UI-001-FIX-DEV: 기존 D04 44px 요구의 최소 수정이다. 새 기능 없음. 고정 최신 SHA tester 독립 리뷰와 designer 링크 재측정 후 제품 main 병합·push와 OPS 배포를 재개한다. DEV msg_139b616ecf91, tester msg_a4993d9d04d0, visual msg_90c290498c5f는 같은 조건으로 보류다. 문서 결과에 검수 후보 조상이 포함돼 제품 수락 전 main 병합하지 않는다.
 - tester ctx_d3486b6a2749와 designer ctx_bd21bfde91bc는 정상 released/closed_agent_terminal/transcript captured다. 기존 사용자 세션을 강제 종료하지 않았다. 실제 dev terminal0/clean 확인 후 준비 coor 커밋을 반영해 수정 배정한다. 운영 제품 eac603b6 보존, 배포 미실행이다.
+
+- V-01 DEV 실제 착수 task_eee29ba78192/ctx_4567096a3f21/term_4174ad74-9fe3-47f6-aeb7-178ad3f00eba, fresh Claude Sonnet5.5 high, requested/effective 일치·turn_started·to_dev/FULLOPS/project/V-01 읽기 확인. 준비 f67ba65를 coor push하고 actual terminal0/clean DEV만 FF했다. 실제 main8539 조상 포함. 이후 정상 로그는 완료/오류/질문 또는60분 후만 확인한다.
+- Bot 설정 완료 응답에서 시험 ACK/probe 예외 제거 저장, webhook state ok/watchPID88404 하나를 보고했다. Dots 정리 보고 receive는 수신없음이므로 전달완료로 주장하지 않는다. 실제 왕복과 설정 보고를 구분해 LIVE 증거에 보존했다.

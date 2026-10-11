@@ -42,7 +42,7 @@
       "note": "Actual callback read by Dots. Context markers and receive result are reported by the routine, not independently inspected Grok chat pixels. Native execution ID unavailable."
     }
   ],
-  "watcher_transition": "실제 입력 메시지의 webhook routine 답장 Dots 수신 및 owner receipt 확인. 시험 예외 정리 보고 대기.",
+  "watcher_transition": "실제 입력 메시지 webhook routine 왕복 확인, 시험 예외 제거 설정 보고 확인.",
   "user_turn_visual_verification": "not performed; reception is never induced or verified by opening Grok chat",
   "cost": "Existing Bot account usage only; no additional paid service configured",
   "residual": "Temporary DNS/routing failures can suppress same-ID wake for24h (tester F1 low). Messages remain in inbox.",
@@ -78,6 +78,14 @@
     },
     "grok_chat_receipt_inspection": false,
     "marker_provenance": "실제 답장 내용의 routine 보고. root native 실행 ID/픽셀 검사 아님",
-    "cleanup": "시험 ACK와 probe callback 예외 제거 요청 전송. 아직 완료 수신 미확인"
+    "cleanup": "Bot 설정 완료 응답 확인: ACK/probe 예외 제거 저장, 일반 arrival receive/실행 내 요약만 유지, 임의 답장 없음. Dots 정리 보고 receive는 수신없음이므로 전달 완료로 주장하지 않음."
+  },
+  "cleanup_report": {
+    "provenance": "설정 완료 UI 응답만 확인. 수신 메시지 UI 검사 없음",
+    "wake_check": "state ok, mode webhook",
+    "watcher_count": 1,
+    "pid": 88404,
+    "dots_report": "Bot reports relay accepted; Dots delivery unverified",
+    "other_routines_keys_mcp": "Bot reports unchanged"
   }
 }
