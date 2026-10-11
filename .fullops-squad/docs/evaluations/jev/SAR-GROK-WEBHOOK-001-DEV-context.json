@@ -1,0 +1,371 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "7a8c2b9194edb77b52db41a14b2325af743f0d6e",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "0d1160cfb9fe5c1f1f66406924d33faad59e93c78d2490c322e0e615754bf23f",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-grok-wake.ts",
+      "c1-mcp.ts",
+      "c2-inbox.ts",
+      "c3-README.md",
+      "c4-install_bot_mcp.sh",
+      "c5-webhook-wake-research.json",
+      "c6-dev.md",
+      "c7-project.md",
+      "c8-document-writing.md",
+      "c9-README.md",
+      "c10-coding-style.md",
+      "c11-testing.md",
+      "c12-security.md",
+      "required_0",
+      "required_1"
+    ],
+    "recommended_ids": [
+      "c0-grok-wake.ts",
+      "c1-mcp.ts",
+      "c2-inbox.ts",
+      "c3-README.md",
+      "c4-install_bot_mcp.sh",
+      "c5-webhook-wake-research.json",
+      "c6-dev.md",
+      "c7-project.md",
+      "c8-document-writing.md",
+      "c9-README.md",
+      "c10-coding-style.md",
+      "c11-testing.md",
+      "c12-security.md",
+      "required_0",
+      "required_1"
+    ],
+    "signals": {
+      "c1-mcp.ts": {
+        "relevant": 0.4,
+        "evidence": 0.51,
+        "contradicts": 0.45,
+        "injection": 0.07,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-inbox.ts": {
+        "relevant": 0.47,
+        "evidence": 0.59,
+        "contradicts": 0.25,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-README.md": {
+        "relevant": 0.57,
+        "evidence": 0.58,
+        "contradicts": 0.28,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-install_bot_mcp.sh": {
+        "relevant": 0.27,
+        "evidence": 0.37,
+        "contradicts": 0.46,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-webhook-wake-research.json": {
+        "relevant": 0.88,
+        "evidence": 0.87,
+        "contradicts": 0.1,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-dev.md": {
+        "relevant": 0.64,
+        "evidence": 0.72,
+        "contradicts": 0.24,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-project.md": {
+        "relevant": 0.46,
+        "evidence": 0.86,
+        "contradicts": 0.27,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-document-writing.md": {
+        "relevant": 0.26,
+        "evidence": 0.47,
+        "contradicts": 0.09,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-README.md": {
+        "relevant": 0.15,
+        "evidence": 0.45,
+        "contradicts": 0.18,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-coding-style.md": {
+        "relevant": 0.24,
+        "evidence": 0.67,
+        "contradicts": 0.1,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-testing.md": {
+        "relevant": 0.47,
+        "evidence": 0.76,
+        "contradicts": 0.1,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c12-security.md": {
+        "relevant": 0.66,
+        "evidence": 0.84,
+        "contradicts": 0.09,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-grok-wake.ts": "adapters/src/grok-wake.ts",
+      "c1-mcp.ts": "adapters/src/mcp.ts",
+      "c2-inbox.ts": "adapters/src/inbox.ts",
+      "c3-README.md": "adapters/README.md",
+      "c4-install_bot_mcp.sh": "scripts/install_bot_mcp.sh",
+      "c5-webhook-wake-research.json": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/webhook-wake-research.json",
+      "c6-dev.md": ".fullops-squad/contexts/dev.md",
+      "c7-project.md": ".fullops-squad/project.md",
+      "c8-document-writing.md": ".fullops-squad/docs/agents/document-writing.md",
+      "c9-README.md": ".fullops-squad/rules/common/README.md",
+      "c10-coding-style.md": ".fullops-squad/rules/common/coding-style.md",
+      "c11-testing.md": ".fullops-squad/rules/common/testing.md",
+      "c12-security.md": ".fullops-squad/rules/common/security.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 36075,
+    "output_tokens": 912,
+    "cost": 0.0015151500000000003,
+    "known_cost": 0.0015151500000000003,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 1.04,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.827,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2565,
+        "output_tokens": 76,
+        "cost": 0.00010773
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.498,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2676,
+        "output_tokens": 76,
+        "cost": 0.000112392
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.529,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3879,
+        "output_tokens": 76,
+        "cost": 0.000162918
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.506,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2699,
+        "output_tokens": 76,
+        "cost": 0.000113358
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.488,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2478,
+        "output_tokens": 76,
+        "cost": 0.000104076
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.517,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2903,
+        "output_tokens": 76,
+        "cost": 0.000121926
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.537,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3658,
+        "output_tokens": 76,
+        "cost": 0.000153636
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.489,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2619,
+        "output_tokens": 76,
+        "cost": 0.000109998
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.522,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2887,
+        "output_tokens": 76,
+        "cost": 0.000121254
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.504,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3308,
+        "output_tokens": 76,
+        "cost": 0.000138936
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.534,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3346,
+        "output_tokens": 76,
+        "cost": 0.000140532
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.457,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3057,
+        "output_tokens": 76,
+        "cost": 0.000128394
+      }
+    }
+  ],
+  "request_max_seconds": 0.827,
+  "task_key": "SAR-GROK-WEBHOOK-001-DEV",
+  "role": "dev",
+  "attempt": "590f4c27d88d410c8c15fe232581b35a",
+  "instruction_sha256": "baf158ca5215ce187e4a9ce9bb92f6ff881e769212725885620d2f667ba76d68",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "adapters/src/grok-wake.ts",
+      "adapters/src/mcp.ts",
+      "adapters/src/inbox.ts",
+      "adapters/README.md",
+      "scripts/install_bot_mcp.sh",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/webhook-wake-research.json",
+      ".fullops-squad/contexts/dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/docs/agents/document-writing.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/rules/common/security.md"
+    ],
+    "required": [],
+    "sources": {
+      "adapters/src/grok-wake.ts": "7c63b7fe25b5da30385fc4a6951e1b7a5bec2813dac9e2eeb73ec9d492b5f5fc",
+      "adapters/src/mcp.ts": "23f5bf0facd83e58750adbe871e9a17529efb09252bcc3fa13272e0d1f92ba33",
+      "adapters/src/inbox.ts": "b31475ed2390542414ac1f6f63331246976da8e5812ea5677c7a0e25c7443eda",
+      "adapters/README.md": "718d3ce635cb7e0e55de561f837883dc5f37cfe890143352f8ec8a6fc1f1d0da",
+      "scripts/install_bot_mcp.sh": "72d0e1dd713970abefb103b11c3dbf43546b1e7ed2eeba7d5480244b2eb820ca",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/webhook-wake-research.json": "0c4519b5738ccc706f3ae69de94407c08b5ced9d8025b32ae01d364e28fdddf5",
+      ".fullops-squad/contexts/dev.md": "3bd3c0556d7470cc488ba87bc667eb02eb1cd41de8359d369188e1f4fb9bdc8e",
+      ".fullops-squad/project.md": "089782d68610223d84ee8b0e3487a3fd96d04cd1083423a8b9eedc7ab63256a1",
+      ".fullops-squad/docs/agents/document-writing.md": "4bc9f139a465c6614cd4eecdc581b7933dddc23c2bbc9912b513c5fcd6e337c5",
+      ".fullops-squad/rules/common/README.md": "c49e4aead718d4c0bdc8bb0b71fd5062e7c4db87e456831ff326849bd616ed42",
+      ".fullops-squad/rules/common/coding-style.md": "cf83b775ca73e1cadcf65bb8c38bb1f3710bee8cdcd08819d03d3fb10372318e",
+      ".fullops-squad/rules/common/testing.md": "e4cef4ccbd9be3d6e27a9e791f58d26afeb69d8af44b1eb2dc6fbc160b3a4de7",
+      ".fullops-squad/rules/common/security.md": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc"
+    }
+  },
+  "unsent_sources": {
+    "adapters/src/grok-wake.ts": "sensitive or oversized passage"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 2.739,
+  "input_partial": true,
+  "instruction_chars": 3622,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 3622
+  }
+}

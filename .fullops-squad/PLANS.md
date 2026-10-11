@@ -1527,3 +1527,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - Context7 resolve-library-id는 월 quota 초과로 실패했고 새 key/결제를 설정하지 않았다. 공식 cursor/plugins pstack make-bot-ui의 webhook routine/[routine]/webhook_event 예제를 확인했다. 기존 아키텍처의 외부 webhook 부재 단정은 최신 예제와 다르므로 과거 확인 범위로 해석한다. 일반 skills-routines 문서만으로 webhook schema를 증명하지 않는다.
 - 현재 노우가 UpdateRoutine trigger.type=webhook과 routine event 지원을 보고했다. Dots 수신보고01a12ab0-b2de-7e46-9b77-18e912bef070/acknowledged를 확인했다. 이는 Bot schema 점검 보고이며 root의 raw schema 독립 캡처가 아니다. 생성·수정·key발급·시험은 없었다. 근거: DOTS-GROK-LIVE/webhook-wake-research.json.
 - 후속 담당 dev/coor: 기존 polling과 수신 도구를 유지하고 arrival-only webhook routine 후보의 최소 구현·독립 검증·실계정 시험을 진행한다. 재개 조건은 좁은 routine 정의와 host 승인/안전한 secret 전달 경로 확보다. 실제 routine 이벤트가 사용자 메시지를 만들지 않는지 시험 전에는 대체 완료로 처리하지 않는다. 기존 wake를 중단하거나 새 유료 서비스·외부 키노출·vendor core 변경은 하지 않는다.
+
+
+## 2026-10-11 상용 회원 UI·webhook 깨우기 착수
+
+- SAR-SERVICE-UI-001-DESIGN: 사용자 요청의 제품 시각 기준·로그인/회원 UX를 designer에 배정한다. 새 세션 기본; 이전 세션 완료 후 시간이 지났고 문맥이 크므로 재사용하지 않는다.
+- SAR-GROK-WEBHOOK-001-DEV: 사용자 메시지 없는 루틴 깨우기 후보 구현을 dev에 배정한다. 실제 대체 성공 전 기존 sendPrompt 유지. 새 세션 기본; 이전 과제와 목표·파일이 달라 재사용하지 않는다.
+- 이후 UI DEV 구현 → fixed-SHA tester QA/독립 리뷰·designer 직접 시각 검수 → main 병합/push → OPS 배포 및 실제 Bot webhook 시험 순서다. 무과금·로컬 Docker 금지·상태/증거 보존을 유지한다.
+- 기존 dev/designer 세션은 worker_done 종결 및 2026-10-11 현재 tui-idle=true, clean을 확인했다. user-owned 세션은 종료하지 않는다.

@@ -1,0 +1,65 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SERVICE-UI-001-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "unresolved",
+  "role": null,
+  "deliverables": [
+    "D04",
+    "D05"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.29,
+        "product": 0.71
+      },
+      "confidence": 0.42
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.98,
+        "ops": 0.01,
+        "tester": 0.01
+      },
+      "confidence": 0.97
+    },
+    "docs": {
+      "D01": 0.48,
+      "D02": 0.49,
+      "D03": 0.48,
+      "D04": 0.68,
+      "D05": 0.54,
+      "D06": 0.47,
+      "D07": 0.34,
+      "D08": 0.2,
+      "D09": 0.43,
+      "D10": 0.32,
+      "D11": 0.32,
+      "D12": 0.36,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2465,
+    "output_tokens": 314,
+    "cost": 0.00010353
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.69,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": null,
+  "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "head": "7a8c2b9194edb77b52db41a14b2325af743f0d6e",
+  "requires_packet": true
+}
