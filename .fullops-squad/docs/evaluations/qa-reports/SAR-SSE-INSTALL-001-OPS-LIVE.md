@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-11
 owner: ops
 tasks: [SAR-SSE-INSTALL-001-OPS]
-summary: 수락 제품 121cde9를 기존 Linux 서버에 최소 적용한 실제 SHA, 백업, 보존 증거, ingress 변경과 smoke 결과 및 남은 검증
+summary: "수락 제품 121cde9를 기존 Linux 서버에 최소 적용한 실제 SHA, 백업, 보존 증거, ingress 변경과 smoke 결과 및 남은 검증"
 ---
 
 # 운영 적용 결과 (2026-10-11 KST 12:36~12:45)
