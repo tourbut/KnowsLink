@@ -1,0 +1,236 @@
+{
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-DEV",
+  "attempt": "2844ae38d8d64434889e5d5d1f385da2",
+  "packet_input_sha256": "59d4e3d4d66f4af00970d59dd89b24c7a9e87a9acee7fa394459ef7ccaac09ab",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 모드·dev 책임·독립 리뷰·인박스 규약을 읽었다. 규약은 바꾸지 않고 이번 과제에 적용했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "정본 지시서의 완료 조건 1~6과 파일 소유권을 따라 구현·검증했다. 결과는 exec plan과 work finish 로그에 남긴다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Grok tester 실행 방식과 D:/workspace/KnowsLink 폴더 신뢰 기록을 확인했다. 역할 배정 규약은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검증 명령 정본(make lint/test)을 확인했다. guard 검사를 Makefile lint-config·test에 연결했으며 project.md 문장 변경은 필요 없다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fullops-common-0.3.3 적용 범위를 확인했다. 공통 규칙 묶음은 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "단순 설계·오류 처리 기준을 guard에 적용했다. 규칙 문서는 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "공통 규칙 묶음 fullops-common-0.3.3은 버전 식별자로 공유되므로 수정하지 않았다. 저장소별 규칙은 AGENTS.md와 hook으로 반영했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "입력·실행 경계와 파괴적 변경 승인 기준을 guard 설계에 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "lite 레벨로 변경 동작과 실패 경계를 합성 회귀로 검증했다. 규칙 문서는 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "SAR-WINDOWS-SHELL-GUARD-001 항목 아래 DEV 결과와 후속(독립 리뷰, Codex hook 신뢰, 역할 동기화)을 기록했다. 1450줄 파일은 해당 절만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "관련 키워드를 bounded 검색했다. 과거 relay 정리 sweep 이력은 셸 삭제 차단과 무관하다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Windows make 부재와 서버 고유 /tmp clone 검증 관례를 확인해 이번 gate 실행에 적용했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Grok tester 이력을 bounded 검색했다. hook 적용 대상 확인에만 사용하고 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "D10 모듈 설계를 bounded 검색했다. 제품 모듈 구조 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "D10 추천은 제품 relay/adapter 모듈 변경이 없어 불필요하다. guard는 개발 도구 scripts/와 저장소 hook 설정이며 exec plan에 사유를 기록했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "리뷰 기록 형식을 확인했다. 과거 결과를 이번 수락 근거로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Linux 고유 임시 clone 검증 관례를 확인했다. 과거 결과는 재사용하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Windows detached worktree 검증 기록을 확인했다. 이번 셸 차단과 무관하며 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "node_modules junction 사용 기록을 확인했다. guard가 junction 대상 재귀 삭제를 거부하는 근거의 참고로만 사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "서버 /tmp 별도 공간·SSH 검증 관례를 확인했다. 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Git Bash와 Linux 차이 기록을 확인했다. 제품 결함 판단을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Windows Node 회귀 증거 형식을 확인했다. 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Windows PATH에 make가 없다는 기록을 확인했다. 이번 gate는 고유 Linux clone에서 실행한다. SSE 수락을 사고 방지 완료로 쓰지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "snapshot 정리 보류와 임의 삭제 금지 기록을 확인했다. 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "w64devkit 복구 기록을 확인했다. 이번 과제는 전역 도구를 설치하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "서버 별도 clean clone 검증 형식을 확인했다. 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "최종 HEAD gate·pass.json 정본 관례를 확인해 적용했다. SSE 결과는 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "bounded 검색 결과 셸 삭제와 무관하다. 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "bounded 검색 결과 셸 삭제와 무관하다. 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Windows make 부재·정리 기록을 확인했다. 로그는 보존하고 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "직전 DEV 과제 로그를 bounded 검색했다. 로그는 보존하고 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "gate 기록 형식을 확인했다. 로그는 보존하고 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "관련 키워드가 없음을 확인했다. 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "관련 키워드가 없음을 확인했다. 변경하지 않았다."
+    },
+    {
+      "path": ".gitattributes",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "* text=auto eol=lf가 새 .py/.json에 LF를 적용한다. git diff --check 통과. 변경 불필요."
+    },
+    {
+      "path": "AGENTS.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "Windows 파일 작업 안전 절에 hook 위치·거부 규칙·허용 형식·우회 한계를 추가했다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Bot 준비물 제거 안내를 확인했다. 사람이 실행하는 제품 안내이며 agent 셸 hook 범위 밖이라 변경하지 않았다."
+    },
+    {
+      "path": "adapters/src/private-files.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 코드가 execFile로 powershell.exe ACL 검사를 호출한다. agent 도구 호출이 아니어서 hook 대상이 아니며 삭제도 없다. 제품 코드는 변경하지 않았다."
+    }
+  ],
+  "uncertainty_review": "packet head a90a9e6과 준비 커밋 0e4f638의 조상 관계를 확인했다. required 8개는 직접 전체를 읽었다. 나머지 28개는 rm -rf/Remove-Item/LiteralPath/PowerShell/reparse/junction/삭제/정리/hook/Windows/shell 키워드로 bounded 검색하고 해당 절을 확인했다. unknown 8개 중 find/documents-find/context 3개는 다른 attempt 결과라 원본을 보존하고 판단 근거로 쓰지 않았다. PLANS.md는 1450줄 oversized로 과제 절과 Windows 절만 확인했다. 2026-10-03/10-10 dev·tester 로그 4개는 oversized라 열지 않았고 이번 hook 결정에 필요하지 않다. 제시된 역사 archive는 optional 참조이며 실행 차단 구현에 영향이 없다. dynamic language-server semantics를 검증했다는 주장은 하지 않는다."
+}
