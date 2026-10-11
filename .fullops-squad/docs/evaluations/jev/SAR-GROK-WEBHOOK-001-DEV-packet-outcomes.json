@@ -1,0 +1,433 @@
+{
+  "packet_input_sha256": "e86c06c8ec25ca5d7a4f05c54a83ef30b8a2d80507271d07ba276e332517d634",
+  "attempt": "590f4c27d88d410c8c15fe232581b35a",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 dev 모드·인박스·packet outcomes·lint·work.py finish 계약을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 timeout GC·보안 gate·증거 구분·sendPrompt 비삽입 원칙을 적용했다. 최근 결정 한 항목을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 front matter와 한국어 STE 원칙으로 phase·README·D03/D10/D12 추가 문단을 작성했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/webhook-wake-research.json",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "전체를 읽었다. Bot 보고 schema와 next_steps(메타데이터만, sendPrompt 유지, 실제 시험 후 전환)를 구현 범위로 사용했다. 증거 파일은 보존하고 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전체를 읽고 해야 할 일·파일 소유권·금지 사항·완료 기준을 따랐다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "검증 명령(make lint/test, install_bot_mcp.sh)과 공통 기준 적용 절을 읽었다. Linux clean clone gate에 등록 명령을 사용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전체를 읽었다. fullops-common-0.3.3을 phase 기준에 기록했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전체를 읽었다. 기존 GrokWake 확장·새 의존성 0·경계 검증을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전체를 읽었다. 비밀값 비출력, 외부 URL 위조(SSRF)·redirect 차단, untrusted 입력 처리를 phase 보안 판단에 기록했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전체를 읽었다. lite 범위로 변경 동작·실패 경계 단위 검사와 변이 검출을 실행하고 미검증을 구분했다."
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "AutoReceiver.ring·claimWake/releaseWake/markWake와 hostWake 상태를 읽었다. GrokWake.ring 계약(WakeResult)이 같아 변경이 필요 없다. 기존 inbox.test wake 회귀가 PASS했다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "PLANS/board는 coor 소유라고 지시서가 정했다. 다음 과제 대기 항목이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "202·214행의 webhook 공식 기능 없음 일반화를 읽었다. 지시서의 정정 요구에 따라 202행을 확인된 후보 범위로 고치고 webhook 절을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "25·112행 등은 remote MCP2 Events webhook·합성 tool의 webhook:false 필드다. adapter routine wake와 별도 계약이라 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "216행 GrokWake 책임·검증 행을 읽었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D10 표에 webhook 모드 책임·검증 행을 추가하고 tasks를 갱신했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "16·21행은 SSE·MCP2 Events 기술 근거다. 새 의존성이 없어 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "loopback wake 운영 절(380–392행)을 읽었다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D12에 webhook 전환·probe·복귀 절차를 추가하고 tasks를 갱신했다. 현재 설정 유지 조건을 명시했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-PREP-002-request.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "현재 과제와 관련된 검색 행(webhook·wake·Linux·검증 용어)을 확인했다. 과거 과제의 기록이며 adapter routine wake 변경의 계약·절차에 영향이 없어 수정하지 않았다."
+    },
+    {
+      "path": "adapters/.grok-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "plugin manifest에 wake env가 없다. watcher env는 owner 시작 명령에서 지정하므로 변경하지 않았다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "지원 상태 표의 공식 지원 없음을 정정하고 webhook 절(설정 파일·배타·결과·wake-check)을 추가했다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "loopback wake 절 전체를 읽었다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "26행은 합성 도구에 webhook 도구가 없다는 설명이다. routine wake와 별도라 변경하지 않았다."
+    },
+    {
+      "path": "adapters/src/grok-wake.ts",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "webhook 모드·공통 request·ENOTFOUND retry·check 파일 검사를 구현했다."
+    },
+    {
+      "path": "adapters/src/grok-wake.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "호출자 inbox.ts·mcp.ts·text.ts가 fromEnv/ring/check만 쓰는 것을 확인했다. 시그니처는 선택 인자 추가뿐이다."
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "13행 webhook:false는 합성 trial tool 상태 필드이며 wake와 무관하다. 변경하지 않았다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "fromEnv·wake-check 호출부를 확인했다. fromEnv가 webhook env를 처리하므로 수정이 필요 없어 바꾸지 않았다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "startAuto와 wake-check가 GrokWake.fromEnv를 그대로 사용한다. wake-check는 webhook 모드에서 무전송 파일 검사를 출력한다."
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "relay의 MCP2 Events webhook 전달 경로다. adapter routine wake와 별도이며 서버 변경이 없다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "스크립트는 bundle 배치·경계 검사만 하며 wake env를 정하지 않는다. 새 bundle에 webhook 코드가 포함되므로 수정하지 않았다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "env -i로 staged bundle의 mcp.test를 실행하는 부분이 webhook 기본 off와 충돌하지 않는다."
+    }
+  ],
+  "uncertainty_review": "partial packet: documents-find의 remaining_candidates(interface-design, AUTO-RECEIVE LIVE·COPY-REVIEW, SSE/OAUTH-RETURN 보고·시나리오, FULLOPS-UPDATE 기록, product-specs)를 webhook/wake 검색으로 수동 점검했다. adapter wake 계약을 정하는 문서는 README·D03·D10·D12뿐이었다. 제품 원천 C5 'optional webhook OFF'는 relay→vendor webhook 금지이며, 이번 opt-in 기본 off adapter wake와 다른 대상이라 판단해 phase에 기록했다. 동적 참조는 GrokWake 사용처 grep(inbox/mcp/text 3곳)으로 확인했다."
+}
