@@ -144,5 +144,22 @@ SSH helper D:/workspace/KnowsLink/.git/fullops-gate/coor_remote.py와 기존 kno
 <!-- fullops-packet:end -->
 
 ## 완료 보고
+브랜치 `fullops/ops`. 배포 제품 SHA `eac603b6a41d2ce002e698600ac66b8fc67ad762`. 최종 기록 SHA는 worker_done 메시지에 한 개로 보고한다.
 
-완료 전문과 최종 기록 SHA는 worker_done 전에 보존한다.
+변경 이유: 독립 QA·시각 수락된 OAuth 브라우저 복귀 수정을 기존 서버에 보존 배포했다. 제품 코드·DB migration·compose·ingress 변경은 없다.
+
+실제 운영 결과:
+- 운영 HEAD `121cde9` → `eac603b6a41d2ce002e698600ac66b8fc67ad762`. 시작 때 clean·HEAD 일치를 확인했다. 서버 origin이 없어 bundle(SHA256 `4ffa17b0…a926`)을 SFTP로 전달하고 `git fetch <bundle>`로 반영했다. `121cde9..eac603b` 제품 diff는 remote_auth.go·테스트·드라이버뿐이다.
+- private backup `backups/121cde9-pre-oauthret-20261011T081432Z.dump` 0600, 10594 bytes, `pg_restore --list` TOC 23줄. 복구·덮어쓰기 없음.
+- `beta.sh up`으로 relay만 재생성했다. relay healthy, migrate exit 0, goose 1, Postgres 컨테이너·볼륨·cloudflared(Up 5시간) 유지. Tunnel config SHA256 `f5abe860…8512` 동일.
+- 보존: `.env`·Tunnel credential·`tunnel.uuid`·`access.aud` SHA256 동일. relay_state 집계(Agents 26, Owners 23, Pairs 12, Remote 6 등) 전·후 동일. orca 200, s8 200, mcp 401, host cloudflared PID 동일, myportfolio 동일. 미완료 install1은 삭제하지 않았다.
+
+검증한 것: `verify.py local` 통과, `compose config --quiet` 통과. 합성 43자 `GET /remote/consent/<id>` → 401 text/html 새 안내 화면, `Cache-Control: no-store`, `Referrer-Policy: no-referrer`, `nosniff`, 기존 CSP. 공개 `/` 200, `/home` 303, `/healthz`·`/owner`·`/v1/test/pull` 404, OAuth metadata 200, 무인증 `POST /mcp` 401, SSE 무인증·query token 401, polling 무인증 401(JSON 본문), authorize·token 빈 요청 400. relay 로그 error/panic 0건.
+
+못 한 것: 실제 Google/Dots OAuth 승인 복귀(성공 경로 반환 화면), 인증 SSE·Events는 실행하지 않았다. 부모가 배포 뒤 수행한다. 합성 consent smoke는 실패 경로의 새 코드 실행을 보이며 성공 경로의 증거는 아니다. 기존 잔여는 그대로다: F1 medium(원인별 실패 안내), SSE 401 보안 헤더 medium, `verify.py regression` baseline 결함(세 항목 동일, projects에 knowslink만 차이). 새 결함은 없다. 이 변경은 새 실행 파일·설정이 없어 새 등록 gate가 없다. 원 exact-SHA product gate는 tester 기록이며 Windows에서 Linux gate는 다시 실행하지 않았다.
+
+패킷: 비선택 89개 path/category를 `SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-packet-outcomes.json`에 처리했다. 직접 읽은 것은 completed, 전문을 읽지 않은 것은 사유와 함께 no_change로 구분했다. partial과 unknown은 `uncertainty_review`에 기록했다.
+
+산출물: [운영 LIVE 기록](../docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-LIVE.md), [실행 기록](../docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md), D12 ops-guide, D13 transition, contexts/ops.md. 원문·backup·bundle은 서버 `knowslink-state/`(backups, oauth-return-20261011, 0700)에 보존했다. DEP-001: 의존성 변경 없음. 삭제·이동·cleanup·복구 명령은 실행하지 않았다.
+
+남은 일: 부모가 실제 Google 계정으로 원격 연결을 재시도해 승인 뒤 앱 복귀·token 발급·인증 SSE를 확인한다. install1 처리는 사용자·부모가 판단한다. 부모가 기록 main 통합·push를 수행한다.

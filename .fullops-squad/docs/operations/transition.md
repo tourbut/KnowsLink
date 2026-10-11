@@ -4,7 +4,7 @@ title: 인수인계서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -12,7 +12,7 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 
 ## 현재 운영 상태 (2026-10-11, SAR-SSE-INSTALL-001-OPS)
 
-운영 배포 SHA는 `121cde923798c745af1f952347fcec1cae40b853`이다. 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. 이전은 `ba3754d`다. relay·Postgres healthy, cloudflared 4연결, local health 200이다. 기존 DB·키·관계·Tunnel credential·Google 설정·공유 서비스는 보존했다. 공개 ingress는 기존 member allowlist에 SSE·MCP·OAuth metadata·Remote OAuth 정확 경로를 추가했다. 증거와 복구는 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-LIVE.md)과 [D12](ops-guide.md#sar-sse-install-001-운영-적용-결과-2026-10-11-sar-sse-install-001-ops)에 있다.
+운영 배포 SHA는 `eac603b6a41d2ce002e698600ac66b8fc67ad762`다(2026-10-11, OAuth 복귀 수정, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS). 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. 이전은 `121cde9`, 그 전은 `ba3754d`다. 이번 적용은 relay만 갱신했고 Tunnel config·DB는 변경하지 않았다. 증거는 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-LIVE.md)에 있다. 아래 상태 문장은 `121cde9` 적용 시점의 기록이다. relay·Postgres healthy, cloudflared 4연결, local health 200이다. 기존 DB·키·관계·Tunnel credential·Google 설정·공유 서비스는 보존했다. 공개 ingress는 기존 member allowlist에 SSE·MCP·OAuth metadata·Remote OAuth 정확 경로를 추가했다. 증거와 복구는 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-LIVE.md)과 [D12](ops-guide.md#sar-sse-install-001-운영-적용-결과-2026-10-11-sar-sse-install-001-ops)에 있다.
 
 아래 2026-10-03·10-04·10-07 표와 held 항목은 당시 기록이다. Google 운영 수락은 2026-10-10 `ba3754d` 기록이 정본이다. 부모와 사용자가 남은 일을 진행한다: 실제 Google 계정의 호스트 설치, 인증 SSE 관찰, Remote OAuth 동의, Cloud app ID 등록, Dots Events 확인.
 
