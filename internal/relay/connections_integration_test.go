@@ -42,14 +42,14 @@ func browserAgent(t *testing.T, b *browser) string {
 	expect(t, b.do("POST", "/home/agents", nil), 303)
 	w := b.do("GET", "/home", nil)
 	expect(t, w, 200, "미연결")
-	ids := regexp.MustCompile(`<code>(agent_[a-f0-9]+)</code>`).FindAllStringSubmatch(w.Body.String(), -1)
+	ids := regexp.MustCompile(`<summary><h3><code class="select">(agent_[a-f0-9]+)</code>`).FindAllStringSubmatch(w.Body.String(), -1)
 	return ids[len(ids)-1][1]
 }
 func browserGrant(t *testing.T, b *browser, agent, mode string) (string, string) {
 	t.Helper()
 	w := b.do("POST", "/home/connect", url.Values{"agent": {agent}, "client": {supportedClient}, "mode": {mode}})
 	expect(t, w, 200, "연결 대기", "개인키")
-	token := regexp.MustCompile(`readonly value="([A-Za-z0-9_-]{43})"`).FindStringSubmatch(w.Body.String())[1]
+	token := regexp.MustCompile(`aria-labelledby="token-l">([A-Za-z0-9_-]{43})</code>`).FindStringSubmatch(w.Body.String())[1]
 	return token, hashToken(token)
 }
 func clientPrepare(t *testing.T, h http.Handler, token string, kid string) (ed25519.PrivateKey, string) {
