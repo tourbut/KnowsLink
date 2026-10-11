@@ -1574,3 +1574,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - V-01 DEV 완료1e73308a2b3ebb5aeb14eb484651318deae4117c(제품609fcfd), 실제 세션98481ab6-9f92-4bdd-ba02-c9881c19312c. CSS 공통a 규칙44px·중복toc제거, fixture회귀. Linux make install/lint/test0와 링크198건/87상태 overflow0·44px미만0 근거 수신. Windows lint DOC-003은 coor 중단 리뷰 template front matter 누락으로4a65bac에서 수정, 과거 실패 보존. 후보295417acfdcd415ad0c768d164bd71dc07214ea9 제품609와 동일. msg_5fca578661a0 hold, 정상 release closed_agent_terminal/archive captured, delivery_a9e ACK.
 - 독립 수정 검수 모델 예외: tester route Grok 추천 대신 등록 Claude Sonnet5.5 medium으로 좁은 CSS diff와 기존 QA 도구를 재사용한다. 보안/프로토콜 변경은 없다. designer route Codex는 Trust 미승인으로 등록 Claude Sonnet5.5 high로 직접 제품 검수를 유지한다. tester/designer 기존 사용자 세션 tui-idle=true·clean을 확인했고 강제 종료하지 않는다. 준비커밋을 반영한 뒤 fresh 검수로 배정한다.
+
+- 수정 후보295417a의 독립 검수 착수: tester task_eb47d2bd8b77/ctx_5ab7a0d1f98a/term_cbaf5185-63d0-4c48-b4c1-d0b1f3d7a948(Claude Sonnet5.5 medium), designer task_cf6b92328270/ctx_6b59850df28c/term_131b901b-319b-4173-b8b5-d729117cd9dc(Sonnet5.5 high). requested/effective·turn_started·역할 인박스/규칙/고정SHA/이전V-01 읽기 착수 확인. 준비111cce0 main8539 조상 확인 및 idle·clean tester/designer만 FF. 진행 중 역할은 이후 main 예약만 남긴다.
