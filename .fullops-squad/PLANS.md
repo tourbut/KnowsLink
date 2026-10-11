@@ -1542,3 +1542,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - SAR-SERVICE-UI-001-DESIGN: 완료4245b140911a15c0ff5716bc50c3b5a940baa444를 독립 snapshot 리뷰(reviewed8, ERROR0/WARN1, make 미설치2는 제품변경0건으로 해당 없음) 후 main2e55c83830478a5587ce7eb6f65757bb99f82238 및 origin/main에 병합했다. ctx_7fdc299d33a0는 released/closed_agent_terminal·transcript captured. 다음은 dev webhook 완료 뒤 상용 UI 구현 배정이다. 구현/시각 수락/배포는 미완료다.
 - main2e55c83 동기화: coor 반영. dev는 ctx_bcbfa2f4992f 진행 중이므로 예약하고 다음 착수 전 반영한다. tester/designer의 이전 user-owned 세션은 종료하지 않고 현재 idle·clean 확인 후 반영한다. OPS도 실제 상태 확인 후 반영한다.
+
+- webhook b86f397 후보는 독립 QA 대기로 integration hold(msg_90236a42306b, 담당 tester, 같은 SHA 리뷰 수락 후 main/push 재개). coor b6a4f4d의 후보 병합은 인계 준비용이며 main에는 미반영이다. UI 개발은 제품 영역이 달라 같은 후보를 기반으로 병렬 진행하고 tester는 b86f397 detached snapshot만 읽는다.
+- 새 세션 모델 예외: UI route Codex high는 같은 checkout hook 신뢰가 아직 미승인이라 등록 Claude Opus5.5 high로 진행한다. tester route Grok 추천 대신 등록 Claude Sonnet5.5 high를 좁은 경계 QA/보안 리뷰에 선택한다. 기존 실제 Linux gate 도구를 활용하고 reviewer는 구현자와 다른 새 세션이다.
+- 실제 Grok 설정 준비: input set-value가 value_mismatch였고 기존 초안과 섞인 값이 잠시 보인 뒤 입력창이 비었다. coor는 전송 버튼을 누르지 않았으며 실제 발송/루틴 생성은 미확인이다. 사용자에게 현재 직접 사용 여부를 물었고 답 전 추가 Grok 조작을 보류한다. 기존 wake/env 변경 없음.
+
+- 다음 wave 준비 커밋은 coor·dev·tester 역할 브랜치로만 공유한다. webhook 제품 후보 포함으로 독립 수락 전 main에 push하지 않는다. 기존 main f0fdf9d가 모든 역할 후보의 조상이며 디자인 정본은 main 수락 상태다.
+- tester 최종 route는 Claude Sonnet5.5 high를 반환했다. 앞 model-only Grok 추천은 QA 요구 전문 이전 기록이며 새 route가 정본이다.
