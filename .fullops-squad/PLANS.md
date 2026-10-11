@@ -1505,3 +1505,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 새 ChatGPT 연결 요청의 consent 화면을 열었다. Orca 자동 클릭·Enter 뒤 Google POST 전송은 확인되지 않았고 화면이 그대로다. 사용자가 직접 Google 계정 확인·로그인을 진행하도록 요청했다. 기존 사용된 오류 주소는 재시도하지 않았다. 실제 callback·token·인증 SSE/Events는 아직 미검증이다.
 - dev/tester/designer 기존 사용자 인계 세션은 강제로 종료하지 않았다. 최신 main cb8d258 동기화는 실제 idle·clean 확인 후 다음 dispatch 전에 수행한다. OPS는 정상 종료돼 clean 확인 후 최신 main으로 동기화한다.
 - 새 리뷰 snapshot3개는 증거를 보존했다. tester 사용자 인계 세션과 root 현재 세션의 종료를 입증하지 못해 이번 turn에서 강제 정리하지 않는다. 담당 coor, 재개 조건은 실제 사용 종료·clean·증거 hash 확인이다.
+
+## 2026-10-11 실제 Google·ChatGPT OAuth 복귀 수락
+
+- 사용자 로그인 후 일반 Google 완료 화면을 확인했다. 새 ChatGPT 연결 요청을 열고 보이는 form·계정 선택의 DOM 클릭으로 진행했다. 이후 사용자 조작과 겹쳐 계속·최종 승인 행위자는 단정하지 않는다. 네트워크에는 Google callback200→consent GET200/POST200→ChatGPT callback GET200→호스트 OAuth callback POST200이 관찰됐다. ChatGPT 앱 카드의 연결 버튼이 사라지고 채팅에서 사용 버튼이 보인다.
+- 운영 DB는 읽기 전용 집계로 installs2/tokens2/codes0/subscriptions0을 확인했다. OPS 기준 installs1/tokens0에서 새 설치와 token 발급이 확인됐다. 기존 미완료 설치는 보존했다. 첫 집계 SQL의 jsonb_object_length 미지원 오류는 jsonb_each count로 바로잡았으며 쓰기는 없었다.
+- 증거는 SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/real-account-oauth.json이다. URL query·code·state·token·메시지 본문은 기록하지 않았다. 실제 Google/ChatGPT 복귀 오류 해결을 수락한다. 인증 SSE·Dots Events·새 설치의 메시지 왕복은 아직 미검증이며 subscription0이다.

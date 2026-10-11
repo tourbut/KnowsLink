@@ -1,0 +1,56 @@
+{
+  "observed_at": "2026-10-11T08:45:19.728859+00:00",
+  "browser": "Orca embedded",
+  "product_sha": "eac603b6a41d2ce002e698600ac66b8fc67ad762",
+  "result": "Google identity confirmation, remote installation approval and ChatGPT OAuth callback succeeded",
+  "ui": [
+    "ChatGPT KnowsLink app card no longer has Connect button",
+    "Try in chat button visible"
+  ],
+  "network_summary": [
+    {
+      "method": "GET",
+      "path": "/auth/google/callback",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/remote/consent/<redacted>",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/remote/consent/<redacted>",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "origin": "https://chatgpt.com",
+      "path": "/connector_platform_oauth_redirect",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "origin": "https://chatgpt.com",
+      "path": "/backend-api/aip/connectors/links/oauth/callback",
+      "status": 200
+    }
+  ],
+  "production_aggregate": {
+    "installs": 2,
+    "tokens": 2,
+    "codes": 0,
+    "subscriptions": 0
+  },
+  "prior_ops_aggregate": {
+    "installs": 1,
+    "tokens": 0
+  },
+  "secrets_recorded": false,
+  "limitations": [
+    "No message send/receive test in this observation",
+    "No authenticated SSE or Dots Events verification",
+    "Existing incomplete installation preserved"
+  ],
+  "automation_note": "CLI clicks did not initially navigate. DOM-backed click of visible Google form button and account choice advanced. User interaction overlapped later steps; exact actor for Continue/approval is not attributed."
+}
