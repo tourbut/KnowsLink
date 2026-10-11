@@ -1,0 +1,57 @@
+{
+  "task_key": "SAR-GOOGLE-CONNECT-001-DEV",
+  "find_head": "f6daf938e80ed28c9e9500baad6fa3c61ecd502c",
+  "base": "f9f7675be6c9502bd6ab2f810bd42ff62a26a174",
+  "head": "152217f63cced85f620695961955d680ce27864e",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "Makefile",
+    "adapters/README.md",
+    "adapters/package.json",
+    "adapters/src/mcp.ts",
+    "internal/relay/capacity.go",
+    "internal/relay/member_agents.go"
+  ],
+  "new_files": [
+    ".gitattributes",
+    "adapters/src/login.test.ts",
+    "adapters/src/login.ts",
+    "adapters/src/private-files.ts",
+    "deploy/knowslink/tunnel/public-ingress.yml",
+    "internal/relay/device.go",
+    "internal/relay/device_integration_test.go",
+    "internal/relay/device_test.go",
+    "scripts/check_public_ingress.py"
+  ],
+  "candidates": [
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/mcp.ts",
+    "adapters/src/public-check.ts",
+    "cmd/relay/main.go",
+    "deploy/knowslink/access_trial_plan.py",
+    "deploy/knowslink/tunnel/config.yml.tmpl",
+    "internal/config/config.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/google_test.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/protocol.go",
+    "internal/relay/public_text.go"
+  ],
+  "hits": [
+    "adapters/src/mcp.ts",
+    "internal/relay/member_agents.go"
+  ],
+  "recall": 0.333,
+  "precision": 0.167,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

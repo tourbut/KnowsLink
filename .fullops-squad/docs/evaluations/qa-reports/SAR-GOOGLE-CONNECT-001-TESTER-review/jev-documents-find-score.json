@@ -1,0 +1,65 @@
+{
+  "task_key": "SAR-GOOGLE-CONNECT-001-DEV",
+  "find_head": "f6daf938e80ed28c9e9500baad6fa3c61ecd502c",
+  "base": "f9f7675be6c9502bd6ab2f810bd42ff62a26a174",
+  "head": "152217f63cced85f620695961955d680ce27864e",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/crud-design.md",
+    ".fullops-squad/docs/design-docs/data-model.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/docs/operations/user-guide.md",
+    ".fullops-squad/handovers/to_dev.md",
+    "adapters/README.md"
+  ],
+  "new_files": [
+    ".gitattributes",
+    "adapters/src/login.test.ts",
+    "adapters/src/login.ts",
+    "adapters/src/private-files.ts",
+    "deploy/knowslink/tunnel/public-ingress.yml",
+    "internal/relay/device.go",
+    "internal/relay/device_integration_test.go",
+    "internal/relay/device_test.go",
+    "scripts/check_public_ingress.py"
+  ],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+    ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+    ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+    ".fullops-squad/handovers/to_dev.md",
+    ".fullops-squad/project.md"
+  ],
+  "hits": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/handovers/to_dev.md"
+  ],
+  "recall": 0.333,
+  "precision": 0.333,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
