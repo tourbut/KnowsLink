@@ -1,0 +1,124 @@
+=== RUN   TestQAOAuthReturnAutoApproveAndTokenBoundaries
+    zz_tester_oauth_return_integration_test.go:283: driver approve-auto-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://callback.test/oauth arrivals=[{callback.test /oauth [code iss state] false}] shots=2
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:283:   doc POST 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 200 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 401 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:294: callback: state=true iss=true code_present=true error_absent=true
+    zz_tester_oauth_return_integration_test.go:314: token boundary wrong_verifier -> 400
+    zz_tester_oauth_return_integration_test.go:314: token boundary wrong_redirect_uri -> 400
+    zz_tester_oauth_return_integration_test.go:314: token boundary wrong_resource -> 400
+    zz_tester_oauth_return_integration_test.go:314: token boundary other_client -> 400
+    zz_tester_oauth_return_integration_test.go:314: token boundary short_verifier -> 400
+    zz_tester_oauth_return_integration_test.go:314: token boundary missing_verifier -> 400
+    zz_tester_oauth_return_integration_test.go:314: token boundary wrong_scope -> 400
+    zz_tester_oauth_return_integration_test.go:318: token exchange with correct PKCE/redirect/resource -> 200 no-store=true
+    zz_tester_oauth_return_integration_test.go:324: code replay -> 400
+--- PASS: TestQAOAuthReturnAutoApproveAndTokenBoundaries (2.24s)
+=== RUN   TestQAOAuthReturnExpiredCodeRefused
+    zz_tester_oauth_return_integration_test.go:331: driver expired-code stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://callback.test/oauth arrivals=[{callback.test /oauth [code iss state] false}] shots=1
+    zz_tester_oauth_return_integration_test.go:331:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:331:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:331:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:331:   doc POST 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:331:   doc GET 200 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:340: expired code exchange -> 400
+--- PASS: TestQAOAuthReturnExpiredCodeRefused (1.05s)
+=== RUN   TestQAOAuthReturnLinkDesktopAndMobile
+=== RUN   TestQAOAuthReturnLinkDesktopAndMobile/approve-link-desktop
+2026/10/11 16:34:22 http: TLS handshake error from 127.0.0.1:51360: EOF
+    zz_tester_oauth_return_integration_test.go:354: driver approve-link-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://callback.test/oauth arrivals=[{callback.test /oauth [code iss state] true} {callback.test /oauth [code iss state] false}] shots=2
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc POST 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 204 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:364: return page approve-link-desktop: viewport=1280x800 link rect=[260 207 229 24] scrollWidth=1280 meta-refresh-0=true
+    zz_tester_oauth_return_integration_test.go:373: link click callback arrival and PKCE token exchange -> 200
+=== RUN   TestQAOAuthReturnLinkDesktopAndMobile/approve-link-mobile
+    zz_tester_oauth_return_integration_test.go:354: driver approve-link-mobile stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://callback.test/oauth arrivals=[{callback.test /oauth [code iss state] true} {callback.test /oauth [code iss state] false}] shots=2
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc POST 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 204 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:364: return page approve-link-mobile: viewport=390x844 link rect=[20 232 229 24] scrollWidth=390 meta-refresh-0=true
+    zz_tester_oauth_return_integration_test.go:373: link click callback arrival and PKCE token exchange -> 200
+--- PASS: TestQAOAuthReturnLinkDesktopAndMobile (3.38s)
+    --- PASS: TestQAOAuthReturnLinkDesktopAndMobile/approve-link-desktop (1.58s)
+    --- PASS: TestQAOAuthReturnLinkDesktopAndMobile/approve-link-mobile (1.79s)
+=== RUN   TestQAOAuthReturnDeny
+    zz_tester_oauth_return_integration_test.go:382: driver deny-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://callback.test/oauth arrivals=[{callback.test /oauth [error iss state] false}] shots=2
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:382:   doc POST 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 200 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 401 https://example.com/remote/consent/:id
+--- PASS: TestQAOAuthReturnDeny (2.34s)
+=== RUN   TestQAOAuthReturnRefusalBoundaries
+=== RUN   TestQAOAuthReturnRefusalBoundaries/expired-attempt-desktop
+    zz_tester_oauth_return_integration_test.go:434: driver expired-attempt-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=2
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc POST 401 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:437: consent POST statuses: [401]
+    zz_tester_oauth_return_integration_test.go:446: refusal page text: "원격 연결을 계속할 수 없습니다\n\n문제: 연결 요청이 만료되었거나 이미 처리되었습니다. 이전 요청은 다시 사용할 수 없습니다.\n\n안내: 연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.\n\n자기 홈으로 돌아가기" links=[/home]
+=== RUN   TestQAOAuthReturnRefusalBoundaries/owner-binding-mobile
+    zz_tester_oauth_return_integration_test.go:434: driver owner-binding-mobile stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=2
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc POST 401 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:437: consent POST statuses: [401]
+    zz_tester_oauth_return_integration_test.go:446: refusal page text: "원격 연결을 계속할 수 없습니다\n\n문제: 연결 요청이 만료되었거나 이미 처리되었습니다. 이전 요청은 다시 사용할 수 없습니다.\n\n안내: 연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.\n\n자기 홈으로 돌아가기" links=[/home]
+=== RUN   TestQAOAuthReturnRefusalBoundaries/no-login-desktop
+    zz_tester_oauth_return_integration_test.go:434: driver no-login-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=2
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc POST 401 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:437: consent POST statuses: [401]
+    zz_tester_oauth_return_integration_test.go:446: refusal page text: "원격 연결을 계속할 수 없습니다\n\n문제: 연결 요청이 만료되었거나 이미 처리되었습니다. 이전 요청은 다시 사용할 수 없습니다.\n\n안내: 연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.\n\n자기 홈으로 돌아가기" links=[/home]
+=== RUN   TestQAOAuthReturnRefusalBoundaries/csrf-tamper-mobile
+    zz_tester_oauth_return_integration_test.go:434: driver csrf-tamper-mobile stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id https://callback.test/oauth] csp=0 blocked=[] final=https://callback.test/oauth arrivals=[{callback.test /oauth [code iss state] false}] shots=2
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc POST 403 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc POST 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:434:   doc GET 200 https://callback.test/oauth?<redacted>
+    zz_tester_oauth_return_integration_test.go:437: consent POST statuses: [403 200]
+    zz_tester_oauth_return_integration_test.go:446: refusal page text: "원격 연결을 계속할 수 없습니다\n\n문제: 연결 요청이 만료되었거나 이미 처리되었습니다. 이전 요청은 다시 사용할 수 없습니다.\n\n안내: 연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.\n\n자기 홈으로 돌아가기" links=[/home]
+--- PASS: TestQAOAuthReturnRefusalBoundaries (4.82s)
+    --- PASS: TestQAOAuthReturnRefusalBoundaries/expired-attempt-desktop (1.09s)
+    --- PASS: TestQAOAuthReturnRefusalBoundaries/owner-binding-mobile (1.34s)
+    --- PASS: TestQAOAuthReturnRefusalBoundaries/no-login-desktop (0.98s)
+    --- PASS: TestQAOAuthReturnRefusalBoundaries/csrf-tamper-mobile (1.41s)
+=== RUN   TestQAOAuthReturnAuthorizeBoundaries
+    zz_tester_oauth_return_integration_test.go:501: authorize boundary unregistered_redirect -> 400
+    zz_tester_oauth_return_integration_test.go:501: authorize boundary wrong_resource -> 400
+    zz_tester_oauth_return_integration_test.go:501: authorize boundary plain_pkce -> 400
+    zz_tester_oauth_return_integration_test.go:501: authorize boundary no_challenge -> 400
+    zz_tester_oauth_return_integration_test.go:501: authorize boundary unknown_client -> 400
+    zz_tester_oauth_return_integration_test.go:501: authorize boundary wrong_scope -> 400
+    zz_tester_oauth_return_integration_test.go:501: authorize boundary token_response_type -> 400
+    zz_tester_oauth_return_integration_test.go:509: valid authorize -> 303 to consent page
+--- PASS: TestQAOAuthReturnAuthorizeBoundaries (0.16s)
+=== RUN   TestQAOAuthReturnCapacityRefusal
+    zz_tester_oauth_return_integration_test.go:526: driver capacity-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=0 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=2
+    zz_tester_oauth_return_integration_test.go:526:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:526:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:526:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:526:   doc POST 409 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:529: capacity consent POST statuses: [409]
+    zz_tester_oauth_return_integration_test.go:533: capacity refusal page text: "원격 연결을 계속할 수 없습니다\n\n문제: 연결 요청이 만료되었거나 이미 처리되었습니다. 이전 요청은 다시 사용할 수 없습니다.\n\n안내: 연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.\n\n자기 홈으로 돌아가기"
+--- PASS: TestQAOAuthReturnCapacityRefusal (1.28s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	16.295s

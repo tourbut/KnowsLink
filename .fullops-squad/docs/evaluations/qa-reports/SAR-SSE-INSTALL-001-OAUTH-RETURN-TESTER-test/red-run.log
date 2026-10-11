@@ -1,0 +1,45 @@
+=== RUN   TestRemoteConsentBrowserReturn
+    remote_browser_integration_test.go:92: browser: {"stage":"done","steps":["https://example.com/remote/consent/<id>","https://example.com/auth/google/callback","https://example.com/remote/consent/<id>","https://example.com/remote/consent/<id>"],"csp":["Sending form data to 'https://example.com/remote/consent/<id>' violates the following Content Security Policy directive: \"form-action 'self' https://accounts.google.com\". The request has been blocked.\n"]}
+    remote_browser_integration_test.go:99: approved consent did not return to the registered callback
+--- FAIL: TestRemoteConsentBrowserReturn (6.42s)
+=== RUN   TestQAOAuthReturnAutoApproveAndTokenBoundaries
+2026/10/11 16:30:41 http: TLS handshake error from 127.0.0.1:44372: EOF
+    zz_tester_oauth_return_integration_test.go:283: driver approve-auto-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=1 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=2
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:283:   doc GET 401 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:284: CSP violation or blocked request in Chromium: csp=[Sending form data to 'https://example.com/remote/consent/:id' violates the following Content Security Policy directive: "form-action 'self' https://accounts.google.com". The request has been blocked.
+        ] blocked=[]
+--- FAIL: TestQAOAuthReturnAutoApproveAndTokenBoundaries (10.27s)
+=== RUN   TestQAOAuthReturnLinkDesktopAndMobile
+=== RUN   TestQAOAuthReturnLinkDesktopAndMobile/approve-link-desktop
+    zz_tester_oauth_return_integration_test.go:354: driver approve-link-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=1 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=1
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:355: CSP violation or blocked request in Chromium: csp=[Sending form data to 'https://example.com/remote/consent/:id' violates the following Content Security Policy directive: "form-action 'self' https://accounts.google.com". The request has been blocked.
+        ] blocked=[]
+=== RUN   TestQAOAuthReturnLinkDesktopAndMobile/approve-link-mobile
+    zz_tester_oauth_return_integration_test.go:354: driver approve-link-mobile stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=1 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=1
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:354:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:355: CSP violation or blocked request in Chromium: csp=[Sending form data to 'https://example.com/remote/consent/:id' violates the following Content Security Policy directive: "form-action 'self' https://accounts.google.com". The request has been blocked.
+        ] blocked=[]
+--- FAIL: TestQAOAuthReturnLinkDesktopAndMobile (18.68s)
+    --- FAIL: TestQAOAuthReturnLinkDesktopAndMobile/approve-link-desktop (9.30s)
+    --- FAIL: TestQAOAuthReturnLinkDesktopAndMobile/approve-link-mobile (9.38s)
+=== RUN   TestQAOAuthReturnDeny
+2026/10/11 16:31:10 http: TLS handshake error from 127.0.0.1:34986: EOF
+    zz_tester_oauth_return_integration_test.go:382: driver deny-desktop stage=done error="" steps=[https://example.com/remote/consent/:id https://example.com/auth/google/callback https://example.com/remote/consent/:id] csp=1 blocked=[] final=https://example.com/remote/consent/:id arrivals=[] shots=2
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 200 https://example.com/auth/google/callback?<redacted>
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 200 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:382:   doc GET 401 https://example.com/remote/consent/:id
+    zz_tester_oauth_return_integration_test.go:383: CSP violation or blocked request in Chromium: csp=[Sending form data to 'https://example.com/remote/consent/:id' violates the following Content Security Policy directive: "form-action 'self' https://accounts.google.com". The request has been blocked.
+        ] blocked=[]
+--- FAIL: TestQAOAuthReturnDeny (10.26s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	45.677s
+FAIL

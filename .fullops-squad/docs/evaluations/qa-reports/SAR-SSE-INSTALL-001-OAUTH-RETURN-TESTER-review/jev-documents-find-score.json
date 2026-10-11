@@ -1,0 +1,50 @@
+{
+  "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV",
+  "find_head": "ae5d9f0db878216ee011610430615067488fbe4a",
+  "base": "c399a5e52c714d4ee61a7cbca03d32ffbfed9bcf",
+  "head": "eac603b6a41d2ce002e698600ac66b8fc67ad762",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_dev.md"
+  ],
+  "new_files": [
+    "internal/relay/remote_browser_integration_test.go",
+    "internal/relay/testdata/consent_browser.mjs"
+  ],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+    ".fullops-squad/rules/common/testing.md",
+    ".fullops-squad/rules/delegation.md",
+    "adapters/README.md"
+  ],
+  "hits": [
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_dev.md"
+  ],
+  "recall": 0.6,
+  "precision": 0.25,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
