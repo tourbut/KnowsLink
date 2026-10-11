@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "283018e5e8cc44128a87d756c1694cdc",
+  "base": "05953efba257f4d0e723f4ebbb9b2710539c27dc",
+  "merge_base": "bd24be06b20ff21cb9e8de4680345b29fa9b139c",
+  "head": "b9c3d3854708b9a16070e10835e51524a8720f4f",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows에 make가 없다. 이 결과 SHA는 QA 기록과 helper만 추가하고 제품 바이트는 독립 검증된 b86f397과 동일하다(git diff adapters/internal/cmd/scripts/deploy/compose.yaml 0건). b86f397에서 tester가 Linux make lint/test 종료0을 실행한 별도 증거를 확인했다. b9c3d38에서 재실행한 PASS로 보고하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows에 make가 없다. 이 결과 SHA는 QA 기록과 helper만 추가하고 제품 바이트는 독립 검증된 b86f397과 동일하다(git diff adapters/internal/cmd/scripts/deploy/compose.yaml 0건). b86f397에서 tester가 Linux make lint/test 종료0을 실행한 별도 증거를 확인했다. b9c3d38에서 재실행한 PASS로 보고하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 1,
+    "added_lines": 36,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}
