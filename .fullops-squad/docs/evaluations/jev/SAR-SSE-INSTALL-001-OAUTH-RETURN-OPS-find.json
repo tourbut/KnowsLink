@@ -1,9 +1,9 @@
 {
   "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS",
   "role": "ops",
-  "head": "615f5ae2e7c374836e5f565f41e6c47aa18c14cf",
+  "head": "82da8711fedce42aa1ba495a935fb1a926c0a2a6",
   "attempt": "f5a42297abfc45748fe3746cb2fc975e",
-  "instruction_sha256": "8741c2a47e437c2f4c942e3727dec080d91610aec67126a79406ef003588097c",
+  "instruction_sha256": "be15eef671e10c90717361a910b14aa2a06f4b4c08e67acd53919e9cbcc1ffae",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
@@ -15,22 +15,22 @@
     "parser": "search-map-v1",
     "input_chars": 24000
   },
-  "input_sha256": "632170cde6b6ed9ef3333d62f7d954595ad9107d2f316fa3addc8a8a772a0872",
+  "input_sha256": "563fb50f83065dc2f94a14261342433b0349f1016d00f13cb6a90ba963b1f77c",
   "version": "jev-find-v2",
   "requested_model": "~typesafe/jev-latest",
-  "files": 82,
+  "files": 83,
   "scope": "code",
   "passes": [
     {
       "level": "file",
-      "options": 82
+      "options": 83
     }
   ],
   "candidates": [
     {
       "path": "deploy/knowslink/compose.ops.yaml",
       "summary": "",
-      "probability": 0.61,
+      "probability": 0.76,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 0
@@ -38,73 +38,65 @@
     {
       "path": "deploy/knowslink/verify.py",
       "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives. | run(*command)  | fetch(scheme, host, path, headers=None, port=None)  | shared_state()  | baseline()  | regression()  | local()  | public() ",
-      "probability": 0.19,
+      "probability": 0.08,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 1
     },
     {
-      "path": "adapters/README.md",
-      "summary": "KnowsLink 호스트별 설치 — 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계 | KnowsLink 플러그인 | 호스트별 설치 — SAR-SSE-INSTALL-001 | 도메인으로 Google 연결 시작 | 패키지 만들기",
-      "probability": 0.11,
+      "path": "internal/relay/testdata/consent_browser.mjs",
+      "summary": "Drives a real Chromium through synthetic remote consent with Node's built-in WebSocket; prints no URL query.",
+      "probability": 0.08,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 2
     },
     {
-      "path": "internal/relay/device.go",
-      "summary": "Client-started connections bind Google consent to a public key; only the originating private key can collect credentials.",
+      "path": "adapters/README.md",
+      "summary": "KnowsLink 호스트별 설치 — 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계 | KnowsLink 플러그인 | 호스트별 설치 — SAR-SSE-INSTALL-001 | 도메인으로 Google 연결 시작 | 패키지 만들기",
       "probability": 0.04,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 3
     },
     {
-      "path": "internal/relay/text_events.go",
-      "summary": "Authenticated, bounded arrival-only SSE uses transactional Postgres notifications, never idle queue polling.",
-      "probability": 0.02,
+      "path": "internal/relay/device.go",
+      "summary": "Client-started connections bind Google consent to a public key; only the originating private key can collect credentials.",
+      "probability": 0.03,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 4
-    },
-    {
-      "path": "scripts/shell_guard.py",
-      "summary": "PreToolUse shell guard: block cross-shell and unverified recursive deletion before it runs. | tokenize(command) Split into simple commands of (value, single_quoted) tokens; None when quotes are unbalanced. | verb_of(words) Skip env assignments, wrapper commands and their options/numbers; return (verb, index of the verb word). | recursive(verb, args)  | targets(args)  | git_subcommand(args) First git argument that is not a global option or an option's value. | same(a, b)  | sanctioned(words, root) Return None when words are the allowed LiteralPath form for a verified path, else the reason. | check(command, root) Return a deny reason for the command, or None to allow.",
-      "probability": 0.02,
-      "probability_scope": "batch",
-      "batch_start": 0,
-      "batch_rank": 5
     }
   ],
   "existence": {
-    "found_probability": 0.82,
+    "found_probability": 0.81,
     "status": "found",
     "basis": "metadata map only; not repository absence"
   },
   "truncated": false,
   "usage": {
-    "input_tokens": 5692,
-    "output_tokens": 857,
-    "cost": 0.000239064,
-    "known_cost": 0.000239064,
+    "input_tokens": 5751,
+    "output_tokens": 867,
+    "cost": 0.000241542,
+    "known_cost": 0.000241542,
     "cost_status": "complete"
   },
-  "latency_seconds": 0.681,
+  "latency_seconds": 0.685,
   "error": null,
   "calls": [
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 5692,
-        "output_tokens": 857,
-        "cost": 0.000239064
+        "input_tokens": 5751,
+        "output_tokens": 867,
+        "cost": 0.000241542
       },
-      "latency_seconds": 0.681
+      "latency_seconds": 0.685
     }
   ],
   "semantic_search": true,
   "snapshot": "HEAD metadata; no worktree overlay",
-  "map_sha256": "affc97da0d29b5136ee20a6e14c7a7f713e5ddbd3d2a0b055b2ec96a9820742c",
+  "map_sha256": "02d6830e00c4f6f8acb2f46087afba09e35247e19b856de6b093e2e651c9a6fe",
   "strategy": "batch",
   "seed_paths": [],
   "unreadable_files": [],
@@ -177,6 +169,7 @@
     "internal/relay/test_messages.go",
     "internal/relay/test_messages_integration_test.go",
     "internal/relay/testdata/legacy_claims.json",
+    "internal/relay/text_events.go",
     "internal/relay/text_events_integration_test.go",
     "internal/relay/text_events_test.go",
     "scripts/check_public_ingress.py",
@@ -185,15 +178,16 @@
     "scripts/package_plugin.py",
     "scripts/run_trial.py",
     "scripts/schema.py",
+    "scripts/shell_guard.py",
     "scripts/test_shell_guard.py",
     "scripts/verify_grok_plugin.py",
     "scripts/verify_setup.py",
     "sqlc.yaml"
   ],
-  "presented_files": 82,
+  "presented_files": 83,
   "partial": false,
   "fallback": null,
   "input_partial": true,
-  "instruction_chars": 3814,
-  "elapsed_seconds": 1.873
+  "instruction_chars": 4567,
+  "elapsed_seconds": 2.121
 }
