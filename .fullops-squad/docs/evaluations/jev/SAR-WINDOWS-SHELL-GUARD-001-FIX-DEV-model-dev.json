@@ -1,0 +1,26 @@
+{
+  "version": "jev-model-v1",
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-FIX-DEV",
+  "role": "dev",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.01,
+      "claude claude-sonnet-5-5 high": 0.79,
+      "claude claude-opus-5-5 medium": 0.13,
+      "codex gpt-6.1-sol medium": 0.02,
+      "claude claude-opus-5-5 high": 0.05,
+      "codex gpt-6.1-sol high": 0
+    },
+    "usage": {
+      "input_tokens": 740,
+      "output_tokens": 66,
+      "cost": 3.108e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84"
+}
