@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.05,
+        "ops": 0,
+        "tester": 0.95
+      },
+      "confidence": 0.92
+    },
+    "docs": {
+      "D01": 0.15,
+      "D02": 0.13,
+      "D03": 0.15,
+      "D04": 0.26,
+      "D05": 0.14,
+      "D06": 0.15,
+      "D07": 0.1,
+      "D08": 0.12,
+      "D09": 0.14,
+      "D10": 0.3,
+      "D11": 0.21,
+      "D12": 0.32,
+      "D13": 0.29
+    }
+  },
+  "usage": {
+    "input_tokens": 2481,
+    "output_tokens": 314,
+    "cost": 0.000104202
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.677,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "project.md의 직접 시각 검수 담당 designer와 통합 후보 캡처 재사용 규약",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.7,
+      "codex gpt-6.1-sol high": 0.3
+    },
+    "usage": {
+      "input_tokens": 568,
+      "output_tokens": 34,
+      "cost": 2.3856e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
+  "head": "fb0a60d754255265435d79ef0549f637f7b0a05b",
+  "requires_packet": true
+}

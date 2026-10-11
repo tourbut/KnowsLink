@@ -14,67 +14,76 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.98,
-        "product": 0.02
+        "implementation": 0.85,
+        "product": 0.15
       },
-      "confidence": 0.96
+      "confidence": 0.7
     },
     "role": {
       "choice": "tester",
       "probabilities": {
-        "dev": 0.05,
+        "dev": 0.01,
         "ops": 0,
-        "tester": 0.95
+        "tester": 0.99
       },
-      "confidence": 0.92
+      "confidence": 0.98
     },
     "docs": {
       "D01": 0.15,
-      "D02": 0.13,
-      "D03": 0.15,
-      "D04": 0.26,
-      "D05": 0.14,
-      "D06": 0.15,
-      "D07": 0.1,
-      "D08": 0.12,
-      "D09": 0.14,
-      "D10": 0.3,
-      "D11": 0.21,
-      "D12": 0.32,
+      "D02": 0.15,
+      "D03": 0.13,
+      "D04": 0.31,
+      "D05": 0.12,
+      "D06": 0.13,
+      "D07": 0.09,
+      "D08": 0.1,
+      "D09": 0.12,
+      "D10": 0.23,
+      "D11": 0.2,
+      "D12": 0.28,
       "D13": 0.29
     }
   },
   "usage": {
-    "input_tokens": 2481,
-    "output_tokens": 314,
-    "cost": 0.000104202
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost": 0
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.677,
+  "latency_seconds": 0.0,
   "response_model": "typesafe/jev-1.13-20260917",
   "original_role": "tester",
   "original_route": "implementation",
-  "override_reason": "project.md의 직접 시각 검수 담당 designer와 통합 후보 캡처 재사용 규약",
+  "override_reason": "project.md 직접 시각 검수 담당, actual 캡처와 최종 지시 해시 연결",
   "model": {
     "agent": "codex",
     "provider": "openai",
     "model": "gpt-6.1-sol",
-    "effort": "medium",
+    "effort": "high",
     "source": "jev",
     "probabilities": {
-      "codex gpt-6.1-sol medium": 0.7,
-      "codex gpt-6.1-sol high": 0.3
+      "codex gpt-6.1-sol medium": 0.16,
+      "codex gpt-6.1-sol high": 0.84
     },
     "usage": {
-      "input_tokens": 568,
-      "output_tokens": 34,
-      "cost": 2.3856e-05
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost": 0
     }
   },
   "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
-  "head": "fb0a60d754255265435d79ef0549f637f7b0a05b",
-  "requires_packet": true
+  "head": "1134737c062ac314646f8e3468bea2319f1ca191",
+  "requires_packet": true,
+  "attempt": "b61277b0559d44d992788a7d19d490cd",
+  "instruction_sha256": "29b8c7f135ce04dc34ea59fa91feb2bf0ccad90eacf34acc31b1060353e4e0ae",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "46180962f8eeb2bcdb59c62de723094de03b8b51a8e842c06fa1d01684e2b9c7"
 }

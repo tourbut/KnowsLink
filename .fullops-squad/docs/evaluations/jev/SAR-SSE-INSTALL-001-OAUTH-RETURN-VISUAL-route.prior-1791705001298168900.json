@@ -1,0 +1,89 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.85,
+        "product": 0.15
+      },
+      "confidence": 0.7
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.01,
+        "ops": 0,
+        "tester": 0.99
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.15,
+      "D02": 0.15,
+      "D03": 0.13,
+      "D04": 0.31,
+      "D05": 0.12,
+      "D06": 0.13,
+      "D07": 0.09,
+      "D08": 0.1,
+      "D09": 0.12,
+      "D10": 0.23,
+      "D11": 0.2,
+      "D12": 0.28,
+      "D13": 0.29
+    }
+  },
+  "usage": {
+    "input_tokens": 2516,
+    "output_tokens": 314,
+    "cost": 0.000105672
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.505,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "project.md 직접 시각 검수 담당, 실제 tester 캡처 제공 후 동일 과제 HEAD 갱신",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.16,
+      "codex gpt-6.1-sol high": 0.84
+    },
+    "usage": {
+      "input_tokens": 603,
+      "output_tokens": 34,
+      "cost": 2.5326e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
+  "head": "1134737c062ac314646f8e3468bea2319f1ca191",
+  "requires_packet": true,
+  "attempt": "b61277b0559d44d992788a7d19d490cd",
+  "instruction_sha256": "f964916f4af6161b28a4fd31b4f6ef3d55e883e3aa9131bebd8e99cb70ded621",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "0beb3f9128074c6ef427c0ca7f232e408916f17224a5c138024caba58b69fc6a"
+}
