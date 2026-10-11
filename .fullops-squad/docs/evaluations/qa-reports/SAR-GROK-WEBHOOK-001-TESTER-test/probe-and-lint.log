@@ -1,0 +1,66 @@
+PASS 2xx -> accepted_unverified, response body (with key echo) not surfaced :: {"state":"accepted_unverified"}
+PASS exactly one POST, fixed path, JSON
+PASS auth headers both carry the key
+PASS body keys exactly event/ids/pending/next
+PASS body carries no key/url
+PASS ids capped to 10, non-UUID dropped
+PASS 302 -> rejected, not followed, nothing reaches redirect target :: {"state":"rejected","error":"webhook HTTP 302"}
+PASS HTTP 401 -> rejected :: {"state":"rejected","error":"webhook HTTP 401"}
+PASS HTTP 429 -> rejected :: {"state":"rejected","error":"webhook HTTP 429"}
+PASS HTTP 500 -> uncertain :: {"state":"uncertain","error":"webhook HTTP 500"}
+PASS HTTP 503 -> uncertain :: {"state":"uncertain","error":"webhook HTTP 503"}
+PASS silent peer -> uncertain after own timeout, one attempt :: {"state":"uncertain","error":"webhook_no_response"} 306ms
+PASS connection reset after request -> uncertain, one attempt :: {"state":"uncertain","error":"webhook_no_response"}
+PASS ECONNREFUSED -> retry webhook_unreachable :: {"state":"retry","error":"webhook_unreachable"}
+PASS real DNS NXDOMAIN (.invalid) -> retry :: {"state":"retry","error":"webhook_unreachable"}
+INFO unroutable [2001:db8::1] classification :: {"state":"uncertain","error":"webhook_no_response","ms":4}
+INFO unroutable 192.0.2.1 classification :: {"state":"uncertain","error":"webhook_no_response","ms":1501}
+PASS bad config (uppercase host) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (trailing slash) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (129-char id) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (dot in id) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (port) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (fragment) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (newline suffix) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (encoded slash) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (other path) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (subdomain) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (key 4097) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (key unicode) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (key CRLF) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (url not string) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (array) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS bad config (not json) -> retry/no POST, check failed :: {"state":"retry","error":"webhook_config_unavailable"}
+PASS group-readable file -> no POST
+PASS world-readable file -> no POST
+PASS oversize (>8192) file -> no POST
+PASS symlinked config -> no POST
+PASS missing config -> retry no POST
+PASS no POST for any bad/untrusted config :: 0 extra
+PASS valid config with extra field still works (key rotation re-read per ring)
+PASS rotated key used on next ring without restart
+PASS unset -> null
+PASS empty webhook var behaves as unset
+PASS relative webhook path -> invalid
+PASS webhook+agent both set -> webhook only, gateway untouched
+PASS webhook failure does not fall back to sendPrompt
+PASS legacy only -> sendPrompt to loopback unchanged :: {"state":"accepted_unverified"}
+PASS legacy prompt has IDs only, no webhook fields
+PASS tick 1: one POST for the batch, markers written
+PASS tick 1 POST body has no message text
+PASS tick 2: duplicate marker -> no second POST
+PASS new ID rings once; body ids only the new one, pending counts all
+PASS 5xx -> uncertain marker kept, one POST only
+PASS unreachable -> marker released (will ring again)
+PASS after recovery the released ID rings
+PASS no key / routine id / message text in results, status, markers
+PASS wake-check ok file -> {state:ok,mode:webhook} exit 0 :: 0 {"state":"ok","mode":"webhook"}
+PASS wake-check bad file -> failed exit 1, no secret :: 1 {"state":"failed","mode":"webhook","error":"webhook_config_invalid"}
+PASS wake-check relative path -> invalid_config exit 1 :: 1 {"state":"invalid_config"}
+PASS wake-check with both vars checks webhook file only (gateway untouched) :: {"state":"ok","mode":"webhook"} gwlog=1
+
+SUMMARY pass=58 fail=0
+[passed] product-lint: make lint
+[passed] product-test: make test
+WARNING DEP-001 adapters/package.json 의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요
+head b86f39711c2f / 파일 8 / ERROR 0 / WARNING 1 / 실행 불가 0
