@@ -1579,3 +1579,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - FIX-TESTER 완료 c1ab9976f2f03c4af70960105fff29b1c6a08e86, 실제727f2870. 제품295417a의 CSS5줄과 링크 회귀 수락가능/C/H0. 원 check 실패는 reviewer 과제 outcomes를 고정 제품에서 찾은 연결 오류다. 실제 구현 FIX-DEV로 같은 ref를 coor가 검사해 reviewed2/skipped9 통과했다. 없는 task key 우회는 사용하지 않았고 contexts/tester의 과거 잘못된 지침을 명시 정정했다. 원 실패 phase/보고는 보존한다.
 - tester 결과 root 독립 review10/10·check 통과, 제품변경0·make미설치2 사유/DEV609 Linuxgate 재사용 경계 확인. msg_cc880d8e5ea0 hold는 designer 판정+main통합 대기다. ctx_5ab7a0d1f98a 정상 release closed_agent_terminal/archive captured. root check가 tester에 만든 untracked score JSON2개는 coor320987d에 동일바이트 복사·보존했다. 원본을 삭제하지 않았으며 역할동기화 전에 동일성·clean상태를 확인하고 충돌하면 예약한다.
+
+- FIX-VISUAL fe47f5c7 실제059f2e8a의 V-01 직접 재측정(PASS/44px 미달·overflow·겹침0)을 root독립 결과리뷰11/26으로 수락했다. PNG26/JSON87키420요소198링크 hash/크기/값 확인. 새N-01 low와 미검증은 보존한다. ctx_6b59850df28c 정상release/archive captured.
+- main/origin/main 95df83c22c1559453a7c73504aa248088a8e4ed0 병합/push/fetch readback 및 c782/043/1188/1e733/c1ab/fe47/295 모든완료SHA 조상 확인. parsernull3개는 원메시지/원parsernull 보존 coor_verification으로 실제SHA를 연결하고 기존5hold resume했다. 원격 main 통합은 완료, 운영 배포는 다음단계다. OPS actualterminal0/clean을 확인했고 수락95 SHA 배포 인박스·검수근거를 갱신한다.
