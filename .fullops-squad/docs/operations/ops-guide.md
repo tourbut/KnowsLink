@@ -4,12 +4,22 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-SSE-INSTALL-001 운영 적용 결과 (2026-10-11, SAR-SSE-INSTALL-001-OPS)
+
+수락 제품 `121cde923798c745af1f952347fcec1cae40b853`을 기존 Linux 서버에 적용했다. 이전 배포는 `ba3754d`였다. 아래 「SSE 운영 후보」 절의 "운영 미적용" 문장은 적용 전 사실이며 보존한다. 현재 상태는 이 절과 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-LIVE.md)을 따른다.
+
+1. 기존 origin 경로가 서버에 없었다. `beta.sh deploy` 대신 로컬 bundle(`^ba3754d HEAD`)을 `git fetch <bundle>`로 반영했다. migration diff 없음, detached checkout, `beta.sh up`으로 relay만 재생성했다.
+2. DB backup `backups/ba3754d-pre-sse-20261011T033643Z.dump`(0600)을 만들고 `pg_restore --list`로 확인했다. 복구하지 않았다.
+3. `deploy/knowslink/tunnel/public-ingress.yml` 후보를 적용했다. `/v1/text/events`, `/mcp`, OAuth well-known, 정확한 `/remote/oauth/*`, `/remote/consent/<43자>`만 추가했다. owner·admin·test·healthz는 404를 유지한다. 원본 config는 `tunnel/config.pre-sse-20261011.yml`에 있다. 복구는 이 파일을 `config.yml`에 덮고 KnowsLink cloudflared만 재시작한다.
+4. DB·`.env`·Tunnel credential·Google 설정·다른 서비스는 변경하지 않았다. 증거는 LIVE 기록의 보존 표다.
+5. 인증된 SSE stream·실제 Google consent·Remote OAuth 등록·Dots Events는 실행하지 않았다. 사용자·부모가 실제 계정으로 확인한다. 무인증 거부와 query credential 거부는 운영 도메인에서 확인했다.
 
 ## SAR-SSE-INSTALL-001 SSE 운영 후보
 

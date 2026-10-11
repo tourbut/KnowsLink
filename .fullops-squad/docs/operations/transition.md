@@ -4,11 +4,17 @@ title: 인수인계서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## 현재 운영 상태 (2026-10-11, SAR-SSE-INSTALL-001-OPS)
+
+운영 배포 SHA는 `121cde923798c745af1f952347fcec1cae40b853`이다. 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. 이전은 `ba3754d`다. relay·Postgres healthy, cloudflared 4연결, local health 200이다. 기존 DB·키·관계·Tunnel credential·Google 설정·공유 서비스는 보존했다. 공개 ingress는 기존 member allowlist에 SSE·MCP·OAuth metadata·Remote OAuth 정확 경로를 추가했다. 증거와 복구는 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-LIVE.md)과 [D12](ops-guide.md#sar-sse-install-001-운영-적용-결과-2026-10-11-sar-sse-install-001-ops)에 있다.
+
+아래 2026-10-03·10-04·10-07 표와 held 항목은 당시 기록이다. Google 운영 수락은 2026-10-10 `ba3754d` 기록이 정본이다. 부모와 사용자가 남은 일을 진행한다: 실제 Google 계정의 호스트 설치, 인증 SSE 관찰, Remote OAuth 동의, Cloud app ID 등록, Dots Events 확인.
 
 ## SAR-SSE-INSTALL-001 인계 범위
 

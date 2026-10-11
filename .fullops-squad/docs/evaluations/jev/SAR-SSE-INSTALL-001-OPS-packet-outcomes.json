@@ -1,0 +1,433 @@
+{
+  "packet_input_sha256": "4fc4e8def29c1967ef524ec39e14ca7c063cf8ce5b79526e70f4d5ff3e1a65f2",
+  "attempt": "f299f2d420074fd3a75e7c9e9919860a",
+  "uncertainty_review": "unknown 9건을 수동 확인했다. find·documents-find·context는 attempt/지시서 해시가 달라 재사용하지 않고 packet items와 지시서의 읽기 목록으로 대체했다. PLANS.md(약 290KB)는 SSE·OPS 절(1416~1463행)을 읽고 main 121cde9 통합과 tester 잔여 기록을 확인했다. 2026-10-03·10-10의 dev·tester logs(66~98KB)는 머리말과 Google 연결 이력만 확인했고 LIVE 기록으로 대조했다. beta.sh는 7.6KB 전문을 읽었다. 확인하지 않은 부분은 완료로 표시하지 않고 이 이유를 남긴다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전문 읽음. 운영 모드·통합 규약 적용."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "front matter·STE 규칙을 읽고 새 문서에 적용."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "2026-10-10 Google 운영 수락과 bundle 전달 선례, regression 결함 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "findings·검증 한계 읽음. medium SSE 헤더·low NAT64는 수락 잔여로 LIVE 기록에 연결."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "계획·운영 관련 계약·검증 절 읽음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전문 읽음. 호스트 설치와 계정 검증 후속 구분 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "구현 계약·검증·미실행 범위 읽음. 신규 env 불필요, 외부 callback·DB 저장 경계 확인."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전문 읽고 수행. 충돌 전제는 현재 서버 확인으로 해소."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "packet outcomes·ops 담당 절 확인."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "운영 배포 책임과 인증값 취급 확인."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "적용 범위와 우선순위 확인."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "코드 변경이 없어 적용할 항목 없음. 문서 변경만 수행."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "비밀값 비기록·권한 밖 변경 금지 적용. 값은 읽거나 기록하지 않음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 레벨: 변경한 운영 동작과 보존·실패 경계만 검사."
+    },
+    {
+      "path": ".fullops-squad/rules/delegation.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "standard 예산 확인. 순서 의존 서버 작업이라 하위 위임 없음."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "전문 읽음. origin fetch 선행 때문에 deploy를 쓰지 않고 같은 순서를 수동 실행. 파일 변경 없음."
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "읽음. 제한·restart·보안 설정 변경 없음. compose config --quiet 통과."
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "읽고 local 실행 통과. regression baseline 결함은 기존 상태로 기록하고 수정하지 않음."
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "읽고 후보에 실행해 통과. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D10 SSE 절에 운영 LIVE 기록 연결 한 문장 추가."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽음. product 바이트 동일 근거와 integration·운영 SSE 미실행 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "판정과 범위 읽음. 합성 PASS와 실제 consent 구분 유지."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "SSE 운영 적용 결과 절과 front matter task를 추가. 과거 held·미적용 문장은 보존."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "SSE 운영 적용 결과 절과 front matter task를 추가. 과거 held·미적용 문장은 보존."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "현재 운영 상태 절 추가. 과거 표는 당시 기록으로 구분."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 운영 상태 절 추가. 과거 표는 당시 기록으로 구분."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter 제목·요약만 확인. 과거 과제 이력이며 이번 운영 이행의 사실과 충돌 없음. 수정 없음."
+    },
+    {
+      "path": "AGENTS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "Windows 삭제·이동 금지와 hook 규칙 확인. 삭제·이동 없음."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "front matter·요약 확인. 호스트 설치 문서이며 운영 서버 이행에 변경 없음."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "Bot 컴퓨터용 설치 스크립트이며 서버 이행과 무관. 변경 없음."
+    }
+  ]
+}
