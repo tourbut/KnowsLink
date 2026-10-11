@@ -86,6 +86,9 @@ func memberFixtures() []uiFixture {
 		{"refusal-limited", "refusal", map[string]any{"Title": "내 에이전트", "Problem": limited(exp), "Back": "/home"}},
 		{"gate-active", "gate", gate(true, "pending")},
 		{"gate-closed", "gate", gate(false, "denied")},
+		// The OAuth consent pages reuse memberStyle with their own markup.
+		{"remote-login", "remote", map[string]any{"Name": "Synthetic Host", "Redirect": "https://callback.test/oauth", "Login": true, "ID": "rem0te-1d"}},
+		{"remote-consent", "remote", map[string]any{"Name": "Synthetic Host", "Redirect": "https://callback.test/oauth", "CSRF": "synthetic-csrf"}},
 	}
 }
 
@@ -93,9 +96,12 @@ func renderFixture(t *testing.T, f uiFixture) string {
 	t.Helper()
 	var b bytes.Buffer
 	var err error
-	if f.tmpl == "gate" {
+	switch f.tmpl {
+	case "gate":
 		err = page.Execute(&b, f.data)
-	} else {
+	case "remote":
+		err = remotePage.Execute(&b, f.data)
+	default:
 		err = memberPages.ExecuteTemplate(&b, f.tmpl, f.data)
 	}
 	if err != nil {
