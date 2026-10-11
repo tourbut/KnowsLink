@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-11
 owner: tester
 tasks: [SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER]
-summary: DEV 최종 SHA eac603b의 OAuth 승인 callback 복귀 수정에 대한 고정 SHA 독립 리뷰. 미해결 critical/high 없음, medium 1·low 1 비차단
+summary: "DEV 최종 SHA eac603b의 OAuth 승인 callback 복귀 수정에 대한 고정 SHA 독립 리뷰. 미해결 critical/high 없음, medium 1·low 1 비차단"
 ---
 
 # SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER 리뷰
