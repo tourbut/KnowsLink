@@ -54,7 +54,20 @@ summary: 사용자 메시지로 보이지 않는 webhook routine 깨우기 후�
 
 ### Linux gate
 
-LINUX_GATE_PLACEHOLDER
+기존 Linux 서버에서 고유 `/tmp/knowslink-webhook-f39b677-ctxbcbfa2f4992f-2/repo` clean clone을 사용했다. 이 과제 commit의 git bundle에서 `f39b6777abe5168ed0eba0f5fab138f5a64f5ad2`를 detach checkout했다. 예전 product-byte shim은 쓰지 않았다. Node v22.22.2, npm 10.9.7, go1.22.2. `npm ci` 뒤 FullOps 1.3.0 `lint.py --from 7a8c2b9`를 실행했다. DB·container·운영 서비스는 사용하지 않았다.
+
+| 항목 | 결과 |
+|---|---|
+| product-lint `make lint` | passed |
+| product-test `make test`(Go race + `npm test --prefix adapters` 7개 + shell guard) | passed |
+| lint.py | 종료코드 0, ERROR 0, WARNING 3, 실행 불가 0. 실행 전후 clone clean |
+
+WARNING 처리:
+- SIZE-001 `PLANS.md` 1538줄: coor 소유 파일이며 이 과제는 수정하지 않았다. 기준 이후 coor commit의 diff다.
+- DEP-001 `adapters/package.json`: test script에 `grok-wake.test.js`만 추가했다. 의존성 변경은 없다.
+- SLOP-001 `grok-wake.ts:163`: 주석의 영어 단어 "any"를 TypeScript `any`로 오인한 경고다. 주석 문구를 바꿨다.
+
+첫 실행(`…-ctxbcbfa2f4992f`)은 lint 도구 tar에 `assets/`를 빠뜨려 lint.py가 시작 전에 실패했다(제품 검사 미실행). 같은 SHA로 새 고유 경로에서 다시 실행했다. 두 임시 경로는 삭제하지 않고 보존했다. archive 뒤 최종 HEAD의 gate 결과는 worker_done 보고에 적는다.
 
 ## 미검증과 후속
 

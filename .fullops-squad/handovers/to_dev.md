@@ -106,6 +106,18 @@ fullops-common-0.3.3: rules/common/README.md와 coding-style.md, testing.md, sec
 ## 완료 보고
 완료 시 변경 이유/실제 SHA/검증 명령과 종료코드/미검증/후속/산출물·로그를 전문으로 기록한다.
 
+### 결과 (dev, 2026-10-11)
+
+- 상태: 구현 후보 완료. 제품 최종 수락·실제 routine 왕복은 미완료다.
+- 변경 이유: `sendPrompt` doorbell은 노우 대화에 사용자 메시지로 보인다. 공식 make-bot-ui 스킬의 webhook trigger routine은 routine 턴으로 깨운다. 기존 경로를 유지한 채 opt-in 후보를 추가했다.
+- 구현: `adapters/src/grok-wake.ts`에 `KNOWSLINK_GROK_WEBHOOK_FILE` 모드를 추가했다. 비공개 `{url,key}` 파일을 요청마다 읽는다. URL은 `https://api2.cursor.sh/automations/webhook/<id>` 형식만 허용한다. Bearer·`X-Automation-Key` POST JSON 8초 단일 시도, redirect 미추종, 메타데이터(UUID·수·고정 안내)만 보낸다. 설정 시 `sendPrompt`와 배타이고 fallback이 없다. 미설정이면 기존 동작이다. `wake-check`는 webhook 모드에서 무전송 파일 검사다. 호출자·설치 스크립트는 변경이 필요 없어 그대로 두었다.
+- 검사: `adapters/src/grok-wake.test.ts`(정상·3xx/4xx/5xx·DNS 실패·timeout·미설정·동시 설정·불신 URL/key·0644 파일·check 무전송·결과 비밀값 부재). 변이 3종(URL host 완화, redirect follow, ENOTFOUND 분류 제거) 검출. 중복·재시작 무재전송은 기존 marker 계약과 inbox.test 회귀로 확인했다.
+- 문서: README 지원 표 정정·webhook 절, D03 architecture 일반화 정정·webhook 절, D10 module-design 행, D12 ops-guide 전환 절차, phase 기록, contexts/dev, packet outcomes(71항목, uncertainty_review 포함).
+- 검증: Windows `npm run check` 0, `npm test` 0. Linux 고유 clean clone `f39b6777abe5168ed0eba0f5fab138f5a64f5ad2`에서 등록 product-lint passed, product-test passed, lint.py 종료코드 0 / ERROR 0 / WARNING 3 / 실행 불가 0. WARNING 처리는 phase 기록에 있다. 최종 archive HEAD의 gate는 worker_done에 적는다.
+- 판단: 제품 원천 C5 "optional webhook OFF"는 relay→vendor webhook에 대한 규칙으로 보았다. 이 adapter-local opt-in wake는 기본 off라 규칙 변경이 아니라고 판단했다. 다르게 보면 coor·designer가 조정한다.
+- 미검증·후속: 실제 routine 생성·key 발급·무해 probe·routine 턴 표시·노우 receive(coor·owner). 독립 tester QA·코드 리뷰(고정 SHA snapshot). 대체 확인 전 현재 `sendPrompt` 설정 유지. 배포·Bot 설정 변경은 하지 않았다.
+- 산출물: [phase 기록](../docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md), `docs/evaluations/jev/SAR-GROK-WEBHOOK-001-DEV-packet-outcomes.json`. Linux 임시 경로 `/tmp/knowslink-webhook-f39b677-ctxbcbfa2f4992f{,-2}`는 보존했다.
+
 ## 현재 상황과 확인 근거
 사용자는 사용자 메시지로 보이는 Grok sendPrompt 깨우기를 대체하되 대체 방식 확인까지 기존 경로를 유지하도록 지시했다. 실제 Bot 보고로 UpdateRoutine trigger.type=webhook 및 webhook_event 루틴 이벤트를 확인했다. 아직 루틴/키 생성·실전 시험은 하지 않았다.
 근거: docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/webhook-wake-research.json. 공식 규격 https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md. Context7은 이전 조회 quota exceeded로 공식 문서 fallback 기록이 있다.

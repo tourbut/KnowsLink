@@ -160,7 +160,7 @@ export class GrokWake {
     };
   }
   // Read-only listAgents check: prints only UUIDs found in the response, never names, token or other fields.
-  // Webhook mode validates the private file only: any POST starts a routine turn, so the probe stays a manual step.
+  // Webhook mode validates the private file only: every POST starts a routine turn, so the probe stays a manual step.
   async check(): Promise<Record<string, unknown>> {
     if (this.webhookFile)
       return (await this.webhook())
