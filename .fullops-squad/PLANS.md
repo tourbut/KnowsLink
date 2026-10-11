@@ -1549,3 +1549,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 다음 wave 준비 커밋은 coor·dev·tester 역할 브랜치로만 공유한다. webhook 제품 후보 포함으로 독립 수락 전 main에 push하지 않는다. 기존 main f0fdf9d가 모든 역할 후보의 조상이며 디자인 정본은 main 수락 상태다.
 - tester 최종 route는 Claude Sonnet5.5 high를 반환했다. 앞 model-only Grok 추천은 QA 요구 전문 이전 기록이며 새 route가 정본이다.
+
+- wave2 착수 확인: UI DEV task_9e9bdca5c835/ctx_d554b501df04/term_97ca126f-37f1-4c18-b78c-56128fa6cffd, Claude Opus5.5 high. webhook tester task_58602e838a4b/ctx_a662dae9a5f6/term_17733a8c-99f9-45eb-ac2c-5f8adf3b1907, Claude Sonnet5.5 high. 두 launch.effective·turn_started·원천/지시서 읽기 실제 확인. 기존 webhook DEV ctx_bcbfa2f4992f는 정상 released/closed_agent_terminal·transcript captured.
