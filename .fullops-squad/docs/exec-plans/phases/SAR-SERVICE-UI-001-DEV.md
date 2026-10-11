@@ -104,3 +104,5 @@ container 두 개는 지시서의 "컨테이너 정리 금지"에 따라 `docker
 - 옛 검수 스크립트 `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/render_check.go`는 정규식으로 `memberStyle`을 찾는다. 상수 이름은 같지만 여러 줄이 되었으므로 그 스크립트는 재사용 전에 확인한다. 과거 증거라 수정하지 않았다.
 - D04 관련 designer 문서 `SAR-PUBLIC-SERVICE-UX.md` 22행은 "계정 비활성화"를 홈 항목으로 적는다. designer 소유라 수정하지 않았다.
 - FullOps lint WARNING: `member.go`·`member_agents.go`·`connections_test.go`는 기준 전부터 300줄을 넘었다. view는 `member_pages.go`로 분리했다. 변경 추가 줄 수(SIZE-002)는 템플릿 재작성·fixture·golden 때문이며 화면 하나씩 나누면 공유 토큰 검수가 어려워 한 과제로 유지했다. `PLANS.md` 크기는 coor 소유다.
+
+- 후속: 위 검증표의 "44px 미만 … 이동 링크 0"은 글자 링크를 세지 않았다. 독립 시각 검수 V-01이 이를 찾았고 [SAR-SERVICE-UI-001-FIX-DEV](SAR-SERVICE-UI-001-FIX-DEV.md)가 `a[href]` 전체 측정으로 고쳤다. 원 기록은 바꾸지 않았다.
