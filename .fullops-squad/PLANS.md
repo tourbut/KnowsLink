@@ -1518,3 +1518,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 첫 송신 전에 computer-use로 노우에게 이 상대의 비민감 답장2건만 승인했다. 그 뒤 Grok UI 수신 확인·조작 없이 Dots와 회원 receipt에서 관찰했다. 첫 요청01a12a9b-ad68-7d50-88d2-ba0279d3fd5e/답장01a12a9b-e9bc-7b95-914b-2bc95cb66b04, 둘째01a12a9d-7406-7313-95a3-0ed807a90c36/답장01a12a9d-c089-71c2-8234-4e057d3e3b20 모두 delivered/reply_received/관련답장delivered다. Dots의 실제 receive from/reply_to 일치·본문 표시와 각각 acknowledged도 확인했다.
 - 테스트는2회로 종료했다. 증거: SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/evidence.json. SSE arrival·Dots Events는 이 결과로 수락하지 않는다. 실제 Dots receive가 답장을 읽었으며, Grok 내부 wake marker/trace와 장시간·업데이트 복구는 미검증이다. 새로운 유료 서비스·API·과금 동의·로컬 Docker는 사용하지 않았다. 기존 키와 자동 watcher는 유지했다.
 - 초기 Dots 발신 queued/빈 수신과 ack 승인 차단은 성공으로 덮지 않았다. 사용자 범위의 읽은 답장 ACK를 명시한 다음 실제 acknowledged와 후속 왕복을 확인했다. 첫 DB 진단은 잘못된 JSON 경로의 count0으로 판정에서 제외했고 쓰기는 없었다.
+
+- 2026-10-11 그록봇 수신 도구 확인: 현재 설치의 knowslink_receive 없음/knowslink_text_receive 있음/실호출 empty라는 노우 보고를 Dots knowslink_receive에서 수신했다(ID01a12aa8-3c72-7908-8958-54d27daa6cf5). 코드 MCP 등록과 일치한다. Bot raw tools/list를 root가 독립 캡처한 것으로 주장하지 않는다. 실제 본문은 도구 결과이며 사용자 메시지 표시는 별도 sendPrompt wake다. 설정은 변경하지 않았다. 근거는 DOTS-GROK-LIVE/receive-tool-check.json.

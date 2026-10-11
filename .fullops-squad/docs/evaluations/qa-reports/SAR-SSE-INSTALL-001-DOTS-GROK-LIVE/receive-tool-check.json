@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-10-11T11:12:11.957352+00:00",
+  "source_agent": "agent_077c666294c4eb28b783f8",
+  "report_message_id": "01a12aa8-3c72-7908-8958-54d27daa6cf5",
+  "source": "Grok Bot own installation diagnostic report, received via real Dots knowslink_receive",
+  "grok_report": {
+    "knowslink_receive": false,
+    "knowslink_text_receive": true,
+    "actual_call_result": "empty"
+  },
+  "independent_source_check": {
+    "path": "adapters/src/mcp.ts",
+    "registered_tool": "knowslink_text_receive",
+    "behavior": "take local inbox first, otherwise receive through configured transport; return received or empty",
+    "wake_path": "adapters/src/grok-wake.ts",
+    "wake_method": "sendPrompt with fixed doorbell and IDs only"
+  },
+  "limitations": [
+    "Grok tools/list and empty call are Bot-reported; root did not independently capture its raw tool result",
+    "Receive-tool name does not control whether a host displays wake as a user message",
+    "No plugin, watcher, wake or account configuration changed for this check"
+  ]
+}
