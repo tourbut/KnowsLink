@@ -4,7 +4,7 @@ title: 아키텍처설계서
 status: review
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -199,7 +199,7 @@ Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시
 공식 근거로 확인한 경계는 다음과 같다.
 
 - MCP 명세는 logging·resources 알림의 사용 방식을 client에 맡긴다. 알림이 모델 턴을 시작한다는 계약은 없다([resources](https://modelcontextprotocol.io/specification/2025-06-18/server/resources)).
-- Grok Bot 공식 문서의 무인 실행은 routine뿐이다. schedule은 최소 5분 간격이다. event 시작은 Cursor 계정 통합(Slack·GitHub)에 한정된다([Skills and routines](https://docs.x.ai/grok-bot/skills-routines-and-automations)). MCP 알림·webhook·외부 inbound API로 대화를 깨우는 공식 기능은 없다.
+- Grok Bot 공식 문서의 무인 실행은 routine뿐이다. schedule은 최소 5분 간격이다. event 시작은 Cursor 계정 통합(Slack·GitHub)에 한정된다([Skills and routines](https://docs.x.ai/grok-bot/skills-routines-and-automations)). MCP 알림·외부 inbound API로 대화를 깨우는 공식 기능은 없다. 단, 2026-10-11 공식 [make-bot-ui 스킬](https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md)과 Bot 보고에서 webhook trigger routine을 확인했다. 이 경로는 사용자 대화가 아닌 routine 턴을 시작하는 후보이며 실제 시험 전이다(아래 webhook 절).
 - Cursor staff는 외부 wake를 “working on” 상태로 답했다([포럼 요청](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260)). 같은 답변이 미문서화 loopback gateway workaround를 연결했다. 이 경로의 선택형 사용은 아래 절이 정한다.
 - Command MCP process의 대화 사이 생존 여부는 공식 문서에 없다. 그래서 Bot 컴퓨터의 상시 수신은 `node dist/plugin.js watch <폴더>`(또는 `dist/text.js watch`)로도 제공한다. 같은 inbox를 MCP가 읽는다.
 
@@ -226,3 +226,14 @@ coor 재검토로 같은 과제를 다시 열었다. 직전 기록의 “미공�
 - 남은 위험: gateway가 꺼진 동안 같은 컴퓨터의 다른 process가 port를 점유하면 token을 받을 수 있다. owner 단독 컴퓨터에서만 켠다. 노우 턴은 기존 사용량을 쓴다.
 
 제품 수락 조건은 그대로다. 실제 운영 도메인 송신 ID→Bot inbox→wake marker→노우 대화 표시를 UI 수신 유도 없이 대조하기 전에는 미완료다.
+
+### 선택형 webhook routine wake — SAR-GROK-WEBHOOK-001-DEV
+
+`sendPrompt` doorbell은 노우 대화에 사용자 메시지로 보인다. 공식 webhook trigger routine은 `<webhook_event>`를 담은 routine 턴을 시작한다. 그래서 같은 `GrokWake`에 webhook 경로를 후보로 추가했다.
+
+- `KNOWSLINK_GROK_WEBHOOK_FILE`(절대경로, 비공개 `{url,key}` 파일)이 있으면 그 process의 wake는 webhook만 사용한다. `sendPrompt`와 동시에 울리지 않고 실패해도 `sendPrompt`로 넘어가지 않는다. 변수가 없으면 기존 동작 그대로다.
+- URL은 `https://api2.cursor.sh/automations/webhook/<ID>` 형식만 허용한다. userinfo·port·query·fragment·다른 host는 거부한다. redirect는 따르지 않는다.
+- `Authorization: Bearer`와 `X-Automation-Key`로 POST JSON을 8초 단일 시도한다. body는 `{event,ids,pending,next}`이며 검증한 UUID·대기 수와 고정 안내만 담는다. 받은 text·발신자는 넣지 않는다.
+- 결과 분류·ID marker·재시도 규칙은 loopback 경로와 같다. 설정 파일 불량은 `retry`(`webhook_config_unavailable`)로 아무것도 보내지 않는다.
+- `wake-check`는 webhook 모드에서 파일만 검사한다. POST는 routine 턴을 시작하므로 무해한 probe는 owner·coor가 수동으로 실행한다.
+- 실제 routine 생성·키 발급·턴 표시는 미검증이다. 대체 검증 전에는 기존 `sendPrompt` 설정을 유지한다.

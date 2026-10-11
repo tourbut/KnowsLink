@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -214,5 +214,6 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 | `adapters/src/text.ts` CLI `watch` | MCP와 같은 inbox로 상시 수신, metadata만 출력 | `inbox.test.ts` 6 |
 | `adapters/src/mcp.ts` | logging capability, 연결 뒤·로그인 완료 뒤 loop 시작, status `autoReceive`, 수동 receive의 inbox 우선 | 실제 SDK stdio Client |
 | `adapters/src/grok-wake.ts` `GrokWake`, `inbox.ts` wake marker·`AutoReceiver.ring` | 선택형 loopback `sendPrompt` doorbell(고정 문장·ID만), 요청마다 gateway token 읽기, retry/rejected/uncertain 구분, ID별 `.wake` 배타 claim·결과 기록, `wake-check` 읽기 전용 `listAgents` | `inbox.test.ts` 7: 거절→재시도, 수락, 중복·재시작 무재전송, 기본 off, 401 무재시도, 연결 reset uncertain, 잘못된 대상, token·text 비노출. retry 해제를 끈 변이에서 실패 |
+| `grok-wake.ts` webhook 모드(`KNOWSLINK_GROK_WEBHOOK_FILE`) | 비공개 `{url,key}` 파일을 요청마다 읽음, 고정 host URL만 허용, Bearer·`X-Automation-Key` POST 8s 단일 시도, 메타데이터만 전송, `sendPrompt`와 배타, `wake-check` 무전송 파일 검사 | `grok-wake.test.ts`: 2xx·3xx·4xx·5xx·DNS 실패·timeout, 불신 URL·짧은 key·0644 파일 무전송, 비UUID ID 제거, 결과에 key·URL ID 없음. URL host 완화·redirect follow·ENOTFOUND 분류 제거 변이에서 실패 |
 
 `inbox.test.ts`는 번들 `dist/plugin.js`를 SDK `StdioClientTransport`로 실행하고 로컬 relay 대역을 사용한다. 실제 운영 relay·Grok Bot 호출은 포함하지 않는다.
