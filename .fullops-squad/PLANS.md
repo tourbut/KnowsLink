@@ -1571,3 +1571,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - V-01 DEV 실제 착수 task_eee29ba78192/ctx_4567096a3f21/term_4174ad74-9fe3-47f6-aeb7-178ad3f00eba, fresh Claude Sonnet5.5 high, requested/effective 일치·turn_started·to_dev/FULLOPS/project/V-01 읽기 확인. 준비 f67ba65를 coor push하고 actual terminal0/clean DEV만 FF했다. 실제 main8539 조상 포함. 이후 정상 로그는 완료/오류/질문 또는60분 후만 확인한다.
 - Bot 설정 완료 응답에서 시험 ACK/probe 예외 제거 저장, webhook state ok/watchPID88404 하나를 보고했다. Dots 정리 보고 receive는 수신없음이므로 전달완료로 주장하지 않는다. 실제 왕복과 설정 보고를 구분해 LIVE 증거에 보존했다.
+
+- V-01 DEV 완료1e73308a2b3ebb5aeb14eb484651318deae4117c(제품609fcfd), 실제 세션98481ab6-9f92-4bdd-ba02-c9881c19312c. CSS 공통a 규칙44px·중복toc제거, fixture회귀. Linux make install/lint/test0와 링크198건/87상태 overflow0·44px미만0 근거 수신. Windows lint DOC-003은 coor 중단 리뷰 template front matter 누락으로4a65bac에서 수정, 과거 실패 보존. 후보295417acfdcd415ad0c768d164bd71dc07214ea9 제품609와 동일. msg_5fca578661a0 hold, 정상 release closed_agent_terminal/archive captured, delivery_a9e ACK.
+- 독립 수정 검수 모델 예외: tester route Grok 추천 대신 등록 Claude Sonnet5.5 medium으로 좁은 CSS diff와 기존 QA 도구를 재사용한다. 보안/프로토콜 변경은 없다. designer route Codex는 Trust 미승인으로 등록 Claude Sonnet5.5 high로 직접 제품 검수를 유지한다. tester/designer 기존 사용자 세션 tui-idle=true·clean을 확인했고 강제 종료하지 않는다. 준비커밋을 반영한 뒤 fresh 검수로 배정한다.

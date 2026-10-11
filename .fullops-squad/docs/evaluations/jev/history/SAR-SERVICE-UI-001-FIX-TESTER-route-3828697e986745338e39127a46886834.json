@@ -1,0 +1,88 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SERVICE-UI-001-FIX-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.27,
+        "ops": 0,
+        "tester": 0.73
+      },
+      "confidence": 0.59
+    },
+    "docs": {
+      "D01": 0.07,
+      "D02": 0.08,
+      "D03": 0.07,
+      "D04": 0.09,
+      "D05": 0.06,
+      "D06": 0.06,
+      "D07": 0.06,
+      "D08": 0.07,
+      "D09": 0.07,
+      "D10": 0.22,
+      "D11": 0.08,
+      "D12": 0.15,
+      "D13": 0.15
+    }
+  },
+  "usage": {
+    "input_tokens": 2410,
+    "output_tokens": 314,
+    "cost": 0.00010122
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.74,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "jev",
+    "tie_break": "m2",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.31,
+      "claude claude-sonnet-5-5 high": 0.37,
+      "grok grok-4.7 high": 0.32
+    },
+    "usage": {
+      "input_tokens": 582,
+      "output_tokens": 42,
+      "cost": 2.4444e-05
+    }
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "295417acfdcd415ad0c768d164bd71dc07214ea9",
+  "requires_packet": true,
+  "attempt": "c3409fb5d0e74eaf96abc60c098c8a3e",
+  "instruction_sha256": "03c27b06f8ac6729a7e1959ea7ea78e616f5dfd647ab0592af549f062bc8cccb",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "4d9d5991bcc346b968c0131096f1c383efbebb31115a82e781ff5251cb22ed26"
+}
