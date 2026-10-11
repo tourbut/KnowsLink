@@ -1,0 +1,506 @@
+{
+  "task_key": "SAR-SERVICE-UI-001-DESIGN",
+  "attempt": "d24a0a05b3984fddbd62f78f24bedd07",
+  "packet_input_sha256": "0a98ed2fed6ac9255ec106fbcbf1277c4b6408d543d18ed711ff29e071eed2f3",
+  "uncertainty_review": "partial 패킷의 unknown(문서 후보 일부·PLANS·service-member-ui 신규 파일·member.go 매핑)을 직접 확인했다. member.go·member_agents.go·핵심 규칙·designer 컨텍스트·선행 UI 검수의 핵심 절은 직접 읽었다. 과거 과제 로그·QA·phase 기록 약 50건은 전문을 읽지 않았다(일반 서비스 서버 규칙은 이번 범위에서 변경하지 않으므로 영향이 없다고 판단). 동적 참조·언어 서버 의미는 확인하지 않았다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "전문을 읽었다. designer 책임 구분·인박스·완료 경로를 따랐다. 규약은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전문을 읽고 이전 UI 결정(F-UI-01–04, UX06/07, OAUTH-RETURN)을 명세 12.2.1 회귀 방지에 반영했다. 이번 과제 결정 항목을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "전문을 읽고 front matter(deliverables.py --stamp)와 한국어 STE 원칙을 새 문서에 적용했다. 규칙은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "지시서 전문을 읽었다. 범위·파일 소유권·완료 조건을 따랐다. 완료 전문은 work.py finish로 보존한다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "UI 기준(74행: Go template 일반 CSS, 디자인 lint 미구성)·검증 명령·역할 절을 읽었다. 명세 12.2.2에 반영했다. 전문 정독은 아니며 관련 절만 읽었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "전문을 읽었다. 프로젝트 기준 우선과 충돌 기록 규칙을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "UI·디자인 일관성 절을 읽고 8절 토큰 정본·새 색 사유 기록을 명세 12.2.2에 반영했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "전문을 읽었다. CSRF·CSP·owner 분리·비밀값 비노출을 11절 불변식으로 옮겼다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "lite 레벨과 문서 변경 검증 규칙을 읽었다. 제품 코드 변경이 없어 make lint/test는 해당 없음으로 기록한다."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "전문(386줄)을 읽었다. 템플릿·memberStyle·오류 분기를 명세 근거로 썼다. 코드는 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "전문을 읽었다. 에이전트 상태·키 한도·오류 문구를 명세 근거로 썼다. 코드는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "PLANS는 coor 소유다. 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D04 원천이다. 새 명세로 가는 링크 절을 추가하고 stamp로 tasks를 갱신했다. 기존 판정·SHA는 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "F-UI-01–04 재검수 요약을 읽었다. 판정은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "F-UI-01–04와 디자인 lint 해당 없음 절을 읽었다. 회귀 방지 목록으로 옮겼다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "F-UI-MSG-01을 검색으로 확인했다. 회귀 방지 목록에 한 줄로 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "60줄까지 읽었다. UX-01–08 기존 화면 기준·화면 방향과 새 명세가 충돌하지 않음을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "새로 작성했다(D04, 명세와 DEV 인계)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": "adapters/.grok-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 코드·어댑터를 수정하지 않았다. 이번 문서는 회원 웹 화면만 다룬다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "선택 근거다. 전문은 읽지 않았고 파일 목록·제목·키워드 확인 수준으로만 보았다. 회원 웹 시각 명세에 영향을 주는 결정은 확인되지 않았다(보류·정책 문서의 서버 규칙은 명세 11절에서 변경하지 않음)."
+    },
+    {
+      "path": "adapters/src/trial-cli.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 코드를 수정하지 않았다. 명세는 연결 명령 문구(node adapters/dist/...)를 그대로 유지한다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 코드를 수정하지 않았다. 영향 없음."
+    },
+    {
+      "path": "internal/config/config.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 코드를 수정하지 않았다. 영향 없음."
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 코드를 수정하지 않았다. 영향 없음."
+    },
+    {
+      "path": "scripts/shell_guard.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 코드를 수정하지 않았다. 영향 없음. 삭제·이동 작업을 하지 않았다."
+    }
+  ]
+}
