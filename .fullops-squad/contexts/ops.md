@@ -3,7 +3,7 @@ title: ops 컨텍스트
 status: draft
 updated: 2026-10-11
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
@@ -75,3 +75,9 @@ Git Bash에서 원격 경로 인자는 `MSYS_NO_PATHCONV=1` 없이 `C:/Program F
 `bundle create`는 ref가 필요하다. SHA만으로는 empty bundle로 거부되므로 `origin/main --not <이전 SHA>`를 쓰고 체크아웃은 고정 SHA로만 옮긴다. 배포 명령에 "HEAD가 이전 SHA이고 clean"일 때만 진행하는 조건을 넣는다.
 존재하지 않는 합성 43자 `GET /remote/consent/<id>`는 계정·설치 없이 새 코드(HTML 401·no-store·CSP·no-referrer)를 확인하는 비용 없는 smoke다. 성공 경로(반환 화면)는 실계정이 필요하다.
 Git Bash의 helper SFTP 인자는 `MSYS_NO_PATHCONV=1`이 필요하다. `verify.py regression`의 baseline 결함은 그대로다.
+
+## 2026-10-11 — SAR-SERVICE-UI-001-OPS
+
+`beta.sh deploy`는 backup(raw pg_dump·실패 시 파일 삭제)을 호출한다. backup이 금지된 과제는 bundle 전달→검증된 detached checkout→`beta.sh up`→`verify.py local`만 수동 실행한다. 새 backup이 없다는 사실과 복귀가 코드 전용이라는 점을 기록한다.
+원격 helper 스크립트가 마지막에 `grep -c`로 끝나면 0건일 때 종료코드 1이 된다. 실패와 구분해 기록한다. plugin package는 배포 체크아웃이 아니라 `git archive` 사본에서 만들어 체크아웃을 clean으로 유지한다.
+이전 LIVE 집계와 시작 baseline이 달라도 DB를 맞추지 않는다. 비교 기준은 그 과제의 baseline이다.

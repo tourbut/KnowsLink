@@ -4,12 +4,21 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-SERVICE-UI-001 운영 적용 결과 (2026-10-11, SAR-SERVICE-UI-001-OPS)
+
+수락 제품 `95df83c22c1559453a7c73504aa248088a8e4ed0`을 기존 Linux 서버에 relay만 갱신해 적용했다. 이전 배포는 `eac603b`다. 아래 절들의 "현재 운영" 문장은 당시 사실이다. 현재 상태는 이 절과 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SERVICE-UI-001-OPS-LIVE.md)을 따른다.
+
+1. 서버에 origin 경로가 없다. 로컬 bundle(`HEAD ^eac603b`)을 `git fetch <bundle> HEAD`로 반영하고 detached checkout 뒤 `beta.sh up`만 실행했다. migration·compose·deploy diff는 0건이다.
+2. 이 과제는 `beta.sh`의 `prepare`·`deploy`·`backup`·`restore-verify`·`seed`·`owner-login`을 실행하지 않았다. 새 DB backup은 없다. 복귀는 이전 코드 `eac603b`로만 한다. DB를 덮지 않는다.
+3. 새 플러그인 package(Grok·Claude·Codex·Desktop)는 `95df83c`의 `git archive`로 서버 `knowslink-state/serviceui-20261011/pkg/build/`에 만들고 `--verify`를 통과했다. Grok zip에 wake 코드가 있다. hash는 LIVE 기록에 있다.
+4. 실제 Google 로그인·회원 화면·모바일·키보드 포커스 확인은 coor가 Orca 내장 브라우저로 한다. 자동 PASS로 기록하지 않았다.
 
 ## SAR-SSE-INSTALL-001 운영 적용 결과 (2026-10-11, SAR-SSE-INSTALL-001-OPS)
 

@@ -335,7 +335,42 @@ test_level: lite
 <!-- fullops-packet:end -->
 
 ## 완료 보고
-현재는 수락 고정 SHA와 검수 근거를 기다린다.
+
+브랜치 `fullops/ops` / 운영 제품 SHA `95df83c22c1559453a7c73504aa248088a8e4ed0`(서버 배포 체크아웃 `git rev-parse HEAD`로 확인, detached, clean) / 결과 SHA는 이 기록을 커밋한 최종 HEAD이며 worker_done 첫 줄에 실제 40자로 적는다. 준비 main `0045089f2a2c3efe3e210eedc0c5cd4868487e42`는 제품 동일(`.fullops-squad` 밖 diff 0). 결과 SHA와 운영 SHA는 다르다.
+
+변경 이유: 수락한 회원 웹 UI(V-01 수정 포함)와 Grok webhook wake 플러그인 코드를 기존 Linux 서버(`/home/shin/deploy/knowslink`)에 상태 보존으로 반영했다. 이전 운영 제품은 `eac603b6a41d2ce002e698600ac66b8fc67ad762`다.
+
+수행: 읽기 전용 baseline → 로컬 bundle(`HEAD ^eac603b`, SHA256 `132262f16674b23cde05dc7a19504c320ce7753065274b2edbdab4c36aae2b59`) SFTP 전달·해시 일치·`git bundle verify`·fetch·조상 관계 → detached checkout `95df83c` → `deploy-history.log` 한 줄 → `beta.sh up`(relay만 재빌드·재생성) → `verify.py local`. 종료코드는 모두 0이다. migration·compose·deploy·Dockerfile·go.mod diff 0건, goose 버전 1 유지.
+
+금지 준수: `prepare`·`deploy`·`backup`·`restore-verify`·`seed`·`owner-login`, raw `pg_dump`, Tunnel create/render/expose, 파일·컨테이너 삭제·정리를 실행하지 않았다. 새 DB backup은 없다(복귀는 코드 전용: `eac603b` checkout + `beta.sh up`, DB 미덮어쓰기). 비밀값·원문 state·로그 원문은 출력하지 않았다. 사용자의 Grok/Dots UI는 조작하지 않았다. Bot runtime·watcher·MCP는 건드리지 않았다.
+
+보존(전→후): `.env`·`tunnel.uuid`·`access.aud`·Tunnel credential·`tunnel/config.yml`(`f5abe860…8512`)·compose 파일 SHA256 동일. relay_state 키별 개수·digest(Agents 28, Members 2, Messages 30, Owners 24, Pairs 13, Identities 2, Idempotency 30, Remote 6, Sessions 1)와 콘텐츠 md5 동일. `epoch`·`Rates`만 relay 동작으로 변함. Postgres 컨테이너(8일 유지)·볼륨·cloudflared·host PID 506937·myportfolio·orca 200/s8 200/mcp 401·다른 역할 컨테이너 변화 없음. 이전 LIVE 수치(Agents 26 등)와 달랐지만 이 과제 시작 전의 변화이며 맞추려고 DB를 바꾸지 않았다.
+
+Plugin package: `git archive 95df83c` 사본(Node 22.22.2)에서 `npm ci`·build·`package_plugin.py --host all --verify` 종료 0. Grok zip SHA256 `762411df0e49dd0568c38b118d67c947910b39f56df5208afd897b5dc434cf94`, Claude zip `5388516edcfb992f777ef13f1c748df6b52a703fdc7200e391676da3e3ba8b9f`, Codex zip `d79abee4dc1639e8e83a12b10063a2fb63a04ba3f6492b3db62a53dab82c3410`, Desktop mcpb `bfd13777aa21dadabbf46a7f0439a6d8a9a04c7a90b0bff2401cb7aabb5aacb2`. Grok zip `dist/plugin.js`에서 wake 심볼을 확인했다. 서버 `knowslink-state/serviceui-20261011/pkg/build/`에 보존했다.
+
+공개 smoke(무인증): `/` 200(새 디자인 토큰·건너뛰기 링크 확인, CSP·no-store·no-referrer), `/home` 303, `/healthz`·`/owner`·`/v1/test/pull` 404, OAuth discovery 200, `POST /mcp` 401, 합성 consent 401 HTML, SSE 401. 서버 `verify.py local` 통과, relay healthy·재시작 0·error/panic 0건. `verify.py regression`은 기존 baseline 결함(`projects`)으로 종료 1(codes·PID·containers는 동일).
+
+검증하지 못한 것: 새 Google 실계정 로그인·`/home` 회원 목록·모바일 렌더·키보드 포커스·새 플러그인 실제 설치와 webhook 왕복은 coor 후속(Orca 내장 브라우저)이며 PASS로 기록하지 않았다. 운영 SHA `95df83c22c1559453a7c73504aa248088a8e4ed0`, URL `https://link.knowslog.com/`. 서버 `make test`·전체 QA는 반복하지 않고 고정 SHA의 tester·visual 증거를 재사용한다. 새 relay의 상태 JSON 필드 쓰기는 런타임에서 확인하지 않았다.
+
+미검토·미해결: critical/high 없음. DEP-001: 의존성 변경 없음(이 과제는 코드·lock 무변경; `npm ci`는 lock 그대로). 하위 에이전트는 쓰지 않았다.
+
+산출물·로그: [운영 LIVE 기록](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-OPS-LIVE.md), [실행 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md), D12·D13 갱신, `contexts/ops.md` 교훈, `docs/evaluations/jev/SAR-SERVICE-UI-001-OPS-packet-outcomes.json`.
+
+### 대화 미참조 인계 점검
+
+| 확인 항목 | 정본 경로/절 | 결과 | 누락·오래된 정보·후속 |
+|---|---|---|---|
+| 현재 요구와 결정 이유 | 이 지시서, phases/SAR-SERVICE-UI-001-OPS.md | 확인 | 없음 |
+| 구조와 구현/미완료 상태 | LIVE 기록 적용 요약 | 확인 | 코드 변경 없음, 운영 반영 완료 |
+| 실행·검증 방법과 증거 | LIVE 기록 명령·종료코드·보존·smoke 절 | 확인 | baseline/after 원문은 서버 세션에서 redacted 요약만 남김 |
+| 운영·복구 | LIVE 기록 복귀 방법 | 확인 | 새 backup 없음(지시서 금지). DB 복원 필요 시 coor 결정 |
+| 다음 작업·담당·재개 조건 | phases 남은 일 | 확인 | coor 실계정 확인, plugin zip 전달 |
+| 로컬 링크·절 접근/지원 한계 | 상대 링크 | 확인 | 서버 산출물은 이 PC 밖 |
+| 정리 후 정본 접근 | main 통합 후 | 미확인 | coor 통합 후 |
+
+### Lint·검증 근거
+
+(lint 실행 뒤 아래에 기록)
 
 ## 지시 전제와 충돌 — 먼저 확인
 Jev context는 D12/D13/이전 OPS 로그를 conflict로 표시했다. 이 문서들을 먼저 읽는다. D12의 1–10장은 역사적 조사·계획이고 SSE 운영 후보 절의 미적용 문장은 상단 적용 결과가 이전 사실로 명시했다. D13/최근 OPS 로그의 실제 운영 제품은 eac603b다. 신규 UI는 독립 검수 후 수락 SHA를 추가할 때까지 미배포다. 이전 held/fail·미검증을 새 PASS로 바꾸지 않는다. 배포 직전 실제 서버가 정본과 다르면 coor에게 보고하고 무작정 checkout/up하지 않는다. 기존 승인된 공개 Google/member 서비스와 Tunnel allowlist를 유지하는 제품 갱신이며 Access/새인증 정책 변경은 없다.
