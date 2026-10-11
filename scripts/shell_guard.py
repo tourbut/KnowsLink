@@ -30,8 +30,9 @@ INTERPRETER = re.compile(r'(?<![\w.-])(?:python3?|py|node|deno|bun|ruby|perl)(?:
 PROGRAM_DELETE = re.compile(r'rmtree|rmsync|rimraf|removeall|os\.remove|os\.unlink|\.unlink\(|rmdir\(|fs\.rm\b', re.I)
 DOTNET_DELETE = re.compile(r'\]::delete\(|\.delete\(\s*\$true', re.I)
 VERBS = {'rm', 'rmdir', 'rd', 'del', 'erase', 'ri', 'remove-item', 'unlink', 'shred', 'rimraf'}
-PREFIXES = {'sudo', 'command', 'builtin', 'exec', 'nohup', 'time', 'env', 'xargs', 'nice', 'doas'}
-UNVERIFIED = re.compile(r'[$%`*?\[{~]')
+PREFIXES = {'sudo', 'doas', 'command', 'builtin', 'exec', 'nohup', 'time', 'env', 'xargs', 'nice', 'timeout',
+            'stdbuf', 'ionice', 'chrt', 'unbuffer', 'strace', 'watch'}
+UNVERIFIED = re.compile(r'[$%`*?\[{~@]')
 SAFE_HINT = ("Safe path: one PowerShell command `Remove-Item -LiteralPath '<absolute path inside the workspace>' "
              "-Recurse -Force` after checking the path; repo AGENTS.md forbids delete/move cleanup until the "
              "guard's independent review.")
@@ -85,10 +86,10 @@ def tokenize(command):
 
 
 def verb_of(words):
-    """Skip env assignments and wrapper commands; return (verb, index of the verb word)."""
+    """Skip env assignments, wrapper commands and their options/numbers; return (verb, index of the verb word)."""
     for i, (value, _) in enumerate(words):
         name = os.path.basename(value.replace('\\', '/')).lower().removesuffix('.exe')
-        if re.fullmatch(r'\w+=.*', value) or name in PREFIXES or (i and words[i - 1][0] == 'xargs' and value.startswith('-')):
+        if re.fullmatch(r'\w+=.*', value) or name in PREFIXES or (i and (value.startswith('-') or re.fullmatch(r'[\d.]+[smhd]?', value))):
             continue
         return name, i
     return '', len(words)
@@ -97,7 +98,7 @@ def verb_of(words):
 def recursive(verb, args):
     for value, _ in args:
         arg = value.lower()
-        if arg in ('--recursive', '-r', '/s') or arg.startswith('-rec'):
+        if arg in ('-r', '/s') or arg.startswith(('-rec', '--r')):
             return True
         if verb in ('rm', 'rmdir', 'rd', 'del', 'erase', 'ri', 'remove-item', 'shred') and re.fullmatch(r'-[a-z]{1,4}', arg) and 'r' in arg:
             return True

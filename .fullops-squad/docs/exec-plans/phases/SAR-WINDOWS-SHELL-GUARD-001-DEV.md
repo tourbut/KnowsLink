@@ -51,15 +51,15 @@ summary: Claude·Grok·Codex PreToolUse hook으로 교차 셸 삭제와 검증�
 
 | 검사 | 대상 | 결과 |
 |---|---|---|
-| `python3 scripts/test_shell_guard.py` | Windows 로컬, 124f4af 작업 트리 | 3 tests OK. provider 4종(Claude Bash·Claude PowerShell·Grok·Codex) × deny 39·allow 17, payload 경계 3종, 삭제 없음 확인 |
-| 같은 회귀 | Linux 고유 clone `/tmp/knowslink-wsg001-124f4af3b3b8-86b21d59` | OK (symlink 경로) |
+| `python3 scripts/test_shell_guard.py` | Windows 로컬, 최종 작업 트리 | 3 tests OK. provider 4종(Claude Bash·Claude PowerShell·Grok·Codex) × deny 43·allow 17, payload 경계 3종, 삭제 없음 확인 |
+| 같은 회귀(사전 검사) | Linux 고유 clone `/tmp/knowslink-wsg001-124f4af3b3b8-86b21d59` | OK (symlink 경로) |
 | `make lint`·`make test` | 같은 Linux clone, HEAD 124f4af·clean 확인 | 둘 다 exit 0 |
 | Claude Code 실제 hook | 이 세션의 Bash 도구 `bash -c "echo rm"`, PowerShell 도구 `cmd /c echo rd` | 둘 다 실행 전 `PreToolUse ... hook error: Blocked by scripts/shell_guard.py` |
 | Grok 실제 발견 | `grok inspect --json` (모델 호출 없음) | `pre_tool_use` project hook, source `.../dev/.claude`, matcher `Bash|PowerShell`, vendor claude, `compatibilityStatus: enabled`, `projectTrusted: true` |
 | Grok runner 셸 재현 | `pwsh -NoProfile -Command 'python3 "$env:CLAUDE_PROJECT_DIR/scripts/shell_guard.py"'`에 Grok payload 파일 | deny: stdout deny JSON(pwsh exit 1, Grok은 JSON deny를 따른다). allow: exit 0·출력 없음 |
 | Codex runner 셸 재현 | `cmd.exe /C "python3 scripts/shell_guard.py"`에 Codex payload 파일 | exit 2, deny JSON |
 
-최종 HEAD의 등록 lint/test와 FullOps gate 결과는 worker_done과 Git 디렉터리 `fullops-gate/pass.json`이 정본이다.
+자체 리뷰에서 wrapper 옵션(`env -i`, `timeout 5`), `rm --rec`, PowerShell splatting(`@p`) 우회를 찾아 고치고 deny 4건을 추가했다. 중간 커밋 6e3881a의 lint.py gate는 product-lint·product-test passed, ERROR 0, WARNING 5다. SLOP-004 3건은 hook 프로토콜의 deny JSON·stderr 사유와 회귀 증거 경로 출력이며 디버그 잔재가 아니다. SIZE-001은 기존 PLANS.md 누적 크기, SIZE-002는 exec plan·packet-outcomes 문서를 포함한 추가량이다. guard·회귀 코드는 각각 300줄 이내다. 최종 HEAD의 등록 lint/test와 FullOps gate 결과는 worker_done과 Git 디렉터리 `fullops-gate/pass.json`이 정본이다.
 
 ## 활성화 상태와 재시작
 
