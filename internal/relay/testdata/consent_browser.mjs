@@ -6,6 +6,11 @@ const proc = spawn(chrome, ["--headless=new", "--no-sandbox", "--no-first-run", 
 const redact = (s) => s.replace(/\?[^\s'"]*/g, "?<redacted>");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const result = { steps: [], csp: [] };
+setTimeout(() => {
+  proc.kill();
+  console.log(JSON.stringify({ ...result, error: "timeout" }));
+  process.exit(1);
+}, 30000).unref();
 try {
   const endpoint = await new Promise((resolve, reject) => {
     let err = "";
@@ -30,6 +35,7 @@ try {
     new Promise((resolve) => {
       const id = ++next;
       pending.set(id, resolve);
+      setTimeout(() => resolve({}), 2000);
       ws.send(JSON.stringify({ id, method, params }));
     });
   const evaluate = async (expression) => (await send("Runtime.evaluate", { expression, returnByValue: true })).result?.result?.value;

@@ -7,12 +7,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"html"
 	"net"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"os"
 	"os/exec"
+	"regexp"
 	"strings"
 	"sync"
 	"testing"
@@ -96,8 +98,8 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		expect(t, do(s, "GET", consent, "", "", "", true), 200, "이 설치 연결 승인", "비공개 DB")
 		expect(t, do(s, "POST", consent, "decision=approve&csrf=wrong", formType, "", true), 403)
 		w = do(s, "POST", consent, url.Values{"decision": {"approve"}, "csrf": {csrf(cookies[sessionCookie].Value, id)}}.Encode(), formType, "", true)
-		expect(t, w, 303)
-		u, _ = url.Parse(w.Header().Get("Location"))
+		expect(t, w, 200, `http-equiv="refresh"`)
+		u = remoteReturnURL(t, w)
 		if u.Query().Get("iss") != "https://example.com" || u.Query().Get("state") != "original-state" {
 			t.Fatal("issuer/state response binding")
 		}
@@ -157,6 +159,19 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 	if len(agents) != 2 || agents[0] == "" || agents[0] == agents[1] {
 		t.Fatal("same Google account did not create distinct installation agents")
 	}
+}
+
+func remoteReturnURL(t *testing.T, w *httptest.ResponseRecorder) *url.URL {
+	t.Helper()
+	m := regexp.MustCompile(`<a href="([^"]+)"`).FindStringSubmatch(w.Body.String())
+	if m == nil {
+		t.Fatal("return page has no callback link")
+	}
+	u, err := url.Parse(html.UnescapeString(m[1]))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return u
 }
 
 // A real Chromium enforces form-action on redirects of a form submission, which an HTTP recorder cannot observe.
@@ -220,7 +235,9 @@ func TestRemoteConsentBrowserReturn(t *testing.T) {
 	q := url.Values{"response_type": {"code"}, "client_id": {client.ID}, "redirect_uri": {"https://callback.test/oauth"}, "resource": {"https://example.com/mcp"}, "scope": {remoteScope}, "state": {"browser-state"}, "code_challenge": {oauth2.S256ChallengeFromVerifier(verifier)}, "code_challenge_method": {"S256"}}
 	port := server.Listener.Addr().(*net.TCPAddr).Port
 	rules := fmt.Sprintf("MAP example.com 127.0.0.1:%d,MAP accounts.google.com 127.0.0.1:%d,MAP callback.test 127.0.0.1:%d", port, port, port)
-	out, err := exec.Command("node", "testdata/consent_browser.mjs", chrome, rules, "https://example.com/remote/oauth/authorize?"+q.Encode(), t.TempDir()).Output()
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+	out, err := exec.CommandContext(ctx, "node", "testdata/consent_browser.mjs", chrome, rules, "https://example.com/remote/oauth/authorize?"+q.Encode(), t.TempDir()).Output()
 	t.Logf("browser: %s", out)
 	if err != nil {
 		t.Fatal(err)
