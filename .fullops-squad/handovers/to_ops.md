@@ -6,7 +6,7 @@ owner: ops
 tasks: [SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS]
 summary: 독립 검수·main 수락 후 OAuth 브라우저 복귀 수정을 기존 서버에 보존 배포
 attempt: f5a42297abfc45748fe3746cb2fc975e
-base: 8cfebf665520e3e8e5dae275442f51f289adf1aa
+base: eac603b6a41d2ce002e698600ac66b8fc67ad762
 subagent_level: standard
 test_level: lite
 ---
@@ -24,6 +24,8 @@ test_level: lite
 
 ## 원천과 적용 기준
 
+배포 제품 SHA는 eac603b6a41d2ce002e698600ac66b8fc67ad762다. 실제 Chromium 독립 QA/고정 SHA 리뷰는 tester 기록96c7b823으로 수락됐다. 같은 후보의 designer 시각 수락과 main/origin 조상 확인은 아직 선행 대기이며, coor가 완료 기록을 전달하기 전 배정하지 않는다. `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md` 및 `-test/report.md`와 COOR 폴더의 gate 영수증을 읽는다. F1 medium(원인별 실패 안내 부족)은 reviewer 비차단 잔여로 보존한다. 기존 미완료 install1은 삭제하지 않는다.
+
 fullops-common-0.3.3과 FULLOPS, common README+세 규칙, project, orca-agents, delegation, document-writing을 읽는다. 원천은 현재 ops-guide/transition, SAR-SSE-INSTALL-001-OPS-LIVE, 이전 OPS 실행 기록과 logs/2026-10-11_to_ops.md, DEV 최종 OAuth 복귀 실행 기록 및 tester 수락 보고다. 고정 제품 SHA와 정확한 gate 경로는 선행 수락 뒤 coor가 연결한다. 기존 Context7/공식 CLI 근거는 동일 명령에 재사용한다.
 
 운영 배포 /home/shin/deploy/knowslink, state /home/shin/deploy/knowslink-state, 도메인 https://link.knowslog.com. 마지막 배포 SHA 121cde923798c745af1f952347fcec1cae40b853. Tunnel config SHA256 f5abe860a019d5379cbbd5499eb309a645c4ae1e8f0b60fab6fea22326458512. 실제 착수 시 다시 읽어 현재값과 대조한다. 변경된 상태를 덮어쓰지 않는다.
@@ -37,6 +39,7 @@ SSH helper D:/workspace/KnowsLink/.git/fullops-gate/coor_remote.py와 기존 kno
 3. 검수된 고정 SHA가 실제 origin/main 조상인지 확인한다. 서버 origin의 사라진 로컬 경로를 맹목적으로 fetch하지 않는다. 이전에 검증된 bundle/SFTP 방식으로 정확한 SHA를 전달하고 clean 배포에 안전하게 반영한다. migration이 있거나 서버 상태가 예상과 다르면 ask한다. 원 상태를 강제 덮어쓰지 않는다.
 4. 기존 Compose project knowslink, compose.yaml+deploy/knowslink/compose.ops.yaml, state/.env와 UID/GID/STATE_DIR 계약을 유지한다. secret 출력 없는 config --quiet로 검증한다. relay만 최소 build/recreate한다. DB·Tunnel·다른 서비스·volume은 보존한다. 수정에 새 ingress 경로가 필요하지 않으면 config를 바꾸지 않는다. 제품 코드 수정이 필요하면 DEV에 반환한다.
 5. local/public health, OAuth metadata, 무인증 MCP/SSE·polling 거부와 private 경로 404, 기존 공유 서비스의 이전 상태를 비교한다. 제품 전체 QA는 정확한 고정 SHA 증거를 재사용하고 반복하지 않는다. 실제 Google/Dots OAuth와 인증된 SSE/Events는 배포 후 부모 검증으로 남긴다. smoke 실패나 service degradation은 현재 상태·원인·담당·재개 조건을 보고한다. DB restore나 무조건 rollback은 하지 않는다.
+   추가 비용/인증 없는 합성 43자 consent 경로 한 건으로 새 HTML 실패 안내·401·no-store/no-referrer·기존 CSP를 확인한다. 사용자 원 링크나 실제 attempt/code/token을 재사용하지 않는다. 새 설치를 만들지 않는다.
 6. 자신의 exec plan·QA 요약·contexts/ops와 D12 ops-guide/D13 transition만 실제 변경 영향에 맞게 갱신한다. 제품 source와 다른 역할 증거는 수정하지 않는다. 새 script/config가 없으면 원 exact-SHA product gate와 Windows 실행 불가를 정직하게 구분한다. 새 실행 파일/설정은 해당 registered gate와 고정 SHA 리뷰를 받는다. 예상 문서 변경은 5파일 이내다.
 7. 모든 packet 비선택 path/category와 partial/unknown을 수동 근거로 outcomes 처리한다. work.py finish로 원 지시서와 완료 보고를 보존한다. worker_done은 최종 기록40SHA 한 개와 운영40SHA·검증 결과·미실행을 분리해 보고한다.
 
