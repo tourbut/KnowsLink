@@ -1,0 +1,37 @@
+{
+  "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL",
+  "find_head": "1134737c062ac314646f8e3468bea2319f1ca191",
+  "base": "16b802e80f87759f39f143af62e7da5809428306",
+  "head": "610b2b0655b04244b7a17e56f05ad7216b40eb4d",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "adapters/.codex-plugin/plugin.json",
+    "adapters/.mcp.json",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "cmd/relay/main.go",
+    "internal/config/config.go",
+    "internal/relay/device.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/testdata/consent_browser.mjs",
+    "scripts/shell_guard.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
