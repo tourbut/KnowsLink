@@ -1,0 +1,433 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "b6a4f4da545cfdd3f57862f8724f3eacbe00c8e2",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "c5d6ad9b78214aa6b9b27b415df72bc8f15683298e56bcf42bcb8cd90c47f509",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-grok-wake.ts",
+      "c1-grok-wake.test.ts",
+      "c2-inbox.ts",
+      "c3-mcp.ts",
+      "c4-README.md",
+      "c5-SAR-GROK-WEBHOOK-001-DEV.md",
+      "c6-architecture.md",
+      "c7-ops-guide.md",
+      "c8-project.md",
+      "c9-tester.md",
+      "c10-README.md",
+      "c11-coding-style.md",
+      "c12-security.md",
+      "c13-testing.md",
+      "c14-document-writing.md",
+      "required_0",
+      "required_1"
+    ],
+    "recommended_ids": [
+      "c0-grok-wake.ts",
+      "c1-grok-wake.test.ts",
+      "c2-inbox.ts",
+      "c3-mcp.ts",
+      "c4-README.md",
+      "c5-SAR-GROK-WEBHOOK-001-DEV.md",
+      "c6-architecture.md",
+      "c7-ops-guide.md",
+      "c8-project.md",
+      "c9-tester.md",
+      "c10-README.md",
+      "c11-coding-style.md",
+      "c12-security.md",
+      "c13-testing.md",
+      "c14-document-writing.md",
+      "required_0",
+      "required_1"
+    ],
+    "signals": {
+      "c0-grok-wake.ts": {
+        "relevant": 0.81,
+        "evidence": 0.82,
+        "contradicts": 0.52,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-grok-wake.test.ts": {
+        "relevant": 0.81,
+        "evidence": 0.76,
+        "contradicts": 0.25,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-inbox.ts": {
+        "relevant": 0.69,
+        "evidence": 0.74,
+        "contradicts": 0.19,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-mcp.ts": {
+        "relevant": 0.36,
+        "evidence": 0.53,
+        "contradicts": 0.51,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-README.md": {
+        "relevant": 0.47,
+        "evidence": 0.48,
+        "contradicts": 0.33,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-SAR-GROK-WEBHOOK-001-DEV.md": {
+        "relevant": 0.83,
+        "evidence": 0.88,
+        "contradicts": 0.42,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-architecture.md": {
+        "relevant": 0.3,
+        "evidence": 0.53,
+        "contradicts": 0.28,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-ops-guide.md": {
+        "relevant": 0.2,
+        "evidence": 0.3,
+        "contradicts": 0.61,
+        "injection": 0.13,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-project.md": {
+        "relevant": 0.71,
+        "evidence": 0.86,
+        "contradicts": 0.24,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-tester.md": {
+        "relevant": 0.17,
+        "evidence": 0.27,
+        "contradicts": 0.28,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-README.md": {
+        "relevant": 0.31,
+        "evidence": 0.53,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-coding-style.md": {
+        "relevant": 0.31,
+        "evidence": 0.61,
+        "contradicts": 0.1,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c12-security.md": {
+        "relevant": 0.74,
+        "evidence": 0.86,
+        "contradicts": 0.11,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c13-testing.md": {
+        "relevant": 0.8,
+        "evidence": 0.85,
+        "contradicts": 0.13,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c14-document-writing.md": {
+        "relevant": 0.35,
+        "evidence": 0.49,
+        "contradicts": 0.17,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-grok-wake.ts": "adapters/src/grok-wake.ts",
+      "c1-grok-wake.test.ts": "adapters/src/grok-wake.test.ts",
+      "c2-inbox.ts": "adapters/src/inbox.ts",
+      "c3-mcp.ts": "adapters/src/mcp.ts",
+      "c4-README.md": "adapters/README.md",
+      "c5-SAR-GROK-WEBHOOK-001-DEV.md": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "c6-architecture.md": ".fullops-squad/docs/design-docs/architecture.md",
+      "c7-ops-guide.md": ".fullops-squad/docs/operations/ops-guide.md",
+      "c8-project.md": ".fullops-squad/project.md",
+      "c9-tester.md": ".fullops-squad/contexts/tester.md",
+      "c10-README.md": ".fullops-squad/rules/common/README.md",
+      "c11-coding-style.md": ".fullops-squad/rules/common/coding-style.md",
+      "c12-security.md": ".fullops-squad/rules/common/security.md",
+      "c13-testing.md": ".fullops-squad/rules/common/testing.md",
+      "c14-document-writing.md": ".fullops-squad/docs/agents/document-writing.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_tester.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 46280,
+    "output_tokens": 1140,
+    "cost": 0.0019437599999999999,
+    "known_cost": 0.0019437599999999999,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 1.166,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.525,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2440,
+        "output_tokens": 76,
+        "cost": 0.00010248
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.499,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2399,
+        "output_tokens": 76,
+        "cost": 0.000100758
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.54,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2460,
+        "output_tokens": 76,
+        "cost": 0.00010332
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.531,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2309,
+        "output_tokens": 76,
+        "cost": 9.6978e-05
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.609,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3645,
+        "output_tokens": 76,
+        "cost": 0.00015309
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.548,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3238,
+        "output_tokens": 76,
+        "cost": 0.000135996
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.595,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3064,
+        "output_tokens": 76,
+        "cost": 0.000128688
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.564,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4239,
+        "output_tokens": 76,
+        "cost": 0.000178038
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.471,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3469,
+        "output_tokens": 76,
+        "cost": 0.000145698
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.498,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4323,
+        "output_tokens": 76,
+        "cost": 0.000181566
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.486,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2654,
+        "output_tokens": 76,
+        "cost": 0.000111468
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.62,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3074,
+        "output_tokens": 76,
+        "cost": 0.000129108
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.506,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2823,
+        "output_tokens": 76,
+        "cost": 0.000118566
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.476,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3112,
+        "output_tokens": 76,
+        "cost": 0.000130704
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.533,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3031,
+        "output_tokens": 76,
+        "cost": 0.000127302
+      }
+    }
+  ],
+  "request_max_seconds": 0.62,
+  "task_key": "SAR-GROK-WEBHOOK-001-TESTER",
+  "role": "tester",
+  "attempt": "1d377bc1237d412088f94b6bdf5bffeb",
+  "instruction_sha256": "6597b9540f7d89253b874caba918ebe19d1c29c5e2a24b7c2359c394671ac182",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "adapters/src/grok-wake.ts",
+      "adapters/src/grok-wake.test.ts",
+      "adapters/src/inbox.ts",
+      "adapters/src/mcp.ts",
+      "adapters/README.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      ".fullops-squad/docs/design-docs/architecture.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/contexts/tester.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/docs/agents/document-writing.md"
+    ],
+    "required": [],
+    "sources": {
+      "adapters/src/grok-wake.ts": "b111b841f9574db6e9f3d31058a5d1cdb6bb02b636921414ba6db07ec016f996",
+      "adapters/src/grok-wake.test.ts": "0cfe274ed0d33e91c061e41445f51d00fd8e52423c9dfc27b994f4c195f8d9d7",
+      "adapters/src/inbox.ts": "b31475ed2390542414ac1f6f63331246976da8e5812ea5677c7a0e25c7443eda",
+      "adapters/src/mcp.ts": "23f5bf0facd83e58750adbe871e9a17529efb09252bcc3fa13272e0d1f92ba33",
+      "adapters/README.md": "fc5d7c6ad01100ab5e2a7284c4d45537eaff6df8fff9553e1433d2e118428830",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md": "38122c2a33edf5af477a09294a965a86fdd425611ab96dd0b5f40bb96e24f878",
+      ".fullops-squad/docs/design-docs/architecture.md": "0ec1aac07ccf718aa830638589e8d125f8e769827c0b311a480996c564183e54",
+      ".fullops-squad/docs/operations/ops-guide.md": "71533cd071a2acd7d366f23fb3890a9806afa82ecfbb88ad11d7397ce7d41800",
+      ".fullops-squad/project.md": "089782d68610223d84ee8b0e3487a3fd96d04cd1083423a8b9eedc7ab63256a1",
+      ".fullops-squad/contexts/tester.md": "ca37da5de45ac11f5bddf43f5bd0cb363e0e3ad33cc43812269670f14c0c1e2e",
+      ".fullops-squad/rules/common/README.md": "c49e4aead718d4c0bdc8bb0b71fd5062e7c4db87e456831ff326849bd616ed42",
+      ".fullops-squad/rules/common/coding-style.md": "cf83b775ca73e1cadcf65bb8c38bb1f3710bee8cdcd08819d03d3fb10372318e",
+      ".fullops-squad/rules/common/security.md": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc",
+      ".fullops-squad/rules/common/testing.md": "e4cef4ccbd9be3d6e27a9e791f58d26afeb69d8af44b1eb2dc6fbc160b3a4de7",
+      ".fullops-squad/docs/agents/document-writing.md": "4bc9f139a465c6614cd4eecdc581b7933dddc23c2bbc9912b513c5fcd6e337c5"
+    }
+  },
+  "unsent_sources": {},
+  "refused_paths": [],
+  "elapsed_seconds": 3.724,
+  "input_partial": false,
+  "instruction_chars": 2957,
+  "remaining_instruction": null
+}

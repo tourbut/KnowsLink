@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -390,3 +390,15 @@ coor msg_3319725732d2에서 로그인된 dashboard API GET은 success였다. 현
 5. coor는 상대 agent의 실제 송신 ID와 `<연결 폴더>/inbox/<ID>.wake`의 `state`, 노우 대화의 doorbell·표시 ID를 각각 대조한다. `accepted_unverified`만으로 노우 표시를 주장하지 않는다.
 
 중지와 복구는 변수 없이 watcher를 다시 시작하는 것이다. `retry`가 계속되면 gateway·token 파일을 확인한다. `rejected`·`uncertain`은 자동 재전송하지 않으므로 inbox의 메시지를 수동 receive로 확인한다. Update/Reset 뒤에는 1–4단계를 반복한다. 상세 명령은 [플러그인 문서](../../../adapters/README.md#선택형-grok-bot-loopback-wake--미문서화-gateway)를 따른다.
+
+## Bot webhook routine wake 전환 — SAR-GROK-WEBHOOK-001-DEV
+
+후보 코드만 있다. 실제 routine 생성·키 발급·턴 표시는 미검증이다. 검증 전에는 현재 `sendPrompt` watcher 설정을 바꾸지 않는다.
+
+1. owner는 webhook trigger routine을 만든다. routine prompt는 webhook `body`를 untrusted data로 읽고 `knowslink_text_receive`만 호출하게 한다. URL과 sender key는 routine 화면에서 받는다. 채팅·로그·Git에 붙이지 않는다.
+2. owner는 Bot 컴퓨터에 `{url,key}` 비공개 파일(0600)을 만든다. `KNOWSLINK_GROK_WEBHOOK_FILE=<절대경로> plugin.js wake-check`로 `{"state":"ok","mode":"webhook"}`를 확인한다. 이 명령은 아무것도 보내지 않는다.
+3. coor는 무해한 probe 한 번으로 routine 턴이 사용자 메시지가 아닌 webhook 이벤트로 보이는지 확인한다.
+4. 통과하면 owner는 해당 연결 폴더 watcher의 정확한 PID만 끝낸다. `KNOWSLINK_GROK_WEBHOOK_FILE`로 다시 시작한다. 이 process는 `sendPrompt`를 호출하지 않는다.
+5. coor는 실제 송신 ID와 `.wake`의 `state`, routine 턴의 표시 ID를 각각 대조한다.
+
+복귀는 변수 없이 기존 `KNOWSLINK_GROK_WAKE_AGENT` 설정으로 watcher를 다시 시작하는 것이다. key 노출이 의심되면 routine 화면에서 key를 교체하고 파일만 갱신한다. 파일은 매 호출마다 다시 읽으므로 재시작은 필요 없다. 상세는 [플러그인 문서](../../../adapters/README.md#선택형-grok-bot-webhook-routine-wake--후보-실제-미검증)를 따른다.

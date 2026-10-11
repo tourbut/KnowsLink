@@ -3,7 +3,7 @@ title: KnowsLink 호스트별 설치
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV]
 summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계
 ---
 
@@ -290,7 +290,7 @@ watcher 출력에는 ID·발신자·대기 수만 있다. 같은 폴더에 MCP �
 
 | 항목 | 상태 | 근거 |
 |---|---|---|
-| 외부/컴퓨터에서 노우 대화 wake | 공식 지원 없음 | Cursor staff Colin(Community Support Engineer)의 [2026-08-18 답변](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260): “Wake mechanics is an area we're working on” |
+| 외부/컴퓨터에서 노우 대화 wake | 대화 wake는 공식 지원 없음. webhook trigger routine은 공식 스킬 문서로 확인한 후보(아래 webhook 절) | Cursor staff Colin(Community Support Engineer)의 [2026-08-18 답변](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260): “Wake mechanics is an area we're working on” |
 | Bot 컴퓨터 loopback gateway `127.0.0.1:1340`, `/home/box/sand-data/gateway.json`의 `token`, `POST /api/listAgents`, `POST /api/sendPrompt {agentId,prompt}` | 미문서화. staff가 “undocumented” workaround로 연결 | 커뮤니티 사용자 adam91holt의 [2026-08-12 글](https://forum.cursor.com/t/grok-bot-can-i-send-it-a-message-from-outside/168199/8): live 설치에서 두 route를 시험했다고 보고 |
 | 본인 Bot 컴퓨터의 gateway 존재·token 필드·응답 코드·노우 턴 시작 | 실제 미검증 | DEV는 Bot 컴퓨터에 접근하지 않았다. 아래 확인 명령으로 owner 환경에서 확인한다 |
 | 수신 본문을 노우 prompt로 직접 전달 | 사용하지 않음 | `sendPrompt`는 사용자 권한 입력이다. 받은 text를 넣으면 신뢰하지 않는 지시가 사용자 지시로 바뀐다 |
@@ -328,6 +328,23 @@ watcher 출력에는 ID·발신자·대기 수만 있다. 같은 폴더에 MCP �
 port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEWAY_FILE`(절대경로)로 바꾼다. 형식이 틀린 설정은 `invalid_config`로 wake만 멈추고 자동 수신은 계속한다. 중지는 해당 연결 폴더 watcher의 정확한 PID만 확인해 끝내고 `KNOWSLINK_GROK_WAKE_AGENT` 없이 다시 시작한다. MCP Command 환경에도 같은 변수를 넣을 수 있지만 watcher 하나로 충분하다.
 
 한계: gateway가 꺼진 동안 같은 컴퓨터의 다른 process가 port를 점유하면 token을 받을 수 있다. Bot 컴퓨터를 owner 단독으로 사용하는 경우에만 켠다. 컴퓨터 Update/Reset은 watcher와 준비물을 지울 수 있다. 그 뒤 1–4단계를 다시 실행한다.
+
+### 선택형 Grok Bot webhook routine wake — 후보, 실제 미검증
+
+`sendPrompt` doorbell은 노우 대화에 사용자 메시지로 보인다. 공식 [make-bot-ui 스킬](https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md)의 webhook trigger routine은 `<webhook_event>` routine 턴을 시작한다. 이 경로를 후보로 제공한다. 실제 routine 왕복을 확인하기 전에는 위 loopback 설정을 바꾸지 않는다.
+
+- 비공개 파일 하나에 routine 화면의 URL과 sender key를 넣는다. 파일은 소유자 전용(0600)이어야 한다. 링크·그룹 읽기 권한이 있으면 사용하지 않는다.
+
+  ```json
+  { "url": "https://api2.cursor.sh/automations/webhook/<routine 화면의 ID>", "key": "<sender key>" }
+  ```
+
+- watcher를 `KNOWSLINK_GROK_WEBHOOK_FILE=<절대경로>`로 시작한다. 이 변수가 있으면 그 process는 webhook만 울린다. `KNOWSLINK_GROK_WAKE_AGENT`가 함께 있어도 `sendPrompt`는 호출하지 않는다. webhook 실패 뒤에도 `sendPrompt`로 넘어가지 않는다.
+- URL은 위 형식만 허용한다. 다른 host·http·query·port·userinfo는 거부한다. redirect는 따르지 않는다. 요청은 `Authorization: Bearer <key>`와 `X-Automation-Key: <key>`를 담은 POST JSON 한 번이며 timeout은 8s다.
+- body는 `{"event":"knowslink_text_arrived","ids":[UUID…],"pending":N,"next":"…"}`뿐이다. 받은 text·발신자는 보내지 않는다. routine prompt는 `body`를 untrusted data로 읽고 `knowslink_text_receive`를 호출하도록 owner가 작성한다.
+- 결과·marker·재시도 규칙은 loopback과 같다. 2xx는 `accepted_unverified`, 연결 거절·DNS 실패·설정 파일 불량은 `retry`, 3xx·4xx는 `rejected`, 5xx·timeout은 `uncertain`이다. URL·key는 상태·marker·로그에 남지 않는다.
+- `plugin.js wake-check`는 webhook 모드에서 파일만 검사한다. 결과: `{"state":"ok","mode":"webhook"}`. 아무것도 보내지 않는다. 공식 문서가 요구하는 무해한 probe와 routine 턴 표시는 owner·coor가 따로 확인한다.
+- 중지는 해당 watcher의 정확한 PID를 끝내고 변수 없이 다시 시작하는 것이다. routine 사용량은 기존 Bot 사용량을 쓴다. 새 유료 서비스는 없다.
 
 불확실한 송신은 같은 key·같은 내용으로 재시도한다. 중복은 receipt만 반환한다. idempotency_conflict는 이전 내용을 확인하고 별도 새 요청에는 새 key를 사용한다. expired·오프라인은 클라이언트/관계를 확인한 뒤 새 요청을 명시 송신한다. invalid_auth/invalid_signature는 현재 연결·키·지문을 확인한다. capacity/rate_limited는 성공이 아니며 retry_at 뒤 수동으로 재시도한다. 철회된 옛 요청/세대는 새 수락으로 복구되지 않는다.
 

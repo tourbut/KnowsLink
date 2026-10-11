@@ -1,0 +1,124 @@
+{
+  "base": "f0fdf9daf24a7def3b5ec317692ed8bcb720ec12",
+  "head": "b86f39711c2f5240d37332f44a9930d4dc2653fa",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.13 (fabbdb29) windows/amd64\nbuilt at: 2026-10-08T11:52:18Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "tester Claude Sonnet 5.5 session 254e09d8-cebb-4a7d-a717-ff1820a00fe6 (구현자 c7162b6d와 별개)",
+  "conclusion": "수락 가능(조건부). 미해결 critical/high 없음. low 1건. 실제 Bot routine·key·probe와 main/배포 미수락은 유지",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "task 목록·교훈 1줄 추가만. 비밀값 없음, 구현과 일치"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D03 일반화 정정이 공식 근거와 구현에 일치하는지 읽기 전용 확인. C5 해석은 보고서 참조"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "D10 책임·검증 행이 실제 시험 범위와 일치함을 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-GROK-WEBHOOK-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 433,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "유효 JSON 확인, 비밀값 패턴 없음. 내용 정확도는 평가 대상이 아닌 증거 파일"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "status": "added",
+      "insertions": 77,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기준·계획·검증·미검증 절을 읽고 Linux gate 주장을 같은 SHA 독립 실행으로 재확인"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "D12 전환·복귀 절차가 구현(파일 매호출 재읽기, env 배타, check 무전송)과 일치함을 확인. 링크 anchor 존재 확인"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "status": "modified",
+      "insertions": 142,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "보존 로그 추가. 비밀값 패턴 없음(diff grep). 전문 의미 검토는 하지 않음"
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 126,
+      "review_status": "reviewed",
+      "reason": "인박스 비움(삭제 126줄). work.py finish 결과로 로그에 보존됨"
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 19,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "webhook 절을 공식 SKILL.md(WebFetch)·구현과 대조. 형식·헤더·8s·단일 시도 일치. DNS 실패 문구는 F1 참조"
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "test script에 grok-wake.test.js만 추가. 의존성 변경 없음(diff 확인)"
+    },
+    {
+      "path": "adapters/src/grok-wake.test.ts",
+      "status": "added",
+      "insertions": 143,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "단위 시험 전체를 읽고 고정 SHA에서 실행(make test 종료코드 0). 독립 프로브가 같은 경계와 추가 경계를 다시 확인"
+    },
+    {
+      "path": "adapters/src/grok-wake.ts",
+      "status": "modified",
+      "insertions": 89,
+      "deletions": 21,
+      "review_status": "reviewed",
+      "reason": "diff 전체와 호출자(inbox.ts ring·claimWake/markWake/releaseWake, mcp.ts wake-check, index.ts)를 읽고 실제 fetch 경계 프로브 58건으로 검증. low 1건(F1)"
+    }
+  ],
+  "findings": [
+    {
+      "path": "adapters/src/grok-wake.ts",
+      "start_line": 108,
+      "end_line": 111,
+      "severity": "low",
+      "resolved": false,
+      "content": "확실한 미전달 오류 중 ECONNREFUSED·ENOTFOUND만 retry로 분류한다. EAI_AGAIN(일시 DNS 실패)·ENETUNREACH·EHOSTUNREACH는 uncertain(webhook_no_response)이 되어 marker가 유지되고 같은 ID는 .wake 만료(24h)까지 다시 울리지 않는다. 네트워크가 잠시 끊긴 Bot 컴퓨터에서 깨우기가 사라질 수 있다. 메시지는 inbox에 남아 수동·다음 새 ID 때 receive 가능하며 중복 전송·비밀 노출은 없다. README의 \"DNS 실패는 retry\" 문구도 ENOTFOUND만 해당한다"
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "c7162b6d-560e-40a5-9717-515db79c0d0a",
+    "reviewer_session": "254e09d8-cebb-4a7d-a717-ff1820a00fe6",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-667bd7fbdeea48ac867606b5efcec14b",
+    "snapshot_head": "b86f39711c2f5240d37332f44a9930d4dc2653fa",
+    "read_only": true
+  }
+}
