@@ -42,6 +42,8 @@ SSH helper D:/workspace/KnowsLink/.git/fullops-gate/coor_remote.py와 기존 kno
 
 ## 지시 전제와 충돌 — 먼저 확인
 
+탐색은 ops-guide와 이전 OPS 로그를 conflict로 분류했다. 이전 로그의 ba3754d 시작 상태와 ingress 변경 절차는 완료된 과거 작업이며 이번 작업에서 반복하지 않는다. 현재 기준은 OPS-LIVE의 121cde9 및 실제 read-only 착수 확인이다. OPS-LIVE 본문은 탐색 서비스 미전송이므로 로컬 원문을 직접 읽는다.
+
 과거 ops-guide/transition의 held·Access·미적용 설명은 현재 OPS-LIVE와 구분한다. 최근 실제 배포는 위 121cde9이며 사용자 승인 이후 설치1/token0이 관찰됐다. 과거 수락을 새 OAuth 성공으로 간주하지 않는다. verify.py regression baseline 결함과 medium SSE 헤더 결함은 이미 보존된 잔여이며 이번 성공으로 바꾸지 않는다. 새 결함은 coor에 보고한다.
 
 ## 완료 보고
