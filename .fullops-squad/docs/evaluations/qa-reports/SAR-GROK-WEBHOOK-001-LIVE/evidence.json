@@ -42,7 +42,7 @@
       "note": "Actual callback read by Dots. Context markers and receive result are reported by the routine, not independently inspected Grok chat pixels. Native execution ID unavailable."
     }
   ],
-  "watcher_transition": "Bot reports completed; Dots setup report received and owner receipt delivered/received. Real incoming-message automatic round trip pending.",
+  "watcher_transition": "실제 입력 메시지의 webhook routine 답장 Dots 수신 및 owner receipt 확인. 시험 예외 정리 보고 대기.",
   "user_turn_visual_verification": "not performed; reception is never induced or verified by opening Grok chat",
   "cost": "Existing Bot account usage only; no additional paid service configured",
   "residual": "Temporary DNS/routing failures can suppress same-ID wake for24h (tester F1 low). Messages remain in inbox.",
@@ -62,5 +62,22 @@
       "transport": "delivered",
       "completion": "received"
     }
+  },
+  "live_incoming_test": {
+    "nonce": "KL-WH-LIVE-20261011-1315",
+    "request_id": "01a12b26-9272-7667-90ca-73a0ba3fa2a2",
+    "reply_id": "01a12b27-23a3-757d-8ef2-4792bdef3331",
+    "dots_received_kst": "2026-10-11 22:29",
+    "reply_to": "01a12b26-9272-7667-90ca-73a0ba3fa2a2",
+    "reported_event": "knowslink_text_arrived",
+    "reported_routine": "yes",
+    "reported_received": "01a12b26-9272-7667-90ca-73a0ba3fa2a2",
+    "member_receipt": {
+      "transport": "delivered",
+      "completion": "reply_received"
+    },
+    "grok_chat_receipt_inspection": false,
+    "marker_provenance": "실제 답장 내용의 routine 보고. root native 실행 ID/픽셀 검사 아님",
+    "cleanup": "시험 ACK와 probe callback 예외 제거 요청 전송. 아직 완료 수신 미확인"
   }
 }
