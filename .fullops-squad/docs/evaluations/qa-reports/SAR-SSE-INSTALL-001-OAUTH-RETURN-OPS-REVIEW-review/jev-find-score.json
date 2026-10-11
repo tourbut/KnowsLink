@@ -1,0 +1,32 @@
+{
+  "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS",
+  "find_head": "bbba78bef50a35a3a3f572a22613ed63f1e36069",
+  "base": "dd06301c9be06f66366124fca7061b71b8b4d8b3",
+  "head": "ef3f70bf05c71e4c8772e7dbf545273e9abf1729",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "adapters/README.md",
+    "deploy/knowslink/compose.ops.yaml",
+    "deploy/knowslink/tunnel/public-ingress.yml",
+    "deploy/knowslink/verify.py",
+    "internal/config/config.go",
+    "internal/relay/device.go",
+    "internal/relay/testdata/consent_browser.mjs"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": false,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
