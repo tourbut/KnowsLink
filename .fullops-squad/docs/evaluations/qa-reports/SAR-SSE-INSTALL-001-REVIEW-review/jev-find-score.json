@@ -1,0 +1,70 @@
+{
+  "task_key": "SAR-SSE-INSTALL-001-DEV",
+  "find_head": "7a6906851b872fc52310a0ac6623527a4b0adb2b",
+  "base": "4786a00a1274479ea5c3d80decccc0ea556c52e8",
+  "head": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "adapters/README.md",
+    "adapters/package.json",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/inbox.ts",
+    "adapters/src/mcp.ts",
+    "cmd/relay/main.go",
+    "deploy/knowslink/tunnel/public-ingress.yml",
+    "internal/relay/capacity.go",
+    "scripts/check_public_ingress.py",
+    "scripts/install_bot_mcp.sh",
+    "scripts/package_plugin.py",
+    "scripts/verify_grok_plugin.py"
+  ],
+  "new_files": [
+    "adapters/.claude-plugin/plugin.json",
+    "adapters/.codex-plugin/plugin.json",
+    "adapters/config/local.mcp.json",
+    "adapters/manifest.json",
+    "adapters/src/events.test.ts",
+    "internal/relay/remote_auth.go",
+    "internal/relay/remote_events.go",
+    "internal/relay/remote_integration_test.go",
+    "internal/relay/remote_mcp.go",
+    "internal/relay/remote_test.go",
+    "internal/relay/text_events.go",
+    "internal/relay/text_events_integration_test.go",
+    "internal/relay/text_events_test.go"
+  ],
+  "candidates": [
+    "Makefile",
+    "adapters/.grok-plugin/plugin.json",
+    "adapters/.mcp.json",
+    "adapters/README.md",
+    "adapters/package.json",
+    "adapters/src/inbox.ts",
+    "adapters/src/index.ts",
+    "cmd/relay/main.go",
+    "internal/config/config.go",
+    "internal/relay/protocol.go",
+    "internal/relay/public_text.go",
+    "scripts/install_bot_mcp.sh"
+  ],
+  "hits": [
+    "adapters/README.md",
+    "adapters/package.json",
+    "adapters/src/inbox.ts",
+    "cmd/relay/main.go",
+    "scripts/install_bot_mcp.sh"
+  ],
+  "recall": 0.417,
+  "precision": 0.417,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

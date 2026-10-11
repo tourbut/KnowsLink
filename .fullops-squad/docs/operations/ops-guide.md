@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -33,6 +33,12 @@ Remote 후보 배포에는 기존 Google redirect URL의 HTTPS origin을 사용�
 
 
 Refresh 재사용은 검증된 MAC의 installation/client/resource family만 철회하고 forged·다른 audience 입력으로는 철회할 수 없다. 거부 응답에도 철회가 DB에 commit된다. refresh 응답이 유실되어 이전 token을 다시 쓰면 재동의가 필요할 수 있으므로 호스트 OAuth 복구 절차를 따른다.
+
+### Tester 독립 QA (febd128, 2026-10-11)
+
+tester는 후보 `febd1282df2e84a29fa0a53834569e7b9cc028e2`를 별도 clean detached snapshot에서 리뷰했다. Linux 고유 임시 클론에서 `make lint`와 `make test`를 실행했고 두 종료코드는 0이다. 증거는 `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md`와 `SAR-SSE-INSTALL-001-REVIEW-review/`에 있다.
+
+동의 화면의 최종 시각 검수는 designer dispatch `ctx_4283f224b494`가 소유한다. tester는 그 시각 검수를 실행하지 않았고 PASS로 기록하지 않는다. 실제 Google 로그인, 외부 앱 등록, Claude Desktop MCPB 런타임, Dots 계정 Events callback, 운영 도메인 SSE도 실행하지 않았다. 이 절은 운영 배포, DB, 키, Tunnel을 변경하지 않는다.
 
 ## 1. 승인 범위와 선행 조건
 
