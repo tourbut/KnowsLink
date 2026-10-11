@@ -1,0 +1,74 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.02,
+        "ops": 0.98,
+        "tester": 0
+      },
+      "confidence": 0.97
+    },
+    "docs": {
+      "D01": 0.15,
+      "D02": 0.12,
+      "D03": 0.18,
+      "D04": 0.14,
+      "D05": 0.14,
+      "D06": 0.13,
+      "D07": 0.12,
+      "D08": 0.14,
+      "D09": 0.14,
+      "D10": 0.31,
+      "D11": 0.24,
+      "D12": 0.9,
+      "D13": 0.85
+    }
+  },
+  "usage": {
+    "input_tokens": 2506,
+    "output_tokens": 314,
+    "cost": 0.000105252
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.738,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "orca-agents.md의 ops 운영 배포 책임에 따른 독립 검수 후 기존 서버 최소 이행",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "1409bd61fd3b67e3802deac55eb7e31efba441dc",
+  "requires_packet": true
+}
