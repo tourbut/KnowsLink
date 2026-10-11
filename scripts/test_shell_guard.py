@@ -155,9 +155,10 @@ class ShellGuardTest(unittest.TestCase):
         proc = subprocess.run([sys.executable, GUARD], input='not json', capture_output=True, text=True)
         self.assertEqual(proc.returncode, 2)
 
-    @unittest.skipUnless(os.name == 'nt', 'the Codex hook command is the Windows cmd /C form')
     def test_codex_hook_from_subfolder(self):
         # F4: Codex runs the hook with the session cwd, so the command must find the guard from a subfolder.
+        if os.name != 'nt':  # the checked-in hook command is the Windows cmd /C form; sh cannot parse it
+            return
         repo = os.path.dirname(os.path.dirname(GUARD))
         with open(os.path.join(repo, '.codex', 'hooks.json'), encoding='utf-8') as f:
             command = json.load(f)['hooks']['PreToolUse'][0]['hooks'][0]['command']
