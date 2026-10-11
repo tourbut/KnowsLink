@@ -370,7 +370,7 @@ Plugin package: `git archive 95df83c` 사본(Node 22.22.2)에서 `npm ci`·build
 
 ### Lint·검증 근거
 
-(lint 실행 뒤 아래에 기록)
+`lint.py --repo . --from 95df83c22c1559453a7c73504aa248088a8e4ed0` (커밋 상태 HEAD, 문서 4개 변경): ERROR 0 / WARNING 1 / 실행 불가 2, 프로세스 종료코드 1(실행 불가 때문). WARNING SIZE-001은 PLANS.md 1584줄이며 이 과제는 PLANS.md를 수정하지 않았다(증가 3줄은 기준 SHA 이후 coor 준비 커밋 `0045089`). 실행 불가 2건은 `product-lint: make lint`, `product-test: make test`로 이 Windows 호스트에 make가 없다. 이 과제는 제품 코드·테스트·lock을 바꾸지 않았고(`git diff 95df83c HEAD`가 `.fullops-squad` 밖 0건) 고정 SHA의 Linux `make` 증거는 tester 기록을 재사용한다. 첫 lint의 DOC-003(LIVE 문서 front matter)은 `deliverables.py --stamp`로 정규화해 해소했다. `git diff --check` 통과. 서버의 package `--verify`(종료 0)가 이 과제의 유일한 실행 검증이다.
 
 ## 지시 전제와 충돌 — 먼저 확인
 Jev context는 D12/D13/이전 OPS 로그를 conflict로 표시했다. 이 문서들을 먼저 읽는다. D12의 1–10장은 역사적 조사·계획이고 SSE 운영 후보 절의 미적용 문장은 상단 적용 결과가 이전 사실로 명시했다. D13/최근 OPS 로그의 실제 운영 제품은 eac603b다. 신규 UI는 독립 검수 후 수락 SHA를 추가할 때까지 미배포다. 이전 held/fail·미검증을 새 PASS로 바꾸지 않는다. 배포 직전 실제 서버가 정본과 다르면 coor에게 보고하고 무작정 checkout/up하지 않는다. 기존 승인된 공개 Google/member 서비스와 Tunnel allowlist를 유지하는 제품 갱신이며 Access/새인증 정책 변경은 없다.
