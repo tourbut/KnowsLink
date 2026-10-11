@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "e8d7ba077c3f4d6db1a72bd2b51c269b",
+  "base": "1df0218099674013276b18ae0f76d15cd98864be",
+  "merge_base": "111cce03183b6e29e205a1aaa94371c295dcdcda",
+  "head": "fe47f5c7efff688467a183727e923aa32e70391d",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 미설치. 결과는 시각 문서/합성 측정 증거만 변경하고 제품295417a/609fcfd와 동일하다. 독립 tester go test0·DEV609 Linux gate0 보고 재사용, 본 결과의 make 실행으로 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 미설치. 결과는 시각 문서/합성 측정 증거만 변경하고 제품295417a/609fcfd와 동일하다. 독립 tester go test0·DEV609 Linux gate0 보고 재사용, 본 결과의 make 실행으로 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 2,
+    "added_lines": 35,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}
