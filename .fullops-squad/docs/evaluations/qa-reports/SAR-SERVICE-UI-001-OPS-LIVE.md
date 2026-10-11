@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-11
 owner: ops
 tasks: [SAR-SERVICE-UI-001-OPS]
-summary: "수락 제품 95df83c를 기존 Linux 서버에 relay만 갱신해 적용한 baseline·after·명령·종료코드·보존 증거·플러그인 package 해시·복귀 방법과 미검증 항목"
+summary: 수락 제품 95df83c를 기존 서버에 relay만 갱신해 적용한 baseline·after·명령·종료코드·보존 증거·플러그인 해시·복귀 방법과 미검증
 ---
 
 # 운영 적용 결과 (2026-10-11 UTC 14:26~14:30)
