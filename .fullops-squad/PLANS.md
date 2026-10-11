@@ -1475,3 +1475,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 독립 OAuth 검수 지시서와 탐색·충돌 기록을 main/origin 8cfebf665520e3e8e5dae275442f51f289adf1aa에 반영하고 fetch read-back을 확인했다. 제품 변경은 없다. 실제 terminal list에서 KnowsLink는 coor와 진행 DEV만 확인했다. 깨끗하고 agent 없는 tester/designer/ops는 같은 main으로 FF했다. 진행 DEV는 현재 기준을 보존하고 완료 후 최신 main 동기화를 예약한다. 보드의 단계 변화는 없다.
 
 - SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS 대기 인박스를 준비했다. Jev implementation/ops, fresh Claude Sonnet5.5 high, D12/D13. DEV 최종 SHA·독립 tester 수락·main push가 재개 조건이며 아직 배정하거나 운영 상태를 바꾸지 않았다. 기존 서버 보존 배포와 제한 smoke만 맡고 실제 Google/Dots 연결은 부모가 검증한다.
+
+- OAuth DEV msg_4e22d00e1bd4 / delivery_a77338206e45 / eac603b6a41d2ce002e698600ac66b8fc67ad762 수신. 정확한 SHA clean·실제 세션·gate attempt e55771cb35394f5aafb092b6acd53c20 및 product-lint/test0·ERROR0/WARNING3/unavailable0 확인. Chromium CSP POST303 차단을 재현하고 no-store 반환 화면으로 해결했다. independent tester/visual 수락 전 integration hold·DEV retain, coor 후보 merge만 완료했다. DEV 격리 script의 임시 PG docker rm/trap은 정리 금지 인계 위반으로 기록했다. 기존 서비스 전후 목록 동일 cmp0 증거를 보존하며 후속 tester에 해당 script 재실행·임시 컨테이너 정리를 금지했다. 사용자 파일/운영 DB 삭제 증거는 없다.
