@@ -1497,3 +1497,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - main/origin aee03bcf0a039cd3918e4042d4041805ecd8c5d8 일반 push·fetch read-back 일치, 완료 eac603b6/96c7b823/610b2b0의 원격 조상 관계 확인. integration pending0, visual delivery_a7e9a513ba72 ACK. DEV/tester/designer normal release는 모두 user_takeover retained로 돌아와 세 실제 세션을 보존했다. 강제 종료나 진행 여부 불명확한 checkout 동기화는 하지 않는다. 이 역할들의 최신 main 동기화는 다음 dispatch 전 actual idle/clean 확인 조건으로 예약한다. 새 리뷰 snapshot2개도 reviewer 종료 확인 전 보존하며 사용자 finished detached 정리 범위의 후속으로 기록한다. OPS는 실제 agent 없는 clean 확인 후 최신 main 준비를 반영한다.
 
 - OAuth 보존 배포 실제 착수 task_0400e4e36196 / ctx_0bf28885e328 / term_9dc8166d-8252-44b7-9a5c-52dcefb0cc37. fresh Claude Sonnet5.5 high requested/effective·turn_started·운영 정본/범위 읽기 일치, 실제 세션2250bd6b-a11a-4576-a6b3-a9702c0cd672. 준비 dd06301c9be06f66366124fca7061b71b8b4d8b3를 main/origin push·fetch read-back하고 actual terminal0·clean OPS를 FF했다. packet87/partial/unknown12를 수동 확인 대상으로 인계했다. 배포 제품은 수락eac603b6, 새기능·실계정 검증은 포함하지 않는다. 진행 OPS는 동기화하지 않는다.
+
+## 2026-10-11 OAuth 복귀 운영 적용·기록 통합
+
+- OPS 실제 세션2250bd6b의 기록 ef3f70bf를 별도 root 세션의 clean detached snapshot에서 검토했다. 8파일 reviewed, check 통과, 같은 base 등록 lint ERROR0/WARNING0/unavailable0. 제품 바이트 동일 shim을 통한 고정 Linux 제품 검사이며 문서 HEAD 자체의 원격 실행이 아니다.
+- main/origin/main cb8d258에 운영 기록과 독립 리뷰가 통합됐다. 운영 제품은 eac603b6, DB·키·관계·Tunnel·공유 서비스 보존 증거는 OPS-LIVE에 있다. msg_ec9f3623a8be의 원 parser null을 보존하고 확인한 기록 SHA를 coor_verification으로 연결했다. 정상 worker-release는 released/closed_agent_terminal/archive captured다.
+- 새 ChatGPT 연결 요청의 consent 화면을 열었다. Orca 자동 클릭·Enter 뒤 Google POST 전송은 확인되지 않았고 화면이 그대로다. 사용자가 직접 Google 계정 확인·로그인을 진행하도록 요청했다. 기존 사용된 오류 주소는 재시도하지 않았다. 실제 callback·token·인증 SSE/Events는 아직 미검증이다.
+- dev/tester/designer 기존 사용자 인계 세션은 강제로 종료하지 않았다. 최신 main cb8d258 동기화는 실제 idle·clean 확인 후 다음 dispatch 전에 수행한다. OPS는 정상 종료돼 clean 확인 후 최신 main으로 동기화한다.
+- 새 리뷰 snapshot3개는 증거를 보존했다. tester 사용자 인계 세션과 root 현재 세션의 종료를 입증하지 못해 이번 turn에서 강제 정리하지 않는다. 담당 coor, 재개 조건은 실제 사용 종료·clean·증거 hash 확인이다.
