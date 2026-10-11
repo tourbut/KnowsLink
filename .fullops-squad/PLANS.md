@@ -1582,3 +1582,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - FIX-VISUAL fe47f5c7 실제059f2e8a의 V-01 직접 재측정(PASS/44px 미달·overflow·겹침0)을 root독립 결과리뷰11/26으로 수락했다. PNG26/JSON87키420요소198링크 hash/크기/값 확인. 새N-01 low와 미검증은 보존한다. ctx_6b59850df28c 정상release/archive captured.
 - main/origin/main 95df83c22c1559453a7c73504aa248088a8e4ed0 병합/push/fetch readback 및 c782/043/1188/1e733/c1ab/fe47/295 모든완료SHA 조상 확인. parsernull3개는 원메시지/원parsernull 보존 coor_verification으로 실제SHA를 연결하고 기존5hold resume했다. 원격 main 통합은 완료, 운영 배포는 다음단계다. OPS actualterminal0/clean을 확인했고 수락95 SHA 배포 인박스·검수근거를 갱신한다.
+
+- OPS 보존 배포 착수: task_08ba5429b6a7/ctx_5f6ce8c44c09/term_a85bff79-9e0a-44b7-b911-8e17cea93107, fresh Claude Sonnet5.5 high requested/effective·turn_started·정규 인박스/FULLOPS 읽기 확인. 준비 main0045089, 배포 product95df83c 고정. OPS terminal0/clean 확인 후 main FF. beta.sh 충돌 entrypoint와 raw SQL dump·정리삭제 금지, relay만 갱신을 명시했다. 이후 정상 로그는 완료/오류/질문 또는60분 후 조회한다.
+- main0045089 역할 동기화: coor/OPS 착수전·DEV terminal0/clean·designer 실제 tui-idle=true/clean 확인 후 FF. tester 사용자 세션 idle이나 root 생성 score JSON2개 untracked가 있어 덮어쓰지 않고 예약한다. 두 파일은 main320987d 수락본과 동일바이트 보존이며 다음 dispatch 전에 clean/충돌 해소와 최신 main 포함 확인이 필요하다. 진행중 OPS는 후속 main 동기화 예약이다.
+- 완료 detached 정리 점검: FIX-TESTER/TESTER snapshot은 수락·reviewer 정상 release됐으나 cleanup의 dispatch workspace가 상설 tester여서 snapshot reviewer 정체성 확인이 차단됐다. 담당 coor, 재개 조건은 도구가 정확한 reviewer/snapshot 매핑을 확인하는 경우다. 관리 기록 hold·원본 증거 보존, 강제 삭제/관리 데이터 변조 없이 유지한다. 현재 root 리뷰 snapshot·사용자 retained/unknown도 보존한다.
+- 위 cleanup 실패의 실제 도구 메시지는 reviewer release·terminal 종료를 확인하지 못했다는 것이다. workspace 매핑은 코드상 추가 계약이며 이번 실패 원인으로 단정하지 않는다. 기존 release receipt와 자동 cleanup 관찰의 차이가 해소될 때까지 hold를 유지한다.
+
+- SAR-SERVICE-UI-001-OPS 완료e9eed962, 실제7f2986bc-0da2-4532-8f72-c908c4724cd9. root 고정 결과리뷰8/8·check통과·lint ERROR0/WARN0/make unavailable2 사유 보존. 운영 product95df83c detached/clean, 배포/local/package0, 전후 DB·키·관계·Google·Tunnel·공유서비스 보존. baseline/after grep종료1과 기존 regression projects실패1은 해소로 표시하지 않는다. 새 DB dump없음·코드전용eac복귀. 실제Google재인증/home4에이전트/관계2·320/390/1440 넘침·소형0·skip/Tab포커스 확인은 coor LIVE/report.md에 기록. 현재 요청의 상용 회원UI·루틴깨우기 개선 완료, 다른 SSE/Events/Trust 잔여는 유지한다.
