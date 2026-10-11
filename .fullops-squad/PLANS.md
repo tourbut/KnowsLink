@@ -1576,3 +1576,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 독립 수정 검수 모델 예외: tester route Grok 추천 대신 등록 Claude Sonnet5.5 medium으로 좁은 CSS diff와 기존 QA 도구를 재사용한다. 보안/프로토콜 변경은 없다. designer route Codex는 Trust 미승인으로 등록 Claude Sonnet5.5 high로 직접 제품 검수를 유지한다. tester/designer 기존 사용자 세션 tui-idle=true·clean을 확인했고 강제 종료하지 않는다. 준비커밋을 반영한 뒤 fresh 검수로 배정한다.
 
 - 수정 후보295417a의 독립 검수 착수: tester task_eb47d2bd8b77/ctx_5ab7a0d1f98a/term_cbaf5185-63d0-4c48-b4c1-d0b1f3d7a948(Claude Sonnet5.5 medium), designer task_cf6b92328270/ctx_6b59850df28c/term_131b901b-319b-4173-b8b5-d729117cd9dc(Sonnet5.5 high). requested/effective·turn_started·역할 인박스/규칙/고정SHA/이전V-01 읽기 착수 확인. 준비111cce0 main8539 조상 확인 및 idle·clean tester/designer만 FF. 진행 중 역할은 이후 main 예약만 남긴다.
+
+- FIX-TESTER 완료 c1ab9976f2f03c4af70960105fff29b1c6a08e86, 실제727f2870. 제품295417a의 CSS5줄과 링크 회귀 수락가능/C/H0. 원 check 실패는 reviewer 과제 outcomes를 고정 제품에서 찾은 연결 오류다. 실제 구현 FIX-DEV로 같은 ref를 coor가 검사해 reviewed2/skipped9 통과했다. 없는 task key 우회는 사용하지 않았고 contexts/tester의 과거 잘못된 지침을 명시 정정했다. 원 실패 phase/보고는 보존한다.
+- tester 결과 root 독립 review10/10·check 통과, 제품변경0·make미설치2 사유/DEV609 Linuxgate 재사용 경계 확인. msg_cc880d8e5ea0 hold는 designer 판정+main통합 대기다. ctx_5ab7a0d1f98a 정상 release closed_agent_terminal/archive captured. root check가 tester에 만든 untracked score JSON2개는 coor320987d에 동일바이트 복사·보존했다. 원본을 삭제하지 않았으며 역할동기화 전에 동일성·clean상태를 확인하고 충돌하면 예약한다.
