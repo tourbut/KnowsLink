@@ -1,0 +1,42 @@
+{
+  "observed_at": "2026-10-11T11:22:35.175769+00:00",
+  "status": "candidate_supported_not_tested",
+  "user_preference": "대체 방식 확인까지 현재 sendPrompt wake 유지",
+  "current_configuration_changed": false,
+  "context7": "resolve-library-id Grok Bot attempted; monthly quota exceeded; no new key or billing configured",
+  "official_sources": [
+    {
+      "url": "https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md",
+      "supports": "webhook routine trigger; routine turn and webhook_event payload; sender key private; harmless probe before claiming live"
+    },
+    {
+      "url": "https://docs.x.ai/grok-bot/skills-routines-and-automations",
+      "supports": "routine events and management; latest page still describes account integration examples, so it is not itself webhook schema evidence"
+    },
+    {
+      "url": "https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260",
+      "supports": "2026-08-18 support reply; historical undocumented gateway workaround; cannot establish current absence of webhook support"
+    }
+  ],
+  "live_report": {
+    "message_id": "01a12ab0-b2de-7e46-9b77-18e912bef070",
+    "from": "agent_077c666294c4eb28b783f8",
+    "received_via": "Dots knowslink_receive; acknowledged",
+    "reported_schema": "UpdateRoutine trigger.type includes webhook, object {type:webhook}, no additional trigger fields",
+    "reported_delivery": "routine event with webhook_event body",
+    "reported_secret_flow": "URL and sender key in user routine panel; agent cannot see sender key",
+    "reported_actions": "No routine creation/change, key issuance or test performed"
+  },
+  "observation_limits": [
+    "The schema findings are Bot-reported, not root-captured raw schema",
+    "No webhook routine created or invoked; transcript rendering and actual wake remain unverified",
+    "No delivery implementation or migration; current sendPrompt kept",
+    "Changing tool name alone does not remove user-style wake messages"
+  ],
+  "next_steps": [
+    "DEV validates minimal webhook arrival adapter against fixed supported endpoint and private secret flow; retain polling and existing fallback",
+    "Create narrowly scoped test routine using host approval/secure secret handoff if required",
+    "Send arrival metadata only, read body through knowslink_text_receive, verify routine transcript rather than user message",
+    "Switch current wake only after independent validation and real candidate test; no new paid services"
+  ]
+}

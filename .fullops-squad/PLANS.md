@@ -1520,3 +1520,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 초기 Dots 발신 queued/빈 수신과 ack 승인 차단은 성공으로 덮지 않았다. 사용자 범위의 읽은 답장 ACK를 명시한 다음 실제 acknowledged와 후속 왕복을 확인했다. 첫 DB 진단은 잘못된 JSON 경로의 count0으로 판정에서 제외했고 쓰기는 없었다.
 
 - 2026-10-11 그록봇 수신 도구 확인: 현재 설치의 knowslink_receive 없음/knowslink_text_receive 있음/실호출 empty라는 노우 보고를 Dots knowslink_receive에서 수신했다(ID01a12aa8-3c72-7908-8958-54d27daa6cf5). 코드 MCP 등록과 일치한다. Bot raw tools/list를 root가 독립 캡처한 것으로 주장하지 않는다. 실제 본문은 도구 결과이며 사용자 메시지 표시는 별도 sendPrompt wake다. 설정은 변경하지 않았다. 근거는 DOTS-GROK-LIVE/receive-tool-check.json.
+
+## 2026-10-11 사용자 메시지 없는 Grok wake 대체 검토
+
+- 사용자는 대체 방식 확인까지 기존 sendPrompt wake 유지를 선택했다. 실제 watcher·wake·계정 설정은 변경하지 않았다. 앞선 수신 도구 확인은 wake 표시 문제의 해결이 아니라고 정정했다.
+- Context7 resolve-library-id는 월 quota 초과로 실패했고 새 key/결제를 설정하지 않았다. 공식 cursor/plugins pstack make-bot-ui의 webhook routine/[routine]/webhook_event 예제를 확인했다. 기존 아키텍처의 외부 webhook 부재 단정은 최신 예제와 다르므로 과거 확인 범위로 해석한다. 일반 skills-routines 문서만으로 webhook schema를 증명하지 않는다.
+- 현재 노우가 UpdateRoutine trigger.type=webhook과 routine event 지원을 보고했다. Dots 수신보고01a12ab0-b2de-7e46-9b77-18e912bef070/acknowledged를 확인했다. 이는 Bot schema 점검 보고이며 root의 raw schema 독립 캡처가 아니다. 생성·수정·key발급·시험은 없었다. 근거: DOTS-GROK-LIVE/webhook-wake-research.json.
+- 후속 담당 dev/coor: 기존 polling과 수신 도구를 유지하고 arrival-only webhook routine 후보의 최소 구현·독립 검증·실계정 시험을 진행한다. 재개 조건은 좁은 routine 정의와 host 승인/안전한 secret 전달 경로 확보다. 실제 routine 이벤트가 사용자 메시지를 만들지 않는지 시험 전에는 대체 완료로 처리하지 않는다. 기존 wake를 중단하거나 새 유료 서비스·외부 키노출·vendor core 변경은 하지 않는다.
