@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/contexts/designer.md",
+        ".fullops-squad/docs/deliverables/README.md",
+        ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+        ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+        ".fullops-squad/handovers/to_designer.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-SERVICE-UI-001-DESIGN-packet-outcomes.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

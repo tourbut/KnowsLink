@@ -1539,3 +1539,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 모델 예외: designer Codex gpt-6.1-sol high 착수 ctx_cb02aaa948aa는 agent-hooks-review-prompt로 실패했다. 신뢰를 대신 승인하지 않고 기존 기록의 Claude Sonnet 5.5 high 대체를 사용한다. DEV는 동일 Codex trust 제약을 피하고 등록된 일반 기능 후보 Claude Opus 5.5 medium을 사용한다. 새 세션이며 추가 서비스 과금 없음.
 
 - Run run_7176a2ad6ef1: designer task_fc89ee0cd35e/ctx_7fdc299d33a0/term_7990340d-d87c-4664-909c-8e9e5089beb8, dev task_a2eaa2bf9644/ctx_bcbfa2f4992f/term_654c49e4-752d-4664-a2c1-b5c4aae227e0. 두 세션 launch.effective·turn_started·지시서/원천 읽기 착수 확인. designer Codex 실패 터미널은 worker-release의 closed_agent_terminal로 정상 정리.
+
+- SAR-SERVICE-UI-001-DESIGN: 완료4245b140911a15c0ff5716bc50c3b5a940baa444를 독립 snapshot 리뷰(reviewed8, ERROR0/WARN1, make 미설치2는 제품변경0건으로 해당 없음) 후 main2e55c83830478a5587ce7eb6f65757bb99f82238 및 origin/main에 병합했다. ctx_7fdc299d33a0는 released/closed_agent_terminal·transcript captured. 다음은 dev webhook 완료 뒤 상용 UI 구현 배정이다. 구현/시각 수락/배포는 미완료다.
+- main2e55c83 동기화: coor 반영. dev는 ctx_bcbfa2f4992f 진행 중이므로 예약하고 다음 착수 전 반영한다. tester/designer의 이전 user-owned 세션은 종료하지 않고 현재 idle·clean 확인 후 반영한다. OPS도 실제 상태 확인 후 반영한다.

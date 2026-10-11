@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "41b8e64a119646dabd2041ca09b41885",
+  "base": "5dde3d902ac0022b0c00e4ee3e546212cbc852af",
+  "merge_base": "0de25a5a20044e4a30e72bca6b65b8202ec314f4",
+  "head": "4245b140911a15c0ff5716bc50c3b5a940baa444",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows에 make가 없다. 제품 바이트 변경 0건인 디자인 문서 인계이며 제품 make 재실행은 해당 없음. 실행하지 않았고 PASS로 표시하지 않는다. 신규 제품 코드는 DEV Linux 검증 후 독립 QA를 받는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows에 make가 없다. 제품 바이트 변경 0건인 디자인 문서 인계이며 제품 make 재실행은 해당 없음. 실행하지 않았고 PASS로 표시하지 않는다. 신규 제품 코드는 DEV Linux 검증 후 독립 QA를 받는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 454줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 4,
+    "added_lines": 454,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
