@@ -21,7 +21,7 @@ summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 | `inbox.ts` AutoReceiver | 선택 SSE·coalesce·기존 serial·poll fallback·reconnect catch-up·stop | events.test.ts와 기존 inbox.test.ts |
 | `mcp.ts` | 기존 도구9개·자동 수신 상태·stdio close cleanup | 기존 MCP initialize/discovery/held와 Inbox 회귀 |
 
-상세 설정과 실패 경계는 [D05](interface-design.md#sar-sse-install-001-sse-계약), 실제 검사 결과는 [DEV 기록](../exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md)을 따른다.
+상세 설정과 실패 경계는 [D05](interface-design.md#sar-sse-install-001-sse-계약), 실제 검사 결과는 [DEV 기록](../exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md)을 따른다. 운영 서버 적용과 무인증 거부·metadata smoke는 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-LIVE.md)이다. 인증 SSE의 운영 도메인 확인은 실제 계정 후속이다.
 
 상위 요구사항은 [D02 SAR-MVP](../planning/product-specs/SAR-MVP.md)다.
 API 정본은 [D05](interface-design.md), 저장 정본은 [D06/D07/D09](data-model.md)다.

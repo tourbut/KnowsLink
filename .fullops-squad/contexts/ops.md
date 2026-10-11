@@ -1,9 +1,9 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-07
+updated: 2026-10-11
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
@@ -63,3 +63,9 @@ review.py check는 미해결 high에서 첫 실패로 멈춘다. 나머지 기�
 fixed d089의 제품32파일을 별도 실제 세션/read-only snapshot에서 검토했다. 기존 입장 결함의 정적 수정 근거와 원334/UI91 해시를 확인했다. 기록 check와 기능/시각/main 수락을 구분한다.
 CLI stdin은 Buffer 청크마다 String으로 바꾸면 UTF-8 원문을 잃는다. M-UTF8-01 medium은 DEV의 streaming decode/byte 상한 회귀 후속이며 제품 코드 수정 없이 보고했다.
 공정성 단위는 owner 제어와 소속 agent ACK 두 개다. 같은 DB 시각의 snapshot은 epoch로 구분한다. 원 low·운영/실메일/플랫폼·새 QA/UI 조건은 보존한다.
+
+## 2026-10-11 — SAR-SSE-INSTALL-001-OPS
+
+서버의 기존 origin 경로가 없어졌으므로 `beta.sh deploy`는 `git fetch origin`에서 backup 전에 실패한다. 로컬 bundle을 `git fetch <bundle> HEAD`로 받고 같은 순서를 수동 실행한다.
+Git Bash에서 원격 경로 인자는 `MSYS_NO_PATHCONV=1` 없이 `C:/Program Files/Git/...`로 바뀌어 SFTP가 실패한다. shell_guard는 `set -e` 뒤 긴 경로와 `bash` 단어가 함께 있으면 encoded 명령으로 거부한다. `set -o errexit`를 쓴다.
+`verify.py regression`은 baseline에 knowslink project가 남아 항상 실패한다. 다른 세 항목을 직접 대조하고 스크립트는 수정하지 않았다.
