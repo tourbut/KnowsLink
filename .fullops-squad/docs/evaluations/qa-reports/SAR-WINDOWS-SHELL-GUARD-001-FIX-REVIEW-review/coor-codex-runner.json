@@ -1,0 +1,48 @@
+{
+  "head": "c2a0ce4ab673116d0d18be368032ac26e1327a9c",
+  "actual_host_session": false,
+  "rows": [
+    {
+      "cwd": ".",
+      "payload": "git status",
+      "exit_code": 0,
+      "expected": 0,
+      "denial_json": false
+    },
+    {
+      "cwd": ".",
+      "payload": "rm -rf $X/",
+      "exit_code": 2,
+      "expected": 2,
+      "denial_json": true
+    },
+    {
+      "cwd": "scripts",
+      "payload": "git status",
+      "exit_code": 0,
+      "expected": 0,
+      "denial_json": false
+    },
+    {
+      "cwd": "scripts",
+      "payload": "rm -rf $X/",
+      "exit_code": 2,
+      "expected": 2,
+      "denial_json": true
+    },
+    {
+      "cwd": "adapters",
+      "payload": "git status",
+      "exit_code": 0,
+      "expected": 0,
+      "denial_json": false
+    },
+    {
+      "cwd": "adapters",
+      "payload": "rm -rf $X/",
+      "exit_code": 2,
+      "expected": 2,
+      "denial_json": true
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-FIX-DEV",
+  "find_head": "972ccd6f30025260bcfaeb2dec91c1e68f8a5f1c",
+  "base": "972ccd6f30025260bcfaeb2dec91c1e68f8a5f1c",
+  "head": "c2a0ce4ab673116d0d18be368032ac26e1327a9c",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "scripts/shell_guard.py",
+    "scripts/test_shell_guard.py"
+  ],
+  "new_files": [],
+  "candidates": [
+    "adapters/.codex-plugin/plugin.json",
+    "scripts/shell_guard.py",
+    "scripts/test_shell_guard.py"
+  ],
+  "hits": [
+    "scripts/shell_guard.py",
+    "scripts/test_shell_guard.py"
+  ],
+  "recall": 1.0,
+  "precision": 0.667,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

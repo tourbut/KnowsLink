@@ -1,0 +1,44 @@
+{
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-FIX-DEV",
+  "find_head": "972ccd6f30025260bcfaeb2dec91c1e68f8a5f1c",
+  "base": "972ccd6f30025260bcfaeb2dec91c1e68f8a5f1c",
+  "head": "c2a0ce4ab673116d0d18be368032ac26e1327a9c",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+    "AGENTS.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/agents/document-writing.md",
+    ".fullops-squad/docs/deliverables/README.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/review/_REPORT.md",
+    "CLAUDE.md"
+  ],
+  "hits": [
+    ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md"
+  ],
+  "recall": 0.25,
+  "precision": 0.083,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
