@@ -1,0 +1,45 @@
+{
+  "task_key": "SAR-SSE-INSTALL-001-OPS",
+  "find_head": "121cde923798c745af1f952347fcec1cae40b853",
+  "base": "bef4ffe4d66be6f547de238019f69e0d6909f1ee",
+  "head": "f81d2c33e93e0b680829f998a193e6a77b8c0e7e",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/docs/operations/transition.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/agents/document-writing.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/operations/ops-guide.md"
+  ],
+  "recall": 0.5,
+  "precision": 0.167,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

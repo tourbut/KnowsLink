@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "bc4cbed9de534b01b082ee7382936302",
+  "base": "bef4ffe4d66be6f547de238019f69e0d6909f1ee",
+  "merge_base": "bef4ffe4d66be6f547de238019f69e0d6909f1ee",
+  "head": "f81d2c33e93e0b680829f998a193e6a77b8c0e7e",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows checkout에 make가 없어 unavailable. 이번 diff는 문서만이며 제품 코드·설정·Makefile 변경 없음. 기존 exact product gate와 Linux tester febd128 성공을 재사용하며 새 SHA 실행으로 표시하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows checkout에 make가 없어 unavailable. 이번 diff는 문서만이며 제품 코드·설정·Makefile 변경 없음. 기존 exact product gate와 Linux tester febd128 성공을 재사용하며 새 SHA 실행으로 표시하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 4,
+    "added_lines": 58,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

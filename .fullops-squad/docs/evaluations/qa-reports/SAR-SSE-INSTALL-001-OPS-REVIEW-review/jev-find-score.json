@@ -1,0 +1,31 @@
+{
+  "task_key": "SAR-SSE-INSTALL-001-OPS",
+  "find_head": "121cde923798c745af1f952347fcec1cae40b853",
+  "base": "bef4ffe4d66be6f547de238019f69e0d6909f1ee",
+  "head": "f81d2c33e93e0b680829f998a193e6a77b8c0e7e",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "adapters/README.md",
+    "deploy/knowslink/compose.ops.yaml",
+    "deploy/knowslink/tunnel/config.yml.tmpl",
+    "deploy/knowslink/tunnel/public-ingress.yml",
+    "deploy/knowslink/verify.py",
+    "scripts/shell_guard.py"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": false,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
