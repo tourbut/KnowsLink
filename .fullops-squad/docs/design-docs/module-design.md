@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -54,7 +54,7 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 
 ### Remote OAuth·Cloud 설치
 
-`remote_auth.go`는 metadata·DCR·PKCE·Google consent·token rotation/revocation·설치 권한을 담당한다. `remote_mcp.go`는 MCP discovery와 네 도구를 기존 ingest/lease/서명/persist/ACK에 연결한다. `remote_events.go`는 지속 구독·서명 callback·claim/retry·LISTEN 수명주기를 맡는다. `capacity.go`는 /mcp 설치별 member budget과 consent session budget을 적용한다. remote token은 기존 /v1 credential이나 reserved cleanup 권한이 아니다. `cmd/relay`가 Cleanup과 RemoteEvents의 공통 종료 context를 관리한다.
+`remote_auth.go`는 metadata·DCR·PKCE·Google consent·token rotation/revocation·설치 권한을 담당한다. `remote_mcp.go`는 MCP discovery와 네 도구를 기존 ingest/lease/서명/persist/ACK에 연결한다. `remote_events.go`는 지속 구독·서명 callback·claim/retry·LISTEN 수명주기를 맡는다. `capacity.go`는 /mcp 설치별 member budget과 consent session budget을 적용한다. remote token은 기존 /v1 credential이나 reserved cleanup 권한이 아니다. `cmd/relay`가 Cleanup과 RemoteEvents의 공통 종료 context를 관리한다. consent 승인·거절은 `remoteReturn` 동일 출처 화면으로 callback에 이동한다. 공통 CSP의 form-action은 넓히지 않는다. 실제 Chromium 경계는 `TEST_BROWSER`가 있을 때 `TestRemoteConsentBrowserReturn`이 검사한다.
 
 ## SAR-MVP-002 플러그인 모듈과 검사
 

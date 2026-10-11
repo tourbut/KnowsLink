@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -40,6 +40,8 @@ SSE는 Bearer header만 사용하며 URL query credential을 거부한다. raw A
 ### Remote OAuth·Cloud 설치
 
 Remote 후보 배포에는 기존 Google redirect URL의 HTTPS origin을 사용한다. Host header·추가 전역 env를 신뢰하지 않는다. Google 미설정이면 fail-closed다. public ingress 후보에 MCP·well-known·정확 remote OAuth/consent 경로만 추가했으며 실제 Tunnel은 미변경이다. 외부 callback은 HTTPS443, 모든 DNS answer 공인주소 검사, pinning·TLS 검증·redirect 차단·5초 timeout·4KiB 응답 제한이다. 구독128/설치당4·재시도3회·lease15초·기본TTL1시간·최소1분, 실패 후 현재 pending 변화 또는 새 subscription을 통해 복구한다. 설치 키와 webhook secret을 포함하는 private DB/백업을 외부에 노출하지 않는다. 실제 Google 동의·계정 app ID·Dots 이벤트 왕복·동의 화면 시각 QA는 후보 수락 뒤 별도 실행한다.
+
+`121cde9` 운영본에서는 Chromium 계열 브라우저가 consent 승인 뒤 callback 이동을 CSP form-action으로 차단한다. 이때 install은 생기지만 token은 생기지 않는다. 다시 시도하면 `authorization_failed`가 표시된다. SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV 수정본은 동일 출처 반환 화면으로 이동한다. 수정본 배포 전에는 실제 연결을 재시도해도 같은 결과가 난다. 남은 미완료 install·agent는 삭제하지 않는다. 처리 판단은 OPS·부모 후속이다.
 
 
 Refresh 재사용은 검증된 MAC의 installation/client/resource family만 철회하고 forged·다른 audience 입력으로는 철회할 수 없다. 거부 응답에도 철회가 DB에 commit된다. refresh 응답이 유실되어 이전 token을 다시 쓰면 재동의가 필요할 수 있으므로 호스트 OAuth 복구 절차를 따른다.

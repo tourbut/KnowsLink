@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
 ---
 
@@ -25,6 +25,7 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 
 ## 최근 결정
 
+- 2026-10-11 SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV: Chromium은 form 제출의 redirect에도 form-action을 적용한다. 외부 OAuth callback은 POST 303 대신 동일 출처 반환 화면(meta refresh+링크)으로 이동한다. 이 경계는 HTTP recorder가 아닌 실제 Chromium(`TEST_BROWSER`)으로 검사한다. SSH 세션의 Linux Chrome에는 `--password-store=basic`이 필요하다.
 - 2026-10-11 SAR-SSE-INSTALL-001-DEV: SSE heartbeat는 DB polling 없이 LISTEN으로 대기한다. boundedHTTP의 read/write deadline은 handshake 뒤 명시적으로 해제하며 별도 stream 수명·write deadline으로 제한한다.
 - Dots는 공식 MCP2 Events·remote OAuth 경로로 연결한다. local stdio ZIP·Google local 등록과 구분하고 Cloud plugin은 실제 등록 app ID를 참조한다. 새 설치 키는 명시적 동의 뒤 private relay DB에 보관한다.
 - 임시 Postgres readiness는 TCP로 검사한다. initdb의 잠깐 열린 Unix socket 성공을 최종 서비스 준비로 오인하지 않는다. 원격 검사는 고유 /tmp clone·자기 DB만 사용하고 기존 서비스 ID를 대조한다.
