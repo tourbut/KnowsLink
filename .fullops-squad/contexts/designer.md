@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-11
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL]
 summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 보존한다
 ---
 
@@ -74,3 +74,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-11: SAR-SERVICE-UI-001-VISUAL은 고정 c7828b2의 합성 화면 29개를 Orca 내장 브라우저 1440·390·320에서 직접 검수해 시각 PASS로 기록했다. critical·high 0건이다.
   D04 9절 44px 기준을 글자 링크 21px가 채우지 못한 medium 1건(V-01)과 low 11건이 남는다. 실제 Google 왕복·실계정·200%·스크린 리더는 미검증이다.
   도구 교훈: `goto`가 뷰포트를 초기화하고 `full-screenshot`이 에뮬레이션에서 타일을 반복하므로 스크롤 조각으로 찍는다. 증거·한계: [시각 수락 보고](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md).
+
+- 2026-10-11: SAR-SERVICE-UI-001-FIX-VISUAL은 고정 295417a의 글자 링크 11종을 Orca 내장 브라우저 320·390·1440에서 직접 재측정했다. 모두 44px 이상이며 V-01은 시각 기준 resolved다.
+  원 보고 V-01–V-12는 보존했고 low N-01만 추가했다. 키보드 포커스 재입력·실제 Google·스크린 리더·200%는 미검증이다.
+  증거·한계: [재측정 보고](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md).
