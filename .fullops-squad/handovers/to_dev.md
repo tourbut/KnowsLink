@@ -122,4 +122,10 @@ route 갱신할 D ID 없음. 구현/검증·phase·contexts/dev.md 및 해당 UI
 <!-- fullops-packet:end -->
 
 ## 완료 보고
-완료 뒤 실제 결과 SHA·변경·검증·미검증을 전문으로 기록하고 work.py finish로 빈 인박스와 아카이브를 확인한다. 첫 완료 문자열은 [완료] SAR-SERVICE-UI-001-FIX-DEV | 최종 SHA <실제40자리> 형식이다. 제품 main 통합·배포는 coor 후속이며 worker는 main을 수정하지 않는다.
+[완료] SAR-SERVICE-UI-001-FIX-DEV | 최종 SHA 08e97e2b26ba730a86eeadc6f2b9fe52da50efd5 (문서 기준. 이후 archive 커밋이 최종 HEAD이며 worker_done의 결과 SHA를 따른다)
+
+- 제품 변경 SHA `609fcfd9b5049f093cec4162a3a83e4801d2e2df`: `internal/relay/member_pages.go`의 공통 `a` 규칙에 `display:inline-flex;align-items:center;min-height:44px`를 추가하고 중복 `.toc a` 규칙을 지웠다. `member_ui_test.go`는 fixture 29개 렌더마다 이 규칙을 확인한다. 마크업·form·CSRF·owner·recent 5분·CSP는 바꾸지 않았다.
+- 링크 호출자: 모든 회원 템플릿, gate, OAuth 동의·반환 화면이 `memberStyle` 하나를 쓴다. 호출자별 수정은 없다.
+- 검증(실제 종료코드): Windows `go test ./internal/relay -run TestMemberUIFixtures -count=1` 0, `gofmt`·`git diff --check` 0. Orca 내장 브라우저에서 fixture 29개 x 1440/390/320, details 펼침 상태로 `a[href]` 198건과 버튼·입력·select·summary를 측정했다: 44px 미만 0건, overflow 요소 0건, 종료코드 0. 기존 Linux 서버 고유 clone `/tmp/knowslink-uifix-609fcfd`(대상 SHA detach)에서 `make install`·`make lint`·`make test` 모두 0, clone clean. Windows에는 make가 없어 Linux 결과를 대체로 쓰지 않았다.
+- 기록: 실행 기록 `docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md`, 측정 `docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-DEV/`(measure_links.py, measurements.json), packet outcomes `docs/evaluations/jev/SAR-SERVICE-UI-001-FIX-DEV-packet-outcomes.json`, `contexts/dev.md`. 원 V-01 보고와 이전 DEV 기록은 보존하고 후속 연결만 추가했다.
+- 미검증: Postgres integration·`make verify-mvp`는 이번 SHA에서 재실행하지 않았다(CSS 한 규칙, Go 로직 변경 없음). tester의 새 SHA 작은 diff 리뷰·link/overflow 회귀, designer의 V-01 링크 직접 재측정, 390px "취소" 버튼 아래 간격의 실제 모습, 실제 Google·운영 렌더(OPS 뒤 coor), main 통합·배포는 후속이다. 기존 low V-02–V-12는 범위 밖이다. 서버의 기존 자료·컨테이너·임시 증거는 삭제하지 않았다. Codex hook Trust는 승인하지 않았다.
