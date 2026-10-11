@@ -71,8 +71,8 @@ Google 첫 로그인은 일반 회원과 자기 owner를 자동으로 만든다.
 1. Google Auth Platform에서 **Web application** OAuth client를 만든다. scope는 `openid email`이다. JS origin 등록은 이 서버 흐름에 필요하지 않다.
 2. 운영 Authorized redirect URI를 `https://link.knowslog.com/auth/google/callback`으로 등록한다. 테스트 모드에서는 로그인할 Google 계정을 Test users에 등록한다.
 3. Git 미추적 `.env`에 `KNOWSLINK_GOOGLE_CLIENT_ID`, `KNOWSLINK_GOOGLE_CLIENT_SECRET`, `KNOWSLINK_GOOGLE_REDIRECT_URL`을 제공한다. redirect 값은 콘솔의 URI와 문자 단위로 같아야 한다. Compose가 relay로 전달한다. 비밀값을 명령 인자·로그·Git에 넣지 않는다.
-4. `/`의 **Google로 계속**을 누른다. Google 계정 선택·동의를 완료한 뒤 **자기 홈으로 이동**을 누른다. callback 완료 화면의 링크는 기존 Strict 세션 cookie를 유지한다.
-5. 권한 작업 전에 홈의 **로그인 신원 다시 확인**을 누르면 같은 Google 신원을 다시 확인한다. 타 Google 계정 선택은 거부한다. 5분 최근 인증·12시간 세션·60분 유휴 만료와 기존 로그아웃·철회 규칙을 유지한다.
+4. `/`의 **Google로 계속**을 누른다. Google 계정 선택·동의를 완료한 뒤 **홈으로 이동**을 누른다. callback 완료 화면의 링크는 기존 Strict 세션 cookie를 유지한다.
+5. 권한 작업 전에 홈 "계정과 보안"의 **로그인 다시 확인**을 누르면 같은 Google 신원을 다시 확인한다. 타 Google 계정 선택은 거부한다. 5분 최근 인증·12시간 세션·60분 유휴 만료와 기존 로그아웃·철회 규칙을 유지한다.
 
 SMTP 없이 Google-only로 쓸 수 있다. 세 env가 모두 비어 있으면 Google 로그인은 비활성이다. 일부만 설정하거나 잘못된 redirect를 넣으면 relay 시작이 실패한다. 설정 완료 시 기동 서버의 Google HTTPS discovery/token/JWK 접근이 필요하다. callback은 `GET /auth/google/callback`이며 proxy가 이 경로를 relay로 전달해야 한다.
 

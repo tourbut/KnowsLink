@@ -113,15 +113,24 @@ fullops-common-0.3.3: rules/common/README.md와 coding-style.md/testing.md/secur
 <!-- fullops-packet:end -->
 
 ## 완료 보고
-완료 시 실제 SHA, 검증 결과와 미검증, 파일과 증거, 후속을 전문으로 기록한다.
+- 결과: 구현 완료(DEV 자체검증). UI PASS·제품 수락이 아니다. 제품 코드 최종 SHA `0b485ad4f62683180d7e8c3b98427987fb5e3bb4`(이후 커밋은 문서·archive뿐).
+- 커밋: `37b85a4` 재설계 전 템플릿의 form 계약 golden, `83899b4` 상용 UI·공유 토큰, `678736d` OAuth 동의 화면 fixture·긴 줄 제한, `0b485ad` integration helper 정규식, 이어서 문서·packet outcomes·archive 커밋.
+- 구현: `memberStyle` 단일 토큰(D04 8절), `badge`, 로그인 서비스 설명·Google 주 동작, 홈 헤더·확인 필요 띠·섹션 이동·에이전트 접힘 행·위험 구역·관계 정렬·계정과 보안, 연결 관리 3단계·큰 지문, 기기 승인 경고·지문, receipt·gate·거부 화면 토큰 공유. R-01–R-11 반영, 미적용·판단은 phase 기록.
+- 보존: form method/action/hidden/필드/button 라우팅은 golden과 같다(의도 차이: 홈 헤더 로그아웃 form 1개 추가). CSP·middleware·owner 검사·5분 재인증·한도·관계 규칙 코드는 바꾸지 않았다. 새 의존성·JS·폰트·이미지 0.
+- 검증: Windows `go test ./internal/relay`·`go vet -tags 'integration browser'` 0. Orca 내장 브라우저에서 29개 합성 화면 × 1440/390/320 overflow 0·44px 미만 0, 키보드(skip link·summary Enter/Space) 확인. Linux 고유 clone `0b485ad`: `make lint` 0, `make test` 0, 격리 Postgres integration+browser 전체 0. 첫 실행(`678736d`)의 helper 정규식 실패와 수정 경위를 phase에 남겼다.
+- 시각 검수 환경: `KNOWSLINK_UI_FIXTURE_DIR=<빈 폴더> go test ./internal/relay -run TestMemberUIFixtures -count=1` → Orca 내장 브라우저 file:// + `set viewport`. 합성 데이터만 쓴다.
+- 미검증: designer 1440/390 직접 검수, tester 독립 QA·코드 리뷰, 200% 확대·스크린 리더 낭독, 실계정 Google 왕복, 운영 화면. 서버 안내문의 "agent" 용어 통일과 짧은 날짜 표기는 미적용.
+- 자원: Linux `/tmp/knowslink-serviceui-{678736d,0b485ad}-ctxd554b501` 보존, 격리 container 2개는 stop만 하고 삭제하지 않았다(정리는 coor·OPS 판단).
+- 산출물: [phase 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md), D10 회원 웹 상용 UI 절, D06·README·user-guide 문구, `docs/evaluations/jev/SAR-SERVICE-UI-001-DEV-packet-outcomes.json`, contexts/dev.md 최근 결정.
+- 후속: 고정 SHA tester QA·리뷰 → designer 직접 시각 검수 → main 통합·OPS 배포. designer 문서 `SAR-PUBLIC-SERVICE-UX.md` 22행의 "계정 비활성화" 홈 항목 갱신 검토.
 
 ## 목표와 범위
 main 수락 디자인 service-member-ui.md(R-01–11, A-01–10, I-01–08)에 맞게 Google 로그인·이메일 로그인(설정 시)·회원 홈·연결 관리·기기 승인·receipt/gate/오류의 상용 UI를 구현한다. 기술 계획과 구조는 DEV가 결정한다. 기존 SSR·공통 CSS/기본 HTML부터 재사용하고 새 프레임워크/라이브러리/외부 폰트/이미지/JS를 추가하지 않는다.
 ## 해야 할 일과 파일 소유권
-- [ ] frontend-design 실제 스킬 C:/Users/shin/.agents/skills/frontend-design/SKILL.md 및 제품 디자인 정본을 읽고 영향 template·caller·test·fixture를 확인해 짧은 기술 계획을 같은 과제에 기록한다.
-- [ ] 로그인 서비스 소개·Google 주 동작, 에이전트 우선 목록/접힘 설정·위험 구역, 공통 타입/색/반응형, 한국어 줄바꿈·접근성을 구현한다. 장식용 통계·알약 버튼·무작위 그라디언트·같은 카드의 반복은 피한다. 온라인/최근 접속 같은 없는 사실을 만들지 않는다.
-- [ ] form action/method/hidden 값·CSRF·CSP·owner 분리·5분 재인증·키/관계/한도 규칙을 보존한다. 디자인의 R-10/11은 저비용 기존 데이터로 가능할 때 포함한다. 보안상 필요한 지문/경고를 접어서 놓치지 않게 한다.
-- [ ] 실제 고정 후보를 Linux 고유 체크아웃으로 product lint/test, 핵심 폼/owner/CSP 회귀와 1440/390/320 overflow/keyboard 확인을 수행한다. Go 문자열 CSS는 FullOps DESIGN 검사 미지원이므로 실제 렌더 검증을 후속 시각 담당이 할 수 있게 합성 fixture와 비밀 없는 검수 환경/방법을 제공한다.
+- [x] frontend-design 실제 스킬 C:/Users/shin/.agents/skills/frontend-design/SKILL.md 및 제품 디자인 정본을 읽고 영향 template·caller·test·fixture를 확인해 짧은 기술 계획을 같은 과제에 기록한다.
+- [x] 로그인 서비스 소개·Google 주 동작, 에이전트 우선 목록/접힘 설정·위험 구역, 공통 타입/색/반응형, 한국어 줄바꿈·접근성을 구현한다. 장식용 통계·알약 버튼·무작위 그라디언트·같은 카드의 반복은 피한다. 온라인/최근 접속 같은 없는 사실을 만들지 않는다.
+- [x] form action/method/hidden 값·CSRF·CSP·owner 분리·5분 재인증·키/관계/한도 규칙을 보존한다. 디자인의 R-10/11은 저비용 기존 데이터로 가능할 때 포함한다. 보안상 필요한 지문/경고를 접어서 놓치지 않게 한다.
+- [x] 실제 고정 후보를 Linux 고유 체크아웃으로 product lint/test, 핵심 폼/owner/CSP 회귀와 1440/390/320 overflow/keyboard 확인을 수행한다. Go 문자열 CSS는 FullOps DESIGN 검사 미지원이므로 실제 렌더 검증을 후속 시각 담당이 할 수 있게 합성 fixture와 비밀 없는 검수 환경/방법을 제공한다.
 소유권: internal/relay/member.go, 필요한 member_agents.go/http.go의 UI 및 관련 tests/fixtures, 본인 phase/contexts/packet outcomes, 필요한 기술 원천(D10/D09). 기존 adapters webhook 제품 코드는 고정 QA 후보이므로 수정하지 않는다. designer 디자인 정본과 인박스 수정 금지.
 ## 검증 담당과 후속
 DEV 자체검증 후 고정 SHA에서 tester 독립 기능 QA·코드 리뷰, designer 직접 1440/390 시각 검수, 수락 뒤 main/OPS 배포다. 자체 캡처는 민감정보 없는 합성 데이터만. 전체 실계정 OAuth 왕복·제품 최종 수락을 자체 검사로 대신하지 않는다.
