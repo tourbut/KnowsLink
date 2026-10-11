@@ -28,13 +28,39 @@
       "callback_id": "01a12b0e-b584-7c6a-8591-e0f7bce046cf",
       "callback_received_by_dots": true,
       "dots_observed_kst": "2026-10-11 22:05",
-      "callback_report": {"event":"knowslink_text_arrived","routine_marker":"seen","webhook_event_marker":"seen","receive":"succeeded","receive_state":"empty"},
-      "member_receipt_observed": {"transport":"delivered","completion":"received"},
+      "callback_report": {
+        "event": "knowslink_text_arrived",
+        "routine_marker": "seen",
+        "webhook_event_marker": "seen",
+        "receive": "succeeded",
+        "receive_state": "empty"
+      },
+      "member_receipt_observed": {
+        "transport": "delivered",
+        "completion": "received"
+      },
       "note": "Actual callback read by Dots. Context markers and receive result are reported by the routine, not independently inspected Grok chat pixels. Native execution ID unavailable."
     }
   ],
-  "watcher_transition": "requested after successful callback; install/version/wake-check/single watcher and real incoming message pending",
+  "watcher_transition": "Bot reports completed; Dots setup report received and owner receipt delivered/received. Real incoming-message automatic round trip pending.",
   "user_turn_visual_verification": "not performed; reception is never induced or verified by opening Grok chat",
   "cost": "Existing Bot account usage only; no additional paid service configured",
-  "residual": "Temporary DNS/routing failures can suppress same-ID wake for24h (tester F1 low). Messages remain in inbox."
+  "residual": "Temporary DNS/routing failures can suppress same-ID wake for24h (tester F1 low). Messages remain in inbox.",
+  "watcher_report": {
+    "new_pid": 88404,
+    "receive_mode": "public-node, poll10s, automatic receive",
+    "bundle_hash": "ec2cfd24…bfa4c (truncated setup report; full digest not captured)",
+    "source_sha": "8539ef5b6d3e7ed99259762c62d164b8ba40fab0",
+    "wake_check": "state ok, mode webhook before/after",
+    "provenance": "Bot installation setup response and Dots received setup report; not a direct process/filesystem inspection by coordinator",
+    "message_id": "01a12b16-c19a-7bb2-b7f3-4cd8cdc32252",
+    "rollback": "/workspace/.knowslink/backup-pre-webhook-20261011-221012",
+    "old_pid": 43478,
+    "watcher_count": 1,
+    "existing_mcp": "25adea2 bundle and MCP config unchanged",
+    "member_receipt": {
+      "transport": "delivered",
+      "completion": "received"
+    }
+  }
 }
