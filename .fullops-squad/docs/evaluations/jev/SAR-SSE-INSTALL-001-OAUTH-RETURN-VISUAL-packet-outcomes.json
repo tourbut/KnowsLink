@@ -476,5 +476,6 @@
       "status": "no_change",
       "reason": "이번 시각 판정의 입력이 아니다. 제품 코드는 수정하지 않았고 5장의 화면 문구는 remote_auth.go·member.go에서 확인했다."
     }
-  ]
+  ],
+  "uncertainty_review": "partial=True의 원인(route/find/documents-find/context의 task·SHA·attempt 불일치, 미확인 11건)을 직접 검토했다. 필수 10개 경로 중 FULLOPS·지시서·tester 보고·project·rules 4종·member.go·remote_auth.go를 직접 읽었다. 지정 5장 이미지와 visual-inputs.json은 직접 열어 SHA256을 대조했다. 고정 SHA의 remoteReturn·refusal 정의와 기준 c399a5e의 차이를 git으로 직접 확인했다. 나머지 과거 기록·설계·운영 문서는 이번 시각 판정의 입력이 아니어서 재독하지 않고 no_change로 처리했다. 동적 호출·언어 서버 의미 분석은 검증하지 않았다."
 }
