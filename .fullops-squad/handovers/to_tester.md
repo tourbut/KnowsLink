@@ -34,12 +34,12 @@ test_level: lite
 5. 기존medium SSE헤더·verify.py baseline결함을 새결함과 분리한다. 미해결C/H 차단. 운영계정·실제DotsEvents미검증을 성공으로 바꾸지 않는다.
 6. owns 자신의exec plan/QA/review/scenarios/contexts/tester만. 원문·failed·skipped보존, partial/unknown과packet모든비선택path/category outcomes처리. work.py finish 후 명확한최종40SHA worker_done. 부모가 main수락/push·OPS배포·실계정연결을 맡는다.
 
-## 완료 보고
-
 ## 지시 전제와 충돌 — 먼저 확인
 
 탐색 결과는 `docs/operations/ops-guide.md`를 conflict로 분류했다. 과거 운영 가이드의 배포·검증 절차보다 이번 지시서의 격리 검수 범위를 우선한다. 현재 배포 상태는 OPS-LIVE 기록을 참조한다. 과거 가이드의 수락 기록을 이번 브라우저 검증의 성공 근거로 사용하지 않는다. 운영 변경이 필요하면 직접 적용하지 않고 coor에 보고한다.
 
 Google 구현과 일부 테스트·OPS-LIVE 본문은 탐색 서비스에 전송되지 않았다. 로컬 원문을 직접 읽고 확인하며, 미전송을 검증 완료로 해석하지 않는다. DEV 최종 SHA를 받은 뒤 변경된 원천과 패킷을 다시 연결한다.
+
+## 완료 보고
 
 완료 후 전문을 기록하고 work.py finish로 보존한다.
