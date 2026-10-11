@@ -71,3 +71,4 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 - 2026-10-11 SAR-SERVICE-UI-001-TESTER: 회원 웹 `c7828b2`를 snapshot 리뷰와 합성 fixture 29개 × 1440·390·320 브라우저 측정, Linux `make lint/test`로 확인했다. 미해결 C/H 없음, low 3건(OAuth 화면 main 없음, `code`의 aria-labelledby, 모바일 nav 순서). 실Google·실스크린 리더는 미검증.
 - Orca 브라우저에서 `set viewport`는 `goto` 뒤에 해야 적용된다. 앞에 두면 `innerWidth`가 창 폭 그대로라 측정이 무효가 된다. 측정 행마다 `iw`가 요청 폭과 같은지 먼저 확인한다.
 - 패킷이 대상 SHA 뒤 커밋이고 리뷰 키가 과제 키와 같으면 `review.py check`가 막힌다. `--task-key <없는 키>`로 실행하고 사유를 기록한다. 순수 이동 refactor는 `git diff`의 사라진 줄과 추가된 줄을 `comm`으로 비교해 DEV 증거 재사용 근거로 쓴다.
+- 2026-10-11 SAR-SERVICE-UI-001-FIX-TESTER: 후보 `295417a`의 V-01 수정은 독립 리뷰로 수락 가능하다. fixture 29종 × 320/390/1440에서 visible 링크 66개가 모두 44px 이상이다. 증거: [리뷰 보고서](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md).
