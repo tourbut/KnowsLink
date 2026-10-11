@@ -6,9 +6,11 @@ package relay
 import (
 	"context"
 	"encoding/json"
+	"html"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"regexp"
 	"strings"
 	"testing"
 	"time"
@@ -91,8 +93,8 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		expect(t, do(s, "GET", consent, "", "", "", true), 200, "이 설치 연결 승인", "비공개 DB")
 		expect(t, do(s, "POST", consent, "decision=approve&csrf=wrong", formType, "", true), 403)
 		w = do(s, "POST", consent, url.Values{"decision": {"approve"}, "csrf": {csrf(cookies[sessionCookie].Value, id)}}.Encode(), formType, "", true)
-		expect(t, w, 303)
-		u, _ = url.Parse(w.Header().Get("Location"))
+		expect(t, w, 200, `http-equiv="refresh"`)
+		u = remoteReturnURL(t, w)
 		if u.Query().Get("iss") != "https://example.com" || u.Query().Get("state") != "original-state" {
 			t.Fatal("issuer/state response binding")
 		}
@@ -152,4 +154,17 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 	if len(agents) != 2 || agents[0] == "" || agents[0] == agents[1] {
 		t.Fatal("same Google account did not create distinct installation agents")
 	}
+}
+
+func remoteReturnURL(t *testing.T, w *httptest.ResponseRecorder) *url.URL {
+	t.Helper()
+	m := regexp.MustCompile(`<a href="([^"]+)"`).FindStringSubmatch(w.Body.String())
+	if m == nil {
+		t.Fatal("return page has no callback link")
+	}
+	u, err := url.Parse(html.UnescapeString(m[1]))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return u
 }

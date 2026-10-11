@@ -1,0 +1,19 @@
+repro_sha=c9ecb775531ad2fcc85e907c7d0a8feaabf95b64 head=4960186a934a1da6fbf04b0c51391447f1bfed79
+    remote_browser_integration_test.go:92: browser: {"stage":"done","steps":["https://example.com/remote/consent/fZV4stRXumGSdXhJxhJrSWMFUAl6ENGkeAx7kU9fqBs","https://example.com/auth/google/callback","https://example.com/remote/consent/fZV4stRXumGSdXhJxhJrSWMFUAl6ENGkeAx7kU9fqBs","https://example.com/remote/consent/fZV4stRXumGSdXhJxhJrSWMFUAl6ENGkeAx7kU9fqBs"],"csp":["Sending form data to 'https://example.com/remote/consent/fZV4stRXumGSdXhJxhJrSWMFUAl6ENGkeAx7kU9fqBs' violates the following Content Security Policy directive: \"form-action 'self' https://accounts.google.com\". The request has been blocked.\n"]}
+--- FAIL: TestRemoteConsentBrowserReturn (6.24s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	6.262s
+FAIL
+repro_exit=1
+--- PASS: TestGoogleDeviceHTTP (0.69s)
+--- PASS: TestGoogleHTTP (0.50s)
+    remote_browser_integration_test.go:92: browser: {"stage":"done","steps":["https://example.com/remote/consent/QYozfrQ2hPrlwaqDgE7-f_luvt7yBQk1dgGVvuKNQmI","https://example.com/auth/google/callback","https://example.com/remote/consent/QYozfrQ2hPrlwaqDgE7-f_luvt7yBQk1dgGVvuKNQmI","https://callback.test/oauth"],"csp":[]}
+--- PASS: TestRemoteConsentBrowserReturn (1.24s)
+--- PASS: TestRemoteOAuthHTTP (0.71s)
+--- PASS: TestTextEventsHTTP (15.51s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	19.685s
+fix_exit=0
+shared_services_unchanged=0
+
+EXIT=0
