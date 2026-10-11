@@ -1,0 +1,40 @@
+{
+  "task": "SAR-GROK-WEBHOOK-001",
+  "date": "2026-10-11",
+  "product_sha": "b86f39711c2f5240d37332f44a9930d4dc2653fa",
+  "accepted_main": "8539ef5b6d3e7ed99259762c62d164b8ba40fab0",
+  "verification_surface": "Dots knowslink_receive and authenticated KnowsLink member receipt in Orca browser",
+  "grok_ui_receipt_inspection": false,
+  "secret_handling": {
+    "incident": "Setup panel exposed the initial sender key in tool output. The value is not copied into repository evidence.",
+    "mitigation": "Requested old test routine deletion/key rotation. Bot reports deletion and replacement. New values transferred in memory through native secret-request cards with output hidden.",
+    "old_key_rejection_test": "not performed",
+    "credential_file": "/workspace/.knowslink/grok-webhook.json",
+    "file_state": "Bot reports regular file, current owner, mode0600; not independently read from Bot filesystem"
+  },
+  "probes": [
+    {
+      "nonce": "KL-WH-PROBE-20261011-1242",
+      "callback_id": "01a12aff-9f5f-785d-babc-50da8f8804b4",
+      "setup_report_id": "01a12b02-65ca-7aa3-ab5c-6b7f9799d38c",
+      "callback_received_by_dots": false,
+      "member_receipt_observed": "failed:expired",
+      "expires_kst": "2026-10-11 21:48:57 KST",
+      "note": "HTTP200 setup report and native routine success report are distinct from Dots receipt. Callback expired before the next receive. Do not count as a successful round trip."
+    },
+    {
+      "nonce": "KL-WH-PROBE-20261011-1300",
+      "setup_report_id": "01a12b0e-6dbb-7f01-9a90-fdf7c2f8fda5",
+      "callback_id": "01a12b0e-b584-7c6a-8591-e0f7bce046cf",
+      "callback_received_by_dots": true,
+      "dots_observed_kst": "2026-10-11 22:05",
+      "callback_report": {"event":"knowslink_text_arrived","routine_marker":"seen","webhook_event_marker":"seen","receive":"succeeded","receive_state":"empty"},
+      "member_receipt_observed": {"transport":"delivered","completion":"received"},
+      "note": "Actual callback read by Dots. Context markers and receive result are reported by the routine, not independently inspected Grok chat pixels. Native execution ID unavailable."
+    }
+  ],
+  "watcher_transition": "requested after successful callback; install/version/wake-check/single watcher and real incoming message pending",
+  "user_turn_visual_verification": "not performed; reception is never induced or verified by opening Grok chat",
+  "cost": "Existing Bot account usage only; no additional paid service configured",
+  "residual": "Temporary DNS/routing failures can suppress same-ID wake for24h (tester F1 low). Messages remain in inbox."
+}
