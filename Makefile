@@ -22,11 +22,12 @@ lint-config:
 	python3 scripts/check_public_ingress.py
 	bash deploy/knowslink/test_public_config.sh
 	sh -n scripts/install_bot_mcp.sh
-	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py
+	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py scripts/shell_guard.py scripts/test_shell_guard.py
 
 test:
 	go test -race ./cmd/... ./internal/...
 	npm test --prefix adapters
+	python3 scripts/test_shell_guard.py
 
 build:
 	mkdir -p build
