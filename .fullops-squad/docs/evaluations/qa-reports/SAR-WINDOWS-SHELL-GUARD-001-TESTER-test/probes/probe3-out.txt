@@ -1,0 +1,6 @@
+DENY   -r:$true + variable target
+DENY   -r:$true + wildcard
+DENY   -r:$true + drive root
+DENY   -r:$true + dq var
+ALLOW  -r:$true + literal outside path
+ALLOW  git clean -n -fd

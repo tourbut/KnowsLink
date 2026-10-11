@@ -1,0 +1,271 @@
+{
+  "base": "a90a9e60ed1f009627aa39031fbf3c228d0d7599",
+  "head": "4e82b4f4cd1bc31a59d0d230349fd34d95c7f0c7",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.13 (fabbdb29) windows/amd64\nbuilt at: 2026-10-08T11:52:18Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "tester claude-sonnet-5-5 high (session 0ef9c64c-15ec-4fcc-a3be-c11022475dc1)",
+  "conclusion": "수락 가능(조건부). 미해결 critical/high 없음. 사고 형태(PowerShell 이중 따옴표 안 교차 셸 삭제)와 변수·빈 값·와일드카드·루트 대상 재귀 삭제는 실제 Claude Bash·PowerShell 도구에서 실행 전 차단됨을 직접 확인했고 Grok은 발견·신뢰·활성까지 확인했다. 미해결 medium 4건(F1~F4)·low 5건은 hook이 완전한 보안 경계가 아니라는 DEV의 한계 안에 있으나 F1~F3은 작은 수정으로 막을 수 있어 후속 DEV 수정을 권고한다. Codex는 사용자 hook 신뢰와 하위 폴더 수정 전 적용 완료로 표시하지 않는다. Grok·Codex의 실제 모델 tool call 차단은 미확인이다.",
+  "files": [
+    {
+      "path": ".claude/settings.json",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "snapshot에서 직접 읽음. PreToolUse matcher Bash|PowerShell, ${CLAUDE_PROJECT_DIR} 경로, timeout 10. 실제 Claude 두 도구 차단과 Grok inspect enabled를 직접 확인했다. python3 해석 실패·timeout의 fail-open은 DEV 문서가 밝힌 호스트 한계다(큰 입력 timeout은 F8)."
+    },
+    {
+      "path": ".codex/hooks.json",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "snapshot에서 직접 읽음. matcher Bash, 상대경로 python3 scripts/shell_guard.py. 공식 문서상 session cwd 실행·exit 2 차단·hook 신뢰 필요. 하위 폴더 세션 결함 F4 기록. 실제 Codex 실행은 미검증."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 결과 한 줄 추가를 읽음. 후속 독립 리뷰·재시작·Codex 신뢰 단계가 실제 구현과 일치한다. 크기 경고 SIZE-001은 기존 누적 문서이며 수용."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff를 읽음. 현황판 데이터이며 제품 동작과 무관. JSON 유효성과 비밀값 없음 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-WINDOWS-SHELL-GUARD-001-DEV-context.json",
+      "status": "added",
+      "insertions": 277,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "FullOps 탐색 산출물(생성 JSON). packet-outcomes와 packet 검사로 갈음. diff 전체를 grep해 사고 원문 명령·비밀값이 없고 사고 설명 문장과 비공개 폴더 이름만 있음을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-WINDOWS-SHELL-GUARD-001-DEV-documents-find.json",
+      "status": "added",
+      "insertions": 433,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "FullOps 탐색 산출물(생성 JSON). packet 검사로 갈음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-WINDOWS-SHELL-GUARD-001-DEV-find.json",
+      "status": "added",
+      "insertions": 239,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "FullOps 탐색 산출물(생성 JSON). packet 검사로 갈음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-WINDOWS-SHELL-GUARD-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 236,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "38개 항목의 completed 2·no_change 36과 사유를 읽었다. review.py check의 packet 완료 검사가 identity·항목 일치를 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-WINDOWS-SHELL-GUARD-001-DEV-packet.json",
+      "status": "added",
+      "insertions": 1707,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "FullOps 탐색 산출물(생성 JSON). packet-outcomes와 review.py check로 갈음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-WINDOWS-SHELL-GUARD-001-DEV-route.json",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "FullOps 라우팅 산출물(생성 JSON). 모델 점수는 수락 게이트가 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-WINDOWS-SHELL-GUARD-001-DEV-route.prior-1791684798146952200.json",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "이전 라우팅 결과 보존본(생성 JSON). 검토 불필요."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/coor-dc21-lint.json",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "이 과제와 무관한 coor 보완 lint 증거(base a90a9e6 직전 병합분). 검증 증거 폴더로 파일 단위 열람 없이 제외."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전문을 읽고 실제 동작과 대조했다. Codex 하위 cwd를 fail-open이라 서술했으나 실측상 python 종료코드 2라 차단(F4). 나머지 활성화·한계 서술은 일치. 오탐 한계 서술은 -WhatIf 등 허용 형식 오탐을 포함하지 않는다(F7)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "status": "modified",
+      "insertions": 65,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 완료 보고와 지시서 보존분을 읽었다. 완료 보고의 실행·미실행 구분이 정직하다. 가짜 worker_done 없음."
+    },
+    {
+      "path": "AGENTS.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "추가 절을 읽었다. 허용 형식·한계 서술은 구현과 일치한다. \"명령이 거부되면 우회하지 않고 보고\" 지침이 있다. Codex 하위 폴더·GEMINI 등 미적용 클라이언트 서술은 없다(F4, F9)."
+    },
+    {
+      "path": "CLAUDE.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Windows 셸 안전 절과 AGENTS.md 링크를 확인했다. 링크 대상 절 제목 \"Windows 파일 작업 안전\"이 AGENTS.md에 실제로 있다."
+    },
+    {
+      "path": "Makefile",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "lint-config py_compile 대상 두 파일 추가와 test 목표에 python3 scripts/test_shell_guard.py 추가를 읽었다. DEV Linux gate에서 같은 SHA로 통과(exit 0)."
+    },
+    {
+      "path": "scripts/shell_guard.py",
+      "status": "added",
+      "insertions": 220,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전문을 읽고 약 120건 합성 probe로 동작을 확인했다. 사고 형태는 차단. 발견 F1(콜론 스위치 약어)·F2(인라인 인터프리터)·F3(git -C clean)·F5·F6·F7·F8·F9 기록."
+    },
+    {
+      "path": "scripts/test_shell_guard.py",
+      "status": "added",
+      "insertions": 146,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전문을 읽고 Windows에서 재실행해 통과했다. 실제 삭제 없이 합성 deny 43·allow 17을 provider 4종에 적용한다. F1·F2·F3 형태의 회귀는 없다."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "medium",
+      "resolved": false,
+      "file": "scripts/shell_guard.py",
+      "line": 98,
+      "summary": "PowerShell 콜론 스위치 약어(-r:$true, -re:$true, -r:1)가 recursive() 판정을 우회한다",
+      "repro": "합성 payload `Remove-Item -r:$true C:\\Users\\x\\Documents` → exit 0. -r은 Remove-Item의 유일한 R* 매개변수 접두사다(Get-Command 확인). 변수·와일드카드·루트 대상은 같은 약어에서도 deny. 실제 삭제는 실행하지 않았다.",
+      "impact": "workspace 밖 고정 절대경로의 비검증 재귀 삭제가 허용 형식 검사 없이 통과한다. 사고 형태(변수·빈 값)는 여전히 차단된다.",
+      "fix": "recursive()에서 -r 계열을 콜론 값까지 포함한 정규식(예: ^-r(e(c(u(r(se?)?)?)?)?)?(:|$))로 판정하고 회귀 deny 케이스를 추가한다."
+    },
+    {
+      "id": "F2",
+      "severity": "medium",
+      "resolved": false,
+      "file": "scripts/shell_guard.py",
+      "line": 30,
+      "summary": "PROGRAM_DELETE가 os.system·subprocess·child_process·exec와 fs.rmdirSync·unlinkSync를 포함하지 않는다",
+      "repro": "합성 payload `python -c \"import os; os.system('rm -rf /')\"`, `node -e \"require('fs').rmdirSync('x',{recursive:true})\"`, `node -e \"…execSync('rm -rf x')\"` → exit 0.",
+      "impact": "삭제 문자열을 다른 셸로 넘기는 사고 부류가 인터프리터 경유로 남는다. 변수가 코드 안에서 조립되면 명령 문자열에 보이지 않는다.",
+      "fix": "INTERPRETER와 DELETE_WORD가 함께 있으면 거부한다(오탐은 다른 인터프리터 호출 없는 명령에는 영향 없음). 최소한 os.system·subprocess·exec·rmdirSync·unlinkSync 추가."
+    },
+    {
+      "id": "F3",
+      "severity": "medium",
+      "resolved": false,
+      "file": "scripts/shell_guard.py",
+      "line": 179,
+      "summary": "git clean 판정이 args[0] == clean만 본다",
+      "repro": "합성 payload `git -C . clean -fdx`, `git --no-pager clean -fdx` → exit 0.",
+      "impact": "추적되지 않은 파일·증거 삭제가 -C/전역 옵션 뒤에서 통과한다.",
+      "fix": "git 인자에서 옵션과 값을 건너뛴 첫 하위 명령을 구하거나 args 어디에든 clean 단어가 있으면 판정한다."
+    },
+    {
+      "id": "F4",
+      "severity": "medium",
+      "resolved": false,
+      "file": ".codex/hooks.json",
+      "line": 9,
+      "summary": "Codex hook 명령이 session cwd 상대경로다. 하위 폴더 세션에서는 모든 셸 호출이 차단되고 DEV 문서의 fail-open 서술은 틀렸다",
+      "repro": "누락 스크립트 실행 `python3 nonexistent.py`의 종료코드 2를 실측했다. Codex 공식 문서는 PreToolUse exit 2를 차단으로 정의하고 명령을 session cwd에서 실행하며 git root에서 경로를 풀 것을 권한다. Codex 모델 세션은 실행하지 않았다.",
+      "impact": "삭제 우회가 아니라 가용성 결함이다(하위 폴더 Codex는 셸 도구를 쓸 수 없다). 문서 서술(AGENTS·exec plan)이 사실과 다르다.",
+      "fix": "git root를 확인하는 래퍼 또는 commandWindows로 경로를 고정하고, 서술을 차단(lockout)으로 정정한다."
+    },
+    {
+      "id": "F5",
+      "severity": "low",
+      "resolved": false,
+      "file": "scripts/shell_guard.py",
+      "line": 41,
+      "summary": "tokenizer가 bash 규칙으로 PowerShell을 읽는다(큰따옴표 안 백슬래시 이스케이프, # 주석 미처리)",
+      "repro": "합성 payload `Get-ChildItem \"C:\\d\\\"; Remove-Item -Recurse C:\\x # \"` → exit 0(PowerShell에서는 두 번째 명령이 실행된다).",
+      "impact": "고의적 구성만 통과한다. 짝이 맞지 않는 따옴표는 거부된다.",
+      "fix": "PowerShell 도구에서는 백슬래시 이스케이프를 끄고 # 주석을 처리하거나, 따옴표 안에 삭제 단어가 있는 명령을 거부한다."
+    },
+    {
+      "id": "F6",
+      "severity": "low",
+      "resolved": false,
+      "file": "scripts/shell_guard.py",
+      "line": 20,
+      "summary": "같은 부류의 미감지 형태: robocopy /MOVE, rsync --delete, docker run … rm, busybox rm, `. Remove-Item`, scriptblock Create, 백슬래시로 쪼갠 동사",
+      "repro": "probes/probe-out.txt의 BYPASS 행.",
+      "impact": "대부분 고의적이거나 로컬 Docker 금지 정책 밖이다.",
+      "fix": "필요 시 LAUNCHER·VERBS에 추가한다."
+    },
+    {
+      "id": "F7",
+      "severity": "low",
+      "resolved": false,
+      "file": "scripts/shell_guard.py",
+      "line": 166,
+      "summary": "오탐: 삭제 단어와 sh/bash 단어가 한 명령에 있으면 거부, 허용 형식에 -WhatIf·-Confirm:$false 불가, git clean -fdn 거부",
+      "repro": "검수 중 probe를 heredoc으로 쓰려던 Bash 호출 2회가 실제로 차단됐다. 파일 쓰기 도구로 대체했다.",
+      "impact": "정상 작업(테스트 작성·커밋 메시지)이 막히고 우회 습관을 부를 수 있다.",
+      "fix": "허용 형식에 -WhatIf를 추가하고 git clean의 -n 판정을 결합 옵션까지 확장한다."
+    },
+    {
+      "id": "F8",
+      "severity": "low",
+      "resolved": false,
+      "file": "scripts/shell_guard.py",
+      "line": 199,
+      "summary": "2MB급 단일 단어 명령은 처리가 10초 timeout을 넘겨 fail-open이 된다(400KB는 1.76초)",
+      "repro": "probes/timing.py.",
+      "impact": "실사용 명령 크기에서는 영향이 거의 없다.",
+      "fix": "word 누적을 리스트로 바꾸거나 상한을 넘으면 거부한다."
+    },
+    {
+      "id": "F9",
+      "severity": "low",
+      "resolved": false,
+      "file": "AGENTS.md",
+      "line": 13,
+      "summary": "범위 한계: workspace 밖 비재귀 삭제 허용, Move-Item·mv 미검사, 중첩 reparse·TOCTOU 미검증, 프로젝트 체크아웃 밖·hook 없는 클라이언트·apply_patch·MCP 삭제 미보호",
+      "repro": "probes/probe-out.txt의 A? 행과 Codex 문서 확인.",
+      "impact": "DEV 문서가 우회 한계를 일부 밝혔으나 위 항목 일부는 서술이 없다.",
+      "fix": "사용자 결정: 전역·managed hook 강제, 이동 정리 금지의 hook 반영 여부."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "bacd5d1f-de07-43b3-9efa-0df5636729c7",
+    "reviewer_session": "0ef9c64c-15ec-4fcc-a3be-c11022475dc1",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-4ff90f54195a4728bc150bd64f431020",
+    "snapshot_head": "4e82b4f4cd1bc31a59d0d230349fd34d95c7f0c7",
+    "read_only": true
+  }
+}

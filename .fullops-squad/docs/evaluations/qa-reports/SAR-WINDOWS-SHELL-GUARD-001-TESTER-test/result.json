@@ -1,0 +1,40 @@
+{
+  "sha": "4e82b4f4cd1bc31a59d0d230349fd34d95c7f0c7",
+  "snapshot": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-4ff90f54195a4728bc150bd64f431020",
+  "snapshot_state": "detached HEAD, git status clean",
+  "reviewer_session": "0ef9c64c-15ec-4fcc-a3be-c11022475dc1",
+  "implementer_session": "bacd5d1f-de07-43b3-9efa-0df5636729c7",
+  "test_level": "lite",
+  "reused_evidence": {
+    "dev_gate_pass_json_head": "4e82b4f4cd1bc31a59d0d230349fd34d95c7f0c7",
+    "dev_checkout_clean": true,
+    "lint_json": "final2-lint.json sha256 0edf4a1a742969687bcf85c5f994e2524b3c5eb45c5b7d69c079aa6d8a3f29fe",
+    "commands": [
+      {"name": "product-lint", "exit_code": 0},
+      {"name": "product-test", "exit_code": 0}
+    ],
+    "summary": {"errors": 0, "warnings": 5, "unavailable": 0}
+  },
+  "commands": [
+    {"name": "python3 -B scripts/test_shell_guard.py (snapshot, Windows)", "exit_code": 0, "result": "3 tests OK"},
+    {"name": "probes/probe.py", "exit_code": 0},
+    {"name": "probes/probe2.py", "exit_code": 0},
+    {"name": "probes/probe3.py", "exit_code": 0},
+    {"name": "probes/timing.py", "exit_code": 0}
+  ],
+  "live_wiring": {
+    "claude_bash": "blocked before execution",
+    "claude_powershell": "blocked before execution",
+    "grok_inspect": "enabled, projectTrusted true, model tool call not run",
+    "codex": "hooks feature stable; project hook trust and model tool call not run"
+  },
+  "findings": {"critical": 0, "high": 0, "medium": 4, "low": 5, "unresolved_critical_high": 0},
+  "deleted_anything": false,
+  "not_executed": [
+    "real Grok model tool call",
+    "real Codex model tool call and user hook trust",
+    "real deletion, nested reparse deletion, TOCTOU race",
+    "Linux pwsh path",
+    "global or managed hook enforcement"
+  ]
+}
