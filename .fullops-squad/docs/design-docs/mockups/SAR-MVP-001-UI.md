@@ -2,9 +2,9 @@
 id: D04
 title: 화면설계서
 status: review
-updated: 2026-10-06
+updated: 2026-10-11
 owner: designer
-tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX]
+tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-SERVICE-UI-001-DESIGN]
 upstream: [D02]
 summary: 합성 gate와 일반회원 수정 후보의 직접 시각 판정 및 수락 경계를 연결한다
 ---
@@ -16,6 +16,10 @@ summary: 합성 gate와 일반회원 수정 후보의 직접 시각 판정 및 �
 고정 `09c523da8a3407288d9f5d711e1834af12bc7808`의 일반회원 UX06/07은 [MESSAGES 직접 검수](SAR-PUBLIC-MESSAGES-001-UI.md)에 있다.
 UX06은 좁은 로컬 시각 조건에서 PASS다. UX07은 Deny 뒤405의 F-UI-MSG-01 medium으로 FAIL/보류다.
 기존 합성 gate·AGENTS 검수의 원래 SHA와 판정은 유지한다. 이 연결은 제품/UX 규칙을 바꾸지 않는다.
+
+## 회원 웹 상용 UX·비주얼 명세
+
+회원 로그인·내 에이전트·연결 관리의 새 UX·비주얼 기준과 DEV 인계는 [회원 웹 명세](service-member-ui.md)에 있다. 이 D04의 합성 gate 판정과 SHA는 바꾸지 않는다. 명세 문서는 디자인 인계이며 UI 수락이 아니다.
 
 ## 기준과 범위
 

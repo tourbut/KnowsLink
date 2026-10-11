@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-11
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN]
 summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 보존한다
 ---
 
@@ -66,3 +66,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-11: SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL은 eac603b6의 tester 합성 캡처 5장을 직접 열어 반환·재시작 안내 화면을 좁은 시각 PASS로 기록했다.
   F2 링크24px는 실제 클릭 성공과 24px 최소 기준으로 수락 가능하다. F1 medium(원인별 문구 없음)은 비차단 잔여로 유지하고 CSRF·계정 binding 캡처가 같은 파일임을 기록했다.
   증거·한계·인계: [시각 수락 보고](../docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md).
+
+- 2026-10-11: SAR-SERVICE-UI-001-DESIGN은 로그인·내 에이전트·연결 관리의 상용 UX·비주얼 명세와 DEV 인계(R-01–R-11)를 작성했다. 홈 문서는 6394/7986px로 길고 한국어 anywhere 줄바꿈 결함이 있다.
+  제품 코드·서버 규칙·CSP·재인증은 보존했고 JS·이미지 없는 CSS 기준만 정했다. 구현 후 직접 시각 검수와 UI 수락은 후속이다.
+  명세·관찰·인계: [회원 웹 명세](../docs/design-docs/mockups/service-member-ui.md), [실행 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md).
