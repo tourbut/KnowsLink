@@ -12,7 +12,7 @@ test_level: lite
 ---
 # SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL — OAuth 반환·오류 화면 직접 시각 수락
 
-- Purpose visual acceptance. 상태: tester의 같은 후보 합성 캡처 대기. 캡처 제공 전 착수하지 않는다.
+- Purpose visual acceptance. 상태: tester 합성 캡처와 독립 QA 전달 완료, ready.
 - designer C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. fresh Codex gpt-6.1-sol medium(Jev). test lite/subagent standard.
 - 고정 제품 SHA eac603b6a41d2ce002e698600ac66b8fc67ad762. 실제 구현자 e20cc179-625e-43fa-84fd-b431d432b9c6. 소스·제품 기준을 바꾸지 않는다.
 - 복귀 coor term_e61d3e14-29e9-4954-943a-4a75707c82de / run_dc9b4e6dd18a. task/dispatch는 preamble을 따른다.
@@ -24,6 +24,10 @@ OAuth consent POST303이 Chromium CSP에 막히는 오류를 DEV가 반환 화�
 기존 memberStyle/refusal 스타일과 한국어 안내를 유지한다. 별도 마케팅 화면·장식·새 CSS·테마·애니메이션을 추가하지 않는다. 반환 링크가 보이고 클릭 대상임을 알 수 있는지, desktop/mobile에 글자 넘침·가림이 없는지, expired/used 화면에 재시작 경로가 명확한지, 화면에 민감한 callback/code/state가 노출되지 않는지 확인한다. 자동 복귀·토큰 교환 성공은 tester 근거를 연결한다.
 
 ## 먼저 읽을 문서·적용 기준
+
+지정 캡처·SHA256는 `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json`에 있다. 반환 desktop/mobile, expired desktop, CSRF/owner-binding mobile의 5장을 직접 연다. 원 근거는 `SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md`와 같은 폴더 screenshots(총19장)다. tester 기록 SHA는 96c7b8236f8335b4e0c7344e09c00e3cb36c0e8b다. F1 medium은 오류 원인별 문구가 같다는 비차단 잔여로 남긴다. F2 low의 링크24px은 실제 캡처와 클릭 성공을 함께 보고 시각 수락 가능 여부를 판단한다.
+
+제품 gate와 tester 최종 기록 gate는 같은 COOR 폴더의 JSON에 보존됐다. `tester-final-product-shim.py`는 tester가 실제 실행한 최종 shim 보존본이다. 자신의 clean HEAD와 고정 eac603b6의 제품 바이트 전체(.fullops-squad 제외)가 같은지 검사한 뒤, 기존 격리 Linux의 같은 eac603b6 clean clone에서 등록 make target만 실행한다. Windows make 부재 시 자기 task-local make.cmd에서 이 보존본을 호출해 사용할 수 있다. 제품 바이트와 lint 정책이 다르면 재사용하지 않는다. 원문을 고치거나 exact Git HEAD 실행이라고 오인하지 않는다. 검사를 실행하면 byte-identical product 검증임을 결과에 적는다.
 
 FULLOPS, project, orca-agents, rules/common README+세 규칙, delegation, document-writing, interface-design, DEV OAuth 복귀 실행 기록을 읽는다. fullops-common-0.3.3, test lite를 적용한다. 제품 정본은 고정 SHA의 remote_auth.go와 기존 memberStyle/refusal이며 캡처 경로·hash는 tester 완료 후 연결한다. 기존 시각 PASS를 새 화면의 수락으로 해석하지 않는다.
 
