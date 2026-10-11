@@ -1551,3 +1551,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - tester 최종 route는 Claude Sonnet5.5 high를 반환했다. 앞 model-only Grok 추천은 QA 요구 전문 이전 기록이며 새 route가 정본이다.
 
 - wave2 착수 확인: UI DEV task_9e9bdca5c835/ctx_d554b501df04/term_97ca126f-37f1-4c18-b78c-56128fa6cffd, Claude Opus5.5 high. webhook tester task_58602e838a4b/ctx_a662dae9a5f6/term_17733a8c-99f9-45eb-ac2c-5f8adf3b1907, Claude Sonnet5.5 high. 두 launch.effective·turn_started·원천/지시서 읽기 실제 확인. 기존 webhook DEV ctx_bcbfa2f4992f는 정상 released/closed_agent_terminal·transcript captured.
+
+- webhook 제품 b86f39711c2f5240d37332f44a9930d4dc2653fa와 독립 QA 결과 b9c3d3854708b9a16070e10835e51524a8720f4f를 수락했다. tester Linux make lint/test 종료0, 58 PASS/0 FAIL, 미해결 C/H0·low F1은 보존한다. root 결과 리뷰12/12·제외 로그1, check 통과. main/origin/main da5002d3cae219827af05e9f295720a82a8c3679 push/fetch 및 두 SHA 조상 확인. 실제 Bot 호출·표시·왕복은 후속이며 기존 wake 유지다.
+- msg_90236a42306b parser null은 실제 고정 후보와 독립 검토·main 조상 확인을 coor_verification으로 별도 기록했다. 원 메시지와 원 parser 값을 보존했다. msg_704bf62402b3는 parser가 후보 SHA를 잡았고 실제 결과 b9c3d385도 main 조상임을 확인했다. delivery_844b317e6d2a ACK. tester ctx_a662dae9a5f6 release는 user_takeover retained로 회신돼 사용자 세션과 snapshot을 보존한다. 강제 종료·정리하지 않는다.
+- 사용자가 지금 Grok 설정을 승인했다. 시험 루틴의 설정·비밀 입력 카드만 조작한다. 설정 화면 키가 도구 출력에 노출돼 회전 또는 해당 신규 시험 루틴 교체를 요청했다. 이후 모든 입력값 출력은 숨기고 URL/key를 메모리에서 네이티브 secret-request 카드로 전달했다. 이전 키 폐기·새 private 파일 저장은 수신 보고 확인 전 미검증이다. 값은 레포/보고서에 저장하지 않는다.
+- UI DEV ctx_d554b501df04는 진행 중으로 최신 main 동기화를 예약한다. 다음 dispatch 전에 최신 main 포함을 확인한다. tester의 두 사용자 세션·designer 사용자 세션은 실제 tui-idle=true와 clean을 확인했고 OPS는 terminal0·clean이다. 해당 쉬는 역할만 최신 main으로 FF한다. 기존 사용자 세션은 보존한다.
