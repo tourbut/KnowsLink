@@ -34,9 +34,9 @@ test_level: lite
 실제 Linux .env.server 서버 사용 가능, 로컬 Docker·추가 유료서비스·삭제/이동/광범위정리·DB/state/key/agent/pair/credential 변경 금지. helper 자격은 메모리 처리하고 비밀값 출력 금지. 웹은 Orca 내장 브라우저만. Grok Bot 수신 UI 접근 금지. 합성 fixtures만 새 고유 실행 폴더에 생성하고 리뷰 snapshot은 read-only로 유지한다. 기존 사용자 세션과 증거를 보존한다.
 
 ## 소유권과 완료 기준
-- [ ] 구현자와 다른 실제 세션에서 최종40자리 고정 SHA의 clean detached snapshot을 review.py로 생성하고 작은 제품 diff 및 영향을 받는 모든 링크/CSS/폼 호출자를 검토한다. 이전 제품전체 리뷰 근거와 연결한다.
-- [ ] 글자 링크를 포함한 모든 visible a[href]의 높이44px·overflow를320/390/1440에서 확인하고 버튼/summary/skip-link/form golden/보안계약 회귀를 필요한 만큼 확인한다. DEV gate실제 SHA/종료코드 확인, 코드/환경 변화 없는 전체 gate는 재사용 근거를 적는다. Google 실제/운영은 coor후속이며 대신PASS하지 않는다.
-- [ ] root로 보낼 reviewer 실제 session·snapshot path·고정candidate/result SHA·lint/check·증거/미검증을 기록한다. OCR delegate 리뷰를 적용하고 미해결C/H차단 유지. 코드수정 금지, QA/리뷰/phase/contexts만 소유.
+- [x] 구현자와 다른 실제 세션에서 최종40자리 고정 SHA의 clean detached snapshot을 review.py로 생성하고 작은 제품 diff 및 영향을 받는 모든 링크/CSS/폼 호출자를 검토한다. 이전 제품전체 리뷰 근거와 연결한다.
+- [x] 글자 링크를 포함한 모든 visible a[href]의 높이44px·overflow를320/390/1440에서 확인하고 버튼/summary/skip-link/form golden/보안계약 회귀를 필요한 만큼 확인한다. DEV gate실제 SHA/종료코드 확인, 코드/환경 변화 없는 전체 gate는 재사용 근거를 적는다. Google 실제/운영은 coor후속이며 대신PASS하지 않는다.
+- [x] root로 보낼 reviewer 실제 session·snapshot path·고정candidate/result SHA·lint/check·증거/미검증을 기록한다. OCR delegate 리뷰를 적용하고 미해결C/H차단 유지. 코드수정 금지, QA/리뷰/phase/contexts만 소유.
 
 ## 결과와 후속
 route D ID 없음. packet partial/unknown은 실제 필요한 영향 후보를 수동확인하여 outcomes에 적는다. 하위 위임은 작은 검수로 불필요하다. registered lint를 고정 결과에서 실행하고 unavailable은 이유를 남기며PASS하지 않는다. 완료 보고 전문·work.py finish·아카이브/빈인박스·커밋/push·worker_done까지 진행한다. 첫 완료문자열 [완료] SAR-SERVICE-UI-001-FIX-TESTER | 최종 SHA <실제40자리>, 후보 SHA도 명시한다. main 통합/배포는 coor.
@@ -216,7 +216,13 @@ route D ID 없음. packet partial/unknown은 실제 필요한 영향 후보를 �
 <!-- fullops-packet:end -->
 
 ## 완료 보고
-착수 후 체크리스트를 갱신하고 완료 기준 전체를 채운 뒤 결과·한계·재개 조건을 쓴다.
+[완료] SAR-SERVICE-UI-001-FIX-TESTER | 최종 SHA는 worker_done 첫 문자열 참조(자기 커밋 SHA는 문서에 못 박을 수 없다), 후보 SHA 295417acfdcd415ad0c768d164bd71dc07214ea9
+
+- 판정: 수락 가능. V-01 해소, 미해결 critical/high 없음, 제품 코드 미수정. low 관찰 1건(줄글 링크가 생기면 inline-flex가 줄 높이를 키움, 현재 해당 없음).
+- reviewer 세션 `727f2870-f6de-45ee-aef6-6e19b49b92ad`(Claude Sonnet 5.5, 구현자 `98481ab6-9f92-4bdd-ba02-c9881c19312c`와 다름). snapshot `C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-b09bd5fc399d43b38787d351e867612f`(clean detached, `295417a`). 제품 `609fcfd`와 `internal`·`cmd`·`go.mod` 바이트 동일.
+- 증거: `qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/{report.md,result.json,lint.json}`. snapshot gofmt 0, go vet 0, go test ./cmd/... ./internal/... 전부 ok. fixture 29종×320/390/1440 렌더에서 visible a[href] 폭마다 66개 모두 44px 이상, overflow·소형 컨트롤 0(Orca 내장 브라우저).
+- lint: ERROR 0, WARNING 0, 실행 불가 2(`make lint`/`make test`, Windows에 make 없음. 대체 실행과 609fcfd Linux gate 재사용 근거는 lint.json·report.md).
+- 한계: `review.py check`는 packet-outcomes를 고정 head `295417a`에서 읽어 실패한다(리뷰 산출물은 후속 커밋이라 구조상 불가). outcomes는 `jev/SAR-SERVICE-UI-001-FIX-TESTER-packet-outcomes.json`에 169항목으로 기록했다. 실서버·Google 운영·DB integration 재실행·Grok UI는 미검증이며 coor 후속이다. snapshot cleanup은 reviewer release 후 별도 단계다.
 
 ## 지시 전제와 충돌 — 먼저 확인
 Jev context는 member_pages.go/member_ui_test.go/remote_auth.go에 일반 conflict 수치를 반환했으며 구체적 reason은 없다. 현재 파일은 수정 전 후보의21px 링크와 버튼만44px 측정한 이전 테스트를 포함한다. 이는 V-01 발견 근거이며 미달을 수락 기준 완화로 해결하지 않는다. remote_auth.go는 새 UI 마크업 범위 밖이나 공통 스타일에 영향받는 원격 동의 글자 링크도44px 측정 대상이다. 새 최종 후보 diff와 D04 9절·V-01 원문을 먼저 대조한다. 과거 PASS는 V-01 잔여를 포함한 시각 판정이며 수정 후 실제 재측정이 필요하다. 실제 제품 규칙 충돌은 coor에 ask하고 임의 정본 변경하지 않는다.
