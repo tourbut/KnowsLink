@@ -14,7 +14,8 @@ test_level: lite
 # SAR-WINDOWS-SHELL-GUARD-001-TESTER — Windows 실행 차단 독립 검수
 
 - Task key: SAR-WINDOWS-SHELL-GUARD-001-TESTER; Purpose: review.
-- 상태: DEV 최종 고정 SHA와 실제 구현자 session 대기. 이 초안으로 dispatch하지 않는다.
+- 상태: ready. 후보 4e82b4f4cd1bc31a59d0d230349fd34d95c7f0c7.
+- Review SHA: 4e82b4f4cd1bc31a59d0d230349fd34d95c7f0c7; Implementer session: bacd5d1f-de07-43b3-9efa-0df5636729c7. 실제 reviewer session은 착수 후 기록한다.
 - 역할: tester, fresh Claude Sonnet5.5 high. lite/standard.
 - 경로: C:/Users/shin/orca/workspaces/KnowsLink/tester, fullops/tester.
 - 복귀 run_dc9b4e6dd18a/coor term_e61d3e14-29e9-4954-943a-4a75707c82de. 실제 task/dispatch는 preamble을 따른다.
@@ -36,6 +37,16 @@ review.py prepare/check, 원 task-key 연결, 모든 diff 대상 reviewed/skippe
 
 AGENTS.md, .fullops-squad/FULLOPS.md, .fullops-squad/project.md, .fullops-squad/rules/common/README.md와 coding-style/testing/security, .fullops-squad/rules/delegation.md, .fullops-squad/docs/agents/document-writing.md, .fullops-squad/orca-agents.md, 해당 DEV 실행 계획과 완료 보고/guard 테스트/host hook 설정. 구현 최종 경로·SHA·session은 배정 전에 확정한다.
 
+구현 정본은 scripts/shell_guard.py, scripts/test_shell_guard.py, .claude/settings.json, .codex/hooks.json, AGENTS.md, CLAUDE.md, Makefile, .fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md다. DEV 최종 exact SHA pass.json(DEV git-dir fullops-gate)은 coor가 확인했다. product-lint/test0, ERROR0/WARNING5/unavailable0. provider 4종 합성 deny43/allow17이며 실제 삭제는 없었다. 실제 Claude 두 도구 차단과 Grok inspect enabled/trusted, Grok/Codex runner 재현은 서로 다른 증거다. 실제 Grok/Codex 모델 tool call과 Codex 사용자 신뢰는 미실행이다.
+
+### 알려진 지원 한계 — 반드시 판정
+
+DEV 계획의 fail-open·script/alias 우회·Codex session cwd 상대경로 실패·TOCTOU·오탐을 직접 평가한다. 플랫폼 한계와 구현 결함을 구분한다. 현재 위험 재발 방지 목적을 충족하지 못하는 경계는 finding으로 올리며 설명만으로 통과시키지 않는다. 기존 세션 재시작·checkout별 사용자 신뢰는 수락 후 사용자 단계로 남긴다. 원 고정 snapshot에서만 제품을 읽고 reviewer 기록 체크아웃을 수정한다.
+
 ## 산출물과 후속
 
 qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test와 SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review에 실제 증거를 보존한다. 대화 원문·사용자 private 파일·사고 원시 USN/VSS는 Git에 넣지 않는다. 수락 후 실제 main 통합과 SSE 운영/계정 테스트 재개는 coor/ops 담당이다.
+
+### 지시 전제와 충돌 — 먼저 확인
+
+Context가 project.md를 충돌 후보로 표시했다. coor 원문 확인 결과 과거 제품 후보 상태와 Docker 검증 명령이 남아 있다. 현재 과제는 제품 변경 없이 Windows hook 경계를 검수한다. 사용자 지시인 로컬 Docker 금지·복구 중단·실제 삭제 없는 검증이 우선이다. 등록 lint/test는 DEV exact SHA의 실제 Linux 증거를 확인해 재사용한다. 공통 보안·독립성·critical/high 차단은 유지한다. Hook JSON 두 파일은 탐색기의 민감 경로 제외로 API에 보내지 않았으며 reviewer가 snapshot에서 직접 읽는다. partial 후보는 일반 검색과 outcomes로 보완한다.
