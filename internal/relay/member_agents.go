@@ -33,6 +33,31 @@ type memberAgent struct {
 }
 type memberKey struct{ Kid, Fingerprint, Status string }
 
+// ActiveKeys is the active key count the collapsed agent row shows.
+func (a memberAgent) ActiveKeys() int {
+	n := 0
+	for _, k := range a.Keys {
+		if k.Status == "활성" {
+			n++
+		}
+	}
+	return n
+}
+
+// Mine and Peer orient a relationship row from the member's side: only an incoming invite has the member as recipient.
+func (p memberPair) Mine() string {
+	if p.Incoming {
+		return p.Recipient
+	}
+	return p.Inviter
+}
+func (p memberPair) Peer() string {
+	if p.Incoming {
+		return p.Inviter
+	}
+	return p.Recipient
+}
+
 func fingerprint(public []byte) string {
 	sum := sha256.Sum256(public)
 	return "SHA256:" + base64.RawURLEncoding.EncodeToString(sum[:])
@@ -196,7 +221,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if e != nil {
 					return fail(e)
 				}
-				return map[string]any{"Title": "agent 연결 대기", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
+				return map[string]any{"Title": "에이전트 연결", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
 			case "confirm", "cancel":
 				c := st.Connections[r.FormValue("connection")]
 				if c == nil || c.Owner != owner || !now.Before(c.Exp) || c.State == "consumed" || c.State == "cancelled" {
@@ -249,13 +274,13 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
 			} else {
-				refused(w, "내 agent", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
+				refused(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
 			}
 			return
 		}
 		switch v := value.(type) {
 		case refusal:
-			refused(w, "내 agent", v)
+			refused(w, "내 에이전트", v)
 		case string:
 			http.Redirect(w, r, v, 303)
 		default:
@@ -277,7 +302,7 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 			return refusal{403, "연결을 조회할 수 없습니다.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-		return map[string]any{"Title": "agent 연결 확인", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
+		return map[string]any{"Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
 	})
 	if err != nil {
 		if err.Error() == "invalid_auth" {

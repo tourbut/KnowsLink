@@ -1,0 +1,577 @@
+{
+  "packet_input_sha256": "4a4087719097102db7c8de5515c3800d43fd2e2f333c5a47b0d9689d8db2d10d",
+  "attempt": "69804b27a2274875a19179a73e833ae9",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 dev 모드·인박스·packet outcomes·lint·work.py finish 계약을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직접 읽고 Linux 고유 clone gate·Go 문자열 CSS의 렌더 확인·증거 구분 원칙을 적용했다. 최근 결정 한 항목을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "front matter와 한국어 STE 원칙으로 phase 기록·D10 절·user-guide 수정을 작성했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "전문을 읽고 R-01–R-11·A-01–A-10·I-01–I-08과 8절 토큰을 구현 기준으로 사용했다. 미적용 항목과 사유는 phase 기록에 적었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "D04는 designer 소유의 수락 정본이며 지시서가 read-only로 정했다. 토큰 조정 값이 없어 수정할 내용도 없다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "지시서 범위·소유권·금지 사항(유료·local Docker·삭제·배포·webhook 제품 변경 금지)과 완료 기록 요구를 적용했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "등록 검사 make lint/make test와 Go 문자열 CSS가 DESIGN lint 대상이 아니라는 한계를 확인하고 렌더 검사로 대신 기록했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "fullops-common-0.3.3 우선순위를 확인했다. 프로젝트 보안 기준을 낮추지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 패턴 재사용(단일 memberStyle·html/template)과 새 의존성 없음 원칙을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "CSRF·CSP·owner 분리·재인증·비밀값 비노출을 유지했다. fixture는 합성 값만 쓴다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 범위로 변경 동작(form 계약·외부 자원·문구)과 기존 회귀만 검증했다. 미실행 항목을 phase에 구분했다."
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "receipt 뷰 데이터 키(Title·Agent·ID·From·To·Parent·Reply·Transport·Completion·ReplyState·Exp·TTL)를 확인하고 새 템플릿이 같은 키를 쓰게 했다. transportNames 문장은 정책 검사가 고정하여 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "PLANS/board는 coor 소유라고 지시서가 정했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "119행 UX 문서 연결과 167행 \"관계 세대는 서버 검사\"를 확인했다. 화면 숫자를 숨겨도 맞는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "구성 요소·경계 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "D09 CRUD는 데이터 생성·조회·변경 규칙이다. 이번 변경은 화면 표현뿐이며 Generation hidden 검사도 같아 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "데이터 모델 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "DB·SQL 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "회원 form·POST·cross-origin 규칙(141행)을 확인했다. 변경 없이 유지된다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "409 거부 화면 버튼 이름을 \"새 에이전트 만들기\"로 고쳤다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 기획·과거 UX 기록이며 이번 화면 표현 변경과 충돌하지 않는다. designer 소유라 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "designer 소유 과거 UX 문서다. 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "42행 prepared 단계의 승인·취소와 CLI·화면 지문 일치 요구를 유지했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 기획·과거 UX 기록이며 이번 화면 표현 변경과 충돌하지 않는다. designer 소유라 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 기획·과거 UX 기록이며 이번 화면 표현 변경과 충돌하지 않는다. designer 소유라 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "22행이 홈 항목으로 \"계정 비활성화\"를 적는다. designer 소유라 수정하지 않고 phase 후속에 적었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 회원 UI 모듈 표를 읽었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D10에 회원 웹 상용 UI 절(토큰 정의 위치·검사)을 추가하고 관계 세대 UI·새 agent 만들기 문구 행을 현재 상태로 고쳤다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "net/http+html/template SSR이라는 기술 기준(25행)이 그대로다. 새 의존성이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "디자인 리뷰 승인과 보존 조건(SSR·CSP·CSRF·owner·재인증·파괴 동작 단일 POST)을 확인하고 지켰다. 1440/390 직접 검수는 후속으로 남겼다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 회원 화면 문구·구조를 정하지 않아 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "새 CSS/JS·외부 폰트·이미지 금지, CSP 완화 금지, 확인 모달 금지, keep-all 줄바꿈 기준을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "스키마 생성물 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 회원 화면 문구·구조를 정하지 않아 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "배포·Access 절차 변경이 없다. 배포는 OPS 후속이다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 회원 화면 문구·구조를 정하지 않아 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이행 절차 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "\"이메일 다시 확인\"·\"계정 비활성화 준비 중\" 문구를 현재 화면에 맞게 고쳤다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 기획·과거 UX 기록이며 이번 화면 표현 변경과 충돌하지 않는다. designer 소유라 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 기획·과거 UX 기록이며 이번 화면 표현 변경과 충돌하지 않는다. designer 소유라 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "83행 gate 상태별 직접 검수 요구를 확인했다. gate 동작은 같고 시각 검수는 designer 후속이다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "112행 계정 비활성화 요구는 미구현 기능이다. D04 R-06에 따라 \"준비 중\" 문구만 제거했다. 58행 관계 세대는 서버 규칙이라 유지된다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 기획·과거 UX 기록이며 이번 화면 표현 변경과 충돌하지 않는다. designer 소유라 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 회원 화면 문구·구조를 정하지 않아 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "F-UI-01(390px 지문 overflow) 결함 이력을 확인했다. 새 code 블록이 390·320에서 overflow 0임을 측정했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "299행 Google callback 완료 화면은 Strict cookie를 위해 사람이 누르는 동일 출처 링크여야 한다. 링크 문구만 바꾸고 자동 이동은 넣지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "34·45행에서 memberStyle을 OAuth 동의 화면이 공유함을 확인하고 remote fixture 렌더를 추가했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 과거 과제의 기록·증거이며 현재 회원 화면 규칙을 새로 정하지 않는다. 증거 보존을 위해 수정하지 않았다."
+    },
+    {
+      "path": "Makefile",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "회원 HTML 문구·마크업에 의존하지 않음을 확인했다(HTML 파싱·문자열 비교 없음). 변경하지 않았다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "359행 \"자기 홈\" 산문만 있고 버튼 문구 인용은 없다. adapter 문서는 webhook 고정 후보 범위라 수정하지 않았다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인용 행을 확인했다. 회원 화면 문구·구조를 정하지 않아 수정하지 않았다."
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "회원 HTML 문구·마크업에 의존하지 않음을 확인했다(HTML 파싱·문자열 비교 없음). 변경하지 않았다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "회원 HTML 문구·마크업에 의존하지 않음을 확인했다(HTML 파싱·문자열 비교 없음). 변경하지 않았다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "회원 HTML 문구·마크업에 의존하지 않음을 확인했다(HTML 파싱·문자열 비교 없음). 변경하지 않았다."
+    },
+    {
+      "path": "internal/config/config.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "회원 HTML 문구·마크업에 의존하지 않음을 확인했다(HTML 파싱·문자열 비교 없음). 변경하지 않았다."
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "TestMemberPagesShowNextSteps의 기대 문구·마크업을 새 화면에 맞췄다. 취소 버튼 노출·재초대·결정 form 검사 의도는 같다. 기한은 pending에서만 보이고 관계 세대 숫자가 없음을 추가 확인한다."
+    },
+    {
+      "path": "internal/relay/device.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "devicePage 뷰 키(Title·ConnectionID·Fingerprint·Exp·State·Google·Login)를 새 device 템플릿이 그대로 쓴다. 코드 변경은 없다."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "gate 템플릿이 memberStyle과 2열 정의 목록·버튼 클래스를 쓰게 했다. 문구·CSRF hidden·비활성 버튼 숨김·\"상태: {{.State}}\"는 같다."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "공통 middleware의 CSP·Cache-Control·cross-origin 검사가 변경되지 않음을 확인했다. gatePage/gateDecision 흐름은 그대로다."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "memberStyle 토큰·badge 함수·전 회원 화면 템플릿·홈 관계 정렬과 건수 계산을 구현했다."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "render 호출자(google.go·device.go·member_agents.go·member_receipt.go·remote_auth.go)의 데이터 키와 refusal 흐름을 확인했다. 상태 코드·redirect는 같다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "memberAgent.ActiveKeys·memberPair.Mine/Peer를 추가하고 화면 제목 문구만 바꿨다. 상태 전이·한도 로직은 같다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "memberAction·connectionPage의 refusal·redirect·뷰 키와 재인증 검사가 변경되지 않음을 확인했다."
+    },
+    {
+      "path": "internal/relay/policy_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "agentLimits·keyRecordsFull·connectLimit 문장을 고정하는 검사다. 서버 안내문을 바꾸지 않아 수정하지 않았다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "회원 HTML 문구·마크업에 의존하지 않음을 확인했다(HTML 파싱·문자열 비교 없음). 변경하지 않았다."
+    }
+  ],
+  "uncertainty_review": "partial packet: 읽기 전용 하위 조사로 모든 후보의 인용 행과 옛 UI 문구(\"새 agent 만들기\", \"로그인 신원 다시 확인\", \"자기 홈으로\", \"선택한 키 철회\", \"관계 세대\", \"계정 비활성화\", \"복사용 agent 식별자\", \"공개키 준비 상태 확인\")의 레포 전체 사용처를 점검했다. 동적 참조는 render·memberPages·memberStyle·page 사용처 grep(google.go·device.go·member_agents.go·member_receipt.go·remote_auth.go)으로 확인했다. 현재 문서 중 README·user-guide·D06·D10을 고쳤고, 과거 증거·designer 소유 문서는 보존했다."
+}

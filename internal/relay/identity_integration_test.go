@@ -144,7 +144,7 @@ func TestEmailIdentity(t *testing.T) {
 		expect(t, b.do("GET", "/home", nil), 303, "/?n=expired")
 		expect(t, b.do("POST", "/auth/verify", url.Values{"code": {code}}), 303, "/home")
 		w := b.do("GET", "/home", nil)
-		expect(t, w, 200, "m***@example.com", "아직 연결한 agent가 없습니다", "상태: 준비 중", "agent의 키와 자격은 철회하지 않습니다")
+		expect(t, w, 200, "m***@example.com", "아직 연결한 에이전트가 없습니다", "에이전트의 키와 자격은 철회되지 않습니다")
 		if strings.Contains(w.Body.String(), "member.one") || strings.Contains(w.Body.String(), "/v1/owners") || strings.Contains(w.Body.String(), "Basic") {
 			t.Fatal("home leaked address or owner-admin path")
 		}
@@ -224,7 +224,7 @@ func TestEmailIdentity(t *testing.T) {
 			old[k] = v
 		}
 		expect(t, one.do("POST", "/auth/logout", nil), 303, "/?n=logout")
-		expect(t, one.do("GET", "/?n=logout", nil), 200, "연결한 agent의 키와 자격은 그대로입니다")
+		expect(t, one.do("GET", "/?n=logout", nil), 200, "연결한 에이전트의 키와 자격은 그대로입니다")
 		replay := newBrowser(s, "203.0.113.1")
 		replay.cookies = old
 		expect(t, replay.do("GET", "/home", nil), 303, "/?n=expired")
@@ -240,7 +240,7 @@ func TestEmailIdentity(t *testing.T) {
 			}
 			st.Rates = map[string][]time.Time{}
 		})
-		expect(t, two.do("GET", "/home", nil), 200, "로그인 신원 다시 확인", "<code>agent_kept</code>")
+		expect(t, two.do("GET", "/home", nil), 200, "로그인 다시 확인", `<code class="select">agent_kept</code>`)
 		expect(t, two.do("POST", "/auth/logout-all", nil), 403, "5분 안에")
 		third := newBrowser(s, "203.0.113.3")
 		login(t, third, mail, "owner@example.com")

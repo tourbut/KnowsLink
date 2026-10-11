@@ -4,7 +4,7 @@ title: 사용자설명서
 status: draft
 updated: 2026-10-11
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV]
 summary: 본인 전용 합성 베타의 접속·합성 시험·종료 방법을 안내한다
 ---
 
@@ -89,9 +89,9 @@ Dots/Work Cloud는 후보 배포 후 Custom MCP에 `https://link.knowslog.com/mc
 홈 화면은 가려진 이메일(예: `s***@example.com`)과 회원 식별자를 보인다. 지원 요청에는 회원 식별자만 알린다. 이메일 전문·확인 코드는 다른 사람이나 agent에게 알리지 않는다.
 
 - "이 브라우저에서 로그아웃": 현재 브라우저만 로그아웃한다.
-- "모든 브라우저에서 로그아웃": 최근 5분 안에 이메일을 확인했을 때만 누를 수 있다. 버튼 대신 "이메일 다시 확인"이 보이면 그 버튼으로 새 코드를 받아 확인한다.
+- "모든 브라우저에서 로그아웃": 최근 5분 안에 이메일을 확인했을 때만 누를 수 있다. 버튼 대신 재확인 안내가 보이면 "계정과 보안"의 "로그인 다시 확인"으로 먼저 확인한다.
 - 로그아웃은 연결한 agent의 키와 자격을 철회하지 않는다.
-- 계정 비활성화는 "준비 중"이다. 아직 요청할 수 없다.
+- 계정 비활성화는 아직 제공하지 않는다. 화면에도 표시하지 않는다.
 - 공개 서버 `link.knowslog.com`에는 아래 후보 절차가 배포되어 있지 않다. 공개 시험은 이 문서 앞부분의 합성 베타 절차를 따른다.
 - 승인 요청이 있으면 홈의 목록에서 열어 Approve 또는 Deny를 누른다. 페이지를 여는 것만으로는 결정되지 않는다.
 
@@ -108,7 +108,7 @@ Dots/Work Cloud는 후보 배포 후 Custom MCP에 `https://link.knowslog.com/mc
 7. 한 agent의 키 기록이 꽉 차면 그 agent에 새 키를 연결할 수 없다. 키를 철회하거나 기다려도 그 자리가 생기지 않는다. 새 agent를 만들고 상대와 다시 수락한다.
 8. 철회 기록까지 꽉 차면 새 agent를 만들 수 없다. 최소 24시간이 지나 목록에서 정리된 뒤에 다시 만든다. 기존 자격은 그 거절만으로 지워지지 않는다. 철회는 여전히 할 수 있다.
 9. 요청이 많으면 화면이 다시 시도할 시각을 보인다. 연결 API의 429는 `retry_at`과 `Retry-After`에 같은 시각을 담는다.
-10. 계정 비활성화는 이 후보에서도 "준비 중"이다.
+10. 계정 비활성화는 이 후보에서도 제공하지 않는다.
 
 ## Google로 각 클라이언트 연결 — SAR-GOOGLE-CONNECT-001-DEV
 

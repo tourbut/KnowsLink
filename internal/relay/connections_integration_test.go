@@ -42,14 +42,14 @@ func browserAgent(t *testing.T, b *browser) string {
 	expect(t, b.do("POST", "/home/agents", nil), 303)
 	w := b.do("GET", "/home", nil)
 	expect(t, w, 200, "미연결")
-	ids := regexp.MustCompile(`<code>(agent_[a-f0-9]+)</code>`).FindAllStringSubmatch(w.Body.String(), -1)
+	ids := regexp.MustCompile(`<summary><h3><code class="select">(agent_[a-f0-9]+)</code>`).FindAllStringSubmatch(w.Body.String(), -1)
 	return ids[len(ids)-1][1]
 }
 func browserGrant(t *testing.T, b *browser, agent, mode string) (string, string) {
 	t.Helper()
 	w := b.do("POST", "/home/connect", url.Values{"agent": {agent}, "client": {supportedClient}, "mode": {mode}})
 	expect(t, w, 200, "연결 대기", "개인키")
-	token := regexp.MustCompile(`readonly value="([A-Za-z0-9_-]{43})"`).FindStringSubmatch(w.Body.String())[1]
+	token := regexp.MustCompile(`aria-labelledby="token-l">([A-Za-z0-9_-]{43})</code>`).FindStringSubmatch(w.Body.String())[1]
 	return token, hashToken(token)
 }
 func clientPrepare(t *testing.T, h http.Handler, token string, kid string) (ed25519.PrivateKey, string) {
@@ -151,7 +151,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		// Repeats from either side keep the pending invite and say so.
 		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invite-pending")
 		expect(t, a.do("POST", "/home/invites", url.Values{"agent": {two}, "target": {one}}), 303, "/home?n=invite-pending")
-		expect(t, a.do("GET", "/home?n=invite-pending", nil), 200, "이미 대기 중인 초대", "기한도 그대로", "받은 초대입니다")
+		expect(t, a.do("GET", "/home?n=invite-pending", nil), 200, "이미 대기 중인 초대", "기한도 그대로", "받은 초대")
 		s.mutateState(t, func(st *State) {
 			p := st.Pairs[pairID(one, two)]
 			if p.State != "pending" || p.Generation != 1 || !p.Exp.Equal(exp) || len(st.Pairs) != 1 {
@@ -310,7 +310,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			t.Fatal("record cap race", wins, len(live), len(revoked))
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", nil), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "자기 홈으로 돌아가기")
+		expect(t, a.do("POST", "/home/agents", nil), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "홈으로 돌아가기")
 		// Saturation never blocks cleanup, and revoking adds no record.
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {revoked[0]}}), 303)
