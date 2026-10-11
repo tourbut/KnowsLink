@@ -1,0 +1,570 @@
+{
+  "base": "4786a00a1274479ea5c3d80decccc0ea556c52e8",
+  "head": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.13 (fabbdb29) windows/amd64\nbuilt at: 2026-10-08T11:52:18Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "01a126ba-6211-7961-b7ec-d72b4ccb6575",
+  "conclusion": "수락 가능. 미해결 critical/high는 없다. SSE 바깥 mux의 보안 헤더 누락은 medium이고 NAT64 64:ff9b::/96은 low다. exact SHA make lint와 make test는 종료코드 0이다. 실제 계정 연결과 동의 화면 시각 검수는 실행하지 않았다.",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "2026-10-11 결정이 SSE LISTEN, Dots와 local 설치의 구분, Cloud app ID, private DB 키 보관을 코드와 같게 적는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D03 추가 절이 빈 ready/arrival, 16/2 상한, poll 기본, sse coalesce, remote OAuth와 webhook 분리를 구현과 같게 적는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "SSE 입장 기록의 생성과 65초 sweep, remote code 소모와 refresh 회전, Inbox commit을 store/remote 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Streams와 Remote JSON 필드가 원문과 credential을 넣지 않고 기존 Agent/Key/Pair/Message를 유지한다고 적는다. SQL migration 변경은 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "relay_state JSON의 additive field와 빈 NOTIFY commit을 store.go transaction과 대조했다. 새 table은 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D05 SSE 상태코드, 빈 프레임, refresh family 철회를 코드와 대조했다. 35행의 모든 응답 no-store는 바깥 SSE mux와 어긋나 medium finding이다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 19,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D10 표의 text_events, store, core, inbox, mcp, remote_* 책임이 실제 파일과 같다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "pgx 5.10.0, Go net/http, Node fetch, SDK 1.32.0 유지와 새 dependency 없음을 go.mod와 package.json diff로 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/bd411fb-gate-retry.json",
+      "status": "added",
+      "insertions": 180,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "과거 gate 기록이다. head를 febd128 실행으로 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/e9ab92d-security-gate.json",
+      "status": "added",
+      "insertions": 180,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "e9ab92d 보안 gate다. 제품 바이트는 febd128과 같고 실행 SHA는 e9ab92d다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/evidence.json",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "integration_sha 515eabb, registered_gate_sha bd411fb, security_regression_sha e9ab92d를 확인했다. 최종 febd128 gate는 dev git-dir pass.json이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SSE-INSTALL-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 925,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV outcomes의 attempt 21a4cee08d734fa8a668bb0d785c0400을 확인했다. review.py check --task-key가 이 커밋 기록을 쓴다. tester outcomes로 덮지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "status": "added",
+      "insertions": 104,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 계획의 완료 기준과 금지된 운영 변경을 인계 지시와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "status": "added",
+      "insertions": 102,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "호스트별 설치와 실제 계정 등록의 분리를 읽었다. 합성 app ID를 만들지 않는다는 문장과 package_plugin.py가 같다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "PKCE, refresh family HMAC, DB custody, SSRF, 구독 상한, 3회 재시도를 remote_auth.go와 remote_events.go와 대조했다. NAT64 prefix는 low residual이다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 21,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "D12 후보 절이 SSE 상한, ingress, refresh 철회를 코드와 같게 적고 실제 Google과 시각 QA를 뒤로 미룬다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "D13이 운영 SSE, 실제 호스트, Google, Dots, 시각 검수를 수락 뒤로 둔다. tester는 그 항목을 PASS로 두지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "D11이 poll 기본, sse coalesce, connected와 host turn의 구분을 inbox.ts 및 SKILL.md와 같게 적는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "status": "added",
+      "insertions": 120,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 완료 로그가 후보 SHA와 미실행 계정 작업을 구분하는지만 확인했다. 과거 절차를 재실행하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 94,
+      "review_status": "reviewed",
+      "reason": "인박스 본문 94줄 삭제는 완료 로그로 옮긴 기록이다. 제품 동작 변경이 아니다."
+    },
+    {
+      "path": "adapters/.claude-plugin/plugin.json",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Claude plugin이 local.mcp.json과 held 설명을 가리킨다. 실제 Desktop 설치 성공을 주장하지 않는다."
+    },
+    {
+      "path": "adapters/.codex-plugin/plugin.json",
+      "status": "added",
+      "insertions": 17,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Codex plugin metadata다. ZIP 목록만으로 MCP 기동을 증명하지 않는다고 SKILL.md가 적는다."
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 54,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "호스트별 설치 절차 diff를 manifest, package_plugin.py의 private folder 거부와 대조했다."
+    },
+    {
+      "path": "adapters/config/local.mcp.json",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기본 env는 KNOWSLINK_MODE=held다. 자격 증명을 넣지 않는다."
+    },
+    {
+      "path": "adapters/manifest.json",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "MCPB user_config 기본값은 held와 공개 URL이다. 키 붙여넣기 설명이 없다. node >=22.22.2를 요구한다."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "scripts만 바뀌었다. events.test.js를 test에 넣고 format 대상에 새 manifest를 넣었다. dependencies 추가는 없다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "poll 기본, sse는 host turn이 아님, 설치별 private folder, Dots는 별도 cloud 패키지라고 적는다."
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "openEvents가 redirect:error를 쓴다. 비어 있지 않거나 다른 프레임과 과대 스트림을 거부하는 경계를 확인했다."
+    },
+    {
+      "path": "adapters/src/events.test.ts",
+      "status": "added",
+      "insertions": 183,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "loopback에서 auth header, coalesce, fallback, cancel, metadata frame을 검사한다. exact SHA npm test의 events.test.js가 PASS다."
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "status": "modified",
+      "insertions": 64,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "KNOWSLINK_RECEIVE_MODE=sse만 신호를 같은 serial AutoReceiver로 합친다. 기본은 poll 10초다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "server close가 auto.stop을 호출한다. 스트림 중단 경로다."
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "status": "modified",
+      "insertions": 46,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "listen이 Bearer 이벤트를 읽고 잘못된 프레임을 거부한다. MCP onclose와 연결된다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "RemoteEvents goroutine을 Cleanup과 같은 종료 context에서 시작한다."
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "events, /mcp, well-known, 정확한 remote oauth/consent만 추가한다. owner/admin 경로는 그대로 밖이다."
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "/mcp는 remote bearer admission을 쓰고 consent는 기존 session budget을 쓴다."
+    },
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "remote credential은 cleanup owner 경로에서 제외한다. 빈 credential은 live map에 넣지 않는다."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "status": "modified",
+      "insertions": 36,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "remote attempt를 기존 Google 재인증에 묶는다. 다른 계정은 묶인 요청을 바꾸지 못한다. 새 provider는 없다."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "remoteRoutes를 안쪽 mux에 둔다. GET /v1/text/events만 보안 헤더 middleware 밖에 있어 medium finding이다."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "status": "added",
+      "insertions": 533,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "PKCE S256, resource 고정, DCR HTTPS redirect, consent CSRF, DB 개인키, refresh HMAC family 철회와 remoteGrantRefusal commit을 읽었다."
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "status": "added",
+      "insertions": 486,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Proxy nil, TLS 1.2, redirect 거부, 443, 모든 DNS 답 검사, IP pinning, whsec_ HMAC, 구독 상한을 읽었다. 64:ff9b::/96은 low residual이다."
+    },
+    {
+      "path": "internal/relay/remote_integration_test.go",
+      "status": "added",
+      "insertions": 155,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "합성 whsec_와 loopback callback 음성 대조가 있다. 운영 비밀값이 아니다. make test에는 integration tag가 없다."
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "status": "added",
+      "insertions": 275,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "stateless /mcp가 access token으로 네 도구와 events subscribe를 기존 Inbox 경로에 연결한다."
+    },
+    {
+      "path": "internal/relay/remote_test.go",
+      "status": "added",
+      "insertions": 397,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "위조 refresh는 철회하지 않고, 검증된 이전 refresh와 sweepRemote, 짧은 secret 거부를 검사한다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "opErr가 nil이면 변경 state를 commit한다. remoteGrantRefusal은 그래서 철회가 남는다. eventVersion이 바뀔 때만 빈 NOTIFY를 보낸다."
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "status": "added",
+      "insertions": 200,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Bearer만 받고 query를 거부한다. 16/2, 55초, 전용 LISTEN, 빈 ready/arrival, 15초 heartbeat, 매 루프 자격 재확인을 읽었다. 보안 헤더는 설정하지 않는다."
+    },
+    {
+      "path": "internal/relay/text_events_integration_test.go",
+      "status": "added",
+      "insertions": 139,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Postgres LISTEN 통합 검사다. make test의 -race 단위 범위 밖이며 이번 lite QA에서 새 DB를 띄우지 않았다."
+    },
+    {
+      "path": "internal/relay/text_events_test.go",
+      "status": "added",
+      "insertions": 58,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "선택, 인가, 공유 상한, HTTP 프레임 단위 검사를 파일과 D10 표에서 확인했다. make test가 internal/relay를 PASS했다."
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "events와 oauth 경로를 허용 목록에 넣고 owner, admin, unknown, /mcp/extra를 거부 목록에 둔다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "grok host verify와 poll 기본, sse opt-in, 없는 private folder를 안내한다. 실제 Bot 등록은 하지 않는다."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "status": "modified",
+      "insertions": 144,
+      "deletions": 16,
+      "review_status": "reviewed",
+      "reason": "이미 있는 private folder를 거부한다. cloud app ID는 asdk_app_, connector_, templated_apps_만 받고 합성 ID를 만들지 않는다."
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "격리 env에서 9 tools discovery를 기대한다. Grok Bot 앱 등록 성공으로 적지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/bd411fb-final-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/bd411fb-final-test.log",
+      "status": "added",
+      "insertions": 31,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/candidate-build.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/candidate-cloudflared.log",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/candidate-install.log",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/candidate-integration.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/candidate-migration.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/candidate-retry.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/e9ab92d-final-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/e9ab92d-final-test.log",
+      "status": "added",
+      "insertions": 31,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/e9ab92d-security-checks.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/e9ab92d-security-integration.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/e9ab92d-security-migration.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/dev-checks/SAR-SSE-INSTALL-001/sse-fix-checks.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "원시 *.log다. 줄 단위로 다시 읽지 않았다. 짝이 되는 gate JSON, evidence.json, e9ab92d-final-lint.log의 make lint EXIT=0으로 존재와 종료 상태만 확인했다. 이 로그는 febd128의 새 실행이 아니다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/http.go",
+      "start_line": 202,
+      "end_line": 213,
+      "severity": "medium",
+      "resolved": false,
+      "content": "GET /v1/text/events는 boundedHTTP 밖이다. 인증 실패는 respond()를 쓰고 스트림은 Content-Type과 X-Accel-Buffering만 설정한다. Cache-Control no-store, CSP, Referrer-Policy, X-Content-Type-Options가 빠진다. D05 35행은 모든 응답이 no-store라고 적는다. 본문은 빈 ready/arrival과 오류 코드뿐이라 자격 증명이나 메시지 원문은 나가지 않는다."
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "start_line": 197,
+      "end_line": 236,
+      "severity": "low",
+      "resolved": false,
+      "content": "remotePublicIP는 64:ff9b::/96을 따로 거절하지 않는다. 2002::/16과 2001::/23은 막는다. 호스트가 그 prefix를 내부 IPv4로 라우팅하고 DNS가 그 주소를 주면 pinning이 통과할 수 있다. 콜백은 443과 공인 호스트를 전제로 한다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a12678-994d-7680-a15c-83577943b52d",
+    "reviewer_session": "01a126ba-6211-7961-b7ec-d72b4ccb6575",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-757ce58618f543ad94da80b02d0f320a",
+    "snapshot_head": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+    "read_only": true
+  }
+}

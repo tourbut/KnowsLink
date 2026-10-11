@@ -1,0 +1,991 @@
+{
+  "packet_input_sha256": "eb58cf2c4def82f0d4a64c8cde463a4c401deef70a6e25f689bfd32ecaa65162",
+  "attempt": "c3903c515d954261b24465fe35d7abef",
+  "uncertainty_review": "packet.partial이 true다. 164개 필수 항목을 4786a00..febd128 변경 목록과 이번 세션에서 실제로 연 문서에 대조했다. 변경되었거나 이번에 읽은 항목만 completed다. 나머지 역사 항목은 no_change다. unknown은 outcomes 행이 아니며 후보 동작을 새로 증명하지 않는다. DEV evidence.json의 과거 SHA를 febd128 실행으로 세지 않았다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "FULLOPS.md를 읽고 coor/lite, snapshot 리뷰, tester의 QA 소유를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "정본 인박스 전체를 읽고 금지 사항과 완료 보고 형식을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "project.md의 검증 명령과 문서 정본을 이번 리뷰 기준에 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "공통 규칙 우선순위와 critical/high 차단을 읽고 완화하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "코딩 스타일 앞부분을 읽고 제품 코드를 고치지 않는 tester 범위에 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "인증, SSRF, 비밀값 보관 기준을 remote 경로 판정에 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 범위와 미실행을 PASS로 두지 않는 규칙을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/contexts/archive/dev-2026-10-10.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/contexts/coor.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "2026-10-11 결정이 SSE LISTEN, Dots와 local 설치의 구분, Cloud app ID, private DB 키 보관을 코드와 같게 적는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/contexts/tester.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D03 추가 절이 빈 ready/arrival, 16/2 상한, poll 기본, sse coalesce, remote OAuth와 webhook 분리를 구현과 같게 적는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "SSE 입장 기록의 생성과 65초 sweep, remote code 소모와 refresh 회전, Inbox commit을 store/remote 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "Streams와 Remote JSON 필드가 원문과 credential을 넣지 않고 기존 Agent/Key/Pair/Message를 유지한다고 적는다. SQL migration 변경은 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "relay_state JSON의 additive field와 빈 NOTIFY commit을 store.go transaction과 대조했다. 새 table은 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D05 SSE 상태코드, 빈 프레임, refresh family 철회를 코드와 대조했다. 35행의 모든 응답 no-store는 바깥 SSE mux와 어긋나 medium finding이다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D10 표의 text_events, store, core, inbox, mcp, remote_* 책임이 실제 파일과 같다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "pgx 5.10.0, Go net/http, Node fetch, SDK 1.32.0 유지와 새 dependency 없음을 go.mod와 package.json diff로 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "DEV 계획의 완료 기준과 금지된 운영 변경을 인계 지시와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "호스트별 설치와 실제 계정 등록의 분리를 읽었다. 합성 app ID를 만들지 않는다는 문장과 package_plugin.py가 같다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "PKCE, refresh family HMAC, DB custody, SSRF, 구독 상한, 3회 재시도를 remote_auth.go와 remote_events.go와 대조했다. NAT64 prefix는 low residual이다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D12 후보 절이 SSE 상한, ingress, refresh 철회를 코드와 같게 적고 실제 Google과 시각 QA를 뒤로 미룬다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D13이 운영 SSE, 실제 호스트, Google, Dots, 시각 검수를 수락 뒤로 둔다. tester는 그 항목을 PASS로 두지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D11이 poll 기본, sse coalesce, connected와 host turn의 구분을 inbox.ts 및 SKILL.md와 같게 적는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/planning/SAR-MVP-backlog.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/planning/product-specs/SAR-MVP.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/SAR-MVP-001-REVIEW.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-03_to_designer.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-03_to_ops.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-04_to_dev.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-04_to_ops.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-04_to_tester.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-05_to_designer.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-05_to_dev.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-05_to_tester.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-06_to_designer.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-06_to_ops.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-06_to_tester.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-07_to_designer.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-07_to_dev.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/2026-10-07_to_tester.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "DEV 완료 로그가 후보 SHA와 미실행 계정 작업을 구분하는지만 확인했다. 과거 절차를 재실행하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "4786a00..febd128 diff에 .fullops-squad/orca-agents.md가 없다. 역사 패킷 항목이라 이번 lite QA에서 다시 읽지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/delegation.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "standard 동시 2를 확인했다. 이번 판정은 host가 직접 했고 하위 worker는 없다."
+    },
+    {
+      "path": "adapters/.claude-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "Claude plugin이 local.mcp.json과 held 설명을 가리킨다. 실제 Desktop 설치 성공을 주장하지 않는다."
+    },
+    {
+      "path": "adapters/.codex-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "Codex plugin metadata다. ZIP 목록만으로 MCP 기동을 증명하지 않는다고 SKILL.md가 적는다."
+    },
+    {
+      "path": "adapters/.cursor-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "4786a00..febd128 이름 목록에 adapters/.cursor-plugin/plugin.json가 없다. 이번 후보가 이 파일의 계약을 바꾸지 않아 영향 재실행을 하지 않았다."
+    },
+    {
+      "path": "adapters/.grok-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "4786a00..febd128 이름 목록에 adapters/.grok-plugin/plugin.json가 없다. 이번 후보가 이 파일의 계약을 바꾸지 않아 영향 재실행을 하지 않았다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "호스트별 설치 절차 diff를 manifest, package_plugin.py의 private folder 거부와 대조했다."
+    },
+    {
+      "path": "adapters/manifest.json",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "MCPB user_config 기본값은 held와 공개 URL이다. 키 붙여넣기 설명이 없다. node >=22.22.2를 요구한다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "poll 기본, sse는 host turn이 아님, 설치별 private folder, Dots는 별도 cloud 패키지라고 적는다."
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "4786a00..febd128 이름 목록에 adapters/src/login.test.ts가 없다. 이번 후보가 이 파일의 계약을 바꾸지 않아 영향 재실행을 하지 않았다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "server close가 auto.stop을 호출한다. 스트림 중단 경로다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "RemoteEvents goroutine을 Cleanup과 같은 종료 context에서 시작한다."
+    },
+    {
+      "path": "internal/relay/cleanup_flood_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "4786a00..febd128 이름 목록에 internal/relay/cleanup_flood_integration_test.go가 없다. 이번 후보가 이 파일의 계약을 바꾸지 않아 영향 재실행을 하지 않았다."
+    },
+    {
+      "path": "internal/relay/device.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "4786a00..febd128 이름 목록에 internal/relay/device.go가 없다. 이번 후보가 이 파일의 계약을 바꾸지 않아 영향 재실행을 하지 않았다."
+    },
+    {
+      "path": "internal/relay/google_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "4786a00..febd128 이름 목록에 internal/relay/google_test.go가 없다. 이번 후보가 이 파일의 계약을 바꾸지 않아 영향 재실행을 하지 않았다."
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "events와 oauth 경로를 허용 목록에 넣고 owner, admin, unknown, /mcp/extra를 거부 목록에 둔다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "grok host verify와 poll 기본, sse opt-in, 없는 private folder를 안내한다. 실제 Bot 등록은 하지 않는다."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이미 있는 private folder를 거부한다. cloud app ID는 asdk_app_, connector_, templated_apps_만 받고 합성 ID를 만들지 않는다."
+    }
+  ]
+}
