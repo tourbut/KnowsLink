@@ -70,3 +70,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-11: SAR-SERVICE-UI-001-DESIGN은 로그인·내 에이전트·연결 관리의 상용 UX·비주얼 명세와 DEV 인계(R-01–R-11)를 작성했다. 홈 문서는 6394/7986px로 길고 한국어 anywhere 줄바꿈 결함이 있다.
   제품 코드·서버 규칙·CSP·재인증은 보존했고 JS·이미지 없는 CSS 기준만 정했다. 구현 후 직접 시각 검수와 UI 수락은 후속이다.
   명세·관찰·인계: [회원 웹 명세](../docs/design-docs/mockups/service-member-ui.md), [실행 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md).
+
+- 2026-10-11: SAR-SERVICE-UI-001-VISUAL은 고정 c7828b2의 합성 화면 29개를 Orca 내장 브라우저 1440·390·320에서 직접 검수해 시각 PASS로 기록했다. critical·high 0건이다.
+  D04 9절 44px 기준을 글자 링크 21px가 채우지 못한 medium 1건(V-01)과 low 11건이 남는다. 실제 Google 왕복·실계정·200%·스크린 리더는 미검증이다.
+  도구 교훈: `goto`가 뷰포트를 초기화하고 `full-screenshot`이 에뮬레이션에서 타일을 반복하므로 스크롤 조각으로 찍는다. 증거·한계: [시각 수락 보고](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md).
