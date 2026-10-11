@@ -12,7 +12,7 @@ test_level: lite
 ---
 # SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS — 검수된 OAuth 복귀 수정의 기존 서버 보존 배포
 
-- Purpose implementation(운영). 상태: DEV 최종 SHA·독립 tester 수락·main push 대기. 선행 조건 충족 전 착수하지 않는다.
+- Purpose implementation(운영). 상태 ready: 독립 tester·designer 시각 수락과 main push 완료.
 - ops C:/Users/shin/orca/workspaces/KnowsLink/ops, fullops/ops. fresh Claude Sonnet5.5 high(Jev). test lite/subagent standard.
 - coor 복귀 term_e61d3e14-29e9-4954-943a-4a75707c82de / run_dc9b4e6dd18a. task/dispatch는 preamble을 따른다. 기록 main 병합·push는 coor 담당이다.
 
@@ -24,7 +24,7 @@ test_level: lite
 
 ## 원천과 적용 기준
 
-배포 제품 SHA는 eac603b6a41d2ce002e698600ac66b8fc67ad762다. 실제 Chromium 독립 QA/고정 SHA 리뷰는 tester 기록96c7b823으로 수락됐다. 같은 후보의 designer 시각 수락과 main/origin 조상 확인은 아직 선행 대기이며, coor가 완료 기록을 전달하기 전 배정하지 않는다. `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md` 및 `-test/report.md`와 COOR 폴더의 gate 영수증을 읽는다. F1 medium(원인별 실패 안내 부족)은 reviewer 비차단 잔여로 보존한다. 기존 미완료 install1은 삭제하지 않는다.
+배포 제품 SHA는 eac603b6a41d2ce002e698600ac66b8fc67ad762다. 실제 Chromium 독립 QA/고정 SHA 리뷰는 tester 기록96c7b823으로 수락됐다. designer 시각 기록610b2b0 및 별도 coor fixed-SHA 리뷰가 통과했다. main/origin aee03bcf0a039cd3918e4042d4041805ecd8c5d8에 세 완료 SHA 조상 관계와 push read-back을 확인했다. `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md` 및 `-test/report.md`, `SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md`와 COOR 폴더 gate 영수증을 읽는다. F1 medium(원인별 실패 안내 부족)은 reviewer 비차단 잔여로 보존한다. 기존 미완료 install1은 삭제하지 않는다.
 
 fullops-common-0.3.3과 FULLOPS, common README+세 규칙, project, orca-agents, delegation, document-writing을 읽는다. 원천은 현재 ops-guide/transition, SAR-SSE-INSTALL-001-OPS-LIVE, 이전 OPS 실행 기록과 logs/2026-10-11_to_ops.md, DEV 최종 OAuth 복귀 실행 기록 및 tester 수락 보고다. 고정 제품 SHA와 정확한 gate 경로는 선행 수락 뒤 coor가 연결한다. 기존 Context7/공식 CLI 근거는 동일 명령에 재사용한다.
 
