@@ -49,7 +49,7 @@ Linux 서버의 기존 격리 경로를 사용했다. 고유 `/tmp/knowslink-oau
 | 회귀 | 같은 SHA, `go test -race -tags integration` | `TestRemoteOAuthHTTP`, `TestGoogleHTTP`, `TestGoogleDeviceHTTP`, `TestTextEventsHTTP` PASS(종료코드 0) |
 | Windows unit | `go test ./internal/relay`, `go vet` (integration tag 포함) | 종료코드 0 |
 
-브라우저 검사는 `TEST_BROWSER`(Chromium 경로)가 있을 때만 실행한다. 없으면 skip한다. 드라이버 `internal/relay/testdata/consent_browser.mjs`는 Node 22 내장 WebSocket으로 CDP를 사용한다. 새 의존성은 없다. 하나의 TLS 테스트 서버가 Host로 relay·합성 Google·등록 호스트를 나눈다. Chromium `--host-resolver-rules`가 세 이름을 이 서버로 보낸다. 드라이버는 URL query를 출력하지 않는다. 기존 `TestRemoteOAuthHTTP`는 303 대신 반환 화면의 링크에서 callback을 읽도록 바꿨다.
+브라우저 검사는 `internal/relay/remote_browser_integration_test.go`에 있다. `go test -tags "integration browser"`와 `TEST_BROWSER`(Chromium 경로)로 실행한다. build tag로 분리하여 skip 표식을 쓰지 않는다. `TEST_BROWSER`가 없으면 실패한다. 드라이버 `internal/relay/testdata/consent_browser.mjs`는 Node 22 내장 WebSocket으로 CDP를 사용한다. 새 의존성은 없다. 하나의 TLS 테스트 서버가 Host로 relay·합성 Google·등록 호스트를 나눈다. Chromium `--host-resolver-rules`가 세 이름을 이 서버로 보낸다. 드라이버는 URL query를 출력하지 않는다. 기존 `TestRemoteOAuthHTTP`는 303 대신 반환 화면의 링크에서 callback을 읽도록 바꿨다.
 
 ### 실패와 수정
 
