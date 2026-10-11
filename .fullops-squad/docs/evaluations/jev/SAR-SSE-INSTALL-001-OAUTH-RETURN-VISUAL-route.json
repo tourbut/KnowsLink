@@ -4,7 +4,11 @@
   "requested_model": "~typesafe/jev-latest",
   "route": "product",
   "role": "designer",
-  "deliverables": [],
+  "deliverables": [
+    "D04",
+    "D13",
+    "D12"
+  ],
   "thresholds": {
     "simple": 0.8,
     "role": 0.6,
@@ -14,50 +18,50 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.85,
-        "product": 0.15
+        "implementation": 0.77,
+        "product": 0.23
       },
-      "confidence": 0.7
+      "confidence": 0.54
     },
     "role": {
       "choice": "tester",
       "probabilities": {
-        "dev": 0.01,
-        "ops": 0,
-        "tester": 0.99
+        "dev": 0.34,
+        "ops": 0.01,
+        "tester": 0.65
       },
-      "confidence": 0.98
+      "confidence": 0.48
     },
     "docs": {
-      "D01": 0.15,
-      "D02": 0.15,
-      "D03": 0.13,
-      "D04": 0.31,
-      "D05": 0.12,
-      "D06": 0.13,
-      "D07": 0.09,
-      "D08": 0.1,
-      "D09": 0.12,
-      "D10": 0.23,
-      "D11": 0.2,
-      "D12": 0.28,
-      "D13": 0.29
+      "D01": 0.29,
+      "D02": 0.31,
+      "D03": 0.3,
+      "D04": 0.56,
+      "D05": 0.29,
+      "D06": 0.29,
+      "D07": 0.22,
+      "D08": 0.23,
+      "D09": 0.3,
+      "D10": 0.43,
+      "D11": 0.37,
+      "D12": 0.51,
+      "D13": 0.55
     }
   },
   "usage": {
-    "input_tokens": 0,
-    "output_tokens": 0,
-    "cost": 0
+    "input_tokens": 2502,
+    "output_tokens": 314,
+    "cost": 0.000105084
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.0,
+  "latency_seconds": 0.674,
   "response_model": "typesafe/jev-1.13-20260917",
-  "original_role": "tester",
-  "original_route": "implementation",
-  "override_reason": "project.md 직접 시각 검수 담당, actual 캡처와 최종 지시 해시 연결",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "project.md 직접 시각 담당과 Codex 실제 startup 실패, 동일 역할 Claude 운영 대체 사유는 PLANS에 보존",
   "model": {
     "agent": "codex",
     "provider": "openai",
@@ -65,25 +69,25 @@
     "effort": "high",
     "source": "jev",
     "probabilities": {
-      "codex gpt-6.1-sol medium": 0.16,
-      "codex gpt-6.1-sol high": 0.84
+      "codex gpt-6.1-sol medium": 0.11,
+      "codex gpt-6.1-sol high": 0.89
     },
     "usage": {
-      "input_tokens": 0,
-      "output_tokens": 0,
-      "cost": 0
+      "input_tokens": 589,
+      "output_tokens": 34,
+      "cost": 2.4738e-05
     }
   },
   "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
-  "head": "1134737c062ac314646f8e3468bea2319f1ca191",
+  "head": "ab924bab38bcbcbbcea5dd43ece4c996c4f48a70",
   "requires_packet": true,
   "attempt": "b61277b0559d44d992788a7d19d490cd",
-  "instruction_sha256": "29b8c7f135ce04dc34ea59fa91feb2bf0ccad90eacf34acc31b1060353e4e0ae",
+  "instruction_sha256": "f7284d7cfdc56ba4ee1c96c181f3f5c91bde9c8e3a9691150fd5b74ad4ad64e5",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "46180962f8eeb2bcdb59c62de723094de03b8b51a8e842c06fa1d01684e2b9c7"
+  "input_sha256": "c58132a5d9b0e1f324ed0c05bd56fedd66638be8f27df7109175d66988ede8e1"
 }

@@ -1,12 +1,13 @@
 {
   "task_key": "SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL",
   "role": "designer",
-  "head": "1134737c062ac314646f8e3468bea2319f1ca191",
+  "head": "ab924bab38bcbcbbcea5dd43ece4c996c4f48a70",
   "attempt": "b61277b0559d44d992788a7d19d490cd",
-  "instruction_sha256": "29b8c7f135ce04dc34ea59fa91feb2bf0ccad90eacf34acc31b1060353e4e0ae",
+  "instruction_sha256": "f7284d7cfdc56ba4ee1c96c181f3f5c91bde9c8e3a9691150fd5b74ad4ad64e5",
   "options": {
     "policy": "packet-v3",
     "seeds": [
+      ".fullops-squad/PLANS.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json"
     ],
     "required": [
@@ -21,7 +22,11 @@
       "internal/relay/member.go",
       "internal/relay/remote_auth.go"
     ],
-    "updates": [],
+    "updates": [
+      "D04",
+      "D12",
+      "D13"
+    ],
     "sources": {
       ".dockerignore": "981dfc52b656e4e5d6d3d08668bf12d18af6e1c67bc90fb07e15bbade5841e16",
       ".fullops-squad/FULLOPS.md": "705edf97ac2434dd6be632de6b15b04be09f105c22f7bdec996718374ed3c470",
@@ -239,7 +244,7 @@
       ".fullops-squad/handovers/logs/2026-10-11_to_tester.md": "befb6585631f1014dbd5c781ffa9ac38f3812568eb425c8ff441dd80f283deef",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md": "ad041e7f93cbe1a64a12b54a1597ba1bdb93797ee2a19a66f6e6532575a1a517",
-      ".fullops-squad/handovers/to_designer.md": "29b8c7f135ce04dc34ea59fa91feb2bf0ccad90eacf34acc31b1060353e4e0ae",
+      ".fullops-squad/handovers/to_designer.md": "f7284d7cfdc56ba4ee1c96c181f3f5c91bde9c8e3a9691150fd5b74ad4ad64e5",
       ".fullops-squad/handovers/to_ops.md": "2f0bc30b8c53097c3c47494ca9caf2ef0895967b189f71fd28b082fbda018b21",
       ".fullops-squad/lint/README.md": "0cb6778284b49417e0a93d213a55b6b18a33e205782d11bcdee8769800e3f546",
       ".fullops-squad/orca-agents.md": "a89bd7dd864dd1c5686a81b6d7faae1feb27c80807d434eb32178531369cf52f",
@@ -337,14 +342,13 @@
       "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0"
     },
     "search_results": {
-      "route": "e4e04b55d69e87fcc935b58b5a72e8ee7e0231193a81701d9820dd190e091410",
-      "context": "51dd164f2d445b823d56187e0d705cef3dd3b44f96821fb8cacaecf4cf604375"
+      "route": "9263c6bbac9c5a8b6517e3dbfd8317dcd886fc6fded7c6fc098100ba24a183a3"
     },
     "decisions": []
   },
-  "input_sha256": "5022789ec795439a80e25a30850bd1fce4b6b268e80adc5f766e13884b8ebb5f",
+  "input_sha256": "2dd69dca2fa4b30fb0bc8637c293ea594a0c1598df9405619202c93ef1b13efe",
   "version": "jev-packet-v2",
-  "base": "1134737c062ac314646f8e3468bea2319f1ca191",
+  "base": "ab924bab38bcbcbbcea5dd43ece4c996c4f48a70",
   "worktree_dirty": true,
   "items": [
     {
@@ -361,8 +365,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "705edf97ac2434dd6be632de6b15b04be09f105c22f7bdec996718374ed3c470",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
@@ -468,15 +471,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "cb678e904fd19f0d565a689c1d6f5c3ab09e634cd092d23eeb35fa375f7ceb81",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.87,
-        "evidence": 0.9,
-        "contradicts": 0.38,
-        "injection": 0.07,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/handovers/to_designer.md",
@@ -637,9 +632,8 @@
       "required": true,
       "status": "inferred",
       "priority": 0,
-      "source_sha256": "29b8c7f135ce04dc34ea59fa91feb2bf0ccad90eacf34acc31b1060353e4e0ae",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_sha256": "f7284d7cfdc56ba4ee1c96c181f3f5c91bde9c8e3a9691150fd5b74ad4ad64e5",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/project.md",
@@ -665,8 +659,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "d444db14ea4861e0a4a7f919b4b5fd4a8a16833cf78b85123bd97d4653182397",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
@@ -682,8 +675,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "2c08a8b1fcaa796d7a5bd74b28d3ee68a6b92af6e591e71b9f64d418d92c1533",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
@@ -699,8 +691,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
@@ -716,8 +707,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
@@ -733,8 +723,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "0c1e0d1af2e06a78abea5295cddf073d4efd18d32c066dd288530b3e5bafc528",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": "internal/relay/member.go",
@@ -750,8 +739,7 @@
       "status": "unknown",
       "priority": 0,
       "source_sha256": null,
-      "source_basis": null,
-      "context_signal": null
+      "source_basis": null
     },
     {
       "path": "internal/relay/remote_auth.go",
@@ -767,15 +755,23 @@
       "status": "unknown",
       "priority": 0,
       "source_sha256": null,
-      "source_basis": null,
-      "context_signal": {
-        "relevant": 0.19,
-        "evidence": 0.2,
-        "contradicts": 0.23,
-        "injection": 0.03,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "categories": [
+        "document_update"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
     },
     {
       "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
@@ -801,30 +797,6 @@
       "priority": 1,
       "source_sha256": "5d1ae3fc00589a1006c30c9023a1aabe254a4bff462393ff50ac227574eb74fc",
       "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/contexts/designer.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "5b4f6aef11607fb78ebf158a0e33e9c4bf57ad81ab4360857d91d99f30bf9c42",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": {
-        "relevant": 0.15,
-        "evidence": 0.22,
-        "contradicts": 0.29,
-        "injection": 0.1,
-        "decision": "keep",
-        "reason": null
-      }
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
@@ -1272,7 +1244,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -1348,15 +1319,33 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "484cf176ef0a7c46d8b133365757a3c30232dd3e2fe9d051cf53aee648795675",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.19,
-        "evidence": 0.25,
-        "contradicts": 0.24,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "categories": [
+        "document_update"
+      ],
+      "reasons": [
+        "route/explicit update candidate"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D04",
+          "source": [
+            "docs/design-docs/mockups/SAR-MVP-001-UI.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D04"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "b3a27083dc173dc9acbb3d075d25ae7a1f1297c6e9a6de21fed3122321fb8d85",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
@@ -1879,12 +1868,10 @@
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json",
       "categories": [
-        "direct_edit",
-        "impact_check"
+        "direct_edit"
       ],
       "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation"
+        "explicit edit seed/diff"
       ],
       "evidence": [],
       "doc_ids": [],
@@ -1892,15 +1879,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "debe5360632a9d35bb23e606442343343b6537e51ea37a3da44018f9dccc5e2e",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": {
-        "relevant": 0.89,
-        "evidence": 0.93,
-        "contradicts": 0.21,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
@@ -3031,7 +3010,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3129,15 +3107,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "f188a72ae7485031e114cdae794c6d495efdb46badbd083dd2bf4ea087c396b1",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.58,
-        "evidence": 0.75,
-        "contradicts": 0.29,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
@@ -3457,11 +3427,12 @@
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
       "categories": [
-        "document_read"
+        "document_read",
+        "document_update"
       ],
       "reasons": [
         "symbol/keyword occurrence; reference semantics require verification",
-        "source mapping/reference; keep unchanged unless verified"
+        "route/explicit update candidate"
       ],
       "evidence": [
         {
@@ -3628,11 +3599,12 @@
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "categories": [
-        "document_read"
+        "document_read",
+        "document_update"
       ],
       "reasons": [
         "symbol/keyword occurrence; reference semantics require verification",
-        "source mapping/reference; keep unchanged unless verified"
+        "route/explicit update candidate"
       ],
       "evidence": [
         {
@@ -5216,6 +5188,52 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 45,
+          "seed": ".fullops-squad/PLANS.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
+      "source_basis": "tracked_worktree_overlay",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 42,
+          "seed": ".fullops-squad/PLANS.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ad041e7f93cbe1a64a12b54a1597ba1bdb93797ee2a19a66f6e6532575a1a517",
+      "source_basis": "tracked_worktree_overlay",
+      "sections": []
+    },
+    {
       "path": ".fullops-squad/handovers/to_ops.md",
       "categories": [
         "document_read"
@@ -5477,7 +5495,6 @@
     "impact_check": [
       "internal/relay/member.go",
       "internal/relay/remote_auth.go",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json",
       "scripts/package_plugin.py"
     ],
     "document_read": [
@@ -5490,7 +5507,6 @@
       ".fullops-squad/rules/common/security.md",
       ".fullops-squad/rules/common/testing.md",
       ".fullops-squad/contexts/archive/dev-2026-10-10.md",
-      ".fullops-squad/contexts/designer.md",
       ".fullops-squad/contexts/dev.md",
       ".fullops-squad/contexts/ops.md",
       ".fullops-squad/contexts/tester.md",
@@ -5548,14 +5564,21 @@
       ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
       ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
       ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
       ".fullops-squad/handovers/to_ops.md",
       "adapters/README.md",
       "adapters/skills/knowslink/SKILL.md"
     ],
-    "document_update": []
+    "document_update": [
+      ".fullops-squad/PLANS.md",
+      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/operations/transition.md"
+    ]
   },
   "input_partial": false,
-  "task_excerpt": "---\ntitle: SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL — tester의 같은 후보 캡처로 OAuth 반환·오류 화면 직접 시각 수락\nstatus: draft\nupdated: 2026-10-11\nowner: designer\ntasks: [SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL]\nsummary: tester의 같은 후보 캡처로 OAuth 반환·오류 화면 직접 시각 수락\nattempt: b61277b0559d44d992788a7d19d490cd\nbase: eac603b6a41d2ce002e698600ac66b8fc67ad762\nsubagent_level: standard\ntest_level: lite\n---\n# SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL — OAuth 반환·오류 화면 직접 시각 수락\n\n- Purpose visual acceptance. 상태: tester 합성 캡처와 독립 QA 전달 완료, ready.\n- designer C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. fresh Codex gpt-6.1-sol high(최신 Jev). test lite/subagent standard.\n- 고정 제품 SHA eac603b6a41d2ce002e698600ac66b8fc67ad762. 실제 구현자 e20cc179-625e-43fa-84fd-b431d432b9c6. 소스·제품 기준을 바꾸지 않는다.\n- 복귀 coor term_e61d3e14-29e9-4954-943a-4a75707c82de / run_dc9b4e6dd18a. task/dispatch는 preamble을 따른다.\n\n## 요구와 검수 범위\n\nOAuth consent POST303이 Chromium CSP에 막히는 오류를 DEV가 반환 화면으로 고쳤다. 기능 QA/fixed-SHA code review는 tester 담당이다. designer는 같은 통합 후보의 tester 캡처를 직접 보고 반환·재시작 안내가 사용 가능한지 판정한다. 새로운 기획·스타일·화면을 만들지 않는다.\n\n기존 memberStyle/refusal 스타일과 한국어 안내를 유지한다. 별도 마케팅 화면·장식·새 CSS·테마·애니메이션을 추가하지 않는다. 반환 링크가 보이고 클릭 대상임을 알 수 있는지, desktop/mobile에 글자 넘침·가림이 없는지, expired/used 화면에 재시작 경로가 명확한지, 화면에 민감한 callback/code/state가 노출되지 않는지 확인한다. 자동 복귀·토큰 교환 성공은 tester 근거를 연결한다.\n\n## 먼저 읽을 문서·적용 기준\n\n지정 캡처·SHA256는 `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json`에 있다. 반환 desktop/mobile, expired desktop, CSRF/owner-binding mobile의 5장을 직접 연다. 원 근거는 `SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md`와 같은 폴더 screenshots(총19장)다. tester 기록 SHA는 96c7b8236f8335b4e0c7344e09c00e3cb36c0e8b다. F1 medium은 오류 원인별 문구가 같다는 비차단 잔여로 남긴다. F2 low의 링크24px은 실제 캡처와 클릭 성공을 함께 보고 시각 수락 가능 여부를 판단한다.\n\n제품 gate와 tester 최종 기록 gate는 같은 COOR 폴더의 JSON에 보존됐다. `tester-final-product-shim.py`는 tester가 실제 실행한 최종 shim 보존본이다. 자신의 clean HEAD와 고정 eac603b6의 제품 바이트 전체(.fullops-squad 제외)가 같은지 검사한 뒤, 기존 격리 Linux의 같은 eac603b6 clean clone에서 등록 make target만 실행한다. Windows make 부재 시 자기 task-local make.cmd에서 이 보존본을 호출해 사용할 수 있다. 제품 바이트와 lint 정책이 다르면 재사용하지 않는다. 원문을 고치거나 exact Git HEAD 실행이라고 오인하지 않는다. 검사를 실행하면 byte-identical product 검증임을 결과에 적는다.\n\nFULLOPS, project, orca-agents, rules/common README+세 규칙, delegation, document-writing, interface-design, DEV OAuth 복귀 실행 기록을 읽는다. fullops-common-0.3.3, test lite를 적용한다. 제품 정본은 고정 SHA의 remote_auth.go와 기존 memberStyle/refusal이며 캡처 경로·hash는 tester 완료 후 연결한다. 기존 시각 PASS를 새 화면의 수락으로 해석하지 않는다.\n\n## 소유권과 완료 기준\n\n직접 이미지 도구로 desktop/mobile 지정 캡처를 확인하고 본인의 exec plan·QA 보고·contexts/designer만 작성한다. 제품 source·다른 역할 증거·운영/실계정/Google·Grok 조작·삭제/이동/cleanup은 금지한다. 부족한 캡처는 coor에 구체적으로 요청한다. 전체 QA와 이미 완료된 자동 검사를 다시 실행하지 않는다. 영상은 필요 없다.\n\n관찰별 PASS/FAIL/미확인과 실제 대상 SHA·이미지 hash·한계를 기록한다. 이미지가 새 코드에서 실제 생성됐는지 tester manifest와 source를 대조한다. 문서 결과의 등록 lint를 실행하고 Windows make 부재는 원문을 보존해 사유를 적는다. 제품 바이트가 같으므로 원 exact-SHA product gate 재사용을 명시하며 통과를 꾸미지 않는다. packet의 모든 비선택 path/category를 outcomes로 처리하고 work.py finish로 원 지시서·보고를 보존한다. 최종40자리 기록 SHA 하나를 worker_done에 보고한다. main 통합·배포는 부모가 맡는다.\n\n## 완료 보고\n\n최종 기록과 남은 제한을 전문으로 보존한다.\n",
+  "task_excerpt": "---\ntitle: SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL — tester의 같은 후보 캡처로 OAuth 반환·오류 화면 직접 시각 수락\nstatus: draft\nupdated: 2026-10-11\nowner: designer\ntasks: [SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL]\nsummary: tester의 같은 후보 캡처로 OAuth 반환·오류 화면 직접 시각 수락\nattempt: b61277b0559d44d992788a7d19d490cd\nbase: eac603b6a41d2ce002e698600ac66b8fc67ad762\nsubagent_level: standard\ntest_level: lite\n---\n# SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL — OAuth 반환·오류 화면 직접 시각 수락\n\n- Purpose visual acceptance. 상태: tester 합성 캡처와 독립 QA 전달 완료, ready.\n- designer C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. fresh Claude Sonnet5.5 high(운영 대체). test lite/subagent standard. Jev Codex high는 실제 hook 신뢰 검토창에서 readiness 실패하여 작업 미착수였다. 기존 검증된 Claude hook 아래 같은 역할·범위로 재배정한다. Codex trust 값을 수정하지 않는다.\n- 고정 제품 SHA eac603b6a41d2ce002e698600ac66b8fc67ad762. 실제 구현자 e20cc179-625e-43fa-84fd-b431d432b9c6. 소스·제품 기준을 바꾸지 않는다.\n- 복귀 coor term_e61d3e14-29e9-4954-943a-4a75707c82de / run_dc9b4e6dd18a. task/dispatch는 preamble을 따른다.\n\n## 요구와 검수 범위\n\nOAuth consent POST303이 Chromium CSP에 막히는 오류를 DEV가 반환 화면으로 고쳤다. 기능 QA/fixed-SHA code review는 tester 담당이다. designer는 같은 통합 후보의 tester 캡처를 직접 보고 반환·재시작 안내가 사용 가능한지 판정한다. 새로운 기획·스타일·화면을 만들지 않는다.\n\n기존 memberStyle/refusal 스타일과 한국어 안내를 유지한다. 별도 마케팅 화면·장식·새 CSS·테마·애니메이션을 추가하지 않는다. 반환 링크가 보이고 클릭 대상임을 알 수 있는지, desktop/mobile에 글자 넘침·가림이 없는지, expired/used 화면에 재시작 경로가 명확한지, 화면에 민감한 callback/code/state가 노출되지 않는지 확인한다. 자동 복귀·토큰 교환 성공은 tester 근거를 연결한다.\n\n## 먼저 읽을 문서·적용 기준\n\n지정 캡처·SHA256는 `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json`에 있다. 반환 desktop/mobile, expired desktop, CSRF/owner-binding mobile의 5장을 직접 연다. 원 근거는 `SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md`와 같은 폴더 screenshots(총19장)다. tester 기록 SHA는 96c7b8236f8335b4e0c7344e09c00e3cb36c0e8b다. F1 medium은 오류 원인별 문구가 같다는 비차단 잔여로 남긴다. F2 low의 링크24px은 실제 캡처와 클릭 성공을 함께 보고 시각 수락 가능 여부를 판단한다.\n\n제품 gate와 tester 최종 기록 gate는 같은 COOR 폴더의 JSON에 보존됐다. `tester-final-product-shim.py`는 tester가 실제 실행한 최종 shim 보존본이다. 자신의 clean HEAD와 고정 eac603b6의 제품 바이트 전체(.fullops-squad 제외)가 같은지 검사한 뒤, 기존 격리 Linux의 같은 eac603b6 clean clone에서 등록 make target만 실행한다. Windows make 부재 시 자기 task-local make.cmd에서 이 보존본을 호출해 사용할 수 있다. 제품 바이트와 lint 정책이 다르면 재사용하지 않는다. 원문을 고치거나 exact Git HEAD 실행이라고 오인하지 않는다. 검사를 실행하면 byte-identical product 검증임을 결과에 적는다.\n\nFULLOPS, project, orca-agents, rules/common README+세 규칙, delegation, document-writing, interface-design, DEV OAuth 복귀 실행 기록을 읽는다. fullops-common-0.3.3, test lite를 적용한다. 제품 정본은 고정 SHA의 remote_auth.go와 기존 memberStyle/refusal이며 캡처 경로·hash는 tester 완료 후 연결한다. 기존 시각 PASS를 새 화면의 수락으로 해석하지 않는다.\n\n## 소유권과 완료 기준\n\n직접 이미지 도구로 desktop/mobile 지정 캡처를 확인하고 본인의 exec plan·QA 보고·contexts/designer만 작성한다. 제품 source·다른 역할 증거·운영/실계정/Google·Grok 조작·삭제/이동/cleanup은 금지한다. 부족한 캡처는 coor에 구체적으로 요청한다. 전체 QA와 이미 완료된 자동 검사를 다시 실행하지 않는다. 영상은 필요 없다.\n\n관찰별 PASS/FAIL/미확인과 실제 대상 SHA·이미지 hash·한계를 기록한다. 이미지가 새 코드에서 실제 생성됐는지 tester manifest와 source를 대조한다. 문서 결과의 등록 lint를 실행하고 Windows make 부재는 원문을 보존해 사유를 적는다. 제품 바이트가 같으므로 원 exact-SHA product gate 재사용을 명시하며 통과를 꾸미지 않는다. packet의 모든 비선택 path/category를 outcomes로 처리하고 work.py finish로 원 지시서·보고를 보존한다. 최종40자리 기록 SHA 하나를 worker_done에 보고한다. main 통합·배포는 부모가 맡는다.\n\n## 완료 보고\n\n최종 기록과 남은 제한을 전문으로 보존한다.\n",
   "instruction": ".fullops-squad/handovers/to_designer.md",
   "partial": true,
   "unknown": [
@@ -5569,13 +5592,7 @@
     },
     {
       "source": "context",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "input_partial": false,
-      "refused_paths": [],
-      "unsent_sources": {
-        "internal/relay/member.go": "sensitive or oversized passage"
-      }
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "path": ".fullops-squad/PLANS.md",
@@ -5615,22 +5632,14 @@
       "error": null,
       "docs_status": "complete",
       "unresolved_deliverables": []
-    },
-    "context": {
-      "error": null,
-      "input_partial": false,
-      "refused_paths": [],
-      "unsent_sources": {
-        "internal/relay/member.go": "sensitive or oversized passage"
-      }
     }
   },
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
   "context_paths": [
+    ".fullops-squad/PLANS.md",
     ".fullops-squad/contexts/archive/dev-2026-10-10.md",
-    ".fullops-squad/contexts/designer.md",
     ".fullops-squad/contexts/dev.md",
     ".fullops-squad/contexts/ops.md",
     ".fullops-squad/contexts/tester.md",
@@ -5639,6 +5648,7 @@
     ".fullops-squad/docs/design-docs/data-model.md",
     ".fullops-squad/docs/design-docs/database-design.md",
     ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
     ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
     ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
     ".fullops-squad/docs/design-docs/module-design.md",
@@ -5647,8 +5657,7 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json"
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
@@ -5664,6 +5673,7 @@
   ],
   "optional_context_paths": [],
   "remaining_context_paths": [
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/visual-inputs.json",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
@@ -5704,6 +5714,8 @@
     ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
     ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
     ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+    ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+    ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
     ".fullops-squad/handovers/to_ops.md",
     "adapters/README.md",
     "adapters/skills/knowslink/SKILL.md",
