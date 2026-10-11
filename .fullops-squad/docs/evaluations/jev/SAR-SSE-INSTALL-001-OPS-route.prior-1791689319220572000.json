@@ -1,0 +1,93 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SSE-INSTALL-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D12",
+    "D10",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.84,
+        "product": 0.16
+      },
+      "confidence": 0.68
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.91,
+        "ops": 0.09,
+        "tester": 0
+      },
+      "confidence": 0.86
+    },
+    "docs": {
+      "D01": 0.43,
+      "D02": 0.48,
+      "D03": 0.68,
+      "D04": 0.43,
+      "D05": 0.66,
+      "D06": 0.58,
+      "D07": 0.55,
+      "D08": 0.51,
+      "D09": 0.62,
+      "D10": 0.77,
+      "D11": 0.62,
+      "D12": 0.86,
+      "D13": 0.74
+    }
+  },
+  "usage": {
+    "input_tokens": 2489,
+    "output_tokens": 314,
+    "cost": 0.000104538
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D03",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D11"
+  ],
+  "latency_seconds": 0.692,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0,
+      "claude claude-sonnet-5-5 high": 0.02,
+      "claude claude-opus-5-5 medium": 0.15,
+      "codex gpt-6.1-sol medium": 0.5,
+      "claude claude-opus-5-5 high": 0.24,
+      "codex gpt-6.1-sol high": 0.09
+    },
+    "usage": {
+      "input_tokens": 778,
+      "output_tokens": 66,
+      "cost": 3.2676e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
+  "head": "121cde923798c745af1f952347fcec1cae40b853",
+  "requires_packet": true
+}

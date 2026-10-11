@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SSE-INSTALL-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0,
+        "ops": 1,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.15,
+      "D02": 0.1,
+      "D03": 0.1,
+      "D04": 0.09,
+      "D05": 0.1,
+      "D06": 0.11,
+      "D07": 0.09,
+      "D08": 0.1,
+      "D09": 0.1,
+      "D10": 0.15,
+      "D11": 0.32,
+      "D12": 0.89,
+      "D13": 0.72
+    }
+  },
+  "usage": {
+    "input_tokens": 2490,
+    "output_tokens": 314,
+    "cost": 0.00010458
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.469,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "project.md 운영 배포는 ops 담당. 구현과 독립 검수는 이미 완료됐으며 운영 이행만 남음",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "121cde923798c745af1f952347fcec1cae40b853",
+  "requires_packet": true,
+  "attempt": "f299f2d420074fd3a75e7c9e9919860a",
+  "instruction_sha256": "c70fcf4ef19b3c9657bce7ffc78371a41e34922fe7f4a6e7fac41c082d134a20",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "455ab5a19038a209208c8e81233aba7baa4123ae127729fce43b8e47a7b4d6b6"
+}

@@ -1,0 +1,57 @@
+---
+
+title: SAR-SSE-INSTALL-001-OPS — 수락 후보의 기존 Linux 운영 이행과 보존 smoke
+status: draft
+updated: 2026-10-11
+owner: ops
+tasks: [SAR-SSE-INSTALL-001-OPS]
+summary: 수락 후보의 기존 Linux 운영 이행과 보존 smoke
+attempt: f299f2d420074fd3a75e7c9e9919860a
+base: 121cde923798c745af1f952347fcec1cae40b853
+subagent_level: standard
+test_level: lite
+---
+
+# SAR-SSE-INSTALL-001-OPS — 수락 후보의 기존 Linux 운영 이행과 보존 smoke
+
+- Purpose: implementation(운영 이행). 상태 ready. test lite/subagent standard.
+- ops: C:/Users/shin/orca/workspaces/KnowsLink/ops, fullops/ops. 제품 수락 SHA 121cde923798c745af1f952347fcec1cae40b853(origin/main에 반영됨).
+- 복귀 coor term_e61d3e14-29e9-4954-943a-4a75707c82de, run_dc9b4e6dd18a. 실제 task/dispatch는 preamble을 따른다.
+- coor가 최종 기록의 main 병합/push를 담당한다. OPS는 승인된 기존 서버 운영 이행과 자신의 문서·증거만 소유한다.
+
+## 사용자 요구와 승인 범위
+
+사용자는 .env.server의 기존 Linux 서버에서 테스트·개발하고 기존 비용 안에서 Cloudflare Tunnel·도메인과 Google 인증 연결을 사용하도록 승인했다. SSE/polling·remote OAuth/MCP Events·host 설치 구현은 독립 tester와 visual 및 실행 차단 검수를 거쳐 위 main에 수락됐다. 파일 복구는 중단했다. 기존 F: 사고 private 자료는 읽지 않는다.
+
+로컬 Docker·새 유료 서비스·유료 API·billing·도메인 변경·다른 서비스 변경을 하지 않는다. 실제 삭제/이동/복구/cleanup 명령은 어떤 호스트에서도 실행하지 않는다. 임시 bundle·clone·backup은 보존한다. 기존 사용자 자료·DB·owner/key/agent/pair·Google 설정·Tunnel credential·공유 서비스를 보존한다. hook 문자열을 바꾸거나 외부 파일 스크립트로 금지 작업을 우회하지 않는다.
+
+## 운영 정본과 현재 확인 기준
+
+운영 배포 /home/shin/deploy/knowslink, private state /home/shin/deploy/knowslink-state. 마지막 read-only preflight: HEAD ba3754d2c41d3ba8258eae76fa0cf0cfad5b27c4, relay/PG healthy·cloudflared up·localhealth200. 실제 시작 시 다시 읽어 확인한다. Tunnel config SHA256 3b6f569e5603489496cda27802626043ef5716dae9954c0e457c95da4c7c8cd3. 도메인 https://link.knowslog.com. 여기에 준비·원문을 기록하지 않고 실제 운영 상태와 차이를 먼저 확인한다.
+
+SSH .env.server는 기존 main 링크를 사용하고 값을 출력·로그·Git에 넣지 않는다. 기존 승인 helper D:/workspace/KnowsLink/.git/fullops-gate/coor_remote.py와 coor-known-hosts/기설치 paramiko는 읽기 전용으로 재사용할 수 있다. helper는 known_hosts RejectPolicy와 메모리 redaction을 사용한다. task-local helper가 필요하면 자기가 소유하는 경로에 쓰고 원본을 고치지 않는다. PowerShell→다른 shell 문자열의 변수 확장 위험을 만들지 말고 literal stdin·구조 인자로 전달한다.
+
+기존 배포 origin은 과거 로컬 경로가 사라져 있을 수 있다. origin fetch/beta.sh를 무조건 실행하지 않는다. 실제 Git 상태·script를 읽고 고정 수락 SHA를 bundle/SFTP 또는 안전한 기존 remote로 전달한다. 강제 reset/clean/checkout 덮어쓰기 금지. 배포 체크아웃이 clean인지 먼저 확인한다. migration diff가 있으면 기존 정책대로 멈추고 ask한다(현재 후보는 db migration 변화 없음).
+
+기존 Compose project knowslink, 파일 compose.yaml·deploy/knowslink/compose.ops.yaml, env STATE/.env다. UID/GID/STATE_DIR 등 실제 기존 운영 환경을 확인하되 값을 출력하지 않는다. config --quiet만 사용한다. 모든 Docker 명령은 기존 Linux 서버의 해당 project에만 한정한다. down/prune/rm/volume 삭제는 금지한다. 다른 project는 읽기 비교만 한다.
+
+## 해야 할 일과 소유권
+
+1. 현재 HEAD/clean·이미지·서비스·DB schema 버전·Tunnel hash·credential/config 권한·기존 owner/key/pair 보존 기준을 private 방식으로 확보한다. 비밀·메시지 본문을 출력하지 않는다.
+2. 새 private DB backup을 기존 state/backups 안에 0700/0600으로 생성하고 pg_restore --list 확인한다. 복구나 DB 원상 덮어쓰기는 하지 않는다.
+3. 수락 SHA를 안전하게 반영하고 기존 relay만 최소 갱신한다. 변경 없는 DB·Tunnel·Google 설정·다른 서비스는 보존한다. 신규 public metadata/MCP/Events 경로가 기존 ingress에서 실제 도달하는지 확인한다. ingress 추가가 필요하면 승인된 도메인과 기존 정본 허용 범위 내 최소 변경만 하며 admin/owner/internal API 공개를 넓히지 않는다. 이 범위의 기술 설계·구현 결함이면 제품 파일을 고치지 않고 ask한다.
+4. local/public health, OAuth discovery metadata, 무인증 remote 거부, SSE 무인증 거부·no body push 계약의 가능한 smoke, polling 기존 경로, 기존 서비스 보존을 검증한다. 실제 Google consent·새 app 등록·실제 agent 발신·Dots callback은 수행하지 않는다. synthetic isolated 검사는 필요할 때 기존 서버에서 고유 자원으로 하되 삭제 정리 없이 보존한다. 완료된 제품 전체 QA를 반복하지 않는다.
+5. D12 ops-guide와 transition, 필요한 D10 smoke 증거/과제 exec plan에 실제 배포 SHA·backup·보존·검사·남은 사용자 단계와 실패 시 안전 조치를 기록한다. D13은 기존 검수 증거 연결만 필요하며 새 기획·제품 산출물 변경 없음. raw secret·SSH credential·backup 본문은 Git에 넣지 않는다.
+
+코드 소유권은 deploy 운영 파일의 필요 최소 변경과 .fullops-squad/docs/operations, 해당 OPS exec plan·QA evidence·contexts/ops다. relay/adapter/DB/source·다른 역할 검수는 수정하지 않는다. 새로운 설치·외부 billing·보안 완화는 승인 범위 밖이다. 실패 시 새 상태를 무조건 rollback/DB restore하지 말고 현재 상태·사유·담당·재개 조건을 보고한다.
+
+## 규약과 먼저 읽을 원천
+
+fullops-common-0.3.3, AGENTS.md·CLAUDE.md·FULLOPS.md·project.md·orca-agents.md·rules/common README와 세 규칙·rules/delegation.md·docs/agents/document-writing.md. 기준은 front matter base다. docs/operations/ops-guide.md의 현재 SSE 절과 기존 11/13장(역사와 현재 분리), transition.md, SAR-SSE-INSTALL-001-DEV/REMOTE/INSTALL exec plans, accepted tester REVIEW report와 visual 보완 gate, deploy/knowslink/beta.sh·compose.ops.yaml·verify.py·public ingress script를 읽는다. 기존 문서의 held/미구현 과거 내용은 현재 DEV/수락 기록과 대조한다. Context7 공식 근거는 기존 계획에 있으므로 동일 API는 재사용하고 새 cloud/CLI 구문만 재확인한다. 미확인을 성공으로 표시하지 않는다.
+
+## 완료 기준과 보고
+
+실제 운영 SHA·health·필요 endpoint·보존 조건과 private backup 검증을 증거로 남긴다. 원문은 task-local private 경로, Git은 redacted 요약만 둔다. 제품 코드 변경이 없으면 원 exact-SHA lint/test 근거를 구분해 재사용하고 운영 변경의 적합한 검사를 한다. 새 실행 파일/설정이 생기면 등록 검증 게이트·고정 SHA 리뷰가 필요하다. 모든 packet 비선택 path/category와 partial을 outcomes로 처리한다. work.py finish와 최종 40자리 기록 SHA 하나를 worker_done에 명확히 보고한다. 운영 미완료·중단은 failed 및 원인/현재 서비스 상태로 보고한다. 부모가 기록 수락·main 통합과 실제 계정 설치 검증 후속을 담당한다.
+### 지시 전제와 충돌 — 먼저 확인
+
+Context는 ops-guide/transition/LIVE를 충돌 후보로 표시했다. 원문을 확인했다. ops-guide 1~10장과 transition의 2026-10-03 표는 역사적 Access/held 기록이고 Google LIVE는 2026-10-10 ba3754d 실제 Google 운영 수락이다. SSE 절의 운영 미적용은 이번 과제 시작 시 사실이며 실제 독립/시각 수락은 origin/main121cde9의 신규 근거를 따른다. 구 기준을 덮어쓰거나 현재 실행으로 바꾸지 않는다. 현재 서버를 먼저 읽고 원자료·권한·범위가 다른 경우 ask한다. 사용자 새 비용 금지·로컬 Docker 금지·삭제/복구 금지가 우선이다. public ingress·Cloud 연결은 기존 Google 운영 경계를 보존한다.
