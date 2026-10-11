@@ -227,7 +227,19 @@ Jev context는 service-member-ui.md를 conflict로 표시했으나 구체적 이
 <!-- fullops-packet:end -->
 
 ## 완료 보고
-작업 완료 뒤 실제 결과 SHA·후보 SHA·검증 근거·미검증·후속을 이 절에 전문으로 기록한다. 지금은 DEV 고정 SHA를 기다린다.
+- 결과: 독립 lite QA와 고정 SHA 리뷰 완료. 미해결 critical/high 0건. low 3건(후속). UI PASS·제품 최종 수락이 아니다. designer 직접 시각 검수와 main 통합·OPS 배포는 후속이다.
+- 후보 SHA(검토 대상): `c7828b227b5715f7bdf02bff46bf9cf102a758d9`. 최종 결과 SHA(이 완료·archive를 담은 커밋)는 자기 참조라 이 파일에 쓸 수 없다. 보고 메시지 `[완료] SAR-SERVICE-UI-001-TESTER | 최종 SHA <40자리>`가 정본이다. 최종 SHA의 제품 바이트는 후보와 같다(문서·QA 증거만 추가).
+- 세션: 검토 `1fe0133c-f609-42f7-a774-bf5b8b5765c2`, 구현자 `5953ccd3-7f4f-4c5e-b63d-c02d36ee35ac`(다름). snapshot `C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-c1644dfcf27644b3bc46f3c1788d9816`(읽기 전용 detached, head 일치).
+- 검증(내 실행, Linux 고유 clone `c7828b2` detached·clean): `make lint` 0, `make test` 0, `lint.py` ERROR 0·WARNING 4(SIZE-001 3·SIZE-002 1)·실행 불가 0, `TestMemberUIFixtures`·`TestMemberPagesShowNextSteps` PASS, `go vet -tags 'integration browser'`·`go test -c` 0. 합성 fixture 29개 × 1440·390·320 = 87건 브라우저 측정: 가로 overflow 0, 44px 미만 0. 키보드(건너뛰기 링크·Tab 순서·details Enter/Space·위험 구역 외곽선·닫힌 상태에서 위험 버튼 미도달), 텍스트 간격 확대 12건(overflow 0) 통과. form golden을 재설계 전 템플릿과 대조: 차이는 홈 로그아웃 2행과 원격 동의 2행뿐.
+- 보안·불변식 직접 확인: CSRF(gate hidden·crossOrigin·golden), CSP(헤더 코드 diff 없음, 인라인 스타일만), owner 분리(수집 코드 변경 없음), 5분 재인증(서버 검사 변경 없음, 화면 안내 추가), 파괴 확인(위험 구역 단일 POST), form action/method/hidden 보존. 출력은 html/template 이스케이프와 고정 badge 맵이다.
+- D04 R-01–09: R-03만 부분(F-3), 나머지 충족. R-10·R-11 충족. R-12는 범위 밖.
+- 발견(low, 미해결·후속): F-1 OAuth 동의 두 화면에 `main` 랜드마크 없음·영문 agent(`remote_auth.go:312`), F-2 연결 수단 `<code aria-labelledby>`(`member_pages.go:114`), F-3 960px 미만에서 섹션 이동이 확인 필요 띠 위(`member_pages.go:141`). 수락을 막지 않는다. coor가 DEV·designer 과제로 정한다.
+- 증거 재사용: DB integration+browser 태그 테스트는 DEV의 `0b485ad` 통과(`ok … 114.875s`)를 재사용한다. 이번 SHA에서는 컴파일만 확인했다. `0b485ad`→`c7828b2` 제품 diff가 템플릿 블록 이동(`member.go`→`member_pages.go`)과 README 2줄·주석 1줄뿐임을 줄 단위로 대조했다. 자기 실행으로 기록하지 않았다.
+- 미검증: 실제 Google 로그인 왕복(실행 안 함), 실제 스크린 리더, 200% 직접 확대(320px 폭·텍스트 간격으로 간접 확인), 대비 픽셀 측정, 다크 모드(범위 밖), 응답 CSP 헤더·쿠키의 실서버 관찰. 사용자 세션 로그아웃·실 agent 생성/폐기는 하지 않았다. 캡처·영상은 만들지 않았다.
+- 절차 메모: `coor_remote.py`는 디스크에서 찾지 못해 같은 방식의 DEV helper(`dev/build/server_verify.py`)를 읽고 scratchpad 복사본으로 재사용했다(비밀값 가림, 레포 미추가). `review.py check`는 패킷이 대상 SHA 뒤 커밋이라 `--task-key SAR-SERVICE-UI-001-TESTER-REVIEW`로 실행해 통과했다(`reviewed=15, skipped=4, total=19`). 패킷 outcomes 189건은 `work.py finish`가 검사한다.
+- 보존 자원(삭제 없음): Linux `/tmp/knowslink-serviceui-tester-c7828b2-s1fe0133c-r2`(clone·로그·lint.json), 빈 폴더 `/tmp/knowslink-serviceui-tester-c7828b2-s1fe0133c`(첫 시도), `/tmp/knowslink-serviceui-tester-s1fe0133c.bundle`, `/tmp/knowslink-serviceui-tester-tools-s1fe0133c.tar`. 로컬 snapshot은 위 경로다. Docker 컨테이너는 만들지 않았다.
+- 산출물: phase `docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md`, QA 증거 `docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md`(+ `browser-measure.jsonl`, `keyboard-walk.jsonl`, `measure.js`, Linux 로그·절차), 리뷰 `docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md`(+ `result.json`, `lint.json`), `docs/evaluations/jev/SAR-SERVICE-UI-001-TESTER-packet-outcomes.json`, `contexts/tester.md`.
+- 후속: designer 1440·390 직접 시각 검수 → low 3건 처리 결정 → main 통합·OPS 배포. snapshot 정리는 `review.py cleanup`(coor 결정 뒤).
 
 ## 고정 후보와 구현자 — 착수 정본
 고정 후보 c7828b227b5715f7bdf02bff46bf9cf102a758d9. 실제 구현자 Claude 세션5953ccd3-7f4f-4c5e-b63d-c02d36ee35ac, dispatch ctx_d554b501df04. DEV clean HEAD 일치 확인. 구현자 phase docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md의 시각 검수 환경 절을 먼저 읽는다. KNOWSLINK_UI_FIXTURE_DIR=<새 빈 폴더> go test ./internal/relay -run TestMemberUIFixtures -count=1로 29개 합성 HTML을 만든다. snapshot 자체에는 생성물을 쓰지 말고 고유 실행 clone 또는 별도 기록 역할의 동일 제품 바이트에서 생성한다. 기준 main8539ef5와 제품 diff를 확인한다. DEV는 agent 서버 안내문·짧은 날짜·200% 확대·실스크린리더 미적용/미검증을 기록했다. 수락 기준과 대조하고 차이의 영향과 후속을 남긴다. form golden의 추가 헤더 logout 1건은 명세4.2의 의도적 추가이며 실제 서버 보안 검사를 보존한다.
