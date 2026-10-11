@@ -1,0 +1,15 @@
+ALLOW  recurse switch colon abbreviated -r:$true
+ALLOW  recurse switch -re:$true
+ALLOW  recurse switch -r:1 literal path
+DENY   recurse full -Recurse:$true
+ALLOW  ps comment hides delete (trailing backslash in dq)
+ALLOW  ps comment hides delete (no sep)
+ALLOW  dot-source cmdlet
+ALLOW  rm -r:$true
+ALLOW  del -r:$true via alias
+DENY   rm -Recurse via splat var
+DENY   rm array of paths
+ALLOW  git -C clean
+ALLOW  python os.system
+ALLOW  node rmdirSync
+DENY   quoted tilde expansion path

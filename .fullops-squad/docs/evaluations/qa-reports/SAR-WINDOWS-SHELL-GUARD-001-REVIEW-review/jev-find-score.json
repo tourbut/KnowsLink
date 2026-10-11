@@ -1,0 +1,44 @@
+{
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-DEV",
+  "find_head": "a90a9e60ed1f009627aa39031fbf3c228d0d7599",
+  "base": "a90a9e60ed1f009627aa39031fbf3c228d0d7599",
+  "head": "4e82b4f4cd1bc31a59d0d230349fd34d95c7f0c7",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "Makefile"
+  ],
+  "new_files": [
+    ".claude/settings.json",
+    ".codex/hooks.json",
+    "scripts/shell_guard.py",
+    "scripts/test_shell_guard.py"
+  ],
+  "candidates": [
+    ".gitignore",
+    "adapters/.claude-plugin/plugin.json",
+    "adapters/.cursor-plugin/plugin.json",
+    "adapters/.grok-plugin/plugin.json",
+    "adapters/.mcp.json",
+    "adapters/README.md",
+    "adapters/src/private-files.ts",
+    "adapters/src/public-check.ts",
+    "deploy/knowslink/verify.py",
+    "scripts/install_bot_mcp.sh",
+    "scripts/verify_grok_plugin.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [],
+  "recall": 0.0,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

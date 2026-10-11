@@ -1,0 +1,142 @@
+         D  exp=D   incident ps->bash var
+         D  exp=D   incident full path git bash
+         D  exp=D   wsl dash e sh
+         D  exp=D   call var program
+BYPASS   A  exp=D   python os.system
+BYPASS   A  exp=D   python subprocess
+BYPASS   A  exp=D   node rmdirSync
+BYPASS   A  exp=D   node unlinkSync
+BYPASS   A  exp=D   docker mount rm
+BYPASS   A  exp=D   busybox rm
+BYPASS   A  exp=D   git -C clean
+BYPASS   A  exp=D   git --no-pager clean
+FALSEPOS D  exp=A   git clean -fdn dry
+BYPASS   A  exp=D   robocopy /MOVE
+BYPASS   A  exp=D   robocopy /mov
+BYPASS   A  exp=D   backslash obfusc
+         D  exp=D   empty-quote obfusc
+         D  exp=D   alias backslash
+         D  exp=D   Remove-Item -r drive
+         D  exp=D   ri -r
+         D  exp=D   del /s
+         D  exp=D   rd /s via ps
+         A  exp=A?  Remove-Item nonrec outside file
+         A  exp=A?  rm nonrec outside
+         D  exp=D   rm glob
+         A  exp=A?  Move-Item drive
+         A  exp=A?  mv
+BYPASS   A  exp=D   scriptblock create
+         D  exp=D   ForEach remove-item var
+         D  exp=D   Remove-Item (subexpr)
+         D  exp=D   Remove-Item -Path in ws
+         D  exp=D   Remove-Item -LiteralPath $p
+         A  exp=A   sanctioned ok
+         A  exp=A   sanctioned file ok
+         D  exp=D?  sanct -WhatIf
+         D  exp=D   sanct chain ; outside
+         D  exp=D   sanct && outside
+         D  exp=D   sanct 2 paths
+         D  exp=D   sanct comma paths
+         D  exp=D   sanct via junction
+         D  exp=D   sanct junction itself
+         D  exp=D   sanct outside
+         A  exp=?   sanct trailing sep
+         A  exp=?   sanct fwd slash mix
+         A  exp=?   sanct upper-case path
+         D  exp=?   sanct long-path prefix
+         D  exp=D   sanct ws parent
+         D  exp=D   sanct sibling prefix
+         D  exp=?   sanct trailing dot
+         D  exp=D   sanct ADS
+         D  exp=D   sanct tilde short
+         D  exp=A?  commit msg false pos
+         A  exp=A?  bash script file
+         A  exp=A?  make clean
+         A  exp=A?  python script
+         A  exp=D?  format-volume
+         A  exp=D?  Clear-Disk
+         A  exp=D?  cipher /w
+         D  exp=D   cmd del dir
+         A  exp=A   pwsh nodelete
+         A  exp=A?  pwsh -File script
+         D  exp=D   env assignment
+         D  exp=D   rm with --
+         D  exp=D   rm -Rf
+         D  exp=D   rm -vrf
+         D  exp=D   rm -d drive
+BYPASS   A  exp=D   rm -f /c/
+         D  exp=D   rm -f ~
+         D  exp=D   no-preserve-root
+         D  exp=D   subshell paren
+         D  exp=D   brace group
+         D  exp=D   background &
+         D  exp=D   newline
+         D  exp=D   CRLF
+         D  exp=D   tab sep
+         D  exp=D   uppercase RM
+         D  exp=D   REMOVE-ITEM upper
+         D  exp=D   xargs rm
+         D  exp=?   xargs -I rm
+         D  exp=D   xargs -0 rm
+         D  exp=D   find -exec sh
+         D  exp=D   find delete
+         D  exp=D   find -exec rm
+         D  exp=D   find -ok
+BYPASS   A  exp=D   rsync delete
+         D  exp=D   git clean -x -d -f
+         A  exp=?   git rm -rf .
+         A  exp=?   git reset hard
+         A  exp=A   unlink
+         A  exp=A?  shred
+         A  exp=A   Remove-Item Env
+         D  exp=D   RI -Recurse "ws"
+         D  exp=D   RI path -Recurse
+         D  exp=D   Recurse:$true outside
+         D  exp=D   -LP alias
+         D  exp=D   -Literal abbreviated
+         D  exp=?   -rec -fo abbreviated
+         D  exp=D?  -Confirm:$false
+         D  exp=D   call op Remove-Item
+         D  exp=D   call op quoted
+BYPASS   A  exp=D   dot source
+         D  exp=D   Invoke-Command
+         D  exp=D   Start-Job
+         D  exp=D   pipe Remove-Item
+         D  exp=D   Delete($true)
+         A  exp=A?  Delete()
+         D  exp=D   Directory.Delete
+         D  exp=D   Directory.Delete 1
+         A  exp=D?  VB DeleteDirectory
+         A  exp=D?  FSO DeleteFolder
+         D  exp=D   cmd rmdir quoted
+         D  exp=D   powershell.exe nested
+         D  exp=D   ssh
+         D  exp=D   eval
+BYPASS   A  exp=D   node child_process
+         A  exp=D?  perl unlink
+         A  exp=D?  ruby FileUtils
+         D  exp=D   python rmtree
+         D  exp=D   python pathlib rmdir
+         D  exp=D?  python removedirs
+         A  exp=D?  python exec b64
+         A  exp=A?  go run
+EDGE 0 no command key
+EDGE 0 command null
+EDGE 0 command int
+EDGE 0 command dict
+EDGE 0 tool_input str
+EDGE 2 payload list
+EDGE 2 payload null
+EDGE 2 payload empty
+EDGE 2 toolInput cmd
+EDGE 0 alt key cmd
+EDGE 0 alt key script
+EDGE 2 list cmd
+EDGE 0 empty cmd
+EDGE TIMEOUT huge cmd
+EDGE 0 spaces redos
+EDGE 0 nul byte
+EDGE 0 fullwidth rm
+EDGE 2 sanct no env no cwd
+EDGE 2 sanct no env cwd=subdir (root shrinks)
+exists after: True
