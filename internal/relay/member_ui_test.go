@@ -1,3 +1,4 @@
+// Synthetic renders of every member page pin the form contract and feed the direct visual review.
 package relay
 
 import (

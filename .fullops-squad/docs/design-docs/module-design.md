@@ -224,9 +224,9 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 
 | 파일·모듈 | 책임 | 자동 검사 |
 |---|---|---|
-| `member.go` `memberStyle` | 회원 웹 디자인 토큰의 단일 정의(D04 8절 색·글꼴·간격·버튼·배지·포커스). gate 화면(`http.go` `page`)과 OAuth 동의 화면(`remote_auth.go`)이 같은 상수를 쓴다 | `TestMemberUIFixtures`: 외부 자원(`src=`·`<link`·`url(`·`<script`·`@import`) 0건 |
-| `member.go` `badge`·`badges` | 상태를 글자·기호·색으로 함께 표시한다. 없는 상태(온라인·최근 접속)는 만들지 않는다 | 같은 검사의 전 상태 렌더 |
-| `member.go` `memberPages` | 로그인·확인 코드·홈·연결 관리·기기 승인·receipt·거부 화면. 홈은 헤더·확인 필요 띠·섹션 이동·에이전트(접힘 행·위험 구역)·관계·승인 요청·연결 확인·계정 순서다 | `TestMemberPagesShowNextSteps`, integration 문구 검사 |
+| `member_pages.go` `memberStyle` | 회원 웹 디자인 토큰의 단일 정의(D04 8절 색·글꼴·간격·버튼·배지·포커스). gate 화면(`http.go` `page`)과 OAuth 동의 화면(`remote_auth.go`)이 같은 상수를 쓴다 | `TestMemberUIFixtures`: 외부 자원(`src=`·`<link`·`url(`·`<script`·`@import`) 0건 |
+| `member_pages.go` `badge`·`badges` | 상태를 글자·기호·색으로 함께 표시한다. 없는 상태(온라인·최근 접속)는 만들지 않는다 | 같은 검사의 전 상태 렌더 |
+| `member_pages.go` `memberPages` | 로그인·확인 코드·홈·연결 관리·기기 승인·receipt·거부 화면. 홈은 헤더·확인 필요 띠·섹션 이동·에이전트(접힘 행·위험 구역)·관계·승인 요청·연결 확인·계정 순서다 | `TestMemberPagesShowNextSteps`, integration 문구 검사 |
 | `member.go` `homePage` | 관계 정렬(받은 초대→보낸 초대→연결됨→종료), 활성 에이전트 수, 받은 초대·대기 승인 요청 건수 | integration `TestPublicAgentHTTP`·`TestEmailIdentity` |
 | `member_agents.go` `memberAgent.ActiveKeys`, `memberPair.Mine/Peer` | 접힌 행의 활성 키 수, 관계 행의 내 에이전트→상대 방향 | 위 검사 |
 | `testdata/member_forms.golden` | 재설계 전 템플릿에서 만든 form 계약(method·action·hidden 값·필드 이름·button 라우팅). 의도한 차이는 홈 헤더 로그아웃 form 1개 추가뿐이다 | `TestMemberUIFixtures` |

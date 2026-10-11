@@ -30,7 +30,8 @@ summary: 로그인·내 에이전트·연결 관리 SSR 화면의 상용 디자�
 
 | 파일 | 변경 |
 |---|---|
-| `internal/relay/member.go` | `memberStyle` 토큰(8.1 색, 8.2 글꼴·`keep-all`+`break-word`, 식별자·지문·코드만 `anywhere`, 8.3 간격, 8.4 버튼 44px, 8.5 배지·안내, 8.6 포커스). `badge` 함수. 모든 회원 화면 템플릿 재구성. 홈 관계 정렬·건수 계산. 문구 표(6절) 적용 |
+| `internal/relay/member_pages.go`(새 파일, lint SIZE 경고에 따라 `member.go`에서 view만 분리) | `memberStyle` 토큰(8.1 색, 8.2 글꼴·`keep-all`+`break-word`, 식별자·지문·코드만 `anywhere`, 8.3 간격, 8.4 버튼 44px, 8.5 배지·안내, 8.6 포커스). `badge` 함수. 모든 회원 화면 템플릿 재구성. 문구 표(6절) 적용 |
+| `internal/relay/member.go` | 홈 관계 정렬·활성 에이전트 수·확인 필요 건수 계산, 시작 화면 제목 |
 | `internal/relay/member_agents.go` | `memberAgent.ActiveKeys`, `memberPair.Mine/Peer`. 거부·연결 화면 제목의 "agent"를 "에이전트"로 |
 | `internal/relay/http.go` | gate 템플릿이 `memberStyle`을 쓴다. 문구·hint/body 구분·비활성 버튼 숨김·CSRF hidden은 같다 |
 | `internal/relay/member_ui_test.go`, `testdata/member_forms.golden` | 합성 fixture 29개, form 계약 golden, 외부 자원 금지, 시각 검수용 HTML 출력 |
@@ -102,3 +103,4 @@ container 두 개는 지시서의 "컨테이너 정리 금지"에 따라 `docker
 - 실제 Google OAuth 왕복·실계정 데이터·운영 화면은 보지 않았다.
 - 옛 검수 스크립트 `docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/render_check.go`는 정규식으로 `memberStyle`을 찾는다. 상수 이름은 같지만 여러 줄이 되었으므로 그 스크립트는 재사용 전에 확인한다. 과거 증거라 수정하지 않았다.
 - D04 관련 designer 문서 `SAR-PUBLIC-SERVICE-UX.md` 22행은 "계정 비활성화"를 홈 항목으로 적는다. designer 소유라 수정하지 않았다.
+- FullOps lint WARNING: `member.go`·`member_agents.go`·`connections_test.go`는 기준 전부터 300줄을 넘었다. view는 `member_pages.go`로 분리했다. 변경 추가 줄 수(SIZE-002)는 템플릿 재작성·fixture·golden 때문이며 화면 하나씩 나누면 공유 토큰 검수가 어려워 한 과제로 유지했다. `PLANS.md` 크기는 coor 소유다.
