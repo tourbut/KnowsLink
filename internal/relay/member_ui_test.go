@@ -166,6 +166,9 @@ func TestMemberUIFixtures(t *testing.T) {
 		for _, s := range formSignatures(body) {
 			got = append(got, f.name+": "+s)
 		}
+		if !strings.Contains(body, "a{display:inline-flex;align-items:center;min-height:44px") {
+			t.Fatalf("%s lacks the 44px text-link touch target (D04 §9)", f.name)
+		}
 		for _, banned := range []string{"src=", "<link", "url(", "<script", "<no value>", "@import"} {
 			if strings.Contains(body, banned) {
 				t.Fatalf("%s renders %q", f.name, banned)
