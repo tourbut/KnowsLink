@@ -80,7 +80,9 @@ summary: tester의 같은 후보 캡처 5장을 직접 열어 반환 화면과 �
 
 제품 바이트가 고정 SHA와 같아 원 exact-SHA 제품 검증을 재사용한다. 근거는 [dev-eac603b6-final-gate.json](../SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/dev-eac603b6-final-gate.json)(`product-lint`·`product-test` 종료코드 0)과 [tester-96c7b823-final-gate.json](../SAR-SSE-INSTALL-001-OAUTH-RETURN-COOR/tester-96c7b823-final-gate.json)(같은 두 명령 passed, ERROR 0, WARNING 3)이다. 이는 이번 기록 HEAD의 새 제품 실행이 아니다.
 
-문서 결과의 FullOps lint 실행 결과는 아래 완료 기록에 추가한다.
+Windows 기본 PATH에 `make`가 없어 첫 `lint.py` 실행(head `01b6f6f2cc7d`)은 `product-lint`·`product-test`가 unavailable(실행 불가 2)이었다. 통과로 세지 않는다. 이후 자기 task-local `make.cmd`가 tester 최종 shim 보존본(`tester-final-product-shim.py`, 원문과 SHA256 동일, 수정 없음)을 호출해 같은 명령을 다시 실행했다. shim은 제품 바이트(`.fullops-squad` 제외)가 `eac603b6`과 같고 작업 트리가 깨끗한지 확인한 뒤 기존 격리 Linux의 `eac603b6` clean clone에서 `make lint`·`make test`만 실행한다. 이는 byte-identical product 검증이며 exact Git HEAD 실행이 아니다.
+
+결과: `lint.py --repo . --from eac603b6…` head `01b6f6f2cc7d`, `product-lint` passed, `product-test` passed, ERROR 0, WARNING 1(`PLANS.md` 크기, coor 소유 문서, 이번 변경 아님), 실행 불가 0, 종료코드 0. 최종 기록 HEAD의 결과는 완료 보고에 추가한다.
 
 ## 인계
 
