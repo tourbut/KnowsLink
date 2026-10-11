@@ -1,0 +1,277 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "a90a9e60ed1f009627aa39031fbf3c228d0d7599",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "33f1c25ad42d57bed0dc96feb68590b1c6a7ad191968b67f02312971030175e8",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-AGENTS.md",
+      "c1-security.md",
+      "c2-FULLOPS.md",
+      "c3-orca-agents.md",
+      "c4-project.md",
+      "c5-document-writing.md",
+      "c6-report.md",
+      "c7-dev.md",
+      "required_1",
+      "required_3",
+      "required_4",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-AGENTS.md",
+      "c1-security.md",
+      "c2-FULLOPS.md",
+      "c3-orca-agents.md",
+      "c4-project.md",
+      "c5-document-writing.md",
+      "c6-report.md",
+      "c7-dev.md",
+      "required_1",
+      "required_3",
+      "required_4",
+      "required_6"
+    ],
+    "signals": {
+      "c0-AGENTS.md": {
+        "relevant": 0.87,
+        "evidence": 0.78,
+        "contradicts": 0.15,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-security.md": {
+        "relevant": 0.59,
+        "evidence": 0.65,
+        "contradicts": 0.12,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-FULLOPS.md": {
+        "relevant": 0.27,
+        "evidence": 0.69,
+        "contradicts": 0.16,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-orca-agents.md": {
+        "relevant": 0.31,
+        "evidence": 0.66,
+        "contradicts": 0.41,
+        "injection": 0.07,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-project.md": {
+        "relevant": 0.26,
+        "evidence": 0.71,
+        "contradicts": 0.36,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-document-writing.md": {
+        "relevant": 0.16,
+        "evidence": 0.35,
+        "contradicts": 0.13,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-report.md": {
+        "relevant": 0.18,
+        "evidence": 0.22,
+        "contradicts": 0.63,
+        "injection": 0.08,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-dev.md": {
+        "relevant": 0.16,
+        "evidence": 0.5,
+        "contradicts": 0.27,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-AGENTS.md": "AGENTS.md",
+      "c1-security.md": ".fullops-squad/rules/common/security.md",
+      "c2-FULLOPS.md": ".fullops-squad/FULLOPS.md",
+      "c3-orca-agents.md": ".fullops-squad/orca-agents.md",
+      "c4-project.md": ".fullops-squad/project.md",
+      "c5-document-writing.md": ".fullops-squad/docs/agents/document-writing.md",
+      "c6-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      "c7-dev.md": ".fullops-squad/contexts/dev.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md",
+      "AGENTS.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 27041,
+    "output_tokens": 608,
+    "cost": 0.001135722,
+    "known_cost": 0.001135722,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.621,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.56,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2436,
+        "output_tokens": 76,
+        "cost": 0.000102312
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.566,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3027,
+        "output_tokens": 76,
+        "cost": 0.000127134
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.573,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3607,
+        "output_tokens": 76,
+        "cost": 0.000151494
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.516,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3532,
+        "output_tokens": 76,
+        "cost": 0.000148344
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.559,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3674,
+        "output_tokens": 76,
+        "cost": 0.000154308
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.611,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3235,
+        "output_tokens": 76,
+        "cost": 0.00013587
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.588,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3859,
+        "output_tokens": 76,
+        "cost": 0.000162078
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.521,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3671,
+        "output_tokens": 76,
+        "cost": 0.000154182
+      }
+    }
+  ],
+  "request_max_seconds": 0.611,
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-DEV",
+  "role": "dev",
+  "attempt": "2844ae38d8d64434889e5d5d1f385da2",
+  "instruction_sha256": "fcb64d7ccf1040ffdad990e09b827d4dd2ba791b317211208e02ced78668ea1f",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "AGENTS.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/orca-agents.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/docs/agents/document-writing.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      ".fullops-squad/contexts/dev.md"
+    ],
+    "required": [
+      "AGENTS.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/project.md"
+    ],
+    "sources": {
+      "AGENTS.md": "3367bc77ccc823f338a22522dc029cada774323357f16b4b646ec2f92b502942",
+      ".fullops-squad/rules/common/security.md": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc",
+      ".fullops-squad/FULLOPS.md": "3802c9ba259b7052ef4eca052e64fb09bd02f5cc934886cb6f9291da6f2f8e0d",
+      ".fullops-squad/orca-agents.md": "97ec2f89d6060135b51cc6a67058abbafb92b595098c9e8aa9f5a33a42d8dc56",
+      ".fullops-squad/project.md": "089782d68610223d84ee8b0e3487a3fd96d04cd1083423a8b9eedc7ab63256a1",
+      ".fullops-squad/docs/agents/document-writing.md": "4bc9f139a465c6614cd4eecdc581b7933dddc23c2bbc9912b513c5fcd6e337c5",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md": "425012ae7f8525142f2ee4bfd6369acbfff5ebaeada08d8bee40361efa908605",
+      ".fullops-squad/contexts/dev.md": "b3577fe558f1577061403307c5fb4f1b8c6643a15488f5eefceeedf4083d38df"
+    }
+  },
+  "unsent_sources": {},
+  "refused_paths": [],
+  "elapsed_seconds": 1.946,
+  "input_partial": false,
+  "instruction_chars": 3351,
+  "remaining_instruction": null
+}

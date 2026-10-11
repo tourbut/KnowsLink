@@ -1444,3 +1444,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - designer 완료 msg_5448a3f5b4a6: 실제 세션01a126c0, 증거 dc21d6c1b6db591c7f989e8a21c04199fae4a5cc. 고정 원천 desktop/mobile 8조건과 긴 URI 하단 직접 시각 PASS·제품 diff0. Windows make 부재로 최종 gate unavailable2/outcome failed 원문을 유지한다. 질문msg_b6ab1e08a9df는 이미 inactive여서 회신 거부; 기존 DEV 고정 shim은 다른 HEAD 검사를 증명하지 못하므로 사용하지 않았다. coor가 같은 dc21d6c clean Linux 고유 clone과 전용 task-local shim으로 실제 등록 gate를 보완 중이다. 운영 서비스·DB 불변이다.
 - tester 보고의 잘못된 Windows bash 삭제 인자는 worker가 즉시 종료했다고 기록했다. Program Files/Go 권한 거부 뒤 전체 삭제 영향은 확인되지 않았다. 재실행하지 않는다. QA 체크아웃·snapshot·제품 검사 통과는 확인했지만 전체 PC 무손실을 주장하지 않는다.
 - Dots 실제 연결용 Orca ChatGPT plugins 탭은 미로그인이다. 사용자 로그인 요청을 전달하고 검수 기록 정리는 계속한다. 실제 app ID·Google 동의·계정 Events는 아직 미검증이다.
+
+- 사용자 로그인 완료 통보를 받았으나 사고 대응 중 실제 Dots 연결은 수행하지 않았다. 사용자 2026-10-11 지시로 파일 복구를 중단하고 재발 방지 후 개발을 재개한다. 사고 로그·해시·관리자 USN/VSS 수집 자료는 별도 F: HDD의 비공개 KnowsLink-Incident 폴더에 보존했다. 실제 앱 자료 삭제를 확인했으며 세부 경로·원문은 Git에 넣지 않는다. 원본 복원·복구 도구 설치는 하지 않았다.
+- 시각 증거 dc21d6c의 coor 보완 gate는 같은 SHA clean Linux clone에서 product-lint/test0, ERROR0/WARNING1/unavailable0으로 통과했다. 원 designer unavailable2/failed 기록은 보존하고 coor 추가 증거를 별도로 연결한다. 독립 tester 수락 9503e86과 visual dc21d6c를 coor에 병합했다. main 수락과 운영 적용은 별개다.
+- SAR-WINDOWS-SHELL-GUARD-001-DEV를 우선 배정한다. 실제 지원 hook과 범위를 확인해 Windows 교차 셸 삭제·검증되지 않은 재귀 삭제를 실행 전에 차단한다. 지침만으로 강제 차단 완료를 주장하지 않는다. Jev implementation→dev/Claude Opus5.5 high, fresh(큰 이전 문맥·오래된 완료), lite/standard. 삭제 없는 합성 회귀와 실제 hook 연결 확인 및 별도 세션 독립 검수 후 운영 작업을 이어간다. 기존 사용자 소유 DEV 세션과 사고 증거는 보존한다.

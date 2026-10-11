@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "2d8cb5c8e23d4938a72194595b212143",
+  "base": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+  "merge_base": "febd1282df2e84a29fa0a53834569e7b9cc028e2",
+  "head": "dc21d6c1b6db591c7f989e8a21c04199fae4a5cc",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json .claude-plugin/plugin.json .codex-plugin/plugin.json config/local.mcp.json manifest.json\n\nChecking formatting...\nAll matched files use Prettier code style!\n\n> @knowslink/adapters@0.0.0 lint\n> eslint src eslint.config.mjs\n\n\n> @knowslink/adapters@0.0.0 typecheck\n> tsc --noEmit\n\nnpm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml\nChecking formatting...\nAll matched files use Prettier code style!\npython3 scripts/check_compose.py\nCompose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed\npython3 scripts/check_public_ingress.py\nPublic ingress: Google/member paths only; owner, administrative APIs and trial remain outside this rule\nbash deploy/knowslink/test_public_config.sh\nrendered public candidate; D12 review and edge app removal required before activation\nPublic config: render-only, private, default deny, no overwrite, validation failures propagated\nsh -n scripts/install_bot_mcp.sh\npython3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py\n/tmp/knowslink-coor-visual-dc21/deploy/knowslink/beta.sh: line 101: /tmp/tmp.qWfI49Ahog/state/tunnel/config.public.yml: cannot overwrite existing file\nERROR: candidate exists or cannot be written; live config unchanged\nERROR: invalid tunnel UUID\n\nEXIT= 0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "go test -race ./cmd/... ./internal/...\nok  \tgithub.com/tourbut/KnowsLink/cmd/migrate\t1.013s\nok  \tgithub.com/tourbut/KnowsLink/cmd/relay\t1.021s\nok  \tgithub.com/tourbut/KnowsLink/internal/config\t1.022s\n?   \tgithub.com/tourbut/KnowsLink/internal/database\t[no test files]\nok  \tgithub.com/tourbut/KnowsLink/internal/relay\t4.913s\nnpm test --prefix adapters\n\n> @knowslink/adapters@0.0.0 test\n> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js && node dist/connect.test.js && node dist/login.test.js && node dist/inbox.test.js && node dist/events.test.js\n\n\n> @knowslink/adapters@0.0.0 build\n> tsc && npm run bundle:plugin\n\n\n> @knowslink/adapters@0.0.0 bundle:plugin\n> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=dist/plugin.js\n\nPASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output\nPASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified\nPASS: local connection PoP, private directory/files, no overwrite, credential storage, one-use completion, URL boundary\nPASS: browser URL excludes private token, key-bound poll/complete, explicit approval, automatic local storage, distinct client keys, no overwrite, expiry\nPASS: auto poll/verify/local copy before ACK/notice without receive call, duplicate, restart, read marker, expired, revoked, backoff, opt-out, CLI watcher, single in-flight pull, loopback wake refused/accepted/duplicate/restart/off/401/reset/invalid without text or token exposure\nPASS: SSE initial/push/reconnect/coalesce/serial/fallback/cancel and strict metadata frames\n\n  dist/plugin.js  1.6mb ⚠️\n\n⚡ Done in 104ms\n\nEXIT= 0"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1437줄(이전 1419, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added_lines": 18,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 0
+  }
+}

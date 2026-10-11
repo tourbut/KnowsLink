@@ -1,0 +1,92 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.97,
+        "product": 0.03
+      },
+      "confidence": 0.94
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.08,
+      "D02": 0.1,
+      "D03": 0.23,
+      "D04": 0.1,
+      "D05": 0.14,
+      "D06": 0.13,
+      "D07": 0.09,
+      "D08": 0.11,
+      "D09": 0.15,
+      "D10": 0.52,
+      "D11": 0.15,
+      "D12": 0.4,
+      "D13": 0.28
+    }
+  },
+  "usage": {
+    "input_tokens": 2547,
+    "output_tokens": 314,
+    "cost": 0.000106974
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.685,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0,
+      "claude claude-sonnet-5-5 high": 0.01,
+      "claude claude-opus-5-5 medium": 0.11,
+      "codex gpt-6.1-sol medium": 0.22,
+      "claude claude-opus-5-5 high": 0.64,
+      "codex gpt-6.1-sol high": 0.02
+    },
+    "usage": {
+      "input_tokens": 836,
+      "output_tokens": 66,
+      "cost": 3.5112e-05
+    }
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
+  "head": "a90a9e60ed1f009627aa39031fbf3c228d0d7599",
+  "requires_packet": true,
+  "attempt": "2844ae38d8d64434889e5d5d1f385da2",
+  "instruction_sha256": "0d8b64feefad3f8fe1ea5c0674b73f1c27a087914e281ade363f8aa8933b9392",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "dda46d39950a1e30c7f8abcc634cb89e4d10e681146169bbbb6ec3a58a278f81"
+}

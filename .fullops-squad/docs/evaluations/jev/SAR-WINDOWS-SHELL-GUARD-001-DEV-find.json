@@ -1,0 +1,239 @@
+{
+  "task_key": "SAR-WINDOWS-SHELL-GUARD-001-DEV",
+  "role": "dev",
+  "head": "a90a9e60ed1f009627aa39031fbf3c228d0d7599",
+  "attempt": "2844ae38d8d64434889e5d5d1f385da2",
+  "instruction_sha256": "fcb64d7ccf1040ffdad990e09b827d4dd2ba791b317211208e02ced78668ea1f",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "find-v3-shared-noul",
+    "scope": "code",
+    "limit": 12,
+    "strategy": "batch",
+    "parser": "search-map-v1",
+    "input_chars": 24000
+  },
+  "input_sha256": "0ecaef0d05b4729191d9f75ce9bcf9e4e57f79840abaa3432e7b4ac81b790040",
+  "version": "jev-find-v2",
+  "requested_model": "~typesafe/jev-latest",
+  "files": 80,
+  "scope": "code",
+  "passes": [
+    {
+      "level": "file",
+      "options": 80
+    }
+  ],
+  "candidates": [
+    {
+      "path": "adapters/.grok-plugin/plugin.json",
+      "summary": "",
+      "probability": 0.33,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 0
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink 호스트별 설치 — 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계 | KnowsLink 플러그인 | 호스트별 설치 — SAR-SSE-INSTALL-001 | 도메인으로 Google 연결 시작 | 패키지 만들기",
+      "probability": 0.18000000000000002,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 1
+    },
+    {
+      "path": ".gitignore",
+      "summary": "",
+      "probability": 0.09,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 2
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure. | run(command, directory, expected=0, diagnostic=None)  | main() ",
+      "probability": 0.08,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 3
+    },
+    {
+      "path": "adapters/.claude-plugin/plugin.json",
+      "summary": "",
+      "probability": 0.05,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 4
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched. | main()  | grok(*arguments) ",
+      "probability": 0.04,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 5
+    },
+    {
+      "path": "adapters/.mcp.json",
+      "summary": "",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 6
+    },
+    {
+      "path": "adapters/src/private-files.ts",
+      "summary": "Private connection storage checks POSIX ownership/modes or Windows ACLs, and rejects links on either platform.",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 7
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "summary": "Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives. | run(*command)  | fetch(scheme, host, path, headers=None, port=None)  | shared_state()  | baseline()  | regression()  | local()  | public() ",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 8
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "summary": "Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP \"Command\" server.",
+      "probability": 0.03,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 9
+    },
+    {
+      "path": "adapters/.cursor-plugin/plugin.json",
+      "summary": "",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 10
+    },
+    {
+      "path": "adapters/src/public-check.ts",
+      "summary": "Real local CLI and independent MCP processes check member text against the isolated Go/Postgres service; no vendor account claims.",
+      "probability": 0.02,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 11
+    }
+  ],
+  "existence": {
+    "found_probability": 0.57,
+    "status": "unclear",
+    "basis": "metadata map only; not repository absence"
+  },
+  "truncated": false,
+  "usage": {
+    "input_tokens": 5388,
+    "output_tokens": 837,
+    "cost": 0.000226296,
+    "known_cost": 0.000226296,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.745,
+  "error": null,
+  "calls": [
+    {
+      "model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 5388,
+        "output_tokens": 837,
+        "cost": 0.000226296
+      },
+      "latency_seconds": 0.745
+    }
+  ],
+  "semantic_search": true,
+  "snapshot": "HEAD metadata; no worktree overlay",
+  "map_sha256": "1cb7bc0cb3bf68e385711705860f403a09a5ed9474a4c56d9a79b24bd87806c8",
+  "strategy": "batch",
+  "seed_paths": [],
+  "unreadable_files": [],
+  "seed_search_error": null,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "ranking_status": "single_batch",
+  "remaining_candidates": [],
+  "unselected_files": [
+    ".dockerignore",
+    ".gitattributes",
+    ".nvmrc",
+    "Dockerfile",
+    "Makefile",
+    "adapters/.codex-plugin/plugin.json",
+    "adapters/config/local.mcp.json",
+    "adapters/eslint.config.mjs",
+    "adapters/manifest.json",
+    "adapters/mcp.json",
+    "adapters/package.json",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/inbox.ts",
+    "adapters/src/index.ts",
+    "adapters/src/login.test.ts",
+    "adapters/src/mcp.ts",
+    "adapters/src/trial-check.ts",
+    "adapters/src/trial-cli.ts",
+    "adapters/src/trial-setup.ts",
+    "adapters/tsconfig.json",
+    "cmd/migrate/main.go",
+    "cmd/migrate/main_test.go",
+    "cmd/relay/main.go",
+    "cmd/relay/main_test.go",
+    "db/migrations/00001_relay.sql",
+    "db/queries/relay.sql",
+    "deploy/knowslink/access_trial_plan.py",
+    "deploy/knowslink/compose.ops.yaml",
+    "deploy/knowslink/test_public_config.sh",
+    "deploy/knowslink/tunnel/config.yml.tmpl",
+    "deploy/knowslink/tunnel/public-ingress.yml",
+    "go.mod",
+    "go.sum",
+    "internal/config/config.go",
+    "internal/database/db.go",
+    "internal/database/models.go",
+    "internal/database/relay.sql.go",
+    "internal/relay/admission_integration_test.go",
+    "internal/relay/api_rate.go",
+    "internal/relay/capacity.go",
+    "internal/relay/cleanup.go",
+    "internal/relay/cleanup_flood_integration_test.go",
+    "internal/relay/cleanup_unit_integration_test.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/device.go",
+    "internal/relay/google_test.go",
+    "internal/relay/mail.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/policy_test.go",
+    "internal/relay/protocol.go",
+    "internal/relay/protocol_test.go",
+    "internal/relay/public_messages_integration_test.go",
+    "internal/relay/public_text.go",
+    "internal/relay/registry.go",
+    "internal/relay/registry.json",
+    "internal/relay/test_messages.go",
+    "internal/relay/test_messages_integration_test.go",
+    "internal/relay/testdata/legacy_claims.json",
+    "internal/relay/text_events.go",
+    "internal/relay/text_events_integration_test.go",
+    "internal/relay/text_events_test.go",
+    "scripts/check_public_ingress.py",
+    "scripts/mail_sink.py",
+    "scripts/package_plugin.py",
+    "scripts/run_trial.py",
+    "scripts/schema.py",
+    "sqlc.yaml"
+  ],
+  "presented_files": 80,
+  "partial": false,
+  "fallback": null,
+  "input_partial": false,
+  "instruction_chars": 3351,
+  "elapsed_seconds": 1.876
+}
