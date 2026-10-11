@@ -3,7 +3,7 @@ title: ops 컨텍스트
 status: draft
 updated: 2026-10-11
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
@@ -69,3 +69,9 @@ CLI stdin은 Buffer 청크마다 String으로 바꾸면 UTF-8 원문을 잃는�
 서버의 기존 origin 경로가 없어졌으므로 `beta.sh deploy`는 `git fetch origin`에서 backup 전에 실패한다. 로컬 bundle을 `git fetch <bundle> HEAD`로 받고 같은 순서를 수동 실행한다.
 Git Bash에서 원격 경로 인자는 `MSYS_NO_PATHCONV=1` 없이 `C:/Program Files/Git/...`로 바뀌어 SFTP가 실패한다. shell_guard는 `set -e` 뒤 긴 경로와 `bash` 단어가 함께 있으면 encoded 명령으로 거부한다. `set -o errexit`를 쓴다.
 `verify.py regression`은 baseline에 knowslink project가 남아 항상 실패한다. 다른 세 항목을 직접 대조하고 스크립트는 수정하지 않았다.
+
+## 2026-10-11 — SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS
+
+`bundle create`는 ref가 필요하다. SHA만으로는 empty bundle로 거부되므로 `origin/main --not <이전 SHA>`를 쓰고 체크아웃은 고정 SHA로만 옮긴다. 배포 명령에 "HEAD가 이전 SHA이고 clean"일 때만 진행하는 조건을 넣는다.
+존재하지 않는 합성 43자 `GET /remote/consent/<id>`는 계정·설치 없이 새 코드(HTML 401·no-store·CSP·no-referrer)를 확인하는 비용 없는 smoke다. 성공 경로(반환 화면)는 실계정이 필요하다.
+Git Bash의 helper SFTP 인자는 `MSYS_NO_PATHCONV=1`이 필요하다. `verify.py regression`의 baseline 결함은 그대로다.
