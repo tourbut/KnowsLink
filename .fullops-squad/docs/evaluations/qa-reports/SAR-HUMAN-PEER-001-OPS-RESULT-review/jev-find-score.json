@@ -1,0 +1,37 @@
+{
+  "task_key": "SAR-HUMAN-PEER-001-OPS",
+  "find_head": "26094e90648aa71e8d07b381e9891acb37438730",
+  "base": "34252674055b801e892b39fb02048625a319599e",
+  "head": "626351ed7fa0e51394716a204c40a9fd8185acce",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "cmd/migrate/main.go",
+    "cmd/relay/main.go",
+    "cmd/relay/main_test.go",
+    "db/migrations/00002_human_writer.sql",
+    "deploy/knowslink/access_trial_plan.py",
+    "deploy/knowslink/compose.ops.yaml",
+    "deploy/knowslink/verify.py",
+    "internal/config/config.go",
+    "scripts/shell_guard.py"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
