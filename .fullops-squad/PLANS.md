@@ -1685,3 +1685,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - DEV시각수정 msg_7e0a71c1e687/12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5: exactmake lint/test·FullOps ERROR0 unavailable0, UI3파일 delta/원254ff6a SQL재사용 확인. worker retain·coor검수후보병합. 새visual task_ee6ae292af9b/ctx_a371d34f19ba/term_a4a0cb03 Codex6.1high fresh requested/effective·turn_started. tester msg_bd0e71834b84로 최종코드delta 리뷰인계. coor preview bd2996ff-06bf-4263-8bf0-8d66010ad2b7을 isolated695dbff1/localhost2809에 열고 실제대화 GET·새문구를 확인했다. 캡처 preview-simplified-conversation.png는 AppData/Local/KnowsLinkDevTools/humanpeer001-coor에 보존하며 nativeviewport가1440검사와 다름을 구분한다.
 
+
+- 시각 재검수 msg_ac159db37045: designer 착수 Env:ORCA* 열거가 세션hook/launch token을 자기 도구출력에 포함했다. 값은 재조회/복사하지 않고 제품OTP/세션/개인키미조회·Git미복사 보고를 보존한다. msg_2f229b4c34e2로 추가열거금지·현재판정finish/worker_done 뒤 즉시release와 권한상태확인 계획을 전달했다. 실제토큰회전이 확인되지않으면 회전완료라 주장하지 않는다. 로그삭제/변조 없음.
+
