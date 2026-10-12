@@ -70,3 +70,15 @@ coor는 고정 최종 후보의 독립 QA·직접 시각·별도 세션 리뷰�
 첫 등록 게이트의 make lint/test는 각각 exit0이었다. FullOps는 runtime 보고서 front matter 형식 DOC-003 하나로 exit1이어서 deliverables.py --stamp로 교정했다. human_pages_test의 지도 설명도 추가했다. SIZE는 요청한 결속 기능과 기존 커진 파일, DEP는 테스트 명령 등록이며 새 의존성은 없다. SEC 두 경고는 합성 lease 문자열과 테스트 지역 변수 token이고 실비밀값이 아니다. SLOP 출력은 자동 검사의 PASS 결과이며, 조건부 배열 spread는 owner/signed 허용 필드 한 개 선택이다. 기존 planning/D04 규모 경고는 DEV 소유 밖의 선행 변경이다. 경고를 숨기거나 lint 기준을 낮추지 않는다.
 
 6fac720bf0c620a979df5fabd67b0c044eaebf08에서 등록 make lint/test 각각 native0, FullOps exit0(ERROR0/WARNING19/실행 불가0)을 확인했다. 두 child는 worker_done succeeded로 정착했고 각 transcript를 보존한 worker-release를 완료했다. 완료 보고의 선행 공백 한 줄이 instruction hash를 바꾼 archive 실패는 원문과 normalized digest를 대조해 복구했다. 패킷·제품 지시를 재작성하지 않았고 work.py finish가63개 outcomes/partial 수동 근거를 검사한 뒤 날짜별 로그를 보존하고 인박스를0byte로 비웠다. 최종 archive 커밋의 등록 게이트 결과는 외부 final-lint.json과 worker_done에 기록한다.
+
+## 독립 시각 V01/V02/V03 수정 — attempt 6b359aa6693c40eb98fdb20f707d0d08
+
+원구현 완료와 254ff6a의 독립 QA 진행 상태를 보존한다. 새 수정 기준은 254ff6a98b12b7e51f0835491300f7695425d264이며 착수 HEAD723675a의 coordinator packet WIP를 유지했다. jev_packet.check(required=True)는 identity/HEAD/source PASS다. 존재하지 않는 startup_check.py 호출은 파일 부재로 실패했으며 실제 정식 jev_packet.check로 확인했다.
+
+frontend-design/fullops-frontend, codex/gpt-6.1-sol/high를 적용한다. frontend check는 configuration_ready/exit0이며 인증/브라우저 QA 성공과 구분한다. D04의 여섯 색·한국어 시스템 글꼴·왼쪽 정렬·문서 흐름·44px 제어·3px 포커스를 유지한다. 주된 변화는 이름과 입력 접근이며 장식·새 의존성은 없다.
+
+V02의 원인은 뒤에 선언된 .agent-line display:block이 .name-preview의 -webkit-box를 덮어쓴 것이다. 결합 선택자로 두 줄 clamp를 복구했다. 대화 헤더/메시지/보존/작성의 기존 간격을 좁혔다. 기본 발신/수신과 보내기 대상은 사람/agent 이름이며 동명이면 짧은 구분값을 유지한다. 전체 client/구분값과 4096 UTF-8 bytes/180초/Enter 안내는 닫힌 native details 안에 유지한다. 숨김 안내도 textarea aria-describedby로 연결한다. 친구 코드 설명과 홈 반복 제목은 coor msg_a4c17b567d94의 V01/V03 보완을 따른다. h1과 목록 접근성 이름은 유지한다.
+
+영향은 human_pages.go/member_pages.go와 DEV human_pages_test.go뿐이다. 모든 POST/action/hidden target/attempt/오류 회복/보존/동의 경계는 유지한다. 선택 확인은 기존 전체 라벨을 유지한다. template escaping·동명/다른 이름 대상·읽기 전용/재시도·빈 선택·gate 회귀 focused Go test는 exit0이다. tester/designer 파일·fixture, 제품 handler·권한·DB·adapter는 수정하지 않았다. SQL 전체 회귀는 정확한254ff6a의 native0 증거를 source delta 동일성 근거로 재사용한다. 새 캡처/등록 검사와 최종 source delta는 아래 완료 절에 연결한다.
+
+수정 자기 검증 결과: 실제 fe7a509 합성 auth/API/DB 두 메시지의1440×900에서 textarea top618/send bottom833이며3폭 캡처 넘침0/작은제어0이다. 복구 후 isolated profile695dbff1의9상태/14PNG 및8상태 geometry는 [V01/V02 보고](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md)에 연결한다. 실제 키보드/200%는 blocked_engine_focus/not_run으로 유지한다. 첫 default profile 설치와 isolated복구, CLI eval 문자열 반환의 helper 실패/교정도 보존했다. 최종 기록 SHA의 make lint/test·FullOps는 외부 v01-v02-final-lint.json과 worker_done으로 고정한다.

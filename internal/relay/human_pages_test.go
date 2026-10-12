@@ -137,6 +137,31 @@ func TestHumanConversationPinsTargetAndReadOnlyBoundary(t *testing.T) {
 	}
 }
 
+func TestHumanConversationKeepsDetailsAndDisambiguatesNames(t *testing.T) {
+	v := humanPageFixture()
+	for _, sameName := range []bool{false, true} {
+		v["To"].(map[string]any)["Name"] = "수신 이름"
+		if sameName {
+			v["To"].(map[string]any)["Name"] = "같은 이름"
+		}
+		body := renderHumanPage(t, "human-conversation", v)
+		start := strings.Index(body, `<p class="target" id="send-target">`)
+		end := strings.Index(body[start:], "</p>")
+		target := body[start : start+end]
+		if strings.Contains(target, "Node 로컬") || strings.Contains(target, "a001") != sameName || strings.Contains(target, "c003") != sameName || !strings.Contains(target, "합성 친구의") {
+			t.Fatal("send target must name people and disambiguate only equal endpoint names", target)
+		}
+		details := strings.Index(body, `<details class="conversation-details">`)
+		if details < strings.Index(body, `<button class="primary">보내기</button>`) || strings.Contains(body[:details], "UTF-8 bytes") || !strings.Contains(body[details:], "4096 UTF-8 bytes") || !strings.Contains(body[details:], "180초") || !strings.Contains(body[details:], "Node 로컬 / a001") {
+			t.Fatal("technical limits and full target must remain in closed details after send")
+		}
+	}
+	body := renderHumanPage(t, "human-home", v)
+	if !strings.Contains(body, `<h1>대화</h1>`) || !strings.Contains(body, `aria-label="최근 대화"`) || strings.Contains(body, `<h2>대화</h2>`) {
+		t.Fatal("home must keep its heading and accessible list without repeating visible headings")
+	}
+}
+
 func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 	for _, name := range []string{"human-home", "human-new", "human-agents"} {
 		body := renderHumanPage(t, name, map[string]any{"Title": "빈 계정", "Section": "conversations"})
