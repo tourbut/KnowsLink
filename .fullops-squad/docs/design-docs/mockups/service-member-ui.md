@@ -4,7 +4,7 @@ title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
 updated: 2026-10-12
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -173,6 +173,12 @@ P0 전체 흐름: 로그인·이름, 내 agent 등록/이름 변경, 친구 요�
 과거 V-02는 새 요청 상태별 동작 분리로 대체한다. V-03 날짜는 짧은 KST '오늘 오후 2:10', 이전 날짜는 '10월 11일 오후 2:10', 연도가 다르면 연도를 붙인다. 정확한 기한은 상세에서 제공한다. V-08 gate/receipt도 같은 한국어 상태를 적용하되 원 의미를 유지한다. V-12 이동 순서와 N-02 mobile 주 버튼 폭은 위 구조를 적용한다. 명령은 연결 상세로 이동하며 복사 값과 줄바꿈을 확인한다. 옛 결함을 새 구현에서 해결됐다고 미리 판정하지 않는다.
 
 실행 선택은 codex / gpt-6.1-sol / high, 주 스킬 frontend-design이다. `frontend.py --check`는 configuration_ready, exit 0이었다. frontend.json의 이미 활성화된 tuple/정본을 재사용하며 설정을 다시 쓰지 않는다. 인증·MCP·새 브라우저 QA는 not_run이다. 현재 작업은 제품 코드가 없는 설계이며 구현 캡처·동작 수락은 후속이다.
+
+### 2026-10-12 구현 후보 직접 시각 검수 — SAR-HUMAN-PEER-001-VISUAL
+
+최종 제품 후보 `254ff6a98b12b7e51f0835491300f7695425d264`의 시각 수락은 FAIL이다. V-01 작성란 기술 설명/반복 대상 문장과 V-02 긴 목록 이름/desktop 작성 위치가 medium 수정 대상이다. V-03 홈의 반복 제목은 low다. 관찰 범위의 critical/high는 0건이며 미관찰 상태의 결함 부재를 뜻하지 않는다. 기존 제품/디자인 요구는 완화하지 않았다.
+
+먼저 실제 합성 auth/API/DB의 `4eaefa6e0a5cf623f0d8d8080d918086f86030ec` 원래 PNG 21장을 모두 직접 열었다. 최종 후보와 memberStyle 및 관련 대화 template의 동일성을 확인했다. 과거 이미지를 최종 SHA 실행으로 표시하지 않는다. CSS1440/DPR0.75·320/390 DPR1 조건, 실제 surface·200%·focus·미포함 상태의 검사 범위와 not_run, 항목별 수정 수락 조건은 [이번 시각 보고](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md)에 있다. DEV 수정 후 새 고정 SHA의 영향 화면 검수와 tester/별도 리뷰가 필요하다.
 
 ## 이전 설계와 검수 기록 — 비현행
 

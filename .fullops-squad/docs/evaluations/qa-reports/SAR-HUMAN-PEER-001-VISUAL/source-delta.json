@@ -1,0 +1,37 @@
+{
+  "old_sha": "4eaefa6e0a5cf623f0d8d8080d918086f86030ec",
+  "target_sha": "254ff6a98b12b7e51f0835491300f7695425d264",
+  "memberStyle_identical": true,
+  "memberStyle_sha256": "1dd035f40a4234f4c442a9e3d65ad876ee858851f86872a48fb5b5e6484e5bfb",
+  "template_checks": {
+    "human-home": {
+      "identical": true,
+      "sha256": "715de9931b808d177e033f29ad4de94e6826c3caa214c0268d0c29132c836fec"
+    },
+    "human-conversation-list": {
+      "identical": true,
+      "sha256": "233018826c72191eb9a8fb99e42d797558e7e7fa9c470ce49da6830a508ce702"
+    },
+    "human-friends": {
+      "identical": true,
+      "sha256": "f3261a3864be297cba3e0306605e11aaa367ce4136fa78255c38f5f685462253"
+    },
+    "human-new": {
+      "identical": true,
+      "sha256": "8847d9cbc1d8b11f5f7bd4b4a63003ec4c1057970d6ab63ae783180808e704db"
+    },
+    "human-conversation": {
+      "identical": true,
+      "sha256": "d60f184a239c5c6e996d07ed6614bca89fbfc6bf7b4741c0176f1cc6cd84ed28"
+    }
+  },
+  "delta_excluded": [
+    "name maxlength 40 to 80 UTF-16 units",
+    "agent limit guidance",
+    "unavailable localized badge",
+    "validName Control/Bidi_Control versus Cf",
+    "remote receive authorship/untrusted metadata",
+    "gofmt, tests and docs"
+  ],
+  "scope": "same-render evidence for captured states; not a final SHA runtime test"
+}

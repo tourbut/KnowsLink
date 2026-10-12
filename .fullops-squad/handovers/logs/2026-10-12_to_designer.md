@@ -263,3 +263,142 @@ FullOps lint 실제 결과: 커밋 d6a4ef55df44에서 exit 1, ERROR 0·WARNING 3
 미검증·보류: 실제 새 기능·키보드/200%/스크린 리더·실 Google/노우/다닷 새 흐름·운영 DB 이행/복원·배포는 실행하지 않았다. 기존 제품의 과거 PASS를 새 수락 근거로 쓰지 않는다. DEV 핵심/필수 검사, tester 독립 A/B/C와 legacy fixture QA, 같은 SHA의 designer 실제 구현 시각 검수 및 별도 세션 리뷰가 남았다. 실계정·외부 발송·운영 실행은 별도 단계다. 새 다크 모드·공개 검색·첨부·장기 보관·읽음·agent별 공유·상품 기능은 생략했다.
 
 정본·상세 결과: [HP 요구사항](../docs/planning/product-specs/SAR-HUMAN-PEER.md), [현행 D04](../docs/design-docs/mockups/service-member-ui.md), [실행 기록](../docs/exec-plans/phases/SAR-HUMAN-PEER-001.md), [designer outcomes](../docs/evaluations/jev/SAR-HUMAN-PEER-001-packet-outcomes.json). 제품/임시 자료 삭제·이동은 실행하지 않았으며 모든 생성 탐색 JSON과 과거 캡처는 그대로 보존한다. 기획 본문은 5d5d26c부터 커밋했고 결과·finish 아카이브를 포함한 최종 SHA 하나를 실제 worker_done에 보고한다.
+
+## SAR-HUMAN-PEER-001-VISUAL — 2026-10-12
+<!-- fullops-attempt: SAR-HUMAN-PEER-001-VISUAL a772658c0880455a933958b3cc02f211 -->
+
+---
+title: SAR-HUMAN-PEER-001-VISUAL — 고정 구현 후보의 사람 친구와 대화 UI 직접 시각 수락
+status: draft
+updated: 2026-10-12
+owner: designer
+tasks: [SAR-HUMAN-PEER-001-VISUAL]
+summary: 고정 구현 후보의 사람 친구와 대화 UI 직접 시각 수락
+attempt: a772658c0880455a933958b3cc02f211
+base: 254ff6a98b12b7e51f0835491300f7695425d264
+subagent_level: standard
+test_level: lite
+---
+
+# SAR-HUMAN-PEER-001-VISUAL — 사람 친구·대화 UI 직접 시각 검수
+
+- 상태: ready. coor가 최종 DEV 40자리 SHA·캡처 manifest·환경을 고정한 뒤 ready로 전환한다. 현재 base는 설계 통합 기준이며 구현 SHA가 아니다.
+- From / To: coor / designer. Purpose: review. 실행 codex / gpt-6.1-sol / high, 주 스킬 frontend-design. 이전 설계 작성 세션과 다른 fresh 세션을 사용한다.
+- 담당: C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. D04 시각 판정·자기 phase/보고서/증거/context만 소유. 제품 코드·coor PLANS/board·tester QA 변경 금지.
+- 복귀: repo0b08ec4c-9e3a-4613-8197-5a835e545335, Run run_5534969da2d0, coor term_47da6145-4e1e-4cc1-93ea-20bc0dd590b9. 실제 task/dispatch는 새 preamble.
+
+## 범위와 수락 기준
+
+현행 D02 SAR-HUMAN-PEER HP-01–16과 D04 service-member-ui.md의 현행 SAR-HUMAN-PEER 절을 기준으로 실제 새 구현을 판정한다. 과거 polish PASS나 정적 fixture를 실제 제품 수락으로 재사용하지 않는다.
+
+- [ ] 고정 후보·캡처 manifest·실제 loopback UI의 동일성, 명세 토큰/정보 구조를 확인한다.
+- [ ] 로그인/이름·홈·친구 요청/목록·내 agent·대화/작성·해제 읽기전용·gate/오류를 390/1440 실제 캡처로 직접 본다. 320폭·긴/동명 이름·200%·포커스·44px 근거를 확인한다. 정적 렌더와 실제 auth/API/DB 캡처를 구분한다.
+- [ ] 세 메뉴, 사람 아래 agent, 고정 발신/수신과 owner/agent 작성 구분이 바로 이해되는지 확인한다. 기술 ID/키/명령/긴 안내가 다시 주 화면을 차지하지 않아야 한다. 장식 카드·통계·그라디언트·알약 버튼·가짜 온라인/대화는 제외한다. 관련 보안·보존·실패 안내는 유지한다.
+- [ ] qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md에 관찰 이미지 경로·범위·PASS/FAIL/not_run·심각도·수정 요청·남은 제약을 기록한다. 발견 결함을 직접 코드 수정하지 않고 coor를 통해 DEV에 전달한다.
+
+## 적용 기준·실행 경계
+
+fullops-common-0.3.3 README/coding-style/testing/security, project.md, FULLOPS.md, orca-agents.md, docs/agents/document-writing.md, fullops-frontend를 읽는다. 선택 test lite/subagent standard 유지. frontend.py check의 configuration_ready와 실제 인증/브라우저 검증을 구분한다. 도구·호스트 자동 전환/설치 없음. 다크 테마는 범위 밖이다.
+
+기존 Go template/CSS/memberStyle과 6색 정본을 적용한다. 기술 의미/API/인가는 DEV와 tester/별도 코드 reviewer의 책임이다. 직접 시각 판정만 맡고 기능 QA/키보드/스크린 리더를 이미지로 PASS하지 않는다. 필요한 읽기/스크롤/캡처만 실제 합성 loopback에서 수행한다. 상태를 바꾸는 POST는 tester 소유 fixture에서 명시 협의 후만 실행한다. 사용자 실계정/운영/실메일/외부 발송 없음. 삭제·이동 정리는 금지하고 임시 자료를 보존한다.
+
+먼저 읽을 문서: .fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md, docs/design-docs/mockups/service-member-ui.md, docs/exec-plans/phases/SAR-HUMAN-PEER-001.md, DEV 완료 보고/캡처 manifest(고정 후 연결), docs/evaluations/scenarios/README.md, project.md와 공통 규칙. 경로는 .fullops-squad/ 기준이다. 부분 packet/unknown은 일반 검색으로 보완하고 항목별 outcomes를 기록한다.
+
+## 완료와 복귀
+
+고정 SHA의 실제 화면 판정과 D04에 결과를 연결한다. 시각 조건이 충족되지 않으면 FAIL과 재현을 정직하게 보고한다. 미실행은 사유/영향을 기록한다. 자기 문서만 커밋하고 최종 HEAD의 FullOps lint와 문서 검사 결과를 남긴다. 제품 코드/설정 변경 없는 경우 제품 검사 재사용 또는 실행 불가 이유를 명시하며 독립 제품 QA로 확대하지 않는다. packet-outcomes·완료 전문·work.py finish로 인박스를 아카이빙한 뒤 실제 preamble worker_done을 한 번 보낸다.
+
+
+## coor 최종 후보 인계 — 2026-10-12
+
+최종 검수 SHA는 254ff6a98b12b7e51f0835491300f7695425d264다. 기존 대기/구현 SHA 미정 문장은 이 절로 해소한다. 코드 리뷰 diff base는 f849215bdefd3984dbf385c9f0973a74525be545다. 실제 DEV 작성 세션은 01a12f82-ca28-7de1-8f74-acbfa1a6c823이며 별도 fresh 세션에서 검수한다. 제품 파일은 수정하지 않는다.
+
+DEV final-report: C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-runtime-ctx9ded/final-report.md. 정확한 최종 검사 final-lint.json 및 254ff6a98b12b7e51f0835491300f7695425d264-final-evidence/는 같은 외부 폴더에 있다. 등록 make lint/test·FullOps exit0 ERROR0 WARNING19 unavailable0, 전체 race/SQL integration native0 129초다. 독립 검수의 대체가 아니다.
+
+최종 private runtime은 /tmp/knowslink-humanpeer001-254ff6a98b12-c30163b6/qa-ccaa8cd7/repo, relay remote loopback41381, SMTP52205다. 외부 helper remote.py의 auth/fixture로 최종 SHA 합성 fixture를 준비할 수 있다. known_hosts RejectPolicy와 대상 SHA/ROOT를 확인한다. tester가 auth/fixture와 자기 forward를 소유하고 visual에 읽기 전용 URL·profile·page를 전달한다. designer는 tester에게 실제 UI 준비를 요청하고 기존 4eaefa6 PNG의 명시된 delta를 확인하며 검수할 수 있다. 독립 키보드/200% 확대는 실제 surface에서 수행하거나 not_run 사유를 명시한다.
+
+착수 첫 단계는 자신의 현재 HEAD에서 정식 jev_packet.py --repo <자기 checkout> --role <역할> --key <본 과제> --force --write-inbox 재생성과 startup identity/HEAD check 통과다. 준비 packet의 과거 HEAD를 수동 보정하지 않는다. source/attempt 불일치는 보고하고 정식 route/find/context 재생성으로 해결한다. 완료 시 같은 과제 key outcomes·work.py finish 및 정확한 최종 SHA worker_done을 사용한다. 구현 결함은 coor에 즉시 상태/재현으로 전달하되 나머지 독립 검수를 계속한다.
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-HUMAN-PEER-001-VISUAL-packet.json` / SHA `7c29f87a8cba756457c3873badef4881ad8cdf03` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/handovers/to_designer.md` (document_read) · 줄 2, 2, 2, 6, 6, 6, 14, 14, 14, 23, 23, 28, 28, 28, 36, 36 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 6, 6, 16, 16, 27, 27 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/designer.md` (document_read) · 줄 6, 6, 6, 14, 14, 16, 16, 72, 80, 84, 88 · inferred
+- `.fullops-squad/contexts/dev.md` (document_read) · 줄 42, 42 · inferred
+- `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 7, 7, 14, 14, 16, 16, 24, 24 · inferred
+- `.fullops-squad/docs/design-docs/crud-design.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/data-model.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/database-design.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 7, 7, 16, 16 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md` (document_read) · 줄 6, 6, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 7, 7, 7, 13, 13, 15, 15, 50, 50, 574, 576, 579 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_read) · 줄 7, 7, 14, 14, 26, 26 · inferred
+- `.fullops-squad/docs/design-docs/tech-stack.md` (document_read) · 줄 7, 7, 14, 14, 16, 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md` (document_read) · 줄 33, 48 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md` (document_read) · 줄 65 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md` (document_read) · 줄 6, 10 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md` (document_read) · 줄 6, 10 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md` (document_read) · 줄 6, 6, 24, 24 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md` (document_read) · 줄 6, 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md` (document_read) · 줄 6, 10, 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md` (document_read) · 줄 6, 10, 12 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md` (document_read) · 줄 6, 10, 179, 181 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md` (document_read) · 줄 6, 10, 77 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md` (document_read) · 줄 6, 10, 72 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md` (document_read) · 줄 31 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md` (document_read) · 줄 6, 10, 20 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md` (document_read) · 줄 6, 6, 49, 49, 60, 60 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md` (document_read) · 줄 2, 2, 6, 6, 10, 10, 30, 30, 65, 65, 71, 71, 101, 101, 110, 110 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md` (document_read) · 줄 104 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md` (document_read) · 줄 15 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md` (document_read) · 줄 2, 6, 10, 22 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md` (document_read) · 줄 2, 6, 10, 25 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md` (document_read) · 줄 2, 6, 10, 21 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md` (document_read) · 줄 22 · inferred
+- `.fullops-squad/docs/generated/db-schema.md` (document_read) · 줄 7, 7 · inferred
+- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 7, 7, 13, 13, 19, 19 · inferred
+- `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 7, 7, 13, 13, 15, 15, 31, 31 · inferred
+- `.fullops-squad/docs/planning/SAR-MVP-backlog.md` (document_read) · 줄 6, 6, 12, 12, 14, 14 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 7, 7, 18, 18 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md` (document_read) · 줄 7, 7, 15, 15 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_read) · 줄 7, 7, 17, 17 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 7, 7, 15, 15 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_read) · 줄 7, 7, 16, 16 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md` (document_read) · 줄 6, 6, 10, 10 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/product.md` (document_read) · 줄 6, 6, 10, 10 · inferred
+- `.fullops-squad/handovers/logs/2026-10-12_to_designer.md` (document_read) · 줄 9, 10, 13, 17, 25, 48, 59, 75, 76, 78, 79, 80, 81, 82, 83, 87, 89, 91, 114, 122, 122, 123, 123, 126, 126, 130, 130, 138, 138, 174, 174, 177, 177, 189, 189, 198, 198, 228, 229, 235, 261, 261, 265, 265 · inferred
+- `.fullops-squad/handovers/logs/2026-10-12_to_dev.md` (document_read) · 줄 136, 139, 147, 189, 190, 342, 345, 349, 351, 386, 386, 387, 387, 390, 390, 394, 394, 402, 402, 405, 405, 444, 444, 462, 462, 475, 475, 478, 478, 479, 479, 498, 498, 531, 531, 544, 544, 556, 556 · inferred
+- `.fullops-squad/handovers/to_tester.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 17, 17, 24, 24, 32, 32, 54, 54, 72, 72, 90, 90, 95, 95, 98, 98, 100, 100, 194, 246, 249 · inferred
+- `adapters/README.md` (document_read) · 줄 6, 6, 12, 12 · inferred
+미확인 15건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
+## 완료 보고
+
+검수 과제는 완료했다. 제품 시각 수락은 FAIL이다. 제품 후보는 `254ff6a98b12b7e51f0835491300f7695425d264`이며 기록 HEAD는 worker_done에 고정한다. Purpose: review. 실행은 fresh codex / gpt-6.1-sol / high, frontend-design이다. configuration_ready/exit0이며 실제 인증·브라우저·MCP 성공은 주장하지 않는다.
+
+원래 `4eaefa6e0a5cf623f0d8d8080d918086f86030ec`의 실제 합성 auth/API/DB PNG 21장을 모두 직접 열었다. 5화면×3폭 15상태, 320×640·390×844 DPR1과 CSS1440×900 DPR0.75/PNG1080×675 조건을 보존했다. manifest의 SHA-256·PNG 크기 21개 assert가 exit0이었다. 최종254ff6a의 memberStyle 전체와 human-home/conversation-list/friends/new/conversation template가 원본과 바이트 동일함을 확인했다. 기존 캡처를 최종 SHA 새 실행으로 표시하지 않는다. 최신 실행·환경은 DEV 외부 final-report.md가 정본이며 과거 runtime 기록의 다른 SHA/실패/한계를 지우지 않았다.
+
+medium V-01은 composer 기술 설명과 반복 대상/client/구분값 문장이다. medium V-02는 목록 이름 최대 두 줄 미충족과 두 메시지 desktop fixture의 작성 위치/보내기가 첫 화면 밖인 점이다. low V-03은 반복 대화 제목이다. 관찰 범위의 critical/high는0건이다. 미관찰 상태의 결함 부재를 뜻하지 않는다. 불필요 친구코드 설명 정리를 포함한 구체적 수락 조건을 coor에 즉시 전달했고 fresh DEV 수정이 배정됐다. 필수 대상·보존·동의·오류·위험 안내와 보안/전달 정책은 유지한다. 제품 코드는 수정하지 않았다.
+
+원후보 최종 surface·200%·실제 Tab/Enter/Space/focus-visible·로그인/이름/요청 pending/친구 상세/해제 읽기전용/gate/오류 상태는 not_run이다. tester의 URL/profile/page가 아직 미전달이었다. coor 회신 `msg_7d224a4c95a0`은 원후보 surface를 더 기다리지 않고 FAIL·한계를 보존해 완료하도록 지시했다. 새수정후보의 직접 surface와 빠진 검사는 DEV완료·tester fixture 전달 뒤 같은키 새attempt로 재개한다. 과거 engine focus 제한이나 이미지/DOM focus를 키보드 PASS로 바꾸지 않았다.
+
+정본 보고: `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md`. 같은 폴더의 original-capture-review.json·source-delta.json·packet-source-scope.json에 관찰·해시·출처/범위 근거를 남겼다. D04에는 결과 링크를 추가했고 자기 phase/context를 갱신했다. coor PLANS/board·tester 결과·제품 코드/설정/의존성은 변경하지 않았다. 하위 위임·삭제·이동·실계정/운영/외부 발송·새 설치는 실행하지 않았다.
+
+정식 force packet 재생성 뒤 startup identity/HEAD/source check는 exit0이었다. outcomes는62개 completed14/no_change48이며 partial producer mismatch4·큰 unknown 문서11·remaining35의 수동 확인 범위와 역사 자료 재독 한계를 기록했다. `deliverables.py --repo . --strict`는13종/문제0/경고0 exit0, `git diff --check`는exit0, 변경 문서 로컬 링크36개는 누락0이었다. fragment/원격 링크 의미 검증은 포함하지 않는다.
+
+완료 전문과 지시서는 `work.py finish`로 날짜별 designer 로그에 보존한다. 최종 커밋의 FullOps lint와 문서/경계 검사는 외부 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-visual/final-validation.json` 및 final-lint.json에 남긴다. 기준은 지시서 base254ff6a다. Windows PATH에 make가 없으면 등록 product-lint/product-test를 unavailable로 보고하고 이 문서 후보의 PASS로 바꾸지 않는다. 제품 파일 변경이 없어 새 제품 시험은 만들지 않았으며 DEV 자체 최종 make lint/test 근거를 이번 독립 QA로 바꾸지 않는다. coor는 DEV 수정 후 새고정SHA 직접 시각·tester QA·별도 리뷰와 통합을 조정한다.
