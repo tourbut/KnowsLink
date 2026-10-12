@@ -1,13 +1,17 @@
 ---
 title: KnowsLink 기능 단위 백로그
 status: draft
-updated: 2026-10-05
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001]
 summary: 일반 서비스 기능 순서와 현재 인박스 및 후속 대기와 기존 held를 연결한다
 ---
 
 # KnowsLink 기능 단위 백로그
+
+## 현재 우선 과제 — SAR-HUMAN-PEER-001
+
+사람 친구·이름 있는 에이전트·짧은 대화 UI와 legacy 안전 이행을 하나의 완결 기능으로 구현한다. 정본은 [HP 요구사항](product-specs/SAR-HUMAN-PEER.md)와 [현행 D04](../design-docs/mockups/service-member-ui.md)다. DEV는 SAR-HUMAN-PEER-001-DEV, 독립 QA는 SAR-HUMAN-PEER-001-TESTER다. designer 문서의 독립 리뷰·main 통합 뒤 DEV를 시작한다. tester와 실제 구현 시각 검수는 고정 DEV SHA를 기다린다. 아래 과거 작업 순서를 현재 미착수 명령으로 재실행하지 않는다. PLANS/board 상태는 coor가 관리한다.
 
 ## 현재 일반 서비스 작업 순서 — SAR-PUBLIC-SERVICE-001
 

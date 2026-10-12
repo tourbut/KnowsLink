@@ -2,15 +2,19 @@
 id: D02
 title: KnowsLink MVP 요구사항
 status: review
-updated: 2026-10-05
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001]
 upstream: [D01]
 downstream: [D03, D05, D06, D07, D09, D10]
 summary: frozen MVP 규칙과 일반 서비스 확장 정본 및 과거 파일럿 경계를 연결한다
 ---
 
 # KnowsLink MVP 요구사항
+
+## 현행 제품 범위 — 2026-10-12
+
+현재 사람·이름·친구·대화·권한 이행 정본은 [사람 중심 연결 D02](SAR-HUMAN-PEER.md)다. 아래 MVP-02의 agent별 contacts/첫 수락과 대화 화면 제외는 새 HP 규칙이 대체한다. 새 대화 text만 24h 원문 보존을 적용하고 frozen 업무 M/H/R은 기존 보존을 유지한다. wire·키·현재 인가·게이트·안전 정리와 상품 held는 유지한다. 아래 범위·사용자 흐름·DEC 기록은 과거 요구를 보존한 것이며 새 제품 수락 증거가 아니다.
 
 ## 정본과 범위
 

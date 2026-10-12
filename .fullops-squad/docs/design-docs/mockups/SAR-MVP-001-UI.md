@@ -2,14 +2,18 @@
 id: D04
 title: 화면설계서
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-SERVICE-UI-001-DESIGN]
+tasks: [SAR-MVP-001-UI, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-SERVICE-UI-001-DESIGN, SAR-HUMAN-PEER-001]
 upstream: [D02]
 summary: 합성 gate와 일반회원 수정 후보의 직접 시각 판정 및 수락 경계를 연결한다
 ---
 
 # SAR-MVP-001-UI — 합성 human-gate 화면 기록
+
+## 현행 화면 정본 — 2026-10-12
+
+사람 친구·이름 있는 에이전트·대화의 전면 개편은 [현행 D04](service-member-ui.md)의 SAR-HUMAN-PEER-001 절을 따른다. 아래 합성 gate 및 과거 화면 판정은 그 SHA의 이력이다. 새 화면·동작 수락으로 재사용하지 않는다.
 
 ## 일반회원 메시지·gate의 새 직접 기록
 

@@ -1,15 +1,19 @@
 ---
 title: designer 컨텍스트
 status: draft
-updated: 2026-10-11
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001]
 summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 보존한다
 ---
 
 # designer 컨텍스트
 
 결정·교훈을 항목당 3줄 이내로 기록한다.
+
+- 2026-10-12: SAR-HUMAN-PEER-001은 사람 친구의 상호 수락 아래 현재·향후 agent와 연속 대화, 최대 24h 원문 보존을 정했다. legacy pair는 정확한 기존 범위만 보존하며 자동 친구 확대를 금지한다.
+  D04를 대화·친구·내 에이전트 중심으로 전면 개편했다. 과거 UI PASS는 새 구조 수락이 아니며 구현·독립 QA·실제 시각 검수는 후속이다.
+  제품 결정·이행·DEV/QA 인계와 검증 한계: [실행 기록](../docs/exec-plans/phases/SAR-HUMAN-PEER-001.md).
 
 - 2026-10-03: SAR-SETUP-001은 초기 구성·lint 과제다. 첫 기능 MVP의 human-gate 포함 결정은 유지하며 이번 범위로 당기지 않는다.
   원천의 확정 기술 선택과 project.md의 이전 미정 상태를 구분한다. 기술 세부 결정은 dev에게 맡긴다.

@@ -2,14 +2,20 @@
 id: D01
 title: KnowsLink 서비스 개요
 status: review
-updated: 2026-10-05
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001]
 downstream: [D02]
 summary: 일반 서비스 가치와 수락 후 동일 이메일 노우 다닷 연결 및 상품 보류를 정의한다
 ---
 
 # KnowsLink 서비스 개요
+
+## 현재 가치와 범위 — 2026-10-12
+
+KnowsLink는 내가 이름 붙인 에이전트와 친구의 에이전트가 대화하는 개인 연결 서비스다. 연락처는 사람이며, 양쪽이 친구 요청을 수락하면 그 아래 현재·향후 활성 에이전트가 연결된다. 사용자는 이름으로 발신·수신을 선택하고 짧은 대화를 읽고 보낸다. 새 대화 원문은 최대 24h 보존하며 장기 아카이브는 만들지 않는다.
+
+이 새 사용자 요청은 아래의 에이전트별 연락처·채팅 화면 제외를 대체한다. 과거 원천은 새 결정의 대조 근거로 보존한다. [현행 D02](product-specs/SAR-HUMAN-PEER.md)와 [현행 D04](../design-docs/mockups/service-member-ui.md)가 제품·화면 정본이다. Free N·Pro 가격·상품 슬롯 단위는 계속 미정이다. 이전 시험의 수락을 새 기능 수락으로 확대하지 않는다.
 
 ## 가치와 대상 사용자
 
