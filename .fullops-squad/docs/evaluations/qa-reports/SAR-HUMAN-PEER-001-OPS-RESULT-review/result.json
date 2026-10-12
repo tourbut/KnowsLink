@@ -1,0 +1,208 @@
+{
+  "base": "34252674055b801e892b39fb02048625a319599e",
+  "head": "626351ed7fa0e51394716a204c40a9fd8185acce",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.12 (182898c) windows/amd64\nbuilt at: 2026-10-05T06:46:30Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "coor / Codex / 01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+  "conclusion": "운영 적용 결과 기록 수락. 제품 변경0, 새 critical/high 없음. 실제 계정 coor LIVE 후속과 미확인 보존 정책을 분리한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-OPS-packet-outcomes.json",
+      "status": "added",
+      "insertions": 368,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/report.md",
+      "status": "added",
+      "insertions": 91,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+      "status": "added",
+      "insertions": 48,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_ops.md",
+      "status": "added",
+      "insertions": 94,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 52,
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/after.log",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/agentdiff.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/backup.log",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/baseline-before.log",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/cf2.log",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/fetch.log",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/fingerprint-after.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/fingerprint-before.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/m2.log",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/prep.log",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/public-smoke.log",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성outcomes/원시운영로그 전수 재실행·열람 생략. 정본report/phase 및 실제읽은rehearse/up/운영문서의 SHA·명령코드·보존요약과 연결했으며 새 실계정/전체복원/보존정책 PASS로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/rehearse.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/up.log",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정snapshot 원문에서 실제SHA·명령별 native코드·실패보존·기존필드보존·전진복구·coor후속을 대조했다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "",
+    "reviewer_session": "",
+    "snapshot_path": "",
+    "snapshot_head": "626351ed7fa0e51394716a204c40a9fd8185acce",
+    "read_only": true
+  }
+}

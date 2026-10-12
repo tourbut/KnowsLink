@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "8e8950eb27b84a91a834786be729c63d",
+  "base": "34252674055b801e892b39fb02048625a319599e",
+  "merge_base": "34252674055b801e892b39fb02048625a319599e",
+  "head": "626351ed7fa0e51394716a204c40a9fd8185acce",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 부재. 제품 변경 없는 운영 문서 후보이며 수락 제품26094e9 exact make lint/test native0를 재사용한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 부재. 제품 변경 없는 운영 문서 후보이며 수락 제품26094e9 exact make lint/test native0를 재사용한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 4,
+    "added_lines": 71,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}
