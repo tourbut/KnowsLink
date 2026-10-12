@@ -93,3 +93,22 @@ PLANS·ops-guide·옛 역할 로그는 크기 때문에 의미 탐색에서 제�
 문서 검증은 front matter stamp, 변경 패치 공백, 로컬 링크/산출물 strict, packet identity/outcomes, 토큰 대비 계산과 사용자 요구·와이어프레임 대조다. 명령 결과와 최종 고정 SHA는 완료 보고에 기록한다. 코드 변경이 없으므로 제품 동작 시험을 새로 만들거나 과거 통과로 대체하지 않는다.
 
 새 실제 기능, 브라우저 조작/키보드/200%/스크린 리더, 실 Google 계정·노우/다닷 왕복, 운영 이행·복원은 not_run이다. 이는 DEV·tester·designer·OPS 후속으로 남는다. 새 다크 모드·공개 검색·첨부·장기 아카이브·읽음·agent별 공유 토글·상품 기능은 생략했다.
+
+### 이번 실행 근거
+
+- `deliverables.py --repo . --strict`: exit 0, 13종 검사·문제 0·경고 0. D01/D02/D04/D11과 관련 원천·phase/context의 메타데이터는 stamp로 기록했다. 처음 메타데이터가 없던 원천은 owner/summary를 명시해 보완했다.
+- `git diff --check`: 초안 와이어프레임의 trailing whitespace 한 줄을 발견해 수정했다. 수정 후 exit 0이다.
+- 토큰 대비: [design-check.json](../../evaluations/jev/SAR-HUMAN-PEER-001-design-check.json)의 7개 조합이 4.5:1 본문·3:1 입력/포커스 기준을 통과했다. 실제 화면 픽셀 검사는 아니다.
+- 로컬 링크 존재: 변경 Markdown과 후속 인박스에서 169개를 확인했고 누락 0건이다. fragment·원격 링크의 의미 검증은 포함하지 않는다.
+- 역사 보존: 기준 f20b33a의 product.md·decisions.md 원본문이 새 안내/메타데이터 아래 그대로 포함됨을 assert했다. D04의 이전 1절 이후 본문도 그대로다. 새 안내를 포함한 전체 파일의 바이트 동일성은 주장하지 않는다.
+- designer completion packet 검사: exit 0. 52개 비선택 path/category 결과와 미확인 15건의 수동 검토를 outcomes에 기록했다. 원 패킷의 producer mismatch·큰 문서·remaining 11개를 미검토로 숨기지 않았다.
+
+### 후속 탐색 패킷과 대기 경계
+
+DEV와 tester의 code/documents find 및 context는 역할별 키로 실행해 원본 JSON을 보존했다. DEV route는 implementation/dev와 Codex gpt-6.1-sol high로 고정했다. tester route의 Grok 4.7 high는 추천이며 실제 새 dispatch의 실행 tuple은 coor가 확정한다. 각 route는 현재 역할 인박스에 bind했다. 처음 packet-decisions의 action 값이 스키마에 맞지 않아 exit 1이었다. 허용 값 `change`로 고쳐 재생성했고 두 packet 명령은 exit 0이었다.
+
+준비 패킷 HEAD는 `5d5d26cd02e98a6a0978ca681a7565a6b6e5a29d`다. [DEV packet](../../evaluations/jev/SAR-HUMAN-PEER-001-DEV-packet.json)은 후보 65·partial true·unknown 17·remaining 32다. [tester packet](../../evaluations/jev/SAR-HUMAN-PEER-001-TESTER-packet.json)은 후보 203·partial true·unknown 17·remaining 166이다. tester direct_edit/document_update는 0이며 제품 코드 수정 권한은 없다. 큰 과거 문서·로그와 동적 호출은 추천 목록이지 자동 실행 명령이 아니다. HP/D04와 명시한 핵심 코드/권한 검증이 우선이다.
+
+동시 작성한 후속 인박스는 다른 packet의 참조 원천에도 포함돼 source hash가 바뀌었다. 준비 packet의 `check`는 exit 1, `packet source changed; regenerate packet before worker start`였다. 이 결과를 PASS로 표시하지 않는다. 두 인박스는 이미 waiting-design-integration / waiting-dev-sha이며 실행을 시작하지 않았다. 최종 문서 리뷰·main 통합과 역할 인박스 확정 뒤 coor가 DEV의 실제 준비 HEAD에서 find/context/route/packet을 갱신한다. tester는 고정 DEV 구현 SHA에서 갱신한다. 그때 비선택 path/category·partial 잔여의 수동 검토를 각 worker가 자기 outcomes에 기록해야 한다. 이번 designer의 outcomes로 미래 구현/QA 완료를 대신하지 않는다.
+
+원 제품·기술 경계를 바꾸지 않는 탐색/아카이브 과정의 실패는 원인·교정·대기 조건을 위에 보존했다. 최종 SHA와 최종 HEAD의 문서 lint 결과는 worker_done 및 외부 검증 파일로 고정한다. 제품 코드 변경이 없으므로 새 제품 테스트는 해당 없음이며 후속 DEV 필수 product-lint/product-test는 생략하지 않는다.

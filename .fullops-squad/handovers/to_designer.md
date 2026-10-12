@@ -43,12 +43,12 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 사용자 흐름과 현재 소유/연결/메시지/이메일 인증 구조를 확인한다. 제품 정본의 충돌을 판정한다.
-- [ ] 이메일 소유 확인 아래 내 에이전트 등록·이름 지정/변경, 사람 간 친구 요청·상호 수락·거절·취소·해제·차단, 친구 에이전트 목록 노출과 대화 흐름을 확정한다. 노출 범위·새로 추가한 에이전트·철회·친구 해제 후 권한·과거 대화 접근·기존 관계 이행을 명시한다. 단순 친구 검색만으로 타인의 정보/에이전트를 공개하지 않는다.
-- [ ] frontend-design 스킬로 UI/UX를 전면 재설계한다. 대화·친구·내 에이전트의 정보 구조를 사용자 요구에 맞게 정하고, 간결한 텍스트와 이름 중심 목록 및 대화를 첫 경험에서 볼 수 있게 한다. 내·친구 에이전트 선택과 메시지 전달/수신·승인 상태를 이해할 수 있게 설계한다. 위험 안내와 실패 복구 문구는 필요한 곳에 유지한다.
-- [ ] D04 정본을 실질적으로 개편한다. 토큰·글꼴·레이아웃·desktop/mobile 와이어프레임·상태·주요 동작을 두 번의 디자인 계획/비평으로 기록한다. 기존 장식적 카드 묶음·긴 기술 설명·식별자 위주 첫 화면·상시 보안 설명·그라디언트 장식을 피한다. 취향만 바꾸는 CSS 수정으로 끝내지 않는다.
-- [ ] 현재 빈 DEV/tester 인박스에 후속 구현/독립 QA 지시서를 쓴다. fullops-work find/context/packet과 정확한 역할별 키 SAR-HUMAN-PEER-001-DEV / SAR-HUMAN-PEER-001-TESTER를 사용한다. DEV는 짧은 기술 계획→전체 구현→필수 회귀/권한 경계→기술 문서 갱신을 같은 과제에서 끝낸다. tester는 고정 DEV SHA를 기다린다.
-- [ ] D01/D02/D04와 관련 사용자 안내/실행 기록을 현재 제품 규칙에 맞게 갱신한다. D03/D05/D08/API/DB 이행 문서의 기술 갱신은 DEV에 인계한다. 과거 검증 기록을 새 구조 수락 증거로 쓰지 않는다.
+- [x] 사용자 흐름과 현재 소유/연결/메시지/이메일 인증 구조를 확인한다. 제품 정본의 충돌을 판정한다.
+- [x] 이메일 소유 확인 아래 내 에이전트 등록·이름 지정/변경, 사람 간 친구 요청·상호 수락·거절·취소·해제·차단, 친구 에이전트 목록 노출과 대화 흐름을 확정한다. 노출 범위·새로 추가한 에이전트·철회·친구 해제 후 권한·과거 대화 접근·기존 관계 이행을 명시한다. 단순 친구 검색만으로 타인의 정보/에이전트를 공개하지 않는다.
+- [x] frontend-design 스킬로 UI/UX를 전면 재설계한다. 대화·친구·내 에이전트의 정보 구조를 사용자 요구에 맞게 정하고, 간결한 텍스트와 이름 중심 목록 및 대화를 첫 경험에서 볼 수 있게 한다. 내·친구 에이전트 선택과 메시지 전달/수신·승인 상태를 이해할 수 있게 설계한다. 위험 안내와 실패 복구 문구는 필요한 곳에 유지한다.
+- [x] D04 정본을 실질적으로 개편한다. 토큰·글꼴·레이아웃·desktop/mobile 와이어프레임·상태·주요 동작을 두 번의 디자인 계획/비평으로 기록한다. 기존 장식적 카드 묶음·긴 기술 설명·식별자 위주 첫 화면·상시 보안 설명·그라디언트 장식을 피한다. 취향만 바꾸는 CSS 수정으로 끝내지 않는다.
+- [x] 현재 빈 DEV/tester 인박스에 후속 구현/독립 QA 지시서를 쓴다. fullops-work find/context/packet과 정확한 역할별 키 SAR-HUMAN-PEER-001-DEV / SAR-HUMAN-PEER-001-TESTER를 사용한다. DEV는 짧은 기술 계획→전체 구현→필수 회귀/권한 경계→기술 문서 갱신을 같은 과제에서 끝낸다. tester는 고정 DEV SHA를 기다린다.
+- [x] D01/D02/D04와 관련 사용자 안내/실행 기록을 현재 제품 규칙에 맞게 갱신한다. D03/D05/D08/API/DB 이행 문서의 기술 갱신은 DEV에 인계한다. 과거 검증 기록을 새 구조 수락 증거로 쓰지 않는다.
 
 소유권: .fullops-squad/docs/planning/, docs/design-docs/mockups/, docs/operations/user-guide.md의 제품 흐름 부분, docs/exec-plans/phases/SAR-HUMAN-PEER-001.md, handovers/to_dev.md, handovers/to_tester.md, contexts/designer.md 및 자기 탐색/결과. 제품 코드를 구현하지 않는다. coor 소유 PLANS/board는 coordinator에게 상태를 보고해 갱신시킨다.
 
@@ -122,4 +122,18 @@ Windows 파일 삭제·이동 정리 금지, 임시 검증 자료 보존. 비밀
 
 ## 완료 보고
 
-미완료. worker가 결과 전문과 SHA·검증·후속을 기록한다.
+제품 기획·UI/UX 설계·DEV/QA 인계 범위를 완료했다. 실제 기능·운영·새 구조의 제품 수락은 후속이다. 재개한 초안의 소유권은 coor msg_59d0bbe24839로 확인했고 기존 내용과 과거 실패/수락 기록을 보존했다.
+
+확정 결정: 사람 친구를 공유 코드로 요청하고 상호 수락한다. 현재·향후 활성 agent를 이름으로 선택해 연속 대화한다. owner 작성과 agent 작성을 구분한다. 각 메시지의 전달 TTL은 최대 180s이고 새 text 원문 보존은 수락 후 최대 24h다. 친구 해제/차단·agent 철회가 모든 새 전달/실행/승인/result/legacy 경로보다 우선한다. 현재 회원의 본인 참여 과거 사본만 잔여 보존 기간 읽기 전용으로 허용한다. legacy pair는 정확한 기존 두 agent 범위만 유지하며 전체 사람 권한으로 자동 승격하지 않는다. 기술 구조·API·DB·웹 작성 인증·이행/복귀 방법은 DEV 책임이다.
+
+디자인: frontend-design으로 기존 D04를 전면 개편했다. 대화 / 친구 / 내 에이전트 구조, 사람 아래 agent 이름 목록, 두 차례 계획·자기 비평, 6색 토큰·글꼴·간격·desktop/mobile 와이어프레임·상태·오류 복구·접근성과 수락 담당을 기록했다. 기술 ID·키·명령·계정은 필요한 상세로 옮겼다. 장식 카드·그라디언트·상시 보안 설명과 가짜 대화는 제외했다. 실제 보안/보존/실패 안내는 해당 행동 옆에 유지했다.
+
+산출물: D01·D02·D04·D11 사용자 흐름 및 기획/원천 우선순위 안내를 갱신했다. 지시서의 D07 사용자 안내 표기는 인덱스와 달라 D07=DB 설계, D11=사용자설명서로 바로잡았다. D03/D05/D06/D07/D08/D09/D10 및 README/adapter 기술 갱신은 DEV다. D12/D13의 이행/복구/운영 실행은 DEV 기술 인계 뒤 OPS다. PLANS/board는 coor가 갱신한다.
+
+검증: deliverables strict exit 0(13종, 문제/경고 0), 수정 뒤 git diff --check exit 0, 변경 Markdown 로컬 링크 169개/누락 0, 명세 토큰 대비 7개 조합 PASS다. 과거 product/decisions 원본문과 D04 이전 절 보존을 assert했다. frontend.py check는 configuration_ready exit 0이며 로그인·MCP·새 제품 브라우저 QA 성공을 뜻하지 않는다. designer packet completion 계약 exit 0, 비선택 path/category 52개와 unknown 15건·remaining 11개의 수동 검토를 outcomes에 기록했다. 최종 HEAD의 FullOps lint는 별도 검증 파일과 worker_done에서 고정하며 제품 테스트는 새 동작이 없어 해당 없음이다.
+
+후속 인계: to_dev.md는 SAR-HUMAN-PEER-001-DEV waiting-design-integration, to_tester.md는 SAR-HUMAN-PEER-001-TESTER waiting-dev-sha다. 각각 code/documents find·context·route bind·packet을 작성했다. packet 생성은 exit 0(DEV 후보65, tester203, 각각 partial/unknown17)이다. 준비 packet check는 상대 인박스 원천 hash 변경으로 exit 1이며 PASS가 아니다. coor가 문서 독립 리뷰·main 통합 뒤 DEV 실제 준비 HEAD의 패킷을 갱신하고, tester는 DEV 고정 구현 SHA에서 갱신해야 한다. tester의 검색 추천이 제품 코드 수정 권한을 주지 않는다.
+
+미검증·보류: 실제 새 기능·키보드/200%/스크린 리더·실 Google/노우/다닷 새 흐름·운영 DB 이행/복원·배포는 실행하지 않았다. 기존 제품의 과거 PASS를 새 수락 근거로 쓰지 않는다. DEV 핵심/필수 검사, tester 독립 A/B/C와 legacy fixture QA, 같은 SHA의 designer 실제 구현 시각 검수 및 별도 세션 리뷰가 남았다. 실계정·외부 발송·운영 실행은 별도 단계다. 새 다크 모드·공개 검색·첨부·장기 보관·읽음·agent별 공유·상품 기능은 생략했다.
+
+정본·상세 결과: [HP 요구사항](../docs/planning/product-specs/SAR-HUMAN-PEER.md), [현행 D04](../docs/design-docs/mockups/service-member-ui.md), [실행 기록](../docs/exec-plans/phases/SAR-HUMAN-PEER-001.md), [designer outcomes](../docs/evaluations/jev/SAR-HUMAN-PEER-001-packet-outcomes.json). 제품/임시 자료 삭제·이동은 실행하지 않았으며 모든 생성 탐색 JSON과 과거 캡처는 그대로 보존한다. 기획 본문은 5d5d26c부터 커밋했고 결과·finish 아카이브를 포함한 최종 SHA 하나를 실제 worker_done에 보고한다.
