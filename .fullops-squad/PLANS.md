@@ -1642,3 +1642,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 선행 통합 완료: 기존 main hook WIP를 stash SHA6d87f21628adc309450d31432141ef876c41cf1c와 별도 원본 파일에 보존했다. 검토된 hook d7d6d744·운영 업데이트ddb4132를 main에 SHA 보존 FF하고 origin/main에 push했다. 두 SHA의 remote 조상 관계 exit0. ops는 terminal0·clean 확인 뒤 최신 main FF, 나머지 역할은 이미 이 main을 포함한다. 실행 중 tester 체크아웃은 변경하지 않았다. UI는 독립 QA 수락 전이라 main에 아직 없다.
 
+
+## 2026-10-12 프런트엔드 수락·통합
+
+- 제품9597bad, 직접 시각1d4a0f7, 독립 tester ecef112 수락. 제품 리뷰9 reviewed/76 skipped, 시각 문서10/QA 결과14 reviewed의 고정 snapshot check 통과. 새 critical/high0. 기존 비차단 low와 실제 Google·스크린 리더·200%·remoteReturn 렌더·독립 실제 keypress·DB integration 미검사는 보존한다.
+- 기본 브랜치 제품·검수 병합 SHA675ab473(전체 SHA는 Git ref에서 확인)은 coor 통합 payload의 FF다. 최종 운영 기록을 포함한 현재 coor HEAD에서 base5c6485b의 필수 product-lint/product-test와 FullOps lint를 실행한 뒤 origin/main 일반 push·조상 관계·역할 동기화를 확인한다. 최종 SHA·명령 종료코드·main/origin·역할별 결과의 정본 영수증은 Git 공용 fullops-integration/SAR-FRONTEND-POLISH-001-final.json에 보존한다. 이 파일은 과제 지시서가 아니다.
+- 통합 검사 helper와 로그는 C:/Users/shin/AppData/Local/KnowsLinkDevTools/frontpolish001-coor/에 보존한다. 기존 main hook WIP는 stash6d87f216 및 main-hooks-before-integration.json으로 보존했다. 재적용하지 않은 이유: 검토된 수정이 기존 인용 변경을 포함하며 종료코드 보존까지 고친다.
+- 정리 삭제0·이동0. 리뷰 snapshot .fullops-review-8d959e3f1fe148f6b88c81f0dfaa090c, .fullops-review-324f491615464280aaf9795c42606068, .fullops-review-750c759d9f8c4cc9b3e99081f674aca1은 증거·실제 세션 검증을 위해 보존한다. 신규 기능·재설계·배포는 하지 않았다. 후속 low는 별도 과제로 대기하며 자동 착수하지 않는다.
+
