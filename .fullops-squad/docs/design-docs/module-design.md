@@ -2,9 +2,9 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -229,7 +229,7 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 | `member_pages.go` `memberPages` | 로그인·확인 코드·홈·연결 관리·기기 승인·receipt·거부 화면. 홈은 헤더·확인 필요 띠·섹션 이동·에이전트(접힘 행·위험 구역)·관계·승인 요청·연결 확인·계정 순서다 | `TestMemberPagesShowNextSteps`, integration 문구 검사 |
 | `member.go` `homePage` | 관계 정렬(받은 초대→보낸 초대→연결됨→종료), 활성 에이전트 수, 받은 초대·대기 승인 요청 건수 | integration `TestPublicAgentHTTP`·`TestEmailIdentity` |
 | `member_agents.go` `memberAgent.ActiveKeys`, `memberPair.Mine/Peer` | 접힌 행의 활성 키 수, 관계 행의 내 에이전트→상대 방향 | 위 검사 |
-| `testdata/member_forms.golden` | 재설계 전 템플릿에서 만든 form 계약(method·action·hidden 값·필드 이름·button 라우팅). 의도한 차이는 홈 헤더 로그아웃 form 1개 추가뿐이다 | `TestMemberUIFixtures` |
+| `testdata/member_forms.golden` | 재설계 전 템플릿에서 만든 form 계약(method·action·hidden 값·필드 이름·button 라우팅). 의도한 차이는 홈 헤더 로그아웃 form 1개 추가뿐이다. SAR-FRONTEND-POLISH-001-DEV에서 선택할 에이전트가 없을 때 빈 select만 남던 홈의 관계 초대·요청 상태 form 2개를 숨겼다(`TestMemberInviteFormNeedsConnectedAgent`) | `TestMemberUIFixtures` |
 
 시각 검수 자료: `KNOWSLINK_UI_FIXTURE_DIR=<빈 폴더> go test ./internal/relay -run TestMemberUIFixtures`가 합성 데이터의 29개 화면 HTML을 쓴다. 실제 계정·비밀값은 없다. 방법은 [실행 기록](../exec-plans/phases/SAR-SERVICE-UI-001-DEV.md)을 따른다.
 FullOps DESIGN 규칙은 Go 문자열 안의 CSS를 검사하지 않는다. 대신 위 렌더 검사와 Orca 내장 브라우저의 1440·390·320 폭 측정을 사용했다.

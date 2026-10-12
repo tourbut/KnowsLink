@@ -1,0 +1,253 @@
+{
+ "packet_input_sha256": "2bdeda045a8e313899cd05e60d9aead7ab736b56d23634ba1122e7f3c980299a",
+ "attempt": "e5b3085323c84ed69a5d155b9a006ed6",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 읽고 dev 운영·인박스·1.4.0 UI 절차를 따랐다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04 전문을 읽고 8절 토큰·5.2·7절·10절 A-02/A-09를 수정 기준으로 썼다. side-tab·— 배지는 8.5 정본이라 유지. 정본 변경 없음"
+  },
+  {
+   "path": ".fullops-squad/handovers/to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "지시서 전문을 읽고 범위·금지·완료 기준을 따랐다. 완료 보고만 추가"
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "검증 명령·Windows/디자인 lint 한계를 읽고 make lint/test를 Linux 격리 clone에서 실행했다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "규칙 식별자 fullops-common-0.3.3과 우선순위를 확인했다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "UI 정본·토큰 우선 규칙을 따라 기존 memberStyle 토큰만 재사용했다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "출력 이스케이프·비밀값 규칙 확인. html/template 문맥 유지, 로그는 접속값을 가렸다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "lite 기준으로 변경 동작에 회귀 테스트 1개와 필수 lint/test만 실행했다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "55행(회원 계층 안내 분리, wire 코드 불변) 확인. 이번 변경은 안내 문구·wire를 바꾸지 않는다"
+  },
+  {
+   "path": ".fullops-squad/contexts/dev.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "Windows gate 한계·golden 선커밋·Orca 클릭 포커스 교훈을 읽고 적용했다. 결정 한 줄을 추가했다"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "42행 연결 단계 표시 수락 근거 확인. 연결 화면은 기한 nowrap만 바뀌어 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "145·227–234행을 읽었다. golden 의도 차이 설명이 낡아져 이번 2행 삭제를 D10에 추가했다"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "요약(제품 명세 검토·인계 수락)을 확인했다. 이번 수정은 명세 미충족 low만 다뤄 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "32행 측정 방법(fixture 29×3폭)을 확인해 같은 방법을 재사용했다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "N-01과 V-02–V-12 잔여를 결함 목록 출발점으로 썼다. 원 보고서는 보존"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "36·54행 golden·이스케이프·Linux gate 근거를 확인했다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "26·80행 lint 절차와 짧은 날짜(V-03)·agent 용어 잔여를 확인했다. V-03은 designer 판단으로 남김"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "V-02–V-12 전문을 읽고 V-04·05·06·07·09·10·11을 수정, V-02·03·08·12는 사유와 함께 남겼다. 보고서는 보존"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "요약 확인. 명세 작성 기록이며 이번 수정은 명세를 바꾸지 않는다"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "24–92행 확인. 과거 frontend-design 선택·검사 명령은 당시 근거로 두고 이번에는 impeccable을 썼다(지시서 충돌 절). fixture 생성 절차를 재사용"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 읽고 memberStyle 공유 호출자(gate·OAuth)와 측정 방식을 재사용했다. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "요약 확인. 재측정 기록이며 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "요약 확인. 독립 QA 기록이며 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "요약 확인. 직접 검수 기록이며 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "요약(베타 배포 상태) 확인. 배포 금지 과제라 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "요약 확인. 제품 방향 변경 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "209행은 idempotency scope로 UI와 무관. 변경 불필요"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "261행 F-UI-01–04 회귀 항목 확인. after 측정에서 overflow 0·KST 유지로 회귀 없음"
+  },
+  {
+   "path": "adapters/skills/knowslink/SKILL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "16행 연결 URL·지문 비교 안내 확인. 기기 승인 화면 마크업은 바뀌지 않아 변경 불필요"
+  },
+  {
+   "path": "adapters/src/login.test.ts",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "88–95행 비밀값 비노출 검사 확인. adapter 미변경, make test 통과"
+  },
+  {
+   "path": "adapters/src/mcp.ts",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "78행 연결 도구 설명 확인. 서버 화면 경로·문구 계약 미변경"
+  },
+  {
+   "path": "internal/relay/connections_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "unpair·재초대·결정 control 고정 검사를 읽었다. V-02를 바꾸지 않은 근거. 테스트 통과"
+  },
+  {
+   "path": "internal/relay/device.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "55·111·117행 기기 연결 상태 분기 확인. 템플릿 device는 미변경"
+  },
+  {
+   "path": "internal/relay/member_agents.go",
+   "category": "direct_edit",
+   "status": "no_change",
+   "reason": "ownAgents Status 값(연결 완료·미연결·철회)을 확인해 $live 조건에 썼다. 파일 수정 불필요"
+  },
+  {
+   "path": "internal/relay/member_agents.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "ownAgents Status 값(연결 완료·미연결·철회)을 확인해 $live 조건에 썼다. 파일 수정 불필요"
+  },
+  {
+   "path": "internal/relay/member_pages.go",
+   "category": "direct_edit",
+   "status": "completed",
+   "reason": "CSS·마크업 최소 수정(f7b4786). form 계약 변화는 home-empty 빈 form 2행 삭제뿐"
+  },
+  {
+   "path": "internal/relay/member_pages.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "CSS·마크업 최소 수정(f7b4786). form 계약 변화는 home-empty 빈 form 2행 삭제뿐"
+  },
+  {
+   "path": "internal/relay/member_ui_test.go",
+   "category": "direct_edit",
+   "status": "completed",
+   "reason": "fixture ActiveAgents 0과 TestMemberInviteFormNeedsConnectedAgent 추가(f7b4786)"
+  },
+  {
+   "path": "internal/relay/member_ui_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "fixture ActiveAgents 0과 TestMemberInviteFormNeedsConnectedAgent 추가(f7b4786)"
+  },
+  {
+   "path": "internal/relay/policy_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "관계·unpair 정책 검사 범위 확인. 서버 정책 미변경, go test 통과"
+  },
+  {
+   "path": "scripts/install_bot_mcp.sh",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "83행 Bot 안내 확인. 서버 UI 경로 미변경"
+  }
+ ],
+ "uncertainty_review": "partial 패킷의 미확인 11건은 동적 참조·언어 서버 미검증이다. memberStyle·memberPages·remotePage·page 사용처를 rg로 직접 확인했고(member.go·http.go·remote_auth.go·member_pages.go와 테스트), 변경 템플릿을 쓰는 화면 29개 전부를 fixture 렌더·브라우저 측정으로 확인했다. 추가 수정 후보 없음."
+}
