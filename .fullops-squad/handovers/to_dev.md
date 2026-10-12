@@ -6,14 +6,14 @@ owner: dev
 tasks: [SAR-HUMAN-PEER-001-DEV]
 summary: 사람 친구와 이름 있는 에이전트의 대화 UI 전체 구현 및 안전한 데이터 이행
 attempt: 091fb01ddedc4dcda2db743061393dfb
-base: f20b33a11addeb3debcb23e2e835be31c7dd1454
+base: f849215bdefd3984dbf385c9f0973a74525be545
 subagent_level: standard
 test_level: lite
 ---
 
 # SAR-HUMAN-PEER-001-DEV — 사람 친구·이름·대화의 전체 구현과 안전 이행
 
-- 상태: waiting-design-integration. 현재 설계의 독립 문서 리뷰·main 통합 뒤 coor가 준비 SHA와 실행 tuple을 고정하고 ready로 바꾼다.
+- 상태: ready. 설계94e67ed 독립 리뷰와 main/origin 통합 완료. 고정 제품 기준 f849215bdefd3984dbf385c9f0973a74525be545. 실행 codex / gpt-6.1-sol / high. 최신 준비 커밋과 패킷을 함께 받는다.
 - From / To: designer / dev. Purpose: implementation. Task key: SAR-HUMAN-PEER-001-DEV.
 - 담당: C:/Users/shin/orca/workspaces/KnowsLink/dev, fullops/dev. 제품 코드·기술 문서·관련 테스트·자기 증거 소유.
 - 복귀: repo 0b08ec4c-9e3a-4613-8197-5a835e545335, coor 워크트리, term_47da6145-4e1e-4cc1-93ea-20bc0dd590b9, Run run_5534969da2d0. 실제 실행 task/dispatch는 새 preamble을 사용한다.
@@ -160,3 +160,4 @@ Windows make 부재 참고: coordinator msg_907ca28147c9가 C:/Users/shin/AppDat
 ## 완료 보고
 
 미완료. 고정 SHA·검증·미실행·후속을 실제 완료 때 작성한다.
+
