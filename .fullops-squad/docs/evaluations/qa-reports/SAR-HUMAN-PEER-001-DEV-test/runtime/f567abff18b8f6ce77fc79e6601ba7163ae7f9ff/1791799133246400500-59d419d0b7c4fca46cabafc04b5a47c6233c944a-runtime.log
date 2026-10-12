@@ -1,0 +1,13 @@
+no public port '5432/tcp' published for qa-da1c0627-02300ad1-postgres
+Traceback (most recent call last):
+  File "/tmp/knowslink-humanpeer001-59d419d0b7c4-02300ad1/runtime_remote.py", line 48, in <module>
+    port_text = subprocess.check_output(['docker', 'port', container, '5432/tcp'], text=True).strip()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'port', 'qa-da1c0627-02300ad1-postgres', '5432/tcp']' returned non-zero exit status 1.
+
+EXIT=1

@@ -1,0 +1,28 @@
+{
+  "sha": "59d419d0b7c4fca46cabafc04b5a47c6233c944a",
+  "scope": "baseline DEV self-check; no implementation acceptance",
+  "postgres_version": "17.11",
+  "checks": [
+    "healthz SQL ping=200",
+    "unauthenticated home=303",
+    "invalid email=422",
+    "alice: local sink OTP start=303 wrong code=401 verify=303 authenticated home=200",
+    "bob: local sink OTP start=303 wrong code=401 verify=303 authenticated home=200"
+  ],
+  "request_allowlist": {
+    "GET": [
+      "/",
+      "/healthz",
+      "/home"
+    ],
+    "POST": [
+      "/auth/start",
+      "/auth/verify"
+    ]
+  },
+  "recipients": "unique synthetic alice/bob @humanpeer.invalid only",
+  "secrets_in_output": false,
+  "ui_captures": "not_run; waiting for implementation SHA"
+}
+
+EXIT=0

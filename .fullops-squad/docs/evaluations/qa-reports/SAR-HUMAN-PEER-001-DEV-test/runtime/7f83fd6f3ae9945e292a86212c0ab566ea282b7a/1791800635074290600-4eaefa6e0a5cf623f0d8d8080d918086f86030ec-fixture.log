@@ -1,0 +1,232 @@
+{
+  "sha": "4eaefa6e0a5cf623f0d8d8080d918086f86030ec",
+  "scope": "DEV genuine synthetic runtime fixture and self-check; no independent acceptance",
+  "fixture_provisioning": "only dedicated DB/network/container and empty SQL migration; no direct product state JSON/SQL seeding",
+  "product_changes": "real SMTP OTP/profile forms, public agent/connect APIs, friend consent forms, owner web composer and existing signed adapter transport",
+  "private_keys": "client-only files inside preserved0700 fixture directory, never sent to browser/server",
+  "message_bodies_in_logs": false,
+  "checks": [
+    "three agents created and genuine adapter key/credential connect completed; duplicate and long Korean names",
+    "friend request and explicit consent acceptance through real session forms",
+    "cross-origin composer rejected403; same-origin owner send303",
+    "actual adapter persist/ACK for owner text and signed agent reply, without body output"
+  ],
+  "requests": [
+    {
+      "actor": "alice",
+      "method": "GET",
+      "path": "/home/agents",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/agents",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "GET",
+      "path": "/home/agents",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/connect",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/confirm",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "GET",
+      "path": "/home/agents",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/agents",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "GET",
+      "path": "/home/agents",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/connect",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/confirm",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "GET",
+      "path": "/home/agents",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "POST",
+      "path": "/home/agents",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "GET",
+      "path": "/home/agents",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "POST",
+      "path": "/home/connect",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "POST",
+      "path": "/home/confirm",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "POST",
+      "path": "/home/friend-code",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "GET",
+      "path": "/home/account",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/friends/request",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "GET",
+      "path": "/home/friends",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "bob",
+      "method": "POST",
+      "path": "/home/friends/decision",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "GET",
+      "path": "/home/conversation",
+      "status": 200,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/conversation/send",
+      "status": 403,
+      "evil_origin": true
+    },
+    {
+      "actor": "alice",
+      "method": "POST",
+      "path": "/home/conversation/send",
+      "status": 303,
+      "evil_origin": false
+    },
+    {
+      "actor": "alice",
+      "method": "GET",
+      "path": "/home/conversation",
+      "status": 200,
+      "evil_origin": false
+    }
+  ],
+  "adapter_actions": [
+    {
+      "action": "prepare",
+      "exit": 0
+    },
+    {
+      "action": "complete",
+      "exit": 0
+    },
+    {
+      "action": "prepare",
+      "exit": 0
+    },
+    {
+      "action": "complete",
+      "exit": 0
+    },
+    {
+      "action": "prepare",
+      "exit": 0
+    },
+    {
+      "action": "complete",
+      "exit": 0
+    },
+    {
+      "action": "receive",
+      "exit": 0
+    },
+    {
+      "action": "send",
+      "exit": 0
+    },
+    {
+      "action": "receive",
+      "exit": 0
+    }
+  ],
+  "capture_paths": [
+    "/home",
+    "/home/friends",
+    "/home/agents",
+    "/home/new",
+    "/home/conversation?from=agent_73fbe8961dbd56b2975c41&to=agent_0c0dcce0d24b3d6d44e220"
+  ],
+  "qa": "/tmp/knowslink-humanpeer001-4eaefa6e0a5c-c63728a4/qa-c8a0339a"
+}
+
+EXIT=0
