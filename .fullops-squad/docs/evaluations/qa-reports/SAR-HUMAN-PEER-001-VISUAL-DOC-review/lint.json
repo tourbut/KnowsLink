@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "6a92a8da48324b2386d7cd85da9e7c48",
+  "base": "7c29f87a8cba756457c3873badef4881ad8cdf03",
+  "merge_base": "7c29f87a8cba756457c3873badef4881ad8cdf03",
+  "head": "bfdfafc8054d8791228fa7f0c7cbcb69a974beaa",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없다. 이 후보는 시각 FAIL 문서만 변경하며 제품 코드는254ff6a와 동일하다. 등록제품검사는254ff6a native0 증거를 참조하고 새 제품수락은 후속 고정 후보에서 수행한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없다. 이 후보는 시각 FAIL 문서만 변경하며 제품 코드는254ff6a와 동일하다. 등록제품검사는254ff6a native0 증거를 참조하고 새 제품수락은 후속 고정 후보에서 수행한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "585줄(이전 579, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+    }
+  ],
+  "summary": {
+    "files": 2,
+    "added_lines": 35,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
