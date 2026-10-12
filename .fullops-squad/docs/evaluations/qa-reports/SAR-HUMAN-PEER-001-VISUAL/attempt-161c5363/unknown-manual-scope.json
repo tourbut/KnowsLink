@@ -1,0 +1,137 @@
+[
+  {
+    "path": ".fullops-squad/PLANS.md",
+    "exists": true,
+    "lines": 1684,
+    "heading": "# KnowsLink 현재 계획",
+    "related": [
+      {
+        "line": 1661,
+        "text": "- SAR-HUMAN-PEER-001: 사용자 새 요청으로 제품 규칙과 UI/UX 전면 변경을 승인했다. 사람 간 상호 peer 아래 이름 있는 내/친구 에이전트와 대화 흐름을 구현한다. 기존 정적 테스트 화면은 운영 동작이 아니다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/operations/ops-guide.md",
+    "exists": true,
+    "lines": 421,
+    "heading": "# KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획",
+    "related": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVIC"
+      },
+      {
+        "line": 14,
+        "text": "## SAR-HUMAN-PEER-001 기술 인계 — 운영 미적용"
+      },
+      {
+        "line": 20,
+        "text": "환경·실행 SHA·실행/미실행 범위는 [DEV 기록](../exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)과 연결된 runtime 보고서를 따른다. 실제 Google/메일·호스트 계정 왕복·운영 복원은 별도 실행이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+    "exists": true,
+    "lines": 843,
+    "heading": "# SAR-SETUP-001-DEV — 잠긴 원천에 맞는 초기 구성과 lint 구현",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+    "exists": true,
+    "lines": 659,
+    "heading": "# SAR-SETUP-001-TESTER — dev 완료 SHA의 초기 구성과 lint 독립 검증",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+    "exists": true,
+    "lines": 730,
+    "heading": "# SAR-GOOGLE-CONNECT-001-DEV — 양쪽 Google 로그인으로 agent 연결 완료",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+    "exists": true,
+    "lines": 497,
+    "heading": "# SAR-GOOGLE-CONNECT-001-TESTER — 고정 인증 변경의 독립 코드 리뷰와 운영 서버 lite QA",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+    "exists": true,
+    "lines": 730,
+    "heading": "# SAR-SSE-INSTALL-001-VISUAL — 새 Google OAuth 동의 화면의 독립 desktop/mobile 직접 시각 검수",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+    "exists": true,
+    "lines": 1049,
+    "heading": "# SAR-SSE-INSTALL-001-DEV — 폴링 보존·SSE 도착 신호 및 공통 Google 인증 플러그인 설치를 구현하고 기존 연결 수신 코드를 최소 정리한다",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    "exists": true,
+    "lines": 650,
+    "heading": "# SAR-SSE-INSTALL-001-OPS — 수락 후보의 기존 Linux 운영 이행과 보존 smoke",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+    "exists": true,
+    "lines": 1151,
+    "heading": "# SAR-SSE-INSTALL-001-TESTER — SSE 도착 신호·Google 인증·호스트별 설치의 독립 lite QA와 고정 SHA 리뷰",
+    "related": []
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+    "exists": true,
+    "lines": 668,
+    "heading": "# SAR-CODEX-HOOK-QUOTE-001-DEV — Codex hook 실행 오류와 셸 인용 회귀 수정",
+    "related": [
+      {
+        "line": 386,
+        "text": "## SAR-HUMAN-PEER-001-DEV — 2026-10-12"
+      },
+      {
+        "line": 387,
+        "text": "<!-- fullops-attempt: SAR-HUMAN-PEER-001-DEV 091fb01ddedc4dcda2db743061393dfb -->"
+      },
+      {
+        "line": 390,
+        "text": "title: SAR-HUMAN-PEER-001-DEV — 사람 친구와 이름 있는 에이전트의 대화 UI 전체 구현 및 안전한 데이터 이행"
+      },
+      {
+        "line": 394,
+        "text": "tasks: [SAR-HUMAN-PEER-001-DEV]"
+      },
+      {
+        "line": 402,
+        "text": "# SAR-HUMAN-PEER-001-DEV — 사람 친구·이름·대화의 전체 구현과 안전 이행"
+      },
+      {
+        "line": 405,
+        "text": "- From / To: designer / dev. Purpose: implementation. Task key: SAR-HUMAN-PEER-001-DEV."
+      },
+      {
+        "line": 444,
+        "text": "필수: docs/planning/product-specs/SAR-HUMAN-PEER.md, docs/design-docs/mockups/service-member-ui.md의 현행 절, docs/planning/product-specs/SAR-PUBLIC-SERVICE.md의 현행 안내, docs/exec-plans/phases/SAR-HUMAN-PEER-001.md, docs/operati"
+      },
+      {
+        "line": 462,
+        "text": "제품 디자인 정본은 docs/design-docs/mockups/service-member-ui.md의 현행 SAR-HUMAN-PEER-001 절이다. 사용자 선택 frontend-design, codex / gpt-6.1-sol / high를 유지한다. 다른 호스트는 coor가 실제 지원 tuple을 명시하기 전 자동 전환하지 않는다. 새 도구 설치 없음. 기존 Go templates/CS"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
+    "exists": true,
+    "lines": 585,
+    "heading": "# SAR-CODEX-HOOK-QUOTE-001-TESTER — Codex hook 독립 QA와 고정 SHA 리뷰",
+    "related": []
+  }
+]

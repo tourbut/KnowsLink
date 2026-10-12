@@ -102,3 +102,7 @@ coor는 질문 `msg_ef0f8a0d5800`에 회신 `msg_7d224a4c95a0`으로 원후보 �
 최종 커밋의 FullOps lint·문서 검사·패치/링크/제품 파일 경계 검사 원본은 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-visual/final-validation.json`과 같은 폴더 `final-lint.json`에 보존한다. lint 기준은 지시서 base `254ff6a98b12b7e51f0835491300f7695425d264`다. Windows PATH의 make 부재로 등록 제품 명령을 실행할 수 없으면 unavailable로 기록한다. 제품 코드/설정/의존성을 바꾸지 않았으므로 새 제품 시험은 만들지 않으며 별도 make shim·다른 후보 검사로 이 문서 HEAD의 성공을 꾸미지 않는다. DEV 최종 후보의 실제 make lint/test 통과 근거는 외부 final-report.md·final-hook-base-lint.json에 있으며 이번 독립 제품 실행이 아니다.
 
 삭제·이동을 하지 않았으며 모든 임시 자료와 기존 증거를 보존한다. 제품 시각 FAIL 해소는 DEV 수정·후속 고정 SHA 검수의 책임이다.
+
+## 수정 후보의 별도 재검수 기록
+
+위 FAIL은 원후보254ff6a 시점의 기록이며 그대로 보존한다. 같은 키의 새 attempt161c5363은 후보 `12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5`의 원본14PNG와 별도 실제 격리 surface를 직접 검수했다. 제공된 V01–V03 수정 화면은 시각 PASS이며 미제공 상태·실제 keyboard/200%는 not_run이다. 새 판정·증거·후속의 정본은 [수정 후보 재검수 보고](final-report.md)다.
