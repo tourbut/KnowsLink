@@ -1682,3 +1682,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - visual 완료 msg_3a6a92bfd8e5/bfdfafc: 제품254ff6a 시각FAIL(V01/V02 medium,V03 low), 실제surface/200%/focus not_run. root독립문서리뷰 reviewed9/skipped3/checkPASS, snapshot .fullops-review-1cb43af3f3fe43358f12aa63e1b627d2 보존. 결과만 coor병합하고 designer 정상release. 새DEV후보 완료와 독립testerfixture 뒤 같은키 새attempt 재검수한다. msg_22440ed32de4: tester-owned 원후보13238/profile3168fe9e/pagef7f75011 준비·healthz200 확인.
 
+
+- DEV시각수정 msg_7e0a71c1e687/12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5: exactmake lint/test·FullOps ERROR0 unavailable0, UI3파일 delta/원254ff6a SQL재사용 확인. worker retain·coor검수후보병합. 새visual task_ee6ae292af9b/ctx_a371d34f19ba/term_a4a0cb03 Codex6.1high fresh requested/effective·turn_started. tester msg_bd0e71834b84로 최종코드delta 리뷰인계. coor preview bd2996ff-06bf-4263-8bf0-8d66010ad2b7을 isolated695dbff1/localhost2809에 열고 실제대화 GET·새문구를 확인했다. 캡처 preview-simplified-conversation.png는 AppData/Local/KnowsLinkDevTools/humanpeer001-coor에 보존하며 nativeviewport가1440검사와 다름을 구분한다.
+
