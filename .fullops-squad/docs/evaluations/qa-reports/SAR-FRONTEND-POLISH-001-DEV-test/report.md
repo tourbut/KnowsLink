@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-12
 owner: dev
 tasks: [SAR-FRONTEND-POLISH-001-DEV]
-summary: 합성 fixture 기반 before/after 측정·캡처·키보드 검사와 FullOps lint 결과, 비평과 미실행 사유
+summary: "합성 fixture 기반 before/after 측정·캡처·키보드 검사와 FullOps lint 결과, 비평과 미실행 사유"
 ---
 
 # SAR-FRONTEND-POLISH-001-DEV 검증 보고
