@@ -66,3 +66,5 @@ packet의63개 비선택 path/category와 unknown18/remaining25 수동 검토를
 coor는 고정 최종 후보의 독립 QA·직접 시각·별도 세션 리뷰와 main 통합을 조정한다. OPS는 수락 뒤 D07의 쓰기 중단·private backup/복원 리허설·migration·새 writer·철회/legacy 검증을 적용한다. 과거 backup 전체 복원은 trigger만으로 안전을 보장하지 않으므로 권한 불명확 시 전달을 차단한다. 상품 quota·dark theme·첨부·검색/내보내기·장기 보관·자동 답장·업무 효과는 추가하지 않았다.
 
 최신 전체 SQL 회귀는 정확한 7f83fd6f3ae9945e292a86212c0ab566ea282b7a에서 go test -race -tags=integration ./internal/relay -count=1, 118.664초, native exit0으로 통과했다. 별도 DB 생성·migration도 exit0이며 필터 없이 실제 HumanPostgres/Legacy를 포함한다. 원본 실패와 재실행 로그는 runtime 보고서의 고정 경로에 보존했다.
+
+첫 등록 게이트의 make lint/test는 각각 exit0이었다. FullOps는 runtime 보고서 front matter 형식 DOC-003 하나로 exit1이어서 deliverables.py --stamp로 교정했다. human_pages_test의 지도 설명도 추가했다. SIZE는 요청한 결속 기능과 기존 커진 파일, DEP는 테스트 명령 등록이며 새 의존성은 없다. SEC 두 경고는 합성 lease 문자열과 테스트 지역 변수 token이고 실비밀값이 아니다. SLOP 출력은 자동 검사의 PASS 결과이며, 조건부 배열 spread는 owner/signed 허용 필드 한 개 선택이다. 기존 planning/D04 규모 경고는 DEV 소유 밖의 선행 변경이다. 경고를 숨기거나 lint 기준을 낮추지 않는다.

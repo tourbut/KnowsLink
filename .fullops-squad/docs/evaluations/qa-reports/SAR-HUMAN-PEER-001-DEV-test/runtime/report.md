@@ -4,7 +4,7 @@ status: review
 updated: 2026-10-12
 owner: dev
 tasks: [SAR-HUMAN-PEER-001-DEV]
-summary: 합성 인증·전달과 21개 화면 증거, f567abf 실패 보존 및 7f83fd6 전체 SQL 회귀 종료코드 0
+summary: "합성 인증·전달과 21개 화면 증거, f567abf 실패 보존 및 7f83fd6 전체 SQL 회귀 종료코드 0"
 ---
 
 # 실행 환경 준비

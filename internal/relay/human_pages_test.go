@@ -1,3 +1,4 @@
+// Human page fixtures verify responsive templates, forms and safe content boundaries.
 package relay
 
 import (
