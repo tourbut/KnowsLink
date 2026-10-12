@@ -1651,3 +1651,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 정리 삭제0·이동0. 리뷰 snapshot .fullops-review-8d959e3f1fe148f6b88c81f0dfaa090c, .fullops-review-324f491615464280aaf9795c42606068, .fullops-review-750c759d9f8c4cc9b3e99081f674aca1은 증거·실제 세션 검증을 위해 보존한다. 신규 기능·재설계·배포는 하지 않았다. 후속 low는 별도 과제로 대기하며 자동 착수하지 않는다.
 
 
+
+- 최종 통합검사1(3a65ebc): product-lint/product-test exit0, FullOps DOC-003 ERROR1은 선행 hook tester 리뷰 보고서의 front matter 누락이다. 본문·리뷰 결론은 보존하고 deliverables.py stamp로 메타데이터만 보완한다. 수정 커밋의 등록 검사를 재실행한다.
+- worker_done 요약의 SHA 표기가 자동 parser 규격과 달라 DEV/tester integration metadata에 sha=null이 남았다. 보고 원문(DEV final HEAD9597bad, tester 최종 기록 커밋ecef112), 실제 역할 HEAD와 수락 snapshot의 동일성을 근거로 공용 메타데이터의 누락 SHA만 보정한다. 원본 기록과 Git resolve·조상 관계 근거를 최종 영수증에 보존하고 원 메시지·성공 상태를 위조하지 않는다.
+

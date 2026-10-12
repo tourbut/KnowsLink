@@ -1,3 +1,12 @@
+---
+title: SAR-CODEX-HOOK-QUOTE-001-REVIEW 리뷰
+status: draft
+updated: 2026-10-12
+owner: tester
+tasks: [SAR-CODEX-HOOK-QUOTE-001-TESTER]
+summary: Codex hook 고정 SHA의 독립 리뷰·셸 차단 검수 및 재사용 gate 근거
+---
+
 # SAR-CODEX-HOOK-QUOTE-001-REVIEW 리뷰
 
 - 검토자 / CLI / 모델: tester / Claude Code / Sonnet 5.5. 실제 reviewer session `70c06551-37d6-4603-908a-6956e4a2ea2e`. 구현 session `cf470ffe-7c1a-4b79-8138-cecfc8b9744a`와 다르다.
