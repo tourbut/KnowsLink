@@ -1,0 +1,33 @@
+{
+  "task_key": "SAR-CODEX-HOOK-QUOTE-001-DEV",
+  "find_head": "67e7de9287c6c2ac6bb92beb5b31b523f7e64ec6",
+  "base": "67e7de9287c6c2ac6bb92beb5b31b523f7e64ec6",
+  "head": "d7d6d744d5b0010a384a7389ec8f64ec7bb93336",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "scripts/test_shell_guard.py"
+  ],
+  "new_files": [],
+  "candidates": [
+    "adapters/.codex-plugin/plugin.json",
+    "scripts/shell_guard.py",
+    "scripts/test_shell_guard.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [
+    "scripts/test_shell_guard.py"
+  ],
+  "recall": 1.0,
+  "precision": 0.25,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
