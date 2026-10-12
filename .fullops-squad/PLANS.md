@@ -1626,3 +1626,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - SAR-FRONTEND-POLISH-001-TESTER: DEV 고정 SHA 대기. implementation/tester, fresh Claude Sonnet5.5 high(jev), lite 독립 동작 QA와 별도 clean detached snapshot 리뷰. 기존 hook tester 완료9c36c12는 coor에 SHA 보존 병합하여 현재 인박스를 회수했다. 원 main hook WIP와 기존 통합 hold는 보존한다.
 
+
+- SAR-FRONTEND-POLISH-001-VISUAL: DEV 고정 SHA·캡처 대기, designer/Codex gpt-6.1-sol medium fresh. route unresolved의 tester 추천은 역할 정본의 직접 시각 검수 designer 책임을 근거로 override했다. 기존 디자인의 시각 수락과 D04 연결만 담당한다.
+
