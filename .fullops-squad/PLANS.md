@@ -1619,4 +1619,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 ## 2026-10-12 프런트엔드 완성도 검토
 
 - SAR-FRONTEND-POLISH-001-DEV: implementation/dev, fresh Claude Opus5.5 medium(jev), lite/standard. 기존 디자인 유지·결함 검토/최소 수정. Run run_2d134e8802eb. DEV 후 tester QA·designer 시각 검수·고정 SHA 독립 리뷰를 진행한다. 기존 hook/업데이트 hold는 유지한다.
+  - 2026-10-12 DEV 구현 후보 `f7b4786`(문서 포함 HEAD는 worker_done 보고). low V-04·05·06·07·09·10·11·N-01 수정, V-02·03·08·12 사유와 함께 잔여. 다음: tester QA·designer 시각 검수·독립 리뷰.
 

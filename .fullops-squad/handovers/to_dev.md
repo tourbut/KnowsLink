@@ -38,14 +38,14 @@ fullops-frontend와 fullops-work, fullops-test를 사용한다. 주 디자인 �
 
 ## 해야 할 일·완료 기준
 
-- [ ] 대상 UI 구현·호출자·기존 검사·최근 변경과 정본을 확인하고 짧은 기술 계획 및 결함 목록을 기록한다.
-- [ ] frontend.py --host claude-code --model claude-opus-5-5 --effort medium --check로 준비를 확인한다. 실제 인증/브라우저 성공과 구분한다.
-- [ ] impeccable context를 한 번 실행한다. 실패 시 스킬의 fallback을 따른다. UI edit 직전에 craft-floor를 읽는다.
-- [ ] desktop 1440×900, mobile 390×844에서 핵심 화면·키보드·포커스·가로 overflow·오류/빈 상태를 합성 fixture로 확인한다. 실제 결함을 한 번에 수정한다.
-- [ ] 변경 핵심 동작과 필요한 실패 경계에 짧은 검사. 프로젝트 필수 product-lint/product-test를 유지한다. non-trivial 로직은 작은 회귀 검사로 보호한다.
-- [ ] 변경을 커밋하고 지시서 base에서 현재 HEAD의 FullOps lint ERROR0 및 등록 product-lint/product-test exit0 증거를 남긴다. 파이프로 종료코드를 가리지 않는다.
-- [ ] 실행 보고/비평/캡처(합성 자료만)/명령과 종료코드를 qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/에 기록한다. 테마 전환·별도 디자인 lint가 없으면 해당 없음의 이유를 적는다.
-- [ ] packet-outcomes를 완성하고 work.py finish로 인박스와 완료 보고를 보존한다. 최종 커밋 SHA·변경·검증·미검사·독립 QA/시각 검수 필요를 worker_done으로 회신한다.
+- [x] 대상 UI 구현·호출자·기존 검사·최근 변경과 정본을 확인하고 짧은 기술 계획 및 결함 목록을 기록한다.
+- [x] frontend.py --host claude-code --model claude-opus-5-5 --effort medium --check로 준비를 확인한다. 실제 인증/브라우저 성공과 구분한다.
+- [x] impeccable context를 한 번 실행한다. 실패 시 스킬의 fallback을 따른다. UI edit 직전에 craft-floor를 읽는다.
+- [x] desktop 1440×900, mobile 390×844에서 핵심 화면·키보드·포커스·가로 overflow·오류/빈 상태를 합성 fixture로 확인한다. 실제 결함을 한 번에 수정한다.
+- [x] 변경 핵심 동작과 필요한 실패 경계에 짧은 검사. 프로젝트 필수 product-lint/product-test를 유지한다. non-trivial 로직은 작은 회귀 검사로 보호한다.
+- [x] 변경을 커밋하고 지시서 base에서 현재 HEAD의 FullOps lint ERROR0 및 등록 product-lint/product-test exit0 증거를 남긴다. 파이프로 종료코드를 가리지 않는다.
+- [x] 실행 보고/비평/캡처(합성 자료만)/명령과 종료코드를 qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/에 기록한다. 테마 전환·별도 디자인 lint가 없으면 해당 없음의 이유를 적는다.
+- [x] packet-outcomes를 완성하고 work.py finish로 인박스와 완료 보고를 보존한다. 최종 커밋 SHA·변경·검증·미검사·독립 QA/시각 검수 필요를 worker_done으로 회신한다.
 
 ## 후속·산출물
 
@@ -101,6 +101,15 @@ DEV 완료 뒤 coor가 tester 독립 동작 QA, designer 직접 시각 검수, �
 ## 완료 보고
 
 작업 완료 때 전문을 기록한다.
+
+- 결과: 구현 커밋 `f7b4786`(제품 코드), 증거 `5c6ca7b`, 문서·완료 기록은 이후 커밋. 최종 HEAD와 그 HEAD의 FullOps lint 결과는 worker_done에 적는다.
+- 변경 이유: 이전 직접 검수의 남은 low와 이번 최초 검사에서 확인한 실제 결함만 고쳤다. V-04(320px 펼침 표시 단독 줄), V-05(버튼·기한 줄바꿈), V-06과 같은 종류의 빈 select form 2개(관계 초대·요청 상태), V-07(fixture 활성 수), V-09(같은 이름 재확인 버튼), V-10(OAuth 동의·반환 화면 랜드마크·주 버튼), V-11(확인 코드 입력 크기), N-01(영역 끝 여백), accent·selection 색.
+- 바꾸지 않은 것과 이유: V-02는 `connections_test.go`가 받은 초대의 unpair 제공을 고정한 서버 동작이라 제품 판단으로 남겼다. V-03(짧은 날짜)은 공유 `clock()`과 문구 형식 결정이 필요하다. V-08은 D04가 gate 문구 유지를 정했다. V-12는 랜드마크·탭 순서 변경이 따른다. impeccable detect의 side-tab·em-dash는 D04 8.5 정본이라 유지했다.
+- 지시와 달라진 판단·충돌: 없음. frontend 기본 config는 disabled 그대로 두고, 같은 모듈의 메모리 override로 enabled 선택의 준비만 확인했다(configuration_ready, 인증·브라우저·MCP not_run). 제품 규칙·문구 의미·보안·권한·rate·한도 변경 없음. 새 안내 문장 2개만 추가했다.
+- 검증: Windows `go test ./internal/relay` 0, 새 회귀 테스트 PASS(수정 전 템플릿에서 실패하는 조건), golden 차이는 home-empty 빈 form 2행 삭제뿐. Orca 내장 브라우저 합성 fixture 29개 × 1440×900·390×844·320×640 before/after 측정·PNG, 키보드 Tab·Enter·3px 포커스. FullOps lint G1(HEAD `5c6ca7b`, `--from 5c6485b`) exit 0, ERROR 0, WARNING 1(PLANS.md SIZE-001), product-lint·product-test는 Linux 격리 clone에서 passed.
+- 못 한 것: Windows `make lint`는 `cloudflared` 부재로 exit 2(기존 한계, 근거로 쓰지 않음). Postgres integration·browser 태그·verify-mvp, 실제 Google 로그인·운영 화면·스크린 리더·200%·다른 엔진은 미실행. 건너뛰기 링크 키보드 이동은 존재·위치만 측정.
+- 산출물: [실행 기록](../docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md), [QA 보고](../docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md), packet-outcomes, D10 module-design golden 행 갱신, contexts/dev.md 결정 1줄.
+- 후속: tester 독립 동작 QA, designer 직접 시각 검수(after PNG 비교 가능), 고정 SHA 독립 리뷰. V-02·V-03·V-08·V-12는 designer 판단 후보.
 
 ## 지시 전제와 충돌 — 먼저 확인
 

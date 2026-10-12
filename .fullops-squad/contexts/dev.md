@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-12
 owner: dev
-tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV]
+tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
 ---
 
@@ -25,6 +25,7 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 
 ## 최근 결정
 
+- 2026-10-12 SAR-FRONTEND-POLISH-001-DEV: 빈 상태는 쓸 수 없는 form을 숨기고 다음 동작 한 줄로 바꾼다(Go template `{{$x = true}}` 재할당). 측정 스크립트의 위치 판정은 padding을 보정한다. 테스트가 고정한 동작(받은 초대의 unpair)은 polish로 바꾸지 않고 제품 판단으로 남긴다. [실행 기록](../docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md).
 - 2026-10-12 SAR-CODEX-HOOK-QUOTE-001-DEV: Codex Windows hook은 기본 `%COMSPEC% /C "<command>"` raw 인자이고 셸을 설정하면 PowerShell일 수 있다. hook 명령은 따옴표를 쓰고 `; exit $LASTEXITCODE`로 PowerShell의 종료코드 2→1 변환을 막는다. 테스트는 argv 목록이 아니라 실제 실행 방식(raw 문자열)으로 검증한다. [실행 기록](../docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md).
 - 2026-10-11 SAR-SERVICE-UI-001-DEV: UI 재설계 전에 재설계 전 템플릿으로 form 계약(method·action·hidden·필드·button 라우팅) golden을 먼저 커밋한다. 이후 diff가 의도한 변경만인지 기계적으로 보인다. `memberStyle`은 OAuth 동의·gate 화면도 공유하므로 토큰 변경 시 함께 렌더한다. Orca 내장 브라우저 키 입력은 페이지를 한 번 클릭해 포커스를 준 뒤에만 전달된다.
 - 2026-10-11 SAR-GROK-WEBHOOK-001-DEV: webhook routine wake는 `KNOWSLINK_GROK_WEBHOOK_FILE`로만 켜고 그 process에서 `sendPrompt`와 배타다. 실패 fallback으로 이중 doorbell을 만들지 않는다. secret POST는 고정 host 정규식·`redirect: "manual"`로 다른 host 유출을 막는다. `AbortSignal.timeout`은 unref timer라 stub 검사에는 ref timer가 필요하다.
