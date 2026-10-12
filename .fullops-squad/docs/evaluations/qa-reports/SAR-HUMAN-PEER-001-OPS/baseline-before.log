@@ -1,0 +1,100 @@
+== time
+2026-10-12T12:41:03Z
+== checkout
+95df83c22c1559453a7c73504aa248088a8e4ed0
+0
+fullops-candidates/google002-main-209-g95df83c2
+== state perms
+700 /home/[redacted]/deploy/knowslink-state
+600 /home/[redacted]/deploy/knowslink-state/.env
+700 /home/[redacted]/deploy/knowslink-state/tunnel
+600 /home/[redacted]/deploy/knowslink-state/tunnel/config.yml
+700 /home/[redacted]/deploy/knowslink-state/backups
+== sha256 (no content)
+de221b94f2bddc66 /home/[redacted]/deploy/knowslink-state/.env
+25ec7513b476401a /home/[redacted]/deploy/knowslink-state/tunnel.uuid
+cd6a969f4d26b8fd /home/[redacted]/deploy/knowslink-state/access.aud
+f5abe860a019d537 /home/[redacted]/deploy/knowslink-state/tunnel/config.yml
+== backups
+-rw------- 1 [redacted] [redacted]  6968 2026-10-03T19:56:30 8a7ad36-20261003T105630Z.dump
+-rw------- 1 [redacted] [redacted]  8352 2026-10-10T01:25:01 a9a0db4-20261009T162500Z.dump
+-rw------- 1 [redacted] [redacted] 10315 2026-10-11T12:36:44 ba3754d-pre-sse-20261011T033643Z.dump
+-rw------- 1 [redacted] [redacted]  8046 2026-10-07T23:55:12 d08903a-20261007T145512Z.dump
+-rw------- 1 [redacted] [redacted]  6969 2026-10-03T20:00:11 f824015-20261003T110011Z.dump
+13
+== disk
+/dev/nvme0n1p1  457G  159G  275G  37% /
+== containers (knowslink)
+knowslink-relay-1 | knowslink-relay | Up 22 hours (healthy)
+knowslink-migrate-1 | knowslink-migrate | Exited (0) 22 hours ago
+knowslink-cloudflared-1 | cloudflare/cloudflared:2026.9.1 | Up 33 hours
+knowslink-postgres-1 | postgres:17-alpine | Up 9 days (healthy)
+== other containers count
+hermes-9ae8f587 Exited (255)
+jevpet-demo-api-1 Up 27
+jevpet-demo-cloudflared Up 28
+jevpet-demo-migrate-1 Exited (0)
+jevpet-demo-postgres-1 Up 28
+jevpet-demo-scheduler-1 Up 27
+jevpet-demo-seed-1 Exited (0)
+jevpet-demo-web-1 Up 4
+myportfolio-beat-1 Up 5
+myportfolio-master-viewer-1 Created 
+myportfolio-postgres-1 Up 5
+myportfolio-redis-1 Up 5
+myportfolio-viewer-1 Up 5
+myportfolio-worker-1 Up 5
+qa-13a5db3f-44b44bdd-postgres Up About
+qa-2c401650-a0d3aeba-postgres Up 2
+qa-34e6309f-02300ad1-postgres Up 3
+qa-8154ee89-0b335c67-postgres Up 2
+qa-c8a0339a-c63728a4-postgres Up 2
+qa-ccaa8cd7-c30163b6-postgres Up 2
+qa-da1c0627-02300ad1-postgres Up 3
+== compose ls
+NAME                STATUS              CONFIG FILES
+jevpet-demo         running(4)          /home/[redacted]/Workspace/jevpet/deployment/demo/compose.yaml
+knowslink           running(3)          /home/[redacted]/deploy/knowslink/compose.yaml,/home/[redacted]/deploy/knowslink/deploy/knowslink/compose.ops.yaml
+myportfolio         running(5)          /home/[redacted]/Workspace/MyPortfolio/docker-compose.yml
+== health
+200
+== goose
+1
+== trigger
+0
+== relay_state aggregate
+rows=1 epoch=813417 bytes=27354 HumanModel=absent
+Agents=28
+Challenges=0
+Connections=0
+Gates=0
+GoogleAttempts=0
+HTTP=0
+Idempotency=9
+Identities=2
+Members=2
+Messages=9
+Owners=24
+Pairs=13
+Rates=4
+Remote=6
+Sessions=1
+== agents/pairs detail (counts only)
+agents_active=28 agents_revoked=0
+members_active=2 with_name=0 of=2
+keys_total=0 with_credential=0
+== shared
+orca 200
+s8 200
+mcp 401
+214642
+506937
+== relay logs error count (5m)
+0
+== public smoke
+/ 200
+ERROR:  aggregate functions are not allowed in GROUP BY
+LINE 1: select 'pairs_'||coalesce(v->>'State','?')||'='||count(*) fr...
+                                                         ^
+
+EXIT=0

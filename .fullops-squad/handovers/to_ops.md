@@ -50,3 +50,34 @@ fullops-common-0.3.3 README와 coding-style/testing/security, project.md, docume
 ## 지시 전제와 충돌 — 먼저 확인
 과거 OPS/OPS-LIVE의 새 backup 없음은 migration 없는 당시 과제의 제한이다. 이번에는 새 writer migration이 있어 보호된 backup 검증이 필수다. beta.sh backup/restore-verify/deploy는 실패 시 rm·기존 검증 컨테이너 삭제를 포함하므로 호출 금지다. 삭제 없는 pg_dump와 격리 고유 검증 자원을 사용하는 수동 절차를 정한다. verify.py regression의 기존 projects baseline 실패는 새 실패와 구분하여 직접 공유 서비스 전후 상태를 확인하고 원 exit1을 보존한다. beta.sh up는 내용 확인 후 허용한다. 원문이 다른 위험을 드러내면 ask한다. keep/partial 원문은 모두 필수이며 context가 넘긴 인박스 뒤쪽도 직접 읽는다.
 
+
+## 완료 보고
+
+상태: succeeded. 운영 제품 SHA `26094e90648aa71e8d07b381e9891acb37438730`을 기존 서버에 적용했다. 이전은 `95df83c`다. 기록 커밋 SHA는 worker_done에 고정한다. actual session ID: `1967d93b-0247-444c-9412-9a4084dbb640`.
+
+### 결과
+
+1. 읽기 전용 baseline 후 bundle(SHA256 `7a92999f…6dfe`)을 전달·검증하고 detached checkout, 이미지 build, relay 정지(12:43:44Z), 삭제 없는 새 backup(`backups/95df83c-pre-humanpeer-20261012T124350Z.dump`, 0600, SHA256 `76b78824…d206`, `pg_restore --list` 종료 0), `--network none` 격리 복원 리허설(복원본 Agents md5 일치, migration Up·downgrade 쓰기 거부 확인) 뒤 `beta.sh up`(종료 0)을 실행했다. relay 정지는 약 50초다.
+2. goose 1→2, `human_writer_guard` 1개, relay healthy(restart 0, error/panic 0), `verify.py local` 종료 0. `HumanModel=1` 변환은 기동 직후 저장됐다.
+3. 보존: 회원 2·agent 28(철회 0)·pair 13(active, pending 0)·키·owner·identity·session·remote의 기존 필드 md5 동일, `.env`·Tunnel config·access.aud 해시 동일, backup 13→14(기존 불변). 추가분: 모든 agent의 빈 `Name`·`Client`, 회원 `FriendCode`·`SelfConnect=false`, `HumanModel=1`. 기존 회원2: agent 2(키 1)·active pair 1 보존.
+4. 공개 smoke: 새 디자인 토큰(`--accent:#005A62`)과 새 h1, 새 `/home/*`·POST 무세션 303, `/healthz`·`/owner`·`/v1/test/pull` 404, SSE·MCP 401, OAuth metadata 200, 공유 서비스 orca 200/s8 200/mcp 401 불변.
+5. 문서: D12·D13·D11 갱신, 실행 기록·LIVE 기록·evidence 로그·contexts/ops.md·packet outcomes 작성. D10(module-design.md)은 dev 소유이며 운영 상태를 단정한 문장이 없어 no_change로 기록했다.
+
+### 실패·미확인 (PASS로 바꾸지 않음)
+
+- `verify.py regression` 종료 1: 이전과 같은 baseline `projects` 결함. codes·cloudflared PID·myportfolio 컨테이너는 baseline과 같다. 스크립트 미수정. `verify.py public`은 Access 302 전제여서 실행하지 않았다.
+- 첫 격리 리허설은 migration SQL 파일 권한 때문에 Up이 적용되지 않았고(실패 로그 보존) 0644로 바꾼 재실행에서 통과했다.
+- 실계정 새 `/home`·키보드·200%·모바일, 실제 전송·친구 요청·자기 연결 동의, 인증 SSE는 미실행이다. 새 relay 이미지로 backup 복사본의 변환 리허설도 하지 않았다.
+- 코드 복귀 불가: trigger가 구 writer를 거부한다. 복구는 전진 수정이며 위 backup 복원은 금지다.
+
+### coor 인계
+
+URL `https://link.knowslog.com/home`(기존 로그인 탭), 운영 SHA `26094e90648aa71e8d07b381e9891acb37438730`. 두 기존 회원 모두 이름이 비어 있어 첫 화면은 `/home/name`의 「내 이름」(안내 「이 이름은 친구에게 보입니다. 이름은 1–40자로 입력하세요.」, 버튼 「저장하고 대화로 이동」)이다. 표시 이름·agent 명칭·친구 등록은 coor 후속이다. 자기 에이전트 연결은 새 UI에서 한 번 동의해야 한다.
+
+### 검증 명령과 종료코드
+
+서버 작업 스크립트는 모두 native 종료 0이다(마지막 `grep -c`가 0건일 때의 종료 1은 up.sh 마지막 줄 한 곳이며 실패가 아니다). `beta.sh up` 0, `verify.py local` 0, `verify.py regression` 1(위). 제품 `make lint/test`는 문서만 변경이라 재실행하지 않고 exact `26094e9` native 0을 재사용한다. FullOps lint 결과는 worker_done에 고정한다.
+
+### 파일
+
+`.fullops-squad/docs/operations/{ops-guide,transition,user-guide}.md`, `contexts/ops.md`, `docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md`, `docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/`, `docs/evaluations/jev/SAR-HUMAN-PEER-001-OPS-packet-outcomes.json`. 제품 코드 변경 0, 서버 helper는 `AppData/Local/KnowsLinkDevTools/humanpeer001-ops/`에 보존했다.
