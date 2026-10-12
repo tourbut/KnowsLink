@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "076163643c384a4b861289d96ba5f3f9",
+  "base": "5c6485b4c7c1c573a14bf3e683701b2399284666",
+  "merge_base": "5c6485b4c7c1c573a14bf3e683701b2399284666",
+  "head": "9597bad351a2fbfbaa726444b320b8cf7000e1e2",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "tester Windows 셸에 make가 없어 실행하지 않았다(독립 재실행 아님). 재사용 근거: DEV의 같은 SHA 9597bad351a2fbfbaa726444b320b8cf7000e1e2 Linux 격리 clone 로그 %LOCALAPPDATA%/KnowsLinkDevTools/frontpolish001/9597bad…-lint.log(EXIT=0, sha256 1fa38da2…) 및 -test.log(EXIT=0, sha256 ce5e846b…), Git 공용 worktrees/dev/fullops-gate/pass.json(attempt a6d3ba79…, head 9597bad, base 5c6485b, config_sha256 9c49bb2d…=merge-base 설정 blob과 일치). 제품 코드는 5c6ca7b..9597bad 사이 .fullops-squad 밖 변경 0건.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "tester Windows 셸에 make가 없어 실행하지 않았다(독립 재실행 아님). 재사용 근거: DEV의 같은 SHA 9597bad351a2fbfbaa726444b320b8cf7000e1e2 Linux 격리 clone 로그 %LOCALAPPDATA%/KnowsLinkDevTools/frontpolish001/9597bad…-lint.log(EXIT=0, sha256 1fa38da2…) 및 -test.log(EXIT=0, sha256 ce5e846b…), Git 공용 worktrees/dev/fullops-gate/pass.json(attempt a6d3ba79…, head 9597bad, base 5c6485b, config_sha256 9c49bb2d…=merge-base 설정 blob과 일치). 제품 코드는 5c6ca7b..9597bad 사이 .fullops-squad 밖 변경 0건.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1623줄(이전 1617, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 7,
+    "added_lines": 121,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
