@@ -1655,3 +1655,9 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 최종 통합검사1(3a65ebc): product-lint/product-test exit0, FullOps DOC-003 ERROR1은 선행 hook tester 리뷰 보고서의 front matter 누락이다. 본문·리뷰 결론은 보존하고 deliverables.py stamp로 메타데이터만 보완한다. 수정 커밋의 등록 검사를 재실행한다.
 - worker_done 요약의 SHA 표기가 자동 parser 규격과 달라 DEV/tester integration metadata에 sha=null이 남았다. 보고 원문(DEV final HEAD9597bad, tester 최종 기록 커밋ecef112), 실제 역할 HEAD와 수락 snapshot의 동일성을 근거로 공용 메타데이터의 누락 SHA만 보정한다. 원본 기록과 Git resolve·조상 관계 근거를 최종 영수증에 보존하고 원 메시지·성공 상태를 위조하지 않는다.
 
+
+## 2026-10-12 사람 간 peer와 UI/UX 전면 개편
+
+- SAR-HUMAN-PEER-001: 사용자 새 요청으로 제품 규칙과 UI/UX 전면 변경을 승인했다. 사람 간 상호 peer 아래 이름 있는 내/친구 에이전트와 대화 흐름을 구현한다. 기존 정적 테스트 화면은 운영 동작이 아니다.
+- 제품 기획 designer를 fresh Codex gpt-6.1-sol high(라우팅 선택)에 배정한다. 이전 완료 세션은 큰 polish 검수 문맥이며 새 과제라 재사용하지 않는다. 주 디자인 스킬 frontend-design, 기존 D04를 변경하는 근거는 사용자 전면개편 요청이다. Run run_5534969da2d0, 기준 main/origin f20b33a11addeb3debcb23e2e835be31c7dd1454.
+- 순서: 제품/UX 명세와 DEV/QA 인계 → 독립 문서 검토·main 통합 → DEV 기술 계획·구현 → 독립 tester 동작/권한 QA·fixed-SHA 코드 리뷰와 designer 실제 시각 검수 → main 통합·Orca 테스트 화면 갱신. 실제 계정/외부 발송·운영 배포는 별도 실행 단계다. 삭제·이동 정리는 금지한다.

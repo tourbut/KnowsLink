@@ -1,0 +1,125 @@
+---
+title: SAR-HUMAN-PEER-001 — 사람 간 peer 아래 이름 있는 에이전트와 대화를 제공하도록 제품 규칙과 UI/UX를 전면 개편하고 DEV/QA 인계를 작성한다
+status: draft
+updated: 2026-10-12
+owner: designer
+tasks: [SAR-HUMAN-PEER-001]
+summary: 사람 간 peer 아래 이름 있는 에이전트와 대화를 제공하도록 제품 규칙과 UI/UX를 전면 개편하고 DEV/QA 인계를 작성한다
+attempt: ffaa6967c2b04a6daae94dfa27aa467c
+base: f20b33a11addeb3debcb23e2e835be31c7dd1454
+subagent_level: standard
+test_level: lite
+---
+
+# SAR-HUMAN-PEER-001 — 사람 중심 연결 모델과 UI/UX 전면 개편
+
+- 작성일: 2026-10-12
+- From / To: coor / designer
+- 상태: ready
+- 테스트 레벨: lite. 하위 에이전트 레벨: standard.
+- 담당: C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer.
+- 병합: coor가 main 검토·통합·origin push를 맡는다.
+- 복귀: repo 0b08ec4c-9e3a-4613-8197-5a835e545335, coor 워크트리, term_47da6145-4e1e-4cc1-93ea-20bc0dd590b9, Run run_5534969da2d0. task/dispatch는 실제 주입 preamble을 따른다.
+
+## 사용자 원문과 목표
+
+사용자: “UI가 뭐 바뀐게 없는거 같은데 좀 더 심플하게 하고 불필요한 문구는 안보이게하고 에이전트의 명칭도 정하게하고 실제 내 메일로 나의 에이전트들을 등록하고 내가 친구로 등록한 사람의 에이전트 목록들이 보여서 서로 대화르를 주고받는 형식으로 하자 별도로 에이전트끼리 관계를 등록한다기보다 사람과 사람이 서로 peer가 되면 그 하위 에이전트들은 연결이 되서 대화를 주고 받을수 있는 형식으로”
+후속 사용자: “UI/UX도 한번 다시한번 디자인스킬써서 전면개편해보고”
+
+앞선 polish는 간격·접근성 수정이었다. 이번 요청은 사람 간 peer 관계로 제품 모델을 바꾸고 간결한 UI/UX를 전면 재설계하는 것이다. 문서 작성으로 끝내지 않고 후속 DEV 구현·독립 QA·실제 시각 검수까지 이어간다. 현재 표시 중인 정적 fixture를 실제 동작으로 오인시키지 않는다.
+
+## 적용 기준과 예외
+
+기준 SHA f20b33a11addeb3debcb23e2e835be31c7dd1454. fullops-common-0.3.3의 README와 coding-style/testing/security, FULLOPS.md, orca-agents.md, project.md를 읽는다. 문서는 docs/agents/document-writing.md를 적용한다. 이 사용자 요청은 기존 에이전트 단위 관계 제품 규칙을 바꾸는 새 근거다. 과거 기준을 무조건 유지하거나 모순된 상태로 덧붙이지 말고 변경/유지/이행 범위를 명확히 한다. 기술 계획·구현 파일 배정의 세부 방식은 DEV 책임이다.
+
+## 먼저 읽을 문서
+
+필수: .fullops-squad/project.md; .fullops-squad/docs/design-docs/mockups/service-member-ui.md; .fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md; .fullops-squad/docs/planning/sources/silent-agent-relay/product.md; .fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md; .fullops-squad/docs/operations/user-guide.md.
+현 상태 확인: internal/relay/member_agents.go, internal/relay/member_pages.go, internal/relay/test_messages.go, internal/relay/identity.go. 필요에 따라 일반 검색으로 보완한다. find의 낮은 점수·partial을 부재로 취급하지 않는다.
+
+## 지시 전제와 충돌 — 먼저 확인
+
+기존 product.md는 Contacts=agents 및 장기 채팅 이력 없음이 잠겨 있다. coor가 원문을 확인했다. 사용자의 2026-10-12 새 요청이 사람 간 peer와 대화 UI 변경의 명시적 근거다. 이 과제에서 designer가 어떤 기존 잠금을 교체하고 어떤 전달/보안/보존 규칙을 유지할지 정한다. 기술 구현으로 이 잠금을 몰래 우회하지 않는다. test_messages.go는 현재 메시지 동작의 실제 파일이다. 잘못 지정했던 member_messages.go는 존재하지 않아 제외하고 실패 기록을 보존한다.
+
+## 해야 할 일과 파일 소유권
+
+- [ ] 사용자 흐름과 현재 소유/연결/메시지/이메일 인증 구조를 확인한다. 제품 정본의 충돌을 판정한다.
+- [ ] 이메일 소유 확인 아래 내 에이전트 등록·이름 지정/변경, 사람 간 친구 요청·상호 수락·거절·취소·해제·차단, 친구 에이전트 목록 노출과 대화 흐름을 확정한다. 노출 범위·새로 추가한 에이전트·철회·친구 해제 후 권한·과거 대화 접근·기존 관계 이행을 명시한다. 단순 친구 검색만으로 타인의 정보/에이전트를 공개하지 않는다.
+- [ ] frontend-design 스킬로 UI/UX를 전면 재설계한다. 대화·친구·내 에이전트의 정보 구조를 사용자 요구에 맞게 정하고, 간결한 텍스트와 이름 중심 목록 및 대화를 첫 경험에서 볼 수 있게 한다. 내·친구 에이전트 선택과 메시지 전달/수신·승인 상태를 이해할 수 있게 설계한다. 위험 안내와 실패 복구 문구는 필요한 곳에 유지한다.
+- [ ] D04 정본을 실질적으로 개편한다. 토큰·글꼴·레이아웃·desktop/mobile 와이어프레임·상태·주요 동작을 두 번의 디자인 계획/비평으로 기록한다. 기존 장식적 카드 묶음·긴 기술 설명·식별자 위주 첫 화면·상시 보안 설명·그라디언트 장식을 피한다. 취향만 바꾸는 CSS 수정으로 끝내지 않는다.
+- [ ] 현재 빈 DEV/tester 인박스에 후속 구현/독립 QA 지시서를 쓴다. fullops-work find/context/packet과 정확한 역할별 키 SAR-HUMAN-PEER-001-DEV / SAR-HUMAN-PEER-001-TESTER를 사용한다. DEV는 짧은 기술 계획→전체 구현→필수 회귀/권한 경계→기술 문서 갱신을 같은 과제에서 끝낸다. tester는 고정 DEV SHA를 기다린다.
+- [ ] D01/D02/D04와 관련 사용자 안내/실행 기록을 현재 제품 규칙에 맞게 갱신한다. D03/D05/D08/API/DB 이행 문서의 기술 갱신은 DEV에 인계한다. 과거 검증 기록을 새 구조 수락 증거로 쓰지 않는다.
+
+소유권: .fullops-squad/docs/planning/, docs/design-docs/mockups/, docs/operations/user-guide.md의 제품 흐름 부분, docs/exec-plans/phases/SAR-HUMAN-PEER-001.md, handovers/to_dev.md, handovers/to_tester.md, contexts/designer.md 및 자기 탐색/결과. 제품 코드를 구현하지 않는다. coor 소유 PLANS/board는 coordinator에게 상태를 보고해 갱신시킨다.
+
+## UI 실행 선택과 검증
+
+주 스킬 frontend-design: C:/Users/shin/.agents/skills/frontend-design/SKILL.md. 호스트 codex, 모델 gpt-6.1-sol, effort high. 기존 D04 정본을 사용자 전면개편 근거로 변경한다. 선택형 도구 설치 없음. 기존 Go template/CSS와 Orca 내장 브라우저를 재사용한다. 전역 frontend.json enabled=false는 과거 기본값이며 이번 인박스에서 활성 디자인 과제를 지정한다. 설치/인증/브라우저 성공을 구분한다.
+
+현재 단계는 제품/디자인 설계 검증이다. 문서·링크·실제 화면과 충돌 확인, 토큰과 와이어프레임의 사용자 요구 대조가 완료 조건이다. DEV 완료와 제품 수락은 별도다. 후속 tester가 핵심 실제 회원 두 명의 격리 fixture/API/DB 흐름과 권한 실패 경계, 320/390/1440폭, 키보드 조작을 확인하고 designer가 실제 구현 캡처로 전면 개편 결과를 직접 판정한다. 핵심은 이름 등록→친구 요청/수락→친구 에이전트 보임→대화 송수신→해제 시 신규 전달 차단이다. 실제 이메일/Google 계정이나 외부 사람에게 발송·운영 배포는 별도 실행 단계이며 임의 실행하지 않는다. 사용자의 실제 이메일은 저장소/로그에서 추측하거나 출력하지 않는다. 기존 인증을 실제 계정에 연결할 동작을 구현하고 실계정 수동 확인이 필요한 부분을 인계한다.
+
+## 산출물과 완료
+
+D01, D02, D04, D07 사용자 안내의 영향 확인/갱신. D03/D05/D08/D09/D10 영향과 담당을 확정한다. 사용자 요청을 불필요하게 쪼개 매번 승인을 요구하지 않는다. 최소한의 완결 기능 단위로 인계한다. 예상 규모는 여러 제품 문서와 역할 지시서이며 새 프레임워크/유료 도구 도입은 요구하지 않는다.
+
+상세 기록: docs/exec-plans/phases/SAR-HUMAN-PEER-001.md. 패킷 모든 필수 path/category outcomes를 쓴다. 적용 규칙·확정/미확정·검증/미검증·기존 데이터 권한 이행·후속 역할을 완료 보고에 남긴다. 커밋한 뒤 work.py finish로 원본/보고를 보존하고 실제 worker_done에 최종 SHA 하나를 명시한다. 완료 뒤 독립 문서 검토와 main 통합 후 DEV를 착수시킨다.
+
+## 제약
+
+Windows 파일 삭제·이동 정리 금지, 임시 검증 자료 보존. 비밀값·실제 이메일·토큰을 출력하거나 커밋하지 않는다. 기존 권한·서명·CSRF·owner gate·rate limit을 임의 완화하지 않는다. 기존 관계 데이터는 증거 없이 사람 간 전체 권한으로 자동 확장하지 않는다. 기존 문서와 사용자 방향 충돌은 사용자 새 요청이 근거이며 합리적 제품 세부 결정은 designer가 진행한다. 불가피한 제품 모호성만 coor에 ask한다.
+
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-HUMAN-PEER-001-packet.json` / SHA `f20b33a11addeb3debcb23e2e835be31c7dd1454` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/operations/user-guide.md` (document_read, document_update) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/product.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/handovers/to_designer.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 50, 50, 53, 53, 65, 65 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `internal/relay/identity.go` (impact_check) · 줄 전체/미확인 · unknown · 필수
+- `internal/relay/member_agents.go` (impact_check) · 줄 전체/미확인 · inferred · 필수
+- `internal/relay/member_pages.go` (impact_check) · 줄 전체/미확인 · inferred · 필수
+- `internal/relay/test_messages.go` (impact_check) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/designer.md` (document_read) · 줄 72 · inferred
+- `.fullops-squad/docs/agents/frontend.json` (direct_edit) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/architecture.md` (document_read, document_update) · 줄 119 · inferred
+- `.fullops-squad/docs/design-docs/crud-design.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/data-model.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/database-design.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_read, document_update) · 줄 141 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read, document_update) · 줄 22 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md` (document_read) · 줄 18 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md` (document_read) · 줄 35 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md` (document_read) · 줄 21 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md` (document_read) · 줄 14, 31, 41 · inferred
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_read, document_update) · 줄 223 · inferred
+- `.fullops-squad/docs/design-docs/tech-stack.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md` (document_read) · 줄 28 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md` (document_read) · 줄 29 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md` (document_read) · 줄 23 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md` (document_read) · 줄 18 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md` (document_read) · 줄 26 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md` (document_read) · 줄 15 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/generated/db-schema.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/operations/ops-guide.md` (document_update) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/operations/transition.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/SAR-MVP-backlog.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read, document_update) · 줄 40, 56 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_read, document_update) · 줄 25 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_update) · 줄 전체/미확인 · inferred
+미확인 15건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
+## 완료 보고
+
+미완료. worker가 결과 전문과 SHA·검증·후속을 기록한다.

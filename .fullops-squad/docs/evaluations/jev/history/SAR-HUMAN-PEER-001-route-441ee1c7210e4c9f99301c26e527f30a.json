@@ -1,0 +1,92 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-HUMAN-PEER-001",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D10",
+    "D03",
+    "D05"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.05,
+        "product": 0.95
+      },
+      "confidence": 0.9
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.78,
+      "D02": 0.84,
+      "D03": 0.87,
+      "D04": 0.81,
+      "D05": 0.86,
+      "D06": 0.84,
+      "D07": 0.79,
+      "D08": 0.76,
+      "D09": 0.86,
+      "D10": 0.89,
+      "D11": 0.77,
+      "D12": 0.81,
+      "D13": 0.81
+    }
+  },
+  "usage": {
+    "input_tokens": 2549,
+    "output_tokens": 314,
+    "cost": 0.000107058
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D02",
+    "D04",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.675,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "codex gpt-6.1-sol medium": 0.01,
+      "codex gpt-6.1-sol high": 0.99
+    },
+    "usage": {
+      "input_tokens": 636,
+      "output_tokens": 34,
+      "cost": 2.6712e-05
+    }
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
+  "head": "f20b33a11addeb3debcb23e2e835be31c7dd1454",
+  "requires_packet": true
+}
