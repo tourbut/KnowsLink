@@ -84,3 +84,8 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 
 현재 레포는 사용자 2026-10-09 지시에 따라 coor/lite를 사용한다. 1.0.0 이후의 고정 기준 SHA·attempt·탐색 패킷·전송 receipt·독립 리뷰 계약은 [역할 운영 문서](orca-agents.md)의 해당 절을 따른다. 업데이트만으로 운영 모드를 바꾸거나 테스트 범위를 줄이지 않는다.
 선택형 GitHub 이슈 작업은 사용자 요청 때만 활성화한다. 모션그래픽 요청이 있을 때만 fullops-motion을 사용한다. 기존 제품 보류·실패·진행 중 인박스는 유지한다.
+
+## FullOps 1.4.0 적용
+
+UI 작업은 fullops-frontend와 docs/agents/frontend.json의 기존 디자인 정본을 따른다. 현재 업데이트는 UI 작업이 아니므로 프런트엔드 실행은 비활성 상태로 보존한다. 다음 UI 과제에서 기존 역할의 host/model/effort를 인박스에 고정한 뒤 준비 상태를 검사한다. 선택형 도구는 설치하지 않는다.
+웹 실행은 fullops-test/web-engine.md와 docs/evaluations/scenarios/README.md를 따른다. covers와 독립 checks, 격리 fixture와 정확한 origin/동작/요청을 선언한다. 현재 탭은 --page로 지정하며 루트 Jev 환경은 --env-file .env로 지정한다. 탐색·shadow·CUAWright는 기본 OFF다.

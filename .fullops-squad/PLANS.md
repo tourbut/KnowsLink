@@ -1610,3 +1610,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - tester 기존 미추적 score2개는 main 정본과 SHA256·바이트 동일성을 확인한 뒤616a4dc에 보존하고 main을 정상 merge했다. 삭제·이동 없이 clean과 최신 main 포함을 회복했다. 독립 후속 SAR-CODEX-HOOK-QUOTE-001-TESTER는 DEV 고정 SHA·gate 후 배정하며 아직 시작하지 않았다. route Grok 추천 대신 실제 Claude hook 차단 증명이 있는 등록 Claude Sonnet5.5 high로 좁은 보안 경계 검수를 수행할 예정이다.
 
 - DEV 완료 msg_88826a19daf4: 최종d7d6d744, 구현501d9d72, 실제cf470ffe 세션 확인. quoted Python 인수와 `; exit $LASTEXITCODE`로 parser error와 PowerShell deny2→1 변환을 처리하고 guard 본체는 유지했다. 기존 raw cmd seam 오류를 수정, 4 tests 및 exact final SHA Linux product-lint/test0·ERROR0 확인. coor 후보에 SHA 보존 병합했으며 main 수락은 독립 tester까지 hold다. 원 host stderr·live Codex·설치 버전과 upstream main 일치 미확인을 유지한다. DEV는 같은 과제 수정 대기로 retain하고 delivery_6034572eec2f ACK했다.
+
+## 2026-10-12 FullOps 1.4.0 업데이트
+
+- 설치 1.4.0 유지, 레포 1.3.0 후속 적용. 공통 의존성 설치·확인, frontend 정본 연결과 웹 안전 계약을 반영한다. 상세는 docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md다.
+- main의 기존 미커밋 .codex/hooks.json과 coor의 독립 수락 전 hook 후보를 보존한다. 업데이트 통합·push·역할 동기화는 coor 담당으로 예약한다. 재개 조건은 기존 hook 독립 수락과 main 변경 해소 또는 별도 깨끗한 업데이트 통합 경계 확보다.
