@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "attempt": "256035cf3cc24e97ad115fc4e307d6d1",
+  "base": "f849215bdefd3984dbf385c9f0973a74525be545",
+  "merge_base": "f849215bdefd3984dbf385c9f0973a74525be545",
+  "head": "254ff6a98b12b7e51f0835491300f7695425d264",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows tester host has no make executable. Static lint.py checks ran against clean snapshot 254ff6a. Product make lint/test is recorded from the Linux final-SHA clone separately when that run finishes.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows tester host has no make executable. go test -race of TestHumanPostgres and TestHumanLegacyPostgres passed on an isolated database of the same final SHA; full make test is run on the Linux clone and cited in the QA report.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "DEP-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": "adapters/package.json",
+      "message": "의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요"
+    },
+    {
+      "code": "SEC-001",
+      "severity": "WARNING",
+      "line": 16,
+      "message": "하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다",
+      "path": "adapters/src/owner-text.test.ts"
+    },
+    {
+      "code": "SLOP-004",
+      "severity": "WARNING",
+      "line": 73,
+      "message": "디버그 출력 잔재 의심. 필요한 사용자 출력인지 확인하고 디버그 잔재는 제거한다",
+      "path": "adapters/src/owner-text.test.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "327줄(이전 308, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/text.ts"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "line": 183,
+      "message": "조건부 객체 스프레드. 명시적 분기보다 읽기 쉬운지 검토한다",
+      "path": "adapters/src/text.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "448줄(이전 446, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/connections_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "397줄(이전 392, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/connections_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "650줄(이전 637, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/http.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "415줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/human_http.go"
+    },
+    {
+      "code": "SEC-001",
+      "severity": "WARNING",
+      "line": 119,
+      "message": "하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다",
+      "path": "internal/relay/human_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "492줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/human_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "482줄(이전 481, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "378줄(이전 352, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/member_agents.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "428줄(이전 410, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/public_messages_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "513줄(이전 505, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/remote_auth.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "550줄(이전 526, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/store.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 2577줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 57,
+    "added_lines": 2577,
+    "errors": 0,
+    "warnings": 17,
+    "unavailable": 2
+  }
+}

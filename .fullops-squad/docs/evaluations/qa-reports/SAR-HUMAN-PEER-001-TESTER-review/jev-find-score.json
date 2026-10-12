@@ -1,0 +1,66 @@
+{
+  "task_key": "SAR-HUMAN-PEER-001-DEV",
+  "find_head": "730117505c0f1bd92852358e177d4d1f1a73b399",
+  "base": "f849215bdefd3984dbf385c9f0973a74525be545",
+  "head": "254ff6a98b12b7e51f0835491300f7695425d264",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "adapters/README.md",
+    "adapters/package.json",
+    "adapters/skills/knowslink/SKILL.md",
+    "internal/relay/capacity.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go",
+    "internal/relay/public_messages_integration_test.go",
+    "internal/relay/public_text.go",
+    "internal/relay/testdata/consent_browser.mjs",
+    "internal/relay/text_events.go",
+    "scripts/install_bot_mcp.sh",
+    "scripts/package_plugin.py",
+    "scripts/schema.py"
+  ],
+  "new_files": [
+    "adapters/src/owner-text.test.ts",
+    "db/migrations/00002_human_writer.sql",
+    "internal/relay/human.go",
+    "internal/relay/human_http.go",
+    "internal/relay/human_integration_test.go",
+    "internal/relay/human_messages.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/human_pages_test.go",
+    "internal/relay/human_test.go"
+  ],
+  "candidates": [
+    "adapters/README.md",
+    "cmd/relay/main.go",
+    "db/queries/relay.sql",
+    "internal/config/config.go",
+    "internal/relay/admission_integration_test.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/public_text.go",
+    "scripts/schema.py"
+  ],
+  "hits": [
+    "adapters/README.md",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/public_text.go",
+    "scripts/schema.py"
+  ],
+  "recall": 0.333,
+  "precision": 0.556,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
