@@ -1,0 +1,43 @@
+2026-10-12T12:45:41Z
+-- GET / headers+marker
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Cache-Control: no-store
+content-security-policy: default-src 'none'; style-src 'unsafe-inline'; form-action 'self' https://accounts.google.com; frame-ancestors 'none'; base-uri 'none'
+referrer-policy: no-referrer
+x-content-type-options: nosniff
+marker accent=0 skip=1 bytes=8982
+GET /home -> 303 https://link.knowslog.com/?n=expired
+GET /home/name -> 303 https://link.knowslog.com/?n=expired
+GET /home/friends -> 303 https://link.knowslog.com/?n=expired
+GET /home/friends/x -> 303 https://link.knowslog.com/?n=expired
+GET /home/agents -> 303 https://link.knowslog.com/?n=expired
+GET /home/account -> 303 https://link.knowslog.com/?n=expired
+GET /home/new -> 303 https://link.knowslog.com/?n=expired
+GET /home/conversation -> 303 https://link.knowslog.com/?n=expired
+GET /home/legacy -> 303 https://link.knowslog.com/?n=expired
+GET /home/receipts -> 303 https://link.knowslog.com/?n=expired
+POST(no session,no body) /home/profile -> 303 https://link.knowslog.com/?n=expired
+POST(no session,no body) /home/agent-name -> 303 https://link.knowslog.com/?n=expired
+POST(no session,no body) /home/friends/request -> 303 https://link.knowslog.com/?n=expired
+POST(no session,no body) /home/friends/decision -> 303 https://link.knowslog.com/?n=expired
+POST(no session,no body) /home/friend-code -> 303 https://link.knowslog.com/?n=expired
+POST(no session,no body) /home/self-connect -> 303 https://link.knowslog.com/?n=expired
+POST(no session,no body) /home/conversation/send -> 303 https://link.knowslog.com/?n=expired
+GET /healthz -> 404
+GET /owner -> 404
+GET /v1/test/pull -> 404
+GET /_probe -> 404
+GET /v1/owners -> 404
+GET /v1/authorize -> 404
+GET /v1/text/events -> 401 application/json
+GET /v1/text/events?token=x -> 401 application/json
+POST /mcp -> 400
+GET /.well-known/oauth-protected-resource -> 200 application/json
+GET /.well-known/oauth-authorization-server -> 200 application/json
+GET /remote/consent/<synthetic43> -> 401 text/html; charset=utf-8
+GET /v1/connect/start (GET) -> 405
+-- shared
+orca -> 200
+s8 -> 200
+mcp -> 401

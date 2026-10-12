@@ -1,0 +1,16 @@
+relay: Exited (0) 27 seconds ago
+== isolated restore + migration rehearsal (docker run --rm --network none, own unique name)
+restored goose=1 rows=1 epoch=813716
+restored Agents md5 49372e054c907c30a0d345b4920b8aa5
+migration Up applied on copy
+trigger present=1
+UPDATE 1
+upgrade write ok
+downgrade blocked: 1
+HumanModel after=1
+rehearsal exit=0
+0
+sh: locale: not found
+2026-10-12 12:44:13.082 UTC [12] WARNING:  no usable system locales were found
+
+EXIT=0

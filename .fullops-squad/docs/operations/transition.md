@@ -4,13 +4,19 @@ title: 인수인계서
 status: draft
 updated: 2026-10-12
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
 
-## SAR-HUMAN-PEER-001 기술 인계 — 운영 미적용
+## 현재 운영 상태 (2026-10-12, SAR-HUMAN-PEER-001-OPS)
+
+운영 배포 SHA는 `26094e90648aa71e8d07b381e9891acb37438730`다(수락한 사람 peer·이름·대화 UI). 직전은 `95df83c22c1559453a7c73504aa248088a8e4ed0`다. 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. DB는 goose 버전 2이며 `human_writer_guard` trigger가 구 writer의 쓰기를 거부한다. 그래서 구 코드로 복귀하지 않는다. 배포 직전 새 backup `knowslink-state/backups/95df83c-pre-humanpeer-20261012T124350Z.dump`(0600)가 있다. 이 backup 복원은 권한을 되살릴 수 있어 금지한다. relay·Postgres는 healthy이고 KnowsLink cloudflared는 재시작 없이 유지됐다. Tunnel config·`.env`·Google 설정·공유 서비스는 변경하지 않았다. 증거와 복구 방침은 [운영 LIVE 기록](../evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/report.md)과 [D12](ops-guide.md)에 있다.
+
+기존 계정은 보존됐다: 회원 2, agent 28(철회 0), 키·owner·pair 13(active)의 기존 필드가 같다. 두 회원 모두 이름이 비어 있어 첫 화면은 `/home/name`의 「내 이름」이다. `SelfConnect=false`이므로 자기 에이전트 연결은 새 UI에서 한 번 동의해야 한다. 이름·친구 요청·자기 연결 동의는 coor와 사용자가 실제 계정으로 진행한다. 실계정 새 `/home`·키보드·200% 확인과 실제 전송은 미실행이다. 아래 「운영 미적용」 절과 이후의 `95df83c`·`eac603b` 상태 문장은 당시 기록이다.
+
+## SAR-HUMAN-PEER-001 기술 인계 — 운영 미적용 (적용 전 기록)
 
 DEV 후보는 사람 친구/이름/웹 대화와 별도24h 사본을 구현했다. 새 실제 migration00002는 JSON HumanModel의 구버전 writer를 차단한다. 운영 SHA·현재 배포 상태는 아래 원래 기록을 유지한다. 이번 DEV는 운영 DB/코드/메일/Tunnel을 변경하지 않았다.
 

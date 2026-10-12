@@ -1,0 +1,25 @@
+== stop relay (writers) 2026-10-12T12:43:44Z
+ Container knowslink-relay-1 Stopping 
+ Container knowslink-relay-1 Stopped 
+knowslink-relay-1 Exited (0) 2 seconds ago
+epoch stable: 813716 813716
+pg_dump exit=0
+backup mode=600 bytes=11098
+sha256 76b78824cbd0699e24ff7afd17555fe70b2e2b3cab513465760946021daad206
+pg_restore --list exit=0 toc_lines=23
+== isolated restore + migration rehearsal (docker run --rm --network none, own unique name)
+restored goose=1 rows=1 epoch=813716
+restored Agents md5 49372e054c907c30a0d345b4920b8aa5
+trigger present=0
+UPDATE 1
+upgrade write ok
+UPDATE 1
+DOWNGRADE NOT BLOCKED
+HumanModel after=
+rehearsal exit=0
+0
+sh: locale: not found
+2026-10-12 12:43:51.445 UTC [12] WARNING:  no usable system locales were found
+psql: error: /m.sql: Permission denied
+
+EXIT=0

@@ -81,3 +81,9 @@ Git Bash의 helper SFTP 인자는 `MSYS_NO_PATHCONV=1`이 필요하다. `verify.
 `beta.sh deploy`는 backup(raw pg_dump·실패 시 파일 삭제)을 호출한다. backup이 금지된 과제는 bundle 전달→검증된 detached checkout→`beta.sh up`→`verify.py local`만 수동 실행한다. 새 backup이 없다는 사실과 복귀가 코드 전용이라는 점을 기록한다.
 원격 helper 스크립트가 마지막에 `grep -c`로 끝나면 0건일 때 종료코드 1이 된다. 실패와 구분해 기록한다. plugin package는 배포 체크아웃이 아니라 `git archive` 사본에서 만들어 체크아웃을 clean으로 유지한다.
 이전 LIVE 집계와 시작 baseline이 달라도 DB를 맞추지 않는다. 비교 기준은 그 과제의 baseline이다.
+
+## 2026-10-12 — SAR-HUMAN-PEER-001-OPS
+
+migration이 있는 과제는 beta.sh 대신 수동 순서(checkout→build→relay 정지→삭제 없는 pg_dump→`docker run --rm --network none --user postgres` 격리 복원→`beta.sh up`)를 쓴다. 호스트 파일을 bind mount하면 컨테이너 postgres 사용자가 읽도록 파일 mode가 0644여야 한다(0600이면 Up이 적용되지 않는다).
+새 relay는 기동 직후 `HumanModel=1` 변환을 저장한다. 변환 뒤에는 trigger가 구 writer를 거부하므로 코드 복귀는 불가하고 전진 복구만 한다. 변환 전후 비교는 Agents 전체 md5 대신 기존 필드별 md5로 한다(빈 `Name`·`Client`가 추가돼 전체 md5가 바뀐다).
+`verify.py regression`의 `projects` baseline 결함과 `public`의 Access 302 전제는 그대로다. psql 집계에서 relay_state 키 이름(Remote의 43자 ID)을 그대로 출력하지 않는다.

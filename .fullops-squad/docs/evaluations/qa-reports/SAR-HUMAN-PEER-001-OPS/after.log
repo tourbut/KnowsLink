@@ -1,0 +1,36 @@
+== verify.py regression
+    assert now == saved, f"shared services changed: {now} != {saved}"
+           ^^^^^^^^^^^^
+AssertionError: shared services changed: {'codes': {'orca.knowslog.com': 200, 's8.knowslog.com': 200, 'mcp.knowslog.com': 401}, 'host_cloudflared_pids': ['506937'], 'containers': ['myportfolio-beat-1 Up', 'myportfolio-master-viewer-1 Created', 'myportfolio-postgres-1 Up', 'myportfolio-redis-1 Up', 'myportfolio-viewer-1 Up', 'myportfolio-worker-1 Up'], 'projects': ['jevpet-demo', 'myportfolio']} != {'codes': {'orca.knowslog.com': 200, 's8.knowslog.com': 200, 'mcp.knowslog.com': 401}, 'host_cloudflared_pids': ['506937'], 'containers': ['myportfolio-beat-1 Up', 'myportfolio-master-viewer-1 Create
+regression exit=1
+== head/clean
+26094e90648aa71e8d07b381e9891acb37438730
+0
+== state hashes
+de221b94f2bddc66 25ec7513b476401a cd6a969f4d26b8fd f5abe860a019d537 
+700 600 700 600 700 
+== backups
+14
+-rw------- 1 [redacted] [redacted]  8046 2026-10-07T23:55:12 d08903a-20261007T145512Z.dump
+-rw------- 1 [redacted] [redacted]  6969 2026-10-03T20:00:11 f824015-20261003T110011Z.dump
+== containers
+knowslink-relay-1 | Up About a minute (healthy)
+knowslink-migrate-1 | Exited (0) About a minute ago
+knowslink-cloudflared-1 | Up 33 hours
+knowslink-postgres-1 | Up 9 days (healthy)
+e97feac57483
+jevpet-demo running(4)
+knowslink running(3)
+myportfolio running(5)
+231800 506937 
+== cloudflared (knowslink) log tail
+12
+== relay log 3m error/panic
+0
+2026/10/12 12:44:29 relay starting; vendor effects and disclosure disabled; email login configured=false; google login configured=true; synthetic signup=false
+== ss 5432/8080
+127.0.0.1:5432 127.0.0.1:8080 
+== image ids
+/knowslink-relay-1 sha256:2ac2ca9201600c
+
+EXIT=0

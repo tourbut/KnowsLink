@@ -1,0 +1,30 @@
+== beta.sh up 2026-10-12T12:44:27Z
+ Container knowslink-relay-1 Started 
+ Container knowslink-migrate-1 Waiting 
+ Container knowslink-relay-1 Waiting 
+ Container knowslink-postgres-1 Waiting 
+ Container knowslink-migrate-1 Exited 
+ Container knowslink-postgres-1 Healthy 
+ Container knowslink-relay-1 Healthy 
+NAME                      IMAGE                                                                                                     COMMAND                  SERVICE       CREATED         STATUS                     PORTS
+knowslink-cloudflared-1   cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4   "cloudflared --no-au…"   cloudflared   9 days ago      Up 33 hours                
+knowslink-migrate-1       knowslink-migrate                                                                                         "/app/migrate"           migrate       7 seconds ago   Exited (0) 6 seconds ago   
+knowslink-postgres-1      postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24                "docker-entrypoint.s…"   postgres      9 days ago      Up 9 days (healthy)        5432/tcp
+knowslink-relay-1         knowslink-relay                                                                                           "/app/relay"             relay         7 seconds ago   Up 5 seconds (healthy)     127.0.0.1:8080->8080/tcp
+beta.sh up exit=0
+== migrate logs
+2026/10/12 12:44:29 SQL migrations completed
+== goose/trigger
+2 trigger=1
+== verify.py local
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+verify local exit=0
+== relay
+knowslink-relay-1 | Up 6 seconds (healthy) | restarts
+knowslink-migrate-1 | Exited (0) 6 seconds ago | restarts
+knowslink-cloudflared-1 | Up 33 hours | restarts
+knowslink-postgres-1 | Up 9 days (healthy) | restarts
+0
+0
+
+EXIT=1

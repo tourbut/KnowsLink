@@ -4,14 +4,24 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-12
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
-## SAR-HUMAN-PEER-001 기술 인계 — 운영 미적용
+## SAR-HUMAN-PEER-001 운영 적용 결과 (2026-10-12, SAR-HUMAN-PEER-001-OPS)
+
+수락 제품 `26094e90648aa71e8d07b381e9891acb37438730`을 기존 Linux 서버에 적용했다. 이전 배포는 `95df83c`다. 아래 「기술 인계 — 운영 미적용」 절은 적용 전 사실이며 보존한다. 현재 상태는 이 절과 [운영 LIVE 기록](../evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/report.md)을 따른다.
+
+1. 서버에 origin 경로가 없다. `beta.sh deploy`·`backup`은 실패 시 파일 삭제를 포함하므로 쓰지 않았다. 로컬 bundle(`main ^95df83c`)을 `git fetch <bundle> main`으로 반영했다. 같은 순서(checkout→build→relay 정지→backup→격리 복원→`beta.sh up`)를 수동 실행했다.
+2. relay를 약 50초 정지했다(12:43:44Z~12:44:34Z). 새 DB backup `backups/95df83c-pre-humanpeer-20261012T124350Z.dump`(0600, SHA256 `76b78824…d206`)를 만들고 `pg_restore --list`와 `--network none` 격리 복원 리허설로 확인했다. 리허설에서 migration Up과 downgrade 쓰기 거부를 확인했다.
+3. migration `00002_human_writer`를 적용했다(goose 2, trigger 1). relay 첫 기동 직후 `HumanModel=1` 변환이 저장됐다. pending pair 0건, 기존 키·agent·owner·pair의 기존 필드는 md5가 같다. 모든 agent에 빈 `Name`·`Client`가, 모든 회원에 `FriendCode`와 `SelfConnect=false`가 추가됐다.
+4. 이제 구 relay 코드로 복귀할 수 없다. trigger가 구 writer의 쓰기를 거부한다. 복구는 relay 정지→현재 DB 새 backup→현재 권한을 보존하는 전진 수정으로 한다. 위 backup 복원은 권한을 되살릴 수 있어 금지한다.
+5. 실제 Google 화면·메시지 전송·친구 요청은 실행하지 않았다. 담당은 coor다. `verify.py regression` 종료 1은 baseline 결함(`projects`)이며 이번 변경과 무관하다.
+
+## SAR-HUMAN-PEER-001 기술 인계 — 운영 미적용 (적용 전 기록)
 
 DEV 후보는 사람 친구/이름/웹 대화와 별도24h 사본을 구현했다. 새 실제 migration00002는 JSON HumanModel의 구버전 writer를 차단한다. 운영 SHA·현재 배포 상태는 아래 원래 기록을 유지한다. 이번 DEV는 운영 DB/코드/메일/Tunnel을 변경하지 않았다.
 

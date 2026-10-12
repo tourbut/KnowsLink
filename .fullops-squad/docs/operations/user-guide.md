@@ -4,15 +4,15 @@ title: 사용자설명서
 status: review
 updated: 2026-10-12
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 사용자설명서 (D11)
 
-## 새 사용자 흐름 — SAR-HUMAN-PEER-001 DEV 후보
+## 새 사용자 흐름 — SAR-HUMAN-PEER-001
 
-이 절은 구현된 DEV 후보의 사용법이다. 독립 수락과 운영 적용은 후속이다. 아래 과거 베타·개별 agent 관계·수동 text 절차와 충돌하면 새 후보에서는 이 절과 [현행 D02](../planning/product-specs/SAR-HUMAN-PEER.md)를 적용한다. 운영 현재 상태와 기술 절차는 OPS/DEV가 갱신한다.
+이 절은 수락된 제품의 사용법이다. 운영에는 2026-10-12에 `26094e9`로 적용했다([운영 LIVE 기록](../evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/report.md)). 기존 회원은 처음 `/home`을 열면 「내 이름」 입력 화면으로 이동한다. 기존 회원의 자기 에이전트 연결은 처음에 꺼져 있고 새 화면에서 한 번 동의해야 켜진다. 실계정의 최종 화면 확인은 coor 후속이다. 아래 과거 베타·개별 agent 관계·수동 text 절차와 충돌하면 새 후보에서는 이 절과 [현행 D02](../planning/product-specs/SAR-HUMAN-PEER.md)를 적용한다. 운영 현재 상태와 기술 절차는 OPS/DEV가 갱신한다.
 
 1. 자기 Google 계정이나 이메일 확인 코드로 로그인하고 친구에게 보일 내 이름을 정한다. 이메일만 같다는 이유로 다른 로그인 계정과 합치지 않는다.
 2. '내 에이전트'에서 이름을 정하고 자기 클라이언트를 연결한다. 다른 사람이 보낸 연결 링크를 승인하지 않는다. 이름 변경은 기존 ID·키를 바꾸지 않는다.
