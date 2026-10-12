@@ -78,3 +78,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-11: SAR-SERVICE-UI-001-FIX-VISUAL은 고정 295417a의 글자 링크 11종을 Orca 내장 브라우저 320·390·1440에서 직접 재측정했다. 모두 44px 이상이며 V-01은 시각 기준 resolved다.
   원 보고 V-01–V-12는 보존했고 low N-01만 추가했다. 키보드 포커스 재입력·실제 Google·스크린 리더·200%는 미검증이다.
   증거·한계: [재측정 보고](../docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md).
+
+- 2026-10-12: SAR-FRONTEND-POLISH-001-VISUAL은 후보 9597bad의 제품 동일성과 manifest를 확인하고 after PNG 26장을 직접 검수했다. 제공된 변경 화면은 시각 PASS다.
+  V-02·V-03·V-08·V-12와 mobile 생성 버튼 폭·명령 줄바꿈은 비차단 잔여다. 포커스·320px는 DEV 근거 재사용이며 운영·실계정·200%·스크린 리더는 미검증이다.
+  근거·후속: [직접 시각 검수 보고](../docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md).

@@ -2,9 +2,9 @@
 id: D04
 title: 회원 웹 상용 UX·비주얼 명세와 개발 인계
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL]
 summary: 회원 로그인·내 에이전트·연결 관리의 상용 UX·비주얼 명세와 DEV 인계 기준
 ---
 
@@ -406,3 +406,6 @@ DEV가 고정 SHA와 검수 환경을 제공하면 designer가 직접 확인한�
 고정 후보 `c7828b227b5715f7bdf02bff46bf9cf102a758d9`를 합성 fixture 29개 화면, Orca 내장 브라우저 1440·390·320에서 직접 검수했다. 판정은 시각 PASS이며 critical·high는 0건이다. D04 9절 44px 기준을 글자 링크가 채우지 못한 medium 1건(V-01)과 low 11건이 남는다. 실제 Google 로그인·실계정·200% 확대·스크린 리더는 미검증이다. 근거와 한계: [시각 수락 보고](../../evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md).
 
 후속(2026-10-11): V-01은 고정 후보 `295417acfdcd415ad0c768d164bd71dc07214ea9`에서 글자 링크 11종이 44px 이상임을 Orca 내장 브라우저 320·390·1440으로 직접 재측정했다. 시각 기준으로 resolved이며 위 기록과 low 발견은 보존한다. 키보드 포커스 재입력·실제 Google·스크린 리더·200%는 미검증이다. 근거: [재측정 보고](../../evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md).
+
+
+후속(2026-10-12): SAR-FRONTEND-POLISH-001-VISUAL은 후보 `9597bad351a2fbfbaa726444b320b8cf7000e1e2`와 구현 `f7b4786`의 제품 동일성 및 before/after manifest 해시를 확인했다. after 합성 PNG 26장(홈 1440×900·390×844와 변경 화면 mobile)을 직접 열어 제공된 변경 화면을 시각 PASS로 판정했다. V-05·V-06·V-07·V-10 동의 화면·V-11 입력 크기·N-01은 제공된 사례에서 개선을 확인했다. V-04 320px·V-09 접근성 이름·포커스는 DEV 근거 재사용이며 새 직접 입력 검증이 아니다. V-02·V-03·V-08·V-12, mobile 생성 버튼 폭 N-02와 명령 줄바꿈은 비차단 잔여로 보존한다. 실제 로그인·운영·200%·스크린 리더·전체 상태의 최종 수락은 미검증이다. 기존 판정과 미확인 기록은 유지한다. 근거와 항목별 범위 판단: [이번 직접 시각 검수](../../evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md).
