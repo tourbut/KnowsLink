@@ -1679,3 +1679,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 직접 시각 msg_daabdc9b30fb: 원래21PNG에서 V01 composer 기술 안내·대상 구분값 반복과 V02 긴 agent 이름/전송 버튼 밀림을 발견했다. 최종254ff6a 동일성/실행 재확인 후 수정 조건을 확정한다. 사용자 단순화 요청과 직접 관련되어 DEV 수정 대상으로 추적하며 독립 QA/리뷰는 고정 원후보에서 계속한다.
 
 - V01/V02 확정 msg_9c7ce356ec3a: 최종 CSS/template 동일성 입증. 같은 DEV key를 새 attempt6b359aa6693c40eb98fdb20f707d0d08로 reopen하고 fresh Codex6.1 high task_56b8c93a4d4a/ctx_8486906331c6/term_185e00df에 배정했다. 요청/실제 tuple·turn_started 확인. 새세션 착수 뒤 원구현 ctx_c0ed5757f248 transcript보존 release. V01 친구코드 문구와 V03 반복제목도 msg_a4c17b567d94로 인계했다. tester/visual 원후보검수는 계속한다.
+
+- visual 완료 msg_3a6a92bfd8e5/bfdfafc: 제품254ff6a 시각FAIL(V01/V02 medium,V03 low), 실제surface/200%/focus not_run. root독립문서리뷰 reviewed9/skipped3/checkPASS, snapshot .fullops-review-1cb43af3f3fe43358f12aa63e1b627d2 보존. 결과만 coor병합하고 designer 정상release. 새DEV후보 완료와 독립testerfixture 뒤 같은키 새attempt 재검수한다. msg_22440ed32de4: tester-owned 원후보13238/profile3168fe9e/pagef7f75011 준비·healthz200 확인.
+
