@@ -1,0 +1,64 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-HUMAN-PEER-001-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "unresolved",
+  "role": null,
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.74,
+        "product": 0.26
+      },
+      "confidence": 0.48
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.13,
+        "ops": 0.03,
+        "tester": 0.84
+      },
+      "confidence": 0.76
+    },
+    "docs": {
+      "D01": 0.07,
+      "D02": 0.11,
+      "D03": 0.1,
+      "D04": 0.78,
+      "D05": 0.08,
+      "D06": 0.08,
+      "D07": 0.06,
+      "D08": 0.06,
+      "D09": 0.08,
+      "D10": 0.11,
+      "D11": 0.32,
+      "D12": 0.14,
+      "D13": 0.16
+    }
+  },
+  "usage": {
+    "input_tokens": 2495,
+    "output_tokens": 314,
+    "cost": 0.00010479
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.816,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": null,
+  "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "head": "d487a2659b86237bf0cd11dafbe25e574005c0ab",
+  "requires_packet": true
+}
