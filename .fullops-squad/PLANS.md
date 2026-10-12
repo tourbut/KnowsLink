@@ -1598,3 +1598,15 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 2026-10-12 사용자 추가 지시 '삭제까지해'에 따라 위 자동 cleanup hold의 삭제 보류를 해제했다. 14개 정확한 workspace 직접 자식 경로·reparse0·detached/HEAD일치·main/origin 통합·고유파일0·Orca inactive/terminal0/attachedPTY없음을 재확인하고 git worktree remove(강제 옵션 없음)로 삭제했다. 삭제14·잔여detached0. 리뷰 결과·보고·lint 원본은 main에 보존했고 SHA256·삭제결과는 qa-reports/detached-cleanup-20261012.json이다. 자동 cleanup 성공으로 위조하지 않고 공용 관리기록은 removed_user_authorized로 구분했다. 중단/superseded 원리뷰의 lint 미생성도 그대로 기록했다. 제품 단계는 변화없다.
 - 이 정리 기록의 main 통합 뒤 현재 terminal0/clean을 확인한 역할만 FF한다. tester의 기존 untracked score2개는 보존하고 최신 main 동기화를 다음 dispatch 전으로 예약한다. 자동 cleanup의 archive 호환 오류 자체는 수정하지 않았다.
+
+
+## 2026-10-12 Codex hook 오류 우선 조치
+
+- 사용자 요청으로 이슈 #2–#8 조치를 대기하고 SAR-CODEX-HOOK-QUOTE-001-DEV를 우선한다. 기준67e7de9, implementation/dev, Claude Sonnet5.5 high fresh, lite/standard. 실제 Codex 현재 세션의 오류다.
+- 인용 없는 Python 코드의 PowerShell parser error1을 재현했다. coor 따옴표 후보는 기존 cmd list 인용 회귀 expected2/actual0으로 미수락이며 DEV가 실제 실행 계약과 함께 최소 수정한다. 원본 증거 Temp shell-guard-ws-p9rgzhud 보존, 실제 삭제0.
+- Run run_ea85dc04b5f3, 정규 to_dev 인박스 사용. 이슈 오토모드의 이전 세션 lease/paused/#2 held는 유지하며 보호 규칙을 우회하거나 재개하지 않는다. 독립 고정 SHA 리뷰와 main/push/역할 동기화 후 완료한다.
+
+- DEV 실제 착수: task_c68dbc76f1ca/ctx_7104051dd3bf/term_a98b80f2-8c32-470d-9082-abd9c496a3cf. fresh Claude Sonnet5.5 high requested/effective 및 turn_started, 정규 인박스·FULLOPS·guard/source/tests 읽기 확인. 준비7cae8d7을 실제 agent 없는 clean dev에 FF했다. 이후 정상 로그는 완료/질문/오류 또는60분 뒤만 조회한다.
+- tester 기존 미추적 score2개는 main 정본과 SHA256·바이트 동일성을 확인한 뒤616a4dc에 보존하고 main을 정상 merge했다. 삭제·이동 없이 clean과 최신 main 포함을 회복했다. 독립 후속 SAR-CODEX-HOOK-QUOTE-001-TESTER는 DEV 고정 SHA·gate 후 배정하며 아직 시작하지 않았다. route Grok 추천 대신 실제 Claude hook 차단 증명이 있는 등록 Claude Sonnet5.5 high로 좁은 보안 경계 검수를 수행할 예정이다.
+
+- DEV 완료 msg_88826a19daf4: 최종d7d6d744, 구현501d9d72, 실제cf470ffe 세션 확인. quoted Python 인수와 `; exit $LASTEXITCODE`로 parser error와 PowerShell deny2→1 변환을 처리하고 guard 본체는 유지했다. 기존 raw cmd seam 오류를 수정, 4 tests 및 exact final SHA Linux product-lint/test0·ERROR0 확인. coor 후보에 SHA 보존 병합했으며 main 수락은 독립 tester까지 hold다. 원 host stderr·live Codex·설치 버전과 upstream main 일치 미확인을 유지한다. DEV는 같은 과제 수정 대기로 retain하고 delivery_6034572eec2f ACK했다.
