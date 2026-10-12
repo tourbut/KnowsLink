@@ -73,7 +73,7 @@ summary: Claude·Grok·Codex PreToolUse hook으로 교차 셸 삭제와 검증�
 - 문자열 검사이며 완전한 보안 경계가 아니다. 스크립트 파일 실행(`python cleanup.py`, `make <target>`), 별칭·함수 정의, 문자열 조합·인코딩 변형, 파일 쓰기 도구로 만든 스크립트는 우회한다. 셸 도구 이외(MCP·편집 도구)는 검사하지 않는다.
 - 경로 검사와 실제 실행 사이에는 시간 차가 있다(TOCTOU).
 - 오탐: 삭제 단어와 셸 실행 단어가 한 명령에 함께 있으면 거부한다. 예: 커밋 메시지·heredoc·`Remove-Item Env:X`와 `pwsh`의 조합. 커밋 메시지는 파일(`git commit -F`)로 전달한다.
-- Codex 프로젝트 hook은 session cwd에서 실행된다. 상대경로 명령은 하위 폴더에서 python이 종료코드 2로 끝나 모든 셸 호출을 막았다(독립 검수 F4 실측, fail-open이 아니라 가용성 결함). 후속 수정(SAR-WINDOWS-SHELL-GUARD-001-FIX-DEV)으로 `.codex/hooks.json`이 `git rev-parse --show-toplevel` 루트의 guard를 호출한다. 큰따옴표·공백 없는 한 줄이라 `cmd /C` 인자 이스케이프 방식과 무관하다. Windows `cmd /C` 전용이며 repo·하위 폴더에서 deny/allow를 회귀로 확인했다. 실제 Codex 세션 실행은 hook 신뢰 승인이 필요해 확인하지 않았다.
+- Codex 프로젝트 hook은 session cwd에서 실행된다. 상대경로 명령은 하위 폴더에서 python이 종료코드 2로 끝나 모든 셸 호출을 막았다(독립 검수 F4 실측, fail-open이 아니라 가용성 결함). 후속 수정(SAR-WINDOWS-SHELL-GUARD-001-FIX-DEV)으로 `.codex/hooks.json`이 `git rev-parse --show-toplevel` 루트의 guard를 호출한다. 큰따옴표·공백 없는 한 줄이라 `cmd /C` 인자 이스케이프 방식과 무관하다. Windows `cmd /C` 전용이며 repo·하위 폴더에서 deny/allow를 회귀로 확인했다. (정정, SAR-CODEX-HOOK-QUOTE-001-DEV: 따옴표 없는 명령은 PowerShell에서 parser error 1이고 `cmd /C` 전용 전제는 틀렸다. 현재 계약은 [SAR-CODEX-HOOK-QUOTE-001-DEV](SAR-CODEX-HOOK-QUOTE-001-DEV.md)를 따른다.) 실제 Codex 세션 실행은 hook 신뢰 승인이 필요해 확인하지 않았다.
 - 후속 수정 F1(`-r:$true`)·F2(인라인 인터프리터와 삭제 단어)·F3(`git -C . clean`)을 guard와 회귀에 반영했다. F5~F9는 잔여 한계로 남긴다(F7 오탐은 인라인 인터프리터와 삭제 단어 조합으로 늘었다).
 
 ## 실행하지 않은 검사
