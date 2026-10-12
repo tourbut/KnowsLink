@@ -23,13 +23,11 @@ home: post /home/key-revoke {button:=@; input:hidden:agent=agent_2b3c4d5e6f70819
 home: post /home/unpair {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:generation=1; input:hidden:target=agent_ccddeeff0011223344556677}
 home: post /home/unpair {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:generation=2; input:hidden:target=agent_2b3c4d5e6f708192a3b4c5d6}
 home: post /home/unpair {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:generation=3; input:hidden:target=agent_77665544332211009988aabb}
-home-empty: get /home/receipts {button:=@; input::id; select:agent}
 home-empty: post /auth/logout {button:=@}
 home-empty: post /auth/logout {button:=@}
 home-empty: post /auth/reauth {button:=@}
 home-empty: post /auth/reauth {button:=@}
 home-empty: post /home/agents {button:=@}
-home-empty: post /home/invites {button:=@; input::target; select:agent}
 connection-token: post /home/cancel {button:=@; input:hidden:connection=c0nnect10n-1d-synthetic-0000000000000000000}
 connection-waiting: post /home/cancel {button:=@; input:hidden:connection=c0nnect10n-1d-synthetic-0000000000000000000}
 connection-prepared: post /home/cancel {button:=@; input:hidden:connection=c0nnect10n-1d-synthetic-0000000000000000000}

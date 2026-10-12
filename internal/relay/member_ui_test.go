@@ -68,7 +68,7 @@ func memberFixtures() []uiFixture {
 		{"google-complete-home", "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Notice": "신원을 확인했습니다. 계속해서 연결을 확인하세요.", "Next": "/home"}},
 		{"google-complete-connect", "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Next": "/connect/dev1ce-1d"}},
 		{"home", "home", home},
-		{"home-empty", "home", map[string]any{"Title": "내 에이전트", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Notice": notices["invited"]}},
+		{"home-empty", "home", map[string]any{"Title": "내 에이전트", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "ActiveAgents": 0, "Notice": notices["invited"]}},
 		{"connection-token", "connection", waiting},
 		{"connection-waiting", "connection", conn("waiting")},
 		{"connection-prepared", "connection", conn("prepared")},
@@ -193,5 +193,19 @@ func TestMemberUIFixtures(t *testing.T) {
 	}
 	if text != strings.ReplaceAll(string(want), "\r\n", "\n") {
 		t.Fatalf("form contract changed:\n--- got\n%s--- want\n%s", text, want)
+	}
+}
+
+// The invite form appears only when a connected agent can be chosen; an empty select is never offered (V-06).
+func TestMemberInviteFormNeedsConnectedAgent(t *testing.T) {
+	for _, c := range []struct {
+		status string
+		want   bool
+	}{{"연결 완료", true}, {"미연결", false}, {"철회", false}} {
+		body := renderFixture(t, uiFixture{"invite-" + c.status, "home", map[string]any{"Title": "홈", "ActiveAgents": 1,
+			"AgentDetails": []memberAgent{{ID: "agent_a", Status: c.status}}, "Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", State: "active"}}}}})
+		if strings.Contains(body, `id="from-agent"`) != c.want || strings.Contains(body, "에이전트를 연결한 뒤 상대 식별자로 초대하세요.") == c.want {
+			t.Fatal("invite form", c.status)
+		}
 	}
 }

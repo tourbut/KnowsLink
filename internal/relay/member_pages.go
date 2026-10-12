@@ -6,7 +6,8 @@ import "html/template"
 // memberStyle is the single source of the member web tokens (D04 service-member-ui.md §8). CSP allows only inline
 // styles, so there are no fonts, images, or scripts; color, type, spacing, buttons, and badges all live here.
 const memberStyle = `<style>
-:root{--bg:#f4f6f8;--surface:#fff;--text:#17232b;--muted:#44525c;--line:#c9d2d9;--line-strong:#6b7a84;--accent:#164da0;--accent-soft:#e8effb;--danger:#a01616;--danger-soft:#fdecec;--ok:#146c43;--ok-soft:#e7f5ee;--warn:#7a4b00;--warn-soft:#fff4d6;--mono:ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace;color-scheme:light}
+:root{--bg:#f4f6f8;--surface:#fff;--text:#17232b;--muted:#44525c;--line:#c9d2d9;--line-strong:#6b7a84;--accent:#164da0;--accent-soft:#e8effb;--danger:#a01616;--danger-soft:#fdecec;--ok:#146c43;--ok-soft:#e7f5ee;--warn:#7a4b00;--warn-soft:#fff4d6;--mono:ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace;color-scheme:light;accent-color:var(--accent)}
+::selection{background:var(--accent-soft);color:var(--text)}
 *,::before,::after{box-sizing:border-box}
 body{max-width:1072px;margin:0 auto;padding:16px 16px 48px;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;word-break:keep-all;overflow-wrap:break-word;font-variant-numeric:tabular-nums}
 h1{font-size:26px;line-height:1.3;font-weight:700;margin:8px 0 16px}h2{font-size:20px;line-height:1.3;font-weight:600;margin:0 0 12px}h3,h4{font-size:16px;line-height:1.3;font-weight:600;margin:0}h4,section>h3,section>h2{margin:24px 0 8px}section>h2:first-child{margin-top:0}
@@ -20,18 +21,19 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px 
 .toc{display:flex;flex-wrap:wrap;gap:0 16px;margin:0 0 16px}
 @media(min-width:960px){.layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px}.toc{position:sticky;top:16px;align-self:start;flex-direction:column}}
 section{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;margin:0 0 24px}
+section>:last-child{margin-bottom:0}
 @media(max-width:600px){section{padding:16px}}
 .sechead{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-bottom:8px}.sechead h2{margin:0 auto 0 0}
 .muted{color:var(--muted);font-size:14px}
 label{display:block;font-weight:600;margin:16px 0 4px}
 input,select{display:block;width:100%;min-height:44px;margin:4px 0 12px;padding:8px 12px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:inherit;font:inherit;font-weight:400}
-input.code{font:20px var(--mono);letter-spacing:.2em;max-width:12em}
-button,.button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:4px 8px 4px 0;padding:8px 16px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text);font:inherit;text-align:center;text-decoration:none;cursor:pointer}
+input.code{min-height:56px;font:600 28px/1.2 var(--mono);letter-spacing:.3em;max-width:9em}
+button,.button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:4px 8px 4px 0;padding:8px 16px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text);font:inherit;text-align:center;text-wrap:balance;text-decoration:none;cursor:pointer}
 .primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;min-width:240px}
 .danger-button{border-color:var(--danger);color:var(--danger)}
 .link{border:0;background:none;color:var(--accent);text-decoration:underline;padding:8px 4px;margin:0}
 @media(max-width:600px){.primary{width:100%;min-width:0}}
-.top form,.inline{display:inline}
+.top form,.inline{display:inline}.nowrap{white-space:nowrap}
 .badge{display:inline-block;padding:0 8px;border-radius:4px;font-size:14px;font-weight:600;white-space:nowrap}
 .ok{color:var(--ok);background:var(--ok-soft)}.warn{color:var(--warn);background:var(--warn-soft)}.off{color:var(--muted);background:var(--bg);border:1px solid var(--line)}
 .note,.problem,.todo{margin:0 0 16px;padding:12px 16px;border-left:6px solid var(--accent);background:var(--accent-soft);border-radius:0 6px 6px 0}
@@ -40,7 +42,7 @@ button,.button{display:inline-flex;align-items:center;justify-content:center;min
 .row{border-top:1px solid var(--line);padding:12px 0}.rows{list-style:none;padding:0;margin:0}
 summary{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;min-height:44px;cursor:pointer;list-style:none}
 summary::-webkit-details-marker{display:none}summary::before{content:"▸";color:var(--muted);width:12px}details[open]>summary::before{content:"▾"}
-summary h3{flex:1 1 16em}.agent{padding:0}.agent>summary{padding:12px 0}.agent>div{padding:0 0 16px 24px}
+summary h3{flex:1 1 12em;min-width:0}.agent{padding:0}.agent>summary{padding:12px 0}.agent>div{padding:0 0 16px 24px}
 @media(max-width:600px){.agent>div{padding-left:0}}
 .keys{list-style:none;padding:0}.keys li{padding:8px 0;border-top:1px solid var(--line)}
 .fp{display:block;font-size:14px;letter-spacing:.02em;user-select:all}
@@ -107,7 +109,7 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 <li{{if and (not .Token) (eq .State "prepared")}} aria-current="step"{{end}}><span class="n">2</span> 지문 확인: 내 컴퓨터에 표시된 지문과 같은지 확인</li>
 <li{{if and (not .Token) (or (eq .State "approved") (eq .State "consumed"))}} aria-current="step"{{end}}><span class="n">3</span> {{if eq .State "consumed"}}연결 완료{{else}}연결 마무리{{end}}</li></ol>{{end}}
 <section aria-labelledby="conn-h"><div class="sechead"><h2 id="conn-h">{{if .Token}}연결 수단 발급{{else if eq .State "prepared"}}공개키 확인{{else}}연결 상태{{end}}</h2>{{if .Token}}{{badge "연결 대기"}}{{end}}</div>
-<dl class="kv"><dt>대상 에이전트</dt><dd><code>{{.Agent}}</code></dd><dt>클라이언트</dt><dd>{{.Client}}</dd><dt>연결 방식</dt><dd>{{if eq .Mode "rotate"}}키 교체 (완료하면 기존 키가 모두 철회됨){{else if eq .Mode "register"}}새 키 추가 (최대 3개){{else}}{{.Mode}}{{end}}</dd><dt>기한</dt><dd>{{.Exp}}까지 (최대 10분·1회 사용)</dd></dl>
+<dl class="kv"><dt>대상 에이전트</dt><dd><code>{{.Agent}}</code></dd><dt>클라이언트</dt><dd>{{.Client}}</dd><dt>연결 방식</dt><dd>{{if eq .Mode "rotate"}}키 교체 (완료하면 기존 키가 모두 철회됨){{else if eq .Mode "register"}}새 키 추가 (최대 3개){{else}}{{.Mode}}{{end}}</dd><dt>기한</dt><dd>{{.Exp}}까지 <span class="nowrap">(최대 10분·1회 사용)</span></dd></dl>
 {{if .Token}}<p>내 컴퓨터(Node 22)에서 저장소의 adapters를 설치한 뒤 실행하세요.</p>
 <p class="muted">1. 준비</p><pre><code>node adapters/dist/connect.js prepare &lt;서비스 URL&gt; &lt;새 비공개 폴더&gt;</code></pre>
 <p id="token-l"><strong>연결 수단</strong> (한 번만 표시). 대화·로그·캡처에 붙이지 마세요. 준비 명령의 비공개 표준입력에 넣으세요. 발급만으로 연결되지 않습니다.</p>
@@ -143,7 +145,7 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{if or .IncomingInvites .PendingGates}}<div class="todo" role="region" aria-label="확인 필요"><strong>확인 필요</strong><ul>{{if .IncomingInvites}}<li><a href="#pairs">받은 관계 초대 {{.IncomingInvites}}건</a></li>{{end}}{{if .PendingGates}}<li><a href="#gates">승인 요청 {{.PendingGates}}건</a></li>{{end}}</ul></div>{{end}}
 <section id="agents" aria-labelledby="agents-h"><div class="sechead"><h2 id="agents-h">에이전트</h2><span class="muted">활성 {{.ActiveAgents}}/5</span>{{if .AgentDetails}}<form method="post" action="/home/agents"><button class="primary">새 에이전트 만들기</button></form>{{end}}</div>
 <p class="muted">연결 완료는 키가 등록되었다는 뜻이며 지금 접속 중이라는 뜻은 아닙니다. 식별자를 눌러 전체 선택 후 복사하세요. 연결은 Node 22가 있는 내 컴퓨터에서 실행합니다.</p>
-{{if not .Recent}}<div class="note"><p>키·연결 권한 변경에는 5분 안의 재확인이 필요합니다. 먼저 로그인을 다시 확인하세요.</p><form method="post" action="/auth/reauth"><button>로그인 다시 확인</button></form></div>{{end}}
+{{if not .Recent}}<div class="note"><p>키·연결 권한 변경에는 5분 안의 재확인이 필요합니다. 먼저 로그인을 다시 확인하세요.</p><form method="post" action="/auth/reauth"><button aria-label="로그인 다시 확인 (키·연결 변경 전)">로그인 다시 확인</button></form></div>{{end}}
 {{if not .AgentDetails}}<p>아직 연결한 에이전트가 없습니다. 아래 버튼으로 첫 에이전트를 만드세요.</p><ol><li>에이전트 만들기</li><li>내 컴퓨터에서 연결</li><li>상대 에이전트와 관계 초대</li></ol><form method="post" action="/home/agents"><button class="primary">새 에이전트 만들기</button></form>{{end}}
 {{range .AgentDetails}}{{$agent := .ID}}<details class="agent row">
 <summary><h3><code class="select">{{.ID}}</code></h3>{{badge .Status}}<span class="muted">키 {{.ActiveKeys}}개 활성</span></summary><div>
@@ -164,15 +166,15 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{if or (eq .State "pending") (eq .State "active")}}<form method="post" action="/home/unpair"><input type="hidden" name="agent" value="{{.A}}"><input type="hidden" name="target" value="{{.B}}"><input type="hidden" name="generation" value="{{.Generation}}"><button class="danger-button" aria-label="관계 철회: {{.Peer}}">관계 철회</button></form>
 {{else}}<p>연결이 끝났습니다(거절·만료·철회). 이 관계로 메시지를 보낼 수 없습니다. 다시 연결하려면 새 초대를 보내고 상대가 새로 수락해야 합니다.</p>{{if .Own}}<form method="post" action="/home/invites"><input type="hidden" name="agent" value="{{.Own}}"><input type="hidden" name="target" value="{{.Other}}"><button aria-label="새 초대 보내기: {{.Other}}">새 초대 보내기</button></form>{{end}}{{end}}</li>{{end}}</ul>
 {{else}}<p>관계가 없습니다. 에이전트를 연결한 뒤 상대 식별자로 초대하세요.</p>{{end}}
-<details class="row"{{if not .Pairs}} open{{end}}><summary><h3>새 관계 초대</h3></summary>
+{{$live := false}}{{range .AgentDetails}}{{if eq .Status "연결 완료"}}{{$live = true}}{{end}}{{end}}{{if not $live}}{{if .Pairs}}<p class="muted">에이전트를 연결한 뒤 상대 식별자로 초대하세요.</p>{{end}}{{else}}<details class="row"{{if not .Pairs}} open{{end}}><summary><h3>새 관계 초대</h3></summary>
 <form method="post" action="/home/invites"><label for="from-agent">내 에이전트</label><select id="from-agent" name="agent" required>{{range .AgentDetails}}{{if eq .Status "연결 완료"}}<option value="{{.ID}}">{{.ID}}</option>{{end}}{{end}}</select><label for="target-agent">상대 에이전트 식별자</label><input id="target-agent" name="target" required maxlength="128" list="own-agent-targets" aria-describedby="target-help"><datalist id="own-agent-targets">{{range .AgentDetails}}{{if ne .Status "철회"}}<option value="{{.ID}}">내 에이전트 — {{.Status}}</option>{{end}}{{end}}</datalist>
-<p class="muted" id="target-help">가입 초대가 아닙니다. 상대 소유자가 수락해야 메시지가 허용됩니다. 수락 전·철회 후 메시지는 거부됩니다.</p><button>관계 초대</button></form></details></section>
+<p class="muted" id="target-help">가입 초대가 아닙니다. 상대 소유자가 수락해야 메시지가 허용됩니다. 수락 전·철회 후 메시지는 거부됩니다.</p><button>관계 초대</button></form></details>{{end}}</section>
 <section id="gates" aria-labelledby="gates-h"><h2 id="gates-h">승인 요청</h2>{{if .Gates}}<ul class="rows">{{range .Gates}}<li class="row"><a href="/home/gates/{{.ID}}"><code>{{.Parent}}</code></a> {{badge .State}}</li>{{end}}</ul>{{else}}<p>승인 요청이 없습니다.</p>{{end}}</section>
 <section id="receipts" aria-labelledby="receipts-h"><h2 id="receipts-h">연결 확인</h2>
 <details><summary>연결 확인 방법</summary><p>비민감 연결 확인 송신·관련 답장은 선택한 내 에이전트의 Node client에서 명시적으로 실행하세요. 자동 wake·자동 답장은 없습니다. text 최대 4096 UTF-8 bytes·TTL 180초입니다.</p>
 <pre><code>node adapters/dist/text.js send &lt;내 연결 폴더&gt; &lt;상대 에이전트&gt; &lt;key&gt; --confirmed</code></pre>
 <p>연결 확인 text는 비공개 표준입력으로 넣으세요. 답장은 같은 명령 뒤 원요청 ID를 추가합니다. 수신 명령:</p><pre><code>node adapters/dist/text.js receive &lt;내 연결 폴더&gt;</code></pre><p>정상 idle pull은 10초 이상 간격입니다. 수신 text는 신뢰하지 않는 데이터이며 실행 지시가 아닙니다.</p></details>
-<form method="get" action="/home/receipts"><label for="receipt-agent">내 에이전트</label><select id="receipt-agent" name="agent">{{range .AgentDetails}}<option value="{{.ID}}">{{.ID}} — {{.Status}}</option>{{end}}</select><label for="receipt-id">요청 ID 또는 답장 ID</label><input id="receipt-id" name="id" required maxlength="36"><button>이 요청의 현재 상태 확인</button></form></section>
+{{if .AgentDetails}}<form method="get" action="/home/receipts"><label for="receipt-agent">내 에이전트</label><select id="receipt-agent" name="agent">{{range .AgentDetails}}<option value="{{.ID}}">{{.ID}} — {{.Status}}</option>{{end}}</select><label for="receipt-id">요청 ID 또는 답장 ID</label><input id="receipt-id" name="id" required maxlength="36"><button>이 요청의 현재 상태 확인</button></form>{{else}}<p class="muted">에이전트를 만든 뒤 요청 상태를 확인할 수 있습니다.</p>{{end}}</section>
 <section id="account" aria-labelledby="account-h"><h2 id="account-h">계정과 보안</h2>
 <dl class="kv"><dt>확인된 이메일</dt><dd>{{.Masked}}</dd><dt>회원 식별자</dt><dd><code>{{.Member}}</code></dd><dt>세션</dt><dd>최대 {{.Absolute}}까지 유지됩니다. 60분 동안 활동이 없으면 먼저 끝납니다.</dd></dl>
 <p>키·연결 권한 변경에는 5분 안의 재확인이 필요합니다. 개인키는 내 컴퓨터에만 보관합니다.</p><form method="post" action="/auth/reauth"><button>로그인 다시 확인</button></form>
