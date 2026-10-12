@@ -1,0 +1,31 @@
+{
+  "task_key": "SAR-SERVICE-UI-001-FIX-DEV",
+  "find_head": "5febcb355a175e89e6bc5ac87bfff42b6907e7db",
+  "base": "2e8b8b228568baa2d849831a0859063de55aa473",
+  "head": "295417acfdcd415ad0c768d164bd71dc07214ea9",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "new_files": [],
+  "candidates": [
+    "internal/relay/member_pages.go"
+  ],
+  "hits": [
+    "internal/relay/member_pages.go"
+  ],
+  "recall": 0.5,
+  "precision": 1.0,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
