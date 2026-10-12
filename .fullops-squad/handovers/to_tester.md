@@ -79,6 +79,16 @@ Windows make 부재 참고: coordinator msg_907ca28147c9가 C:/Users/shin/AppDat
 
 진행은 자기 인박스 한 곳에 체크한다. 상세 로그와 packet-outcomes에 모든 비선택 path/category의 completed/no_change와 구체적 이유를 쓴다. partial 잔여를 수동 검토한다. 결과·검증·미검증·후속을 완료 보고에 전문으로 기록하고 커밋·work.py finish를 수행한다. task/dispatch/terminal은 실제 주입 preamble을 따른다. worker_done은 3문장과 최종 SHA 하나로 정확히 한 번 보낸다. coor가 고정 후보 리뷰·main 통합·origin push를 조정한다.
 
+## 고정 후보 독립 코드 리뷰 — coor 추가 계약
+
+독립 QA와 함께 별도 세션 fixed-SHA 코드 리뷰를 수행한다. 실행은 fresh grok / grok-4.7 / high이며 실제 CLI tuple을 확인한다. DEV 및 DEV child와 다른 세션이어야 한다. 후보는 최종 DEV worker_done의 40자리 SHA로 coor가 고정하며 현재는 대기다.
+
+fullops-review와 open-code-review-delegate를 읽는다. 기준 f849215bdefd3984dbf385c9f0973a74525be545에서 최종 DEV SHA의 실제 변경을 대상으로 review.py prepare와 snapshot을 생성한다. 작성자 실제 세션은 DEV flow-terminal 기록/완료 인계에서 확인하고 reviewer는 자기 실제 세션을 쓴다. 깨끗한 detached snapshot은 읽기 전용, 결과는 tester 기록 체크아웃에 쓴다. 제품 코드 수정·새 인가 기준 판단은 하지 않는다.
+
+공용 현재 권한의 모든 호출자를 추적한다. 친구/자기 연결·legacy 정확 pair·generation/해제·차단, web owner와 agent signed 발신 구분, 부모 TTL에 묶이지 않는 연속 대화, 보존/참여자 열람, 멱등·quota·CSRF/CSP, 기존 writer rollback fail-closed와 adapter/SSE/remote/gate 경계를 집중 검토한다. 실제 요구와 기술 문서도 대조한다. 모든 변경 path에 reviewed/skipped와 이유를 쓴다. 미해결 critical/high는 수락 차단이다. QA 실패와 코드 발견을 DEV에 인계하며 임의 수정/검사 약화하지 않는다.
+
+최종 리뷰 result/report/lint는 실제 후보 HEAD/base와 일치해야 한다. DEV 최종 gate의 등록 검사 증거를 검토하고 변경 없는 검사는 원 SHA·조건으로 재사용할 수 있다. unavailable이면 이유·영향을 명시한다. review.py check --task-key SAR-HUMAN-PEER-001-DEV의 최신 SHA 기록 검사와 packet completion을 수행한다. 자기 QA 보고서도 front matter를 채운다. 제품 코드 리뷰 PASS와 독립 동작 QA PASS는 각각 실제 근거가 필요하다.
+
 <!-- fullops-packet:start -->
 ### 탐색 근거와 읽을 구간
 
