@@ -16,50 +16,50 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.73,
-        "product": 0.27
+        "implementation": 0.6,
+        "product": 0.4
       },
-      "confidence": 0.46
+      "confidence": 0.2
     },
     "role": {
       "choice": "dev",
       "probabilities": {
-        "dev": 0.43,
-        "ops": 0.18,
-        "tester": 0.39
+        "dev": 0.58,
+        "ops": 0.05,
+        "tester": 0.37
       },
-      "confidence": 0.14
+      "confidence": 0.37
     },
     "docs": {
-      "D01": 0.08,
-      "D02": 0.12,
-      "D03": 0.1,
-      "D04": 0.9,
-      "D05": 0.09,
-      "D06": 0.09,
-      "D07": 0.07,
-      "D08": 0.07,
-      "D09": 0.08,
-      "D10": 0.09,
-      "D11": 0.25,
-      "D12": 0.19,
-      "D13": 0.19
+      "D01": 0.14,
+      "D02": 0.15,
+      "D03": 0.18,
+      "D04": 0.5,
+      "D05": 0.17,
+      "D06": 0.16,
+      "D07": 0.13,
+      "D08": 0.19,
+      "D09": 0.18,
+      "D10": 0.3,
+      "D11": 0.22,
+      "D12": 0.28,
+      "D13": 0.35
     }
   },
   "usage": {
-    "input_tokens": 2449,
+    "input_tokens": 2410,
     "output_tokens": 314,
-    "cost": 0.000102858
+    "cost": 0.00010122
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.465,
+  "latency_seconds": 0.673,
   "response_model": "typesafe/jev-1.13-20260917",
   "original_role": null,
   "original_route": "unresolved",
-  "override_reason": "D04의 직접 시각 수락 담당은 designer다. tester의 독립 동작 QA와 구분한 등록 역할 배정이다.",
+  "override_reason": "D04가 지정한 designer 직접 시각 수락 책임",
   "model": {
     "agent": "codex",
     "provider": "openai",
@@ -68,15 +68,15 @@
     "source": "user"
   },
   "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
-  "head": "d487a2659b86237bf0cd11dafbe25e574005c0ab",
+  "head": "1a4078c7e9606b210717646507306ebc4895d639",
   "requires_packet": true,
   "attempt": "a772658c0880455a933958b3cc02f211",
-  "instruction_sha256": "4832a4c8b420f21520c4f372833387697999c7ec2ec69b1aec740748c7d87b86",
+  "instruction_sha256": "847f694c6b74a57822f30f277d238bce3bc7143be41bdebbd7a20512f6b432f3",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "71c44edc9ffcea6425f9436b5653ea84ecfb67f9ebea68ecc60feae209db6521"
+  "input_sha256": "84dbcab98e41ecc272c1b75c247e830daa74b9c7c4b378d131757cf80b46af9f"
 }

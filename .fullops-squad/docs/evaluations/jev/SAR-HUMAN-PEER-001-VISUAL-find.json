@@ -1,9 +1,9 @@
 {
   "task_key": "SAR-HUMAN-PEER-001-VISUAL",
   "role": "designer",
-  "head": "b227ce54304b62531a40c0ba719b919fcd8daf1d",
+  "head": "1a4078c7e9606b210717646507306ebc4895d639",
   "attempt": "a772658c0880455a933958b3cc02f211",
-  "instruction_sha256": "4832a4c8b420f21520c4f372833387697999c7ec2ec69b1aec740748c7d87b86",
+  "instruction_sha256": "847f694c6b74a57822f30f277d238bce3bc7143be41bdebbd7a20512f6b432f3",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
@@ -15,22 +15,22 @@
     "parser": "search-map-v1",
     "input_chars": 24000
   },
-  "input_sha256": "19ec2a094c43315af74176c3bb255b05d5997b2884abbd4a9f2bddbfbad93eee",
+  "input_sha256": "a4bdd91605fb679ff2aa9790152f5d5193f99ecb59eabe2df7ef5aa228633b76",
   "version": "jev-find-v2",
   "requested_model": "~typesafe/jev-latest",
-  "files": 86,
+  "files": 92,
   "scope": "code",
   "passes": [
     {
       "level": "file",
-      "options": 86
+      "options": 92
     }
   ],
   "candidates": [
     {
-      "path": "internal/relay/member_pages.go",
-      "summary": "Member page views: the shared design tokens, status badges, and every member HTML template.",
-      "probability": 0.56,
+      "path": "internal/relay/human_pages.go",
+      "summary": "Human pages keep people, named agents, and short-lived conversations ahead of connection administration.",
+      "probability": 0.42,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 0
@@ -38,18 +38,42 @@
     {
       "path": "internal/relay/member_ui_test.go",
       "summary": "Synthetic renders of every member page pin the form contract and feed the direct visual review.",
-      "probability": 0.27,
+      "probability": 0.17,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 1
     },
     {
-      "path": "internal/relay/member_agents.go",
-      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
-      "probability": 0.09999999999999999,
+      "path": "internal/relay/human_http.go",
+      "summary": "Session-only person, friendship and conversation pages share existing origin, rate and authorization boundaries.",
+      "probability": 0.11,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 2
+    },
+    {
+      "path": "Makefile",
+      "summary": "",
+      "probability": 0.08,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 3
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "summary": "Member page views: the shared design tokens, status badges, and every member HTML template.",
+      "probability": 0.08,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 4
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink 호스트별 설치 — 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계 | KnowsLink 플러그인 | SAR-HUMAN-PEER-001 DEV 후보 | 호스트별 설치 — SAR-SSE-INSTALL-001 | 도메인으로 Google 연결 시작",
+      "probability": 0.04,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 5
     },
     {
       "path": "cmd/relay/main.go",
@@ -57,23 +81,39 @@
       "probability": 0.03,
       "probability_scope": "batch",
       "batch_start": 0,
-      "batch_rank": 3
+      "batch_rank": 6
     },
     {
-      "path": "internal/config/config.go",
-      "summary": "Package config validates development settings without exposing secret values.",
-      "probability": 0.02,
+      "path": "internal/relay/human_pages_test.go",
+      "summary": "Human page fixtures verify responsive templates, forms and safe content boundaries.",
+      "probability": 0.03,
       "probability_scope": "batch",
       "batch_start": 0,
-      "batch_rank": 4
+      "batch_rank": 7
     },
     {
-      "path": "adapters/README.md",
-      "summary": "KnowsLink 호스트별 설치 — 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계 | KnowsLink 플러그인 | 호스트별 설치 — SAR-SSE-INSTALL-001 | 도메인으로 Google 연결 시작 | 패키지 만들기",
+      "path": "scripts/test_shell_guard.py",
+      "summary": "Synthetic deny/allow regression for scripts/shell_guard.py with Claude, Grok and Codex PreToolUse payloads. | literal(path, extra='-Recurse -Force')  | run(payload, env=None)  | ShellGuardTest  | test_providers_deny_and_allow(self)  | test_payload_edges(self)  | test_codex_hook_from_subfolder(self)  | test_nothing_was_deleted(self) ",
       "probability": 0.01,
       "probability_scope": "batch",
       "batch_start": 0,
-      "batch_rank": 5
+      "batch_rank": 8
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "summary": "Install the built plugin ZIP with the real Grok CLI in a throwaway HOME and check MCP discovery; ~/.grok is untouched. | main()  | grok(*arguments) ",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 9
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "summary": "Prove product lint detects violations in temporary copies and propagates failure. | run(command, directory, expected=0, diagnostic=None)  | main() ",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 10
     }
   ],
   "existence": {
@@ -83,28 +123,28 @@
   },
   "truncated": false,
   "usage": {
-    "input_tokens": 5704,
-    "output_tokens": 897,
-    "cost": 0.000239568,
-    "known_cost": 0.000239568,
+    "input_tokens": 6319,
+    "output_tokens": 957,
+    "cost": 0.000265398,
+    "known_cost": 0.000265398,
     "cost_status": "complete"
   },
-  "latency_seconds": 0.494,
+  "latency_seconds": 0.475,
   "error": null,
   "calls": [
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 5704,
-        "output_tokens": 897,
-        "cost": 0.000239568
+        "input_tokens": 6319,
+        "output_tokens": 957,
+        "cost": 0.000265398
       },
-      "latency_seconds": 0.494
+      "latency_seconds": 0.475
     }
   ],
   "semantic_search": true,
   "snapshot": "HEAD metadata; no worktree overlay",
-  "map_sha256": "cfa5ec3c551a887a07a7e04082f0b8e097b42a3562ce64f6cf9f00a3907dfd0d",
+  "map_sha256": "57aff7e890a448fc3aa69cbe90113af38f6ab70c43afc671f84fa0f12a6f4f0b",
   "strategy": "batch",
   "seed_paths": [],
   "unreadable_files": [],
@@ -118,7 +158,6 @@
     ".gitignore",
     ".nvmrc",
     "Dockerfile",
-    "Makefile",
     "adapters/.claude-plugin/plugin.json",
     "adapters/.codex-plugin/plugin.json",
     "adapters/.cursor-plugin/plugin.json",
@@ -145,6 +184,7 @@
     "cmd/migrate/main_test.go",
     "cmd/relay/main_test.go",
     "db/migrations/00001_relay.sql",
+    "db/migrations/00002_human_writer.sql",
     "db/queries/relay.sql",
     "deploy/knowslink/access_trial_plan.py",
     "deploy/knowslink/compose.ops.yaml",
@@ -154,6 +194,7 @@
     "deploy/knowslink/verify.py",
     "go.mod",
     "go.sum",
+    "internal/config/config.go",
     "internal/database/db.go",
     "internal/database/models.go",
     "internal/database/relay.sql.go",
@@ -166,7 +207,10 @@
     "internal/relay/connections_test.go",
     "internal/relay/device.go",
     "internal/relay/google_test.go",
+    "internal/relay/human.go",
+    "internal/relay/human_messages.go",
     "internal/relay/mail.go",
+    "internal/relay/member_agents.go",
     "internal/relay/member_receipt.go",
     "internal/relay/policy_test.go",
     "internal/relay/protocol.go",
@@ -189,15 +233,12 @@
     "scripts/run_trial.py",
     "scripts/schema.py",
     "scripts/shell_guard.py",
-    "scripts/test_shell_guard.py",
-    "scripts/verify_grok_plugin.py",
-    "scripts/verify_setup.py",
     "sqlc.yaml"
   ],
-  "presented_files": 86,
+  "presented_files": 92,
   "partial": false,
   "fallback": null,
-  "input_partial": false,
-  "instruction_chars": 2889,
-  "elapsed_seconds": 1.423
+  "input_partial": true,
+  "instruction_chars": 4275,
+  "elapsed_seconds": 3.452
 }
