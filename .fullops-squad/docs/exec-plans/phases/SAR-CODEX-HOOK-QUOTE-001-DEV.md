@@ -44,8 +44,9 @@ summary: Codex PreToolUse hook 명령을 cmd·PowerShell·sh에서 같은 종료
 | 검사 | 결과 |
 |---|---|
 | 셸별 실측(위 표) | 수정 명령은 cmd 2종·pwsh·powershell에서 허용 0·거부 2, 거부 사유 stderr 확인 |
-| `python3 scripts/test_shell_guard.py` | 아래 최종 결과 절 |
-| FullOps lint와 `make lint`·`make test` Linux 격리 경로 | 아래 최종 결과 절 |
+| `python3 scripts/test_shell_guard.py` | 4 tests OK(exit 0). codex subfolder 회귀는 cmd shell=True·cmd /C raw·pwsh·powershell을 검사 |
+| FullOps lint `--from 67e7de9` (구현 SHA 501d9d7, `make.cmd`→Linux 격리 clone) | exit 0, ERROR 0, WARNING 1(PLANS.md SIZE-001), product-lint·product-test passed |
+| 같은 SHA Linux clone `make lint`·`make test` | 둘 다 exit 0 (HEAD 일치·clean 검사 포함) |
 
 ## 한계와 미검증
 
