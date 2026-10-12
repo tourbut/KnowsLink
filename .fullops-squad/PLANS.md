@@ -1636,3 +1636,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 독립 검수 착수: tester task_12a2f48cebed/ctx_3ebee71904fc/term_f622ce62-9b42-4f8a-a4fb-3a24eb012845(Claude Sonnet5.5 high), visual task_1ebe048c69a4/ctx_787ee0f10007/term_8a7c5153-d007-4ac7-872e-5e5cc9a014ce(Codex gpt-6.1-sol medium). 각 requested/effective·turn_started·지시서 읽기 확인. tester 별도 detached snapshot 생성 확인. 준비471e28a를 clean·terminal0인 두 역할에 FF했다.
 
+
+- 기본 브랜치 통합 준비: 선행 hook 독립 리뷰 check(구현 과제 키DEV)와 FullOps1.4.0 리뷰 check 통과 확인. main의 기존 미커밋 .codex/hooks.json은 덮어쓰기 전에 AppData/Local/KnowsLinkDevTools/frontpolish001-coor/main-hooks-before-integration.json에 동일 SHA256 원본을 보존했다. UI 독립 수락 뒤 정확한 hook 파일만 Git stash로 보존하고 검토된 수정과 통합한다. 실제 host hook trust·오류 소멸은 별도 미검증이다.
+
