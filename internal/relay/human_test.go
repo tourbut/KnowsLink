@@ -347,3 +347,154 @@ func TestHumanLegacyMigrationAndExecutionBoundary(t *testing.T) {
 		t.Fatal("unknown schema allowed")
 	}
 }
+
+func TestHumanGateRevocationAndReaccept(t *testing.T) {
+	for _, boundary := range []string{"remove", "block", "key", "member"} {
+		t.Run(boundary, func(t *testing.T) {
+			st, ids, keys, now := humanFixture(t)
+			f := acceptHumans(t, st, ids, now)
+			send := func(id, from, to, intent, key, parent, claim string, body map[string]any) *Envelope {
+				t.Helper()
+				e, err := Parse(wire(t, keys[from], id, from, to, intent, key, parent, body, now.Add(time.Minute)))
+				if err != nil {
+					t.Fatal(err)
+				}
+				if _, err = st.ingest(from, e, claim, now); err != nil {
+					t.Fatal(err)
+				}
+				return e
+			}
+			m := send(firstID, "agent_a1", "agent_b1", "schedule.query", "friend-gate-query-01", "", "", queryBody())
+			leased, err := st.leaseMatching("agent_b1", now, false, false)
+			if err != nil || leased == nil {
+				t.Fatal("lease", err)
+			}
+			c := command{ID: m.ID, Token: leased.(map[string]any)["lease_token"].(string)}
+			for _, action := range []string{"persist", "ack"} {
+				if _, err = st.operateAs(action, "agent_b1", "agent", c, now, false); err != nil {
+					t.Fatal(err)
+				}
+			}
+			claimed, err := st.operateAs("claim", "agent_b1", "agent", command{ID: m.ID}, now, false)
+			if err != nil {
+				t.Fatal(err)
+			}
+			claim := claimed.(map[string]string)["claim"]
+			send(gateID, "agent_b1", "agent_b1", "relay.approval.request", "friend-gate-request-01", m.ID, claim, map[string]any{"reason": "judgment_required", "request_digest": st.Messages[m.ID].Receipt.Digest})
+			g := st.Gates[gateID]
+			if _, valid := verifiedGate(st, g, now); !valid {
+				t.Fatal("valid friend gate not verified")
+			}
+			g.State = "approved"
+			switch boundary {
+			case "remove", "block":
+				if err := st.decideFriend(ids["a"], f.ID, boundary, f.Generation, now); err != nil {
+					t.Fatal(err)
+				}
+			case "key":
+				st.Agents["agent_a1"].Keys["key1"].Revoked = true
+			case "member":
+				st.Members[ids["a"]].Active = false
+			}
+			if _, valid := verifiedGate(st, g, now); valid {
+				t.Fatal("revoked gate remains valid")
+			}
+			for _, action := range []string{"authorize", "gate-consume"} {
+				id := m.ID
+				if action == "gate-consume" {
+					id = gateID
+				}
+				if _, err := st.operateAs(action, "agent_b1", "agent", command{ID: id, Claim: claim}, now, false); err == nil {
+					t.Fatal("revoked execution authority", action)
+				}
+			}
+			if boundary == "remove" {
+				acceptHumans(t, st, ids, now)
+				if st.current(st.Messages[m.ID]) {
+					t.Fatal("reaccept revived old gate parent")
+				}
+				result, err := Parse(wire(t, keys["agent_b1"], secondID, "agent_b1", "agent_a1", "relay.result", "friend-result-old-01", m.ID, map[string]any{"status": "denied"}, now.Add(time.Minute)))
+				if err != nil {
+					t.Fatal(err)
+				}
+				if _, err = st.ingest("agent_b1", result, claim, now); err == nil {
+					t.Fatal("old claim emitted result after reaccept")
+				}
+			}
+		})
+	}
+}
+
+func TestHumanFriendPrivacyAndCapacity(t *testing.T) {
+	st, ids, _, now := humanFixture(t)
+	for _, code := range []string{"unknown-code", st.Members[ids["a"]].FriendCode} {
+		st.requestFriend(ids["a"], code, now)
+		f := st.Friends[pairID(ids["a"], "undisclosed:"+hashToken(code))]
+		if f == nil || f.State != "pending" || f.NameB != "" {
+			t.Fatal("code outcome disclosed target existence")
+		}
+	}
+	st.requestFriend(ids["a"], st.Members[ids["b"]].FriendCode, now)
+	f := st.Friends[pairID(ids["a"], ids["b"])]
+	for i := 0; i < 20; i++ {
+		st.Friends[fmt.Sprint("capacity", i)] = &Friend{A: ids["a"], B: fmt.Sprint("other", i), State: "active"}
+	}
+	if err := st.decideFriend(ids["b"], f.ID, "accept", f.Generation, now); err == nil || err.Error() != "capacity" || f.State != "pending" {
+		t.Fatal("member friend limit changed pending", err)
+	}
+	if err := st.decideFriend(ids["a"], f.ID, "cancel", f.Generation, now); err != nil {
+		t.Fatal("full capacity blocked cleanup", err)
+	}
+	st, ids, _, now = humanFixture(t)
+	for i := 0; i < 11; i++ {
+		st.requestFriend(ids["a"], fmt.Sprint("unknown-code-", i), now)
+	}
+	if len(st.Friends) != 10 {
+		t.Fatal("pending sender limit", len(st.Friends))
+	}
+	st.sweep(now.Add(24 * time.Hour))
+	st.requestFriend(ids["a"], "fresh-code", now.Add(24*time.Hour))
+	if len(st.Friends) != 11 {
+		t.Fatal("expired pending limit not recovered")
+	}
+}
+
+func TestHumanRemoteOwnerAndAgentAuthorship(t *testing.T) {
+	st, ids, keys, now := humanFixture(t)
+	f := acceptHumans(t, st, ids, now)
+	i := &remoteInstall{Agent: "agent_b1"}
+	owner, err := st.sendOwnerText(ids["a"], "agent_a1", i.Agent, "synthetic web text", "remote-owner-test-01", now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	receive := func() map[string]any {
+		t.Helper()
+		v, err := st.remoteTool(i, "knowslink_receive", nil, now)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return v.(map[string]any)
+	}
+	v := receive()
+	if v["untrusted"] != true || v["authorship"].(map[string]string)[owner.Receipt.ID] != "owner" || owner.Receipt.State != "delivered" || len(i.Inbox) != 1 {
+		t.Fatal("remote owner author/durable ACK contract")
+	}
+	signed := signedText(firstID, "agent_a1", i.Agent, "remote-signed-test-01", "", "synthetic agent text", now.Add(time.Minute), keys["agent_a1"])
+	if _, err := st.ingestPublicText("agent_a1", signed, now); err != nil {
+		t.Fatal(err)
+	}
+	v = receive()
+	if v["authorship"].(map[string]string)[firstID] != "agent" || len(v["messages"].([]json.RawMessage)) != 2 {
+		t.Fatal("signed author or retained response-loss Inbox")
+	}
+	if err := st.decideFriend(ids["a"], f.ID, "block", f.Generation, now); err != nil {
+		t.Fatal(err)
+	}
+	v = receive()
+	if len(v["messages"].([]json.RawMessage)) != 0 || len(v["authorship"].(map[string]string)) != 0 {
+		t.Fatal("remote revoked Inbox disclosed")
+	}
+	if len(st.historical(st.Members[ids["a"]].Owner, "agent_a1", i.Agent, now)) != 2 {
+		t.Fatal("remote ACK/block erased separate historical copy")
+	}
+}

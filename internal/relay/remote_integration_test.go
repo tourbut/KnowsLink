@@ -92,7 +92,7 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		expect(t, w, 200, consent)
 		expect(t, do(s, "GET", consent, "", "", "", true), 200, "이 설치 연결 승인", "비공개 DB")
 		expect(t, do(s, "POST", consent, "decision=approve&csrf=wrong", formType, "", true), 403)
-		w = do(s, "POST", consent, url.Values{"decision": {"approve"}, "csrf": {csrf(cookies[sessionCookie].Value, id)}}.Encode(), formType, "", true)
+		w = do(s, "POST", consent, url.Values{"decision": {"approve"}, "name": {"합성 원격 도우미"}, "csrf": {csrf(cookies[sessionCookie].Value, id)}}.Encode(), formType, "", true)
 		expect(t, w, 200, `http-equiv="refresh"`)
 		u = remoteReturnURL(t, w)
 		if u.Query().Get("iss") != "https://example.com" || u.Query().Get("state") != "original-state" {

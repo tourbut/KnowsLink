@@ -69,6 +69,7 @@ try {
   await evaluate(`document.querySelector('a[href^="/remote/consent/"]').click()`);
   result.steps.push(await until((l) => l.includes("/remote/consent/")));
   result.stage = "approve";
+  await evaluate(`document.querySelector('input[name=name]').value = '합성 원격 도우미'`);
   await evaluate(`document.querySelector('button[value=approve]').click()`);
   result.steps.push(await until((l) => l.startsWith("https://callback.test")));
   result.stage = "done";

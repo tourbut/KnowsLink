@@ -109,11 +109,11 @@ func safeProblem(err error) string {
 // Record and active-limit refusals name the actual limit and the next step that can work; none promises an exact
 // cleanup time, payment, or that revoking a key or waiting frees key space on a live agent (C1).
 var agentLimits = map[string]string{
-	"active":  "활성 agent는 회원당 5개입니다. 새 agent를 만들려면 쓰지 않는 agent를 먼저 철회하세요. 철회한 agent의 키와 관계는 끝나며 되돌릴 수 없습니다.",
+	"active":  "활성 agent는 회원당 5개입니다. 새 agent를 만들려면 쓰지 않는 agent를 먼저 철회하세요. 철회한 agent의 키와 전달 권한은 끝나며 되돌릴 수 없습니다.",
 	"records": "철회한 agent 기록을 보존하는 중이라 지금은 새 agent를 만들 수 없습니다. 기존 agent와 키는 그대로입니다. 필요하면 쓰지 않는 agent를 철회하세요. 철회 기록은 최소 24시간 보존된 뒤 정리됩니다. 정리되어 홈 목록에서 사라진 뒤 다시 시도하세요.",
 }
 
-const keyRecordsFull = "이 agent에는 새 키를 더 연결할 수 없습니다(키 기록 보호 상한). 키를 철회하거나 기다려도 이 agent에 새 키 공간은 생기지 않습니다. 새 agent를 만들어 따로 연결하고, 각 상대와 새로 초대·수락하세요. 기존 키와 관계는 철회하기 전까지 그대로입니다."
+const keyRecordsFull = "이 agent에는 새 키를 더 연결할 수 없습니다(키 기록 보호 상한). 키를 철회하거나 기다려도 이 agent에 새 키 공간은 생기지 않습니다. 새 agent를 만들어 따로 연결하세요. 활성 친구에는 새 agent도 연결됩니다. 기존 개별 연결만 있다면 사람 친구 요청을 새로 수락하세요. 기존 키와 관계는 철회하기 전까지 그대로입니다."
 
 // connectLimit explains a connect capacity refusal; create reports whether a replacement agent can be made now.
 func connectLimit(st *State, owner, agent, mode string) (problem string, create bool) {

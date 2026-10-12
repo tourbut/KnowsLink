@@ -47,9 +47,14 @@ func TestGoogleHTTP(t *testing.T) {
 	g.client = tokenServer.Client()
 	g.config = oauth2.Config{ClientID: "client", ClientSecret: "local-fixture", RedirectURL: "https://example.com/auth/google/callback", Scopes: []string{"openid", "email"}, Endpoint: oauth2.Endpoint{AuthURL: googleIssuer + "/auth", TokenURL: tokenServer.URL, AuthStyle: oauth2.AuthStyleInParams}}
 	cookies := map[string]*http.Cookie{}
-	do := func(method, path string, crossSite bool) *httptest.ResponseRecorder {
+	do := func(method, path string, crossSite bool, form ...url.Values) *httptest.ResponseRecorder {
 		t.Helper()
-		r := httptest.NewRequest(method, "https://example.com"+path, nil)
+		data := url.Values{}
+		if len(form) > 0 {
+			data = form[0]
+		}
+		r := httptest.NewRequest(method, "https://example.com"+path, strings.NewReader(data.Encode()))
+		r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		r.Header.Set("Sec-Fetch-Site", "same-origin")
 		if crossSite {
 			r.Header.Set("Sec-Fetch-Site", "cross-site")
@@ -92,8 +97,8 @@ func TestGoogleHTTP(t *testing.T) {
 	if cookies[sessionCookie].SameSite != http.SameSiteStrictMode {
 		t.Fatal("session weakened")
 	}
-	expect(t, do("GET", "/home", false), 200, "회원 식별자")
-	expect(t, do("POST", "/home/agents", false), 303)
+	expect(t, do("GET", "/home/legacy", false), 200, "회원 식별자")
+	expect(t, do("POST", "/home/agents", false, url.Values{"name": {"합성 Google 도우미"}}), 303)
 	var member, owner string
 	s.mutateState(t, func(st *State) {
 		member = st.Sessions[hashToken(first)].Member
@@ -128,6 +133,6 @@ func TestGoogleHTTP(t *testing.T) {
 	expect(t, do("GET", strings.Replace(callback, "state=", "state=wrong", 1), true), 401)
 	callback = begin("/auth/google")
 	expect(t, do("GET", callback, true), 200)
-	expect(t, do("GET", "/home", false), 200, "회원 식별자")
+	expect(t, do("GET", "/home/legacy", false), 200, "회원 식별자")
 	expect(t, do("POST", "/auth/logout", false), 303)
 }

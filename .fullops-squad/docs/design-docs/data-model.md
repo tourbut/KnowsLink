@@ -2,14 +2,29 @@
 id: D06
 title: 엔티티정의서
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
 
 # KnowsLink 업무 엔티티·DB·CRUD
+
+## SAR-HUMAN-PEER-001 DEV 후보
+
+| 추가 필드 | 저장·권한 의미 |
+|---|---|
+| State.HumanModel | 현재1; 최초 transaction에서 legacy를 안전 변환. 알 수 없는 버전은503 |
+| Member.Name/FriendCode/SelfConnect | 표시 이름, 무작위256bit 공유 코드, 자기 endpoint 범위 동의. issuer 기반 신원 불변 |
+| Agent.Name/Client | 표시 이름·연결 클라이언트. 이름 중복 허용, ID/키와 별개 |
+| State.Friends | 정렬한 회원쌍 → Friend. public random ID, A/B/Inviter, State, 당시 NameA/NameB, Generation, Exp, BlockA/BlockB, SuppressLegacy |
+| Message.Scope | self:/friend: 출처 또는 빈 legacy. Generation과 함께 current 검사 |
+| Message.Conversation | OwnerA/B, 당시 PersonA/B·AgentA/B, Text, Authorship(owner/agent). 신규 text만 수락부터24h |
+
+친구 pending은24h, active 전체400/회원20, pending 전체200/발신10/수신10이다. 종료 tombstone은 deny/세대/차단 근거이므로 자동 부활하지 않는다. 친구 기록20000 보호 상한은 새 요청만 막는다. 숨긴 가짜 outgoing placeholder도 실제 pending 한도에 포함한다. 차단 상태는 상대 화면에 공개하지 않는다. 친구 코드는 권한이 아닌 요청 수단이다.
+
+옛 Member/Agent의 이름은 빈 값이고 관리 화면에서 설정한다. 기존 회원 SelfConnect=false, 기존 pending Pair=expired, 기존 active Pair는 정확한 쌍만 유지한다. 기존 원문·업무 메시지를 새 대화 사본으로 소급 복사하지 않는다. SyntheticSignup은 runtime-only(`json:"-"`)이며 production 인가에 저장되지 않는다.
 
 ## SAR-SSE-INSTALL-001 SSE 상태
 

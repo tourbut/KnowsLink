@@ -39,8 +39,8 @@ func publicCall(t *testing.T, h http.Handler, path, token string, body any, stat
 }
 func browserAgent(t *testing.T, b *browser) string {
 	t.Helper()
-	expect(t, b.do("POST", "/home/agents", nil), 303)
-	w := b.do("GET", "/home", nil)
+	expect(t, b.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
+	w := b.do("GET", "/home/legacy", nil)
 	expect(t, w, 200, "미연결")
 	ids := regexp.MustCompile(`<summary><h3><code class="select">(agent_[a-f0-9]+)</code>`).FindAllStringSubmatch(w.Body.String(), -1)
 	return ids[len(ids)-1][1]
@@ -92,7 +92,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		publicCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, 401)
 		publicCall(t, s.Handler(), "/v1/pull", old, map[string]string{}, 200)
 		publicCall(t, s.Handler(), "/v1/owner-revoke", old, map[string]string{}, 401)
-		expect(t, a.do("GET", "/home", nil), 200, "연결 완료", "활성")
+		expect(t, a.do("GET", "/home/legacy", nil), 200, "연결 완료", "활성")
 		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
 		token, id = browserGrant(t, a, agent, "rotate")
 		_, proof = clientPrepare(t, s.Handler(), token, "key2")
@@ -117,7 +117,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		publicCall(t, restarted, "/v1/pull", fresh, map[string]string{}, 200)
 		expect(t, a.do("POST", "/home/key-revoke", url.Values{"agent": {agent}, "kid": {"key2"}}), 303)
 		publicCall(t, restarted, "/v1/pull", fresh, map[string]string{}, 401)
-		expect(t, a.do("GET", "/home", nil), 200, "철회", "미연결")
+		expect(t, a.do("GET", "/home/legacy", nil), 200, "철회", "미연결")
 		s.mutateState(t, func(st *State) {
 			if st.Agents[agent].Owner != st.Members[member].Owner {
 				t.Fatal("owner changed")
@@ -129,12 +129,12 @@ func TestPublicAgentHTTP(t *testing.T) {
 		})
 		expect(t, a.do("POST", "/home/connect", url.Values{"agent": {agent}, "client": {supportedClient}, "mode": {"register"}}), 422, "5분")
 	})
-	t.Run("same_owner_first_accept_generation_pending_expiry_and_cleanup_budget", func(t *testing.T) {
+	t.Run("same_owner_legacy_refusal_generation_expiry_and_cleanup_budget", func(t *testing.T) {
 		s, mail := identityService(t, pool)
 		a := newBrowser(s, "198.51.100.1")
 		member := login(t, a, mail, "same@example.com")
 		one := browserAgent(t, a)
-		expect(t, a.do("POST", "/home/agents", nil), 303)
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 		var two string
 		s.mutateState(t, func(st *State) {
 			for id := range st.Agents {
@@ -143,18 +143,22 @@ func TestPublicAgentHTTP(t *testing.T) {
 				}
 			}
 			st.Rates = map[string][]time.Time{}
+			// Seed only the exact retained legacy pair; this does not create person friendship or self-wide consent.
+			st.Members[member].SelfConnect = false
+			st.Pairs[pairID(one, two)] = &Pair{A: one, B: two, Inviter: one, Recipient: two, State: "active", Generation: 1, Exp: time.Now().Add(24 * time.Hour)}
 		})
 		form := url.Values{"agent": {one}, "target": {two}, "generation": {"1"}}
-		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invited")
+		expect(t, a.do("POST", "/home/invites", form), 403)
 		var exp time.Time
 		s.mutateState(t, func(st *State) { exp = st.Pairs[pairID(one, two)].Exp })
 		// Repeats from either side keep the pending invite and say so.
-		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invite-pending")
-		expect(t, a.do("POST", "/home/invites", url.Values{"agent": {two}, "target": {one}}), 303, "/home?n=invite-pending")
-		expect(t, a.do("GET", "/home?n=invite-pending", nil), 200, "이미 대기 중인 초대", "기한도 그대로", "받은 초대")
+		// HP migration refuses both directions without mutating the retained pair or extending its deadline.
+		expect(t, a.do("POST", "/home/invites", form), 403)
+		expect(t, a.do("POST", "/home/invites", url.Values{"agent": {two}, "target": {one}}), 403)
+		expect(t, a.do("GET", "/home/legacy", nil), 200, "기존 연결", "친구 요청으로 다시 시작")
 		s.mutateState(t, func(st *State) {
 			p := st.Pairs[pairID(one, two)]
-			if p.State != "pending" || p.Generation != 1 || !p.Exp.Equal(exp) || len(st.Pairs) != 1 {
+			if p.State != "active" || p.Generation != 1 || !p.Exp.Equal(exp) || len(st.Pairs) != 1 || len(st.Friends) != 0 {
 				t.Fatal("implicit accept or repeat changed the invite")
 			}
 		})
@@ -172,7 +176,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		wg.Wait()
 		close(results)
 		for c := range results {
-			if c != 303 {
+			if c != 403 {
 				t.Fatal(c)
 			}
 		}
@@ -188,15 +192,15 @@ func TestPublicAgentHTTP(t *testing.T) {
 		expect(t, a.do("POST", "/home/invites", form), 429)
 		expect(t, a.do("POST", "/home/unpair", form), 303)
 		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
-		expect(t, a.do("GET", "/home", nil), 200, "연결이 끝났습니다", "새 초대 보내기")
+		expect(t, a.do("GET", "/home/legacy", nil), 200, "이 연결로 새 메시지를 보낼 수 없습니다", "친구 요청으로 다시 시작")
 		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
-		expect(t, a.do("POST", "/home/invites", form), 303)
+		expect(t, a.do("POST", "/home/invites", form), 403)
 		expect(t, a.do("POST", "/home/invite-decision", decision), 403)
 		decision.Set("generation", "2")
-		expect(t, a.do("POST", "/home/invite-decision", decision), 303)
-		expect(t, a.do("POST", "/home/invites", form), 303, "/home?n=invite-active")
+		expect(t, a.do("POST", "/home/invite-decision", decision), 403)
+		expect(t, a.do("POST", "/home/invites", form), 403)
 		s.mutateState(t, func(st *State) {
-			if st.Pairs[pairID(one, two)].Generation != 2 || st.Pairs[pairID(one, two)].State != "active" {
+			if st.Pairs[pairID(one, two)].Generation != 1 || st.Pairs[pairID(one, two)].State != "revoked" {
 				t.Fatal("old generation reused")
 			}
 			st.Rates = map[string][]time.Time{}
@@ -204,16 +208,16 @@ func TestPublicAgentHTTP(t *testing.T) {
 			st.Pairs[pairID(one, two)].Exp = time.Now().Add(-time.Second)
 		})
 		expect(t, a.do("POST", "/home/invite-decision", decision), 403)
-		expect(t, a.do("POST", "/home/invites", form), 303)
+		expect(t, a.do("POST", "/home/invites", form), 403)
 		s.mutateState(t, func(st *State) {
-			if st.Pairs[pairID(one, two)].Generation != 3 {
+			if st.Pairs[pairID(one, two)].Generation != 1 || st.Pairs[pairID(one, two)].State != "expired" {
 				t.Fatal("expiry reused generation")
 			}
 			for i := 0; i < 3; i++ {
 				st.Agents[fmt.Sprint("agent_extra", i)] = &Agent{Owner: st.Members[member].Owner, Keys: map[string]*Key{}}
 			}
 		})
-		expect(t, a.do("POST", "/home/agents", nil), 409)
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409)
 	})
 	t.Run("malformed_connection_requests_spend_anonymous_budget", func(t *testing.T) {
 		s, _ := identityService(t, pool)
@@ -277,7 +281,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		for round := 0; round < 2; round++ {
 			n := 5 - 4*round
 			for i := 0; i < n; i++ {
-				expect(t, a.do("POST", "/home/agents", nil), 303)
+				expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 			}
 			live, _ := ids()
 			for _, id := range live {
@@ -292,7 +296,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			go func() {
 				defer wg.Done()
 				b := &browser{t, s.Handler(), "192.0.2.66", map[string]string{sessionCookie: a.cookies[sessionCookie]}}
-				codes <- b.do("POST", "/home/agents", nil).Code
+				codes <- b.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}).Code
 			}()
 		}
 		wg.Wait()
@@ -310,7 +314,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			t.Fatal("record cap race", wins, len(live), len(revoked))
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", nil), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "홈으로 돌아가기")
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "홈으로 돌아가기")
 		// Saturation never blocks cleanup, and revoking adds no record.
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {revoked[0]}}), 303)
@@ -330,8 +334,8 @@ func TestPublicAgentHTTP(t *testing.T) {
 			}
 			st.Rates = map[string][]time.Time{}
 		})
-		expect(t, a.do("POST", "/home/agents", nil), 303)
-		expect(t, a.do("GET", "/home", nil), 200, "철회", "최소 24시간 보존", "목록에서 사라질 수 있습니다")
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
+		expect(t, a.do("GET", "/home/legacy", nil), 200, "철회", "최소 24시간 보존", "목록에서 사라질 수 있습니다")
 		s.mutateState(t, func(st *State) {
 			for _, id := range revoked {
 				if st.Agents[id] != nil {
@@ -347,8 +351,8 @@ func TestPublicAgentHTTP(t *testing.T) {
 			}
 			st.Rates = map[string][]time.Time{}
 		})
-		expect(t, a.do("GET", "/home", nil), 200, "새 키를 더 연결할 수 없습니다")
-		expect(t, a.do("POST", "/home/connect", url.Values{"agent": {live[1]}, "client": {supportedClient}, "mode": {"rotate"}}), 409, "기다려도 이 agent에 새 키 공간은 생기지 않습니다", `action="/home/agents"`, `href="/home"`)
+		expect(t, a.do("GET", "/home/legacy", nil), 200, "새 키를 더 연결할 수 없습니다")
+		expect(t, a.do("POST", "/home/connect", url.Values{"agent": {live[1]}, "client": {supportedClient}, "mode": {"rotate"}}), 409, "기다려도 이 agent에 새 키 공간은 생기지 않습니다", `href="/home/agents"`, `href="/home"`)
 		s.mutateState(t, func(st *State) {
 			if len(st.Agents[live[1]].Keys) != agentKeyRecords || len(st.Connections) != 0 {
 				t.Fatal("key-full refusal changed records", len(st.Connections))
@@ -367,7 +371,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			go func() {
 				defer wg.Done()
 				b := &browser{t, s.Handler(), "192.0.2.88", map[string]string{sessionCookie: a.cookies[sessionCookie]}}
-				codes <- b.do("POST", "/home/agents", nil).Code
+				codes <- b.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}).Code
 			}()
 		}
 		wg.Wait()
@@ -384,7 +388,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			t.Fatal("capacity race", wins)
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", nil), 409)
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409)
 		var first string
 		s.mutateState(t, func(st *State) {
 			if len(st.Agents) != 5 {
@@ -406,7 +410,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			}
 			st.Rates = map[string][]time.Time{}
 		})
-		expect(t, a.do("POST", "/home/agents", nil), 303)
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 	})
 
 	t.Run("concurrent_completion_cancel_expire_and_reauth", func(t *testing.T) {

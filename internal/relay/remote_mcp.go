@@ -260,13 +260,18 @@ func (st *State) remoteTool(i *remoteInstall, name string, args json.RawMessage,
 		}
 		sort.Strings(ids)
 		messages := []json.RawMessage{}
+		authors := map[string]string{}
 		for _, id := range ids {
 			m := st.Messages[id]
 			if m != nil && st.current(m) && now.Before(m.Receipt.Exp) {
 				messages = append(messages, i.Inbox[id])
+				authors[id] = "agent"
+				if m.Conversation != nil && m.Conversation.Authorship == "owner" {
+					authors[id] = "owner"
+				}
 			}
 		}
-		return map[string]any{"messages": messages}, nil
+		return map[string]any{"messages": messages, "authorship": authors, "untrusted": true}, nil
 	case "knowslink_ack":
 		var input struct {
 			ID string `json:"id"`

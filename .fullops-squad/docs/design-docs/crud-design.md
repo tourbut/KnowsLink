@@ -2,14 +2,29 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
 
 # KnowsLink CRUD 정의
+
+## SAR-HUMAN-PEER-001 DEV 후보
+
+| 동작 | 원자 변경·거부 |
+|---|---|
+| 최초 새 writer transaction | HumanModel1, pending legacy 종료, 기존 회원 SelfConnect=false/코드 생성; active pair·키·ID 보존 |
+| 코드 요청 | 명시 동의/이름/현재 신원 검사. 같은 또는 반대 pending 재제출은 세대·기한·수신자 불변. 자동 수락 없음 |
+| accept/deny/cancel/expire | 정확한 참여자와 generation 검사. 수락은 양측 활성 이름·현재 한도 검사. 실패는 pending 유지 |
+| remove/block/unblock | remove/block은 SuppressLegacy=true, current 전달·claim/gate 즉시 차단. unblock은 친구 복원 없음 |
+| 재요청·재수락 | 새 generation. 과거 메시지/lease/claim/gate/idempotency는 새 권한을 얻지 못함 |
+| 웹 owner text / signed agent root text | 현재 출처·세대·키·신원 검사, Message+멱등+Conversation 원자 저장. 각 발송 독립180s |
+| 대화 기록 GET | 유효 세션 owner가 사본의 참여자인지 검사. 당시 이름/본문만24h. 현재 친구 정보·키·발송 권한을 재생성하지 않음 |
+| ACK/TTL/철회/24h | transport Envelope/Inbox는 기존 즉시삭제; Conversation은24h까지, 이후 Message+멱등과 함께 sweep |
+
+friend deny/cancel/remove/block/unblock은 기존 검증된 자기 정리 입장 예산을 사용한다. 로그아웃·키/agent 철회·gate deny·ACK의 기존 안전 정리는 유지한다. 일반회원 legacy invite 신규 생성은 거부하며 테스트 synthetic API의 명시적 fixture 예외는 production에서 닫혀 있다.
 
 ## SAR-SSE-INSTALL-001 SSE 입장
 

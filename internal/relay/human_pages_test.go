@@ -184,7 +184,7 @@ func TestHumanAgentNameRecoveryAndSelfConsent(t *testing.T) {
 	v["NewName"], v["EditID"], v["EditName"] = `새 "이름"`, "agent_a", `수정 <이름>`
 	v["Legacy"], v["SelfConnected"] = false, false
 	body := renderHumanPage(t, "human-agents", v)
-	for _, want := range []string{`id="new-agent-name" name="name" required maxlength="40" value="새 &#34;이름&#34;"`, `id="agent-name-agent_a" name="name" required maxlength="40" value="수정 &lt;이름&gt;"`, `id="agent-name-agent_b" name="name" required maxlength="40" value="같은 이름"`, `action="/home/self-connect"`} {
+	for _, want := range []string{`id="new-agent-name" name="name" required maxlength="80" value="새 &#34;이름&#34;"`, `id="agent-name-agent_a" name="name" required maxlength="80" value="수정 &lt;이름&gt;"`, `id="agent-name-agent_b" name="name" required maxlength="80" value="같은 이름"`, `action="/home/self-connect"`} {
 		if !strings.Contains(body, want) {
 			t.Fatal("missing recovery/consent", want)
 		}

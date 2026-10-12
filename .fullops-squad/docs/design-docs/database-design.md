@@ -2,14 +2,24 @@
 id: D07
 title: 데이터베이스설계서
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
 
 # KnowsLink DB 설계
+
+## SAR-HUMAN-PEER-001 DEV 후보
+
+기존 singleton 행·sqlc 질의·epoch CAS·DB clock을 유지한다. 새 실제 migration `00002_human_writer.sql`은 `guard_human_writer()`와 BEFORE UPDATE OF data trigger를 설치한다. HumanModel이1 이상인 상태를 더 낮은 버전/필드 없는 JSON으로 쓰면 SQL 오류로 rollback된다. 서비스도 알 수 없는 버전을 거부한다. [D08](../generated/db-schema.md)은 두 migration 전체 Up SQL/hash를 생성한다.
+
+OPS 이행 순서: 쓰기 중단 → private 최신 backup과 복원 리허설 → migration Up → 새 reader/writer만 실행 → legacy ID/키/철회/정확한 pair 및 새 friend deny 검증 → 트래픽 재개. 서비스 transaction의 최초 HumanModel 변환은 idempotent하다. mixed old writer는 차단되므로 구버전과 rolling 쓰기를 병행하지 않는다.
+
+Down은 의도적으로 오류를 내며 trigger를 제거하지 않는다. 코드만 과거로 되돌리는 방식은 허용하지 않는다. 복구는 writer 중단 상태에서 현재 schema·friend/block/suppression·generation·철회·키를 보존하는 검토된 reader/writer로 진행한다. 과거 backup 전체 복원은 DB trigger로 감지할 수 없으므로 권한이 불명확하면 read-only/전달 차단 상태에서 재인증·재연결·명시적 새 수락으로 복구한다. 이번 DEV는 운영 migration/복원·WAL 완전 삭제를 실행하지 않았다.
+
+새 Conversation도 기존 message20000 보호 상한 안에 저장하고 수락24h 뒤 sweep한다. ACK/TTL/철회는 transport 원문을 지우되 사본은 남은24h 동안 참여 세션에만 공개한다. singleton 성능·backup 보존·실서비스 보존 정책 수락은 OPS 후속이다.
 
 ## SAR-SSE-INSTALL-001 SSE 저장
 

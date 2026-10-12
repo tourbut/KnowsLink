@@ -90,17 +90,17 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		callback := "/auth/google/callback?code=fixture&state=" + auth.Get("state")
 		expect(t, do("GET", callback, "", true, true), 200, "/connect/"+id)
 		expect(t, do("GET", "/connect/"+id, "", true, false), 200, "/home/device-confirm", fingerprint(decodePublic(c.Public)))
-		expect(t, do("POST", "/home/device-confirm", "connection="+id, true, true), 403)
+		expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Synthetic+device", true, true), 403)
 		expect(t, do("POST", "/home/confirm", "connection="+id, true, false), 403)
 		if i == 0 {
 			s.mutateState(t, func(st *State) {
 				st.Sessions[hashToken(cookies[sessionCookie].Value)].Verified = time.Now().Add(-6 * time.Minute)
 			})
-			expect(t, do("POST", "/home/device-confirm", "connection="+id, true, false), 422)
+			expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Synthetic+device", true, false), 422)
 			s.mutateState(t, func(st *State) { st.Sessions[hashToken(cookies[sessionCookie].Value)].Verified = time.Now() })
 		}
-		expect(t, do("POST", "/home/device-confirm", "connection="+id, true, false), 303)
-		expect(t, do("POST", "/home/device-confirm", "connection="+id, true, false), 401)
+		expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Synthetic+device", true, false), 303)
+		expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Synthetic+device", true, false), 401)
 		poll, _ := json.Marshal(map[string]string{"token": token, "client": c.Client, "proof": proof})
 		w = do("POST", "/v1/connect/poll", string(poll), false, false)
 		expect(t, w, 200, "approved")
