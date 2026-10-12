@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "check": "diff whitespace",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "D04 strict deliverables",
+      "exit_code": 0,
+      "stdout": "D04: review / 원천: docs/design-docs/mockups/SAR-MVP-001-UI.md, docs/design-docs/mockups/service-member-ui.md\n검사: D04 / 미작성: 0 / 문제: 0 / 경고: 0\n",
+      "stderr": ""
+    },
+    {
+      "check": "new report and phase local links",
+      "missing": [],
+      "exit_code": 0
+    }
+  ],
+  "product_lint_test": "not_run: 이번 세션은 문서·검수 JSON만 변경했다. 제품 코드 변경이 없어 done-gate 코드 검사 적용 대상이 아니다. DEV 제품 검사 근거는 재사용이며 새 실행으로 주장하지 않는다."
+}

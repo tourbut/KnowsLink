@@ -1628,7 +1628,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - SAR-FRONTEND-POLISH-001-TESTER: DEV 고정 SHA 대기. implementation/tester, fresh Claude Sonnet5.5 high(jev), lite 독립 동작 QA와 별도 clean detached snapshot 리뷰. 기존 hook tester 완료9c36c12는 coor에 SHA 보존 병합하여 현재 인박스를 회수했다. 원 main hook WIP와 기존 통합 hold는 보존한다.
 
 
-- SAR-FRONTEND-POLISH-001-VISUAL: DEV 고정 SHA·캡처 대기, designer/Codex gpt-6.1-sol medium fresh. route unresolved의 tester 추천은 역할 정본의 직접 시각 검수 designer 책임을 근거로 override했다. 기존 디자인의 시각 수락과 D04 연결만 담당한다.
+- SAR-FRONTEND-POLISH-001-VISUAL: 완료. 후보 9597bad의 제품 동일성과 manifest 확인 후 after PNG 26장을 직접 검수했다. 제공된 변경 화면은 시각 PASS이며 D04에 근거를 연결했다. V-02·V-03·V-08·V-12, mobile 생성 버튼 폭 N-02·명령 줄바꿈은 비차단 잔여다. 포커스·320px는 DEV 근거 재사용이며 tester 독립 QA·리뷰와 운영 수락은 별개다. 결과: docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md. 후속 문구·순서·레이아웃 과제는 coor가 별도 배정한다.
 
 
 - DEV 완료 msg_25d17bf28d5b /9597bad351a2fbfbaa726444b320b8cf7000e1e2를 coor 후보에 병합했다. 구현f7b4786. 현재 HEAD gate pass의 base5c6485b·attempt a6d3ba79 일치 확인. 빈 form·좁은 폭·OAuth 위계·접근성 최소 수정. 독립 tester/visual 수락 전 main 통합 대기.
