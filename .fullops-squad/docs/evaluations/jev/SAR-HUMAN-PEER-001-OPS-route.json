@@ -1,0 +1,88 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-HUMAN-PEER-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.93,
+        "product": 0.07
+      },
+      "confidence": 0.86
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.46,
+        "ops": 0.54,
+        "tester": 0
+      },
+      "confidence": 0.31
+    },
+    "docs": {
+      "D01": 0.36,
+      "D02": 0.45,
+      "D03": 0.4,
+      "D04": 0.37,
+      "D05": 0.39,
+      "D06": 0.51,
+      "D07": 0.33,
+      "D08": 0.51,
+      "D09": 0.41,
+      "D10": 0.64,
+      "D11": 0.58,
+      "D12": 0.9,
+      "D13": 0.82
+    }
+  },
+  "usage": {
+    "input_tokens": 2443,
+    "output_tokens": 314,
+    "cost": 0.000102606
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D06",
+    "D08",
+    "D11"
+  ],
+  "latency_seconds": 0.713,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "수락 제품 운영 배포와 기록",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "26094e90648aa71e8d07b381e9891acb37438730",
+  "requires_packet": true,
+  "attempt": "f7ff48dfbefc43d2ab71fae18ad90c57",
+  "instruction_sha256": "462471e49c285961c271bbe99eb804e61bc68daad32189ecf9410e944d84730a",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "fb40ce452c7774c70cddc76e958cd5e54b1b8601f13aa14321b165dd85bfa029"
+}
