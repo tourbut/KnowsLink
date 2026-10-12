@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "57fdbc55895a4756ad7eb9b6e03198b2",
+  "base": "a04d7c7b35adfaca0543e57970619e2ba469fa71",
+  "merge_base": "a04d7c7b35adfaca0543e57970619e2ba469fa71",
+  "head": "096d5c7af1ae97fb7aa9534b42eb5b50c92643ea",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH make 부재. 제품없는 시각문서 후보이므로12dc0c7 exactmake/native0를 참조하고 새전체제품수락은 최종통합검사 뒤 수행한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH make 부재. 제품없는 시각문서 후보이므로12dc0c7 exactmake/native0를 참조하고 새전체제품수락은 최종통합검사 뒤 수행한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "589줄(이전 585, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+    }
+  ],
+  "summary": {
+    "files": 2,
+    "added_lines": 14,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}

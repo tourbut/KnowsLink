@@ -1,0 +1,37 @@
+{
+  "task_key": "SAR-HUMAN-PEER-001-VISUAL",
+  "find_head": "0c741443a10d6f23d66eedb20eb0767db2b8d39d",
+  "base": "a04d7c7b35adfaca0543e57970619e2ba469fa71",
+  "head": "096d5c7af1ae97fb7aa9534b42eb5b50c92643ea",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "adapters/README.md",
+    "cmd/relay/main.go",
+    "internal/relay/human_http.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/human_pages_test.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go",
+    "scripts/shell_guard.py",
+    "scripts/test_shell_guard.py",
+    "scripts/verify_grok_plugin.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

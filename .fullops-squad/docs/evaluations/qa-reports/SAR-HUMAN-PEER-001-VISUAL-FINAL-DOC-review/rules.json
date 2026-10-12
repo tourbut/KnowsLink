@@ -1,0 +1,49 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/contexts/designer.md",
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+        ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+        ".fullops-squad/handovers/to_designer.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-VISUAL-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-VISUAL-packet.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-VISUAL-packet-8f7c447f7a5b470fb6463ff49d63c827.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-VISUAL-packet-outcomes-before-161c5363d3ac4a84bdcd43032cd69f51.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-agents-390.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-conversation-1440.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-conversation-320.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-conversation-snapshot.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-home-1440.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-home-320.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-new-390.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-surface-partial-v2.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-surface-partial.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/actual-surface.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/archive-check.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/document-check.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/focus-observation-verified.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/focus-observation.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/packet-manual-scope.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/source-and-original-images.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/attempt-161c5363/unknown-manual-scope.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}
