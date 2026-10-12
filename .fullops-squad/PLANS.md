@@ -1615,3 +1615,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 설치 1.4.0 유지, 레포 1.3.0 후속 적용. 공통 의존성 설치·확인, frontend 정본 연결과 웹 안전 계약을 반영한다. 상세는 docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md다.
 - main의 기존 미커밋 .codex/hooks.json과 coor의 독립 수락 전 hook 후보를 보존한다. 업데이트 통합·push·역할 동기화는 coor 담당으로 예약한다. 재개 조건은 기존 hook 독립 수락과 main 변경 해소 또는 별도 깨끗한 업데이트 통합 경계 확보다.
+
+## 2026-10-12 프런트엔드 완성도 검토
+
+- SAR-FRONTEND-POLISH-001-DEV: implementation/dev, fresh Claude Opus5.5 medium(jev), lite/standard. 기존 디자인 유지·결함 검토/최소 수정. Run run_2d134e8802eb. DEV 후 tester QA·designer 시각 검수·고정 SHA 독립 리뷰를 진행한다. 기존 hook/업데이트 hold는 유지한다.
+
