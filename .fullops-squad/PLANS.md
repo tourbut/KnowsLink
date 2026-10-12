@@ -1691,3 +1691,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 최종시각 msg_ff6742c7e364/096d5c7: 제공V01–V03 resolved PASS, 원14PNG/별도15상태·실제2809·두줄/44px/overflow0/desktop전송833 근거확인. root고정문서리뷰13 reviewed/23 skipped/checkPASS, snapshot .fullops-review-5b6c113280cf4da299cf16d729a2c5d9 보존. 원FAIL/미제공상태·실keyboard/200% not_run 유지. designer ctx_a371d34f19ba 즉시정상release·터미널종료 및 dispatch capabilityRevokedAt2026-10-12T12:06:19.644Z 확인. 개별hook/launch token 별도회전은미확인. tester최종QA/코드리뷰 대기. 실계정등록이메일은 사용자에게async질문했으며 답변전실메일발송없음.
 
+
+- ACK된원완료보고를 Orca check --all --typesworker_done로 재수집하고 공식 integration.record로 공용메타데이터를 복구했다(이전status --run은재수집기능이없었다). msg_e24c2d5ce38a/254ff6a,msg_7e0a71c1e687/12dc0c7,msg_3a6a92bfd8e5/bfdfafc,msg_ff6742c7e364/096d5c7은 coor후보에만병합·main미수락이므로 hold/coor/최종tester독립검수통과뒤resume·main통합push로 기록했다. 원본문과SHA를변조하지않았다. 재수집원본 completion-messages.json은 외부coor증거폴더보존.
+
