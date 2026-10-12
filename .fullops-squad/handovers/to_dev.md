@@ -53,6 +53,56 @@ fullops-frontend와 fullops-work, fullops-test를 사용한다. 주 디자인 �
 DEV 완료 뒤 coor가 tester 독립 동작 QA, designer 직접 시각 검수, 고정 SHA 독립 리뷰를 배정한다. 미해결 critical/high와 필수 실패는 병합 차단이다.
 수정 필요 없음도 실제 화면/동작 근거가 있어야 한다. 캡처·비평은 최초와 수정 확인 최대 2회로 제한한다. 불필요한 추가 polish를 반복하지 않는다.
 
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-FRONTEND-POLISH-001-DEV-packet.json` / SHA `dcfc9ad66dc2ce2c2f0d7144a7f4ae9128432781` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 213, 213 · inferred · 필수 · {'relevant': 0.9, 'evidence': 0.92, 'contradicts': 0.19, 'injection': 0.04, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 47, 47 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.73, 'evidence': 0.88, 'contradicts': 0.27, 'injection': 0.05, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/archive/dev-2026-10-10.md` (document_read) · 줄 55 · inferred
+- `.fullops-squad/contexts/dev.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md` (document_read) · 줄 42 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_read) · 줄 145, 145, 145, 227, 228, 232, 234 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md` (document_read) · 줄 32 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md` (document_read) · 줄 31, 85 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md` (document_read) · 줄 36, 54 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md` (document_read) · 줄 26, 80 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md` (document_read) · 줄 34 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md` (document_read) · 줄 24, 33, 55, 67, 92 · inferred · {'relevant': 0.55, 'evidence': 0.71, 'contradicts': 0.61, 'injection': 0.05, 'decision': 'conflict', 'reason': 'contradicts task'}
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md` (document_read) · 줄 23, 41 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md` (document_read) · 줄 19 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md` (document_read) · 줄 21 · inferred
+- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md` (document_read) · 줄 209 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_designer.md` (document_read) · 줄 261 · inferred
+- `adapters/skills/knowslink/SKILL.md` (document_read) · 줄 16 · inferred
+- `adapters/src/login.test.ts` (impact_check) · 줄 88, 95 · inferred
+- `adapters/src/mcp.ts` (impact_check) · 줄 78 · inferred
+- `internal/relay/connections_test.go` (impact_check) · 줄 335, 338, 409 · inferred
+- `internal/relay/device.go` (impact_check) · 줄 55, 111, 117 · inferred
+- `internal/relay/member_agents.go` (direct_edit, impact_check) · 줄 61, 65, 68, 94, 119, 132, 140 · inferred · {'relevant': 0.25, 'evidence': 0.34, 'contradicts': 0.2, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `internal/relay/member_pages.go` (direct_edit, impact_check) · 줄 60 · inferred · {'relevant': 0.63, 'evidence': 0.68, 'contradicts': 0.17, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `internal/relay/member_ui_test.go` (direct_edit, impact_check) · 줄 21, 96, 120, 161 · inferred · {'relevant': 0.61, 'evidence': 0.7, 'contradicts': 0.2, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `internal/relay/policy_test.go` (impact_check) · 줄 22, 31, 59, 65, 68, 68 · inferred
+- `scripts/install_bot_mcp.sh` (impact_check) · 줄 83 · inferred
+미확인 11건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
 ## 완료 보고
 
 작업 완료 때 전문을 기록한다.
+
+## 지시 전제와 충돌 — 먼저 확인
+
+- .fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md: 과거 구현 기록의 frontend-design 선택과 옛 검사 명령은 당시 근거다. 이번 작업은 impeccable polish를 사용한다. 제품 규칙 변경이 아니며 기존 결과를 이번 SHA의 검증으로 주장하지 않는다. 과거 컨테이너·증거의 삭제 금지는 유지한다.
+
