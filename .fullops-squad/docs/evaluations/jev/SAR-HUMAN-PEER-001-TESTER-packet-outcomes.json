@@ -1,0 +1,1142 @@
+{
+  "task_key": "SAR-HUMAN-PEER-001-TESTER",
+  "attempt": "aaa81f41cc094961803f3c01f36eaddf",
+  "packet_input_sha256": "636eaaf2d62de6e5d2194c9647bc1cfafe5087320a65d7f665a21da2d88ffcfe",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "운영 모드 coor, 테스트 lite, 문서 작성 규칙 연결을 읽었다. 제품 코드는 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "HP-01–16 독립 QA와 fixed-SHA 리뷰 계약을 읽었다. 체크와 완료 보고만 갱신한다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lint/test 명령, HP-01–16, D07 rollback 우선 순서를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "fullops-common-0.3.3 묶음과 critical/high 차단을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "단순 구현과 파일 길이가 일률 실패 기준이 아님을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "비밀값 미출력, 서버 인가, CSRF, 미해결 critical/high 차단을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite는 핵심과 실패 경계이며 보안 검사를 생략하지 않음을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "authority, owner/signed 구분, 180s와 24h를 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "요청/수락/해제/차단과 멱등 owner text를 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "Friend generation과 대화 사본 경계를 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "HumanModel downgrade fail-closed를 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "웹 owner와 agent signed 경계를 코드와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현행 D04가 HP-01–16을 따른다는 우선순위를 확인했다. 시각 판정은 designer 몫이다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "DEV 완료 주장과 독립 검수 후속을 구분했다. final-report가 환경 정본이다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "단계 표의 HP 묶음을 시나리오 범위로 사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "새 흐름의 24h/180s와 코드 요청을 확인했다. 29행 공백 누락은 low finding이다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "HP-01–16 표가 독립 assertion의 정본이다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "HP-01–16이 과거 agent별 수락 문구를 대체함을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 기록이다. SHA 254ff6a의 동작 증거로 재명명하지 않고 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/rules/delegation.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검수 중 이 경로를 제품 수정 대상으로 삼지 않았다. 과거 내용이나 생성 탐색을 새 수락 증거로 바꾸지 않는다."
+    },
+    {
+      "path": "internal/relay/cleanup_flood_integration_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "고정 SHA diff와 current() 검토로 영향만 확인했다. 제품 코드는 수정하지 않는다."
+    }
+  ],
+  "uncertainty_review": "packet partial=true. unknown 15건을 수동 확인했다. route, find, documents-find, context는 공식 packet HEAD 7c29f87a8cba756457c3873badef4881ad8cdf03을 보존하고 startup identity check를 통과한 뒤 재생성하지 않았다. 네 producer의 identity 불일치는 후보 범위 누락이 아니다. 리뷰 범위는 base f849215bdefd3984dbf385c9f0973a74525be545 대비 head 254ff6a98b12b7e51f0835491300f7695425d264의 변경 243파일이다. review.py check가 남긴 jev_find score는 수락 기준이 아니다. code recall 0.333 precision 0.556, documents recall 0.111 precision 0.167. PLANS.md는 coor 보드이며 이 작업에서 수정하지 않았다. ops-guide.md와 대형 handover log는 이번 후보의 동작 증거가 아니며 본문을 새 SHA 결과로 바꾸지 않았다. 동적 참조와 language server 의미는 packet fallback대로 미검증이다."
+}

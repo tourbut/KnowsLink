@@ -1,0 +1,2145 @@
+{
+  "base": "f849215bdefd3984dbf385c9f0973a74525be545",
+  "head": "254ff6a98b12b7e51f0835491300f7695425d264",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.12 (182898c) windows/amd64\nbuilt at: 2026-10-05T06:46:30Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "01a12fd5-0d90-7803-85ed-d7546b4f7189",
+  "conclusion": "No unresolved critical or high defect. Authority, owner versus signed agent send, idempotency, CSRF, migration fail-closed, and 24h participant read match the spec. Three low copy-spacing findings remain. Windows make is unavailable; Linux make lint and make test exited 0 at 254ff6a98b12b7e51f0835491300f7695425d264. Independent live A/B/C QA is recorded in the tester QA report and is not claimed by older runtime captures.",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV handover or context text for this candidate. Reviewed as process record, not as a substitute for the code or the final QA report."
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Operator, phase, or generated doc updated for the human-peer candidate. Checked that it preserves the 24h/180s split, no production legacy invite, and fail-closed writer downgrade."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "New section matches authority(), owner versus signed agent sends, independent 180s roots, and 24h conversation copies. It does not revive old gates on a new generation."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "CRUD table matches request/accept/remove/block, idempotent owner text, and 24h copy deletion. Production legacy invite creation stays refused."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Fields match Friend, Scope, Conversation, HumanModel, and the runtime-only SyntheticSignup flag. Caps match the reviewed code."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Documents the 00002 trigger, fail-closed Down, and the no-mixed-writer rollout. DEV did not claim an operational restore."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 22,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Route and form contract matches human_http.go and the owner-text envelope. Idempotency conflict is 409."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Design update for SAR-HUMAN-PEER-001. Compared with authority(), owner/agent send, 24h copies, and the fail-closed migration. No new authorization rule beyond the spec."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Design update for SAR-HUMAN-PEER-001. Compared with authority(), owner/agent send, 24h copies, and the fail-closed migration. No new authorization rule beyond the spec."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-context.json",
+      "status": "modified",
+      "insertions": 121,
+      "deletions": 261,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-documents-find.json",
+      "status": "modified",
+      "insertions": 184,
+      "deletions": 62,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-find.json",
+      "status": "modified",
+      "insertions": 61,
+      "deletions": 36,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 385,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-packet.json",
+      "status": "modified",
+      "insertions": 412,
+      "deletions": 602,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-route.json",
+      "status": "modified",
+      "insertions": 23,
+      "deletions": 25,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-route.prior-1791798376696468900.json",
+      "status": "added",
+      "insertions": 93,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-context-b4cbadcadbf44024b031d7027b61bee0.json",
+      "status": "added",
+      "insertions": 436,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-documents-find-c3b685dc09b644958cd09a9000bd44f2.json",
+      "status": "added",
+      "insertions": 503,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-find-8a6cde73e4ae4ea488f959dc0f591f71.json",
+      "status": "added",
+      "insertions": 217,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-packet-cb79d3b998064e5890dd0e78e8421d41.json",
+      "status": "added",
+      "insertions": 5110,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-packet-d9f65b46ede34bfcabba190958a4469d.json",
+      "status": "added",
+      "insertions": 3420,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-route-9bc3d7a889154806a8f85c4649af6cdd.json",
+      "status": "added",
+      "insertions": 91,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV discovery, route, and packet record committed at the reviewed SHA. Used for traceability. It is not this tester's acceptance result."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/manifest.json",
+      "status": "added",
+      "insertions": 1323,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/keyboard-blocked.json",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/manifest.json",
+      "status": "added",
+      "insertions": 1544,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/provenance.json",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/auth-selfcheck-4cc6b36b.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/human-fixture-result.json",
+      "status": "added",
+      "insertions": 230,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/humanpeer_integration_9e418000ba45/integration-result.json",
+      "status": "added",
+      "insertions": 44,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/runtime.json",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/auth-selfcheck-6b05e3fa.json",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/runtime.json",
+      "status": "added",
+      "insertions": 15,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/humanpeer_integration_9034dbf57cc8/integration-result.json",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/runtime.json",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/humanpeer_integration_ac01446c7d41/integration-result.json",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/runtime.json",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "status": "added",
+      "insertions": 293,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Historical DEV runtime evidence. SHA directories 59d419d, 4eaefa6, 7f83fd6, and f567abf are not final 254ff6a captures. Reviewed so older passes and failures stay attributed to their original SHA."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "status": "added",
+      "insertions": 72,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Operator, phase, or generated doc updated for the human-peer candidate. Checked that it preserves the 24h/180s split, no production legacy invite, and fail-closed writer downgrade."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "status": "modified",
+      "insertions": 23,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "Operator, phase, or generated doc updated for the human-peer candidate. Checked that it preserves the 24h/180s split, no production legacy invite, and fail-closed writer downgrade."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Operator, phase, or generated doc updated for the human-peer candidate. Checked that it preserves the 24h/180s split, no production legacy invite, and fail-closed writer downgrade."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Operator, phase, or generated doc updated for the human-peer candidate. Checked that it preserves the 24h/180s split, no production legacy invite, and fail-closed writer downgrade."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "Operator, phase, or generated doc updated for the human-peer candidate. Checked that it preserves the 24h/180s split, no production legacy invite, and fail-closed writer downgrade."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+      "status": "modified",
+      "insertions": 176,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV handover or context text for this candidate. Reviewed as process record, not as a substitute for the code or the final QA report."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 162,
+      "review_status": "reviewed",
+      "reason": "DEV handover or context text for this candidate. Reviewed as process record, not as a substitute for the code or the final QA report."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "Project status points at this DEV candidate and tells later work to read the current human-peer docs rather than old pair text as authority."
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 6,
+      "review_status": "reviewed",
+      "reason": "Product readme matches the friend-code flow, 24h copy versus 180s delivery, and no automatic reconnect after block."
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "Install docs match the reviewed model: friend acceptance covers current and future agents, owner versus signed agent authorship, and independent 180s sends."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "The test script now runs owner-text.test.js. No dependency version was added. DEP-001 is this script change only."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "Skill text matches authority, untrusted authorship, and the one-reply compatibility path. Spacing in 'at most180' and 'until24' is a low copy defect, not a behavior change."
+    },
+    {
+      "path": "adapters/src/owner-text.test.ts",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Tests the owner envelope parser and authorship. SEC-001/SLOP-004 warnings are test fixtures and assertions, not production secrets."
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "status": "modified",
+      "insertions": 44,
+      "deletions": 24,
+      "review_status": "reviewed",
+      "reason": "Receive accepts owner-text.v1 without an agent signature and still verifies Ed25519 for knowslink.text.v1. Both results stay untrusted and record authorship."
+    },
+    {
+      "path": "db/migrations/00002_human_writer.sql",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "BEFORE UPDATE refuses a HumanModel downgrade. goose Down raises and does not drop the guard. Matches the fail-closed migration design."
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Friend deny/cancel/remove/block/unblock use the cleanup admission budget. Accept still uses the normal member budget."
+    },
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Cleanup for /home/friends/decision is allowed only when the caller is a party to that friend record."
+    },
+    {
+      "path": "internal/relay/connections.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Completed connections store the client label on the agent. Credentials stay hashed and the public connection still clears the synthetic agent credential."
+    },
+    {
+      "path": "internal/relay/connections_integration_test.go",
+      "status": "modified",
+      "insertions": 35,
+      "deletions": 31,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 11,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/device_integration_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/google_integration_test.go",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "modified",
+      "insertions": 24,
+      "deletions": 11,
+      "review_status": "reviewed",
+      "reason": "contacts, keys, and receipts use current authority. HumanModel 1 refuses new production legacy invites. Human members cannot create or accept a new legacy invite. Cross-origin protection and CSP remain."
+    },
+    {
+      "path": "internal/relay/human.go",
+      "status": "added",
+      "insertions": 300,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Reviewed authority, requestFriend placeholder, decideFriend generation/block/SuppressLegacy, and self-connect. Active friend wins over legacy; deny/cancel do not suppress legacy; remove/block do; re-accept increments generation."
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "added",
+      "insertions": 425,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Reviewed session routes and actions. Friend request always redirects. Conversation send is owner-authenticated. Third parties without history get sender_not_allowed. Read-only history remains for participants. CSRF is the outer cross-origin handler."
+    },
+    {
+      "path": "internal/relay/human_integration_test.go",
+      "status": "added",
+      "insertions": 264,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Postgres integration creates synthetic a/b/c and checks consent, third-party denial, cross-origin, extra agent, and lifetime. Re-ran TestHumanPostgres and TestHumanLegacyPostgres on an isolated DB at this SHA, exit 0."
+    },
+    {
+      "path": "internal/relay/human_messages.go",
+      "status": "added",
+      "insertions": 82,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Reviewed sendOwnerText: named owner, UTF-8, 4096 bytes, attempt 16-96, scope/generation, digest idempotency, conflict on body change, owner envelope v1, 180s exp. historical() is participant and 24h, not current()."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Reviewed templates. maxlength 80 is the UTF-16 allowance for 40 runes and the server still enforces 40. Retention copy separates 24h storage from 180s delivery. Gate keeps csrf."
+    },
+    {
+      "path": "internal/relay/human_pages_test.go",
+      "status": "added",
+      "insertions": 197,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Tests cover maxlength 80, the 40-rune error, request direction, read-only boundary, empty recovery, gate body/CSRF, and agent-name/self consent."
+    },
+    {
+      "path": "internal/relay/human_test.go",
+      "status": "added",
+      "insertions": 505,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "In-memory tests cover names, friend transitions, conversation lifetime/replay/revocation, legacy migration, gate re-accept, privacy/capacity, and remote authorship. They match the reviewed authority rules."
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "New members get SelfConnect true and a friend code. Existing members stay opted out until the migration sets SelfConnect false. Session cookie remains __Host-kl_session."
+    },
+    {
+      "path": "internal/relay/identity_integration_test.go",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 12,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/identity_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/integration_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "GET /home now renders the human home. The previous home renderer is retained as legacyHomePage for the legacy screen."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "modified",
+      "insertions": 31,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "Agent creation and device confirm require validName. Remote and local creates return to the human agents flow. Reauth window still applies."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "status": "modified",
+      "insertions": 39,
+      "deletions": 76,
+      "review_status": "reviewed",
+      "reason": "Device and agent name fields use maxlength 80 with the same 40-rune server limit. Copy says active friends receive future agents without a new accept."
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "status": "modified",
+      "insertions": 28,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "Signed ingest still verifies the signature, then authority, parent TTL for reply_to, and stores scope/generation. Owner web text is a separate unsigned path."
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Remote consent now requires a 1-40 rune agent name and stores the client label. Invalid names return 422 and do not approve."
+    },
+    {
+      "path": "internal/relay/remote_integration_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Existing test updated for human authority or the required agent name. Assertions follow the reviewed handlers and do not add a new permission."
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "status": "modified",
+      "insertions": 33,
+      "deletions": 22,
+      "review_status": "reviewed",
+      "reason": "Peers come from authority(). Owner envelopes are accepted only for owner authorship that is current. Responses include authorship and untrusted:true."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 49,
+      "deletions": 25,
+      "review_status": "reviewed",
+      "reason": "current() now requires authority scope and generation. Owner text skips agent-key revocation but still requires a public owner. Sweep revokes non-current undelivered messages and deletes conversation copies at 24h. migrateHuman runs on load and rollback."
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "SSE principal must own the agent. eventPending requires queued public text that is current. HumanModel outside 0..1 is refused. Arrival payload stays empty."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Installer comment now says person friendship consent is separate from connect status. No credential or install behavior change."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Packaged skill text matches owner/agent authorship and independent sends. 'at most24' is a missing space and is recorded as a low finding."
+    },
+    {
+      "path": "scripts/schema.py",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "Generated schema now hashes every migration Up section, including 00002. It does not weaken the SQL."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791799059778239900-59d419d0b7c4fca46cabafc04b5a47c6233c944a-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791799064034096100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791799133246400500-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791799176809674100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791799301256379600-59d419d0b7c4fca46cabafc04b5a47c6233c944a-auth.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791800383549734100-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791800387963511500-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791800411521163900-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-runtime.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791800480211961300-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-integration.log",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791800623537263600-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-auth.log",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/1791800635074290600-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-fixture.log",
+      "status": "added",
+      "insertions": 232,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/baseline-forward-error.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/baseline-forward-out.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/00-home-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/00-home-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/00-home-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/01-home-friends-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/01-home-friends-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/01-home-friends-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/02-home-agents-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/02-home-agents-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/02-home-agents-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/03-home-new-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/03-home-new-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/03-home-new-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/04-home-conversation-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/04-home-conversation-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/04-home-conversation-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/cdp-full-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/viewport-probe-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/viewport-probe-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/viewport-probe-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791800717129804500/viewport-scale075-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/00-home-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/00-home-320-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/00-home-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/01-home-friends-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/01-home-friends-320-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/01-home-friends-320-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/01-home-friends-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/02-home-agents-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/02-home-agents-320-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/02-home-agents-320-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/02-home-agents-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/03-home-new-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/03-home-new-320-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/03-home-new-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/04-home-conversation-1440-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/04-home-conversation-1440-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/04-home-conversation-320-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/04-home-conversation-320-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/04-home-conversation-320-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/04-home-conversation-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/04-home-conversation-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/implementation-forward-error.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/implementation-forward-out.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/probe.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/build.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/effective-go.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/humanpeer_integration_9e418000ba45/createdb.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/humanpeer_integration_9e418000ba45/go-test-human-postgres.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/humanpeer_integration_9e418000ba45/migrate.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/mail-sink.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/migrate.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/network.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/postgres-start.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/postgres-version.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/qa-c8a0339a/relay.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/unit-current.log",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/1791799059778239900-59d419d0b7c4fca46cabafc04b5a47c6233c944a-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/1791799064034096100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/1791799133246400500-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/1791799176809674100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/1791799301256379600-59d419d0b7c4fca46cabafc04b5a47c6233c944a-auth.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/probe.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/build.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/effective-go.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/mail-sink.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/migrate.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/network.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/postgres-start.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/postgres-version.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-34e6309f/relay.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-da1c0627/network.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/59d419d0b7c4fca46cabafc04b5a47c6233c944a/qa-da1c0627/postgres-start.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791799059778239900-59d419d0b7c4fca46cabafc04b5a47c6233c944a-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791799064034096100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791799133246400500-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791799176809674100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791799301256379600-59d419d0b7c4fca46cabafc04b5a47c6233c944a-auth.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791800383549734100-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791800387963511500-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791800411521163900-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-runtime.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791800480211961300-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-integration.log",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791800623537263600-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-auth.log",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791800635074290600-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-fixture.log",
+      "status": "added",
+      "insertions": 232,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791801596192228000-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791801600004278500-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791801700690111600-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-runtime.log",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791801982519227500-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-integration.log",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791802220541337900-7f83fd6f3ae9945e292a86212c0ab566ea282b7a-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791802225040393100-7f83fd6f3ae9945e292a86212c0ab566ea282b7a-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791802254543978400-7f83fd6f3ae9945e292a86212c0ab566ea282b7a-runtime.log",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/1791802405387480400-7f83fd6f3ae9945e292a86212c0ab566ea282b7a-integration.log",
+      "status": "added",
+      "insertions": 52,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/baseline-forward-error.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/baseline-forward-out.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/implementation-forward-error.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/implementation-forward-out.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/probe.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/build.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/effective-go.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/humanpeer_integration_9034dbf57cc8/createdb.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/humanpeer_integration_9034dbf57cc8/go-test-relay-integration.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/humanpeer_integration_9034dbf57cc8/migrate.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/install-private-copy.log",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/mail-sink.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/migrate.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/network.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/postgres-start.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/postgres-version.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/qa-2c401650/relay.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/7f83fd6f3ae9945e292a86212c0ab566ea282b7a/unit-current.log",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791799059778239900-59d419d0b7c4fca46cabafc04b5a47c6233c944a-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791799064034096100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791799133246400500-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 13,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791799176809674100-59d419d0b7c4fca46cabafc04b5a47c6233c944a-runtime.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791799301256379600-59d419d0b7c4fca46cabafc04b5a47c6233c944a-auth.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791800383549734100-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791800387963511500-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791800411521163900-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-runtime.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791800480211961300-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-integration.log",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791800623537263600-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-auth.log",
+      "status": "added",
+      "insertions": 32,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791800635074290600-4eaefa6e0a5cf623f0d8d8080d918086f86030ec-fixture.log",
+      "status": "added",
+      "insertions": 232,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791801596192228000-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791801600004278500-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-install.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791801700690111600-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-runtime.log",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/1791801982519227500-f567abff18b8f6ce77fc79e6601ba7163ae7f9ff-integration.log",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/baseline-forward-error.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/baseline-forward-out.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/implementation-forward-error.log",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/implementation-forward-out.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/probe.log",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/build.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/effective-go.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/humanpeer_integration_ac01446c7d41/createdb.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/humanpeer_integration_ac01446c7d41/go-test-relay-integration.log",
+      "status": "added",
+      "insertions": 114,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/humanpeer_integration_ac01446c7d41/migrate.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/install-private-copy.log",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/mail-sink.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/migrate.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/network.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/postgres-start.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/postgres-version.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/qa-8154ee89/relay.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/f567abff18b8f6ce77fc79e6601ba7163ae7f9ff/unit-current.log",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거(rule.json exclude). 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": "internal/relay/testdata/consent_browser.mjs",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "default_path",
+      "review_status": "reviewed",
+      "reason": "Browser consent fixture fills the new required remote agent name before approve."
+    },
+    {
+      "path": "internal/relay/testdata/member_forms.golden",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 10,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "Golden forms drop new legacy invite creation from the human home and add the required name fields. Matches the reviewed handlers."
+    }
+  ],
+  "findings": [
+    {
+      "path": "scripts/package_plugin.py",
+      "content": "Packaged plugin skill text says 'at most24 hours'. The relay behavior is 24 hours; this is a missing space in generated user-facing copy.",
+      "start_line": 146,
+      "end_line": 146,
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "content": "Skill copy says 'at most180 seconds' and 'until24 hours'. The stated limits match the code. The missing spaces are copy defects only.",
+      "start_line": 42,
+      "end_line": 48,
+      "severity": "low",
+      "resolved": false
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "content": "Newly added error paragraph says '뺀1–40자'. The server limit is 1-40 runes. The missing space is a copy defect only.",
+      "start_line": 29,
+      "end_line": 29,
+      "severity": "low",
+      "resolved": false
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a12f82-ca28-7de1-8f74-acbfa1a6c823",
+    "reviewer_session": "01a12fd5-0d90-7803-85ed-d7546b4f7189",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-cba0ca432fa64d08903c989aa30d9464",
+    "snapshot_head": "254ff6a98b12b7e51f0835491300f7695425d264",
+    "read_only": true
+  }
+}
