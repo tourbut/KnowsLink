@@ -132,6 +132,8 @@ Windows 파일 삭제·이동 정리 금지, 임시 검증 자료 보존. 비밀
 
 검증: deliverables strict exit 0(13종, 문제/경고 0), 수정 뒤 git diff --check exit 0, 변경 Markdown 로컬 링크 169개/누락 0, 명세 토큰 대비 7개 조합 PASS다. 과거 product/decisions 원본문과 D04 이전 절 보존을 assert했다. frontend.py check는 configuration_ready exit 0이며 로그인·MCP·새 제품 브라우저 QA 성공을 뜻하지 않는다. designer packet completion 계약 exit 0, 비선택 path/category 52개와 unknown 15건·remaining 11개의 수동 검토를 outcomes에 기록했다. 최종 HEAD의 FullOps lint는 별도 검증 파일과 worker_done에서 고정하며 제품 테스트는 새 동작이 없어 해당 없음이다.
 
+FullOps lint 실제 결과: 커밋 d6a4ef55df44에서 exit 1, ERROR 0·WARNING 3·unavailable 2다. 등록 make lint/make test는 Windows make 부재로 실행 불가이며 PASS가 아니다. 제품 코드·설정 변경이 없는 문서 과제로 제품 검사는 해당 없음이며 후속 DEV의 구현 고정 SHA에서 필수 실행한다. SIZE 경고는 inherited PLANS와 현행/과거 원문을 보존한 D04, 완결 제품 문서 추가 규모다. 분할하지 않은 이유는 phase에 기록했다. 원 결과는 C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-designer/pre-finish-lint.json, 최종 HEAD 재검사는 같은 폴더 final-lint.json에 남긴다.
+
 후속 인계: to_dev.md는 SAR-HUMAN-PEER-001-DEV waiting-design-integration, to_tester.md는 SAR-HUMAN-PEER-001-TESTER waiting-dev-sha다. 각각 code/documents find·context·route bind·packet을 작성했다. packet 생성은 exit 0(DEV 후보65, tester203, 각각 partial/unknown17)이다. 준비 packet check는 상대 인박스 원천 hash 변경으로 exit 1이며 PASS가 아니다. coor가 문서 독립 리뷰·main 통합 뒤 DEV 실제 준비 HEAD의 패킷을 갱신하고, tester는 DEV 고정 구현 SHA에서 갱신해야 한다. tester의 검색 추천이 제품 코드 수정 권한을 주지 않는다.
 
 미검증·보류: 실제 새 기능·키보드/200%/스크린 리더·실 Google/노우/다닷 새 흐름·운영 DB 이행/복원·배포는 실행하지 않았다. 기존 제품의 과거 PASS를 새 수락 근거로 쓰지 않는다. DEV 핵심/필수 검사, tester 독립 A/B/C와 legacy fixture QA, 같은 SHA의 designer 실제 구현 시각 검수 및 별도 세션 리뷰가 남았다. 실계정·외부 발송·운영 실행은 별도 단계다. 새 다크 모드·공개 검색·첨부·장기 보관·읽음·agent별 공유·상품 기능은 생략했다.

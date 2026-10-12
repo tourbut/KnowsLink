@@ -112,3 +112,11 @@ DEV와 tester의 code/documents find 및 context는 역할별 키로 실행해 �
 동시 작성한 후속 인박스는 다른 packet의 참조 원천에도 포함돼 source hash가 바뀌었다. 준비 packet의 `check`는 exit 1, `packet source changed; regenerate packet before worker start`였다. 이 결과를 PASS로 표시하지 않는다. 두 인박스는 이미 waiting-design-integration / waiting-dev-sha이며 실행을 시작하지 않았다. 최종 문서 리뷰·main 통합과 역할 인박스 확정 뒤 coor가 DEV의 실제 준비 HEAD에서 find/context/route/packet을 갱신한다. tester는 고정 DEV 구현 SHA에서 갱신한다. 그때 비선택 path/category·partial 잔여의 수동 검토를 각 worker가 자기 outcomes에 기록해야 한다. 이번 designer의 outcomes로 미래 구현/QA 완료를 대신하지 않는다.
 
 원 제품·기술 경계를 바꾸지 않는 탐색/아카이브 과정의 실패는 원인·교정·대기 조건을 위에 보존했다. 최종 SHA와 최종 HEAD의 문서 lint 결과는 worker_done 및 외부 검증 파일로 고정한다. 제품 코드 변경이 없으므로 새 제품 테스트는 해당 없음이며 후속 DEV 필수 product-lint/product-test는 생략하지 않는다.
+
+### FullOps lint와 규모 판단
+
+`lint.py --repo <designer> --from f20b33a11addeb3debcb23e2e835be31c7dd1454`를 커밋 `d6a4ef55df44`에서 실행했다. 종료코드는 1, ERROR 0·WARNING 3·실행 불가 2다. 등록 `product-lint: make lint`와 `product-test: make test`는 Windows 세션에서 make를 찾지 못해 unavailable이다. 이 결과를 필수 제품 검사 PASS로 기록하지 않는다. 제품 코드·실행 설정을 바꾸지 않은 기획 문서 과제이므로 해당 제품 검사는 후속 DEV의 같은 고정 구현 HEAD에서 실제 실행한다. make shim이나 다른 체크아웃을 임의로 실행해 현재 문서 후보의 통과로 표시하지 않는다.
+
+원 결과는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-designer/pre-finish-lint.json`에 보존했다. finish 뒤 최종 HEAD의 재검사 파일은 같은 폴더의 `final-lint.json`이다. 최종 worker_done은 실제 결과와 이 경로를 인계한다.
+
+경고는 PLANS 1666줄(기준 1657), D04 579줄(기준 411), 적용 문서 추가 467줄/400줄 상한이다. PLANS 증가는 준비/기동 기록이며 coor 소유다. 이번 designer는 수정하지 않았다. D04는 현행 전면 명세와 과거 1–14절 판정의 원문을 보존하는 정본이다. 삭제·압축·분할로 과거 검수 문장을 바꾸거나 정본을 두 곳에 복제하지 않았다. 여러 제품 문서·역할 지시서를 예상한 원 지시 범위에서 HP/이행/UI/QA를 함께 전달하므로 이번 기능을 조각내지 않았다. 후속 문서 정리는 과거 기록 보존과 링크 검증을 함께 맡는 별도 소유 과제로 처리한다.
