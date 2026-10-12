@@ -2,13 +2,21 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## SAR-HUMAN-PEER-001 기술 인계 — 운영 미적용
+
+DEV 후보는 사람 친구/이름/웹 대화와 별도24h 사본을 구현했다. 새 실제 migration00002는 JSON HumanModel의 구버전 writer를 차단한다. 운영 SHA·현재 배포 상태는 아래 원래 기록을 유지한다. 이번 DEV는 운영 DB/코드/메일/Tunnel을 변경하지 않았다.
+
+고정 후보의 독립 QA·시각 검수·리뷰 수락 뒤 OPS가 [D07 이행·복구 절차](../design-docs/database-design.md#sar-human-peer-001-dev-후보)를 적용한다. 쓰기를 멈추고 private 최신 backup/복원 리허설·migration Up·새 writer 검증·legacy exact pair/철회/친구 deny 검사 뒤 재개한다. mixed old writer·자동 Down·과거 backup으로 권한 부활은 허용하지 않는다. 원문24h·backup/WAL 보존과 singleton 성능 수락은 운영 후속이다.
+
+환경·실행 SHA·실행/미실행 범위는 [DEV 기록](../exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)과 연결된 runtime 보고서를 따른다. 실제 Google/메일·호스트 계정 왕복·운영 복원은 별도 실행이다.
 
 ## 현재 운영 상태 (2026-10-11, SAR-SSE-INSTALL-001-OPS)
 

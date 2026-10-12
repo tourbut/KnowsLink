@@ -81,7 +81,7 @@ The final folder must not exist. Keep credentials outside $PREFIX/knowslink,
 which this installer replaces. Use a different folder for every host/instance.
 After explicit consent, call knowslink_connect with confirmed:true and have the
 user open its URL, compare the fingerprint, and approve Google connection.
-Check knowslink_connect_status for connected; pair acceptance is separate.
+Check knowslink_connect_status for connected; person friendship consent is separate.
 Default receive remains polling. KNOWSLINK_RECEIVE_MODE=sse opts into arrival
 signals plus existing API pull and periodic recovery. Neither starts a host turn.
 EOF

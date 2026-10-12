@@ -80,11 +80,11 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 	if err != nil || len(k.Public) != ed25519.PublicKeySize || !ed25519.Verify(k.Public, e.signingBytes(), sig) {
 		return nil, fault("invalid_signature")
 	}
-	p := st.Pairs[pairID(e.From, e.To)]
-	if p == nil || p.State != "active" {
+	scope, generation, allowed := st.authority(e.From, e.To)
+	if !allowed {
 		return nil, fault("human_invite_required")
 	}
-	m := &Message{Receipt: Receipt{e.ID, e.From, e.To, publicTextIntent, e.digest(), time.Time{}, now, "queued"}, Key: e.Key, Kid: e.Sig.Kid, Generation: p.Generation, Parent: e.ReplyTo, Deliver: "agent"}
+	m := &Message{Receipt: Receipt{e.ID, e.From, e.To, publicTextIntent, e.digest(), time.Time{}, now, "queued"}, Key: e.Key, Kid: e.Sig.Kid, Generation: generation, Scope: scope, Parent: e.ReplyTo, Deliver: "agent"}
 	if !st.current(m) {
 		return nil, fault("sender_not_allowed")
 	}
@@ -93,7 +93,7 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 		if old == nil || old.Receipt.Digest != m.Receipt.Digest {
 			return nil, fault("idempotency_conflict")
 		}
-		if old.Generation != p.Generation || !st.current(old) {
+		if old.Generation != generation || old.Scope != scope || !st.current(old) {
 			return nil, fault("sender_not_allowed")
 		}
 		return old.Receipt, nil
@@ -111,7 +111,7 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 	var parent *Message
 	if e.ReplyTo != "" {
 		parent = st.Messages[e.ReplyTo]
-		if parent == nil || parent.Receipt.Intent != publicTextIntent || parent.Parent != "" || parent.Receipt.From != e.To || parent.Receipt.To != e.From || parent.Receipt.State != "delivered" || !parent.Persisted || !st.current(parent) || parent.Generation != p.Generation || !now.Before(parent.Receipt.Exp) {
+		if parent == nil || parent.Receipt.Intent != publicTextIntent || parent.Parent != "" || parent.Receipt.From != e.To || parent.Receipt.To != e.From || parent.Receipt.State != "delivered" || !parent.Persisted || !st.current(parent) || parent.Generation != generation || parent.Scope != scope || !now.Before(parent.Receipt.Exp) {
 			return nil, fault("sender_not_allowed")
 		}
 		if parent.ReplyID != "" {
@@ -126,6 +126,7 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 	}
 	m.Receipt.Exp = exp
 	m.Envelope, _ = json.Marshal(e)
+	st.copyConversation(m, e.Text, "agent")
 	st.Messages[e.ID] = m
 	st.Idempotency[e.From+"/"+e.Key] = e.ID
 	if parent != nil {

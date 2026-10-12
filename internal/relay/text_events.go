@@ -158,7 +158,7 @@ func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 		st, now, raw := newState(), time.Time{}, []byte(nil)
 		err = conn.QueryRow(readCtx, "SELECT data, clock_timestamp() FROM relay_state WHERE singleton = true").Scan(&raw, &now)
 		readDone()
-		if err != nil || json.Unmarshal(raw, st) != nil {
+		if err != nil || json.Unmarshal(raw, st) != nil || st.HumanModel > 1 || st.HumanModel < 0 {
 			return
 		}
 		current, authErr := st.principal(bearer(r), "agent")

@@ -118,6 +118,12 @@ func cleanupRequest(r *http.Request) bool {
 		var c command
 		return Strict(commandBody(r), &c) == nil && c.Decision == "deny"
 	}
+	if r.URL.Path == "/home/friends/decision" {
+		switch r.PostForm.Get("decision") {
+		case "deny", "cancel", "remove", "block", "unblock":
+			return true
+		}
+	}
 	switch r.URL.Path {
 	case "/v1/ack", "/v1/test/ack", "/v1/text/ack", "/v1/key-revoke", "/v1/unpair", "/v1/owner-revoke", "/home/key-revoke", "/home/agent-revoke", "/home/unpair", "/home/cancel", "/auth/logout", "/auth/logout-all", "/home/invite-deny":
 		return true

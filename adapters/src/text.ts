@@ -28,6 +28,17 @@ export type ReceivedText = {
   exp: string;
   reply_to?: string;
   untrusted: true;
+  authorship?: "owner" | "agent";
+};
+export type OwnerTextEnvelope = {
+  v: "knowslink.owner-text.v1";
+  id: string;
+  from: string;
+  to: string;
+  text: string;
+  exp: string;
+  idempotency_key: string;
+  authorship: "owner";
 };
 export function textSigningBytes(e: TextEnvelope): Buffer {
   return Buffer.from(
@@ -154,11 +165,12 @@ export class TextTransport extends Adapter {
     store?: (message: ReceivedText) => Promise<unknown>,
   ): Promise<ReceivedText | null> {
     const lease = await this.request<{
-      envelope: TextEnvelope;
+      envelope: TextEnvelope | OwnerTextEnvelope;
       lease_token: string;
     } | null>("/v1/text/pull", {});
     if (!lease) return null;
     const e = lease.envelope;
+    const ownerWritten = e.v === "knowslink.owner-text.v1";
     const allowed = [
       "v",
       "id",
@@ -168,39 +180,46 @@ export class TextTransport extends Adapter {
       "exp",
       "idempotency_key",
       "reply_to",
-      "sig",
+      ...(ownerWritten ? ["authorship"] : ["sig"]),
     ];
     if (
       Object.keys(e).some((k) => !allowed.includes(k)) ||
-      e.v !== "knowslink.text.v1" ||
+      (e.v !== "knowslink.text.v1" && !ownerWritten) ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
+        e.id,
+      ) ||
+      !/^[a-z][a-z0-9_:-]*$/.test(e.from) ||
       e.to !== this.agent ||
       typeof e.text !== "string" ||
       !validText(e.text) ||
-      e.sig.alg !== "Ed25519" ||
+      (ownerWritten ? e.authorship !== "owner" : e.sig?.alg !== "Ed25519") ||
       !Number.isFinite(Date.parse(e.exp)) ||
       Date.parse(e.exp) <= Date.now()
     )
       throw new Error("invalid text envelope");
-    const key = await this.request<{ public: string }>(
-      `/v1/keys/${encodeURIComponent(e.from)}/${encodeURIComponent(e.sig.kid)}`,
-    );
-    const publicKey = createPublicKey({
-      key: Buffer.concat([
-        Buffer.from("302a300506032b6570032100", "hex"),
-        Buffer.from(key.public, "base64url"),
-      ]),
-      type: "spki",
-      format: "der",
-    });
-    if (
-      !verify(
-        null,
-        textSigningBytes(e),
-        publicKey,
-        Buffer.from(e.sig.value, "base64url"),
+    // Owner text comes only from the authenticated relay inbox; it carries no agent signature.
+    if (e.v === "knowslink.text.v1") {
+      const key = await this.request<{ public: string }>(
+        `/v1/keys/${encodeURIComponent(e.from)}/${encodeURIComponent(e.sig.kid)}`,
+      );
+      const publicKey = createPublicKey({
+        key: Buffer.concat([
+          Buffer.from("302a300506032b6570032100", "hex"),
+          Buffer.from(key.public, "base64url"),
+        ]),
+        type: "spki",
+        format: "der",
+      });
+      if (
+        !verify(
+          null,
+          textSigningBytes(e),
+          publicKey,
+          Buffer.from(e.sig.value, "base64url"),
+        )
       )
-    )
-      throw new Error("invalid text signature");
+        throw new Error("invalid text signature");
+    }
     const result: ReceivedText = {
       id: e.id,
       from: e.from,
@@ -208,8 +227,9 @@ export class TextTransport extends Adapter {
       text: e.text,
       exp: e.exp,
       untrusted: true,
+      authorship: ownerWritten ? "owner" : "agent",
     };
-    if (e.reply_to) result.reply_to = e.reply_to;
+    if (e.v === "knowslink.text.v1" && e.reply_to) result.reply_to = e.reply_to;
     if (store) await store(result);
     const delivery = { id: e.id, token: lease.lease_token };
     await this.request("/v1/text/persist", delivery);

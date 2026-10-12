@@ -1,0 +1,19 @@
+{
+  "sha": "f567abff18b8f6ce77fc79e6601ba7163ae7f9ff",
+  "base": "/tmp/knowslink-humanpeer001-f567abff18b8-0b335c67",
+  "qa": "/tmp/knowslink-humanpeer001-f567abff18b8-0b335c67/qa-8154ee89",
+  "repo": "/tmp/knowslink-humanpeer001-f567abff18b8-0b335c67/qa-8154ee89/repo",
+  "network": "qa-8154ee89-0b335c67",
+  "postgres_container": "qa-8154ee89-0b335c67-postgres",
+  "database_host": "172.28.0.2",
+  "database_port": 5432,
+  "relay_port": 43813,
+  "smtp_port": 45051,
+  "relay_pid": 4121268,
+  "sink_pid": 4121267,
+  "origin": "http://127.0.0.1:43813",
+  "scope": "DEV synthetic self-check only; preserved resources"
+}
+PASS: isolated SQL migration and healthz; auth/API/UI remain separate checks
+
+EXIT=0

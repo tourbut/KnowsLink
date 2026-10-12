@@ -2,14 +2,20 @@
 id: D03
 title: KnowsLink 기술 스택
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
 upstream: [D02]
 summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
 
 # KnowsLink 기술 스택
+
+## SAR-HUMAN-PEER-001 DEV 후보
+
+기존 Go net/http·html/template, pgx singleton JSONB, TypeScript adapter를 유지했다. 새 의존성·브라우저 JS·외부 폰트가 없다. 공용 CSS와 서버 폼이 D04의 전체 화면을 구성한다. Context7 quota 초과와 공식 문서 fallback 근거는 [DEV 기록](../exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)에 남겼다.
+
+`make lint`/`make test` 등록 명령은 유지한다. Windows make 부재는 정확한 committed SHA를 격리 Linux checkout에 전달하는 외부 bridge로 검증하며 실제 exit code를 FullOps 결과에 남긴다. Postgres tagged integration은 별도 고유 DB에서 실행한다. Go 문자열 CSS는 DESIGN 자동 검사가 판정하지 못하므로 실제 320/390/1440 화면을 별도로 확인한다.
 
 ## SAR-SSE-INSTALL-001 도착 신호 근거
 

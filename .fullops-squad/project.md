@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 프로젝트 기준
 status: review
-updated: 2026-10-06
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV]
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-HUMAN-PEER-001-DEV]
 summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 ---
 
@@ -13,7 +13,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 |---|---|
 | 제품 목적 | 승인된 에이전트 사이의 선택적 인간개입 전달; SAR-SETUP-001 D02 |
 | 기본 브랜치·원격 | `main`, `origin` (`https://github.com/tourbut/KnowsLink.git`) |
-| 현재 상태 | 로컬 합성 relay.v1·owner gate·shared inbox·TypeScript stub 후보와 일반 이메일 신원·세션·자기 owner 홈 후보(SAR-PUBLIC-IDENTITY-001); 독립 수락·운영 공개는 후속 |
+| 현재 상태 | SAR-HUMAN-PEER-001 DEV 후보: 사람 이름·친구·웹/agent 연속 대화·24h 사본·안전 legacy 변환. 독립 QA/시각/리뷰·운영 수락은 후속 |
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
@@ -21,6 +21,10 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 | 보안·코딩 규칙 | [코딩](rules/common/coding-style.md), [테스트](rules/common/testing.md), [보안](rules/common/security.md) |
 | 문서 언어 | 한국어 |
 | 이슈 트래커 | 로컬 `PLANS.md`·역할 인박스. GitHub Issues/Projects 연동은 미설정 |
+
+## 사람 친구 후보의 재개 조건
+
+새 제품은 HP-01–16과 현행 D04를 적용한다. 기술 변경은 [DEV 기록](docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)과 D03/D05–D11을 읽는다. DB 이행·코드 rollback·과거 backup 복원은 [D07](docs/design-docs/database-design.md)의 writer 차단/권한 복구 절차를 먼저 적용한다. 과거 pair/원문 보존 문서는 해당 당시 기록이며 새 전체 권한이나 운영 수락의 근거로 사용하지 않는다.
 
 ## 기술 기준
 

@@ -34,7 +34,7 @@ type fixture struct {
 func setup(t *testing.T, pool *pgxpool.Pool) *fixture {
 	t.Helper()
 	ctx := context.Background()
-	if _, err := pool.Exec(ctx, `UPDATE relay_state SET data='{}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
+	if _, err := pool.Exec(ctx, `UPDATE relay_state SET data='{"HumanModel":1}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
 		t.Fatal(err)
 	}
 	f := &fixture{&Service{Pool: pool, SyntheticSignup: true}, nil, map[string]string{}, map[string]string{}, map[string]ed25519.PrivateKey{}, t}
@@ -222,7 +222,7 @@ func TestPostgresSafety(t *testing.T) {
 		duplicate := wire(t, f.private["agent_b"], secondID, "agent_b", "agent_b", "relay.approval.request", "approval-key-0002", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute))
 		f.send(duplicate, "agent_b", claim, 409)
 		w := f.request("GET", "/owner/gates/"+gateID, f.tokens["agent_b_owner"], nil, "")
-		if w.Code != 200 || !strings.Contains(w.Body.String(), "granularity_min") || !strings.Contains(w.Body.String(), "pending") {
+		if w.Code != 200 || !strings.Contains(w.Body.String(), "granularity_min") || !strings.Contains(w.Body.String(), "대기") || !strings.Contains(w.Body.String(), `value="approve"`) {
 			t.Fatal("verified UI missing")
 		}
 		f.call("GET", "/owner/gates/"+gateID, f.tokens["agent_b"], nil, 401)
@@ -399,7 +399,8 @@ func TestGateFailureStates(t *testing.T) {
 				}
 			})
 			w := f.request("GET", "/owner/gates/"+gateID, f.tokens["agent_b_owner"], nil, "")
-			if w.Code != 200 || !strings.Contains(w.Body.String(), "상태: "+state) || strings.Contains(w.Body.String(), `value="approve"`) {
+			label := map[string]string{"denied": "거절", "expired": "만료", "revoked": "철회", "unavailable": "확인할 수 없음"}[state]
+			if w.Code != 200 || !strings.Contains(w.Body.String(), label) || !strings.Contains(w.Body.String(), "지금은 승인하거나 거절할 수 없습니다") || strings.Contains(w.Body.String(), `value="approve"`) || strings.Contains(w.Body.String(), `value="deny"`) {
 				t.Fatalf("unsafe %s UI: %d %s", state, w.Code, w.Body)
 			}
 			f.call("POST", "/v1/gate-consume", f.tokens["agent_b"], map[string]any{"id": gateID, "claim": claim}, 409)

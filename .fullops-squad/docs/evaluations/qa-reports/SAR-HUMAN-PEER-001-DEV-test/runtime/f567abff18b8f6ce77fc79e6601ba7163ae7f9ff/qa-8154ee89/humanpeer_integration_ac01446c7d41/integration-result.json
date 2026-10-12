@@ -1,0 +1,42 @@
+{
+  "sha": "f567abff18b8f6ce77fc79e6601ba7163ae7f9ff",
+  "scope": "DEV synthetic SQL integration; independent QA not claimed",
+  "database": "humanpeer_integration_ac01446c7d41",
+  "shared_with_relay": false,
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "exec",
+        "qa-8154ee89-0b335c67-postgres",
+        "createdb",
+        "-U",
+        "humanpeer",
+        "humanpeer_integration_ac01446c7d41"
+      ],
+      "exit": 0,
+      "log": "createdb.log"
+    },
+    {
+      "command": [
+        "/tmp/knowslink-humanpeer001-f567abff18b8-0b335c67/qa-8154ee89/repo/build/migrate"
+      ],
+      "exit": 0,
+      "log": "migrate.log"
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-tags=integration",
+        "./internal/relay",
+        "-count=1"
+      ],
+      "exit": 1,
+      "log": "go-test-relay-integration.log"
+    }
+  ],
+  "exit": 1,
+  "resources_preserved": true
+}

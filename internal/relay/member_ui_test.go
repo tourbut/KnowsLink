@@ -158,6 +158,7 @@ func formSignatures(body string) []string {
 
 // Every form keeps its method, action, hidden values, and field names; the golden came from the pre-redesign templates.
 // KNOWSLINK_UI_FIXTURE_DIR also writes each synthetic page as HTML for a direct visual review.
+// HP migration intentionally removes legacy creation/invitation forms and adds the required device agent name.
 func TestMemberUIFixtures(t *testing.T) {
 	var got []string
 	dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR")
@@ -197,15 +198,20 @@ func TestMemberUIFixtures(t *testing.T) {
 }
 
 // The invite form appears only when a connected agent can be chosen; an empty select is never offered (V-06).
-func TestMemberInviteFormNeedsConnectedAgent(t *testing.T) {
+// HP migration supersedes V-06: legacy pages never create or accept a new agent relationship.
+func TestLegacyMemberPageDoesNotCreateRelationships(t *testing.T) {
 	for _, c := range []struct {
 		status string
-		want   bool
-	}{{"연결 완료", true}, {"미연결", false}, {"철회", false}} {
+	}{{"연결 완료"}, {"미연결"}, {"철회"}} {
 		body := renderFixture(t, uiFixture{"invite-" + c.status, "home", map[string]any{"Title": "홈", "ActiveAgents": 1,
 			"AgentDetails": []memberAgent{{ID: "agent_a", Status: c.status}}, "Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", State: "active"}}}}})
-		if strings.Contains(body, `id="from-agent"`) != c.want || strings.Contains(body, "에이전트를 연결한 뒤 상대 식별자로 초대하세요.") == c.want {
-			t.Fatal("invite form", c.status)
+		for _, action := range []string{`id="from-agent"`, `action="/home/invites"`, `action="/home/invite-decision"`, `action="/home/invite-deny"`, `action="/home/agents"`} {
+			if strings.Contains(body, action) {
+				t.Fatal("legacy relationship creation", c.status, action)
+			}
+		}
+		if !strings.Contains(body, `action="/home/unpair"`) || !strings.Contains(body, `href="/home/friends"`) {
+			t.Fatal("legacy exact-pair revoke and friendship restart must remain", c.status)
 		}
 	}
 }

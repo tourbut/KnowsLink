@@ -109,11 +109,11 @@ func safeProblem(err error) string {
 // Record and active-limit refusals name the actual limit and the next step that can work; none promises an exact
 // cleanup time, payment, or that revoking a key or waiting frees key space on a live agent (C1).
 var agentLimits = map[string]string{
-	"active":  "활성 agent는 회원당 5개입니다. 새 agent를 만들려면 쓰지 않는 agent를 먼저 철회하세요. 철회한 agent의 키와 관계는 끝나며 되돌릴 수 없습니다.",
+	"active":  "활성 agent는 회원당 5개입니다. 새 agent를 만들려면 쓰지 않는 agent를 먼저 철회하세요. 철회한 agent의 키와 전달 권한은 끝나며 되돌릴 수 없습니다.",
 	"records": "철회한 agent 기록을 보존하는 중이라 지금은 새 agent를 만들 수 없습니다. 기존 agent와 키는 그대로입니다. 필요하면 쓰지 않는 agent를 철회하세요. 철회 기록은 최소 24시간 보존된 뒤 정리됩니다. 정리되어 홈 목록에서 사라진 뒤 다시 시도하세요.",
 }
 
-const keyRecordsFull = "이 agent에는 새 키를 더 연결할 수 없습니다(키 기록 보호 상한). 키를 철회하거나 기다려도 이 agent에 새 키 공간은 생기지 않습니다. 새 agent를 만들어 따로 연결하고, 각 상대와 새로 초대·수락하세요. 기존 키와 관계는 철회하기 전까지 그대로입니다."
+const keyRecordsFull = "이 agent에는 새 키를 더 연결할 수 없습니다(키 기록 보호 상한). 키를 철회하거나 기다려도 이 agent에 새 키 공간은 생기지 않습니다. 새 agent를 만들어 따로 연결하세요. 활성 친구에는 새 agent도 연결됩니다. 기존 개별 연결만 있다면 사람 친구 요청을 새로 수락하세요. 기존 키와 관계는 철회하기 전까지 그대로입니다."
 
 // connectLimit explains a connect capacity refusal; create reports whether a replacement agent can be made now.
 func connectLimit(st *State, owner, agent, mode string) (problem string, create bool) {
@@ -201,17 +201,37 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if st.Members[id].Issuer != googleIssuer {
 					return fail(fault("invalid_auth"))
 				}
+				name, valid := validName(r.FormValue("name"))
+				if !valid {
+					c := st.Connections[r.FormValue("connection")]
+					if c == nil || !c.Device {
+						return fail(fault("invalid_auth"))
+					}
+					public, _ := base64.RawURLEncoding.DecodeString(c.Public)
+					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": r.FormValue("name"), "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": "이름은 1–40자로 입력하세요"}, nil
+				}
 				if e := st.approveDevice(r.FormValue("connection"), owner, now); e != nil {
 					return fail(e)
 				}
+				c := st.Connections[r.FormValue("connection")]
+				st.Agents[c.Agent].Name = name
 				return "/connect/" + r.FormValue("connection"), nil
 			case "create":
+				name, valid := validName(r.FormValue("name"))
+				if !valid {
+					view, e := st.humanView(id, session, "agents", r, now)
+					if e != nil {
+						return fail(e)
+					}
+					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, "이름은 1–40자로 입력하세요", r.FormValue("name")
+					return view, nil
+				}
 				if limit := st.agentLimit(owner); limit != "" {
 					return refusal{status: 409, problem: agentProblem(limit)}, nil
 				}
 				agent = newMemberAgentID() // Avoid email-derived IDs and cross-member name collisions.
-				st.Agents[agent] = &Agent{Owner: owner, Keys: map[string]*Key{}}
-				return "/home", nil
+				st.Agents[agent] = &Agent{Name: name, Owner: owner, Keys: map[string]*Key{}}
+				return "/home/agents", nil
 			case "connect":
 				t, e := st.beginConnection(owner, agent, r.FormValue("client"), r.FormValue("mode"), now)
 				if e != nil && e.Error() == "capacity" {
@@ -284,7 +304,13 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 		case string:
 			http.Redirect(w, r, v, 303)
 		default:
-			render(w, 200, "connection", value.(map[string]any))
+			view := value.(map[string]any)
+			name, status := "connection", 200
+			if template, ok := view["FormTemplate"].(string); ok {
+				name = template
+				status = view["FormStatus"].(int)
+			}
+			render(w, status, name, view)
 		}
 	}
 }

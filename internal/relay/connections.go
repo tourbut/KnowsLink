@@ -185,6 +185,7 @@ func (st *State) completeConnection(token, client, proof string, now time.Time) 
 	a.Keys[c.Kid] = &Key{Public: public, Changed: now, Credential: hashToken(credential)}
 	// A public connection never retains the synthetic agent-wide credential.
 	a.Credential = ""
+	a.Client = c.Client
 	c.State = "consumed"
 	st.sweep(now)
 	return map[string]string{"agent": c.Agent, "kid": c.Kid, "credential": credential, "state": "connected"}, nil

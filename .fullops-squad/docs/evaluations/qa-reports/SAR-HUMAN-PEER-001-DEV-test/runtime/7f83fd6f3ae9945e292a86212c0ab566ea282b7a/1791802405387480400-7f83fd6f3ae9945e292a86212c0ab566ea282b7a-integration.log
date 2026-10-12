@@ -1,0 +1,52 @@
+
+EXIT=0; LOG=/tmp/knowslink-humanpeer001-7f83fd6f3ae9-a0d3aeba/qa-2c401650/humanpeer_integration_9034dbf57cc8/createdb.log
+2026/10/12 19:51:21 SQL migrations completed
+
+EXIT=0; LOG=/tmp/knowslink-humanpeer001-7f83fd6f3ae9-a0d3aeba/qa-2c401650/humanpeer_integration_9034dbf57cc8/migrate.log
+ok  	github.com/tourbut/KnowsLink/internal/relay	118.664s
+
+EXIT=0; LOG=/tmp/knowslink-humanpeer001-7f83fd6f3ae9-a0d3aeba/qa-2c401650/humanpeer_integration_9034dbf57cc8/go-test-relay-integration.log
+{
+  "sha": "7f83fd6f3ae9945e292a86212c0ab566ea282b7a",
+  "scope": "DEV synthetic SQL integration; independent QA not claimed",
+  "database": "humanpeer_integration_9034dbf57cc8",
+  "shared_with_relay": false,
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "exec",
+        "qa-2c401650-a0d3aeba-postgres",
+        "createdb",
+        "-U",
+        "humanpeer",
+        "humanpeer_integration_9034dbf57cc8"
+      ],
+      "exit": 0,
+      "log": "createdb.log"
+    },
+    {
+      "command": [
+        "/tmp/knowslink-humanpeer001-7f83fd6f3ae9-a0d3aeba/qa-2c401650/repo/build/migrate"
+      ],
+      "exit": 0,
+      "log": "migrate.log"
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-tags=integration",
+        "./internal/relay",
+        "-count=1"
+      ],
+      "exit": 0,
+      "log": "go-test-relay-integration.log"
+    }
+  ],
+  "exit": 0,
+  "resources_preserved": true
+}
+
+EXIT=0

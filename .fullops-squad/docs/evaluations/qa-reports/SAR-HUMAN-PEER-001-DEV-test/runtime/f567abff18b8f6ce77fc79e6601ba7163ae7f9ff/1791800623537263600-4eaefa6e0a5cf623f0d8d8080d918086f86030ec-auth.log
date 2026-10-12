@@ -1,0 +1,32 @@
+{
+  "sha": "4eaefa6e0a5cf623f0d8d8080d918086f86030ec",
+  "scope": "DEV synthetic auth self-check; no independent acceptance",
+  "postgres_version": "17.11",
+  "checks": [
+    "healthz SQL ping=200",
+    "unauthenticated home=303",
+    "invalid email=422",
+    "alice: name onboarding GET=200 profile save=303",
+    "alice: local sink OTP start=303 wrong code=401 verify=303 authenticated home=200",
+    "bob: name onboarding GET=200 profile save=303",
+    "bob: local sink OTP start=303 wrong code=401 verify=303 authenticated home=200"
+  ],
+  "request_allowlist": {
+    "GET": [
+      "/",
+      "/healthz",
+      "/home",
+      "/home/name"
+    ],
+    "POST": [
+      "/auth/start",
+      "/auth/verify",
+      "/home/profile"
+    ]
+  },
+  "recipients": "unique synthetic alice/bob @humanpeer.invalid only",
+  "secrets_in_output": false,
+  "ui_captures": "separate parent-ready stage"
+}
+
+EXIT=0

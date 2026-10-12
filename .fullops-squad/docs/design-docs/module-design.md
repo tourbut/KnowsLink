@@ -4,12 +4,26 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
 
 # KnowsLink 프로그램 책임과 검증
+
+## SAR-HUMAN-PEER-001 DEV 후보
+
+| 모듈 | 책임·검증 |
+|---|---|
+| `human.go` | 이름, 신원 자격, legacy 변환, authority, Friend 상태/한도/세대, 당시 사본. `human_test.go` |
+| `human_messages.go` / `public_text.go` | owner 작성 wire와 signed agent text, 독립 TTL·24h 이력·멱등. owner를 서명된 agent로 표시하지 않음 |
+| `human_http.go` / `human_pages.go` / `member_pages.go` | 새 전체 제품 화면·세션 폼·D04 공용 토큰. raw 입력 escape, 오류 회복·필드 labels·44px 동작 |
+| `store.go` / `http.go` / events·remote | 출처+세대 current 검사, 기존 gate/claim/CSRF/CSP/rate/키 유지 |
+| `00002_human_writer.sql` / `scripts/schema.py` | 구버전 JSON writer 차단, 전체 migration D08 생성 |
+| `adapters/src/text.ts` / `owner-text.test.ts` | owner wire schema/대상/기한 검증, 서명 분리·untrusted 결과, 저장 실패 시 ACK 차단 |
+| `human_integration_test.go` | 실제 합성 OTP·profile·명명·connect proof·A/B/C·친구·연속6회·signed·철회·멱등·CSRF·DB downgrade |
+
+기존 fixture는 유지된 legacy 화면/정확한 관계와 새 제품 의미를 명시적으로 구분한다. 독립 tester/designer/review의 최종 수락은 coordinator 후속이며 DEV 자체 검사를 대신하지 않는다. [DEV 실행 기록](../exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)을 따른다.
 
 ## SAR-SSE-INSTALL-001 SSE 모듈
 

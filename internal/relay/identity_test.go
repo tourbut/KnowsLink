@@ -159,7 +159,7 @@ func TestCodeVerificationAndMembers(t *testing.T) {
 		t.Fatal("continuity")
 	}
 	// Same address from another issuer is not merged.
-	st.Members["mem_other"] = &Member{"owner_other", "c@d.co", "other-issuer", true, now}
+	st.Members["mem_other"] = &Member{Owner: "owner_other", Email: "c@d.co", Issuer: "other-issuer", Active: true, Created: now}
 	st.Identities["other-issuer|c@d.co"] = "mem_other"
 	st.Owners["owner_other"] = &Owner{"", true}
 	pending, code, _, _ = st.startChallenge("c@d.co", "ip", now.Add(4*time.Minute))

@@ -170,14 +170,9 @@ func (st *State) remoteTool(i *remoteInstall, name string, args json.RawMessage,
 			return nil, fault("invalid_schema")
 		}
 		peers := []string{}
-		for _, p := range st.Pairs {
-			if p.State == "active" {
-				if p.A == i.Agent {
-					peers = append(peers, p.B)
-				}
-				if p.B == i.Agent {
-					peers = append(peers, p.A)
-				}
+		for target := range st.Agents {
+			if _, _, ok := st.authority(i.Agent, target); ok {
+				peers = append(peers, target)
 			}
 		}
 		sort.Strings(peers)
@@ -226,23 +221,34 @@ func (st *State) remoteTool(i *remoteInstall, name string, args json.RawMessage,
 			if leased != nil {
 				v := leased.(map[string]any)
 				raw := v["envelope"].(json.RawMessage)
-				e, err := parsePublicText(raw)
-				if err != nil {
-					return nil, err
+				var ownerText OwnerText
+				id := ""
+				if Strict(raw, &ownerText) == nil && ownerText.V == "knowslink.owner-text.v1" {
+					message := st.Messages[ownerText.ID]
+					if message == nil || message.Conversation == nil || message.Conversation.Authorship != "owner" || ownerText.Authorship != "owner" || ownerText.To != i.Agent || !st.current(message) {
+						return nil, fault("sender_not_allowed")
+					}
+					id = ownerText.ID
+				} else {
+					e, err := parsePublicText(raw)
+					if err != nil {
+						return nil, err
+					}
+					a := st.Agents[e.From]
+					if a == nil || a.Keys[e.Sig.Kid] == nil || e.To != i.Agent {
+						return nil, fault("invalid_signature")
+					}
+					sig, err := base64.RawURLEncoding.DecodeString(e.Sig.Value)
+					if err != nil || !ed25519.Verify(a.Keys[e.Sig.Kid].Public, e.signingBytes(), sig) {
+						return nil, fault("invalid_signature")
+					}
+					id = e.ID
 				}
-				a := st.Agents[e.From]
-				if a == nil || a.Keys[e.Sig.Kid] == nil || e.To != i.Agent {
-					return nil, fault("invalid_signature")
-				}
-				sig, err := base64.RawURLEncoding.DecodeString(e.Sig.Value)
-				if err != nil || !ed25519.Verify(a.Keys[e.Sig.Kid].Public, e.signingBytes(), sig) {
-					return nil, fault("invalid_signature")
-				}
-				c := command{ID: e.ID, Token: v["lease_token"].(string)}
+				c := command{ID: id, Token: v["lease_token"].(string)}
 				if _, err = st.operateAs("persist", i.Agent, "agent", c, now, false); err != nil {
 					return nil, err
 				}
-				i.Inbox[e.ID] = append(json.RawMessage(nil), raw...)
+				i.Inbox[id] = append(json.RawMessage(nil), raw...)
 				if _, err = st.operateAs("ack", i.Agent, "agent", c, now, false); err != nil {
 					return nil, err
 				}
@@ -254,13 +260,18 @@ func (st *State) remoteTool(i *remoteInstall, name string, args json.RawMessage,
 		}
 		sort.Strings(ids)
 		messages := []json.RawMessage{}
+		authors := map[string]string{}
 		for _, id := range ids {
 			m := st.Messages[id]
 			if m != nil && st.current(m) && now.Before(m.Receipt.Exp) {
 				messages = append(messages, i.Inbox[id])
+				authors[id] = "agent"
+				if m.Conversation != nil && m.Conversation.Authorship == "owner" {
+					authors[id] = "owner"
+				}
 			}
 		}
-		return map[string]any{"messages": messages}, nil
+		return map[string]any{"messages": messages, "authorship": authors, "untrusted": true}, nil
 	case "knowslink_ack":
 		var input struct {
 			ID string `json:"id"`

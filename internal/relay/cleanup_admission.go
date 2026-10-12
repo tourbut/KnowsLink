@@ -67,6 +67,8 @@ func (st *State) cleanupTarget(r *http.Request, principal string, now time.Time)
 	case "/home/cancel":
 		conn := st.Connections[r.PostForm.Get("connection")]
 		return conn != nil && conn.Owner == owner
+	case "/home/friends/decision":
+		return st.friendByID(principal, r.PostForm.Get("friend")) != nil
 	}
 	g := st.Gates[gatePath(r.URL.Path)]
 	return g != nil && g.Owner == owner

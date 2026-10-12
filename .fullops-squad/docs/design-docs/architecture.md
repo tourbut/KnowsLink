@@ -2,14 +2,26 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
 
 # KnowsLink 로컬 합성 MVP 아키텍처
+
+## SAR-HUMAN-PEER-001 DEV 후보
+
+정본은 [HP-01–16](../planning/product-specs/SAR-HUMAN-PEER.md)과 현행 D04다. 아래 과거 pair 중심 절보다 이 절을 먼저 적용한다. 운영 적용·독립 수락은 후속이다.
+
+회원 세션은 사람을, agent/key credential은 개별 클라이언트를 인증한다. `authority(from,to)`가 자기 회원의 명시적 SelfConnect, 활성 사람 Friend, 기존 정확한 Pair를 구별한 출처/세대를 반환한다. send·keys·lease·persist·ACK·claim·gate·result·SSE·remote가 현재 인가를 재사용한다. 해제/차단은 legacy fallback도 막고 재수락은 새 세대로 진행한다. 친구 수락으로 과거 legacy 메시지/claim/gate를 되살리지 않는다.
+
+웹 발송은 세션으로 인증한 owner 작성 wire다. agent 개인키를 서버로 가져오거나 agent 서명을 가장하지 않는다. signed `knowslink.text.v1`의 서명 검증은 그대로다. 매 새 발송은 새 ID·멱등키·독립 180초 기한을 가지며 긴 대화는 새 root text를 반복한다. 기존 one-related-reply API는 호환 경로다.
+
+새 text만 Message.Conversation에 당시 참여 owner/사람 이름/agent 이름/본문/작성자 종류를 저장한다. 유효 참여 세션은 수락부터 24시간 이내 복사본을 읽는다. transport Envelope/Inbox의 ACK·TTL·철회 삭제와 분리되며, 과거 사본은 실행/전달/최신 목록 조회 권한이 아니다. 업무 M/H/R과 이미 삭제된 원문은 복구하지 않는다.
+
+기술 이행과 검증은 [DEV 실행 기록](../exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md), DB writer 차단은 [D07](database-design.md)을 따른다.
 
 ## SAR-SSE-INSTALL-001 도착 신호
 

@@ -1,20 +1,20 @@
 ---
 id: D11
 title: 사용자설명서
-status: draft
+status: review
 updated: 2026-10-12
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 사용자설명서 (D11)
 
-## 새 사용자 흐름 — SAR-HUMAN-PEER-001 설계 후보
+## 새 사용자 흐름 — SAR-HUMAN-PEER-001 DEV 후보
 
-이 절은 새 제품의 구현 목표다. 아직 운영에 적용됐다고 안내하지 않는다. 아래 과거 베타·개별 agent 관계·수동 text 절차와 충돌하면 새 후보에서는 이 절과 [현행 D02](../planning/product-specs/SAR-HUMAN-PEER.md)를 적용한다. 운영 현재 상태와 기술 절차는 OPS/DEV가 갱신한다.
+이 절은 구현된 DEV 후보의 사용법이다. 독립 수락과 운영 적용은 후속이다. 아래 과거 베타·개별 agent 관계·수동 text 절차와 충돌하면 새 후보에서는 이 절과 [현행 D02](../planning/product-specs/SAR-HUMAN-PEER.md)를 적용한다. 운영 현재 상태와 기술 절차는 OPS/DEV가 갱신한다.
 
-1. 자기 Google 계정으로 로그인하고 친구에게 보일 내 이름을 정한다. 이메일만 같다는 이유로 다른 로그인 계정과 합치지 않는다.
+1. 자기 Google 계정이나 이메일 확인 코드로 로그인하고 친구에게 보일 내 이름을 정한다. 이메일만 같다는 이유로 다른 로그인 계정과 합치지 않는다.
 2. '내 에이전트'에서 이름을 정하고 자기 클라이언트를 연결한다. 다른 사람이 보낸 연결 링크를 승인하지 않는다. 이름 변경은 기존 ID·키를 바꾸지 않는다.
 3. '친구'의 '친구 추가'에서 상대가 직접 공유한 친구 코드를 입력한다. 이메일이나 이름으로 회원을 검색하지 않는다. 요청 제출은 친구 수락 완료가 아니다.
 4. 받은 요청을 수락한다. 서로의 현재·앞으로 추가할 활성 에이전트가 연결된다는 안내를 확인한다. 수락 전에는 상대 에이전트 목록을 볼 수 없다.
@@ -25,6 +25,10 @@ summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사
 9. 기존 에이전트 관계는 '기존 연결'에서 원래 두 에이전트만 유지한다. 두 사람 전체 연결로 바꾸려면 새 친구 요청을 서로 수락한다. 이미 지운 메시지를 복원하지 않는다.
 
 친구 수락은 결제·삭제·다른 채널 발송·약속의 포괄 승인이 아니다. 필요한 승인 요청은 검증된 요청 내용과 기한을 보고 별도로 결정한다. 로그아웃은 브라우저 세션만 끝내며 에이전트 자격을 철회하지 않는다.
+
+오류가 나면 입력을 확인하고 같은 발송 시도에서 다시 제출한다. 같은 시도에 본문이나 대상을 바꾸면 충돌로 거부되므로 새 대화에서 새 시도를 시작한다. 실패/만료는 전달 완료가 아니다. 이름은 앞뒤 공백을 뺀1–40자이며 제어·양방향 제어 문자는 쓸 수 없다. 중복 이름은 허용하므로 대상의 사람/agent 이름과 연결 상태를 함께 확인한다.
+
+친구 코드 재생성은 이전 코드의 새 요청만 막고 기존 요청이나 친구를 취소하지 않는다. 받은 요청 수락은 그 사람의 현재·앞으로 추가할 활성 agent 전체에 대한 연결 동의다. 연결·친구 요청·수락은 각각 별도 단계다. 실제 개발 검증 범위와 합성 환경은 [DEV 실행 기록](../exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)에 기록한다.
 
 ## 과거 베타·후보 사용 기록
 

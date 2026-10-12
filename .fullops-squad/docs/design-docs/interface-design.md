@@ -2,14 +2,34 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-11
+updated: 2026-10-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
 
 # KnowsLink HTTP·adapter 계약
+
+## SAR-HUMAN-PEER-001 DEV 후보
+
+모든 새 회원 경로는 기존 세션·Origin/Fetch-Site·no-store·CSP·공유 HTTP/rate 제어를 사용한다. 이름이 없는 회원의 새 제품 화면은 `/home/name`으로 이동한다. `/home/legacy`는 기존 정확한 endpoint 관계 관리용이다.
+
+| 경로 | 계약 |
+|---|---|
+| GET `/home`, `/home/name`, `/home/friends`, `/home/friends/{id}`, `/home/agents`, `/home/account`, `/home/new`, `/home/conversation` | 대화 홈·이름·친구/상세·agent·계정·대상 선택·기록. 대화 query는 from/to, optional attempt다 |
+| POST `/home/profile` | name: trim 후 Unicode 1–40자, control/Bidi_Control 문자 거부. 변경은 ID/신원/키 불변 |
+| POST `/home/agent-name` | agent/name, 자기 agent만 변경 |
+| POST `/home/agents` / `/home/device-confirm` / `/remote/consent/{id}` 승인 | 새 agent 이름 필수. 기존 최근 인증·연결 proof·명시 승인 유지 |
+| POST `/home/friend-code` | 자기 코드 회전. 이전 코드는 신규 요청에 무효; 기존 요청/친구를 바꾸지 않음 |
+| POST `/home/self-connect` | consent=yes. 기존 회원의 자기 활성 endpoint 전체 범위를 명시 활성화 |
+| POST `/home/friends/request` | code/consent=yes. 코드 정답·자기 코드·차단·없는 대상은 동일 외부 결과/발신 요청 표시. 회원 검색 없음 |
+| POST `/home/friends/decision` | friend/generation/decision, accept에는 consent=yes. accept/deny 수신자, cancel 발신자, remove/block 참여자, unblock 차단자만 |
+| POST `/home/conversation/send` | from/to/text/attempt. 자기 발신 agent·현재 인가·수신 키 검사. UTF-8 text 1–4096bytes(공백만 거부); attempt 16–96 printable ASCII. 성공303, 오류 폼 입력 유지 |
+
+`knowslink.owner-text.v1`는 `{v,id,from,to,text,exp,idempotency_key,authorship:"owner"}`다. `sig`가 없으며 authenticated relay의 owner 작성 전용이다. local receive는 authorship:owner|agent를 반환한다. remote receive는 원래 messages wire 배열과 별도 `authorship:{messageID:owner|agent}`, `untrusted:true`를 반환한다. client durable 저장 뒤 persist/ACK한다. signed agent text는 기존 Ed25519 검증·allowlist를 유지한다.
+
+같은 발신 agent/attempt와 같은 본문/대상은 같은 receipt·원 기한을 반환하고 다른 의미는409다. TTL 종료/친구 철회 후 재전달 권한은 생기지 않는다. keys/contacts는 활성 친구의 현재·향후 agent를 동적으로 계산하며 이메일·credential·내부 회원ID를 목록에 노출하지 않는다. 과거 대화에는 당시 이름만 사용한다. 새 legacy invite 생성은 production에서 거부한다.
 
 ## SAR-SSE-INSTALL-001 SSE 계약
 

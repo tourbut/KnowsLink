@@ -1,8 +1,14 @@
 # KnowsLink
 
-승인된 에이전트 사이의 선택적 인간개입 전달 제품이다.
-이번 후보는 합성 데이터의 로컬 relay.v1·owner 가입/키·pairing·queue/receipt·shared inbox/claim·Go approve/deny UI를 연결한다.
+사람이 친구를 맺고 자기 에이전트들을 연결해 웹과 클라이언트에서 대화하는 제품이다.
+SAR-HUMAN-PEER-001 DEV 후보는 이름·친구 수락·독립 기한의 연속 대화·24시간 웹 기록과 기존 signed relay/owner gate를 연결한다.
 실제 벤더·calendar·도구 효과·정보 공개·positive silent done과 운영 공개는 후속이다.
+
+## 사람 친구·대화 후보
+
+로그인 → 내 이름 → 내 에이전트 이름/연결 → 공유 친구 코드로 요청 → 상대 수락 → 새 대화에서 양측 에이전트 선택 → 발송 순서다. 기존 회원의 자기 agent 전체 연결은 별도 동의를 받는다. 기존 정확한 관계는 `/home/legacy`에서 유지하며 사람 친구로 자동 확대하지 않는다.
+
+웹 메시지는 회원(owner) 작성, 클라이언트 메시지는 서명된 agent 작성으로 구분한다. 대화 사본은 참여 세션만 수락24h 이내 읽으며 전달180s 기한과 별개다. 해제/차단 후 남은 과거 사본은 읽기 전용이다. [사용 방법](.fullops-squad/docs/operations/user-guide.md), [기술·안전 이행](.fullops-squad/docs/design-docs/database-design.md), [검증 기록](.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)을 따른다. 운영 적용·실계정·독립 수락은 후속이다.
 
 ## 설치와 검증
 
@@ -135,17 +141,17 @@ webhook·evidence fetch/preview·실제 벤더 연결은 OFF다.
 
 실패·취소·만료는 새 키를 연결하지 않는다. 완료 응답을 잃으면 자격을 다시 조회할 수 없다. 홈에서 새 연결을 **회전**으로 진행해 잃은 키를 철회한다. 홈에서 키별 지문·활성/철회를 확인하고 선택 철회할 수 있다. 키당 credential을 분리하므로 철회 키의 송신·pull·ACK·claim·authorize·result는 거부된다. 로그아웃은 키를 철회하지 않는다. 정상 idle pull 간격은 10초 이상이다.
 
-관계 초대는 상대 agent 식별자만 사용한다. 상대 이메일과 회원 디렉터리는 없다. 수신 owner만 수락·거절하며 양측이 철회할 수 있다. 같은 owner의 두 agent도 명시적으로 수락해야 한다. pending은 24시간 뒤 만료되며 재초대는 새 세대다. 옛 화면의 결정은 새 세대에 적용되지 않는다. 포화 중에도 거절·키/agent 철회·관계 철회는 별도 정리 budget을 사용한다.
+현재 후보는 친구 코드로 사람에게 요청한다. 회원 검색·이메일 노출 없이 수신자만 수락·거절하며 양측이 해제·차단할 수 있다. 자기 agent 범위는 신규 기본 동의 또는 기존 회원의 명시 동의를 적용한다. pending은24h 뒤 만료하고 재요청은 새 세대다. 포화 중 정리는 별도 예산을 사용한다. 기존 정확한 pair는 `/home/legacy`에서 철회할 수 있으며 새 pair는 생성하지 않는다.
 
-같은 상대에게 다시 초대하면 기존 대기 초대나 연결된 관계를 그대로 유지한다. 기한도 바뀌지 않는다. 거절·만료·철회 뒤에는 홈의 `새 초대 보내기`로 직접 다시 초대하며 상대가 새로 수락해야 한다. 자동 재연결은 없다.
+같은 또는 반대 방향 친구 요청은 기존 pending·active와 기한을 유지한다. 종료 뒤에는 새 사람 친구 요청·수락이 필요하며 차단 해제만으로 복구하지 않는다.
 
-agent의 키 기록(활성+철회)이 20개면 그 agent에는 새 키를 연결할 수 없다. 키 철회나 대기로 공간이 생기지 않는다. 새 agent를 만들어 따로 연결하고 각 상대와 새로 수락한다. 철회 agent 기록까지 포함해 owner당 10개면 새 agent를 만들 수 없다. 철회 기록은 최소 24시간 보존된 뒤 정리되며 홈 목록에서 사라진다. 그 뒤 다시 시도한다. 사라짐은 권한 복구나 백업 영구 삭제가 아니다.
+agent의 키 기록(활성+철회)이20개면 새 agent를 만들어 따로 연결한다. 활성 사람 친구에는 새 agent도 연결되며 legacy exact pair만 있었다면 새 친구 수락이 필요하다. 키 철회나 대기로 살아 있는 agent의 키 공간은 생기지 않는다. 철회 agent 포함 owner당10개면 새 agent를 만들 수 없다. 철회 기록은 최소24h 보존 뒤 정리되며 사라짐은 권한 복구나 backup 영구 삭제가 아니다.
 
 지원 구현은 위 Node 로컬 CLI다. Grok Bot 컴퓨터에서 안내를 실행할 수 있는지는 해당 계정의 설치·실행 권한으로 별도 확인한다. 앱 카탈로그·다닷·OAuth·실제 외부 계정 연결은 이 후보의 검증 결과가 아니다. 운영 공개·실메일·유료 설정은 실행하지 않았다.
 
 ## 일반 회원 연결 확인·receipt — SAR-PUBLIC-MESSAGES-001
 
-[Node CLI/MCP 연결 확인 절차](adapters/README.md#일반-회원-연결-확인-text--sar-public-messages-001)를 따른다. 서로 다른 두 자기 agent도 명시적 관계 수락 뒤에만 비민감 text·관련 답장을 주고받는다. 회원 홈에서 자기 agent와 요청 ID로 전달·처리·답장 ID·TTL·실패 복구를 확인한다. queued는 상대 수신 성공이 아니다. 정상 idle pull은10초 이상 간격이며 자동 wake/답장이 없다.
+[Node CLI/MCP 절차](adapters/README.md#일반-회원-연결-확인-text--sar-public-messages-001)를 따른다. 자기 agent는 명시된 범위 동의, 다른 사람의 agent는 친구 수락 뒤에 비민감 text를 보낸다. 각 새 발송은 독립 기한이다. receipt는 전달 metadata, 웹 대화는 별도24h 사본이다. queued는 수신 성공이 아니다. 정상 idle pull은10초 이상 간격이며 자동 답장은 없다.
 
 `make verify-mvp`는 일반 신원 HTTP·실제 Node prepare/complete·두 MCP 프로세스의 send/receive/reply/receipt와 shared Postgres 권한·한도·재시작을 검사한다. 합성 SMTP sink/fixture는 실메일 증거가 아니다. 실제 Grok Bot·다닷 운영 연결·독립 QA·직접 시각 검수·운영 공개는 후속이다. Workers Free·기존 서버/Tunnel 보호를 유지한다.
 

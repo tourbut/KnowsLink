@@ -52,6 +52,7 @@ func TestPublicNodeProcesses(t *testing.T) {
 	defer server.Close()
 	b := &browser{t, h, "192.0.2.70", map[string]string{}}
 	login(t, b, mail, "public-node@example.com")
+	expect(t, b.do("POST", "/home/profile", url.Values{"name": {"합성 Node 회원"}}), 303)
 	onboard := func() (string, string) {
 		t.Helper()
 		// Each creation returns to a sorted agent list; compare the owned IDs instead of assuming random sort order.
@@ -61,7 +62,7 @@ func TestPublicNodeProcesses(t *testing.T) {
 				before[id] = true
 			}
 		})
-		expect(t, b.do("POST", "/home/agents", nil), 303)
+		expect(t, b.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 		agent := ""
 		s.mutateState(t, func(st *State) {
 			for id := range st.Agents {
@@ -80,8 +81,7 @@ func TestPublicNodeProcesses(t *testing.T) {
 	}
 	a, fa := onboard()
 	other, fb := onboard()
-	expect(t, b.do("POST", "/home/invites", url.Values{"agent": {a}, "target": {other}}), 303)
-	expect(t, b.do("POST", "/home/invite-decision", url.Values{"agent": {a}, "target": {other}, "generation": {"1"}, "decision": {"accept"}}), 303)
+	expect(t, b.do("POST", "/home/self-connect", url.Values{"consent": {"yes"}}), 303)
 	out := nodeCommand(t, "", "../../adapters/dist/public-check.js", fa, fb, a, other)
 	var evidence struct{ State, Request, Received, Reply, ReplyReceived string }
 	if err := json.Unmarshal([]byte(out), &evidence); err != nil || evidence.State != "public_node_process_roundtrip_pass" || evidence.Request != evidence.Received || evidence.Reply != evidence.ReplyReceived {
@@ -103,8 +103,10 @@ func TestPublicMessageHTTPBoundaries(t *testing.T) {
 	h := s.Handler()
 	a := &browser{t, h, "192.0.2.71", map[string]string{}}
 	b := &browser{t, h, "192.0.2.72", map[string]string{}}
-	login(t, a, mail, "message-a@example.com")
-	login(t, b, mail, "message-b@example.com")
+	memberA := login(t, a, mail, "message-a@example.com")
+	memberB := login(t, b, mail, "message-b@example.com")
+	expect(t, a.do("POST", "/home/profile", url.Values{"name": {"합성 발신 회원"}}), 303)
+	expect(t, b.do("POST", "/home/profile", url.Values{"name": {"합성 수신 회원"}}), 303)
 	// Real public prepare/owner confirm/complete; this test has no trial allowlist or synthetic signup.
 	connect := func(browser *browser, agent string) (ed25519.PrivateKey, string) {
 		t.Helper()
@@ -120,8 +122,23 @@ func TestPublicMessageHTTPBoundaries(t *testing.T) {
 	keyB, tokenB := connect(b, agentB)
 	e := signedText(firstID, agentA, agentB, "public-http-key-01", "", "untrusted <script>tool()</script>", time.Now().Add(180*time.Second), keyA)
 	publicCall(t, h, "/v1/text/send", tokenA, e, 403)
-	expect(t, a.do("POST", "/home/invites", url.Values{"agent": {agentA}, "target": {agentB}}), 303)
-	expect(t, b.do("POST", "/home/invite-decision", url.Values{"agent": {agentA}, "target": {agentB}, "generation": {"1"}, "decision": {"accept"}}), 303)
+	befriend := func() Friend {
+		t.Helper()
+		var code string
+		s.mutateState(t, func(st *State) { code = st.Members[memberB].FriendCode })
+		expect(t, a.do("POST", "/home/friends/request", url.Values{"code": {code}, "consent": {"yes"}}), 303)
+		var friend Friend
+		s.mutateState(t, func(st *State) {
+			f := st.Friends[pairID(memberA, memberB)]
+			if f == nil || f.State != "pending" {
+				t.Fatal("real human friend request missing")
+			}
+			friend = *f
+		})
+		expect(t, b.do("POST", "/home/friends/decision", url.Values{"friend": {friend.ID}, "generation": {fmt.Sprint(friend.Generation)}, "decision": {"accept"}, "consent": {"yes"}}), 303)
+		return friend
+	}
+	friend := befriend()
 	body, _ := json.Marshal(e)
 	codes := make(chan int, 8)
 	var wg sync.WaitGroup
@@ -164,11 +181,12 @@ func TestPublicMessageHTTPBoundaries(t *testing.T) {
 	h = (&Service{Pool: pool}).Handler()
 	lease = publicCall(t, h, "/v1/text/pull", tokenA, map[string]string{}, 200)
 	delivery = map[string]string{"id": secondID, "token": lease["lease_token"].(string)}
-	expect(t, a.do("POST", "/home/unpair", url.Values{"agent": {agentA}, "target": {agentB}, "generation": {"1"}}), 303)
+	expect(t, a.do("POST", "/home/friends/decision", url.Values{"friend": {friend.ID}, "generation": {fmt.Sprint(friend.Generation)}, "decision": {"remove"}}), 303)
 	publicCall(t, h, "/v1/text/persist", tokenA, delivery, 409)
 	expect(t, a.do("GET", "/home/receipts?agent="+agentA+"&id="+secondID, nil), 200, "failed:revoked", "옛 요청은 복구되지 않습니다")
-	expect(t, a.do("POST", "/home/invites", url.Values{"agent": {agentA}, "target": {agentB}}), 303)
-	expect(t, b.do("POST", "/home/invite-decision", url.Values{"agent": {agentA}, "target": {agentB}, "generation": {"2"}, "decision": {"accept"}}), 303)
+	if renewed := befriend(); renewed.ID != friend.ID || renewed.Generation != friend.Generation+1 {
+		t.Fatal("friend generation did not advance")
+	}
 	publicCall(t, h, "/v1/text/send", tokenA, e, 403)
 	publicCall(t, h, "/v1/text/send", tokenB, reply, 403)
 	s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })

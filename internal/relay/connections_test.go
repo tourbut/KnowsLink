@@ -353,39 +353,45 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 	exp := time.Date(2026, 10, 7, 4, 19, 59, 162233000, time.UTC)
 	body := page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_a", Status: "연결 완료", Keys: []memberKey{{"key_1", "SHA256:7_B9RdVzaKQSQRTfdqCvAAAAAAAAAAAAAAAAAAAAAAAAAAA", "활성"}}}},
 		"Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: "pending", Generation: 1, Exp: exp}, Incoming: true}, {Pair: &Pair{A: "agent_a", B: "agent_c", State: "active"}}}})
-	has(body, `<code class="fp">SHA256:7_B9`, "초대 기한: 2026-10-07 13:19:59 KST", "code{word-break:normal;overflow-wrap:anywhere}", "word-break:keep-all;overflow-wrap:break-word", "input,select{display:block;width:100%")
+	has(body, `<code class="fp">SHA256:7_B9`, "이전 요청 기한: 2026-10-07 13:19:59 KST", "code{word-break:normal;overflow-wrap:anywhere}", "word-break:keep-all;overflow-wrap:break-word", "input,select,textarea{display:block;width:100%")
 	lacks(body, "+0000 UTC")
 	lacks(body, "초대 기한: 없음") // only a pending invite shows its deadline
 	lacks(body, "관계 세대")
 
 	// Each relationship state names its next step; only an open relationship offers unpair, and an ended one offers
 	// a manual re-invite from the member's own live agent and never an automatic reconnection.
+	// HP migration replaces re-invites with person friendship; only the exact active legacy pair can be revoked.
 	for _, c := range []struct {
 		state    string
 		incoming bool
 		own      string
 		want     string
 	}{
-		{"pending", true, "agent_a", "수락하기 전에는 메시지를 주고받을 수 없습니다"},
-		{"pending", false, "agent_a", "같은 초대를 다시 보내도 새 초대가 생기거나 기한이 바뀌지 않습니다"},
+		{"pending", true, "agent_a", "친구 요청으로 다시 시작하세요"},
+		{"pending", false, "agent_a", "친구 요청으로 다시 시작하세요"},
 		{"active", false, "agent_a", `action="/home/unpair"`},
-		{"denied", false, "agent_a", "연결이 끝났습니다"},
-		{"expired", true, "agent_a", "연결이 끝났습니다"},
-		{"revoked", false, "agent_a", "상대가 새로 수락해야 합니다"},
-		{"revoked", false, "", "연결이 끝났습니다"},
+		{"denied", false, "agent_a", "이 연결로 새 메시지를 보낼 수 없습니다"},
+		{"expired", true, "agent_a", "이 연결로 새 메시지를 보낼 수 없습니다"},
+		{"revoked", false, "agent_a", "친구 요청으로 다시 시작하세요"},
+		{"revoked", false, "", "이 연결로 새 메시지를 보낼 수 없습니다"},
 	} {
 		body := page(200, "home", map[string]any{"Title": "홈", "Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: c.state, Generation: 2}, Incoming: c.incoming, Own: c.own, Other: "agent_b"}}})
 		has(body, c.want)
-		open := c.state == "pending" || c.state == "active"
+		open := c.state == "active"
 		if open != strings.Contains(body, `action="/home/unpair"`) {
 			t.Fatal("unpair control", c.state)
 		}
 		reinvite := `<input type="hidden" name="agent" value="agent_a"><input type="hidden" name="target" value="agent_b"><button aria-label="새 초대 보내기: agent_b">새 초대 보내기</button>`
-		if (!open && c.own != "") != strings.Contains(body, reinvite) {
+		if strings.Contains(body, reinvite) {
 			t.Fatal("re-invite control", c.state, c.own)
 		}
-		if (c.state == "pending" && c.incoming) != strings.Contains(body, `action="/home/invite-decision"`) {
+		if strings.Contains(body, `action="/home/invite-decision"`) {
 			t.Fatal("decision control", c.state)
+		}
+		lacks(body, `action="/home/invites"`)
+		lacks(body, `action="/home/invite-deny"`)
+		if open {
+			has(body, `name="agent" value="agent_a"`, `name="target" value="agent_b"`, `name="generation" value="2"`)
 		}
 		// New receipt guidance describes absent wake; keep the original relation assertion scoped to relations.
 		relation := strings.Split(strings.Split(body, `id="pairs"`)[1], `id="gates"`)[0]
@@ -404,7 +410,7 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 	// A replacement refusal offers the new-agent control beside the way back home.
 	w = httptest.NewRecorder()
 	refused(w, "내 agent", refusal{409, keyRecordsFull, false, true})
-	has(w.Body.String(), `action="/home/agents"`, "새 에이전트 만들기", `href="/home"`)
+	has(w.Body.String(), `href="/home/agents"`, "에이전트 추가", `href="/home"`)
 	w = httptest.NewRecorder()
 	refused(w, "내 agent", refusal{409, agentProblem("records"), false, false})
 	lacks(w.Body.String(), `action="/home/agents"`)

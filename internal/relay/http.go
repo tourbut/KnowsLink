@@ -126,14 +126,9 @@ func (s *Service) Handler() http.Handler {
 				return nil, err
 			}
 			contacts := []string{}
-			for _, p := range st.Pairs {
-				if p.State == "active" {
-					if p.A == agent {
-						contacts = append(contacts, p.B)
-					}
-					if p.B == agent {
-						contacts = append(contacts, p.A)
-					}
+			for target := range st.Agents {
+				if _, _, ok := st.authority(agent, target); ok {
+					contacts = append(contacts, target)
 				}
 			}
 			return contacts, nil
@@ -147,8 +142,8 @@ func (s *Service) Handler() http.Handler {
 				return nil, err
 			}
 			target := r.PathValue("agent")
-			p := st.Pairs[pairID(agent, target)]
-			if agent != target && (p == nil || p.State != "active") {
+			_, _, allowed := st.authority(agent, target)
+			if agent != target && !allowed {
 				return nil, fault("sender_not_allowed")
 			}
 			a := st.Agents[target]
@@ -182,6 +177,7 @@ func (s *Service) Handler() http.Handler {
 	mux.HandleFunc("POST /owner/gates/{id}", s.gateDecision(basicOwner))
 	mux.HandleFunc("POST /owner/gates/{id}/deny", s.gateDecision(basicOwner))
 	s.memberRoutes(mux)
+	s.humanRoutes(mux)
 	s.agentRoutes(mux)
 	s.textRoutes(mux)
 	mux.HandleFunc("GET /home/receipts", s.memberReceipt)
@@ -320,9 +316,18 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		st.sweep(now)
 		return map[string]string{"state": "revoked"}, nil
 	case "invites":
+		if st.HumanModel == 1 && !st.SyntheticSignup {
+			return nil, fault("human_invite_required")
+		}
 		a, b := st.Agents[c.Agent], st.Agents[c.Target]
 		if a == nil || b == nil || a.Revoked || b.Revoked || c.Agent == c.Target || (kind == "agent" && principal != c.Agent) || (kind == "owner" && a.Owner != principal) || !st.Owners[b.Owner].Active {
 			return nil, fault("sender_not_allowed")
+		}
+		if _, m := st.humanMember(a.Owner); m != nil {
+			return nil, fault("human_invite_required")
+		}
+		if _, m := st.humanMember(b.Owner); m != nil {
+			return nil, fault("human_invite_required")
 		}
 		id := pairID(c.Agent, c.Target)
 		p := st.Pairs[id]
@@ -343,6 +348,14 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		p := st.Pairs[pairID(c.Agent, c.Target)]
 		if p == nil || st.Agents[p.A] == nil || st.Agents[p.B] == nil || st.Agents[p.Recipient].Owner != principal || (c.Decision != "accept" && c.Decision != "deny") {
 			return nil, fault("sender_not_allowed")
+		}
+		if c.Decision == "accept" && p.State != "active" {
+			if _, m := st.humanMember(st.Agents[p.A].Owner); m != nil {
+				return nil, fault("human_invite_required")
+			}
+			if _, m := st.humanMember(st.Agents[p.B].Owner); m != nil {
+				return nil, fault("human_invite_required")
+			}
 		}
 		if p.State == "active" && c.Decision == "accept" {
 			return p, nil
@@ -446,7 +459,7 @@ func csrf(token, id string) string {
 }
 
 // The gate page shares only the member visual tokens; its wording, hint-versus-body split, and hidden buttons stay as is.
-var page = template.Must(template.New("gate").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>요청 승인 · KnowsLink</title>` + memberStyle + `<a class="skip" href="#main">본문으로 건너뛰기</a><header class="top"><span class="brand">KnowsLink</span></header><main id="main" class="page"><h1>KnowsLink 요청 승인</h1><section aria-labelledby="gate-h"><h2 id="gate-h">상태: {{.State}}</h2><dl class="kv"><dt>발신 에이전트</dt><dd><code>{{.From}}</code></dd><dt>대상 에이전트</dt><dd><code>{{.To}}</code></dd><dt>원요청 ID</dt><dd><code>{{.Parent}}</code></dd><dt>Intent</dt><dd>{{.Intent}}</dd><dt>만료</dt><dd>{{.Exp}}</dd><dt>적용 정책</dt><dd>{{.Policy}}</dd></dl>{{if .Hint}}<h2>참고 hint (판단 근거가 아님)</h2><pre>{{.Hint}}</pre>{{end}}<h2>검증된 typed body</h2><pre>{{.Body}}</pre><p>Approve는 인간 게이트만 통과합니다. 정보 공개나 일정 실행을 허용하지 않습니다.</p>{{if .Active}}<form method="post"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="primary" name="decision" value="approve">Approve 승인</button><button class="danger-button" name="decision" value="deny" formaction="{{.Deny}}">Deny 거절</button></form>{{else}}<p class="note">승인·거절 버튼 비활성: {{.State}}</p>{{end}}<p><a href="{{.Back}}">작업 화면으로 돌아가기</a></p></section></main></html>`))
+var page = memberPages.Lookup("human-gate")
 
 // ownerAuth returns the CSRF key, the owner resolver, and the page to return to.
 type ownerAuth func(r *http.Request) (string, func(*State, time.Time) (string, error), string)

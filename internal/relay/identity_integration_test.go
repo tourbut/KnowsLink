@@ -86,7 +86,7 @@ func expect(t *testing.T, w *httptest.ResponseRecorder, status int, contains ...
 
 func identityService(t *testing.T, pool *pgxpool.Pool) (*Service, *inbox) {
 	t.Helper()
-	if _, err := pool.Exec(context.Background(), `UPDATE relay_state SET data='{}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
+	if _, err := pool.Exec(context.Background(), `UPDATE relay_state SET data='{"HumanModel":1}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
 		t.Fatal(err)
 	}
 	mail := &inbox{codes: map[string]string{}}
@@ -105,7 +105,7 @@ func login(t *testing.T, b *browser, mail *inbox, email string) string {
 	expect(t, b.do("POST", "/auth/start", url.Values{"email": {email}}), 303, "/auth/verify")
 	expect(t, b.do("GET", "/auth/verify", nil), 200, maskEmail(strings.ToLower(email)), "아직 로그인되지 않았습니다")
 	expect(t, b.do("POST", "/auth/verify", url.Values{"code": {mail.code(strings.ToLower(email))}}), 303, "/home")
-	w := b.do("GET", "/home", nil)
+	w := b.do("GET", "/home/legacy", nil)
 	expect(t, w, 200, maskEmail(strings.ToLower(email)), "회원 식별자")
 	return regexp.MustCompile(`mem_[A-Za-z0-9_-]+`).FindString(w.Body.String())
 }
@@ -126,7 +126,7 @@ func TestEmailIdentity(t *testing.T) {
 	t.Run("verified_signup_home_and_continuity", func(t *testing.T) {
 		s, mail := identityService(t, pool)
 		b := newBrowser(s, "192.0.2.1")
-		expect(t, b.do("GET", "/", nil), 200, "이메일로 가입", "관리자 아이디, 서버 접속, 별도 초대는 필요하지 않습니다")
+		expect(t, b.do("GET", "/", nil), 200, "이메일로 가입", "친구의 에이전트와 대화하세요")
 		expect(t, b.do("GET", "/home", nil), 303, "/?n=expired")
 		expect(t, b.do("POST", "/auth/start", url.Values{"email": {"Name <x@y.co>"}}), 422, "형식")
 		expect(t, b.do("POST", "/auth/start", url.Values{"email": {"Member.One@Example.com"}}), 303)
@@ -143,7 +143,7 @@ func TestEmailIdentity(t *testing.T) {
 		expect(t, b.do("POST", "/auth/verify", url.Values{"code": {wrong}}), 401, "남은 시도: 4회")
 		expect(t, b.do("GET", "/home", nil), 303, "/?n=expired")
 		expect(t, b.do("POST", "/auth/verify", url.Values{"code": {code}}), 303, "/home")
-		w := b.do("GET", "/home", nil)
+		w := b.do("GET", "/home/legacy", nil)
 		expect(t, w, 200, "m***@example.com", "아직 연결한 에이전트가 없습니다", "에이전트의 키와 자격은 철회되지 않습니다")
 		if strings.Contains(w.Body.String(), "member.one") || strings.Contains(w.Body.String(), "/v1/owners") || strings.Contains(w.Body.String(), "Basic") {
 			t.Fatal("home leaked address or owner-admin path")
@@ -159,7 +159,7 @@ func TestEmailIdentity(t *testing.T) {
 		// Restart: a new process on the same database keeps the session.
 		restarted := newBrowser(&Service{Pool: pool, Mail: mail.send}, "192.0.2.2")
 		restarted.cookies = other.cookies
-		expect(t, restarted.do("GET", "/home", nil), 200, first)
+		expect(t, restarted.do("GET", "/home/legacy", nil), 200, first)
 		// Synthetic signup is closed unless explicitly enabled; a session cookie is not an owner or agent credential.
 		expect(t, b.do("POST", "/v1/owners", nil), 403)
 		expect(t, b.do("POST", "/v1/agents", nil), 401)
@@ -240,14 +240,14 @@ func TestEmailIdentity(t *testing.T) {
 			}
 			st.Rates = map[string][]time.Time{}
 		})
-		expect(t, two.do("GET", "/home", nil), 200, "로그인 다시 확인", `<code class="select">agent_kept</code>`)
+		expect(t, two.do("GET", "/home/legacy", nil), 200, "로그인 다시 확인", `<code class="select">agent_kept</code>`)
 		expect(t, two.do("POST", "/auth/logout-all", nil), 403, "5분 안에")
 		third := newBrowser(s, "203.0.113.3")
 		login(t, third, mail, "owner@example.com")
 		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
 		expect(t, two.do("POST", "/auth/reauth", nil), 303, "/auth/verify")
 		expect(t, two.do("POST", "/auth/verify", url.Values{"code": {mail.code("owner@example.com")}}), 303, "/home")
-		expect(t, two.do("GET", "/home", nil), 200, "모든 브라우저에서 로그아웃")
+		expect(t, two.do("GET", "/home/legacy", nil), 200, "모든 브라우저에서 로그아웃")
 		expect(t, two.do("POST", "/auth/logout-all", nil), 303, "/?n=all")
 		expect(t, third.do("GET", "/home", nil), 303, "/?n=expired")
 		// Idle expiry.
@@ -328,7 +328,7 @@ func TestEmailIdentity(t *testing.T) {
 		expect(t, flood.do("POST", "/auth/verify", url.Values{"code": {"000000"}}), 429)
 		expect(t, alice.do("GET", "/home", nil), 429)
 		expect(t, newBrowser(restarted, "203.0.113.50").do("POST", "/auth/start", url.Values{"email": {"carol@example.com"}}), 303, "/auth/verify")
-		expect(t, bob.do("GET", "/home", nil), 200, "회원 식별자")
+		expect(t, bob.do("GET", "/home/legacy", nil), 200, "회원 식별자")
 		expect(t, bob.do("POST", "/auth/logout", nil), 303, "/?n=logout")
 	})
 
@@ -346,10 +346,10 @@ func TestEmailIdentity(t *testing.T) {
 		claim := f.deliver(firstID)
 		h := wire(t, f.private["agent_b"], gateID, "agent_b", "agent_b", "relay.approval.request", "approval-key-0001", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute))
 		f.send(h, "agent_b", claim, 200)
-		expect(t, bob.do("GET", "/home", nil), 200, "/home/gates/"+gateID, "<code>agent_b</code>")
+		expect(t, bob.do("GET", "/home/legacy", nil), 200, "/home/gates/"+gateID, "<code>agent_b</code>")
 		expect(t, alice.do("GET", "/home/gates/"+gateID, nil), 403)
 		expect(t, alice.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(alice.cookies[sessionCookie], gateID)}, "decision": {"approve"}}), 409)
-		expect(t, bob.do("GET", "/home/gates/"+gateID, nil), 200, "granularity_min", "Approve 승인", `href="/home"`)
+		expect(t, bob.do("GET", "/home/gates/"+gateID, nil), 200, "granularity_min", `value="approve">승인`, `href="/home"`)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {"bad"}, "decision": {"approve"}}), 403)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(bob.cookies[sessionCookie], gateID)}, "decision": {"approve"}}, "Sec-Fetch-Site", "cross-site"), 403)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(bob.cookies[sessionCookie], gateID)}, "decision": {"approve"}}), 303)
@@ -385,7 +385,7 @@ func TestEmailIdentity(t *testing.T) {
 		if w.Header().Get("Location") != "/home/gates/"+gateID {
 			t.Fatalf("deny redirected to %q", w.Header().Get("Location"))
 		}
-		expect(t, bob.do("GET", w.Header().Get("Location"), nil), 200, "상태: denied", "승인·거절 버튼 비활성", `href="/home"`)
-		expect(t, bob.do("GET", "/home", nil), 200, "/home/gates/"+gateID)
+		expect(t, bob.do("GET", w.Header().Get("Location"), nil), 200, "거절", "지금은 승인하거나 거절할 수 없습니다", `href="/home"`)
+		expect(t, bob.do("GET", "/home/legacy", nil), 200, "/home/gates/"+gateID)
 	})
 }
