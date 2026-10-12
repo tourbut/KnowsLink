@@ -41,6 +41,58 @@ D02 .fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md, D04 .fullops-s
 
 .fullops-squad/handovers/logs/2026-10-12_to_dev.md 및 기존254ff6a를 보존한다.
 
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-HUMAN-PEER-001-DEV-packet.json` / SHA `723675a6ec07e96cf8a855e59f5fc500a2b33beb` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 27, 27, 34, 34 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 6, 6, 16, 16, 27, 27 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/designer.md` (document_read) · 줄 6, 6, 14, 14, 16, 16 · inferred
+- `.fullops-squad/contexts/dev.md` (document_read) · 줄 42, 42 · inferred
+- `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 7, 7, 14, 14, 16, 16, 24, 24 · inferred
+- `.fullops-squad/docs/design-docs/crud-design.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/data-model.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/database-design.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 7, 7, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 7, 7, 16, 16 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md` (document_read) · 줄 6, 6, 14, 14 · inferred
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 7, 7, 13, 13, 15, 15, 50, 50 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_read) · 줄 7, 7, 14, 14, 26, 26 · inferred
+- `.fullops-squad/docs/design-docs/tech-stack.md` (document_read) · 줄 7, 7, 14, 14, 16, 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md` (document_read) · 줄 6, 6, 24, 24 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md` (document_read) · 줄 6, 6 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md` (document_read) · 줄 6, 6, 49, 49, 60, 60 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md` (document_read) · 줄 2, 2, 6, 6, 10, 10, 30, 30, 65, 65, 71, 71, 101, 101, 110, 110 · inferred
+- `.fullops-squad/docs/generated/db-schema.md` (document_read) · 줄 7, 7 · inferred
+- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 7, 7, 13, 13, 19, 19 · inferred
+- `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 7, 7, 13, 13, 15, 15, 31, 31 · inferred
+- `.fullops-squad/docs/planning/SAR-MVP-backlog.md` (document_read) · 줄 6, 6, 12, 12, 14, 14 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 7, 7, 18, 18 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md` (document_read) · 줄 7, 7, 15, 15 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_read) · 줄 7, 7, 17, 17 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 7, 7, 15, 15 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_read) · 줄 7, 7, 16, 16 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md` (document_read) · 줄 6, 6, 10, 10 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/product.md` (document_read) · 줄 6, 6, 10, 10 · inferred
+- `.fullops-squad/handovers/logs/2026-10-12_to_designer.md` (document_read) · 줄 122, 122, 123, 123, 126, 126, 130, 130, 138, 138, 174, 174, 177, 177, 189, 189, 198, 198, 261, 261, 265, 265 · inferred
+- `.fullops-squad/handovers/logs/2026-10-12_to_dev.md` (document_read) · 줄 386, 386, 387, 387, 390, 390, 394, 394, 402, 402, 405, 405, 444, 444, 462, 462, 475, 475, 478, 478, 479, 479, 498, 498, 531, 531, 544, 544, 556, 556 · inferred
+- `.fullops-squad/handovers/to_designer.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 23, 23, 28, 28, 36, 36 · inferred
+- `.fullops-squad/handovers/to_tester.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 17, 17, 24, 24, 32, 32, 54, 54, 72, 72, 90, 90, 95, 95, 98, 98, 100, 100 · inferred
+- `adapters/README.md` (document_read) · 줄 6, 6, 12, 12 · inferred
+미확인 15건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
 ## 완료 보고
 
-미완료.
+진행 중. startup packet check PASS, frontend check configuration_ready/exit0.
+
+coor msg_a4c17b567d94의 동일 수정 범위를 반영한다. V01의 친구 코드 설명은 짧게 바꾸고 이름 공개·현재/향후 agent 동의는 유지한다. V03의 홈 반복 제목은 h1과 목록 접근성 이름을 유지하며 정리한다.
+
+기술 계획: memberStyle의 agent-line/name-preview 표시 충돌을 좁은 선택자로 고친다. 기본 발신/수신은 이름으로 표시하고 동명이면 짧은 구분값을 유지한다. 전체 대상·기술 제한은 닫힌 native details로 이동한다. 대화 영역의 기존 간격 토큰을 줄여 두 메시지와 작성/보내기를 첫 desktop 화면에 배치한다. 색·글꼴·native Go template·noJS·CSP와 모든 form/hidden target/동의/오류/보존 경계는 유지한다. 새 의존성·제품 API·DB·tester fixture는 변경하지 않는다.
+
+적용 기준은 fullops-common-0.3.3, project.md, 현행 D02 HP-01–16/D04이며 UI host/model/effort는 codex/gpt-6.1-sol/high, 주 스킬은 frontend-design이다. 선택형 도구 설치는 없다. 기존 html/template/Origin 문서 근거를 재사용하며 새 라이브러리 API 사용은 없다.
