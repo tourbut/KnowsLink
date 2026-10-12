@@ -6,6 +6,7 @@ as evidence (repo AGENTS.md forbids cleanup until independent review); its path 
 """
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -157,17 +158,26 @@ class ShellGuardTest(unittest.TestCase):
 
     def test_codex_hook_from_subfolder(self):
         # F4: Codex runs the hook with the session cwd, so the command must find the guard from a subfolder.
-        if os.name != 'nt':  # the checked-in hook command is the Windows cmd /C form; sh cannot parse it
-            return
+        # Codex on Windows spawns `%COMSPEC% /C "<command>"` with a raw argument; a list argv would re-escape the
+        # inner quotes (backslash form) and run nothing. PowerShell -Command turns native exit 2 into 1 unless the
+        # command ends with `exit $LASTEXITCODE`. The same command string must pass in every shell that is present.
         repo = os.path.dirname(os.path.dirname(GUARD))
         with open(os.path.join(repo, '.codex', 'hooks.json'), encoding='utf-8') as f:
             command = json.load(f)['hooks']['PreToolUse'][0]['hooks'][0]['command']
+        launches = {'sh': command}
+        if os.name == 'nt':
+            launches = {'cmd shell=True': command, 'cmd /C raw': f'cmd.exe /C "{command}"'}
+        for exe in ('pwsh', 'powershell'):
+            if shutil.which(exe):
+                launches[exe] = [exe, '-NoProfile', '-Command', command]
         for text, code in (('git status', 0), ('rm -rf $X/', 2)):
-            for args in (command, ['cmd.exe', '/C', command]):
+            for name, args in launches.items():
                 proc = subprocess.run(args, shell=isinstance(args, str), input=json.dumps(
                     {'tool_name': 'Bash', 'tool_input': {'command': text}}), capture_output=True, text=True,
-                    cwd=os.path.join(repo, 'scripts'))
-                self.assertEqual(proc.returncode, code, (text, proc.stderr))
+                    cwd=os.path.join(repo, 'scripts'), timeout=60)
+                self.assertEqual(proc.returncode, code, (name, text, proc.stderr))
+                if code == 2:
+                    self.assertIn('Blocked by scripts/shell_guard.py', proc.stderr, name)
 
     def test_nothing_was_deleted(self):
         for path in (TARGET, LINK, OUTSIDE, os.path.join(WS, '.git')):
