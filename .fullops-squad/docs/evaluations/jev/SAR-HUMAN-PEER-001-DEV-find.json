@@ -1,9 +1,9 @@
 {
   "task_key": "SAR-HUMAN-PEER-001-DEV",
   "role": "dev",
-  "head": "5d5d26cd02e98a6a0978ca681a7565a6b6e5a29d",
+  "head": "730117505c0f1bd92852358e177d4d1f1a73b399",
   "attempt": "091fb01ddedc4dcda2db743061393dfb",
-  "instruction_sha256": "4ec7bcdaab62776cc4a6a3aa19332ecbb9f6a0afccece3c062cc70168c4135b0",
+  "instruction_sha256": "88b0b013b78a91a3edd96ba2642edb2380a71120d5580b16eeaef85a75ba5ba6",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
@@ -15,7 +15,7 @@
     "parser": "search-map-v1",
     "input_chars": 24000
   },
-  "input_sha256": "5c5bf355b01c75962d03af73d65b6aa6110480b988458d54e1983696350bde92",
+  "input_sha256": "2ae71d15bfa18bc4c1b793b799b44795721ced4343d2db3a2a39499253e93fd0",
   "version": "jev-find-v2",
   "requested_model": "~typesafe/jev-latest",
   "files": 86,
@@ -28,33 +28,33 @@
   ],
   "candidates": [
     {
-      "path": "internal/relay/member_pages.go",
-      "summary": "Member page views: the shared design tokens, status badges, and every member HTML template.",
-      "probability": 0.55,
+      "path": "internal/relay/member_agents.go",
+      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
+      "probability": 0.39,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 0
     },
     {
-      "path": "internal/relay/member_agents.go",
-      "summary": "Session-only agent and relationship screens reuse the owner state machine and never reveal another member's identity.",
-      "probability": 0.25,
+      "path": "internal/relay/member_pages.go",
+      "summary": "Member page views: the shared design tokens, status badges, and every member HTML template.",
+      "probability": 0.38,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 1
     },
     {
-      "path": "adapters/README.md",
-      "summary": "KnowsLink 호스트별 설치 — 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계 | KnowsLink 플러그인 | 호스트별 설치 — SAR-SSE-INSTALL-001 | 도메인으로 Google 연결 시작 | 패키지 만들기",
-      "probability": 0.060000000000000005,
+      "path": "internal/config/config.go",
+      "summary": "Package config validates development settings without exposing secret values.",
+      "probability": 0.06999999999999999,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 2
     },
     {
-      "path": "internal/relay/public_text.go",
-      "summary": "Public connection-check text uses a separate signed wire, current member authorization and the shared short-lived inbox.",
-      "probability": 0.05,
+      "path": "scripts/schema.py",
+      "summary": "Generate D08 directly from the committed SQL migration, preserving stamped metadata.",
+      "probability": 0.04,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 3
@@ -68,8 +68,8 @@
       "batch_rank": 4
     },
     {
-      "path": "internal/config/config.go",
-      "summary": "Package config validates development settings without exposing secret values.",
+      "path": "internal/relay/public_text.go",
+      "summary": "Public connection-check text uses a separate signed wire, current member authorization and the shared short-lived inbox.",
       "probability": 0.03,
       "probability_scope": "batch",
       "batch_start": 0,
@@ -78,53 +78,79 @@
     {
       "path": "db/queries/relay.sql",
       "summary": "",
-      "probability": 0.01,
+      "probability": 0.02,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 6
     },
     {
-      "path": "internal/relay/member_ui_test.go",
-      "summary": "Synthetic renders of every member page pin the form contract and feed the direct visual review.",
-      "probability": 0.01,
+      "path": "internal/relay/admission_integration_test.go",
+      "summary": "go:build integration",
+      "probability": 0.02,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 7
+    },
+    {
+      "path": "adapters/README.md",
+      "summary": "KnowsLink 호스트별 설치 — 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계 | KnowsLink 플러그인 | 호스트별 설치 — SAR-SSE-INSTALL-001 | 도메인으로 Google 연결 시작 | 패키지 만들기",
+      "probability": 0.01,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 8
     }
   ],
   "existence": {
-    "found_probability": 0.77,
+    "found_probability": 0.85,
     "status": "found",
     "basis": "metadata map only; not repository absence"
   },
   "truncated": false,
   "usage": {
-    "input_tokens": 6121,
+    "input_tokens": 5848,
     "output_tokens": 897,
-    "cost": 0.000257082,
-    "known_cost": 0.000257082,
+    "cost": 0.000245616,
+    "known_cost": 0.000245616,
     "cost_status": "complete"
   },
-  "latency_seconds": 0.702,
+  "latency_seconds": 0.7,
   "error": null,
   "calls": [
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 6121,
+        "input_tokens": 5848,
         "output_tokens": 897,
-        "cost": 0.000257082
+        "cost": 0.000245616
       },
-      "latency_seconds": 0.702
+      "latency_seconds": 0.7
     }
   ],
   "semantic_search": true,
   "snapshot": "HEAD metadata; no worktree overlay",
   "map_sha256": "cfa5ec3c551a887a07a7e04082f0b8e097b42a3562ce64f6cf9f00a3907dfd0d",
   "strategy": "batch",
-  "seed_paths": [],
+  "seed_paths": [
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/login.test.ts",
+    "adapters/src/mcp.ts",
+    "cmd/relay/main.go",
+    "db/queries/relay.sql",
+    "internal/config/config.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/device.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go",
+    "internal/relay/policy_test.go",
+    "internal/relay/public_text.go",
+    "internal/relay/test_messages.go",
+    "scripts/install_bot_mcp.sh",
+    "scripts/schema.py"
+  ],
   "unreadable_files": [],
-  "seed_search_error": null,
+  "seed_search_error": "explicit literal budget exceeded",
   "response_model": "typesafe/jev-1.13-20260917",
   "ranking_status": "single_batch",
   "remaining_candidates": [],
@@ -172,7 +198,6 @@
     "internal/database/db.go",
     "internal/database/models.go",
     "internal/database/relay.sql.go",
-    "internal/relay/admission_integration_test.go",
     "internal/relay/api_rate.go",
     "internal/relay/capacity.go",
     "internal/relay/cleanup.go",
@@ -183,6 +208,7 @@
     "internal/relay/google_test.go",
     "internal/relay/mail.go",
     "internal/relay/member_receipt.go",
+    "internal/relay/member_ui_test.go",
     "internal/relay/policy_test.go",
     "internal/relay/protocol.go",
     "internal/relay/protocol_test.go",
@@ -201,7 +227,6 @@
     "scripts/mail_sink.py",
     "scripts/package_plugin.py",
     "scripts/run_trial.py",
-    "scripts/schema.py",
     "scripts/shell_guard.py",
     "scripts/test_shell_guard.py",
     "scripts/verify_grok_plugin.py",
@@ -209,9 +234,9 @@
     "sqlc.yaml"
   ],
   "presented_files": 86,
-  "partial": false,
+  "partial": true,
   "fallback": null,
   "input_partial": true,
-  "instruction_chars": 6567,
-  "elapsed_seconds": 11.532
+  "instruction_chars": 15470,
+  "elapsed_seconds": 1.943
 }
