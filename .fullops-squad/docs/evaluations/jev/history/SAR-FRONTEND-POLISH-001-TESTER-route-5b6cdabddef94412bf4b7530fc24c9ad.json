@@ -1,0 +1,77 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-FRONTEND-POLISH-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0,
+        "ops": 0,
+        "tester": 1
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.07,
+      "D02": 0.07,
+      "D03": 0.07,
+      "D04": 0.08,
+      "D05": 0.06,
+      "D06": 0.07,
+      "D07": 0.06,
+      "D08": 0.06,
+      "D09": 0.07,
+      "D10": 0.11,
+      "D11": 0.09,
+      "D12": 0.17,
+      "D13": 0.15
+    }
+  },
+  "usage": {
+    "input_tokens": 2414,
+    "output_tokens": 314,
+    "cost": 0.000101388
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.501,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "aa66ed5903e7cbb52a40ada92123d1c58204cf43",
+  "requires_packet": true,
+  "attempt": "7e7e92f513ca440e9fa6253ec2ba265a",
+  "instruction_sha256": "d1dd83a4c4c20e1b648232198077e6c49d3599b2eefec4923f99793544746f6f",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "6fed1775423d0d1aba1be445753f82fdfb3615e1aae9acc1f4ffeae226fd7b07"
+}

@@ -42,6 +42,54 @@ fullops-frontend와 impeccable critique/polish를 적용한다. 기존 정본의
 
 갱신 산출물 D04. 기본 디자인 토큰은 변경하지 않는다. tester의 독립 코드 리뷰/동작 QA와 직접 시각 수락은 별개다. coor가 통합한다.
 
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-FRONTEND-POLISH-001-VISUAL-packet.json` / SHA `aa66ed5903e7cbb52a40ada92123d1c58204cf43` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_update, document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.79, 'evidence': 0.86, 'contradicts': 0.3, 'injection': 0.04, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md` (document_read) · 줄 6, 6, 10, 10, 12, 12, 33, 48 · inferred · 필수 · {'relevant': 0.78, 'evidence': 0.86, 'contradicts': 0.41, 'injection': 0.04, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md` (document_read) · 줄 6, 6, 10, 10, 31, 65, 65 · inferred · 필수 · {'relevant': 0.64, 'evidence': 0.82, 'contradicts': 0.34, 'injection': 0.04, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/handovers/to_designer.md` (document_read) · 줄 2, 2, 2, 6, 6, 6, 14, 14, 14, 37, 37, 37, 52, 52 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/designer.md` (document_read) · 줄 6, 68, 72, 76, 80 · inferred
+- `.fullops-squad/contexts/dev.md` (document_read) · 줄 6, 6, 28, 28 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read, document_update) · 줄 22 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_read) · 줄 7, 7, 223, 232, 232 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md` (document_read) · 줄 6, 10, 16, 28 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md` (document_read) · 줄 6, 10, 12 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md` (document_read) · 줄 6, 10, 29, 179, 181 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md` (document_read) · 줄 6, 10, 77 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md` (document_read) · 줄 6, 10, 72 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md` (document_read) · 줄 15, 104 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md` (document_read) · 줄 15 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md` (document_read) · 줄 2, 6, 10, 22 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md` (document_read) · 줄 2, 6, 10, 14, 25 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md` (document_read) · 줄 20 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md` (document_read) · 줄 2, 6, 10, 21 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md` (document_read) · 줄 22 · inferred
+- `.fullops-squad/handovers/logs/2026-10-12_to_dev.md` (document_read) · 줄 136, 139, 147, 189, 190, 266, 266, 267, 267, 270, 270, 274, 274, 282, 282, 315, 315, 327, 327, 342, 345, 349, 351, 379, 379 · inferred
+- `.fullops-squad/handovers/logs/2026-10-12_to_tester.md` (document_read) · 줄 153, 159, 167, 168, 237, 240 · inferred
+- `.fullops-squad/handovers/to_tester.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 22, 22, 39, 39 · inferred
+- `adapters/README.md` (document_read) · 줄 전체/미확인 · inferred
+- `internal/relay/member_pages.go` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.48, 'evidence': 0.51, 'contradicts': 0.31, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `internal/relay/member_ui_test.go` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.08, 'evidence': 0.13, 'contradicts': 0.64, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `internal/relay/remote_auth.go` (impact_check) · 줄 전체/미확인 · unknown · {'relevant': 0.03, 'evidence': 0.04, 'contradicts': 0.72, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `scripts/verify_setup.py` (impact_check) · 줄 전체/미확인 · inferred
+미확인 13건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
 ## 완료 보고
 
 완료 때 전문을 기록한다.
