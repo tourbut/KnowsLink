@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-12
 owner: tester
 tasks: [SAR-FRONTEND-POLISH-001-TESTER]
-summary: "고정 SHA 9597bad의 빈 form·OAuth·접근성·반응형 변경을 합성 fixture 29개 x 3폭으로 독립 검증한 결과와 미검사 범위"
+summary: 고정 SHA 9597bad의 빈 form·OAuth·접근성·반응형 변경을 합성 fixture 29개 x 3폭으로 독립 검증한 결과와 미검사 범위
 ---
 
 # SAR-FRONTEND-POLISH-001-TESTER 독립 동작 QA
