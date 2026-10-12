@@ -151,7 +151,6 @@ func TestPublicAgentHTTP(t *testing.T) {
 		expect(t, a.do("POST", "/home/invites", form), 403)
 		var exp time.Time
 		s.mutateState(t, func(st *State) { exp = st.Pairs[pairID(one, two)].Exp })
-		// Repeats from either side keep the pending invite and say so.
 		// HP migration refuses both directions without mutating the retained pair or extending its deadline.
 		expect(t, a.do("POST", "/home/invites", form), 403)
 		expect(t, a.do("POST", "/home/invites", url.Values{"agent": {two}, "target": {one}}), 403)
@@ -176,12 +175,13 @@ func TestPublicAgentHTTP(t *testing.T) {
 		wg.Wait()
 		close(results)
 		for c := range results {
-			if c != 403 {
+			// A repeat accept of this already-active exact pair is idempotent, never a new grant.
+			if c != 303 {
 				t.Fatal(c)
 			}
 		}
 		s.mutateState(t, func(st *State) {
-			if len(st.Pairs) != 1 || st.Pairs[pairID(one, two)].Generation != 1 {
+			if len(st.Pairs) != 1 || st.Pairs[pairID(one, two)].Generation != 1 || st.Pairs[pairID(one, two)].State != "active" || !st.Pairs[pairID(one, two)].Exp.Equal(exp) || len(st.Friends) != 0 || st.Members[member].SelfConnect {
 				t.Fatal("duplicate pair")
 			}
 			st.Rates["http:new"] = make([]time.Time, 201)

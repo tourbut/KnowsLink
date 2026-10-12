@@ -78,6 +78,12 @@ func TestHumanPostgres(t *testing.T) {
 		return agent
 	}
 	aa, ab, cc := create("a", "a"), create("b", "b"), create("c", "c")
+	a2 := create("a", "a2")
+	expect(t, a.do("POST", "/home/conversation/send", url.Values{"from": {aa}, "to": {a2}, "text": {"합성 자기 연결"}, "attempt": {"human-self-send-0001"}}), 303)
+	selfLease := publicCall(t, h, "/v1/text/pull", tokens["a2"], map[string]string{}, 200)
+	selfDelivery := map[string]string{"id": selfLease["envelope"].(map[string]any)["id"].(string), "token": selfLease["lease_token"].(string)}
+	publicCall(t, h, "/v1/text/persist", tokens["a2"], selfDelivery, 200)
+	publicCall(t, h, "/v1/text/ack", tokens["a2"], selfDelivery, 200)
 	var code string
 	var friend *Friend
 	s.mutateState(t, func(st *State) { code = st.Members[members["b"]].FriendCode; st.Rates = map[string][]time.Time{} })
@@ -182,5 +188,77 @@ func TestHumanPostgres(t *testing.T) {
 		if w.Header().Get("Content-Security-Policy") == "" || w.Header().Get("Cache-Control") != "no-store" {
 			t.Fatal("security headers missing")
 		}
+	}
+}
+
+// A connection-private SQL fixture exercises an old JSON reader path without replacing another test's singleton.
+func TestHumanLegacyPostgres(t *testing.T) {
+	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" || os.Getenv("TEST_DATABASE_URL") == "" {
+		t.Fatal("isolated database required")
+	}
+	cfg, err := pgxpool.ParseConfig(os.Getenv("TEST_DATABASE_URL"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	cfg.MaxConns = 1
+	pool, err := pgxpool.NewWithConfig(context.Background(), cfg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer pool.Close()
+	ctx := context.Background()
+	for _, sql := range []string{
+		`CREATE TEMP TABLE relay_state (LIKE public.relay_state INCLUDING ALL)`,
+		`CREATE TRIGGER human_writer_guard BEFORE UPDATE OF data ON relay_state FOR EACH ROW EXECUTE FUNCTION public.guard_human_writer()`,
+	} {
+		if _, err := pool.Exec(ctx, sql); err != nil {
+			t.Fatal(err)
+		}
+	}
+	legacy, ids, _, now := humanFixture(t)
+	legacy.HumanModel = 0
+	for _, m := range legacy.Members {
+		m.Name, m.FriendCode = "", ""
+	}
+	for _, a := range legacy.Agents {
+		a.Name = ""
+	}
+	legacy.Pairs[pairID("agent_a1", "agent_b1")] = &Pair{A: "agent_a1", B: "agent_b1", State: "active", Generation: 7}
+	legacy.Pairs[pairID("agent_a2", "agent_b2")] = &Pair{A: "agent_a2", B: "agent_b2", State: "pending", Generation: 3, Exp: now.Add(time.Hour)}
+	raw, err := json.Marshal(legacy)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `INSERT INTO relay_state(singleton,data) VALUES(true,$1)`, raw); err != nil {
+		t.Fatal(err)
+	}
+	s := &Service{Pool: pool}
+	_, err = s.transaction(ctx, func(st *State, at time.Time) (any, error) {
+		if st.HumanModel != 1 || st.Members[ids["a"]].SelfConnect || st.Members[ids["a"]].FriendCode == "" || st.Agents["agent_a1"].Keys["key1"].Credential != legacy.Agents["agent_a1"].Keys["key1"].Credential {
+			t.Fatal("SQL migration changed key/identity or widened consent")
+		}
+		if _, gen, ok := st.authority("agent_a1", "agent_b1"); !ok || gen != 7 {
+			t.Fatal("SQL exact legacy authority lost")
+		}
+		if _, _, ok := st.authority("agent_a2", "agent_b2"); ok || st.Pairs[pairID("agent_a2", "agent_b2")].State != "expired" {
+			t.Fatal("SQL pending became authority")
+		}
+		if _, _, ok := st.authority("agent_a1", "agent_a2"); ok {
+			t.Fatal("SQL legacy self widened")
+		}
+		if _, err := st.operateAs("invites", st.Members[ids["a"]].Owner, "owner", command{Agent: "agent_a1", Target: "agent_b2"}, at, false); err == nil {
+			t.Fatal("SQL legacy public grant accepted")
+		}
+		return nil, nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err = pool.Exec(ctx, `UPDATE relay_state SET data='{}'::jsonb`); err == nil {
+		t.Fatal("SQL old writer discarded migration")
+	}
+	var version int
+	if err = pool.QueryRow(ctx, `SELECT (data->>'HumanModel')::integer FROM relay_state`).Scan(&version); err != nil || version != 1 {
+		t.Fatal("SQL migration not durable", err)
 	}
 }

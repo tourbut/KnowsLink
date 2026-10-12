@@ -18,7 +18,7 @@ summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 | 경로 | 계약 |
 |---|---|
 | GET `/home`, `/home/name`, `/home/friends`, `/home/friends/{id}`, `/home/agents`, `/home/account`, `/home/new`, `/home/conversation` | 대화 홈·이름·친구/상세·agent·계정·대상 선택·기록. 대화 query는 from/to, optional attempt다 |
-| POST `/home/profile` | name: trim 후 Unicode 1–40자, control/format 문자 거부. 변경은 ID/신원/키 불변 |
+| POST `/home/profile` | name: trim 후 Unicode 1–40자, control/Bidi_Control 문자 거부. 변경은 ID/신원/키 불변 |
 | POST `/home/agent-name` | agent/name, 자기 agent만 변경 |
 | POST `/home/agents` / `/home/device-confirm` / `/remote/consent/{id}` 승인 | 새 agent 이름 필수. 기존 최근 인증·연결 proof·명시 승인 유지 |
 | POST `/home/friend-code` | 자기 코드 회전. 이전 코드는 신규 요청에 무효; 기존 요청/친구를 바꾸지 않음 |

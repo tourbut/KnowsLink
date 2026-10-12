@@ -40,6 +40,7 @@ var badges = map[string][3]string{
 	"pending": {"warn", "…", "대기"}, "active": {"ok", "✓", "연결됨"}, "approved": {"ok", "✓", "승인"}, "denied": {"off", "—", "거절"}, "expired": {"off", "—", "만료"}, "revoked": {"off", "—", "철회"},
 	"queued": {"warn", "…", "대기"}, "leased": {"warn", "…", "대기"}, "delivered": {"ok", "✓", "전달됨"}, "completed": {"ok", "✓", "처리 완료"}, "failed": {"off", "!", "실패"},
 	"cancelled": {"off", "—", "취소"}, "removed": {"off", "—", "해제"}, "blocked": {"off", "—", "차단"}, "registered": {"ok", "✓", "등록됨"}, "unconnected": {"off", "—", "연결 필요"}, "등록됨": {"ok", "✓", "등록됨"}, "연결 필요": {"off", "—", "연결 필요"},
+	"unavailable": {"off", "!", "확인할 수 없음"},
 }
 
 var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"badge": badge}).Parse(`

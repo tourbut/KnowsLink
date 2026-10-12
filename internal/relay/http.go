@@ -316,7 +316,9 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		st.sweep(now)
 		return map[string]string{"state": "revoked"}, nil
 	case "invites":
-		if st.HumanModel == 1 && !st.SyntheticSignup { return nil, fault("human_invite_required") }
+		if st.HumanModel == 1 && !st.SyntheticSignup {
+			return nil, fault("human_invite_required")
+		}
 		a, b := st.Agents[c.Agent], st.Agents[c.Target]
 		if a == nil || b == nil || a.Revoked || b.Revoked || c.Agent == c.Target || (kind == "agent" && principal != c.Agent) || (kind == "owner" && a.Owner != principal) || !st.Owners[b.Owner].Active {
 			return nil, fault("sender_not_allowed")

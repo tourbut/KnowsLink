@@ -66,6 +66,11 @@ func TestHumanNamesAndIdentity(t *testing.T) {
 	if got, ok := validName("  " + strings.Repeat("가", 40) + "  "); !ok || len([]rune(got)) != 40 {
 		t.Fatal("unicode trim/length")
 	}
+	for _, name := range []string{strings.Repeat("😀", 40), "가족 👨‍👩‍👧‍👦"} {
+		if _, ok := validName(name); !ok {
+			t.Fatal("valid Unicode name rejected")
+		}
+	}
 	st, ids, _, now := humanFixture(t)
 	before := st.Members[ids["a"]]
 	owner := before.Owner

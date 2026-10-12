@@ -29,7 +29,7 @@ func validName(raw string) (string, bool) {
 		return name, false
 	}
 	for _, r := range name {
-		if unicode.IsControl(r) || unicode.In(r, unicode.Cf) {
+		if unicode.IsControl(r) || unicode.Is(unicode.Bidi_Control, r) {
 			return name, false
 		}
 	}
