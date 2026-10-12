@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "6e6c2574834b42f8af5d7de9c65d0a60",
+  "base": "471e28a8f18da409e9abc171b36988f494668503",
+  "merge_base": "471e28a8f18da409e9abc171b36988f494668503",
+  "head": "1d4a0f78a9c01fc818b2def74adf0b08bc4c295a",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "로컬 make 미설치로 unavailable. 이번 diff는 문서·검수 JSON만 변경했다. 제품·lint 설정·fullops.json은 DEV 고정9597bad와 diff exit0으로 동일하다. 제품 테스트는 이번 문서 리뷰에 해당 없음이며 통과로 표시하지 않는다. DEV exact9597bad gate 통과는 별도 구현 수락 근거다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "로컬 make 미설치로 unavailable. 이번 diff는 문서·검수 JSON만 변경했다. 제품·lint 설정·fullops.json은 DEV 고정9597bad와 diff exit0으로 동일하다. 제품 테스트는 이번 문서 리뷰에 해당 없음이며 통과로 표시하지 않는다. DEV exact9597bad gate 통과는 별도 구현 수락 근거다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 3,
+    "added_lines": 26,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}
