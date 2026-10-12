@@ -1,3 +1,14 @@
+---
+title: Silent Agent Relay — 결정 로그
+status: draft
+updated: 2026-10-12
+owner: designer
+tasks: [SAR-HUMAN-PEER-001]
+summary: 과거 보안·wire 결정 원문과 새 사람 친구 제품 범위를 구분한다
+---
+
+> 2026-10-12 현행 안내: 아래 원천 본문은 source.json에 고정된 과거 결정으로 보존한다. 사용자의 사람 peer·이름·대화 전면 개편 요청이 Contacts=agents·agent별 수락·composer 금지를 대체한다. 새 제품 규칙은 [현행 D02](../../product-specs/SAR-HUMAN-PEER.md), 화면은 [현행 D04](../../../design-docs/mockups/service-member-ui.md)를 따른다. 업무 wire·키·현재 인가·게이트의 보안 잠금은 유지한다. 과거 원문이나 출처 SHA를 소급 변경하지 않는다.
+
 # Silent Agent Relay — 결정 로그
 
 ## 2026-10-02

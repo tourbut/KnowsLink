@@ -2,13 +2,19 @@
 id: D02
 title: KnowsLink 일반 이메일 서비스 수락 기준
 status: review
-updated: 2026-10-06
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY]
+tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY, SAR-HUMAN-PEER-001]
 summary: 일반 서비스 관계 재초대와 기록 포화의 교체·철회 목록 정리 수락 조건을 정의한다
 ---
 
 # KnowsLink 일반 이메일 서비스 수락 기준
+
+## 현행 변경 — 2026-10-12
+
+사람·친구·에이전트 이름·대화·데이터 이행은 [사람 중심 연결 D02](SAR-HUMAN-PEER.md)의 HP-01–16을 따른다. 이 새 요청은 아래 PS-05/07/08/14의 에이전트별 관계 수락과 composer 금지를 대체한다. 친구는 사람 단위이며 내 에이전트와 친구의 에이전트를 이름으로 선택한다. 새 대화 text는 최대 24h 보존한다. 기존 메시지는 원래 보존만 적용한다. Google 신원·키·현재 인가·업무 게이트·rate·상품 보류는 유지한다.
+
+아래 일반 서비스 기획과 과거 검사 기록은 당시 범위다. 새 D02와 충돌하는 관계·대화·원문 삭제·한도 단위는 새 D02를 적용한다. 구현·독립 QA·운영 수락은 후속이며 과거 결과로 대체하지 않는다.
 
 ## 결정 근거와 현재 상태
 

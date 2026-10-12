@@ -1,13 +1,17 @@
 ---
 title: 일반 이메일 서비스 화면 수락 기준
 status: draft
-updated: 2026-10-06
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX]
+tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-HUMAN-PEER-001]
 summary: 관계 재초대와 키·agent 기록 포화 및 교체·철회 목록 정리의 상태와 다음 동작을 정의한다
 ---
 
 # 일반 이메일 서비스 화면 수락 기준
+
+## 현행 사용자 흐름 — 2026-10-12
+
+관계·대화·이행은 [현행 D02](../../planning/product-specs/SAR-HUMAN-PEER.md)와 [현행 D04](service-member-ui.md)를 따른다. 아래 UX-04/05의 agent별 초대·교체 수락과 UX-06의 연결 시험 전용 화면은 과거 기준이다. 현재 friend 수락이 활성 agent 연결 범위를 정하며 신규 대화 원문은 최대 24h 보존한다. 신원·연결 지문·실패 안내·검증된 업무 gate 기준은 유지한다. 새 구조는 고정 DEV SHA에서 독립 QA와 직접 시각 검수를 받아야 한다.
 
 ## 목적과 책임
 

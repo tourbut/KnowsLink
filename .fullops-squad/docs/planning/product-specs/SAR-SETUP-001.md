@@ -2,14 +2,18 @@
 id: D02
 title: KnowsLink 초기 구성과 lint 요구사항
 status: review
-updated: 2026-10-03
+updated: 2026-10-12
 owner: designer
-tasks: [SAR-SETUP-001]
+tasks: [SAR-SETUP-001, SAR-HUMAN-PEER-001]
 downstream: [D03]
 summary: "고정 원천의 초기 구성과 lint 범위, 수락 기준, 역할별 산출물을 정의한다"
 ---
 
 # SAR-SETUP-001 — 프로젝트 초기 구성과 lint 요구사항
+
+## 이력 범위와 현재 제품
+
+이 문서는 초기 구성·lint의 과거 요구사항이다. 현재 사람 친구·이름·대화 제품 규칙은 [사람 중심 연결 D02](SAR-HUMAN-PEER.md)를 따른다. 아래 Contacts=agents와 채팅 제외를 새 개발 요구로 적용하지 않는다. 초기 구성 수락과 당시 원천 보존 기록은 바꾸지 않는다.
 
 ## 목적과 근거
 
