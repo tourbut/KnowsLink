@@ -1694,3 +1694,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - ACK된원완료보고를 Orca check --all --typesworker_done로 재수집하고 공식 integration.record로 공용메타데이터를 복구했다(이전status --run은재수집기능이없었다). msg_e24c2d5ce38a/254ff6a,msg_7e0a71c1e687/12dc0c7,msg_3a6a92bfd8e5/bfdfafc,msg_ff6742c7e364/096d5c7은 coor후보에만병합·main미수락이므로 hold/coor/최종tester독립검수통과뒤resume·main통합push로 기록했다. 원본문과SHA를변조하지않았다. 재수집원본 completion-messages.json은 외부coor증거폴더보존.
 
+
+- 최종 수락: 독립254ff6a QA/코드리뷰 critical/high0, low문구3 후속. UI12dc0c7 별도고정리뷰6/37 및 tester기록6/13 check통과. V01–V03 scoped 시각PASS, 원FAIL·keyboard/200% 및 scenario not_run 보존. 최종 통합HEAD 등록검사 뒤 main/origin 반영한다. 사용자 이메일 확인 완료, 운영 Google 계정선택에서 다음화면 이동 미확인. 실제가입/에이전트연결·운영배포는 완료로 표시하지 않는다.
