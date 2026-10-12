@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-12
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL]
 summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 보존한다
 ---
 
@@ -86,3 +86,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-12: SAR-FRONTEND-POLISH-001-VISUAL은 후보 9597bad의 제품 동일성과 manifest를 확인하고 after PNG 26장을 직접 검수했다. 제공된 변경 화면은 시각 PASS다.
   V-02·V-03·V-08·V-12와 mobile 생성 버튼 폭·명령 줄바꿈은 비차단 잔여다. 포커스·320px는 DEV 근거 재사용이며 운영·실계정·200%·스크린 리더는 미검증이다.
   근거·후속: [직접 시각 검수 보고](../docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md).
+
+- 2026-10-12: SAR-HUMAN-PEER-001-VISUAL은 최종 후보 254ff6a의 memberStyle/대화 template 동일성을 확인한 뒤 원래 4eaefa6의 실제 합성 PNG 21장을 모두 직접 검수했다. 시각 수락은 FAIL이다.
+  V-01 작성란 기술 설명·반복 대상 문장, V-02 긴 목록 이름/desktop 작성 위치는 medium 수정 대상이다. V-03 반복 제목은 low다. 실제 surface·200%·focus의 완료 범위와 not_run을 이미지 판정과 구분한다.
+  근거·수정 수락 조건·후속: [사람 친구·대화 시각 보고](../docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md). 제품 코드는 수정하지 않았다.
