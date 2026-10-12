@@ -1590,3 +1590,8 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - SAR-SERVICE-UI-001-OPS 완료e9eed962, 실제7f2986bc-0da2-4532-8f72-c908c4724cd9. root 고정 결과리뷰8/8·check통과·lint ERROR0/WARN0/make unavailable2 사유 보존. 운영 product95df83c detached/clean, 배포/local/package0, 전후 DB·키·관계·Google·Tunnel·공유서비스 보존. baseline/after grep종료1과 기존 regression projects실패1은 해소로 표시하지 않는다. 새 DB dump없음·코드전용eac복귀. 실제Google재인증/home4에이전트/관계2·320/390/1440 넘침·소형0·skip/Tab포커스 확인은 coor LIVE/report.md에 기록. 현재 요청의 상용 회원UI·루틴깨우기 개선 완료, 다른 SSE/Events/Trust 잔여는 유지한다.
 - 운영 결과e9eed962와 root검토·실계정 검증은 main/origin/main cd8a00845a2ead53f75b004fbe8c451f42014d09에 통합·push·fetch/완료SHA 조상 확인했다. ctx_5f6ce8c44c09 정상 released/closed_agent_terminal/transcript captured, delivery_d93eba9a237f ACK, integration pending0. 최종 동기화 점검: OPS/DEV actualterminal0·clean, designer 사용자 세션 실제idle·clean이므로 이 마감 기록 포함 최신 main으로 FF한다. tester는 idle이나 동일바이트 score2개 untracked 보존으로 최신 main 반영을 예약한다. 다음 dispatch 전 clean/충돌·최신 main 포함을 확인한다. root 진행 세션의 리뷰snapshot은 종료 확인 전 보존하며 강제 정리하지 않는다.
+
+## 2026-10-12 detached 정리 요청 점검
+- 사용자 요청에 따라 남은 관리 detached14개를 점검했다. 모든 경로는 workspace의 정확한 .fullops-review-* 직접 자식이며 reparse0, 미커밋·미추적·ignored 고유파일0, main/origin/main 조상이다. 감사 기록은 Git 공용 fullops-gate/detached-cleanup-audit-20261012.json이다.
+- 실제 normal cleanup(FIX-TESTER, ctx_5ab7a0d1f98a)을 다시 실행했으나 reviewer release·terminal 종료 확인 실패로 차단됐다. 현재 Orca는 해당 dispatch의 terminal output이 released됐고 transcript만 보존됐다는 runtime_error를 반환한다. cleanup의 terminal-only 조회와 archive 형식의 호환 문제이며 성공으로 처리하지 않았다.
+- 삭제0·이동0. 담당 coor. 재개 조건: 정리 도구가 보존 transcript에서 실제 release/종료와 reviewer-snapshot 매핑을 검증할 수 있고 각 공간의 재사용 종료가 확인될 때 normal cleanup 재실행. 캐시 수정·관리 기록 조작·강제 삭제로 우회하지 않는다. 현황판 제품 단계는 변하지 않았다.
