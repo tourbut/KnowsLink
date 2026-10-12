@@ -12,22 +12,15 @@ home: post /auth/reauth {button:=@}
 home: post /home/agent-revoke {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5}
 home: post /home/agent-revoke {button:=@; input:hidden:agent=agent_1f2e3d4c5b6a79880716253a}
 home: post /home/agent-revoke {button:=@; input:hidden:agent=agent_2b3c4d5e6f708192a3b4c5d6}
-home: post /home/agents {button:=@}
 home: post /home/connect {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; select:client; select:mode}
 home: post /home/connect {button:=@; input:hidden:agent=agent_1f2e3d4c5b6a79880716253a; select:client; select:mode}
-home: post /home/invite-decision {button:decision=accept@; button:decision=deny@/home/invite-deny; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:generation=3; input:hidden:target=agent_77665544332211009988aabb}
-home: post /home/invites {button:=@; input::target; select:agent}
-home: post /home/invites {button:=@; input:hidden:agent=agent_2b3c4d5e6f708192a3b4c5d6; input:hidden:target=agent_8899aabbccddeeff00112233}
 home: post /home/key-revoke {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:kid=key_01}
 home: post /home/key-revoke {button:=@; input:hidden:agent=agent_2b3c4d5e6f708192a3b4c5d6; input:hidden:kid=key_03}
-home: post /home/unpair {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:generation=1; input:hidden:target=agent_ccddeeff0011223344556677}
 home: post /home/unpair {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:generation=2; input:hidden:target=agent_2b3c4d5e6f708192a3b4c5d6}
-home: post /home/unpair {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:generation=3; input:hidden:target=agent_77665544332211009988aabb}
 home-empty: post /auth/logout {button:=@}
 home-empty: post /auth/logout {button:=@}
 home-empty: post /auth/reauth {button:=@}
 home-empty: post /auth/reauth {button:=@}
-home-empty: post /home/agents {button:=@}
 connection-token: post /home/cancel {button:=@; input:hidden:connection=c0nnect10n-1d-synthetic-0000000000000000000}
 connection-waiting: post /home/cancel {button:=@; input:hidden:connection=c0nnect10n-1d-synthetic-0000000000000000000}
 connection-prepared: post /home/cancel {button:=@; input:hidden:connection=c0nnect10n-1d-synthetic-0000000000000000000}
@@ -35,10 +28,9 @@ connection-prepared: post /home/confirm {button:=@; input:hidden:connection=c0nn
 connection-approved: post /home/cancel {button:=@; input:hidden:connection=c0nnect10n-1d-synthetic-0000000000000000000}
 device-login: post /auth/google {button:=@; input:hidden:connection=dev1ce-1d-synthetic-00000000000000000000000}
 device-prepared: post /home/cancel {button:=@; input:hidden:connection=dev1ce-1d-synthetic-00000000000000000000000}
-device-prepared: post /home/device-confirm {button:=@; input:hidden:connection=dev1ce-1d-synthetic-00000000000000000000000}
+device-prepared: post /home/device-confirm {button:=@; input::name; input:hidden:connection=dev1ce-1d-synthetic-00000000000000000000000}
 receipt: get /home/receipts {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:id=00000000-0000-4000-8000-0000000000aa}
 refusal-reauth: post /auth/reauth {button:=@}
-refusal-create: post /home/agents {button:=@}
 gate-active: post  {button:decision=approve@; button:decision=deny@/home/gates/00000000-0000-4000-8000-000000000001/deny; input:hidden:csrf=synthetic-csrf}
 remote-login: post /auth/google {button:=@; input:hidden:remote=rem0te-1d}
-remote-consent: post  {button:decision=approve@; button:decision=deny@; input:hidden:csrf=synthetic-csrf}
+remote-consent: post  {button:decision=approve@; button:decision=deny@; input::name; input:hidden:csrf=synthetic-csrf}

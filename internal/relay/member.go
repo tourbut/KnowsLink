@@ -55,7 +55,7 @@ func (s *Service) memberRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /auth/reauth", s.authReauth)
 	mux.HandleFunc("POST /auth/logout", s.logout(false))
 	mux.HandleFunc("POST /auth/logout-all", s.logout(true))
-	mux.HandleFunc("GET /home", s.homePage)
+	mux.HandleFunc("GET /home", s.humanPage("home"))
 	mux.HandleFunc("GET /home/gates/{id}", s.gatePage(sessionOwner))
 	mux.HandleFunc("POST /home/gates/{id}", s.gateDecision(sessionOwner))
 	mux.HandleFunc("POST /home/gates/{id}/deny", s.gateDecision(sessionOwner))
@@ -223,7 +223,7 @@ func (s *Service) memberHit(st *State, r *http.Request, now time.Time, rates fun
 	return id, session, retry, err
 }
 
-func (s *Service) homePage(w http.ResponseWriter, r *http.Request) {
+func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		id, session, retry, err := s.memberHit(st, r, now, memberRate)
 		if !retry.IsZero() {
@@ -308,7 +308,7 @@ func (s *Service) homePage(w http.ResponseWriter, r *http.Request) {
 		refused(w, "내 에이전트", v)
 		return
 	}
-	render(w, 200, "home", value.(map[string]any))
+	render(w, 200, "legacy-home", value.(map[string]any))
 }
 
 func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {

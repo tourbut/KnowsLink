@@ -34,7 +34,7 @@ type fixture struct {
 func setup(t *testing.T, pool *pgxpool.Pool) *fixture {
 	t.Helper()
 	ctx := context.Background()
-	if _, err := pool.Exec(ctx, `UPDATE relay_state SET data='{}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
+	if _, err := pool.Exec(ctx, `UPDATE relay_state SET data='{"HumanModel":1}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
 		t.Fatal(err)
 	}
 	f := &fixture{&Service{Pool: pool, SyntheticSignup: true}, nil, map[string]string{}, map[string]string{}, map[string]ed25519.PrivateKey{}, t}

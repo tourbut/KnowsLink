@@ -28,6 +28,8 @@ const (
 )
 
 type Member struct {
+	Name, FriendCode     string
+	SelfConnect          bool
 	Owner, Email, Issuer string
 	Active               bool
 	Created              time.Time
@@ -239,7 +241,7 @@ func (st *State) signIn(issuer, subject, email, currentHash, requiredMember stri
 		member = "mem_" + randomToken()[:22]
 		owner := "owner_" + randomToken()
 		st.Owners[owner] = &Owner{"", true}
-		st.Members[member] = &Member{owner, email, issuer, true, now}
+		st.Members[member] = &Member{Owner: owner, Email: email, Issuer: issuer, Active: true, Created: now, SelfConnect: true, FriendCode: randomToken()}
 		st.Identities[key] = member
 	}
 	m := st.Members[member]

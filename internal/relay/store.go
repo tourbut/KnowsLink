@@ -27,6 +27,8 @@ type Key struct {
 	Credential string
 }
 type Agent struct {
+	Name       string
+	Client     string
 	Owner      string
 	Credential string
 	Keys       map[string]*Key
@@ -49,6 +51,8 @@ type Receipt struct {
 	State    string    `json:"transport"`
 }
 type Message struct {
+	Scope           string
+	Conversation    *ConversationCopy `json:",omitempty"`
 	Receipt         Receipt
 	Key, Kid        string
 	Parent          string
@@ -73,27 +77,30 @@ type Gate struct {
 	Consumed                                           bool
 }
 type State struct {
-	Remote         *remoteState           `json:",omitempty"`
-	Streams        map[string]eventStream `json:",omitempty"`
-	GoogleAttempts map[string]*googleAttempt
-	Owners         map[string]*Owner
-	Agents         map[string]*Agent
-	Pairs          map[string]*Pair
-	Messages       map[string]*Message
-	Idempotency    map[string]string
-	Gates          map[string]*Gate
-	Members        map[string]*Member
-	Identities     map[string]string
-	Sessions       map[string]*Session
-	Challenges     map[string]*Challenge
-	Rates          map[string][]time.Time
-	HTTP           map[string]admission
-	Connections    map[string]*Connection
-	TestAgents     map[string]bool `json:"-"`
+	HumanModel      int
+	Friends         map[string]*Friend
+	Remote          *remoteState           `json:",omitempty"`
+	Streams         map[string]eventStream `json:",omitempty"`
+	GoogleAttempts  map[string]*googleAttempt
+	Owners          map[string]*Owner
+	Agents          map[string]*Agent
+	Pairs           map[string]*Pair
+	Messages        map[string]*Message
+	Idempotency     map[string]string
+	Gates           map[string]*Gate
+	Members         map[string]*Member
+	Identities      map[string]string
+	Sessions        map[string]*Session
+	Challenges      map[string]*Challenge
+	Rates           map[string][]time.Time
+	HTTP            map[string]admission
+	Connections     map[string]*Connection
+	TestAgents      map[string]bool `json:"-"`
+	SyntheticSignup bool            `json:"-"`
 }
 
 func newState() *State {
-	return &State{GoogleAttempts: map[string]*googleAttempt{}, Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
+	return &State{Friends: map[string]*Friend{}, GoogleAttempts: map[string]*googleAttempt{}, Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
 		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}, Connections: map[string]*Connection{}, HTTP: map[string]admission{}}
 }
 
@@ -151,7 +158,11 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if err = json.Unmarshal(row.Data, state); err != nil {
 		return nil, fault("unavailable")
 	}
+	if err = state.migrateHuman(now); err != nil {
+		return nil, err
+	}
 	state.TestAgents = s.TestAgents
+	state.SyntheticSignup = s.SyntheticSignup
 	beforeEvents := state.eventVersion(now)
 	state.sweep(now)
 	orphans := s.reclaim(state)
@@ -163,7 +174,11 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		if err = json.Unmarshal(row.Data, state); err != nil {
 			return nil, fault("unavailable")
 		}
+		if err = state.migrateHuman(now); err != nil {
+			return nil, err
+		}
 		state.TestAgents = s.TestAgents
+		state.SyntheticSignup = s.SyntheticSignup
 		state.sweep(now)
 		s.reclaim(state)
 		state.Rates = rates
@@ -226,8 +241,12 @@ func (st *State) current(m *Message) bool {
 	if m.Receipt.Intent == publicTextIntent && (!st.publicOwner(a.Owner) || !st.publicOwner(b.Owner)) {
 		return false
 	}
-	key := a.Keys[m.Kid]
-	if key == nil || key.Revoked {
+	if m.Conversation == nil || m.Conversation.Authorship != "owner" {
+		key := a.Keys[m.Kid]
+		if key == nil || key.Revoked {
+			return false
+		}
+	} else if !st.publicOwner(a.Owner) {
 		return false
 	}
 	if m.Receipt.Intent == publicTextIntent && m.Parent != "" {
@@ -246,10 +265,11 @@ func (st *State) current(m *Message) bool {
 		parent := st.Messages[g.Parent]
 		return parent != nil && st.current(parent)
 	}
-	pair := st.Pairs[pairID(m.Receipt.From, m.Receipt.To)]
-	return pair != nil && pair.State == "active" && pair.Generation == m.Generation
+	scope, generation, ok := st.authority(m.Receipt.From, m.Receipt.To)
+	return ok && scope == m.Scope && generation == m.Generation
 }
 func (st *State) sweep(now time.Time) {
+	st.sweepFriends(now)
 	st.sweepRemote(now)
 	for id, stream := range st.Streams {
 		if !now.Before(stream.Exp) {
@@ -456,11 +476,11 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 		if e.Deliver != "agent" {
 			return nil, fault("sender_not_allowed")
 		}
-		pair := st.Pairs[pairID(e.From, e.To)]
-		if pair == nil || pair.State != "active" || e.From == e.To {
+		_, g, ok := st.authority(e.From, e.To)
+		if !ok || e.From == e.To {
 			return nil, fault("human_invite_required")
 		}
-		generation = pair.Generation
+		generation = g
 		if e.Intent == "relay.result" {
 			var err error
 			parent, err = st.parentRouting(agent, e.ReplyTo)
@@ -523,6 +543,10 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 		return nil, fault("invalid_schema")
 	}
 	m := &Message{Receipt: Receipt{e.ID, e.From, e.To, e.Intent, digest, exp, now, "queued"}, Key: e.Key, Kid: e.Sig.Kid, Envelope: raw, Generation: generation, Parent: e.ReplyTo, Deliver: e.Deliver}
+	m.Scope, _, _ = st.authority(e.From, e.To)
+	if parent != nil {
+		m.Scope = parent.Scope
+	}
 	if !st.current(m) {
 		return nil, fault("sender_not_allowed")
 	}

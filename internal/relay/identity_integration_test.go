@@ -86,7 +86,7 @@ func expect(t *testing.T, w *httptest.ResponseRecorder, status int, contains ...
 
 func identityService(t *testing.T, pool *pgxpool.Pool) (*Service, *inbox) {
 	t.Helper()
-	if _, err := pool.Exec(context.Background(), `UPDATE relay_state SET data='{}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
+	if _, err := pool.Exec(context.Background(), `UPDATE relay_state SET data='{"HumanModel":1}',epoch=epoch+1,clock=clock_timestamp()`); err != nil {
 		t.Fatal(err)
 	}
 	mail := &inbox{codes: map[string]string{}}

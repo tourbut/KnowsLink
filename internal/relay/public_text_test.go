@@ -284,7 +284,7 @@ func TestMemberReceiptView(t *testing.T) {
 				t.Fatal("receipt meaning", state, want)
 			}
 		}
-		if strings.Contains(body, "<script>") || strings.Contains(body, "textarea") {
+		if strings.Contains(body, "<script>") || strings.Contains(body, "<textarea") {
 			t.Fatal("untrusted HTML or composer")
 		}
 	}

@@ -201,17 +201,37 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if st.Members[id].Issuer != googleIssuer {
 					return fail(fault("invalid_auth"))
 				}
+				name, valid := validName(r.FormValue("name"))
+				if !valid {
+					c := st.Connections[r.FormValue("connection")]
+					if c == nil || !c.Device {
+						return fail(fault("invalid_auth"))
+					}
+					public, _ := base64.RawURLEncoding.DecodeString(c.Public)
+					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": r.FormValue("name"), "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": "이름은 1–40자로 입력하세요"}, nil
+				}
 				if e := st.approveDevice(r.FormValue("connection"), owner, now); e != nil {
 					return fail(e)
 				}
+				c := st.Connections[r.FormValue("connection")]
+				st.Agents[c.Agent].Name = name
 				return "/connect/" + r.FormValue("connection"), nil
 			case "create":
+				name, valid := validName(r.FormValue("name"))
+				if !valid {
+					view, e := st.humanView(id, session, "agents", r, now)
+					if e != nil {
+						return fail(e)
+					}
+					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, "이름은 1–40자로 입력하세요", r.FormValue("name")
+					return view, nil
+				}
 				if limit := st.agentLimit(owner); limit != "" {
 					return refusal{status: 409, problem: agentProblem(limit)}, nil
 				}
 				agent = newMemberAgentID() // Avoid email-derived IDs and cross-member name collisions.
-				st.Agents[agent] = &Agent{Owner: owner, Keys: map[string]*Key{}}
-				return "/home", nil
+				st.Agents[agent] = &Agent{Name: name, Owner: owner, Keys: map[string]*Key{}}
+				return "/home/agents", nil
 			case "connect":
 				t, e := st.beginConnection(owner, agent, r.FormValue("client"), r.FormValue("mode"), now)
 				if e != nil && e.Error() == "capacity" {
@@ -284,7 +304,13 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 		case string:
 			http.Redirect(w, r, v, 303)
 		default:
-			render(w, 200, "connection", value.(map[string]any))
+			view := value.(map[string]any)
+			name, status := "connection", 200
+			if template, ok := view["FormTemplate"].(string); ok {
+				name = template
+				status = view["FormStatus"].(int)
+			}
+			render(w, status, name, view)
 		}
 	}
 }
