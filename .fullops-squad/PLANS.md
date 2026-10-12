@@ -1639,3 +1639,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - 기본 브랜치 통합 준비: 선행 hook 독립 리뷰 check(구현 과제 키DEV)와 FullOps1.4.0 리뷰 check 통과 확인. main의 기존 미커밋 .codex/hooks.json은 덮어쓰기 전에 AppData/Local/KnowsLinkDevTools/frontpolish001-coor/main-hooks-before-integration.json에 동일 SHA256 원본을 보존했다. UI 독립 수락 뒤 정확한 hook 파일만 Git stash로 보존하고 검토된 수정과 통합한다. 실제 host hook trust·오류 소멸은 별도 미검증이다.
 
+
+- 선행 통합 완료: 기존 main hook WIP를 stash SHA6d87f21628adc309450d31432141ef876c41cf1c와 별도 원본 파일에 보존했다. 검토된 hook d7d6d744·운영 업데이트ddb4132를 main에 SHA 보존 FF하고 origin/main에 push했다. 두 SHA의 remote 조상 관계 exit0. ops는 terminal0·clean 확인 뒤 최신 main FF, 나머지 역할은 이미 이 main을 포함한다. 실행 중 tester 체크아웃은 변경하지 않았다. UI는 독립 QA 수락 전이라 main에 아직 없다.
+
