@@ -1605,3 +1605,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 요청으로 이슈 #2–#8 조치를 대기하고 SAR-CODEX-HOOK-QUOTE-001-DEV를 우선한다. 기준67e7de9, implementation/dev, Claude Sonnet5.5 high fresh, lite/standard. 실제 Codex 현재 세션의 오류다.
 - 인용 없는 Python 코드의 PowerShell parser error1을 재현했다. coor 따옴표 후보는 기존 cmd list 인용 회귀 expected2/actual0으로 미수락이며 DEV가 실제 실행 계약과 함께 최소 수정한다. 원본 증거 Temp shell-guard-ws-p9rgzhud 보존, 실제 삭제0.
 - Run run_ea85dc04b5f3, 정규 to_dev 인박스 사용. 이슈 오토모드의 이전 세션 lease/paused/#2 held는 유지하며 보호 규칙을 우회하거나 재개하지 않는다. 독립 고정 SHA 리뷰와 main/push/역할 동기화 후 완료한다.
+
+- DEV 실제 착수: task_c68dbc76f1ca/ctx_7104051dd3bf/term_a98b80f2-8c32-470d-9082-abd9c496a3cf. fresh Claude Sonnet5.5 high requested/effective 및 turn_started, 정규 인박스·FULLOPS·guard/source/tests 읽기 확인. 준비7cae8d7을 실제 agent 없는 clean dev에 FF했다. 이후 정상 로그는 완료/질문/오류 또는60분 뒤만 조회한다.
+- tester 기존 미추적 score2개는 main 정본과 SHA256·바이트 동일성을 확인한 뒤616a4dc에 보존하고 main을 정상 merge했다. 삭제·이동 없이 clean과 최신 main 포함을 회복했다. 독립 후속 SAR-CODEX-HOOK-QUOTE-001-TESTER는 DEV 고정 SHA·gate 후 배정하며 아직 시작하지 않았다. route Grok 추천 대신 실제 Claude hook 차단 증명이 있는 등록 Claude Sonnet5.5 high로 좁은 보안 경계 검수를 수행할 예정이다.
