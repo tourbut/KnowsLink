@@ -1661,3 +1661,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - SAR-HUMAN-PEER-001: 사용자 새 요청으로 제품 규칙과 UI/UX 전면 변경을 승인했다. 사람 간 상호 peer 아래 이름 있는 내/친구 에이전트와 대화 흐름을 구현한다. 기존 정적 테스트 화면은 운영 동작이 아니다.
 - 제품 기획 designer를 fresh Codex gpt-6.1-sol high(라우팅 선택)에 배정한다. 이전 완료 세션은 큰 polish 검수 문맥이며 새 과제라 재사용하지 않는다. 주 디자인 스킬 frontend-design, 기존 D04를 변경하는 근거는 사용자 전면개편 요청이다. Run run_5534969da2d0, 기준 main/origin f20b33a11addeb3debcb23e2e835be31c7dd1454.
 - 순서: 제품/UX 명세와 DEV/QA 인계 → 독립 문서 검토·main 통합 → DEV 기술 계획·구현 → 독립 tester 동작/권한 QA·fixed-SHA 코드 리뷰와 designer 실제 시각 검수 → main 통합·Orca 테스트 화면 갱신. 실제 계정/외부 발송·운영 배포는 별도 실행 단계다. 삭제·이동 정리는 금지한다.
+- 착수 차단: designer task_491ede5000f9 / ctx_808f2fb09060는 agent_readiness에서 agent-hooks-review-prompt로 실패했다. 새 세션이 변경된 .codex/hooks.json의 hook 신뢰를 요구한다. Task 실행 전 실패이며 제품 수정은 없다. 실패 터미널은 receipt의 worker-release로 처리한다. 다음 착수는 같은 Task retry-of로 진행하며 사용자의 hook 신뢰 승인 후 새 세션에서 재개한다. hook 검토/차단 우회나 hooks 비활성화는 하지 않는다.
