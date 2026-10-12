@@ -1,0 +1,48 @@
+{
+  "task_key": "SAR-SERVICE-UI-001-OPS",
+  "find_head": "95df83c22c1559453a7c73504aa248088a8e4ed0",
+  "base": "0045089f2a2c3efe3e210eedc0c5cd4868487e42",
+  "head": "e9eed962bbb40093b6a08e126f42c6f0df0682ac",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    ".fullops-squad/handovers/to_ops.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/coor.md",
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    ".fullops-squad/handovers/to_ops.md",
+    ".fullops-squad/project.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    ".fullops-squad/handovers/to_ops.md"
+  ],
+  "recall": 0.8,
+  "precision": 0.333,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

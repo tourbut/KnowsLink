@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "c0c6b18386584708a52e9fbb08aaf285",
+  "base": "0045089f2a2c3efe3e210eedc0c5cd4868487e42",
+  "merge_base": "0045089f2a2c3efe3e210eedc0c5cd4868487e42",
+  "head": "e9eed962bbb40093b6a08e126f42c6f0df0682ac",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make 없음. 이번 결과는 운영 문서만 변경하며 제품/테스트/lock diff0; 제품95df83c의 독립 FIX-TESTER 및 원 DEV Linux gate 근거 재사용. 서버 package verify/local smoke와 실제 Google/member 화면은 별도 실행했다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make 없음. 이번 결과는 운영 문서만 변경하며 제품/테스트/lock diff0; 제품95df83c의 독립 FIX-TESTER 및 원 DEV Linux gate 근거 재사용. 서버 package verify/local smoke와 실제 Google/member 화면은 별도 실행했다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 3,
+    "added_lines": 52,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

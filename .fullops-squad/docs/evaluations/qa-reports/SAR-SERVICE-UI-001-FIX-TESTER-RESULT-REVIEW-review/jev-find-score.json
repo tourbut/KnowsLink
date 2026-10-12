@@ -1,0 +1,35 @@
+{
+  "task_key": "SAR-SERVICE-UI-001-FIX-TESTER",
+  "find_head": "a072630206009cd87129ab2faf2c5001ba058b1d",
+  "base": "111cce03183b6e29e205a1aaa94371c295dcdcda",
+  "head": "c1ab9976f2f03c4af70960105fff29b1c6a08e86",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "adapters/.mcp.json",
+    "adapters/README.md",
+    "adapters/eslint.config.mjs",
+    "cmd/relay/main_test.go",
+    "deploy/knowslink/verify.py",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go",
+    "scripts/shell_guard.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

@@ -1,0 +1,37 @@
+{
+  "task_key": "SAR-SERVICE-UI-001-OPS",
+  "find_head": "95df83c22c1559453a7c73504aa248088a8e4ed0",
+  "base": "0045089f2a2c3efe3e210eedc0c5cd4868487e42",
+  "head": "e9eed962bbb40093b6a08e126f42c6f0df0682ac",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    ".gitignore",
+    "Makefile",
+    "adapters/.cursor-plugin/plugin.json",
+    "adapters/README.md",
+    "cmd/relay/main.go",
+    "deploy/knowslink/access_trial_plan.py",
+    "deploy/knowslink/compose.ops.yaml",
+    "deploy/knowslink/test_public_config.sh",
+    "deploy/knowslink/verify.py",
+    "internal/relay/member_pages.go",
+    "scripts/shell_guard.py",
+    "sqlc.yaml"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": false,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

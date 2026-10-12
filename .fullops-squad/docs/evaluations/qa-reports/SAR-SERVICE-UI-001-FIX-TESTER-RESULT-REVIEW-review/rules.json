@@ -1,0 +1,31 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/contexts/tester.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md",
+        ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+        ".fullops-squad/handovers/to_tester.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-SERVICE-UI-001-FIX-TESTER-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/lint.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/preview.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/result.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/rules.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}
