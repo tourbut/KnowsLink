@@ -4,11 +4,7 @@
   "requested_model": "~typesafe/jev-latest",
   "route": "implementation",
   "role": "dev",
-  "deliverables": [
-    "D10",
-    "D11",
-    "D12"
-  ],
+  "deliverables": [],
   "thresholds": {
     "simple": 0.8,
     "role": 0.6,
@@ -18,57 +14,50 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 1,
-        "product": 0
+        "implementation": 0.91,
+        "product": 0.09
       },
-      "confidence": 1
+      "confidence": 0.82
     },
     "role": {
       "choice": "dev",
       "probabilities": {
-        "dev": 1,
+        "dev": 0.99,
         "ops": 0,
-        "tester": 0
+        "tester": 0.01
       },
-      "confidence": 1
+      "confidence": 0.98
     },
     "docs": {
-      "D01": 0.35,
-      "D02": 0.55,
-      "D03": 0.52,
-      "D04": 0.58,
-      "D05": 0.65,
-      "D06": 0.72,
-      "D07": 0.61,
-      "D08": 0.81,
-      "D09": 0.7,
-      "D10": 0.85,
-      "D11": 0.82,
-      "D12": 0.82,
-      "D13": 0.78
+      "D01": 0.12,
+      "D02": 0.13,
+      "D03": 0.12,
+      "D04": 0.26,
+      "D05": 0.11,
+      "D06": 0.1,
+      "D07": 0.07,
+      "D08": 0.1,
+      "D09": 0.11,
+      "D10": 0.34,
+      "D11": 0.34,
+      "D12": 0.2,
+      "D13": 0.22
     }
   },
   "usage": {
-    "input_tokens": 2526,
+    "input_tokens": 2415,
     "output_tokens": 314,
-    "cost": 0.000106092
+    "cost": 0.00010143
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
-  "additional_deliverables": [
-    "D02",
-    "D03",
-    "D04",
-    "D05",
-    "D06",
-    "D07",
-    "D08",
-    "D09",
-    "D13"
-  ],
-  "latency_seconds": 0.496,
+  "additional_deliverables": [],
+  "latency_seconds": 0.672,
   "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "확정 D04 시각 결함의 좁은 구현 수정",
   "model": {
     "agent": "codex",
     "provider": "openai",
@@ -77,15 +66,15 @@
     "source": "user"
   },
   "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
-  "head": "730117505c0f1bd92852358e177d4d1f1a73b399",
+  "head": "2d08b8146bf2b59c387a376b5c57b16038b05b76",
   "requires_packet": true,
-  "attempt": "091fb01ddedc4dcda2db743061393dfb",
-  "instruction_sha256": "88b0b013b78a91a3edd96ba2642edb2380a71120d5580b16eeaef85a75ba5ba6",
+  "attempt": "6b359aa6693c40eb98fdb20f707d0d08",
+  "instruction_sha256": "7a3f66ba19b18a6a48ff20f03b544fb0bc9b13e3a03a49a7d2af5e0ff3467631",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "0613b487639cf1f9d6fdada4d699b92c0e8e1141063f92be57c0f6117365d404"
+  "input_sha256": "f99b35ed1cb5abd3810f4872899f4761554d5840595f59b21fae2e297a0b6e60"
 }
