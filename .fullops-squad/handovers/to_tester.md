@@ -6,14 +6,14 @@ owner: tester
 tasks: [SAR-HUMAN-PEER-001-TESTER]
 summary: 고정 DEV 후보의 사람 친구와 대화 및 기존 데이터 권한 이행 독립 QA
 attempt: aaa81f41cc094961803f3c01f36eaddf
-base: f20b33a11addeb3debcb23e2e835be31c7dd1454
+base: 254ff6a98b12b7e51f0835491300f7695425d264
 subagent_level: standard
 test_level: lite
 ---
 
 # SAR-HUMAN-PEER-001-TESTER — 고정 사람 친구·대화 후보의 독립 lite QA
 
-- 상태: waiting-dev-sha. DEV 완료 SHA·기술 문서·검사/캡처 환경을 받을 때까지 실행하지 않는다.
+- 상태: ready. DEV 완료 SHA·기술 문서·검사/캡처 환경을 받을 때까지 실행하지 않는다.
 - From / To: designer / tester. Purpose: review. Task key: SAR-HUMAN-PEER-001-TESTER.
 - 담당: C:/Users/shin/orca/workspaces/KnowsLink/tester, fullops/tester. 시나리오·QA 증거·보고서만 수정한다. 제품 코드는 수정하지 않는다.
 - 복귀: repo 0b08ec4c-9e3a-4613-8197-5a835e545335, coor 워크트리, term_47da6145-4e1e-4cc1-93ea-20bc0dd590b9, Run run_5534969da2d0. task/dispatch는 새 preamble이다.
@@ -81,7 +81,7 @@ Windows make 부재 참고: coordinator msg_907ca28147c9가 C:/Users/shin/AppDat
 
 ## 고정 후보 독립 코드 리뷰 — coor 추가 계약
 
-독립 QA와 함께 별도 세션 fixed-SHA 코드 리뷰를 수행한다. 실행은 fresh grok / grok-4.7 / high이며 실제 CLI tuple을 확인한다. DEV 및 DEV child와 다른 세션이어야 한다. 후보는 최종 DEV worker_done의 40자리 SHA로 coor가 고정하며 현재는 대기다.
+독립 QA와 함께 별도 세션 fixed-SHA 코드 리뷰를 수행한다. 실행은 fresh grok / grok-4.7 / high이며 실제 CLI tuple을 확인한다. DEV 및 DEV child와 다른 세션이어야 한다. 후보는 최종 DEV worker_done의 40자리 SHA로 coor가 고정하며 최종 후보는 254ff6a98b12b7e51f0835491300f7695425d264다.
 
 fullops-review와 open-code-review-delegate를 읽는다. 기준 f849215bdefd3984dbf385c9f0973a74525be545에서 최종 DEV SHA의 실제 변경을 대상으로 review.py prepare와 snapshot을 생성한다. 작성자 실제 세션은 DEV flow-terminal 기록/완료 인계에서 확인하고 reviewer는 자기 실제 세션을 쓴다. 깨끗한 detached snapshot은 읽기 전용, 결과는 tester 기록 체크아웃에 쓴다. 제품 코드 수정·새 인가 기준 판단은 하지 않는다.
 
@@ -301,6 +301,16 @@ fullops-review와 open-code-review-delegate를 읽는다. 기준 f849215bdefd398
 미확인 17건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 
+
+## coor 최종 후보 인계 — 2026-10-12
+
+최종 검수 SHA는 254ff6a98b12b7e51f0835491300f7695425d264다. 기존 대기/구현 SHA 미정 문장은 이 절로 해소한다. 코드 리뷰 diff base는 f849215bdefd3984dbf385c9f0973a74525be545다. 실제 DEV 작성 세션은 01a12f82-ca28-7de1-8f74-acbfa1a6c823이며 별도 fresh 세션에서 검수한다. 제품 파일은 수정하지 않는다.
+
+DEV final-report: C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-runtime-ctx9ded/final-report.md. 정확한 최종 검사 final-lint.json 및 254ff6a98b12b7e51f0835491300f7695425d264-final-evidence/는 같은 외부 폴더에 있다. 등록 make lint/test·FullOps exit0 ERROR0 WARNING19 unavailable0, 전체 race/SQL integration native0 129초다. 독립 검수의 대체가 아니다.
+
+최종 private runtime은 /tmp/knowslink-humanpeer001-254ff6a98b12-c30163b6/qa-ccaa8cd7/repo, relay remote loopback41381, SMTP52205다. 외부 helper remote.py의 auth/fixture로 최종 SHA 합성 fixture를 준비할 수 있다. known_hosts RejectPolicy와 대상 SHA/ROOT를 확인한다. tester가 auth/fixture와 자기 forward를 소유하고 visual에 읽기 전용 URL·profile·page를 전달한다. designer는 tester에게 실제 UI 준비를 요청하고 기존 4eaefa6 PNG의 명시된 delta를 확인하며 검수할 수 있다. 독립 키보드/200% 확대는 실제 surface에서 수행하거나 not_run 사유를 명시한다.
+
+착수 첫 단계는 자신의 현재 HEAD에서 정식 jev_packet.py --repo <자기 checkout> --role <역할> --key <본 과제> --force --write-inbox 재생성과 startup identity/HEAD check 통과다. 준비 packet의 과거 HEAD를 수동 보정하지 않는다. source/attempt 불일치는 보고하고 정식 route/find/context 재생성으로 해결한다. 완료 시 같은 과제 key outcomes·work.py finish 및 정확한 최종 SHA worker_done을 사용한다. 구현 결함은 coor에 즉시 상태/재현으로 전달하되 나머지 독립 검수를 계속한다.
 ## 완료 보고
 
 미완료. 고정 SHA·검증·미실행·후속을 실제 완료 때 작성한다.

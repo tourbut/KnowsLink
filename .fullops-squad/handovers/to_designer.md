@@ -6,14 +6,14 @@ owner: designer
 tasks: [SAR-HUMAN-PEER-001-VISUAL]
 summary: 고정 구현 후보의 사람 친구와 대화 UI 직접 시각 수락
 attempt: a772658c0880455a933958b3cc02f211
-base: f849215bdefd3984dbf385c9f0973a74525be545
+base: 254ff6a98b12b7e51f0835491300f7695425d264
 subagent_level: standard
 test_level: lite
 ---
 
 # SAR-HUMAN-PEER-001-VISUAL — 사람 친구·대화 UI 직접 시각 검수
 
-- 상태: waiting-dev-sha. coor가 최종 DEV 40자리 SHA·캡처 manifest·환경을 고정한 뒤 ready로 전환한다. 현재 base는 설계 통합 기준이며 구현 SHA가 아니다.
+- 상태: ready. coor가 최종 DEV 40자리 SHA·캡처 manifest·환경을 고정한 뒤 ready로 전환한다. 현재 base는 설계 통합 기준이며 구현 SHA가 아니다.
 - From / To: coor / designer. Purpose: review. 실행 codex / gpt-6.1-sol / high, 주 스킬 frontend-design. 이전 설계 작성 세션과 다른 fresh 세션을 사용한다.
 - 담당: C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. D04 시각 판정·자기 phase/보고서/증거/context만 소유. 제품 코드·coor PLANS/board·tester QA 변경 금지.
 - 복귀: repo0b08ec4c-9e3a-4613-8197-5a835e545335, Run run_5534969da2d0, coor term_47da6145-4e1e-4cc1-93ea-20bc0dd590b9. 실제 task/dispatch는 새 preamble.
@@ -39,6 +39,16 @@ fullops-common-0.3.3 README/coding-style/testing/security, project.md, FULLOPS.m
 
 고정 SHA의 실제 화면 판정과 D04에 결과를 연결한다. 시각 조건이 충족되지 않으면 FAIL과 재현을 정직하게 보고한다. 미실행은 사유/영향을 기록한다. 자기 문서만 커밋하고 최종 HEAD의 FullOps lint와 문서 검사 결과를 남긴다. 제품 코드/설정 변경 없는 경우 제품 검사 재사용 또는 실행 불가 이유를 명시하며 독립 제품 QA로 확대하지 않는다. packet-outcomes·완료 전문·work.py finish로 인박스를 아카이빙한 뒤 실제 preamble worker_done을 한 번 보낸다.
 
+
+## coor 최종 후보 인계 — 2026-10-12
+
+최종 검수 SHA는 254ff6a98b12b7e51f0835491300f7695425d264다. 기존 대기/구현 SHA 미정 문장은 이 절로 해소한다. 코드 리뷰 diff base는 f849215bdefd3984dbf385c9f0973a74525be545다. 실제 DEV 작성 세션은 01a12f82-ca28-7de1-8f74-acbfa1a6c823이며 별도 fresh 세션에서 검수한다. 제품 파일은 수정하지 않는다.
+
+DEV final-report: C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-runtime-ctx9ded/final-report.md. 정확한 최종 검사 final-lint.json 및 254ff6a98b12b7e51f0835491300f7695425d264-final-evidence/는 같은 외부 폴더에 있다. 등록 make lint/test·FullOps exit0 ERROR0 WARNING19 unavailable0, 전체 race/SQL integration native0 129초다. 독립 검수의 대체가 아니다.
+
+최종 private runtime은 /tmp/knowslink-humanpeer001-254ff6a98b12-c30163b6/qa-ccaa8cd7/repo, relay remote loopback41381, SMTP52205다. 외부 helper remote.py의 auth/fixture로 최종 SHA 합성 fixture를 준비할 수 있다. known_hosts RejectPolicy와 대상 SHA/ROOT를 확인한다. tester가 auth/fixture와 자기 forward를 소유하고 visual에 읽기 전용 URL·profile·page를 전달한다. designer는 tester에게 실제 UI 준비를 요청하고 기존 4eaefa6 PNG의 명시된 delta를 확인하며 검수할 수 있다. 독립 키보드/200% 확대는 실제 surface에서 수행하거나 not_run 사유를 명시한다.
+
+착수 첫 단계는 자신의 현재 HEAD에서 정식 jev_packet.py --repo <자기 checkout> --role <역할> --key <본 과제> --force --write-inbox 재생성과 startup identity/HEAD check 통과다. 준비 packet의 과거 HEAD를 수동 보정하지 않는다. source/attempt 불일치는 보고하고 정식 route/find/context 재생성으로 해결한다. 완료 시 같은 과제 key outcomes·work.py finish 및 정확한 최종 SHA worker_done을 사용한다. 구현 결함은 coor에 즉시 상태/재현으로 전달하되 나머지 독립 검수를 계속한다.
 ## 완료 보고
 
 미완료. 최종 후보와 실제 시각 근거가 아직 고정되지 않았다.
