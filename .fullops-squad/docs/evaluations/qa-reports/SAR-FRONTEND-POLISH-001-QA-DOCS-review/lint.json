@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "1e0f49a79f894e0c9cbbe24e3325bc7c",
+  "base": "471e28a8f18da409e9abc171b36988f494668503",
+  "merge_base": "471e28a8f18da409e9abc171b36988f494668503",
+  "head": "ecef11205607dc5f7e58977e1af868df014929cd",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "로컬 make 없음. 이번 변경은 QA 증거·단기 합성 검사 helper와 문서뿐이다. 제품·등록 검사 설정·fullops.json은 DEV exact9597bad와 diff exit0으로 동일하다. DEV Linux product-lint/test EXIT0는 별도 제품 수락 근거로 재사용하며 이번 실행 통과로 표시하지 않는다. 통합 HEAD의 필수 검사는 coor가 후속 실행한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "로컬 make 없음. 이번 변경은 QA 증거·단기 합성 검사 helper와 문서뿐이다. 제품·등록 검사 설정·fullops.json은 DEV exact9597bad와 diff exit0으로 동일하다. DEV Linux product-lint/test EXIT0는 별도 제품 수락 근거로 재사용하며 이번 실행 통과로 표시하지 않는다. 통합 HEAD의 필수 검사는 coor가 후속 실행한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 0,
+    "added_lines": 0,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

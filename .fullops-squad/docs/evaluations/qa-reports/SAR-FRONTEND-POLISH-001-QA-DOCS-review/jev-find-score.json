@@ -1,0 +1,34 @@
+{
+  "task_key": "SAR-FRONTEND-POLISH-001-TESTER",
+  "find_head": "aa66ed5903e7cbb52a40ada92123d1c58204cf43",
+  "base": "471e28a8f18da409e9abc171b36988f494668503",
+  "head": "ecef11205607dc5f7e58977e1af868df014929cd",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "adapters/README.md",
+    "cmd/relay/main_test.go",
+    "deploy/knowslink/verify.py",
+    "internal/config/config.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go",
+    "scripts/shell_guard.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
