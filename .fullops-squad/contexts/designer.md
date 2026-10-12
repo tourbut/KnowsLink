@@ -90,3 +90,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-12: SAR-HUMAN-PEER-001-VISUAL은 최종 후보 254ff6a의 memberStyle/대화 template 동일성을 확인한 뒤 원래 4eaefa6의 실제 합성 PNG 21장을 모두 직접 검수했다. 시각 수락은 FAIL이다.
   V-01 작성란 기술 설명·반복 대상 문장, V-02 긴 목록 이름/desktop 작성 위치는 medium 수정 대상이다. V-03 반복 제목은 low다. 실제 surface·200%·focus의 완료 범위와 not_run을 이미지 판정과 구분한다.
   근거·수정 수락 조건·후속: [사람 친구·대화 시각 보고](../docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md). 제품 코드는 수정하지 않았다.
+
+- 2026-10-12: 같은 VISUAL 새 attempt161c5363은 후보12dc0c7의 원본14PNG와 별도 실제15상태를 직접 확인했다. V01–V03은 제공 범위 resolved/시각 PASS이며 원254ff6a FAIL은 보존한다.
+  실 keyboard/200%·미제공 상태는 not_run이다. 별도page의 요청/실제 CSS 치수를 대조하고 보정했으며 viewport를 실확대로 주장하지 않는다. Orca 세션 토큰 도구로그 노출은 값 없이 coor에 인계했다.
+  새 근거·한계·후속: [수정 후보 재검수 보고](../docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md). 제품·다른역할·PLANS/board는 수정하지 않았다.

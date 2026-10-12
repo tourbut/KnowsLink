@@ -26,3 +26,13 @@ Purpose: review. 최종 제품 후보는 `254ff6a98b12b7e51f0835491300f7695425d2
 ## 보존과 제외
 
 삭제·이동·새 도구 설치·운영/실계정/외부 발송을 하지 않았다. 임시 자료는 보고서 디렉터리와 기존 DEV runtime 폴더에 보존한다. 기술/API/DB 안전 검증은 DEV와 독립 tester/코드 reviewer의 책임이며 이번 이미지 검수로 대체하지 않는다. 문서-only 변경이므로 새 제품 테스트는 만들지 않는다.
+
+## 새 attempt161c5363 — 수정 후보12dc0c7 직접 재검수
+
+Purpose review. 후보 `12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5`, 착수 HEAD `a04d7c7b35adfaca0543e57970619e2ba469fa71`다. 같은 역할/tuple/스킬과 lite/standard를 유지했다. startup identity/HEAD/source 검사에 통과했다. 원후보 FAIL과 기존 완료 전문은 보존한다.
+
+sourcefe7a509의 실제14PNG를 모두 직접 열고 hash/크기 및 최종 제품 byte 동일성을 독립 확인했다. profile695dbff1에 별도 page0e37999e를 만들어 실제 GET15뷰포트 상태를 측정했다. 제공된 V01–V03은 resolved/좁은 시각 PASS다. desktop send bottom833.094555를 직접 확인했다. 초기 뷰포트 불일치/보정 실패와 중간391px PNG는 보존하고 최종 근거와 구분했다.
+
+실제 keyboard/200%·미제공 로그인/이름/pending/해제/gate는 not_run이다. coor msg_e68ff88264d1의 범위 지시에 따라 영향·후속을 명시했다. 착수 도구 로그의 Orca 세션 토큰 노출은 값 없이 msg_ac159db37045로 coor에 인계했다. 제품 코드·다른 역할·PLANS/board·원profile/DEVpage 설정·쿠키를 변경하지 않았다. 삭제·이동·운영은 없다.
+
+새 판정·원본/실제 증거·문서/게이트·보정 및 미실행의 정본은 [수정 후보 재검수 보고](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md)다. 자기 packet outcomes와 완료 전문을 남기고 work.py finish로 아카이브한다. main 수락/통합과 독립 QA/리뷰는 coor 후속이다.

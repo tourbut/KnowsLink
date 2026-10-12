@@ -180,6 +180,10 @@ P0 전체 흐름: 로그인·이름, 내 agent 등록/이름 변경, 친구 요�
 
 먼저 실제 합성 auth/API/DB의 `4eaefa6e0a5cf623f0d8d8080d918086f86030ec` 원래 PNG 21장을 모두 직접 열었다. 최종 후보와 memberStyle 및 관련 대화 template의 동일성을 확인했다. 과거 이미지를 최종 SHA 실행으로 표시하지 않는다. CSS1440/DPR0.75·320/390 DPR1 조건, 실제 surface·200%·focus·미포함 상태의 검사 범위와 not_run, 항목별 수정 수락 조건은 [이번 시각 보고](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md)에 있다. DEV 수정 후 새 고정 SHA의 영향 화면 검수와 tester/별도 리뷰가 필요하다.
 
+### 2026-10-12 수정 후보 직접 시각 재검수 — 12dc0c7
+
+원후보254ff6a FAIL은 위 절과 원보고에 보존한다. 후보 `12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5`의 제공된 V01–V03 수정 화면은 시각 PASS다. 실제14PNG를 모두 직접 열고 sourcefe7a509와 최종 제품 동일성을 확인했다. 별도 isolated page의15상태에서 두 줄 목록·가로 overflow0·44px 제어·desktop 첫 화면 textarea/보내기를 확인했다. 실제 키보드/200%·로그인/이름/pending/해제/gate의 직접 시각 검사는 not_run이며 전체 제품 수락을 뜻하지 않는다. 범위·보정·후속 정본: [수정 후보 직접 재검수](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md).
+
 ## 이전 설계와 검수 기록 — 비현행
 
 다음 1–14절은 2026-10-11–12의 이전 관리 UI 명세와 검수 이력이다. 기존 판정·제약·미확인 원문을 보존한다. 사람 친구·대화·현행 토큰/레이아웃/노출 범위에는 위 현행 D04와 HP 요구사항을 적용한다.
