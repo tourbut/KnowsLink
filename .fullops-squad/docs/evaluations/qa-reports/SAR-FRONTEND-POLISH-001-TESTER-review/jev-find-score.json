@@ -1,0 +1,34 @@
+{
+  "task_key": "SAR-FRONTEND-POLISH-001-DEV",
+  "find_head": "dcfc9ad66dc2ce2c2f0d7144a7f4ae9128432781",
+  "base": "5c6485b4c7c1c573a14bf3e683701b2399284666",
+  "head": "9597bad351a2fbfbaa726444b320b8cf7000e1e2",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "new_files": [],
+  "candidates": [
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "hits": [
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "recall": 1.0,
+  "precision": 0.667,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
