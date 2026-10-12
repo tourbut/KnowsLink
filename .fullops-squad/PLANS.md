@@ -1595,3 +1595,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 사용자 요청에 따라 남은 관리 detached14개를 점검했다. 모든 경로는 workspace의 정확한 .fullops-review-* 직접 자식이며 reparse0, 미커밋·미추적·ignored 고유파일0, main/origin/main 조상이다. 감사 기록은 Git 공용 fullops-gate/detached-cleanup-audit-20261012.json이다.
 - 실제 normal cleanup(FIX-TESTER, ctx_5ab7a0d1f98a)을 다시 실행했으나 reviewer release·terminal 종료 확인 실패로 차단됐다. 현재 Orca는 해당 dispatch의 terminal output이 released됐고 transcript만 보존됐다는 runtime_error를 반환한다. cleanup의 terminal-only 조회와 archive 형식의 호환 문제이며 성공으로 처리하지 않았다.
 - 삭제0·이동0. 담당 coor. 재개 조건: 정리 도구가 보존 transcript에서 실제 release/종료와 reviewer-snapshot 매핑을 검증할 수 있고 각 공간의 재사용 종료가 확인될 때 normal cleanup 재실행. 캐시 수정·관리 기록 조작·강제 삭제로 우회하지 않는다. 현황판 제품 단계는 변하지 않았다.
+
+- 2026-10-12 사용자 추가 지시 '삭제까지해'에 따라 위 자동 cleanup hold의 삭제 보류를 해제했다. 14개 정확한 workspace 직접 자식 경로·reparse0·detached/HEAD일치·main/origin 통합·고유파일0·Orca inactive/terminal0/attachedPTY없음을 재확인하고 git worktree remove(강제 옵션 없음)로 삭제했다. 삭제14·잔여detached0. 리뷰 결과·보고·lint 원본은 main에 보존했고 SHA256·삭제결과는 qa-reports/detached-cleanup-20261012.json이다. 자동 cleanup 성공으로 위조하지 않고 공용 관리기록은 removed_user_authorized로 구분했다. 중단/superseded 원리뷰의 lint 미생성도 그대로 기록했다. 제품 단계는 변화없다.
+- 이 정리 기록의 main 통합 뒤 현재 terminal0/clean을 확인한 역할만 FF한다. tester의 기존 untracked score2개는 보존하고 최신 main 동기화를 다음 dispatch 전으로 예약한다. 자동 cleanup의 archive 호환 오류 자체는 수정하지 않았다.
