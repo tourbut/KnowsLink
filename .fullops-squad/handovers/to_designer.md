@@ -45,3 +45,10 @@ fullops-frontend와 impeccable critique/polish를 적용한다. 기존 정본의
 ## 완료 보고
 
 완료 때 전문을 기록한다.
+
+## 고정 후보·실행 지시
+
+- 후보 SHA: 9597bad351a2fbfbaa726444b320b8cf7000e1e2. 제품 구현 f7b4786과 final9597bad 사이 제품 코드 변화가 없는지 확인한다.
+- 실제 after 이미지: .fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/after/png/. before/png/와 비교한다. after/manifest.json·measurements.json·keyboard.json을 참고한다. 합성 자료만 있다.
+- V-02/V-03/V-08/V-12는 DEV phase의 사유를 검토하고 이번 범위의 수락/후속을 판단한다. 새 기획/제품 문구 변경은 하지 않는다. 직접 이미지를 열어 시각 검수한다.
+

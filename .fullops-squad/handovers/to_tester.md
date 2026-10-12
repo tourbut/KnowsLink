@@ -46,3 +46,10 @@ fullops-review, open-code-review-delegate, fullops-test, fullops-frontend를 적
 ## 완료 보고
 
 완료 때 전문을 기록한다.
+
+## 고정 후보·실행 지시
+
+- Review SHA: 9597bad351a2fbfbaa726444b320b8cf7000e1e2. Implementer session: 49f80cab-a430-480f-ae2a-708c6fcba036. 기준5c6485b4c7c1c573a14bf3e683701b2399284666에서 리뷰한다. 실제 reviewer session은 시작한 본인의 host session ID를 확인한다.
+- DEV gate: Git 공용 worktrees/dev/fullops-gate/pass.json은 현재9597bad·base5c6485b·attempt a6d3ba7956ff4f61a1a169ee0b828ac9. 외부 lint-attempt.json·보존 로그를 확인하고 재사용의 SHA와 config digest를 기록한다.
+- 실제 변경: member_pages.go, remote_auth.go, member_ui_test.go, golden. 빈 form 2개 제거와 연결 완료 에이전트 조건, OAuth landmark/승인 primary, aria-label 및 모바일 레이아웃을 중점 확인한다.
+

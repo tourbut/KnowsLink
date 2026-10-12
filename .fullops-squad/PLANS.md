@@ -1630,3 +1630,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - SAR-FRONTEND-POLISH-001-VISUAL: DEV 고정 SHA·캡처 대기, designer/Codex gpt-6.1-sol medium fresh. route unresolved의 tester 추천은 역할 정본의 직접 시각 검수 designer 책임을 근거로 override했다. 기존 디자인의 시각 수락과 D04 연결만 담당한다.
 
+
+- DEV 완료 msg_25d17bf28d5b /9597bad351a2fbfbaa726444b320b8cf7000e1e2를 coor 후보에 병합했다. 구현f7b4786. 현재 HEAD gate pass의 base5c6485b·attempt a6d3ba79 일치 확인. 빈 form·좁은 폭·OAuth 위계·접근성 최소 수정. 독립 tester/visual 수락 전 main 통합 대기.
+
