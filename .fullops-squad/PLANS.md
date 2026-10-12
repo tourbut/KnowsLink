@@ -1608,3 +1608,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 
 - DEV 실제 착수: task_c68dbc76f1ca/ctx_7104051dd3bf/term_a98b80f2-8c32-470d-9082-abd9c496a3cf. fresh Claude Sonnet5.5 high requested/effective 및 turn_started, 정규 인박스·FULLOPS·guard/source/tests 읽기 확인. 준비7cae8d7을 실제 agent 없는 clean dev에 FF했다. 이후 정상 로그는 완료/질문/오류 또는60분 뒤만 조회한다.
 - tester 기존 미추적 score2개는 main 정본과 SHA256·바이트 동일성을 확인한 뒤616a4dc에 보존하고 main을 정상 merge했다. 삭제·이동 없이 clean과 최신 main 포함을 회복했다. 독립 후속 SAR-CODEX-HOOK-QUOTE-001-TESTER는 DEV 고정 SHA·gate 후 배정하며 아직 시작하지 않았다. route Grok 추천 대신 실제 Claude hook 차단 증명이 있는 등록 Claude Sonnet5.5 high로 좁은 보안 경계 검수를 수행할 예정이다.
+
+- DEV 완료 msg_88826a19daf4: 최종d7d6d744, 구현501d9d72, 실제cf470ffe 세션 확인. quoted Python 인수와 `; exit $LASTEXITCODE`로 parser error와 PowerShell deny2→1 변환을 처리하고 guard 본체는 유지했다. 기존 raw cmd seam 오류를 수정, 4 tests 및 exact final SHA Linux product-lint/test0·ERROR0 확인. coor 후보에 SHA 보존 병합했으며 main 수락은 독립 tester까지 hold다. 원 host stderr·live Codex·설치 버전과 upstream main 일치 미확인을 유지한다. DEV는 같은 과제 수정 대기로 retain하고 delivery_6034572eec2f ACK했다.
