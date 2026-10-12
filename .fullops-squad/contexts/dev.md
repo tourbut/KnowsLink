@@ -40,3 +40,5 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 2026-10-11 SAR-SERVICE-UI-001-FIX-DEV: 44px 터치 기준은 버튼·입력만이 아니라 `a[href]` 전체를 DOM으로 측정한다. 모든 회원·gate·OAuth 화면이 `memberStyle` 하나를 쓰므로 공통 `a` 규칙 한 곳에서 고친다. [실행 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md).
 
 - 2026-10-12 SAR-HUMAN-PEER-001-DEV: 친구·자기·legacy 인가는 출처와 세대를 함께 비교하고, 과거 사본 열람은 전송 권한과 분리한다. 구버전 writer 차단은 전체 과거 backup 복원을 보호하지 못한다. [실행 기록](../docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md).
+
+- 2026-10-12 SAR-HUMAN-PEER-001-DEV 시각 수정: 두 줄 clamp는 뒤의 display:block에 무효화될 수 있으므로 실제 computed geometry로 확인한다. 브라우저 세션 설치 전에 isolated profile을 고정한다. [수정 기록](../docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md).
