@@ -1,0 +1,58 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/contexts/designer.md",
+        ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+        ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+        ".fullops-squad/docs/operations/user-guide.md",
+        ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+        ".fullops-squad/docs/planning/business-plan.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+        ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+        ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+        ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+        ".fullops-squad/handovers/to_designer.md",
+        ".fullops-squad/handovers/to_dev.md",
+        ".fullops-squad/handovers/to_tester.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-model-dev.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-packet-decisions.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-packet.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-route.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-route.prior-1791797020227984700.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-TESTER-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-TESTER-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-TESTER-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-TESTER-model-tester.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-TESTER-packet-decisions.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-TESTER-packet.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-TESTER-route.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-design-check.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-route-3e598d260eaf43b1ac76f4da9ca21682.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-TESTER-route-2480e618760d49dda6c5d5912d1eb32b.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

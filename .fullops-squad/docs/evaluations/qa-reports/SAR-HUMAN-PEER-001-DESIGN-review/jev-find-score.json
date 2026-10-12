@@ -1,0 +1,34 @@
+{
+  "task_key": "SAR-HUMAN-PEER-001",
+  "find_head": "f20b33a11addeb3debcb23e2e835be31c7dd1454",
+  "base": "e521a0d27fcddd4655168f3bb0dd2c8630c76397",
+  "head": "94e67ed99e039702d6fb0efada130a3b136f6063",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "adapters/README.md",
+    "cmd/relay/main.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/policy_test.go",
+    "internal/relay/registry.json",
+    "scripts/verify_grok_plugin.py",
+    "scripts/verify_setup.py",
+    "sqlc.yaml"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

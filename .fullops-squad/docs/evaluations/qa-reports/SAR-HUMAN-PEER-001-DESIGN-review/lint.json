@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "attempt": "90bf9e540a6343ca8eddafe3209f13e4",
+  "base": "e521a0d27fcddd4655168f3bb0dd2c8630c76397",
+  "merge_base": "e521a0d27fcddd4655168f3bb0dd2c8630c76397",
+  "head": "94e67ed99e039702d6fb0efada130a3b136f6063",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 부재. 제품 코드/설정 변경 없는 문서만 수락하며 DEV 고정 구현 SHA의 등록 제품 검사는 필수다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows make 부재. 제품 코드/설정 변경 없는 문서만 수락하며 DEV 고정 구현 SHA의 등록 제품 검사는 필수다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "579줄(이전 411, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 462줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 11,
+    "added_lines": 462,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 2
+  }
+}
