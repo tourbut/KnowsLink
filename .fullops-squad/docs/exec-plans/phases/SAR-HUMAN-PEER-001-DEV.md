@@ -49,7 +49,7 @@ D03/D05–D11·README·adapter README/설치 skill·project를 갱신했다. 실
 실제 런타임·실행기 버전·고유 clone/DB·SMTP·loopback·공개 API fixture·PNG hash/크기·명령 exit와 보존 경로는 [runtime 보고서](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md)에 있다. Go1.27.1/Node22.22.2/Postgres17.11과 실제 SMTP sink(.invalid)만 사용했다. 키는 client private folder에 생성했고 로그인 세션/코드/키/원문을 로그로 전달하지 않았다.
 
 - 전체 cmd/internal unit, tagged integration/browser 컴파일, human 이름/친구/대화/철회/gate/remote 경계, adapter owner wire self-check, D08 source/hash/trigger self-check는 통과했다.
-- `4eaefa6`의 TestHumanPostgres는 실제 A/B/C 로그인·명명·connect proof·친구·6회 왕복·signed 발송·CSRF/C 거부·해제·이력·DB downgrade 차단을 통과했다. 최신 fixture는 A2/B2/C1과 실제 자기 발송/ACK, connection-private temp SQL legacy JSON 변환 검사를 추가했다. 이 temp fixture는 실제 public schema/guard를 재사용하며 다른 시험 singleton을 바꾸지 않는다.
+- `4eaefa6`의 TestHumanPostgres는 실제 A/B/C 로그인·명명·connect proof·친구·양방향6건(3회 왕복)·signed 발송·CSRF/C 거부·해제·이력·DB downgrade 차단을 통과했다. 최신 fixture는 A2/B2/C1과 실제 자기 발송/ACK, connection-private temp SQL legacy JSON 변환 검사를 추가했다. 이 temp fixture는 실제 public schema/guard를 재사용하며 다른 시험 singleton을 바꾸지 않는다.
 - `f567abf` 전체 tagged SQL은 exit1이었다. 세 실패는 legacy 이미 active인 정확한 쌍의 중복 accept303와 localized gate 상태 기대값이었다. 제품 구현과 상태 불변을 대조하고 기존 승인·거절 비활성·원문 검증을 유지한 채 assertions를 고쳤다. 이 실패 로그를 보존하며 PASS로 재분류하지 않는다.
 - 실제5화면×3폭·21개 viewport PNG는 `4eaefa6`의 인증/API/DB fixture다. 320×640/390×844 DPR1, CSS1440×900 DPR0.75이다. DOM overflow0/44px 미만0. 부모도 desktop 홈·320 agent·390 대화를 직접 열어 확인했다. 이후 delta는 이름 UTF-16 ceiling80, 상태 unavailable 번역, remote authorship metadata, 이름 검증/시험/문서다. 캡처를 최종 SHA 실행으로 표시하지 않는다.
 - 최초 full PNG는 Orca native surface의 반복 타일로 증거 부적합이었다. 폐기 삭제 없이 보존하고 지원 viewport-section 캡처로 교정했다. 실제1440px/DPR1 이미지라고 주장하지 않는다.
@@ -68,3 +68,5 @@ coor는 고정 최종 후보의 독립 QA·직접 시각·별도 세션 리뷰�
 최신 전체 SQL 회귀는 정확한 7f83fd6f3ae9945e292a86212c0ab566ea282b7a에서 go test -race -tags=integration ./internal/relay -count=1, 118.664초, native exit0으로 통과했다. 별도 DB 생성·migration도 exit0이며 필터 없이 실제 HumanPostgres/Legacy를 포함한다. 원본 실패와 재실행 로그는 runtime 보고서의 고정 경로에 보존했다.
 
 첫 등록 게이트의 make lint/test는 각각 exit0이었다. FullOps는 runtime 보고서 front matter 형식 DOC-003 하나로 exit1이어서 deliverables.py --stamp로 교정했다. human_pages_test의 지도 설명도 추가했다. SIZE는 요청한 결속 기능과 기존 커진 파일, DEP는 테스트 명령 등록이며 새 의존성은 없다. SEC 두 경고는 합성 lease 문자열과 테스트 지역 변수 token이고 실비밀값이 아니다. SLOP 출력은 자동 검사의 PASS 결과이며, 조건부 배열 spread는 owner/signed 허용 필드 한 개 선택이다. 기존 planning/D04 규모 경고는 DEV 소유 밖의 선행 변경이다. 경고를 숨기거나 lint 기준을 낮추지 않는다.
+
+6fac720bf0c620a979df5fabd67b0c044eaebf08에서 등록 make lint/test 각각 native0, FullOps exit0(ERROR0/WARNING19/실행 불가0)을 확인했다. 두 child는 worker_done succeeded로 정착했고 각 transcript를 보존한 worker-release를 완료했다. 완료 보고의 선행 공백 한 줄이 instruction hash를 바꾼 archive 실패는 원문과 normalized digest를 대조해 복구했다. 패킷·제품 지시를 재작성하지 않았고 work.py finish가63개 outcomes/partial 수동 근거를 검사한 뒤 날짜별 로그를 보존하고 인박스를0byte로 비웠다. 최종 archive 커밋의 등록 게이트 결과는 외부 final-lint.json과 worker_done에 기록한다.

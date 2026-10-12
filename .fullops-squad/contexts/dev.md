@@ -38,3 +38,5 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 사용자 권한 입력(`sendPrompt`)에는 받은 text를 넣지 않는다. 고정 doorbell+검증 ID만 보내고 본문은 untrusted 도구 결과로 읽힌다. 결과는 retry(확실한 미전달)와 uncertain(재전송 금지)으로 나눈다.
 - 이전 보고의 금지 문구가 사용자 지시인지 확인한다. 아니면 정정한다. 실제 Bot 컴퓨터 확인은 coor/owner 후속이다. [실행 기록](../docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md).
 - 2026-10-11 SAR-SERVICE-UI-001-FIX-DEV: 44px 터치 기준은 버튼·입력만이 아니라 `a[href]` 전체를 DOM으로 측정한다. 모든 회원·gate·OAuth 화면이 `memberStyle` 하나를 쓰므로 공통 `a` 규칙 한 곳에서 고친다. [실행 기록](../docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md).
+
+- 2026-10-12 SAR-HUMAN-PEER-001-DEV: 친구·자기·legacy 인가는 출처와 세대를 함께 비교하고, 과거 사본 열람은 전송 권한과 분리한다. 구버전 writer 차단은 전체 과거 backup 복원을 보호하지 못한다. [실행 기록](../docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md).
