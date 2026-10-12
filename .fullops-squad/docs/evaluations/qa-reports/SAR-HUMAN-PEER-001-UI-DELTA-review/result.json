@@ -1,0 +1,391 @@
+{
+  "base": "723675a6ec07e96cf8a855e59f5fc500a2b33beb",
+  "head": "12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.12 (182898c) windows/amd64\nbuilt at: 2026-10-05T06:46:30Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "coor / Codex / 01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+  "conclusion": "수락. 검토 범위에서 새 critical/high 없음. 미실행 범위와 원래 low 3건은 보존한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 읽기 전용 snapshot의 소스 변경 또는 보고서·시나리오·완료 기록을 직접 읽고 요구·실행 범위·미실행과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-packet-outcomes.json",
+      "status": "modified",
+      "insertions": 63,
+      "deletions": 207,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-HUMAN-PEER-001-DEV-packet.json",
+      "status": "modified",
+      "insertions": 1288,
+      "deletions": 1152,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-packet-d52f6d3b2fc4417ea76b36dc7e112bf7.json",
+      "status": "added",
+      "insertions": 3230,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-HUMAN-PEER-001-DEV-packet-outcomes-091fb01ddedc4dcda2db743061393dfb.json",
+      "status": "added",
+      "insertions": 385,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/manifest.json",
+      "status": "added",
+      "insertions": 863,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/geometry.json",
+      "status": "added",
+      "insertions": 265,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/manifest.json",
+      "status": "added",
+      "insertions": 863,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md",
+      "status": "added",
+      "insertions": 44,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 읽기 전용 snapshot의 소스 변경 또는 보고서·시나리오·완료 기록을 직접 읽고 요구·실행 범위·미실행과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 읽기 전용 snapshot의 소스 변경 또는 보고서·시나리오·완료 기록을 직접 읽고 요구·실행 범위·미실행과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+      "status": "modified",
+      "insertions": 108,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 46,
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "고정 읽기 전용 snapshot의 소스 변경 또는 보고서·시나리오·완료 기록을 직접 읽고 요구·실행 범위·미실행과 대조했다."
+    },
+    {
+      "path": "internal/relay/human_pages_test.go",
+      "status": "modified",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 읽기 전용 snapshot의 소스 변경 또는 보고서·시나리오·완료 기록을 직접 읽고 요구·실행 범위·미실행과 대조했다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 읽기 전용 snapshot의 소스 변경 또는 보고서·시나리오·완료 기록을 직접 읽고 요구·실행 범위·미실행과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/00-home-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/00-home-320-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/00-home-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/01-home-friends-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/01-home-friends-320-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/01-home-friends-320-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/01-home-friends-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/02-home-conversation-1440-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/02-home-conversation-1440-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/02-home-conversation-320-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/02-home-conversation-320-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/02-home-conversation-320-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/02-home-conversation-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804826681751400/02-home-conversation-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/00-home-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/00-home-320-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/00-home-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/01-home-friends-1440-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/01-home-friends-320-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/01-home-friends-320-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/01-home-friends-390-s1of1.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/02-home-conversation-1440-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/02-home-conversation-1440-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/02-home-conversation-320-s1of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/02-home-conversation-320-s2of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/02-home-conversation-320-s3of3.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/02-home-conversation-390-s1of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/fe7a509bd959a4adbb48b881e5228bbb62e56602/captures-1791804944045033500/02-home-conversation-390-s2of2.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "생성 packet/이력/원시 증거/검증 helper 전수 재검토 생략. 해당 runtime 및 독립 QA 보고서·시나리오의 정확한 SHA/실패 보존/검사 범위를 확인했다. 새 제품 PASS 근거로 확대하지 않는다. 원본과 snapshot을 보존한다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a12fdd-f7e9-75d2-9ee1-6dc04524289a",
+    "reviewer_session": "01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+    "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-39c7d556ccc74f72be0b606dc7f68bbe",
+    "snapshot_head": "12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5",
+    "read_only": true
+  }
+}

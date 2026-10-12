@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "0f741257ade84aefa5b2ae01e6fa68ec",
+  "base": "7c29f87a8cba756457c3873badef4881ad8cdf03",
+  "merge_base": "7c29f87a8cba756457c3873badef4881ad8cdf03",
+  "head": "b446bf61118a1c4137d3e13d0c3ebd8b32338f40",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make 없음. 문서만 추가한 고정 후보이며 제품 검사는 원 254ff6a의 Linux native0 및 최종 통합 HEAD에서 별도로 확인한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make 없음. 문서만 추가한 고정 후보이며 제품 검사는 원 254ff6a의 Linux native0 및 최종 통합 HEAD에서 별도로 확인한다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 0,
+    "added_lines": 0,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

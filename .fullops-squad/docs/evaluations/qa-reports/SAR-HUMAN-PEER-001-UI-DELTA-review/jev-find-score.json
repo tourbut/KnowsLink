@@ -1,0 +1,36 @@
+{
+  "task_key": "SAR-HUMAN-PEER-001-DEV",
+  "find_head": "2d08b8146bf2b59c387a376b5c57b16038b05b76",
+  "base": "723675a6ec07e96cf8a855e59f5fc500a2b33beb",
+  "head": "12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "internal/relay/human_pages.go",
+    "internal/relay/human_pages_test.go",
+    "internal/relay/member_pages.go"
+  ],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "internal/relay/human_pages.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "hits": [
+    "internal/relay/human_pages.go",
+    "internal/relay/member_pages.go"
+  ],
+  "recall": 0.667,
+  "precision": 0.5,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
