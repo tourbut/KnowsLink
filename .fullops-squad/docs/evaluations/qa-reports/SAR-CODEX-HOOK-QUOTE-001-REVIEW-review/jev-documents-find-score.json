@@ -1,0 +1,46 @@
+{
+  "task_key": "SAR-CODEX-HOOK-QUOTE-001-DEV",
+  "find_head": "67e7de9287c6c2ac6bb92beb5b31b523f7e64ec6",
+  "base": "67e7de9287c6c2ac6bb92beb5b31b523f7e64ec6",
+  "head": "d7d6d744d5b0010a384a7389ec8f64ec7bb93336",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+    "AGENTS.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/coor.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/agents/document-writing.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/README.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    "AGENTS.md",
+    "CLAUDE.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+    "AGENTS.md"
+  ],
+  "recall": 0.75,
+  "precision": 0.25,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
