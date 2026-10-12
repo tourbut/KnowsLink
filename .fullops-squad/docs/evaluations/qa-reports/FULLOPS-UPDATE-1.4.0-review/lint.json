@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "70c02b6b004b4e0bb221e84e00436953",
+  "base": "a29a7460b7226429357ce90e12bb56ce585f97ea",
+  "merge_base": "a29a7460b7226429357ce90e12bb56ce585f97ea",
+  "head": "ddb41325a33f3ee418671595b2ff002a203dc652",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "680e136721c866d00e14929487b0482b3e2b51fb3069ec889493d13013fb5b99",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 검증 환경에 make 실행 파일 없음(Get-Command make 실패). 제품 코드 변경 없는 운영 문서/설정 범위다. 실행하지 않았으며 PASS가 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 검증 환경에 make 실행 파일 없음(Get-Command make 실패). 제품 코드 변경 없는 운영 문서/설정 범위다. 실행하지 않았으며 PASS가 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1617줄(이전 1612, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 5,
+    "added_lines": 55,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
