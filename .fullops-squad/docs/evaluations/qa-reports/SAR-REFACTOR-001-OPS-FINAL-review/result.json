@@ -1,0 +1,276 @@
+{
+  "base": "a879c5402ce86760e07b6181ca7121728be55f23",
+  "head": "9d0f6092fa40e76184f4be65237e4d50380b8c62",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.12 (182898c) windows/amd64\nbuilt at: 2026-10-05T06:46:30Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "coor / 01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+  "conclusion": "최종 배포 문서 및 finish/packet 정합성 수락. C/H0. 운영제품2747fe9 및 기존 계정 보존 확인. main통합 가능.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-OPS-packet-outcomes.json",
+      "status": "added",
+      "insertions": 849,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-OPS-packet.json",
+      "status": "modified",
+      "insertions": 3120,
+      "deletions": 6944,
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-001-OPS-packet-127dbdbb5f8b42519e5c28c1ab7dc54f.json",
+      "status": "added",
+      "insertions": 11250,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-001-OPS-packet-6382b4e4be0b4d9a9bdac2913defd997.json",
+      "status": "added",
+      "insertions": 7426,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/after.json",
+      "status": "added",
+      "insertions": 456,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/before.json",
+      "status": "added",
+      "insertions": 442,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/evidence-copy-audit.json",
+      "status": "added",
+      "insertions": 51,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/gate-reuse.json",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/lint-windows.json",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/packet-audit-dispatched.json",
+      "status": "added",
+      "insertions": 12016,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/packet-audit.json",
+      "status": "added",
+      "insertions": 2965,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/packet-outcomes-dispatched.json",
+      "status": "added",
+      "insertions": 2037,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/preservation.json",
+      "status": "added",
+      "insertions": 115,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/public-smoke.json",
+      "status": "added",
+      "insertions": 299,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+      "status": "added",
+      "insertions": 124,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+      "status": "added",
+      "insertions": 275,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "보존된 인계 전문 재독 제외. 목적·제약과 실제 완료보고·빈 인박스·최종packet/attempt 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 440,
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/baseline.log",
+      "status": "added",
+      "insertions": 436,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/before-build-observe.log",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/build.log",
+      "status": "added",
+      "insertions": 106,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/commands.txt",
+      "status": "added",
+      "insertions": 215,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "고정 diff와 실제 배포/복원/보존/공개21개 증거 및 원 실패·not_run·공식 클라이언트 안내 대조. c914 이후는 기록/완료 delta만 존재."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/deliverables.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/deploy-verified.log",
+      "status": "added",
+      "insertions": 132,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/deploy.log",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/post-check.log",
+      "status": "added",
+      "insertions": 33,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/prepare.log",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "생성 탐색 지도/원시 증거 전문 의미 재독 제외. 파싱·최종140쌍 처리·원본history보존·명령/보존/public요약·복사감사 연결 확인."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a13563-0f74-7711-9f17-392463cc775a",
+    "reviewer_session": "01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-37e011f7291845b187c02a8b2fdc1805",
+    "snapshot_head": "9d0f6092fa40e76184f4be65237e4d50380b8c62",
+    "read_only": true
+  }
+}

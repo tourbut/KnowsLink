@@ -1,0 +1,30 @@
+{
+  "task_key": "SAR-REFACTOR-001-OPS",
+  "find_head": "2747fe98653d5c6946f41c219fc256395333d7fe",
+  "base": "a879c5402ce86760e07b6181ca7121728be55f23",
+  "head": "9d0f6092fa40e76184f4be65237e4d50380b8c62",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "adapters/.grok-plugin/plugin.json",
+    "adapters/README.md",
+    "deploy/knowslink/compose.ops.yaml",
+    "deploy/knowslink/verify.py",
+    "scripts/install_bot_mcp.sh"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": false,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

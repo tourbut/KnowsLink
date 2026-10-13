@@ -1,0 +1,43 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/PLANS.md",
+        ".fullops-squad/contexts/ops.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
+        ".fullops-squad/docs/operations/ops-guide.md",
+        ".fullops-squad/docs/operations/transition.md",
+        ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+        ".fullops-squad/handovers/to_ops.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-OPS-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-OPS-packet.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-001-OPS-packet-127dbdbb5f8b42519e5c28c1ab7dc54f.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-001-OPS-packet-6382b4e4be0b4d9a9bdac2913defd997.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/after.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/before.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/evidence-copy-audit.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/gate-reuse.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/lint-windows.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/packet-audit-dispatched.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/packet-audit.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/packet-outcomes-dispatched.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/preservation.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/public-smoke.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

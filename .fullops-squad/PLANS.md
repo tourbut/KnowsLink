@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 전체 기능 보존 리팩토링 — SAR-REFACTOR-001-DEV
 
+- OPS 최종수락: msg_729f2a1891ab/9d0f6092fa40e76184f4be65237e4d50380b8c62의 배포·보존·공개21개 smoke 기록을 OPS-FINAL fixed리뷰15 reviewed/16 skipped·C/H0·check PASS로 수락했다. 원 c914 리뷰의 packet identity 실패는 최종packet/finish 정합성으로 해소했고 supersede에 원증거를 보존했다. 운영SHA2747fe9와 문서결과SHA를 구분한다. main 일반통합/push 뒤 결과SHA의 로컬/원격조상을 확인한다. ops/tester idle clean 동기화, dev/designer user_owned/unknown 예약은 유지. root snapshot 추가2개와 새 종료한격리복원자료는 보존한다. Grok 로컬업데이트·Dots 실제다음수신/구독갱신·장시간시험은 owner 후속이다.
+
 - SAR-REFACTOR-001-OPS 배포 완료(2026-10-13): 운영 제품2747fe98653d5c6946f41c219fc256395333d7fe·detached/clean·goose2/guard1/HumanModel1을 확인했다. 새0600 백업/list·network none 복원/구writer거부·beta up/local·공개/공유 smoke21개가 통과했다. 회원/agent/친구/key/Remote Inbox/Events·설정·기존백업·공유서비스 전후digest가 같다. 결과는 docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md다. 후속coor는 완료문서 고정SHA 독립리뷰·main통합을 맡는다. owner의 Grok 같은 Command/연결폴더 bundle·process/watcher 갱신과 Dots 기존remoteapp 유지 안내만 작성했고 직접클라이언트업데이트·실계정발송·다음구독갱신·장시간수신은 not_run이다. 원증거·새stopped격리복원컨테이너를 보존한다.
 
 - SAR-REFACTOR-001-OPS 착수: 사용자가 수락main2747fe9 운영배포를 승인했다. ops Sol high에 이전 삭제없는 backup/bundle/build/up 경로와 기존 회원/친구/키/Events·writer guard·공유서비스 보존을 인계한다. 제품/DB/인프라정책 변경 및 실계정 메시지 발송 없음. 완료 뒤 고정 문서리뷰·main통합, Grok 로컬bundle 갱신과 Dots remote서버 반영 안내를 제공한다. Context7 월quota 초과로 OpenAI/xAI 공식 원문을 조회했다.

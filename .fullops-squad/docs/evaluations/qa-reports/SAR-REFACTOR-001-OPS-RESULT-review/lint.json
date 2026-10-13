@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "940fcba2c4504505844a1ab19652f0c1",
+  "base": "a879c5402ce86760e07b6181ca7121728be55f23",
+  "merge_base": "a879c5402ce86760e07b6181ca7121728be55f23",
+  "head": "c914962066f0cd5aeeb551d4316b09b3dd5b9235",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "문서/증거만 변경. Windows make 부재로 현재 문서 HEAD 등록검사 미실행. 검증된 동일 제품 cd4dae8/2747fe9의 기존 게이트와 실제 운영 build/local/smoke 근거 재사용. 현재 SHA 새 제품 테스트 성공 주장 없음.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "문서/증거만 변경. Windows make 부재로 현재 문서 HEAD 등록검사 미실행. 검증된 동일 제품 cd4dae8/2747fe9의 기존 게이트와 실제 운영 build/local/smoke 근거 재사용. 현재 SHA 새 제품 테스트 성공 주장 없음.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1749줄(이전 1747, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 4,
+    "added_lines": 72,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
