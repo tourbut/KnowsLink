@@ -9,6 +9,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 공개 README·루트 docs 설명 자료 — SAR-REPO-DOCS-001-DEV
+
+- 사용자 요청으로 README 상세 설치/업데이트와 루트docs 목차·구조·개발·운영 자료를 작성한다. 제품/운영 변경 없음. dev 터미널0·clean을 확인하고473da85 main으로 FF했다. Codex/gpt-6.1-sol/high 직접 문서 작업, 과거후보 표현과 최신운영/실연결을 대조한다. adapter README 충돌은 알려진 과거표현 정정 대상으로 인계했고 .env.example은 민감경로 자동제외를 로컬 공개예제 확인으로 보완한다. 완료 뒤 작성자와 다른 fixed 문서리뷰·main일반통합/push, 사용자문서링크 제공.
+
 ## 전체 기능 보존 리팩토링 — SAR-REFACTOR-001-DEV
 
 - 통합 확인: OPS결과9d0f609는 main/origin bbaf9f5f98ce4b45c1320cdef1074c1cdaaee15b의 조상이며 fetch 양쪽SHA가 일치했다. msg_729f2a1891ab 보존·ACK 및 integration pending0 확인. tester는 idle clean FF, ops는 완료clean FF했으나 release응답은 user_takeover/retained였다. ops 터미널을 종료하지 않았고 이후 동기화는 실제 사용자 세션 확인까지 예약한다. dev/designer 예약도 유지한다. 운영제품은2747fe9로 문서통합과 구분한다.
