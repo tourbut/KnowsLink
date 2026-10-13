@@ -2,14 +2,28 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-12
+updated: 2026-10-13
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-REFACTOR-001 운영 적용 결과 (2026-10-13, SAR-REFACTOR-001-OPS)
+
+현재 운영 제품은 수락 SHA `2747fe98653d5c6946f41c219fc256395333d7fe`다. 직전 `26094e9`에서 schema·배포 설정·의존성 변경 없이 relay를 갱신했다. 아래 이전 적용 절은 당시 기록으로 보존한다. 정본은 서버 `git -C /home/shin/deploy/knowslink rev-parse HEAD`이며 detached·clean을 확인했다.
+
+1. 기존 known_hosts/RejectPolicy SSH helper로 bundle hash·FETCH_HEAD·조상 관계와 infra diff0을 확인했다. build 뒤 relay만 중단했고13:21:02Z~13:21:18Z 약16초 뒤 healthy를 확인했다.
+2. 새0600 백업 `backups/26094e9-pre-refactor-20261013T132105Z.dump`는15693bytes·TOC25줄이다. network none 복원에서 goose2·guard1·HumanModel1과 구 writer 쓰기 거부를 확인했다. 격리 컨테이너는 종료 후 보존했다. live DB 복원과 새 migration은 없다.
+3. 회원2·agent28·친구1·pair13·키/철회·메시지/멱등15·Remote 설치2/구독1·Inbox의 전후 digest가 같다. schema·Google env·Tunnel config·기존 백업14개·공유 컨테이너도 같다. 새 백업만 추가해15개다.
+4. beta up/local EXIT0·공개 보호/공유 smoke21개·약2분 relay error/panic0을 확인했다. 기존 regression의 projects baseline 결함과 public의 Access302 전제는 직접 전후 비교와 현재404/401 smoke로 보완했다.
+5. Grok의 로컬 bundle은 별도 갱신·같은 Command/연결 폴더·watcher 재시작이 필요하다. 기존 agent/key/Inbox·webhook routine을 유지하고 재인증·친구재등록을 하지 않는다. Dots는 기존 remote app에 이후 요청부터 서버 코드가 반영된다. tool/auth/UI/event metadata 변경이 없으므로 새 등록이나 refresh는 요구하지 않는다.
+
+Events 구독은 전후 같은 만료 `2026-10-13T14:09:16.701715Z`와 Verified·attempts1·pending/lease false로 보존됐다. 다음 자동 갱신·새 delivery retry·장시간 호스트 화면 수신은 not_run이다. 실계정 발송·Google 로그인·클라이언트 직접 업데이트·Access/DNS/Tunnel 정책 변경도 하지 않았다.
+
+복구는 현재 권한·키·친구·Remote/Inbox를 보존하는 같은 HumanModel writer의 직전 수락26094e9 코드에만 한정한다. 과거 DB 덮기·구 writer·Down은 금지한다. 실제 rollback은 실행하지 않았다. 백업·실패 사전 관측·종료한 격리 복원자료는 삭제하지 않았다. 클라이언트별 구체적 안내와 공식 근거, 실행 로그와 보존 경로는 [운영 보고](../evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md)에 있다. coor는 문서 고정 SHA의 독립 리뷰와 main 통합을 담당한다.
 
 ## SAR-HUMAN-PEER-001 운영 적용 결과 (2026-10-12, SAR-HUMAN-PEER-001-OPS)
 

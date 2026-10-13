@@ -1,0 +1,132 @@
+STOP_BEGIN=2026-10-13T13:21:02Z
+FROZEN_EPOCH=912460
+backup mode=600 bytes=15693
+792523eebdb6d007fd6f01cf45ebc75b282942dd96eabaf60424602b74cc95bd  /home/[redacted]/deploy/knowslink-state/backups/26094e9-pre-refactor-20261013T132105Z.dump
+TOC_LINES=25
+restored goose=2 guard=1 rows=1 epoch=912460 HumanModel=1
+restored writer downgrade refused
+REHEARSAL_EXIT=0 retained=knowslink-refactor001-rehearse-20261013
+#1 [internal] load local bake definitions
+#1 reading from stdin 933B done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 0.0s
+
+#4 [relay internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 0.0s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load build context
+#6 transferring context: 4.12kB 0.0s done
+#6 DONE 0.0s
+
+#7 [migrate build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#7 DONE 0.0s
+
+#8 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#8 DONE 0.0s
+
+#9 [migrate build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#9 CACHED
+
+#10 [migrate build 5/7] COPY cmd ./cmd
+#10 CACHED
+
+#11 [migrate stage-1 3/5] WORKDIR /app
+#11 CACHED
+
+#12 [migrate build 4/7] RUN go mod download
+#12 CACHED
+
+#13 [migrate build 3/7] COPY go.mod go.sum ./
+#13 CACHED
+
+#14 [migrate build 6/7] COPY internal ./internal
+#14 CACHED
+
+#15 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#15 CACHED
+
+#16 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#16 CACHED
+
+#17 [migrate build 2/7] WORKDIR /src
+#17 CACHED
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 CACHED
+
+#19 [migrate] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:78d34321534f116090ba96911e1e3254b72c3ffaf30dc0b887bc2d3403aa1e81 done
+#19 exporting config sha256:035860b85c2708ed84714e8623f5cf8df4f6e279e396e6ed15d0e1097d4410c8 done
+#19 exporting attestation manifest sha256:a1c293c3adb1d3134e48dbdb20b6048189f8d8c39094bc8906224f6faf40cd63
+#19 exporting attestation manifest sha256:a1c293c3adb1d3134e48dbdb20b6048189f8d8c39094bc8906224f6faf40cd63 0.1s done
+#19 exporting manifest list sha256:18f140d89464f49eb3720a4b2bc4ecf57e85faa888d801613650ccba6a0e5ef8 0.0s done
+#19 naming to docker.io/library/knowslink-migrate:latest
+#19 naming to docker.io/library/knowslink-migrate:latest done
+#19 unpacking to docker.io/library/knowslink-migrate:latest 0.0s done
+#19 DONE 0.2s
+
+#20 [relay] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:43de02c50c4c2426c7d7f6a8205f0371c04903c4b412b1c0cd60183ebf9fe1b1 done
+#20 exporting config sha256:5cce82814ae8156d7e960f448761a7e10393dfa6666da353e856d774047fa760 done
+#20 exporting attestation manifest sha256:56d0076fe80fd054fbadf20cda1941592a51d4edb925a280315bcfaca9f2e67b 0.1s done
+#20 exporting manifest list sha256:220edb718b2fe1925eed243084e41fedf641c86a0342760f682672b91379ed3d 0.0s done
+#20 naming to docker.io/library/knowslink-relay:latest done
+#20 unpacking to docker.io/library/knowslink-relay:latest 0.0s done
+#20 DONE 0.2s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+NAME                      IMAGE                                                                                                     COMMAND                  SERVICE       CREATED         STATUS                     PORTS
+knowslink-cloudflared-1   cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4   "cloudflared --no-au…"   cloudflared   10 days ago     Up 2 days
+knowslink-migrate-1       knowslink-migrate                                                                                         "/app/migrate"           migrate       7 seconds ago   Exited (0) 6 seconds ago
+knowslink-postgres-1      postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24                "docker-entrypoint.s…"   postgres      10 days ago     Up 10 days (healthy)       5432/tcp
+knowslink-relay-1         knowslink-relay                                                                                           "/app/relay"             relay         7 seconds ago   Up 5 seconds (healthy)     127.0.0.1:8080->8080/tcp
+UP_DONE=2026-10-13T13:21:18Z
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+DEPLOY_EXIT=0
+ Container knowslink-relay-1 Stopping
+ Container knowslink-relay-1 Stopped
+sh: locale: not found
+2026-10-13 13:21:06.299 UTC [12] WARNING:  no usable system locales were found
+ Image knowslink-relay Building
+ Image knowslink-migrate Building
+ Image knowslink-migrate Built
+ Image knowslink-relay Built
+ Container knowslink-postgres-1 Running
+ Container knowslink-migrate-1 Recreate
+ Container knowslink-migrate-1 Recreated
+ Container knowslink-relay-1 Recreate
+ Container knowslink-relay-1 Recreated
+ Container knowslink-postgres-1 Waiting
+ Container knowslink-postgres-1 Healthy
+ Container knowslink-migrate-1 Starting
+ Container knowslink-migrate-1 Started
+ Container knowslink-migrate-1 Waiting
+ Container knowslink-migrate-1 Exited
+ Container knowslink-relay-1 Starting
+ Container knowslink-relay-1 Started
+ Container knowslink-relay-1 Waiting
+ Container knowslink-postgres-1 Waiting
+ Container knowslink-migrate-1 Waiting
+ Container knowslink-migrate-1 Exited
+ Container knowslink-postgres-1 Healthy
+ Container knowslink-relay-1 Healthy
+
+EXIT=0

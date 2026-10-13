@@ -1,9 +1,9 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-11
+updated: 2026-10-13
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
@@ -87,3 +87,9 @@ Git Bash의 helper SFTP 인자는 `MSYS_NO_PATHCONV=1`이 필요하다. `verify.
 migration이 있는 과제는 beta.sh 대신 수동 순서(checkout→build→relay 정지→삭제 없는 pg_dump→`docker run --rm --network none --user postgres` 격리 복원→`beta.sh up`)를 쓴다. 호스트 파일을 bind mount하면 컨테이너 postgres 사용자가 읽도록 파일 mode가 0644여야 한다(0600이면 Up이 적용되지 않는다).
 새 relay는 기동 직후 `HumanModel=1` 변환을 저장한다. 변환 뒤에는 trigger가 구 writer를 거부하므로 코드 복귀는 불가하고 전진 복구만 한다. 변환 전후 비교는 Agents 전체 md5 대신 기존 필드별 md5로 한다(빈 `Name`·`Client`가 추가돼 전체 md5가 바뀐다).
 `verify.py regression`의 `projects` baseline 결함과 `public`의 Access 302 전제는 그대로다. psql 집계에서 relay_state 키 이름(Remote의 43자 ID)을 그대로 출력하지 않는다.
+
+## 2026-10-13 — SAR-REFACTOR-001-OPS
+
+2747fe9를 무삭제bundle/build/relay중단/새0600백업/list/격리복원/up으로 적용했다. schema·HumanModel writer 변경0이며 기존회원/친구/키/Remote Inbox/Events·공유자원digest를 보존했다. [실행 근거](../docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md).
+업로드shell 파일은 LF로 전달한다. CRLF heredoc 실패는relay중단 전에 멈췄고 실패자료를 보존했다. 새network none 복원컨테이너는정상종료 뒤보존했다.
+Grok은같은기존연결폴더·Command/watcher·webhook routine을유지하며로컬bundle을별도갱신한다. Dots는기존remoteapp을유지한다. Events저장보존과다음자동갱신/장시간수신은구분한다.

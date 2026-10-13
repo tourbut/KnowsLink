@@ -1,0 +1,115 @@
+{
+  "before_utc": "2026-10-13T13:21:01.970011+00:00",
+  "after_utc": "2026-10-13T13:21:19.387332+00:00",
+  "head": "2747fe98653d5c6946f41c219fc256395333d7fe",
+  "dirty": [],
+  "counts_before": {
+    "HTTP": 0,
+    "Gates": 0,
+    "Pairs": 13,
+    "Rates": 5,
+    "Agents": 28,
+    "Owners": 24,
+    "Remote": 6,
+    "Friends": 1,
+    "Members": 2,
+    "Messages": 15,
+    "Sessions": 0,
+    "Challenges": 0,
+    "Identities": 2,
+    "Connections": 0,
+    "Idempotency": 15,
+    "GoogleAttempts": 0
+  },
+  "counts_after": {
+    "HTTP": 0,
+    "Gates": 0,
+    "Pairs": 13,
+    "Rates": 5,
+    "Agents": 28,
+    "Owners": 24,
+    "Remote": 6,
+    "Friends": 1,
+    "Members": 2,
+    "Messages": 15,
+    "Sessions": 0,
+    "Challenges": 0,
+    "Identities": 2,
+    "Connections": 0,
+    "Idempotency": 15,
+    "GoogleAttempts": 0
+  },
+  "preserved": {
+    "human_model": true,
+    "goose_trigger": true,
+    "schema_sha256": true,
+    "files": true,
+    "digests": true,
+    "remote_digests": true,
+    "remote_inbox_count": true,
+    "shared": true,
+    "host_cloudflared_pids": true,
+    "listeners": true
+  },
+  "remote_counts_before": {
+    "Codes": 0,
+    "Tokens": 2,
+    "Clients": 1,
+    "Attempts": 0,
+    "Installs": 2,
+    "Subscriptions": 1
+  },
+  "remote_counts_after": {
+    "Codes": 0,
+    "Tokens": 2,
+    "Clients": 1,
+    "Attempts": 0,
+    "Installs": 2,
+    "Subscriptions": 1
+  },
+  "events_before": [
+    {
+      "expires": "2026-10-13T14:09:16.701715Z",
+      "verified": "2026-10-13T13:09:16.701715Z",
+      "attempts": 1,
+      "pending": false,
+      "lease": false,
+      "next": "2026-10-13T00:45:51.130657Z",
+      "identity_digest": "30e9602f0fb20fb8d8c517fe5ed6d2c6987a2c09292859bc11c8fd2a2e0a8a30"
+    }
+  ],
+  "events_after": [
+    {
+      "expires": "2026-10-13T14:09:16.701715Z",
+      "verified": "2026-10-13T13:09:16.701715Z",
+      "attempts": 1,
+      "pending": false,
+      "lease": false,
+      "next": "2026-10-13T00:45:51.130657Z",
+      "identity_digest": "30e9602f0fb20fb8d8c517fe5ed6d2c6987a2c09292859bc11c8fd2a2e0a8a30"
+    }
+  ],
+  "backup_added": [
+    "26094e9-pre-refactor-20261013T132105Z.dump"
+  ],
+  "old_backups_preserved": true,
+  "existing_other_containers_preserved": true,
+  "relay_before": {
+    "name": "/knowslink-relay-1",
+    "image": "sha256:2ac2ca9201600cf867a6053d52c68c647253f20d2384b4526d3007633ae97a36",
+    "id": "df85f049f116aa53d64f0eddbc931027661482af21e5651dd6a8b04048b72308",
+    "running": true,
+    "health": "healthy",
+    "started": "2026-10-12T12:44:29.651047674Z",
+    "restarts": 0
+  },
+  "relay_after": {
+    "name": "/knowslink-relay-1",
+    "image": "sha256:220edb718b2fe1925eed243084e41fedf641c86a0342760f682672b91379ed3d",
+    "id": "d5c6891741ec89597cf3b4c6e4a6686b7821d832bb56c9394ff4aeaf749a4561",
+    "running": true,
+    "health": "healthy",
+    "started": "2026-10-13T13:21:13.183457595Z",
+    "restarts": 0
+  }
+}

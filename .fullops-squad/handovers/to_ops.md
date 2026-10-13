@@ -15,14 +15,14 @@ test_level: lite
 
 현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.
 
-- 작성일:
-- From / To:
-- 상태: ready / running / blocked
-- 테스트 레벨 / 하위 에이전트 레벨: fullops.json 선택값과 같은 값
-- 승인된 범위 / 추가 승인이 필요한 행위:
-- 담당 repo id / 워크트리 절대경로 / 브랜치:
-- 병합 책임자 / 기본 브랜치:
-- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id:
+- 작성일: 2026-10-13
+- From / To: coor / ops
+- 상태: running
+- 테스트 레벨 / 하위 에이전트 레벨: lite / standard. 명시 지시대로 직접 수행하고 하위 위임은 하지 않는다.
+- 승인된 범위 / 추가 승인이 필요한 행위: 사용자 운영 배포 명시 승인. 고정 2747fe9 적용·비공개 고유 백업·보존 집계·문서만 허용. 제품 변경·삭제/이동·실계정 발송·클라이언트 직접 업데이트 금지.
+- 담당 repo id / 워크트리 절대경로 / 브랜치: KnowsLink / C:/Users/shin/orca/workspaces/KnowsLink/ops / fullops/ops
+- 병합 책임자 / 기본 브랜치: coor / main
+- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id: KnowsLink / coordinator / term_549a51c8-0972-47ae-b2eb-9b504c3b6330 / run_5534969da2d0 / task_7aa1eabd0631 / ctx_83153b8b8e1b. worker 송신 핸들은 term_a25928cb-f090-435d-96ce-eb5433c1b77f다.
 
 ## 현재 상황과 확인 근거
 
@@ -39,7 +39,15 @@ worker가 먼저 읽을 경로를 적는다. `jev_context.py`로 분류했다면
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 구체적 작업과 수정할 파일
+- [x] 수락 리뷰·QA·운영 기준과 26094e9..2747fe9 제품 diff 및 서버 baseline 확인.
+- [ ] 알려진 host key helper로 bundle 검증·고정 checkout·build·relay 중단·고유0600 backup/list·필요한 격리 검사·up 수행.
+- [ ] schema/회원/agent/친구/key/Inbox/ACK/Events/Google/Tunnel/공유 서비스 보존과 smoke 확인.
+- [ ] Grok 기존 Command·connection·watcher/routine 보존 업데이트와 Dots 원격 반영 안내 작성.
+- [ ] report·phase·D12/D13·packet outcomes·work finish·문서 검증·commit·표준 SHA 회신 완료.
+
+기술 계획: 무삭제 bundle 경로를 재사용한다. schema·deploy·의존성 diff0을 gate로 삼는다. build를 먼저 끝내고 relay만 짧게 중단한다. 중단 후 epoch가 고정됐는지 확인하고 새 pg_dump/list를 만든다. 필요 시 network none 격리 복원 컨테이너를 생성하며 종료 후 보존한다. up 뒤 같은 집계와 digest를 대조한다. 구 HumanModel writer와 과거 DB 복원은 금지한다. 새 빌드 실패 시 HumanModel=1을 지원하는 직전 수락26094e9 코드로만 복귀한다.
+
+적용 기준: fullops-common-0.3.3, project.md, D07 writer guard, D12/D13, AGENTS.md. 기준2747fe98653d5c6946f41c219fc256395333d7fe와 준비a879c54를 읽었다. 제품/테스트/UI 변경은 없다. 문서·운영 증거만 작성한다.
 
 큰 변경은 예상 변경 규모(추가 줄 수·주요 파일)를 적는다. lint SIZE-002가 발생하면 실제 차이와 분할하지 않은 이유를 완료 보고에 남긴다.
 

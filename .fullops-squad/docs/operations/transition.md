@@ -2,13 +2,25 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-12
+updated: 2026-10-13
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## 현재 운영 상태 (2026-10-13, SAR-REFACTOR-001-OPS)
+
+운영 제품 SHA는 `2747fe98653d5c6946f41c219fc256395333d7fe`다. 직전26094e9의 수락 리팩토링을 무삭제 bundle·build·relay 중단·새0600 backup/list·network none 복원·up 순서로 적용했다. 서버 detached·clean, relay/Postgres healthy, goose2·human_writer_guard1·HumanModel1을 확인했다. 아래2026-10-12와 이전의 현재 상태 문장은 당시 기록이다.
+
+회원2·agent28·친구1·pair13·키/철회·메시지15·멱등15·Remote 설치2·Events 구독1·Inbox의 전후 digest가 같다. 실제 두 계정·친구·클라이언트 알림의 이전 수락은 [LIVE](../evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md)와 [NOTIFY](../evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md)가 근거다. 이번 OPS는 실계정 메시지를 보내거나 Google에 로그인하지 않았다.
+
+새 백업은 `/home/shin/deploy/knowslink-state/backups/26094e9-pre-refactor-20261013T132105Z.dump`(0600·15693bytes)다. 기존14개 백업·Google env·Tunnel config·공유 서비스는 보존됐다. 원 자료·새 stopped 복원 컨테이너도 보존했다. live DB 복원·과거 권한 상태 덮기는 금지한다. 필요 시 같은 HumanModel writer의 직전26094e9 코드로만 복귀한다.
+
+owner 후속은 Grok의 로컬 bundle 갱신과 기존 Command/process·같은 연결 폴더 watcher 재시작이다. 기존 agent ID·key·Inbox·webhook routine을 유지한다. 재인증·새 친구 등록은 이번 변경에 필요하지 않다. Dots는 기존 remote endpoint/app·Events 자동화를 유지하며 이후 요청부터 서버 구현을 사용한다. 이번 metadata 변경0이므로 refresh는 필수가 아니다. 향후 도구/인증/UI/Events metadata가 바뀌면 기존 연결을 refresh한다. 실제 클라이언트 갱신·장시간 알림·다음 구독 자동 갱신은 not_run이다.
+
+실행·보존·공개 보호/공유 smoke21개·약2분 error/panic0과 공식 근거 및 구체적 클라이언트 절차는 [OPS 보고](../evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md)와 [D12](ops-guide.md#sar-refactor-001-운영-적용-결과-2026-10-13-sar-refactor-001-ops)에 있다. coor는 이 문서 결과의 고정 SHA 독립 snapshot 리뷰와 main 통합을 담당한다. 기존 held·전체 제품 수락·장시간 위험을 이번 배포 PASS로 해제하지 않는다.
 
 ## 현재 운영 상태 (2026-10-12, SAR-HUMAN-PEER-001-OPS)
 
