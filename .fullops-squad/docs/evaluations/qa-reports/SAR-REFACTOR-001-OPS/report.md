@@ -107,6 +107,12 @@ Context7 resolve-library-id는 `Monthly quota exceeded`를 반환했다. 공식 
 
 ## 실패·미실행·복구·후속
 
+기록 커밋 `c914962066f0cd5aeeb551d4316b09b3dd5b9235`에서 설치 FullOps1.4.1 lint를 기준2747fe9로 실행했다. 결과는 ERROR0·WARNING1·unavailable2·EXIT1이다. Windows에 make가 없어 product-lint/product-test는 실행하지 못했다. 경고는 기존 PLANS1749줄의 SIZE-001이다. 원 결과는 [lint-windows.json](lint-windows.json)에 보존했다. 새 제품 코드·테스트·설정·의존성 변경이 없으므로 새 제품 등록검사의 적용 변화는 없다. 기존 exact cd4dae8의 실제 Linux product-lint/product-test EXIT0은 [gate 재사용 근거](gate-reuse.json)로 연결하며 새 Windows PASS로 표시하지 않는다. 산출물 strict 검사는13개·문제0·경고0이다. 로그 사본의 끝 공백을 정규화한 뒤 git diff --check를 통과했다.
+
+Git 로그 사본은 UTF-8/LF와 행 끝 공백만 정규화했다. [evidence-copy-audit.json](evidence-copy-audit.json)은 원본·사본 hash와 범위를 남긴다. AppData 원본은 변경하지 않았다. 원본 바이트 동일성을 주장하지 않는다.
+
+착수 packet336경로/338쌍의 수동 보완은 [원 audit](packet-audit-dispatched.json)과 [원 outcomes](packet-outcomes-dispatched.json)에 보존했다. 실제 기술 계획과 복귀 주소를 채운 뒤 공식 `jev_packet.py --force --write-inbox`로 identity를 갱신했다. 갱신 packet은138경로/140쌍이며 stale producer는 현재 분류로 사용하지 않았다. unknown19건·remaining105경로를 포함한150경로의 존재/hash/관련 검색 구간을 추가 확인했다. 현재 outcomes140쌍의 unknown은0이다. 과거 전문 재독은 주장하지 않는다. `work.py finish`가 완료 계약을 통과해 [날짜별 인박스 전문](../../../../handovers/logs/2026-10-13_to_ops.md)에 지시서와 결과를 보존했고 현재 ops 인박스는 비었다.
+
 첫 after-checkout 관측은 old HEAD assertion이 남아 EXIT=1이었다([before-build-observe.log](before-build-observe.log)). 다음 사전 관측은 업로드 파일의 CRLF 때문에 heredoc 종료를 읽지 못해 EXIT=1이었다([deploy.log](deploy.log)). 둘 다 relay stop 전에 실패했다. LF 고유 사본과 정확한 NEW HEAD 조건으로 수정한 뒤 같은 배포를 완료했다. 실패 로그·원 파일·부분 before.json은 보존했다. 격리 initdb의 locale 경고는 보존했으며 복원·guard·종료는 EXIT=0이었다.
 
 실계정 송신/receive/ACK·새 Google 로그인·인증 SSE 재연결·Grok bundle/process 직접 갱신·Dots refresh/자동화 수정·실제 화면/모바일/키보드/200%·부하·장시간 wake·향후 구독 갱신은 not_run이다. UI template/CSS 변경이 없으므로 새 직접 시각 검수는 추가하지 않았다. 기존 QA/시각/held와 전체 HP-16 수락 경계는 유지한다.

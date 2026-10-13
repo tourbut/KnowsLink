@@ -36,3 +36,7 @@ Events1개는 배포 전후 같은 만료·Verified·attempts/pending/lease meta
 복구는 현재 DB·친구·키·철회·Remote/Inbox를 보존하고 같은 HumanModel writer를 가진 직전 수락26094e9 코드로만 한다. 과거 DB 덮기·구 writer·Down은 금지한다. rollback은 이번에 실행하지 않았다.
 
 상세 실행·검증·공식 근거·원 자료 보존 경로는 [운영 보고](../../evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md)에 있다. D12/D13에 현재 상태와 후속을 연결했다. coor는 완료 문서 SHA의 독립 snapshot 리뷰·main 통합을 담당한다. 최종 기록 SHA는 worker_done으로 보고하며 운영 제품 SHA와 구분한다.
+
+기록c914962의 FullOps1.4.1 lint는 ERROR0/WARNING1/unavailable2·EXIT1이다. Windows make 부재로 등록product-lint/product-test는 not_run이며 원결과를 보존했다. 제품코드변경0을 확인해 기존exact cd4dae8 Linux 등록게이트EXIT0을 재사용했다. 현재 문서HEAD의 새제품검사PASS를 주장하지 않는다. 산출물strict13개·문제0/경고0과 공백검사를 통과했다. 패킷338쌍·unknown0을 기록했고 과거원문 전수재독은 하지 않았다.
+
+기술계획/복귀주소 보강 뒤 공식 packet을 갱신했다. 원336경로338쌍 audit/outcomes와 packet history를 보존했다. 현재138경로140쌍·partial19/remaining105를 수동 보완했고150경로의 존재/hash/관련검색줄을 확인했다. 현재outcomes unknown0이며 work.py finish가 통과했다. 지시서/완료보고는2026-10-13_to_ops.md에 보존했고 ops인박스는 비었다. 최종기록SHA는worker_done에서식별한다.
