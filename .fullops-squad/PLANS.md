@@ -1,17 +1,22 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-13
+updated: 2026-10-14
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
 
+## FullOps 1.4.2 갱신 — FULLOPS-UPDATE-1.4.2
+
+- 사용자 요청으로 실제 설치1.4.2/레포1.4.0을 대조하고 1.4.1·1.4.2를 적용했다. 통합 설치기1.0.1이 사용자·Orca Codex 홈별 최신 deps 갱신/check를 완료했다. setup dry-run/실행·frontend configuration_ready/problems0, 기존 coor/lite/standard·Sol high·정본·tools=[]를 보존했다. [상세](docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md). 운영 적용의 다른 세션 고정 리뷰 뒤 main에 통합한다. 새 제품 worker는 다음 coordinator 세션에서 시작한다.
+- coor Run 재연결: 실제 현재 터미널 term_38ae16dc-0ca4-4beb-ab00-d1e1b641f061, generation4. 이전 term_549a51c8 부재 확인 뒤 run-use로 연결했다. 사용자 소유 dev/ops는 현재 세션을 보존한다. designer는 과거 상태 unknown이다. 다음 dispatch 전에 최신 main으로 안전한 동기화를 예약한다.
+
 ## 공개 README·루트 docs 설명 자료 — SAR-REPO-DOCS-001-DEV
 
-- DEV 문서 작성·링크/예제 검증 완료. 제품 변경0. [결과](docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md)와 packet outcomes와 work finish 로그를 보존했다. 커밋 후 고정 SHA를 회신한다. 후속 담당coor: 다른 실제 세션의 fixed 문서리뷰, main일반통합/push. 현재 제품 최종 수락으로 확대하지 않는다.
+- 고정 ea80e98510af0e640557f0ea2b757c06e27a5779 독립 리뷰 완료: reviewed19/skipped2·C/H0·check PASS, 로컬링크73/inbound12/소스20 오류0. main 일반 통합/push가 다음 단계다. DEV 문서 작성·링크/예제 검증 완료. 제품 변경0. [결과](docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md)와 packet outcomes와 work finish 로그를 보존했다. 커밋 후 고정 SHA를 회신한다. 후속 담당coor: 다른 실제 세션의 fixed 문서리뷰, main일반통합/push. 현재 제품 최종 수락으로 확대하지 않는다.
 
 - 사용자 요청으로 README 상세 설치/업데이트와 루트docs 목차·구조·개발·운영 자료를 작성한다. 제품/운영 변경 없음. dev 터미널0·clean을 확인하고473da85 main으로 FF했다. Codex/gpt-6.1-sol/high 직접 문서 작업, 과거후보 표현과 최신운영/실연결을 대조한다. adapter README 충돌은 알려진 과거표현 정정 대상으로 인계했고 .env.example은 민감경로 자동제외를 로컬 공개예제 확인으로 보완한다. 완료 뒤 작성자와 다른 fixed 문서리뷰·main일반통합/push, 사용자문서링크 제공.
 

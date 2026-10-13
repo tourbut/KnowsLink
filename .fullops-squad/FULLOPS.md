@@ -1,9 +1,9 @@
 ---
 title: FullOps Squad 하네스 지도
 status: draft
-updated: 2026-10-09
+updated: 2026-10-14
 owner: coor
-tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0]
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, FULLOPS-UPDATE-1.4.2]
 summary: FullOps 규약 지도와 coor/lite 및 1.2.0 운영 계약
 ---
 
@@ -87,5 +87,12 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 
 ## FullOps 1.4.0 적용
 
-UI 작업은 fullops-frontend와 docs/agents/frontend.json의 기존 디자인 정본을 따른다. 현재 업데이트는 UI 작업이 아니므로 프런트엔드 실행은 비활성 상태로 보존한다. 다음 UI 과제에서 기존 역할의 host/model/effort를 인박스에 고정한 뒤 준비 상태를 검사한다. 선택형 도구는 설치하지 않는다.
+UI 작업은 fullops-frontend와 docs/agents/frontend.json의 기존 디자인 정본을 따른다. 1.4.0 업데이트 당시에는 UI 작업이 없어 프런트엔드 실행을 비활성으로 보존했다. 후속 UI 과제에서 정한 현재 설정은 frontend.json을 따른다. 다음 UI 과제에서 기존 역할의 host/model/effort를 인박스에 고정한 뒤 준비 상태를 검사한다. 선택형 도구는 설치하지 않는다.
 웹 실행은 fullops-test/web-engine.md와 docs/evaluations/scenarios/README.md를 따른다. covers와 독립 checks, 격리 fixture와 정확한 origin/동작/요청을 선언한다. 현재 탭은 --page로 지정하며 루트 Jev 환경은 --env-file .env로 지정한다. 탐색·shadow·CUAWright는 기본 OFF다.
+
+## FullOps 1.4.2 적용
+
+1.4.1 이후 명시적 업데이트마다 외부 의존성을 최신판으로 갱신하고 현재 호스트의 `deps.py --check --host`를 확인한다. 과거 검사 통과를 이번 갱신으로 대체하지 않는다. 기존 스킬 수정은 설치기의 백업에 보존한다.
+선택형 프런트 도구는 frontend.json의 tools에 등록한 것만 로컬 설치한다. 현재 tools는 비어 있다. 기존 codex/gpt-6.1-sol/high와 디자인 정본을 유지하며 설정 준비·인증·브라우저 QA를 구분한다.
+1.4.2의 lint 경로 정규화와 Jev 입력·Enter·허용 동작 보완은 새 패키지 실행기로 적용한다. 위험·confidence·입력 예산을 낮추지 않는다. Windows의 실제 검사 cwd는 `.`이며 macOS 별칭 설정은 없다.
+업데이트 세션에서는 운영 갱신과 완료된 결과의 검토·통합만 수행한다. 새 제품 worker는 새 coordinator 세션에서 시작한다. [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md)에 적용·검증·동기화 예약을 남긴다.

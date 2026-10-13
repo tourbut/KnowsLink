@@ -1,0 +1,28 @@
+{
+  "command": "npx --yes fullops-squad@latest update --hosts codex --repo <coor>",
+  "exit_code": 0,
+  "installer_version": "1.0.1",
+  "installed_before": "1.4.2",
+  "repo_before": "1.4.0",
+  "target": "1.4.2",
+  "hosts": [
+    {
+      "host": "codex",
+      "home_kind": "user",
+      "manifest_sha256": "e7d58ce489e1722f160e1137d125b298a9bd1ebf172d7388d633c32ca78df624",
+      "completed_count": 12,
+      "receipt_sha256": "3326834c826b62e6abd85b1b0f451b49243495b885dae1ee6c5e082660aad8f0",
+      "plugin_version": "1.4.2"
+    },
+    {
+      "host": "codex",
+      "home_kind": "orca",
+      "manifest_sha256": "e7d58ce489e1722f160e1137d125b298a9bd1ebf172d7388d633c32ca78df624",
+      "completed_count": 12,
+      "receipt_sha256": "16fae28ca2f5425a8bd0e0c0bba622580a6a9deba713ff40cfe1c68e661113cf",
+      "plugin_version": "1.4.2"
+    }
+  ],
+  "context7": "resolve-library-id failed: Monthly quota exceeded; official installed INSTALL.md/releases used",
+  "limits": "Current Codex hosts only; no Claude/Grok host plugin update or product install/deploy."
+}
