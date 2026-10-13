@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "attempt": "f8fde2ecdedd423f9637a84a22a69faa",
+  "base": "bc0fd031efd252d9755681d8b429eb31c045b7e4",
+  "merge_base": "bc0fd031efd252d9755681d8b429eb31c045b7e4",
+  "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-lint.log\nEXIT= 0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-test.log\nEXIT= 0"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1736줄(이전 1702, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "334줄(이전 327, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/core.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "517줄(이전 492, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/human_test.go"
+    }
+  ],
+  "summary": {
+    "files": 14,
+    "added_lines": 290,
+    "errors": 0,
+    "warnings": 3,
+    "unavailable": 0
+  }
+}

@@ -25,6 +25,7 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 
 ## 최근 결정
 
+- 2026-10-13 SAR-REFACTOR-001-DEV: 실제 template·외부 host·동적 등록을 확인한 뒤 공통 agent 선택/연결 응답/text 검증/MCP 포장만 공유했다. 제품 12줄 감소이며 legacy·held/test·보안·UI 계약은 유지한다. exact cd4dae8 Linux gate 0을 [QA 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md)에 보존했다. 중단 뒤 재개는 원 작성자 세션과 현재 세션을 분리하고 제품 변경 없이 기록을 마무리한다.
 - 2026-10-12 SAR-FRONTEND-POLISH-001-DEV: 빈 상태는 쓸 수 없는 form을 숨기고 다음 동작 한 줄로 바꾼다(Go template `{{$x = true}}` 재할당). 측정 스크립트의 위치 판정은 padding을 보정한다. 테스트가 고정한 동작(받은 초대의 unpair)은 polish로 바꾸지 않고 제품 판단으로 남긴다. [실행 기록](../docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md).
 - 2026-10-12 SAR-CODEX-HOOK-QUOTE-001-DEV: Codex Windows hook은 기본 `%COMSPEC% /C "<command>"` raw 인자이고 셸을 설정하면 PowerShell일 수 있다. hook 명령은 따옴표를 쓰고 `; exit $LASTEXITCODE`로 PowerShell의 종료코드 2→1 변환을 막는다. 테스트는 argv 목록이 아니라 실제 실행 방식(raw 문자열)으로 검증한다. [실행 기록](../docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md).
 - 2026-10-11 SAR-SERVICE-UI-001-DEV: UI 재설계 전에 재설계 전 템플릿으로 form 계약(method·action·hidden·필드·button 라우팅) golden을 먼저 커밋한다. 이후 diff가 의도한 변경만인지 기계적으로 보인다. `memberStyle`은 OAuth 동의·gate 화면도 공유하므로 토큰 변경 시 함께 렌더한다. Orca 내장 브라우저 키 입력은 페이지를 한 번 클릭해 포커스를 준 뒤에만 전달된다.
