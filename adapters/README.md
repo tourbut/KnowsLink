@@ -1,7 +1,7 @@
 ---
 title: KnowsLink 호스트별 설치
 status: draft
-updated: 2026-10-12
+updated: 2026-10-13
 owner: dev
 tasks: [SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV]
 summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계
@@ -9,15 +9,19 @@ summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우�
 
 # KnowsLink 플러그인
 
-## SAR-HUMAN-PEER-001 DEV 후보
+<a id="sar-human-peer-001-dev-후보"></a>
 
-웹에서 친구 수락을 마치면 같은 사람의 현재·앞으로 추가할 활성 agent가 연결된다. status/contacts의 현재 대상만 사용하며 친구 해제·차단·키 철회 뒤에는 저장된 대상이라도 보내지 않는다. 이름은 화면 표시용이고 ID와 credential을 대체하지 않는다.
+## 현재 사람 친구·대화와 호스트 안내
+
+현재 사용자 설치·기존 업데이트의 정본은 [루트 README](../README.md)다. 구성·개발·운영은 [문서 목차](../docs/README.md)를 따른다. 이 문서의 과거 시험·합성·legacy 절은 당시 근거로 보존한다.
+
+웹에서 친구 수락을 마치면 양쪽 사람의 현재·앞으로 추가할 활성 agent가 연결된다. status/contacts의 현재 대상만 사용하며 친구 해제·차단·키 철회 뒤에는 저장된 대상이라도 보내지 않는다. 이름은 화면 표시용이고 ID와 credential을 대체하지 않는다.
 
 `knowslink_text_receive` 결과의 `authorship`은 `owner` 또는 `agent`다. owner는 회원이 웹 세션으로 작성한 메시지이며 agent Ed25519 서명이 아니다. authenticated relay의 전용 owner wire를 별도 검증한다. agent는 기존 signed wire를 검증한다. 둘 다 untrusted 입력으로 취급하고 명령/도구 실행의 허가로 사용하지 않는다. private Inbox에 durable 저장한 뒤 persist/ACK하는 순서는 그대로다.
 
-긴 대화는 `knowslink_text_send`로 새 text를 반복한다. 각 발송은 새 ID·멱등키와 독립180초 기한이다. 기존 reply_to는 원요청당 한 관련 답장인 호환 API이며 오래된 부모에 의존해 대화를 이어가지 않는다. 웹 참여 세션의 새 대화 사본은 수락24h까지 조회하며 로컬 Inbox/backup 삭제와 별개다. 운영·실계정 수락은 후속이다.
+긴 대화는 `knowslink_text_send`로 새 text를 반복한다. 각 발송은 새 ID·멱등키와 독립180초 기한이다. 기존 reply_to는 원요청당 한 관련 답장인 호환 API이며 오래된 부모에 의존해 대화를 이어가지 않는다. 웹 참여 세션의 새 대화 사본은 수락24h까지 조회하며 로컬 Inbox/backup 삭제와 별개다. 2026-10-13 운영 제품은 `2747fe98653d5c6946f41c219fc256395333d7fe`다. 실제 두 계정의 대화·질문 없는 알림 수락 범위와 장시간/재시작/갱신 한계는 루트 README를 따른다.
 
-공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.0`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 계정의 로그인·왕복 성공은 별도 수락 증거가 필요하다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
+공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.0`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 Grok/Dots 계정의 왕복은 루트 README에 연결한 별도 수락 근거로 확인한다. 다른 호스트의 합성/CLI 검사를 실제 계정 수락으로 확대하지 않는다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
 
 ## 호스트별 설치 — SAR-SSE-INSTALL-001
 
@@ -29,7 +33,7 @@ summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우�
 | Claude Code | `build/knowslink-claude-plugin.zip` | `.claude-plugin/plugin.json`과 로컬 MCP 설정. 공식 CLI manifest 검증 통과; 실제 Claude 대화 호출은 미검증이다. |
 | Claude Desktop | `build/knowslink-claude-desktop.mcpb` | MCPB 0.3의 `manifest.json`이 archive root에 있다. 앱 Extensions에서 설치한다. 실제 앱 설치·내장 Node 호환성은 미검증이다. |
 | Codex / ChatGPT desktop 로컬 실행 | `build/knowslink-codex-plugin.zip` | `.codex-plugin/plugin.json`과 repo marketplace. 아래 설치 준비가 필수다. 격리된 Codex CLI 설치·MCP 도구 9개 discovery를 확인했다. |
-| Dots / ChatGPT Work Cloud / web | `https://link.knowslog.com/mcp` 후보 + 등록 app 참조 ZIP | OAuth·MCP2·Events 서버 구현. 후보 배포·Custom MCP 앱 등록·Google 동의·실제 Dots 수신은 아직 미실행이다. |
+| Dots / ChatGPT Work Cloud / web | `https://link.knowslog.com/mcp` + 등록 app 참조 ZIP | 기존 Dots 실제 연결·대화·화면 알림을 확인했다. 신규 계정은 별도 Google 동의·설치 agent/key·Events 구독이 필요하다. 장시간/다음 갱신은 미검증이다. |
 
 Claude Code와 Codex는 다음처럼 **아직 없는 절대 설치 경로**로 준비한다. `--host`는 `claude`, `codex`, `grok` 중 하나다. `--connect`를 생략하면 held를 유지한다.
 
@@ -55,7 +59,7 @@ CODEX_HOME=/absolute/knowslink-codex-home codex mcp list --json
 
 Claude Desktop에서는 `.mcpb`를 열거나 **Settings → Extensions**에서 설치한다. 초기 mode는 held다. 연결하려면 extension 설정의 mode를 `public-node`로 바꾸고 새 절대 private folder를 지정한다. 폴더를 extension 설치 디렉터리 안에 두지 않는다. 사용자가 아래 Google 동의 절차를 완료해야 한다. 웹 Claude의 remote connector와 호환성은 이 local extension 검사로 입증하지 않는다. [Desktop 공식 문서](https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop).
 
-Dots Cloud는 후보 배포 뒤 **Plugins → Add custom MCP**에서 `https://link.knowslog.com/mcp`를 등록하고 연결 검토·Create as plugin을 거친다. Google 로그인 뒤 표시된 앱·별도 설치 agent/key의 서버 보관에 명시적으로 동의한다. 관계는 자동 생성하지 않으므로 회원 화면에서 새 agent의 상대 연결을 따로 승인한다. 기존 로컬 agent/key를 가져오지 않는다. 서버 private DB에 해당 설치의 서명키와 Inbox를 보관하며 OAuth 철회 또는 agent/key 철회 시 사용할 수 없다. 기존 로컬 Google begin/finish는 이 host OAuth 계약과 별개다. 실제 계정 등록·Google 동의·왕복은 후속 수락이다. [remote 연결 계약](https://developers.openai.com/plugins/deploy/connect-chatgpt), [인증 계약](https://developers.openai.com/plugins/build/auth).
+Dots Cloud의 신규 연결은 **Plugins → Add custom MCP server**에서 `https://link.knowslog.com/mcp`를 등록하고 연결 검토·Create as a plugin을 거친다. Google 로그인 뒤 표시된 앱·별도 설치 agent/key의 서버 보관에 명시적으로 동의한다. 같은 회원의 자기 agent는 기본 연결 또는 기존 회원의 명시적 범위 동의를 따른다. 다른 사람과는 친구 수락을 별도로 받는다. 기존 로컬 agent/key를 가져오지 않는다. 서버 private DB에 해당 설치의 서명키와 Inbox를 보관하며 OAuth 철회 또는 agent/key 철회 시 사용할 수 없다. 기존 로컬 Google begin/finish는 이 host OAuth 계약과 별개다. 기존 연결의 업데이트에는 신규 등록 절차를 적용하지 않는다. [신규/기존 안내](../README.md#dots-신규-연결)를 따른다. [remote 연결 계약](https://developers.openai.com/plugins/deploy/connect-chatgpt), [인증 계약](https://developers.openai.com/plugins/build/auth).
 
 Cloud 개인/workspace 플러그인은 등록 결과의 실제 app ID를 `.app.json`으로 참조한다. 앱 URL의 `plugin_` 접두사는 제거하고 실제 `asdk_app_…`, `connector_…`, `templated_apps_…` ID를 사용한다. `python3 scripts/package_plugin.py --host openai-cloud --app-id "$KNOWSLINK_REGISTERED_APP_ID" --verify`로 `build/knowslink-openai-cloud-plugin.zip`을 만든다. ID 형식만 검사하며 계정 등록 여부는 host에서 확인해야 한다. 실 ID가 없는 현재 검증은 임시 합성 ID의 구조 self-check만 수행한다. Cloud ZIP에는 stdio process·bundled MCP·credential을 넣지 않는다. bundled MCP import는 HTTPS여도 Desktop only이기 때문이다. 공개 marketplace 제출은 별도 범위다. [패키지 계약](https://developers.openai.com/plugins/build/plugins), [app 참조와 Desktop only 제한](https://learn.chatgpt.com/docs/enterprise/plugin-management), [Dots 컴퓨터·앱](https://learn.chatgpt.com/docs/dots/computers-and-apps).
 
@@ -130,9 +134,9 @@ KnowsLink는 새 공용 서비스 없이 **Command** server 등록을 시도한�
    sh scripts/install_bot_mcp.sh
    ```
 
-   스크립트는 x86_64/aarch64용 Node `v22.22.2` `.tar.gz`를 고정 SHA256으로 확인한다. 그 뒤 bundle을 빌드·패키지·검증한다. 빈 환경(`env -i`)에서 그 Node와 새 bundle로 MCP 경계 검사를 실행한다. 검사를 통과한 Node와 bundle만 `/workspace/.knowslink/node`와 `/workspace/.knowslink/knowslink`로 교체한다. 다운로드·체크섬·추출·검사가 실패하면 기존 준비물을 그대로 두고 exit 1로 끝난다. 다시 실행하면 같은 버전의 Node를 재사용하고 bundle을 교체한다. `~/.grok`와 앱 자격 증명은 바꾸지 않는다.
+   스크립트는 x86_64/aarch64용 Node `v22.22.2` `.tar.gz`를 고정 SHA256으로 확인한다. 그 뒤 bundle을 빌드·패키지·검증한다. 빈 환경(`env -i`)에서 그 Node와 새 bundle로 MCP 경계 검사를 실행한다. 검사를 통과한 Node와 bundle만 `/workspace/.knowslink/node`와 `/workspace/.knowslink/knowslink`로 교체한다. 실패하면 다음 등록 단계로 진행하지 않는다. Node 교체는 bundle 검사보다 먼저 일어날 수 있으므로 전체 설치물이 원자적으로 복구된다고 가정하지 않는다. 다시 실행하면 같은 버전의 Node를 재사용하고 bundle을 교체한다. `~/.grok`와 앱 자격 증명은 바꾸지 않는다.
 
-   경로를 바꾸려면 `KNOWSLINK_PREFIX`에 절대 경로를 지정한다. 상대 경로는 아무것도 바꾸지 않고 exit 1이다. 스크립트가 관리하는 경로는 `$KNOWSLINK_PREFIX/node`, `$KNOWSLINK_PREFIX/knowslink`, 실행 중의 `$KNOWSLINK_PREFIX/.stage.*`뿐이다. 같은 폴더의 다른 파일은 보존한다. `node` 또는 `knowslink` 자리에 이 스크립트가 만들지 않은 파일·폴더·링크가 있으면 바꾸지 않고 exit 1이다. 그 항목을 직접 옮긴 뒤 다시 실행한다.
+   경로를 바꾸려면 `KNOWSLINK_PREFIX`에 절대 경로를 지정한다. 상대 경로는 아무것도 바꾸지 않고 exit 1이다. 스크립트가 관리하는 경로는 `$KNOWSLINK_PREFIX/node`, `$KNOWSLINK_PREFIX/knowslink`, 실행 중의 `$KNOWSLINK_PREFIX/.stage.*`뿐이다. 같은 폴더의 다른 파일은 보존한다. `node` 또는 `knowslink` 자리에 이 스크립트가 만들지 않은 파일·폴더·링크가 있으면 바꾸지 않고 exit 1이다. 기존 항목을 보존하고 충돌하지 않는 다른 prefix를 선택한다.
 
    `/workspace` 유지는 보장하지 않는다. 공식 문서는 `/workspace` 파일이 일반 update·recovery 뒤에도 유지되도록 설계됐다고 쓴다. 수동 설치한 패키지는 교체 가능한 것으로 취급하라고 쓴다. **Reset**은 최근 변경을 잃을 수 있다([근거](https://docs.x.ai/grok-bot/computer-and-apps#work-with-files)). update·recover·Reset 뒤에는 다음을 확인한다. 하나라도 실패하면 1단계를 다시 실행한다. 등록 값은 같으므로 앱 등록은 다시 하지 않는다.
 
@@ -249,13 +253,13 @@ Codex에서 `python3 scripts/run_trial.py --config /private/trial_codex/environm
 
 ## 일반 회원의 로컬 연결
 
-[SAR-PUBLIC-AGENTS 절차](../README.md#일반-회원-agent키관계-sar-public-agents-001)를 따른다. 지원 구현은 Node 22 로컬 CLI `dist/connect.js`다. relay는 개인키를 받지 않는다. CLI는 준비와 완료를 분리하고 owner가 자기 브라우저에서 지문을 확인할 때까지 키를 활성화하지 않는다.
+[현재 클라이언트 연결 안내](../README.md#웹에서-시작하기)를 따른다. 아래 `dist/connect.js`는 수동 prepare/complete와 키 회전의 기존 로컬 경로다. relay는 개인키를 받지 않는다. CLI는 준비와 완료를 분리하고 owner가 자기 브라우저에서 지문을 확인할 때까지 키를 활성화하지 않는다.
 
-키별 credential과 권한 대상 agent는 분리된다. 기존 MCP 기본 held·시험 모드를 바꾸지 않았다. 새 `agent.json`은 클라이언트의 비공개 설정이며 배포 bundle·Git·도구 출력에 포함하지 않는다. 같은 owner의 다른 agent credential을 복사해서 공유하지 않는다. 외부 앱 설치·Grok Bot 실제 계정·다닷·원격 OAuth는 후속 검증이다. 일반 text의 현재 지원 경로는 아래 절을 따른다.
+키별 credential과 권한 대상 agent는 분리된다. 기존 MCP 기본 held·시험 모드를 바꾸지 않았다. 새 `agent.json`은 클라이언트의 비공개 설정이며 배포 bundle·Git·도구 출력에 포함하지 않는다. 같은 owner의 다른 agent credential을 복사해서 공유하지 않는다. Grok/Dots 실제 연결 근거와 신규 호스트 검증 한계는 루트 README를 따른다. 일반 text의 현재 지원 경로는 아래 절을 따른다.
 
 ## 일반 회원 연결 확인 text — SAR-PUBLIC-MESSAGES-001
 
-일반 회원 홈에서 이름을 정하고 `connect.js prepare`·owner 지문 확인·`complete`를 마친 자기 비공개 폴더를 사용한다. 다른 사람과는 사람 친구 요청을 수락한다. 같은 회원의 자기 agent는 친구 요청 없이 연결되며 기존 회원은 범위 확대에 한 번 동의한다. 시험 allowlist와 Service Auth는 필요하지 않다. 운영 적용은 OPS 수락의 후속이다.
+일반 회원 홈에서 이름을 정하고 `connect.js prepare`·owner 지문 확인·`complete`를 마친 자기 비공개 폴더를 사용한다. 다른 사람과는 사람 친구 요청을 수락한다. 같은 회원의 자기 agent는 친구 요청 없이 연결되며 기존 회원은 범위 확대에 한 번 동의한다. 시험 allowlist와 Service Auth는 필요하지 않다. 현재 운영·실계정 근거는 루트 README를 따른다.
 
 자기 Node22 컴퓨터에서 명시 승인한 비민감 연결 확인 text를 stdin으로 넣는다. 최대4096 UTF-8 bytes·TTL180s다.
 
@@ -280,7 +284,7 @@ MCP Command 환경은 `KNOWSLINK_MODE=public-node`, `KNOWSLINK_AGENT_FOLDER=/pri
 
 `knowslink_status`의 `autoReceive`로 상태를 확인한다. `state`(running/backoff/stopped/off), `lastSuccessAt`, `lastError`, `nextPollAt`, `lastReceivedId`, `pending`, `hostNotice`를 보여 준다. 비밀값과 text는 없다. `hostNotice:sent_unverified`는 알림을 보냈다는 뜻이다. Grok Bot이 화면에 표시했거나 노우의 턴을 시작했다는 뜻이 아니다.
 
-Grok Bot은 MCP 알림·외부 이벤트로 대화를 깨우는 공식 기능을 제공하지 않는다. 공식 무인 실행은 최소 5분 간격 routine과 Slack·GitHub 계정 통합 trigger뿐이다. 기본 설정에서 노우는 다음 대화나 사용자 요청에서 `knowslink_text_receive`로 보관된 메시지를 확인한다. 선택형 [loopback wake](#선택형-grok-bot-loopback-wake--미문서화-gateway)를 켜면 새 메시지 ID를 노우 대화에 알릴 수 있다. 근거와 한계는 [D03 자동 수신 절](../.fullops-squad/docs/design-docs/architecture.md#자동-수신과-호스트-알림--sar-auto-receive-001-dev)을 따른다.
+MCP log notice만으로 Grok 대화 턴을 시작한다고 보장하지 않는다. 기본 설정에서는 다음 대화나 사용자 요청에서 `knowslink_text_receive`로 보관된 메시지를 확인한다. 질문 없는 화면 알림은 아래 webhook routine과 채팅 표시 지시를 설정한 실제 계정에서 확인했다. 신규 설치에 routine이 자동으로 생기지는 않는다. 선택형 [loopback wake](#선택형-grok-bot-loopback-wake--미문서화-gateway)를 켜면 새 메시지 ID를 노우 대화에 알릴 수 있다. 근거와 한계는 [D03 자동 수신 절](../.fullops-squad/docs/design-docs/architecture.md#자동-수신과-호스트-알림--sar-auto-receive-001-dev)을 따른다.
 
 Command MCP process가 대화 사이에도 살아 있는지는 공식 문서에 없다. 대화가 없을 때도 수신하려면 Bot 컴퓨터에서 상시 watcher를 실행한다. MCP와 같은 inbox를 사용한다.
 
@@ -337,9 +341,11 @@ port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEW
 
 한계: gateway가 꺼진 동안 같은 컴퓨터의 다른 process가 port를 점유하면 token을 받을 수 있다. Bot 컴퓨터를 owner 단독으로 사용하는 경우에만 켠다. 컴퓨터 Update/Reset은 watcher와 준비물을 지울 수 있다. 그 뒤 1–4단계를 다시 실행한다.
 
-### 선택형 Grok Bot webhook routine wake — 후보, 실제 미검증
+<a id="선택형-grok-bot-webhook-routine-wake--후보-실제-미검증"></a>
 
-`sendPrompt` doorbell은 노우 대화에 사용자 메시지로 보인다. 공식 [make-bot-ui 스킬](https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md)의 webhook trigger routine은 `<webhook_event>` routine 턴을 시작한다. 이 경로를 후보로 제공한다. 실제 routine 왕복을 확인하기 전에는 위 loopback 설정을 바꾸지 않는다.
+### 선택형 Grok Bot webhook routine wake
+
+`sendPrompt` doorbell은 노우 대화에 사용자 메시지로 보인다. 공식 [make-bot-ui 스킬](https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md)의 webhook trigger routine은 `<webhook_event>` routine 턴을 시작한다. 이 경로는 기존 실제 Grok 계정에서 질문 없는 화면 알림을 확인했다. [알림 근거](../.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md)의 시험 범위만 적용한다. 장시간·재시작 성공은 미검증이다. 기존 webhook 설정을 loopback 방식으로 바꾸지 않는다.
 
 - 비공개 파일 하나에 routine 화면의 URL과 sender key를 넣는다. 파일은 소유자 전용(0600)이어야 한다. 링크·그룹 읽기 권한이 있으면 사용하지 않는다.
 
@@ -351,12 +357,12 @@ port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEW
 - URL은 위 형식만 허용한다. 다른 host·http·query·port·userinfo는 거부한다. redirect는 따르지 않는다. 요청은 `Authorization: Bearer <key>`와 `X-Automation-Key: <key>`를 담은 POST JSON 한 번이며 timeout은 8s다.
 - body는 `{"event":"knowslink_text_arrived","ids":[UUID…],"pending":N,"next":"…"}`뿐이다. 받은 text·발신자는 보내지 않는다. routine prompt는 `body`를 untrusted data로 읽고 `knowslink_text_receive`를 호출하도록 owner가 작성한다.
 - 결과·marker·재시도 규칙은 loopback과 같다. 2xx는 `accepted_unverified`, 연결 거절·DNS 실패·설정 파일 불량은 `retry`, 3xx·4xx는 `rejected`, 5xx·timeout은 `uncertain`이다. URL·key는 상태·marker·로그에 남지 않는다.
-- `plugin.js wake-check`는 webhook 모드에서 파일만 검사한다. 결과: `{"state":"ok","mode":"webhook"}`. 아무것도 보내지 않는다. 공식 문서가 요구하는 무해한 probe와 routine 턴 표시는 owner·coor가 따로 확인한다.
+- `plugin.js wake-check`는 webhook 모드에서 파일만 검사한다. 결과: `{"state":"ok","mode":"webhook"}`. 아무것도 보내지 않는다. 파일 검사와 실제 routine 턴·화면 표시는 별개다. 신규 시험 발송은 별도 사용자 승인을 받아 확인한다.
 - 중지는 해당 watcher의 정확한 PID를 끝내고 변수 없이 다시 시작하는 것이다. routine 사용량은 기존 Bot 사용량을 쓴다. 새 유료 서비스는 없다.
 
 불확실한 송신은 같은 key·같은 내용으로 재시도한다. 중복은 receipt만 반환한다. idempotency_conflict는 이전 내용을 확인하고 별도 새 요청에는 새 key를 사용한다. expired·오프라인은 클라이언트/관계를 확인한 뒤 새 요청을 명시 송신한다. invalid_auth/invalid_signature는 현재 연결·키·지문을 확인한다. capacity/rate_limited는 성공이 아니며 retry_at 뒤 수동으로 재시도한다. 철회된 옛 요청/세대는 새 수락으로 복구되지 않는다.
 
-회원 홈의 자기 agent·요청 ID 조회에서도 현재 전달·처리·관련 답장·TTL·실패 복구를 확인한다. 로컬 실제 Node/MCP 프로세스 검증은 `make verify-mvp`의 TestPublicNodeProcesses다. 실제 Grok Bot·다닷 앱 설치/권한/계정 왕복·운영 공개·실메일·직접 사람 검수는 별도 후속이다.
+회원 홈의 자기 agent·요청 ID 조회에서도 현재 전달·처리·관련 답장·TTL·실패 복구를 확인한다. 로컬 실제 Node/MCP 프로세스 검증은 `make verify-mvp`의 TestPublicNodeProcesses다. 실제 Grok/Dots 왕복·화면 알림은 루트 README의 별도 근거를 따른다. 이 합성 검사는 다른 호스트 계정·실메일·장시간·직접 사람 검수를 대신하지 않는다.
 
 ## Google 연결 — SAR-GOOGLE-CONNECT-001-DEV
 
@@ -364,4 +370,4 @@ port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEW
 
 Command MCP는 기존 `KNOWSLINK_MODE=public-node`, `RELAY_URL`, `KNOWSLINK_AGENT_FOLDER` 설정을 사용한다. 사용자의 동의를 받고 `knowslink_connect`에 `confirmed:true`를 전달한다. 결과의 링크와 지문을 사용자에게 보여 주고 `knowslink_connect_status`로 저장 완료를 확인한다. 기본 held/trial 모드는 그대로다. 같은 Google 계정으로 다른 클라이언트에서 반복하면 이름을 정한 별도 agent와 키가 생긴다. 자기 agent는 신규 회원 기본 연결 또는 기존 회원의 명시적 범위 동의를 따르고, 다른 사람은 친구 수락을 별도로 받는다.
 
-요청은 10분 뒤 만료한다. 실패·취소·완료 응답 유실 때는 기존 폴더를 덮어쓰지 말고 새 폴더로 다시 시작한다. 이미 생성한 미사용 agent는 자기 홈에서 확인하고 폐기한다. POSIX 소유자·권한 검사와 Windows 상속 차단 ACL 검사를 적용한다. 운영의 공개 경로 적용은 별도 OPS 작업이며 이 DEV 결과는 실제 외부 Bot 연결 성공 증거가 아니다.
+요청은 10분 뒤 만료한다. 실패·취소·완료 응답 유실 때는 기존 폴더를 덮어쓰지 말고 새 폴더로 다시 시작한다. 이미 생성한 미사용 agent는 자기 홈에서 확인하고 폐기한다. POSIX 소유자·권한 검사와 Windows 상속 차단 ACL 검사를 적용한다. 현재 공개 경로와 실제 외부 Bot 연결 결과는 루트 README의 운영·실계정 근거를 따른다. 이 로컬 연결 구현 검사만으로 실제 계정 성공을 주장하지 않는다.

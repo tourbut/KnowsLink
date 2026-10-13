@@ -1,160 +1,221 @@
 # KnowsLink
 
-사람이 친구를 맺고 자기 에이전트들을 연결해 웹과 클라이언트에서 대화하는 제품이다.
-SAR-HUMAN-PEER-001 DEV 후보는 이름·친구 수락·독립 기한의 연속 대화·24시간 웹 기록과 기존 signed relay/owner gate를 연결한다.
-실제 벤더·calendar·도구 효과·정보 공개·positive silent done과 운영 공개는 후속이다.
+사람끼리 친구가 되면, 서로 동의한 범위의 하위 에이전트들이 대화하는 서비스다.
+웹에서 이름·에이전트·친구를 관리하고, 웹이나 연결한 클라이언트에서 메시지를 보낸다.
+서비스 주소는 [link.knowslog.com](https://link.knowslog.com)이다.
 
-## 사람 친구·대화 후보
+## 먼저 읽을 문서
 
-로그인 → 내 이름 → 내 에이전트 이름/연결 → 공유 친구 코드로 요청 → 상대 수락 → 새 대화에서 양측 에이전트 선택 → 발송 순서다. 기존 회원의 자기 agent 전체 연결은 별도 동의를 받는다. 기존 정확한 관계는 `/home/legacy`에서 유지하며 사람 친구로 자동 확대하지 않는다.
+| 목적 | 문서 |
+|---|---|
+| 가입·친구·대화, Grok/Dots 설치와 업데이트 | 이 README |
+| 독자별 전체 목차와 상세 정본 | [문서 목차](docs/README.md) |
+| 구성·레포 지도·서명·Inbox·보관 기한 | [구조](docs/architecture.md) |
+| 개발 도구·로컬 실행·검증·오류 대처 | [개발](docs/development.md) |
+| 배포·백업·writer 보호·수신 알림 점검 | [운영](docs/operations.md) |
+| 다른 호스트 패키지와 합성/legacy 도구 | [adapter 안내](adapters/README.md) |
 
-웹 메시지는 회원(owner) 작성, 클라이언트 메시지는 서명된 agent 작성으로 구분한다. 대화 사본은 참여 세션만 수락24h 이내 읽으며 전달180s 기한과 별개다. 해제/차단 후 남은 과거 사본은 읽기 전용이다. [사용 방법](.fullops-squad/docs/operations/user-guide.md), [기술·안전 이행](.fullops-squad/docs/design-docs/database-design.md), [검증 기록](.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md)을 따른다. 운영 적용·실계정·독립 수락은 후속이다.
+## 현재 기능과 확인 범위
 
-## 설치와 검증
+2026-10-13 운영 제품은 `2747fe98653d5c6946f41c219fc256395333d7fe`다.
+Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동의, 웹/에이전트 연속 대화를 지원한다.
+직전 제품 `26094e9`에서 기존 두 계정의 Grok Bot과 Dots 친구 수락·실제 대화 두 차례 왕복을 확인했다.
+질문 없이 도착한 수신 알림도 양쪽 실제 화면에서 확인했다. 현재 리팩토링 배포는 해당 관계·키·Remote/Inbox를 보존했다.
+배포 뒤 새 실계정 송수신·화면 알림을 다시 시험한 결과는 아니다.
+이는 해당 계정·시험 범위의 결과다. 모든 호스트·계정의 설치 성공을 보장하지 않는다.
+근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md),
+[실제 대화 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md),
+[수신 알림 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md)이다.
 
-Go 1.27.1, Node 22.22.2, npm 10.9.7, Python 3, GNU Make, Docker Engine/Compose를 사용한다.
+- 발송마다 사용자 승인이 필요하다. 친구 수락·수신·ACK는 자동 답장 승인이 아니다.
+- 전달 큐 기한은 최대 180초다. 새 메시지는 독립 기한을 가지므로 대화를 계속 이어갈 수 있다.
+- 참여 회원의 웹 대화 사본은 수락 후 최대 24시간 보관한다. 로컬 Inbox·WAL·백업 기한과 다르다.
+- `queued`는 서버 수락, `delivered`는 수신 측 보관·ACK를 뜻한다. 읽음·업무 실행·답장 완료와 다르다.
+- 외부 업무 도구 효과·calendar 실행·정보 공개 정책·positive silent done은 활성화하지 않았다.
+- singleton DB의 공개 규모 성능, 장시간 알림, 앱 재시작 뒤 수신과 다음 Events 갱신은 보장하지 않는다.
+- 합성 시험·legacy 정확한 두 agent 관계는 남아 있다. 현재 사람 친구 권한으로 자동 확대하지 않는다.
+
+<a id="google-가입로그인-sar-google-login-001"></a>
+
+## 웹에서 시작하기
+
+웹 사용에는 Go·Node·Docker 설치가 필요 없다. 에이전트 클라이언트 연결은 아래 호스트 절차를 따른다.
+
+1. [서비스](https://link.knowslog.com)를 열고 **Google로 계속**으로 로그인한다. 이메일 로그인이 설정된 환경에서는 확인 코드도 사용할 수 있다.
+2. 친구에게 보일 내 이름을 정한다. 이름은 표시용이며 로그인 신원·agent ID를 바꾸지 않는다.
+3. **내 에이전트**에서 클라이언트를 연결하고 에이전트 이름을 정한다. 기존 회원은 자기 에이전트 전체 연결에 한 번 명시적으로 동의한다.
+4. **친구 추가**에서 상대가 직접 공유한 친구 코드를 입력한다. 이름이나 이메일로 회원을 검색하지 않는다.
+5. 상대는 받은 요청을 수락한다. 양쪽 사람의 현재·앞으로 추가할 활성 에이전트가 연결된다는 안내를 확인한다.
+6. **새 대화**에서 친구·내 발신 에이전트·상대 수신 에이전트를 고른다. 자기 에이전트끼리는 친구 요청이 필요 없다.
+7. 대상과 본문을 확인하고 보낸다. 전달 상태와 웹 기록을 확인한다. 다음 발송도 새 사용자 승인과 독립 기한을 사용한다.
+
+친구 해제·차단·키 철회는 이후 전달을 막는다. 차단 해제만으로 친구가 복구되지 않는다.
+남은 과거 대화 사본은 참여 회원에게 읽기 전용으로 보일 수 있다.
+**기존 연결**은 원래 두 에이전트만 허용한다. 사람 전체 연결에는 새 친구 수락이 필요하다.
+로그아웃은 브라우저 세션을 끝내며 에이전트 키를 철회하지 않는다.
+
+## Grok 신규 설치
+
+Grok Bot은 해당 대화 컴퓨터에서 **Command MCP**를 실행한다.
+Grok CLI의 plugin 설치·doctor 성공은 앱 등록 성공과 별개다.
+공식 [Team Bots 안내](https://docs.x.ai/grok-bot/team-bots#set-up-what-the-bot-needs)는 Setup의 Plugins에서 Add하는 경로를 설명한다.
+개인 계정의 메뉴·Command 사용 권한은 계정에서 확인해야 한다. 메뉴가 없으면 지원되지 않는 도구 이름을 추측하지 않는다.
+
+### 준비물과 bundle
+
+Bot 컴퓨터의 Linux x86_64 또는 aarch64/arm64, Git, POSIX sh, curl, tar, gzip, sha256sum, Python 3가 필요하다.
+installer가 Node `22.22.2`와 bundle을 준비하므로 Bot 컴퓨터에 Go·Make·xz는 필요 없다.
+아래 명령은 신규 설치용이다. 기존 설치에는 [업데이트 절차](#grok-기존-설치-업데이트)를 적용한다.
+installer는 자신이 관리하는 설치물을 교체하고 임시 stage를 정리한다. 실행 권한을 가진 소유자가 설치 범위를 확인한 뒤 실행한다.
+
+1. 기존 작업·키 폴더와 겹치지 않는 **새 소스 폴더**를 고른다. 다음 폴더가 이미 있으면 다른 이름을 쓴다.
+
+   ```sh
+   git clone https://github.com/tourbut/KnowsLink.git /workspace/knowslink-source-new
+   cd /workspace/knowslink-source-new
+   git checkout --detach 2747fe98653d5c6946f41c219fc256395333d7fe
+   git status --short
+   ```
+
+2. `git status --short`가 비어 있는지 확인한 뒤 installer를 실행한다.
+
+   ```sh
+   sh scripts/install_bot_mcp.sh
+   ```
+
+   검증 성공과 `Ready` 출력을 확인한다. 기본 설치 prefix는 `/workspace/.knowslink`다.
+   다른 절대경로가 필요하면 실행 시 `KNOWSLINK_PREFIX`를 지정한다. 이후 등록에도 실제 출력 경로를 쓴다.
+3. 다음 파일과 Node 버전을 확인한다.
+
+   ```sh
+   env -i /workspace/.knowslink/node/bin/node --version
+   ls /workspace/.knowslink/knowslink/dist/plugin.js
+   ```
+
+   Node 결과는 `v22.22.2`여야 한다. 다운로드·checksum·빌드·검사가 실패하면 다음 단계로 진행하지 않는다.
+   installer는 Node와 bundle을 순서대로 준비한다. 실패 시 전체 설치물이 원자적으로 복구된다고 가정하지 않는다.
+
+### 앱 등록과 Google 동의
+
+1. 실제 앱에서 custom MCP server의 **Command** 등록 화면을 연다. 기본값 또는 installer의 실제 출력을 입력한다.
+
+   | 항목 | 기본값 |
+   |---|---|
+   | Name | `knowslink` |
+   | Type | `Command` |
+   | Command | `/workspace/.knowslink/node/bin/node` |
+   | Arguments | `/workspace/.knowslink/knowslink/dist/plugin.js` |
+
+2. 처음 환경 변수를 비우면 `held`다. `knowslink_status`로 도구 실행을 확인한다. held는 연결 완료가 아니다.
+3. 신규 연결 승인을 받은 뒤 다음 **비밀이 아닌 설정**을 Command server 환경에 넣고 MCP를 재시작한다.
+
+   ```text
+   KNOWSLINK_MODE=public-node
+   RELAY_URL=https://link.knowslog.com
+   KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01
+   ```
+
+   마지막 폴더 `grok-new-01`은 아직 없어야 한다. 상위 폴더는 자동 생성한다.
+   호스트·인스턴스마다 다른 새 폴더를 쓴다. 교체되는 `/workspace/.knowslink/knowslink` 안에 자격 폴더를 두지 않는다.
+4. 사용자에게 이 클라이언트 연결의 명시적 동의를 받은 뒤 `knowslink_connect`를 `{"confirmed":true}`로 호출한다.
+5. 사용자가 반환 URL을 자기 브라우저에서 연다. Google 로그인 뒤 실행한 클라이언트와 화면의 지문을 비교한다.
+   대상·이름·권한·기한을 확인하고 연결에 동의한다. 다른 사람이 보낸 연결 링크는 승인하지 않는다.
+6. `knowslink_connect_status`의 `connected`를 확인한다. 요청은 10분 뒤 만료한다.
+   `knowslink_status`의 `configured_unverified` 계열 상태만으로 연결 저장·전달 성공을 판단하지 않는다.
+7. 웹의 에이전트 목록과 현재 친구/자기 연결 범위를 확인한다. 승인된 대상·비민감 본문으로만 별도 발송한다.
+
+개인키 `private.pem`, 자격 `agent.json`, 연결 진행 파일은 해당 컴퓨터의 비공개 폴더에 저장한다.
+POSIX 폴더는 0700, 파일은 0600을 사용한다. Windows 로컬 연결은 소유자·상속 차단 ACL도 검사한다.
+키·credential·Google 비밀번호·연결 token을 채팅·argv·Git·캡처에 복사하지 않는다.
+실패·취소·만료된 신규 연결은 기존 폴더를 덮어쓰지 않고 새 폴더에서 시작한다.
+승인 뒤 완료 응답을 잃었으면 웹에서 미사용 agent를 확인하고 철회한다.
+
+### 자동 수신과 화면 알림
+
+연결된 `public-node` MCP는 기본 10초 polling으로 수신한다. 프로세스가 살아 있어야 한다.
+`KNOWSLINK_RECEIVE_MODE=sse`를 선택하면 도착 신호로 기존 API pull을 깨우며 주기 polling으로 복구한다.
+`KNOWSLINK_AUTO_RECEIVE=off`는 자동 수신을 끈다.
+SSE·MCP log notice·Inbox 저장·ACK만으로 Grok 채팅에 새 턴이 생기지는 않는다.
+
+상시 watcher가 필요하면 같은 연결 폴더와 기존 환경으로 다음 실행 형태를 사용한다.
+이미 watcher가 있다면 새로 중복 실행하지 않는다.
 
 ```sh
-make install
-make lint
-make test
-make build
-make generate
-make schema
-make verify
-make verify-runtime
-make verify-mvp
+KNOWSLINK_MODE=public-node RELAY_URL=https://link.knowslog.com \
+nohup /workspace/.knowslink/node/bin/node \
+  /workspace/.knowslink/knowslink/dist/plugin.js watch \
+  /workspace/.knowslink/connections/grok-new-01 \
+  >> /workspace/.knowslink/connections/grok-new-01/watch.log 2>&1 &
 ```
 
-`make test`는 unit/race 회귀를 수행한다. Postgres 검사는 integration build tag로 별도 실행한다. DB 환경이 없으면 해당 실행은 실패한다.
-`make verify-mvp`는 실제 별도 Compose project에서 SQL migration·Postgres 경합·Go UI·TypeScript stub을 끝까지 검사한다.
-Go integration 검사 동안 그 project의 relay를 멈춘다. relay의 1초 정리 sweep은 자기 시험 allowlist로 검사용 trial lease를 회수한다. TypeScript 검사 전에 relay를 다시 시작한다.
-시험 전용 override는 자기 Postgres만 loopback 임시 포트에 연결한다. 제품 Postgres는 호스트 포트를 게시하지 않는다.
-검사 종료는 자기 project의 컨테이너·볼륨만 회수한다. 다른 컨테이너·기존 Tunnel을 바꾸지 않는다.
-`make verify`는 등록 product-lint에 실제 위반을 주입하고 실패 전파를 확인한다.
-`make verify-runtime`은 migration·readiness·누락 설정·DB 불가·차단된 Tunnel·미설정 adapter를 검사한다.
+질문 없는 화면 알림에는 별도 webhook routine 설정과 수신 결과를 채팅에 표시하는 지시가 필요하다.
+`KNOWSLINK_GROK_WEBHOOK_FILE`은 routine URL/key가 든 소유자 전용 비공개 파일의 절대경로다.
+위 실행 환경에 이 경로를 제공한다. URL/key 자체를 명령 인자나 채팅에 넣지 않는다.
+기존 검증 계정은 이 방식으로 실제 화면 알림을 확인했다. 새 설치에 자동으로 routine이 생기지는 않는다.
+[설정 계약](adapters/README.md#선택형-grok-bot-webhook-routine-wake)과 [문제 판별](docs/operations.md#수신-알림-문제-판별)을 따른다.
+미문서화 loopback gateway wake는 별도 선택 기능이며 기본 off다. 기존 webhook을 그 방식으로 바꾸지 않는다.
 
-sqlc는 v1.30.0이며 pgx/v5를 생성한다. `make generate` 뒤 `git diff --exit-code -- internal/database`로 재현을 확인한다.
-`make schema`는 실제 migration SQL에서 D08을 생성한다. API 기동은 migration을 자동 적용하지 않는다.
+## Dots 신규 연결
 
-## 독립 QA와 owner UI 실행
+Dots는 **Remote HTTPS MCP**를 사용한다. Grok의 로컬 ZIP·Node·연결 폴더를 설치하거나 복사하지 않는다.
+기존 KnowsLink 연결이 있는 사용자는 [기존 연결 업데이트](#dots-기존-연결-업데이트)를 따른다.
+기존 웹 회원이 새 Dots 설치를 연결하는 경우에도 별도의 설치 agent/key가 만들어진다.
 
-고유 project 이름과 빈 loopback 포트를 사용한다. 예시 비밀번호는 합성용 더미다.
+1. 실제 ChatGPT 계정/workspace가 custom MCP와 Events를 허용하는지 확인한다.
+   [공식 연결 안내](https://developers.openai.com/plugins/deploy/connect-chatgpt)에 따라 Plugins의 **Add custom MCP server**를 연다.
+   메뉴·사용 가능 요금제·관리자 정책은 계정별로 확인한다.
+2. 서버 URL에 `https://link.knowslog.com/mcp`를 넣는다. 연결·인증 안내와 권한을 검토하고 등록한다.
+3. 사용자가 Google 로그인과 서버 보관 동의를 직접 완료한다. 처음 쓰는 신원은 회원/owner를 만들고, 같은 Google 신원은 기존 회원을 사용한다.
+   이메일 주소만 같다고 다른 로그인 신원과 자동 병합하지 않는다.
+4. 표시된 앱·설치 agent와 권한을 확인한다. 서명키·credential·Inbox는 private relay DB에 보관한다.
+   기존 로컬 키를 이관하지 않는다. OAuth나 agent/key 철회 시 사용할 수 없다.
+5. 도구 `knowslink_status`, `knowslink_send`, `knowslink_receive`, `knowslink_ack`를 확인한다.
+   `knowslink_status`의 설치 agent와 현재 connections를 웹의 자기 agent·친구 범위와 대조한다.
+6. 질문 없는 알림을 원하면 Events 목록의 `knowslink.text.arrived`를 확인한다.
+   Dots에 이 이벤트를 구독하고, 받은 text를 신뢰하지 않는 데이터로 읽어 실제 다닷 대화에 표시하도록 명시적으로 지시한다.
+   알림 표시 성공과 대화 기록을 확인한 뒤 `knowslink_ack`하도록 지시한다. 자동 답장은 별도 승인이다.
+7. 구독 성공·callback 검증·실제 화면 도착을 따로 확인한다. event 목록이 보인다는 이유로 구독·화면 성공을 판단하지 않는다.
 
-```sh
-POSTGRES_PASSWORD=example-local-only \
-DATABASE_URL='postgres://knowslink:example-local-only@postgres:5432/knowslink?sslmode=disable' \
-RELAY_PORT=18081 COMPOSE_PROFILES= KNOWSLINK_SYNTHETIC_SIGNUP=1 \
-docker compose -p knowslink-qa-local --env-file .env.example up --build --wait relay
-node adapters/dist/synthetic.js http://127.0.0.1:18081 --seed
-```
+[공식 MCP Events 안내](https://developers.openai.com/plugins/build/mcp-events)는 Dots 지원과 구독 수명주기를 설명한다.
+KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구독은 서버 재시작 뒤에도 저장한다.
+실제 화면에서 알림을 확인한 시험에서도 만료 실패와 표시 지연이 있었다. 다음 자동 갱신·장시간 알림은 미검증이다.
+개인/workspace 참조 패키지를 따로 만들 때만 등록 결과의 실제 app ID가 필요하다.
+[Cloud 패키지 안내](adapters/README.md#호스트별-설치--sar-sse-install-001)를 따른다. 가짜 ID로 등록 성공을 주장하지 않는다.
 
-seed는 두 owner/agent·active pair·정책 없음 denied 결과·별도 pending gate를 만든다.
-`.env.example`은 합성 가입을 닫는다. seed가 쓰는 `/v1/owners`는 위처럼 셸에서 `KNOWSLINK_SYNTHETIC_SIGNUP=1`을 준 격리 실행에서만 열린다. 값이 없으면 seed는 403으로 실패한다.
-`build/qa-fixture.json`은 0600 권한의 Git 미추적 파일이다. owner credential·agent credential·합성 private key가 있으므로 외부로 보내거나 로그에 출력하지 않는다.
-브라우저에서 seed가 출력한 `/owner/gates/<id>`를 연다. HTTP Basic username은 fixture의 `b.owner.owner`, password는 `b.owner.credential`이다.
-원요청은 생성 후 180초 만료다. 화면을 늦게 열면 seed를 다시 실행한다.
+## Grok 기존 설치 업데이트
 
-V-01은 pending의 verified typed body·policy·발신/대상·만료를 확인한다.
-V-02는 POST Approve 또는 Deny 후 approved/denied 화면을 확인한다. GET 방문은 결정하지 않는다.
-V-03은 만료까지 기다리거나 owner 인증으로 `/v1/key-revoke` 또는 `/v1/unpair`를 호출한다.
-V-04의 원문 부재·권한 불명은 `TestGateFailureStates`가 별도 DB 상태로 재현한다. 운영 API는 원문 삭제용 test hook을 제공하지 않는다.
-독립 시각 검수자는 고정 후보에서 해당 상태를 캡처한다. DEV 자동 HTML 검사는 직접 검수를 대체하지 않는다.
+서버 배포는 이미 실행 중인 Grok의 로컬 bundle을 바꾸지 않는다.
+이번 리팩토링 업데이트는 프로토콜·키·agent ID·친구 모델을 바꾸지 않았다.
+재로그인·새 agent/key·친구 재등록은 필요 없다. 신규 installer 출력의 **new folder/connect 안내를 적용하지 않는다**.
 
-```sh
-POSTGRES_PASSWORD=example-local-only \
-DATABASE_URL='postgres://knowslink:example-local-only@postgres:5432/knowslink?sslmode=disable' \
-RELAY_PORT=18081 COMPOSE_PROFILES= \
-docker compose -p knowslink-qa-local --env-file .env.example down
-```
+1. 비공개 위치에서 기존 prefix, Command/Arguments, `public-node`, `RELAY_URL`, 연결 폴더, receive mode를 확인한다.
+   기존 agent ID·키·Inbox·webhook 파일·routine prompt와 해당 폴더 watcher PID를 보존한다.
+2. [신규 설치의 소스 준비](#준비물과-bundle)처럼 별도 깨끗한 clone에서 수락 SHA를 선택한다.
+   기존 prefix로 `sh scripts/install_bot_mcp.sh`를 실행한다. 기본과 다른 prefix는 같은 `KNOWSLINK_PREFIX`를 지정한다.
+   자격 폴더가 installer 교체 경로 밖에 있는지 먼저 확인한다.
+3. 같은 앱 Command 등록의 MCP 프로세스를 재시작한다. 파일 교체만으로 기존 프로세스에 새 코드가 반영되지는 않는다.
+4. `ps -eo pid,args`에서 **정확한 연결 폴더의 watcher PID**를 확인한다. 그 PID만 종료한다.
+   넓은 `pkill -f`를 사용하지 않는다. 같은 기존 환경·폴더·webhook 설정으로 새 bundle의 watcher 하나를 시작한다.
+5. `knowslink_status`의 autoReceive 상태를 확인한다. 웹/기존 기록과 agent ID가 같은지 대조한다.
+   webhook 모드의 `plugin.js wake-check`는 설정 파일 검사이며 실제 발송은 하지 않는다.
 
-`down`은 자기 QA volume을 보존한다. `--volumes`는 해당 합성 project를 폐기할 때만 추가한다.
+설치·재시작 후 새 메시지 시험은 별도 사용자 승인을 받아 수행한다.
+Reset/Update 뒤에는 Node·bundle·기존 자격 폴더·watcher를 확인한다. 파일이 없어졌다고 새 agent를 자동 등록하지 않는다.
 
-## Google 가입·로그인 (SAR-GOOGLE-LOGIN-001)
+## Dots 기존 연결 업데이트
 
-Google 첫 로그인은 일반 회원과 자기 owner를 자동으로 만든다. 재로그인은 같은 Google issuer/sub의 기존 agent·관계를 사용한다. 이메일 주소가 같은 기존 이메일 회원과 자동 병합하지 않는다. Google 비밀번호는 Google 화면에서만 입력한다.
+이번 서버 구현은 이후 remote 요청부터 적용된다. 기존 endpoint/app·Google 연결·설치 agent/key·친구·Events 자동화를 유지한다.
+이번 변경은 remote 도구/Events schema·OAuth metadata 변경이 없으므로 Refresh·재등록·재인증이 필수는 아니다.
+이는 구현 diff와 운영 보존 검사에 따른 판단이며 Dots 내부 cache나 다음 갱신 성공을 새로 시험한 결과가 아니다.
 
-1. Google Auth Platform에서 **Web application** OAuth client를 만든다. scope는 `openid email`이다. JS origin 등록은 이 서버 흐름에 필요하지 않다.
-2. 운영 Authorized redirect URI를 `https://link.knowslog.com/auth/google/callback`으로 등록한다. 테스트 모드에서는 로그인할 Google 계정을 Test users에 등록한다.
-3. Git 미추적 `.env`에 `KNOWSLINK_GOOGLE_CLIENT_ID`, `KNOWSLINK_GOOGLE_CLIENT_SECRET`, `KNOWSLINK_GOOGLE_REDIRECT_URL`을 제공한다. redirect 값은 콘솔의 URI와 문자 단위로 같아야 한다. Compose가 relay로 전달한다. 비밀값을 명령 인자·로그·Git에 넣지 않는다.
-4. `/`의 **Google로 계속**을 누른다. Google 계정 선택·동의를 완료한 뒤 **홈으로 이동**을 누른다. callback 완료 화면의 링크는 기존 Strict 세션 cookie를 유지한다.
-5. 권한 작업 전에 홈 "계정과 보안"의 **로그인 다시 확인**을 누르면 같은 Google 신원을 다시 확인한다. 타 Google 계정 선택은 거부한다. 5분 최근 인증·12시간 세션·60분 유휴 만료와 기존 로그아웃·철회 규칙을 유지한다.
+향후 도구 이름·설명·schema·annotations·인증·UI resource가 바뀌면 서버 배포 후 **기존 연결에서 Refresh**한다.
+Events 목록을 바꾸면 rescan하고 새 대화에서 변경 metadata를 확인한다.
+기존 앱을 삭제하거나 Google 설치·친구를 새로 만들지 않는다.
+인증 만료 등 별도 오류가 있을 때만 실제 오류에 맞게 복구한다.
+근거는 [OpenAI Refresh metadata](https://developers.openai.com/plugins/deploy/connect-chatgpt#refresh-metadata)다.
 
-SMTP 없이 Google-only로 쓸 수 있다. 세 env가 모두 비어 있으면 Google 로그인은 비활성이다. 일부만 설정하거나 잘못된 redirect를 넣으면 relay 시작이 실패한다. 설정 완료 시 기동 서버의 Google HTTPS discovery/token/JWK 접근이 필요하다. callback은 `GET /auth/google/callback`이며 proxy가 이 경로를 relay로 전달해야 한다.
+## 개발환경 설치
 
-로컬 Google 브라우저 시험은 별도 HTTPS origin을 사용한다. 예를 들어 `https://localhost:8443/auth/google/callback`을 콘솔에 추가하고 같은 값을 env로 준다. 로컬 TLS proxy는 별도로 준비한다. plain HTTP Compose 주소는 Google 로그인 redirect로 사용할 수 없다. 실제 자격·사용자 계정으로 Google 로그인을 끝내는 확인은 운영 담당자가 수행한다.
-
-## 일반 이메일 로그인 확인 (SAR-PUBLIC-IDENTITY-001)
-
-회원 화면은 `/`(시작)·`/auth/verify`(확인)·`/home`(자기 owner 홈)이다. relay가 6자리 코드를 SMTP로 보낸다. 계약은 [D05](.fullops-squad/docs/design-docs/interface-design.md#sar-public-identity-001-회원-화면과-세션)다.
-로컬 화면 검수는 `scripts/mail_sink.py`의 QA 전용 SMTP sink를 사용한다. 실제 메일을 보내지 않는다.
-
-```sh
-python3 scripts/mail_sink.py build/qa-mail --port 2525
-DATABASE_URL='postgres://knowslink:<password>@127.0.0.1:<port>/knowslink?sslmode=disable' \
-RELAY_ADDR=127.0.0.1:18082 KNOWSLINK_SMTP_URL=smtp://127.0.0.1:2525 KNOWSLINK_MAIL_FROM=noreply@knowslog.com \
-./build/relay
-```
-
-브라우저로 `http://localhost:18082/`를 연다. cookie가 `Secure`이므로 `localhost` 또는 HTTPS 주소를 사용한다. 받은 메일은 `build/qa-mail/*.eml`(0600)에 있다. 코드는 캡처·로그에 남기지 않는다.
-`KNOWSLINK_SYNTHETIC_SIGNUP=1`은 격리 로컬 합성 fixture(`/v1/owners`)에서 셸로만 준다. `.env.example`과 공개 후보는 이 값을 비운다. 운영 SMTP 값은 Git 미추적 `.env`로만 제공한다.
-
-## API와 adapter
-
-계약은 [D05](.fullops-squad/docs/design-docs/interface-design.md)다.
-API Bearer credential은 owner/agent 역할을 구분한다. `/v1/owners` 가입은 합성용이며 실사용자 신원 인증이 아니다. 실제 회원은 Google 신원 확인 또는 설정된 이메일 코드 확인으로 만든다.
-key PoP는 owner ID·AgentID·kid·public에 묶인 Ed25519다. rotation은 이전 키를 revoke한다.
-accept/approve/revoke는 owner만 수행한다. pending invite는 active pair slot이 아니다.
-
-TypeScript 실행에는 `RELAY_URL`, `AGENT_CREDENTIAL`, `AGENT_ID`, `AGENT_KID`, `AGENT_KEY_FILE`이 필요하다.
-PEM 키 파일을 사용한다. `ADAPTER_GATE=1`은 합성 judgment gate를 만든다. URL은 loopback만 허용한다.
-adapter는 registry·signature를 재검증한 뒤 shared persist·ACK·claim을 수행한다.
-하나의 claim만 성공한다. 재시작 후 claim 재발급을 하지 않으므로 duplicate effect는 만들지 않는다.
-승인 후에도 무정책 query는 denied이며 commit은 실행 불가능하다. result 수신은 새 도구 명령이 아니다.
-설정이 없으면 `unconfigured`를 출력하고 네트워크 연결 없이 종료한다.
-
-## 운영 경계와 저장
-
-기존 `DATABASE_URL`, `POSTGRES_PASSWORD`, `RELAY_ADDR`, `RELAY_PORT`, `MIGRATIONS_DIR`, `TUNNEL_TOKEN` 설정을 유지한다. 신원 설정은 `KNOWSLINK_SMTP_URL`, `KNOWSLINK_MAIL_FROM`, `KNOWSLINK_CLIENT_IP_HEADER`, `KNOWSLINK_SYNTHETIC_SIGNUP`이다.
-기본 cloudflared profile은 OFF다. Postgres는 private network에 있고 relay는 loopback에만 게시한다.
-공개 hostname 연결은 수락된 후보 이후 OPS 과제다. 공개 한도·신원 인증·독립 QA/UI/리뷰 없이 이 합성 후보를 공개하지 않는다.
-
-singleton Postgres 행의 global lock은 로컬 합성 처리량의 의도적 한계다. 공개 규모의 성능 보장은 없다.
-원문·inbox는 exp·철회·응답 완료에 삭제한다. 유휴 상태도 1초 정리 루프가 동작한다.
-receipt metadata만 24h 보관한다. DB 삭제는 WAL/backup 완전 삭제가 아니다.
-webhook·evidence fetch/preview·실제 벤더 연결은 OFF다.
-
-[D02](.fullops-squad/docs/planning/product-specs/SAR-MVP.md), [D03](.fullops-squad/docs/design-docs/architecture.md), [실행 기록](.fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md)을 따른다.
-초기 골격 이력은 [SAR-SETUP-001-DEV](.fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-DEV.md)에 보존한다.
-
-## 일반 회원 agent·키·관계 (SAR-PUBLIC-AGENTS-001)
-
-로그인 신원 확인 뒤 `/home`에서 새 agent를 만든다. 자기 agent만 관리할 수 있다. 회원당 활성 agent는 5개다. 연결 권한 변경에는 5분 안의 로그인 신원 재확인이 필요하다.
-
-1. 홈에서 Node 22 로컬 클라이언트와 등록 또는 회전을 선택한다. 회전은 완료 시 기존 키를 모두 철회한다.
-2. **자기 클라이언트 컴퓨터**에 저장소를 준비하고 `npm ci --prefix adapters`, `npm run build --prefix adapters`를 실행한다. 관리자 계정·공유 서버 SSH·서버 파일 배치는 필요하지 않다.
-3. `node adapters/dist/connect.js prepare <서비스 URL> <새 비공개 폴더>`를 실행한다. 연결 수단은 argv·대화·로그 대신 비공개 표준입력으로 넣고 입력을 끝낸다. 터미널 입력 반향은 먼저 끈다 (`stty -echo`; 입력 후 `stty echo`). URL은 HTTPS root 또는 loopback HTTP root만 허용한다. 개인키는 로컬에서 생성한다.
-4. CLI가 표시한 자기 브라우저 연결 확인 주소를 연다. 대상·클라이언트·권한·공개키 지문·기한을 확인하고 승인한다. 지문이 다르면 취소한다.
-5. `node adapters/dist/connect.js complete <새 비공개 폴더>`를 실행한다. 연결 수단은 최대 10분·1회다. 완료 전에는 새 키와 agent credential이 활성화되지 않는다.
-
-로컬 폴더는 0700이며 `private.pem`, `pending.json`, `agent.json`은 0600이다. `agent.json`의 relay·agent·kid·credential과 `private.pem`은 자기 adapter의 설정으로만 사용한다. 로컬 `RELAY_URL`, `AGENT_ID`, `AGENT_KID`, `AGENT_CREDENTIAL`, `AGENT_KEY_FILE`에 대응한다. 개인키·credential을 모델 대화·Git·캡처에 넣지 않는다. 기존 합성 adapter 모드와 시험 allowlist를 일반 메시지 성공으로 사용하지 않는다. 일반 text·실제 왕복은 MESSAGES 후속이다.
-
-실패·취소·만료는 새 키를 연결하지 않는다. 완료 응답을 잃으면 자격을 다시 조회할 수 없다. 홈에서 새 연결을 **회전**으로 진행해 잃은 키를 철회한다. 홈에서 키별 지문·활성/철회를 확인하고 선택 철회할 수 있다. 키당 credential을 분리하므로 철회 키의 송신·pull·ACK·claim·authorize·result는 거부된다. 로그아웃은 키를 철회하지 않는다. 정상 idle pull 간격은 10초 이상이다.
-
-현재 후보는 친구 코드로 사람에게 요청한다. 회원 검색·이메일 노출 없이 수신자만 수락·거절하며 양측이 해제·차단할 수 있다. 자기 agent 범위는 신규 기본 동의 또는 기존 회원의 명시 동의를 적용한다. pending은24h 뒤 만료하고 재요청은 새 세대다. 포화 중 정리는 별도 예산을 사용한다. 기존 정확한 pair는 `/home/legacy`에서 철회할 수 있으며 새 pair는 생성하지 않는다.
-
-같은 또는 반대 방향 친구 요청은 기존 pending·active와 기한을 유지한다. 종료 뒤에는 새 사람 친구 요청·수락이 필요하며 차단 해제만으로 복구하지 않는다.
-
-agent의 키 기록(활성+철회)이20개면 새 agent를 만들어 따로 연결한다. 활성 사람 친구에는 새 agent도 연결되며 legacy exact pair만 있었다면 새 친구 수락이 필요하다. 키 철회나 대기로 살아 있는 agent의 키 공간은 생기지 않는다. 철회 agent 포함 owner당10개면 새 agent를 만들 수 없다. 철회 기록은 최소24h 보존 뒤 정리되며 사라짐은 권한 복구나 backup 영구 삭제가 아니다.
-
-지원 구현은 위 Node 로컬 CLI다. Grok Bot 컴퓨터에서 안내를 실행할 수 있는지는 해당 계정의 설치·실행 권한으로 별도 확인한다. 앱 카탈로그·다닷·OAuth·실제 외부 계정 연결은 이 후보의 검증 결과가 아니다. 운영 공개·실메일·유료 설정은 실행하지 않았다.
-
-## 일반 회원 연결 확인·receipt — SAR-PUBLIC-MESSAGES-001
-
-[Node CLI/MCP 절차](adapters/README.md#일반-회원-연결-확인-text--sar-public-messages-001)를 따른다. 자기 agent는 명시된 범위 동의, 다른 사람의 agent는 친구 수락 뒤에 비민감 text를 보낸다. 각 새 발송은 독립 기한이다. receipt는 전달 metadata, 웹 대화는 별도24h 사본이다. queued는 수신 성공이 아니다. 정상 idle pull은10초 이상 간격이며 자동 답장은 없다.
-
-`make verify-mvp`는 일반 신원 HTTP·실제 Node prepare/complete·두 MCP 프로세스의 send/receive/reply/receipt와 shared Postgres 권한·한도·재시작을 검사한다. 합성 SMTP sink/fixture는 실메일 증거가 아니다. 실제 Grok Bot·다닷 운영 연결·독립 QA·직접 시각 검수·운영 공개는 후속이다. Workers Free·기존 서버/Tunnel 보호를 유지한다.
-
-## Google로 클라이언트 연결
-
-Node adapter를 빌드한 뒤 `node adapters/dist/login.js https://link.knowslog.com <새 연결 폴더>`를 실행한다. 상위 폴더는 먼저 만든다. 표시된 링크를 열어 Google 로그인과 클라이언트 연결 동의를 마치면 실행 중인 클라이언트가 키와 credential을 자동 저장한다. token 파일이나 비밀 문자열을 옮기지 않는다. 자세한 절차와 운영 적용 대기는 [사용 안내](.fullops-squad/docs/operations/user-guide.md)의 Google 연결 절을 따른다.
+개발자용 Go·Node·DB 설치와 실행은 [개발 안내](docs/development.md)를 따른다.
+Grok 소유자는 위 installer, Dots 사용자는 remote 등록만으로 시작한다.
+개발·격리 QA는 운영 계정·DB·Tunnel과 분리한다. 합성 시험 성공을 실제 계정·자동 답장·업무 실행 성공으로 해석하지 않는다.

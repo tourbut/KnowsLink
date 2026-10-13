@@ -1,0 +1,1161 @@
+{
+  "task_key": "SAR-REPO-DOCS-001-DEV",
+  "role": "dev",
+  "attempt": "7644e183f44c4b56b5e25e66f10b05d2",
+  "packet_input_sha256": "2004cd68d4872d1a713f3316ed7cfdc65c9024d99caacbf1bb446a081d133192",
+  "uncertainty_review": "착수 packet의 원본·producer 추천을 보존했다. items 189경로/총192쌍과 remaining 155경로를 합친 189경로의 존재·hash·관련검색줄을 로컬로 보완했다. packet unknown19항목·producer_status4개와 item status unknown4를 구분했다. unknown19의 producer불확실성3개·경로16개 및 producer 잔여후보를 관련구간으로 추가 확인했다. 직접원문보완4개의 .env.example/compose.yaml/README/D12는 공개 더미 예제·실제 Compose·본문·현행 운영절을 직접 확인했다. D12는 현행이므로 no_change다. 나머지 과거 기록은 제목과 관련 구간으로 영향만 확인하며 전문 전수 재독을 주장하지 않는다. 추가 직접 근거는 adapters/src/login.ts,mcp.ts,text.ts,inbox.ts, internal/relay/google.go,human_messages.go,public_text.go, cmd/migrate/main.go, internal/config/config.go, 실제migration2와 go.mod/package.json/Dockerfile이다. 문서만 작성하므로 추천된 과거 원천과 제품 파일을 수정 범위로 승격하지 않았다. 인박스 실질 지시를 바꾸지 않아 packet instruction identity를 유지한다. 추가불확실성 후보까지 audit 총210경로이며 원19항목별처리는 packet-audit.json의 uncertainty_resolution에 보존했다. 원producer의partial/unknown을삭제하지않았다.",
+  "items": [
+    {
+      "path": ".env.example",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .env.example; 관련 줄 9,10,14,15,16,17,18; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/FULLOPS.md; 관련 줄 16,17,39,65,69,75,77,85; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/design-docs/module-design.md; 관련 줄 7,14,20,22,26,27,29,30; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md; 관련 줄 2,7,12,32,35,40,42,44; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/operations/user-guide.md; 관련 줄 7,8,15,17,21,22,23,24; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/handovers/to_dev.md; 관련 줄 2,7,14,18,24,26,28,30; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/project.md; 관련 줄 16,25,27,31,38,44,54,55; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/rules/common/README.md; 관련 줄 13,27,29,41; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/rules/common/coding-style.md; 관련 줄 11; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/rules/common/security.md; 관련 줄 없음; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/rules/common/testing.md; 관련 줄 17,18,40,42; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "Makefile",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 Makefile; 관련 줄 2,25,57,58; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "compose.yaml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 compose.yaml; 관련 줄 19,34,35,36,37,53; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 scripts/install_bot_mcp.sh; 관련 줄 2,3,61,63,69,71,72,76; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/contexts/archive/dev-2026-10-10.md; 관련 줄 6,17,28,30,32,34,38,40; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/contexts/coor.md; 관련 줄 7,14,21,22,24; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/contexts/designer.md; 관련 줄 7,14,22,23,34,39,42,43; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/contexts/dev.md; 관련 줄 6,28,30,32,35,38,43,45; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/contexts/ops.md; 관련 줄 7,18,22,28,40,50,65,69; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/contexts/tester.md; 관련 줄 6,7,14,17,19,21,33,34; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/document-writing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/agents/document-writing.md; 관련 줄 13,22,24; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/domain.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/agents/domain.md; 관련 줄 없음; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/issue-tracker.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/agents/issue-tracker.md; 관련 줄 없음; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/agents/triage-labels.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/agents/triage-labels.md; 관련 줄 없음; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/deliverables/README.md; 관련 줄 7,31,35; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/design-docs/architecture.md; 관련 줄 7,14,18,20,22,24,28,32; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/design-docs/interface-design.md; 관련 줄 7,14,16,23,27,28,30,32; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md; 관련 줄 2,7,10,14,16,20,24,28; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md; 관련 줄 18,22,28,41,49,66,72,76; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md; 관련 줄 7,17,23,24,28,38,46,48; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/design-docs/tech-stack.md; 관련 줄 7,14,16,22,25,27,46,51; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md; 관련 줄 18,25,28,29,33,37,41; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md; 관련 줄 2,18,30,32,38,40,48,51; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md; 관련 줄 18,20,24,26,30,36,46,47; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.0-review/report.md; 관련 줄 20,22,26,28,32,38; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md; 관련 줄 7,18,28,30,34,36; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md; 관련 줄 7,12,16,19,27,29,38,46; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md; 관련 줄 7,12,18,36,42; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md; 관련 줄 25,40,59,61; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md; 관련 줄 17,29,36,63,68; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md; 관련 줄 25,33,37,39,44,48,50,61; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md; 관련 줄 23,34,37,54; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md; 관련 줄 7,18,26,28; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md; 관련 줄 30,34,44,52,62,63,66; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md; 관련 줄 19,20,25; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md; 관련 줄 2,6,7,10,17,30,31,40; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md; 관련 줄 2,6,7,10,16,18,20,26; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md; 관련 줄 6,7,14,16,18,20,28; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md; 관련 줄 2,6,7,10,16,20,21,25; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md; 관련 줄 7,12,14,18,20,27,30; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md; 관련 줄 7,15,25,29,32,38,39,40; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md; 관련 줄 7,12,18,26,34,35,44,46; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md; 관련 줄 2,10,12,14,16,22,28,36; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md; 관련 줄 16,17,24,30,37,38,40,46; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md; 관련 줄 2,7,12,14,16,18,22,24; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md; 관련 줄 15,29,34,35,36,64,67,82; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md; 관련 줄 10,14,24,34,68,71,82,85; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md; 관련 줄 7,14,16,19,33,44,45,46; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md; 관련 줄 2,7,10,14,18,44,45,85; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md; 관련 줄 7,16,21,42,46,68,72; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md; 관련 줄 2,7,10,14,16,17,30,43; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md; 관련 줄 7,15,19,25,27,34,35,36; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md; 관련 줄 2,7,10,14,17,18,21,23; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-review/report.md; 관련 줄 7,15,17,19,23,25,31,32; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md; 관련 줄 2,7,10,14,17,40,82,83; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md; 관련 줄 7,17,33,62,68; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md; 관련 줄 2,7,10,14,16,17,19,25; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md; 관련 줄 7,14,17,23,25,31,32,33; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md; 관련 줄 14,18,22,23,30,31,45,46; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md; 관련 줄 14,19,20,26,32,38,39,41; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md; 관련 줄 42,48,71,75; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/report.md; 관련 줄 32,33,36,43,44,62,64,68; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md; 관련 줄 7,12,16,22,24; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md; 관련 줄 7,16,22,30,34,36,40; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md; 관련 줄 2,7,10,14,17,28,29,44; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md; 관련 줄 7,14,39,41,44,53,54,93; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md; 관련 줄 7,14,23,27,36,80,82,83; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md; 관련 줄 14,20,24,31; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md; 관련 줄 7,14,17,21,27,33,37,41; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md; 관련 줄 7,15,41,70,89,92,93,95; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md; 관련 줄 7,41,50,97,113,117; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md; 관련 줄 15,20,42,43,49,50,70; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md; 관련 줄 7,14,21,34,35,47,66,72; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md; 관련 줄 7,14,16,18,35,43,51,52; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md; 관련 줄 16,37,48,51,58; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md; 관련 줄 7,15,21,23,28,32,34,38; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md; 관련 줄 7,16,22,26,31,61,77,79; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md; 관련 줄 7,13,26,45,49,56,57,76; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md; 관련 줄 7,18,62,76,84,89,97; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md; 관련 줄 2,7,16,24,27,33,82,91; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md; 관련 줄 36,37,68,69,71; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md; 관련 줄 7,14,31,34,37,44,52,63; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md; 관련 줄 31,39,59,92,93,113; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-REVIEW-review/report.md; 관련 줄 7,16,18,20,22,24; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md; 관련 줄 17,24,26,32,33,37,44,52; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md; 관련 줄 7,16,18,20; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md; 관련 줄 7,14,20,24; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md; 관련 줄 12,15,18,34,36,44,46,54; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md; 관련 줄 7,14,16,28,33,43,44,68; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md; 관련 줄 14,22,25,35,36,43,47,53; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/scenarios/README.md; 관련 줄 33,34; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md; 관련 줄 15,22,23; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md; 관련 줄 26,40,43; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md; 관련 줄 7,14,16,18,24,26,28,29; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md; 관련 줄 7,16,17,18,19,21,22,23; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md; 관련 줄 7,14,16,18,20,24,31,35; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md; 관련 줄 7,14,16,18,19,22,26,28; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md; 관련 줄 14,18,20,22,28,34,36; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md; 관련 줄 2,7,10,16,23,24,25,26; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md; 관련 줄 14,31,39,45,79,105; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md; 관련 줄 16,21,30,34,42,44,46,48; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md; 관련 줄 41,56,72,81; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md; 관련 줄 2,6,7,10,14,18,19,21; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md; 관련 줄 2,6,7,10,14,16,18,25; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md; 관련 줄 2,6,7,10,16,17,21,22; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md; 관련 줄 15,17,18,21,25,27,33,34; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md; 관련 줄 7,21,25,29,37,39,44; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md; 관련 줄 16,22,35,38,39,40,41,45; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md; 관련 줄 7,15,36,38,48,63,66,70; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md; 관련 줄 7,16,17,23,25,33,37,39; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md; 관련 줄 7,10,12,18,19,23,27,29; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md; 관련 줄 7,10,17,19,21,27,28,29; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md; 관련 줄 16,66,70; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md; 관련 줄 7,14,16,22,26,28,30,32; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md; 관련 줄 23,26,32,38,40,50,52,54; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md; 관련 줄 18,20,28,30,51,53,54,58; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md; 관련 줄 16,18,23,24,25,29,39,44; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md; 관련 줄 7,18,20,22,24,28,30,32; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md; 관련 줄 2,10,20,22,28,30,32,36; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md; 관련 줄 14,68,117,128,135,136; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md; 관련 줄 14,22,29,32,33,67,70; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md; 관련 줄 7,17,26,46,47; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md; 관련 줄 7,17,35; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md; 관련 줄 7,25,26,28,30,36,40,42; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md; 관련 줄 31,79,86,87; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md; 관련 줄 7,21,24,40,41,51,56,59; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md; 관련 줄 21,23,26,27,30,41,42,45; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md; 관련 줄 16,22,24,26,28,34,36,40; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md; 관련 줄 7,18,22,26,27,28,29,30; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md; 관련 줄 22; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md; 관련 줄 23,42,53,58,81,93,94,97; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md; 관련 줄 7,14,20,21,35; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md; 관련 줄 31,38,39,44,47,56,58,64; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md; 관련 줄 2,7,16,23,25,32,34,36; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md; 관련 줄 2,7,10,14,16,18,24,29; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md; 관련 줄 2,21,25,31,35,43,47,48; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md; 관련 줄 7,19,22,24,30,31,42,45; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/generated/db-schema.md; 관련 줄 31,37,39,40,41,47,48,52; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/operations/ops-guide.md; 관련 줄 7,16,19,20,22,24,26,30; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "최상단2026-10-13 운영 제품2747fe9·동일writer복구·Grok/Dots 업데이트 안내가 이미 현행이다. 루트 operations에서 링크하고 본문은 중복 수정하지 않았다. 구 webhook fragment는 adapter alias로 보존했다. 경로 .fullops-squad/docs/operations/ops-guide.md; 관련 줄 7,16,19,20,22,24,26,30; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 .fullops-squad/docs/operations/transition.md; 관련 줄 7,15,17,19,21,23,27,29; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/SAR-MVP-backlog.md; 관련 줄 14,23,27,28,29,39,41,43; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/business-plan.md; 관련 줄 16,18,24,36,40,44,46,48; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md; 관련 줄 15,23,24,30,34,43,47,48; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/product-specs/SAR-MVP.md; 관련 줄 17,23,64,68,71,72,74,87; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md; 관련 줄 15,21,23,25,33,35,42,45; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md; 관련 줄 16,39,48,52,53,63,76,77; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/sources/silent-agent-relay/README.md; 관련 줄 42,44; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md; 관련 줄 10,37,77,81,117,132,145; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/docs/planning/sources/silent-agent-relay/product.md; 관련 줄 7,10,73,87,133; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/SAR-MVP-001-REVIEW.md; 관련 줄 2,7,10,18,20; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/_TEMPLATE.md; 관련 줄 31,76,82,84,95; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-03_to_designer.md; 관련 줄 7,52,78,81,84,108,110,116; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-03_to_ops.md; 관련 줄 6,17,26,28,30,58,64,70; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-04_to_dev.md; 관련 줄 6,12,17,20,25,33,37,39; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-04_to_ops.md; 관련 줄 6,12,17,20,25,29,32,34; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-04_to_tester.md; 관련 줄 6,12,17,20,25,29,32,34; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-05_to_designer.md; 관련 줄 6,20,24,28,35,36,41,49; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-05_to_dev.md; 관련 줄 6,28,68,70,74,82,83,85; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-05_to_ops.md; 관련 줄 6,12,17,21,23,30,34,35; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-05_to_tester.md; 관련 줄 6,17,22,28,58,59,63,65; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-06_to_designer.md; 관련 줄 6,28,32,39,50,64,68,70; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-06_to_ops.md; 관련 줄 6,28,29,43,46,54,59,64; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-06_to_tester.md; 관련 줄 6,12,17,20,28,30,48,51; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-07_to_designer.md; 관련 줄 6,13,18,23,27,29,34,38; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-07_to_dev.md; 관련 줄 6,37,48,49,63,66,69,70; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-07_to_tester.md; 관련 줄 6,13,18,23,27,31,34,36; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-12_to_ops.md; 관련 줄 6,25,36,38,47,49,50,51; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-13_to_dev.md; 관련 줄 6,13,18,25,38,43,45,46; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-13_to_ops.md; 관련 줄 6,13,18,25,27,33,49,54; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/2026-10-13_to_tester.md; 관련 줄 6,29,36,40,41,42,43,48; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md; 관련 줄 22,25,35,45; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md; 관련 줄 2,7,10,15,17,22,26,28; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/lint/README.md; 관련 줄 26,48,57,61,62,68,85,95; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제목·관련 검색 구간으로 문서 영향만 확인했다. 과거 기획/실행/QA/핸드오버 또는 보조 규약이며 현재 설치·운영 사실의 정본으로 승격하지 않는다. 원문 보존; 본문 갱신 불필요. 경로 .fullops-squad/orca-agents.md; 관련 줄 25,26,27,28,29,46,47,50; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "원문·현재 구현·운영/실계정 근거를 대조하고 신규 설치/기존 업데이트와 현재 수락 표현을 수정했다. static-checks.json의 링크/예제 및 inbound 호환 검사를 통과했다. 경로 README.md; 관련 줄 11,15,16,21,22,23,24,27; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 README.md; 관련 줄 11,15,16,21,22,23,24,27; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "원문·현재 구현·운영/실계정 근거를 대조하고 신규 설치/기존 업데이트와 현재 수락 표현을 수정했다. static-checks.json의 링크/예제 및 inbound 호환 검사를 통과했다. 경로 adapters/README.md; 관련 줄 2,6,7,12,16,22,24,26; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 adapters/README.md; 관련 줄 2,6,7,12,16,22,24,26; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제 필수 규약 또는 설치·구현·운영 관련 원문 구간을 직접 확인했다. 현재 설명은 README/docs에 작성하고 원천은 필요한 절만 변경했다. 경로 adapters/skills/knowslink/SKILL.md; 관련 줄 3,10,12,14,16,18,22,30; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "현재 설치/개발 명령의 참조 경로와 관련 정의를 로컬 검색으로 확인했다. 문서 전용 과제이며 실행·제품 수정은 필요 없다. 경로 scripts/package_plugin.py; 관련 줄 15,18,37,41,42,44,45,72; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": "scripts/schema.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "현재 설치/개발 명령의 참조 경로와 관련 정의를 로컬 검색으로 확인했다. 문서 전용 과제이며 실행·제품 수정은 필요 없다. 경로 scripts/schema.py; 관련 줄 25; 존재/hash/검색범위는 packet-audit.json 참조. 과거 전문 재독은 주장하지 않는다."
+    }
+  ]
+}

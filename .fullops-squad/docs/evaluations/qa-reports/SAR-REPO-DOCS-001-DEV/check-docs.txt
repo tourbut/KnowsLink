@@ -1,0 +1,130 @@
+"""One-off documentation evidence; run with python3 from repository root. No network or product mutation."""
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
+import hashlib
+import json
+import re
+import subprocess
+import sys
+
+root = Path.cwd()
+evidence = root / '.fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV'
+docs = [root / p for p in ['README.md', 'adapters/README.md', 'docs/README.md', 'docs/architecture.md', 'docs/development.md', 'docs/operations.md']]
+errors = []
+links = []
+
+def outside_fences(text):
+    result = []
+    fence = None
+    for line in text.splitlines():
+        match = re.match(r'^\s*(`{3,}|~{3,})', line)
+        if match:
+            marker = match[1][0]
+            if fence is None:
+                fence = marker
+            elif fence == marker:
+                fence = None
+            continue
+        if fence is None:
+            result.append(line)
+    return '\n'.join(result), fence
+
+def anchors(path, override=None):
+    text, _ = outside_fences(override if override is not None else path.read_text(encoding='utf-8'))
+    result = set(re.findall(r'<a\s+id="([^"]+)"', text))
+    counts = {}
+    for line in text.splitlines():
+        match = re.match(r'^#{1,6}\s+(.+?)\s*#*$', line)
+        if not match:
+            continue
+        heading = re.sub(r'[`*_]', '', match[1]).lower()
+        slug = ''.join(c for c in heading if c.isalnum() or c in ' -_').replace(' ', '-')
+        count = counts.get(slug, 0)
+        counts[slug] = count + 1
+        result.add(slug if count == 0 else f'{slug}-{count}')
+    return result
+
+for doc in docs:
+    raw = doc.read_text(encoding='utf-8')
+    text, fence = outside_fences(raw)
+    if fence:
+        errors.append(f'{doc.relative_to(root)}: unclosed fence')
+    for match in re.finditer(r'(?<!!)\[[^\]\n]+\]\(([^)]+)\)', text):
+        target = match[1]
+        parsed = urlsplit(target)
+        if parsed.scheme or parsed.netloc:
+            continue
+        destination = (doc.parent / unquote(parsed.path)).resolve() if parsed.path else doc
+        error = None
+        if not destination.exists():
+            error = 'missing file'
+        elif parsed.fragment and destination.suffix == '.md' and unquote(parsed.fragment) not in anchors(destination):
+            error = 'missing fragment'
+        row = {'source': doc.relative_to(root).as_posix(), 'target': target, 'status': error or 'passed'}
+        links.append(row)
+        if error:
+            errors.append(row)
+    if doc.name != 'README.md' or doc.parent == root:
+        for forbidden in [r'term_[0-9a-f-]+', r'ctx_[0-9a-f]+', r'01a135[0-9a-f-]+', r'/home/shin/', r'asdk_app_[a-zA-Z0-9]+']:
+            if re.search(forbidden, raw):
+                errors.append(f'{doc.relative_to(root)}: private runtime identifier/path')
+
+source_checks = [
+    ('Go version', 'go.mod', 'go 1.27.1'),
+    ('Node range', 'adapters/package.json', '>=22.22.2 <23'),
+    ('npm range', 'adapters/package.json', '>=10.9.7 <11'),
+    ('installer version', 'scripts/install_bot_mcp.sh', 'VERSION=v22.22.2'),
+    ('installer prefix', 'scripts/install_bot_mcp.sh', 'KNOWSLINK_PREFIX:-/workspace/.knowslink'),
+    ('public-node', 'adapters/src/mcp.ts', '"public-node"'),
+    ('connect tool', 'adapters/src/mcp.ts', '"knowslink_connect"'),
+    ('connect completion', 'adapters/src/login.ts', 'return "connected"'),
+    ('watch CLI', 'adapters/src/mcp.ts', 'process.argv[2] === "watch"'),
+    ('wake-check CLI', 'adapters/src/mcp.ts', 'process.argv[2] === "wake-check"'),
+    ('Google callback', 'internal/relay/google.go', '/auth/google/callback'),
+    ('writer trigger', 'db/migrations/00002_human_writer.sql', 'CREATE TRIGGER human_writer_guard'),
+    ('Down refuses', 'db/migrations/00002_human_writer.sql', 'human authorization downgrade requires reviewed recovery'),
+    ('sqlc version', 'Makefile', 'sqlc@v1.30.0'),
+    ('loopback publish', 'compose.yaml', '127.0.0.1:${RELAY_PORT:-8080}:8080'),
+    ('SMTP setting', '.env.example', 'KNOWSLINK_SMTP_URL='),
+    ('Google setting', '.env.example', 'KNOWSLINK_GOOGLE_REDIRECT_URL='),
+    ('migration directory', 'cmd/migrate/main.go', '"db/migrations"'),
+    ('listen setting', 'internal/config/config.go', 'RELAY_ADDR'),
+    ('mail sink flags', 'scripts/mail_sink.py', '"--listen"'),
+]
+inbound = []
+targets = {p.resolve(): anchors(p, subprocess.check_output(['git', 'show', 'a2961818ee33f3786aa6f949c5b411bd4b31aa1a:' + p.relative_to(root).as_posix()], encoding='utf-8')) for p in docs[:2]}
+tracked = subprocess.check_output(['git', 'ls-files', '*.md'], encoding='utf-8').splitlines()
+for name in tracked:
+    path = root / name
+    text, _ = outside_fences(path.read_text(encoding='utf-8'))
+    for match in re.finditer(r'(?<!!)\[[^\]\n]+\]\(([^)]+)\)', text):
+        parsed = urlsplit(match[1])
+        if parsed.scheme or parsed.netloc or not parsed.fragment:
+            continue
+        destination = (path.parent / unquote(parsed.path)).resolve() if parsed.path else path.resolve()
+        fragment = unquote(parsed.fragment)
+        if destination not in targets or fragment not in targets[destination]:
+            continue
+        status = 'passed' if fragment in anchors(destination) else 'lost fragment'
+        row = {'source': name, 'target': match[1], 'status': status}
+        inbound.append(row)
+        if status != 'passed':
+            errors.append(row)
+
+checks = []
+for label, path, token in source_checks:
+    data = (root / path).read_bytes()
+    passed = token in data.decode('utf-8')
+    checks.append({'claim': label, 'source': path, 'sha256': hashlib.sha256(data).hexdigest(), 'status': 'passed' if passed else 'failed'})
+    if not passed:
+        errors.append(f'{label}: source token absent')
+
+changed = subprocess.check_output(['git', 'diff', '--name-only', 'a2961818ee33f3786aa6f949c5b411bd4b31aa1a'], text=True).splitlines()
+changed += subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard'], text=True).splitlines()
+code = [p for p in set(changed) if not (p.endswith('.md') or p.startswith('.fullops-squad/docs/evaluations/'))]
+if code:
+    errors.append({'non_document_changes': code})
+report = {'command': 'python3 .fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/check-docs.txt', 'local_link_count': len(links), 'links': links, 'inbound_links': inbound, 'source_checks': checks, 'non_document_changes': code, 'errors': errors, 'exit_code': int(bool(errors)), 'limits': 'Repository links/fences and selected exact source claims only; inbound regression checks only previously valid README/adapter fragments. No account, install, deploy or network test. Historical adapter metadata and code examples remain.'}
+(evidence / 'static-checks.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print(json.dumps({'links': len(links), 'source_checks': len(checks), 'errors': errors, 'exit_code': int(bool(errors))}, ensure_ascii=False))
+sys.exit(int(bool(errors)))
