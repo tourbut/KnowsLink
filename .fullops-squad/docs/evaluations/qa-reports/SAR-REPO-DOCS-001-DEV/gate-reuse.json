@@ -1,0 +1,63 @@
+{
+  "product_candidate": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "accepted_deploy_sha": "2747fe98653d5c6946f41c219fc256395333d7fe",
+  "tested_doc_commit": "903cb967199217f42525fb6618fc6143f77e9bd0",
+  "product_paths": [
+    "cmd",
+    "internal",
+    "adapters",
+    "db",
+    "deploy",
+    "scripts",
+    "Dockerfile",
+    "compose.yaml",
+    "go.mod",
+    "go.sum",
+    "Makefile",
+    "sqlc.yaml",
+    ".nvmrc",
+    ".dockerignore"
+  ],
+  "product_path_diff": [
+    "adapters/README.md"
+  ],
+  "non_document_product_diff": [],
+  "original_gate": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/gate/lint-candidate-141.json",
+  "original_commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-lint.log\nEXIT= 0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-test.log\nEXIT= 0"
+    }
+  ],
+  "evidence": {
+    "lint-candidate-141.json": "b23476b703a7b96102c96f612453da70172015d1b6936621ee522958ceca1163",
+    "install.log": "70a7bad80a109a59b49a1f34e1cd85cf5c3aeee4c5c8ab1c36aebe75c504cf95",
+    "lint.log": "b540316618ef5328126f219838cbc6cb556e10d92153c7ef7c42b525d871c4ed",
+    "test.log": "d7af2ef5d989c83e5f3c60f9d5fb9755af77227e292a0736004ceafff59f17b4",
+    "build.log": "6e90ac202dbccc28d99698da154c8f5bcdaba338a4d8fd79dc1a8e198988201b"
+  },
+  "original_reuse_record": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/gate-reuse.json",
+  "meaning": "Only adapter README differs in product directories. Reuse exact-candidate Linux product-lint/product-test EXIT0; no new current-HEAD product execution claimed."
+}

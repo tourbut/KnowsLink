@@ -103,3 +103,11 @@ coor가 다른 실제 세션의 fixed SHA snapshot 문서 리뷰와 main 일반 
 ## 완료 기록
 
 `work.py finish --repo . --role dev --key SAR-REPO-DOCS-001-DEV`는 EXIT0이었다. 원 지시와 완료 보고 전문을 [날짜별 로그](../../../../handovers/logs/2026-10-13_to_dev.md)에 보존했고 dev 인박스는 비었다. packet identity/192쌍 계약을 통과했다. 커밋 뒤 FullOps 정적 검사 결과를 추가 기록하며 최종 SHA는 외부 worker_done에 실제40자리로 보낸다.
+
+## 커밋 뒤 정적 lint 결과
+
+문서 커밋 `903cb967199217f42525fb6618fc6143f77e9bd0`에서 지시 기준473da85로 FullOps1.4.1 lint를 실행했다. 결과는 ERROR0·WARNING2·unavailable2·EXIT1이다. [원 결과](lint-windows.json)를 보존했다. Windows PATH에 make가 없어 product-lint/product-test는 실제 실행되지 않았다. 설치나 우회 없이 이 한계를 남긴다. 코드 파일 변경0이므로 코드변경 done-gate의 새 제품 통과 조건은 적용하지 않는다.
+
+SIZE-001은 기존 PLANS1753줄이1759줄이 된 경고다. 과거 기록을 이 문서 과제에서 재구성하지 않았다. SIZE-002는 사용자 요청 README와 docs4개를 함께 작성한 추가698줄 경고다. 각 문서가 독자/구조/개발/운영 책임을 이미 나누므로 별도 과제나 불필요한 파일로 더 쪼개지 않았다. 미해결 ERROR는0이다.
+
+[gate 재사용 대조](gate-reuse.json)는 기존 Linux exact cd4dae8 통과 입력과 현재 제품 경로를 비교했다. 차이는 adapter README뿐이며 제품 코드/설정/검사 입력 diff0이다. 현재 문서 SHA에서 제품 검사가 통과했다고 표시하지 않는다. 이 뒤 커밋은 lint 결과와 완료 근거의 기록만 포함한다. 전체 제품 테스트를 반복하지 않았다.
