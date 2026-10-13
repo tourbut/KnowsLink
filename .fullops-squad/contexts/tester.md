@@ -1,9 +1,9 @@
 ---
 title: tester 컨텍스트
 status: draft
-updated: 2026-10-12
+updated: 2026-10-13
 owner: tester
-tasks: [SAR-CODEX-HOOK-QUOTE-001-TESTER, SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-GOOGLE-CONNECT-002-TESTER, SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER, SAR-GROK-WEBHOOK-001-TESTER, SAR-SERVICE-UI-001-TESTER]
+tasks: [SAR-REFACTOR-001-TESTER, SAR-CODEX-HOOK-QUOTE-001-TESTER, SAR-SETUP-001-TESTER, SAR-MVP-001-TESTER, SAR-MVP-001-TESTER-FIX, SAR-BETA-001-TESTER, SAR-BETA-001-TESTER-PUBLIC, SAR-BETA-002-TESTER, SAR-MVP-002-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-TESTER, SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER, SAR-MVP-003-BIDIRECTIONAL-TESTER, SAR-PUBLIC-IDENTITY-001-TESTER, SAR-PUBLIC-IDENTITY-001-FIX-TESTER, SAR-PUBLIC-AGENTS-001-TESTER, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-GOOGLE-CONNECT-002-TESTER, SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER, SAR-GROK-WEBHOOK-001-TESTER, SAR-SERVICE-UI-001-TESTER]
 summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신원, agent, 메시지 PS08–11 QA 결과를 기록한다"
 ---
 
@@ -76,3 +76,6 @@ summary: "독립 QA 재사용 경계와 MVP, 베타, Grok Bot 플러그인, 신�
 - 2026-10-11 coor 정정: 위 `--task-key <없는 키>` 기록은 잘못된 우회 지침이며 사용하지 않는다. 제품 리뷰는 실제 구현 과제 키에 연결한다. FIX-TESTER의 동일295417a를 실제 FIX-DEV로 check해 통과했다. 과거 실패는 FIX-TESTER phase에 보존, 후속 근거는 FIX-TESTER-RESULT-REVIEW/report.md다.
 - 2026-10-12 SAR-CODEX-HOOK-QUOTE-001-TESTER: 고정 `d7d6d744` Codex hook를 snapshot에서 cmd·pwsh·powershell·sh로 실행해 root/scripts/adapters 허용0·거부2·deny JSON을 확인했다. 미해결 C/H 없음, low 1건(argv 목록 호출은 guard 미실행). 실제 Codex host 실행·원 stderr는 미검증.
 - hook 셸 검증은 코드를 문자열 리터럴로 넘기면 guard 없이 0이 되므로 거부 칸이 2인지와 deny JSON 파싱으로 실행을 증명한다. `make.cmd` 같은 원격 SSH 도구는 DEV HEAD를 올리므로 tester snapshot에 쓰지 않고 exact-SHA 로그·`pass.json` 동일성으로 재사용한다.
+
+- 2026-10-13 SAR-REFACTOR-001-TESTER: exact cd4dae8 Linux의 Go race 경계8개·MCP/owner-text·독립 text matrix15개 exit0. DEV 전체 게이트는 원본·사본 LF 정규화 내용과 SHA를 대조해 재사용했다. 새 C/H 발견0, 제품 읽기 전용.
+- [독립 QA 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md). 첫 확인식 따옴표 오류 exit1 보존. 실계정/운영/SQL 이행은 not_run이며 전체 제품 수락을 대신하지 않는다.

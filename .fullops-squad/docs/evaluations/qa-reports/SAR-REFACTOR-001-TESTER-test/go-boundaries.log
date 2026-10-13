@@ -1,0 +1,36 @@
+=== RUN   TestDeviceFailureBoundaries
+--- PASS: TestDeviceFailureBoundaries (0.02s)
+=== RUN   TestDeviceConsentTemplate
+--- PASS: TestDeviceConsentTemplate (0.00s)
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/retry
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/command_error
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/transaction_error
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/success
+--- PASS: TestConnectionResponseKeepsRetryAndErrorPriority (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/retry (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/command_error (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/transaction_error (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/success (0.00s)
+=== RUN   TestHumanAgentListsKeepOwnerAndFriendBoundaries
+--- PASS: TestHumanAgentListsKeepOwnerAndFriendBoundaries (0.00s)
+=== RUN   TestHumanFriendTransitionsAndDiscovery
+--- PASS: TestHumanFriendTransitionsAndDiscovery (0.01s)
+=== RUN   TestHumanGateRevocationAndReaccept
+=== RUN   TestHumanGateRevocationAndReaccept/remove
+=== RUN   TestHumanGateRevocationAndReaccept/block
+=== RUN   TestHumanGateRevocationAndReaccept/key
+=== RUN   TestHumanGateRevocationAndReaccept/member
+--- PASS: TestHumanGateRevocationAndReaccept (0.06s)
+    --- PASS: TestHumanGateRevocationAndReaccept/remove (0.02s)
+    --- PASS: TestHumanGateRevocationAndReaccept/block (0.01s)
+    --- PASS: TestHumanGateRevocationAndReaccept/key (0.01s)
+    --- PASS: TestHumanGateRevocationAndReaccept/member (0.01s)
+=== RUN   TestMemberUIFixtures
+--- PASS: TestMemberUIFixtures (0.07s)
+=== RUN   TestFrozenParsingAndSigning
+--- PASS: TestFrozenParsingAndSigning (0.01s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.201s
+
+EXIT=0

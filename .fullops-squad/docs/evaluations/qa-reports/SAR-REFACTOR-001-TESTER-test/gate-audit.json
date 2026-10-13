@@ -1,0 +1,126 @@
+{
+  "candidate": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "reused_logs": [
+    {
+      "name": "install",
+      "original": "C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\refactor001\\cd4dae810ae262759bcff29895165f1a64f8c51a-install.log",
+      "repo_copy": ".fullops-squad\\docs\\evaluations\\qa-reports\\SAR-REFACTOR-001-DEV-test\\gate\\install.log",
+      "decoded_text_equal_after_LF_normalization": true,
+      "copy_sha256": "70a7bad80a109a59b49a1f34e1cd85cf5c3aeee4c5c8ab1c36aebe75c504cf95",
+      "original_sha256": "de8c674eb936a44d16ff0f6bbeb2415b673cd08438b12323363b726423af7d11",
+      "exit_code": 0
+    },
+    {
+      "name": "lint",
+      "original": "C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\refactor001\\cd4dae810ae262759bcff29895165f1a64f8c51a-lint.log",
+      "repo_copy": ".fullops-squad\\docs\\evaluations\\qa-reports\\SAR-REFACTOR-001-DEV-test\\gate\\lint.log",
+      "decoded_text_equal_after_LF_normalization": true,
+      "copy_sha256": "b540316618ef5328126f219838cbc6cb556e10d92153c7ef7c42b525d871c4ed",
+      "original_sha256": "20f00fab32605115ad7388b7a13660c5b504eee37bb03e6f4ef4fc8658718d9f",
+      "exit_code": 0
+    },
+    {
+      "name": "test",
+      "original": "C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\refactor001\\cd4dae810ae262759bcff29895165f1a64f8c51a-test.log",
+      "repo_copy": ".fullops-squad\\docs\\evaluations\\qa-reports\\SAR-REFACTOR-001-DEV-test\\gate\\test.log",
+      "decoded_text_equal_after_LF_normalization": true,
+      "copy_sha256": "d7af2ef5d989c83e5f3c60f9d5fb9755af77227e292a0736004ceafff59f17b4",
+      "original_sha256": "7b0daadf54f198a55e90b5c2cccbac7c8afe4a4b30532b09d81307491e03951f",
+      "exit_code": 0
+    },
+    {
+      "name": "build",
+      "original": "C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\refactor001\\cd4dae810ae262759bcff29895165f1a64f8c51a-build.log",
+      "repo_copy": ".fullops-squad\\docs\\evaluations\\qa-reports\\SAR-REFACTOR-001-DEV-test\\gate\\build.log",
+      "decoded_text_equal_after_LF_normalization": true,
+      "copy_sha256": "6e90ac202dbccc28d99698da154c8f5bcdaba338a4d8fd79dc1a8e198988201b",
+      "original_sha256": "d85bc6f2bbde8503dc6a6a8dc383f74440c747fac522735eef6457abb1d03d0a",
+      "exit_code": 0
+    }
+  ],
+  "fullops": {
+    "schema_version": 1,
+    "attempt": "f8fde2ecdedd423f9637a84a22a69faa",
+    "base": "bc0fd031efd252d9755681d8b429eb31c045b7e4",
+    "merge_base": "bc0fd031efd252d9755681d8b429eb31c045b7e4",
+    "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+    "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+    "test_level": "lite",
+    "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+    "commands": [
+      {
+        "name": "product-lint",
+        "kind": "lint",
+        "run": [
+          "make",
+          "lint"
+        ],
+        "cwd": ".",
+        "reason": "",
+        "status": "passed",
+        "exit_code": 0,
+        "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-lint.log\nEXIT= 0"
+      },
+      {
+        "name": "product-test",
+        "kind": "test",
+        "run": [
+          "make",
+          "test"
+        ],
+        "cwd": ".",
+        "reason": "",
+        "status": "passed",
+        "exit_code": 0,
+        "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-test.log\nEXIT= 0"
+      }
+    ],
+    "violations": [
+      {
+        "code": "SIZE-001",
+        "severity": "WARNING",
+        "line": null,
+        "message": "1736줄(이전 1702, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+        "path": ".fullops-squad/PLANS.md"
+      },
+      {
+        "code": "SIZE-001",
+        "severity": "WARNING",
+        "line": null,
+        "message": "334줄(이전 327, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+        "path": "adapters/src/core.ts"
+      },
+      {
+        "code": "SIZE-001",
+        "severity": "WARNING",
+        "line": null,
+        "message": "517줄(이전 492, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+        "path": "internal/relay/human_test.go"
+      }
+    ],
+    "summary": {
+      "files": 14,
+      "added_lines": 290,
+      "errors": 0,
+      "warnings": 3,
+      "unavailable": 0
+    }
+  },
+  "product_comparisons": [
+    {
+      "left": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+      "right": "HEAD",
+      "changed_product_paths": []
+    },
+    {
+      "left": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+      "right": "e65146b",
+      "changed_product_paths": []
+    },
+    {
+      "left": "bc0fd031efd252d9755681d8b429eb31c045b7e4",
+      "right": "0eb7735f0963272b62266992791f9f09152f9266",
+      "changed_product_paths": []
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+cd4dae810ae262759bcff29895165f1a64f8c51a
+v22.22.2
+10.9.7
+go version go1.27.1 linux/amd64
+1
+[eval]:1
+process.versions.node.split(.)[0]
+                            ^
+Expression expected
+
+SyntaxError: Unexpected token '.'
+    at makeContextifyScript (node:internal/vm:185:14)
+    at compileScript (node:internal/process/execution:383:10)
+    at evalTypeScript (node:internal/process/execution:256:22)
+    at node:internal/main/eval_string:74:3
+
+Node.js v22.22.2
+
+EXIT=1

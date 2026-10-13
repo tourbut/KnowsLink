@@ -1,0 +1,44 @@
+[
+  {
+    "name": "environment",
+    "command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; git rev-parse HEAD; git status --porcelain; node --version; npm --version; go version; go env CGO_ENABLED; test \"$(node -p \"process.versions.node.split(\".\")[0]\")\" = 22\n",
+    "exit_code": 1,
+    "log": "environment.log"
+  },
+  {
+    "name": "environment-verified",
+    "command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; git rev-parse HEAD; git status --porcelain; node --version; npm --version; go version; go env CGO_ENABLED; node -e 'if (!process.version.startsWith(\"v22.\")) process.exit(1)'\n",
+    "exit_code": 0,
+    "log": "environment-verified.log"
+  },
+  {
+    "name": "go-boundaries",
+    "command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; go test -race ./internal/relay -count=1 -v -run '^(TestConnectionResponseKeepsRetryAndErrorPriority|TestDeviceFailureBoundaries|TestHumanAgentListsKeepOwnerAndFriendBoundaries|TestHumanFriendTransitionsAndDiscovery|TestHumanGateRevocationAndReaccept|TestFrozenParsingAndSigning|TestDeviceConsentTemplate|TestMemberUIFixtures)$'\n",
+    "exit_code": 0,
+    "log": "go-boundaries.log"
+  },
+  {
+    "name": "ts-build",
+    "command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; npm run build --prefix adapters\n",
+    "exit_code": 0,
+    "log": "ts-build.log"
+  },
+  {
+    "name": "ts-boundaries",
+    "command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; node adapters/dist/mcp.test.js && node adapters/dist/owner-text.test.js\n",
+    "exit_code": 0,
+    "log": "ts-boundaries.log"
+  },
+  {
+    "name": "text-matrix",
+    "command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; node --input-type=module <<'NODE'\nimport assert from 'node:assert/strict';\nimport { validText } from './adapters/dist/core.js';\nconst cases=[['ASCII max','x'.repeat(4096),true],['ASCII over','x'.repeat(4097),false],['Korean max','한'.repeat(1365)+'x',true],['Korean over','한'.repeat(1366),false],['emoji max','😀'.repeat(1024),true],['emoji over','😀'.repeat(1024)+'x',false],['empty','',false],['space',' \\n\\t',false],['Unicode space','\\u00a0\\u3000',false],['high surrogate','\\ud800',false],['low surrogate','\\udfff',false],['embedded surrogate','ok\\ud800',false],['valid pair','\\ud83d\\ude00',true],['untrimmed max',' x'+' '.repeat(4094),true],['untrimmed over',' x'+' '.repeat(4095),false]];\nfor(const [name,value,want] of cases){assert.equal(validText(value),want,name); console.log('PASS '+name);}\nconsole.log('PASS independent text matrix '+cases.length);\nNODE\n\n",
+    "exit_code": 0,
+    "log": "text-matrix.log"
+  },
+  {
+    "name": "post-clean",
+    "command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; git rev-parse HEAD; git status --porcelain\n",
+    "exit_code": 0,
+    "log": "post-clean.log"
+  }
+]
