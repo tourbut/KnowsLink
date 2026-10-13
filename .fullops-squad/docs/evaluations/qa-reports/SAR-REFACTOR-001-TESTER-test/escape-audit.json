@@ -1,0 +1,44 @@
+{
+  "verdict": "PASS; no recording error and no actual JS value mismatch",
+  "original_session": "01a13534-4add-7a22-bb3f-5e40c8addb09",
+  "original_call_id": "call_b99a82b25ff94921b4f0bdf1d53c650f",
+  "original_call_timestamp": "2026-10-13T12:24:00.210Z",
+  "original_transcript_file": "rollout-2026-10-13T21-19-42-01a13534-4add-7a22-bb3f-5e40c8addb09.jsonl",
+  "followup_session": "01a13541-de34-7933-af11-5e299eba76af",
+  "task_id": "task_36fa008bd9f6",
+  "dispatch_id": "ctx_05040925a2d9",
+  "evidence_commit": "d8e090435e0efce570e1889904d63f29b28bf0a6",
+  "product_commit": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "method": "Decode JSON once; decode tool cmd string; evaluate only original node/checks/full assignments from AST; compare reconstructed client.exec_command argument byte-for-byte; independently assert original JS case types/UTF-16 units/UTF-8 bytes in Node. No network packet capture is claimed.",
+  "original_node_assignments": [
+    "node=r\"\"\"import assert from 'node:assert/strict';\nimport { validText } from './adapters/dist/core.js';\nconst cases=[['ASCII max','x'.repeat(4096),true],['ASCII over','x'.repeat(4097),false],['Korean max','한'.repeat(1365)+'x',true],['Korean over','한'.repeat(1366),false],['emoji max','😀'.repeat(1024),true],['emoji over','😀'.repeat(1024)+'x',false],['empty','',false],['space',' \\n\\t',false],['Unicode space','\\u00a0\\u3000',false],['high surrogate','\\ud800',false],['low surrogate','\\udfff',false],['embedded surrogate','ok\\ud800',false],['valid pair','\\ud83d\\ude00',true],['untrimmed max',' x'+' '.repeat(4094),true],['untrimmed over',' x'+' '.repeat(4095),false]];\nfor(const [name,value,want] of cases){assert.equal(validText(value),want,name); console.log('PASS '+name);}\nconsole.log('PASS independent text matrix '+cases.length);\n\"\"\"",
+    "node=node.replace('\\\\\\\\','\\\\')"
+  ],
+  "original_full_assignment": "full=f'set -e; cd {base}/repo; test \"$(git rev-parse HEAD)\" = {sha}; test -z \"$(git status --porcelain)\"; '+command+'\\n'",
+  "reconstructed_ssh_command": "set -e; cd /tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo; test \"$(git rev-parse HEAD)\" = cd4dae810ae262759bcff29895165f1a64f8c51a; test -z \"$(git status --porcelain)\"; node --input-type=module <<'NODE'\nimport assert from 'node:assert/strict';\nimport { validText } from './adapters/dist/core.js';\nconst cases=[['ASCII max','x'.repeat(4096),true],['ASCII over','x'.repeat(4097),false],['Korean max','한'.repeat(1365)+'x',true],['Korean over','한'.repeat(1366),false],['emoji max','😀'.repeat(1024),true],['emoji over','😀'.repeat(1024)+'x',false],['empty','',false],['space',' \\n\\t',false],['Unicode space','\\u00a0\\u3000',false],['high surrogate','\\ud800',false],['low surrogate','\\udfff',false],['embedded surrogate','ok\\ud800',false],['valid pair','\\ud83d\\ude00',true],['untrimmed max',' x'+' '.repeat(4094),true],['untrimmed over',' x'+' '.repeat(4095),false]];\nfor(const [name,value,want] of cases){assert.equal(validText(value),want,name); console.log('PASS '+name);}\nconsole.log('PASS independent text matrix '+cases.length);\nNODE\n\n",
+  "decoded_recorded_command_sha256": "faf7b9403ee59ad31d01ab89ccdfc23e8564e7213e6efb54eba8de792fce69ba",
+  "reconstructed_command_sha256": "faf7b9403ee59ad31d01ab89ccdfc23e8564e7213e6efb54eba8de792fce69ba",
+  "command_byte_equal": true,
+  "original_commands_json_git_blob_sha256": "c2da2d1e5b3c77f49535b47c6eff14d672577d32b3ea08c5f00f1dd0d028de20",
+  "original_matrix_log_git_blob_sha256": "3ad7be27b05239ffadf866da3edb1dc8c762d790b5a6a1d25ea4d9a4920eee22",
+  "transport": "Original helper passes full command directly to SSH exec; quoted heredoc provides Node stdin without shell backslash expansion. Original log has 15 PASS and EXIT=0.",
+  "runtime_audit": {
+    "command": [
+      "node",
+      "--input-type=module"
+    ],
+    "cwd": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester",
+    "node_version": "v24.13.0",
+    "stdin": "import assert from 'node:assert/strict';\nconst cases=[['ASCII max','x'.repeat(4096),true],['ASCII over','x'.repeat(4097),false],['Korean max','한'.repeat(1365)+'x',true],['Korean over','한'.repeat(1366),false],['emoji max','😀'.repeat(1024),true],['emoji over','😀'.repeat(1024)+'x',false],['empty','',false],['space',' \\n\\t',false],['Unicode space','\\u00a0\\u3000',false],['high surrogate','\\ud800',false],['low surrogate','\\udfff',false],['embedded surrogate','ok\\ud800',false],['valid pair','\\ud83d\\ude00',true],['untrimmed max',' x'+' '.repeat(4094),true],['untrimmed over',' x'+' '.repeat(4095),false]];\nconst expected=[\n ['ASCII max',4096,4096],['ASCII over',4097,4097],['Korean max',1366,4096],['Korean over',1366,4098],\n ['emoji max',2048,4096],['emoji over',2049,4097],['empty',0,0],['space',3,3,[32,10,9]],\n ['Unicode space',2,5,[160,12288]],['high surrogate',1,3,[55296]],['low surrogate',1,3,[57343]],\n ['embedded surrogate',3,5,[111,107,55296]],['valid pair',2,4,[55357,56832]],\n ['untrimmed max',4096,4096],['untrimmed over',4097,4097]\n];\nassert.equal(cases.length,15);\nfor(let i=0;i<cases.length;i++){\n const [name,value,want]=cases[i]; const [expectedName,units,bytes,codeUnits]=expected[i];\n assert.equal(name,expectedName); assert.equal(typeof value,'string',name); assert.equal(typeof want,'boolean',name);\n assert.equal(value.length,units,name); assert.equal(Buffer.byteLength(value,'utf8'),bytes,name);\n if(codeUnits)assert.deepEqual(Array.from({length:value.length},(_,j)=>value.charCodeAt(j)),codeUnits,name);\n if(name==='space'||name==='Unicode space')assert.equal(value.trim(),'');\n if(name==='valid pair')assert.equal(value.codePointAt(0),128512);\n console.log(JSON.stringify({name,type:typeof value,utf16_units:value.length,utf8_bytes:Buffer.byteLength(value,'utf8'),expected_valid:want,...(codeUnits?{code_units:codeUnits}:{})}));\n}\nconsole.log('PASS original JS values/type/bytes matrix 15');\n",
+    "exit_code": 0,
+    "stdout": "{\"name\":\"ASCII max\",\"type\":\"string\",\"utf16_units\":4096,\"utf8_bytes\":4096,\"expected_valid\":true}\n{\"name\":\"ASCII over\",\"type\":\"string\",\"utf16_units\":4097,\"utf8_bytes\":4097,\"expected_valid\":false}\n{\"name\":\"Korean max\",\"type\":\"string\",\"utf16_units\":1366,\"utf8_bytes\":4096,\"expected_valid\":true}\n{\"name\":\"Korean over\",\"type\":\"string\",\"utf16_units\":1366,\"utf8_bytes\":4098,\"expected_valid\":false}\n{\"name\":\"emoji max\",\"type\":\"string\",\"utf16_units\":2048,\"utf8_bytes\":4096,\"expected_valid\":true}\n{\"name\":\"emoji over\",\"type\":\"string\",\"utf16_units\":2049,\"utf8_bytes\":4097,\"expected_valid\":false}\n{\"name\":\"empty\",\"type\":\"string\",\"utf16_units\":0,\"utf8_bytes\":0,\"expected_valid\":false}\n{\"name\":\"space\",\"type\":\"string\",\"utf16_units\":3,\"utf8_bytes\":3,\"expected_valid\":false,\"code_units\":[32,10,9]}\n{\"name\":\"Unicode space\",\"type\":\"string\",\"utf16_units\":2,\"utf8_bytes\":5,\"expected_valid\":false,\"code_units\":[160,12288]}\n{\"name\":\"high surrogate\",\"type\":\"string\",\"utf16_units\":1,\"utf8_bytes\":3,\"expected_valid\":false,\"code_units\":[55296]}\n{\"name\":\"low surrogate\",\"type\":\"string\",\"utf16_units\":1,\"utf8_bytes\":3,\"expected_valid\":false,\"code_units\":[57343]}\n{\"name\":\"embedded surrogate\",\"type\":\"string\",\"utf16_units\":3,\"utf8_bytes\":5,\"expected_valid\":false,\"code_units\":[111,107,55296]}\n{\"name\":\"valid pair\",\"type\":\"string\",\"utf16_units\":2,\"utf8_bytes\":4,\"expected_valid\":true,\"code_units\":[55357,56832]}\n{\"name\":\"untrimmed max\",\"type\":\"string\",\"utf16_units\":4096,\"utf8_bytes\":4096,\"expected_valid\":true}\n{\"name\":\"untrimmed over\",\"type\":\"string\",\"utf16_units\":4097,\"utf8_bytes\":4097,\"expected_valid\":false}\nPASS original JS values/type/bytes matrix 15\n",
+    "stderr": "",
+    "scope": "Local JS value semantics only; original Node22 Linux validText execution remains original evidence."
+  },
+  "unchanged": [
+    "commands.json",
+    "text-matrix.log",
+    "environment.log"
+  ],
+  "not_run": "No Linux/whole-gate repeat: reconstructed original command and intended JS values match."
+}

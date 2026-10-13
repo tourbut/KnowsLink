@@ -1,1141 +1,2805 @@
 {
-  "packet_input_sha256": "c03ea532c273333d2b29aacf4bd47febe330a8aea24cea837bb24dba7ff69072",
-  "attempt": "157f6cde8bc24988ad213fab2461510c",
+  "packet_input_sha256": "e5cfdc1f6c54c5d6111af23204e85dae7aaee7f10e00bc918e3a1af9473294d5",
+  "attempt": "4873c6fc258d4ffda279fb66c5109343",
   "items": [
     {
       "path": ".fullops-squad/FULLOPS.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/FULLOPS.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "712f587ada14d57d9c45f5fefb7fca7fce443b83762b487a2bda8cd588afca7c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "path": ".fullops-squad/docs/agents/document-writing.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/docs/design-docs/module-design.md: packet 근거(7,7,14,18,20,91)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "4bc9f139a465c6614cd4eecdc581b7933dddc23c2bbc9912b513c5fcd6e337c5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/gate/remote.py",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "74fc9dbc4370c7e5c033e6629a26196e196a433096420f904888b159edd9e43f",
+      "relevant_line_numbers": [
+        1
+      ],
+      "relevant_lines_total": 1
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/commands.json",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "1d8058e2a5b5df64ece0276e7cc2eaa5c50e3aa0028d604ba8a02cfc11c659cc",
+      "relevant_line_numbers": [
+        33,
+        34,
+        36
+      ],
+      "relevant_lines_total": 3
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/text-matrix.log",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "016177f0cd568688c27a2829a9bdba67b626287997047754f24c4dffa071a617",
+      "relevant_line_numbers": [
+        10,
+        11,
+        12,
+        16
+      ],
+      "relevant_lines_total": 4
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "5ec1d1bb3e9368a342bdc43c1bc310cf7afa32c032d6fb35cdfc4ce5a01a951b",
+      "relevant_line_numbers": [
+        9,
+        10,
+        13,
+        17,
+        25,
+        36,
+        40,
+        43,
+        60,
+        62
+      ],
+      "relevant_lines_total": 10
     },
     {
       "path": ".fullops-squad/handovers/to_tester.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/handovers/to_tester.md: packet 근거(2,2,6,6,14,14)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "27e7034e575b05dccce99e63ca5f300fdf4261bb0269cbfc69d6adc7a74da9e6",
+      "relevant_line_numbers": [
+        2,
+        6,
+        7,
+        14,
+        27,
+        37,
+        46,
+        49,
+        50,
+        51,
+        143,
+        144,
+        145,
+        230
+      ],
+      "relevant_lines_total": 14
     },
     {
       "path": ".fullops-squad/project.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/project.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/rules/common/README.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "c49e4aead718d4c0bdc8bb0b71fd5062e7c4db87e456831ff326849bd616ed42",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/rules/common/coding-style.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "cf83b775ca73e1cadcf65bb8c38bb1f3710bee8cdcd08819d03d3fb10372318e",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/rules/common/security.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
       "category": "document_read",
       "status": "completed",
-      "reason": ".fullops-squad/rules/common/testing.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "이번 후속에서 필수 원문을 읽었다. 원 도구·helper·JSON·로그를 대조하거나 공통 규약을 적용했다. 원 파일은 보존한다.",
+      "reviewed_content_sha256": "f1ea64985cc41e6c1bb9128bba63f3d3ec26301e0fa6f63dba5726a778953b37",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5d1ae3fc00589a1006c30c9023a1aabe254a4bff462393ff50ac227574eb74fc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0e44cf37f0b307d3c8f04b26c2b2055a2cc3062eb921eab2f5a66190f3871aa2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "25fd8c7338895b833428014acbaeb4616afdd7db52ad93ac42c929a2039013eb",
+      "relevant_line_numbers": [
+        28
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/contexts/tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/contexts/tester.md: packet 근거(6,18,19,20,21,22)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b5f420dbb87bdcd72c82d4c81ec74740ef1c70cbf1cdb109332e0d8bf0c09845",
+      "relevant_line_numbers": [
+        6,
+        80,
+        81
+      ],
+      "relevant_lines_total": 3
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a486919c26cfd2591e14447813d09293602a7814cf71b7f451d0e0d6e0b658f9",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5a25aa5597adaebda84d20ffc66afde6c826a927e08f6d01df5ce45d2a0a4078",
+      "relevant_line_numbers": [
+        183
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/crud-design.md: packet 근거(7,104)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ecec3356b4337eb07e1176396a1084d67e04510780403270c8f13d946b97507d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2eaa8f4a0444438326096870b552af9c039b0cea8f62d0206da930bb7064e7e3",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d03abf153e4ddc7dae14d57369db46f0f0a63d2d9c6926fa5c96cb42dfe25829",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/interface-design.md: packet 근거(270)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9b2f7064a49e0638dad3b3b4682c2d8c56dcf93c0dd31c8cf1eca85403d43c38",
+      "relevant_line_numbers": [
+        246
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md: packet 근거(52,53,54,55,56,57)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "10dece240342ce8b35824d03b99a339d695f24bd95d8776fa1ecb83cc228ba33",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md: packet 근거(14,50,87)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b077fd144a8761730cc1f0a2fd859a43f5eddff00495cfb34631f6e55c547896",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md: packet 근거(14,64,82)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5174351b442a71e2d5260eacacb7f11e007af204313516ce8aac2de25705abaa",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md: packet 근거(25,87,118)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "6b0424f3797e41f08d562462b5bc0155b5f49fba9ad495cbec7d6d01697acdb3",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md: packet 근거(98)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "51c9e8b79260b55f31eec3a3d3331f76735838f25c14d5a38fbd2ec7031baad0",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md: packet 근거(61,67)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e407672b58ec604bac233093c92964aa8c2bcd6afbed45dc9a3c1acdc0d6f8c2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a1ac4f75313ee4dc19b93d348be894e7f9f66c9928f16d67b9590683d7e6a1df",
+      "relevant_line_numbers": [
+        7,
+        14,
+        20,
+        28
+      ],
+      "relevant_lines_total": 4
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "93767e9761e95950c18e913a8d9464a9b9ad9a990c1cd2f3410172b1cd9a9141",
+      "relevant_line_numbers": [
+        83
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md: packet 근거(39,41)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ce79ad37fad463a1dcd2ba7e10a0d286f5bb44c3bfcc17d37124c2676d81825b",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f90e9476e94c08f72a462ff0f379cc63d408d5dab27e8c070e7ebfac719972b2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "09c1384d407c3e05afeb26ac8d702d5e2ed649e76325e442a53478320fac5732",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md: packet 근거(36)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bd9a8377c06022ba23438f10472ce478624e992f8fd0fa078a70bbc7246cc165",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md: packet 근거(6,31)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e796aa741ea0e7effd3ceb3fb0a9975c4112986623eafa096f0a2d502bb1a9fd",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "cbd1f08371310f97901fc27b38addf7ca4173b88ff0c2f54515a772a62262c34",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md: packet 근거(2,6,10,28,53,65)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "19f6cdc262c0e11d3b562b74393c39d84349a2e088951e0c040b8df3feb6ac51",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md: packet 근거(2,6,10,19,24,30)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "fbace47c26832c698ab05201e8d6d37daf4099bb276dd5717502889543f346ce",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md: packet 근거(2,6,10,22,100,101)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "016a1a4e17142e912304d6603e8ca3e64553b4f482bc6865bd630dbcb9e2433d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md: packet 근거(6,92)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ecccbf71ba820b9459f84b7d3300eb46f2a8b16519fcaa62534935cf517cfb51",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md: packet 근거(30)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "81d1c5022a6bf1a9ede08733695e549c225b6043f2cbb2719c0765bb7bc4790d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md: packet 근거(6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "332474eb40c7602485e095e5e0f5de1c5e67add72d0bdf150138189bd8c1110f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md: packet 근거(6,10,48)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "491dc9867379e246e92eaed8e632793c665c3e134a3894619e0c5692166dd553",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md: packet 근거(6,10,12)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0f290b78f4ab08db6a86d4b203129c059717c888b79579563c01b0ba0dd9eb3c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md: packet 근거(2,6,10,60)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9d4f61915fd667d657f5290591074c5c51e56a46c8c36eb60ee06cba2f6e1dce",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md: packet 근거(6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "19ce3654e7f9473c8da72b4baf1418b9c96f09add5b30d8be61b52b754f5d299",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "86a47967c23c5c39f4d8eacee1cb37e95057beadf67764c2e4b5a7addb6b9b86",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md: packet 근거(6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ad89892753e38b1c0a0bd011d5e932f191d55a30915d180a5dd8877075595a61",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "6b11e18eadae01dafd19bdd20d02e884ec959671fe4cb580a7e03d042b78ec41",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md: packet 근거(6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "59b483bf23ac2f3947e61d4057ab73734b2a82c1e811c481cdd90284ac7969a2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md: packet 근거(2,6,10,73,83)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "386ee578eb7cb18d61e400fd64edf00867683218f6f6437bc72cdcc94de3f942",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-test/report.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "86315ee21d6f2d195986b5ea46122735e3ab742bb3f7e1e627579a4d3f995cfd",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bef04147d28462c0c84b191346ffdffc8552f0e73253c02d22a32bd54c40bf30",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "df0eac6def2194678a04d6cf6fc183ef099a91cd94ac7b54640a5d6d182804aa",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-DOC-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-DOC-review/report.md: packet 근거(2,6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ee75619349e2a9c803030d1926d1ba4b561cd149d9d461456c128b64779e58f4",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md: packet 근거(6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f2ed1c9b7dc92a3b74b618cc86004c5e811fd7a1bd3633692688d0ff10092ddd",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md: packet 근거(6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "4df8b68224c2f762a6191be7e54a0427e76aa0798d3883a1b6a332bca4852f03",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md: packet 근거(6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "682d55a4be3a1b9dceb77d350acc5b96907cbcb2a7f0145811c76a0ae2d221db",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "8440854210ab80dd3704f00d90afc586dae3d140d62c9bfe49103d17651fc2c5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md: packet 근거(136)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "fc356c61cd5941b756e83d4da83ec52d6fad3bd52aa59648167e63c96cdd5bba",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md: packet 근거(48)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "504cad3b6420fb2de8918f4cf141506d8bf3daa6d46e97722491772ab00eda11",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md: packet 근거(2,6,10,21,27,29)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f8341769006356c725ad2f03ae9b23e18a06be5b5b9b6e400e55ca4349815f3d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md: packet 근거(2,6,10,20,29,34)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "513070c9e8795ee4d8ea5179f0aaf6c5209534be15a75c44f0ab153e8ed1b118",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md: packet 근거(2,6,10,18,30,51)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "7ff95885b717fcced1cf60c25bf5976682c39751690d5e09f23a98882dbf56af",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md: packet 근거(21,31,32,33,34,35)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "819d026a55f958547c50a2729a90e5113eb3ce023774dceb06cb21ed0d567cf5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md: packet 근거(2,6,10,23,30,93)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bc708da31ec48e97f3a9a4c3f6dfc42873f251e9eba74d69167b84751f7cb552",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md: packet 근거(64)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a2c66f17f30acf4b19fbd101845f8f2365245ecb67366625c7909066d3ef7cad",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md: packet 근거(2,6,10,24,110,111)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2d0354861ce59a3303c64bdf5fa9523fd7faeeff2d1fb9d13f3a3a0a1016653a",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md: packet 근거(2,6,10,19,103,104)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "553ede091c1f9b7428f1e70a003702e7eeb3f45478bbfc31db49a3050e5dda6f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md: packet 근거(62)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bd56cc35820187f24cf8d5e80b37cec4b3622ff68e50bc19e58e0c23ed78d5b1",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md: packet 근거(2,6,10,23,117,118)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "449bf291f3b7d53775537d08dfeed0c552ccbd70747ba68bd2c0d211139824a1",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "272c6806015760be7cbf21674266390f3338ba52cd0bc4c483cc87f18dab2d9f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md: packet 근거(2,6,10,24)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "07ebcdfb93618d51eee6da1fd04ebf48a2ed19fadf77e55e705b964f14260992",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md: packet 근거(2,6,10,72,80)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e2a56d9a033acacd63cec346b01c0b1e375896880a8621881aa7acca37f427c6",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md: packet 근거(16)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "fad136b38d5bbcad5b4f3a35c734e84ae00ded9cadee24fc86284f3616c8d887",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md: packet 근거(18)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "43859da1a187c96df003673337bd7481761b29ea607c150a4e1d528e7ef7c200",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md: packet 근거(14,26,30)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "11db8a7bd2f494bbf83c437c90c924055b90205fcae078d869dd0b65e6cd82bb",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md: packet 근거(2,6,10,39,105,112)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "60d8836c1c4feed8b37eb0bdf64cffc749983c578968412d86213a06205ec699",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md: packet 근거(100)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "7205b99305798ef536ab195e3d931fe338fbf209f3f3107230a8a00ce60475c5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md: packet 근거(2,6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c8535496fae47fa88f42b0da97abd2a7cf59f8222a43f05df41b32f7372a8a07",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md: packet 근거(2,6,10,27,49,150)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "63f7eeb0f8f8b4acc6109f75f3189b02b6e70af8cef2e915271d7b2a42dda3b0",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md: packet 근거(12)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "269ebd74757687cf5e90b48ad885c7454f543300f831869f790383807653c79d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md: packet 근거(2,6,10,22,33)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "53127f6d922a44b33cb6edd32e50470705776aec2af1ee72b6f77145e471cea2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md: packet 근거(30)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bd8fca82774befd19d2472ee2bff40fddd95fcef7e482846d1273981b0a2035c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md: packet 근거(7,39,85,89,90,91)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "1b4b718b36d31f0f6cfac05a64d20715e5de3beb472e44f6a319da4e81b8c07e",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md: packet 근거(119)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9ee1532a67b8a9a7d0e214b9587584a2ef98ded9a644c0fb457eb1873ba6c14f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md: packet 근거(2,6,10,33,72)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "05cb582d357ede3a1b64bdd8e6a3ca6a24f6f5ccc3e7d11fb102fddef823ad6c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md: packet 근거(70)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0813ea88c7e8d40e61b61b43d51484fbea8c9cd866f4b7b7fa93a3aa233ae14c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5283d13500d55c9daefd9b88c47278b54b4bf2feee4afe0dc80923f327ffa933",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md: packet 근거(6,10,29)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d06fbf115ec6e4043cb3cd7a7a654732118013eef4956d37d875e18efa0a2602",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md: packet 근거(117)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "7a99f439e2ffd78c9ca6b848b0aefdbac1a6c128ecb328dce8c9869bca19ea0e",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md: packet 근거(2,6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "6a44bdbcc5982003a9f9768cd04d67ff8775b47278860838ff3a94b7ef0e05c8",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md: packet 근거(2,6,10,31,38,42)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0ed95072bfab833c34d6170cdebd524264e28c6bcb1ee44174ba40b9bb7d5a7f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md: packet 근거(45)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "13d25c7fc67b7cd50d16cdf300ed085aa521366127407d446831410b5d5cacfc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "6cc29f4dcd7bb84bad7df821ac1547d985cc268e70f73f75b0177beeff8bba1a",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
       "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c387768d96674ffa98ba0464508a1da49448601bc91598b2e2e951b0117d66ae",
+      "relevant_line_numbers": [
+        6,
+        10,
+        16
+      ],
+      "relevant_lines_total": 3
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/escape-audit.json",
+      "category": "direct_edit",
       "status": "completed",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md: packet 근거(6,10,16)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "원 도구 대입 복원 command byte 일치와 Node 값/type/bytes assert 15건 EXIT0을 저장했다.",
+      "reviewed_content_sha256": "86eea68d96902561870b489f6437aeb4b30df0bdeb7cb13192f01ee9c104f321",
+      "relevant_line_numbers": [
+        14,
+        18,
+        32,
+        34,
+        36,
+        40
+      ],
+      "relevant_lines_total": 6
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "원 보고를 보존하고 escape 재현성 대조·실행 범위·한계를 추가했다.",
+      "reviewed_content_sha256": "8de767bf33772af4331079bdb9d15ecdb203abb1e5c38a15b98364fa6d4168ac",
+      "relevant_line_numbers": [
+        6,
+        10,
+        24,
+        48,
+        59,
+        61,
+        66,
+        73,
+        75,
+        77,
+        83,
+        89,
+        90,
+        91,
+        94,
+        96,
+        98
+      ],
+      "relevant_lines_total": 17
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "원 보고를 보존하고 escape 재현성 대조·실행 범위·한계를 추가했다.",
+      "reviewed_content_sha256": "8de767bf33772af4331079bdb9d15ecdb203abb1e5c38a15b98364fa6d4168ac",
+      "relevant_line_numbers": [
+        6,
+        10,
+        24,
+        48,
+        59,
+        61,
+        66,
+        73,
+        75,
+        77,
+        83,
+        89,
+        90,
+        91,
+        94,
+        96,
+        98
+      ],
+      "relevant_lines_total": 17
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md: packet 근거(6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "4b766e9305dd45dc48e7fef7b0ed083ee69c89fde4606fded6e1e4d6809aff8a",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "58480fdc47238157a4c9bb6de32cdec30602552133ea3cc1f296771141247c60",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a14384ac54da395069ce8ebcf5e90becc22974f6cc3fc1a01741e621c1c355e5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md: packet 근거(20)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "dd469cab2e260ccf266c0211fb67b310854b2b9e0f429482df556caba5941e06",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md: packet 근거(6)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "244c5c4ae307dbd518f216b819b9d092df4dbe2bf215c052797ff74be1828bbf",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md: packet 근거(2,6,10,58,68)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9dce55f9ad39625ad60d9bb2263d5ff4a08d7fc6d85154e36b58fea8b4dc4eb6",
+      "relevant_line_numbers": [
+        36
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md: packet 근거(2,6,10,25)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3004c44fbfa7356a0df76e765b6f1f22ba069597d05f1379ea6cce3b190397d8",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2745539eb7d23cf3c2e6bc5aa3e907c15255e3b3b20749ccda46d8f4d229acfe",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md: packet 근거(75)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "8eb53742a4cd6766d6e925767c4d635aa239ae614f54b9c610aa187c135507b3",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md: packet 근거(15,38,47,48)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2cf3c370bc4cdaf61c38f4a4540430feed03a63a20e1e1b3e6a8a065d1e4361f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md: packet 근거(2,6,10,17,31,32)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "26f24640612d0750539bdf16deabfbb88748750005530674f9565678f0b1ad03",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md: packet 근거(2,6,10,20,41,43)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d39ed1e45becef23167f88e234e77063ca00c3950ccef9d0d7457070f9b75450",
+      "relevant_line_numbers": [
+        37
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "cb678e904fd19f0d565a689c1d6f5c3ab09e634cd092d23eeb35fa375f7ceb81",
+      "relevant_line_numbers": [
+        63
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md: packet 근거(27)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b5c57c7b270e0d4d137693c7e81b13d56ace87b3fc2ef31dac1dd3c3bb89e5d1",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a527f7d00d86132822ac83773e6fb905882f4938e70d1c824d20e412361d96de",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "425012ae7f8525142f2ee4bfd6369acbfff5ebaeada08d8bee40361efa908605",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d20a9b99c3fdc15338e746a045d4bb8ad8f11141bd394d1d9316a4c2589eb6f3",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3f912b8878807b38caf4aec5ed21811985138867b0fba1a023fac3362b282b81",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md: packet 근거(6,28,59,62)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "051de7fcbbd4c301d238b0af4313dc70d496ecee1a5b1a0d5839400962f7ddf9",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "014227991655eea3427c7130da10400ae1c36fade09a9c3acacfd430e4f1674d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/README.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e1fc58c415ad7e64908d0aef6d2aac145c3e603ea750588a0a783b0895455897",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md: packet 근거(2,6,10,21)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c35acb5e76277d67c6c89d2a66db2792d560708e4daedaa36ea0f39a9fccac84",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md: packet 근거(2,6,10,13)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "971509afba4717307ba9a6727749435bd53e0550792876cd060a41c7e2588ae7",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md: packet 근거(2,6,10,14)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f1800c3467e30e552ae47b4db8436e40fcbb86635db0ce5e0bd42ea38722dc2c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-HUMAN-PEER-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-HUMAN-PEER-001-TESTER.md: packet 근거(6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9d8afa5ed56667855d8d93e55f7d6b5d4b5c5251ae5a5f3e4a51d2a1c1e4409d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2f8dd8ca459d4bd1ce7c41fe9aafd71a3fd3e1aba561eb18289b8111b2020706",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md: packet 근거(2,6,10,16)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2ac5fe2992c39b5babb4a44f53dbfddc3c919efe27bb9df90aea467963e89e4f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "99294c9624feaeccaaaeab9e091821f77bc29c0a0f1629e141e15f17a064a13b",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md: packet 근거(2,6,10,15)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9c26474b8e162e4f34d7ba2f269a373b2272aaa3a2aa9e43b24f1221303c4778",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md: packet 근거(2,6,10,14)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0e4d0517dc229ae16e91a364e7e0391f56eb82f50f035f2c39a600703908bd07",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md: packet 근거(2,6,10,14)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c43c5d49ea9740d4d5974fdc78a2d0304274ed4740281b73ab368dba04908aab",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md: packet 근거(2,6,10,14)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e1152ece5c98476315db021fdcaf4e338d0466e12fe210d9155d7ee43ca8d4a6",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md: packet 근거(6,10,12,13,18)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d6f9c42c3ebb5f42aa3bbdc0a504ce8f39d98294c828478e5c77ea52db54e34a",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md: packet 근거(2,6,10,14)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "1d60ff0bcc6d1bbbe078e62bc5ba279bd4d355ff81ca6e7d5e07ed78c1ebd9ed",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md: packet 근거(2,6,10,13)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "24a03dab8a487be6bd42a3155bac2a783ccc9ee1dcfc8e3932722f89fe965923",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md: packet 근거(2,6,10,12,20)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a1987f61f6a8473e013362f72f709a3cab2bd0ec6f3a55bb73a813dc352f0df2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "37eacf62df08b92f47b5182fb26df5b0b8c785978e560ed370faeead3b71c94e",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "07bfd993b9834b47a26b7313986b6a3bcd931e8ffe34b47c8a8119217c400a7d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "52bf5688cace6a7f8f8672d47ac88e1871e2e9f76ec5a3f0b2444ee2d9132293",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "29f6ed155e5e7378a7ba332b6d76149d4bf6c5583bb77f377d865d4f99422443",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "23f6108f269fbc1ea50889ee1f491db550351962645db33ead18c94dd3088d1f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b85d41dc30f38fd756c69a8e3344ecaaf3b9136d90e2773f4f5347f1c8b32ea4",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "265c43be6ba1a5e9d2dc43ce58c5491242f397e5c6a095f125ae1d4b74b445d4",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5b982d2714ef77a6d7e63a1fe1ce19be90462f34f84c6470392bc6390b52ee2d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "8ac5a2b69e3a2ed3648572f34598c0a41a48c9c0575ad1dda5ac4c6d0e40401c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c0c576b8cd3ab6f45fd71490a464ce71d2388499492596b0491b5c364642c907",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md: packet 근거(2,6,10)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "dd9ecd802f4d962cfc233f3354f82e915655aa03f494c9912598ebc12d69a711",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md: packet 근거(20)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "096a6a989325e4c8dfabd24cbe142b30d7f8cbdcfc0bc3d9099117ab8e895383",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "548ee0dd10160748cfe29916767c1a9c1a506693f0f9dedd6afa25abf3034964",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "6ce2e2018cb8b9c72d4aa4649859cd7886d6fcb68c982998c4ba5367a286dc07",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "739d43ca27bb55a2400349c5a3442d9e4cc89613ed7c2755f7018bc6aa1684c2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "38122c2a33edf5af477a09294a965a86fdd425611ab96dd0b5f40bb96e24f878",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md: packet 근거(2,6,10,18,28,29)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0433fc272810f430e07f39372cc83e747c2f6d97aeeed8853d89efd72e7e7483",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "845218fbe35cace6e40e9793c10791cada55efe8bd33d031807028c7debf7226",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md: packet 근거(19)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "564029ab5aaa0c5def9e7374253633976d89c1a756bb5b916bb8aaa894ffc0ab",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md: packet 근거(110)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a221ae3f9fb6d60f84282844be2dd59db8ad4d13c1afa9e6dbb79891197d2f0d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "7793309c69276bc7e1826301f80b29b6b50edc4129832021157299ede9e7bdb1",
+      "relevant_line_numbers": [
+        60
+      ],
+      "relevant_lines_total": 1
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "4c16ef4aff1dccab93468183248cc6ade868b160180bfd46b56102a3c5a49cf4",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md: packet 근거(151)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "8a8d93dfc7166afe9919cba1fcefc1910e1aecfe62fbed419a685890378b27c6",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md: packet 근거(31)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "004e5a95b25ed3ce81c7d1e099c42d0467ed42b83d59c2c8b4889ceede0fa394",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md: packet 근거(2,6,10,34)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "53987a32c643d73c78da197123cfa6ffcc1268bc9a8c7dc9aea93555e728e901",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md: packet 근거(17,136)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5ad633bc38d911b3942bc2bc447ee6713e5c1522b88abf152b4311363c29451f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bfcb9bc58b5ed4fb3c21e9fee33c744e26e4db0bd59b6532e1e8614fd0c4dea6",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "1edd0ff6afd5b41451858838de2bdcbe0785f257bfbb7a5c5441c7013250fd48",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f4c19d452da3c245ab48189f65444fb745b5732d0b1ef0169c30df105da263bc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md: packet 근거(14,74)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "7212649972738e689381bc2215ca027e08d3b7a24e6f1f6a00f006508153fbe9",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md: packet 근거(75,110)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "45cfa904070aa89ebc78b1b714a4b41087d9769fcd44dd2c703ea6b4aef8d99f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e2712c1bc2cb10d786620e8a3ffc70f813d845ec2c7c78ab0ab4e131143448cd",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md: packet 근거(23,50)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "876e3caa2c1bdbdc506126b7d92a316fd9e90ac5a43105746d94bb2a22a881cc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md: packet 근거(91)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "8b27901afbb27641a4e428e00b764a29cdd3dbb90c5757608b3d4bc6f37de0fd",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md: packet 근거(89)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5f8c7dbd497f96c83778f056219c2f489099082a734963a634354cf127539913",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md: packet 근거(60)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2687569714266d7dd274b2161e1122a53807103f0a2daeb455a1a15ad01fff16",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md: packet 근거(61)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "500e3a56848becbc94cbce67b2cb29ce36abcf49f7b836ba36646476750495e9",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md: packet 근거(18,36)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "49a18b06fae6c75d36360de0abaf9e7141d860b5855bd59d9f16da076539d0e1",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0f440636c4073fb8a18faa1cb42bd325043c416faa02310a5613cf161d98d7b7",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md: packet 근거(2,6,10,17,42)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5dd144146fe618cb1169a439bc64a57e016dfdb1be9573a20575ff4f00600030",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md: packet 근거(7,27)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "554a54112e0e9b363a291f197972f8b2f2975a40190f1e27869f7c4952e6df89",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md: packet 근거(2,6,10,14,29)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f755ea292abb034c3d63ace2dd3ce67c2c4cda3c053b3b8dd84d935f15f33470",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3e0cf40c26ae3fc607606e40642f055074cf4e5847314d10f5bdf95ace6ed0b4",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md: packet 근거(36,42,93)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b80c7e2330c1cf9ad98c898c2a49c84ef45b993fa6a00c3cef41b43cfeeac0ce",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md: packet 근거(80)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "dcb954f5b392ac095a872353a774654ee6c4d2e39880d0f2a5792c1df3e7777c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md: packet 근거(76)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c04a7b7f6677f68a7804515e9135f55040ede1b75b2051466b1e1213ace2a98c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md: packet 근거(49)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f35c501096add74ffcf62262477fbeb25dca2b72fd348aa46b94e5d65d60bf06",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md: packet 근거(40,60,78,80)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "20681b1dae88947785c6afdc8f42a60433a4c342018107a37e56e2ab2a240344",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md: packet 근거(6,10,37,46,52)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "83d1f5c82680ca086647060d8a671255e2ccbc3f9b57028da71b492e6612bdb3",
+      "relevant_line_numbers": [
+        6,
+        10,
+        38,
+        46,
+        52,
+        60
+      ],
+      "relevant_lines_total": 6
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md: packet 근거(2,6,10,12)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3df4cba9ebbe78273483cde64a9098b145e98d83dd26cd17fc62a659a7171aee",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md: packet 근거(19)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f640a7fbbd38ae58274b98b898cd573cc5385bfb10bb04b8ca3e2c624f7224e5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md: packet 근거(2,6,10,20,26,32)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "fec52c74a05128a2df8e9a3c98d004402975ab1b9ec7204aa9adad765c424084",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md: packet 근거(2,6,10,31)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b8aa8205010ae6af12c364ead12c3b76e7de446db48adbe73366e6de75411709",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md: packet 근거(36,37,39,47)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a003171b3b6a21152ebebc800b70bb69faf01316754f14e16c6148ea2c581a49",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d02fb52a2773481fc7911dfff34f7defb414ac276478ce7dc2bf10861bccc2cf",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "33825d9e5e6fcf802cb7987cb167d690351a8da428f5b7a94c214f56994dbf48",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f188a72ae7485031e114cdae794c6d495efdb46badbd083dd2bf4ea087c396b1",
+      "relevant_line_numbers": [
+        35
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md: packet 근거(19)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "4cf30abb159dc7f9feba9e18bf0b3981bd0ae88fc24680c8f2088a3cb6850b24",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md: packet 근거(2,6,10,28)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "410c4cf7b50c262d51ec6e650ef396683646a174afda0e0ab7e59260ff1857e0",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md: packet 근거(21)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bff52bb1aa8d408a8183eda6aac8a8487a710577f7dfb98158a9c1b8156610e2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "bf29cdfe4fbf22d196154f81ac4303a357671244f1d7d47e0178b88e3d106001",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "771e1bd3f26dbbc4163aa2f17a106da31d1afcbecf4f2aec2a5cd0bd61e3e4cf",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "50cfbb5605a108c9916e50d518182e2d682a727fcf002c0cba083fcffaa9d088",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/operations/transition.md: packet 근거(81)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c5737644621bf12e24c1ed1558349521a2d0e5ad8bc6b8a61689185cc51cc274",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/operations/user-guide.md: packet 근거(7)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e12c60cf91f4f8a19b4cc31174ff586eb654a3863b1b0ab7ae7b30845adde1bc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/planning/SAR-MVP-backlog.md: packet 근거(23,63,85,86,87,88)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9266c6a3493bf2f329b8a578ecd75932a9f1237d9919a876152d7fd03a52b3bc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "1fc2aa4418afc1a554a004a3765a05b90f757c12bbf3dcd5a32672012da653e6",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md: packet 근거(97)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "220fd9f008d5b761d32b237e862063fff27407d1533e8cd969bbfb3054fa72f6",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md: packet 근거(131)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5e133fb99cde136feb0cc669c5970e6241b1a547c632b249c3c809977ae3605c",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md: packet 근거(96)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d3c17571ade569fb0a4e421cedbd3426cd690809293f8abc9f73627605fcae1d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "cc2f54b09cf0ef603cc482da08b8bc8f83312ad0e640224e74d3980ea56eacd1",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "1d9cca82bc9f681dbeba13ff2829cd6848d184cf136fc62d6701eafd95c673e1",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "7d45cd0c15112a6ea498debab9fb69adaf006de900f316ea41fbe77973b11adc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "826a3d04441cde34938fc3e5127ebf8cd8cf88abf7f27dc3a8a7bc918254c729",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md: packet 근거(16)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ed255e02500c402ca7a9e52f0512dd8be0edec9aa10b178d7fce3cfb59b47c50",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md: packet 근거(183,189,266,268)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b26c5a063dfd2830eecb98a74fe68583457f25e1fa550c82def384871b5fc9b4",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md: packet 근거(205,278,292)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "776eafa110d17c5f163bc7cb88ec580ab51367709288f1235600d770d44fca37",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md: packet 근거(53,72,100,119,129,259)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ab1e3e6ed7058f6ca473d9a46f86976a41f82488b36d80d958f976aa446db712",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md: packet 근거(53,132,145)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3f0a2afec0671f570e92a51e3df485418350d4fa836bee49019aee4642320028",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md: packet 근거(9,12,16,20,34,43)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5ec208d246f17ed5c2f2d870fcd709944e0bff9737aeed31629dcbc3af46c815",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md: packet 근거(35,81)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c2d62c348c93fc6c3d2fa4eb70a2d61bed20208a38b2b8aefc03f90c864210d0",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md: packet 근거(147)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c8ce1fd1be3108c5d32f90defb5fe1a8788aa5cfa843801a6a60254959d1eafe",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "54084b6ac1872a2fd036919beeda7ad42b0734238018042de29e0b3cc7a3b075",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md: packet 근거(9,12,16,20,41,71)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "6a61c72f71d22b6945e021ebe3051c0c8e17b71f7784c3aa6e2fee33c45e1d55",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md: packet 근거(156,253,284,318,426,451)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ef9076baeb1876164ed160a7c57f1be7c2629bd3f9748a91948f409e56ace72e",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md: packet 근거(12,17,20,36,74,76)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5353d6005851b21ed24fc1ff1148895f5af40600622ba3e97e3b55b6900c27fe",
+      "relevant_line_numbers": [
+        329
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md: packet 근거(9,12,16,20,37,49)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "02f493288f8bdbce784c676859056838463898f6e249c38b3e430fe06c3c2300",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md: packet 근거(48,72,104,105,108,109)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "77fb07d835a77f730e2a07f3ac400bf478c3a5d7a7c8faca626394c273578050",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md: packet 근거(61,170,171,174,175,176)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "5e32259132f5af817b90c522d965f5ab5b71bce05af6a7ec2882b804dba6cabb",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md: packet 근거(9,10,13,17,23,34)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2302b7d71265759f0776860bff341fe5c97a1d06b4df21e542d5210098bc6b62",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2edf974c268f30db37fecf204b776c97c653a535dfa41b2374ef3ade13ee9585",
+      "relevant_line_numbers": [
+        9,
+        10,
+        13,
+        17,
+        25,
+        45,
+        57,
+        66,
+        266
+      ],
+      "relevant_lines_total": 9
     },
     {
       "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md: packet 근거(18)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "fcabdd6f49d240e63aac67f9bb9e9ba99f15b3e93b7aa024e34e1df28aad5d61",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": ".fullops-squad/handovers/to_dev.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": ".fullops-squad/handovers/to_dev.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
-    },
-    {
-      "path": "CLAUDE.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": "CLAUDE.md: packet 근거(메타데이터·현재 계약 rg)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
-    },
-    {
-      "path": "Makefile",
+      "path": ".gitattributes",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0c51494119f4a7029fd6ceb638a2dcf45ea7cc3ab5553492ee7817e77fc798e3",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/.claude-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3a05f695b5f9c7903c12a2a9c9319827ddc0f973dcf2790e5c3f2a4e9c5daf38",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/.codex-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "772efdf22502937e5dd329e38e3c0987c01e5777d7511c5d6020d432e20d1f9a",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/.cursor-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3dd88c35bdc753a136921641e7f2d7c54750af7670cc8e052da74b7799be37f4",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/.grok-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "986494101184e26680b0448832f08554fd1d60503be11cea7fe07263e2d8beb5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "adapters/README.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "adapters/README.md: packet 근거(228)와 현재 원천 존재·시점·관련 검색 구간을 확인했다. 이번 기능 보존 QA는 원천 제품 계약을 바꾸지 않는다. 과거 실패·held·실행 SHA를 보존하며 과거 전문 재독·새 실행은 주장하지 않는다. 상세: packet-audit.json."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "614a1ea4d688144131fb66877380237f726765ae951b0644e49d431466e27b4a",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "adapters/src/core.ts",
-      "category": "direct_edit",
-      "status": "no_change",
-      "reason": "tester 제품 읽기 전용 계약이다. DEV의 변경 seed를 영향 확인 대상으로 읽었고 제품 편집은 하지 않았다. UTF-8 4096 bytes·공백·surrogate를 독립 text matrix 15건으로 검사했다. 호출자 네 곳의 공유 validation을 읽었다."
-    },
-    {
-      "path": "adapters/src/core.ts",
+      "path": "adapters/manifest.json",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "UTF-8 4096 bytes·공백·surrogate를 독립 text matrix 15건으로 검사했다. 호출자 네 곳의 공유 validation을 읽었다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ebbb8df958b3c3a0e361f99fbfc710a91493ca9aa878d7bcfd9abc0bcf62fd4b",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/package.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c54b3dd01ca6aa0fb8ac47ad215aa1d1ee3099c9dc45c93f8cd4c94007133d94",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "1fbcc99d8dfb6addfe015686c1647a31dca5e5adfb1cb24bb3b83bcf37cfad29",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/src/grok-wake.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0cfe274ed0d33e91c061e41445f51d00fd8e52423c9dfc27b994f4c195f8d9d7",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "adapters/src/inbox.ts",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "b31475ed2390542414ac1f6f63331246976da8e5812ea5677c7a0e25c7443eda",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "adapters/src/mcp.test.ts",
+      "path": "adapters/src/index.ts",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c0cbd540a94d0b9e1e2526dc91d0802a0fae7037970863d7af89379dec21cfe5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ae0a5e30447b16d35f6fc329b70f7a70de4405db6b6b744a6d51df1915c71844",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "adapters/src/mcp.ts",
-      "category": "direct_edit",
-      "status": "no_change",
-      "reason": "tester 제품 읽기 전용 계약이다. DEV의 변경 seed를 영향 확인 대상으로 읽었고 제품 편집은 하지 않았다. trialResult/result 포장의 외부 JSON·isError·held/discovery를 실제 bundle MCP focused exit0으로 확인했다."
-    },
-    {
-      "path": "adapters/src/mcp.ts",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "trialResult/result 포장의 외부 JSON·isError·held/discovery를 실제 bundle MCP focused exit0으로 확인했다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
-    },
-    {
-      "path": "adapters/src/test-transport.ts",
-      "category": "direct_edit",
       "status": "no_change",
-      "reason": "tester 제품 읽기 전용 계약이다. DEV의 변경 seed를 영향 확인 대상으로 읽었고 제품 편집은 하지 않았다. 송신/수신 validText 호출과 기존 signature/persist/ACK/claim 순서를 읽었다. 일반/trial 송신 경계는 MCP focused exit0이다."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0e3a6592c13ff21223a7fdbf5b2b6bae1363e39478787a98616bec1be387c13a",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "adapters/src/test-transport.ts",
+      "path": "adapters/src/public-check.ts",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "송신/수신 validText 호출과 기존 signature/persist/ACK/claim 순서를 읽었다. 일반/trial 송신 경계는 MCP focused exit0이다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
-    },
-    {
-      "path": "adapters/src/text.ts",
-      "category": "direct_edit",
       "status": "no_change",
-      "reason": "tester 제품 읽기 전용 계약이다. DEV의 변경 seed를 영향 확인 대상으로 읽었고 제품 편집은 하지 않았다. confirm gate와 receive schema/signature, store-before-persist/ACK 경계를 읽었다. MCP/owner-text focused 실행 exit0이다."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f2c9a71d9d859fb3d49dc4cfce4b7038bae6c66ac2652d39cbf2447acd7446d2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "adapters/src/text.ts",
+      "path": "adapters/src/trial-check.ts",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "confirm gate와 receive schema/signature, store-before-persist/ACK 경계를 읽었다. MCP/owner-text focused 실행 exit0이다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "129675c8ce9e34bc1bd24f52ab213a40c3232775369feb6e384fe985f4ae6154",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/src/trial-cli.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "e29521d73cd870cb8d8eb6de68377746bae79059c78ec530e66681ff46b873f8",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "adapters/src/trial-setup.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "86c2a62f29615f5ed09b424c2a12a290422f7e3e5a29ef65fe886ac8ddb41b77",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a8b157a1254dbce98a8b15f127d381e2d33164a7e04d5b41a4c221199adff48e",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "db/migrations/00002_human_writer.sql",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "83cfa1aab7ddb803a0705434187af01386bbd8ccb60ab37a4cf5e9220c661f36",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "dadb14532c1e20e921b856ae7f5099ccbbdf8ed0eec53058861fca849b9bedf2",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "deploy/knowslink/verify.py",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "61058d1a8f064edf1d84f0ece1dbbaf08d9413f324edcc4dec6d3214ce7350fa",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "go.mod",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "11da2100fcb0c29c2dde1337701e7eb6bee796d5718592ba8986340951e072fc",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "go.sum",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "4029808a498ac92ede9ca99fb973b57b621ad3699261b19f058bc932c61e4cc9",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "internal/relay/api_rate.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "c48cad1b840c181973bee2c21db6a747ab81a85c78f0eadc3e327fd4b57de596",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0678b30522836b199590b7c4c45fa3e70d143b1c1f4f9d50aa9b7395d18ac7e8",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "internal/relay/cleanup_flood_integration_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
-    },
-    {
-      "path": "internal/relay/device.go",
-      "category": "direct_edit",
       "status": "no_change",
-      "reason": "tester 제품 읽기 전용 계약이다. DEV의 변경 seed를 영향 확인 대상으로 읽었고 제품 편집은 하지 않았다. deviceAPI와 공유 connectionResponse의 retry·명령 오류·transaction 우선순위를 읽고 Go race focused exit0으로 확인했다."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f991151d6052aebc74a8d1cbf53de6eec60a9693f5e2a46878c8238f129e9b01",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "internal/relay/device.go",
+      "path": "internal/relay/connections_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "deviceAPI와 공유 connectionResponse의 retry·명령 오류·transaction 우선순위를 읽고 Go race focused exit0으로 확인했다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "35c3e247efaa64a6f1a41ba44ab7b329d6152ae9b95bbdc22c48e924622d8036",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "internal/relay/device_test.go",
+      "path": "internal/relay/human.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "d94a4fb34b10623c681b2988de0ca922ded715e5d47534530d9e59d3cc947f5c",
+      "relevant_line_numbers": [
+        129
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": "internal/relay/human_http.go",
-      "category": "direct_edit",
+      "category": "impact_check",
       "status": "no_change",
-      "reason": "tester 제품 읽기 전용 계약이다. DEV의 변경 seed를 영향 확인 대상으로 읽었고 제품 편집은 하지 않았다. 자기·친구 humanAgents 호출, owner/철회/정렬과 helper 전 friend/block 자격 검사를 읽고 Go focused exit0으로 확인했다."
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "56d64f15bfdacb35f1882f1111a63f0e2cc26e1a9cadbdde8b17ce6c64cdab3f",
+      "relevant_line_numbers": [
+        48
+      ],
+      "relevant_lines_total": 1
     },
     {
-      "path": "internal/relay/human_http.go",
+      "path": "internal/relay/human_messages.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "자기·친구 humanAgents 호출, owner/철회/정렬과 helper 전 friend/block 자격 검사를 읽고 Go focused exit0으로 확인했다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "17a7d54b053f22e21b0e56840a31b83d214a17e5585a95e49d5ef515f1f1329b",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "internal/relay/human_test.go",
+      "path": "internal/relay/human_pages.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "081e83a04414e85f173ad55856fa559d8badcac23a41708cba52b323169207cb",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "internal/relay/member_agents.go",
+      "path": "internal/relay/human_pages_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "connectAPI의 connectionResponse 호출과 원 transaction/auth/rate 처리가 보존됨을 diff로 확인했다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "0612c7a6c8460043f70b657be2f647dd4f0738f0eec1039b7f092a7046418e77",
+      "relevant_line_numbers": [
+        45
+      ],
+      "relevant_lines_total": 1
+    },
+    {
+      "path": "internal/relay/mail.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9dc75e06c45ddcfa2894e008bd94e294e6f9163a69771430b119c6137857907e",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a8f748c61063a0d3064e151da3745592c0ec22b7bb155fcbd7e319adab69a342",
+      "relevant_line_numbers": [
+        36
+      ],
+      "relevant_lines_total": 1
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a40781b1ce95eabcf476eec8b16274f894e78b6ebe66c0f421a00c43620ea7f5",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "3bc7b369cbab898366f155ee062fd4a14d5cd3ed0dd5062498dc582c865daf4b",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "internal/relay/protocol.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "34ce94769652720983cb845fce7133443c2b76848f2015f7736933fb165ebb4b",
+      "relevant_line_numbers": [
+        65
+      ],
+      "relevant_lines_total": 1
     },
     {
       "path": "internal/relay/protocol_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "4d6c536313a08de2e49591541a4d4cdb18c096f8898899e578db4af876487b60",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
-      "path": "internal/relay/registry.json",
+      "path": "internal/relay/public_messages_integration_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "435a8d29d0173feaf092cef653572eb004f01d1b72282fe7921fc5d7d9759d76",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "ee84b9174913a64fb938831a1b2cb1cdb4e784bc1a5734a8be8c3a59c3943d84",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/test_messages_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "35bc0d9e9f63cd01fbc7a1b8e9178b63e64549b2266c09cd948df33fcda59a17",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/testdata/consent_browser.mjs",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "704b045e65317ccd89cefbef180215d93680a4ab13f2ebb10ebd958d65628081",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "7a305730527510c02ae18460729734213ede81c15b592b53087fdc1b3ed806fa",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "internal/relay/text_events_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "329d381e88436bac1358bbbc9c8a933c881891cb3718d241a20318439146820d",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "8126b932a14e42fec2498e96ffda8e3975a05ad2bb08b3e9fcd289a05a073d4f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "a0cfcd0a68417b8464cc886104fc6c42133f4b19f3d460545cfc006bcde9d65f",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "scripts/schema.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "f522e897e019eced9e2127a2671937a67561db76ab7af1953b8e955021e1fa91",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "scripts/shell_guard.py",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "eb376fd5cdac405098d4b31ebac85f1f670ca9b177cd44b26e0633551490657b",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
+    },
+    {
+      "path": "scripts/test_shell_guard.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "9f0c41ebf3ebebe6c01672a4d37c4e5cf6e7f7e16357e777521d39e3d77a2b5f",
+      "relevant_line_numbers": [
+        35,
+        161
+      ],
+      "relevant_lines_total": 2
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "56cee9bad252a4e20dce2ea24bcf5f4b48a87adaef7298f5ce9299bea446d1d3",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     },
     {
       "path": "scripts/verify_setup.py",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "현재 후보와 기준의 diff·실제 검색 구간을 확인했다. 변경 경계의 focused 실행 또는 동일 exact SHA 전체 게이트를 연결했다. 제품·테스트·설정은 수정하지 않는다. 근거: packet-audit.json의 해당 path와 gate-audit.json, report.md."
+      "status": "no_change",
+      "reason": "패킷의 검색 근거와 원천 경로·해시·관련 키워드 줄을 확인했다. 이 문서는 현재 후속의 SSH/JSON 기록 대조 결과를 바꾸지 않는다. 제품·과거 기록을 수정하지 않으며 전문 재독·새 제품 검증을 주장하지 않는다.",
+      "reviewed_content_sha256": "2f8642391fd96c80189d03ea9cb315364c308b254130f34364ca6c5fd6490818",
+      "relevant_line_numbers": [],
+      "relevant_lines_total": 0
     }
   ],
-  "uncertainty_review": "packet 전체 JSON의 183개 경로·189개 쌍과 source/evidence/producer_status/unknown/remaining_context_paths를 처리했다. oversized 코드·문서와 documents-find 미전달/잔여 후보 180개를 일반 rg로 보완하고 path/hash/검색 결과를 qa-reports/SAR-REFACTOR-001-TESTER-test/packet-audit.json에 보존했다. missing은0이다. 패킷 기준HEAD와 실행 후보를 혼동하지 않았고 gate-audit.json으로 실제 제품 동일성을 검증했다. optional은0이다. 완전한 동적 호출 그래프나 과거 보고서 전문 재검증은 주장하지 않는다."
+  "uncertainty_review": "후속 packet 279경로 280쌍과 remaining_context_paths를 경로·해시·키워드 줄로 보완했다. 과거 attempt route/find/documents-find/context는 현재 근거로 사용하지 않는다. helper는 직접 읽었다. 큰 과거 로그·계획·운영 문서는 수동 검색했고 현재 기록 대조 범위 밖이다. 전문 재독·제품 새 검증을 주장하지 않는다. 원 packet은 history에 자동 보존됐고 원 outcomes는 별도 history에 보존했다. 상세 unknown_review 참조.",
+  "unknown_review": [
+    {
+      "source": "route",
+      "disposition": "이전 attempt producer이며 이번 후속 근거로 재사용하지 않았다. 명시적 원 transcript/helper/JSON/log와 로컬 assert로 범위를 직접 확인했다."
+    },
+    {
+      "source": "find",
+      "disposition": "이전 attempt producer이며 이번 후속 근거로 재사용하지 않았다. 명시적 원 transcript/helper/JSON/log와 로컬 assert로 범위를 직접 확인했다."
+    },
+    {
+      "source": "documents-find",
+      "disposition": "이전 attempt producer이며 이번 후속 근거로 재사용하지 않았다. 명시적 원 transcript/helper/JSON/log와 로컬 assert로 범위를 직접 확인했다."
+    },
+    {
+      "source": "context",
+      "disposition": "이전 attempt producer이며 이번 후속 근거로 재사용하지 않았다. 명시적 원 transcript/helper/JSON/log와 로컬 assert로 범위를 직접 확인했다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "exists": true,
+      "bytes": 361562,
+      "sha256": "a2bcc24d265dc5fedb84931f69efc8015a3a55478d4454e1450fcf0191ad9b7e",
+      "relevant_line_numbers": [
+        12,
+        18
+      ],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/gate/remote.py",
+      "exists": true,
+      "bytes": 3194,
+      "sha256": "74fc9dbc4370c7e5c033e6629a26196e196a433096420f904888b159edd9e43f",
+      "relevant_line_numbers": [
+        1
+      ],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "exists": true,
+      "bytes": 68919,
+      "sha256": "46a6434c7ac0acb95ca121da59e7025d6c703cdf16968607ba2ec341380ba226",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+      "exists": true,
+      "bytes": 97593,
+      "sha256": "27eb29e61e101e4439a6266f56c3fd35d326c224de99711944ec803128061a11",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+      "exists": true,
+      "bytes": 70355,
+      "sha256": "4a2f84ee7a5586565184db2df42abeba734722fc8f4cb6909cea90fe055e70ed",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+      "exists": true,
+      "bytes": 91583,
+      "sha256": "fd93a3720d17cd72e39724bc58eb6524580c9b2ac3f263b8fda4f0a92e44aeb9",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+      "exists": true,
+      "bytes": 66112,
+      "sha256": "f9c33f803dd377f98b521d65059dcce7b30c96d2435578bfcb80e92376dec90d",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      "exists": true,
+      "bytes": 92868,
+      "sha256": "353e7bd8d2360358e24544b2aa1f1a3fdadb5353fe3966b0e2d1c1feb4ef60ec",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "exists": true,
+      "bytes": 130758,
+      "sha256": "82a6b68542db710b56f6179b670e69e1bec956ffc95cc65a122a5646f6da0ce9",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+      "exists": true,
+      "bytes": 85385,
+      "sha256": "a73f17082e91f3789392cace81b7610e865bdb8417f60e20f950b8a92290870d",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "exists": true,
+      "bytes": 153535,
+      "sha256": "2dd91eb35589666905dbb83fe2c10dfc59c6b5eaa374d28953d977a8e32c0037",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+      "exists": true,
+      "bytes": 66659,
+      "sha256": "45958c02f98c77a3810bec8ba163f21ac21daf34e9e7917ed43750076ec9ff8e",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+      "exists": true,
+      "bytes": 78253,
+      "sha256": "a82d0a15bf2a1c49a2505a1d357dc44eef7e4a3300b6339b421a4cef64d2cec1",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
+      "exists": true,
+      "bytes": 116793,
+      "sha256": "8ed98e6b81a109c72302f4e914363123cbfb9442e07f478ddb880ef7bf518475",
+      "relevant_line_numbers": [],
+      "disposition": "원 helper는 직접 읽고 대조했다. 다른 큰 과거 로그·계획·운영 문서는 경로·해시·관련 줄을 수동 검색했고 현재 후속 범위 밖이므로 변경하지 않는다."
+    }
+  ]
 }

@@ -68,3 +68,35 @@ packet 183개 경로와 189개 path/category 쌍의 정본 존재·검색 근거
 Windows Go race는 cgo 부재 때문에 실행하지 않았다. DEV Node24/npm11 결과는 보조 근거이며 최종 지원환경 증거로 쓰지 않았다. Docker/실제 SQL migration·운영 배포·실계정 메시지·Google/외부 Bot 왕복·부하·백업 복원·장시간 wake는 not_run이다. 관련 계약이 바뀌지 않은 이번 lite 리팩토링 범위를 넘는다. UI 변화가 없어 새 직접 시각 판정은 해당 없음이다. 전체 제품 HP-16 수락과 과거 held 항목을 이번 QA로 해제하지 않는다.
 
 새 코드·테스트 파일은 만들지 않았다. 실행용 코드는 stdin으로만 전달했고 재현 명령을 JSON에 보존했다. 따라서 이번 문서·로그 변경에 새 제품 등록 게이트는 적용하지 않는다. 지시대로 exact 후보의 기존 전체 게이트를 재사용했다. `git diff --check`와 완료 패킷 검사를 수행한다. 최종 기록 커밋은 worker_done의 SHA로 식별한다. bundle·clone·기존 증거와 이번 로그를 모두 보존한다. 후속 fixed-SHA 리뷰·main 통합은 coordinator가 담당한다.
+
+
+## 2026-10-13 후속: text matrix escape 재현성
+
+판정은 기록 오류 없음과 실제 검증 값 차이 없음이다. 따라서 commands.json을 정정하지 않았다. 원 commands.json·text-matrix.log·환경 프로브 실패 environment.log는 그대로 보존했다. 고정 d8e0904의 Git 원본 SHA256도 [escape-audit.json](escape-audit.json)에 남겼다.
+
+이중 역슬래시는 JSON 문자열의 정상 escape다. JSON을 한 번 디코딩하면 JS 소스의 각 escape는 역슬래시 한 개다. 예를 들어 JSON 파일의 `\\ud800`은 디코딩 뒤 JS 소스 `\ud800`이 된다. JS가 이 소스를 읽으면 문자열 값은 UTF-16 code unit `55296` 하나다. literal backslash 문자는 값에 남지 않는다. JSON 파일의 command 값을 따옴표째 셸에 복사하는 방식은 재현 절차가 아니다.
+
+원 tester 세션 `01a13534-4add-7a22-bb3f-5e40c8addb09`의 실제 도구 호출 `call_b99a82b25ff94921b4f0bdf1d53c650f`를 읽었다. 도구 cmd 문자열을 디코딩한 뒤 Python AST에서 node/checks/full 대입만 복원했다. 전체 원 스크립트나 SSH 접속 코드는 다시 실행하지 않았다. 복원한 SSH exec command와 commands.json에서 한 번 디코딩한 command는 UTF-8 bytes까지 같다. 두 명령의 SHA256은 `faf7b9403ee59ad31d01ab89ccdfc23e8564e7213e6efb54eba8de792fce69ba`다.
+
+원 SSH helper는 이 명령을 client.exec_command에 그대로 전달한다. 명령의 `<<'NODE'`는 Node stdin의 shell backslash 확장을 막는다. 원 SSH 패킷을 캡처했다고 주장하지 않는다. 도구 원문·원 helper·원 JSON·원 실행 로그를 대조한 결과다.
+
+원 cases 선언을 변경 없이 추출했다. 로컬 Node에서 15개 값의 string 타입·boolean 기대 타입·UTF-16 길이·UTF-8 bytes를 독립 assert했다. 공백과 surrogate의 code units도 assert했다. 결과는 EXIT=0이다. 원 명령·stdin·stdout·stderr·Node 버전은 escape-audit.json에 있다.
+
+| 원 case | 확인한 실제 값 | UTF-8 bytes |
+|---|---|---:|
+| space | code units [32, 10, 9], trim 결과 빈 문자열 | 3 |
+| Unicode space | code units [160, 12288], trim 결과 빈 문자열 | 5 |
+| high surrogate | code unit [55296] | 3 |
+| low surrogate | code unit [57343] | 3 |
+| embedded surrogate | code units [111, 107, 55296] | 5 |
+| valid pair | code units [55357, 56832], code point 128512 | 4 |
+
+surrogate 단독 값의 3 bytes는 Node UTF-8 인코딩 시 replacement 문자가 차지하는 길이다. 문자열 값에 surrogate가 실제로 존재하는지는 code unit assert로 별도 확인했다. ASCII/Korean/emoji 최대값은 각각 4096 bytes이고 초과값은 4097/4098/4097 bytes다. 앞뒤 공백을 포함한 최대값과 초과값은 4096/4097 bytes다.
+
+재현할 때 Python json.loads로 commands.json을 읽고 name이 text-matrix인 항목의 command 값을 기존 SSH helper run에 전달한다. JSON escape를 추가로 해제하거나 raw JSON 문자열을 복사하지 않는다. value/type/bytes assert만 재현하려면 escape-audit.json의 runtime_audit.stdin을 디코딩하여 `node --input-type=module`의 stdin으로 전달한다. 두 재현 경로를 구분한다.
+
+이번 로컬 검사는 JS 값 의미만 확인했다. 지원 환경의 validText 동작 증거는 기존 exact cd4dae8 Linux Node22 실행 EXIT=0을 재사용한다. 값 차이가 없어 Linux matrix와 전체 제품 게이트를 반복하지 않았다. 새 제품·테스트 코드 파일은 없으므로 코드 변경용 FullOps 등록 게이트는 해당 없음이다. 제품·의존성·운영·실계정·삭제·이동 변경은 없다. 새 critical/high 발견은 0건이다.
+
+후속 세션은 `01a13541-de34-7933-af11-5e299eba76af`다. Task는 `task_36fa008bd9f6`, Dispatch는 `ctx_05040925a2d9`다. 최종 delta의 독립 리뷰와 main 반영은 coordinator가 맡는다.
+
+후속 완료 계약을 위해 새 attempt의 탐색 패킷을 생성했다. 279개 경로·280개 쌍을 경로·해시·키워드 줄로 처리했다. 과거 attempt producer 4개는 현재 근거로 쓰지 않았다. 큰 과거 문서는 관련 줄만 수동 검색했고 전문 재독을 주장하지 않는다. 원 packet과 outcomes는 jev/history에 보존했다. 상세는 현재 packet-outcomes.json의 unknown_review에 있다.
