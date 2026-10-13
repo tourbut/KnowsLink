@@ -87,6 +87,32 @@ func TestHumanNamesAndIdentity(t *testing.T) {
 	}
 }
 
+func TestHumanAgentListsKeepOwnerAndFriendBoundaries(t *testing.T) {
+	st, ids, _, now := humanFixture(t)
+	f := acceptHumans(t, st, ids, now)
+	st.Agents["agent_b1"].Keys = nil
+	st.Agents["agent_b2"].Revoked = true
+	r := httptest.NewRequest("GET", "/home/new?peer="+f.ID, nil)
+	view, err := st.humanView(ids["a"], &Session{Verified: now}, "new", r, now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	own := view["Own"].([]humanAgent)
+	peer := view["Agents"].([]humanAgent)
+	if len(own) != 2 || own[0].ID != "agent_a1" || own[1].ID != "agent_a2" {
+		t.Fatalf("own list leaked another owner or changed order: %+v", own)
+	}
+	if len(peer) != 1 || peer[0].ID != "agent_b1" || peer[0].Status != "연결 필요" {
+		t.Fatalf("friend list lost unconnected agent or exposed revoked agent: %+v", peer)
+	}
+	if err := st.decideFriend(ids["a"], f.ID, "block", f.Generation, now); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := st.humanView(ids["a"], &Session{Verified: now}, "new", r, now); err == nil || err.Error() != "sender_not_allowed" {
+		t.Fatal("blocked friend agent list disclosed", err)
+	}
+}
+
 func TestHumanFriendTransitionsAndDiscovery(t *testing.T) {
 	st, ids, _, now := humanFixture(t)
 	a, b := ids["a"], ids["b"]

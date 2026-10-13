@@ -3,8 +3,7 @@ import { createPublicKey, sign, verify } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { pathToFileURL } from "node:url";
-import { Adapter, canonical, uuid7 } from "./core.js";
-import { relayBase } from "./core.js";
+import { Adapter, canonical, relayBase, uuid7, validText } from "./core.js";
 import { privatePath } from "./private-files.js";
 import { AutoReceiver, Inbox } from "./inbox.js";
 import { GrokWake } from "./grok-wake.js";
@@ -43,13 +42,6 @@ export type OwnerTextEnvelope = {
 export function textSigningBytes(e: TextEnvelope): Buffer {
   return Buffer.from(
     `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0${e.sig.kid}\0${canonical({ v: e.v, id: e.id, from: e.from, to: e.to, text: e.text, exp: e.exp, idempotency_key: e.idempotency_key, reply_to: e.reply_to ?? "" })}`,
-  );
-}
-function validText(text: string): boolean {
-  return (
-    !!text.trim() &&
-    Buffer.byteLength(text) <= 4096 &&
-    !/[\uD800-\uDFFF]/u.test(text)
   );
 }
 export class TextTransport extends Adapter {

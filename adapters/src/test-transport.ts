@@ -1,7 +1,13 @@
 // Explicit trial-message transport for Codex and Grok; fixed HTTPS remote origin, paired peer, no business effects.
 import { randomBytes, sign } from "node:crypto";
 import { readFile } from "node:fs/promises";
-import { Adapter, signingBytes, uuid7, type Envelope } from "./core.js";
+import {
+  Adapter,
+  signingBytes,
+  uuid7,
+  validText,
+  type Envelope,
+} from "./core.js";
 
 export type TrialMessage = {
   id: string;
@@ -34,12 +40,7 @@ export class TestTransport extends Adapter {
     text: string,
     idempotencyKey: string,
   ): Promise<{ id: string }> {
-    if (
-      !text.trim() ||
-      Buffer.byteLength(text) > 4096 ||
-      /[\uD800-\uDFFF]/u.test(text)
-    )
-      throw new Error("invalid trial text");
+    if (!validText(text)) throw new Error("invalid trial text");
     if (!/^[\x20-\x7E]{16,128}$/.test(idempotencyKey))
       throw new Error("invalid idempotency key");
     const envelope: Envelope = {
@@ -78,9 +79,7 @@ export class TestTransport extends Adapter {
       message.reply_to !== undefined ||
       Object.keys(message.body).join() !== "text" ||
       typeof message.body.text !== "string" ||
-      !message.body.text.trim() ||
-      Buffer.byteLength(message.body.text) > 4096 ||
-      /[\uD800-\uDFFF]/u.test(message.body.text) ||
+      !validText(message.body.text) ||
       !Number.isFinite(Date.parse(message.exp)) ||
       Date.parse(message.exp) <= Date.now()
     )
