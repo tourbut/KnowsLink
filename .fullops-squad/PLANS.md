@@ -11,6 +11,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 전체 기능 보존 리팩토링 — SAR-REFACTOR-001-DEV
 
+- 2026-10-13 재개: 실제 coordinator terminal이term_55a4cbd2-32ef-4b80-ac26-a12948348596으로 바뀌어 원 terminal attestation 오류를 확인했다. 원coor terminal 부재 확인 뒤 run-use로같은Run consumer generation2에 정상결합했다. legacy takeover 옵션은 해당없음 오류로 사용하지 않았다. 같은 task retry ctx_0ff7da5ff7ef/term_5ad12e64-a5e7-40af-9d78-ad9cba83b1c5는ready·turn_started 관측, requested/effective Codex/gpt-6.1-sol/high 일치를 확인했다. 현재 실제 구현 시작이며 이전 훅 차단을 우회하지 않았다. 복귀 주소 변경을 status로 전달했다.
+
+- 착수 차단: 준비0eb7735f0963272b62266992791f9f09152f9266을dev에 FF했다. fresh Sol 요청/실제 tuplecodex/gpt-6.1-sol/high 일치는 확인했으나 task_2aa2d9254850/ctx_daea79e0d442가agent_readiness에서 agent-hooks-review-prompt로 실패했다. 구현 실행0이다. 실패 터미널term_6cc59927-5af9-4d4a-b09b-943ab89f1771은 정상worker-release·transcript captured로 정리했다. 사용자에게 Orca Codex 저장소 훅 신뢰 검토를 요청했고 승인 응답 후 같은Sol·같은과제 retry-of로 재시작한다. 훅 비활성화나 모델 대체는 하지 않는다.
+
 - 사용자는 전반적 불필요 코드 정리와 GPT Sol 구현을 요청했다. dev fresh Codex/gpt-6.1-sol/high로 배정한다. 동일 모델의 파일 소유권 분리 하위2개 이내 병렬 작업을 허용한다. 내부 Go와 TS 어댑터를 분리하고 부모가 cmd/scripts/build 연동·취합을 맡는다. 기존 auth·사람 친구·legacy·agent 서명·MCP Events·Inbox/ACK 계약을 보존한다.
 - 기준 제품bc0fd031efd252d9755681d8b429eb31c045b7e4. route 책임 dev를 명시 검토·사용자 model 고정했다. context의project/architecture 충돌 표시는 과거 후보/운영 표현을 실제 원문과 최신실계정기록으로 확인해 제품 동작을 임의 변경하지 않도록 인계한다. plugin.ts는 실제index.ts로 탐색을 보완했다. packet188/partial/unknown17 수동잔여 검토와 outcomes를 완료 조건으로 지정했다. 현재 본문 전체를 읽고 기술 계획을 작성하도록 인계한다.
 - 이전 실계정 대화/자동 알림/워크트리 정리 기록을 준비 커밋에 보존한다. 후보 완료 뒤 독립 tester QA·작성자와 다른 fixed SHA 리뷰·main 일반push를 진행한다. 이번 작업은 운영 배포·실계정 추가 발송을 포함하지 않는다. 삭제한 리뷰 snapshot은 새 독립검수 필요 시 다시 만든다.
