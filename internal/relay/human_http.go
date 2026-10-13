@@ -33,6 +33,17 @@ func humanAgentView(id string, a *Agent) humanAgent {
 	return humanAgent{ID: id, Name: agentName(a), Client: client, Status: status, Short: shortID(id)}
 }
 
+func (st *State) humanAgents(owner string) []humanAgent {
+	agents := []humanAgent{}
+	for id, a := range st.Agents {
+		if a.Owner == owner && !a.Revoked {
+			agents = append(agents, humanAgentView(id, a))
+		}
+	}
+	sort.Slice(agents, func(i, j int) bool { return agents[i].ID < agents[j].ID })
+	return agents
+}
+
 func conversationURL(from, to string) string {
 	return "/home/conversation?from=" + url.QueryEscape(from) + "&to=" + url.QueryEscape(to)
 }
@@ -54,13 +65,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 	if r.URL.Query().Get("n") == "requested" {
 		v["Notice"] = "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다"
 	}
-	own := []humanAgent{}
-	for aid, a := range st.Agents {
-		if a.Owner == m.Owner && !a.Revoked {
-			own = append(own, humanAgentView(aid, a))
-		}
-	}
-	sort.Slice(own, func(i, j int) bool { return own[i].ID < own[j].ID })
+	own := st.humanAgents(m.Owner)
 	v["Own"] = own
 	friends, requests := []humanFriend{}, []humanFriend{}
 	for _, f := range st.Friends {
@@ -181,14 +186,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 				return nil, fault("sender_not_allowed")
 			}
 			v["Peer"] = humanFriend{ID: f.ID, Name: p.Name, State: f.State, Generation: f.Generation}
-			agents := []humanAgent{}
-			for aid, a := range st.Agents {
-				if a.Owner == p.Owner && !a.Revoked {
-					agents = append(agents, humanAgentView(aid, a))
-				}
-			}
-			sort.Slice(agents, func(i, j int) bool { return agents[i].ID < agents[j].ID })
-			v["Agents"] = agents
+			v["Agents"] = st.humanAgents(p.Owner)
 		}
 	case "conversation":
 		from, to := r.URL.Query().Get("from"), r.URL.Query().Get("to")

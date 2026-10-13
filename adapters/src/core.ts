@@ -50,6 +50,13 @@ export function signingBytes(envelope: Envelope): Buffer {
     `SILENT-AGENT-RELAY\0relay.v1\0Ed25519\0${sig.kid}\0${canonical(unsigned)}`,
   );
 }
+export function validText(text: string): boolean {
+  return (
+    !!text.trim() &&
+    Buffer.byteLength(text) <= 4096 &&
+    !/[\uD800-\uDFFF]/u.test(text)
+  );
+}
 export class Adapter {
   constructor(
     private readonly base: string,

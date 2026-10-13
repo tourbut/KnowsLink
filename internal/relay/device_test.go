@@ -5,6 +5,9 @@ import (
 	"crypto/ed25519"
 	"crypto/rand"
 	"encoding/base64"
+	"encoding/json"
+	"maps"
+	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
@@ -188,5 +191,33 @@ func TestDeviceConsentTemplate(t *testing.T) {
 		if state == "approved" && strings.Contains(body, "<form") {
 			t.Fatal("approved connection offers repeated consent")
 		}
+	}
+}
+
+func TestConnectionResponseKeepsRetryAndErrorPriority(t *testing.T) {
+	retry := time.Date(2026, 10, 13, 0, 0, 0, 1, time.UTC)
+	for _, tc := range []struct {
+		name   string
+		value  any
+		err    error
+		status int
+		body   string
+	}{
+		{"retry", retry, fault("unavailable"), 429, `{"error":"rate_limited","retry_at":"2026-10-13T00:00:01Z"}`},
+		{"command error", map[string]string{"error": "invalid_auth"}, fault("unavailable"), 401, `{"error":"invalid_auth"}`},
+		{"transaction error", map[string]string{"state": "approved"}, fault("unavailable"), 503, `{"error":"unavailable"}`},
+		{"success", map[string]string{"state": "approved"}, nil, 200, `{"state":"approved"}`},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			w := httptest.NewRecorder()
+			connectionResponse(w, tc.value, tc.err)
+			var got, want map[string]string
+			if json.Unmarshal(w.Body.Bytes(), &got) != nil || json.Unmarshal([]byte(tc.body), &want) != nil || w.Code != tc.status || !maps.Equal(got, want) {
+				t.Fatalf("response: status=%d body=%s", w.Code, w.Body.String())
+			}
+			if tc.name == "retry" && w.Header().Get("Retry-After") != retry.Add(time.Second).Truncate(time.Second).Format(http.TimeFormat) {
+				t.Fatal("retry header changed")
+			}
+		})
 	}
 }

@@ -8,6 +8,65 @@ import { fileURLToPath } from "node:url";
 import { readFile } from "node:fs/promises";
 import { createHash, generateKeyPairSync, sign } from "node:crypto";
 import { Adapter, signingBytes, uuid7, type Envelope } from "./core.js";
+import { TestTransport } from "./test-transport.js";
+import { TextTransport } from "./text.js";
+
+async function textBoundaries() {
+  const { privateKey } = generateKeyPairSync("ed25519");
+  const pem = privateKey.export({ format: "pem", type: "pkcs8" }).toString();
+  const trial = new TestTransport(
+    "http://127.0.0.1",
+    "",
+    "a",
+    "key1",
+    pem,
+    "b",
+  );
+  const member = new TextTransport("http://127.0.0.1", "", "a", "key1", pem);
+  const key = "synthetic-text-boundary";
+  const originalFetch = globalThis.fetch;
+  let requests = 0;
+  try {
+    globalThis.fetch = async () => {
+      requests++;
+      return new Response("{}");
+    };
+    for (const text of [
+      "x".repeat(4096),
+      "한".repeat(1365) + "x",
+      "😀".repeat(1024),
+    ]) {
+      await trial.sendText(text, key);
+      await member.sendText("b", text, key, true);
+    }
+    assert.equal(requests, 6, "both transports accept 4096 UTF-8 bytes");
+    for (const text of [
+      "",
+      " \n",
+      "x".repeat(4097),
+      "한".repeat(1366),
+      "\ud800",
+      "\udfff",
+    ]) {
+      await assert.rejects(trial.sendText(text, key), /invalid trial text/);
+      await assert.rejects(
+        member.sendText("b", text, key, true),
+        /invalid explicit text request/,
+      );
+    }
+    await assert.rejects(
+      member.sendText("b", "ok", key, false),
+      /invalid explicit text request/,
+    );
+    assert.equal(
+      requests,
+      6,
+      "invalid or unconfirmed text must never contact relay",
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+}
 
 async function failureBoundaries() {
   const manifest = await readFile(
@@ -140,6 +199,16 @@ async function check(
       arguments: {},
     });
     assert.equal(status.isError, false);
+    const statusValue = JSON.parse(
+      (status.content as { text: string }[])[0]!.text,
+    );
+    assert.equal(
+      statusValue.state,
+      environment.KNOWSLINK_MODE === "synthetic-loopback"
+        ? "synthetic_only"
+        : "held",
+    );
+    assert.equal(statusValue.actualConnection, "held");
     const result = await client.callTool({
       name: "knowslink_pull_once",
       arguments: {},
@@ -164,6 +233,7 @@ async function check(
 }
 
 async function main() {
+  await textBoundaries();
   await failureBoundaries();
   let requests = 0;
   const listener = createServer((_request, response) => {

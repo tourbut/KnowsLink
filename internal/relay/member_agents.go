@@ -386,14 +386,6 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 			}
 			return result, nil
 		})
-		if retry, ok := value.(time.Time); ok {
-			rateLimited(w, retry)
-			return
-		}
-		if v, ok := value.(map[string]string); ok && v["error"] != "" {
-			respond(w, nil, fault(v["error"]))
-			return
-		}
-		respond(w, value, err)
+		connectionResponse(w, value, err)
 	}
 }

@@ -53,24 +53,24 @@ async function startAuto(): Promise<void> {
     autoError = "unconfigured"; // Not connected yet or unsafe folder; knowslink_connect success retries.
   }
 }
-const result = (state: string, isError = false) => ({
-  content: [
-    {
-      type: "text" as const,
-      text: JSON.stringify({
-        state,
-        transport: "pull",
-        actualConnection:
-          process.env.KNOWSLINK_MODE === "public-node"
-            ? "configured_unverified"
-            : "held",
-        webhook: false,
-        evidenceFetch: false,
-      }),
-    },
-  ],
+const trialResult = (value: unknown, isError = false) => ({
+  content: [{ type: "text" as const, text: JSON.stringify(value) }],
   isError,
 });
+const result = (state: string, isError = false) =>
+  trialResult(
+    {
+      state,
+      transport: "pull",
+      actualConnection:
+        process.env.KNOWSLINK_MODE === "public-node"
+          ? "configured_unverified"
+          : "held",
+      webhook: false,
+      evidenceFetch: false,
+    },
+    isError,
+  );
 server.registerTool(
   "knowslink_connect",
   {
@@ -205,10 +205,6 @@ server.registerTool(
     }
   },
 );
-const trialResult = (value: unknown, isError = false) => ({
-  content: [{ type: "text" as const, text: JSON.stringify(value) }],
-  isError,
-});
 server.registerTool(
   "knowslink_test_send",
   {

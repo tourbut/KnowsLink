@@ -88,16 +88,20 @@ func (s *Service) deviceAPI(start bool) http.HandlerFunc {
 			}
 			return v, nil
 		})
-		if retry, ok := value.(time.Time); ok {
-			rateLimited(w, retry)
-			return
-		}
-		if v, ok := value.(map[string]string); ok && v["error"] != "" {
-			respond(w, nil, fault(v["error"]))
-			return
-		}
-		respond(w, value, err)
+		connectionResponse(w, value, err)
 	}
+}
+
+func connectionResponse(w http.ResponseWriter, value any, err error) {
+	if retry, ok := value.(time.Time); ok {
+		rateLimited(w, retry)
+		return
+	}
+	if v, ok := value.(map[string]string); ok && v["error"] != "" {
+		respond(w, nil, fault(v["error"]))
+		return
+	}
+	respond(w, value, err)
 }
 
 func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {

@@ -57,6 +57,8 @@ try {
     { from: "invalid sender" },
     { text: " " },
     { text: "한".repeat(1366) },
+    { text: "\ud800" },
+    { text: "\udfff" },
     { exp: new Date(0).toISOString() },
     { v: "knowslink.text.v1" },
     { id: "not-a-message" },
