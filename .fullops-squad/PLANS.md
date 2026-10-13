@@ -1,13 +1,47 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-10
+updated: 2026-10-12
 owner: coor
 tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
+
+## 전체 기능 보존 리팩토링 — SAR-REFACTOR-001-DEV
+
+- 사용자는 전반적 불필요 코드 정리와 GPT Sol 구현을 요청했다. dev fresh Codex/gpt-6.1-sol/high로 배정한다. 동일 모델의 파일 소유권 분리 하위2개 이내 병렬 작업을 허용한다. 내부 Go와 TS 어댑터를 분리하고 부모가 cmd/scripts/build 연동·취합을 맡는다. 기존 auth·사람 친구·legacy·agent 서명·MCP Events·Inbox/ACK 계약을 보존한다.
+- 기준 제품bc0fd031efd252d9755681d8b429eb31c045b7e4. route 책임 dev를 명시 검토·사용자 model 고정했다. context의project/architecture 충돌 표시는 과거 후보/운영 표현을 실제 원문과 최신실계정기록으로 확인해 제품 동작을 임의 변경하지 않도록 인계한다. plugin.ts는 실제index.ts로 탐색을 보완했다. packet188/partial/unknown17 수동잔여 검토와 outcomes를 완료 조건으로 지정했다. 현재 본문 전체를 읽고 기술 계획을 작성하도록 인계한다.
+- 이전 실계정 대화/자동 알림/워크트리 정리 기록을 준비 커밋에 보존한다. 후보 완료 뒤 독립 tester QA·작성자와 다른 fixed SHA 리뷰·main 일반push를 진행한다. 이번 작업은 운영 배포·실계정 추가 발송을 포함하지 않는다. 삭제한 리뷰 snapshot은 새 독립검수 필요 시 다시 만든다.
+
+## detached HEAD 정리 — 2026-10-13
+
+- 사용자 명시 요청에 따라 coordinator가 완료된 .fullops-review-* 워크트리12개를 Orca worktree rm으로 제거했다. 각 실제 절대경로가 KnowsLink workspace 내부의 일반 디렉터리임을 확인했다. 모든 HEAD는main 조상이었고 변경·미추적·ignored파일0, 연결된 터미널0이었다. force·archive hook·worker 삭제 배정은 사용하지 않았다.
+- 제거 후 Git 및 Orca 목록에서 detached0과 main/coor/designer/dev/ops/tester6개 보존을 확인했다. 디스크의 .fullops-review-* 디렉터리도0개다. 커밋·리뷰 결과·QA 기록은main과coor에 보존된다. coor의 기존 미커밋 실계정 시험 기록은 변경하거나 삭제하지 않았다. 과거 리뷰의 snapshot 경로는 이제 없으며 당시 SHA와 검토 기록으로 추적한다.
+
+## Grok·Dots 자동 수신 알림 — SAR-HUMAN-PEER-003-NOTIFY
+
+- 완료(2026-10-13): Dots의 기존 이벤트 자동화에 실제 대화 알림 전송·재조회 성공 뒤 ACK하는 지시를 보완했다. 00:03:07 저장·enabled=true 보고를 받았다. 세 번째 Grok 실제 송신01a130a4-f995-7ae0-a59c-26630af29956 뒤 Dots 질문·root receive 없이 native 화면에서 KL-DOTS-VISIBLE 본문과 일치 ID의 자동 알림을 확인했다. screenshot을 직접 열어 표시를 확인했다. Grok도 앞선 질문 없는 알림을 확인했다. evidence.json에 좁은 증거·screenshot 경로를 보존했다. 첫 Dots 시험 failed:expired 및 두 번째 화면 갱신 지연의 원인은 보존하며 장시간·앱 비활성/재시작 복구를 수락하지 않는다. 코드 변경·SQL 쓰기·키 변경·삭제·이동은 없다.
+
+- 두 번째 Dots 시험: Grok ID01a1309e-da56-712a-998c-6019b240888f를23:58:00 KST 접수했다. root는 Dots에 질문·receive를 하지 않았다. 서버 event_at23:58:00.039399Z는 UTC14:58에 해당하며 callback 검증·실구독 존재를 확인했다. 00:00:48 KST DB 읽기 전용 조회에서 delivered/persisted=true/completion=received·remote Inbox0을 확인했다. 자동 수신 처리와 별개로 native 다닷 채팅 알림은 없었다. 다닷에 실행 결과 전달 설정 점검과 사용자에게 보이는 알림 성공 후 ACK하도록 수정 요청했다. 직접 SQL 쓰기·새 키·재등록은 없다. UTC 원본은server-readonly-second.log/message-readonly.log에 보존했다.
+
+- Dots 1차 실패: 실제 다닷은 knowslink.text.arrived 이벤트 설정 생성·활성화를 보고했다. Grok 실제 송신 ID 01a13097-8352-7f8a-bf8f-d61f516b5d1e(23:50 KST, 만료23:52:58)를 보낸 뒤 Dots에 질문/수동 receive 없이 native 화면을 관측했으나 자동 알림은 나타나지 않았다. 이벤트 설정 생성과 자동 수신 수락을 구분하고, 다닷에 구독·실행·callback 오류를 점검하도록 요청했다. 이 시험 중 root는 Dots receive를 호출하지 않았다. 사용자가 운영 브라우저 탭들을 닫은 상태는 tab list로 확인했으며 강제로 복원하지 않았다.
+
+- Grok 수정 검증: probe 송신 후 노우에게 질문하거나 대화를 보내지 않았다. 실제 native 앱에서 23:47:06 수신 알림과 probe 본문·ID 끝 fdf를 확인했다. 기존 사용자 메시지의 23:46:44 알림도 별도로 표시됐다. 루틴 저장 보고만이 아니라 사용자 질문 없는 실제 알림 표시를 수락한다. grok-observation.txt에 좁은 관측을 보존했다. Dots 구독 확인은 진행 중이다.
+
+- 사용자가 양쪽 모두 질문해야 수신 확인한다고 보고했다. 이전 002 실대화 두 차례 수락은 수동 receive를 포함하므로 자동 대화 wake 수락과 구분한다.
+- Grok Bot 진단은 23:39 메시지를 23:40 사용자 질문 전에 자동 루틴이 읽었다고 보고했다. 기존 루틴이 결과를 누구에게도 알리지 않아 채팅 알림이 없었다. 23:45 기존 watcher·키를 보존하고 새 수신 메시지만 노우 채팅에 알리도록 수정·저장 보고를 받았다. 자동 답장은 활성화하지 않았다. probe 01a13094-80f4-7960-885c-1ad73617fbdf를 보냈으며 추가 질문 없이 알림 표시를 검증한다.
+- Dots KnowsLink 설치 ID plugin_asdk_app_6acb0615e7f88191b07413e8595308ed와 App 참조를 확인했다. 실제 다닷 채팅에 이벤트 구독·수신/ACK·알림 연결을 요청했다. 실제 events/subscribe·callback 성공을 확인하기 전에는 자동 수신 완료로 표시하지 않는다. OpenAI MCP Events 공식 문서와 Context7 근거를 조회했다. Context7은 Realtime 자료만 반환하여 공식 MCP Events 페이지를 정본으로 사용한다.
+
+## Grok·Dots 실계정 친구 대화 — SAR-HUMAN-PEER-002-LIVE
+
+- 완료: scshin88 로그인 후 Dots 소유 ID·OpenAI Dots 이름을 확인했다. 친구 slPayh_Bb3nSbXHCMNdo4E 요청·Grok 수락·양쪽 상대 에이전트 목록(4개/2개)을 확인했다. 실제 Dots 플러그인→Grok Bot 수신 루틴→Dots receive 두 차례 왕복, from/to/reply_to/authorship=agent 일치·ACK 두 건을 확인했다. 운영 대화창 네 메시지 표시도 확인했다. 23:37 KST Grok은 시험 자동 답장 예외 제거·저장을 보고했다. 내부 설정 독립 검사는 미실행이다. qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md와 evidence.json에 근거를 보존했다. 새 제품 변경·삭제·이동은 없다.
+
+- 사용자는 Grok Bot을 knowslog01@gmail.com, OpenAI Dots를 scshin88@gmail.com에 연결하고 사람 간 친구 수락 뒤 실제 대화를 시험하도록 승인했다. 기존 키·등록·watcher를 보존한다.
+- Dots 실제 KnowsLink status는 agent_a3afe886b9fed6dac5c2b5다. Grok 노우는 실제 앱에서 agent_077c666294c4eb28b783f8·connected·watcher 하나를 보고했다. 소유 이메일은 아직 독립 확인하지 않았다.
+- 운영 웹 세션이 만료됐다. Google 계정 선택 자동 클릭은 이동하지 않아 knowslog01 계정의 직접 로그인을 요청했다. 로그인 후 두 계정의 소유 agent 확인, 친구 요청·수락, 실제 agent 송수신·ACK를 진행한다. 기존 agent 관계를 사람 친구 관계의 증거로 쓰지 않는다.
+- 사용자의 로그인 완료 뒤 기존 knowslog01 소유 목록에서 Grok agent_077c666294c4eb28b783f8을 확인했다. 회원 이름 Knowslog와 에이전트 이름 Grok 노우를 저장하고 재조회했다. 친구 코드는 기존 값을 유지했다. Dots용 격리 profile 07e4d0f7-0a2f-43a2-ae71-9320401b7802/page 8e34f8f2-7ebd-4887-a1ec-c07a83e738fe를 열고 scshin88 Google 직접 로그인을 요청했다. Grok 계정 page 9293be99-2f64-4224-9ed5-64303d1a59cc는 로그인 상태로 보존했다. 친구 요청·수락과 메시지 왕복은 아직 미실행이다.
 
 ## Windows 워크트리 복원 — FULLOPS-WORKTREE-RESTORE-2026-10-09
 
