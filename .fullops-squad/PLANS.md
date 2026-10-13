@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 전체 기능 보존 리팩토링 — SAR-REFACTOR-001-DEV
 
+- 통합 확인: OPS결과9d0f609는 main/origin bbaf9f5f98ce4b45c1320cdef1074c1cdaaee15b의 조상이며 fetch 양쪽SHA가 일치했다. msg_729f2a1891ab 보존·ACK 및 integration pending0 확인. tester는 idle clean FF, ops는 완료clean FF했으나 release응답은 user_takeover/retained였다. ops 터미널을 종료하지 않았고 이후 동기화는 실제 사용자 세션 확인까지 예약한다. dev/designer 예약도 유지한다. 운영제품은2747fe9로 문서통합과 구분한다.
+
 - OPS 최종수락: msg_729f2a1891ab/9d0f6092fa40e76184f4be65237e4d50380b8c62의 배포·보존·공개21개 smoke 기록을 OPS-FINAL fixed리뷰15 reviewed/16 skipped·C/H0·check PASS로 수락했다. 원 c914 리뷰의 packet identity 실패는 최종packet/finish 정합성으로 해소했고 supersede에 원증거를 보존했다. 운영SHA2747fe9와 문서결과SHA를 구분한다. main 일반통합/push 뒤 결과SHA의 로컬/원격조상을 확인한다. ops/tester idle clean 동기화, dev/designer user_owned/unknown 예약은 유지. root snapshot 추가2개와 새 종료한격리복원자료는 보존한다. Grok 로컬업데이트·Dots 실제다음수신/구독갱신·장시간시험은 owner 후속이다.
 
 - SAR-REFACTOR-001-OPS 배포 완료(2026-10-13): 운영 제품2747fe98653d5c6946f41c219fc256395333d7fe·detached/clean·goose2/guard1/HumanModel1을 확인했다. 새0600 백업/list·network none 복원/구writer거부·beta up/local·공개/공유 smoke21개가 통과했다. 회원/agent/친구/key/Remote Inbox/Events·설정·기존백업·공유서비스 전후digest가 같다. 결과는 docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md다. 후속coor는 완료문서 고정SHA 독립리뷰·main통합을 맡는다. owner의 Grok 같은 Command/연결폴더 bundle·process/watcher 갱신과 Dots 기존remoteapp 유지 안내만 작성했고 직접클라이언트업데이트·실계정발송·다음구독갱신·장시간수신은 not_run이다. 원증거·새stopped격리복원컨테이너를 보존한다.
