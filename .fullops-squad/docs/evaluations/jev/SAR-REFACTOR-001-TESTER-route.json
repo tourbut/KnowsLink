@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-REFACTOR-001-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.03,
+        "ops": 0,
+        "tester": 0.97
+      },
+      "confidence": 0.95
+    },
+    "docs": {
+      "D01": 0.13,
+      "D02": 0.13,
+      "D03": 0.12,
+      "D04": 0.13,
+      "D05": 0.13,
+      "D06": 0.14,
+      "D07": 0.11,
+      "D08": 0.12,
+      "D09": 0.13,
+      "D10": 0.19,
+      "D11": 0.15,
+      "D12": 0.28,
+      "D13": 0.26
+    }
+  },
+  "usage": {
+    "input_tokens": 2440,
+    "output_tokens": 314,
+    "cost": 0.00010248
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.676,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "독립 동작 QA, 사용자 Sol 유지",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "280bfbf68f9786a7e752e60992bc0342a76fd30b",
+  "requires_packet": true,
+  "attempt": "157f6cde8bc24988ad213fab2461510c",
+  "instruction_sha256": "459c17af818dea1b920db21a2f77b54e4dffdcc503824bd2d48db589c00c396f",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "f1ced7e51841dc97b5c0cf4cc212e80f979e4d43df431538a8dd3a80ddfee0ca"
+}
