@@ -54,3 +54,11 @@ Go 자체 focused 회귀·relay suite·vet가 통과했다. Windows race는 cgo 
 partial/unknown 17건은 producer의 bounded search·큰 문서·없는 `plugin.ts` 때문이다. 큰 PLANS/운영/핸드오버는 현행 사람 모델·writer guard·검증 명령·기존 결과 절을 로컬 검색으로 보완했다. `remote_events.go`는 실재하며 callback 검증·서명·구독·retry 등록을 유지했다. documents-find 잔여 후보와 optional/context 경로는 검토 지도에서 모두 추적한다. semantic language-server의 완전한 호출 그래프를 주장하지 않는다. 파일 삭제 후보는 확정하지 않았다.
 
 D10에는 공유 처리와 회귀를 추가한다. D03/D05/D06/D07/D08/D11/D12/D13의 외부 계약·schema·운영·설치·사용자 동작은 바뀌지 않아 기존 원천을 보존한다. 과거 후보 설명과 최근 운영 수락의 차이는 시점 차이다. UI template·CSS·문구는 변경하지 않았다. 직접 시각 재검수는 해당 없음이며 기존 렌더 회귀는 필수 테스트에 포함된다.
+
+## 고정 후보 검증과 완료 재개
+
+제품 후보는 `cd4dae810ae262759bcff29895165f1a64f8c51a`다. Linux 고유 clone `/tmp/knowslink-refactor001-cd4dae810ae2-45997998/repo`에서 install/lint/test/build가 모두 종료코드 0이다. 매 make 호출은 HEAD 일치와 clean 상태를 먼저 확인했다. 설치 FullOps 1.4.1의 등록 product-lint/product-test도 같은 후보에서 통과했다. ERROR 0·WARNING 3·unavailable 0이며 경고는 기존 대형 파일 PLANS/core/human_test의 크기다. 증거 원본은 외부 refactor001 폴더에 보존하고 가려진 로그 사본과 gate JSON을 [QA 보고](../../evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md)에 연결했다. 플러그인 1.4.0 경로 소실의 최초 실패는 별도 보존했다.
+
+원 구현 부모는 세션 `01a13509-e1a3-7b62-bf9d-5a48405d706a` / dispatch `ctx_0ff7da5ff7ef`다. Go/TS 자식 세션은 `01a1350c-1383-7323-9d75-748304b33792` / `01a1350c-7f6b-7f03-822b-e3a3ec516f30`다. 11:54 UTC operator terminal close 뒤 원 dispatch가 철회됐다. 현재 세션 `01a1351f-c007-7f22-ac7c-1837dca51f0c` / dispatch `ctx_2ee36546ed1f`는 원 후보와 실제 통과 결과를 이어받아 문서·finish를 완료한다. 최신 후속 확인 전에 시작한 host 하위 둘은 편집 없이 종료했다. 제품을 다시 구현하거나 원 실패를 성공으로 바꾸지 않았다.
+
+원 packet outcomes의 193개 비선택 path/category와 partial 수동 보완을 유지했다. D10은 후보에서 이미 갱신됐으며 D13의 새 제품·운영 계약 변경은 없어 원문을 보존한다. 독립 tester QA와 작성자와 다른 고정 SHA snapshot 리뷰, main 통합·일반 push는 coordinator의 후속이다. 배포·실계정 발송·파일 삭제·이동은 수행하지 않았다.
