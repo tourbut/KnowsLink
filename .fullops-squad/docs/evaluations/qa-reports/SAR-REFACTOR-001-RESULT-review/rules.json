@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/PLANS.md",
+        ".fullops-squad/contexts/dev.md",
+        ".fullops-squad/contexts/tester.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+        ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+        ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+        ".fullops-squad/handovers/to_dev.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/board/board.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-DEV-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-TESTER-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-TESTER-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-TESTER-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-TESTER-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-TESTER-packet.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-TESTER-route.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-TESTER-route.prior-1791892967070260800.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-001-DEV-route-6ee5f410d4c9492a84b842d7bc035afa.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-001-TESTER-route-4542e0fe4ddf4ce8a66cd33b07fa5d4f.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/gate/lint-candidate-141.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/commands.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/gate-audit.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/packet-audit.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

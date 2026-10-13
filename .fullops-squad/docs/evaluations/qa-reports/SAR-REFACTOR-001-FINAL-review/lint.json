@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "f5951ad695e843649e60249b10080a64",
+  "base": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "merge_base": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "head": "31e4e05f1fc202c540986fb4e43288fbca32838b",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "문서/증거만 변경했고 제품은 검증된 exact cd4dae8과 동일. Windows make 부재로 새 등록검사 미실행. CODE-review/lint.json 및 DEV/TESTER 원본 exact 제품 게이트 통과 근거를 재사용하며 현재 HEAD의 새 실행으로 표시하지 않음.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "문서/증거만 변경했고 제품은 검증된 exact cd4dae8과 동일. Windows make 부재로 새 등록검사 미실행. CODE-review/lint.json 및 DEV/TESTER 원본 exact 제품 게이트 통과 근거를 재사용하며 현재 HEAD의 새 실행으로 표시하지 않음.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1741줄(이전 1736, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 2,
+    "added_lines": 13,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}

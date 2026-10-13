@@ -1,0 +1,49 @@
+{
+  "task_key": "SAR-REFACTOR-001-TESTER",
+  "find_head": "280bfbf68f9786a7e752e60992bc0342a76fd30b",
+  "base": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "head": "31e4e05f1fc202c540986fb4e43288fbca32838b",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+    ".fullops-squad/handovers/to_dev.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/README.md",
+    ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+    ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+    ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+    ".fullops-squad/handovers/to_dev.md",
+    "CLAUDE.md",
+    "adapters/README.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+    ".fullops-squad/handovers/to_dev.md"
+  ],
+  "recall": 0.667,
+  "precision": 0.333,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

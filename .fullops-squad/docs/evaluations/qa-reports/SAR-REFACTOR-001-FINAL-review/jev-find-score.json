@@ -1,0 +1,35 @@
+{
+  "task_key": "SAR-REFACTOR-001-TESTER",
+  "find_head": "280bfbf68f9786a7e752e60992bc0342a76fd30b",
+  "base": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "head": "31e4e05f1fc202c540986fb4e43288fbca32838b",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "adapters/README.md",
+    "adapters/src/inbox.ts",
+    "deploy/knowslink/verify.py",
+    "internal/relay/api_rate.go",
+    "internal/relay/protocol.go",
+    "internal/relay/protocol_test.go",
+    "internal/relay/registry.json",
+    "scripts/shell_guard.py",
+    "scripts/verify_setup.py"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": false,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

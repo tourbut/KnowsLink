@@ -1,0 +1,42 @@
+{
+  "task_key": "SAR-REFACTOR-001-DEV",
+  "find_head": "bc0fd031efd252d9755681d8b429eb31c045b7e4",
+  "base": "0eb7735f0963272b62266992791f9f09152f9266",
+  "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "adapters/src/mcp.ts",
+    "internal/relay/device.go",
+    "internal/relay/human_http.go",
+    "internal/relay/member_agents.go"
+  ],
+  "new_files": [],
+  "candidates": [
+    "Makefile",
+    "adapters/README.md",
+    "adapters/eslint.config.mjs",
+    "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/inbox.ts",
+    "cmd/migrate/main.go",
+    "cmd/relay/main.go",
+    "deploy/knowslink/verify.py",
+    "go.mod",
+    "internal/config/config.go",
+    "internal/relay/registry.go",
+    "scripts/shell_guard.py"
+  ],
+  "hits": [],
+  "recall": 0.0,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

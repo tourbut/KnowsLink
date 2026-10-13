@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "attempt": "919a8307514e483a9bf1034b285e436c",
+  "base": "0eb7735f0963272b62266992791f9f09152f9266",
+  "merge_base": "0eb7735f0963272b62266992791f9f09152f9266",
+  "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "334줄(이전 327, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/core.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "517줄(이전 492, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/human_test.go"
+    }
+  ],
+  "summary": {
+    "files": 13,
+    "added_lines": 255,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 2
+  }
+}

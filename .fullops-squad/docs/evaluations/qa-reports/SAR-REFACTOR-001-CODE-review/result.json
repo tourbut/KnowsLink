@@ -1,0 +1,163 @@
+{
+  "base": "0eb7735f0963272b62266992791f9f09152f9266",
+  "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.12.12 (182898c) windows/amd64\nbuilt at: 2026-10-05T06:46:30Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "coor Codex / actual session 01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+  "conclusion": "PASS: 기능 보존 공통 처리 네 곳, 미해결 critical/high0. 독립 QA와 최종 문서 delta는 별도 수락한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 1171,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "자동 생성 탐색/전수 경로 지도. 제품 변경 검토와 별개로 JSON 유효성·193쌍 unknown0·phase/summary 연결을 확인했다. 개별 과거 문서 전체 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/gate/remote.py",
+      "status": "added",
+      "insertions": 73,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/line-counts.json",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/packet-review.json",
+      "status": "added",
+      "insertions": 11027,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "자동 생성 탐색/전수 경로 지도. 제품 변경 검토와 별개로 JSON 유효성·193쌍 unknown0·phase/summary 연결을 확인했다. 개별 과거 문서 전체 전문 재독은 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
+      "status": "added",
+      "insertions": 37,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+      "status": "added",
+      "insertions": 56,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "adapters/src/mcp.test.ts",
+      "status": "modified",
+      "insertions": 70,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 20,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "adapters/src/owner-text.test.ts",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "adapters/src/test-transport.ts",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "internal/relay/device.go",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "internal/relay/device_test.go",
+      "status": "modified",
+      "insertions": 31,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 15,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "internal/relay/human_test.go",
+      "status": "modified",
+      "insertions": 26,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "고정 cd4dae8 diff·관련 호출자·경계 회귀 또는 해당 문서/helper 원문을 직접 검토했다. 외부 계약/보안 경계와 범위 보존을 확인했다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a13509-e1a3-7b62-bf9d-5a48405d706a",
+    "reviewer_session": "01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+    "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-9693edc4a315441c9fb8c7ebf725309e",
+    "snapshot_head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+    "read_only": true
+  }
+}

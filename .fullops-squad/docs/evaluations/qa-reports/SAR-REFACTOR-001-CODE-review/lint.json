@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "attempt": "919a8307514e483a9bf1034b285e436c",
+  "base": "0eb7735f0963272b62266992791f9f09152f9266",
+  "merge_base": "0eb7735f0963272b62266992791f9f09152f9266",
+  "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "기존 exact cd4dae8 clean Linux clone의 실제 등록 검사 결과 재사용. 새 Windows 실행 성공으로 표시하지 않음. 원본 lint-candidate-141.json과 lint/test.log 검증.",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-lint.log\nEXIT= 0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "기존 exact cd4dae8 clean Linux clone의 실제 등록 검사 결과 재사용. 새 Windows 실행 성공으로 표시하지 않음. 원본 lint-candidate-141.json과 lint/test.log 검증.",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-test.log\nEXIT= 0"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "334줄(이전 327, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/core.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "517줄(이전 492, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/human_test.go"
+    }
+  ],
+  "summary": {
+    "files": 13,
+    "added_lines": 255,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 0
+  },
+  "evidence_reuse": {
+    "source": "C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\refactor001\\lint-candidate-141.json",
+    "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+    "windows_original": "lint-windows.json",
+    "reason": "같은 제품 HEAD의 기존 명령/결과를 확인해 재사용; from 차이는 정적 diff만 해당"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "task_key": "SAR-REFACTOR-001-DEV",
+  "find_head": "bc0fd031efd252d9755681d8b429eb31c045b7e4",
+  "base": "0eb7735f0963272b62266992791f9f09152f9266",
+  "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/docs/design-docs/module-design.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/README.md",
+    ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/rules/common/README.md",
+    ".fullops-squad/rules/common/testing.md"
+  ],
+  "hits": [],
+  "recall": 0.0,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
