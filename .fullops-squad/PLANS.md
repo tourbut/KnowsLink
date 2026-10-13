@@ -11,6 +11,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 전체 기능 보존 리팩토링 — SAR-REFACTOR-001-DEV
 
+- 최종 수락(2026-10-13): DEV e65146b·독립 tester d8e0904·escape 감사31e4e05를 fixed CODE/FINAL 리뷰 C/H0·check PASS로 수락했다. main/origin main e632d9761effea65f833d0775e356debbfdc3f98 일반 push 및 fetch SHA 일치를 확인했다. 제품은 exact cd4dae8과 동일하며 원 Linux install/lint/test/build0와 tester 독립 경계 검증을 재사용한다. JSON Unicode 표기 의심은 원 명령 hash와 실제 값15건 및 reviewer 재실행0으로 해소했다.
+- 동기화: coor 최신main 포함. tester/ops idle clean은 최신main FF한다. dev/designer는 user_owned 및 과거 세션 상태 unknown을 보존해 동기화를 예약한다. 다음 dispatch 전에 최신main 포함을 확인한다. 완료 QA worker 둘 정상release·transcript captured. root 리뷰 snapshot3개와 외부clone/검증자료는 독립 root reviewer release 증명이 없어 보존한다. 후속 정리 담당coor, 조건은 종료/비사용·clean·증거 보존 확인이다. 운영배포·실계정 추가발송·장시간wake 미실행.
+- 완료 메시지 msg_d02b93a9a565/e65146b,msg_97ca56a7762b/d8e0904,msg_f1f31fcf33f2/31e4e05는 main/origin 조상이다. tester 두 메시지의 SHA label 누락은 실제 본문·Git 대조 후 integration 메타데이터만 보완했고 원 메시지를 변경하지 않았다.
+
 - 2026-10-13 재개: 실제 coordinator terminal이term_55a4cbd2-32ef-4b80-ac26-a12948348596으로 바뀌어 원 terminal attestation 오류를 확인했다. 원coor terminal 부재 확인 뒤 run-use로같은Run consumer generation2에 정상결합했다. legacy takeover 옵션은 해당없음 오류로 사용하지 않았다. 같은 task retry ctx_0ff7da5ff7ef/term_5ad12e64-a5e7-40af-9d78-ad9cba83b1c5는ready·turn_started 관측, requested/effective Codex/gpt-6.1-sol/high 일치를 확인했다. 현재 실제 구현 시작이며 이전 훅 차단을 우회하지 않았다. 복귀 주소 변경을 status로 전달했다.
 
 - 착수 차단: 준비0eb7735f0963272b62266992791f9f09152f9266을dev에 FF했다. fresh Sol 요청/실제 tuplecodex/gpt-6.1-sol/high 일치는 확인했으나 task_2aa2d9254850/ctx_daea79e0d442가agent_readiness에서 agent-hooks-review-prompt로 실패했다. 구현 실행0이다. 실패 터미널term_6cc59927-5af9-4d4a-b09b-943ab89f1771은 정상worker-release·transcript captured로 정리했다. 사용자에게 Orca Codex 저장소 훅 신뢰 검토를 요청했고 승인 응답 후 같은Sol·같은과제 retry-of로 재시작한다. 훅 비활성화나 모델 대체는 하지 않는다.
