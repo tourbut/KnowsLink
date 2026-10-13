@@ -1,0 +1,266 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "2747fe98653d5c6946f41c219fc256395333d7fe",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "8cc83a6d7c0277637fcf425a6ddc01c74e65a91a7f053168eb9ec5312d7f55a1",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-ops-guide.md",
+      "c1-database-design.md",
+      "c2-report.md",
+      "c3-report.md",
+      "c4-README.md",
+      "c5-install_bot_mcp.sh",
+      "c6-beta.sh",
+      "c7-verify.py",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-ops-guide.md",
+      "c1-database-design.md",
+      "c2-report.md",
+      "c3-report.md",
+      "c4-README.md",
+      "c5-install_bot_mcp.sh",
+      "c6-beta.sh",
+      "c7-verify.py",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c1-database-design.md": {
+        "relevant": 0.64,
+        "evidence": 0.83,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-report.md": {
+        "relevant": 0.48,
+        "evidence": 0.76,
+        "contradicts": 0.28,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-report.md": {
+        "relevant": 0.34,
+        "evidence": 0.63,
+        "contradicts": 0.3,
+        "injection": 0.1,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-README.md": {
+        "relevant": 0.72,
+        "evidence": 0.78,
+        "contradicts": 0.41,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-install_bot_mcp.sh": {
+        "relevant": 0.49,
+        "evidence": 0.67,
+        "contradicts": 0.34,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-beta.sh": {
+        "relevant": 0.73,
+        "evidence": 0.84,
+        "contradicts": 0.22,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-verify.py": {
+        "relevant": 0.71,
+        "evidence": 0.82,
+        "contradicts": 0.2,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-ops-guide.md": ".fullops-squad/docs/operations/ops-guide.md",
+      "c1-database-design.md": ".fullops-squad/docs/design-docs/database-design.md",
+      "c2-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/report.md",
+      "c3-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
+      "c4-README.md": "adapters/README.md",
+      "c5-install_bot_mcp.sh": "scripts/install_bot_mcp.sh",
+      "c6-beta.sh": "deploy/knowslink/beta.sh",
+      "c7-verify.py": "deploy/knowslink/verify.py",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_ops.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_ops.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 24478,
+    "output_tokens": 532,
+    "cost": 0.001028076,
+    "known_cost": 0.001028076,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.592,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.499,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4062,
+        "output_tokens": 76,
+        "cost": 0.000170604
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.506,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3702,
+        "output_tokens": 76,
+        "cost": 0.000155484
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.489,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3584,
+        "output_tokens": 76,
+        "cost": 0.000150528
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.567,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4041,
+        "output_tokens": 76,
+        "cost": 0.000169722
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.496,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2807,
+        "output_tokens": 76,
+        "cost": 0.000117894
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.502,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3130,
+        "output_tokens": 76,
+        "cost": 0.00013146
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.582,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3152,
+        "output_tokens": 76,
+        "cost": 0.000132384
+      }
+    }
+  ],
+  "request_max_seconds": 0.582,
+  "task_key": "SAR-REFACTOR-001-OPS",
+  "role": "ops",
+  "attempt": "3418eb2718114af89615708cb8b2e722",
+  "instruction_sha256": "a92f2afb7d1ea9946097c2b7ac8aedc56296bbe481a9e1b74a8b4070310b5957",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/design-docs/database-design.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
+      "adapters/README.md",
+      "scripts/install_bot_mcp.sh",
+      "deploy/knowslink/beta.sh",
+      "deploy/knowslink/verify.py"
+    ],
+    "required": [],
+    "sources": {
+      ".fullops-squad/docs/operations/ops-guide.md": "oversized",
+      ".fullops-squad/docs/design-docs/database-design.md": "d03abf153e4ddc7dae14d57369db46f0f0a63d2d9c6926fa5c96cb42dfe25829",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS/report.md": "ec3e7aa971ceb61dd08eb8283849441f047ebaa71b8f6b6b35ee40ebac3608f5",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md": "5935fd97b0133fcc95abe3d91e79cf84c302d0545db3039238893a852b0cb6ff",
+      "adapters/README.md": "614a1ea4d688144131fb66877380237f726765ae951b0644e49d431466e27b4a",
+      "scripts/install_bot_mcp.sh": "89ffc7efbb42b4098c83dd8ab8e08cac8005043223200413fb79c418d7474c15",
+      "deploy/knowslink/beta.sh": "2f974968918beb8591cbba41ee142bc8cee282bdc6b4379fb4f62ef1e25e79bf",
+      "deploy/knowslink/verify.py": "61058d1a8f064edf1d84f0ece1dbbaf08d9413f324edcc4dec6d3214ce7350fa"
+    }
+  },
+  "unsent_sources": {
+    ".fullops-squad/docs/operations/ops-guide.md": "too large or empty"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 1.777,
+  "input_partial": true,
+  "instruction_chars": 5196,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 5196
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-REFACTOR-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.89,
+        "product": 0.11
+      },
+      "confidence": 0.78
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.5,
+        "ops": 0.5,
+        "tester": 0
+      },
+      "confidence": 0.25
+    },
+    "docs": {
+      "D01": 0.39,
+      "D02": 0.34,
+      "D03": 0.29,
+      "D04": 0.26,
+      "D05": 0.26,
+      "D06": 0.36,
+      "D07": 0.26,
+      "D08": 0.32,
+      "D09": 0.28,
+      "D10": 0.41,
+      "D11": 0.48,
+      "D12": 0.82,
+      "D13": 0.68
+    }
+  },
+  "usage": {
+    "input_tokens": 2460,
+    "output_tokens": 314,
+    "cost": 0.00010332
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.681,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "사용자가 수락된 리팩토링의 운영 배포를 명시 요청. 구현 변경 없이 ops 운영 역할 담당.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "2747fe98653d5c6946f41c219fc256395333d7fe",
+  "requires_packet": true
+}
