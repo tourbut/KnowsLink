@@ -1,0 +1,52 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/PLANS.md",
+        ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+        ".fullops-squad/contexts/designer.md",
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+        ".fullops-squad/docs/operations/user-guide.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+        ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+        ".fullops-squad/handovers/to_dev.md",
+        ".fullops-squad/handovers/to_tester.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/board/board.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-packet.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-route.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-route.prior-1791981751723254800.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-route.prior-1791981775226944900.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-context-5e326c60d62649ffb1335e1d8e7a185a.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-documents-find-c7438feb94184e71b907bef3fac0887b.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-find-6f123fa049e94df697b91b28ea49a875.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-packet-32691c08d32341a6a2ef3965ce58d264.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-packet-db5a05183a314f0d820e731e12b50fa1.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-route-0b73814cc73a401ba79ff5aac188621e.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-route-2f2d2a6fb60349fb8860169dd7c8546b.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/design-check.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/document-validation.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/first-lint.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/source-audit.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

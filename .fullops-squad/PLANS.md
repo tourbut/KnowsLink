@@ -11,6 +11,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- 설계 수락: 별도 Astra 실제01a13a78이 eae9a8b를19 reviewed/13 skipped·C/H/M/L0·check0으로 수락했다. 중간 usage-limit 오류로 마지막 기록 단계가 중단됐으나 사용자 '계속' 뒤 같은 모델·세션으로 재개해 check-execution.json과 도구 종료를 확인했다. 모델 전환·검사 우회는 없었다. 설계·후속 DEV 인박스/탐색 준비를 main에 일반 통합/push한 뒤 DEV를 착수시킨다. DEV 고정 비교 기준은 수락 설계eae9a8b이며 새 UI 제품 코드는 실제 lint/test를 실행한다.
+
+- 설계 완료 msg_3d1059638d28 / eae9a8bffae706410f684e4c837e396e7b0bcf26를 coor 기록 브랜치에 준비 통합했다. 소개→순서→설치→예시→로그인 5구획, 유효세션도 안내200·회원공간이동, 구체적 Grok installer/등록 예시를 D02/D04/D11에 확정했다. 제품코드 diff0, 문서strict13·packet58쌍 통과, final lint ERROR0/WARNING2/unavailable2/exit1과 Windows make 부재·기존 동일입력 Linux gate 재사용을 구분한다. hold 담당coor, 재개 조건은 별도 Astra 실제01a13a78의 fixed DESIGN-REVIEW C/H0·check0 후 main 일반 통합/push다. DEV 인계는 설계SHA를 기준으로 준비 중이며 검수/통합 전 착수시키지 않는다.
+
 - 설계 착수: task_eb743a73b6d8 / ctx_074184d23af0 / term_f05a63c9-ed45-4529-9183-1b0e357222ab. requested/effective codex/gpt-6-astra/high 일치와 ready·turn_started를 확인했다. 준비93271bf는 인박스·원천·packet을 포함한다. startup에서 실제HEAD/fingerprint 확인·정식 갱신을 인계했다. 중간 지시 보강에 따른 route bind 실패와 unresolved 결과는 prior/history에 보존했고 공개 UX 제품 책임 근거로 designer 재선정·최종 product route를 기록했다.
 
 - 2026-10-14 사용자 요청: 첫페이지에 서비스 소개·설치방법·사용 순서·실제 기능에 맞는 사용예시를 담고 실제 사용은 로그인하도록 한다. 화면 설계부터 구현까지 codex/gpt-6-astra/high로 고정한다. 기존 최소 로그인 화면 지시보다 최신 요청이 우선하며 사람 친구 아래 agent·대화·Google/권한 계약은 보존한다.

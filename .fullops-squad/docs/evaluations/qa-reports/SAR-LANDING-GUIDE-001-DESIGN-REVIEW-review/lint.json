@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "attempt": "c34cf13e8a894dc08ca3572f30e4f7f2",
+  "base": "3230ee566ccf455e58a6fc3b43f5cd4b3a72aba0",
+  "merge_base": "3230ee566ccf455e58a6fc3b43f5cd4b3a72aba0",
+  "head": "eae9a8bffae706410f684e4c837e396e7b0bcf26",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없어 실행 불가(exit_code null). 문서 전용 변경이며 제품/테스트/의존성/빌드 입력은 수락 DEV 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46와 diff0. 과거 Linux gate만 재사용하며 이 HEAD의 새 PASS가 아님. lint-original.json과 verification.json 참조.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없어 실행 불가(exit_code null). 문서 전용 변경이며 제품/테스트/의존성/빌드 입력은 수락 DEV 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46와 diff0. 과거 Linux gate만 재사용하며 이 HEAD의 새 PASS가 아님. lint-original.json과 verification.json 참조.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1827줄(이전 1821, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "796줄(이전 589, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+    }
+  ],
+  "summary": {
+    "files": 5,
+    "added_lines": 329,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 2
+  }
+}

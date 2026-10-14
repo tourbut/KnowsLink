@@ -1,0 +1,286 @@
+{
+  "base": "3230ee566ccf455e58a6fc3b43f5cd4b3a72aba0",
+  "head": "eae9a8bffae706410f684e4c837e396e7b0bcf26",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Codex / gpt-6-astra / high / actual session 01a13a78-9d3e-7061-b459-eb673854961a",
+  "conclusion": "accepted: 문서/제품 설계 단계 수락. critical/high/medium/low 0. 제품 구현·동작·시각·운영 수락은 후속이다. Windows make 실행 불가는 사유와 원본을 보존하고 동일 제품 입력의 기존 Linux gate만 재사용했다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+      "status": "added",
+      "insertions": 100,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 designer context 본문 전체가 상대 링크 조정 후 archive의 앞부분에 그대로 보존됨을 문자열 비교했다. 추가 현재 결정·링크와 기존 FAIL/한정 PASS/미실행 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 83,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "status": "modified",
+      "insertions": 209,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-context.json",
+      "status": "added",
+      "insertions": 422,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "자동 생성 탐색 후보 전체의 관련성은 재평가하지 않았다. 파싱/hash/partial 상태와 현재 packet 연결을 확인하고 필수 README·D02/D04/D11·startPage/로그인 template 원문으로 설계를 직접 검토했다. 불확실성은 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-documents-find.json",
+      "status": "added",
+      "insertions": 569,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "자동 생성 탐색 후보 전체의 관련성은 재평가하지 않았다. 파싱/hash/partial 상태와 현재 packet 연결을 확인하고 필수 README·D02/D04/D11·startPage/로그인 template 원문으로 설계를 직접 검토했다. 불확실성은 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-find.json",
+      "status": "added",
+      "insertions": 218,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "자동 생성 탐색 후보 전체의 관련성은 재평가하지 않았다. 파싱/hash/partial 상태와 현재 packet 연결을 확인하고 필수 README·D02/D04/D11·startPage/로그인 template 원문으로 설계를 직접 검토했다. 불확실성은 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-packet-outcomes.json",
+      "status": "added",
+      "insertions": 355,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-packet.json",
+      "status": "added",
+      "insertions": 2042,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-route.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-route.prior-1791981751723254800.json",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-route.prior-1791981775226944900.json",
+      "status": "added",
+      "insertions": 77,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-context-5e326c60d62649ffb1335e1d8e7a185a.json",
+      "status": "added",
+      "insertions": 373,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-documents-find-c7438feb94184e71b907bef3fac0887b.json",
+      "status": "added",
+      "insertions": 569,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-find-6f123fa049e94df697b91b28ea49a875.json",
+      "status": "added",
+      "insertions": 232,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-packet-32691c08d32341a6a2ef3965ce58d264.json",
+      "status": "added",
+      "insertions": 2472,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-packet-db5a05183a314f0d820e731e12b50fa1.json",
+      "status": "added",
+      "insertions": 2030,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-route-0b73814cc73a401ba79ff5aac188621e.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-route-2f2d2a6fb60349fb8860169dd7c8546b.json",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "과거 생성 탐색 이력이다. JSON 유효성·개별 hash·head/partial 메타데이터를 verification.json에 기록했다. 현재 packet/outcomes와 phase의 원본 보존 설명을 확인했으며 과거 후보 발췌 전문은 재감사하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/design-check.json",
+      "status": "added",
+      "insertions": 143,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/document-validation.json",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/first-lint.json",
+      "status": "added",
+      "insertions": 61,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+      "status": "added",
+      "insertions": 61,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/source-audit.json",
+      "status": "added",
+      "insertions": 2264,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "86경로의 제목/발췌 수집 기록은 파싱·hash·scope를 확인했다. 전체 역사 발췌를 독립 재감사하지 않았으며 현재 설계의 핵심 사실은 README·아키텍처·관련 코드 원문으로 직접 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "status": "added",
+      "insertions": 69,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 21,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "status": "modified",
+      "insertions": 23,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+      "status": "added",
+      "insertions": 194,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 78,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "status": "modified",
+      "insertions": 85,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 snapshot의 변경과 관련 정본을 직접 검토했다. 제품 카피·인증/설치 조건·Astra 인계·설계/구현/운영 상태 분리와 보고된 증거를 대조했으며 구체 결함을 찾지 못했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/deliverables-strict.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "제외된 원시 로그도 직접 읽었다. 검사13·문제0·경고0·EXIT0이며 document-validation/report와 일치한다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a13a71-e905-7843-b62b-b2678068052a",
+    "reviewer_session": "01a13a78-9d3e-7061-b459-eb673854961a",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-2b43b24a89bc4bfeade6dbd0208aa396",
+    "snapshot_head": "eae9a8bffae706410f684e4c837e396e7b0bcf26",
+    "read_only": true
+  },
+  "summary": {
+    "total_files": 32,
+    "reviewed_files": 19,
+    "skipped_files": 13,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "coverage_rate": 0.59375
+  }
+}
