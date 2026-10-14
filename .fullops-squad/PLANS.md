@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- 독립 검수 착수: coor297e6d3을 idle/clean·terminal0의 tester/designer에FF하고 fresh Astra high로 배정했다. tester task_09a03f21ce42/ctx_02e6a3423e6e/term_68bb5327-3162-46fd-b58d-4db48dbfd8fa actual01a13ac5-b1b4-70f0-898d-6199bdf40279, visual task_e4422a1d293e/ctx_d880f510c28f/term_a631a267-d383-468b-8e0e-c209f4e1e476 actual01a13ac6-2571-7631-b463-91367eb88529. requested/effective codex/gpt-6-astra/high 및 turn_started 확인. CODE-REVIEW46/38·총84·C/H0·check0 수락, canonical297e6d3에 보존했다. snapshot은 reviewer 도구 종료·clean 확인 후 main통합 뒤 정리한다.
+
 - DEV 완료 msg_0a44968602b5 / fe2387a7676f7997aea76a2606f4cc2dbcd4b56b를 coor 기록 브랜치1312658에 병합했다. main은 아직 미반영이다. 최종 make lint/test0·ERROR0/WARNING3/unavailable0, 제품4795의 build/DB0·36 browser assertions와 native 입력/확대 not_run을 확인했다. 추가 SIZE-002는 D05 계약·DEV context로395→406이 된 이유를 외부 final-handoff.md에서 원문 확인했다. integration hold 담당coor, 재개 조건은 같은 SHA 독립 코드 check·기능 QA·직접 시각 수락이다. delivery_ac99adb939fa는 통합 뒤 ACK한다.
 
 - 후속 검수 준비: tester SAR-LANDING-GUIDE-001-TESTER와 designer SAR-LANDING-GUIDE-001-VISUAL은 Astra high 인박스/route만 준비했고 DEV 최종 worker_done 뒤 고정 SHA·packet을 갱신해 배정한다. 예비4795d619의 실제 make lint/test/build 및 DB integration은 exit0이며 오류0·기존 SIZE 경고2다. 아직 최종 수락·운영 배포 성공은 아니다. coor Orca preview page88cad09c-ab0b-4aba-ae6f-c11ec3be5658은 합성 google fixture127.0.0.1:18781이고 운영 계정은 사용하지 않는다.
