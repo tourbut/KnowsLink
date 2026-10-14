@@ -1,0 +1,79 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-LANDING-GUIDE-001-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.2,
+      "D02": 0.19,
+      "D03": 0.23,
+      "D04": 0.24,
+      "D05": 0.23,
+      "D06": 0.19,
+      "D07": 0.2,
+      "D08": 0.34,
+      "D09": 0.26,
+      "D10": 0.64,
+      "D11": 0.41,
+      "D12": 0.46,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2542,
+    "output_tokens": 314,
+    "cost": 0.000106764
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.711,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
+  "head": "271b27ec00e0914cf85d9c081e8600b059dd79fd",
+  "requires_packet": true,
+  "attempt": "8c6afd3e09fc4841bbb57d3b6af65940",
+  "instruction_sha256": "e1b0d0c5e21d50b0e9751d263794111d503a818ee796e28807b691d6d35479e6",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "930e4c6d203ff9173295ab369ef3c0c7d8b4f5d9e4dddbcd8c0e220096e27bf1"
+}

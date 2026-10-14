@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- 검수 후속: tester 실제 전용 Chrome setting200%·DPR2·visualViewport.scale1·CSS zoom1·overflow없음(msg_1755906b931c)을 확인했다. 기존 conversation-list CTA 대비1.846967 medium(msg_18106237290b)과 V-LG-01 예시 아래0px low는 DEV 같은 과제를 basefe2387a/새attempt9a48a4180041493b93ddce9b5d1bf6f2로 reopen해 좁은 CSS 수정한다. 기존 user-owned DEV terminal은 실제 완료 유휴·clean을 확인했고 종료/주입 없이 보존하며, 새 준비 SHA로 일반FF 후 fresh Astra high를 사용한다. 원 fe의 기능/시각/실패 증거와 최초 code review는 보존하고 수정 후보의 영향만 독립 재검수한다. 운영은 그 수락 뒤다.
+
 - QA 진행: tester 독립 HTTP34·Chrome CDP22 통과와 native Enter/Space/Tab/Shift+Tab/폼 제출의 실제 효과를 확인했다. member-home/account1440 캡처를 designer 질문 msg_bb240a6eef61에 reply msg_46f7e184c9d6로 인계했다. native browser200%는 아직 not_run이며 오직 소유 격리 Chrome profile의 appearance zoom UI 경로만 추가 허용했다(msg_1e5b57bdbc22). public 시각은 C/H0·비차단 예시 하단 간격 low1이고 최종 기록을 기다린다. DEV delivery_ac99adb939fa는 공용 integration hold 보존 뒤 ACK해 FIFO 후속 메시지를 열었다. hold 해소는 최종 독립 수락·main통합 이후다.
 - 운영 반영은 SAR-LANDING-GUIDE-001-OPS queued 인박스에 준비했다. 기존 배포 요청과 현재 사이트 개편을 같은 서비스 반영으로 이어서 수행하며, QA 수락·main/origin통합 전 배포하지 않는다. fresh backup/격리 복원·build 전 이전image 고유tag·현재 상태/공유서비스 보존·새 첫페이지public검사가 조건이다. 진행 중 설치 cache가1.4.3으로 바뀌고1.4.2 경로가 사라져 현재 skill/help의 호환 도구를 사용하며 레포하네스1.4.2와 기존gate원본은 보존한다. release의 명시 새세션 update 요구에 따라 자동 레포업데이트는 하지 않는다. 두 검수 worker에 경로 변경을 알렸다.
 

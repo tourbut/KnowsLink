@@ -1,507 +1,319 @@
 {
   "version": "jev-observe-v3",
   "mode": "observation",
-  "head": "271b27ec00e0914cf85d9c081e8600b059dd79fd",
+  "head": "c6154d3557d1704ea0b50b7db950d2f11054fa71",
   "requested_model": "~typesafe/jev-latest",
-  "input_sha256": "0c4045090e3cc8e2098215a39039fe699033be84320bb7131edb5c1c679bb68d",
+  "input_sha256": "9e105d3b29a2e535b76e286b3b2b0fdd4bcb024f7d7a8f3842c534b9203b13cc",
   "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
   "context": {
     "baseline_ids": [
-      "c0-SAR-HUMAN-PEER.md",
-      "c1-service-member-ui.md",
-      "c2-user-guide.md",
-      "c3-module-design.md",
-      "c4-interface-design.md",
-      "c5-README.md",
-      "c6-architecture.md",
-      "c7-system-design.md",
-      "c8-operations.md",
-      "c9-SAR-LANDING-GUIDE-001.md",
-      "c10-report.md",
-      "c11-member.go",
-      "c12-member_pages.go",
-      "c13-member_ui_test.go",
-      "c14-human_http.go",
-      "c15-human_pages.go",
-      "c16-frontend.json",
-      "c17-dev.md",
+      "c0-member_pages.go",
+      "c1-landing_pages.go",
+      "c2-member_ui_test.go",
+      "c3-human_pages_test.go",
+      "c4-landing_test.go",
+      "c5-service-member-ui.md",
+      "c6-report.md",
+      "c7-report.md",
+      "c8-SAR-LANDING-GUIDE-001-DEV.md",
+      "c9-frontend.json",
       "required_0",
+      "required_2",
+      "required_3",
       "required_4",
       "required_5",
       "required_6",
-      "required_7",
-      "required_8",
-      "required_9"
+      "required_7"
     ],
     "recommended_ids": [
-      "c0-SAR-HUMAN-PEER.md",
-      "c1-service-member-ui.md",
-      "c2-user-guide.md",
-      "c3-module-design.md",
-      "c4-interface-design.md",
-      "c5-README.md",
-      "c6-architecture.md",
-      "c7-system-design.md",
-      "c8-operations.md",
-      "c9-SAR-LANDING-GUIDE-001.md",
-      "c10-report.md",
-      "c11-member.go",
-      "c12-member_pages.go",
-      "c13-member_ui_test.go",
-      "c14-human_http.go",
-      "c15-human_pages.go",
-      "c16-frontend.json",
-      "c17-dev.md",
+      "c0-member_pages.go",
+      "c1-landing_pages.go",
+      "c2-member_ui_test.go",
+      "c3-human_pages_test.go",
+      "c4-landing_test.go",
+      "c5-service-member-ui.md",
+      "c6-report.md",
+      "c7-report.md",
+      "c8-SAR-LANDING-GUIDE-001-DEV.md",
+      "c9-frontend.json",
       "required_0",
+      "required_2",
+      "required_3",
       "required_4",
       "required_5",
       "required_6",
-      "required_7",
-      "required_8",
-      "required_9"
+      "required_7"
     ],
     "signals": {
-      "c0-SAR-HUMAN-PEER.md": {
-        "relevant": 0.56,
-        "evidence": 0.83,
-        "contradicts": 0.22,
-        "injection": 0.06,
-        "decision": "keep",
-        "reason": null
-      },
-      "c2-user-guide.md": {
-        "relevant": 0.59,
-        "evidence": 0.72,
-        "contradicts": 0.33,
-        "injection": 0.06,
-        "decision": "keep",
-        "reason": null
-      },
-      "c3-module-design.md": {
-        "relevant": 0.21,
-        "evidence": 0.34,
-        "contradicts": 0.53,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      },
-      "c4-interface-design.md": {
-        "relevant": 0.17,
-        "evidence": 0.44,
-        "contradicts": 0.23,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      },
-      "c5-README.md": {
-        "relevant": 0.25,
-        "evidence": 0.28,
-        "contradicts": 0.64,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      },
-      "c6-architecture.md": {
-        "relevant": 0.24,
-        "evidence": 0.5,
-        "contradicts": 0.17,
-        "injection": 0.03,
-        "decision": "keep",
-        "reason": null
-      },
-      "c7-system-design.md": {
-        "relevant": 0.11,
-        "evidence": 0.24,
-        "contradicts": 0.27,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      },
-      "c8-operations.md": {
-        "relevant": 0.13,
-        "evidence": 0.25,
-        "contradicts": 0.28,
-        "injection": 0.09,
-        "decision": "keep",
-        "reason": null
-      },
-      "c9-SAR-LANDING-GUIDE-001.md": {
-        "relevant": 0.56,
-        "evidence": 0.77,
-        "contradicts": 0.55,
-        "injection": 0.07,
-        "decision": "keep",
-        "reason": null
-      },
-      "c10-report.md": {
-        "relevant": 0.51,
-        "evidence": 0.55,
-        "contradicts": 0.49,
-        "injection": 0.11,
-        "decision": "keep",
-        "reason": null
-      },
-      "c12-member_pages.go": {
-        "relevant": 0.7,
-        "evidence": 0.76,
-        "contradicts": 0.25,
+      "c0-member_pages.go": {
+        "relevant": 0.04,
+        "evidence": 0.07,
+        "contradicts": 0.63,
         "injection": 0.02,
         "decision": "keep",
         "reason": null
       },
-      "c13-member_ui_test.go": {
-        "relevant": 0.59,
-        "evidence": 0.67,
-        "contradicts": 0.3,
+      "c1-landing_pages.go": {
+        "relevant": 0.13,
+        "evidence": 0.27,
+        "contradicts": 0.57,
         "injection": 0.04,
         "decision": "keep",
         "reason": null
       },
-      "c14-human_http.go": {
-        "relevant": 0.09,
-        "evidence": 0.16,
-        "contradicts": 0.33,
+      "c2-member_ui_test.go": {
+        "relevant": 0.04,
+        "evidence": 0.07,
+        "contradicts": 0.56,
         "injection": 0.03,
         "decision": "keep",
         "reason": null
       },
-      "c15-human_pages.go": {
-        "relevant": 0.09,
-        "evidence": 0.19,
-        "contradicts": 0.38,
-        "injection": 0.04,
+      "c3-human_pages_test.go": {
+        "relevant": 0.11,
+        "evidence": 0.18,
+        "contradicts": 0.48,
+        "injection": 0.03,
         "decision": "keep",
         "reason": null
       },
-      "c16-frontend.json": {
-        "relevant": 0.37,
-        "evidence": 0.56,
-        "contradicts": 0.82,
-        "injection": 0.03,
+      "c4-landing_test.go": {
+        "relevant": 0.1,
+        "evidence": 0.21,
+        "contradicts": 0.62,
+        "injection": 0.07,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-report.md": {
+        "relevant": 0.44,
+        "evidence": 0.68,
+        "contradicts": 0.76,
+        "injection": 0.09,
         "decision": "conflict",
         "reason": "contradicts task"
       },
-      "c17-dev.md": {
-        "relevant": 0.22,
-        "evidence": 0.57,
-        "contradicts": 0.18,
-        "injection": 0.05,
+      "c7-report.md": {
+        "relevant": 0.29,
+        "evidence": 0.48,
+        "contradicts": 0.33,
+        "injection": 0.08,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-SAR-LANDING-GUIDE-001-DEV.md": {
+        "relevant": 0.14,
+        "evidence": 0.31,
+        "contradicts": 0.8,
+        "injection": 0.12,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-frontend.json": {
+        "relevant": 0.3,
+        "evidence": 0.43,
+        "contradicts": 0.48,
+        "injection": 0.03,
         "decision": "keep",
         "reason": null
       }
     },
     "fallback": null,
     "conflict_ids": [
-      "c16-frontend.json"
+      "c6-report.md"
     ],
     "caution_ids": [],
     "candidate_paths": {
-      "c0-SAR-HUMAN-PEER.md": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-      "c1-service-member-ui.md": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      "c2-user-guide.md": ".fullops-squad/docs/operations/user-guide.md",
-      "c3-module-design.md": ".fullops-squad/docs/design-docs/module-design.md",
-      "c4-interface-design.md": ".fullops-squad/docs/design-docs/interface-design.md",
-      "c5-README.md": "README.md",
-      "c6-architecture.md": "docs/architecture.md",
-      "c7-system-design.md": "docs/system-design.md",
-      "c8-operations.md": "docs/operations.md",
-      "c9-SAR-LANDING-GUIDE-001.md": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
-      "c10-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-      "c11-member.go": "internal/relay/member.go",
-      "c12-member_pages.go": "internal/relay/member_pages.go",
-      "c13-member_ui_test.go": "internal/relay/member_ui_test.go",
-      "c14-human_http.go": "internal/relay/human_http.go",
-      "c15-human_pages.go": "internal/relay/human_pages.go",
-      "c16-frontend.json": ".fullops-squad/docs/agents/frontend.json",
-      "c17-dev.md": ".fullops-squad/contexts/dev.md",
+      "c0-member_pages.go": "internal/relay/member_pages.go",
+      "c1-landing_pages.go": "internal/relay/landing_pages.go",
+      "c2-member_ui_test.go": "internal/relay/member_ui_test.go",
+      "c3-human_pages_test.go": "internal/relay/human_pages_test.go",
+      "c4-landing_test.go": "internal/relay/landing_test.go",
+      "c5-service-member-ui.md": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "c6-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      "c7-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "c8-SAR-LANDING-GUIDE-001-DEV.md": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+      "c9-frontend.json": ".fullops-squad/docs/agents/frontend.json",
       "required_0": ".fullops-squad/FULLOPS.md",
-      "required_4": ".fullops-squad/handovers/to_dev.md",
-      "required_5": ".fullops-squad/project.md",
-      "required_6": ".fullops-squad/rules/common/README.md",
-      "required_7": ".fullops-squad/rules/common/coding-style.md",
-      "required_8": ".fullops-squad/rules/common/security.md",
-      "required_9": ".fullops-squad/rules/common/testing.md"
+      "required_2": ".fullops-squad/handovers/to_dev.md",
+      "required_3": ".fullops-squad/project.md",
+      "required_4": ".fullops-squad/rules/common/README.md",
+      "required_5": ".fullops-squad/rules/common/coding-style.md",
+      "required_6": ".fullops-squad/rules/common/security.md",
+      "required_7": ".fullops-squad/rules/common/testing.md"
     },
     "required_paths": [
       ".fullops-squad/FULLOPS.md",
       ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      ".fullops-squad/docs/operations/user-guide.md",
-      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
       ".fullops-squad/handovers/to_dev.md",
       ".fullops-squad/project.md",
       ".fullops-squad/rules/common/README.md",
       ".fullops-squad/rules/common/coding-style.md",
       ".fullops-squad/rules/common/security.md",
-      ".fullops-squad/rules/common/testing.md",
-      "README.md",
-      "internal/relay/human_http.go",
-      "internal/relay/human_pages.go",
-      "internal/relay/member.go",
-      "internal/relay/member_pages.go"
+      ".fullops-squad/rules/common/testing.md"
     ],
     "missing_required_paths": []
   },
   "evidence_checks": {},
   "claims": {},
   "usage": {
-    "input_tokens": 60324,
-    "output_tokens": 1216,
-    "cost": 0.0025336079999999997,
-    "known_cost": 0.0025336079999999997,
+    "input_tokens": 32235,
+    "output_tokens": 684,
+    "cost": 0.0013538699999999999,
+    "known_cost": 0.0013538699999999999,
     "cost_status": "complete"
   },
-  "latency_seconds": 1.325,
+  "latency_seconds": 1.013,
   "response_model": "typesafe/jev-1.13-20260917",
   "error": null,
   "calls": [
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.564,
+      "elapsed": 0.54,
       "cached": false,
       "usage": {
-        "input_tokens": 4660,
+        "input_tokens": 3766,
         "output_tokens": 76,
-        "cost": 0.00019572
+        "cost": 0.000158172
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.563,
+      "elapsed": 0.606,
       "cached": false,
       "usage": {
-        "input_tokens": 4471,
+        "input_tokens": 4278,
         "output_tokens": 76,
-        "cost": 0.000187782
+        "cost": 0.000179676
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.548,
+      "elapsed": 0.555,
       "cached": false,
       "usage": {
-        "input_tokens": 3701,
+        "input_tokens": 4277,
         "output_tokens": 76,
-        "cost": 0.000155442
+        "cost": 0.000179634
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.548,
+      "elapsed": 0.551,
       "cached": false,
       "usage": {
-        "input_tokens": 4118,
+        "input_tokens": 2822,
         "output_tokens": 76,
-        "cost": 0.000172956
+        "cost": 0.000118524
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.584,
+      "elapsed": 0.525,
       "cached": false,
       "usage": {
-        "input_tokens": 3545,
+        "input_tokens": 2729,
         "output_tokens": 76,
-        "cost": 0.00014889
+        "cost": 0.000114618
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.522,
+      "elapsed": 0.573,
       "cached": false,
       "usage": {
-        "input_tokens": 3198,
+        "input_tokens": 4280,
         "output_tokens": 76,
-        "cost": 0.000134316
+        "cost": 0.00017976
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.548,
+      "elapsed": 0.55,
       "cached": false,
       "usage": {
-        "input_tokens": 2970,
+        "input_tokens": 4220,
         "output_tokens": 76,
-        "cost": 0.00012474
+        "cost": 0.00017724
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.552,
+      "elapsed": 0.561,
       "cached": false,
       "usage": {
-        "input_tokens": 3502,
+        "input_tokens": 3453,
         "output_tokens": 76,
-        "cost": 0.000147084
+        "cost": 0.000145026
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.516,
+      "elapsed": 0.478,
       "cached": false,
       "usage": {
-        "input_tokens": 4597,
+        "input_tokens": 2410,
         "output_tokens": 76,
-        "cost": 0.000193074
-      }
-    },
-    {
-      "status": "received",
-      "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.542,
-      "cached": false,
-      "usage": {
-        "input_tokens": 4055,
-        "output_tokens": 76,
-        "cost": 0.00017031
-      }
-    },
-    {
-      "status": "received",
-      "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.621,
-      "cached": false,
-      "usage": {
-        "input_tokens": 3705,
-        "output_tokens": 76,
-        "cost": 0.00015561
-      }
-    },
-    {
-      "status": "received",
-      "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.537,
-      "cached": false,
-      "usage": {
-        "input_tokens": 4371,
-        "output_tokens": 76,
-        "cost": 0.000183582
-      }
-    },
-    {
-      "status": "received",
-      "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.501,
-      "cached": false,
-      "usage": {
-        "input_tokens": 2929,
-        "output_tokens": 76,
-        "cost": 0.000123018
-      }
-    },
-    {
-      "status": "received",
-      "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.508,
-      "cached": false,
-      "usage": {
-        "input_tokens": 3599,
-        "output_tokens": 76,
-        "cost": 0.000151158
-      }
-    },
-    {
-      "status": "received",
-      "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.51,
-      "cached": false,
-      "usage": {
-        "input_tokens": 2489,
-        "output_tokens": 76,
-        "cost": 0.000104538
-      }
-    },
-    {
-      "status": "received",
-      "model": "typesafe/jev-1.13-20260917",
-      "elapsed": 0.727,
-      "cached": false,
-      "usage": {
-        "input_tokens": 4414,
-        "output_tokens": 76,
-        "cost": 0.000185388
+        "cost": 0.00010122
       }
     }
   ],
-  "request_max_seconds": 0.727,
+  "request_max_seconds": 0.606,
   "task_key": "SAR-LANDING-GUIDE-001-DEV",
   "role": "dev",
-  "attempt": "8c6afd3e09fc4841bbb57d3b6af65940",
-  "instruction_sha256": "e1b0d0c5e21d50b0e9751d263794111d503a818ee796e28807b691d6d35479e6",
+  "attempt": "9a48a4180041493b93ddce9b5d1bf6f2",
+  "instruction_sha256": "882c2608be40ef909224985d667b213109560d4722a60c53dbd9a230835a0277",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "context-v2",
     "paths": [
-      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      ".fullops-squad/docs/operations/user-guide.md",
-      ".fullops-squad/docs/design-docs/module-design.md",
-      ".fullops-squad/docs/design-docs/interface-design.md",
-      "README.md",
-      "docs/architecture.md",
-      "docs/system-design.md",
-      "docs/operations.md",
-      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-      "internal/relay/member.go",
       "internal/relay/member_pages.go",
+      "internal/relay/landing_pages.go",
       "internal/relay/member_ui_test.go",
-      "internal/relay/human_http.go",
-      "internal/relay/human_pages.go",
-      ".fullops-squad/docs/agents/frontend.json",
-      ".fullops-squad/contexts/dev.md"
+      "internal/relay/human_pages_test.go",
+      "internal/relay/landing_test.go",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+      ".fullops-squad/docs/agents/frontend.json"
     ],
     "required": [
-      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      ".fullops-squad/docs/operations/user-guide.md",
-      "README.md",
-      "internal/relay/member.go",
-      "internal/relay/member_pages.go",
-      "internal/relay/human_http.go",
-      "internal/relay/human_pages.go"
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
     ],
     "sources": {
-      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md": "a25bf7ab097d323a5b981b9c70b24075650cd50b99b0e5ecf458e2e4969d172a",
-      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "oversized",
-      ".fullops-squad/docs/operations/user-guide.md": "75dc2caf02da185876d77f8b39e0134137664bfd56a916c9bf9a5860e253ea92",
-      ".fullops-squad/docs/design-docs/module-design.md": "3a68263e4fdb191124ddc0d3a7fce7056dfec319e60e7bf61c31e3dd9bc45be7",
-      ".fullops-squad/docs/design-docs/interface-design.md": "c2e9586d6d92181b917aa273f560434979304b47f2267a15def51a33632f7719",
-      "README.md": "f2445158e232eed00b43d645b9ddc589d4224e22f6b239edf7f9a2c1628e6982",
-      "docs/architecture.md": "f991945b9567e10c830a04c5b8d5a641112eb892bb884b0b808a77c3b3a28a75",
-      "docs/system-design.md": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
-      "docs/operations.md": "51c10f4ea86bd31be5f9d19f451315cb2d04bd5178d03ddabd736349907afddd",
-      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
-      "internal/relay/member.go": "501f6a017ad9daec645d42ea9349c65a8606c08804306fda2ce84ff4669f7f6e",
-      "internal/relay/member_pages.go": "a8f748c61063a0d3064e151da3745592c0ec22b7bb155fcbd7e319adab69a342",
+      "internal/relay/member_pages.go": "cd4a86939e288adb7ef25c1ff2edc4b499344f3ab7e1b0464638b91c1e2d9f7b",
+      "internal/relay/landing_pages.go": "8399c86382e90c8ff545aee90f355e5d0623e5f197a243d14ffbb500f92b0c52",
       "internal/relay/member_ui_test.go": "3bc7b369cbab898366f155ee062fd4a14d5cd3ed0dd5062498dc582c865daf4b",
-      "internal/relay/human_http.go": "56d64f15bfdacb35f1882f1111a63f0e2cc26e1a9cadbdde8b17ce6c64cdab3f",
-      "internal/relay/human_pages.go": "081e83a04414e85f173ad55856fa559d8badcac23a41708cba52b323169207cb",
-      ".fullops-squad/docs/agents/frontend.json": "1147dfcd3deadb94f8302794934ddbfc08b474fd232bf778fa79f1c22354b3fa",
-      ".fullops-squad/contexts/dev.md": "715c454a25d5c27b2b72c8eedd947b342b88af3e745aad2a1506d878ef77cec9"
+      "internal/relay/human_pages_test.go": "0612c7a6c8460043f70b657be2f647dd4f0738f0eec1039b7f092a7046418e77",
+      "internal/relay/landing_test.go": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "oversized",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md": "c7a74cbe5003bab523d14677791b93b20f36c6e1b3cffbdff4893f6fb93797f9",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md": "c4a1eb35b72e18baf1466ed588be370b960872f467a11b9044e308dd50b29b7a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md": "c4af580e3baee129cf4dc28acdf26653da93a3b29f4fafc79aeba8860af7da71",
+      ".fullops-squad/docs/agents/frontend.json": "1147dfcd3deadb94f8302794934ddbfc08b474fd232bf778fa79f1c22354b3fa"
     }
   },
   "unsent_sources": {
-    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty",
-    "internal/relay/member.go": "sensitive or oversized passage"
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
   },
   "refused_paths": [],
-  "elapsed_seconds": 5.736,
+  "elapsed_seconds": 2.882,
   "input_partial": true,
-  "instruction_chars": 6352,
+  "instruction_chars": 3910,
   "remaining_instruction": {
     "start_char": 3500,
-    "end_char": 6352
+    "end_char": 3910
   }
 }
