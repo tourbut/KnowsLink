@@ -1,0 +1,226 @@
+{
+  "task_key": "FULLOPS-UPDATE-1.4.4-HOOK-VERIFY",
+  "task_id": "task_5039f290bc0c",
+  "dispatch_id": "ctx_c3711276ea98",
+  "captured_at": "2026-10-14T15:13:09.066732+00:00",
+  "session_id": "01a13af6-afb7-77d2-bc07-ea402127e7b5",
+  "cwd": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\fullops-update-144",
+  "identity_evidence": {
+    "source": "C:\\Users\\shin\\.codex\\sessions\\2026\\10\\15\\rollout-2026-10-15T00-10-08-01a13af6-afb7-77d2-bc07-ea402127e7b5.jsonl",
+    "session_meta": {
+      "id": "01a13af6-afb7-77d2-bc07-ea402127e7b5",
+      "timestamp": "2026-10-14T15:10:08.068Z",
+      "cwd": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\fullops-update-144",
+      "originator": "codex-tui",
+      "cli_version": "0.162.1"
+    },
+    "coordinator_actual_session_id": "01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+    "different_from_coordinator": true
+  },
+  "runtime": {
+    "loader": "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\scripts\\hook_runtime.py",
+    "loader_sha256": "c564a8ee9e3c26a992f9394e9e4e685b5075d0176beb3d7d51fdca4eae292c6d",
+    "loader_matches_installed": true,
+    "manifest_path": "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\current.json",
+    "manifest": {
+      "package": "b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974",
+      "sha256": "b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974",
+      "version": "1.4.4"
+    },
+    "installed_plugin": {
+      "name": "fullops-squad",
+      "version": "1.4.4",
+      "description": "Orca worker 핸드오버와 개발 산출물을 관리하는 레포별 선택형 하네스"
+    },
+    "package_path": "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\packages\\b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974",
+    "script_paths": {
+      "caveman_start": {
+        "path": "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\packages\\b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974\\scripts\\caveman_start.py",
+        "exists": true
+      },
+      "done_gate": {
+        "path": "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\packages\\b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974\\scripts\\done_gate.py",
+        "exists": true
+      },
+      "flow_gate": {
+        "path": "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\packages\\b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974\\scripts\\flow_gate.py",
+        "exists": true
+      },
+      "issue_mode": {
+        "path": "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\packages\\b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974\\scripts\\issue_mode.py",
+        "exists": true
+      }
+    },
+    "installed_hooks_path": "C:\\Users\\shin\\.codex\\plugins\\cache\\fullops-squad\\fullops-squad\\1.4.4\\hooks\\hooks.json",
+    "runtime_hooks_match_installed": true,
+    "hook_commands": [
+      {
+        "event": "SessionStart",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" caveman_start"
+      },
+      {
+        "event": "SessionStart",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" done_gate start"
+      },
+      {
+        "event": "SessionStart",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" flow_gate start"
+      },
+      {
+        "event": "Stop",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" done_gate stop"
+      },
+      {
+        "event": "Stop",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" flow_gate stop"
+      },
+      {
+        "event": "UserPromptSubmit",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" flow_gate prompt"
+      },
+      {
+        "event": "PreToolUse",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" flow_gate tool"
+      },
+      {
+        "event": "SessionEnd",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" issue_mode session-end"
+      },
+      {
+        "event": "PostToolUse",
+        "command": "python3 -c \"from pathlib import Path; import runpy; runpy.run_path(str(Path.home()/'.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py'),run_name='__main__')\" flow_gate post"
+      }
+    ],
+    "all_hook_commands_use_fixed_loader": true,
+    "repo_hooks_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\fullops-update-144\\.codex\\hooks.json"
+  },
+  "events": {
+    "done": {
+      "status": "executed",
+      "mode": "start",
+      "at": "2026-10-14T15:10:40.905635+00:00",
+      "error": null,
+      "warned": [],
+      "events": {
+        "start": {
+          "status": "executed",
+          "at": "2026-10-14T15:10:40.905635+00:00",
+          "error": null
+        }
+      }
+    },
+    "flow": {
+      "status": "executed",
+      "mode": "tool",
+      "at": "2026-10-14T15:13:07.981257+00:00",
+      "error": null,
+      "warned": [],
+      "events": {
+        "start": {
+          "status": "executed",
+          "at": "2026-10-14T15:10:41.812101+00:00",
+          "error": null
+        },
+        "prompt": {
+          "status": "executed",
+          "at": "2026-10-14T15:10:43.360794+00:00",
+          "error": null
+        },
+        "tool": {
+          "status": "executed",
+          "at": "2026-10-14T15:13:07.981257+00:00",
+          "error": null
+        },
+        "post": {
+          "status": "executed",
+          "at": "2026-10-14T15:12:31.207335+00:00",
+          "error": null
+        }
+      }
+    }
+  },
+  "event_record_paths": {
+    "done": "D:\\workspace\\KnowsLink\\.git\\worktrees\\fullops-update-144\\fullops-gate\\hooks\\done-01a13af6-afb7-77d2-bc07-ea402127e7b5.json",
+    "flow": "D:\\workspace\\KnowsLink\\.git\\worktrees\\fullops-update-144\\fullops-gate\\hooks\\flow-01a13af6-afb7-77d2-bc07-ea402127e7b5.json"
+  },
+  "status_query": {
+    "argv": [
+      "C:\\Users\\shin\\AppData\\Local\\Programs\\Python\\Python313\\python3.exe",
+      "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\packages\\b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974\\scripts\\done_gate.py",
+      "status"
+    ],
+    "stdin": {
+      "cwd": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\fullops-update-144",
+      "session_id": "01a13af6-afb7-77d2-bc07-ea402127e7b5"
+    },
+    "status": {
+      "done": {
+        "status": "executed",
+        "mode": "start",
+        "at": "2026-10-14T15:10:40.905635+00:00",
+        "error": null,
+        "warned": [],
+        "events": {
+          "start": {
+            "status": "executed",
+            "at": "2026-10-14T15:10:40.905635+00:00",
+            "error": null
+          }
+        }
+      },
+      "flow": {
+        "status": "executed",
+        "mode": "tool",
+        "at": "2026-10-14T15:13:07.981257+00:00",
+        "error": null,
+        "warned": [],
+        "events": {
+          "start": {
+            "status": "executed",
+            "at": "2026-10-14T15:10:41.812101+00:00",
+            "error": null
+          },
+          "prompt": {
+            "status": "executed",
+            "at": "2026-10-14T15:10:43.360794+00:00",
+            "error": null
+          },
+          "tool": {
+            "status": "executed",
+            "at": "2026-10-14T15:13:07.981257+00:00",
+            "error": null
+          },
+          "post": {
+            "status": "executed",
+            "at": "2026-10-14T15:12:31.207335+00:00",
+            "error": null
+          }
+        }
+      }
+    },
+    "exit": 0,
+    "stderr_present": false,
+    "event_records_unchanged_by_status_query": true
+  },
+  "verification": {
+    "SessionStart_done": "executed",
+    "SessionStart_flow": "executed",
+    "PreToolUse_flow": "executed",
+    "manually_executed_hooks": false,
+    "Stop": "not observed; session is still active",
+    "SessionEnd": "not observed; session is still active"
+  },
+  "preserved_failure": {
+    "dispatch_id": "ctx_4858d3661b00",
+    "state": "prior readiness failure preserved; this report does not replace it"
+  },
+  "scope": {
+    "source_edits": false,
+    "commits": false,
+    "product_gates": "not run; read-only operational verification",
+    "UI": "paused",
+    "cleanup": false,
+    "accounts_or_deploy": false
+  },
+  "redaction": "Allowlisted operational metadata only; no credentials, environment values beyond session identity, transcript messages, or account data included."
+}

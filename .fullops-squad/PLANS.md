@@ -1,13 +1,26 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-14
+updated: 2026-10-15
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-LANDING-GUIDE-001]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-LANDING-GUIDE-001, FULLOPS-UPDATE-1.4.4]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
+
+## FullOps 1.4.4 최종 반영·사용자 세션 종료
+
+- 변경9hook 사용자 신뢰 승인과 실제 새 세션01a13af6-afb7-77d2-bc07-ea402127e7b5의 done/flow executed·status0을 확인했다. 레포 적용1.4.4로 갱신하며 업데이트 전용 브랜치만 고정 리뷰 후 main/origin에 일반 반영한다. UI 미통합 코드·미커밋 CSS는 포함하지 않는다.
+- 읽기 전용 hook 검증 완료 msg_b8c764d3c9f6 / ctx_c3711276ea98는 별도 커밋 없는 운영 증거다. 최초 신뢰 프롬프트 실패와 옛 hook 경로 오류는 보존한다. 상세 근거는 FULLOPS-UPDATE-1.4.4 단계 문서와 QA 원본이다.
+- 사용자 요청대로 업데이트 완료 후 현재 세션을 종료한다. UI hold msg_0a44968602b5·msg_70ae21c0a708와 DEV/tester/designer/ops 사용자 터미널·작업은 유지한다. 다음 새 coordinator에서 사용자 UI 재개 지시 뒤 최신 main 동기화부터 처리한다. 이번 업데이트에서 제품 실행·실계정·배포 검증은 추가하지 않는다.
+
+## FullOps 1.4.4 업데이트와 UI 중지 — FULLOPS-UPDATE-1.4.4
+
+- 사용자 '멈춰봐' 지시로 UI 수정·검수·제품 통합·배포는 중단했다. DEV/tester의 user_owned worker-stop은 stop_unknown이었고 실제 terminal interrupt를 확인했다. DEV background도 /stop했다. 기존 사용자 터미널·미커밋 CSS·fixture·증거는 보존한다. 상세 체크포인트는 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md)의 UI 중지 절이다.
+- 이후 사용자 'fullops 업데이트 진행해' 요청으로 운영 업데이트만 수행한다. 설치 전 실제 Codex1.4.4/레포1.4.2이며 사용자·Orca Codex의 이번 설치/의존성 갱신·host check는 종료0이다.1.4.3 검사 재사용·모든 명령 검증·실행 기록과1.4.4 고정 hook runtime을 적용하고 새 세션 실행을 확인한다. 레벨 없는 make lint/test·coor/lite/standard·역할·guard·frontend tools=[]는 유지한다.
+- 별도 관리 branch tourbut/fullops-update-144는 origin/main b0f6596에서 시작해 UI fe2387a와 미완료 CSS를 main에 섞지 않는다. 기존 DEV msg_0a44968602b5/fe2387a·visual msg_70ae21c0a708/ad5ee194는 사용자 중지 사유로 integration hold를 보존하고 delivery를 ACK했다. tester5149ac13은 마지막 commit일 뿐 최종수락/worker_done으로 주장하지 않는다.
+- 제품 재개는 사용자가 UI 작업을 다시 지시한 새 coordinator 세션에서만 수행한다. 업데이트 성공은 원 대비/간격 FAIL과 운영 미배포를 대체하지 않는다. 진행 중/중지/미커밋·user_owned role은 덮어쓰지 않고 최신 main 동기화를 예약한다.
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
