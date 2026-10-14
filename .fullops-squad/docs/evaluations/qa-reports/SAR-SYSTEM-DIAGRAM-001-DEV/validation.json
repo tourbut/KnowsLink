@@ -23,7 +23,7 @@
         "$REPO\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-SYSTEM-DIAGRAM-001-DEV\\check-command.txt"
       ],
       "exit_code": 0,
-      "stdout": "{\"local_links\": 113, \"source_checks\": 20, \"diagrams\": 3, \"errors\": [], \"exit_code\": 0}\n",
+      "stdout": "{\"local_links\": 115, \"source_checks\": 20, \"diagrams\": 3, \"errors\": [], \"exit_code\": 0}\n",
       "stderr": ""
     },
     {
@@ -48,9 +48,14 @@
       ],
       "exit_code": 0,
       "stdout": "",
-      "stderr": ""
+      "stderr": "warning: in the working copy of '.fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV/static-checks.json', CRLF will be replaced by LF the next time Git touches it\n"
     }
   ],
   "errors": 0,
-  "limits": "Structure extraction is not browser render; strict is metadata/source mapping only."
+  "limits": "Structure extraction is not browser render; strict is metadata/source mapping only.",
+  "archive_check": {
+    "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+    "contains_task_key": true,
+    "dev_inbox_empty": true
+  }
 }

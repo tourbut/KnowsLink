@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "attempt": "baf5ea82d5d248f3aa1920133a5a45cb",
+  "base": "8f255f9991787e14b38052029d334b9536160fdb",
+  "merge_base": "8f255f9991787e14b38052029d334b9536160fdb",
+  "head": "4995b0355bc4a00f38a972ebf6fa96365f352c6e",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1776줄(이전 1770, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 404줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 6,
+    "added_lines": 404,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 2
+  }
+}

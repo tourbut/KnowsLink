@@ -292,7 +292,7 @@
     {
       "path": ".fullops-squad/PLANS.md",
       "exists": true,
-      "sha256": "6ad3e1581cf4022d39012556e592959a57ed54f73c158e47481436d766db6666",
+      "sha256": "970c7caec031cd0caa3df42ff1ef7eea733869bb76dc895a42553d32cf884a76",
       "scope": "required text/source or indicated related sections, not historical full reread",
       "related_lines": [
         2,
@@ -511,7 +511,7 @@
     {
       "path": "docs/system-design.md",
       "exists": true,
-      "sha256": "352089ed5b14c4ca2172d5ba09c867d360287f6a5ec8c2c2bcc5b14b1425ae36",
+      "sha256": "d7f9e22d6454d6828d252716405a57679e2c75eeabf7b5a78ed2389953c31857",
       "scope": "required text/source or indicated related sections, not historical full reread",
       "related_lines": [
         2,
@@ -552,7 +552,7 @@
       "path": ".fullops-squad/PLANS.md",
       "reason": "missing, oversized, sensitive or invalid; manual inspection",
       "exists": true,
-      "sha256": "6ad3e1581cf4022d39012556e592959a57ed54f73c158e47481436d766db6666",
+      "sha256": "970c7caec031cd0caa3df42ff1ef7eea733869bb76dc895a42553d32cf884a76",
       "related_lines": [
         6,
         12,
@@ -793,7 +793,7 @@
       "path": "docs/system-design.md",
       "reason": "missing, oversized, sensitive or invalid; manual inspection",
       "exists": true,
-      "sha256": "352089ed5b14c4ca2172d5ba09c867d360287f6a5ec8c2c2bcc5b14b1425ae36",
+      "sha256": "d7f9e22d6454d6828d252716405a57679e2c75eeabf7b5a78ed2389953c31857",
       "related_lines": [
         19,
         21,
@@ -831,5 +831,6 @@
       "resolution": "큰 파일/분류 제한을 일반 원문 읽기와 해당 함수·현행절 검색으로 보완했다. 운영 private값이나 .env는 읽지 않았다."
     }
   ],
-  "limits": "Related sections and existence/hash for historical logs only; no full reread or new producer API calls."
+  "limits": "Related sections and existence/hash for historical logs only; no full reread or new producer API calls.",
+  "snapshot_scope": "working tree after final document edits, before work.py finish; later completion/archive-only changes are expected"
 }

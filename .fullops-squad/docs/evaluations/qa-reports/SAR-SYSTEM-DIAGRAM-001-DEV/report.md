@@ -36,7 +36,7 @@ summary: 링크·소스·Mermaid 구조·제품 게이트 재사용과 검증 �
 - Mermaid extractor 첫 실행은 QA 폴더가 없어 output 저장에서 실패했다. 문법 실패가 아니다. 폴더 생성 뒤 같은 설치 도구를 재실행했다. 사용자 파일을 삭제·이동하지 않았다.
 - [Mermaid IR](mermaid-ir.json)은 설치 diagram-design extractor의 이번 문서 구조 추출 결과다. flowchart 9 drawable node/2 container/10edge, Grok 5participant/12message, Dots 4participant/11message다. 추출은 렌더 PASS가 아니다.
 - [정적 검사](static-checks.json)는 링크·fragment·fence·front matter·그림 밀도·방향·선택 조건과 정확한 소스 token/순서를 확인한다. [실행 원문](check-command.txt)은 stdin 검사의 재현 증거다.
-- 정적 검사 결과는 로컬링크113·소스검사20·그림3·오류0·EXIT0이다. `deliverables.py --strict`는13개·문제0·경고0·EXIT0이며 `git diff --check`도EXIT0이다.
+- 정적 검사 결과는 로컬링크115·소스검사20·그림3·오류0·EXIT0이다. `deliverables.py --strict`는13개·문제0·경고0·EXIT0이며 `git diff --check`도EXIT0이다.
 - [첫 정적 결과](static-checks-first.json)의 EXIT1을 보존했다. 생성 전 증거 링크와 기준 이후의 하네스 board JSON을 제품변경으로 분류한 검사 범위 문제였다. 증거를 생성하고 제품 실행 입력의 판정 범위를 바로잡아 위 재검사를 통과했다. 제품을 수정하지 않았다.
 - [gate 재사용](gate-reuse.json)은 exact cd4dae8와 현재 제품 입력의 Git diff 및 기존 Linux 명령 EXIT0 근거다. 제품 경로에서 adapter README만 문서 변경이며 실행 입력 변경은 없다.
 - [packet audit](packet-audit.json)과 [이번 outcomes](../../jev/SAR-SYSTEM-DIAGRAM-001-DEV-packet-outcomes.json)는34경로/36쌍과 unknown20건을 이번 확인 범위로 처리한다. 과거192쌍 결과를 복사하지 않았다.
@@ -49,3 +49,11 @@ summary: 링크·소스·Mermaid 구조·제품 게이트 재사용과 검증 �
 새 로그인·실계정 송신·receive/ACK·호스트 설치/업데이트·Events 갱신·재시작·운영 상태·부하·백업/복원·전체 제품 테스트는 실행하지 않았다. 문서 변경에는 그 실행이 필요하지 않다. 기존 제품 게이트는 입력 동일성이 확인된 과거 실행으로만 재사용한다.
 
 소스 token 검사는 의미 검토를 보조하며 전체 동작 증명이 아니다. 상대 링크 검사는 레포 파일/fragment 대상으로 한정한다. 외부 URL의 장기 가용성은 보장하지 않는다. 독립 내용 리뷰·직접 렌더 검수·main 통합/push는 coor 후속이다.
+
+## 커밋 후 게이트와 규모 판단
+
+문서 후보 `4995b0355bc4`에서 설치 FullOps1.4.2 lint를 기준8f255f9로 실행했다. [원 결과](lint-candidate.json)는ERROR0·WARNING2·unavailable2·EXIT1이다. Windows PATH에 make가 없어 product-lint/product-test를 실행하지 못했다. 문서 전용 변경이므로 등록 제품검사 적용 입력은 변하지 않았다. 기존 exact cd4dae8 Linux의 실제 product-lint/test EXIT0만 재사용하며 신규 문서 HEAD PASS를 주장하지 않는다.
+
+SIZE-001은 기존 PLANS1776줄이다. 현재 과제의 작성 완료와 독립 검수 후속만 추가했고 과거 이력을 삭제·이동하지 않았다. SIZE-002는 검사 대상 추가404줄이다. 신규 상세 문서311줄은 요청200–350줄 안이며 추가분은 입문 연결·canonical metadata·phase·진행 기록이다. 하나의 현행 문서에서 세 그림과 인증/전달/저장을 함께 읽어야 하므로 분할하지 않았다. 제품 의존성 변경은 없다. QA JSON/IR·실패 원본은 별도 증거로 보존한다.
+
+명령별 종료코드 원문은 [검증 실행](validation.json)에 있다. 최종 archive 커밋의 lint 원본과 stdout/EXIT는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/system-diagram001/lint-final.json` 및 `lint-final.log`에 보존한다. 이것도 make 부재와 실제 실행 상태를 확인하는 기록이며 제품 테스트 PASS 대체가 아니다.
