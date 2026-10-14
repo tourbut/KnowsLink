@@ -3,13 +3,17 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-14
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
 
 ## Astra 리팩터링 운영 배포 — SAR-REFACTOR-002-OPS
+
+- 완료(2026-10-14): 운영8a93e38·새백업/격리복원·보존33·공개21 검사를 확인했다. 결과3562662는 별도 Astra 실제 세션의 fixed 리뷰33 reviewed/11 skipped·C/H0·check0으로 수락했고 main/origin f77a61b7fe82ed8cc6d1ba3d4a22fcf1034ebcdb에 일반 통합/push/fetch일치·양쪽조상0을 확인했다. msg_dc67947c2ab5의 hold는 해제했고 delivery_22baffb22010 ACK·integration pending0이다. 새OPS ctx_82a534ee9cf7은 정상 released/closed_agent_terminal·transcript captured다.
+- 이번 검수 snapshot1개는 실제 reviewer 도구 종료·관리소유·workspace 절대경로·clean/ignored0·process/terminal0·origin조상·정본hash 보존을 확인한 뒤 coordinator가 Orca rm(no force/archive hooks)으로 제거했다. 비동기 removing 영수증 뒤 실제 경로 부재·Git detached0/상설6을 확인했다. host reviewer는 Orca dispatch가 없어 자동 cleanup/historical PASS를 주장하지 않는다. [통합·정리 근거](docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS-INTEGRATION/receipt.json).
+- coor/dev/tester/designer는 현재 유휴·clean 또는 terminal0을 확인해 최종main 동기화 대상이다. OPS의 기존 사용자 터미널2개는 보존했고 하나는 현재 상태 불명이라 최종main 동기화를 다음 dispatch 전으로 예약한다. 최종 SHA·동기화 실측은 Git 공용 fullops-integration/SAR-REFACTOR-002-OPS-final.json을 따른다. Grok 로컬bundle 갱신·실계정왕복·장시간Events·실제rollback은 미실행이다. Dots 기존 연결은 유지한다.
 
 - OPS 완료 msg_dc67947c2ab5 / 결과SHA3562662f5f836debd22a255afcbf52ea930e965b를 coor 기록 브랜치에 준비 통합했다. 실제 배포제품8a93e38과 문서결과를 구분한다. completion parser의 sha=null은 원 본문의 결과문서 SHA와 실제 clean OPS HEAD를 대조해 공용 메타데이터만 보완했고 원문은 보존했다. integration hold 담당coor, 재개 조건은 별도 Astra high 실제 세션01a13a34의 fixed OPS-REVIEW C/H0·check0 후 main 일반 통합/push·조상 확인이다. 원이미지 조회실패는 보존했고 별도2747 복구이미지12f1313a를 확보·network-none/read-only artifact 검사0을 확인했다. 실제 rollback은 미실행이다.
 

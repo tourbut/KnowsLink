@@ -1,0 +1,131 @@
+{
+  "task": "SAR-REFACTOR-002-OPS",
+  "deployed_sha": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "result_sha": "3562662f5f836debd22a255afcbf52ea930e965b",
+  "accepted_review": "SAR-REFACTOR-002-OPS-REVIEW",
+  "main_integration": "f77a61b7fe82ed8cc6d1ba3d4a22fcf1034ebcdb",
+  "local_remote_ancestor_exit": 0,
+  "review_check_exit": 0,
+  "worker_dispatch": "ctx_82a534ee9cf7",
+  "worker_release": "released/closed_agent_terminal; transcript captured",
+  "completion_message": "msg_dc67947c2ab5",
+  "acknowledged_delivery": "delivery_22baffb22010",
+  "public_check": {
+    "checked_at": "2026-10-14T20:45:06.5693883+09:00",
+    "actor_session": "01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+    "purpose": "independent coordinator public status check after deployment",
+    "checks": [
+      {
+        "exit": 0,
+        "status": 200,
+        "url": "https://link.knowslog.com/"
+      },
+      {
+        "exit": 0,
+        "status": 404,
+        "url": "https://link.knowslog.com/healthz"
+      },
+      {
+        "exit": 0,
+        "status": 200,
+        "url": "https://link.knowslog.com/.well-known/oauth-authorization-server"
+      }
+    ],
+    "limitation": "Only unauthenticated GET status; no live agent conversations, OAuth body semantic validation, or rollback execution."
+  },
+  "cleanup_preflight": {
+    "key": "SAR-REFACTOR-002-OPS-REVIEW",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-a8147ab97d774fa685b11fc96603488e",
+    "workspace": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink",
+    "head": "3562662f5f836debd22a255afcbf52ea930e965b",
+    "managed": true,
+    "owner": "coor",
+    "detached": true,
+    "dirty_count": 0,
+    "process_count": 0,
+    "terminal_query_ok": true,
+    "terminal_count": 0,
+    "origin_integrated": true,
+    "reviewer_session": "01a13a34-bed7-7b00-884f-9afbc3bc9a33",
+    "reviewer_tools_ceased": true,
+    "evidence_commit": "f77a61b7fe82ed8cc6d1ba3d4a22fcf1034ebcdb",
+    "evidence": [
+      {
+        "name": "jev-documents-find-score.json",
+        "sha256": "0a097dd4ebb863e0b9f2cefe24e821100054c736f3138dce28a294f858614a2e",
+        "git_blob": "6a98103eee3a9edb5c1e267d5d43e61d3e4bb195"
+      },
+      {
+        "name": "jev-find-score.json",
+        "sha256": "840a21f69cfc37fb4c7fd053d5d2b1193664e936c63b43962e4825c6b3e0f112",
+        "git_blob": "8cc649929067587faade57402ab08147c6f2599d"
+      },
+      {
+        "name": "lint-original.json",
+        "sha256": "ec304efb2779fc0045ddc226f7ca43eada532ce5e767c247cae15b0a07dde1db",
+        "git_blob": "9ced6a173cdb76e5beea7c82adc765909bc5760b"
+      },
+      {
+        "name": "lint-provenance.json",
+        "sha256": "0de49575165cc5c86fa550342ffefda97b88f38c67e8d2cb75bc89e3bc1d1457",
+        "git_blob": "9d575881bbbc728e3b7272a8e4451a11ed2bf023"
+      },
+      {
+        "name": "lint.json",
+        "sha256": "4803dc252948eff345757136cca5ec6200b7f0b03f84f47e217c71d0d625204c",
+        "git_blob": "f95ea4b2a5d3cd3cb70a2bb4eb4c87546ecf8642"
+      },
+      {
+        "name": "preview.json",
+        "sha256": "74c95e4a27dcdc025e09a2a6a1fd7ee26f7b5085dd940d2f7f1db1092c2f1962",
+        "git_blob": "084659792d4936e10c937c9e9aa5b0ebb73eb89b"
+      },
+      {
+        "name": "report.md",
+        "sha256": "d2caa53bbad69bd08a46d0198dbbcdca4c8d9d5be769c507cd5a6e2c349080f1",
+        "git_blob": "17f3953efcdc529bb2c4d666b8571c7f67148dad"
+      },
+      {
+        "name": "result.json",
+        "sha256": "bcb3c6c9b4604e3ea1a78716e16e07c39a27bd23e7fded9c75accaabc0d3170a",
+        "git_blob": "529d937f06a9660237de731d3262e73ef1193103"
+      },
+      {
+        "name": "rules.json",
+        "sha256": "3ad0cc506a92ae9532f3cf32ba42a7a2c569c2d11f364a8c1461b4dd170fa32e",
+        "git_blob": "1f188b8f881b45d8015c836be769cabd44da7bb5"
+      },
+      {
+        "name": "verification.json",
+        "sha256": "361f29b43bbc0ad37cdac9fd0a66c24513a4a9be63e37930cd9dcba4c934e95f",
+        "git_blob": "6c3f4cbe3c54250231ed71cc1b3c01a8391f6728"
+      }
+    ],
+    "hash_scope": "SHA256 records pre-cleanup canonical worktree bytes; Git may normalize text CRLF to LF. git_blob identifies independently preserved committed content."
+  },
+  "cleanup_final": {
+    "schema_version": 1,
+    "kind": "git-worktree",
+    "managed": true,
+    "purpose": "review",
+    "key": "SAR-REFACTOR-002-OPS-REVIEW",
+    "repository": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\coor",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-a8147ab97d774fa685b11fc96603488e",
+    "head": "3562662f5f836debd22a255afcbf52ea930e965b",
+    "implementer_session": "01a13a26-fcf7-7182-a926-8b14d44eaec6",
+    "reviewer_session": "01a13a34-bed7-7b00-884f-9afbc3bc9a33",
+    "owner": "coor",
+    "evidence": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS-REVIEW-review",
+    "state": "removed_user_authorized",
+    "removal": {
+      "method": "Orca worktree rm; no force; archive hooks not run",
+      "coordinator_session": "01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+      "preflight": "C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002-ops/snapshot-cleanup-preflight.json",
+      "canonical_evidence_commit": "f77a61b7fe82ed8cc6d1ba3d4a22fcf1034ebcdb",
+      "actual_path_absent": true,
+      "git_detached_remaining": 0,
+      "automatic_cleanup_or_historical_pass_claimed": false,
+      "reason": "User-authorized cleanup of completed coordinator-owned detached reviews; host reviewer actual final cessation confirmed, no Orca reviewer dispatch exists."
+    }
+  }
+}
