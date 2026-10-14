@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- 후속 검수 준비: tester SAR-LANDING-GUIDE-001-TESTER와 designer SAR-LANDING-GUIDE-001-VISUAL은 Astra high 인박스/route만 준비했고 DEV 최종 worker_done 뒤 고정 SHA·packet을 갱신해 배정한다. 예비4795d619의 실제 make lint/test/build 및 DB integration은 exit0이며 오류0·기존 SIZE 경고2다. 아직 최종 수락·운영 배포 성공은 아니다. coor Orca preview page88cad09c-ab0b-4aba-ae6f-c11ec3be5658은 합성 google fixture127.0.0.1:18781이고 운영 계정은 사용하지 않는다.
+
 - DEV 질문 msg_8b9dc2666080: nil DB 단위 fixture가 전역 rate wrapper를 호출해 panic했고 수정용 inline Python/PowerShell 명령이 자동 검토에서 blocked by policy로 거부됐다. coor가 원 call_a0b84ac8954c41208d0df30778fa2355와 실제 테스트를 확인·외부 blocked-test-edit-evidence.json에 보존했다. 원 명령/다른 셸 변형은 재실행하지 않고 더 안전한 명시적 apply_patch로 테스트 준비만 바로잡도록 reply했다. content/provider/error 검증은 유지하고 Cache/CSP는 실제 합성DB의 익명·유효세션 GET 모두로 옮겨 실제 검사한다. 원 panic·거부는 보존하며 guard/보안/제품 기준 변경이나 실패 PASS 처리는 허용하지 않았다.
 
 - DEV 착수 task_f0d345aa84d2 / ctx_65212ab451f7 / term_31385176-8c59-4002-a838-35497b00e416. ready·turn_started와 requested/effective codex/gpt-6-astra/high 일치를 확인했다. 설계 eae9a8b는 main/origin b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e에 일반 push/fetch일치·양쪽조상0이다. 설계 msg_3d1059638d28 hold해제·delivery_e538674cc284 ACK, designer ctx_074184d23af0은 정상 release/transcript captured다. dev/tester/designer terminal0·clean을 재확인해 b0f6596으로FF했고 OPS 기존 사용자 공간은 보존했다. DEV는 새 코드의 실제 필수 검사·격리 브라우저 fixture를 제공하며 독립 QA/시각/코드리뷰는 후속이다.
