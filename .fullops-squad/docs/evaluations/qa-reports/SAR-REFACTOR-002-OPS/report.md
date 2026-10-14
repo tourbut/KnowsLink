@@ -16,6 +16,7 @@ summary: 수락 제품8a93e38의 실제 배포·백업·격리복원·보존·�
 - 사용자 실제 배포 승인과 현재 역할 인박스를 적용했다. 제품 변경·계정 송수신·재등록·키 교체·다른 서비스 변경·삭제/이동 정리는 수행하지 않았다.
 - 준비 HEAD는 `63ba2167352a4b6b1ec2df8782841ba768963176`, 기준 제품은 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`, 브랜치는 `fullops/ops`다. 결과 문서 커밋은 worker_done의 `SHA:`이며 배포 제품과 다르다.
 - Task `task_6e35fa7983b5`, Dispatch `ctx_82a534ee9cf7`, worker `term_d9fae13d-e296-47fa-b737-f71ae73a48d0`, 복귀 Run `run_5534969da2d0`이다.
+- 실제 작성자 CODEX_THREAD_ID는 `01a13a26-fcf7-7182-a926-8b14d44eaec6`다.
 - AGENTS/FULLOPS, fullops-common-0.3.3, project.md, D07/D12/D13, document-writing과 현재 OPS context를 읽었다. fullops-orca/work/deliverables를 적용했다. 단일 운영 writer 전환은 직접 직렬 수행했다. coor의 독립 결과 리뷰는 후속이다.
 - 2026-10-14 11:27:54Z의 fresh baseline은 `2747fe98653d5c6946f41c219fc256395333d7fe`, detached·clean·relay/Postgres healthy였다. 과거10월13일 관측을 현재 상태로 사용하지 않았다.
 
@@ -51,13 +52,14 @@ summary: 수락 제품8a93e38의 실제 배포·백업·격리복원·보존·�
 - Events Exp `2026-10-14T11:55:42.375744Z`, Verified `2026-10-14T10:55:42.375744Z`, attempts1·pending=false·lease=false·Next와 identity digest가 같다.10월13일보다 연장된 현재 구독을 관측했지만 이번 작업이 갱신한 것은 아니다.
 - schema SHA256·goose/guard/HumanModel·Google env·Tunnel config/credential·파일 mode가 같다. 기존 백업15개 hash/크기/mode를 보존했고 새 백업1개만 추가했다.
 - relay/migrate 외 기존 컨테이너31개의 ID·image·running·health·시작시각·restart가 같다. KnowsLink Postgres/cloudflared도 포함한다. host cloudflared PID506937과 loopback8080/5432 listener도 같다.
-- Rates만 digest가 다르고 개수4는 같다. 기존 `identity.go`의 요청 시각 기록과 window 정리 및 local 보호 검사가 갱신하는 volatile map이다. 권한 변경으로 해석하지 않는다. HTTP map은 검사 전후 빈 상태다. 모든 비교를 byte 불변이라고 과장하지 않는다.
+- Rates는 baseline4개, before/frozen/after5개이며 전환 전후 digest가 다르다. 기존 `identity.go`의 요청 시각 기록과 window 정리에 따라 변하는 volatile map이다. 정확히 어느 요청이 차이를 만들었는지는 집계 증거로 확정할 수 없다. 권한 변경으로 해석하지 않는다. HTTP map은 검사 전후 빈 상태다. 모든 비교를 byte 불변이라고 과장하지 않는다.
 
 보존 assertion33개가 통과했다. 만료 가능한 데이터도 이번 짧은 전환 중 일치했다. 향후 정상 만료·cleanup·사용자 요청에 따른 변경까지 금지하는 보장은 아니다.
 
 ## 공개·공유 검사
 
 [public-smoke.json](public-smoke.json)의21개 HTTPS 검사가 통과했다. 실제 송신·pull/receive·ACK·token 소비·로그인을 하지 않았다. 응답 본문·cookie·redirect URL은 보존하지 않았다.
+이 smoke는 상태 코드와 선택한 보안/redirect header만 판정했다. OAuth metadata 응답 본문의 의미·필드·URL 계약은 검증하지 않았다. 재현에 사용한 이전 manifest의 사본과 원 경로/hash는 [재현 의존성](smoke-input-manifest.json)에 보존했다.
 
 - `/`200과 no-store/CSP/no-referrer/nosniff; 무세션 `/home`, `/home/friends`, `/home/agents`303과 expired redirect.
 - `/healthz`, `/owner`, `/v1/owners`, 정확 `/v1/keys`, `/v1/authorize`, `/v1/test/pull`, `/_probe`404.
@@ -81,11 +83,13 @@ fresh baseline과 build 직전의 실제 container Image는 `sha256:220edb718b2f
 
 수락 DEV `3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46`와 배포8a의 cmd/internal/adapters/db/deploy/scripts 및 build/config/dependency 입력 diff0을 직접 확인했다. [gate-reuse.json](gate-reuse.json)은 실제 final DEV Linux make lint/test EXIT0과 입력 동일성을 연결한다. 별도 build·Postgres race·독립 QA는 [최종 제품 리뷰](../SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md)와 [QA 리뷰](../SAR-REFACTOR-002-QA-REVIEW-review/report.md)의 원 SHA/조건으로 재사용한다. 새 문서 HEAD의 실행 PASS로 바꾸지 않는다.
 
-이번 제품 코드·테스트·설정·의존성 변경은 없다. task-local 운영 명령은 LF/syntax·직접 실행·보존 assertion·공개 검사로 검증했다. 변경 문서는 D12/D13·README·operations·OPS phase/context/QA다. 산출물 strict는13개·문제0·경고0이고 JSON/packet72쌍·frozen-to-after assertion·git diff --check를 통과했다.
+이번 제품 코드·테스트·설정·의존성 변경은 없다. task-local 운영 명령은 LF/syntax·직접 실행·보존 assertion·공개 검사로 검증했다. 변경 문서는 D12/D13·README·operations·OPS phase/context/QA다. 산출물 strict는13개·문제0·경고0이고 JSON/첫 packet72쌍·frozen-to-after assertion·git diff --check를 통과했다.
 
-Windows 현재 PATH에 make가 없다. 이 문서 결과의 최종 커밋에서 설치 FullOps1.4.2 lint를 기준8a로 실행하며 원 결과는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002-ops/final-lint.json`에 보존한다. 실제 반환 결과는 worker_done에서 전달한다. 등록 make lint/test가 unavailable이면 새 PASS로 보고하지 않는다. 제품 입력 변경이 없어 지시서에 따라 위 exact DEV Linux gate를 재사용하고 반복 전체 제품 검사를 추가하지 않는다. 검사기/설정/환경을 완화하거나 통과를 위조하지 않는다.
+Windows 현재 PATH에 make가 없다. 첫 문서 커밋8ae9bd11bdcf4858c3953535b8ddb728d1624e63의 설치 FullOps1.4.2 lint는 ERROR0·WARNING1·unavailable2·종료1이었다. WARNING은 기존 PLANS 크기이며 make lint/test는 실행 불가다. 원 결과는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002-ops/final-lint.json`에 보존한다. 보완 최종 커밋에서도 기준8a로 실행하고 별도 `corrected-lint.json`에 보존한다. 실제 반환 결과는 worker_done에서 전달한다. 등록 make lint/test가 unavailable이면 새 PASS로 보고하지 않는다. 제품 입력 변경이 없어 지시서에 따라 위 exact DEV Linux gate를 재사용하고 반복 전체 제품 검사를 추가하지 않는다. 검사기/설정/환경을 완화하거나 통과를 위조하지 않는다.
 
-착수 packet의 과거 head8a와 실제 준비HEAD63ba 불일치를 확인했다. 공식 `jev_packet.py --force --write-inbox`로 현재HEAD packet을 만들었고 필수19개 경로를 유지했다. 현재69경로·72개 path/category별 outcomes와97경로의 존재/hash/관련 제목·검색 구간을 기록했다. partial/unknown18개·과거 producer4개는 현재 의미 검색 성공으로 승격하지 않았다. 큰 D12/PLANS·과거 archive는 필요한 구간을 수동 확인했다. PLANS는 coor 소유라 수정하지 않았다. 과거 CODE/FINAL 실패와 수락 FINAL-MAIN/QA, 운영 미배포 설명과 이번 실제 배포 시점을 구분했다. 과거 문서 전문 재감사는 주장하지 않는다.
+착수 packet의 과거 head8a와 실제 준비HEAD63ba 불일치를 확인했다. 공식 `jev_packet.py --force --write-inbox`로 현재HEAD packet을 만들었고 필수19개 경로를 유지했다. 첫 완료의69경로·72개 path/category별 outcomes와97경로의 존재/hash/관련 제목·검색 구간을 기록했다. partial/unknown18개·과거 producer4개는 현재 의미 검색 성공으로 승격하지 않았다. 큰 D12/PLANS·과거 archive는 필요한 구간을 수동 확인했다. PLANS는 coor 소유라 수정하지 않았다. 과거 CODE/FINAL 실패와 수락 FINAL-MAIN/QA, 운영 미배포 설명과 이번 실제 배포 시점을 구분했다. 과거 문서 전문 재감사는 주장하지 않는다.
+
+coor msg_225b9e343e18의 문서 보완5건은 같은 과제를 공식 reopen해 처리했다. 첫 완료8ae9bd11bdcf4858c3953535b8ddb728d1624e63의 원 archive를 보존하고 Rates 수치·목차 배포 링크·공개 운영 front matter·metadata 의미 미검증·smoke 입력 의존성을 보완했다. 제품/운영 변경이 없어 서버 검사를 반복하지 않았다. 보완 attempt의 packet227경로·outcomes230쌍과 완료 전문도 별도로 보존한다. unknown19개·remaining197개는 [보완 탐색 감사](correction-packet-audit.json)의 경로/hash·검색 발췌와 문서 역할을 확인했다. 공통 coor 단어로 잡힌 과거 기록을 이번 수정 대상으로 넓히지 않았다. 입력21개 계약·사본 hash·JSON 검사는 통과했다.
 
 ## 후속·보존 위치
 

@@ -21,3 +21,5 @@ summary: 고정 제품의 보존 배포와 이전 이미지 조회 실패의 안
 복구는 현재 DB 새 백업과 같은 HumanModel writer의 검토된 소스/이미지 후보로만 한다. 과거 DB 덮기·Down·삭제/이동 정리·volume 삭제·key 변경은 하지 않는다. Grok 로컬 bundle·watcher는 별도 owner 후속이다. Dots 기존 Remote 연결은 유지한다.
 
 원 SHA·UTC/KST·이미지/백업 hash·현재 구독·실패 원문·재사용gate·미실행·보존 경로는 [QA 보고](../../evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md)에 있다. 지시서의 과거 partial/unknown·시점 충돌은 수동 보완했으며 의미 검색의 완전성이나 과거 전문 재감사를 주장하지 않는다.
+
+coor 선행 검수 msg_225b9e343e18 뒤 같은 과제를 attempt6351f64df1664de387537437dc532401로 공식 reopen했다. 첫 결과8ae9bd11bdcf4858c3953535b8ddb728d1624e63과 원 archive는 보존했다. Rates baseline4/전환5, docs 목차의 현재 배포 링크, 공개 운영 front matter, metadata 본문 미검증, smoke 입력 사본·경로/hash를 보완했다. 실제 작성자 CODEX_THREAD_ID는 01a13a26-fcf7-7182-a926-8b14d44eaec6다. 문서·파생 증거만 변경했으므로 운영 호출을 반복하지 않았다.

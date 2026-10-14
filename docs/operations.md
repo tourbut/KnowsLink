@@ -1,3 +1,12 @@
+---
+title: 운영·업데이트·복구
+status: draft
+updated: 2026-10-14
+owner: ops
+tasks: [SAR-REFACTOR-002-OPS]
+summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복구 경계를 설명한다.
+---
+
 # 운영·업데이트·복구
 
 2026-10-14 운영 제품은 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`다.

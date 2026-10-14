@@ -1,0 +1,14 @@
+{
+  "source_path": "C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\refactor001-ops\\public-smoke.json",
+  "source_sha256": "282393da62d5473367a7f001e41c10c326a14a5ceb063498948a4facbe5c7cd7",
+  "copy_path": "smoke-input-refactor001.json",
+  "copy_sha256": "1d68be3b90ddf8bd9abbe395ae4ce5f03028dea33dfd9a57cff09d2f05279970",
+  "normalization": "CRLF to LF only; JSON data identical",
+  "script_path": "C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\refactor002-ops\\public-smoke.py",
+  "script_sha256": "52a9531417d4e8d428e4939996b3ba674e19f99c91e906d40580f089ce47f2d7",
+  "script_archive": "commands.txt section public-smoke.py",
+  "script_relative_input": "../refactor001-ops/public-smoke.json",
+  "reproduction": "Place the archived script in a dedicated refactor002-ops directory and this input copy at sibling refactor001-ops/public-smoke.json; output overwrites public-smoke.json only in the dedicated script directory. No requests were rerun for this documentation correction.",
+  "probe_count": 21,
+  "scope": "HTTP status and selected headers only; OAuth metadata body semantics untested"
+}

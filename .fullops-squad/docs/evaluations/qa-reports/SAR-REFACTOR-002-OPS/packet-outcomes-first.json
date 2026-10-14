@@ -1,0 +1,441 @@
+{
+  "task_key": "SAR-REFACTOR-002-OPS",
+  "role": "ops",
+  "attempt": "3344417eb706415eaf6e4411c7e5fc35",
+  "packet_input_sha256": "4d53dd7bf5d01abeb18f8e136363c2895dbc74ee3e54113423674acfdedd64c4",
+  "uncertainty_review": "공식 현재HEAD63ba startup packet을 갱신했다. 필수19개를 유지했고69경로 및 모든 path/category를 처리했다. 원/현재 packet·unknown/remaining/producer 잔여를 합친97경로의 존재/hash·관련 제목/검색 구간을 직접 확인했다. 현재unknown18개 중 stale producer4개는 현행 의미 판단으로 사용하지 않았다. oversized PLANS는 coor 소유이고 과거 archive는 당시 기록으로 보존했다. beta 원문에서 내부삭제를 확인해 금지 경로를 실행하지 않았다. 과거 운영2747와 fresh baseline 및 배포8a를 구분하고 CODE/FINAL 실패는 수락FINAL-MAIN/QA와 별개로 보존했다. D12/D13의 과거 중지/미배포는 최신 사용자 명시승인과 이번 실제 관측으로 시점을 구분했다. 최신 수락·실제 build/backup/restore/보존/public 결과가 판정 근거다. 동적 호출 완전 탐색·과거 문서 전문 재감사를 주장하지 않는다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,11,21,55,67,79,83; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 5,7,9,12,14,18,20,30; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/commands.txt",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 전체 코드/명령; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,14,21,44,65,78; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,12,22,26,30; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,14,18,24,26; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,12,20,24,34; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 2,4,6,7,9,14,17,24; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,25,29,36,58,64; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,5,15,21,27,31; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,5,13,19,25,29; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,5,11,17,23; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,11,24,28,36,48,54; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 4,7,10,16,28,50,67,74; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,16,28,50,67,74; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 2; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 1; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 1,2,3; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 전체 코드/명령; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,16,17,19,31; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,83,84; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,14,26,28; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,14,20,26,32,37; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,26,29; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,18,20,32; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,20,35,59; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,18,38,47; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,22,24,32; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,9,12,14,20,25,29,53; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,22,34,46; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,18,29,47,53; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-RESULT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-RESULT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 1,13,17,22,28,42; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,14,22,36,53,64; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,18,22; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,12,22,32,34; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 2,4,6,7,10,17,40,42; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,16,28,40; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,12,22,24,34; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 2,4,6,7,10,16,30,50; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,14,27,44,56; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 1,13,17,22,28,42; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,14,27,44,56; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,29,43,55; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,17,23,34,52; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,18,26,32,40; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,20,34,40,66; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,24,32,50,58; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,14,20,30; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,12,27,29; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,22; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,23,49,58,73; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 5,9,12,14,28,38,46,55; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 5,8,11,13,25,31,39,45; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 5,8,11,13,25,31,39,45; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,8,11,13,33,37,49,53; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,15,18,21,32,37; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,36; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,38; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,34; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,32; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,10,13,15,17,18; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,11,18,34,53,73,100; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,14,26,70,84,115; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,24,40; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,19,38,56,73,97; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 1,7,25,40,68,97,113,130; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 1,8,17,42,63,77,107; packet-audit.json에 원문hash/발췌를 보존했다."
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,8,17,42,63,77,107; packet-audit.json에 원문hash/발췌를 보존했다."
+    }
+  ]
+}

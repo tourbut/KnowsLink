@@ -1,441 +1,1389 @@
 {
   "task_key": "SAR-REFACTOR-002-OPS",
   "role": "ops",
-  "attempt": "3344417eb706415eaf6e4411c7e5fc35",
-  "packet_input_sha256": "4d53dd7bf5d01abeb18f8e136363c2895dbc74ee3e54113423674acfdedd64c4",
-  "uncertainty_review": "공식 현재HEAD63ba startup packet을 갱신했다. 필수19개를 유지했고69경로 및 모든 path/category를 처리했다. 원/현재 packet·unknown/remaining/producer 잔여를 합친97경로의 존재/hash·관련 제목/검색 구간을 직접 확인했다. 현재unknown18개 중 stale producer4개는 현행 의미 판단으로 사용하지 않았다. oversized PLANS는 coor 소유이고 과거 archive는 당시 기록으로 보존했다. beta 원문에서 내부삭제를 확인해 금지 경로를 실행하지 않았다. 과거 운영2747와 fresh baseline 및 배포8a를 구분하고 CODE/FINAL 실패는 수락FINAL-MAIN/QA와 별개로 보존했다. D12/D13의 과거 중지/미배포는 최신 사용자 명시승인과 이번 실제 관측으로 시점을 구분했다. 최신 수락·실제 build/backup/restore/보존/public 결과가 판정 근거다. 동적 호출 완전 탐색·과거 문서 전문 재감사를 주장하지 않는다.",
+  "attempt": "6351f64df1664de387537437dc532401",
+  "packet_input_sha256": "035941de299c231a57641f77d3d6181887c1c696c87956d996b3e7dd644523b4",
+  "uncertainty_review": "공식 현재HEAD8ae9bd11bdcf4858c3953535b8ddb728d1624e63의 보완 attempt packet을 사용했다. 227경로의 존재/hash와 검색 발췌/문서 역할을 확인했고 remaining197개도 이 목록에 포함된다. unknown19개 중 과거 producer4개는 현행 의미 검색 성공으로 처리하지 않았다. 큰 PLANS/D12/역사 archive의 관련 제목·검색 구간을 수동 점검했으며 이전 packet-audit와 원 outcomes를 보존했다. 공통 coor 단어가 넓게 잡은 과거 문서는 이 보완의 수정 근거가 아니다. 전체 과거 문서의 전문 재감사나 동적 호출 완전 탐색은 주장하지 않는다. first deployment 제품8a·첫결과8ae·현재 문서보완을 구분하며 당시 보류/실패는 보존한다.",
   "items": [
     {
       "path": ".fullops-squad/FULLOPS.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,11,21,55,67,79,83; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
-      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "path": ".fullops-squad/docs/agents/document-writing.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 5,7,9,12,14,18,20,30; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/commands.txt",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/packet-audit.json",
       "category": "impact_check",
       "status": "completed",
-      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 전체 코드/명령; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
-      "category": "document_read",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/public-smoke.json",
+      "category": "impact_check",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,14,21,44,65,78; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
-      "category": "document_read",
-      "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,12,22,26,30; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
-      "category": "document_read",
-      "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,14,18,24,26; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
-      "category": "document_read",
-      "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,12,20,24,34; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/handovers/to_ops.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 2,4,6,7,9,14,17,24; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
     },
     {
       "path": ".fullops-squad/project.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,25,29,36,58,64; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,5,15,21,27,31; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,5,13,19,25,29; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,5,11,17,23; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,11,24,28,36,48,54; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "필수 규약 또는 기존 증거를 읽고 이번 문서 보완에 적용했다. 기존 제품/운영 검사 결과를 재실행 결과로 바꾸지 않는다."
     },
     {
-      "path": "README.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 4,7,10,16,28,50,67,74; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": "README.md",
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,16,28,50,67,74; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": "deploy/knowslink/beta.sh",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 2; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": "deploy/knowslink/compose.ops.yaml",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 1; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": "deploy/knowslink/tunnel/public-ingress.yml",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 1,2,3; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": "deploy/knowslink/verify.py",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "기존 운영 도구/설정 원문과 고정 제품 diff를 직접 확인했다. beta 내부 삭제 경로는 실행하지 않고 검증된 무삭제 수동 명령 및 현재 public/local 검사를 사용했다. 확인 구간 전체 코드/명령; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": "docs/system-design.md",
-      "category": "document_read",
-      "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,6,7,10,16,17,19,31; packet-audit.json에 원문hash/발췌를 보존했다."
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,83,84; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,14,26,28; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/contexts/ops.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 4,7,10,14,20,26,32,37; packet-audit.json에 원문hash/발췌를 보존했다."
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/contexts/tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,26,29; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,18,20,32; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,20,35,59; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,18,38,47; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,7,9,12,14,22,24,32; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
-      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,9,12,14,20,25,29,53; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,22,34,46; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS-RESULT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-DOC-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-DOC-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-FINAL-DOC-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,18,29,47,53; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-FINAL-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-RESULT-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-RESULT-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 1,13,17,22,28,42; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,14,22,36,53,64; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,18,22; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,12,22,32,34; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 2,4,6,7,10,17,40,42; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,16,28,40; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,12,22,24,34; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 2,4,6,7,10,16,30,50; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,14,27,44,56; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 1,13,17,22,28,42; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/evidence-copy-audit.json",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/preservation.json",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/smoke-input-manifest.json",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,14,27,44,56; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-OPS-RESULT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,29,43,55; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,17,23,34,52; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,18,26,32,40; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,20,34,40,66; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,24,32,50,58; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,14,20,30; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,12,27,29; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-OPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,7,10,22; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,12,23,49,58,73; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 5,9,12,14,28,38,46,55; packet-audit.json에 원문hash/발췌를 보존했다."
-    },
-    {
-      "path": ".fullops-squad/docs/operations/transition.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 5,8,11,13,25,31,39,45; packet-audit.json에 원문hash/발췌를 보존했다."
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 5,8,11,13,25,31,39,45; packet-audit.json에 원문hash/발췌를 보존했다."
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 5,8,11,13,33,37,49,53; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-PREP-002-request.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-SETUP-001-question.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-SETUP-001-request.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,15,18,21,32,37; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,36; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,38; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,34; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,15,18,20,25,32; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,6,9,10,13,15,17,18; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": ".fullops-squad/orca-agents.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,11,18,34,53,73,100; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": ".fullops-squad/rules/delegation.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": "adapters/README.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,14,26,70,84,115; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
     },
     {
       "path": "docs/README.md",
       "category": "document_read",
-      "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,24,40; packet-audit.json에 원문hash/발췌를 보존했다."
+      "status": "completed",
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
     },
     {
       "path": "docs/architecture.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 4,7,10,19,38,56,73,97; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": "docs/development.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "원문 존재/hash와 관련 제목·검색 구간을 확인했다. 과거 QA/계획/인계 또는 제품 변경 없는 설계 참조이므로 원시점·기존 held·별도 담당 내용을 보존했다. 전문 재감사는 수행하지 않았다. 확인 구간 1,7,25,40,68,97,113,130; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     },
     {
       "path": "docs/operations.md",
       "category": "document_update",
       "status": "completed",
-      "reason": "실제 적용 제품·시간·백업·보존·원 실패와 재빌드 복구 후보·클라이언트 후속을 이번 배포 근거로 갱신했다. 확인 구간 1,8,17,42,63,77,107; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
     },
     {
       "path": "docs/operations.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필수 정본 또는 현재 관련 구간을 직접 읽어 승인·writer/보존·정확 SHA·수락 범위에 적용했다. 과거 시점과 현재 배포 상태를 분리했다. 확인 구간 1,8,17,42,63,77,107; packet-audit.json에 원문hash/발췌를 보존했다."
+      "reason": "현재 보완 범위 원문과 변경을 확인했다. Rates 수치·원인 한계, 현행 배포 링크, 문서 형식, metadata 미검증, 입력 재현 증거와 인계 중 해당 내용을 반영했다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "correction-packet-audit.json의 존재/hash와 검색 발췌·문서 역할을 확인했다. coor/과제명/운영 문서 참조로 잡힌 과거 기록 또는 참조 문서이며 이번 다섯 보완의 수정 대상이 아니다. 과거 SHA·시점·미검증을 현재 수락으로 승격하지 않고 보존한다."
     }
   ]
 }

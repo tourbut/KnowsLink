@@ -42,7 +42,9 @@
       "after_digest": "a59431b8356de0176816d8b7a29ef2ca3ff6dcd50b399918056fb71558003090",
       "before_count": 5,
       "after_count": 5,
-      "reason": "Local unauthenticated verification and the running request/cleanup loop update rate windows; every other recorded state map and all remote maps match."
+      "reason": "Volatile rate timestamps/window changed; the exact contributing requests are not established by aggregate evidence. Every other recorded state map and all remote maps match.",
+      "baseline_count": 4,
+      "frozen_count": 5
     }
   },
   "preserved_existing_containers": 31,
