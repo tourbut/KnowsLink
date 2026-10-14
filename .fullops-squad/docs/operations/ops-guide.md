@@ -2,14 +2,28 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-13
+updated: 2026-10-14
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-REFACTOR-002 운영 적용 결과 (2026-10-14)
+
+현재 운영 제품은 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`다. 직전 `2747fe98653d5c6946f41c219fc256395333d7fe`에서 무삭제 bundle·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 아래 날짜별 절은 당시 기록이다.
+
+- 중단 관측은 11:30:57Z~11:31:13Z(20:30:57~20:31:13 KST), 약16초다. detached·clean·relay/Postgres healthy·restart0을 확인했다. schema·migration·배포 설정·의존성 변경은 없다.
+- 백업은 `backups/2747fe9-pre-refactor002-20261014T113101Z.dump`, 0600·20039bytes·TOC25줄이다. 안정 epoch1001476·다른 DB client0에서 생성했다. network-none 복원의 전체 data digest가 frozen DB와 같다. goose2·guard1·HumanModel1과 downgrade 쓰기 거부를 확인했다. 실제 운영 DB는 복원하지 않았다.
+- 회원2·agent28·친구1·pair13·메시지/멱등11·Remote 설치2·구독1·Inbox0의 전후 digest가 같다. Rates만 요청 검사·시간 정리에 따라 달라졌다. 기존 백업15개와 공유 컨테이너31개·Google/Tunnel 설정·credential 파일 권한을 보존했다.
+- 공개 보호·metadata·공유 smoke21개와 보존 assertion33개가 통과했다. 기동 약3분 뒤 relay error/panic0·Tunnel error0이다. Events 구독 만료11:55:42.375744Z·Verified10:55:42.375744Z를 보존했다. 향후 갱신·호스트 화면 성공을 의미하지 않는다.
+- 전환 후 이전 image 주소 조회가 종료1이었다. 삭제 명령은 실행하지 않았다. 같은 직전 SHA의 별도 archive에서 `knowslink-rollback:2747fe9-refactor002-20261014`를 만들었다. 이미지 ID는 `sha256:12f1313a1460997710d727eb543eebdf9b4dee5b8f8ffdc01dc25d50442bc72a`다. 원 이미지 동일성·실제 rollback 성공은 미확인이다. 다음 배포는 build 전에 고유 rollback 태그를 고정하고 조회를 확인한다.
+
+복구는 writer 중단·현재 DB 새 백업 뒤 같은 writer의 검토된 코드/복구 후보로만 한다. 과거 DB 덮기·Down·삭제 정리는 금지한다. Grok Inbox 수정은 같은 prefix·연결 폴더·key·routine을 보존한 로컬 bundle/MCP/watcher 갱신이 필요하다. Dots 서버 수정은 기존 Remote 연결의 다음 요청부터 적용된다. 새 연결·계정 발송은 실행하지 않았다.
+
+실행 명령·원 실패·이미지/백업 hash·임시자료 보존·gate 재사용 범위는 [운영 보고](../evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md)를 따른다. 결과 문서의 독립 리뷰와 main 통합은 coor가 맡는다.
 
 ## SAR-REFACTOR-001 운영 적용 결과 (2026-10-13, SAR-REFACTOR-001-OPS)
 

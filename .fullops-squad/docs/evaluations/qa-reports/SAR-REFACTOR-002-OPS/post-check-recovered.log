@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-14T11:34:22.964122+00:00",
+  "relay_error_panic": 0,
+  "google_configured": true,
+  "tunnel_errors_after_up": 0,
+  "retained_rehearsal": "exited",
+  "backup": {
+    "sha256": "3e92b655bd884378cd04d9624804d60d5d607c5c07fffe865525301cea9dc6cf",
+    "mode": "0o600",
+    "bytes": 20039
+  },
+  "old_backup_count": 15,
+  "new_backup_count": 16,
+  "shared": {
+    "orca": {
+      "python_status": 403,
+      "curl_status": 200
+    },
+    "s8": {
+      "python_status": 403,
+      "curl_status": 200
+    },
+    "mcp": {
+      "python_status": 403,
+      "curl_status": 401
+    }
+  },
+  "host_cloudflared_pids": [
+    "506937"
+  ],
+  "fixture_network": "none",
+  "fixture_ports": {},
+  "fixture_exit": 0,
+  "fixture_retained": true,
+  "current_head": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "clean": true,
+  "previous_image_retained": false,
+  "rebuilt_rollback_image": "sha256:12f1313a1460997710d727eb543eebdf9b4dee5b8f8ffdc01dc25d50442bc72a",
+  "rebuilt_rollback_source": "2747fe98653d5c6946f41c219fc256395333d7fe",
+  "relay_image": "sha256:482d3197fe7ca26eef7918a2061feede01bd5199dfd8be37af5f46c4e381343d",
+  "relay_health": "healthy",
+  "relay_restarts": 0
+}
+
+EXIT=0

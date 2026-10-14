@@ -1,15 +1,15 @@
 {
   "task_key": "SAR-REFACTOR-002-OPS",
   "role": "ops",
-  "head": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "head": "63ba2167352a4b6b1ec2df8782841ba768963176",
   "attempt": "3344417eb706415eaf6e4411c7e5fc35",
-  "instruction_sha256": "183540f4e6ab6af7e94b41f7a98a7ee2dd33010641561e80ce9f5c6453d6bfc1",
+  "instruction_sha256": "fe166fe0ffcd08f7f2a733e20f02dc766a435adfe202bb66609a53ed873b9baa",
   "options": {
     "policy": "packet-v3",
     "seeds": [
-      ".fullops-squad/PLANS.md",
       ".fullops-squad/docs/operations/ops-guide.md",
       ".fullops-squad/docs/operations/transition.md",
+      "README.md",
       "docs/operations.md"
     ],
     "required": [
@@ -355,7 +355,7 @@
       ".fullops-squad/handovers/logs/2026-10-14_to_tester.md": "97b7343dd160e0409ff30580b20b4b5af472536a54db891cd6a6fd7e0231d2fe",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md": "ad041e7f93cbe1a64a12b54a1597ba1bdb93797ee2a19a66f6e6532575a1a517",
-      ".fullops-squad/handovers/to_ops.md": "183540f4e6ab6af7e94b41f7a98a7ee2dd33010641561e80ce9f5c6453d6bfc1",
+      ".fullops-squad/handovers/to_ops.md": "fe166fe0ffcd08f7f2a733e20f02dc766a435adfe202bb66609a53ed873b9baa",
       ".fullops-squad/lint/README.md": "0cb6778284b49417e0a93d213a55b6b18a33e205782d11bcdee8769800e3f546",
       ".fullops-squad/orca-agents.md": "a89bd7dd864dd1c5686a81b6d7faae1feb27c80807d434eb32178531369cf52f",
       ".fullops-squad/project.md": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
@@ -469,17 +469,12 @@
       "scripts/verify_setup.py": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
       "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0"
     },
-    "search_results": {
-      "route": "877cc7c2195f6ca144a4a343aadd78e20a3bea10a94017bead7ad3e43745400f",
-      "find": "bb0dc5a23fd63922523a41fb430cc75e8bfdbe3e1137a1c23e9e05d12668929c",
-      "documents-find": "8133fe8110c17880e9fa3f500ddd59fc778c2d1f8d9fd4b0e26c76de86668f2e",
-      "context": "f6e87ebb568f745846c905a4289a3a0a68b25a20816749eb709aaf37966e1fcf"
-    },
+    "search_results": {},
     "decisions": []
   },
-  "input_sha256": "d9b928411c267820417701dbae40addc3fb48dbff6afd40c75fbe2c5c5061e14",
+  "input_sha256": "4d53dd7bf5d01abeb18f8e136363c2895dbc74ee3e54113423674acfdedd64c4",
   "version": "jev-packet-v2",
-  "base": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "base": "63ba2167352a4b6b1ec2df8782841ba768963176",
   "worktree_dirty": true,
   "items": [
     {
@@ -496,8 +491,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "15a8f741cbb124fd339606aa01228b1072a0143487764636a8f0280f03ea3994",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/design-docs/database-design.md",
@@ -549,15 +543,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "b3a220fcb56c3d8c5bac9e0ab3cbbc6260fa00956d70193c25dfe1aac3783bf4",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.17,
-        "evidence": 0.46,
-        "contradicts": 0.34,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/commands.txt",
@@ -583,7 +569,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "0ad875f279c331fdccf6dce9184b530f5c4e35cbcdeb4d6e99387c9a56e7420a",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
@@ -633,15 +619,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a64e534eb428730e0ae88cd5bef94c89796f5751785a33f87f54b782e0e8c0a7",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.19,
-        "evidence": 0.49,
-        "contradicts": 0.74,
-        "injection": 0.08,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
@@ -715,15 +693,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "b63b72e651e9e0a12850c8d0f287375ac8a3642c7eea10a18434316d213d1505",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": {
-        "relevant": 0.45,
-        "evidence": 0.65,
-        "contradicts": 0.52,
-        "injection": 0.09,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
@@ -781,15 +751,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "09db9ac184cf4d5f0c6dff7c906d9d4e96f7cce66537f18961f9892e25250fd1",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.18,
-        "evidence": 0.33,
-        "contradicts": 0.48,
-        "injection": 0.09,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
@@ -847,15 +809,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "aa6f7412ac0d9ddaf31db51558968d90bd0c62f4d133f80fbb5d79e35139e2c8",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": {
-        "relevant": 0.53,
-        "evidence": 0.72,
-        "contradicts": 0.39,
-        "injection": 0.11,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/handovers/to_ops.md",
@@ -973,8 +927,16 @@
         },
         {
           "method": "string-search",
-          "symbol": "REFACTOR",
-          "line": 83,
+          "symbol": "ctx_82a534ee9cf7",
+          "line": 65,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "task_6e35fa7983b5",
+          "line": 65,
           "seeds": [
             "inbox"
           ]
@@ -982,7 +944,15 @@
         {
           "method": "string-search",
           "symbol": "REFACTOR",
-          "line": 84,
+          "line": 93,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "REFACTOR",
+          "line": 94,
           "seeds": [
             "inbox"
           ]
@@ -992,9 +962,8 @@
       "required": true,
       "status": "inferred",
       "priority": 0,
-      "source_sha256": "183540f4e6ab6af7e94b41f7a98a7ee2dd33010641561e80ce9f5c6453d6bfc1",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_sha256": "fe166fe0ffcd08f7f2a733e20f02dc766a435adfe202bb66609a53ed873b9baa",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/project.md",
@@ -1010,15 +979,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.59,
-        "evidence": 0.81,
-        "contradicts": 0.19,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
@@ -1034,8 +995,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "2c08a8b1fcaa796d7a5bd74b28d3ee68a6b92af6e591e71b9f64d418d92c1533",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
@@ -1051,8 +1011,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
@@ -1068,8 +1027,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
@@ -1085,32 +1043,24 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "0c1e0d1af2e06a78abea5295cddf073d4efd18d32c066dd288530b3e5bafc528",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": "README.md",
       "categories": [
+        "document_update",
         "document_read"
       ],
       "reasons": [
+        "explicit edit seed/diff",
         "required or existing context recommendation",
-        "local link to seed",
-        "symbol/keyword occurrence; reference semantics require verification"
+        "local link to seed"
       ],
       "evidence": [
         {
           "method": "markdown-link",
           "line": 25,
           "seed": "docs/operations.md"
-        },
-        {
-          "method": "string-search",
-          "symbol": "REFACTOR",
-          "line": 36,
-          "seeds": [
-            "inbox"
-          ]
         },
         {
           "method": "markdown-link",
@@ -1212,6 +1162,11 @@
           ]
         },
         {
+          "method": "markdown-link",
+          "line": 14,
+          "seed": "README.md"
+        },
+        {
           "method": "string-search",
           "symbol": "REFACTOR",
           "line": 16,
@@ -1260,31 +1215,7 @@
       "priority": 0,
       "source_sha256": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
       "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.3,
-        "evidence": 0.5,
-        "contradicts": 0.24,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      },
       "sections": []
-    },
-    {
-      "path": ".fullops-squad/PLANS.md",
-      "categories": [
-        "document_update"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
     },
     {
       "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
@@ -1390,7 +1321,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1672,6 +1602,11 @@
         },
         {
           "method": "markdown-link",
+          "line": 223,
+          "seed": "README.md"
+        },
+        {
+          "method": "markdown-link",
           "line": 237,
           "seed": ".fullops-squad/docs/operations/ops-guide.md"
         },
@@ -1703,6 +1638,11 @@
         "source mapping/reference; keep unchanged unless verified"
       ],
       "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 55,
+          "seed": "README.md"
+        },
         {
           "method": "markdown-link",
           "line": 102,
@@ -1755,22 +1695,6 @@
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "9bd6bba28d1d89f037364844b140aa1a1bd853488465593cd38322c932d89034",
-      "source_basis": "tracked_worktree_overlay"
-    },
-    {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md",
       "categories": [
         "document_read"
@@ -1793,7 +1717,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "fecc80c12541c2640ae301dafdb6c26a9efd1d03935ac52cc124dda58e6caf57",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
@@ -1867,7 +1791,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "2e39c3bbd717cbc0694a2a175b177708e957bb90ad80453fffed44ff9482d80b",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-FINAL-review/report.md",
@@ -1892,7 +1816,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "c3f028d0d86d07286d5c6d12ee7155194092fc0cc783dc2bbd9253113948b102",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-RESULT-review/report.md",
@@ -1917,7 +1841,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "70df51ef62b9ca05694b1a1f41c4c2cac6cafca9d2e81c23989ca7acc347b5fd",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-RESULT-review/report.md",
@@ -1942,7 +1866,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "f38f9aa6a5e3e5c51966a1145765f51fc23ded8217fc117933cfdfe009ccf78a",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
@@ -2065,7 +1989,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "c5b4c167cf5220b3bcd896c58f6a073a1cb4151f6ca66a37b8b1eca3fcfbe6e9",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
@@ -2263,7 +2187,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "b4d69bbad257442dca86f59e269ddd70e531d7e844c811f45c8376544c84c158",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
@@ -2373,7 +2297,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "local link to seed"
       ],
       "evidence": [
@@ -2390,22 +2313,6 @@
       "source_sha256": "221ba3cc7e0b44e37aa4dcadddddb248a76a4e929409e533a1c035760ca76c96",
       "source_basis": "tracked_worktree_overlay",
       "sections": []
-    },
-    {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "564029ab5aaa0c5def9e7374253633976d89c1a756bb5b916bb8aaa894ffc0ab",
-      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
@@ -2495,7 +2402,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2586,7 +2492,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2658,12 +2563,10 @@
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
       "categories": [
-        "document_update",
-        "document_read"
+        "document_update"
       ],
       "reasons": [
         "explicit edit seed/diff",
-        "required or existing context recommendation",
         "route/explicit update candidate"
       ],
       "evidence": [
@@ -2682,8 +2585,7 @@
       "status": "unknown",
       "priority": 1,
       "source_sha256": null,
-      "source_basis": null,
-      "context_signal": null
+      "source_basis": null
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
@@ -2693,7 +2595,6 @@
       ],
       "reasons": [
         "explicit edit seed/diff",
-        "required or existing context recommendation",
         "local link to seed",
         "route/explicit update candidate"
       ],
@@ -2739,14 +2640,6 @@
       "priority": 1,
       "source_sha256": "9cd27ce2635e86dfe2435722b1a60070ea33ca70525932e31571864b7300c13b",
       "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.24,
-        "evidence": 0.35,
-        "contradicts": 0.6,
-        "injection": 0.08,
-        "decision": "keep",
-        "reason": null
-      },
       "sections": [
         "비용-없는-tunnel-적용--sar-google-connect-002-dev"
       ]
@@ -2924,7 +2817,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3078,7 +2970,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "77a20ec2903205d5ec853965d5553b8a36638c8111cd8857500ef43d7e5d13e6",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
@@ -3812,52 +3704,6 @@
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "local link to seed"
-      ],
-      "evidence": [
-        {
-          "method": "markdown-link",
-          "line": 45,
-          "seed": ".fullops-squad/PLANS.md"
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
-      "source_basis": "tracked_worktree_overlay",
-      "sections": []
-    },
-    {
-      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "local link to seed"
-      ],
-      "evidence": [
-        {
-          "method": "markdown-link",
-          "line": 42,
-          "seed": ".fullops-squad/PLANS.md"
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "ad041e7f93cbe1a64a12b54a1597ba1bdb93797ee2a19a66f6e6532575a1a517",
-      "source_basis": "tracked_worktree_overlay",
-      "sections": []
-    },
-    {
       "path": ".fullops-squad/orca-agents.md",
       "categories": [
         "document_read"
@@ -3893,6 +3739,16 @@
       "evidence": [
         {
           "method": "markdown-link",
+          "line": 16,
+          "seed": "README.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 62,
+          "seed": "README.md"
+        },
+        {
+          "method": "markdown-link",
           "line": 82,
           "seed": ".fullops-squad/docs/operations/ops-guide.md"
         },
@@ -3900,6 +3756,11 @@
           "method": "markdown-link",
           "line": 246,
           "seed": ".fullops-squad/docs/operations/ops-guide.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 256,
+          "seed": "README.md"
         }
       ],
       "doc_ids": [],
@@ -3909,7 +3770,7 @@
       "source_sha256": "fdadf82594e6786e35a589caf65cff15110a64a27674efaa444e78bf2215d684",
       "source_basis": "HEAD",
       "sections": [
-        "13-승인된-양방향-시험-sar-mvp-003"
+        "웹에서-시작하기"
       ]
     },
     {
@@ -3918,15 +3779,34 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "local link to seed",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
         {
           "method": "markdown-link",
+          "line": 12,
+          "seed": "README.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 18,
+          "seed": "README.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 19,
+          "seed": "README.md"
+        },
+        {
+          "method": "markdown-link",
           "line": 19,
           "seed": "docs/operations.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 20,
+          "seed": "README.md"
         },
         {
           "method": "markdown-link",
@@ -4006,6 +3886,11 @@
       "evidence": [
         {
           "method": "markdown-link",
+          "line": 4,
+          "seed": "README.md"
+        },
+        {
+          "method": "markdown-link",
           "line": 111,
           "seed": "docs/operations.md"
         },
@@ -4033,7 +3918,6 @@
       ],
       "reasons": [
         "explicit edit seed/diff",
-        "required or existing context recommendation",
         "local link to seed"
       ],
       "evidence": [
@@ -4046,6 +3930,11 @@
           "method": "markdown-link",
           "line": 19,
           "seed": ".fullops-squad/docs/operations/transition.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 65,
+          "seed": "README.md"
         }
       ],
       "doc_ids": [],
@@ -4054,15 +3943,9 @@
       "priority": 1,
       "source_sha256": "0378d60b35adf9bafaa72a7116cea26dbaef9217afc5961c6da0033701be07f8",
       "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.82,
-        "evidence": 0.84,
-        "contradicts": 0.4,
-        "injection": 0.08,
-        "decision": "keep",
-        "reason": null
-      },
-      "sections": []
+      "sections": [
+        "dots-기존-연결-업데이트"
+      ]
     }
   ],
   "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
@@ -4101,7 +3984,6 @@
       ".fullops-squad/docs/design-docs/module-design.md",
       ".fullops-squad/docs/design-docs/tech-stack.md",
       ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
@@ -4121,14 +4003,12 @@
       ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
-      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
-      ".fullops-squad/docs/operations/ops-guide.md",
       ".fullops-squad/docs/operations/transition.md",
       ".fullops-squad/docs/operations/user-guide.md",
       ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
@@ -4137,8 +4017,6 @@
       ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
       ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
       ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
-      ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
-      ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
       ".fullops-squad/orca-agents.md",
       "adapters/README.md",
       "docs/README.md",
@@ -4147,7 +4025,7 @@
       "docs/operations.md"
     ],
     "document_update": [
-      ".fullops-squad/PLANS.md",
+      "README.md",
       ".fullops-squad/docs/operations/ops-guide.md",
       ".fullops-squad/docs/operations/transition.md",
       "docs/operations.md"
@@ -4159,62 +4037,20 @@
   "partial": true,
   "unknown": [
     {
+      "source": "route",
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+    },
+    {
       "source": "find",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "partial": false,
-      "input_partial": true,
-      "remaining_candidates": [],
-      "ranking_status": "single_batch",
-      "fallback": null
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "source": "documents-find",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "partial": true,
-      "input_partial": true,
-      "remaining_candidates": [
-        ".fullops-squad/contexts/coor.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS-RESULT-review/report.md",
-        ".fullops-squad/PLANS.md",
-        ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
-        ".fullops-squad/docs/deliverables/README.md",
-        ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-FINAL-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
-        ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md",
-        ".fullops-squad/docs/operations/ops-guide.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
-        ".fullops-squad/handovers/_TEMPLATE.md",
-        ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
-        ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
-        ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
-        ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
-        ".fullops-squad/project.md",
-        ".fullops-squad/review/_REPORT.md"
-      ],
-      "ranking_status": "batch_only",
-      "fallback": "local Git/keyword/symbol search"
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "source": "context",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        ".fullops-squad/docs/operations/ops-guide.md": "too large or empty"
-      }
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "path": ".fullops-squad/PLANS.md",
@@ -4273,70 +4109,11 @@
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
-  "producer_status": {
-    "route": {
-      "error": null,
-      "docs_status": "complete",
-      "unresolved_deliverables": []
-    },
-    "find": {
-      "error": null,
-      "partial": false,
-      "input_partial": true,
-      "remaining_candidates": [],
-      "ranking_status": "single_batch",
-      "fallback": null
-    },
-    "documents-find": {
-      "error": null,
-      "partial": true,
-      "input_partial": true,
-      "remaining_candidates": [
-        ".fullops-squad/contexts/coor.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS-RESULT-review/report.md",
-        ".fullops-squad/PLANS.md",
-        ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
-        ".fullops-squad/docs/deliverables/README.md",
-        ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-FINAL-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
-        ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md",
-        ".fullops-squad/docs/operations/ops-guide.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
-        ".fullops-squad/handovers/_TEMPLATE.md",
-        ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
-        ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
-        ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
-        ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
-        ".fullops-squad/project.md",
-        ".fullops-squad/review/_REPORT.md"
-      ],
-      "ranking_status": "batch_only",
-      "fallback": "local Git/keyword/symbol search"
-    },
-    "context": {
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        ".fullops-squad/docs/operations/ops-guide.md": "too large or empty"
-      }
-    }
-  },
+  "producer_status": {},
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
   "context_paths": [
-    ".fullops-squad/PLANS.md",
     ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
     ".fullops-squad/contexts/dev.md",
     ".fullops-squad/contexts/ops.md",
@@ -4347,7 +4124,6 @@
     ".fullops-squad/docs/design-docs/module-design.md",
     ".fullops-squad/docs/design-docs/tech-stack.md",
     ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
@@ -4355,7 +4131,9 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-RESULT-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-RESULT-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md"
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
@@ -4380,8 +4158,6 @@
   ],
   "optional_context_paths": [],
   "remaining_context_paths": [
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
@@ -4391,7 +4167,6 @@
     ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
@@ -4407,8 +4182,6 @@
     ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
-    ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
-    ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
     ".fullops-squad/orca-agents.md",
     "adapters/README.md",
     "docs/README.md",

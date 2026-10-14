@@ -1,0 +1,50 @@
+{
+  "before_utc": "2026-10-14T11:30:56.470961+00:00",
+  "after_utc": "2026-10-14T11:31:14.176675+00:00",
+  "checks": {
+    "human_model": true,
+    "goose_trigger": true,
+    "schema_sha256": true,
+    "files": true,
+    "private_tunnel_files": true,
+    "state_mode": true,
+    "backups_mode": true,
+    "remote_digests": true,
+    "remote_counts": true,
+    "remote_inbox_count": true,
+    "subscription_metadata": true,
+    "shared": true,
+    "listeners": true,
+    "host_cloudflared_pids": true,
+    "state_HTTP": true,
+    "state_Gates": true,
+    "state_Pairs": true,
+    "state_Agents": true,
+    "state_Owners": true,
+    "state_Friends": true,
+    "state_Members": true,
+    "state_Messages": true,
+    "state_Sessions": true,
+    "state_Challenges": true,
+    "state_Identities": true,
+    "state_Connections": true,
+    "state_Idempotency": true,
+    "state_GoogleAttempts": true,
+    "old_backups": true,
+    "shared_containers": true,
+    "relay_healthy": true,
+    "frozen_epoch": true,
+    "backup_added_once": true
+  },
+  "volatile": {
+    "Rates": {
+      "before_digest": "0934e99ac3821f6a50ce0c0c80f2586c6494f21a1d3d30815e77ce04ec504455",
+      "after_digest": "a59431b8356de0176816d8b7a29ef2ca3ff6dcd50b399918056fb71558003090",
+      "before_count": 5,
+      "after_count": 5,
+      "reason": "Local unauthenticated verification and the running request/cleanup loop update rate windows; every other recorded state map and all remote maps match."
+    }
+  },
+  "preserved_existing_containers": 31,
+  "frozen_to_after_authority_and_remote_match": true
+}

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<stdin>", line 14, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '('docker', 'image', 'inspect', 'sha256:220edb718b2fe1925eed243084e41fedf641c86a0342760f682672b91379ed3d', '--format', '{{.Id}}')' returned non-zero exit status 1.
+
+EXIT=1

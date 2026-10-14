@@ -1,9 +1,9 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-13
+updated: 2026-10-14
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
@@ -93,3 +93,9 @@ migration이 있는 과제는 beta.sh 대신 수동 순서(checkout→build→re
 2747fe9를 무삭제bundle/build/relay중단/새0600백업/list/격리복원/up으로 적용했다. schema·HumanModel writer 변경0이며 기존회원/친구/키/Remote Inbox/Events·공유자원digest를 보존했다. [실행 근거](../docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md).
 업로드shell 파일은 LF로 전달한다. CRLF heredoc 실패는relay중단 전에 멈췄고 실패자료를 보존했다. 새network none 복원컨테이너는정상종료 뒤보존했다.
 Grok은같은기존연결폴더·Command/watcher·webhook routine을유지하며로컬bundle을별도갱신한다. Dots는기존remoteapp을유지한다. Events저장보존과다음자동갱신/장시간수신은구분한다.
+
+## 2026-10-14 — SAR-REFACTOR-002-OPS
+
+8a93e38 배포·새0600 백업·격리 전체data digest/guard·보존33개·public21개를 확인했다. [운영 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md).
+이전 image 주소는 전환 후 조회되지 않아 같은 직전2747 소스를 별도 rollback 태그로 재빌드했다. 다음 배포는 build 전에 고유 태그를 고정하고 가용성을 확인한다. 원 이미지 동일성/실제rollback과 구분한다.
+권한·Remote 전체 map은 같고 Rates만 달랐다. 요청 시각/window 정리 같은 volatile 상태와 영구 권한을 분리한다. Grok 로컬bundle은 서버 배포로 갱신되지 않는다.

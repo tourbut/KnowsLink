@@ -1,0 +1,53 @@
+{
+  "execution_sha": "3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46",
+  "deploy_sha": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "runtime_scope": [
+    "cmd",
+    "internal",
+    "adapters",
+    "db",
+    "deploy",
+    "scripts",
+    "compose.yaml",
+    "Dockerfile",
+    "Makefile",
+    "go.mod",
+    "go.sum",
+    "sqlc.yaml",
+    ".dockerignore"
+  ],
+  "runtime_diff_paths": [],
+  "gate_path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-final-lint.json",
+  "gate_sha256": "f64c96869ea21f83260458cc9cabce6c4c79bad282e43133dca0a290e59e102c",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46-lint.log; EXIT=0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46-test.log; EXIT=0"
+    }
+  ],
+  "reuse": true,
+  "new_product_gate_execution": false,
+  "reason": "Exact executable, tests, dependency, SQL, build and deploy inputs match final accepted DEV; OPS only changes deployment evidence and documentation."
+}
