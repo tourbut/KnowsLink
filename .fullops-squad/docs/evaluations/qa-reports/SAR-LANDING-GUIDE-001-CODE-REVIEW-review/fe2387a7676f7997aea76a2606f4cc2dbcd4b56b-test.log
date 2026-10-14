@@ -1,0 +1,42 @@
+go test -race ./cmd/... ./internal/...
+ok  	github.com/tourbut/KnowsLink/cmd/migrate	1.019s
+ok  	github.com/tourbut/KnowsLink/cmd/relay	1.021s
+ok  	github.com/tourbut/KnowsLink/internal/config	1.014s
+?   	github.com/tourbut/KnowsLink/internal/database	[no test files]
+ok  	github.com/tourbut/KnowsLink/internal/relay	5.091s
+npm test --prefix adapters
+
+> @knowslink/adapters@0.0.0 test
+> npm run build && node dist/mcp.test.js && node dist/trial-boundaries.test.js && node dist/connect.test.js && node dist/login.test.js && node dist/inbox.test.js && node dist/inbox-files.test.js && node dist/events.test.js && node dist/grok-wake.test.js && node dist/owner-text.test.js
+
+
+> @knowslink/adapters@0.0.0 build
+> tsc && npm run bundle:plugin
+
+
+> @knowslink/adapters@0.0.0 bundle:plugin
+> esbuild src/mcp.ts --bundle --platform=node --format=esm --banner:js="import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" --outfile=dist/plugin.js
+
+PASS: MCP initialize/discovery, held without network/key reads, invalid config, redirect rejection; no secrets in tool output
+PASS: trial held, fixed HTTPS origin, Access+agent headers, text bound, redirect, streamed 64KiB bound, 100ms and default 10s GC body timeout; remote roundtrip unverified
+PASS: local connection PoP, private directory/files, no overwrite, credential storage, one-use completion, URL boundary
+PASS: browser URL excludes private token, key-bound poll/complete, explicit approval, automatic local storage, distinct client keys, no overwrite, expiry
+PASS: auto poll/verify/local copy before ACK/notice without receive call, duplicate, restart, read marker, expired, revoked, backoff, opt-out, CLI watcher, single in-flight pull, loopback wake refused/accepted/duplicate/restart/off/401/reset/invalid without text or token exposure
+PASS: housekeeping failure preserves text; missing marker permits receive; duplicate stays read
+Preserved synthetic fixture: /tmp/kl-inbox-files-RHe9q0
+PASS: SSE initial/push/reconnect/coalesce/serial/fallback/cancel and strict metadata frames
+PASS: webhook wake config gate, single path, metadata-only body, headers, 2xx/3xx/4xx/5xx/unreachable/timeout, untrusted config, check without POST, no secret in results
+PASS: owner authorship, recipient binding, schema refusal and durable copy before ACK
+python3 scripts/test_shell_guard.py
+
+  dist/plugin.js  1.6mb ⚠️
+
+⚡ Done in 115ms
+shell guard evidence workspace (kept): /tmp/shell-guard-ws-c2esrpl1
+....
+----------------------------------------------------------------------
+Ran 4 tests in 8.851s
+
+OK
+
+EXIT=0

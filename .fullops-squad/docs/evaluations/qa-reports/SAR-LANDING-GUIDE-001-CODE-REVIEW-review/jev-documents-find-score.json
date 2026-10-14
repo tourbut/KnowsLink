@@ -1,0 +1,50 @@
+{
+  "task_key": "SAR-LANDING-GUIDE-001-DEV",
+  "find_head": "271b27ec00e0914cf85d9c081e8600b059dd79fd",
+  "base": "eae9a8bffae706410f684e4c837e396e7b0bcf26",
+  "head": "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/operations/user-guide.md",
+    ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+    ".fullops-squad/handovers/to_dev.md"
+  ],
+  "new_files": [
+    "internal/relay/landing_fixture_test.go",
+    "internal/relay/landing_integration_test.go",
+    "internal/relay/landing_pages.go",
+    "internal/relay/landing_test.go"
+  ],
+  "candidates": [
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+    ".fullops-squad/handovers/to_dev.md"
+  ],
+  "hits": [
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/handovers/to_dev.md"
+  ],
+  "recall": 0.25,
+  "precision": 0.25,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

@@ -14,50 +14,50 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.91,
-        "product": 0.09
+        "implementation": 0.9,
+        "product": 0.1
       },
-      "confidence": 0.82
+      "confidence": 0.8
     },
     "role": {
       "choice": "tester",
       "probabilities": {
-        "dev": 0.1,
+        "dev": 0.09,
         "ops": 0.02,
-        "tester": 0.88
+        "tester": 0.89
       },
-      "confidence": 0.82
+      "confidence": 0.83
     },
     "docs": {
-      "D01": 0.08,
-      "D02": 0.09,
-      "D03": 0.11,
-      "D04": 0.49,
-      "D05": 0.09,
-      "D06": 0.08,
-      "D07": 0.06,
-      "D08": 0.07,
-      "D09": 0.08,
-      "D10": 0.15,
-      "D11": 0.13,
-      "D12": 0.2,
-      "D13": 0.23
+      "D01": 0.1,
+      "D02": 0.1,
+      "D03": 0.12,
+      "D04": 0.36,
+      "D05": 0.1,
+      "D06": 0.1,
+      "D07": 0.08,
+      "D08": 0.09,
+      "D09": 0.1,
+      "D10": 0.16,
+      "D11": 0.2,
+      "D12": 0.28,
+      "D13": 0.26
     }
   },
   "usage": {
-    "input_tokens": 2475,
+    "input_tokens": 2445,
     "output_tokens": 314,
-    "cost": 0.00010395
+    "cost": 0.00010269
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.668,
+  "latency_seconds": 0.482,
   "response_model": "typesafe/jev-1.13-20260917",
   "original_role": "tester",
   "original_route": "implementation",
-  "override_reason": "구현 후 시각 수락은 등록 designer 책임이며 기술 구현 승인이나 제품 규칙 변경이 아니다.",
+  "override_reason": "구현 완료 뒤 등록 designer 역할의 독립 검수 책임이다.",
   "model": {
     "agent": "codex",
     "provider": "openai",
@@ -66,15 +66,15 @@
     "source": "user"
   },
   "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
-  "head": "2caf5fc13f1a673e49cdfcc4d9771cbcbaf924c1",
+  "head": "1312658557c77e21de852edee6a860ea8cc69988",
   "requires_packet": true,
   "attempt": "93adb3b5b2124aed99b9c02f45e39281",
-  "instruction_sha256": "aa3ac9668c41286070c80bd3f074def2886e54c0b28cfbe0eaa3e1fb8f646355",
+  "instruction_sha256": "a632d3c12c59b8ac2365b2edf8b3a24564f7e76d1a91ab5ca239602ba14859f4",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "2f7d0a12b4264e854f380eae593fcad71c4e8450aa18f53c46eb3c36fffab15c"
+  "input_sha256": "36b48a7706e79bb6b0ed9163fb921f06153780aeaa734625b6779ead8c6e0144"
 }

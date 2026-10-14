@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- DEV 완료 msg_0a44968602b5 / fe2387a7676f7997aea76a2606f4cc2dbcd4b56b를 coor 기록 브랜치1312658에 병합했다. main은 아직 미반영이다. 최종 make lint/test0·ERROR0/WARNING3/unavailable0, 제품4795의 build/DB0·36 browser assertions와 native 입력/확대 not_run을 확인했다. 추가 SIZE-002는 D05 계약·DEV context로395→406이 된 이유를 외부 final-handoff.md에서 원문 확인했다. integration hold 담당coor, 재개 조건은 같은 SHA 독립 코드 check·기능 QA·직접 시각 수락이다. delivery_ac99adb939fa는 통합 뒤 ACK한다.
+
 - 후속 검수 준비: tester SAR-LANDING-GUIDE-001-TESTER와 designer SAR-LANDING-GUIDE-001-VISUAL은 Astra high 인박스/route만 준비했고 DEV 최종 worker_done 뒤 고정 SHA·packet을 갱신해 배정한다. 예비4795d619의 실제 make lint/test/build 및 DB integration은 exit0이며 오류0·기존 SIZE 경고2다. 아직 최종 수락·운영 배포 성공은 아니다. coor Orca preview page88cad09c-ab0b-4aba-ae6f-c11ec3be5658은 합성 google fixture127.0.0.1:18781이고 운영 계정은 사용하지 않는다.
 - DEV msg_d80f50cc1a1e의 keyboard focus 문제는 별도 미실행으로 보존하고 나머지 증거·최종 보고를 진행하도록 msg_526751460434로 회신했다. Windows computer capabilities의 focus=false를 확인했고 tester 지시서에 native 입력·DOM/CSS 대체의 구분을 추가했다. worker-show는 실제 DEV live/working이며 terminalResource가 user_owned/user_takeover로 바뀌어 종료·강제 동기화하지 않고 보존한다.
 

@@ -1,0 +1,44 @@
+{
+  "task_key": "SAR-LANDING-GUIDE-001-DEV",
+  "find_head": "271b27ec00e0914cf85d9c081e8600b059dd79fd",
+  "base": "eae9a8bffae706410f684e4c837e396e7b0bcf26",
+  "head": "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "internal/relay/human_pages.go",
+    "internal/relay/member_pages.go"
+  ],
+  "new_files": [
+    "internal/relay/landing_fixture_test.go",
+    "internal/relay/landing_integration_test.go",
+    "internal/relay/landing_pages.go",
+    "internal/relay/landing_test.go"
+  ],
+  "candidates": [
+    "README.md",
+    "cmd/relay/main.go",
+    "docs/README.md",
+    "docs/development.md",
+    "docs/system-design.md",
+    "internal/relay/human_http.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/member_pages.go"
+  ],
+  "hits": [
+    "internal/relay/human_pages.go",
+    "internal/relay/member_pages.go"
+  ],
+  "recall": 1.0,
+  "precision": 0.25,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
