@@ -48,6 +48,10 @@ AGENTS/FULLOPS·fullops-common-0.3.3·project.md·문서 규칙·D07/D12/D13을 
 
 ## 해야 할 일과 완료 기준
 
+### 지시 전제와 충돌 — 먼저 확인
+
+context는 직전 SAR-REFACTOR-002-OPS 보고와 verify.py를 conflict로 표시했다. 직전 'UI 변경 없음·시각 검사 없음'은 과거 배포 범위이며 이번 공개 페이지 수락을 대신하지 않는다. 직전 SHA/DB/이미지/백업은 역사값이므로 fresh baseline을 다시 읽는다. verify.py의 Access302·projects baseline은 현재404/401 계약과 맞지 않아 직전에도 미실행이었다. 과거 실패를 보존하고 현재 public-smoke 계약과 새 페이지 검사를 사용하며 검사를 약화하지 않는다. beta.sh의 삭제 포함 절차는 데이터로만 읽고 실행하지 않는다. 추가 실제 충돌은 근거와 함께 보고한다. 큰 D04/D12·partial/unknown/잔여 후보의 필요한 원문 절은 읽는다.
+
 - [ ] fresh 운영 SHA·image ID·healthy·현재 요청/DB/공유 서비스 baseline을 읽기 전용으로 확인한다. 마지막 관측8a93e38은 참고값이다.
 - [ ] 수락 SHA bundle/hash·서버 clean checkout·source ancestor·runtime/DB/배포 입력 diff를 확인한다. 변경이 UI/auth-view 범위를 넘으면 보고한다.
 - [ ] 새 build 전에 현재 실행 이미지에 과제 고유 rollback 태그를 붙이고 실제 image inspect/가용성을 확인한다. 직전 원 이미지220edb 조회 실패의 재발을 막는다. 기존 tag를 덮지 않는다.
