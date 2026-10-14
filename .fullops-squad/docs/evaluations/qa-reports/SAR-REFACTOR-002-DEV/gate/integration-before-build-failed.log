@@ -1,0 +1,29 @@
+9e5a916f4558c6c98d944552e1c584fc101c1d3ccfaf9e17e28842570c45668a
+2026/10/14 18:08:02 verification mail not sent
+2026/10/14 18:08:02 verification mail not sent
+PASS: isolated Postgres safety invariants
+--- FAIL: TestPublicNodeProcesses (0.21s)
+    public_messages_integration_test.go:82: local Node client failed: exit status 1; node:internal/modules/cjs/loader:1386
+          throw err;
+          ^
+        
+        Error: Cannot find module '/tmp/knowslink-refactor002-bcb1dd6629b5-16beef99/repo/adapters/dist/connect.js'
+            at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+            at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+            at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+            at Function._load (node:internal/modules/cjs/loader:1192:37)
+            at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+            at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+            at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+            at node:internal/main/run_main_module:36:49 {
+          code: 'MODULE_NOT_FOUND',
+          requireStack: []
+        }
+        
+        Node.js v22.22.2
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	113.075s
+FAIL
+2026/10/14 18:06:39 SQL migrations completed
+
+EXIT=1

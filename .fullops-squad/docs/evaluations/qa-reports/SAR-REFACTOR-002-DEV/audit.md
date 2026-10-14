@@ -33,6 +33,10 @@ KnowsLink는 사람이 수락한 관계 안에서 웹과 agent의 text를 전달
 2. **전체 JSONB와 전역 row lock의 구조적 처리량 한계** (`Service.transaction`).
    10000개 fixture의 JSON은 6925918bytes다. baseline transaction CPU는 116–186ms이며 SQL·네트워크 시간은 포함하지 않는다. HTTP는 입장·업무·퇴장 transaction을 사용하므로 이 값을 요청 처리량으로 환산하면 안 된다. 기존 코드의 명시적 단기 설계 한계이며 새 결함으로 과장하지 않는다. 이번 변경은 중복 순회를 줄이고 DB 저장 형식을 보존한다. 정규화·다중 writer·캐시 도입에는 별도 호환·복구 계획과 제품 부하 목표가 필요하다.
 
+3. **읽음 claim 뒤 housekeeping 오류의 본문 유실** (`adapters/src/inbox.ts`). EACCES 재현에서 receive는 실패하고 unread 본문도 사라졌다. housekeeping을 claim 전에 완료하고 동시 stat ENOENT만 허용했다. 수정 전 exit1과 수정 후 exit0, 호출자·패키징 감사 범위는 [adapter 보고](adapter-report.md)에 있다. claim 이후 process crash·본문 read/write 오류의 기존 한계는 남는다.
+
+4. **callback 최종 lease 뒤 새 도착 지연과 반복 검색** (`internal/relay/remote_events.go`). 세 번 finish 없이 claim한 뒤 새 메시지가 도착하면 원래 코드는 t+47초에서 t+3600초 구독 만료까지 대기했다. 새 pending은 즉시 다음 claim을 예약하고, 한 호출의 agent별 검색을 재사용한다. 10000 records/4구독 claim 중앙값은 590438→162572ns/op다. 한 구독의 비용 증가와 실제 범위는 [remote 보고](remote-report.md)에 기록했다.
+
 ## 미검사와 한계
 
 운영 계정·실메시지·실제 host 화면·장시간 구독 갱신·운영 최대 부하·백업 복원은 검사하지 않는다. 과거 QA는 계약과 환경 참고이며 이번 통과 근거가 아니다. 전 파일의 완전 호출 그래프나 보안 무결점을 주장하지 않는다. UI template·CSS 외형은 변경 대상이 아니다.

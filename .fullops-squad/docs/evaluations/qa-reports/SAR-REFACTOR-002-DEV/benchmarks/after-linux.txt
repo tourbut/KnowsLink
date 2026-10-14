@@ -1,0 +1,33 @@
+goos: linux
+goarch: amd64
+pkg: github.com/tourbut/KnowsLink/internal/relay
+cpu: AMD Ryzen 3 3200G with Radeon Vega Graphics    
+BenchmarkRetainedPostgres/100-4         	       5	  13815652 ns/op	 1054649 B/op	    3234 allocs/op
+BenchmarkRetainedPostgres/100-4         	       5	  16188332 ns/op	 1441100 B/op	    3302 allocs/op
+BenchmarkRetainedPostgres/100-4         	       5	  14334587 ns/op	 1387009 B/op	    3284 allocs/op
+BenchmarkRetainedPostgres/1000-4        	       5	  70523445 ns/op	 8485273 B/op	   11549 allocs/op
+BenchmarkRetainedPostgres/1000-4        	       5	  72626928 ns/op	 8702459 B/op	   11550 allocs/op
+BenchmarkRetainedPostgres/1000-4        	       5	  75799950 ns/op	 7440972 B/op	   11521 allocs/op
+BenchmarkRetainedPostgres/10000-4       	       5	 518959039 ns/op	89081166 B/op	   93342 allocs/op
+BenchmarkRetainedPostgres/10000-4       	       5	 592726939 ns/op	79062267 B/op	   93329 allocs/op
+BenchmarkRetainedPostgres/10000-4       	       5	 542726660 ns/op	70721070 B/op	   93317 allocs/op
+BenchmarkRetainedHistory/100/sweep-4    	       5	     10141 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/100/sweep-4    	       5	      8227 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/100/sweep-4    	       5	      8507 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-4         	       5	   2926523 ns/op	    134518 state_bytes	  514308 B/op	    3341 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-4         	       5	   8271165 ns/op	    134518 state_bytes	  514308 B/op	    3341 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-4         	       5	   2846554 ns/op	    134518 state_bytes	  514308 B/op	    3341 allocs/op
+BenchmarkRetainedHistory/1000/sweep-4                 	       5	     73320 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/1000/sweep-4                 	       5	     44573 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/1000/sweep-4                 	       5	     43707 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-4        	       5	  19592249 ns/op	    751918 state_bytes	 4337774 B/op	   11582 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-4        	       5	  20550124 ns/op	    751918 state_bytes	 4342337 B/op	   11584 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-4        	       5	  17756914 ns/op	    751918 state_bytes	 4352384 B/op	   11590 allocs/op
+BenchmarkRetainedHistory/10000/sweep-4                	       5	    915579 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/10000/sweep-4                	       5	    885966 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/10000/sweep-4                	       5	    941881 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-4       	       5	 156209028 ns/op	   6925918 state_bytes	33014100 B/op	   93443 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-4       	       5	 159405055 ns/op	   6925918 state_bytes	49696947 B/op	   93465 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-4       	       5	 154821097 ns/op	   6925918 state_bytes	33012036 B/op	   93439 allocs/op
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	18.022s

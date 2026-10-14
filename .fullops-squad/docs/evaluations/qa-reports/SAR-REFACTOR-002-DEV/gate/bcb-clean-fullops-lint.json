@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "attempt": "6b2d37f53e59426eb21b6e25bcc19bcf",
+  "base": "9255852fa0e46cd40b7be1021eaa1f6c7f7d083b",
+  "merge_base": "9255852fa0e46cd40b7be1021eaa1f6c7f7d083b",
+  "head": "bcb1dd6629b508a30ec39a5d3141c8ce0a558597",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: bcb1dd6629b508a30ec39a5d3141c8ce0a558597-lint.log; EXIT=0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: bcb1dd6629b508a30ec39a5d3141c8ce0a558597-test.log; EXIT=0"
+    }
+  ],
+  "violations": [
+    {
+      "code": "DEP-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": "adapters/package.json",
+      "message": "의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요"
+    },
+    {
+      "code": "ANTI-004",
+      "severity": "ERROR",
+      "line": 39,
+      "message": "테스트 skip·only 표식 추가 금지. 실패 원인을 고치거나 테스트를 정당하게 바꾼다",
+      "path": "adapters/src/inbox-files.test.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "471줄(이전 463, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/remote_events.go"
+    }
+  ],
+  "summary": {
+    "files": 9,
+    "added_lines": 367,
+    "errors": 1,
+    "warnings": 2,
+    "unavailable": 0
+  }
+}

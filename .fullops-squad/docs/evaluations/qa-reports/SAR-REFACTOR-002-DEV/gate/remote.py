@@ -86,6 +86,8 @@ try:
     base = base_file.read_text().strip()
     assert base.startswith(f'/tmp/knowslink-refactor002-{sha[:12]}-') and all(c.isalnum() or c in '/-' for c in base)
     clean = f'cd {base}/repo && test "$(git rev-parse HEAD)" = {sha} && test -z "$(git status --porcelain)"'
+    if action == 'environment':
+        sys.exit(run(f'{clean} && go version && node --version && npm --version', HERE / f'{sha}-environment.log'))
     if action == 'make':
         target = sys.argv[2]
         if target not in ('lint', 'test', 'build'):
@@ -93,8 +95,8 @@ try:
         sys.exit(run(f'{clean} && make {target}', HERE / f'{sha}-{target}.log'))
     if action == 'integration':
         name = 'kl-refactor002-' + sha[:12] + '-' + rnd.token_hex(4)
-        (HERE / f'{sha}-database.txt').write_text(name)
-        command = (f'set -e; {clean}; '
+        (HERE / f'{name}-database.txt').write_text(name)
+        command = (f'set -e; {clean}; test -f adapters/dist/connect.js; '
                    f'docker run -d --name {name} --cpus=1 --memory=512m -e POSTGRES_PASSWORD=synthetic-refactor-test '
                    f'-e POSTGRES_USER=knowslink -e POSTGRES_DB=knowslink -p 127.0.0.1::5432 {IMAGE}; '
                    f'for i in $(seq 1 40); do if docker exec {name} pg_isready -U knowslink -d knowslink >/dev/null; then break; fi; sleep 1; done; '
@@ -108,7 +110,7 @@ try:
                    f'cd {base}/repo; '
                    'go test -tags=integration ./internal/relay -run "^$" -bench "^BenchmarkRetained(Postgres|History)$" -benchmem -benchtime=5x -count=3 > ../after-linux.txt; '
                    f'docker stop {name}')
-        code = run(command, HERE / f'{sha}-integration.log')
+        code = run(command, HERE / f'{name}-integration.log')
         with client.open_sftp() as sftp:
             for label in ('before', 'after'):
                 try:

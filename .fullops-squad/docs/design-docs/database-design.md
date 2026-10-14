@@ -2,14 +2,20 @@
 id: D07
 title: 데이터베이스설계서
 status: review
-updated: 2026-10-12
+updated: 2026-10-14
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
 
 # KnowsLink DB 설계
+
+## SAR-REFACTOR-002 처리 비용 확인
+
+SQL schema·JSON 저장 필드·migration·writer guard·epoch CAS는 변경하지 않는다. 24시간 보관 이력의 만료 분기는 기존 transport/claim 제거와 delivered receipt·사본 보존을 수행한다. 이 분기의 결과가 현재 권한과 무관하므로 만료 메시지의 회원 map 재탐색만 생략한다. 미만료 메시지의 철회 검사는 유지한다.
+
+[재현 벤치와 격리 DB 결과](../evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)는 100명/200 agent·100/1000/10000개의 합성 보관 이력을 사용한다. 이 값은 운영 최대 부하나 공개 처리량 수락이 아니다. 전체 JSONB 재직렬화와 전역 row lock의 한계는 남는다. D06 필드와 D08 실제 테이블 정의의 재생성은 필요하지 않다.
 
 ## SAR-HUMAN-PEER-001 DEV 후보
 

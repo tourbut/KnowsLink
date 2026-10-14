@@ -3,7 +3,7 @@ title: dev 컨텍스트
 status: draft
 updated: 2026-10-14
 owner: dev
-tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-REPO-DOCS-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV]
+tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-REPO-DOCS-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
 ---
 
@@ -25,6 +25,7 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 
 ## 최근 결정
 
+- 2026-10-14 SAR-REFACTOR-002-DEV: 로컬 Inbox는 실패할 수 있는 housekeeping을 unread claim 전에 끝낸다. 만료 이력의 권한 순회를 생략해도 delivered 사본·24h metadata 계약은 유지한다. CPU-only 개선율과 실제 DB transaction 개선율은 별도 측정하며 [QA](../docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)에 실패한 실행도 보존한다.
 - 2026-10-13 SAR-REFACTOR-001-DEV: 실제 template·외부 host·동적 등록을 확인한 뒤 공통 agent 선택/연결 응답/text 검증/MCP 포장만 공유했다. 제품 12줄 감소이며 legacy·held/test·보안·UI 계약은 유지한다. exact cd4dae8 Linux gate 0을 [QA 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md)에 보존했다. 중단 뒤 재개는 원 작성자 세션과 현재 세션을 분리하고 제품 변경 없이 기록을 마무리한다.
 - 2026-10-12 SAR-FRONTEND-POLISH-001-DEV: 빈 상태는 쓸 수 없는 form을 숨기고 다음 동작 한 줄로 바꾼다(Go template `{{$x = true}}` 재할당). 측정 스크립트의 위치 판정은 padding을 보정한다. 테스트가 고정한 동작(받은 초대의 unpair)은 polish로 바꾸지 않고 제품 판단으로 남긴다. [실행 기록](../docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md).
 - 2026-10-12 SAR-CODEX-HOOK-QUOTE-001-DEV: Codex Windows hook은 기본 `%COMSPEC% /C "<command>"` raw 인자이고 셸을 설정하면 PowerShell일 수 있다. hook 명령은 따옴표를 쓰고 `; exit $LASTEXITCODE`로 PowerShell의 종료코드 2→1 변환을 막는다. 테스트는 argv 목록이 아니라 실제 실행 방식(raw 문자열)으로 검증한다. [실행 기록](../docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md).

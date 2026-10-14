@@ -2,14 +2,20 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-12
+updated: 2026-10-14
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
 
 # KnowsLink 로컬 합성 MVP 아키텍처
+
+## SAR-REFACTOR-002 기존 계약 보존 개선
+
+2026-10-14 변경은 기존 모듈과 singleton 저장 형식을 유지한다. 만료된 보관 메시지는 sweep의 만료 분기에서 transport·claim을 제거하므로 현재 회원 권한을 다시 탐색하지 않는다. 미만료 메시지는 기존 current 검사를 적용한다. 전체 JSONB decode/encode·행 lock·DB 시계·epoch CAS·writer guard는 그대로다.
+
+Remote claim은 한 호출 안에서만 같은 agent의 pending 검색을 공유한다. 마지막 callback lease가 소진된 뒤 새 도착이 있으면 즉시 다음 claim을 예약한다. 로컬 Inbox는 읽음 claim 전에 housekeeping을 완료해 오류가 미표시 본문을 잃게 하지 않는다. 측정과 회귀 범위는 [DEV 보고](../evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)를 따른다. 아래 과거 후보 절을 새 운영 관측으로 해석하지 않는다.
 
 ## SAR-HUMAN-PEER-001 DEV 후보
 
