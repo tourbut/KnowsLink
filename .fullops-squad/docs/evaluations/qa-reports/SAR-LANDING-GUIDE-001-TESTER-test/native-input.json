@@ -1,0 +1,26 @@
+{
+  "record_type": "tester-transcribed observations from actual cua_repl tool responses; not a raw automation export",
+  "date": "2026-10-14",
+  "browser": "Chrome extension browser 1",
+  "tab": "165232782",
+  "session": "Landing QA",
+  "origin": "http://127.0.0.1:18782",
+  "storage": "new task-owned tab; named CUA session does not prove isolated cookie storage; initial page was anonymous; HTTP/CDP main QA uses separate storage",
+  "actions": 16,
+  "checks": [
+    {"action": "pressKey(57, Return)", "before": "Grok collapsed", "after": "Grok expanded; focused button114", "passed": true},
+    {"action": "pressKey(null, space)", "after": "Grok collapsed; focused button113", "passed": true},
+    {"action": "pressKey(null, Tab)", "after": "focused Dots collapsed button61", "passed": true},
+    {"action": "pressKey(null, shift+Tab)", "after": "focused Grok collapsed button113", "passed": true},
+    {"action": "pressKey(8, Return)", "after": "URL /#start; active element id start", "passed": true},
+    {"action": "typeText email field then Return", "after": "URL /auth/verify; code form; not yet logged in", "passed": true},
+    {"action": "typeText wrong synthetic code then Return", "after": "code error; four attempts remaining; labelled input and retry remain", "passed": true}
+  ],
+  "preserved_limitations": [
+    "Orca page d3d68c8f-44ca-4ca6-9961-e73d1985260c reported document.hasFocus=false; native Enter did not open details",
+    "First Orca DOM focus expression reported null selector although later details observation succeeded; not treated as product failure",
+    "CUA read-only evaluate document.hasFocus threw TypeError: document.hasFocus is not a function; AX focused element and actual state transition establish keyboard effects",
+    "CUA Ctrl+0 and five Ctrl+plus commands left root width1905 and h1 height104 unchanged; no browser zoom PASS claimed from these commands",
+    "Actual browser zoom was subsequently verified using the separate task-owned CDP profile and real Chrome settings UI; see zoom-results.json"
+  ]
+}

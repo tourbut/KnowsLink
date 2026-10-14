@@ -22,42 +22,42 @@
     "role": {
       "choice": "tester",
       "probabilities": {
-        "dev": 0,
+        "dev": 0.01,
         "ops": 0,
-        "tester": 1
+        "tester": 0.99
       },
-      "confidence": 1
+      "confidence": 0.98
     },
     "docs": {
       "D01": 0.08,
-      "D02": 0.08,
-      "D03": 0.09,
-      "D04": 0.16,
-      "D05": 0.08,
-      "D06": 0.08,
-      "D07": 0.07,
-      "D08": 0.09,
-      "D09": 0.08,
-      "D10": 0.14,
-      "D11": 0.12,
-      "D12": 0.25,
-      "D13": 0.24
+      "D02": 0.07,
+      "D03": 0.07,
+      "D04": 0.07,
+      "D05": 0.06,
+      "D06": 0.07,
+      "D07": 0.06,
+      "D08": 0.07,
+      "D09": 0.07,
+      "D10": 0.09,
+      "D11": 0.08,
+      "D12": 0.15,
+      "D13": 0.14
     }
   },
   "usage": {
-    "input_tokens": 2446,
+    "input_tokens": 2416,
     "output_tokens": 314,
-    "cost": 0.000102732
+    "cost": 0.000101472
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.678,
+  "latency_seconds": 0.513,
   "response_model": "typesafe/jev-1.13-20260917",
   "original_role": "tester",
   "original_route": "implementation",
-  "override_reason": "구현 완료 뒤 등록 tester 역할의 독립 검수 책임이다.",
+  "override_reason": "Current coordinator dispatch assigns independent tester QA",
   "model": {
     "agent": "codex",
     "provider": "openai",
@@ -66,7 +66,7 @@
     "source": "user"
   },
   "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
-  "head": "1312658557c77e21de852edee6a860ea8cc69988",
+  "head": "297e6d3679f6d866171a35775b615685221ffd47",
   "requires_packet": true,
   "attempt": "a43025df15404705846c60b97cdb8dc2",
   "instruction_sha256": "661c57d0bd5de494ac4d1e61ca4378e86e633563c072c246ab44bc85694a4dac",
@@ -76,5 +76,5 @@
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "128f92baca6ff50f017ad6223395bac6cc33dd2b67c212af7cd19c0edbd46039"
+  "input_sha256": "672df61f48698bc590b7b984167d5bc6d69623fbdecb35c5c3e1d920b10d8cdd"
 }

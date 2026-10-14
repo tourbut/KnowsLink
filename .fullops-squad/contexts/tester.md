@@ -28,3 +28,6 @@ summary: 독립 QA의 SHA·종료코드·재사용 경계와 최근 리팩터링
 - 2026-10-13 SAR-REFACTOR-001-TESTER: exact cd4dae8의 Linux race8개·MCP/owner-text·독립 text15개 exit0. [보고](../docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md). 제품 변경0, 실계정·운영·SQL 이행은 미실행이다.
 - 2026-10-14 SAR-REFACTOR-002-TESTER: exact bcb1dd66 Linux race16개·새 Go 경계10개·Inbox 오류 matrix·합성 DB race4개 exit0. 제품 변경0, 새 C/H 발견0. [보고](../docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md).
 - ACK completion received는 TTL 뒤에도 유지한다. 첫 잘못된 기대값/native1을 보존하고 기존 계약으로 바로잡았다. sweep CPU 이득은 DB/HTTP 처리량이 아니다. 단일 구독 claim 증가와 local claim crash window는 남는다.
+
+- 2026-10-14 SAR-LANDING-GUIDE-001-TESTER: fixture4795/구현fe2387a의 독립 HTTP34·브라우저22·assert7·native키보드·실제Chrome200%를 확인했다. [보고](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md). 기존 회원 CTA 대비1.846967은medium 실패이며 DEV 후속이다.
+- Chrome settings의 Page zoom과 DPR2/CSS zoom1/visualViewport.scale1을 함께 확인한다. viewport/pinch/CSS 확대를 실제 browser200%로 바꾸지 않는다. memberStyle 동일성과 member_pages.go 파일 전체 동일성은 별개다.

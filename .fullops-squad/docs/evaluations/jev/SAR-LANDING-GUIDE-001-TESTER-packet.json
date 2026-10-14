@@ -1,7 +1,7 @@
 {
   "task_key": "SAR-LANDING-GUIDE-001-TESTER",
   "role": "tester",
-  "head": "1312658557c77e21de852edee6a860ea8cc69988",
+  "head": "297e6d3679f6d866171a35775b615685221ffd47",
   "attempt": "a43025df15404705846c60b97cdb8dc2",
   "instruction_sha256": "661c57d0bd5de494ac4d1e61ca4378e86e633563c072c246ab44bc85694a4dac",
   "options": {
@@ -35,6 +35,7 @@
       ".fullops-squad/contexts/tester.md": "ed07b309702120bd5301a4a16bfd49226cb84dfc90159806455ea12a10c977a9",
       ".fullops-squad/docs/agents/document-writing.md": "c6933cf2fc4e79c1f5691c60bff4d434327301827b82aef08dca0d4e881ba9e0",
       ".fullops-squad/docs/agents/domain.md": "6a02fc13e1ffa9e0e719216a91d897aadb9120fe5f1061da3eca4efc6443cc64",
+      ".fullops-squad/docs/agents/frontend.json": "ffe333c11226a3175b6e59fa7e3331d46a3240353da509d4de1358b3d816d987",
       ".fullops-squad/docs/agents/issue-tracker.md": "d613d0e67332beca5265b5c967eea732e89cd5472f2295f4b2f9f8c1f2eb1d85",
       ".fullops-squad/docs/agents/triage-labels.md": "dba7a161d428e08df77da98df71cb1fc26cc3406bb627beb540a855427605858",
       ".fullops-squad/docs/deliverables/README.md": "a486919c26cfd2591e14447813d09293602a7814cf71b7f451d0e0d6e0b658f9",
@@ -97,6 +98,8 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md": "7ac0d44a0f9cd2f02c0fa0e0b1ca0b7320d608bb67aca59765946391713b12c1",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md": "229f443b6a727bff1af5bd239a84ea518d2935791d56db1b31d525e1265a0312",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md": "8440854210ab80dd3704f00d90afc586dae3d140d62c9bfe49103d17651fc2c5",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md": "070bce053681173a445beec5d4bf5d8e354f9c1b0b89d30ce8b22db3db28a5f6",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md": "c4a1eb35b72e18baf1466ed588be370b960872f467a11b9044e308dd50b29b7a",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md": "c7a74cbe5003bab523d14677791b93b20f36c6e1b3cffbdff4893f6fb93797f9",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
@@ -468,13 +471,16 @@
       "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0"
     },
     "search_results": {
-      "route": "4c1b790f23a144b607f5f4a4211a6ce97e5a5ae8e032102ff65eea545834bb52"
+      "route": "5290d60b88013616770f69ac8def1a876948e04df7af6d47b7c500a75c0ebd23",
+      "find": "3311aa866cc6e73757492f7c6dc98f3bfb5d6d7f05f74db9d1241a7910f5e2b9",
+      "documents-find": "b84b01639c4ee6544bbea6f61c2043d990573ab6d93df44710041cffd2cefe0d",
+      "context": "df471972f2a98d82504036b3ffbba7eb29dc906ee8c649edda24037a64235ee8"
     },
     "decisions": []
   },
-  "input_sha256": "76fabaa72b4855c3fb08d6a28cfefc40366870b942b6572f0f830355822bb7ad",
+  "input_sha256": "d71dfa48448ce3e63de7e705d0edd6fbd45fbd0fbf924ad261ba3965220e816c",
   "version": "jev-packet-v2",
-  "base": "1312658557c77e21de852edee6a860ea8cc69988",
+  "base": "297e6d3679f6d866171a35775b615685221ffd47",
   "worktree_dirty": true,
   "items": [
     {
@@ -491,7 +497,8 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "15a8f741cbb124fd339606aa01228b1072a0143487764636a8f0280f03ea3994",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD",
+      "context_signal": null
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
@@ -519,7 +526,8 @@
       "status": "unknown",
       "priority": 0,
       "source_sha256": null,
-      "source_basis": null
+      "source_basis": null,
+      "context_signal": null
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
@@ -569,7 +577,15 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "c7a74cbe5003bab523d14677791b93b20f36c6e1b3cffbdff4893f6fb93797f9",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.79,
+        "evidence": 0.88,
+        "contradicts": 0.26,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      }
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
@@ -629,7 +645,15 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a25bf7ab097d323a5b981b9c70b24075650cd50b99b0e5ecf458e2e4969d172a",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.2,
+        "evidence": 0.33,
+        "contradicts": 0.38,
+        "injection": 0.07,
+        "decision": "keep",
+        "reason": null
+      }
     },
     {
       "path": ".fullops-squad/handovers/to_tester.md",
@@ -807,7 +831,8 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "661c57d0bd5de494ac4d1e61ca4378e86e633563c072c246ab44bc85694a4dac",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD",
+      "context_signal": null
     },
     {
       "path": ".fullops-squad/project.md",
@@ -823,7 +848,8 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": null
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
@@ -839,7 +865,8 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "2c08a8b1fcaa796d7a5bd74b28d3ee68a6b92af6e591e71b9f64d418d92c1533",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
@@ -855,7 +882,8 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
@@ -871,7 +899,8 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
@@ -887,7 +916,8 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "0c1e0d1af2e06a78abea5295cddf073d4efd18d32c066dd288530b3e5bafc528",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
     },
     {
       "path": "internal/relay/landing_fixture_test.go",
@@ -903,7 +933,15 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.61,
+        "evidence": 0.65,
+        "contradicts": 0.29,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
     },
     {
       "path": "internal/relay/landing_pages.go",
@@ -919,7 +957,31 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "8399c86382e90c8ff545aee90f355e5d0623e5f197a243d14ffbb500f92b0c52",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.48,
+        "evidence": 0.43,
+        "contradicts": 0.48,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
     },
     {
       "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
@@ -927,6 +989,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -992,6 +1055,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1345,7 +1409,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "5c33246bb7dbc227cd4160843cada52d5ef679e70c3a09caf2bce8e422950f64",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/contexts/designer.md",
@@ -1353,6 +1417,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1418,6 +1483,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1451,6 +1517,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1484,7 +1551,31 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "ed07b309702120bd5301a4a16bfd49226cb84dfc90159806455ea12a10c977a9",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/agents/frontend.json",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ffe333c11226a3175b6e59fa7e3331d46a3240353da509d4de1358b3d816d987",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.33,
+        "evidence": 0.5,
+        "contradicts": 0.75,
+        "injection": 0.03,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      }
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
@@ -1492,6 +1583,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -1535,6 +1627,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -1594,6 +1687,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -1686,6 +1780,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1727,6 +1822,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1768,6 +1864,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1809,6 +1906,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1834,6 +1932,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1867,6 +1966,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -2006,7 +2106,15 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "f8079b0634993d5d42e515b97e94ed1bdb0719425b20d90c399e70c2648cbef6",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.1,
+        "evidence": 0.19,
+        "contradicts": 0.4,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      }
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
@@ -2014,6 +2122,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2047,6 +2156,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2072,6 +2182,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2105,6 +2216,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2146,6 +2258,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2259,6 +2372,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2428,6 +2542,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2493,6 +2608,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2526,6 +2642,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2551,6 +2668,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2568,7 +2686,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "332474eb40c7602485e095e5e0f5de1c5e67add72d0bdf150138189bd8c1110f",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
@@ -2576,6 +2694,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2617,6 +2736,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2658,6 +2778,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2699,6 +2820,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2724,6 +2846,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2741,7 +2864,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "ad89892753e38b1c0a0bd011d5e932f191d55a30915d180a5dd8877075595a61",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
@@ -2749,6 +2872,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2766,7 +2890,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "59b483bf23ac2f3947e61d4057ab73734b2a82c1e811c481cdd90284ac7969a2",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
@@ -2774,6 +2898,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2831,6 +2956,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2872,6 +2998,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2897,7 +3024,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "ee75619349e2a9c803030d1926d1ba4b561cd149d9d461456c128b64779e58f4",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
@@ -2905,6 +3032,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2938,6 +3066,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2971,6 +3100,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -2988,7 +3118,106 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "682d55a4be3a1b9dceb77d350acc5b96907cbcb2a7f0145811c76a0ae2d221db",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 1,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 1,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 11,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 11,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "070bce053681173a445beec5d4bf5d8e354f9c1b0b89d30ce8b22db3db28a5f6",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation",
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "c4a1eb35b72e18baf1466ed588be370b960872f467a11b9044e308dd50b29b7a",
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
@@ -2996,6 +3225,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3053,7 +3283,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
@@ -3061,6 +3291,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3094,6 +3325,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3119,6 +3351,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3144,6 +3377,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3257,6 +3491,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3450,6 +3685,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3611,6 +3847,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3708,6 +3945,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3893,6 +4131,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -3918,6 +4157,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4079,6 +4319,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4192,6 +4433,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4217,6 +4459,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4370,6 +4613,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4419,6 +4663,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4476,6 +4721,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4501,6 +4747,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4526,6 +4773,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4567,6 +4815,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4632,6 +4881,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4657,6 +4907,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4690,6 +4941,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4763,6 +5015,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4788,6 +5041,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4845,6 +5099,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4870,6 +5125,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4967,6 +5223,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -4992,6 +5249,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5049,6 +5307,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5074,6 +5333,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5115,6 +5375,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5140,6 +5401,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5173,6 +5435,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5262,6 +5525,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5287,6 +5551,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5312,7 +5577,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "2e39c3bbd717cbc0694a2a175b177708e957bb90ad80453fffed44ff9482d80b",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
@@ -5320,6 +5585,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5345,6 +5611,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5378,7 +5645,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "9dedc7b8329b015c9bd17de860930ffcd7b3451c2a722c195c394023d5b749e1",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
@@ -5386,6 +5653,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5419,6 +5687,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5452,6 +5721,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5477,7 +5747,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "aa6f7412ac0d9ddaf31db51558968d90bd0c62f4d133f80fbb5d79e35139e2c8",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
@@ -5485,6 +5755,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5510,6 +5781,22 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "1dcb0be31b7f1fd08e472decb666fe3cc7f00be7335af6f3f56eeb092a1a70c5",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "94847a3118a0db10f5734419cee2213987c51cf43bb86607dbaf990b0bb5878a",
       "source_basis": "HEAD"
     },
     {
@@ -5518,6 +5805,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5535,7 +5823,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "4b766e9305dd45dc48e7fef7b0ed083ee69c89fde4606fded6e1e4d6809aff8a",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
@@ -5543,6 +5831,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5584,6 +5873,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5609,6 +5899,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5626,7 +5917,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "244c5c4ae307dbd518f216b819b9d092df4dbe2bf215c052797ff74be1828bbf",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
@@ -5634,6 +5925,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5691,6 +5983,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5740,6 +6033,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5765,6 +6059,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5814,6 +6109,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5967,6 +6263,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6040,6 +6337,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6081,6 +6379,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6106,6 +6405,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6147,6 +6447,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6196,6 +6497,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6237,6 +6539,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6286,6 +6589,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6335,6 +6639,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6384,6 +6689,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6417,6 +6723,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6458,6 +6765,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6507,6 +6815,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6548,6 +6857,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6597,6 +6907,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6646,6 +6957,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6695,6 +7007,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6744,6 +7057,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6801,6 +7115,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6850,6 +7165,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6899,6 +7215,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6956,6 +7273,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6997,6 +7315,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7022,6 +7341,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7087,6 +7407,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7112,6 +7433,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7137,6 +7459,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7186,6 +7509,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7331,6 +7655,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7356,6 +7681,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7381,6 +7707,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7430,6 +7757,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7463,6 +7791,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7496,6 +7825,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7529,6 +7859,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7562,6 +7893,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7587,6 +7919,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7612,6 +7945,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7637,6 +7971,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7662,6 +7997,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7695,6 +8031,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7752,6 +8089,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7785,6 +8123,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7842,6 +8181,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7883,6 +8223,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7908,6 +8249,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7933,6 +8275,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7958,6 +8301,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8007,6 +8351,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8032,6 +8377,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8073,6 +8419,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8122,6 +8469,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8147,6 +8495,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8212,6 +8561,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8261,6 +8611,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8310,6 +8661,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8335,6 +8687,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8384,6 +8737,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8409,6 +8763,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -8444,6 +8799,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -8519,7 +8875,15 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "ba8f3a334860562a759817a6fe509e2e4df954ab298e20cda85394292132c332",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.3,
+        "evidence": 0.33,
+        "contradicts": 0.46,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      }
     },
     {
       "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
@@ -8527,6 +8891,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8592,6 +8957,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -8627,6 +8993,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -8662,6 +9029,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification",
         "source mapping/reference; keep unchanged unless verified"
       ],
@@ -8697,6 +9065,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8722,6 +9091,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8766,11 +9136,28 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
       "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8807,11 +9194,28 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
       "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8885,6 +9289,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -8926,6 +9331,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -9263,6 +9669,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -9296,6 +9703,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -9321,6 +9729,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -9402,6 +9811,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -9467,6 +9877,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -9580,6 +9991,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -9821,6 +10233,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -10094,6 +10507,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -10271,6 +10685,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -10643,11 +11058,156 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -10817,6 +11377,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -11002,6 +11563,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -11667,7 +12229,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "9f4c755800c59adae7880d81ab6cfa0c5436c411f8d25266b74a58d1c012d799",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
@@ -11675,6 +12237,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -11884,6 +12447,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -12304,11 +12868,28 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -12918,7 +13499,23 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "97b7343dd160e0409ff30580b20b4b5af472536a54db891cd6a6fd7e0231d2fe",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
@@ -12926,6 +13523,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -12951,6 +13549,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -13168,7 +13767,79 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "0f5eb4949f36b9c04a29ac1e6be369a944c339318cc7f11575342c422ee0c316",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "AGENTS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "77136894b9a49dd67c3c231850ca8872c660f89094157844940f1d600c364be0",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "CLAUDE.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ab708fa2af849e84fd18a385c73834c41e5f2e9bb2bac67550141768c20a22ba",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "GEMINI.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "198b9baad6276b7fe1232378edda29ab62dd2a255dfd7c7e06db9e0ff38753bd",
       "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "f2445158e232eed00b43d645b9ddc589d4224e22f6b239edf7f9a2c1628e6982",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.17,
+        "evidence": 0.26,
+        "contradicts": 0.75,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
     },
     {
       "path": "adapters/README.md",
@@ -13176,6 +13847,7 @@
         "document_read"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -13196,11 +13868,164 @@
       "source_basis": "HEAD"
     },
     {
+      "path": "adapters/src/login.test.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ae0a5e30447b16d35f6fc329b70f7a70de4405db6b6b744a6d51df1915c71844",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "cmd/migrate/main.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ab1525213a591693fa268505106970812e9aba7c920b93576985748b566d04b7",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "a65b263294d9e8f1a86297b0069c9bd94a05fed7f8ecfaf23632130d16a3eac9",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "docs/README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "30612de0833292b4b9a712f13c2f32acda097776a8fb07272deecaec33198484",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "docs/architecture.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "f991945b9567e10c830a04c5b8d5a641112eb892bb884b0b808a77c3b3a28a75",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.28,
+        "evidence": 0.44,
+        "contradicts": 0.2,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "docs/development.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "481b71d30042e5f18488ca3d4cd4cfa8dcacb989f7e63d1718c714f2d2d6d3df",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "docs/operations.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "51c10f4ea86bd31be5f9d19f451315cb2d04bd5178d03ddabd736349907afddd",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.25,
+        "evidence": 0.44,
+        "contradicts": 0.25,
+        "injection": 0.08,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "docs/system-design.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.13,
+        "evidence": 0.22,
+        "contradicts": 0.27,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
       "path": "internal/relay/cleanup_flood_integration_test.go",
       "categories": [
         "impact_check"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -13221,11 +14046,84 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
+      "path": "internal/relay/human_http.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "56d64f15bfdacb35f1882f1111a63f0e2cc26e1a9cadbdde8b17ce6c64cdab3f",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.11,
+        "evidence": 0.18,
+        "contradicts": 0.21,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "0268b855cde2029669d1ac63877cdcb5d47067635ac4255935e8fb6b27e3ca0a",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.19,
+        "evidence": 0.24,
+        "contradicts": 0.3,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "internal/relay/landing_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2667ad853f804b416fe179ec66ed46fe03dd7f15a79d8203718a99098131e9e5",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.8,
+        "evidence": 0.78,
+        "contradicts": 0.38,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
       "path": "internal/relay/landing_test.go",
       "categories": [
         "impact_check"
       ],
       "reasons": [
+        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -13243,7 +14141,63 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.71,
+        "evidence": 0.79,
+        "contradicts": 0.27,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "internal/relay/member.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null,
+      "context_signal": {
+        "relevant": 0.45,
+        "evidence": 0.52,
+        "contradicts": 0.2,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "cd4a86939e288adb7ef25c1ff2edc4b499344f3ab7e1b0464638b91c1e2d9f7b",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.42,
+        "evidence": 0.43,
+        "contradicts": 0.22,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
     }
   ],
   "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
@@ -13253,8 +14207,17 @@
     "impact_check": [
       "internal/relay/landing_fixture_test.go",
       "internal/relay/landing_pages.go",
+      ".fullops-squad/docs/agents/frontend.json",
+      "adapters/src/login.test.ts",
+      "cmd/migrate/main.go",
+      "deploy/knowslink/verify.py",
       "internal/relay/cleanup_flood_integration_test.go",
-      "internal/relay/landing_test.go"
+      "internal/relay/human_http.go",
+      "internal/relay/human_pages.go",
+      "internal/relay/landing_integration_test.go",
+      "internal/relay/landing_test.go",
+      "internal/relay/member.go",
+      "internal/relay/member_pages.go"
     ],
     "document_read": [
       ".fullops-squad/FULLOPS.md",
@@ -13267,6 +14230,7 @@
       ".fullops-squad/rules/common/coding-style.md",
       ".fullops-squad/rules/common/security.md",
       ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/PLANS.md",
       ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
       ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
       ".fullops-squad/contexts/designer.md",
@@ -13303,6 +14267,8 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
@@ -13345,6 +14311,7 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
@@ -13420,7 +14387,9 @@
       ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
       ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
       ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
       ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
       ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
       ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
       ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
@@ -13433,15 +14402,35 @@
       ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
       ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
       ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+      ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+      ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+      ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+      ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+      ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+      ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+      ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
       ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
       ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
       ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
       ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
       ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+      ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
       ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+      ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
       ".fullops-squad/handovers/to_designer.md",
-      "adapters/README.md"
+      "AGENTS.md",
+      "CLAUDE.md",
+      "GEMINI.md",
+      "README.md",
+      "adapters/README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/development.md",
+      "docs/operations.md",
+      "docs/system-design.md"
     ],
     "document_update": []
   },
@@ -13452,15 +14441,58 @@
   "unknown": [
     {
       "source": "find",
-      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+      "reason": "producer uncertainty; inspect producer_status",
+      "error": null,
+      "partial": true,
+      "input_partial": true,
+      "remaining_candidates": [],
+      "ranking_status": "single_batch",
+      "fallback": null
     },
     {
       "source": "documents-find",
-      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+      "reason": "producer uncertainty; inspect producer_status",
+      "error": null,
+      "partial": true,
+      "input_partial": true,
+      "remaining_candidates": [
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+        ".fullops-squad/FULLOPS.md",
+        ".fullops-squad/contexts/tester.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+        ".fullops-squad/docs/agents/document-writing.md",
+        ".fullops-squad/docs/design-docs/interface-design.md",
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+        ".fullops-squad/docs/evaluations/scenarios/README.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+        ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+        ".fullops-squad/handovers/_TEMPLATE.md"
+      ],
+      "ranking_status": "batch_only",
+      "fallback": "local Git/keyword/symbol search"
     },
     {
       "source": "context",
-      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+      "reason": "producer uncertainty; inspect producer_status",
+      "error": null,
+      "input_partial": true,
+      "refused_paths": [],
+      "unsent_sources": {
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
+      }
     },
     {
       "path": ".fullops-squad/PLANS.md",
@@ -13521,6 +14553,10 @@
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/member.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
   "producer_status": {
@@ -13528,17 +14564,68 @@
       "error": null,
       "docs_status": "complete",
       "unresolved_deliverables": []
+    },
+    "find": {
+      "error": null,
+      "partial": true,
+      "input_partial": true,
+      "remaining_candidates": [],
+      "ranking_status": "single_batch",
+      "fallback": null
+    },
+    "documents-find": {
+      "error": null,
+      "partial": true,
+      "input_partial": true,
+      "remaining_candidates": [
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+        ".fullops-squad/FULLOPS.md",
+        ".fullops-squad/contexts/tester.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+        ".fullops-squad/docs/agents/document-writing.md",
+        ".fullops-squad/docs/design-docs/interface-design.md",
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+        ".fullops-squad/docs/evaluations/scenarios/README.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+        ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+        ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+        ".fullops-squad/handovers/_TEMPLATE.md"
+      ],
+      "ranking_status": "batch_only",
+      "fallback": "local Git/keyword/symbol search"
+    },
+    "context": {
+      "error": null,
+      "input_partial": true,
+      "refused_paths": [],
+      "unsent_sources": {
+        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
+      }
     }
   },
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
   "context_paths": [
+    ".fullops-squad/PLANS.md",
     ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
     ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
     ".fullops-squad/contexts/designer.md",
     ".fullops-squad/contexts/dev.md",
     ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/agents/frontend.json",
     ".fullops-squad/docs/design-docs/crud-design.md",
     ".fullops-squad/docs/design-docs/interface-design.md",
     ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
@@ -13551,9 +14638,7 @@
     ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md"
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
@@ -13571,6 +14656,8 @@
   ],
   "optional_context_paths": [],
   "remaining_context_paths": [
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
@@ -13587,6 +14674,8 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
@@ -13629,6 +14718,7 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
@@ -13704,7 +14794,9 @@
     ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
     ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
     ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+    ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+    ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
     ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
     ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
@@ -13717,16 +14809,44 @@
     ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
     ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+    ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+    ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+    ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+    ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+    ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
     ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
     ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+    ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+    ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
     ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
     ".fullops-squad/handovers/to_designer.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "README.md",
     "adapters/README.md",
+    "adapters/src/login.test.ts",
+    "cmd/migrate/main.go",
+    "deploy/knowslink/verify.py",
+    "docs/README.md",
+    "docs/architecture.md",
+    "docs/development.md",
+    "docs/operations.md",
+    "docs/system-design.md",
     "internal/relay/cleanup_flood_integration_test.go",
-    "internal/relay/landing_test.go"
+    "internal/relay/human_http.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/landing_integration_test.go",
+    "internal/relay/landing_test.go",
+    "internal/relay/member.go",
+    "internal/relay/member_pages.go"
   ]
 }

@@ -1,0 +1,322 @@
+{
+  "checks": [
+    {
+      "name": "provider-18781",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18781",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18781",
+      "passed": true
+    },
+    {
+      "name": "provider-18782",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18782",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18782",
+      "passed": true
+    },
+    {
+      "name": "provider-18783",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18783",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18783",
+      "passed": true
+    },
+    {
+      "name": "provider-18784",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18784",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18784",
+      "passed": true
+    },
+    {
+      "name": "none-safe-reload",
+      "passed": true
+    },
+    {
+      "name": "invalid-email-422-associated-escaped",
+      "passed": true
+    },
+    {
+      "name": "cross-origin-login-403",
+      "passed": true
+    },
+    {
+      "name": "email-start-303",
+      "passed": true
+    },
+    {
+      "name": "verify-pending",
+      "passed": true
+    },
+    {
+      "name": "wrong-code-401-associated",
+      "passed": true
+    },
+    {
+      "name": "valid-code-303-home",
+      "passed": true
+    },
+    {
+      "name": "authed-public-200-no-private-data",
+      "passed": true
+    },
+    {
+      "name": "unnamed-home-redirect",
+      "passed": true
+    },
+    {
+      "name": "name-form",
+      "passed": true
+    },
+    {
+      "name": "profile-csrf-403",
+      "passed": true
+    },
+    {
+      "name": "name-save-303",
+      "passed": true
+    },
+    {
+      "name": "home-and-primary-navigation",
+      "passed": true
+    },
+    {
+      "name": "account-service-guide-link",
+      "passed": true
+    },
+    {
+      "name": "named-public-no-name-email",
+      "passed": true
+    },
+    {
+      "name": "fixture-expire-303",
+      "passed": true
+    },
+    {
+      "name": "expired-session-restores-form",
+      "passed": true
+    },
+    {
+      "name": "google-start-local-mock",
+      "passed": true
+    },
+    {
+      "name": "google-local-cancel-redirect",
+      "passed": true
+    },
+    {
+      "name": "google-cancel-safe-recovery",
+      "passed": true
+    },
+    {
+      "name": "missing-challenge-410-provider-safe",
+      "passed": true
+    },
+    {
+      "name": "mail-unavailable-503-no-false-success",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "port": 18781,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18781,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18782,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18782,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18784,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18784,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/auth/start",
+      "status": 422
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/auth/start",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/auth/start",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/auth/verify",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/fixture/code",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/auth/verify",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/auth/verify",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/home/name",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/home/profile",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/home/profile",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/home",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/home/account",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "port": 18783,
+      "path": "/fixture/expire",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "port": 18781,
+      "path": "/auth/google",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18781,
+      "path": "/fixture/google-cancel",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18781,
+      "path": "/auth/google/callback",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "port": 18781,
+      "path": "/auth/verify",
+      "status": 410
+    },
+    {
+      "method": "POST",
+      "port": 18781,
+      "path": "/auth/start",
+      "status": 503
+    }
+  ]
+}

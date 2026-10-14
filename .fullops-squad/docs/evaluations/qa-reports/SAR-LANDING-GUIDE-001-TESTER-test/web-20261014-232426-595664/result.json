@@ -1,0 +1,114 @@
+{
+ "version": "jev-test-web-v1",
+ "plugin_version": "1.4.3",
+ "target_sha": "297e6d3679f6d866171a35775b615685221ffd47",
+ "worktree_dirty": true,
+ "executor_sha256": "dda3199044f6c6a8fd88466ea772771c694520c3a6dc5ce19a785928d7d02d1c",
+ "scenario_sha256": "08c17d58468e6c10bda997f437a71591da1213fae1e96bd61fd93c8a0c3eb318",
+ "executor_files_sha256": {
+  "jev_test_web.py": "dda3199044f6c6a8fd88466ea772771c694520c3a6dc5ce19a785928d7d02d1c",
+  "web_contract.py": "560a3e7999f5fc47f0f1f6c94cb49d9b9d971c5552b4a5e24e80e8924a4f7486",
+  "web_dom.js": "7886dc1f411e89bebc9c3b051f9dabdd50a389118f766f416d90392d28db1e3b",
+  "web_playwright.py": "1b56aaa2c03a8cf2b143aa0b03fdf25fbb951724a0c61b118a36a45876889a56",
+  "web_playwright.cjs": "08b315793e03e31d762e66278e7cdec71b1eecb90b9c5698ee4921b9bb4a5d2c"
+ },
+ "result": "passed",
+ "passed": true,
+ "steps": 0,
+ "scope": "assertions_only",
+ "executor": {
+  "name": "orca",
+  "version": "1.4.224",
+  "request_filtering": false,
+  "attached": true
+ },
+ "coverage": {
+  "total": 38,
+  "offset": 0,
+  "observed": 38,
+  "remaining": 0,
+  "unsupported": [],
+  "complete": true
+ },
+ "assertions_passed": true,
+ "jev_calls": 0,
+ "calls": [],
+ "cost": 0,
+ "known_cost": 0,
+ "cost_status": "complete",
+ "budgets": {
+  "max_seconds": 120,
+  "max_cost": 0.05,
+  "max_visits": 4,
+  "candidate_limit": 80,
+  "max_input_chars": 32000
+ },
+ "latency_s": 0,
+ "elapsed_s": 6.481,
+ "checks": [
+  {
+   "condition": {
+    "js": "['main','how','install','examples','start'].every(id=>!!document.getElementById(id))",
+    "equals": true
+   },
+   "value": true,
+   "passed": true
+  },
+  {
+   "condition": {
+    "js": "document.querySelectorAll('h1').length===1 && document.documentElement.lang==='ko'",
+    "equals": true
+   },
+   "value": true,
+   "passed": true
+  },
+  {
+   "condition": {
+    "js": "document.querySelectorAll('details').length===2 && [...document.querySelectorAll('details')].every(e=>!e.open)",
+    "equals": true
+   },
+   "value": true,
+   "passed": true
+  },
+  {
+   "condition": {
+    "text": "기능을 설명하기 위한 가상 예시입니다."
+   },
+   "value": true,
+   "passed": true
+  },
+  {
+   "condition": {
+    "text": "최대 180초"
+   },
+   "value": true,
+   "passed": true
+  },
+  {
+   "condition": {
+    "text": "최대 24시간"
+   },
+   "value": true,
+   "passed": true
+  },
+  {
+   "condition": {
+    "js": "document.querySelectorAll('#start form').length===2 && document.querySelectorAll('form').length===2",
+    "equals": true
+   },
+   "value": true,
+   "passed": true
+  }
+ ],
+ "url": "http://127.0.0.1:18782/",
+ "goal": "Read the public introduction, steps, installation summaries, fictional examples and login section. Do not log in or follow external links.",
+ "covers": [
+  "LG-01 public structure",
+  "LG-03 order",
+  "LG-04 install summaries",
+  "LG-05 fictional examples",
+  "LG-06 delivery limits",
+  "LG-07 both providers"
+ ],
+ "scenario": ".fullops-squad/docs/evaluations/scenarios/web/landing-public-tester.json"
+}

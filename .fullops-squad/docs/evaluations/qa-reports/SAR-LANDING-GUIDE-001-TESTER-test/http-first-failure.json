@@ -1,0 +1,106 @@
+{
+  "checks": [
+    {
+      "name": "provider-18781",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18781",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18781",
+      "passed": true
+    },
+    {
+      "name": "provider-18782",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18782",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18782",
+      "passed": true
+    },
+    {
+      "name": "provider-18783",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18783",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18783",
+      "passed": true
+    },
+    {
+      "name": "provider-18784",
+      "passed": true
+    },
+    {
+      "name": "public-boundary-18784",
+      "passed": true
+    },
+    {
+      "name": "private-denied-18784",
+      "passed": true
+    },
+    {
+      "name": "none-safe-reload",
+      "passed": false
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "port": 18781,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18781,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18782,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18782,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18783,
+      "path": "/home",
+      "status": 303
+    },
+    {
+      "method": "GET",
+      "port": 18784,
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "port": 18784,
+      "path": "/home",
+      "status": 303
+    }
+  ]
+}
