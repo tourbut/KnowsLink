@@ -4,7 +4,7 @@ title: 사용자설명서
 status: review
 updated: 2026-10-14
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -12,7 +12,7 @@ summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사
 
 ## 공개 안내의 새 사용 흐름 — SAR-LANDING-GUIDE-001
 
-이 절은 2026-10-14 설계의 구현 예정 안내다. 새 첫페이지가 운영에 적용됐다는 뜻은 아니다. 배포 뒤 DEV/OPS가 구현 SHA와 실제 적용 시점을 연결한다. 현재 설치·연결 정본은 [루트 README](../../../README.md)이며 아래 과거 베타·후보 절차와 구분한다.
+이 절은 2026-10-14 설계를 구현한 DEV 후보의 안내다. 구현·검증 SHA와 격리 fixture는 [DEV 기록](../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다. 독립 QA·직접 시각 검수·리뷰·운영 배포는 후속이며 새 첫페이지가 운영에 적용됐다는 뜻은 아니다. 실제 적용 시점은 OPS가 연결한다. 현재 설치·연결 정본은 [루트 README](../../../README.md)이며 아래 과거 베타·후보 절차와 구분한다.
 
 1. 첫페이지에서 서비스 소개, 시작 순서, 설치와 연결, 가상 대화 예시를 읽는다. 안내를 읽는 데는 로그인이 필요 없다.
 2. '로그인하고 시작하기'로 로그인 영역에 이동한다. 제공되는 Google 로그인 또는 이메일 확인 코드로 로그인한다. 로그인 수단이 없으면 안내를 읽고 나중에 다시 시도한다.

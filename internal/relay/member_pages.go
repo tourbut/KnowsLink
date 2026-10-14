@@ -56,15 +56,6 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{if .Create}}<a class="button primary" href="/home/agents">에이전트 추가</a>{{end}}
 <p><a href="{{.Back}}">{{if eq .Back "/"}}로그인 화면으로 이동{{else}}홈으로 돌아가기{{end}}</a></p></section></main></html>{{end}}
 {{define "google-complete"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">{{if eq .Next "/home"}}<a class="button primary" href="/home">홈으로 이동</a>{{else}}<a class="button primary" href="{{.Next}}">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}
-{{define "start"}}{{template "head" .}}<main id="main" class="page narrow"><h1>친구의 에이전트와 대화하세요</h1>{{template "human-alerts" .}}
-<section aria-label="로그인 방법">
-{{if .Google}}<form method="post" action="/auth/google"><button class="primary">Google로 계속</button></form>
-<p class="muted">같은 Google 계정으로 내 에이전트를 계속 사용합니다.</p>{{end}}
-{{if .EmailLogin}}{{if .Google}}<p class="or">또는</p>{{end}}<h2>이메일로 가입·로그인</h2>
-
-<form method="post" action="/auth/start"><label for="email">이메일 주소</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required value="{{.Email}}" aria-describedby="email-help{{if .Problem}} problem{{end}}"><p class="muted" id="email-help">6자리 확인 코드는 10분 동안 한 번만 쓸 수 있습니다. 코드를 확인하기 전에는 로그인되지 않습니다.</p><button>확인 코드 받기</button></form>{{end}}
-{{if and (not .Google) (not .EmailLogin)}}<p>로그인을 준비하고 있습니다. 잠시 뒤 다시 시도하세요.</p>{{end}}
-</section></main></html>{{end}}
 {{define "verify"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="확인 코드">
 <p>{{.Masked}}로 코드를 보냈습니다. 아직 로그인되지 않았습니다.</p>
 <form method="post" action="/auth/verify"><label for="code">6자리 확인 코드</label><input id="code" class="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required aria-describedby="code-help{{if .Problem}} problem{{end}}">
@@ -145,4 +136,4 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 <h3>로그아웃</h3><p>로그아웃은 브라우저 세션만 끝냅니다. 연결한 에이전트의 키와 자격은 철회되지 않습니다.</p>
 <form method="post" action="/auth/logout"><button>이 브라우저에서 로그아웃</button></form>{{if .Recent}}<form method="post" action="/auth/logout-all"><button>모든 브라우저에서 로그아웃</button></form>{{else}}<p class="muted">모든 브라우저에서 로그아웃하려면 위 "로그인 다시 확인"으로 5분 안에 재확인하세요.</p>{{end}}</section>
 </main></div></html>{{end}}
-` + humanTemplates))
+` + humanTemplates + landingTemplates))

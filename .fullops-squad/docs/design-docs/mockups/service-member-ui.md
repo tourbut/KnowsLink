@@ -4,7 +4,7 @@ title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
 updated: 2026-10-14
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -216,6 +216,8 @@ LG-01–08 제품 기준은 [D02](../../planning/product-specs/SAR-HUMAN-PEER.md
 키보드는 Tab/Shift+Tab, 앵커 Enter, summary Enter/Space, 폼 Enter, 오류 뒤 재시도를 확인한다. 200% 확대·44px hit area·focus·contrast·긴 URL·overflow를 검증한다. 장식 모션은 없어 reduced-motion에서 동작 변화가 없어야 한다. 실제 Google·운영 메일·실상대 메시지는 실행하지 않는다. 독립 QA·직접 시각 검수·별도 세션 고정 SHA 리뷰 전 구현 수락으로 보고하지 않는다.
 
 이번 실행은 codex / gpt-6-astra / high, 주 스킬 frontend-design이다. 최신 사용자 지정이 기존 Sol tuple보다 우선한다. frontend check는 configuration_ready이며 인증·브라우저 QA·MCP는 not_run이다. tools=[]와 기존 설정을 유지한다. [설계 검증 기록](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md)에 원천 사실·미실행·후속을 구분한다.
+
+구현 연결(2026-10-14): 공개 template·인증 view·내 계정 복귀 링크와 관련 회귀는 [DEV 구현 기록](../../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다. 위 설계 검사 기록과 과거 실패는 보존한다. DEV 자체 검증은 독립 QA·designer 직접 시각 수락·코드 리뷰·운영 배포를 대신하지 않는다.
 
 ## 현재 디자인 정본 — SAR-HUMAN-PEER-001
 

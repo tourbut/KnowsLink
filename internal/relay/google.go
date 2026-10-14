@@ -57,8 +57,7 @@ func googleAttemptCookie(w http.ResponseWriter, value string, maxAge int) {
 }
 
 func (s *Service) googleFailure(w http.ResponseWriter, status int, problem string) {
-	v := startView(problem)
-	v["Google"], v["EmailLogin"] = s.Google != nil, s.Mail != nil
+	v := s.startView(problem)
 	render(w, status, "start", v)
 }
 
