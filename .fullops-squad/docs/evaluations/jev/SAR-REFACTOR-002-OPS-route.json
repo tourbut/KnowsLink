@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-REFACTOR-002-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.03,
+        "ops": 0.97,
+        "tester": 0
+      },
+      "confidence": 0.95
+    },
+    "docs": {
+      "D01": 0.25,
+      "D02": 0.2,
+      "D03": 0.19,
+      "D04": 0.15,
+      "D05": 0.18,
+      "D06": 0.25,
+      "D07": 0.19,
+      "D08": 0.18,
+      "D09": 0.18,
+      "D10": 0.34,
+      "D11": 0.27,
+      "D12": 0.85,
+      "D13": 0.66
+    }
+  },
+  "usage": {
+    "input_tokens": 2458,
+    "output_tokens": 314,
+    "cost": 0.000103236
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.685,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "기존 운영 배포의 ops 책임과 사용자 명시 승인",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "requires_packet": true,
+  "attempt": "3344417eb706415eaf6e4411c7e5fc35",
+  "instruction_sha256": "183540f4e6ab6af7e94b41f7a98a7ee2dd33010641561e80ce9f5c6453d6bfc1",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "f270bd44307970fac359329f6ce7d3b609dcc6c8da18e10f84c8a692cb9bb6a3"
+}

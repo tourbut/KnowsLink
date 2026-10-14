@@ -9,6 +9,15 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## Astra 리팩터링 운영 배포 — SAR-REFACTOR-002-OPS
+
+- Jev 충돌 후보를 날짜/내용으로 확인했다. 이전 OPS report의2747fe9·과거transition의 수락/미배포 표현과 최신 refactor002의 이번미배포 한계는 해당 작성 시점의 기록이다. 새 사용자 배포 승인이 우선하며 현재 운영은 fresh 관측한다. 이전 스크립트의 삭제 포함 복원 절차는 새 무삭제 인박스에서 사용 금지다. 기존 제품/권한/writer 계약 자체를 바꾸는 충돌은 확인되지 않았다.
+
+- 2026-10-14 사용자 '배포해' 명시 승인으로 수락 main8a93e38e190f1b9e7b6bb183e578e410f5dd97c6을 기존 link.knowslog.com에 배포한다. ops fresh codex/gpt-6-astra/high로 배정한다. private 새 백업·격리 복원·기존 회원/키/친구/Inbox/Events 및 공유 서비스 보존·health/안전publicsmoke·실패 복구가 완료 조건이다. 신규 실계정 발송·재등록·다른 서비스 변경은 포함하지 않는다.
+- ops의 기존 사용자 소유 에이전트는 이전 결과 완료·Ask Codex 유휴이며 shell도 prompt 상태, 워크트리 clean을 확인했다. 두 터미널은 보존하고 최신main/준비SHA로FF 후 새 세션만 시작한다. 이전 운영2747fe9는 마지막 관측이며 새 OPS가 현재 상태를 직접 확인한다. Context7 quota 실패와 공식 Docker up/stop 대체 근거를 인박스에 기록했다.
+- 서버 배포와 Grok 로컬 bundle 갱신을 구분한다. 이번 Inbox 수정은 실행 중인 Grok 로컬 코드도 갱신해야 적용된다. Dots는 기존 Remote 연결에서 서버 변경을 사용한다. 실제 클라이언트 갱신/호스트 알림은 별도 확인이며 이번 배포 성공으로 주장하지 않는다.
+
+
 ## Astra high 전반 리팩터링·성능·설계 개선 — SAR-REFACTOR-002-DEV
 
 - 완료(2026-10-14): DEV3e5af5e와 QAe9b5cba 및 별도 Astra 리뷰를 main/origin3fab3c39130a8649d7805aab07ed694d10905968에 일반 통합/push/fetch동일·양쪽 조상 확인했다. FINAL-MAIN49/11·QA32/12 reviewed/skipped, check0·C/H0, 최종 필수 lint/test/build0이다. msg_a3bb7b48b5c1·msg_cb83280026ea와 delivery_2fe4c4b233a5·delivery_b06a8e79bbdb를 통합 뒤 ACK했고 integration pending0이다. 새DEV/tester는 정상 released/closed_agent_terminal·transcript captured다.

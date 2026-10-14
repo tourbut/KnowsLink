@@ -1,0 +1,74 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-REFACTOR-002-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.01,
+        "ops": 0.99,
+        "tester": 0
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.21,
+      "D02": 0.16,
+      "D03": 0.16,
+      "D04": 0.14,
+      "D05": 0.15,
+      "D06": 0.22,
+      "D07": 0.14,
+      "D08": 0.18,
+      "D09": 0.17,
+      "D10": 0.29,
+      "D11": 0.26,
+      "D12": 0.84,
+      "D13": 0.73
+    }
+  },
+  "usage": {
+    "input_tokens": 2526,
+    "output_tokens": 314,
+    "cost": 0.000106092
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.682,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "명시적으로 승인된 기존 서비스 운영 배포는 ops 책임",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "requires_packet": true
+}
