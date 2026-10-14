@@ -1,0 +1,18 @@
+goos: windows
+goarch: amd64
+pkg: github.com/tourbut/KnowsLink/internal/relay
+cpu: AMD Ryzen 5 5600 6-Core Processor              
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-12         	  204542	      1128 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-12         	  208458	      1159 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-12         	  209042	      1143 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-12         	   52398	      4601 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-12         	   50498	      4534 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-12         	   53700	      4558 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-12       	    1587	    146978 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-12       	    1458	    148455 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-12       	    1648	    148226 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-12       	     397	    590438 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-12       	     417	    581513 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-12       	     380	    617028 ns/op	      64 B/op	       1 allocs/op
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	3.223s

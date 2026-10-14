@@ -1,0 +1,25 @@
+goos: windows
+goarch: amd64
+pkg: github.com/tourbut/KnowsLink/internal/relay
+cpu: AMD Ryzen 5 5600 6-Core Processor              
+BenchmarkRetainedHistory/100/sweep-12   	     663	    639041 ns/op	    1600 B/op	     100 allocs/op
+BenchmarkRetainedHistory/100/sweep-12   	     669	    420339 ns/op	    1600 B/op	     100 allocs/op
+BenchmarkRetainedHistory/100/sweep-12   	     552	    390032 ns/op	    1600 B/op	     100 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-12         	      97	   2124484 ns/op	    134518 state_bytes	  527748 B/op	    3440 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-12         	     109	   2222973 ns/op	    134518 state_bytes	  510904 B/op	    3438 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-12         	     100	   2384524 ns/op	    134518 state_bytes	  509216 B/op	    3439 allocs/op
+BenchmarkRetainedHistory/1000/sweep-12                 	      50	   4248390 ns/op	   16000 B/op	    1000 allocs/op
+BenchmarkRetainedHistory/1000/sweep-12                 	      63	   3712405 ns/op	   16000 B/op	    1000 allocs/op
+BenchmarkRetainedHistory/1000/sweep-12                 	      70	   4590890 ns/op	   16000 B/op	    1000 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-12        	      16	  13161200 ns/op	    751918 state_bytes	 4724461 B/op	   12589 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-12        	      19	  13418000 ns/op	    751918 state_bytes	 4276403 B/op	   12585 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-12        	      20	  11997630 ns/op	    751918 state_bytes	 4155933 B/op	   12582 allocs/op
+BenchmarkRetainedHistory/10000/sweep-12                	       6	  35810567 ns/op	  160000 B/op	   10000 allocs/op
+BenchmarkRetainedHistory/10000/sweep-12                	       6	  38099700 ns/op	  160000 B/op	   10000 allocs/op
+BenchmarkRetainedHistory/10000/sweep-12                	       4	  50482075 ns/op	  160000 B/op	   10000 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-12       	       2	 186044300 ns/op	   6925918 state_bytes	37352560 B/op	  103452 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-12       	       2	 120844250 ns/op	   6925918 state_bytes	58206864 B/op	  103480 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-12       	       2	 116233700 ns/op	   6925918 state_bytes	58206720 B/op	  103478 allocs/op
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	7.126s
+EXIT=0
