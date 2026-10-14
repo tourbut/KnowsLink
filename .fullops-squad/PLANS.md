@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## Astra 리팩터링 운영 배포 — SAR-REFACTOR-002-OPS
 
+- 실제 착수 task_6e35fa7983b5 / ctx_82a534ee9cf7 / term_d9fae13d-e296-47fa-b737-f71ae73a48d0. worker-start ready·turn_started 및 requested/effective codex/gpt-6-astra/high 일치를 확인했다. 이전 사용자 OPS 두 터미널은 보존했다. 완료 메시지 수신 후 실제 배포 증거·별도 fixed 리뷰·main 결과 통합을 진행한다.
+
 - Jev 충돌 후보를 날짜/내용으로 확인했다. 이전 OPS report의2747fe9·과거transition의 수락/미배포 표현과 최신 refactor002의 이번미배포 한계는 해당 작성 시점의 기록이다. 새 사용자 배포 승인이 우선하며 현재 운영은 fresh 관측한다. 이전 스크립트의 삭제 포함 복원 절차는 새 무삭제 인박스에서 사용 금지다. 기존 제품/권한/writer 계약 자체를 바꾸는 충돌은 확인되지 않았다.
 
 - 2026-10-14 사용자 '배포해' 명시 승인으로 수락 main8a93e38e190f1b9e7b6bb183e578e410f5dd97c6을 기존 link.knowslog.com에 배포한다. ops fresh codex/gpt-6-astra/high로 배정한다. private 새 백업·격리 복원·기존 회원/키/친구/Inbox/Events 및 공유 서비스 보존·health/안전publicsmoke·실패 복구가 완료 조건이다. 신규 실계정 발송·재등록·다른 서비스 변경은 포함하지 않는다.
