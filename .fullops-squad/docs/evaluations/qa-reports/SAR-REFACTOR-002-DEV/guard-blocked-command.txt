@@ -1,0 +1,41 @@
+2026-10-14: command blocked before execution. No helper files were created by this command.
+Hook reason: Blocked by scripts/shell_guard.py: programmatic deletion inside an inline command cannot be verified.
+The two deletion-related strings below are negative assertions, not calls. The original remote.py contains no file cleanup; it creates bundles/clones and runs make install/lint/test/build. Integration would create one synthetic loopback DB and stop, not remove, that exact container.
+
+Exact submitted PowerShell command:
+@'
+from pathlib import Path
+root=Path.cwd()
+source=root/'.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/gate/remote.py'
+out=root/'.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate'
+out.mkdir(parents=True, exist_ok=True)
+external=Path('C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002')
+external.mkdir(exist_ok=True)
+code=source.read_text(encoding='utf-8').replace('SAR-REFACTOR-001-DEV','SAR-REFACTOR-002-DEV').replace('knowslink-refactor001-','knowslink-refactor002-')
+code=code.replace("    elif action == 'make':", """    elif action == 'probe':
+        sys.exit(run('go version; node --version; npm --version; docker --version', HERE / 'environment.log'))
+    elif action == 'integration':
+        base = base_file.read_text().strip()
+        name = 'kl-refactor002-' + sha[:12] + '-' + rnd.token_hex(4)
+        image = 'postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24'
+        command = (f'set -e; cd {base}/repo; test \"$(git rev-parse HEAD)\" = {sha}; '
+                   f'test -z \"$(git status --porcelain)\"; '
+                   f'docker run -d --name {name} --cpus=1 --memory=512m -e POSTGRES_PASSWORD=synthetic-refactor-test '
+                   f'-e POSTGRES_USER=knowslink -e POSTGRES_DB=knowslink -p 127.0.0.1::5432 {image}; '
+                   f'for i in $(seq 1 40); do if docker exec {name} pg_isready -U knowslink -d knowslink >/dev/null; then break; fi; sleep 1; done; '
+                   f'port=$(docker port {name} 5432/tcp); port=${{port##*:}}; '
+                   'export TEST_DATABASE_URL=postgres://knowslink:synthetic-refactor-test@127.0.0.1:$port/knowslink?sslmode=disable; '
+                   'export TEST_SYNTHETIC_DATABASE=1; export DATABASE_URL=\"$TEST_DATABASE_URL\"; '
+                   'go run ./cmd/migrate; go test -race -tags=integration ./internal/relay -count=1; '
+                   f'docker stop {name}')
+        (HERE / f'{sha}-database.txt').write_text(name)
+        sys.exit(run(command, HERE / f'{sha}-integration.log'))
+    elif action == 'make':""")
+compile(code, 'remote.py', 'exec')
+assert 'RejectPolicy' in code and 'git status --porcelain' in code
+assert 'docker rm' not in code and 'rmtree' not in code
+(out/'remote.py').write_text(code, encoding='utf-8')
+(external/'remote.py').write_text(code, encoding='utf-8')
+(external/'make.cmd').write_text('@"C:\\Users\\shin\\AppData\\Local\\Programs\\Python\\Python313\\python3.exe" "%~dp0remote.py" make %1\n@exit /b %errorlevel%\n')
+print('helper syntax/security assertions passed')
+'@ | python3 -; python3 'C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002/remote.py' probe

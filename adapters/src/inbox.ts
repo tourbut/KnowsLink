@@ -77,7 +77,10 @@ export class Inbox {
   }
   // Oldest unread message. The rename is the claim, so two MCP processes never return the same message.
   async take(): Promise<(ReceivedText & { expired: boolean }) | null> {
-    for (const name of await this.pending()) {
+    const pending = await this.pending();
+    // Housekeeping must fail before claiming text, or a failed receive would lose its unread body.
+    if (pending.length) await this.prune();
+    for (const name of pending) {
       const marker = join(this.dir, name.replace(/\.json$/, ".read"));
       try {
         await rename(join(this.dir, name), marker);
@@ -86,7 +89,6 @@ export class Inbox {
       }
       const m = JSON.parse(await readFile(marker, "utf8")) as ReceivedText;
       await writeFile(marker, "", { mode: 0o600 }); // Keep only the ID marker after display.
-      await this.prune();
       return { ...m, expired: Date.parse(m.exp) <= Date.now() };
     }
     return null;
@@ -95,7 +97,12 @@ export class Inbox {
     for (const name of await readdir(this.dir)) {
       if (!/\.(read|tmp|wake)$/.test(name)) continue; // An unread message rings again after its wake marker ages out.
       const path = join(this.dir, name);
-      const age = Date.now() - (await stat(path)).mtimeMs;
+      const st = await stat(path).catch((e: NodeJS.ErrnoException) => {
+        if (e.code !== "ENOENT") throw e;
+        return null; // Another receiver may have renamed a temporary file or pruned a marker.
+      });
+      if (!st) continue;
+      const age = Date.now() - st.mtimeMs;
       if (age > (name.endsWith(".tmp") ? 3600000 : KEEP_READ_MS))
         await rm(path, { force: true });
     }

@@ -290,7 +290,8 @@ func (st *State) sweep(now time.Time) {
 			delete(st.Gates, id)
 			continue
 		}
-		if !st.current(m) {
+		// Expiry below already clears transport and claims; retained history needs no authorization scan.
+		if now.Before(m.Receipt.Exp) && !st.current(m) {
 			if m.Receipt.State != "delivered" {
 				m.Receipt.State = "failed:revoked"
 			}

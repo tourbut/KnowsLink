@@ -316,6 +316,7 @@ func (st *State) claimRemote(now time.Time) remoteWork {
 		ids = append(ids, id)
 	}
 	sort.Strings(ids)
+	pendingByAgent := map[string]string{}
 	soon := func(at time.Time) {
 		if work.Next.IsZero() || at.Before(work.Next) {
 			work.Next = at
@@ -328,7 +329,11 @@ func (st *State) claimRemote(now time.Time) remoteWork {
 			continue
 		}
 		soon(sub.Exp)
-		pending := st.eventPending(i.Agent, now)
+		pending, checked := pendingByAgent[i.Agent]
+		if !checked {
+			pending = st.eventPending(i.Agent, now)
+			pendingByAgent[i.Agent] = pending
+		}
 		if pending == "" {
 			sub.Seen = ""
 			sub.Pending = ""
@@ -351,6 +356,10 @@ func (st *State) claimRemote(now time.Time) remoteWork {
 		}
 		if sub.Attempts >= 3 {
 			sub.Seen, sub.Pending, sub.EventID = sub.Pending, "", ""
+			// A newer arrival may have already spent its notification while this lease was active.
+			if pending != sub.Seen {
+				soon(now)
+			}
 			continue
 		}
 		if now.Before(sub.Next) {
