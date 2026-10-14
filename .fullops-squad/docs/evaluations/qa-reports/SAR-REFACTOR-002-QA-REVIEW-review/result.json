@@ -1,0 +1,385 @@
+{
+  "base": "bcb1dd6629b508a30ec39a5d3141c8ce0a558597",
+  "head": "e9b5cbabde61335fb9e6f4eb52ca2505042732eb",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "GPT-6 Astra high / actual CODEX_THREAD_ID 01a139ab-4840-7d71-b94b-e033b4b85efb",
+  "conclusion": "수락. 별도 tester 고정 e9 QA/증거와 actual registered lint/test0을 검토했다. 확정 결함0; 운영/실계정/장시간 미실행과 기존 crash·JSONB 한계는 유지한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "coor 착수·guard 보고·고정 제품 준비 상태의 4줄 순증을 검토했다. 과거 실패를 성공으로 바꾸지 않으며 main 미통합 상태가 명확하다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "진행 중 독립 검토/QA 상태 변경만이며 완료·통합을 선기록하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+      "status": "added",
+      "insertions": 85,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 tester context 전체와 exact text diff로 대조했다. 과거 전문은 그대로이며 신규 교훈4줄만 추가했다. 원 상대 링크 기준을 현재 context에서 명시했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "insertions": 19,
+      "deletions": 70,
+      "review_status": "reviewed",
+      "reason": "현재 원칙과 새 QA 범위 요약을 읽었다. 과거 held/실패 보존, SHA/종료코드 및 운영 미실행 구분이 정확하다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-TESTER-context.json",
+      "status": "added",
+      "insertions": 291,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-TESTER-documents-find.json",
+      "status": "added",
+      "insertions": 764,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-TESTER-find.json",
+      "status": "added",
+      "insertions": 238,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-TESTER-packet-outcomes.json",
+      "status": "added",
+      "insertions": 1309,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "packet214경로의217 path/category 쌍과 exact equality,attempt/input hash 일치. completed20/no_change197과 모든 고유 reason·uncertainty를 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-TESTER-packet.json",
+      "status": "added",
+      "insertions": 13530,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-TESTER-route.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "tester/review 역할과 사용자 고정 Astra high를 확인했다. 이전 producer SHA 불일치/unknown은 명시적으로 유지하고 현재 archive/task/session으로 수동 보완한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-TESTER-route.prior-1791969060105080700.json",
+      "status": "added",
+      "insertions": 71,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-TESTER-context-da9c4aa9a5a74dfe923b8edc2f64fd46.json",
+      "status": "added",
+      "insertions": 263,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-TESTER-documents-find-c41bedacde554a698d784978ea47a1a9.json",
+      "status": "added",
+      "insertions": 582,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-TESTER-find-d3d6c9cec204447eb09ba001a89a5ed0.json",
+      "status": "added",
+      "insertions": 218,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-TESTER-packet-a354a8bea123450fab606d7c1aa6584b.json",
+      "status": "added",
+      "insertions": 13077,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-TESTER-packet-ee6fa100d7f049a6a1f4bcb318e49cd1.json",
+      "status": "added",
+      "insertions": 13530,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-TESTER-route-0d5bc4869ceb4c8ca2c9d9fc592a6ffb.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 검색/추천 또는 이전 실행 보존물. JSON parse·고정 head/attempt·파일 hash와 현재 packet/outcomes의 결속을 확인했다. 과거 추천의 의미 전수 재감사나 성공 승격은 생략하며 unknown/partial은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "동일 blob의 FINAL-MAIN 검토 재사용. 8개 제거 당시 원시 영수증과 자동 cleanup 미성립을 구분하며 이 QA에서 삭제를 실행하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/benchmark-medians.json",
+      "status": "added",
+      "insertions": 112,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "모든 before/after 원시 ns/op·B/op·allocs/op·state_bytes 중앙값을 재계산해 일치했다. 짧은 CPU 측정이며 DB/HTTP로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/dev-db-medians.json",
+      "status": "added",
+      "insertions": 96,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/dev-evidence-index.json",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/dev-fullops.json",
+      "status": "added",
+      "insertions": 68,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/inbox-boundaries.mjs",
+      "status": "added",
+      "insertions": 59,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "두 unread 원본 전체 본문을 반복 오류마다 검증하며 ENOENT만 허용한다. 오류 전파·mock 복원·순서·빈 marker·중복을 실제 Node 실행0과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/independent_test.go",
+      "status": "added",
+      "insertions": 158,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 4개 TTL/24h/ACK·열람 경계와 6개 callback 마지막 lease·늦은 ACK 경계를 연결 제품 구현과 대조했다. hash와 실제 overlay 실행0 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/input-identity.json",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "두 assertion SHA256을 고정 Git blob과 대조했다. bcb와 QA runtime 전체 scope diff0, DEV final과 test assertion 한 줄만 다름을 독립 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/packet-audit.json",
+      "status": "added",
+      "insertions": 3940,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "220개 후보의 metadata/제목/관련 구간 기록이다. 215개 Git LF/CRLF hash 일치,4개 실제 tester mixed-newline hash 및 고정 정규화 본문 일치. 완료 전 동적 inbox 1개 hash는 archive 의미 검토로 보완하며 당시 bytes 재현을 주장하지 않는다. 과거 추천 전문 재감사 생략."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+      "status": "added",
+      "insertions": 98,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "고정 제품·실제 새 검증·DEV 재사용·최초 오류·짧은 성능·미실행 한계를 읽고 원시 증거와 대조했다. 후속 registered gate를 선PASS로 적지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/run.py",
+      "status": "added",
+      "insertions": 126,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "fixed SHA/clean·고유 clone·known_hosts RejectPolicy·합성 DB·출력 비밀 가림·native exit 및 finally stop을 읽었다. 새 tests는 외부 overlay이고 실제 gate는 기록 exactHEAD로 실행된다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "phase의 실행·첫 기대값 오류·성과 범위·archive/인박스·후속 담당이 실제 QA 및 지시서와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+      "status": "added",
+      "insertions": 384,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원 지시서·attempt·모델·범위·완료 체크와 전문 보고를 검토했다. 현재 to_tester는0byte이며 생성 검색 불확실성은 결과에서 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/benchmark-after.log",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/benchmark-before.log",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/benchmark-prepare.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/commands.jsonl",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "전체 명령·실제 SHA·첫 실패1 및 후속0을 로그와 대조했다. 실제 DB와 CPU benchmark 및 재사용 DEV 범위를 구분한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/database-stop.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/database.log",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/dev-integration.log",
+      "status": "added",
+      "insertions": 23,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/independent-attempt1.go.txt",
+      "status": "added",
+      "insertions": 156,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "최초 delivered completion 기대 오류의 원문이다. 수정은 received 보존 계약과 일치하고 실패 원로그/native1을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/post-clean.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/prepare.log",
+      "status": "added",
+      "insertions": 26,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/qa-inbox.log",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/qa-race-attempt1.log",
+      "status": "added",
+      "insertions": 75,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/qa-race.log",
+      "status": "added",
+      "insertions": 72,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "고정 QA 원문/로그를 읽거나 exact blob으로 이전 직접 검토를 재사용했다. commands/input SHA·종료코드·재사용 출처와 report의 해당 실행 범위를 대조하고 manifest에 hash를 보존했다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a139b0-8386-7221-bb61-44399fb01ea1",
+    "reviewer_session": "01a139ab-4840-7d71-b94b-e033b4b85efb",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-1ad71516546644c4a216ea3e53223a41",
+    "snapshot_head": "e9b5cbabde61335fb9e6f4eb52ca2505042732eb",
+    "read_only": true
+  }
+}

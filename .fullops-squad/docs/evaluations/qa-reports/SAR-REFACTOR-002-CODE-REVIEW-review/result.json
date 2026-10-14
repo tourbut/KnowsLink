@@ -1,0 +1,235 @@
+{
+  "base": "9255852fa0e46cd40b7be1021eaa1f6c7f7d083b",
+  "head": "bcb1dd6629b508a30ec39a5d3141c8ce0a558597",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Codex / GPT-6 Astra high / actual CODEX_THREAD_ID 01a139ab-4840-7d71-b94b-e033b4b85efb",
+  "conclusion": "코드 의미 검토 완료: 확정 제품 결함 없음. bcb1dd6 실제 FullOps lint는 ANTI-004 오탐 ERROR1로 실패이며 원문 보존. product-lint/test actual exit0. 수락은 수정 테스트/최종 DOC SHA와 새 gate/독립 QA 검토까지 보류.",
+  "files": [
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-packet.json",
+      "status": "modified",
+      "insertions": 1887,
+      "deletions": 8938,
+      "review_status": "skipped",
+      "reason": "생성 탐색 후보의 전체 추천 의미 재검사는 생략. JSON 파싱·과제/attempt/기준 SHA·partial/unknown 확인. history는 baseline packet과 JSON 의미 동일. 최신 173항목과 index 173줄 확인. SHA256/Git blob은 evidence-manifest.json에 보존. 필수 변경과 연결 호출부는 직접 검토."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-DEV-packet-d35d3d8153614b1e887258e6271200ff.json",
+      "status": "added",
+      "insertions": 14860,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 후보의 전체 추천 의미 재검사는 생략. JSON 파싱·과제/attempt/기준 SHA·partial/unknown 확인. history는 baseline packet과 JSON 의미 동일. 최신 173항목과 index 173줄 확인. SHA256/Git blob은 evidence-manifest.json에 보존. 필수 변경과 연결 호출부는 직접 검토."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
+      "status": "added",
+      "insertions": 121,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 과제 관련 변경을 읽고 실제 구현·실행 범위·측정 한계·남은 부모 인계와 대조. 최종 정본/완료 기록은 후속 DOC 리뷰 대기."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+      "status": "added",
+      "insertions": 38,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 과제 관련 변경을 읽고 실제 구현·실행 범위·측정 한계·남은 부모 인계와 대조. 최종 정본/완료 기록은 후속 DOC 리뷰 대기."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/remote.py",
+      "status": "added",
+      "insertions": 122,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 helper를 읽어 host key RejectPolicy, 자격 redaction, exact SHA/clean 검사, 합성 loopback DB와 baseline 벤치 구성을 확인. bcb1dd6 버전은 integration 전에 build를 보장하지 않으므로 현재 gate 통과 근거로 쓰지 않음. 후속 수정/실행 근거 대기."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
+      "status": "added",
+      "insertions": 87,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 과제 관련 변경을 읽고 실제 구현·실행 범위·측정 한계·남은 부모 인계와 대조. 최종 정본/완료 기록은 후속 DOC 리뷰 대기."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 과제 관련 변경을 읽고 실제 구현·실행 범위·측정 한계·남은 부모 인계와 대조. 최종 정본/완료 기록은 후속 DOC 리뷰 대기."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 107,
+      "deletions": 227,
+      "review_status": "reviewed",
+      "reason": "전체 과제 관련 변경을 읽고 실제 구현·실행 범위·측정 한계·남은 부모 인계와 대조. 최종 정본/완료 기록은 후속 DOC 리뷰 대기."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "신규 Inbox 회귀가 기존 test 체인에 연결됨. 의존성/lockfile 변경 없음."
+    },
+    {
+      "path": "adapters/src/inbox-files.test.ts",
+      "status": "added",
+      "insertions": 58,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 변경과 연결 계약을 직접 검토했다."
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "take/prune/store/AutoReceiver와 MCP/CLI 호출자를 대조. claim 전 housekeeping 실패와 ENOENT만 허용하는 경계 확인. 기존 claim 이후 crash/I/O 실패 한계는 유지."
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "claimRemote 전체, eventPending, remoteInstall/sweepRemote, finishRemote/deliverRemote/remoteListen을 대조. 캐시는 호출 내부, 설치별 권한 검사 유지, 소진 lease 후 즉시 재평가 확인."
+    },
+    {
+      "path": "internal/relay/remote_events_test.go",
+      "status": "added",
+      "insertions": 96,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 변경과 연결 계약을 직접 검토했다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "transaction/current/sweep와 authority·eventVersion·persist/ACK/Remote Inbox를 대조. now==Exp 만료 우선 처리·24h 보관·미만료 철회와 응답손실 계약 보존 확인."
+    },
+    {
+      "path": "internal/relay/store_retention_integration_test.go",
+      "status": "added",
+      "insertions": 55,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 변경과 연결 계약을 직접 검토했다."
+    },
+    {
+      "path": "internal/relay/store_retention_test.go",
+      "status": "added",
+      "insertions": 110,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 변경과 연결 계약을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/after-windows.txt",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/before-windows.txt",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/go-unit-windows.txt",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/guard-blocked-command.txt",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt",
+      "status": "added",
+      "insertions": 173,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "생성된 탐색 요약이며 독립 실행 증거가 아니다. 173줄과 최신 packet 173항목·해시를 대조했다. 각 과거 문서 요약의 전체 의미 재검사는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/after.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/before.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/green.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/red.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a1399a-8b4d-78b0-8318-61a5539394a6",
+    "reviewer_session": "01a139ab-4840-7d71-b94b-e033b4b85efb",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-a795871780674536a63697a5b542213c",
+    "snapshot_head": "bcb1dd6629b508a30ec39a5d3141c8ce0a558597",
+    "read_only": true
+  },
+  "summary": {
+    "total_files": 25,
+    "reviewed_files": 22,
+    "skipped_files": 3,
+    "coverage_rate": 100.0,
+    "coverage_definition": "모든 (path,status)의 reviewed/skipped 처리율; 직접 내용 검토율은 22/25"
+  }
+}

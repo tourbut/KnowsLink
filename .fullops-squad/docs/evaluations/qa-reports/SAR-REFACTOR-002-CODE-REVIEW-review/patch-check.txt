@@ -1,0 +1,54 @@
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/after-windows.txt:4: trailing whitespace.
++cpu: AMD Ryzen 5 5600 6-Core Processor              
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/before-windows.txt:4: trailing whitespace.
++cpu: AMD Ryzen 5 5600 6-Core Processor              
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:3: trailing whitespace.
++.fullops-squad/docs/design-docs/database-design.md | title: 데이터베이스설계서; updated: 2026-10-12; summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:9: trailing whitespace.
++.fullops-squad/rules/common/README.md | # FullOps 공통 개발 규칙; ## 적용; ## 프로젝트 기준과 충돌 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:10: trailing whitespace.
++.fullops-squad/rules/common/coding-style.md | # 공통 코딩 스타일; ## 단순한 설계; ## UI와 디자인 일관성 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:11: trailing whitespace.
++.fullops-squad/rules/common/security.md | # 공통 보안 기준; ## 비밀값과 민감정보; ## 입력·파일·실행 경계 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:12: trailing whitespace.
++.fullops-squad/rules/common/testing.md | title: 공통 테스트 기준; updated: 2026-10-09; summary: 기존 검증 기준을 유지하는 lite·standard·full 테스트 범위 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:13: trailing whitespace.
++.fullops-squad/rules/delegation.md | title: 하위 에이전트 활용 기준; updated: 2026-10-09; summary: 선택형 위임의 범위와 부모의 완료 책임을 정한다. | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:24: trailing whitespace.
++.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md | title: 화면설계서; updated: 2026-10-12; summary: 합성 gate와 일반회원 수정 후보의 직접 시각 판정 및 수락 경계를 연결한다 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:29: trailing whitespace.
++.fullops-squad/docs/design-docs/tech-stack.md | title: KnowsLink 기술 스택; updated: 2026-10-12; summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:31: trailing whitespace.
++.fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md | title: FullOps 1.2.0 운영 업데이트 독립 리뷰; updated: 2026-10-09; summary: 고정 SHA 운영 문서 9개 검토와 필수 검사 증거 및 독립성·인계 한계 | 28: 새 critical/high/medium/low 결함을 발견하지 않았다. 역할·모델·브랜치·원격·제품 코드·등록 검사 명령·진행 중 인박스의 변경이 없다. `fullops.json`의 변경은 적용 버전뿐이다. mode·test_level 누락의 coor/standard 호환은 관리 블록과 릴리스 원문에 일치한다. 선택형 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:57: trailing whitespace.
++.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-review/report.md | title: SAR-MVP-002-INSTALL-FIX-DEV 리뷰; updated: 2026-10-04; summary: Grok 설치 경로 수정 후보의 독립 리뷰 결과를 기록한다 | 54: critical 0, high 0, medium 0, low 5. 모든 줄 번호는 고정 snapshot과 `git show 5506d64`의 실제 파일에서 확인했다.; 65: 수락 가능. 미해결 critical/high/medium이 없고 low 5건은 후속 개선이다. 설치 수정의 핵심 주장(이전 ZIP은 MCP 0개, 수정 ZIP은 `grok plugin install`로 1개 서버와 2개 도구를 노출, ZIP 해시 재현, 격리·실패 전파)을 독립 환경에서 재현했다. 실제 Bot 앱 노출은 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:97: trailing whitespace.
++.fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-REVIEW-review/report.md | title: 현재 시스템 구성도·상세 문서 독립 리뷰; updated: 2026-10-14; summary: 고정 문서 SHA의 구성·두 수신 흐름·소스/링크와 실제 Mermaid 렌더 검토 | 22: README·docs 목차·입문 architecture의 전체 diff와 상세 문서311줄을 읽었다. 전체 구성9노드/10연결, Grok5참여자/12메시지, Dots4참여자/11메시지를 실제 기동·Compose/ingress·Google/Remote OAuth·text/Inbox·Remote MCP/Events·store; 24: Cloudflare와 cloudflared, 물리 경계와 논리 요청, 별도 migration을 정확히 구분한다. Grok은 store/sync/rename→persist/transport ACK→notice/wake→도구 take이고 Dots는 같은 transaction의 persist/설치 Inbox/transport 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:107: trailing whitespace.
++.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md | title: SAR-HUMAN-PEER-001-VISUAL — 사람 친구·대화 UI 검수; updated: 2026-10-12; summary: 사람 친구·대화 UI의 고정 후보 직접 시각 검수와 DEV 수정 인계를 보존한다 | 16: 실행 tuple은 codex / gpt-6.1-sol / high, 주 스킬 frontend-design이다. FullOps frontend/test 절차와 fullops-common-0.3.3 및 문서 작성 규칙을 읽었다. test lite/subagent standard를 유지한다. 선택형 하위 위임은 필요하지 않아 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:131: trailing whitespace.
++.fullops-squad/docs/generated/db-schema.md | title: 테이블정의서; updated: 2026-10-12; summary: 실제 migration SQL에서 생성한 업무 테이블을 기록한다 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:135: trailing whitespace.
++.fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md | title: 요구사항정의서; updated: 2026-10-12; summary: 사람 친구와 이름 있는 에이전트의 대화 및 기존 데이터 권한 이행을 정의한다 | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:138: trailing whitespace.
++.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md | title: KnowsLink 초기 구성과 lint 요구사항; updated: 2026-10-12; summary: "고정 원천의 초기 구성과 lint 범위, 수락 기준, 역할별 산출물을 정의한다" | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:145: trailing whitespace.
++.fullops-squad/handovers/logs/2026-10-05_to_dev.md | title: dev 완료 기록; updated: 2026-10-05; summary: 지시서와 완료 보고를 보존한다.; title: SAR-PUBLIC-IDENTITY-001-DEV — 일반 이메일 가입과 세션 및 자기 owner 화면을 구현한다; updated: 2026-10-05; summary: 일반 이메일 신원과 세션 및 자기 owner UI의 구현과 검증을 인계한다 | 70: TESTER는 DEV 고정 후보에서 별도로 독립 QA를 수행한다. designer는 같은 후보 UX-01–03과 기존 gate 영향 화면을 직접 확인한다. 일반 이메일 사람 로그인 확인을 자동 테스트와 분리한다. coor는 다른 검토자의 별도 세션·깨끗한 read-only detached snapshot·고정 SHA 리뷰; 133: 5. review.py check --repo 기록checkout --key SAR-PUBLIC-IDENTITY-001-REVIEW --from945fullSHA --to59fullSHA --task-key SAR-PUBLIC-IDENTITY-001-DEV를 통과시킨다. 이 검사는 기록 일치이며 자동 의미 수락이 아님을 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:147: trailing whitespace.
++.fullops-squad/handovers/logs/2026-10-06_to_ops.md | title: ops 완료 기록; updated: 2026-10-06; summary: 지시서와 완료 보고를 보존한다.; title: SAR-PUBLIC-IDENTITY-001-RATE-REVIEW — RATE-FIX 및 기존 TESTER/UI 결과의 고정 SHA 독립 delta 리뷰; updated: 2026-10-06; summary: RATE-FIX 및 기존 TESTER/UI 결과의 고정 SHA 독립 delta 리뷰 | 53: OCR prepare/check의 고정 refs와 전체 커버리지·critical/high/medium/low를 보고한다. 인증·공유 rate 변경이므로 Jev의 OPS Sonnet 추천 대신 fullops-review 규정에 따라 별도 Claude Opus5.5 high 세션을 사용한다. 원본 실제 구현 세션e0666ab; 54: 고정 snapshot에서 후보 lint를 from59b66ad로 실행하고 HEAD와 product-lint/product-test 종료코드를 보존한다. 필요한 기존 증거는 같은 SHA·조건일 때만 연결한다. 명령 종료코드를 파이프로 가리지 않는다. ERROR·critical/high 또는 누락된 필수 증거가 있으면 수락 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:161: trailing whitespace.
++adapters/src/text.ts |  | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:168: trailing whitespace.
++internal/relay/remote_auth.go |  | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:169: trailing whitespace.
++internal/relay/remote_events.go |  | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:170: trailing whitespace.
++internal/relay/remote_mcp.go |  | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt:171: trailing whitespace.
++internal/relay/store.go |  | 
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/after.txt:4: trailing whitespace.
++cpu: AMD Ryzen 5 5600 6-Core Processor              
+.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/before.txt:4: trailing whitespace.
++cpu: AMD Ryzen 5 5600 6-Core Processor              
+
+original_process_exit=2

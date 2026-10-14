@@ -1,0 +1,41 @@
+{
+  "task_key": "SAR-REFACTOR-002-TESTER",
+  "find_head": "8c08a1b0e69307c05f6d55a9674ac91925f036af",
+  "base": "bcb1dd6629b508a30ec39a5d3141c8ce0a558597",
+  "head": "e9b5cbabde61335fb9e6f4eb52ca2505042732eb",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/README.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/handovers/to_tester.md",
+    "docs/system-design.md"
+  ],
+  "hits": [
+    ".fullops-squad/contexts/tester.md"
+  ],
+  "recall": 0.333,
+  "precision": 0.1,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

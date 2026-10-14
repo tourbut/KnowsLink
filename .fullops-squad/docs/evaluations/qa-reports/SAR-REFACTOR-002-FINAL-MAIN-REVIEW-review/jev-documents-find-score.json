@@ -1,0 +1,56 @@
+{
+  "task_key": "SAR-REFACTOR-002-DEV",
+  "find_head": "8f9370bb62c9133c73e10ea2307b4cd696e10f7e",
+  "base": "8f9370bb62c9133c73e10ea2307b4cd696e10f7e",
+  "head": "3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/crud-design.md",
+    ".fullops-squad/docs/design-docs/database-design.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+    "docs/system-design.md"
+  ],
+  "new_files": [
+    "adapters/src/inbox-files.test.ts",
+    "internal/relay/remote_events_test.go",
+    "internal/relay/store_retention_integration_test.go",
+    "internal/relay/store_retention_test.go"
+  ],
+  "candidates": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md",
+    ".fullops-squad/project.md",
+    "docs/system-design.md"
+  ],
+  "hits": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    "docs/system-design.md"
+  ],
+  "recall": 0.333,
+  "precision": 0.25,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

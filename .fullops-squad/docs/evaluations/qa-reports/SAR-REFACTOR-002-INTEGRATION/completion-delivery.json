@@ -1,0 +1,41 @@
+{
+ "status": "actionable",
+ "deliveryId": "delivery_2fe4c4b233a5",
+ "messages": [
+  {
+   "id": "msg_929147b66dbc",
+   "run_id": "run_5534969da2d0",
+   "delivery_contract": "current_delivery",
+   "from_handle": "term_c12d7b8b-9a90-4fb9-9bf1-feaccde2d8ca",
+   "to_handle": "run:run_5534969da2d0",
+   "subject": "최종 build·fixture 종료·하위 회수 완료",
+   "body": "최종3e5af5e build native0이며 adapter/remote 하위 모두 succeeded 뒤 release·transcript 보존했다. 실패 DB 5a295562와 성공 DB 0a7414c0의 정확 이름·고정 image를 확인했고 실패 DB 하나만 stop하여 둘 다 exited, 데이터/로그/clone 보존이다. 최신 종료 근거는 외부 refactor002/fixture-stop.json이며 커밋 보고 작성 당시 남아 있던 실패 DB 상태를 이 후속이 갱신한다; final-lint.json/.out, 최종 SHA lint/test/build/environment.log와 .base도 같은 외부 디렉터리에 보존했다.",
+   "type": "status",
+   "priority": "normal",
+   "thread_id": null,
+   "payload": null,
+   "created_at": "2026-10-14T09:28:54Z",
+   "delivered_at": null
+  },
+  {
+   "id": "msg_a3bb7b48b5c1",
+   "run_id": "run_5534969da2d0",
+   "delivery_contract": "current_delivery",
+   "from_handle": "term_c12d7b8b-9a90-4fb9-9bf1-feaccde2d8ca",
+   "to_handle": "run:run_5534969da2d0",
+   "subject": "SAR-REFACTOR-002-DEV 구현·측정·필수 gate 완료",
+   "body": "SHA: 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46에서 전반 감사 후 Inbox 본문 유실·Remote 새 도착 지연·만료 이력 순회를 최소 수정하고 기술 문서·179개 packet outcomes·finish archive를 완료했습니다. 동일 조건 1만 이력의 실제 DB transaction 중앙값은 약 8% 줄었고 제품 후보 Postgres race와 최종 exact lint/test/build가 모두 native0이며 FullOps ERROR0 WARNING4 unavailable0 및 실패 원본을 보존했습니다. 두 하위 완료·release와 합성 DB 둘의 정지를 확인했고 독립 리뷰·tester QA·main/origin 통합은 coor 후속이며 실계정 발송·운영 배포·장시간 최대 부하는 수행하지 않았습니다.",
+   "type": "worker_done",
+   "priority": "normal",
+   "thread_id": null,
+   "payload": "{\"taskId\":\"task_202091858359\",\"dispatchId\":\"ctx_05c36bca2880\",\"outcome\":\"succeeded\",\"filesModified\":[\".fullops-squad/contexts/dev.md\",\".fullops-squad/docs/design-docs/architecture.md\",\".fullops-squad/docs/design-docs/crud-design.md\",\".fullops-squad/docs/design-docs/database-design.md\",\".fullops-squad/docs/design-docs/interface-design.md\",\".fullops-squad/docs/design-docs/module-design.md\",\".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-packet-outcomes.json\",\".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-packet.json\",\".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-DEV-packet-d35d3d8153614b1e887258e6271200ff.json\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/after-linux.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/after-windows.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/before-linux.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/before-windows.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/linux-medians.json\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb-clean-fullops-lint.json\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb-clean-fullops-lint.out\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb-dirty-gate-failed.out\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-build.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-environment.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-install.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-lint.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-test.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/environment.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/integration-before-build-failed.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/kl-refactor002-bcb1dd6629b5-0a7414c0-integration.log\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/remote.py\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/go-unit-windows.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/guard-blocked-command.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/after.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/before.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/green.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/red.txt\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md\",\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md\",\".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md\",\".fullops-squad/handovers/logs/2026-10-14_to_dev.md\",\".fullops-squad/handovers/to_dev.md\",\"adapters/package.json\",\"adapters/src/inbox-files.test.ts\",\"adapters/src/inbox.ts\",\"docs/system-design.md\",\"internal/relay/remote_events.go\",\"internal/relay/remote_events_test.go\",\"internal/relay/store.go\",\"internal/relay/store_retention_integration_test.go\",\"internal/relay/store_retention_test.go\"],\"reportPath\":\".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md\"}",
+   "created_at": "2026-10-14T09:29:15Z",
+   "delivered_at": null
+  }
+ ],
+ "absorbed": {
+  "heartbeats": {},
+  "others": []
+ },
+ "integration": []
+}

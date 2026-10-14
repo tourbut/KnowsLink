@@ -1,0 +1,525 @@
+{
+  "base": "8f9370bb62c9133c73e10ea2307b4cd696e10f7e",
+  "head": "3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Codex / GPT-6 Astra high / actual CODEX_THREAD_ID 01a139ab-4840-7d71-b94b-e033b4b85efb",
+  "conclusion": "수락. final3e5 소스·문서·실제 FullOps ERROR0 및 독립 QA exact e9 별도 수락을 확인했다. 확정 결함0. main/origin 통합은 coor 책임이며 기존 crash/JSONB 및 운영 미실행 한계는 유지한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "변경 내용과 관련 구현/인계/실행 원문을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "변경 내용과 관련 구현/인계/실행 원문을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "변경 내용과 관련 구현/인계/실행 원문을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "전체 변경 설명과 실제 만료/인가/Inbox/callback 코드 및 벤치 범위를 대조. 공개 계약 불변과 local claim crash 한계·운영 미검증 구분, 링크/metadata 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "전체 변경 설명과 실제 만료/인가/Inbox/callback 코드 및 벤치 범위를 대조. 공개 계약 불변과 local claim crash 한계·운영 미검증 구분, 링크/metadata 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "전체 변경 설명과 실제 만료/인가/Inbox/callback 코드 및 벤치 범위를 대조. 공개 계약 불변과 local claim crash 한계·운영 미검증 구분, 링크/metadata 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "전체 변경 설명과 실제 만료/인가/Inbox/callback 코드 및 벤치 범위를 대조. 공개 계약 불변과 local claim crash 한계·운영 미검증 구분, 링크/metadata 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "전체 변경 설명과 실제 만료/인가/Inbox/callback 코드 및 벤치 범위를 대조. 공개 계약 불변과 local claim crash 한계·운영 미검증 구분, 링크/metadata 확인."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-context.json",
+      "status": "added",
+      "insertions": 328,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 원문의 추천 전체 재판정은 생략. JSON 파싱·head/attempt/partial 및 outcomes의 수동 uncertainty 보완을 대조하고 source SHA256/Git blob을 보존. history 보존과 과거 source fingerprint mismatch를 현재 성공으로 승격하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-documents-find.json",
+      "status": "added",
+      "insertions": 589,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 원문의 추천 전체 재판정은 생략. JSON 파싱·head/attempt/partial 및 outcomes의 수동 uncertainty 보완을 대조하고 source SHA256/Git blob을 보존. history 보존과 과거 source fingerprint mismatch를 현재 성공으로 승격하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-find.json",
+      "status": "added",
+      "insertions": 194,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 원문의 추천 전체 재판정은 생략. JSON 파싱·head/attempt/partial 및 outcomes의 수동 uncertainty 보완을 대조하고 source SHA256/Git blob을 보존. history 보존과 과거 source fingerprint mismatch를 현재 성공으로 승격하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 1081,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "179 path/category 집합 완전일치·attempt/input hash 결속, completed151/no_change28와 모든 고유 reason·document_update/direct_edit 항목·uncertainty를 검토. 과거 후보/producer mismatch를 새 성공으로 재분류하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-packet.json",
+      "status": "added",
+      "insertions": 7809,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 원문의 추천 전체 재판정은 생략. JSON 파싱·head/attempt/partial 및 outcomes의 수동 uncertainty 보완을 대조하고 source SHA256/Git blob을 보존. history 보존과 과거 source fingerprint mismatch를 현재 성공으로 승격하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-route.json",
+      "status": "added",
+      "insertions": 86,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "변경 내용과 관련 구현/인계/실행 원문을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-DEV-route.prior-1791967597147556900.json",
+      "status": "added",
+      "insertions": 91,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 원문의 추천 전체 재판정은 생략. JSON 파싱·head/attempt/partial 및 outcomes의 수동 uncertainty 보완을 대조하고 source SHA256/Git blob을 보존. history 보존과 과거 source fingerprint mismatch를 현재 성공으로 승격하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-DEV-packet-d35d3d8153614b1e887258e6271200ff.json",
+      "status": "added",
+      "insertions": 14860,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 원문의 추천 전체 재판정은 생략. JSON 파싱·head/attempt/partial 및 outcomes의 수동 uncertainty 보완을 대조하고 source SHA256/Git blob을 보존. history 보존과 과거 source fingerprint mismatch를 현재 성공으로 승격하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-DEV-route-2fc9fdcfa46843748fe9bd3a8f389fae.json",
+      "status": "added",
+      "insertions": 86,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색 원문의 추천 전체 재판정은 생략. JSON 파싱·head/attempt/partial 및 outcomes의 수동 uncertainty 보완을 대조하고 source SHA256/Git blob을 보존. history 보존과 과거 source fingerprint mismatch를 현재 성공으로 승격하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/final.json",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "변경 내용과 관련 구현/인계/실행 원문을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/preflight.json",
+      "status": "added",
+      "insertions": 169,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "이전 coordinator의 완료 cleanup 원시 기록. 8개 절대 snapshot 경로·clean/detached/통합·reparse=false·터미널/process0·비동기 removing와 final 완료를 대조. 보존 QA39해시는 원 Windows CRLF 표현으로 전부 일치. 삭제 당시 live 상태 재검증/실행은 생략; historical PASS로 표시하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/removal-rest.json",
+      "status": "added",
+      "insertions": 114,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "이전 coordinator의 완료 cleanup 원시 기록. 8개 절대 snapshot 경로·clean/detached/통합·reparse=false·터미널/process0·비동기 removing와 final 완료를 대조. 보존 QA39해시는 원 Windows CRLF 표현으로 전부 일치. 삭제 당시 live 상태 재검증/실행은 생략; historical PASS로 표시하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/removal.json",
+      "status": "added",
+      "insertions": 17,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "이전 coordinator의 완료 cleanup 원시 기록. 8개 절대 snapshot 경로·clean/detached/통합·reparse=false·터미널/process0·비동기 removing와 final 완료를 대조. 보존 QA39해시는 원 Windows CRLF 표현으로 전부 일치. 삭제 당시 live 상태 재검증/실행은 생략; historical PASS로 표시하지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
+      "status": "added",
+      "insertions": 121,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 전체 과제 관련 변경을 읽고 실제 구현·실행 범위·측정 한계·남은 부모 인계와 대조. 최종 정본/완료 기록은 후속 DOC 리뷰 대기."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "변경 내용과 관련 구현/인계/실행 원문을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/linux-medians.json",
+      "status": "added",
+      "insertions": 96,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb-clean-fullops-lint.json",
+      "status": "added",
+      "insertions": 68,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/remote.py",
+      "status": "added",
+      "insertions": 124,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
+      "status": "added",
+      "insertions": 87,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 전체 과제 관련 변경을 읽고 실제 구현·실행 범위·측정 한계·남은 부모 인계와 대조. 최종 정본/완료 기록은 후속 DOC 리뷰 대기."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 구현/범위/성능·실패/검사 재사용 조건·no_change·소유권·완료 및 후속 조건을 원문과 대조. 본문의 최초 후속문서 요약과 달리 테스트1줄 변경은 후속 단락이 명시한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 구현/범위/성능·실패/검사 재사용 조건·no_change·소유권·완료 및 후속 조건을 원문과 대조. 본문의 최초 후속문서 요약과 달리 테스트1줄 변경은 후속 단락이 명시한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+      "status": "modified",
+      "insertions": 277,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "새 과제 archive 원지시/완료전문·attempt marker 확인. 생성 packet 본문은 기존 동일 추천 자료로 취급. 후보 inbox0 bytes, QA/phase/outcomes 링크와 후속 독립 수락 조건 대조."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 신규 Inbox 회귀가 기존 test 체인에 연결됨. 의존성/lockfile 변경 없음."
+    },
+    {
+      "path": "adapters/src/inbox-files.test.ts",
+      "status": "added",
+      "insertions": 57,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "최종 전체 테스트와 bcb delta 한 줄을 검토. pending 목록 assertion만 제거, 원 .json readFile+본문 equality가 원래 유실 구현을 ENOENT로 계속 실패시키며 후속 수신/빈 상태/중복 검사가 유지됨. 최종 실제 make test exit0 확인."
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. take/prune/store/AutoReceiver와 MCP/CLI 호출자를 대조. claim 전 housekeeping 실패와 ENOENT만 허용하는 경계 확인. 기존 claim 이후 crash/I/O 실패 한계는 유지."
+    },
+    {
+      "path": "docs/system-design.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "전체 변경 설명과 실제 만료/인가/Inbox/callback 코드 및 벤치 범위를 대조. 공개 계약 불변과 local claim crash 한계·운영 미검증 구분, 링크/metadata 확인."
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. claimRemote 전체, eventPending, remoteInstall/sweepRemote, finishRemote/deliverRemote/remoteListen을 대조. 캐시는 호출 내부, 설치별 권한 검사 유지, 소진 lease 후 즉시 재평가 확인."
+    },
+    {
+      "path": "internal/relay/remote_events_test.go",
+      "status": "added",
+      "insertions": 96,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 전체 변경과 연결 계약을 직접 검토했다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. transaction/current/sweep와 authority·eventVersion·persist/ACK/Remote Inbox를 대조. now==Exp 만료 우선 처리·24h 보관·미만료 철회와 응답손실 계약 보존 확인."
+    },
+    {
+      "path": "internal/relay/store_retention_integration_test.go",
+      "status": "added",
+      "insertions": 55,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 전체 변경과 연결 계약을 직접 검토했다."
+    },
+    {
+      "path": "internal/relay/store_retention_test.go",
+      "status": "added",
+      "insertions": 110,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 전체 변경과 연결 계약을 직접 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/after-linux.txt",
+      "status": "added",
+      "insertions": 33,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/after-windows.txt",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/before-linux.txt",
+      "status": "added",
+      "insertions": 33,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/benchmarks/before-windows.txt",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb-clean-fullops-lint.out",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb-dirty-gate-failed.out",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-build.log",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-environment.log",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-install.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/bcb1dd6629b508a30ec39a5d3141c8ce0a558597-test.log",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/environment.log",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/integration-before-build-failed.log",
+      "status": "added",
+      "insertions": 29,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/kl-refactor002-bcb1dd6629b5-0a7414c0-integration.log",
+      "status": "added",
+      "insertions": 23,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "실제 실행 원문/명령·SHA·exit 또는 원시 벤치와 수치 대조. 기존 bcb ANTI-004 실패·build선행 실패를 보존하며 final 성공으로 덮지 않음. 출처와 hash 기록."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/go-unit-windows.txt",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/guard-blocked-command.txt",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/packet-review-index.txt",
+      "status": "added",
+      "insertions": 173,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "생성 탐색 index 173줄과 packet173항목·bcb 동일 blob 및 해시 확인. 과거 문서 요약 전체 재검토는 생략하며 실행 증거로 쓰지 않음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/after.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/before.txt",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/green.txt",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-evidence/red.txt",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "bcb CODE 리뷰에서 직접 검토한 파일과 Git blob 완전 동일을 확인해 의미 검토를 재사용한다. 원시 실행 결과를 직접 읽고 보고서 수치/RED 실패 조건/대상 범위와 대조했다. 현재 최종 SHA 독립 QA 통과로 재분류하지 않았다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a1399a-8b4d-78b0-8318-61a5539394a6",
+    "reviewer_session": "01a139ab-4840-7d71-b94b-e033b4b85efb",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-96524e56b4074ddcb9883bb6840497f3",
+    "snapshot_head": "3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46",
+    "read_only": true
+  },
+  "summary": {
+    "total_files": 60,
+    "reviewed_files": 49,
+    "skipped_files": 11
+  }
+}

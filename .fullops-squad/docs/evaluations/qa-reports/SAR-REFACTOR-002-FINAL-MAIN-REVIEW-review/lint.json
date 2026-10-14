@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "attempt": "696e61644aba4fe3be0162f1e0d89b9b",
+  "base": "8f9370bb62c9133c73e10ea2307b4cd696e10f7e",
+  "merge_base": "8f9370bb62c9133c73e10ea2307b4cd696e10f7e",
+  "head": "3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46-lint.log; EXIT=0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46-test.log; EXIT=0"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1790줄(이전 1783, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "DEP-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": "adapters/package.json",
+      "message": "의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "471줄(이전 463, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/remote_events.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 439줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 16,
+    "added_lines": 439,
+    "errors": 0,
+    "warnings": 4,
+    "unavailable": 0
+  }
+}

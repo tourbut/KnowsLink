@@ -1,0 +1,46 @@
+{
+  "packet_pairs": 217,
+  "outcomes_match": true,
+  "attempt_input_hash_match": true,
+  "audit_hash_matches": {
+    "LF": 102,
+    "CRLF": 113
+  },
+  "audit_hash_mismatches": [
+    ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+    ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+    ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
+    ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+    ".fullops-squad/handovers/to_tester.md"
+  ],
+  "context_archive_delta": [
+    "--- \n",
+    "+++ \n",
+    "@@ -79,3 +79,7 @@\n",
+    " ",
+    " - 2026-10-13 SAR-REFACTOR-001-TESTER: exact cd4dae8 Linux의 Go race 경계8개·MCP/owner-text·독립 text matrix15개 exit0. DEV 전체 게이트는 원본·사본 LF 정규화 내용과 SHA를 대조해 재사용했다. 새 C/H 발견0, 제품 읽기 전용.",
+    " - [독립 QA 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md). 첫 확인식 따옴표 오류 exit1 보존. 실계정/운영/SQL 이행은 not_run이며 전체 제품 수락을 대신하지 않는다.",
+    "+",
+    "+- 2026-10-14 SAR-REFACTOR-002-TESTER: exact bcb1dd66 Linux race 16개·새 Go 경계10개·Inbox 오류 matrix·합성 DB race4개 exit0. 제품 변경0, 새 C/H 발견0.",
+    "+- ACK completion received는 TTL 뒤에도 유지한다. 첫 잘못된 테스트 기대값/native1을 보존하고 기존 계약으로 바로잡았다. [QA 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md).",
+    "+- sweep CPU 이득을 DB/HTTP 처리량으로 환산하지 않는다. 단일 구독 claim 증가와 local claim crash window는 잔여 한계다."
+  ],
+  "additional_hash_verification": [
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+      "result": "actual preserved tester mixed-newline bytes match audit SHA256; normalized content equals fixed Git blob"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+      "result": "actual preserved tester mixed-newline bytes match audit SHA256; normalized content equals fixed Git blob"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
+      "result": "actual preserved tester mixed-newline bytes match audit SHA256; normalized content equals fixed Git blob"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+      "result": "actual preserved tester mixed-newline bytes match audit SHA256; normalized content equals fixed Git blob"
+    }
+  ]
+}

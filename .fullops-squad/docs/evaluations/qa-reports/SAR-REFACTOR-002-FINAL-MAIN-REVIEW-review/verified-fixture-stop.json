@@ -1,0 +1,18 @@
+{
+  "task": "SAR-REFACTOR-002-DEV",
+  "fixtures": [
+    {
+      "name": "kl-refactor002-bcb1dd6629b5-5a295562",
+      "image": "postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "before": "running",
+      "after": "exited"
+    },
+    {
+      "name": "kl-refactor002-bcb1dd6629b5-0a7414c0",
+      "image": "postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "before": "exited",
+      "after": "exited"
+    }
+  ],
+  "data_retained": true
+}

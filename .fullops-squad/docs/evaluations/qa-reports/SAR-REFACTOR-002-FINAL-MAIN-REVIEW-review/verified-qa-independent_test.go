@@ -1,0 +1,158 @@
+// Independent QA checks exact expiry, history authorization, and exhausted callback lease boundaries.
+package relay
+
+import (
+	"testing"
+	"time"
+)
+
+func TestQAExactTransportAndHistoryBoundaries(t *testing.T) {
+	for _, delivered := range []bool{false, true} {
+		for _, revoked := range []bool{false, true} {
+			t.Run(map[bool]string{false: "queued", true: "delivered"}[delivered]+map[bool]string{false: "/active", true: "/revoked"}[revoked], func(t *testing.T) {
+				st, ids, _, now := humanFixture(t)
+				friend := acceptHumans(t, st, ids, now)
+				m, err := st.sendOwnerText(ids["a"], "agent_a1", "agent_b1", "independent boundary body", "qa-boundary-attempt", now)
+				if err != nil {
+					t.Fatal(err)
+				}
+				if delivered {
+					leased, err := st.leaseMatching("agent_b1", now, false, true)
+					if err != nil || leased == nil {
+						t.Fatal("lease", err)
+					}
+					c := command{ID: m.Receipt.ID, Token: leased.(map[string]any)["lease_token"].(string)}
+					if _, err := st.operateAs("ack", "agent_b1", "agent", c, now, false); err == nil {
+						t.Fatal("ACK before persist")
+					}
+					for _, op := range []string{"persist", "ack"} {
+						if _, err := st.operateAs(op, "agent_b1", "agent", c, now, false); err != nil {
+							t.Fatal(op, err)
+						}
+					}
+				}
+				before := m.Receipt.Exp.Add(-time.Nanosecond)
+				if revoked {
+					if err := st.decideFriend(ids["a"], friend.ID, "remove", friend.Generation, before); err != nil {
+						t.Fatal(err)
+					}
+				}
+				st.sweep(before)
+				if !delivered && !revoked && (m.Receipt.State != "queued" || len(m.Envelope) == 0) {
+					t.Fatal("expired early")
+				}
+				if revoked && (len(m.Envelope) != 0 || st.eventPending("agent_b1", before) != "") {
+					t.Fatal("revoked transport/event survived")
+				}
+				m.Claimed, m.ClaimToken = true, "synthetic-claim"
+				st.sweep(m.Receipt.Exp)
+				want := "failed:expired"
+				wantCompletion := "failed:expired"
+				if delivered {
+					want = "delivered"
+					wantCompletion = "received"
+				}
+				if m.Receipt.State != want || m.Completion != wantCompletion || m.ClaimToken != "" || m.LeaseToken != "" || len(m.Envelope)+len(m.Inbox) != 0 {
+					t.Fatalf("exact TTL failed: state=%s completion=%s", m.Receipt.State, m.Completion)
+				}
+				if st.eventPending("agent_b1", m.Receipt.Exp) != "" {
+					t.Fatal("expired arrival signaled")
+				}
+				at := m.Receipt.Accepted.Add(24*time.Hour - time.Nanosecond)
+				st.sweep(at)
+				for _, person := range []string{"a", "b", "c"} {
+					want := 1
+					if person == "c" {
+						want = 0
+					}
+					if got := len(st.historical(st.Members[ids[person]].Owner, "agent_a1", "agent_b1", at)); got != want {
+						t.Fatalf("history person=%s got=%d want=%d", person, got, want)
+					}
+				}
+				if st.Idempotency[m.Receipt.From+"/"+m.Key] != m.Receipt.ID {
+					t.Fatal("replay metadata removed early")
+				}
+				st.sweep(at.Add(time.Nanosecond))
+				if st.Messages[m.Receipt.ID] != nil || st.Idempotency[m.Receipt.From+"/"+m.Key] != "" {
+					t.Fatal("24h exact cleanup failed")
+				}
+			})
+		}
+	}
+}
+
+func TestQAExhaustedLeaseRechecksBoundary(t *testing.T) {
+	for _, boundary := range []string{"active", "revoked", "message_expired", "subscription_expired", "install_expired", "no_new_arrival"} {
+		t.Run(boundary, func(t *testing.T) {
+			st, keys, now := textFixture()
+			id, install, _, _ := remoteFixture(t, st, "agent_b", now)
+			pair := &Pair{A: "agent_a", B: install.Agent, State: "active", Generation: 1}
+			st.Pairs[pairID(pair.A, pair.B)] = pair
+			first := signedText(firstID, "agent_a", install.Agent, "qa-first", "", "first", now.Add(180*time.Second), keys["agent_a"])
+			if _, err := st.ingestPublicText("agent_a", first, now); err != nil {
+				t.Fatal(err)
+			}
+			sub := &remoteSubscription{Install: id, Secret: "synthetic-secret", Exp: now.Add(time.Hour)}
+			st.Remote.Subscriptions["qa"] = sub
+			var old remoteDelivery
+			for attempt := 0; attempt < 3; attempt++ {
+				work := st.claimRemote(now.Add(time.Duration(attempt) * 15 * time.Second))
+				if work.Delivery == nil || sub.Attempts != attempt+1 {
+					t.Fatal("attempt budget")
+				}
+				old = *work.Delivery
+			}
+			at := sub.LeaseUntil
+			if boundary != "no_new_arrival" {
+				second := signedText(secondID, "agent_a", install.Agent, "qa-second", "", "second", now.Add(180*time.Second), keys["agent_a"])
+				if _, err := st.ingestPublicText("agent_a", second, at.Add(-time.Nanosecond)); err != nil {
+					t.Fatal(err)
+				}
+			}
+			if work := st.claimRemote(at.Add(-time.Nanosecond)); work.Delivery != nil || !work.Next.Equal(at) {
+				t.Fatal("active lease bypassed")
+			}
+			switch boundary {
+			case "revoked":
+				pair.State = "revoked"
+			case "message_expired":
+				for _, m := range st.Messages {
+					m.Receipt.Exp = at
+				}
+			case "subscription_expired":
+				sub.Exp = at
+			case "install_expired":
+				install.Exp = at
+			}
+			work := st.claimRemote(at)
+			if work.Delivery != nil {
+				t.Fatal("fourth attempt")
+			}
+			if boundary != "active" {
+				if work.Next.Equal(at) && boundary != "subscription_expired" && boundary != "install_expired" {
+					t.Fatal("empty/revoked queue busy loop")
+				}
+				if st.claimRemote(at).Delivery != nil {
+					t.Fatal("invalid new event")
+				}
+				return
+			}
+			if !work.Next.Equal(at) {
+				t.Fatal("new arrival not scheduled immediately")
+			}
+			work = st.claimRemote(at)
+			if work.Delivery == nil || sub.Attempts != 1 || sub.EventID == old.Subscription.EventID {
+				t.Fatal("new event identity/budget")
+			}
+			lease := sub.Lease
+			st.finishRemote(old, 200, false, at)
+			if sub.Lease != lease || sub.Pending == "" {
+				t.Fatal("stale completion consumed new event")
+			}
+			st.finishRemote(*work.Delivery, 200, false, at)
+			if next := st.claimRemote(at); next.Delivery != nil || !next.Next.Equal(sub.Exp) {
+				t.Fatal("successful event not idle")
+			}
+		})
+	}
+}
