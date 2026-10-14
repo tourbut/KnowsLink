@@ -1,0 +1,39 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/PLANS.md",
+        ".fullops-squad/contexts/dev.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md",
+        ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+        ".fullops-squad/handovers/to_dev.md",
+        "README.md",
+        "adapters/README.md",
+        "docs/README.md",
+        "docs/architecture.md",
+        "docs/development.md",
+        "docs/operations.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-REPO-DOCS-001-DEV-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/gate-reuse.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/lint-windows.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/packet-audit.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/static-checks-first-failed.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/static-checks.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

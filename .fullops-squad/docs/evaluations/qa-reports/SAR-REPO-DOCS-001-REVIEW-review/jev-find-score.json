@@ -1,0 +1,37 @@
+{
+  "task_key": "SAR-REPO-DOCS-001-DEV",
+  "find_head": "473da85ad6edc56d3833fd42cf540e8d7887920a",
+  "base": "a2961818ee33f3786aa6f949c5b411bd4b31aa1a",
+  "head": "ea80e98510af0e640557f0ea2b757c06e27a5779",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "adapters/README.md"
+  ],
+  "new_files": [
+    "docs/README.md",
+    "docs/architecture.md",
+    "docs/development.md",
+    "docs/operations.md"
+  ],
+  "candidates": [
+    "adapters/README.md",
+    "adapters/skills/knowslink/SKILL.md",
+    "scripts/install_bot_mcp.sh"
+  ],
+  "hits": [
+    "adapters/README.md"
+  ],
+  "recall": 1.0,
+  "precision": 0.333,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
