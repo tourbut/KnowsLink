@@ -3,7 +3,7 @@ title: 현재 시스템 상세 설계
 status: draft
 updated: 2026-10-14
 owner: dev
-tasks: [SAR-SYSTEM-DIAGRAM-001-DEV]
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV]
 summary: 구성·신뢰 경계와 Grok 및 Dots 전달 흐름을 실제 소스에 연결한다
 ---
 
@@ -12,6 +12,9 @@ summary: 구성·신뢰 경계와 Grok 및 Dots 전달 흐름을 실제 소스�
 KnowsLink는 사람이 수락한 관계 안에서 여러 에이전트의 일반 text를 전달한다.
 웹 회원, 권한 소유자(owner), 에이전트(agent), 클라이언트 설치는 서로 다른 경계다.
 이 문서는 구현을 설명한다. 설치 절차는 [README](../README.md), 입문 지도는 [구성 안내](architecture.md)를 따른다.
+
+2026-10-14 SAR-REFACTOR-002는 아래 보관·Inbox·Events 처리 비용과 실패 복구를 보완했다.
+소스·검증 후보는 [DEV 보고](../.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)에 고정한다. 아래 운영 관측 날짜를 갱신한 배포 결과는 아니다.
 
 ## 기준과 확인 범위
 
@@ -172,6 +175,8 @@ Inbox는 임시 파일에 기록하고 `sync` 뒤 rename한다. 저장이 실패
 같은 ID가 이미 저장됐거나 읽음 marker가 있으면 중복 저장·재알림을 막는다.
 ACK 응답 유실이나 lease 재발급은 본문을 다시 표시하라는 뜻이 아니다.
 `take`는 가장 오래된 로컬 본문을 읽음 marker로 바꾼다. 반환의 `expired: true`는 관련 답장 기한 종료를 뜻한다.
+unread 후보가 있으면 housekeeping을 claim 전에 마친다. 정리 오류가 나면 unread 본문을 보존하고 실패를 반환한다.
+동시 receiver가 없앤 임시 파일·marker의 stat ENOENT만 건너뛴다. claim 후 process crash·본문 read/write 실패 복구를 보장하지 않는다.
 
 MCP `notifications/message`는 metadata notice다. `sent_unverified`는 호스트의 새 턴·표시 완료가 아니다.
 선택 Grok webhook routine은 고정 doorbell과 검증된 ID만 보낸다. 받은 본문을 권한 있는 prompt에 넣지 않는다.
@@ -221,6 +226,8 @@ callback은 HTTPS 443의 검증된 public 주소만 허용한다. DNS 응답을 
 delivery는 event ID·timestamp·본문에 대한 HMAC 서명을 사용한다. secret 회전에는 짧은 중첩 구간이 있다.
 서버는 DB lease로 callback 시도를 조정한다. callback HTTP 2xx는 event 수락이며 transport ACK가 아니다.
 실패는 최대 3회 시도한다. 429·서버/네트워크 실패에는 지연 재시도를 적용한다. 410·413은 구독을 제거한다.
+마지막 lease 만료 중 새 pending이 생겼으면 다음 claim을 즉시 예약한다. 기존 event의 시도 한도와 활성 lease는 유지한다.
+한 claim 호출 안에서 같은 agent의 pending 검색만 공유한다. 다음 호출과 실제 발송은 현재 권한을 다시 검사한다.
 재전송 event는 중복될 수 있다. 알림 전송이나 구독 지속을 무조건 보장하지 않는다.
 
 ## 전달 상태·멱등·기한
@@ -268,6 +275,8 @@ LISTEN/NOTIFY는 wake 신호다. durable queue 본문과 재접속 복구 근거
 RemoteEvents loop도 LISTEN으로 기다린다. callback 네트워크 작업은 DB claim 뒤 lock 밖에서 수행한다.
 유휴 정리는 1초 loop를 사용한다. 읽기·전달은 sweep 시점과 별개로 기한·권한을 검사한다.
 전체 JSON 재직렬화와 전역 행 lock은 처리량 한계다. 공개 규모의 부하 성능은 측정하지 않았다.
+만료된 보관 이력은 만료 분기에서 transport·claim을 제거하므로 회원 권한 재탐색을 생략한다. 미만료 철회 검사는 그대로다.
+[합성 규모별 측정](../.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)은 이 비용을 분리하며 운영 처리량을 보증하지 않는다.
 
 | 데이터 | 보관·제거 경계 | 주의 |
 |---|---|---|

@@ -2,14 +2,20 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-12
+updated: 2026-10-14
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
 
 # KnowsLink CRUD 정의
+
+## SAR-REFACTOR-002 처리 순서 보완
+
+로컬 Inbox는 unread 본문 claim 전에 housekeeping 오류를 확인한다. 다른 receiver가 이미 없앤 임시 파일·marker의 stat ENOENT만 건너뛴다. 실패한 receive가 unread 본문을 지우지 않으며 성공한 read marker·transport ACK 의미는 그대로다.
+
+Remote callback의 마지막 lease 만료 후 기존 event의 3회 예산을 종료한다. 그 사이 다른 pending이 생겼으면 즉시 다음 loop를 예약하고 새로운 event·예산을 만든다. 활성 lease를 건너뛰지 않으며 같은 event를 네 번째로 발송하지 않는다. 현재 권한·TTL·명시적 Inbox ACK와 구독 상태 저장 형식은 유지한다.
 
 ## SAR-HUMAN-PEER-001 DEV 후보
 

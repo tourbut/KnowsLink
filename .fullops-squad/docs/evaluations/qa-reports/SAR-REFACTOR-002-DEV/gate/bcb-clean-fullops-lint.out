@@ -1,0 +1,6 @@
+[passed] product-lint: make lint
+[passed] product-test: make test
+WARNING DEP-001 adapters/package.json 의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요
+ERROR ANTI-004 adapters/src/inbox-files.test.ts:39 테스트 skip·only 표식 추가 금지. 실패 원인을 고치거나 테스트를 정당하게 바꾼다
+WARNING SIZE-001 internal/relay/remote_events.go 471줄(이전 463, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+head bcb1dd6629b5 / 파일 9 / ERROR 1 / WARNING 2 / 실행 불가 0

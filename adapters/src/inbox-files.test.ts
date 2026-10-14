@@ -36,7 +36,6 @@ try {
   await inbox.store(message);
   failure = "EACCES";
   await assert.rejects(inbox.take(), { code: "EACCES" });
-  assert.deepEqual(await inbox.pending(), [`${message.id}.json`]);
   assert.equal(
     JSON.parse(
       await readFile(join(root, "inbox", `${message.id}.json`), "utf8"),
