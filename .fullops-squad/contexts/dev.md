@@ -48,3 +48,6 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 2026-10-13 SAR-REPO-DOCS-001-DEV: 설치와 기존 업데이트는 키/agent/Inbox 보존 여부로 구분한다. Grok 로컬 재시작과 Dots 서버 요청 반영·metadata Refresh를 분리하고 수신/ACK·화면/답장을 구분한다. [결과](../docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md)의 기존 heading alias·inbound 검사로 과거 문서 링크를 보존했다.
 
 - 2026-10-14 SAR-SYSTEM-DIAGRAM-001-DEV: Dots receive의 transport ACK와 knowslink_ack의 설치 Inbox 읽음 제거를 구분한다. 로컬 미확인 Inbox와 서버 설치 Inbox의 만료도 다르다. [상세 문서 QA](../docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV/report.md). Mermaid 구조 추출과 실제 렌더 수락은 별도다.
+
+- 2026-10-14 SAR-LANDING-GUIDE-001-DEV: 공개 `/`는 유효 세션에도200 안내이며 개인정보 대신 `/home` 링크만 표시한다. 설정별 로그인은 Service.startView 한 곳에서 결정한다. [DEV QA](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md).
+- Orca 입력 성공 응답만으로 키보드 PASS를 선언하지 않는다. 이번 native 입력은 hasFocus=false로 미실행이며 CSS200%와 native200%도 분리했다. 같은 host의 포트는 cookie를 공유하므로 fixture 상태별 새 isolated profile을 준비한다.

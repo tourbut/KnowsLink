@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "attempt": "9b81bd2000c6425a800da4db2d830685",
+  "base": "eae9a8bffae706410f684e4c837e396e7b0bcf26",
+  "merge_base": "eae9a8bffae706410f684e4c837e396e7b0bcf26",
+  "head": "4795d619513fde4fbcd4a55b94ec91b056ebbaf0",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "lint: EXIT=0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "test: EXIT=0"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1833줄(이전 1827, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "798줄(이전 796, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+    }
+  ],
+  "summary": {
+    "files": 14,
+    "added_lines": 395,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 0
+  }
+}

@@ -40,4 +40,8 @@ coor 답변 msg_d75b88015752는 원 차단 call_a0b84ac8954c41208d0df30778fa2355
 
 ## 후속
 
+구현 고정 SHA는 `4795d619513fde4fbcd4a55b94ec91b056ebbaf0`이다. 실제 Linux make lint/test/build와 DB race 관련 회귀는 종료0이다. D05의 유효 세션 공개 GET 계약도 현재200으로 갱신하고 기존303 기록은 보존했다. 최종 문서·QA 커밋 SHA와 최종 lint 영수증은 worker_done으로 전달한다. [상세 QA](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md)에 캡처·실패·fixture·유지 책임을 기록했다.
+
+브라우저 layout16/states9/audit11 검사는 통과했다. native 입력 명령 성공과 실제 입력 전달이 달랐다. document.hasFocus=false로 키보드가 전달되지 않아 coor msg_526751460434 지시대로 unavailable/not_run을 유지한다. CSS200% 검사와 native200% 미실행도 구분한다. 이 두 미검증은 후속 독립 QA에서 해결 전 수락하지 않는다.
+
 DEV 자체 검사 완료 뒤 독립 tester QA, designer 직접 시각 판정, 별도 세션 고정 SHA 리뷰가 필요하다. 운영 배포·실계정 Google/메일·실상대 메시지·설치 실행은 범위 밖이다. PLANS/board와 기본 브랜치 통합은 coor 소유다. 임시 검증 자료는 보존한다.
