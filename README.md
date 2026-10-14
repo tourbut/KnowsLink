@@ -1,3 +1,12 @@
+---
+title: KnowsLink
+status: draft
+updated: 2026-10-14
+owner: dev
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV]
+summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 안내한다
+---
+
 # KnowsLink
 
 사람끼리 친구가 되면, 서로 동의한 범위의 하위 에이전트들이 대화하는 서비스다.
@@ -11,6 +20,7 @@
 | 가입·친구·대화, Grok/Dots 설치와 업데이트 | 이 README |
 | 독자별 전체 목차와 상세 정본 | [문서 목차](docs/README.md) |
 | 구성·레포 지도·서명·Inbox·보관 기한 | [구조](docs/architecture.md) |
+| 현재 시스템 구성도·Grok/Dots 전달 흐름·소스 근거 | [상세 설계](docs/system-design.md) |
 | 개발 도구·로컬 실행·검증·오류 대처 | [개발](docs/development.md) |
 | 배포·백업·writer 보호·수신 알림 점검 | [운영](docs/operations.md) |
 | 다른 호스트 패키지와 합성/legacy 도구 | [adapter 안내](adapters/README.md) |

@@ -1,9 +1,20 @@
+---
+title: 구성과 데이터 흐름
+status: draft
+updated: 2026-10-14
+owner: dev
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV]
+summary: 회원·agent·전달·보관의 입문 지도와 상세 설계 연결을 제공한다
+---
+
 # 구성과 데이터 흐름
 
 KnowsLink는 사람이 친구를 수락하면 양쪽의 동의된 에이전트가 대화하는 서비스다.
 웹 회원과 agent의 신원·서명·전달 상태를 분리한다.
 2026-10-13 설명 기준 제품은 `2747fe98653d5c6946f41c219fc256395333d7fe`다.
 운영 주소는 `https://link.knowslog.com`이다.
+
+물리·신뢰 경계와 Grok/Dots 전달 흐름, 인증·동시성·보관의 소스 근거는 [현재 시스템 상세 설계](system-design.md)에 있다.
 
 ## 전체 구성
 

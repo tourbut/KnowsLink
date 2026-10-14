@@ -1,0 +1,57 @@
+{
+  "product_candidate": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+  "accepted_deploy_sha": "2747fe98653d5c6946f41c219fc256395333d7fe",
+  "worker_start_head": "8b3c7906029be2c22138e3416b0962a9aa70c2f5",
+  "documentation_base": "8f255f9991787e14b38052029d334b9536160fdb",
+  "product_paths": [
+    "cmd",
+    "internal",
+    "adapters",
+    "db",
+    "deploy",
+    "scripts",
+    "Dockerfile",
+    "compose.yaml",
+    "go.mod",
+    "go.sum",
+    "Makefile",
+    "sqlc.yaml",
+    ".nvmrc",
+    ".dockerignore"
+  ],
+  "product_path_diff": [
+    "adapters/README.md"
+  ],
+  "non_document_product_diff": [],
+  "original_gate": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/gate/lint-candidate-141.json",
+  "original_gate_sha256": "b23476b703a7b96102c96f612453da70172015d1b6936621ee522958ceca1163",
+  "original_commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-lint.log\nEXIT= 0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "Log: cd4dae810ae262759bcff29895165f1a64f8c51a-test.log\nEXIT= 0"
+    }
+  ],
+  "meaning": "Unchanged product execution inputs; reuse exact-candidate Linux product-lint/product-test EXIT0 only. Not a new current documentation HEAD product run."
+}

@@ -1,0 +1,868 @@
+{
+  "source": "docs\\system-design.md",
+  "diagrams_total": 3,
+  "diagrams": [
+    {
+      "index": 0,
+      "kind": "flowchart",
+      "source_line": 31,
+      "direction": "TB",
+      "analysis": {
+        "nodes_total": 11,
+        "nodes_drawable": 9,
+        "containers": 2,
+        "leaves": 9,
+        "edges_total": 10,
+        "edges_labeled": 10,
+        "edges_dangling": 0,
+        "max_depth": 1,
+        "shapes": {
+          "rect": 8,
+          "container": 2,
+          "cylinder": 1
+        },
+        "has_cycle": true,
+        "hubs": [
+          {
+            "id": "Relay",
+            "label": "Go relay",
+            "degree": 4
+          },
+          {
+            "id": "Edge",
+            "label": "Cloudflare HTTPS ingress",
+            "degree": 4
+          },
+          {
+            "id": "Web",
+            "label": "회원 웹",
+            "degree": 2
+          },
+          {
+            "id": "Tunnel",
+            "label": "cloudflared Tunnel",
+            "degree": 2
+          },
+          {
+            "id": "Google",
+            "label": "Google 로그인 신원",
+            "degree": 2
+          }
+        ],
+        "entry_points": [
+          "회원 웹",
+          "Grok 로컬 MCP / watch",
+          "별도 SQL migrate"
+        ],
+        "terminals": [
+          "Google 로그인 신원",
+          "Postgres JSONB 상태"
+        ],
+        "orphans": [],
+        "type_candidates": [
+          "architecture"
+        ],
+        "collapsible_groups": [
+          {
+            "id": "Server",
+            "label": "비공개 서버·컨테이너 경계",
+            "children": 4,
+            "child_labels": [
+              "cloudflared Tunnel",
+              "Go relay",
+              "Postgres JSONB 상태",
+              "별도 SQL migrate"
+            ]
+          },
+          {
+            "id": "Clients",
+            "label": "사용자·외부 호스트",
+            "children": 3,
+            "child_labels": [
+              "회원 웹",
+              "Grok 로컬 MCP / watch",
+              "Dots MCP / callback"
+            ]
+          }
+        ],
+        "over_node_budget": false,
+        "over_edge_budget": false
+      },
+      "discarded": {
+        "style_directives": 0,
+        "click_handlers": 0
+      },
+      "fragments": [],
+      "notes": [],
+      "nodes": [
+        {
+          "id": "Clients",
+          "label": "사용자·외부 호스트",
+          "shape": "container",
+          "parent": null,
+          "depth": 0,
+          "container": true,
+          "children": [
+            "Web",
+            "Grok",
+            "Dots"
+          ],
+          "fields": [],
+          "in_degree": 0,
+          "out_degree": 0
+        },
+        {
+          "id": "Web",
+          "label": "회원 웹",
+          "shape": "rect",
+          "parent": "Clients",
+          "depth": 1,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 0,
+          "out_degree": 2
+        },
+        {
+          "id": "Grok",
+          "label": "Grok 로컬 MCP / watch",
+          "shape": "rect",
+          "parent": "Clients",
+          "depth": 1,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 0,
+          "out_degree": 1
+        },
+        {
+          "id": "Dots",
+          "label": "Dots MCP / callback",
+          "shape": "rect",
+          "parent": "Clients",
+          "depth": 1,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 1,
+          "out_degree": 1
+        },
+        {
+          "id": "Edge",
+          "label": "Cloudflare HTTPS ingress",
+          "shape": "rect",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 3,
+          "out_degree": 1
+        },
+        {
+          "id": "Google",
+          "label": "Google 로그인 신원",
+          "shape": "rect",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 2,
+          "out_degree": 0
+        },
+        {
+          "id": "Server",
+          "label": "비공개 서버·컨테이너 경계",
+          "shape": "container",
+          "parent": null,
+          "depth": 0,
+          "container": true,
+          "children": [
+            "Tunnel",
+            "Relay",
+            "DB",
+            "Migrate"
+          ],
+          "fields": [],
+          "in_degree": 0,
+          "out_degree": 0
+        },
+        {
+          "id": "Tunnel",
+          "label": "cloudflared Tunnel",
+          "shape": "rect",
+          "parent": "Server",
+          "depth": 1,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 1,
+          "out_degree": 1
+        },
+        {
+          "id": "Relay",
+          "label": "Go relay",
+          "shape": "rect",
+          "parent": "Server",
+          "depth": 1,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 1,
+          "out_degree": 3
+        },
+        {
+          "id": "DB",
+          "label": "Postgres JSONB 상태",
+          "shape": "cylinder",
+          "parent": "Server",
+          "depth": 1,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 2,
+          "out_degree": 0
+        },
+        {
+          "id": "Migrate",
+          "label": "별도 SQL migrate",
+          "shape": "rect",
+          "parent": "Server",
+          "depth": 1,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 0,
+          "out_degree": 1
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1",
+          "source": "Web",
+          "target": "Edge",
+          "label": "회원 HTTPS",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 1
+        },
+        {
+          "id": "e2",
+          "source": "Grok",
+          "target": "Edge",
+          "label": "서명 text / pull / ACK",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 2
+        },
+        {
+          "id": "e3",
+          "source": "Dots",
+          "target": "Edge",
+          "label": "OAuth / HTTPS MCP",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 3
+        },
+        {
+          "id": "e4",
+          "source": "Edge",
+          "target": "Tunnel",
+          "label": "허용 경로",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 4
+        },
+        {
+          "id": "e5",
+          "source": "Tunnel",
+          "target": "Relay",
+          "label": "내부 HTTP",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 5
+        },
+        {
+          "id": "e6",
+          "source": "Relay",
+          "target": "DB",
+          "label": "transaction / LISTEN",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 6
+        },
+        {
+          "id": "e7",
+          "source": "Migrate",
+          "target": "DB",
+          "label": "SQL Up",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 7
+        },
+        {
+          "id": "e8",
+          "source": "Web",
+          "target": "Google",
+          "label": "로그인 동의",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 8
+        },
+        {
+          "id": "e9",
+          "source": "Relay",
+          "target": "Google",
+          "label": "code 교환 / 신원 검증",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 9
+        },
+        {
+          "id": "e10",
+          "source": "Relay",
+          "target": "Dots",
+          "label": "비동기 도착 신호 HTTPS",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 10
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "sequenceDiagram",
+      "source_line": 135,
+      "direction": "LR",
+      "analysis": {
+        "nodes_total": 5,
+        "nodes_drawable": 5,
+        "containers": 0,
+        "leaves": 5,
+        "edges_total": 12,
+        "edges_labeled": 12,
+        "edges_dangling": 0,
+        "max_depth": 0,
+        "shapes": {
+          "lifeline": 5
+        },
+        "has_cycle": true,
+        "hubs": [
+          {
+            "id": "Receiver",
+            "label": "Grok MCP 또는 watcher",
+            "degree": 10
+          },
+          {
+            "id": "Relay",
+            "label": "Go relay",
+            "degree": 7
+          },
+          {
+            "id": "Host",
+            "label": "Grok 화면·routine",
+            "degree": 3
+          },
+          {
+            "id": "Sender",
+            "label": "송신 agent",
+            "degree": 2
+          },
+          {
+            "id": "Inbox",
+            "label": "로컬 private Inbox",
+            "degree": 2
+          }
+        ],
+        "entry_points": [],
+        "terminals": [
+          "로컬 private Inbox"
+        ],
+        "orphans": [],
+        "type_candidates": [
+          "sequence"
+        ],
+        "collapsible_groups": [],
+        "over_node_budget": false,
+        "over_edge_budget": false
+      },
+      "discarded": {
+        "style_directives": 0,
+        "click_handlers": 0
+      },
+      "fragments": [
+        {
+          "kind": "opt",
+          "label": "선택 SSE",
+          "line": 143,
+          "depth": 0,
+          "regions": []
+        }
+      ],
+      "notes": [
+        "schema·기한·대상·송신 서명 검증"
+      ],
+      "nodes": [
+        {
+          "id": "Sender",
+          "label": "송신 agent",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 1,
+          "out_degree": 1
+        },
+        {
+          "id": "Relay",
+          "label": "Go relay",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 4,
+          "out_degree": 3
+        },
+        {
+          "id": "Receiver",
+          "label": "Grok MCP 또는 watcher",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 3,
+          "out_degree": 7
+        },
+        {
+          "id": "Inbox",
+          "label": "로컬 private Inbox",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 2,
+          "out_degree": 0
+        },
+        {
+          "id": "Host",
+          "label": "Grok 화면·routine",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 2,
+          "out_degree": 1
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1",
+          "source": "Sender",
+          "target": "Relay",
+          "label": "POST /v1/text/send (서명·멱등키·기한)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 1
+        },
+        {
+          "id": "e2",
+          "source": "Relay",
+          "target": "Sender",
+          "label": "queued receipt (수신 성공 아님)",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 2
+        },
+        {
+          "id": "e3",
+          "source": "Relay",
+          "target": "Receiver",
+          "label": "arrival 신호 {} (본문 없음)",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 3
+        },
+        {
+          "id": "e4",
+          "source": "Receiver",
+          "target": "Relay",
+          "label": "POST /v1/text/pull (기본 polling)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 4
+        },
+        {
+          "id": "e5",
+          "source": "Relay",
+          "target": "Receiver",
+          "label": "envelope + lease_token",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 5
+        },
+        {
+          "id": "e6",
+          "source": "Receiver",
+          "target": "Inbox",
+          "label": "store + sync + rename",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 6
+        },
+        {
+          "id": "e7",
+          "source": "Receiver",
+          "target": "Relay",
+          "label": "POST /v1/text/persist",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 7
+        },
+        {
+          "id": "e8",
+          "source": "Receiver",
+          "target": "Relay",
+          "label": "POST /v1/text/ack (transport delivered)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 8
+        },
+        {
+          "id": "e9",
+          "source": "Receiver",
+          "target": "Host",
+          "label": "metadata notice / 선택 webhook doorbell",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 9
+        },
+        {
+          "id": "e10",
+          "source": "Host",
+          "target": "Receiver",
+          "label": "knowslink_text_receive",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 10
+        },
+        {
+          "id": "e11",
+          "source": "Receiver",
+          "target": "Inbox",
+          "label": "take (읽음 marker)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 11
+        },
+        {
+          "id": "e12",
+          "source": "Receiver",
+          "target": "Host",
+          "label": "untrusted 본문 (화면 표시는 호스트 책임)",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 12
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "kind": "sequenceDiagram",
+      "source_line": 187,
+      "direction": "LR",
+      "analysis": {
+        "nodes_total": 4,
+        "nodes_drawable": 4,
+        "containers": 0,
+        "leaves": 4,
+        "edges_total": 11,
+        "edges_labeled": 11,
+        "edges_dangling": 0,
+        "max_depth": 0,
+        "shapes": {
+          "lifeline": 4
+        },
+        "has_cycle": true,
+        "hubs": [
+          {
+            "id": "Relay",
+            "label": "Go relay",
+            "degree": 11
+          },
+          {
+            "id": "Dots",
+            "label": "Dots 호스트·callback",
+            "degree": 6
+          },
+          {
+            "id": "DB",
+            "label": "Postgres 설치·Inbox·구독",
+            "degree": 3
+          },
+          {
+            "id": "Sender",
+            "label": "송신 agent",
+            "degree": 2
+          }
+        ],
+        "entry_points": [],
+        "terminals": [
+          "Postgres 설치·Inbox·구독"
+        ],
+        "orphans": [],
+        "type_candidates": [
+          "sequence"
+        ],
+        "collapsible_groups": [],
+        "over_node_budget": false,
+        "over_edge_budget": false
+      },
+      "discarded": {
+        "style_directives": 0,
+        "click_handlers": 0
+      },
+      "fragments": [
+        {
+          "kind": "opt",
+          "label": "유효한 Events 구독",
+          "line": 195,
+          "depth": 0,
+          "regions": []
+        }
+      ],
+      "notes": [
+        "DB claim·현재 권한·기한 재검사",
+        "wire 검증·현재 권한 확인",
+        "본문 읽기·화면 표시는 호스트 책임"
+      ],
+      "nodes": [
+        {
+          "id": "Sender",
+          "label": "송신 agent",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 1,
+          "out_degree": 1
+        },
+        {
+          "id": "Relay",
+          "label": "Go relay",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 4,
+          "out_degree": 7
+        },
+        {
+          "id": "DB",
+          "label": "Postgres 설치·Inbox·구독",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 3,
+          "out_degree": 0
+        },
+        {
+          "id": "Dots",
+          "label": "Dots 호스트·callback",
+          "shape": "lifeline",
+          "parent": null,
+          "depth": 0,
+          "container": false,
+          "children": [],
+          "fields": [],
+          "in_degree": 3,
+          "out_degree": 3
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1",
+          "source": "Sender",
+          "target": "Relay",
+          "label": "서명 text send",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 1
+        },
+        {
+          "id": "e2",
+          "source": "Relay",
+          "target": "DB",
+          "label": "queued 저장 + 빈 NOTIFY (commit)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 2
+        },
+        {
+          "id": "e3",
+          "source": "Relay",
+          "target": "Sender",
+          "label": "queued receipt",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 3
+        },
+        {
+          "id": "e4",
+          "source": "Relay",
+          "target": "Dots",
+          "label": "서명 HTTPS knowslink.text.arrived (arrival만)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 4
+        },
+        {
+          "id": "e5",
+          "source": "Dots",
+          "target": "Relay",
+          "label": "callback HTTP 응답 (본문 ACK 아님)",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 5
+        },
+        {
+          "id": "e6",
+          "source": "Dots",
+          "target": "Relay",
+          "label": "/mcp knowslink_receive (설치 OAuth)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 6
+        },
+        {
+          "id": "e7",
+          "source": "Relay",
+          "target": "DB",
+          "label": "같은 transaction의 persist·설치 Inbox·transport ACK",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 7
+        },
+        {
+          "id": "e8",
+          "source": "Relay",
+          "target": "Dots",
+          "label": "untrusted messages + authorship",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 8
+        },
+        {
+          "id": "e9",
+          "source": "Dots",
+          "target": "Relay",
+          "label": "/mcp knowslink_ack (읽은 ID)",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 9
+        },
+        {
+          "id": "e10",
+          "source": "Relay",
+          "target": "DB",
+          "label": "설치 Inbox의 해당 ID 제거",
+          "style": "solid",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 10
+        },
+        {
+          "id": "e11",
+          "source": "Relay",
+          "target": "Dots",
+          "label": "acknowledged (자동 답장 없음)",
+          "style": "dashed",
+          "arrowhead": "arrow",
+          "bidirectional": false,
+          "undirected": false,
+          "order": 11
+        }
+      ]
+    }
+  ]
+}

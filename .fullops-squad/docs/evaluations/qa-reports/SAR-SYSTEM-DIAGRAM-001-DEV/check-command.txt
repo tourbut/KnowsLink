@@ -1,0 +1,128 @@
+"""One-off documentation evidence; run with python3 from repository root. No network or product mutation."""
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
+import hashlib
+import json
+import re
+import subprocess
+import sys
+
+root = Path.cwd()
+evidence = root / '.fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV'
+docs = [root / p for p in ['README.md', 'docs/README.md', 'docs/architecture.md', 'docs/system-design.md', '.fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md', '.fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV/report.md']]
+errors = []
+links = []
+
+def outside_fences(text):
+    result = []
+    fence = None
+    for line in text.splitlines():
+        match = re.match(r'^\s*(`{3,}|~{3,})', line)
+        if match:
+            marker = match[1][0]
+            if fence is None:
+                fence = marker
+            elif fence == marker:
+                fence = None
+            continue
+        if fence is None:
+            result.append(line)
+    return '\n'.join(result), fence
+
+def anchors(path, override=None):
+    text, _ = outside_fences(override if override is not None else path.read_text(encoding='utf-8'))
+    result = set(re.findall(r'<a\s+id="([^"]+)"', text))
+    counts = {}
+    for line in text.splitlines():
+        match = re.match(r'^#{1,6}\s+(.+?)\s*#*$', line)
+        if not match:
+            continue
+        heading = re.sub(r'[`*_]', '', match[1]).lower()
+        slug = ''.join(c for c in heading if c.isalnum() or c in ' -_').replace(' ', '-')
+        count = counts.get(slug, 0)
+        counts[slug] = count + 1
+        result.add(slug if count == 0 else f'{slug}-{count}')
+    return result
+
+for doc in docs:
+    raw = doc.read_text(encoding='utf-8')
+    text, fence = outside_fences(raw)
+    if fence:
+        errors.append(f'{doc.relative_to(root)}: unclosed fence')
+    for match in re.finditer(r'(?<!!)\[[^\]\n]+\]\(([^)]+)\)', text):
+        target = match[1]
+        parsed = urlsplit(target)
+        if parsed.scheme or parsed.netloc:
+            continue
+        destination = (doc.parent / unquote(parsed.path)).resolve() if parsed.path else doc
+        error = None
+        if not destination.exists():
+            error = 'missing file'
+        elif parsed.fragment and destination.suffix == '.md' and unquote(parsed.fragment) not in anchors(destination):
+            error = 'missing fragment'
+        row = {'source': doc.relative_to(root).as_posix(), 'target': target, 'status': error or 'passed'}
+        links.append(row)
+        if error:
+            errors.append(row)
+    if '.fullops-squad' not in doc.parts:
+        for forbidden in [r'term_[0-9a-f-]+', r'ctx_[0-9a-f]+', r'01a135[0-9a-f-]+', r'/home/shin/', r'asdk_app_[a-zA-Z0-9]+']:
+            if re.search(forbidden, raw):
+                errors.append(f'{doc.relative_to(root)}: private runtime identifier/path')
+
+# Reuse the prior link/fence checker above; add only task-specific evidence assertions.
+checks = []
+def check(label, source, tokens, ordered=False):
+    data=(root/source).read_bytes()
+    value=data.decode('utf-8')
+    positions=[value.find(token) for token in tokens]
+    passed=all(p>=0 for p in positions) and (not ordered or positions==sorted(positions))
+    checks.append({'claim':label,'source':source,'sha256':hashlib.sha256(data).hexdigest(),'tokens':tokens,'ordered':ordered,'status':'passed' if passed else 'failed'})
+    if not passed: errors.append(label)
+check('Grok verify/store precedes transport persist/ACK','adapters/src/text.ts',['throw new Error("invalid text signature")','if (store) await store(result)','await this.request("/v1/text/persist", delivery)','await this.request("/v1/text/ack", delivery)'],True)
+check('local file sync before rename','adapters/src/inbox.ts',['await handle.writeFile','await handle.sync()','await rename(tmp, file)'],True)
+check('Remote persist then installation Inbox then transport ACK','internal/relay/remote_mcp.go',['st.operateAs("persist"','i.Inbox[id] = append','st.operateAs("ack"'],True)
+check('Remote explicit host ACK removes installation Inbox','internal/relay/remote_mcp.go',['case "knowslink_ack":','delete(i.Inbox, input.ID)'])
+check('Remote Inbox expires and loses current authority','internal/relay/remote_auth.go',['for mid := range i.Inbox','!st.current(m)','!now.Before(m.Receipt.Exp)','delete(i.Inbox, mid)'])
+check('distinct relationship authority sources','internal/relay/human.go',['"self:" + ia','"friend:" + f.ID','p.Generation'])
+check('180 second bound and idempotency conflict','internal/relay/public_text.go',['now.Add(180 * time.Second)','fault("idempotency_conflict")','old.Generation != generation || old.Scope != scope'])
+check('owner wire is unsigned and separate','internal/relay/human_messages.go',['"knowslink.owner-text.v1"','Authorship: "owner"','now.Add(180 * time.Second)'])
+check('24h metadata and bounded lease attempts','internal/relay/store.go',['now.Sub(m.Receipt.Accepted) >= 24*time.Hour','m.Attempts >= 3','now.Add(30 * time.Second)'])
+check('row lock and epoch CAS','db/queries/relay.sql',['clock_timestamp()','FOR UPDATE','epoch = epoch + 1','epoch = $3'])
+check('clock fail closed and transactional empty notification','internal/relay/store.go',['now.Before(row.Clock.Time)','fault("abnormal_clock")',"SELECT pg_notify('knowslink_text', '')"])
+check('SSE arrival only and bounded stream','internal/relay/text_events.go',['const eventLifetime = 55 * time.Second','LISTEN knowslink_text','event: arrival','data: {}','15*time.Second'])
+check('Remote callback HMAC retry and lease','internal/relay/remote_events.go',['hmac.New(sha256.New','webhook-signature','sub.Attempts >= 3','status == 410 || status == 413','time.Hour','time.Minute'])
+check('writer guard and Down refusal','db/migrations/00002_human_writer.sql',['CREATE TRIGGER human_writer_guard','human authorization downgrade requires reviewed recovery'])
+check('local DB isolation and relay loopback','compose.yaml',['internal: true','127.0.0.1:${RELAY_PORT:-8080}:8080','profiles: [tunnel]'])
+check('MCP callback is remote and owner API not public','deploy/knowslink/tunnel/public-ingress.yml',['/v1/text/(send|pull|persist|ack|events)','/mcp','http://relay:8080'])
+check('entrypoint optional SMTP and service loops','cmd/relay/main.go',['KNOWSLINK_SMTP_URL','go service.Cleanup(ctx)','go service.RemoteEvents(ctx)'])
+check('SQL only migration separated','cmd/migrate/main.go',['only SQL migrations are supported','provider.Up(ctx)'])
+check('Google nonce and identity validation','internal/relay/google.go',['googleIssuer','oauth2.S256ChallengeOption','token.Nonce != a.Nonce','!claims.Verified'])
+check('Remote OAuth resource PKCE and scope','internal/relay/remote_auth.go',['knowslink.text','S256','o+"/mcp"','expires_in": 3600'])
+# Native Mermaid structure is checked without claiming a browser render.
+ir=json.loads((evidence/'mermaid-ir.json').read_text(encoding='utf-8'))
+structure=[]
+for d in ir['diagrams']:
+    a=d['analysis']
+    structure.append({'index':d['index'],'kind':d['kind'],'analysis':a})
+    if d['kind']=='flowchart':
+        if a['nodes_drawable']>9 or a['edges_total']>12 or a['edges_dangling'] or d['direction']!='TB': errors.append('architecture density/direction')
+    else:
+        # Extractor nodes/edges are sequence lifelines/messages.
+        if a['nodes_drawable']>5 or a['edges_total']>12 or a['edges_dangling']: errors.append('sequence density')
+if len(structure)!=3: errors.append('expected 3 Mermaid diagrams')
+system=(root/'docs/system-design.md').read_text(encoding='utf-8')
+for phrase in ['opt 선택 SSE','opt 유효한 Events 구독','같은 transaction의 persist·설치 Inbox·transport ACK','knowslink_ack (읽은 ID)','flowchart TB']:
+    if phrase not in system: errors.append('missing semantic label: '+phrase)
+for doc in docs:
+    raw=doc.read_text(encoding='utf-8')
+    for field in ['title','status','updated','owner','tasks','summary']:
+        if not re.search(r'^'+field+r':',raw,re.M): errors.append(str(doc)+': missing '+field)
+allowed=['.md','.json','.txt']
+changed=subprocess.check_output(['git','diff','--name-only','8f255f9991787e14b38052029d334b9536160fdb'],text=True).splitlines()
+changed+=subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines()
+product=[p for p in set(changed) if not (p.endswith('.md') or p.startswith('.fullops-squad/'))]
+if product: errors.append({'product_change':product})
+report={'base':'8f255f9991787e14b38052029d334b9536160fdb','checked_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'working_tree_docs':True,'local_link_count':len(links),'links':links,'source_checks':checks,'mermaid_structure':structure,'non_document_changes':product,'errors':errors,'exit_code':int(bool(errors)),'limits':'Reused local link/fence checker and selected exact source checks plus manual semantic review; no Mermaid browser render or product execution.'}
+(evidence/'static-checks.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print(json.dumps({'local_links':len(links),'source_checks':len(checks),'diagrams':len(structure),'errors':errors,'exit_code':int(bool(errors))},ensure_ascii=False))
+sys.exit(int(bool(errors)))

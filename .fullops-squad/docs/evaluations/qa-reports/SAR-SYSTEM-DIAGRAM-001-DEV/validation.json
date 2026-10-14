@@ -1,0 +1,56 @@
+{
+  "checks": [
+    {
+      "name": "mermaid-structure",
+      "command": [
+        "C:\\Users\\shin\\AppData\\Local\\Programs\\Python\\Python313\\python3.exe",
+        "<diagram-design-2.6.98>/scripts/mermaid_extract.py",
+        "docs/system-design.md",
+        "--diagram",
+        "all",
+        "--json",
+        "--out",
+        "$REPO\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-SYSTEM-DIAGRAM-001-DEV\\mermaid-ir.json"
+      ],
+      "exit_code": 0,
+      "stdout": "wrote C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\dev\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-SYSTEM-DIAGRAM-001-DEV\\mermaid-ir.json (21323 bytes)\n",
+      "stderr": ""
+    },
+    {
+      "name": "documentation-static",
+      "command": [
+        "C:\\Users\\shin\\AppData\\Local\\Programs\\Python\\Python313\\python3.exe",
+        "$REPO\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-SYSTEM-DIAGRAM-001-DEV\\check-command.txt"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"local_links\": 113, \"source_checks\": 20, \"diagrams\": 3, \"errors\": [], \"exit_code\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "deliverables-strict",
+      "command": [
+        "C:\\Users\\shin\\AppData\\Local\\Programs\\Python\\Python313\\python3.exe",
+        "<fullops-1.4.2>/scripts\\deliverables.py",
+        "--repo",
+        ".",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "검사: 13 / 미작성: 0 / 문제: 0 / 경고: 0\n",
+      "stderr": ""
+    },
+    {
+      "name": "diff-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "errors": 0,
+  "limits": "Structure extraction is not browser render; strict is metadata/source mapping only."
+}

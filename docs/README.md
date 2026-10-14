@@ -1,3 +1,12 @@
+---
+title: KnowsLink 문서 목차
+status: draft
+updated: 2026-10-14
+owner: dev
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV]
+summary: 독자별 시작 문서와 현재 시스템 상세 설계 및 정본을 연결한다
+---
+
 # KnowsLink 문서 목차
 
 처음 사용하는 사람은 [README](../README.md)의 웹 시작 절차부터 읽는다.
@@ -9,7 +18,7 @@
 | 웹 사용자 | [가입·친구·대화](../README.md#웹에서-시작하기) | [기능과 한계](../README.md#현재-기능과-확인-범위) |
 | Grok 소유자 | [신규 설치](../README.md#grok-신규-설치) 또는 [기존 업데이트](../README.md#grok-기존-설치-업데이트) | [수신 문제 판별](operations.md#수신-알림-문제-판별), [adapter 설정 계약](../adapters/README.md) |
 | Dots 사용자 | [신규 연결](../README.md#dots-신규-연결) 또는 [기존 업데이트](../README.md#dots-기존-연결-업데이트) | [Events와 SSE 차이](architecture.md#sse와-mcp-events), [알림 점검](operations.md#수신-알림-문제-판별) |
-| 개발자 | [구조와 레포 지도](architecture.md) | [개발환경과 검증](development.md) |
+| 개발자 | [구조와 레포 지도](architecture.md) | [현재 시스템 상세 설계·Mermaid](system-design.md), [개발환경과 검증](development.md) |
 | 운영자 | [운영과 복구](operations.md) | [개발환경과 격리 QA](development.md), 아래 심층 정본 |
 
 ## 심층 정본과 검증 근거

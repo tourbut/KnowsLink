@@ -1,0 +1,225 @@
+{
+  "task_key": "SAR-SYSTEM-DIAGRAM-001-DEV",
+  "role": "dev",
+  "attempt": "6c817804bcfa4eeaad94261ab79a8b28",
+  "packet_input_sha256": "8c87ba8f33295b389b1e6c33117fcb2bbdc35dbc15ad657c4f66f140f43d10fd",
+  "uncertainty_review": "이번 원 packet34경로/36쌍, unknown20건을 원본 보존한 채 항목별 처리했다. identity 불일치 producer3건은 현재 근거로 쓰지 않고 수동 원문으로 보완했다. 나머지17경로의 존재/hash/관련절을 확인했다. 과거 날짜별 로그는 제목·관련절 위치만 확인해 현행 근거에서 제외했으며 전문 재독을 주장하지 않는다. 필수 구성/전달/DB 소스와 현행 문서는 직접 읽었다. remaining_context_paths와 optional_context_paths는 원 packet에서 비었다. input_partial/partial과 producer_status 원본은 지우지 않았다. 상세 packet-audit.json 참조.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이번 과제의 필수 규약 또는 현행 설계/운영 근거 구간을 직접 읽고 문서 범위와 후속에 적용했다. 원천은 변경하지 않았다."
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "cmd/migrate/main.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "compose.yaml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "db/migrations/00002_human_writer.sql",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "소스의 해당 함수/설정 구간을 직접 읽고 새 문서의 구성·인증·전달·기한·보관 설명과 대조했다. 제품 입력은 그대로이며 source token/순서 근거는 static-checks.json에 있다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "현재 과제 절과 기존 검토/통합 상태를 확인했다. DEV 작성 완료와 coor 고정 SHA 리뷰·렌더·통합 후속만 갱신한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현행 사람 관계/remote 절과 과거 설계 구분을 읽었다. D03 원천은 read-only이며 docs/system-design.md에서 연결한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "실제 Go template·Postgres·Node·Remote 책임/버전 표 구간을 확인했다. 스택 변경이 없어 원천은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현행 SAR-REFACTOR-001 2026-10-13 절과 writer/복구 관련 heading을 확인했다. 운영 관측과 과거 절을 구분하고 D12는 수정하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "제목·기준·역할 구간을 읽어 초기 구성 리뷰임을 확인했다. 현재 배포 근거가 아니므로 보존한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "제목·고정 기준·범위 구간을 읽어 초기 통합 리뷰임을 확인했다. 현행 수락으로 확대하지 않는다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "현재 설치/업데이트와 확인 범위를 읽었다. 기존 heading/본문은 유지하고 상세 설계 링크와 canonical front matter만 추가한다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 설치/업데이트와 확인 범위를 읽었다. 기존 heading/본문은 유지하고 상세 설계 링크와 canonical front matter만 추가한다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 호스트/사람 관계/owner-wire 절과 신규·기존 안내 구분을 읽었다. 설치 본문을 재복제하지 않아 변경하지 않는다."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "독자 표와 심층 정본을 확인했다. 개발자 상세 설계 링크와 canonical front matter만 추가한다."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "독자 표와 심층 정본을 확인했다. 개발자 상세 설계 링크와 canonical front matter만 추가한다."
+    },
+    {
+      "path": "docs/architecture.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "입문 본문 전체를 읽고 소스의 ACK·관계·보관과 대조했다. 상세 문서 연결과 canonical front matter만 추가한다."
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "버전·개발 격리·검증 도구와 Windows 실패 경계 구간을 읽었다. 개발 절차 변경이 없어 유지한다."
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 관측·백업·writer·복구·알림 판별을 읽었다. 최신 운영 근거로 연결하며 변경하지 않는다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "이번 과제에서 신규 작성했다. 실제 소스 상대링크·인증/관계/transport/Inbox·운영 경계와 Mermaid3개를 검증한다."
+    }
+  ]
+}
