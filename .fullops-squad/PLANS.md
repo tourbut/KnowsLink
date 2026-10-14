@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## Astra 리팩터링 운영 배포 — SAR-REFACTOR-002-OPS
 
+- OPS 완료 msg_dc67947c2ab5 / 결과SHA3562662f5f836debd22a255afcbf52ea930e965b를 coor 기록 브랜치에 준비 통합했다. 실제 배포제품8a93e38과 문서결과를 구분한다. completion parser의 sha=null은 원 본문의 결과문서 SHA와 실제 clean OPS HEAD를 대조해 공용 메타데이터만 보완했고 원문은 보존했다. integration hold 담당coor, 재개 조건은 별도 Astra high 실제 세션01a13a34의 fixed OPS-REVIEW C/H0·check0 후 main 일반 통합/push·조상 확인이다. 원이미지 조회실패는 보존했고 별도2747 복구이미지12f1313a를 확보·network-none/read-only artifact 검사0을 확인했다. 실제 rollback은 미실행이다.
+
 - 실제 운영 적용8a93e38 완료: STOP11:30:57Z→UP11:31:13Z 약16초, relay/Postgres healthy·migrate0·restart0·public21/21이다. frozen full state→격리복원 digest동일·goose2/guard1/HumanModel1, 새0600 backup20039bytes를 확인했다. 회원/agent/친구/메시지/Remote mapdigest는동일하고 Rates만volatile변경이다. coor가raw다시대조했다. 이전image220edb7 inspect실패 escalation msg_190ddfe4ee12를보존하고 현재healthy/DB유지·freshbaseline대조 및필요시격리고유rollback이미지build를기존배포복구범위로인계했다. 운영head/servicetag/DB를old로덮지않으며 담당OPS가복구후보를확보한뒤기록·finish한다.
 
 - 실제 착수 task_6e35fa7983b5 / ctx_82a534ee9cf7 / term_d9fae13d-e296-47fa-b737-f71ae73a48d0. worker-start ready·turn_started 및 requested/effective codex/gpt-6-astra/high 일치를 확인했다. 이전 사용자 OPS 두 터미널은 보존했다. 완료 메시지 수신 후 실제 배포 증거·별도 fixed 리뷰·main 결과 통합을 진행한다.
