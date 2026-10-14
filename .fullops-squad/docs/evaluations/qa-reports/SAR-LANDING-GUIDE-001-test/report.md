@@ -51,3 +51,11 @@ LG-01–08은 D02·D04·DEV/tester 인박스에 연결됐다. 공개 카피에�
 - 최신 OPS의 Grok 현지 업데이트·실계정 재왕복·장시간 알림·다음 Events 갱신·실제 rollback 미검증은 그대로 남는다. 이번 카피가 그 성공을 보장하지 않는다.
 
 생략한 것은 새 상품·가격·검색·다크모드·새 이미지/모션·설치 자동화다. 공개 로그인 진입 변경의 실제 회귀 위험은 DEV/tester의 구현 고정 검사로 확인해야 한다.
+
+## 커밋 뒤 FullOps lint 실제 결과
+
+문서 커밋 `a37d388236fc342067bd2db03411da3f64a17e00`에서 기준3230ee5로 실행했다. [first-lint.json](first-lint.json)은 ERROR0·WARNING2·unavailable2, 실행 종료1이다. 현재 PATH의 make 부재를 확인했다. product-lint/product-test는 not_run이며 통과가 아니다. 새 제품 입력 변경이 없어 위 과거 Linux gate를 지시서의 문서 전용 재사용 규칙으로 연결한다.
+
+SIZE-001 두 건은 준비 커밋의 PLANS1827줄과 D04의796줄이다. PLANS는 coor 소유라 수정하지 않았다. D04는 현행 공개 명세와 원본 과거 실패/최소 로그인 지시를 한 정본에 보존하라는 계약 때문에 유지한다. 새 공개 명세는207줄이며 별도 디자인 시스템이나 과거 기록 삭제로 경고를 숨기지 않는다. 수기 정본/인계·phase/QA와 자동 packet/history/outcomes·원천 감사·context 전문 보존은 변경 규모를 구분한다.
+
+완료 아카이브를 포함한 최종 HEAD의 lint는 같은 기준으로 다시 실행해 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/landing-guide001-designer/final-lint.json`에 남긴다. worker_done은 그 정확한 SHA와 결과를 전달한다. 이 파일을 포함한 새 기록 커밋은 제품 검사를 다시 실행한 증거가 아니다.
