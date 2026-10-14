@@ -9,6 +9,13 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## Astra high 전반 리팩터링·성능·설계 개선 — SAR-REFACTOR-002-DEV
+
+- 2026-10-14 사용자 요청으로 새 기술 구현 과제를 준비한다. 최신 모델 지시는 codex/gpt-6-astra/high이며 이전 Sol 및 Astra 제외 기록보다 우선한다. 기존 제품 계약을 보존하며 실제 설계 결함·병목·불필요 코드를 점검·개선한다. DEV 작성 뒤 별도 세션 고정 SHA 리뷰·독립 tester QA 및 main 일반 통합/push까지 coor가 맡는다.
+- 완료 리뷰용 detached HEAD 8개를 coordinator가 사용자 명시 요청으로 정리했다. Git/Orca detached0·상설6개를 확인했다. 절대 경로·일반 디렉터리·clean/ignored0·main 조상·터미널/관련 process0을 확인하고 Orca worktree rm(no force/archive hooks)으로 제거했다. 비동기 removing 영수증과 실제 제거 확인을 구분했다. 정본 증거 hash와 커밋을 보존했다. root 리뷰에는 snapshot reviewer dispatch가 없어 자동 cleanup/historical PASS는 주장하지 않는다. [증거](docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/preflight.json).
+- 현재 사용자 소유 DEV 이전 터미널은 완료·유휴 상태로 보존한다. 새 Astra 세션만 시작한다. OPS 사용자 공간·designer unknown은 건드리지 않는다. 운영 배포·실계정 발송·DB 형식 변경은 이번 기본 범위가 아니다.
+
+
 ## 현재 시스템 구성도·상세 문서 — SAR-SYSTEM-DIAGRAM-001-DEV
 
 - 최종 통합(2026-10-14): 문서9f84c9d7b510fbf6d84d0d16450116346327d66a는 main/origin main5785f17addf26f4dee3e7456629da9e0300c820e의 조상이며 일반push/fetch동일을확인했다. integration pending0·delivery_ccfdc1ac3152 ACK성공. 새DEV ctx_c2a550211b14는 정상release/closed_agent_terminal·transcript captured다. 기존사용자dev터미널·ops사용자터미널·designerunknown은보존하며다음dispatch전최신main동기화를예약한다. coor/tester만유휴clean확인후최종main으로FF한다.

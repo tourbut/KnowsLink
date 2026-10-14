@@ -1,0 +1,91 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-REFACTOR-002-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D02",
+    "D03"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.8,
+        "product": 0.2
+      },
+      "confidence": 0.6
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.43,
+      "D02": 0.67,
+      "D03": 0.67,
+      "D04": 0.51,
+      "D05": 0.65,
+      "D06": 0.64,
+      "D07": 0.57,
+      "D08": 0.54,
+      "D09": 0.61,
+      "D10": 0.75,
+      "D11": 0.66,
+      "D12": 0.63,
+      "D13": 0.6
+    }
+  },
+  "usage": {
+    "input_tokens": 2479,
+    "output_tokens": 314,
+    "cost": 0.000104118
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.71,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
+  "head": "8f9370bb62c9133c73e10ea2307b4cd696e10f7e",
+  "requires_packet": true,
+  "attempt": "b77f9837537d48d9a943d443e877bc80",
+  "instruction_sha256": "f3a77a0d9e26e7cbcbec7659dd453233dc0f15a9e7014580cabb1543e7b5f5ec",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "0103e12d27c0610e335b9c4e11777498f81f3df7f669604e0978eb0b72d4e381"
+}

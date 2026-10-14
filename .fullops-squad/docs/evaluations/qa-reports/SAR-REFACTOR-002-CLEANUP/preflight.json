@@ -1,0 +1,169 @@
+[
+  {
+    "key": "FULLOPS-UPDATE-1.4.2",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-8df0ba2f28a64153888d60595042149c",
+    "head": "d14a0cf076a3d82acf2015b723d891426dec1e5e",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "accepted: 운영 업데이트 6파일 검토 완료, 미해결 critical/high 0. 제품 실행 입력 동일성에 근거한 기존 exact cd4dae8 Linux gate 재사용; 현재 문서 HEAD의 새 제품 검사 통과를 주장하지 않는다.",
+    "evidence_sha256": {
+      "preview.json": "d4f9b3b6f95e9ebf7dac05f6ce18c14b19a3d620724ec812b4cf8eceb4c67b7d",
+      "lint.json": "83cb0dd0f1a53cc7aea116577e00213792141630bc46d74b45315709637a0d4c",
+      "rules.json": "b9beff4f22c006d14d2141e616fffd36ff1282077118be286a0f353415f1c1df",
+      "result.json": "2ccde4b2c071c27cdf3fd50fa763df8f87e97c1a495c5e1b314380dfeaaff40d",
+      "report.md": "0ca5cca801c876e6c7deb5341264e62e50be86985650a4b9d251f2dfb49f7612"
+    }
+  },
+  {
+    "key": "SAR-REFACTOR-001-CODE",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-9693edc4a315441c9fb8c7ebf725309e",
+    "head": "cd4dae810ae262759bcff29895165f1a64f8c51a",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "PASS: 기능 보존 공통 처리 네 곳, 미해결 critical/high0. 독립 QA와 최종 문서 delta는 별도 수락한다.",
+    "evidence_sha256": {
+      "preview.json": "ba20e556d2b2cc4da78c8e400ef04777eb927af2628ccd823b1b3327318294a5",
+      "lint.json": "8dc041e795b75af58e32a8fc4ef2789034b17a4cdc2edd62c0ff452e9f45ea4c",
+      "rules.json": "4ef83dbb1464e0347e264391ff5ab859dfee82287e325c5704001530978fb7fd",
+      "result.json": "53f666d4131d15069d027ae8b899b0daca37f929c61623c0315094ac6ec5421d",
+      "report.md": "b05b9ab0f8f3836e40e1de57546a6375967c084fcb2429844056d4f65656fe9f"
+    }
+  },
+  {
+    "key": "SAR-REFACTOR-001-FINAL",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-58ec52e62c454552b5686c492f714ce5",
+    "head": "31e4e05f1fc202c540986fb4e43288fbca32838b",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "문서 및 독립 QA 증거 수락. 제품은 cd4dae8과 동일하며 CODE 리뷰와 함께 main 통합 가능. C/H 0.",
+    "evidence_sha256": {
+      "preview.json": "185bd42705909f8f2667d89d1f57ebffeccf4265c2e32406ba7c75d03a9872dd",
+      "lint.json": "ccbef64e0fbe02330827632c4c8a3e341efe78171f14833f22d346f85c183517",
+      "rules.json": "56268a46014db3e749553bac41dd43ba2cb75607cb785b5bffbef400d3e4d321",
+      "result.json": "532701fb1028ca544a68c0ecb8b7943b0c59203783a1e90576a6c5fb1fb45c66",
+      "report.md": "5935fd97b0133fcc95abe3d91e79cf84c302d0545db3039238893a852b0cb6ff"
+    }
+  },
+  {
+    "key": "SAR-REFACTOR-001-OPS-FINAL",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-37e011f7291845b187c02a8b2fdc1805",
+    "head": "9d0f6092fa40e76184f4be65237e4d50380b8c62",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "최종 배포 문서 및 finish/packet 정합성 수락. C/H0. 운영제품2747fe9 및 기존 계정 보존 확인. main통합 가능.",
+    "evidence_sha256": {
+      "preview.json": "ea2b617c0e5ca48a168d0758ab3e8951a54bb38d41f07dccabe38e32cff6f610",
+      "lint.json": "03b1d9e34c3ed545eac2dc4338198650d80aa4d474a773603c9a715b2cd61816",
+      "rules.json": "4aa01125e4ed95491d86f54179b66a1b9055fb0d3b3019e7afa974248628e011",
+      "result.json": "9fffd6198b317e88847885eb1b22a8beef36d7c5e52b0552b754f1ae8a277cb4",
+      "report.md": "47be50b8715d8fa7223dd5e61bdb0439f4c23d0e0316e0ad1b803c219a463004"
+    }
+  },
+  {
+    "key": "SAR-REFACTOR-001-OPS-RESULT",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-2cfc0de243f041088d42f80335172f56",
+    "head": "c914962066f0cd5aeeb551d4316b09b3dd5b9235",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "배포 문서와 증거 수락. C/H 0. 실제 운영2747fe9, 이번 문서 제품 변경0. finish 기록은 후속 고정 delta 확인 필요.",
+    "evidence_sha256": {
+      "preview.json": "7f80e5d9226f68798b44f2283a0a2df4e505708649db161bf15c56a12318e0a7",
+      "lint.json": "2af93cb47828fe79fb07a27010e1b9f3a856ce188358db15ea6662979531ae43",
+      "rules.json": "e61e8b6f461c08b973b331034a6836f988bf017f25fb2aabef86efe6076ec3cf",
+      "result.json": "ac9301cb523059df27cfd8b544ae0421a12cc242ac8f524b4ba36ad0c48abc81",
+      "report.md": "50ce00eb89972dbe183ab5a2c603b76aeba2351ebd38290fa79cb87260669983"
+    }
+  },
+  {
+    "key": "SAR-REFACTOR-001-RESULT",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-2f96e3be26f94f54a76e1b7913a90783",
+    "head": "d8e090435e0efce570e1889904d63f29b28bf0a6",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "",
+    "evidence_sha256": {
+      "preview.json": "84793321f5bc4c094210bc274f72afae5257de9aec12409095fced5a13f03dbb",
+      "rules.json": "29ec138871ac8d961b252247e47f4fd3c1c58f3a7da500d9dc64503f76ac43ad",
+      "result.json": "52dc16652f9419019320d7b9b3ff4801d653aefacd3e5f60c6f0d63d84362f12",
+      "report.md": "2775e8722f2fd56f39d739dcbf894852edad773b2e077605be208794856bee20"
+    }
+  },
+  {
+    "key": "SAR-REPO-DOCS-001-REVIEW",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-6c4c27c9d5de4ad6a3de96edfc133380",
+    "head": "ea80e98510af0e640557f0ea2b757c06e27a5779",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "accepted: documentation matches implementation and stated evidence; no critical/high findings. Product gate reused with identical inputs; no new product test claimed.",
+    "evidence_sha256": {
+      "preview.json": "a0d49425443c9c11b0963d8298ec403ddfd2a92a97c0f73ac534e86a9d8281e1",
+      "lint.json": "c10ab9f290e04e81614f808e71251242b51cee44cf1bad5f109a0d38ac344e35",
+      "rules.json": "190d172d45073089478dd05ab0b81ad8e3d7f8a9afffda4ca366b325edaf78ef",
+      "result.json": "b4529ea8a73f07f5eca6377d5d098158bba68891808649e6b088c0d6ac3c5360",
+      "report.md": "0ed47427ea3e6ef50a9e5a5651ae8f3edf61387bfdf6eb0f9ff12cf0f2747268"
+    }
+  },
+  {
+    "key": "SAR-SYSTEM-DIAGRAM-001-REVIEW",
+    "path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-7f3475f6e1244b23ab9d32cd7b43314a",
+    "head": "9f84c9d7b510fbf6d84d0d16450116346327d66a",
+    "record_head_matches": true,
+    "clean": true,
+    "detached": true,
+    "integrated": true,
+    "reparse": false,
+    "terminals": 0,
+    "process_matches": 0,
+    "result_head_matches": true,
+    "conclusion": "accepted: current documentation and three Mermaid diagrams match source and dated operational evidence. No unresolved critical/high. Browser SVG rendering verified by equal final input hashes; screenshot capture unavailable and not claimed.",
+    "evidence_sha256": {
+      "preview.json": "c72569cc558c00c339909805a13754980a93182462eacbbe452e8c2ac84683ba",
+      "lint.json": "d145a09197091c5dfa4015b11a68f7244f17c36d6b72eb21ef996dc1034e1eca",
+      "rules.json": "3904fb9cf617ff67616bb0b77fa759f74a9f6b2a3965cfd0529f603776dc274d",
+      "result.json": "1d953931b1fea028180874c58c1db1db709f521c69497b2c37ddf4365ff58bbc",
+      "report.md": "4969c8f3dc459213362d4e7bc78c4869471355a3870c0d747b04dc2ec6c6bf6a"
+    }
+  }
+]
