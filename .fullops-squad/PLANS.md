@@ -11,6 +11,9 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- QA 진행: tester 독립 HTTP34·Chrome CDP22 통과와 native Enter/Space/Tab/Shift+Tab/폼 제출의 실제 효과를 확인했다. member-home/account1440 캡처를 designer 질문 msg_bb240a6eef61에 reply msg_46f7e184c9d6로 인계했다. native browser200%는 아직 not_run이며 오직 소유 격리 Chrome profile의 appearance zoom UI 경로만 추가 허용했다(msg_1e5b57bdbc22). public 시각은 C/H0·비차단 예시 하단 간격 low1이고 최종 기록을 기다린다. DEV delivery_ac99adb939fa는 공용 integration hold 보존 뒤 ACK해 FIFO 후속 메시지를 열었다. hold 해소는 최종 독립 수락·main통합 이후다.
+- 운영 반영은 SAR-LANDING-GUIDE-001-OPS queued 인박스에 준비했다. 기존 배포 요청과 현재 사이트 개편을 같은 서비스 반영으로 이어서 수행하며, QA 수락·main/origin통합 전 배포하지 않는다. fresh backup/격리 복원·build 전 이전image 고유tag·현재 상태/공유서비스 보존·새 첫페이지public검사가 조건이다. 진행 중 설치 cache가1.4.3으로 바뀌고1.4.2 경로가 사라져 현재 skill/help의 호환 도구를 사용하며 레포하네스1.4.2와 기존gate원본은 보존한다. release의 명시 새세션 update 요구에 따라 자동 레포업데이트는 하지 않는다. 두 검수 worker에 경로 변경을 알렸다.
+
 - 독립 검수 착수: coor297e6d3을 idle/clean·terminal0의 tester/designer에FF하고 fresh Astra high로 배정했다. tester task_09a03f21ce42/ctx_02e6a3423e6e/term_68bb5327-3162-46fd-b58d-4db48dbfd8fa actual01a13ac5-b1b4-70f0-898d-6199bdf40279, visual task_e4422a1d293e/ctx_d880f510c28f/term_a631a267-d383-468b-8e0e-c209f4e1e476 actual01a13ac6-2571-7631-b463-91367eb88529. requested/effective codex/gpt-6-astra/high 및 turn_started 확인. CODE-REVIEW46/38·총84·C/H0·check0 수락, canonical297e6d3에 보존했다. snapshot은 reviewer 도구 종료·clean 확인 후 main통합 뒤 정리한다.
 
 - DEV 완료 msg_0a44968602b5 / fe2387a7676f7997aea76a2606f4cc2dbcd4b56b를 coor 기록 브랜치1312658에 병합했다. main은 아직 미반영이다. 최종 make lint/test0·ERROR0/WARNING3/unavailable0, 제품4795의 build/DB0·36 browser assertions와 native 입력/확대 not_run을 확인했다. 추가 SIZE-002는 D05 계약·DEV context로395→406이 된 이유를 외부 final-handoff.md에서 원문 확인했다. integration hold 담당coor, 재개 조건은 같은 SHA 독립 코드 check·기능 QA·직접 시각 수락이다. delivery_ac99adb939fa는 통합 뒤 ACK한다.
