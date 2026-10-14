@@ -1,0 +1,48 @@
+{
+  "task_key": "SAR-SYSTEM-DIAGRAM-001-DEV",
+  "find_head": "8f255f9991787e14b38052029d334b9536160fdb",
+  "base": "8b3c7906029be2c22138e3416b0962a9aa70c2f5",
+  "head": "9f84c9d7b510fbf6d84d0d16450116346327d66a",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    "README.md",
+    "docs/README.md",
+    "docs/architecture.md"
+  ],
+  "new_files": [
+    "docs/system-design.md"
+  ],
+  "candidates": [
+    ".fullops-squad/docs/agents/document-writing.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/README.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    "docs/README.md",
+    "docs/architecture.md"
+  ],
+  "hits": [
+    "docs/README.md",
+    "docs/architecture.md"
+  ],
+  "recall": 0.4,
+  "precision": 0.167,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

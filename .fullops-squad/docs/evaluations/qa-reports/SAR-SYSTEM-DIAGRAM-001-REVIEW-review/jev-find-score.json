@@ -1,0 +1,40 @@
+{
+  "task_key": "SAR-SYSTEM-DIAGRAM-001-DEV",
+  "find_head": "8f255f9991787e14b38052029d334b9536160fdb",
+  "base": "8b3c7906029be2c22138e3416b0962a9aa70c2f5",
+  "head": "9f84c9d7b510fbf6d84d0d16450116346327d66a",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "README.md",
+    "docs/README.md",
+    "docs/architecture.md"
+  ],
+  "new_files": [
+    "docs/system-design.md"
+  ],
+  "candidates": [
+    "README.md",
+    "adapters/src/inbox.ts",
+    "docs/README.md",
+    "docs/architecture.md",
+    "internal/relay/text_events.go"
+  ],
+  "hits": [
+    "README.md",
+    "docs/README.md",
+    "docs/architecture.md"
+  ],
+  "recall": 1.0,
+  "precision": 0.6,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

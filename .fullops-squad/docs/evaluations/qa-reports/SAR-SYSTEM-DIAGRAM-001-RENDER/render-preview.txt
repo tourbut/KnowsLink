@@ -1,0 +1,52 @@
+"""One-off documentation render evidence. Reads public diagram text; changes only the dedicated Orca QA page."""
+from pathlib import Path
+import hashlib
+import json
+import re
+import subprocess
+
+source = Path('C:/Users/shin/orca/workspaces/KnowsLink/dev/docs/system-design.md')
+out = Path(__file__).resolve().parent
+raw = source.read_bytes()
+diagrams = re.findall(r'^```mermaid\s*\n(.*?)^```\s*$', raw.decode('utf-8'), re.M | re.S)
+assert len(diagrams) == 3, len(diagrams)
+page = '068c80a6-7319-4261-8b90-c221af8388f2'
+expression = '''(async () => {
+  const diagrams = DIAGRAMS;
+  if (!window.mermaidQA) throw new Error('Mermaid runtime not loaded');
+  document.documentElement.lang = 'ko';
+  document.title = 'KnowsLink 시스템 구성도 검증';
+  document.body.replaceChildren();
+  document.body.style.cssText = 'margin:0;padding:24px;font-family:Malgun Gothic,Segoe UI,sans-serif;background:white;color:#182B31';
+  const h = document.createElement('h1'); h.textContent = document.title; document.body.append(h);
+  window.mermaidQA.initialize({startOnLoad:false,securityLevel:'strict',fontFamily:'Malgun Gothic,Apple SD Gothic Neo,Segoe UI,sans-serif'});
+  const titles = ['전체 구성과 신뢰 경계','Grok 로컬 전달과 수신','Dots 원격 전달과 Events'];
+  for (let i=0;i<diagrams.length;i++) {
+    const section=document.createElement('section'); section.id='diagram-'+i;
+    const title=document.createElement('h2'); title.textContent=titles[i]; section.append(title);
+    const frame=document.createElement('div'); frame.style.cssText='overflow-x:auto;max-width:100%;border:1px solid #75868B;padding:12px';
+    const pre=document.createElement('pre'); pre.className='mermaid';pre.textContent=diagrams[i];frame.append(pre);section.append(frame);document.body.append(section);
+    await window.mermaidQA.run({nodes:[pre]});
+  }
+  const metrics=Array.from(document.querySelectorAll('svg')).map(svg=>{
+    const v=svg.viewBox.baseVal; const box=svg.getBBox();
+    svg.style.maxWidth='none';svg.style.width=v.width+'px';svg.style.height=v.height+'px';
+    return {width:v.width,height:v.height,content:{x:box.x,y:box.y,width:box.width,height:box.height},font:getComputedStyle(svg).fontFamily,labels:svg.querySelectorAll('text,foreignObject').length};
+  });
+  return {state:'rendered',renderer_url:'https://cdn.jsdelivr.net/npm/mermaid@12.2.0/dist/mermaid.esm.min.mjs',svg_count:metrics.length,metrics};
+})()'''.replace('DIAGRAMS', json.dumps(diagrams, ensure_ascii=False))
+command = ['C:/Users/shin/AppData/Local/Programs/orca/resources/bin/orca.EXE', 'eval', '--page', page, '--expression', expression, '--json']
+done = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', timeout=60)
+response = json.loads(done.stdout)
+result = response.get('result', {}).get('result')
+if isinstance(result, str):
+    try:
+        result = json.loads(result)
+    except json.JSONDecodeError:
+        pass
+record = {'source':str(source),'source_sha256':hashlib.sha256(raw).hexdigest(),'diagram_sha256':[hashlib.sha256(d.encode()).hexdigest() for d in diagrams],'page':page,'exit_code':done.returncode,'response':response,'result':result,'limits':'One actual Orca browser and pinned Mermaid 12.2.0 runtime; not a GitHub renderer or live service test. Final candidate input hashes must be compared before reuse.'}
+(out/'render-result.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+assert done.returncode == 0 and response.get('ok'), response
+assert isinstance(result, dict) and result.get('state')=='rendered' and result.get('svg_count')==3, result
+assert all(m['width']>0 and m['height']>0 and m['labels']>0 for m in result['metrics'])
+print(json.dumps(result,ensure_ascii=False))

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "66013958db40421b928e94f47b89ea7a",
+  "base": "8b3c7906029be2c22138e3416b0962a9aa70c2f5",
+  "merge_base": "8b3c7906029be2c22138e3416b0962a9aa70c2f5",
+  "head": "9f84c9d7b510fbf6d84d0d16450116346327d66a",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없다. 문서 전용 변경으로 실행 입력은 exact cd4dae8 Linux 통과와 동일하다. 원본 head/명령/EXIT0/hash와 제품 diff를 확인해 재사용하며 새 문서 HEAD 제품 실행 PASS로 표시하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없다. 문서 전용 변경으로 실행 입력은 exact cd4dae8 Linux 통과와 동일하다. 원본 head/명령/EXIT0/hash와 제품 diff를 확인해 재사용하며 새 문서 HEAD 제품 실행 PASS로 표시하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1776줄(이전 1774, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 6,
+    "added_lines": 400,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
