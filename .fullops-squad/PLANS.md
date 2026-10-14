@@ -9,6 +9,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 현재 시스템 구성도·상세 문서 — SAR-SYSTEM-DIAGRAM-001-DEV
+
+- 사용자 요청으로 현재 구조·메시지/수신 흐름 그림과 상세 설명을 docs에 작성한다. implementation→dev0.99, Codex/gpt-6.1-sol/high 문서 worker. 제품/배포/계정 변경 없음. 최종은 기존문서와같은Mermaid로직접표시한다. 별도HTML/SVG스타일질문은선택사항이며문서완료조건이아니다. 기존 DEV 완료idle프롬프트와 clean을 확인한 뒤 최신main8f255f9에 동기화하고 사용자터미널은 보존한다. 완료후별도fixed내용·시각리뷰와 main통합을 수행한다.
+
 ## FullOps 1.4.2 갱신 — FULLOPS-UPDATE-1.4.2
 
 - 완료(2026-10-14): 적용 d14a0cf와 문서 ea80e98을 각각 별도 실제 세션 fixed 리뷰6/19 reviewed·C/H0·check PASS로 수락했다. main/origin main ef0d1fcbffe25b03b0dd2d7c81c470eee0b1c4f0 일반 push·fetch 일치와 두 결과 조상을 확인했다. integration pending0, 완료 msg_76b456fe1f3c delivery_06b3a571fb74 ACK0. 현재 product 재실행은 없으며 원 exact cd4dae8 Linux gate 재사용이다.
