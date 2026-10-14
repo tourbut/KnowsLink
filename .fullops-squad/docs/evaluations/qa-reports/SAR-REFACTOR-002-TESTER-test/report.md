@@ -94,3 +94,5 @@ sweep의 큰 이득은 전체 DB transaction 이득과 다르다. 새 측정은 
 - stopped DB `kl-qa-refactor002-6405308e3d1f`. 최종 gate clone은 외부 gate-remote.txt로 추적한다.
 
 삭제·이동 정리·guard 우회·배포·실계정 발송은 하지 않았다. UI 변경이 없어 새 시각 검수는 해당 없음이다. live Google/외부 callback/실제 호스트 wake·장시간·최대 부하·백업 복원은 미실행이다. local claim 뒤 crash/read/write 실패 window와 전체 JSONB/row lock 한계는 남는다. 이번 결과는 그 한계나 과거 held 제품 수락을 해제하지 않는다.
+
+최종 공백 검사에서 CPU 모델 출력의 trailing whitespace 2줄을 확인했다. 원 benchmark 로그는 외부 qa-refactor002/benchmark-before.raw.log·benchmark-after.raw.log에 보존하고 커밋 사본의 줄 끝 공백만 정규화했다. tester context가 10KB를 넘어 전문을 contexts/archive/tester-2026-10-14-refactor002.md에 복사하고 현재 원칙만 요약했다. 삭제·이동은 없었다. 큰 diff는 정식 packet history와 원본 증거 보존 때문이며 제품 diff는 없다.
