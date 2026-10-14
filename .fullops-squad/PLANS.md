@@ -11,7 +11,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## Astra high 전반 리팩터링·성능·설계 개선 — SAR-REFACTOR-002-DEV
 
-- 2026-10-14 사용자 요청으로 새 기술 구현 과제를 준비한다. 최신 모델 지시는 codex/gpt-6-astra/high이며 이전 Sol 및 Astra 제외 기록보다 우선한다. 기존 제품 계약을 보존하며 실제 설계 결함·병목·불필요 코드를 점검·개선한다. DEV 작성 뒤 별도 세션 고정 SHA 리뷰·독립 tester QA 및 main 일반 통합/push까지 coor가 맡는다.
+- 2026-10-14 새 DEV task_202091858359 / ctx_05c36bca2880 / term_c12d7b8b-9a90-4fb9-9bf1-feaccde2d8ca 착수. worker-start ready 및 실제 turn_started, requested/effective codex/gpt-6-astra/high 일치·첫 규약 읽기 응답을 확인했다. 사용자 요청으로 새 기술 구현 과제를 진행한다. 최신 모델 지시는 codex/gpt-6-astra/high이며 이전 Sol 및 Astra 제외 기록보다 우선한다. 기존 제품 계약을 보존하며 실제 설계 결함·병목·불필요 코드를 점검·개선한다. DEV 작성 뒤 별도 세션 고정 SHA 리뷰·독립 tester QA 및 main 일반 통합/push까지 coor가 맡는다.
 - 완료 리뷰용 detached HEAD 8개를 coordinator가 사용자 명시 요청으로 정리했다. Git/Orca detached0·상설6개를 확인했다. 절대 경로·일반 디렉터리·clean/ignored0·main 조상·터미널/관련 process0을 확인하고 Orca worktree rm(no force/archive hooks)으로 제거했다. 비동기 removing 영수증과 실제 제거 확인을 구분했다. 정본 증거 hash와 커밋을 보존했다. root 리뷰에는 snapshot reviewer dispatch가 없어 자동 cleanup/historical PASS는 주장하지 않는다. [증거](docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/preflight.json).
 - 현재 사용자 소유 DEV 이전 터미널은 완료·유휴 상태로 보존한다. 새 Astra 세션만 시작한다. OPS 사용자 공간·designer unknown은 건드리지 않는다. 운영 배포·실계정 발송·DB 형식 변경은 이번 기본 범위가 아니다.
 
