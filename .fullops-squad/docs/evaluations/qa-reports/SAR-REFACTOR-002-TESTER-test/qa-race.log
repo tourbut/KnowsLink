@@ -1,0 +1,72 @@
+=== RUN   TestHumanConversationLifetimeReplayAndRevocation
+--- PASS: TestHumanConversationLifetimeReplayAndRevocation (0.01s)
+=== RUN   TestHumanRemoteOwnerAndAgentAuthorship
+--- PASS: TestHumanRemoteOwnerAndAgentAuthorship (0.01s)
+=== RUN   TestQAExactTransportAndHistoryBoundaries
+=== RUN   TestQAExactTransportAndHistoryBoundaries/queued/active
+=== RUN   TestQAExactTransportAndHistoryBoundaries/queued/revoked
+=== RUN   TestQAExactTransportAndHistoryBoundaries/delivered/active
+=== RUN   TestQAExactTransportAndHistoryBoundaries/delivered/revoked
+--- PASS: TestQAExactTransportAndHistoryBoundaries (0.01s)
+    --- PASS: TestQAExactTransportAndHistoryBoundaries/queued/active (0.00s)
+    --- PASS: TestQAExactTransportAndHistoryBoundaries/queued/revoked (0.00s)
+    --- PASS: TestQAExactTransportAndHistoryBoundaries/delivered/active (0.00s)
+    --- PASS: TestQAExactTransportAndHistoryBoundaries/delivered/revoked (0.00s)
+=== RUN   TestQAExhaustedLeaseRechecksBoundary
+=== RUN   TestQAExhaustedLeaseRechecksBoundary/active
+=== RUN   TestQAExhaustedLeaseRechecksBoundary/revoked
+=== RUN   TestQAExhaustedLeaseRechecksBoundary/message_expired
+=== RUN   TestQAExhaustedLeaseRechecksBoundary/subscription_expired
+=== RUN   TestQAExhaustedLeaseRechecksBoundary/install_expired
+=== RUN   TestQAExhaustedLeaseRechecksBoundary/no_new_arrival
+--- PASS: TestQAExhaustedLeaseRechecksBoundary (0.03s)
+    --- PASS: TestQAExhaustedLeaseRechecksBoundary/active (0.00s)
+    --- PASS: TestQAExhaustedLeaseRechecksBoundary/revoked (0.00s)
+    --- PASS: TestQAExhaustedLeaseRechecksBoundary/message_expired (0.00s)
+    --- PASS: TestQAExhaustedLeaseRechecksBoundary/subscription_expired (0.00s)
+    --- PASS: TestQAExhaustedLeaseRechecksBoundary/install_expired (0.00s)
+    --- PASS: TestQAExhaustedLeaseRechecksBoundary/no_new_arrival (0.00s)
+=== RUN   TestRemoteExhaustedLeaseWakesNewArrival
+--- PASS: TestRemoteExhaustedLeaseWakesNewArrival (0.00s)
+=== RUN   TestRemoteClaimsRecheckCurrentAuthority
+--- PASS: TestRemoteClaimsRecheckCurrentAuthority (0.00s)
+=== RUN   TestRemoteOAuthIsolationAndRefresh
+--- PASS: TestRemoteOAuthIsolationAndRefresh (0.00s)
+=== RUN   TestRemoteRefreshReplayRevokesOnlyVerifiedFamily
+--- PASS: TestRemoteRefreshReplayRevokesOnlyVerifiedFamily (0.00s)
+=== RUN   TestRemoteGoogleBindingAndSignedInbox
+--- PASS: TestRemoteGoogleBindingAndSignedInbox (0.01s)
+=== RUN   TestRemoteDeliveryClaimsRetryAndRevocation
+--- PASS: TestRemoteDeliveryClaimsRetryAndRevocation (0.00s)
+=== RUN   TestRemoteWebhookSignatureAndSSRF
+--- PASS: TestRemoteWebhookSignatureAndSSRF (0.00s)
+=== RUN   TestRemoteAdmissionAndEventVersions
+--- PASS: TestRemoteAdmissionAndEventVersions (0.00s)
+=== RUN   TestRemoteSubscriptionIdentityAndExpiry
+--- PASS: TestRemoteSubscriptionIdentityAndExpiry (0.00s)
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=true
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=true
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=true
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=true
+--- PASS: TestSweepExpiryPreservesRetentionAndRevocation (0.01s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=true (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=true (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=true (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=true (0.00s)
+=== RUN   TestTextEventSelectionAndAuthorization
+--- PASS: TestTextEventSelectionAndAuthorization (0.00s)
+=== RUN   TestTextEventSharedBudgetAndExpiry
+--- PASS: TestTextEventSharedBudgetAndExpiry (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	1.131s
+
+EXIT=0
