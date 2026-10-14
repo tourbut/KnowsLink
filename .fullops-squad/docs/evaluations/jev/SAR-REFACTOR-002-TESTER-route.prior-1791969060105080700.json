@@ -1,0 +1,71 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-REFACTOR-002-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.01,
+        "ops": 0,
+        "tester": 0.99
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.09,
+      "D02": 0.09,
+      "D03": 0.09,
+      "D04": 0.1,
+      "D05": 0.09,
+      "D06": 0.1,
+      "D07": 0.09,
+      "D08": 0.1,
+      "D09": 0.09,
+      "D10": 0.17,
+      "D11": 0.12,
+      "D12": 0.29,
+      "D13": 0.22
+    }
+  },
+  "usage": {
+    "input_tokens": 2459,
+    "output_tokens": 314,
+    "cost": 0.000103278
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.7,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "FullOps 독립 QA 책임에 따른 구현과 분리된 tester 배정",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "e34f32d27875e95d6865f82880cf4c8b2ad0260f",
+  "requires_packet": true
+}

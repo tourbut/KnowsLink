@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## Astra high 전반 리팩터링·성능·설계 개선 — SAR-REFACTOR-002-DEV
 
+- 제품 bcb1dd6629b508a30ec39a5d3141c8ce0a558597은 coor 기록 브랜치에 준비용 통합했다. main은 미변경이다. 별도 Astra high reviewer actual01a139ab-4840-7d71-b94b-e033b4b85efb의 clean fixed snapshot에서 검토 중이며 독립 tester QA를 준비한다. DEV Linux install/build0, 최초 DB suite는 adapter 빌드 선행 누락으로 실패를 보존하고 조건 수정 후 새 격리 DB로 재검증 중이다.
+
 - 09:03 검증 helper 생성 명령이 guard에 차단됐다. coor가 guard-blocked-command.txt 전문과 기존 helper를 직접 확인했다. 삭제 API는 부재 검사 리터럴뿐이며 실제 삭제 실행은 없다. 원 명령 재실행/guard 완화 대신 같은 검사를 보존한 비파괴 파일 편집만 허용했다. 이후 정상 hook·소스 확인을 유지한다. 원 차단을 PASS로 바꾸지 않는다.
 
 - 2026-10-14 새 DEV task_202091858359 / ctx_05c36bca2880 / term_c12d7b8b-9a90-4fb9-9bf1-feaccde2d8ca 착수. worker-start ready 및 실제 turn_started, requested/effective codex/gpt-6-astra/high 일치·첫 규약 읽기 응답을 확인했다. 사용자 요청으로 새 기술 구현 과제를 진행한다. 최신 모델 지시는 codex/gpt-6-astra/high이며 이전 Sol 및 Astra 제외 기록보다 우선한다. 기존 제품 계약을 보존하며 실제 설계 결함·병목·불필요 코드를 점검·개선한다. DEV 작성 뒤 별도 세션 고정 SHA 리뷰·독립 tester QA 및 main 일반 통합/push까지 coor가 맡는다.

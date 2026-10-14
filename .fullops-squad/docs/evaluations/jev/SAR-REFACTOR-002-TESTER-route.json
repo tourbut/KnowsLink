@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-REFACTOR-002-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.01,
+        "ops": 0,
+        "tester": 0.99
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.14,
+      "D02": 0.12,
+      "D03": 0.11,
+      "D04": 0.11,
+      "D05": 0.1,
+      "D06": 0.11,
+      "D07": 0.1,
+      "D08": 0.12,
+      "D09": 0.12,
+      "D10": 0.16,
+      "D11": 0.13,
+      "D12": 0.26,
+      "D13": 0.25
+    }
+  },
+  "usage": {
+    "input_tokens": 2432,
+    "output_tokens": 314,
+    "cost": 0.000102144
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.715,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "기존 구현 과제의 별도 독립 동작 QA 담당",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "f5f883402a283e6884cd81d12f0226b4da2c6491",
+  "requires_packet": true,
+  "attempt": "23e80de7e6e84386b7b3d54b114b3f26",
+  "instruction_sha256": "f4936d1b9829247f25c2825837a25f0b2528cd3f8db1a2864e6a08681e3e720e",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "d1cd9acf4845137c744d34ce4b19d51e4c360d0857bee71d975c36c8fedd3c08"
+}
