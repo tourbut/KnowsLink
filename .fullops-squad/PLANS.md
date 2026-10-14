@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- DEV 착수 task_f0d345aa84d2 / ctx_65212ab451f7 / term_31385176-8c59-4002-a838-35497b00e416. ready·turn_started와 requested/effective codex/gpt-6-astra/high 일치를 확인했다. 설계 eae9a8b는 main/origin b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e에 일반 push/fetch일치·양쪽조상0이다. 설계 msg_3d1059638d28 hold해제·delivery_e538674cc284 ACK, designer ctx_074184d23af0은 정상 release/transcript captured다. dev/tester/designer terminal0·clean을 재확인해 b0f6596으로FF했고 OPS 기존 사용자 공간은 보존했다. DEV는 새 코드의 실제 필수 검사·격리 브라우저 fixture를 제공하며 독립 QA/시각/코드리뷰는 후속이다.
+
 - 설계 수락: 별도 Astra 실제01a13a78이 eae9a8b를19 reviewed/13 skipped·C/H/M/L0·check0으로 수락했다. 중간 usage-limit 오류로 마지막 기록 단계가 중단됐으나 사용자 '계속' 뒤 같은 모델·세션으로 재개해 check-execution.json과 도구 종료를 확인했다. 모델 전환·검사 우회는 없었다. 설계·후속 DEV 인박스/탐색 준비를 main에 일반 통합/push한 뒤 DEV를 착수시킨다. DEV 고정 비교 기준은 수락 설계eae9a8b이며 새 UI 제품 코드는 실제 lint/test를 실행한다.
 
 - 설계 완료 msg_3d1059638d28 / eae9a8bffae706410f684e4c837e396e7b0bcf26를 coor 기록 브랜치에 준비 통합했다. 소개→순서→설치→예시→로그인 5구획, 유효세션도 안내200·회원공간이동, 구체적 Grok installer/등록 예시를 D02/D04/D11에 확정했다. 제품코드 diff0, 문서strict13·packet58쌍 통과, final lint ERROR0/WARNING2/unavailable2/exit1과 Windows make 부재·기존 동일입력 Linux gate 재사용을 구분한다. hold 담당coor, 재개 조건은 별도 Astra 실제01a13a78의 fixed DESIGN-REVIEW C/H0·check0 후 main 일반 통합/push다. DEV 인계는 설계SHA를 기준으로 준비 중이며 검수/통합 전 착수시키지 않는다.
