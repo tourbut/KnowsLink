@@ -66,6 +66,8 @@ none 상태는 가짜 disabled 로그인 버튼 대신 안전 문구와 다시 �
 
 ## 실행·증거·독립성
 
+DEV escalation msg_d80f50cc1a1e의 Orca page7c54ca56-3195-4698-8d36-1d120a8d6997은 document.hasFocus=false로 native keypress가 summary를 바꾸지 못했다. 성공 응답만으로 keyboard PASS를 주장하지 않는다. coor computer capabilities에서 Windows window.focus=false를 확인했다. 독립 페이지에서 실제 포커스를 확인하고, 같은 문제가 있으면 이미 설치된 허용 브라우저 실행기/CDP의 실제 키보드 경로를 점검할 수 있다. 새 패키지 설치나 정책 변경은 하지 않는다. DOM focus/dispatchEvent·CSS zoom은 native keyboard/browser200%와 별도이며 불가하면 not_run과 수락 영향·재개 조건을 남긴다.
+
 실행 호스트/모델은 codex/gpt-6-astra/high다. fullops-test와 프로젝트의 기존 Orca/브라우저 도구를 사용한다. 선택형 설치·탐색·shadow·CUAWright는 OFF이며 새 유료 키를 요구하지 않는다. 실행기·실제 버전·현재 page ID·고정 SHA·시나리오/요청 fingerprint를 기록한다.
 
 DEV가 제공한 고유 loopback origin/포트·격리 DB·합성 A/B 및 provider mock에서만 검사한다. 시작 전 허용 origin과 정확한 GET·필수 auth POST를 시나리오에 기록한다. 실제 운영 주소·메일·Google·외부 상대 송신·설치 실행은 허용하지 않는다. 독립 assertions는 D02/D04에서 작성한다. 전체 새 탐색 대신 위 핵심 시나리오를 쓰고 최대60개 의도적 브라우저 동작·20분/시나리오를 예산으로 삼는다. 예산 초과·관측 누락은 not_run이며 성공으로 추정하지 않는다.
