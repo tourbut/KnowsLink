@@ -1,0 +1,77 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-LANDING-GUIDE-001",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "unresolved",
+  "role": null,
+  "deliverables": [
+    "D10",
+    "D13",
+    "D11"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.22,
+        "product": 0.78
+      },
+      "confidence": 0.56
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.67,
+      "D02": 0.57,
+      "D03": 0.66,
+      "D04": 0.63,
+      "D05": 0.62,
+      "D06": 0.55,
+      "D07": 0.51,
+      "D08": 0.6,
+      "D09": 0.62,
+      "D10": 0.83,
+      "D11": 0.79,
+      "D12": 0.68,
+      "D13": 0.81
+    }
+  },
+  "usage": {
+    "input_tokens": 2477,
+    "output_tokens": 314,
+    "cost": 0.000104034
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D12"
+  ],
+  "latency_seconds": 0.709,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": null,
+  "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "head": "3230ee566ccf455e58a6fc3b43f5cd4b3a72aba0",
+  "requires_packet": true
+}

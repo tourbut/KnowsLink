@@ -1,0 +1,92 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-LANDING-GUIDE-001",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D11",
+    "D10",
+    "D02"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.2,
+        "product": 0.8
+      },
+      "confidence": 0.6
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.72,
+      "D02": 0.84,
+      "D03": 0.77,
+      "D04": 0.76,
+      "D05": 0.75,
+      "D06": 0.69,
+      "D07": 0.55,
+      "D08": 0.56,
+      "D09": 0.72,
+      "D10": 0.85,
+      "D11": 0.86,
+      "D12": 0.73,
+      "D13": 0.73
+    }
+  },
+  "usage": {
+    "input_tokens": 2477,
+    "output_tokens": 314,
+    "cost": 0.000104034
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.912,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
+  "head": "3230ee566ccf455e58a6fc3b43f5cd4b3a72aba0",
+  "requires_packet": true,
+  "attempt": "38f444fbc6944d27be42b0f8a4f27b7b",
+  "instruction_sha256": "e6b0d07fb29b0e4d4b5ec13a9b19ee8c93934b732ef090f04a3b590bb62ce7c4",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "52e35e9cb8462e8366d33eb392c38ce2ab60e1a3979cf5483cad9de6e61aa1af"
+}
