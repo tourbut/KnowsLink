@@ -1,0 +1,47 @@
+a8dc1cb2494cbb59c646abf8945ae5209b17267fcae59890f1c961f2706abae8
+=== RUN   TestGoogleDeviceHTTP
+--- PASS: TestGoogleDeviceHTTP (0.75s)
+=== RUN   TestGoogleHTTP
+--- PASS: TestGoogleHTTP (0.50s)
+=== RUN   TestHumanPostgres
+--- PASS: TestHumanPostgres (2.57s)
+=== RUN   TestEmailIdentity
+=== RUN   TestEmailIdentity/verified_signup_home_and_continuity
+=== RUN   TestEmailIdentity/concurrent_first_signup_and_one_use_code
+=== RUN   TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives
+=== RUN   TestEmailIdentity/send_failure_limits_and_csrf
+2026/10/14 22:45:05 verification mail not sent
+2026/10/14 22:45:05 verification mail not sent
+=== RUN   TestEmailIdentity/refused_principal_does_not_spend_shared_rate
+=== RUN   TestEmailIdentity/member_gate_isolation_and_decision
+=== RUN   TestEmailIdentity/member_gate_deny_form_returns_to_result
+--- PASS: TestEmailIdentity (7.68s)
+    --- PASS: TestEmailIdentity/verified_signup_home_and_continuity (0.22s)
+    --- PASS: TestEmailIdentity/concurrent_first_signup_and_one_use_code (0.11s)
+    --- PASS: TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives (0.37s)
+    --- PASS: TestEmailIdentity/send_failure_limits_and_csrf (0.50s)
+    --- PASS: TestEmailIdentity/refused_principal_does_not_spend_shared_rate (5.49s)
+    --- PASS: TestEmailIdentity/member_gate_isolation_and_decision (0.59s)
+    --- PASS: TestEmailIdentity/member_gate_deny_form_returns_to_result (0.39s)
+=== RUN   TestLandingSessionAndLoginRecovery
+2026/10/14 22:45:12 verification mail not sent
+--- PASS: TestLandingSessionAndLoginRecovery (0.24s)
+=== RUN   TestLandingConfiguredLoginAndPublicContent
+=== RUN   TestLandingConfiguredLoginAndPublicContent/google
+=== RUN   TestLandingConfiguredLoginAndPublicContent/both
+=== RUN   TestLandingConfiguredLoginAndPublicContent/email
+=== RUN   TestLandingConfiguredLoginAndPublicContent/none
+--- PASS: TestLandingConfiguredLoginAndPublicContent (0.00s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/google (0.00s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/both (0.00s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/email (0.00s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/none (0.00s)
+=== RUN   TestRemoteOAuthHTTP
+--- PASS: TestRemoteOAuthHTTP (0.77s)
+=== RUN   TestRemoteOAuthIsolationAndRefresh
+--- PASS: TestRemoteOAuthIsolationAndRefresh (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	13.543s
+2026/10/14 22:44:53 SQL migrations completed
+
+EXIT=0

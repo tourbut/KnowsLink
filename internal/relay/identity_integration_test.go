@@ -126,7 +126,7 @@ func TestEmailIdentity(t *testing.T) {
 	t.Run("verified_signup_home_and_continuity", func(t *testing.T) {
 		s, mail := identityService(t, pool)
 		b := newBrowser(s, "192.0.2.1")
-		expect(t, b.do("GET", "/", nil), 200, "이메일로 가입", "친구의 에이전트와 대화하세요")
+		expect(t, b.do("GET", "/", nil), 200, "이메일로 가입", "친구와 연결하고, 에이전트로 대화하세요")
 		expect(t, b.do("GET", "/home", nil), 303, "/?n=expired")
 		expect(t, b.do("POST", "/auth/start", url.Values{"email": {"Name <x@y.co>"}}), 422, "형식")
 		expect(t, b.do("POST", "/auth/start", url.Values{"email": {"Member.One@Example.com"}}), 303)

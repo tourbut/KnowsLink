@@ -38,8 +38,8 @@ func render(w http.ResponseWriter, status int, name string, v map[string]any) {
 	_ = memberPages.ExecuteTemplate(w, name, v)
 }
 func clock(t time.Time) string { return t.In(kst).Format("2006-01-02 15:04:05 KST") }
-func startView(problem string) map[string]any {
-	return map[string]any{"Title": "로그인", "Heading": "KnowsLink에 로그인", "Problem": problem, "EmailLogin": true}
+func (s *Service) startView(problem string) map[string]any {
+	return map[string]any{"Title": "서비스 안내와 시작하기", "Problem": problem, "Google": s.Google != nil, "EmailLogin": s.Mail != nil}
 }
 func limited(retry time.Time) string {
 	return "요청이 많습니다. " + clock(retry) + " 이후 다시 시도하세요."
@@ -62,19 +62,19 @@ func (s *Service) memberRoutes(mux *http.ServeMux) {
 }
 
 func (s *Service) startPage(w http.ResponseWriter, r *http.Request) {
+	v := s.startView("")
+	v["Notice"] = notices[r.URL.Query().Get("n")]
 	if token := readCookie(r, sessionCookie); token != "" {
 		if _, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 			_, _, err := st.session(token, now)
 			return nil, err
 		}); err == nil {
-			http.Redirect(w, r, "/home", http.StatusSeeOther)
-			return
+			v["Authenticated"] = true
+		} else {
+			setCookie(w, sessionCookie, "", -1)
+			v["Notice"] = notices["expired"]
 		}
-		setCookie(w, sessionCookie, "", -1)
 	}
-	v := startView("")
-	v["Google"], v["EmailLogin"] = s.Google != nil, s.Mail != nil
-	v["Notice"] = notices[r.URL.Query().Get("n")]
 	render(w, 200, "start", v)
 }
 
@@ -96,7 +96,7 @@ func (s *Service) deliverCode(w http.ResponseWriter, r *http.Request, st started
 			delete(state.Challenges, hashToken(st.Pending))
 			return nil, nil
 		})
-		v := startView("확인 메일을 보내지 못했습니다. 로그인되지 않았습니다. 1분 뒤 다시 요청하세요.")
+		v := s.startView("확인 메일을 보내지 못했습니다. 로그인되지 않았습니다. 1분 뒤 다시 요청하세요.")
 		v["Email"] = st.Email
 		render(w, 503, "start", v)
 		return
@@ -121,11 +121,11 @@ func (s *Service) authStart(w http.ResponseWriter, r *http.Request) {
 		return started{pending, code, email, retry, false, !ok}, nil
 	})
 	if err != nil {
-		render(w, 503, "start", startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
+		render(w, 503, "start", s.startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
 		return
 	}
 	result := value.(started)
-	v := startView("")
+	v := s.startView("")
 	v["Email"] = raw
 	switch {
 	case result.Limited:
@@ -149,7 +149,7 @@ func (s *Service) verifyPage(w http.ResponseWriter, r *http.Request) {
 	})
 	c, _ := value.(*Challenge)
 	if c == nil {
-		render(w, 410, "start", startView("확인 코드가 만료되었거나 더 이상 쓸 수 없습니다. 새 코드를 요청하세요."))
+		render(w, 410, "start", s.startView("확인 코드가 만료되었거나 더 이상 쓸 수 없습니다. 새 코드를 요청하세요."))
 		return
 	}
 	render(w, 200, "verify", map[string]any{"Title": "확인 코드 입력", "Masked": maskEmail(c.Email), "Email": c.Email, "Exp": clock(c.Exp)})
@@ -177,7 +177,7 @@ func (s *Service) authVerify(w http.ResponseWriter, r *http.Request) {
 		return v, nil
 	})
 	if err != nil {
-		render(w, 503, "start", startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
+		render(w, 503, "start", s.startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
 		return
 	}
 	result := value.(verified)
@@ -191,13 +191,13 @@ func (s *Service) authVerify(w http.ResponseWriter, r *http.Request) {
 		render(w, 401, "verify", again)
 	case result.Problem == "expired":
 		setCookie(w, pendingCookie, "", -1)
-		render(w, 401, "start", startView("확인 코드가 만료되었거나 더 이상 쓸 수 없습니다. 새 코드를 요청하세요."))
+		render(w, 401, "start", s.startView("확인 코드가 만료되었거나 더 이상 쓸 수 없습니다. 새 코드를 요청하세요."))
 	case result.Problem == "capacity":
 		setCookie(w, pendingCookie, "", -1)
-		render(w, 503, "start", startView("현재 신규 가입을 받을 수 없습니다. 이미 가입한 회원은 로그인할 수 있습니다."))
+		render(w, 503, "start", s.startView("현재 신규 가입을 받을 수 없습니다. 이미 가입한 회원은 로그인할 수 있습니다."))
 	case result.Problem != "":
 		setCookie(w, pendingCookie, "", -1)
-		render(w, 403, "start", startView("이 계정으로는 로그인할 수 없습니다."))
+		render(w, 403, "start", s.startView("이 계정으로는 로그인할 수 없습니다."))
 	default:
 		setCookie(w, pendingCookie, "", -1)
 		setCookie(w, sessionCookie, result.Session, int(sessionAbsolute/time.Second))
@@ -301,7 +301,7 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 			expired(w, r)
 			return
 		}
-		render(w, 503, "start", startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
+		render(w, 503, "start", s.startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
 		return
 	}
 	if v, ok := value.(refusal); ok {

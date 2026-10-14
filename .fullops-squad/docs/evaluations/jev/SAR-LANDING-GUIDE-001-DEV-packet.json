@@ -1,26 +1,29 @@
 {
   "task_key": "SAR-LANDING-GUIDE-001-DEV",
   "role": "dev",
-  "head": "271b27ec00e0914cf85d9c081e8600b059dd79fd",
+  "head": "b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e",
   "attempt": "8c6afd3e09fc4841bbb57d3b6af65940",
-  "instruction_sha256": "e1b0d0c5e21d50b0e9751d263794111d503a818ee796e28807b691d6d35479e6",
+  "instruction_sha256": "13e80d28809baf75c6a4fccef80831e5044919ff7b7f085080a5d1a753358c33",
   "options": {
     "policy": "packet-v3",
     "seeds": [
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
       ".fullops-squad/docs/design-docs/module-design.md",
       ".fullops-squad/docs/operations/user-guide.md",
-      "internal/relay/human_http.go",
+      "internal/relay/google.go",
       "internal/relay/human_pages.go",
+      "internal/relay/identity_integration_test.go",
+      "internal/relay/landing_fixture_test.go",
+      "internal/relay/landing_integration_test.go",
+      "internal/relay/landing_pages.go",
+      "internal/relay/landing_test.go",
       "internal/relay/member.go",
-      "internal/relay/member_pages.go",
-      "internal/relay/member_ui_test.go"
+      "internal/relay/member_pages.go"
     ],
     "required": [
       ".fullops-squad/FULLOPS.md",
       ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
       ".fullops-squad/docs/design-docs/module-design.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
       ".fullops-squad/docs/operations/user-guide.md",
       ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
       ".fullops-squad/handovers/to_dev.md",
@@ -29,14 +32,10 @@
       ".fullops-squad/rules/common/coding-style.md",
       ".fullops-squad/rules/common/security.md",
       ".fullops-squad/rules/common/testing.md",
-      "README.md",
-      "internal/relay/human_http.go",
-      "internal/relay/human_pages.go",
-      "internal/relay/member.go",
-      "internal/relay/member_pages.go",
-      "internal/relay/member_ui_test.go"
+      "README.md"
     ],
     "updates": [
+      "D04",
       "D10",
       "D11"
     ],
@@ -53,7 +52,6 @@
       ".fullops-squad/contexts/tester.md": "ed07b309702120bd5301a4a16bfd49226cb84dfc90159806455ea12a10c977a9",
       ".fullops-squad/docs/agents/document-writing.md": "c6933cf2fc4e79c1f5691c60bff4d434327301827b82aef08dca0d4e881ba9e0",
       ".fullops-squad/docs/agents/domain.md": "6a02fc13e1ffa9e0e719216a91d897aadb9120fe5f1061da3eca4efc6443cc64",
-      ".fullops-squad/docs/agents/frontend.json": "ffe333c11226a3175b6e59fa7e3331d46a3240353da509d4de1358b3d816d987",
       ".fullops-squad/docs/agents/issue-tracker.md": "d613d0e67332beca5265b5c967eea732e89cd5472f2295f4b2f9f8c1f2eb1d85",
       ".fullops-squad/docs/agents/triage-labels.md": "dba7a161d428e08df77da98df71cb1fc26cc3406bb627beb540a855427605858",
       ".fullops-squad/docs/deliverables/README.md": "a486919c26cfd2591e14447813d09293602a7814cf71b7f451d0e0d6e0b658f9",
@@ -68,7 +66,7 @@
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md": "c34f993ed74894ac526e597fca79ee718ebc9600d1a7fc1ab27785d2cbb27580",
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md": "df49f42a49250ebac2e9e6dd6ee5dc9c2009c3a677ff5e232c488d9051f5350f",
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
-      ".fullops-squad/docs/design-docs/module-design.md": "3a68263e4fdb191124ddc0d3a7fce7056dfec319e60e7bf61c31e3dd9bc45be7",
+      ".fullops-squad/docs/design-docs/module-design.md": "f8079b0634993d5d42e515b97e94ed1bdb0719425b20d90c399e70c2648cbef6",
       ".fullops-squad/docs/design-docs/tech-stack.md": "93767e9761e95950c18e913a8d9464a9b9ad9a990c1cd2f3410172b1cd9a9141",
       ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md": "a6ec750958416bff6402e7378639930af7158dc3097e94316327f0d9f8bd586c",
       ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md": "6348f11a5e5920e3c28e13a022be783f6a86be26bd0dff5e6dfb5611492b14d7",
@@ -116,6 +114,7 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md": "7ac0d44a0f9cd2f02c0fa0e0b1ca0b7320d608bb67aca59765946391713b12c1",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md": "229f443b6a727bff1af5bd239a84ea518d2935791d56db1b31d525e1265a0312",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md": "8440854210ab80dd3704f00d90afc586dae3d140d62c9bfe49103d17651fc2c5",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/report.md": "bb9f30baf1b68836cd86c98b4730e18be85c4ed45180531fd75b512cb9c2f6ae",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md": "b3a8160b7590c72758691bb0695e3f8787500f15516ca17ac3d767e9e886b994",
@@ -323,7 +322,7 @@
       ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md": "771e1bd3f26dbbc4163aa2f17a106da31d1afcbecf4f2aec2a5cd0bd61e3e4cf",
       ".fullops-squad/docs/generated/db-schema.md": "50cfbb5605a108c9916e50d518182e2d682a727fcf002c0cba083fcffaa9d088",
       ".fullops-squad/docs/operations/transition.md": "be6c2592c0caaa01b2c8e5ddf864cd8230dccdbd13c2ef9fd8320223594b8690",
-      ".fullops-squad/docs/operations/user-guide.md": "75dc2caf02da185876d77f8b39e0134137664bfd56a916c9bf9a5860e253ea92",
+      ".fullops-squad/docs/operations/user-guide.md": "ba8f3a334860562a759817a6fe509e2e4df954ab298e20cda85394292132c332",
       ".fullops-squad/docs/planning/SAR-MVP-backlog.md": "9266c6a3493bf2f329b8a578ecd75932a9f1237d9919a876152d7fd03a52b3bc",
       ".fullops-squad/docs/planning/SAR-PREP-002-request.md": "aac8e951f534dd7898a8a8d8d397b62c70acbab730f69d00d67428059d25045c",
       ".fullops-squad/docs/planning/SAR-SETUP-001-question.md": "982e3d96376167d548fa86d9eff83ad3cf9fa789d77305535ae34fda0d3b695c",
@@ -364,7 +363,7 @@
       ".fullops-squad/handovers/logs/2026-10-14_to_tester.md": "97b7343dd160e0409ff30580b20b4b5af472536a54db891cd6a6fd7e0231d2fe",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md": "ad041e7f93cbe1a64a12b54a1597ba1bdb93797ee2a19a66f6e6532575a1a517",
-      ".fullops-squad/handovers/to_dev.md": "e1b0d0c5e21d50b0e9751d263794111d503a818ee796e28807b691d6d35479e6",
+      ".fullops-squad/handovers/to_dev.md": "13e80d28809baf75c6a4fccef80831e5044919ff7b7f085080a5d1a753358c33",
       ".fullops-squad/handovers/to_tester.md": "8d9ef61e023b980afd15c59161d3b90f32685f95cd808baf8201a8f1590a3fa5",
       ".fullops-squad/lint/README.md": "0cb6778284b49417e0a93d213a55b6b18a33e205782d11bcdee8769800e3f546",
       ".fullops-squad/orca-agents.md": "a89bd7dd864dd1c5686a81b6d7faae1feb27c80807d434eb32178531369cf52f",
@@ -444,11 +443,15 @@
       "internal/relay/human.go": "d94a4fb34b10623c681b2988de0ca922ded715e5d47534530d9e59d3cc947f5c",
       "internal/relay/human_http.go": "56d64f15bfdacb35f1882f1111a63f0e2cc26e1a9cadbdde8b17ce6c64cdab3f",
       "internal/relay/human_messages.go": "17a7d54b053f22e21b0e56840a31b83d214a17e5585a95e49d5ef515f1f1329b",
-      "internal/relay/human_pages.go": "081e83a04414e85f173ad55856fa559d8badcac23a41708cba52b323169207cb",
+      "internal/relay/human_pages.go": "0268b855cde2029669d1ac63877cdcb5d47067635ac4255935e8fb6b27e3ca0a",
       "internal/relay/human_pages_test.go": "0612c7a6c8460043f70b657be2f647dd4f0738f0eec1039b7f092a7046418e77",
+      "internal/relay/landing_fixture_test.go": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+      "internal/relay/landing_integration_test.go": "2667ad853f804b416fe179ec66ed46fe03dd7f15a79d8203718a99098131e9e5",
+      "internal/relay/landing_pages.go": "8399c86382e90c8ff545aee90f355e5d0623e5f197a243d14ffbb500f92b0c52",
+      "internal/relay/landing_test.go": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
       "internal/relay/mail.go": "db5171b9e74b68532e0a0cc7e821ba55a3c69151c8e4daed1f5a8a94b0561754",
       "internal/relay/member_agents.go": "37366f4bf5b27aadc8c95e688af95acd4ff9e9d8fe69fcbc67655e365dbfa38f",
-      "internal/relay/member_pages.go": "a8f748c61063a0d3064e151da3745592c0ec22b7bb155fcbd7e319adab69a342",
+      "internal/relay/member_pages.go": "cd4a86939e288adb7ef25c1ff2edc4b499344f3ab7e1b0464638b91c1e2d9f7b",
       "internal/relay/member_receipt.go": "36756206c1851aa09cdd4b9655609c3965a00cafc80b7f899f5fd38415cbd7b5",
       "internal/relay/member_ui_test.go": "3bc7b369cbab898366f155ee062fd4a14d5cd3ed0dd5062498dc582c865daf4b",
       "internal/relay/policy_test.go": "0ab6ab95db543afe422fe4126ff7f8679f1b3bae0a254a7e9ca77e43f85aacd3",
@@ -479,17 +482,12 @@
       "scripts/verify_setup.py": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
       "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0"
     },
-    "search_results": {
-      "route": "62c34db81f0a79244b557c03e78da9a8c86d6424c6747cef5d5f10a39ed10620",
-      "find": "a9fc63817f15a1d1e08a1d759d251f301dcd858b4ff80adb1e4379fae953f9a8",
-      "documents-find": "20435f2c186d79f3730991e65c5a54955b3fcaf7dabfa5c0c61cc557522b05c9",
-      "context": "f981570f3305cacf9ffd948e7494cdd1e6dcf537bf9ad396c6a735beaf356667"
-    },
+    "search_results": {},
     "decisions": []
   },
-  "input_sha256": "23967a904add23d5b5656d54f85b46964ad563734b48842a7d8656aed5a461dc",
+  "input_sha256": "4f014ecd3292a4a226dfb58214f4f01cdc6406d35d5a103d46377e8855bc4404",
   "version": "jev-packet-v2",
-  "base": "271b27ec00e0914cf85d9c081e8600b059dd79fd",
+  "base": "b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e",
   "worktree_dirty": true,
   "items": [
     {
@@ -506,17 +504,18 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "15a8f741cbb124fd339606aa01228b1072a0143487764636a8f0280f03ea3994",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
       "categories": [
+        "document_update",
         "document_read"
       ],
       "reasons": [
+        "explicit edit seed/diff",
         "required or existing context recommendation",
-        "source mapping/reference; keep unchanged unless verified"
+        "route/explicit update candidate"
       ],
       "evidence": [
         {
@@ -535,8 +534,7 @@
       "status": "unknown",
       "priority": 0,
       "source_sha256": null,
-      "source_basis": null,
-      "context_signal": null
+      "source_basis": null
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
@@ -547,9 +545,15 @@
       "reasons": [
         "explicit edit seed/diff",
         "required or existing context recommendation",
+        "local link to seed",
         "route/explicit update candidate"
       ],
       "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 263,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
         {
           "method": "deliverable-index",
           "id": "D10",
@@ -564,218 +568,8 @@
       "required": true,
       "status": "inferred",
       "priority": 0,
-      "source_sha256": "3a68263e4fdb191124ddc0d3a7fce7056dfec319e60e7bf61c31e3dd9bc45be7",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.21,
-        "evidence": 0.34,
-        "contradicts": 0.53,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation",
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 6,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 6,
-          "seeds": [
-            "inbox"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": true,
-      "status": "inferred",
-      "priority": 0,
-      "source_sha256": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.51,
-        "evidence": 0.55,
-        "contradicts": 0.49,
-        "injection": 0.11,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation",
-        "symbol/keyword occurrence; reference semantics require verification",
-        "local link to seed"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 6,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 6,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 10,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 10,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "markdown-link",
-          "line": 14,
-          "seed": ".fullops-squad/docs/operations/user-guide.md"
-        },
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 50,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 50,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 51,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 51,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 52,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 52,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 53,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 53,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 57,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 57,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "GUIDE",
-          "line": 59,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "LANDING",
-          "line": 59,
-          "seeds": [
-            "inbox"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": true,
-      "status": "inferred",
-      "priority": 0,
-      "source_sha256": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.56,
-        "evidence": 0.77,
-        "contradicts": 0.55,
-        "injection": 0.07,
-        "decision": "keep",
-        "reason": null
-      },
+      "source_sha256": "f8079b0634993d5d42e515b97e94ed1bdb0719425b20d90c399e70c2648cbef6",
+      "source_basis": "tracked_worktree_overlay",
       "sections": []
     },
     {
@@ -787,9 +581,15 @@
       "reasons": [
         "explicit edit seed/diff",
         "required or existing context recommendation",
+        "local link to seed",
         "route/explicit update candidate"
       ],
       "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 30,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
         {
           "method": "deliverable-index",
           "id": "D11",
@@ -804,16 +604,11 @@
       "required": true,
       "status": "inferred",
       "priority": 0,
-      "source_sha256": "75dc2caf02da185876d77f8b39e0134137664bfd56a916c9bf9a5860e253ea92",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.59,
-        "evidence": 0.72,
-        "contradicts": 0.33,
-        "injection": 0.06,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_sha256": "ba8f3a334860562a759817a6fe509e2e4df954ab298e20cda85394292132c332",
+      "source_basis": "tracked_worktree_overlay",
+      "sections": [
+        "공개-첫페이지-정본--sar-landing-guide-001"
+      ]
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
@@ -862,7 +657,17 @@
         {
           "method": "markdown-link",
           "line": 17,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 17,
           "seed": ".fullops-squad/docs/operations/user-guide.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 38,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
         },
         {
           "method": "deliverable-index",
@@ -880,14 +685,6 @@
       "priority": 0,
       "source_sha256": "a25bf7ab097d323a5b981b9c70b24075650cd50b99b0e5ecf458e2e4969d172a",
       "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.56,
-        "evidence": 0.83,
-        "contradicts": 0.22,
-        "injection": 0.06,
-        "decision": "keep",
-        "reason": null
-      },
       "sections": []
     },
     {
@@ -1033,9 +830,8 @@
       "required": true,
       "status": "inferred",
       "priority": 0,
-      "source_sha256": "e1b0d0c5e21d50b0e9751d263794111d503a818ee796e28807b691d6d35479e6",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_sha256": "13e80d28809baf75c6a4fccef80831e5044919ff7b7f085080a5d1a753358c33",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/project.md",
@@ -1051,8 +847,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
@@ -1068,8 +863,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "2c08a8b1fcaa796d7a5bd74b28d3ee68a6b92af6e591e71b9f64d418d92c1533",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
@@ -1085,8 +879,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
@@ -1102,8 +895,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
@@ -1119,8 +911,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "0c1e0d1af2e06a78abea5295cddf073d4efd18d32c066dd288530b3e5bafc528",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": "README.md",
@@ -1136,204 +927,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "f2445158e232eed00b43d645b9ddc589d4224e22f6b239edf7f9a2c1628e6982",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.25,
-        "evidence": 0.28,
-        "contradicts": 0.64,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "internal/relay/human_http.go",
-      "categories": [
-        "direct_edit",
-        "impact_check"
-      ],
-      "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation",
-        "seed definition"
-      ],
-      "evidence": [
-        {
-          "method": "definition",
-          "symbol": "humanAgentView",
-          "line": 21,
-          "seed": "internal/relay/human_http.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "conversationURL",
-          "line": 47,
-          "seed": "internal/relay/human_http.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "humanTransport",
-          "line": 237,
-          "seed": "internal/relay/human_http.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "humanClock",
-          "line": 248,
-          "seed": "internal/relay/human_http.go"
-        }
-      ],
-      "doc_ids": [],
-      "required": true,
-      "status": "inferred",
-      "priority": 0,
-      "source_sha256": "56d64f15bfdacb35f1882f1111a63f0e2cc26e1a9cadbdde8b17ce6c64cdab3f",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.09,
-        "evidence": 0.16,
-        "contradicts": 0.33,
-        "injection": 0.03,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "internal/relay/human_pages.go",
-      "categories": [
-        "direct_edit",
-        "impact_check"
-      ],
-      "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": true,
-      "status": "inferred",
-      "priority": 0,
-      "source_sha256": "081e83a04414e85f173ad55856fa559d8badcac23a41708cba52b323169207cb",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.09,
-        "evidence": 0.19,
-        "contradicts": 0.38,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "internal/relay/member.go",
-      "categories": [
-        "direct_edit",
-        "impact_check"
-      ],
-      "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": true,
-      "status": "unknown",
-      "priority": 0,
-      "source_sha256": null,
-      "source_basis": null,
-      "context_signal": null
-    },
-    {
-      "path": "internal/relay/member_pages.go",
-      "categories": [
-        "direct_edit",
-        "impact_check"
-      ],
-      "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation",
-        "seed definition"
-      ],
-      "evidence": [
-        {
-          "method": "definition",
-          "symbol": "badge",
-          "line": 31,
-          "seed": "internal/relay/member_pages.go"
-        }
-      ],
-      "doc_ids": [],
-      "required": true,
-      "status": "inferred",
-      "priority": 0,
-      "source_sha256": "a8f748c61063a0d3064e151da3745592c0ec22b7bb155fcbd7e319adab69a342",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.7,
-        "evidence": 0.76,
-        "contradicts": 0.25,
-        "injection": 0.02,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "internal/relay/member_ui_test.go",
-      "categories": [
-        "direct_edit",
-        "impact_check"
-      ],
-      "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation",
-        "seed definition"
-      ],
-      "evidence": [
-        {
-          "method": "definition",
-          "symbol": "memberFixtures",
-          "line": 21,
-          "seed": "internal/relay/member_ui_test.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "renderFixture",
-          "line": 96,
-          "seed": "internal/relay/member_ui_test.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "formSignatures",
-          "line": 120,
-          "seed": "internal/relay/member_ui_test.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "TestMemberUIFixtures",
-          "line": 162,
-          "seed": "internal/relay/member_ui_test.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "TestLegacyMemberPageDoesNotCreateRelationships",
-          "line": 202,
-          "seed": "internal/relay/member_ui_test.go"
-        }
-      ],
-      "doc_ids": [],
-      "required": true,
-      "status": "inferred",
-      "priority": 0,
-      "source_sha256": "3bc7b369cbab898366f155ee062fd4a14d5cd3ed0dd5062498dc582c865daf4b",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.59,
-        "evidence": 0.67,
-        "contradicts": 0.3,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
@@ -1341,7 +935,8 @@
         "document_read"
       ],
       "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
+        "symbol/keyword occurrence; reference semantics require verification",
+        "local link to seed"
       ],
       "evidence": [
         {
@@ -1359,6 +954,11 @@
           "seeds": [
             "inbox"
           ]
+        },
+        {
+          "method": "markdown-link",
+          "line": 76,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
         },
         {
           "method": "string-search",
@@ -1398,7 +998,8 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "7323f6685d8ef5d6bc89703cd0a8d99ace558a667507c96599dce8346c13615f",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": ".fullops-squad/contexts/designer.md",
@@ -1406,7 +1007,8 @@
         "document_read"
       ],
       "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
+        "symbol/keyword occurrence; reference semantics require verification",
+        "local link to seed"
       ],
       "evidence": [
         {
@@ -1424,6 +1026,11 @@
           "seeds": [
             "inbox"
           ]
+        },
+        {
+          "method": "markdown-link",
+          "line": 20,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
         },
         {
           "method": "string-search",
@@ -1463,55 +1070,8 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "0827326adc17af702098b43e3a7b3bf0e4d6f84b0de090e75eee769df8128a13",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/contexts/dev.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "715c454a25d5c27b2b72c8eedd947b342b88af3e745aad2a1506d878ef77cec9",
       "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.22,
-        "evidence": 0.57,
-        "contradicts": 0.18,
-        "injection": 0.05,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": ".fullops-squad/docs/agents/frontend.json",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "ffe333c11226a3175b6e59fa7e3331d46a3240353da509d4de1358b3d816d987",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": {
-        "relevant": 0.37,
-        "evidence": 0.56,
-        "contradicts": 0.82,
-        "injection": 0.03,
-        "decision": "conflict",
-        "reason": "contradicts task"
-      }
+      "sections": []
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
@@ -1519,7 +1079,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "source mapping/reference; keep unchanged unless verified"
       ],
       "evidence": [
@@ -1538,25 +1097,29 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "c2e9586d6d92181b917aa273f560434979304b47f2267a15def51a33632f7719",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.17,
-        "evidence": 0.44,
-        "contradicts": 0.23,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
       "categories": [
-        "document_read"
+        "document_read",
+        "document_update"
       ],
       "reasons": [
-        "source mapping/reference; keep unchanged unless verified"
+        "local link to seed",
+        "route/explicit update candidate"
       ],
       "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 16,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 26,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
         {
           "method": "deliverable-index",
           "id": "D04",
@@ -1573,90 +1136,31 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "10dece240342ce8b35824d03b99a339d695f24bd95d8776fa1ecb83cc228ba33",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
+        "local link to seed"
       ],
       "evidence": [
         {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 16,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
+          "method": "markdown-link",
+          "line": 14,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
         }
       ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "fd87a8d822467765e606fb26d3be7ceeecba85be3e9d2886a3dfa2c803fb30c2",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 17,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 24,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "0f290b78f4ab08db6a86d4b203129c059717c888b79579563c01b0ba0dd9eb3c",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 19,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "49d1011f9dd556a24afa3fac5a5b947267178b185bbcbfc2b96e1a1b940759c3",
-      "source_basis": "HEAD"
+      "source_sha256": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
@@ -1692,23 +1196,53 @@
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "local link to seed"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 18,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "d1176ad32db5839793ca0abf756de1968069440d5ba6016b5e0662bed91a1899",
-      "source_basis": "tracked_worktree_overlay"
+      "source_sha256": "31e4c17804fddaad22c6958334438c1c350b9d968cd432933c41945ab745151e",
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 19,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "7ac0d44a0f9cd2f02c0fa0e0b1ca0b7320d608bb67aca59765946391713b12c1",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
       "categories": [
         "document_read"
       ],
@@ -1718,10 +1252,50 @@
       "evidence": [
         {
           "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 45,
+          "symbol": "GUIDE",
+          "line": 6,
           "seeds": [
-            "internal/relay/member_ui_test.go"
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 56,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 56,
+          "seeds": [
+            "inbox"
           ]
         }
       ],
@@ -1729,27 +1303,11 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "9dedc7b8329b015c9bd17de860930ffcd7b3451c2a722c195c394023d5b749e1",
+      "source_sha256": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "94847a3118a0db10f5734419cee2213987c51cf43bb86607dbaf990b0bb5878a",
-      "source_basis": "tracked_worktree_overlay"
-    },
-    {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
       "categories": [
         "document_read"
       ],
@@ -1759,10 +1317,18 @@
       "evidence": [
         {
           "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 32,
+          "symbol": "GUIDE",
+          "line": 6,
           "seeds": [
-            "internal/relay/member_ui_test.go"
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 6,
+          "seeds": [
+            "inbox"
           ]
         }
       ],
@@ -1770,7 +1336,7 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "58480fdc47238157a4c9bb6de32cdec30602552133ea3cc1f296771141247c60",
+      "source_sha256": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
       "source_basis": "HEAD"
     },
     {
@@ -1779,24 +1345,13 @@
         "document_read"
       ],
       "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
+        "local link to seed"
       ],
       "evidence": [
         {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 31,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 85,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
+          "method": "markdown-link",
+          "line": 28,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
         }
       ],
       "doc_ids": [],
@@ -1804,7 +1359,8 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "17c350136c2322367b6190d7f7092922700474f09f39d062cead1100fa103f8e",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
@@ -1822,14 +1378,6 @@
           "seeds": [
             "internal/relay/member_pages.go"
           ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 54,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
         }
       ],
       "doc_ids": [],
@@ -1840,46 +1388,18 @@
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 26,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "3004c44fbfa7356a0df76e765b6f1f22ba069597d05f1379ea6cce3b190397d8",
-      "source_basis": "HEAD"
-    },
-    {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
+        "local link to seed"
       ],
       "evidence": [
         {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 34,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
+          "method": "markdown-link",
+          "line": 29,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
         }
       ],
       "doc_ids": [],
@@ -1887,7 +1407,8 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "2745539eb7d23cf3c2e6bc5aa3e907c15255e3b3b20749ccda46d8f4d229acfe",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
@@ -1918,15 +1439,223 @@
       "sections": []
     },
     {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 30,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "a221ae3f9fb6d60f84282844be2dd59db8ad4d13c1afa9e6dbb79891197d2f0d",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification",
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "markdown-link",
+          "line": 14,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
+        {
+          "method": "markdown-link",
+          "line": 14,
+          "seed": ".fullops-squad/docs/operations/user-guide.md"
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 50,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 50,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 51,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 51,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 52,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 52,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 53,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 53,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 57,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 57,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 59,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 59,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 16,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "a98aa2fa4a20efd4cb257d0348cd2ac43591da50449d26408e5bc6dd49bd20de",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
+        "local link to seed",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 15,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
         {
           "method": "string-search",
           "symbol": "badge",
@@ -1942,22 +1671,6 @@
           "seeds": [
             "internal/relay/member_pages.go"
           ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 67,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 92,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
         }
       ],
       "doc_ids": [],
@@ -1965,65 +1678,8 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "ad12618f580e4c3d31c573f3e212e4c1ff0153af5274d3d0ea130292652f3e98",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 23,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 41,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "c421658df3c5a742c62d723ae48e5e73e8a8ee7b4b39dc76ac03462f35921496",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 19,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "8b59d50c5abcaeffb4c5d75be7e933336c90e87a18728103f4b3a9d26731c9dc",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
@@ -2031,16 +1687,13 @@
         "document_read"
       ],
       "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
+        "local link to seed"
       ],
       "evidence": [
         {
-          "method": "string-search",
-          "symbol": "TestMemberUIFixtures",
-          "line": 21,
-          "seeds": [
-            "internal/relay/member_ui_test.go"
-          ]
+          "method": "markdown-link",
+          "line": 14,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
         }
       ],
       "doc_ids": [],
@@ -2048,7 +1701,8 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "b57dad2560ecbbb137e998d988c53d5f19926a7943c00b0ac7b3cd2006a72ea8",
-      "source_basis": "HEAD"
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
@@ -2080,6 +1734,62 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "be6c2592c0caaa01b2c8e5ddf864cd8230dccdbd13c2ef9fd8320223594b8690",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 14,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "9266c6a3493bf2f329b8a578ecd75932a9f1237d9919a876152d7fd03a52b3bc",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed",
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 18,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        },
+        {
+          "method": "deliverable-index",
+          "id": "D01",
+          "source": [
+            "docs/planning/business-plan.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D01"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "71283129873d239966fa083cff245873863327ca5cd3b9a7773f6177f7fdf34f",
       "source_basis": "HEAD",
       "sections": []
     },
@@ -2160,6 +1870,52 @@
       "priority": 1,
       "source_sha256": "d3c17571ade569fb0a4e421cedbd3426cd690809293f8abc9f73627605fcae1d",
       "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 10,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "1d9cca82bc9f681dbeba13ff2829cd6848d184cf136fc62d6701eafd95c673e1",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 10,
+          "seed": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "7d45cd0c15112a6ea498debab9fb69adaf006de900f316ea41fbe77973b11adc",
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
@@ -2500,28 +2256,11 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "cmd/relay/main.go",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "a8b157a1254dbce98a8b15f127d381e2d33164a7e04d5b41a4c221199adff48e",
-      "source_basis": "HEAD"
-    },
-    {
       "path": "docs/README.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "local link to seed"
       ],
       "evidence": [
@@ -2545,88 +2284,28 @@
       "sections": []
     },
     {
-      "path": "docs/architecture.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "f991945b9567e10c830a04c5b8d5a641112eb892bb884b0b808a77c3b3a28a75",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.24,
-        "evidence": 0.5,
-        "contradicts": 0.17,
-        "injection": 0.03,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "docs/development.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "481b71d30042e5f18488ca3d4cd4cfa8dcacb989f7e63d1718c714f2d2d6d3df",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": "docs/operations.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "51c10f4ea86bd31be5f9d19f451315cb2d04bd5178d03ddabd736349907afddd",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.13,
-        "evidence": 0.25,
-        "contradicts": 0.28,
-        "injection": 0.09,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
       "path": "docs/system-design.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "local link to seed"
       ],
       "evidence": [
         {
           "method": "markdown-link",
           "line": 70,
-          "seed": "internal/relay/human_http.go"
+          "seed": "internal/relay/member_pages.go"
         },
         {
           "method": "markdown-link",
-          "line": 70,
-          "seed": "internal/relay/member_pages.go"
+          "line": 78,
+          "seed": "internal/relay/google.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 113,
+          "seed": "internal/relay/google.go"
         },
         {
           "method": "markdown-link",
@@ -2640,42 +2319,204 @@
       "priority": 1,
       "source_sha256": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
       "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.11,
-        "evidence": 0.24,
-        "contradicts": 0.27,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      },
       "sections": []
+    },
+    {
+      "path": "internal/relay/google.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "0268b855cde2029669d1ac63877cdcb5d47067635ac4255935e8fb6b27e3ca0a",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "internal/relay/identity_integration_test.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/landing_fixture_test.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "TestLandingBrowserFixture",
+          "line": 21,
+          "seed": "internal/relay/landing_fixture_test.go"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+      "source_basis": "explicit_untracked_or_required"
+    },
+    {
+      "path": "internal/relay/landing_integration_test.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "TestLandingSessionAndLoginRecovery",
+          "line": 17,
+          "seed": "internal/relay/landing_integration_test.go"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2667ad853f804b416fe179ec66ed46fe03dd7f15a79d8203718a99098131e9e5",
+      "source_basis": "explicit_untracked_or_required"
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "8399c86382e90c8ff545aee90f355e5d0623e5f197a243d14ffbb500f92b0c52",
+      "source_basis": "explicit_untracked_or_required"
+    },
+    {
+      "path": "internal/relay/landing_test.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "TestLandingConfiguredLoginAndPublicContent",
+          "line": 11,
+          "seed": "internal/relay/landing_test.go"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
+      "source_basis": "explicit_untracked_or_required"
+    },
+    {
+      "path": "internal/relay/member.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "badge",
+          "line": 31,
+          "seed": "internal/relay/member_pages.go"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "cd4a86939e288adb7ef25c1ff2edc4b499344f3ab7e1b0464638b91c1e2d9f7b",
+      "source_basis": "tracked_worktree_overlay"
     }
   ],
   "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
   "source_hash_policy": "verify before worker start; regenerate on change; completion allows implementation changes",
   "categories": {
     "direct_edit": [
-      "internal/relay/human_http.go",
+      "internal/relay/google.go",
       "internal/relay/human_pages.go",
+      "internal/relay/identity_integration_test.go",
+      "internal/relay/landing_fixture_test.go",
+      "internal/relay/landing_integration_test.go",
+      "internal/relay/landing_pages.go",
+      "internal/relay/landing_test.go",
       "internal/relay/member.go",
-      "internal/relay/member_pages.go",
-      "internal/relay/member_ui_test.go"
+      "internal/relay/member_pages.go"
     ],
-    "impact_check": [
-      "internal/relay/human_http.go",
-      "internal/relay/human_pages.go",
-      "internal/relay/member.go",
-      "internal/relay/member_pages.go",
-      "internal/relay/member_ui_test.go",
-      ".fullops-squad/docs/agents/frontend.json",
-      "cmd/relay/main.go"
-    ],
+    "impact_check": [],
     "document_read": [
       ".fullops-squad/FULLOPS.md",
       ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
       ".fullops-squad/docs/design-docs/module-design.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
       ".fullops-squad/docs/operations/user-guide.md",
       ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
       ".fullops-squad/handovers/to_dev.md",
@@ -2687,95 +2528,63 @@
       "README.md",
       ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
       ".fullops-squad/contexts/designer.md",
-      ".fullops-squad/contexts/dev.md",
       ".fullops-squad/docs/design-docs/interface-design.md",
       ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
-      ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
-      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
-      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
       ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      ".fullops-squad/docs/planning/business-plan.md",
       ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
       ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
       ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
       ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
       ".fullops-squad/handovers/to_tester.md",
       "docs/README.md",
-      "docs/architecture.md",
-      "docs/development.md",
-      "docs/operations.md",
       "docs/system-design.md"
     ],
     "document_update": [
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
       ".fullops-squad/docs/design-docs/module-design.md",
-      ".fullops-squad/docs/operations/user-guide.md"
+      ".fullops-squad/docs/operations/user-guide.md",
+      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md"
     ]
   },
   "input_partial": true,
-  "task_excerpt": "---\ntitle: SAR-LANDING-GUIDE-001-DEV — 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다\nstatus: draft\nupdated: 2026-10-14\nowner: dev\ntasks: [SAR-LANDING-GUIDE-001-DEV]\nsummary: 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다\nattempt: 8c6afd3e09fc4841bbb57d3b6af65940\nbase: eae9a8bffae706410f684e4c837e396e7b0bcf26\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-LANDING-GUIDE-001-DEV — 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다\n\n- 작성일: 2026-10-14 / From designer → dev / 상태: queued.\n- 실행: codex / gpt-6-astra / high. 최신 사용자 지정이며 기존 frontend.json의 Sol 기본값보다 우선한다. test_level=lite, subagent_level=standard.\n- 선행: 설계 독립 문서 리뷰와 main 통합 완료. coor가 실제 배정 전 자기 checkout의 HEAD와 인박스 fingerprint를 공식 도구로 확인하고 route/find/context/packet을 갱신한다. 이 문서는 대기 인계이며 아직 dispatch하지 않았다.\n- 담당: repo0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev.\n- 복귀: coor / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_38ae16dc-0ca4-4beb-ab00-d1e1b641f061 / run_5534969da2d0. task/dispatch는 새 실제 preamble을 사용한다. 이전 designer task/dispatch를 재사용하지 않는다.\n- 병합 책임: coor / main 및 origin/main. 운영 배포·실제 로그인·실메일·실상대 메시지는 이번 범위 밖이다.\n\n## 적용 기준과 예외\n\nAGENTS.md, FULLOPS.md, fullops-common-0.3.3의 coding-style/testing/security, project.md, document-writing.md를 적용한다. 초기 기준은 front matter의 준비 SHA다. 설계 결과 SHA는 SAR-LANDING-GUIDE-001 worker_done과 phase에 연결된 커밋으로 식별한다. coor가 배정 전 통합된 정확한 후보와 비교 기준을 고정한다. 제품 수락 전 기존 critical/high·보안·writer/DB·권한 기준을 완화하지 않는다.\n\n최신 공개 안내 요청은 D04의 과거 최소 로그인 문구만 대체한다. 원본 partial/unknown, 과거 FAIL과 미검증 운영 기록은 보존한다. D04의 '공개 첫페이지 정본 — SAR-LANDING-GUIDE-001'이 공개 페이지 카피·상태·배치의 정본이다. HP-01–16의 회원·대화 구조는 유지한다.\n\n## 먼저 읽을 문서\n\n- .fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md — LG-01–08과 유지되는 HP 규칙.\n-\n[partial: read full inbox]\n다. QA 완료는 후속 tester, 실제 시각 판정은 후속 designer, 독립 코드 리뷰는 별도 세션이 담당한다. DEV가 이 세 가지 PASS를 대신 선언하지 않는다.\n\n## 갱신할 산출물·완료 기록\n\nD10은 실제 구현 책임·진입 동작·관련 테스트 영향을 검토해 갱신한다. D11의 구현 예정 상태와 D04의 구현 연결을 실제 결과에 맞게 연결한다. D05 등 계약이 변한 원천만 추가 갱신하고 이유를 기록한다. D02/LG 기준을 임의 완화하지 않는다. 상세는 docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md, 검증은 docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/에 남긴다.\n\n## 제약·협업·후속\n\nWindows 삭제·이동 정리는 실행하지 않는다. 임시 자료는 보존하고 경로를 보고한다. 기술적 분리 작업이 실제 이득이면 rules/delegation.md를 먼저 읽고 Purpose와 파일 소유를 분리한 선택 위임만 사용한다. 자식도 Astra high·같은 권한/lite를 유지하며 부모 완료 전 회수한다. 통과 뒤에는 새 변경·실패·근거 결함이 있을 때만 재검증한다.\n\n## 완료 보고\n\n미착수. 구현 SHA·검증한 것/못 한 것·설계 대비 차이·산출물·fixture/캡처·후속 담당을 작성한다.\n\n## coor 실행 준비·검증 자원\n\n설계 결과의 정확한 고정 SHA는 eae9a8bffae706410f684e4c837e396e7b0bcf26이며 이 과제의 lint 비교 기준으로 고정한다. 독립 설계 리뷰와 main/origin 포함 확인 후에만 실제 dispatch한다. queued는 착수 승인이 아니다. 새 준비 commit 때문에 packet HEAD가 달라지면 공식 도구로 startup refresh하고 JSON을 수동 보정하지 않는다.\n이전 실제 Linux gate의 참고 구현은 .fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/remote.py와 C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002/에 있다. 기존 보고서·helper·fixture를 수정하거나 이전 SHA의 PASS를 새 UI 코드에 재사용하지 않는다. 현재 고정 HEAD와 새 과제 고유 격리 자원에서 실제 등록 make lint/test·필요 build를 실행하고 원 종료코드를 보존한다. PATH make 부재는 새 UI 제품 검사를 생략하는 근거가 아니다.\n검증용 새 비파괴 자료는 AppData/Local/KnowsLinkDevTools/landing-guide001-dev/ 및 합성 테스트용 고유 Linux tmp/DB에 생성할 수 있다. 기존 알려진 호스트 검증/RejectPolicy·비공개 자격 읽기를 재사용하고 env/키/본문을 출력하지 않는다. 원격 helper 실행 전에 삭제/이동/공유 자원 변경을 포함하는지 확인한다. 합성 자원은 stop 후 보존하며 운영 DB·컨테이너·Tunnel은 변경하지 않는다.\n브라우저 fixture는 다른 역할과 충돌하지 않는 포트·프로필로 제공한다. coor가 Orca에서 새 첫페이지를 열어 확인할 수 있는 실제 loopback URL/접속 방법과 유지·종료 담당을 보고한다. 불필요한 새 브라우저 패키지·백그라운드 사용자창을 추가하지 않는다. Windows background helper는 필요한 경우 Hidden으로 실행한다.\n",
+  "task_excerpt": "---\ntitle: SAR-LANDING-GUIDE-001-DEV — 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다\nstatus: draft\nupdated: 2026-10-14\nowner: dev\ntasks: [SAR-LANDING-GUIDE-001-DEV]\nsummary: 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다\nattempt: 8c6afd3e09fc4841bbb57d3b6af65940\nbase: eae9a8bffae706410f684e4c837e396e7b0bcf26\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-LANDING-GUIDE-001-DEV — 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다\n\n- 작성일: 2026-10-14 / From designer → dev / 상태: running.\n- 실행: codex / gpt-6-astra / high. 최신 사용자 지정이며 기존 frontend.json의 Sol 기본값보다 우선한다. test_level=lite, subagent_level=standard.\n- 선행: 설계 독립 문서 리뷰와 main 통합 완료. coor가 실제 배정 전 자기 checkout의 HEAD와 인박스 fingerprint를 공식 도구로 확인하고 route/find/context/packet을 갱신한다. 이 문서는 대기 인계이며 아직 dispatch하지 않았다.\n- 담당: repo0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev.\n- 복귀: coor / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_38ae16dc-0ca4-4beb-ab00-d1e1b641f061 / run_5534969da2d0. task/dispatch는 새 실제 preamble을 사용한다. 이전 designer task/dispatch를 재사용하지 않는다.\n- 병합 책임: coor / main 및 origin/main. 운영 배포·실제 로그인·실메일·실상대 메시지는 이번 범위 밖이다.\n\n## 적용 기준과 예외\n\nAGENTS.md, FULLOPS.md, fullops-common-0.3.3의 coding-style/testing/security, project.md, document-writing.md를 적용한다. 초기 기준은 front matter의 준비 SHA다. 설계 결과 SHA는 SAR-LANDING-GUIDE-001 worker_done과 phase에 연결된 커밋으로 식별한다. coor가 배정 전 통합된 정확한 후보와 비교 기준을 고정한다. 제품 수락 전 기존 critical/high·보안·writer/DB·권한 기준을 완화하지 않는다.\n\n최신 공개 안내 요청은 D04의 과거 최소 로그인 문구만 대체한다. 원본 partial/unknown, 과거 FAIL과 미검증 운영 기록은 보존한다. D04의 '공개 첫페이지 정본 — SAR-LANDING-GUIDE-001'이 공개 페이지 카피·상태·배치의 정본이다. HP-01–16의 회원·대화 구조는 유지한다.\n\n## 먼저 읽을 문서\n\n- .fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md — LG-01–08과 유지되는 HP 규칙.\n\n[partial: read full inbox]\nRemote 복귀와 권한은 유지한다.\n2. landing_pages.go의 공개 전용 template과 CSS를 기존 memberPages에 연결한다. D04의 다섯 구획·카피·두 details·단일 인증 영역을 구현하고 기존 memberStyle 토큰을 재사용한다. human-account에 안내 링크만 추가한다.\n3. handler 상태/실패 경계·기존 form golden과 auth 회귀를 확인한다. 고정 SHA의 실제 Linux make lint/test/build 및 격리 서버·브라우저 fixture를 제공한다. D10/D11·D04 구현 연결·DEV phase/QA/context를 갱신한다.\n\n실행 tuple은 codex/gpt-6-astra/high, 주 스킬 frontend-design이다. frontend check는 configuration_ready이며 실제 인증/브라우저 검증과 구분한다. 1440/390/320·키보드·200%·overflow/44px/contrast를 확인한다. 별도 디자인 lint·다중테마는 없다. 독립 tester/designer/review는 후속이다. 단일 template/auth 공유 변경이라 선택 하위 위임은 사용하지 않는다.\n\n## 완료 보고\n\n미착수. 구현 SHA·검증한 것/못 한 것·설계 대비 차이·산출물·fixture/캡처·후속 담당을 작성한다.\n\n## coor 실행 준비·검증 자원\n\n설계 결과의 정확한 고정 SHA는 eae9a8bffae706410f684e4c837e396e7b0bcf26이며 이 과제의 lint 비교 기준으로 고정한다. 독립 설계 리뷰와 main/origin 포함 확인 후에만 실제 dispatch한다. queued는 착수 승인이 아니다. 새 준비 commit 때문에 packet HEAD가 달라지면 공식 도구로 startup refresh하고 JSON을 수동 보정하지 않는다.\n이전 실제 Linux gate의 참고 구현은 .fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/gate/remote.py와 C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002/에 있다. 기존 보고서·helper·fixture를 수정하거나 이전 SHA의 PASS를 새 UI 코드에 재사용하지 않는다. 현재 고정 HEAD와 새 과제 고유 격리 자원에서 실제 등록 make lint/test·필요 build를 실행하고 원 종료코드를 보존한다. PATH make 부재는 새 UI 제품 검사를 생략하는 근거가 아니다.\n검증용 새 비파괴 자료는 AppData/Local/KnowsLinkDevTools/landing-guide001-dev/ 및 합성 테스트용 고유 Linux tmp/DB에 생성할 수 있다. 기존 알려진 호스트 검증/RejectPolicy·비공개 자격 읽기를 재사용하고 env/키/본문을 출력하지 않는다. 원격 helper 실행 전에 삭제/이동/공유 자원 변경을 포함하는지 확인한다. 합성 자원은 stop 후 보존하며 운영 DB·컨테이너·Tunnel은 변경하지 않는다.\n브라우저 fixture는 다른 역할과 충돌하지 않는 포트·프로필로 제공한다. coor가 Orca에서 새 첫페이지를 열어 확인할 수 있는 실제 loopback URL/접속 방법과 유지·종료 담당을 보고한다. 불필요한 새 브라우저 패키지·백그라운드 사용자창을 추가하지 않는다. Windows background helper는 필요한 경우 Hidden으로 실행한다.\n",
   "instruction": ".fullops-squad/handovers/to_dev.md",
   "partial": true,
   "unknown": [
     {
+      "source": "route",
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+    },
+    {
       "source": "find",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "partial": false,
-      "input_partial": true,
-      "remaining_candidates": [],
-      "ranking_status": "single_batch",
-      "fallback": null
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "source": "documents-find",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "partial": true,
-      "input_partial": true,
-      "remaining_candidates": [
-        ".fullops-squad/FULLOPS.md",
-        ".fullops-squad/docs/design-docs/module-design.md",
-        ".fullops-squad/PLANS.md",
-        ".fullops-squad/contexts/coor.md",
-        ".fullops-squad/contexts/dev.md",
-        ".fullops-squad/docs/design-docs/architecture.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
-        ".fullops-squad/docs/operations/user-guide.md",
-        ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
-        ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
-        ".fullops-squad/project.md",
-        ".fullops-squad/handovers/_TEMPLATE.md"
-      ],
-      "ranking_status": "batch_only",
-      "fallback": "local Git/keyword/symbol search"
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "source": "context",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty",
-        "internal/relay/member.go": "sensitive or oversized passage"
-      }
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "path": ".fullops-squad/PLANS.md",
@@ -2838,90 +2647,48 @@
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     },
     {
+      "path": "internal/relay/google.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/identity_integration_test.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
       "path": "internal/relay/member.go",
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
-  "producer_status": {
-    "route": {
-      "error": null,
-      "docs_status": "complete",
-      "unresolved_deliverables": []
-    },
-    "find": {
-      "error": null,
-      "partial": false,
-      "input_partial": true,
-      "remaining_candidates": [],
-      "ranking_status": "single_batch",
-      "fallback": null
-    },
-    "documents-find": {
-      "error": null,
-      "partial": true,
-      "input_partial": true,
-      "remaining_candidates": [
-        ".fullops-squad/FULLOPS.md",
-        ".fullops-squad/docs/design-docs/module-design.md",
-        ".fullops-squad/PLANS.md",
-        ".fullops-squad/contexts/coor.md",
-        ".fullops-squad/contexts/dev.md",
-        ".fullops-squad/docs/design-docs/architecture.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
-        ".fullops-squad/docs/operations/user-guide.md",
-        ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
-        ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
-        ".fullops-squad/project.md",
-        ".fullops-squad/handovers/_TEMPLATE.md"
-      ],
-      "ranking_status": "batch_only",
-      "fallback": "local Git/keyword/symbol search"
-    },
-    "context": {
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty",
-        "internal/relay/member.go": "sensitive or oversized passage"
-      }
-    }
-  },
+  "producer_status": {},
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
   "context_paths": [
     ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
     ".fullops-squad/contexts/designer.md",
-    ".fullops-squad/contexts/dev.md",
-    ".fullops-squad/docs/agents/frontend.json",
     ".fullops-squad/docs/design-docs/interface-design.md",
     ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md"
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+    ".fullops-squad/docs/operations/transition.md"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
     ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
     ".fullops-squad/docs/design-docs/module-design.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
     ".fullops-squad/docs/operations/user-guide.md",
     ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
     ".fullops-squad/handovers/to_dev.md",
@@ -2930,29 +2697,29 @@
     ".fullops-squad/rules/common/coding-style.md",
     ".fullops-squad/rules/common/security.md",
     ".fullops-squad/rules/common/testing.md",
-    "README.md",
-    "internal/relay/human_http.go",
-    "internal/relay/human_pages.go",
-    "internal/relay/member.go",
-    "internal/relay/member_pages.go",
-    "internal/relay/member_ui_test.go"
+    "README.md"
   ],
   "optional_context_paths": [],
   "remaining_context_paths": [
-    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
-    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+    ".fullops-squad/docs/planning/business-plan.md",
     ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
     ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
     ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+    ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+    ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
     ".fullops-squad/handovers/to_tester.md",
-    "cmd/relay/main.go",
     "docs/README.md",
-    "docs/architecture.md",
-    "docs/development.md",
-    "docs/operations.md",
-    "docs/system-design.md"
+    "docs/system-design.md",
+    "internal/relay/google.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/identity_integration_test.go",
+    "internal/relay/landing_fixture_test.go",
+    "internal/relay/landing_integration_test.go",
+    "internal/relay/landing_pages.go",
+    "internal/relay/landing_test.go",
+    "internal/relay/member.go",
+    "internal/relay/member_pages.go"
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "source_sha": "4795d619513fde4fbcd4a55b94ec91b056ebbaf0",
+  "page": "7c54ca56-3195-4698-8d36-1d120a8d6997",
+  "status": "unavailable/not_run",
+  "document_hasFocus": false,
+  "active_element": "summary",
+  "attempts": ["tab switch --focus", "click observed link", "summary.focus()", "exec focus summary", "keypress Enter", "exec press Enter"],
+  "result": "Commands reported success, but native summary stayed closed; no native keyboard PASS claimed.",
+  "coordinator_instruction": "msg_526751460434: preserve limitation, no policy changes or synthetic key event PASS, finish remaining work; independent tester must verify before acceptance.",
+  "native_browser_zoom_200": "not_run; exec set zoom unsupported; CSS body zoom=2 overflow check is a separate result",
+  "other_preserved_failures": ["native click did not navigate", "browser fetch fixture code blocked by CSP", "audit anonymous anchor absent because host cookie spans ports; rerun read-only on localhost"]
+}
