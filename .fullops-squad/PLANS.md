@@ -12,6 +12,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
 - 후속 검수 준비: tester SAR-LANDING-GUIDE-001-TESTER와 designer SAR-LANDING-GUIDE-001-VISUAL은 Astra high 인박스/route만 준비했고 DEV 최종 worker_done 뒤 고정 SHA·packet을 갱신해 배정한다. 예비4795d619의 실제 make lint/test/build 및 DB integration은 exit0이며 오류0·기존 SIZE 경고2다. 아직 최종 수락·운영 배포 성공은 아니다. coor Orca preview page88cad09c-ab0b-4aba-ae6f-c11ec3be5658은 합성 google fixture127.0.0.1:18781이고 운영 계정은 사용하지 않는다.
+- DEV msg_d80f50cc1a1e의 keyboard focus 문제는 별도 미실행으로 보존하고 나머지 증거·최종 보고를 진행하도록 msg_526751460434로 회신했다. Windows computer capabilities의 focus=false를 확인했고 tester 지시서에 native 입력·DOM/CSS 대체의 구분을 추가했다. worker-show는 실제 DEV live/working이며 terminalResource가 user_owned/user_takeover로 바뀌어 종료·강제 동기화하지 않고 보존한다.
 
 - DEV 질문 msg_8b9dc2666080: nil DB 단위 fixture가 전역 rate wrapper를 호출해 panic했고 수정용 inline Python/PowerShell 명령이 자동 검토에서 blocked by policy로 거부됐다. coor가 원 call_a0b84ac8954c41208d0df30778fa2355와 실제 테스트를 확인·외부 blocked-test-edit-evidence.json에 보존했다. 원 명령/다른 셸 변형은 재실행하지 않고 더 안전한 명시적 apply_patch로 테스트 준비만 바로잡도록 reply했다. content/provider/error 검증은 유지하고 Cache/CSP는 실제 합성DB의 익명·유효세션 GET 모두로 옮겨 실제 검사한다. 원 panic·거부는 보존하며 guard/보안/제품 기준 변경이나 실패 PASS 처리는 허용하지 않았다.
 
