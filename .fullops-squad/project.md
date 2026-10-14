@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 프로젝트 기준
 status: review
-updated: 2026-10-12
-owner: dev
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-HUMAN-PEER-001-DEV]
+updated: 2026-10-15
+owner: coor
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-HUMAN-PEER-001-DEV, FULLOPS-UPDATE-1.4.4]
 summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 ---
 
@@ -72,6 +72,12 @@ coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인
 보류 항목에는 담당과 재개 조건을 남긴다. 상세 반복 범위는 [공통 테스트 기준](rules/common/testing.md)을 따른다.
 
 ## FullOps 0.9.14 검사 연결
+
+### FullOps 1.4.3 검사 범위·재사용
+
+등록된 `make lint`와 `make test`는 변경 경로 인자를 받지 않는 전체 제품 검사다. 두 기존 명령에는 최소 level이 없으므로 lite에서도 유지한다. `lint.json`의 명령·kind·cwd·시간·제외·심각도는 바꾸지 않는다. DEV는 개발 중 관련 기존 Go 검사·재현을 사용하고, 안정된 고정 후보의 등록 전체 검사는 DEV가 수행한다. tester는 같은 입력의 제품 gate를 재사용하고 자기 독립 동작 QA를 수행한다. 코드·설정·의존성·환경 동일성과 원 실행 SHA·로그를 확인할 수 없거나 새 실패가 있으면 해당 검사를 수행한다.
+
+`make test`의 실제 범위는 Go race(`cmd`·`internal`), adapters 테스트, `scripts/test_shell_guard.py`다. `make lint`는 포맷·vet·module·adapter·구성·public-config 음수 검사와 스크립트 검사를 포함한다. 새 test level로 기존 전체 검사를 건너뛰거나 재사용을 새 SHA의 실행으로 표시하지 않는다. 현재 UI 과제의 실패와 중지는 이 운영 업데이트의 검사 성공으로 대체하지 않는다.
 
 검사 정본은 루트 Makefile과 adapters/package.json 및 adapters/eslint.config.mjs다. `product-lint`는 `make lint`, kind `lint`, cwd `.`다. Go 포맷·vet·module 무결성, adapter Prettier·ESLint·타입 검사와 설정 검사를 유지한다. ESLint recommended의 미사용 검사도 유지한다. `product-test`는 `make test`, kind `test`, cwd `.`다. Go race와 adapter 테스트를 같은 HEAD에서 실행하고 FullOps 결과에 종료코드를 남긴다.
 

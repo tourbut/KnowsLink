@@ -1,9 +1,9 @@
 ---
 title: KnowsLink lint 게이트
 status: draft
-updated: 2026-10-06
+updated: 2026-10-15
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.14]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.4.4]
 summary: lint 명령과 변경 규모·의존성·디자인·테스트 증거 기준
 ---
 
@@ -16,6 +16,7 @@ summary: lint 명령과 변경 규모·의존성·디자인·테스트 증거 �
 `python3 <lint.py> --repo <worker 체크아웃 루트> --from <기준 ref> [--out <경로>]`
 
 - 커밋이 끝난 깨끗한 작업 트리에서만 실행한다. 결과는 HEAD SHA에 고정된다.
+- 실행 결과는 작업 트리별 `<git dir>/fullops-gate/lint-result.json`에도 보존한다. 리뷰 prepare의 `--lint <결과 JSON>`으로 원본을 가져온다. 같은 base·HEAD·설정·명령 증거는 재실행하지 않으며 환경·의존성 동일성은 검토자가 확인한다. 결과 없음·불일치·새 실패는 필요한 검증을 수행한다.
 - 기준 ref와 HEAD의 merge-base 이후에 바뀐 파일만 검사한다. 기존 위반은 소급하지 않는다. 내용 규칙은 추가된 줄에만 적용하고, 줄 수 규칙은 상한을 넘으면서 줄 수가 늘어난 파일에만 적용한다.
 - 종료 코드는 0(통과), 1(ERROR 또는 실행 불가), 2(실행 실패)다.
 
@@ -59,7 +60,7 @@ summary: lint 명령과 변경 규모·의존성·디자인·테스트 증거 �
 1. 언어·프레임워크·패키지 매니저, 기존 lint 설정·CI·스크립트와 검사 범위를 확인한다. 모노레포는 루트 집계 명령을 우선하고 없는 경우 패키지별 실제 cwd를 등록한다. 생성물·외부 코드만 제외한다.
 2. 기존 린터·포매터·타입 검사의 기준을 유지하고 누락된 연결을 보완한다. 도구가 없으면 프로젝트 정본·호환 버전에 맞는 최소 개발 의존성과 설정을 만든다. Python은 기존 ruff 설정, JS/TS는 기존 ESLint/Oxlint 설정처럼 스택의 실제 도구를 확인한다. 포매터는 검사 모드로 연결한다. 미사용 규칙도 프로젝트 관례에 맞게 설정한다.
 3. 디자인·테마 린트가 있으면 동일 `commands`에 등록한다. 예: 이미 설정된 shadcn 플러그인을 실행하는 `{"name":"design-lint","kind":"lint","run":["npm","run","lint:design"],"cwd":"apps/web"}`. shadcn은 독립 실행 파일이 아니라 ESLint/Oxlint 플러그인이다. 기존 lint가 이를 포함하면 별도 중복 명령을 만들지 않는다.
-4. 테스트 명령을 `kind: test`로 연결하고 각 명령을 실제 cwd에서 실행한다. 결과의 name·run·cwd·exit_code·미실행 사유와 정본 경로를 project.md에 기록한다. 커밋 후 같은 HEAD에서 lint.py를 실행해 게이트 연계도 확인한다. 도구·설정이 부족하면 빈 commands로 완료하지 않고 미완료 사유와 남은 구성을 보고한다.
+4. 테스트 명령을 `kind: test`로 연결하고 기존 변경 경로용 명령과 전체 회귀의 범위·담당·시점을 실제 프로젝트 기준으로 구분한다. `required: true`와 레벨 없는 기존 명령은 임의로 약화하지 않는다. 각 명령을 실제 cwd에서 실행하고 name·run·cwd·exit_code·미실행 사유와 정본 경로를 project.md에 기록한다. 커밋 후 같은 HEAD에서 lint.py로 게이트 연계도 확인한다. 도구·설정이 부족하면 빈 commands로 완료하지 않고 미완료 사유와 남은 구성을 보고한다.
 
 ## shadcn 디자인 린트
 
@@ -89,12 +90,20 @@ DESIGN-001은 줄 처음의 CSS custom property 선언을 토큰 정의로 허�
 - 세션 안: 플러그인의 Stop hook(`done_gate.py`)이 이 세션에서 코드를 바꿨는데 현재 HEAD의 `lint.py` 통과 기록(`<git dir>/fullops-gate/pass.json`)이 없으면 종료를 한 번 막는다. 아무것도 바꾸지 않고 다시 끝내면 경고만 하고 통과한다. 이 체크아웃에서 직접 만든 커밋과 미커밋 변경만 보므로 fast-forward로 받은 커밋은 해당하지 않는다. hook 오류는 종료를 막지 않는다.
 - worker는 완료 보고 전에 실행한다. ERROR를 모두 고치고, 결과 요약(HEAD·ERROR·WARNING·실행 불가와 사유)을 완료 보고의 검증 항목에 적는다.
 - 검토자는 리뷰 디렉터리에 `lint.json`을 남긴다. `review.py check`는 lint 결과가 없거나 SHA·설정이 다르거나, ERROR가 남아 있거나, 실행 불가 명령에 `reason`이 비어 있으면 실패한다.
-- 등록된 `kind: test` 명령의 실행 증거가 없거나 중복되거나 통과 종료코드가 0이 아니면 review check가 실패한다. 테스트 실패·시간 초과는 기존 ERROR 경로로 차단한다. 실행 불가는 아래 예외 기록을 따른다.
+- 등록된 모든 검사 명령의 실행 증거가 없거나 중복·추가되거나 통과 종료코드가 0이 아니면 review check가 실패한다. 테스트 실패·시간 초과는 기존 ERROR 경로로 차단한다. 실행 불가는 아래 예외 기록을 따른다.
 - SIZE-002가 있으면 지시서의 예상 변경 규모와 실제 차이를 확인한다. DEP-001이 있으면 완료 보고의 의존성 변경 이유를 확인한다. 누락이면 리뷰 수정 요청으로 남기고 수락하지 않는다.
 - UI 작업은 핸드오버의 테마·토큰·공용 컴포넌트 경로, 디자인 lint 결과·예외, 테마 전환 검증을 확인한다. 해당 없으면 근거가 필요하다. DESIGN WARNING과 누락 항목은 검토자가 판단하고 report.md에 기록한다.
 - 실행 불가(폐쇄망·도구 미설치)는 사유를 `reason`에 적고, 대신 수행한 정적 검사와 CI·스테이징에서 실행해야 한다는 점을 보고서에 남긴다. WARNING은 보고서에 기록하고 검토자가 판단한다.
 
 ## 규칙 변경 기록
+
+### FullOps 1.4.3·1.4.4 hook 실행 확인
+
+같은 host 세션의 JSON 이벤트(`cwd`, `session_id`; camelCase도 지원)를 stdin으로 주고 `python3 <done_gate.py> status`를 실행하면 done/flow의 실제 호출 기록을 읽는다. 기록은 작업 트리별 `<git dir>/fullops-gate/hooks/`에 있다. status 조회 자체는 실행 근거를 만들지 않는다. `executed`는 호출 완료이며 검증 통과를 뜻하지 않는다. `error`는 hook 오류, `unknown`은 기록 없음·읽기 불가다. mode별 events와 시각을 함께 확인한다.
+
+일반 hook 예외는 작업을 막지 않고 같은 오류 종류를 세션당 한 번 알린다. 정책상 확정 위반의 기존 차단은 유지한다. hook 자체가 실행되지 않거나 기록 저장이 실패하면 알림도 없을 수 있다. unknown을 정상으로 해석하지 않고 lint·review 근거를 확인한다.
+
+1.4.4 hook은 버전 캐시 대신 `~/.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py`를 호출한다. 명시적 설치의 deps가 완전한 실행 사본을 준비·전환하며 이전 사본은 보존한다. 기존 세션의 이미 로드된 명령은 소급 교체되지 않는다. 고정 실행기 설치와 새 세션의 실제 실행 확인을 구분한다. 이전 캐시를 가리켜 실패하는 세션은 작업을 보존하고 새 세션에서 확인한다.
 
 - SAR-SETUP-001-DEV: `product-lint`를 `make lint`에 연결했다. Go 포맷·vet·module 무결성, TypeScript 포맷·ESLint·타입, YAML 포맷·Compose 구조와 검증 스크립트 문법을 검사한다. 검사 모드는 파일을 자동 수정하지 않는다.
 - 제품 대상은 `cmd/`, `internal/`, `adapters/src/`와 실제 설정이다. 원천 스냅샷은 제품 검사 대상이 아니다. 의존성·빌드 생성물은 검사하지 않는다. 기존 FullOps exclude와 규칙은 변경하지 않았다.
