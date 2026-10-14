@@ -9,6 +9,12 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## FullOps 1.4.4 최종 반영·사용자 세션 종료
+
+- 변경9hook 사용자 신뢰 승인과 실제 새 세션01a13af6-afb7-77d2-bc07-ea402127e7b5의 done/flow executed·status0을 확인했다. 레포 적용1.4.4로 갱신하며 업데이트 전용 브랜치만 고정 리뷰 후 main/origin에 일반 반영한다. UI 미통합 코드·미커밋 CSS는 포함하지 않는다.
+- 읽기 전용 hook 검증 완료 msg_b8c764d3c9f6 / ctx_c3711276ea98는 별도 커밋 없는 운영 증거다. 최초 신뢰 프롬프트 실패와 옛 hook 경로 오류는 보존한다. 상세 근거는 FULLOPS-UPDATE-1.4.4 단계 문서와 QA 원본이다.
+- 사용자 요청대로 업데이트 완료 후 현재 세션을 종료한다. UI hold msg_0a44968602b5·msg_70ae21c0a708와 DEV/tester/designer/ops 사용자 터미널·작업은 유지한다. 다음 새 coordinator에서 사용자 UI 재개 지시 뒤 최신 main 동기화부터 처리한다. 이번 업데이트에서 제품 실행·실계정·배포 검증은 추가하지 않는다.
+
 ## FullOps 1.4.4 업데이트와 UI 중지 — FULLOPS-UPDATE-1.4.4
 
 - 사용자 '멈춰봐' 지시로 UI 수정·검수·제품 통합·배포는 중단했다. DEV/tester의 user_owned worker-stop은 stop_unknown이었고 실제 terminal interrupt를 확인했다. DEV background도 /stop했다. 기존 사용자 터미널·미커밋 CSS·fixture·증거는 보존한다. 상세 체크포인트는 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md)의 UI 중지 절이다.

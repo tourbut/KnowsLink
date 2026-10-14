@@ -28,7 +28,7 @@ summary: 고정 hook runtime과 검사 증거 재사용을 적용하고 UI 중�
 |1.4.3 검사 범위·증거 재사용|적용. common/testing, lint 안내, review 양식과 project에 원본 SHA·환경·의존성 확인·검사 약화/범위 점검을 통합했다.|
 |1.4.3 전체 등록 검사 확인|적용. 새 실행기는 lint/test 모두 누락·중복·추가·종료코드를 확인한다. 기존 lint.json의 두 명령·kind·cwd·level 없는 필수 계약은 그대로다.|
 |1.4.3 테스트 분류|적용. Makefile의 lint/test는 변경 경로 인자가 없는 전체 검사임을 확인하고 DEV 개발 중 관련 검사/안정된 후보의 전체 검사와 tester 독립 QA의 담당·시점을 project에 기록했다. 새level로 생략하지 않았다.|
-|1.4.3 보드 이슈 목록|보드 재생성 뒤 저장소/auth/조회 상태를 기록한다. 기존 자동 이슈 작업은 OFF로 유지하며 이슈 처리·발송은 시작하지 않는다.|
+|1.4.3 보드 이슈 목록|적용. 재생성한 보드의 저장소tourbut/KnowsLink·limit30·checked_at2026-10-15T00:04:38+09:00·error=null을 확인했다. 기존 자동 이슈 작업은 OFF로 유지하며 이슈 처리·발송은 시작하지 않는다.|
 |1.4.4 고정 hook runtime|이번 deps 갱신과 check가 고정 loader·완전한 패키지 사본·current 포인터를 준비했다. 실제 새 세션 실행 확인은 아래 검증 기록으로 구분한다.|
 |1.4.4 옛 세션|이미 로드된 경로는 소급 교체할 수 없다. 제품 작업을 재개하지 않고 다음 개발은 새 coordinator 세션과 사용자 재개 지시가 필요하다.|
 |선택 프런트 도구|해당 없음. frontend.json tools=[]이며 추가 설치·설정 변경은 하지 않았다. 공통 스킬은 이번 deps에서 갱신·백업했다.|
@@ -53,10 +53,20 @@ UI hold 담당은 coor다. 재개 조건은 사용자의 명시적 UI 재개 지
 
 업데이트 고정 SHA의 별도 세션 리뷰와 main/origin 일반 통합·push·조상 확인을 수행한다. UI가 포함된 coor/role 브랜치 전체를 main에 병합하지 않는다. 사용자 소유·중지·미커밋 role은 그대로 두고 최신 main 동기화를 예약한다. 새 제품 worker는 시작하지 않는다.
 
-## 새 세션 신뢰 승인 대기
+## 최초 새 세션 신뢰 승인 대기 이력
 
 실제 새 검증 세션은 task_8e7721b8a99f / ctx_4858d3661b00 / term_bef0691f-1aa0-4c77-bf31-252377ced84a에서 시작했으나 agent_readiness에서 agent-hooks-review-prompt로 차단됐다. Task 본문은 실행되지 않았다. Codex 화면은 Hooks need review / 9 hooks are new or changed / Hooks can run outside the sandbox after you trust them을 표시한다. 자동으로 Trust를 선택하지 않았다. 실제 실행 기록은 아직 unknown이며 파일 존재 검사와 구분한다.
 
 사용자에게 새9hook 신뢰 승인 여부를 요청했다. 이는 실제 Codex 호스트의 신뢰 경계이며 자동 코드 리뷰 거부가 아니다. 승인 전에는 레포 plugin_version을1.4.2로 유지한다. 설치·deps/check0, strict13 문제0/경고0, 설정 준비 configuration_ready/problems0, 보존9hash·runtime1.4.4·고정hook9명령 검사는 완료했다. 인증/브라우저/MCP 성공은 이 구성 검사로 주장하지 않는다.
 
 승인 후 해당 새 터미널의 신뢰 화면을 통과하고, 실패한 dispatch를 재사용하지 않는 새 tracked dispatch로 실제 done/flow SessionStart·tool event와 status를 확인한다. 모든 필수 적용 확인 뒤1.4.4 필드·고정 lint·독립 리뷰·main일반통합/push를 마무리한다. 담당coor, 재개 조건은 사용자의 hook 신뢰 승인이다. UI 작업 중지는 별도로 유지한다.
+
+## 신뢰 승인과 새 세션 검증 완료 — 2026-10-15
+
+사용자가 "신뢰 승인하고 검증 계속"으로 변경된9hook을 승인했다. 최초 터미널의 일반 task 입력은 agent_prompt_blocked였다. 문서의 raw UI 입력으로 옵션2를 선택한 뒤 Enter로 신뢰를 승인했다. 실패한 dispatch는 그대로 보존하고 별도 tracked dispatch ctx_c3711276ea98 / task_5039f290bc0c를 시작했다.
+
+실제 새 host 세션01a13af6-afb7-77d2-bc07-ea402127e7b5는 session_meta의 cwd와 ID로 확인했다. 부모 CODEX_THREAD_ID는 사용하지 않았다. 고정 loader와 설치본 hash가 같고 current manifest는1.4.4다. 아홉 hook 명령이 고정 loader를 사용한다. 실제 done/flow SessionStart와 flow prompt/tool/post 기록은 executed이며 error=null이다. 실제 session_id/cwd stdin의 done_gate.py status는 종료0이고 상태 조회 전후 event 기록은 같다. Stop/SessionEnd는 이 검증 시점에 관찰하지 않았다. 원본 hook-fresh-session.json을 QA 디렉터리에 보존했다. worker_done msg_b8c764d3c9f6은 읽기 전용 검증 결과이며 Git 변경 커밋을 보고한 메시지가 아니다.
+
+필수 설치·적용·실제 hook 확인을 완료해 레포 plugin_version을1.4.4로 갱신한다. 설치 전 보존 대상9개 hash와 제품 입력은 그대로다. Windows에는 make가 없어 이번 exact SHA lint의 등록 product-lint/product-test는 unavailable이다. 원 종료코드1과 ERROR0·기존 PLANS 크기 warning1을 보존하며 PASS로 바꾸지 않는다. 제품 입력은 수락된3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46과 같아 그 SHA의 원래 Linux make lint/test PASS 증거만 재사용한다. 이는 새 업데이트 SHA에서 제품 검사를 실행했다는 뜻이 아니다. 최종 리뷰는 원본 lint와 사유만 추가한 사본을 함께 확인한다.
+
+사용자는 업데이트 완료 후 이 세션을 멈추고 새 세션을 열겠다고 했다. 업데이트 전용 main 통합·일반 push 후 종료한다. UI 수정·검수·배포와 새 제품 배정은 재개하지 않는다. 역할 공간은 사용자 터미널·미완료 작업을 보존하고 다음 dispatch 전 최신 main 동기화를 예약한다.
