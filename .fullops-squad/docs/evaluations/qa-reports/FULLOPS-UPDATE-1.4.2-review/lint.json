@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "1c191940edfc43cf84f8c95d4d4897b6",
+  "base": "ea80e98510af0e640557f0ea2b757c06e27a5779",
+  "merge_base": "ea80e98510af0e640557f0ea2b757c06e27a5779",
+  "head": "d14a0cf076a3d82acf2015b723d891426dec1e5e",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "e06a39553c68a48e32aac37859f2b1bb2d3058b6ac52ab165e64f16748590103",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없어 실행하지 못했다. 상태는 unavailable로 보존한다. cd4dae810ae262759bcff29895165f1a64f8c51a→d14a0cf076a3d82acf2015b723d891426dec1e5e의 제품 경로 차이는 adapters/README.md뿐이며 코드·설정·검사 입력 diff0이다. 동일 config/policy hash의 SAR-REFACTOR-001-DEV-test/gate/lint-candidate-141.json에서 exact cd4dae8 Linux product-lint passed/exit0을 확인해 재사용한다. 현재 HEAD에서 새 제품 검사를 실행했다고 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows PATH에 make가 없어 실행하지 못했다. 상태는 unavailable로 보존한다. cd4dae810ae262759bcff29895165f1a64f8c51a→d14a0cf076a3d82acf2015b723d891426dec1e5e의 제품 경로 차이는 adapters/README.md뿐이며 코드·설정·검사 입력 diff0이다. 동일 config/policy hash의 SAR-REFACTOR-001-DEV-test/gate/lint-candidate-141.json에서 exact cd4dae8 Linux product-test passed/exit0을 확인해 재사용한다. 현재 HEAD에서 새 제품 검사를 실행했다고 주장하지 않는다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1764줄(이전 1759, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 4,
+    "added_lines": 62,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
