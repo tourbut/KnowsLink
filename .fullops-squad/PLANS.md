@@ -3,13 +3,17 @@ title: KnowsLink 현재 계획
 status: draft
 updated: 2026-10-14
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
 
 ## 현재 시스템 구성도·상세 문서 — SAR-SYSTEM-DIAGRAM-001-DEV
+
+- 최종 통합(2026-10-14): 문서9f84c9d7b510fbf6d84d0d16450116346327d66a는 main/origin main5785f17addf26f4dee3e7456629da9e0300c820e의 조상이며 일반push/fetch동일을확인했다. integration pending0·delivery_ccfdc1ac3152 ACK성공. 새DEV ctx_c2a550211b14는 정상release/closed_agent_terminal·transcript captured다. 기존사용자dev터미널·ops사용자터미널·designerunknown은보존하며다음dispatch전최신main동기화를예약한다. coor/tester만유휴clean확인후최종main으로FF한다.
+- 구성도3개와 상세311줄 및 README/목차연결을완료했다. 실제SVG3개·원문hash/기하확인과 픽셀capture실패를구분했다. 새운영/계정/발송/배포/제품전체시험은없다. 새읽기전용review snapshot1개와 author의레포밖검증자료는보존한다. 담당coor가reviewer종료/비사용·소유권·증거보존조건확인후정리한다. 배정전형식조정의이전route/packet4개는history에보존하고현행route는Mermaid문서과제만지시한다.
+
 
 - 고정9f84c9d7b510fbf6d84d0d16450116346327d66a 독립 리뷰16 reviewed/4 skipped·C/H0·check PASS. 변경 사용자문서 링크101개 오류0, DEV115링크/소스20/strict13을 대조했다. 실제 Mermaid12.2.0 SVG3개와 최종 원문hash 동일·viewBox내bounds를 확인했다. screenshot은browser no frame으로unavailable이며pixel시각PASS로표시하지않는다. main일반통합/push를진행한다. 작성자 actual01a13829/검토자01a12eb2 분리와 원인박스archive·빈인박스를 확인했다. 완료메시지body SHA label누락은subject/actualGit대조 후 integration SHA metadata만보완하고원문은보존했다.
 
