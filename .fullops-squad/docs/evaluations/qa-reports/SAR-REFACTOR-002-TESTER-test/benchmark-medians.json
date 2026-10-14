@@ -1,0 +1,112 @@
+{
+  "before": {
+    "BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-4": {
+      "ns/op": 3469.0,
+      "B/op": 0.0,
+      "allocs/op": 0.0
+    },
+    "BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-4": {
+      "ns/op": 9150.0,
+      "B/op": 64.0,
+      "allocs/op": 1.0
+    },
+    "BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-4": {
+      "ns/op": 465271.0,
+      "B/op": 0.0,
+      "allocs/op": 0.0
+    },
+    "BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-4": {
+      "ns/op": 1633501.0,
+      "B/op": 64.0,
+      "allocs/op": 1.0
+    },
+    "BenchmarkRetainedHistory/100/sweep-4": {
+      "ns/op": 554209.0,
+      "B/op": 1600.0,
+      "allocs/op": 100.0
+    },
+    "BenchmarkRetainedHistory/100/transactionCPU-4": {
+      "ns/op": 3615210.0,
+      "state_bytes": 134518.0,
+      "B/op": 609098.0,
+      "allocs/op": 3447.0
+    },
+    "BenchmarkRetainedHistory/1000/sweep-4": {
+      "ns/op": 5685088.0,
+      "B/op": 16000.0,
+      "allocs/op": 1000.0
+    },
+    "BenchmarkRetainedHistory/1000/transactionCPU-4": {
+      "ns/op": 23700112.0,
+      "state_bytes": 751918.0,
+      "B/op": 3257264.0,
+      "allocs/op": 12573.0
+    },
+    "BenchmarkRetainedHistory/10000/sweep-4": {
+      "ns/op": 56907942.0,
+      "B/op": 160000.0,
+      "allocs/op": 10000.0
+    },
+    "BenchmarkRetainedHistory/10000/transactionCPU-4": {
+      "ns/op": 197382077.0,
+      "state_bytes": 6925918.0,
+      "B/op": 44295208.0,
+      "allocs/op": 103456.0
+    }
+  },
+  "after": {
+    "BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-4": {
+      "ns/op": 3329.0,
+      "B/op": 0.0,
+      "allocs/op": 0.0
+    },
+    "BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-4": {
+      "ns/op": 4423.0,
+      "B/op": 64.0,
+      "allocs/op": 1.0
+    },
+    "BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-4": {
+      "ns/op": 504850.0,
+      "B/op": 0.0,
+      "allocs/op": 0.0
+    },
+    "BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-4": {
+      "ns/op": 512394.0,
+      "B/op": 64.0,
+      "allocs/op": 1.0
+    },
+    "BenchmarkRetainedHistory/100/sweep-4": {
+      "ns/op": 9918.0,
+      "B/op": 0.0,
+      "allocs/op": 0.0
+    },
+    "BenchmarkRetainedHistory/100/transactionCPU-4": {
+      "ns/op": 2739379.0,
+      "state_bytes": 134518.0,
+      "B/op": 374794.0,
+      "allocs/op": 3332.0
+    },
+    "BenchmarkRetainedHistory/1000/sweep-4": {
+      "ns/op": 54434.0,
+      "B/op": 0.0,
+      "allocs/op": 0.0
+    },
+    "BenchmarkRetainedHistory/1000/transactionCPU-4": {
+      "ns/op": 19555894.0,
+      "state_bytes": 751918.0,
+      "B/op": 6005346.0,
+      "allocs/op": 11609.0
+    },
+    "BenchmarkRetainedHistory/10000/sweep-4": {
+      "ns/op": 1130675.0,
+      "B/op": 0.0,
+      "allocs/op": 0.0
+    },
+    "BenchmarkRetainedHistory/10000/transactionCPU-4": {
+      "ns/op": 148485943.0,
+      "state_bytes": 6925918.0,
+      "B/op": 58039221.0,
+      "allocs/op": 93476.0
+    }
+  }
+}

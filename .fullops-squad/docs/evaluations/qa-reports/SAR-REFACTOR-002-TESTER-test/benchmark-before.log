@@ -1,0 +1,38 @@
+goos: linux
+goarch: amd64
+pkg: github.com/tourbut/KnowsLink/internal/relay
+cpu: AMD Ryzen 3 3200G with Radeon Vega Graphics    
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-4         	       3	      3469 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-4         	       3	      3469 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=1-4         	       3	      4563 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-4         	       3	      8684 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-4         	       3	      9150 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=100/subscriptions=4-4         	       3	      9150 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-4       	       3	    465271 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-4       	       3	    446366 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=1-4       	       3	    486248 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-4       	       3	   1633501 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-4       	       3	   1553387 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRemoteClaimSubscriptions/messages=10000/subscriptions=4-4       	       3	   1906508 ns/op	      64 B/op	       1 allocs/op
+BenchmarkRetainedHistory/100/sweep-4                                     	       3	    570157 ns/op	    1600 B/op	     100 allocs/op
+BenchmarkRetainedHistory/100/sweep-4                                     	       3	    551531 ns/op	    1600 B/op	     100 allocs/op
+BenchmarkRetainedHistory/100/sweep-4                                     	       3	    554209 ns/op	    1600 B/op	     100 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-4                            	       3	   3373587 ns/op	    134518 state_bytes	  609098 B/op	    3447 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-4                            	       3	   3615210 ns/op	    134518 state_bytes	  609098 B/op	    3447 allocs/op
+BenchmarkRetainedHistory/100/transactionCPU-4                            	       3	   7882740 ns/op	    134518 state_bytes	  609098 B/op	    3447 allocs/op
+BenchmarkRetainedHistory/1000/sweep-4                                    	       3	   5685088 ns/op	   16000 B/op	    1000 allocs/op
+BenchmarkRetainedHistory/1000/sweep-4                                    	       3	   9391634 ns/op	   16000 B/op	    1000 allocs/op
+BenchmarkRetainedHistory/1000/sweep-4                                    	       3	   5542043 ns/op	   16000 B/op	    1000 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-4                           	       3	  22290588 ns/op	    751918 state_bytes	 3260765 B/op	   12577 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-4                           	       3	  29778273 ns/op	    751918 state_bytes	 3251901 B/op	   12573 allocs/op
+BenchmarkRetainedHistory/1000/transactionCPU-4                           	       3	  23700112 ns/op	    751918 state_bytes	 3257264 B/op	   12570 allocs/op
+BenchmarkRetainedHistory/10000/sweep-4                                   	       3	  56907942 ns/op	  160000 B/op	   10000 allocs/op
+BenchmarkRetainedHistory/10000/sweep-4                                   	       3	  62869552 ns/op	  160000 B/op	   10000 allocs/op
+BenchmarkRetainedHistory/10000/sweep-4                                   	       3	  56850526 ns/op	  160000 B/op	   10000 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-4                          	       3	 194622651 ns/op	   6925918 state_bytes	30394498 B/op	  103441 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-4                          	       3	 197382077 ns/op	   6925918 state_bytes	44296781 B/op	  103458 allocs/op
+BenchmarkRetainedHistory/10000/transactionCPU-4                          	       3	 223568931 ns/op	   6925918 state_bytes	44295208 B/op	  103456 allocs/op
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	3.865s
+
+EXIT=0
