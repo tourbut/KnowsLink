@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
 
+- 설계 착수: task_eb743a73b6d8 / ctx_074184d23af0 / term_f05a63c9-ed45-4529-9183-1b0e357222ab. requested/effective codex/gpt-6-astra/high 일치와 ready·turn_started를 확인했다. 준비93271bf는 인박스·원천·packet을 포함한다. startup에서 실제HEAD/fingerprint 확인·정식 갱신을 인계했다. 중간 지시 보강에 따른 route bind 실패와 unresolved 결과는 prior/history에 보존했고 공개 UX 제품 책임 근거로 designer 재선정·최종 product route를 기록했다.
+
 - 2026-10-14 사용자 요청: 첫페이지에 서비스 소개·설치방법·사용 순서·실제 기능에 맞는 사용예시를 담고 실제 사용은 로그인하도록 한다. 화면 설계부터 구현까지 codex/gpt-6-astra/high로 고정한다. 기존 최소 로그인 화면 지시보다 최신 요청이 우선하며 사람 친구 아래 agent·대화·Google/권한 계약은 보존한다.
 - route product→designer로 분류했다. fresh designer 세션을 배정한다. designer는 terminal0·clean·최신main3230ee5 포함을 확인했다. 주 스킬 frontend-design, 기존 D04 정본과 토큰을 사용한다. configuration_ready0은 실제 브라우저/인증 QA 통과가 아니다.
 - 순서: 제품/화면·한국어 카피·DEV/QA 인계 → 별도 고정 설계 리뷰/main 통합 → Astra DEV 기술계획·구현/필수검사 → Astra 독립 QA·직접 시각 검수·고정 코드리뷰 → main 일반 통합/push. 설치/예시는 실제 README·코드 사실을 따르고 실제 개인정보·상대 송신이나 미구현 일정/자동답장을 홍보하지 않는다. 기존 사용자 터미널과 검증자료는 보존한다.
