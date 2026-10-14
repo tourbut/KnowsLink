@@ -1,0 +1,47 @@
+[
+  {
+    "name": "google-only",
+    "overflow": -13,
+    "forms": [
+      "/auth/google"
+    ],
+    "problem": "",
+    "notice": ""
+  },
+  {
+    "name": "email-only",
+    "overflow": -13,
+    "forms": [
+      "/auth/start"
+    ],
+    "problem": "",
+    "notice": ""
+  },
+  {
+    "name": "none",
+    "overflow": -13,
+    "forms": [],
+    "problem": "",
+    "notice": ""
+  },
+  {
+    "name": "expired",
+    "overflow": -13,
+    "forms": [
+      "/auth/google",
+      "/auth/start"
+    ],
+    "problem": "",
+    "notice": "세션이 끝났습니다. 다시 로그인하세요."
+  },
+  {
+    "name": "google-error",
+    "overflow": -13,
+    "forms": [
+      "/auth/google",
+      "/auth/start"
+    ],
+    "problem": "오류 Google 로그인이 취소되었거나 요청이 만료되었습니다. 로그인되지 않았습니다. 다시 시작하세요.",
+    "notice": ""
+  }
+]

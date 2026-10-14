@@ -1,7 +1,7 @@
 {
   "task_key": "SAR-LANDING-GUIDE-001-VISUAL",
   "role": "designer",
-  "head": "1312658557c77e21de852edee6a860ea8cc69988",
+  "head": "297e6d3679f6d866171a35775b615685221ffd47",
   "attempt": "93adb3b5b2124aed99b9c02f45e39281",
   "instruction_sha256": "a632d3c12c59b8ac2365b2edf8b3a24564f7e76d1a91ab5ca239602ba14859f4",
   "options": {
@@ -97,6 +97,8 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md": "7ac0d44a0f9cd2f02c0fa0e0b1ca0b7320d608bb67aca59765946391713b12c1",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md": "229f443b6a727bff1af5bd239a84ea518d2935791d56db1b31d525e1265a0312",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md": "8440854210ab80dd3704f00d90afc586dae3d140d62c9bfe49103d17651fc2c5",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md": "070bce053681173a445beec5d4bf5d8e354f9c1b0b89d30ce8b22db3db28a5f6",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md": "c4a1eb35b72e18baf1466ed588be370b960872f467a11b9044e308dd50b29b7a",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md": "c7a74cbe5003bab523d14677791b93b20f36c6e1b3cffbdff4893f6fb93797f9",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
@@ -349,7 +351,7 @@
       ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md": "ad041e7f93cbe1a64a12b54a1597ba1bdb93797ee2a19a66f6e6532575a1a517",
       ".fullops-squad/handovers/to_designer.md": "a632d3c12c59b8ac2365b2edf8b3a24564f7e76d1a91ab5ca239602ba14859f4",
-      ".fullops-squad/handovers/to_tester.md": "6ab1b1aced9995d1d421782b911a2b855cadb790621326f85ca71815629efcad",
+      ".fullops-squad/handovers/to_tester.md": "5f425cf62e325eadaa6981d642bf66264dc181ad6325a17db9efe1fefbabce0d",
       ".fullops-squad/lint/README.md": "0cb6778284b49417e0a93d213a55b6b18a33e205782d11bcdee8769800e3f546",
       ".fullops-squad/orca-agents.md": "a89bd7dd864dd1c5686a81b6d7faae1feb27c80807d434eb32178531369cf52f",
       ".fullops-squad/project.md": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
@@ -467,14 +469,12 @@
       "scripts/verify_setup.py": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
       "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0"
     },
-    "search_results": {
-      "route": "6dfb8db50e7ebb23b2bf5c1181033ec660f2845eb22922ecefac90533e1894d3"
-    },
+    "search_results": {},
     "decisions": []
   },
-  "input_sha256": "b6365c88783690414e51feab723c1412011e9436d7047b8c1bd6f184a3a5fa26",
+  "input_sha256": "74310df15134dd3bbb5fe8fb858d7dd8139a572a25292b048f9ed4f5b8947c39",
   "version": "jev-packet-v2",
-  "base": "1312658557c77e21de852edee6a860ea8cc69988",
+  "base": "297e6d3679f6d866171a35775b615685221ffd47",
   "worktree_dirty": true,
   "items": [
     {
@@ -491,7 +491,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "15a8f741cbb124fd339606aa01228b1072a0143487764636a8f0280f03ea3994",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
@@ -1016,7 +1016,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "7323f6685d8ef5d6bc89703cd0a8d99ace558a667507c96599dce8346c13615f",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/contexts/designer.md",
@@ -1105,7 +1105,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "0827326adc17af702098b43e3a7b3bf0e4d6f84b0de090e75eee769df8128a13",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
@@ -1390,7 +1390,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "a1536aa88ee06c96025610efc6ad5f0e342410b5cd6cd5806698d50b2ddf334e",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
@@ -1423,7 +1423,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "49d1011f9dd556a24afa3fac5a5b947267178b185bbcbfc2b96e1a1b940759c3",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-DOC-review/report.md",
@@ -1526,6 +1526,104 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 1,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 1,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 11,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 11,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "070bce053681173a445beec5d4bf5d8e354f9c1b0b89d30ce8b22db3db28a5f6",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "GUIDE",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "LANDING",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "c4a1eb35b72e18baf1466ed588be370b960872f467a11b9044e308dd50b29b7a",
+      "source_basis": "HEAD"
+    },
+    {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
       "categories": [
         "document_read"
@@ -1588,7 +1686,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
@@ -1621,7 +1719,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
@@ -1671,7 +1769,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "a14384ac54da395069ce8ebcf5e90becc22974f6cc3fc1a01741e621c1c355e5",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
@@ -1762,7 +1860,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "99acdbf5e6b0e7784c787e548e86887e4dbea9e859e7ca76a707d5383644ea3d",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
@@ -1803,7 +1901,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "8c6a631c4dee4f4ce0aa6fe6bf83f612c31df734f673d7e65a1de0043db1058e",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
@@ -1852,7 +1950,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "2745539eb7d23cf3c2e6bc5aa3e907c15255e3b3b20749ccda46d8f4d229acfe",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
@@ -2301,7 +2399,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
@@ -2474,7 +2572,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "b57dad2560ecbbb137e998d988c53d5f19926a7943c00b0ac7b3cd2006a72ea8",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
@@ -3036,7 +3134,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "f8bd9b39e7650310c84d6def75ddfefba394b1b75e2bb8e78f319f8d0278fd21",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
@@ -3686,8 +3784,8 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "6ab1b1aced9995d1d421782b911a2b855cadb790621326f85ca71815629efcad",
-      "source_basis": "tracked_worktree_overlay"
+      "source_sha256": "5f425cf62e325eadaa6981d642bf66264dc181ad6325a17db9efe1fefbabce0d",
+      "source_basis": "HEAD"
     },
     {
       "path": "internal/relay/landing_test.go",
@@ -3749,6 +3847,8 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-FINAL-DOC-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
@@ -3791,6 +3891,10 @@
   "instruction": ".fullops-squad/handovers/to_designer.md",
   "partial": true,
   "unknown": [
+    {
+      "source": "route",
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+    },
     {
       "source": "find",
       "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
@@ -3864,13 +3968,7 @@
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
-  "producer_status": {
-    "route": {
-      "error": null,
-      "docs_status": "complete",
-      "unresolved_deliverables": []
-    }
-  },
+  "producer_status": {},
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
@@ -3889,12 +3987,12 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-FINAL-DOC-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md"
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
@@ -3912,6 +4010,8 @@
   ],
   "optional_context_paths": [],
   "remaining_context_paths": [
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
