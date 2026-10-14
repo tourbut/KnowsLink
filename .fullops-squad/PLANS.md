@@ -11,6 +11,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## Astra high 전반 리팩터링·성능·설계 개선 — SAR-REFACTOR-002-DEV
 
+- 완료(2026-10-14): DEV3e5af5e와 QAe9b5cba 및 별도 Astra 리뷰를 main/origin3fab3c39130a8649d7805aab07ed694d10905968에 일반 통합/push/fetch동일·양쪽 조상 확인했다. FINAL-MAIN49/11·QA32/12 reviewed/skipped, check0·C/H0, 최종 필수 lint/test/build0이다. msg_a3bb7b48b5c1·msg_cb83280026ea와 delivery_2fe4c4b233a5·delivery_b06a8e79bbdb를 통합 뒤 ACK했고 integration pending0이다. 새DEV/tester는 정상 released/closed_agent_terminal·transcript captured다.
+- 정리 완료: 착수 전8개와 이번 검수4개를 coordinator가 소유권·비사용·clean/ignored0·main조상·증거hash 확인 뒤 Orca rm(no force/archive hooks)으로 제거했다. Git/Orca detached0·상설6개다. host reviewer 실제 종료를 확인했으며 snapshot Orca dispatch가 없어 자동 cleanup/historical PASS는 주장하지 않는다. [최종 정리](docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/snapshot-final.json). DEV/QA 합성DB는 stop·자료/clone은보존했다. coor/tester/dev는 유휴clean 확인 후 최신main으로FF한다. 기존사용자dev터미널·ops사용자공간·designerunknown은보존하며ops/designer는다음dispatch전최신main동기화를예약한다.
+- 현재 개선은 본문 유실·callback 도착 지연·반복 순회다. 같은1만이력 조건 실제DB중앙값7.8%감소를측정했으며 JSONB/row-lock·local claim crash 한계와 짧은표본 제약은남는다. 운영배포·실계정·장시간/최대부하·백업복원은이번미실행이다. [통합근거](docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md).
+
 - DEV 완료 msg_a3bb7b48b5c1 / SHA3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46. exact installed1.4.2 ERROR0/WARNING4/unavailable0, lint/test/build0, actual module Go1.27.1/Node22.22.2/npm10.9.7을 확인했다. 이전 bcb ERROR1은 오탐 원문으로 보존한다. 두 하위 정상 release·합성 DB 둘 exited/data 보존. integration hold 담당coor, 재개 조건은 FINAL-MAIN fixed 리뷰 check·독립 tester QA 수락 후 main 일반 병합/push다. delivery_2fe4c4b233a5는 통합 뒤 ACK한다.
 
 - 독립 tester task_677998bdba45/ctx_2b4b7f958935/term_52277020-d274-4fbd-a842-384f1b110aa6 ready·turn_started 및 requested/effective Astra high 일치 확인. CODE reviewer22 reviewed/3 skipped·findings0이나 lint·module toolchain·QA·최종 문서 대기로 held를 유지한다. DEV actual DB race111.338s0·raw median 일치 확인, 10000 이력 DB588.7→542.7ms로7.8% 감소다. end-to-end 운영 성능 수락은 아니다.

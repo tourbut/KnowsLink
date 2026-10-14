@@ -36,3 +36,7 @@ DEV 두 합성 DB와 tester DB는 정확한 고유 이름으로 stop했고 데�
 # 한계
 
 운영 배포·실계정 메시지·live OAuth/callback/host UI·장시간·최대 부하·백업 복원은 이번에 수행하지 않았다. JSONB singleton/row-lock 처리량과 기존 local claim 이후 crash/read/write window는 남는다. 과거 관측을 현재 운영 검증으로 대체하지 않는다.
+
+# 완료 영수증
+
+실제 main/origin 3fab3c39130a8649d7805aab07ed694d10905968 일반 push/fetch 동일 및 DEV/QA 두 SHA의 조상을 확인했다. 두 완료 delivery ACK·integration pending0과 새 두 worker 정상 release/transcript captured를 확인했다. 초기8개와 신규4개를 정리해 detached0·상설6개다. [정리 최종](snapshot-final.json)과 [사전 증거](snapshot-preflight.json)에 기록했다. 자동 historical PASS는 주장하지 않으며 원 실패·superseded·수락 근거를 모두 보존한다. 마지막 상태/영수증 commit은 같은 main에 이어 일반 push한다.
