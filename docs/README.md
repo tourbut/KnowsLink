@@ -3,7 +3,7 @@ title: KnowsLink 문서 목차
 status: draft
 updated: 2026-10-14
 owner: dev
-tasks: [SAR-SYSTEM-DIAGRAM-001-DEV]
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS]
 summary: 독자별 시작 문서와 현재 시스템 상세 설계 및 정본을 연결한다
 ---
 
@@ -11,7 +11,8 @@ summary: 독자별 시작 문서와 현재 시스템 상세 설계 및 정본을
 
 처음 사용하는 사람은 [README](../README.md)의 웹 시작 절차부터 읽는다.
 이 문서는 현재 설명 자료의 길잡이다. 과거 설계·시험 기록은 당시 상태로 보존한다.
-현재 설명은 2026-10-13 운영 제품 `2747fe98653d5c6946f41c219fc256395333d7fe`를 기준으로 한다.
+설명 자료의 최초 설계 기준은 2026-10-13 제품 `2747fe98653d5c6946f41c219fc256395333d7fe`다.
+현재 운영은 2026-10-14 배포 제품 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`이며 아래 최신 운영 적용 기록을 따른다.
 
 | 독자 | 먼저 읽을 문서 | 이어서 읽을 문서 |
 |---|---|---|
@@ -34,7 +35,7 @@ summary: 독자별 시작 문서와 현재 시스템 상세 설계 및 정본을
 | 데이터·SQL·writer 보호 | [엔티티](../.fullops-squad/docs/design-docs/data-model.md), [DB 설계](../.fullops-squad/docs/design-docs/database-design.md), [생성 schema](../.fullops-squad/docs/generated/db-schema.md) |
 | 실제 모듈 책임과 회귀 | [프로그램 설계](../.fullops-squad/docs/design-docs/module-design.md) |
 | 상세 사용·운영·인계 이력 | [사용자 안내](../.fullops-squad/docs/operations/user-guide.md), [운영자 안내](../.fullops-squad/docs/operations/ops-guide.md), [인수인계](../.fullops-squad/docs/operations/transition.md) |
-| 현재 배포·백업·보존 확인 | [운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md) |
+| 현재 배포·백업·보존 확인 | [운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md) |
 | 실제 두 계정 대화·질문 없는 알림 | [대화 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md), [알림 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md) |
 
 ## 문서 사용 원칙

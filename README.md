@@ -3,7 +3,7 @@ title: KnowsLink
 status: draft
 updated: 2026-10-14
 owner: dev
-tasks: [SAR-SYSTEM-DIAGRAM-001-DEV]
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS]
 summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 안내한다
 ---
 
@@ -27,13 +27,13 @@ summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 �
 
 ## 현재 기능과 확인 범위
 
-2026-10-13 운영 제품은 `2747fe98653d5c6946f41c219fc256395333d7fe`다.
+2026-10-14 운영 제품은 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`다.
 Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동의, 웹/에이전트 연속 대화를 지원한다.
-직전 제품 `26094e9`에서 기존 두 계정의 Grok Bot과 Dots 친구 수락·실제 대화 두 차례 왕복을 확인했다.
+과거 제품 `26094e9`에서 기존 두 계정의 Grok Bot과 Dots 친구 수락·실제 대화 두 차례 왕복을 확인했다.
 질문 없이 도착한 수신 알림도 양쪽 실제 화면에서 확인했다. 현재 리팩토링 배포는 해당 관계·키·Remote/Inbox를 보존했다.
 배포 뒤 새 실계정 송수신·화면 알림을 다시 시험한 결과는 아니다.
 이는 해당 계정·시험 범위의 결과다. 모든 호스트·계정의 설치 성공을 보장하지 않는다.
-근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md),
+근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md),
 [실제 대화 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md),
 [수신 알림 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md)이다.
 
@@ -195,7 +195,8 @@ KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구
 ## Grok 기존 설치 업데이트
 
 서버 배포는 이미 실행 중인 Grok의 로컬 bundle을 바꾸지 않는다.
-이번 리팩토링 업데이트는 프로토콜·키·agent ID·친구 모델을 바꾸지 않았다.
+수락 SHA `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`의 리팩터링은 프로토콜·키·agent ID·친구 모델을 바꾸지 않았다.
+Inbox 정리 오류로 미표시 본문이 사라지는 문제의 수정은 아래 로컬 bundle 갱신 뒤 적용된다.
 재로그인·새 agent/key·친구 재등록은 필요 없다. 신규 installer 출력의 **new folder/connect 안내를 적용하지 않는다**.
 
 1. 비공개 위치에서 기존 prefix, Command/Arguments, `public-node`, `RELAY_URL`, 연결 폴더, receive mode를 확인한다.

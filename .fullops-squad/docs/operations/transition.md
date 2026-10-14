@@ -2,13 +2,25 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-13
+updated: 2026-10-14
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## 현재 운영 상태 (2026-10-14, SAR-REFACTOR-002-OPS)
+
+실제 운영 제품은 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`다. 11:31:13Z(20:31:13 KST)에 relay healthy를 확인했다. 이전 `2747fe9`에서 약16초 중단했고 새 schema/migration은 없다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
+
+새 private 백업 `backups/2747fe9-pre-refactor002-20261014T113101Z.dump`는0600·20039bytes다. network-none 복원의 전체 data digest·goose2·guard1·HumanModel1·downgrade 거부를 확인했다. 기존 회원·키/철회·친구·메시지11·Remote 설치2·Events1·Inbox0, 기존15개 백업, 공유31개 컨테이너는 보존됐다. Rates의 변경은 요청/시간 경계로 분리했다.
+
+이전 relay image 주소 조회 실패의 원 로그를 보존했다. 같은 이전40자리 SHA로 별도 복구 후보 `knowslink-rollback:2747fe9-refactor002-20261014`를 재빌드했다. 현재 서비스/태그·DB·env는 바꾸지 않았다. 원 이미지 동일성이나 실제 rollback 성공을 주장하지 않는다. 실패 복구는 현재 DB 새 백업과 같은 HumanModel writer를 사용하며 과거 DB로 권한을 덮지 않는다.
+
+owner 후속은 Grok 로컬 bundle 갱신과 같은 Command/MCP·정확한 연결 폴더 watcher 재시작이다. 기존 agent/key/Inbox/webhook routine을 유지한다. 서버 배포만으로 Grok Inbox 수정은 반영되지 않는다. Dots는 기존 Remote 연결과 자동화를 유지하며 서버 요청부터 새 처리를 사용한다. 실계정 발송·재등록·다음 자동 갱신·장시간 수신·실제 화면은 미검증이다.
+
+public smoke21개·보존33개·약3분 error0·기존 Linux gate 재사용과 임시자료 위치는 [OPS 보고](../evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md)에 있다. coor는 결과 고정 SHA의 독립 리뷰와 main/origin 통합을 맡는다. 제품 SHA와 결과 문서 SHA를 혼동하지 않는다.
 
 ## 현재 운영 상태 (2026-10-13, SAR-REFACTOR-001-OPS)
 

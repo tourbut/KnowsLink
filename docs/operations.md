@@ -1,16 +1,25 @@
+---
+title: 운영·업데이트·복구
+status: draft
+updated: 2026-10-14
+owner: ops
+tasks: [SAR-REFACTOR-002-OPS]
+summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복구 경계를 설명한다.
+---
+
 # 운영·업데이트·복구
 
-2026-10-13 운영 제품은 `2747fe98653d5c6946f41c219fc256395333d7fe`다.
+2026-10-14 운영 제품은 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`다.
 공개 주소는 `https://link.knowslog.com`이며 Dots MCP endpoint는 `/mcp`다.
 이 문서는 현재 절차의 설명이다. 명령 실행·계정 발송·배포 승인을 대신하지 않는다.
 실제 경로·비밀 설정·공유 자원 목록은 접근이 제한된 운영 자료에서 확인한다.
 
 ## 현재 확인 범위
 
-[운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md)은 배포·백업·복원 리허설·보존·HTTPS smoke를 기록한다.
+[운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md)은 배포·백업·복원 리허설·보존·HTTPS smoke를 기록한다.
 relay/Postgres health, schema·HumanModel·writer guard, 기존 회원·키·친구·Remote 설치·구독·Inbox 보존을 확인했다.
 실제 친구 대화와 질문 없는 화면 알림은 별도 두 계정 시험의 근거다.
-그 시험 제품은 직전 `26094e9`다. 이번 리팩토링은 상태 보존을 확인했고 새 실계정 왕복은 실행하지 않았다.
+그 시험 제품은 과거 `26094e9`다. 이번 리팩터링은 직전 `2747fe9`의 상태 보존을 확인했고 새 실계정 왕복은 실행하지 않았다.
 새 계정 설치·부하·장시간 알림·다음 Events 갱신·앱 재시작 성공을 보장하지 않는다.
 자동 답장·외부 업무 실행은 활성화하지 않았다.
 
@@ -53,17 +62,21 @@ transport 삭제와 24시간 웹 사본 만료가 백업/WAL 영구 삭제를 �
 
 1. writer와 전달을 멈춘다. 실패 시점의 현재 DB도 새 고유 백업으로 보존한다.
 2. 같은 schema·HumanModel·새 필드를 보존하는 검토된 reader/writer를 선택한다.
-3. 이번 리팩토링에서 검토한 직전 `26094e90648aa71e8d07b381e9891acb37438730`은 같은 writer다. 임의의 구버전에는 이 판단을 적용하지 않는다.
+3. 이번 리팩터링의 직전 `2747fe98653d5c6946f41c219fc256395333d7fe`는 같은 writer다. 임의의 구버전에는 이 판단을 적용하지 않는다.
 4. 친구·차단·suppression·generation·철회·키·Remote/Inbox가 보존되는지 확인한다. 권한이 불명확하면 read-only/전달 차단을 유지한다.
 5. 필요한 재인증·재연결·명시적 새 수락과 독립 확인 뒤 전달을 연다.
 
 과거 백업 전체 복원은 guard로 탐지할 수 없고 폐기한 권한을 되살릴 수 있다.
 현재 권한을 과거 DB로 덮지 않는다. 이번 운영 기록은 실제 rollback 성공을 주장하지 않는다.
+이번 전환 후 이전 이미지 주소는 조회할 수 없었다. 같은 직전 SHA로 별도 복구 후보 이미지를 다시 만들었다.
+원 이미지 동일성을 주장하지 않는다. 복구 후보의 태그·이미지 ID·원 실패는 운영 적용 기록을 따른다.
+다음 배포는 build 전에 현재 이미지를 고유 rollback 태그에 고정하고 실제 조회 가능 여부를 확인한다.
 
 ## Grok·Dots 유지보수
 
 설치 본문은 [Grok 기존 업데이트](../README.md#grok-기존-설치-업데이트), [Dots 기존 업데이트](../README.md#dots-기존-연결-업데이트)를 따른다.
 Grok은 로컬 Node bundle이다. 서버만 배포하면 실행 중인 MCP·watcher는 바뀌지 않는다.
+이번 Inbox 정리 오류의 본문 보존 수정은 로컬 bundle 갱신 뒤 적용된다. 서버 배포만으로 해당 수정이 적용됐다고 판단하지 않는다.
 같은 prefix·Command·연결 폴더·key·agent ID·Inbox·webhook routine을 유지한다.
 MCP와 정확한 해당 폴더 watcher를 재시작한다. 넓은 process 종료나 신규 connect를 적용하지 않는다.
 installer의 신규 폴더 안내는 업데이트 절차가 아니다.

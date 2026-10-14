@@ -1,0 +1,109 @@
+/home/[redacted]/deploy/knowslink-state/refactor002-ops-20261014/accepted.bundle: OK
+The bundle contains this ref:
+8a93e38e190f1b9e7b6bb183e578e410f5dd97c6 refs/heads/main
+The bundle requires this ref:
+2747fe98653d5c6946f41c219fc256395333d7fe
+The bundle uses this hash algorithm: sha1
+schema/deploy/dependency diff=0
+sha256:220edb718b2fe1925eed243084e41fedf641c86a0342760f682672b91379ed3d
+#1 [internal] load local bake definitions
+#1 reading from stdin 933B done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.3s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 1.2s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [relay internal] load build context
+#6 DONE 0.0s
+
+#7 [relay stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#7 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.0s done
+#7 DONE 0.1s
+
+#6 [relay internal] load build context
+#6 transferring context: 47.59kB 0.0s done
+#6 DONE 0.0s
+
+#8 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#8 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#8 DONE 0.1s
+
+#9 [relay build 3/7] COPY go.mod go.sum ./
+#9 CACHED
+
+#10 [relay build 4/7] RUN go mod download
+#10 CACHED
+
+#11 [relay build 2/7] WORKDIR /src
+#11 CACHED
+
+#12 [migrate build 5/7] COPY cmd ./cmd
+#12 CACHED
+
+#13 [migrate build 6/7] COPY internal ./internal
+#13 DONE 0.1s
+
+#14 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#14 DONE 26.0s
+
+#15 [migrate stage-1 2/5] RUN apk add --no-cache ca-certificates
+#15 CACHED
+
+#16 [migrate stage-1 3/5] WORKDIR /app
+#16 CACHED
+
+#17 [relay stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#17 DONE 0.1s
+
+#18 [relay stage-1 5/5] COPY db/migrations ./db/migrations
+#18 DONE 0.1s
+
+#19 [migrate] exporting to image
+#19 exporting layers
+#19 exporting layers 2.0s done
+#19 exporting manifest sha256:024a981680681b28bc3a81b2d27c460d4394079de395b0adeb04cd6f1c5d93f2 0.0s done
+#19 exporting config sha256:50e414ebc88170fb3ff1efe70b05f418594a607f802bedad9cbcc56dda0a8f08 0.0s done
+#19 exporting attestation manifest sha256:38f94d5f90c0b7c5c4928b73f91a46cde4a05aaffef5c18c8837c1dc07bcee02 0.1s done
+#19 exporting manifest list sha256:839e0029d9957e484f2bf1134b4c18fcee2101b052e08f7fea8bd6eebaa0dbac
+#19 exporting manifest list sha256:839e0029d9957e484f2bf1134b4c18fcee2101b052e08f7fea8bd6eebaa0dbac 0.0s done
+#19 naming to docker.io/library/knowslink-migrate:latest done
+#19 unpacking to docker.io/library/knowslink-migrate:latest
+#19 unpacking to docker.io/library/knowslink-migrate:latest 0.3s done
+#19 DONE 2.5s
+
+#20 [relay] exporting to image
+#20 exporting layers 2.0s done
+#20 exporting manifest sha256:228f80021a4bb58135be9c084e2626c92cabff0b32cc7f3b2e43af0ba436c933 0.0s done
+#20 exporting config sha256:f081dc5f18cbb690b05d1f267a4ccc06f8ed28266360104b6ad4ea27f3dcac85 0.0s done
+#20 exporting attestation manifest sha256:05601aba227d576f8f3111a1977c4544d4002848f6fff216dd6def2f1110f627 0.1s done
+#20 exporting manifest list sha256:482d3197fe7ca26eef7918a2061feede01bd5199dfd8be37af5f46c4e381343d 0.0s done
+#20 naming to docker.io/library/knowslink-relay:latest done
+#20 unpacking to docker.io/library/knowslink-relay:latest 0.3s done
+#20 DONE 2.5s
+
+#21 [migrate] resolving provenance for metadata file
+#21 DONE 0.0s
+
+#22 [relay] resolving provenance for metadata file
+#22 DONE 0.0s
+BUILD_EXIT=0
+HEAD=8a93e38e190f1b9e7b6bb183e578e410f5dd97c6
+/knowslink-relay-1 sha256:220edb718b2fe1925eed243084e41fedf641c86a0342760f682672b91379ed3d healthy
+/home/[redacted]/deploy/knowslink-state/refactor002-ops-20261014/accepted.bundle is okay
+ Image knowslink-migrate Building
+ Image knowslink-relay Building
+ Image knowslink-relay Built
+ Image knowslink-migrate Built
+
+EXIT=0
