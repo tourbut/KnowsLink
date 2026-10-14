@@ -1,0 +1,143 @@
+{
+  "start": {
+    "head": "93271bf0d2aa8b6677a1f3d3135dc5dd708cddf8",
+    "attempt": "38f444fbc6944d27be42b0f8a4f27b7b",
+    "instruction_sha256": "f6b9d61c2e2fb0faefa1851b8e55afc12f02a8f93a357dd1e2f9156606f0486c",
+    "input_sha256": "5ea3d41dc336e3c31e8b15f90ccb2ecbb717726008de536eebd7eeda5ada2664",
+    "partial": true,
+    "producer_status": {},
+    "official_start_check": "passed before source edits",
+    "packet_items": 51,
+    "unknown_count": 19
+  },
+  "original_packet": {
+    "head": "3230ee566ccf455e58a6fc3b43f5cd4b3a72aba0",
+    "attempt": "38f444fbc6944d27be42b0f8a4f27b7b",
+    "instruction_sha256": "f6b9d61c2e2fb0faefa1851b8e55afc12f02a8f93a357dd1e2f9156606f0486c",
+    "input_sha256": "5e21e7a00d7c2302afc30b763291a40238c0c5bf4a9f39c8ac3976fe24d3f4fa",
+    "partial": true,
+    "producer_status": {
+      "route": {
+        "error": null,
+        "docs_status": "complete",
+        "unresolved_deliverables": []
+      },
+      "find": {
+        "error": null,
+        "partial": false,
+        "input_partial": true,
+        "remaining_candidates": [],
+        "ranking_status": "single_batch",
+        "fallback": null
+      },
+      "documents-find": {
+        "error": null,
+        "partial": true,
+        "input_partial": true,
+        "remaining_candidates": [
+          ".fullops-squad/FULLOPS.md",
+          ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-REVIEW-review/report.md",
+          ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md",
+          ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+          ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+          ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+          ".fullops-squad/docs/evaluations/scenarios/README.md",
+          ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md",
+          ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-REVIEW-review/report.md",
+          ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+          ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+          ".fullops-squad/docs/planning/business-plan.md",
+          ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md",
+          ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+          ".fullops-squad/docs/planning/SAR-PREP-002-request.md",
+          ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+          ".fullops-squad/handovers/_TEMPLATE.md",
+          "docs/README.md",
+          ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+          ".fullops-squad/project.md",
+          "docs/system-design.md",
+          ".fullops-squad/rules/common/coding-style.md",
+          ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md"
+        ],
+        "ranking_status": "batch_only",
+        "fallback": "local Git/keyword/symbol search"
+      },
+      "context": {
+        "error": null,
+        "input_partial": true,
+        "refused_paths": [],
+        "unsent_sources": {
+          "internal/relay/member.go": "sensitive or oversized passage"
+        }
+      }
+    }
+  },
+  "product_gate": {
+    "execution_sha": "3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46",
+    "checked_head": "93271bf0d2aa8b6677a1f3d3135dc5dd708cddf8",
+    "runtime_scope": [
+      "cmd",
+      "internal",
+      "adapters",
+      "db",
+      "deploy",
+      "scripts",
+      "compose.yaml",
+      "Dockerfile",
+      "Makefile",
+      "go.mod",
+      "go.sum",
+      "sqlc.yaml",
+      ".dockerignore"
+    ],
+    "changed_paths": [],
+    "source": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-final-lint.json",
+    "sha256": "f64c96869ea21f83260458cc9cabce6c4c79bad282e43133dca0a290e59e102c",
+    "commands": [
+      {
+        "name": "product-lint",
+        "kind": "lint",
+        "run": [
+          "make",
+          "lint"
+        ],
+        "cwd": ".",
+        "reason": "",
+        "status": "passed",
+        "exit_code": 0,
+        "output_tail": "Log: 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46-lint.log; EXIT=0"
+      },
+      {
+        "name": "product-test",
+        "kind": "test",
+        "run": [
+          "make",
+          "test"
+        ],
+        "cwd": ".",
+        "reason": "",
+        "status": "passed",
+        "exit_code": 0,
+        "output_tail": "Log: 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46-test.log; EXIT=0"
+      }
+    ],
+    "new_execution": false,
+    "same_runtime_environment_claim": false,
+    "reason": "Only documentation and handover changes; exact product/test/dependency/build/deploy inputs match accepted DEV Linux gate. Current Windows environment is not that Linux execution."
+  },
+  "frontend_check": {
+    "command": "frontend.py --repo . --host codex --model gpt-6-astra --effort high --check",
+    "exit_code": 0,
+    "status": "configuration_ready",
+    "problems": [],
+    "tools": [],
+    "authentication": "not_run",
+    "browser_qa": "not_run",
+    "mcp_connection": "not_run"
+  },
+  "official_packet_completion_check": {
+    "status": "passed",
+    "pairs": 58,
+    "unknown_source_status_preserved": true
+  }
+}

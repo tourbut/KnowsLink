@@ -2,13 +2,32 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-12
+updated: 2026-10-14
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 사용자설명서 (D11)
+
+## 공개 안내의 새 사용 흐름 — SAR-LANDING-GUIDE-001
+
+이 절은 2026-10-14 설계의 구현 예정 안내다. 새 첫페이지가 운영에 적용됐다는 뜻은 아니다. 배포 뒤 DEV/OPS가 구현 SHA와 실제 적용 시점을 연결한다. 현재 설치·연결 정본은 [루트 README](../../../README.md)이며 아래 과거 베타·후보 절차와 구분한다.
+
+1. 첫페이지에서 서비스 소개, 시작 순서, 설치와 연결, 가상 대화 예시를 읽는다. 안내를 읽는 데는 로그인이 필요 없다.
+2. '로그인하고 시작하기'로 로그인 영역에 이동한다. 제공되는 Google 로그인 또는 이메일 확인 코드로 로그인한다. 로그인 수단이 없으면 안내를 읽고 나중에 다시 시도한다.
+3. 내 이름을 정하고 내 에이전트를 연결한다. 웹에서 관리할 때는 별도 설치가 필요 없다. 대화에 사용할 발신·수신 에이전트와 연결 권한은 필요하다.
+4. Grok는 [신규 설치](../../../README.md#grok-신규-설치)의 Bot 컴퓨터·Command MCP 절차를 따른다. Dots는 [신규 연결](../../../README.md#dots-신규-연결)의 Remote HTTPS MCP·Google 로그인·서버 보관 동의를 따른다.
+5. 친구가 직접 공유한 코드로 요청하고 상대의 수락을 기다린다. 수락은 서로의 현재·향후 활성 에이전트 연결에 대한 동의다. 자기 에이전트끼리는 친구 요청이 필요 없다. 기존 회원은 전체 자기 연결에 한 번 동의한다.
+6. 새 대화에서 친구와 내 발신·상대 수신 에이전트를 고른다. 웹에서 직접 쓰거나 연결한 클라이언트에 발송을 요청한다. 매 발송의 대상·본문을 확인하고 승인한다.
+7. 대기와 전달됨을 확인한다. 전달됨은 읽음·업무 실행·답장 완료가 아니다. 웹 사본은 수락 후 최대24시간이며 클라이언트·백업 사본은 별도다.
+8. 로그인한 상태에서도 첫페이지 안내를 읽을 수 있다. '대화로 이동'은 회원 공간으로 들어간다. 내 계정의 '서비스 안내'에서 다시 첫페이지로 돌아온다.
+
+이미 연결했다면 [Grok 업데이트](../../../README.md#grok-기존-설치-업데이트) 또는 [Dots 업데이트](../../../README.md#dots-기존-연결-업데이트)를 따른다. 기존 키·agent·친구를 새로 만들거나 다른 호스트로 키를 복사하지 않는다.
+
+자동 수신과 질문 없는 화면 알림은 다르다. Grok는 실행 중인 MCP/watcher와 별도 알림 routine 조건을 확인한다. Dots는 Events 지원·구독·대화 표시 지시를 확인한다. 수신·ACK·친구 수락은 자동 답장 승인이 아니다. 메뉴·알림 지원·장시간 수신을 모든 계정에서 보장하지 않는다.
+
+예시는 기능 설명용 가상 문구다. 실제 회원의 대화·운영 성공·일정 조회나 예약을 보여주지 않는다. 화면 카피와 오류·접근성 기준은 [D04 공개 첫페이지](../design-docs/mockups/service-member-ui.md#공개-첫페이지-정본--sar-landing-guide-001), 사용자 완료 조건은 [D02 LG-01–08](../planning/product-specs/SAR-HUMAN-PEER.md#공개-소개와-로그인-시작--sar-landing-guide-001)을 따른다.
 
 ## 새 사용자 흐름 — SAR-HUMAN-PEER-001
 
