@@ -1,0 +1,56 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/PLANS.md",
+        ".fullops-squad/contexts/ops.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-OPS.md",
+        ".fullops-squad/docs/operations/ops-guide.md",
+        ".fullops-squad/docs/operations/transition.md",
+        ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
+        "README.md",
+        "docs/README.md",
+        "docs/operations.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/board/board.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-OPS-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-OPS-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-OPS-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-OPS-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-OPS-packet.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-OPS-route.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-REFACTOR-002-OPS-route.prior-1791976785343241600.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-OPS-packet-47becba19e684d3c82402f624e1e6bb1.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-OPS-packet-4a0c98eeb32a4be1880061b5059f10ba.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-OPS-packet-8c431dbed498482e93908e3e2b855397.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-REFACTOR-002-OPS-route-eb64dae615bc4277930e5962a312aa87.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/after.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/baseline.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/before.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/correction-packet-audit.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/evidence-copy-audit.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/frozen.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/gate-reuse.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/packet-audit.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/packet-outcomes-first.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/preservation.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/public-smoke.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/smoke-input-manifest.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/smoke-input-refactor001.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

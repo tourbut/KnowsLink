@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "eb9b4eff230142d3a174657d1709a129",
+  "base": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "merge_base": "8a93e38e190f1b9e7b6bb183e578e410f5dd97c6",
+  "head": "3562662f5f836debd22a255afcbf52ea930e965b",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "현재 Windows PATH에 make가 없어 실행하지 못했다(shutil.which=none). 원본 corrected-lint.json의 unavailable/exit_code를 유지했다. 제품 실행 입력은 DEV 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46 및 배포 8a93e38과 동일하므로 기존 Linux gate를 재사용한다. 현재 HEAD의 새 PASS가 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "현재 Windows PATH에 make가 없어 실행하지 못했다(shutil.which=none). 원본 corrected-lint.json의 unavailable/exit_code를 유지했다. 제품 실행 입력은 DEV 3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46 및 배포 8a93e38과 동일하므로 기존 Linux gate를 재사용한다. 현재 HEAD의 새 PASS가 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1811줄(이전 1802, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 7,
+    "added_lines": 91,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 2
+  }
+}
