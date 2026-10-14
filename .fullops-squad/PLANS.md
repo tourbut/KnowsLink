@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## Astra 리팩터링 운영 배포 — SAR-REFACTOR-002-OPS
 
+- 실제 운영 적용8a93e38 완료: STOP11:30:57Z→UP11:31:13Z 약16초, relay/Postgres healthy·migrate0·restart0·public21/21이다. frozen full state→격리복원 digest동일·goose2/guard1/HumanModel1, 새0600 backup20039bytes를 확인했다. 회원/agent/친구/메시지/Remote mapdigest는동일하고 Rates만volatile변경이다. coor가raw다시대조했다. 이전image220edb7 inspect실패 escalation msg_190ddfe4ee12를보존하고 현재healthy/DB유지·freshbaseline대조 및필요시격리고유rollback이미지build를기존배포복구범위로인계했다. 운영head/servicetag/DB를old로덮지않으며 담당OPS가복구후보를확보한뒤기록·finish한다.
+
 - 실제 착수 task_6e35fa7983b5 / ctx_82a534ee9cf7 / term_d9fae13d-e296-47fa-b737-f71ae73a48d0. worker-start ready·turn_started 및 requested/effective codex/gpt-6-astra/high 일치를 확인했다. 이전 사용자 OPS 두 터미널은 보존했다. 완료 메시지 수신 후 실제 배포 증거·별도 fixed 리뷰·main 결과 통합을 진행한다.
 
 - Jev 충돌 후보를 날짜/내용으로 확인했다. 이전 OPS report의2747fe9·과거transition의 수락/미배포 표현과 최신 refactor002의 이번미배포 한계는 해당 작성 시점의 기록이다. 새 사용자 배포 승인이 우선하며 현재 운영은 fresh 관측한다. 이전 스크립트의 삭제 포함 복원 절차는 새 무삭제 인박스에서 사용 금지다. 기존 제품/권한/writer 계약 자체를 바꾸는 충돌은 확인되지 않았다.
