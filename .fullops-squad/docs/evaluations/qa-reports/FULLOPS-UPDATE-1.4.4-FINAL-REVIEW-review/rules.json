@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/FULLOPS.md",
+        ".fullops-squad/PLANS.md",
+        ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+        ".fullops-squad/lint/README.md",
+        ".fullops-squad/project.md",
+        ".fullops-squad/review/_REPORT.md",
+        ".fullops-squad/rules/common/testing.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/board/board.json",
+        ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/hook-fresh-session.json",
+        ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/installation-preservation.json",
+        ".fullops-squad/fullops.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    },
+    {
+      "group_id": 3,
+      "source": "system",
+      "pattern": "default",
+      "files": [
+        ".fullops-squad/board/index.html"
+      ],
+      "rule": "#### Correctness\nIs the logic correct? Are there missing boundary conditions?\nAre exceptions handled properly?\nIs it thread-safe in concurrent scenarios?\n\n#### Security\nAre there security vulnerabilities such as SQL injection or XSS?\nIs sensitive information handled correctly?\nIs permission validation complete?\n\n#### Performance\nAre there obvious performance issues (e.g., N+1 queries, unnecessary loops)?\nAre resources properly released?\n\n#### Maintainability\nIs the code clear and easy to understand?\nDo names accurately express intent?\nDoes it follow the project’s existing code style and architecture patterns?\n\n#### Test Coverage\nDo critical logic paths have corresponding test cases?\nDo test cases cover boundary conditions?"
+    }
+  ]
+}
