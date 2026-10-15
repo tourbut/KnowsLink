@@ -80,7 +80,7 @@ func memberFixtures() []uiFixture {
 		{"device-login-off", "device", device("prepared", true, false)},
 		{"device-prepared", "device", device("prepared", false, true)},
 		{"device-approved", "device", device("approved", false, true)},
-		{"receipt", "receipt", map[string]any{"Title": "연결 확인·receipt", "Agent": "agent_0a1b2c3d4e5f60718293a4b5", "ID": "00000000-0000-4000-8000-0000000000aa", "From": "agent_0a1b2c3d4e5f60718293a4b5", "To": "agent_77665544332211009988aabb", "Parent": "", "Reply": "00000000-0000-4000-8000-0000000000cc", "Transport": transportNames["queued"], "Completion": "아직 처리 결과가 없습니다.", "ReplyState": transportNames["delivered"], "Exp": clock(exp), "TTL": 180}},
+		{"receipt", "receipt", map[string]any{"Title": "요청 상태 조회", "Own": []humanAgent{{ID: "agent_0a1b2c3d4e5f60718293a4b5", Name: "내 에이전트", Client: "Node 22", Short: "구분값"}}, "Agent": "agent_0a1b2c3d4e5f60718293a4b5", "ID": "00000000-0000-4000-8000-0000000000aa", "From": "agent_0a1b2c3d4e5f60718293a4b5", "To": "agent_77665544332211009988aabb", "Parent": "", "Reply": "00000000-0000-4000-8000-0000000000cc", "Transport": transportNames["queued"], "Completion": "아직 처리 결과가 없습니다.", "ReplyState": transportNames["delivered"], "Exp": clock(exp), "TTL": 180}},
 		{"refusal-reauth", "refusal", map[string]any{"Title": "내 에이전트", "Problem": safeProblem(fault("reauth_required")), "Back": "/home", "Reauth": true}},
 		{"refusal-create", "refusal", map[string]any{"Title": "내 에이전트", "Problem": keyRecordsFull, "Back": "/home", "Create": true}},
 		{"refusal-login", "refusal", map[string]any{"Title": "내 에이전트", "Problem": "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", "Back": "/"}},

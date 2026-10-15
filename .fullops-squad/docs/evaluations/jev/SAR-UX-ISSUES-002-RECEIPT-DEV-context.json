@@ -1,9 +1,9 @@
 {
   "version": "jev-observe-v3",
   "mode": "observation",
-  "head": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "head": "d4a075c9ce035379013fa1a397f524e5cc54762a",
   "requested_model": "~typesafe/jev-latest",
-  "input_sha256": "499308b01f1a545cbef360be9320b09475f4228fea633fb51bd2a7c59bb75cdc",
+  "input_sha256": "408277d9a277cfbaac00efa1ec9386bd0faba9df4c1c7235c2b96badceef5842",
   "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
   "context": {
     "baseline_ids": [
@@ -154,117 +154,117 @@
   "evidence_checks": {},
   "claims": {},
   "usage": {
-    "input_tokens": 33990,
-    "output_tokens": 684,
-    "cost": 0.00142758,
-    "known_cost": 0.00142758,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost": 0,
+    "known_cost": 0,
     "cost_status": "complete"
   },
-  "latency_seconds": 0.938,
+  "latency_seconds": 0.012,
   "response_model": "typesafe/jev-1.14-20261014",
   "error": null,
   "calls": [
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.48,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 4638,
-        "output_tokens": 76,
-        "cost": 0.000194796
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.478,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 4256,
-        "output_tokens": 76,
-        "cost": 0.000178752
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.593,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 4026,
-        "output_tokens": 76,
-        "cost": 0.000169092
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.511,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 2778,
-        "output_tokens": 76,
-        "cost": 0.000116676
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.592,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 3980,
-        "output_tokens": 76,
-        "cost": 0.00016716
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.599,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 3057,
-        "output_tokens": 76,
-        "cost": 0.000128394
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.47,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 3739,
-        "output_tokens": 76,
-        "cost": 0.000157038
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.489,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 4484,
-        "output_tokens": 76,
-        "cost": 0.000188328
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.455,
-      "cached": false,
+      "elapsed": 0.0,
+      "cached": true,
       "usage": {
-        "input_tokens": 3032,
-        "output_tokens": 76,
-        "cost": 0.000127344
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0
       }
     }
   ],
-  "request_max_seconds": 0.599,
+  "request_max_seconds": 0.0,
   "task_key": "SAR-UX-ISSUES-002-RECEIPT-DEV",
   "role": "dev",
   "attempt": "c87837bfcc2040289e6986cc4ed64881",
@@ -304,7 +304,7 @@
     ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
   },
   "refused_paths": [],
-  "elapsed_seconds": 2.399,
+  "elapsed_seconds": 1.421,
   "input_partial": false,
   "instruction_chars": 2884,
   "remaining_instruction": null

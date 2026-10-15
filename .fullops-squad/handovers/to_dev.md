@@ -38,3 +38,16 @@ own same-key route/find/context/packet/history/outcomes·QA/phase/context/inbox/
 먼저 읽기: FULLOPS/common 세 규칙/project/docwriting/contextsdev, 새 설계 U6/U7/U2와 D04, member_receipt.go/member_pages.go/human_http.go/human_pages.go, 현재 회원 auth/조회 회귀 테스트, interface/module/테스트 정본. find/context의 큰 파일·partial/unknown은 필요한 원문을 직접 확인한다. 외부 SDK 근거는 Context7을 사용하고 실패하면 공식 자료로 확인한다.
 
 완료: 기술계획→구현/실패경계검사→현재SHA gate/보고→packetoutcomes→work finish아카이브/빈인박스→최종commit/실제worker_done. 후속코드리뷰/독립QA/직접시각/main통합은coor책임. 복귀run_756d0278e72e/coor term_5bf18065-a830-4e45-aeba-ae852666b40e, repo0b08ec4c-9e3a-4613-8197-5a835e545335/dev.
+
+
+## 기술 계획과 적용 기준
+
+기준 ref e939cfbb1939adb4126ad379317c26ec39b692b3, 착수 HEAD d4a075c9ce035379013fa1a397f524e5cc54762a, 제공된 동일 키 producer 스냅샷을 보존한다. fullops-common-0.3.3과 project.md 및 수락된 SAR-UX-ISSUES-002 U6/U7/U2를 적용한다. module-design의 과거 UI 변경 없음은 이번 승인 범위를 제한하지 않는다.
+
+1. 기존 GET /home/receipts를 최초 진입·오류·성공 공통 편집 폼으로 만든다. 현재 인증 회원의 소유 목록만 사용한다. 없는/타인/보존 종료는 같은 403 문구다. 철회된 선택은 조용히 교체하지 않는다.
+2. 기존 html/template과 humanAgentView를 재사용한다. 동명 구분값 충돌은 전체 ID로 확장한다. 공용 D04 여섯 토큰·한국어 글꼴·44px 제어·왼쪽 정렬·focus를 유지한다. 신규 CSS·JS·의존성·권한은 추가하지 않는다.
+3. 조회 문맥은 HttpOnly/Secure/SameSite=Strict의 짧은 브라우저 쿠키 하나로 보관한다. 쿠키는 신뢰하지 않는 입력이며 회원 일치·소유권·길이·형식을 매번 서버에서 확인한다. 로그인 만료 뒤 같은 회원만 복원하고 다른 회원·익명에게 표시하지 않는다. 명시 로그아웃은 지운다. Google의 Strict cookie callback 제약은 기존 attempt의 복귀 표시와 동일 출처 링크로 처리한다.
+4. DB 인증 자체가 불가하면 fail closed로 입력을 표시하지 않고 기존 쿠키와 URL을 보존한다. 인증 확인 뒤 저장 실패 등 503은 검증된 폼을 유지한다. 결과·이름을 캐시에서 권한 확인 없이 복원하지 않는다.
+5. 핵심 입력 보존·계정 격리·존재 비노출·429·503·철회·HTML escape·복귀를 자동 검사한다. 고정 후보에서 Linux make lint/test와 DB/auth 실행을 수행한다. 독립 QA·designer 직접 검수·snapshot 리뷰·통합은 coor 후속이다.
+
+frontend.py check: codex/gpt-6-astra/high, frontend-design, configuration_ready. tools 없음. 인증·MCP·browser QA는 이 check의 검증 범위가 아니다. Context7 Go 조회는 monthly quota exceeded였다. web 도구도 token_expired였으므로 표준 라이브러리 로컬 문서와 공식 자료를 별도 확인한다. 선택형 하위 위임은 하지 않고 공유 인증/조회 경계를 직접 구현한다.

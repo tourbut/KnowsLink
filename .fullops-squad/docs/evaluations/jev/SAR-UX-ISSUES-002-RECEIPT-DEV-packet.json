@@ -1,7 +1,7 @@
 {
   "task_key": "SAR-UX-ISSUES-002-RECEIPT-DEV",
   "role": "dev",
-  "head": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "head": "d4a075c9ce035379013fa1a397f524e5cc54762a",
   "attempt": "c87837bfcc2040289e6986cc4ed64881",
   "instruction_sha256": "c5448da38c9b5bc0b7fc44ff1ed660850871610a63a9fec6fe923385a30dada3",
   "options": {
@@ -27,13 +27,10 @@
       "internal/relay/public_messages_integration_test.go"
     ],
     "updates": [
-      "D01",
-      "D02",
       "D03",
       "D04",
       "D05",
       "D06",
-      "D07",
       "D08",
       "D09",
       "D10",
@@ -124,6 +121,7 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md": "037f105eac0a361b8bf007631b60306af0d0ed9285d2172f39ca72185bfc5a5d",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md": "8fdb448559b976df53d06436192ac948107f8496d98ad4069a0025a8fff4addb",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md": "d823e2fda70be8f65e5dd9de4ff662dd361e8a41a6aee0cf053cf64c2574c631",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md": "b60eac7e983a070d51fecea7b501e5581a7913d7f631e54b27c7bf64c5aece3d",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md": "91e62959beb77ad0e02a4a3ec9135139558f56e37063d613e56b5171ef2d1ef9",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/web-20261014-232426-595664/report.md": "b3b7f5895b8e0c071978e2581401d4442dd996a54a4c0c8285f5ae0364e5570c",
@@ -506,16 +504,16 @@
       "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0"
     },
     "search_results": {
-      "route": "6a5abae2c5b438ef338924b56e077c8af253d054e024299c371f886073a14e3d",
-      "find": "d646319d64cd4680795a9623939e08bd023a5a5d5db302553db677359147186a",
-      "documents-find": "8c91a0afe7b036128864da0d3e5fc714f8f12248ef6a86eee312101d1d828474",
-      "context": "adb0eabb7b63b8496cc000d99f2c30a9c8a4a95feb28410277357578399e837b"
+      "route": "45a54f094d860aa0f7dac65aa1e7a1abf5601688c4ed33e3bb66f8aab908d72d",
+      "find": "5d92d43f197d9793c8cb778def7b511c67f2ced279ca6583cae0efe2ea9723bd",
+      "documents-find": "797f88ecc7ad64f1bb64247a8cef8b9c67861541abbd7df91392b7d8815c7e2a",
+      "context": "498c2caf33d08b7d02e4b37e219448267817f748cef605e02cceb2e5d3222fdd"
     },
     "decisions": []
   },
-  "input_sha256": "56b87d75ac118b3c5e5cd0ad58a5269ad33b125e6a46803f03fb3579a7c00fcf",
+  "input_sha256": "f9f5d213600aa27a764dab8dd4365a5af4c80c35fd2878dbf2499742ce21ebbe",
   "version": "jev-packet-v2",
-  "base": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "base": "d4a075c9ce035379013fa1a397f524e5cc54762a",
   "worktree_dirty": true,
   "items": [
     {
@@ -687,7 +685,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "c5448da38c9b5bc0b7fc44ff1ed660850871610a63a9fec6fe923385a30dada3",
-      "source_basis": "tracked_worktree_overlay",
+      "source_basis": "HEAD",
       "context_signal": null
     },
     {
@@ -1066,32 +1064,6 @@
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/docs/design-docs/database-design.md",
-      "categories": [
-        "document_update"
-      ],
-      "reasons": [
-        "route/explicit update candidate"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D07",
-          "source": [
-            "docs/design-docs/database-design.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D07"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "b3a220fcb56c3d8c5bac9e0ab3cbbc6260fa00956d70193c25dfe1aac3783bf4",
-      "source_basis": "HEAD"
-    },
-    {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "categories": [
         "document_read",
@@ -1426,12 +1398,27 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "3e022c5bdc6e6d8d62302d4551c256c6c67fb69b175581b4b5cf1d81bc08d8d0",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -1588,136 +1575,6 @@
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/docs/planning/business-plan.md",
-      "categories": [
-        "document_update"
-      ],
-      "reasons": [
-        "route/explicit update candidate"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D01",
-          "source": [
-            "docs/planning/business-plan.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D01"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "71283129873d239966fa083cff245873863327ca5cd3b9a7773f6177f7fdf34f",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-      "categories": [
-        "document_update"
-      ],
-      "reasons": [
-        "route/explicit update candidate"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D02",
-          "source": [
-            "docs/planning/product-specs/"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D02"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "a25bf7ab097d323a5b981b9c70b24075650cd50b99b0e5ecf458e2e4969d172a",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
-      "categories": [
-        "document_update"
-      ],
-      "reasons": [
-        "route/explicit update candidate"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D02",
-          "source": [
-            "docs/planning/product-specs/"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D02"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "220fd9f008d5b761d32b237e862063fff27407d1533e8cd969bbfb3054fa72f6",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
-      "categories": [
-        "document_update"
-      ],
-      "reasons": [
-        "route/explicit update candidate"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D02",
-          "source": [
-            "docs/planning/product-specs/"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D02"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "5e133fb99cde136feb0cc669c5970e6241b1a547c632b249c3c809977ae3605c",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
-      "categories": [
-        "document_update"
-      ],
-      "reasons": [
-        "route/explicit update candidate"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D02",
-          "source": [
-            "docs/planning/product-specs/"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D02"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "d3c17571ade569fb0a4e421cedbd3426cd690809293f8abc9f73627605fcae1d",
-      "source_basis": "HEAD"
-    },
-    {
       "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
       "categories": [
         "document_read"
@@ -1741,22 +1598,6 @@
       "priority": 1,
       "source_sha256": "892afa9114d4ed861400931ff21abac630f15cc8e60600fc7fc48afa655d5bda",
       "source_basis": "tracked_worktree_overlay"
-    },
-    {
-      "path": ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
     },
     {
       "path": "docs/README.md",
@@ -1895,9 +1736,9 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
       ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
-      ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
       "docs/README.md",
       "docs/system-design.md"
     ],
@@ -1906,7 +1747,6 @@
       ".fullops-squad/docs/design-docs/architecture.md",
       ".fullops-squad/docs/design-docs/crud-design.md",
       ".fullops-squad/docs/design-docs/data-model.md",
-      ".fullops-squad/docs/design-docs/database-design.md",
       ".fullops-squad/docs/design-docs/interface-design.md",
       ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
       ".fullops-squad/docs/design-docs/module-design.md",
@@ -1914,12 +1754,7 @@
       ".fullops-squad/docs/generated/db-schema.md",
       ".fullops-squad/docs/operations/ops-guide.md",
       ".fullops-squad/docs/operations/transition.md",
-      ".fullops-squad/docs/operations/user-guide.md",
-      ".fullops-squad/docs/planning/business-plan.md",
-      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-      ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
-      ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
-      ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md"
+      ".fullops-squad/docs/operations/user-guide.md"
     ]
   },
   "input_partial": false,
@@ -1936,21 +1771,22 @@
       "remaining_candidates": [
         ".fullops-squad/contexts/dev.md",
         ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
         ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
         ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+        ".fullops-squad/docs/evaluations/scenarios/README.md",
         ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
         ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
-        "docs/system-design.md",
-        "docs/README.md",
-        ".fullops-squad/rules/common/README.md",
-        ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
-        ".fullops-squad/project.md",
-        ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-        ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md"
+        ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+        ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
+        "docs/operations.md"
       ],
       "ranking_status": "batch_only",
       "fallback": "local Git/keyword/symbol search"
@@ -2055,21 +1891,22 @@
       "remaining_candidates": [
         ".fullops-squad/contexts/dev.md",
         ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
         ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
         ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+        ".fullops-squad/docs/evaluations/scenarios/README.md",
         ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
-        ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
         ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
-        "docs/system-design.md",
-        "docs/README.md",
-        ".fullops-squad/rules/common/README.md",
-        ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
-        ".fullops-squad/project.md",
-        ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-        ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md"
+        ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+        ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
+        "docs/operations.md"
       ],
       "ranking_status": "batch_only",
       "fallback": "local Git/keyword/symbol search"
@@ -2091,7 +1928,6 @@
     ".fullops-squad/docs/design-docs/architecture.md",
     ".fullops-squad/docs/design-docs/crud-design.md",
     ".fullops-squad/docs/design-docs/data-model.md",
-    ".fullops-squad/docs/design-docs/database-design.md",
     ".fullops-squad/docs/design-docs/interface-design.md",
     ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
     ".fullops-squad/docs/design-docs/module-design.md",
@@ -2103,6 +1939,7 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
     ".fullops-squad/docs/generated/db-schema.md",
     ".fullops-squad/docs/operations/ops-guide.md",
@@ -2127,13 +1964,7 @@
   "optional_context_paths": [],
   "remaining_context_paths": [
     ".fullops-squad/docs/operations/user-guide.md",
-    ".fullops-squad/docs/planning/business-plan.md",
-    ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-    ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
-    ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
-    ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
     ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
-    ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
     "docs/README.md",
     "docs/system-design.md",
     "internal/relay/member_pages.go",
