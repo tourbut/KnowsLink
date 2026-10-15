@@ -56,3 +56,9 @@ DEV 구현·tester 독립 동작 QA·designer 실제 시각 검수·fixed-SHA �
 - coor에 `msg_f8b96091c3e7`로 기존 lint 결함과 실행환경 처리를 인계했다. 검사 설정·심각도·PATH를 바꿔 통과시키지 않았다.
 
 완료 기록 커밋 뒤 같은 기준의 최종 lint를 다시 실행한다. 원본은 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/ux-issues002-designer/lint-final.json`과 작업 트리별 Git 검사 기록에 남긴다. 최종 SHA·종료코드는 worker_done에서 회신한다. 최초 결과를 최종 실행으로 바꿔 쓰지 않는다.
+
+## 완료 아카이브 뒤 승인된 메타데이터 보완
+
+coor `msg_c9b3e1c2d111`이 타 과제 `author-final-handoff.md`의 front matter만 공식 stamp로 추가하도록 허용했다. 본문·원판정·세션·SHA는 그대로 보존했다. `work.py finish` 뒤 도착한 같은 과제 후속이므로 이 자기 기록에 추가하며 기존 완료 로그는 고치지 않는다.
+
+`deliverables.py --stamp`로 원문 작성자 dev·원 과제 키를 유지했다. 보완 파일은 DEV `fc4ad58`의 같은 파일과 정규화한 전문이 같다. 착수76ec89fe의 본문과 보완 후 본문도 같다. [동일성 근거](metadata-correction.json). 다른 DEV 변경은 merge하지 않았다. 최초 lint ERROR1 기록은 그대로 남긴다. 새 고정 SHA에서는 ERROR0 여부와 unavailable2를 별도로 확인한다.
