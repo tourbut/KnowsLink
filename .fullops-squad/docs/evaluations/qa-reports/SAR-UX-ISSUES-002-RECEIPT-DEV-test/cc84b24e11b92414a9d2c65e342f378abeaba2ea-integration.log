@@ -1,0 +1,35 @@
+9538f80b62e42bbeeec48c99d1c50af6e98f5443f1506903e5217dd400761d28
+=== RUN   TestGoogleDeviceHTTP
+--- PASS: TestGoogleDeviceHTTP (0.91s)
+=== RUN   TestGoogleHTTP
+--- PASS: TestGoogleHTTP (0.67s)
+=== RUN   TestHumanPostgres
+--- PASS: TestHumanPostgres (3.56s)
+=== RUN   TestEmailIdentity
+=== RUN   TestEmailIdentity/verified_signup_home_and_continuity
+=== RUN   TestEmailIdentity/concurrent_first_signup_and_one_use_code
+=== RUN   TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives
+=== RUN   TestEmailIdentity/send_failure_limits_and_csrf
+2026/10/15 23:16:22 verification mail not sent
+2026/10/15 23:16:23 verification mail not sent
+=== RUN   TestEmailIdentity/refused_principal_does_not_spend_shared_rate
+=== RUN   TestEmailIdentity/member_gate_isolation_and_decision
+=== RUN   TestEmailIdentity/member_gate_deny_form_returns_to_result
+--- PASS: TestEmailIdentity (10.17s)
+    --- PASS: TestEmailIdentity/verified_signup_home_and_continuity (0.31s)
+    --- PASS: TestEmailIdentity/concurrent_first_signup_and_one_use_code (0.19s)
+    --- PASS: TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives (0.62s)
+    --- PASS: TestEmailIdentity/send_failure_limits_and_csrf (0.75s)
+    --- PASS: TestEmailIdentity/refused_principal_does_not_spend_shared_rate (6.87s)
+    --- PASS: TestEmailIdentity/member_gate_isolation_and_decision (0.85s)
+    --- PASS: TestEmailIdentity/member_gate_deny_form_returns_to_result (0.57s)
+=== RUN   TestReceiptRecoveryHTTP
+    receipt_integration_test.go:110: got 303 want 403: <a href="/?n=expired">See Other</a>.
+        
+--- FAIL: TestReceiptRecoveryHTTP (0.80s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	16.162s
+FAIL
+2026/10/15 23:16:10 SQL migrations completed
+
+EXIT=1
