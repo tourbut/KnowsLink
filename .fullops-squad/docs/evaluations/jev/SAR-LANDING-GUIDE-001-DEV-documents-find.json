@@ -1,24 +1,24 @@
 {
   "task_key": "SAR-LANDING-GUIDE-001-DEV",
   "role": "dev",
-  "head": "271b27ec00e0914cf85d9c081e8600b059dd79fd",
-  "attempt": "8c6afd3e09fc4841bbb57d3b6af65940",
-  "instruction_sha256": "e1b0d0c5e21d50b0e9751d263794111d503a818ee796e28807b691d6d35479e6",
+  "head": "c6154d3557d1704ea0b50b7db950d2f11054fa71",
+  "attempt": "9a48a4180041493b93ddce9b5d1bf6f2",
+  "instruction_sha256": "882c2608be40ef909224985d667b213109560d4722a60c53dbd9a230835a0277",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "find-v3-shared-noul",
     "scope": "documents",
-    "limit": 8,
+    "limit": 12,
     "strategy": "batch",
     "parser": "search-map-v1",
     "input_chars": 24000
   },
-  "input_sha256": "b2ffa4ba7b95f0405bc17f0cce0451b97326622cf9e51368b523cd7930306c8d",
+  "input_sha256": "36d2493a7cdcae6aad08db1754859f641fa3ec2d2176914547305b0f9448ef86",
   "version": "jev-find-v2",
   "requested_model": "~typesafe/jev-latest",
-  "files": 358,
+  "files": 364,
   "scope": "documents",
   "passes": [
     {
@@ -31,148 +31,180 @@
     },
     {
       "level": "file",
+      "options": 73
+    },
+    {
+      "level": "file",
+      "options": 70
+    },
+    {
+      "level": "file",
       "options": 72
-    },
-    {
-      "level": "file",
-      "options": 71
-    },
-    {
-      "level": "file",
-      "options": 66
     }
   ],
   "candidates": [
     {
-      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      "summary": "사람 친구와 에이전트 대화의 화면설계서 — 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준 | 회원 웹 상용 UX·비주얼 명세와 개발 인계 | 공개 첫페이지 정본 — SAR-LANDING-GUIDE-001 | 목표·정보 구조·진입 | 실제 카피와 정보의 깊이",
-      "probability": 0.77,
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "summary": "공개 안내·인증 진입 구현 독립 코드 리뷰 — 고정 구현의 인증 경계·공개 안내·필수 검사와 문서 인계를 검토한다 | SAR-LANDING-GUIDE-001-CODE-REVIEW | 적용 기준과 검토 | 검사·증거와 규모 | 대화 미참조 인계 점검",
+      "probability": 0.24000000000000002,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
-      "summary": "회원 웹 디자인 명세 독립 검토 — 로그인·회원 관리의 제품 명세를 검토하고 구현 인계를 수락한다. | 검토 결과",
-      "probability": 0.88,
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      "summary": "공개 안내 DEV 검증과 격리 QA 인계 — 인증 상태·공개 정보·실제 제품 검사와 후속 독립 QA를 구분한다 | 공개 안내 DEV 검증 | 검사와 실패 보존 | 사실·탐색·디자인 근거 | 격리 자원과 후속",
+      "probability": 0.59,
       "probability_scope": "batch",
       "batch_start": 78,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
-      "summary": "공개 첫페이지 제품 결정과 DEV·tester 인계 — 서비스 소개·설치·사용예시·로그인의 카피와 상태를 정하고 원천·검증·후속 책임을 연결한다 | SAR-LANDING-GUIDE-001 실행 기록 | 범위와 고정 기준 | 결정과 기존 지시 변경 근거 | 사실 확인과 범위 판단",
-      "probability": 0.99,
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+      "summary": "공개 안내·로그인 진입 구현과 검증 — 공개 안내와 설정별 인증 복구를 구현하고 실제 제품 게이트 및 격리 브라우저를 인계한다 | 공개 안내 구현 | 기준과 기술 계획 | 디자인·사실 대조 | 구현과 검사 중 발견",
+      "probability": 0.92,
       "probability_scope": "batch",
       "batch_start": 149,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-      "summary": "요구사항정의서 — 사람 친구와 이름 있는 에이전트의 대화 및 기존 데이터 권한 이행을 정의한다 | KnowsLink 사람 중심 연결과 대화 제품 기준 | 공개 소개와 로그인 시작 — SAR-LANDING-GUIDE-001 | 결정 근거와 적용 순서 | 용어와 신원",
-      "probability": 0.75,
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+      "summary": "회원 웹 글자 링크 44px 터치 영역 수정 기록 — D04 9절 44px 기준을 채우지 못한 글자 링크(V-01)를 공통 CSS 한 줄로 고친 계획·변경·측정·검증과 미검증 범위를 기록한다 | SAR-SERVICE-UI-001-FIX-DEV — 글자 링크 44px 수정 | 기준 | 기술 계획 | 변경",
+      "probability": 0.41000000000000003,
       "probability_scope": "batch",
-      "batch_start": 221,
+      "batch_start": 222,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/handovers/to_dev.md",
-      "summary": "SAR-LANDING-GUIDE-001-DEV — 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다 — 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다 | SAR-LANDING-GUIDE-001-DEV — 공개 안내와 로그인 시작 화면을 구현하고 핵심 회귀를 검증한다 | 적용 기준과 예외 | 먼저 읽을 문서 | 해야 할 일과 파일 소유권",
-      "probability": 0.7,
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+      "summary": "designer 완료 기록 — 지시서와 완료 보고를 보존한다. | SAR-LANDING-GUIDE-001 — 2026-10-14 | SAR-LANDING-GUIDE-001 — 서비스 소개·설치·사용 예시와 로그인 시작 화면 설계 | 현재 상황과 확인 근거 | 적용 기준과 예외",
+      "probability": 0.29000000000000004,
       "probability_scope": "batch",
       "batch_start": 292,
       "batch_rank": 0
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
-      "summary": "공개 첫페이지 설계 검증과 미실행 경계 — 제품 사실·설계 추적성·문서 검사와 과거 제품 gate 재사용 및 후속 QA를 구분한다 | 설계 검증 결과 | 기준과 사실 대조 | 문서·구성 검사 | 제품 gate와 실행 불가",
-      "probability": 0.08,
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "summary": "사람 친구와 에이전트 대화의 화면설계서 — 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준 | 회원 웹 상용 UX·비주얼 명세와 개발 인계 | 공개 첫페이지 정본 — SAR-LANDING-GUIDE-001 | 목표·정보 구조·진입 | 실제 카피와 정보의 깊이",
+      "probability": 0.16,
       "probability_scope": "batch",
       "batch_start": 0,
       "batch_rank": 1
     },
     {
-      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
-      "summary": "SAR-PREP-002 독립 문서 리뷰 — 고정 후보의 독립 문서 검토와 개발 준비 수락 근거를 기록한다 | SAR-PREP-002 독립 문서 리뷰 | 기준과 범위 | 검증과 제약 | 결론",
-      "probability": 0.03,
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+      "summary": "공개 첫페이지 설계 검증과 미실행 경계 — 제품 사실·설계 추적성·문서 검사와 과거 제품 gate 재사용 및 후속 QA를 구분한다 | 설계 검증 결과 | 기준과 사실 대조 | 문서·구성 검사 | 제품 gate와 실행 불가",
+      "probability": 0.34,
       "probability_scope": "batch",
       "batch_start": 78,
       "batch_rank": 1
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
-      "summary": "회원 웹 상용 UI 구현 실행 기록 — 로그인·내 에이전트·연결 관리 SSR 화면의 상용 디자인 구현 계획·변경·검증·시각 검수 환경과 미검증 범위를 기록한다 | SAR-SERVICE-UI-001-DEV — 회원 웹 상용 UI 구현 | 기준 | 기술 계획 | 변경",
-      "probability": 0.19,
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "summary": "공개 첫페이지 제품 결정과 DEV·tester 인계 — 서비스 소개·설치·사용예시·로그인의 카피와 상태를 정하고 원천·검증·후속 책임을 연결한다 | SAR-LANDING-GUIDE-001 실행 기록 | 범위와 고정 기준 | 결정과 기존 지시 변경 근거 | 사실 확인과 범위 판단",
+      "probability": 0.060000000000000005,
       "probability_scope": "batch",
-      "batch_start": 221,
+      "batch_start": 149,
       "batch_rank": 1
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "summary": "사용자설명서 — 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다 | KnowsLink 본인 전용 합성 베타 사용자설명서 (D11) | 공개 안내의 새 사용 흐름 — SAR-LANDING-GUIDE-001 | 새 사용자 흐름 — SAR-HUMAN-PEER-001 | 과거 베타·후보 사용 기록",
+      "probability": 0.25,
+      "probability_scope": "batch",
+      "batch_start": 222,
+      "batch_rank": 1
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "summary": "KnowsLink 프로젝트 기준 — 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계 | KnowsLink 프로젝트 기준 | 사람 친구 후보의 재개 조건 | 기술 기준 | 검증 명령",
+      "probability": 0.23,
+      "probability_scope": "batch",
+      "batch_start": 292,
+      "batch_rank": 1
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "summary": "dev 컨텍스트 — dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관 | dev 컨텍스트 | 유효 원칙 (보관본 요약) | 최근 결정",
+      "probability": 0.09,
+      "probability_scope": "batch",
+      "batch_start": 0,
+      "batch_rank": 2
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
+      "summary": "링크44px 독립 검수 결과 리뷰 — 고정 tester 결과의 독립 검수·기록을 수락하고 구현 과제 연결 검사 통과를 보존한다",
+      "probability": 0.05,
+      "probability_scope": "batch",
+      "batch_start": 78,
+      "batch_rank": 2
     }
   ],
   "existence": {
-    "found_probability": 0.81,
+    "found_probability": 0.8,
     "status": "found",
     "basis": "metadata map only; not repository absence"
   },
   "truncated": false,
   "usage": {
-    "input_tokens": 56658,
-    "output_tokens": 3765,
-    "cost": 0.0023796359999999996,
-    "known_cost": 0.0023796359999999996,
+    "input_tokens": 57055,
+    "output_tokens": 3825,
+    "cost": 0.00239631,
+    "known_cost": 0.00239631,
     "cost_status": "complete"
   },
-  "latency_seconds": 2.706,
+  "latency_seconds": 2.687,
   "error": null,
   "calls": [
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 11620,
+        "input_tokens": 11519,
         "output_tokens": 817,
-        "cost": 0.00048804
+        "cost": 0.000483798
       },
       "latency_seconds": 0.571
     },
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 11654,
+        "input_tokens": 11530,
         "output_tokens": 747,
-        "cost": 0.000489468
+        "cost": 0.00048426
       },
-      "latency_seconds": 0.529
+      "latency_seconds": 0.532
     },
     {
       "model": "typesafe/jev-1.13-20260917",
       "usage": {
-        "input_tokens": 11835,
+        "input_tokens": 11863,
+        "output_tokens": 767,
+        "cost": 0.000498246
+      },
+      "latency_seconds": 0.527
+    },
+    {
+      "model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 11846,
+        "output_tokens": 737,
+        "cost": 0.000497532
+      },
+      "latency_seconds": 0.541
+    },
+    {
+      "model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 10297,
         "output_tokens": 757,
-        "cost": 0.00049707
+        "cost": 0.000432474
       },
-      "latency_seconds": 0.542
-    },
-    {
-      "model": "typesafe/jev-1.13-20260917",
-      "usage": {
-        "input_tokens": 11892,
-        "output_tokens": 747,
-        "cost": 0.000499464
-      },
-      "latency_seconds": 0.54
-    },
-    {
-      "model": "typesafe/jev-1.13-20260917",
-      "usage": {
-        "input_tokens": 9657,
-        "output_tokens": 697,
-        "cost": 0.000405594
-      },
-      "latency_seconds": 0.524
+      "latency_seconds": 0.516
     }
   ],
   "semantic_search": true,
   "snapshot": "HEAD metadata; no worktree overlay",
-  "map_sha256": "f685c4aea8e9c8bc74f9a89af8cd92e8a147ea5aef227dc6cd4726d6c019575e",
+  "map_sha256": "80b64b42c1f02001a995050e9b15ee21cc8019b699f9b69d74a11ab3a5f8ba74",
   "strategy": "batch",
   "seed_paths": [
     ".fullops-squad/FULLOPS.md",
@@ -187,22 +219,35 @@
   "response_model": "typesafe/jev-1.13-20260917",
   "ranking_status": "batch_only",
   "remaining_candidates": [
-    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
     ".fullops-squad/docs/design-docs/module-design.md",
-    ".fullops-squad/PLANS.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+    ".fullops-squad/FULLOPS.md",
     ".fullops-squad/contexts/coor.md",
-    ".fullops-squad/contexts/dev.md",
-    ".fullops-squad/docs/design-docs/architecture.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
-    ".fullops-squad/docs/operations/user-guide.md",
-    ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
-    ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
-    ".fullops-squad/project.md",
-    ".fullops-squad/handovers/_TEMPLATE.md"
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+    ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/handovers/to_designer.md",
+    ".fullops-squad/handovers/to_tester.md",
+    ".fullops-squad/rules/common/README.md",
+    ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+    ".fullops-squad/lint/README.md",
+    ".fullops-squad/rules/common/testing.md",
+    "docs/development.md"
   ],
   "unselected_files": [
     ".fullops-squad/FULLOPS.md",
@@ -212,7 +257,6 @@
     ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
     ".fullops-squad/contexts/coor.md",
     ".fullops-squad/contexts/designer.md",
-    ".fullops-squad/contexts/dev.md",
     ".fullops-squad/contexts/ops.md",
     ".fullops-squad/contexts/tester.md",
     ".fullops-squad/docs/agents/document-writing.md",
@@ -279,6 +323,8 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-INTEGRATION-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
@@ -298,6 +344,7 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
@@ -345,7 +392,7 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
@@ -461,7 +508,7 @@
     ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
@@ -482,12 +529,12 @@
     ".fullops-squad/docs/generated/db-schema.md",
     ".fullops-squad/docs/operations/ops-guide.md",
     ".fullops-squad/docs/operations/transition.md",
-    ".fullops-squad/docs/operations/user-guide.md",
     ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
     ".fullops-squad/docs/planning/SAR-PREP-002-request.md",
     ".fullops-squad/docs/planning/SAR-SETUP-001-question.md",
     ".fullops-squad/docs/planning/SAR-SETUP-001-request.md",
     ".fullops-squad/docs/planning/business-plan.md",
+    ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
     ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
     ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
     ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
@@ -528,16 +575,16 @@
     ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
     ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
-    ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
     ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
     ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
     ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+    ".fullops-squad/handovers/to_designer.md",
+    ".fullops-squad/handovers/to_ops.md",
     ".fullops-squad/handovers/to_tester.md",
     ".fullops-squad/lint/README.md",
     ".fullops-squad/orca-agents.md",
-    ".fullops-squad/project.md",
     ".fullops-squad/review/_REPORT.md",
     ".fullops-squad/rules/common/README.md",
     ".fullops-squad/rules/common/coding-style.md",
@@ -556,10 +603,10 @@
     "docs/operations.md",
     "docs/system-design.md"
   ],
-  "presented_files": 358,
+  "presented_files": 364,
   "partial": true,
   "fallback": "local Git/keyword/symbol search",
   "input_partial": true,
-  "instruction_chars": 6352,
-  "elapsed_seconds": 5.681
+  "instruction_chars": 3910,
+  "elapsed_seconds": 34.902
 }

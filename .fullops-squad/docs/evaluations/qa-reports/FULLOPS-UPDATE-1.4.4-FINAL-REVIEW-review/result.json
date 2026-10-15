@@ -1,0 +1,115 @@
+{
+  "base": "b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e",
+  "head": "3f78013aab2f1e70cc61dca969fc5697d518f7b4",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Codex independent reviewer 01a13b01-ce95-76c1-9cc2-43db8354be01",
+  "conclusion": "accepted: 운영 업데이트 범위 수락. critical/high/medium/low 0. Windows make unavailable 2건과 이전 실패·UI 중지는 유지한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "운영 1.4.3/1.4.4 계약과 새 세션·UI 중지 경계를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "UI hold와 미커밋 작업 보존, 업데이트만 통합한 뒤 종료하는 후속 조건을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "UI blocked와 운영 업데이트 active가 최신 단계 기록에 일치한다."
+    },
+    {
+      "path": ".fullops-squad/board/index.html",
+      "status": "modified",
+      "insertions": 29,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "생성 보드의 이슈 표시 추가를 검토했다. repository 제한, 양의 정수 issue 번호, HTML escaping과 noopener를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/hook-fresh-session.json",
+      "status": "added",
+      "insertions": 226,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "실제 별도 session_meta ID, 고정 loader, done/flow executed와 status exit 0, Stop/SessionEnd 미관측 구분을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/installation-preservation.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "설치 원본 hash와 보호 9개 hash를 대조했다. blocked는 초기 이력이며 이후 hook 증거가 완료 상태를 제공한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      "status": "added",
+      "insertions": 72,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "설치·초기 실패·신뢰 승인·새 세션 성공·unavailable 원본·중지와 통합 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/fullops.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "plugin_version만 1.4.4로 변경했고 roles/origin/main/coor/lite/standard를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "등록 검사 전체 증거, 원본 재사용과 실패/실행 불가 구분 및 실제 hook 기록의 의미를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "Makefile 실제 전체 검사 범위, DEV/tester 담당과 기존 필수 검사 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "전체 검사·재사용 근거·범위 및 검증 약화 점검을 기록하는 양식을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "기존 mandatory gate와 독립 수락을 유지하며 반복 검증·테스트 재사용을 명확히 한다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a12eb2-a9c9-7973-a811-fd4b5729f7b7",
+    "reviewer_session": "01a13b01-ce95-76c1-9cc2-43db8354be01",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-2ab04d2da57144659f6c51f0d60dc942",
+    "snapshot_head": "3f78013aab2f1e70cc61dca969fc5697d518f7b4",
+    "read_only": true
+  }
+}

@@ -1,9 +1,9 @@
 ---
 title: FullOps Squad 하네스 지도
 status: draft
-updated: 2026-10-14
+updated: 2026-10-15
 owner: coor
-tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, FULLOPS-UPDATE-1.4.2]
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, FULLOPS-UPDATE-1.4.2, FULLOPS-UPDATE-1.4.4]
 summary: FullOps 규약 지도와 coor/lite 및 1.2.0 운영 계약
 ---
 
@@ -90,7 +90,15 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 UI 작업은 fullops-frontend와 docs/agents/frontend.json의 기존 디자인 정본을 따른다. 1.4.0 업데이트 당시에는 UI 작업이 없어 프런트엔드 실행을 비활성으로 보존했다. 후속 UI 과제에서 정한 현재 설정은 frontend.json을 따른다. 다음 UI 과제에서 기존 역할의 host/model/effort를 인박스에 고정한 뒤 준비 상태를 검사한다. 선택형 도구는 설치하지 않는다.
 웹 실행은 fullops-test/web-engine.md와 docs/evaluations/scenarios/README.md를 따른다. covers와 독립 checks, 격리 fixture와 정확한 origin/동작/요청을 선언한다. 현재 탭은 --page로 지정하며 루트 Jev 환경은 --env-file .env로 지정한다. 탐색·shadow·CUAWright는 기본 OFF다.
 
-## FullOps 1.4.2 적용
+## FullOps 1.4.3·1.4.4 적용
+
+검사 실행 결과는 작업 트리별 Git 디렉터리에 보존하고 리뷰 prepare의 `--lint`는 같은 base·HEAD·설정의 원본 증거를 가져온다. 검토자는 관련 환경·의존성 동일성·검사 약화·지시 범위와 실제 diff를 확인한다. review check는 모든 등록 검사 명령의 누락·중복·추가·종료코드를 확인한다. 기존 테스트 수준과 필수 명령·실패·예외·critical/high 차단을 유지한다. 실제 전체 검사와 변경 경로 검사의 담당·시점은 project.md와 공통 테스트 기준을 따른다.
+
+1.4.4 hook은 버전별 캐시 대신 `~/.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py`를 호출한다. 명시적 deps 설치가 완전한 실행 사본을 원자적으로 전환하고 기존 사본은 보존한다. 업데이트만으로 이미 열린 세션의 hook 명령은 바뀌지 않는다. 실제 새 세션의 done/flow 기록을 조회하고 executed·error·unknown을 구분한다. 파일 존재나 status 조회 자체로 실행 성공을 주장하지 않는다.
+
+이 업데이트 세션에서는 운영 적용과 이미 완료된 결과의 검토만 수행한다. 사용자 중지 상태의 UI 수정·검수·제품 통합·배포는 재개하지 않는다. 이후 제품 개발은 최신 hook을 로드한 새 coordinator 세션에서 사용자 재개 지시를 받아 진행한다.
+
+## FullOps 1.4.2 적용 이력
 
 1.4.1 이후 명시적 업데이트마다 외부 의존성을 최신판으로 갱신하고 현재 호스트의 `deps.py --check --host`를 확인한다. 과거 검사 통과를 이번 갱신으로 대체하지 않는다. 기존 스킬 수정은 설치기의 백업에 보존한다.
 선택형 프런트 도구는 frontend.json의 tools에 등록한 것만 로컬 설치한다. 현재 tools는 비어 있다. 기존 codex/gpt-6.1-sol/high와 디자인 정본을 유지하며 설정 준비·인증·브라우저 QA를 구분한다.

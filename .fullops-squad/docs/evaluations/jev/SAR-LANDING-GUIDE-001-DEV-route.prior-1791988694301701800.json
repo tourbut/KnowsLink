@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-LANDING-GUIDE-001-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 1,
+        "product": 0
+      },
+      "confidence": 1
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.97,
+        "ops": 0,
+        "tester": 0.03
+      },
+      "confidence": 0.95
+    },
+    "docs": {
+      "D01": 0.09,
+      "D02": 0.09,
+      "D03": 0.11,
+      "D04": 0.15,
+      "D05": 0.1,
+      "D06": 0.09,
+      "D07": 0.08,
+      "D08": 0.11,
+      "D09": 0.1,
+      "D10": 0.3,
+      "D11": 0.1,
+      "D12": 0.26,
+      "D13": 0.44
+    }
+  },
+  "usage": {
+    "input_tokens": 2495,
+    "output_tokens": 314,
+    "cost": 0.00010479
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.701,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "확정 제품 및 접근성 기준 안의 CSS 버그 수정은 DEV 기술 구현 책임이다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
+  "head": "c6154d3557d1704ea0b50b7db950d2f11054fa71",
+  "requires_packet": true,
+  "attempt": "9a48a4180041493b93ddce9b5d1bf6f2",
+  "instruction_sha256": "882c2608be40ef909224985d667b213109560d4722a60c53dbd9a230835a0277",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "b7d3ac1c6960d364d04bfbfe058c4491d19760c644e02c0d272b4b684d65a85f"
+}
