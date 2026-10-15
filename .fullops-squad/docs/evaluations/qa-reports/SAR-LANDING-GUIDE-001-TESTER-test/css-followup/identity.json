@@ -1,0 +1,195 @@
+{
+  "head": "db7fd8ad381585df28278e732cce45188abc543d",
+  "source": "f2b8cb622dc397034423582978e77560e0355771",
+  "checks": [
+    {
+      "name": "source:internal/relay/member_pages.go",
+      "passed": true,
+      "sha256": "29ce044a83c5336780e2ec1f3471f38ff65c055ec1ea62d5a712406087dd471e"
+    },
+    {
+      "name": "source:internal/relay/landing_pages.go",
+      "passed": true,
+      "sha256": "d250a65846a6ef399aeaf26795c854b68dfe23639135efd541606b36f5b76ed3"
+    },
+    {
+      "name": "source:internal/relay/human_pages_test.go",
+      "passed": true,
+      "sha256": "042ae1261b1098c666abbe4b649ffe2771c539eaafda05992ac640e8f37e554a"
+    },
+    {
+      "name": "fixture:start-google.html",
+      "passed": true,
+      "sha256": "1e934c3a893db941dd9c5673889f99e8a402881b6fed61bd6cc65b53bc88c042",
+      "bytes": 20064
+    },
+    {
+      "name": "source-style:start-google.html",
+      "passed": true
+    },
+    {
+      "name": "fixture:human-home-empty.html",
+      "passed": true,
+      "sha256": "4d9ed8533bb7f41276817be44aa4386f821685d3fbeed81c0ad8eb440f7e90b2",
+      "bytes": 9397
+    },
+    {
+      "name": "source-style:human-home-empty.html",
+      "passed": true
+    },
+    {
+      "name": "fixture:human-home.html",
+      "passed": true,
+      "sha256": "8f7bee9c3529f3733db9dba7dace4a231e562aa8bfd42f010e0d04e219272100",
+      "bytes": 9867
+    },
+    {
+      "name": "source-style:human-home.html",
+      "passed": true
+    },
+    {
+      "name": "fixture:human-account.html",
+      "passed": true,
+      "sha256": "857c15ca366f09cde38fbcb0da203631cb8f863af70b8fd4ba8d1b2d37491e22",
+      "bytes": 10865
+    },
+    {
+      "name": "source-style:human-account.html",
+      "passed": true
+    },
+    {
+      "name": "gate-inputs:f2b8cb622dc397034423582978e77560e0355771",
+      "passed": true,
+      "to": "db7fd8ad381585df28278e732cce45188abc543d",
+      "paths": [
+        "cmd",
+        "internal",
+        "adapters",
+        "db",
+        "deploy",
+        "scripts",
+        "go.mod",
+        "go.sum",
+        "Makefile",
+        "Dockerfile",
+        "compose.yaml",
+        "sqlc.yaml",
+        ".dockerignore",
+        ".fullops-squad/lint/lint.json"
+      ],
+      "exit_code": 0,
+      "diff": ""
+    },
+    {
+      "name": "gate-inputs:fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+      "passed": true,
+      "to": "db7fd8ad381585df28278e732cce45188abc543d",
+      "paths": [
+        "cmd",
+        "internal",
+        "adapters",
+        "db",
+        "deploy",
+        "scripts",
+        "go.mod",
+        "go.sum",
+        "Makefile",
+        "Dockerfile",
+        "compose.yaml",
+        "sqlc.yaml",
+        ".dockerignore",
+        ".fullops-squad/lint/lint.json"
+      ],
+      "exit_code": 0,
+      "diff": ""
+    },
+    {
+      "name": "prior-gate-sha-and-exits",
+      "passed": true,
+      "receipt": {
+        "schema_version": 1,
+        "attempt": "f0f7b35bba224358b1823887a8581131",
+        "base": "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+        "merge_base": "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+        "head": "fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+        "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+        "test_level": "lite",
+        "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+        "commands": [
+          {
+            "name": "product-lint",
+            "kind": "lint",
+            "run": [
+              "make",
+              "lint"
+            ],
+            "cwd": ".",
+            "reason": "",
+            "status": "passed",
+            "exit_code": 0,
+            "output_tail": "lint: EXIT=0"
+          },
+          {
+            "name": "product-test",
+            "kind": "test",
+            "run": [
+              "make",
+              "test"
+            ],
+            "cwd": ".",
+            "reason": "",
+            "status": "passed",
+            "exit_code": 0,
+            "output_tail": "test: EXIT=0"
+          }
+        ],
+        "violations": [
+          {
+            "code": "SIZE-001",
+            "severity": "WARNING",
+            "line": null,
+            "message": "1873줄(이전 1833, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+            "path": ".fullops-squad/PLANS.md"
+          }
+        ],
+        "summary": {
+          "files": 12,
+          "added_lines": 190,
+          "errors": 0,
+          "warnings": 1,
+          "unavailable": 0
+        }
+      }
+    },
+    {
+      "name": "prior-linux-log:lint",
+      "passed": true,
+      "sha256": "f5fd6376539d1c6ccf8ecd8d856a40decd4079ab742ee2332ecc42748286d197",
+      "tail": " private, default deny, no overwrite, validation failures propagated\r\nsh -n scripts/install_bot_mcp.sh\r\npython3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py scripts/shell_guard.py scripts/test_shell_guard.py\r\n/tmp/knowslink-landing001-fc4ad58b6547-d7b6b4ff/repo/deploy/knowslink/beta.sh: line 101: /tmp/tmp.YtFeDLzNKw/state/tunnel/config.public.yml: cannot overwrite existing file\r\nERROR: candidate exists or cannot be written; live config unchanged\r\nERROR: invalid tunnel UUID\r\n\r\nEXIT=0\r\n"
+    },
+    {
+      "name": "prior-linux-log:test",
+      "passed": true,
+      "sha256": "94df2e54fd75fbf1566286b13460de884befb1805dd423c74a00c166fc4bf1fa",
+      "tail": "/tmp/kl-inbox-files-jrdXGZ\r\nPASS: SSE initial/push/reconnect/coalesce/serial/fallback/cancel and strict metadata frames\r\nPASS: webhook wake config gate, single path, metadata-only body, headers, 2xx/3xx/4xx/5xx/unreachable/timeout, untrusted config, check without POST, no secret in results\r\nPASS: owner authorship, recipient binding, schema refusal and durable copy before ACK\r\npython3 scripts/test_shell_guard.py\r\n\r\n  dist/plugin.js  1.6mb ⚠️\r\n\r\n⚡ Done in 82ms\r\nshell guard evidence workspace (kept): /tmp/shell-guard-ws-i7mnnd1j\r\n....\r\n----------------------------------------------------------------------\r\nRan 4 tests in 8.654s\r\n\r\nOK\r\n\r\nEXIT=0\r\n"
+    },
+    {
+      "name": "prior-linux-log:install",
+      "passed": true,
+      "sha256": "fca1ba1440cab91308c8df0462ad24c644600da7c5145c5205c51e641f77c2db",
+      "tail": "d` for details\r\n\r\nfound 0 vulnerabilities\r\nNote: switching to 'fc4ad58b65471e2de298cb9f1aba5d2253ea8135'.\r\n\r\nYou are in 'detached HEAD' state. You can look around, make experimental\r\nchanges and commit them, and you can discard any commits you make in this\r\nstate without impacting any branches by switching back to a branch.\r\n\r\nIf you want to create a new branch to retain commits you create, you may\r\ndo so (now or later) by using -c with the switch command. Example:\r\n\r\n  git switch -c <new-branch-name>\r\n\r\nOr undo this operation with:\r\n\r\n  git switch -\r\n\r\nTurn off this advice by setting config variable advice.detachedHead to false\r\n\r\n\r\nEXIT=0\r\n"
+    },
+    {
+      "name": "old-QA-impact-boundary",
+      "passed": true,
+      "changed": [
+        "internal/relay/human_pages_test.go",
+        "internal/relay/landing_pages.go",
+        "internal/relay/member_pages.go"
+      ]
+    }
+  ],
+  "packet_sha256": "a2961c1d3b6fadedeca01dc154b28c51529da27448b3633fd4e5c01604ccd0bf",
+  "packet_paths": 212,
+  "scope": "Reuse Linux gate at original fc4 SHA; no new Linux/auth/DB execution"
+}
