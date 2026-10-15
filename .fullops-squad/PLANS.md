@@ -11,6 +11,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
 
+- 후속 배정 순서는 진행 중 조회 복구의 독립 수락·main 통합 → 세션 친구 통신 DEV → 나머지 UI 이슈로 정리했다. 최신 세션 기능 요청을 우선하며 기존 이름/친구·승인 요약·설치 재개·언어 작업을 취소하지 않는다. 조회 TESTER 인박스는 준비 상태이며 실제 DEV 고정 SHA/fixture를 연결하기 전 dispatch하지 않는다. route+work를 같은 명령에 담은 최초 준비는 사전 route 미존재로 hook이 차단했다. route 생성 후 별도 work new로 정상 준비했고 우회/제품 변경은 없다.
+- Codex0.162.1의 추가 local help는 기존 세션 대상 queue --thread/--message, shared daemon agents, remote TUI, no-daemon 옵션을 명시한다. 실행·다른 세션 열람·주입은 하지 않았다. 이것은 기존 세션 수신의 검증 후보이지 실제 왕복 수락이 아니다. msg_c46c41630c78로 designer에게 원관측과 권한/수신 미확인을 전달했다.
+- Hermes 후속 설치 소스 tools/mcp_tool_health.py:73–89는 logging_callback이 notifications/message를 agent.log에 기록한다고 명시한다. 현재 adapter logging 알림과의 조합을 모델 깨우기로 수락하지 않는다. msg_52d98d6e99d7로 근거를 전달했다. 직접 웹 도구의 추가 조회는 token_expired401, root 공식 페이지 GET 한 번은403이었고 성공으로 보고하지 않는다. designer는 자기 공식 HTTP 조회 원본과 실패를 별도 보존한다.
+
 - 조회 복구 DEV 착수: task_802b0525f5db / ctx_e6da4e6135b3 / term_106ecb42-0246-47cd-9a3a-aade8ea1fbbf. 최신 main7f34123을 포함한 DEVd4a075c에서 route/find/context/packet을 갱신했고 실제 ready·turn_started·requested/effective codex/gpt-6-astra/high를 확인했다. 과거 완료 세션은 큰 문맥과 새 과제라 재사용하지 않고 정상 release했다. 현재 인박스와 own producer의 미커밋 스냅샷 소유권을 명시했다.
 - 세션 통신 기획 착수: task_143fa7a8db67 / ctx_3854aa446731 / term_496a5146-6d1d-47d4-80d0-f41d3c4c05a1. designer는 유휴·clean 확인 후 main7f34123 FF, fresh Astra high의 ready·turn_started·실제 tuple 일치를 확인했다. SAR-SESSION-PEER-001-DESIGN 정본 인박스와 packet을 읽는다. 기존 HP-10 발송 승인과 HP-15 도구 권한 경계를 유지하며 기존 세션 수신과 새 세션 생성을 구분한다. 이전 tester/visual 완료 dispatch도 정상 release·transcript captured다.
 - 첫페이지와 잔여 설계의 완료 메시지 6개는 main/origin 조상 확인 뒤 integration resume으로 모두 pending0을 확인했다. 별도 hook 읽기 검증 hold는 제품 완료로 위조하지 않고 유지한다.

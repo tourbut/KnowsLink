@@ -1,0 +1,71 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-RECEIPT-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.02,
+        "ops": 0,
+        "tester": 0.98
+      },
+      "confidence": 0.97
+    },
+    "docs": {
+      "D01": 0.18,
+      "D02": 0.17,
+      "D03": 0.16,
+      "D04": 0.22,
+      "D05": 0.15,
+      "D06": 0.18,
+      "D07": 0.13,
+      "D08": 0.14,
+      "D09": 0.18,
+      "D10": 0.28,
+      "D11": 0.18,
+      "D12": 0.49,
+      "D13": 0.37
+    }
+  },
+  "usage": {
+    "input_tokens": 2470,
+    "output_tokens": 314,
+    "cost": 0.00010374
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.67,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "이미 수락된 제품 규칙의 구현 후 독립 동작 QA 담당은 tester다. DEV 완료 고정 SHA 전에는 실제 테스트를 시작하지 않는다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "7552546db4ad24edf70bf85c6184b7c178723c27",
+  "requires_packet": true
+}
