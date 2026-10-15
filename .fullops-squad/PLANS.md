@@ -9,6 +9,13 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
+
+- 첫페이지 DEVfc4·설계11ea·tester7fd·visualc6 및 독립코드34/78·설계14/8·최종기록68/31 리뷰 C/H/M/L0·check0을 수락했다. main/origin7551ed9 일반push/fetch동일·6원결과의원격조상0·제품fc4동일을 확인했다. 원검증실패/Windowsmake불가·초기중지이력은보존한다. 통합근거는 SAR-LANDING-GUIDE-001-CSS-INTEGRATION/main-integration.json. 운영배포는이번단계에서실행하지않았다.
+- 다음 DEV SAR-UX-ISSUES-002-RECEIPT-DEV는 수락 U6/해당U7 요청상태조회 입력·선택·복귀/오류재시도복구다. 빈DEV인박스에 준비했으며 최종main동기화/패킷현재HEAD갱신후 freshAstrahigh로착수한다. same-key입력producer/history는own추적증거소유권에포함한다. 그뒤 이름/사람친구·승인요약·설치재개·언어순서다.
+- 최신 사용자 호스트 범위: Meta Muse는 대상에 없으므로제외. OpenClaw는사용자지시로보류. Hermes는100.120.206.25이며사용자지정.env.server를메모리에서만읽어검증된known_hosts/RejectPolicy로SSH연결했다. Nous Research Hermes Agent0.21.3(2026.9.14), Git eeb85107f9e6164cb2d1f20d2b75753a6262e8e3·설치/home/shin/.hermes/hermes-agent·로컬심볼릭실행경로를확인했다. 설치·설정·서비스·실계정/발송은변경하지않았고접속정보/비밀값은로그에출력하지않았다. 지원성공으로승격하지않고현버전의MCP/수신접점을검증한다. 새온보딩에서는옛다섯호스트표보다이사용자범위가우선한다.
+- 사용자 신규 요청: 작업중인 Claude/Codex 세션에서 친구인다른사람의 작업중 Claude/Codex세션으로메시지를주고받기. 기존사람peer·이름있는agent/동의·송신권한/서명/ACK를재사용하고세션수명/대상/수신/자동깨움과작업지시경계를제품설계한다. 별도신규기능이며기존UI이슈도계속진행한다. Context7월할당량초과원문보존, 공식ClaudeChannels/참조와OpenAIAppServer문서를확인했다. localClaude2.1.299/Codex0.162.1. 공식push지원과현재세션실증을구분하며서버생성새대화를기존CLI세션통신성공으로표시하지않는다.
+
 ## 잔여 이슈 해결 재개 — 2026-10-15
 
 - DEV 최종fc4ad58·Chrome38·실제Linuxmake lint/test0·FullOps ERROR0/WARN1/unavail0 완료(msg_b3fc48a8f4d3). CSS 고정 독립리뷰 fromfe→fc4는 actual01a13fa4/Astra high,34reviewed/78skipped·C/H/M/L0·check0이며 coor에 준비통합했다. 새실패DOC003은frontmatter만허가수정·원실패보존이다.

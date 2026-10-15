@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "attempt": "a9c11ceb7dcd403d8d0ed02a8b06fd08",
+  "base": "a3d85ba85f00b9f5d65829aca4195d111e8fd906",
+  "merge_base": "a3d85ba85f00b9f5d65829aca4195d111e8fd906",
+  "head": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "3e98c55e53474774713fe4de10fb6cacb1f23ab5e352318c3615f58fc9f402bf",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [],
+  "summary": {
+    "files": 2,
+    "added_lines": 36,
+    "errors": 0,
+    "warnings": 0,
+    "unavailable": 2
+  }
+}

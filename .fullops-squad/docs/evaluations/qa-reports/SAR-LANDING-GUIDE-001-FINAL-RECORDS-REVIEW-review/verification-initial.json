@@ -1,0 +1,865 @@
+{
+  "scope": "Static evidence checks only; no product/browser rerun",
+  "base": "a3d85ba85f00b9f5d65829aca4195d111e8fd906",
+  "head": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "checks": [
+    {
+      "name": "product-inputs:a3d85ba85f00b9f5d65829aca4195d111e8fd906",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "product-inputs:fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "product-inputs:f2b8cb622dc397034423582978e77560e0355771",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "integrated-ancestor:7fd58fcdbf731b0079350369ef012b03b1ee8911",
+      "passed": true,
+      "exact_sha": "7fd58fcdbf731b0079350369ef012b03b1ee8911"
+    },
+    {
+      "name": "integrated-ancestor:c6d5a28374a7cdd05c812dcd9fe89efbe5479a58",
+      "passed": true,
+      "exact_sha": "c6d5a28374a7cdd05c812dcd9fe89efbe5479a58"
+    },
+    {
+      "name": "integrated-ancestor:5149ac1",
+      "passed": true,
+      "exact_sha": "5149ac13c96c44aa175f0dc298ae1ff3d61d8ddf"
+    },
+    {
+      "name": "prior-review-preserved:SAR-LANDING-GUIDE-001-CSS-REVIEW",
+      "passed": true,
+      "hashes": {
+        "result.json": "4d4c6251659c2a89296138985d30481cbdf2d996baf8cdfbc965b3c41c4f92c2",
+        "report.md": "481655fe04335f197ce67c14d2287aeb34f3c9ff215319ee3342e7fdb486f455",
+        "check-execution.json": "20627e1aafbac30b1e4b50a1c8c0260d3fb5290c6459ee7bfb8d60ffd78dadd6"
+      },
+      "head": "fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+      "independence": {
+        "implementer_session": "01a13f92-f032-7ff3-be1c-c62c1aed38aa",
+        "reviewer_session": "01a13fa4-02c9-74b2-ace6-2f974bfdc71d",
+        "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-bb360033216c4b3785b0b7e8e2b33383",
+        "snapshot_head": "fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+        "read_only": true
+      },
+      "check_execution": {
+        "command": [
+          "C:/Users/shin/AppData/Local/Programs/Python/Python313/python3.exe",
+          "C:/Users/shin/.codex/plugins/cache/fullops-squad/fullops-squad/1.4.4/scripts/review.py",
+          "check",
+          "--repo",
+          "C:/Users/shin/orca/workspaces/KnowsLink/coor",
+          "--key",
+          "SAR-LANDING-GUIDE-001-CSS-REVIEW",
+          "--from",
+          "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+          "--to",
+          "fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+          "--task-key",
+          "SAR-LANDING-GUIDE-001-DEV"
+        ],
+        "exit_code": 0,
+        "stdout": "jev_find score (code changed-file overlap): recall 1.0 / precision 0.25\njev_find score (documents changed-file overlap): recall 0.357 / precision 0.417\n기록 검사 통과: reviewed=34, skipped=78, total=112, lint WARNING=1\n",
+        "stderr": "",
+        "timestamp_utc": "2026-10-15T13:13:04.937370+00:00"
+      }
+    },
+    {
+      "name": "prior-review-preserved:SAR-UX-ISSUES-002-DESIGN-REVIEW",
+      "passed": true,
+      "hashes": {
+        "result.json": "4bae40e7a76a4ca54e91db03f709864a1a760fab635ff87d43f225c50fc3e547",
+        "report.md": "62b05a07d1c782a3a2c2e2964b68698b10e5beab66f6fcd31d1ef05deef50cb2",
+        "check-execution.json": "25c00aed3e45a2c495bd3afa42227187d1beb18e0760ae4d93b0d67365b675bf"
+      },
+      "head": "11ea298ef63cb90e86881d08fa83c44c9e3f75c5",
+      "independence": {
+        "implementer_session": "01a13f95-f910-77b3-a343-090f579de67f",
+        "reviewer_session": "01a13faa-5f90-79e3-8b5e-d23b1641f491",
+        "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-0283e5629d4d4b18b8b6766f1203f8d3",
+        "snapshot_head": "11ea298ef63cb90e86881d08fa83c44c9e3f75c5",
+        "read_only": true
+      },
+      "check_execution": {
+        "argv": [
+          "C:/Users/shin/AppData/Local/Programs/Python/Python313/python3.exe",
+          "C:/Users/shin/.codex/plugins/cache/fullops-squad/fullops-squad/1.4.4/scripts/review.py",
+          "check",
+          "--repo",
+          ".",
+          "--key",
+          "SAR-UX-ISSUES-002-DESIGN-REVIEW",
+          "--task-key",
+          "SAR-UX-ISSUES-002-DESIGN",
+          "--from",
+          "76ec89fe66cbeea5c2ffb33ff07015fd722029b3",
+          "--to",
+          "11ea298ef63cb90e86881d08fa83c44c9e3f75c5"
+        ],
+        "exit_code": 0,
+        "stdout": "기록 검사 통과: reviewed=14, skipped=8, total=22, lint WARNING=0\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "source-hash:internal/relay/member_pages.go",
+      "passed": true
+    },
+    {
+      "name": "source-hash:internal/relay/landing_pages.go",
+      "passed": true
+    },
+    {
+      "name": "source-hash:internal/relay/human_pages_test.go",
+      "passed": true
+    },
+    {
+      "name": "preserved-fixture:start-google.html",
+      "passed": true,
+      "sha256": "1e934c3a893db941dd9c5673889f99e8a402881b6fed61bd6cc65b53bc88c042"
+    },
+    {
+      "name": "preserved-fixture:human-home-empty.html",
+      "passed": true,
+      "sha256": "4d9ed8533bb7f41276817be44aa4386f821685d3fbeed81c0ad8eb440f7e90b2"
+    },
+    {
+      "name": "preserved-fixture:human-home.html",
+      "passed": true,
+      "sha256": "8f7bee9c3529f3733db9dba7dace4a231e562aa8bfd42f010e0d04e219272100"
+    },
+    {
+      "name": "preserved-fixture:human-account.html",
+      "passed": true,
+      "sha256": "857c15ca366f09cde38fbcb0da203631cb8f863af70b8fd4ba8d1b2d37491e22"
+    },
+    {
+      "name": "recorded-checks:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/results.json",
+      "passed": true,
+      "count": 44
+    },
+    {
+      "name": "recorded-checks:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/identity.json",
+      "passed": true,
+      "count": 18
+    },
+    {
+      "name": "recorded-checks:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/browser-results.json",
+      "passed": true,
+      "count": 22
+    },
+    {
+      "name": "recorded-checks:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/http-results.json",
+      "passed": true,
+      "count": 34
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/examples-1440.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-empty-1440.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-focus-1440.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-populated-1440.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-account-1440.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/examples-390.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-empty-390.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-focus-390.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-account-390.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/examples-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-empty-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-focus-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-account-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/hero-1440.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/hero-390.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/examples-390.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/hero-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/install-open-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/none-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/google-error-320.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/member-home-1440.png",
+      "passed": true
+    },
+    {
+      "name": "capture-hash:.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/member-account-1440.png",
+      "passed": true
+    },
+    {
+      "name": "designer-capture:examples-1440.png",
+      "passed": true
+    },
+    {
+      "name": "designer-capture:member-empty-1440.png",
+      "passed": true
+    },
+    {
+      "name": "designer-capture:member-populated-1440.png",
+      "passed": true
+    },
+    {
+      "name": "designer-capture:examples-390.png",
+      "passed": true
+    },
+    {
+      "name": "designer-capture:member-empty-390.png",
+      "passed": true
+    },
+    {
+      "name": "designer-capture:examples-320.png",
+      "passed": true
+    },
+    {
+      "name": "designer-capture:member-empty-320.png",
+      "passed": true
+    },
+    {
+      "name": "fixture-requests",
+      "passed": true
+    },
+    {
+      "name": "recorded-actual-zoom",
+      "passed": true,
+      "evidence": {
+        "width": 712,
+        "height": 402,
+        "dpr": 2,
+        "scale": 1,
+        "cssZoom": "1",
+        "overflow": 704,
+        "gap": 24,
+        "setting": "200%",
+        "passed": true
+      }
+    },
+    {
+      "name": "original-contrast-failure",
+      "passed": true
+    },
+    {
+      "name": "original-tester-report-preserved",
+      "passed": true
+    },
+    {
+      "name": "original-visual-prefix-preserved",
+      "passed": true
+    },
+    {
+      "name": "startup-failure-preserved",
+      "passed": true
+    },
+    {
+      "name": "finish-failure-preserved",
+      "passed": true
+    },
+    {
+      "name": "linux-gate-original",
+      "passed": true
+    },
+    {
+      "name": "linux-log:lint",
+      "passed": false,
+      "sha256": "f5fd6376539d1c6ccf8ecd8d856a40decd4079ab742ee2332ecc42748286d197"
+    },
+    {
+      "name": "linux-log:test",
+      "passed": false,
+      "sha256": "94df2e54fd75fbf1566286b13460de884befb1805dd423c74a00c166fc4bf1fa"
+    },
+    {
+      "name": "official-packet-completion:tester",
+      "passed": true,
+      "attempt": "53ebe1ae346444fc9ccf3d04466cdc88",
+      "partial": true,
+      "unknown_count": 19
+    },
+    {
+      "name": "inbox-empty:tester",
+      "passed": true
+    },
+    {
+      "name": "official-packet-completion:designer",
+      "passed": true,
+      "attempt": "56257be60dbf46d6b6493b58409c3ac9",
+      "partial": true,
+      "unknown_count": 18
+    },
+    {
+      "name": "inbox-empty:designer",
+      "passed": true
+    },
+    {
+      "name": "all-diff-paths-accounted",
+      "passed": true,
+      "count": 99
+    },
+    {
+      "name": "snapshot-clean",
+      "passed": true
+    },
+    {
+      "name": "snapshot-detached",
+      "passed": true
+    }
+  ],
+  "file_hashes": [
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "sha256": "51c8f80f5cf8813d25f2bd3b7de9a3ac1f3fef5909a0ec7cf370eda5b105059d"
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "status": "modified",
+      "sha256": "25c6a2a60a1b19a7db462dcf6b0ba94bf9423d5274a424ce2de1e4a12d2716bb"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-context.json",
+      "status": "modified",
+      "sha256": "871e03032c9e23ad02c0f3203f2805d95809c317c7860ddbf597e26f5d86ef66"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-documents-find.json",
+      "status": "modified",
+      "sha256": "55181cea86676bb6f767558e51469e0b1dbae8ecf2a757387317da3d207211b8"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-find.json",
+      "status": "modified",
+      "sha256": "7f8a2beb91cfe96e73a7ebc06b5aaac400ff8a0cfcda779ea689945d7eb9981a"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-model-tester.json",
+      "status": "added",
+      "sha256": "0bcc5f32e6cb4bf61703dd1ec631a803b13ddaaacc1b89471cf22d6f374a25f9"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-packet-outcomes.json",
+      "status": "added",
+      "sha256": "cc629b180cc9b76951725dbd182893d03c711f5af2d1278e2501596999f53674"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-packet.json",
+      "status": "modified",
+      "sha256": "a2961c1d3b6fadedeca01dc154b28c51529da27448b3633fd4e5c01604ccd0bf"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-route.json",
+      "status": "modified",
+      "sha256": "9fb0f82eb5587e4fc6e927ba51174e92c6d3f1813eaccee53060d6d1e1b7ccf2"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-route.prior-1791987567995824700.json",
+      "status": "added",
+      "sha256": "67a399f2df5c70598b48d3554c72a1f57ad322497209da6695d9de444c88cc3c"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-route.prior-1792069305002784000.json",
+      "status": "added",
+      "sha256": "7a6bc05528ab95336ea297fc1d06fceb3ce2f57dc9f60c18c0c817a1a4dc3457"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-packet-outcomes.json",
+      "status": "modified",
+      "sha256": "f4ec8b9b51c0c03219c1e4c3dede62b5baf37b4920cc72c5171a8b97248772cd"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-packet.json",
+      "status": "modified",
+      "sha256": "094143b6436070542ebb54d8dbf542dce37be886c9308671dd545b93591e0de4"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-route.json",
+      "status": "modified",
+      "sha256": "b2fc7de44ea1c0051d2b0c2daa1f32eb7103bf881a32290681e0cbde26331906"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-route.prior-1792069667517109500.json",
+      "status": "added",
+      "sha256": "696f876941f355b204e875e305eb221d3d998126c22939732589541b93a635af"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-context-f0d098d31afa432483f3fee92a658d72.json",
+      "status": "added",
+      "sha256": "2c5a520fa5f6065f8867d96d00c0b507c6fe4aaf34dd79291fe936427bd54c91"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-documents-find-6b5d5f8f40404107b962e7a0fad67134.json",
+      "status": "added",
+      "sha256": "74ffd061b14bdbfaba295377389c369cbdb81a705f1e26c558d3e2d11210a259"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-find-da34cad752834c51b4ab8eb4656045aa.json",
+      "status": "added",
+      "sha256": "44ed2c88be5f81c3173459a63310ec6952f5bf0272ad81b6be21c81bdf227010"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-packet-584147c2f9ff4aac9a2e2e1f5e1d0e9d.json",
+      "status": "added",
+      "sha256": "fc3fc4275fe472b4564071f790393091d4118ab4f46d39413a80990b0750a265"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-packet-bb1cf9429737457299f5ac96242b3d34.json",
+      "status": "added",
+      "sha256": "49740522784d1a17c44c66213d223cf85016add7b6c9137cd81a1e3b085fd5e5"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-route-b0b318a4f4dc4348bbbb6707cb1c2f85.json",
+      "status": "added",
+      "sha256": "9fb0f82eb5587e4fc6e927ba51174e92c6d3f1813eaccee53060d6d1e1b7ccf2"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-route-b978b91896104063a5b6ec01453598f0.json",
+      "status": "added",
+      "sha256": "7a6bc05528ab95336ea297fc1d06fceb3ce2f57dc9f60c18c0c817a1a4dc3457"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-VISUAL-packet-d998a2fc9eb941399219a2e063e41679.json",
+      "status": "added",
+      "sha256": "21847a6f735ee8d03d0054417c9ad8c3c8f7084b817ab1cb97ac68d3823e3b5e"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-VISUAL-route-578b3c0c1b2a4cbd88efe2f4949ebbbf.json",
+      "status": "added",
+      "sha256": "b2fc7de44ea1c0051d2b0c2daa1f32eb7103bf881a32290681e0cbde26331906"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/browser-results.json",
+      "status": "added",
+      "sha256": "f38489457e05ce281c3f2239dfe542d8e248bcd734cdc97ba1f9f32304db3bdf"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/browser.mjs",
+      "status": "added",
+      "sha256": "5b5429893aa3d6fe452f2743d161da3d8a8d4c9f72c15e92a3f73aa299751ebe"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/captures.json",
+      "status": "added",
+      "sha256": "ed14e9f9369e5d55cdbffce968cdb9b21542ed4b99902cb072742fac53223a26"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/contrast-results.json",
+      "status": "added",
+      "sha256": "295baaa0add096d1f8a184448414c9c4381c87cfb2d591c7ed6fa0366576c080"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/contrast.mjs",
+      "status": "added",
+      "sha256": "b1c3d87885dbd02ae4953e6beb972626da56f09492e32f37c4dd13847164a0e5"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/audit.py",
+      "status": "added",
+      "sha256": "a90353caa3b9e6b9bd251fb4a89a32268a0886c37138f8affc8014e85e39d759"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/browser.mjs",
+      "status": "added",
+      "sha256": "196afc7e367f315bf3922406e697c57982aa73e500b279860de71e35aad433c4"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/finish-first-failure.json",
+      "status": "added",
+      "sha256": "ef1c3c48e9f4dbcf98298eccff021ea1480b87a90f9ef2a3024100862b2c9496"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/identity.json",
+      "status": "added",
+      "sha256": "2bb4c302d3f33d502026a6dab9122b6cb49269162a3671a17dae9d0a180a37b6"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/prior-packet-outcomes.json",
+      "status": "added",
+      "sha256": "de5a45183f88e4448a14266c904cac51efdc7f703da51ff1cb6193fbe2093786"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+      "status": "added",
+      "sha256": "b60eac7e983a070d51fecea7b501e5581a7913d7f631e54b27c7bf64c5aece3d"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/results.json",
+      "status": "added",
+      "sha256": "a6f6fb02aa9bd9bc039d40576dbc156b52974fb9da8e46a108e8a935dd5ee595"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/source-audit.json",
+      "status": "added",
+      "sha256": "44dc81f472e4dc11a156f78d891463b2f6e39bf7110b801b6e58fab93f597766"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/zoom-results.json",
+      "status": "added",
+      "sha256": "50be0cf98685197e15734339f2cf9078dc2d0737784da7c3023f108989df1c5a"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/zoom-settings-before.json",
+      "status": "added",
+      "sha256": "f349c7ab23747b007c632fc85e592fa6144fd415a1557a256c980184ac7cefab"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/zoom.mjs",
+      "status": "added",
+      "sha256": "3c1bf984489d38bd1fbc687d3c977ebcdc26b640ccd33e0e32cff708d0f58e2e"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/functional.py",
+      "status": "added",
+      "sha256": "bd6d82cbd4d8b9f452a0b10959c8ae98fdd8ef9b6a3df2c0c512651989aa7b0d"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/gate.py",
+      "status": "added",
+      "sha256": "ba53045ce656781820a52d6142ecec757942ff8851e85e7343c7ddc0b62769c9"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/http-first-failure.json",
+      "status": "added",
+      "sha256": "0dff4d675c8bdfbfb7a4c979788d902a348a9bce287314d402aa80ae26dff06e"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/http-results.json",
+      "status": "added",
+      "sha256": "2acda5f4224b1546050908222bbd7eec0aa7e5ae31c1e846448542407eefe062"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/identity.json",
+      "status": "added",
+      "sha256": "af9c703d59c61fdc2577acc48bf9c5e5bf5a9ef34b9b4ec60ee68754c7f0c758"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/native-input.json",
+      "status": "added",
+      "sha256": "864ed4b19d98a07e3d6166ae469c0abc3f150397c28c1c8dddb1b00a3a371b0c"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md",
+      "status": "added",
+      "sha256": "91e62959beb77ad0e02a4a3ec9135139558f56e37063d613e56b5171ef2d1ef9"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/source-audit.json",
+      "status": "added",
+      "sha256": "e8dacb540049ba3ef70db70e8f34041f44e3e12538ec576ac04562aa8a715996"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/source_audit.py",
+      "status": "added",
+      "sha256": "1943d66472926c13c0e46d6e72987adbbaad34a0c73d013db0474f7b54807975"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/web-20261014-232426-595664/report.md",
+      "status": "added",
+      "sha256": "b3b7f5895b8e0c071978e2581401d4442dd996a54a4c0c8285f5ae0364e5570c"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/web-20261014-232426-595664/result.json",
+      "status": "added",
+      "sha256": "bf3b53418921a1ab8fafdb0d81b594c9782b7e4860c2abf064715e01474411dc"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/zoom-expanded-results.json",
+      "status": "added",
+      "sha256": "aee145f215995ed4ef339b0c20c6c6507bc763d766be149c7c3d271cfe0a5e0e"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/zoom-results.json",
+      "status": "added",
+      "sha256": "1315ca962823808a8156ec7b8910107cb8ea0d6dc9e70f02e157cdc8b4aec523"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/zoom-settings-before.json",
+      "status": "added",
+      "sha256": "f349c7ab23747b007c632fc85e592fa6144fd415a1557a256c980184ac7cefab"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/zoom.mjs",
+      "status": "added",
+      "sha256": "97e0468c383f2db97d0f22d7a0cf9c53fbbd503af294ef8b3bbb19872efae719"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/context-audit.json",
+      "status": "added",
+      "sha256": "799c8a5b6e491eeb2c8e97c4aaf7526d1075bf0721008b615d350cc92a547ccd"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/dev-final-handoff.md",
+      "status": "added",
+      "sha256": "ee720ba1042d4f1d82d118dd764d8f715826d57d0dbd6a6bd69cfb86896df6d2"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/dev-final-lint.json",
+      "status": "added",
+      "sha256": "33a98984e34067ae2b2d1ae9ded3b4c69f4255eabeafc21b8261c5864e8160af"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/identity.json",
+      "status": "added",
+      "sha256": "14e4795489f06439346de32f3d4df9a9cbf70b512aa6aae7e28200a41b850bb8"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/prior-packet-outcomes.json",
+      "status": "added",
+      "sha256": "c965b7ff10fbd3de48a4ac958e888c38cfe8cdb2e20c3f75c3af7c0f1ef5a6f5"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md",
+      "status": "added",
+      "sha256": "bab8cf9b468ab95f971245d27eb55b08f4c0438fcccb7ac76d8501a23158df43"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/validation.json",
+      "status": "added",
+      "sha256": "712634df52952c681c2a6eabef9b83694b03ed9fda0d3717235486a496f9206d"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/report.md",
+      "status": "modified",
+      "sha256": "51491dd9a0c8a9619e32c13cb1fed2bfc92351f5fabb0372bd50916562b4300d"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/web/landing-public-tester.json",
+      "status": "added",
+      "sha256": "71931c763055d523f1e57b6af15e19315901162be0ce08fcbc92c61f71330c32"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-TESTER.md",
+      "status": "added",
+      "sha256": "542a27a68af7c4e72e2edc2eaa6c6adeb9d980968b3f60bcbff28bb466b68c38"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md",
+      "status": "modified",
+      "sha256": "7e9ebe28f7d8dc615c58feba8b923585dcbff37460c2c0e760b826855ac7e353"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+      "status": "modified",
+      "sha256": "dc26bacbc31257f417b7a8a645bb6b6cbba1755cbb2aad127fefaafa3c9b8df3"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
+      "status": "modified",
+      "sha256": "10fdef76d3daacec1417efd87ce1bb7ec90ad2f37722c7d306018592764e8ec2"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+      "status": "added",
+      "sha256": "161c26c698eb76acc880dbc167c4d804e7560d14269538efc37409ca956c4b43"
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "status": "modified",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/browser-zoom-200.png",
+      "status": "binary",
+      "sha256": "e5680b2ff57db317fe2fe44c70c69170ac4b55f6d1de38864e0410519211f6d0"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/browser-startup-failure.log",
+      "status": "added",
+      "sha256": "c94e49f34142fbfbc8441e1cf368013878e1573232bb4b585485f3232f3c9072"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/browser-zoom-200.png",
+      "status": "binary",
+      "sha256": "8623f87d5a557c1c34c6ecf21c7d57880535b4485a6d807785c4492064a47b3c"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/browser.log",
+      "status": "added",
+      "sha256": "6eee5bc54052882fc26b1ff0a617a95a4b5721ebd66e5b8f39357cd6317ebac1"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/examples-1440.png",
+      "status": "binary",
+      "sha256": "dcb07f54450c8e9c93de1116a0b30f3c486093f126933c998395f835949e2809"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/examples-320.png",
+      "status": "binary",
+      "sha256": "249730d4c320899a54558f8a2b8f88750fbff7a2f7a099cd84be1b3178fdef5a"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/examples-390.png",
+      "status": "binary",
+      "sha256": "56266707cc0be57da633c5cfa13b26f8b849944d37b01a4725896ed9e0885ee0"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-account-1440.png",
+      "status": "binary",
+      "sha256": "3da553ec13dce5e1f9aa881ac7fbcd78c49478d3b9d4604696f5e804152a2bed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-account-320.png",
+      "status": "binary",
+      "sha256": "f7e26c7dc6264aaad66aef499da28bd3305a0ea18ded2e42c1d97e5bbcaa6ade"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-account-390.png",
+      "status": "binary",
+      "sha256": "2bbf0c980e78f6547be3732ab053fe1dedc93f7cfbe001be66fdb3458a0c7ad2"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-empty-1440.png",
+      "status": "binary",
+      "sha256": "e7db034641ee220470850062f9ff90d001aae620f2354faa043f12d8bd3389c1"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-empty-320.png",
+      "status": "binary",
+      "sha256": "d33ae464d787dde9cef70612ccfe2f182a291c826004bd510a0c5411f1bc689e"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-empty-390.png",
+      "status": "binary",
+      "sha256": "a931d15129b8ffe31a3ada6af246567a4fdf9e02124b8d472dd370c2f80f527b"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-focus-1440.png",
+      "status": "binary",
+      "sha256": "039d1fb664e4954c16dd499ad34d70ae296a8a99277db9ace59025696747ea10"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-focus-320.png",
+      "status": "binary",
+      "sha256": "06759b5fe27a0df0c3e34097a4538c82801291c6a1aa958c8b86c66effa1b2d8"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-focus-390.png",
+      "status": "binary",
+      "sha256": "b1a2c4e98901d9f90b275b3f1acf5a25238e3222f9399f031a0fa1bc2d158864"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/member-populated-1440.png",
+      "status": "binary",
+      "sha256": "ff7653da05cb5835cb12e7b8efa9bceabdf38533b7b30eb415ad36aac88cb20c"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/examples-390.png",
+      "status": "binary",
+      "sha256": "6b0d14a3751f5b4ac91cfb974385bf66a8912bb3014f49789c9b26fa0ec259b3"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/google-error-320.png",
+      "status": "binary",
+      "sha256": "2f16827fec7680a2ac4dc8675dd66f5bfc55956c80b65788a82e5a36deca6b4c"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/hero-1440.png",
+      "status": "binary",
+      "sha256": "111333705747bcdd29d0b304908649a5c660f090f70f5f9f076fd20ea74144f6"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/hero-320.png",
+      "status": "binary",
+      "sha256": "c9da5351350f09a18521edc1213dd20faa0f788409dc74c7e63993e939603f6a"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/hero-390.png",
+      "status": "binary",
+      "sha256": "91658718f06199d38f80a53a947d697be5e29b7f254f72cb354561f6b92e1e74"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/install-open-320.png",
+      "status": "binary",
+      "sha256": "886a62517601a0afdb1a05b53a699babb6063d29a62922f991a3b0d92030d646"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/member-account-1440.png",
+      "status": "binary",
+      "sha256": "ff5bafdc975f622f6a49ceb2efb6212ace686f85384d30cbe8edd808d64560a5"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/member-home-1440.png",
+      "status": "binary",
+      "sha256": "64dae4f99b8862ecde86fe05e2e4209bf6db758111fc6a94b639e383a68cf0a3"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/none-320.png",
+      "status": "binary",
+      "sha256": "72bdb4d12ab2e306a71ce3ff194bc0c91feeb5be0049979cd8fcefca40e7c98c"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/web-20261014-232426-595664/events.jsonl",
+      "status": "added",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/dev-fc4ad58b65471e2de298cb9f1aba5d2253ea8135-lint.log",
+      "status": "added",
+      "sha256": "2804c144ab48650df80f3fbcf62e25985d8ca341f588faac8c549710f3c13003"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/dev-fc4ad58b65471e2de298cb9f1aba5d2253ea8135-test.log",
+      "status": "added",
+      "sha256": "7825e0b1bf78cdde167edb3e20e23fa74320167b3ee5310a7433c2ff98da480b"
+    }
+  ]
+}
