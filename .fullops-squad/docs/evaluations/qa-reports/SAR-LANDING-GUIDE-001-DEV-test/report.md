@@ -1,13 +1,15 @@
 ---
 title: 공개 안내 DEV 검증과 격리 QA 인계
 status: draft
-updated: 2026-10-14
+updated: 2026-10-15
 owner: dev
 tasks: [SAR-LANDING-GUIDE-001-DEV]
 summary: 인증 상태·공개 정보·실제 제품 검사와 후속 독립 QA를 구분한다
 ---
 
 # 공개 안내 DEV 검증
+
+2026-10-15 같은 과제의 CSS 두 결함 수정은 [재개 검증](css-resume/report.md)에 기록했다. source `f2b8cb6`의 CTA 대비 7.958:1, 예시 간격 24px, Chrome 38개 검사와 Linux make lint/test 종료0을 확인했다. 아래 기록은 최초 구현의 실행·실패 이력이다. tester5149ac1의 실제 native keyboard/200% PASS를 재사용하므로 아래 당시 native 미검증을 현재 미완료로 해석하지 않는다.
 
 비교 기준은 eae9a8bffae706410f684e4c837e396e7b0bcf26, 착수 HEAD는 b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e다. 구현과 기술 판단은 [DEV phase](../../../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 있다. 이 보고는 DEV 자체 검사이며 독립 QA·직접 시각 수락·코드 리뷰·운영 배포를 대신하지 않는다.
 

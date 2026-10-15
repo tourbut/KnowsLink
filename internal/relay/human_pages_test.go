@@ -168,6 +168,11 @@ func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 		if strings.Contains(body, "<select") || strings.Contains(body, "<textarea") || !strings.Contains(body, "첫 에이전트를 추가하세요") {
 			t.Fatal(name, "empty account must lead to agent setup")
 		}
+		if dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR"); dir != "" {
+			if err := os.WriteFile(filepath.Join(dir, name+"-empty.html"), []byte(body), 0o644); err != nil {
+				t.Fatal(err)
+			}
+		}
 	}
 	v := humanPageFixture()
 	v["Agents"] = nil
