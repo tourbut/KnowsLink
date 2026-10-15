@@ -1,7 +1,7 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-14
+updated: 2026-10-15
 owner: dev
 tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-REPO-DOCS-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
@@ -24,6 +24,9 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 증거 구분: 로컬 Node/MCP 왕복, 실제 외부 계정·Bot 왕복, 독립 QA·직접 UI 수락은 서로 다른 증거다.
 
 ## 최근 결정
+
+- 2026-10-15 SAR-LANDING-GUIDE-001-DEV: 공용 목록 링크의 색상 규칙은 button variant를 제외한다. source f2b8cb6에서 회원 CTA 7.958:1·공개 예시 간격24px와 세 폭의 Chrome 검사를 확인했다. [재개 QA](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md).
+- 기존 native keyboard/200% 미검증 기록은 tester5149ac1의 실제 PASS로 해소됐다. 이번 CSS 검증은 그 원 실행을 재사용하며 새 SHA의 키보드/200% 실행으로 바꾸어 기록하지 않는다.
 
 - 2026-10-14 SAR-REFACTOR-002-DEV: 로컬 Inbox는 실패할 수 있는 housekeeping을 unread claim 전에 끝낸다. 만료 이력의 권한 순회를 생략해도 delivered 사본·24h metadata 계약은 유지한다. CPU-only 개선율과 실제 DB transaction 개선율은 별도 측정하며 [QA](../docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)에 실패한 실행도 보존한다.
 - 2026-10-13 SAR-REFACTOR-001-DEV: 실제 template·외부 host·동적 등록을 확인한 뒤 공통 agent 선택/연결 응답/text 검증/MCP 포장만 공유했다. 제품 12줄 감소이며 legacy·held/test·보안·UI 계약은 유지한다. exact cd4dae8 Linux gate 0을 [QA 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md)에 보존했다. 중단 뒤 재개는 원 작성자 세션과 현재 세션을 분리하고 제품 변경 없이 기록을 마무리한다.

@@ -1,13 +1,27 @@
 ---
 title: 공개 안내·로그인 진입 구현과 검증
 status: draft
-updated: 2026-10-14
+updated: 2026-10-15
 owner: dev
 tasks: [SAR-LANDING-GUIDE-001-DEV]
 summary: 공개 안내와 설정별 인증 복구를 구현하고 실제 제품 게이트 및 격리 브라우저를 인계한다
 ---
 
 # 공개 안내 구현
+
+## 2026-10-15 같은 attempt의 CSS 수정 재개 계획
+
+attempt `9a48a4180041493b93ddce9b5d1bf6f2`, 착수 HEAD `dc5ec35b2c0fa297ba91387b9794b0be8398872c`, 비교 base `fe2387a7676f7997aea76a2606f4cc2dbcd4b56b`를 유지한다. 설치 FullOps 1.4.4와 common 0.3.3, project.md, D04, 문서 규칙을 적용한다. 이번 task는 `task_467f434ae451`, dispatch는 `ctx_f637faf34eb1`이다.
+
+1. 보존된 CSS 두 줄을 확인한다. `.conversation-list a`의 일반 링크 색상이 `.primary`를 덮으므로 일반 링크 색상을 `a:not(.button)`으로 한정한다. button의 기존 canvas/accent 토큰과 44px, focus-visible은 유지한다.
+2. 공개 `.examples`의 다음 h3 앞 간격을 기존 D04 24px 토큰으로 확보한다. 카피, DOM, 인증, DB, adapter는 변경하지 않는다.
+3. 기존 member/human/landing 검사를 실행한다. 기존 empty recovery 검사에 선택형 HTML 출력을 연결하여 실제 빈 회원 CTA를 캡처한다. 새 문자열 일치 테스트는 만들지 않는다.
+4. source SHA를 커밋하고 승인된 Linux helper를 새 과제 전용 경로에서 재사용한다. 등록 make lint/test의 원 종료코드를 보존한다. 실제 Chrome에서 1440/390/320의 대비, 간격, 일반 링크, 공개 CTA, overflow, hover/focus를 측정한다.
+5. 원 tester 5149ac1의 native keyboard/200% PASS와 원 리뷰를 영향 밖 재사용으로 구분한다. 수정된 화면의 새 증거와 고정 SHA는 coor의 독립 tester/designer/리뷰 인계에 사용한다.
+
+두 CSS 변경은 단일 공유 문자열에 집중되어 선택형 하위 구현 위임은 사용하지 않는다. 독립 리뷰와 직접 시각 수락은 coor의 별도 세션 계약을 유지한다. 기존 4795 fixture와 모든 임시 자료를 보존한다.
+
+재개 구현 source는 `f2b8cb622dc397034423582978e77560e0355771`이다. 관련 Go 검사와 해당 SHA의 실제 Linux make lint/test는 종료0이다. Chrome 1440/390/320에서 38개 검사로 CTA 대비 7.958059850759797:1, 예시 경계 24px, 44px 이상 높이, 일반 링크와 overflow, focus-visible solid3px/offset2px를 확인했다. [재개 QA](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md)에 원 실패·환경·캡처·재현·보존 책임을 기록했다. 첫 FullOps lint는 미커밋 문서 때문에 exit2였고 제품 PASS로 쓰지 않는다. 최종 clean SHA gate는 기록 커밋 뒤 실행하여 외부 final-lint.json과 worker_done으로 연결한다.
 
 ## 기준과 기술 계획
 
