@@ -34,3 +34,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-15 SAR-UX-ISSUES-002-DESIGN: #2–#8을 사람 친구 규칙으로 대조했다. handle/초대 링크 대신 친구 코드, 조회 복구·검증된 승인 요약·언어 저장·설치 재개 기준을 확정했다.
   기존 D04 공개 규칙·제품 코드·타 역할 인박스는 보존했다. Grok/Dots 기존 계정 관측을 신규 설치 완료로 확대하지 않는다. Meta Muse/Hermes/OpenClaw는 지원 확인 필요다.
   [설계·순차 DEV/QA 인계](../docs/design-docs/SAR-UX-ISSUES-002.md), [검증 기록](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md). 구현·새 UI 수락·운영은 후속이다.
+
+- 2026-10-15 SAR-LANDING-GUIDE-001-VISUAL CSS 후속: source f2b8cb6/final fc4ad58의 PNG7 직접 검수로 V-LG-01/02는 resolved / 시각 PASS다. 원 실패·수치·PNG는 보존한다.
+  DEV38 checks·24px·7.958:1과 Linux gate 종료0은 동일성 확인 후 재사용이다. 새 native keyboard/200%·전체 제품 수락은 아니다.
+  [후속 보고](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md). 코드 리뷰·tester 취합·main 통합은 coor 책임이다.
