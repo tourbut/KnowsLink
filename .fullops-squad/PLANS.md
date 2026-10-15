@@ -11,6 +11,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 잔여 이슈 해결 재개 — 2026-10-15
 
+- 실제 DEV 착수 task_467f434ae451 / ctx_f637faf34eb1 / term_82991fdc-952a-4f39-afd2-96c3f900457b: ready·turn_started·requested/effective codex/gpt-6-astra/high 확인. 같은 attempt9a48, 최신 DEV 인박스와 route/packet이 정본이다.
+- 병렬 제품 기획 SAR-UX-ISSUES-002-DESIGN: 빈 designer 인박스·terminal0·clean 확인 후 coor/main 일반동기화, 현재 이슈 원문 snapshot과 제품원천 find/context/packet 준비. task_10967ef16387 / ctx_8e12c40a3310 / term_5a020443-8aa6-4a73-9814-8da5282bde54의 ready·turn_started·Astra high 일치 확인. 새 설계/own기록만 소유하며 DEV CSS/D04/다른role인박스는 수정하지 않는다.
+- DEV/visual 공용 hold는 사용자 중지 사유에서 후속 수정 QA·fixed리뷰 수락 대기로 갱신했다. 원 msg_0a44968602b5·msg_70ae21c0a708와 완료 SHA·실패 판정은 보존한다.
+
 - 사용자 "계속 이어서 이슈 해결하면서 진행해"로 UI 구현·검증을 재개한다. 이전 중지 이력은 보존하며 최신 재개 지시가 우선한다. 새 Run run_756d0278e72e/coor term_5bf18065-a830-4e45-aeba-ae852666b40e를 사용한다. 과거 세션은 닫혀 fresh codex/gpt-6-astra/high를 기존 사용자 지정으로 유지한다.
 - 첫 실행은 같은 SAR-LANDING-GUIDE-001-DEV attempt9a48의 대비 medium·간격 low 수정 마무리다. dev를 coor dc5ec35/main458eb56 포함으로 FF했고 미커밋 CSS/inbox/packet을 보존했다. 현행 인박스는 dev 절대경로의 명시적 미커밋 스냅샷이며 최신 재개 절과 고정 route/packet을 연결한다. 기존 원 실패·QA·코드리뷰를 유지하고 수정 후보의 독립 검수/고정 리뷰 후 main에 통합한다.
 - 후속 대기: #2 이름/공유handle 남은 범위, #4 사람 친구 아래 agent 연결 기준에 맞춘 초대 요구 정리 → #8 호스트별 설치/등록/친구 연결 온보딩 → #6 조회 입력·오류 복구 → #5 승인 요약/#7 보조화면 접근성 → #3 언어 설정. 제품 기준 미정은 designer, 확정 기능 구현은 dev에 배정한다. 현재 완료되지 않은 기능을 이슈 완료로 표시하지 않는다. 실제 지원/미검증 호스트를 구분한다.
