@@ -85,3 +85,8 @@ Orca의 inherited 배율은 DPR 기준 약1.095445다. CSS1440 캡처에서는 d
 공유 fixture와 forward를 유지했다. 유지·종료 책임은 coor/tester다. `POST /fixture/stop`, 프로세스 종료, DB stop, 파일 삭제·이동을 실행하지 않았다. 모든 캡처·실패·탐색 원본은 보존한다. 최종 기록 SHA와 완료 인계는 [phase](../../../exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md)와 worker_done에 연결한다.
 
 문서 검증은 [validation.json](validation.json)에 있다. 공식 packet 완료63쌍, deliverables strict13종 문제0/경고0, 변경 서술 문서의 로컬 링크와 `git diff --check`를 확인했다. 이 기록 검사는 시각/접근성 기준 FAIL을 없애지 않는다.
+
+
+## CSS 수정 후속 — 2026-10-15
+
+원 V-LG-01/02의 당시 실패와 원 PNG는 위 본문 그대로 보존한다. source `f2b8cb622dc397034423582978e77560e0355771` / DEV final `fc4ad58b65471e2de298cb9f1aba5d2253ea8135`의 PNG 7장을 새 designer 세션에서 직접 열었다. 두 항목은 수정 후보에서 resolved / 시각 PASS다. [후속 상세 보고](css-followup/report.md)는 실제 읽힘·구획 분리와 DEV 계산치 24px·7.958:1을 구분하고 source/PNG 동일성, 캡처 한계, 기존 tester native keyboard/200% 근거, 미검사 범위를 기록한다. 완성 제품 수락과 main 통합은 coor가 독립 코드 리뷰·tester 결과와 취합한다.

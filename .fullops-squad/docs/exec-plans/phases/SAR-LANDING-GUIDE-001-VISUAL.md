@@ -1,7 +1,7 @@
 ---
 title: 공개 안내 고정 후보의 직접 시각 검수 기록
 status: review
-updated: 2026-10-14
+updated: 2026-10-15
 owner: designer
 tasks: [SAR-LANDING-GUIDE-001-VISUAL]
 summary: 직접 시각 검수의 원천 갱신·고정 후보·실패 및 인계 기록
@@ -40,3 +40,12 @@ context의 landing_pages.go 충돌 표시는 구체 문장이 없었다. 확정 
 coor에게 `msg_1fa4d797e29b`와 ask로 회원 대표 캡처를 요청했다. 회신으로 tester의 같은4795 home/account1440 PNG와 manifest를 받아 직접 열고 own QA에 hash 검증 사본을 보존했다. designer는 GET-only 범위에서 인증을 추가하지 않았다. 총35장을 직접 열었으며 DEV 타일 실패1장은 제외했다. 회원 빈 대화 CTA의 어두운 글자를 발견해 `msg_62895b994e86`으로 알렸고 tester computed 대비1.846967:1을 연결했다. 공개 변경 전후 memberStyle은 동일하므로 기존 문제이며 새로운 공개 CSS 회귀는 아니다. 대비 FAIL을 해소하는 후속은 DEV다. V-LG-01도 기존 간격 토큰으로 개선할 수 있다. 별도 제품 수정·설치·배포·실계정·메시지·삭제·이동은 없다.
 
 완료 전문은 정규 designer 인박스에 기록하고 `work.py finish`로 날짜별 로그에 보존한다. 고정 기록 SHA·판정·후속·보고 링크는 실제 worker_done으로 정확히 한 번 보낸다. coor가 독립 결과 검토·main 통합과 전체 수락을 관리한다.
+
+
+## CSS 수정 후속 완료 — 2026-10-15
+
+착수 HEAD `642317e9325368b264cc5b37af494e46e7ecd1cc`, base/DEV final `fc4ad58b65471e2de298cb9f1aba5d2253ea8135`, source `f2b8cb622dc397034423582978e77560e0355771`을 확인했다. [후속 보고](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md)에서 PNG 7장을 직접 판정해 V-LG-01/02를 해당 source의 resolved / 시각 PASS로 기록했다. 원 실패 본문·PNG, UX 설계11ea298과 D04는 보존했다.
+
+실행 선택은 codex/gpt-6-astra/high, frontend-design, Test lite/Subagent standard다. frontend 준비는 configuration_ready이며 인증/브라우저/MCP 확인과 구분한다. 추가 브라우저·하위 worker·전체 QA는 필요하지 않아 실행하지 않았다. source3/PNG7/HTML4 hash와 제품 경로 동일성이 일치한다. DEV38 checks 및 exact final Linux make lint/test 종료0은 재사용이고 신규 실행이 아니다. 최종 현재HEAD FullOps lint 원 status와 Windows make 한계는 외부 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/landing-guide001-css-visual/final-lint.json` 및 완료 영수증에 남긴다.
+
+coor `msg_06dc0876551a`가 제공한 same-key route/packet/prior/history의 원본 보존 커밋을 허용했다. own outcomes를 갱신하고 이전 outcomes를 css-followup에 복사 보존했다. 제품·설계·다른 역할·PLANS/board는 수정하지 않았다. 인박스 완료 전문은 work.py finish로 날짜별 로그에 보존한다. 복귀 Run `run_756d0278e72e`, Task `task_bb7915a906c1`, Dispatch `ctx_6163574d8518`로 고정 SHA와 보고를 보낸다. 독립 코드 리뷰·tester 취합·전체 수락·main 통합은 coor 후속이다.
