@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 사용자 작업 중지 — 2026-10-15
 
+- SAR-UX-ISSUES-002-RECEIPT-TESTER: 보류. 사용자 작업 중지 지시로 dispatch하지 않는다. 담당 coor/tester. 준비된 tester 인박스와 route를 보존한다. 사용자 명시 재개, 승인 모델 실행 가능 확인, DEV 최종 고정 SHA·gate·fixture 연결 및 현재 packet 갱신 후 배정한다.
+
 사용자가 모델 선택 질문에 '작업 중지'라고 답했다. 개발·설계·QA·리뷰·통합·배포의 새 실행을 중지한다. 재개 조건은 사용자의 명시적 재개 지시와 실행 가능한 승인 모델 확인이다. Sol high 변경 승인은 보존하되 현재 CLI의 미지원 오류도 유지한다.
 
 DEV ctx_e6da4e6135b3의 worker-stop은 user_owned terminal 때문에 stop_unknown을 반환했다. 해당 작업 터미널 term_106ecb42-0246-47cd-9a3a-aade8ea1fbbf에 정식 terminal send --interrupt만 실행했고 accepted bytesWritten1, 실제 Conversation interrupted 및 activity done을 확인했다. 터미널을 강제로 닫거나 다른 프로세스를 종료하지 않았다. 실제 DEV HEAD는 9ae29ec4ddfcfacb59ed48871a14bb558342c26e, 제품 source1e49033이다. 작업 트리는 clean이며 최종 완료 보고·worker_done·최종 gate 수락은 아직 없다. QA 인박스는 준비 상태로 보존한다.
