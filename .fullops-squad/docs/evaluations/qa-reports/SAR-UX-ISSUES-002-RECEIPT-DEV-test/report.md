@@ -66,3 +66,5 @@ Context7 Go resolve는 monthly quota exceeded, web 도구는 token_expired여서
 제공된 same-key route/find/context/packet/history 원본을 커밋했다. [source-audit](source-audit.json)는 패킷 비선택 후보와 unknown/잔여 경로의 hash·관련절 검색 근거다. 큰 D04는 현행 토큰·접근성·U6 연결을 직접 읽었다. 과거 인박스·리뷰·OPS 기록을 현재 실행 지시나 이번 PASS로 사용하지 않았다. 패킷에 빠진 실제 영향 경로 capacity.go/member.go/google.go/identity.go와 새 테스트를 직접 확인했다. 기술 계획은 완료 보고 안에 보존하여 최초 지시 identity를 유지한다. packet outcomes와 work.py finish로 원 인박스와 결과 전문을 보존한다.
 
 자료 보존 루트는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/receipt-ux002-dev/`다. 기존 파일 삭제·이동, 운영 변경·배포·실계정·실메일·상대 발송·GitHub·PLANS·board 변경은 하지 않았다.
+
+검증 로그 보존: 첫 SQL 실패 출력의 공백만 있는 줄이 git diff --check에 걸렸다. 표시용 .log의 줄 끝 공백만 정리했다. 원 출력 전체와 SHA256은 initial-integration-raw.json 및 private 원로그에 그대로 보존했다. 테스트의 실패·종료코드는 바꾸지 않았다. 산출물 strict 검사는13종·문제0·경고0이었다.
