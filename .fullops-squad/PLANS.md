@@ -11,6 +11,9 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
 
+- 세션 설계 진행 보류: ctx_3854aa446731이 문서·검증 초안 작성 후 Astra의 ChatGPT 인증 미지원400을 표시했다. 원 오류를 private session-peer-001-coor/designer-model-error.json에 보존하고 정상 stop했다. 같은 Task143fa7a8db67의 fresh 동일 tuple retry ctx_9e255219386e도 ready 뒤 같은 오류로 중단됐다. 두번째 오류도 별도 보존·정상 stop. 제품 초안은 designer WIP 및 private tar/manifest로 보존한다. 담당 coor, 재개 조건은 사용자 모델 선택 응답 또는 Astra 지원 복구다. 모델을 임의로 바꾸거나 완료/worker_done을 만들지 않는다. 조회 DEV의 기존 작업은 계속한다.
+- DEV browser 명령 거부 msg_86ac8f6f320b: 자동 승인 검토가 추가 Python http.server/headless Chrome 묶음 기동을 blocked by policy로 거부했고 상세 사유는 없었다. 원 거부/미실행을 보존하며 명령 변형 우회는 하지 않는다. Go/격리 DB/전체 gate·fixture 준비는 계속하고 독립 tester가 기본 Orca 웹 엔진으로 실제 QA를 맡는다. 제품 브라우저 수락 기준은 유지한다. reply msg_8a42617af54d로 담당·범위를 전달하고 원 delivery ACK했다.
+
 - 후속 배정 순서는 진행 중 조회 복구의 독립 수락·main 통합 → 세션 친구 통신 DEV → 나머지 UI 이슈로 정리했다. 최신 세션 기능 요청을 우선하며 기존 이름/친구·승인 요약·설치 재개·언어 작업을 취소하지 않는다. 조회 TESTER 인박스는 준비 상태이며 실제 DEV 고정 SHA/fixture를 연결하기 전 dispatch하지 않는다. route+work를 같은 명령에 담은 최초 준비는 사전 route 미존재로 hook이 차단했다. route 생성 후 별도 work new로 정상 준비했고 우회/제품 변경은 없다.
 - Codex0.162.1의 추가 local help는 기존 세션 대상 queue --thread/--message, shared daemon agents, remote TUI, no-daemon 옵션을 명시한다. 실행·다른 세션 열람·주입은 하지 않았다. 이것은 기존 세션 수신의 검증 후보이지 실제 왕복 수락이 아니다. msg_c46c41630c78로 designer에게 원관측과 권한/수신 미확인을 전달했다.
 - Hermes 후속 설치 소스 tools/mcp_tool_health.py:73–89는 logging_callback이 notifications/message를 agent.log에 기록한다고 명시한다. 현재 adapter logging 알림과의 조합을 모델 깨우기로 수락하지 않는다. msg_52d98d6e99d7로 근거를 전달했다. 직접 웹 도구의 추가 조회는 token_expired401, root 공식 페이지 GET 한 번은403이었고 성공으로 보고하지 않는다. designer는 자기 공식 HTTP 조회 원본과 실패를 별도 보존한다.
