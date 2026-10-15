@@ -1,0 +1,94 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D02",
+    "D11",
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.01,
+        "product": 0.99
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.92,
+        "ops": 0.03,
+        "tester": 0.05
+      },
+      "confidence": 0.88
+    },
+    "docs": {
+      "D01": 0.68,
+      "D02": 0.9,
+      "D03": 0.77,
+      "D04": 0.86,
+      "D05": 0.77,
+      "D06": 0.82,
+      "D07": 0.61,
+      "D08": 0.44,
+      "D09": 0.76,
+      "D10": 0.77,
+      "D11": 0.87,
+      "D12": 0.74,
+      "D13": 0.8
+    }
+  },
+  "usage": {
+    "input_tokens": 2491,
+    "output_tokens": 314,
+    "cost": 0.000104622
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D03",
+    "D05",
+    "D06",
+    "D07",
+    "D09",
+    "D10",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.687,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "designer",
+  "original_route": "product",
+  "override_reason": "공유handle·언어 fallback·온보딩 지원상태 등 남은 제품 기준과 옛 에이전트관계 요구를 현재 사람친구 합의에 맞춰 확정하는 기획.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
+  "head": "76ec89fe66cbeea5c2ffb33ff07015fd722029b3",
+  "requires_packet": true,
+  "attempt": "26cae9cae81545bb80335c23c68afada",
+  "instruction_sha256": "a88fb36718337f220adbc16d72a5939fb1f0faad8e10ca10ccc75a2459cb9422",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "13b39880c37dade09540f931437281d445994d57f1a640267a8efef994479dcc"
+}
