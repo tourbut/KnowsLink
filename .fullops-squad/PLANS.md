@@ -11,6 +11,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
 
+- 사용자 모델 응답: 'GPT Sol high로 변경해 계속 진행'을 받았다. 현재 정상 동작 중인 DEV Astra는 유지하고 중단 설계와 후속 신규 배정은 Sol high로 변경했다. 원 인박스/route/history를 보존해 최신 지시와 codex/gpt-6.1-sol/high를 재연결했다. 같은 Task의 retry ctx_336b480870c3도 ready 뒤 ChatGPT 인증 미지원400으로 실패했고 정상 stop·private designer-sol-model-error.json 보존했다. 실제 제품 완료로 보고하지 않는다. 최신 CLI 캐시(14:28:18Z)는 gpt-6-luna/gpt-5.6-terra/gpt-5.6-luna를 표시하며 high를 지원한다. 이 모델로 바꿀지 또는 CLI 권한 복구 대기할지 사용자 선택을 요청했다. 담당 coor, 선택 응답/지정 모델의 실제 실행 가능 확인 후 재개한다.
+
 - 세션 설계 진행 보류: ctx_3854aa446731이 문서·검증 초안 작성 후 Astra의 ChatGPT 인증 미지원400을 표시했다. 원 오류를 private session-peer-001-coor/designer-model-error.json에 보존하고 정상 stop했다. 같은 Task143fa7a8db67의 fresh 동일 tuple retry ctx_9e255219386e도 ready 뒤 같은 오류로 중단됐다. 두번째 오류도 별도 보존·정상 stop. 제품 초안은 designer WIP 및 private tar/manifest로 보존한다. 담당 coor, 재개 조건은 사용자 모델 선택 응답 또는 Astra 지원 복구다. 모델을 임의로 바꾸거나 완료/worker_done을 만들지 않는다. 조회 DEV의 기존 작업은 계속한다.
 - DEV browser 명령 거부 msg_86ac8f6f320b: 자동 승인 검토가 추가 Python http.server/headless Chrome 묶음 기동을 blocked by policy로 거부했고 상세 사유는 없었다. 원 거부/미실행을 보존하며 명령 변형 우회는 하지 않는다. Go/격리 DB/전체 gate·fixture 준비는 계속하고 독립 tester가 기본 Orca 웹 엔진으로 실제 QA를 맡는다. 제품 브라우저 수락 기준은 유지한다. reply msg_8a42617af54d로 담당·범위를 전달하고 원 delivery ACK했다.
 
