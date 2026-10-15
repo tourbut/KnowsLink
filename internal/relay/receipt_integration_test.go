@@ -100,12 +100,12 @@ func TestReceiptRecoveryHTTP(t *testing.T) {
 	if strings.Contains(a.do("GET", "/home/receipts", nil).Body.String(), firstID) {
 		t.Fatal("other account restored draft")
 	}
+	// Receipt retention is still 24 hours; it has the same refusal as an unknown ID.
+	s.mutateState(t, func(st *State) { st.Messages[firstID].Receipt.Accepted = time.Now().Add(-24 * time.Hour) })
+	expect(t, b.do("GET", "/home/receipts?agent=agent_b&id="+firstID, nil), 403, receiptUnavailable)
 	expect(t, a.do("POST", "/auth/logout", nil), 303)
 	if a.cookies[receiptCookie] != "" {
 		t.Fatal("logout retained draft")
 	}
 	expect(t, a.do("GET", path, nil), 303)
-	// Receipt retention is still 24 hours; it has the same refusal as an unknown ID.
-	s.mutateState(t, func(st *State) { st.Messages[firstID].Receipt.Accepted = time.Now().Add(-24 * time.Hour) })
-	expect(t, b.do("GET", "/home/receipts?agent=agent_b&id="+firstID, nil), 403, receiptUnavailable)
 }
