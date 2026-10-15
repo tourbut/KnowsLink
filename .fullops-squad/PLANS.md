@@ -9,6 +9,11 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## Detached 리뷰 공간 정리 완료 — 2026-10-15
+
+- 사용자 요청으로 리뷰 사본3개를 coordinator가 Orca rm(no force/archive hooks)으로 제거했다. 실제 절대경로/workspace 내부·clean/ignored0·terminal0·관련 process0·원격coor SHA 보존을 확인했다. 비동기 receipt 뒤 실제 경로 부재와 Git/Orca detached0·나머지7개 유지, 정본 증거24개 hash 동일을 확인했다.
+- FullOps 사본2개는 main/origin 조상이다. UI 사본1개의 fe2387a는 origin/fullops/coor 및 역할 브랜치에 보존돼 있다. UI main 통합·배포·중지 hold를 변경하지 않았다. 현재 dev 미커밋 CSS/inbox/packet과 합성 검증자료는 정리하지 않았다. host reviewer의 Orca dispatch가 없어 자동 cleanup/historical PASS는 주장하지 않는다. 근거: docs/evaluations/qa-reports/FULLOPS-DETACHED-CLEANUP-2026-10-15/{preflight,completion}.json.
+
 ## FullOps 1.4.4 완료·세션 종료 인계
 
 - 독립 리뷰12/0·C/H0·check0 후 업데이트3f78013/기록235a8d4를 main/origin에 일반 push/fetch·조상0으로 확인했다. UI fe2387a는 main의 조상이 아니며 제품 입력은 이전 main과 같다. 설치/레포1.4.4, 실제 새hook executed·status0. 상세 최종 절은 FULLOPS-UPDATE-1.4.4 단계 문서다.
