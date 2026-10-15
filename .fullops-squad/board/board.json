@@ -203,13 +203,13 @@
     },
     {
       "name": "첫페이지 서비스·설치·사용 안내",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D02",
         "D04",
         "D11"
       ],
-      "note": "CSS 수정·Linux gate·고정 코드리뷰 완료. 독립44검사·시각 최종기록 후 main 통합."
+      "note": "CSS 결함 해소·독립 QA/시각/고정리뷰·main7551ed9 push 완료. 운영배포 별도."
     },
     {
       "name": "FullOps 1.4.4 업데이트",
@@ -227,7 +227,13 @@
       "name": "잔여 UI/UX 이슈 #2–#8 해결",
       "status": "active",
       "deliverables": [],
-      "note": "기획11ea298 완료·독립 설계 리뷰 중. 수락 뒤 조회 입력 복구부터 순차 구현."
+      "note": "기획·독립리뷰 main 통합. 조회 입력 복구부터 구현, Meta 제외·OpenClaw 보류·Hermes 확인."
+    },
+    {
+      "name": "Claude·Codex 작업 세션 간 친구 통신",
+      "status": "todo",
+      "deliverables": [],
+      "note": "사용자 신규 요청. 현재 작업 세션 간 송수신·수명·알림과 기존 peer 권한을 설계·검증."
     }
   ]
 }

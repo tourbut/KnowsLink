@@ -1,0 +1,85 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-RECEIPT-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D09",
+    "D05"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.8,
+        "product": 0.2
+      },
+      "confidence": 0.6
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.43,
+      "D02": 0.69,
+      "D03": 0.79,
+      "D04": 0.78,
+      "D05": 0.8,
+      "D06": 0.73,
+      "D07": 0.69,
+      "D08": 0.72,
+      "D09": 0.81,
+      "D10": 0.89,
+      "D11": 0.76,
+      "D12": 0.72,
+      "D13": 0.73
+    }
+  },
+  "usage": {
+    "input_tokens": 2481,
+    "output_tokens": 314,
+    "cost": 0.000104202
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D02",
+    "D03",
+    "D04",
+    "D06",
+    "D07",
+    "D08",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.451,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "확정 U6 제품요구 구현, coor 정본 route와DEV같은과제에연결.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "45e4a634bee6809eed9cb53924b4f5cd9fefcbd9835e172bad08b5a723be0e84",
+  "head": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "requires_packet": true
+}
