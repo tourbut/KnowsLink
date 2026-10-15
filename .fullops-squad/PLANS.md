@@ -9,6 +9,13 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 잔여 이슈 해결 재개 — 2026-10-15
+
+- 사용자 "계속 이어서 이슈 해결하면서 진행해"로 UI 구현·검증을 재개한다. 이전 중지 이력은 보존하며 최신 재개 지시가 우선한다. 새 Run run_756d0278e72e/coor term_5bf18065-a830-4e45-aeba-ae852666b40e를 사용한다. 과거 세션은 닫혀 fresh codex/gpt-6-astra/high를 기존 사용자 지정으로 유지한다.
+- 첫 실행은 같은 SAR-LANDING-GUIDE-001-DEV attempt9a48의 대비 medium·간격 low 수정 마무리다. dev를 coor dc5ec35/main458eb56 포함으로 FF했고 미커밋 CSS/inbox/packet을 보존했다. 현행 인박스는 dev 절대경로의 명시적 미커밋 스냅샷이며 최신 재개 절과 고정 route/packet을 연결한다. 기존 원 실패·QA·코드리뷰를 유지하고 수정 후보의 독립 검수/고정 리뷰 후 main에 통합한다.
+- 후속 대기: #2 이름/공유handle 남은 범위, #4 사람 친구 아래 agent 연결 기준에 맞춘 초대 요구 정리 → #8 호스트별 설치/등록/친구 연결 온보딩 → #6 조회 입력·오류 복구 → #5 승인 요약/#7 보조화면 접근성 → #3 언어 설정. 제품 기준 미정은 designer, 확정 기능 구현은 dev에 배정한다. 현재 완료되지 않은 기능을 이슈 완료로 표시하지 않는다. 실제 지원/미검증 호스트를 구분한다.
+- 이번 재개는 개발·검증·리뷰·main통합 범위다. 실계정/실메일·상대 메시지 발송 및 운영 배포는 DEV/QA에서 실행하지 않는다. 기존 tester5149ac1·designerad5ee19는 원 증거이며 새 수정 영향 수락과 구분한다.
+
 ## Detached 리뷰 공간 정리 완료 — 2026-10-15
 
 - 사용자 요청으로 리뷰 사본3개를 coordinator가 Orca rm(no force/archive hooks)으로 제거했다. 실제 절대경로/workspace 내부·clean/ignored0·terminal0·관련 process0·원격coor SHA 보존을 확인했다. 비동기 receipt 뒤 실제 경로 부재와 Git/Orca detached0·나머지7개 유지, 정본 증거24개 hash 동일을 확인했다.
