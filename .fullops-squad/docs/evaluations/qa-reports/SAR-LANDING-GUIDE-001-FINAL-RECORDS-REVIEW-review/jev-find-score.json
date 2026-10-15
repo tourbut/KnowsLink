@@ -1,0 +1,36 @@
+{
+  "task_key": "SAR-LANDING-GUIDE-001-TESTER",
+  "find_head": "297e6d3679f6d866171a35775b615685221ffd47",
+  "base": "a3d85ba85f00b9f5d65829aca4195d111e8fd906",
+  "head": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [],
+  "new_files": [],
+  "candidates": [
+    "README.md",
+    "adapters/src/login.test.ts",
+    "cmd/migrate/main.go",
+    "deploy/knowslink/verify.py",
+    "docs/README.md",
+    "docs/development.md",
+    "docs/system-design.md",
+    "internal/relay/landing_fixture_test.go",
+    "internal/relay/landing_integration_test.go",
+    "internal/relay/landing_pages.go",
+    "internal/relay/landing_test.go"
+  ],
+  "hits": [],
+  "recall": null,
+  "precision": 0.0,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

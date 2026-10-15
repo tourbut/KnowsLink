@@ -1,0 +1,44 @@
+{
+  "task_key": "SAR-LANDING-GUIDE-001-TESTER",
+  "find_head": "297e6d3679f6d866171a35775b615685221ffd47",
+  "base": "a3d85ba85f00b9f5d65829aca4195d111e8fd906",
+  "head": "e939cfbb1939adb4126ad379317c26ec39b692b3",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/contexts/designer.md",
+    ".fullops-squad/contexts/tester.md",
+    ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+    ".fullops-squad/handovers/to_tester.md"
+  ],
+  "new_files": [],
+  "candidates": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+    ".fullops-squad/docs/operations/user-guide.md",
+    ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+    ".fullops-squad/handovers/to_tester.md"
+  ],
+  "hits": [
+    ".fullops-squad/handovers/to_tester.md"
+  ],
+  "recall": 0.25,
+  "precision": 0.083,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
