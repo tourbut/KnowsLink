@@ -1,10 +1,10 @@
 ---
 title: tester 컨텍스트
 status: draft
-updated: 2026-10-14
+updated: 2026-10-15
 owner: tester
-tasks: [SAR-REFACTOR-002-TESTER]
-summary: 독립 QA의 SHA·종료코드·재사용 경계와 최근 리팩터링 교훈을 보존한다
+tasks: [SAR-REFACTOR-002-TESTER, SAR-LANDING-GUIDE-001-TESTER]
+summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사용 경계를 기록한다
 ---
 
 # tester 컨텍스트
@@ -28,3 +28,9 @@ summary: 독립 QA의 SHA·종료코드·재사용 경계와 최근 리팩터링
 - 2026-10-13 SAR-REFACTOR-001-TESTER: exact cd4dae8의 Linux race8개·MCP/owner-text·독립 text15개 exit0. [보고](../docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md). 제품 변경0, 실계정·운영·SQL 이행은 미실행이다.
 - 2026-10-14 SAR-REFACTOR-002-TESTER: exact bcb1dd66 Linux race16개·새 Go 경계10개·Inbox 오류 matrix·합성 DB race4개 exit0. 제품 변경0, 새 C/H 발견0. [보고](../docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md).
 - ACK completion received는 TTL 뒤에도 유지한다. 첫 잘못된 기대값/native1을 보존하고 기존 계약으로 바로잡았다. sweep CPU 이득은 DB/HTTP 처리량이 아니다. 단일 구독 claim 증가와 local claim crash window는 남는다.
+
+- 2026-10-14 SAR-LANDING-GUIDE-001-TESTER: fixture4795/구현fe2387a의 독립 HTTP34·브라우저22·assert7·native키보드·실제Chrome200%를 확인했다. [보고](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md). 기존 회원 CTA 대비1.846967은medium 실패이며 DEV 후속이다.
+- Chrome settings의 Page zoom과 DPR2/CSS zoom1/visualViewport.scale1을 함께 확인한다. viewport/pinch/CSS 확대를 실제 browser200%로 바꾸지 않는다. memberStyle 동일성과 member_pages.go 파일 전체 동일성은 별개다.
+
+- 2026-10-15 SAR-LANDING-GUIDE-001-TESTER 후속: CSS수정 f2b8cb6의 독립Chrome44·source18·예시간격 실제200% PASS. 원대비FAIL/원5149증거는 보존하고 V-LG-01/02의 수정후 해소만 판정했다. [보고](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md).
+- same-source Linux fc4 gate재사용과 현재QA HEAD Windows make unavailable을 구분한다. fixture HTML hash와 source style동일성은 인증·DB 성공을 뜻하지 않는다.

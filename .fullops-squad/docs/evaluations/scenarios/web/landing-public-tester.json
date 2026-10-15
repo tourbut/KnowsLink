@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:18782/",
+  "goal": "Read the public introduction, steps, installation summaries, fictional examples and login section. Do not log in or follow external links.",
+  "covers": ["LG-01 public structure", "LG-03 order", "LG-04 install summaries", "LG-05 fictional examples", "LG-06 delivery limits", "LG-07 both providers"],
+  "safety": {"fixture": "landing001-4795-synthetic", "allowed_origins": ["http://127.0.0.1:18782"], "allowed_operations": [], "requests": []},
+  "checks": [
+    {"js": "['main','how','install','examples','start'].every(id=>!!document.getElementById(id))", "equals": true},
+    {"js": "document.querySelectorAll('h1').length===1 && document.documentElement.lang==='ko'", "equals": true},
+    {"js": "document.querySelectorAll('details').length===2 && [...document.querySelectorAll('details')].every(e=>!e.open)", "equals": true},
+    {"text": "기능을 설명하기 위한 가상 예시입니다."},
+    {"text": "최대 180초"},
+    {"text": "최대 24시간"},
+    {"js": "document.querySelectorAll('#start form').length===2 && document.querySelectorAll('form').length===2", "equals": true}
+  ],
+  "max_steps": 1,
+  "max_seconds": 120,
+  "exploration": false
+}
