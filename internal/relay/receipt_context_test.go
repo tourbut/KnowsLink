@@ -49,8 +49,8 @@ func TestReceiptDraftIsolationAndBounds(t *testing.T) {
 		{"edit", "member-a", "/home/receipts?agent=agent_a2&id=" + secondID, "agent_a2", secondID},
 		{"back", "member-a", "/home/receipts?agent=agent_a&id=" + firstID, "agent_a", firstID},
 		{"foreign-agent", "member-a", "/home/receipts?agent=agent_b&id=" + firstID, "", ""},
-		{"oversized", "member-a", "/home/receipts?agent=agent_a&id=" + strings.Repeat("x", 129), "", ""},
-		{"control", "member-a", "/home/receipts?agent=agent_a&id=%0A", "", ""},
+		{"oversized", "member-a", "/home/receipts?agent=agent_a&id=" + strings.Repeat("x", 129), "agent_a", ""},
+		{"control", "member-a", "/home/receipts?agent=agent_a&id=%0A", "agent_a", ""},
 	} {
 		t.Run(c.name, func(t *testing.T) {
 			r.URL, _ = url.Parse(c.path)
@@ -73,6 +73,28 @@ func TestReceiptDraftIsolationAndBounds(t *testing.T) {
 	r.AddCookie(&http.Cookie{Name: receiptCookie, Value: strings.Repeat("x", 1025)})
 	if got := readReceiptDraft(r, now); got.Member != "" {
 		t.Fatal("oversized cookie restored")
+	}
+}
+
+func TestReceiptSelectorDistinguishesCollidingNames(t *testing.T) {
+	st, now := receiptFixture()
+	ids := []string{"agent_collision_5591", "agent_collision_11122"}
+	if shortID(ids[0]) != shortID(ids[1]) {
+		t.Fatal("fixture must collide")
+	}
+	for _, id := range ids {
+		st.Agents[id] = &Agent{Owner: "owner-a", Name: "같은 이름", Client: "같은 종류"}
+	}
+	v, _ := st.receiptView("member-a", httptest.NewRequest("GET", "/home/receipts", nil), now)
+	seen := map[string]bool{}
+	for _, a := range v["Own"].([]humanAgent) {
+		if seen[a.Short] {
+			t.Fatal("ambiguous stable discriminator")
+		}
+		seen[a.Short] = true
+	}
+	if !seen[ids[0]] || !seen[ids[1]] {
+		t.Fatal("collision did not expand to full IDs")
 	}
 }
 

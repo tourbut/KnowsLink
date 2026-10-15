@@ -98,7 +98,7 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 <p>보낸 요청이나 답장의 ID로 전달 상태를 확인합니다. 현재 온라인 상태를 확인하는 기능은 아닙니다.</p>
 {{if .Problem}}<p class="problem" role="alert" id="receipt-problem" tabindex="-1"{{if eq .Focus "receipt-problem"}} autofocus{{end}}>{{.Problem}} <a href="#{{if eq .Focus "receipt-agent"}}receipt-agent{{else}}receipt-id{{end}}">조회 입력으로 이동</a></p>{{end}}
 <section aria-label="조회 입력"><form id="receipt-form" method="get" action="/home/receipts" autocomplete="off">
-<label for="receipt-agent">내 에이전트</label><select id="receipt-agent" name="agent" required{{if eq .Focus "receipt-agent"}} autofocus aria-invalid="true"{{end}}{{if .Problem}} aria-describedby="receipt-problem"{{end}}>
+<label for="receipt-agent">내 에이전트</label><select id="receipt-agent" name="agent" required{{if eq .Focus "receipt-agent"}} autofocus{{if .Problem}} aria-invalid="true"{{end}}{{end}}{{if .Problem}} aria-describedby="receipt-problem"{{end}}>
 <option value=""{{if not .Agent}} selected{{end}}>내 에이전트를 선택하세요</option>{{range .Own}}<option value="{{.ID}}"{{if eq .ID $.Agent}} selected{{end}}{{if eq .Status "철회"}} disabled{{end}}>{{template "human-agent-label" .}}{{if eq .Status "철회"}} / 철회{{end}}</option>{{end}}</select>
 <label for="receipt-id">요청 ID 또는 답장 ID</label><input id="receipt-id" name="id" value="{{.ID}}" required maxlength="128" spellcheck="false" aria-describedby="receipt-help{{if .Problem}} receipt-problem{{end}}"{{if eq .Focus "receipt-id"}} autofocus{{if .Problem}} aria-invalid="true"{{end}}{{end}}>
 <p id="receipt-help" class="muted">받은 요청 ID 또는 답장 ID를 붙여 넣으세요. 이 조회는 메시지를 보내지 않습니다.</p>

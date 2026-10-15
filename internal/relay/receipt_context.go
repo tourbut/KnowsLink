@@ -72,9 +72,16 @@ func (st *State) receiptView(member string, r *http.Request, now time.Time) (map
 		d.Agent, d.ID = q.Get("agent"), q.Get("id")
 	}
 	v := map[string]any{"Title": "요청 상태 조회", "Member": member, "Status": 200, "Focus": "receipt-id"}
-	if !safeReceiptInput(d.Agent) || !safeReceiptInput(d.ID) {
+	if !safeReceiptInput(d.Agent) {
 		d.Agent, d.ID = "", ""
+		v["Status"], v["Problem"] = 422, "입력이 너무 길거나 허용되지 않는 문자가 있습니다. 내 에이전트를 다시 선택하세요."
+	}
+	if !safeReceiptInput(d.ID) {
+		d.ID = ""
 		v["Status"], v["Problem"] = 422, "입력이 너무 길거나 허용되지 않는 문자가 있습니다. 요청 ID를 다시 입력하세요."
+	}
+	if d.Agent == "" {
+		v["Focus"] = "receipt-agent"
 	}
 	owner := st.Members[member].Owner
 	a := st.Agents[d.Agent]
