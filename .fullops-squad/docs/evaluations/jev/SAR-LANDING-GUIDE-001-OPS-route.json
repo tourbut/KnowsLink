@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-LANDING-GUIDE-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.02,
+        "ops": 0.98,
+        "tester": 0
+      },
+      "confidence": 0.97
+    },
+    "docs": {
+      "D01": 0.22,
+      "D02": 0.14,
+      "D03": 0.17,
+      "D04": 0.14,
+      "D05": 0.15,
+      "D06": 0.18,
+      "D07": 0.17,
+      "D08": 0.15,
+      "D09": 0.16,
+      "D10": 0.26,
+      "D11": 0.25,
+      "D12": 0.93,
+      "D13": 0.9
+    }
+  },
+  "usage": {
+    "input_tokens": 2508,
+    "output_tokens": 314,
+    "cost": 0.000105336
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.72,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "기존 서비스의 수락 결과 운영 전환과 보존 검증은 등록 ops 책임이다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "ce4a5e31b6164564b216820cd7a9687cb9e1eb5e",
+  "requires_packet": true,
+  "attempt": "552ff51c9ba34fcd90790bccbe37a104",
+  "instruction_sha256": "574cd177bf716c8947b6a42b3ace7f18f90d2ab73c8853ed7940912a8dfe30ce",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "b6f0d942ab842c57910fa37e792b827f74a7726fa6c071107ce76f23d97663a7"
+}

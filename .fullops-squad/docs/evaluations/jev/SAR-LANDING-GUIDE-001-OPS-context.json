@@ -1,0 +1,471 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "ce4a5e31b6164564b216820cd7a9687cb9e1eb5e",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "30710de19b804c7dca3c5de54015ae6823602871ae6e872f282f9b516dfb9432",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-report.md",
+      "c1-report.md",
+      "c2-service-member-ui.md",
+      "c3-report.md",
+      "c4-commands.txt",
+      "c5-public-smoke.json",
+      "c6-database-design.md",
+      "c7-transition.md",
+      "c8-ops-guide.md",
+      "c9-README.md",
+      "c10-operations.md",
+      "c11-compose.ops.yaml",
+      "c12-verify.py",
+      "c13-beta.sh",
+      "c14-ops.md",
+      "c15-project.md",
+      "c16-lint.json",
+      "required_0",
+      "required_4",
+      "required_6",
+      "required_7",
+      "required_8",
+      "required_9"
+    ],
+    "recommended_ids": [
+      "c0-report.md",
+      "c1-report.md",
+      "c2-service-member-ui.md",
+      "c3-report.md",
+      "c4-commands.txt",
+      "c5-public-smoke.json",
+      "c6-database-design.md",
+      "c7-transition.md",
+      "c8-ops-guide.md",
+      "c9-README.md",
+      "c10-operations.md",
+      "c11-compose.ops.yaml",
+      "c12-verify.py",
+      "c13-beta.sh",
+      "c14-ops.md",
+      "c15-project.md",
+      "c16-lint.json",
+      "required_0",
+      "required_4",
+      "required_6",
+      "required_7",
+      "required_8",
+      "required_9"
+    ],
+    "signals": {
+      "c0-report.md": {
+        "relevant": 0.3,
+        "evidence": 0.5,
+        "contradicts": 0.4,
+        "injection": 0.08,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-report.md": {
+        "relevant": 0.29,
+        "evidence": 0.51,
+        "contradicts": 0.22,
+        "injection": 0.07,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-report.md": {
+        "relevant": 0.41,
+        "evidence": 0.59,
+        "contradicts": 0.62,
+        "injection": 0.08,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      },
+      "c4-commands.txt": {
+        "relevant": 0.14,
+        "evidence": 0.28,
+        "contradicts": 0.78,
+        "injection": 0.13,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-public-smoke.json": {
+        "relevant": 0.43,
+        "evidence": 0.51,
+        "contradicts": 0.33,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-database-design.md": {
+        "relevant": 0.15,
+        "evidence": 0.43,
+        "contradicts": 0.28,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-transition.md": {
+        "relevant": 0.25,
+        "evidence": 0.46,
+        "contradicts": 0.56,
+        "injection": 0.11,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-README.md": {
+        "relevant": 0.23,
+        "evidence": 0.34,
+        "contradicts": 0.7,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-operations.md": {
+        "relevant": 0.87,
+        "evidence": 0.91,
+        "contradicts": 0.24,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      },
+      "c11-compose.ops.yaml": {
+        "relevant": 0.43,
+        "evidence": 0.54,
+        "contradicts": 0.26,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      },
+      "c12-verify.py": {
+        "relevant": 0.53,
+        "evidence": 0.64,
+        "contradicts": 0.63,
+        "injection": 0.05,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      },
+      "c13-beta.sh": {
+        "relevant": 0.59,
+        "evidence": 0.79,
+        "contradicts": 0.52,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      },
+      "c14-ops.md": {
+        "relevant": 0.25,
+        "evidence": 0.43,
+        "contradicts": 0.45,
+        "injection": 0.09,
+        "decision": "keep",
+        "reason": null
+      },
+      "c15-project.md": {
+        "relevant": 0.63,
+        "evidence": 0.8,
+        "contradicts": 0.23,
+        "injection": 0.06,
+        "decision": "keep",
+        "reason": null
+      },
+      "c16-lint.json": {
+        "relevant": 0.07,
+        "evidence": 0.14,
+        "contradicts": 0.14,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [
+      "c3-report.md",
+      "c12-verify.py"
+    ],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      "c1-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "c2-service-member-ui.md": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "c3-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+      "c4-commands.txt": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/commands.txt",
+      "c5-public-smoke.json": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/public-smoke.json",
+      "c6-database-design.md": ".fullops-squad/docs/design-docs/database-design.md",
+      "c7-transition.md": ".fullops-squad/docs/operations/transition.md",
+      "c8-ops-guide.md": ".fullops-squad/docs/operations/ops-guide.md",
+      "c9-README.md": "README.md",
+      "c10-operations.md": "docs/operations.md",
+      "c11-compose.ops.yaml": "deploy/knowslink/compose.ops.yaml",
+      "c12-verify.py": "deploy/knowslink/verify.py",
+      "c13-beta.sh": "deploy/knowslink/beta.sh",
+      "c14-ops.md": ".fullops-squad/contexts/ops.md",
+      "c15-project.md": ".fullops-squad/project.md",
+      "c16-lint.json": ".fullops-squad/lint/lint.json",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_4": ".fullops-squad/handovers/to_ops.md",
+      "required_6": ".fullops-squad/rules/common/README.md",
+      "required_7": ".fullops-squad/rules/common/coding-style.md",
+      "required_8": ".fullops-squad/rules/common/security.md",
+      "required_9": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/handovers/to_ops.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 53655,
+    "output_tokens": 1140,
+    "cost": 0.00225351,
+    "known_cost": 0.00225351,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 1.435,
+  "response_model": "typesafe/jev-1.13-20260917",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.814,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4328,
+        "output_tokens": 76,
+        "cost": 0.000181776
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.783,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4268,
+        "output_tokens": 76,
+        "cost": 0.000179256
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.768,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4329,
+        "output_tokens": 76,
+        "cost": 0.000181818
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.744,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3379,
+        "output_tokens": 76,
+        "cost": 0.000141918
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.743,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2667,
+        "output_tokens": 76,
+        "cost": 0.000112014
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.752,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3878,
+        "output_tokens": 76,
+        "cost": 0.000162876
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.759,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4536,
+        "output_tokens": 76,
+        "cost": 0.000190512
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.762,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3515,
+        "output_tokens": 76,
+        "cost": 0.00014763
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.6,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3473,
+        "output_tokens": 76,
+        "cost": 0.000145866
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.547,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2719,
+        "output_tokens": 76,
+        "cost": 0.000114198
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.551,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3118,
+        "output_tokens": 76,
+        "cost": 0.000130956
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.522,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3105,
+        "output_tokens": 76,
+        "cost": 0.00013041
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.519,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3889,
+        "output_tokens": 76,
+        "cost": 0.000163338
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.655,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3757,
+        "output_tokens": 76,
+        "cost": 0.000157794
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.13-20260917",
+      "elapsed": 0.549,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2694,
+        "output_tokens": 76,
+        "cost": 0.000113148
+      }
+    }
+  ],
+  "request_max_seconds": 0.814,
+  "task_key": "SAR-LANDING-GUIDE-001-OPS",
+  "role": "ops",
+  "attempt": "552ff51c9ba34fcd90790bccbe37a104",
+  "instruction_sha256": "574cd177bf716c8947b6a42b3ace7f18f90d2ab73c8853ed7940912a8dfe30ce",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/commands.txt",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/public-smoke.json",
+      ".fullops-squad/docs/design-docs/database-design.md",
+      ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      "README.md",
+      "docs/operations.md",
+      "deploy/knowslink/compose.ops.yaml",
+      "deploy/knowslink/verify.py",
+      "deploy/knowslink/beta.sh",
+      ".fullops-squad/contexts/ops.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/lint/lint.json"
+    ],
+    "required": [
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md"
+    ],
+    "sources": {
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md": "c7a74cbe5003bab523d14677791b93b20f36c6e1b3cffbdff4893f6fb93797f9",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md": "c4a1eb35b72e18baf1466ed588be370b960872f467a11b9044e308dd50b29b7a",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "oversized",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md": "3b264fc9d5dd723497684fb646b14a343f22c3d8beee5af50b5b8d8391fae3df",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/commands.txt": "e902fc883e710274bacba03d0d4682566502ae03b52d9b4615dadff54772011c",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/public-smoke.json": "712f9fc37ee0e1eb0d6c976048ea1a8325ae2e296034c37931e9a41640afa2c3",
+      ".fullops-squad/docs/design-docs/database-design.md": "b3a220fcb56c3d8c5bac9e0ab3cbbc6260fa00956d70193c25dfe1aac3783bf4",
+      ".fullops-squad/docs/operations/transition.md": "be6c2592c0caaa01b2c8e5ddf864cd8230dccdbd13c2ef9fd8320223594b8690",
+      ".fullops-squad/docs/operations/ops-guide.md": "oversized",
+      "README.md": "f2445158e232eed00b43d645b9ddc589d4224e22f6b239edf7f9a2c1628e6982",
+      "docs/operations.md": "51c10f4ea86bd31be5f9d19f451315cb2d04bd5178d03ddabd736349907afddd",
+      "deploy/knowslink/compose.ops.yaml": "9854628e3f5afa06d77dbbddd7a291ae1823fcb26eeef2aee0d2cabc2babe466",
+      "deploy/knowslink/verify.py": "61058d1a8f064edf1d84f0ece1dbbaf08d9413f324edcc4dec6d3214ce7350fa",
+      "deploy/knowslink/beta.sh": "2f974968918beb8591cbba41ee142bc8cee282bdc6b4379fb4f62ef1e25e79bf",
+      ".fullops-squad/contexts/ops.md": "2a49e93dec50f35f08a847dbb4205a7d41ea9b672e5e59070c66bbb05352e96b",
+      ".fullops-squad/project.md": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
+      ".fullops-squad/lint/lint.json": "49572df6961bef0920214d98c94b690e3dd2827c737a2e7f77c4f5ff8f65247d"
+    }
+  },
+  "unsent_sources": {
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty",
+    ".fullops-squad/docs/operations/ops-guide.md": "too large or empty"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 5.132,
+  "input_partial": true,
+  "instruction_chars": 4912,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 4912
+  }
+}

@@ -1,15 +1,57 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-14
+updated: 2026-10-15
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-LANDING-GUIDE-001]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-LANDING-GUIDE-001, FULLOPS-UPDATE-1.4.4]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
 # KnowsLink 현재 계획
 
+## 잔여 이슈 해결 재개 — 2026-10-15
+
+- 실제 DEV 착수 task_467f434ae451 / ctx_f637faf34eb1 / term_82991fdc-952a-4f39-afd2-96c3f900457b: ready·turn_started·requested/effective codex/gpt-6-astra/high 확인. 같은 attempt9a48, 최신 DEV 인박스와 route/packet이 정본이다.
+- 병렬 제품 기획 SAR-UX-ISSUES-002-DESIGN: 빈 designer 인박스·terminal0·clean 확인 후 coor/main 일반동기화, 현재 이슈 원문 snapshot과 제품원천 find/context/packet 준비. task_10967ef16387 / ctx_8e12c40a3310 / term_5a020443-8aa6-4a73-9814-8da5282bde54의 ready·turn_started·Astra high 일치 확인. 새 설계/own기록만 소유하며 DEV CSS/D04/다른role인박스는 수정하지 않는다.
+- DEV/visual 공용 hold는 사용자 중지 사유에서 후속 수정 QA·fixed리뷰 수락 대기로 갱신했다. 원 msg_0a44968602b5·msg_70ae21c0a708와 완료 SHA·실패 판정은 보존한다.
+
+- 사용자 "계속 이어서 이슈 해결하면서 진행해"로 UI 구현·검증을 재개한다. 이전 중지 이력은 보존하며 최신 재개 지시가 우선한다. 새 Run run_756d0278e72e/coor term_5bf18065-a830-4e45-aeba-ae852666b40e를 사용한다. 과거 세션은 닫혀 fresh codex/gpt-6-astra/high를 기존 사용자 지정으로 유지한다.
+- 첫 실행은 같은 SAR-LANDING-GUIDE-001-DEV attempt9a48의 대비 medium·간격 low 수정 마무리다. dev를 coor dc5ec35/main458eb56 포함으로 FF했고 미커밋 CSS/inbox/packet을 보존했다. 현행 인박스는 dev 절대경로의 명시적 미커밋 스냅샷이며 최신 재개 절과 고정 route/packet을 연결한다. 기존 원 실패·QA·코드리뷰를 유지하고 수정 후보의 독립 검수/고정 리뷰 후 main에 통합한다.
+- 후속 대기: #2 이름/공유handle 남은 범위, #4 사람 친구 아래 agent 연결 기준에 맞춘 초대 요구 정리 → #8 호스트별 설치/등록/친구 연결 온보딩 → #6 조회 입력·오류 복구 → #5 승인 요약/#7 보조화면 접근성 → #3 언어 설정. 제품 기준 미정은 designer, 확정 기능 구현은 dev에 배정한다. 현재 완료되지 않은 기능을 이슈 완료로 표시하지 않는다. 실제 지원/미검증 호스트를 구분한다.
+- 이번 재개는 개발·검증·리뷰·main통합 범위다. 실계정/실메일·상대 메시지 발송 및 운영 배포는 DEV/QA에서 실행하지 않는다. 기존 tester5149ac1·designerad5ee19는 원 증거이며 새 수정 영향 수락과 구분한다.
+
+## Detached 리뷰 공간 정리 완료 — 2026-10-15
+
+- 사용자 요청으로 리뷰 사본3개를 coordinator가 Orca rm(no force/archive hooks)으로 제거했다. 실제 절대경로/workspace 내부·clean/ignored0·terminal0·관련 process0·원격coor SHA 보존을 확인했다. 비동기 receipt 뒤 실제 경로 부재와 Git/Orca detached0·나머지7개 유지, 정본 증거24개 hash 동일을 확인했다.
+- FullOps 사본2개는 main/origin 조상이다. UI 사본1개의 fe2387a는 origin/fullops/coor 및 역할 브랜치에 보존돼 있다. UI main 통합·배포·중지 hold를 변경하지 않았다. 현재 dev 미커밋 CSS/inbox/packet과 합성 검증자료는 정리하지 않았다. host reviewer의 Orca dispatch가 없어 자동 cleanup/historical PASS는 주장하지 않는다. 근거: docs/evaluations/qa-reports/FULLOPS-DETACHED-CLEANUP-2026-10-15/{preflight,completion}.json.
+
+## FullOps 1.4.4 완료·세션 종료 인계
+
+- 독립 리뷰12/0·C/H0·check0 후 업데이트3f78013/기록235a8d4를 main/origin에 일반 push/fetch·조상0으로 확인했다. UI fe2387a는 main의 조상이 아니며 제품 입력은 이전 main과 같다. 설치/레포1.4.4, 실제 새hook executed·status0. 상세 최종 절은 FULLOPS-UPDATE-1.4.4 단계 문서다.
+- coor·ops에 수락 main을 동기화했다. dev 미커밋 CSS·packet/inbox, tester5149ac1와 designerad5ee19의 중단·미수락 결과는 보존한다. 담당coor가 새 세션에서 사용자 UI 재개 지시를 받은 뒤 최신 origin/main 동기화를 처리한다. UI hold 두 건·원 실패·make unavailable 두 건은 유지한다.
+- 사용자 요청대로 현재 업데이트 세션은 종료한다. UI/QA/배포/새 제품 worker는 재개하지 않는다. 관리 snapshot과 private 검증자료는 보존하며 정리는 다음 coordinator에서 소유권·미사용·증거 보존 확인 후 수행한다.
+
+## FullOps 1.4.4 최종 반영·사용자 세션 종료
+
+- 변경9hook 사용자 신뢰 승인과 실제 새 세션01a13af6-afb7-77d2-bc07-ea402127e7b5의 done/flow executed·status0을 확인했다. 레포 적용1.4.4로 갱신하며 업데이트 전용 브랜치만 고정 리뷰 후 main/origin에 일반 반영한다. UI 미통합 코드·미커밋 CSS는 포함하지 않는다.
+- 읽기 전용 hook 검증 완료 msg_b8c764d3c9f6 / ctx_c3711276ea98는 별도 커밋 없는 운영 증거다. 최초 신뢰 프롬프트 실패와 옛 hook 경로 오류는 보존한다. 상세 근거는 FULLOPS-UPDATE-1.4.4 단계 문서와 QA 원본이다.
+- 사용자 요청대로 업데이트 완료 후 현재 세션을 종료한다. UI hold msg_0a44968602b5·msg_70ae21c0a708와 DEV/tester/designer/ops 사용자 터미널·작업은 유지한다. 다음 새 coordinator에서 사용자 UI 재개 지시 뒤 최신 main 동기화부터 처리한다. 이번 업데이트에서 제품 실행·실계정·배포 검증은 추가하지 않는다.
+
+## FullOps 1.4.4 업데이트와 UI 중지 — FULLOPS-UPDATE-1.4.4
+
+- 사용자 '멈춰봐' 지시로 UI 수정·검수·제품 통합·배포는 중단했다. DEV/tester의 user_owned worker-stop은 stop_unknown이었고 실제 terminal interrupt를 확인했다. DEV background도 /stop했다. 기존 사용자 터미널·미커밋 CSS·fixture·증거는 보존한다. 상세 체크포인트는 [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md)의 UI 중지 절이다.
+- 이후 사용자 'fullops 업데이트 진행해' 요청으로 운영 업데이트만 수행한다. 설치 전 실제 Codex1.4.4/레포1.4.2이며 사용자·Orca Codex의 이번 설치/의존성 갱신·host check는 종료0이다.1.4.3 검사 재사용·모든 명령 검증·실행 기록과1.4.4 고정 hook runtime을 적용하고 새 세션 실행을 확인한다. 레벨 없는 make lint/test·coor/lite/standard·역할·guard·frontend tools=[]는 유지한다.
+- 별도 관리 branch tourbut/fullops-update-144는 origin/main b0f6596에서 시작해 UI fe2387a와 미완료 CSS를 main에 섞지 않는다. 기존 DEV msg_0a44968602b5/fe2387a·visual msg_70ae21c0a708/ad5ee194는 사용자 중지 사유로 integration hold를 보존하고 delivery를 ACK했다. tester5149ac13은 마지막 commit일 뿐 최종수락/worker_done으로 주장하지 않는다.
+- 제품 재개는 사용자가 UI 작업을 다시 지시한 새 coordinator 세션에서만 수행한다. 업데이트 성공은 원 대비/간격 FAIL과 운영 미배포를 대체하지 않는다. 진행 중/중지/미커밋·user_owned role은 덮어쓰지 않고 최신 main 동기화를 예약한다.
+
 ## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001
+
+- 검수 후속: tester 실제 전용 Chrome setting200%·DPR2·visualViewport.scale1·CSS zoom1·overflow없음(msg_1755906b931c)을 확인했다. 기존 conversation-list CTA 대비1.846967 medium(msg_18106237290b)과 V-LG-01 예시 아래0px low는 DEV 같은 과제를 basefe2387a/새attempt9a48a4180041493b93ddce9b5d1bf6f2로 reopen해 좁은 CSS 수정한다. 기존 user-owned DEV terminal은 실제 완료 유휴·clean을 확인했고 종료/주입 없이 보존하며, 새 준비 SHA로 일반FF 후 fresh Astra high를 사용한다. 원 fe의 기능/시각/실패 증거와 최초 code review는 보존하고 수정 후보의 영향만 독립 재검수한다. 운영은 그 수락 뒤다.
+
+- QA 진행: tester 독립 HTTP34·Chrome CDP22 통과와 native Enter/Space/Tab/Shift+Tab/폼 제출의 실제 효과를 확인했다. member-home/account1440 캡처를 designer 질문 msg_bb240a6eef61에 reply msg_46f7e184c9d6로 인계했다. native browser200%는 아직 not_run이며 오직 소유 격리 Chrome profile의 appearance zoom UI 경로만 추가 허용했다(msg_1e5b57bdbc22). public 시각은 C/H0·비차단 예시 하단 간격 low1이고 최종 기록을 기다린다. DEV delivery_ac99adb939fa는 공용 integration hold 보존 뒤 ACK해 FIFO 후속 메시지를 열었다. hold 해소는 최종 독립 수락·main통합 이후다.
+- 운영 반영은 SAR-LANDING-GUIDE-001-OPS queued 인박스에 준비했다. 기존 배포 요청과 현재 사이트 개편을 같은 서비스 반영으로 이어서 수행하며, QA 수락·main/origin통합 전 배포하지 않는다. fresh backup/격리 복원·build 전 이전image 고유tag·현재 상태/공유서비스 보존·새 첫페이지public검사가 조건이다. 진행 중 설치 cache가1.4.3으로 바뀌고1.4.2 경로가 사라져 현재 skill/help의 호환 도구를 사용하며 레포하네스1.4.2와 기존gate원본은 보존한다. release의 명시 새세션 update 요구에 따라 자동 레포업데이트는 하지 않는다. 두 검수 worker에 경로 변경을 알렸다.
+
+- 독립 검수 착수: coor297e6d3을 idle/clean·terminal0의 tester/designer에FF하고 fresh Astra high로 배정했다. tester task_09a03f21ce42/ctx_02e6a3423e6e/term_68bb5327-3162-46fd-b58d-4db48dbfd8fa actual01a13ac5-b1b4-70f0-898d-6199bdf40279, visual task_e4422a1d293e/ctx_d880f510c28f/term_a631a267-d383-468b-8e0e-c209f4e1e476 actual01a13ac6-2571-7631-b463-91367eb88529. requested/effective codex/gpt-6-astra/high 및 turn_started 확인. CODE-REVIEW46/38·총84·C/H0·check0 수락, canonical297e6d3에 보존했다. snapshot은 reviewer 도구 종료·clean 확인 후 main통합 뒤 정리한다.
 
 - DEV 완료 msg_0a44968602b5 / fe2387a7676f7997aea76a2606f4cc2dbcd4b56b를 coor 기록 브랜치1312658에 병합했다. main은 아직 미반영이다. 최종 make lint/test0·ERROR0/WARNING3/unavailable0, 제품4795의 build/DB0·36 browser assertions와 native 입력/확대 not_run을 확인했다. 추가 SIZE-002는 D05 계약·DEV context로395→406이 된 이유를 외부 final-handoff.md에서 원문 확인했다. integration hold 담당coor, 재개 조건은 같은 SHA 독립 코드 check·기능 QA·직접 시각 수락이다. delivery_ac99adb939fa는 통합 뒤 ACK한다.
 
