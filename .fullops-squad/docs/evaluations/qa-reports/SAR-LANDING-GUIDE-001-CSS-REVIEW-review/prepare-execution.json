@@ -1,0 +1,18 @@
+{
+  "failed_prepare": {
+    "exit_code": 1,
+    "error": "The command line is too long.",
+    "tool_chunk": "16a12b",
+    "cause": "Installed npm ocr.cmd command line exceeds Windows cmd length; destination not created."
+  },
+  "successful_prepare": {
+    "exit_code": 0,
+    "method": "Unmodified installed review.prepare function with process-local ocr_command pointing to the same installed native opencodereview.exe. No rule/scope/config changes.",
+    "native_ocr": "C:/Users/shin/AppData/Roaming/npm/node_modules/@alibaba-group/open-code-review/node_modules/@alibaba-group/ocr-win32-x64/bin/opencodereview.exe"
+  },
+  "evidence_selfcheck_initial": {
+    "exit_code": 1,
+    "error": "KeyError: category",
+    "cause": "Reviewer initially assumed packet item category instead of categories. No product run; corrected evidence reader and successful check recorded in verification.json."
+  }
+}

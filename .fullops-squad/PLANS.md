@@ -11,6 +11,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 잔여 이슈 해결 재개 — 2026-10-15
 
+- DEV 최종fc4ad58·Chrome38·실제Linuxmake lint/test0·FullOps ERROR0/WARN1/unavail0 완료(msg_b3fc48a8f4d3). CSS 고정 독립리뷰 fromfe→fc4는 actual01a13fa4/Astra high,34reviewed/78skipped·C/H/M/L0·check0이며 coor에 준비통합했다. 새실패DOC003은frontmatter만허가수정·원실패보존이다.
+- 후속 독립TESTER task_5d4833216e3f/ctx_cd7d7e4e46a6/term_7a0ef484-e248-4629-be97-174208b98c69는44checks·새실제200%·직접이미지PASS 후최종기록중. VISUAL task_bb7915a906c1/ctx_6163574d8518/term_60f1fc65-4f91-43eb-8d0a-3185373a18c8는7PNG 직접시각수락마무리중. 모두freshAstrahigh·ready/turn_started확인. same-key producer입력원본 커밋은own추적증거범위로명시허용했다.
+- 잔여기획11ea298(msg_5972c6b1ae08)은완료·제품기준/순차인계정본 SAR-UX-ISSUES-002.md, actualdesigner01a13f95. 별도fixed설계리뷰검토자01a13faa가진행중. 조회입력복구→이름/사람친구→승인요약→연결재개→언어설정순서이며현행친구코드유지/새handle·초대링크미도입, 미확인호스트안내와실제지원완료는분리한다. 리뷰수락/선행UI통합뒤DEV에정식인계한다.
+
 - 실제 DEV 착수 task_467f434ae451 / ctx_f637faf34eb1 / term_82991fdc-952a-4f39-afd2-96c3f900457b: ready·turn_started·requested/effective codex/gpt-6-astra/high 확인. 같은 attempt9a48, 최신 DEV 인박스와 route/packet이 정본이다.
 - 병렬 제품 기획 SAR-UX-ISSUES-002-DESIGN: 빈 designer 인박스·terminal0·clean 확인 후 coor/main 일반동기화, 현재 이슈 원문 snapshot과 제품원천 find/context/packet 준비. task_10967ef16387 / ctx_8e12c40a3310 / term_5a020443-8aa6-4a73-9814-8da5282bde54의 ready·turn_started·Astra high 일치 확인. 새 설계/own기록만 소유하며 DEV CSS/D04/다른role인박스는 수정하지 않는다.
 - DEV/visual 공용 hold는 사용자 중지 사유에서 후속 수정 QA·fixed리뷰 수락 대기로 갱신했다. 원 msg_0a44968602b5·msg_70ae21c0a708와 완료 SHA·실패 판정은 보존한다.

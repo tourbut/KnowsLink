@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "attempt": "f0f7b35bba224358b1823887a8581131",
+  "base": "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+  "merge_base": "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+  "head": "fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8383a50bc56c4b90d405a1b3dfcd37364fcb1d3a4d89d39222e22e292a166e7d",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "lint: EXIT=0"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "",
+      "status": "passed",
+      "exit_code": 0,
+      "output_tail": "test: EXIT=0"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "1873줄(이전 1833, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    }
+  ],
+  "summary": {
+    "files": 12,
+    "added_lines": 190,
+    "errors": 0,
+    "warnings": 1,
+    "unavailable": 0
+  }
+}

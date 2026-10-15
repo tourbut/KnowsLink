@@ -1,0 +1,932 @@
+{
+  "base": "fe2387a7676f7997aea76a2606f4cc2dbcd4b56b",
+  "head": "fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Codex independent reviewer; actual session_meta.id 01a13fa4-02c9-74b2-ace6-2f974bfdc71d",
+  "conclusion": "accepted: CSS 두 결함 수정·필수 gate·완료 증거 범위 수락. C/H/M/L 0. 독립 tester/designer 최종 수락·main 통합·운영 배포는 별도다.",
+  "files": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "현행 FullOps1.4.4/common0.3.3 및 project 필수 명령·역할·검사 재사용 규칙을 읽었다. 이번 CSS 재개 이후 파일 변경 없음. 이전 3f78013 운영 독립 리뷰와 범위를 구분한다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 42,
+      "deletions": 2,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 19,
+      "deletions": 3,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/board/index.html",
+      "status": "modified",
+      "insertions": 29,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "재개 source/원 tester native200% 재사용·후속 상태를 QA 원문과 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-context.json",
+      "status": "modified",
+      "insertions": 144,
+      "deletions": 332,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-documents-find.json",
+      "status": "modified",
+      "insertions": 129,
+      "deletions": 82,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-find.json",
+      "status": "modified",
+      "insertions": 78,
+      "deletions": 46,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-packet-outcomes.json",
+      "status": "modified",
+      "insertions": 110,
+      "deletions": 209,
+      "review_status": "reviewed",
+      "reason": "재개 head dc5/동일 attempt·input hash를 확인했다. packet39개와 outcomes39개 경로/category를 대조했고 partial/unknown18/잔여8을 유지한다. D13 no_change 이유는 CSS-only 승인 범위와 실제 D13 원문에 부합한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-packet.json",
+      "status": "modified",
+      "insertions": 1241,
+      "deletions": 807,
+      "review_status": "reviewed",
+      "reason": "재개 head dc5/동일 attempt·input hash를 확인했다. packet39개와 outcomes39개 경로/category를 대조했고 partial/unknown18/잔여8을 유지한다. D13 no_change 이유는 CSS-only 승인 범위와 실제 D13 원문에 부합한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-route.json",
+      "status": "modified",
+      "insertions": 28,
+      "deletions": 25,
+      "review_status": "reviewed",
+      "reason": "재개 head dc5/동일 attempt·input hash를 확인했다. packet39개와 outcomes39개 경로/category를 대조했고 partial/unknown18/잔여8을 유지한다. D13 no_change 이유는 CSS-only 승인 범위와 실제 D13 원문에 부합한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-route.prior-1791988588948343700.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-route.prior-1791988694301701800.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-DEV-route.prior-1792067863344795100.json",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색의 과거 snapshot이다. JSON 파싱·hash·이전 보존과 현 packet metadata를 확인했다. 전체 중복 발췌의 의미 재감사는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-OPS-context.json",
+      "status": "added",
+      "insertions": 471,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-OPS-documents-find.json",
+      "status": "added",
+      "insertions": 608,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-OPS-find.json",
+      "status": "added",
+      "insertions": 208,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-OPS-route.json",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-context.json",
+      "status": "added",
+      "insertions": 550,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-documents-find.json",
+      "status": "added",
+      "insertions": 605,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-find.json",
+      "status": "added",
+      "insertions": 260,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-packet.json",
+      "status": "added",
+      "insertions": 13732,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-route.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-TESTER-route.prior-1791987243654928100.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-context.json",
+      "status": "added",
+      "insertions": 355,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-documents-find.json",
+      "status": "added",
+      "insertions": 596,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-find.json",
+      "status": "added",
+      "insertions": 218,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-packet.json",
+      "status": "added",
+      "insertions": 3945,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-route.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-LANDING-GUIDE-001-VISUAL-route.prior-1791987253664020600.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-context-0107f07541e14b038d1147e28a980c59.json",
+      "status": "added",
+      "insertions": 507,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-documents-find-5bd47f22dbc44ce9abfbb7bf652699a4.json",
+      "status": "added",
+      "insertions": 565,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-find-baab1e7c59a04b71ae136ccd09a9c6ec.json",
+      "status": "added",
+      "insertions": 232,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-packet-349df6caf4bd4be6b0a952cce00567a5.json",
+      "status": "added",
+      "insertions": 3122,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색의 과거 snapshot이다. JSON 파싱·hash·이전 보존과 현 packet metadata를 확인했다. 전체 중복 발췌의 의미 재감사는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-packet-3db30b6d034749479c534cf4a7d9bc46.json",
+      "status": "added",
+      "insertions": 2725,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-packet-4289d2a382ea4a9388c41fd0a9a64c45.json",
+      "status": "added",
+      "insertions": 3122,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색의 과거 snapshot이다. JSON 파싱·hash·이전 보존과 현 packet metadata를 확인했다. 전체 중복 발췌의 의미 재감사는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-packet-534397e581a444af83e3e612a653ba46.json",
+      "status": "added",
+      "insertions": 3084,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-route-0179085daeaa4fdd8aa37d2485c4f55f.json",
+      "status": "added",
+      "insertions": 83,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-DEV-route-327374f842d2409d9a89b84c327fc703.json",
+      "status": "added",
+      "insertions": 82,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성 탐색의 과거 snapshot이다. JSON 파싱·hash·이전 보존과 현 packet metadata를 확인했다. 전체 중복 발췌의 의미 재감사는 생략한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-packet-50648b3eb1014962aebf1970d4460014.json",
+      "status": "added",
+      "insertions": 13514,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-TESTER-route-abd5d87ba1f14475907e7a67cc7fb97b.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-VISUAL-packet-d0f9c06a415e4a18b586c769b27a701a.json",
+      "status": "added",
+      "insertions": 3817,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-LANDING-GUIDE-001-VISUAL-route-0a28480cce084a3ea9c3b498d77a7730.json",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-DETACHED-CLEANUP-2026-10-15/completion.json",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-DETACHED-CLEANUP-2026-10-15/preflight.json",
+      "status": "added",
+      "insertions": 59,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/check-execution.json",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/lint.json",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/preview.json",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/report.md",
+      "status": "added",
+      "insertions": 55,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰의 고정 SHA·coverage·검사 한계·미해결 수락 경계를 직접 읽었다. 원 코드/운영 전수 재리뷰를 뜻하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/result.json",
+      "status": "added",
+      "insertions": 115,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 수락 기록의 작성자/검토자 분리·정확한 SHA·C/H0와 coverage를 확인했다. 원 결과는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/rules.json",
+      "status": "added",
+      "insertions": 41,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/final-lint-original.json",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/final-lint-reasoned.json",
+      "status": "added",
+      "insertions": 54,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/hook-fresh-session.json",
+      "status": "added",
+      "insertions": 226,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4/installation-preservation.json",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "허가된 front matter 9줄 추가뿐이다. dc5 원 본문과 fc4 본문을 바이트 기반 Git 내용으로 비교하여 동일함을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/check-execution.json",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/coverage.json",
+      "status": "added",
+      "insertions": 6,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/finalize_record.py",
+      "status": "added",
+      "insertions": 55,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/jev-documents-find-score.json",
+      "status": "added",
+      "insertions": 50,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/jev-find-score.json",
+      "status": "added",
+      "insertions": 44,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/lint-original.json",
+      "status": "added",
+      "insertions": 68,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/lint.json",
+      "status": "added",
+      "insertions": 68,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/preview.json",
+      "status": "added",
+      "insertions": 545,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 독립 리뷰의 고정 SHA·coverage·검사 한계·미해결 수락 경계를 직접 읽었다. 원 코드/운영 전수 재리뷰를 뜻하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/result.json",
+      "status": "added",
+      "insertions": 714,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "이전 수락 기록의 작성자/검토자 분리·정확한 SHA·C/H0와 coverage를 확인했다. 원 결과는 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/rules.json",
+      "status": "added",
+      "insertions": 98,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/verification.json",
+      "status": "added",
+      "insertions": 1074,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/verify_evidence.py",
+      "status": "added",
+      "insertions": 69,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/2cc87e3-final-lint-doc003.json",
+      "status": "added",
+      "insertions": 61,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "과거 head 2cc 제품 명령 exit0·DOC003 ERROR1·SIZE WARNING1을 그대로 보존했고 최종 fc4 결과와 구분했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/audit.py",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "packet/unknown/잔여 경로의 hash와 최대 4개 관련 발췌를 생성하는 보조 코드다. 전체 문서 의미 검토 증거로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/browser.mjs",
+      "status": "added",
+      "insertions": 89,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "38 checks의 계산 스타일·대비 공식·24px bounding rect·세 viewport·44px·일반링크·overflow·pseudo focus 검사와 loopback GET 요청 제한을 읽었다. native 키보드 실행으로 확대하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/fixture-manifest.json",
+      "status": "added",
+      "insertions": 180,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "40개 합성 HTML과 3개 source의 SHA256을 실제 파일과 모두 대조했다. 제품 source→final diff0을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/prior-packet-outcomes.json",
+      "status": "added",
+      "insertions": 343,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "dc5의 원 outcomes와 Git 바이트 동일성을 확인했다. 재개 outcomes가 이전 결론을 삭제하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/remote.py",
+      "status": "added",
+      "insertions": 111,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기존 승인 helper의 HERE 변경만 확인했다. exact HEAD/clean clone·known_hosts RejectPolicy·원 종료코드·비밀값 redaction·고유 자원 보존을 읽었다. 실행하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
+      "status": "added",
+      "insertions": 59,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원인·환경·권한·source/final 실행·원 실패·독립 수락 한계를 원 JSON/helper/log와 직접 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/results-initial.json",
+      "status": "added",
+      "insertions": 409,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "첫 38개 PASS 측정 원본이며 최종 측정과 별도 보존된다. 실패 원본으로 재명명하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/results.json",
+      "status": "added",
+      "insertions": 467,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "source f2b의 38개 passed 값·색 대비·크기·간격·outline과 7개 캡처 hash·GET 요청 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/source-audit.json",
+      "status": "added",
+      "insertions": 1094,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "생성된 bounded 발췌 전체를 의미 재감사하지 않는다. 생성 코드와 packet39개/unknown18/잔여8 및 핵심 필수 원문을 직접 확인했다. 각 경로 hash/존재는 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "새 재개 QA 링크와 원 DEV 실패/미실행 이력의 구분을 읽고 기존 tester native PASS 원 보고와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-INTEGRATION/design-cleanup.json",
+      "status": "added",
+      "insertions": 116,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "같은 attempt/재개 HEAD/비교 base·CSS 계획·38 checks·Linux gate·DOC003 조정 허가와 원 실패 구분을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/fullops.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "현행 FullOps1.4.4/common0.3.3 및 project 필수 명령·역할·검사 재사용 규칙을 읽었다. 이번 CSS 재개 이후 파일 변경 없음. 이전 3f78013 운영 독립 리뷰와 범위를 구분한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+      "status": "added",
+      "insertions": 134,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "최신 재개 절과 과거 중지 절의 우선순위, 승인 scope, packet, 완료 전문을 읽었다. 빈 to_dev.md와 source/final SHA 인계를 별도로 확인했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "status": "modified",
+      "insertions": 131,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "status": "modified",
+      "insertions": 75,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "status": "modified",
+      "insertions": 206,
+      "deletions": 4,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 4,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "현행 FullOps1.4.4/common0.3.3 및 project 필수 명령·역할·검사 재사용 규칙을 읽었다. 이번 CSS 재개 이후 파일 변경 없음. 이전 3f78013 운영 독립 리뷰와 범위를 구분한다."
+    },
+    {
+      "path": ".fullops-squad/review/_REPORT.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 5,
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "현행 FullOps1.4.4/common0.3.3 및 project 필수 명령·역할·검사 재사용 규칙을 읽었다. 이번 CSS 재개 이후 파일 변경 없음. 이전 3f78013 운영 독립 리뷰와 범위를 구분한다."
+    },
+    {
+      "path": "internal/relay/human_pages_test.go",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "빈 계정 세 template의 기존 assertion과 모든 fixture 출력 호출 패턴을 읽었다. 기존 opt-in 환경변수·정적 파일명·쓰기 오류 t.Fatal을 재사용하며 검사 삭제·약화가 없다."
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "공개 examples grid와 바로 뒤 h3 구조를 읽었다. 기존 24px 간격의 margin-bottom만 추가하고 모바일 gap·section 간격·카피·DOM을 유지함을 확인했다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "공용 스타일 전체와 human-conversation-list 호출자를 읽었다. 일반 링크 색상 selector만 제한하여 primary의 canvas/accent 색을 복구한다. 기존 배치·hover·focus·44px 규칙과 일반/선택 링크 영향 및 세 폭 측정 근거를 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/check.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/fe2387a7676f7997aea76a2606f4cc2dbcd4b56b-install.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/fe2387a7676f7997aea76a2606f4cc2dbcd4b56b-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/fe2387a7676f7997aea76a2606f4cc2dbcd4b56b-test.log",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "dc5 재개 이전부터 존재하고 dc5→fc4 변경이 없는 운영/탐색/과거 리뷰 증거다. JSON은 파싱하고 파일 hash와 불변성을 확인했다. 최초 fe 제품 리뷰와 3f78013 FullOps12파일 수락·coor 운영 이력을 재사용하며 이번 좁은 CSS 과제에서 역사 내용 전체를 재감사하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/examples-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "직접 시각 판정은 독립 designer 담당이다. results.json manifest와 실제 PNG SHA256 일치를 확인했다. 이 리뷰는 이미지 시각 수락을 하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/examples-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "직접 시각 판정은 독립 designer 담당이다. results.json manifest와 실제 PNG SHA256 일치를 확인했다. 이 리뷰는 이미지 시각 수락을 하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/examples-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "직접 시각 판정은 독립 designer 담당이다. results.json manifest와 실제 PNG SHA256 일치를 확인했다. 이 리뷰는 이미지 시각 수락을 하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/f2b8cb622dc397034423582978e77560e0355771-install.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "source f2b 원 Linux 실행의 install/lint/test 로그·고유 clone 경로를 읽고 EXIT0과 보존 위치를 확인했다. 최종 fc4 gate는 별도 원 로그로 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/f2b8cb622dc397034423582978e77560e0355771-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "source f2b 원 Linux 실행의 install/lint/test 로그·고유 clone 경로를 읽고 EXIT0과 보존 위치를 확인했다. 최종 fc4 gate는 별도 원 로그로 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/f2b8cb622dc397034423582978e77560e0355771-test.log",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "source f2b 원 Linux 실행의 install/lint/test 로그·고유 clone 경로를 읽고 EXIT0과 보존 위치를 확인했다. 최종 fc4 gate는 별도 원 로그로 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/f2b8cb622dc397034423582978e77560e0355771.base",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "source f2b 원 Linux 실행의 install/lint/test 로그·고유 clone 경로를 읽고 EXIT0과 보존 위치를 확인했다. 최종 fc4 gate는 별도 원 로그로 대조했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/make.cmd",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "등록 make 타깃을 읽은 외부 helper로 전달하고 errorlevel을 반환한다. 원본 사용 방식이며 실행하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/member-empty-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "직접 시각 판정은 독립 designer 담당이다. results.json manifest와 실제 PNG SHA256 일치를 확인했다. 이 리뷰는 이미지 시각 수락을 하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/member-empty-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "직접 시각 판정은 독립 designer 담당이다. results.json manifest와 실제 PNG SHA256 일치를 확인했다. 이 리뷰는 이미지 시각 수락을 하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/member-empty-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "직접 시각 판정은 독립 designer 담당이다. results.json manifest와 실제 PNG SHA256 일치를 확인했다. 이 리뷰는 이미지 시각 수락을 하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/member-populated-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "직접 시각 판정은 독립 designer 담당이다. results.json manifest와 실제 PNG SHA256 일치를 확인했다. 이 리뷰는 이미지 시각 수락을 하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/related-tests.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "reviewed",
+      "reason": "기존 관련 Go 검사 exit0 원 로그를 읽었다. 독립 reviewer 실행으로 표시하지 않는다."
+    }
+  ],
+  "findings": [],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "01a13f92-f032-7ff3-be1c-c62c1aed38aa",
+    "reviewer_session": "01a13fa4-02c9-74b2-ace6-2f974bfdc71d",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-bb360033216c4b3785b0b7e8e2b33383",
+    "snapshot_head": "fc4ad58b65471e2de298cb9f1aba5d2253ea8135",
+    "read_only": true
+  }
+}
