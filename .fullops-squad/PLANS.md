@@ -11,6 +11,11 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
 
+- 조회 복구 DEV 착수: task_802b0525f5db / ctx_e6da4e6135b3 / term_106ecb42-0246-47cd-9a3a-aade8ea1fbbf. 최신 main7f34123을 포함한 DEVd4a075c에서 route/find/context/packet을 갱신했고 실제 ready·turn_started·requested/effective codex/gpt-6-astra/high를 확인했다. 과거 완료 세션은 큰 문맥과 새 과제라 재사용하지 않고 정상 release했다. 현재 인박스와 own producer의 미커밋 스냅샷 소유권을 명시했다.
+- 세션 통신 기획 착수: task_143fa7a8db67 / ctx_3854aa446731 / term_496a5146-6d1d-47d4-80d0-f41d3c4c05a1. designer는 유휴·clean 확인 후 main7f34123 FF, fresh Astra high의 ready·turn_started·실제 tuple 일치를 확인했다. SAR-SESSION-PEER-001-DESIGN 정본 인박스와 packet을 읽는다. 기존 HP-10 발송 승인과 HP-15 도구 권한 경계를 유지하며 기존 세션 수신과 새 세션 생성을 구분한다. 이전 tester/visual 완료 dispatch도 정상 release·transcript captured다.
+- 첫페이지와 잔여 설계의 완료 메시지 6개는 main/origin 조상 확인 뒤 integration resume으로 모두 pending0을 확인했다. 별도 hook 읽기 검증 hold는 제품 완료로 위조하지 않고 유지한다.
+- Hermes 추가 읽기 전용 소스 확인: 설치 버전의 tools/mcp_tool.py는 MCP notification 타입·logging_callback 옵션을 포함한다. gateway/control_socket.py의 identify/status 소켓 존재는 메시지 주입 지원 증거가 아니다. gateway/AGENTS.md는 이벤트 admission/프로필 및 송신 경계를 설명한다. 실제 MCP 수신·기존 세션 깨우기·친구 왕복은 아직 실행하지 않았다. 최초 검색은 없는 docs 경로 오류가 있었고 파이프 exit0은 검색 전체 성공으로 사용하지 않는다. 존재하는 5개 소스의 후속 읽기는 exit0이다. 설정/인증/사용자 대화·서비스는 변경하지 않았다.
+
 - 첫페이지 DEVfc4·설계11ea·tester7fd·visualc6 및 독립코드34/78·설계14/8·최종기록68/31 리뷰 C/H/M/L0·check0을 수락했다. main/origin7551ed9 일반push/fetch동일·6원결과의원격조상0·제품fc4동일을 확인했다. 원검증실패/Windowsmake불가·초기중지이력은보존한다. 통합근거는 SAR-LANDING-GUIDE-001-CSS-INTEGRATION/main-integration.json. 운영배포는이번단계에서실행하지않았다.
 - 다음 DEV SAR-UX-ISSUES-002-RECEIPT-DEV는 수락 U6/해당U7 요청상태조회 입력·선택·복귀/오류재시도복구다. 빈DEV인박스에 준비했으며 최종main동기화/패킷현재HEAD갱신후 freshAstrahigh로착수한다. same-key입력producer/history는own추적증거소유권에포함한다. 그뒤 이름/사람친구·승인요약·설치재개·언어순서다.
 - 최신 사용자 호스트 범위: Meta Muse는 대상에 없으므로제외. OpenClaw는사용자지시로보류. Hermes는100.120.206.25이며사용자지정.env.server를메모리에서만읽어검증된known_hosts/RejectPolicy로SSH연결했다. Nous Research Hermes Agent0.21.3(2026.9.14), Git eeb85107f9e6164cb2d1f20d2b75753a6262e8e3·설치/home/shin/.hermes/hermes-agent·로컬심볼릭실행경로를확인했다. 설치·설정·서비스·실계정/발송은변경하지않았고접속정보/비밀값은로그에출력하지않았다. 지원성공으로승격하지않고현버전의MCP/수신접점을검증한다. 새온보딩에서는옛다섯호스트표보다이사용자범위가우선한다.
