@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "groups": [
+    {
+      "group_id": 1,
+      "source": "custom",
+      "pattern": "**/*.md",
+      "files": [
+        ".fullops-squad/contexts/designer.md",
+        ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+        ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+        ".fullops-squad/handovers/logs/2026-10-15_to_designer.md"
+      ],
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects."
+    },
+    {
+      "group_id": 2,
+      "source": "custom",
+      "pattern": "**/*.json",
+      "files": [
+        ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-context.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-documents-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-find.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-packet-outcomes.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-packet.json",
+        ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-route.json",
+        ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-DESIGN-route-ccb260ed40bf41d595de4482ce0e46fa.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/document-check.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/issues-open.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/lint-baseline.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/lint-initial.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/metadata-correction.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/packet-screening.json",
+        ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/preserved-inputs.json"
+      ],
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev."
+    }
+  ]
+}

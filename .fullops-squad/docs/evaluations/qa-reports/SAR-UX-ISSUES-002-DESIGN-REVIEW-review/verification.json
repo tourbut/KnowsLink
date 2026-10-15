@@ -1,0 +1,170 @@
+{
+  "base": "76ec89fe66cbeea5c2ffb33ff07015fd722029b3",
+  "head": "11ea298ef63cb90e86881d08fa83c44c9e3f75c5",
+  "snapshot": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-0283e5629d4d4b18b8b6766f1203f8d3",
+  "actual_reviewer_session": "01a13faa-5f90-79e3-8b5e-d23b1641f491",
+  "session_meta_source": "C:/Users/shin/.codex/sessions/2026/10/15/rollout-2026-10-15T22-04-52-01a13faa-5f90-79e3-8b5e-d23b1641f491.jsonl:first payload.id",
+  "product_diff_76ec_to_11ea": [],
+  "product_diff_fe2387a_to_11ea": [],
+  "rules_coor_vs_snapshot_diff": [],
+  "packet_paths": 386,
+  "packet_pairs": 403,
+  "packet_missing_pairs": [],
+  "packet_duplicates": 0,
+  "screen_missing": [],
+  "outcome_status": {
+    "completed": 29,
+    "no_change": 374
+  },
+  "lint_raw_exit_code": 1,
+  "lint_reason_only_copy_verified": true,
+  "prepare_exit_code": 0,
+  "designer_lint_first_attempt": {
+    "exit_code": 1,
+    "output": "lint 실패: 작업 트리가 깨끗하지 않습니다. 커밋 후 실행하세요",
+    "observed_status": " M .fullops-squad/handovers/to_designer.md",
+    "impact": "제품 명령 전에 중단. 변경된 인박스는 건드리지 않고 coor 허가 후 고정 clean snapshot에서 실행."
+  },
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "size": 4196,
+      "sha256": "e818e8eb402a0cff470758b75de78bc16435346937a2e18147e1b7df6604db79",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "size": 37084,
+      "sha256": "6122761e9f8e1b154f11c97d88194778451dfbad4e514ddc8aad7d193f9ea32e",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-context.json",
+      "size": 9228,
+      "sha256": "0392845ec4309b52021e1d6c3e5099a82f0beeaff5c7c80d63a0c10b7eea31ad",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-documents-find.json",
+      "size": 66212,
+      "sha256": "707ac8245888e7fb5556834f385a845935af9f97a8cb60763212ce9a39d46f4c",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-find.json",
+      "size": 9413,
+      "sha256": "b13d101e01f301b46d03b79988ca88771de7f835a027005cbf36e6afae904ae8",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-packet-outcomes.json",
+      "size": 177168,
+      "sha256": "aeca3b0d43a34865d0749a29bef61f83d8bdafbe00ab44e0ca243ac4ce58932e",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-packet.json",
+      "size": 349230,
+      "sha256": "f08797c2b9bb2f2f188de54bcd8da17e6178fc7758073667300fd20c8d8124ac",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-route.json",
+      "size": 2234,
+      "sha256": "16c0564f3cab064d96115e19acdaec7509fb2ab067c4f937ca5f9485736da2a1",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-DESIGN-route-ccb260ed40bf41d595de4482ce0e46fa.json",
+      "size": 2234,
+      "sha256": "16c0564f3cab064d96115e19acdaec7509fb2ab067c4f937ca5f9485736da2a1",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "size": 1972,
+      "sha256": "98a52e265e9cc4992c7bfe18cd66e0109c41e173ff78e29289557faabc607998",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/document-check.json",
+      "size": 268,
+      "sha256": "9e190d5dd0785b3d412bcbbdaae50e4e451965d6f2779c73a05c5e90d2880579",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/issues-open.json",
+      "size": 24309,
+      "sha256": "6d36f6c7eeced5be2cb6a4453474b0cb4fe6e9a3065db2dd200933f5a1d9f192",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/lint-baseline.json",
+      "size": 615,
+      "sha256": "f6111e05e8e33c59826d1586b45bf2323e33f448cc93f4689f484bb26ce5b250",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/lint-initial.json",
+      "size": 2341,
+      "sha256": "41194702c1998753b969b942f6cc03cfae0fd5f8215ceeb53a49d8a3f3a8cbcd",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/metadata-correction.json",
+      "size": 555,
+      "sha256": "4d15248fb8dfb48ba82b54bb08504b34791817cc7f8a02758fc340f7a2094443",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/packet-screening.json",
+      "size": 490412,
+      "sha256": "710655551fd1ef9dfe4a734b65638ea8a5b2e8f64a634c536663e98510ef8aa2",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/preserved-inputs.json",
+      "size": 16160,
+      "sha256": "7cb4b77da91e173d1853fc43ed1d7b24b1094045b89de818176e35a649227b1d",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+      "size": 6441,
+      "sha256": "37e670faf79f6c1787627973493326efb52b8c4c2943d09ecf0c38b1b4263495",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+      "size": 5829,
+      "sha256": "ce6dfb99b0bdd0f12702e1893db6e90ded9b8a9308c8c88fadde655a403c1ad4",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
+      "size": 61122,
+      "sha256": "b70c328174a828c8be2af6d3f20bda1f690821ccdbe0e6dd44c1c9057b4019a3",
+      "review_status": "reviewed"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/deliverables.log",
+      "size": 58,
+      "sha256": "9ba71ce4809d6c2aa38f9d6970a41acf275c752d0cfa332b43a16ff383201159",
+      "review_status": "skipped"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/diff-check.log",
+      "size": 8,
+      "sha256": "0e606818852cc6d4e60902e87575d34ac32240a5d6906a692c9213d2c43e035c",
+      "review_status": "skipped"
+    }
+  ],
+  "final_snapshot": {
+    "head": "11ea298ef63cb90e86881d08fa83c44c9e3f75c5",
+    "status_porcelain": "",
+    "symbolic_ref_exit": 1,
+    "clean": true,
+    "detached": true
+  },
+  "check_exit_code": 0
+}

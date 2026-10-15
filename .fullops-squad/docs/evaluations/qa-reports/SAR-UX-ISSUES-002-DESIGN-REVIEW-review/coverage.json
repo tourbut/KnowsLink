@@ -1,0 +1,186 @@
+{
+  "total_files": 22,
+  "reviewed_files": 14,
+  "skipped_files": 8,
+  "coverage_rate": 0.636364,
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "변경된 context만 직접 검토했다. 새 설계·QA 연결과 구현/운영 후속 상태를 보존하며 과거 실패를 수락으로 바꾸지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "status": "added",
+      "insertions": 231,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "231줄 전체를 원문 이슈2–8, 사람 친구 HP01–16, 현행 D04 및 이름/친구/receipt/gate/연결 코드와 대조했다. 제품 판단·안전 경계·순차 인계·실증 미실행이 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-context.json",
+      "status": "added",
+      "insertions": 314,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "원본 탐색 평가다. task/HEAD/attempt·D04 unsent·input_partial 및 필수 근거 목록은 확인했다. 외부 모델 확률과 전체 요청·응답의 의미를 재평가하지 않는다. 실제 D02/D04/소스는 별도 직접 읽었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-documents-find.json",
+      "status": "added",
+      "insertions": 974,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "원본 문서 탐색이다. JSON·기준·partial/batch_only·remaining33·unreadable0을 확인했다. 모든 후보 본문을 재검토하지 않는다. 필수 현재 원천과 미수정 이유는 설계/phase/outcomes에서 검토했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-find.json",
+      "status": "added",
+      "insertions": 267,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "원본 코드 탐색이다. JSON·기준·후보8·input_partial·unreadable0을 확인했다. 전체 탐색 순위/동적 호출 그래프는 검증하지 않는다. 요구 관련 handler/template를 직접 읽었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-packet-outcomes.json",
+      "status": "added",
+      "insertions": 2425,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "403 path/category의 누락·중복0을 검사했다. completed29/no_change374와 세 가지 이유를 검토했다. no_change357은 전체 본문 미검토, document_update17은 명시 소유 제한이며 partial을 숨기지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-packet.json",
+      "status": "added",
+      "insertions": 8779,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "원본 packet 메타데이터와 386경로/403 path-category 대응·unknown19/remaining349/optional0·소유 제한을 확인했다. 모든 추천 경로 본문을 읽은 것으로 표시하지 않는다. 증거 선별 원본으로 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-DESIGN-route.json",
+      "status": "added",
+      "insertions": 94,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "제품→designer 배정, D02/D04/D11 및 추가 원천 추천, 사용자 지정 호스트와 기준/attempt를 검토했다. 추천을 구현 완료나 기존 문서 수정 허가로 해석하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-DESIGN-route-ccb260ed40bf41d595de4482ce0e46fa.json",
+      "status": "added",
+      "insertions": 94,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "route 원본과 byte 동일함을 확인했다. 역사 기록이며 별도 새 실행을 주장하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "9줄 front matter 추가만 확인했다. 허가 msg_c9b3e1c2d111·본문 불변·DEV fc4ad58 동일성을 대조했다. fe2387a/4795의 원 gate와 native 미실행을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/document-check.json",
+      "status": "added",
+      "insertions": 9,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "링크17·이슈7·보호152 및 products diff0의 author 검사 요약을 읽었다. 의미/제품 QA 대체가 아님을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/issues-open.json",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "#2–#8 원문·추가 요구를 읽고 현재 사람 친구 우선순위와 설계 U2–U8의 대응/대체/미검증을 대조했다. 외부 GitHub 현재 상태 조회는 수행하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/lint-baseline.json",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "초기 DOC003이 시작 HEAD에 이미 존재하고 own diff0인 근거, make 부재, 원 실패 보존을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/lint-initial.json",
+      "status": "added",
+      "insertions": 75,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "458eb565→34169e7 원 ERROR1/WARNING3/unavailable2를 읽고 최종 메타데이터 보완과 구분했다. 초기 실패를 덮어쓰지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/metadata-correction.json",
+      "status": "added",
+      "insertions": 11,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "본문 두 hash와 scope/front matter only를 실제 git diff로 확인했다. 원 실패 경로와 승인 메시지가 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/packet-screening.json",
+      "status": "added",
+      "insertions": 15265,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "386개 존재/제목/hash 선별 기록과 packet 경로 동일성, missing0을 확인했다. 386개 본문·지문을 반복 검증하지 않았다. 독립 설계 판정은 직접 읽은 현재 원천에만 근거한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/preserved-inputs.json",
+      "status": "added",
+      "insertions": 158,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "152경로 보호 지문의 원본이다. 구조·기준과 author document-check의 unchanged 결과를 읽었다. 전체 152지문 검사를 반복하지 않고 실제 22파일 diff가 허용 문서뿐임을 독립 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "author 전체 QA 보고를 읽었다. 문서 검사·미실행·직접 의미 점검·원 lint/후속 보완·미검증 한계가 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+      "status": "added",
+      "insertions": 50,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "phase의 범위·기준·제품 결정·packet 보완·후속 책임·metadata 예외를 설계/QA/실제 diff와 대조했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
+      "status": "added",
+      "insertions": 508,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원 지시/완료/최신 요청 절을 직접 읽고 packet 후보 구간은 구조로 대조했다. blank 템플릿은 아래 최신 요청으로 구체화되고 원 실패와 소유 제한을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/deliverables.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "OCR exclude 원시 로그다. author report/document-check의 strict13 문제0·경고0·exit0 근거로 연결하고 원본 바이트 hash를 보존했다. strict 검사를 반복하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/diff-check.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "OCR exclude 원시 로그다. author report의 diff/staged check exit0 기록과 연결하고 원본 바이트 hash를 보존했다. 원시 로그의 각 실행을 재수행하지 않는다."
+    }
+  ]
+}
