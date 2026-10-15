@@ -1,0 +1,2731 @@
+[
+  {
+    "path": ".fullops-squad/FULLOPS.md",
+    "sha256": "15a8f741cbb124fd339606aa01228b1072a0143487764636a8f0280f03ea3994",
+    "lines": 98,
+    "headings": [
+      "## 운영 모드와 작업 범위",
+      "# FullOps Squad — 하네스 지도",
+      "## 제품 기획과 기술 계획의 책임",
+      "## 완료 결과의 통합과 역할 인박스 — FullOps 0.9.12",
+      "## FullOps 0.9.14 검사와 보드",
+      "## FullOps 1.2.0 적용",
+      "## FullOps 1.4.0 적용",
+      "## FullOps 1.4.2 적용"
+    ],
+    "relevant": [
+      {
+        "line": 51,
+        "text": "프로젝트 보안·아키텍처·테스트 기준이 외부 스킬보다 우선하며, 충돌은 지시서에 기록한다. 공통 기본값으로 기존 기준을 낮추지 않고 보안·권한·미해결 critical/high 차단을 임의 완화하지 않는다."
+      },
+      {
+        "line": 64,
+        "text": "tester의 독립 동작 QA와 필요한 직접 시각 검수를 유지한다. 미해결 critical/high는 수락·병합을 차단한다."
+      },
+      {
+        "line": 71,
+        "text": "coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인하고 실제 기본 브랜치 main에 병합한다. 원격 origin/main에 일반 push한 뒤 완료 SHA의 로컬·원격 조상 관계를 확인한다. 역할 브랜치 push만으로 통합을 완료하지 않는다. 전체 제품 수락과 개별 문서 결과의 통합은 구분한다. 미해결 critical/high와 필수 검증 실패는 계속 차단한다."
+      },
+      {
+        "line": 96,
+        "text": "선택형 프런트 도구는 frontend.json의 tools에 등록한 것만 로컬 설치한다. 현재 tools는 비어 있다. 기존 codex/gpt-6.1-sol/high와 디자인 정본을 유지하며 설정 준비·인증·브라우저 QA를 구분한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/PLANS.md",
+    "sha256": "7b6646f65183426b289b95bce9f771b981193fc5b3201bbbec230382b60b3bc4",
+    "lines": 1842,
+    "headings": [
+      "# KnowsLink 현재 계획",
+      "## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001",
+      "## Astra 리팩터링 운영 배포 — SAR-REFACTOR-002-OPS",
+      "## Astra high 전반 리팩터링·성능·설계 개선 — SAR-REFACTOR-002-DEV",
+      "## 현재 시스템 구성도·상세 문서 — SAR-SYSTEM-DIAGRAM-001-DEV",
+      "## FullOps 1.4.2 갱신 — FULLOPS-UPDATE-1.4.2",
+      "## 공개 README·루트 docs 설명 자료 — SAR-REPO-DOCS-001-DEV",
+      "## 전체 기능 보존 리팩토링 — SAR-REFACTOR-001-DEV",
+      "## detached HEAD 정리 — 2026-10-13",
+      "## Grok·Dots 자동 수신 알림 — SAR-HUMAN-PEER-003-NOTIFY",
+      "## Grok·Dots 실계정 친구 대화 — SAR-HUMAN-PEER-002-LIVE",
+      "## Windows 워크트리 복원 — FULLOPS-WORKTREE-RESTORE-2026-10-09"
+    ],
+    "relevant": [
+      {
+        "line": 6,
+        "text": "tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOP"
+      },
+      {
+        "line": 12,
+        "text": "## 첫페이지 서비스·설치·사용 안내 — SAR-LANDING-GUIDE-001"
+      },
+      {
+        "line": 14,
+        "text": "- DEV 완료 msg_0a44968602b5 / fe2387a7676f7997aea76a2606f4cc2dbcd4b56b를 coor 기록 브랜치1312658에 병합했다. main은 아직 미반영이다. 최종 make lint/test0·ERROR0/WARNING3/unavailable0, 제품4795의 build/DB0·36 browser assertions와 native 입력/확대 not_run을 확인했다. 추가 SIZE-002는 D05 계약·DEV context로395→406이 된 이유를 외부 final-handoff.md에서 원문 확인했다. integration hold 담당coor, 재개 조건은 같은 SHA 독립 코드 check·기능 QA·직접 시각 수락이다. delivery_ac99adb939fa는 통합 뒤 ACK한다."
+      },
+      {
+        "line": 16,
+        "text": "- 후속 검수 준비: tester SAR-LANDING-GUIDE-001-TESTER와 designer SAR-LANDING-GUIDE-001-VISUAL은 Astra high 인박스/route만 준비했고 DEV 최종 worker_done 뒤 고정 SHA·packet을 갱신해 배정한다. 예비4795d619의 실제 make lint/test/build 및 DB integration은 exit0이며 오류0·기존 SIZE 경고2다. 아직 최종 수락·운영 배포 성공은 아니다. coor Orca preview page88cad09c-ab0b-4aba-ae6f-c11ec3be5658은 합성 google fixture127.0.0.1:18781이고 운영 계정은 사용하지 않는다."
+      },
+      {
+        "line": 17,
+        "text": "- DEV msg_d80f50cc1a1e의 keyboard focus 문제는 별도 미실행으로 보존하고 나머지 증거·최종 보고를 진행하도록 msg_526751460434로 회신했다. Windows computer capabilities의 focus=false를 확인했고 tester 지시서에 native 입력·DOM/CSS 대체의 구분을 추가했다. worker-show는 실제 DEV live/working이며 terminalResource가 user_owned/user_takeover로 바뀌어 종료·강제 동기화하지 않고 보존한다."
+      },
+      {
+        "line": 21,
+        "text": "- DEV 착수 task_f0d345aa84d2 / ctx_65212ab451f7 / term_31385176-8c59-4002-a838-35497b00e416. ready·turn_started와 requested/effective codex/gpt-6-astra/high 일치를 확인했다. 설계 eae9a8b는 main/origin b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e에 일반 push/fetch일치·양쪽조상0이다. 설계 msg_3d1059638d28 hold해제·delivery_e538674cc284 ACK, designer ctx_074184d23af0은 정상 release/transcript captured다. dev/tester/designer terminal0·clean을 재확인해 b0f6596으로FF했고 OPS 기존 사용자 공간은 보존했다. DEV는 새 코드의 실제 필수 검사·격리 브라우저 fixture를 제공하며 독립 QA/시각/코드리뷰는 후속이다."
+      },
+      {
+        "line": 27,
+        "text": "- 설계 착수: task_eb743a73b6d8 / ctx_074184d23af0 / term_f05a63c9-ed45-4529-9183-1b0e357222ab. requested/effective codex/gpt-6-astra/high 일치와 ready·turn_started를 확인했다. 준비93271bf는 인박스·원천·packet을 포함한다. startup에서 실제HEAD/fingerprint 확인·정식 갱신을 인계했다. 중간 지시 보강에 따른 route bind 실패와 unresolved 결과는 prior/history에 보존했고 공개 UX 제품 책임 근거로 designer 재선정·최종 product route를 기록했다."
+      },
+      {
+        "line": 29,
+        "text": "- 2026-10-14 사용자 요청: 첫페이지에 서비스 소개·설치방법·사용 순서·실제 기능에 맞는 사용예시를 담고 실제 사용은 로그인하도록 한다. 화면 설계부터 구현까지 codex/gpt-6-astra/high로 고정한다. 기존 최소 로그인 화면 지시보다 최신 요청이 우선하며 사람 친구 아래 agent·대화·Google/권한 계약은 보존한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+    "sha256": "7323f6685d8ef5d6bc89703cd0a8d99ace558a667507c96599dce8346c13615f",
+    "lines": 100,
+    "headings": [
+      "# designer 컨텍스트"
+    ],
+    "relevant": [
+      {
+        "line": 6,
+        "text": "tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001]"
+      },
+      {
+        "line": 31,
+        "text": "  `invalid_auth`는 인증 실패 차단만 증명한다. `deliver:human` 인증 경계 high는 DEV 수정·독립 재검증 전 유지한다."
+      },
+      {
+        "line": 38,
+        "text": "- 2026-10-06: SAR-PUBLIC-AGENTS-001-UI의 d1eef9b 연결·키·관계를 격리 fixture와 실제 브라우저에서 직접 확인했다. 모바일 지문 overflow와 오류 뒤 복귀 부재로 UX 시각 수락은 FAIL/보류다."
+      },
+      {
+        "line": 40,
+        "text": "  상세 관측·마스킹·미검증·DEV 후속: [직접 검수 보고](../../docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md)."
+      },
+      {
+        "line": 43,
+        "text": "  차단·쿨다운·새 수치는 추가하지 않았다. 수신측 반복 노출 위험과 원본 UI FAIL/보류·실제 운영 후속은 유지한다."
+      },
+      {
+        "line": 51,
+        "text": "  원본 d1/d165 FAIL·QA/OPS 실행 65개 파일은 byte 동일이다. 제어 25h fixture와 실제 sweep을 실운영 24h로 확대하지 않는다."
+      },
+      {
+        "line": 54,
+        "text": "- 2026-10-06: SAR-PUBLIC-MESSAGES-001-UI는 fixed09c의 실제 일반회원 receipt·gate를 자기SQL/SMTP·Chrome에서 직접 검수했다. UX06 로컬PASS, UX07 Deny 뒤405로 FAIL/보류다."
+      },
+      {
+        "line": 55,
+        "text": "  F-UI-MSG-01 medium은 거절 저장 뒤 결과·홈 복귀 부재다. 제품 코드·규칙은 보존하며 원본OPS high/medium과 fixture 초기실패도 유지한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/contexts/designer.md",
+    "sha256": "0827326adc17af702098b43e3a7b3bf0e4d6f84b0de090e75eee769df8128a13",
+    "lines": 28,
+    "headings": [
+      "# designer 컨텍스트"
+    ],
+    "relevant": [
+      {
+        "line": 6,
+        "text": "tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001]"
+      },
+      {
+        "line": 12,
+        "text": "전문이10KB를 넘어 원문을 [2026-10-14 보존본](archive/designer-2026-10-14-landing.md)에 복사했다. 원 파일을 삭제하거나 이동하지 않았다. 아래는 다음 과제에 필요한 현재 원칙이다. 과거 FAIL·한정 PASS·미검증의 전문과 링크는 보존본을 따른다."
+      },
+      {
+        "line": 22,
+        "text": "- SAR-HUMAN-PEER-001-VISUAL 원254ff6a의 FAIL은 보존한다. 후보12dc0c7의 제공된 V01–V03 화면만 resolved/시각 PASS다."
+      },
+      {
+        "line": 23,
+        "text": "  실제 keyboard/200%·미제공 상태는 not_run이었다. 새 공개 안내 QA의 통과로 간주하지 않는다."
+      },
+      {
+        "line": 26,
+        "text": "- 2026-10-14 SAR-LANDING-GUIDE-001은 최신 요청에 따라 공개 첫페이지를 소개·순서·Grok/Dots 설치·가상 예시·로그인으로 확장한다. 유효 세션도 안내를 읽고 대화로 이동한다."
+      },
+      {
+        "line": 27,
+        "text": "  D02/D04/D11과 Astra high DEV/tester 인계를 작성했다. Grok 접기에 준비물·installer 조건·Command/Arguments·신규 설정을 제공하며 업데이트는 분리한다. 새 제품/시각 수락은 아니다."
+      },
+      {
+        "line": 28,
+        "text": "  결정·검증·후속: [실행 기록](../docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md). 원 partial/unknown·최소 로그인 지시·운영 미검증을 보존한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/contexts/dev.md",
+    "sha256": "4840d6ce874f035cdcc6cf3179f89b7334529de8843be388d232cc047923b507",
+    "lines": 53,
+    "headings": [
+      "# dev 컨텍스트",
+      "## 유효 원칙 (보관본 요약)",
+      "## 최근 결정"
+    ],
+    "relevant": [
+      {
+        "line": 39,
+        "text": "- 2026-10-10 SAR-AUTO-RECEIVE-001-DEV: 자동 pull→로컬 inbox→ACK→MCP 알림 후보 뒤, 선택형 loopback wake를 `grok-wake.ts`로 분리 구현했다. 미문서화 vendor 경로는 기본 off이고 지원 상태(공식 없음/미문서화/실제 미검증)를 문서에 구분한다."
+      },
+      {
+        "line": 52,
+        "text": "- 2026-10-14 SAR-LANDING-GUIDE-001-DEV: 공개 `/`는 유효 세션에도200 안내이며 개인정보 대신 `/home` 링크만 표시한다. 설정별 로그인은 Service.startView 한 곳에서 결정한다. [DEV QA](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md)."
+      },
+      {
+        "line": 53,
+        "text": "- Orca 입력 성공 응답만으로 키보드 PASS를 선언하지 않는다. 이번 native 입력은 hasFocus=false로 미실행이며 CSS200%와 native200%도 분리했다. 같은 host의 포트는 cookie를 공유하므로 fixture 상태별 새 isolated profile을 준비한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/interface-design.md",
+    "sha256": "5d2914b404342b2533dfd3e2ac48990bed1ecb2248e7e575ef7a8a00f6a24606",
+    "lines": 287,
+    "headings": [
+      "# KnowsLink HTTP·adapter 계약",
+      "## SAR-LANDING-GUIDE-001 공개 진입 DEV 후보",
+      "## SAR-REFACTOR-002 오류 복구 보완",
+      "## SAR-HUMAN-PEER-001 DEV 후보",
+      "## SAR-SSE-INSTALL-001 SSE 계약",
+      "### Remote OAuth·Cloud 설치",
+      "## 인증과 오류",
+      "## owner·등록·pairing — MVP-01/02/07",
+      "## transport·실행 조정 — MVP-03–07/11",
+      "## human-gate — MVP-08–11/16",
+      "## TypeScript 합성 경로",
+      "## SAR-MVP-002 Grok Bot MCP 계약"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV]"
+      },
+      {
+        "line": 14,
+        "text": "## SAR-LANDING-GUIDE-001 공개 진입 DEV 후보"
+      },
+      {
+        "line": 18,
+        "text": "익명 로그인 폼은 실제 Google/메일 설정에 따라 `#start` 한 곳에만 노출한다. 헤더·hero는 앵커 이동이다. 기존 인증 POST의 상태·redirect·Origin/Fetch-Site·no-store·CSP는 유지하며 오류 페이지도 같은 설정과 공개 안내를 사용한다. 만료 세션은 기존 cookie 정리와 고정 안내를 유지한다. 상세는 D04 공개 첫페이지 정본과 D10 구현 책임을 따른다."
+      },
+      {
+        "line": 107,
+        "text": "receipt transport는 queued/leased/delivered/failed:expired/failed:max_attempts/failed:revoked다."
+      },
+      {
+        "line": 142,
+        "text": "합성 pull은 한 delivery의 검증·persist·ACK·claim 후 owner gate를 만든다. 승인 뒤에도 최소 denied R을 보낸다. control result는 ACK까지만 수행하고 재응답하지 않는다. tool 출력은 state·transport·actualConnection·webhook·evidenceFetch만 포함하며 원문·claim·lease·gate ID·credential을 숨긴다. processing busy/failure/empty는 업무 done과 구분한다. 같은 프로세스의 동시 pull은 busy로 거부한다. 공유 claim은 계속 relay가 집행한다."
+      },
+      {
+        "line": 272,
+        "text": "| `knowslink_connect_status` | 없음 | waiting/connected/failed; credential 반환 안 함 |"
+      },
+      {
+        "line": 279,
+        "text": "- `knowslink_status`는 `public-node`에서 기존 필드에 `autoReceive`를 더한다. 값은 `{state:running|backoff|stopped|off,lastSuccessAt,lastError,lastErrorAt,nextPollAt,lastReceivedId,hostNotice:none|sent_unverified|failed,pending}`다. `lastError`는 `relay HTTP <code>[ <reason>][ retry_at=...]`, `invalid text envelope|signature`, `unconfigured`, `failed` 중 하나다. relay를 호출하거나 credential을 읽지 않는다."
+      },
+      {
+        "line": 280,
+        "text": "- `knowslink_text_receive` 입력은 그대로 없다. 로컬 inbox의 가장 오래된 미확인 메시지를 먼저 반환한다. inbox가 비어 있으면 relay에서 한 건을 pull해 같은 inbox 경로로 반환한다. 출력은 `{state:received,message:{id,from,to,text,exp,reply_to?,untrusted:true,expired}}` 또는 `{state:empty,message:null}`다. 실패 출력은 기존 `publicFailure`와 같다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+    "sha256": "10dece240342ce8b35824d03b99a339d695f24bd95d8776fa1ecb83cc228ba33",
+    "lines": 105,
+    "headings": [
+      "# SAR-MVP-001-UI — 합성 human-gate 화면 기록",
+      "## 현행 화면 정본 — 2026-10-12",
+      "## 일반회원 메시지·gate의 새 직접 기록",
+      "## 회원 웹 상용 UX·비주얼 명세",
+      "## 기준과 범위",
+      "## 화면 구조",
+      "## 화면별 표시와 행동",
+      "## 시각 수락과 한계",
+      "## 인계와 기존 기록 보존",
+      "## 이번 재개 검수와 독립 리뷰 경계",
+      "## SAR-PUBLIC-AGENTS-001-UI의 직접 검수 결과",
+      "## SAR-PUBLIC-AGENTS-001-UI-FIX의 직접 재검수"
+    ],
+    "relevant": [
+      {
+        "line": 21,
+        "text": "UX06은 좁은 로컬 시각 조건에서 PASS다. UX07은 Deny 뒤405의 F-UI-MSG-01 medium으로 FAIL/보류다."
+      },
+      {
+        "line": 91,
+        "text": "reviewer `msg_4fbcac80f76c`가 보고한 `deliver:human` 인증 경계 high는 미해결이다."
+      },
+      {
+        "line": 92,
+        "text": "이 시각 PASS는 해당 high를 해소하지 않는다. DEV 수정과 독립 재검증 전 제품 수락·병합을 차단한다."
+      },
+      {
+        "line": 97,
+        "text": "2026-10-06 제품 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`의 일반 회원 UX04–05를 실제 격리 localhost에서 직접 검수했다. [과제별 관측과 판정](SAR-PUBLIC-AGENTS-001-UI.md)이 이번 결과 정본이다. 연결·키·관계 상태는 확인했으며 모바일 지문과 오류 뒤 복귀의 medium 두 건으로 전체 시각 수락은 FAIL/보류다. 기존 합성 gate와 제품 규칙 및 운영 공개의 보류 조건은 유지한다."
+      },
+      {
+        "line": 101,
+        "text": "고정 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 F-UI-01–04와 POLICY 새 안내는 [직접 재검수 보고](SAR-PUBLIC-AGENTS-001-UI-FIX.md)의 좁은 시각 조건에서 PASS다. 원본 d1/d165 UI FAIL과 원본 QA/OPS 실행 기록은 그대로 보존했다. 독립 TESTER/OPS·main 통합·일반 서비스 공개 수락은 별도다. 제품 규칙과 디자인 방향은 바꾸지 않았다."
+      },
+      {
+        "line": 105,
+        "text": "고정 `dfc70caa748a90614b02d48c78b4651345938339`의 정상 Deny 클릭/Enter desktop1280/mobile390와 owner desktop은 [직접 재검수 보고](SAR-PUBLIC-MESSAGES-001-UI-FIX.md)의 좁은 시각 조건에서 PASS다. canonical 결과GET200·denied 저장·결정 비활성·실제 홈 복귀를 확인했다. 신규 rate 포화의 결과GET429는 즉시결과PASS에서 제외한다. 원09c UX07 FAIL·405·viewport980·OPS 원실패를 보존했다. 전체API/OPS수락·main통합·운영공개는별도이며제품/UX규칙은바꾸지않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    "sha256": "9304b2c88a9656e6aaa121065821bdcc2115fa2d55426a0aa1a7ea5f695ab742",
+    "lines": 798,
+    "headings": [
+      "# 회원 웹 상용 UX·비주얼 명세와 개발 인계",
+      "## 공개 첫페이지 정본 — SAR-LANDING-GUIDE-001",
+      "### 목표·정보 구조·진입",
+      "### 실제 카피와 정보의 깊이",
+      "### 로그인 상태와 실패 복구",
+      "### 시각 계획·토큰·반응형 와이어프레임",
+      "### 자기 비평과 수락 기준",
+      "## 현재 디자인 정본 — SAR-HUMAN-PEER-001",
+      "### 관찰과 전면 개편 목표",
+      "### 디자인 계획 1과 비평 1",
+      "### 디자인 계획 2와 비평 2",
+      "### 현행 토큰과 형태"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV]"
+      },
+      {
+        "line": 13,
+        "text": "## 공개 첫페이지 정본 — SAR-LANDING-GUIDE-001"
+      },
+      {
+        "line": 183,
+        "text": "768px 미만에서는 한 열과 좌우 16px 여백을 사용한다. 768px 이상에서도 두 열이 이름과 본문을 좁히면 한 열로 감싼다. 390·320px에서 헤더 링크는 자연스럽게 두 줄 이상으로 감싼다. 햄버거 메뉴와 가로 스크롤 탭은 만들지 않는다. 순서는 제목·설명·CTA·관계 도식이며 첫 viewport에 CTA가 들어가야 한다. 글자 200%에서는 같은 높이 목표를 강제하지 않고 전체 내용에 접근하게 한다."
+      },
+      {
+        "line": 216,
+        "text": "키보드는 Tab/Shift+Tab, 앵커 Enter, summary Enter/Space, 폼 Enter, 오류 뒤 재시도를 확인한다. 200% 확대·44px hit area·focus·contrast·긴 URL·overflow를 검증한다. 장식 모션은 없어 reduced-motion에서 동작 변화가 없어야 한다. 실제 Google·운영 메일·실상대 메시지는 실행하지 않는다. 독립 QA·직접 시각 검수·별도 세션 고정 SHA 리뷰 전 구현 수락으로 보고하지 않는다."
+      },
+      {
+        "line": 218,
+        "text": "이번 실행은 codex / gpt-6-astra / high, 주 스킬 frontend-design이다. 최신 사용자 지정이 기존 Sol tuple보다 우선한다. frontend check는 configuration_ready이며 인증·브라우저 QA·MCP는 not_run이다. tools=[]와 기존 설정을 유지한다. [설계 검증 기록](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md)에 원천 사실·미실행·후속을 구분한다."
+      },
+      {
+        "line": 220,
+        "text": "구현 연결(2026-10-14): 공개 template·인증 view·내 계정 복귀 링크와 관련 회귀는 [DEV 구현 기록](../../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다. 위 설계 검사 기록과 과거 실패는 보존한다. DEV 자체 검증은 독립 QA·designer 직접 시각 수락·코드 리뷰·운영 배포를 대신하지 않는다."
+      },
+      {
+        "line": 338,
+        "text": "320px에서도 세 이동 링크는 두 줄 이내로 감싸고 본문 가로 스크롤은 없다. 긴 사람/agent 이름은 줄바꿈한다. 키보드/200% 확대에서도 대상·입력·보내기 접근을 유지한다."
+      },
+      {
+        "line": 378,
+        "text": "| 별도 reviewer / 고정 SHA | 코드·제품 문서 독립 리뷰 | critical/high 0, 현행 정본과 구현 일치 |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/module-design.md",
+    "sha256": "f8079b0634993d5d42e515b97e94ed1bdb0719425b20d90c399e70c2648cbef6",
+    "lines": 275,
+    "headings": [
+      "# KnowsLink 프로그램 책임과 검증",
+      "## SAR-LANDING-GUIDE-001 공개 안내",
+      "## SAR-REFACTOR-002 감사·개선",
+      "## SAR-REFACTOR-001-DEV 기능 보존 정리",
+      "## SAR-HUMAN-PEER-001 DEV 후보",
+      "## SAR-SSE-INSTALL-001 SSE 모듈",
+      "### Remote OAuth·Cloud 설치",
+      "## SAR-MVP-002 플러그인 모듈과 검사",
+      "## SAR-MVP-002-BOT-CATALOG-DEV 앱 등록 경로",
+      "## SAR-MVP-003 시험 transport 모듈",
+      "## SAR-PUBLIC-IDENTITY-001 신원 모듈",
+      "## SAR-PUBLIC-AGENTS-001 모듈·검증"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV"
+      },
+      {
+        "line": 14,
+        "text": "## SAR-LANDING-GUIDE-001 공개 안내"
+      },
+      {
+        "line": 20,
+        "text": "`human_pages.go`의 내 계정에는 `/`의 서비스 안내 링크가 있다. 기존 회원 주 메뉴·인증 폼 계약은 유지한다. `landing_test.go`와 `landing_integration_test.go`는 로그인 수단·공개 카피·오류 escape·실제 DB 세션·이름 설정·만료·개인정보 비노출을 검증한다. 기존 member form golden과 Google/device/Remote 회귀도 적용한다. opt-in `landingfixture` 태그의 fixture는 별도 합성 DB와 loopback 서버만 사용한다. 실제 검증 SHA·명령·결과는 [DEV 기록](../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다."
+      },
+      {
+        "line": 74,
+        "text": "| HTTP owner | credential·PoP·pairing·Go template·CSRF decision | PostgresSafety, GateFailureStates |"
+      },
+      {
+        "line": 92,
+        "text": "별도 fixed-SHA 코드 리뷰와 critical/high 차단은 coordinator가 담당한다."
+      },
+      {
+        "line": 155,
+        "text": "| connections.go | owner/agent/client bound PoP·10분 grant·key credential·quota·pending expiry | TestConnectionApprovalAndKeyCredentials, TestConnectionFailureExpiryAndCancellation, TestAgentAndPairCapacity |"
+      },
+      {
+        "line": 195,
+        "text": "보존, rate, POLICY 두 관찰 표의 프로브 종료코드는 0이다. 새 critical/high는 없다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md)다."
+      },
+      {
+        "line": 196,
+        "text": "원본 d1 QA와 UI FAIL은 원래 SHA에 둔다. 이 절은 그 판정을 바꾸지 않는다. 운영 공개와 실제 메일은 확인하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
+    "sha256": "fd87a8d822467765e606fb26d3be7ceeecba85be3e9d2886a3dfa2c803fb30c2",
+    "lines": 64,
+    "headings": [
+      "# SAR-FRONTEND-POLISH-001-DEV 검증 보고",
+      "## 자료와 환경",
+      "## 명령과 종료코드",
+      "## before → after",
+      "## 키보드·포커스",
+      "## 비평 (impeccable polish/audit, Operate 모드)",
+      "## 해당 없음"
+    ],
+    "relevant": [
+      {
+        "line": 26,
+        "text": "| `python3 -I keyboard.py <after> after/keyboard.json` | 0 | failures 0 |"
+      },
+      {
+        "line": 33,
+        "text": "측정 스크립트는 [measure.py](measure.py)(이전 FIX-VISUAL 스크립트를 이번 폭·검사로 수정), [keyboard.py](keyboard.py), SSH shim 사본은 [gate/remote.py](gate/remote.py)다. 로그는 출력 전 접속값을 가린다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+    "sha256": "491dc9867379e246e92eaed8e632793c665c3e134a3894619e0c5692166dd553",
+    "lines": 71,
+    "headings": [
+      "# SAR-FRONTEND-POLISH-001-TESTER 리뷰",
+      "## 검토 범위",
+      "## 발견 사항",
+      "## 검증 및 남은 제약",
+      "## 대화 미참조 인계 점검",
+      "## 검토 결론"
+    ],
+    "relevant": [
+      {
+        "line": 12,
+        "text": "- 검토자 / CLI / 모델: tester / claude-code / claude-sonnet-5-5 / high. 실제 reviewer session `e11a71fc-036b-4ee6-9b91-4e419178052e`. implementer session `49f80cab-a430-480f-ae2a-708c6fcba036`. 서로 다르다."
+      },
+      {
+        "line": 38,
+        "text": "critical·high·medium·low 모두 0건이다. 확인한 위험과 결론은 아래다."
+      },
+      {
+        "line": 48,
+        "text": "- 독립 동작 QA: [../SAR-FRONTEND-POLISH-001-TESTER-test/report.md](../SAR-FRONTEND-POLISH-001-TESTER-test/report.md). fixture 29개×3폭 failures 0, 필요한 단위 테스트 통과, snapshot의 `go test ./internal/relay -count=1` 통과."
+      },
+      {
+        "line": 52,
+        "text": "- 미검사: 실제 키 입력 기반 포커스 링·건너뛰기 링크 노출(CLI keypress 불가), `remoteReturn` 렌더, 실제 스크린 리더·200% 확대·다른 엔진·Postgres integration·`make verify-mvp`."
+      },
+      {
+        "line": 71,
+        "text": "수락 가능하다. 미해결 critical/high 없음, 필수 lint ERROR 0, 같은 SHA의 DEV gate 근거를 확인해 재사용했고 독립 browser QA는 합성 fixture 29개×3폭에서 실패가 없다. 수락 전 남은 일은 designer 직접 시각 검수와 coor 통합뿐이며 키보드 포커스 링 실입력 검사는 미검사로 남긴다. 이 결론은 AI가 판단한 결과이며 OCR의 자동 판정이 아니다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md",
+    "sha256": "a1536aa88ee06c96025610efc6ad5f0e342410b5cd6cd5806698d50b2ddf334e",
+    "lines": 27,
+    "headings": [
+      "# SAR-FRONTEND-POLISH-001-VISUAL-DOCS 리뷰",
+      "## 대화 미참조 인계 점검"
+    ],
+    "relevant": [
+      {
+        "line": 12,
+        "text": "수락 가능하다. 새 critical/high와 수정 요청은 없다. 이 리뷰는 시각 검수 결과 문서의 검토이며 제품 코드 리뷰·동작 QA를 대신하지 않는다."
+      },
+      {
+        "line": 18,
+        "text": "- report·phase·완료 로그를 읽고 직접 관찰 26장과 재사용 320px·포커스·미검증 실제 로그인·200%·스크린 리더를 구분함을 확인했다. identity·validation JSON의 SHA와 종료코드, packet-outcomes의 완료38/변경없음5 및 빈 인박스를 확인했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
+    "sha256": "49d1011f9dd556a24afa3fac5a5b947267178b185bbcbfc2b96e1a1b940759c3",
+    "lines": 68,
+    "headings": [
+      "# SAR-FRONTEND-POLISH-001-VISUAL — 직접 시각 검수",
+      "## 기준과 증거 동일성",
+      "## 직접 열어 본 화면과 수락 근거",
+      "## V-02·V-03·V-08·V-12의 제품 범위 판단",
+      "## 재사용 검사와 미검증",
+      "## 인계"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "summary: 고정 후보의 합성 PNG를 직접 검수하고 변경 수락과 기존 low·미검증 경계를 보존한다"
+      },
+      {
+        "line": 12,
+        "text": "**판정: 제공된 변경 화면의 시각 PASS, 비차단 잔여 있음.** 직접 관찰한 화면에서 critical·high는 발견하지 않았다. 제품 전체의 동작·접근성 적합성·운영 수락을 뜻하지 않는다."
+      },
+      {
+        "line": 21,
+        "text": "- `frontend.py --repo . --host codex --model gpt-6.1-sol --effort medium --check`는 exit 0, `status: disabled`다. 프로젝트 설정은 변경하지 않았다. 인증·MCP·새 브라우저 QA는 `not_run`이다. 설치 스킬 원문과 참조는 읽었다. `impeccable context`는 실행을 시도했으나 출력·종료코드를 별도 보존하지 않아 실행 준비의 성공 근거로 사용하지 않는다. 기존 D04와 제품 템플릿을 직접 읽었다."
+      },
+      {
+        "line": 55,
+        "text": "## 재사용 검사와 미검증"
+      },
+      {
+        "line": 58,
+        "text": "- [keyboard.json](../SAR-FRONTEND-POLISH-001-DEV-test/after/keyboard.json)의 home·remote-consent 포커스 `solid 3px`, Enter 펼침, failures 0을 재사용한다. PNG에는 포커스 상태가 없어 직접 입력 검증으로 표시하지 않는다. 건너뛰기 링크 키보드 이동은 DEV도 미검증이다."
+      },
+      {
+        "line": 60,
+        "text": "- 실제 Google 왕복·실계정·로그아웃·운영 반영·200% 확대·스크린 리더·다른 엔진·정확한 렌더 대비 비율·문자 간격 확대·입력 완료 숫자 상태는 미검증이다. 독립 코드 리뷰와 동작 QA는 tester, 운영 통합은 coor/OPS가 담당한다."
+      },
+      {
+        "line": 66,
+        "text": "D04에는 이번 시각 수락 근거만 추가했다. 이전 실패·보류와 미검증 기록은 유지했다. 제품 파일은 수정하지 않았다. 삭제·이동·외부 발송·운영 조작은 수행하지 않았다. 본 보고와 identity.json, packet-outcomes, 완료 아카이브를 함께 커밋해 coor에 보낸다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-DOC-review/report.md",
+    "sha256": "2a1e77b5727bdba0ba0c40be56bf81545728397b91e2021863641469dc59b6b7",
+    "lines": 18,
+    "headings": [
+      "# 검토 결과"
+    ],
+    "relevant": [
+      {
+        "line": 2,
+        "text": "title: 사람 친구 UI 시각 FAIL 기록 독립 문서 리뷰"
+      },
+      {
+        "line": 12,
+        "text": "기준7c29f87a8cba756457c3873badef4881ad8cdf03, 후보bfdfafc8054d8791228fa7f0c7cbcb69a974beaa의 문서 기록만 수락한다. 제품 시각 FAIL을 유지한다. 새 critical/high는 없다. 별도 실제 세션과 깨끗한 detached 읽기전용 snapshot을 result.json에 연결했다."
+      },
+      {
+        "line": 14,
+        "text": "fullops-common-0.3.3과 project.md/D02/D04의 동일 기준을 적용했다. D04 변경은 관찰 결과 연결6줄과 task 추가이며 요구를 낮추지 않는다. V01 기술 설명/반복 대상, V02 두줄 목록/desktop 작성위치, V03 반복제목의 재현·수락조건이 사용자 단순화 요청과 맞는다. 보고서가 과거4eaefa6 실제21PNG·최종254ff6a source동일성·미실행 최종surface/200%/focus/빠진상태를 구분함을 확인했다. 원manifest/source-delta hash·21항목과 완료62outcomes 연결을 확인했다. 자동 탐색 packet/역사/source-scope 전수본문은 구체적 사유로 생략했고 제품 QA로 사용하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-FINAL-DOC-review/report.md",
+    "sha256": "c1045ffe8b643fd358807fbc0992130c4d62cde3dabfeb0de5744bfbeab5dbfa",
+    "lines": 20,
+    "headings": [
+      "# 검토 결과"
+    ],
+    "relevant": [
+      {
+        "line": 12,
+        "text": "기준a04d7c7b35adfaca0543e57970619e2ba469fa71 대비 후보096d5c7af1ae97fb7aa9534b42eb5b50c92643ea의 문서·시각판정 기록을 수락한다. 실제별도세션/clean detached 읽기전용 snapshot은 result.json에 연결했다. 새 critical/high0이며 전체제품수락은 별도 독립QA/코드리뷰 후속이다."
+      },
+      {
+        "line": 14,
+        "text": "fullops-common-0.3.3/project.md/D02/D04 동일기준을 적용했다. D04/phase/context/report는 원254ff6a FAIL을 보존하고 최종12dc0c7의 제공된 V01–V03만 resolved로 연결한다. sourcefe7a509와 최종 제품동일성·원14PNG·별도actual15상태/요청실제폭 보정·desktop sendbottom833 근거를 대조했다. final-report와 실제surface/focus관측·문서검사/finish/65outcomes 연결을 읽었다. raw부분실패/capture/역사packet/큰수동지도는 구체적생략사유를 남겼고 근거요약에서 존재와 제외영향을 확인했다. root의 coor2809 실제대화GET/screenshot도 수정문구와 동작경계를 확인하는 참고이며 designer독립검사를 대체하지 않는다."
+      },
+      {
+        "line": 16,
+        "text": "로그인/첫이름/pending/해제/gate 직접시각·실keyboard/200%는 not_run이다. 범위한정 시각PASS를 전체접근성/모든상태수락으로 확대하지 않는다. 요구/이유는D02/D04, 구현/검증은DEVphase/runtime와 외부final-report, 후속은새visual final-report/phase에서 찾았다. 실제계정/운영이행/복원은 이번변경에 없다. 빈인박스와 기존아카이브prefix보존/새attempt finishexit0을 확인했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+    "sha256": "31e4c17804fddaad22c6958334438c1c350b9d968cd432933c41945ab745151e",
+    "lines": 80,
+    "headings": [
+      "# 사람 친구·대화 수정 후보 직접 시각 재검수",
+      "## 판정과 원기록 보존",
+      "## 출처와 실제 실행 경계",
+      "## 직접 이미지 관찰",
+      "## V01–V03 결과",
+      "## 실행기 보정·미실행·후속",
+      "## 문서·게이트·인계"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "summary: 12dc0c7의 V01–V03 개선과 실제 격리 화면 재측정 및 미검사 경계를 기록한다"
+      },
+      {
+        "line": 14,
+        "text": "후보 `12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5`의 **제공된 V01–V03 수정 화면은 시각 PASS**다. V-01·V-02 medium과 V-03 low는 아래 관찰 범위에서 resolved다. 관찰 범위의 신규 critical/high와 미해결 blocking 시각 결함은 0건이다. 미관찰 상태나 전체 제품의 수락을 뜻하지 않는다."
+      },
+      {
+        "line": 16,
+        "text": "[원후보 보고](report.md)의 `254ff6a98b12b7e51f0835491300f7695425d264` FAIL·21 PNG·미실행 기록은 그대로 보존한다. 이번 attempt는 `161c5363d3ac4a84bdcd43032cd69f51`이다. 착수 HEAD는 `a04d7c7b35adfaca0543e57970619e2ba469fa71`이며 coordinator의 정식 packet/inbox WIP를 사용했다. 원FAIL을 새 후보 PASS로 소급하지 않는다."
+      },
+      {
+        "line": 18,
+        "text": "Purpose review, designer, codex / gpt-6.1-sol / high, frontend-design/fullops-frontend, test lite/subagent standard다. 작은 직접 재검수이므로 하위 위임은 사용하지 않았다. [D02 HP-01–16](../../../planning/product-specs/SAR-HUMAN-PEER.md), [현행 D04](../../../design-docs/mockups/service-member-ui.md), project.md와 fullops-common-0.3.3을 적용했다. 요구·토큰·보안 기준은 완화하지 않았다."
+      },
+      {
+        "line": 38,
+        "text": "원본 320×640·390×844는 DPR1이다. desktop은 CSS1440×900/DPR0.75이며 PNG1080×675다. native1440/DPR1이나 실200% 검수로 표시하지 않는다."
+      },
+      {
+        "line": 50,
+        "text": "| V-02 좁은 화면·스크롤 | 제공 범위 PASS | 320/390에서 긴 헤더와 전체 대상은 문서 흐름으로 줄바꿈한다. 보내기는 스크롤 후 화면 안에 온다. 15상태에서 가로 overflow0·높이44px 미달 가시 제어0·중첩 세로 스크롤0을 직접 측정했다. 실제 키보드 가두기 여부는 not_run이다. |"
+      },
+      {
+        "line": 57,
+        "text": "별도 page에서 첫 `set viewport 320 640 1`은 실제 CSS292×584/DPR1.095445를 반환했다. 원시 요청 폭 assertion과 첫 보정 높이 assertion은 exit1이었다. 이 실행기 조건을 제품 overflow 실패로 해석하지 않는다. 요청 크기·scale만 조정하여 실제 CSS320×640/DPR약1, 390×844/DPR약1, 1440×900/DPR약0.75를 각각 assert했다. 요청/실제 치수와 보정 probe를 actual-surface.json에 보존한다. 일부 부동소수 값은 근사다. 원 실패·partial 자료도 보존한다. viewport 보정은 실제 브라우저 200%가 아니다."
+      },
+      {
+        "line": 61,
+        "text": "| 실제 Tab/Enter/Space·focus-visible·키보드 가두기 | not_run | 실제 document.hasFocus=false다. 허용된 `orca focus`는 TEXTAREA를 active로 만들지만 focus-visible=false이며 실제 키 입력 PASS가 아니다. tester/designer가 native focus 가능한 허가 surface에서 확인해야 한다. [관측](attempt-161c5363/focus-observation-verified.json). |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+    "sha256": "7ac0d44a0f9cd2f02c0fa0e0b1ca0b7320d608bb67aca59765946391713b12c1",
+    "lines": 108,
+    "headings": [
+      "# 사람 친구·대화 UI 직접 시각 검수",
+      "## 판정과 대상",
+      "## 증거 시점과 직접 관찰",
+      "## 발견과 수정 수락 조건",
+      "### V-01 — 작성란의 기술 설명과 반복 대상 문장, medium",
+      "### V-02 — 긴 이름 목록과 desktop 작성 위치, medium",
+      "### V-03 — 홈의 반복 제목, low",
+      "## 검사 범위와 한계",
+      "## 절차와 담당",
+      "## 수정 후보의 별도 재검수 기록"
+    ],
+    "relevant": [
+      {
+        "line": 14,
+        "text": "시각 수락은 FAIL이다. V-01·V-02 medium 수정이 필요하다. 이번에 관찰한 화면의 critical/high는 0건이다. 미관찰 상태의 결함 부재를 뜻하지 않는다. 검수 과제 완료와 제품 수락을 구분한다."
+      },
+      {
+        "line": 18,
+        "text": "- 역할/실행: designer, fresh Codex 세션, codex / gpt-6.1-sol / high, 주 스킬 frontend-design. 하위 위임은 사용하지 않았다."
+      },
+      {
+        "line": 40,
+        "text": "원본 경로는 [manifest](../SAR-HUMAN-PEER-001-DEV-test/runtime/4eaefa6e0a5cf623f0d8d8080d918086f86030ec/captures-1791801092715284800/manifest.json) 기준이다. 320×640·390×844는 DPR1이다. desktop은 CSS1440×900, DPR0.75, PNG1080×675다. native 1440px/DPR1 이미지 검수로 표시하지 않는다. 최초 반복 타일 full-page 증거는 부적합 기록으로 보존됐으며 사용하지 않았다."
+      },
+      {
+        "line": 67,
+        "text": "3. 320/390에서는 문서 흐름과 전체 이름 줄바꿈을 유지한다. 200%에서도 대상·입력·보내기를 접근할 수 있어야 한다."
+      },
+      {
+        "line": 79,
+        "text": "| 세 메뉴·이름·동명 구분·owner/agent 표시 | 부분 PASS | 제공된 정상 사례에 한정한다. V-01·V-02는 FAIL이다. |"
+      },
+      {
+        "line": 82,
+        "text": "| CSS1440 반응형 | 근거 재사용 | DPR0.75 조건을 보존한다. native1440/DPR1은 not_run이다. |"
+      },
+      {
+        "line": 83,
+        "text": "| 최종 SHA 합성 loopback 직접 화면 | not_run | tester가 같은 Run에서 독립 QA/fixture를 준비 중이며 URL/profile/page를 아직 전달하지 않았다. coor 회신에 따라 원후보 기록을 마무리한다. |"
+      },
+      {
+        "line": 84,
+        "text": "| 200% 브라우저 확대 | not_run | 아직 최종 인증 surface를 받지 못했다. 뷰포트 축소나 CSS zoom을 실제 브라우저 확대 PASS로 바꾸지 않는다. |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+    "sha256": "070bce053681173a445beec5d4bf5d8e354f9c1b0b89d30ce8b22db3db28a5f6",
+    "lines": 15,
+    "headings": [
+      "# SAR-LANDING-GUIDE-001-DEV final receipt"
+    ],
+    "relevant": [
+      {
+        "line": 1,
+        "text": "# SAR-LANDING-GUIDE-001-DEV final receipt"
+      },
+      {
+        "line": 11,
+        "text": "Final gate JSON and exact SHA-lint.log / SHA-test.log are in this directory. Earlier build / DB race regression logs and browser evidence are committed in .fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/."
+      },
+      {
+        "line": 14,
+        "text": "Native keyboard and native200% remain unavailable/not_run per coordinator msg_526751460434, requiring independent tester before acceptance. DOM auth/click/focus checks and CSS200% are separate evidence. Independent tester, designer visual acceptance and separate code review remain followups."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+    "sha256": "c4a1eb35b72e18baf1466ed588be370b960872f467a11b9044e308dd50b29b7a",
+    "lines": 64,
+    "headings": [
+      "# SAR-LANDING-GUIDE-001-CODE-REVIEW",
+      "## 적용 기준과 검토",
+      "## 검사·증거와 규모",
+      "## 대화 미참조 인계 점검"
+    ],
+    "relevant": [
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001-DEV]"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-LANDING-GUIDE-001-CODE-REVIEW"
+      },
+      {
+        "line": 12,
+        "text": "코드와 기술 문서 리뷰는 수락 가능하다. 확정 발견은 critical/high/medium/low 모두 0건이다. 이 결론은 검토자의 판단이며 OCR 자동 판정이 아니다. 독립 tester 동작 QA와 designer 직접 시각 수락은 별도다. native 키보드와 native browser 200% 확대는 DEV에서 unavailable/not_run이며 최종 제품 수락 전 검증해야 한다."
+      },
+      {
+        "line": 14,
+        "text": "- 검토자: Codex / gpt-6-astra / high, 실제 세션 `01a13aaa-968a-7d81-b8ca-f2d71a16a0d4`."
+      },
+      {
+        "line": 24,
+        "text": "FullOps1.4.2 fullops-review와 open-code-review-delegate를 사용했다. AGENTS.md, FULLOPS.md, fullops-common-0.3.3 README/coding-style/testing/security, project.md, document-writing.md, review/rule.json과 네 OCR rule group을 읽었다. 해당 규칙·lint 설정은 base→head에서 변경되지 않았다. 원 지시와 완료 전문은 handovers/logs/2026-10-14_to_dev.md의 동일 attempt에 있다. 사용자 Astra high 지정이 frontend.json의 Sol 기본값보다 우선한다."
+      },
+      {
+        "line": 26,
+        "text": "D02 LG-01–08, D04 공개 첫페이지 절과 D05/D10/D11을 코드와 대조했다. 과거 최소 로그인 지시는 공개 안내 범위에서 대체된다. 유효 세션의 `/` 자동 redirect를 없애고 안내200과 `/home` 링크를 제공하는 것은 LG-02의 의도된 변경이다. 회원 이름·이메일·agent·친구·본문·키를 startView에 전달하지 않는다. 이름 미설정은 기존 `/home/name`으로 이어진다."
+      },
+      {
+        "line": 28,
+        "text": "Service.startView의 모든 호출자를 검색하고 member.go의 이메일 시작·발송 실패·코드 만료·검증 실패·legacy 오류와 googleFailure를 읽었다. Google/Mail 활성 상태를 한 곳에서 결정한다. Google-only/both/email-only/none, 오류 상단 요약과 필드 연결, 만료 안내, authed 폼 비노출을 확인했다. Google start/callback/finishGoogleLogin의 성공 Next는 `/home`, `/connect/...`, `/remote/consent/...`를 유지한다. 재확인·세션 결속·Origin/Fetch-Site·CSP/no-store·html/template escape·기존 POST 경계는 유지된다."
+      },
+      {
+        "line": 34,
+        "text": "remote.py/forward.py 전체에서 exact SHA·clean 검사, 고유 clone/DB, known_hosts/RejectPolicy, 비밀값 비출력, loopback 제한, stop 후 보존을 확인했다. opt-in fixture는 실제 handler와 합성 메일·로컬 Google 취소만 사용하며 연결/송신 경로는 allowlist 밖이다. browser.py의 DOM 실제 submit과 native 입력의 차이를 확인했다. 고정 page/포트와 host cookie 공유의 재사용 제약은 인계에 있다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+    "sha256": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
+    "lines": 66,
+    "headings": [
+      "# SAR-LANDING-GUIDE-001-DESIGN-REVIEW",
+      "## 적용 기준과 범위",
+      "## 검증과 증거",
+      "## 대화 미참조 인계 점검",
+      "## 결론과 한계"
+    ],
+    "relevant": [
+      {
+        "line": 2,
+        "text": "title: 공개 첫페이지 설계 독립 리뷰"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001]"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-LANDING-GUIDE-001-DESIGN-REVIEW"
+      },
+      {
+        "line": 12,
+        "text": "문서와 제품 설계 단계는 수락 가능하다. 발견 사항은 critical/high/medium/low 모두 0건이다. 실제 구현·동작 QA·직접 시각·운영 수락은 후속이다. 이 판정은 검토자의 판단이며 OCR 자동 판정이 아니다."
+      },
+      {
+        "line": 14,
+        "text": "- 검토자: Codex / gpt-6-astra / high. 실제 세션 `01a13a78-9d3e-7061-b459-eb673854961a`."
+      },
+      {
+        "line": 26,
+        "text": "D02 LG-01–08, D04 공개 첫페이지, D11 구현 예정 안내와 두 queued 인계의 전체 변경을 검토했다. README의 Grok/Dots 신규·업데이트, docs/architecture.md의 신원·서명·수신·보관, member.go startPage와 member_pages.go 로그인 template을 직접 대조했다. 기존 D04 최소 로그인 방향은 최신 요청으로 공개 안내에 한해 대체되고 원문은 보존됐다."
+      },
+      {
+        "line": 34,
+        "text": "D04의 여섯 토큰·글꼴·memberStyle/네이티브 폼/details를 재사용한다. hero/h2·공개 폭/간격만 명시 예외다.1440/390/320, 키보드,200% 확대,44px,contrast/focus/overflow와 실제 캡처 대상이 있다. 별도 디자인 lint·다중테마는 없어 해당 없음이다. 일반 DESIGN 검사로 Go 문자열 CSS 검수를 대신하지 않는다. 기본 Sol보다 사용자 Astra 지정이 우선함을 DEV/tester가 명시했다."
+      },
+      {
+        "line": 54,
+        "text": "| 현재 요구·이유 | deliverables/README → D02 SAR-HUMAN-PEER 공개 소개 → D04 공개 첫페이지 | 확인. 최신 요청과 최소 로그인 대체 근거가 있다. |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+    "sha256": "c7a74cbe5003bab523d14677791b93b20f36c6e1b3cffbdff4893f6fb93797f9",
+    "lines": 71,
+    "headings": [
+      "# 공개 안내 DEV 검증",
+      "## 검사와 실패 보존",
+      "## 사실·탐색·디자인 근거",
+      "## 격리 자원과 후속",
+      "## 고정 구현 결과",
+      "## 브라우저 증거와 한계",
+      "## 후속 실행용 fixture"
+    ],
+    "relevant": [
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001-DEV]"
+      },
+      {
+        "line": 12,
+        "text": "비교 기준은 eae9a8bffae706410f684e4c837e396e7b0bcf26, 착수 HEAD는 b0f6596b6b7bfd4ea4e3b8cfed6d8b1e20a9b93e다. 구현과 기술 판단은 [DEV phase](../../../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 있다. 이 보고는 DEV 자체 검사이며 독립 QA·직접 시각 수락·코드 리뷰·운영 배포를 대신하지 않는다."
+      },
+      {
+        "line": 16,
+        "text": "루트에서 `go test ./internal/relay -run 'TestLanding|TestMemberUIFixtures|TestGoogle|TestHuman' -count=1`을 실행했다. 수정 전 새 TestLandingConfiguredLoginAndPublicContent는 nil DB인 Service.Handler의 전역 admission 경로에서 panic했다. 이는 새 테스트 준비 오류다. 그 명령 뒤 orchestration check가 실행되어 셸 최종 코드는0이었지만 Go 결과는 명시적 FAIL이었다. 이 실행을 통과 또는 정확한 Go 종료코드 증거로 쓰지 않는다."
+      },
+      {
+        "line": 26,
+        "text": "[source-audit.json](source-audit.json)은 startup packet의61경로에서 원문 hash·제목·관련 구간을 보존한다. 과거 FAIL·미검증·partial/unknown과 잔여 후보를 유지한다. 초기 packet의 큰 D04/member.go는 관련 공개·인증 절을 직접 읽었다. 과거 보고의 PASS를 새 코드 실행으로 재사용하지 않는다."
+      },
+      {
+        "line": 28,
+        "text": "frontend.py의 codex/gpt-6-astra/high check는 configuration_ready다. 인증·브라우저·MCP는 이 구성 검사로 통과하지 않는다. 주 스킬 frontend-design, 기존 memberStyle과 D04 여섯 토큰을 사용했다. 별도 디자인 lint와 다중테마는 없다."
+      },
+      {
+        "line": 55,
+        "text": "[browser.py](browser.py)는 별도 isolated profile `42ea2bbf-1caa-49a7-bbe4-c75037e54a28`, page `7c54ca56-3195-4698-8d36-1d120a8d6997`에서 실행했다. layout16·states9·audit11 assertion을 확인했다. 네 설정별 폼, Google 취소의 위/아래 복구, 만료 안내, 이메일 실제 POST→확인→이름 설정, 로그인한 공개 `/`의 개인정보·폼 비노출을 확인했다. 인증은 DOM의 실제 button.click 및 실제 handler/redirect로 수행했으며 native 마우스/키보드 성공을 뜻하지 않는다. 계정이 없는 이메일 `landing@example.test`만 합성 mail mock으로 인증했다."
+      },
+      {
+        "line": 59,
+        "text": "DEV가 hero1440/390, install320, examples390, Google 오류 복구 캡처를 직접 열어 내용·줄바꿈·겹침을 확인했다. 이는 독립 designer 수락이 아니다. [contrast.json](browser-audit/contrast.json)의 실제 CSS 색상 대비는 본문14.70, 보조6.19, 링크/primary7.96, 오류8.01, 선택면 본문12.98, 테두리3.79다. CSS zoom200%에서 overflow 없음도 확인했지만 native browser zoom200%는 지원 명령이 없어 미실행이다."
+      },
+      {
+        "line": 61,
+        "text": "**native keyboard는 unavailable/not_run**이다. tab switch --focus, click, DOM focus, exec focus, keypress Enter, exec press Enter가 성공을 반환해도 document.hasFocus=false이고 summary가 열리지 않았다. 초기 [keyboard 실패](browser-keyboard/checks.json)와 [입력 한계](browser-keyboard/runtime-limits.json)를 보존한다. coor msg_526751460434는 정책 변경·가짜 DOM key event 없이 이 한계를 기록하고 완료하도록 지시했다. Enter/Space·Tab/Shift+Tab·실제 키보드 form 제출·native200%는 독립 tester의 실제 실행기로 확인할 때까지 미수락이다. DOM summary click과 앵커 focus, focus-visible3px 규칙 검사는 별도 audit에만 기록한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+    "sha256": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
+    "lines": 61,
+    "headings": [
+      "# 설계 검증 결과",
+      "## 기준과 사실 대조",
+      "## 문서·구성 검사",
+      "## 제품 gate와 실행 불가",
+      "## 미실행·후속",
+      "## 커밋 뒤 FullOps lint 실제 결과"
+    ],
+    "relevant": [
+      {
+        "line": 2,
+        "text": "title: 공개 첫페이지 설계 검증과 미실행 경계"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001]"
+      },
+      {
+        "line": 12,
+        "text": "현재 대상은 공개 첫페이지 설계 문서다. 제품 코드·테스트·설정·의존성은 변경하지 않았다. 실제 UI 동작·시각 수락은 not_run이며 DEV 구현 뒤 독립 QA와 designer가 검증한다."
+      },
+      {
+        "line": 31,
+        "text": "frontend.py --repo . --host codex --model gpt-6-astra --effort high --check는 exit0, configuration_ready, problems0이다. tools=[]이며 인증·browser_qa·mcp_connection은 not_run이다. 주 스킬 frontend-design과 기존 D04 여섯 토큰을 적용했다. 새 설치·테마·디자인 검사기는 없다."
+      },
+      {
+        "line": 47,
+        "text": "- 제품 구현·Go 회귀의 새 실행·실제 브라우저/스크린 리더·Google 왕복·운영 메일·MCP 연결·설치 실행은 not_run이다. 문서 전용 설계 범위이기 때문이다."
+      },
+      {
+        "line": 49,
+        "text": "- DEV가 구현 SHA의 핵심 auth/template와 필수 make lint/test를 수행한다. tester는 격리 서버에서 상태표·실제 POST·redirect·정보 비노출·키보드·200%·overflow를 독립 확인한다."
+      },
+      {
+        "line": 51,
+        "text": "- 최신 OPS의 Grok 현지 업데이트·실계정 재왕복·장시간 알림·다음 Events 갱신·실제 rollback 미검증은 그대로 남는다. 이번 카피가 그 성공을 보장하지 않는다."
+      },
+      {
+        "line": 57,
+        "text": "문서 커밋 `a37d388236fc342067bd2db03411da3f64a17e00`에서 기준3230ee5로 실행했다. [first-lint.json](first-lint.json)은 ERROR0·WARNING2·unavailable2, 실행 종료1이다. 현재 PATH의 make 부재를 확인했다. product-lint/product-test는 not_run이며 통과가 아니다. 새 제품 입력 변경이 없어 위 과거 Linux gate를 지시서의 문서 전용 재사용 규칙으로 연결한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+    "sha256": "58480fdc47238157a4c9bb6de32cdec30602552133ea3cc1f296771141247c60",
+    "lines": 52,
+    "headings": [
+      "# SAR-SERVICE-UI-001-FIX-TESTER 리뷰",
+      "## 검토 범위",
+      "## 발견 사항",
+      "## 검증 및 남은 제약",
+      "## 대화 미참조 인계 점검",
+      "## 검토 결론"
+    ],
+    "relevant": [
+      {
+        "line": 28,
+        "text": "critical/high/medium 없음. low 관찰 1건: 규칙이 모든 `a`에 `inline-flex`를 걸어 줄글 속 링크가 생기면 줄 높이가 커진다. 현재 줄글 속 링크는 없어 영향 없다. 수정 요청 아님."
+      },
+      {
+        "line": 35,
+        "text": "- 미검증: 실제 Linux 서버·Google·운영 흐름은 coor 후속이다. 실제 서버 실 페이지와 Grok Bot UI는 접근하지 않았다. 본 측정은 합성 fixture 렌더다. adapters npm·python·deploy 검사 미실행."
+      },
+      {
+        "line": 52,
+        "text": "수락 가능하다. V-01(글자 링크 21px)은 `295417a`에서 해소됐고 새 회귀는 없다. 미해결 critical/high 없음. 제품 코드 미수정."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
+    "sha256": "a14384ac54da395069ce8ebcf5e90becc22974f6cc3fc1a01741e621c1c355e5",
+    "lines": 18,
+    "headings": [],
+    "relevant": [
+      {
+        "line": 16,
+        "text": "phase·contexts·아카이브와 빈인박스를 확인했다. 산출물 인덱스→D04→원 시각보고→수정DEVphase→독립tester→본재측정보고→OPS대기 인박스로 요구/구현/검증/운영후속을 찾았다. 실제 운영·Google·200%·스크린리더·키보드 포커스 재입력은 아직 미검증이다. 공통CSS 외 새디자인lint/다크테마는 미구성으로 해당없음이다."
+      },
+      {
+        "line": 18,
+        "text": "미해결 critical/high 없음. 시각 재검수 결과를 수락하며 독립 코드리뷰가 수락된 제품295417a와 main에 통합한다. lint ERROR0/WARNING0·make불가2 이유를 확인했다. 운영 반영 후 실제 로그인·회원 화면 검증은 coor/OPS 후속이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
+    "sha256": "17c350136c2322367b6190d7f7092922700474f09f39d062cead1100fa103f8e",
+    "lines": 85,
+    "headings": [
+      "# SAR-SERVICE-UI-001-FIX-VISUAL — V-01 재측정·시각 수락",
+      "## 판정",
+      "## 대상과 방법",
+      "## 증거와 구분",
+      "## 측정 결과 (DOM, 87개 키)",
+      "## 직접 관찰 (PNG를 열어 본 화면)",
+      "## 새 관찰",
+      "## 변경하지 않은 기존 발견",
+      "## 미검증",
+      "## 재현"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "summary: \"고정 후보 295417a의 V-01 글자 링크 44px 수정을 Orca 내장 브라우저 320·390·1440에서 직접 재측정하고 화면을 열어 확인한 시각 수락 판정, 근거 구분, 미검증\""
+      },
+      {
+        "line": 14,
+        "text": "**V-01 resolved (시각 기준). 제품 시각 수락: PASS 유지.** 글자 링크의 44px 미달은 해소됐다. 새 critical·high·medium 발견은 0건이다."
+      },
+      {
+        "line": 16,
+        "text": "이 판정은 합성 fixture 29개 화면, Orca 내장 브라우저(Chromium 계열), 폭 3개에 한정한다. 실제 Google 로그인 왕복·실계정·운영 서버·실제 스크린 리더·200% 확대·다른 엔진은 하지 않았고 미검증으로 남는다. 원 보고서의 발견 V-01–V-12와 판정은 지우지 않았다. [원 보고서](../SAR-SERVICE-UI-001-VISUAL/report.md)에는 후속 기록 절만 추가했다."
+      },
+      {
+        "line": 75,
+        "text": "## 미검증"
+      },
+      {
+        "line": 78,
+        "text": "- 실제 스크린 리더, 200% 확대, 다크 모드, Chromium 외 엔진."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
+    "sha256": "dd469cab2e260ccf266c0211fb67b310854b2b9e0f429482df556caba5941e06",
+    "lines": 20,
+    "headings": [
+      "# 운영 계정 확인"
+    ],
+    "relevant": [
+      {
+        "line": 12,
+        "text": "Orca embedded browser에서 https://link.knowslog.com/home 을 확인했다. 기존 Google 계정으로 `로그인 다시 확인` → Google 계정 선택 → 계속 → `Google 로그인 확인 완료` → `홈으로 이동`을 실행했다. callback의 authorization_failed는 없었다. 비밀번호·세션·토큰·개인키를 수집하지 않았다."
+      },
+      {
+        "line": 18,
+        "text": "키보드에서 본문 건너뛰기를 Enter로 실행해 #main으로 이동했다. 다음 Tab은 `새 에이전트 만들기`로 이동했고 solid 3px outline이 표시됐다. `keyboard-skip.json`과 `keyboard-tab.json`에 관찰값을 보존했다. 모든 폼의 키보드 조작을 반복하지 않았다."
+      },
+      {
+        "line": 20,
+        "text": "운영 배포 SHA·DB/state/Google/Tunnel·공유 서비스 보존은 OPS의 별도 전후 증거가 정본이다. 이 보고서는 브라우저 관찰만 기록한다. 제품 고정 후보의 기능 QA와 시각 검수는 FIX-TESTER/FIX-VISUAL 보고서를 재사용한다. 스크린리더·200% 확대·다른 브라우저·장시간 수신은 미검증이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
+    "sha256": "99acdbf5e6b0e7784c787e548e86887e4dbea9e859e7ca76a707d5383644ea3d",
+    "lines": 16,
+    "headings": [],
+    "relevant": [
+      {
+        "line": 14,
+        "text": "보고서는 실제 Google·운영·200%·스크린리더를 미검증으로 구분했다. tester low3과 V-10/V-12/낭독 미검증 대조가 있다. D04 승인 기준은 바꾸지 않았고 실제 시각 판정만 연결했다. 제품·운영 정본 및 다음 단계는 산출물 인덱스→D04→본 시각 보고→기존 tester 고정 후보 리뷰→OPS 대기 인박스에서 찾았다. V-01은 좁은 DEV 수정 후 designer 링크 재측정·독립 최신 SHA 리뷰가 필요하다."
+      },
+      {
+        "line": 16,
+        "text": "미해결 critical/high 없음. 이 문서 결과는 수락한다. 제품은 수정/독립 검수 전 main 통합하지 않는다. lint ERROR0/WARNING0, make 미설치2는 위 이유로 해당 결과의 제품 실행이 아니며 Linux 기존 후보 증거를 참조한다. PNG 개별 열람은 생략하고 manifest 무결성을 확인했다. 다른 브라우저·실계정 검증을 수행하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+    "sha256": "8c6a631c4dee4f4ce0aa6fe6bf83f612c31df734f673d7e65a1de0043db1058e",
+    "lines": 55,
+    "headings": [
+      "# SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW 리뷰",
+      "## 검토 범위",
+      "## 발견 사항",
+      "## 검증 및 남은 제약",
+      "## 대화 미참조 인계 점검",
+      "## 검토 결론"
+    ],
+    "relevant": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+    "sha256": "2745539eb7d23cf3c2e6bc5aa3e907c15255e3b3b20749ccda46d8f4d229acfe",
+    "lines": 181,
+    "headings": [
+      "# SAR-SERVICE-UI-001-VISUAL — 직접 시각 수락 보고",
+      "## 판정",
+      "## 대상과 방법",
+      "### 도구 한계와 폐기한 시도",
+      "## 증거",
+      "## 측정 요약 (DOM 측정, 99개 키)",
+      "## 키보드와 포커스 (직접 입력)",
+      "## 직접 관찰 (PNG를 열어 본 화면)",
+      "## 발견 사항",
+      "## tester 참고와의 대조",
+      "## D04 수락 기준 대조",
+      "## 디자인 lint와 테마"
+    ],
+    "relevant": [
+      {
+        "line": 14,
+        "text": "**제품 시각 수락: PASS (비차단 잔여 있음).** critical·high 발견은 0건이다. medium 1건(V-01)과 low 11건(V-02–V-12)을 남긴다. 기능 QA와 코드 리뷰는 tester 담당이며 이 판정에 포함하지 않는다."
+      },
+      {
+        "line": 16,
+        "text": "이 PASS는 합성 fixture 29개 화면, Chromium 계열 Orca 내장 브라우저, 3개 폭에 한정한다. 실제 Google 로그인 왕복, 실계정 데이터, 운영 서버, 실제 스크린 리더, 200% 확대, 다른 브라우저 엔진은 판정하지 않았다."
+      },
+      {
+        "line": 36,
+        "text": "4. [keyboard.py](keyboard.py)가 실제 키 입력(Tab·Enter·Space)과 렌더된 색 대비를 측정했다."
+      },
+      {
+        "line": 50,
+        "text": "- [keyboard.json](keyboard.json): Tab 순서·포커스 외곽선·summary 토글·색 대비."
+      },
+      {
+        "line": 113,
+        "text": "미해결 critical/high: 없음."
+      },
+      {
+        "line": 122,
+        "text": "| F2 `code` 읽기 전용 값의 `aria-labelledby`가 실제 스크린 리더 이름을 보장하지 못함 | 직접 확인하지 못했다. 화면에는 \"식별자\" 라벨이 값 위에 보이고 DOM 라벨 연결만 봤다. | 스크린 리더 미검증으로 남긴다. 수락을 막지 않는다. |"
+      },
+      {
+        "line": 125,
+        "text": "세 건 모두 critical·high가 아니며 내 PASS 판정을 바꾸지 않는다."
+      },
+      {
+        "line": 138,
+        "text": "| R-08 접근성 A-01–A-10 | 부분 PASS | A-01·A-03·A-04·A-05·A-06·A-09(V-09 제외)는 측정·관찰로 확인했다. A-02는 원격 동의 제외(V-10). A-07은 `code`+라벨 확인(식별자 라벨 \"식별자\"). A-08은 아래 미검증. |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+    "sha256": "fedbae454c5ca5fa7794f436182c1375df63ba6fa1aca95d48603c9cf51bc89f",
+    "lines": 22,
+    "headings": [
+      "# 독립 검토 결과"
+    ],
+    "relevant": [
+      {
+        "line": 16,
+        "text": "같은 후보의 지정5장 SHA256 manifest, tester 보고, 시각 보고의 구체적 관찰을 대조했다. F2 링크24px은 실제 클릭 성공을 근거로 시각 담당이 비차단 수락했다. F1 medium 원인별 실패 안내 부족과 V1 low 기존 한국어 줄바꿈을 보존했다. CSRF/owner-binding의 같은 픽셀과 서로 다른 동작 증거, 실제 계정·타 브라우저 미검증을 구분했다. 새 critical/high는 없다."
+      },
+      {
+        "line": 22,
+        "text": "수락한다. check 통과는 기록의 기계 검사이며 시각·코드 판단을 대신하지 않는다. 기존 비차단 잔여와 native Codex trust 미확인은 유지한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+    "sha256": "b5c57c7b270e0d4d137693c7e81b13d56ace87b3fc2ef31dac1dd3c3bb89e5d1",
+    "lines": 92,
+    "headings": [
+      "# SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL — 직접 시각 수락",
+      "## 판정",
+      "## 대상과 원천",
+      "## 캡처가 새 코드에서 나왔는지",
+      "## 직접 관찰",
+      "## 발견 사항",
+      "### F2 수락 근거",
+      "## 확인하지 못한 것과 한계",
+      "## 등록 lint와 제품 검증",
+      "## 인계"
+    ],
+    "relevant": [
+      {
+        "line": 89,
+        "text": "- 시각 수락: 반환 화면과 안내 화면의 desktop·mobile 사용성 PASS. 미해결 critical/high 없음."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+    "sha256": "893a22ae06005c6affa7368d5f5c15c22699b9cefc53baeff5aa7630d0a221c4",
+    "lines": 92,
+    "headings": [
+      "# SAR-SSE-INSTALL-001-VISUAL — 직접 시각 검수",
+      "## 판정과 범위",
+      "## 독립 세션과 원천",
+      "## 직접 관찰",
+      "## 실제 viewport와 캡처 한계",
+      "## 탐색 패킷 처리",
+      "## 검증·정리·인계",
+      "## 완료 게이트 실행 기록"
+    ],
+    "relevant": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+    "sha256": "548ee0dd10160748cfe29916767c1a9c1a506693f0f9dedd6afa25abf3034964",
+    "lines": 83,
+    "headings": [
+      "# SAR-FRONTEND-POLISH-001-DEV — 회원 웹 검토와 최소 수정",
+      "## 기준",
+      "## 준비 확인",
+      "## 결함 목록과 판단",
+      "## 변경",
+      "## 검증",
+      "## 미검증과 후속"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "summary: 회원 웹 기존 화면을 합성 fixture로 검토하고 남은 low 결함(V-04·V-05·V-06·V-07·V-09·V-10·V-11·N-01)을 최소 수정한 계획·변경·검증·미검증"
+      },
+      {
+        "line": 25,
+        "text": "| 같은 모듈의 `selection(enabled=True, ...)`·`inspect` 메모리 실행 | `configuration_ready`, problems 0, 스킬 `~/.claude/skills/impeccable/SKILL.md` 확인. 인증·브라우저 QA·MCP는 `not_run`이며 이 결과는 실행 성공을 뜻하지 않는다. |"
+      },
+      {
+        "line": 78,
+        "text": "## 미검증과 후속"
+      },
+      {
+        "line": 81,
+        "text": "- 실제 Google 로그인·운영 화면·실제 스크린 리더·200% 확대·다른 브라우저 엔진은 확인하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md",
+    "sha256": "cdf5b35799d5c6bf664ce9998d1ede51fd6ac600f6c37cf92948d210259ae321",
+    "lines": 20,
+    "headings": [
+      "# SAR-FRONTEND-POLISH-001-VISUAL — 실행과 인계"
+    ],
+    "relevant": [
+      {
+        "line": 20,
+        "text": "상세 관찰·도구 상태·미검증·후속 담당은 [직접 시각 검수 보고](../../evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md)에 있다. D04는 이번 근거 연결만 갱신했다. 제품 코드·새 디자인·기능·사실 문구는 바꾸지 않았다. 새 전체 critique 실행·하위 위임·캡처 생성은 수행하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+    "sha256": "564029ab5aaa0c5def9e7374253633976d89c1a756bb5b916bb8aaa894ffc0ab",
+    "lines": 48,
+    "headings": [
+      "# SAR-HUMAN-PEER-001-OPS",
+      "## 범위와 기준",
+      "## 지시서 전제와의 충돌 처리",
+      "## 기술 계획과 복구 계획",
+      "## 순서와 결과",
+      "## 남은 일 (coor)"
+    ],
+    "relevant": [
+      {
+        "line": 47,
+        "text": "4. 키보드 포커스·200% 확대·모바일의 실계정 확인은 미실행이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+    "sha256": "4cd6a2ea6e24325b256e4803f4e579efa01aeab8cf928f1dca5a58444a751d67",
+    "lines": 38,
+    "headings": [
+      "# SAR-HUMAN-PEER-001-VISUAL — 사람 친구·대화 UI 검수",
+      "## 범위와 소유",
+      "## 관찰과 결과",
+      "## 보존과 제외",
+      "## 새 attempt161c5363 — 수정 후보12dc0c7 직접 재검수"
+    ],
+    "relevant": [
+      {
+        "line": 16,
+        "text": "실행 tuple은 codex / gpt-6.1-sol / high, 주 스킬 frontend-design이다. FullOps frontend/test 절차와 fullops-common-0.3.3 및 문서 작성 규칙을 읽었다. test lite/subagent standard를 유지한다. 선택형 하위 위임은 필요하지 않아 사용하지 않았다."
+      },
+      {
+        "line": 22,
+        "text": "시각 수락은 FAIL이다. V-01 작성란의 기술 설명·반복 대상 문장, V-02 목록 이름 두 줄/desktop 작성 위치가 medium 수정 대상이다. V-03 반복 제목은 low다. 관찰 범위의 critical/high는 0건이다. 발견 즉시 coor에 전달했고 제품 코드는 수정하지 않았다."
+      },
+      {
+        "line": 24,
+        "text": "구체적 이미지·수락 조건·최종 surface와 not_run·도구/문서 검사·후속은 [검수 보고](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md)가 정본이다. D04에는 결과 연결만 추가했다. DEV가 수정한 뒤 coor가 새 고정 SHA의 영향 화면 검수·독립 QA·별도 리뷰·필수 검사와 통합을 조정한다."
+      },
+      {
+        "line": 32,
+        "text": "Purpose review. 후보 `12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5`, 착수 HEAD `a04d7c7b35adfaca0543e57970619e2ba469fa71`다. 같은 역할/tuple/스킬과 lite/standard를 유지했다. startup identity/HEAD/source 검사에 통과했다. 원후보 FAIL과 기존 완료 전문은 보존한다."
+      },
+      {
+        "line": 36,
+        "text": "실제 keyboard/200%·미제공 로그인/이름/pending/해제/gate는 not_run이다. coor msg_e68ff88264d1의 범위 지시에 따라 영향·후속을 명시했다. 착수 도구 로그의 Orca 세션 토큰 노출은 값 없이 msg_ac159db37045로 coor에 인계했다. 제품 코드·다른 역할·PLANS/board·원profile/DEVpage 설정·쿠키를 변경하지 않았다. 삭제·이동·운영은 없다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+    "sha256": "c4af580e3baee129cf4dc28acdf26653da93a3b29f4fafc79aeba8860af7da71",
+    "lines": 47,
+    "headings": [
+      "# 공개 안내 구현",
+      "## 기준과 기술 계획",
+      "## 디자인·사실 대조",
+      "## 구현과 검사 중 발견",
+      "## 후속"
+    ],
+    "relevant": [
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001-DEV]"
+      },
+      {
+        "line": 27,
+        "text": "D04 공개 첫페이지 절의 카피·다섯 구획·순서·접기·예시·로그인 상태가 정본이다. README의 Grok 신규/업데이트, Dots 신규/업데이트 제목과 installer의 Command/Arguments·신규 폴더 조건을 대조했다. 수신 process·Events·화면 표시·발송 승인·180초·24h는 docs/architecture.md, docs/system-design.md, docs/operations.md와 대조했다. 과거 운영 성공·실패·미검증을 새 페이지의 성공 보장으로 바꾸지 않는다."
+      },
+      {
+        "line": 29,
+        "text": "실행 선택은 codex/gpt-6-astra/high와 frontend-design이다. frontend.py check는 configuration_ready다. 기존 frontend.json의 Sol 기본값은 변경하지 않았다. 실제 인증·브라우저 검증과 구성 확인은 별개다. 새 도구·외부 리소스·테마는 추가하지 않는다. 별도 디자인 lint와 다중테마는 없으며 Go 문자열 CSS는 일반 DESIGN 규칙의 검사 대상이 아니다."
+      },
+      {
+        "line": 43,
+        "text": "구현 고정 SHA는 `4795d619513fde4fbcd4a55b94ec91b056ebbaf0`이다. 실제 Linux make lint/test/build와 DB race 관련 회귀는 종료0이다. D05의 유효 세션 공개 GET 계약도 현재200으로 갱신하고 기존303 기록은 보존했다. 최종 문서·QA 커밋 SHA와 최종 lint 영수증은 worker_done으로 전달한다. [상세 QA](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md)에 캡처·실패·fixture·유지 책임을 기록했다."
+      },
+      {
+        "line": 45,
+        "text": "브라우저 layout16/states9/audit11 검사는 통과했다. native 입력 명령 성공과 실제 입력 전달이 달랐다. document.hasFocus=false로 키보드가 전달되지 않아 coor msg_526751460434 지시대로 unavailable/not_run을 유지한다. CSS200% 검사와 native200% 미실행도 구분한다. 이 두 미검증은 후속 독립 QA에서 해결 전 수락하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+    "sha256": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
+    "lines": 69,
+    "headings": [
+      "# SAR-LANDING-GUIDE-001 실행 기록",
+      "## 범위와 고정 기준",
+      "## 결정과 기존 지시 변경 근거",
+      "## 사실 확인과 범위 판단",
+      "## 탐색 원본과 착수 확인",
+      "## 검증과 인계"
+    ],
+    "relevant": [
+      {
+        "line": 2,
+        "text": "title: 공개 첫페이지 제품 결정과 DEV·tester 인계"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001]"
+      },
+      {
+        "line": 10,
+        "text": "# SAR-LANDING-GUIDE-001 실행 기록"
+      },
+      {
+        "line": 21,
+        "text": "- 실행 codex/gpt-6-astra/high, 주 스킬 frontend-design, FullOps frontend/work/orca/deliverables와 Orca orchestration 적용. 최신 사용자 지정이 과거 Sol/Astra 제외 기록보다 우선한다."
+      },
+      {
+        "line": 50,
+        "text": "- 원본 history: [기준 원본](../../evaluations/jev/history/SAR-LANDING-GUIDE-001-packet-32691c08d32341a6a2ef3965ce58d264.json), [중간 재생성](../../evaluations/jev/history/SAR-LANDING-GUIDE-001-packet-db5a05183a314f0d820e731e12b50fa1.json)."
+      },
+      {
+        "line": 51,
+        "text": "- [현재 packet](../../evaluations/jev/SAR-LANDING-GUIDE-001-packet.json)은51경로·partial true·unknown19다. 과거 producer의 HEAD/지시 연결 미확인은 새 의미 검색 PASS로 바꾸지 않았다."
+      },
+      {
+        "line": 52,
+        "text": "- [원천 감사](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/source-audit.json)는 원본/현재 후보·잔여·큰 파일86경로의 hash·제목·관련 발췌를 보존한다. 전체 역사 문서 재감사는 아니다. 기존 최소 로그인과 Sol 충돌은 위 최신 요청으로 해소했다. 큰 member.go는 start/auth 구간, PLANS·OPS·과거 logs는 해당 사실/제목을 확인했다."
+      },
+      {
+        "line": 53,
+        "text": "- [outcomes](../../evaluations/jev/SAR-LANDING-GUIDE-001-packet-outcomes.json)는 모든 비선택 path/category의 처리와 이유를 연결한다. 추천 document_update는 수정 의무로 해석하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    "sha256": "ad12618f580e4c3d31c573f3e212e4c1ff0153af5274d3d0ea130292652f3e98",
+    "lines": 108,
+    "headings": [
+      "# SAR-SERVICE-UI-001-DEV — 회원 웹 상용 UI 구현",
+      "## 기준",
+      "## 기술 계획",
+      "## 변경",
+      "### 의도적 판단과 미적용",
+      "## 검증",
+      "### Linux gate",
+      "## 시각 검수 환경 (designer 후속)",
+      "## 미검증과 후속"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "summary: 로그인·내 에이전트·연결 관리 SSR 화면의 상용 디자인 구현 계획·변경·검증·시각 검수 환경과 미검증 범위를 기록한다"
+      },
+      {
+        "line": 99,
+        "text": "## 미검증과 후속"
+      },
+      {
+        "line": 102,
+        "text": "- 200% 확대·텍스트 간격 확대(A-08)와 스크린 리더 실제 낭독은 측정하지 않았다. 320px overflow 0으로 간접 확인만 했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+    "sha256": "c421658df3c5a742c62d723ae48e5e73e8a8ee7b4b39dc76ac03462f35921496",
+    "lines": 56,
+    "headings": [
+      "# SAR-SERVICE-UI-001-FIX-DEV — 글자 링크 44px 수정",
+      "## 기준",
+      "## 기술 계획",
+      "## 변경",
+      "## 검증",
+      "## 미검증과 후속"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "summary: D04 9절 44px 기준을 채우지 못한 글자 링크(V-01)를 공통 CSS 한 줄로 고친 계획·변경·측정·검증과 미검증 범위를 기록한다"
+      },
+      {
+        "line": 51,
+        "text": "## 미검증과 후속"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+    "sha256": "8b59d50c5abcaeffb4c5d75be7e933336c90e87a18728103f4b3a9d26731c9dc",
+    "lines": 33,
+    "headings": [
+      "# SAR-SERVICE-UI-001-FIX-VISUAL 실행 기록",
+      "## 목적과 범위",
+      "## 단계",
+      "## 결정",
+      "## 제한과 재개 조건"
+    ],
+    "relevant": [
+      {
+        "line": 26,
+        "text": "- V-01 resolved(시각 기준). 제품 시각 PASS 유지. 새 critical·high·medium 없음. low N-01(마지막 링크 아래 여백)만 비차단 관찰로 남긴다."
+      },
+      {
+        "line": 31,
+        "text": "- 합성 fixture·`file://`·Chromium 한 엔진이다. 실제 Google 왕복·실계정·운영 렌더·스크린 리더·200%·다크 모드·키보드 포커스 재입력은 미검증이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+    "sha256": "f640a7fbbd38ae58274b98b898cd573cc5385bfb10bb04b8ca3e2c624f7224e5",
+    "lines": 40,
+    "headings": [
+      "# SAR-SERVICE-UI-001-OPS",
+      "## 범위와 기준",
+      "## 지시서 전제와의 충돌 처리",
+      "## 순서와 결과",
+      "## 남은 일"
+    ],
+    "relevant": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+    "sha256": "b57dad2560ecbbb137e998d988c53d5f19926a7943c00b0ac7b3cd2006a72ea8",
+    "lines": 37,
+    "headings": [
+      "# SAR-SERVICE-UI-001-VISUAL 실행 기록",
+      "## 목적과 범위",
+      "## 단계",
+      "## 결정",
+      "## 제한과 재개 조건"
+    ],
+    "relevant": [
+      {
+        "line": 16,
+        "text": "실행자는 등록된 Claude Sonnet 5.5 high 새 세션이다. Codex hook 사용자 Trust가 없어 Codex를 쓰지 않았고 Trust를 승인하지 않았다. 테스트 레벨 lite, 하위 에이전트 standard이며 하위 에이전트는 쓰지 않았다."
+      },
+      {
+        "line": 23,
+        "text": "4. `keyboard.py`로 Tab·Enter·Space 입력과 렌더 색 대비를 측정했다."
+      },
+      {
+        "line": 29,
+        "text": "- 제품 시각 수락: PASS. critical·high 0건. medium 1건(V-01 글자 링크 21px)·low 11건은 비차단 잔여다. tester의 low 3건(F1–F3)은 V-10·V-12·스크린 리더 미검증과 대조했다."
+      },
+      {
+        "line": 35,
+        "text": "- 합성 fixture·정적 `file://`·Chromium 한 엔진이다. 실제 Google 왕복·실계정·운영 CSP 헤더·200% 확대·스크린 리더는 미검증이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+    "sha256": "4cf30abb159dc7f9feba9e18bf0b3981bd0ae88fc24680c8f2088a3cb6850b24",
+    "lines": 36,
+    "headings": [
+      "# SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS",
+      "## 범위와 기준",
+      "## 순서와 결과",
+      "## 남은 일"
+    ],
+    "relevant": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md",
+    "sha256": "27385fa288124f4bb570e95a68e7e77423341ab61ffb001fb30945b23c10e678",
+    "lines": 36,
+    "headings": [
+      "# SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL 실행 계획",
+      "## 목적과 범위",
+      "## 단계와 결과",
+      "## 결정",
+      "## 제한과 재개 조건"
+    ],
+    "relevant": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+    "sha256": "bff52bb1aa8d408a8183eda6aac8a8487a710577f7dfb98158a9c1b8156610e2",
+    "lines": 39,
+    "headings": [
+      "# SAR-SSE-INSTALL-001-OPS",
+      "## 범위와 기준",
+      "## 순서와 결과",
+      "## 남은 일"
+    ],
+    "relevant": []
+  },
+  {
+    "path": ".fullops-squad/docs/operations/ops-guide.md",
+    "sha256": "0383cfec8cd588df1323e7088ff9ce1d67623c65a541a664c7289fb1ac685f46",
+    "lines": 459,
+    "headings": [
+      "# KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획",
+      "## SAR-REFACTOR-002 운영 적용 결과 (2026-10-14)",
+      "## SAR-REFACTOR-001 운영 적용 결과 (2026-10-13, SAR-REFACTOR-001-OPS)",
+      "## SAR-HUMAN-PEER-001 운영 적용 결과 (2026-10-12, SAR-HUMAN-PEER-001-OPS)",
+      "## SAR-HUMAN-PEER-001 기술 인계 — 운영 미적용 (적용 전 기록)",
+      "## SAR-SERVICE-UI-001 운영 적용 결과 (2026-10-11, SAR-SERVICE-UI-001-OPS)",
+      "## SAR-SSE-INSTALL-001 운영 적용 결과 (2026-10-11, SAR-SSE-INSTALL-001-OPS)",
+      "## SAR-SSE-INSTALL-001 SSE 운영 후보",
+      "### Remote OAuth·Cloud 설치",
+      "### Tester 독립 QA (febd128, 2026-10-11)",
+      "## 1. 승인 범위와 선행 조건",
+      "## 2. 보존한 서버 사전조사 관찰 (2026-10-03, 이전 Dispatch)"
+    ],
+    "relevant": [
+      {
+        "line": 38,
+        "text": "Events 구독은 전후 같은 만료 `2026-10-13T14:09:16.701715Z`와 Verified·attempts1·pending/lease false로 보존됐다. 다음 자동 갱신·새 delivery retry·장시간 호스트 화면 수신은 not_run이다. 실계정 발송·Google 로그인·클라이언트 직접 업데이트·Access/DNS/Tunnel 정책 변경도 하지 않았다."
+      },
+      {
+        "line": 92,
+        "text": "**역사적 기록**: 이전 Dispatch는 `a6a10c7`을 C1 high 때문에 배포 금지로 기록했다. 이 결정은 그 당시 후보에만 해당한다. C1/RF-01 high는 해소됐다. 수락 후보는 main `557ebc3`, 제품 `78b1d92`, QA `659f4b0`, 최종 리뷰 `311381f`, 직접 UI 검수 `e238777`이다. 본인 전용 합성 베타의 구성과 검증은 11장에 기록한다. 전체 공개 한도·실제 신원·실데이터 held는 유지한다."
+      },
+      {
+        "line": 97,
+        "text": "Remote 후보 배포에는 기존 Google redirect URL의 HTTPS origin을 사용한다. Host header·추가 전역 env를 신뢰하지 않는다. Google 미설정이면 fail-closed다. public ingress 후보에 MCP·well-known·정확 remote OAuth/consent 경로만 추가했으며 실제 Tunnel은 미변경이다. 외부 callback은 HTTPS443, 모든 DNS answer 공인주소 검사, pinning·TLS 검증·redirect 차단·5초 timeout·4KiB 응답 제한이다. 구독128/설치당4·재시도3회·lease15초·기본TTL1시간·최소1분, 실패 후 현재 pending 변화 또는 새 subscription을 통해 복구한다. 설치 키와 webhook secret을 포함하는 private DB/백업을 외부에 노출하지 않는다. 실제 Google 동의·계정 app ID·Dots 이벤트 왕복·동의 화면 시각 QA는 후보 수락 뒤 별도 실행한다."
+      },
+      {
+        "line": 99,
+        "text": "`121cde9` 운영본에서는 Chromium 계열 브라우저가 consent 승인 뒤 callback 이동을 CSP form-action으로 차단한다. 이때 install은 생기지만 token은 생기지 않는다. 다시 시도하면 `authorization_failed`가 표시된다. SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV 수정본은 동일 출처 반환 화면으로 이동한다. 수정본 `eac603b6a41d2ce002e698600ac66b8fc67ad762`는 2026-10-11 기존 서버에 relay만 갱신해 적용했다(SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS). migration·ingress 변경은 없고, 실패 경로 합성 consent 요청은 새 HTML 401과 보안 헤더를 반환했다. 실제 계정의 승인 복귀는 부모가 확인한다. 증거는 [운영 LIVE 기록](../evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-LIVE.md)에 있다. 남은 미완료 install·agent는 삭제하지 않는다. 처리 판단은 사용자·부모 후속이다."
+      },
+      {
+        "line": 211,
+        "text": "2. **수락 경계**: coordinator는 reviewer `msg_4fbcac80f76c`의 C1 high를 확인했다. agent credential로 human delivery의 pull·persist·ACK·claim을 처리하는 우회가 있다. 담당 DEV의 수정과 독립 tester·reviewer 검증 후 새 SHA를 수락해야 한다.  QA 기록 c59537b의 QA-01–11 실행 항목은 통과했다. 직접 시각 판정·독립 리뷰·coor 수락은 별도 근거가 필요하다. QA 통과를 공개 수락으로 확대하지 않는다. 최신 결과는 후속 Dispatch에서 다시 연결한다."
+      },
+      {
+        "line": 213,
+        "text": "4. **외부 이미지·권한**: 첫 pull과 DNS/Tunnel 쓰기는 미검증이다. 새 Tunnel 생성·DNS 연결 실패 시 기존 레코드를 덮어쓰거나 공유 connector를 수정하지 않는다. coor에게 필요한 범위의 권한 확인을 요청한다. 인증값은 채팅·로그·Git으로 받지 않는다."
+      },
+      {
+        "line": 337,
+        "text": "- 미검증: 공개 HTTPS 성공·공개 negative/positive·실제 Grok 왕복. 상세와 증거는 [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md)이다."
+      },
+      {
+        "line": 391,
+        "text": "사용자 요청으로 최종 main 수락과 공개 준비를 진행한다. [공개 준비 실행 기록](../exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md)의 고정 SHA·실제 백업/격리 복원·현재 보호상태·배포/복귀 절차를 따른다. 기존 배포0911c2c는유지됐고새서비스/실메일은아직미검증이다. 과거시험의미완료/완료는원래시점으로보존한다. 이 연결은 운영 공개 수락이 아니다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/operations/user-guide.md",
+    "sha256": "ba8f3a334860562a759817a6fe509e2e4df954ab298e20cda85394292132c332",
+    "lines": 170,
+    "headings": [
+      "# KnowsLink 본인 전용 합성 베타 사용자설명서 (D11)",
+      "## 공개 안내의 새 사용 흐름 — SAR-LANDING-GUIDE-001",
+      "## 새 사용자 흐름 — SAR-HUMAN-PEER-001",
+      "## 과거 베타·후보 사용 기록",
+      "## SAR-SSE-INSTALL-001 수신 모드와 설치",
+      "### Remote OAuth·Cloud 설치",
+      "## 시험 절차",
+      "## 사용하지 않는 것",
+      "## 종료 방법",
+      "## 일반 이메일 가입과 로그인 (SAR-PUBLIC-IDENTITY-001 후보)",
+      "### 가입·로그인",
+      "### 문제가 생겼을 때"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV]"
+      },
+      {
+        "line": 13,
+        "text": "## 공개 안내의 새 사용 흐름 — SAR-LANDING-GUIDE-001"
+      },
+      {
+        "line": 15,
+        "text": "이 절은 2026-10-14 설계를 구현한 DEV 후보의 안내다. 구현·검증 SHA와 격리 fixture는 [DEV 기록](../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다. 독립 QA·직접 시각 검수·리뷰·운영 배포는 후속이며 새 첫페이지가 운영에 적용됐다는 뜻은 아니다. 실제 적용 시점은 OPS가 연결한다. 현재 설치·연결 정본은 [루트 README](../../../README.md)이며 아래 과거 베타·후보 절차와 구분한다."
+      },
+      {
+        "line": 30,
+        "text": "예시는 기능 설명용 가상 문구다. 실제 회원의 대화·운영 성공·일정 조회나 예약을 보여주지 않는다. 화면 카피와 오류·접근성 기준은 [D04 공개 첫페이지](../design-docs/mockups/service-member-ui.md#공개-첫페이지-정본--sar-landing-guide-001), 사용자 완료 조건은 [D02 LG-01–08](../planning/product-specs/SAR-HUMAN-PEER.md#공개-소개와-로그인-시작--sar-landing-guide-001)을 따른다."
+      },
+      {
+        "line": 70,
+        "text": "Dots/Work Cloud는 후보 배포 후 Custom MCP에 `https://link.knowslog.com/mcp`를 등록하고 Google 확인·새 설치 agent/key 서버 보관 동의를 완료한다. 기존 로컬 키·관계는 유지되며 새 agent의 관계는 회원 화면에서 별도 승인한다. registered app의 실제 ID를 얻은 후 `package_plugin.py --host openai-cloud --app-id \"$KNOWSLINK_REGISTERED_APP_ID\" --verify`로 private Cloud plugin을 만든다. 로컬 ZIP의 stdio 프로세스를 Cloud에 가져오지 않는다. Cloud tool receive는 server private Inbox, local text_receive는 local private Inbox다. 이벤트는 자동 답장 승인이 아니며 actual host registration/turn은 아직 미검증이다. [설치 정본](../../../adapters/README.md)을 따른다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+    "sha256": "a25bf7ab097d323a5b981b9c70b24075650cd50b99b0e5ecf458e2e4969d172a",
+    "lines": 121,
+    "headings": [
+      "# KnowsLink 사람 중심 연결과 대화 제품 기준",
+      "## 공개 소개와 로그인 시작 — SAR-LANDING-GUIDE-001",
+      "## 결정 근거와 적용 순서",
+      "## 용어와 신원",
+      "## 요구사항과 사용자 완료 조건",
+      "### 거절·취소·해제·차단의 차이",
+      "### 대화의 연속성과 과거 열람 경계",
+      "### 용량과 남용 방어",
+      "## 기존 데이터와 권한 이행",
+      "## 우선순위와 인계"
+    ],
+    "relevant": [
+      {
+        "line": 7,
+        "text": "tasks: [SAR-HUMAN-PEER-001, SAR-LANDING-GUIDE-001]"
+      },
+      {
+        "line": 13,
+        "text": "## 공개 소개와 로그인 시작 — SAR-LANDING-GUIDE-001"
+      },
+      {
+        "line": 17,
+        "text": "이 절은 설계 기준이며 아직 새 페이지의 구현·운영 수락이 아니다. [D04 공개 첫페이지](../../design-docs/mockups/service-member-ui.md#공개-첫페이지-정본--sar-landing-guide-001)가 화면·한국어 카피·상태·토큰의 유일한 정본이다. [D11](../../operations/user-guide.md)의 새 안내 절과 연결한다."
+      },
+      {
+        "line": 28,
+        "text": "| LG-08 사용성과 수락 | 기존 토큰으로 1440/390/320, 키보드와200% 확대에 대응한다. | DEV 필수 검사, tester 독립 동작, designer 실제 시각, 별도 세션 fixed SHA 리뷰가 있다. 정적 설계·과거 PASS를 새 수락으로 사용하지 않는다. |"
+      },
+      {
+        "line": 30,
+        "text": "우선순위 P0는 LG-01–08의 최소 완결 안내와 로그인 흐름이다. 별도 홍보 사이트·가격·상품·공개 회원 검색·다크모드·설치 자동화·클라이언트 다운로드 호스팅은 추가하지 않는다. 설치 메뉴·Events의 계정별 지원은 보장하지 않는다. 공개 페이지에는 내부 모델·SHA·시험 결과·미검증 운영 이력을 홍보 내용으로 노출하지 않는다."
+      },
+      {
+        "line": 32,
+        "text": "DEV는 화면 동작에 필요한 기술 계획·API/handler·테스트와 D10 영향을 결정한다. 이 제품 설계에서는 D10을 수정하지 않는다. 설계 후속 역할도 codex/gpt-6-astra/high를 유지한다. coor가 문서 고정 리뷰/main 통합 뒤 DEV, tester, 실제 시각 검수와 구현 리뷰를 배정한다. 운영 배포와 실제 계정 송수신은 이 설계 완료에 포함하지 않는다."
+      },
+      {
+        "line": 113,
+        "text": "DEV가 실제 데이터 이행·배포 순서·버전 경계·백업 검증·롤백 방법을 결정한다. OPS 실행 전 격리 DB에서 이전 형식 fixture의 보존과 fail-closed를 증명한다. 운영 데이터의 삭제·이동 정리는 이 과제에서 실행하지 않는다."
+      },
+      {
+        "line": 121,
+        "text": "다크 모드·전역 검색·공개 프로필·첨부·장기 보관·읽음 표시·에이전트별 공유 토글·상품/결제는 이번 범위에서 생략한다. 기술 구조·API·DB·웹 발송 권한의 구체적 구현은 DEV 책임이다. 실 Google 로그인·노우/다닷 실제 플랫폼 왕복·운영 이행은 아직 미검증이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+    "sha256": "ef3361e6a1c15eec252c5d373dcabba213e5547b602d1e29abc77e3022f9e240",
+    "lines": 843,
+    "headings": [
+      "## SAR-SETUP-001-DEV — 2026-10-03",
+      "# SAR-SETUP-001-DEV — 잠긴 원천에 맞는 초기 구성과 lint 구현",
+      "## 적용 기준과 예외",
+      "## 현재 상황과 확인 근거",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "### 기존 원천의 lint 차단과 coordinator 결정",
+      "## 갱신할 산출물",
+      "## 기대 산출물",
+      "## 제약·협업·후속",
+      "### 후속 범위 확인 — msg_1dbf16aa5bc7"
+    ],
+    "relevant": [
+      {
+        "line": 72,
+        "text": "- find의 code/documents 호출은 모두 `API or response validation failed: ValueError`로 후보를 반환하지 못했다. 존재 판정도 null이므로 Jev가 absent를 판정했다고 주장하지 않는다."
+      },
+      {
+        "line": 105,
+        "text": "ERROR를 해결한다. WARNING·실행 불가와 사유, 대상 SHA, 명령·환경을 완료 보고에 쓴다. 필수 미검증이 있으면 수락 완료로 보고하지 않는다."
+      },
+      {
+        "line": 175,
+        "text": "D03: `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md`는 review다. 실행 보고: `docs/exec-plans/phases/SAR-SETUP-001-DEV.md`; 로그: `docs/exec-plans/logs/SAR-SETUP-001-DEV/`. 실제 SQL이 없어 SQL Up 적용·sqlc 생성은 미적용이다. UI가 없어 시각 검수는 미적용이다. 운영 Tunnel·배포·업무 MVP와 네 어댑터 통합은 후속이다. QA-01과 고정 SHA의 독립 리뷰는 coordinator가 배정하며 미해결 critical/high 차단을 유지한다."
+      },
+      {
+        "line": 206,
+        "text": "원천은 service-design 7bc9ea190ea549fae8b047e850247a19322fc9c3이다. 기준 ref는 0dd08ec994771836c15d9d22a6a83393a71d7987이다. 준비 문서 반영 HEAD는 배정 때 coor가 고정한다. 공통 규칙 fullops-common-0.3.2, FULLOPS.md, project.md, 문서 규칙, D02 SAR-MVP를 적용한다. 기존 규칙·보안·critical/high 차단을 완화하지 않는다."
+      },
+      {
+        "line": 242,
+        "text": "- [x] endpoint에 결속된 새 relay.result와 transport 상태를 구분한다. 허용 schema가 없는 optional result/error 정보는 반환하지 않는다. relay transport failure를 B 서명 결과로 위조하지 않는다."
+      },
+      {
+        "line": 259,
+        "text": "- coor, 병합 전: 별도 검토 세션의 깨끗한 read-only detached snapshot에서 fixed-SHA 독립 코드 리뷰를 준비한다. 미해결 critical/high 또는 필수 QA/UI 실패는 수락·병합을 막는다."
+      },
+      {
+        "line": 295,
+        "text": "make test/build/lint/verify/verify-runtime/verify-mvp/generate/schema와 git diff --check 및 deliverables strict가 통과했다. DB 검사는 integration build tag로 명시적으로 수행하며 필수 환경 부재는 실패다. 실제 Postgres의 12회 ingest·8회 claim·8회 accept 경합, 마지막 lease·late ACK·pool 재시작·TTL/id rollback·current-auth·clock·CSRF·gate failure states·result endpoint와 optional 정보·parent key rotation을 검증했다. TS stub의 verify/persist/ACK/claim·no-policy deny·owner approve 후 denied result·UI seed를 실제 HTTP에서 검사했다. 기준 0dd08ec994771836c15d9d22a6a83393a71d7987의 FullOps lint는 head 93593bf에서 ERROR 0, WARNING 3, 실행 불가 0, product-lint make lint exit 0이다. 경고는 HTTP·store·integration test의 파일 크기다. 최종 아카"
+      },
+      {
+        "line": 310,
+        "text": "title: \"SAR-MVP-001-DEV — 기존 합성 MVP의 deliver:human 인증 경계 high 결함 수정\""
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+    "sha256": "f8fa8f7201c9dae56ed7ff23ff4428a1b57e366aaa87a6b6df529965bca22a2a",
+    "lines": 659,
+    "headings": [
+      "## SAR-SETUP-001-TESTER — 2026-10-03",
+      "# SAR-SETUP-001-TESTER — dev 완료 SHA의 초기 구성과 lint 독립 검증",
+      "## 적용 기준과 예외",
+      "## 현재 상황과 확인 근거",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "### 기존 원천의 lint 차단과 coordinator 결정",
+      "## 갱신할 산출물",
+      "## 기대 산출물",
+      "## 제약·협업·후속",
+      "## 완료 보고"
+    ],
+    "relevant": [
+      {
+        "line": 72,
+        "text": "- find의 code/documents 호출은 모두 `API or response validation failed: ValueError`로 후보를 반환하지 못했다. 존재 판정도 null이므로 Jev가 absent를 판정했다고 주장하지 않는다."
+      },
+      {
+        "line": 147,
+        "text": "완료 기록과 커밋 후 preamble의 worker_done을 정확히 한 번 보낸다. 필수 검증을 마치지 못하면 outcome failed로 보고한다."
+      },
+      {
+        "line": 173,
+        "text": "사용자가 2026-10-03에 Claude workspace 신뢰 승인을 완료했다고 확인했다. 실패 Dispatch ctx_ace07a0460f8을 보존하고 같은 Task task_83afe3153820를 재개한다. 최신 Jev 선정은 claude-sonnet-5-5 high다. 공통 규칙 0.3.2와 최신 준비 커밋의 정본을 읽는다. 제품 검증 대상 SHA와 lint 기준 729446d8da57은 유지한다. 전체 QA는 tester가 직접 수행하며 DEV 증거를 독립 실행으로 표시하지 않는다. 코드와 UI가 없는 항목은 조건과 근거를 기록한다."
+      },
+      {
+        "line": 247,
+        "text": "| QA-09 | MVP-11/15 | R.reply_to/from/to 결속·current auth·output allowlist를 확인한다. optional result/error의 미승인 데이터·일정 정보·stack trace 공개를 막는다. result 수신이 새 도구 실행/재귀 응답을 만들지 않는다. transport failure는 B 서명 결과가 아니다. |"
+      },
+      {
+        "line": 248,
+        "text": "| QA-10 | MVP-12/13/14 | evidence 자동 fetch/preview와 webhook OFF, high priority 우회 없음, pull stub 한계, 벤더 코어 미수정, AgentCard/role:user/push의 승인 대체 없음과 A2A 비호환 잠금을 확인한다. 실제 adapter·운영 공개 성공은 주장하지 않는다. |"
+      },
+      {
+        "line": 261,
+        "text": "designer는 같은 후보의 V-01 승인 대기, V-02 approve/deny 결과, V-03 만료·철회, V-04 원문 부재·권한 불명 화면을 직접 시각 검수한다. 캡처 공유와 designer 판정은 별개다. coor는 독립 fixed-SHA 코드 리뷰와 QA·직접 UI 판정을 확인한 뒤 기능 수락을 조정한다. 미해결 critical/high와 필수 QA/UI 실패는 수락·병합을 차단한다."
+      },
+      {
+        "line": 283,
+        "text": "QA-01–11 실행 항목은 통과다. 최종 `isolated.py` 종료코드는 0이다. `make lint`는 의존성 설치 전 2, `npm ci` 후 0이다. `make test` 0, `make build` 0, `make verify-mvp` 0이다. 제품 critical/high 결함은 없다. 재개 조건은 없다."
+      },
+      {
+        "line": 299,
+        "text": "사용자가 tester 모델을 grok-4.7 high로 변경했다. 기존 Claude Dispatch ctx_6129fd1c9c83은 사용량 한도 때문에 QA를 실행하지 않았다. 사용자 전환 지시로 해당 터미널만 종료했고 process_exited·failed·operator_close를 확인했다. 같은 Task task_bc9fa903d0d6의 retry로 기존 tester 워크트리와 고정 제품 a6a10c7을 유지한다. 이전 preamble의 capability를 재사용하지 않는다. 새 Grok preamble으로 보고한다. 실제 Grok 모델과 effort는 실행 명령과 화면에서 확인한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+    "sha256": "fd93a3720d17cd72e39724bc58eb6524580c9b2ac3f263b8fda4f0a92e44aeb9",
+    "lines": 730,
+    "headings": [
+      "## SAR-GOOGLE-CONNECT-001-DEV — 2026-10-10",
+      "# SAR-GOOGLE-CONNECT-001-DEV — 양쪽 Google 로그인으로 agent 연결 완료",
+      "## Windows 재개 지시 — 2026-10-09",
+      "## 목표·확정 규칙·범위",
+      "## 현재 상황과 근거",
+      "## 적용 기준과 먼저 읽을 문서",
+      "## 해야 할 일과 소유권",
+      "## 완료 기준·검증·후속",
+      "## 갱신할 산출물과 기대 결과",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고",
+      "### 완료 뒤 최신 지시의 추가 검증"
+    ],
+    "relevant": [
+      {
+        "line": 133,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md` (document_read) · 줄 25, 43 · inferred"
+      },
+      {
+        "line": 263,
+        "text": "- 부모는 고정 SHA 독립 리뷰·좁은 QA·main 통합·운영 인계를 담당한다. 실제 Google 계정·외부 Bot 설치/왕복·Access/shared 호스트 수락은 미실행이며 기존 held/fail은 유지한다. 임시 local fixture 프로세스와 격리 컨테이너는 정리했다."
+      },
+      {
+        "line": 308,
+        "text": "fullops-common-0.3.3의 rules/common README·coding-style·testing·security, project.md, docs/agents/document-writing.md, FULLOPS.md, contexts/dev.md. 기준 SHA의 같은 규약 사용. 기존 미해결 critical/high 차단 유지. ponytail full. 예외 없음."
+      },
+      {
+        "line": 315,
+        "text": "- [x] 앞 리뷰의 medium 익명 Device 요청 cap2000/24h 보존과 low 타 기존회원 callback 분기 미검사 중 현재 공개수락에 필요한 최소 보완을 판단하고 구현한다. 별도 큰 리팩터링 금지. 지문 비교 경고·사용자 명시적 동의 유지."
+      },
+      {
+        "line": 462,
+        "text": "현재 adapters/src/mcp.ts는 수동 knowslink_text_receive만 제공한다. 운영 link.knowslog.com에서 질문 01a12591-4da2-7d8e-8d9a-ab61919b037e는 queued 뒤 180초 후 failed:expired였다. 앞선 실제 Bot 왕복은 coor가 UI로 수신을 유도했다. 자동 수신 성공 근거가 아니다."
+      },
+      {
+        "line": 591,
+        "text": "- [x] 공식 포럼 원문과 실제 접근 가능한 환경을 기준으로 지원 부재/미문서화/미검증/불가를 정확히 구별한다. 현재 보고서의 “미공개 gateway 우회는 사용 금지”는 사용자 지시가 아니므로 소유한 VM의 인증된 정상 인터페이스 확인 자체를 금지하는 근거로 쓰지 않는다. 보안 우회·권한 확대·vendor core 수정은 여전히 금지한다."
+      },
+      {
+        "line": 601,
+        "text": "자동 수신 보존과 수동 조회가 회귀하지 않는다. bridge를 구현하면 로컬 전용 인증·잘못된 대상 거절·토큰 비노출·untrusted 전달·중복/재시작·실패/불확실한 상태를 검증한다. 실제 VM 미검증은 그대로 표시한다. 실제 운영 도메인→Bot inbox→노우 대화 전달을 UI 수신 유도 없이 ID로 대조하기 전 제품 수락은 미완료다."
+      },
+      {
+        "line": 603,
+        "text": "최종 commit→lint→work.py finish→실제 worker_done 순서로 처리한다. 완료 body에는 parser가 읽도록 “SHA <40자리>”와 과제 키를 명시한다. 구현자 실제 session ID, 검사 결과/경로, 설치·활성화 방법과 실제 host 미검증 범위를 함께 보고한다. coor가 독립 QA/리뷰·main 통합·운영 적용을 계속한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+    "sha256": "9137a995a9a70bfcf143b8db6b63c6d44676cf6637efd82182a6057760ae5269",
+    "lines": 497,
+    "headings": [
+      "## SAR-GOOGLE-CONNECT-001-TESTER — 2026-10-10",
+      "# SAR-GOOGLE-CONNECT-001-TESTER — 고정 인증 변경의 독립 코드 리뷰와 운영 서버 lite QA",
+      "## 목표·범위·정본",
+      "## 독립 리뷰와 검증",
+      "## 완료 조건",
+      "## 완료 보고",
+      "## SAR-GOOGLE-CONNECT-002-TESTER — 2026-10-10",
+      "# SAR-GOOGLE-CONNECT-002-TESTER — Access 없는 연결 독립 리뷰와 lite QA",
+      "## 적용 기준과 먼저 읽을 문서",
+      "## 해야 할 일과 완료 조건",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고"
+    ],
+    "relevant": [
+      {
+        "line": 41,
+        "text": "리뷰 key는 SAR-GOOGLE-CONNECT-001-TESTER다. review.py prepare는 기준/검토 SHA로 실행한다. result의 모든 path/status를 reviewed/skipped 및 근거로 채운다. report에는 고위험 인증·Origin/CSRF·만료/replay·회원/클라이언트·개인키 저장/권한·리다이렉트 경계·사용자 화면/동의·운영 ingress의 실제 판정을 적는다. 미해결 critical/high는 수락하지 않는다. 수정은 coor를 통해 DEV로 돌린다."
+      },
+      {
+        "line": 55,
+        "text": "- 결과: 수락 가능. 미해결 critical/high 없음. 검토 SHA `152217f63cced85f620695961955d680ce27864e`, 기준 `f9f7675be6c9502bd6ab2f810bd42ff62a26a174`. 결과 SHA는 worker_done에 기록한다."
+      },
+      {
+        "line": 56,
+        "text": "- reviewer 세션 `b46475f6-dee2-49f6-936f-fe1513a39142`(Claude Code claude-sonnet-5-5 high). 구현자 세션 `01a12123-fd98-7b80-880e-6c2802149a6d`. snapshot `C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-8493ad160dbd469aa860e952816924c9`(clean detached, 읽기 전용). 정리는 부모가 release 뒤 `review.py cleanup --finished`로 처리한다."
+      },
+      {
+        "line": 103,
+        "text": "- [ ] critical/high 미해결 없고 check 통과면 수락한다. 제품 소스 수정 금지. 발견사항은 coor로 전달한다. report/result/QA와 contexts만 소유한다."
+      },
+      {
+        "line": 104,
+        "text": "- [ ] work.py finish/archive 후 commit. 완료 worker_done은 '[완료] SAR-GOOGLE-CONNECT-002-TESTER | 브랜치 fullops/tester | SHA <결과 하나만> | ...'로 보낸다. 본문 SHA 라벨은 하나만. 고정 리뷰 후보/실제 reviewer ID/검증/미검증/운영 위험 명시."
+      },
+      {
+        "line": 164,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 175,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 273,
+        "text": "- 결과: 수락. 고정 리뷰 후보 dbbe2f17f353282430f28b6e3ed98e72d4450e69, base 5af28c9. critical/high 없음. medium 잔여 1(신규 연결 포화), low 3."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+    "sha256": "353e7bd8d2360358e24544b2aa1f1a3fdadb5353fe3966b0e2d1c1feb4ef60ec",
+    "lines": 730,
+    "headings": [
+      "## SAR-SSE-INSTALL-001-VISUAL — 2026-10-11",
+      "# SAR-SSE-INSTALL-001-VISUAL — 새 Google OAuth 동의 화면의 독립 desktop/mobile 직접 시각 검수",
+      "## 현재 상황·기준",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일·소유권·완료 기준",
+      "## 산출물·완료 보고",
+      "## 완료 보고",
+      "# SAR-SSE-INSTALL-001-VISUAL — 직접 시각 검수",
+      "## 판정과 범위",
+      "## 독립 세션과 원천",
+      "## 직접 관찰",
+      "## 실제 viewport와 캡처 한계"
+    ],
+    "relevant": [
+      {
+        "line": 66,
+        "text": "- 미통과: d2c7ca9의 FullOps lint exit1, ERROR0/WARNING1/실행불가2다. Windows make 부재로 product-lint/product-test는 unavailable이다. 실행 환경 문의 msg_b6ab1e08a9df가10분 만료되었고 같은ID로 대기 재개했다. 보호/설정 완화·운영 서버 사용·새 도구 설치 없이 실패를 보존했다. 필수 gate 미통과이므로 전체 worker outcome은 failed로 인계한다."
+      },
+      {
+        "line": 183,
+        "text": "- designer C:/Users/shin/orca/workspaces/KnowsLink/designer, fullops/designer. fresh Claude Sonnet5.5 high(운영 대체). test lite/subagent standard. Jev Codex high는 실제 hook 신뢰 검토창에서 readiness 실패하여 작업 미착수였다. 기존 검증된 Claude hook 아래 같은 역할·범위로 재배정한다. Codex trust 값을 수정하지 않는다."
+      },
+      {
+        "line": 205,
+        "text": "관찰별 PASS/FAIL/미확인과 실제 대상 SHA·이미지 hash·한계를 기록한다. 이미지가 새 코드에서 실제 생성됐는지 tester manifest와 source를 대조한다. 문서 결과의 등록 lint를 실행하고 Windows make 부재는 원문을 보존해 사유를 적는다. 제품 바이트가 같으므로 원 exact-SHA product gate 재사용을 명시하며 통과를 꾸미지 않는다. packet의 모든 비선택 path/category를 outcomes로 처리하고 work.py finish로 원 지시서·보고를 보존한다. 최종40자리 기록 SHA 하나를 worker_done에 보고한다. main 통합·배포는 부모가 맡는다."
+      },
+      {
+        "line": 436,
+        "text": "- 미검증: 이메일 코드·오류 화면, 연결 관리·기기 승인·receipt·gate·refusal의 렌더 결과(템플릿 코드로만 확인), 에이전트 5개·긴 관계 목록, 다크 모드. 대비는 계산값이다. `frontend-design` 스킬은 이 환경에 없었다."
+      },
+      {
+        "line": 461,
+        "text": "- 기준: fullops-common-0.3.3과 세 규칙, project.md, FULLOPS.md, 문서 작성 규칙. frontend-design 실제 경로 C:/Users/shin/.agents/skills/frontend-design/SKILL.md. Ponytail full, test lite/subagent standard. Codex hook 사용자 Trust 미승인으로 등록 Claude Sonnet5.5 high 새 세션 예외. Trust 자동 승인 금지."
+      },
+      {
+        "line": 468,
+        "text": "직접 픽셀 관찰·DOM 측정·worker 보고를 구분한다. 실제 Google 인증 왕복 성공으로 확대하지 않는다. 좁은 디자인 수정 권고는 담당 DEV에 coor 경유 전달하고 직접 제품 코드를 바꾸지 않는다. 미해결 critical/high는 수락 차단이며 낮은 등급도 남긴다. 기능 QA/기술 리뷰는 별도 tester 담당이다."
+      },
+      {
+        "line": 470,
+        "text": "산출물 인덱스부터 대화 미참조 인계 점검, screenshot manifest·phase·contexts·packet outcomes·미검증을 기록한다. work.py finish로 전문 아카이브·인박스 비움 후 커밋한다. 완료 보고 첫 부분은 [완료] SAR-SERVICE-UI-001-VISUAL | 최종 SHA <실제 결과40자리>로 적는다. main/배포는 coor 후속이다."
+      },
+      {
+        "line": 473,
+        "text": "Jev context는 service-member-ui.md를 conflict로 표시했으나 구체적 이유는 contradicts task만 반환했다. coor가 정본12절을 대조했다. R-01–09는 필수, R-10–11은 권장, R-12 다크모드·실접속·클라이언트복사는 후속으로 이번 범위 밖이다. 해당 없음인 후속 기능을 요구하지 않는다. 이 원천을 먼저 읽고 실제 불일치가 있으면 coor 경유 확인한다. 12.4의 실제 흐름 검수는 합성 fixture에서 수행하며 실계정 상태 변경은 하지 않는다. Google 인증 실제 왕복 미검증은 솔직히 남긴다. 이 해석은 기존 제품 범위를 줄이거나 넓히지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+    "sha256": "82a6b68542db710b56f6179b670e69e1bec956ffc95cc65a122a5646f6da0ce9",
+    "lines": 1049,
+    "headings": [
+      "## SAR-SSE-INSTALL-001-DEV — 2026-10-11",
+      "# SAR-SSE-INSTALL-001-DEV — 폴링 보존·SSE 도착 신호 및 공통 Google 인증 플러그인 설치를 구현하고 기존 연결 수신 코드를 최소 정리한다",
+      "## 현재 상황과 확인 근거",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "### UI 디자인",
+      "## 갱신할 산출물",
+      "## 제약·완료 보고",
+      "## 완료 보고",
+      "## SAR-WINDOWS-SHELL-GUARD-001-DEV — 2026-10-11"
+    ],
+    "relevant": [
+      {
+        "line": 100,
+        "text": "실제preamble로 worker_done을 보낸다. 도구별 공식근거(열어확인한페이지)·설치지원을 표로 기록한다. 정확한 최종SHA·필수검사·실패/미실행·새dependency·SIZE근거·packet path/category outcomes를 남긴다. work.py finish로원문을archive하고인박스를비운다. 보안검사나 미해결critical/high를 완화하지 않는다. 정상작업은 중간승인없이 완료한다."
+      },
+      {
+        "line": 105,
+        "text": "추가 공식 근거: https://developers.openai.com/plugins/build/mcp-events 를 열어 확인했다. MCP Events는 ChatGPT Work/cloud desktop 및 Dots용 공식 이벤트 연동 문서다. 기존 모든 호스트 wake 불가라는 이력은 시점 한정이며 현재 지원을 다시 확인한다. 이 계약이 요청한 Dots 설치/도착신호에 적합하면 필요한 최소경로로 반영한다. 단순 relay SSE와 OpenAI MCP Events webhook subscription은 같은 것으로 표시하지 않는다. 구독/외부발송/실제호스트 이벤트 활성화는 사용자 승인범위와 추가과금 없는 조건 안에서만 진행한다. https://learn.chatgpt.com/docs/dots 와 https://developers.openai.com/plugins/deploy/connect-chatgpt 도 열어 확인했다. 문서 근거는 독립검토자가 재확인할 수 있게 URL·해당절·지원/미검증 상태를 남긴다."
+      },
+      {
+        "line": 141,
+        "text": "- From/To: coor/dev. fresh Claude Opus5.5 high. 테스트 lite, 하위 위임 standard."
+      },
+      {
+        "line": 171,
+        "text": "구현자와 다른 실제 세션의 clean detached fixed-SHA 독립 리뷰가 후속이다. 미해결 critical/high는 수락하지 않는다. 호스트 hook 활성화와 단위 parser PASS를 구분한다. 현재 세션/실제 명령 지원·적용된 role 경로/재시작 필요/알려진 우회 범위/실행하지 않은 검사를 완료 보고에 적는다. 완료 메시지는 과제 키·최종 40자리 SHA 하나를 명확히 포함해 worker_done으로 보낸다."
+      },
+      {
+        "line": 177,
+        "text": "- 이유: 기존 지침은 실행을 막지 못했다. 호스트가 실행 직전에 호출하는 hook으로 교차 셸 삭제와 대상 미검증 재귀 삭제를 거부한다. 허용 재귀 삭제는 단독 `Remove-Item -LiteralPath '<workspace 안 실제 절대경로>' -Recurse [-Force]`이며 존재·링크/reparse·루트·workspace 자체·`.git`을 검사한다."
+      },
+      {
+        "line": 179,
+        "text": "- 적용 경로·재시작: 현재 dev 체크아웃만 적용된다. 다른 역할은 main 병합·동기화 뒤 적용된다. 실행 중 Grok 세션은 `/hooks` Reload 또는 재시작이 필요하다. hook 실행 실패는 세 CLI 모두 fail-open이다."
+      },
+      {
+        "line": 185,
+        "text": "- 남은 일: 다른 세션의 고정 SHA 독립 리뷰(coor 배정). 미해결 critical/high는 없다고 판단하나 독립 리뷰 전 수락이 아니다. 상세는 `.fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md`."
+      },
+      {
+        "line": 215,
+        "text": "정본 발견사항: .fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md. F1 재귀 옵션 콜론 약어, F2 인라인 인터프리터 삭제, F3 Git 전역 옵션 뒤 clean 감지, F4 Codex session 하위 cwd에서도 hook이 올바른 guard를 찾고 정상 셸 호출이 작동하도록 한다. F4 fail-open 안내도 실제 의미로 정정한다. 기술 방법은 DEV가 installed 근거와 기존 패턴으로 결정한다. F5~F9은 범위를 늘리지 말고 잔여 한계로 보존한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    "sha256": "a73f17082e91f3789392cace81b7610e865bdb8417f60e20f950b8a92290870d",
+    "lines": 650,
+    "headings": [
+      "## SAR-SSE-INSTALL-001-OPS — 2026-10-11",
+      "# SAR-SSE-INSTALL-001-OPS — 수락 후보의 기존 Linux 운영 이행과 보존 smoke",
+      "## 사용자 요구와 승인 범위",
+      "## 운영 정본과 현재 확인 기준",
+      "## 해야 할 일과 소유권",
+      "## 규약과 먼저 읽을 원천",
+      "## 완료 기준과 보고",
+      "### 지시 전제와 충돌 — 먼저 확인",
+      "## 완료 보고",
+      "## SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS — 2026-10-11",
+      "# SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS — 검수된 OAuth 복귀 수정의 기존 서버 보존 배포",
+      "## 승인 범위와 보존"
+    ],
+    "relevant": [
+      {
+        "line": 65,
+        "text": "실제 운영 SHA·health·필요 endpoint·보존 조건과 private backup 검증을 증거로 남긴다. 원문은 task-local private 경로, Git은 redacted 요약만 둔다. 제품 코드 변경이 없으면 원 exact-SHA lint/test 근거를 구분해 재사용하고 운영 변경의 적합한 검사를 한다. 새 실행 파일/설정이 생기면 등록 검증 게이트·고정 SHA 리뷰가 필요하다. 모든 packet 비선택 path/category와 partial을 outcomes로 처리한다. work.py finish와 최종 40자리 기록 SHA 하나를 worker_done에 명확히 보고한다. 운영 미완료·중단은 failed 및 원인/현재 서비스 상태로 보고한다. 부모가 기록 수락·main 통합과 실제 계정 설치 검증 후속을 담당한다."
+      },
+      {
+        "line": 113,
+        "text": "- ops C:/Users/shin/orca/workspaces/KnowsLink/ops, fullops/ops. fresh Claude Sonnet5.5 high(Jev). test lite/subagent standard."
+      },
+      {
+        "line": 284,
+        "text": "- 공통 기준: fullops-common-0.3.3와 세 규칙, FULLOPS.md/project.md/document-writing. Ponytail full; lite/subagent standard. 등록 Claude Sonnet5.5 high fresh. Codex Trust 임의 승인 금지."
+      },
+      {
+        "line": 299,
+        "text": "본인 OPS-LIVE에 baseline/after/명령·종료코드·SHA·artifact hash·불변식·복귀 방법·미검증을 보존한다. 필요한 D12/D13 상태만 실제 결과로 갱신한다. phase/contexts/packet outcomes, 대화 미참조 인계 점검과 lint 근거를 기록한다. work.py finish로 전문 아카이브·인박스 비움·커밋 후 [완료] SAR-SERVICE-UI-001-OPS | 최종 SHA <실제 결과40자리>로 보고한다. 결과 SHA·운영 SHA를 구분한다. main 결과 통합은 coor 담당이다."
+      },
+      {
+        "line": 377,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md` (document_read) · 줄 25 · inferred"
+      },
+      {
+        "line": 621,
+        "text": "미검토·미해결: critical/high 없음. DEP-001: 의존성 변경 없음(이 과제는 코드·lock 무변경; `npm ci`는 lock 그대로). 하위 에이전트는 쓰지 않았다."
+      },
+      {
+        "line": 642,
+        "text": "Jev context는 D12/D13/이전 OPS 로그를 conflict로 표시했다. 이 문서들을 먼저 읽는다. D12의 1–10장은 역사적 조사·계획이고 SSE 운영 후보 절의 미적용 문장은 상단 적용 결과가 이전 사실로 명시했다. D13/최근 OPS 로그의 실제 운영 제품은 eac603b다. 신규 UI는 독립 검수 후 수락 SHA를 추가할 때까지 미배포다. 이전 held/fail·미검증을 새 PASS로 바꾸지 않는다. 배포 직전 실제 서버가 정본과 다르면 coor에게 보고하고 무작정 checkout/up하지 않는다. 기존 승인된 공개 Google/member 서비스와 Tunnel allowlist를 유지하는 제품 갱신이며 Access/새인증 정책 변경은 없다."
+      },
+      {
+        "line": 645,
+        "text": "main/origin/main 95df83c22c1559453a7c73504aa248088a8e4ed0에 UI 원후보 c7828b2·V-01 수정제품609fcfd/최종후보295417a·독립 tester c1ab9976·직접 시각결과fe47f5c7가 통합됐고 fetch/모든 조상 관계 확인했다. 새 product C/H0, V-01 resolved. 고정 product review: SAR-SERVICE-UI-001-FIX-TESTER-review/report.md 및 root FIX-TESTER-RESULT-REVIEW/report.md(실제 구현 FIX-DEV task key로 check2/9통과); 시각: FIX-VISUAL/report.md 및 FIX-VISUAL-RESULT-REVIEW/report.md(check11/26통과). 기존 전체 UI 독립QA SAR-SERVICE-UI-001-TESTER-test/report.md와 원시각보고도 연결한다. 실제 Google·운영은 아직 미검증이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+    "sha256": "21a59cac5891f292e5009afce402cda5fd31e18df677656d62d2ab003b852bd3",
+    "lines": 1151,
+    "headings": [
+      "## SAR-SSE-INSTALL-001-TESTER — 2026-10-11",
+      "# SAR-SSE-INSTALL-001-TESTER — SSE 도착 신호·Google 인증·호스트별 설치의 독립 lite QA와 고정 SHA 리뷰",
+      "## 현재 상황과 확인 근거",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "## 갱신할 산출물과 기대 결과",
+      "## 제약·완료 보고",
+      "## 확정 검증 인계",
+      "## 지시 전제와 충돌 — 먼저 확인",
+      "## 완료 보고"
+    ],
+    "relevant": [
+      {
+        "line": 65,
+        "text": "독립 QA와 delegate 리뷰를 구분해 기록한다. 미해결 critical/high·필수 검사 실패·pending 파일이 있으면 수락 불가다. review.py check에는 실제 기준/후보 SHA, 원 DEV task-key를 넣고 모든 변경 파일을 reviewed/skipped와 이유로 채운다. 새 변경은 새 정확한 SHA 리뷰가 필요하다. 증거 밖 실제 호스트 wake·장시간·재부팅 검증을 주장하지 않는다. Dots/Claude 계정 권한이 없는 검사는 미실행으로 남기고 구현 지원 자체와 구분한다."
+      },
+      {
+        "line": 95,
+        "text": "미해결 critical/high는 없다. medium은 `internal/relay/http.go` 202행의 SSE 보안 헤더 누락이다. low는 `internal/relay/remote_events.go`의 NAT64 prefix `64:ff9b::/96`이다. 결론은 수락 가능하다. 병합은 coor가 판단한다."
+      },
+      {
+        "line": 126,
+        "text": "- 역할: tester, fresh Claude Sonnet5.5 high. lite/standard."
+      },
+      {
+        "line": 139,
+        "text": "최종 exact SHA의 등록 lint/test는 DEV 실제 근거의 HEAD/clean/종료코드를 확인하여 재사용한다. 변경·근거 결함이 없으면 전체 제품 테스트를 반복하지 않는다. 독립 guard 경계 QA는 직접 실행한다. 미해결 critical/high·필수 검사 실패·실제 결선 미확인을 PASS로 바꾸지 않는다. source 지원 범위 밖 클라이언트를 적용 완료로 표시하지 않는다."
+      },
+      {
+        "line": 151,
+        "text": "DEV 계획의 fail-open·script/alias 우회·Codex session cwd 상대경로 실패·TOCTOU·오탐을 직접 평가한다. 플랫폼 한계와 구현 결함을 구분한다. 현재 위험 재발 방지 목적을 충족하지 못하는 경계는 finding으로 올리며 설명만으로 통과시키지 않는다. 기존 세션 재시작·checkout별 사용자 신뢰는 수락 후 사용자 단계로 남긴다. 원 고정 snapshot에서만 제품을 읽고 reviewer 기록 체크아웃을 수정한다."
+      },
+      {
+        "line": 159,
+        "text": "Context가 project.md를 충돌 후보로 표시했다. coor 원문 확인 결과 과거 제품 후보 상태와 Docker 검증 명령이 남아 있다. 현재 과제는 제품 변경 없이 Windows hook 경계를 검수한다. 사용자 지시인 로컬 Docker 금지·복구 중단·실제 삭제 없는 검증이 우선이다. 등록 lint/test는 DEV exact SHA의 실제 Linux 증거를 확인해 재사용한다. 공통 보안·독립성·critical/high 차단은 유지한다. Hook JSON 두 파일은 탐색기의 민감 경로 제외로 API에 보내지 않았으며 reviewer가 snapshot에서 직접 읽는다. partial 후보는 일반 검색과 outcomes로 보완한다."
+      },
+      {
+        "line": 163,
+        "text": "- 결과: 수락 가능(조건부). 미해결 critical 0·high 0. 미해결 medium 4(F1~F4)·low 5(F5~F9). 수정은 DEV 후속 담당이며 tester는 제품 코드를 수정하지 않았다."
+      },
+      {
+        "line": 165,
+        "text": "- 세션: 구현 `bacd5d1f-de07-43b3-9efa-0df5636729c7`, 실제 reviewer `0ef9c64c-15ec-4fcc-a3be-c11022475dc1`(fresh Claude Sonnet 5.5 high). snapshot `C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-4ff90f54195a4728bc150bd64f431020`, detached·clean. 정리하지 않았다. 하위 에이전트는 쓰지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+    "sha256": "45958c02f98c77a3810bec8ba163f21ac21daf34e9e7917ed43750076ec9ff8e",
+    "lines": 530,
+    "headings": [
+      "## SAR-FRONTEND-POLISH-001-VISUAL — 2026-10-12",
+      "# SAR-FRONTEND-POLISH-001-VISUAL — 회원 UI 고정 후보 직접 시각 검수",
+      "## 목표·범위·제품 규칙",
+      "## 정본·먼저 읽을 문서",
+      "## 완료 기준",
+      "## 산출물·후속",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고",
+      "## 고정 후보·실행 지시",
+      "## SAR-HUMAN-PEER-001 — 2026-10-12",
+      "# SAR-HUMAN-PEER-001 — 사람 중심 연결 모델과 UI/UX 전면 개편",
+      "## 사용자 원문과 목표"
+    ],
+    "relevant": [
+      {
+        "line": 48,
+        "text": "- [x] 결과와 미검사·범위 밖 항목을 qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/에 기록한다. 새 critical/high 또는 완료 조건 불충족은 수락하지 않는다."
+      },
+      {
+        "line": 108,
+        "text": "V-02·V-03·V-08·V-12는 이유와 후속 담당·재개 조건을 보고서에 남겼다. mobile 생성 버튼 폭 N-02와 명령 줄바꿈은 비차단 low로 보존한다. V-04 320px·V-09 접근성 이름·포커스는 DEV 근거 재사용이며 새 직접 검증이 아니다. 실제 로그인·운영·200%·스크린 리더·전체 상태는 미검증이다. tester 독립 동작 QA·코드 리뷰와 coor 통합은 별개다."
+      },
+      {
+        "line": 112,
+        "text": "D04 strict exit 0(문제 0·경고 0), git diff --check exit 0, 새 보고서·phase 로컬 링크 누락 0개다. 제품 코드 변경이 없어 이번 세션 product-lint·product-test done-gate는 해당 없음이다. 도구 준비 check는 disabled이며 인증·새 브라우저 QA·MCP는 not_run이다."
+      },
+      {
+        "line": 119,
+        "text": "- 실제 after 이미지: .fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/after/png/. before/png/와 비교한다. after/manifest.json·measurements.json·keyboard.json을 참고한다. 합성 자료만 있다."
+      },
+      {
+        "line": 181,
+        "text": "주 스킬 frontend-design: C:/Users/shin/.agents/skills/frontend-design/SKILL.md. 호스트 codex, 모델 gpt-6.1-sol, effort high. 기존 D04 정본을 사용자 전면개편 근거로 변경한다. 선택형 도구 설치 없음. 기존 Go template/CSS와 Orca 내장 브라우저를 재사용한다. 전역 frontend.json enabled=false는 과거 기본값이며 이번 인박스에서 활성 디자인 과제를 지정한다. 설치/인증/브라우저 성공을 구분한다."
+      },
+      {
+        "line": 189,
+        "text": "상세 기록: docs/exec-plans/phases/SAR-HUMAN-PEER-001.md. 패킷 모든 필수 path/category outcomes를 쓴다. 적용 규칙·확정/미확정·검증/미검증·기존 데이터 권한 이행·후속 역할을 완료 보고에 남긴다. 커밋한 뒤 work.py finish로 원본/보고를 보존하고 실제 worker_done에 최종 SHA 하나를 명시한다. 완료 뒤 독립 문서 검토와 main 통합 후 DEV를 착수시킨다."
+      },
+      {
+        "line": 263,
+        "text": "미검증·보류: 실제 새 기능·키보드/200%/스크린 리더·실 Google/노우/다닷 새 흐름·운영 DB 이행/복원·배포는 실행하지 않았다. 기존 제품의 과거 PASS를 새 수락 근거로 쓰지 않는다. DEV 핵심/필수 검사, tester 독립 A/B/C와 legacy fixture QA, 같은 SHA의 designer 실제 구현 시각 검수 및 별도 세션 리뷰가 남았다. 실계정·외부 발송·운영 실행은 별도 단계다. 새 다크 모드·공개 검색·첨부·장기 보관·읽음·agent별 공유·상품 기능은 생략했다."
+      },
+      {
+        "line": 286,
+        "text": "- From / To: coor / designer. Purpose: review. 실행 codex / gpt-6.1-sol / high, 주 스킬 frontend-design. 이전 설계 작성 세션과 다른 fresh 세션을 사용한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+    "sha256": "a82d0a15bf2a1c49a2505a1d357dc44eef7e4a3300b6339b421a4cef64d2cec1",
+    "lines": 668,
+    "headings": [
+      "## SAR-CODEX-HOOK-QUOTE-001-DEV — 2026-10-12",
+      "# SAR-CODEX-HOOK-QUOTE-001-DEV — Codex hook 실행 오류와 셸 인용 회귀 수정",
+      "## 목표와 확정 규칙",
+      "## 확인 근거",
+      "## 적용 기준과 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "## 제약",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고",
+      "## SAR-FRONTEND-POLISH-001-DEV — 2026-10-12",
+      "# SAR-FRONTEND-POLISH-001-DEV — 기존 회원 UI 검토와 결함 수정으로 완성도 개선"
+    ],
+    "relevant": [
+      {
+        "line": 13,
+        "text": "title: SAR-CODEX-HOOK-QUOTE-001-DEV — Codex Hook failed code 1 원인을 수정하고 셸별 실행·삭제 차단을 검증한다"
+      },
+      {
+        "line": 18,
+        "text": "summary: Codex Hook failed code 1 원인을 수정하고 셸별 실행·삭제 차단을 검증한다"
+      },
+      {
+        "line": 36,
+        "text": "사용자 요청: 현재 Codex 세션의 `Hook failed / hook exited with code 1`부터 조치한다. 이슈 #2–#8은 대기한다."
+      },
+      {
+        "line": 45,
+        "text": "PowerShell -Command는 명시적 exit 없이 native nonzero를1로 바꿀 수 있다. 실제 Codex hook 실행 셸·종료코드 전파 계약을 확인한다. 원 오류 stderr는 아직 호스트에서 직접 확보하지 못했다."
+      },
+      {
+        "line": 255,
+        "text": "- 원 실패와 원인: 기준 명령(따옴표 없음)은 PowerShell(`pwsh`/`powershell -Command`)에서 parser error 종료 1이다. coor의 따옴표 후보는 parser error를 없앴으나 `-Command`가 native 종료코드 2를 1로 바꿔 Codex(2만 차단)가 막지 못한다. 기존 회귀 실패(expected 2/actual 0)는 테스트가 argv 목록 `['cmd.exe','/C',command]`로 호출해 따옴표가 역슬래시 인용으로 바뀐 탓이며 Codex의 실제 실행 방식이 아니다."
+      },
+      {
+        "line": 261,
+        "text": "- 미검증 host 범위: 실제 Codex 세션의 hook 실행(trust 승인 필요)과 호스트가 낸 원 stderr, 셸 override 설정(`~/.codex`)은 확인하지 못했다. argv 목록 방식의 호출은 여전히 guard를 실행하지 못하며 현재 Codex 코드 경로에서는 확인되지 않았다. 전역 Orca `codex-hook.cmd`·플러그인 캐시·이슈 오토모드는 변경하지 않았다."
+      },
+      {
+        "line": 316,
+        "text": "- [x] packet-outcomes를 완성하고 work.py finish로 인박스와 완료 보고를 보존한다. 최종 커밋 SHA·변경·검증·미검사·독립 QA/시각 검수 필요를 worker_done으로 회신한다."
+      },
+      {
+        "line": 321,
+        "text": "DEV 완료 뒤 coor가 tester 독립 동작 QA, designer 직접 시각 검수, 고정 SHA 독립 리뷰를 배정한다. 미해결 critical/high와 필수 실패는 병합 차단이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
+    "sha256": "ba83dae7f33cd9eaf1e260c024437acc6fe9eafaed24d959aae231f0bf88d9c0",
+    "lines": 902,
+    "headings": [
+      "## SAR-CODEX-HOOK-QUOTE-001-TESTER — 2026-10-12",
+      "# SAR-CODEX-HOOK-QUOTE-001-TESTER — Codex hook 독립 QA와 고정 SHA 리뷰",
+      "## 목표와 적용 기준",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "## 제약과 기대 산출물",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고",
+      "## SAR-FRONTEND-POLISH-001-TESTER — 2026-10-12",
+      "# SAR-FRONTEND-POLISH-001-TESTER — 회원 UI 고정 후보 독립 리뷰와 lite QA",
+      "## 목표·범위·규칙",
+      "## 먼저 읽을 문서·적용 기준"
+    ],
+    "relevant": [
+      {
+        "line": 38,
+        "text": "현재 Codex 세션의 Hook failed code1 수정과 기존 삭제 차단을 독립 판정한다. 제품·정책 변경은 없다."
+      },
+      {
+        "line": 46,
+        "text": "- [ ] 실제 지원 셸 실행 방식에서 root/scripts/adapters 허용0·거부2와 deny JSON을 독립 확인한다. 코드를 문자열 리터럴로 넘겨 실행 없이0이 된 것을 PASS로 취급하지 않는다. PowerShell의 native nonzero 변환과 실제 Codex host 실행 검증 범위를 구분한다."
+      },
+      {
+        "line": 52,
+        "text": "새 critical/high0, 관련 회귀 PASS, 같은 고정 SHA 리뷰 check PASS. check는 실제 기준/고정 head와 --task-key SAR-CODEX-HOOK-QUOTE-001-DEV를 사용한다. 검사 통과와 사용자 host에서 실제 오류 소멸은 구분한다. 원 host stderr가 확보되지 않으면 그 한계를 명시한다."
+      },
+      {
+        "line": 53,
+        "text": "원 실패·미검증·잔여 한계는 보존한다. 전역 hook 신뢰 승인과 캐시 변경을 하지 않는다. hook을 끄거나 보호 규칙을 우회하지 않는다."
+      },
+      {
+        "line": 134,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 145,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 317,
+        "text": "- 결과: 수락 가능. 새 critical/high 0. low 1(F1): argv 목록으로 `cmd /C <command>`를 호출하면 guard가 실행되지 않는다(허용0·거부0). DEV가 문서화한 한계이며 현재 Codex raw 인자 경로에서는 확인되지 않았다."
+      },
+      {
+        "line": 320,
+        "text": "- 원 실패·후보·최종 대조(같은 입력, scripts cwd): 기준 67e7de9는 pwsh·powershell에서 parser error 종료 1. 미수락 후보 7cae8d7은 pwsh·powershell 허용0·거부1(native 종료코드 2→1)이고 argv 목록 호출은 0/0(expected2/actual0 재현). 최종은 cmd 2종·pwsh·powershell 모두 허용0·거부2. 보존 DEV 로그의 packet conflict는 이 세 단계를 구분하면 모순이 아니다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+    "sha256": "7b686e0e97b9f70c3bae3018b31cf733332c0a966047adad9a5679cd3bdf441e",
+    "lines": 333,
+    "headings": [
+      "## SAR-REFACTOR-001-DEV — 2026-10-13",
+      "# SAR-REFACTOR-001-DEV — 기능 보존 전체 코드 정리",
+      "## 현재 상황과 적용 기준",
+      "## 해야 할 일과 소유권",
+      "## 검증과 완료 기준",
+      "## 갱신할 산출물과 기대 결과",
+      "## 제약과 협업",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고",
+      "## SAR-REPO-DOCS-001-DEV — 2026-10-13",
+      "# SAR-REPO-DOCS-001-DEV — 현재 README 설치 안내와 루트 docs 설명 자료",
+      "## 범위와 완료 기준"
+    ],
+    "relevant": [
+      {
+        "line": 34,
+        "text": "- 구현 host/model/effort: codex / gpt-6.1-sol / high. 사용자 GPT Sol 지정이며 구현 하위도 동일 모델. 독립 QA/리뷰는 coor가 별도로 맡긴다."
+      },
+      {
+        "line": 53,
+        "text": "최종 후보에 독립 tester QA와 다른 세션 fixed-SHA 읽기 전용 snapshot 리뷰를 coor가 배정한다. 미해결 critical/high0·필수 검사 통과 뒤 main 통합한다. UI는 동작/외형 보존 리팩토링이므로 디자인 변경 해당 없음이다. 렌더링 템플릿을 수정했다면 관련 페이지 HTTP 회귀 근거를 남긴다."
+      },
+      {
+        "line": 270,
+        "text": "DEV 자체 검사에서 알려진 critical/high는 없다. 독립 tester QA와 원 부모/자식 및 현재 기록 담당과 다른 fixed-SHA snapshot 리뷰는 coordinator의 후속이다. 제품 최종 수락·main 통합·일반 push·배포 완료를 주장하지 않는다. 이 완료 전문은 work.py finish로 날짜별 로그에 보존하고 현재 인박스를 비운다. 기록 커밋과 필요한 최종 gate의 SHA/결과는 현재 dispatch worker_done으로 전달한다."
+      },
+      {
+        "line": 293,
+        "text": "- 담당: repo0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev. CLI/model/effort codex/gpt-6.1-sol/high (사용자 Sol 지정 유지)."
+      },
+      {
+        "line": 333,
+        "text": "coor가 작성자와 다른 실제 세션에서 fixed SHA snapshot 문서리뷰·main일반통합/push를 수행한다. 독립리뷰·미해결 critical/high 차단은 유지한다. 임시 검증자료는 QA 폴더에 보존했다. work finish와 커밋 뒤 최종40자리SHA를 worker_done으로 회신한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+    "sha256": "77a20ec2903205d5ec853965d5553b8a36638c8111cd8857500ef43d7e5d13e6",
+    "lines": 275,
+    "headings": [
+      "## SAR-REFACTOR-001-OPS — 2026-10-13",
+      "# SAR-REFACTOR-001-OPS — 수락 리팩토링 2747fe9 운영 배포·보존 검증 및 Grok/Dots 업데이트 안내",
+      "## 현재 상황과 확인 근거",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "### UI 작업의 디자인 기준과 검증",
+      "## 갱신할 산출물",
+      "## 기대 산출물",
+      "## 제약·협업·후속",
+      "### 탐색 근거와 읽을 구간"
+    ],
+    "relevant": [
+      {
+        "line": 253,
+        "text": "검증: 기록c914962의FullOps1.4.1 --from2747fe9는ERROR0/WARNING1/unavailable2·EXIT1이다. Windows make부재로새product-lint/product-test는not_run이다. 제품/설정/의존성diff0이므로기존exactcd4dae8Linux등록게이트EXIT0을직접대조해재사용했고현재WindowsPASS로표시하지않았다. 산출물strict13개·문제0/경고0,공백검사통과다. SIZE경고는기존PLANS의1749줄이며과거기록보존때문에분할/삭제하지않았다. DEP-001대상변경과새의존성은없다."
+      },
+      {
+        "line": 257,
+        "text": "not_run: 실계정송신/receive/ACK·Google로그인·인증SSE재연결·Grok실제bundle/process갱신·Dotsrefresh/자동화수정·새시각검수·부하·장시간wake·다음Events자동갱신/새retry. 기존held와HP-16범위는유지한다. 구writer/Down·과거DB덮기는금지하고필요시현재권한을보존하는같은HumanModelwriter26094e9코드로만복귀한다. 실제rollback은하지않았다."
+      },
+      {
+        "line": 265,
+        "text": "사용자가 운영 배포를 승인했다. Purpose operations/deploy. 제품은 수락 main 2747fe98653d5c6946f41c219fc256395333d7fe로 고정하며 현재 운영26094e9와의 실제 diff를 확인한다. Codex/gpt-6.1-sol/high. 이번 배포는 직접 수행하며 하위 위임 불필요. 기존 회원·agent·사람 친구·key·Inbox/ACK·Events subscriptions·Google 연결·writer guard·Tunnel/Access·공유 서비스 보존. 제품 코드/DB schema/인프라 정책 변경 금지."
+      },
+      {
+        "line": 271,
+        "text": "실제 배포SHA·이미지·health·local/public/기존보호 경로 smoke·공유서비스 확인·개인값 없는 보존 집계·error/panic을 증거로 남긴다. 실계정 메시지는 보내지 않는다. 기존Events 구독 지속/재시도는 metadata로 관측 가능하면 확인하고 자동 갱신/장시간 성공을 추정하지 않는다. 수행 불가 범위는 not_run."
+      },
+      {
+        "line": 275,
+        "text": "보고 qa-reports/SAR-REFACTOR-001-OPS/report.md, phase·D13 필요한 부분·packet outcomes·work.py finish를 완료하고 commit한다. worker_done 본문은 반드시 [완료] SAR-REFACTOR-001-OPS | 브랜치 fullops/ops | SHA <실제 최종40자리> 형식으로 결과·검증·not_run·다음담당을 포함한다. 복귀run run_5534969da2d0의 실제 주입주소 사용. 문서 독립snapshot 리뷰·main통합은coor 후속."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+    "sha256": "9f4c755800c59adae7880d81ab6cfa0c5436c411f8d25266b74a58d1c012d799",
+    "lines": 403,
+    "headings": [
+      "## SAR-REFACTOR-001-TESTER — 2026-10-13",
+      "# SAR-REFACTOR-001-TESTER — 고정 Sol 리팩토링의 독립 회귀 검증",
+      "## 적용 기준과 먼저 읽을 문서",
+      "## 해야 할 일과 소유권",
+      "## 완료 기준과 제약",
+      "## 산출물·완료 보고",
+      "## 완료 보고",
+      "## SAR-REFACTOR-001-TESTER — 2026-10-13",
+      "# SAR-REFACTOR-001-TESTER — 기존 text matrix SSH 입력과 JSON escape의 재현성 대조",
+      "## 적용 기준과 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 제약"
+    ],
+    "relevant": [
+      {
+        "line": 32,
+        "text": "- CLI/model/effort: codex/gpt-6.1-sol/high. 사용자 Sol 지정 유지. 구현자01a13509-e1a3-7b62-bf9d-5a48405d706a와 다른 실제 본인 세션을 기록한다."
+      },
+      {
+        "line": 43,
+        "text": "- [x] qa-reports/SAR-REFACTOR-001-TESTER-test/report.md에 검사 명령·종료코드·고정 SHA·PASS/FAIL/not_run·발견severity·호환 보존·검증 한계를 기록한다. packet outcomes를 완료하고 work.py finish·worker_done까지 처리한다."
+      },
+      {
+        "line": 52,
+        "text": "갱신할 제품 정본 없음. 독립 QA 보고와 기존 gate 검증 근거만 남긴다. 실제 세션ID·후보SHA·기록SHA·검증종료코드·severity·not_run·packet outcomes를 기재한다. 코드를 수정하지 않고 완성된 QA 결과를 커밋하고 work.py finish 후 현재 주입된 parent 주소로 worker_done을 보낸다."
+      },
+      {
+        "line": 60,
+        "text": "Linux 고유 exact clone에서 Node22.22.2/npm10.9.7/Go1.27.1/CGO1과 전후 clean을 확인했다. Go race focused 최상위8개, TS 재빌드·MCP·owner-text, 독립 text matrix15개가 exit0이다. 첫 환경 확인식의 따옴표 오류 exit1은 제품 실패와 구분하여 보존했다. 새 제품 결함·미해결 critical/high 발견0이다."
+      },
+      {
+        "line": 64,
+        "text": "Windows cgo race·보조Node24는 최종 지원환경 근거로 쓰지 않았다. 실계정·운영배포·SQL 이행·부하·복원·장시간 wake는 not_run이며 과거 held와 전체 HP16 수락을 해제하지 않는다. UI 변화0으로 새 시각 검수는 해당없음이다. 후속 fixed-SHA 리뷰와 main 통합은coordinator 담당이다. clone·bundle·임시 검증 자료를 삭제/이동하지 않았고 경로는 QA 보고에 남겼다."
+      },
+      {
+        "line": 195,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 207,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 403,
+        "text": "제품·테스트 코드·의존성·운영·실계정·삭제·이동 변경은 없다. 따라서 코드 변경용 FullOps lint는 해당 없음이다. report.md와 escape-audit.json, 원본을 보존한 후속 packet/outcomes, 이 완료 로그를 커밋한다. packet 279경로280쌍을 원천 경로·해시·관련 줄로 확인했으며 과거 producer4개는 현재 근거로 쓰지 않았다. 원 packet/outcomes는 history에 보존했다. git diff --check, JSON 구조·원본 불변·제품 불변 검사와 work.py finish를 적용한다. 기록 SHA는 실제 worker_done에 남긴다. 새 critical/high 발견0이다. 독립 최종 delta 리뷰와 main 반영은 coordinator 담당이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+    "sha256": "f8bd9b39e7650310c84d6def75ddfefba394b1b75e2bb8e78f319f8d0278fd21",
+    "lines": 194,
+    "headings": [
+      "## SAR-LANDING-GUIDE-001 — 2026-10-14",
+      "# SAR-LANDING-GUIDE-001 — 서비스 소개·설치·사용 예시와 로그인 시작 화면 설계",
+      "## 현재 상황과 확인 근거",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "## 완료 기준과 검증",
+      "### UI 작업의 디자인 기준과 검증",
+      "## 갱신할 산출물",
+      "## 제약·협업·후속",
+      "## 지시 전제와 충돌 — 먼저 확인",
+      "### 탐색 근거와 읽을 구간"
+    ],
+    "relevant": [
+      {
+        "line": 9,
+        "text": "## SAR-LANDING-GUIDE-001 — 2026-10-14"
+      },
+      {
+        "line": 10,
+        "text": "<!-- fullops-attempt: SAR-LANDING-GUIDE-001 38f444fbc6944d27be42b0f8a4f27b7b -->"
+      },
+      {
+        "line": 13,
+        "text": "title: SAR-LANDING-GUIDE-001 — 서비스 소개·설치·사용 예시와 로그인 시작 화면 설계"
+      },
+      {
+        "line": 17,
+        "text": "tasks: [SAR-LANDING-GUIDE-001]"
+      },
+      {
+        "line": 25,
+        "text": "# SAR-LANDING-GUIDE-001 — 서비스 소개·설치·사용 예시와 로그인 시작 화면 설계"
+      },
+      {
+        "line": 30,
+        "text": "- 실행: codex / gpt-6-astra / high (최신 사용자 지시). 주 스킬 frontend-design, FullOps fullops-frontend/work 적용. 이후 DEV·독립 QA·시각 검수도 동일 Astra tuple을 인계한다. 과거 Astra 제외·기본 Sol 설정보다 우선한다."
+      },
+      {
+        "line": 45,
+        "text": "frontend configuration_ready(host codex/model gpt-6-astra/high, problems0)를 확인했다. 인증·브라우저 QA·MCP 연결 검증은 not_run이며 실제 제품 검수와 구분한다. tools=[] 유지, 새로운 엔진/유료키/외부 업로드를 추가하지 않는다."
+      },
+      {
+        "line": 55,
+        "text": "- .fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md (최신 운영 사실·미검증)"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+    "sha256": "48eb93fe92110aa82f6874d9736872c488cb4b70ba1a6701752b0976284ddd58",
+    "lines": 523,
+    "headings": [
+      "## SAR-SYSTEM-DIAGRAM-001-DEV — 2026-10-14",
+      "# SAR-SYSTEM-DIAGRAM-001-DEV — 현재 시스템 구성도와 상세 기술 설명",
+      "## 결과와 범위",
+      "## 다이어그램 형식",
+      "## 먼저 읽을 근거",
+      "## 검증과 완료",
+      "## 완료 보고",
+      "## SAR-REFACTOR-002-DEV — 2026-10-14",
+      "# SAR-REFACTOR-002-DEV — Astra high 전반 구조 점검·리팩터링·성능 최적화",
+      "## 현재 상황과 확인 근거",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서"
+    ],
+    "relevant": [
+      {
+        "line": 27,
+        "text": "- 2026-10-14 coor→dev, Purpose documentation. 기준8f255f9991787e14b38052029d334b9536160fdb, fullops-common-0.3.3, lite/standard. Codex/gpt-6.1-sol/high 고정."
+      },
+      {
+        "line": 62,
+        "text": "현재 시스템의 상세 기술 설명과 native Mermaid3개를 docs/system-design.md에 작성했다. README·docs 목차·입문 architecture에서 직접 연결했다. 현재 소스 기준8f255f9, 운영 관측2026-10-13/2747fe9, 직전26094e9 실계정·알림 근거를 구분했다."
+      },
+      {
+        "line": 76,
+        "text": "미실행: 실제Mermaid렌더·한글/잘림시각검수·새로그인/실계정/호스트설치/Events갱신/재시작/부하·운영재확인·전체제품테스트다. coor가별도실제세션의fixedSHA내용리뷰·Mermaid렌더검수·main일반통합/push를수행한다. 미해결critical/high 차단은 유지한다. 이번DEV완료는제품최종수락이아니다."
+      },
+      {
+        "line": 84,
+        "text": "title: SAR-REFACTOR-002-DEV — Astra high 전반 구조 점검·리팩터링·성능 최적화"
+      },
+      {
+        "line": 89,
+        "text": "summary: Astra high 전반 구조 점검·리팩터링·성능 최적화"
+      },
+      {
+        "line": 96,
+        "text": "# SAR-REFACTOR-002-DEV — Astra high 전반 구조 점검·리팩터링·성능 최적화"
+      },
+      {
+        "line": 100,
+        "text": "- Agent/model/effort: codex/gpt-6-astra/high. 최신 사용자 지시로 이전 Sol 지정·Astra 제외 기록을 이번 과제에 한해 대체한다. capacity 오류 때 같은 모델로 재개하고 임의 대체하지 않는다."
+      },
+      {
+        "line": 134,
+        "text": "- [x] Go relay/DB·트랜잭션·HTTP·remote OAuth/MCP/events·백그라운드 작업과 TS adapter/inbox/receiver/wake·패키징·설정/스크립트를 나눠 점검한다. 독립 모듈은 파일 소유권이 겹치지 않는 Astra high 하위 최대2개에 병렬 조사·구현을 맡긴다. 부모는 DB/공유 계약·성능 계획·취합·커밋을 맡는다. 새 임의 worktree나 등록 외 역할을 만들지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
+    "sha256": "7f0ea2feab4c38a621fb5ee72ee4cd95de49ecb64a9075e01e6098abe4e06c87",
+    "lines": 666,
+    "headings": [
+      "## SAR-REFACTOR-002-OPS — 2026-10-14",
+      "# SAR-REFACTOR-002-OPS — 검수된 Astra 리팩터링 운영 배포",
+      "## 승인과 현재 근거",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 소유권",
+      "### 착수 기술 계획 (2026-10-14)",
+      "## 완료 기준과 검증",
+      "## 기대 산출물",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고",
+      "# SAR-REFACTOR-002-OPS 결과"
+    ],
+    "relevant": [
+      {
+        "line": 29,
+        "text": "- Agent/model/effort codex/gpt-6-astra/high. 같은 사용자 지정 Astra 리팩터링의 배포 후속이다."
+      },
+      {
+        "line": 271,
+        "text": "Grok Inbox 수정은 같은 prefix·Command·기존 연결 폴더·agent/key·Inbox·webhook routine을 보존한 별도 로컬 bundle 갱신과 MCP/정확한 watcher 재시작이 필요하다. 이번에 실행하지 않았다. Dots의 Remote 처리 수정은 기존 endpoint/app의 다음 요청부터 적용된다. wire/tool/OAuth/Events metadata diff0이므로 새 연결·친구 재등록을 요구하지 않는다. host cache·화면·다음 자동 갱신은 미검증이다."
+      },
+      {
+        "line": 298,
+        "text": "- From/To coor/ops, 상태 running, Purpose implementation. codex/gpt-6-astra/high, lite/standard, 직접 수행."
+      },
+      {
+        "line": 324,
+        "text": "- [x] 공개 smoke의 상태/선택 header와 미검증 metadata body 의미를 구분한다."
+      },
+      {
+        "line": 655,
+        "text": "coor msg_225b9e343e18의 문서 보완5건은 같은 과제를 공식 reopen해 처리했다. 첫 완료8ae9bd11bdcf4858c3953535b8ddb728d1624e63의 원 archive를 보존하고 Rates 수치·목차 배포 링크·공개 운영 front matter·metadata 의미 미검증·smoke 입력 의존성을 보완했다. 제품/운영 변경이 없어 서버 검사를 반복하지 않았다. 보완 attempt의 packet227경로·outcomes230쌍과 완료 전문도 별도로 보존한다. unknown19개·remaining197개는 [보완 탐색 감사](correction-packet-audit.json)의 경로/hash·검색 발췌와 문서 역할을 확인했다. 공통 coor 단어로 잡힌 과거 기록을 이번 수정 대상으로 넓히지 않았다. 입력21개 계약·사본 hash·JSON 검사는 통과했다."
+      },
+      {
+        "line": 659,
+        "text": "Grok Inbox 수정은 같은 prefix·Command·기존 연결 폴더·agent/key·Inbox·webhook routine을 보존한 별도 로컬 bundle 갱신과 MCP/정확한 watcher 재시작이 필요하다. 이번에 실행하지 않았다. Dots의 Remote 처리 수정은 기존 endpoint/app의 다음 요청부터 적용된다. wire/tool/OAuth/Events metadata diff0이므로 새 연결·친구 재등록을 요구하지 않는다. host cache·화면·다음 자동 갱신은 미검증이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+    "sha256": "97b7343dd160e0409ff30580b20b4b5af472536a54db891cd6a6fd7e0231d2fe",
+    "lines": 384,
+    "headings": [
+      "## SAR-REFACTOR-002-TESTER — 2026-10-14",
+      "# SAR-REFACTOR-002-TESTER — 고정 후보 독립 회귀·성능 검증",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서와 파일",
+      "## 해야 할 일과 파일 소유권",
+      "## 검증과 완료 조건",
+      "## 기대 산출물",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고",
+      "# SAR-REFACTOR-002-TESTER",
+      "## 입력과 독립성",
+      "## 실행 결과"
+    ],
+    "relevant": [
+      {
+        "line": 29,
+        "text": "- Agent/model/effort: codex/gpt-6-astra/high. 사용자 최신 Astra high 지정."
+      },
+      {
+        "line": 67,
+        "text": "DEV 필수 lint/test/build는 DEV가 최종 안정 후보에서 실행한다. tester는 지정 경계 QA를 독립 실행하며 같은 전체 gate를 이유 없이 반복하지 않는다. UI 외형 변경이 없어 새 시각 캡처는 해당 없음이다. 설명되지 않는 실패·critical/high가 없고 독립 경계 검증이 완료돼야 QA를 수락한다. 최종 main 통합과 push는 coor가 코드 리뷰·QA·문서 delta를 함께 확인한 뒤 수행한다."
+      },
+      {
+        "line": 145,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 156,
+        "text": "- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md` (document_read) · 줄 2, 6 · inferred"
+      },
+      {
+        "line": 300,
+        "text": "지정 동작 QA는 PASS다. 새 제품 결함과 미해결 critical/high 발견은 0건이다. 제품 코드는 수정하지 않았다. 별도 Astra 코드 리뷰, 최종 DEV 문서·등록 gate, main 통합은 coordinator가 취합한다."
+      },
+      {
+        "line": 308,
+        "text": "- 사용자 고정 codex/gpt-6-astra/high, Purpose review, Test level lite. 작성 DEV와 별도 세션이며 코드 snapshot 리뷰를 중복하지 않았다. 좁은 QA를 직접 수행해 선택형 하위 위임은 사용하지 않았다."
+      },
+      {
+        "line": 336,
+        "text": "1. queued/delivered × active/revoked 4조합에서 TTL 1ns 전과 정각을 확인했다. 정상 queued는 조기 만료되지 않는다. 철회된 transport와 arrival은 차단된다. 정각에는 transport·lease·claim token이 비워지고 delivered receipt와 이미 받은 `received` completion은 보존된다. 미완료 claim의 completion은 `failed:expired`가 된다."
+      },
+      {
+        "line": 348,
+        "text": "원인은 테스트 기대값이다. 실제 public text ACK는 `http.go`의 persist/ack 처리에서 completion을 `received`로 만든다. `store.go`는 빈 completion만 만료 상태로 바꾼다. 최초 테스트는 ACK 완료도 `failed:expired`가 되어야 한다고 잘못 기대했다. 제품을 바꾸지 않고 delivered의 기대값을 `received`로 바로잡았다. 이는 기존 완료 보존 계약을 더 엄격히 검사한다. 수정 후 같은 고정 제품과 동일 race 명령이 0이었다. 제품 RED/GREEN 수정으로 주장하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/to_designer.md",
+    "sha256": "150d35259fc390aa6726b092822420d872d3ad754a4cb50e39e03430276c18d8",
+    "lines": 133,
+    "headings": [
+      "# SAR-LANDING-GUIDE-001-VISUAL — 고정 구현 후보의 공개 첫페이지 직접 시각 검수",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 소유권",
+      "### 지시 전제와 충돌 — 먼저 확인",
+      "## 실행·완료 기준",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고"
+    ],
+    "relevant": [
+      {
+        "line": 2,
+        "text": "title: SAR-LANDING-GUIDE-001-VISUAL — 고정 구현 후보의 공개 첫페이지를 실제 브라우저에서 시각 검수하고 D04 수락 여부를 기록한다"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001-VISUAL]"
+      },
+      {
+        "line": 7,
+        "text": "summary: 고정 구현 후보의 공개 첫페이지를 실제 브라우저에서 시각 검수하고 D04 수락 여부를 기록한다"
+      },
+      {
+        "line": 14,
+        "text": "# SAR-LANDING-GUIDE-001-VISUAL — 고정 구현 후보의 공개 첫페이지 직접 시각 검수"
+      },
+      {
+        "line": 18,
+        "text": "- 실행: codex/gpt-6-astra/high, 사용자 최신 지정. test_level=lite/subagent_level=standard."
+      },
+      {
+        "line": 25,
+        "text": "AGENTS.md, FULLOPS.md, fullops-common-0.3.3 공통 코딩·테스트·보안, project.md, document-writing.md, fullops-frontend/delivery.md를 적용한다. frontend.json 기존 주 스킬 frontend-design과 D04 공개 첫페이지 정본을 사용한다. 고정 실행 tuple은 사용자 지정이 우선하며 새 도구 설치·유료 키·이미지 에셋은 추가하지 않는다. 과거 최소 로그인 절은 새 공개 첫페이지 정본에서 대체한 범위만 달라진다. 실제 QA와 미실행을 구분하고 기존 실패를 보존한다."
+      },
+      {
+        "line": 29,
+        "text": "- .fullops-squad/docs/design-docs/mockups/service-member-ui.md — 공개 첫페이지 정본."
+      },
+      {
+        "line": 33,
+        "text": "- .fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/to_tester.md",
+    "sha256": "5f425cf62e325eadaa6981d642bf66264dc181ad6325a17db9efe1fefbabce0d",
+    "lines": 287,
+    "headings": [
+      "# SAR-LANDING-GUIDE-001-TESTER — 고정 구현 SHA의 공개 안내·로그인·회원 회귀를 독립 검증한다",
+      "## 적용 기준과 예외",
+      "## 먼저 읽을 문서",
+      "## 해야 할 일과 파일 소유권",
+      "### 지시 전제와 충돌 — 먼저 확인",
+      "## 동작 수락 표",
+      "## 실행·증거·독립성",
+      "## 산출물·후속",
+      "### 탐색 근거와 읽을 구간",
+      "## 완료 보고"
+    ],
+    "relevant": [
+      {
+        "line": 2,
+        "text": "title: SAR-LANDING-GUIDE-001-TESTER — 고정 구현 SHA의 공개 안내·로그인·회원 회귀를 독립 검증한다"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-LANDING-GUIDE-001-TESTER]"
+      },
+      {
+        "line": 14,
+        "text": "# SAR-LANDING-GUIDE-001-TESTER — 고정 구현 SHA의 공개 안내·로그인·회원 회귀를 독립 검증한다"
+      },
+      {
+        "line": 17,
+        "text": "- 실행: codex / gpt-6-astra / high. 최신 사용자 지정이며 기존 frontend.json의 Sol 기본값보다 우선한다. test_level=lite, subagent_level=standard."
+      },
+      {
+        "line": 25,
+        "text": "AGENTS.md, FULLOPS.md, fullops-common-0.3.3의 coding-style/testing/security, project.md, document-writing.md를 적용한다. 초기 기준은 front matter의 준비 SHA다. 설계 결과 SHA는 SAR-LANDING-GUIDE-001 worker_done과 phase에 연결된 커밋으로 식별한다. coor가 배정 전 통합된 정확한 후보와 비교 기준을 고정한다. 제품 수락 전 기존 critical/high·보안·writer/DB·권한 기준을 완화하지 않는다."
+      },
+      {
+        "line": 27,
+        "text": "최신 공개 안내 요청은 D04의 과거 최소 로그인 문구만 대체한다. 원본 partial/unknown, 과거 FAIL과 미검증 운영 기록은 보존한다. D04의 '공개 첫페이지 정본 — SAR-LANDING-GUIDE-001'이 공개 페이지 카피·상태·배치의 정본이다. HP-01–16의 회원·대화 구조는 유지한다."
+      },
+      {
+        "line": 32,
+        "text": "- .fullops-squad/docs/design-docs/mockups/service-member-ui.md — 공개 첫페이지 정본과 기존 토큰."
+      },
+      {
+        "line": 34,
+        "text": "- .fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md — 결정·원천·미검증."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/project.md",
+    "sha256": "b21c4a297dcf5ef2b76bf87eb4e84b47fda6a0772404a7d61f3474999404cfb8",
+    "lines": 78,
+    "headings": [
+      "# KnowsLink 프로젝트 기준",
+      "## 사람 친구 후보의 재개 조건",
+      "## 기술 기준",
+      "## 검증 명령",
+      "## 공통 기준의 적용과 예외",
+      "## 검증 담당과 후속 인계",
+      "## FullOps 0.9.14 검사 연결"
+    ],
+    "relevant": [
+      {
+        "line": 71,
+        "text": "재검증은 변경 영향·새 실패·증거 결함·미충족 조건이 있을 때 수행한다. 기존 실패·held·미해결 critical/high·제품 정지·최종 플랫폼과 사람 평가 기준은 유지한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/rules/common/README.md",
+    "sha256": "2c08a8b1fcaa796d7a5bd74b28d3ee68a6b92af6e591e71b9f64d418d92c1533",
+    "lines": 41,
+    "headings": [
+      "# FullOps 공통 개발 규칙",
+      "## 적용",
+      "## 프로젝트 기준과 충돌",
+      "## 전달과 검토",
+      "## 보존과 갱신",
+      "## 출처와 변경 범위"
+    ],
+    "relevant": [
+      {
+        "line": 19,
+        "text": "비밀값 보호, 승인 범위, 리뷰 수락 기준은 작업 지시서나 외부 스킬로 임의 완화하지 않는다. 미해결 critical/high가 있으면 기존 FullOps 리뷰 검사를 통과할 수 없다. 실제 충돌이나 예외는 지시서에 경로·이유·승인 필요 여부를 기록하고, 승인이 필요한 예외는 승인 전 적용하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/rules/common/coding-style.md",
+    "sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+    "lines": 33,
+    "headings": [
+      "# 공통 코딩 스타일",
+      "## 단순한 설계",
+      "## UI와 디자인 일관성",
+      "## 책임과 상태 변경",
+      "## 이름과 가독성",
+      "## 오류와 경계"
+    ],
+    "relevant": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/security.md",
+    "sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+    "lines": 27,
+    "headings": [
+      "# 공통 보안 기준",
+      "## 비밀값과 민감정보",
+      "## 입력·파일·실행 경계",
+      "## 해당 공격 표면의 검증",
+      "## 검토와 승인"
+    ],
+    "relevant": [
+      {
+        "line": 27,
+        "text": "미해결 critical/high는 기존 FullOps 리뷰 검사에서 실패로 유지한다. 이 문서나 외부 스킬을 근거로 검사 결과를 무시하거나 자동 병합하지 않는다. 허용 범위의 수정·검증을 수행하고 해결하지 못한 위험은 병합 책임자에게 명시한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/rules/common/testing.md",
+    "sha256": "0c1e0d1af2e06a78abea5295cddf073d4efd18d32c066dd288530b3e5bafc528",
+    "lines": 62,
+    "headings": [
+      "## 테스트 레벨",
+      "# 공통 테스트 기준",
+      "## 기준과 범위",
+      "## 담당과 반복 범위",
+      "## 재현과 실행",
+      "## 테스트 작성",
+      "## 검증 근거"
+    ],
+    "relevant": []
+  },
+  {
+    "path": "internal/relay/landing_fixture_test.go",
+    "sha256": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+    "lines": 103,
+    "headings": [],
+    "relevant": [
+      {
+        "line": 64,
+        "text": "\t\t\t\t\t\thttp.Error(w, \"fixture transaction failed\", 503)"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/landing_pages.go",
+    "sha256": "8399c86382e90c8ff545aee90f355e5d0623e5f197a243d14ffbb500f92b0c52",
+    "lines": 76,
+    "headings": [],
+    "relevant": []
+  },
+  {
+    "path": "internal/relay/landing_test.go",
+    "sha256": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
+    "lines": 55,
+    "headings": [],
+    "relevant": [
+      {
+        "line": 39,
+        "text": "\t\t\tfor _, forbidden := range []string{\"<script\", \"<img\", \"<link\", \"url(\", \".fullops-squad\", \"SAR-LANDING\", \"C:/Users\", \"<details open\"} {"
+      }
+    ]
+  }
+]
