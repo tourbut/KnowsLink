@@ -9,6 +9,14 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 사용자 작업 중지 — 2026-10-15
+
+사용자가 모델 선택 질문에 '작업 중지'라고 답했다. 개발·설계·QA·리뷰·통합·배포의 새 실행을 중지한다. 재개 조건은 사용자의 명시적 재개 지시와 실행 가능한 승인 모델 확인이다. Sol high 변경 승인은 보존하되 현재 CLI의 미지원 오류도 유지한다.
+
+DEV ctx_e6da4e6135b3의 worker-stop은 user_owned terminal 때문에 stop_unknown을 반환했다. 해당 작업 터미널 term_106ecb42-0246-47cd-9a3a-aade8ea1fbbf에 정식 terminal send --interrupt만 실행했고 accepted bytesWritten1, 실제 Conversation interrupted 및 activity done을 확인했다. 터미널을 강제로 닫거나 다른 프로세스를 종료하지 않았다. 실제 DEV HEAD는 9ae29ec4ddfcfacb59ed48871a14bb558342c26e, 제품 source1e49033이다. 작업 트리는 clean이며 최종 완료 보고·worker_done·최종 gate 수락은 아직 없다. QA 인박스는 준비 상태로 보존한다.
+
+설계의 Astra 두 세션과 승인 Sol 재시도는 이미 정상 stop했다. 설계 WIP·검증 초안·원본 producer/history와 private 백업 28파일을 보존한다. 기존 세션 통신 구현·독립 QA·시각·고정 리뷰·main 통합·배포는 미완료다. 조회 fixture http://127.0.0.1:18928 및 합성 원격 서버/DB는 기존24h 수명으로 보존하며 운영 서비스와 사용자 세션 설정은 변경하지 않는다. 이번 중지 이후 제품 수정·검사·원격 push·병합·정리는 실행하지 않았다.
+
 ## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
 
 - 사용자 모델 응답: 'GPT Sol high로 변경해 계속 진행'을 받았다. 현재 정상 동작 중인 DEV Astra는 유지하고 중단 설계와 후속 신규 배정은 Sol high로 변경했다. 원 인박스/route/history를 보존해 최신 지시와 codex/gpt-6.1-sol/high를 재연결했다. 같은 Task의 retry ctx_336b480870c3도 ready 뒤 ChatGPT 인증 미지원400으로 실패했고 정상 stop·private designer-sol-model-error.json 보존했다. 실제 제품 완료로 보고하지 않는다. 최신 CLI 캐시(14:28:18Z)는 gpt-6-luna/gpt-5.6-terra/gpt-5.6-luna를 표시하며 high를 지원한다. 이 모델로 바꿀지 또는 CLI 권한 복구 대기할지 사용자 선택을 요청했다. 담당 coor, 선택 응답/지정 모델의 실제 실행 가능 확인 후 재개한다.
