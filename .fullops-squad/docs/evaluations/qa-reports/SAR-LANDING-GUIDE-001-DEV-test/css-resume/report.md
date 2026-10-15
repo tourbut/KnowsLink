@@ -50,4 +50,10 @@ DEV는 `member-empty-1440.png`, `examples-390.png`, `examples-320.png`를 직접
 
 고정 source 및 최종 기록 SHA의 독립 코드 리뷰, tester의 변경 영역 확인, designer의 예시 경계 판정, main 통합은 coor 후속이다. 이번 DEV 측정으로 독립 수락이나 운영 완료를 선언하지 않는다. D13 transition은 운영 인수 문서이므로 이번 CSS-only 범위에서 변경하지 않았다. PLANS/board와 다른 역할 파일도 읽기만 했다.
 
+## 최종 기록 gate의 기존 문서 오류와 좁은 조정
+
+기록 SHA `2cc87e3ac7011d0e54c4fac7b05a5b0d819df12c`의 실제 Linux product-lint/product-test는 각각 종료0이었다. FullOps 최종 판정은 기존 `SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md`의 front matter 누락 DOC-003 때문에 종료1이었다. [원 실패 JSON](2cc87e3-final-lint-doc003.json)을 보존한다. 기존 PLANS 1873줄의 SIZE-001 경고1은 coor 소유의 누적 이력이며 축약하지 않았다.
+
+coor 답변 `msg_ed3a7dcf3e7d`는 이 한 문서의 front matter만 공식 stamp로 추가하도록 소유권을 확장했다. 원 본문·판정·세션·SHA는 바꾸지 않았다. 제품 경로는 2cc87e3과 동일하다. `lint.py --help`와 실제 실행부에는 다른 HEAD 검사 영수증의 재사용 옵션이 없고 등록 두 명령을 항상 실행한다. 최종 current SHA done-gate를 보존하기 위해 정본·helper·상태를 우회하지 않고 같은 Linux 방식으로 두 명령을 재실행한다. 2cc87e3 실행을 새 SHA 실행으로 재명명하지 않는다. work.py finish는 이미 성공했으며 빈 인박스를 다시 채우지 않는다. 추가 조정과 최종 SHA 결과는 이 보고와 외부 완료 영수증에 연결한다.
+
 [source-audit.json](source-audit.json)은 packet39개 항목과 unknown/잔여 경로의 hash·관련 발췌를 보존한다. 역사 문서 전수 재감사를 뜻하지 않는다. 오래된 cache/중지/미착수/200% 대기는 최신 재개 절과 tester 근거로 해소한다. 큰 D04는 공개 첫페이지·색/간격/접근성 절을 직접 확인했다. 나머지 과거 인박스는 현재 실행 지시가 아니며 전체 기능·운영 수락을 바꾸지 않는다.

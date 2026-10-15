@@ -1,3 +1,12 @@
+---
+title: 공개 안내 최초 DEV 완료 영수증 원본
+status: review
+updated: 2026-10-15
+owner: dev
+tasks: [SAR-LANDING-GUIDE-001-DEV]
+summary: 최초 source4795 및 최종fe2387a의 원 실행·제약·인계 영수증을 보존한다
+---
+
 # SAR-LANDING-GUIDE-001-DEV final receipt
 
 Final SHA: fe2387a7676f7997aea76a2606f4cc2dbcd4b56b
