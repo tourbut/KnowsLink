@@ -1,0 +1,55 @@
+---
+title: SAR-UX-ISSUES-002-RECEIPT-TESTER — 고정 조회 복구 후보의 입력 보존과 안전한 복귀 및 계정 격리 존재 비노출을 독립 검증한다
+status: draft
+updated: 2026-10-15
+owner: tester
+tasks: [SAR-UX-ISSUES-002-RECEIPT-TESTER]
+summary: 고정 조회 복구 후보의 입력 보존과 안전한 복귀 및 계정 격리 존재 비노출을 독립 검증한다
+attempt: 01dee04206644423897a9c5bfb805800
+base: 7f341230a26abc4afa97850687e624f2a583715c
+subagent_level: standard
+test_level: lite
+---
+
+# SAR-UX-ISSUES-002-RECEIPT-TESTER — 고정 조회 복구 후보의 입력 보존과 안전한 복귀 및 계정 격리 존재 비노출을 독립 검증한다
+
+현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.
+
+- 작성일:
+- From / To:
+- 상태: ready / running / blocked
+- 테스트 레벨 / 하위 에이전트 레벨: fullops.json 선택값과 같은 값
+- 승인된 범위 / 추가 승인이 필요한 행위:
+- 담당 repo id / 워크트리 절대경로 / 브랜치:
+- 병합 책임자 / 기본 브랜치:
+- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id:
+
+## 착수 선행 조건
+
+이 인박스는 준비 상태다. coor가 SAR-UX-ISSUES-002-RECEIPT-DEV의 완료 고정 SHA와 현재 fixture/허용 origin·행동·합성 계정 및 gate 근거를 아래에 연결하고 최신 main 포함·packet identity를 확인한 뒤에만 dispatch한다. 이전 첫페이지 f2 fixture 18896이나 fc4 PASS를 이번 조회 구현 실행으로 사용하지 않는다.
+
+## 목적·완료 조건
+
+수락 제품 .fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md의 U6와 관련 U7, 조회 선택기의 U2 이름 표시만 독립 검증한다. claude claude-sonnet-5-5 high 고정(Codex 구독 종료로 2026-10-17 전환), Test lite / Subagent standard. 주 frontend-design, 기존 D04 디자인 토큰을 따른다. 구현자가 실행한 전체 make gate는 정확한 소스·환경·의존성 동일성을 확인해 재사용하며 역할이 바뀌었다고 반복하지 않는다. 이번 독립 QA는 변경 핵심 행동과 필요한 실패·계정 격리 경계를 실제 검증한다.
+
+- 처음·정상·잘못된 형식·없는/타인/보존 종료·429/503에서 내 agent 선택과 안전 길이/escape된 입력을 유지하며 같은 화면에서 수정·재조회한다. 타인의 존재/이름/조회 내용을 노출하지 않는다.
+- 성공 화면의 전달·처리·답장 구분, 이름·종류·안정 구분값을 확인한다. 조회가 발송·재전송·온라인 확인으로 바뀌지 않는다.
+- 새로고침·뒤로·안전한 복귀·같은 계정 재로그인 복구를 검증한다. 다른 계정 B와 익명에서는 A의 조회 내용이 나타나지 않는다. 승인되지 않은 URL/리턴 값·변조된 복구 문맥은 기존 안전 경계를 우회하지 못한다.
+- 변경 폼의 실제 키보드 라벨·focus/skip/main/현재 위치·오류 안내와 320/390/1440·200%의 필요한 흐름을 검증한다. 이미지가 필요한 상태만 한 번 캡처해 designer와 공유한다. 이번 수락을 위해 변경 없는 첫페이지 전체 검사를 복제하지 않는다.
+
+## 범위·증거와 인계
+
+테스터는 제품 코드를 수정하지 않는다. 기존 러너·fixture·helper를 먼저 사용한다. 새 검사는 관찰 가능한 실패 경계만 만들며 구현 문자열을 복사하지 않는다. 새 제품 결함은 재현·기대·실제·고정 소스·원본 로그를 coor에 보내 DEV가 고치게 한다. 검사를 약화해 통과시키지 않는다.
+
+기존 fullops-test 웹 엔진 계약의 기본 Orca를 사용하며 이미 승인된 기존 브라우저 대안을 재사용하면 사유를 기록한다. 시나리오 covers와 독립 checks, 실제 origin/허용 행동·합성 A/B/C·고정 소스·관측 수준을 기록한다. 정적 HTML은 시각/레이아웃 증거이며 실제 auth/DB/복구 성공의 근거가 아니다. live 상태검사에는 구현자가 제공한 격리 fixture 또는 기존 통합 테스트 환경을 사용한다. 실제 이메일·계정·친구·메시지·운영/공유 서비스·외부 발송은 변경하지 않는다. 삭제·이동·force push·새 의존성·guard 완화는 금지한다.
+
+소유권은 own same-key route/find/context/packet/history/outcomes, 관련 테스트·시나리오·QA, phase/context/inbox/log다. 제공 스냅샷 producer도 own 추적 증거로 커밋한다. 이전 FAIL·unavailable·잘못된 시나리오와 개선을 구분해 보존한다. 완료 보고는 핵심 수락/결함/미검사와 다음 담당을 명시한다. packet outcomes → work finish 전문 보존/빈 인박스 → 최종 커밋·현재 SHA lint → 실제 worker_done을 수행한다. FullOps lint의 원본 SHA/상태/exit/unavailable을 보존한다.
+
+먼저 FULLOPS/common 세 규칙/project/docwriting/contexts tester, 수락 U6/U7/U2·D04, DEV 최종 인계·변경 원천·gate/fixture를 읽는다. partial/unknown은 관련 검색으로 보완한다. 독립 fixed SHA 코드 리뷰·시각 수락·main 통합은 coor가 조정한다. 복귀 run_756d0278e72e / term_5bf18065-a830-4e45-aeba-ae852666b40e, repo0b08ec4c-9e3a-4613-8197-5a835e545335/tester.
+
+## 고정 구현과 실행 입력 — 2026-10-17 연결
+
+- DEV 완료 고정 SHA: 9ae29ec4ddfcfacb59ed48871a14bb558342c26e (제품 source 1e49033c6a036112019474fd010015a31996b7eb, 이후 문서 커밋만). DEV 워크트리 C:/Users/shin/orca/workspaces/KnowsLink/dev, 브랜치 fullops/dev. DEV 결과·gate: dev의 .fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md. DEV make lint/test는 이 SHA에서 passed(exit 0).
+- fixture: 재기동했다. origin http://127.0.0.1:18928 (SSH 포워딩, 2026-10-17부터 24시간). 서버 clone /tmp/knowslink-receipt002-9ae29ec4ddfc-31bce054, 합성 DB container kl-receipt002-fixture-9ae29ec4ddfc-6620c395. 허용 요청·합성 POST·A/B/C·ID 표는 DEV report.md의 QA fixture 인계 절과 같다. manifest: C:/Users/shin/AppData/Local/KnowsLinkDevTools/receipt-ux002-dev/browser-fixture.json. 종료되면 coor에 재준비를 요청한다.
+- 이미지 생성이 필요하면 grok을 사용한다. 검증용 캡처는 기본 Orca 브라우저로 만든다.
+- 제품 코드는 tester 체크아웃에 없을 수 있다. fixture로 동작을 검증하고 소스 확인은 위 dev 경로를 읽기 전용으로 사용한다.
