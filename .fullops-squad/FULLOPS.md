@@ -101,6 +101,6 @@ UI 작업은 fullops-frontend와 docs/agents/frontend.json의 기존 디자인 �
 ## FullOps 1.4.2 적용 이력
 
 1.4.1 이후 명시적 업데이트마다 외부 의존성을 최신판으로 갱신하고 현재 호스트의 `deps.py --check --host`를 확인한다. 과거 검사 통과를 이번 갱신으로 대체하지 않는다. 기존 스킬 수정은 설치기의 백업에 보존한다.
-선택형 프런트 도구는 frontend.json의 tools에 등록한 것만 로컬 설치한다. 현재 tools는 비어 있다. 기존 codex/gpt-6.1-sol/high와 디자인 정본을 유지하며 설정 준비·인증·브라우저 QA를 구분한다.
+선택형 프런트 도구는 frontend.json의 tools에 등록한 것만 로컬 설치한다. 현재 tools는 비어 있다. 기존 디자인 정본을(모델은 2026-10-17 Claude로 전환) 유지하며 설정 준비·인증·브라우저 QA를 구분한다.
 1.4.2의 lint 경로 정규화와 Jev 입력·Enter·허용 동작 보완은 새 패키지 실행기로 적용한다. 위험·confidence·입력 예산을 낮추지 않는다. Windows의 실제 검사 cwd는 `.`이며 macOS 별칭 설정은 없다.
 업데이트 세션에서는 운영 갱신과 완료된 결과의 검토·통합만 수행한다. 새 제품 worker는 새 coordinator 세션에서 시작한다. [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md)에 적용·검증·동기화 예약을 남긴다.

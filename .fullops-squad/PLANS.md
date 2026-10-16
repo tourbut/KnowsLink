@@ -9,6 +9,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 모델 전환 — 2026-10-17
+
+- 사용자 지시: Codex 구독 종료로 Codex 모델(Astra/Sol/Luna 등)을 모두 제외하고 부족분은 Claude 모델로 채운다. 이미지 생성은 grok을 사용한다. 역할 모델은 orca-agents.md 모델 후보를 따른다. 사용자 재개 지시를 받았으므로 SAR-UX-ISSUES-002-RECEIPT-DEV(담당 coor→dev)는 Claude 모델로 재개 대상이다. 착수 전 최신 main 동기화·packet 현재 HEAD 갱신·실제 launch.effective 확인을 먼저 한다.
+
 ## 사용자 작업 중지 — 2026-10-15
 
 - SAR-UX-ISSUES-002-RECEIPT-TESTER: 보류. 사용자 작업 중지 지시로 dispatch하지 않는다. 담당 coor/tester. 준비된 tester 인박스와 route를 보존한다. 사용자 명시 재개, 승인 모델 실행 가능 확인, DEV 최종 고정 SHA·gate·fixture 연결 및 현재 packet 갱신 후 배정한다.
