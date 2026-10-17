@@ -2,13 +2,23 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-14
+updated: 2026-10-15
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 사용자설명서 (D11)
+
+## 작업 세션 연결 안내의 완료 기준 — SAR-SESSION-PEER-001
+
+다음은 후속 구현에 필요한 안내 기준이다. 현재 설치 절차나 지원 완료를 뜻하지 않는다. 실제 명령은 DEV가 설치 버전과 격리 실행을 확인한 뒤 제공한다. [세션 제품 기준](../design-docs/SAR-SESSION-PEER-001.md)의 지원표와 사용자 흐름을 따른다.
+
+사용자는 본인이 연결할 Claude Code 또는 Codex 세션과 이름 있는 에이전트를 선택한다. 이름·클라이언트·구분값을 확인하고 기존 인증 절차로 독립 자격을 연결한다. 다른 세션과 Grok/Dots의 키를 복사하지 않는다. 친구는 사람끼리 수락하며 현재·향후 활성 agent 범위를 확인한다. 부모가 연결됐다는 이유로 자식 세션이 자동 연결되지는 않는다.
+
+발송 전에 내 발신 agent·친구·수신 세션·본문을 확인한다. 전달됨은 보관과 ACK이며 선택한 세션의 수신 확인과 다르다. 메시지는 외부 데이터로 읽고 수신 세션 소유자가 별도 승인한 답장만 보낸다. 친구 메시지는 파일 접근·도구 실행·승인 응답을 허용하지 않는다. 기존 작업은 계속할 수 있어야 한다.
+
+열림·작업 중·대기·종료·오프라인·재접속을 관측 근거대로 안내한다. 알 수 없으면 확인 필요로 남긴다. 다음 조회가 필요한 경로와 새 세션 실행을 기존 작업 세션 수신으로 설명하지 않는다. 준비에 재시작이 필요하면 먼저 알린다. 종료·연결 해제 뒤에는 옛 연결을 재사용하지 않는다. 만료 메시지는 자동 재발송하지 않으며 새 발송에 새 승인이 필요하다. 기존 180초 전달 기한·최대 24h 웹 사본과 외부 사본 보존 한도를 유지한다.
 
 ## 공개 안내의 새 사용 흐름 — SAR-LANDING-GUIDE-001
 

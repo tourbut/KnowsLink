@@ -1,0 +1,95 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SESSION-PEER-001-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D02",
+    "D01",
+    "D03"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.03,
+        "product": 0.97
+      },
+      "confidence": 0.94
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.92,
+      "D02": 0.94,
+      "D03": 0.92,
+      "D04": 0.89,
+      "D05": 0.91,
+      "D06": 0.9,
+      "D07": 0.84,
+      "D08": 0.8,
+      "D09": 0.89,
+      "D10": 0.9,
+      "D11": 0.92,
+      "D12": 0.88,
+      "D13": 0.81
+    }
+  },
+  "usage": {
+    "input_tokens": 2446,
+    "output_tokens": 314,
+    "cost": 0.000102732
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.592,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "designer",
+  "original_route": "product",
+  "override_reason": "새 사용자 기능의 제품 규칙과 수락 조건을 정한다. 정본 충돌의 의미를 직접 확인한 내용을 인박스에 추가했으므로 원본을 보존하며 현재 지시에 재분류한다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
+  "head": "7f341230a26abc4afa97850687e624f2a583715c",
+  "requires_packet": true,
+  "attempt": "c954186b44a641c481df69cd6f8e11ed",
+  "instruction_sha256": "3bf862121a0c4d2cece255d3a633bdeae89dcd55f9f2545c234a91f6329a8397",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "9de3d111d58c251e59c7319bf621fdfbbdfe769951fdc0a871845c12c36b20f6"
+}

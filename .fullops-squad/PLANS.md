@@ -11,6 +11,9 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 ## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
 
+- SAR-SESSION-PEER-001-DESIGN 제품 규칙 작성: [정본과 DEV 인계](docs/design-docs/SAR-SESSION-PEER-001.md), [문서 검증](docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DESIGN/report.md). SP-01–12와 V01–07은 기존 작업 세션·다음 조회·새 세션의 지원 수준을 구별한다. 독립 고정 SHA 문서 리뷰/main 통합은 coor 대기다. 최종 SHA와 lint 결과는 worker_done에 연결한다.
+- 후속 우선순위는 coordinator msg_2fac3fbc7fae에 따라 진행 중 조회 복구 수락 뒤 세션 통신 DEV 한 과제다. 기존 이름·친구·승인 요약·설치 재개·언어 이슈는 대기로 유지한다. 실제 채널·계정·운영·발송은 이 설계 완료에 포함하지 않는다.
+
 - 첫페이지 DEVfc4·설계11ea·tester7fd·visualc6 및 독립코드34/78·설계14/8·최종기록68/31 리뷰 C/H/M/L0·check0을 수락했다. main/origin7551ed9 일반push/fetch동일·6원결과의원격조상0·제품fc4동일을 확인했다. 원검증실패/Windowsmake불가·초기중지이력은보존한다. 통합근거는 SAR-LANDING-GUIDE-001-CSS-INTEGRATION/main-integration.json. 운영배포는이번단계에서실행하지않았다.
 - 다음 DEV SAR-UX-ISSUES-002-RECEIPT-DEV는 수락 U6/해당U7 요청상태조회 입력·선택·복귀/오류재시도복구다. 빈DEV인박스에 준비했으며 최종main동기화/패킷현재HEAD갱신후 freshAstrahigh로착수한다. same-key입력producer/history는own추적증거소유권에포함한다. 그뒤 이름/사람친구·승인요약·설치재개·언어순서다.
 - 최신 사용자 호스트 범위: Meta Muse는 대상에 없으므로제외. OpenClaw는사용자지시로보류. Hermes는100.120.206.25이며사용자지정.env.server를메모리에서만읽어검증된known_hosts/RejectPolicy로SSH연결했다. Nous Research Hermes Agent0.21.3(2026.9.14), Git eeb85107f9e6164cb2d1f20d2b75753a6262e8e3·설치/home/shin/.hermes/hermes-agent·로컬심볼릭실행경로를확인했다. 설치·설정·서비스·실계정/발송은변경하지않았고접속정보/비밀값은로그에출력하지않았다. 지원성공으로승격하지않고현버전의MCP/수신접점을검증한다. 새온보딩에서는옛다섯호스트표보다이사용자범위가우선한다.

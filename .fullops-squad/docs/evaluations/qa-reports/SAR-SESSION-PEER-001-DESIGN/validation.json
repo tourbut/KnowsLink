@@ -1,0 +1,42 @@
+[
+  {
+    "name": "deliverables-strict",
+    "argv": [
+      "C:/Users/shin/AppData/Local/Programs/Python/Python313/python3.exe",
+      "C:\\Users\\shin\\.fullops-squad\\runtime\\fullops-squad\\packages\\b78124c49fd06de888a8320b040c3c6e03ec8fddd6c383fecad7853d51b9b974\\scripts\\deliverables.py",
+      "--repo",
+      ".",
+      "--strict"
+    ],
+    "exit_code": 0,
+    "log": "deliverables-strict.log"
+  },
+  {
+    "name": "diff-check",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "diff-check.log"
+  },
+  {
+    "name": "provided-inputs-preserved-before-finish",
+    "exit_code": 0,
+    "count": 13
+  },
+  {
+    "name": "protected-code-config-other-inboxes-unchanged",
+    "exit_code": 0,
+    "base": "7f341230a26abc4afa97850687e624f2a583715c",
+    "changed_tracked_paths": [
+      ".fullops-squad/PLANS.md",
+      ".fullops-squad/contexts/designer.md",
+      ".fullops-squad/docs/operations/user-guide.md",
+      ".fullops-squad/docs/planning/business-plan.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      ".fullops-squad/handovers/to_designer.md"
+    ]
+  }
+]
