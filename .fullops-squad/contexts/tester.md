@@ -38,4 +38,3 @@ summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사
 - 2026-10-17 SAR-UX-ISSUES-002-RECEIPT-TESTER: fixture 18928/DEV 9ae29ec의 HTTP16·Chrome/Edge CDP 각51·철회 후7 검사. U6 격리·복구 통과, medium D-RT-01(닫힌 선택기가 긴 이름의 구분값을 가림). [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md).
 - Orca 탭은 hasFocus false라 Tab 입력이 무효이고 페이지 CSP가 fetch POST를 막는다. 키보드는 Chrome/Edge CDP Input.dispatchKeyEvent를 쓴다. `__Host-` 쿠키는 `cookie set --domain`이 아니라 `exec "cookies set ... --url"`로 넣는다.
 - fixture의 `revoke`는 되돌릴 수 없다. 모든 다른 검사 뒤에 실행하고 이후 재실행은 철회 상태를 기대값으로 따로 둔다. 회원당 40회 조회 한도는 기본 폼 GET도 센다. 검사 볼륨을 `recover`로 비운다.
-
