@@ -309,4 +309,15 @@ test_level: lite
 
 ## 완료 보고
 
-미착수.
+- 상태: worker 완료(제품 수락 아님). 결과 커밋 `8d7ac26` + 이 보고 커밋, 브랜치 fullops/dev.
+- 최종 후보: `videos/knowslink-motion/renders/v03/knowslink-motion.mp4` — 2,315,100 B, sha256 `ca95b79ecc11239d8b676b0ceefcda19db1965c9631d43f0118df16e79e926f2`, h264 High 1440×1440 yuv420p 60fps 840프레임 14.000초 + AAC LC 44.1 kHz mono 14.000초. 10MB 이하라 커밋. v01·v02는 수정 근거로 보존.
+- 검수 기록: `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/a2/report.md`(delivery.md 표). 비트 프레임 28장(`beat-frames-v03/`, v01·v02도 보존), ffprobe JSON, 대표 프레임 24장, 루프·오디오 정렬, 깨끗한 폴더 재렌더.
+- 수행: Playwright 1.64.1(Chromium은 `node_modules` 안), `.venv` numpy 2.5.4, Geist 1.8.1·Pretendard 1.3.9(npm 공식 배포, OFL 커밋). `index.html` 단일 1440×1440, `seek(t)` 순수 함수, 스프링 closed-form 합(ζ ≥ 0.8), 탭 표시자·토글 노브 양 가장자리 다른 스프링, 드래그 직접 조작 후 스프링 복귀, 커서가 클릭·드래그로 모든 상태 변화 유발, 카메라 줌, `will-change` 없음, 문구별 enter/exit. `render.mjs` 4 subframe + `tmix` 60fps, 고정 QP 18.
+- 검증: `seek` 순수성 assert 6개 시각 통과. 원본 프레임 0 = 839 PNG 바이트 동일(13.9초 이후 정착 상태 평가, 잔차 < 0.02px). 인코딩 MP4의 프레임 0/839는 H.264 양자화로 PSNR 62.68 dB·최대 8/255(v01 CRF 52.1 dB → v03 고정 QP로 개선). 효과음 37개 중 23개 측정 피크가 계획 시각 ±0.5 ms, 10.0–10.43초 24 ms 간격 타이핑 14개는 꼬리 겹침으로 개별 측정 불가. 최종 AAC ↔ 믹스 지연 0 ms, Peak −1.1 dBFS. 문구 잘림·겹침·glyph 누락 없음(직접 확인).
+- 깨끗한 폴더 재렌더: scratchpad에서 `npm ci`·`fetch-audio.sh`(sha256 OK)·venv. 1차는 긴 경로로 Chromium 압축 해제가 Windows MAX_PATH를 넘어 실패, 같은 빌드를 `PLAYWRIGHT_BROWSERS_PATH`로 지정한 2차 통과. 규격 동일, v03 대비 840프레임 PSNR 평균 63.35 dB(최소 49.45), 오디오 PCM 바이트 동일. README에 우회 명령 추가.
+- 음원 선택: House Vibes(Mixkit #129, Alejandro Magaña) 측정 119.995 BPM, 64.0838초 다운비트(32마디째)부터 14초, 늘이기 없음. 28비트 onset이 그리드 ±10.1 ms(onset 해상도 11.6 ms). 대안: Dry Gin(#868, 120.005)·Shame(#553, 120.005) — `analyze.py pick <mp3> --out beats.json [--start <초>]` 후 `node render.mjs video vNN`만으로 교체. 후보 160여 곡 스캔.
+- 권리: Mixkit Music/SFX Free License는 항목 단독 재배포 금지라 mp3 미커밋, `fetch-audio.sh` + `SHA256SUMS` + `assets/SOURCES.md`(목록 페이지·원본 URL·제목·작가). 곡별 상세 페이지 URL은 목록 페이지가 내보내지 않아 기록하지 못했다.
+- 의존성: 새 로컬 의존성 `playwright` 1.64.1(`videos/knowslink-motion/package.json`·lock), numpy(venv, 미커밋). 지시서 승인 범위. 전역 설치 없음.
+- lint: 결과 HEAD에서 `--from 2244558`(이 과제 커밋만) ERROR 0 / WARNING 68 — 영상 전용 HTML의 하드코딩 색·인라인 스타일(테마 토큰 해당 없음, 의도), `render.mjs` 진행 출력(CLI 사용자 출력), DEP-001, SIZE-002(1286줄: index.html 약 400줄 + 스크립트·문서). `--from 9fb42da`는 ERROR 1: coor 커밋 2244558의 `SAR-MOTION-INTRO-001-brief.md` front matter 형식(DOC-003, 설계 문서라 수정하지 않음). product-lint/test는 `make` 미설치로 실행 불가, 제품 코드 변경 없음. 작업 트리에 이전 WIP가 남아 lint는 HEAD의 별도 detached worktree(scratchpad `wt/`)에서 실행했다.
+- 미확인·사용자 판단: 청취(not_run) — 곡 선택·음량 균형·효과음 톤. 빠른 커서의 4 subframe 약한 잔상. 오디오 mono. 독립 코드 리뷰는 하지 않았다(지시서 하위 위임 없음) — coor 리뷰 필요.
+- 손대지 않음: `videos/service-intro/`, `qa-reports/SAR-MOTION-INTRO-001-DEV-test/` 최상위 이전 WIP. 임시물(`videos/knowslink-motion/tmp/`, scratchpad `clean-rerender/`·`wt/` worktree)은 삭제하지 않고 보존 — `wt`는 `git worktree remove`로 정리 필요.
