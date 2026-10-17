@@ -1,0 +1,19 @@
+
+> @knowslink/adapters@0.0.0 check
+> npm run format:check && npm run lint && npm run typecheck
+
+
+> @knowslink/adapters@0.0.0 format:check
+> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json .claude-plugin/plugin.json .codex-plugin/plugin.json config/local.mcp.json manifest.json hooks/hooks.json hooks/register.ts hooks/register.test.ts
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @knowslink/adapters@0.0.0 lint
+> eslint src eslint.config.mjs
+
+
+> @knowslink/adapters@0.0.0 typecheck
+> tsc --noEmit
+
+check=0

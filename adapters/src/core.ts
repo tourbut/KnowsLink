@@ -116,6 +116,9 @@ export class Adapter {
         "Content-Type": "application/json",
       },
       body: body === undefined ? undefined : JSON.stringify(body),
+    }).catch((e: unknown) => {
+      // No HTTP answer (refused, reset, DNS, refused redirect) is a relay outage, not a key or friend problem (SP-11, V07).
+      throw e instanceof TypeError ? new Error("relay unreachable") : e;
     });
 
     const reader = response.body?.getReader();

@@ -69,6 +69,7 @@ type Message struct {
 	ClaimToken      string
 	Completion      string
 	ReplyID         string
+	SessionSeen     time.Time `json:",omitzero"` // the recipient's work session showed the text (SP-12), distinct from relay delivery
 }
 type Gate struct {
 	ID, Owner, Parent, Digest, From, To, Policy, State string

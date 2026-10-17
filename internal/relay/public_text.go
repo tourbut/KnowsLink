@@ -193,4 +193,27 @@ func (s *Service) textRoutes(mux *http.ServeMux) {
 			respond(w, v, err)
 		})
 	}
+	// The recipient's work session reports that it showed a delivered text (SP-12): recipient only, metadata only, first time kept.
+	mux.HandleFunc("POST /v1/text/seen", func(w http.ResponseWriter, r *http.Request) {
+		var c command
+		if err := decodeCommand(w, r, &c); err != nil {
+			respond(w, nil, err)
+			return
+		}
+		v, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
+			a, err := st.principal(bearer(r), "agent")
+			if err != nil {
+				return nil, err
+			}
+			m := st.Messages[c.ID]
+			if m == nil || m.Receipt.Intent != publicTextIntent || m.Receipt.To != a || m.Receipt.State != "delivered" || !st.current(m) {
+				return nil, fault("sender_not_allowed")
+			}
+			if m.SessionSeen.IsZero() {
+				m.SessionSeen = now.UTC()
+			}
+			return map[string]any{"id": c.ID, "session_received_at": m.SessionSeen}, nil
+		})
+		respond(w, v, err)
+	})
 }

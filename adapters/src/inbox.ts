@@ -110,8 +110,10 @@ export class Inbox {
 }
 
 export function safeError(e: unknown): string {
+  if (e instanceof Error && e.name === "TimeoutError")
+    return "relay unreachable";
   return e instanceof Error &&
-    /^(relay HTTP [0-9]{3}(?: [a-z_]+)?(?: retry_at=[0-9TZ:.-]+)?|invalid text (envelope|signature))$/.test(
+    /^(relay HTTP [0-9]{3}(?: [a-z_]+)?(?: retry_at=[0-9TZ:.-]+)?|relay unreachable|invalid text (envelope|signature))$/.test(
       e.message,
     )
     ? e.message

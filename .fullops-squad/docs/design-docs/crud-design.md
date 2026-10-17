@@ -101,6 +101,8 @@ agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다.
 | 관련 답장 | 현재 전달된 원요청·세대·기한 확인. 답장 Message 생성과 Parent.ReplyID를 원자 확정. 두 번째 답장은 거부 |
 | text receive | text 전용 lease·durable persist·ACK. ACK에 Envelope/Inbox 삭제, completion received. 관련 부모는 reply_received |
 | 회원 receipt | 세션·선택 agent 소유권·endpoint 확인. metadata만 조회. 타 회원/임의 agent는 거부 |
+| 세션 수신 확인 | 수신 agent만 delivered·현재 세대 text의 Message.SessionSeen을 처음 한 번 기록(U). 발신 receipt는 `session_received_at`으로 조회(R). 기존 relay 상태 JSON 필드이며 DB 스키마 변경 없음 |
+| 친구 agent 표시 이름 | 친구·자기 연결·active pair 권한이 있는 agent만 상대 Agent.Name·Client와 Member.Name을 조회(R). 변경 없음 |
 | gate GET/approve/deny | 본문 서명·digest·현재 권한·세대·기한 확인. GET은 결정 없음. POST csrf. 자기 gate deny는 정리 budget. 결정 뒤 정식 gate 화면 |
 | 한도·안전 정리 | 포화는 신규 자원 생성 없음. ACK·deny·철회·unpair·로그아웃은 별도 입장/rate. 부모 TTL에서 claim 종료 |
 | HTTP 입장 | 본문 수신 뒤 입장. 신원별 request budget 한 번 차감. 공유 HTTP map 입장/종료 삭제·30s crash 정리. 신규16/정리4. 정리는 검증된 자기 기록만, owner 제어·agent ACK 단위별 동시 1개(로컬·공유). persist 전 ACK는 신규. 신규 포화 중 snapshot이 증명 못한 정리 자격은 lock 없는 1회 재조회(DEV-FIX-3). 종료 실패 기록은 다음 commit이 삭제 |

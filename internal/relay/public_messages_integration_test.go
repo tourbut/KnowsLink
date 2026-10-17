@@ -138,7 +138,25 @@ func TestPublicMessageHTTPBoundaries(t *testing.T) {
 		expect(t, b.do("POST", "/home/friends/decision", url.Values{"friend": {friend.ID}, "generation": {fmt.Sprint(friend.Generation)}, "decision": {"accept"}, "consent": {"yes"}}), 303)
 		return friend
 	}
+	// A contact label needs friend authority; with it, only HP-05 agent name/client and the member name come back (O-03).
+	getJSON := func(path, token string, status int) map[string]any {
+		t.Helper()
+		r := httptest.NewRequest("GET", path, nil)
+		r.Header.Set("Authorization", "Bearer "+token)
+		w := httptest.NewRecorder()
+		h.ServeHTTP(w, r)
+		expect(t, w, status)
+		out := map[string]any{}
+		_ = json.Unmarshal(w.Body.Bytes(), &out)
+		return out
+	}
+	getJSON("/v1/contacts/"+agentB, tokenA, 403)
 	friend := befriend()
+	label := getJSON("/v1/contacts/"+agentB, tokenA, 200)
+	if label["agent"] != agentB || label["name"] != "합성 도우미" || label["friend"] != "합성 수신 회원" || label["client"] == "" || len(label) != 4 {
+		t.Fatal("contact label", label)
+	}
+	getJSON("/v1/contacts/"+agentA, tokenA, 403)
 	body, _ := json.Marshal(e)
 	codes := make(chan int, 8)
 	var wg sync.WaitGroup
@@ -174,7 +192,20 @@ func TestPublicMessageHTTPBoundaries(t *testing.T) {
 	publicCall(t, h, "/v1/ack", tokenB, delivery, 403)
 	publicCall(t, h, "/v1/text/ack", tokenB, delivery, 409)
 	publicCall(t, h, "/v1/text/persist", tokenB, delivery, 200)
+	publicCall(t, h, "/v1/text/seen", tokenB, map[string]string{"id": firstID}, 403) // before delivery
 	publicCall(t, h, "/v1/text/ack", tokenB, delivery, 200)
+	// Session receipt: only the recipient, only after delivery, kept apart from delivery in the sender's receipt (SP-12, O-06).
+	if v := getJSON("/v1/receipts/"+firstID, tokenA, 200); v["session_received_at"] != nil || v["completion"] != "received" {
+		t.Fatal("session receipt before seen", v)
+	}
+	publicCall(t, h, "/v1/text/seen", tokenA, map[string]string{"id": firstID}, 403)
+	seen := publicCall(t, h, "/v1/text/seen", tokenB, map[string]string{"id": firstID}, 200)
+	if again := publicCall(t, h, "/v1/text/seen", tokenB, map[string]string{"id": firstID}, 200); again["session_received_at"] != seen["session_received_at"] {
+		t.Fatal("session receipt time moved", seen, again)
+	}
+	if v := getJSON("/v1/receipts/"+firstID, tokenA, 200); v["session_received_at"] != seen["session_received_at"] || v["completion"] != "received" {
+		t.Fatal("session receipt", v)
+	}
 	publicCall(t, h, "/v1/claim", tokenB, map[string]string{"id": firstID}, 403)
 	reply := signedText(secondID, agentB, agentA, "public-http-reply-1", firstID, "reply", time.Now().Add(170*time.Second), keyB)
 	publicCall(t, h, "/v1/text/send", tokenB, reply, 200)
