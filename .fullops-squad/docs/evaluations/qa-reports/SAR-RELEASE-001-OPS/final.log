@@ -1,0 +1,11 @@
+FINAL_OBSERVE_UTC=2026-10-17T09:47:41Z
+f97e0fd95a61164afe854564f1d8314eaf1dd535767fd7e18bb46caa3d648cb7  /home/[redacted]/deploy/knowslink-state/release001-ops-20261017/new-public-ingress.yml
+7805d70bc7d47fe650240b693948bc57a712e4e5a675e860bf025119e0ed3b68  /home/[redacted]/deploy/knowslink-state/release001-ops-20261017/new-check_public_ingress.py
+f5abe860a019d5379cbbd5499eb309a645c4ae1e8f0b60fab6fea22326458512  /home/[redacted]/deploy/knowslink-state/release001-ops-20261017/config.yml.pre-release001
+live_path_rule == repo_path_rule: True | old != new: True
+added alternatives: ['events', 'seen)', '/v1/contacts/[a-z][a-z0-9_:-]*'] removed: ['events)']
+live config mode=600
+/knowslink-cloudflared-1 running restarts=0 started=2026-10-17T09:44:37.009648268Z
+/knowslink-relay-1 running restarts=0 started=2026-10-17T09:38:03.534634844Z
+
+EXIT=0

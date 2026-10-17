@@ -1,9 +1,9 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-14
+updated: 2026-10-17
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
@@ -99,3 +99,9 @@ Grok은같은기존연결폴더·Command/watcher·webhook routine을유지하며
 8a93e38 배포·새0600 백업·격리 전체data digest/guard·보존33개·public21개를 확인했다. [운영 보고](../docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md).
 이전 image 주소는 전환 후 조회되지 않아 같은 직전2747 소스를 별도 rollback 태그로 재빌드했다. 다음 배포는 build 전에 고유 태그를 고정하고 가용성을 확인한다. 원 이미지 동일성/실제rollback과 구분한다.
 권한·Remote 전체 map은 같고 Rates만 달랐다. 요청 시각/window 정리 같은 volatile 상태와 영구 권한을 분리한다. Grok 로컬bundle은 서버 배포로 갱신되지 않는다.
+
+## 2026-10-17 — SAR-RELEASE-001-OPS
+
+1dd6800을 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용했다. [운영 보고](../docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md). 이번엔 build 전에 현재 이미지에 고유 태그를 붙여 inspect했다(직전 원 이미지 조회 실패 재발 방지).
+db/deploy diff가 0이어도 공개 Tunnel ingress `path` 정규식이 새 API를 막을 수 있다. 새 공개 경로는 loopback 401과 공개 401을 둘 다 확인한다. 공개 주소는 간격을 두고 호출한다. 2.5회/초 루프가 429를 2분 만들었다.
+live Tunnel 변경은 사용자 승인·원본 백업·`cloudflared ingress validate/rule`·재시작 순서로 한다(끊김 약2초). `ingress rule | grep -m1`은 SIGPIPE로 종료141이 된다. Cloudflare edge가 Web Analytics script를 주입하므로 공개 `<script` 검사는 origin(loopback)과 분리한다.

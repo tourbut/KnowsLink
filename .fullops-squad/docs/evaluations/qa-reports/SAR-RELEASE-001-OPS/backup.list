@@ -1,0 +1,25 @@
+;
+; Archive created at 2026-10-17 09:37:52 UTC
+;     dbname: knowslink
+;     TOC Entries: 14
+;     Compression: gzip
+;     Dump Version: 1.16-0
+;     Format: CUSTOM
+;     Integer: 4 bytes
+;     Offset: 8 bytes
+;     Dumped from database version: 17.11
+;     Dumped by pg_dump version: 17.11
+;
+;
+; Selected TOC Entries:
+;
+220; 1255 830067 FUNCTION public guard_human_writer() knowslink
+218; 1259 16386 TABLE public goose_db_version knowslink
+217; 1259 16385 SEQUENCE public goose_db_version_id_seq knowslink
+219; 1259 16392 TABLE public relay_state knowslink
+3471; 0 16386 TABLE DATA public goose_db_version knowslink
+3472; 0 16392 TABLE DATA public relay_state knowslink
+3479; 0 0 SEQUENCE SET public goose_db_version_id_seq knowslink
+3321; 2606 16391 CONSTRAINT public goose_db_version goose_db_version_pkey knowslink
+3323; 2606 16404 CONSTRAINT public relay_state relay_state_pkey knowslink
+3324; 2620 830068 TRIGGER public relay_state human_writer_guard knowslink

@@ -2,13 +2,21 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-14
+updated: 2026-10-17
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## 현재 운영 상태 (2026-10-17, SAR-RELEASE-001-OPS)
+
+실제 운영 제품은 `1dd6800d5d4238e2060f99e98eaab437ea06682c`다. 09:38:09Z(18:38:09 KST)에 relay healthy를 확인했다. 이전 `8a93e38`에서 약21초 중단했고 새 schema/migration은 없다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
+
+새 private 백업 `backups/8a93e38-pre-release001-20261017T093752Z.dump`는 0600·11104bytes다. network-none 복원의 전체 data digest·goose2·guard1·HumanModel1·downgrade 거부를 확인했다. 기존 회원·키/철회·친구·Remote 설치·Events·Inbox0, 기존16개 백업, 공유 컨테이너는 보존됐다. Rates의 변경은 요청/시간 경계로 분리했다. 이전 relay 이미지는 `knowslink-rollback:8a93e38-release001-20261017` 태그로 보존했다.
+
+인수 항목: (1) 공개 Tunnel 규칙에 `GET /v1/contacts/{agent}`와 `POST /v1/text/seen`을 추가했다. live config 원본 백업은 서버 `release001-ops-20261017/config.yml.pre-release001`이다. (2) 새 공개 경로는 repo `public-ingress.yml`·`check_public_ingress.py`와 live config를 함께 바꿔야 한다. (3) 공개 주소를 빠르게 반복 호출하면 429가 약2분 지속될 수 있다. (4) 실계정 송수신·인증 성공 경로·실제 rollback은 아직 시험하지 않았다. 자세한 근거는 [운영 보고](../evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md)다.
 
 ## 현재 운영 상태 (2026-10-14, SAR-REFACTOR-002-OPS)
 
