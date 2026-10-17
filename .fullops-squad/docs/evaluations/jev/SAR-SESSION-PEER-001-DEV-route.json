@@ -1,0 +1,95 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SESSION-PEER-001-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D02",
+    "D03",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.37,
+        "product": 0.63
+      },
+      "confidence": 0.26
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.86,
+      "D02": 0.91,
+      "D03": 0.9,
+      "D04": 0.85,
+      "D05": 0.89,
+      "D06": 0.87,
+      "D07": 0.81,
+      "D08": 0.75,
+      "D09": 0.89,
+      "D10": 0.9,
+      "D11": 0.89,
+      "D12": 0.83,
+      "D13": 0.78
+    }
+  },
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost": 0
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.0,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "제품 규칙은 수락 설계 SAR-SESSION-PEER-001(988b076)과 사용자 직접 지시로 확정. 기술 계획·구현·검증은 DEV",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-fable-5-1",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "37d491c1c6a94ed48c4c1d6b892dd5a0f9c19916",
+  "requires_packet": true,
+  "attempt": "0301dc0e90524a9894f64784600d7c63",
+  "instruction_sha256": "9a991f3b6bcdaa2a0613400881abeca7a91d649ca0675f5826e249dba886040b",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "c26f25b6db6308479b195bb6ba86a0db6b5499db6964daa206cd7a15a4194ecc"
+}

@@ -1,0 +1,278 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "37d491c1c6a94ed48c4c1d6b892dd5a0f9c19916",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "810df4e6d2a2634ba6147133be4cdb597d6de508d79a90913bca811ea786bc89",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-SESSION-PEER-001.md",
+      "c1-SAR-HUMAN-PEER.md",
+      "c2-README.md",
+      "c3-user-guide.md",
+      "c4-testing.md",
+      "c5-security.md",
+      "c6-coding-style.md",
+      "c7-project.md",
+      "required_0",
+      "required_3",
+      "required_5"
+    ],
+    "recommended_ids": [
+      "c0-SAR-SESSION-PEER-001.md",
+      "c1-SAR-HUMAN-PEER.md",
+      "c2-README.md",
+      "c3-user-guide.md",
+      "c4-testing.md",
+      "c5-security.md",
+      "c6-coding-style.md",
+      "c7-project.md",
+      "required_0",
+      "required_3",
+      "required_5"
+    ],
+    "signals": {
+      "c0-SAR-SESSION-PEER-001.md": {
+        "relevant": 0.83,
+        "evidence": 0.9,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-SAR-HUMAN-PEER.md": {
+        "relevant": 0.13,
+        "evidence": 0.28,
+        "contradicts": 0.61,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-README.md": {
+        "relevant": 0.56,
+        "evidence": 0.74,
+        "contradicts": 0.66,
+        "injection": 0.02,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      },
+      "c3-user-guide.md": {
+        "relevant": 0.08,
+        "evidence": 0.19,
+        "contradicts": 0.42,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-testing.md": {
+        "relevant": 0.28,
+        "evidence": 0.65,
+        "contradicts": 0.12,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-security.md": {
+        "relevant": 0.14,
+        "evidence": 0.49,
+        "contradicts": 0.08,
+        "injection": 0.1,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-coding-style.md": {
+        "relevant": 0.11,
+        "evidence": 0.38,
+        "contradicts": 0.09,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-project.md": {
+        "relevant": 0.29,
+        "evidence": 0.8,
+        "contradicts": 0.31,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [
+      "c2-README.md"
+    ],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-SESSION-PEER-001.md": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      "c1-SAR-HUMAN-PEER.md": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "c2-README.md": "adapters/README.md",
+      "c3-user-guide.md": ".fullops-squad/docs/operations/user-guide.md",
+      "c4-testing.md": ".fullops-squad/rules/common/testing.md",
+      "c5-security.md": ".fullops-squad/rules/common/security.md",
+      "c6-coding-style.md": ".fullops-squad/rules/common/coding-style.md",
+      "c7-project.md": ".fullops-squad/project.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_3": ".fullops-squad/handovers/to_dev.md",
+      "required_5": ".fullops-squad/rules/common/README.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 32260,
+    "output_tokens": 608,
+    "cost": 0.0013549200000000001,
+    "known_cost": 0.0013549200000000001,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.546,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.462,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4505,
+        "output_tokens": 76,
+        "cost": 0.00018921
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.505,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4595,
+        "output_tokens": 76,
+        "cost": 0.00019299
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.535,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4190,
+        "output_tokens": 76,
+        "cost": 0.00017598
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.537,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4731,
+        "output_tokens": 76,
+        "cost": 0.000198702
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.505,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3653,
+        "output_tokens": 76,
+        "cost": 0.000153426
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.525,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3254,
+        "output_tokens": 76,
+        "cost": 0.000136668
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.468,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3505,
+        "output_tokens": 76,
+        "cost": 0.00014721
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.469,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3827,
+        "output_tokens": 76,
+        "cost": 0.000160734
+      }
+    }
+  ],
+  "request_max_seconds": 0.537,
+  "task_key": "SAR-SESSION-PEER-001-DEV",
+  "role": "dev",
+  "attempt": "0301dc0e90524a9894f64784600d7c63",
+  "instruction_sha256": "9a991f3b6bcdaa2a0613400881abeca7a91d649ca0675f5826e249dba886040b",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "adapters/README.md",
+      ".fullops-squad/docs/operations/user-guide.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/project.md"
+    ],
+    "required": [
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md"
+    ],
+    "sources": {
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md": "bfb7a772b92ba7878b045b68f7cbe7eabaaed63bb316b2c48252efba3493e652",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md": "0f6d75a32951acf44e129b5b700375c087eda3583265e62a187c1b40298d7d9f",
+      "adapters/README.md": "fdadf82594e6786e35a589caf65cff15110a64a27674efaa444e78bf2215d684",
+      ".fullops-squad/docs/operations/user-guide.md": "d686f796431802df57e19bd63412d5ba8e48a8d4083c008985a0f8f8fc846778",
+      ".fullops-squad/rules/common/testing.md": "224a9c71c1c2fa6f4f33c9b1875eb0171b778b750394747c115efd5954e5136b",
+      ".fullops-squad/rules/common/security.md": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc",
+      ".fullops-squad/rules/common/coding-style.md": "cf83b775ca73e1cadcf65bb8c38bb1f3710bee8cdcd08819d03d3fb10372318e",
+      ".fullops-squad/project.md": "9827ba6ea6e20a5225e9e737d0cf090777b18cddaa2633d26fb173bf2a420d2a"
+    }
+  },
+  "unsent_sources": {},
+  "refused_paths": [],
+  "elapsed_seconds": 1.58,
+  "input_partial": true,
+  "instruction_chars": 4765,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 4765
+  }
+}
