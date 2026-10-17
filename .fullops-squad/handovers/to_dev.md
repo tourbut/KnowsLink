@@ -135,6 +135,9 @@ D10. 탐색 패킷은 jev_find/jev_context/jev_packet으로 이 과제 키로 �
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-의존성 변경이 없으면 그 근거를 적는다.
+브랜치 fullops/dev / 제품 SHA da53e961e7a1399c9c974b6be7b35e8b51947922 / 닫힌 조회 선택기가 긴 이름에 구분값을 가리던 D-RT-01을 구분값 선두 표시로 수정했다.
+검토 필요: `internal/relay/member_pages.go` 옵션 한 줄, 테스트 단언 한 곳, D10 한 문장.
+검증: 관련 Go 검사 통과. 같은 HEAD Linux clone에서 make lint EXIT=0, make test EXIT=0. 로컬 lint.py는 make 없음으로 실행 불가였다. 실제 브라우저 폭 판정은 못 했다(tester·designer 몫).
+산출물: .fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md, jev/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-packet-outcomes.json.
+남은 일: tester 선택기 세 건 재검증, 고정 SHA 코드 리뷰, designer 시각 수락, main 통합(coor). 의존성 변경 없음: 템플릿 문자열과 테스트만 바꿨다.
 처리는 fullops-work, 회신은 fullops-orca 스킬을 따른다.
