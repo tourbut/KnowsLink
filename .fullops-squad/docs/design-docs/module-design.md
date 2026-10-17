@@ -2,14 +2,26 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-15
+updated: 2026-10-17
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
 
 # KnowsLink 프로그램 책임과 검증
+
+## SAR-SESSION-PEER-001-DEV Claude Code 세션 연결
+
+| 모듈 | 책임 | 검증 |
+|---|---|---|
+| `adapters/src/session-lock.ts` | agent 폴더당 한 수신 세션: `wx` 배타 생성, 다른 살아 있는 세션은 busy, `--take`·죽은 pid·같은 세션은 교체, 자기 lock만 해제 | `session-lock.test.ts`: claim/busy/take/release/dead holder/corrupt/alias 검증 |
+| `adapters/src/text.ts` `watch(folder, session?, take)` | 세션 결속 watcher: bound/busy 이벤트, 10초 lock 감시 후 `replaced` 종료, SIGTERM/SIGINT 해제. 출력은 metadata만 | `inbox.test.ts` 6(기존), 격리 relay smoke(`watcher-smoke.log`): bound→busy exit 2→takeover→replaced |
+| `adapters/src/core.ts` `agentId` | 비밀 없는 agent 주소 getter | 타입 검사 |
+| `adapters/hooks/register.ts` | 모드: `/knowslink-session` 명령, 자식 spawn·이벤트 파싱, toast·상태줄, 미연결 text 도구 deny, 발송 승인 대화상자, 인자 누락 deny, 수신 뒤 대기 수 갱신, reload 시 상태줄 초기화 | `claude plugin validate adapters`, `hooks/register.test.ts`(미연결 deny 2종·status/off 문구·다른 도구 통과), 두 Claude 세션 V01 |
+| `scripts/package_plugin.py` | Claude ZIP에 hooks 3파일 포함, `--connect` 시 Claude에만 `KNOWSLINK_AUTO_RECEIVE=off` | `--host claude --verify` 추출 MCP 검사·준비 경계 |
+
+V05(외부 본문 명령 미실행·승인 없는 답장 0)는 모드 deny 검사와 실제 세션 관측으로, V06(4096/4097)은 기존 `mcp.test.ts` textBoundaries로 확인했다. `claude plugin test adapters`는 `src/*.test.ts`(node 검사)까지 찾아 로드 실패로 표시하므로 모드 검사 결과는 `hooks/register.test.ts` 행만 본다. 패키지 추출 폴더에서는 모드 검사만 실행된다.
 
 ## SAR-UX-ISSUES-002 조회 입력과 복귀
 

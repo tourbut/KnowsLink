@@ -374,5 +374,11 @@ route 추천과 판단: D05(구조), D09(메시지 계약 변화가 있으면), 
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 판정한 지원 수준 / 산출물·로그 링크 / 남은 일.
-의존성 변경이 없으면 그 근거를 적는다. 처리는 fullops-work, 회신은 fullops-orca 스킬을 따른다.
+- 브랜치 / SHA: `fullops/dev`. 구현·문서 커밋과 archive 커밋의 40자 SHA, 등록 gate 결과는 worker_done과 외부 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/session-peer-001-dev/`에 기록한다.
+- 변경 이유: 사용자 요구 1–4(Claude Code 설치, `knowslink on/off`, 활성 세션 송수신, mod toast)를 SP-01–12 안에서 구현했다. Claude Code 패키지에 함수 hook 모드(`adapters/hooks/register.ts`)를 추가했고, `/knowslink-session on|off|status [--take]`가 세션 결속 watcher(`plugin.js watch --session`)를 띄운다. `session-lock.ts`가 agent 폴더당 한 수신 세션을 보장한다. 미연결 세션의 text 도구는 deny, 발송은 호출마다 소유자 승인 대화상자다. `/knowslink`는 패키지 skill 명령이라 `/knowslink-session`으로 정했다.
+- 검토 필요: `adapters/hooks/register.ts`(모드 전체), `adapters/src/session-lock.ts`, `adapters/src/text.ts` watch 변경, `scripts/package_plugin.py` Claude 전용 `KNOWSLINK_AUTO_RECEIVE=off`. Codex 설정·relay·SQL은 바꾸지 않았다.
+- 검증한 것: 격리 Compose relay·합성 회원 A/B(이메일 코드·agent 연결·친구 수락)·Claude Code 2.1.302 세션 두 개로 V01 왕복. 작업 중(B, 100초 Bash)·대기(A) 양쪽에서 도착 toast·상태줄·로컬 사본·원래 작업 지속, 별도 승인 뒤에만 발송, 만료 답장 422 거부, `off` 뒤 deny, CLI busy/--take/replaced를 관측했다. `claude plugin validate/test`(모드 3 pass), adapters check/test(Windows Node 22 exit 0, V06 포함). 기록: `.fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md`.
+- 못 한 것: 운영 relay·실계정·실제 친구 발송, Codex·Hermes, V03/V04/V07 독립 QA, 리뷰·main 통합. 모드 소스 hot reload는 watcher를 끝내므로 재 `on`이 필요하다(제품 설치에서는 발생하지 않음).
+- 판정한 지원 수준: 기존 세션 수신(도착 toast·세션 결속 로컬 사본, 작업 중·대기 관측). 본문 모델 표시는 다음 조회. 세션 수신 확인은 `knowslink_text_receive` ID 대조다.
+- 산출물·로그: D03/D10/D11/project.md/adapters README/SKILL 갱신, `docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md`, QA 보고와 toast 캡처, `jev/SAR-SESSION-PEER-001-DEV-packet-outcomes.json`. 의존성 변경 없음(package.json은 스크립트만).
+- 남은 일: coor의 고정 SHA 리뷰·tester V01–07·main 통합. SIZE 경고가 나면 모드·lock·문서가 한 기능으로 결속된 변경이라 분리하지 않았다는 사유다. 검증 자원(설치·private 폴더·Docker 프로젝트 정지 상태)은 보존했고 삭제하지 않았다.

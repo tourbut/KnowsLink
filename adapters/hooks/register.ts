@@ -1,0 +1,226 @@
+// KnowsLink work-session link for Claude Code: /knowslink-session on|off|status, arrival toasts and host-side send approval (SP-01/02/05/06/07/09).
+// The mod owns one watcher child per session; the child binds the agent folder and stores text locally. The model never sees text until it calls knowslink_text_receive.
+import type { Register } from "claude-code";
+
+type Engine = Parameters<Parameters<Register>[0]>[0] extends infer H
+  ? H extends (...args: infer A) => unknown
+    ? A[0]
+    : never
+  : never;
+type Link = {
+  alias: string;
+  agent: string;
+  pending: number;
+  stop: () => void;
+};
+const TOOL = /knowslink_text_(send|receive|receipt)$/;
+const CONTROL = /[\p{Cc}\p{Cf}]/gu;
+let link: Link | null = null;
+
+async function readConfig(
+  $: Engine,
+): Promise<{ argv: string[]; folder: string }> {
+  const text = await $.fs.read(`${$.plugin.root}/config/local.mcp.json`);
+  const server = (
+    JSON.parse(text) as {
+      mcpServers: {
+        knowslink: {
+          command: string;
+          args: string[];
+          env?: Record<string, string>;
+        };
+      };
+    }
+  ).mcpServers.knowslink;
+  const env = server.env ?? {};
+  if (env.KNOWSLINK_MODE !== "public-node" || !env.KNOWSLINK_AGENT_FOLDER)
+    throw new Error(
+      "이 설치는 held 상태입니다. package_plugin.py --host claude --install-dir <새 경로> --connect 로 준비한 뒤 Google 연결을 마치세요.",
+    );
+  return {
+    argv: [server.command, ...server.args],
+    folder: env.KNOWSLINK_AGENT_FOLDER,
+  };
+}
+
+function parse(line: string): Record<string, unknown> | null {
+  try {
+    const event = JSON.parse(line) as unknown;
+    return event && typeof event === "object"
+      ? (event as Record<string, unknown>)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+async function turnOn($: Engine, take: boolean): Promise<string> {
+  if (link)
+    return `KnowsLink 이미 연결됨: 세션 ${link.alias} · agent ${link.agent} · 대기 ${link.pending}건. 끄려면 /knowslink-session off`;
+  let config: { argv: string[]; folder: string };
+  try {
+    config = await readConfig($);
+  } catch (e) {
+    return `KnowsLink 연결 불가: ${e instanceof Error ? e.message : "설정을 읽지 못했습니다"}`;
+  }
+  const alias =
+    (await $.session.id()).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 8) ||
+    "session";
+  const argv = [...config.argv, "watch", config.folder, "--session", alias];
+  if (take) argv.push("--take");
+  const child = $.process.spawn({ argv });
+  let resolveFirst: (text: string) => void = () => {};
+  const first = new Promise<string>((resolve) => (resolveFirst = resolve));
+  const timer = $.clock.after(20000, () =>
+    resolveFirst(
+      "KnowsLink 연결 확인 응답이 없습니다. /knowslink-session status 로 다시 확인하세요.",
+    ),
+  );
+  const current: Link = {
+    alias,
+    agent: "",
+    pending: 0,
+    stop: () => void child.return({ code: null, signal: null }),
+  };
+  void (async () => {
+    let buffer = "";
+    let ended: { code: number | null } = { code: null };
+    try {
+      for (;;) {
+        const piece = await child.next();
+        if (piece.done) {
+          ended = piece.value;
+          break;
+        }
+        if (piece.value.stream !== "stdout") continue;
+        buffer += piece.value.text;
+        let cut: number;
+        while ((cut = buffer.indexOf("\n")) >= 0) {
+          const event = parse(buffer.slice(0, cut));
+          buffer = buffer.slice(cut + 1);
+          if (!event) continue;
+          switch (event.event) {
+            case "knowslink_session_bound":
+              current.agent = String(event.agent ?? "");
+              link = current;
+              $.ui.status(`KnowsLink ${alias} 연결`);
+              resolveFirst(
+                `KnowsLink 연결됨: 세션 ${alias} · 내 agent ${current.agent}. 도착은 toast로 알립니다. 본문은 요청 때 knowslink_text_receive 로 외부 데이터로 봅니다.`,
+              );
+              break;
+            case "knowslink_session_busy":
+              resolveFirst(
+                `KnowsLink 연결 보류: 다른 세션 ${String(event.session)} 이(가) ${String(event.since)} 부터 이 agent를 받고 있습니다. 전환하려면 /knowslink-session on --take`,
+              );
+              break;
+            case "knowslink_text_received": {
+              current.pending = Number(event.pending ?? 0);
+              const from = String(event.from ?? "")
+                .replace(CONTROL, "")
+                .slice(0, 64);
+              $.ui.toast(
+                `KnowsLink 외부 메시지 도착 · 발신 agent ${from} · 대기 ${current.pending}건 · 확인: knowslink_text_receive`,
+                { timeoutMs: 12000 },
+              );
+              $.ui.status(`KnowsLink ${alias} 대기 ${current.pending}`);
+              break;
+            }
+            case "knowslink_session_replaced":
+              $.ui.toast(
+                "KnowsLink 연결 해제: 다른 세션이 이 agent를 가져갔습니다.",
+              );
+              break;
+          }
+        }
+      }
+    } catch {
+      ended = { code: -1 };
+    } finally {
+      timer.cancel();
+      if (link === current) {
+        link = null;
+        $.ui.status(undefined);
+        if (ended.code !== null && ended.code !== 0)
+          $.ui.toast(
+            `KnowsLink 연결 종료 (exit ${ended.code}). /knowslink-session on 으로 다시 연결하세요.`,
+          );
+      }
+      resolveFirst(`KnowsLink 연결 실패 (exit ${String(ended.code)}).`);
+    }
+  })();
+  return first;
+}
+
+function turnOff($: Engine): string {
+  if (!link) return "KnowsLink: 이 세션은 연결되어 있지 않습니다.";
+  const { alias, stop } = link;
+  link = null;
+  stop();
+  $.ui.status(undefined);
+  return `KnowsLink 연결 해제: 세션 ${alias}. 이 세션은 더 받거나 보내지 않습니다.`;
+}
+
+export const register: Register = (on) => {
+  on("session.start", async ($, e, next) => {
+    $.ui.status(undefined); // A reload starts the module over: its watcher child is gone, so the owner runs on again.
+    await $.command.register({
+      name: "knowslink-session",
+      description: "KnowsLink 세션 연결 켜기·끄기·상태",
+      argumentHint: "on [--take] | off | status",
+    });
+    return next(e);
+  });
+  on("command.run", { command: "knowslink-session" }, async ($, e) => {
+    const words = e.args.trim().split(/\s+/);
+    if (words[0] === "on")
+      return { text: await turnOn($, words.includes("--take")) };
+    if (words[0] === "off") return { text: turnOff($) };
+    return {
+      text: link
+        ? `KnowsLink 연결됨: 세션 ${link.alias} · agent ${link.agent} · 대기 ${link.pending}건`
+        : "KnowsLink: 이 세션은 연결되어 있지 않습니다. /knowslink-session on",
+    };
+  });
+  // Text tools work only in the session the owner switched on; a send needs the owner's own approval here, never the model's or a received text's.
+  on("tool.call", async ($, e, next) => {
+    const kind = TOOL.exec(e.tool)?.[1];
+    if (!kind) return next(e);
+    if (!link)
+      return {
+        deny: "KnowsLink: 이 세션은 연결되지 않았습니다. /knowslink-session on 으로 먼저 연결하세요.",
+      };
+    if (kind === "send") {
+      const args = e as Record<string, unknown>;
+      if (typeof args.peer !== "string" || typeof args.text !== "string")
+        return {
+          deny: "KnowsLink: peer와 text가 필요합니다. 승인 전 인자를 확인하세요.",
+        };
+      const peer = String(args.peer ?? "")
+        .replace(CONTROL, "")
+        .slice(0, 128);
+      const preview = String(args.text ?? "")
+        .replace(CONTROL, " ")
+        .slice(0, 200);
+      const answer = await $.ui
+        .ask(
+          `KnowsLink 발송 승인: 내 agent ${link.agent} → ${peer}. 본문 「${preview}」 을 보낼까요?`,
+          ["보내기", "취소"],
+        )
+        .catch(() => "취소");
+      if (answer !== "보내기")
+        return {
+          deny: "KnowsLink: 소유자가 이 발송을 승인하지 않았습니다. 답장은 소유자의 별도 승인이 있어야 보냅니다.",
+        };
+    }
+    const ran = await next(e);
+    if (kind === "receive" && link && !ran.deny && !ran.isError) {
+      link.pending = Math.max(0, link.pending - 1);
+      $.ui.status(`KnowsLink ${link.alias} 대기 ${link.pending}`);
+    }
+    return ran;
+  }).catch(($, e, next) =>
+    next.called
+      ? next(e)
+      : { deny: "KnowsLink: 승인 확인에 실패해 이 호출을 막았습니다." },
+  );
+};

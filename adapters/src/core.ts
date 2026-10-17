@@ -67,6 +67,10 @@ export class Adapter {
     private readonly accessHeaders: Record<string, string> = {},
     private readonly timeoutMs = 10000,
   ) {}
+  // The agent address is public to friends (HP-05); credential and key stay private.
+  get agentId(): string {
+    return this.agent;
+  }
   async request<T>(path: string, body?: unknown, claim?: string): Promise<T> {
     // The timer holds the controller strongly; an inline AbortSignal.timeout() can be garbage-collected and never fire.
     const controller = new AbortController();

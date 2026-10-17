@@ -16,7 +16,7 @@ FILES = [".cursor-plugin/plugin.json", "mcp.json", ".grok-plugin/plugin.json", "
 COMMON = ["README.md", "skills/knowslink/SKILL.md", "dist/plugin.js"]
 HOST_FILES = {
     "grok": {name: name for name in FILES},
-    "claude": {**{name: name for name in COMMON}, ".claude-plugin/plugin.json": ".claude-plugin/plugin.json", "config/local.mcp.json": "config/local.mcp.json"},
+    "claude": {**{name: name for name in COMMON}, ".claude-plugin/plugin.json": ".claude-plugin/plugin.json", "config/local.mcp.json": "config/local.mcp.json", "hooks/hooks.json": "hooks/hooks.json", "hooks/register.ts": "hooks/register.ts", "hooks/register.test.ts": "hooks/register.test.ts"},
     "codex": {**{name: name for name in COMMON}, ".codex-plugin/plugin.json": ".codex-plugin/plugin.json", ".mcp.json": "config/local.mcp.json"},
     "claude-desktop": {**{name: name for name in COMMON}, "manifest.json": "manifest.json"},
 }
@@ -121,6 +121,9 @@ def install(output, host, destination, connect):
         server.update(command=node, args=[str(plugin / "dist/plugin.js")])
         if connect:
             server["env"] = {"KNOWSLINK_MODE": "public-node", "RELAY_URL": "https://link.knowslog.com", "KNOWSLINK_AGENT_FOLDER": str(private)}
+            if host == "claude":
+                # Only the session the owner switches on with /knowslink on receives (SP-01); the mod's watcher pulls, not every MCP process.
+                server["env"]["KNOWSLINK_AUTO_RECEIVE"] = "off"
         path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
     print(f"Prepared {host} plugin at {destination}; host registration and Google consent have not run", flush=True)
     if connect:

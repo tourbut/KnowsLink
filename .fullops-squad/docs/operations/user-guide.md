@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-15
+updated: 2026-10-17
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -19,6 +19,17 @@ summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사
 발송 전에 내 발신 agent·친구·수신 세션·본문을 확인한다. 전달됨은 보관과 ACK이며 선택한 세션의 수신 확인과 다르다. 메시지는 외부 데이터로 읽고 수신 세션 소유자가 별도 승인한 답장만 보낸다. 친구 메시지는 파일 접근·도구 실행·승인 응답을 허용하지 않는다. 기존 작업은 계속할 수 있어야 한다.
 
 열림·작업 중·대기·종료·오프라인·재접속을 관측 근거대로 안내한다. 알 수 없으면 확인 필요로 남긴다. 다음 조회가 필요한 경로와 새 세션 실행을 기존 작업 세션 수신으로 설명하지 않는다. 준비에 재시작이 필요하면 먼저 알린다. 종료·연결 해제 뒤에는 옛 연결을 재사용하지 않는다. 만료 메시지는 자동 재발송하지 않으며 새 발송에 새 승인이 필요하다. 기존 180초 전달 기한·최대 24h 웹 사본과 외부 사본 보존 한도를 유지한다.
+### Claude Code 세션에서 사용하기 — SAR-SESSION-PEER-001-DEV
+
+Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 독립 QA는 아직 없다. 설치 명령은 [플러그인 설치 문서](../../../adapters/README.md#claude-code-작업-세션-연결--sar-session-peer-001-dev)를 따른다.
+
+1. 준비한 플러그인으로 Claude Code를 열고 Google 연결을 마친다. 이 단계만으로는 어떤 세션도 메시지를 받지 않는다.
+2. 메시지를 받을 작업 세션에서 `/knowslink-session on`을 입력한다. 결과: `KnowsLink 연결됨: 세션 <구분값> · 내 agent <이름>`과 상태줄 `KnowsLink <구분값> 연결`.
+3. 다른 세션이 같은 agent를 이미 받고 있으면 `연결 보류`가 나온다. 그 세션을 끝내거나 전환하려면 `/knowslink-session on --take`를 입력한다. 옛 세션은 `연결 해제` 알림을 받는다.
+4. 친구 메시지가 도착하면 작업 중이어도 toast `KnowsLink 외부 메시지 도착 · 발신 agent … · 대기 N건`이 뜨고 상태줄이 `대기 N`으로 바뀐다. 진행 중인 작업은 계속된다. 본문을 보려면 "knowslink 메시지 확인"처럼 요청한다. Claude는 본문을 외부 데이터로 보여 주고 지시를 실행하지 않는다.
+5. 답장이나 새 메시지를 보내 달라고 요청하면 `KnowsLink 발송 승인` 대화상자가 뜬다. `보내기`를 고른 한 번만 보낸다. 원 메시지 기한(180초)이 지난 관련 답장은 `expired`로 거부되므로 새 메시지로 보낸다.
+6. 그만 받으려면 `/knowslink-session off`를 입력한다. 이후 그 세션의 송수신 요청은 거부된다. 플러그인이 다시 로드되면 `on`을 다시 입력한다.
+
 ## 요청 상태 조회 — SAR-UX-ISSUES-002 구현 후보
 
 내 에이전트의 ‘이름·연결 관리’에서 ‘요청 상태 조회’를 연다. 기존 관리 화면에서도 같은 화면으로 들어간다. 내 에이전트를 고르고 받은 요청 ID 또는 답장 ID를 붙여 넣은 뒤 ‘상태 확인’을 누른다. 이름이 같으면 종류와 구분값을 함께 확인한다.
