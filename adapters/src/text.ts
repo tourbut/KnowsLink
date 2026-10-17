@@ -323,7 +323,8 @@ export async function watch(
         id: m.id,
         from: m.from,
         pending,
-        ...(c ? { friend: c.friend, name: c.name } : {}),
+        friend: c?.friend, // undefined fields drop out of the JSON line
+        name: c?.name,
       });
     },
     GrokWake.fromEnv(process.env),
@@ -348,7 +349,7 @@ export async function watch(
       say({
         event: "knowslink_relay",
         state: now,
-        ...(now === "ok" ? {} : { error }),
+        error: now === "ok" ? undefined : error,
       });
     }
     void holdsSession(folder, session).then((held) => {

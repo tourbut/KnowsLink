@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-17
 owner: dev
 tasks: [SAR-SESSION-PEER-002-DEV]
-summary: "승인 창 2000자 한도·대화상자 중 해제·비가시 문자·재연결 대기 수·친구/agent 이름·relay 통신 불가·세션 수신 확인을 자동 검사와 격리 relay의 실제 Claude Code 두 세션으로 확인한 기록"
+summary: 승인 창 2000자 한도·대화상자 중 해제·비가시 문자·재연결 대기 수·친구/agent 이름·relay 통신 불가·세션 수신 확인을 자동 검사와 격리 relay의 실제 Claude Code 두 세션으로 확인한 기록
 ---
 
 # SAR-SESSION-PEER-002-DEV — DEV 검증 기록
