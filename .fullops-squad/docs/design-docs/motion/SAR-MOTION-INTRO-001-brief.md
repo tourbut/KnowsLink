@@ -1,10 +1,10 @@
 ---
 title: SAR-MOTION-INTRO-001 단일 도형 UI 모션 브리프
 status: draft
-updated: 2026-10-17
+updated: 2026-10-18
 owner: coor
 tasks: [SAR-MOTION-INTRO-001-DEV]
-summary: 사용자가 준 모션 프롬프트 원문, 확정 입력, 승인된 28비트 그리드.
+summary: "사용자가 준 모션 프롬프트 원문, 확정 입력, 승인된 28비트 그리드."
 ---
 
 # SAR-MOTION-INTRO-001 단일 도형 UI 모션 브리프
