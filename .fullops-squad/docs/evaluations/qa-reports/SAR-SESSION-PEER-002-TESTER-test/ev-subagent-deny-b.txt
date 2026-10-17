@@ -1,0 +1,24 @@
+  knowslink_text_receive and then knowslink_text_send (text 'sub probe', peer agent_22bb187ebb5358d648b6e7) and report
+  the exact results verbatim. Relay what it reports.
+● Agent(KnowsLink receive/send probe)
+  ⎿  Backgrounded agent (↓ to manage · ctrl+o to expand)
+● Subagent launched. It's running in the background, so I don't have its results yet. I'll relay them when it finishes.
+✻ Waiting for 1 background agent to finish
+› Message from @general-purpose (ctrl+o to expand)
+● Subagent report: both calls failed, and nothing was received or sent.
+  - knowslink_text_receive returned: <tool_use_error>KnowsLink: 하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다.
+    메인 대화에서 사용하세요.</tool_use_error>
+  - knowslink_text_send returned the same error. The subagent called it with text sub probe, peer
+    agent_22bb187ebb5358d648b6e7, idempotency_key sub-probe-1 and confirmed true.
+  The error means "KnowsLink messages cannot be used from a subagent. Use it in the main conversation." So KnowsLink
+  blocks subagents before it validates any arguments.
+  The subagent also said the send tool requires an idempotency_key of at least 16 characters. It said sub-probe-1 is
+  only 11, so a retry from the main conversation would need a longer key. I haven't checked that claim. The earlier send
+  error only said the key was missing, not how long it must be.
+  I haven't retried anything. If you want the send from the main conversation, tell me and I'll use a longer key.
+● Agent "KnowsLink receive/send probe" finished · 12s
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⚠ knowslink: KnowsLink 4916dcde 연결
+  ⏵⏵ auto mode on (shift+tab to cycle) · /tasks to see subagents

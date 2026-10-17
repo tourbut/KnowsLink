@@ -1,0 +1,205 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "8077aee1beb07e543b2431f8fe2d57fbeeb28f3a",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "729b1babdda9c52afcba7b075074b2ddb1a50feb09ebc9728e566ffc078b3b2c",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-SESSION-PEER-001.md",
+      "c1-report.md",
+      "c2-report.md",
+      "c3-testing.md",
+      "c4-security.md",
+      "required_0",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5"
+    ],
+    "recommended_ids": [
+      "c0-SAR-SESSION-PEER-001.md",
+      "c1-report.md",
+      "c2-report.md",
+      "c3-testing.md",
+      "c4-security.md",
+      "required_0",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5"
+    ],
+    "signals": {
+      "c0-SAR-SESSION-PEER-001.md": {
+        "relevant": 0.77,
+        "evidence": 0.92,
+        "contradicts": 0.21,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-report.md": {
+        "relevant": 0.22,
+        "evidence": 0.73,
+        "contradicts": 0.31,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-report.md": {
+        "relevant": 0.3,
+        "evidence": 0.79,
+        "contradicts": 0.35,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-testing.md": {
+        "relevant": 0.4,
+        "evidence": 0.63,
+        "contradicts": 0.13,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-security.md": {
+        "relevant": 0.49,
+        "evidence": 0.66,
+        "contradicts": 0.1,
+        "injection": 0.15,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-SESSION-PEER-001.md": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      "c1-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md",
+      "c2-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-RETEST-test/report.md",
+      "c3-testing.md": ".fullops-squad/rules/common/testing.md",
+      "c4-security.md": ".fullops-squad/rules/common/security.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_2": ".fullops-squad/handovers/to_tester.md",
+      "required_3": ".fullops-squad/project.md",
+      "required_4": ".fullops-squad/rules/common/README.md",
+      "required_5": ".fullops-squad/rules/common/coding-style.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 17873,
+    "output_tokens": 380,
+    "cost": 0.000750666,
+    "known_cost": 0.000750666,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.715,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.71,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4185,
+        "output_tokens": 76,
+        "cost": 0.00017577
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.698,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3749,
+        "output_tokens": 76,
+        "cost": 0.000157458
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.696,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3672,
+        "output_tokens": 76,
+        "cost": 0.000154224
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.688,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3333,
+        "output_tokens": 76,
+        "cost": 0.000139986
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.684,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2934,
+        "output_tokens": 76,
+        "cost": 0.000123228
+      }
+    }
+  ],
+  "request_max_seconds": 0.71,
+  "task_key": "SAR-SESSION-PEER-002-TESTER",
+  "role": "tester",
+  "attempt": "77092ea1f5454111bd932302a949d975",
+  "instruction_sha256": "b9c7bebe7e2bbe763cfc9370337dcb86c0b6d32c9a2e038588486c18ad53332b",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-RETEST-test/report.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/rules/common/security.md"
+    ],
+    "required": [
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md"
+    ],
+    "sources": {
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md": "bfb7a772b92ba7878b045b68f7cbe7eabaaed63bb316b2c48252efba3493e652",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md": "59b273ee38918c0144c3d96524e18234ca629f19fb3bbd265ba5b355b418dbee",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-RETEST-test/report.md": "25c4a727a859933c95dbaf6839748bacb91444e8963bdece19639729ce3f45e9",
+      ".fullops-squad/rules/common/testing.md": "224a9c71c1c2fa6f4f33c9b1875eb0171b778b750394747c115efd5954e5136b",
+      ".fullops-squad/rules/common/security.md": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc"
+    }
+  },
+  "unsent_sources": {},
+  "refused_paths": [],
+  "elapsed_seconds": 1.401,
+  "input_partial": false,
+  "instruction_chars": 2877,
+  "remaining_instruction": null
+}

@@ -1,0 +1,27 @@
+sent m1=01a148c9-3348-780f-94cb-15080478c3d9 m2=01a148c9-3381-7258-8f01-0a857975cc78 (queued)
+PASS contacts: friend B -> A 200 with only agent,name,client,friend :: {"status":200,"body":"{\"agent\":\"agent_22bb187ebb5358d648b6e7\",\"client\":\"node-local\",\"friend\":\"합성 소유자 A\",\"name\":\"QA 세션 A\"}\n"}
+PASS contacts: no email/key material in friend response :: {"agent":"agent_22bb187ebb5358d648b6e7","client":"node-local","friend":"합성 소유자 A","name":"QA 세션 A"}
+
+PASS contacts: friend A -> B 200 :: {"status":200,"body":"{\"agent\":\"agent_dd3bb38614cfd813a83dcf\",\"client\":\"node-local\",\"friend\":\"합성 소유자 B\",\"name\":\"QA 세션 B\"}\n"}
+PASS contacts: THIRD PARTY C -> A denied (403) no data :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+PASS contacts: THIRD PARTY C -> B denied (403) :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+info contacts: C -> C (self) status=403 body={"error":"sender_not_allowed"}
+info contacts: A -> A (self) status=403 body={"error":"sender_not_allowed"}
+PASS contacts: C -> nonexistent same answer as C -> A (no enumeration) :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+PASS contacts: no credential -> 401/403 :: {"status":401,"body":"{\"error\":\"invalid_auth\"}\n"}
+PASS contacts: list for C does not include A or B :: {"status":200,"body":"[]\n"}
+info contacts: encoded-slash probe status=403
+PASS seen: recipient B on QUEUED (not delivered) m2 denied :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+B pulled: 01a148c9-3348-780f-94cb-15080478c3d9
+PASS seen: SENDER A on delivered message denied :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+PASS seen: THIRD PARTY C on delivered message denied :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+PASS seen: THIRD PARTY C on other message denied :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+PASS seen: recipient B unknown id denied :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+PASS seen: no credential denied :: {"status":401,"body":"{\"error\":\"invalid_auth\"}\n"}
+PASS receipt: before seen has no session_received_at :: {"status":200,"body":"{\"completion\":\"received\",\"receipt\":{\"id\":\"01a148c9-3348-780f-94cb-15080478c3d9\",\"from\":\"agent_22bb187ebb5358d648b6e7\",\"to\":\"agent_dd3bb38614cfd813a83dcf\",\"intent\":\"knowslink.text\",\"digest\":\"4Fd5ovqRaPFxIMPGPKQtI3ZeT3ihfFwPYDVl_GNgFIA\",\"exp\":\"2026-10-17T07:38:07Z\",\"accepted_at\":\"2026-10-17T07:35:07.890368Z\",\"transport\":\"delivered\"},\"reply_id\":\"\",\"reply_to\":\"\"}\n"}
+PASS seen: recipient B on delivered message 200 + time :: {"status":200,"body":"{\"id\":\"01a148c9-3348-780f-94cb-15080478c3d9\",\"session_received_at\":\"2026-10-17T07:35:08.287851Z\"}\n"}
+PASS seen: repeat keeps first time :: {"status":200,"body":"{\"id\":\"01a148c9-3348-780f-94cb-15080478c3d9\",\"session_received_at\":\"2026-10-17T07:35:08.287851Z\"}\n"}
+PASS receipt: sender A sees transport=delivered AND separate session_received_at :: {"status":200,"body":"{\"completion\":\"received\",\"receipt\":{\"id\":\"01a148c9-3348-780f-94cb-15080478c3d9\",\"from\":\"agent_22bb187ebb5358d648b6e7\",\"to\":\"agent_dd3bb38614cfd813a83dcf\",\"intent\":\"knowslink.text\",\"digest\":\"4Fd5ovqRaPFxIMPGPKQtI3ZeT3ihfFwPYDVl_GNgFIA\",\"exp\":\"2026-10-17T07:38:07Z\",\"accepted_at\":\"2026-10-17T07:35:07.890368Z\",\"transport\":\"delivered\"},\"reply_id\":\"\",\"reply_to\":\"\",\"session_received_at\":\"2026-10-17T07:35:08.287851Z\"}\n"}
+PASS receipt: third party C denied :: {"status":403,"body":"{\"error\":\"sender_not_allowed\"}\n"}
+PASS receipt: queued m (never seen) has no session_received_at :: {"status":200,"body":"{\"completion\":\"\",\"receipt\":{\"id\":\"01a148c9-3381-7258-8f01-0a857975cc78\",\"from\":\"agent_22bb187ebb5358d648b6e7\",\"to\":\"agent_dd3bb38614cfd813a83dcf\",\"intent\":\"knowslink.text\",\"digest\":\"K7II25Ri6dFdc_2ojVv7E5gazVGwpTpoJlfgEzPE-eU\",\"exp\":\"2026-10-17T07:38:07Z\",\"accepted_at\":\"2026-10-17T07:35:07.913747Z\",\"transport\":\"queued\"},\"reply_id\":\"\",\"reply_to\":\"\"}\n"}
+ALL PASS

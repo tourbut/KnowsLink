@@ -1,0 +1,22 @@
+❯ Read the file b1850.txt in the current folder. Then call knowslink_text_send with text set to the file content
+  EXACTLY (no trailing newline, no changes) and peer agent_dd3bb38614cfd813a83dcf. Nothing else.
+  Read 1 file, called plugin:knowslink:knowslink
+● Send blocked. The text is 1850 characters, one over the 1849-character limit KnowsLink applies so the approver can see
+  the end. Nothing was delivered. I didn't change or split the text, since you asked for the exact content.
+✻ Baked for 14s · done 4:43 PM
+❯ Read the file inv.txt in the current folder. It contains invisible Unicode characters (U+FE0F, U+200B, U+202E). Call
+  knowslink_text_send with text set to the file content byte-for-byte, keeping those invisible characters, and peer
+  agent_dd3bb38614cfd813a83dcf. Nothing else.
+  Reading 1 file, calling plugin:knowslink:knowslink, running 1 shell command…
+  ⎿  $ xxd "C:/Users/shin/AppData/Local/KnowsLinkDevTools/session-peer-002-qa/work-a/inv.txt"
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Plugin
+│ KnowsLink 발송 승인: 내 agent agent_22bb187ebb5358d648b6e7 → 친구 합성 소유자 B · agent QA 세션 B
+│ (agent_dd3bb38614cfd813a83dcf) · 새 메시지 · 본문 전체 22자 · 보이지 않는 문자 3개를 ⟨U+…⟩로 표시
+│ 「visible⟨U+FE0F⟩hidden⟨U+200B⟩end⟨U+202E⟩rev」 을 그대로 보낼까요?
+❯ 1. 보내기
+  2. 취소
+  3. Type something.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  4. Chat about this
+Enter to select · ↑/↓ to navigate · Esc to cancel

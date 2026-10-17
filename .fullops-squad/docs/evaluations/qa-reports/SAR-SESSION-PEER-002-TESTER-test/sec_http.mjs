@@ -1,0 +1,86 @@
+// Direct-HTTP authority checks for GET /v1/contacts/{agent} and POST /v1/text/seen (SAR-SESSION-PEER-002-TESTER).
+// usage: node sec_http.mjs <dist-dir> <fixture-agents.json>
+import { pathToFileURL } from "node:url";
+import { join } from "node:path";
+import { readFileSync } from "node:fs";
+const [dist, fx] = process.argv.slice(2);
+const F = JSON.parse(readFileSync(fx, "utf8"));
+const { memberTransport } = await import(pathToFileURL(join(dist, "text.js")).href);
+const cred = (k) => JSON.parse(readFileSync(join(F[k].folder, "agent.json"), "utf8")).credential;
+const raw = async (who, method, path, body) => {
+  const h = { "content-type": "application/json" };
+  if (who) h.Authorization = `Bearer ${cred(who)}`;
+  const r = await fetch(F.relay + path, { method, headers: h, body: body ? JSON.stringify(body) : undefined });
+  return { status: r.status, body: await r.text() };
+};
+const out = [];
+let fails = 0;
+const check = (name, ok, got) => { if (!ok) fails++; out.push(`${ok ? "PASS" : "FAIL"} ${name} :: ${typeof got === "string" ? got : JSON.stringify(got)}`); };
+const A = F.a.agent, B = F.b.agent, C = F.c.agent;
+const tA = await memberTransport(F.a.folder), tB = await memberTransport(F.b.folder);
+const rid = Date.now().toString(36);
+const m1 = await tA.sendText(B, "sec-m1 " + rid, "sec-key-m1-" + rid + "-aaaaaa", true);
+const m2 = await tA.sendText(B, "sec-m2 " + rid, "sec-key-m2-" + rid + "-aaaaaa", true);
+out.push(`sent m1=${m1.id} m2=${m2.id} (${m1.transport})`);
+
+// --- GET /v1/contacts/{agent}
+let r = await raw("b", "GET", `/v1/contacts/${A}`);
+const j = JSON.parse(r.body);
+check("contacts: friend B -> A 200 with only agent,name,client,friend", r.status === 200 && JSON.stringify(Object.keys(j).sort()) === JSON.stringify(["agent", "client", "friend", "name"]), r);
+check("contacts: no email/key material in friend response", !/@|pem|public|kid|credential|key/i.test(r.body.replace(/"friend"/g, "")), r.body);
+r = await raw("a", "GET", `/v1/contacts/${B}`);
+check("contacts: friend A -> B 200", r.status === 200, r);
+r = await raw("c", "GET", `/v1/contacts/${A}`);
+check("contacts: THIRD PARTY C -> A denied (403) no data", r.status === 403 && !/@|sessionpeer|name|friend|client|pem/i.test(r.body.replace(/sender_not_allowed/g, "")), r);
+const denyC = r;
+r = await raw("c", "GET", `/v1/contacts/${B}`);
+check("contacts: THIRD PARTY C -> B denied (403)", r.status === 403, r);
+r = await raw("c", "GET", `/v1/contacts/${C}`);
+out.push(`info contacts: C -> C (self) status=${r.status} body=${r.body.trim()}`);
+r = await raw("a", "GET", `/v1/contacts/${A}`);
+out.push(`info contacts: A -> A (self) status=${r.status} body=${r.body.trim()}`);
+r = await raw("c", "GET", `/v1/contacts/agent_doesnotexist000000`);
+check("contacts: C -> nonexistent same answer as C -> A (no enumeration)", r.status === denyC.status && r.body === denyC.body, r);
+r = await raw(null, "GET", `/v1/contacts/${A}`);
+check("contacts: no credential -> 401/403", r.status === 401 || r.status === 403, r);
+r = await raw("c", "GET", `/v1/contacts`);
+check("contacts: list for C does not include A or B", r.status === 200 && !r.body.includes(A) && !r.body.includes(B), r);
+r = await raw("b", "GET", `/v1/contacts/${A}%2F..%2F${C}`);
+out.push(`info contacts: encoded-slash probe status=${r.status}`);
+
+// --- POST /v1/text/seen (m1 delivered after B pulls; m2 stays queued)
+r = await raw("b", "POST", "/v1/text/seen", { id: m2.id });
+check("seen: recipient B on QUEUED (not delivered) m2 denied", r.status === 403, r);
+const got = await tB.receive();
+out.push(`B pulled: ${got ? got.id : "null"}`);
+const pulled = got && got.id;
+const target = pulled === m1.id ? m1 : pulled === m2.id ? m2 : m1;
+const other = target === m1 ? m2 : m1;
+r = await raw("a", "POST", "/v1/text/seen", { id: target.id });
+check("seen: SENDER A on delivered message denied", r.status === 403, r);
+r = await raw("c", "POST", "/v1/text/seen", { id: target.id });
+check("seen: THIRD PARTY C on delivered message denied", r.status === 403, r);
+r = await raw("c", "POST", "/v1/text/seen", { id: other.id });
+check("seen: THIRD PARTY C on other message denied", r.status === 403, r);
+r = await raw("b", "POST", "/v1/text/seen", { id: "00000000-0000-7000-8000-000000000000" });
+check("seen: recipient B unknown id denied", r.status === 403, r);
+r = await raw(null, "POST", "/v1/text/seen", { id: target.id });
+check("seen: no credential denied", r.status === 401 || r.status === 403, r);
+let rc = await raw("a", "GET", `/v1/receipts/${target.id}`);
+check("receipt: before seen has no session_received_at", rc.status === 200 && !/session_received_at/.test(rc.body) || /"session_received_at":"0001/.test(rc.body), rc);
+r = await raw("b", "POST", "/v1/text/seen", { id: target.id });
+const t1 = r.status === 200 ? JSON.parse(r.body).session_received_at : null;
+check("seen: recipient B on delivered message 200 + time", r.status === 200 && !!t1, r);
+await new Promise((s) => setTimeout(s, 1500));
+r = await raw("b", "POST", "/v1/text/seen", { id: target.id });
+check("seen: repeat keeps first time", r.status === 200 && JSON.parse(r.body).session_received_at === t1, r);
+rc = await raw("a", "GET", `/v1/receipts/${target.id}`);
+const rj = JSON.parse(rc.body);
+check("receipt: sender A sees transport=delivered AND separate session_received_at", rc.status === 200 && /delivered/.test(rc.body) && rc.body.includes(t1.slice(0, 19)), rc);
+rc = await raw("c", "GET", `/v1/receipts/${target.id}`);
+check("receipt: third party C denied", rc.status === 403, rc);
+rc = await raw("a", "GET", `/v1/receipts/${other.id}`);
+check("receipt: queued m (never seen) has no session_received_at", rc.status === 200 && !/session_received_at":"2/.test(rc.body), rc);
+console.log(out.join("\n"));
+console.log(fails ? `FAILS=${fails}` : "ALL PASS");
+process.exit(fails ? 1 : 0);
