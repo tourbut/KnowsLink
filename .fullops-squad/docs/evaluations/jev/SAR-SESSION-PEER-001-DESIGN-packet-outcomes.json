@@ -1,0 +1,1316 @@
+{
+ "task_key": "SAR-SESSION-PEER-001-DESIGN",
+ "attempt": "c954186b44a641c481df69cd6f8e11ed",
+ "packet_input_sha256": "5104bdceb93b2f387484dd97ea83c11e90a8eae10bf3a0595e42493b5b1f257a",
+ "uncertainty_review": "packet partial, unknown 2(service-member-ui.md·ops-guide.md document_update). 두 문서는 화면/운영 원천이며 새 화면·운영 절차를 정하지 않아 no_change. documents-find는 batch_only/local 보완 상태라 이전 세션이 packet-inspection.json에 모든 경로의 존재·제목·관련 검색 줄·해시를 기록했다. 핵심 D02·UX·설치 안내·adapter는 직접 읽었고 대형 과거 QA·phase·logs는 검색 줄로만 판정했다(전문 미열람). 2026-10-17 Claude 재개는 새 탐색을 반복하지 않았다.",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/handovers/to_designer.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/contexts/designer.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/contexts/dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/contexts/ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/contexts/tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/architecture.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/architecture.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/crud-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/crud-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/data-model.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/data-model.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/database-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/database-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/interface-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/interface-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.0-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-LIVE/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-OPS-RESULT-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-DOC-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-DOC-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-FINAL-DOC-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-RESULT-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-OPS-RESULT-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DESIGN/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-HUMAN-PEER-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/generated/db-schema.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/generated/db-schema.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/ops-guide.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_update",
+   "status": "completed",
+   "reason": "D11: 작업 세션 연결 안내 완료 기준 절 추가(설치 절차·지원 완료 아님)"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_update",
+   "status": "completed",
+   "reason": "D01: 세션 연결 제품 범위와 첫 실증 목표 1문단 추가"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_update",
+   "status": "completed",
+   "reason": "D02: 작업 세션 연결 확장 절 추가, HP-07/10/15 유지"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "기술/화면/운영 원천. 제품 규칙만 정했고 구조·API·DB·운영 변경은 DEV 후속 영향 판단"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/_TEMPLATE.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-12_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-17_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-17_to_tester.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/lint/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": ".fullops-squad/orca-agents.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": ".fullops-squad/review/_REPORT.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": "AGENTS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": "README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": "adapters/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": "adapters/skills/knowslink/SKILL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": "adapters/src/trial-check.ts",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "제품 코드·스크립트 불변 과제. 기존 trial/guard 동작은 수신 근거가 아니며 DEV가 영향 판단"
+  },
+  {
+   "path": "adapters/src/trial-cli.ts",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "제품 코드·스크립트 불변 과제. 기존 trial/guard 동작은 수신 근거가 아니며 DEV가 영향 판단"
+  },
+  {
+   "path": "docs/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 세션 packet-inspection.json에서 제목·대상 검색 줄로 관련성 판정. 과거 기록이며 새 지원 근거로 쓰지 않음. 전문 미열람"
+  },
+  {
+   "path": "docs/system-design.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "설계 전제·규칙·제품 모델 원천으로 읽고 적용(초안 세션 포함)"
+  },
+  {
+   "path": "scripts/package_plugin.py",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "제품 코드·스크립트 불변 과제. 기존 trial/guard 동작은 수신 근거가 아니며 DEV가 영향 판단"
+  },
+  {
+   "path": "scripts/run_trial.py",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "제품 코드·스크립트 불변 과제. 기존 trial/guard 동작은 수신 근거가 아니며 DEV가 영향 판단"
+  },
+  {
+   "path": "scripts/shell_guard.py",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "제품 코드·스크립트 불변 과제. 기존 trial/guard 동작은 수신 근거가 아니며 DEV가 영향 판단"
+  },
+  {
+   "path": "scripts/test_shell_guard.py",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "제품 코드·스크립트 불변 과제. 기존 trial/guard 동작은 수신 근거가 아니며 DEV가 영향 판단"
+  }
+ ]
+}

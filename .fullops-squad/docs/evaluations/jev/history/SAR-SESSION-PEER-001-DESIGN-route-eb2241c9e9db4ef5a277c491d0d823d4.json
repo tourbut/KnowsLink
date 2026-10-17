@@ -1,0 +1,95 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SESSION-PEER-001-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D02",
+    "D01",
+    "D03"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.06,
+        "product": 0.94
+      },
+      "confidence": 0.88
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.89,
+      "D02": 0.93,
+      "D03": 0.88,
+      "D04": 0.86,
+      "D05": 0.87,
+      "D06": 0.86,
+      "D07": 0.8,
+      "D08": 0.66,
+      "D09": 0.86,
+      "D10": 0.86,
+      "D11": 0.88,
+      "D12": 0.83,
+      "D13": 0.78
+    }
+  },
+  "usage": {
+    "input_tokens": 2453,
+    "output_tokens": 314,
+    "cost": 0.000103026
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.637,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "designer",
+  "original_route": "product",
+  "override_reason": "제품 규칙·지원 범위 결정은 designer 담당. Codex 종료로 Claude 재개",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "e23226c65a3d7dc1eba5f39c0a1fc1e54b12cacc",
+  "requires_packet": true,
+  "attempt": "c954186b44a641c481df69cd6f8e11ed",
+  "instruction_sha256": "7ea58179e20e732edc946e4aaa9f93579fa96fe42d1d3a779e07d0c3e5b41691",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "85948752bd1bc09402db294ebb5c3c3b19dbd5aa0a94642266d86a713ca91083"
+}

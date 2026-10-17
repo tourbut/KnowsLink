@@ -2,13 +2,19 @@
 id: D02
 title: 요구사항정의서
 status: review
-updated: 2026-10-14
+updated: 2026-10-15
 owner: designer
-tasks: [SAR-HUMAN-PEER-001, SAR-LANDING-GUIDE-001]
+tasks: [SAR-HUMAN-PEER-001, SAR-LANDING-GUIDE-001, SAR-SESSION-PEER-001-DESIGN]
 summary: 사람 친구와 이름 있는 에이전트의 대화 및 기존 데이터 권한 이행을 정의한다
 ---
 
 # KnowsLink 사람 중심 연결과 대화 제품 기준
+
+## 작업 세션 연결 확장 — SAR-SESSION-PEER-001
+
+2026-10-15 사용자 요청으로 작업 중인 Claude Code·Codex 세션 사이의 메시지와 답장을 추가 설계한다. [SP-01–12와 V01–07](../../design-docs/SAR-SESSION-PEER-001.md)이 대상 선택·세션 수명·수신 수준·후속 완료 조건의 정본이다. HP-07의 자기 연결, HP-10의 별도 답장 발송 승인, HP-15의 외부 데이터·도구 승인 경계는 유지한다. 기존 Grok/Dots 수락은 새 세션 지원의 증거가 아니다.
+
+소유자가 선택한 한 agent 주소에는 동시에 한 수신 세션만 연결한다. 별개 수신 대상인 세션·자식은 각각 명시 등록하며 기존 agent 한도를 공유한다. 친구 수락은 현재·향후 활성 agent 범위를 유지하지만 세션 자동 탐색·자격 복사·명령 실행을 허용하지 않는다. 전달됨, 선택한 세션 수신 확인, 소유자 승인 후 답장을 분리한다. 다음 도구 조회·새 세션 실행을 기존 작업 세션의 수신으로 표시하지 않는다. 이 절은 설계이며 실제 수신·운영 수락이 아니다.
 
 ## 공개 소개와 로그인 시작 — SAR-LANDING-GUIDE-001
 
