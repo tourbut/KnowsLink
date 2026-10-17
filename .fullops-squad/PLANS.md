@@ -9,10 +9,43 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 모델 전환 — 2026-10-17
+
+- 재개 실행 2026-10-17: DEV 9ae29ec는 이미 완료(make lint/test passed)였고 worker_done만 없었다. QA fixture(18928)는 만료되어 9ae29ec 기준으로 재준비했다(서버 clone /tmp/knowslink-receipt002-9ae29ec4ddfc-31bce054, 24시간). tester 인박스를 Claude로 고치고 route·find·context·packet을 갱신했다(tester 4263239). run_1d685ec8e9bf / task_a6704eef45d2 / ctx_f61ba1c767cb / term_903dec46-a489-40ba-abe1-2f4430816274, launch.effective claude/claude-sonnet-5-5/high 확인. 새 세션 선택: 과제·모델이 달라 fresh. 남은 일: tester worker_done 후 고정 SHA 독립 코드 리뷰·designer 시각 수락·DEV 완료 통합(main).
+- 독립 QA 결과 2026-10-17: tester 8ff3506(msg_c7373856a48b) critical/high 없음, medium D-RT-01(닫힌 선택기가 긴 이름의 구분값을 가림, DEV 담당). 미실행: 보존 종료 receipt, 명시 로그아웃, 실제 UI 200%, 스크린리더, Firefox/Safari, 실메일/Google. FullOps lint는 Windows make 불가로 unavailable(ERROR 0). 통합은 integration hold(수정 후 같은 후보와 함께, 담당 coor). DEV 수정 SAR-UX-ISSUES-002-RECEIPT-DEV-FIX 착수: dev b50f07b, task_1b3fb0aeee80 / ctx_d3598f925a06 / term_c5dee89c-da0d-4aa1-9766-74ac75736800, claude-sonnet-5-5 high 확인, fresh 세션. 이후: tester 선택기 재검증 → 고정 SHA 리뷰 → designer 시각 → main 통합.
+- DEV 수정 완료 2026-10-17: SAR-UX-ISSUES-002-RECEIPT-DEV-FIX dev 71dcac7(제품 da53e96), 원격 Linux clone make lint/test exit 0, 로컬 lint.py는 make 없음 unavailable·ERROR 0(msg_1727fa6bc917, integration hold). 사용자가 독립 리뷰 진행을 선택했다. 배정 SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW: 리뷰 SHA 71dcac7, task_75a13c36547a / ctx_e52fd2f0e7fe / term_73bcbe42-14d4-41d4-b29d-70db94728369, claude-opus-5-5 high 확인, snapshot C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-c64b790767fa4dcd86d177a1fd3a04cf, 구현자 ctx_d3598f925a06. 리뷰어 실제 세션 ID는 result.json에 기록받는다. 이후 tester 선택기 재검증(fixture 71dcac7 재준비)·designer 시각·main 통합.
+- 코드 리뷰 수락 2026-10-17: SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW(msg_478b21834975) 71dcac7 critical/high 0, low 3(선택기 순서가 U2 이름 선두와 다름 → designer 예외 판단, 익명 한도 429 문구 오안내 member_receipt.go:27-31 → 후속 판단, lint reason 보완 완료). reviewer 세션 58c84abf-a77e-48ff-9609-1e46b3b05d1c release 완료. snapshot cleanup은 생성 기록의 reviewer 세션이 pending-reviewer-session이라 정체성 불일치로 실패했다. 강제하지 않고 snapshot .fullops-review-c64b790767fa4dcd86d177a1fd3a04cf를 보존한다(담당 coor, 재개: 불일치 처리 방법 확인 또는 --abandon 사용자 판단). 남은 일: tester 선택기 재검증, designer 시각 수락, low 2 후속 판단, main 통합.
+- 재검증 착수 2026-10-17: fixture를 71dcac7 기준으로 재준비(서버 clone /tmp/knowslink-receipt002-71dcac7822b8-b2c15735, 24시간, revoke 아님). SAR-UX-ISSUES-002-RECEIPT-RETEST tester 01d4e31, task_484fff79e36e / ctx_be1ac30d7d6a / term_bc6cd7f4-ad91-408e-ae71-b16359b5f1e2, claude-sonnet-5-5 high 확인, fresh 세션. 이전 tester·DEV 수정 세션은 release. 범위: 닫힌 선택기 세 건과 U6 회귀. 이후 designer 시각 수락(U2 순서 예외 판단 포함)→main 통합.
+- 재검증 결과·통합 2026-10-17: tester e1a92b3(msg_72072336f52f) 선택기 세 건은 기대 불변으로 FAIL(전체 폭 902px)이나 구분값은 모든 폭에서 보여 동명 구분 가능, U6 회귀 통과, 리뷰 low 2 재현 안 됨, 새 결함 없음. 종류는 1440 'Node'까지, 390·320 안 보임, 순서는 구분값 선두(U2 이름 선두와 다름). designer 워크트리가 중지 설계 WIP·인박스로 점유되어 designer 시각 판정은 실행하지 않았고, 사용자가 현재 표시를 수락(U2 순서 예외)했다. 직접 시각 검수 미실행은 한계로 남는다. 한계/후속: 종류 잘림, 열린 목록 미확인, HTTP 구 순서 단언 1건 갱신 필요, 보존 종료 receipt·명시 로그아웃·실제 200%·스크린리더 미검사. main 병합: DEV 71dcac7과 tester e1a92b3을 main에 merge 후 origin push 예정.
+- 사용자 지시: Codex 구독 종료로 Codex 모델(Astra/Sol/Luna 등)을 모두 제외하고 부족분은 Claude 모델로 채운다. 이미지 생성은 grok을 사용한다. 역할 모델은 orca-agents.md 모델 후보를 따른다. 사용자 재개 지시를 받았으므로 SAR-UX-ISSUES-002-RECEIPT-DEV(담당 coor→dev)는 Claude 모델로 재개 대상이다. 착수 전 최신 main 동기화·packet 현재 HEAD 갱신·실제 launch.effective 확인을 먼저 한다.
+
+## 사용자 작업 중지 — 2026-10-15
+
+- SAR-UX-ISSUES-002-RECEIPT-TESTER: 보류. 사용자 작업 중지 지시로 dispatch하지 않는다. 담당 coor/tester. 준비된 tester 인박스와 route를 보존한다. 사용자 명시 재개, 승인 모델 실행 가능 확인, DEV 최종 고정 SHA·gate·fixture 연결 및 현재 packet 갱신 후 배정한다.
+
+사용자가 모델 선택 질문에 '작업 중지'라고 답했다. 개발·설계·QA·리뷰·통합·배포의 새 실행을 중지한다. 재개 조건은 사용자의 명시적 재개 지시와 실행 가능한 승인 모델 확인이다. Sol high 변경 승인은 보존하되 현재 CLI의 미지원 오류도 유지한다.
+
+DEV ctx_e6da4e6135b3의 worker-stop은 user_owned terminal 때문에 stop_unknown을 반환했다. 해당 작업 터미널 term_106ecb42-0246-47cd-9a3a-aade8ea1fbbf에 정식 terminal send --interrupt만 실행했고 accepted bytesWritten1, 실제 Conversation interrupted 및 activity done을 확인했다. 터미널을 강제로 닫거나 다른 프로세스를 종료하지 않았다. 실제 DEV HEAD는 9ae29ec4ddfcfacb59ed48871a14bb558342c26e, 제품 source1e49033이다. 작업 트리는 clean이며 최종 완료 보고·worker_done·최종 gate 수락은 아직 없다. QA 인박스는 준비 상태로 보존한다.
+
+설계의 Astra 두 세션과 승인 Sol 재시도는 이미 정상 stop했다. 설계 WIP·검증 초안·원본 producer/history와 private 백업 28파일을 보존한다. 기존 세션 통신 구현·독립 QA·시각·고정 리뷰·main 통합·배포는 미완료다. 조회 fixture http://127.0.0.1:18928 및 합성 원격 서버/DB는 기존24h 수명으로 보존하며 운영 서비스와 사용자 세션 설정은 변경하지 않는다. 이번 중지 이후 제품 수정·검사·원격 push·병합·정리는 실행하지 않았다.
+
 ## 첫페이지 수락 통합·잔여 기능과 세션 통신 — 2026-10-15
 
 - SAR-SESSION-PEER-001-DESIGN 제품 규칙 작성: [정본과 DEV 인계](docs/design-docs/SAR-SESSION-PEER-001.md), [문서 검증](docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DESIGN/report.md). SP-01–12와 V01–07은 기존 작업 세션·다음 조회·새 세션의 지원 수준을 구별한다. 독립 고정 SHA 문서 리뷰/main 통합은 coor 대기다. 최종 SHA와 lint 결과는 worker_done에 연결한다.
 - 후속 우선순위는 coordinator msg_2fac3fbc7fae에 따라 진행 중 조회 복구 수락 뒤 세션 통신 DEV 한 과제다. 기존 이름·친구·승인 요약·설치 재개·언어 이슈는 대기로 유지한다. 실제 채널·계정·운영·발송은 이 설계 완료에 포함하지 않는다.
+- 사용자 모델 응답: 'GPT Sol high로 변경해 계속 진행'을 받았다. 현재 정상 동작 중인 DEV Astra는 유지하고 중단 설계와 후속 신규 배정은 Sol high로 변경했다. 원 인박스/route/history를 보존해 최신 지시와 codex/gpt-6.1-sol/high를 재연결했다. 같은 Task의 retry ctx_336b480870c3도 ready 뒤 ChatGPT 인증 미지원400으로 실패했고 정상 stop·private designer-sol-model-error.json 보존했다. 실제 제품 완료로 보고하지 않는다. 최신 CLI 캐시(14:28:18Z)는 gpt-6-luna/gpt-5.6-terra/gpt-5.6-luna를 표시하며 high를 지원한다. 이 모델로 바꿀지 또는 CLI 권한 복구 대기할지 사용자 선택을 요청했다. 담당 coor, 선택 응답/지정 모델의 실제 실행 가능 확인 후 재개한다.
+
+- 세션 설계 진행 보류: ctx_3854aa446731이 문서·검증 초안 작성 후 Astra의 ChatGPT 인증 미지원400을 표시했다. 원 오류를 private session-peer-001-coor/designer-model-error.json에 보존하고 정상 stop했다. 같은 Task143fa7a8db67의 fresh 동일 tuple retry ctx_9e255219386e도 ready 뒤 같은 오류로 중단됐다. 두번째 오류도 별도 보존·정상 stop. 제품 초안은 designer WIP 및 private tar/manifest로 보존한다. 담당 coor, 재개 조건은 사용자 모델 선택 응답 또는 Astra 지원 복구다. 모델을 임의로 바꾸거나 완료/worker_done을 만들지 않는다. 조회 DEV의 기존 작업은 계속한다.
+- DEV browser 명령 거부 msg_86ac8f6f320b: 자동 승인 검토가 추가 Python http.server/headless Chrome 묶음 기동을 blocked by policy로 거부했고 상세 사유는 없었다. 원 거부/미실행을 보존하며 명령 변형 우회는 하지 않는다. Go/격리 DB/전체 gate·fixture 준비는 계속하고 독립 tester가 기본 Orca 웹 엔진으로 실제 QA를 맡는다. 제품 브라우저 수락 기준은 유지한다. reply msg_8a42617af54d로 담당·범위를 전달하고 원 delivery ACK했다.
+
+- 후속 배정 순서는 진행 중 조회 복구의 독립 수락·main 통합 → 세션 친구 통신 DEV → 나머지 UI 이슈로 정리했다. 최신 세션 기능 요청을 우선하며 기존 이름/친구·승인 요약·설치 재개·언어 작업을 취소하지 않는다. 조회 TESTER 인박스는 준비 상태이며 실제 DEV 고정 SHA/fixture를 연결하기 전 dispatch하지 않는다. route+work를 같은 명령에 담은 최초 준비는 사전 route 미존재로 hook이 차단했다. route 생성 후 별도 work new로 정상 준비했고 우회/제품 변경은 없다.
+- Codex0.162.1의 추가 local help는 기존 세션 대상 queue --thread/--message, shared daemon agents, remote TUI, no-daemon 옵션을 명시한다. 실행·다른 세션 열람·주입은 하지 않았다. 이것은 기존 세션 수신의 검증 후보이지 실제 왕복 수락이 아니다. msg_c46c41630c78로 designer에게 원관측과 권한/수신 미확인을 전달했다.
+- Hermes 후속 설치 소스 tools/mcp_tool_health.py:73–89는 logging_callback이 notifications/message를 agent.log에 기록한다고 명시한다. 현재 adapter logging 알림과의 조합을 모델 깨우기로 수락하지 않는다. msg_52d98d6e99d7로 근거를 전달했다. 직접 웹 도구의 추가 조회는 token_expired401, root 공식 페이지 GET 한 번은403이었고 성공으로 보고하지 않는다. designer는 자기 공식 HTTP 조회 원본과 실패를 별도 보존한다.
+
+- 조회 복구 DEV 착수: task_802b0525f5db / ctx_e6da4e6135b3 / term_106ecb42-0246-47cd-9a3a-aade8ea1fbbf. 최신 main7f34123을 포함한 DEVd4a075c에서 route/find/context/packet을 갱신했고 실제 ready·turn_started·requested/effective codex/gpt-6-astra/high를 확인했다. 과거 완료 세션은 큰 문맥과 새 과제라 재사용하지 않고 정상 release했다. 현재 인박스와 own producer의 미커밋 스냅샷 소유권을 명시했다.
+- 세션 통신 기획 착수: task_143fa7a8db67 / ctx_3854aa446731 / term_496a5146-6d1d-47d4-80d0-f41d3c4c05a1. designer는 유휴·clean 확인 후 main7f34123 FF, fresh Astra high의 ready·turn_started·실제 tuple 일치를 확인했다. SAR-SESSION-PEER-001-DESIGN 정본 인박스와 packet을 읽는다. 기존 HP-10 발송 승인과 HP-15 도구 권한 경계를 유지하며 기존 세션 수신과 새 세션 생성을 구분한다. 이전 tester/visual 완료 dispatch도 정상 release·transcript captured다.
+- 첫페이지와 잔여 설계의 완료 메시지 6개는 main/origin 조상 확인 뒤 integration resume으로 모두 pending0을 확인했다. 별도 hook 읽기 검증 hold는 제품 완료로 위조하지 않고 유지한다.
+- Hermes 추가 읽기 전용 소스 확인: 설치 버전의 tools/mcp_tool.py는 MCP notification 타입·logging_callback 옵션을 포함한다. gateway/control_socket.py의 identify/status 소켓 존재는 메시지 주입 지원 증거가 아니다. gateway/AGENTS.md는 이벤트 admission/프로필 및 송신 경계를 설명한다. 실제 MCP 수신·기존 세션 깨우기·친구 왕복은 아직 실행하지 않았다. 최초 검색은 없는 docs 경로 오류가 있었고 파이프 exit0은 검색 전체 성공으로 사용하지 않는다. 존재하는 5개 소스의 후속 읽기는 exit0이다. 설정/인증/사용자 대화·서비스는 변경하지 않았다.
 
 - 첫페이지 DEVfc4·설계11ea·tester7fd·visualc6 및 독립코드34/78·설계14/8·최종기록68/31 리뷰 C/H/M/L0·check0을 수락했다. main/origin7551ed9 일반push/fetch동일·6원결과의원격조상0·제품fc4동일을 확인했다. 원검증실패/Windowsmake불가·초기중지이력은보존한다. 통합근거는 SAR-LANDING-GUIDE-001-CSS-INTEGRATION/main-integration.json. 운영배포는이번단계에서실행하지않았다.
 - 다음 DEV SAR-UX-ISSUES-002-RECEIPT-DEV는 수락 U6/해당U7 요청상태조회 입력·선택·복귀/오류재시도복구다. 빈DEV인박스에 준비했으며 최종main동기화/패킷현재HEAD갱신후 freshAstrahigh로착수한다. same-key입력producer/history는own추적증거소유권에포함한다. 그뒤 이름/사람친구·승인요약·설치재개·언어순서다.

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "attempt": "89de04582ed348109b11ca372f2c3ba1",
+  "base": "7f341230a26abc4afa97850687e624f2a583715c",
+  "merge_base": "7f341230a26abc4afa97850687e624f2a583715c",
+  "head": "71dcac7822b84acc2ae458a533dda96af1e94fe4",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "3e98c55e53474774713fe4de10fb6cacb1f23ab5e352318c3615f58fc9f402bf",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make가 없어 lint.py가 실행하지 못했다(원 결과 보존). 제품 소스 da53e96(71dcac7은 문서 커밋만 추가)을 같은 코드의 Linux clone에서 make lint 실행해 EXIT=0임을 DEV가 보고했다: dev 워크트리 qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/da53e961e7a1399c9c974b6be7b35e8b51947922-lint.log. 이 값은 71dcac7 직접 실행이 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make가 없어 lint.py가 실행하지 못했다(원 결과 보존). 제품 소스 da53e96(71dcac7은 문서 커밋만 추가)을 같은 코드의 Linux clone에서 make test 실행해 EXIT=0임을 DEV가 보고했다: dev 워크트리 qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/da53e961e7a1399c9c974b6be7b35e8b51947922-test.log. 이 값은 71dcac7 직접 실행이 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "382줄(이전 377, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/member.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 651줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 16,
+    "added_lines": 651,
+    "errors": 0,
+    "warnings": 2,
+    "unavailable": 2
+  }
+}

@@ -1,0 +1,36 @@
+0cec7786c9468ab89660296862acb55a679444346c0c160b26ae0cf6865f083c
+=== RUN   TestGoogleDeviceHTTP
+--- PASS: TestGoogleDeviceHTTP (0.70s)
+=== RUN   TestGoogleHTTP
+--- PASS: TestGoogleHTTP (0.67s)
+=== RUN   TestHumanPostgres
+--- PASS: TestHumanPostgres (3.61s)
+=== RUN   TestEmailIdentity
+=== RUN   TestEmailIdentity/verified_signup_home_and_continuity
+=== RUN   TestEmailIdentity/concurrent_first_signup_and_one_use_code
+=== RUN   TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives
+=== RUN   TestEmailIdentity/send_failure_limits_and_csrf
+2026/10/15 23:23:04 verification mail not sent
+2026/10/15 23:23:04 verification mail not sent
+=== RUN   TestEmailIdentity/refused_principal_does_not_spend_shared_rate
+=== RUN   TestEmailIdentity/member_gate_isolation_and_decision
+=== RUN   TestEmailIdentity/member_gate_deny_form_returns_to_result
+--- PASS: TestEmailIdentity (10.54s)
+    --- PASS: TestEmailIdentity/verified_signup_home_and_continuity (0.36s)
+    --- PASS: TestEmailIdentity/concurrent_first_signup_and_one_use_code (0.19s)
+    --- PASS: TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives (0.66s)
+    --- PASS: TestEmailIdentity/send_failure_limits_and_csrf (0.77s)
+    --- PASS: TestEmailIdentity/refused_principal_does_not_spend_shared_rate (7.16s)
+    --- PASS: TestEmailIdentity/member_gate_isolation_and_decision (0.85s)
+    --- PASS: TestEmailIdentity/member_gate_deny_form_returns_to_result (0.55s)
+=== RUN   TestPublicMessageHTTPBoundaries
+--- PASS: TestPublicMessageHTTPBoundaries (1.67s)
+=== RUN   TestPublicHTTPAdmissionAndGateSafety
+--- PASS: TestPublicHTTPAdmissionAndGateSafety (0.59s)
+=== RUN   TestReceiptRecoveryHTTP
+--- PASS: TestReceiptRecoveryHTTP (0.87s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	19.711s
+2026/10/15 23:22:50 SQL migrations completed
+
+EXIT=0

@@ -2,14 +2,25 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-14
+updated: 2026-10-15
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
 
 # KnowsLink HTTP·adapter 계약
+
+## SAR-UX-ISSUES-002 요청 상태 조회
+
+GET `/home/receipts`는 최초 진입과 재조회에 같은 편집 폼을 반환한다. `agent`와 `id`는 기존 GET 입력이며 ID 형식은 기존 UUIDv7이다. 안전한 원입력은 128 UTF-8 bytes까지 보존하고 과대 입력·제어/방향 문자·잘못된 UTF-8은 422로 거부한다. 형식 오류 422, 없는/타인/보존 종료 요청 403, 요청 제한 429, 일시 장애 503을 같은 화면에 표시한다. 비공개 요청 실패 문구는 동일하다. 소유하지 않은 agent를 담은 과거 URL은 선택·ID를 반사하지 않는다. 선택한 소유 agent가 철회되면 재선택을 요구한다.
+
+선택기는 현재 회원 소유 목록의 이름·종류·안정 구분값을 사용한다. 구분값 충돌은 전체 식별자로 확장한다. 성공은 전달·처리·관련 답장을 분리하고 원래 상태값·ID는 닫힌 기술 상세에 둔다. 현재 소유권·참여 endpoint 및 기존 24시간 metadata 보존을 검사한다. 조회는 발송·ACK·권한 변경을 하지 않는다.
+
+`__Host-kl_receipt`는 Secure/HttpOnly/SameSite=Strict의 입력 쿠키다. 마지막 인증된 조회의 회원·agent·ID·만료 시각만 base64url JSON으로 담는다. 서명된 인증 수단이 아니며 서버는 길이·만료·로그인 회원 일치·agent 소유권을 다시 검사한다. 조회 뒤 최대 70분이며 재조회 때 갱신한다. 저장된 요청 결과·상대 이름·원문·키·세션 값은 없다. 명시 로그아웃은 쿠키를 지운다. 다른 회원의 문맥은 복원하지 않는다.
+
+이메일 재로그인은 고정 조회 경로로 복귀한다. Google은 기존 attempt에 조회 복귀 여부만 저장하고 동일 출처 완료 링크를 쓴다. device/remote 연결 복귀가 우선한다. 외부 return URL은 받지 않는다. 429는 기존 HTTP 제한기에서 인증한 폼을 사용한다. 인증 DB 자체에 접근할 수 없는 503이나 로컬 동시 처리 한도는 이전 입력을 표시하지 않고 쿠키·URL을 보존한다. 서비스 복구 후 같은 URL에서 다시 인증·조회한다. 인증/권한을 캐시로 대체하지 않는다.
+
 
 ## SAR-LANDING-GUIDE-001 공개 진입 DEV 후보
 

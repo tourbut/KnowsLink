@@ -26,6 +26,7 @@ type googleAttempt struct {
 	Nonce, Verifier, CurrentHash, Member string
 	Connection                           string
 	Remote                               string
+	Receipt                              bool
 	Created, Exp                         time.Time
 }
 
@@ -81,6 +82,7 @@ func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth boo
 			return nil, fault("invalid_auth")
 		}
 		a := &googleAttempt{Nonce: randomToken(), Verifier: oauth2.GenerateVerifier(), CurrentHash: hashToken(readCookie(r, sessionCookie)), Created: now, Exp: now.Add(codeTTL)}
+		a.Receipt = readReceiptDraft(r, now).Member != ""
 		if reauth {
 			a.Member = id
 		}
@@ -210,6 +212,9 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 	setCookie(w, sessionCookie, result.Session, int(sessionAbsolute/time.Second))
 	// A same-site click sends the Strict session; a redirect chain from Google may not.
 	next := "/home"
+	if a.Receipt {
+		next = "/home/receipts"
+	}
 	if a.Connection != "" {
 		next = "/connect/" + a.Connection
 	}

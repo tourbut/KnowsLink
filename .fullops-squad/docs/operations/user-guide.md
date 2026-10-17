@@ -4,7 +4,7 @@ title: 사용자설명서
 status: review
 updated: 2026-10-15
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -19,6 +19,18 @@ summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사
 발송 전에 내 발신 agent·친구·수신 세션·본문을 확인한다. 전달됨은 보관과 ACK이며 선택한 세션의 수신 확인과 다르다. 메시지는 외부 데이터로 읽고 수신 세션 소유자가 별도 승인한 답장만 보낸다. 친구 메시지는 파일 접근·도구 실행·승인 응답을 허용하지 않는다. 기존 작업은 계속할 수 있어야 한다.
 
 열림·작업 중·대기·종료·오프라인·재접속을 관측 근거대로 안내한다. 알 수 없으면 확인 필요로 남긴다. 다음 조회가 필요한 경로와 새 세션 실행을 기존 작업 세션 수신으로 설명하지 않는다. 준비에 재시작이 필요하면 먼저 알린다. 종료·연결 해제 뒤에는 옛 연결을 재사용하지 않는다. 만료 메시지는 자동 재발송하지 않으며 새 발송에 새 승인이 필요하다. 기존 180초 전달 기한·최대 24h 웹 사본과 외부 사본 보존 한도를 유지한다.
+## 요청 상태 조회 — SAR-UX-ISSUES-002 구현 후보
+
+내 에이전트의 ‘이름·연결 관리’에서 ‘요청 상태 조회’를 연다. 기존 관리 화면에서도 같은 화면으로 들어간다. 내 에이전트를 고르고 받은 요청 ID 또는 답장 ID를 붙여 넣은 뒤 ‘상태 확인’을 누른다. 이름이 같으면 종류와 구분값을 함께 확인한다.
+
+전달·처리·관련 답장은 서로 다른 결과다. 대기는 상대 수신 성공이 아니다. 전달됨은 수신 클라이언트의 저장·ACK 확인이며 읽음·업무 실행·답장 완료나 현재 온라인 상태를 뜻하지 않는다. 조회는 메시지를 보내지 않는다. 기술 상세는 필요할 때 펼친다.
+
+성공이나 오류 뒤에도 같은 폼에서 선택·ID를 수정한다. ‘조회 입력으로 돌아가기’는 입력으로 이동한다. 새로고침·뒤로가기와 다시 조회는 기존 GET 입력을 유지한다. 요청을 확인할 수 없다는 안내는 존재·소유자·차단 여부를 알려주지 않는다. 철회된 내 에이전트는 다시 선택해야 한다. 한도 초과는 표시된 시각 뒤 수동 조회한다. 자동 재발송이나 자동 조회는 없다.
+
+마지막 조회 입력은 이 브라우저에서 최대 70분 동안 복귀에 사용된다. 세션이 끝나면 같은 회원으로 다시 로그인해야 복원된다. 다른 계정으로 로그인하거나 로그아웃하면 이전 입력을 복원하지 않는다. 로그인 확인용 DB가 일시적으로 응답하지 않으면 사적 입력을 숨기며 저장된 입력은 유지한다. 복구 뒤 같은 화면을 다시 연다. 원문·인증 키·credential을 요청 ID 칸에 넣지 않는다.
+
+이 절은 DEV 후보의 사용법이다. 독립 QA·시각 검수·리뷰·운영 반영은 별도다.
+
 
 ## 공개 안내의 새 사용 흐름 — SAR-LANDING-GUIDE-001
 

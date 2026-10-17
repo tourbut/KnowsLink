@@ -1,0 +1,3039 @@
+[
+  {
+    "path": ".fullops-squad/FULLOPS.md",
+    "sha256": "8e9517cfe2e278256c1f98735bcde8b678483fd936124c6453d3c9e579535785",
+    "lines": 106,
+    "matches": [
+      {
+        "line": 47,
+        "text": "라이브러리·SDK·프레임워크의 API나 설정을 확인할 때는 프로젝트 버전을 기준으로 Context7의 `resolve-library-id` → `query-docs`를 사용한다. 확인한 library ID·버전·출처·필요한 API 근거를 지시서에 남기고 같은 근거는 재사용한다. 버전 변경·근거 부족 시 다시 조회하며, 미지원·연결 실패 시 공식 문서로 확인한다. 비공개 코드·비밀값을 조회문에 포함하지 않는다."
+      },
+      {
+        "line": 85,
+        "text": "현재 레포는 사용자 2026-10-09 지시에 따라 coor/lite를 사용한다. 1.0.0 이후의 고정 기준 SHA·attempt·탐색 패킷·전송 receipt·독립 리뷰 계약은 [역할 운영 문서](orca-agents.md)의 해당 절을 따른다. 업데이트만으로 운영 모드를 바꾸거나 테스트 범위를 줄이지 않는다."
+      },
+      {
+        "line": 97,
+        "text": "1.4.4 hook은 버전별 캐시 대신 `~/.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py`를 호출한다. 명시적 deps 설치가 완전한 실행 사본을 원자적으로 전환하고 기존 사본은 보존한다. 업데이트만으로 이미 열린 세션의 hook 명령은 바뀌지 않는다. 실제 새 세션의 done/flow 기록을 조회하고 executed·error·unknown을 구분한다. 파일 존재나 status 조회 자체로 실행 성공을 주장하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/PLANS.md",
+    "sha256": "d9e80ee784629c90f918671f3e3d77b705559a8ab4012feaa38ea7f6b58bc457",
+    "lines": 1895,
+    "matches": [
+      {
+        "line": 15,
+        "text": "- 다음 DEV SAR-UX-ISSUES-002-RECEIPT-DEV는 수락 U6/해당U7 요청상태조회 입력·선택·복귀/오류재시도복구다. 빈DEV인박스에 준비했으며 최종main동기화/패킷현재HEAD갱신후 freshAstrahigh로착수한다. same-key입력producer/history는own추적증거소유권에포함한다. 그뒤 이름/사람친구·승인요약·설치재개·언어순서다."
+      },
+      {
+        "line": 21,
+        "text": "- DEV 최종fc4ad58·Chrome38·실제Linuxmake lint/test0·FullOps ERROR0/WARN1/unavail0 완료(msg_b3fc48a8f4d3). CSS 고정 독립리뷰 fromfe→fc4는 actual01a13fa4/Astra high,34reviewed/78skipped·C/H/M/L0·check0이며 coor에 준비통합했다. 새실패DOC003은frontmatter만허가수정·원실패보존이다."
+      },
+      {
+        "line": 23,
+        "text": "- 잔여기획11ea298(msg_5972c6b1ae08)은완료·제품기준/순차인계정본 SAR-UX-ISSUES-002.md, actualdesigner01a13f95. 별도fixed설계리뷰검토자01a13faa가진행중. 조회입력복구→이름/사람친구→승인요약→연결재개→언어설정순서이며현행친구코드유지/새handle·초대링크미도입, 미확인호스트안내와실제지원완료는분리한다. 리뷰수락/선행UI통합뒤DEV에정식인계한다."
+      },
+      {
+        "line": 31,
+        "text": "- 후속 대기: #2 이름/공유handle 남은 범위, #4 사람 친구 아래 agent 연결 기준에 맞춘 초대 요구 정리 → #8 호스트별 설치/등록/친구 연결 온보딩 → #6 조회 입력·오류 복구 → #5 승인 요약/#7 보조화면 접근성 → #3 언어 설정. 제품 기준 미정은 designer, 확정 기능 구현은 dev에 배정한다. 현재 완료되지 않은 기능을 이슈 완료로 표시하지 않는다. 실제 지원/미검증 호스트를 구분한다."
+      },
+      {
+        "line": 36,
+        "text": "- 사용자 요청으로 리뷰 사본3개를 coordinator가 Orca rm(no force/archive hooks)으로 제거했다. 실제 절대경로/workspace 내부·clean/ignored0·terminal0·관련 process0·원격coor SHA 보존을 확인했다. 비동기 receipt 뒤 실제 경로 부재와 Git/Orca detached0·나머지7개 유지, 정본 증거24개 hash 동일을 확인했다."
+      },
+      {
+        "line": 54,
+        "text": "- 이후 사용자 'fullops 업데이트 진행해' 요청으로 운영 업데이트만 수행한다. 설치 전 실제 Codex1.4.4/레포1.4.2이며 사용자·Orca Codex의 이번 설치/의존성 갱신·host check는 종료0이다.1.4.3 검사 재사용·모든 명령 검증·실행 기록과1.4.4 고정 hook runtime을 적용하고 새 세션 실행을 확인한다. 레벨 없는 make lint/test·coor/lite/standard·역할·guard·frontend tools=[]는 유지한다."
+      },
+      {
+        "line": 67,
+        "text": "- DEV 완료 msg_0a44968602b5 / fe2387a7676f7997aea76a2606f4cc2dbcd4b56b를 coor 기록 브랜치1312658에 병합했다. main은 아직 미반영이다. 최종 make lint/test0·ERROR0/WARNING3/unavailable0, 제품4795의 build/DB0·36 browser assertions와 native 입력/확대 not_run을 확인했다. 추가 SIZE-002는 D05 계약·DEV context로395→406이 된 이유를 외부 final-handoff.md에서 원문 확인했다. integration hold 담당coor, 재개 조건은 같은 SHA 독립 코드 check·기능 QA·직접 시각 수락이다. delivery_ac99adb939fa는 통합 뒤 ACK한다."
+      },
+      {
+        "line": 69,
+        "text": "- 후속 검수 준비: tester SAR-LANDING-GUIDE-001-TESTER와 designer SAR-LANDING-GUIDE-001-VISUAL은 Astra high 인박스/route만 준비했고 DEV 최종 worker_done 뒤 고정 SHA·packet을 갱신해 배정한다. 예비4795d619의 실제 make lint/test/build 및 DB integration은 exit0이며 오류0·기존 SIZE 경고2다. 아직 최종 수락·운영 배포 성공은 아니다. coor Orca preview page88cad09c-ab0b-4aba-ae6f-c11ec3be5658은 합성 google fixture127.0.0.1:18781이고 운영 계정은 사용하지 않는다."
+      },
+      {
+        "line": 89,
+        "text": "- 이번 검수 snapshot1개는 실제 reviewer 도구 종료·관리소유·workspace 절대경로·clean/ignored0·process/terminal0·origin조상·정본hash 보존을 확인한 뒤 coordinator가 Orca rm(no force/archive hooks)으로 제거했다. 비동기 removing 영수증 뒤 실제 경로 부재·Git detached0/상설6을 확인했다. host reviewer는 Orca dispatch가 없어 자동 cleanup/historical PASS를 주장하지 않는다. [통합·정리 근거](docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS-INTEGRATION/receipt.json)."
+      },
+      {
+        "line": 92,
+        "text": "- OPS 완료 msg_dc67947c2ab5 / 결과SHA3562662f5f836debd22a255afcbf52ea930e965b를 coor 기록 브랜치에 준비 통합했다. 실제 배포제품8a93e38과 문서결과를 구분한다. completion parser의 sha=null은 원 본문의 결과문서 SHA와 실제 clean OPS HEAD를 대조해 공용 메타데이터만 보완했고 원문은 보존했다. integration hold 담당coor, 재개 조건은 별도 Astra high 실제 세션01a13a34의 fixed OPS-REVIEW C/H0·check0 후 main 일반 통합/push·조상 확인이다. 원이미지 조회실패는 보존했고 별도2747 복구이미지12f1313a를 확보·network-none/read-only artifact 검사0을 확인했다. 실제 rollback은 미실행이다."
+      },
+      {
+        "line": 162,
+        "text": "- SAR-REFACTOR-001-OPS 착수: 사용자가 수락main2747fe9 운영배포를 승인했다. ops Sol high에 이전 삭제없는 backup/bundle/build/up 경로와 기존 회원/친구/키/Events·writer guard·공유서비스 보존을 인계한다. 제품/DB/인프라정책 변경 및 실계정 메시지 발송 없음. 완료 뒤 고정 문서리뷰·main통합, Grok 로컬bundle 갱신과 Dots remote서버 반영 안내를 제공한다. Context7 월quota 초과로 OpenAI/xAI 공식 원문을 조회했다."
+      },
+      {
+        "line": 172,
+        "text": "- DEV 구현 후보 `cd4dae810ae262759bcff29895165f1a64f8c51a` 완료: 제품 12줄 감소, 핵심 경계 회귀 추가, Linux exact SHA install/lint/test/build 종료0, FullOps 1.4.1 ERROR0/WARNING3/등록검사2 passed. 원 부모 중단 뒤 재개 세션은 기존 결과를 직접 확인하고 문서·증거·역할 완료 기록만 보완했다. QA 보고는 `docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md`다. 다음 담당 coor는 작성자/구현 자식과 다른 고정 snapshot 리뷰·tester 독립 QA를 확인한 뒤 main 통합·일반 push한다. 배포·실계정 추가 발송은 범위 밖이며 기존 증거와 원 실패를 보존한다."
+      },
+      {
+        "line": 184,
+        "text": "- 완료(2026-10-13): Dots의 기존 이벤트 자동화에 실제 대화 알림 전송·재조회 성공 뒤 ACK하는 지시를 보완했다. 00:03:07 저장·enabled=true 보고를 받았다. 세 번째 Grok 실제 송신01a130a4-f995-7ae0-a59c-26630af29956 뒤 Dots 질문·root receive 없이 native 화면에서 KL-DOTS-VISIBLE 본문과 일치 ID의 자동 알림을 확인했다. screenshot을 직접 열어 표시를 확인했다. Grok도 앞선 질문 없는 알림을 확인했다. evidence.json에 좁은 증거·screenshot 경로를 보존했다. 첫 Dots 시험 failed:expired 및 두 번째 화면 갱신 지연의 원인은 보존하며 장시간·앱 비활성/재시작 복구를 수락하지 않는다. 코드 변경·SQL 쓰기·키 변경·삭제·이동은 없다."
+      },
+      {
+        "line": 186,
+        "text": "- 두 번째 Dots 시험: Grok ID01a1309e-da56-712a-998c-6019b240888f를23:58:00 KST 접수했다. root는 Dots에 질문·receive를 하지 않았다. 서버 event_at23:58:00.039399Z는 UTC14:58에 해당하며 callback 검증·실구독 존재를 확인했다. 00:00:48 KST DB 읽기 전용 조회에서 delivered/persisted=true/completion=received·remote Inbox0을 확인했다. 자동 수신 처리와 별개로 native 다닷 채팅 알림은 없었다. 다닷에 실행 결과 전달 설정 점검과 사용자에게 보이는 알림 성공 후 ACK하도록 수정 요청했다. 직접 SQL 쓰기·새 키·재등록은 없다. UTC 원본은server-readonly-second.log/message-readonly.log에 보존했다."
+      },
+      {
+        "line": 194,
+        "text": "- Dots KnowsLink 설치 ID plugin_asdk_app_6acb0615e7f88191b07413e8595308ed와 App 참조를 확인했다. 실제 다닷 채팅에 이벤트 구독·수신/ACK·알림 연결을 요청했다. 실제 events/subscribe·callback 성공을 확인하기 전에는 자동 수신 완료로 표시하지 않는다. OpenAI MCP Events 공식 문서와 Context7 근거를 조회했다. Context7은 Realtime 자료만 반환하여 공식 MCP Events 페이지를 정본으로 사용한다."
+      },
+      {
+        "line": 203,
+        "text": "- 사용자의 로그인 완료 뒤 기존 knowslog01 소유 목록에서 Grok agent_077c666294c4eb28b783f8을 확인했다. 회원 이름 Knowslog와 에이전트 이름 Grok 노우를 저장하고 재조회했다. 친구 코드는 기존 값을 유지했다. Dots용 격리 profile 07e4d0f7-0a2f-43a2-ae71-9320401b7802/page 8e34f8f2-7ebd-4887-a1ec-c07a83e738fe를 열고 scshin88 Google 직접 로그인을 요청했다. Grok 계정 page 9293be99-2f64-4224-9ed5-64303d1a59cc는 로그인 상태로 보존했다. 친구 요청·수락과 메시지 왕복은 아직 미실행이다."
+      },
+      {
+        "line": 231,
+        "text": "- 재현·테스트·회귀 기준: tester가 구현 완료 SHA를 대상으로 확정."
+      },
+      {
+        "line": 332,
+        "text": "- DEV 관련 회귀와 최종 수락을 구분한다. tester는 안정된 통합 후보의 독립 전체 QA를 맡고 designer는 직접 시각 검수를 맡는다."
+      },
+      {
+        "line": 397,
+        "text": "- coor는 기존 초기 구성 범위만 수락했다. main을 검토된 head 9c96232e6230e00319c33ff77637c80923e2438b로 fast-forward했다. 검토 범위 이후 커밋은 제품 병합에 포함하지 않았다. main에서 make install과 make lint를 직접 실행해 각각 종료코드 0을 확인했다."
+      },
+      {
+        "line": 405,
+        "text": "- main 운영 기록 커밋 7c996fb에서 기준 9c96232의 FullOps lint 종료코드 0, ERROR 0, WARNING 0, 실행 불가 0을 확인했다. 등록 명령 product-lint: make lint도 passed다. 결과는 docs/exec-plans/logs/SAR-SETUP-001-COOR/main-final-product-lint.json이다."
+      },
+      {
+        "line": 425,
+        "text": "- 첫 후속은 로컬 합성 요청의 등록·수락·안전 전달·human-gate다. DEV가 기술 계획·구현·관련 회귀·기술 정본 갱신을 같은 과제에서 맡는다. tester는 DEV 고정 SHA 이후 독립 QA를 수행하고 designer는 같은 UI 후보를 직접 검수한다. 독립 fixed-SHA 코드 리뷰와 수락은 coor가 조정한다."
+      },
+      {
+        "line": 438,
+        "text": "초기 골격의 설계·구현·QA 완료와 전체 MVP 진행 상태를 별도 단계로 표시했다. 서비스 기획·개발 준비는 완료다. 첫 SAR-MVP-001-DEV/TESTER는 queued이며 개발·독립 QA·직접 UI 검수·리뷰는 미착수다. D04–D13 미작성 산출물을 완료로 표시하지 않는다. 실제 연결·일정 조회와 운영 배포는 백로그의 선행 조건·DEC-01–05를 따른다. 현황판 데이터는 coor와 로컬 main에서 다시 생성한다."
+      },
+      {
+        "line": 448,
+        "text": "- 사용자 확정 hostname은 link.knowslog.com이다. knowslog.com은 사용자 소유 Cloudflare 관리 도메인이다. cloudflared 로컬 인증을 통한 기존 orca tunnel 조회가 성공했고 활성 연결을 확인했다. 도메인 전체 DNS 관리 권한은 별도 확인한다."
+      },
+      {
+        "line": 467,
+        "text": "DEV 기술 회신 msg_976b4514120b는 raw envelope 32768 bytes와 frozen body JCS 16KiB의 별도 검사, polling과 ACK·철회·deny의 안전 budget 분리, pending/claim 회수 및 24h receipt 20000 처리량의 별도 측정 필요를 기록했다. 성능 보장이나 수치 확정으로 해석하지 않는다. 기존 DEV 범위를 유지한다."
+      },
+      {
+        "line": 471,
+        "text": "msg_bcf340cb7ce8은 Task task_491be61b82eb / Dispatch ctx_66989e4a879d 성공 회신이다. 완료 SHA a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92와 깨끗한 DEV 체크아웃을 확인했다. 등록·키·페어링·안전 relay·receipt/lease/ACK/claim·human-gate·최소 result·합성 adapter와 D03/D05–D10을 보고했다. 자동 검증·product-lint 종료코드 0, lint ERROR 0/WARNING 3(파일 크기)/실행 불가 0이다. 독립 QA·UI·리뷰·수락·배포는 아직 완료되지 않았다. singleton global lock 처리량·실사용자 신원 인증·실벤더·공개 정책·운영 한도 held를 보존한다. DEV terminal은 user_owned/retained이므로 임의 종료하지 않는다."
+      },
+      {
+        "line": 546,
+        "text": "사용자가 마지막 진행 과제를 확인하고 재개하도록 지시했다. Run run_8ca8bc058ab7을 현재 coor 터미널에 다시 연결했다. 미처리 reviewer escalation msg_4fbcac80f76c와 실제 targeted.log에서 agent credential의 deliver:human 처리 우회 high 결함을 확인했다. C1 기존 요구 구현 결함으로 Jev implementation→dev가 정상 분류했고 claude-opus-5-5 high를 선택했다. 같은 SAR-MVP-001-DEV 후속으로 상설 dev에서 재현·수정·회귀를 수행한다. UI는 exited 확인과 미커밋 직접 검수 자료를 보존해 같은 Task를 재개한다. OPS는 실패한 같은 Task의 기존 기록만 마무리한다. 제품 hold는 새 수정 후보의 QA·독립 리뷰·수락까지 유지한다. 신규 기능·수치 확정·실제 배포는 시작하지 않는다."
+      },
+      {
+        "line": 583,
+        "text": "RF-01 DEV 완료 msg_1face39bb094/78b1d92는 독립 검증 대기로 hold하고 coor 후보에 반영했다. parentRouting의 Deliver==agent 검사와 실제 이전 State fixture RED/GREEN·HTTP 회귀가 보고됐다. 새 최종 독립 리뷰 Task task_0db76f85c652 / Dispatch ctx_8325694cc588 / term_ea702e9f-96fc-4ff1-a1a1-dd2c27376619를 새 Codex gpt-6.1-sol high 세션에 배정하고 turn_started를 확인했다. base0e4b5de/head78b1d92 및 읽기 전용 snapshot /tmp/knowslink-mvp-review-78b1d92다. QA는 실행 중이므로 변경하지 않고 현재 과제 완료 뒤 narrow 새 SHA 재검증을 예약했다."
+      },
+      {
+        "line": 594,
+        "text": "QA659f4b0/msg_4fed96367aa4는 고정78b1d92의 실제 이전 serialized fixture를 Postgres에 로드하여 authorize/H/R/consume 차단과 새 agent/owner/current-auth 정상 회귀를 확인했다. tester 형태 비교 실패 세 번과 최종 exit0을 구별해 보존했다. 제품 변경 없음·lint ERROR0/WARNING1·strict·공백 검사 통과다. 코드리뷰311381f는 critical/high0·RF-01/C1 해소·전체 fixed-SHA 커버리지 check 통과다. UIe238777/PNG동일성은 기존 실행 조건으로 재사용한다. QA-06 stale epoch는 원래 held를 보존하고 reviewer/DEV의 actual DB CAS 별도 증거와 구분한다."
+      },
+      {
+        "line": 622,
+        "text": "CloudflareOAuth콜백HTTP200을수신했지만Codex가OSDBussecret저장소에서대기하고login키링locked=true임을확인했다. 사용자가OS터미널에서직접로그인하는방법을요청해대기중우리login프로세스를종료하고file저장override·최소scope명령을안내했다. 사용자가로그인완료하면같은fileoverride로실제auth상태/계정조회를검증한다. authcode/token은Git/기록에저장하지않는다."
+      },
+      {
+        "line": 628,
+        "text": "베타 리뷰 f625c4e/msg_87b07c98d317는 critical/high 0이지만 M2 최소 권한 문서와 M3 실제 Access 검증 게이트 수정이 필요하여 공개 수락을 보류했다. OPS는 질문 msg_90196e3a518f 및 중복 msg_90f098c04599로 수정 고정 SHA f824015314c66bcab42940cfe3db2edabb22e1dd를 제출했다. M1/M2/M3/M5와 낮은 우선순위 항목 수정 및 로컬 회귀 통과를 보고했다. 담당 coor가 새 SHA 독립 재리뷰와 tester 확인을 준비한다. 인증 및 수정 검증 전 Access 적용·DNS·connector 노출을 대기하도록 두 질문에 회신했다. OAuth 이전 세션은 callback timeout으로 종료됐고 file/no-browser 새 세션은 사용자 콜백 대기 중이다. 비밀값은 기록하지 않는다."
+      },
+      {
+        "line": 651,
+        "text": "QA msg_0c6c6575f70c의 보고 SHA는1762b430bed1c0584fecd163ae81567a4a5d04a9다. 본문의 f824015는 검사 대상이며 보고 SHA와 구별한다. 고정 f824015에서 로컬 인증/CSRF·loopback·비게시 DB·백업/격리 복원·공유서비스 회귀와 expose/deploy 차단이 통과했다. 처음 SHA 이동에 따른 판정 실패와 이후 안정된 실행을 보고서가 구별했다. QA 기록은 coor 후보에 보존했으며 최신28bd1bb gate 검토·외부 보호 후속 QA 전 공개 수락은 보류한다. 새 gate는 독립 검토자가 안전한 임시 상태에서 확인하며 런타임 제품/Compose 불변 증거는 원래f824015로 재사용한다."
+      },
+      {
+        "line": 663,
+        "text": "public_ready 질문 msg_73e614f4a38e은 최신28bd1bb gate 독립PASS다. 정상·최적화 옵션의 aud 불일치 및 proof ID/missing/stale/future 조건 모두 차단을 확인했다. coor가 OPS에 승인된 단일 사용자 Access 정책/app·GET 검증·render·expose·HTTP/공유 회귀 적용 재개를 전달했다. 새 적용 실패 시 신규connector만 중지하여 접근 차단하며 shared 자원은 보존한다. tester 질문은 apply_complete를 회신할 때까지 열어 둔다."
+      },
+      {
+        "line": 669,
+        "text": "공개 QA msg_78dab7200778/c993d599efab0bfdc5741bc9cb02053ca9afd856를 수락한다. 최신28bd1bb gate·공개 해석기 HTTPS8경로 미인증/가짜헤더302Access·HTTP301 및 공유서비스 회귀·로컬 GET/config 증명 대조가 통과했다. 제품/배포 소스 diff 없음, lint ERROR0/WARNING0와 strict 문제0이다. 기본 resolver NXDOMAIN에 따른 verify.py public exit1은 보존하고 public_http.py 성공과 구별한다. 인간 OTP 로그인과 IdP 타입의 tester 독립 GET 미관측·원점JWT 단독 관측은 미실행이다. OPS의 OTP 타입 실제 GET 근거는 별도 보존한다. report 결과는 제품 전체 완성 수락과 분리하여 main에 통합·push한다."
+      },
+      {
+        "line": 788,
+        "text": "- same-root DEV 보완 착수: task_f616a824269c/ctx_24132a165238/term_11d3428c-4de9-4f30-90b5-1c63802cce30. fresh claude-opus-5-5 high·turn_started 확인. 원본 QA는 독립 고정8e46c5a를 계속 검사하고 새 수정은 완료SHA의 delta 리뷰·관련 회귀만 수행한다."
+      },
+      {
+        "line": 790,
+        "text": "- DEV FIX msg_cfdd64bb4439/423db6a2a388ea63610462f9d3a5f4c619dd781b 후보 수집·coor 준비SHA 보존병합. 등록 가설/개인UI·AddMcpServer 미확정 및 잘못된Settings 안내 정정, installer staged추출/절대prefix·비소유경로거절·기존bundle보존, 관련19회귀/held·lint0. 새ZIP d3037d20…e609. integration hold와DEV retain, delta OPS 리뷰를 준비한다. 원본QA 진행인 tester inbox는 보존하고 완료 후 수정범위의 좁은QA를 대기배정한다."
+      },
+      {
+        "line": 811,
+        "text": "- DEV msg_c8c05861e244 / cd60e7f87eb5ce137eca887980f232b3f67a18d0 준비수락후보. 로컬두MCP/실제SQL왕복·관련회귀/lint0, 실제beta trial_codex/trial_grok credential/key/pair준비. 실제배포28bd1bb 유지. fixedSHA 리뷰/QA 수락 전main/배포 hold, coor담당. 고위험auth/data변경 fullops-review규정으로 OPS추천sonnet대신fresh Opus5.5high독립리뷰, TESTERfreshGrok4.7high. 실제시험24hServiceAuth/private전달 별도운영배정."
+      },
+      {
+        "line": 865,
+        "text": "- CLEANUP msg_c09e182d48cc/2182401680806f4938cf8ad46a9f04c644e60bf5 수락: trial token2·앱·정책 삭제/GET404, 백업 Tunnel cmp일치·allowlist비움·owner JSON3 불변, public/local/shared 회귀0. 제품변경없음·인박스빈상태·전문archive확인. Grok 파일제거댓글5993825445 확인, 최종댓글5993872965 게시·원문대조. 실제 수동 CLI 왕복과 시험 종료 완료. 자동wake/MCPtools/dots는 후속, issueOPEN유지. main/origin 통합 뒤 쉬는 clean 역할 동기화한다."
+      },
+      {
+        "line": 911,
+        "text": "- CF읽기현재상태: 기존One설정 DOM은로그인상태·요금제미선택을재확인했다. 새CF 계정/결제정보 읽기전용탭은alert/image만표시해Workersplan/EmailSending상태를확인하지못했다. 일시goto runtime_unavailable 뒤othercommands는응답하지만UI독점복구를위해추가브라우저조회중지. 결제·구독·설정·토큰생성없음."
+      },
+      {
+        "line": 924,
+        "text": "- 사용자는 Workers Free만 사용하도록 지시했다. 유료 플랜 전환·구독·초과 사용 과금 설정은 허용하지 않는다. 이번 세션에서는 요금제 조회만 수행했으며 유료 전환은 실행하지 않았다."
+      },
+      {
+        "line": 926,
+        "text": "- 공식 Workers Free 한도는 계정 합산 100,000 요청/일과 요청당 CPU 10ms다. 노우·다닷 2개 클라이언트가 각각 10초마다 1회 조회하면 하루 17,280 요청이다. 추가 API·다른 Worker 사용량과 CPU 실측은 별도로 확인한다. 이 계산은 운영 부하 시험 결과가 아니다."
+      },
+      {
+        "line": 943,
+        "text": "- Orca 실제 역할 terminal 조회에서 designer/dev/ops/tester는 terminal 0개이며 Git clean이다. 과거 worker 완료·user-owned·unverifiable 기록은 보존한다. 최신 main 통합 뒤 상태를 재확인하고 가능한 역할만 동기화한다. coor는 현재 업데이트 세션 외 터미널 상태를 확인한다."
+      },
+      {
+        "line": 970,
+        "text": "- DEV msg_ee10f820f78e / 최종00a13840d2cf3d5833c686bde0d832d439bc57b7(코드2111ff4) 수신. 원인은 verify-mvp가 서로 다른 allowlist의 두 writer를 같은 DB에 두어 Cleanup이 시험lease를 회수한 검사 격리 결함이다. 제품 규칙·TestTrialHTTP는 변경하지 않았다. 기존 실패 보존, 실행중4/40실패·정지0/40 및 결정적 회수 검사·정지200회PASS 근거를 확인했다. make lint/test/verify-mvp0, FullOps ERROR0/WARNING1 보고."
+      },
+      {
+        "line": 1067,
+        "text": "- 고정 `d1eef9bb90b9726149980320c42fb1fdbcaf584a`를 별도 clone에서 독립 QA했다. `make lint`, `make test`, `make verify-mvp`, 격리 Postgres 프로브의 종료코드는 0이다. 새 critical/high는 없다. 제품 코드는 수정하지 않았다."
+      },
+      {
+        "line": 1070,
+        "text": "- 원본QA msg_2fc3f489450b/bcb06b89bcb36d69a99cbeef3d94e4a9ffe88361 수신. 실제d1 격리Postgres/Node검사·make lint/test/verify-mvp/독립프로브0·제품diff0·빈인박스/공유컨테이너불변을확인했다. 프로브기대값준비실패와상속DOC003/metadata-only보정은원문보존했다. 결과의추출SHA null은fullSHA원문/actualcleanHEAD/아카이브와대조해sha_source에null/근거를보존해보완했다. coor에SHA보존반영하며OPS완성보고서를유지해문서충돌을해결했다. 최신수정영향과원본QA/UI기록의독립delta리뷰는후속검수다."
+      },
+      {
+        "line": 1080,
+        "text": "- 제품 커밋 f9af9bf: make lint/test/verify-mvp exit 0(integration PASS 55·FAIL 0), 390px 넘침 0. 상세·고정 SHA는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md)과 worker_done."
+      },
+      {
+        "line": 1122,
+        "text": "- 제거 직전 review.py check 3개는 종료코드 0이었다. 셸을 종료한 뒤 Orca worktree rm을 force 없이 실행했다. Git·Orca 양쪽에서 main 및 coor/designer/dev/ops/tester 6개만 남았고 임시 경로는 없다. [실행 영수증](docs/evaluations/qa-reports/FULLOPS-WORKTREE-CLEANUP-2026-10-06/receipt.json)에 고정 full SHA·검사 결과·제거 결과를 보존했다."
+      },
+      {
+        "line": 1139,
+        "text": "- DEV가 정규 인박스에서 PS08–11/UX06–07의 별도 일반 text wire·관련 답장·회원 receipt·검증본문 gate·공통 queue/gate/receipt/HTTP/claim 상한을 구현했다. 실제 로컬 Node CLI/MCP·일반 신원 HTTP·격리 Postgres를 검사한다. 상세/원본 실패/고정 SHA는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV.md)과 DEV 완료 로그에 기록한다."
+      },
+      {
+        "line": 1144,
+        "text": "- coor 병합 c6f0848의 PLANS 충돌 처리에서 잘못된 문서 삭제를 검수준비 diff로 발견했다. main에 미반영이다. 68b0d6a/f210b56/37f9a1e의 원본 Git 3-way를 다시 대조해 summary는 현재coor 값을 유지하고 append는 양쪽 전문을 보존했다. 기존914줄 삭제를 복원했다. 제품diff0을 확인하고 새fixed 후보를 사용한다. c6 준비리뷰는 미배정이며 원래preview/result와 실패를 보존한다. member_receipts.go 오기 탐색실패는 원본context JSON에 유지하고 실제 member_receipt.go를 수동필수후보로 보완한다."
+      },
+      {
+        "line": 1149,
+        "text": "- UI 기동ctx33b/ctxbd9는Codex0.160.0 업데이트선택화면에서failed이며receipt대로release했다. ctx0c99 수동실행은CLI권한옵션누락으로첫파일읽기의bwrap실패/승인대기에막혔다. dirty0과실제interactive prompt를확인하고stop_unknown→명시abandon으로fence했으며이번coor가생성한그터미널만정리했다. 기존진행작업/사용자터미널은변경하지않았다. 기존Orca DEV의실제 argv(--no-daemon/기존승인된bypass모드)를대조해같은실행모드로수정하고업데이트확인만이번실행의 -c check_for_update_on_startup=false로끄고동일Task retry에성공했다. 전역설정·설치·구독·과금은변경하지않았다. 공식근거: https://learn.chatgpt.com/docs/config-file/config-reference . 최초기동실패/현재착수receipt는COOR에보존했다."
+      },
+      {
+        "line": 1155,
+        "text": "- 결론은 수락 불가다. 미해결 high H-1: `internal/relay/capacity.go:147-155` boundedHTTP가 로컬 HTTP 슬롯을 먼저 잡고 본문을 읽는다. 익명 slow body 4개로 정리(ACK·revoke·deny·unpair·logout), 16개로 신규 작업이 429 capacity가 된다. rate를 소비하지 않는다. PS-11 정리 budget 보장 위반이며 이 후보의 회귀다. 재현 slot-repro exit0."
+      },
+      {
+        "line": 1156,
+        "text": "- 미해결 medium M-1(정리 입장의 경로만 판정·익명 허용), low L-1(요청당 전역 lock 트랜잭션 2개 추가·OPS 측정 대상)을 기록했다. 기존 low L-A/L-B와 공개 전 합성 가입 unset·운영 DB 합성 owner 0 조건을 보존한다. 인가·text/receipt·답장·gate·queue/claim 경계의 다른 critical/high는 없다."
+      },
+      {
+        "line": 1158,
+        "text": "- 후속: DEV가 H-1(권장 M-1 포함)을 고치고 slow body 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키와 별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다. TESTER QA·designer UX06/07 검수는 coor 판단이다."
+      },
+      {
+        "line": 1169,
+        "text": "- fixed `09c523da8a3407288d9f5d711e1834af12bc7808`의 실제 일반회원·receipt·gate를 격리 PostgreSQL/SMTP·Chrome에서 직접 검수했다. UX06은 로컬시각 PASS다. UX07은 Deny 뒤405의 F-UI-MSG-01 medium으로 FAIL/보류다. [직접 보고서](docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md)·유효PNG47개/초기fixture2개·manifest·원본실패·cleanup을 보존한다. 제품·기술·제품/UX 규칙 변경은0이다."
+      },
+      {
+        "line": 1200,
+        "text": "- 후속: DEV가 H-2(권장 L-2·/v1/connect 정리 경로 확인)를 고치고 자기 대상 반복·타 owner flood 회귀 검사를 추가한 새 fixed SHA를 낸다. OPS가 새 리뷰 키·별도 세션으로 재검토한다. 이 결과는 main 수락이나 운영 공개 수락이 아니다."
+      },
+      {
+        "line": 1204,
+        "text": "- DEV-FIX-2 route implementation/dev Opus5.5high·새세션을준비했다. 이전DEV-FIX는종료·긴검사로그/대기후새원인H2로fresh를선택한다. 기준dfc/원OPS c219·역할정규빈인박스·H2/권장L2/connect누락/공정성회귀를한지시서에묶었다. coor의connect.go 탐색오기는원거부JSON에보존하고실제connections.go/member_agents.go를필수보완했다. 이전DEV자체PASS/H2독립실패의시간순서를유지한다. OPS FIX-REVIEW release는retained(user_takeover)/processAction none이며강제종료하지않는다. QA원본60분최근출력은보고서/최종검사정리중을관측했다. 아직main제품수락보류다."
+      },
+      {
+        "line": 1211,
+        "text": "- CSRF/타회원403·신규16/정리4 포화429·cleanup/receipt rate429는 안전 오류/다음 동작을 보인다. 신규 rate200 포화에서는 Deny 저장 뒤 결과GET429가 된다. L-UI-FIX-1로 immediate200 PASS에서 제외하고 포화 해제 뒤 실제 홈/denied 복귀를 기록했다. 전체포화/API/경합수락은 TESTER·OPS와 별도다."
+      },
+      {
+        "line": 1213,
+        "text": "- 첫40PNG/18관측 run은 profile cleanup Errno39로exit1이며원로그를유지했다. 자기회수보완·receipt429/홈후속exit0·자기container/volume/clone/비밀/context회수·공유8container동일을확인했다. 제품/코드/규칙·기술정본·타인인박스변경0이다."
+      },
+      {
+        "line": 1223,
+        "text": "- UI-FIX msg_3778d8e04011/ef669bdd69b51fbf83eb007f2f6b5f1654003924 수신. cleanHEAD/origin동일·빈인박스/archive·actualdesigner세션01a11163-faf5-7741-b384-9fbe4c31a2f7·최종HEADlint/test/strict/diff/productdiff0와42PNG/원본216보존을확인한다. 최종원본을COOR/ui-fix-final-ef669bdd에영속화하고추출null/verifiedfullSHA를함께기록했다. coor에SHA보존merge했으며main은H2high로차단한다. 정상클릭/Enter/390px/결과200/홈복귀좁은PASS와new rate포화뒤조회429인L-UI-FIX-1 제외를구분한다. 새H2후보의관련경계QA/시각의존성·영향을확인하기전전체수락하지않는다. 원FAIL/최초worker_done오류/Chrome회수실패를보존하며기존사용자/운영자원은변경하지않는다."
+      },
+      {
+        "line": 1230,
+        "text": "- Task `task_3a9d433b5e6b` / Dispatch `ctx_fb39c38db415`는 사용자 중단으로 fence했다. worker-stop은 external terminal 때문에 stop_unknown/processAction none이고 명시적 worker-abandon은 abandoned/processAction none이다. 외부 터미널은 보존됐으며 프로세스 종료나 worker_done을 주장하지 않는다. coordinator가 기록 보존·일반 push·마감 운영을 수행한다. receipt와 실제 최종HEAD lint JSON은 `docs/evaluations/qa-reports/COOR/tester-token-closeout/`에 있다."
+      },
+      {
+        "line": 1231,
+        "text": "- 기존 제품 suite lint/test/verify-mvp exit0과 독립 probe exit1(H1 high·form deny 분류 medium·receipt cap 거절 뒤 HTTP 행 잔류 medium)을 구분한다. 새 잔류 결함은 msg_78c8fcd13251로 같은 DEV-FIX-2에 추가했다. 진행 DEV 인박스에 같은 내용을 보완하며 제품/기술 원인 판단은 DEV가 한다."
+      },
+      {
+        "line": 1236,
+        "text": "- 고정 `09c523da8a3407288d9f5d711e1834af12bc7808`를 별도 clone에서 PS08–11 독립 QA했다. 프로브 종료코드는 1이다. H-1 high, M-1 medium, receipt 상한 뒤 신규 HTTP 행 1개 잔류가 재현됐다. 제품 코드는 수정하지 않았다. H-1은 main 수락을 차단한다."
+      },
+      {
+        "line": 1237,
+        "text": "- `make lint`, `make test`, `make verify-mvp` 종료코드는 0이다. 이 통과는 격리 fixture다. 실메일, 공개, 벽시계 24시간, 운영 부하와 복원, PS13, PS14, 노우↔다닷은 미실행이다. 상세는 [QA 보고서](docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다."
+      },
+      {
+        "line": 1255,
+        "text": "- 기준 fixed `dfc70caa748a90614b02d48c78b4651345938339`의 OPS FIX-REVIEW H-2를 같은 과제에서 분석·수정·검증했다. 최종 코드 `c8ac921c5949cb263278e3f7cea4c120123cf8f3`(H-2 수정 `0ae40d5`, 시험 분리·종료 실패 회귀 추가)."
+      },
+      {
+        "line": 1256,
+        "text": "- 수정: DB 전 로컬 정리 채널 선택에 커밋 snapshot의 자기 기록 대조를 적용했다. owner당 동시 정리 1개를 로컬·공유 기록에 둔다. snapshot은 commit 순서로만 교체하고 종료 실패 공유 기록은 다음 commit이 회수한다. `/v1/invite-decision` deny를 정리 분류에 추가했다. `/v1/connect/{cancel,…}` 경로는 존재하지 않음을 확인했다. coor 추가 인계의 TESTER 원본 `st.HTTP` 잔류(medium, 09c 17차)도 같은 종료 transaction 실패 경로로 확인하고 회수 회귀를 추가했다. 원본 QA 실패와 새 fixed 독립 QA 보류는 그대로다."
+      },
+      {
+        "line": 1257,
+        "text": "- 검증: OPS 재현 시험은 dfc70ca에서 재현(exit0), 수정 코드에서 미재현(exit1). 새 flood 회귀는 변형에서 exit1. 결과와 최종 검사는 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md)에 있다."
+      },
+      {
+        "line": 1270,
+        "text": "- 담당designer/coor. fixed758의UI의존성/영향·owner당1/429재시도·홈/receipt와원dfc42PNG 재사용범위를확인한다. Jev 초기dev추천은원본backup으로보존하고orca-agents 직접UI 소유규정에따라designer로감사가능 override했다."
+      },
+      {
+        "line": 1286,
+        "text": "- Sol정식retry 착수: task_35b064a0376e/ctx_6429d136d397/term_437fcf22-f9a4-4706-bc5c-2be5deb1d3e7. fresh Codex의실제launcher는gpt-6.1-sol/model_reasoning_effort high이며tui-idle satisfied와provider codex/turn_started를확인했다. --terminal 재사용형receipt의requested/effective null을모델증거로쓰지않는다. 기존승인된실행모드와이번startup update확인해제를사용하며전역설정/설치/과금변경없다. 준비ad16ef4를idleclean OPS에ff/일반push했다. 원Claude중단증거는유지한다."
+      },
+      {
+        "line": 1291,
+        "text": "- 플랫폼화면은`This content can’t be shown`/일부cybersecurity요청안내를표시했다. 원출력의차단을우회하거나다른모델로동일차단내용을생성하지않는다. 최종result/report/check와worker_done은없으며준비pending을통과로바꾸지않는다. 원화면/bounded transcript/stop/abandon receipt는COOR/fix2-sol-block에보존했다."
+      },
+      {
+        "line": 1298,
+        "text": "- Sol기실행관측의정상사용자정리/동일DB시각snapshot/갱신전포화동작은제품적합성수락이아니다. DEV-FIX-3에원인분석·최소수정·기능회귀·기술산출물을묶었다. 플랫폼차단콘텐츠를다시생성/우회하지않고기존저장된로컬기능관측과자체앱정상동작만다룬다. 별도고정SHA정적리뷰·Sol독립QA·designer확인뒤main수락/일반push/조상확인/유휴clean역할sync를수행한다."
+      },
+      {
+        "line": 1328,
+        "text": "- 기준 fixed `758e9f638501f11000ed17c558a9eb54b4350eb3`의 Sol 관측 3건을 같은 과제에서 분석·수정·검증했다. 최종 코드 `5d1924c`(수정 `955cbae`, 시험 분리 `9620723`, 재조회 범위 축소 `5d1924c`)."
+      },
+      {
+        "line": 1329,
+        "text": "- 수정: snapshot을 (commit 시각, epoch) 순서로만 교체한다. 신규 포화 중 증명 못한 정리 자격은 lock 없는 단일 재조회 뒤 판정한다. 공정성 단위를 owner 제어와 그 owner의 agent ACK로 나눴다. persist 전 ACK는 handler와 같이 신규다. 제품 수치·wire·응답 코드는 그대로다."
+      },
+      {
+        "line": 1330,
+        "text": "- 검증: 새 회귀는 758에서 RED, 최종 코드에서 PASS다. 변형 4개가 모두 검출된다. 최종 코드의 make lint/test/verify-mvp exit0, Go 통합 PASS 47. 중간 `9620723` verify-mvp 실패와 원인은 [실행 기록](docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md)에 보존했다."
+      },
+      {
+        "line": 1346,
+        "text": "- 실제 착수: OPS task_886bd365fe36/ctx_4dade3f47e35는 startup receipt unobserved이나 별도 세션01a116a3의 실제 transcript에서 착수를 확인했다. tester task_9008a370c374/ctx_ec701389e83c와 designer task_10854c470b69/ctx_4e5af8d74738은 turn_started와 실제 원천 읽기를 확인했다. 세 역할 체크아웃은 진행 중이므로 동기화하지 않는다."
+      },
+      {
+        "line": 1378,
+        "text": "- 대기 담당 coor/DEV: 기존 요구 안의 좁은 기술 후속으로 streaming decode 또는 bytes 상한 후 단일 decode와 분할 한글/emoji·4096bytes 회귀를 작성한다. 새 fixed SHA의 검사·독립 delta 리뷰와 tester/designer 결과를 확인한 뒤 main 판정한다. 새 과제는 이 OPS inbox를 재사용해 시작하지 않는다."
+      },
+      {
+        "line": 1442,
+        "text": "- 사용자가 Cloudflare 로그인과 Google 신원 재확인을 완료했다. Cloudflare MCP의 현재 계정 접근으로 기존 owner-only 앱·정책을 조회했으며 적용 전후 두 객체가 동일하다. 만료된 파일 token은 재사용하거나 새로 발급하지 않았다."
+      },
+      {
+        "line": 1443,
+        "text": "- 새 재사용 policy `knowslink-member-agent-api`와 앱 `KnowsLink member agent API`를 만들었다. Access 예외는 `/v1/connect/*`, `/v1/text/*`, `/v1/keys/*`, `/v1/receipts/*` 네 경로뿐이다. origin ingress는 실제 연결 3개·text 4개·키 조회·receipt 조회만 정규식으로 매칭하며 나머지 경로의 기존 Access JWT 검사를 유지한다. KnowsLink cloudflared만 재시작했다."
+      },
+      {
+        "line": 1454,
+        "text": "- 새 기술 계획·구현·좁은 회귀는 DEV의 같은 과제다. 제품 목표는 사용자 지시로 확정됐다. 새 제품 규칙/범위 질문만 기획 역할에 전달한다. 실제 외부 플랫폼 제약은 확인한 근거와 함께 보고하며 설치·로그인·연결·왕복 성공을 구분한다."
+      },
+      {
+        "line": 1510,
+        "text": "- DEV 서버 검사 중간 보고 msg_cb7e7b6c4ee5: 구현 후보 b8fce7e를 서버 별도 임시 디렉터리에서 make lint/test exit0, 격리 Postgres17 migration 및 GoogleDeviceHTTP·GoogleHTTP·EmailIdentity race integration exit0으로 검증했다. 임시 DB 컨테이너 제거와 기존 운영 서비스·DB·계정·Tunnel 불변을 보고했다. 최종 SHA 게이트·worker_done은 아직 대기다."
+      },
+      {
+        "line": 1525,
+        "text": "- tester 원 완료 msg_b9bf41c793db는 여러 SHA를 포함해 integration parser가 sha null로 남긴다. 실제 수락 SHA는 44e9e457de661e0e7c9e7b82a1ae75a3dc30b44f다. 완료 dispatch에 정정 메시지는 dispatch_inactive로 거부됐다. 가짜 완료 회신이나 receipt를 만들지 않는다. coor가 후속 정정 계약을 확인한다."
+      },
+      {
+        "line": 1531,
+        "text": "- 독립 리뷰 수락 잔여: medium 링크 지문 비교 생략 시 공격자 키 승인, medium 익명 Device 요청2000 상한/24h 보존에 따른 신규 연결 고갈. low 타 기존 회원 callback 회귀검사 보강 권고, low complete 응답 손실 시 키 없는 agent 잔류. 실제 테스트에서 직접 시작한 링크·지문을 비교하고 키/agent 분리 및 관계 수락을 확인한다. 코드 후속은 DEV에 배정한다."
+      },
+      {
+        "line": 1560,
+        "text": "- 역할 상태 조회: dev/tester done·clean으로 최신 main 동기화 가능. ops/designer clean이지만 실제 agent상태 unknown으로 동기화 예약. 다음 dispatch 전에 최신main 포함 확인. 기존 user_owned 터미널 유지."
+      },
+      {
+        "line": 1566,
+        "text": "- 요청01a12529-8ecb-765e-bbe8-aa60252bc523 → 노우 수신/관련 답장01a1252a-519f-7d9d-8cb0-2026e53cddf9 → 현재 세션 실제 수신. 원요청 delivered/reply_received, 노우 답장 receipt delivered/received. 실제 Tunnel·도메인·Google 등록·Bot 왕복의 1차 완료 조건 통과. 상세 SAR-GOOGLE-CONNECT-002-LIVE.md."
+      },
+      {
+        "line": 1578,
+        "text": "- DEV 중간 후보5308fa5의 핵심/회귀 검사 PASS. Windows lint-config의 기존 cloudflared stub/stat 권한 한계로 실패하여 질문msg_9441c58b56b1에 운영 서버 고유 임시 checkout 검증(B)을 회신했다. 배포/DB/서비스 변경은 허용하지 않았다."
+      },
+      {
+        "line": 1603,
+        "text": "- 후속 f8dd6659d7a22466e7c84a67431448fd7727e7c3의 COPY-REVIEW를 coor 별도 세션으로 수락했다. reviewed18/skipped0, 정확한 SHA의 Linux make lint/test exit0, ERROR0/WARNING1(기존 PLANS 길이)/unavailable0. 원 Windows 미실행 기록은 보존한다. 실제 노우 일회 설치와 UI 유도 없는 자동 수신 검증은 계속 진행한다."
+      },
+      {
+        "line": 1607,
+        "text": "- 2026-10-11 사용자 Bot 창 제공 뒤 일회 설치·단일 비민감 관련 답장 승인을 설정했다. 설치 SHA25adea2/새 MCP autoReceive running/wake-check configuredListed true/watcher170289는 노우 설치 보고다. 질문01a12664-c5f6-756e-b18b-c3e6c3fbb973 송신 이후 Bot UI 조작·조회 없이 실제 MCP 답장01a12665-0c5c-7728-9daf-65b0d9f6f994 자동 알림·inbox pending1 선행·reply_to/발신자/assert·receipt reply_received를 직접 확인했다(exit0). 1차 자동 수신 왕복 수락. 정본 증거 docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/는 본문 제외. 검증용 현재 SDK 연결은 종료, Bot watcher는 유지. gateway marker·장시간·Update/Reset 미검증; 미문서화 경로 업데이트 시 재확인. 기존 전체 QA snapshot 정리 보류는 유지한다."
+      },
+      {
+        "line": 1620,
+        "text": "- 사용자 2026-10-11 이슈 완료처리 요청: open 이슈 조회 결과 #1 한 건. 설치·Google 연결·실제 자동수신1차 수락 근거를 댓글6099406233에 남기고 state closed/state_reason completed read-back 확인했다. https://github.com/tourbut/KnowsLink/issues/1#issuecomment-6099406233. 초기 설치 이슈는 완료이며 Dots/SSE 신규 개발과 장시간/업데이트 검증까지 완료한 것으로 표시하지 않는다. 이슈 자동 모드는 활성화하지 않았다."
+      },
+      {
+        "line": 1622,
+        "text": "- 중간 상태 조회에서 ctx_e4490c0d8bef projection은 live/working/in_progress·attention 없음·nextAction none이다. resource는 user_owned/user_takeover retained로 보고되어 강제 release/터미널 종료/진행 checkout 동기화는 하지 않는다. 정상 완료 메시지 대기를 유지하고 settlement 뒤 실제 ownership receipt에 따라 정리한다. GitHub 이슈1은 완료 댓글 원문과 closed/completed 재조회 및 open 목록0까지 확인했다."
+      },
+      {
+        "line": 1624,
+        "text": "- DEV 최종 febd1282df2e84a29fa0a53834569e7b9cc028e2 / msg_cfc58c20032b / delivery_764a18b4d048 수신. exact SHA gate product-lint/test0, ERROR0/WARNING19/unavailable0·clean·구현자01a12678-994d-7680-a15c-83577943b52d 확인. 독립 tester QA/fixed SHA 리뷰 대기로 integration hold, ctx_e4490c0d8bef retain receipt 확인. coor에서 후보를 보존해 QA준비하며 main 운영반영은 독립검증 수락 후다. Dots actual app 등록 ID·실제 cloud OAuth/Events·스타일 desktop 시각 수락은 후속이다."
+      },
+      {
+        "line": 1636,
+        "text": "- 독립 tester 완료 msg_4c2d990fb7a7: 후보 febd1282, 실제 reviewer01a126ba·clean detached snapshot을 coor가 다시 확인하고 review.py check 통과(reviewed51/skipped14/ERROR0/WARNING18). Linux exact SHA make lint/test0. medium SSE 응답 보안 헤더와 low NAT64 prefix 제한 누락은 reviewer 수락 가능한 잔여로 기록했다. tester 완료 보고가 SHA를 누락하고 QA 기록이 미커밋이라 coor가 내용 변경 없이 9503e86에 보존했다. 실제 계정·운영 SSE는 미실행이다."
+      },
+      {
+        "line": 1643,
+        "text": "- SAR-WINDOWS-SHELL-GUARD-001-DEV를 우선 배정한다. 실제 지원 hook과 범위를 확인해 Windows 교차 셸 삭제·검증되지 않은 재귀 삭제를 실행 전에 차단한다. 지침만으로 강제 차단 완료를 주장하지 않는다. Jev implementation→dev/Claude Opus5.5 high, fresh(큰 이전 문맥·오래된 완료), lite/standard. 삭제 없는 합성 회귀와 실제 hook 연결 확인 및 별도 세션 독립 검수 후 운영 작업을 이어간다. 기존 사용자 소유 DEV 세션과 사고 증거는 보존한다."
+      },
+      {
+        "line": 1654,
+        "text": "- F1~F4 최종 msg_9dec3a07dce7/c2a0ce4ab673116d0d18be368032ac26e1327a9c 수신. exact gate attempt47d87a0d1f8e4c5ba1f4b6ca087064ba·product-lint/test0·ERROR0/WARNING3/unavailable0·clean 확인. coor 실제 세션01a1203d는 구현자d370df55와 다르며 clean detached snapshot에서 신규 15항목(8 reviewed/7 generated skipped)을 검수했다. Windows 독립 회귀4 tests와 Codex runner root/scripts/adapters 6건 통과. SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW check 통과, 새 critical/high0으로 수락하고 coor에 SHA 보존 병합했다. 기존 tester F1~F4와 달라진 부분만 재검수했으며 F5~F9 및 native Grok/Codex·사용자 hook 신뢰 미확인은 보존한다. 사용자 복구 중단과 비공개 증거 보존은 유지한다. 코드/검수 결과를 main 통합·push하며, 실제 사용자 hook 신뢰는 후속 단계다. snapshot·temp cleanup은 실행하지 않는다."
+      },
+      {
+        "line": 1662,
+        "text": "- 사용자 2026-10-11 완료 detached HEAD 정리 요청에 따라 FullOps 임시 리뷰8개를 실제 경로·managed 정체성·detached SHA·origin/main 조상·ignored 포함 clean·현재 Run settled·Orca snapshot 공간 없음과 프로세스 경로 참조 없음을 확인했다. live review check 통과 뒤 native git worktree remove(강제 옵션 없음)로 제거했다. coordinator 자체 리뷰/역할 공간에서 생성한 snapshot에는 연결된 reviewer dispatch가 없어 표준 cleanup의 dispatch 검사를 충족시킬 수 없었으며, 사용자 명시적 정리 요청 아래 수동 검증과 실제 방법을 receipt에 기록했다. 가짜 reviewer release를 만들지 않았다. 보존 증거 historical check8개 통과, 등록 detached0. 상설6개·사용자 세션·운영 서버 detached 배포·F: 사고 증거·private backup은 보존했다. GOOGLE-CONNECT-001-TESTER 첫 check 실패는 누락된 --task-key를 실제 DEV packet으로 바로잡았고 원 리뷰는 변경하지 않았다."
+      },
+      {
+        "line": 1664,
+        "text": "- 실제 Dots 설치 승인 후 authorization_failed 관찰. 운영 집계에서 install1 생성06:22:26Z/token0/subscription0, 승인 attempt 소멸과1분 code만료를 확인했다. 사용자 로그인 반복 요청 대신 SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV(implementation/dev, fresh Claude Opus5.5 high)로 최소 재현·보완을 배정한다. 공통 CSP의 form-action과 승인303 callback 충돌은 유력한 가설이며 실제 Chromium 회귀로 확인한다. 이전 미완료 install·키·관계는 삭제하지 않는다. 현재 실제 terminal list에는 coor만 있고 dev/tester 사용자 터미널은 닫혔으므로 clean을 확인한 뒤 최신 main으로 반영한다. 일반 worker projection의 retained 메타데이터를 live terminal 증거로 혼동하지 않는다."
+      },
+      {
+        "line": 1711,
+        "text": "- 첫 송신 전에 computer-use로 노우에게 이 상대의 비민감 답장2건만 승인했다. 그 뒤 Grok UI 수신 확인·조작 없이 Dots와 회원 receipt에서 관찰했다. 첫 요청01a12a9b-ad68-7d50-88d2-ba0279d3fd5e/답장01a12a9b-e9bc-7b95-914b-2bc95cb66b04, 둘째01a12a9d-7406-7313-95a3-0ed807a90c36/답장01a12a9d-c089-71c2-8234-4e057d3e3b20 모두 delivered/reply_received/관련답장delivered다. Dots의 실제 receive from/reply_to 일치·본문 표시와 각각 acknowledged도 확인했다."
+      },
+      {
+        "line": 1748,
+        "text": "- webhook 제품 b86f39711c2f5240d37332f44a9930d4dc2653fa와 독립 QA 결과 b9c3d3854708b9a16070e10835e51524a8720f4f를 수락했다. tester Linux make lint/test 종료0, 58 PASS/0 FAIL, 미해결 C/H0·low F1은 보존한다. root 결과 리뷰12/12·제외 로그1, check 통과. main/origin/main da5002d3cae219827af05e9f295720a82a8c3679 push/fetch 및 두 SHA 조상 확인. 실제 Bot 호출·표시·왕복은 후속이며 기존 wake 유지다."
+      },
+      {
+        "line": 1754,
+        "text": "- UI 독립 검수 착수: tester task_2cc6c03e42d5/ctx_d3486b6a2749/term_f5a4fe50-57d0-4b74-ab45-e57b5e5dd632, designer task_02c82e2186e0/ctx_bd21bfde91bc/term_af9d43b7-ef22-4ac9-a9e7-671cdc6eea2d. Claude Sonnet5.5 high fresh, launch.effective·turn_started·실제 지시서/규칙/스킬 읽기 확인. 독립 고정 후보 c7828b2, prep030c5bd이며 main8539ef5 포함. 이후 normal logs는 완료/오류/질문 또는60분 뒤만 조회한다."
+      },
+      {
+        "line": 1756,
+        "text": "- Grok 실제 probe 결과: 첫 callback01a12aff-9f5f-785d-babc-50da8f8804b4는 owner receipt에서 failed:expired 확인. 새 probe KL-WH-PROBE-20261011-1300의 callback01a12b0e-b584-7c6a-8591-e0f7bce046cf는 Dots knowslink_receive로 수신했고 owner receipt delivered/received 확인. 본문은 event knowslink_text_arrived·[routine]/webhook_event seen·receive succeeded/empty를 보고했다. 이는 routine 보고이며 Grok 채팅 픽셀은 수신 확인에 사용하지 않았다. 기존 user-style wake→webhook watcher 전환 준비를 요청했으며 새 bundle/wake-check/정확PID/실메시지 후속은 미검증이다. LIVE/evidence.json에 구분 보존했다."
+      },
+      {
+        "line": 1760,
+        "text": "- 실제 요청01a12b26-9272-7667-90ca-73a0ba3fa2a2 → 루틴 답장01a12b27-23a3-757d-8ef2-4792bdef3331을 Dots receive로 확인했다. reply_to/received는 요청과 일치, owner receipt delivered/reply_received다. Grok 수신 UI는 열람하지 않았다. 시험 예외 제거·watcher1/webhook 유지 보고를 요청했으며 완료 보고 대기다. LIVE/evidence.json 참조."
+      },
+      {
+        "line": 1768,
+        "text": "- V-01 DEV 완료1e73308a2b3ebb5aeb14eb484651318deae4117c(제품609fcfd), 실제 세션98481ab6-9f92-4bdd-ba02-c9881c19312c. CSS 공통a 규칙44px·중복toc제거, fixture회귀. Linux make install/lint/test0와 링크198건/87상태 overflow0·44px미만0 근거 수신. Windows lint DOC-003은 coor 중단 리뷰 template front matter 누락으로4a65bac에서 수정, 과거 실패 보존. 후보295417acfdcd415ad0c768d164bd71dc07214ea9 제품609와 동일. msg_5fca578661a0 hold, 정상 release closed_agent_terminal/archive captured, delivery_a9e ACK."
+      },
+      {
+        "line": 1773,
+        "text": "- FIX-TESTER 완료 c1ab9976f2f03c4af70960105fff29b1c6a08e86, 실제727f2870. 제품295417a의 CSS5줄과 링크 회귀 수락가능/C/H0. 원 check 실패는 reviewer 과제 outcomes를 고정 제품에서 찾은 연결 오류다. 실제 구현 FIX-DEV로 같은 ref를 coor가 검사해 reviewed2/skipped9 통과했다. 없는 task key 우회는 사용하지 않았고 contexts/tester의 과거 잘못된 지침을 명시 정정했다. 원 실패 phase/보고는 보존한다."
+      },
+      {
+        "line": 1779,
+        "text": "- OPS 보존 배포 착수: task_08ba5429b6a7/ctx_5f6ce8c44c09/term_a85bff79-9e0a-44b7-b911-8e17cea93107, fresh Claude Sonnet5.5 high requested/effective·turn_started·정규 인박스/FULLOPS 읽기 확인. 준비 main0045089, 배포 product95df83c 고정. OPS terminal0/clean 확인 후 main FF. beta.sh 충돌 entrypoint와 raw SQL dump·정리삭제 금지, relay만 갱신을 명시했다. 이후 정상 로그는 완료/오류/질문 또는60분 후 조회한다."
+      },
+      {
+        "line": 1782,
+        "text": "- 위 cleanup 실패의 실제 도구 메시지는 reviewer release·terminal 종료를 확인하지 못했다는 것이다. workspace 매핑은 코드상 추가 계약이며 이번 실패 원인으로 단정하지 않는다. 기존 release receipt와 자동 cleanup 관찰의 차이가 해소될 때까지 hold를 유지한다."
+      },
+      {
+        "line": 1789,
+        "text": "- 실제 normal cleanup(FIX-TESTER, ctx_5ab7a0d1f98a)을 다시 실행했으나 reviewer release·terminal 종료 확인 실패로 차단됐다. 현재 Orca는 해당 dispatch의 terminal output이 released됐고 transcript만 보존됐다는 runtime_error를 반환한다. cleanup의 terminal-only 조회와 archive 형식의 호환 문제이며 성공으로 처리하지 않았다."
+      },
+      {
+        "line": 1799,
+        "text": "- 인용 없는 Python 코드의 PowerShell parser error1을 재현했다. coor 따옴표 후보는 기존 cmd list 인용 회귀 expected2/actual0으로 미수락이며 DEV가 실제 실행 계약과 함께 최소 수정한다. 원본 증거 Temp shell-guard-ws-p9rgzhud 보존, 실제 삭제0."
+      },
+      {
+        "line": 1802,
+        "text": "- DEV 실제 착수: task_c68dbc76f1ca/ctx_7104051dd3bf/term_a98b80f2-8c32-470d-9082-abd9c496a3cf. fresh Claude Sonnet5.5 high requested/effective 및 turn_started, 정규 인박스·FULLOPS·guard/source/tests 읽기 확인. 준비7cae8d7을 실제 agent 없는 clean dev에 FF했다. 이후 정상 로그는 완료/질문/오류 또는60분 뒤만 조회한다."
+      },
+      {
+        "line": 1818,
+        "text": "- DEV 착수 확인: task_51bc73613d73 / ctx_365d1ff621df / term_14f59792-97af-4656-9e3a-72afd762628b. 요청·실제 Claude Opus5.5 medium 일치, turn_started와 지시서·FULLOPS·디자인 정본 읽기 확인. 준비7afaf02를 clean·terminal0 dev에 FF했다. 이후 정상 로그는 완료/질문/오류 또는60분 뒤만 조회한다."
+      },
+      {
+        "line": 1857,
+        "text": "- 착수 차단: designer task_491ede5000f9 / ctx_808f2fb09060는 agent_readiness에서 agent-hooks-review-prompt로 실패했다. 새 세션이 변경된 .codex/hooks.json의 hook 신뢰를 요구한다. Task 실행 전 실패이며 제품 수정은 없다. 실패 터미널은 receipt의 worker-release로 처리한다. 다음 착수는 같은 Task retry-of로 진행하며 사용자의 hook 신뢰 승인 후 새 세션에서 재개한다. hook 검토/차단 우회나 hooks 비활성화는 하지 않는다."
+      },
+      {
+        "line": 1865,
+        "text": "- DEV escalation msg_8289be519352/question msg_6c1b431300aa: 허용된 child Run run_b8947d35e3b3 생성 뒤 parent --run을 강제한 follow-up check가 coordinator binding mismatch로 consumer_fenced였다. 제품 편집 중지/WIP 보존. worker-show에서 상위 dispatched·동일 assignee·capabilityRevokedAt=null·completedAt=null 확인. 최신 messaging-and-gates의 child coordinator run mailbox 계약과 실제 msg_268fee4228dc recipient_run_bound_redirect receipt를 확인했다. 현재 child binding의 check --terminal ownhandle(--run 없음) 경로로 재개를 reply msg_159a2da8e0e8에 승인했다. 기존 fenced 호출 반복/새 Task/권한 위조 없음. 다른 fencing이면 다시 중지·보고한다. child ctx_b4cce6eb47bd/ctx_9ded146db1ea는 DEV가 결과 회수·정리한다."
+      },
+      {
+        "line": 1866,
+        "text": "- 미검수 제품 후보4eaefa6e0a5cf623f0d8d8080d918086f86030ec의 실제 합성 미리보기 msg_c04f9dc6599d를 받았다. DEV 소유 Windows localhost14228 forward→격리 remote58495/privatePostgres qa-c8a0339a/SMTP42473. coor Orca tab8966ad4c-a2b7-4175-9a24-3a67f12c1845를 기존 합성 profile4359b1d6-c7ae-48a2-b342-1e672c66896a로 생성·focus했다. 공개 홈/대화 링크 GET만 열어 새 메뉴와 owner/agent 실제 테스트 메시지 렌더를 확인했다. 캡처 AppData/Local/KnowsLinkDevTools/humanpeer001-coor/preview-home.png 및 preview-conversation.png 보존. 운영·실계정/실메일 없음. 사용자에게 미검수 후보라고 명시했으며 최종 SQL회귀/exact-SHA lint/독립 QA·시각/리뷰는 계속 필요하다."
+      },
+      {
+        "line": 1868,
+        "text": "- DEV 완료 msg_e24c2d5ce38a/254ff6a: exact-SHA make lint/test·FullOps ERROR0·전체 SQL native0 확인. worker retained, delivery ACK. coor에 검수 후보만 병합했고 main 수락 전이다. fresh tester Grok4.7 high 독립 QA/코드 리뷰와 designer Codex6.1 high 직접 시각 검수로 인계한다."
+      },
+      {
+        "line": 1879,
+        "text": "- DEV시각수정 msg_7e0a71c1e687/12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5: exactmake lint/test·FullOps ERROR0 unavailable0, UI3파일 delta/원254ff6a SQL재사용 확인. worker retain·coor검수후보병합. 새visual task_ee6ae292af9b/ctx_a371d34f19ba/term_a4a0cb03 Codex6.1high fresh requested/effective·turn_started. tester msg_bd0e71834b84로 최종코드delta 리뷰인계. coor preview bd2996ff-06bf-4263-8bf0-8d66010ad2b7을 isolated695dbff1/localhost2809에 열고 실제대화 GET·새문구를 확인했다. 캡처 preview-simplified-conversation.png는 AppData/Local/KnowsLinkDevTools/humanpeer001-coor에 보존하며 nativeviewport가1440검사와 다름을 구분한다."
+      },
+      {
+        "line": 1882,
+        "text": "- 시각 재검수 msg_ac159db37045: designer 착수 Env:ORCA* 열거가 세션hook/launch token을 자기 도구출력에 포함했다. 값은 재조회/복사하지 않고 제품OTP/세션/개인키미조회·Git미복사 보고를 보존한다. msg_2f229b4c34e2로 추가열거금지·현재판정finish/worker_done 뒤 즉시release와 권한상태확인 계획을 전달했다. 실제토큰회전이 확인되지않으면 회전완료라 주장하지 않는다. 로그삭제/변조 없음."
+      },
+      {
+        "line": 1893,
+        "text": "- 26094e9 main/origin 및 모든 idle clean 역할 동기화 완료. 최종 exact26094e9 등록make lint/test0·ERROR0/WARN19/unavailable0. 원본통합영수증Git공용fullops-integration/SAR-HUMAN-PEER-001-final.json 보존. 사용자 실제 Google 로그인 완료 응답과 coor운영GET로 활성agent2/키등록1/legacy관계1 확인. 현재 운영구UI이므로 SAR-HUMAN-PEER-001-OPS를 신규배정: 수락26094e9 운영적용, 새writer migration전 삭제없는 보호backup검증, 기존회원/agent/키/관계·공유서비스보존, coor실계정새UI후속. 기존제품검수/low/not_run 보존."
+      },
+      {
+        "line": 1895,
+        "text": "- 최종 운영 수락: msg_df52650491a2/626351ed 기록 고정snapshot .fullops-review-b0c79ac7baa84c7e8a6c92de8c359754에서 reviewed10/skipped12/checkPASS. 최초check의independence필드누락을실제등록세션/경로로교정후재검사했다. 실제운영26094e9/goose2/trigger1·backup/list/격리복원0·기존필드보존·localverify0. up.log끝grep0건EXIT1/regression기존projects실패1·원리허설권한실패보존. coor 실제Google계정새UI/이름/2agent명칭/자기연결동의저장확인. 외부friend요청·실전송0. 운영완료기록·coor LIVE 통합후main/originpush. 미연결agent1개·실친구왕복·실keyboard/200%/mobile·원scenario not_run·backup암호화/최대7일집행미확인·low문구3·개별sessiontoken회전미확인은후속이며이번에자동착수하지않는다. 제품파일은26094e9와동일하여그exactmake lint/test0를재사용한다. 삭제·이동정리없음, 모든snapshot/helper/증거보존."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/contexts/designer.md",
+    "sha256": "51c8f80f5cf8813d25f2bd3b7de9a3ac1f3fef5909a0ec7cf370eda5b105059d",
+    "lines": 40,
+    "matches": [
+      {
+        "line": 34,
+        "text": "- 2026-10-15 SAR-UX-ISSUES-002-DESIGN: #2–#8을 사람 친구 규칙으로 대조했다. handle/초대 링크 대신 친구 코드, 조회 복구·검증된 승인 요약·언어 저장·설치 재개 기준을 확정했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/contexts/dev.md",
+    "sha256": "62d61c31fd13a18663f26d80dfa15ca5f4a54237e162be0f5708fd7280a7fe47",
+    "lines": 56,
+    "matches": [
+      {
+        "line": 16,
+        "text": "- 검증: `make lint`·`make test`는 `cmd/`·`internal/`과 adapter만 대상이다. Windows는 KnowsLinkDevTools의 Node22·w64devkit을 쓴다. Windows product-lint는 deploy 스크립트 한계가 있어 최종 gate는 서버 고유 `/tmp` clean clone에서 실행한다."
+      },
+      {
+        "line": 17,
+        "text": "- 실행권: claim은 한 번만 발급한다. 재시작·철회·세대 교체 뒤 과거 receipt·gate로 복구하지 않는다. 처리 경로(`deliver`)는 저장 상태에 남기고 lease·persist·ACK·claim 확정 지점마다 검사한다."
+      },
+      {
+        "line": 18,
+        "text": "- 보안 게이트를 Python `assert`로 쓰지 않는다(`-O`에서 사라진다). 회귀 검사는 원 결함 대조군·변이로 검출력을 먼저 증명한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+    "sha256": "6122761e9f8e1b154f11c97d88194778451dfbad4e514ddc8aad7d193f9ea32e",
+    "lines": 231,
+    "matches": [
+      {
+        "line": 7,
+        "text": "summary: 이슈 원문과 사람 친구 구현을 대조하고 이름·언어·승인·조회·설치 재개 수락 기준을 정한다"
+      },
+      {
+        "line": 26,
+        "text": "| #2 이름·공유 ID | 수동 생성·device 동의·remote 동의에서 이름 입력, 기존 이름 수정, 이름/클라이언트/짧은 구분값, 무명 fallback | 승인·receipt·legacy 표시는 여전히 ID 위주다. 사용자 지정 handle은 없다. 사람 친구 코드가 발견 수단이므로 에이전트 handle 디렉터리를 추가하지 않는다. | `human.go:validName`, `human_pages.go`, `human_http.go`, `member_agents.go`, `remote_auth.go`; U2 |"
+      },
+      {
+        "line": 30,
+        "text": "| #6 조회 복구 | 소유 에이전트/참여 receipt 검사, 전달·처리·답장 구분 | 오류는 일반 refusal 화면이다. 대상/ID 수정 폼이 사라진다. 성공 화면도 hidden 값 재조회만 가능하다. | `member_receipt.go:memberReceipt`, `member_pages.go:receipt/refusal`; U6 |"
+      },
+      {
+        "line": 38,
+        "text": "이름은 현재 규칙인 공백 정리 후 Unicode 1–40자, 제어문자·방향 제어문자 금지를 유지한다. 동명은 허용한다. 카드·선택·승인·조회·연결 화면은 이름을 먼저 보이고 클라이언트와 비밀이 아닌 안정 구분값을 병기한다. 구분값이 충돌하면 표시를 늘려 구별한다. 구분값은 검색·라우팅 키가 아니다. 전체 ID는 상세에 둔다. 권한상 이름을 확인할 수 없으면 ‘확인할 수 없는 에이전트’와 허용된 식별자만 표시한다. 이름을 얻으려고 상대의 현재 비공개 프로필을 추가 조회하지 않는다."
+      },
+      {
+        "line": 64,
+        "text": "## U6 — 요청 상태 조회와 입력 복구"
+      },
+      {
+        "line": 66,
+        "text": "화면 제목과 진입 링크는 ‘요청 상태 조회’로 바꾼다. 설명은 ‘보낸 요청이나 답장의 ID로 전달 상태를 확인합니다. 현재 온라인 상태를 확인하는 기능은 아닙니다.’다. 내 에이전트 상세와 기존 관리 화면에서 같은 조회 화면으로 접근한다. 주 메뉴 세 개를 늘리지 않는다."
+      },
+      {
+        "line": 68,
+        "text": "첫 화면과 성공·오류 화면 모두 같은 편집 폼을 제공한다. 라벨은 ‘내 에이전트’, ‘요청 ID 또는 답장 ID’, 버튼은 ‘상태 확인’이다. 선택기는 U2 이름 체계를 따른다. 요청 ID는 사용자가 받은 값을 붙여 넣게 한다. 합성 UUID 예시는 형식 설명일 뿐 실제 조회 성공 예시라고 표시하지 않는다."
+      },
+      {
+        "line": 72,
+        "text": "| 빈/형식 오류 | 같은 선택과 안전한 원입력, 필드 오류 | 오류 필드로 이동하고 수정 후 조회 |"
+      },
+      {
+        "line": 74,
+        "text": "| 권한 있는 만료 receipt가 아직 보존됨 | 선택/ID 유지, ‘전달 기한 만료’와 실제 기한 | 현재 연결·친구를 확인하고 필요하면 별도 승인으로 새 메시지 작성 |"
+      },
+      {
+        "line": 75,
+        "text": "| 429 | 입력 유지, 서버가 제공한 재시도 가능 시각 | 자동 polling 없이 수동 조회 |"
+      },
+      {
+        "line": 76,
+        "text": "| 일시 장애 | 입력 유지, 확인 실패 표시 | 잠시 뒤 같은 조회; 자동 발송 없음 |"
+      },
+      {
+        "line": 77,
+        "text": "| 세션 만료 | 재로그인 안내, 승인된 같은 회원의 조회 문맥만 복원 | 다른 계정으로 로그인하면 이전 선택/ID를 복원하지 않음 |"
+      },
+      {
+        "line": 79,
+        "text": "새로고침·뒤로가기·재조회·‘조회 입력으로 돌아가기’는 해당 폼 위치와 선택/ID를 복원한다. 보존 범위는 현재 인증된 조회 흐름이다. 조회 이력의 장기 저장·계정 간 공유는 추가하지 않는다. 원문·키·credential·세션 값은 URL·복귀 파라미터·화면·로그에 넣지 않는다. 요청 ID도 진단 수집에 무조건 기록하지 않는다. 구현의 저장·복귀 방식과 길이 제한은 DEV가 정하되 오입력은 이스케이프하고 과대 입력은 안전 거절한다."
+      },
+      {
+        "line": 81,
+        "text": "성공 결과는 ‘전달’, ‘처리’, ‘관련 답장’을 분리한다. 대기/수신 확인 중은 ACK 전이다. 전달됨은 보관·ACK 성공이며 읽음·실행·답장 완료가 아니다. 조회 버튼은 송신하지 않는다. 키 재발급과 멱등키를 혼동시키는 ‘새 key로 송신’ 문구는 ‘새 메시지로 보내기’로 바꾼다. 기술 상세에서만 원래 상태값과 멱등 규칙을 설명한다."
+      },
+      {
+        "line": 83,
+        "text": "완료 조건 U6-A: 잘못된/없는/타인/보존 종료 ID의 비공개 비노출, 권한 있는 만료 ID, 429·503·세션 만료, 새로고침·뒤로가기·반복조회·키보드 수정을 같은 격리 fixture에서 확인한다. 선택한 내 에이전트가 철회되면 다른 에이전트로 조용히 바꾸지 않고 다시 선택하게 한다."
+      },
+      {
+        "line": 91,
+        "text": "각 지원 요청 유형에 대해 DEV는 검증된 필드와 사용자 문구의 대응표를 남긴다. 일정 요청의 시간 범위 같은 구조화 필드도 실제 schema에 있을 때만 보인다. 없는 목적·수신자·권한을 추측하지 않는다. 이름 조회권한이 없으면 원래 허용된 ID와 안전 fallback을 쓴다. 자유문은 ‘요청자가 적은 내용’으로 분리하고 실행/링크 자동 열기를 하지 않는다."
+      },
+      {
+        "line": 101,
+        "text": "회원 화면은 ‘대화 / 친구 / 내 에이전트’를 유지한다. 헤더의 기존 ‘내 계정’ 진입을 ‘설정’으로 표시하고 같은 계정 공간에서 이름·코드·언어·보안을 찾게 한다. 독립 승인/조회/동의 화면은 주 메뉴를 억지로 현재 위치로 표시하지 않는다. 고유 title·h1·header·main·본문 건너뛰기와 ‘요청 상태 조회’, ‘요청 승인’, ‘클라이언트 연결’ 같은 위치명을 제공한다."
+      },
+      {
+        "line": 103,
+        "text": "각 화면에는 정확한 내부 복귀 링크를 둔다. 조회는 입력 폼, 승인은 승인 목록, 키 연결은 내 에이전트의 해당 관리 위치로 돌아간다. 진입 문맥이 없거나 권한이 사라지면 해당 안전 목록으로 복귀한다. 임의 외부 return URL을 받지 않는다. Remote 승인 뒤의 앱 복귀만 기존 검증된 redirect 계약을 사용한다. ‘앱으로 돌아가는 중’은 키 교환·연결 완료를 뜻하지 않는다. 자동 복귀가 실패하면 검증된 앱 링크와 만료 시 앱에서 다시 시작하는 안내를 제공한다."
+      },
+      {
+        "line": 128,
+        "text": "번역 범위는 공개/로그인/이름/대화/친구/내 에이전트/설정/legacy/receipt/승인/local 연결/remote 동의·복귀의 사용자 문구다. 제목·메뉴·라벨·상태·빈 상태·오류·검증·접근성 이름·도움말을 포함한다. 프로토콜 ID·키·명령·사용자 이름·메시지·검증 원문 JSON은 번역하지 않는다. 외부 호스트 UI·Google 화면과 README 전체 번역은 이번 웹 UI 완료 범위에서 제외한다. 외부 한국어 문서 링크는 언어를 표시한다."
+      },
+      {
+        "line": 164,
+        "text": "7. 사용자가 대상·비민감 본문을 명시 승인하면 확인 메시지를 보낼 수 있다. 전달·화면 수신·관련 답장 receipt를 각각 확인한다. 버튼을 눌렀다는 이유로 자동 시험 발송하지 않는다."
+      },
+      {
+        "line": 179,
+        "text": "| 오프라인 추정·전달 만료·429 | 관측된 실패와 수신 앱/요청 조회 안내 | online 추측 금지, 자동 재발송·TTL 연장 금지 |"
+      },
+      {
+        "line": 192,
+        "text": "요청 상태 조회                       설정"
+      },
+      {
+        "line": 217,
+        "text": "| 1 | U6 + 해당 U7: 조회 입력과 복귀 복구 | `member_receipt.go`, `member_pages.go`, 회원 진입/인가·조회 회귀, D05/D10/D11 | 같은 대상·ID 수정 재조회, 없는/타인/만료 비노출, 429/503/세션, 키보드·뒤로/새로고침 |"
+      },
+      {
+        "line": 218,
+        "text": "| 2 | U2/U4 + 해당 U7: 이름 표시·코드 공유·사람 관계 안내 정합 | `human_pages.go`, `human_http.go`, `member_agents.go`, `human.go`, 승인/조회 표시 영향 | 동명·긴 이름·세 생성 경로·ID 불변, code 교체/차단/세대 경합, agent 0개 친구 요청, 새 agent 포함 |"
+      },
+      {
+        "line": 219,
+        "text": "| 3 | U5 + 해당 U7: 검증된 승인 요약 | `http.go:verifiedGate/gateView`, `human-gate`, 승인 목록·policy/schema 회귀, D05/D10/D11 | 구조화 요약 일치, hint 비권한, owner/서명/digest/세대/기한, 만료·중복·거절·재접근 |"
+      },
+      {
+        "line": 227,
+        "text": "tester는 합성 A/B/C·legacy·local/remote fixture, loopback origin/포트·DB 식별자·허용 GET/명시 POST·독립 assertion·시간 예산을 기록한다. 운영·실메일·실상대·배포·삭제/이동은 금지한다. 시각 검수는 실제 후보의 조회 오류·승인 요약·친구 빈 상태·연결 실패·설정 두 언어 캡처를 사용한다. 정적 fixture와 실제 인증/DB 조작은 구분한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/architecture.md",
+    "sha256": "491dcb445f0d30ca7a5c6c934644f002ab6648cb389071f560ed5c0012e17f38",
+    "lines": 257,
+    "matches": [
+      {
+        "line": 18,
+        "text": "Remote claim은 한 호출 안에서만 같은 agent의 pending 검색을 공유한다. 마지막 callback lease가 소진된 뒤 새 도착이 있으면 즉시 다음 claim을 예약한다. 로컬 Inbox는 읽음 claim 전에 housekeeping을 완료해 오류가 미표시 본문을 잃게 하지 않는다. 측정과 회귀 범위는 [DEV 보고](../evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)를 따른다. 아래 과거 후보 절을 새 운영 관측으로 해석하지 않는다."
+      },
+      {
+        "line": 28,
+        "text": "새 text만 Message.Conversation에 당시 참여 owner/사람 이름/agent 이름/본문/작성자 종류를 저장한다. 유효 참여 세션은 수락부터 24시간 이내 복사본을 읽는다. transport Envelope/Inbox의 ACK·TTL·철회 삭제와 분리되며, 과거 사본은 실행/전달/최신 목록 조회 권한이 아니다. 업무 M/H/R과 이미 삭제된 원문은 복구하지 않는다."
+      },
+      {
+        "line": 34,
+        "text": "기존 polling·signed text API·키·관계는 보존한다. SSE는 `GET /v1/text/events`에서 자기 agent의 빈 `ready`/`arrival` 신호만 보낸다. singleton transaction이 유효 queued text와 현재 public-agent 자격 변화에 대해 빈 Postgres NOTIFY를 commit한다. process 사이에도 LISTEN으로 전달하며 heartbeat에는 DB를 조회하지 않는다. LISTEN 확정 뒤 현재 상태를 읽어 연결 중 send 누락을 복구한다. 읽기 전용 현재 상태 조회는 업무 변경·수신 권한을 부여하지 않으며 본문 API는 기존 row lock에서 재검증한다."
+      },
+      {
+        "line": 57,
+        "text": "- `internal/relay/store.go`: shared Postgres 상태의 transaction·epoch CAS·current-auth·queue·receipt·lease·gate."
+      },
+      {
+        "line": 70,
+        "text": "단일 행과 전체 상태 순회는 로컬 MVP의 처리량 한계다. 24h receipt 20000 등 미확정 제안의 성능을 보장하지 않는다."
+      },
+      {
+        "line": 80,
+        "text": "동일 key+digest는 receipt만 반환한다. exp·TTL·id 실패는 전체 작업 상태를 rollback한다."
+      },
+      {
+        "line": 87,
+        "text": "H는 현재 부모 receipt·실제 수신·claim token·digest·pair 세대에 결속한다."
+      },
+      {
+        "line": 97,
+        "text": "receipt·idempotency metadata는 24h 유지한다. revoked key의 kid와 metadata는 재할당 방지를 위해 계속 유지한다."
+      },
+      {
+        "line": 171,
+        "text": "회원 ID(`mem_…`)가 사용자별 권한의 주체다. 다음 기능 SAR-PUBLIC-AGENTS-001은 세션과 최근 재인증으로 연결 승인을 발급하고 agent를 회원 owner에 묶는다. 이메일은 agent 식별자·contacts·receipt에 넣지 않는다."
+      },
+      {
+        "line": 179,
+        "text": "회원 키는 Key.Credential 해시에 묶인다. agent-wide legacy credential은 일반 연결 완료 시 제거한다. 선택 철회와 회전은 철회 키 credential의 모든 API 인증을 막는다. 기존 합성 owner credential API는 회귀 호환을 유지한다. 합성 키 회전은 기존 전체 철회 동작이다."
+      },
+      {
+        "line": 181,
+        "text": "실제 이메일·외부 계정·공개·일반 text·다닷·OAuth·처리량 보장은 후속이다. HTTP 동시 수용 16/4·claim 4·queue/gate/receipt 용량은 MESSAGES/공개 수락 후속 범위다. 이번 과제의 경합은 기존 DB row lock으로 직렬화했다. 상세 구현·검증·인계는 [실행 기록](../exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md)에 있다."
+      },
+      {
+        "line": 186,
+        "text": "명시 송신·한 원요청의 관련 답장 1회만 지원한다. 최대 4096 UTF-8 bytes·TTL 180s다. 원문은 수신 persist→ACK 또는 만료·철회·3회 lease 실패에 지운다. ACK 후 출력 전에 client가 죽으면 text 표시를 잃을 수 있다. 자동 재송신·재답장·wake·장기 타임라인은 없다. receipt·멱등 metadata는 24h 보존한다."
+      },
+      {
+        "line": 187,
+        "text": "공통 수락 경계가 queue100·pending gate100·receipt20000과 claim4를 검사한다. high priority와 재시작도 상한을 우회하지 못한다. replay는 새 slot을 쓰지 않는다. H/R이 포화하면 수락하지 않는다. 이미 수락한 부모는 TTL에서 failed:expired로 안전 종료하고 claim을 해제한다. 성공 처리를 약속하지 않는다."
+      },
+      {
+        "line": 188,
+        "text": "HTTP 신규16·정리4는 즉시 거부하는 프로세스 채널과 공유 JSONB 입장 기록으로 제한한다. 정상 종료는 기록을 지우고 crash는 30s 뒤 회수한다. DB context·socket body read는 10s다. 8/32KiB 상한 본문은 모든 슬롯보다 먼저 같은 10s 기한 안에서 수신한다. 느린 송신자는 자기 연결만 점유한다. 이 점유는 header 수신과 같은 연결 계층이며 DB·공유 상태를 만들지 않는다. 모든 입장 요청의 신원별 rate를 schema·CSRF·route 검사 전에 한 번 차감한다. 입장 전 로컬 동시 상한 거부는 DB 대기열을 만들지 않는다. 정리 입장(로컬 정리 채널·공유 Clean 기록·cleanup rate)은 검증된 principal이 같은 출처·gate CSRF·유효 본문으로 자기 기록을 정리할 때만 쓴다. 익명·잘못된 자격·타 owner 기록·CSRF·잘못된 본문은 신규로 집계한다. 로컬 채널은 이 프로세스의 마지막 커밋 상태 snapshot에서 자격 색인과 자기 기록 대조(cleanupTarget)를 모두 통과한 요청만 정리 채널로 고른다. 타 owner·lease 없는·위조 정리는 DB 입장을 기다리는 동안에도 신규 채널만 쓴다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2 H-2)"
+      },
+      {
+        "line": 194,
+        "text": "Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시작 요청을 보낸다. 브라우저에는 token hash인 공개 연결 ID만 노출한다. 기존 Google issuer/sub 회원·Strict 세션을 재사용한다. Google callback은 요청의 회원만 바인딩하고, 최근 인증 상태의 명시적 동의가 별도 agent를 만든다. Node가 동일 키로 승인 상태를 조회하고 기존 signed complete로 자기 credential을 받아 로컬에 저장한다. 관계 요청·수락은 기존 권한 경계를 유지한다. 새 IdP·의존성·SQL 테이블은 없다. Cloudflare 사용자 경로 개방과 관리자 보호의 운영 변경은 D12에서 별도로 수행한다."
+      },
+      {
+        "line": 210,
+        "text": "- 수신 뒤 TTL이 지나거나 관계가 철회돼도 이미 검증·보존한 text는 표시한다. `expired:true`이면 관련 답장은 relay가 거부한다. 철회 뒤 새 pull은 key 조회 실패로 끝나며 inbox에 들어가지 않는다."
+      },
+      {
+        "line": 211,
+        "text": "- ACK 후 표시 전 crash로 text를 잃던 기존 한계는 로컬 inbox로 해소한다. 단, 로컬 inbox의 수동 조회 뒤 표시 전 crash는 그 text를 잃을 수 있다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/crud-design.md",
+    "sha256": "02a18b3941432d5bd348a134e0f40d2d95db4cd7b180d0e8973540ce56557cf8",
+    "lines": 114,
+    "matches": [
+      {
+        "line": 37,
+        "text": "현재 agent Bearer가 SSE에 입장할 때 공유 Streams 기록을 만든다. 기존 HTTP/rate 입장은 handshake 뒤 반납한다. LISTEN 확정 후와 NOTIFY 때만 현재 상태를 읽으며 heartbeat는 DB를 조회하지 않는다. 정상 종료는 자기 기록만 삭제하고 crash는65초 만료 sweep으로 회수한다. 신호는 Message를 lease·persist·ACK하거나 실행 권한을 만들지 않는다. 본문은 기존 text API와 private Inbox 저장 순서를 유지한다."
+      },
+      {
+        "line": 47,
+        "text": "| Message/Receipt/Idempotency | send의 동일 transaction | endpoint 권한·receipt-only | `deliver:agent`만 lease·persist·ACK·claim·authorize·gate-consume·H/R 부모; H는 owner 결정; R completion | payload exp/완료/철회; metadata 24h |"
+      },
+      {
+        "line": 73,
+        "text": "agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다. 기존 owner 상태 기계의 operateAs를 회원 세션 경로가 재사용한다. 이메일/회원 디렉터리 공개 조회는 없다. fixture와 외부 계정 설치 성공을 구분한다."
+      },
+      {
+        "line": 98,
+        "text": "| 동작 | 조회·변경·삭제 |"
+      },
+      {
+        "line": 100,
+        "text": "| 일반 text 송신 | 현재 양측 Member/Owner/Agent/Key/Pair 확인. 새 Message+Idempotency를 원자 생성. 동일 key/digest는 receipt만 조회 |"
+      },
+      {
+        "line": 103,
+        "text": "| 회원 receipt | 세션·선택 agent 소유권·endpoint 확인. metadata만 조회. 타 회원/임의 agent는 거부 |"
+      },
+      {
+        "line": 106,
+        "text": "| HTTP 입장 | 본문 수신 뒤 입장. 신원별 request budget 한 번 차감. 공유 HTTP map 입장/종료 삭제·30s crash 정리. 신규16/정리4. 정리는 검증된 자기 기록만, owner 제어·agent ACK 단위별 동시 1개(로컬·공유). persist 전 ACK는 신규. 신규 포화 중 snapshot이 증명 못한 정리 자격은 lock 없는 1회 재조회(DEV-FIX-3). 종료 실패 기록은 다음 commit이 삭제 |"
+      },
+      {
+        "line": 114,
+        "text": "start는 Device 요청만 생성한다. Google callback은 요청의 Owner와 prepared 상태를 갱신한다. 최근 인증된 동일 회원의 device-confirm만 독립 agent를 생성한다. 서명된 poll은 승인 전 회원·agent를 반환하지 않는다. 기존 complete는 키·credential을 생성하고 요청을 소비한다. 기존 cancel·revoke·cleanup을 재사용하며 관계 요청/수락은 변경하지 않는다. 타 회원 재바인딩, 타 키 조회, 만료·재실행은 거부한다. 상세 계약은 D05와 D06을 따른다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/data-model.md",
+    "sha256": "2eaa8f4a0444438326096870b552af9c039b0cea8f62d0206da930bb7064e7e3",
+    "lines": 92,
+    "matches": [
+      {
+        "line": 49,
+        "text": "| Message | ID, frozen raw Envelope, shared Inbox, receipt, kid, deliver 경로(값 없는 이전 상태는 agent 처리 불가), pair generation, attempts, lease token/window/generation, claim token, completion | MVP-03–07/11/15 |"
+      },
+      {
+        "line": 50,
+        "text": "| Receipt | id/from/to/intent/digest/exp/accepted_at/transport | MVP-04/05 |"
+      },
+      {
+        "line": 64,
+        "text": "회원 owner는 bearer credential이 없다. 회원 이메일은 로그인 매핑에만 쓴다. agent ID·contacts·receipt·rate key·로그에 넣지 않는다. 미확인 이메일은 Challenge의 최대 10분 동안만 남는다. 확인 코드와 세션 token 원문은 DB에 저장하지 않는다. 계정 비활성화·30일 정리는 후속 기능이다."
+      },
+      {
+        "line": 87,
+        "text": "Message는 frozen 업무 또는 별도 knowslink.text 원문을 저장한다. Message.Parent는 text 원요청 ID, ReplyID는 수락된 관련 답장 ID다. text에는 claim을 만들지 않는다. ACK 후 completion=received이고 답장 ACK 후 원요청 completion=reply_received다. 원문은 ACK·TTL·철회·lease 실패에 지운다. receipt/멱등은 수락부터24h이며 개인정보·text·credential을 metadata에 넣지 않는다."
+      },
+      {
+        "line": 88,
+        "text": "State.HTTP는 무작위 입장 token을 키로 하는 `{Clean,Exp,Owner}` map이다. Owner는 Clean 기록의 공정성 단위다. owner 자신의 제어는 owner ID, 그 owner의 agent ACK는 `<owner>/agents`이며 단위당 Clean 기록은 동시 1개다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, DEV-FIX-3). 신규 기록과 이전 기록은 Owner를 생략한다. HTTP 신규16·정리4의 공유 수용량을 센다. Clean=true는 검증된 principal의 자기 기록 정리 요청만 기록한다(SAR-PUBLIC-MESSAGES-001-DEV-FIX). 로컬 채널 선택용 커밋 snapshot((commit 시각, epoch) 순서)·자격 색인·단위별 로컬 정리 표시·마지막 재조회 시작 시각·종료 실패 token은 프로세스 메모리의 파생값이며 저장하지 않는다. 정상 종료 때 삭제하고 Exp(30s) 뒤 sweep한다. 기존 직렬화 상태는 빈 map/ReplyID로 복원한다. Member·Owner·Agent·Pair와 기존 key 보존 규칙은 바꾸지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/interface-design.md",
+    "sha256": "5d2914b404342b2533dfd3e2ac48990bed1ecb2248e7e575ef7a8a00f6a24606",
+    "lines": 287,
+    "matches": [
+      {
+        "line": 42,
+        "text": "같은 발신 agent/attempt와 같은 본문/대상은 같은 receipt·원 기한을 반환하고 다른 의미는409다. TTL 종료/친구 철회 후 재전달 권한은 생기지 않는다. keys/contacts는 활성 친구의 현재·향후 agent를 동적으로 계산하며 이메일·credential·내부 회원ID를 목록에 노출하지 않는다. 과거 대화에는 당시 이름만 사용한다. 새 legacy invite 생성은 production에서 거부한다."
+      },
+      {
+        "line": 94,
+        "text": "| POST /v1/send | envelope.from agent | frozen relay.v1; receipt-only 결과. H 외 `deliver:human`은 403 sender_not_allowed |"
+      },
+      {
+        "line": 100,
+        "text": "| GET /v1/receipts/{id} | 현재 endpoint agent | receipt metadata와 별도 completion |"
+      },
+      {
+        "line": 106,
+        "text": "동일 서명 재전송은 인증·routing 뒤 receipt만 반환한다. 새로운 승인·실행권을 만들지 않는다."
+      },
+      {
+        "line": 107,
+        "text": "receipt transport는 queued/leased/delivered/failed:expired/failed:max_attempts/failed:revoked다."
+      },
+      {
+        "line": 129,
+        "text": "`ADAPTER_GATE=1`은 합성 judgment gate를 만든다. gate 조회 간격은 2초다."
+      },
+      {
+        "line": 156,
+        "text": "| POST /v1/test/send | 서명된 relay.test.message만 허용, receipt-only 결과 |"
+      },
+      {
+        "line": 159,
+        "text": "| GET /v1/test/receipts/{id} | 자기 endpoint의 시험 receipt metadata |"
+      },
+      {
+        "line": 183,
+        "text": "| GET·POST /home/gates/{id} | session | 기존 gate 화면과 결정. CSRF는 세션 token HMAC. 다른 회원 gate 조회 403, 결정 409 |"
+      },
+      {
+        "line": 206,
+        "text": "| GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음 |"
+      },
+      {
+        "line": 246,
+        "text": "| POST /v1/text/send | from agent의 현재 key credential. knowslink.text.v1 서명·양측 일반 회원·active pair·세대 확인. receipt만 반환 |"
+      },
+      {
+        "line": 249,
+        "text": "| GET /v1/receipts/{id} | 현재 endpoint agent. receipt·completion·reply_to·reply_id metadata. 본문 없음 |"
+      },
+      {
+        "line": 250,
+        "text": "| GET /home/receipts?agent=…&id=… | 회원 세션. 선택 agent 소유권·endpoint 확인. 자기 실패 metadata는 권한 철회 후에도 표시 |"
+      },
+      {
+        "line": 258,
+        "text": "관련 답장은 실제 persist/ACK된 원요청의 endpoint를 반전하고 같은 현재 세대·부모 기한 안에서 한 번만 수락한다. 같은 key/내용은 현재 인가 뒤 receipt만 반환한다. 다른 내용은409 idempotency_conflict다. 답장의 ACK 뒤 부모 completion은 reply_received다. queued·leased는 수신 완료가 아니다."
+      },
+      {
+        "line": 259,
+        "text": "한도는409 capacity, HTTP 동시/rate는429·retry_at/Retry-After, TTL은422 expired/ttl_too_long, 키는401 invalid_auth 또는422 invalid_signature, 관계·세대는403이다. 한도 실패는 새 receipt를 만들지 않는다. `/home`은 가능한 복구 동작을 표시한다. agent receipt는 현재 인가가 없으면403이고 자기 회원 화면에서 실패를 조회한다."
+      },
+      {
+        "line": 260,
+        "text": "Node CLI는 `text.js send <folder> <peer> <key> --confirmed [request-id]`, `receive <folder>`, `receipt <folder> <id>`다. 본문은 비공개 stdin이다. MCP는 public-node와 자기 폴더를 명시한 경우만 knowslink_text_send/receive/receipt를 허용한다. send는 해당 송신의 명시 승인 confirmed:true를 요구한다. 수신 text는 untrusted:true다. 정상 idle pull은10s 이상이다. 실제 외부 앱/계정 수락은 후속이다."
+      },
+      {
+        "line": 274,
+        "text": "device proof 바이트는 `KNOWSLINK-DEVICE\\0token\\0client\\0kid\\0public` UTF-8이며 서명과 공개키는 base64url이다. 시작·조회 본문은 8192 bytes로 제한한다. 기존 익명 30/min, 회원 40/min, 공유 200/min 및 신규 요청 budget을 재사용한다. 보존 중 Device 요청은 최대 2000개다. 요청 수명은 10분이며 기존 최근 인증 실패는 422다. 기존 prepare/complete·text·owner API 계약은 유지한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+    "sha256": "10dece240342ce8b35824d03b99a339d695f24bd95d8776fa1ecb83cc228ba33",
+    "lines": 105,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    "sha256": "9304b2c88a9656e6aaa121065821bdcc2115fa2d55426a0aa1a7ea5f695ab742",
+    "lines": 798,
+    "matches": [
+      {
+        "line": 111,
+        "text": "마지막 보조 문구는 '연결 완료나 수신 상태만으로 화면 표시·답장 성공을 보장하지 않습니다.'다. 내부 polling 초수·loopback wake·검수 실패 이력은 첫페이지에 나열하지 않는다. 장시간·재시작 후 자동화, 일정 조회·예약·결제 등 외부 업무 실행을 보장하지 않는다."
+      },
+      {
+        "line": 115,
+        "text": "h2는 '이렇게 메시지를 주고받을 수 있어요'다. 바로 아래에 '기능을 설명하기 위한 가상 예시입니다. 실제 회원의 대화나 운영 성공 사례가 아닙니다.'를 항상 보인다. 예시는 정적 문서이며 입력창·보내기 버튼·실제 receipt·시각·온라인 표시는 없다."
+      },
+      {
+        "line": 214,
+        "text": "LG-01–08 제품 기준은 [D02](../../planning/product-specs/SAR-HUMAN-PEER.md)의 공개 안내 절을 따른다. DEV는 위 카피·상태·반응형을 구현하고 핵심 auth/template 회귀와 필수 make lint/test를 수행한다. tester는 같은 고정 SHA에서 anonymous·Google-only·both·email-only·none·error·expired·authed, 실제 POST·redirect·정보 비노출을 독립 검증한다. designer는 1440·390·320의 hero·설치 열림·예시·오류 실제 캡처를 확인한다."
+      },
+      {
+        "line": 220,
+        "text": "구현 연결(2026-10-14): 공개 template·인증 view·내 계정 복귀 링크와 관련 회귀는 [DEV 구현 기록](../../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다. 위 설계 검사 기록과 과거 실패는 보존한다. DEV 자체 검증은 독립 QA·designer 직접 시각 수락·코드 리뷰·운영 배포를 대신하지 않는다."
+      },
+      {
+        "line": 270,
+        "text": "기능 이름은 고정한다. URL·handler·저장 구조는 DEV가 정하고 기술 문서에 연결한다. `/home`은 대화 진입점으로 바꾼다. 기존 연결 승인·gate·receipt 직접 링크는 해당 권한을 유지하며 적절한 상세로 복귀한다."
+      },
+      {
+        "line": 382,
+        "text": "과거 V-02는 새 요청 상태별 동작 분리로 대체한다. V-03 날짜는 짧은 KST '오늘 오후 2:10', 이전 날짜는 '10월 11일 오후 2:10', 연도가 다르면 연도를 붙인다. 정확한 기한은 상세에서 제공한다. V-08 gate/receipt도 같은 한국어 상태를 적용하되 원 의미를 유지한다. V-12 이동 순서와 N-02 mobile 주 버튼 폭은 위 구조를 적용한다. 명령은 연결 상세로 이동하며 복사 값과 줄바꿈을 확인한다. 옛 결함을 새 구현에서 해결됐다고 미리 판정하지 않는다."
+      },
+      {
+        "line": 434,
+        "text": "관찰하지 않은 것: 이메일 로그인 입력·확인 대기·오류 화면, 연결 관리(`/home/connections/{id}`)·기기 승인(`/connect/{id}`)·receipt·gate 화면의 렌더 결과. 이 화면들은 템플릿 코드(`internal/relay/member.go`, `member_agents.go`, `http.go`)로 문구와 상태 분기만 확인했다. 후속 시각 검수에서 직접 확인한다."
+      },
+      {
+        "line": 465,
+        "text": "| `/home/receipts` | 연결 확인 receipt | 시각 토큰·정의 목록 정리 |"
+      },
+      {
+        "line": 481,
+        "text": "7. **연결 확인(receipt)**: 접힌 `details`(\"연결 확인 방법\"). 안의 명령은 코드 블록이다."
+      },
+      {
+        "line": 564,
+        "text": "### 5.7 승인 요청과 receipt"
+      },
+      {
+        "line": 568,
+        "text": "- receipt 화면: 정의 목록(`dl`)을 2열(라벨/값)로 정렬한다. 상태 값 옆에 배지를 쓰되 \"queued는 상대 수신 성공이 아닙니다\" 문장은 유지한다. 자동 wake·자동 답장 없음 설명은 유지한다."
+      },
+      {
+        "line": 611,
+        "text": "| 권한 없는 연결 조회 | 403 | `problem` \"연결을 조회할 수 없습니다.\" | 홈 복귀 |"
+      },
+      {
+        "line": 732,
+        "text": "| R-01 | 필수 | 8절 색·타입·간격·버튼·배지 토큰을 회원 웹 전 화면(로그인, 확인 대기, 홈, 연결 관리, 기기 승인, receipt, gate, 오류 화면)에 공통 적용한다. 한 곳에서 정의하고 재사용한다. | O-05, O-08, O-10 |"
+      },
+      {
+        "line": 754,
+        "text": "### 12.2.1 이전 UI 결함의 회귀 방지"
+      },
+      {
+        "line": 784,
+        "text": "- 연결 관리·기기 승인·receipt·gate·refusal 화면은 이번에 직접 캡처하지 않았다. 문구와 상태 분기만 코드로 확인했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/module-design.md",
+    "sha256": "f8079b0634993d5d42e515b97e94ed1bdb0719425b20d90c399e70c2648cbef6",
+    "lines": 275,
+    "matches": [
+      {
+        "line": 20,
+        "text": "`human_pages.go`의 내 계정에는 `/`의 서비스 안내 링크가 있다. 기존 회원 주 메뉴·인증 폼 계약은 유지한다. `landing_test.go`와 `landing_integration_test.go`는 로그인 수단·공개 카피·오류 escape·실제 DB 세션·이름 설정·만료·개인정보 비노출을 검증한다. 기존 member form golden과 Google/device/Remote 회귀도 적용한다. opt-in `landingfixture` 태그의 fixture는 별도 합성 DB와 loopback 서버만 사용한다. 실제 검증 SHA·명령·결과는 [DEV 기록](../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다."
+      },
+      {
+        "line": 24,
+        "text": "| 모듈 | 변경·회귀 |"
+      },
+      {
+        "line": 62,
+        "text": "| `mcp.ts` | 기존 도구9개·자동 수신 상태·stdio close cleanup | 기존 MCP initialize/discovery/held와 Inbox 회귀 |"
+      },
+      {
+        "line": 82,
+        "text": "`make test`는 외부 DB가 없어도 protocol과 기존 회귀를 수행한다. Postgres 검사는 integration build tag로 별도 실행하며 DB 환경이 없으면 실패한다."
+      },
+      {
+        "line": 131,
+        "text": "검증은 TestTrialMessageSafety·TestTrialSchemaAndConfiguration·TestTrialHTTP, trial-boundaries.test.ts, trial-check.ts로 연결된다. `make verify-mvp`는 기존 업무/gate 회귀와 두 독립 MCP 프로세스의 실제 Postgres 왕복을 함께 검사한다. `make verify-grok-plugin`은 네 tool을 기대한다. default held·실제 계정 수락의 분리는 계속 유지한다. [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)에 ID·명령·exit code·남은 실제 조건을 기록한다."
+      },
+      {
+        "line": 158,
+        "text": "| http.go·store.go | 공용 owner 동작과 키별 current-auth·철회·pair cap | 기존 업무/게이트/시험 회귀와 새 key credential 검사 |"
+      },
+      {
+        "line": 203,
+        "text": "| capacity.go·store.go | 공통 queue100/gate100/receipt20000/claim4·shared HTTP16/4·owner당 Clean 1·본문 선수신 입장·TTL 정리·현재 세대·(commit 시각, epoch) 순서 snapshot(remember)·종료 실패 기록 회수(reclaim)·owner 제어/agent ACK 공정성 단위(agentsUnit) | TestSharedCapacitiesAndCleanupClassification, TestSharedMessageCapacityHTTP, TestSharedExecutionClaimHTTP, TestHTTPConcurrencyAcrossInstances, TestHTTPSlowBodyAndCleanupAdmission, TestValidCredentialCleanupFlood, TestFailedFinishReclaimedAtNextCommit, TestOwnerControlNotHeldByOwnAgentAcks |"
+      },
+      {
+        "line": 204,
+        "text": "| cleanup_admission.go | 정리 입장 판정: 무상태 자격·같은 출처·gate CSRF·본문(cleanupCredential), 자기 기록(cleanupTarget), 커밋 snapshot의 자격 색인(kind·principal)으로 DB 전 자기 기록 대조와 공정성 단위 결정(cleanupOwner), 신규 포화 중 증명 못한 정리 자격의 lock 없는 단일 재조회(refresh, ReadRelay) | TestCleanupAdmissionNeedsVerifiedOwnRecord, TestRememberKeepsNewestCommit, TestCleanupSnapshotAcrossProcessesAndRestart, TestCleanupProvenWhileSnapshotStaleAndNewFull, TestValidCredentialCleanupFlood |"
+      },
+      {
+        "line": 205,
+        "text": "| member_receipt.go·member.go | 자기 agent/요청별 metadata·queued/수신/답장/실패 구분·수동 안내 | TestMemberReceiptView, TestPublicNodeProcesses, TestPublicMessageHTTPBoundaries |"
+      },
+      {
+        "line": 206,
+        "text": "| http.go·member_agents.go·api_rate.go | 공통 rate 차감·gate 검증본문/서명·deny 입장·현재 owner/CSRF·결정 뒤 정식 gate 화면 | TestPublicHTTPAdmissionAndGateSafety, TestEmailIdentity/member_gate_deny_form_returns_to_result와 기존 신원/gate 회귀 |"
+      },
+      {
+        "line": 208,
+        "text": "| mcp.ts·public-check.ts | public-node opt-in·명시 승인 send/관련 reply·수동 receive/receipt·untrusted 데이터 | 실제 독립 MCP 두 프로세스의 ID 대조와 mcp.test.ts held/discovery |"
+      },
+      {
+        "line": 216,
+        "text": "프로브 종료코드는 1이다. H-1 high는 익명 slow body가 인증 전에 신규 16과 정리 4 프로세스 슬롯을 점유한다. M-1 medium은 `POST /home/gates/{id}`의 deny가 본문 파싱 전에 신규 작업으로 분류된다. receipt 20000 거절 뒤에는 신규 HTTP 행 1개가 30초 만료까지 남을 수 있다."
+      },
+      {
+        "line": 217,
+        "text": "`make lint`, `make test`, `make verify-mvp`의 종료코드는 0이다. 이 결과는 격리 fixture다. 상세는 [QA 보고서](../evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md)다. 실메일, 공개, 노우↔다닷은 확인하지 않았다. H-1은 main 수락을 차단한다."
+      },
+      {
+        "line": 237,
+        "text": "`internal/relay/device.go`는 시작·서명 조회·동의 페이지와 agent 생성을 담당한다. `google.go`는 기존 callback 검증 후 연결 회원을 고정한다. `member_agents.go`와 `member.go`는 기존 최근 인증·Origin 검사 및 자기 홈 선택 UI를 재사용한다. `adapters/src/login.ts`는 로컬 키 생성·승인 대기·기존 complete·자동 저장을 담당한다. `private-files.ts`는 connect/text의 파일 검사를 공유하고 Windows .NET ACL로 소유자와 접근자를 검사한다. 새 패키지는 없다."
+      },
+      {
+        "line": 243,
+        "text": "- `beta.sh/render-public-config`: Access 파일 없이 기존 UUID와 member ingress로 config.public.yml0600을 새로 생성하고 검증한다. live config를 변경하지 않으며 재생성·잘못된 UUID·검증 실패를 거부한다. `test_public_config.sh`가 make lint에 연결됐다."
+      },
+      {
+        "line": 245,
+        "text": "- `TestDeviceCapacityRetention`은2000번째 허용, 다음 요청 거부, 회원 연결 제외, 만료 뒤24h 직전 보존과 경계 회복을 확인한다. `TestDeviceGoogleConnection`은 기존 다른 회원의 callback이 회원·세션·연결 소유권을 바꾸지 못하는 회귀를 포함한다. 신규 Device 포화의 medium 한계는 [D12](../operations/ops-guide.md)에 남긴다."
+      },
+      {
+        "line": 251,
+        "text": "| `adapters/src/inbox.ts` `Inbox` | private inbox 생성·확인, fsync·rename 저장, ID 중복 제거, rename claim 기반 1회 조회, 읽음 표시 24h 정리 | `inbox.test.ts` 2–3·6 |"
+      },
+      {
+        "line": 269,
+        "text": "| `member_pages.go` `memberPages` | 로그인·확인 코드·홈·연결 관리·기기 승인·receipt·거부 화면. 홈은 헤더·확인 필요 띠·섹션 이동·에이전트(접힘 행·위험 구역)·관계·승인 요청·연결 확인·계정 순서다 | `TestMemberPagesShowNextSteps`, integration 문구 검사 |"
+      },
+      {
+        "line": 272,
+        "text": "| `testdata/member_forms.golden` | 재설계 전 템플릿에서 만든 form 계약(method·action·hidden 값·필드 이름·button 라우팅). 의도한 차이는 홈 헤더 로그아웃 form 1개 추가뿐이다. SAR-FRONTEND-POLISH-001-DEV에서 선택할 에이전트가 없을 때 빈 select만 남던 홈의 관계 초대·요청 상태 form 2개를 숨겼다(`TestMemberInviteFormNeedsConnectedAgent`) | `TestMemberUIFixtures` |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+    "sha256": "93767e9761e95950c18e913a8d9464a9b9ad9a990c1cd2f3410172b1cd9a9141",
+    "lines": 102,
+    "matches": [
+      {
+        "line": 18,
+        "text": "`make lint`/`make test` 등록 명령은 유지한다. Windows make 부재는 정확한 committed SHA를 격리 Linux checkout에 전달하는 외부 bridge로 검증하며 실제 exit code를 FullOps 결과에 남긴다. Postgres tagged integration은 별도 고유 DB에서 실행한다. Go 문자열 CSS는 DESIGN 자동 검사가 판정하지 못하므로 실제 320/390/1440 화면을 별도로 확인한다."
+      },
+      {
+        "line": 51,
+        "text": "초기 조회한 ESLint 9.39.3은 npm의 지원 종료 경고 때문에 채택하지 않았다. 최종 ESLint 10.12.0은 Node 22.22.2와 typescript-eslint 8.71.0의 peer 범위를 만족한다. npm 설치·실행으로 호환성을 확인한다."
+      },
+      {
+        "line": 55,
+        "text": "루트의 `make install`, `make lint`, `make test`, `make build`, `make verify`, `make verify-runtime`, `make verify-mvp`, `make generate`, `make schema`를 사용한다. 상세 절차는 [README](../../../README.md)에 있다."
+      },
+      {
+        "line": 65,
+        "text": "Context7 `resolve-library-id` 후 `query-docs`로 확인했다. 비공개 코드와 비밀값은 조회하지 않았다."
+      },
+      {
+        "line": 91,
+        "text": "Context7 `/modelcontextprotocol/typescript-sdk`의 registerTool·McpServer·stdio·Client 근거를 조회했다. 반환 자료는 main/v2도 섞여 있으므로 설치 1.32.0의 `dist/esm/server/mcp.d.ts`, `stdio.d.ts`와 실제 compile/handshake로 대조했다. `/websites/cursor`의 manifest·MCP 설치 경로 조회와 [공식 plugin reference](https://cursor.com/docs/reference/plugins)를 사용했다. 버전 없는 문서를 특정 Bot 앱 빌드 지원 증명으로 확대하지 않는다. Bot 앱 빌드·hosted Node는 미확인이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+    "sha256": "df0eac6def2194678a04d6cf6fc183ef099a91cd94ac7b54640a5d6d182804aa",
+    "lines": 293,
+    "matches": [
+      {
+        "line": 7,
+        "text": "summary: \"합성 인증·전달과 21개 화면 증거, f567abf 실패 보존 및 7f83fd6 전체 SQL 회귀 종료코드 0\""
+      },
+      {
+        "line": 15,
+        "text": "구현 후보 `4eaefa6e0a5cf623f0d8d8080d918086f86030ec`에서 focused SQL integration과 실제 인증·API·전달 자체 검사가 통과했다. 세 CSS 폭의 정상 viewport 캡처 21개를 보존했다. `f567abff18b8f6ce77fc79e6601ba7163ae7f9ff` 전체 tagged SQL 회귀의 실패를 보존한 뒤, 수정 후보 `7f83fd6f3ae9945e292a86212c0ab566ea282b7a`의 전체 회귀가 118.664초 후 종료코드 0으로 통과했다. 부모의 최종 제품 게이트와 독립 QA·리뷰·디자인 판정은 별도다."
+      },
+      {
+        "line": 80,
+        "text": "최초 runtime 시도는 내부망의 published port 조회 실패로 1을 반환했다."
+      },
+      {
+        "line": 87,
+        "text": "부모가 `make lint`, `make test`, FullOps lint.py의 최종 실행과 커밋을 소유한다."
+      },
+      {
+        "line": 134,
+        "text": "이 후보는 독립 리뷰 전 상태다. 부모는 기술 문서와 이후 회귀 fixture 호환성을 별도로 갱신한다."
+      },
+      {
+        "line": 207,
+        "text": "## 최종 전체 회귀"
+      },
+      {
+        "line": 218,
+        "text": "`f567abff18b8f6ce77fc79e6601ba7163ae7f9ff`를 정확히 prepare한 뒤 전체 suite를 실행했다. 113.318초 후 종료코드 1이었다. focused PASS를 전체 회귀 PASS로 바꾸지 않는다."
+      },
+      {
+        "line": 242,
+        "text": "다른 변경은 회귀/기존 integration fixture 호환성, consent browser fixture 이름, 문서/schema generator, 배포 skill/package 안내다."
+      },
+      {
+        "line": 260,
+        "text": "부모에게 실패와 위치를 전달했다. child는 제품·fixture 소스를 수정하지 않았다. 수정 후보에서 필요한 회귀를 다시 실행한다."
+      },
+      {
+        "line": 262,
+        "text": "### 7f83fd6 전체 회귀 재실행"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+    "sha256": "93f76052c8c2c06472a991adc89fd082aba2d47540296fdde48f8d886bc0a036",
+    "lines": 66,
+    "matches": [
+      {
+        "line": 42,
+        "text": "최종 작성자 lint는 eae9a8b에서 ERROR0/WARNING2/unavailable2·원 종료1이다. 원본 C:/Users/shin/AppData/Local/KnowsLinkDevTools/landing-guide001-designer/final-lint.json을 lint-original.json에 byte 그대로 복사했다. SHA256은 f095812b802af97d820499138cef0ec969009c5bc3d34e73faceaf065012b296다. lint.json은 두 command의 reason만 보완했다. status·exit_code null·HEAD·config/policy hash·위반은 보존했다. 현재 PATH에 make가 없다. 이 HEAD의 make lint/test PASS는 없다."
+      },
+      {
+        "line": 44,
+        "text": "제품/테스트/의존성/빌드/배포 입력 diff0을3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46부터 최종 head까지 직접 확인했다. 범위는 verification.json runtime_scope다. 기존 Linux gate SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-final-lint.json의 hash f64c96869ea21f83260458cc9cabce6c4c79bad282e43133dca0a290e59e102c와 원 실행 SHA, make lint/test exit0을 확인했다. 문서 전용 단계에서 해당 gate만 재사용한다. 새 Windows 실행·동일 환경·독립 QA로 표시하지 않는다."
+      },
+      {
+        "line": 64,
+        "text": "설계 문서 통합과 DEV 배정은 수락 가능하다. review.py check 실행 결과는 check 로그를 따른다. 코드가 바뀌는 DEV 단계에서는 기존 gate로 새 auth/template 검사와 필수 make lint/test를 대신하지 않는다."
+      },
+      {
+        "line": 66,
+        "text": "실제 브라우저·설치·계정·메일·송신·서버/배포는 실행하지 않았다. 로그인 진입 변경의 구현 회귀와 mobile/접근성 결과는 DEV·tester·designer가 같은 구현 SHA에서 확인해야 한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
+    "sha256": "037f105eac0a361b8bf007631b60306af0d0ed9285d2172f39ca72185bfc5a5d",
+    "lines": 59,
+    "matches": [
+      {
+        "line": 25,
+        "text": "| exact source SHA make lint | exit 0 | 새 Linux clone의 [lint 로그](f2b8cb622dc397034423582978e77560e0355771-lint.log) |"
+      },
+      {
+        "line": 35,
+        "text": "원 tester의 1.846967:1 실패와 designer V-LG-01 0px 실패는 원 보고에 보존한다. source SHA의 첫 FullOps lint 시도는 완료 문서가 미커밋이어서 exit 2, `작업 트리가 깨끗하지 않습니다. 커밋 후 실행하세요`였다. 제품 검사 실패나 PASS가 아니며 최종 clean commit에서 다시 실행한다. 이후 직접 실행한 make lint/test는 각각 원 종료0이다. 파이프 없이 helper가 SSH channel 종료코드를 반환하고 로그에 EXIT를 기록한다."
+      },
+      {
+        "line": 39,
+        "text": "기존 승인 helper `../gate/remote.py`를 읽고 HERE만 새 외부 경로로 바꿨다. [보존한 helper](remote.py)는 known_hosts와 RejectPolicy, exact HEAD·clean clone 검사를 유지한다. 저장소 검사 설정은 변경하지 않는다. make.cmd는 등록 `make lint/test`를 해당 helper로 전달하고 원 종료코드를 반환한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+    "sha256": "970c2fb8b97efcba184af2bc31a1f5c596a65f52b0d21c0106cf5b0e1ce82661",
+    "lines": 61,
+    "matches": [
+      {
+        "line": 41,
+        "text": "기존 수락 DEV `3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46`와 현재 작업 트리의 cmd/internal/adapters/db/deploy/scripts·의존성·빌드·설정 입력 diff0을 직접 확인했다. 과거 [verified-final-lint.json](../SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-final-lint.json)의 SHA256 `f64c96869ea21f83260458cc9cabce6c4c79bad282e43133dca0a290e59e102c`도 일치했다. 그 기록의 Linux make lint/test는 각각 exit0이다. 새 문서 HEAD의 실행 PASS나 현재 Windows 환경 동일성으로 바꾸지 않는다."
+      },
+      {
+        "line": 47,
+        "text": "- 제품 구현·Go 회귀의 새 실행·실제 브라우저/스크린 리더·Google 왕복·운영 메일·MCP 연결·설치 실행은 not_run이다. 문서 전용 설계 범위이기 때문이다."
+      },
+      {
+        "line": 49,
+        "text": "- DEV가 구현 SHA의 핵심 auth/template와 필수 make lint/test를 수행한다. tester는 격리 서버에서 상태표·실제 POST·redirect·정보 비노출·키보드·200%·overflow를 독립 확인한다."
+      },
+      {
+        "line": 53,
+        "text": "생략한 것은 새 상품·가격·검색·다크모드·새 이미지/모션·설치 자동화다. 공개 로그인 진입 변경의 실제 회귀 위험은 DEV/tester의 구현 고정 검사로 확인해야 한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+    "sha256": "43859da1a187c96df003673337bd7481761b29ea607c150a4e1d528e7ef7c200",
+    "lines": 28,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+    "sha256": "6cc29f4dcd7bb84bad7df821ac1547d985cc268e70f73f75b0177beeff8bba1a",
+    "lines": 26,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
+    "sha256": "76ee7346e6f7bcdac5fb4900b532f71732f7c2a7df0e88fb930230e1973927f6",
+    "lines": 121,
+    "matches": [
+      {
+        "line": 30,
+        "text": "- `adapters/src/inbox.test.ts`, `events.test.ts`, `owner-text.test.ts`, `trial-boundaries.test.ts`: 관련 회귀와 정리 동작의 존재."
+      },
+      {
+        "line": 62,
+        "text": "`package.json`의 기존 test 체인에 이 회귀를 추가했다."
+      },
+      {
+        "line": 78,
+        "text": "| 수정 전 컴파일 | `node22 adapters/node_modules/typescript/bin/tsc --project adapters/tsconfig.json` | 0 | 새 회귀가 정상 컴파일됨 |"
+      },
+      {
+        "line": 79,
+        "text": "| 수정 전 회귀 | `node22 adapters/dist/inbox-files.test.js` | 1 | `actual: []`, expected는 unread `.json` 1개 |"
+      },
+      {
+        "line": 80,
+        "text": "| 수정 후 컴파일 | 위 tsc 명령 | 0 | 변경 코드와 회귀 컴파일 성공 |"
+      },
+      {
+        "line": 81,
+        "text": "| 수정 후 회귀 | `node22 adapters/dist/inbox-files.test.js` | 0 | housekeeping failure preserves text; missing marker permits receive; duplicate stays read |"
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+    "sha256": "2c7c672ebd3a79454f9827446e97104f9e71ba7bdcd487e6637222460691d1eb",
+    "lines": 42,
+    "matches": [
+      {
+        "line": 14,
+        "text": "예상 부하는 현재 제품 상한인 활성 회원 100명, 활성 agent 200개, queued/leased 100개, receipt 20000개 이하다. 운영 부하 관측값이 아니라 코드의 보호 상한이다. 측정은 100명/200 agent와 이미 만료된 delivered 사본 100/1000/10000개를 사용한다. 24시간 보관 중인 일반적인 비활성 이력이며 최대 본문이나 모든 상한의 동시 포화를 대표하지 않는다."
+      },
+      {
+        "line": 26,
+        "text": "| Go remote 및 TS adapter | 별도 하위 보고서로 검사 경로·수정·회귀를 취합 |"
+      },
+      {
+        "line": 31,
+        "text": "   입력은 100명/200 agent와 10000개 만료 delivered 이력이다. 매 transaction의 sweep이 각 메시지마다 publicOwner·authority·humanMember를 호출해 회원 map을 반복 탐색한다. Windows Go1.27.1 baseline 3회에서 sweep은 35.8–50.5ms이며 160000B/10000 allocations다. 만료 처리 자체가 transport·claim을 제거하므로 만료 전 메시지에만 current를 실행하는 최소 수정으로 반복 탐색을 없앤다. delivered receipt·24시간 사본·멱등 보관과 미만료 철회는 유지한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+    "sha256": "09db9ac184cf4d5f0c6dff7c906d9d4e96f7cce66537f18961f9892e25250fd1",
+    "lines": 42,
+    "matches": [
+      {
+        "line": 20,
+        "text": "최종 DEV의 installed FullOps1.4.2 lint는 ERROR0/WARNING4/unavailable0이고 실제 등록 make lint/test 및 별도 build가 0이다. module cwd의 Go1.27.1 Linux/Node22.22.2/npm10.9.7을 확인했다. 기존 제품 후보의 실제 Postgres17 전체 race integration은 111.338초/native0이다. 최초 빌드 선행 누락·dirty gate 거절·bcb ANTI-004 오탐은 원문을 보존했다. 테스트 검증력은 별도 리뷰가 확인했으며 실패를 PASS로 바꾸지 않았다."
+      },
+      {
+        "line": 22,
+        "text": "독립 tester는 새 Go/Node assertion·16개 최상위 race 검사·4개 실제 DB 회귀·짧은 전후 벤치를 직접 수행했다. 최종 QA gate는 ERROR0/WARNING1/unavailable0, lint/test0이다. 원 테스트 기대값 오류는 보존하고 기존 received completion 계약에 맞게 수정했다. 새 제품 결함은 없었다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+    "sha256": "9dce55f9ad39625ad60d9bb2263d5ff4a08d7fc6d85154e36b58fea8b4dc4eb6",
+    "lines": 76,
+    "matches": [
+      {
+        "line": 17,
+        "text": "- lint(`lint.json`) ERROR / WARNING / 실행 불가와 사유: ERROR 0 / WARNING 4(SIZE-001 3건, SIZE-002 1건) / 실행 불가 0. Linux clone(`c7828b2` detached, clean)에서 실행했다. `product-lint`(`make lint`)·`product-test`(`make test`) passed."
+      },
+      {
+        "line": 19,
+        "text": "- DEP-001: 해당 없음. `go.mod`·`package.json`·lock 변경 0. 새 JS·폰트·이미지·라이브러리 0. Context7·외부 문서 조회는 필요하지 않았다(표준 HTML·CSS·Go `html/template`만 쓴다)."
+      },
+      {
+        "line": 53,
+        "text": "- 등록 `kind: test` 명령 `make test`: Linux clone `c7828b2`에서 종료코드 0(race·adapters 포함). `make lint` 0. 같은 clone의 `lint.py`가 `lint.json`에 head `c7828b2`·base `8539ef5…`로 기록했다. 자기 실행이다. DEV 실행(`678736d`·`0b485ad`)과 구분한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+    "sha256": "62b05a07d1c782a3a2c2e2964b68698b10e5beab66f6fcd31d1ef05deef50cb2",
+    "lines": 76,
+    "matches": [
+      {
+        "line": 31,
+        "text": "| #2 이름·공유ID | 원문은 handle 지원 여부의 제품 결정을 요구한다. D02 HP01/02/03과 최신 지시가 사람 코드 발견을 우선하므로 handle·초대링크 미도입은 허용된 최소 결정이다. 이름/코드/wire ID, 동명 안정 구분값, Unicode1–40·제어문자 거절, 이름 권한 fallback을 구분한다. 비공개 상대 프로필 추가 조회를 금지한다. |"
+      },
+      {
+        "line": 33,
+        "text": "| #6 조회 | memberReceipt의 refusal과 hidden 재조회 한계를 소스로 확인했다. 성공/오류 모두 같은 편집폼, 비공개 실패 안내, 과대입력 거절·이스케이프·계정교대 복원금지, 429/503/만료·철회 조건이 구체적이다. 조회를 온라인/발송 기능으로 확대하지 않는다. |"
+      },
+      {
+        "line": 38,
+        "text": "| 지원근거 | 10-12 LIVE,10-13 NOTIFY,10-14 OPS 원보고를 읽었다. Grok/Dots 기존왕복·Dots 초기만료/지연·후속보존을 깨끗한 신규설치로 승격하지 않는다. Meta Muse/Hermes/OpenClaw는 제품/버전/인증/권한 미확인이다. 새 API/CLI문법을 제안하지 않아 외부docs 조회는 해당없다. |"
+      },
+      {
+        "line": 39,
+        "text": "| 순차완료 | 조회→이름/친구→승인→연결→언어 순서로 각 단위DEV·tester·designer·fixed SHA리뷰를 요구한다. #3 P1은 유지하며 중간단계로 닫지 않는다. #8 안내완료와 지원완료를 구분한다. |"
+      },
+      {
+        "line": 72,
+        "text": "기존 SAR-LANDING-GUIDE-001-CODE-REVIEW-review/lint-original.json의 fe2387a에는 make lint/test exit0이 있고 원로그 마지막EXIT=0을 읽었다. 제품/DB/browser fixture4795와 finalfe를 구분했다. fe2387a→11ea 및76ec→11ea의 .fullops-squad밖 diff는 각각0이다. 현재Windows환경이 과거실행환경과 같다고 주장하지 않으며 과거PASS를11ea 신규실행으로 쓰지 않는다. 문서전용 수락은 제품입력 불변·원증거 연결에 한정한다. 별도CSS후보의 gate·독립QA는 계속 필요하다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+    "sha256": "37e670faf79f6c1787627973493326efb52b8c4c2943d09ecf0c38b1b4263495",
+    "lines": 64,
+    "matches": [
+      {
+        "line": 22,
+        "text": "| 현행 구현 | 이름 세 경로·친구 상태·receipt refusal·gate 검증·remote landmark 직접 읽음. 구현 확인과 실행 PASS를 구분 |"
+      },
+      {
+        "line": 35,
+        "text": "- 조회 오류의 복구와 비공개 비노출을 함께 정의했다. 승인 요약은 검증된 원요청만 사용한다."
+      },
+      {
+        "line": 53,
+        "text": "- 기준 `458eb565c4a1551ec58c70f14aa164d9024241d3`의 [원상태 lint](lint-initial.json)는 종료 1, ERROR 1·WARNING 3·unavailable 2다. 등록 `make lint`/`make test`는 현재 PATH에 make가 없어 실행 불가다. PASS로 기록하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+    "sha256": "e1fc58c415ad7e64908d0aef6d2aac145c3e603ea750588a0a783b0895455897",
+    "lines": 99,
+    "matches": [
+      {
+        "line": 12,
+        "text": "다시 실행할 수 있는 조작 테스트 시나리오의 정본이다. 과제가 끝나도 남아 회귀 테스트 묶음이 된다. 실행 결과는 `../qa-reports/<과제 키>-test/`에 남고, 결과의 `result.json`에 실행한 시나리오 경로가 기록된다."
+      },
+      {
+        "line": 36,
+        "text": "웹 실행·기존 Orca 탭 연결·권한·선택 Playwright·shadow/CUAWright·모델 없는 회귀의 정본은 플러그인의 `fullops-test/web-engine.md`다. 일반 조작은 격리 fixture가 필요하다. 원격 효과를 요청 차단으로 제한할 수 없는 Orca는 읽기/스크롤/검사만 허용하고, 조작은 loopback fixture에서 수행한다. `--assert-only`는 setup도 실행하지 않는다. `setup_js`와 checks JS는 검토한 신뢰 코드이며 sandbox가 아니다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+    "sha256": "d0a68da604d9c4d25801e75bf805cd6103a14cffd0e08c264f35f6168518dad0",
+    "lines": 84,
+    "matches": [
+      {
+        "line": 18,
+        "text": "5. JSON 모델 버전과 DB writer 차단 trigger로 옛 writer의 필드 유실을 막는다. migration은 기존 pending을 종료하고 ID·키·receipt·gate·원문 보존 경계를 유지한다. OPS는 새 writer를 확인한 뒤 이행한다."
+      },
+      {
+        "line": 27,
+        "text": "검증은 합성 A/B/C의 실제 로그인·DB·HTTP happy path, 미수락/제삼자/위조/CSRF/세대/철회/4096bytes/180s/24h/legacy 경계, 기존 signed transport·gate 회귀를 포함한다. 최종 커밋 SHA에서 등록 make lint/test와 FullOps lint를 실행한다. 실계정·실메일·외부 발송·운영 배포는 실행하지 않는다. 임시 파일은 보존한다."
+      },
+      {
+        "line": 35,
+        "text": "| HP-08–12 대화 | 방향 없는 agent쌍, 고정 발신/수신, 실제 owner/agent 구분, 웹 별도 wire, 새 root별 독립180s,24h 당시 사본, 멱등 충돌·응답 유실 조회·본문 회복, 실제 receipt 상태 |"
+      },
+      {
+        "line": 39,
+        "text": "기존 singleton·키/credential·서명 wire·gate CSRF·Origin/CSP·rate·안전 정리 예산을 재사용했다. 새 의존성은 없다. package.json 변경은 owner wire 회귀를 기존 test 명령에 추가한 것이다. 업무 M/H/R이나 이미 삭제된 text를 대화로 복구하지 않는다. 원격 receive는 기존 messages 배열을 보존하고 별도 authorship map/untrusted=true를 추가했다."
+      },
+      {
+        "line": 41,
+        "text": "새 product 화면은 human_http/human_pages에 모으고 기존 legacy·직접 연결·receipt·gate를 유지했다. D04 두 자기 비평을 반영해 이름/대화가 첫 화면이며, 기술·키·계정·안전 설명은 관련 동작/상세에 놓았다. 외부 자원·JS·장식 카드·그라디언트·가짜 읽음/온라인은 추가하지 않았다. desktop 세 열·mobile 문서 흐름, 긴 이름·중복 구분·빈 선택기·오류 회복을 검증했다."
+      },
+      {
+        "line": 47,
+        "text": "첫 구현 commit은 `4eaefa6e0a5cf623f0d8d8080d918086f86030ec`, 다음 통합은 `f567abff18b8f6ce77fc79e6601ba7163ae7f9ff`, 회귀 보완은 `7f83fd6f3ae9945e292a86212c0ab566ea282b7a`다. 최종40SHA와 같은 HEAD의 등록 검사 결과는 worker_done과 외부 final-lint.json에 고정한다. 자기 참조를 위해 문서 속 SHA를 과거 실행 SHA로 바꾸지 않는다."
+      },
+      {
+        "line": 68,
+        "text": "최신 전체 SQL 회귀는 정확한 7f83fd6f3ae9945e292a86212c0ab566ea282b7a에서 go test -race -tags=integration ./internal/relay -count=1, 118.664초, native exit0으로 통과했다. 별도 DB 생성·migration도 exit0이며 필터 없이 실제 HumanPostgres/Legacy를 포함한다. 원본 실패와 재실행 로그는 runtime 보고서의 고정 경로에 보존했다."
+      },
+      {
+        "line": 70,
+        "text": "첫 등록 게이트의 make lint/test는 각각 exit0이었다. FullOps는 runtime 보고서 front matter 형식 DOC-003 하나로 exit1이어서 deliverables.py --stamp로 교정했다. human_pages_test의 지도 설명도 추가했다. SIZE는 요청한 결속 기능과 기존 커진 파일, DEP는 테스트 명령 등록이며 새 의존성은 없다. SEC 두 경고는 합성 lease 문자열과 테스트 지역 변수 token이고 실비밀값이 아니다. SLOP 출력은 자동 검사의 PASS 결과이며, 조건부 배열 spread는 owner/signed 허용 필드 한 개 선택이다. 기존 planning/D04 규모 경고는 DEV 소유 밖의 선행 변경이다. 경고를 숨기거나 lint 기준을 낮추지 않는다."
+      },
+      {
+        "line": 72,
+        "text": "6fac720bf0c620a979df5fabd67b0c044eaebf08에서 등록 make lint/test 각각 native0, FullOps exit0(ERROR0/WARNING19/실행 불가0)을 확인했다. 두 child는 worker_done succeeded로 정착했고 각 transcript를 보존한 worker-release를 완료했다. 완료 보고의 선행 공백 한 줄이 instruction hash를 바꾼 archive 실패는 원문과 normalized digest를 대조해 복구했다. 패킷·제품 지시를 재작성하지 않았고 work.py finish가63개 outcomes/partial 수동 근거를 검사한 뒤 날짜별 로그를 보존하고 인박스를0byte로 비웠다. 최종 archive 커밋의 등록 게이트 결과는 외부 final-lint.json과 worker_done에 기록한다."
+      },
+      {
+        "line": 82,
+        "text": "영향은 human_pages.go/member_pages.go와 DEV human_pages_test.go뿐이다. 모든 POST/action/hidden target/attempt/오류 회복/보존/동의 경계는 유지한다. 선택 확인은 기존 전체 라벨을 유지한다. template escaping·동명/다른 이름 대상·읽기 전용/재시도·빈 선택·gate 회귀 focused Go test는 exit0이다. tester/designer 파일·fixture, 제품 handler·권한·DB·adapter는 수정하지 않았다. SQL 전체 회귀는 정확한254ff6a의 native0 증거를 source delta 동일성 근거로 재사용한다. 새 캡처/등록 검사와 최종 source delta는 아래 완료 절에 연결한다."
+      },
+      {
+        "line": 84,
+        "text": "수정 자기 검증 결과: 실제 fe7a509 합성 auth/API/DB 두 메시지의1440×900에서 textarea top618/send bottom833이며3폭 캡처 넘침0/작은제어0이다. 복구 후 isolated profile695dbff1의9상태/14PNG 및8상태 geometry는 [V01/V02 보고](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md)에 연결한다. 실제 키보드/200%는 blocked_engine_focus/not_run으로 유지한다. 첫 default profile 설치와 isolated복구, CLI eval 문자열 반환의 helper 실패/교정도 보존했다. 최종 기록 SHA의 make lint/test·FullOps는 외부 v01-v02-final-lint.json과 worker_done으로 고정한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+    "sha256": "0623323c09f2c89005665157214f87d6b7511629f6e51eb9623b02b93ed99f27",
+    "lines": 63,
+    "matches": [
+      {
+        "line": 19,
+        "text": "4. source SHA를 커밋하고 승인된 Linux helper를 새 과제 전용 경로에서 재사용한다. 등록 make lint/test의 원 종료코드를 보존한다. 실제 Chrome에서 1440/390/320의 대비, 간격, 일반 링크, 공개 CTA, overflow, hover/focus를 측정한다."
+      },
+      {
+        "line": 24,
+        "text": "재개 구현 source는 `f2b8cb622dc397034423582978e77560e0355771`이다. 관련 Go 검사와 해당 SHA의 실제 Linux make lint/test는 종료0이다. Chrome 1440/390/320에서 38개 검사로 CTA 대비 7.958059850759797:1, 예시 경계 24px, 44px 이상 높이, 일반 링크와 overflow, focus-visible solid3px/offset2px를 확인했다. [재개 QA](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md)에 원 실패·환경·캡처·재현·보존 책임을 기록했다. 첫 FullOps lint는 미커밋 문서 때문에 exit2였고 제품 PASS로 쓰지 않는다. 최종 clean SHA gate는 기록 커밋 뒤 실행하여 외부 final-lint.json과 worker_done으로 연결한다."
+      },
+      {
+        "line": 37,
+        "text": "4. 상태별 handler/template와 실제 DB 경계를 확인한다. 고정 SHA의 make lint/test/build, 격리 DB·서버와 브라우저 증거를 제공한다."
+      },
+      {
+        "line": 51,
+        "text": "기존 member form golden·Google·human 단위 회귀는 초기 구현에서 통과했다. 새 landing 단위 검사는 nil DB로 전체 Service.Handler를 호출해 전역 rate wrapper에서 panic했다. 이는 테스트 준비 결함이다. startPage 직접 호출과 실제 DB integration의 cache/CSP 검사를 분리한다. 첫 실패와 후속 결과는 QA에 보존한다."
+      },
+      {
+        "line": 55,
+        "text": "coor 답변 msg_d75b88015752는 원 차단 call_a0b84ac8954c41208d0df30778fa2355와 두 테스트를 직접 확인했다. 셸 재실행 없이 명시적 apply_patch 수정을 허용했다. 익명 GET과 유효세션 GET 모두 실제 DB integration에 cache/CSP assertion을 유지했다. 중복 폼과 활성 여부 assertion도 유지했다. 수정 후 gofmt와 landing/member/Google/human 관련 단위 회귀는 종료0이다."
+      },
+      {
+        "line": 59,
+        "text": "구현 고정 SHA는 `4795d619513fde4fbcd4a55b94ec91b056ebbaf0`이다. 실제 Linux make lint/test/build와 DB race 관련 회귀는 종료0이다. D05의 유효 세션 공개 GET 계약도 현재200으로 갱신하고 기존303 기록은 보존했다. 최종 문서·QA 커밋 SHA와 최종 lint 영수증은 worker_done으로 전달한다. [상세 QA](../../evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md)에 캡처·실패·fixture·유지 책임을 기록했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+    "sha256": "876e3caa2c1bdbdc506126b7d92a316fd9e90ac5a43105746d94bb2a22a881cc",
+    "lines": 76,
+    "matches": [
+      {
+        "line": 23,
+        "text": "- [DEV](../../../handovers/to_dev.md)와 [TESTER](../../../handovers/to_tester.md)를 queued로 준비했다. DEV는 같은 과제에서 기술 계획·구현·관련 회귀·기술 문서 갱신을 한다. TESTER는 DEV 완료 뒤 고정 통합 후보를 기다린다. 이번에는 배정하지 않는다."
+      },
+      {
+        "line": 60,
+        "text": "기존 lock을 사용해 `npm ci --prefix adapters`를 실행했고 종료코드 0을 확인했다. 제품 파일·lock은 바뀌지 않았다. 설치 상태가 달라진 뒤 같은 HEAD와 기준으로 재실행했다. product-lint make lint passed, ERROR 0, WARNING 0, 실행 불가 0, lint 종료코드 0이다. [재검증 기록](../logs/SAR-PREP-002/lint-prearchive-retry.json)을 보존한다. 제품 검사를 낮추거나 원천을 수정하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+    "sha256": "a98aa2fa4a20efd4cb257d0348cd2ac43591da50449d26408e5bc6dd49bd20de",
+    "lines": 45,
+    "matches": [
+      {
+        "line": 36,
+        "text": "- 문서 변경만이다. 제품 코드 변경이 없어 `make lint`/`make test`는 해당 없음이다. 문서 front matter는 `deliverables.py --stamp`로 기록했다. 디자인 lint는 미구성(project.md)이라 해당 없음이다."
+      },
+      {
+        "line": 37,
+        "text": "- 직접 보지 못한 것: 이메일 코드·오류 화면, 연결 관리·기기 승인·receipt·gate·refusal의 렌더 결과(템플릿 코드로만 확인), 에이전트 5개·긴 관계 목록, 다크 모드."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+    "sha256": "ad12618f580e4c3d31c573f3e212e4c1ff0153af5274d3d0ea130292652f3e98",
+    "lines": 108,
+    "matches": [
+      {
+        "line": 19,
+        "text": "- 외부 라이브러리 문서 조회는 없다. 새 의존성이 없고 표준 HTML·CSS만 사용했다."
+      },
+      {
+        "line": 48,
+        "text": "- receipt·gate: 2열 정의 목록과 토큰만 공유. 문장 의미는 같다."
+      },
+      {
+        "line": 80,
+        "text": "| `678736d` | `/tmp/knowslink-serviceui-678736d-ctxd554b501` | `make lint`, `make test` | 0, 0 |"
+      },
+      {
+        "line": 82,
+        "text": "| `0b485ad` | `/tmp/knowslink-serviceui-0b485ad-ctxd554b501` | helper 정규식을 새 마크업(`<summary><h3><code class=\"select\">`, `aria-labelledby=\"token-l\">`)으로 수정 뒤 `make lint`, `make test` | 0, 0 |"
+      },
+      {
+        "line": 83,
+        "text": "| `0b485ad` | 같은 경로, container `knowslink-dev-serviceui-0b485ad-ctxd554b501` | migration, 위 integration+browser 전체 | 0, 0 (`ok … 114.875s`). owner 분리·CSRF·gate·OAuth 동의 브라우저 반환 회귀 포함 |"
+      },
+      {
+        "line": 94,
+        "text": "4. 주요 화면: `start-google`, `start-both-problem`, `verify`, `home`(에이전트 4·관계 5·승인 요청 2, 재확인 완료), `home-empty`(재확인 필요), `connection-token`·`-prepared`·`-approved`·`-consumed`·`-expired`, `device-prepared`·`-approved`·`-login`, `receipt`, `refusal-*`, `gate-active`·`gate-closed`, `remote-consent`."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+    "sha256": "fec52c74a05128a2df8e9a3c98d004402975ab1b9ec7204aa9adad765c424084",
+    "lines": 40,
+    "matches": [
+      {
+        "line": 23,
+        "text": "4. 같은 SHA에서 `make lint`·`make test`·`lint.py`·표적 Go 테스트·`go vet -tags 'integration browser'`를 실행했다."
+      },
+      {
+        "line": 31,
+        "text": "- `make lint` 0, `make test` 0, `lint.py` ERROR 0·WARNING 4·실행 불가 0. 폭 측정 87건 overflow 0·44px 미만 0. 키보드·위험 구역 확인."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+    "sha256": "a003171b3b6a21152ebebc800b70bb69faf01316754f14e16c6148ea2c581a49",
+    "lines": 79,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md",
+    "sha256": "e12f7859078c667e6914ca992c12f09cc7866003ec6bb24de9578129d1592c2a",
+    "lines": 56,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+    "sha256": "ce6dfb99b0bdd0f12702e1893db6e90ded9b8a9308c8c88fadde655a403c1ad4",
+    "lines": 50,
+    "matches": [
+      {
+        "line": 26,
+        "text": "3. 조회 폼·대상·ID를 오류/성공/복귀에서 보존한다. 비공개 존재 여부와 인증 비밀을 노출하지 않는다."
+      },
+      {
+        "line": 34,
+        "text": "packet은 386경로, unknown 19, remaining 349, optional 0이다. 필수 원문과 최신 요청을 직접 읽었다. 너무 큰 D04는 공개 정본 13–221줄과 현행 사람 설계 222–395줄을 나눠 읽었다. 뒤의 비현행 기록은 현행 지시로 쓰지 않았다. remote_auth.go의 동의·복귀·생성 처리와 승인/receipt 실제 분기를 직접 확인했다. 패킷에 빠진 `http.go:verifiedGate/gateView`, `identity.go:Member`, `connections.go`와 현행 실계정/알림/운영 보고를 보완했다."
+      },
+      {
+        "line": 42,
+        "text": "[QA 보고](../../evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md)에 문서 검사, 원상태 lint, 미실행과 보존 지문을 기록한다. 디자인 check는 설정 준비만 뜻한다. 새 UI 실행·실 Google·실 호스트 설치·운영·발송은 not_run이다. 라이브러리 API의 새 문법을 설계하지 않아 외부 API 문서 조회는 적용하지 않았다."
+      },
+      {
+        "line": 46,
+        "text": "coor는 문서 고정 SHA 독립 리뷰와 main 통합을 맡는다. CSS 선행 과제 종료 뒤 조회 복구, 이름/친구, 승인 요약, 설치 재개, 언어 순으로 정규 인박스에 전달한다. 새 인박스는 이 설계의 순차 인계 표를 사용한다. 기존 사용 중 인박스를 덮어쓰지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/generated/db-schema.md",
+    "sha256": "50cfbb5605a108c9916e50d518182e2d682a727fcf002c0cba083fcffaa9d088",
+    "lines": 52,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/docs/operations/ops-guide.md",
+    "sha256": "0383cfec8cd588df1323e7088ff9ce1d67623c65a541a664c7289fb1ac685f46",
+    "lines": 459,
+    "matches": [
+      {
+        "line": 22,
+        "text": "- 전환 후 이전 image 주소 조회가 종료1이었다. 삭제 명령은 실행하지 않았다. 같은 직전 SHA의 별도 archive에서 `knowslink-rollback:2747fe9-refactor002-20261014`를 만들었다. 이미지 ID는 `sha256:12f1313a1460997710d727eb543eebdf9b4dee5b8f8ffdc01dc25d50442bc72a`다. 원 이미지 동일성·실제 rollback 성공은 미확인이다. 다음 배포는 build 전에 고유 rollback 태그를 고정하고 조회를 확인한다."
+      },
+      {
+        "line": 85,
+        "text": "실제 domain에서는 자기 agent 연결·빈 ready/arrival·다른 agent 차단·철회·끊김·재연결·pending 복구를 확인한다. Bot 왕복은 메시지ID·Inbox·receipt·실제 host 관찰을 대조한다. 운영 적용 전에 원문·token 없는 증거 형식을 정한다. 설치·Google 수동 동의·host turn은 DEV 합성 검사의 통과로 대체하지 않는다."
+      },
+      {
+        "line": 106,
+        "text": "tester는 후보 `febd1282df2e84a29fa0a53834569e7b9cc028e2`를 별도 clean detached snapshot에서 리뷰했다. Linux 고유 임시 클론에서 `make lint`와 `make test`를 실행했고 두 종료코드는 0이다. 증거는 `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md`와 `SAR-SSE-INSTALL-001-REVIEW-review/`에 있다."
+      },
+      {
+        "line": 120,
+        "text": "| Docker | Engine 29.4.3, Compose v5.1.3. 사용자 `shin`이 `docker` 그룹이다. 조회 성공. |"
+      },
+      {
+        "line": 130,
+        "text": "| DNS 공개 조회 | `link.knowslog.com`: A·AAAA·CNAME 없음, 상태 NXDOMAIN. zone에는 `orca`·`s8`·`mcp` CNAME(proxied) 3개만 있다. 와일드카드 레코드 없음. apex 레코드 없음. |"
+      },
+      {
+        "line": 170,
+        "text": "기존 제품 후보 `a6a10c71977b7f3ec8274a1fb7c8a409f58e7c92`에는 실제 SQL migration 00001과 `relay_state` 업무 저장이 있다. goose version table도 생성한다. 빈 migration no-op과 데이터 손실 위험 없음이라는 이전 초안의 설명을 폐기한다. owner/agent credential, gate, inbox, receipt를 포함한 업무 데이터가 있으므로 백업도 민감정보로 취급한다."
+      },
+      {
+        "line": 185,
+        "text": "1. 사전 확인: 8080 비어 있음, `link.knowslog.com` 레코드 충돌 없음(Cloudflare DNS API 목록·공개 A/AAAA 조회), `docker compose ls`의 기존 프로젝트 상태를 기록한다. 레코드가 이미 있으면 덮어쓰지 않고 coor에 ask한다."
+      },
+      {
+        "line": 194,
+        "text": "10. 기존 서비스 회귀 확인: `myportfolio` 컨테이너 상태·`orca/s8/mcp` HTTPS 응답·호스트 `cloudflared` PID 불변."
+      },
+      {
+        "line": 203,
+        "text": "| DNS | 공개 A/AAAA 조회와 Cloudflare DNS API의 레코드 유형·대상·proxied 속성 확인 | proxied CNAME은 flattening으로 공개 CNAME 응답이 없을 수 있다. CNAME 질의만으로 실패 판정하지 않는다 |"
+      },
+      {
+        "line": 334,
+        "text": "- 완료: 기존 배포를 `0911c2c73468f8684260a277d4940a74d26bcf7d`로 이동했다(`beta.sh deploy` exit 0, DB 백업 `28bd1bb-20261004T044744Z.dump`, migration 동일). 상태 `.env`에 `KNOWSLINK_TEST_AGENTS=trial_codex,trial_grok`만 추가했다. 실제 두 시험 key로 loopback 왕복을 확인했다. 공유 서비스 회귀와 공개 무인증 probe(302)는 불변이다."
+      },
+      {
+        "line": 358,
+        "text": "실제 Grok 왕복이 확정된 뒤 13.4의 종료 절차를 실행했다. service token 두 개를 revoke하고 trial 앱·policy만 삭제했다. 원점 Tunnel config를 백업에서 복원(0600)하고 knowslink connector만 재기동했다. 상태 `.env`의 `KNOWSLINK_TEST_AGENTS` 줄을 제거하고 relay를 같은 Compose 인자로 갱신했다. root owner 앱·policy 3건은 전체 JSON 해시가 변경 전과 같다. 공유 서비스 회귀(`verify.py regression`·`public`·`local`)는 통과했다. 사용자 private 시험 파일은 삭제하지 않았고 안의 CF 자격은 더는 연결되지 않는다. 관리 token은 2026-10-05T23:59:59Z에 만료된다. 증거는 [실행 기록](../exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md)이다."
+      },
+      {
+        "line": 383,
+        "text": "최종 운영 E2E는 사용자 본인의 동일한 일반 이메일 한 개로 가입한 한 owner 아래에서 Grok Bot 노우와 OpenAI dot 다닷 두 agent를 연결해 수행한다. 이메일 두 개는 필수가 아니다. 이전 trial token과 allowlist는 되살리지 않는다. 공식 문서 URL·조회일(2026-10-05)과 미확인 항목은 실행 기록 8장이다."
+      },
+      {
+        "line": 385,
+        "text": "적용 순서: 새 백업과 복원 검증 → `beta.sh deploy <SHA>` → 새 경로 Access 앱·정책(기존 root 앱 불변) → 후보 `config.yml` 검증·교체 → negative/positive·회귀 검증 → 노출 확대는 마지막."
+      },
+      {
+        "line": 406,
+        "text": "2. 더 구체적인 공개 경로 `/v1/connect`, `/v1/text`, `/v1/keys/*`, `/v1/receipts/*`에 Bypass Everyone application을 구성한다. 정확한 관리자 POST `/v1/keys`는 기존 owner 보호 아래 둔다. 기존 `/v1/test/*` trial application과 aud는 보존한다. 경로 우선순위를 실제 Access 설정과 요청으로 확인한다."
+      },
+      {
+        "line": 411,
+        "text": "Cloudflare의 [Access 경로 우선순위](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)와 [Tunnel 첫 일치 규칙](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/)을 근거로 한다. Context7 조회는 월간 quota 초과여서 공식 문서를 확인했다. DEV의 regex self-check는 실제 edge 검사를 대신하지 않는다."
+      },
+      {
+        "line": 413,
+        "text": "좁은 운영 검사는 익명 root/connect의 Cloudflare 로그인 redirect 부재, 실제 Google callback·동의·로컬 저장·자기 홈 한 흐름, 세션 없는 홈의 서비스 로그인, 잘못된 token/proof의 401/422 JSON을 확인한다. `/owner`, `/v1/owners`, 정확한 관리자 `/v1/keys`, `/v1/authorize`의 보호와 위조 JWT 거부를 확인한다. 기존 trial/shared 호스트 회귀를 확인한다. 실제 외부 Bot 설치와 같은 Google 계정의 별도 두 키·관계 수락·왕복 전달은 후속 수락 증거로 남긴다."
+      },
+      {
+        "line": 425,
+        "text": "4. 실제 cloudflared `ingress validate`와 `ingress rule <URL>`로 `/`, `/auth/google/callback`, `/home`, `/connect/<43자 ID>`, `/v1/connect/start`, `/v1/text/send`, `/v1/keys/agent/key`, `/v1/receipts/<UUID>`의 relay 선택을 확인한다. `/owner`, `/v1/owners`, 정확한 `/v1/keys`, `/v1/authorize`, `/v1/test/pull`, `/healthz`, 미등록 경로는404 선택을 확인한다. allowlist rule의 `required:false`만 바꿔서는 edge Access가 해제되지 않는다."
+      },
+      {
+        "line": 429,
+        "text": "공식 근거는 [Tunnel 첫 일치 및 catch-all](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/)과 [Access application 경로](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)다. Context7 Cloudflare 조회는 quota 초과여서 공식 문서로 대체했다. UI는 변경하지 않았으므로 직접 시각 수락은 기존 Google/동의 흐름에 한정된다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/operations/transition.md",
+    "sha256": "be6c2592c0caaa01b2c8e5ddf864cd8230dccdbd13c2ef9fd8320223594b8690",
+    "lines": 146,
+    "matches": [
+      {
+        "line": 19,
+        "text": "이전 relay image 주소 조회 실패의 원 로그를 보존했다. 같은 이전40자리 SHA로 별도 복구 후보 `knowslink-rollback:2747fe9-refactor002-20261014`를 재빌드했다. 현재 서비스/태그·DB·env는 바꾸지 않았다. 원 이미지 동일성이나 실제 rollback 성공을 주장하지 않는다. 실패 복구는 현재 DB 새 백업과 같은 HumanModel writer를 사용하며 과거 DB로 권한을 덮지 않는다."
+      },
+      {
+        "line": 141,
+        "text": "부모는 worker_done의 고정 SHA로 독립 리뷰와 좁은 QA를 수행하고 main 통합 및 D12 운영 변경을 담당한다. 로컬 합성 OAuth/Postgres와 화면 검증은 실제 Google·외부 Bot 성공 증거가 아니다. 기존 held/fail 제품 판정은 유지한다. 운영 자격·개인키·기존 WIP는 보존했다. 실제 두 클라이언트 가입·관계 수락·왕복 전달 및 관리자 보호/공유 호스트 회귀를 운영 수락 조건으로 남긴다."
+      },
+      {
+        "line": 144,
+        "text": "DEV는 별도 public config 후보 생성, 설치 안내, Google 연결의 parent 폴더 생성 및 회귀를 보완한다. D03 D10 D11 D12를 함께 갱신한다. 기존 DB·Google 자격·키·trial 코드·기본 held·비명시 발송 금지는 보존한다. 운영 config·Access·DNS·Bot UI는 DEV가 변경하지 않는다."
+      },
+      {
+        "line": 146,
+        "text": "coor는 고정 결과 SHA 독립 리뷰·좁은 QA 뒤 [D12의 새 적용 절차](ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)로 allowlist+404를 먼저 적용하고 백업한 두 KnowsLink 앱만 제거한다. 실제 Google·독립 두 클라이언트·관계 수락·명시적 양방향 text와 공유 호스트 회귀를 확인한다. 익명 신규 Device 포화의 medium 한계는 남는다. 복구 시 먼저 Tunnel을 닫고 config/앱/aud를 재검증한다. 기존 DB 백업을 덮지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/operations/user-guide.md",
+    "sha256": "ba8f3a334860562a759817a6fe509e2e4df954ab298e20cda85394292132c332",
+    "lines": 170,
+    "matches": [
+      {
+        "line": 30,
+        "text": "예시는 기능 설명용 가상 문구다. 실제 회원의 대화·운영 성공·일정 조회나 예약을 보여주지 않는다. 화면 카피와 오류·접근성 기준은 [D04 공개 첫페이지](../design-docs/mockups/service-member-ui.md#공개-첫페이지-정본--sar-landing-guide-001), 사용자 완료 조건은 [D02 LG-01–08](../planning/product-specs/SAR-HUMAN-PEER.md#공개-소개와-로그인-시작--sar-landing-guide-001)을 따른다."
+      },
+      {
+        "line": 43,
+        "text": "8. '친구 관리'에서 해제하거나 차단한다. 새 목록 조회와 전달은 즉시 막힌다. 본인이 이미 참여한 과거 대화 복사본만 남은 보존 기간 읽는다. 차단 해제만으로 친구가 복구되지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+    "sha256": "826a3d04441cde34938fc3e5127ebf8cd8cf88abf7f27dc3a8a7bc918254c729",
+    "lines": 385,
+    "matches": [
+      {
+        "line": 84,
+        "text": "| Idempotency / receipt retention | **24h** | 메시지 TTL보다 김. cache hit는 **receipt metadata** 반환 (원 봉투 전체 아님) |"
+      },
+      {
+        "line": 111,
+        "text": "- 수신자 전체 **공유 durable inbox + 실행 claim**. 공유 조정 없는 다중 adapter 동시 활성화 금지. `delivered` 조회만으로 실행권을 얻지 않는다."
+      },
+      {
+        "line": 174,
+        "text": "5. **Queue + receipt 동일 트랜잭션** — enqueue와 receipt 기록 atomic"
+      },
+      {
+        "line": 181,
+        "text": "- **원 봉투 전체가 아니라 RECEIPT**를 반환한다 (receipt-only replay)."
+      },
+      {
+        "line": 182,
+        "text": "- Receipt metadata (24h retention): `id`, `from`, `to`, `intent`, `digest`, `exp`, `accepted_at`, transport state."
+      },
+      {
+        "line": 183,
+        "text": "- 24h 내 인증된 동일 key+digest 재전송은 만료됐더라도 **기존 receipt만** 반환. 재enqueue·TTL 연장·새 실행 허가로 해석하지 **않는다**."
+      },
+      {
+        "line": 200,
+        "text": "- 검증 키는 등록된 **`(from, kid)`** 에서만 조회. `kid`를 URL·파일 경로로 해석하거나 기존 `kid`를 다른 키에 재할당하지 않는다 (C1)"
+      },
+      {
+        "line": 222,
+        "text": "- 같은 key + 같은 digest → **receipt 반환** (재enqueue/재deliver 없음). 저장된 `exp`는 연장하지 않음"
+      },
+      {
+        "line": 278,
+        "text": "    \"hint\": \"일정 조회 요청을 승인할까요? (표시용; 승인 증명 아님)\","
+      },
+      {
+        "line": 336,
+        "text": "- API principal: `send`→허용 `from`; `pull`/ACK→해당 `to`+delivery 경로; receipt→해당 기록 접근권. Agent cred가 `deliver:human` 처리·owner 승인 대체 금지."
+      },
+      {
+        "line": 350,
+        "text": "- Order: `structure/sig/auth/routing → digest → atomic idempotency → exp/TTL/id → queue+receipt`."
+      },
+      {
+        "line": 351,
+        "text": "- Receipt-only replay. Lease token bound to recipient/msg/generation. Durable persist → ACK success → exec claim → process."
+      },
+      {
+        "line": 372,
+        "text": "**Reject:** NL mid-hop / canonical `body.text` / `deliver:both` / new top-level parent-link / request-envelope `status` / remap intent meaning; using `sig`·hint·`ext`·confidence as owner approval; self-message pairing restore; tool exec from `relay.approval.request`; mutate original to escalate; pre-auth idempotency probe; full-envelope cache hit / re-enqueue / TTL extend; lease grant as `delivered`; forged B-signed `relay.result`; \"HTTPS ref is safe\"; execute on pre-revoke receipt alone; ACK ⇒ external exactly-once; invent Free **N** / Pro price / rate numbers / extra size caps."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_dev.md",
+    "sha256": "27eb29e61e101e4439a6266f56c3fd35d326c224de99711944ec803128061a11",
+    "lines": 843,
+    "matches": [
+      {
+        "line": 171,
+        "text": "`make install`, `make lint`, `make test`, `make build`, `make verify`, `make verify-runtime`은 모두 종료코드 0이다. 깨끗한 임시 Git clone의 코드 SHA에서 설치·검사·빌드·위반 주입을 재현했다. 실행 뒤 Git 변경은 없다. Go 포맷·TypeScript 포맷·ESLint·타입 주입은 각각 통합 명령 종료코드 2로 검출했고 원복은 0이다. 누락 Go 설정과 DB 연결 실패는 1, 누락 Tunnel 자격은 255다. Compose 실제 DB ping과 empty migration no-op을 확인했고 public 테이블은 0개다. DB 중지 뒤 상태 endpoint는 503이다."
+      },
+      {
+        "line": 202,
+        "text": "두 합성 에이전트와 owner가 등록·수락 관계를 만들고, frozen 요청을 안전 전달하며, 검증된 요청의 human-gate를 approve/deny하는 로컬 기능을 끝까지 구현한다. 첫 Go 기능을 ingest/queue-only로 줄이지 않는다. 기술 계획·API·데이터·구조·구현·관련 회귀·기술 문서 갱신은 이 과제 안에서 dev가 결정하고 수행한다. designer에게 파일/함수별 수정 방법 승인을 받지 않는다."
+      },
+      {
+        "line": 238,
+        "text": "- [x] strict frozen JSON·서명·current-auth·auth-first ingest·atomic idempotency·queue+receipt·TTL·lease·ACK·공유 durable inbox/claim을 구현한다. D02 MVP-03–07을 지킨다."
+      },
+      {
+        "line": 243,
+        "text": "- [x] 변경 동작·실패·경합·재시작·철회/만료 경계의 자동 검사와 관련 회귀를 수행한다. 실제 업무 schema/쿼리를 도입한 범위에서 migration·sqlc 생성과 DB 동작을 검증한다."
+      },
+      {
+        "line": 253,
+        "text": "로컬 흐름의 성공은 owner 가입/키 관리, A가 B-agent를 초대하고 B-owner가 수락, 안전 ingest와 receipt, pull/persist/ACK/claim, 원요청에 묶인 approve/deny, 최소 result/transport 상태 구분까지다. 철회·만료·권한 불명·중복 gate·다른 M.id로 승인 재사용·잘못된 result endpoint·다중 adapter 경합을 안전하게 거부해야 한다. 승인 성공만으로 stub이나 실제 외부 효과가 실행되면 실패다."
+      },
+      {
+        "line": 255,
+        "text": "- dev, 구현 중: make lint/test/build와 변경한 DB·adapter·HTTP/UI의 의미 있는 자동 검사·관련 회귀를 수행한다. project.md에 존재하는 명령만 사용하고 새 검사 명령은 같은 과제에서 문서화한다. 로컬 실행은 합성 데이터와 외부 연결 비활성 상태로 제한한다."
+      },
+      {
+        "line": 256,
+        "text": "- dev, 완료 커밋: git diff --check, deliverables.py --strict, 기준 ref의 FullOps lint를 깨끗한 HEAD에서 실행한다. product-lint make lint의 실제 결과를 기록한다. 명령 자신의 종료코드를 보존한다. | tail로 종료코드를 숨기지 않는다."
+      },
+      {
+        "line": 291,
+        "text": "owner/agent credential 분리, owner-bound PoP·rotate/revoke, invite·B-owner accept/deny·unpair·contacts, strict frozen JSON·RFC8785·Ed25519, auth-first atomic ingest·receipt-only replay, TTL·lease·durable inbox·ACK·shared claim, 검증된 M의 Go approve/deny UI·CSRF·atomic consume, 원요청에 결속된 최소 R과 transport 분리를 구현했다. 승인 후에도 disclosure는 false이고 schedule.commit은 non-executable이며 optional result/error와 무정책 done을 거부한다."
+      },
+      {
+        "line": 295,
+        "text": "make test/build/lint/verify/verify-runtime/verify-mvp/generate/schema와 git diff --check 및 deliverables strict가 통과했다. DB 검사는 integration build tag로 명시적으로 수행하며 필수 환경 부재는 실패다. 실제 Postgres의 12회 ingest·8회 claim·8회 accept 경합, 마지막 lease·late ACK·pool 재시작·TTL/id rollback·current-auth·clock·CSRF·gate failure states·result endpoint와 optional 정보·parent key rotation을 검증했다. TS stub의 verify/persist/ACK/claim·no-policy deny·owner approve 후 denied result·UI seed를 실제 HTTP에서 검사했다. 기준 0dd08ec994771836c15d9d22a6a83393a71d7987의 FullOps lint는 head 93593bf에서 ERROR 0, WARNING 3, 실행 불가 0, product-lint make lint exit 0이다. 경고는 HTTP·store·integration test의 파일 크기다. 최종 아카"
+      },
+      {
+        "line": 327,
+        "text": "기존 제품 a6a10c7의 C1 인증 경계 high 결함을 고친다. reviewer 메시지 msg_4fbcac80f76c는 deliver:human schedule.query를 B-agent credential로 pull·persist·ACK·claim 처리해 transport=delivered를 만들었고 owner gate가 0개임을 보고했다. 실제 Postgres/HTTP targeted.log는 종료코드 0으로 이를 재현했다. 정본 protocol.md C1은 agent credential의 deliver:human 처리와 owner 승인 대체를 금지한다. 기술 계획·원인 분석·수정·회귀·관련 기술 문서는 dev가 같은 과제로 수행한다. 제품 규칙 변경·공개 정책 수치 확정·벤더·배포는 범위 밖이다."
+      },
+      {
+        "line": 339,
+        "text": "- [ ] 실제 Postgres/HTTP에서 agent 자격으로 human pull·persist·ACK·claim이 수락·완료되지 않음을 회귀 검증한다."
+      },
+      {
+        "line": 340,
+        "text": "- [ ] 관련 C1–C5·lease/ACK/claim·철회·current-auth·human gate 자동 회귀와 product-lint를 수행한다."
+      },
+      {
+        "line": 347,
+        "text": "agent credential로 deliver:human을 처리하거나 owner 승인을 대체할 수 없어야 한다. 실제 경계 테스트 실패와 수정 후 통과, 기존 agent/owner 정상 동작을 같은 조건에서 확인한다. make lint·관련 race/unit/실제 Postgres 회귀와 필요한 합성 실행을 수행한다. 전체 QA는 독립 tester에게 후속으로 맡기며 변경 없는 시각 자료는 재사용 조건을 확인한다. 로그에 명령 자신의 종료코드를 남기고 실패·held를 보존한다."
+      },
+      {
+        "line": 349,
+        "text": "커밋 후 설치된 0.9.12 scripts/lint.py --repo <자기 체크아웃> --from e554fe1을 실행한다. ERROR 0·product-lint passed가 필수다. 완료한 역할 인박스에 보고 전문을 적고 work.py finish로 logs에 보존·인박스 비우기·소유파일 커밋·새 worker_done을 한 번 수행한다. 결과에 수정 SHA·재현·회귀·남은 held·후속 독립 QA/고정 SHA 리뷰를 적는다. DEV 완료는 제품 최종 수락이 아니다. coor가 독립 QA·UI·리뷰·필수 조건 확인 뒤 main 병합·일반 push·임시 워크트리 정리를 수행한다."
+      },
+      {
+        "line": 354,
+        "text": "- 재현: coor targeted.log(msg_4fbcac80f76c)의 agent pull·persist·ACK·claim 200, transport=delivered, owner gate 0을 확인했다. 새 회귀 `agent_cannot_process_human_delivery`는 수정 전 코드에서 실제 Postgres/HTTP로 send 200 queued 실패(exit 1)를 재현했다."
+      },
+      {
+        "line": 357,
+        "text": "- 검증(모두 명령 자신의 종료코드): make install/lint/test/build/verify-mvp exit 0, make generate 후 internal/database diff 0. verify-mvp에서 새 회귀와 기존 C1–C5·lease/ACK/claim 경합·철회·세대·current-auth·human gate·TS adapter가 통과했다."
+      },
+      {
+        "line": 384,
+        "text": "특히 reviewer msg_4fbcac80f76c의 C1 high가 실제 해소됐는지 확인한다. agent/human delivery route 저장과 lease/persist/ACK/claim 인증 경계, H 이외 direct deliver:human의 403 제한이 frozen 정본 요구를 낮추거나 새로운 제품 결정을 만들지 않는지 판정한다. strict wire·현재 권한·PoP·owner/agent 경계·approval/result 결속·idempotency·TTL·철회·lease/claim·CSRF·DB 경합/epoch CAS도 확인한다. QA-06 stale epoch의 기존 targeted 검사·DEV 자동 회귀 재사용 가능성을 판정한다. 공개 기획의 제안값은 확정하지 않으며 별도 기획 문서 결과를 검토·통합할 수 있는지 보고한다. 전체 제품 공개·실벤더·신원·정책·singleton 처리량·WAL/backup held는 합성 수락과 분리한다. 독립 QA 후속은 coor가 전달한다."
+      },
+      {
+        "line": 415,
+        "text": "구현 담당자의 기존 human/경로 미기록 claim 차단 및 정상 agent 회귀, 새 SHA의 독립 리뷰가 필요하다."
+      },
+      {
+        "line": 452,
+        "text": "고정 리뷰 증거 138b8b319763d7bcd97de26d74c1584443bf97af의 SAR-MVP-001-REVIEW-FIX-review/report.md·result.json·legacy-claim.log·legacy-claim-probe.txt를 먼저 읽는다. 제품 후보 4262d02의 신규 경계는 통과하지만 실제 a6a10c7 State 메서드로 발급한 human claim의 serialized 상태를 로드하면 authorize/result와 parentRouting에서 재사용된다. 기존 human 및 경로 미기록 claim의 agent 처리·authorize/result·H/R 부모 재사용을 확정 protocol C1에 맞게 차단한다. 정상 agent·owner gate·approval/result·현재 권한은 유지한다. 원인 분석·기술 계획·저장 호환·구현·회귀·기술 문서 갱신은 DEV 책임이다. 새 기능·제품 정책·실제 배포는 범위 밖이다."
+      },
+      {
+        "line": 456,
+        "text": "실제 이전 메서드로 발급한 serialized human/경로 없는 claim 회귀를 추가하고 RED/GREEN 종료코드를 보존한다. unit/race·Postgres/HTTP·verify-mvp 영향 검증 및 sqlc 무변경·lint ERROR0/product-lint passed·strict·공백 검사를 완료한다. 제품·관련 테스트·영향 기술 정본(D03/D05/D06/D09/D10)·context/phase·DEV inbox/archive만 소유한다. PLANS/board·제품 기획·다른 역할 기록은 수정하지 않는다. 중복 finish 차단 시 실패 근거와 별도 후속 전문을 logs에 보존하고 완료 inbox를 비운다. 새 전체 QA·직접 시각 검수는 반복하지 않는다."
+      },
+      {
+        "line": 470,
+        "text": "회귀: a6a10c7 detached worktree에서 실제 State ingest/leaseMessage/operate로 `internal/relay/testdata/legacy_claims.json`을 생성했다(exit 0)."
+      },
+      {
+        "line": 474,
+        "text": "HTTP/Postgres `legacy_unrouted_claim_parent_boundaries`는 경로 미기록 claim의 authorize·H·R·gate-consume 403과 경로 복구 뒤 200을 확인한다. 이 HTTP 회귀의 수정 전 RED는 실행하지 않았다."
+      },
+      {
+        "line": 476,
+        "text": "검증: make lint exit 0, make test(unit/race) exit 0, make verify-mvp exit 0(PostgresSafety 7개·GateFailureStates·Binding·PendingAccept·TS adapter·Go UI seed), make generate 뒤 internal/database diff 0."
+      },
+      {
+        "line": 514,
+        "text": "- [x] 실제 이전 fixture·수정 전 RED/새 head GREEN·explicit human/TTL probe·unit/race·Postgres/HTTP/TS 회귀를 확인했다."
+      },
+      {
+        "line": 524,
+        "text": "새 SHA의 parentRouting Deliver==agent 검사로 legacy human·경로 미기록 claim의 authorize·H·R·gate-consume 차단을 확인했다. 실제 이전 serialized State fixture의 수정 전 RED exit1, 새 head GREEN exit0을 직접 실행했다. explicit human·fixture 서명·TTL overlay exit0과 정상 agent·owner gate·권한/철회·approval/result의 unit/race 및 실제 Postgres/HTTP·TS adapter 회귀 exit0을 확인했다. 기존 agent claim도 fail-closed이며 C1/C3에 맞는다. 최대 300초는 원래 요청 TTL이고 자동 재전송 성공 보장은 아니다. 동일 ID/key replay는 receipt-only이며 새 실행권을 만들지 않는다."
+      },
+      {
+        "line": 788,
+        "text": "- [x] 변경 영향에 맞는 자동 검사·회귀·lint·strict를 실행하고 자신의 종료코드와 실제 HEAD를 남긴다. work.py finish로 전문 보존·인박스 비우기·커밋·역할 브랜치 일반 push 뒤 worker_done을 보낸다."
+      },
+      {
+        "line": 814,
+        "text": "4. 답 대기 동안 기존 `make verify-mvp`의 격리 SQL·서명·persist·ACK·claim·gate·최소 result 회귀를 실행한다. D05/D10/D13에는 후보별 지원 범위와 실제 연결 held를 기록한다."
+      },
+      {
+        "line": 825,
+        "text": "DEV 파일 소유권 안의 adapters/에 manifest·MCP·skill·사용자 설치 문서를 둔다. scripts/에는 whitelist 패키징 도구를 둔다. 짧은 테스트에서 실제 MCP initialize/discovery/tool call과 held/no-network, non-loopback reject를 검사한다. 기존 SQL 합성 회귀와 MCP-to-relay 흐름을 연결한다. D03/D05/D10/D13 및 실행 기록을 갱신한다."
+      },
+      {
+        "line": 835,
+        "text": "제품 검사는 `make lint`, `make test`, `make verify-mvp`가 구현 SHA에서 각각 exit 0이다. `make plugin`은 packaging SHA에서 build·압축 해제 artifact의 SDK handshake/discovery/held/URL 차단 검사까지 exit 0이다. FullOps 0.9.13의 지시 기준 lint도 exit 0, ERROR 0/WARNING 2/실행 불가 0이다. 경고는 coor 소유 PLANS 511줄과 테스트의 synthetic lease 더미다. 테스트 명령 자신의 종료코드를 보존했으며 pipe로 통과를 만들지 않았다. 초기 bundle stdout 실패 exit 1과 core 분리 수정 후 exit 0을 실행 기록에 보존했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-03_to_tester.md",
+    "sha256": "4a2f84ee7a5586565184db2df42abeba734722fc8f4cb6909cea90fe055e70ed",
+    "lines": 659,
+    "matches": [
+      {
+        "line": 242,
+        "text": "| QA-04 | MVP-04/05 | 같은 key+digest의 receipt-only replay, 다른 digest conflict, TTL/id 실패 reservation rollback, 24h 기록과 원문 수명 구분을 확인한다. replay는 재enqueue/TTL 연장/실행권 갱신이 아니다. |"
+      },
+      {
+        "line": 244,
+        "text": "| QA-06 | MVP-07 | enqueue/lease/ACK/approval consume/exec/result 공개 각각에서 revoke/unpair 경합과 epoch CAS를 확인한다. 철회 확정 전후 보장 범위를 구분한다. 기존 receipt로 새 관계 권한을 복구하지 않는다. 비정상 시계·권한 불명은 차단한다. |"
+      },
+      {
+        "line": 249,
+        "text": "| QA-11 | MVP-15/16 | 원문 exp/완료 후 정리와 receipt 24h의 구분, inbox/log/trace/model context 최소화를 확인한다. pending/결정 완료/expired/revoked/unavailable 상태와 caption이 의미를 전달한다. 지정 UI 캡처를 designer에게 인계한다. |"
+      },
+      {
+        "line": 255,
+        "text": "tester는 안정된 고정 후보에서 위 시나리오와 영향 회귀를 실행한다. 실행 불가·실패는 이유·담당·재개 조건을 기록한다. DEC-02 실데이터 positive silent done, DEC-03 운영 제한은 held이며 합성 흐름 PASS로 대체하지 않는다. 정책 없음 deny는 이번 001의 통과 조건이다."
+      },
+      {
+        "line": 259,
+        "text": "검증은 실제 실행 가능한 DEV 명령·make lint/test/build와 새 업무 시나리오를 사용한다. 문서 검사 deliverables.py --strict, git diff --check, 깨끗한 완료 커밋 기준 ref의 FullOps lint를 수행한다. 로그는 명령 자신의 종료코드를 보존한다. | tail로 가리지 않는다."
+      },
+      {
+        "line": 283,
+        "text": "QA-01–11 실행 항목은 통과다. 최종 `isolated.py` 종료코드는 0이다. `make lint`는 의존성 설치 전 2, `npm ci` 후 0이다. `make test` 0, `make build` 0, `make verify-mvp` 0이다. 제품 critical/high 결함은 없다. 재개 조건은 없다."
+      },
+      {
+        "line": 320,
+        "text": "실제 Postgres/HTTP에서 deliver:human의 agent pull·persist·ACK·claim 차단과 owner gate·agent delivery·approval/result·current-auth·철회·TTL·lease·CSRF 관련 회귀를 검증한다. H 이외 direct deliver:human의 신규 403 처리와 frozen 프로토콜의 정합성은 독립 reviewer도 확인한다. 실제 DB 경계 테스트가 실행됨을 증명하며 환경 실패를 결함 재현이나 성공으로 바꾸지 않는다. 변경 의존성이 넓으면 해당 QA 범위를 넓힌다. 기존 QA의 변화 없는 동작·8개 시각 PNG는 실제 제품 파일/설정 동일성 확인 후 원래 SHA·조건으로 재사용한다. 전체 장시간 QA·불필요한 캡처는 반복하지 않는다. 원래 held와 새 실행 PASS를 구분한다."
+      },
+      {
+        "line": 322,
+        "text": "소유는 docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md와 같은 키 test 증거 폴더·필요 scenarios·자기 contexts·현재 inbox/logs다. PLANS·board·제품·DEV/기획/원래 QA 증거는 수정하지 않는다. 명령 자신의 종료코드를 남긴다. make lint와 영향 자동/실제 DB 회귀·strict·공백 및 커밋 후 FullOps lint를 수행한다. 보고서에 대상 SHA·수락 항목·pass/fail/held·범위·증거 재사용 정합성과 후속을 적는다. 실패/결함은 coor에 알리고 제품 코드를 고치지 않는다. work.py finish·소유파일 커밋·새 worker_done을 수행한다. 본문에 `[완료] SAR-MVP-001-TESTER-FIX | SHA <보고 커밋> | 제품 4262d02 | ...`를 포함한다. 독립 QA 완료는 제품 최종 수락이나 공개 배포 완료가 아니다."
+      },
+      {
+        "line": 326,
+        "text": "상태: 독립 QA를 마쳤다. 제품 `4262d02fdd7b0b57a804d9e550597852950ffeae`의 신규 human transport 차단과 관련 회귀는 통과했다. legacy claim의 authorize·result 수락은 미해결 high이며 제품 수락을 차단한다. 병합 승인과 공개 배포 완료는 아니다. 보고 커밋 SHA는 worker_done 본문에 적는다."
+      },
+      {
+        "line": 328,
+        "text": "변경 이유: 지시서가 고정 제품 4262d02의 독립 QA를 요구했다. 실제 Postgres와 relay HTTP에서 H 이외 `deliver:human`의 pull·persist·ACK·claim 차단과 owner gate·agent delivery·approval/result·current-auth·철회·TTL·lease·CSRF 회귀를 실행했다. 제품 코드, PLANS, board, 원래 QA 증거는 수정하지 않았다."
+      },
+      {
+        "line": 332,
+        "text": "수락 기준별 결과: 신규 direct·stored human 차단과 이번 회귀 17항은 통과다. FIX-legacy-claim-authorize-result는 실패다. authorize 200, `relay.result` 200, completion `denied`, gate 0이다. `make lint`, `make test`, `make verify-mvp`의 종료코드는 0이다. `make test`는 integration tag를 포함하지 않는다. 실제 DB 증거는 `make verify-mvp`와 HTTP probe다."
+      },
+      {
+        "line": 361,
+        "text": "먼저 FULLOPS·공통 README와 세 규칙·project·문서 작성 규칙·기존 TESTER-FIX 보고·실패 REVIEW-FIX legacy 증거·DEV 후속 phase/logs 및 protocol C1을 읽는다. 이전 같은 key Jev find/context를 재사용한다. 실제 a6a10c7의 serialized human/unrouted fixture와 parentRouting의 차단·authorize/result·H/R 부모/owner consume 경계를 새 SHA의 실제 Postgres/HTTP에서 검증한다. 정상 새 agent·owner gate·approval/result·현재 권한 영향 회귀를 필요한 범위만 검증한다. 제품 파일과 PLANS/board는 수정하지 않는다. 새 전체 MVP 반복·새 기능·실제 배포는 시작하지 않는다."
+      },
+      {
+        "line": 371,
+        "text": "지시와 달라진 판단: fixture TTL이 QA 시각보다 이전이었다. `Receipt.exp`와 `Gate.Exp`만 4분 뒤로 옮겨 sweep가 claim을 지우지 않게 했다. `Deliver`와 claim token은 fixture 값이다. probe 1–3회 종료코드 1은 tester 형태 비교다. 4회 종료코드 0이 판정이다."
+      },
+      {
+        "line": 373,
+        "text": "수락 기준별 결과: legacy 경계와 이번 회귀 9항은 통과다. `go test` legacy fixture 종료코드는 0이다. 그 명령은 HTTP 증거를 대신하지 않는다. `make verify-mvp`는 실행하지 않았다. 설정과 migration은 `4262d02`와 같다."
+      },
+      {
+        "line": 491,
+        "text": "- 승인 범위: 읽기 전용 최신 고정 gate 검증, 외부 미인증 HTTP 검사, 공유 서비스 회귀, 자기 QA 기록 커밋. Access 쓰기·배포/DNS/connector 변경·제품 소스·실데이터·비밀 출력은 금지다."
+      },
+      {
+        "line": 640,
+        "text": "- [x] 새 MCP 동작의 자동 경계 검사와 make verify-mvp의 격리 실제 SQL/MCP 경로를 실행한다. loopback 제한·redirect 차단·권한·persist/ACK/claim 실패 전파·gate·최소 denied result·동시 호출 경계에서 실패/정상 동작을 판정한다. make lint/test/build 등 이미 DEV가 검증한 범위는 변경·새 결함 영향이 없으면 원래 SHA 근거로 재사용한다."
+      },
+      {
+        "line": 655,
+        "text": "`make install`, `make plugin`, 압축 해제 MCP 검사, 동시 pull probe, `make verify-mvp`, `make lint`의 자기 종료코드는 0이다. 새 결함과 새 critical/high는 없다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_dev.md",
+    "sha256": "438b8748fd3a79d81f042faf02d051a112ca87ed6a31a8fe98f213b69bc358ff",
+    "lines": 730,
+    "matches": [
+      {
+        "line": 51,
+        "text": "Google 실제 회원 로그인과 자기 홈은 운영 a9a0db49745542727611ee863e0beeb03c53288e에서 동작한다. 공개 /v1/connect/{info,prepare,complete}, /v1/text/{send,pull,persist,ack}, /v1/keys/{agent}/{kid}, /v1/receipts/{id}만 relay 인증까지 도달한다. /home·기존 root는 아직 Cloudflare owner-only 보호다. 실제 Node grant info 200과 음성 경계·공유 회귀는 COOR/open-readiness/nou-public-access.json에 있다."
+      },
+      {
+        "line": 71,
+        "text": "사용자가 자기 클라이언트에서 연결을 시작하고 자기 브라우저의 Google 로그인/필요한 동의를 마치면 해당 클라이언트에만 자격이 자동 저장된다. token 파일·키·credential의 사용자 수동 전달은 없다. 서로 다른 클라이언트가 같은 Google 회원에 독립 agent로 연결되며 다른 회원/클라이언트가 연결 결과를 가로채지 못한다. 기존 로그인/동작 회귀를 좁게 검사한다. 외부 Bot의 앱/MCP 권한 제약은 실제 근거로 구분한다."
+      },
+      {
+        "line": 241,
+        "text": "- `internal/relay/member_receipt.go` (impact_check) · 줄 14, 29, 30, 31, 45 · inferred"
+      },
+      {
+        "line": 257,
+        "text": "[완료] SAR-GOOGLE-CONNECT-001-DEV: 기존 Google 회원·세션과 Node/Command MCP를 재사용하여 키 생성→공개 링크→Google 로그인→지문 확인/명시적 동의→별도 agent→서명 조회/complete→로컬 credential 자동 저장을 구현했다. token 파일·개인키·credential 수동 전달은 없다. 같은 회원의 별도 키·agent와 관계 수락을 유지하며 자동 pairing은 없다."
+      },
+      {
+        "line": 260,
+        "text": "- Windows Node22/npm10/make/gcc/sh 환경을 복구했다. make lint와 make test는 실제 exit 0이다. 격리 Postgres17/합성 OAuth의 GoogleDeviceHTTP·GoogleHTTP·EmailIdentity 통합 검사는 exit 0이다. 중간 실패와 수정 근거는 실행 기록과 QA 보고에 남겼다. 최근 인증·CSRF·회원/키 결합·만료·replay·수동 confirm 우회 거부를 확인했다."
+      },
+      {
+        "line": 267,
+        "text": "coor msg_641fb3898ab1/msg_d9bb45f4a345 수신 후 사용자 요청대로 로컬 Docker 작업을 중단했다. .env.server를 비공개 SSH 클라이언트로 읽고 b8fce7e 구현 후보를 운영 서버 별도 임시 디렉터리에서 make lint=0/make test=0으로 검증했다. 별도 합성 Postgres17의 migration=0 및 GoogleDeviceHTTP/GoogleHTTP/EmailIdentity integration=0을 확인하고 임시 컨테이너를 제거했다. 기존 운영 DB·회원·키·Tunnel과 다른 서비스는 변경하지 않았다. 서버 로그·warning 해석은 docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-DEV/report.md에 추가했다. 최종 문서 commit의 clean clone 등록 게이트 결과·SHA는 authentic worker_done으로 전달한다."
+      },
+      {
+        "line": 321,
+        "text": "- 로컬 Docker 금지. .env.server의 비밀 SSH로 기존 운영 서버의 고유 임시 checkout/격리DB/포트에서 등록 make lint/test와 영향 있는 좁은 경계를 검증한다. 운영 실제 서비스를 worker가 변경하지 않는다. 기존 테스트증거는 코드/조건 동일할 때만 재사용한다."
+      },
+      {
+        "line": 429,
+        "text": "- 판단: cap2000과 만료 뒤24h tombstone 정책은 유지했다. 신규 Device 포화의 medium 한계는 D12에 명시했으며 조기 삭제·한도 상향·새 IP 정책은 추가하지 않았다. cap 임계값/정리 회귀 및 기존 다른 회원 callback 거부 회귀를 추가했다. 제품 규칙·새 의존성·SQL·UI 변경은 없다."
+      },
+      {
+        "line": 484,
+        "text": "- [x] 기존 서명 검증·활성 관계·만료·durable persist/ACK와 공유 수신 경계를 재사용해 최소 자동 수신을 구현한다. 수신 메시지를 수동 조회 전에 잃지 않으며 재시작/중복/경합/권한 철회를 처리한다. 무한 병렬 poll·로그 원문 노출·자동 외부 업무 효과는 금지한다."
+      },
+      {
+        "line": 547,
+        "text": "- 검사(Windows, Node22.22.2 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/node-v22.22.2-win-x64`): `npm run check` 0, `make lint-go lint-adapters` 0, `make test` 0(go race, npm test 5종 PASS). 새 `inbox.test.js`는 번들 plugin.js를 SDK stdio로 실행해 자동 pull→검증→inbox→persist→ACK→알림(수동 호출 없음), 중복, 재시작, 읽음 표시, 만료, 철회 403, 500 backoff, opt-out, watch CLI, pull 동시성 1을 확인했다. store를 ACK 뒤로 옮긴 변이는 실패했다."
+      },
+      {
+        "line": 595,
+        "text": "- [x] 첫 후보의 수신/조회 호환성을 유지하고 필요한 핵심 실패 검사와 문서를 갱신한다. 최종 HEAD의 필수 lint를 통과시킨다. 기존 증거는 동일성·출처·hash를 명시해 재사용하며 변경 영향이 있는 검사는 다시 수행한다."
+      },
+      {
+        "line": 601,
+        "text": "자동 수신 보존과 수동 조회가 회귀하지 않는다. bridge를 구현하면 로컬 전용 인증·잘못된 대상 거절·토큰 비노출·untrusted 전달·중복/재시작·실패/불확실한 상태를 검증한다. 실제 VM 미검증은 그대로 표시한다. 실제 운영 도메인→Bot inbox→노우 대화 전달을 UI 수신 유도 없이 ID로 대조하기 전 제품 수락은 미완료다."
+      },
+      {
+        "line": 633,
+        "text": "- Windows Node 22.22.2: `npm run check` 0, `make lint-go lint-adapters` 0, `make test` 0(go race, npm test 5종 PASS). `inbox.test.js` 시나리오 1–6 유지, 7 추가: 거절→retry, 재시작 후 수락(Bearer·agentId·path·prompt에 ID/untrusted, text 없음, marker), wake-check(UUID만, prompt 미발송), 중복·재시작 무재호출, 기본 off 후 활성화 시 1회, 401 rejected 무재시도, reset uncertain, 잘못된 대상 invalid_config+수신 지속, status·notice·stderr token 없음."
+      },
+      {
+        "line": 643,
+        "text": "- 후속 제품 문구: 회원 홈 receipt의 “자동 wake는 없습니다. 수신 client에서 수동 receive를 실행하세요”(`internal/relay/member.go:27`)는 자동 수신 후보와 어긋난다. 서버 UI·제품 문구라 이번 소유 범위 밖이다. designer/coor 판단 대상이다."
+      },
+      {
+        "line": 725,
+        "text": "- medium1: member.go receipt 문장을 \"자동 답장은 없습니다 + 자동 수신 시 로컬 inbox 자동 저장, 호스트 표시는 조건부, 안 보이면 수동 receive\"로 바꾸고 public_messages_integration_test.go 기대 문장을 \"자동 답장은 없습니다\"로 맞췄다. 로직 변경 없음. \"수동 receive\"·\"10초 이상\"은 유지해 public_text_test.go 기대와 호환된다."
+      },
+      {
+        "line": 729,
+        "text": "- 검사: go test ./internal/relay (PublicMessages|PublicText|Receipt) ok. lint.py --from 559f3d2: ERROR 0, WARNING 1(PLANS.md SIZE-001, 기존), product-lint/product-test(make)는 Windows에서 unavailable(기존 환경 한계, Linux 검증은 기존 리뷰 기록). D12·mockups 과거 기록은 변경하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-10_to_tester.md",
+    "sha256": "9137a995a9a70bfcf143b8db6b63c6d44676cf6637efd82182a6057760ae5269",
+    "lines": 497,
+    "matches": [
+      {
+        "line": 43,
+        "text": "최종 SHA의 실제 서버 clean-clone lint 증거는 `D:/workspace/KnowsLink/.git/worktrees/dev/fullops-gate/google-connect-final-lint.json`이다. ERROR0/WARNING8/실행 불가0, 등록 make lint/test exit0다. 일치하는 head/base/config와 경고 근거를 검토해 같은 리뷰 폴더 lint.json에 보존한다. 변경 없는 등록 전체 검사를 반복하지 않는다. 필요할 때만 서버 clean clone에서 다시 실행한다."
+      },
+      {
+        "line": 45,
+        "text": "별도 운영 서버 임시 공간·격리 DB/loopback 포트에서 핵심 연결 성공·명시적 동의·만료/replay·다른 회원/클라이언트 분리와 필요한 기존 로그인 회귀를 짧게 검증한다. DEV self-check 재사용과 직접 독립 실행 결과를 구분한다. 실제 Google/외부 Bot 성공을 합성 검사로 주장하지 않는다. 로컬 Docker를 기동하지 않는다. 운영 서비스·DB·키·Tunnel·다른 서비스를 보존한다."
+      },
+      {
+        "line": 59,
+        "text": "- lint: 서버 clean clone 증거 `fullops-gate/google-connect-final-lint.json`을 검증해 `lint.json`으로 보존했다. head·base·merge_base 일치, config_sha256은 snapshot의 `lint/lint.json`과 일치, ERROR 0 / WARNING 8 / 실행 불가 0, `make lint`·`make test` exit 0. 경고 8건은 SIZE-001×4·SIZE-002·DEP-001(스크립트만 변경)·SEC-001(합성 fixture 오탐)·SLOP-004(사용자 출력)로 판정했다. 새 의존성·SQL 변경 없음."
+      },
+      {
+        "line": 99,
+        "text": "- [ ] 폴더 상위 생성이 최종 exclusive/ACL 검증을 보존하는지, 설치 manifest/skill 안내와 실제 9도구 계약·명시 동의가 맞는지 확인한다. cap2000/24h medium 잔여 한계와 기존 다른회원 callback 회귀를 확인한다."
+      },
+      {
+        "line": 315,
+        "text": "- [ ] 수동 receive 호출 없이 자동 수신/서명·관계 검증/지속 보존/ACK/호스트 알림을 관찰한다. 이후 수동 조회에서 메시지 원문이 유실되지 않는지 확인한다."
+      },
+      {
+        "line": 317,
+        "text": "- [ ] DEV의 동일 SHA 필수 lint/빌드/검사 증거를 확인한다. 영향 없는 전체 회귀는 반복하지 않는다. Node22 명시 경로를 사용한다."
+      },
+      {
+        "line": 476,
+        "text": "호스트 알림과 노우 턴은 구분한다. 설치본 `@modelcontextprotocol/sdk` 1.32.0은 logging level이 없으면 `notifications/message`를 보낸다. 그 전송은 노우 턴 시작이 아니다. 공개 relay preflight는 `lastSuccessAt`만 갱신됐고 pending 0이며 호스트 표시나 노우 수신의 증거가 아니다. Context7 조회는 월간 한도로 실패해 설치본 SDK 소스를 계약으로 사용했다."
+      },
+      {
+        "line": 480,
+        "text": "coor msg_9ed204c7307a의 `package_plugin.py --verify`와 `mcp.test.js` exit 1은 이 세션의 clean detached af7627d와 Node 22.22.2에서 재현되지 않았다. Windows zip sha256은 `666704d3d8da0dd20360ebf63d20581216819ede1b2dc3aeb203f90c0837aa7f`이고 추출 검사는 exit 0이다. Linux 패키지 로그의 zip sha256은 `f7d09684870514b0cfd368458aeaa99d968493abb92c52850ba6d46edb0c4eb6`이고 추출 검사 exit 0, remote exit 0이다. 필수 검사의 제품 회귀로 확정하지 않는다. 운영 설치와 실제 Bot 수신 수락은 이 기록이 대체하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_designer.md",
+    "sha256": "353e7bd8d2360358e24544b2aa1f1a3fdadb5353fe3966b0e2d1c1feb4ef60ec",
+    "lines": 730,
+    "matches": [
+      {
+        "line": 159,
+        "text": "첫 증거 커밋은 `d2c7ca91169da20ce74b5395b190f40bc0d2bb4f`다. 깨끗한 커밋에서 `lint.py --repo . --from febd1282df2e84a29fa0a53834569e7b9cc028e2`를 실제 실행했다. [initial-lint.json](initial-lint.json)의 결과는 exit1, ERROR 0, WARNING 1, 실행 불가 2다. `product-lint: make lint`와 `product-test: make test`는 실행 파일 부재로 unavailable이며 PASS가 아니다. 경고는 착수 준비 커밋에 포함된 coor의 `PLANS.md` 증가이며 이번 작업자가 변경하지 않았다. 후보·등록 명령·exclude·규칙을 수정하지 않았다."
+      },
+      {
+        "line": 435,
+        "text": "- 검증 명령과 종료코드: `deliverables.py --stamp` 3건(D04 새 문서·SAR-MVP-001-UI·phase/context) exit 0. 제품 코드 변경이 없어 make lint/test는 해당 없음이다. 디자인 lint는 미구성(project.md)이라 해당 없음이다. fullops lint는 커밋 후 base 기준으로 실행해 worker_done에 결과를 적는다."
+      },
+      {
+        "line": 436,
+        "text": "- 미검증: 이메일 코드·오류 화면, 연결 관리·기기 승인·receipt·gate·refusal의 렌더 결과(템플릿 코드로만 확인), 에이전트 5개·긴 관계 목록, 다크 모드. 대비는 계산값이다. `frontend-design` 스킬은 이 환경에 없었다."
+      },
+      {
+        "line": 466,
+        "text": "디자인 정본 docs/design-docs/mockups/service-member-ui.md의 IA·토큰·필수 R-01–09·수락 조건과 고정 후보를 직접 대조한다. DEV synthetic fixture와 Orca 내장 브라우저로 실제 login/home(4 agent, 빈 상태 가능)/연결·device·receipt/오류의1440·390 PNG를 보존하고320 overflow·키보드focus·44px 조작·contrast·한국어줄바꿈을 확인한다. 스크린샷 CLI JSON의 base64를 로그에 출력하지 말고 파일로 저장한다. 값은 합성 fixture만 사용하고 live 개인 정보는 캡처하지 않는다. 디자인 lint/테마 전환은 기존 지원 범위로 검증하거나 해당 없음 사유를 남긴다."
+      },
+      {
+        "line": 559,
+        "text": "- `internal/relay/member_receipt.go` (direct_edit) · 줄 전체/미확인 · inferred"
+      },
+      {
+        "line": 718,
+        "text": "**검증**: 제품 바이트 `git diff 295417a HEAD -- internal adapters scripts go.mod` 비어 있음. 후보 fixture 테스트 통과(Go 1.27.1, Windows). lint: `lint.py --from 2e8b8b228568baa2d849831a0859063de55aa473` HEAD 77a09d7, ERROR 0 / WARNING 1(PLANS.md 줄 수, coor 준비 커밋에서 온 것) / 실행 불가 2(`make lint`·`make test`는 Windows에 make 없음. 대신 DEV의 Linux 609fcfd 종료코드 0 결과를 제품 바이트 동일 근거로 재사용하며 이번 SHA에서 재실행한 PASS가 아니다). DOC-003 오류 0건. 디자인 lint·다크 테마는 미구성이라 해당 없음이고 실제 측정으로 보완했다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_dev.md",
+    "sha256": "82a6b68542db710b56f6179b670e69e1bec956ffc95cc65a122a5646f6da0ce9",
+    "lines": 1049,
+    "matches": [
+      {
+        "line": 78,
+        "text": "DEV는 최종 exact SHA에서 등록 product-lint/product-test(make lint/make test)를 실행한다. Windows make/cloudflared 제한 시 기존 Linux 운영 서버의 고유 /tmp clean clone으로 격리 검증한다. .env.server는 로컬 링크로 이미 제공한다. 값 출력 금지, 기존 host key verification 유지. local Docker는 실행하지 않는다. 운영 서비스/DB/Tunnel은 DEV 검사에서 변경하지 않는다. 필요 isolated test DB container는 기존 tester 정책과 동일하게 자기 고유 자원만 사용·회수하고 운영 DB와 혼용하지 않는다."
+      },
+      {
+        "line": 81,
+        "text": "- 기존polling 회귀, SSE연결/단절/재연결·pending catch-up·중복/동시pull·폐기/timeout cleanup의 핵심 자동 테스트."
+      },
+      {
+        "line": 116,
+        "text": "Windows Go/Node22 focused 검사,4개 추출 standalone MCP bundle과 Cloud 임시 합성 구조 검사가 통과했다. Linux 고유 clean clone/격리 Postgres에서 실제 SSE15초 heartbeat·cross-process·기존 수신 회귀가 통과했고 security 변경 후 Google OAuth·PKCE·refresh replay·철회 HTTP를 다시 실행해 통과했다. e9ab92d13d5836ed01bbccd4dab4f3ee52a25822 등록 product-lint0/product-test0, ERROR0/WARNING19/실행불가0을 확인했다. archive 뒤 최종 HEAD에서 같은 등록 명령을 다시 실행한다. 최초 socket deadline 결함·readiness/build 순서 실패·pending() 검사 오탐과 해결을 그대로 기록했다. 새 dependency0, SIZE·합성 key·사용자 CLI 출력 경고 근거를 남겼고 규칙을 완화하지 않았다."
+      },
+      {
+        "line": 126,
+        "text": "title: SAR-WINDOWS-SHELL-GUARD-001-DEV — Windows 삭제 명령 사고의 실행 전 차단 및 회귀 검증"
+      },
+      {
+        "line": 131,
+        "text": "summary: Windows 삭제 명령 사고의 실행 전 차단 및 회귀 검증"
+      },
+      {
+        "line": 154,
+        "text": "3. provider별 실제 hook payload의 합성 deny/allow 회귀를 작성한다. 사고 인용 입력·빈/루트/부모탈출/교차 셸·reparse 및 정상 비파괴 작업을 검사한다. 실제 차단 hook 설치를 직접 증명하되 실제 삭제는 하지 않는다. hook 미지원/재시작 필요는 정확히 보고하고 안전한 실행 경로를 제시한다."
+      },
+      {
+        "line": 157,
+        "text": "6. 고정 최종 SHA에서 등록 lint/test 및 직접 guard 회귀를 실행하고 packet outcomes/work finish/archive/commit을 완료한다. Windows make 대신 격리 Linux clone이 필요하면 기존 helper를 참고하되 DEV 이전 final 고정 shim으로 다른 HEAD를 검사했다고 하지 않는다. 고유 임시 clone과 실제 HEAD/clean 확인, 종료코드 전달을 유지한다. 정리 삭제는 하지 않는다."
+      },
+      {
+        "line": 176,
+        "text": "- 변경: `scripts/shell_guard.py`(PreToolUse guard), `scripts/test_shell_guard.py`(합성 회귀), `.claude/settings.json`(Claude Code·Grok hook), `.codex/hooks.json`(Codex hook), `Makefile`(lint `py_compile`·test 연결), AGENTS.md·CLAUDE.md 안내, PLANS.md 결과 한 줄, exec plan, packet-outcomes. 제품 relay/adapter·플러그인 캐시·전역 설정은 변경하지 않았다."
+      },
+      {
+        "line": 180,
+        "text": "- 검증: Windows 로컬 회귀 OK(provider 4종 × deny 43·allow 17, payload 경계, 삭제 없음; 자체 리뷰로 wrapper 옵션·`rm --rec`·splatting 우회 보강). Linux 고유 clone 사전 검사 124f4af에서 `make lint`0·`make test`0. 최종 HEAD gate는 lint.py 등록 명령으로 다시 실행한다."
+      },
+      {
+        "line": 219,
+        "text": "scripts/shell_guard.py·scripts/test_shell_guard.py·.codex/hooks.json 및 필요한 최소 launcher, AGENTS.md·CLAUDE.md·기존 DEV exec plan의 정확한 안내만 수정한다. F1~F4 합성 회귀를 추가하고 정상 비파괴 작업을 보존한다. 예상 제품 추가 100줄 이내, 문서·증거 제외. 초과 시 이유를 기록한다."
+      },
+      {
+        "line": 456,
+        "text": "- F4: `.codex/hooks.json`이 `git rev-parse --show-toplevel` 루트의 guard를 호출하는 큰따옴표·공백 없는 한 줄이다. `cmd /C`에 인자 목록과 원문 문자열 두 방식으로 넘겨 repo 루트·`scripts`·`adapters` 하위 cwd에서 allow 0, deny 2를 확인했다(회귀는 `scripts` 하위, Windows 전용). 원래 상대경로는 하위 cwd에서 종료코드 2로 모든 호출을 막았다. 따옴표를 쓴 한 줄은 인자 목록 방식에서 종료코드 1로 실패해 쓰지 않았다. fail-open 서술은 AGENTS.md·exec plan에서 정정했다."
+      },
+      {
+        "line": 457,
+        "text": "- 근거: Context7은 월 한도 초과로 조회하지 못해 설치된 codex-cli 0.162.0 동작을 로컬 재현(cmd /C)으로 확인했다. 실제 Codex 세션의 hook 신뢰 승인과 모델 tool call은 실행하지 않았다."
+      },
+      {
+        "line": 458,
+        "text": "- 규모: 제품 추가 약 75줄(guard 26·회귀 약 35·hook 1줄 등), 100줄 이내. 새 의존성·비용 없음. 삭제·이동·복구·cleanup은 하지 않았고 임시 증거는 보존했다."
+      },
+      {
+        "line": 460,
+        "text": "- 증거(비추적, task-local): `C:\\Users\\shin\\AppData\\Local\\KnowsLinkDevTools\\wsg001fix\\`(remote.py 복사본·make.cmd·SHA별 lint/test 로그·lint.json). Windows 로컬 회귀 4 tests OK."
+      },
+      {
+        "line": 491,
+        "text": "사용자는 실제 Dots custom MCP KnowsLink를 만들고 Google 신원 확인·설치 승인을 진행했다. 최종 remote consent에서 authorization_failed를 관찰했다. 승인 직후 서버 읽기 전용 집계: install 1, token 0, subscription 0, pending attempt 0. install 생성 시각은 2026-10-11T06:22:26Z, 06:24 조회에는 code 0이다. 기존 코드의 code 만료1분/attempt10분과 대조한다. 미완료 설치를 삭제하거나 DB 원문·키·token을 출력하지 않는다. 실제 app ID는 asdk_app_6acb0615e7f88191b07413e8595308ed, URL https://link.knowslog.com/mcp."
+      },
+      {
+        "line": 499,
+        "text": "- internal/relay의 원인·관련 테스트, 필요한 D05/D10/D12 및 자신의 exec plan/QA/contexts/dev. 범위를 변경할 때 이유를 기록한다. 설치·callback 경계만 최소 수정한다. 공통 security middleware를 건드리면 영향을 받는 Google/remote/SSE 회귀 범위를 검증한다."
+      },
+      {
+        "line": 502,
+        "text": "- 만료/재사용 실패 경계, 허용 callback만 복귀, 기존 Google와 OAuth token 교환 관련 회귀를 확인한다. 필수 registered lint/test를 exact final SHA에서 통과시키고 결과·HEAD·attempt·종료코드를 남긴다. local Docker는 금지이며 기존 Linux서버의 승인된 격리 테스트 경로를 재사용한다. 새 유료 서비스·새 dependency 없이 구현한다."
+      },
+      {
+        "line": 503,
+        "text": "- fullops-common-0.3.3과 project.md, rules/delegation.md, document-writing.md 적용. Context7의 quota 실패 공식 대체근거는 기존 REMOTE/INSTALL계획을 재사용하되 새로운 API가 필요하면 규약대로 조회한다."
+      },
+      {
+        "line": 744,
+        "text": "- 검사: `adapters/src/grok-wake.test.ts`(정상·3xx/4xx/5xx·DNS 실패·timeout·미설정·동시 설정·불신 URL/key·0644 파일·check 무전송·결과 비밀값 부재). 변이 3종(URL host 완화, redirect follow, ENOTFOUND 분류 제거) 검출. 중복·재시작 무재전송은 기존 marker 계약과 inbox.test 회귀로 확인했다."
+      },
+      {
+        "line": 753,
+        "text": "근거: docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-DOTS-GROK-LIVE/webhook-wake-research.json. 공식 규격 https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md. Context7은 이전 조회 quota exceeded로 공식 문서 fallback 기록이 있다."
+      },
+      {
+        "line": 809,
+        "text": "- `internal/relay/member_receipt.go` (impact_check) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.37, 'evidence': 0.48, 'contradicts': 0.23, 'injection': 0.03, 'decision': 'keep', 'reason': None}"
+      },
+      {
+        "line": 890,
+        "text": "- 구현: `memberStyle` 단일 토큰(D04 8절), `badge`, 로그인 서비스 설명·Google 주 동작, 홈 헤더·확인 필요 띠·섹션 이동·에이전트 접힘 행·위험 구역·관계 정렬·계정과 보안, 연결 관리 3단계·큰 지문, 기기 승인 경고·지문, receipt·gate·거부 화면 토큰 공유. R-01–R-11 반영, 미적용·판단은 phase 기록."
+      },
+      {
+        "line": 892,
+        "text": "- 검증: Windows `go test ./internal/relay`·`go vet -tags 'integration browser'` 0. Orca 내장 브라우저에서 29개 합성 화면 × 1440/390/320 overflow 0·44px 미만 0, 키보드(skip link·summary Enter/Space) 확인. Linux 고유 clone `0b485ad`: `make lint` 0, `make test` 0, 격리 Postgres integration+browser 전체 0. 첫 실행(`678736d`)의 helper 정규식 실패와 수정 경위를 phase에 남겼다."
+      },
+      {
+        "line": 900,
+        "text": "main 수락 디자인 service-member-ui.md(R-01–11, A-01–10, I-01–08)에 맞게 Google 로그인·이메일 로그인(설정 시)·회원 홈·연결 관리·기기 승인·receipt/gate/오류의 상용 UI를 구현한다. 기술 계획과 구조는 DEV가 결정한다. 기존 SSR·공통 CSS/기본 HTML부터 재사용하고 새 프레임워크/라이브러리/외부 폰트/이미지/JS를 추가하지 않는다."
+      },
+      {
+        "line": 905,
+        "text": "- [x] 실제 고정 후보를 Linux 고유 체크아웃으로 product lint/test, 핵심 폼/owner/CSP 회귀와 1440/390/320 overflow/keyboard 확인을 수행한다. Go 문자열 CSS는 FullOps DESIGN 검사 미지원이므로 실제 렌더 검증을 후속 시각 담당이 할 수 있게 합성 fixture와 비밀 없는 검수 환경/방법을 제공한다."
+      },
+      {
+        "line": 957,
+        "text": "- [ ] 관련 테스트·fixtures와 기술 기록을 필요한 만큼만 갱신한다. 새 라이브러리/JS/색상/추가 기능은 넣지 않는다. 예상 제품 변경은 CSS와 필요시 회귀 증거의 수십 줄이다."
+      },
+      {
+        "line": 962,
+        "text": "독립 tester: 새 최종 SHA의 작은 diff 고정 snapshot 리뷰와 관련 link/overflow 회귀. designer: V-01 해당 링크만 직접 재측정한다. 이전 전체 검증은 제품 바이트 동일 부분의 SHA·근거를 연결하고 중복하지 않는다. 실제Google·운영렌더는 OPS후 coor 검증이다."
+      },
+      {
+        "line": 1047,
+        "text": "- 검증(실제 종료코드): Windows `go test ./internal/relay -run TestMemberUIFixtures -count=1` 0, `gofmt`·`git diff --check` 0. Orca 내장 브라우저에서 fixture 29개 x 1440/390/320, details 펼침 상태로 `a[href]` 198건과 버튼·입력·select·summary를 측정했다: 44px 미만 0건, overflow 요소 0건, 종료코드 0. 기존 Linux 서버 고유 clone `/tmp/knowslink-uifix-609fcfd`(대상 SHA detach)에서 `make install`·`make lint`·`make test` 모두 0, clone clean. Windows에는 make가 없어 Linux 결과를 대체로 쓰지 않았다."
+      },
+      {
+        "line": 1049,
+        "text": "- 미검증: Postgres integration·`make verify-mvp`는 이번 SHA에서 재실행하지 않았다(CSS 한 규칙, Go 로직 변경 없음). tester의 새 SHA 작은 diff 리뷰·link/overflow 회귀, designer의 V-01 링크 직접 재측정, 390px \"취소\" 버튼 아래 간격의 실제 모습, 실제 Google·운영 렌더(OPS 뒤 coor), main 통합·배포는 후속이다. 기존 low V-02–V-12는 범위 밖이다. 서버의 기존 자료·컨테이너·임시 증거는 삭제하지 않았다. Codex hook Trust는 승인하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_ops.md",
+    "sha256": "a73f17082e91f3789392cace81b7610e865bdb8417f60e20f950b8a92290870d",
+    "lines": 650,
+    "matches": [
+      {
+        "line": 297,
+        "text": "공개 / 및 /home·member 경로의 상태/CSP/로그인 경로, readiness·public deny·기존 회귀를 기존 도구로 확인한다. 새 Google 실제계정 로그인은 coor Orca browser 후속이며 자동 PASS로 기록하지 않는다. 웹 조작 필요 시 Orca 내장 브라우저만. Grok Bot UI 접근 금지. secret input/token이 든 페이지 캡처 금지."
+      },
+      {
+        "line": 576,
+        "text": "- `internal/relay/member_receipt.go` (impact_check) · 줄 2 · inferred"
+      },
+      {
+        "line": 639,
+        "text": "`lint.py --repo . --from 95df83c22c1559453a7c73504aa248088a8e4ed0` (커밋 상태 HEAD, 문서 4개 변경): ERROR 0 / WARNING 1 / 실행 불가 2, 프로세스 종료코드 1(실행 불가 때문). WARNING SIZE-001은 PLANS.md 1584줄이며 이 과제는 PLANS.md를 수정하지 않았다(증가 3줄은 기준 SHA 이후 coor 준비 커밋 `0045089`). 실행 불가 2건은 `product-lint: make lint`, `product-test: make test`로 이 Windows 호스트에 make가 없다. 이 과제는 제품 코드·테스트·lock을 바꾸지 않았고(`git diff 95df83c HEAD`가 `.fullops-squad` 밖 0건) 고정 SHA의 Linux `make` 증거는 tester 기록을 재사용한다. 첫 lint의 DOC-003(LIVE 문서 front matter)은 `deliverables.py --stamp`로 정규화해 해소했다. `git diff --check` 통과. 서버의 package `--verify`(종료 0)가 이 과제의 유일한 실행 검증이다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-11_to_tester.md",
+    "sha256": "21a59cac5891f292e5009afce402cda5fd31e18df677656d62d2ab003b852bd3",
+    "lines": 1151,
+    "matches": [
+      {
+        "line": 48,
+        "text": "- 탐색 find/context/packet은 이 준비에서 생성·연결한다. snapshot은 리뷰키 SAR-SSE-INSTALL-001-REVIEW로 생성한다. 실제 reviewer session을 조회한 뒤 prepare/snapshot/check한다."
+      },
+      {
+        "line": 53,
+        "text": "- [ ] polling 회귀 및 SSE 신호→기존 API→서명 검증→private Inbox→persist/ACK 경로를 독립 검사한다. 원문·인증값 비노출, 다른 agent·잘못된키·철회 거부, TTL, 연결 종료/취소 cleanup, reconnect/catch-up, 중복/동시 pull·fallback의 위험 경계를 확인한다."
+      },
+      {
+        "line": 63,
+        "text": "고정 후보의 required product-lint/product-test(make lint/make test), 실제 명령 종료코드·SHA·증거를 확인한다. 환경 한계로 Windows 미실행이면 기존 Linux 서버 고유 임시 clean checkout에서 격리 확인한다. local Docker/신규 과금 금지. 운영 서비스·DB·Tunnel 변경 금지. .env.server 값 출력 금지 및 기존 host-key 검증 유지. 필요한 임시 검사 자원만 만들고 회수한다."
+      },
+      {
+        "line": 93,
+        "text": "Linux 고유 클론 `/tmp/knowslink-sse001-tester-ctx70e952fbc5c8`에서 `make install`, `make lint`, `make test`의 종료코드는 0이다. `lint.py`도 같은 SHA에서 ERROR 0, WARNING 18, 실행 불가 0이다. dev git-dir `pass.json`의 head는 febd128이고 attempt는 `0b3a8ed545a443e18fff072b126aadd5`다. 그 파일은 다시 쓰지 않았다."
+      },
+      {
+        "line": 168,
+        "text": "- 직접 실행: DEV 회귀를 snapshot에서 재실행(exit 0, 3 tests OK). 독립 probe 약 120건+PowerShell 전용 15건+크기 측정. 실제 Claude Bash·PowerShell 도구는 실행 전 차단을 이 세션에서 확인했다. Grok `inspect`는 enabled·trusted다."
+      },
+      {
+        "line": 205,
+        "text": "실제 Dots remote consent 승인 후 authorization_failed. 운영 집계 install1 생성/token0, code1분 만료와 attempt소멸. 유력 원인은 승인POST→외부callback303와 CSP form-action self+Google 충돌이다. 최초실패가 만료인지 callback차단인지는 실제 Chromium 회귀로 검증한다. DEV handover archive와 DEV 최종exec plan·QA를 읽고 실제 변경이 요구를 충족하는지 검수한다."
+      },
+      {
+        "line": 213,
+        "text": "3. 허용callback/PKCE/resource/issuer/CSRF/Google account binding·expired/reused consent의 실패 경계와 안전한 사용자 복귀안내를 검수한다. 전역wildcard CSP·CSRF/SameSite완화·로그인생략·새토큰노출이 없는지 확인한다. 공통middleware변경이면 영향Google/SSE회귀를 확인한다."
+      },
+      {
+        "line": 693,
+        "text": "디자인 정본 docs/design-docs/mockups/service-member-ui.md의 필수 R-01–09/수락 기준을 실제 제품과 대조한다. 로그인/본인 이메일 agent/관계/연결·device·receipt/오류 화면, compact details·위험 구역·한국어 문구/키보드/320·390·1440 overflow를 좁게 검증한다. 실제 login Google roundtrip 미실행이면 명시하고 합성 시험을 실제 계정 성공으로 보고하지 않는다. 사용자 세션을 로그아웃하거나 실agent 생성/폐기하지 않는다."
+      },
+      {
+        "line": 697,
+        "text": "등록 make lint/test는 같은 바이트의 고유 Linux clone에서 실행한다. 기존 coor_remote.py를 읽고 재사용할 수 있다. 운영 DB/컨테이너를 사용하지 않는다. DEV gate 증거 재사용 시 SHA·바이트·환경 동일성 근거를 남기고 자기 실행으로 기록하지 않는다. 실제 DOM 브라우저 검증은 DEV synthetic fixture를 재사용 가능하다. tester 기능 QA와 designer 직접 시각 검수는 별도이며 시각수락을 대신하지 않는다."
+      },
+      {
+        "line": 889,
+        "text": "- `internal/relay/member_receipt.go` (direct_edit) · 줄 전체/미확인 · inferred"
+      },
+      {
+        "line": 902,
+        "text": "- 검증(내 실행, Linux 고유 clone `c7828b2` detached·clean): `make lint` 0, `make test` 0, `lint.py` ERROR 0·WARNING 4(SIZE-001 3·SIZE-002 1)·실행 불가 0, `TestMemberUIFixtures`·`TestMemberPagesShowNextSteps` PASS, `go vet -tags 'integration browser'`·`go test -c` 0. 합성 fixture 29개 × 1440·390·320 = 87건 브라우저 측정: 가로 overflow 0, 44px 미만 0. 키보드(건너뛰기 링크·Tab 순서·details Enter/Space·위험 구역 외곽선·닫힌 상태에서 위험 버튼 미도달), 텍스트 간격 확대 12건(overflow 0) 통과. form golden을 재설계 전 템플릿과 대조: 차이는 홈 로그아웃 2행과 원격 동의 2행뿐."
+      },
+      {
+        "line": 920,
+        "text": "title: SAR-SERVICE-UI-001-FIX-TESTER — V-01 최소 수정의 고정 SHA 독립 리뷰와 링크 회귀"
+      },
+      {
+        "line": 925,
+        "text": "summary: V-01 최소 수정의 고정 SHA 독립 리뷰와 링크 회귀"
+      },
+      {
+        "line": 931,
+        "text": "# SAR-SERVICE-UI-001-FIX-TESTER — V-01 최소 수정의 고정 SHA 독립 리뷰와 링크 회귀"
+      },
+      {
+        "line": 956,
+        "text": "- [x] 글자 링크를 포함한 모든 visible a[href]의 높이44px·overflow를320/390/1440에서 확인하고 버튼/summary/skip-link/form golden/보안계약 회귀를 필요한 만큼 확인한다. DEV gate실제 SHA/종료코드 확인, 코드/환경 변화 없는 전체 gate는 재사용 근거를 적는다. Google 실제/운영은 coor후속이며 대신PASS하지 않는다."
+      },
+      {
+        "line": 1142,
+        "text": "- lint: ERROR 0, WARNING 0, 실행 불가 2(`make lint`/`make test`, Windows에 make 없음. 대체 실행과 609fcfd Linux gate 재사용 근거는 lint.json·report.md)."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_designer.md",
+    "sha256": "45958c02f98c77a3810bec8ba163f21ac21daf34e9e7917ed43750076ec9ff8e",
+    "lines": 530,
+    "matches": [
+      {
+        "line": 174,
+        "text": "- [x] 현재 빈 DEV/tester 인박스에 후속 구현/독립 QA 지시서를 쓴다. fullops-work find/context/packet과 정확한 역할별 키 SAR-HUMAN-PEER-001-DEV / SAR-HUMAN-PEER-001-TESTER를 사용한다. DEV는 짧은 기술 계획→전체 구현→필수 회귀/권한 경계→기술 문서 갱신을 같은 과제에서 끝낸다. tester는 고정 DEV SHA를 기다린다."
+      },
+      {
+        "line": 259,
+        "text": "FullOps lint 실제 결과: 커밋 d6a4ef55df44에서 exit 1, ERROR 0·WARNING 3·unavailable 2다. 등록 make lint/make test는 Windows make 부재로 실행 불가이며 PASS가 아니다. 제품 코드·설정 변경이 없는 문서 과제로 제품 검사는 해당 없음이며 후속 DEV의 구현 고정 SHA에서 필수 실행한다. SIZE 경고는 inherited PLANS와 현행/과거 원문을 보존한 D04, 완결 제품 문서 추가 규모다. 분할하지 않은 이유는 phase에 기록했다. 원 결과는 C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-designer/pre-finish-lint.json, 최종 HEAD 재검사는 같은 폴더 final-lint.json에 남긴다."
+      },
+      {
+        "line": 316,
+        "text": "DEV final-report: C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-runtime-ctx9ded/final-report.md. 정확한 최종 검사 final-lint.json 및 254ff6a98b12b7e51f0835491300f7695425d264-final-evidence/는 같은 외부 폴더에 있다. 등록 make lint/test·FullOps exit0 ERROR0 WARNING19 unavailable0, 전체 race/SQL integration native0 129초다. 독립 검수의 대체가 아니다."
+      },
+      {
+        "line": 404,
+        "text": "완료 전문과 지시서는 `work.py finish`로 날짜별 designer 로그에 보존한다. 최종 커밋의 FullOps lint와 문서/경계 검사는 외부 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-visual/final-validation.json` 및 final-lint.json에 남긴다. 기준은 지시서 base254ff6a다. Windows PATH에 make가 없으면 등록 product-lint/product-test를 unavailable로 보고하고 이 문서 후보의 PASS로 바꾸지 않는다. 제품 파일 변경이 없어 새 제품 시험은 만들지 않았으며 DEV 자체 최종 make lint/test 근거를 이번 독립 QA로 바꾸지 않는다. coor는 DEV 수정 후 새고정SHA 직접 시각·tester QA·별도 리뷰와 통합을 조정한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_dev.md",
+    "sha256": "be9cf151c8a05ec8a417c74c2547f2b0c262f814749ca29ab0992c1c91a72f1a",
+    "lines": 668,
+    "matches": [
+      {
+        "line": 25,
+        "text": "# SAR-CODEX-HOOK-QUOTE-001-DEV — Codex hook 실행 오류와 셸 인용 회귀 수정"
+      },
+      {
+        "line": 47,
+        "text": "이슈 오토모드는 다른 이전 세션 소유/paused, #2 held다. 자동 이슈 보호의 receipt 차단은 별개이며 우회·재개하지 않는다."
+      },
+      {
+        "line": 52,
+        "text": "Codex API/CLI 문서 필요 시 Context7 우선, 실패하면 공식 문서. 비밀값은 조회·보고하지 않는다."
+      },
+      {
+        "line": 57,
+        "text": "- [ ] .codex/hooks.json, scripts/test_shell_guard.py의 최소 수정으로 셸 인용과 회귀를 해결한다. scripts/shell_guard.py는 필요성이 입증될 때만 수정한다."
+      },
+      {
+        "line": 64,
+        "text": "기존 합성 회귀4 tests와 필요한 셸별 회귀를 통과한다. 새 테스트는 실제 hook 실행 방식과 동일한 seam을 검증한다."
+      },
+      {
+        "line": 255,
+        "text": "- 원 실패와 원인: 기준 명령(따옴표 없음)은 PowerShell(`pwsh`/`powershell -Command`)에서 parser error 종료 1이다. coor의 따옴표 후보는 parser error를 없앴으나 `-Command`가 native 종료코드 2를 1로 바꿔 Codex(2만 차단)가 막지 못한다. 기존 회귀 실패(expected 2/actual 0)는 테스트가 argv 목록 `['cmd.exe','/C',command]`로 호출해 따옴표가 역슬래시 인용으로 바뀐 탓이며 Codex의 실제 실행 방식이 아니다."
+      },
+      {
+        "line": 258,
+        "text": "- 셸별 회귀 증거(수정 후, 허용 0 / 거부 2): cmd shell=True·cmd /C raw·pwsh·powershell 모두 통과. 수정 전 후보는 pwsh·powershell에서 거부가 1, 기준은 parser error 1이었다. sh 허용 경로(Git Bash `sh -c`)는 종료 0이다. 삭제 문자열은 JSON 입력으로만 제공했고 실제 삭제·이동·정리는 없다."
+      },
+      {
+        "line": 260,
+        "text": "- gate: 501d9d7에서 `lint.py --from 67e7de9`는 `make.cmd`(KnowsLinkDevTools/wsg001)를 PATH에 둔 PowerShell에서 exit 0, ERROR 0, WARNING 1(PLANS.md SIZE-001, coor 관리 파일), product-lint·product-test passed, 실행 불가 0이다. 같은 SHA의 Linux 격리 clone(`remote.py prepare` 후 `make lint`·`make test`, HEAD 일치·clean 검사 포함)도 둘 다 exit 0이다. 증거: KnowsLinkDevTools/wsg001/501d9d72d993167a17f15018c2156991d2f33e61-*.log."
+      },
+      {
+        "line": 263,
+        "text": "- 보존한 임시 증거(정리 없음): Windows 회귀 workspace `%TEMP%/shell-guard-ws-*`, 이전 원본 검사 로그 `shell-guard-ws-p9rgzhud`, 로컬 셸별 로그 `%TEMP%/h/`, 세션 scratchpad `repro.py`. 내가 만든 bytes 입력 오류로 멈춘 테스트의 python 프로세스 3개는 종료했다(파일 삭제 아님)."
+      },
+      {
+        "line": 285,
+        "text": "- 테스트 lite / 하위 에이전트 standard. 코드 소유: internal/relay/ 회원 UI와 관련 회귀 검사. 기존 파일 삭제·이동 정리 금지."
+      },
+      {
+        "line": 313,
+        "text": "- [x] 변경 핵심 동작과 필요한 실패 경계에 짧은 검사. 프로젝트 필수 product-lint/product-test를 유지한다. non-trivial 로직은 작은 회귀 검사로 보호한다."
+      },
+      {
+        "line": 374,
+        "text": "- 변경 이유: 이전 직접 검수의 남은 low와 이번 최초 검사에서 확인한 실제 결함만 고쳤다. V-04(320px 펼침 표시 단독 줄), V-05(버튼·기한 줄바꿈), V-06과 같은 종류의 빈 select form 2개(관계 초대·요청 상태), V-07(fixture 활성 수), V-09(같은 이름 재확인 버튼), V-10(OAuth 동의·반환 화면 랜드마크·주 버튼), V-11(확인 코드 입력 크기), N-01(영역 끝 여백), accent·selection 색."
+      },
+      {
+        "line": 377,
+        "text": "- 검증: Windows `go test ./internal/relay` 0, 새 회귀 테스트 PASS(수정 전 템플릿에서 실패하는 조건), golden 차이는 home-empty 빈 form 2행 삭제뿐. Orca 내장 브라우저 합성 fixture 29개 × 1440×900·390×844·320×640 before/after 측정·PNG, 키보드 Tab·Enter·3px 포커스. FullOps lint G1(HEAD `5c6ca7b`, `--from 5c6485b`) exit 0, ERROR 0, WARNING 1(PLANS.md SIZE-001), product-lint·product-test는 Linux 격리 clone에서 passed."
+      },
+      {
+        "line": 378,
+        "text": "- 못 한 것: Windows `make lint`는 `cloudflared` 부재로 exit 2(기존 한계, 근거로 쓰지 않음). Postgres integration·browser 태그·verify-mvp, 실제 Google 로그인·운영 화면·스크린 리더·200%·다른 엔진은 미실행. 건너뛰기 링크 키보드 이동은 존재·위치만 측정."
+      },
+      {
+        "line": 420,
+        "text": "- [x] HP 이행 표의 이전 JSON/agent/key/pair/pending/receipt/gate/합성 owner를 격리 DB로 검증한다. cross-owner 자동 친구 확대를 금지하고 기존 정확한 pair 범위를 보존한다. legacy 신규 pair 경로는 새 권한을 만들지 못하게 한다."
+      },
+      {
+        "line": 421,
+        "text": "- [x] 현행 D04 전면 UI를 로그인·이름·대화·친구·agent·계정·연결 승인·gate·receipt/오류에 적용한다. 기존 direct link/권한·명령 사용자를 끊지 않도록 읽기/복귀 경로를 제공한다."
+      },
+      {
+        "line": 422,
+        "text": "- [x] 핵심 자동 검사·필수 제품 lint/test와 필요한 회귀를 완료한다. 구현에 맞게 기술 문서/README/adapter 사용자 안내를 갱신한다."
+      },
+      {
+        "line": 548,
+        "text": "제품/테스트 소스 고정 SHA `7f83fd6f3ae9945e292a86212c0ab566ea282b7a`의 전체 `go test -race -tags=integration ./internal/relay -count=1`이118.664초/native0으로 통과했다. 실제 격리 Postgres·합성 A2/B2/C1 OTP/세션/API/DB에서 친구 수락/향후 agent/양방향6건(3회 왕복)/독립180s/24h/웹 owner·signed agent/자기 전송과 persist ACK, 제삼자·위조·CSRF·해제·옛 세대·legacy/구버전 writer 음성 경계를 검증했다. 전체 cmd/internal unit·adapter typecheck/build/owner-wire 회귀·tagged browser 컴파일도 통과했다."
+      },
+      {
+        "line": 550,
+        "text": "인계 전 커밋 `6fac720bf0c620a979df5fabd67b0c044eaebf08`에서 등록 `make lint`와 `make test`가 각각 native exit0이며 FullOps lint도 exit0이다. 기준은 `f20b33a11addeb3debcb23e2e835be31c7dd1454`, ERROR=0, WARNING=19, 실행 불가=0다. 원본은 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-runtime-ctx9ded/pre-finish-lint.json`이다. finish/archive 커밋 뒤 정확한 최종 HEAD를 새 clean Linux snapshot으로 prepare하고 같은 등록 검사와 FullOps를 다시 실행한다. 최종40SHA·native 결과 정본은 worker_done 및 같은 외부 폴더의 final-lint.json이며, 기록 자체의 자기 참조 SHA를 만들기 위해 제품 커밋을 바꾸지 않는다."
+      },
+      {
+        "line": 592,
+        "text": "- [x] 자기 변경에 필요한 검사와 등록 make lint/test, 현재 최종 HEAD FullOps lint를 실행하고 원래 종료코드를 남긴다. 권한/DB 제품 코드 변경 없는 UI수정이면 기존254ff6a SQL native0 증거를 scope/delta 근거로 재사용한다. 실제 최종 UI 캡처/환경은 기존 외부 helper를 안전하게 자기 SHA로 재사용하여 designer 재검수에 인계한다. 키보드 실행기 한계는 not_run이며 PASS로 위장하지 않는다."
+      },
+      {
+        "line": 666,
+        "text": "자기 focused Go 회귀는 native0이다. 새 unit 하나는 DEV human_pages_test.go에만 추가했고 tester/designer 파일·fixture는 수정하지 않았다. 전체SQL은 제품 backend/DB 동일성 근거로 정확한254ff6a의 native0 증거를 재사용한다. 최종 기록 SHA의 등록 make lint/test와FullOps 결과는 완료 뒤 외부 v01-v02-final-lint.json/v01-v02-final-report.md 및 실제 worker_done의40SHA로 고정한다. 검사를 생략하거나 과거 검사결과를 새 실행으로 주장하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-12_to_tester.md",
+    "sha256": "ba83dae7f33cd9eaf1e260c024437acc6fe9eafaed24d959aae231f0bf88d9c0",
+    "lines": 902,
+    "matches": [
+      {
+        "line": 45,
+        "text": "- [ ] review.py prepare의 모든 diff를 reviewed/skipped와 근거로 처리한다. 원 config의 PowerShell parser error1, 보완 후보의 cmd list 인용 회귀 expected2/actual0과 최종 수정 원인을 대조한다."
+      },
+      {
+        "line": 47,
+        "text": "- [ ] DEV exact SHA의 gate·등록 product-lint/test exit0·회귀 결과를 확인하고 관련 코드/환경 동일성을 근거로 재사용한다. 독립 회귀는 좁은 보안 경계만 수행한다."
+      },
+      {
+        "line": 52,
+        "text": "새 critical/high0, 관련 회귀 PASS, 같은 고정 SHA 리뷰 check PASS. check는 실제 기준/고정 head와 --task-key SAR-CODEX-HOOK-QUOTE-001-DEV를 사용한다. 검사 통과와 사용자 host에서 실제 오류 소멸은 구분한다. 원 host stderr가 확보되지 않으면 그 한계를 명시한다."
+      },
+      {
+        "line": 620,
+        "text": "- [x] 320/390/1440, Tab/Enter/Space, 뒤로·새로고침·취소, 긴/동명 이름, 오류 뒤 복구, 승인/gate 회귀를 확인한다. 대화 대상이 바뀌거나 로그아웃 뒤 자동 발송하지 않아야 한다."
+      },
+      {
+        "line": 685,
+        "text": "DEV final-report: C:/Users/shin/AppData/Local/KnowsLinkDevTools/humanpeer001-runtime-ctx9ded/final-report.md. 정확한 최종 검사 final-lint.json 및 254ff6a98b12b7e51f0835491300f7695425d264-final-evidence/는 같은 외부 폴더에 있다. 등록 make lint/test·FullOps exit0 ERROR0 WARNING19 unavailable0, 전체 race/SQL integration native0 129초다. 독립 검수의 대체가 아니다."
+      },
+      {
+        "line": 890,
+        "text": "`review.py check --task-key SAR-HUMAN-PEER-001-DEV`가 통과했다. reviewed 88, skipped 155, lint ERROR 0, WARNING 17이다. Windows make는 unavailable이고 사유가 있다. Linux `make lint`와 `make test`는 EXIT 0이다. 미해결 critical/high는 없다. low 문구 3건은 `at most24 hours`, `at most180 seconds`/`until24 hours`, user-guide `뺀1–40자`다. 동작 한계는 코드와 같다. 제품 소스는 수정하지 않았다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-14_to_ops.md",
+    "sha256": "7f0ea2feab4c38a621fb5ee72ee4cd95de49ecb64a9075e01e6098abe4e06c87",
+    "lines": 666,
+    "matches": [
+      {
+        "line": 49,
+        "text": "Context7 Docker Compose resolve는 2026-10-14 quota 초과로 실패했다. 공식 https://docs.docker.com/reference/cli/docker/compose/up/ 와 https://docs.docker.com/reference/cli/docker/compose/stop/ 를 확인했다. up --wait의 health 대기·기존 mounted volume 보존, stop의 지정 service 비삭제 정지를 근거로 사용한다. 실제 서버 CLI 버전/help와 현재 compose 소스를 확인하고 적용한다. 비밀값은 외부 조회문에 넣지 않는다."
+      },
+      {
+        "line": 191,
+        "text": "수락 제품 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`을 기존 운영에 배포했다. 새 private 백업·격리 복원·writer guard·권한/Inbox/Events·공유 자원 보존과 안전한 공개 검사를 통과했다. 이전 이미지 주소는 전환 뒤 조회할 수 없어 같은 이전 소스로 별도 복구 후보를 만들었다. 원 이미지 동일성과 실제 rollback 성공은 주장하지 않는다."
+      },
+      {
+        "line": 249,
+        "text": "## 이전 이미지 조회 실패와 복구 후보"
+      },
+      {
+        "line": 251,
+        "text": "fresh baseline과 build 직전의 실제 container Image는 `sha256:220edb718b2fe1925eed243084e41fedf641c86a0342760f682672b91379ed3d`였고 당시 image inspect는 성공했다. 전환 후 같은 주소의 image inspect는 종료1이었다. [원 실패](post-check.log)와 [새 image 목록](image-check.log)을 보존했고 coor에 msg_190ddfe4ee12로 즉시 알렸다. 과거 보고만으로 보존됐다고 주장하지 않는다. 이 작업에서 image 삭제/prune 명령은 없었다. 태그 없는 이전 주소가 전환 이후 조회되지 않는 원인의 별도 Docker 내부 감사를 수행하지 않았다."
+      },
+      {
+        "line": 261,
+        "text": "수락 DEV `3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46`와 배포8a의 cmd/internal/adapters/db/deploy/scripts 및 build/config/dependency 입력 diff0을 직접 확인했다. [gate-reuse.json](gate-reuse.json)은 실제 final DEV Linux make lint/test EXIT0과 입력 동일성을 연결한다. 별도 build·Postgres race·독립 QA는 [최종 제품 리뷰](../SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md)와 [QA 리뷰](../SAR-REFACTOR-002-QA-REVIEW-review/report.md)의 원 SHA/조건으로 재사용한다. 새 문서 HEAD의 실행 PASS로 바꾸지 않는다."
+      },
+      {
+        "line": 265,
+        "text": "Windows 현재 PATH에 make가 없다. 이 문서 결과의 최종 커밋에서 설치 FullOps1.4.2 lint를 기준8a로 실행하며 원 결과는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002-ops/final-lint.json`에 보존한다. 실제 반환 결과는 worker_done에서 전달한다. 등록 make lint/test가 unavailable이면 새 PASS로 보고하지 않는다. 제품 입력 변경이 없어 지시서에 따라 위 exact DEV Linux gate를 재사용하고 반복 전체 제품 검사를 추가하지 않는다. 검사기/설정/환경을 완화하거나 통과를 위조하지 않는다."
+      },
+      {
+        "line": 575,
+        "text": "수락 제품 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`을 기존 운영에 배포했다. 새 private 백업·격리 복원·writer guard·권한/Inbox/Events·공유 자원 보존과 안전한 공개 검사를 통과했다. 이전 이미지 주소는 전환 뒤 조회할 수 없어 같은 이전 소스로 별도 복구 후보를 만들었다. 원 이미지 동일성과 실제 rollback 성공은 주장하지 않는다."
+      },
+      {
+        "line": 635,
+        "text": "## 이전 이미지 조회 실패와 복구 후보"
+      },
+      {
+        "line": 637,
+        "text": "fresh baseline과 build 직전의 실제 container Image는 `sha256:220edb718b2fe1925eed243084e41fedf641c86a0342760f682672b91379ed3d`였고 당시 image inspect는 성공했다. 전환 후 같은 주소의 image inspect는 종료1이었다. [원 실패](post-check.log)와 [새 image 목록](image-check.log)을 보존했고 coor에 msg_190ddfe4ee12로 즉시 알렸다. 과거 보고만으로 보존됐다고 주장하지 않는다. 이 작업에서 image 삭제/prune 명령은 없었다. 태그 없는 이전 주소가 전환 이후 조회되지 않는 원인의 별도 Docker 내부 감사를 수행하지 않았다."
+      },
+      {
+        "line": 647,
+        "text": "수락 DEV `3e5af5e5ef9ca993baa6745aaf5b2b1f157ace46`와 배포8a의 cmd/internal/adapters/db/deploy/scripts 및 build/config/dependency 입력 diff0을 직접 확인했다. [gate-reuse.json](gate-reuse.json)은 실제 final DEV Linux make lint/test EXIT0과 입력 동일성을 연결한다. 별도 build·Postgres race·독립 QA는 [최종 제품 리뷰](../SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md)와 [QA 리뷰](../SAR-REFACTOR-002-QA-REVIEW-review/report.md)의 원 SHA/조건으로 재사용한다. 새 문서 HEAD의 실행 PASS로 바꾸지 않는다."
+      },
+      {
+        "line": 651,
+        "text": "Windows 현재 PATH에 make가 없다. 첫 문서 커밋8ae9bd11bdcf4858c3953535b8ddb728d1624e63의 설치 FullOps1.4.2 lint는 ERROR0·WARNING1·unavailable2·종료1이었다. WARNING은 기존 PLANS 크기이며 make lint/test는 실행 불가다. 원 결과는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/refactor002-ops/final-lint.json`에 보존한다. 보완 최종 커밋에서도 기준8a로 실행하고 별도 `corrected-lint.json`에 보존한다. 실제 반환 결과는 worker_done에서 전달한다. 등록 make lint/test가 unavailable이면 새 PASS로 보고하지 않는다. 제품 입력 변경이 없어 지시서에 따라 위 exact DEV Linux gate를 재사용하고 반복 전체 제품 검사를 추가하지 않는다. 검사기/설정/환경을 완화하거나 통과를 위조하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-14_to_tester.md",
+    "sha256": "dc26bacbc31257f417b7a8a645bb6b6cbba1755cbb2aad127fefaafa3c9b8df3",
+    "lines": 718,
+    "matches": [
+      {
+        "line": 13,
+        "text": "title: SAR-REFACTOR-002-TESTER — Astra 리팩터링 고정 제품 후보 독립 회귀·성능 검증"
+      },
+      {
+        "line": 18,
+        "text": "summary: Astra 리팩터링 고정 제품 후보 독립 회귀·성능 검증"
+      },
+      {
+        "line": 25,
+        "text": "# SAR-REFACTOR-002-TESTER — 고정 후보 독립 회귀·성능 검증"
+      },
+      {
+        "line": 55,
+        "text": "- [x] 보관 sweep의 만료 직전/정각·철회·delivered·claim·24h 제거 경계를 독립 확인한다. 보관 사본의 조회 권한과 활성 transport 인가가 약화되지 않는지도 검사한다."
+      },
+      {
+        "line": 58,
+        "text": "- [x] 관련 Go/TS 새 회귀를 직접 실행하고 최소한 한 가지 이상의 독립적인 경계 입력을 추가/assert로 검증한다. 기존 tests를 그대로 재실행한 결과와 새 독립 checks를 구분한다. race/실제 DB 검증은 구현자 exact Linux gate의 범위와 신규 실행을 구분해 필요한 짧은 확인을 수행한다."
+      },
+      {
+        "line": 309,
+        "text": "- 적용: AGENTS.md, FULLOPS.md, fullops-common-0.3.3 세 규칙, project.md, document-writing.md, fullops-test와 fullops-work, 현행 system-design, DEV 감사·adapter·remote·retention 회귀 원문."
+      },
+      {
+        "line": 322,
+        "text": "| 관련 Go 회귀 및 새 경계 | `go test -race -overlay ... ./internal/relay -count=1 -v`, 0. 최상위 16개 통과 | [qa-race.log](qa-race.log) |"
+      },
+      {
+        "line": 323,
+        "text": "| 기존 Inbox·owner wire 회귀 | Node22, 0 | [qa-inbox.log](qa-inbox.log) |"
+      },
+      {
+        "line": 325,
+        "text": "| 격리 DB migration·HTTP/claim 회귀 | `go test -race -tags=integration ... -count=1 -v`, 0. 4개 통과, 5.512초 | [database.log](database.log) |"
+      },
+      {
+        "line": 336,
+        "text": "1. queued/delivered × active/revoked 4조합에서 TTL 1ns 전과 정각을 확인했다. 정상 queued는 조기 만료되지 않는다. 철회된 transport와 arrival은 차단된다. 정각에는 transport·lease·claim token이 비워지고 delivered receipt와 이미 받은 `received` completion은 보존된다. 미완료 claim의 completion은 `failed:expired`가 된다."
+      },
+      {
+        "line": 338,
+        "text": "3. 실제 persist/ACK 경로에서 persist 이전 ACK를 거부하고 persist 이후 ACK를 수락한다. sweep claim 필드 검사는 합성 직접 상태이며 실제 execution claim 경계는 별도 DB HTTP 회귀가 담당한다."
+      },
+      {
+        "line": 367,
+        "text": "[dev-evidence-index.json](dev-evidence-index.json)은 DEV 원본 경로와 복사본 SHA256을 기록한다. [DEV integration](dev-integration.log)은 exact bcb에서 전체 tagged race 111.338초·native0이다. 최초 build 누락 MODULE_NOT_FOUND/native1은 DEV 원본에 보존되어 있다. 새 4개 DB 회귀와 이 전체 회귀의 실행자를 구분한다."
+      },
+      {
+        "line": 371,
+        "text": "새 QA 코드 때문에 세션 done-gate는 최종 기록 커밋의 `lint.py --from bcb1dd6629b508a30ec39a5d3141c8ce0a558597`를 요구한다. 최종 커밋 후 외부 task-local make.cmd가 같은 기록 HEAD의 깨끗한 Linux clone에서 실제 make lint/test를 실행한다. 전체 DB integration과 build를 다시 돌리지 않는다. gate의 정확한 결과 SHA·native exit·ERROR/WARNING은 외부 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/qa-refactor002/final-lint.json`과 worker_done에 남긴다. 이 문서 작성 시점에는 그 후속 실행의 PASS를 선기록하지 않는다."
+      },
+      {
+        "line": 390,
+        "text": "title: SAR-LANDING-GUIDE-001-TESTER — 고정 구현 SHA의 공개 안내·로그인·회원 회귀를 독립 검증한다"
+      },
+      {
+        "line": 395,
+        "text": "summary: 고정 구현 SHA의 공개 안내·로그인·회원 회귀를 독립 검증한다"
+      },
+      {
+        "line": 402,
+        "text": "# SAR-LANDING-GUIDE-001-TESTER — 고정 구현 SHA의 공개 안내·로그인·회원 회귀를 독립 검증한다"
+      },
+      {
+        "line": 451,
+        "text": "| 인증 회귀 | 실제 로컬 합성 POST와 redirect를 검사한다. 유효 세션으로 /를 열면 안내가 남고 대화로 이동하면 /home이 열린다. 이름 미설정·오류/재시도·Google/연결/Remote 복귀는 기존 계약대로다. |"
+      },
+      {
+        "line": 452,
+        "text": "| 안전 경계 | 공개 응답·URL·오류에 회원/친구/메시지/키/credential을 노출하지 않는다. CSRF/CSP·인증·동의 기준은 유지한다. 공유 view 호출자의 회귀 근거를 확인한다. |"
+      },
+      {
+        "line": 469,
+        "text": "DEV의 make lint/test를 같은 코드·의존성 입력인지 확인해 재사용하고 새 QA 실행과 분리한다. 원 실패·Windows make 불가·실호스트/장시간/재시작 미검증을 유지한다. 필요 핵심 동작이 실패하면 FAIL과 재현·담당·재개 조건을 남긴다. 통과 뒤 무관한 반복 검증을 추가하지 않는다."
+      },
+      {
+        "line": 716,
+        "text": "친구/agent 실페이지·Google/Remote 실제 성공·실메일·실상대·운영·장시간·재시작·스크린리더는not_run이다. allowlist 밖이며 동일runtime의 기존DEV DB race/공유auth 회귀 근거만 재사용한다. 새 critical/high는 없고 medium1 및 designer 직접 수락은 남는다."
+      },
+      {
+        "line": 718,
+        "text": "work.py finish로 전문을 날짜로그에 보존하고 자기 QA 변경을 커밋한다. 최종 HEAD의 lint.py --from fe2387a와 등록 make lint/test는 gate.py의 별도 Linux clone에서 기존 설치 의존성만 재사용해 실행한다. 최종 SHA·ERROR/WARNING·종료코드는 실제 worker_done 및 .fullops-squad/tmp/landing-tester-gate/final-lint.json에 전달한다. 공유fixture는 유지하며 temp/profile/clone/log를 삭제·이동하지 않는다. coor가 CSS후속·시각수락·제품통합을 담당한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
+    "sha256": "10fdef76d3daacec1417efd87ce1bb7ec90ad2f37722c7d306018592764e8ec2",
+    "lines": 698,
+    "matches": [
+      {
+        "line": 109,
+        "text": "- `internal/relay/member_receipt.go` (impact_check) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.6, 'evidence': 0.73, 'contradicts': 0.12, 'injection': 0.02, 'decision': 'keep', 'reason': None}"
+      },
+      {
+        "line": 487,
+        "text": "#2–#8 원문과 사람 친구 구현을 대조하고 `.fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md`에 U2–U8 규칙·화면·완료 조건·순차 DEV/QA 인계를 확정했다. 사용자 지정 handle과 초대 링크는 도입하지 않고 사람 친구 코드를 유지한다. 언어 저장, 조회 입력 복구, 검증된 승인 요약과 호스트별 실제 근거/미검증을 분리했다. 옛 개별 에이전트 수락 요구는 최신 사람 친구 합의를 따른다."
+      },
+      {
+        "line": 491,
+        "text": "문서 strict 검사 13건 오류0·경고0 종료0, 링크17개·추적7개·diff 검사 통과. frontend는 configuration_ready이고 인증/브라우저/MCP는 not_run이다. 현재 SHA의 기준458eb565 lint는 종료1 ERROR1 WARNING3 unavailable2다. DOC-003은 착수76ec89fe에도 있던 타 과제 author-final-handoff.md 메타데이터 누락이다. make lint/test는 make PATH 부재로 실행 불가다. 과거 제품 PASS를 이번 검사로 대체하지 않았다. SIZE-001은 기존 PLANS/D04이며 SIZE-002는 기준 전체 추가742줄이다. 7개 이슈의 상호 규칙·순차 인계를 함께 보존하고 원문 증거를 축약하지 않았다. 소유권 제한에 따라 기존 결함/설정을 수정하지 않고 coor msg_f8b96091c3e7로 인계했다."
+      },
+      {
+        "line": 502,
+        "text": "호스트/model/effort codex/gpt-6-astra/high는 기존 사용자 지정이다. Test lite/Subagent standard. 주 frontend-design, 기존 D04 service-member-ui.md 토큰과 단순 한국어 UX를 유지한다. 최소 변경으로 #2 이미 구현된 이름 설정과 남은 공유ID, #4 친구 초대의 현재 모델, #8 지원 호스트의 검증된 설치/재개/연결 상태, #6 receipt 입력 보존과 안전 오류, #5 승인 의미 요약, #7 보조화면 current/skip/돌아가기, #3 한국어/English·선호 저장·fallback 범위를 정한다. 사용자 지정handle이 꼭 필요한지 현재 사람친구code와 충돌 없이 판단하고 새미구현기능을 이미 지원한다고 쓰지 않는다."
+      },
+      {
+        "line": 506,
+        "text": "먼저 읽을 정본: docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/issues-open.json(이번 GitHub 원문 스냅샷), docs/planning/product-specs/SAR-HUMAN-PEER.md, docs/design-docs/mockups/service-member-ui.md, internal/relay/human_pages.go, human.go/관련 friend코드, member_receipt.go, member_pages.go, remote_auth.go, adapters/README.md, README.md, docs/system-design.md. 제품 설명/지원 실제상태는 코드·원검증날짜와 대조하고 공식 API/호스트 사실이 필요하면 Context7→실패시공식문서로 확인한다. 미검증 Meta Muse/Hermes/OpenClaw에 가짜설치/도구지원 약속을 만들지 않는다."
+      },
+      {
+        "line": 698,
+        "text": "소유권own QA SAR-LANDING-GUIDE-001-VISUAL/css-followup/보고후속절·ownphase/context/outcomes/inbox/log만. 원보고V-LG-01/02 실패본문/원PNG를고치지말고후속source별해소판정을append. 제품code/D04기준/UX설계11ea/다른role/PLANS/board/GitHub/운영/실계정/발송/배포/삭제이동금지. 충분하면명확한수락,새중요시각실패면구체적원인/캡처보고. workfinish·commit·현재HEADlint원결과/Windowsmake불가사유보존·worker_done. finalfc4Linuxmake lint/test0는제품동일성확인후재사용하며새실행으로표시하지않는다. 복귀run_756d0278e72e/coor term_5bf18065-a830-4e45-aeba-ae852666b40e."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/handovers/to_dev.md",
+    "sha256": "6b705d8b28cc2eeb79f3510e0bcf5888cbbf473200dbc0c9717ac660be957c83",
+    "lines": 53,
+    "matches": [
+      {
+        "line": 2,
+        "text": "title: SAR-UX-ISSUES-002-RECEIPT-DEV — 요청 상태 조회에서 입력·선택·복귀와 오류 재시도를 보존하고 존재 비노출·계정 격리·접근성을 유지한다"
+      },
+      {
+        "line": 6,
+        "text": "tasks: [SAR-UX-ISSUES-002-RECEIPT-DEV]"
+      },
+      {
+        "line": 7,
+        "text": "summary: 요청 상태 조회에서 입력·선택·복귀와 오류 재시도를 보존하고 존재 비노출·계정 격리·접근성을 유지한다"
+      },
+      {
+        "line": 14,
+        "text": "# SAR-UX-ISSUES-002-RECEIPT-DEV — 요청 상태 조회에서 입력·선택·복귀와 오류 재시도를 보존하고 존재 비노출·계정 격리·접근성을 유지한다"
+      },
+      {
+        "line": 18,
+        "text": "사용자 \"계속 이어서 이슈 해결하면서 진행해\"의 첫 후속 기능이다. 수락된 .fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md U6와 해당 U7·조회 선택기의 U2 이름 표시만 구현한다. 첫페이지 CSS수정 fc4 및 설계11ea와 그 QA/리뷰의 main/origin 통합을 coor가 확인한 뒤 dispatch한다. 기존 CSS/첫페이지/사람친구/권한/서명·프로토콜 계약은 유지한다. #2/#4 전체추가·승인요약·설치온보딩·언어전환은 다음기능이므로섞지않는다."
+      },
+      {
+        "line": 20,
+        "text": "역할dev/codex gpt-6-astra high는기존사용자고정. Testlite/Subagentstandard. 주frontend-design·기존D04 여섯토큰/44px/대비·단순한국어UI 유지. 완료기준·요구는설계정본 U6-A/U7에서확인하고 DEV가짧은기술계획/모듈·저장·복귀방식/필요테스트를같은과제에서결정한다. coor의후보경로는구현지시가아니다."
+      },
+      {
+        "line": 24,
+        "text": "- 조회의 제목/진입을 '요청 상태 조회'로 명확히 하고 온라인 확인과구별한다. 기존내에이전트/관리진입에서접근하며 주요메뉴세개를늘리지않는다."
+      },
+      {
+        "line": 25,
+        "text": "- 처음·성공·없는/타인/접근불가/보존종료·형식오류·429/일시장애에선택한내에이전트와안전한입력 ID를보존하고같은화면에서수정/재조회한다. HTMLescape·안전길이/형식거절·소유에이전트목록만표시·비공개존재비노출/동일응답경계를유지한다."
+      },
+      {
+        "line": 26,
+        "text": "- 성공시전달/처리/관련답장을분리하고 queued·ACK·답장·온라인을혼동하지않는다. 선택기는허용된이름/종류/안정구분값으로동명을구별하고권한없는이름을새로조회하지않는다."
+      },
+      {
+        "line": 27,
+        "text": "- 새로고침·뒤로가기·재조회·복귀시해당폼위치와입력을복구한다. 세션만료후동일회원의승인된조회문맥만복원하고 다른회원/익명에이전계정정보를복원하지않는다. 장기조회이력/자동발송/자동polling/새권한확대없음. 보안상안전한기술방법을찾기어려우면구체적문제와기존정본충돌만coor에알린다."
+      },
+      {
+        "line": 32,
+        "text": "기본후보 internal/relay/member_receipt.go/member_pages.go 및실제필요한회원진입/안전한복귀·인가뷰/기존테스트/helper다. 범위안의필요콜러·테스트·fixture·기술문서수정은DEV가판단해모두완료한다. 기존러너/fixture/매개변수테스트/표준라이브러리우선, 새의존성/불필요추상화/설정/JS/CSP완화금지. 핵심오류/계정격리/비노출의의미있는실행검사를남기고문구/구현문자열만복제한테스트는쓰지않는다."
+      },
+      {
+        "line": 34,
+        "text": "related검사는개발중짧게, 안정후등록make lint/test전체gate한번과필요DB/auth실행을기존격리Linux/helper로수행한다. 최신제품소스가바뀌므로fc4제품PASS를새실행으로재명명하지않는다. 현재SHA FullOps lint의원exit/status/WARNING/불가사유를보존하고ERROR를고친다. 최종source/환경·새QA에필요한기능fixture/origin/허용동작·계정A/B/C합성조건·원실패·복구를한번준비해tester/designer에공유한다."
+      },
+      {
+        "line": 38,
+        "text": "먼저 읽기: FULLOPS/common 세 규칙/project/docwriting/contextsdev, 새 설계 U6/U7/U2와 D04, member_receipt.go/member_pages.go/human_http.go/human_pages.go, 현재 회원 auth/조회 회귀 테스트, interface/module/테스트 정본. find/context의 큰 파일·partial/unknown은 필요한 원문을 직접 확인한다. 외부 SDK 근거는 Context7을 사용하고 실패하면 공식 자료로 확인한다."
+      },
+      {
+        "line": 45,
+        "text": "기준 ref e939cfbb1939adb4126ad379317c26ec39b692b3, 착수 HEAD d4a075c9ce035379013fa1a397f524e5cc54762a, 제공된 동일 키 producer 스냅샷을 보존한다. fullops-common-0.3.3과 project.md 및 수락된 SAR-UX-ISSUES-002 U6/U7/U2를 적용한다. module-design의 과거 UI 변경 없음은 이번 승인 범위를 제한하지 않는다."
+      },
+      {
+        "line": 47,
+        "text": "1. 기존 GET /home/receipts를 최초 진입·오류·성공 공통 편집 폼으로 만든다. 현재 인증 회원의 소유 목록만 사용한다. 없는/타인/보존 종료는 같은 403 문구다. 철회된 선택은 조용히 교체하지 않는다."
+      },
+      {
+        "line": 49,
+        "text": "3. 조회 문맥은 HttpOnly/Secure/SameSite=Strict의 짧은 브라우저 쿠키 하나로 보관한다. 쿠키는 신뢰하지 않는 입력이며 회원 일치·소유권·길이·형식을 매번 서버에서 확인한다. 로그인 만료 뒤 같은 회원만 복원하고 다른 회원·익명에게 표시하지 않는다. 명시 로그아웃은 지운다. Google의 Strict cookie callback 제약은 기존 attempt의 복귀 표시와 동일 출처 링크로 처리한다."
+      },
+      {
+        "line": 51,
+        "text": "5. 핵심 입력 보존·계정 격리·존재 비노출·429·503·철회·HTML escape·복귀를 자동 검사한다. 고정 후보에서 Linux make lint/test와 DB/auth 실행을 수행한다. 독립 QA·designer 직접 검수·snapshot 리뷰·통합은 coor 후속이다."
+      },
+      {
+        "line": 53,
+        "text": "frontend.py check: codex/gpt-6-astra/high, frontend-design, configuration_ready. tools 없음. 인증·MCP·browser QA는 이 check의 검증 범위가 아니다. Context7 Go 조회는 monthly quota exceeded였다. web 도구도 token_expired였으므로 표준 라이브러리 로컬 문서와 공식 자료를 별도 확인한다. 선택형 하위 위임은 하지 않고 공유 인증/조회 경계를 직접 구현한다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/project.md",
+    "sha256": "9827ba6ea6e20a5225e9e737d0cf090777b18cddaa2633d26fb173bf2a420d2a",
+    "lines": 84,
+    "matches": [
+      {
+        "line": 38,
+        "text": "레포 루트에서 실행한다. `<플러그인>`은 해당 세션에 설치된 FullOps 패키지 경로를 조회해 사용하며 캐시 절대경로를 레포에 기록하지 않는다."
+      },
+      {
+        "line": 45,
+        "text": "- 제품 lint·format·타입·설정 검사: `make lint` (`cmd/`, `internal/`, adapter 소스·설정, Compose·sqlc YAML)."
+      },
+      {
+        "line": 61,
+        "text": "변경한 동작과 실패·경계 조건을 검증한다. DEV 자동 검증과 독립 기능 QA를 구분한다. 업무 API·Go owner UI·실제 singleton SQL·sqlc 생성이 후보에 포함된다. 일반 이메일 코드 신원·세션·신원 한도는 SAR-PUBLIC-IDENTITY-001 후보다. SAR-PUBLIC-AGENTS-001은 회원 agent 연결·키별 credential·관계·해당 한도의 DEV 후보다. SAR-PUBLIC-MESSAGES-001은 일반 text/관련 답장·receipt·gate·공통 메시지/HTTP/claim 상한의 DEV 후보다. 독립 수락·운영 측정·DEC-02 공개 정책·벤더 연결은 후속이다."
+      },
+      {
+        "line": 66,
+        "text": "DEV는 변경 동작의 자동 검사·관련 회귀·필요한 짧은 실행 확인을 완료한다. DEV 완료와 제품 최종 수락은 구분한다."
+      },
+      {
+        "line": 78,
+        "text": "등록된 `make lint`와 `make test`는 변경 경로 인자를 받지 않는 전체 제품 검사다. 두 기존 명령에는 최소 level이 없으므로 lite에서도 유지한다. `lint.json`의 명령·kind·cwd·시간·제외·심각도는 바꾸지 않는다. DEV는 개발 중 관련 기존 Go 검사·재현을 사용하고, 안정된 고정 후보의 등록 전체 검사는 DEV가 수행한다. tester는 같은 입력의 제품 gate를 재사용하고 자기 독립 동작 QA를 수행한다. 코드·설정·의존성·환경 동일성과 원 실행 SHA·로그를 확인할 수 없거나 새 실패가 있으면 해당 검사를 수행한다."
+      },
+      {
+        "line": 80,
+        "text": "`make test`의 실제 범위는 Go race(`cmd`·`internal`), adapters 테스트, `scripts/test_shell_guard.py`다. `make lint`는 포맷·vet·module·adapter·구성·public-config 음수 검사와 스크립트 검사를 포함한다. 새 test level로 기존 전체 검사를 건너뛰거나 재사용을 새 SHA의 실행으로 표시하지 않는다. 현재 UI 과제의 실패와 중지는 이 운영 업데이트의 검사 성공으로 대체하지 않는다."
+      },
+      {
+        "line": 82,
+        "text": "검사 정본은 루트 Makefile과 adapters/package.json 및 adapters/eslint.config.mjs다. `product-lint`는 `make lint`, kind `lint`, cwd `.`다. Go 포맷·vet·module 무결성, adapter Prettier·ESLint·타입 검사와 설정 검사를 유지한다. ESLint recommended의 미사용 검사도 유지한다. `product-test`는 `make test`, kind `test`, cwd `.`다. Go race와 adapter 테스트를 같은 HEAD에서 실행하고 FullOps 결과에 종료코드를 남긴다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/rules/common/README.md",
+    "sha256": "c49e4aead718d4c0bdc8bb0b71fd5062e7c4db87e456831ff326849bd616ed42",
+    "lines": 41,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/coding-style.md",
+    "sha256": "cf83b775ca73e1cadcf65bb8c38bb1f3710bee8cdcd08819d03d3fb10372318e",
+    "lines": 33,
+    "matches": []
+  },
+  {
+    "path": ".fullops-squad/rules/common/security.md",
+    "sha256": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc",
+    "lines": 27,
+    "matches": [
+      {
+        "line": 9,
+        "text": "민감한 코드와 데이터를 외부 문서 조회·검색·리뷰 요청에 무단 포함하지 않는다. 노출이 확인되면 관련 작업의 위험을 알리고 승인된 대응 절차로 폐기·교체한다. 단순한 파일 삭제나 revert만으로 대응이 끝났다고 보고하지 않는다."
+      }
+    ]
+  },
+  {
+    "path": ".fullops-squad/rules/common/testing.md",
+    "sha256": "140732593d7a01851e77a6b688f54f3e5e18f4cb3c46c89f5ca4a864c86de226",
+    "lines": 64,
+    "matches": [
+      {
+        "line": 16,
+        "text": "- `standard`: 변경 동작·실패 경계와 영향을 받는 연동의 회귀를 검증한다."
+      },
+      {
+        "line": 17,
+        "text": "- `full`: 안정된 통합 후보에서 전체 회귀와 필요한 통합·수락 검사를 담당자별로 한 번 수행한다."
+      },
+      {
+        "line": 21,
+        "text": "lint.json의 test 명령에 최소 level을 명시하면 범위 밖 명령은 skipped와 사유를 남긴다. 레벨 없는 기존 명령과 required: true 명령은 항상 실행한다. 명시적 setup/update에서 실제 프로젝트 기준으로 전체 회귀의 level을 분류하고, 변경 경로용 기존 명령을 연결한다. 명령 문법·영향 범위를 추정하거나 기존 필수 검사를 낮추지 않는다. 기준 merge-base의 설정을 사용하며 검사 생략을 PASS로 보고하지 않는다."
+      },
+      {
+        "line": 38,
+        "text": "지시서는 구현 담당자의 완료 조건과 제품 최종 수락 조건을 구분하고, 검사별 담당·대상·실행 시점·통과 조건을 정한다. 구현 담당자는 변경 동작의 자동 검사·관련 회귀·필요한 짧은 실행 확인을 맡는다. 독립 QA와 ART 직접 검수는 후속 담당에게 인계한다. 전담 역할이 없으면 담당과 독립 검토 방법을 지시서에 정한다."
+      },
+      {
+        "line": 44,
+        "text": "재검증은 변경 영향, 새 실패, 기존 증거의 결함이나 미충족 조건이 있을 때 수행한다. 변경 없는 항목은 대상 코드·에셋·설정·환경 등 관련 의존성의 동일성을 확인하고 기존 실행 SHA·조건·증거를 연결해 재사용한다. 재사용 자료를 새 SHA의 실행이나 독립 QA로 바꾸어 기록하지 않는다. 공통 경계 변경으로 영향이 넓으면 그 범위의 회귀를 실행한다."
+      },
+      {
+        "line": 52,
+        "text": "수정 후 같은 대상을 다시 실행하고 관련 회귀를 확인한다. 실패를 없애기 위해 근거 없이 테스트를 제거·완화하지 않는다. 테스트 자체가 잘못됐다면 기대 동작의 근거와 수정 이유를 남긴다."
+      }
+    ]
+  },
+  {
+    "path": "docs/README.md",
+    "sha256": "30612de0833292b4b9a712f13c2f32acda097776a8fb07272deecaec33198484",
+    "lines": 46,
+    "matches": [
+      {
+        "line": 36,
+        "text": "| 실제 모듈 책임과 회귀 | [프로그램 설계](../.fullops-squad/docs/design-docs/module-design.md) |"
+      }
+    ]
+  },
+  {
+    "path": "docs/operations.md",
+    "sha256": "51c10f4ea86bd31be5f9d19f451315cb2d04bd5178d03ddabd736349907afddd",
+    "lines": 128,
+    "matches": [
+      {
+        "line": 71,
+        "text": "이번 전환 후 이전 이미지 주소는 조회할 수 없었다. 같은 직전 SHA로 별도 복구 후보 이미지를 다시 만들었다."
+      },
+      {
+        "line": 73,
+        "text": "다음 배포는 build 전에 현재 이미지를 고유 rollback 태그에 고정하고 실제 조회 가능 여부를 확인한다."
+      },
+      {
+        "line": 93,
+        "text": "진단 자체가 receive·ACK·새 송신을 일으키는지 먼저 확인한다. 상태 조회와 실제 시험을 구분한다."
+      }
+    ]
+  },
+  {
+    "path": "docs/system-design.md",
+    "sha256": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
+    "lines": 320,
+    "matches": [
+      {
+        "line": 145,
+        "text": "  Relay-->>Sender: queued receipt (수신 성공 아님)"
+      },
+      {
+        "line": 162,
+        "text": "DB transaction과 키 조회 응답, persist/ACK HTTP 응답은 가독성을 위해 생략했다."
+      },
+      {
+        "line": 199,
+        "text": "  Relay-->>Sender: queued receipt"
+      },
+      {
+        "line": 249,
+        "text": "receipt 조회는 metadata 조회다. 본문이나 상대 회원의 로그인 신원을 공개하지 않는다."
+      },
+      {
+        "line": 251,
+        "text": "agent 멱등 범위는 송신 agent와 `idempotency_key`다. 같은 키의 digest가 같으면 기존 receipt를 반환한다."
+      },
+      {
+        "line": 284,
+        "text": "| 웹 Conversation 사본 | 수락 시점부터 최대 24시간, 당시 참여 owner 세션만 조회 | 관계 해제 후 남은 사본 열람은 전송 권한과 별개 |"
+      },
+      {
+        "line": 285,
+        "text": "| receipt·멱등·gate metadata | 수락 24시간 뒤 sweep | 보관기한을 영구 dedupe로 해석하지 않음 |"
+      },
+      {
+        "line": 315,
+        "text": "구현 책임과 회귀는 [프로그램 설계](../.fullops-squad/docs/design-docs/module-design.md)를 따른다."
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/human_http.go",
+    "sha256": "56d64f15bfdacb35f1882f1111a63f0e2cc26e1a9cadbdde8b17ce6c64cdab3f",
+    "lines": 423,
+    "matches": [
+      {
+        "line": 130,
+        "text": "\t\tif c != nil && (c.OwnerA == m.Owner || c.OwnerB == m.Owner) && now.Before(msg.Receipt.Accepted.Add(24*time.Hour)) {"
+      },
+      {
+        "line": 134,
+        "text": "\tsort.Slice(messages, func(i, j int) bool { return messages[i].Receipt.Accepted.After(messages[j].Receipt.Accepted) })"
+      },
+      {
+        "line": 136,
+        "text": "\t\tkey := pairID(msg.Receipt.From, msg.Receipt.To)"
+      },
+      {
+        "line": 142,
+        "text": "\t\tfrom, to, person, fa, ta := msg.Receipt.From, msg.Receipt.To, c.PersonB, c.AgentA, c.AgentB"
+      },
+      {
+        "line": 149,
+        "text": "\t\tconversations = append(conversations, humanConversation{ID: key, Name: person, FromName: fa, ToName: ta, State: humanTransport(msg.Receipt.State), URL: conversationURL(from, to)})"
+      },
+      {
+        "line": 209,
+        "text": "\t\t\tif history[0].Receipt.From != from {"
+      },
+      {
+        "line": 215,
+        "text": "\t\tsort.Slice(history, func(i, j int) bool { return history[i].Receipt.Accepted.Before(history[j].Receipt.Accepted) })"
+      },
+      {
+        "line": 223,
+        "text": "\t\t\trows = append(rows, humanMessage{ID: msg.Receipt.ID, Author: c.PersonA, Agent: c.AgentA, Short: shortID(msg.Receipt.From), Text: c.Text, When: humanClock(msg.Receipt.Accepted, now), State: humanTransport(msg.Receipt.State), Authorship: auth})"
+      },
+      {
+        "line": 228,
+        "text": "\t\t\tif message := st.Messages[st.Idempotency[from+\"/web:\"+attempt]]; message != nil && message.Conversation != nil && message.Conversation.OwnerA == m.Owner && message.Receipt.To == to {"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/human_pages.go",
+    "sha256": "29c3fd53eefe74de59c6b84e5b4d40e9df7ea51b1a8cc602f4f9e0d6f64fc6e1",
+    "lines": 43,
+    "matches": [
+      {
+        "line": 29,
+        "text": "{{if .Own}}<ul class=\"agents\">{{range .Own}}<li><h2 class=\"name-preview\">{{if .Name}}{{.Name}}{{else}}이름 없는 에이전트{{end}}</h2><p class=\"muted\">{{.Client}} / {{.Short}} / {{badge .Status}}</p><details{{if eq $.EditID .ID}} open{{end}}><summary aria-label=\"에이전트 상세: {{.Name}} / {{.Short}}\">이름·연결 관리</summary><p>{{template \"human-agent-label\" .}}</p><p>식별자: <code class=\"select\">{{.ID}}</code></p><form method=\"post\" action=\"/home/agent-name\"><input type=\"hidden\" name=\"agent\" value=\"{{.ID}}\"><label for=\"agent-name-{{.ID}}\">에이전트 이름</label><input id=\"agent-name-{{.ID}}\" name=\"name\" required maxlength=\"80\" value=\"{{if eq $.EditID .ID}}{{$.EditName}}{{els"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/human_pages_test.go",
+    "sha256": "042ae1261b1098c666abbe4b649ffe2771c539eaafda05992ac640e8f37e554a",
+    "lines": 227,
+    "matches": []
+  },
+  {
+    "path": "internal/relay/member_pages.go",
+    "sha256": "025b9fc49181f8327628ec8d0bf2b3f006a13cdf62b91deb2cd2ff32d72bd228",
+    "lines": 149,
+    "matches": [
+      {
+        "line": 58,
+        "text": "{{define \"google-complete\"}}{{template \"head\" .}}<main id=\"main\" class=\"page\">{{template \"intro\" .}}<section aria-label=\"다음 동작\">{{if eq .Next \"/home\"}}<a class=\"button primary\" href=\"/home\">홈으로 이동</a>{{else if eq .Next \"/home/receipts\"}}<a class=\"button primary\" href=\"/home/receipts#receipt-form\">요청 상태 조회로 돌아가기</a>{{else}}<a class=\"button primary\" href=\"{{.Next}}\">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}"
+      },
+      {
+        "line": 97,
+        "text": "{{define \"receipt\"}}{{template \"head\" .}}<main id=\"main\" class=\"page\"><nav aria-label=\"현재 위치\"><a href=\"/home/agents\">내 에이전트</a> / <a href=\"/home/receipts#receipt-form\" aria-current=\"page\">요청 상태 조회</a></nav><h1>요청 상태 조회</h1>"
+      },
+      {
+        "line": 99,
+        "text": "{{if .Problem}}<p class=\"problem\" role=\"alert\" id=\"receipt-problem\" tabindex=\"-1\"{{if eq .Focus \"receipt-problem\"}} autofocus{{end}}>{{.Problem}} <a href=\"#{{if eq .Focus \"receipt-agent\"}}receipt-agent{{else}}receipt-id{{end}}\">조회 입력으로 이동</a></p>{{end}}"
+      },
+      {
+        "line": 100,
+        "text": "<section aria-label=\"조회 입력\"><form id=\"receipt-form\" method=\"get\" action=\"/home/receipts\" autocomplete=\"off\">"
+      },
+      {
+        "line": 101,
+        "text": "<label for=\"receipt-agent\">내 에이전트</label><select id=\"receipt-agent\" name=\"agent\" required{{if eq .Focus \"receipt-agent\"}} autofocus aria-invalid=\"true\"{{end}}{{if .Problem}} aria-describedby=\"receipt-problem\"{{end}}>"
+      },
+      {
+        "line": 103,
+        "text": "<label for=\"receipt-id\">요청 ID 또는 답장 ID</label><input id=\"receipt-id\" name=\"id\" value=\"{{.ID}}\" required maxlength=\"128\" spellcheck=\"false\" aria-describedby=\"receipt-help{{if .Problem}} receipt-problem{{end}}\"{{if eq .Focus \"receipt-id\"}} autofocus{{if .Problem}} aria-invalid=\"true\"{{end}}{{end}}>"
+      },
+      {
+        "line": 104,
+        "text": "<p id=\"receipt-help\" class=\"muted\">받은 요청 ID 또는 답장 ID를 붙여 넣으세요. 이 조회는 메시지를 보내지 않습니다.</p>"
+      },
+      {
+        "line": 105,
+        "text": "{{if .Own}}<button class=\"primary\">상태 확인</button>{{else if .Unavailable}}<a href=\"\">로그인 확인 후 다시 조회</a>{{else}}<p>조회할 내 에이전트가 없습니다.</p><a href=\"/home/agents\">내 에이전트로 돌아가기</a>{{end}}</form></section>"
+      },
+      {
+        "line": 106,
+        "text": "{{if .Transport}}<section id=\"receipt-result\" role=\"status\" tabindex=\"-1\" aria-labelledby=\"receipt-result-h\"{{if eq .Focus \"receipt-result\"}} autofocus{{end}}><h2 id=\"receipt-result-h\">조회 결과</h2>"
+      },
+      {
+        "line": 108,
+        "text": "<p>전달됨은 수신 클라이언트의 저장·ACK 확인입니다. 읽음·실행·답장 완료나 현재 온라인 상태를 뜻하지 않습니다. 자동 답장은 없습니다.</p><a href=\"#receipt-id\">조회 입력으로 돌아가기</a>"
+      },
+      {
+        "line": 111,
+        "text": "<p>불확실한 재시도는 같은 멱등키·같은 내용의 요청 상태를 조회하세요. 멱등키 충돌이면 이전 내용을 확인하고 별도 승인된 새 메시지에 새 멱등키를 쓰세요. 인증 키 재발급과는 다릅니다.</p></details></section>{{end}}"
+      },
+      {
+        "line": 112,
+        "text": "<p><a href=\"/home/agents\">내 에이전트로 돌아가기</a> <a href=\"/home/legacy#receipts\">관리 화면으로 돌아가기</a></p></main></html>{{end}}"
+      },
+      {
+        "line": 115,
+        "text": "<nav class=\"toc\" aria-label=\"이 화면에서 찾기\"><a href=\"#agents\">에이전트</a><a href=\"#pairs\">관계</a><a href=\"#gates\">승인 요청</a><a href=\"#receipts\">요청 상태 조회</a><a href=\"#account\">계정</a></nav>"
+      },
+      {
+        "line": 138,
+        "text": "<section id=\"receipts\" aria-labelledby=\"receipts-h\"><h2 id=\"receipts-h\">요청 상태 조회</h2><p><a href=\"/home/receipts#receipt-form\">요청 상태 조회</a></p>"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/member_receipt.go",
+    "sha256": "14fcd3ff0e30faf4389a7fc38bf458ea2adcb8860d34e54958c9be31db97bf37",
+    "lines": 95,
+    "matches": [
+      {
+        "line": 1,
+        "text": "// A member looks up one owned receipt by ID; text bodies and other members' identities never appear in this view."
+      },
+      {
+        "line": 10,
+        "text": "const receiptUnavailable = \"이 요청의 상태를 확인할 수 없습니다. 내 에이전트와 요청 ID를 확인하세요.\""
+      },
+      {
+        "line": 21,
+        "text": "func (s *Service) memberReceipt(w http.ResponseWriter, r *http.Request) {"
+      },
+      {
+        "line": 23,
+        "text": "\tvar draft receiptDraft"
+      },
+      {
+        "line": 29,
+        "text": "\t\t\t\tview = map[string]any{\"Title\": \"요청 상태 조회\", \"Status\": 429, \"Problem\": limited(retry), \"Focus\": \"receipt-problem\"}"
+      },
+      {
+        "line": 34,
+        "text": "\t\tview, draft = st.receiptView(member, r, now)"
+      },
+      {
+        "line": 37,
+        "text": "\t\t\tview[\"Status\"], view[\"Problem\"], view[\"Focus\"] = 429, limited(retry), \"receipt-problem\""
+      },
+      {
+        "line": 44,
+        "text": "\t\t\tview[\"Status\"], view[\"Problem\"], view[\"Focus\"] = 422, \"내 에이전트를 선택하세요.\", \"receipt-agent\""
+      },
+      {
+        "line": 52,
+        "text": "\t\tif m == nil || (m.Receipt.From != draft.Agent && m.Receipt.To != draft.Agent) {"
+      },
+      {
+        "line": 53,
+        "text": "\t\t\tview[\"Status\"], view[\"Problem\"], view[\"Focus\"] = 403, receiptUnavailable, \"receipt-problem\""
+      },
+      {
+        "line": 69,
+        "text": "\t\t\treplyState = transportNames[reply.Receipt.State]"
+      },
+      {
+        "line": 71,
+        "text": "\t\tif !now.Before(m.Receipt.Exp) && m.ReplyID == \"\" {"
+      },
+      {
+        "line": 74,
+        "text": "\t\tfor key, value := range map[string]any{\"From\": m.Receipt.From, \"To\": m.Receipt.To, \"Parent\": m.Parent, \"Reply\": m.ReplyID, \"Transport\": transportNames[m.Receipt.State], \"State\": m.Receipt.State, \"Completion\": completion, \"RawCompletion\": m.Completion, \"ReplyState\": replyState, \"Exp\": clock(m.Receipt.Exp), \"TTL\": m.Receipt.Exp.Sub(m.Receipt.Accepted).Seconds(), \"Focus\": \"receipt-result\"} {"
+      },
+      {
+        "line": 86,
+        "text": "\t\t\tview = map[string]any{\"Title\": \"요청 상태 조회\", \"Unavailable\": true}"
+      },
+      {
+        "line": 89,
+        "text": "\t\tview[\"Status\"], view[\"Problem\"], view[\"Focus\"] = 503, \"상태를 확인할 수 없습니다. 잠시 뒤 같은 화면에서 다시 조회하세요. 저장된 입력은 로그인 확인이 가능해지면 복원됩니다.\", \"receipt-problem\""
+      },
+      {
+        "line": 92,
+        "text": "\t\tsaveReceiptDraft(w, draft, checkedAt)"
+      },
+      {
+        "line": 94,
+        "text": "\trender(w, view[\"Status\"].(int), \"receipt\", view)"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/member_ui_test.go",
+    "sha256": "d3d840634a01aa557b41b8877df687da079dd36682824b962dac8e7634bf64b9",
+    "lines": 217,
+    "matches": [
+      {
+        "line": 83,
+        "text": "\t\t{\"receipt\", \"receipt\", map[string]any{\"Title\": \"요청 상태 조회\", \"Own\": []humanAgent{{ID: \"agent_0a1b2c3d4e5f60718293a4b5\", Name: \"내 에이전트\", Client: \"Node 22\", Short: \"구분값\"}}, \"Agent\": \"agent_0a1b2c3d4e5f60718293a4b5\", \"ID\": \"00000000-0000-4000-8000-0000000000aa\", \"From\": \"agent_0a1b2c3d4e5f60718293a4b5\", \"To\": \"agent_77665544332211009988aabb\", \"Parent\": \"\", \"Reply\": \"00000000-0000-4000-8000-0000000000cc\", \"Transport\": transportNames[\"queued\"], \"Completion\": \"아직 처리 결과가 없습니다.\", \"ReplyState\": transportNames[\"delivered\"], \"Exp\": clock(exp), \"TTL\": 180}},"
+      }
+    ]
+  },
+  {
+    "path": "internal/relay/public_messages_integration_test.go",
+    "sha256": "435a8d29d0173feaf092cef653572eb004f01d1b72282fe7921fc5d7d9759d76",
+    "lines": 446,
+    "matches": [
+      {
+        "line": 3,
+        "text": "// Member messages exercise actual Node onboarding/CLI/MCP, shared Postgres races, failure receipts and current human gates."
+      },
+      {
+        "line": 91,
+        "text": "\texpect(t, b.do(\"GET\", \"/home/receipts?agent=\"+a+\"&id=\"+evidence.Request, nil), 200, \"reply_received\", evidence.Reply, \"180\", \"자동 답장은 없습니다\")"
+      },
+      {
+        "line": 94,
+        "text": "\t\t\tif m.Receipt.Intent == publicTextIntent && (len(m.Envelope) > 0 || len(m.Inbox) > 0) {"
+      },
+      {
+        "line": 169,
+        "text": "\texpect(t, b.do(\"GET\", \"/home/receipts?agent=\"+agentA+\"&id=\"+firstID, nil), 403)"
+      },
+      {
+        "line": 170,
+        "text": "\texpect(t, a.do(\"GET\", \"/home/receipts?agent=\"+agentA+\"&id=\"+firstID, nil), 200, \"queued\", \"수신이 확인되지 않았습니다\")"
+      },
+      {
+        "line": 186,
+        "text": "\texpect(t, a.do(\"GET\", \"/home/receipts?agent=\"+agentA+\"&id=\"+secondID, nil), 200, \"failed:revoked\", \"옛 요청은 복구되지 않습니다\")"
+      },
+      {
+        "line": 195,
+        "text": "\ts.mutateState(t, func(st *State) { st.Messages[gateID].Receipt.Exp = time.Now().Add(-time.Second) })"
+      },
+      {
+        "line": 196,
+        "text": "\texpect(t, a.do(\"GET\", \"/home/receipts?agent=\"+agentA+\"&id=\"+gateID, nil), 200, \"failed:expired\", \"오프라인\")"
+      },
+      {
+        "line": 210,
+        "text": "\treceipt := f.send(f.message(firstID, \"gate-budget-key-1\"), \"agent_a\", \"\", 200)"
+      },
+      {
+        "line": 212,
+        "text": "\th := wire(t, f.private[\"agent_b\"], gateID, \"agent_b\", \"agent_b\", \"relay.approval.request\", \"public-gate-key-1\", firstID, map[string]any{\"reason\": \"judgment_required\", \"request_digest\": receipt[\"digest\"]}, time.Now().Add(time.Minute))"
+      },
+      {
+        "line": 313,
+        "text": "\t\t\tt.Fatal(\"receipt cap count\")"
+      },
+      {
+        "line": 360,
+        "text": "\t\t\t\tm.Receipt.Exp = time.Now().Add(-time.Second)"
+      }
+    ]
+  }
+]
