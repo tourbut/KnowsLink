@@ -1,0 +1,204 @@
+{
+ "origin": "http://127.0.0.1:18928",
+ "evidence": {
+  "429": {
+   "status": 429,
+   "retry-after": null,
+   "alert": [
+    "요청이 많습니다. 2026-10-17 09:13:14 KST 이후 다시 시도하세요. "
+   ]
+  },
+  "503": {
+   "status": [
+    503,
+    503
+   ],
+   "cache": "no-store"
+  },
+  "expire": {
+   "status": 303,
+   "location": "/?n=expired"
+  },
+  "revoke": [
+   {
+    "step": "query revoked agent",
+    "status": 403,
+    "options": [
+     "",
+     "agent_a2",
+     "agent_a"
+    ],
+    "id": "0199a3f2-4c10-7a11-8b22-334455667788",
+    "alert": [
+     "선택한 내 에이전트가 철회되었습니다. 사용할 내 에이전트를 다시 선택하세요. "
+    ]
+   },
+   {
+    "step": "bare after",
+    "status": 403,
+    "options": [
+     "",
+     "agent_a2",
+     "agent_a"
+    ],
+    "selected": "",
+    "id": "0199a3f2-4c10-7a11-8b22-334455667788"
+   }
+  ]
+ },
+ "results": [
+  {
+   "check": "first_view_form_and_selector",
+   "covers": [
+    "U6 first",
+    "U2 name"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ['', 'agent_a2']",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 45, in _\n    assert options(b) == [\"\", \"agent_a\", \"agent_a2\"], options(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ['', 'agent_a2']\n"
+  },
+  {
+   "check": "success_splits_delivery_processing_reply_and_keeps_input",
+   "covers": [
+    "U6 success"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: 403",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 60, in _\n    assert s == 200, s\n           ^^^^^^^^\nAssertionError: 403\n"
+  },
+  {
+   "check": "repeat_and_refresh_are_idempotent_read_only",
+   "covers": [
+    "U6 refresh",
+    "no send"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 74, in _\n    assert s2 == s3 == 200 and d(ok2) == d(ok3) == d(ok)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  },
+  {
+   "check": "refusals_are_indistinguishable_and_keep_owned_selection",
+   "covers": [
+    "U6 none/other/nonparticipant"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ('none', 403)",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 86, in _\n    assert st == 403 and REFUSE in bd and 'role=\"alert\"' in bd, (lab, st)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('none', 403)\n"
+  },
+  {
+   "check": "foreign_agent_in_url_is_not_reflected",
+   "covers": [
+    "U6 other account",
+    "account isolation"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "invalid_format_is_escaped_and_editable_in_place",
+   "covers": [
+    "U6 invalid format"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 110, in _\n    assert st == 422 and \"요청 ID 형식이 올바르지 않습니다\" in bd\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  },
+  {
+   "check": "oversized_or_control_input_is_dropped_selection_kept",
+   "covers": [
+    "U6 safe length",
+    "escape"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ('ascii200', 403)",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 121, in _\n    assert st in (400, 422), (lab, st)\n           ^^^^^^^^^^^^^^^^\nAssertionError: ('ascii200', 403)\n"
+  },
+  {
+   "check": "empty_id_keeps_selection",
+   "covers": [
+    "U6 empty"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: 403",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 129, in _\n    assert st in (400, 422) and sel_agent(bd) == \"agent_a\" and 'role=\"alert\"' in bd, st\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 403\n"
+  },
+  {
+   "check": "return_and_open_redirect_params_are_ignored",
+   "covers": [
+    "U7 safe return"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ('return', 'https://evil.example/x')",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 137, in _\n    assert st == 200 and \"location\" not in hd and \"evil.example\" not in bd and \"javascript:\" not in bd, (k, ev)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('return', 'https://evil.example/x')\n"
+  },
+  {
+   "check": "receipt_cookie_is_minimal_and_hardened",
+   "covers": [
+    "recovery context"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "bare_lookup_restores_last_own_input_same_session",
+   "covers": [
+    "U6 back/restore"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ('', '0199a3f2-4c10-7a11-8b22-334455667788')",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 163, in _\n    st, hd, bd = A3.get(\"/home/receipts\"); assert st == 200 and sel_agent(bd) == \"agent_a\" and val_id(bd) == AB, (sel_agent(bd), val_id(bd))\n                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('', '0199a3f2-4c10-7a11-8b22-334455667788')\n"
+  },
+  {
+   "check": "account_B_and_anonymous_never_see_A_content",
+   "covers": [
+    "isolation"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "tampered_recovery_cookie_does_not_cross_accounts_or_agents",
+   "covers": [
+    "tamper"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ('id_html', 403, 422)",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 205, in _\n    assert st == want, (lab, st, want)\n           ^^^^^^^^^^\nAssertionError: ('id_html', 403, 422)\n"
+  },
+  {
+   "check": "429_keeps_input_shows_retry_and_manual_only",
+   "covers": [
+    "U6 429"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: (429, '', '0199a3f2-4c10-7a11-8b22-334455667788')",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 226, in _\n    assert st == 429 and sel_agent(bd) == \"agent_a\" and val_id(bd) == AB, (st, sel_agent(bd), val_id(bd))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (429, '', '0199a3f2-4c10-7a11-8b22-334455667788')\n"
+  },
+  {
+   "check": "503_outage_hides_previous_input_keeps_cookie_and_recovers",
+   "covers": [
+    "U6 503",
+    "fail-closed"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 248, in _\n    st, hd, bd = O.get(\"/home/receipts\"); assert st == 200 and sel_agent(bd) == \"agent_a\" and val_id(bd) == AB\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  },
+  {
+   "check": "session_expiry_then_same_member_restores_other_member_does_not",
+   "covers": [
+    "U6 session",
+    "same-account re-login"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: (403, '', '0199a3f2-4c10-7a11-8b22-334455667788')",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 258, in _\n    assert st == 200 and sel_agent(bd) == \"agent_a\" and val_id(bd) == AB, (st, sel_agent(bd), val_id(bd))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (403, '', '0199a3f2-4c10-7a11-8b22-334455667788')\n"
+  },
+  {
+   "check": "revoked_agent_is_not_silently_replaced",
+   "covers": [
+    "U6 revoke"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-TESTER-test\\checks.py\", line 279, in revoke_check\n    assert st == 200 and options(bd) == [\"\", \"agent_a2\"] and sel_agent(bd) == \"\" and val_id(bd) == \"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  }
+ ]
+}
