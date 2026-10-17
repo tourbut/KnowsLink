@@ -130,6 +130,10 @@ func TestReceiptFormRecoveryFixtures(t *testing.T) {
 			if len(formSignatures(body)) != 2 || !strings.Contains(body, `name="agent"`) || !strings.Contains(body, `name="id" value="`) {
 				t.Fatal("editable form lost")
 			}
+			// D-RT-01: the stable discriminator leads so a clipped closed selector still shows it.
+			if !strings.Contains(body, ">agent_a / "+st.Agents["agent_a"].Name+" / Node 22 로컬 클라이언트") || !strings.Contains(body, ">agent_a2 / ") {
+				t.Fatal("selector label does not lead with discriminator")
+			}
 			if strings.Count(body, " autofocus") != 1 {
 				t.Fatal("focus target not unique")
 			}

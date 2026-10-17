@@ -13,7 +13,7 @@ summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 
 ## SAR-UX-ISSUES-002 조회 입력과 복귀
 
-`member_receipt.go`는 최초·성공·실패의 공통 조회 화면을 만들고 기존 소유권/참여 endpoint를 검사한다. `receipt_context.go`는 길이·제어문자·쿠키 수명·회원 경계를 검사하고 소유 agent 선택기를 구성한다. 복귀 쿠키는 신뢰하지 않는 입력이다. DB 엔티티나 migration은 추가하지 않는다. `capacity.go`는 원래 admission transaction 안에서만 조회 폼을 인증하며 기존 예산·동시 처리 거부를 유지한다. DB 인증 전 실패는 사적 입력 없는 같은 조회 화면이다.
+`member_receipt.go`는 최초·성공·실패의 공통 조회 화면을 만들고 기존 소유권/참여 endpoint를 검사한다. `receipt_context.go`는 길이·제어문자·쿠키 수명·회원 경계를 검사하고 소유 agent 선택기를 구성한다. 선택기 옵션(`member_pages.go`)은 `안정 구분값 / 이름 / 종류` 순서로 한 줄에 표시한다. 구분값을 앞에 두어 긴 이름 때문에 닫힌 상태가 잘려도 같은 이름의 agent를 구별할 수 있다(D-RT-01). 복귀 쿠키는 신뢰하지 않는 입력이다. DB 엔티티나 migration은 추가하지 않는다. `capacity.go`는 원래 admission transaction 안에서만 조회 폼을 인증하며 기존 예산·동시 처리 거부를 유지한다. DB 인증 전 실패는 사적 입력 없는 같은 조회 화면이다.
 
 `member_pages.go`의 네이티브 GET 폼은 안전한 입력·선택을 유지한다. 각 응답은 오류 필드/오류 요약/성공 결과 중 한 곳에만 autofocus를 둔다. `human_pages.go`의 소유 agent 상세와 legacy 관리 영역에서 같은 화면으로 진입한다. D04 CSS·주 메뉴·CSP는 바꾸지 않는다. `member.go`/`google.go`는 기존 인증 성공 뒤 고정 조회 복귀와 로그아웃 초기화만 추가한다. Google의 외부 callback에서 Strict 쿠키를 사용할 수 있다는 가정은 하지 않는다.
 
