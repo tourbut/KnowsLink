@@ -1,7 +1,7 @@
 ---
 title: SAR-SESSION-PEER-001-DESIGN — 문서 검증과 후속 수락
 status: draft
-updated: 2026-10-15
+updated: 2026-10-17
 owner: designer
 tasks: [SAR-SESSION-PEER-001-DESIGN]
 summary: 제품 문서의 의미·링크·보호 범위를 검증하고 실제 세션 왕복의 미실행 한계를 기록한다
@@ -13,7 +13,7 @@ summary: 제품 문서의 의미·링크·보호 범위를 검증하고 실제 �
 
 제품 규칙 [SP-01–12](../../../design-docs/SAR-SESSION-PEER-001.md)와 후속 V01–07을 작성했다. D01 가치, D02 요구, D11 안내 완료 기준을 최소 갱신했다. 이번 판정은 문서 의미 검토이며 실제 세션 송수신·독립 제품 QA·운영 수락이 아니다.
 
-기준 SHA는 `7f341230a26abc4afa97850687e624f2a583715c`, 브랜치는 `fullops/designer`다. 모델은 요청된 codex/gpt-6-astra/high, 테스트 lite다. 공통 기준 `fullops-common-0.3.3`, project.md, document-writing.md를 적용했다. 하위 위임은 사용하지 않았다. 독립 고정 SHA 리뷰는 coor가 후속 수행한다.
+기준 SHA는 `7f341230a26abc4afa97850687e624f2a583715c`, 브랜치는 `fullops/designer`다. 초안 모델은 codex/gpt-6-astra/high였고 2026-10-17 사용자 지시로 claude-opus-5-5 high가 이어 완성했다. 테스트 lite다. 공통 기준 `fullops-common-0.3.3`, project.md, document-writing.md를 적용했다. 하위 위임은 사용하지 않았다. 독립 고정 SHA 리뷰는 coor가 후속 수행한다.
 
 ## 의미 검토
 
@@ -29,6 +29,12 @@ summary: 제품 문서의 의미·링크·보호 범위를 검증하고 실제 �
 | Hermes | coordinator의 두 읽기 전용 관측을 반영했다. logging callback은 agent.log 처리이며 자동 모델 반응의 근거가 아니다. 호스트 추가 접속·사용자 설정·대화 열람은 하지 않았다. |
 | 제품/기술 분리 | API·저장·구현 파일·연결 프로토콜 선택을 DEV에게 남겼다. queue 후보도 기술 선택을 고정하지 않는다. |
 | 후속 순서 | coordinator `msg_2fac3fbc7fae`에 따라 진행 중 조회 복구 수락 뒤 세션 통신 DEV 한 과제를 우선한다. 나머지 UI 이슈는 대기다. |
+
+## Claude 재개 — 2026-10-17
+
+Codex 구독 종료로 이전 Astra·Sol 실행을 중지했다. 미커밋 초안은 보존 커밋 `2b5942c`로 남겼고 main `78bd0b3`을 반영했다(`8f87f7f`). 재개 세션은 초안과 D01/D02/D11 변경의 의미를 다시 확인했다. 새 조사는 반복하지 않았다.
+
+재개에서 추가한 제품 결정은 하나다. SP-01에 U6에서 사용자가 수락한 선택기 구분값 선두 예외를 반영했다. 기본 순서는 U2의 이름 선두다. 좁은 닫힌 선택기만 구분값 선두를 쓸 수 있다. 발송·전환 확인 단계는 전체 이름·클라이언트·구분값·연결 상태를 보인다. 우리 개발 모델 전환은 제품 대상 클라이언트 범위를 바꾸지 않는다.
 
 ## 탐색 불확실성과 원본 보존
 
