@@ -122,7 +122,7 @@ def install(output, host, destination, connect):
         if connect:
             server["env"] = {"KNOWSLINK_MODE": "public-node", "RELAY_URL": "https://link.knowslog.com", "KNOWSLINK_AGENT_FOLDER": str(private)}
             if host == "claude":
-                # Only the session the owner switches on with /knowslink on receives (SP-01); the mod's watcher pulls, not every MCP process.
+                # Only the session the owner switches on with /knowslink-session on receives (SP-01); the mod's watcher pulls, not every MCP process.
                 server["env"]["KNOWSLINK_AUTO_RECEIVE"] = "off"
         path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
     print(f"Prepared {host} plugin at {destination}; host registration and Google consent have not run", flush=True)

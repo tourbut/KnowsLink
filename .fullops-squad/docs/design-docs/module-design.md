@@ -16,12 +16,12 @@ summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 | 모듈 | 책임 | 검증 |
 |---|---|---|
 | `adapters/src/session-lock.ts` | agent 폴더당 한 수신 세션: `wx` 배타 생성, 다른 살아 있는 세션은 busy, `--take`·죽은 pid·같은 세션은 교체, 자기 lock만 해제 | `session-lock.test.ts`: claim/busy/take/release/dead holder/corrupt/alias 검증 |
-| `adapters/src/text.ts` `watch(folder, session?, take)` | 세션 결속 watcher: bound/busy 이벤트, 10초 lock 감시 후 `replaced` 종료, SIGTERM/SIGINT 해제. 출력은 metadata만 | `inbox.test.ts` 6(기존), 격리 relay smoke(`watcher-smoke.log`): bound→busy exit 2→takeover→replaced |
+| `adapters/src/text.ts` `watch(folder, session?, take)` | 세션 결속 watcher: bound/busy 이벤트, 10초 lock 감시 후 `replaced` 종료, SIGTERM/SIGINT 해제. 출력은 metadata만 | `inbox.test.ts` 6(기존), 격리 relay smoke(`watcher-smoke.log`: bound→takeover→replaced, `fix/watch-busy.out`: busy exit 2) |
 | `adapters/src/core.ts` `agentId` | 비밀 없는 agent 주소 getter | 타입 검사 |
-| `adapters/hooks/register.ts` | 모드: `/knowslink-session` 명령, 자식 spawn·이벤트 파싱, toast·상태줄, 미연결 text 도구 deny, 발송 승인 대화상자, 인자 누락 deny, 수신 뒤 대기 수 갱신, reload 시 상태줄 초기화 | `claude plugin validate adapters`, `hooks/register.test.ts`(미연결 deny 2종·status/off 문구·다른 도구 통과), 두 Claude 세션 V01 |
+| `adapters/hooks/register.ts` | 모드: `/knowslink-session` 명령, 자식 spawn·이벤트 파싱, toast·상태줄, 미연결 text 도구 deny, 발송 승인 대화상자(본문 전체·글자 수·reply_to, 4096자 초과 deny), 인자 누락 deny, `replaced` 즉시 해제, 수신 뒤 대기 수 갱신, reload 시 상태줄 초기화 | `claude plugin validate adapters`, `hooks/register.test.ts` 7건(미연결 deny 2종·status/off 문구·다른 도구 통과, 연결 fixture로 201자 이상 전체 본문·reply_to 표시, 취소·dialog 실패·Other 입력·인자 누락 deny, 외부 본문 미실행, replaced 뒤 deny), 두 Claude 세션 V01 |
 | `scripts/package_plugin.py` | Claude ZIP에 hooks 3파일 포함, `--connect` 시 Claude에만 `KNOWSLINK_AUTO_RECEIVE=off` | `--host claude --verify` 추출 MCP 검사·준비 경계 |
 
-V05(외부 본문 명령 미실행·승인 없는 답장 0)는 모드 deny 검사와 실제 세션 관측으로, V06(4096/4097)은 기존 `mcp.test.ts` textBoundaries로 확인했다. `claude plugin test adapters`는 `src/*.test.ts`(node 검사)까지 찾아 로드 실패로 표시하므로 모드 검사 결과는 `hooks/register.test.ts` 행만 본다. 패키지 추출 폴더에서는 모드 검사만 실행된다.
+V05(외부 본문 명령 미실행·승인 없는 답장 0)는 모드 hook 수준의 연결 fixture 검사와 실제 세션 관측으로(모델이 본문 지시를 따르지 않는지는 자동화하지 않는다. 근거는 DEV QA 보고), V06(4096/4097)은 기존 `mcp.test.ts` textBoundaries로 확인했다. `claude plugin test adapters`는 `src/*.test.ts`(node 검사)까지 찾아 로드 실패로 표시하므로 모드 검사 결과는 `hooks/register.test.ts` 행만 본다. 패키지 추출 폴더에서는 모드 검사만 실행된다.
 
 ## SAR-UX-ISSUES-002 조회 입력과 복귀
 

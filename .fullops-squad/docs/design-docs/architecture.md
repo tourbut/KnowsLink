@@ -204,8 +204,8 @@ Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시
 
 - 구조: Claude Code 플러그인에 함수 hook 모드(`adapters/hooks/register.ts`)를 추가했다. 모드는 `/knowslink-session on|off|status [--take]`를 등록하고, `on`에서 설치 설정의 연결 폴더로 `plugin.js watch <폴더> --session <구분값>` 자식 프로세스를 시작한다. 자식의 stdout 이벤트(`knowslink_session_bound|busy|replaced`, `knowslink_text_received`)만 읽어 toast·상태줄에 보인다. 본문은 자식 출력에 없다.
 - 수신 경로: Channels(research preview·조직 정책·permission relay 포함)가 아니라 기존 relay pull이다. 자식 프로세스가 pull→검증→private inbox→persist→ACK를 수행하고 MCP 서버는 `KNOWSLINK_AUTO_RECEIVE=off`로 스스로 받지 않는다. 켜지 않은 세션은 relay에 접근하지 않는다(SP-01).
-- 세션 결속(SP-02/09): `<폴더>/session.lock`이 `{session,pid,since}`를 담는 배타 claim이다(`adapters/src/session-lock.ts`). 살아 있는 다른 세션이 잡고 있으면 `busy`로 거절하고 `--take`로만 교체한다. 교체된 watcher는 10초 안에 lock 불일치를 보고 스스로 끝난다. 죽은 pid의 lock은 다음 `on`이 회수한다. 모듈 unload·`off`는 자식을 끝낸다.
-- 신뢰 경계(SP-05/06/07): 모드의 `tool.call` hook이 `knowslink_text_*`를 연결된 세션에서만 통과시킨다. `knowslink_text_send`는 호출마다 소유자 `AskUserQuestion` 대화상자(`보내기`/`취소`)를 거치고 거절·`-p`·인자 누락이면 deny한다. 받은 text는 MCP 결과의 untrusted 데이터로만 모델에 들어간다. permission relay·자동 답장·본문 기반 도구 실행은 없다.
+- 세션 결속(SP-02/09): `<폴더>/session.lock`이 `{session,pid,since}`를 담는 배타 claim이다(`adapters/src/session-lock.ts`). 살아 있는 다른 세션이 잡고 있으면 `busy`로 거절하고 `--take`로만 교체한다. 교체된 watcher는 10초 안에 lock 불일치를 보고 `replaced`를 알린 뒤 끝난다. 모드는 `replaced`를 받는 즉시 연결을 풀고 자식을 정지하므로 그 뒤 옛 세션의 text 도구는 deny된다(SAR-SESSION-PEER-001-DEV-FIX). 죽은 pid의 lock은 다음 `on`이 회수한다. 모듈 unload·`off`는 자식을 끝낸다.
+- 신뢰 경계(SP-05/06/07): 모드의 `tool.call` hook이 `knowslink_text_*`를 연결된 세션에서만 통과시킨다. `knowslink_text_send`는 호출마다 소유자 `AskUserQuestion` 대화상자(`보내기`/`취소`)를 거친다. 대화상자는 대상·새 메시지/답장(`reply_to`)·본문 전체 글자 수·잘리지 않은 본문 전체를 보이며, 4096자를 넘는 본문은 묻지 않고 deny한다. `보내기` 외 응답· 거절·`-p`·인자 누락이면 deny한다. 받은 text는 MCP 결과의 untrusted 데이터로만 모델에 들어간다. permission relay·자동 답장·본문 기반 도구 실행은 없다.
 - 상태(SP-11): 상태줄은 `KnowsLink <구분값> 연결|대기 N`이다. toast는 도착 알림이며 '세션 수신 확인'이 아니다. 수신 확인은 사용자가 요청한 `knowslink_text_receive` 결과의 ID로 확인한다.
 - 지원 수준(SP-12): 격리 relay에서 작업 중 세션과 대기 세션 양쪽의 도착 toast·상태줄·로컬 사본·원래 작업 지속을 관측했다. 판정은 '기존 세션 수신'(도착 알림·세션 결속 사본)이며 본문 모델 표시는 '다음 조회'다. Codex·Hermes는 미구현이다.
 

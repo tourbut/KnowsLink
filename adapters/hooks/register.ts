@@ -15,6 +15,7 @@ type Link = {
 };
 const TOOL = /knowslink_text_(send|receive|receipt)$/;
 const CONTROL = /[\p{Cc}\p{Cf}]/gu;
+const TEXT_MAX = 4096; // knowslink_text_send accepts at most 4096 bytes, so a valid body always fits whole
 let link: Link | null = null;
 
 async function readConfig(
@@ -89,7 +90,7 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
       for (;;) {
         const piece = await child.next();
         if (piece.done) {
-          ended = piece.value;
+          ended = piece.value ?? { code: null }; // a stopped child ends with no result
           break;
         }
         if (piece.value.stream !== "stdout") continue;
@@ -126,6 +127,12 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
               break;
             }
             case "knowslink_session_replaced":
+              // Release now, not when the child exits: until then the old session's text tools would still pass.
+              if (link === current) {
+                link = null;
+                $.ui.status(undefined);
+                current.stop();
+              }
               $.ui.toast(
                 "KnowsLink 연결 해제: 다른 세션이 이 agent를 가져갔습니다.",
               );
@@ -198,12 +205,18 @@ export const register: Register = (on) => {
       const peer = String(args.peer ?? "")
         .replace(CONTROL, "")
         .slice(0, 128);
-      const preview = String(args.text ?? "")
-        .replace(CONTROL, " ")
-        .slice(0, 200);
+      // The owner approves exactly what is sent: the whole body, never a cut preview.
+      if (args.text.length > TEXT_MAX)
+        return {
+          deny: `KnowsLink: 본문이 ${args.text.length}자로 한도 ${TEXT_MAX}자를 넘어 전체를 확인할 수 없습니다. 발송을 막았습니다.`,
+        };
+      const kindLine =
+        typeof args.reply_to === "string" && args.reply_to
+          ? `답장(reply_to ${args.reply_to.replace(CONTROL, "")})`
+          : "새 메시지";
       const answer = await $.ui
         .ask(
-          `KnowsLink 발송 승인: 내 agent ${link.agent} → ${peer}. 본문 「${preview}」 을 보낼까요?`,
+          `KnowsLink 발송 승인: 내 agent ${link.agent} → ${peer} · ${kindLine} · 본문 전체 ${args.text.length}자 「${args.text.replace(CONTROL, " ")}」 을 그대로 보낼까요?`,
           ["보내기", "취소"],
         )
         .catch(() => "취소");
