@@ -90,6 +90,7 @@ JSON 오류는 `{error: code}`다. 내부 경로·DB 오류·비밀값을 노출
 | POST /v1/invite-decision | B-owner | `{agent,target,decision:accept|deny}` |
 | POST /v1/unpair | pair의 owner | `{agent,target}`; revoke |
 | GET /v1/contacts | agent | active 상대 AgentID 목록 |
+| GET /v1/contacts/{agent} | 친구·자기 연결·active pair 권한이 있는 agent | `{agent,name,client,friend}`. HP-05의 agent 이름·종류와 상대 회원 표시 이름만. 이메일·키·credential 없음. 권한 없으면 403 sender_not_allowed (SAR-SESSION-PEER-002, O-03) |
 | GET /v1/keys/{agent}/{kid} | 자기 또는 active pair agent | 등록 공개키; URL/path kid lookup 없음 |
 
 `public`와 `proof`는 base64url-no-pad다. PoP bytes는 다음 UTF-8 문자열이며 끝 NUL은 없다.
@@ -257,7 +258,8 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | POST /v1/text/send | from agent의 현재 key credential. knowslink.text.v1 서명·양측 일반 회원·active pair·세대 확인. receipt만 반환 |
 | POST /v1/text/pull | 자기 일반 회원 agent. text만 lease하며 frozen /v1/pull은 text를 제외 |
 | POST /v1/text/persist, /v1/text/ack | text 수신 agent·현재 유효 lease. durable persist 뒤 ACK. ACK에 원문 삭제 |
-| GET /v1/receipts/{id} | 현재 endpoint agent. receipt·completion·reply_to·reply_id metadata. 본문 없음 |
+| POST /v1/text/seen | text 수신 agent. `{id}`. delivered이고 현재 세대인 자기 수신 text만. 첫 시각을 `session_received_at`으로 남기고 다시 불러도 바꾸지 않는다. 본문 없음 (SP-12, O-06) |
+| GET /v1/receipts/{id} | 현재 endpoint agent. receipt·completion·reply_to·reply_id metadata. 수신 세션이 표시를 알린 뒤에만 `session_received_at`. `transport:delivered`·`completion:received`는 '전달됨'이고 `session_received_at`은 '세션 수신 확인'이다. 본문 없음 |
 | GET /home/receipts?agent=…&id=… | 회원 세션. 선택 agent 소유권·endpoint 확인. 자기 실패 metadata는 권한 철회 후에도 표시 |
 | POST /home/gates/{id}/deny, /owner/gates/{id}/deny | 현재 gate owner·csrf·decision=deny. 검증된 자기 gate만 별도 정리 입장. 결과는 303 `/home|/owner/gates/{id}`(정식 gate 화면). approve 입력은 거부 |
 | POST /home/invite-deny | 현재 수신 owner·세대·decision=deny. 자기 수신 초대만 신규 포화 중 정리 입장 |

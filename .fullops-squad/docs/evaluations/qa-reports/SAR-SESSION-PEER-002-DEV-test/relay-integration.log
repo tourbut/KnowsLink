@@ -1,0 +1,79 @@
+ Image knowslink-sp002-it-d693d763b6-migrate Building 
+ Image knowslink-sp002-it-d693d763b6-relay Building 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Image knowslink-sp002-it-d693d763b6-migrate Built 
+ Image knowslink-sp002-it-d693d763b6-relay Built 
+ Network knowslink-sp002-it-d693d763b6_database Creating 
+ Network knowslink-sp002-it-d693d763b6_database Created 
+ Network knowslink-sp002-it-d693d763b6_ingress Creating 
+ Network knowslink-sp002-it-d693d763b6_ingress Created 
+ Volume knowslink-sp002-it-d693d763b6_postgres-data Creating 
+ Volume knowslink-sp002-it-d693d763b6_postgres-data Created 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Creating 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Created 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Creating 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Created 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Creating 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Created 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Starting 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Started 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Waiting 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Healthy 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Starting 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Started 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Waiting 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Exited 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Starting 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Started 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Waiting 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Waiting 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Waiting 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Exited 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Healthy 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Healthy 
+command: ['docker', 'compose', '--project-name', 'knowslink-sp002-it-d693d763b6', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', 'C:\\Users\\shin\\AppData\\Local\\Temp\\knowslink-sp002-it-mt17ltwo\\test.yaml', 'up', '--build', '--wait', 'relay']; exit: 0
+ Container knowslink-sp002-it-d693d763b6-relay-1 Stopping 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Stopped 
+command: ['docker', 'compose', '--project-name', 'knowslink-sp002-it-d693d763b6', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', 'C:\\Users\\shin\\AppData\\Local\\Temp\\knowslink-sp002-it-mt17ltwo\\test.yaml', 'stop', 'relay']; exit: 0
+ok  	github.com/tourbut/KnowsLink/internal/relay	104.721s
+command: ['go', 'test', '-tags=integration', '-count=1', './internal/relay']; exit: 0
+ Container knowslink-sp002-it-d693d763b6-relay-1 Stopping 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Stopped 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Removing 
+ Container knowslink-sp002-it-d693d763b6-relay-1 Removed 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Stopping 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Stopped 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Removing 
+ Container knowslink-sp002-it-d693d763b6-migrate-1 Removed 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Stopping 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Stopped 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Removing 
+ Container knowslink-sp002-it-d693d763b6-postgres-1 Removed 
+ Network knowslink-sp002-it-d693d763b6_ingress Removing 
+ Volume knowslink-sp002-it-d693d763b6_postgres-data Removing 
+ Network knowslink-sp002-it-d693d763b6_database Removing 
+ Volume knowslink-sp002-it-d693d763b6_postgres-data Removed 
+ Network knowslink-sp002-it-d693d763b6_ingress Removed 
+ Network knowslink-sp002-it-d693d763b6_database Removed 
+command: ['docker', 'compose', '--project-name', 'knowslink-sp002-it-d693d763b6', '--env-file', '.env.example', '-f', 'compose.yaml', '-f', 'C:\\Users\\shin\\AppData\\Local\\Temp\\knowslink-sp002-it-mt17ltwo\\test.yaml', 'down', '--volumes']; exit: 0
+PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused

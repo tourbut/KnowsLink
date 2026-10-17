@@ -135,6 +135,27 @@ func (s *Service) Handler() http.Handler {
 		})
 		respond(w, result, err)
 	})
+	// One contact's public label for a work session's toast and send dialog (O-03): HP-05 agent name and client plus the owner's member name; no email, key or credential.
+	mux.HandleFunc("GET /v1/contacts/{agent}", func(w http.ResponseWriter, r *http.Request) {
+		result, err := s.transaction(r.Context(), func(st *State, _ time.Time) (any, error) {
+			agent, err := st.principal(bearer(r), "agent")
+			if err != nil {
+				return nil, err
+			}
+			target := r.PathValue("agent")
+			if _, _, ok := st.authority(agent, target); !ok {
+				return nil, fault("sender_not_allowed")
+			}
+			a := st.Agents[target]
+			v := humanAgentView(target, a)
+			friend := ""
+			if _, m := st.humanMember(a.Owner); m != nil {
+				friend = m.Name
+			}
+			return map[string]string{"agent": target, "name": v.Name, "client": v.Client, "friend": friend}, nil
+		})
+		respond(w, result, err)
+	})
 	mux.HandleFunc("GET /v1/keys/{agent}/{kid}", func(w http.ResponseWriter, r *http.Request) {
 		result, err := s.transaction(r.Context(), func(st *State, _ time.Time) (any, error) {
 			agent, err := st.principal(bearer(r), "agent")
@@ -168,7 +189,11 @@ func (s *Service) Handler() http.Handler {
 			if m == nil || (m.Receipt.From != agent && m.Receipt.To != agent) || !st.current(m) {
 				return nil, fault("sender_not_allowed")
 			}
-			return map[string]any{"receipt": m.Receipt, "completion": m.Completion, "reply_to": m.Parent, "reply_id": m.ReplyID}, nil
+			v := map[string]any{"receipt": m.Receipt, "completion": m.Completion, "reply_to": m.Parent, "reply_id": m.ReplyID}
+			if !m.SessionSeen.IsZero() {
+				v["session_received_at"] = m.SessionSeen
+			}
+			return v, nil
 		})
 		respond(w, result, err)
 	})

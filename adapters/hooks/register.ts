@@ -11,12 +11,35 @@ type Link = {
   alias: string;
   agent: string;
   pending: number;
+  relay: string; // ok | unreachable | error, from the watcher's knowslink_relay events
   stop: () => void;
 };
 const TOOL = /knowslink_text_(send|receive|receipt)$/;
 const CONTROL = /[\p{Cc}\p{Cf}]/gu;
-const TEXT_MAX = 4096; // knowslink_text_send accepts at most 4096 bytes, so a valid body always fits whole
+// Variation selectors, bidi and other format or default-ignorable code points draw as nothing; the dialog names each one (review #8).
+const INVISIBLE = /[\p{Cf}\p{Default_Ignorable_Code_Point}]/gu;
+// Claude Code 2.1.302 draws an AskUserQuestion question up to its first 2000 characters and ends a longer one with an ellipsis (O-RT-01).
+const ASK_MAX = 2000;
 let link: Link | null = null;
+
+const visible = (text: string): string =>
+  text
+    .replace(
+      INVISIBLE,
+      (c) =>
+        `⟨U+${c.codePointAt(0)!.toString(16).toUpperCase().padStart(4, "0")}⟩`,
+    )
+    .replace(CONTROL, " ");
+const line = (l: Link): string =>
+  l.relay === "unreachable"
+    ? `KnowsLink ${l.alias} 통신 불가 · 재시도 중`
+    : l.relay === "error"
+      ? `KnowsLink ${l.alias} 수신 오류 · 키·친구 확인`
+      : l.pending
+        ? `KnowsLink ${l.alias} 대기 ${l.pending}`
+        : `KnowsLink ${l.alias} 연결`;
+const summary = (l: Link): string =>
+  `세션 ${l.alias} · agent ${l.agent} · 대기 ${l.pending}건${l.relay === "unreachable" ? " · relay 통신 불가(자동 재시도 중)" : l.relay === "error" ? " · 수신 오류(키·친구 확인)" : ""}`;
 
 async function readConfig(
   $: Engine,
@@ -55,9 +78,40 @@ function parse(line: string): Record<string, unknown> | null {
   }
 }
 
+// Friend and agent names are friend-chosen text: shown cut and with invisible characters named, beside the agent ID (O-03).
+const named = (friend: unknown, name: unknown, id: string): string =>
+  typeof friend === "string" && typeof name === "string" && friend && name
+    ? `친구 ${visible(friend.slice(0, 40))} · agent ${visible(name.slice(0, 40))} (${id})`
+    : `agent ${id}`;
+
+// The send dialog's label for a peer ID: one short `plugin.js contact` run; on any failure the ID alone.
+async function contact($: Engine, peer: string): Promise<string> {
+  try {
+    const { argv, folder } = await readConfig($);
+    const child = $.process.spawn({ argv: [...argv, "contact", folder, peer] });
+    const timer = $.clock.after(5000, () => {
+      void child.return({ code: null, signal: null });
+    });
+    let out = "";
+    try {
+      for (;;) {
+        const piece = await child.next();
+        if (piece.done) break;
+        if (piece.value.stream === "stdout") out += piece.value.text;
+      }
+    } finally {
+      timer.cancel();
+    }
+    const c = parse(out.trim());
+    return named(c?.friend, c?.name, peer);
+  } catch {
+    return named(null, null, peer);
+  }
+}
+
 async function turnOn($: Engine, take: boolean): Promise<string> {
   if (link)
-    return `KnowsLink 이미 연결됨: 세션 ${link.alias} · agent ${link.agent} · 대기 ${link.pending}건. 끄려면 /knowslink-session off`;
+    return `KnowsLink 이미 연결됨: ${summary(link)}. 끄려면 /knowslink-session off`;
   let config: { argv: string[]; folder: string };
   try {
     config = await readConfig($);
@@ -81,6 +135,7 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
     alias,
     agent: "",
     pending: 0,
+    relay: "ok",
     stop: () => void child.return({ code: null, signal: null }),
   };
   void (async () => {
@@ -103,10 +158,11 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
           switch (event.event) {
             case "knowslink_session_bound":
               current.agent = String(event.agent ?? "");
+              current.pending = Number(event.pending ?? 0);
               link = current;
-              $.ui.status(`KnowsLink ${alias} 연결`);
+              $.ui.status(line(current));
               resolveFirst(
-                `KnowsLink 연결됨: 세션 ${alias} · 내 agent ${current.agent}. 도착은 toast로 알립니다. 본문은 요청 때 knowslink_text_receive 로 외부 데이터로 봅니다.`,
+                `KnowsLink 연결됨: 세션 ${alias} · 내 agent ${current.agent} · 대기 ${current.pending}건. 도착은 toast로 알립니다. 본문은 요청 때 knowslink_text_receive 로 외부 데이터로 봅니다.`,
               );
               break;
             case "knowslink_session_busy":
@@ -116,14 +172,28 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
               break;
             case "knowslink_text_received": {
               current.pending = Number(event.pending ?? 0);
-              const from = String(event.from ?? "")
-                .replace(CONTROL, "")
-                .slice(0, 64);
+              const from = visible(String(event.from ?? "").slice(0, 64));
               $.ui.toast(
-                `KnowsLink 외부 메시지 도착 · 발신 agent ${from} · 대기 ${current.pending}건 · 확인: knowslink_text_receive`,
+                `KnowsLink 외부 메시지 도착 · 발신 ${named(event.friend, event.name, from)} · 대기 ${current.pending}건 · 확인: knowslink_text_receive`,
                 { timeoutMs: 12000 },
               );
-              $.ui.status(`KnowsLink ${alias} 대기 ${current.pending}`);
+              if (link === current) $.ui.status(line(current));
+              break;
+            }
+            case "knowslink_relay": {
+              const state = String(event.state ?? "");
+              if (link !== current || state === current.relay) break;
+              current.relay = state;
+              $.ui.status(line(current));
+              $.ui.toast(
+                state === "unreachable"
+                  ? "KnowsLink relay와 통신할 수 없습니다. 키·친구 문제가 아닙니다. 자동으로 다시 시도합니다."
+                  : state === "error"
+                    ? `KnowsLink 수신 오류(${String(event.error ?? "")
+                        .replace(CONTROL, "")
+                        .slice(0, 80)}). 키·친구 관계를 확인하세요.`
+                    : "KnowsLink relay 통신이 복구됐습니다.",
+              );
               break;
             }
             case "knowslink_session_replaced":
@@ -184,7 +254,7 @@ export const register: Register = (on) => {
     if (words[0] === "off") return { text: turnOff($) };
     return {
       text: link
-        ? `KnowsLink 연결됨: 세션 ${link.alias} · agent ${link.agent} · 대기 ${link.pending}건`
+        ? `KnowsLink 연결됨: ${summary(link)}`
         : "KnowsLink: 이 세션은 연결되어 있지 않습니다. /knowslink-session on",
     };
   });
@@ -207,24 +277,32 @@ export const register: Register = (on) => {
         return {
           deny: "KnowsLink: peer와 text가 필요합니다. 승인 전 인자를 확인하세요.",
         };
-      const peer = String(args.peer ?? "")
-        .replace(CONTROL, "")
-        .slice(0, 128);
-      // The owner approves exactly what is sent: the whole body, never a cut preview.
-      if (args.text.length > TEXT_MAX)
-        return {
-          deny: `KnowsLink: 본문이 ${args.text.length}자로 한도 ${TEXT_MAX}자를 넘어 전체를 확인할 수 없습니다. 발송을 막았습니다.`,
-        };
+      const peer = await contact($, visible(args.peer.slice(0, 128)));
       const kindLine =
         typeof args.reply_to === "string" && args.reply_to
-          ? `답장(reply_to ${args.reply_to.replace(CONTROL, "")})`
+          ? `답장(reply_to ${visible(args.reply_to.slice(0, 64))})`
           : "새 메시지";
+      const body = visible(args.text);
+      const hidden = args.text.match(INVISIBLE)?.length ?? 0;
+      if (!link)
+        return {
+          deny: "KnowsLink: 이 세션은 연결되지 않았습니다. /knowslink-session on 으로 먼저 연결하세요.",
+        };
+      const question = `KnowsLink 발송 승인: 내 agent ${link.agent} → ${peer} · ${kindLine} · 본문 전체 ${args.text.length}자${hidden ? ` · 보이지 않는 문자 ${hidden}개를 ⟨U+…⟩로 표시` : ""} 「${body}」 을 그대로 보낼까요?`;
+      // The owner approves exactly what is sent: the whole body, never a cut preview.
+      if (question.length > ASK_MAX)
+        return {
+          deny: `KnowsLink: 승인 창은 ${ASK_MAX}자까지만 보여 이 본문(${args.text.length}자)의 끝을 확인할 수 없습니다. 발송을 막았습니다. 본문을 약 ${Math.max(0, ASK_MAX - (question.length - body.length))}자 이하로 나눠 각각 승인받으세요.`,
+        };
+      const held = link;
       const answer = await $.ui
-        .ask(
-          `KnowsLink 발송 승인: 내 agent ${link.agent} → ${peer} · ${kindLine} · 본문 전체 ${args.text.length}자 「${args.text.replace(CONTROL, " ")}」 을 그대로 보낼까요?`,
-          ["보내기", "취소"],
-        )
+        .ask(question, ["보내기", "취소"])
         .catch(() => "취소");
+      // The link may end while the dialog is open (replaced or off); a released session never sends (SP-09, review #7).
+      if (link !== held)
+        return {
+          deny: "KnowsLink: 승인하는 동안 이 세션의 연결이 해제돼 발송을 막았습니다. /knowslink-session status 로 확인하세요.",
+        };
       if (answer !== "보내기")
         return {
           deny: "KnowsLink: 소유자가 이 발송을 승인하지 않았습니다. 답장은 소유자의 별도 승인이 있어야 보냅니다.",
@@ -233,7 +311,7 @@ export const register: Register = (on) => {
     const ran = await next(e);
     if (kind === "receive" && link && !ran.deny && !ran.isError) {
       link.pending = Math.max(0, link.pending - 1);
-      $.ui.status(`KnowsLink ${link.alias} 대기 ${link.pending}`);
+      $.ui.status(line(link));
     }
     return ran;
   }).catch(($, e, next) =>

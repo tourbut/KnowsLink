@@ -30,6 +30,13 @@ export type ReceivedText = {
   untrusted: true;
   authorship?: "owner" | "agent";
 };
+// HP-05 public label of a friend's agent: friend-chosen names, shown only as data (O-03).
+export type Contact = {
+  agent: string;
+  name: string;
+  client: string;
+  friend: string;
+};
 export type OwnerTextEnvelope = {
   v: "knowslink.owner-text.v1";
   id: string;
@@ -152,6 +159,23 @@ export class TextTransport extends Adapter {
   }> {
     if (!/^[0-9a-f-]{36}$/.test(id)) throw new Error("invalid receipt ID");
     return this.request(`/v1/receipts/${encodeURIComponent(id)}`);
+  }
+  async contact(agent: string): Promise<Contact> {
+    if (!/^[a-z][a-z0-9_:-]*$/.test(agent)) throw new Error("invalid agent");
+    const c = await this.request<Record<string, unknown>>(
+      `/v1/contacts/${encodeURIComponent(agent)}`,
+    );
+    const field = (v: unknown) => (typeof v === "string" ? v.slice(0, 80) : "");
+    return {
+      agent,
+      name: field(c.name),
+      client: field(c.client),
+      friend: field(c.friend),
+    };
+  }
+  // Tells the sender's receipt that this work session showed the text (SP-12); no text leaves.
+  seen(id: string): Promise<unknown> {
+    return this.request("/v1/text/seen", { id });
   }
   // store runs after signature verification and before relay persist/ACK, so a local copy exists before the relay erases text.
   async receive(
@@ -286,18 +310,22 @@ export async function watch(
       agent: transport.agentId,
       session,
       pid: process.pid,
+      pending: (await inbox.pending()).length, // Unread copies kept from before this session count from the start (SP-08).
     });
   }
   const auto = new AutoReceiver(
     transport,
     inbox,
-    async (m, pending) =>
+    async (m, pending) => {
+      const c = await transport.contact(m.from).catch(() => null);
       say({
         event: "knowslink_text_received",
         id: m.id,
         from: m.from,
         pending,
-      }),
+        ...(c ? { friend: c.friend, name: c.name } : {}),
+      });
+    },
     GrokWake.fromEnv(process.env),
   );
   auto.start();
@@ -305,7 +333,24 @@ export async function watch(
     setInterval(() => {}, 1 << 30);
     return;
   }
+  let relay = "ok";
   const guard = setInterval(() => {
+    // Relay health rides the same tick: unreachable (outage) and error (key, friend or other refusal) need different advice (SP-11, V07).
+    const error = auto.status.lastError ?? "";
+    const now =
+      auto.status.state !== "backoff"
+        ? "ok"
+        : /^relay (unreachable|HTTP 5)/.test(error)
+          ? "unreachable"
+          : "error";
+    if (now !== relay) {
+      relay = now;
+      say({
+        event: "knowslink_relay",
+        state: now,
+        ...(now === "ok" ? {} : { error }),
+      });
+    }
     void holdsSession(folder, session).then((held) => {
       if (held) return;
       clearInterval(guard);
@@ -320,6 +365,11 @@ export async function watch(
   };
   process.once("SIGTERM", quit);
   process.once("SIGINT", quit);
+}
+// `contact <folder> <agent>`: one JSON line with the contact label, for the Claude Code send dialog.
+export async function printContact(folder: string, agent: string) {
+  const c = await (await memberTransport(folder)).contact(agent);
+  process.stdout.write(JSON.stringify(c) + "\n");
 }
 // `watch <folder> [--session <alias>] [--take]` from either CLI entry.
 export function watchFromArgv(argv: string[]): Promise<void> {
@@ -366,13 +416,15 @@ if (
   main().catch((e: unknown) => {
     const safe =
       e instanceof Error &&
-      /^relay HTTP [0-9]{3}(?: [a-z_]+)?(?: retry_at=[0-9TZ:.-]+)?$/.test(
+      /^(relay HTTP [0-9]{3}(?: [a-z_]+)?(?: retry_at=[0-9TZ:.-]+)?|relay unreachable)$/.test(
         e.message,
       )
         ? e.message
         : "text request failed";
     process.stderr.write(
-      `${safe}. 수신 성공으로 처리하지 마세요. 현재 키·관계·기한을 확인하세요. 불확실한 송신은 같은 key·내용으로 재시도하세요.\n`,
+      /^relay (unreachable|HTTP 5)/.test(safe)
+        ? `${safe}. relay와 통신할 수 없습니다. 키·친구 문제가 아닙니다. 잠시 뒤 다시 시도하세요. 불확실한 송신은 같은 key·내용으로 재시도하세요.\n`
+        : `${safe}. 수신 성공으로 처리하지 마세요. 현재 키·관계·기한을 확인하세요. 불확실한 송신은 같은 key·내용으로 재시도하세요.\n`,
     );
     process.exitCode = 1;
   });

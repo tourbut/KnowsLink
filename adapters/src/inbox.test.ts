@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { LoggingMessageNotificationSchema } from "@modelcontextprotocol/sdk/types.js";
-import { uuid7 } from "./core.js";
+import { Adapter, uuid7 } from "./core.js";
 import { privateDirectory } from "./private-files.js";
 import { textSigningBytes, type TextEnvelope } from "./text.js";
 
@@ -49,6 +49,7 @@ const root = await mkdtemp(join(tmpdir(), "kl-auto-"));
 const folder = join(root, "agent");
 const queue: TextEnvelope[] = [];
 const acks: string[] = [];
+const seenIds: string[] = [];
 let mode: "ok" | "fail500" | "revoked" = "ok";
 let inFlight = 0;
 let maxInFlight = 0;
@@ -86,7 +87,17 @@ const relay = createServer(async (req, res) => {
       }),
     );
   }
+  if (url.startsWith("/v1/contacts/"))
+    return res.end(
+      JSON.stringify({
+        agent: url.slice(13),
+        name: "도우미",
+        client: "Claude Code",
+        friend: "친구 B",
+      }),
+    );
   const body = JSON.parse(raw) as { id: string };
+  if (url === "/v1/text/seen") seenIds.push(body.id);
   if (url === "/v1/text/ack") {
     if (!(await exists(join(folder, "inbox", `${body.id}.json`))))
       if (!(await exists(join(folder, "inbox", `${body.id}.read`))))
@@ -174,6 +185,14 @@ try {
   assert.equal(got.message.text, m1.text);
   assert.equal(got.message.untrusted, true);
   assert.equal(got.message.expired, false);
+  // Friend and agent names ride along as data (O-03); the shown copy reports its session receipt (SP-12).
+  assert.deepEqual(got.message.sender, {
+    friend: "친구 B",
+    name: "도우미",
+    client: "Claude Code",
+  });
+  assert.equal(got.sessionReceipt, "recorded");
+  assert.deepEqual(seenIds, [m1.id]);
   queue.push(m1); // Already read: still consumed, never shown again.
   got = await s.call("knowslink_text_receive");
   assert.equal(got.state, "empty");
@@ -206,8 +225,26 @@ try {
   assert.equal(status.lastError, "relay HTTP 500 unavailable");
   assert.equal(status.lastSuccessAt, undefined);
   assert(Date.parse(status.nextPollAt) - Date.now() > 10000);
+  // A relay outage is told apart from a key or friend problem (O-05).
+  got = await s.call("knowslink_text_receive");
+  assert.equal(got.error, "relay HTTP 500 unavailable");
+  assert.match(got.next, /not a key or friend problem/);
   assert.equal(s.stderr(), "");
   await s.client.close();
+  const closed = createServer();
+  await new Promise<void>((r) => closed.listen(0, "127.0.0.1", r));
+  const deadPort = (closed.address() as { port: number }).port;
+  await new Promise((r) => closed.close(r));
+  await assert.rejects(
+    new Adapter(
+      `http://127.0.0.1:${deadPort}`,
+      "c".repeat(43),
+      "agent_x",
+      "key1",
+      mine.privateKey.export({ format: "pem", type: "pkcs8" }).toString(),
+    ).request("/v1/text/pull", {}),
+    /^Error: relay unreachable$/,
+  );
 
   // 5. Opt-out keeps manual-only behavior.
   mode = "ok";
@@ -226,12 +263,20 @@ try {
   queue.push(m3);
   const watcher = spawn(
     process.execPath,
-    [fileURLToPath(new URL("./plugin.js", import.meta.url)), "watch", folder],
+    [
+      fileURLToPath(new URL("./plugin.js", import.meta.url)),
+      "watch",
+      folder,
+      "--session",
+      "w1",
+    ],
     { stdio: ["ignore", "pipe", "pipe"] },
   );
   let out = "";
   watcher.stdout.on("data", (c: Buffer) => (out += c.toString()));
   await wait(() => out.includes(m3.id), "watch notice");
+  // A (re)connecting session starts from the unread count already in the inbox (O-02).
+  assert.match(out, /"event":"knowslink_session_bound".*"pending":\d+/);
   watcher.kill();
   assert(!out.includes(m3.text), "watch output has no text");
   s = await connect({ KNOWSLINK_AUTO_RECEIVE: "off" });
