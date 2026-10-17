@@ -221,8 +221,17 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		}
 		// Even malformed bodies spend the authenticated/anonymous request budget once they reach admission.
 		token, clean := randomToken(), false
+		var receiptView map[string]any
+		var receiptInput receiptDraft
+		var receiptAt time.Time
 		v, err := s.transaction(ctx, func(st *State, now time.Time) (any, error) {
 			buckets, owner := s.requestBuckets(st, r, now, credential != "")
+			if r.Method == "GET" && r.URL.Path == "/home/receipts" {
+				if member, _, err := st.session(readCookie(r, sessionCookie), now); err == nil {
+					receiptView, receiptInput = st.receiptView(member, r, now)
+					receiptAt = now
+				}
+			}
 			if ok, retry := st.hit(now, buckets...); !ok {
 				return retry, nil
 			}
@@ -230,10 +239,16 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			return st.enterHTTP(token, owner, now), nil
 		})
 		if err != nil {
+			if receiptFailure(w, r, 503, "상태를 확인할 수 없습니다. 잠시 뒤 같은 화면에서 다시 조회하세요.", receiptView, receiptInput, receiptAt) {
+				return
+			}
 			respond(w, nil, err)
 			return
 		}
 		if retry, ok := v.(time.Time); ok {
+			if receiptFailure(w, r, 429, limited(retry), receiptView, receiptInput, receiptAt) {
+				return
+			}
 			if strings.HasPrefix(r.URL.Path, "/v1/") {
 				rateLimited(w, retry)
 			} else {
@@ -242,6 +257,10 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			return
 		}
 		if !v.(bool) {
+			w.Header().Set("Retry-After", "1")
+			if receiptFailure(w, r, 429, "동시 처리 한도에 도달했습니다. 1초 뒤 수동으로 다시 조회하세요.", receiptView, receiptInput, receiptAt) {
+				return
+			}
 			capacityResponse(w, r)
 			return
 		}
@@ -273,6 +292,9 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 }
 func capacityResponse(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Retry-After", "1")
+	if receiptFailure(w, r, 429, "동시 처리 한도에 도달했습니다. 1초 뒤 수동으로 다시 조회하세요.", nil, receiptDraft{}, time.Time{}) {
+		return
+	}
 	if strings.HasPrefix(r.URL.Path, "/v1/") {
 		writeJSON(w, 429, map[string]string{"error": "capacity", "retry_at": time.Now().Add(time.Second).UTC().Format(time.RFC3339)})
 		return

@@ -1,0 +1,277 @@
+{
+  "packet_input_sha256": "f9f5d213600aa27a764dab8dd4365a5af4c80c35fd2878dbf2499742ce21ebbe",
+  "attempt": "c87837bfcc2040289e6986cc4ed64881",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현행 토큰/접근성 원문과 U6 승인 설계를 적용했다. designer 소유 정본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "현행 토큰/접근성 원문과 U6 승인 설계를 적용했다. designer 소유 정본은 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "현재 소유 agent 뷰·이름·종류·shortID를 재사용한다. 친구·대화 action은 범위 밖이며 기존 회귀를 실행했다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": "internal/relay/human_pages_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "기존 사람 페이지 render/escape 회귀를 실행했다. 신규 조회 검사는 receipt_context_test.go에 둔다."
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "기존 TestPublicMessageHTTPBoundaries와 admission/gate 검사를 실제 격리 SQL에서 실행했다. receipt 비노출·철회 metadata 계약은 유지한다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "서버/DB/adapter 구성과 신뢰 경계를 유지한다. UI 복귀 책임은 D10에 갱신했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "조회는 메시지 CRUD/ACK/권한을 변경하지 않는다. 임시 입력 cookie와 Google attempt 복귀 bool은 D05/D10에 기록했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "새 DB 엔티티·영속 조회 이력을 추가하지 않는다. 기존 GoogleAttempt의 임시 복귀 표시만 D05/D10에 명시한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "과거 owner MVP 화면 기록이다. 이번 회원 조회는 현행 U6/D04를 따르며 이력을 변경하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "기존 Go 표준 라이브러리와 프로젝트 helper를 사용한다. dependency·버전·검사 정책 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 결정·승인·원 실패와 담당 경계의 관련 절을 확인했다. 과거 PASS를 신규 소스 실행으로 바꾸지 않고 원본 이력을 보존한다."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "테이블·migration·sqlc가 바뀌지 않아 생성 스키마를 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "운영 배포·보존·복구 정책은 변경하지 않는다. 별도 합성 DB와 helper 환경만 QA 보고에 기록했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "운영 인수는 범위 밖이다. 독립 QA/리뷰/통합 후속을 DEV 보고에 인계한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·입력 패킷·관련 계약 원문/연결을 확인했다. 현재 조회 범위에서 변경할 추가 요구가 없어 기존 정본을 유지한다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "수락된 U6/U7 범위의 조회 폼·계정 격리·복귀 및 해당 정본/fixture를 갱신했다. 상세 변경과 실행 근거는 DEV QA 보고에 있다."
+    }
+  ],
+  "uncertainty_review": "source-audit.json에 원 packet 비선택 및 unknown/잔여 후보의 파일 hash와 관련절을 보존했다. 큰 D04는 현행 토큰·접근성과 새 U6를 직접 읽었고, oversized 과거 로그/PLANS/OPS는 현행 실행 지시로 쓰지 않았다. 실제 callers인 capacity.go/member.go/google.go/identity.go를 추가 확인했으며 보안 예산·로그인 회귀를 실행했다. producer partial은 전체 호출 그래프 확인으로 과장하지 않는다."
+}

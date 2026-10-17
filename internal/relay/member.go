@@ -201,7 +201,11 @@ func (s *Service) authVerify(w http.ResponseWriter, r *http.Request) {
 	default:
 		setCookie(w, pendingCookie, "", -1)
 		setCookie(w, sessionCookie, result.Session, int(sessionAbsolute/time.Second))
-		http.Redirect(w, r, "/home", http.StatusSeeOther)
+		next := "/home"
+		if readReceiptDraft(r, time.Now()).Member != "" {
+			next = "/home/receipts#receipt-form"
+		}
+		http.Redirect(w, r, next, http.StatusSeeOther)
 	}
 }
 
@@ -396,6 +400,7 @@ func (s *Service) logout(all bool) http.HandlerFunc {
 			return
 		}
 		setCookie(w, sessionCookie, "", -1)
+		setCookie(w, receiptCookie, "", -1)
 		n := "logout"
 		if all {
 			n = "all"

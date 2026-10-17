@@ -55,7 +55,7 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{if .Reauth}}<form method="post" action="/auth/reauth"><button class="primary">로그인 다시 확인</button></form>{{end}}
 {{if .Create}}<a class="button primary" href="/home/agents">에이전트 추가</a>{{end}}
 <p><a href="{{.Back}}">{{if eq .Back "/"}}로그인 화면으로 이동{{else}}홈으로 돌아가기{{end}}</a></p></section></main></html>{{end}}
-{{define "google-complete"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">{{if eq .Next "/home"}}<a class="button primary" href="/home">홈으로 이동</a>{{else}}<a class="button primary" href="{{.Next}}">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}
+{{define "google-complete"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">{{if eq .Next "/home"}}<a class="button primary" href="/home">홈으로 이동</a>{{else if eq .Next "/home/receipts"}}<a class="button primary" href="/home/receipts#receipt-form">요청 상태 조회로 돌아가기</a>{{else}}<a class="button primary" href="{{.Next}}">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}
 {{define "verify"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="확인 코드">
 <p>{{.Masked}}로 코드를 보냈습니다. 아직 로그인되지 않았습니다.</p>
 <form method="post" action="/auth/verify"><label for="code">6자리 확인 코드</label><input id="code" class="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required aria-describedby="code-help{{if .Problem}} problem{{end}}">
@@ -94,15 +94,25 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 <form method="post" action="/home/device-confirm"><input type="hidden" name="connection" value="{{.ConnectionID}}"><label for="device-agent-name">에이전트 이름</label><input id="device-agent-name" name="name" required maxlength="80" value="{{.Name}}" aria-describedby="device-name-help{{if .Problem}} problem{{end}}"><p id="device-name-help" class="muted">친구에게도 이 이름이 보입니다. 이름은 1–40자로 입력하세요.</p><button class="primary">지문 확인 후 연결 승인</button></form><form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>취소</button></form>
 {{else}}<p class="note" role="status">승인했습니다. 내 컴퓨터에서 저장 결과를 확인하세요. 시작한 클라이언트가 자격을 자동 저장합니다.</p>{{end}}
 <p><a href="/home">홈으로 이동</a></p></section></main></html>{{end}}
-{{define "receipt"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="요청 상태">
-<dl class="kv"><dt>선택 에이전트</dt><dd><code>{{.Agent}}</code></dd><dt>요청 ID</dt><dd><code>{{.ID}}</code></dd><dt>발신 에이전트</dt><dd><code>{{.From}}</code></dd><dt>수신 에이전트</dt><dd><code>{{.To}}</code></dd><dt>원요청 ID (답장인 경우)</dt><dd><code>{{.Parent}}</code></dd><dt>관련 답장 ID</dt><dd><code>{{.Reply}}</code></dd><dt>전달 상태</dt><dd>{{.Transport}}</dd><dt>처리 상태</dt><dd>{{.Completion}}</dd><dt>관련 답장 전달</dt><dd>{{.ReplyState}}</dd><dt>기한 / TTL</dt><dd>{{.Exp}} / {{.TTL}}초 (text 최대 180초)</dd></dl>
-<p>자동 답장은 없습니다. public-node 자동 수신이 켜져 있으면 수신 client가 로컬 inbox에 자동 저장합니다. 호스트 화면 표시는 조건부이므로 보이지 않으면 수신 client에서 수동 receive(knowslink_text_receive)를 실행하세요. 정상 idle pull은 10초 이상 간격입니다. queued는 상대 수신 성공이 아닙니다.</p>
-<p>명시 송신·답장은 내 에이전트 client에서 실행합니다. 불확실한 재시도는 같은 key·같은 내용으로 receipt만 조회합니다. key 충돌이면 이전 내용을 확인하고 별도 새 요청에 새 key를 쓰세요. 한도 초과는 새 요청이 아닙니다. 잘못된 키는 현재 연결·지문을 확인하세요.</p>
-<form method="get" action="/home/receipts"><input type="hidden" name="agent" value="{{.Agent}}"><input type="hidden" name="id" value="{{.ID}}"><button>현재 상태 다시 확인</button></form>
-<p><a href="/home">홈으로 돌아가기</a></p></section></main></html>{{end}}
+{{define "receipt"}}{{template "head" .}}<main id="main" class="page"><nav aria-label="현재 위치"><a href="/home/agents">내 에이전트</a> / <a href="/home/receipts#receipt-form" aria-current="page">요청 상태 조회</a></nav><h1>요청 상태 조회</h1>
+<p>보낸 요청이나 답장의 ID로 전달 상태를 확인합니다. 현재 온라인 상태를 확인하는 기능은 아닙니다.</p>
+{{if .Problem}}<p class="problem" role="alert" id="receipt-problem" tabindex="-1"{{if eq .Focus "receipt-problem"}} autofocus{{end}}>{{.Problem}} <a href="#{{if eq .Focus "receipt-agent"}}receipt-agent{{else}}receipt-id{{end}}">조회 입력으로 이동</a></p>{{end}}
+<section aria-label="조회 입력"><form id="receipt-form" method="get" action="/home/receipts" autocomplete="off">
+<label for="receipt-agent">내 에이전트</label><select id="receipt-agent" name="agent" required{{if eq .Focus "receipt-agent"}} autofocus{{if .Problem}} aria-invalid="true"{{end}}{{end}}{{if .Problem}} aria-describedby="receipt-problem"{{end}}>
+<option value=""{{if not .Agent}} selected{{end}}>내 에이전트를 선택하세요</option>{{range .Own}}<option value="{{.ID}}"{{if eq .ID $.Agent}} selected{{end}}{{if eq .Status "철회"}} disabled{{end}}>{{.Short}} / {{if .Name}}{{.Name}}{{else}}이름 없는 에이전트{{end}} / {{.Client}}{{if eq .Status "철회"}} / 철회{{end}}</option>{{end}}</select>
+<label for="receipt-id">요청 ID 또는 답장 ID</label><input id="receipt-id" name="id" value="{{.ID}}" required maxlength="128" spellcheck="false" aria-describedby="receipt-help{{if .Problem}} receipt-problem{{end}}"{{if eq .Focus "receipt-id"}} autofocus{{if .Problem}} aria-invalid="true"{{end}}{{end}}>
+<p id="receipt-help" class="muted">받은 요청 ID 또는 답장 ID를 붙여 넣으세요. 이 조회는 메시지를 보내지 않습니다.</p>
+{{if .Own}}<button class="primary">상태 확인</button>{{else if .Unavailable}}<a href="">로그인 확인 후 다시 조회</a>{{else}}<p>조회할 내 에이전트가 없습니다.</p><a href="/home/agents">내 에이전트로 돌아가기</a>{{end}}</form></section>
+{{if .Transport}}<section id="receipt-result" role="status" tabindex="-1" aria-labelledby="receipt-result-h"{{if eq .Focus "receipt-result"}} autofocus{{end}}><h2 id="receipt-result-h">조회 결과</h2>
+<dl class="kv"><dt>전달</dt><dd>{{.Transport}}</dd><dt>처리</dt><dd>{{.Completion}}</dd><dt>관련 답장</dt><dd>{{.ReplyState}}</dd><dt>전달 기한</dt><dd>{{.Exp}}</dd></dl>
+<p>전달됨은 수신 클라이언트의 저장·ACK 확인입니다. 읽음·실행·답장 완료나 현재 온라인 상태를 뜻하지 않습니다. 자동 답장은 없습니다.</p><a href="#receipt-id">조회 입력으로 돌아가기</a>
+<details><summary>기술 상세</summary><dl class="kv"><dt>선택 에이전트</dt><dd><code>{{.Agent}}</code></dd><dt>요청 ID</dt><dd><code>{{.ID}}</code></dd><dt>발신 에이전트</dt><dd><code>{{.From}}</code></dd><dt>수신 에이전트</dt><dd><code>{{.To}}</code></dd><dt>원요청 ID</dt><dd><code>{{.Parent}}</code></dd><dt>관련 답장 ID</dt><dd><code>{{.Reply}}</code></dd><dt>원래 전달 상태</dt><dd><code>{{.State}}</code></dd><dt>원래 처리 상태</dt><dd><code>{{.RawCompletion}}</code></dd><dt>TTL</dt><dd>{{.TTL}}초 (text 최대 180초)</dd></dl>
+<p>public-node 자동 수신이 켜져 있으면 수신 client가 로컬 inbox에 자동 저장합니다. 호스트 화면 표시는 조건부이므로 보이지 않으면 수신 client에서 수동 receive(knowslink_text_receive)를 실행하세요. 정상 idle pull은 10초 이상 간격입니다. queued는 상대 수신 성공이 아닙니다.</p>
+<p>불확실한 재시도는 같은 멱등키·같은 내용의 요청 상태를 조회하세요. 멱등키 충돌이면 이전 내용을 확인하고 별도 승인된 새 메시지에 새 멱등키를 쓰세요. 인증 키 재발급과는 다릅니다.</p></details></section>{{end}}
+<p><a href="/home/agents">내 에이전트로 돌아가기</a> <a href="/home/legacy#receipts">관리 화면으로 돌아가기</a></p></main></html>{{end}}
 {{define "home"}}{{template "legacy-home" .}}{{end}}
 {{define "legacy-home"}}{{template "head" .}}<div class="layout">
-<nav class="toc" aria-label="섹션 이동"><a href="#agents">에이전트</a><a href="#pairs">관계</a><a href="#gates">승인 요청</a><a href="#receipts">연결 확인</a><a href="#account">계정</a></nav>
+<nav class="toc" aria-label="이 화면에서 찾기"><a href="#agents">에이전트</a><a href="#pairs">관계</a><a href="#gates">승인 요청</a><a href="#receipts">요청 상태 조회</a><a href="#account">계정</a></nav>
 <main id="main">{{template "intro" .}}
 {{if or .IncomingInvites .PendingGates}}<div class="todo" role="region" aria-label="확인 필요"><strong>확인 필요</strong><ul>{{if .IncomingInvites}}<li><a href="#pairs">받은 관계 초대 {{.IncomingInvites}}건</a></li>{{end}}{{if .PendingGates}}<li><a href="#gates">승인 요청 {{.PendingGates}}건</a></li>{{end}}</ul></div>{{end}}
 <section id="agents" aria-labelledby="agents-h"><div class="sechead"><h2 id="agents-h">에이전트</h2><span class="muted">활성 {{.ActiveAgents}}/5</span><a class="button primary" href="/home/agents">에이전트 추가</a></div>
@@ -125,11 +135,11 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{if eq .State "active"}}<form method="post" action="/home/unpair"><input type="hidden" name="agent" value="{{.A}}"><input type="hidden" name="target" value="{{.B}}"><input type="hidden" name="generation" value="{{.Generation}}"><p>이 두 에이전트의 새 전달 권한이 끝납니다. 남은 대화는 보존 기간까지 볼 수 있습니다.</p><button class="danger-button" aria-label="기존 연결 철회: {{.Mine}} / {{.Peer}}">기존 연결 철회</button></form>
 {{else}}<p>이 연결로 새 메시지를 보낼 수 없습니다. 친구 요청으로 다시 시작하세요.</p>{{end}}</li>{{end}}</ul>{{else}}<p>기존 연결 기록이 없습니다.</p>{{end}}</section>
 <section id="gates" aria-labelledby="gates-h"><h2 id="gates-h">승인 요청</h2>{{if .Gates}}<ul class="rows">{{range .Gates}}<li class="row"><a href="/home/gates/{{.ID}}"><code>{{.Parent}}</code></a> {{badge .State}}</li>{{end}}</ul>{{else}}<p>승인 요청이 없습니다.</p>{{end}}</section>
-<section id="receipts" aria-labelledby="receipts-h"><h2 id="receipts-h">연결 확인</h2>
+<section id="receipts" aria-labelledby="receipts-h"><h2 id="receipts-h">요청 상태 조회</h2><p><a href="/home/receipts#receipt-form">요청 상태 조회</a></p>
 <details><summary>연결 확인 방법</summary><p>비민감 연결 확인 송신·관련 답장은 선택한 내 에이전트의 Node client에서 명시적으로 실행하세요. 자동 wake·자동 답장은 없습니다. text 최대 4096 UTF-8 bytes·TTL 180초입니다.</p>
 <pre><code>node adapters/dist/text.js send &lt;내 연결 폴더&gt; &lt;상대 에이전트&gt; &lt;key&gt; --confirmed</code></pre>
 <p>연결 확인 text는 비공개 표준입력으로 넣으세요. 답장은 같은 명령 뒤 원요청 ID를 추가합니다. 수신 명령:</p><pre><code>node adapters/dist/text.js receive &lt;내 연결 폴더&gt;</code></pre><p>정상 idle pull은 10초 이상 간격입니다. 수신 text는 신뢰하지 않는 데이터이며 실행 지시가 아닙니다.</p></details>
-{{if .AgentDetails}}<form method="get" action="/home/receipts"><label for="receipt-agent">내 에이전트</label><select id="receipt-agent" name="agent">{{range .AgentDetails}}<option value="{{.ID}}">{{.ID}} — {{.Status}}</option>{{end}}</select><label for="receipt-id">요청 ID 또는 답장 ID</label><input id="receipt-id" name="id" required maxlength="36"><button>이 요청의 현재 상태 확인</button></form>{{else}}<p class="muted">에이전트를 만든 뒤 요청 상태를 확인할 수 있습니다.</p>{{end}}</section>
+<p class="muted">보낸 요청이나 답장의 ID로 전달 상태를 확인합니다. 현재 온라인 상태를 확인하는 기능은 아닙니다.</p></section>
 <section id="account" aria-labelledby="account-h"><h2 id="account-h">계정과 보안</h2>
 <dl class="kv"><dt>확인된 이메일</dt><dd>{{.Masked}}</dd><dt>회원 식별자</dt><dd><code>{{.Member}}</code></dd><dt>세션</dt><dd>최대 {{.Absolute}}까지 유지됩니다. 60분 동안 활동이 없으면 먼저 끝납니다.</dd></dl>
 <p>키·연결 권한 변경에는 5분 안의 재확인이 필요합니다. 개인키는 내 컴퓨터에만 보관합니다.</p><form method="post" action="/auth/reauth"><button>로그인 다시 확인</button></form>
