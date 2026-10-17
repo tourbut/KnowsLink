@@ -49,9 +49,9 @@
     }
   },
   "usage": {
-    "input_tokens": 2459,
-    "output_tokens": 314,
-    "cost": 0.000103278
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost": 0
   },
   "error": null,
   "docs_status": "complete",
@@ -60,7 +60,7 @@
     "D06",
     "D09"
   ],
-  "latency_seconds": 0.651,
+  "latency_seconds": 0.0,
   "response_model": "typesafe/jev-1.14-20261014",
   "original_role": "tester",
   "original_route": "implementation",
@@ -73,6 +73,15 @@
     "source": "user"
   },
   "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
-  "head": "0d024e1335bbdf2edc4e646948f4d3fe4b7a6115",
-  "requires_packet": true
+  "head": "3393b33a36155b9f7849883ad29c04d32200b1d1",
+  "requires_packet": true,
+  "attempt": "01dee04206644423897a9c5bfb805800",
+  "instruction_sha256": "901043d005d4e4b7a2ec83822c57fb47b24d8bfe38ddc3e03232b2c4fd80608c",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "375ba0ec05f2cdeb429c484c8f62141aa6b0d4849a296e6a9dcaf65065f7a1de"
 }
