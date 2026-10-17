@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-17
 owner: dev
 tasks: [SAR-SESSION-PEER-001-DEV]
-summary: 격리 relay와 합성 회원 두 명, Claude Code 세션 두 개로 V01 왕복·toast·발송 승인·세션 결속을 관측한 DEV 자동 검증 기록
+summary: "격리 relay와 합성 회원 두 명, Claude Code 세션 두 개로 V01 왕복·toast·발송 승인·세션 결속을 관측한 DEV 자동 검증 기록"
 ---
 
 # SAR-SESSION-PEER-001-DEV — DEV 검증 기록
