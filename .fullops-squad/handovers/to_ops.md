@@ -57,15 +57,15 @@ verify.py의 Access302·projects baseline은 현재 404/401 계약과 맞지 않
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] fresh 운영 SHA·image ID·healthy·현재 요청/DB/공유 서비스 baseline을 읽기 전용으로 확인한다.
-- [ ] 배포 SHA bundle/hash·서버 clean checkout·source ancestor·runtime/DB/배포 입력 diff를 확인한다. migration이 있으면 멈추고 보고한다.
-- [ ] 새 build 전에 현재 실행 이미지에 과제 고유 rollback 태그를 붙이고 image inspect로 가용성을 확인한다. 기존 tag를 덮지 않는다.
-- [ ] relay가 정상일 때 새 이미지를 먼저 build한다. 전환 직전 단일 writer stop·새 private dump·네트워크 없는 고유 격리 복원과 digest 검증을 한다. 기존 backup/volume은 보존한다.
-- [ ] 미리 만든 이미지로 relay/migrate만 재개하고 health·restart·로그·schema·상태 digest·공유 컨테이너 보존을 확인한다. 실패하면 rollback 태그 이미지로 서비스를 복구하고 원 실패를 남긴다. 운영 DB를 과거 dump로 덮지 않는다.
-- [ ] 기존 안전 public smoke와 새 공개 첫페이지(소개·설치 details·로그인 provider·무인증 회원 경계·보안 헤더)를 실제 HTTPS에서 확인한다.
-- [ ] 새 API의 무인증 경계를 확인한다: `GET /v1/contacts/{agent}`·`POST /v1/text/seen`가 인증 없이 401/403이다. 실계정 토큰은 쓰지 않는다.
-- [ ] D12/D13·README 현재 운영 기준·docs/operations·own QA/context를 갱신한다. 제품 source·설계·다른 역할 문서는 수정하지 않는다.
-- [ ] 실행 명령 자신의 종료코드, UTC/KST 전환 시각·중단 시간·새 백업 mode/hash·이미지·보존 assertions·원 실패·미실행·복구 한계를 남긴다.
+- [x] fresh 운영 SHA·image ID·healthy·현재 요청/DB/공유 서비스 baseline을 읽기 전용으로 확인한다.
+- [x] 배포 SHA bundle/hash·서버 clean checkout·source ancestor·runtime/DB/배포 입력 diff를 확인한다. migration이 있으면 멈추고 보고한다.
+- [x] 새 build 전에 현재 실행 이미지에 과제 고유 rollback 태그를 붙이고 image inspect로 가용성을 확인한다. 기존 tag를 덮지 않는다.
+- [x] relay가 정상일 때 새 이미지를 먼저 build한다. 전환 직전 단일 writer stop·새 private dump·네트워크 없는 고유 격리 복원과 digest 검증을 한다. 기존 backup/volume은 보존한다.
+- [x] 미리 만든 이미지로 relay/migrate만 재개하고 health·restart·로그·schema·상태 digest·공유 컨테이너 보존을 확인한다. 실패하면 rollback 태그 이미지로 서비스를 복구하고 원 실패를 남긴다. 운영 DB를 과거 dump로 덮지 않는다.
+- [x] 기존 안전 public smoke와 새 공개 첫페이지(소개·설치 details·로그인 provider·무인증 회원 경계·보안 헤더)를 실제 HTTPS에서 확인한다.
+- [x] 새 API의 무인증 경계를 확인한다: `GET /v1/contacts/{agent}`·`POST /v1/text/seen`가 인증 없이 401/403이다. 실계정 토큰은 쓰지 않는다.
+- [x] D12/D13·README 현재 운영 기준·docs/operations·own QA/context를 갱신한다. 제품 source·설계·다른 역할 문서는 수정하지 않는다.
+- [x] 실행 명령 자신의 종료코드, UTC/KST 전환 시각·중단 시간·새 백업 mode/hash·이미지·보존 assertions·원 실패·미실행·복구 한계를 남긴다.
 - [ ] work.py finish·고정 결과 SHA·worker_done으로 회신한다.
 
 소유권: `.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/`, `.fullops-squad/contexts/ops.md`, 이 인박스, D12/D13 원천, README 운영 절, docs/operations.md, .fullops-squad/docs/operations/. runtime 제품 변경이 필요하면 멈추고 보고한다(DEV 인계). main 병합·push·현황판은 coor 담당이다.
@@ -404,5 +404,18 @@ D12, D13, D10(route 추천). D10은 운영 변경이 실제 영향을 줄 때만
 <!-- fullops-packet:end -->
 
 ## 완료 보고
+제품 `1dd6800d5d4238e2060f99e98eaab437ea06682c`를 기존 link.knowslog.com 운영 relay에 배포했다. 준비 HEAD는 `2ef95cb`, 브랜치는 `fullops/ops`다. 상세와 원 로그는 [운영 보고](../docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md)와 같은 폴더의 JSON/log다.
 
-미착수.
+- 전환: STOP `2026-10-17T09:37:48Z`(18:37:48 KST) → UP `09:38:09Z`, 약21초. relay `sha256:4893d0f5…0098999` healthy·restart0, migrate EXIT0, 새 migration 없음. 제품 diff는 지시서와 같은 39파일 +2051/−121이고 db/deploy 입력 diff는 0이다.
+- 입력: bundle SHA256 `f8e1b2de…aba6c60`, 서버 hash·bundle verify·FETCH_HEAD·8a93e38 조상 확인. 서버 checkout은 `1dd6800` clean.
+- rollback: build 전에 이전 relay 이미지 `sha256:482d3197…381343d`에 `knowslink-rollback:8a93e38-release001-20261017` 태그를 붙여 inspect했다. network-none read-only로 relay/migrate 파일과 SHA256도 확인했다. 실제 rollback은 실행하지 않았다.
+- 백업: `backups/8a93e38-pre-release001-20261017T093752Z.dump`, 0600·11104bytes, SHA256 `8498f8eb…ca89ea3452`, TOC25줄. frozen epoch1297596·다른 DB client0에서 생성했다. network-none 격리 복원의 전체 data digest가 frozen 값과 같고 goose2·guard1·HumanModel1·downgrade 거부를 확인했다. fixture `knowslink-release001-rehearse-20261017`(exited0)을 보존했다. 운영 DB는 복원하지 않았다.
+- 보존: [preservation.json](../docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/preservation.json) assertion 38/38 통과. Rates만 volatile 차이. 기존 백업16개·공유 컨테이너·Postgres·Tunnel credential·파일 mode 보존.
+- 공개 smoke: 기존 21/21, 새 첫페이지(소개·설치 details 2·Google 로그인 폼·보안 헤더·금지 문자열 없음) 통과. 공개 응답의 Cloudflare Web Analytics script 1개는 edge 주입이고 origin에는 없다(관찰만).
+- **지시서와 다른 발견**: 새 API `GET /v1/contacts/{agent}`·`POST /v1/text/seen`이 공개 주소에서 404였다(loopback은 401). 공개 Tunnel `path` 정규식에 두 경로가 없었다. coor `ask`에 사용자 결정 "repo+live 함께 반영"을 받아 두 경로만 추가했다: repo `deploy/knowslink/tunnel/public-ingress.yml`·`scripts/check_public_ingress.py`, live `config.yml`(원본 백업 SHA256 `f5abe860…458512`, 0600). `cloudflared tunnel ingress validate`/`rule` 통과 후 2026-10-17T09:44:36Z에 cloudflared를 재시작했다. 끊김 약2초(502/530 → 200), 연결 4개 등록·새 프로세스 error0이다. 이후 두 경로 무인증 401(%3A 인코딩 포함), 이웃 경로 6개 404, live와 repo 규칙 동일(SHA256 `f97e0fd9…cb7`).
+- 검사: 로컬 `check_public_ingress.py` 통과. Windows `test_public_config.sh`는 NTFS 파일 mode(644≠600)로 실패했다. 같은 파일을 `git archive 1dd6800` 사본에 덮고 서버 Linux에서 두 검사 모두 EXIT0이다.
+- 실패·사고 기록: (1) ingress 적용 스크립트 첫 시도가 `grep -m1` SIGPIPE로 종료141, live 변경 전이었다. (2) 내 관찰 루프(약2.5회/초)가 09:44:51Z부터 relay 경유 공개 경로를 약2분 429로 만들었다. 같은 시각 로컬 PC도 429였고 09:47:05Z에 회복했다. 다른 사용자 영향은 알 수 없고 단위(IP별/공유)는 확인하지 않았다. (3) post-check 재실행의 assertion은 의도한 cloudflared 재시작의 종료 ERR 5줄을 세어 실패했다. 새 프로세스 기준 0건이다.
+- 미실행: 실계정 로그인·메시지 왕복, 인증된 contacts/seen 성공 경로, pull/ACK/token 소비, 실제 rollback, Access/DNS 변경, `verify.py regression/public`(과거 전제 불일치), `beta.sh deploy/backup/restore-verify`(삭제 포함). 제품 코드 gate는 각 기능의 수락 증거를 재사용한다(이번에 재실행하지 않음).
+- 문서: D12 `ops-guide.md`·D13 `transition.md`·README 운영 SHA·`docs/operations.md`·`contexts/ops.md`를 갱신했다. D10은 갱신하지 않았다. `docs/README.md`가 8a93e38을 가리키는 오래된 포인터는 ops 소유가 아니라 수정하지 않았다(coor/DEV 후속).
+- 후속(coor/DEV): ingress 수정 커밋 `21a6e87`은 main 병합 뒤 서버 checkout에 도착한다(live는 이미 반영). 새 공개 경로 변경은 ingress 규칙·검사를 함께 바꾸는 gate가 필요하다. Grok 로컬 bundle과 Claude Code hook 패키지는 서버 배포로 갱신되지 않는다.
+- 비공개 자원: 로컬 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/release001-ops/`, 서버 `/home/shin/deploy/knowslink-state/release001-ops-20261017/`. 삭제·이동·prune 없음.

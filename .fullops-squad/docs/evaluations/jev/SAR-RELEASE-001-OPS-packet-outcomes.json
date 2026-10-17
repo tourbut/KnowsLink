@@ -1,0 +1,1821 @@
+{
+  "task_key": "SAR-RELEASE-001-OPS",
+  "role": "ops",
+  "attempt": "a4b308ad7cbf4e55bc583722a80805d7",
+  "packet_input_sha256": "ed7f9535e976034c3839799a5394104b0344b225a14612f11073d8c7bf1000e0",
+  "uncertainty_review": "현재 HEAD 2ef95cb의 packet은 partial이며 unknown 24건·잔여 273건이다. 필수 9개 중 FULLOPS·project·공통 규칙 4개·직전 OPS 보고·to_ops·docs/operations는 직접 읽었다. 그 외 문서는 존재와 해시만 기록했고 의미 검색 성공으로 승격하지 않았다. 충돌 두 건은 직접 확인했다: 흡수한 첫페이지 OPS 지시서의 배포 금지 전제는 main 통합과 사용자 지시로 충족됐고, verify.py의 Access302·projects baseline은 현재 계약과 달라 local만 실행했다. beta.sh는 삭제 포함 절차라 실행하지 않았다. 실제 서버 관측에서 packet이 예상하지 못한 사실(공개 ingress 규칙이 새 API를 막음)을 발견해 packet 목록 밖 파일 deploy/knowslink/tunnel/public-ingress.yml을 수정했다(사용자 승인). 동적 호출 완전 탐색과 과거 문서 전문 재감사는 주장하지 않는다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "하네스 지도를 읽고 운영 승인·완료 흐름을 확인했다. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직전 배포 절차·원 이미지 조회 실패·교훈을 읽고 이번 rollback 태그 선확보에 적용했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서를 끝까지 읽고 완료 보고를 채웠다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "검증 명령·lint 구성(make lint/test)과 운영 배포 담당 기준을 확인했다. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "공통 규칙 안내와 프로젝트 기준 우선순위를 읽었다. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "공통 규칙 묶음으로 존재를 확인했다. 제품 코드를 쓰지 않아 코딩 규칙 적용 대상이 없다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "비밀값 비출력·승인 범위 규칙을 읽고 적용했다. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 수준의 검증 기준을 확인했다. 변경한 핵심 동작만 검증했다."
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "배포 절차 문서를 읽고 현재 SHA·rollback 태그·공개 경로 절차를 갱신했다."
+    },
+    {
+      "path": ".dockerignore",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 981dfc52b656)"
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 5c33246bb7db)"
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 0e44cf37f0b3)"
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 24993024dfcd)"
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직전 교훈을 읽고 이번 교훈을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "새 API 계약 절을 확인했다. ingress 요구가 적혀 있지 않음을 확인했다. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 6122761e9f8e)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 895c17b4227b)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 2eaa8f4a0444)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 b3a220fcb56c)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "contacts/seen 행(권한·응답)을 읽고 공개 무인증 401 기대값에 사용했다. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 10dece240342)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 a73fbf953230)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 c34f993ed748)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 4f8ffa32d22e)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "ingress/tunnel 언급을 검색했다. 경로 목록이 없어 D10을 갱신하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 93767e9761e9)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 6348f11a5e59)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a3a23d2c1117)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.0-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 5e2b3b9c9632)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 0ca5cca801c8)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 38ac3becf9cf)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 062ec2e5a515)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 e796aa741ea0)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 de7461ad050d)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-N1-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 2a4a21bebff1)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 7a9eeca74ba5)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 87ff68f32ef0)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 8bfcadb037c1)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 c5962f2d8b0b)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 ecccbf71ba82)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 9bd6bba28d1d)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 fd87a8d82246)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 332474eb40c7)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 491dc9867379)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 0f290b78f4ab)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a1536aa88ee0)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 9d4f61915fd6)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 19ce3654e7f9)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 86a47967c23c)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 ad89892753e3)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-LOGIN-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 3602182f3bd7)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 59b483bf23ac)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 386ee578eb7c)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 df0eac6def21)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 bf3e173e3666)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 99ceb6f4b3fb)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 31e4c17804fd)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 98a52e265e9c)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 481655fe0433)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 037f105eac0a)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 8fdb448559b9)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d823e2fda70b)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b60eac7e983a)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 91e62959beb7)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/web-20261014-232426-595664/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b3b7f5895b8e)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/dev-final-handoff.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 ee720ba1042d)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 bab8cf9b468a)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 51491dd9a0c8)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 970c2fb8b97e)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b3a8160b7590)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 8c9af7705aad)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 1c0f77b6eb9e)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 f5c16298a07a)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 fdf7bbd18af6)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b5adc1358f45)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a114886ac4b0)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 f2a641110c79)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 be1da5edc04c)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 e4c47760e0e0)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 5a6371900d5b)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 8cdedd399280)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 23ee6ba80678)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a253ef683d38)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 adc40c927fa3)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 fecc80c12541)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 2e39c3bbd717)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 c3f028d0d86d)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS-RESULT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 70df51ef62b9)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a64e534eb428)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 9dedc7b8329b)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 e28ca1e466f4)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 2c7c672ebd3a)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 5b580fb275ec)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b63b72e651e9)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 1dcb0be31b7f)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 09db9ac184cf)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d2caa53bbad6)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/commands.txt",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "직전 명령을 읽고 baseline/build/deploy/smoke 스크립트의 기준으로 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/public-smoke.json",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "직전 21개 probe manifest를 입력으로 재사용하고 사본 hash를 보존했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 aa6f7412ac0d)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 1dcb0be31b7f)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 6717d40c4dce)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 0d795a33c1a3)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 58480fdc4723)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 dd469cab2e26)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 244c5c4ae307)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 9dce55f9ad39)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 3004c44fbfa7)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 99acdbf5e6b0)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 2745539eb7d2)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-CODE-REVIEW-2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 71d375ebd139)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-CODE-REVIEW-3-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d31d4581e8ae)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DESIGN/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 1024cd8e434e)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-002-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 6c0581c91a87)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 2a0d1fcb0418)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 e8cc5f614ed5)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a6dbb1b36bb4)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 51cba18e0bd5)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 7a1f05035eb8)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d39ed1e45bec)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 fedbae454c5c)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b5c57c7b270e)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d20a9b99c3fd)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 893a22ae0600)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b93f777db3a1)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SYSTEM-DIAGRAM-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 dcba7f18279a)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 62b05a07d1c7)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 37e670faf79f)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a4e48e601c20)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a3c26ca2b7ee)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 4602b094529a)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 3f912b887880)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 051de7fcbbd4)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 014227991655)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b7ffa637db0e)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 cba7ba8de829)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 11105f87e3af)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 ce13aa8d1950)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d3c7714b6879)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 7c2832e059bb)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 e533ce7e8f5a)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 15b54c5f847c)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 d3651c164d40)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 903d1503266b)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 84a1100590d6)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 e1f8a996eda1)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 5b982d2714ef)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 ae251ce17bc9)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 9890dbe76f41)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.6.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 bf8c14a140b9)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 8ac5a2b69e3a)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 959dd264ff5f)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 c0c576b8cd3a)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 221ba3cc7e0b)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 548ee0dd1016)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 6ce2e2018cb8)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 7c9447441795)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 45ce62087748)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 38122c2a33ed)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 0433fc272810)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 845218fbe35c)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 564029ab5aaa)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 4cd6a2ea6e24)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 a221ae3f9fb6)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 0623323c09f2)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 7e9ebe28f7d8)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 44c14e0b690b)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 915b085effbe)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 3c716c56ee0d)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 0b1ce81433e1)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 eac55f177fc7)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 c133782ba0bb)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 3cf91bb4de57)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 bf6885773d7c)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 ebe5eb2d7029)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 68c34cb86d9c)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 60b1ca68d6a8)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 4317a70f01eb)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 df7e52bfbc7a)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 3ca622fe6b6d)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 2416763f9616)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 19529ef3cad5)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 2585d95b9a16)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 976ddaccde74)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 f3b52cc7db3c)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 c450f61805ab)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 5ff83b94e223)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 83d1f5c82680)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 bee9517e22c4)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 3a3ecc27dcbf)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 19da99c2b5b8)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 ad12618f580e)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 c421658df3c5)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 8b59d50c5abc)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 f640a7fbbd38)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 fec52c74a051)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 c62ca4dab96a)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 08fc0866aaf6)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 d02fb52a2773)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 33825d9e5e6f)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 f188a72ae748)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 4cf30abb159d)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 bff52bb1aa8d)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 bf29cdfe4fbf)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 e12f7859078c)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 ce6dfb99b0bd)"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 771e1bd3f26d)"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D12 현재 운영 절을 읽고 SAR-RELEASE-001 결과 절을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D13 현재 상태를 읽고 SAR-RELEASE-001 인수 절을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 c9a144d09fbd)"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 9266c6a3493b)"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-PREP-002-request.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 aac8e951f534)"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-SETUP-001-request.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 71ed2c382551)"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 0f6d75a32951)"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 220fd9f008d5)"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 1d9cca82bc9f)"
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 87369dfbd30e)"
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 b283d543383e)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 e09240a9b9de)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 a451cf3beeac)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 c2ee47006ac7)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 afc64dd6a935)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 612bb90baaef)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 58997ff201a1)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 014a24af0d26)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 1f5aac867630)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d6bf278418c0)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 07ed0655e2e9)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 10a4fde68b04)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 863f3853a524)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 342626a3c858)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 1c478a1b7dbb)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 5550ea95b578)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 7b686e0e97b9)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 77a20ec29032)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 9f4c755800c5)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 522f6bdfe80e)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 48eb93fe9211)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 2a196976ffa7)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 161c26c698eb)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 d5e24a843ada)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "흡수한 첫페이지 OPS 지시서의 운영·보존 계약을 읽었다. 선행 조건 충돌을 보고서에 기록했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 4e571d304a05)"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "과거 과제 기록이다. 이번 판단은 fresh baseline·직전 OPS 보고·현재 diff로 했고 이 문서는 읽지 않았거나 수정하지 않았다. (존재 확인, sha256 ad041e7f93cb)"
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 f417dc4d17f3)"
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 f9ff863ce8fc)"
+    },
+    {
+      "path": "Dockerfile",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 0d4910ef9810)"
+    },
+    {
+      "path": "Makefile",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "lint-config가 ingress 두 검사를 호출함을 확인했다. 수정 없음."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "운영 제품 SHA와 근거 링크를 갱신했다. 기능 설명은 수정하지 않았다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 e1cf85632447)"
+    },
+    {
+      "path": "adapters/hooks/register.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 65d45f26a4bd)"
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 604d1a176dd4)"
+    },
+    {
+      "path": "adapters/manifest.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 ebbb8df958b3)"
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 709a11eb916d)"
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 d4ceae67d0e5)"
+    },
+    {
+      "path": "adapters/src/index.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 ca28630722ef)"
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 ae0a5e30447b)"
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 018aab9c3b70)"
+    },
+    {
+      "path": "adapters/src/public-check.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 789bfc15eb84)"
+    },
+    {
+      "path": "adapters/src/trial-check.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 51c62c5457ec)"
+    },
+    {
+      "path": "adapters/src/trial-cli.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 22838fa55f0e)"
+    },
+    {
+      "path": "adapters/src/trial-setup.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 7c1204946e87)"
+    },
+    {
+      "path": "cmd/migrate/main.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 ab1525213a59)"
+    },
+    {
+      "path": "cmd/migrate/main_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 b0cacdde1f9a)"
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "KNOWSLINK_CLIENT_IP_HEADER 허용값(CF-Connecting-IP)만 확인했다. 수정 없음."
+    },
+    {
+      "path": "cmd/relay/main_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 962b7a53d75e)"
+    },
+    {
+      "path": "deploy/knowslink/access_trial_plan.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 22aab14ccd82)"
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 2f974968918b)"
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "운영 override를 읽고 relay/migrate만 재개하는 up 대상을 확인했다. 수정 없음."
+    },
+    {
+      "path": "deploy/knowslink/test_public_config.sh",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "ingress 변경의 repo 검사다. Windows는 mode 때문에 실패했고 서버 Linux 사본에서 통과했다."
+    },
+    {
+      "path": "deploy/knowslink/verify.py",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "local 검사만 서버에서 세 번 실행했다. regression/public은 과거 전제 불일치로 실행하지 않았다. 수정 없음."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 30612de08332)"
+    },
+    {
+      "path": "docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 f991945b9567)"
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 481b71d30042)"
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설계·기획·계획 문서다. 운영 전환 범위 밖이라 수정하지 않았다. 핵심 사실은 지시서와 직접 확인한 서버 상태로 대체했다. (존재 확인, sha256 e5e2b5c3d3bc)"
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 35c3e247efaa)"
+    },
+    {
+      "path": "internal/relay/device.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 9e94abd93ba4)"
+    },
+    {
+      "path": "internal/relay/human.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 d94a4fb34b10)"
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 56d64f15bfda)"
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 865e4c565de8)"
+    },
+    {
+      "path": "internal/relay/human_pages_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 042ae1261b10)"
+    },
+    {
+      "path": "internal/relay/landing_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 2667ad853f80)"
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "공개 첫페이지 필수 문구·구조를 읽고 공개 검사 기대값을 만들었다. 수정 없음."
+    },
+    {
+      "path": "internal/relay/landing_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "필수/금지 문자열 목록을 읽고 공개 검사에 같은 기준을 사용했다. 수정 없음."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 37366f4bf5b2)"
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 fb0afcd10127)"
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 d3d840634a01)"
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 7a01b3e2b491)"
+    },
+    {
+      "path": "internal/relay/protocol_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 8433c1ac3a09)"
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 bdf481030652)"
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "text/seen 핸들러를 읽고 무인증 401 기대값을 확인했다. 수정 없음."
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "허용 2개·차단 이웃 경로 5개 기대값을 추가했고 로컬과 서버에서 통과했다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 89ffc7efbb42)"
+    },
+    {
+      "path": "scripts/mail_sink.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 849e22ce33ca)"
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 e326d292c347)"
+    },
+    {
+      "path": "scripts/run_trial.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 b5e4fcc9e20b)"
+    },
+    {
+      "path": "scripts/schema.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 f522e897e019)"
+    },
+    {
+      "path": "scripts/shell_guard.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 eb376fd5cdac)"
+    },
+    {
+      "path": "scripts/test_shell_guard.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 9f0c41ebf3eb)"
+    },
+    {
+      "path": "scripts/verify_grok_plugin.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 56cee9bad252)"
+    },
+    {
+      "path": "scripts/verify_setup.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 51c11d71b091)"
+    },
+    {
+      "path": "sqlc.yaml",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "제품 파일이다. 8a93e38→1dd6800 diff 39파일과 db/deploy 입력 diff 0으로 범위를 확인했고 수정하지 않았다. (존재 확인, sha256 7374b98ad6a5)"
+    }
+  ]
+}
