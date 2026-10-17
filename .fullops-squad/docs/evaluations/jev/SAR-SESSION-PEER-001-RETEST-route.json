@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SESSION-PEER-001-RETEST",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.68,
+        "product": 0.32
+      },
+      "confidence": 0.36
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.94,
+        "ops": 0.01,
+        "tester": 0.05
+      },
+      "confidence": 0.91
+    },
+    "docs": {
+      "D01": 0.22,
+      "D02": 0.26,
+      "D03": 0.27,
+      "D04": 0.36,
+      "D05": 0.25,
+      "D06": 0.28,
+      "D07": 0.16,
+      "D08": 0.16,
+      "D09": 0.28,
+      "D10": 0.36,
+      "D11": 0.26,
+      "D12": 0.29,
+      "D13": 0.3
+    }
+  },
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost": 0
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.0,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "독립 동작 QA는 tester",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "a32d0abd3e604484a6576b5452f6d95262d5449e",
+  "requires_packet": true,
+  "attempt": "0f2794ca9b264483868ad69ec6fb5a29",
+  "instruction_sha256": "78bb6a06509b4d7428d7386df0ce32627b3c5b566234a11004843fafaece2a13",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "bb4c3fa069d87b451bbb42156b45d05223181eb7efe3a9447ac55d348973b9ae"
+}
