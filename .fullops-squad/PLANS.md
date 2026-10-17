@@ -12,6 +12,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 ## 모델 전환 — 2026-10-17
 
 - 재개 실행 2026-10-17: DEV 9ae29ec는 이미 완료(make lint/test passed)였고 worker_done만 없었다. QA fixture(18928)는 만료되어 9ae29ec 기준으로 재준비했다(서버 clone /tmp/knowslink-receipt002-9ae29ec4ddfc-31bce054, 24시간). tester 인박스를 Claude로 고치고 route·find·context·packet을 갱신했다(tester 4263239). run_1d685ec8e9bf / task_a6704eef45d2 / ctx_f61ba1c767cb / term_903dec46-a489-40ba-abe1-2f4430816274, launch.effective claude/claude-sonnet-5-5/high 확인. 새 세션 선택: 과제·모델이 달라 fresh. 남은 일: tester worker_done 후 고정 SHA 독립 코드 리뷰·designer 시각 수락·DEV 완료 통합(main).
+- 독립 QA 결과 2026-10-17: tester 8ff3506(msg_c7373856a48b) critical/high 없음, medium D-RT-01(닫힌 선택기가 긴 이름의 구분값을 가림, DEV 담당). 미실행: 보존 종료 receipt, 명시 로그아웃, 실제 UI 200%, 스크린리더, Firefox/Safari, 실메일/Google. FullOps lint는 Windows make 불가로 unavailable(ERROR 0). 통합은 integration hold(수정 후 같은 후보와 함께, 담당 coor). DEV 수정 SAR-UX-ISSUES-002-RECEIPT-DEV-FIX 착수: dev b50f07b, task_1b3fb0aeee80 / ctx_d3598f925a06 / term_c5dee89c-da0d-4aa1-9766-74ac75736800, claude-sonnet-5-5 high 확인, fresh 세션. 이후: tester 선택기 재검증 → 고정 SHA 리뷰 → designer 시각 → main 통합.
 - 사용자 지시: Codex 구독 종료로 Codex 모델(Astra/Sol/Luna 등)을 모두 제외하고 부족분은 Claude 모델로 채운다. 이미지 생성은 grok을 사용한다. 역할 모델은 orca-agents.md 모델 후보를 따른다. 사용자 재개 지시를 받았으므로 SAR-UX-ISSUES-002-RECEIPT-DEV(담당 coor→dev)는 Claude 모델로 재개 대상이다. 착수 전 최신 main 동기화·packet 현재 HEAD 갱신·실제 launch.effective 확인을 먼저 한다.
 
 ## 사용자 작업 중지 — 2026-10-15
