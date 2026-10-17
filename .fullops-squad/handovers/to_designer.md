@@ -53,7 +53,7 @@ Context7 resolve-library-id를 Codex 및 Claude Code에 실행했지만 두 요�
 
 ## 소유권·산출물·검증
 
-role designer / codex gpt-6-astra high 고정. Test lite / Subagent standard. 제품 코드·기술 설계·운영 설정은 수정하지 않는다. 새 제품 설계 정본 .fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md, 필요한 D01/D02/D11의 요구·완료 조건, own same-key route/find/context/packet/history/outcomes, QA/phase/context/inbox/log를 소유한다. 기존 정본을 필요한 범위만 수정하고 수신/답장 기능을 실현하기 위한 하나의 DEV 인계를 준비한다. 다른 역할 인박스가 진행 중이면 덮어쓰지 않고 문서의 후속 인계 절에 목표·범위·완료 조건을 남긴다.
+role designer / claude claude-opus-5-5 high 고정(2026-10-17 Codex 구독 종료로 전환, 아래 재개 절 우선). Test lite / Subagent standard. 제품 코드·기술 설계·운영 설정은 수정하지 않는다. 새 제품 설계 정본 .fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md, 필요한 D01/D02/D11의 요구·완료 조건, own same-key route/find/context/packet/history/outcomes, QA/phase/context/inbox/log를 소유한다. 기존 정본을 필요한 범위만 수정하고 수신/답장 기능을 실현하기 위한 하나의 DEV 인계를 준비한다. 다른 역할 인박스가 진행 중이면 덮어쓰지 않고 문서의 후속 인계 절에 목표·범위·완료 조건을 남긴다.
 
 먼저 FULLOPS.md, common README와 세 규칙, project.md, 문서 작성 규칙, contexts/designer.md, 기존 사람 친구 설계, SAR-UX-ISSUES-002의 제품 모델, adapters와 실제 session/runtime 설치 안내를 읽는다. partial/unknown 탐색은 관련 검색으로 보완한다. 문서 의미 검토, deliverables strict/link, 보호 코드·설정 불변을 확인하고 현재 SHA lint를 원본 상태/exit와 함께 보고한다. 코드·실제 채널·사용자 계정·배포 테스트를 실행한 것으로 적지 않는다. 외부 설치·삭제·이동·force push·실제 메시지 발송은 금지한다.
 
@@ -70,3 +70,13 @@ context는 D02 SAR-HUMAN-PEER.md를 conflict로 분류했다. coor가 현재 정
 사용자는 모델 선택 질문에 'GPT Sol high로 변경해 계속 진행'이라고 답했다. 이 최신 지시는 이전 인박스·과제 spec의 Astra 고정을 이 복구 작업과 후속 신규 배정에서 대체한다. 현재 실행 tuple은 codex/gpt-6.1-sol/high다. 이미 정상 실행 중인 DEV Astra 검증은 중단하지 않는다.
 
 이전 Astra 두 dispatch는 ChatGPT 인증 미지원400으로 정상 stop했다. 오류 영수증 두 개와 현재 초안 28개 파일 tar/manifest는 C:/Users/shin/AppData/Local/KnowsLinkDevTools/session-peer-001-coor/에 보존한다. 작성한 제품 규칙과 D01/D02/D11·QA/phase 초안을 재사용하고 남은 packet outcomes/work finish/최종 commit/현재SHA lint/worker_done을 완료한다. 원본 증거와 실패를 보존한다. 새 조사를 반복하거나 제품 결정을 임의로 넓히지 않는다. 새 model-only 결과는 사용자 최신 선택이며 이전 잘못된 model-only 원본도 prior에 보존했다.
+
+## Claude 재개 — 2026-10-17
+
+사용자가 Codex 구독 종료로 Codex 모델을 모두 제외하고 Claude로 대체하도록 지시했다. 위의 Astra·Sol 고정과 모델 선택 대기는 이 절로 대체한다. 이 과제는 claude-opus-5-5 high로 재개한다. 이전 Astra·Sol 오류 기록과 private 백업은 이력으로 보존한다.
+
+- 이전 세션의 미커밋 WIP는 보존 커밋 2b5942c로 남겼고 최신 main(78bd0b3)을 반영했다(8f87f7f). user-guide 충돌은 두 절을 모두 유지해 해결했다. 이어서 할 일은 기존 초안 .fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md와 검증 초안 qa-reports/SAR-SESSION-PEER-001-DESIGN/을 읽고 남은 완료 조건을 채우는 것이다.
+- 요청 상태 조회 복구(SAR-UX-ISSUES-002 U6)는 main에 통합됐다. 선택기는 구분값 선두 표시를 사용자가 U2 순서 예외로 수락했다. 이 설계에서 에이전트 표시 규칙을 다룰 때 이 예외를 고려한다.
+- 제품 대상 클라이언트(Claude Code·Codex 세션 수신 지원)의 범위는 기존 요청대로다. 우리 개발 모델 전환과 제품 대상 범위를 혼동하지 않는다.
+- 이미지 생성이 필요하면 grok을 사용한다.
+- 완료 시 work.py finish, 현재 SHA lint 후 worker_done을 보낸다. 복귀 run_1d685ec8e9bf / coor term_75c9a893-7418-4abd-9ad0-eba86cbb6b68.
