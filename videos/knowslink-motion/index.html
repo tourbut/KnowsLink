@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>KnowsLink Motion</title>
+<style>
+  @font-face { font-family: "Geist"; src: url("assets/fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Pretendard"; src: url("assets/fonts/PretendardVariable.woff2") format("woff2"); font-weight: 45 920; }
+  html, body { margin: 0; width: 1440px; height: 1440px; overflow: hidden; background: #E7E4DF; }
+  #stage { position: absolute; inset: 0; overflow: hidden; background: #E7E4DF;
+    font-family: "Geist", "Pretendard", sans-serif; -webkit-font-smoothing: antialiased; color: #111; }
+  #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  #shape { position: absolute; left: 0; top: 0; overflow: hidden; }
+  #knob { position: absolute; left: 0; top: 0; }
+  .el { position: absolute; left: 0; top: 0; white-space: nowrap; }
+  .row { display: flex; align-items: center; }
+  .chip { width: 170px; height: 100px; border-radius: 24px; display: flex; align-items: center; justify-content: center;
+    font-size: 36px; font-weight: 600; box-sizing: border-box; }
+  .chip.wide { width: 300px; }
+  .caret { display: inline-block; width: 4px; height: 1.05em; margin-left: 4px; vertical-align: -0.16em; background: #005A62; }
+  #cursor { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  svg { display: block; overflow: visible; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="shape">
+      <div class="el" id="track" style="width:144px;height:80px;border-radius:40px"></div>
+      <div id="knob"></div>
+      <!-- ① button -->
+      <div class="el row" id="btn" style="gap:22px;color:#fff;font-size:44px;font-weight:600">
+        <span>Google로 계속</span><span data-icon="arrow" data-size="40"></span>
+      </div>
+      <!-- ② / ③ -->
+      <div class="el" id="loader" data-icon="spinner" data-size="76" style="color:#fff"></div>
+      <div class="el" id="check" data-icon="check" data-size="76" style="color:#fff"></div>
+      <!-- ④ name input -->
+      <div class="el" id="nameLabel" style="font-size:28px;font-weight:500;color:#7C776F">내 이름</div>
+      <div class="el" id="nameText" style="font-size:46px;font-weight:600"><span class="txt"></span><span class="caret"></span></div>
+      <div class="el" id="nameOk" data-icon="check" data-size="44" style="color:#005A62"></div>
+      <!-- ⑤ agent card -->
+      <div class="el row" id="chips" style="gap:24px">
+        <div class="chip" id="chip0">Grok</div><div class="chip" id="chip1">Dots</div><div class="chip wide" id="chip2">Claude Code</div>
+      </div>
+      <div class="el" id="chipSpin" data-icon="spinner" data-size="40" style="color:#fff"></div>
+      <div class="el" id="chipText" style="font-size:34px;font-weight:600;color:#fff">Claude Code</div>
+      <div class="el row" id="conn" style="gap:18px;color:#fff;font-size:40px;font-weight:600">
+        <span data-icon="check" data-size="44"></span><span>Claude Code</span><span style="opacity:.72;font-weight:500">연결됨</span>
+      </div>
+      <!-- ⑥ friend code -->
+      <div class="el" id="code" style="font-size:44px;font-weight:600;letter-spacing:6px">••••&nbsp;&nbsp;••••&nbsp;&nbsp;••••</div>
+      <div class="el row" id="reqBtn" style="width:230px;height:100px;border-radius:24px;justify-content:center;gap:12px;color:#fff;font-size:34px;font-weight:600">
+        <span id="reqOk" data-icon="check" data-size="34"></span><span>친구 요청</span>
+      </div>
+      <!-- ⑦ toggle -->
+      <div class="el" id="togLabel" style="font-size:44px;font-weight:600">민지와 서로 수락</div>
+      <!-- ⑧ tabs -->
+      <div class="el" id="tab0" style="font-size:40px;font-weight:600">친구</div>
+      <div class="el" id="tab1a" style="font-size:40px;font-weight:600">내 에이전트</div>
+      <div class="el" id="tab1b" style="font-size:40px;font-weight:600">메모 도우미</div>
+      <div class="el" id="tab2a" style="font-size:40px;font-weight:600">상대 에이전트</div>
+      <div class="el" id="tab2b" style="font-size:40px;font-weight:600">민지 / 검토 도우미</div>
+      <!-- ⑨ compose -->
+      <div class="el" id="cmpTo" style="font-size:30px;font-weight:500;color:#7C776F">민지 / 검토 도우미</div>
+      <div class="el" id="cmpRule" style="width:880px;height:2px;background:#E7E4DF"></div>
+      <div class="el" id="cmpText" style="font-size:46px;font-weight:500"><span class="txt"></span><span class="caret"></span></div>
+      <div class="el" id="sendLabel" style="font-size:34px;font-weight:600;color:#fff">보내기</div>
+      <!-- ⑩ approval -->
+      <div class="el" id="dlgTo" style="font-size:30px;font-weight:500;color:rgba(255,255,255,.6)">민지 / 검토 도우미</div>
+      <div class="el" id="dlgText" style="font-size:44px;font-weight:600;color:#fff">소개 문구 초안을 확인해 주세요.</div>
+      <div class="el" id="okLabel" style="font-size:34px;font-weight:600;color:#fff">승인</div>
+      <!-- ⑪ toast -->
+      <div class="el" id="toastIcon" data-icon="check" data-size="40" style="color:#fff"></div>
+      <div class="el" id="toastText" style="font-size:40px;font-weight:600">민지의 검토 도우미에 도착</div>
+    </div>
+  </div>
+  <svg id="cursor" width="40" height="56" viewBox="0 0 40 56">
+    <path d="M2 2 L2 42 L12.5 32.5 L20 50 L27 47 L19.5 30 L33 30 Z" fill="#111" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+  </svg>
+</div>
+<script>
+"use strict";
+const DUR = 14, FPS = 60, STROKE = 5, HOLD = 13.9;
+const C = { canvas: [231, 228, 223], black: [17, 17, 17], white: [255, 255, 255], accent: [0, 90, 98],
+  track: [214, 210, 203], muted: [124, 119, 111] };
+// [omega rad/s, zeta]; every zeta >= 0.8 so overshoot stays under ~1.5 %
+const P = { snap: [26, 0.82], soft: [16, 0.85], color: [22, 0.95], cam: [14, 0.9], lead: [30, 0.8], trail: [14, 0.86],
+  cur: [20, 0.9], drag: [13, 0.92], press: [70, 0.9], step: null };
+
+// closed-form step response of a damped spring, 0 -> 1
+function spring(x, p) {
+  if (x <= 0) return 0;
+  if (!p) return 1;
+  const [w, z] = p, k = Math.sqrt(1 - z * z), wd = w * k;
+  return 1 - Math.exp(-z * w * x) * (Math.cos(wd * x) + (z / k) * Math.sin(wd * x));
+}
+// a value that changes target many times = base + one spring per change
+function track(v0, keys) {
+  return t => { let v = v0, prev = v0; for (const [tk, vk, p] of keys) { v += (vk - prev) * spring(t - tk, p); prev = vk; } return v; };
+}
+function colorTrack(c0, keys, p = P.color) {
+  const ch = [0, 1, 2].map(i => track(c0[i], keys.map(([t, c]) => [t, c[i], p])));
+  return t => ch.map(f => f(t));
+}
+const clamp01 = x => Math.max(0, Math.min(1, x));
+const smooth = x => { x = clamp01(x); return x * x * (3 - 2 * x); };
+const rgb = c => `rgb(${c.map(v => Math.round(Math.max(0, Math.min(255, v)))).join(",")})`;
+const mix = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
+
+// ---------- the one shape ----------
+// t, cx, cy, w, h, radius, fill, border alpha
+const STATES = [
+  [0.0, 0, 0, 560, 132, 30, C.black, 0],     // ① button
+  [1.0, 0, 0, 160, 160, 80, C.black, 0],     // ② loader
+  [1.5, 0, 0, 160, 160, 80, C.accent, 0],    // ③ check
+  [2.0, 0, 0, 780, 140, 30, C.white, 1],     // ④ name input
+  [4.0, 0, 0, 920, 320, 44, C.white, 0],     // ⑤ agent card
+  [5.0, 194, 0, 400, 112, 28, C.black, 0],   //    chip loader
+  [5.5, 0, 0, 640, 140, 34, C.accent, 0],    //    connected
+  [6.0, 0, 0, 940, 140, 32, C.white, 1],     // ⑥ friend code
+  [7.0, 0, 0, 880, 164, 40, C.white, 0],     // ⑦ toggle row
+  [8.0, 0, 0, 1140, 136, 40, C.white, 0],    // ⑧ tabs
+  [9.5, 0, 0, 1000, 600, 44, C.white, 0],    // ⑨ compose
+  [11.0, 0, 0, 900, 500, 44, C.black, 0],    // ⑩ approval dialog
+  [12.0, 0, 0, 840, 136, 34, C.white, 0],    // ⑪ toast
+  [13.0, 0, 0, 560, 132, 30, C.black, 0],    // ⑫ back to button
+];
+const s0 = STATES[0], sk = STATES.slice(1);
+const shape = {
+  cx: track(s0[1], sk.map(s => [s[0], s[1], P.soft])),
+  cy: track(s0[2], sk.map(s => [s[0], s[2], P.soft])),
+  w: track(s0[3], sk.map(s => [s[0], s[3], P.soft])),
+  h: track(s0[4], sk.map(s => [s[0], s[4], P.soft])),
+  r: track(s0[5], sk.map(s => [s[0], s[5], P.soft])),
+  fill: colorTrack(s0[6], sk.map(s => [s[0], s[6]])),
+  bd: track(s0[7], sk.map(s => [s[0], s[7], P.color])),
+};
+const fit = s => Math.min(1240 / s[3], 1180 / s[4], 2.6);
+const cam = {
+  x: track(s0[1], sk.map(s => [s[0], s[1], P.cam])),
+  y: track(s0[2], sk.map(s => [s[0], s[2], P.cam])),
+  s: track(fit(s0), [...sk.slice(0, -1).map(s => [s[0], fit(s), P.cam]),
+    [12.5, fit(STATES[12]) * 0.72, P.cam],     // b26 stop + zoom out
+    [13.0, fit(s0), P.cam]]),
+};
+
+// ---------- cursor (world coords, drawn in screen space) ----------
+const REST = [230, 150];
+const MOVES = [ // start time, x, y, spring
+  [0.04, 60, 10, P.cur], [0.75, 110, 96, P.cur], [1.62, 22, 24, P.cur], [2.2, 300, 120, P.cur],
+  [3.62, 322, 6, P.cur], [4.14, 236, 14, P.cur], [4.72, 300, 110, P.cur], [5.66, 60, 24, P.cur],
+  [6.14, 330, 12, P.cur], [7.1, 300, 10, P.cur], [7.72, -360, 12, P.drag],
+  [8.18, 40, 12, P.drag], [8.64, 410, 12, P.drag], [9.1, 362, 14, P.cur],
+  [9.7, 480, 330, P.cur], [10.18, 372, 224, P.cur], [11.04, 312, 172, P.cur], [11.7, 390, 270, P.cur],
+  [12.68, 10, 14, P.cur], [13.25, REST[0], REST[1], P.cur],
+];
+const cur = { x: track(REST[0], MOVES.map(m => [m[0], m[1], m[3]])), y: track(REST[1], MOVES.map(m => [m[0], m[2], m[3]])) };
+const CLICKS = [0.5, 2.0, 4.0, 4.5, 6.0, 6.5, 7.5, 9.5, 10.5, 11.5, 13.0];
+const DRAGS = [{ p: 8.16, r: 8.5, L: -172, R: 172 }, { p: 8.62, r: 9.0, L: 188, R: 532 }];
+// press depth 0..1: quick down just before the beat, spring back after it
+const pressAt = (t, tc) => spring(t - (tc - 0.03), P.press) - spring(t - (tc + 0.07), P.snap);
+const holdAt = (t, a, b) => spring(t - a, P.press) - spring(t - b, P.snap);
+function cursorPress(t) {
+  let v = 0;
+  for (const c of CLICKS) v += pressAt(t, c);
+  for (const d of DRAGS) v += holdAt(t, d.p, d.r);
+  return v;
+}
+
+// ---------- knob: toggle knob -> tab indicator -> buttons -> toast badge ----------
+const KB = { L: 268, R: 268, T: 0, B: 0 }; // hidden seed (collapsed inside the toggle track)
+const KNOB = [ // t, L, R, T, B, Lspring, Rspring
+  [7.08, 236, 300, -32, 32, P.snap, P.snap],       // appears, off
+  [7.5, 300, 364, -32, 32, P.trail, P.lead],       // on: leading (right) edge runs ahead
+  [8.0, -532, -188, -52, 52, P.lead, P.trail],     // becomes the tab indicator, leading edge is left
+];
+const KNOB_LATE = [
+  [9.5, 260, 460, 168, 260, P.trail, P.lead],      // 보내기
+  [11.0, 210, 410, 118, 210, P.lead, P.trail],     // 승인
+  [12.0, -388, -312, -38, 38, P.snap, P.snap],     // toast badge
+  [13.0, -280, 280, -66, 66, P.soft, P.soft],      // merges into the button
+  [13.7, KB.L, KB.R, KB.T, KB.B, P.step, P.step],  // reset while invisible
+];
+const kTB = k => [...KNOB, ...KNOB_LATE].map(r => [r[0], r[k], r[0] === 13.7 ? P.step : P.soft]);
+const knob = {
+  T: track(KB.T, kTB(3)), B: track(KB.B, kTB(4)),
+  r: track(0, [[7.08, 32, P.soft], [8.0, 30, P.soft], [9.5, 22, P.soft], [12.0, 38, P.soft], [13.0, 30, P.soft], [13.7, 0, P.step]]),
+  fill: colorTrack(C.white, [[8.0, C.black], [11.0, C.accent], [13.0, C.black], [13.7, C.white]].map(([t, c]) => [t, c]), P.color),
+  o: t => smooth((t - 7.08) / 0.12) * (1 - smooth((t - 13.35) / 0.15)),
+};
+const preL = track(KB.L, KNOB.map(r => [r[0], r[1], r[5]])), preR = track(KB.R, KNOB.map(r => [r[0], r[2], r[6]]));
+const curVX = t => (cur.x(t) - cur.x(t - 1 / 240)) * 240;
+function knobLR(t) {
+  if (t < DRAGS[0].p) return [preL(t), preR(t)];
+  for (let i = DRAGS.length - 1; i >= 0; i--) {
+    const d = DRAGS[i];
+    if (t < d.p) continue;
+    const at = d.p - 1e-6, [L0, R0] = knobLR(at);
+    const grab = (L0 + R0) / 2 - cur.x(at), half = (R0 - L0) / 2;
+    const held = u => { // direct manipulation: centre = cursor, edges stretch with cursor speed
+      const c = cur.x(u) + grab, st = Math.max(-70, Math.min(70, curVX(u) * 0.035));
+      return [c - half + Math.min(0, st), c + half + Math.max(0, st)];
+    };
+    if (t <= d.r) return held(t);
+    const [Lr, Rr] = held(d.r), x = t - d.r;
+    const right = d.L > Lr;
+    let L = d.L + (Lr - d.L) * (1 - spring(x, right ? P.trail : P.lead));
+    let R = d.R + (Rr - d.R) * (1 - spring(x, right ? P.lead : P.trail));
+    if (i === DRAGS.length - 1) {
+      let pl = d.L, pr = d.R;
+      for (const k of KNOB_LATE) { L += (k[1] - pl) * spring(t - k[0], k[5]); R += (k[2] - pr) * spring(t - k[0], k[6]); pl = k[1]; pr = k[2]; }
+    }
+    return [L, R];
+  }
+}
+
+// ---------- content: each text block has its own enter / exit timing ----------
+// windows: [enter, exit]; exit is fast, enter starts after the morph has begun
+function vis(t, win) {
+  let o = 0, blur = 0, sc = 1, dy = 0;
+  for (const [a, b] of win) {
+    const e = smooth((t - a) / 0.16), x = smooth((t - b) / 0.09);
+    const ov = e * (1 - x);
+    if (ov > o) {
+      o = ov; blur = 9 * (1 - e) + 7 * x;
+      sc = 0.94 + 0.06 * spring(t - a, P.snap) - 0.03 * x;
+      dy = 16 * (1 - spring(t - a, P.snap));
+    }
+  }
+  return { o, blur, sc, dy };
+}
+const EL = {};
+const LAYOUT = { // id: [x, y, anchor, windows]  (x, y in world px)
+  btn: [-6, 0, "c", [[-0.92, 1.0], [13.08, 15]]],
+  loader: [0, 0, "c", [[1.06, 1.5]]],
+  check: [0, 0, "c", [[1.56, 2.0]]],
+  nameLabel: [-350, -30, "l", [[2.08, 4.0]]],
+  nameText: [-350, 18, "l", [[2.14, 4.0]]],
+  nameOk: [322, 0, "c", [[3.5, 4.0]]],
+  chips: [0, 0, "c", [[4.08, 5.0]]],
+  chipSpin: [54, 0, "c", [[5.08, 5.5]]],
+  chipText: [230, 0, "c", [[5.1, 5.5]]],
+  conn: [0, 0, "c", [[5.58, 6.0]]],
+  code: [-420, 0, "l", [[6.08, 7.0]]],
+  reqBtn: [330, 0, "c", [[6.1, 7.0]]],
+  togLabel: [-390, 0, "l", [[7.08, 8.0]]],
+  track: [300, 0, "c", [[7.06, 8.0]]],
+  tab0: [-360, 0, "c", [[8.1, 9.5]]],
+  tab1a: [0, 0, "c", [[8.12, 8.5]]],
+  tab1b: [0, 0, "c", [[8.56, 9.5]]],
+  tab2a: [360, 0, "c", [[8.14, 9.0]]],
+  tab2b: [360, 0, "c", [[9.06, 9.5]]],
+  cmpTo: [-440, -228, "l", [[9.6, 11.0]]],
+  cmpRule: [0, -176, "c", [[9.62, 11.0]]],
+  cmpText: [-440, -96, "l", [[9.64, 11.0]]],
+  sendLabel: [360, 214, "c", [[9.66, 11.0]]],
+  dlgTo: [-390, -170, "l", [[11.08, 12.0]]],
+  dlgText: [-390, -84, "l", [[11.12, 12.0]]],
+  okLabel: [310, 164, "c", [[11.16, 12.0]]],
+  toastIcon: [-350, 0, "c", [[12.12, 13.0]]],
+  toastText: [-290, 0, "l", [[12.14, 13.0]]],
+};
+const NAME_STEPS = [[2.5, "ㅈ"], [2.62, "지"], [3.0, "지ㅇ"], [3.12, "지우"]];
+const MESSAGE = "소개 문구 초안을 확인해 주세요.";
+const MSG_T0 = 10.0, MSG_DT = 0.024;
+const typed = (t, steps) => { let s = ""; for (const [tk, v] of steps) if (t >= tk) s = v; return s; };
+const msgSteps = [...MESSAGE].map((_, i) => [MSG_T0 + i * MSG_DT, MESSAGE.slice(0, i + 1)]);
+
+// ---------- icons: one stroke width everywhere ----------
+function icon(kind, size) {
+  const s = size, pts = {
+    check: [[0.2, 0.52], [0.42, 0.72], [0.8, 0.3]],
+    arrow: [[0.18, 0.5], [0.82, 0.5], null, [0.56, 0.24], [0.82, 0.5], [0.56, 0.76]],
+  };
+  if (kind === "spinner") {
+    const r = s / 2 - STROKE / 2, c = 2 * Math.PI * r;
+    return `<svg width="${s}" height="${s}"><circle cx="${s / 2}" cy="${s / 2}" r="${r}" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="${STROKE}"/>` +
+      `<circle class="arc" cx="${s / 2}" cy="${s / 2}" r="${r}" fill="none" stroke="currentColor" stroke-width="${STROKE}" stroke-linecap="round" stroke-dasharray="${c * 0.28} ${c}"/></svg>`;
+  }
+  let d = "", m = true;
+  for (const p of pts[kind]) { if (!p) { m = true; continue; } d += `${m ? "M" : "L"}${(p[0] * s).toFixed(2)} ${(p[1] * s).toFixed(2)} `; m = false; }
+  return `<svg width="${s}" height="${s}"><path class="stroke" d="${d}" fill="none" stroke="currentColor" stroke-width="${STROKE}" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>`;
+}
+
+const $ = id => document.getElementById(id);
+function init() {
+  for (const n of document.querySelectorAll("[data-icon]")) n.innerHTML = icon(n.dataset.icon, +n.dataset.size);
+  for (const id of Object.keys(LAYOUT)) EL[id] = $(id);
+}
+
+function place(el, x, y, anchor, v, ox, oy) {
+  const ax = anchor === "c" ? "-50%" : "0";
+  el.style.transform = `translate(${(x - ox).toFixed(3)}px, ${(y - oy + v.dy).toFixed(3)}px) translate(${ax}, -50%) scale(${v.sc.toFixed(4)})`;
+  el.style.transformOrigin = anchor === "c" ? "50% 50%" : "0 50%";
+  el.style.opacity = v.o.toFixed(4);
+  el.style.filter = v.blur > 0.05 ? `blur(${v.blur.toFixed(2)}px)` : "none";
+  el.style.visibility = v.o > 0.002 ? "visible" : "hidden";
+}
+const drawStroke = (el, k) => { for (const p of el.querySelectorAll(".stroke")) { p.style.strokeDasharray = "1 1"; p.style.strokeDashoffset = (1 - clamp01(k)).toFixed(4); } };
+const spin = (el, t) => { for (const a of el.querySelectorAll(".arc")) { a.style.transformOrigin = "50% 50%"; a.style.transform = `rotate(${(t * 560) % 360}deg)`; } };
+
+function seek(tIn) {
+  let t = ((tIn % DUR) + DUR) % DUR;
+  // every spring is within ~0.02 px of rest here; snap the residual so the last frame equals frame 0 exactly
+  if (t >= HOLD) t = 0;
+  // camera
+  const s = cam.s(t), camX = cam.x(t), camY = cam.y(t);
+  $("world").style.transform = `translate(720px, 720px) scale(${s.toFixed(5)}) translate(${(-camX).toFixed(3)}px, ${(-camY).toFixed(3)}px)`;
+  // shape (+ press when the cursor clicks it)
+  let sp = 0;
+  for (const c of [0.5, 2.0, 4.0, 6.0, 9.5, 13.0]) sp += pressAt(t, c);
+  const w = shape.w(t) * (1 - 0.025 * sp), h = shape.h(t) * (1 - 0.025 * sp), cx = shape.cx(t), cy = shape.cy(t);
+  const ox = cx - w / 2, oy = cy - h / 2;
+  const sh = $("shape").style;
+  sh.transform = `translate(${ox.toFixed(3)}px, ${oy.toFixed(3)}px)`;
+  sh.width = `${w.toFixed(3)}px`; sh.height = `${h.toFixed(3)}px`;
+  sh.borderRadius = `${Math.max(0, shape.r(t)).toFixed(3)}px`;
+  sh.background = rgb(shape.fill(t));
+  sh.boxShadow = `inset 0 0 0 3px rgba(17,17,17,${clamp01(shape.bd(t)).toFixed(3)}), 0 30px 70px -30px rgba(60,48,36,.32), 0 2px 8px rgba(60,48,36,.08)`;
+  // knob
+  let [kL, kR] = knobLR(t);
+  let kT = knob.T(t), kB = knob.B(t);
+  let kp = pressAt(t, 7.5) + pressAt(t, 10.5) + pressAt(t, 11.5) + 0.5 * (holdAt(t, DRAGS[0].p, DRAGS[0].r) + holdAt(t, DRAGS[1].p, DRAGS[1].r));
+  const kcx = (kL + kR) / 2, kcy = (kT + kB) / 2, ksc = 1 - 0.05 * kp;
+  kL = kcx + (kL - kcx) * ksc; kR = kcx + (kR - kcx) * ksc; kT = kcy + (kT - kcy) * ksc; kB = kcy + (kB - kcy) * ksc;
+  const ks = $("knob").style, ko = knob.o(t);
+  ks.transform = `translate(${(kL - ox).toFixed(3)}px, ${(kT - oy).toFixed(3)}px)`;
+  ks.width = `${Math.max(0, kR - kL).toFixed(3)}px`; ks.height = `${Math.max(0, kB - kT).toFixed(3)}px`;
+  ks.borderRadius = `${Math.max(0, knob.r(t)).toFixed(3)}px`;
+  ks.background = rgb(knob.fill(t));
+  ks.opacity = ko.toFixed(4); ks.visibility = ko > 0.002 ? "visible" : "hidden";
+  const togOn = spring(t - 7.5, P.color);
+  ks.boxShadow = t < 8.0 ? `0 3px 8px rgba(0,0,0,${(0.22 * (1 - smooth((t - 7.9) / 0.1))).toFixed(3)})` : "none";
+  // content
+  for (const [id, [x, y, anchor, win]] of Object.entries(LAYOUT)) place(EL[id], x, y, anchor, vis(t, win), ox, oy);
+  spin(EL.loader, t); spin(EL.chipSpin, t);
+  drawStroke(EL.check, spring(t - 1.56, P.snap));
+  drawStroke(EL.nameOk, spring(t - 3.5, P.snap));
+  drawStroke(EL.toastIcon, spring(t - 12.14, P.snap));
+  drawStroke($("conn"), spring(t - 5.6, P.snap));
+  drawStroke($("reqOk"), spring(t - 6.52, P.snap));
+  drawStroke(EL.btn, 1);
+  const blink = (u, a) => (u < a || Math.floor((u - a) / 0.5) % 2 === 0 ? 1 : 0);
+  EL.nameText.querySelector(".txt").textContent = typed(t, NAME_STEPS);
+  EL.nameText.querySelector(".caret").style.opacity = t < 3.5 ? blink(t, 3.2) : 0;
+  EL.cmpText.querySelector(".txt").textContent = typed(t, msgSteps);
+  EL.cmpText.querySelector(".caret").style.opacity = blink(t, MSG_T0 + MESSAGE.length * MSG_DT);
+  // chips: Claude Code selected on b10
+  const sel = spring(t - 4.5, P.color), cp = pressAt(t, 4.5);
+  for (let i = 0; i < 3; i++) {
+    const c = $("chip" + i).style, k = i === 2 ? sel : 0;
+    c.background = rgb(mix(C.white, C.black, k));
+    c.color = rgb(mix(C.black, C.white, k));
+    c.boxShadow = `inset 0 0 0 3px ${rgb(C.black)}`;
+    c.transform = i === 2 ? `scale(${(1 - 0.05 * cp).toFixed(4)})` : "none";
+  }
+  // friend code: paste reveals left to right, request turns accent
+  EL.code.style.clipPath = `inset(-20px ${(100 * (1 - smooth((t - 6.1) / 0.14))).toFixed(2)}% -20px -20px)`;
+  const rq = spring(t - 6.5, P.color), rp = pressAt(t, 6.5);
+  EL.reqBtn.style.background = rgb(mix(C.black, C.accent, rq));
+  EL.reqBtn.style.transform += ` scale(${(1 - 0.05 * rp).toFixed(4)})`;
+  const okIcon = $("reqOk");
+  okIcon.style.width = `${(34 * smooth((t - 6.5) / 0.14)).toFixed(2)}px`;
+  okIcon.style.overflow = "hidden";
+  // toggle track
+  EL.track.style.background = rgb(mix(C.track, C.accent, togOn));
+  // tab labels: white where the indicator is
+  const kc = (kL + kR) / 2;
+  for (const [id, x] of [["tab0", -360], ["tab1a", 0], ["tab1b", 0], ["tab2a", 360], ["tab2b", 360]]) {
+    const k = clamp01(1 - Math.abs(kc - x) / 220);
+    EL[id].style.color = rgb(mix(C.muted, C.white, smooth(k)));
+  }
+  // cursor (screen space)
+  const px = 720 + (cur.x(t) - camX) * s, py = 720 + (cur.y(t) - camY) * s;
+  $("cursor").style.transform = `translate(${px.toFixed(3)}px, ${py.toFixed(3)}px) scale(${(1.25 * (1 - 0.12 * cursorPress(t))).toFixed(4)})`;
+  return t;
+}
+
+// UI sounds, placed by render.mjs at these times (peak on the beat)
+const EVENTS = [
+  ...CLICKS.filter(c => c !== 7.5).map(t => ({ t, kind: "click", gain: 0.9 })),
+  { t: 7.5, kind: "switch", gain: 1.0 },
+  ...DRAGS.map(d => ({ t: d.p, kind: "click", gain: 0.55 })),
+  ...DRAGS.map(d => ({ t: d.r, kind: "switch", gain: 0.8 })),
+  ...NAME_STEPS.map(([t]) => ({ t, kind: "key", gain: 0.8 })),
+  { t: 3.5, kind: "key", gain: 1.0 },
+  ...msgSteps.filter(([, s]) => s.slice(-1) !== " ").map(([t]) => ({ t, kind: "key", gain: 0.45 })),
+  ...[1.5, 5.5, 12.0].map(t => ({ t, kind: "notify", gain: 0.7 })),
+].sort((a, b) => a.t - b.t);
+
+window.DUR = DUR; window.FPS = FPS; window.EVENTS = EVENTS; window.seek = seek;
+init();
+seek(0);
+</script>
+</body>
+</html>
