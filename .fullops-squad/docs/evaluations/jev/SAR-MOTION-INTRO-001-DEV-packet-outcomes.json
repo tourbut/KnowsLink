@@ -1256,5 +1256,6 @@
       "status": "no_change",
       "reason": "문자열 검색으로 추정된(inferred) 경로다. 영상 전용 과제(videos/knowslink-motion)와 무관해 읽거나 수정하지 않았다. 제품 코드·문서 변경 없음."
     }
-  ]
+  ],
+  "uncertainty_review": "패킷은 partial이고 미확인 22건(문자열 검색 기반 inferred 경로, 동적 참조 미검증)이다. 이 과제는 videos/knowslink-motion 아래 새 영상 소스와 a2 검수 기록만 추가했고 제품 source·설계 문서·이전 WIP를 수정하지 않았다(git diff 2244558..HEAD 경로로 확인). 따라서 미확인 경로의 동적 참조가 영향받을 변경이 없다. 필요한 정본(브리프, 지시서, FULLOPS.md, project.md, 공통 규칙, 첫페이지 정본 예시 이름 절, AGENTS.md Windows 안전 절)은 직접 읽었다."
 }
