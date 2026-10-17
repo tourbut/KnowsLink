@@ -103,6 +103,13 @@ Tunnel 재시작 직후 내 서버 측 관찰 루프가 `/`를 약 2.5회/초로
 - 오래된 포인터: `docs/README.md`가 "2026-10-14 배포 제품 8a93e38"을 말한다. ops 소유 파일이 아니라 수정하지 않았다. coor 또는 DEV가 갱신한다.
 - 후속(DEV): 새 공개 경로를 추가하는 변경은 `public-ingress.yml`·`check_public_ingress.py`를 함께 바꿔야 한다. 이번 누락은 배포 전 단위 gate로 잡히지 않았다. Grok 로컬 bundle과 Claude Code hook 패키지는 서버 배포로 갱신되지 않는다.
 
+## 문서 HEAD의 FullOps 검사
+
+- 기준 `1dd6800`, 대상 HEAD `13f9e3c`(보고 보완 전). 기본 PATH에서 `lint.py`는 ERROR0·WARNING0·실행 불가2(`make lint`, `make test`), 종료1이다. 직전 OPS와 같은 Windows `make` 부재다. 새 PASS로 보고하지 않는다.
+- w64devkit의 `make`를 PATH 앞에 둔 보조 실행은 ERROR2였다. `core.autocrlf=true` 작업 사본이 CRLF라서 `gofmt -l`이 Go 파일을 나열하고, `TestFrozenParsingAndSigning`이 registry 무결성 오류를 냈다. 이번 작업은 Go 파일을 바꾸지 않았다. 환경 한계이며 제품 결함으로 판정하지 않았다.
+- `make lint`의 ingress 두 검사는 서버 Linux에서 통과했다(위 절). 산출물 strict는 13개·문제0·경고0이다. `git diff --check` 통과.
+- 원 결과: 로컬 `release001-ops/final-lint-default.json`, `lint-with-make.json`.
+
 ## 보존 위치
 
 - 로컬 원본: `C:/Users/shin/AppData/Local/KnowsLinkDevTools/release001-ops/`(bundle·스크립트·원 로그).
