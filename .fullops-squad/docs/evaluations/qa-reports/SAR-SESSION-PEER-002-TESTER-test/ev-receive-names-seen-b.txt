@@ -1,0 +1,26 @@
+handle: term_d370f451-f8f0-4bc1-9827-7bc46e3a7312
+status: running
+source: screen
+draft: "knowslink 상태 확인해줘"
+cursor: 22
+oldest cursor: 0
+latest cursor: 22
+
+ ▐▛███▛█   Claude Code v2.1.302
+▝▜██████▀  Sonnet 5.5 · Claude Max
+ ▝▝   ▝▝   ~\AppData\Local\KnowsLinkDevTools\session-peer-002-qa\work-b
+❯ /knowslink-session on
+  ⎿  knowslink: KnowsLink 연결됨: 세션 4916dcde · 내 agent agent_dd3bb38614cfd813a83dcf · 대기 0건. 도착은 toast로
+     알립니다. 본문은 요청 때 knowslink_text_receive 로 외부 데이터로 봅니다.
+❯ Call the knowslink_text_receive tool once and show me the raw JSON result verbatim. Do nothing else.
+  Called plugin:knowslink:knowslink
+● {"state":"received","message":{"id":"01a148c9-3381-7258-8f01-0a857975cc78","from":"agent_22bb187ebb5358d648b6e7","to":
+  "agent_dd3bb38614cfd813a83dcf","text":"sec-m2
+  mvc309jb","exp":"2026-10-17T07:38:07Z","untrusted":true,"authorship":"agent","expired":false,"sender":{"friend":"합성
+  소유자 A","name":"QA 세션 A","client":"node-local"}},"sessionReceipt":"recorded"}
+✻ Sautéed for 8s · done 4:37 PM
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⚠ knowslink: KnowsLink 4916dcde 연결
+  ⏵⏵ auto mode on (shift+tab to cycle)
