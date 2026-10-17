@@ -1,17 +1,17 @@
 ---
-title: SAR-MOTION-INTRO-001-DEV — KnowsLink 서비스 소개 15초 모션그래픽을 HyperFrames로 제작·렌더·검수한다
+title: SAR-MOTION-INTRO-001-DEV — KnowsLink 14초 단일 도형 UI 모션을 Playwright·ffmpeg로 제작·렌더·검수한다
 status: draft
 updated: 2026-10-17
 owner: dev
 tasks: [SAR-MOTION-INTRO-001-DEV]
-summary: KnowsLink 서비스 소개 15초 모션그래픽을 HyperFrames로 제작·렌더·검수한다
-attempt: 863239b7e0bd448c84856fc3489e966b
-base: c94b84303617564797f8bc21801dcd026811cccb
+summary: KnowsLink 14초 단일 도형 UI 모션을 Playwright·ffmpeg로 제작·렌더·검수한다
+attempt: a767a2ea1444498ab7ef1eebe2c7aa97
+base: 9fb42da4c69ba0c860e4c927c1d73d2a9780f855
 subagent_level: standard
 test_level: lite
 ---
 
-# SAR-MOTION-INTRO-001-DEV — KnowsLink 서비스 소개 15초 모션그래픽을 HyperFrames로 제작·렌더·검수한다
+# SAR-MOTION-INTRO-001-DEV — KnowsLink 14초 단일 도형 UI 모션을 Playwright·ffmpeg로 제작·렌더·검수한다
 
 현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.
 
@@ -19,83 +19,93 @@ test_level: lite
 - From / To: coor → dev
 - 상태: ready
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
-- 승인된 범위(사용자 2026-10-17): `videos/service-intro/`에 `hyperframes@latest`를 npm으로 로컬 설치하고 HyperFrames 공식 스킬(heygen-com/hyperframes)을 받는다. 로컬 preview·check·render만 한다.
-- 추가 승인이 필요한 행위: 클라우드 렌더, 외부 TTS·생성형 이미지·스톡 자산, usage/feedback/publish 업로드, Remotion 사용, 음원 추가, 전역 도구 설치. 필요하면 `ask`로 멈춘다.
+- 승인된 범위(사용자 2026-10-17): 브리프의 프롬프트대로 로컬 제작·렌더. 작업 폴더 안 로컬 설치(npm `playwright`와 Chromium 브라우저 바이너리, Python venv의 `numpy`). Geist·Pretendard(OFL)를 공식 배포처(Vercel `geist` 릴리스·npm, `orioncactus/pretendard` 릴리스·npm)에서 받기. Mixkit(Mixkit 라이선스, 상업 무료)에서 약 120 BPM 곡과 필요한 UI 효과음을 받기.
+- 추가 승인이 필요한 행위: 클라우드 렌더, 외부 TTS·생성형 이미지·AI 음원, Mixkit 외 음원·효과음, 위 밖의 전역 도구 설치, 업로드·게시. 필요하면 `ask`로 멈춘다.
 - 담당 repo id / 워크트리 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev
 - 병합 책임자 / 기본 브랜치: coor / main·origin/main
 - 복귀: coor / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_e3a3e5f6-e163-420f-bba6-51b428f7671f / run·task·dispatch는 실제 preamble 값
 
 ## 현재 상황과 확인 근거
 
-- 사용자 요청: "해당 서비스 소개 모션 그래픽을 15초 짜리로 만들자"(2026-10-17). 직전에 운영 배포한 link.knowslog.com의 KnowsLink를 소개한다.
-- 확정 규격: 16:9 1920×1080, 30fps, 15초(450프레임), H.264 MP4, 알파 없음, 무음(오디오 스트림 없음), 한글 문구.
-- 로컬 환경: Node v24.13.0, FFmpeg 8.0.1(gyan full build)이 PATH에 있다. HyperFrames CLI와 공식 스킬은 설치돼 있지 않다. `videos/` 폴더는 없다.
-- 메시지 정본은 공개 첫페이지다. 새 제품 메시지·기능 주장을 만들지 않는다.
+- 이전 attempt(HyperFrames, 1920×1080 무음)는 사용자가 철회해 중단했다. 기록: `.fullops-squad/handovers/logs/2026-10-17_to_dev.md`.
+- 이전 attempt의 미커밋 WIP가 dev 워크트리에 남아 있다: `videos/service-intro/`, `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/`. **건드리지 않는다(삭제·이동·커밋 금지).** 새 작업은 다른 폴더에서 한다.
+- 정본 브리프: `.fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md` — 사용자 프롬프트 원문, 확정 입력, 승인된 28비트 그리드.
+- 로컬 환경(coor 확인): Node v24.13.0, FFmpeg 8.0.1 full build PATH에 있음. 시스템 Python(3.13)에 numpy·playwright 없음.
 
 ## 적용 기준과 예외
 
-공통 기준은 `.fullops-squad/rules/common/README.md` 및 연결 규칙이다. 기준 커밋 c94b843. fullops-motion 스킬의 toolchain.md·delivery.md 절차를 따른다. 예외 없음.
+공통 기준은 `.fullops-squad/rules/common/README.md` 및 연결 규칙, 기준 커밋은 front matter의 base. fullops-motion 스킬의 delivery.md 검수·인계 형식을 따른다. 엔진은 HyperFrames·Remotion이 아니라 사용자 프롬프트가 지정한 Playwright + ffmpeg 직접 렌더다(사용자 지시, 공식 스킬 검사 항목은 해당 없음으로 적는다).
 
 ## 먼저 읽을 문서
 
-- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` — `## 공개 첫페이지 정본 — SAR-LANDING-GUIDE-001`의 카피·관계 도식·시각 토큰 절만.
-- fullops-motion 스킬(toolchain.md, delivery.md)과 설치한 HyperFrames 공식 스킬의 `hyperframes` → `motion-graphics`, `hyperframes-core`, `hyperframes-animation`, `hyperframes-cli`.
-- `.fullops-squad/project.md`, `AGENTS.md`의 Windows 파일 작업 안전.
+- `.fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md` 전체 — 필수.
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` — `## 공개 첫페이지 정본 — SAR-LANDING-GUIDE-001`의 카피·예시 이름 절만.
+- `AGENTS.md`의 Windows 파일 작업 안전.
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] `videos/service-intro/`에 package.json·lock과 `hyperframes@latest`를 로컬 설치한다(`DO_NOT_TRACK=1`, `HYPERFRAMES_SKIP_SKILLS=1`). 실제 버전·스킬 ref를 기록한다. `node_modules/`는 커밋하지 않는다(기존 .gitignore).
-- [ ] 장면표를 먼저 쓴다(`videos/service-intro/storyboard.md`): 장면별 시작/끝 초·프레임, 시각 내용, 전환, 실제 문자열. 아래 방향을 따른다.
-  - 0–3초: 워드마크 `KnowsLink` 등장.
-  - 3–11초: 첫페이지 관계 도식 재현 — 사람 '나'와 '친구', 그 아래 '내 에이전트'·'친구의 에이전트'가 들여쓰기로 나타나고, '서로 수락한 친구'로 사람끼리 연결된 뒤 에이전트 사이로 메시지가 오가는 움직임. 문구 '사람끼리 친구, 에이전트끼리 대화'.
-  - 11–15초: h1 '친구와 연결하고, 에이전트로 대화하세요'와 `link.knowslog.com`. 마지막 1초 이상 정지해 읽을 수 있게 한다.
-  - 문구는 정본 문자열만 쓴다(필요하면 정본 안에서 고른다). 가짜 수치·회원 이름·아바타·온라인 표시·없는 기능은 넣지 않는다.
-- [ ] 시각: 정본 여섯 토큰(canvas #FFFFFF, ink #182B31, muted #52646B, accent #005A62, selected #E8F3F3, edge #75868B)과 4px 모서리를 쓴다. 큰 그라디언트·네온·파티클·3D·글리치는 쓰지 않는다. 움직임은 절제된 이동·페이드·선 그리기 위주.
-- [ ] 글꼴: 외부 요청 없이 로컬 `C:/Windows/Fonts/malgun.ttf`(Malgun Gothic, 정본 첫 글꼴)를 프로젝트 자산으로 참조해 로드한다. 외부 GSAP/font URL은 로컬 자산으로 바꾼다. 한글 glyph 로드 성공을 확인한다. 글꼴 파일은 커밋하지 않고 경로와 라이선스 확인 결과를 기록한다(배포 가능 여부 unknown이면 그렇게 적는다).
-- [ ] preview로 장면을 확인하고 `hyperframes check --snapshots --json`을 실행한다. browserSkipped·빈 audit는 통과로 보지 않는다.
-- [ ] `renders/v01/service-intro.mp4`로 렌더한다. 실패·수정 렌더는 새 버전 폴더(v02…)를 쓰고 이전 파일을 덮지 않는다.
-- [ ] ffprobe로 길이 15.0초·1920×1080·30fps·450프레임·영상 스트림만 있음을 확인한다. 프레임 0, 각 장면 대표·전환 직전/직후, 449를 PNG로 추출해 직접 보고 문구 잘림·겹침·glyph 누락을 판정한다.
-- [ ] 깨끗한 다른 폴더에서 소스·lock·명령으로 재렌더해 규격과 대표 프레임을 대조한다(바이트 동일성은 요구하지 않는다).
+작업 폴더: `videos/knowslink-motion/` (이하 `W/`).
 
-소유권: `videos/service-intro/`(소스·storyboard·package/lock·README에 재렌더 명령), `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/`(명령·exit·ffprobe JSON·프레임·판정). 제품 source·첫페이지·설계 문서는 수정하지 않는다. 최종 MP4는 10MB 이하면 커밋하고, 넘으면 커밋하지 않고 경로·sha256을 보고한다.
+- [ ] `W/.gitignore`로 `node_modules/`, `.venv/`, `frames/`, `subframes/`, 대용량 중간물을 제외한다. `W/package.json`·lock에 `playwright`를 로컬 설치하고 Chromium을 받는다. `W/.venv`에 numpy를 설치한다. 실제 버전을 기록한다.
+- [ ] 글꼴: Geist·Pretendard woff2를 공식 배포처에서 `W/assets/fonts/`에 받고 출처 URL·버전·OFL 라이선스 파일을 함께 둔다. `@font-face` 로컬 로드 후 `document.fonts.check`로 라틴·한글 glyph 로드를 확인한다.
+- [ ] 음원: Mixkit에서 약 120 BPM 후보 2–3곡을 받아 `W/assets/audio/`에 두고 페이지 URL·제목·작가·라이선스를 `W/assets/SOURCES.md`에 적는다. numpy로 각 곡의 BPM과 다운비트를 측정해 120에 가장 맞고 7마디(14초)를 자를 수 있는 곡을 고른다. 선택 근거와 대안은 보고에 적는다(사용자가 나중에 바꿀 수 있게 오디오 오프셋만 바꾸면 되도록 한다). UI 효과음(클릭·타이핑·토글·토스트)도 Mixkit에서 받고, 측정한 피크가 비트에 맞게 배치한다.
+- [ ] `W/beats.json`: 측정한 비트 시각(초), 사용한 곡 구간 시작점, 28비트 매핑.
+- [ ] `W/index.html` 한 파일, 1440×1440. 모든 스타일을 `seek(t)` 안에서 시간의 순수 함수로 계산한다(CSS transition·타이머·프레임 간 상태 금지). 스프링은 closed-form step response의 합. 탭 표시자·토글 노브의 두 가장자리는 서로 다른 스프링. 드래그는 직접 조작 후 놓으면 스프링 복귀. 커서가 모든 변화를 일으킨다. 카메라 줌으로 각 상태가 화면을 채운다. 카메라가 스케일하는 요소에 will-change 금지. 모핑 컨테이너 안 문구는 별도 enter/exit 타이밍. 마지막 프레임 = 프레임 0(커서 위치·속도 포함).
+- [ ] 시각: 밝은 warm-gray 캔버스, 흑백 컴포넌트, accent `#005A62` 하나. 금지: 바운스 이징, 파티클, 글로우, UI 크롬 그라디언트, 굵기 다른 아이콘 선, 빈 시간, 템플릿 느낌. 문구는 브리프 그리드 문자열만.
+- [ ] `W/render.mjs`(또는 동등): Playwright로 프레임당 4 subframe을 찍고 ffmpeg `tmix`로 60fps 모션 블러 합성, 음원·효과음 믹스, H.264(yuv420p)+AAC MP4.
+- [ ] 전체 렌더 전에 비트당 1프레임(28장)을 렌더해 직접 보고 그리드 이탈·비좁음·가독성 문제를 고친다. 이 28장은 증거로 남긴다.
+- [ ] 전체 렌더 `W/renders/v01/knowslink-motion.mp4`. 수정 렌더는 v02…로 새 폴더, 이전 파일을 덮지 않는다.
+- [ ] 검수: ffprobe로 1440×1440·60fps·14.0초(840프레임)·영상+오디오 스트림 확인. 프레임 0과 839(마지막)를 PNG로 뽑아 픽셀 차이를 수치로 기록(루프 동일성). 각 상태 대표 프레임을 직접 보고 문구 잘림·겹침·glyph 누락을 판정. 오디오는 비트·효과음 정렬을 파형/피크 시각으로 대조(청취 수락은 사용자 몫, not_run 표시).
+- [ ] `W/README.md`: 설치·재렌더 명령, 의존 버전, 자산 출처. 깨끗한 다른 폴더에서 소스·lock·자산으로 재렌더해 규격·대표 프레임을 대조한다(바이트 동일성 요구 없음).
+
+소유권: `videos/knowslink-motion/` 전부, `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/a2/`(명령·exit·ffprobe JSON·비트 프레임·판정). 제품 source·첫페이지·설계 문서·이전 WIP는 수정하지 않는다. 최종 MP4는 10MB 이하면 커밋, 넘으면 커밋하지 않고 경로·sha256을 보고한다. 글꼴(OFL)·Mixkit 음원은 라이선스상 재배포가 허용되는지 확인해 허용되면 커밋, 불명확하면 커밋하지 않고 받는 명령·URL을 README에 둔다.
+
+예상 규모: index.html 600–1000줄, render 스크립트·분석 스크립트 각 100–200줄.
 
 ## 완료 기준과 검증
 
-- 위 규격의 MP4가 있고 ffprobe·프레임 판정 근거가 delivery.md 검수 표 형식(passed|failed|not_run|unknown)으로 남는다. 음성 관련 항목은 무음이라 해당 없음으로 적는다.
+- 규격의 MP4가 있고, 비트 프레임 28장·ffprobe·루프 동일성 수치·대표 프레임 판정이 delivery.md 검수 표(passed|failed|not_run|unknown)로 남는다.
+- `seek(t)` 순수성 자체 검사: 같은 t를 순서를 바꿔 두 번 seek했을 때 스크린샷이 같다(작은 assert 스크립트 하나).
 - 재렌더 명령만으로 같은 규격이 재현된다.
-- worker 완료와 제품 수락은 별개다. 시각·내용 최종 수락은 사용자(또는 이후 designer 시각 검수)가 한다.
-- lint.py는 결과 HEAD에서 ERROR 0이어야 한다.
+- worker 완료와 제품 수락은 별개다. 시각·음악 최종 수락은 사용자가 한다.
+- lint.py는 결과 HEAD에서 ERROR 0.
 
 ### UI 작업의 디자인 기준과 검증
 
-- 디자인 정본: service-member-ui.md 공개 첫페이지 절의 토큰·글꼴·관계 도식.
-- 재사용 컴포넌트: 없음(영상 전용 HTML). 의도적 예외: 정본은 '애니메이션 금지'를 공개 페이지에 둔 것이며 별도 영상에는 적용하지 않는다.
-- 디자인 lint: 해당 없음. HyperFrames check로 대신한다.
+- 디자인 정본: 브리프(색·글꼴·그리드·금지 목록)와 첫페이지 정본의 예시 이름.
+- 재사용 컴포넌트: 없음(영상 전용 HTML). 의도적 예외: 정본의 '공개 페이지 애니메이션 금지'는 별도 영상에 적용하지 않는다. 캔버스는 정본 흰색 대신 사용자 지정 warm-gray.
+- 디자인 lint: 해당 없음. 비트 프레임 직접 검토로 대신한다.
 - 테마 전환: 해당 없음(단일 밝은 테마).
 
 ## 갱신할 산출물
 
-없음(route 결과). 영상은 홍보 자산이며 D01–D13 원천을 바꾸지 않는다.
+없음. 영상은 홍보 자산이며 D01–D13 원천을 바꾸지 않는다. route 추천 D10·D13은 제품 코드·운영을 바꾸지 않아 제외했다.
 
 ## 기대 산출물
 
-`videos/service-intro/` 소스·storyboard·README, `renders/v01/service-intro.mp4`(또는 경로·sha256), `qa-reports/SAR-MOTION-INTRO-001-DEV-test/` 검수 기록.
+`videos/knowslink-motion/` 소스·자산 출처·README·beats.json, `renders/v01/knowslink-motion.mp4`(또는 경로·sha256), `qa-reports/SAR-MOTION-INTRO-001-DEV-test/a2/` 검수 기록.
 
 ## 제약·협업·후속
 
-하위 위임은 하지 않는다(단일 직렬 제작). 피할 스타일: 크림 배경, 알약 버튼, 모노스페이스 라벨, 큰 그라디언트, 네온·글로우, 장식 통계·배지, 이모지. 사용자 판단이 필요한 표현(문구 변경·톤)은 렌더 후 보고에 선택지로 적는다.
+하위 위임은 하지 않는다(단일 직렬 제작). 피할 스타일은 위 금지 목록과 크림 배경·알약 버튼 남발·모노스페이스 라벨·이모지. 음원 선택·문구 톤처럼 사용자 판단이 필요한 것은 렌더 후 보고에 선택지로 적고 멈추지 않는다.
+
+## 이전 완료 기록
+
+- .fullops-squad/handovers/logs/2026-10-17_to_dev.md
 
 <!-- fullops-packet:start -->
 ### 탐색 근거와 읽을 구간
 
-정본: `.fullops-squad\docs\evaluations\jev\SAR-MOTION-INTRO-001-DEV-packet.json` / SHA `c94b84303617564797f8bc21801dcd026811cccb` / partial=True
+정본: `.fullops-squad\docs\evaluations\jev\SAR-MOTION-INTRO-001-DEV-packet.json` / SHA `9fb42da4c69ba0c860e4c927c1d73d2a9780f855` / partial=True
 - `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
-- `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 2, 2, 2, 6, 6, 7, 14, 14, 14, 24, 26, 49, 60, 60, 82, 82 · inferred · 필수
-- `.fullops-squad/project.md` (document_read) · 줄 2, 10, 15 · inferred · 필수 · {'relevant': 0.17, 'evidence': 0.4, 'contradicts': 0.58, 'injection': 0.04, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md` (document_update, document_read, direct_edit) · 줄 53 · inferred · 필수
+- `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 2, 2, 2, 2, 6, 6, 7, 7, 14, 14, 14, 14, 24, 26, 31, 31, 32, 32, 37, 41, 41, 61, 61, 86, 86 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 2, 10, 15 · inferred · 필수
 - `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/archive/designer-2026-10-14-landing.md` (document_read) · 줄 39 · inferred
 - `.fullops-squad/contexts/archive/dev-2026-10-10.md` (document_read) · 줄 75 · inferred
 - `.fullops-squad/docs/deliverables/README.md` (document_read) · 줄 33 · inferred
 - `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 12, 119, 197, 209 · inferred
@@ -104,8 +114,8 @@ test_level: lite
 - `.fullops-squad/docs/design-docs/database-design.md` (document_read) · 줄 12 · inferred
 - `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 12, 156, 199, 298 · inferred
 - `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 39 · inferred
-- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md` (document_read) · 줄 75 · inferred
-- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md` (document_read) · 줄 30, 75 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md` (document_read) · 줄 28, 68, 72 · inferred
 - `.fullops-squad/docs/design-docs/module-design.md` (document_read) · 줄 12, 28 · inferred
 - `.fullops-squad/docs/design-docs/tech-stack.md` (document_read) · 줄 3, 12 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md` (document_read) · 줄 13 · inferred
@@ -119,6 +129,7 @@ test_level: lite
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-FINAL-review/report.md` (document_read) · 줄 12 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-N1-review/report.md` (document_read) · 줄 12 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md` (document_read) · 줄 13 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md` (document_read) · 줄 43, 66 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md` (document_read) · 줄 17, 67, 75 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md` (document_read) · 줄 13 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md` (document_read) · 줄 17, 39 · inferred
@@ -128,6 +139,7 @@ test_level: lite
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md` (document_read) · 줄 22 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md` (document_read) · 줄 16, 45, 55 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md` (document_read) · 줄 19, 26 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md` (document_read) · 줄 18 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md` (document_read) · 줄 18 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md` (document_read) · 줄 22 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md` (document_read) · 줄 18 · inferred
@@ -141,7 +153,7 @@ test_level: lite
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md` (document_read) · 줄 137 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md` (document_read) · 줄 26, 28 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md` (document_read) · 줄 23, 110 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md` (document_read) · 줄 31 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md` (document_read) · 줄 31, 38, 43 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md` (document_read) · 줄 22 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md` (document_read) · 줄 23 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-CODE-review/report.md` (document_read) · 줄 12 · inferred
@@ -176,12 +188,14 @@ test_level: lite
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md` (document_read) · 줄 13 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md` (document_read) · 줄 58 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md` (document_read) · 줄 12 · inferred
+- `.fullops-squad/docs/evaluations/scenarios/README.md` (document_read) · 줄 36 · inferred
+- `.fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md` (document_read) · 줄 50 · inferred
 - `.fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md` (document_read) · 줄 13 · inferred
 - `.fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md` (document_read) · 줄 13 · inferred
 - `.fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md` (document_read) · 줄 13 · inferred
 - `.fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md` (document_read) · 줄 42 · inferred
 - `.fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md` (document_read) · 줄 59 · inferred
-- `.fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md` (document_read) · 줄 36 · inferred
+- `.fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md` (document_read) · 줄 20, 36 · inferred
 - `.fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md` (document_read) · 줄 18, 31 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md` (document_read) · 줄 18 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md` (document_read) · 줄 27 · inferred
@@ -193,8 +207,11 @@ test_level: lite
 - `.fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md` (document_read) · 줄 34, 80, 143, 189 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md` (document_read) · 줄 96 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md` (document_read) · 줄 22, 42, 47, 70 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md` (document_read) · 줄 22 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md` (document_read) · 줄 22, 40 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md` (document_read) · 줄 14 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md` (document_read) · 줄 40 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md` (document_read) · 줄 24, 67 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md` (document_read) · 줄 40 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md` (document_read) · 줄 57 · inferred
@@ -212,18 +229,19 @@ test_level: lite
 - `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 3, 11, 42, 140, 149 · inferred
 - `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_read) · 줄 3, 34 · inferred
 - `.fullops-squad/docs/planning/sources/silent-agent-relay/README.md` (document_read) · 줄 1, 3 · inferred
-- `.fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md` (document_read) · 줄 180 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md` (document_read) · 줄 36, 45, 49, 68, 94, 146, 180 · inferred
 - `.fullops-squad/docs/planning/sources/silent-agent-relay/product.md` (document_read) · 줄 2, 12, 14 · inferred
+- `.fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md` (document_read) · 줄 380 · inferred
 - `.fullops-squad/handovers/SAR-MVP-001-REVIEW.md` (document_read) · 줄 14 · inferred
 - `.fullops-squad/handovers/logs/2026-10-03_to_designer.md` (document_read) · 줄 27, 29, 89, 94, 97, 101, 102, 235, 274 · inferred
 - `.fullops-squad/handovers/logs/2026-10-03_to_ops.md` (document_read) · 줄 17, 28, 60, 70, 115, 219, 240 · inferred
 - `.fullops-squad/handovers/logs/2026-10-04_to_dev.md` (document_read) · 줄 26, 28, 33, 89, 90, 110, 146, 197, 198, 204, 275 · inferred
 - `.fullops-squad/handovers/logs/2026-10-04_to_ops.md` (document_read) · 줄 23, 31, 70, 78, 118, 160, 161, 197, 229, 230, 270, 271, 295 · inferred
 - `.fullops-squad/handovers/logs/2026-10-04_to_tester.md` (document_read) · 줄 23, 31, 73, 81, 122, 123, 166, 167, 207 · inferred
-- `.fullops-squad/handovers/logs/2026-10-05_to_designer.md` (document_read) · 줄 109 · inferred
+- `.fullops-squad/handovers/logs/2026-10-05_to_designer.md` (document_read) · 줄 109, 140 · inferred
 - `.fullops-squad/handovers/logs/2026-10-05_to_dev.md` (document_read) · 줄 115, 132 · inferred
 - `.fullops-squad/handovers/logs/2026-10-05_to_ops.md` (document_read) · 줄 22, 64, 134 · inferred
-- `.fullops-squad/handovers/logs/2026-10-06_to_designer.md` (document_read) · 줄 26, 50, 94, 95, 183, 234, 236, 301, 381 · inferred
+- `.fullops-squad/handovers/logs/2026-10-06_to_designer.md` (document_read) · 줄 26, 50, 68, 94, 95, 183, 234, 236, 263, 280, 301, 381 · inferred
 - `.fullops-squad/handovers/logs/2026-10-06_to_ops.md` (document_read) · 줄 23, 95, 167, 191, 231, 233, 299, 352 · inferred
 - `.fullops-squad/handovers/logs/2026-10-06_to_tester.md` (document_read) · 줄 23, 91, 115, 161, 163, 223 · inferred
 - `.fullops-squad/handovers/logs/2026-10-07_to_designer.md` (document_read) · 줄 30 · inferred
@@ -241,50 +259,51 @@ test_level: lite
 - `.fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md` (document_read) · 줄 14 · inferred
 - `.fullops-squad/lint/README.md` (document_read) · 줄 2 · inferred
 - `.fullops-squad/orca-agents.md` (document_read) · 줄 36, 40, 41, 42, 43, 44, 50 · inferred
-- `.gitignore` (impact_check) · 줄 전체/미확인 · inferred
-- `AGENTS.md` (document_read) · 줄 전체/미확인 · inferred · {'relevant': 0.06, 'evidence': 0.2, 'contradicts': 0.19, 'injection': 0.04, 'decision': 'keep', 'reason': None}
-- `Makefile` (impact_check) · 줄 전체/미확인 · inferred
 - `README.md` (document_read) · 줄 2, 10, 84, 171, 190 · inferred
 - `adapters/.claude-plugin/plugin.json` (impact_check) · 줄 6 · inferred
 - `adapters/.codex-plugin/plugin.json` (impact_check) · 줄 6, 11, 14 · inferred
 - `adapters/.cursor-plugin/plugin.json` (impact_check) · 줄 6 · inferred
 - `adapters/.grok-plugin/plugin.json` (impact_check) · 줄 6 · inferred
 - `adapters/README.md` (document_read) · 줄 2, 10, 55, 57, 58, 60, 249, 338 · inferred
-- `adapters/hooks/register.test.ts` (impact_check) · 줄 210, 211, 251 · inferred
-- `adapters/hooks/register.ts` (impact_check) · 줄 1, 35, 37, 39, 40, 114, 119, 131, 165, 170, 177, 190, 192, 195, 207, 222, 225, 232, 237, 245, 257, 258, 268, 272, 278, 289, 291, 295, 304, 308, 320 · inferred
+- `adapters/hooks/register.test.ts` (impact_check) · 줄 14, 100, 210, 211, 245, 248, 251, 295 · inferred
+- `adapters/hooks/register.ts` (impact_check) · 줄 1, 35, 37, 39, 40, 114, 119, 131, 165, 170, 177, 190, 192, 195, 207, 222, 225, 232, 237, 245, 257, 258, 265, 268, 272, 278, 289, 291, 295, 304, 308, 320 · inferred
 - `adapters/manifest.json` (impact_check) · 줄 6, 30 · inferred
-- `adapters/package.json` (impact_check) · 줄 전체/미확인 · inferred
-- `adapters/skills/knowslink/SKILL.md` (document_read) · 줄 3, 6, 22, 36, 50 · inferred
-- `adapters/src/mcp.ts` (impact_check) · 줄 156, 187, 427, 432, 440 · inferred
-- `adapters/src/trial-cli.ts` (impact_check) · 줄 35 · inferred
-- `adapters/src/trial-setup.ts` (impact_check) · 줄 전체/미확인 · inferred
+- `adapters/skills/knowslink/SKILL.md` (document_read) · 줄 3, 6, 18, 22, 26, 28, 36, 36, 42, 50 · inferred
+- `adapters/src/grok-wake.test.ts` (impact_check) · 줄 28, 67, 104 · inferred
+- `adapters/src/inbox.ts` (impact_check) · 줄 18, 83, 97, 268, 276, 280, 288 · inferred
+- `adapters/src/login.test.ts` (impact_check) · 줄 17, 89 · inferred
+- `adapters/src/mcp.ts` (impact_check) · 줄 156, 187, 413, 427, 432, 440 · inferred
+- `adapters/src/public-check.ts` (impact_check) · 줄 22 · inferred
+- `adapters/src/session-lock.test.ts` (impact_check) · 줄 20 · inferred
+- `adapters/src/session-lock.ts` (impact_check) · 줄 52 · inferred
+- `adapters/src/trial-check.ts` (impact_check) · 줄 18 · inferred
+- `adapters/src/trial-cli.ts` (impact_check) · 줄 17, 35 · inferred
+- `adapters/src/trial-setup.ts` (impact_check) · 줄 22, 85 · inferred
 - `cmd/migrate/main.go` (impact_check) · 줄 15 · inferred
 - `cmd/relay/main.go` (impact_check) · 줄 15, 16 · inferred
 - `deploy/knowslink/access_trial_plan.py` (impact_check) · 줄 25 · inferred
-- `deploy/knowslink/tunnel/config.yml.tmpl` (impact_check) · 줄 전체/미확인 · inferred
-- `deploy/knowslink/tunnel/public-ingress.yml` (impact_check) · 줄 전체/미확인 · inferred
-- `deploy/knowslink/verify.py` (impact_check) · 줄 전체/미확인 · inferred
+- `deploy/knowslink/verify.py` (impact_check) · 줄 1 · inferred
 - `docs/README.md` (document_read) · 줄 2, 10 · inferred
-- `docs/architecture.md` (document_read) · 줄 전체/미확인 · inferred
 - `docs/development.md` (document_read) · 줄 30 · inferred
-- `docs/operations.md` (document_read) · 줄 전체/미확인 · inferred
-- `docs/system-design.md` (document_read) · 줄 전체/미확인 · inferred
 - `go.mod` (impact_check) · 줄 1 · inferred
-- `internal/relay/human_http.go` (impact_check) · 줄 전체/미확인 · inferred
-- `internal/relay/human_pages.go` (impact_check) · 줄 7, 8 · inferred
+- `internal/relay/admission_integration_test.go` (impact_check) · 줄 153 · inferred
+- `internal/relay/capacity.go` (impact_check) · 줄 30 · inferred
+- `internal/relay/cleanup_flood_integration_test.go` (impact_check) · 줄 178 · inferred
+- `internal/relay/cleanup_unit_integration_test.go` (impact_check) · 줄 108 · inferred
+- `internal/relay/connections_test.go` (impact_check) · 줄 261 · inferred
+- `internal/relay/human.go` (impact_check) · 줄 71 · inferred
+- `internal/relay/human_pages.go` (impact_check) · 줄 1, 7, 8 · inferred
 - `internal/relay/human_pages_test.go` (impact_check) · 줄 52 · inferred
-- `internal/relay/landing_integration_test.go` (impact_check) · 줄 전체/미확인 · inferred
 - `internal/relay/landing_pages.go` (impact_check) · 줄 5, 12, 43, 46, 52, 54, 75 · inferred
-- `internal/relay/member_pages.go` (impact_check) · 줄 48, 50 · inferred
-- `internal/relay/member_ui_test.go` (impact_check) · 줄 전체/미확인 · inferred
-- `scripts/check_public_ingress.py` (impact_check) · 줄 전체/미확인 · inferred
-- `scripts/install_bot_mcp.sh` (impact_check) · 줄 2 · inferred
-- `scripts/package_plugin.py` (impact_check) · 줄 41, 137, 142, 145, 155 · inferred
+- `internal/relay/member_pages.go` (impact_check) · 줄 6, 21, 48, 50 · inferred
+- `internal/relay/member_ui_test.go` (impact_check) · 줄 1 · inferred
+- `internal/relay/policy_test.go` (impact_check) · 줄 201 · inferred
+- `internal/relay/public_messages_integration_test.go` (impact_check) · 줄 58 · inferred
+- `scripts/install_bot_mcp.sh` (impact_check) · 줄 2, 35 · inferred
+- `scripts/package_plugin.py` (impact_check) · 줄 41, 137, 142, 145, 151, 155 · inferred
 - `scripts/schema.py` (impact_check) · 줄 20 · inferred
-- `scripts/shell_guard.py` (impact_check) · 줄 전체/미확인 · inferred
-- `scripts/test_shell_guard.py` (impact_check) · 줄 전체/미확인 · inferred
-- `scripts/verify_grok_plugin.py` (impact_check) · 줄 전체/미확인 · inferred
-- `scripts/verify_setup.py` (impact_check) · 줄 전체/미확인 · inferred
+- `scripts/shell_guard.py` (impact_check) · 줄 43, 90 · inferred
+- `scripts/test_shell_guard.py` (impact_check) · 줄 35 · inferred
 미확인 22건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 

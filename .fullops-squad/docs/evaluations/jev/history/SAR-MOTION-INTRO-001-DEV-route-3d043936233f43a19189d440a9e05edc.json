@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-MOTION-INTRO-001-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.57,
+        "product": 0.43
+      },
+      "confidence": 0.14
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.99,
+        "ops": 0,
+        "tester": 0.01
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.34,
+      "D02": 0.28,
+      "D03": 0.3,
+      "D04": 0.28,
+      "D05": 0.29,
+      "D06": 0.24,
+      "D07": 0.19,
+      "D08": 0.26,
+      "D09": 0.28,
+      "D10": 0.57,
+      "D11": 0.33,
+      "D12": 0.48,
+      "D13": 0.52
+    }
+  },
+  "usage": {
+    "input_tokens": 2496,
+    "output_tokens": 314,
+    "cost": 0.000104832
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.476,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "영상 제작 구현 과제, 이전 attempt와 같은 dev 담당",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "9fb42da4c69ba0c860e4c927c1d73d2a9780f855",
+  "requires_packet": true,
+  "attempt": "a767a2ea1444498ab7ef1eebe2c7aa97",
+  "instruction_sha256": "373a824eea92663539df84c47e96d7a0896cdbd6d2736abb643a60cdf9eeaf8c",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "6efe88b8921cb8024adda8d93ea34d6dc20a03e9b5df060e6b486ac010629bbc"
+}

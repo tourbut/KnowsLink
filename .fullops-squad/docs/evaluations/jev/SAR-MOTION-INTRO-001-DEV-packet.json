@@ -1,14 +1,17 @@
 {
   "task_key": "SAR-MOTION-INTRO-001-DEV",
   "role": "dev",
-  "head": "c94b84303617564797f8bc21801dcd026811cccb",
-  "attempt": "863239b7e0bd448c84856fc3489e966b",
-  "instruction_sha256": "6900258d66c187106a4c21a031b9005906e80e007e725ad7f00b35652d5b7d07",
+  "head": "9fb42da4c69ba0c860e4c927c1d73d2a9780f855",
+  "attempt": "a767a2ea1444498ab7ef1eebe2c7aa97",
+  "instruction_sha256": "5185fd2acfc2560b9638e2deb5740738548b8645651148d64775a4bbf84c1ce3",
   "options": {
     "policy": "packet-v3",
-    "seeds": [],
+    "seeds": [
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+    ],
     "required": [
       ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md",
       ".fullops-squad/handovers/to_dev.md",
       ".fullops-squad/project.md",
       ".fullops-squad/rules/common/README.md",
@@ -47,6 +50,7 @@
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md": "df49f42a49250ebac2e9e6dd6ee5dc9c2009c3a677ff5e232c488d9051f5350f",
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
       ".fullops-squad/docs/design-docs/module-design.md": "7727d315319b77116edac8a8edde947012aa44472e996e94cad72b217f56b768",
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md": "2695a613dfd28f4534dec714be4d35d73f3a3163d20782b0d636969f88a409c6",
       ".fullops-squad/docs/design-docs/tech-stack.md": "93767e9761e95950c18e913a8d9464a9b9ad9a990c1cd2f3410172b1cd9a9141",
       ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md": "a6ec750958416bff6402e7378639930af7158dc3097e94316327f0d9f8bd586c",
       ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.2.0-review/report.md": "6348f11a5e5920e3c28e13a022be783f6a86be26bd0dff5e6dfb5611492b14d7",
@@ -387,7 +391,7 @@
       ".fullops-squad/handovers/logs/2026-10-17_to_ops.md": "71574ae2376ba39e06236c9d8280fecbbc98782488cd397f19a51f2b3bc07325",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md": "4e571d304a05ea2241ce607854c842b16d37bbae23fb8efe935ce6cffffbcb64",
       ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md": "ad041e7f93cbe1a64a12b54a1597ba1bdb93797ee2a19a66f6e6532575a1a517",
-      ".fullops-squad/handovers/to_dev.md": "6900258d66c187106a4c21a031b9005906e80e007e725ad7f00b35652d5b7d07",
+      ".fullops-squad/handovers/to_dev.md": "5185fd2acfc2560b9638e2deb5740738548b8645651148d64775a4bbf84c1ce3",
       ".fullops-squad/lint/README.md": "f417dc4d17f3c9d9c8e05ef7caa8f8afc6bec08735cd21afb4a9bd378e940160",
       ".fullops-squad/orca-agents.md": "f9ff863ce8fcb9d90973a6412ceb028f02b983d5513e12a69f2f68af719beae0",
       ".fullops-squad/project.md": "f7e1e83eb7cd85d88a82a78e704dbbfb39bdf6ed6559c6fc3c60f02bd026d85b",
@@ -513,15 +517,12 @@
       "scripts/verify_setup.py": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
       "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0"
     },
-    "search_results": {
-      "find": "13b57b8bcdbd88c29daf79ae457c9a1c9b8b42a1d32ce6f8382ea9879e033eb2",
-      "context": "563bd75cb7f5c608b20c5616b0fe9fc8141b0ea5a91e6ccc9dc3ad859aad9edb"
-    },
+    "search_results": {},
     "decisions": []
   },
-  "input_sha256": "7ac6af7988b4af1de2fec881b7bce2d483ec48db9c4fd4153aa1768463348189",
+  "input_sha256": "630a02089a3d503f847b2b48cfbb5ed6c972dba9d2c6cbc3b5b3ef23cfa16c32",
   "version": "jev-packet-v2",
-  "base": "c94b84303617564797f8bc21801dcd026811cccb",
+  "base": "9fb42da4c69ba0c860e4c927c1d73d2a9780f855",
   "worktree_dirty": true,
   "items": [
     {
@@ -538,8 +539,34 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md",
+      "categories": [
+        "document_update",
+        "document_read",
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "required or existing context recommendation",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "of",
+          "line": 53,
+          "seed": ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "2695a613dfd28f4534dec714be4d35d73f3a3163d20782b0d636969f88a409c6",
+      "source_basis": "explicit_untracked_or_required"
     },
     {
       "path": ".fullops-squad/handovers/to_dev.md",
@@ -577,6 +604,14 @@
         },
         {
           "method": "string-search",
+          "symbol": "Playwright",
+          "line": 2,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "INTRO",
           "line": 6,
           "seeds": [
@@ -594,6 +629,14 @@
         {
           "method": "string-search",
           "symbol": "KnowsLink",
+          "line": 7,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
           "line": 7,
           "seeds": [
             "inbox"
@@ -625,6 +668,14 @@
         },
         {
           "method": "string-search",
+          "symbol": "Playwright",
+          "line": 14,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 24,
           "seeds": [
@@ -641,16 +692,8 @@
         },
         {
           "method": "string-search",
-          "symbol": "KnowsLink",
-          "line": 49,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
           "symbol": "INTRO",
-          "line": 60,
+          "line": 31,
           "seeds": [
             "inbox"
           ]
@@ -658,7 +701,7 @@
         {
           "method": "string-search",
           "symbol": "MOTION",
-          "line": 60,
+          "line": 31,
           "seeds": [
             "inbox"
           ]
@@ -666,7 +709,7 @@
         {
           "method": "string-search",
           "symbol": "INTRO",
-          "line": 82,
+          "line": 32,
           "seeds": [
             "inbox"
           ]
@@ -674,7 +717,63 @@
         {
           "method": "string-search",
           "symbol": "MOTION",
-          "line": 82,
+          "line": 32,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 37,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "INTRO",
+          "line": 41,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "MOTION",
+          "line": 41,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "INTRO",
+          "line": 61,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "MOTION",
+          "line": 61,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "INTRO",
+          "line": 86,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "MOTION",
+          "line": 86,
           "seeds": [
             "inbox"
           ]
@@ -684,9 +783,8 @@
       "required": true,
       "status": "inferred",
       "priority": 0,
-      "source_sha256": "6900258d66c187106a4c21a031b9005906e80e007e725ad7f00b35652d5b7d07",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_sha256": "5185fd2acfc2560b9638e2deb5740738548b8645651148d64775a4bbf84c1ce3",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/project.md",
@@ -728,15 +826,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "f7e1e83eb7cd85d88a82a78e704dbbfb39bdf6ed6559c6fc3c60f02bd026d85b",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.17,
-        "evidence": 0.4,
-        "contradicts": 0.58,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
@@ -752,8 +842,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "2c08a8b1fcaa796d7a5bd74b28d3ee68a6b92af6e591e71b9f64d418d92c1533",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
@@ -769,8 +858,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
@@ -786,8 +874,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
-      "source_basis": "tracked_worktree_overlay",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
@@ -803,8 +890,32 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "224a9c71c1c2fa6f4f33c9b1875eb0171b778b750394747c115efd5954e5136b",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 39,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "7323f6685d8ef5d6bc89703cd0a8d99ace558a667507c96599dce8346c13615f",
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
@@ -1127,6 +1238,14 @@
       "evidence": [
         {
           "method": "string-search",
+          "symbol": "Playwright",
+          "line": 30,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 75,
           "seeds": [
@@ -1142,33 +1261,45 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
-      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
-        "source mapping/reference; keep unchanged unless verified"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
         {
-          "method": "deliverable-index",
-          "id": "D04",
-          "source": [
-            "docs/design-docs/mockups/SAR-MVP-001-UI.md",
-            "docs/design-docs/mockups/service-member-ui.md"
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 28,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 68,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 72,
+          "seeds": [
+            "inbox"
           ]
         }
       ],
-      "doc_ids": [
-        "D04"
-      ],
+      "doc_ids": [],
       "required": false,
-      "status": "unknown",
+      "status": "inferred",
       "priority": 1,
-      "source_sha256": null,
-      "source_basis": null,
-      "context_signal": null
+      "source_sha256": "40e884141a521151fa29b2983b21909a8a9e4504be4b864db061b5386034abc4",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
@@ -1549,6 +1680,39 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 43,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 66,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "c5962f2d8b0bef0bdd9092c9894f764337a6317f76195a2e50b43a41318118a1",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
       "categories": [
         "document_read"
@@ -1835,6 +1999,31 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "229f443b6a727bff1af5bd239a84ea518d2935791d56db1b31d525e1265a0312",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 18,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "98a52e265e9cc4992c7bfe18cd66e0109c41e173ff78e29289557faabc607998",
       "source_basis": "HEAD"
     },
     {
@@ -2191,6 +2380,22 @@
           "method": "string-search",
           "symbol": "KnowsLink",
           "line": 31,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 38,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 43,
           "seeds": [
             "inbox"
           ]
@@ -3126,6 +3331,56 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 36,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e1fc58c415ad7e64908d0aef6d2aac145c3e603ea750588a0a783b0895455897",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 50,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "519f7f9f55e1c62e2bfc62be888022bd67e4e3f3e5308126d40798feae9b2a86",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
       "categories": [
         "document_read"
@@ -3259,6 +3514,14 @@
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 20,
+          "seeds": [
+            "inbox"
+          ]
+        },
         {
           "method": "string-search",
           "symbol": "KnowsLink",
@@ -3655,6 +3918,64 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 22,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5def42d4f22ccd943efa4b1ddef1c2d54f3e8781148b7e7a7971f85beacbe69d",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 22,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 40,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "6f9864882dc7ca03be11fa2342ad634c616e14b5e1bde2d708e629d3194e005c",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
       "categories": [
         "document_read"
@@ -3702,6 +4023,31 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "6aa10e57bbf0e089ee1b9189bec1c466d1aa6446e03f38d5c6c0c3631db3297f",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 40,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "3ca622fe6b6d8d67e1e9c2e4c0b40186ba9a91e2d93f8bbd0896260710323615",
       "source_basis": "tracked_worktree_overlay"
     },
     {
@@ -4372,6 +4718,54 @@
       "evidence": [
         {
           "method": "string-search",
+          "symbol": "of",
+          "line": 36,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 45,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 49,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 68,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 94,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 146,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 180,
           "seeds": [
@@ -4426,6 +4820,31 @@
       "priority": 1,
       "source_sha256": "7d45cd0c15112a6ea498debab9fb69adaf006de900f316ea41fbe77973b11adc",
       "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 380,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "892afa9114d4ed861400931ff21abac630f15cc8e60600fc7fc48afa655d5bda",
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
@@ -4945,6 +5364,14 @@
           "seeds": [
             "inbox"
           ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 140,
+          "seeds": [
+            "inbox"
+          ]
         }
       ],
       "doc_ids": [],
@@ -5055,6 +5482,14 @@
         },
         {
           "method": "string-search",
+          "symbol": "Playwright",
+          "line": 68,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 94,
           "seeds": [
@@ -5089,6 +5524,22 @@
           "method": "string-search",
           "symbol": "KnowsLink",
           "line": 236,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 263,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Playwright",
+          "line": 280,
           "seeds": [
             "inbox"
           ]
@@ -5879,68 +6330,11 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
-      "path": ".gitignore",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "595783a50601c938014a94b41366b8ed3f2e9adf20cae3eb3e2d7b11968831b5",
-      "source_basis": "tracked_worktree_overlay"
-    },
-    {
-      "path": "AGENTS.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "77136894b9a49dd67c3c231850ca8872c660f89094157844940f1d600c364be0",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.06,
-        "evidence": 0.2,
-        "contradicts": 0.19,
-        "injection": 0.04,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "Makefile",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "5dd825348888b8f25d0c600a365eaf2ec1f6ecd05cda52426afc0a491d1e3f33",
-      "source_basis": "HEAD"
-    },
-    {
       "path": "README.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -5998,7 +6392,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6024,7 +6417,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6066,7 +6458,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6092,7 +6483,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6118,7 +6508,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6200,10 +6589,25 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 14,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 100,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
         {
           "method": "string-search",
           "symbol": "KnowsLink",
@@ -6222,10 +6626,34 @@
         },
         {
           "method": "string-search",
+          "symbol": "of",
+          "line": 245,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 248,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 251,
           "seeds": [
             "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 295,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
           ]
         }
       ],
@@ -6242,7 +6670,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6424,6 +6851,14 @@
         },
         {
           "method": "string-search",
+          "symbol": "of",
+          "line": 265,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 268,
           "seeds": [
@@ -6508,7 +6943,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6537,28 +6971,11 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "adapters/package.json",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "947427a5891b76935fcfafdea86ddbdd4affd01e7e1cbd59413b3ba69820e7e0",
-      "source_basis": "HEAD"
-    },
-    {
       "path": "adapters/skills/knowslink/SKILL.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6580,6 +6997,14 @@
         },
         {
           "method": "string-search",
+          "symbol": "of",
+          "line": 18,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 22,
           "seeds": [
@@ -6588,10 +7013,42 @@
         },
         {
           "method": "string-search",
+          "symbol": "of",
+          "line": 26,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 28,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 36,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 36,
           "seeds": [
             "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 42,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
           ]
         },
         {
@@ -6611,12 +7068,158 @@
       "source_basis": "HEAD"
     },
     {
+      "path": "adapters/src/grok-wake.test.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 28,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 67,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 104,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "0cfe274ed0d33e91c061e41445f51d00fd8e52423c9dfc27b994f4c195f8d9d7",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 18,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 83,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 97,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 268,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 276,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 280,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 288,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "d4ceae67d0e55bb20d4a78d07a8e9c55fc51f1580ed737fcc2beba6775c7ddf9",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 17,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 89,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ae0a5e30447b16d35f6fc329b70f7a70de4405db6b6b744a6d51df1915c71844",
+      "source_basis": "HEAD"
+    },
+    {
       "path": "adapters/src/mcp.ts",
       "categories": [
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6634,6 +7237,14 @@
           "line": 187,
           "seeds": [
             "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 413,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
           ]
         },
         {
@@ -6669,15 +7280,122 @@
       "source_basis": "HEAD"
     },
     {
+      "path": "adapters/src/public-check.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 22,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "789bfc15eb843ea866d0724dc428c7047404baad32e825cf09a42ce75d5a456b",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "adapters/src/session-lock.test.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 20,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e973cb18ea2002ecef275c20a892b14c10108d3b10ed9722a3a6aaa8eaa32b50",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/src/session-lock.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 52,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "999f65a502cfbd3335d2d1ecf491f55cde77f8ef6e7e5425d339217af8f1837e",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/src/trial-check.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 18,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "51c62c5457ecb6d1a404a442a88be4c58ac2f3bd938ff142815d65f67ea1389b",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
       "path": "adapters/src/trial-cli.ts",
       "categories": [
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 17,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
         {
           "method": "string-search",
           "symbol": "KnowsLink",
@@ -6700,9 +7418,26 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 22,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 85,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
@@ -6716,7 +7451,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6742,7 +7476,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6776,7 +7509,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6797,46 +7529,23 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
-      "path": "deploy/knowslink/tunnel/config.yml.tmpl",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "116268e9e27bf495873749cc3a1e75d16d221cb082c6d9a1cfca5d1c66107d77",
-      "source_basis": "tracked_worktree_overlay"
-    },
-    {
-      "path": "deploy/knowslink/tunnel/public-ingress.yml",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "f97e0fd95a61164afe854564f1d8314eaf1dd535767fd7e18bb46caa3d648cb7",
-      "source_basis": "HEAD"
-    },
-    {
       "path": "deploy/knowslink/verify.py",
       "categories": [
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 1,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
@@ -6850,7 +7559,6 @@
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6879,28 +7587,11 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "docs/architecture.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "f991945b9567e10c830a04c5b8d5a641112eb892bb884b0b808a77c3b3a28a75",
-      "source_basis": "HEAD"
-    },
-    {
       "path": "docs/development.md",
       "categories": [
         "document_read"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6921,44 +7612,11 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "docs/operations.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "e55022e676d1210cd77edd9c3758cf17ad9eebcc98caf2982b0541f85de0ee91",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": "docs/system-design.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
-      "source_basis": "HEAD"
-    },
-    {
       "path": "go.mod",
       "categories": [
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -6979,19 +7637,153 @@
       "source_basis": "tracked_worktree_overlay"
     },
     {
-      "path": "internal/relay/human_http.go",
+      "path": "internal/relay/admission_integration_test.go",
       "categories": [
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 153,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "56d64f15bfdacb35f1882f1111a63f0e2cc26e1a9cadbdde8b17ce6c64cdab3f",
+      "source_sha256": "c815201bcc8d34d043bbc44bd949069192685beb0e3eec77c715e3914470f322",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 30,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e7425d7111ea1659d901e77accda5b5d6618c25223e83bac0d41f63d5ac93885",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/cleanup_flood_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 178,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "b7ac154bb82ec510bed917e4c4e04dcb4392a93501781baa649ce2c7621db3b7",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "internal/relay/cleanup_unit_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 108,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "4c702fa7c115281738790c37b92102792b9fe08b2ffece347ed3c88ab2b9ffa6",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 261,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "35c3e247efaa64a6f1a41ba44ab7b329d6152ae9b95bbdc22c48e924622d8036",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/human.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 71,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "d94a4fb34b10623c681b2988de0ca922ded715e5d47534530d9e59d3cc947f5c",
       "source_basis": "HEAD"
     },
     {
@@ -7000,10 +7792,17 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 1,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
         {
           "method": "string-search",
           "symbol": "KnowsLink",
@@ -7034,7 +7833,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7055,28 +7853,11 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "internal/relay/landing_integration_test.go",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "2667ad853f804b416fe179ec66ed46fe03dd7f15a79d8203718a99098131e9e5",
-      "source_basis": "HEAD"
-    },
-    {
       "path": "internal/relay/landing_pages.go",
       "categories": [
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7150,10 +7931,25 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 6,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 21,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
         {
           "method": "string-search",
           "symbol": "KnowsLink",
@@ -7184,9 +7980,18 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 1,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
@@ -7195,19 +8000,53 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "scripts/check_public_ingress.py",
+      "path": "internal/relay/policy_test.go",
       "categories": [
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 201,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "7805d70bc7d47fe650240b693948bc57a712e4e5a675e860bf025119e0ed3b68",
+      "source_sha256": "0ab6ab95db543afe422fe4126ff7f8679f1b3bae0a254a7e9ca77e43f85aacd3",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 58,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "bdf481030652f6945fde58eaa06900f63e7fd63479f660c69f95e15380bef308",
       "source_basis": "HEAD"
     },
     {
@@ -7216,7 +8055,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7226,6 +8064,14 @@
           "line": 2,
           "seeds": [
             "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 35,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
           ]
         }
       ],
@@ -7242,7 +8088,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7280,6 +8125,14 @@
         },
         {
           "method": "string-search",
+          "symbol": "of",
+          "line": 151,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
           "symbol": "KnowsLink",
           "line": 155,
           "seeds": [
@@ -7300,7 +8153,6 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "symbol/keyword occurrence; reference semantics require verification"
       ],
       "evidence": [
@@ -7326,9 +8178,26 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 43,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 90,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
@@ -7342,56 +8211,33 @@
         "impact_check"
       ],
       "reasons": [
-        "required or existing context recommendation"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "of",
+          "line": 35,
+          "seeds": [
+            ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
       "source_sha256": "9f0c41ebf3ebebe6c01672a4d37c4e5cf6e7f7e16357e777521d39e3d77a2b5f",
       "source_basis": "HEAD"
-    },
-    {
-      "path": "scripts/verify_grok_plugin.py",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "56cee9bad252a4e20dce2ea24bcf5f4b48a87adaef7298f5ce9299bea446d1d3",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": "scripts/verify_setup.py",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
-      "source_basis": "tracked_worktree_overlay"
     }
   ],
   "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
   "source_hash_policy": "verify before worker start; regenerate on change; completion allows implementation changes",
   "categories": {
-    "direct_edit": [],
+    "direct_edit": [
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+    ],
     "impact_check": [
-      ".gitignore",
-      "Makefile",
       "adapters/.claude-plugin/plugin.json",
       "adapters/.codex-plugin/plugin.json",
       "adapters/.cursor-plugin/plugin.json",
@@ -7399,41 +8245,50 @@
       "adapters/hooks/register.test.ts",
       "adapters/hooks/register.ts",
       "adapters/manifest.json",
-      "adapters/package.json",
+      "adapters/src/grok-wake.test.ts",
+      "adapters/src/inbox.ts",
+      "adapters/src/login.test.ts",
       "adapters/src/mcp.ts",
+      "adapters/src/public-check.ts",
+      "adapters/src/session-lock.test.ts",
+      "adapters/src/session-lock.ts",
+      "adapters/src/trial-check.ts",
       "adapters/src/trial-cli.ts",
       "adapters/src/trial-setup.ts",
       "cmd/migrate/main.go",
       "cmd/relay/main.go",
       "deploy/knowslink/access_trial_plan.py",
-      "deploy/knowslink/tunnel/config.yml.tmpl",
-      "deploy/knowslink/tunnel/public-ingress.yml",
       "deploy/knowslink/verify.py",
       "go.mod",
-      "internal/relay/human_http.go",
+      "internal/relay/admission_integration_test.go",
+      "internal/relay/capacity.go",
+      "internal/relay/cleanup_flood_integration_test.go",
+      "internal/relay/cleanup_unit_integration_test.go",
+      "internal/relay/connections_test.go",
+      "internal/relay/human.go",
       "internal/relay/human_pages.go",
       "internal/relay/human_pages_test.go",
-      "internal/relay/landing_integration_test.go",
       "internal/relay/landing_pages.go",
       "internal/relay/member_pages.go",
       "internal/relay/member_ui_test.go",
-      "scripts/check_public_ingress.py",
+      "internal/relay/policy_test.go",
+      "internal/relay/public_messages_integration_test.go",
       "scripts/install_bot_mcp.sh",
       "scripts/package_plugin.py",
       "scripts/schema.py",
       "scripts/shell_guard.py",
-      "scripts/test_shell_guard.py",
-      "scripts/verify_grok_plugin.py",
-      "scripts/verify_setup.py"
+      "scripts/test_shell_guard.py"
     ],
     "document_read": [
       ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md",
       ".fullops-squad/handovers/to_dev.md",
       ".fullops-squad/project.md",
       ".fullops-squad/rules/common/README.md",
       ".fullops-squad/rules/common/coding-style.md",
       ".fullops-squad/rules/common/security.md",
       ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
       ".fullops-squad/contexts/archive/dev-2026-10-10.md",
       ".fullops-squad/docs/deliverables/README.md",
       ".fullops-squad/docs/design-docs/architecture.md",
@@ -7443,7 +8298,7 @@
       ".fullops-squad/docs/design-docs/interface-design.md",
       ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
-      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
       ".fullops-squad/docs/design-docs/module-design.md",
       ".fullops-squad/docs/design-docs/tech-stack.md",
       ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
@@ -7457,6 +8312,7 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-FINAL-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-N1-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
@@ -7466,6 +8322,7 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
@@ -7514,6 +8371,8 @@
       ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+      ".fullops-squad/docs/evaluations/scenarios/README.md",
+      ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
       ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
       ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
       ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
@@ -7531,8 +8390,11 @@
       ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
@@ -7552,6 +8414,7 @@
       ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
       ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
       ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
       ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
       ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
       ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
@@ -7579,20 +8442,18 @@
       ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
       ".fullops-squad/lint/README.md",
       ".fullops-squad/orca-agents.md",
-      "AGENTS.md",
       "README.md",
       "adapters/README.md",
       "adapters/skills/knowslink/SKILL.md",
       "docs/README.md",
-      "docs/architecture.md",
-      "docs/development.md",
-      "docs/operations.md",
-      "docs/system-design.md"
+      "docs/development.md"
     ],
-    "document_update": []
+    "document_update": [
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md"
+    ]
   },
   "input_partial": true,
-  "task_excerpt": "---\ntitle: SAR-MOTION-INTRO-001-DEV — KnowsLink 서비스 소개 15초 모션그래픽을 HyperFrames로 제작·렌더·검수한다\nstatus: draft\nupdated: 2026-10-17\nowner: dev\ntasks: [SAR-MOTION-INTRO-001-DEV]\nsummary: KnowsLink 서비스 소개 15초 모션그래픽을 HyperFrames로 제작·렌더·검수한다\nattempt: 863239b7e0bd448c84856fc3489e966b\nbase: c94b84303617564797f8bc21801dcd026811cccb\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-MOTION-INTRO-001-DEV — KnowsLink 서비스 소개 15초 모션그래픽을 HyperFrames로 제작·렌더·검수한다\n\n현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.\n\n- 작성일: 2026-10-17\n- From / To: coor → dev\n- 상태: ready\n- 테스트 레벨 / 하위 에이전트 레벨: lite / standard\n- 승인된 범위(사용자 2026-10-17): `videos/service-intro/`에 `hyperframes@latest`를 npm으로 로컬 설치하고 HyperFrames 공식 스킬(heygen-com/hyperframes)을 받는다. 로컬 preview·check·render만 한다.\n- 추가 승인이 필요한 행위: 클라우드 렌더, 외부 TTS·생성형 이미지·스톡 자산, usage/feedback/publish 업로드, Remotion 사용, 음원 추가, 전역 도구 설치. 필요하면 `ask`로 멈춘다.\n- 담당 repo id / 워크트리 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev\n- 병합 책임자 / 기본 브랜치: coor / main·origin/main\n- 복귀: coor / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_e3a3e5f6-e163-420f-bba6-51b428f7671f / run·task·dispatch는 실제 preamble 값\n\n## 현재 상황과 확인 근거\n\n- 사용자 요청: \"해당 서비스 소개 모션 그래픽을 15초 짜리로 만들자\"(2026-10-17). 직전에 운영 배포한 link.knowslog.com의 KnowsLink를 소개한다.\n- 확정 규격: 16:9 1920×1080, 30fps, 15초(450프레임), H.264 MP4, 알파 없음, 무음(오디오 스트림 없음), 한글 문구.\n- 로컬 환경: Node v24.13.0, FFmpeg 8.0.1(gyan full build)이 PATH에 있다. HyperFrames CLI와 공식 스킬은 설치돼 있지 않다. `videos/` 폴더는 없다.\n- 메시지 정본은 공개 첫페이지다. 새 제품 메시지·기능 주장을 만들지 않는다.\n\n## 적용 기준과 예외\n\n공통 기준은 `.fullops-squad/rules/common/README.md` 및 연결 규칙이다. 기준 커밋 c94b843.\n[partial: read full inbox]\n외부 요청 없이 로컬 `C:/Windows/Fonts/malgun.ttf`(Malgun Gothic, 정본 첫 글꼴)를 프로젝트 자산으로 참조해 로드한다. 외부 GSAP/font URL은 로컬 자산으로 바꾼다. 한글 glyph 로드 성공을 확인한다. 글꼴 파일은 커밋하지 않고 경로와 라이선스 확인 결과를 기록한다(배포 가능 여부 unknown이면 그렇게 적는다).\n- [ ] preview로 장면을 확인하고 `hyperframes check --snapshots --json`을 실행한다. browserSkipped·빈 audit는 통과로 보지 않는다.\n- [ ] `renders/v01/service-intro.mp4`로 렌더한다. 실패·수정 렌더는 새 버전 폴더(v02…)를 쓰고 이전 파일을 덮지 않는다.\n- [ ] ffprobe로 길이 15.0초·1920×1080·30fps·450프레임·영상 스트림만 있음을 확인한다. 프레임 0, 각 장면 대표·전환 직전/직후, 449를 PNG로 추출해 직접 보고 문구 잘림·겹침·glyph 누락을 판정한다.\n- [ ] 깨끗한 다른 폴더에서 소스·lock·명령으로 재렌더해 규격과 대표 프레임을 대조한다(바이트 동일성은 요구하지 않는다).\n\n소유권: `videos/service-intro/`(소스·storyboard·package/lock·README에 재렌더 명령), `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/`(명령·exit·ffprobe JSON·프레임·판정). 제품 source·첫페이지·설계 문서는 수정하지 않는다. 최종 MP4는 10MB 이하면 커밋하고, 넘으면 커밋하지 않고 경로·sha256을 보고한다.\n\n## 완료 기준과 검증\n\n- 위 규격의 MP4가 있고 ffprobe·프레임 판정 근거가 delivery.md 검수 표 형식(passed|failed|not_run|unknown)으로 남는다. 음성 관련 항목은 무음이라 해당 없음으로 적는다.\n- 재렌더 명령만으로 같은 규격이 재현된다.\n- worker 완료와 제품 수락은 별개다. 시각·내용 최종 수락은 사용자(또는 이후 designer 시각 검수)가 한다.\n- lint.py는 결과 HEAD에서 ERROR 0이어야 한다.\n\n### UI 작업의 디자인 기준과 검증\n\n- 디자인 정본: service-member-ui.md 공개 첫페이지 절의 토큰·글꼴·관계 도식.\n- 재사용 컴포넌트: 없음(영상 전용 HTML). 의도적 예외: 정본은 '애니메이션 금지'를 공개 페이지에 둔 것이며 별도 영상에는 적용하지 않는다.\n- 디자인 lint: 해당 없음. HyperFrames check로 대신한다.\n- 테마 전환: 해당 없음(단일 밝은 테마).\n\n## 갱신할 산출물\n\n없음(route 결과). 영상은 홍보 자산이며 D01–D13 원천을 바꾸지 않는다.\n\n## 기대 산출물\n\n`videos/service-intro/` 소스·storyboard·README, `renders/v01/service-intro.mp4`(또는 경로·sha256), `qa-reports/SAR-MOTION-INTRO-001-DEV-test/` 검수 기록.\n\n## 제약·협업·후속\n\n하위 위임은 하지 않는다(단일 직렬 제작). 피할 스타일: 크림 배경, 알약 버튼, 모노스페이스 라벨, 큰 그라디언트, 네온·글로우, 장식 통계·배지, 이모지. 사용자 판단이 필요한 표현(문구 변경·톤)은 렌더 후 보고에 선택지로 적는다.\n\n## 완료 보고\n\n미착수.\n",
+  "task_excerpt": "---\ntitle: SAR-MOTION-INTRO-001-DEV — KnowsLink 14초 단일 도형 UI 모션을 Playwright·ffmpeg로 제작·렌더·검수한다\nstatus: draft\nupdated: 2026-10-17\nowner: dev\ntasks: [SAR-MOTION-INTRO-001-DEV]\nsummary: KnowsLink 14초 단일 도형 UI 모션을 Playwright·ffmpeg로 제작·렌더·검수한다\nattempt: a767a2ea1444498ab7ef1eebe2c7aa97\nbase: 9fb42da4c69ba0c860e4c927c1d73d2a9780f855\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-MOTION-INTRO-001-DEV — KnowsLink 14초 단일 도형 UI 모션을 Playwright·ffmpeg로 제작·렌더·검수한다\n\n현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.\n\n- 작성일: 2026-10-17\n- From / To: coor → dev\n- 상태: ready\n- 테스트 레벨 / 하위 에이전트 레벨: lite / standard\n- 승인된 범위(사용자 2026-10-17): 브리프의 프롬프트대로 로컬 제작·렌더. 작업 폴더 안 로컬 설치(npm `playwright`와 Chromium 브라우저 바이너리, Python venv의 `numpy`). Geist·Pretendard(OFL)를 공식 배포처(Vercel `geist` 릴리스·npm, `orioncactus/pretendard` 릴리스·npm)에서 받기. Mixkit(Mixkit 라이선스, 상업 무료)에서 약 120 BPM 곡과 필요한 UI 효과음을 받기.\n- 추가 승인이 필요한 행위: 클라우드 렌더, 외부 TTS·생성형 이미지·AI 음원, Mixkit 외 음원·효과음, 위 밖의 전역 도구 설치, 업로드·게시. 필요하면 `ask`로 멈춘다.\n- 담당 repo id / 워크트리 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev\n- 병합 책임자 / 기본 브랜치: coor / main·origin/main\n- 복귀: coor / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_e3a3e5f6-e163-420f-bba6-51b428f7671f / run·task·dispatch는 실제 preamble 값\n\n## 현재 상황과 확인 근거\n\n- 이전 attempt(HyperFrames, 1920×1080 무음)는 사용자가 철회해 중단했다. 기록: `.fullops-squad/handovers/logs/2026-10-17_to_dev.md`.\n- 이전 attempt의 미커밋 WIP가 dev 워크트리에 남아 있다: `videos/service-intro/`, `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/`. **건드리지 않는다(삭제·이동·커밋 금지).** 새 작업은 다른 폴더에서 한다.\n- 정본 브리프: `.fullops-squad/doc\n[partial: read full inbox]\n파일을 덮지 않는다.\n- [ ] 검수: ffprobe로 1440×1440·60fps·14.0초(840프레임)·영상+오디오 스트림 확인. 프레임 0과 839(마지막)를 PNG로 뽑아 픽셀 차이를 수치로 기록(루프 동일성). 각 상태 대표 프레임을 직접 보고 문구 잘림·겹침·glyph 누락을 판정. 오디오는 비트·효과음 정렬을 파형/피크 시각으로 대조(청취 수락은 사용자 몫, not_run 표시).\n- [ ] `W/README.md`: 설치·재렌더 명령, 의존 버전, 자산 출처. 깨끗한 다른 폴더에서 소스·lock·자산으로 재렌더해 규격·대표 프레임을 대조한다(바이트 동일성 요구 없음).\n\n소유권: `videos/knowslink-motion/` 전부, `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/a2/`(명령·exit·ffprobe JSON·비트 프레임·판정). 제품 source·첫페이지·설계 문서·이전 WIP는 수정하지 않는다. 최종 MP4는 10MB 이하면 커밋, 넘으면 커밋하지 않고 경로·sha256을 보고한다. 글꼴(OFL)·Mixkit 음원은 라이선스상 재배포가 허용되는지 확인해 허용되면 커밋, 불명확하면 커밋하지 않고 받는 명령·URL을 README에 둔다.\n\n예상 규모: index.html 600–1000줄, render 스크립트·분석 스크립트 각 100–200줄.\n\n## 완료 기준과 검증\n\n- 규격의 MP4가 있고, 비트 프레임 28장·ffprobe·루프 동일성 수치·대표 프레임 판정이 delivery.md 검수 표(passed|failed|not_run|unknown)로 남는다.\n- `seek(t)` 순수성 자체 검사: 같은 t를 순서를 바꿔 두 번 seek했을 때 스크린샷이 같다(작은 assert 스크립트 하나).\n- 재렌더 명령만으로 같은 규격이 재현된다.\n- worker 완료와 제품 수락은 별개다. 시각·음악 최종 수락은 사용자가 한다.\n- lint.py는 결과 HEAD에서 ERROR 0.\n\n### UI 작업의 디자인 기준과 검증\n\n- 디자인 정본: 브리프(색·글꼴·그리드·금지 목록)와 첫페이지 정본의 예시 이름.\n- 재사용 컴포넌트: 없음(영상 전용 HTML). 의도적 예외: 정본의 '공개 페이지 애니메이션 금지'는 별도 영상에 적용하지 않는다. 캔버스는 정본 흰색 대신 사용자 지정 warm-gray.\n- 디자인 lint: 해당 없음. 비트 프레임 직접 검토로 대신한다.\n- 테마 전환: 해당 없음(단일 밝은 테마).\n\n## 갱신할 산출물\n\n없음. 영상은 홍보 자산이며 D01–D13 원천을 바꾸지 않는다. route 추천 D10·D13은 제품 코드·운영을 바꾸지 않아 제외했다.\n\n## 기대 산출물\n\n`videos/knowslink-motion/` 소스·자산 출처·README·beats.json, `renders/v01/knowslink-motion.mp4`(또는 경로·sha256), `qa-reports/SAR-MOTION-INTRO-001-DEV-test/a2/` 검수 기록.\n\n## 제약·협업·후속\n\n하위 위임은 하지 않는다(단일 직렬 제작). 피할 스타일은 위 금지 목록과 크림 배경·알약 버튼 남발·모노스페이스 라벨·이모지. 음원 선택·문구 톤처럼 사용자 판단이 필요한 것은 렌더 후 보고에 선택지로 적고 멈추지 않는다.\n\n## 이전 완료 기록\n\n- .fullops-squad/handovers/logs/2026-10-17_to_dev.md\n\n## 완료 보고\n\n미착수.\n",
   "instruction": ".fullops-squad/handovers/to_dev.md",
   "partial": true,
   "unknown": [
@@ -7602,23 +8463,11 @@
     },
     {
       "source": "find",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "partial": false,
-      "input_partial": true,
-      "remaining_candidates": [],
-      "ranking_status": "single_batch",
-      "fallback": null
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "source": "context",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
-      }
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "path": ".fullops-squad/PLANS.md",
@@ -7697,28 +8546,12 @@
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
-  "producer_status": {
-    "find": {
-      "error": null,
-      "partial": false,
-      "input_partial": true,
-      "remaining_candidates": [],
-      "ranking_status": "single_batch",
-      "fallback": null
-    },
-    "context": {
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
-      }
-    }
-  },
+  "producer_status": {},
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
   "context_paths": [
+    ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
     ".fullops-squad/contexts/archive/dev-2026-10-10.md",
     ".fullops-squad/docs/deliverables/README.md",
     ".fullops-squad/docs/design-docs/architecture.md",
@@ -7728,7 +8561,7 @@
     ".fullops-squad/docs/design-docs/interface-design.md",
     ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
     ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
-    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
     ".fullops-squad/docs/design-docs/module-design.md",
     ".fullops-squad/docs/design-docs/tech-stack.md",
     ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
@@ -7737,11 +8570,11 @@
     ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.0-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.2-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
-    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md"
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md",
     ".fullops-squad/handovers/to_dev.md",
     ".fullops-squad/project.md",
     ".fullops-squad/rules/common/README.md",
@@ -7751,9 +8584,11 @@
   ],
   "optional_context_paths": [],
   "remaining_context_paths": [
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-FINAL-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-N1-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
@@ -7763,6 +8598,7 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
@@ -7811,6 +8647,8 @@
     ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
     ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+    ".fullops-squad/docs/evaluations/scenarios/README.md",
+    ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
     ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
     ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
     ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
@@ -7828,8 +8666,11 @@
     ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
@@ -7849,6 +8690,7 @@
     ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
     ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
     ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+    ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
     ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
     ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
     ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
@@ -7876,9 +8718,6 @@
     ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
     ".fullops-squad/lint/README.md",
     ".fullops-squad/orca-agents.md",
-    ".gitignore",
-    "AGENTS.md",
-    "Makefile",
     "README.md",
     "adapters/.claude-plugin/plugin.json",
     "adapters/.codex-plugin/plugin.json",
@@ -7888,37 +8727,41 @@
     "adapters/hooks/register.test.ts",
     "adapters/hooks/register.ts",
     "adapters/manifest.json",
-    "adapters/package.json",
     "adapters/skills/knowslink/SKILL.md",
+    "adapters/src/grok-wake.test.ts",
+    "adapters/src/inbox.ts",
+    "adapters/src/login.test.ts",
     "adapters/src/mcp.ts",
+    "adapters/src/public-check.ts",
+    "adapters/src/session-lock.test.ts",
+    "adapters/src/session-lock.ts",
+    "adapters/src/trial-check.ts",
     "adapters/src/trial-cli.ts",
     "adapters/src/trial-setup.ts",
     "cmd/migrate/main.go",
     "cmd/relay/main.go",
     "deploy/knowslink/access_trial_plan.py",
-    "deploy/knowslink/tunnel/config.yml.tmpl",
-    "deploy/knowslink/tunnel/public-ingress.yml",
     "deploy/knowslink/verify.py",
     "docs/README.md",
-    "docs/architecture.md",
     "docs/development.md",
-    "docs/operations.md",
-    "docs/system-design.md",
     "go.mod",
-    "internal/relay/human_http.go",
+    "internal/relay/admission_integration_test.go",
+    "internal/relay/capacity.go",
+    "internal/relay/cleanup_flood_integration_test.go",
+    "internal/relay/cleanup_unit_integration_test.go",
+    "internal/relay/connections_test.go",
+    "internal/relay/human.go",
     "internal/relay/human_pages.go",
     "internal/relay/human_pages_test.go",
-    "internal/relay/landing_integration_test.go",
     "internal/relay/landing_pages.go",
     "internal/relay/member_pages.go",
     "internal/relay/member_ui_test.go",
-    "scripts/check_public_ingress.py",
+    "internal/relay/policy_test.go",
+    "internal/relay/public_messages_integration_test.go",
     "scripts/install_bot_mcp.sh",
     "scripts/package_plugin.py",
     "scripts/schema.py",
     "scripts/shell_guard.py",
-    "scripts/test_shell_guard.py",
-    "scripts/verify_grok_plugin.py",
-    "scripts/verify_setup.py"
+    "scripts/test_shell_guard.py"
   ]
 }
