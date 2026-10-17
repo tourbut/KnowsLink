@@ -3,24 +3,24 @@
   "head": "999c6079a7780f1284da89c187cf1a9d593c9f1d",
   "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
   "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "claude-opus-5-5 (Claude Code, coor 배정 독립 reviewer sp001-code-review-2-opus)",
+  "conclusion": "수락. 이전 리뷰의 high 1·medium 2·low 3이 모두 해소됐고 수정으로 생긴 차단 회귀는 없다. 새 low 3건(대화상자가 열린 동안 교체돼도 승인된 발송 통과, 보이지 않는 변이 선택자 미처리, 최대 길이 대화상자 표시 미관측)은 후속 과제 또는 tester V05에서 다룬다.",
   "files": [
     {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
       "status": "modified",
       "insertions": 13,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D03 Claude Code 작업 세션 연결 절: FIX의 replaced 즉시 해제·대화상자 전체 본문 서술을 register.ts 동작과 대조했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 14,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D10 register.ts·text.ts 행과 V05 문단: 테스트 7건 목록과 fix/watch-busy.out 근거를 실제 테스트·증거와 대조했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-SESSION-PEER-001-DEV-FIX-context.json",
@@ -131,24 +131,24 @@
       "status": "added",
       "insertions": 81,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV QA 보고와 FIX 재검증 절을 fix/ 증거 파일과 대조했다. 이전 low 5(smoke 서술)가 로그 범위로 고쳐졌다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md",
       "status": "added",
       "insertions": 52,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. 이전 리뷰가 검토했고 전체 diff에서 FIX와 모순이 없음을 확인했다."
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "status": "modified",
       "insertions": 13,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D11 3·5단계: replaced 뒤 거부, 대화상자의 대상·reply_to·글자 수·본문 전체 안내가 동작과 일치한다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-17_to_dev.md",
@@ -156,111 +156,111 @@
       "insertions": 709,
       "deletions": 0,
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "하네스 자동 생성 기록. DEV-FIX 지시서의 고칠 항목·완료 기준과 완료 보고 절만 직접 읽었다. 패킷 블록은 열람하지 않았다."
     },
     {
       "path": ".fullops-squad/project.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. 모드 검사 명령·현재 상태 서술을 전체 diff로 다시 확인했다."
     },
     {
       "path": "adapters/README.md",
       "status": "modified",
       "insertions": 15,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "3·5단계 서술(본문 전체, 4096자 초과 deny, Other 비승인, replaced 즉시 해제)을 register.ts와 대조했다. 대화상자가 열린 동안 교체되는 경우는 finding 7."
     },
     {
       "path": "adapters/hooks/hooks.json",
       "status": "added",
       "insertions": 1,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. 모듈 등록 한 줄을 전체 diff로 확인했다."
     },
     {
       "path": "adapters/hooks/register.test.ts",
       "status": "added",
       "insertions": 215,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "연결 fixture 4건(전체 본문·reply_to·4097 deny, 취소·dialog 실패·Other·인자 누락, 외부 본문 미실행, replaced 뒤 deny)의 단언과 mock이 이전 medium 3을 충족하는지 확인했다."
     },
     {
       "path": "adapters/hooks/register.ts",
       "status": "added",
       "insertions": 239,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "FIX 변경(TEXT_MAX deny, kindLine, 전체 본문 ask, replaced 즉시 해제, ended 기본값)과 finally·turnOff·tool.call 경로의 상호작용을 전체 파일로 검토했다."
     },
     {
       "path": "adapters/package.json",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. scripts.format:check·test만 바뀌고 dependencies 변경이 없음을 다시 확인했다(DEP-001)."
     },
     {
       "path": "adapters/skills/knowslink/SKILL.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. 거절 뒤 재시도 금지·untrusted 표시 지시가 FIX 동작과 맞는다."
     },
     {
       "path": "adapters/src/core.ts",
       "status": "modified",
       "insertions": 4,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. agentId getter만 추가됐고 비밀을 노출하지 않는다."
     },
     {
       "path": "adapters/src/mcp.ts",
       "status": "modified",
       "insertions": 7,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. text zod max(4096)·peer max(128)이 hook의 TEXT_MAX·peer 표시와 정합함을 확인했다."
     },
     {
       "path": "adapters/src/session-lock.test.ts",
       "status": "added",
       "insertions": 57,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. claim/busy/take/release/dead/corrupt 검사를 전체 diff로 확인했다."
     },
     {
       "path": "adapters/src/session-lock.ts",
       "status": "added",
       "insertions": 70,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. replaced 판정 근거인 holdsSession과 자기 lock만 지우는 release를 다시 확인했다."
     },
     {
       "path": "adapters/src/text.ts",
       "status": "modified",
       "insertions": 70,
       "deletions": 15,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "bdc6500 이후 변경 없음. watch의 bound/busy/replaced 이벤트와 SIGTERM 해제가 모드의 즉시 stop과 충돌하지 않음을 확인했다."
     },
     {
       "path": "scripts/package_plugin.py",
       "status": "modified",
       "insertions": 4,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "이전 low 6 주석 수정(/knowslink-session on)을 확인했다. 동작 변경 없음."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/adapters-check-win.log",
@@ -287,7 +287,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "Windows npm run check 로그. 등록 gate product-lint 통과(lint.json)로 대체했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/adapters-test-win.log",
@@ -296,7 +296,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. Windows npm test PASS 10줄(session-lock 포함). 등록 gate는 lint.json으로 확인했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/debug-ui-lines.txt",
@@ -305,7 +305,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. 04:10:19 상태줄 해제와 연결 해제 toast가 기록됐다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/dialog-full-body.txt",
@@ -314,7 +314,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. 255자 본문이 끝 표시(TAIL250)까지 대화상자에 보이고 새 메시지·글자 수가 표시된다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/mod-test.full.log",
@@ -323,7 +323,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "원 출력. src/*.test.ts 로드 실패는 기존과 같은 판정 제외이며 요약 fix/mod-test.log를 읽었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/mod-test.log",
@@ -332,7 +332,7 @@
       "deletions": 0,
       "exclude_reason": "user_exclude",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. hooks/register.test.ts 7 pass."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/replaced-deny.txt",
@@ -341,7 +341,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. 교체 뒤 knowslink_text_receive deny와 status 미연결 문구가 보인다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/watch-busy.out",
@@ -350,7 +350,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. knowslink_session_busy 한 줄과 exit 2로 이전 low 5의 증거를 보완한다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/watch-take-bg.out",
@@ -359,7 +359,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. 04:10:08 takeover watcher bound 출력이다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fix/watch-take.out",
@@ -368,7 +368,7 @@
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
       "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "reason": "직접 읽었다. 첫 takeover 시도의 bound와 timeout 종료(exit 124)다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/mod-test.log",
@@ -398,12 +398,85 @@
       "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 205,
+      "end_line": 226,
+      "severity": "high",
+      "resolved": true,
+      "content": "[이전 #1 해소] 발송 승인 대화상자가 본문 전체와 \"본문 전체 N자\"를 잘림 없이 보이고 4096자 초과는 묻지 않고 deny한다. register.test.ts의 201자 이상·4097자 단언과 fix/dialog-full-body.txt 255자 관측으로 확인했다."
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 129,
+      "end_line": 139,
+      "severity": "medium",
+      "resolved": true,
+      "content": "[이전 #2 해소] knowslink_session_replaced에서 link === current이면 즉시 link=null·상태줄 초기화·자식 정지를 한다. 정지된 자식의 done.value 부재도 ?? {code:null}로 처리했다. 테스트의 replaced 뒤 send/receive deny와 fix/replaced-deny.txt로 확인했다."
+    },
+    {
+      "path": "adapters/hooks/register.test.ts",
+      "start_line": 51,
+      "end_line": 215,
+      "severity": "medium",
+      "resolved": true,
+      "content": "[이전 #3 해소] 연결 fixture로 취소·dialog 실패·Other 자유 입력·인자 누락 deny와 send 0, 악성 외부 본문 수신 뒤 Bash·send·대화상자·spawn 0, toast 본문 미포함을 검사한다. 모델 판단 부분은 자동화 불가 사유와 함께 DEV QA 보고에 남겼다."
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 213,
+      "end_line": 216,
+      "severity": "low",
+      "resolved": true,
+      "content": "[이전 #4 해소] 대화상자에 \"새 메시지\" 또는 \"답장(reply_to <ID>)\"를 보인다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md",
+      "start_line": 51,
+      "end_line": 51,
+      "severity": "low",
+      "resolved": true,
+      "content": "[이전 #5 해소] smoke 서술을 로그 3줄 범위로 고치고 busy exit 2 원 출력을 fix/watch-busy.out에 추가했다."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "start_line": 125,
+      "end_line": 125,
+      "severity": "low",
+      "resolved": true,
+      "content": "[이전 #6 해소] 주석을 /knowslink-session on으로 고쳤다."
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 217,
+      "end_line": 228,
+      "severity": "low",
+      "resolved": false,
+      "content": "link 확인은 ask 전에만 한다. 대화상자가 열린 동안 replaced 이벤트나 /knowslink-session off로 link가 null이 되어도 소유자가 \"보내기\"를 고르면 next(e)로 발송된다. 소유자가 본 본문 그대로라 SP-05/06은 지켜지지만 README·D03·D11의 \"이후 그 세션의 text 도구는 모두 거부된다\"와 어긋난다. 수정: ask 뒤 link가 같은 Link가 아니면 deny한다."
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 17,
+      "end_line": 17,
+      "severity": "low",
+      "resolved": false,
+      "content": "CONTROL은 Cc·Cf만 공백으로 바꾼다. 보이지 않는 변이 선택자(U+FE00–FE0F, U+E0100–E01EF, 일반 범주 Mn)는 대화상자에 그대로 들어가 화면에 보이지 않는다. 외부 본문에 조종된 모델이 이 문자로 숨긴 데이터를 덧붙이면 소유자는 \"전체 N자\" 숫자 외에는 알아채기 어렵다. 수정: 이런 문자를 가시 표식으로 바꿔 보이거나 포함되면 경고·deny한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md",
+      "start_line": 70,
+      "end_line": 70,
+      "severity": "low",
+      "resolved": false,
+      "content": "전체 본문 표시는 255자 본문으로만 관측했다. 최대 길이(4096자, 한글은 약 1365자=4096 bytes) 본문이 AskUserQuestion에서 잘리지 않고 표시되는지는 관측하지 않았다. UI가 긴 질문을 자르면 이전 high가 UI 계층에서 재현된다. tester V05/V06에서 최대 길이 본문 대화상자를 한 번 관측해 증거로 남긴다."
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
-    "implementer_session": "",
-    "reviewer_session": "",
-    "snapshot_path": "",
+    "implementer_session": "ctx_4bc77f1f98fc",
+    "reviewer_session": "sp001-code-review-2-opus",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-a5f301afdc044ac8a32f787012ca4e0a",
     "snapshot_head": "999c6079a7780f1284da89c187cf1a9d593c9f1d",
     "read_only": true
   }
