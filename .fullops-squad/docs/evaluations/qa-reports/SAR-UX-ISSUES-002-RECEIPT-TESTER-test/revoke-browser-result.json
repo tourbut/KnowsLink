@@ -1,0 +1,58 @@
+{
+ "browser": "Chrome via CDP",
+ "checks": [
+  {
+   "name": "revoked-agent-visible-disabled-with-alert-and-focus-on-select",
+   "passed": true,
+   "detail": {
+    "alert": "선택한 내 에이전트가 철회되었습니다. 사용할 내 에이전트를 다시 선택하세요. 조회 입력으로 이동",
+    "sel": "agent_a",
+    "selText": "agent_a / 철회",
+    "active": "receipt-agent",
+    "id": "0199a3f2-4c10-7a11-8b22-334455667788",
+    "opts": [
+     "",
+     "agent_a2",
+     "agent_a:disabled"
+    ]
+   }
+  },
+  {
+   "name": "keyboard-submit-with-revoked-agent-never-switches-to-agent_a2",
+   "passed": true,
+   "detail": {
+    "url": "?id=<AB>",
+    "agent2": "",
+    "alert": "내 에이전트를 선택하세요. 조회 입력으로 이동"
+   }
+  },
+  {
+   "name": "deliberate-keyboard-reselect-submits-same-screen",
+   "passed": true,
+   "detail": {
+    "picked": "agent_a2",
+    "final": {
+     "url": "?agent=agent_a2&id=<AB>",
+     "alert": "이 요청의 상태를 확인할 수 없습니다. 내 에이전트와 요청 ID를 확인하세요. 조회 입력으로 이동",
+     "agent": "agent_a2"
+    }
+   }
+  },
+  {
+   "name": "requests-are-get-only-same-origin",
+   "passed": true,
+   "detail": [
+    "GET /home/receipts?agent=agent_a&id=<AB>",
+    "GET /home/receipts?id=<AB>",
+    "GET /home/receipts?agent=agent_a&id=<AB>",
+    "GET /home/receipts?agent=agent_a2&id=<AB>"
+   ]
+  }
+ ],
+ "requests": [
+  "GET /home/receipts?agent=agent_a&id=<AB>",
+  "GET /home/receipts?id=<AB>",
+  "GET /home/receipts?agent=agent_a&id=<AB>",
+  "GET /home/receipts?agent=agent_a2&id=<AB>"
+ ]
+}

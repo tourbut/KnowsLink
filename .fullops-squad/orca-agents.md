@@ -22,9 +22,9 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 
 | 역할 | 책임·담당 경로 | 브랜치 | CLI | 모델 | 기동 방식 |
 |---|---|---|---|---|---|
-| coor | 과제 분해·배정·Run·진행 관리; `PLANS.md`, `handovers/`, `board/` | `fullops/coor` | `codex` | 모델 후보 | 상설 워크트리; 첫 요청 때 coordinator 세션 시작 |
-| designer | 제품 기획·요구사항·사용자 경험; `docs/planning/`, `docs/design-docs/mockups/` | `fullops/designer` | `codex` | 모델 후보 | 기획 과제 발생 시 `worker-start --run` |
-| dev | 기술 설계·구현·직접 검증; `docs/design-docs/` 기술 문서, `cmd/`, `internal/`, `adapters/`, `db/`, `scripts/`, 루트 Go·sqlc·Make·Docker·Compose 설정 | `fullops/dev` | `claude` 또는 `codex` | 모델 후보 | 기술 설계·구현 과제 발생 시 `worker-start --run` |
+| coor | 과제 분해·배정·Run·진행 관리; `PLANS.md`, `handovers/`, `board/` | `fullops/coor` | `claude` | 모델 후보 | 상설 워크트리; 첫 요청 때 coordinator 세션 시작 |
+| designer | 제품 기획·요구사항·사용자 경험; `docs/planning/`, `docs/design-docs/mockups/` | `fullops/designer` | `claude` | 모델 후보 | 기획 과제 발생 시 `worker-start --run` |
+| dev | 기술 설계·구현·직접 검증; `docs/design-docs/` 기술 문서, `cmd/`, `internal/`, `adapters/`, `db/`, `scripts/`, 루트 Go·sqlc·Make·Docker·Compose 설정 | `fullops/dev` | `claude` | 모델 후보 | 기술 설계·구현 과제 발생 시 `worker-start --run` |
 | ops | 배포·통합·운영; `docs/operations/`, 향후 배포 설정 경로 | `fullops/ops` | `claude` | 모델 후보 | 운영 과제 발생 시 `worker-start --run` |
 | tester | 재현·테스트·회귀 검증; `docs/evaluations/scenarios/`, `docs/evaluations/qa-reports/`, 향후 테스트 경로 | `fullops/tester` | `claude` 또는 `grok` | 모델 후보 | 구현 SHA 준비 후 `worker-start --run` |
 
@@ -55,20 +55,21 @@ coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 �
 사용자가 제공한 후보의 약한 것부터 강한 순서를 유지한다. dev CLI는 선택한 후보에 따른다.
 `worker-start --agent <CLI> --model <모델> --effort <effort> --run <run id>` 결과의 `launch.effective`로 실제 적용을 확인한다.
 
-- `coor` `codex` `gpt-6-luna` `xhigh`: 과제 라우팅·Run 운영. 사용자 확정 배정
-- `designer` `codex` `gpt-6.1-sol` `medium`: 단일 기능 기획, 단순 요구사항 명확화
-- `designer` `codex` `gpt-6.1-sol` `high`: 여러 사용자 흐름 기획, 요구사항 수락 검토
+- `coor` `claude` `claude-opus-5-5` `xhigh`: 과제 라우팅·Run 운영. Codex 구독 종료로 2026-10-17 Claude 전환
+- `designer` `claude` `claude-sonnet-5-5` `high`: 단일 기능 기획, 단순 요구사항 명확화
+- `designer` `claude` `claude-opus-5-5` `high`: 여러 사용자 흐름 기획, 요구사항 수락 검토
 - `dev` `claude` `claude-sonnet-5-5` `medium`: 한 줄 문구·수치·설정 변경
 - `dev` `claude` `claude-sonnet-5-5` `high`: 기존 패턴을 따르는 단일 파일 소규모 구현·버그 수정
 - `dev` `claude` `claude-opus-5-5` `medium`: 기존 패턴을 따르는 일반 기능 구현·검사 추가
-- `dev` `codex` `gpt-6.1-sol` `medium`: 여러 스크립트에 걸친 기능 구현, 모듈 연결
 - `dev` `claude` `claude-opus-5-5` `high`: 원인 추적이 필요한 버그, 여러 모듈 구현
-- `dev` `codex` `gpt-6.1-sol` `high`: 공유 계약을 따르는 큰 기능 구현·리팩터링
+- `dev` `claude` `claude-fable-5-1` `high`: 공유 계약을 따르는 큰 기능 구현·리팩터링
 - `ops` `claude` `claude-sonnet-5-5` `high`: 기록 검사·형식 검증·여러 SHA의 충돌 없는 main 통합 조정
 
 - `tester` `claude` `claude-sonnet-5-5` `medium`: 명확한 재현·좁은 핵심 경로 검증. 사용자 2026-10-09 추가
 - `tester` `claude` `claude-sonnet-5-5` `high`: 실패 경계·연동 회귀 검증. 사용자 2026-10-09 추가
 - `tester` `grok` `grok-4.7` `high`: 독립 QA·시나리오·회귀 검증. 사용자 2026-10-03 지정
+- 이미지 생성이 필요한 작업은 `grok`을 사용한다. 사용자 2026-10-17 지정
+
 
 ## 라우팅 기준
 
@@ -95,7 +96,7 @@ ops는 배포·통합·운영의 기술 계획과 검증을 맡는다. tester는
 리뷰 결과와 보고서는 기록 체크아웃에 작성한다. 별도 세션 ID·snapshot 경로·head·read_only를 기록한다.
 필요한 직접 시각 검수와 독립 동작 QA를 수행한다. 미해결 critical/high가 있으면 수락·병합을 차단한다.
 전환 전 리뷰 기록은 원본을 보존한다. 구현자 자기 리뷰로 독립 리뷰를 대체하지 않는다.
-모델 후보는 최신 coor 브랜치의 사용자 결정(Astra 제외)을 보존했다. 실제 CLI 지원 여부는 기동 때 확인한다.
+사용자가 2026-10-17 Codex 구독 종료로 Codex 모델을 모두 제외하고 Claude 모델로 대체하도록 지시했다. 기존 Astra/Sol 보류 기록은 이력으로 보존한다. 실제 CLI 지원 여부는 기동 때 확인한다.
 
 ## 검증 담당과 후속 인계
 

@@ -1,0 +1,85 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SESSION-PEER-001-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D02",
+    "D11",
+    "D01"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.3,
+        "product": 0.7
+      },
+      "confidence": 0.4
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.84,
+      "D02": 0.87,
+      "D03": 0.8,
+      "D04": 0.78,
+      "D05": 0.77,
+      "D06": 0.81,
+      "D07": 0.59,
+      "D08": 0.49,
+      "D09": 0.77,
+      "D10": 0.77,
+      "D11": 0.86,
+      "D12": 0.74,
+      "D13": 0.73
+    }
+  },
+  "usage": {
+    "input_tokens": 2457,
+    "output_tokens": 314,
+    "cost": 0.000103194
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D09",
+    "D10",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.45,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "사용자가 모델 변경 질문에 GPT Sol high로 변경해 계속 진행이라고 명시 답변했다. 제품 기획 책임과 기존 과제는 유지한다.",
+  "model": {
+    "agent": "codex",
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "174297c6050cbf0f0fc1d1fe928b4862435364a8085e818e5d18d193d3f6e9b1",
+  "head": "74c7c0315d075fc187756b73215f2e7264c86643",
+  "requires_packet": true
+}

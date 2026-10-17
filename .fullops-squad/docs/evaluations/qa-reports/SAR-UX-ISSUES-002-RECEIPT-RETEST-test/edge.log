@@ -1,0 +1,52 @@
+PASS first-view-autofocus-agent-select
+PASS labels-bound
+PASS tab-moves-to-id-with-visible-focus
+PASS tab-order-id-button-then-links
+PASS shift-tab-returns-to-id
+PASS skip-link-reachable-and-visible-on-focus
+PASS skip-link-targets-main
+PASS after-skip-next-tab-is-inside-main
+PASS invalid-submit-keeps-url-input-select
+PASS invalid-focus-on-field-with-alert
+PASS error-link-reaches-input
+PASS fixed-input-resubmits-same-screen
+PASS result-region-status-labelled
+PASS return-to-input-link-present
+PASS return-to-input-focuses-input-keeps-value
+PASS refresh-keeps-selection-and-id
+PASS back-restores-previous-query-input
+PASS bare-entry-restores-last-lookup
+PASS return-links-are-internal
+PASS refusal-alert-focus-and-message
+PASS refusal-keeps-select-and-id-editable
+PASS ax-landmarks-heading-form
+PASS ax-current-page-link
+PASS contrast-text-4.5-nontext-3
+PASS layout-1440x1-first
+PASS layout-1440x1-success
+PASS layout-1440x1-refusal
+PASS layout-1440x1-invalid
+PASS focus-visible-1440x1
+PASS layout-390x1-first
+PASS layout-390x1-success
+PASS layout-390x1-refusal
+PASS layout-390x1-invalid
+PASS focus-visible-390x1
+PASS layout-320x1-first
+PASS layout-320x1-success
+PASS layout-320x1-refusal
+PASS layout-320x1-invalid
+PASS focus-visible-320x1
+PASS layout-720x2-first
+PASS layout-720x2-success
+PASS layout-720x2-refusal
+PASS layout-720x2-invalid
+PASS focus-visible-720x2
+PASS details-toggle-by-keyboard
+FAIL selector-closed-shows-full-name-kind-distinguisher-1440 {"text":"agent_a / 긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트","textWidth":902,"avail":750}
+FAIL selector-closed-shows-full-name-kind-distinguisher-390 {"text":"agent_a / 긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트","textWidth":902,"avail":293}
+FAIL selector-closed-shows-full-name-kind-distinguisher-320 {"text":"agent_a / 긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트","textWidth":902,"avail":223}
+PASS layout-429-390
+PASS layout-429-320
+FAIL requests-same-origin-get-only [{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"},{"method":"GET","origin":"null","path":"/icons/sprite.svg"},{"method":"GET","origin":"null","path":"/build/content.css"}]
+checks 51 failed 4

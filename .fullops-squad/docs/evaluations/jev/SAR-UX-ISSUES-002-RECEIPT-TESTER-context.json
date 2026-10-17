@@ -1,0 +1,269 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "3393b33a36155b9f7849883ad29c04d32200b1d1",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "74d8fe4f039c1595bac2b3550896e225487327b2dff69ac46c15a31a68ae369d",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-UX-ISSUES-002.md",
+      "c1-testing.md",
+      "c2-README.md",
+      "c3-coding-style.md",
+      "c4-security.md",
+      "c5-project.md",
+      "c6-FULLOPS.md",
+      "c7-README.md",
+      "required_2"
+    ],
+    "recommended_ids": [
+      "c0-SAR-UX-ISSUES-002.md",
+      "c1-testing.md",
+      "c2-README.md",
+      "c3-coding-style.md",
+      "c4-security.md",
+      "c5-project.md",
+      "c6-FULLOPS.md",
+      "c7-README.md",
+      "required_2"
+    ],
+    "signals": {
+      "c0-SAR-UX-ISSUES-002.md": {
+        "relevant": 0.9,
+        "evidence": 0.96,
+        "contradicts": 0.16,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-testing.md": {
+        "relevant": 0.55,
+        "evidence": 0.8,
+        "contradicts": 0.11,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-README.md": {
+        "relevant": 0.1,
+        "evidence": 0.32,
+        "contradicts": 0.14,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-coding-style.md": {
+        "relevant": 0.15,
+        "evidence": 0.4,
+        "contradicts": 0.08,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-security.md": {
+        "relevant": 0.62,
+        "evidence": 0.78,
+        "contradicts": 0.1,
+        "injection": 0.19,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-project.md": {
+        "relevant": 0.48,
+        "evidence": 0.79,
+        "contradicts": 0.24,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-FULLOPS.md": {
+        "relevant": 0.42,
+        "evidence": 0.74,
+        "contradicts": 0.14,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-README.md": {
+        "relevant": 0.1,
+        "evidence": 0.21,
+        "contradicts": 0.17,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-UX-ISSUES-002.md": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "c1-testing.md": ".fullops-squad/rules/common/testing.md",
+      "c2-README.md": ".fullops-squad/rules/common/README.md",
+      "c3-coding-style.md": ".fullops-squad/rules/common/coding-style.md",
+      "c4-security.md": ".fullops-squad/rules/common/security.md",
+      "c5-project.md": ".fullops-squad/project.md",
+      "c6-FULLOPS.md": ".fullops-squad/FULLOPS.md",
+      "c7-README.md": "docs/README.md",
+      "required_2": ".fullops-squad/handovers/to_tester.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 29124,
+    "output_tokens": 608,
+    "cost": 0.001223208,
+    "known_cost": 0.001223208,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.551,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.536,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4801,
+        "output_tokens": 76,
+        "cost": 0.000201642
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.493,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3665,
+        "output_tokens": 76,
+        "cost": 0.00015393
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.514,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3097,
+        "output_tokens": 76,
+        "cost": 0.000130074
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.523,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3517,
+        "output_tokens": 76,
+        "cost": 0.000147714
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.508,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3266,
+        "output_tokens": 76,
+        "cost": 0.000137172
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.505,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3824,
+        "output_tokens": 76,
+        "cost": 0.000160608
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.542,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3812,
+        "output_tokens": 76,
+        "cost": 0.000160104
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.535,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3142,
+        "output_tokens": 76,
+        "cost": 0.000131964
+      }
+    }
+  ],
+  "request_max_seconds": 0.542,
+  "task_key": "SAR-UX-ISSUES-002-RECEIPT-TESTER",
+  "role": "tester",
+  "attempt": "01dee04206644423897a9c5bfb805800",
+  "instruction_sha256": "901043d005d4e4b7a2ec83822c57fb47b24d8bfe38ddc3e03232b2c4fd80608c",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/FULLOPS.md",
+      "docs/README.md"
+    ],
+    "required": [
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "sources": {
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md": "6122761e9f8e1b154f11c97d88194778451dfbad4e514ddc8aad7d193f9ea32e",
+      ".fullops-squad/rules/common/testing.md": "224a9c71c1c2fa6f4f33c9b1875eb0171b778b750394747c115efd5954e5136b",
+      ".fullops-squad/rules/common/README.md": "c49e4aead718d4c0bdc8bb0b71fd5062e7c4db87e456831ff326849bd616ed42",
+      ".fullops-squad/rules/common/coding-style.md": "cf83b775ca73e1cadcf65bb8c38bb1f3710bee8cdcd08819d03d3fb10372318e",
+      ".fullops-squad/rules/common/security.md": "2b781ff0c8550274274f986af88f20ca54607d1b54a28eed883cbb1c3a2e2fbc",
+      ".fullops-squad/project.md": "9827ba6ea6e20a5225e9e737d0cf090777b18cddaa2633d26fb173bf2a420d2a",
+      ".fullops-squad/FULLOPS.md": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
+      "docs/README.md": "30612de0833292b4b9a712f13c2f32acda097776a8fb07272deecaec33198484"
+    }
+  },
+  "unsent_sources": {},
+  "refused_paths": [],
+  "elapsed_seconds": 1.437,
+  "input_partial": true,
+  "instruction_chars": 3951,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 3951
+  }
+}

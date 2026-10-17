@@ -3,7 +3,7 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-15
 owner: tester
-tasks: [SAR-REFACTOR-002-TESTER, SAR-LANDING-GUIDE-001-TESTER]
+tasks: [SAR-REFACTOR-002-TESTER, SAR-LANDING-GUIDE-001-TESTER, SAR-UX-ISSUES-002-RECEIPT-TESTER]
 summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사용 경계를 기록한다
 ---
 
@@ -34,3 +34,7 @@ summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사
 
 - 2026-10-15 SAR-LANDING-GUIDE-001-TESTER 후속: CSS수정 f2b8cb6의 독립Chrome44·source18·예시간격 실제200% PASS. 원대비FAIL/원5149증거는 보존하고 V-LG-01/02의 수정후 해소만 판정했다. [보고](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md).
 - same-source Linux fc4 gate재사용과 현재QA HEAD Windows make unavailable을 구분한다. fixture HTML hash와 source style동일성은 인증·DB 성공을 뜻하지 않는다.
+
+- 2026-10-17 SAR-UX-ISSUES-002-RECEIPT-TESTER: fixture 18928/DEV 9ae29ec의 HTTP16·Chrome/Edge CDP 각51·철회 후7 검사. U6 격리·복구 통과, medium D-RT-01(닫힌 선택기가 긴 이름의 구분값을 가림). [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md).
+- Orca 탭은 hasFocus false라 Tab 입력이 무효이고 페이지 CSP가 fetch POST를 막는다. 키보드는 Chrome/Edge CDP Input.dispatchKeyEvent를 쓴다. `__Host-` 쿠키는 `cookie set --domain`이 아니라 `exec "cookies set ... --url"`로 넣는다.
+- fixture의 `revoke`는 되돌릴 수 없다. 모든 다른 검사 뒤에 실행하고 이후 재실행은 철회 상태를 기대값으로 따로 둔다. 회원당 40회 조회 한도는 기본 폼 GET도 센다. 검사 볼륨을 `recover`로 비운다.

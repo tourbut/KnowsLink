@@ -1,0 +1,145 @@
+{
+ "origin": "http://127.0.0.1:18928",
+ "evidence": {
+  "429": {
+   "status": 429,
+   "retry-after": null,
+   "alert": [
+    "요청이 많습니다. 2026-10-17 11:29:50 KST 이후 다시 시도하세요. "
+   ]
+  },
+  "503": {
+   "status": [
+    503,
+    503
+   ],
+   "cache": "no-store"
+  },
+  "expire": {
+   "status": 303,
+   "location": "/?n=expired"
+  }
+ },
+ "results": [
+  {
+   "check": "first_view_form_and_selector",
+   "covers": [
+    "U6 first",
+    "U2 name"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: agent_a / 긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-RETEST-test\\checks.py\", line 13, in deco\n    fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n    ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-RECEIPT-RETEST-test\\checks.py\", line 48, in _\n    assert opt.count(\" / \") == 2 and opt.endswith(\"agent_a\") and \"Node 22\" in opt, opt\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: agent_a / 긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트\n"
+  },
+  {
+   "check": "success_splits_delivery_processing_reply_and_keeps_input",
+   "covers": [
+    "U6 success"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "repeat_and_refresh_are_idempotent_read_only",
+   "covers": [
+    "U6 refresh",
+    "no send"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "refusals_are_indistinguishable_and_keep_owned_selection",
+   "covers": [
+    "U6 none/other/nonparticipant"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "foreign_agent_in_url_is_not_reflected",
+   "covers": [
+    "U6 other account",
+    "account isolation"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "invalid_format_is_escaped_and_editable_in_place",
+   "covers": [
+    "U6 invalid format"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "oversized_or_control_input_is_dropped_selection_kept",
+   "covers": [
+    "U6 safe length",
+    "escape"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "empty_id_keeps_selection",
+   "covers": [
+    "U6 empty"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "return_and_open_redirect_params_are_ignored",
+   "covers": [
+    "U7 safe return"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "receipt_cookie_is_minimal_and_hardened",
+   "covers": [
+    "recovery context"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "bare_lookup_restores_last_own_input_same_session",
+   "covers": [
+    "U6 back/restore"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "account_B_and_anonymous_never_see_A_content",
+   "covers": [
+    "isolation"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "tampered_recovery_cookie_does_not_cross_accounts_or_agents",
+   "covers": [
+    "tamper"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "429_keeps_input_shows_retry_and_manual_only",
+   "covers": [
+    "U6 429"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "503_outage_hides_previous_input_keeps_cookie_and_recovers",
+   "covers": [
+    "U6 503",
+    "fail-closed"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "session_expiry_then_same_member_restores_other_member_does_not",
+   "covers": [
+    "U6 session",
+    "same-account re-login"
+   ],
+   "result": "pass"
+  }
+ ]
+}

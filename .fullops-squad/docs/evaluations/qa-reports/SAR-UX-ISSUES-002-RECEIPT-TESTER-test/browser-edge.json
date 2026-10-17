@@ -1,0 +1,1517 @@
+{
+  "browser": "Edg/155.0.4283.45",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18928",
+  "mode": "full",
+  "checks": [
+    {
+      "name": "first-view-autofocus-agent-select",
+      "passed": true,
+      "detail": {
+        "tag": "SELECT",
+        "id": "receipt-agent",
+        "cls": "",
+        "href": null,
+        "text": "내 에이전트를 선택하세요긴한글긴한글긴한글긴한",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "labels-bound",
+      "passed": true
+    },
+    {
+      "name": "tab-moves-to-id-with-visible-focus",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "tab-order-id-button-then-links",
+      "passed": true,
+      "detail": [
+        "receipt-id",
+        "상태 확인",
+        "/home/agents",
+        "/home/legacy#receipts"
+      ]
+    },
+    {
+      "name": "shift-tab-returns-to-id",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "skip-link-reachable-and-visible-on-focus",
+      "passed": true,
+      "detail": {
+        "hops": 6,
+        "a": {
+          "tag": "A",
+          "id": "",
+          "cls": "skip",
+          "href": "#main",
+          "text": "본문으로 건너뛰기",
+          "fv": true,
+          "outline": "solid 3px rgb(0, 90, 98)",
+          "h": 44
+        }
+      }
+    },
+    {
+      "name": "skip-link-targets-main",
+      "passed": true
+    },
+    {
+      "name": "after-skip-next-tab-is-inside-main",
+      "passed": true,
+      "detail": {
+        "tag": "A",
+        "id": "",
+        "cls": "",
+        "href": "/home/agents",
+        "text": "내 에이전트",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "invalid-submit-keeps-url-input-select",
+      "passed": true
+    },
+    {
+      "name": "invalid-focus-on-field-with-alert",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "error-link-reaches-input",
+      "passed": true
+    },
+    {
+      "name": "fixed-input-resubmits-same-screen",
+      "passed": true,
+      "detail": {
+        "tag": "SECTION",
+        "id": "receipt-result",
+        "cls": "",
+        "href": null,
+        "text": "조회 결과\n전달전달됨. 수신 클라이언트의 저",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 348
+      }
+    },
+    {
+      "name": "result-region-status-labelled",
+      "passed": true
+    },
+    {
+      "name": "return-to-input-link-present",
+      "passed": true
+    },
+    {
+      "name": "return-to-input-focuses-input-keeps-value",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "refresh-keeps-selection-and-id",
+      "passed": true
+    },
+    {
+      "name": "back-restores-previous-query-input",
+      "passed": true
+    },
+    {
+      "name": "bare-entry-restores-last-lookup",
+      "passed": true
+    },
+    {
+      "name": "return-links-are-internal",
+      "passed": true
+    },
+    {
+      "name": "refusal-alert-focus-and-message",
+      "passed": true,
+      "detail": {
+        "tag": "P",
+        "id": "receipt-problem",
+        "cls": "problem",
+        "href": null,
+        "text": "이 요청의 상태를 확인할 수 없습니다. 내 ",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 94
+      }
+    },
+    {
+      "name": "refusal-keeps-select-and-id-editable",
+      "passed": true
+    },
+    {
+      "name": "ax-landmarks-heading-form",
+      "passed": true,
+      "detail": [
+        {
+          "role": "banner",
+          "name": ""
+        },
+        {
+          "role": "main",
+          "name": ""
+        },
+        {
+          "role": "navigation",
+          "name": "현재 위치"
+        },
+        {
+          "role": "heading",
+          "name": "요청 상태 조회"
+        },
+        {
+          "role": "button",
+          "name": "로그아웃"
+        },
+        {
+          "role": "heading",
+          "name": "조회 결과"
+        },
+        {
+          "role": "combobox",
+          "name": "내 에이전트"
+        },
+        {
+          "role": "textbox",
+          "name": "요청 ID 또는 답장 ID"
+        },
+        {
+          "role": "button",
+          "name": "상태 확인"
+        }
+      ]
+    },
+    {
+      "name": "ax-current-page-link",
+      "passed": true
+    },
+    {
+      "name": "contrast-text-4.5-nontext-3",
+      "passed": true,
+      "detail": {
+        "text": 14.698275841872928,
+        "muted": 6.187492322340107,
+        "link": 7.9580598507597955,
+        "button": 7.9580598507597955,
+        "inputBorder": 3.791136210756701,
+        "problemText": 14.698275841872928,
+        "problemEdge": 8.012007767850529
+      }
+    },
+    {
+      "name": "layout-1440x1-first",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": 0,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-1440x1-success",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-1440x1-refusal",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": 0,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-1440x1-invalid",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": 0,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "focus-visible-1440x1",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "layout-390x1-first",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-390x1-success",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-390x1-refusal",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": 0,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-390x1-invalid",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "focus-visible-390x1",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "layout-320x1-first",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-320x1-success",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-320x1-refusal",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-320x1-invalid",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "focus-visible-320x1",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "layout-720x2-first",
+      "passed": true,
+      "detail": {
+        "iw": 720,
+        "dpr": 2,
+        "over": 0,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-720x2-success",
+      "passed": true,
+      "detail": {
+        "iw": 720,
+        "dpr": 2,
+        "over": -15,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-720x2-refusal",
+      "passed": true,
+      "detail": {
+        "iw": 720,
+        "dpr": 2,
+        "over": 0,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "layout-720x2-invalid",
+      "passed": true,
+      "detail": {
+        "iw": 720,
+        "dpr": 2,
+        "over": 0,
+        "small": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "focus-visible-720x2",
+      "passed": true,
+      "detail": {
+        "tag": "INPUT",
+        "id": "receipt-id",
+        "cls": "",
+        "href": null,
+        "text": "",
+        "fv": true,
+        "outline": "solid 3px rgb(0, 90, 98)",
+        "h": 44
+      }
+    },
+    {
+      "name": "details-toggle-by-keyboard",
+      "passed": true
+    },
+    {
+      "name": "selector-closed-shows-full-name-kind-distinguisher-1440",
+      "passed": false,
+      "detail": {
+        "text": "긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트 / agent_a",
+        "textWidth": 902,
+        "avail": 750
+      }
+    },
+    {
+      "name": "selector-closed-shows-full-name-kind-distinguisher-390",
+      "passed": false,
+      "detail": {
+        "text": "긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트 / agent_a",
+        "textWidth": 902,
+        "avail": 293
+      }
+    },
+    {
+      "name": "selector-closed-shows-full-name-kind-distinguisher-320",
+      "passed": false,
+      "detail": {
+        "text": "긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트 / agent_a",
+        "textWidth": 902,
+        "avail": 223
+      }
+    },
+    {
+      "name": "layout-429-390",
+      "passed": true,
+      "detail": {
+        "l": {
+          "iw": 390,
+          "dpr": 1,
+          "over": -15,
+          "small": [],
+          "clipped": []
+        },
+        "st": {
+          "v": "0199a3f2-4c10-7a11-8b22-334455667788",
+          "a": "요청이 많습니다. 2026-10-17 09:12:36 KST 이후 다시 시도하세요. 조회 입력으로 이동"
+        }
+      }
+    },
+    {
+      "name": "layout-429-320",
+      "passed": true,
+      "detail": {
+        "l": {
+          "iw": 320,
+          "dpr": 1,
+          "over": -15,
+          "small": [],
+          "clipped": []
+        },
+        "st": {
+          "v": "0199a3f2-4c10-7a11-8b22-334455667788",
+          "a": "요청이 많습니다. 2026-10-17 09:12:36 KST 이후 다시 시도하세요. 조회 입력으로 이동"
+        }
+      }
+    },
+    {
+      "name": "requests-same-origin-get-only",
+      "passed": false,
+      "detail": [
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/icons/sprite.svg"
+        },
+        {
+          "method": "GET",
+          "origin": "null",
+          "path": "/build/content.css"
+        }
+      ]
+    }
+  ],
+  "captures": [
+    {
+      "file": "edge-success-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "5f39a88cd0708a8476affbb70938ac21a449fe2b983986ee7bd4d3a45cfc24d9"
+    },
+    {
+      "file": "edge-success-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "06df723ae9ae786eeac1a29cac83173169465bdf112d7ec3463fee1cf42514ca"
+    },
+    {
+      "file": "edge-refusal-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "0414b8f2515e11aa6e6cde54256e4116ebd4723e20ae8432224653ccb62757a8"
+    },
+    {
+      "file": "edge-success-320.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "303f9b0c184ce6ad4bca9e0b0ef0cdfd10af57f3a751ccce85eb5a4302b97794"
+    },
+    {
+      "file": "edge-refusal-320.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "e198e006f2e61f3cb430e4b9c98028b12c34fb1d83c70f88424a8d0b8fbb0295"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18928",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/icons/sprite.svg"
+    },
+    {
+      "method": "GET",
+      "origin": "null",
+      "path": "/build/content.css"
+    }
+  ]
+}
