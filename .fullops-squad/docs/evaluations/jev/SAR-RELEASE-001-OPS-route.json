@@ -1,0 +1,75 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-RELEASE-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.96,
+        "product": 0.04
+      },
+      "confidence": 0.92
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.07,
+        "ops": 0.93,
+        "tester": 0
+      },
+      "confidence": 0.89
+    },
+    "docs": {
+      "D01": 0.37,
+      "D02": 0.3,
+      "D03": 0.41,
+      "D04": 0.33,
+      "D05": 0.44,
+      "D06": 0.4,
+      "D07": 0.31,
+      "D08": 0.43,
+      "D09": 0.45,
+      "D10": 0.62,
+      "D11": 0.49,
+      "D12": 0.91,
+      "D13": 0.83
+    }
+  },
+  "usage": {
+    "input_tokens": 2530,
+    "output_tokens": 314,
+    "cost": 0.00010626
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.679,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "운영 배포는 orca-agents.md에서 ops 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "1dd6800d5d4238e2060f99e98eaab437ea06682c",
+  "requires_packet": true
+}
