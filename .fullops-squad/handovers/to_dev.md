@@ -277,5 +277,11 @@ D10, D11 해당분, DEV QA 보고서.
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-처리는 fullops-work, 회신은 fullops-orca 스킬을 따른다.
+- 브랜치 / 코드 SHA: `fullops/dev` / 수정 커밋 `242daca9bebfe7b9c2b5fa391d31bc44db99bd32`(base `37d491c`, 인박스 기준 `999c607`). 최종 기록 커밋 SHA와 등록 gate 결과는 worker_done에 `SHA <40자리>`로 적는다.
+- 변경 이유와 내용:
+  - O-04(차단): `register.ts` `tool.call`에서 KnowsLink text 도구이고 `e.agentId`가 있으면 연결 확인보다 먼저 `KnowsLink: 하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다. 메인 대화에서 사용하세요.`로 deny한다. 판별 근거는 Claude Code 2.1.302 모드 API 타입의 `ToolCallInput = ToolCallEnvelope & AgentLoop & ToolRequestMeta`, `AgentLoop.agentId`(subagent·teammate 루프에서만 있고 메인 루프에서는 없음)다. 메인 대화와 별도 프로세스 자식의 기존 동작은 그대로다.
+  - O-07(현재 동작 유지): 코드 변경 없음. 세션 연결은 소유자의 세션 설정이고 친구 권한은 relay가 발송마다 다시 확인한다는 해석을 D10·D11·adapters/README.md·DEV QA 보고에 적었다. 근거는 tester V04 관측(해제 중 양방향 403, 재수락 뒤 새 세대 성공, 해제 전 receipt 403)이다.
+- 검증한 것: `register.test.ts`에 subagent send/receive deny·대화상자 0·메인 send/receive 허용 테스트 추가. `claude plugin test adapters` hooks 8 pass(`src/*.test.ts` 10행은 기존 kit 로드 실패로 제외), 패키지 폴더 8 pass 0 fail, `claude plugin validate adapters` 통과, `npm run check`·`npm test`(adapters) exit 0. 실제 Claude Code 2.1.302 세션 `2a2fd7a1`(agent A 설치, 격리 relay)에서 `/knowslink-session on` 뒤 Agent 도구 subagent의 `knowslink_text_receive`는 deny(transcript `isSidechain=True`, `is_error=True`), 이어서 메인 대화 같은 호출은 `received`. 이후 `off`·`/exit`, relay·postgres 컨테이너 다시 정지. 같은 HEAD Linux clone에서 `make lint` EXIT=0, `make test` EXIT=0(로그 `KnowsLinkDevTools/session-peer-001-dev/242daca…-{lint,test}.log`).
+- 못 한 것: Agent 도구가 이번에 subagent를 background로 띄웠다. foreground subagent·teammate의 `agentId`는 타입 문서 기준이며 별도 실행하지 않았다. 의존성 변경 없음.
+- 산출물·로그: D10 `module-design.md`, D11 `user-guide.md`, `adapters/README.md`, DEV QA 보고 `SAR-SESSION-PEER-001-DEV-test/report.md`의 'FIX-2' 절과 `fix2/` 증거(화면·transcript 추출·mod/adapters 로그), `jev/SAR-SESSION-PEER-001-DEV-FIX-2-packet-outcomes.json`.
+- 남은 일: 새 SHA 재리뷰·tester 재확인·main 통합(coor). 범위 밖 low 후속(재연결 대기 수, toast 이름, relay 정지 안내, 리뷰 low 3)은 손대지 않았다.
