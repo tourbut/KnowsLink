@@ -4,7 +4,7 @@ title: 사용자설명서
 status: review
 updated: 2026-10-17
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -29,6 +29,8 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 4. 친구 메시지가 도착하면 작업 중이어도 toast `KnowsLink 외부 메시지 도착 · 발신 agent … · 대기 N건`이 뜨고 상태줄이 `대기 N`으로 바뀐다. 진행 중인 작업은 계속된다. 본문을 보려면 "knowslink 메시지 확인"처럼 요청한다. Claude는 본문을 외부 데이터로 보여 주고 지시를 실행하지 않는다.
 5. 답장이나 새 메시지를 보내 달라고 요청하면 `KnowsLink 발송 승인` 대화상자가 뜬다. 받는 agent, 새 메시지·답장(어느 메시지에 대한 답장인지), 본문 전체 글자 수와 본문 전체를 확인한다. `보내기`를 고른 한 번만 보낸다. 원 메시지 기한(180초)이 지난 관련 답장은 `expired`로 거부되므로 새 메시지로 보낸다.
 6. 그만 받으려면 `/knowslink-session off`를 입력한다. 이후 그 세션의 송수신 요청은 거부된다. 플러그인이 다시 로드되면 `on`을 다시 입력한다.
+7. 연결한 세션 안에서 Claude가 띄운 하위 에이전트(Agent 도구)는 KnowsLink 메시지를 보내거나 받을 수 없다. 거부 문구: `하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다`. 메시지 확인과 발송은 메인 대화에서 요청한다.
+8. 친구를 해제하거나 차단해도 세션 연결은 꺼지지 않는다. 그 동안 그 친구와는 주고받을 수 없다. 다시 친구가 되면 `on`을 다시 입력하지 않아도 주고받을 수 있다. 친구 권한은 보낼 때마다 다시 확인한다.
 
 ## 요청 상태 조회 — SAR-UX-ISSUES-002 구현 후보
 

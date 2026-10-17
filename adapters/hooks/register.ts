@@ -192,6 +192,11 @@ export const register: Register = (on) => {
   on("tool.call", async ($, e, next) => {
     const kind = TOOL.exec(e.tool)?.[1];
     if (!kind) return next(e);
+    // A subagent or teammate loop of this session (agentId set) would share the owner's link and inbox; only the main conversation may use it (SP-04).
+    if (e.agentId)
+      return {
+        deny: "KnowsLink: 하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다. 메인 대화에서 사용하세요.",
+      };
     if (!link)
       return {
         deny: "KnowsLink: 이 세션은 연결되지 않았습니다. /knowslink-session on 으로 먼저 연결하세요.",

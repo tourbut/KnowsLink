@@ -18,10 +18,14 @@ summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 | `adapters/src/session-lock.ts` | agent 폴더당 한 수신 세션: `wx` 배타 생성, 다른 살아 있는 세션은 busy, `--take`·죽은 pid·같은 세션은 교체, 자기 lock만 해제 | `session-lock.test.ts`: claim/busy/take/release/dead holder/corrupt/alias 검증 |
 | `adapters/src/text.ts` `watch(folder, session?, take)` | 세션 결속 watcher: bound/busy 이벤트, 10초 lock 감시 후 `replaced` 종료, SIGTERM/SIGINT 해제. 출력은 metadata만 | `inbox.test.ts` 6(기존), 격리 relay smoke(`watcher-smoke.log`: bound→takeover→replaced, `fix/watch-busy.out`: busy exit 2) |
 | `adapters/src/core.ts` `agentId` | 비밀 없는 agent 주소 getter | 타입 검사 |
-| `adapters/hooks/register.ts` | 모드: `/knowslink-session` 명령, 자식 spawn·이벤트 파싱, toast·상태줄, 미연결 text 도구 deny, 발송 승인 대화상자(본문 전체·글자 수·reply_to, 4096자 초과 deny), 인자 누락 deny, `replaced` 즉시 해제, 수신 뒤 대기 수 갱신, reload 시 상태줄 초기화 | `claude plugin validate adapters`, `hooks/register.test.ts` 7건(미연결 deny 2종·status/off 문구·다른 도구 통과, 연결 fixture로 201자 이상 전체 본문·reply_to 표시, 취소·dialog 실패·Other 입력·인자 누락 deny, 외부 본문 미실행, replaced 뒤 deny), 두 Claude 세션 V01 |
+| `adapters/hooks/register.ts` | 모드: `/knowslink-session` 명령, 자식 spawn·이벤트 파싱, toast·상태줄, 미연결 text 도구 deny, 같은 세션 subagent·teammate 호출(`tool.call`의 `agentId` 있음) text 도구 deny, 발송 승인 대화상자(본문 전체·글자 수·reply_to, 4096자 초과 deny), 인자 누락 deny, `replaced` 즉시 해제, 수신 뒤 대기 수 갱신, reload 시 상태줄 초기화 | `claude plugin validate adapters`, `hooks/register.test.ts` 8건(미연결 deny 2종·status/off 문구·다른 도구 통과, 연결 fixture로 201자 이상 전체 본문·reply_to 표시, 취소·dialog 실패·Other 입력·인자 누락 deny, 외부 본문 미실행, replaced 뒤 deny, subagent send/receive deny·메인 대화 허용), 두 Claude 세션 V01 |
 | `scripts/package_plugin.py` | Claude ZIP에 hooks 3파일 포함, `--connect` 시 Claude에만 `KNOWSLINK_AUTO_RECEIVE=off` | `--host claude --verify` 추출 MCP 검사·준비 경계 |
 
 V05(외부 본문 명령 미실행·승인 없는 답장 0)는 모드 hook 수준의 연결 fixture 검사와 실제 세션 관측으로(모델이 본문 지시를 따르지 않는지는 자동화하지 않는다. 근거는 DEV QA 보고), V06(4096/4097)은 기존 `mcp.test.ts` textBoundaries로 확인했다. `claude plugin test adapters`는 `src/*.test.ts`(node 검사)까지 찾아 로드 실패로 표시하므로 모드 검사 결과는 `hooks/register.test.ts` 행만 본다. 패키지 추출 폴더에서는 모드 검사만 실행된다.
+
+SP-04 해석(사용자 결정 2026-10-17, SAR-SESSION-PEER-001-DEV-FIX-2): 연결된 세션 안의 같은 프로세스 subagent는 부모와 같은 모드 상태를 보므로 연결을 그대로 쓸 수 있었다. 모드는 `tool.call` 입력의 `agentId`(Claude Code 2.1.302: subagent·teammate 루프에서만 있고 메인 루프에서는 없음)로 이를 구별해 KnowsLink text 도구(send/receive/receipt)를 deny한다. 메인 대화는 기존대로 쓴다. 별도 프로세스 자식은 연결 상태가 없어 기존 미연결 deny를 그대로 받는다.
+
+V04 해석(사용자 결정 2026-10-17): 세션 연결(`/knowslink-session on`의 lock·watcher)은 소유자의 세션 설정이다. 친구 해제·차단 동안에도 연결은 유지되고 재수락 뒤 다시 `on`할 필요가 없다. 친구 권한은 relay가 발송마다 다시 확인한다. tester 관측(SAR-SESSION-PEER-001-TESTER, fullops/tester a32d0ab)에서 해제 중 A→B·B→A 발송은 모두 403이었고, 재수락 뒤 발송은 새 세대로 성공했으며, 해제 전 메시지의 receipt 조회는 `403 sender_not_allowed`였다. 따라서 V04의 '재수락 후 옛 연결'은 해제 전 친구 권한(과거 세대)을 뜻하고 세션 연결 자체를 뜻하지 않는다. 코드는 바꾸지 않았다.
 
 ## SAR-UX-ISSUES-002 조회 입력과 복귀
 

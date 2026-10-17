@@ -171,6 +171,20 @@ test("cancel, a failed dialog, free text and missing arguments deny the send", a
   release();
 });
 
+test("a subagent of a connected session is denied the text tools; the main conversation is not", async ($, on) => {
+  const { seen, release } = connected(on, () => "보내기");
+  await $.command.run({ command: "knowslink-session", args: "on" });
+  for (const tool of [SEND, RECEIVE])
+    expect(
+      reason(await $.tool.call(send("hello", { tool, agentId: "sub_1" }))),
+    ).toMatch(/하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다/);
+  expect(seen.questions.length).toBe(0);
+  expect((await $.tool.call(send("hello"))).deny).toBeUndefined();
+  expect((await $.tool.call({ tool: RECEIVE })).deny).toBeUndefined();
+  expect(seen.sent).toBe(1);
+  release();
+});
+
 test("a received body never runs a command, a tool or a reply by itself", async ($, on) => {
   const { seen, release } = connected(on, () => "보내기", [
     { event: "knowslink_session_bound", agent: "claude_a" },

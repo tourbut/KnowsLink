@@ -3,7 +3,7 @@ title: KnowsLink 호스트별 설치
 status: draft
 updated: 2026-10-17
 owner: dev
-tasks: [SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV]
+tasks: [SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2]
 summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계
 ---
 
@@ -57,6 +57,8 @@ Claude Code 패키지에는 MCP 서버와 함께 함수 hook 모드(`hooks/regis
 4. 메시지가 도착하면 `KnowsLink 외부 메시지 도착 · 발신 agent <id> · 대기 N건 · 확인: knowslink_text_receive` toast와 상태줄 `KnowsLink <구분값> 대기 N`이 보인다. toast는 도착 알림이며 모델은 본문을 보지 않는다. 본문은 사용자가 요청할 때 `knowslink_text_receive`가 untrusted 데이터로 보여 준다. 작업 중인 turn은 중단되지 않는다(SP-08).
 5. `knowslink_text_send`는 호출마다 모드가 소유자에게 `KnowsLink 발송 승인: 내 agent → <peer>. 본문 「…」` 대화상자를 띄운다. 대화상자는 새 메시지인지 답장(`reply_to`)인지, 본문 전체 글자 수와 본문 전체를 잘라내지 않고 보인다. 4096자를 넘는 본문은 전체를 확인할 수 없으므로 묻지 않고 거부한다. `보내기`를 고른 한 번의 시도만 보낸다(SP-05/06). `Other`에 입력한 글은 승인이 아니다. 취소하거나 `-p` 실행이면 발송을 거부한다. 연결하지 않은 세션의 text 도구 호출은 모두 거부한다.
 6. `/knowslink-session off`는 자식 프로세스를 끝내고 이 세션의 수신·발송을 막는다. `/knowslink-session status`는 구분값·agent·대기 수를 보인다.
+7. 연결된 세션 안의 같은 프로세스 subagent·teammate(Agent 도구)의 text 도구 호출은 거부한다(SP-04, 사용자 결정 2026-10-17). 모드는 `tool.call` 입력의 `agentId`로 메인 루프와 구별한다. 거부 문구: `KnowsLink: 하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다. 메인 대화에서 사용하세요.` 별도 프로세스 자식은 연결 상태가 없어 미연결 deny를 받는다.
+8. 세션 연결은 소유자의 세션 설정이다. 친구 해제·차단·재수락은 연결을 끄지 않고, 재수락 뒤 `on`을 다시 실행할 필요가 없다. 친구 권한은 relay가 발송마다 다시 확인한다(V04 해석, 사용자 결정 2026-10-17).
 
 한계: 모드 파일이 바뀌어 플러그인이 다시 로드되면 자식 프로세스가 함께 끝나므로 `/knowslink-session on`을 다시 실행한다. Windows에서 `off`나 세션 종료는 lock 파일을 지우지 않고 pid만 죽는다. 다음 `on`이 죽은 pid의 lock을 회수한다. 슬래시 명령 이름이 `knowslink-session`인 이유는 `/knowslink`가 패키지 skill의 명령이기 때문이다. 지원 수준은 '기존 세션 수신'(도착 toast·세션 결속 로컬 사본, 작업 중·대기 양쪽 관측)이며 본문 표시는 '다음 조회'다. 실제 왕복 근거는 [DEV QA 보고](../.fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md)다. 플러그인 자체 검사는 `claude plugin validate adapters`와 `claude plugin test <설치 폴더>/knowslink`다.
 

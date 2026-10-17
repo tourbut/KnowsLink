@@ -3,7 +3,7 @@ title: SAR-SESSION-PEER-001-DEV — Claude↔Claude 세션 왕복 DEV 검증
 status: draft
 updated: 2026-10-17
 owner: dev
-tasks: [SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX]
+tasks: [SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX, SAR-SESSION-PEER-001-DEV-FIX-2]
 summary: "격리 relay와 합성 회원 두 명, Claude Code 세션 두 개로 V01 왕복·toast·발송 승인·세션 결속을 관측한 DEV 자동 검증 기록"
 ---
 
@@ -79,3 +79,22 @@ DEV 자체 검증이다. 독립 QA(V01–07)·리뷰·운영 수락이 아니다
 관측된 이상: 첫 takeover 시도(세션 `c0d543f9`)에서 foreground `timeout 25`가 takeover watcher를 멈춘 시각(04:08:21 전후)에 그 Claude 세션도 종료됐다. 원인은 확인하지 못했다. watcher를 background로 띄운 두 번째 시도(`06199ecc`)에서는 replaced 해제 뒤에도 세션이 살아 있었고 `/exit`으로 정상 종료했다.
 
 FIX 자동 검사: `claude plugin validate adapters` 통과, `claude plugin test adapters`의 `hooks/register.test.ts` 7 pass([fix/mod-test.log](fix/mod-test.log), 원 출력 [fix/mod-test.full.log](fix/mod-test.full.log)의 `src/*.test.ts` 로드 실패는 기존과 같이 판정 제외), `npm run check`·`npm test`(adapters) exit 0([fix/adapters-check-win.log](fix/adapters-check-win.log), [fix/adapters-test-win.log](fix/adapters-test-win.log)). 등록 gate는 최종 SHA에서 Linux 격리 clone으로 실행하고 결과를 worker_done에 적는다.
+
+## FIX-2 — 같은 세션 subagent 차단과 V04 해석 (SAR-SESSION-PEER-001-DEV-FIX-2)
+
+tester 관측 O-04·O-07에 대한 사용자 결정(2026-10-17)을 반영한 DEV 자체 확인이다. 같은 격리 relay(`knowslink-sp001-dev`, 확인 뒤 다시 정지)와 합성 agent A 설치만 사용했다. 실제 회원·운영 relay에는 보내지 않았다.
+
+### O-04 → SP-04에 같은 세션 subagent 포함, 차단
+
+| 항목 | 내용 |
+|---|---|
+| 판별 근거 | Claude Code 2.1.302 모드 API 타입(plugin-authoring 스킬의 `claude-code.d.ts`): `ToolCallInput = ToolCallEnvelope & AgentLoop & ToolRequestMeta`, `AgentLoop.agentId`는 subagent·teammate 루프에서만 있고 메인 루프에서는 없다. |
+| 변경 | `register.ts` `tool.call`: KnowsLink text 도구(send/receive/receipt)이고 `e.agentId`가 있으면 연결 여부보다 먼저 `KnowsLink: 하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다. 메인 대화에서 사용하세요.`로 deny. 메인 대화와 별도 프로세스 자식의 기존 동작은 바꾸지 않았다. |
+| 자동 검사 | `register.test.ts` 연결 fixture에서 `agentId` 있는 send/receive deny·대화상자 0, 같은 상태의 메인 send·receive 허용(send 1). `claude plugin test` 8 pass: 저장소 [fix2/mod-test.log](fix2/mod-test.log)(`hooks/register.test.ts` 행 8 pass, `src/*.test.ts` 10행은 기존과 같이 kit 로드 실패로 판정 제외), 패키지 폴더 [fix2/mod-test-package.log](fix2/mod-test-package.log) 8 pass 0 fail. `npm run check`·`npm test`(adapters) exit 0: [fix2/adapters-check-win.log](fix2/adapters-check-win.log), [fix2/adapters-test-win.log](fix2/adapters-test-win.log). `claude plugin validate adapters` 통과. |
+| 실제 세션 | 세션 `2a2fd7a1`(agent A 설치, `--plugin-dir`)에서 `/knowslink-session on` 뒤 Agent 도구로 general-purpose subagent가 `knowslink_text_receive` 호출 → deny, 이어서 메인 대화의 같은 호출 → `received`(이전 미확인 메시지 `01a147e6…`, `untrusted:true`). 화면: [fix2/subagent-deny-session.txt](fix2/subagent-deny-session.txt). transcript 원문 추출: [fix2/transcript-tool-results.txt](fix2/transcript-tool-results.txt)(subagent `isSidechain=True`의 tool_result `is_error=True` deny 문구, 메인 `isSidechain=False`의 received). 이후 `off`·`/exit`. |
+
+한계: Agent 도구가 이번 실행에서 subagent를 background로 띄웠다. foreground subagent도 같은 `agentId`를 가지는 것은 타입 문서 기준이며 별도 실행하지 않았다. teammate·workflow 루프도 `agentId`가 있어 같은 deny를 받는다.
+
+### O-07 → V04 해석, 현재 동작 유지
+
+세션 연결(`/knowslink-session on`의 lock·watcher)은 소유자의 세션 설정이다. 친구 해제·차단은 세션 연결을 끄지 않고, 재수락 뒤 `on`을 다시 실행할 필요가 없다. 친구 권한은 relay가 발송마다 다시 확인한다. 근거는 tester 관측(fullops/tester a32d0ab의 SAR-SESSION-PEER-001-TESTER 보고 V04)이다: 해제 중 양방향 발송 403, 재수락 뒤 새 세대 발송 성공, 해제 전 메시지 receipt `403 sender_not_allowed`. 설계 V04의 '재수락 후 옛 연결'은 해제 전 친구 권한(과거 세대)을 뜻한다. 코드는 바꾸지 않았다. D10(module-design)·D11(user-guide)·adapters/README.md에 같은 해석을 적었다.
