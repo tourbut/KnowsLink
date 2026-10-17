@@ -7,6 +7,7 @@ import { Adapter, canonical, relayBase, uuid7, validText } from "./core.js";
 import { privatePath } from "./private-files.js";
 import { AutoReceiver, Inbox } from "./inbox.js";
 import { GrokWake } from "./grok-wake.js";
+import { claimSession, holdsSession, releaseSession } from "./session-lock.js";
 
 export type TextEnvelope = {
   v: "knowslink.text.v1";
@@ -258,24 +259,78 @@ export async function configuredMemberTransport(): Promise<TextTransport | null>
   return memberTransport(process.env.KNOWSLINK_AGENT_FOLDER);
 }
 // Always-on receive into the same private inbox the MCP server reads; prints metadata only, never text.
-export async function watch(folder: string): Promise<void> {
+// With a session alias the watcher is one work session's receiver: it binds the agent folder (SP-02) and ends once another session takes it (SP-09).
+export async function watch(
+  folder: string,
+  session?: string,
+  take = false,
+): Promise<void> {
+  const say = (event: object): void => {
+    process.stdout.write(JSON.stringify(event) + "\n");
+  };
+  const transport = await memberTransport(folder);
+  const inbox = await Inbox.open(folder);
+  if (session) {
+    const holder = await claimSession(folder, session, take);
+    if (holder) {
+      say({
+        event: "knowslink_session_busy",
+        session: holder.session,
+        since: holder.since,
+      });
+      process.exitCode = 2;
+      return;
+    }
+    say({
+      event: "knowslink_session_bound",
+      agent: transport.agentId,
+      session,
+      pid: process.pid,
+    });
+  }
   const auto = new AutoReceiver(
-    await memberTransport(folder),
-    await Inbox.open(folder),
-    async (m, pending) => {
-      process.stdout.write(
-        JSON.stringify({
-          event: "knowslink_text_received",
-          id: m.id,
-          from: m.from,
-          pending,
-        }) + "\n",
-      );
-    },
+    transport,
+    inbox,
+    async (m, pending) =>
+      say({
+        event: "knowslink_text_received",
+        id: m.id,
+        from: m.from,
+        pending,
+      }),
     GrokWake.fromEnv(process.env),
   );
   auto.start();
-  setInterval(() => {}, 1 << 30);
+  if (!session) {
+    setInterval(() => {}, 1 << 30);
+    return;
+  }
+  const guard = setInterval(() => {
+    void holdsSession(folder, session).then((held) => {
+      if (held) return;
+      clearInterval(guard);
+      auto.stop();
+      say({ event: "knowslink_session_replaced", session });
+    });
+  }, 10000);
+  const quit = () => {
+    clearInterval(guard);
+    auto.stop();
+    void releaseSession(folder, session).finally(() => process.exit(0));
+  };
+  process.once("SIGTERM", quit);
+  process.once("SIGINT", quit);
+}
+// `watch <folder> [--session <alias>] [--take]` from either CLI entry.
+export function watchFromArgv(argv: string[]): Promise<void> {
+  const folder = argv[0];
+  if (!folder) throw new Error("usage");
+  const at = argv.indexOf("--session");
+  return watch(
+    folder,
+    at >= 0 ? argv[at + 1] : undefined,
+    argv.includes("--take"),
+  );
 }
 async function main(): Promise<void> {
   const [, , action, folder, peer, key, confirmed, replyTo] = process.argv;
@@ -290,7 +345,7 @@ async function main(): Promise<void> {
     }
     result = await t.sendText(peer, input, key, true, replyTo);
   } else if (action === "watch") {
-    await watch(folder);
+    await watchFromArgv(process.argv.slice(3));
     return;
   } else if (action === "receive") {
     const inbox = await Inbox.open(folder);

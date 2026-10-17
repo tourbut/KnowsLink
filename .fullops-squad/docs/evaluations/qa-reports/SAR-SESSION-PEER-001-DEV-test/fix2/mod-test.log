@@ -1,0 +1,54 @@
+
+hooks\register.test.ts:
+(pass) text tools are denied until the owner runs /knowslink-session on [155.15ms]
+(pass) /knowslink-session status and off report an unconnected session [48.53ms]
+(pass) Bash and other tools pass through untouched [39.22ms]
+(pass) the send dialog shows the whole body, its length and whether it is a reply [47.63ms]
+(pass) cancel, a failed dialog, free text and missing arguments deny the send [38.92ms]
+(pass) a subagent of a connected session is denied the text tools; the main conversation is not [40.75ms]
+(pass) a received body never runs a command, a tool or a reply by itself [40.16ms]
+(pass) a replaced session is released at once and its text tools are denied [37.09ms]
+
+src\connect.test.ts:
+(fail) the file did not load
+  src\connect.test.ts: cannot import "node:assert/strict" (from src\connect.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\events.test.ts:
+(fail) the file did not load
+  src\events.test.ts: cannot import "node:assert/strict" (from src\events.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\grok-wake.test.ts:
+(fail) the file did not load
+  src\grok-wake.test.ts: cannot import "node:assert/strict" (from src\grok-wake.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\inbox-files.test.ts:
+(fail) the file did not load
+  src\inbox-files.test.ts: cannot import "node:assert/strict" (from src\inbox-files.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\inbox.test.ts:
+(fail) the file did not load
+  src\inbox.test.ts: cannot import "node:assert/strict" (from src\inbox.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\login.test.ts:
+(fail) the file did not load
+  src\login.test.ts: cannot import "node:assert/strict" (from src\login.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\mcp.test.ts:
+(fail) the file did not load
+  src\mcp.test.ts: cannot import "node:assert/strict" (from src\mcp.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\owner-text.test.ts:
+(fail) the file did not load
+  src\owner-text.test.ts: cannot import "node:assert/strict" (from src\owner-text.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\session-lock.test.ts:
+(fail) the file did not load
+  src\session-lock.test.ts: cannot import "node:assert/strict" (from src\session-lock.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+src\trial-boundaries.test.ts:
+(fail) the file did not load
+  src\trial-boundaries.test.ts: cannot import "node:assert/strict" (from src\trial-boundaries.test.ts): a hooks module imports its own files by relative path and "claude-code", nothing else
+
+ 8 pass
+ 10 fail
+Ran 18 tests across 11 files. [0.83s]

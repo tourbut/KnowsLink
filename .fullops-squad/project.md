@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 프로젝트 기준
 status: review
-updated: 2026-10-15
+updated: 2026-10-17
 owner: coor
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-HUMAN-PEER-001-DEV, FULLOPS-UPDATE-1.4.4]
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-HUMAN-PEER-001-DEV, FULLOPS-UPDATE-1.4.4, SAR-SESSION-PEER-001-DEV]
 summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 ---
 
@@ -13,7 +13,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 |---|---|
 | 제품 목적 | 승인된 에이전트 사이의 선택적 인간개입 전달; SAR-SETUP-001 D02 |
 | 기본 브랜치·원격 | `main`, `origin` (`https://github.com/tourbut/KnowsLink.git`) |
-| 현재 상태 | SAR-HUMAN-PEER-001 DEV 후보: 사람 이름·친구·웹/agent 연속 대화·24h 사본·안전 legacy 변환. 독립 QA/시각/리뷰·운영 수락은 후속 |
+| 현재 상태 | SAR-SESSION-PEER-001 DEV 후보: Claude Code 세션 `/knowslink-session on`·toast·발송 승인(격리 relay V01). 독립 QA/리뷰·운영 수락은 후속. 이전 SAR-HUMAN-PEER-001 후보 유지 |
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
@@ -51,6 +51,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 - 합성 업무 DB·경합·TypeScript/Go UI 연동: `make verify-mvp` (고유 Compose project, 자기 자원만 회수).
 - 실제 sqlc 생성: `make generate`; 생성물 diff는 `git diff --exit-code -- internal/database`.
 - D08 테이블 정의 생성: `make schema`.
+- Claude Code 모드 검사: `claude plugin validate adapters`, `claude plugin test adapters`(hooks/register.test.ts 행만 판정; src 검사 파일은 로드 실패로 표시됨). Windows Node 22는 KnowsLinkDevTools 경로를 PATH 앞에 둔다.
 - Grok plugin 패키지·실제 CLI 설치 검사: `make verify-grok-plugin` (임시 HOME의 `grok plugin install`·`grok mcp doctor`, 사용자 `~/.grok` 미변경). CLI 검사이며 앱 카탈로그 증거가 아니다.
 - Grok Bot 앱 Command server 준비: Bot 컴퓨터에서 `sh scripts/install_bot_mcp.sh` (`KNOWSLINK_PREFIX` 기본 `/workspace/.knowslink`). 앱 등록은 owner가 [README](../adapters/README.md#grok-bot-앱-등록)대로 실행한다.
 - 운영 배포·실제 Tunnel 연결: 후보 수락 뒤 OPS 담당.
