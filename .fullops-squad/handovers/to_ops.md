@@ -97,22 +97,21 @@ D12, D13, D10(route 추천). D10은 운영 변경이 실제 영향을 줄 때만
 <!-- fullops-packet:start -->
 ### 탐색 근거와 읽을 구간
 
-정본: `.fullops-squad\docs\evaluations\jev\SAR-RELEASE-001-OPS-packet.json` / SHA `1dd6800d5d4238e2060f99e98eaab437ea06682c` / partial=True
+정본: `.fullops-squad\docs\evaluations\jev\SAR-RELEASE-001-OPS-packet.json` / SHA `4d3e54c1e4210809829d945a65dbfb73d4620fe2` / partial=True
 - `.fullops-squad/FULLOPS.md` (document_read) · 줄 73 · inferred · 필수
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md` (document_read) · 줄 54, 61, 70, 98 · inferred · 필수 · {'relevant': 0.12, 'evidence': 0.55, 'contradicts': 0.56, 'injection': 0.04, 'decision': 'keep', 'reason': None}
-- `.fullops-squad/handovers/to_ops.md` (document_read) · 줄 2, 2, 2, 2, 6, 7, 7, 7, 14, 14, 14, 14, 25, 31, 31, 38, 43, 55, 63, 64, 70, 70, 76, 77, 90, 90 · inferred · 필수
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md` (document_read) · 줄 54, 61, 70, 98 · inferred · 필수
+- `.fullops-squad/handovers/to_ops.md` (document_read) · 줄 2, 2, 2, 2, 6, 7, 7, 7, 14, 14, 14, 14, 25, 31, 31, 38, 43, 55, 55, 56, 64, 65, 71, 71, 77, 78, 91, 91, 98, 104, 106, 109, 111 · inferred · 필수
 - `.fullops-squad/project.md` (document_read) · 줄 15, 81 · inferred · 필수
 - `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
-- `docs/operations.md` (document_read) · 줄 20, 33, 39, 123 · inferred · 필수 · {'relevant': 0.86, 'evidence': 0.91, 'contradicts': 0.43, 'injection': 0.05, 'decision': 'keep', 'reason': None}
-- `.dockerignore` (impact_check) · 줄 전체/미확인 · inferred
+- `docs/operations.md` (document_read) · 줄 6, 19, 20, 33, 39, 48, 128 · inferred · 필수
 - `.fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md` (document_read) · 줄 28, 59, 71 · inferred
 - `.fullops-squad/contexts/coor.md` (document_read) · 줄 20 · inferred
 - `.fullops-squad/contexts/designer.md` (document_read) · 줄 45 · inferred
-- `.fullops-squad/contexts/ops.md` (document_read) · 줄 63, 75, 89 · inferred · {'relevant': 0.31, 'evidence': 0.68, 'contradicts': 0.26, 'injection': 0.05, 'decision': 'keep', 'reason': None}
-- `.fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md` (document_read) · 줄 117 · inferred · {'relevant': 0.14, 'evidence': 0.32, 'contradicts': 0.2, 'injection': 0.08, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/contexts/ops.md` (document_read) · 줄 6, 63, 75, 89, 103, 105 · inferred
+- `.fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md` (document_read) · 줄 117 · inferred
 - `.fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md` (document_read) · 줄 31, 101, 229 · inferred
 - `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 34, 197, 216, 231 · inferred
 - `.fullops-squad/docs/design-docs/data-model.md` (document_read) · 줄 21 · inferred
@@ -195,10 +194,9 @@ D12, D13, D10(route 추천). D10은 운영 변경이 실제 영향을 줄 때만
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md` (document_read) · 줄 12, 60 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md` (document_read) · 줄 7, 34, 42 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS-REVIEW-review/report.md` (document_read) · 줄 39, 59 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/commands.txt` (impact_check) · 줄 22, 65, 103, 186, 187, 190, 205 · inferred · {'relevant': 0.11, 'evidence': 0.39, 'contradicts': 0.6, 'injection': 0.04, 'decision': 'keep', 'reason': None}
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/public-smoke.json` (impact_check) · 줄 전체/미확인 · unknown · {'relevant': 0.22, 'evidence': 0.53, 'contradicts': 0.66, 'injection': 0.02, 'decision': 'keep', 'reason': None}
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md` (document_read) · 줄 54, 58 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md` (document_read) · 줄 12, 60 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md` (document_read) · 줄 2, 6, 10, 18, 20, 67, 77, 83, 83, 98, 102, 104 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-DEV/report.md` (document_read) · 줄 93 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-REPO-DOCS-001-REVIEW-review/report.md` (document_read) · 줄 28 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md` (document_read) · 줄 46 · inferred
@@ -306,7 +304,7 @@ D12, D13, D10(route 추천). D10은 운영 변경이 실제 영향을 줄 때만
 - `.fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md` (document_read) · 줄 28, 46 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md` (document_read) · 줄 66 · inferred
 - `.fullops-squad/docs/operations/ops-guide.md` (document_read) · 줄 전체/미확인 · unknown
-- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 23, 23, 35, 53, 127, 135, 141, 144 · inferred · {'relevant': 0.2, 'evidence': 0.46, 'contradicts': 0.72, 'injection': 0.05, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 7, 13, 19, 19, 31, 31, 43, 61, 135, 143, 149, 152 · inferred
 - `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 203 · inferred
 - `.fullops-squad/docs/planning/SAR-MVP-backlog.md` (document_read) · 줄 14, 22 · inferred
 - `.fullops-squad/docs/planning/SAR-PREP-002-request.md` (document_read) · 줄 14, 16 · inferred
@@ -339,14 +337,12 @@ D12, D13, D10(route 추천). D10은 운영 변경이 실제 영향을 줄 때만
 - `.fullops-squad/handovers/logs/2026-10-15_to_dev.md` (document_read) · 줄 32, 72, 134, 156, 166, 205 · inferred
 - `.fullops-squad/handovers/logs/2026-10-15_to_tester.md` (document_read) · 줄 304 · inferred
 - `.fullops-squad/handovers/logs/2026-10-17_to_designer.md` (document_read) · 줄 71, 89, 103 · inferred
-- `.fullops-squad/handovers/logs/2026-10-17_to_ops.md` (document_read) · 줄 30, 34, 51, 66, 72, 73, 84, 88 · inferred · {'relevant': 0.71, 'evidence': 0.86, 'contradicts': 0.77, 'injection': 0.1, 'decision': 'conflict', 'reason': 'contradicts task'}
+- `.fullops-squad/handovers/logs/2026-10-17_to_ops.md` (document_read) · 줄 30, 34, 51, 66, 72, 73, 84, 88 · inferred
 - `.fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md` (document_read) · 줄 37 · inferred
 - `.fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md` (document_read) · 줄 7, 12, 13, 22, 26, 28, 32, 36, 40 · inferred
 - `.fullops-squad/lint/README.md` (document_read) · 줄 86 · inferred
 - `.fullops-squad/orca-agents.md` (document_read) · 줄 32, 66, 129, 148 · inferred
-- `Dockerfile` (impact_check) · 줄 전체/미확인 · inferred
-- `Makefile` (impact_check) · 줄 전체/미확인 · inferred
-- `README.md` (document_read) · 줄 123, 145, 154, 202 · inferred · {'relevant': 0.31, 'evidence': 0.54, 'contradicts': 0.55, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `README.md` (document_read) · 줄 36, 123, 145, 154, 202 · inferred
 - `adapters/README.md` (document_read) · 줄 46, 75, 90, 290, 298, 363, 386 · inferred
 - `adapters/hooks/register.test.ts` (impact_check) · 줄 57, 91, 245 · inferred
 - `adapters/hooks/register.ts` (impact_check) · 줄 60, 265 · inferred
@@ -365,18 +361,13 @@ D12, D13, D10(route 추천). D10은 운영 변경이 실제 영향을 줄 때만
 - `cmd/relay/main.go` (impact_check) · 줄 2, 19 · inferred
 - `cmd/relay/main_test.go` (impact_check) · 줄 2 · inferred
 - `deploy/knowslink/access_trial_plan.py` (impact_check) · 줄 26, 49, 91 · inferred
-- `deploy/knowslink/beta.sh` (impact_check) · 줄 전체/미확인 · unknown · {'relevant': 0.61, 'evidence': 0.81, 'contradicts': 0.51, 'injection': 0.03, 'decision': 'keep', 'reason': None}
-- `deploy/knowslink/compose.ops.yaml` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.47, 'evidence': 0.6, 'contradicts': 0.28, 'injection': 0.03, 'decision': 'keep', 'reason': None}
-- `deploy/knowslink/test_public_config.sh` (impact_check) · 줄 2, 18, 19, 25, 32, 35, 38 · inferred · {'relevant': 0.41, 'evidence': 0.59, 'contradicts': 0.32, 'injection': 0.04, 'decision': 'keep', 'reason': None}
-- `deploy/knowslink/verify.py` (impact_check) · 줄 1, 63, 66, 79 · inferred · {'relevant': 0.43, 'evidence': 0.6, 'contradicts': 0.79, 'injection': 0.03, 'decision': 'conflict', 'reason': 'contradicts task'}
-- `docs/README.md` (document_read) · 줄 전체/미확인 · inferred
-- `docs/architecture.md` (document_read) · 줄 전체/미확인 · inferred
+- `deploy/knowslink/test_public_config.sh` (impact_check) · 줄 2, 18, 19, 25, 32, 35, 38 · inferred
+- `deploy/knowslink/verify.py` (impact_check) · 줄 1, 63, 66, 79 · inferred
 - `docs/development.md` (document_read) · 줄 16, 75, 152 · inferred
 - `docs/system-design.md` (document_read) · 줄 24, 73, 75, 77, 79, 126, 225, 294, 304 · inferred
 - `internal/relay/connections_test.go` (impact_check) · 줄 29, 32, 303, 304 · inferred
 - `internal/relay/device.go` (impact_check) · 줄 1, 21, 26, 120, 121 · inferred
 - `internal/relay/human.go` (impact_check) · 줄 129 · inferred
-- `internal/relay/human_http.go` (impact_check) · 줄 전체/미확인 · inferred
 - `internal/relay/human_pages.go` (impact_check) · 줄 8, 16, 17, 18, 23, 24, 27, 28, 31, 32, 34, 35, 38, 39, 41, 42 · inferred
 - `internal/relay/human_pages_test.go` (impact_check) · 줄 52 · inferred
 - `internal/relay/landing_integration_test.go` (impact_check) · 줄 54, 62 · inferred
@@ -384,23 +375,19 @@ D12, D13, D10(route 추천). D10은 운영 변경이 실제 영향을 줄 때만
 - `internal/relay/landing_test.go` (impact_check) · 줄 1, 26, 34, 36, 41 · inferred
 - `internal/relay/member_agents.go` (impact_check) · 줄 61, 62, 210, 211, 330, 331 · inferred
 - `internal/relay/member_pages.go` (impact_check) · 줄 49, 54, 57, 58, 59, 65, 66, 87, 88, 96, 97, 110, 112, 116, 148 · inferred
-- `internal/relay/member_ui_test.go` (impact_check) · 줄 전체/미확인 · inferred
 - `internal/relay/protocol.go` (impact_check) · 줄 264, 266, 289, 290 · inferred
 - `internal/relay/protocol_test.go` (impact_check) · 줄 48, 51, 61 · inferred
 - `internal/relay/public_messages_integration_test.go` (impact_check) · 줄 54, 85, 110, 123, 210, 224, 243 · inferred
-- `internal/relay/public_text.go` (impact_check) · 줄 전체/미확인 · inferred
-- `scripts/check_public_ingress.py` (impact_check) · 줄 5, 7, 8, 15, 20 · inferred · {'relevant': 0.46, 'evidence': 0.59, 'contradicts': 0.36, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `scripts/check_public_ingress.py` (impact_check) · 줄 5, 7, 8, 15, 20 · inferred
 - `scripts/install_bot_mcp.sh` (impact_check) · 줄 77 · inferred
 - `scripts/mail_sink.py` (impact_check) · 줄 38, 53 · inferred
 - `scripts/package_plugin.py` (impact_check) · 줄 123, 169, 175, 197 · inferred
 - `scripts/run_trial.py` (impact_check) · 줄 9, 33 · inferred
-- `scripts/schema.py` (impact_check) · 줄 전체/미확인 · inferred
 - `scripts/shell_guard.py` (impact_check) · 줄 213, 234 · inferred
 - `scripts/test_shell_guard.py` (impact_check) · 줄 189 · inferred
 - `scripts/verify_grok_plugin.py` (impact_check) · 줄 13, 42 · inferred
 - `scripts/verify_setup.py` (impact_check) · 줄 23, 36, 53 · inferred
-- `sqlc.yaml` (impact_check) · 줄 전체/미확인 · inferred
-미확인 24건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+미확인 22건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 
 ## 완료 보고
