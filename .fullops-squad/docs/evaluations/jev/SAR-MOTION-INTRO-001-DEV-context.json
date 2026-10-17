@@ -1,0 +1,143 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "c94b84303617564797f8bc21801dcd026811cccb",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "28956b751ba4a74e578203d97b723b166b224891e8059219fb6652506dfe8a5f",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-service-member-ui.md",
+      "c1-project.md",
+      "c2-AGENTS.md",
+      "required_0",
+      "required_1",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-service-member-ui.md",
+      "c1-project.md",
+      "c2-AGENTS.md",
+      "required_0",
+      "required_1",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c1-project.md": {
+        "relevant": 0.17,
+        "evidence": 0.4,
+        "contradicts": 0.58,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-AGENTS.md": {
+        "relevant": 0.06,
+        "evidence": 0.2,
+        "contradicts": 0.19,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-service-member-ui.md": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "c1-project.md": ".fullops-squad/project.md",
+      "c2-AGENTS.md": "AGENTS.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 7281,
+    "output_tokens": 152,
+    "cost": 0.000305802,
+    "known_cost": 0.000305802,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.458,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.436,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3916,
+        "output_tokens": 76,
+        "cost": 0.000164472
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.455,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3365,
+        "output_tokens": 76,
+        "cost": 0.00014133
+      }
+    }
+  ],
+  "request_max_seconds": 0.455,
+  "task_key": "SAR-MOTION-INTRO-001-DEV",
+  "role": "dev",
+  "attempt": "863239b7e0bd448c84856fc3489e966b",
+  "instruction_sha256": "6900258d66c187106a4c21a031b9005906e80e007e725ad7f00b35652d5b7d07",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      ".fullops-squad/project.md",
+      "AGENTS.md"
+    ],
+    "required": [],
+    "sources": {
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "oversized",
+      ".fullops-squad/project.md": "f7e1e83eb7cd85d88a82a78e704dbbfb39bdf6ed6559c6fc3c60f02bd026d85b",
+      "AGENTS.md": "77136894b9a49dd67c3c231850ca8872c660f89094157844940f1d600c364be0"
+    }
+  },
+  "unsent_sources": {
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 0.825,
+  "input_partial": true,
+  "instruction_chars": 4743,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 4743
+  }
+}
