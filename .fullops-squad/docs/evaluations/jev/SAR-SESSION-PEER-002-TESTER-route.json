@@ -1,0 +1,86 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SESSION-PEER-002-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D02",
+    "D03",
+    "D09"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.28,
+        "product": 0.72
+      },
+      "confidence": 0.44
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.99,
+        "ops": 0,
+        "tester": 0.01
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.68,
+      "D02": 0.81,
+      "D03": 0.78,
+      "D04": 0.75,
+      "D05": 0.75,
+      "D06": 0.75,
+      "D07": 0.65,
+      "D08": 0.52,
+      "D09": 0.76,
+      "D10": 0.76,
+      "D11": 0.71,
+      "D12": 0.69,
+      "D13": 0.67
+    }
+  },
+  "usage": {
+    "input_tokens": 2487,
+    "output_tokens": 314,
+    "cost": 0.000104454
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 1.055,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "독립 동작 QA는 tester",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "7c2858e2b29e86ecbdaf4c5ef5eb9104e3514955",
+  "requires_packet": true
+}
