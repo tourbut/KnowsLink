@@ -1,0 +1,321 @@
+{
+  "base": "37d491c1c6a94ed48c4c1d6b892dd5a0f9c19916",
+  "head": "bdc650004647462cccb0aa69debb3397b7c43b3c",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "claude-opus-5-5 (Claude Code, coor 배정 독립 reviewer sp001-code-review-opus)",
+  "conclusion": "수정 요청. 발송 승인 대화상자가 본문을 200자에서 표시 없이 잘라 SP-05/06의 본문 확인 조건을 만족하지 못한다(high). replaced 뒤 link 미해제와 승인·취소 경로 자동 검증 부재(medium)도 함께 수정하고 새 SHA로 재리뷰한다.",
+  "files": [
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D03 신규 절을 SP-01–12·실제 코드(register.ts·session-lock.ts·text.ts watch·package_plugin)와 대조했다. 'replaced 뒤 더 받지 않는다' 서술은 finding 2의 한계가 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D10 모듈 표를 실제 책임·테스트 파일과 대조했다. register.test.ts가 승인 경로를 다루지 않는 점은 finding 3."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SESSION-PEER-001-DEV-context.json",
+      "status": "added",
+      "insertions": 278,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SESSION-PEER-001-DEV-find.json",
+      "status": "added",
+      "insertions": 260,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SESSION-PEER-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 1765,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SESSION-PEER-001-DEV-packet.json",
+      "status": "added",
+      "insertions": 16145,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-SESSION-PEER-001-DEV-route.json",
+      "status": "added",
+      "insertions": 95,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-SESSION-PEER-001-DEV-route-ef82f9f820ba4221ba72ddbd874ec034.json",
+      "status": "added",
+      "insertions": 86,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/fixture-agents.json",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md",
+      "status": "added",
+      "insertions": 62,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV QA 보고 전체를 읽고 V01 관측표·자동 검사·한계를 SP-05/06/08/09와 대조했다. 취소 경로 미관측·V05 주입 본문 미검증(finding 3), smoke 로그와 서술 차이(finding 5)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md",
+      "status": "added",
+      "insertions": 52,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "기술 계획·SP 추적표·한계를 읽고 코드와 대조했다. 새 의존성 없음·relay/SQL 무변경을 diff로 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D11 사용 절차 6단계를 실제 명령 문구·동작과 대조했다. README anchor·상대 링크가 유효함을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_dev.md",
+      "status": "modified",
+      "insertions": 388,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 기록이지만 SAR-SESSION-PEER-001-DEV 지시서(승인 범위·적용 기준·완료 기준)와 완료 보고 절을 직접 읽어 diff와 대조했다. 패킷 탐색 근거 블록은 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "현재 상태·모드 검사 명령 추가만 확인했다. 정본 경로 변경 없음."
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "설치·on/off/--take·승인·한계 서술을 코드와 대조했다. 'SP-09 10초 안에 더 받지 않는다'는 finding 2, '본문 「…」' 대화상자는 finding 1 참조."
+    },
+    {
+      "path": "adapters/hooks/hooks.json",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "모듈 목록 1줄. register.ts만 로드함을 확인했다."
+    },
+    {
+      "path": "adapters/hooks/register.test.ts",
+      "status": "added",
+      "insertions": 49,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "3개 테스트(미연결 deny·status/off·Bash 통과)를 읽었다. 연결 세션의 승인/취소 경로·외부 본문 테스트가 없다(finding 3)."
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "status": "added",
+      "insertions": 226,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전체 226줄을 읽었다. 미연결 deny·.catch fail-closed·toast 제어문자 제거·본문 미노출은 SP-01/07에 맞다. 승인 대화상자의 본문 200자 무표시 절단(finding 1, high), replaced 이벤트 뒤 link 미해제(finding 2), reply_to 미표시(finding 4)."
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "scripts의 format:check 대상과 test 목록에 session-lock.test.js 추가만 있다. dependencies/devDependencies 변경 없음(DEP-001 근거)."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "모델 지침 4줄: on 전 거부 시 재시도 금지·toast는 사람용·취소 시 재시도 금지·off 뒤 자동 재연결 금지. SP-06/07/09와 일치."
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "agentId getter 추가만 있다. agent 주소는 친구 공개 범위(HP-05)이고 credential·key는 노출하지 않는다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "watchFromArgv 진입 교체만 있다. 기존 startAuto의 KNOWSLINK_AUTO_RECEIVE=off 처리와 text_receive의 inbox 빈 경우 relay 직접 pull 경로를 함께 읽었다."
+    },
+    {
+      "path": "adapters/src/session-lock.test.ts",
+      "status": "added",
+      "insertions": 57,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "claim/busy/take/release/dead pid/corrupt/잘못된 alias 경계를 읽었다. lite 레벨에 충분하다."
+    },
+    {
+      "path": "adapters/src/session-lock.ts",
+      "status": "added",
+      "insertions": 70,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "wx 배타 생성·EEXIST 뒤 readLock·살아 있는 다른 세션 busy·take/죽은 pid 교체·자기 lock만 해제를 확인했다. take 시 비원자 writeFile과 Windows pid 재사용은 low 수준 한계로 판단했다."
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "status": "modified",
+      "insertions": 70,
+      "deletions": 15,
+      "review_status": "reviewed",
+      "reason": "watch(session)의 bound/busy/replaced 이벤트, 10초 guard, SIGTERM 해제, watchFromArgv를 읽었다. 출력은 metadata만이며 본문을 내보내지 않는다(SP-07). replaced 뒤 프로세스 종료 시점은 finding 2."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Claude ZIP에 hooks 3파일 포함·--connect 시 Claude에만 KNOWSLINK_AUTO_RECEIVE=off 추가를 확인했다. 주석의 명령명 불일치(finding 6)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/adapters-check-win.log",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 증거 로그. mod-test.log·watcher-smoke.log는 직접 읽어 report.md 서술과 대조했다(finding 5). adapters-*.log는 lint.json의 등록 gate 통과로 대체하고 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/adapters-test-win.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 증거 로그. mod-test.log·watcher-smoke.log는 직접 읽어 report.md 서술과 대조했다(finding 5). adapters-*.log는 lint.json의 등록 gate 통과로 대체하고 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/mod-test.log",
+      "status": "added",
+      "insertions": 49,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 증거 로그. mod-test.log·watcher-smoke.log는 직접 읽어 report.md 서술과 대조했다(finding 5). adapters-*.log는 lint.json의 등록 gate 통과로 대체하고 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/toast-a-terminal.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "바이너리 증거. DEV QA report.md의 toast 문구 서술로 존재를 확인했고 이미지 내용 판정은 하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/watcher-smoke.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "원시 증거 로그. mod-test.log·watcher-smoke.log는 직접 읽어 report.md 서술과 대조했다(finding 5). adapters-*.log는 lint.json의 등록 gate 통과로 대체하고 열람하지 않았다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 199,
+      "end_line": 212,
+      "severity": "high",
+      "resolved": false,
+      "content": "SP-05/06 위반: 발송 승인 대화상자가 text를 slice(0, 200)으로 잘라 보이며 절단 표시·전체 길이가 없다. text는 최대 4096 bytes이므로 소유자는 앞 200자만 보고 '보내기'를 고른다. 모델(외부 본문 주입 포함)이 201자 이후에 다른 내용을 덧붙이면 소유자가 확인하지 않은 본문이 발송된다. 수정: 전체 본문을 보이거나, 표시 한도를 넘으면 '(전체 N자 중 앞 200자)'를 넣고 전체 확인 수단 없이 승인하지 않도록 deny한다. 회귀 테스트로 201자 이상 본문의 대화상자 문구를 검사한다."
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 128,
+      "end_line": 132,
+      "severity": "medium",
+      "resolved": false,
+      "content": "SP-09: knowslink_session_replaced 이벤트는 toast만 띄우고 link를 null로 바꾸지 않는다. link 해제는 자식 프로세스가 끝난 뒤 finally에서만 일어나므로, 교체된 watcher 프로세스가 열린 handle(SSE 65초 timeout, fetch keep-alive 등)로 늦게 끝나면 옛 세션은 그동안 text 도구가 통과한다. text_receive는 inbox가 비면 MCP 프로세스가 relay에서 직접 pull하므로 '더 받지 않는다'는 README·D03 서술과 다르다. 수정: replaced 처리에서 link === current이면 link = null·상태줄 초기화·자식 정지를 즉시 수행한다. 연결 세션 takeover 뒤 deny는 Claude 세션에서 관측되지 않았다(CLI smoke만)."
+    },
+    {
+      "path": "adapters/hooks/register.test.ts",
+      "start_line": 1,
+      "end_line": 49,
+      "severity": "medium",
+      "resolved": false,
+      "content": "지시서 완료 기준 'V05(외부 본문 명령 미실행, 승인 없는 답장 0)를 자동 테스트로 확인'이 부분 충족이다. 테스트는 미연결 deny만 다루고, 연결 세션의 승인 '취소'·ask 실패(-p)·인자 누락 deny 경로는 자동 검사가 없다. DEV QA의 실제 세션 관측도 모두 '보내기' 선택이며 취소 경로와 명령·경로·승인 요청이 담긴 외부 본문은 관측하지 않았다(첫 메시지는 '본문 지시 없음'). 수정: 연결 상태를 만드는 fixture(spawn 이벤트 모의 등)로 취소·ask 거부·인자 누락이 next 미도달·deny임을 검사하거나, 불가능하면 그 이유와 수동 취소 관측을 보고서에 남긴다."
+    },
+    {
+      "path": "adapters/hooks/register.ts",
+      "start_line": 202,
+      "end_line": 207,
+      "severity": "low",
+      "resolved": false,
+      "content": "승인 대화상자에 reply_to가 보이지 않아 소유자가 새 메시지인지 어떤 메시지에 대한 답장인지 구별하지 못한다(SP-06 '그 대상·본문'). finding 1 수정 때 reply_to 유무를 함께 표시한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/watcher-smoke.log",
+      "start_line": 1,
+      "end_line": 3,
+      "severity": "low",
+      "resolved": false,
+      "content": "보고서는 'smokeA2 busy exit 2'를 관측했다고 적지만 로그에는 bound/replaced/bound 3줄만 있고 busy 이벤트·exit 코드가 없다. 두 번째 watcher의 출력과 종료코드를 증거에 추가하거나 서술을 로그 범위로 줄인다."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "start_line": 125,
+      "end_line": 125,
+      "severity": "low",
+      "resolved": false,
+      "content": "주석이 '/knowslink on'이라고 적지만 실제 명령은 '/knowslink-session on'이다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "ctx_7d74d5471bb0",
+    "reviewer_session": "sp001-code-review-opus",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-e58ed2bd0af54bfba9899548a54fd965",
+    "snapshot_head": "bdc650004647462cccb0aa69debb3397b7c43b3c",
+    "read_only": true
+  }
+}
