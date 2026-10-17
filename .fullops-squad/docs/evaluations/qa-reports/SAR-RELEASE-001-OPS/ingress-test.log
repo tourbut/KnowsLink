@@ -1,0 +1,9 @@
+Public ingress: Google/member paths only; owner, administrative APIs and trial remain outside this rule
+rendered public candidate; D12 review and edge app removal required before activation
+Public config: render-only, private, default deny, no overwrite, validation failures propagated
+INGRESS_REPO_CHECKS_EXIT=0
+/home/[redacted]/deploy/knowslink-state/release001-ops-20261017/ingress-check/deploy/knowslink/beta.sh: line 101: /tmp/tmp.0jDZJWMGy1/state/tunnel/config.public.yml: cannot overwrite existing file
+ERROR: candidate exists or cannot be written; live config unchanged
+ERROR: invalid tunnel UUID
+
+EXIT=0

@@ -1,0 +1,20 @@
+cloudflared version 2026.8.3 (built 2026-08-31-10:04 UTC)
+live mode=600 owner=[redacted] bytes=985
+backup mode=600 bytes=985
+f5abe860a019d5379cbbd5499eb309a645c4ae1e8f0b60fab6fea22326458512  /home/[redacted]/deploy/knowslink-state/tunnel/config.yml
+f5abe860a019d5379cbbd5499eb309a645c4ae1e8f0b60fab6fea22326458512  /home/[redacted]/deploy/knowslink-state/release001-ops-20261017/config.yml.pre-release001
+candidate written; replaced one path rule; other lines unchanged
+changed lines (diff -y suppress): 2
+Validating rules from /home/[redacted]/deploy/knowslink-state/release001-ops-20261017/config.candidate.yml
+OK
+candidate /v1/contacts/synthetic-agent-id    Matched rule #0
+candidate /v1/contacts/a%3Ab                 Matched rule #0
+candidate /v1/text/seen                      Matched rule #0
+candidate /v1/text/send                      Matched rule #0
+candidate /                                  Matched rule #0
+candidate /v1/contacts                       Matched rule #1
+candidate /v1/contacts/                      Matched rule #1
+candidate /v1/contacts/a/b                   Matched rule #1
+candidate /v1/contacts/Agent                 Matched rule #1
+
+EXIT=141

@@ -2,14 +2,27 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-14
+updated: 2026-10-17
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-RELEASE-001 운영 적용 결과 (2026-10-17)
+
+현재 운영 제품은 `1dd6800d5d4238e2060f99e98eaab437ea06682c`다. 직전 `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`에서 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md)다. 아래 날짜별 절은 당시 기록이다.
+
+- 중단은 09:37:48Z~09:38:09Z(18:37:48~18:38:09 KST), 약21초다. relay/Postgres healthy·restart0·migrate0이다. schema·migration·`db/`·`deploy/` 입력 변경은 없었다.
+- build 전에 이전 relay 이미지(`sha256:482d3197fe7ca26eef7918a2061feede01bd5199dfd8be37af5f46c4e381343d`)에 `knowslink-rollback:8a93e38-release001-20261017` 태그를 붙였다. inspect와 network-none read-only 파일 검사를 통과했다. 실제 rollback은 실행하지 않았다.
+- 백업은 `backups/8a93e38-pre-release001-20261017T093752Z.dump`, 0600·11104bytes·TOC25줄이다. SHA256은 `8498f8ebfce0f57dab69b9ad2ac64198f978176eafefe4beb23d7cca89ea3452`다. 안정 epoch1297596·다른 DB client0에서 생성했다. network-none 복원의 전체 data digest가 frozen DB와 같다. goose2·guard1·HumanModel1과 downgrade 거부를 확인했다. 운영 DB는 복원하지 않았다.
+- 보존 assertion 38개가 통과했다. Rates만 volatile 차이다. 기존 백업16개와 공유 컨테이너(Postgres 포함)를 보존했다.
+- 공개 smoke 21개와 새 첫페이지 검사가 통과했다. 새 API `GET /v1/contacts/{agent}`·`POST /v1/text/seen`은 처음에 공개 주소에서 404였다. 공개 ingress `path` 정규식에 두 경로가 없었다.
+- 사용자 승인으로 repo `public-ingress.yml`·`check_public_ingress.py`와 live Tunnel config.yml에 두 경로만 추가했다. 원본은 `release001-ops-20261017/config.yml.pre-release001`(0600)에 백업했다. 09:44:36Z에 cloudflared를 재시작했고 약2초 끊겼다. 이후 두 경로는 무인증 401이고 이웃 경로(`/v1/contacts`·`/v1/contacts/a/b`·`/v1/text/seen/extra`)는 404다.
+- 서버 checkout은 `1dd6800`이다. 이 ingress 수정 커밋은 다음 main 반영 때 서버 checkout에 도착한다. live config와 repo 규칙은 같다.
+- 실계정 송수신·인증 성공 경로·실제 rollback은 실행하지 않았다.
 
 ## SAR-REFACTOR-002 운영 적용 결과 (2026-10-14)
 

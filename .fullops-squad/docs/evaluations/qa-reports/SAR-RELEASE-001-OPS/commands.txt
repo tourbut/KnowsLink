@@ -1,0 +1,384 @@
+===== pre.txt =====
+set -o errexit -o nounset -o pipefail
+cd /home/shin/deploy/knowslink
+git rev-parse HEAD; git status --porcelain | wc -l; git log --oneline -1
+docker inspect -f '{{.Name}} {{.Image}} {{if .State.Health}}{{.State.Health.Status}}{{end}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-relay-1 knowslink-postgres-1 knowslink-cloudflared-1
+docker image inspect $(docker inspect -f '{{.Image}}' knowslink-relay-1) --format 'IMG={{.Id}} created={{.Created}}'
+docker image ls --no-trunc --format '{{.Repository}} {{.Tag}} {{.ID}}' | grep -E 'knowslink'
+docker compose version
+date -u +%FT%TZ
+ls /home/shin/deploy/knowslink-state
+df -h /home/shin/deploy | tail -1
+
+===== observe.txt =====
+set -o errexit -o nounset -o pipefail
+python3 - <<'PY'
+import datetime,hashlib,json,pathlib,re,subprocess,urllib.request,urllib.error
+D='/home/shin/deploy/knowslink'; S=pathlib.Path('/home/shin/deploy/knowslink-state')
+def run(*args): return subprocess.check_output(args, text=True)
+def digest(v): return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+def sql(q): return run('docker','exec','knowslink-postgres-1','psql','-X','-v','ON_ERROR_STOP=1','-U','knowslink','-Atc','BEGIN READ ONLY; '+q+'; COMMIT').splitlines()[1]
+x=json.loads(sql('select json_build_object(\'epoch\',epoch,\'data\',data) from relay_state'))
+st=x['data']; remote=st.get('Remote') or {}
+report={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'head':run('git','-C',D,'rev-parse','HEAD').strip(),'dirty':run('git','-C',D,'status','--porcelain').splitlines(),'epoch':x['epoch'],'human_model':st.get('HumanModel'),'goose_trigger':sql("select json_build_object('goose',(select max(version_id) from goose_db_version),'guard',(select count(*) from pg_trigger where tgname='human_writer_guard'),'rows',(select count(*) from relay_state))")}
+report['counts']={k:len(v) for k,v in st.items() if isinstance(v,(dict,list))}
+report['digests']={k:digest(v) for k,v in st.items() if isinstance(v,(dict,list)) and k != 'Remote'}
+report['remote_counts']={k:len(v or {}) for k,v in remote.items() if isinstance(v,dict) or v is None}
+report['remote_digests']={k:digest(remote.get(k)) for k in ['Clients','Attempts','Codes','Tokens','Installs','Subscriptions']}
+report['remote_inbox_count']=sum(len(v.get('Inbox') or {}) for v in (remote.get('Installs') or {}).values())
+report['subscription_metadata']=[{'expires':v.get('Exp'),'verified':v.get('Verified'),'attempts':v.get('Attempts'),'pending':bool(v.get('Pending')),'lease':bool(v.get('Lease')),'next':v.get('Next'),'identity_digest':digest({k:v.get(k) for k in ['Install','URL','Secret','OldSecret']})} for _,v in sorted((remote.get('Subscriptions') or {}).items())]
+report['files']={str(p.relative_to(S)):{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'mode':oct(p.stat().st_mode & 0o777)} for p in [S/'.env',S/'tunnel.uuid',S/'access.aud',S/'tunnel/config.yml']}
+report['backup_inventory']={p.name:{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'mode':oct(p.stat().st_mode & 0o777),'bytes':p.stat().st_size} for p in sorted((S/'backups').iterdir()) if p.is_file()}
+schema=run('docker','exec','knowslink-postgres-1','pg_dump','-U','knowslink','--schema-only','knowslink'); report['schema_sha256']=hashlib.sha256('\n'.join(l for l in schema.splitlines() if not l.startswith(('\\restrict','\\unrestrict'))).encode()).hexdigest()
+containers=json.loads(run('docker','inspect',*run('docker','ps','-aq').split()))
+report['containers']=[{'name':c['Name'],'image':c['Image'],'id':c['Id'],'running':c['State']['Running'],'health':c['State'].get('Health',{}).get('Status'),'started':c['State']['StartedAt'],'restarts':c['RestartCount']} for c in containers]
+report['listeners']=[l.split()[3] for l in run('ss','-ltnH').splitlines() if ':8080' in l or ':5432' in l]
+report['shared']={}
+for host in ['orca','s8','mcp']:
+ try: status=urllib.request.urlopen('https://'+host+'.knowslog.com/',timeout=20).status
+ except urllib.error.HTTPError as e: status=e.code
+ report['shared'][host]={'python_status':status,'curl_status':int(run('curl','-sS','-o','/dev/null','-w','%{http_code}','https://'+host+'.knowslog.com/'))}
+report['host_cloudflared_pids']=[l.split()[0] for l in run('pgrep','-af','cloudflared').splitlines() if re.match(r'^[0-9]+ /home/shin/\.local/bin/cloudflared tunnel --config /home/shin/\.cloudflared',l)]
+assert not report['dirty']
+assert report['human_model']==1 and json.loads(report['goose_trigger'])=={'goose':2,'guard':1,'rows':1}
+report['state_mode']=oct(S.stat().st_mode & 0o777)
+report['backups_mode']=oct((S/'backups').stat().st_mode & 0o777)
+report['private_tunnel_files']=[{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'mode':oct(p.stat().st_mode & 0o777)} for p in sorted((S/'tunnel').glob('*.json'))]
+report['db_connections']=sql("select json_build_object('active_other_writers',count(*) filter(where state='active' and pid<>pg_backend_pid() and query !~* '^(LISTEN|BEGIN READ ONLY)' and backend_type='client backend'),'client_connections',count(*) filter(where backend_type='client backend')) from pg_stat_activity where datname='knowslink'")
+print(json.dumps(report,indent=2))
+PY
+
+===== baseline.txt =====
+set -o errexit -o nounset -o pipefail
+W=/home/shin/deploy/knowslink-state/release001-ops-20261017
+chmod 0600 "$W/observe.txt" "$W/release.bundle"
+umask 077
+date -u +%FT%TZ >"$W/baseline.utc"
+bash "$W/observe.txt" >"$W/baseline.json"
+python3 /home/shin/deploy/knowslink/deploy/knowslink/verify.py local
+echo BASELINE_OK
+
+===== build.txt =====
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/release001-ops-20261017
+OLD=8a93e38e190f1b9e7b6bb183e578e410f5dd97c6; NEW=1dd6800d5d4238e2060f99e98eaab437ea06682c
+OLDIMG=sha256:482d3197fe7ca26eef7918a2061feede01bd5199dfd8be37af5f46c4e381343d
+TAG=knowslink-rollback:8a93e38-release001-20261017
+test "$(git -C "$D" rev-parse HEAD)" = "$OLD"
+test -z "$(git -C "$D" status --porcelain)"
+printf 'f8e1b2de56887bcbc60286bfad351c7c6cdfabb8dc0fca61a94446aac1ba6c60  %s\n' "$W/release.bundle" | sha256sum -c -
+git -C "$D" bundle verify "$W/release.bundle"
+git -C "$D" fetch -q "$W/release.bundle" main
+git -C "$D" cat-file -e "$NEW^{commit}"
+git -C "$D" merge-base --is-ancestor "$OLD" "$NEW"
+git -C "$D" diff --exit-code "$OLD" "$NEW" -- db deploy compose.yaml Dockerfile go.mod go.sum Makefile sqlc.yaml
+echo 'schema/deploy/dependency diff=0'
+git -C "$D" diff --shortstat "$OLD" "$NEW" -- . ':!.fullops-squad'
+test "$(docker inspect -f '{{.Image}}' knowslink-relay-1)" = "$OLDIMG"
+printf '%s\n' "$OLDIMG" >"$W/previous-relay-image.txt"
+! docker image inspect "$TAG" >/dev/null 2>&1
+docker tag "$OLDIMG" "$TAG"
+docker image inspect "$TAG" --format 'ROLLBACK_TAG_IMAGE={{.Id}}'
+test "$(docker image inspect "$TAG" --format '{{.Id}}')" = "$OLDIMG"
+git -C "$D" checkout -q --detach "$NEW"
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" config --quiet
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" build relay migrate
+echo 'BUILD_EXIT=0'
+printf 'HEAD='; git rev-parse HEAD
+test -z "$(git status --porcelain)"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}}' knowslink-relay-1
+docker image inspect knowslink-relay:latest --format 'NEW_RELAY_IMAGE={{.Id}}'
+docker image inspect "$TAG" --format 'ROLLBACK_STILL={{.Id}}'
+
+===== deploy.txt =====
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/release001-ops-20261017
+NEW=1dd6800d5d4238e2060f99e98eaab437ea06682c; FIX=knowslink-release001-rehearse-20261017
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+test "$(git rev-parse HEAD)" = "$NEW"
+test -z "$(git status --porcelain)"
+test "$(docker inspect -f '{{.State.Health.Status}}' knowslink-relay-1)" = healthy
+STOPPED=0; UPDONE=0
+trap 'rc=$?; if [ $rc -ne 0 ] && [ "$STOPPED" = 1 ] && [ "$UPDONE" = 0 ]; then echo "TRAP: pre-up failure rc=$rc; restarting old relay container"; docker start knowslink-relay-1 || true; fi' EXIT
+umask 077
+bash "$W/observe.txt" >"$W/before.json"
+STOPPED=1
+echo "STOP_BEGIN=$(date -u +%FT%TZ)"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" stop relay
+E1=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+sleep 2
+E2=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+test "$E1" = "$E2"; echo "FROZEN_EPOCH=$E1"
+OTHER=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select count(*) from pg_stat_activity where datname='knowslink' and backend_type='client backend' and pid<>pg_backend_pid()")
+test "$OTHER" = 0; echo "OTHER_DB_CLIENTS=$OTHER"
+FROZEN=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select md5(data::text) from relay_state')
+printf '%s\n' "$FROZEN" >"$W/frozen-data.md5"
+bash "$W/observe.txt" >"$W/frozen.json"
+OUT=$S/backups/8a93e38-pre-release001-$(date -u +%Y%m%dT%H%M%SZ).dump
+(set -o noclobber; docker exec knowslink-postgres-1 pg_dump -U knowslink -Fc knowslink >"$OUT")
+printf '%s\n' "$OUT" >"$W/backup.path"
+docker exec -i knowslink-postgres-1 pg_restore --list <"$OUT" >"$W/backup.list"
+stat -c 'backup mode=%a bytes=%s' "$OUT"
+sha256sum "$OUT"
+printf 'TOC_LINES='; wc -l <"$W/backup.list"
+IMG=postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+docker run -i -e EXPECTED_MD5="$FROZEN" --network none --name "$FIX" --user postgres --entrypoint sh "$IMG" -c '
+set -eu
+initdb -D /tmp/pgd -A trust >/dev/null
+pg_ctl -D /tmp/pgd -o "-c listen_addresses= -c unix_socket_directories=/tmp" -w -l /tmp/pg.log start >/dev/null
+export PGHOST=/tmp
+createdb rehearse
+pg_restore -d rehearse --no-owner --no-privileges --exit-on-error
+ACTUAL_MD5=$(psql -d rehearse -Atc "select md5(data::text) from relay_state")
+test "$ACTUAL_MD5" = "$EXPECTED_MD5"; echo "RESTORED_FULL_STATE_DIGEST_MATCH=true"
+psql -d rehearse -v ON_ERROR_STOP=1 -Atc "select '\''restored goose='\''||(select max(version_id) from goose_db_version)||'\'' guard='\''||(select count(*) from pg_trigger where tgname='\''human_writer_guard'\'')||'\'' rows='\''||count(*)||'\'' epoch='\''||max(epoch)||'\'' HumanModel='\''||max(data->>'\''HumanModel'\'') from relay_state"
+if psql -d rehearse -v ON_ERROR_STOP=1 -Atc "update relay_state set data=data-'\''HumanModel'\''" >/tmp/guard.log 2>&1; then
+ echo "FAIL downgrade accepted"; exit 42
+else
+ grep -q "human authorization writer downgrade refused" /tmp/guard.log
+ echo "restored writer downgrade refused"
+fi
+pg_ctl -D /tmp/pgd -m fast stop >/dev/null
+' <"$OUT"
+echo "REHEARSAL_EXIT=0 retained=$FIX"
+UPDONE=1
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" up -d --no-build --wait relay
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" ps -a
+echo "UP_DONE=$(date -u +%FT%TZ)"
+python3 "$D/deploy/knowslink/verify.py" local
+printf '%s 8a93e38e190f1b9e7b6bb183e578e410f5dd97c6 -> 1dd6800d5d4238e2060f99e98eaab437ea06682c release manual verified bundle+backup+retained-isolation+rollback-tag\n' "$(date -u +%FT%TZ)" >>"$S/deploy-history.log"
+bash "$W/observe.txt" >"$W/after.json"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}} restarts={{.RestartCount}}' knowslink-relay-1
+printf 'MIGRATE_EXIT='; docker inspect -f '{{.State.ExitCode}}' knowslink-migrate-1
+docker logs knowslink-migrate-1
+echo 'DEPLOY_EXIT=0'
+
+===== execute.txt =====
+set -o errexit -o nounset -o pipefail
+bash /home/shin/deploy/knowslink-state/release001-ops-20261017/deploy.txt
+
+===== post-check.txt =====
+set -o errexit -o nounset -o pipefail
+python3 - <<'PY'
+import datetime,json,pathlib,re,subprocess
+D='/home/shin/deploy/knowslink'; S=pathlib.Path('/home/shin/deploy/knowslink-state'); W=S/'release001-ops-20261017'
+def run(*args): return subprocess.check_output(args,text=True,stderr=subprocess.STDOUT)
+a=json.loads((W/'after.json').read_text()); b=json.loads((W/'before.json').read_text())
+relay=run('docker','logs','knowslink-relay-1'); tunnel=run('docker','logs','--since','2026-10-17T09:38:09Z','knowslink-cloudflared-1')
+FIX='knowslink-release001-rehearse-20261017'; TAG='knowslink-rollback:8a93e38-release001-20261017'
+fx=json.loads(run('docker','inspect',FIX))[0]; r=json.loads(run('docker','inspect','knowslink-relay-1'))[0]
+out={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'relay_error_panic':len(re.findall(r'error|panic',relay,re.I)),'google_configured':bool(re.search(r'google login configured=true',relay)),'tunnel_errors_after_up':len(re.findall(r'\bERR\b|error',tunnel,re.I)),
+ 'fixture':{'status':fx['State']['Status'],'exit':fx['State']['ExitCode'],'network':fx['HostConfig']['NetworkMode'],'ports':fx['HostConfig']['PortBindings']},
+ 'backup':a['backup_inventory'][next(k for k in a['backup_inventory'] if k not in b['backup_inventory'])],'old_backup_count':len(b['backup_inventory']),'new_backup_count':len(a['backup_inventory']),
+ 'current_head':run('git','-C',D,'rev-parse','HEAD').strip(),'clean':not run('git','-C',D,'status','--porcelain').strip(),
+ 'rollback_tag_image':run('docker','image','inspect',TAG,'--format','{{.Id}}').strip(),'previous_relay_image':(W/'previous-relay-image.txt').read_text().strip(),
+ 'relay_image':r['Image'],'relay_health':r['State']['Health']['Status'],'relay_restarts':r['RestartCount'],'relay_started':r['State']['StartedAt'],'relay_service_tag_image':run('docker','image','inspect','knowslink-relay:latest','--format','{{.Id}}').strip(),
+ 'backup_dir_mode':oct((S/'backups').stat().st_mode&0o777),'work_dir_mode':oct(W.stat().st_mode&0o777)}
+print(json.dumps(out,indent=2))
+assert out['fixture']['network']=='none' and not out['fixture']['ports'] and out['fixture']['exit']==0 and out['fixture']['status']=='exited'
+assert out['rollback_tag_image']==out['previous_relay_image'] and out['current_head']=='1dd6800d5d4238e2060f99e98eaab437ea06682c' and out['clean']
+assert out['relay_health']=='healthy' and out['relay_restarts']==0 and out['relay_image']==out['relay_service_tag_image']
+assert out['relay_error_panic']==0 and out['tunnel_errors_after_up']==0 and out['google_configured']
+PY
+
+===== tun2.txt =====
+echo "UTC_NOW=$(date -u +%FT%TZ)"
+echo "tunnel ERR/error lines since new process start 09:44:37.01Z: $(docker logs --since 2026-10-17T09:44:37Z knowslink-cloudflared-1 2>&1 | grep -c -E '\bERR\b|error' || true)"
+echo "tunnel registered connections in current process: $(docker logs --since 2026-10-17T09:44:37Z knowslink-cloudflared-1 2>&1 | grep -c 'Registered tunnel connection' || true)"
+echo "relay error|panic lines total: $(docker logs knowslink-relay-1 2>&1 | grep -c -i -E 'error|panic' || true)"
+echo "relay google configured: $(docker logs knowslink-relay-1 2>&1 | grep -c 'google login configured=true' || true)"
+docker inspect -f 'relay {{.State.Health.Status}} restarts={{.RestartCount}}' knowslink-relay-1
+python3 /home/shin/deploy/knowslink/deploy/knowslink/verify.py local
+
+===== rollback-verify.txt =====
+set -o errexit -o nounset -o pipefail
+TAG=knowslink-rollback:8a93e38-release001-20261017
+docker image inspect "$TAG" --format 'ROLLBACK_TAG_IMAGE={{.Id}} created={{.Created}}'
+docker run --name knowslink-release001-rollback-inspect-20261017 --network none --read-only --entrypoint /bin/sh "$TAG" -c 'test -x /app/relay; test -x /app/migrate; sha256sum /app/relay /app/migrate'
+docker inspect -f 'network={{.HostConfig.NetworkMode}} read_only={{.HostConfig.ReadonlyRootfs}} status={{.State.Status}} exit={{.State.ExitCode}}' knowslink-release001-rollback-inspect-20261017
+echo 'ROLLBACK_ARTIFACT_CHECK_EXIT=0; application rollback not run'
+
+===== ingress-test.txt =====
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; W=/home/shin/deploy/knowslink-state/release001-ops-20261017; T=$W/ingress-check
+mkdir -m 0700 "$T"
+git -C "$D" archive 1dd6800d5d4238e2060f99e98eaab437ea06682c deploy scripts Makefile | tar -x -C "$T"
+cp "$W/new-public-ingress.yml" "$T/deploy/knowslink/tunnel/public-ingress.yml"
+cp "$W/new-check_public_ingress.py" "$T/scripts/check_public_ingress.py"
+git -C "$T" init -q
+cd "$T"
+python3 scripts/check_public_ingress.py
+bash deploy/knowslink/test_public_config.sh
+echo INGRESS_REPO_CHECKS_EXIT=0
+
+===== ingress-apply.txt =====
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/release001-ops-20261017; LIVE=$S/tunnel/config.yml; BK=$W/config.yml.pre-release001; CAND=$W/config.candidate.yml
+D=/home/shin/deploy/knowslink; CF=/home/shin/.local/bin/cloudflared
+umask 077
+test -x "$CF"; "$CF" --version | head -1
+test "$(sha256sum <"$LIVE")" = "$(sha256sum <"$BK")"; test -s "$CAND"; echo BACKUP_EQUALS_LIVE_AND_CANDIDATE_PRESENT
+stat -c 'live mode=%a owner=%U bytes=%s' "$LIVE"; stat -c 'backup mode=%a bytes=%s' "$BK"
+sha256sum "$LIVE" "$BK"
+echo "changed lines (diff -y suppress): $(diff "$BK" "$CAND" | grep -c '^[<>]')"
+"$CF" tunnel --config "$CAND" ingress validate
+for p in /v1/contacts/synthetic-agent-id /v1/contacts/a%3Ab /v1/text/seen /v1/text/send / /v1/contacts /v1/contacts/ /v1/contacts/a/b /v1/contacts/Agent /v1/text/seen/extra /v1/owners /healthz; do
+ printf 'candidate %-34s ' "$p"; "$CF" tunnel --config "$CAND" ingress rule "https://link.knowslog.com$p" | grep 'Matched rule' | sed -n 1p
+done
+APPLIED=0
+trap 'rc=$?; if [ $rc -ne 0 ] && [ "$APPLIED" = 1 ]; then echo "TRAP: failure rc=$rc; restoring backup config and restarting cloudflared"; cat "$BK" >"$LIVE"; docker restart knowslink-cloudflared-1 >/dev/null || true; fi' EXIT
+APPLIED=1
+cat "$CAND" >"$LIVE"
+test "$(sha256sum <"$LIVE")" = "$(sha256sum <"$CAND")"
+stat -c 'live after mode=%a owner=%U' "$LIVE"
+( for i in $(seq 1 90); do echo "$(date -u +%T.%3N) $(curl -s -o /dev/null -m 3 -w '%{http_code}' https://link.knowslog.com/ || true)"; sleep 0.4; done >"$W/restart-poll.txt" ) &
+POLL=$!
+sleep 2
+T0=$(date -u +%FT%TZ); echo "RESTART_BEGIN=$T0"
+docker restart knowslink-cloudflared-1
+echo "RESTART_RETURNED=$(date -u +%FT%TZ)"
+for i in $(seq 1 30); do n=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c 'Registered tunnel connection' || true); [ "$n" -ge 1 ] && break; sleep 1; done
+echo "REGISTERED_CONNECTIONS_SO_FAR=$n at $(date -u +%FT%TZ)"
+wait $POLL
+sleep 5
+docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c 'Registered tunnel connection' | sed 's/^/REGISTERED_CONNECTIONS=/'
+echo "TUNNEL_ERR_LINES=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c -E '\bERR\b|error' || true)"
+docker inspect -f 'cloudflared status={{.State.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-cloudflared-1
+APPLIED=0
+python3 - <<'PY'
+rows=[l.split() for l in open('/home/shin/deploy/knowslink-state/release001-ops-20261017/restart-poll.txt') if l.strip()]
+bad=[r for r in rows if len(r)<2 or r[1]!='200']
+print('POLL samples',len(rows),'non200',len(bad),'first_bad',bad[0] if bad else None,'last_bad',bad[-1] if bad else None)
+PY
+for p in /v1/contacts/synthetic-agent-id /v1/contacts/a%3Ab; do curl -s -o /dev/null -m 10 -w "public GET $p=%{http_code}\n" "https://link.knowslog.com$p"; done
+curl -s -o /dev/null -m 10 -w 'public POST /v1/text/seen=%{http_code}\n' -X POST -H 'Content-Type: application/json' -d '{"id":"synthetic"}' https://link.knowslog.com/v1/text/seen
+echo INGRESS_APPLY_EXIT=0
+
+===== final.txt =====
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/release001-ops-20261017
+umask 077
+echo "FINAL_OBSERVE_UTC=$(date -u +%FT%TZ)"
+bash "$W/observe.txt" >"$W/final.json"
+sha256sum "$W/new-public-ingress.yml" "$W/new-check_public_ingress.py" "$W/config.yml.pre-release001"
+python3 - <<'PY'
+import re
+S='/home/shin/deploy/knowslink-state'; W=S+'/release001-ops-20261017'
+live=re.search(r"path: '(.+)'",open(S+'/tunnel/config.yml').read())[1]; repo=re.search(r"path: '(.+)'",open(W+'/new-public-ingress.yml').read())[1]; old=re.search(r"path: '(.+)'",open(W+'/config.yml.pre-release001').read())[1]
+print('live_path_rule == repo_path_rule:',live==repo,'| old != new:',old!=live)
+import difflib
+a=old.split('|'); b=live.split('|'); print('added alternatives:',[x for x in b if x not in a],'removed:',[x for x in a if x not in b])
+PY
+stat -c 'live config mode=%a' "$S/tunnel/config.yml"
+docker inspect -f '{{.Name}} {{.State.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-cloudflared-1 knowslink-relay-1
+
+===== public-smoke.py =====
+"""Read-only public smoke for release001: no credentials; bodies, cookies and redirect URLs are not retained."""
+import datetime, hashlib, http.client, json, pathlib
+root = pathlib.Path(__file__).parent
+old = json.loads((root / 'smoke-input-manifest.json').read_text())
+report = {'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'input_manifest_sha256': hashlib.sha256((root / 'smoke-input-manifest.json').read_bytes()).hexdigest(), 'probes': [], 'landing': {}, 'new_api': []}
+def call(host, method, path, body=None):
+    c = http.client.HTTPSConnection(host, timeout=20)
+    c.request(method, path, body=body, headers={'Content-Type': 'application/json'} if body else {})
+    r = c.getresponse(); data = r.read(); h = r.getheader; hdr = r.getheaders(); c.close()
+    return r, data, h, hdr
+for spec in old['probes']:
+    body = json.dumps({'jsonrpc': '2.0', 'id': 1, 'method': 'initialize', 'params': {'protocolVersion': '2025-03-26', 'capabilities': {}, 'clientInfo': {'name': 'unauthenticated-smoke', 'version': '1'}}}) if spec['method'] == 'POST' else None
+    r, _, h, _ = call(spec['host'], spec['method'], spec['path'], body)
+    v = {k: spec[k] for k in ['host', 'method', 'path', 'expected']}
+    v.update(status=r.status, content_type=h('Content-Type'), cache_control=h('Cache-Control'), no_referrer=h('Referrer-Policy') == 'no-referrer', csp=bool(h('Content-Security-Policy')), nosniff=h('X-Content-Type-Options') == 'nosniff', location_expired=h('Location') == '/?n=expired')
+    v['pass'] = v['status'] == v['expected']
+    if spec['host'] == 'link.knowslog.com' and spec['path'] in ['/', '/home', '/home/friends', '/home/agents']:
+        v['pass'] = v['pass'] and v['cache_control'] == 'no-store' and v['no_referrer'] and v['csp'] and v['nosniff']
+    if spec['path'].startswith('/home'): v['pass'] = v['pass'] and v['location_expired']
+    report['probes'].append(v)
+# New public first page (SAR-LANDING-GUIDE-001): content booleans only.
+r, data, h, hdr = call('link.knowslog.com', 'GET', '/')
+t = data.decode('utf-8', 'replace')
+want = ['id="main"', 'id="how"', 'id="install"', 'id="examples"', 'id="start"', '기능을 설명하기 위한 가상 예시', '내가 작성', '사용자 승인 후 발송', '최대 180초', '최대 24시간', 'sh scripts/install_bot_mcp.sh', '/workspace/.knowslink/node/bin/node', '/workspace/.knowslink/knowslink/dist/plugin.js', 'KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01', '이미 연결했다면 새로 등록하지 마세요', 'Grok에 연결하기', 'Dots에 연결하기', 'https://link.knowslog.com/mcp', '친구와 연결하고, 에이전트로 대화하세요', '<details>']
+forbidden = ['<img', '<link', 'url(', '.fullops-squad', 'SAR-LANDING', 'C:/Users', '<details open']
+L = report['landing']
+L['status'] = r.status; L['content_type'] = h('Content-Type'); L['cache_control'] = h('Cache-Control')
+L['required'] = {w: (w in t) for w in want}; L['forbidden_absent'] = {w: (w not in t) for w in forbidden}
+import re
+scripts = [(re.search(r'src="([^"]*)"', attrs) or [None, ''])[1] for attrs in re.findall(r'<script([^>]*)>', t)]
+L['script_tags'] = len(scripts); L['script_srcs_cloudflare_insights_only'] = all(s.startswith('https://static.cloudflareinsights.com/') for s in scripts)
+L['details_count'] = t.count('<details>'); L['google_form_count'] = t.count('action="/auth/google"'); L['email_form_count'] = t.count('action="/auth/start"')
+L['set_cookie_absent'] = not any(k.lower() == 'set-cookie' for k, _ in hdr)
+L['headers'] = {'no_referrer': h('Referrer-Policy') == 'no-referrer', 'nosniff': h('X-Content-Type-Options') == 'nosniff', 'csp': bool(h('Content-Security-Policy')), 'frame_protection': bool(h('X-Frame-Options')) or 'frame-ancestors' in (h('Content-Security-Policy') or '')}
+L['body_sha256_not_retained'] = True
+L['pass'] = L['status'] == 200 and all(L['required'].values()) and all(L['forbidden_absent'].values()) and L['script_srcs_cloudflare_insights_only'] and L['details_count'] == 2 and L['google_form_count'] == 1 and L['email_form_count'] <= 1 and L['set_cookie_absent'] and L['cache_control'] == 'no-store' and all(L['headers'].values())
+# New session-peer API: unauthenticated and malformed-token boundaries; no real credential is used.
+auth_paths = [('GET', '/v1/contacts/synthetic-agent-id', None), ('GET', '/v1/contacts/synthetic%3Aagent', None), ('POST', '/v1/text/seen', '{"id":"synthetic"}')]
+blocked = [('GET', '/v1/contacts', None), ('GET', '/v1/contacts/', None), ('GET', '/v1/contacts/a/b', None), ('GET', '/v1/contacts/Agent', None), ('POST', '/v1/text/seen/extra', '{}'), ('GET', '/v1/text/unknown', None)]
+for method, path, body in auth_paths:
+    r, _, h, _ = call('link.knowslog.com', method, path, body)
+    report['new_api'].append({'method': method, 'path': path, 'kind': 'new_route_unauthenticated', 'expected': '401|403', 'status': r.status, 'pass': r.status in (401, 403)})
+for method, path, body in blocked:
+    r, _, h, _ = call('link.knowslog.com', method, path, body)
+    report['new_api'].append({'method': method, 'path': path, 'kind': 'neighbour_stays_blocked', 'expected': '404', 'status': r.status, 'pass': r.status == 404})
+report['all_pass'] = all(v['pass'] for v in report['probes']) and L['pass'] and all(v['pass'] for v in report['new_api'])
+(root / 'public-smoke.json').write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+print('probes %d/%d' % (sum(v['pass'] for v in report['probes']), len(report['probes'])), 'landing', L['pass'], 'new_api', [(v['path'], v['status']) for v in report['new_api']])
+assert report['all_pass'], 'Public smoke mismatch; inspect redacted report'
+
+===== preservation.py =====
+"""Compare baseline/before/frozen/after/final observations; writes redacted preservation.json (counts, digests, booleans only)."""
+import json, pathlib
+root = pathlib.Path(__file__).parent
+STAGES = ['baseline', 'before', 'frozen', 'after', 'final']
+o = {n: json.loads((root / (n + '.json')).read_text()) for n in STAGES}
+A = []
+def check(name, ok, detail=None):
+    A.append({'assertion': name, 'pass': bool(ok), **({'detail': detail} if detail is not None else {})})
+base, b, f, a, z = (o[n] for n in STAGES)
+VOL = {'Rates'}
+for k in b['digests']:
+    if k in VOL:
+        continue
+    check(f'state map {k} digest equal at all 5 stages', len({o[n]['digests'][k] for n in o}) == 1)
+check('state map counts equal at all stages except volatile Rates', all({k: v for k, v in o[n]['counts'].items() if k not in VOL} == {k: v for k, v in b['counts'].items() if k not in VOL} for n in o))
+check('Remote map digests/counts/inbox/subscription metadata equal at all stages', all(o[n][k] == b[k] for n in o for k in ['remote_digests', 'remote_counts', 'remote_inbox_count', 'subscription_metadata']))
+check('schema sha256 equal at all stages', len({o[n]['schema_sha256'] for n in o}) == 1)
+check('HumanModel=1 and goose2/guard1/rows1 at all stages', all(o[n]['human_model'] == 1 and json.loads(o[n]['goose_trigger']) == {'goose': 2, 'guard': 1, 'rows': 1} for n in o))
+check('frozen equals before for every state digest incl. Rates (writer stopped)', b['digests'] == f['digests'] and b['remote_digests'] == f['remote_digests'])
+check('Rates is volatile (informational, not a permission change)', True, {'Rates_counts': [o[n]['counts']['Rates'] for n in STAGES], 'digest_equal_before_frozen': b['digests']['Rates'] == f['digests']['Rates'], 'digest_equal_frozen_after': f['digests']['Rates'] == a['digests']['Rates']})
+fe = {n: o[n]['files'] for n in o}
+check('.env/tunnel.uuid/access.aud hash+mode equal at all stages', all({k: v for k, v in fe[n].items() if k != 'tunnel/config.yml'} == {k: v for k, v in fe['before'].items() if k != 'tunnel/config.yml'} for n in o))
+check('tunnel/config.yml unchanged through the relay switch', fe['baseline']['tunnel/config.yml'] == fe['before']['tunnel/config.yml'] == fe['after']['tunnel/config.yml'])
+check('tunnel/config.yml changed only by the approved ingress edit, mode kept', fe['final']['tunnel/config.yml']['sha256'] != fe['after']['tunnel/config.yml']['sha256'] and fe['final']['tunnel/config.yml']['mode'] == fe['after']['tunnel/config.yml']['mode'])
+check('tunnel credential json hash+mode equal at all stages', all(o[n]['private_tunnel_files'] == b['private_tunnel_files'] for n in o))
+check('state and backups directory modes 0700 at all stages', all(o[n]['state_mode'] == '0o700' and o[n]['backups_mode'] == '0o700' for n in o))
+bi = b['backup_inventory']
+new = [k for k in a['backup_inventory'] if k not in bi]
+check('existing 16 backups preserved (hash/mode/bytes); exactly one new backup', len(bi) == 16 and len(new) == 1 and all(a['backup_inventory'][k] == v for k, v in bi.items()) and all(z['backup_inventory'].get(k) == v for k, v in a['backup_inventory'].items()))
+check('new backup is mode 0600', a['backup_inventory'][new[0]]['mode'] == '0o600', {'bytes': a['backup_inventory'][new[0]]['bytes'], 'sha256': a['backup_inventory'][new[0]]['sha256']})
+cmap = lambda x: {c['name']: c for c in x['containers']}
+cb, ca, cz = cmap(b), cmap(a), cmap(z)
+key = ('image', 'id', 'running', 'health', 'started', 'restarts')
+sig = lambda c: {k: c[k] for k in key}
+changed_after = sorted(n for n in cb if sig(cb[n]) != sig(ca[n]))
+check('only relay and migrate containers changed across the switch', changed_after == ['/knowslink-migrate-1', '/knowslink-relay-1'], changed_after)
+check('Postgres container unchanged across switch and final', all(sig(c['/knowslink-postgres-1']) == sig(cb['/knowslink-postgres-1']) for c in (ca, cz)))
+changed_final = sorted(n for n in cb if sig(cb[n]) != sig(cz[n]))
+check('final: only relay, migrate and (approved restart) cloudflared changed', changed_final == ['/knowslink-cloudflared-1', '/knowslink-migrate-1', '/knowslink-relay-1'], changed_final)
+check('final: the other pre-existing containers (shared services included) unchanged', len(cb) == 50 and all(sig(cb[n]) == sig(cz[n]) for n in cb if n not in changed_final), {'pre_existing': len(cb), 'unchanged': len(cb) - len(changed_final)})
+check('only new container since baseline is the retained isolated restore fixture', sorted(n for n in cz if n not in cb) == ['/knowslink-release001-rehearse-20261017'])
+check('relay image changed and relay healthy with restarts 0', cb['/knowslink-relay-1']['image'] != cz['/knowslink-relay-1']['image'] and cz['/knowslink-relay-1']['health'] == 'healthy' and cz['/knowslink-relay-1']['restarts'] == 0)
+check('shared orca/s8/mcp statuses and host cloudflared PIDs equal at all stages', all(o[n]['shared'] == b['shared'] and o[n]['host_cloudflared_pids'] == b['host_cloudflared_pids'] for n in o), {'host_cloudflared_pids': b['host_cloudflared_pids']})
+check('listeners 127.0.0.1:8080 and 5432 restored; frozen had only 5432', b['listeners'] == a['listeners'] == z['listeners'] and f['listeners'] == ['127.0.0.1:5432'])
+check('no other active DB writer at frozen/after/final', all(json.loads(o[n]['db_connections'])['active_other_writers'] == 0 for n in ['frozen', 'after', 'final']))
+check('deployed HEAD 1dd6800 clean at before/frozen/after/final; baseline at 8a93e38', all(o[n]['head'] == '1dd6800d5d4238e2060f99e98eaab437ea06682c' and not o[n]['dirty'] for n in ['before', 'frozen', 'after', 'final']) and base['head'] == '8a93e38e190f1b9e7b6bb183e578e410f5dd97c6')
+epochs = [o[n]['epoch'] for n in STAGES]
+check('epoch never decreased; stable while writer stopped', epochs == sorted(epochs), epochs)
+out = {'utc_stages': {n: o[n]['utc'] for n in STAGES}, 'passed': sum(x['pass'] for x in A), 'total': len(A), 'assertions': A}
+(root / 'preservation.json').write_text(json.dumps(out, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+print(out['passed'], '/', out['total'])
+for x in A:
+    if not x['pass']:
+        print('FAIL', x['assertion'], x.get('detail'))
+assert out['passed'] == out['total']
