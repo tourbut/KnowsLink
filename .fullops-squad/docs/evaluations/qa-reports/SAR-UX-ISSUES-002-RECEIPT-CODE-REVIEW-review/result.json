@@ -1,0 +1,534 @@
+{
+  "base": "7f341230a26abc4afa97850687e624f2a583715c",
+  "head": "71dcac7822b84acc2ae458a533dda96af1e94fe4",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.0 (1672852) windows/amd64\nbuilt at: 2026-10-13T09:58:36Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Claude Code (claude-opus-5-5), session 58c84abf-a77e-48ff-9609-1e46b3b05d1c",
+  "conclusion": "accept: critical/high 없음. low 3건은 비차단 후속(designer·tester 재검증, 문구, lint 기록 사유). D-RT-01 코드 수정은 확인했고 실제 폭 판정은 tester 재검증이 맡는다.",
+  "files": [
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "DEV 학습 한 줄과 tasks 추가. 내용이 DEV 보고와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D05 조회 GET 계약(422/403/429/503, 쿠키 필드·수명, 복귀 경로)을 코드와 대조했다. 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D10 모듈 책임과 선택기 표시 순서(구분값/이름/종류)를 member_pages.go:102와 대조했다. 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-context.json",
+      "status": "added",
+      "insertions": 282,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-find.json",
+      "status": "added",
+      "insertions": 260,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-packet-outcomes.json",
+      "status": "added",
+      "insertions": 313,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-packet.json",
+      "status": "added",
+      "insertions": 3671,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-route.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-context.json",
+      "status": "added",
+      "insertions": 311,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-documents-find.json",
+      "status": "added",
+      "insertions": 592,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-find.json",
+      "status": "added",
+      "insertions": 208,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 277,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-packet.json",
+      "status": "added",
+      "insertions": 1973,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-route.json",
+      "status": "modified",
+      "insertions": 34,
+      "deletions": 27,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-route.prior-1792070959664881100.json",
+      "status": "added",
+      "insertions": 85,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-RECEIPT-DEV-route.prior-1792072122668740700.json",
+      "status": "added",
+      "insertions": 95,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-route-2c89b71488d04b3b94227d3264fe43a7.json",
+      "status": "added",
+      "insertions": 70,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-RECEIPT-DEV-context-77f74a8d0ba0411fba3d8b45dc61065e.json",
+      "status": "added",
+      "insertions": 311,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-RECEIPT-DEV-documents-find-430ccc20a0044dd7b87e57932b950e01.json",
+      "status": "added",
+      "insertions": 589,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-RECEIPT-DEV-find-695b198dfadd49b38437c88d6c721508.json",
+      "status": "added",
+      "insertions": 208,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-RECEIPT-DEV-packet-4147b719035246a398b8ce59a73b99fc.json",
+      "status": "added",
+      "insertions": 2142,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-RECEIPT-DEV-route-05b2b4f5983c46e5940e80313c526eef.json",
+      "status": "added",
+      "insertions": 95,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-RECEIPT-DEV-route-e91965b2188a49bab9d47eb08f51a35e.json",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "D-RT-01 수정 보고. 제품 SHA·변경·검사 링크(lint/test 로그 EXIT=0)를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/browser-fixture.json",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/fixture-manifest.json",
+      "status": "added",
+      "insertions": 189,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/fixture-smoke.json",
+      "status": "added",
+      "insertions": 7,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/fixture.json",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/forward.py",
+      "status": "added",
+      "insertions": 72,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "SSH forwarding helper. manifest SHA·경로 검사, 자격 값 비출력, 운영 서비스 비포워딩을 확인했다. 제품 코드가 아니다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/initial-integration-raw.json",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/remote.py",
+      "status": "added",
+      "insertions": 111,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "exact-HEAD Linux clone helper. RejectPolicy·자격 값 메모리 보관·하드코딩 비밀 없음을 확인했다. .env.server는 추적되지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md",
+      "status": "added",
+      "insertions": 70,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 결과·원 실패·fixture 경계·미실행 항목을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/source-audit.json",
+      "status": "added",
+      "insertions": 3039,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "구현 기록. 기준 ref·범위·미실행을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "D11 사용법. 코드 동작(70분 복원, 계정 격리, 수동 재조회)과 일치한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+      "status": "modified",
+      "insertions": 71,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_dev.md",
+      "status": "added",
+      "insertions": 154,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "status": "modified",
+      "insertions": 22,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "admission의 429/503/동시 한도에서 같은 transaction의 인증 view만 사용함을 확인했다. requestBuckets가 이미 session을 호출하므로 새 부작용이 없다."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Receipt 복귀 bool. Connection·Remote 복귀가 우선하고 외부 return URL이 없다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "에이전트 상세의 조회 진입 링크. ID는 html/template로 escape된다."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "이메일 재로그인 고정 복귀, logout·logout-all의 쿠키 삭제를 확인했다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "status": "modified",
+      "insertions": 20,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "조회 템플릿·legacy 진입·D-RT-01 옵션 순서. autofocus 단일, aria, escape를 확인했다. finding 2건(U2 순서, 익명 429 문구)이 있다."
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "status": "modified",
+      "insertions": 61,
+      "deletions": 26,
+      "review_status": "reviewed",
+      "reason": "모든 경로가 Status int를 설정해 type assertion panic이 없다. 비공개 실패 문구 동일, UUIDv7 검사, 철회 재선택을 확인했다."
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "receipt fixture를 편집 폼 계약으로 갱신. 기대값 완화가 아니다."
+    },
+    {
+      "path": "internal/relay/receipt_browser_fixture_test.go",
+      "status": "added",
+      "insertions": 109,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "integration && receiptfixture 태그와 TEST_SYNTHETIC_DATABASE 필수. GET 4경로와 합성 POST만 허용한다."
+    },
+    {
+      "path": "internal/relay/receipt_context.go",
+      "status": "added",
+      "insertions": 108,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "쿠키 길이·base64·만료 상한·제어/Cf 문자·회원 일치·소유권 재검사를 확인했다. 서명 없는 입력이지만 권한 근거로 쓰지 않는다."
+    },
+    {
+      "path": "internal/relay/receipt_context_test.go",
+      "status": "added",
+      "insertions": 147,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "계정 격리·경계·충돌 확장·6상태 폼과 D-RT-01 옵션 단언을 확인했다."
+    },
+    {
+      "path": "internal/relay/receipt_integration_test.go",
+      "status": "added",
+      "insertions": 111,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Postgres 실제 로그인으로 성공·403·422·만료·429·세션만료·DB장애·계정교대·보존종료·logout을 검사한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/da53e961e7a1399c9c974b6be7b35e8b51947922-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/da53e961e7a1399c9c974b6be7b35e8b51947922-test.log",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/0e4eba40560a0aa7d4c1ec0b9847d1d594f814cc-integration-stop.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/0e4eba40560a0aa7d4c1ec0b9847d1d594f814cc-integration.log",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/1e49033c6a036112019474fd010015a31996b7eb-integration-stop.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/1e49033c6a036112019474fd010015a31996b7eb-integration.log",
+      "status": "added",
+      "insertions": 36,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/cc84b24e11b92414a9d2c65e342f378abeaba2ea-integration-stop.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/cc84b24e11b92414a9d2c65e342f378abeaba2ea-integration.log",
+      "status": "added",
+      "insertions": 35,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/final-related-tests.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/fixture.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/related-tests.log",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": "internal/relay/testdata/member_forms.golden",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 2,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "두 계약 변경(legacy 인라인 폼 제거, hidden 재조회를 편집 폼으로)만 반영됐다. 다른 줄은 그대로다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/member_pages.go",
+      "start_line": 102,
+      "end_line": 102,
+      "severity": "low",
+      "resolved": false,
+      "content": "D-RT-01 수정은 옵션을 `구분값 / 이름 / 종류`로 바꿨다. 동명 agent 구별은 해결된다. 그러나 U2는 \"이름을 먼저 보이고\"라고 정한다. 39자 이름이면 320/390px 닫힌 선택기에서 종류가 여전히 잘린다. 지시서가 구분값 선두를 허용했으므로 차단하지 않는다. designer 시각 수락과 tester 선택기 세 건 재검증에서 U2 순서 예외를 확정해야 한다."
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "start_line": 27,
+      "end_line": 31,
+      "severity": "low",
+      "resolved": false,
+      "content": "세션이 없거나 무효이고 익명 IP 한도가 찬 GET /home/receipts는 429 조회 화면을 만든다. view에 Own·Unavailable이 없어 템플릿이 \"조회할 내 에이전트가 없습니다\"와 /home/agents 링크를 보인다. 로그인하지 않은 사용자에게 사실과 다른 안내다. 데이터 노출은 없다. Unavailable=true를 넣거나 로그인 안내로 보내면 된다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/lint.json",
+      "severity": "low",
+      "resolved": true,
+      "content": "71dcac7의 lint.json은 product-lint·product-test를 unavailable로 기록하고 reason이 비어 있다(Windows에 make 없음). 대체 근거는 da53e96 exact-HEAD Linux clone의 make lint EXIT=0·make test EXIT=0 로그다. da53e96..71dcac7은 문서·로그만 바꿨다(git diff --stat 확인). 내용상 수락 가능하지만 기록에 실행 불가 사유가 없다. 해결: coor가 리뷰 중 lint.json 두 명령에 reason(Windows make 없음, da53e96 Linux clone EXIT=0 로그 경로, 71dcac7 직접 실행 아님)을 기록했다. 다른 필드는 그대로다. 증거 한계(71dcac7 직접 실행 아님)는 남는다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "ctx_d3598f925a06",
+    "reviewer_session": "58c84abf-a77e-48ff-9609-1e46b3b05d1c",
+    "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-c64b790767fa4dcd86d177a1fd3a04cf",
+    "snapshot_head": "71dcac7822b84acc2ae458a533dda96af1e94fe4",
+    "read_only": true
+  }
+}
