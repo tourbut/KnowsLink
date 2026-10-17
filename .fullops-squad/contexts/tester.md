@@ -38,3 +38,7 @@ summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사
 - 2026-10-17 SAR-UX-ISSUES-002-RECEIPT-TESTER: fixture 18928/DEV 9ae29ec의 HTTP16·Chrome/Edge CDP 각51·철회 후7 검사. U6 격리·복구 통과, medium D-RT-01(닫힌 선택기가 긴 이름의 구분값을 가림). [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md).
 - Orca 탭은 hasFocus false라 Tab 입력이 무효이고 페이지 CSP가 fetch POST를 막는다. 키보드는 Chrome/Edge CDP Input.dispatchKeyEvent를 쓴다. `__Host-` 쿠키는 `cookie set --domain`이 아니라 `exec "cookies set ... --url"`로 넣는다.
 - fixture의 `revoke`는 되돌릴 수 없다. 모든 다른 검사 뒤에 실행하고 이후 재실행은 철회 상태를 기대값으로 따로 둔다. 회원당 40회 조회 한도는 기본 폼 GET도 센다. 검사 볼륨을 `recover`로 비운다.
+
+- 2026-10-17 SAR-SESSION-PEER-001-TESTER: 고정 bdc6500의 V01·V03–V07 독립 QA. 승인 대화상자 본문 200자 잘림 medium D-SP-01과 관찰 6건. V02 미실행. [보고](../docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md).
+- relay는 비-loopback 평문 SMTP를 거부한다. 합성 메일 sink는 relay 컨테이너 netns 사이드카(`--network container:`)로 띄운다. 코드 메일은 주소당 1분 1건이며 IP 시간당 20건이다. Git Bash는 `/knowslink-session`을 경로로 바꾸므로 MSYS_NO_PATHCONV=1이 필요하다.
+- Claude 폴더 신뢰 대화상자는 빈 Enter가 `No, exit`다. 방향키 Down 뒤 Enter. 호스트 모델은 주입 본문의 작성을 거부할 수 있어 수신 쪽 검증은 서명 fixture 발송을 쓴다.
