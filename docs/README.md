@@ -21,6 +21,7 @@ summary: 독자별 시작 문서와 현재 시스템 상세 설계 및 정본을
 | Dots 사용자 | [신규 연결](../README.md#dots-신규-연결) 또는 [기존 업데이트](../README.md#dots-기존-연결-업데이트) | [Events와 SSE 차이](architecture.md#sse와-mcp-events), [알림 점검](operations.md#수신-알림-문제-판별) |
 | 개발자 | [구조와 레포 지도](architecture.md) | [현재 시스템 상세 설계·Mermaid](system-design.md), [개발환경과 검증](development.md) |
 | 운영자 | [운영과 복구](operations.md) | [개발환경과 격리 QA](development.md), 아래 심층 정본 |
+| 디자이너·홍보 | [로고와 도형 의미](brand/README.md) | [로고 SVG](brand/knowslink-lockup.svg), [심볼 SVG](brand/knowslink-symbol.svg) |
 
 ## 심층 정본과 검증 근거
 
