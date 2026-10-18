@@ -194,7 +194,8 @@ D10, D13, D11(route 추천). 실제 변경 원천에 따라 D05를 더한다. D0
 - 원격 Linux 격리 clone(516bf62, 3c1567f 각각): `make lint` EXIT=0, `make test` EXIT=0, integration 전체(`-skip TestRemoteConsentBrowserReturn`) EXIT=0. 로그·SHA256: [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md).
 - U2-A·U4-A 실패 경계: 동명 충돌 확장, 40자 한글/이모지, 제어문자 거절과 중복 생성 없음, 이름 변경 뒤 ID·관계·세대 불변, 수동/device/remote 세 경로 이름 결속, 코드 trim·빈 입력·동의 누락, 코드 교체(옛 코드 발견 불가·기존 친구 유지), GET만으로 관계 없음, agent 0개 요청·수락, 24h 기한 수락 거부와 새 세대, 권한 밖 이름 비노출(pending·차단 포함).
 - 렌더: headless Chrome CDP 1440·390·320px, 가로 넘침 0·44px 미만 동작 0. 320px 동의 라벨 넘침을 찾아 고쳤다.
-- FullOps lint 결과는 아래 lint 절에 적는다.
+- FullOps lint(`lint.py --from 8d0db4b`, Windows): 첫 실행(HEAD 40c1471) ERROR 1(DOC-003, 내 QA 보고 front matter)을 `deliverables.py --stamp`로 고쳤다. 최종 HEAD의 재실행 결과는 worker_done에 적는다. 예상 WARNING: SIZE-001 `human_http.go` 464줄·`member.go` 394줄·`member_agents.go` 380줄(기존부터 상한 300 초과, 기능 추가분만 늘었고 분할은 이번 범위 밖), `PLANS.md`(coor 커밋 6275431의 변경, 내 변경 아님), SIZE-002 추가 573줄(문서·테스트 포함, 한 기능 단위라 분할하지 않음). 실행 불가 2: product-lint·product-test는 Windows에 make가 없다. 같은 SHA의 원격 Linux 실행 EXIT=0으로 대신 증명한다. 사용자 대기 미추적 폴더는 lint 실행 동안만 `.git/info/exclude`에 임시로 넣고 원래 내용(SHA256 995c81d1…)으로 복원했다. 폴더는 건드리지 않았다.
+- DEP-001: 의존성 변경 없음.
 
 ### 못 한 것 (not_run)
 

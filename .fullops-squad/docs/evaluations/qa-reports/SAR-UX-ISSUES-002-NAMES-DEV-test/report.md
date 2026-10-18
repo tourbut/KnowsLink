@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-19
 owner: dev
 tasks: [SAR-UX-ISSUES-002-NAMES-DEV]
-summary: 이름 중심 표시·친구 코드 공유·친구 요청 복구(U2/U4+U7)의 DEV 검사, 렌더 확인, fixture와 미실행 항목
+summary: "이름 중심 표시·친구 코드 공유·친구 요청 복구(U2/U4+U7)의 DEV 검사, 렌더 확인, fixture와 미실행 항목"
 ---
 
 # SAR-UX-ISSUES-002-NAMES-DEV DEV 검증 보고
