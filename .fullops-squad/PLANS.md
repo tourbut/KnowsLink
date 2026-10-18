@@ -12,7 +12,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 ## 잔여 작업 일괄 수행 — 2026-10-18
 
 - 사용자 지시 "잔여작업 모두 수행해". coor Run run_76a9511dbb0d. 설계 정본 SAR-UX-ISSUES-002.md 순차 인계 2–5단위를 차례로 DEV → tester → designer 시각 → 고정 SHA 리뷰 → main 통합한다. 각 단위는 직전 통합 main을 기준으로 한다.
-- 2단위 SAR-UX-ISSUES-002-NAMES-DEV(U2/U4+U7, 1단위 잔여 선택기·429 문구 포함): route implementation→dev, claude/claude-opus-5-5/high(user, 다중 모듈). base main 8d0db4b. 인박스·find/context/packet·bind 준비.
+- 2단위 SAR-UX-ISSUES-002-NAMES-DEV(U2/U4+U7, 1단위 잔여 선택기·429 문구 포함): route implementation→dev, claude/claude-opus-5-5/high(user, 다중 모듈). base main 8d0db4b. 인박스·find/context/packet·bind 준비. main 6275431 push, designer/dev/ops/tester FF. 배정 task_817695a13ebb / ctx_bc77cf9072cc / term_51379774-5db6-4cdc-88e7-1cb854939a37, launch.effective claude-opus-5-5 high 일치, 지시서 읽기 착수 확인. 세션 선택: 이전 dev 세션 없음(다른 과제), fresh. dev 미추적 HyperFrames WIP는 손대지 않도록 spec에 명시.
 - 대기: 3단위 U5 승인 요약 → 4단위 U8 연결 경로·재개(+나머지 U7) → 5단위 U3 언어. 
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
