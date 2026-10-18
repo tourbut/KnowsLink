@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-NAMES-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.01,
+        "ops": 0,
+        "tester": 0.99
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.12,
+      "D02": 0.12,
+      "D03": 0.1,
+      "D04": 0.16,
+      "D05": 0.1,
+      "D06": 0.1,
+      "D07": 0.08,
+      "D08": 0.11,
+      "D09": 0.1,
+      "D10": 0.25,
+      "D11": 0.14,
+      "D12": 0.35,
+      "D13": 0.3
+    }
+  },
+  "usage": {
+    "input_tokens": 2519,
+    "output_tokens": 314,
+    "cost": 0.000105798
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.638,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "독립 동작 QA는 tester 소유(orca-agents.md 라우팅 기준)",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "0d14660e68dccd3c7d7d22799d45046ae122b8f5",
+  "requires_packet": true,
+  "attempt": "e380268e83ac4ae0ba41f8cd086b216c",
+  "instruction_sha256": "27166e6d17f72c7de85e7586746c464bce3643c2f1ce63ddb6c12af9cf4d08d5",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "039f9f849d239b8b58d7e0f922a61641607a8613a4c857580645c5c1a4d5cee3"
+}

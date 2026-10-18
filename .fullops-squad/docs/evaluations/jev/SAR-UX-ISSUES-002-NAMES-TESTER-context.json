@@ -1,0 +1,217 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "0d14660e68dccd3c7d7d22799d45046ae122b8f5",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "0d9147c0e6c8370f74b6e42151122e875c453fe446e96806efb734ea48a10367",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-UX-ISSUES-002.md",
+      "c1-service-member-ui.md",
+      "c2-tester.md",
+      "c3-project.md",
+      "c4-README.md",
+      "c5-report.md",
+      "required_0",
+      "required_1",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-SAR-UX-ISSUES-002.md",
+      "c1-service-member-ui.md",
+      "c2-tester.md",
+      "c3-project.md",
+      "c4-README.md",
+      "c5-report.md",
+      "required_0",
+      "required_1",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-SAR-UX-ISSUES-002.md": {
+        "relevant": 0.82,
+        "evidence": 0.91,
+        "contradicts": 0.35,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-tester.md": {
+        "relevant": 0.29,
+        "evidence": 0.6,
+        "contradicts": 0.23,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-project.md": {
+        "relevant": 0.47,
+        "evidence": 0.78,
+        "contradicts": 0.19,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-README.md": {
+        "relevant": 0.39,
+        "evidence": 0.82,
+        "contradicts": 0.13,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-report.md": {
+        "relevant": 0.13,
+        "evidence": 0.32,
+        "contradicts": 0.86,
+        "injection": 0.03,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [
+      "c5-report.md"
+    ],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-UX-ISSUES-002.md": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "c1-service-member-ui.md": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "c2-tester.md": ".fullops-squad/contexts/tester.md",
+      "c3-project.md": ".fullops-squad/project.md",
+      "c4-README.md": ".fullops-squad/docs/evaluations/scenarios/README.md",
+      "c5-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_tester.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 20213,
+    "output_tokens": 380,
+    "cost": 0.000848946,
+    "known_cost": 0.000848946,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.603,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.499,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4562,
+        "output_tokens": 76,
+        "cost": 0.000191604
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.472,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3764,
+        "output_tokens": 76,
+        "cost": 0.000158088
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.596,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3847,
+        "output_tokens": 76,
+        "cost": 0.000161574
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.497,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3948,
+        "output_tokens": 76,
+        "cost": 0.000165816
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.474,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4092,
+        "output_tokens": 76,
+        "cost": 0.000171864
+      }
+    }
+  ],
+  "request_max_seconds": 0.596,
+  "task_key": "SAR-UX-ISSUES-002-NAMES-TESTER",
+  "role": "tester",
+  "attempt": "e380268e83ac4ae0ba41f8cd086b216c",
+  "instruction_sha256": "27166e6d17f72c7de85e7586746c464bce3643c2f1ce63ddb6c12af9cf4d08d5",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      ".fullops-squad/contexts/tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/docs/evaluations/scenarios/README.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md"
+    ],
+    "required": [],
+    "sources": {
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md": "6122761e9f8e1b154f11c97d88194778451dfbad4e514ddc8aad7d193f9ea32e",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "oversized",
+      ".fullops-squad/contexts/tester.md": "dd140f6bacd1b2d8f862d998dd67868291278b3e7097a3bfb1a0398171578ac7",
+      ".fullops-squad/project.md": "f7e1e83eb7cd85d88a82a78e704dbbfb39bdf6ed6559c6fc3c60f02bd026d85b",
+      ".fullops-squad/docs/evaluations/scenarios/README.md": "06fcbb1beb616c22344a85ee7a50a124198799e67582431751046dc98de5e731",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md": "3df867ce830f71fae97c113093efad9b7b8c6bdb25f809bd91f5fe57a6b76e20"
+    }
+  },
+  "unsent_sources": {
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 1.239,
+  "input_partial": true,
+  "instruction_chars": 5262,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 5262
+  }
+}
