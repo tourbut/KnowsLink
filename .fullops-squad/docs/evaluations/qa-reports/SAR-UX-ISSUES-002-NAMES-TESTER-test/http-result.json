@@ -1,0 +1,237 @@
+{
+ "origin": "http://127.0.0.1:18930",
+ "fixed_sha": "b2e683ae677c78cd7bdc47c75820bcb191b94838",
+ "evidence": {
+  "titles": {
+   "/home": "대화 · KnowsLink",
+   "/home/friends": "친구 · KnowsLink",
+   "/home/account": "내 계정 · KnowsLink",
+   "/home/agents": "내 에이전트 · KnowsLink",
+   "/home/legacy": "기존 연결 · KnowsLink",
+   "/home/receipts": "요청 상태 조회 · KnowsLink",
+   "/home/new": "새 대화 · KnowsLink"
+  },
+  "expires": "2026-10-20 00:22:18 KST",
+  "get_probe_statuses": [
+   [
+    "/home/friends",
+    200
+   ],
+   [
+    "/home/friends",
+    200
+   ],
+   [
+    "/home/friends/ojKQejrhqZ87EvQ3VgHda0",
+    403
+   ],
+   [
+    "/home/friends/request",
+    403
+   ],
+   [
+    "/home/friends/decision",
+    403
+   ],
+   [
+    "/home/friend-code",
+    403
+   ],
+   [
+    "/home/new",
+    403
+   ],
+   [
+    "/home/friends/request",
+    403
+   ],
+   [
+    "/home/agent-name",
+    403
+   ]
+  ],
+  "anon429_codes": [
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   303,
+   429
+  ],
+  "anon429_text": "내 에이전트 / 요청 상태 조회 요청 상태 조회 보낸 요청이나 답장의 ID로 전달 상태를 확인합니다. 현재 온라인 상태를 확인하는 기능은 아닙니다. 요청이 많습니다. 2026-10-19 00:34:50 KST 이후 다시 시도하세요. 저장된 입력은 로그인 확인이 가능해지면 복원됩니다. 조회 입력으로 이동 내 에이전트 요청 ID 또는 답장 ID 받은 요청 ID 또는 답장 ID를 붙여 넣으세요. 이 조회는 메시지를 보내지 않습니다. 로그인 확인 후 다시 조회 내 에이전트로 돌아가기 관리 화면으로 돌아가기",
+  "member_window_429_retries": 16
+ },
+ "results": [
+  {
+   "check": "landmarks_title_h1_skip_main_current",
+   "covers": [
+    "U7 title/h1/main/skip",
+    "U7 aria-current"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "legacy_title_differs_from_agents_and_current_nav_is_not_faked",
+   "covers": [
+    "U7 unique title",
+    "U7 no fake current"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "name_first_kind_discriminator_on_every_surface",
+   "covers": [
+    "U2 name first",
+    "U2 kind",
+    "U2 discriminator"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "colliding_names_are_distinguishable_on_each_surface",
+   "covers": [
+    "U2 collision"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "non_friend_agent_shows_unverifiable_label_and_only_allowed_id",
+   "covers": [
+    "U2 non-friend",
+    "U2 no extra lookup"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "forty_char_names_are_fully_present_in_markup",
+   "covers": [
+    "U2 40 chars",
+    "U2 emoji"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "friend_code_is_labeled_readonly_unsubmitted_and_not_leaked",
+   "covers": [
+    "U2 own friend code",
+    "U7 label"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "account_page_has_code_rotation_with_consequence_text",
+   "covers": [
+    "U2 code rotation UI"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "friends_page_request_form_has_name_code_scope_consent_and_no_selector",
+   "covers": [
+    "U4 form",
+    "U4 zero agent no selector"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "pending_received_and_sent_states",
+   "covers": [
+    "U4 received",
+    "U4 sent",
+    "U4 no peer preview"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "zero_agent_account_sees_add_agent_guidance_and_no_empty_selector",
+   "covers": [
+    "U4 zero agents"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "get_requests_never_create_or_accept_relationships",
+   "covers": [
+    "U4 GET no side effect"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "repeated_buttons_have_target_and_discriminator_in_accessible_name",
+   "covers": [
+    "U7 repeated action names"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "return_links_are_exact_internal_and_ignore_return_params",
+   "covers": [
+    "U7 exact return",
+    "U7 no open redirect"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "receipt_radio_selector_keeps_selection_and_input_u6",
+   "covers": [
+    "1단위 radio",
+    "U6 preserve"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "error_pages_use_alert_and_do_not_leak",
+   "covers": [
+    "U7 alert",
+    "U2 no existence leak"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "blocked_endpoints_stay_blocked_by_fixture",
+   "covers": [
+    "fixture allow-list"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "cache_and_security_headers_on_code_pages",
+   "covers": [
+    "security"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "anonymous_429_screen_has_no_misleading_empty_agent_text",
+   "covers": [
+    "1단위 anon 429"
+   ],
+   "result": "pass"
+  }
+ ]
+}

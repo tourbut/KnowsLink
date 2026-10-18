@@ -1,0 +1,394 @@
+{
+  "browser": "Chrome/155.0.8059.80",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18930",
+  "stage": "keys",
+  "checks": [
+    {
+      "name": "account-tab-walk-names-focus-no-trap",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "skip-link-is-first-and-targets-main",
+      "passed": true,
+      "detail": {
+        "key": "A||#main|본문으로 건너뛰기",
+        "tag": "A",
+        "id": "",
+        "cls": "skip",
+        "type": "",
+        "text": "본문으로 건너뛰기",
+        "fv": true,
+        "outline": "solid 3px",
+        "shadow": false,
+        "h": 44,
+        "inx": true,
+        "axName": "본문으로 건너뛰기",
+        "axRole": "link"
+      }
+    },
+    {
+      "name": "friend-code-reachable-by-tab",
+      "passed": true
+    },
+    {
+      "name": "friend-code-is-readonly-with-visible-label-and-focus",
+      "passed": true,
+      "detail": {
+        "ro": true,
+        "label": "내 친구 코드",
+        "v": "s8uSoynIPMpUyBxboly48Jnz1r2pCCY6NQJC6QR9290",
+        "fv": true,
+        "outline": "solid"
+      }
+    },
+    {
+      "name": "ctrl-a-selects-whole-code",
+      "passed": true,
+      "detail": {
+        "s": 0,
+        "e": 43,
+        "len": 43
+      }
+    },
+    {
+      "name": "typing-cannot-modify-readonly-code",
+      "passed": true
+    },
+    {
+      "name": "ctrl-c-copies-whole-code",
+      "passed": true,
+      "detail": {
+        "len": 43,
+        "same": true
+      }
+    },
+    {
+      "name": "friends-a-tab-walk-names-focus-no-trap",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "friends-a-repeated-action-names-carry-target-and-id",
+      "passed": true,
+      "detail": [
+        "본문으로 건너뛰기",
+        "KnowsLink",
+        "내 계정",
+        "대화",
+        "친구",
+        "내 에이전트",
+        "친구 요청 수락: 합성 회원 c / ojKQejrhqZ87EvQ3VgHda0",
+        "친구 요청 거절: 합성 회원 c / ojKQejrhqZ87EvQ3VgHda0",
+        "합성 회원 b",
+        "내 친구 코드",
+        "내 이름 바꾸기",
+        "친구가 준 친구 코드",
+        "내 이름 ‘가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가’을 상대에게 공개하고 위 연결 범위에 동의합니다.",
+        "친구 요청 보내기"
+      ]
+    },
+    {
+      "name": "friends-a-code-field-before-request-form",
+      "passed": true,
+      "detail": [
+        "본문으로 건너뛰기",
+        "KnowsLink",
+        "내 계정",
+        "대화",
+        "친구",
+        "내 에이전트",
+        "친구 요청 수락: 합성 회원 c / ojKQejrhqZ87EvQ3VgHda0",
+        "친구 요청 거절: 합성 회원 c / ojKQejrhqZ87EvQ3VgHda0",
+        "합성 회원 b",
+        "내 친구 코드",
+        "내 이름 바꾸기",
+        "친구가 준 친구 코드",
+        "내 이름 ‘가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가’을 상대에게 공개하고 위 연결 범위에 동의합니다.",
+        "친구 요청 보내기"
+      ]
+    },
+    {
+      "name": "history-back-restores-friends-without-change",
+      "passed": true
+    },
+    {
+      "name": "friends-c-tab-walk-names-focus-no-trap",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "c-code-input-reachable",
+      "passed": true
+    },
+    {
+      "name": "c-tab-order-code-consent-button",
+      "passed": true
+    },
+    {
+      "name": "c-empty-submit-blocked-by-native-validation",
+      "passed": true
+    },
+    {
+      "name": "c-consent-checked-by-space",
+      "passed": true
+    },
+    {
+      "name": "c-request-result-announced-as-status-not-alert",
+      "passed": true,
+      "detail": {
+        "p": "/home/friends",
+        "alert": false,
+        "status": [
+          "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+        ],
+        "active": "BODY#",
+        "html": "친구\n\n요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다.\n\n친구 요청과 기록\n보낸 친구 요청\n\n요청 대기\n\n요청 기한: 2026-10-20 00:22:18 KST\n\n요청 취소\n보낸 친구 요청\n\n요청 대기\n\n요청 기한: 2026-10-20 00:36:59 KST\n\n요청 취소\n친구 목록\n\n아직 친구가 없습니다. 친구가 공유한 코드로 요청을 보내세요.\n\n친구 추가\n내 친구 코드\n\n친구에게 이 코드를 직접 공유하세요. 입력란에서 전체 선택(Ctrl+A 또는 ⌘A)한 뒤 복사(Ctrl+C 또는 ⌘C)합니다. 이 코드는 친구 요청"
+      }
+    },
+    {
+      "name": "c-request-result-does-not-reveal-success-friend",
+      "passed": true,
+      "detail": "친구\n\n요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다.\n\n친구 요청과 기록\n보낸 친구 요청\n\n요청 대기\n\n요청 기한: 2026-10-20 00:22:18 KST\n\n요청 취소\n보낸 친구 요청\n\n요청 대기\n\n요청 기한: 2026-10-20 00:36:59 KST\n\n요청 취소\n친구 목록\n\n아직 친구가 없습니다. 친구가 공유한 코드로 요청을 보내세요.\n\n친구 추가\n내 친구 코드\n\n친구에게 이 코드를 직접 공유하세요. 입력란에서 전체 선택(Ctrl+A 또는 ⌘A)한 뒤 복사(Ctrl+C 또는 ⌘C)합니다. 이 코드는 친구 요청"
+    },
+    {
+      "name": "receipts-tab-walk-names-focus",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "receipts-tab-enters-radio-group",
+      "passed": true
+    },
+    {
+      "name": "receipts-arrow-selects-next-agent-radio",
+      "passed": true,
+      "detail": "agent_a2"
+    },
+    {
+      "name": "receipts-submit-keeps-radio-and-id-and-announces-refusal",
+      "passed": true,
+      "detail": {
+        "q": "?agent=agent_a2&id=0199a3f2-4c10-7a11-8b22-334455667799",
+        "alert": "이 요청의 상태를 확인할 수 없습니다. 내 에이전트와 요청 ID를 확인하세요. 조회 입력으로 이동",
+        "checked": "agent_a2",
+        "id": "0199a3f2-4c10-7a11-8b22-334455667799"
+      }
+    },
+    {
+      "name": "ax-receipts-landmarks-heading-radiogroup",
+      "passed": true,
+      "detail": [
+        {
+          "role": "banner",
+          "name": ""
+        },
+        {
+          "role": "main",
+          "name": ""
+        },
+        {
+          "role": "heading",
+          "name": "요청 상태 조회"
+        },
+        {
+          "role": "radiogroup",
+          "name": "내 에이전트"
+        },
+        {
+          "role": "textbox",
+          "name": "요청 ID 또는 답장 ID"
+        },
+        {
+          "role": "radio",
+          "name": "긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트 / agent_a1"
+        },
+        {
+          "role": "radio",
+          "name": "긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글긴한글 / Node 22 로컬 클라이언트 / agent_a2"
+        }
+      ]
+    },
+    {
+      "name": "ax-friends-landmarks-code-textbox",
+      "passed": true,
+      "detail": [
+        {
+          "role": "navigation",
+          "name": "주요 메뉴"
+        },
+        {
+          "role": "main",
+          "name": ""
+        },
+        {
+          "role": "textbox",
+          "name": "내 친구 코드"
+        },
+        {
+          "role": "textbox",
+          "name": "친구가 준 친구 코드"
+        }
+      ]
+    },
+    {
+      "name": "contrast-text-4.5-nontext-3",
+      "passed": true,
+      "detail": {
+        "text": 14.698275841872928,
+        "muted": 6.187492322340107,
+        "link": 7.9580598507597955,
+        "button": 7.9580598507597955,
+        "code": 14.698275841872928,
+        "codeBorder": 3.791136210756701,
+        "inputBorder": 3.791136210756701
+      }
+    },
+    {
+      "name": "skip-link-enter-targets-main",
+      "passed": true
+    },
+    {
+      "name": "after-skip-next-tab-is-in-main",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "accountTabOrder": [
+      "A#본문으로 건너뛰기",
+      "A#KnowsLink",
+      "A#내 계정",
+      "A#대화",
+      "A#친구",
+      "A#내 에이전트",
+      "A#서비스 안내",
+      "INPUT#profile-name",
+      "BUTTON#이름 저장",
+      "TEXTAREA#my-code",
+      "SUMMARY#친구 코드 교체",
+      "BUTTON#로그인 다시 확인",
+      "BUTTON#이 브라우저에서 로그아웃",
+      "BUTTON#모든 브라우저에서 로그아웃",
+      "A#기존 연결"
+    ],
+    "clipboard": {
+      "len": 43,
+      "same": true
+    },
+    "friendsATabNames": [
+      "본문으로 건너뛰기",
+      "KnowsLink",
+      "내 계정",
+      "대화",
+      "친구",
+      "내 에이전트",
+      "친구 요청 수락: 합성 회원 c / ojKQejrhqZ87EvQ3VgHda0",
+      "친구 요청 거절: 합성 회원 c / ojKQejrhqZ87EvQ3VgHda0",
+      "합성 회원 b",
+      "내 친구 코드",
+      "내 이름 바꾸기",
+      "친구가 준 친구 코드",
+      "내 이름 ‘가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가’을 상대에게 공개하고 위 연결 범위에 동의합니다.",
+      "친구 요청 보내기"
+    ],
+    "cRequestResult": {
+      "p": "/home/friends",
+      "alert": false,
+      "status": [
+        "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+      ],
+      "active": "BODY#",
+      "html": "친구\n\n요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다.\n\n친구 요청과 기록\n보낸 친구 요청\n\n요청 대기\n\n요청 기한: 2026-10-20 00:22:18 KST\n\n요청 취소\n보낸 친구 요청\n\n요청 대기\n\n요청 기한: 2026-10-20 00:36:59 KST\n\n요청 취소\n친구 목록\n\n아직 친구가 없습니다. 친구가 공유한 코드로 요청을 보내세요.\n\n친구 추가\n내 친구 코드\n\n친구에게 이 코드를 직접 공유하세요. 입력란에서 전체 선택(Ctrl+A 또는 ⌘A)한 뒤 복사(Ctrl+C 또는 ⌘C)합니다. 이 코드는 친구 요청"
+    },
+    "receiptsTabOrder": [
+      "INPUT:radio#agent_a1",
+      "INPUT:text#receipt-id",
+      "BUTTON:submit#상태 확인",
+      "A#내 에이전트로 돌아가기",
+      "A#관리 화면으로 돌아가기"
+    ],
+    "contrast": {
+      "text": 14.698275841872928,
+      "muted": 6.187492322340107,
+      "link": 7.9580598507597955,
+      "button": 7.9580598507597955,
+      "code": 14.698275841872928,
+      "codeBorder": 3.791136210756701,
+      "inputBorder": 3.791136210756701
+    }
+  },
+  "captures": [
+    {
+      "file": "chrome-c-request-result-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "e2bc22f5b005d1b72f5059984a1d9d029cc4eafb19334abde9663725dac8cda4"
+    },
+    {
+      "file": "chrome-c-request-result-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "ce5c1ecf760a1d4794535773a055ff46490346cd6345f879b1c89132f3c6b5e8"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/friends"
+    },
+    {
+      "method": "POST",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/friends/request"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18930",
+      "path": "/home/friends"
+    }
+  ]
+}
