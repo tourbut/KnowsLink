@@ -4,7 +4,7 @@ status: review
 updated: 2026-10-19
 owner: tester
 tasks: [SAR-UX-ISSUES-002-NAMES-TESTER]
-summary: 고정 b2e683a의 U2·U4·U7과 1단위 조회 회귀를 격리 fixture에서 독립 확인했다. critical·high 없음, low 결함 1건과 designer 판단 관찰 7건
+summary: "고정 b2e683a의 U2·U4·U7과 1단위 조회 회귀를 격리 fixture에서 독립 확인했다. critical·high 없음, low 결함 1건과 designer 판단 관찰 7건"
 ---
 
 # SAR-UX-ISSUES-002-NAMES-TESTER 독립 QA

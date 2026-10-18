@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-19
 owner: tester
 tasks: [SAR-UX-ISSUES-002-NAMES-TESTER]
-summary: 격리 names fixture에서 U2 이름 표시, 내 친구 코드, U4 친구 요청, U7 보조 화면 접근성, 1단위 조회 회귀를 HTTP와 실제 브라우저 키 입력으로 확인하는 시나리오와 통과 조건
+summary: "격리 names fixture에서 U2 이름 표시, 내 친구 코드, U4 친구 요청, U7 보조 화면 접근성, 1단위 조회 회귀를 HTTP와 실제 브라우저 키 입력으로 확인하는 시나리오와 통과 조건"
 ---
 
 # SAR-UX-ISSUES-002-NAMES-TESTER — 독립 QA 시나리오
