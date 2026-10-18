@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-10-15
+updated: 2026-10-18
 owner: coor
-tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-LANDING-GUIDE-001, FULLOPS-UPDATE-1.4.4]
+tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-LANDING-GUIDE-001, FULLOPS-UPDATE-1.4.4, SAR-CI-001, BOARD-CLEANUP-2026-10-18]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
 ---
 
@@ -1953,3 +1953,10 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 26094e9 main/origin 및 모든 idle clean 역할 동기화 완료. 최종 exact26094e9 등록make lint/test0·ERROR0/WARN19/unavailable0. 원본통합영수증Git공용fullops-integration/SAR-HUMAN-PEER-001-final.json 보존. 사용자 실제 Google 로그인 완료 응답과 coor운영GET로 활성agent2/키등록1/legacy관계1 확인. 현재 운영구UI이므로 SAR-HUMAN-PEER-001-OPS를 신규배정: 수락26094e9 운영적용, 새writer migration전 삭제없는 보호backup검증, 기존회원/agent/키/관계·공유서비스보존, coor실계정새UI후속. 기존제품검수/low/not_run 보존.
 
 - 최종 운영 수락: msg_df52650491a2/626351ed 기록 고정snapshot .fullops-review-b0c79ac7baa84c7e8a6c92de8c359754에서 reviewed10/skipped12/checkPASS. 최초check의independence필드누락을실제등록세션/경로로교정후재검사했다. 실제운영26094e9/goose2/trigger1·backup/list/격리복원0·기존필드보존·localverify0. up.log끝grep0건EXIT1/regression기존projects실패1·원리허설권한실패보존. coor 실제Google계정새UI/이름/2agent명칭/자기연결동의저장확인. 외부friend요청·실전송0. 운영완료기록·coor LIVE 통합후main/originpush. 미연결agent1개·실친구왕복·실keyboard/200%/mobile·원scenario not_run·backup암호화/최대7일집행미확인·low문구3·개별sessiontoken회전미확인은후속이며이번에자동착수하지않는다. 제품파일은26094e9와동일하여그exactmake lint/test0를재사용한다. 삭제·이동정리없음, 모든snapshot/helper/증거보존.
+
+## CI 로고·보드 정리 — 2026-10-18
+
+- 소개영상 종료 2026-10-18: 사용자 "소개영상은 여기까지만 해". 결정 D001(청취·시각 수락)은 사용자 종료 지시로 drop했다. 수락으로 기록하지 않았다.
+- CI 로고 2026-10-18: 사용자 지시로 이미지 생성은 agy, 프롬프트는 Opus. 1차 Grok·agy 시안과 체크 제거 5안 중 B3를 선택했고 SVG로 다시 그렸다. docs/brand/(lockup·symbol·README), main 401d7da push, designer·ops·tester 동기화. 파비콘 단순형·반전판·한글판은 없다. docs/brand 위치는 정본으로 확정되지 않았다.
+- 보드 정리 2026-10-18: 해소된 blocked 두 건(27 active로, 28 done으로)과 소개 모션 문구를 고치고 FullOps 1.7.0·CI 단계를 추가했다. 위 "사용자 작업 중지 — 2026-10-15" 절은 2026-10-17 재개로 더는 유효하지 않다.
+- 보존: dev 워크트리의 미커밋 WIP(videos/service-intro/ 등, 방향 전환으로 중단된 HyperFrames 산출물)는 사용자 판단 전까지 삭제하지 않는다.

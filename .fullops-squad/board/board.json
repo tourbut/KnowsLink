@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "Tunnel·Google 등록·자동 수신 및 실제 노우 관련 답장의 1차 왕복을 확인했다.",
+  "summary": "소개 모션(v03)과 CI 로고(B3)를 main에 반영했다. 사람 간·세션 메시지 서비스는 운영 배포 1dd6800 기준이다.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -225,15 +225,15 @@
     },
     {
       "name": "잔여 UI/UX 이슈 #2–#8 해결",
-      "status": "blocked",
+      "status": "active",
       "deliverables": [],
-      "note": "사용자 작업 중지. DEV9ae29ec·제품1e49033 보존, 최종 gate·독립 검수·통합 미완료."
+      "note": "2026-10-17 재개. 수신 영수증 수정 71dcac7·e1a92b3 main 통합, 시각 판정은 보류. #2–#8 전체 완료 여부는 이 기록에서 확인하지 못함."
     },
     {
       "name": "Claude·Codex 작업 세션 간 친구 통신",
-      "status": "blocked",
+      "status": "done",
       "deliverables": [],
-      "note": "사용자 작업 중지. 설계 초안 보존, 명시 재개와 승인 모델 실행 가능 확인 후 계속."
+      "note": "설계·구현은 세션 메시지 과제(30–32)로 이어져 main 통합. 이 항목의 중지 상태는 해소."
     },
     {
       "name": "요청 상태 조회 복구 QA",
@@ -272,7 +272,19 @@
       "name": "서비스 소개 모션그래픽",
       "status": "done",
       "deliverables": [],
-      "note": "v03 14초 1440² 60fps main 통합(리뷰 사용자 생략). 청취·시각 수락 대기."
+      "note": "v03 14초 1440² 60fps main 통합(리뷰 사용자 생략). 사용자가 v03까지로 종료 지시, 청취·시각 수락 결정은 닫음(수락 기록 아님)."
+    },
+    {
+      "name": "FullOps 1.7.0 적용",
+      "status": "done",
+      "deliverables": [],
+      "note": "레포 적용 1.6.0→1.7.0, 고칠 파일 0. 결정 기록 기능은 새 coordinator 세션부터. main d186587."
+    },
+    {
+      "name": "KnowsLink CI 로고",
+      "status": "done",
+      "deliverables": [],
+      "note": "프롬프트 Opus·생성 agy 시안에서 B3 선택, SVG 재작성. docs/brand/ main 401d7da. 파비콘 단순형·반전판·한글판 없음."
     }
   ]
 }
