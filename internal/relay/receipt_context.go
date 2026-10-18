@@ -95,14 +95,6 @@ func (st *State) receiptView(member string, r *http.Request, now time.Time) (map
 		own = append(own, humanAgentView(d.Agent, a))
 		v["Status"], v["Problem"], v["Focus"] = 403, "선택한 내 에이전트가 철회되었습니다. 사용할 내 에이전트를 다시 선택하세요.", "receipt-agent"
 	}
-	for i := range own {
-		for _, other := range own {
-			if own[i].ID != other.ID && own[i].Short == shortID(other.ID) {
-				own[i].Short = own[i].ID
-				break
-			}
-		}
-	}
-	v["Own"], v["Agent"], v["ID"] = own, d.Agent, d.ID
+	v["Own"], v["Agent"], v["ID"] = distinguish(own), d.Agent, d.ID
 	return v, d
 }

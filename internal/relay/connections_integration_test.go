@@ -42,7 +42,7 @@ func browserAgent(t *testing.T, b *browser) string {
 	expect(t, b.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 	w := b.do("GET", "/home/legacy", nil)
 	expect(t, w, 200, "미연결")
-	ids := regexp.MustCompile(`<summary><h3><code class="select">(agent_[a-f0-9]+)</code>`).FindAllStringSubmatch(w.Body.String(), -1)
+	ids := regexp.MustCompile(`<code class="value select">(agent_[a-f0-9]+)</code>`).FindAllStringSubmatch(w.Body.String(), -1)
 	return ids[len(ids)-1][1]
 }
 func browserGrant(t *testing.T, b *browser, agent, mode string) (string, string) {

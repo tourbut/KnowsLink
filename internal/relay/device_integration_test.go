@@ -115,6 +115,18 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		expect(t, w, 200, "connected")
 		var connected map[string]string
 		_ = json.Unmarshal(w.Body.Bytes(), &connected)
+		// U2-A: the browser name labels the client's agent, and the refused retry made no extra agent.
+		s.mutateState(t, func(st *State) {
+			named := 0
+			for _, a := range st.Agents {
+				if a.Name == "Synthetic device" {
+					named++
+				}
+			}
+			if st.Agents[connected["agent"]] == nil || st.Agents[connected["agent"]].Name != "Synthetic device" || named != i+1 {
+				t.Fatal("device name not bound to exactly one client agent")
+			}
+		})
 		if i == 0 {
 			firstAgent, firstCredential = connected["agent"], connected["credential"]
 		} else if firstAgent == connected["agent"] || firstCredential == connected["credential"] {

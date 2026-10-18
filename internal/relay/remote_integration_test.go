@@ -124,6 +124,12 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		}
 		_ = json.Unmarshal(w.Body.Bytes(), &out)
 		agents = append(agents, out.Result.Value.Agent)
+		// U2-A: the consent-screen name labels the same agent the installed client reports.
+		s.mutateState(t, func(st *State) {
+			if a := st.Agents[out.Result.Value.Agent]; a == nil || a.Name != "합성 원격 도우미" {
+				t.Fatal("remote consent name is not on the client's agent")
+			}
+		})
 		expect(t, do(other, "POST", "/v1/text/pull", `{}`, "application/json", tokens.Access, false), 401)
 		expect(t, do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":3,"method":"events/list"}`, "application/json", tokens.Access, false), 200, remoteEvent)
 		// A callback to a non-public address fails challenge verification, never activates a subscription.

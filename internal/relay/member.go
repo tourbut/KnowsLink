@@ -252,6 +252,7 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 						break
 					}
 				}
+				v.MineAgent, v.PeerAgent = st.visibleAgent(m.Owner, v.Mine()), st.visibleAgent(m.Owner, v.Peer())
 				pairs = append(pairs, v)
 			}
 		}
@@ -296,7 +297,7 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 				pending++
 			}
 		}
-		return map[string]any{"Title": "내 에이전트", "Masked": maskEmail(m.Email), "Member": id, "Absolute": clock(session.Created.Add(sessionAbsolute)),
+		return map[string]any{"Title": "기존 연결", "Masked": maskEmail(m.Email), "Member": id, "Absolute": clock(session.Created.Add(sessionAbsolute)),
 			"Recent": now.Sub(session.Verified) < reauthWindow, "Agents": agents, "AgentDetails": details, "Pairs": pairs, "Gates": gates, "Notice": notices[r.URL.Query().Get("n")],
 			"ActiveAgents": active, "IncomingInvites": incoming, "PendingGates": pending}, nil
 	})
@@ -362,7 +363,11 @@ type refusal struct {
 // refused shows a refusal with the next step its problem names: back home (login when the session is gone)
 // and, when the refusal asks for it, the email re-check.
 func refused(w http.ResponseWriter, title string, v refusal) {
-	back := "/home"
+	refusedTo(w, title, v, "/home")
+}
+
+// refusedTo returns to the exact internal list the failed action came from.
+func refusedTo(w http.ResponseWriter, title string, v refusal, back string) {
 	if v.status == 401 {
 		back = "/"
 	}
