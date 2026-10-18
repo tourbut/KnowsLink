@@ -1,9 +1,9 @@
 {
   "version": "jev-observe-v3",
   "mode": "observation",
-  "head": "0d14660e68dccd3c7d7d22799d45046ae122b8f5",
+  "head": "05c361a7d446d4d87a2e7f7e836677e4d1573d01",
   "requested_model": "~typesafe/jev-latest",
-  "input_sha256": "0d9147c0e6c8370f74b6e42151122e875c453fe446e96806efb734ea48a10367",
+  "input_sha256": "4b2d227d8fe6a8cc73048ce88244d1ad0b497c4091708aead6dc47229f5d1b87",
   "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
   "context": {
     "baseline_ids": [
@@ -36,42 +36,42 @@
     ],
     "signals": {
       "c0-SAR-UX-ISSUES-002.md": {
-        "relevant": 0.82,
-        "evidence": 0.91,
-        "contradicts": 0.35,
+        "relevant": 0.73,
+        "evidence": 0.85,
+        "contradicts": 0.24,
         "injection": 0.02,
         "decision": "keep",
         "reason": null
       },
       "c2-tester.md": {
-        "relevant": 0.29,
-        "evidence": 0.6,
-        "contradicts": 0.23,
-        "injection": 0.04,
+        "relevant": 0.93,
+        "evidence": 0.84,
+        "contradicts": 0.35,
+        "injection": 0.03,
         "decision": "keep",
         "reason": null
       },
       "c3-project.md": {
-        "relevant": 0.47,
-        "evidence": 0.78,
-        "contradicts": 0.19,
-        "injection": 0.03,
+        "relevant": 0.51,
+        "evidence": 0.8,
+        "contradicts": 0.15,
+        "injection": 0.02,
         "decision": "keep",
         "reason": null
       },
       "c4-README.md": {
-        "relevant": 0.39,
-        "evidence": 0.82,
-        "contradicts": 0.13,
-        "injection": 0.03,
+        "relevant": 0.25,
+        "evidence": 0.73,
+        "contradicts": 0.11,
+        "injection": 0.02,
         "decision": "keep",
         "reason": null
       },
       "c5-report.md": {
-        "relevant": 0.13,
-        "evidence": 0.32,
-        "contradicts": 0.86,
-        "injection": 0.03,
+        "relevant": 0.07,
+        "evidence": 0.15,
+        "contradicts": 0.81,
+        "injection": 0.02,
         "decision": "conflict",
         "reason": "contradicts task"
       }
@@ -109,77 +109,77 @@
   "evidence_checks": {},
   "claims": {},
   "usage": {
-    "input_tokens": 20213,
+    "input_tokens": 20018,
     "output_tokens": 380,
-    "cost": 0.000848946,
-    "known_cost": 0.000848946,
+    "cost": 0.0008407559999999999,
+    "known_cost": 0.0008407559999999999,
     "cost_status": "complete"
   },
-  "latency_seconds": 0.603,
+  "latency_seconds": 0.534,
   "response_model": "typesafe/jev-1.14-20261014",
   "error": null,
   "calls": [
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.499,
+      "elapsed": 0.53,
       "cached": false,
       "usage": {
-        "input_tokens": 4562,
+        "input_tokens": 4472,
         "output_tokens": 76,
-        "cost": 0.000191604
+        "cost": 0.000187824
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.472,
+      "elapsed": 0.477,
       "cached": false,
       "usage": {
-        "input_tokens": 3764,
+        "input_tokens": 3956,
         "output_tokens": 76,
-        "cost": 0.000158088
+        "cost": 0.000166152
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.596,
+      "elapsed": 0.471,
       "cached": false,
       "usage": {
-        "input_tokens": 3847,
+        "input_tokens": 3757,
         "output_tokens": 76,
-        "cost": 0.000161574
+        "cost": 0.000157794
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.497,
+      "elapsed": 0.495,
       "cached": false,
       "usage": {
-        "input_tokens": 3948,
+        "input_tokens": 3831,
         "output_tokens": 76,
-        "cost": 0.000165816
+        "cost": 0.000160902
       }
     },
     {
       "status": "received",
       "model": "typesafe/jev-1.14-20261014",
-      "elapsed": 0.474,
+      "elapsed": 0.449,
       "cached": false,
       "usage": {
-        "input_tokens": 4092,
+        "input_tokens": 4002,
         "output_tokens": 76,
-        "cost": 0.000171864
+        "cost": 0.000168084
       }
     }
   ],
-  "request_max_seconds": 0.596,
+  "request_max_seconds": 0.53,
   "task_key": "SAR-UX-ISSUES-002-NAMES-TESTER",
   "role": "tester",
   "attempt": "e380268e83ac4ae0ba41f8cd086b216c",
-  "instruction_sha256": "27166e6d17f72c7de85e7586746c464bce3643c2f1ce63ddb6c12af9cf4d08d5",
+  "instruction_sha256": "b7f70ff95dd9d3b9df42efd7dc291ba6b42682ff03c2544ca170e9c77b739806",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
@@ -197,9 +197,9 @@
     "sources": {
       ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md": "6122761e9f8e1b154f11c97d88194778451dfbad4e514ddc8aad7d193f9ea32e",
       ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "oversized",
-      ".fullops-squad/contexts/tester.md": "dd140f6bacd1b2d8f862d998dd67868291278b3e7097a3bfb1a0398171578ac7",
+      ".fullops-squad/contexts/tester.md": "7adebe318732d549d9a908261bbdcfabcd5a039490d32cb3ccf9484cd296ae3d",
       ".fullops-squad/project.md": "f7e1e83eb7cd85d88a82a78e704dbbfb39bdf6ed6559c6fc3c60f02bd026d85b",
-      ".fullops-squad/docs/evaluations/scenarios/README.md": "06fcbb1beb616c22344a85ee7a50a124198799e67582431751046dc98de5e731",
+      ".fullops-squad/docs/evaluations/scenarios/README.md": "e1fc58c415ad7e64908d0aef6d2aac145c3e603ea750588a0a783b0895455897",
       ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md": "3df867ce830f71fae97c113093efad9b7b8c6bdb25f809bd91f5fe57a6b76e20"
     }
   },
@@ -207,11 +207,11 @@
     ".fullops-squad/docs/design-docs/mockups/service-member-ui.md": "too large or empty"
   },
   "refused_paths": [],
-  "elapsed_seconds": 1.239,
+  "elapsed_seconds": 1.332,
   "input_partial": true,
-  "instruction_chars": 5262,
+  "instruction_chars": 34747,
   "remaining_instruction": {
     "start_char": 3500,
-    "end_char": 5262
+    "end_char": 34747
   }
 }

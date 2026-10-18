@@ -52,15 +52,15 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 시나리오 `.fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md`(covers·독립 checks·origin·허용 동작·합성 A/B/C·관측 수준).
-- [ ] U2: 이름 먼저+종류+구분값(조회·승인·legacy·연결·친구), 동명 구분값 확장, 40자 한글/이모지 줄바꿈·넘침(1440·390·320), 비친구 '확인할 수 없는 에이전트', 이름 변경 뒤 ID 불변, 제어문자 거절.
-- [ ] U2: 내 친구 코드 읽기 전용 입력(보이는 라벨, 키보드 전체 선택), 코드 교체 뒤 옛 코드로 새 요청 불가.
-- [ ] U4: 요청 제출 동일 문구(없는/유효 코드 구분 불가), 빈 코드·동의 누락 422와 입력 보존, 받은/보낸 대기 표시·행동, C(agent 0개)의 요청 가능·빈 선택기 없음, GET·뒤로가기만으로 관계 생성/수락 없음.
-- [ ] U7: title·h1·main·skip, 정확한 내부 복귀, status/alert, 반복 버튼 접근성 이름에 대상·구분값, Tab 이동·보이는 focus, 44px.
-- [ ] 1단위 회귀: 조회 radio 선택기(이름/종류/구분값)·U6 입력 보존, 익명 429 화면.
-- [ ] DEV의 두 판단 항목은 관찰만 기록한다: 요청자에게 '거절' 표시, 새 대화 select의 40자 이름 잘림.
-- [ ] 보고서 `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md`와 캡처(designer 시각 검수용: 친구 빈 상태·친구 추가·내 계정 코드·조회·승인/연결의 이름 표시, 3폭).
-- [ ] 완료 보고 → work.py finish → 커밋 → worker_done.
+- [x] 시나리오 `.fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md`(covers·독립 checks·origin·허용 동작·합성 A/B/C·관측 수준).
+- [x] U2: 이름 먼저+종류+구분값(조회·승인·legacy·연결·친구), 동명 구분값 확장, 40자 한글/이모지 줄바꿈·넘침(1440·390·320), 비친구 '확인할 수 없는 에이전트', 이름 변경 뒤 ID 불변, 제어문자 거절.
+- [x] U2: 내 친구 코드 읽기 전용 입력(보이는 라벨, 키보드 전체 선택), 코드 교체 뒤 옛 코드로 새 요청 불가.
+- [x] U4: 요청 제출 동일 문구(없는/유효 코드 구분 불가), 빈 코드·동의 누락 422와 입력 보존, 받은/보낸 대기 표시·행동, C(agent 0개)의 요청 가능·빈 선택기 없음, GET·뒤로가기만으로 관계 생성/수락 없음.
+- [x] U7: title·h1·main·skip, 정확한 내부 복귀, status/alert, 반복 버튼 접근성 이름에 대상·구분값, Tab 이동·보이는 focus, 44px.
+- [x] 1단위 회귀: 조회 radio 선택기(이름/종류/구분값)·U6 입력 보존, 익명 429 화면.
+- [x] DEV의 두 판단 항목은 관찰만 기록한다: 요청자에게 '거절' 표시, 새 대화 select의 40자 이름 잘림.
+- [x] 보고서 `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md`와 캡처(designer 시각 검수용: 친구 빈 상태·친구 추가·내 계정 코드·조회·승인/연결의 이름 표시, 3폭).
+- [x] 완료 보고 → work.py finish → 커밋 → worker_done.
 
 소유 파일: 위 시나리오·qa-reports 하위, own route/inbox/log.
 
@@ -90,20 +90,21 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 <!-- fullops-packet:start -->
 ### 탐색 근거와 읽을 구간
 
-정본: `.fullops-squad\docs\evaluations\jev\SAR-UX-ISSUES-002-NAMES-TESTER-packet.json` / SHA `0d14660e68dccd3c7d7d22799d45046ae122b8f5` / partial=True
+정본: `.fullops-squad\docs\evaluations\jev\SAR-UX-ISSUES-002-NAMES-TESTER-packet.json` / SHA `05c361a7d446d4d87a2e7f7e836677e4d1573d01` / partial=True
 - `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
-- `.fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md` (document_read) · 줄 6, 10, 14 · inferred · 필수 · {'relevant': 0.82, 'evidence': 0.91, 'contradicts': 0.35, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md` (document_read) · 줄 6, 10, 14 · inferred · 필수 · {'relevant': 0.73, 'evidence': 0.85, 'contradicts': 0.24, 'injection': 0.02, 'decision': 'keep', 'reason': None}
 - `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 전체/미확인 · unknown · 필수
-- `.fullops-squad/handovers/to_tester.md` (document_read) · 줄 2, 2, 2, 2, 6, 6, 6, 7, 14, 14, 14, 14, 29, 29, 31, 31, 36, 45, 49, 53, 53, 53, 60, 60, 60 · inferred · 필수
-- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.47, 'evidence': 0.78, 'contradicts': 0.19, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/handovers/to_tester.md` (document_read) · 줄 2, 2, 2, 2, 6, 6, 6, 7, 14, 14, 14, 14, 29, 29, 31, 31, 36, 45, 49, 55, 55, 55, 62, 62, 62, 102, 102, 102, 104, 104, 104 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.51, 'evidence': 0.8, 'contradicts': 0.15, 'injection': 0.02, 'decision': 'keep', 'reason': None}
 - `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/PLANS.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md` (document_read) · 줄 6, 18, 19, 20, 21, 22, 23, 25, 27, 29, 30, 32, 33, 35, 36, 38, 39, 41, 42, 44, 45, 47, 48, 50, 51, 53, 54, 56, 57, 59, 61, 62, 64, 66, 69, 71, 74, 76, 77, 80, 81, 83, 84 · inferred
 - `.fullops-squad/contexts/designer.md` (document_read) · 줄 6, 39, 41 · inferred
 - `.fullops-squad/contexts/dev.md` (document_read) · 줄 6, 58 · inferred
-- `.fullops-squad/contexts/tester.md` (document_read) · 줄 6, 6, 28, 29, 32, 35, 38, 38, 42 · inferred · {'relevant': 0.29, 'evidence': 0.6, 'contradicts': 0.23, 'injection': 0.04, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/contexts/tester.md` (document_read) · 줄 6, 6, 28, 29, 32, 35, 38, 38, 42, 46, 46, 46 · inferred · {'relevant': 0.93, 'evidence': 0.84, 'contradicts': 0.35, 'injection': 0.03, 'decision': 'keep', 'reason': None}
 - `.fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md` (document_read) · 줄 86, 111 · inferred
 - `.fullops-squad/docs/design-docs/crud-design.md` (document_read) · 줄 7, 112 · inferred
 - `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 7, 14 · inferred
@@ -136,6 +137,7 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md` (document_read) · 줄 6, 10 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md` (document_read) · 줄 6, 10 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md` (document_read) · 줄 6 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md` (document_read) · 줄 전체/미확인 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md` (document_read) · 줄 35 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md` (document_read) · 줄 6, 10 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md` (document_read) · 줄 6, 10, 34 · inferred
@@ -198,14 +200,15 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md` (document_read) · 줄 2, 6, 10 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md` (document_read) · 줄 6, 10 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md` (document_read) · 줄 6, 10, 14 · inferred
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md` (document_read) · 줄 6, 6, 6, 10, 10, 10, 93 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md` (document_read) · 줄 2, 9, 15, 15, 58, 59, 60 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md` (document_read) · 줄 6 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md` (document_read) · 줄 6 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md` (document_read) · 줄 6, 10 · inferred · {'relevant': 0.13, 'evidence': 0.32, 'contradicts': 0.86, 'injection': 0.03, 'decision': 'conflict', 'reason': 'contradicts task'}
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md` (document_read) · 줄 6, 10 · inferred · {'relevant': 0.07, 'evidence': 0.15, 'contradicts': 0.81, 'injection': 0.02, 'decision': 'conflict', 'reason': 'contradicts task'}
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md` (document_read) · 줄 6, 6, 10, 10 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md` (document_read) · 줄 6, 28, 59, 62 · inferred
 - `.fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md` (document_read) · 줄 2, 6, 10 · inferred
-- `.fullops-squad/docs/evaluations/scenarios/README.md` (document_update, document_read) · 줄 전체/미확인 · inferred · {'relevant': 0.39, 'evidence': 0.82, 'contradicts': 0.13, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/evaluations/scenarios/README.md` (document_update, document_read) · 줄 전체/미확인 · inferred · {'relevant': 0.25, 'evidence': 0.73, 'contradicts': 0.11, 'injection': 0.02, 'decision': 'keep', 'reason': None}
 - `.fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md` (document_read) · 줄 2, 6, 10, 21 · inferred
 - `.fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md` (document_read) · 줄 2, 6, 10, 13 · inferred
 - `.fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md` (document_read) · 줄 2, 6, 10, 14 · inferred
@@ -221,6 +224,7 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 - `.fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md` (document_read) · 줄 2, 6, 10, 14 · inferred
 - `.fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md` (document_read) · 줄 2, 6, 10, 13 · inferred
 - `.fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md` (document_read) · 줄 2, 6, 10, 12, 20 · inferred
+- `.fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md` (document_read) · 줄 2, 2, 2, 6, 6, 6, 10, 10, 10, 12, 12, 12 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md` (document_read) · 줄 2, 6, 10 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md` (document_read) · 줄 20 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md` (document_read) · 줄 2, 6, 10, 18, 28, 29 · inferred
@@ -258,6 +262,7 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 - `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md` (document_read) · 줄 2, 6, 10, 28 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md` (document_read) · 줄 21 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md` (document_read) · 줄 6, 10, 14, 38, 42 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md` (document_read) · 줄 6, 6, 6, 14, 14, 14 · inferred
 - `.fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md` (document_read) · 줄 6, 20 · inferred
 - `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 113 · inferred
 - `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 7, 7, 35 · inferred
@@ -266,8 +271,11 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 - `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 131 · inferred
 - `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_read) · 줄 96 · inferred
 - `.fullops-squad/handovers/SAR-MVP-001-REVIEW.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/handovers/_TEMPLATE.md` (document_read) · 줄 전체/미확인 · inferred
 - `.fullops-squad/handovers/logs/2026-10-03_to_designer.md` (document_read) · 줄 183, 189, 266, 268 · inferred
+- `.fullops-squad/handovers/logs/2026-10-03_to_dev.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/handovers/logs/2026-10-03_to_ops.md` (document_read) · 줄 205, 278, 292 · inferred
+- `.fullops-squad/handovers/logs/2026-10-03_to_tester.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/handovers/logs/2026-10-04_to_dev.md` (document_read) · 줄 53, 72, 100, 119, 129, 259, 297 · inferred
 - `.fullops-squad/handovers/logs/2026-10-04_to_ops.md` (document_read) · 줄 53, 132, 145 · inferred
 - `.fullops-squad/handovers/logs/2026-10-04_to_tester.md` (document_read) · 줄 9, 12, 16, 20, 34, 43, 51, 57, 59, 62, 66, 70, 83, 91, 95, 99, 107, 109, 112, 116, 120, 131, 139, 140, 144, 150, 154, 157, 161, 165, 176, 183, 192, 194, 197, 201, 205, 213, 217, 224 · inferred
@@ -280,24 +288,58 @@ FULLOPS.md, common 세 규칙, project.md, `.fullops-squad/contexts/tester.md`, 
 - `.fullops-squad/handovers/logs/2026-10-07_to_designer.md` (document_read) · 줄 48, 72, 104, 105, 108, 109, 110, 111, 112, 114, 117, 119, 120, 122, 126, 131, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 173, 175, 185, 267 · inferred
 - `.fullops-squad/handovers/logs/2026-10-07_to_dev.md` (document_read) · 줄 61, 170, 171, 174, 175, 176, 177, 178, 180, 183, 185, 188, 190, 196, 197, 198, 199, 200, 201, 231 · inferred
 - `.fullops-squad/handovers/logs/2026-10-07_to_tester.md` (document_read) · 줄 9, 10, 13, 17, 23, 34, 40, 67, 72, 73, 101, 102, 103, 107, 108, 109, 111, 113, 114, 116, 117, 118, 122, 124, 125, 127, 131, 136, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 157, 171, 173, 183, 263 · inferred
+- `.fullops-squad/handovers/logs/2026-10-10_to_dev.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-10_to_tester.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-11_to_designer.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-11_to_dev.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-11_to_ops.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-11_to_tester.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-12_to_designer.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-12_to_dev.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-12_to_tester.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/handovers/logs/2026-10-13_to_dev.md` (document_read) · 줄 95, 100, 101, 103, 106, 107, 108, 114, 123, 125, 126, 127, 133, 135, 140, 142, 159, 185, 186 · inferred
 - `.fullops-squad/handovers/logs/2026-10-13_to_ops.md` (document_read) · 줄 133, 134, 138, 140, 142, 144, 146, 147, 151, 153, 154, 160, 161, 164, 165, 169, 173, 174, 185, 203, 267 · inferred
 - `.fullops-squad/handovers/logs/2026-10-13_to_tester.md` (document_read) · 줄 9, 10, 13, 17, 25, 43, 62, 66, 67, 70, 74, 82, 105, 114, 118, 119, 151, 152, 153, 154, 158, 159, 160, 165, 166, 167, 170, 171, 172, 177, 178, 179, 181, 183, 184, 186, 188, 189, 193, 195, 196, 198, 202, 205, 207, 208, 212, 213, 214, 215, 218, 219, 220, 224, 225, 226, 230, 233, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 260, 266, 274, 289, 291, 299, 301, 302, 308 · inferred
 - `.fullops-squad/handovers/logs/2026-10-14_to_designer.md` (document_read) · 줄 67, 190, 282, 293 · inferred
 - `.fullops-squad/handovers/logs/2026-10-14_to_dev.md` (document_read) · 줄 201, 202, 205, 206, 209, 215, 216, 232, 234, 244, 247, 248, 255, 256, 257, 263, 268, 270, 289, 293, 472 · inferred
+- `.fullops-squad/handovers/logs/2026-10-14_to_ops.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-14_to_tester.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/handovers/logs/2026-10-15_to_designer.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/handovers/logs/2026-10-15_to_dev.md` (document_read) · 줄 46, 107, 136, 137, 140, 144, 152, 156, 185, 199 · inferred
 - `.fullops-squad/handovers/logs/2026-10-15_to_tester.md` (document_read) · 줄 9, 10, 13, 17, 25, 97, 126, 127, 128, 129, 133, 134, 135, 138, 139, 140, 141, 142, 143, 149, 150, 154, 155, 156, 158, 160, 161, 163, 164, 165, 169, 171, 172, 174, 178, 180, 182, 183, 187, 191, 192, 193, 195, 196, 197, 200, 201, 202, 204, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 224, 228, 232, 242, 244, 251, 252, 254, 255, 258, 302 · inferred
 - `.fullops-squad/handovers/logs/2026-10-17_to_designer.md` (document_read) · 줄 69, 90 · inferred
+- `.fullops-squad/handovers/logs/2026-10-17_to_dev.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/handovers/logs/2026-10-17_to_ops.md` (document_read) · 줄 123, 207, 228, 229, 230, 235, 236, 238, 243, 244, 254, 255, 256, 262, 263, 264, 267, 271, 281, 290, 294, 296, 297, 298, 308, 310, 313, 317, 318, 319, 320, 321, 321, 324, 325, 326, 327, 328, 329, 350, 369, 386, 388, 396 · inferred
+- `.fullops-squad/handovers/logs/2026-10-17_to_tester.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/handovers/logs/2026-10-18_to_dev.md` (document_read) · 줄 143, 145, 148, 150, 151, 161, 162, 164, 168, 184, 185, 186, 192, 193, 194, 198, 199, 201, 203, 204, 205, 206, 211, 213, 227, 230 · inferred
+- `.fullops-squad/handovers/logs/SAR-SETUP-001-DEV-REVIEW.md` (document_read) · 줄 전체/미확인 · inferred
 - `.fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md` (document_read) · 줄 18 · inferred
 - `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 2, 2, 6, 6, 14, 14, 29, 36, 38, 42, 44, 46, 46, 62, 62, 74, 87, 87, 98, 98, 100, 120, 121, 122, 123, 124, 125, 126, 127, 128, 128, 134, 135 · inferred
+- `AGENTS.md` (document_read) · 줄 전체/미확인 · inferred
+- `CLAUDE.md` (document_read) · 줄 전체/미확인 · inferred
+- `GEMINI.md` (document_read) · 줄 전체/미확인 · inferred
 - `adapters/README.md` (document_read) · 줄 247 · inferred
+- `docs/README.md` (document_read) · 줄 전체/미확인 · inferred
+- `docs/architecture.md` (document_read) · 줄 전체/미확인 · inferred
+- `docs/system-design.md` (document_read) · 줄 전체/미확인 · inferred
 - `internal/relay/cleanup_flood_integration_test.go` (impact_check) · 줄 177 · inferred
 미확인 21건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+브랜치 `fullops/tester`. 커밋 SHA는 worker_done과 finish 로그에 적는다. 고정 대상 SHA `b2e683ae677c78cd7bdc47c75820bcb191b94838`(제품 `516bf62`), fixture `http://127.0.0.1:18930`.
+
+**변경 이유.** 이름 중심 표시·친구 코드·친구 요청 안내(U2·U4·U7)와 1단위 조회 회귀를 격리 fixture에서 독립 확인했다. 제품 코드는 고치지 않았다.
+
+**결과.** critical·high 없음. low 결함 1건 D-NM-01: 이름 변경이 제어·방향 문자로 거부될 때 오류 문구가 사유를 설명하지 않고 보이지 않는 문자를 입력란에 되돌린다(FAIL 유지). HTTP 19·비가역 12(첫 실행 2건 FAIL은 기대 오류 1건·결함 1건으로 followup에서 재판정)·후속 5·Chrome layout 49/keys 27/after 22·Edge layout 49/keys 27. 요청자에게 ‘거절’이 보이는 점과 새 대화 select의 40자 이름 잘림(1440 외 폭에서 종류·구분값 안 보임)은 DEV 판단 두 항목이며 재현했다. designer 판단 관찰은 O-NM-01~07이다.
+
+**지시와 달라진 점.** 1단위 `checks.py`의 select 기대는 radio 계약으로 다시 썼고 판정 기준은 낮추지 않았다. fixture가 `/home/profile`·`/home/gate`를 막아 ‘내 이름’ 변경과 승인 화면은 not_run이다.
+
+**검토 필요.** D-NM-01 수정 여부(coor→DEV), O-NM-01·02·03·04 designer 판단.
+
+**검증한 것과 못 한 것.** 위 결과와 [보고서](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md)의 ‘not_run’: 승인 화면, 조회 성공 화면, 구분값 충돌 확장(DEV Go 테스트 근거), ‘내 이름’ 변경, 24h 경합·차단·해제, 스크린리더, 실제 200%, Firefox·Safari·모바일 실기. DEV의 make lint/test/integration은 같은 SHA 결과를 재사용했고 재실행하지 않았다. 서버가 고정 SHA인지는 독립 확인하지 못했다.
+
+**산출물·로그.** 시나리오 `docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md`, 보고서·검사·캡처 `docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/`, packet outcomes `docs/evaluations/jev/SAR-UX-ISSUES-002-NAMES-TESTER-packet-outcomes.json`.
+
+**남은 일.** fixture는 비가역 상태(A↔B, A↔C 친구, C→B 대기, A 코드 교체)라 재검증하려면 coor가 다시 준비해야 한다. D-NM-01 수정 뒤 followup.py의 해당 check만 다시 실행하면 된다.
