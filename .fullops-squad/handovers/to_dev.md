@@ -47,17 +47,17 @@ Jev 분류 결과: `.fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-NAMES-
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 짧은 기술 계획(이 인박스 완료 보고에 기록)
-- [ ] U2: 카드·선택·승인·조회·연결·legacy 화면에서 이름 먼저 + 클라이언트 + 비밀 아닌 안정 구분값. 구분값 충돌 시 확장. 권한상 이름 불가면 '확인할 수 없는 에이전트'+허용 식별자. 상대 비공개 프로필 추가 조회 금지. 사용자 지정 handle 미도입.
-- [ ] U2: 내 계정·친구 추가 화면에 '내 친구 코드' 읽기 전용 입력(보이는 라벨, 키보드 전체 선택·복사). 복사 JS·CSP 완화 없음. 코드 앞뒤 공백만 제거, 빈 입력 로컬 형식 오류.
-- [ ] U4: 친구 추가 화면 구성(내 이름·상대 코드·연결 범위·명시 동의·'친구 요청 보내기'), 상태 표(요청 제출 동일 문구·받은/보낸 대기·친구·종료·차단·에이전트 0개)대로 표시와 행동. 존재·차단 비노출 유지. 에이전트 0개라도 요청 가능, 빈 발신 선택기 금지.
-- [ ] U7(해당 화면): 고유 title·h1·main·skip, 정확한 내부 복귀, status/alert, 반복 버튼 접근성 이름에 대상·구분값.
-- [ ] 1단위 잔여: 조회 선택기 종류 잘림·순서 정합, 429 문구(member_receipt.go:27-31), HTTP 구 순서 단언 갱신.
-- [ ] U2-A·U4-A의 핵심 실패 경계 자동 검사(동명·40자 한글/이모지·제어문자 거절·이름 변경 후 ID/관계 불변·세 생성 경로·코드 교체/차단/세대 경합·GET만으로 관계 생성 없음·agent 0개 요청). 문구 문자열만 복제하는 테스트는 쓰지 않는다.
-- [ ] 영향받는 D05/D10/D11·D13과 필요한 사용 안내 갱신(route 추천 D10·D13·D11).
-- [ ] 안정 후보에서 원격 Linux `make lint`·`make test` 한 번, FullOps `lint.py --from 8d0db4b` 실행·결과 보존.
-- [ ] tester/designer용 격리 fixture(합성 A/B/C·동명·legacy·agent 0개, loopback origin/포트, 허용 GET/명시 POST, 수명)를 준비해 완료 보고에 연결.
-- [ ] packet-outcomes 기록 → 완료 보고 → work.py finish → 커밋 → worker_done.
+- [x] 짧은 기술 계획(이 인박스 완료 보고에 기록)
+- [x] U2: 카드·선택·승인·조회·연결·legacy 화면에서 이름 먼저 + 클라이언트 + 비밀 아닌 안정 구분값. 구분값 충돌 시 확장. 권한상 이름 불가면 '확인할 수 없는 에이전트'+허용 식별자. 상대 비공개 프로필 추가 조회 금지. 사용자 지정 handle 미도입.
+- [x] U2: 내 계정·친구 추가 화면에 '내 친구 코드' 읽기 전용 입력(보이는 라벨, 키보드 전체 선택·복사). 복사 JS·CSP 완화 없음. 코드 앞뒤 공백만 제거, 빈 입력 로컬 형식 오류.
+- [x] U4: 친구 추가 화면 구성(내 이름·상대 코드·연결 범위·명시 동의·'친구 요청 보내기'), 상태 표(요청 제출 동일 문구·받은/보낸 대기·친구·종료·차단·에이전트 0개)대로 표시와 행동. 존재·차단 비노출 유지. 에이전트 0개라도 요청 가능, 빈 발신 선택기 금지.
+- [x] U7(해당 화면): 고유 title·h1·main·skip, 정확한 내부 복귀, status/alert, 반복 버튼 접근성 이름에 대상·구분값.
+- [x] 1단위 잔여: 조회 선택기 종류 잘림·순서 정합, 429 문구(member_receipt.go:27-31), HTTP 구 순서 단언 갱신.
+- [x] U2-A·U4-A의 핵심 실패 경계 자동 검사(동명·40자 한글/이모지·제어문자 거절·이름 변경 후 ID/관계 불변·세 생성 경로·코드 교체/차단/세대 경합·GET만으로 관계 생성 없음·agent 0개 요청). 문구 문자열만 복제하는 테스트는 쓰지 않는다.
+- [x] 영향받는 D05/D10/D11·D13과 필요한 사용 안내 갱신(route 추천 D10·D13·D11).
+- [x] 안정 후보에서 원격 Linux `make lint`·`make test` 한 번, FullOps `lint.py --from 8d0db4b` 실행·결과 보존.
+- [x] tester/designer용 격리 fixture(합성 A/B/C·동명·legacy·agent 0개, loopback origin/포트, 허용 GET/명시 POST, 수명)를 준비해 완료 보고에 연결.
+- [x] packet-outcomes 기록 → 완료 보고 → work.py finish → 커밋 → worker_done.
 
 소유 파일: `internal/relay/` 회원·사람 친구 화면/handler/템플릿과 해당 테스트, 기술 문서(D05/D10/D11/D13), own route/find/context/packet/outcomes·QA dev 보고(`docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/`). 예상 규모 500–900줄, 10–15파일. SIZE 경고가 나면 실제 차이와 분할하지 않은 이유를 보고한다.
 
@@ -168,6 +168,49 @@ D10, D13, D11(route 추천). 실제 변경 원천에 따라 D05를 더한다. D0
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+### 결과 요약
+
+- 브랜치 `fullops/dev`. 제품 최종 후보 `516bf6247f06843c97b0292d0db01961843713ea`(첫 후보 `3c1567f`, 리뷰 low 수정 `516bf62`). 이후 커밋은 보고·기록뿐이다. 최종 HEAD는 worker_done에 적는다.
+- 기준 main `8d0db4b`. 규칙 fullops-common-0.3.3. 새 DB schema·공개 API·권한·의존성 변경 없음(`go.mod`·`package.json` 미변경, 표준 라이브러리·기존 template만 사용).
+
+### 짧은 기술 계획 (실행함)
+
+1. 공용 이름 라벨 `이름 / 종류 / 구분값`과 충돌 확장 `distinguish`를 조회·승인·legacy·연결 화면에 적용한다.
+2. 상대 agent 이름은 `visibleAgent`(자기 agent 또는 현재 활성·비차단 친구)에서만 얻고 그 밖은 ‘확인할 수 없는 에이전트’와 상세 ID로 둔다.
+3. 친구·내 계정에 라벨 있는 읽기 전용 `textarea` ‘내 친구 코드’를 둔다(복사 JS·CSP 변경 없음).
+4. 친구 요청은 앞뒤 공백만 제거하고 빈 코드·동의 누락을 같은 화면 422로 복구한다.
+5. 조회 선택기를 줄바꿈되는 radio로 바꾸고 1단위 잔여(종류 잘림·순서·익명 429 문구)를 닫는다.
+6. 친구 거부 화면은 친구 목록으로 복귀한다. 고유 title(친구 상세 `<이름> — 친구`, legacy `기존 연결`).
+
+### 변경 이유와 지시와 달라진 판단
+
+- U2의 ‘읽기 전용 입력’을 `input` 대신 `textarea`로 구현했다. D04 O-06의 입력 잘림을 피하고 43자 코드를 320px에서 모두 보이기 위해서다. D04 A-07(`code` 권장)보다 새 U2 결정을 따랐다.
+- 조회 선택기만 radio로 바꿨다. 새 대화의 select는 이미 이름이 먼저라 범위를 넓히지 않았다. 40자 이름에서 닫힌 select의 종류·구분값이 잘릴 수 있다(designer 판단).
+- tester 소유 `checks.py`의 구 순서 단언은 수정하지 않았다. 새 radio 계약을 보고에 남겼다. Go integration 단언 5건과 legacy HTML을 읽는 integration helper 2건은 새 마크업으로 갱신했다.
+- 하위 에이전트: 구현은 같은 템플릿 파일을 공유해 파일 소유를 나눌 수 없어 직접 했다. 읽기 전용 리뷰 1건을 배정했다(critical/high/medium 0, low 4건 모두 516bf62에서 수정). 이 리뷰는 coor의 독립 고정 SHA 리뷰를 대신하지 않는다.
+
+### 검증한 것
+
+- 원격 Linux 격리 clone(516bf62, 3c1567f 각각): `make lint` EXIT=0, `make test` EXIT=0, integration 전체(`-skip TestRemoteConsentBrowserReturn`) EXIT=0. 로그·SHA256: [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md).
+- U2-A·U4-A 실패 경계: 동명 충돌 확장, 40자 한글/이모지, 제어문자 거절과 중복 생성 없음, 이름 변경 뒤 ID·관계·세대 불변, 수동/device/remote 세 경로 이름 결속, 코드 trim·빈 입력·동의 누락, 코드 교체(옛 코드 발견 불가·기존 친구 유지), GET만으로 관계 없음, agent 0개 요청·수락, 24h 기한 수락 거부와 새 세대, 권한 밖 이름 비노출(pending·차단 포함).
+- 렌더: headless Chrome CDP 1440·390·320px, 가로 넘침 0·44px 미만 동작 0. 320px 동의 라벨 넘침을 찾아 고쳤다.
+- FullOps lint 결과는 아래 lint 절에 적는다.
+
+### 못 한 것 (not_run)
+
+- 실제 200% 확대, 스크린리더, 실제 키보드 Tab 순서, 두 번째 브라우저, 실제 인증 화면 캡처, `TestRemoteConsentBrowserReturn`(TEST_BROWSER 필요).
+- names fixture는 컴파일만 했고 기동하지 않았다. 기동 방법·계정·허용 요청·수명은 DEV 보고의 fixture 절에 있다.
+
+### 산출물
+
+- 제품 코드·테스트: `internal/relay/` (human_http.go, human_pages.go, member.go, member_agents.go, member_pages.go, member_receipt.go, receipt_context.go, http.go, 새 human_names_test.go·human_names_integration_test.go·names_browser_fixture_test.go, 갱신 테스트·golden).
+- 기술 문서: D05 `interface-design.md`, D10 `module-design.md`, D11 `user-guide.md`, D13 `transition.md`. D02/D04는 수정하지 않았다.
+- [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md), [구현 기록](../docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md), [packet-outcomes](../docs/evaluations/jev/SAR-UX-ISSUES-002-NAMES-DEV-packet-outcomes.json).
+- SIZE: `internal/` 19파일 +489/−58줄로 예상 규모(500–900줄, 10–15파일) 안이다. 파일 수는 integration 단언 갱신으로 4개 많다.
+
+### 검토 필요와 남은 일
+
+- designer 판단: 보낸 요청이 거절되면 요청자에게 ‘거절’이 보여 코드가 실제 회원임을 사후에 알 수 있다(기존 동작, 미변경). 새 대화 select의 긴 이름 잘림.
+- coor: 독립 고정 SHA 리뷰, tester 독립 QA(names fixture·조회 radio 새 계약), designer 직접 시각 검수, main 통합.
+- `contexts/dev.md`가 10KB를 넘었다. 보관(archive) 정리는 이동·재작성이 필요해 이번 과제에서 하지 않았다.
+- 미추적 `videos/service-intro/`와 `qa-reports/SAR-MOTION-INTRO-001-DEV-test/` 하위 폴더는 손대지 않았다.
