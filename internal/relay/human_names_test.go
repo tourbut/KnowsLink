@@ -12,7 +12,7 @@ func TestVisibleAgentNamesOnlyOwnerAndCurrentFriend(t *testing.T) {
 	owner := st.Members[ids["a"]].Owner
 	unknown := func(id string) {
 		t.Helper()
-		if v := st.visibleAgent(owner, id); v.Name != "확인할 수 없는 에이전트" || v.Short != id || v.Client != "" {
+		if v := st.visibleAgent(owner, id); v.Name != "확인할 수 없는 에이전트" || v.Short != "" || v.Client != "" || v.ID != id {
 			t.Fatalf("stranger agent named: %+v", v)
 		}
 	}
@@ -21,6 +21,8 @@ func TestVisibleAgentNamesOnlyOwnerAndCurrentFriend(t *testing.T) {
 	}
 	unknown("agent_b1")
 	unknown("agent_missing")
+	st.requestFriend(ids["a"], st.Members[ids["b"]].FriendCode, now)
+	unknown("agent_b1") // a pending request reveals nothing before acceptance
 	f := acceptHumans(t, st, ids, now)
 	if v := st.visibleAgent(owner, "agent_b1"); v.Name != "도우미" || v.Short != shortID("agent_b1") {
 		t.Fatal("current friend agent unnamed")
@@ -121,9 +123,9 @@ func TestFriendPagesShareOwnCodeAndKeepRequestInput(t *testing.T) {
 
 func TestGateNamesEndpointsWithinAuthority(t *testing.T) {
 	v := map[string]any{"State": "pending", "From": "agent_x", "To": "agent_a", "Parent": "request-a", "Exp": "e", "Policy": "p", "Body": "{}", "Back": "/home",
-		"FromAgent": humanAgent{ID: "agent_x", Name: "확인할 수 없는 에이전트", Short: "agent_x"}, "ToAgent": humanAgent{ID: "agent_a", Name: "내 도우미", Client: "Node 22", Short: "a001"}}
+		"FromAgent": humanAgent{ID: "agent_x", Name: "확인할 수 없는 에이전트"}, "ToAgent": humanAgent{ID: "agent_a", Name: "내 도우미", Client: "Node 22", Short: "a001"}}
 	body := renderHumanPage(t, "human-gate", v)
-	if !strings.Contains(body, "확인할 수 없는 에이전트 / agent_x<br><code>agent_x</code>") || !strings.Contains(body, "내 도우미 / Node 22 / a001<br><code>agent_a</code>") {
+	if !strings.Contains(body, "확인할 수 없는 에이전트<br><code>agent_x</code>") || !strings.Contains(body, "내 도우미 / Node 22 / a001<br><code>agent_a</code>") {
 		t.Fatal("gate must lead with permitted names and keep full IDs")
 	}
 }

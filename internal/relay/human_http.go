@@ -63,7 +63,7 @@ func (st *State) visibleAgent(owner, id string) humanAgent {
 	if a := st.Agents[id]; a != nil && (a.Owner == owner || st.friendsNow(owner, a.Owner)) {
 		return humanAgentView(id, a)
 	}
-	return humanAgent{ID: id, Name: "확인할 수 없는 에이전트", Short: id}
+	return humanAgent{ID: id, Name: "확인할 수 없는 에이전트"}
 }
 
 func (st *State) friendsNow(ownerA, ownerB string) bool {
@@ -327,7 +327,11 @@ func (s *Service) humanPage(path string) http.HandlerFunc {
 		}
 		switch result := v.(type) {
 		case refusal:
-			refused(w, "대화", result)
+			if path == "friend" {
+				refusedTo(w, "친구", result, "/home/friends")
+			} else {
+				refused(w, "대화", result)
+			}
 		case string:
 			http.Redirect(w, r, result, 303)
 		default:

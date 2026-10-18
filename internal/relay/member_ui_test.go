@@ -37,7 +37,7 @@ func memberFixtures() []uiFixture {
 		}
 		v := memberPair{Pair: p, Incoming: incoming, Own: own, Other: other}
 		v.MineAgent = humanAgent{ID: v.Mine(), Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}
-		v.PeerAgent = humanAgent{ID: v.Peer(), Name: "확인할 수 없는 에이전트", Short: v.Peer()}
+		v.PeerAgent = humanAgent{ID: v.Peer(), Name: "확인할 수 없는 에이전트"}
 		return v
 	}
 	pairs := []memberPair{
@@ -60,7 +60,7 @@ func memberFixtures() []uiFixture {
 	}
 	gate := func(active bool, state string) map[string]any {
 		v := map[string]any{"State": state, "From": "agent_77665544332211009988aabb", "To": "agent_0a1b2c3d4e5f60718293a4b5", "Parent": "00000000-0000-4000-8000-0000000000aa", "Exp": clock(exp), "Policy": "owner_gate", "CSRF": "synthetic-csrf", "Active": active, "Body": "{\n  \"granularity_min\": 30\n}", "Intent": "schedule.query", "Hint": "다음 주 회의 가능 시간", "Back": "/home", "Deny": "/home/gates/00000000-0000-4000-8000-000000000001/deny",
-			"FromAgent": humanAgent{ID: "agent_77665544332211009988aabb", Name: "확인할 수 없는 에이전트", Short: "agent_77665544332211009988aabb"}, "ToAgent": humanAgent{ID: "agent_0a1b2c3d4e5f60718293a4b5", Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}}
+			"FromAgent": humanAgent{ID: "agent_77665544332211009988aabb", Name: "확인할 수 없는 에이전트"}, "ToAgent": humanAgent{ID: "agent_0a1b2c3d4e5f60718293a4b5", Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}}
 		return v
 	}
 	return []uiFixture{

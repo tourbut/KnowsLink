@@ -282,6 +282,16 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 		})
 		sort.Slice(gates, func(i, j int) bool { return gates[i].ID < gates[j].ID })
 		details, active, incoming, pending := ownAgents(st, m.Owner), 0, 0, 0
+		// Pair rows reuse the widened discriminators of the agent list so colliding own agents stay distinct.
+		shorts := map[string]string{}
+		for _, a := range details {
+			shorts[a.ID] = a.Short
+		}
+		for i := range pairs {
+			if short := shorts[pairs[i].MineAgent.ID]; short != "" {
+				pairs[i].MineAgent.Short = short
+			}
+		}
 		for _, a := range details {
 			if a.Status != "철회" {
 				active++
