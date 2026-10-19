@@ -1,0 +1,70 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-NAMES-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "unresolved",
+  "role": null,
+  "deliverables": [
+    "D10",
+    "D11",
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.53,
+        "product": 0.47
+      },
+      "confidence": 0.06
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.28,
+      "D02": 0.64,
+      "D03": 0.35,
+      "D04": 0.69,
+      "D05": 0.4,
+      "D06": 0.4,
+      "D07": 0.25,
+      "D08": 0.47,
+      "D09": 0.51,
+      "D10": 0.82,
+      "D11": 0.78,
+      "D12": 0.46,
+      "D13": 0.57
+    }
+  },
+  "usage": {
+    "input_tokens": 2492,
+    "output_tokens": 314,
+    "cost": 0.000104664
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D02",
+    "D09",
+    "D13"
+  ],
+  "latency_seconds": 0.729,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": null,
+  "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "head": "58cf6952fde247069352c5085cf6a77b787e8b1d",
+  "requires_packet": true
+}

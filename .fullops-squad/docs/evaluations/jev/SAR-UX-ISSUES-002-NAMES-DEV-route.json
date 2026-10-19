@@ -2,12 +2,12 @@
   "version": "jev-route-v4",
   "task_key": "SAR-UX-ISSUES-002-NAMES-DEV",
   "requested_model": "~typesafe/jev-latest",
-  "route": "unresolved",
-  "role": null,
+  "route": "implementation",
+  "role": "dev",
   "deliverables": [
     "D10",
     "D11",
-    "D04"
+    "D13"
   ],
   "thresholds": {
     "simple": 0.8,
@@ -18,10 +18,10 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.53,
-        "product": 0.47
+        "implementation": 0.99,
+        "product": 0.01
       },
-      "confidence": 0.06
+      "confidence": 0.98
     },
     "role": {
       "choice": "dev",
@@ -33,19 +33,19 @@
       "confidence": 1
     },
     "docs": {
-      "D01": 0.28,
-      "D02": 0.64,
-      "D03": 0.35,
-      "D04": 0.69,
-      "D05": 0.4,
-      "D06": 0.4,
-      "D07": 0.25,
-      "D08": 0.47,
-      "D09": 0.51,
-      "D10": 0.82,
-      "D11": 0.78,
-      "D12": 0.46,
-      "D13": 0.57
+      "D01": 0.25,
+      "D02": 0.54,
+      "D03": 0.41,
+      "D04": 0.59,
+      "D05": 0.47,
+      "D06": 0.42,
+      "D07": 0.32,
+      "D08": 0.5,
+      "D09": 0.64,
+      "D10": 0.86,
+      "D11": 0.77,
+      "D12": 0.56,
+      "D13": 0.65
     }
   },
   "usage": {
@@ -58,13 +58,33 @@
   "unresolved_deliverables": [],
   "additional_deliverables": [
     "D02",
+    "D04",
+    "D08",
     "D09",
-    "D13"
+    "D12"
   ],
-  "latency_seconds": 0.729,
+  "latency_seconds": 0.44,
   "response_model": "typesafe/jev-1.14-20261014",
-  "model": null,
-  "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "head": "58cf6952fde247069352c5085cf6a77b787e8b1d",
-  "requires_packet": true
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "제품 결정(문구·radio·거절 표시)은 designer NAMES-VISUAL이 확정해 main b923825 정본에 반영됨. 남은 일은 확정 기준의 구현·테스트라 dev 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "2c5773a4be59d38af6b8e74999bc38987ff9217c",
+  "requires_packet": true,
+  "attempt": "a82026636fb14599945245451d90f702",
+  "instruction_sha256": "75c6cb19bf53ea8db3fed9761dc735330b546afe40b93dcea2a40812a95c84c1",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "b47deee0106c7eced2d655cb4dec41c36af45aa97fee7b683ead2d266e9ba1d4"
 }
