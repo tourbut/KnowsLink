@@ -1,0 +1,87 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-NAMES-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D10",
+    "D13",
+    "D11"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.92,
+        "product": 0.08
+      },
+      "confidence": 0.84
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.63,
+        "ops": 0,
+        "tester": 0.37
+      },
+      "confidence": 0.45
+    },
+    "docs": {
+      "D01": 0.34,
+      "D02": 0.39,
+      "D03": 0.37,
+      "D04": 0.57,
+      "D05": 0.38,
+      "D06": 0.44,
+      "D07": 0.29,
+      "D08": 0.44,
+      "D09": 0.47,
+      "D10": 0.67,
+      "D11": 0.59,
+      "D12": 0.59,
+      "D13": 0.65
+    }
+  },
+  "usage": {
+    "input_tokens": 2469,
+    "output_tokens": 314,
+    "cost": 0.000103698
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D04",
+    "D12"
+  ],
+  "latency_seconds": 0.474,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "직접 시각 재검수는 designer 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "171042e4a2fa16c4478ec381d8800ce5e17a16b4",
+  "requires_packet": true,
+  "attempt": "084aab73136444028cb931e5c8747c3c",
+  "instruction_sha256": "759a02596adb23e3aadb87e54a9f3ec0cfa56efe0461683524cce64c63a2c368",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "315ef6f3ed8a0aa0be65403c8d32a085d3e51fedc07e812faeb8470841d0a567"
+}
