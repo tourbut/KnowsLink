@@ -1,0 +1,68 @@
+{
+ "origin": "http://127.0.0.1:18930",
+ "fixed_sha": "5fa3333b5948fd36792662b202915bc6243cac14",
+ "evidence": {
+  "rename_error_messages": {
+   "empty": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "spaces": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "bel": [
+    "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요."
+   ],
+   "nul": [
+    "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요."
+   ],
+   "bidi_rlo": [
+    "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요."
+   ],
+   "bidi_isolate": [
+    "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요."
+   ],
+   "newline": [
+    "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요."
+   ],
+   "len41": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "emoji41": [
+    "오류 이름은 1–40자로 입력하세요"
+   ]
+  },
+  "foreign_rename_by_B": 403,
+  "foreign_rename_by_A": 403,
+  "echo_failures": [],
+  "member_window_429_retries": 8
+ },
+ "results": [
+  {
+   "check": "friend_request_invalid_inputs_422_preserve_typed_text_and_create_nothing",
+   "covers": [
+    "U4 empty/consent 422",
+    "U4 input preserved",
+    "U7 alert + describedby"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "rename_with_unsafe_name_is_refused_without_change_or_leak",
+   "covers": [
+    "U2 control chars",
+    "U2 40 limit",
+    "U2 foreign agent"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "rejected_name_error_explains_control_and_direction_characters_and_is_not_echoed_invisibly",
+   "covers": [
+    "U2 control chars",
+    "U7 error text",
+    "U6-style safe echo"
+   ],
+   "result": "pass"
+  }
+ ]
+}

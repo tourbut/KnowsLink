@@ -1,0 +1,142 @@
+{
+ "origin": "http://127.0.0.1:18930",
+ "fixed_sha": "b2e683ae677c78cd7bdc47c75820bcb191b94838",
+ "evidence": {
+  "odd_code_results": {
+   "nul": [
+    200,
+    [
+     "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+    ]
+   ],
+   "bel": [
+    200,
+    [
+     "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+    ]
+   ],
+   "bidi_rlo": [
+    200,
+    [
+     "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+    ]
+   ],
+   "newline": [
+    200,
+    [
+     "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+    ]
+   ],
+   "long500": [
+    200,
+    [
+     "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+    ]
+   ],
+   "long2000": [
+    200,
+    [
+     "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+    ]
+   ],
+   "emoji": [
+    200,
+    [
+     "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+    ]
+   ]
+  },
+  "sender_cap_sequence_distinct": [
+   "[200, [\"요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다.\"], 0]"
+  ],
+  "sent_rows_now": 10,
+  "rename_error_messages": {
+   "empty": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "spaces": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "bel": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "nul": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "bidi_rlo": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "bidi_isolate": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "newline": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "len41": [
+    "오류 이름은 1–40자로 입력하세요"
+   ],
+   "emoji41": [
+    "오류 이름은 1–40자로 입력하세요"
+   ]
+  },
+  "foreign_rename_by_B": 403,
+  "foreign_rename_by_A": 403,
+  "echo_failures": [
+   "bel: invisible character echoed into the edit field",
+   "bel: error says only '오류 이름은 1–40자로 입력하세요'",
+   "nul: error says only '오류 이름은 1–40자로 입력하세요'",
+   "bidi_rlo: invisible character echoed into the edit field",
+   "bidi_rlo: error says only '오류 이름은 1–40자로 입력하세요'",
+   "bidi_isolate: invisible character echoed into the edit field",
+   "bidi_isolate: error says only '오류 이름은 1–40자로 입력하세요'",
+   "newline: error says only '오류 이름은 1–40자로 입력하세요'"
+  ],
+  "member_window_429_retries": 8
+ },
+ "results": [
+  {
+   "check": "friend_request_invalid_inputs_422_preserve_typed_text_and_create_nothing",
+   "covers": [
+    "U4 empty/consent 422",
+    "U4 input preserved",
+    "U7 alert + describedby"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "odd_friend_codes_get_the_same_generic_success_as_a_missing_code_and_are_never_echoed",
+   "covers": [
+    "U4 no existence oracle",
+    "U4 safe input"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "sender_with_many_pending_requests_still_gets_the_same_answer_for_new_missing_codes",
+   "covers": [
+    "U4 sender cap not an oracle"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "rename_with_unsafe_name_is_refused_without_change_or_leak",
+   "covers": [
+    "U2 control chars",
+    "U2 40 limit",
+    "U2 foreign agent"
+   ],
+   "result": "pass"
+  },
+  {
+   "check": "rejected_name_error_explains_control_and_direction_characters_and_is_not_echoed_invisibly",
+   "covers": [
+    "U2 control chars",
+    "U7 error text",
+    "U6-style safe echo"
+   ],
+   "result": "fail",
+   "detail": "AssertionError: ['bel: invisible character echoed into the edit field', \"bel: error says only '오류 이름은 1–40자로 입력하세요'\", \"nul: error says only '오류 이름은 1–40자로 입력하세요'\", 'bidi_rlo: invisible character echoed into the edit field', \"bidi_rlo: error says only '오류 이름은 1–40자로 입력하세요'\", 'bidi_isolate: invisible character echoed into the edit field', \"bidi_isolate: error says only '오류 이름은 1–40자로 입력하세요'\", \"newline: error says only '오류 이름은 1–40자로 입력하세요'\"]",
+   "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-NAMES-TESTER-test\\followup.py\", line 15, in deco\n    try: fn(); RES.append({\"check\": name, \"covers\": covers, \"result\": \"pass\"})\n         ~~^^\n  File \"C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\tester\\.fullops-squad\\docs\\evaluations\\qa-reports\\SAR-UX-ISSUES-002-NAMES-TESTER-test\\followup.py\", line 85, in _\n    EVID[\"echo_failures\"] = fails; assert not fails, fails\n                                          ^^^^^^^^^\nAssertionError: ['bel: invisible character echoed into the edit field', \"bel: error says only '오류 이름은 1–40자로 입력하세요'\", \"nul: error says only '오류 이름은 1–40자로 입력하세요'\", 'bidi_rlo: invisible character echoed into the edit field', \"bidi_rlo: error says only '오류 이름은 1–40자로 입력하세요'\", 'bidi_isolate: invisible character echoed into the edit field', \"bidi_isolate: error says only '오류 이름은 1–40자로 입력하세요'\", \"newline: error says only '오류 이름은 1–40자로 입력하세요'\"]\n"
+  }
+ ]
+}

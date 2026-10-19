@@ -1,0 +1,97 @@
+{
+ "origin": "http://127.0.0.1:18930",
+ "fixed_sha": "5fa3333b5948fd36792662b202915bc6243cac14",
+ "evidence": {
+  "code_lengths": {
+   "a": 43,
+   "b": 43,
+   "c": 43
+  },
+  "before": {
+   "sent": [
+    [
+     "_9sYaHLpv7WFrkvbwp42EX",
+     "1"
+    ]
+   ],
+   "dl": [
+    "2026-10-20 21:26:57 KST"
+   ],
+   "a_dl": [
+    "2026-10-20 21:26:57 KST"
+   ],
+   "a_recv": [
+    "합성 회원 c"
+   ]
+  },
+  "rename_refusals_5fa3333": {
+   "bel": {
+    "status": 422,
+    "alert": "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.",
+    "value": "abcd"
+   },
+   "nul": {
+    "status": 422,
+    "alert": "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.",
+    "value": "abcd"
+   },
+   "bidi": {
+    "status": 422,
+    "alert": "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.",
+    "value": "abcd"
+   },
+   "isolate": {
+    "status": 422,
+    "alert": "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.",
+    "value": "abcd"
+   },
+   "newline": {
+    "status": 422,
+    "alert": "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.",
+    "value": "abcd"
+   },
+   "only_bel": {
+    "status": 422,
+    "alert": "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.",
+    "value": ""
+   },
+   "bel_and_len41": {
+    "status": 422,
+    "alert": "오류 이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.",
+    "value": "가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가"
+   },
+   "empty": {
+    "status": 422,
+    "alert": "오류 이름은 1–40자로 입력하세요",
+    "value": ""
+   },
+   "spaces": {
+    "status": 422,
+    "alert": "오류 이름은 1–40자로 입력하세요",
+    "value": "   "
+   },
+   "len41": {
+    "status": 422,
+    "alert": "오류 이름은 1–40자로 입력하세요",
+    "value": "가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가"
+   },
+   "emoji41": {
+    "status": 422,
+    "alert": "오류 이름은 1–40자로 입력하세요",
+    "value": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+   }
+  },
+  "member_window_429_retries": 6
+ },
+ "results": [
+  {
+   "check": "agent_rename_rejects_unsafe_names_without_change",
+   "covers": [
+    "U2 control chars",
+    "U2 40 limit",
+    "D-NM-01 dedicated text + stripped value"
+   ],
+   "result": "pass"
+  }
+ ]
+}

@@ -42,3 +42,7 @@ summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사
 - 2026-10-17 SAR-SESSION-PEER-001-TESTER: 고정 bdc6500의 V01·V03–V07 독립 QA. 승인 대화상자 본문 200자 잘림 medium D-SP-01과 관찰 6건. V02 미실행. [보고](../docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md).
 - relay는 비-loopback 평문 SMTP를 거부한다. 합성 메일 sink는 relay 컨테이너 netns 사이드카(`--network container:`)로 띄운다. 코드 메일은 주소당 1분 1건이며 IP 시간당 20건이다. Git Bash는 `/knowslink-session`을 경로로 바꾸므로 MSYS_NO_PATHCONV=1이 필요하다.
 - Claude 폴더 신뢰 대화상자는 빈 Enter가 `No, exit`다. 방향키 Down 뒤 Enter. 호스트 모델은 주입 본문의 작성을 거부할 수 있어 수신 쪽 검증은 서명 fixture 발송을 쓴다.
+
+- 2026-10-19 SAR-UX-ISSUES-002-NAMES-TESTER: 고정 b2e683a의 U2·U4·U7·1단위 독립 QA. critical·high 없음, low D-NM-01(이름 거부 사유·보이지 않는 문자 되돌림). [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md).
+- 이 fixture는 `/home/*` 전체에 회원당 분당 40회 한도가 있다(41번째 429). client·CDP 러너에서 429를 기다리게 한다. headless Edge는 Tab을 body로 빼지 않고 페이지 안에서 순환하니 첫 정지점 재도달을 한 바퀴로 본다.
+- 없는 코드·제어문자·500자 코드도 일반 성공을 돌려주므로 거부 기대를 두지 않는다. 비가역 단계가 단언 하나로 멈추지 않게 mutate와 followup으로 나눴다.
