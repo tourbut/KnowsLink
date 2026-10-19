@@ -366,7 +366,8 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 			case "profile":
 				name, ok := validName(r.FormValue("name"))
 				if !ok {
-					return map[string]any{"Title": "내 이름", "Name": r.FormValue("name"), "Problem": "이름은 1–40자로 입력하세요"}, nil
+					problem, kept := nameRefusal(r.FormValue("name"))
+					return map[string]any{"Title": "내 이름", "Name": kept, "Problem": problem}, nil
 				}
 				m.Name = name
 				return "/home", nil
@@ -381,7 +382,8 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 					if e != nil {
 						return fail(e)
 					}
-					view["FormTemplate"], view["FormStatus"], view["Problem"], view["EditID"], view["EditName"] = "human-agents", 422, "이름은 1–40자로 입력하세요", r.FormValue("agent"), r.FormValue("name")
+					problem, kept := nameRefusal(r.FormValue("name"))
+					view["FormTemplate"], view["FormStatus"], view["Problem"], view["EditID"], view["EditName"] = "human-agents", 422, problem, r.FormValue("agent"), kept
 					return view, nil
 				}
 				a.Name = name

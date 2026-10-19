@@ -73,7 +73,7 @@ func TestHumanNamesAndFriendCodePostgres(t *testing.T) {
 
 	// Names: 40 emoji pass, a control character is refused without a second agent; a rename keeps ID and relationship.
 	expect(t, b.do("POST", "/home/agents", url.Values{"name": {strings.Repeat("😀", 40)}}), 303)
-	expect(t, b.do("POST", "/home/agents", url.Values{"name": {"bad\u0007name"}}), 422, "1–40자")
+	expect(t, b.do("POST", "/home/agents", url.Values{"name": {"bad\u0007name"}}), 422, "방향 제어 문자는 쓸 수 없습니다", `value="badname"`)
 	var agent string
 	agentCount := 0
 	s.mutateState(t, func(st *State) {

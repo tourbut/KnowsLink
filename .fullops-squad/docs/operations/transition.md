@@ -12,7 +12,7 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 
 ## DEV 후보 인계 (2026-10-19, SAR-UX-ISSUES-002-NAMES-DEV)
 
-이름 중심 표시·친구 코드 공유·친구 요청 오류 복구의 DEV 후보다. 운영에는 아직 반영되지 않았다. 새 schema·migration·공개 경로·Tunnel 규칙은 없으므로 배포 시 기존 relay 교체 절차만 적용한다. 수락 전 남은 일은 tester 독립 QA·designer 시각 검수·고정 SHA 리뷰·main 통합이다. 근거는 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md)다.
+이름 중심 표시·친구 코드 공유·친구 요청 오류 복구의 DEV 후보다. 운영에는 아직 반영되지 않았다. 새 schema·migration·공개 경로·Tunnel 규칙은 없으므로 배포 시 기존 relay 교체 절차만 적용한다. 수락 전 남은 일은 tester 독립 QA·designer 시각 검수·고정 SHA 리뷰·main 통합이다. designer 조건부 수락의 수정 4건(새 대화 radio·내 에이전트 링크 분리·이름 금지 문자 문구와 입력 복구·거절 안내)을 같은 후보에 더했다. 근거는 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md)다.
 
 ## 현재 운영 상태 (2026-10-17, SAR-RELEASE-001-OPS)
 

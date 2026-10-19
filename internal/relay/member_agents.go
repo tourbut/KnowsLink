@@ -219,7 +219,8 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 						return fail(fault("invalid_auth"))
 					}
 					public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": r.FormValue("name"), "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": "이름은 1–40자로 입력하세요"}, nil
+					problem, kept := nameRefusal(r.FormValue("name"))
+					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": kept, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": problem}, nil
 				}
 				if e := st.approveDevice(r.FormValue("connection"), owner, now); e != nil {
 					return fail(e)
@@ -234,7 +235,8 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 					if e != nil {
 						return fail(e)
 					}
-					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, "이름은 1–40자로 입력하세요", r.FormValue("name")
+					problem, kept := nameRefusal(r.FormValue("name"))
+					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, problem, kept
 					return view, nil
 				}
 				if limit := st.agentLimit(owner); limit != "" {
