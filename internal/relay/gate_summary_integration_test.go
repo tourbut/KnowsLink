@@ -44,6 +44,11 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 		}
 		return m[1]
 	}
+	// gatesSection keeps list checks off the relationship badges elsewhere on the legacy page.
+	gatesSection := func(page string) string {
+		start := strings.Index(page, `<section id="gates"`)
+		return page[start : start+strings.Index(page[start:], "</section>")]
+	}
 	state := func(f *fixture) (s string) {
 		f.mutate(func(st *State) { s = st.Gates[gateID].State })
 		return s
@@ -123,8 +128,7 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 			if c.name != "relationship" && c.name != "expired" && (!strings.Contains(page, "승인할 내용을 확인할 수 없습니다") || strings.Contains(page, "요청한 내용")) {
 				t.Fatalf("%s: unverifiable request still summarised", c.name)
 			}
-			list := bob.do("GET", "/home/legacy", nil).Body.String()
-			if !strings.Contains(list, c.badge) {
+			if list := gatesSection(bob.do("GET", "/home/legacy", nil).Body.String()); !strings.Contains(list, c.badge) || strings.Contains(list, string(badge("pending"))) {
 				t.Fatalf("%s: approval list shows stale pending", c.name)
 			}
 			expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"approve"}}), 409, "이번 제출은 적용되지 않았습니다", `href="/home/legacy#gates"`)
@@ -153,10 +157,17 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 			t.Fatal("another member saw the request")
 		}
 		expect(t, carol.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"approve"}}), 403)
-		// A form for one gate cannot decide another: the token is bound to the gate ID in the path.
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf("stale-session", gateID)}, "decision": {"approve"}}), 403)
-		if state(f) != "pending" {
-			t.Fatal("foreign or stale form changed the gate")
+		// A form for one gate cannot decide another: the token is bound to the gate ID in the path.
+		const otherGate = "0199a3f2-4c10-7a11-8b22-3344556677bb"
+		receipt := f.send(wire(t, f.private["agent_a"], secondID, "agent_a", "agent_b", "schedule.query", "summary-key-0002", "", queryBody(), time.Now().Add(180*time.Second)), "agent_a", "", 200)
+		claim := f.deliver(secondID)
+		f.send(wire(t, f.private["agent_b"], otherGate, "agent_b", "agent_b", "relay.approval.request", "summary-gate-0002", secondID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute)), "agent_b", claim, 200)
+		expect(t, bob.do("POST", "/home/gates/"+otherGate, url.Values{"csrf": {token}, "decision": {"approve"}}), 403)
+		var other string
+		f.mutate(func(st *State) { other = st.Gates[otherGate].State })
+		if state(f) != "pending" || other != "pending" {
+			t.Fatal("foreign, stale, or cross-gate form changed a gate")
 		}
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"approve"}}), 303)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"deny"}}), 409, "이번 제출은 적용되지 않았습니다")

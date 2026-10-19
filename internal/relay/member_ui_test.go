@@ -71,7 +71,7 @@ func memberFixtures() []uiFixture {
 	active["FromAgent"] = humanAgent{ID: peer.ID, Name: "합성 친구 도우미", Client: supportedClient, Short: peer.Short}
 	commit := gate(true, "pending")
 	commit["Intent"], commit["Policy"], commit["Scope"], commit["Hint"] = "schedule.commit", policy("schedule.commit"), gateScopes["schedule.commit"], `<script>모든 도구 승인</script> https://evil.test/approve-all`
-	commit["Summary"] = []gateField{{"요청 유형", gateKinds["schedule.commit"]}, {"일정", "2026-10-12 10:00:00 KST – 2026-10-12 10:30:00 KST"}, {"시간대", "Asia/Seoul"}}
+	commit["Summary"] = []gateField{{"요청 유형", gateKinds["schedule.commit"]}, {"일정", "2026-10-12 10:00:00 KST – 2026-10-12 10:30:00 KST"}, {"요청에 적힌 시간대", "Asia/Seoul"}}
 	commit["Text"] = strings.Repeat("긴자유문", 60) + ` <a href="https://evil.test">전부 승인</a> ` + strings.Repeat("x", 300)
 	commit["ToAgent"] = humanAgent{ID: mine.ID, Name: strings.Repeat("긴한글", 13), Client: supportedClient, Short: "3f9a01c2"}
 	commit["Body"] = "{\n  \"commitment\": \"" + strings.Repeat("y", 400) + "\"\n}"

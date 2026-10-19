@@ -53,7 +53,7 @@ func gateSummary(e *Envelope) (fields []gateField, text string) {
 	case "schedule.query":
 		fields = append(fields, gateField{"확인할 기간", span("window")}, gateField{"시간 단위", fmt.Sprintf("%d분", int64(e.Body["granularity_min"].(float64)))})
 	case "schedule.commit":
-		fields = append(fields, gateField{"일정", span("slot")}, gateField{"시간대", e.Body["timezone"].(string)})
+		fields = append(fields, gateField{"일정", span("slot")}, gateField{"요청에 적힌 시간대", e.Body["timezone"].(string)})
 		text = e.Body["commitment"].(string)
 	}
 	return fields, text
@@ -74,11 +74,15 @@ func (st *State) gateRows(owner string, now time.Time) []gateRow {
 		if g.Owner != owner {
 			continue
 		}
-		state, _, _ := gateState(st, g, now)
-		intent, _, _ := strings.Cut(g.Policy, ":")
-		kind := gateKinds[intent]
-		if kind == "" {
-			kind = "확인할 수 없는 요청"
+		// Decided gates keep the server-bound policy label; only pending ones pay for signature checks.
+		state, kind := g.State, "확인할 수 없는 요청"
+		if g.State == "pending" {
+			var e *Envelope
+			if state, e, _ = gateState(st, g, now); e != nil {
+				kind = gateKinds[e.Intent]
+			}
+		} else if intent, _, _ := strings.Cut(g.Policy, ":"); gateKinds[intent] != "" {
+			kind = gateKinds[intent]
 		}
 		rows = append(rows, gateRow{ID: g.ID, State: state, Kind: kind, Exp: clock(g.Exp), From: st.gateAgent(owner, g.From), To: st.gateAgent(owner, g.To)})
 	}
