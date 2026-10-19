@@ -90,3 +90,54 @@ not_run: 실제 200% 확대, 스크린리더, Tab/Shift+Tab 실제 키 입력, �
 - 보낸 요청이 거절되면 요청자 기록에 ‘거절’이 보인다. 없는 코드의 placeholder는 만료만 된다. 따라서 거절 표시는 코드가 실제 회원임을 사후에 알릴 수 있다. HP-04의 상태 구분 요구와 U4 비노출 사이의 기존 동작이며 이번 범위에서 바꾸지 않았다. designer 판단 대상이다.
 - 새 대화의 발신/수신 select는 이름이 먼저이지만 40자 이름이면 닫힌 상태에서 종류·구분값이 잘릴 수 있다. 이번 지시 범위(조회 선택기)만 radio로 바꿨다.
 - legacy 화면 제목은 ‘내 에이전트’에서 ‘기존 연결’로 바뀌었다(고유 title, U7).
+
+## 수정 attempt: designer NAMES-VISUAL 4건 (2026-10-19)
+
+designer 조건부 수락([NAMES-VISUAL 판정](../SAR-UX-ISSUES-002-NAMES-VISUAL/report.md))의 ‘DEV 수정 필요’ 4건을 고친 후보다. 제품 최종 후보 `97a8899`(첫 수정 `101fb20`, 리뷰 지적 수정 `97a8899`). 비교 기준은 이전 후보 `b2e683a`다. 위 절의 ‘남은 위험’ 두 항목(거절 표시, 새 대화 select 잘림)은 designer 결정 1·2로 닫혔다.
+
+| # | 결정 | 구현 | 근거 |
+|---|---|---|---|
+| 1 (medium) | 새 대화 발신·수신을 조회와 같은 radio로 | `human-new`의 두 select를 fieldset/legend + `label.choice` radio(`이름 / 종류 / 구분값`)로 바꿨다. 기본 선택은 기존 select와 같다: 발신 첫째, 친구 수신 첫째, 자기 수신 둘째. 명시 From/To가 있으면 그 값이 우선이다. 새 CSS·JS 없음 | `TestHumanEmptyChoicesOfferRecovery`(그룹당 checked 1개, 세 기본 선택, select 없음), 렌더 |
+| 2 (low, V-NM-01) | 내 에이전트 두 링크 분리 | ‘요청 상태 조회’와 ‘연결·키 관리’를 각자 `<p>`에 두어 다른 줄에 보인다. 각 링크는 기존 `a` 규칙으로 44px | 렌더(`small` 0) |
+| 3 (low, D-NM-01) | 이름 금지 문자 문구·입력 복구 | `human.go` `nameRefusal`: control/Bidi_Control 문자가 있으면 결정 문구와 그 문자를 뺀 입력을, 없으면 ‘이름은 1–40자로 입력하세요’와 원 입력을 돌려준다. 내 이름·에이전트 이름·에이전트 추가·device·remote 이름 422의 5개 호출 지점이 모두 쓴다. 저장·422·alert·`aria-invalid`는 그대로다 | `TestHumanNamesAndIdentity`(두 조건 동시 → 금지 문자 문구, 제거 결과 빈 입력), integration `TestHumanNamesAndFriendCodePostgres`(422 문구, `value="badname"`, agent 생성 없음) |
+| 4 (low) | 받은 요청 거절 앞 안내 | ‘거절’ 버튼 바로 앞 muted 문장. 요청자 화면·상태·버튼 동작은 그대로 | 렌더 |
+
+리뷰 하위 에이전트(같은 세션, 독립 리뷰 아님)가 `101fb20`을 읽기 전용으로 검토했다. critical·high는 없었다. 다음을 `97a8899`에서 고쳤다.
+
+- medium: 명시 From 우선 테스트가 기본 선택과 같은 값이라 무력했다. From을 둘째 agent로 바꿔 단언한다.
+- low: 앞뒤 공백 위치의 탭·줄바꿈은 `validName`이 지우므로 실제 원인은 길이다. `nameRefusal`도 앞뒤 공백을 뺀 이름으로 금지 문자를 판단한다(단위 테스트 추가).
+- low: 거절 버튼이 `aria-describedby`로 거절 안내를 가리킨다.
+- 유지: 잘못된 UTF-8 입력은 브라우저 폼이 보내지 않는다. 문구만 금지 문자 쪽으로 보일 뿐 저장되지 않는다. `human-friend`의 `name="from"` 부재 단언은 기존 `<select` 단언과 같은 보조 검사로 남겼다.
+
+권한 경계: 새 대화의 선택지 출처(`own`, 활성·비차단 친구의 `humanAgents`)와 `/home/conversation` 인가 검사는 바꾸지 않았다. 마크업만 바뀌었다.
+
+### 렌더 (DEV, 합성 fixture)
+
+`KNOWSLINK_UI_FIXTURE_DIR` HTML의 이름을 39자 동명(`긴한글`×13)·40자 요청자 이름으로 바꾸고, 기존 [render/probe.mjs](render/probe.mjs)로 headless Chrome 1440·390·320px을 측정했다. 결과 [render-fix/probe.json](render-fix/probe.json), [render-fix/probe-refusal.json](render-fix/probe-refusal.json), 캡처 `render-fix/*.png`.
+
+- 새 대화(`long-human-new-*`): 페이지 넘침 0, 44px 미만 0. 390·320에서 동명 세 라벨이 줄바꿈되어 구분값 `a001`·`b002`·`c003`까지 보인다.
+- 내 에이전트 상세(`long-human-agents-*`): 두 링크가 다른 줄. 넘침 0. 입력 안 가로 스크롤(`scroll:INPUT`)은 O-NM-05 현행 유지 항목이다.
+- 친구 요청(`long-human-friends-*`): 거절 안내가 수락·거절 사이, 거절 바로 앞에 있다. 넘침 0.
+- 이름 거부 오류(`refusal-human-agents-*`): 긴 금지 문자 문구도 넘침 0.
+- 캡처는 `101fb20` 작업 트리 기준이다. `97a8899`는 거절 버튼의 `aria-describedby`와 문구 선택 조건만 바꿔 화면 모양이 같다.
+
+### names fixture 재검수 가능 여부
+
+코드 변경 없이 충분하다. A는 `SelfConnect` 기본값이 켜져 있어 `/home/new?peer=self`에서 같은 39자 이름 두 agent의 발신·수신 radio를, `/home/new?peer=<friend_ab>`에서 B 수신 radio를 본다. 이름 거부는 허용 POST `/home/agent-name`에 제어 문자를 넣어 오류 화면 한 장을 재현한다. 받은 요청 거절 안내는 A의 `/home/friends`(C의 대기 요청)에서 보인다. 내 이름·에이전트 추가 POST는 fixture 허용 범위 밖이며 같은 helper를 쓴다.
+
+### 등록 검사 (원격 Linux 격리 clone)
+
+같은 [remote.py](remote.py)로 SHA마다 새 고유 clone에서 실행했다. 원 로그 SHA256은 [raw-log-sha256.txt](raw-log-sha256.txt)에 추가했다.
+
+| 검사 | `97a8899` (최종) | `101fb20` (첫 수정) |
+|---|---|---|
+| `make lint` | EXIT=0, [로그](97a889978587d9c0f102f7fee59379bb9ec1b297-lint.log) | EXIT=0, [로그](101fb20899bca91f2b64646dacb3f5545579bc0c-lint.log) |
+| `make test` | EXIT=0, [로그](97a889978587d9c0f102f7fee59379bb9ec1b297-test.log) | EXIT=0, [로그](101fb20899bca91f2b64646dacb3f5545579bc0c-test.log) |
+| integration(`-skip TestRemoteConsentBrowserReturn`, 격리 Postgres 17) | EXIT=0, 145.1초, PASS 103, [로그](97a889978587d9c0f102f7fee59379bb9ec1b297-integration.log), 정지 EXIT=0 [로그](97a889978587d9c0f102f7fee59379bb9ec1b297-integration-stop.log) | EXIT=0, 123.3초, PASS 103, [로그](101fb20899bca91f2b64646dacb3f5545579bc0c-integration.log), 정지 EXIT=0 [로그](101fb20899bca91f2b64646dacb3f5545579bc0c-integration-stop.log) |
+
+Windows 로컬: `gofmt -l` 출력 없음, `go vet`(기본·`integration namesfixture`·`integration receiptfixture`) 통과, `go test ./internal/relay/` 통과.
+
+### not_run
+
+- names fixture 기동, 실제 브라우저 키보드(방향키 선택·Enter 제출) 입력, 스크린리더, 200% 확대, 두 번째 브라우저. radio는 조회와 같은 네이티브 마크업이라 키보드 동작은 브라우저 기본이다. tester·designer 재검수 대상이다.
+- `TestRemoteConsentBrowserReturn`(TEST_BROWSER 필요). remote 동의 화면은 이름 오류 문구·입력값만 바뀌었다.

@@ -1,6 +1,6 @@
 {
- "packet_input_sha256": "5bef81043301f16a1400820d0df93e8383201fff88f1a17e40e397f18166a4b1",
- "attempt": "9a5aabbe90544e148909a807a7a14d18",
+ "packet_input_sha256": "1f8605fa553d99514fbf96cbfdc8b9a134fb1a07176642025dc57ebac9baadb1",
+ "attempt": "a82026636fb14599945245451d90f702",
  "items": [
   {
    "path": ".fullops-squad/FULLOPS.md",
@@ -9,64 +9,22 @@
    "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
   },
   {
-   "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+   "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
    "category": "document_read",
-   "status": "completed",
-   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
-  },
-  {
-   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "친구 코드·읽기 전용 값(A-07, O-06)·받은/보낸 요청·토큰 절을 검색해 읽었다. U2의 읽기 전용 입력 요구가 A-07보다 새 결정이므로 U2를 따랐고 D04는 수정하지 않았다."
-  },
-  {
-   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "HP-02–04·13·14와 거절/취소/해제/차단 절을 읽었다. 코드 발견·상태 구분·차단 비공개 규칙을 그대로 유지했다."
-  },
-  {
-   "path": ".fullops-squad/handovers/to_dev.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
-  },
-  {
-   "path": ".fullops-squad/project.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
-  },
-  {
-   "path": ".fullops-squad/rules/common/README.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
-  },
-  {
-   "path": ".fullops-squad/rules/common/coding-style.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
-  },
-  {
-   "path": ".fullops-squad/rules/common/security.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
-  },
-  {
-   "path": ".fullops-squad/rules/common/testing.md",
-   "category": "document_read",
-   "status": "completed",
-   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/contexts/designer.md",
@@ -93,6 +51,18 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "U2(2026-10-19 NAMES-VISUAL 결정)·U4 표를 기준으로 썼다. 정본 변경 요구는 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/crud-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "새 데이터 생성·수정 경로가 없다. 이름 거부는 기존 422 경로다."
+  },
+  {
    "path": ".fullops-squad/docs/design-docs/interface-design.md",
    "category": "document_read",
    "status": "completed",
@@ -105,10 +75,46 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이번 수정 4건은 이 산출물의 범위(제품 규칙·schema·운영·디자인 토큰)를 바꾸지 않는다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "D04 토큰·형태 기준은 바뀌지 않았다(designer 판정). 기존 radio 패턴 재사용이다."
   },
   {
    "path": ".fullops-squad/docs/design-docs/module-design.md",
@@ -120,7 +126,61 @@
    "path": ".fullops-squad/docs/design-docs/module-design.md",
    "category": "document_update",
    "status": "completed",
-   "reason": "D10에 2단위 모듈 책임·검증 표를 추가하고 선택기 서술을 갱신했다."
+   "reason": "`nameRefusal`과 새 대화 radio·링크 분리·거절 안내 행을 2단위 모듈 표에 더했다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
@@ -129,10 +189,268 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/dev-final-handoff.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
@@ -147,6 +465,78 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DESIGN/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
    "category": "document_read",
    "status": "no_change",
@@ -157,6 +547,24 @@
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "고정 SHA 리뷰의 low D-NM-01을 이번 수정 3으로 처리했다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "이전 DEV 보고를 읽고 수정 절을 추가했다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-VISUAL/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "designer 판정 전문을 읽었다. ‘DEV 수정 필요’ 4건과 결정 1–3의 문구·기본 선택·수락 기준을 그대로 구현했다."
   },
   {
    "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
@@ -189,16 +597,160 @@
    "reason": "D-RT-01 선택기 잘림 근거(가용 폭 223/293/750px)를 읽고 radio 줄바꿈으로 해소했다."
   },
   {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-HUMAN-PEER-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md",
@@ -213,10 +765,208 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
@@ -225,16 +975,40 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "이전 구현 기록을 확인했다. 수정 내용은 DEV 보고 수정 절과 완료 보고에 남겼다."
+  },
+  {
    "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/generated/db-schema.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "schema 변경이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/ops-guide.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "운영 절차·설정 변경이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "DEV 후보 인계 절을 읽고 수정 4건 한 문장을 더했다."
+  },
+  {
    "path": ".fullops-squad/docs/operations/transition.md",
    "category": "document_update",
    "status": "completed",
-   "reason": "D13에 DEV 후보 인계(새 schema·경로 없음, 남은 수락 단계)를 추가했다."
+   "reason": "DEV 후보 인계 절에 designer 수정 4건 반영을 적었다. schema·배포 절차 변경 없음."
   },
   {
    "path": ".fullops-squad/docs/operations/user-guide.md",
@@ -246,7 +1020,31 @@
    "path": ".fullops-squad/docs/operations/user-guide.md",
    "category": "document_update",
    "status": "completed",
-   "reason": "D11에 친구 코드·친구 요청 사용 절을 추가했다."
+   "reason": "새 대화 선택 목록·이름 금지 문자 복구·거절 표시 안내를 사용자 절차에 더했다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "HP-02–04·13·14와 거절/취소/해제/차단 절을 읽었다. 코드 발견·상태 구분·차단 비공개 규칙을 그대로 유지했다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "designer가 HP-04는 이미 거절을 구분한다고 판정했다. 제품 규칙 변경이 없다."
   },
   {
    "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
@@ -255,10 +1053,22 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이번 수정 4건은 이 산출물의 범위(제품 규칙·schema·운영·디자인 토큰)를 바꾸지 않는다."
+  },
+  {
    "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이번 수정 4건은 이 산출물의 범위(제품 규칙·schema·운영·디자인 토큰)를 바꾸지 않는다."
   },
   {
    "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
@@ -267,10 +1077,64 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이번 수정 4건은 이 산출물의 범위(제품 규칙·schema·운영·디자인 토큰)를 바꾸지 않는다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
@@ -279,16 +1143,64 @@
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
   },
   {
+   "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
    "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
   },
   {
    "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
@@ -307,6 +1219,66 @@
    "category": "document_read",
    "status": "no_change",
    "reason": "현행 정본(SAR-UX-ISSUES-002.md U2/U4/U7, D02 HP)과 지시서가 우선하는 과거 기록·인접 문서다. 이번 변경에 필요한 새 요구가 없어 원문 전체를 다시 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-19_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-19_to_dev.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "이전 완료 기록(b2e683a)의 계획·검증 방식(원격 Linux remote.py)·남은 위험을 읽고 이어서 진행했다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_dev.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "수정 attempt 지시서 전문을 읽고 해야 할 일·완료 기준을 따랐다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/orca-agents.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "키워드 매칭으로 잡힌 과거 과제 기록이다. 이번 수정 4건의 기준은 현행 정본(SAR-UX-ISSUES-002.md U2·U4)과 NAMES-VISUAL 판정이 대체하므로 현행 지시로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "원문을 읽고 적용 기준으로 사용했다. 이 문서의 변경 요구는 없다."
   },
   {
    "path": "adapters/skills/knowslink/SKILL.md",
@@ -345,40 +1317,34 @@
    "reason": "device 동의·이름 저장 흐름은 바꾸지 않았다. device integration에 이름 결속 단언을 추가했다."
   },
   {
-   "path": "internal/relay/human.go",
-   "category": "direct_edit",
-   "status": "no_change",
-   "reason": "validName·requestFriend·decideFriend가 U2/U4 규칙(1–40자·제어문자 거절·동일 응답·세대)을 이미 만족한다. 코드 trim은 handler에서 처리해 매칭은 정확 비교로 유지했다."
-  },
-  {
    "path": "internal/relay/human_http.go",
    "category": "direct_edit",
    "status": "completed",
-   "reason": "distinguish·visibleAgent·friendsNow 추가, 친구 요청 trim/422 복구, 친구 상세 title, 친구 거부 복귀를 구현했다."
+   "reason": "내 이름·에이전트 이름 422가 `nameRefusal`의 문구와 금지 문자 제거 입력을 쓴다. 저장 경로는 그대로다."
+  },
+  {
+   "path": "internal/relay/human_names_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "친구·gate 이름 테스트는 새 대화 select·이름 오류 문구에 의존하지 않아 그대로 통과한다."
   },
   {
    "path": "internal/relay/human_pages.go",
    "category": "direct_edit",
    "status": "completed",
-   "reason": "이름 라벨의 빈 종류 생략, 친구·계정의 읽기 전용 내 친구 코드, 친구 추가 구성, 승인 화면 이름 라벨을 반영했다."
+   "reason": "새 대화 from/to를 fieldset radio로, 내 에이전트 두 링크를 각자 줄로, 받은 요청 거절 앞 안내를 추가했다."
   },
   {
    "path": "internal/relay/member_agents.go",
    "category": "direct_edit",
    "status": "completed",
-   "reason": "legacy agent의 Name/Client/Short, 관계 라벨 필드, 연결 화면 이름·구분값을 추가했다."
+   "reason": "에이전트 추가·device 이름 422가 `nameRefusal`을 쓴다."
   },
   {
    "path": "internal/relay/member_pages.go",
    "category": "direct_edit",
-   "status": "completed",
-   "reason": "조회 선택기를 radio로 바꾸고 legacy 이름 라벨·접근성 이름·거부 복귀 문구·줄바꿈 CSS를 반영했다."
-  },
-  {
-   "path": "internal/relay/member_receipt.go",
-   "category": "direct_edit",
-   "status": "completed",
-   "reason": "익명 429 화면에 Unavailable을 넣어 에이전트 없음 오안내를 없앴다."
+   "status": "no_change",
+   "reason": "조회 radio 스타일(`.choice`, fieldset/legend)을 그대로 재사용해 CSS·토큰 변경이 필요 없었다."
   },
   {
    "path": "internal/relay/member_ui_test.go",
@@ -411,11 +1377,23 @@
    "reason": "설치 스크립트 용어 적중이며 화면 변경 영향이 없다."
   },
   {
+   "path": "videos/knowslink-motion/assets/fonts/Geist-OFL.txt",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "변경한 template·이름 거부 helper와 무관한 파일이다(문자열 매칭 후보). 영향 없음."
+  },
+  {
+   "path": "videos/knowslink-motion/assets/fonts/Pretendard-OFL.txt",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "변경한 template·이름 거부 helper와 무관한 파일이다(문자열 매칭 후보). 영향 없음."
+  },
+  {
    "path": "videos/knowslink-motion/index.html",
    "category": "impact_check",
    "status": "no_change",
    "reason": "소개 영상의 정적 문구 적중이며 제품 화면 계약이 아니다."
   }
  ],
- "uncertainty_review": "unknown의 route/find/context 불일치는 이 패킷이 미커밋 지시서로 생성된 탓이며 위 항목 처리는 패킷 원본 추천 기준이다. 큰 D04는 친구 코드·읽기 전용 값·요청 상태 절을 검색으로 직접 읽었다. PLANS·ops-guide·과거 큰 로그는 현행 지시로 쓰지 않았다. 패킷 밖 실제 영향 파일 http.go(gateView)·member.go(legacy·refusedTo)와 integration 검사(connections/identity/receipt/device/remote)를 추가로 확인·수정했다. 문자열 검색 기반이라 동적 참조·완전한 호출 그래프는 주장하지 않는다."
+ "uncertainty_review": "partial 패킷이다. 미확인 22건은 문자열 매칭 한계다. 실제 영향은 이름 검증 호출자 5곳(human_http.go profile·agent-name, member_agents.go create·device-confirm, remote_auth.go 원격 승인)을 grep으로 모두 찾아 같은 helper로 바꿨고, 새 대화 select에 의존하는 테스트(human_pages_test.go)를 grep으로 찾아 갱신했다. remote_auth.go는 패킷 밖 영향 파일이다. 과거 기록 후보는 현행 정본이 대체해 읽지 않았다."
 }
