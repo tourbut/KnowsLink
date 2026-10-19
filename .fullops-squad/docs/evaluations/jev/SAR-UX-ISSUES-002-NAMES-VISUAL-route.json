@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-NAMES-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04",
+    "D11"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.04,
+        "product": 0.96
+      },
+      "confidence": 0.92
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.18,
+        "ops": 0.01,
+        "tester": 0.8099999999999999
+      },
+      "confidence": 0.71
+    },
+    "docs": {
+      "D01": 0.28,
+      "D02": 0.46,
+      "D03": 0.26,
+      "D04": 0.73,
+      "D05": 0.22,
+      "D06": 0.31,
+      "D07": 0.15,
+      "D08": 0.16,
+      "D09": 0.28,
+      "D10": 0.46,
+      "D11": 0.6,
+      "D12": 0.48,
+      "D13": 0.45
+    }
+  },
+  "usage": {
+    "input_tokens": 2526,
+    "output_tokens": 314,
+    "cost": 0.000106092
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.665,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "designer",
+  "original_route": "product",
+  "override_reason": "직접 시각 수락과 제품 규칙 판단은 designer 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "7a66f71341f00f9044f3d1e7da981ef4b57cfca5",
+  "requires_packet": true,
+  "attempt": "daf215708ff94a038a0a73a6da39763b",
+  "instruction_sha256": "5b83f7890fbd5d3d336ad0124f38da64096edddbea3577b1a562833b8bc570fa",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "4382cdf6c2385a0477bc6c959348d3484fce746814ce593dba17932dba1624b8"
+}

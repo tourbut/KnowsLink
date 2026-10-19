@@ -1,0 +1,54 @@
+{
+  "task_key": "SAR-UX-ISSUES-002-NAMES-DEV",
+  "find_head": "8d0db4bf59e905c9f398123c4e2e5bc13ed4c3fa",
+  "base": "8d0db4bf59e905c9f398123c4e2e5bc13ed4c3fa",
+  "head": "b2e683ae677c78cd7bdc47c75820bcb191b94838",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "internal/relay/human_http.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/member_ui_test.go",
+    "internal/relay/receipt_context.go",
+    "internal/relay/receipt_context_test.go",
+    "internal/relay/receipt_integration_test.go"
+  ],
+  "new_files": [
+    "internal/relay/human_names_integration_test.go",
+    "internal/relay/human_names_test.go",
+    "internal/relay/names_browser_fixture_test.go"
+  ],
+  "candidates": [
+    "README.md",
+    "docs/README.md",
+    "docs/development.md",
+    "docs/system-design.md",
+    "internal/relay/human_pages.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "hits": [
+    "internal/relay/human_pages.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "recall": 0.556,
+  "precision": 0.556,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
