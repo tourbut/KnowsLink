@@ -48,15 +48,15 @@ SAR-UX-ISSUES-002.md U5·U7, D04, `internal/relay/http.go`(verifiedGate·gateVie
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 짧은 기술 계획(완료 보고에 기록): 지원 요청 유형별 검증된 필드 → 사용자 문구 대응표를 DEV 보고에 남긴다.
-- [ ] 승인 목록: 빈 목록 문구, 행마다 요청 주체/상대의 허용된 이름·구분값, 요청 유형, 만료 시각, 현재 상태, '요청 검토'. 원요청 ID는 기술 상세로.
-- [ ] 승인 상세 읽기 순서: '누가 누구에게' → '요청한 내용'(검증된 구조화 필드만) → '승인하면 허용되는 범위' → '기한·상태' → 행동('이 요청 승인'·'거절') → 기술 상세(원문 JSON·내부 ID·정책). 고정 설명 문구와 hint '참고 문구 — 승인 근거 아님'. 자유문은 '요청자가 적은 내용'으로 분리, 링크 자동 열기 없음.
-- [ ] 만료·처리됨·원문 부재·서명/바인딩 불일치·미지원 유형: 중복 행동 없음, '승인할 내용을 확인할 수 없습니다'와 안전한 복귀. 서버 재검사 유지, 낡은 화면 제출이 새 요청에 적용되지 않음.
-- [ ] U7(해당 화면): 고유 title·h1·main·skip, 승인 목록으로 정확한 복귀, status/alert, 반복 버튼 접근성 이름에 대상·구분값.
-- [ ] O-NM-04, O-NM-08 반영.
-- [ ] U5-A 핵심 실패 경계 자동 검사: 요약/원문 일치, 이름 변경 뒤 같은 원요청 식별, 승인/거절/만료/재접근/중복 클릭, 악성 hint·HTML·바뀐 digest·다른 owner·원문 부재·관계 철회에서 권한 확대 없음. 문구 복제 테스트는 쓰지 않는다. 실제 외부 업무 실행을 켜지 않는다.
-- [ ] tester/designer용 격리 fixture(승인 대기·만료·처리됨·원문 부재·악성 hint 요청, 합성 A/B/C, loopback origin, 허용 GET/POST, 수명) 준비·컴파일. 기동은 coor가 한다.
-- [ ] 영향받는 D05/D10/D11/D13 갱신, 원격 Linux make lint/test/integration, FullOps lint.py --from 688305054dc4, packet-outcomes, 완료 보고, work.py finish, 커밋, worker_done.
+- [x] 짧은 기술 계획(완료 보고에 기록): 지원 요청 유형별 검증된 필드 → 사용자 문구 대응표를 DEV 보고에 남긴다.
+- [x] 승인 목록: 빈 목록 문구, 행마다 요청 주체/상대의 허용된 이름·구분값, 요청 유형, 만료 시각, 현재 상태, '요청 검토'. 원요청 ID는 기술 상세로.
+- [x] 승인 상세 읽기 순서: '누가 누구에게' → '요청한 내용'(검증된 구조화 필드만) → '승인하면 허용되는 범위' → '기한·상태' → 행동('이 요청 승인'·'거절') → 기술 상세(원문 JSON·내부 ID·정책). 고정 설명 문구와 hint '참고 문구 — 승인 근거 아님'. 자유문은 '요청자가 적은 내용'으로 분리, 링크 자동 열기 없음.
+- [x] 만료·처리됨·원문 부재·서명/바인딩 불일치·미지원 유형: 중복 행동 없음, '승인할 내용을 확인할 수 없습니다'와 안전한 복귀. 서버 재검사 유지, 낡은 화면 제출이 새 요청에 적용되지 않음.
+- [x] U7(해당 화면): 고유 title·h1·main·skip, 승인 목록으로 정확한 복귀, status/alert, 반복 버튼 접근성 이름에 대상·구분값.
+- [x] O-NM-04, O-NM-08 반영.
+- [x] U5-A 핵심 실패 경계 자동 검사: 요약/원문 일치, 이름 변경 뒤 같은 원요청 식별, 승인/거절/만료/재접근/중복 클릭, 악성 hint·HTML·바뀐 digest·다른 owner·원문 부재·관계 철회에서 권한 확대 없음. 문구 복제 테스트는 쓰지 않는다. 실제 외부 업무 실행을 켜지 않는다.
+- [x] tester/designer용 격리 fixture(승인 대기·만료·처리됨·원문 부재·악성 hint 요청, 합성 A/B/C, loopback origin, 허용 GET/POST, 수명) 준비·컴파일. 기동은 coor가 한다.
+- [x] 영향받는 D05/D10/D11/D13 갱신, 원격 Linux make lint/test/integration, FullOps lint.py --from 688305054dc4, packet-outcomes, 완료 보고, work.py finish, 커밋, worker_done.
 
 소유 파일: `internal/relay/` 승인·회원 화면/handler/템플릿과 테스트·fixture, 기술 문서, own 기록·DEV 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/`). 예상 300–700줄.
 
@@ -167,6 +167,46 @@ D10, D13, D12(route 추천)와 실제 변경에 따라 D05·D11. D02/D04 제품 
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+### 결과 요약
+
+- 브랜치 `fullops/dev`. 제품 후보 `f43d05cc153fc125274f7c6188aa3dc92cbbb8fa`(첫 구현 `47117a4`, 테스트 보정 `74bf643`, 리뷰 수정 `f43d05c`). 이후 커밋은 보고·기록뿐이며 최종 HEAD는 worker_done에 적는다.
+- 기준 main `6883050`(지시서 base `688305054dc4`). 규칙 fullops-common-0.3.3. 새 DB schema·migration·공개 API·route·권한·의존성 변경 없음(`go.mod`·`package.json` 미변경, 표준 라이브러리와 기존 Go template만 사용).
+
+### 짧은 기술 계획 (실행함)
+
+1. 표시 전용 `gate_summary.go`: `gateState`(표시 상태), `gateSummary`(검증 필드→문구), `gateRows`(승인 목록 행), `gateAgent`(권한 이름 또는 fallback+구분값).
+2. 결정 권한은 기존 `gateDecision` 재검사만 판단한다. `verifiedGate`는 미지원 부모 intent를 닫는다(현재 동작 변화 없음).
+3. `human-gate`를 누가 누구에게→요청한 내용→허용 범위→기한·상태→결정→기술 상세 순서로, 승인 목록 행을 이름·유형·기한·상태·‘요청 검토’로 바꾼다. 거부는 승인 목록으로 복귀한다.
+4. O-NM-04는 익명 receipt 화면의 선택기·폼·빈 href·복원 문구를 없애고, O-NM-08은 거절 안내 간격만 바꾼다.
+
+대응표(지원 유형별 검증 필드→사용자 문구)는 [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md)의 대응표 절에 있다. 요약: `schedule.query` window·granularity_min → ‘일정 가능 시간 확인’·확인할 기간·시간 단위, `schedule.commit` slot·timezone → ‘일정 확정’·일정·요청에 적힌 시간대, commitment → ‘요청자가 적은 내용’, 그 밖 → ‘승인할 내용을 확인할 수 없습니다’.
+
+### 변경 이유와 지시와 달라진 판단
+
+- 승인 요청 envelope의 `reason`(permission_required/judgment_required)은 요약에 넣지 않았다. 설계의 네 절에 없고 범위를 넓히지 않기 위해서다.
+- 격리 fixture에서 A·B를 친구로 만들지 않았다. 친구 수락이 부모 메시지 scope를 바꿔 철회 상태가 되므로 legacy pair로 두었고, 요청자는 fallback 이름으로 보인다. 이름 있는 요청자 화면은 렌더 fixture `gate-active`로 대신한다.
+- 기존 housekeeping이 만료·철회·원문 부재를 저장 상태로 기록하므로, 낡은 제출 검사는 ‘pending 유지’가 아니라 ‘결정 미기록’으로 단언했다.
+- U7 일반의 ‘내 계정’→‘설정’ 이름 변경은 U3와 묶인 항목이라 하지 않았다.
+- 하위 에이전트: 구현은 같은 템플릿 파일을 공유해 직접 했다. 읽기 전용 리뷰 1건(Purpose: review)을 배정했다. critical/high 0, medium 1·low 4를 `f43d05c`에서 모두 고쳤다. coor의 독립 고정 SHA 리뷰를 대신하지 않는다.
+
+### 검증한 것
+
+- 원격 Linux 격리 clone(f43d05c, 74bf643): `make lint`·`make test`·integration(`-skip TestRemoteConsentBrowserReturn`)·fixture 컴파일 모두 EXIT=0. 47117a4의 integration EXIT=1은 테스트 기대 문제였고 보고에 원인을 남겼다.
+- U5-A: `TestApprovalSummaryBoundaries` 4개 하위 검사(요약/원문 일치, 이름 변경 뒤 같은 원요청, 악성 hint·HTML 자유문 비활성, 바뀐 digest·원문 부재·관계 철회·만료의 무결정, 다른 owner GET/POST 403, 다른 세션·다른 gate token 403, 승인 뒤 중복 클릭 409). 기존 `TestGateFailureStates`·`TestPublicHTTPAdmissionAndGateSafety`·`TestEmailIdentity/member_gate_*` 통과.
+- 렌더: headless Chrome 1440·390·320, 8개 화면 24장 가로 넘침 0.
+- FullOps lint(`lint.py --from 688305054dc4`): ERROR 0. WARNING SIZE-001 `http.go`(+14줄, 요약은 새 파일로 분리), `PLANS.md`(내 변경 아님), SIZE-002 추가 약 500줄(지시서 예상 300–700 안, 제품 약 150줄). 실행 불가 2(product-lint·product-test)는 Windows에 make가 없어서이며 같은 명령의 원격 Linux EXIT=0으로 대신한다. 미추적 사용자 폴더는 그 lint 프로세스에만 `GIT_CONFIG_*` 환경 변수의 `core.excludesFile`로 제외했다. 저장소 설정·폴더는 바꾸지 않았다.
+- DEP-001: 의존성 변경 없음.
+
+### 못 한 것 (not_run)
+
+- 실제 키보드·200% 확대·스크린리더·보조 브라우저(U7-A), fixture 실제 기동·브라우저 왕복, `TestRemoteConsentBrowserReturn`.
+
+### 산출물
+
+- 제품 코드·테스트: `internal/relay/` (새 gate_summary.go·gate_summary_integration_test.go·approval_browser_fixture_test.go; 수정 http.go, human_http.go, human_pages.go, member.go, member_pages.go, member_receipt.go, receipt_context.go와 테스트·golden).
+- 기술 문서: D05 `interface-design.md`, D10 `module-design.md`, D11 `user-guide.md`, D13 `transition.md`, `contexts/dev.md`. D02/D04 미수정, D12는 새 운영 절차가 없어 미수정.
+- [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md)(대응표·검사 로그·렌더·fixture·not_run), [packet-outcomes](../docs/evaluations/jev/SAR-UX-ISSUES-002-APPROVAL-DEV-packet-outcomes.json).
+
+### 남은 일
+
+- coor: 고정 SHA 독립 리뷰, fixture 기동(`remote.py fixture`), tester 독립 QA(U5-A·U7-A), designer 직접 시각 검수, main 통합.

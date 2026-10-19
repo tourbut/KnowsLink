@@ -11,7 +11,7 @@ summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04�
 
 ## 대상과 결론
 
-대상은 fullops/dev 제품 커밋 `47117a4`와 테스트 보정 커밋 `74bf643e30a58560e29e968e3564d9b662d244d4`다. 기준은 main `6883050`(지시서 base `688305054dc4`)이다. 원격 Linux 격리 clone의 make lint·make test·integration과 fixture 컴파일이 모두 EXIT=0이다. DEV 완료이며 제품 수락이 아니다. tester 독립 QA·designer 직접 시각 검수·고정 SHA 리뷰·통합은 coor가 진행한다.
+대상 제품 후보는 fullops/dev `f43d05cc153fc125274f7c6188aa3dc92cbbb8fa`다(첫 구현 `47117a4`, 테스트 보정 `74bf643`, 리뷰 수정 `f43d05c`). 기준은 main `6883050`(지시서 base `688305054dc4`)이다. 원격 Linux 격리 clone의 make lint·make test·integration과 fixture 컴파일이 모두 EXIT=0이다. DEV 완료이며 제품 수락이 아니다. tester 독립 QA·designer 직접 시각 검수·고정 SHA 리뷰·통합은 coor가 진행한다.
 
 ## 기술 계획
 
@@ -26,6 +26,7 @@ summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04�
 |---|---|---|---|---|
 | `schedule.query` | `body.window.start/end`(RFC3339 Z, end>start), `body.granularity_min`(양의 정수) | 요청 유형 ‘일정 가능 시간 확인’, 확인할 기간 ‘시작 KST – 끝 KST’, 시간 단위 ‘N분’ | 고정 문구 + ‘가능 시간 공개 정책이 없어 승인해도 상대에게 가능 시간이 공개되지 않습니다.’(policy: disclosure absent) | 원문 JSON, 원요청 ID, 승인 요청 ID, 두 agent ID, intent, policy |
 | `schedule.commit` | `body.slot.start/end`, `body.timezone`(로드 가능한 IANA), `body.commitment`(비지 않은 문자열) | 요청 유형 ‘일정 확정’, 일정 ‘시작 KST – 끝 KST’, 시간대 원값. `commitment`는 ‘요청자가 적은 내용’으로 분리 | 고정 문구 + ‘승인해도 일정이 확정되거나 실행되지 않습니다. 이 서비스에는 일정 실행 기능이 없습니다.’(policy: non-executable stub) | 같음 |
+| (행 이름 보정) | | `schedule.commit`의 시간대 행 이름은 ‘요청에 적힌 시간대’다. 일정 시각은 KST로 보이므로 원값이 표시 기준으로 읽히지 않게 했다. | | |
 | 그 밖(검증 실패·원문 부재·digest/서명/endpoint/세대 불일치·미지원 intent) | 없음 | 요약 없음. ‘승인할 내용을 확인할 수 없습니다…’ alert | 표시하지 않음 | 표시하지 않음 |
 
 공통: ‘누가 누구에게’는 gate의 From/To에 `visibleAgent` 권한 이름·종류·구분값을 쓴다. `render.hint`는 ‘참고 문구 — 승인 근거 아님’ 접힘 영역에 escape된 텍스트로만 둔다. 자유문과 hint는 링크로 만들지 않는다. 승인 요청 envelope의 `reason`은 이번 요약에 쓰지 않았다(지시 범위 밖, 기술 판단으로 생략).
@@ -42,14 +43,14 @@ summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04�
 
 ## U5-A 자동 검사와 실패 경계
 
-`internal/relay/gate_summary_integration_test.go` `TestApprovalSummaryBoundaries`(실제 Postgres, 74bf643 PASS):
+`internal/relay/gate_summary_integration_test.go` `TestApprovalSummaryBoundaries`(실제 Postgres, f43d05c PASS):
 
 | 하위 검사 | 확인 내용 |
 |---|---|
 | `query_summary_matches_verified_body` | 읽기 순서, 요약 값이 서명된 body(window·granularity)와 일치, 같은 값이 기술 상세 JSON에 있음. 악성 hint(`<script>`, URL, ‘모든 권한 허용’)가 escape되어 참고 영역에만 1회. 목록에 이름·유형·‘요청 검토’가 있고 원요청 ID는 없음. agent 이름 변경 뒤 같은 원요청·gate ID 유지 |
 | `commit_free_text_is_separate_and_inert` | HTML 링크가 든 commitment가 escape된 ‘요청자가 적은 내용’에만 있고 허용 범위 절에 없음, 링크 미생성 |
-| `unverifiable_states_offer_no_decision` | 바뀐 digest·원문 부재·관계 철회·만료 각각 결정 버튼 없음, 상태 표시(확인할 수 없음/철회/만료), 목록도 같은 상태, 낡은 화면의 approve POST 409와 승인 목록 복귀, 결정 미기록 |
-| `other_owner_stale_form_and_double_click` | 다른 회원 GET 403(이름·body 비노출), 다른 회원 POST 403, 다른 세션 CSRF 403, 승인 303 뒤 중복 클릭(deny) 409·‘이번 제출은 적용되지 않았습니다’, 첫 결정 유지·새 버튼 없음 |
+| `unverifiable_states_offer_no_decision` | 바뀐 digest·원문 부재·관계 철회·만료 각각 결정 버튼 없음, 상태 표시(확인할 수 없음/철회/만료), 승인 목록 절(`section#gates`)도 같은 상태이고 대기 표시 없음, 낡은 화면의 approve POST 409와 승인 목록 복귀, 결정 미기록 |
+| `other_owner_stale_form_and_double_click` | 다른 회원 GET 403(이름·body 비노출), 다른 회원 POST 403, 다른 세션 CSRF 403, 한 gate의 token을 다른 gate에 제출하면 403이고 두 gate 모두 대기 유지, 승인 303 뒤 중복 클릭(deny) 409·‘이번 제출은 적용되지 않았습니다’, 첫 결정 유지·새 버튼 없음 |
 
 기존 회귀: `TestGateFailureStates` 상태별 UI(거절·만료·철회·확인할 수 없음)와 gate-consume 409, `TestPublicHTTPAdmissionAndGateSafety`(hint XSS·잘못된 서명 GET/POST·admission), `TestEmailIdentity/member_gate_*`(회원 격리·결정·deny 복귀)가 통과했다. 바꾼 기대 문구는 ‘참고 hint’→‘참고 문구 — 승인 근거 아님’, ‘원문 부재’→‘승인할 내용을 확인할 수 없습니다’, 버튼 ‘승인’→‘이 요청 승인’, 복귀 `href="/home"`→`/home/legacy#gates`다. 실제 외부 업무 실행은 켜지 않았다(`executable:false`·`disclosure:false` 유지).
 
@@ -61,7 +62,8 @@ summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04�
 
 | SHA | make lint | make test | integration | fixture-compile |
 |---|---|---|---|---|
-| 74bf643 | EXIT=0 | EXIT=0 | EXIT=0 (`-skip TestRemoteConsentBrowserReturn`, 기존과 같음) | EXIT=0 (`go vet`·`go test -c -tags=integration,approvalfixture`) |
+| f43d05c | EXIT=0 | EXIT=0 | EXIT=0 (`-skip TestRemoteConsentBrowserReturn`, 기존과 같음) | EXIT=0 (`go vet`·`go test -c -tags=integration,approvalfixture`) |
+| 74bf643 | EXIT=0 | EXIT=0 | EXIT=0 | EXIT=0 |
 | 47117a4 | EXIT=0 | EXIT=0 | EXIT=1(위 기대 문제) | EXIT=0 |
 
 로컬 Windows: `go vet`(태그 없음·integration·approvalfixture), `go test ./internal/relay` PASS.
@@ -81,6 +83,10 @@ summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04�
 - origin: loopback `httptest` 주소(manifest `origin`). 허용 GET: `/`, `/home`, `/home/legacy`, `/home/friends`, `/home/account`, `/home/gates/*`. 허용 POST: `/home/gates/*`(승인·거절)와 `/fixture/as/*`. 그 밖은 403이다.
 - 수명: 12시간. 저장된 기한만 늘리며 서명·digest·세대는 보낸 그대로다. 외부 업무 실행·메일·실계정은 없다.
 
+## 하위 리뷰와 반영
+
+같은 워크트리의 읽기 전용 리뷰 하위 에이전트 1건(Purpose: review)이 278001a..74bf643을 검토했다. critical·high는 없었다. medium 1건(철회 사례의 목록 단언이 관계 절의 ‘철회’ 배지로도 통과)과 low 4건(교차 gate token 미검사, commit 시간대 행 오독, 목록 유형을 policy에서 읽어 확인 불가 fallback 불가, 결정된 gate까지 서명 검사)을 모두 `f43d05c`에서 고쳤다. 목록 행은 대기 gate만 검증하고 유형을 검증된 envelope에서 읽는다. 검증 불가면 ‘확인할 수 없는 요청’이다. 이 리뷰는 coor의 독립 고정 SHA 리뷰를 대신하지 않는다.
+
 ## 미실행(not_run)
 
 - 실제 브라우저 키보드(Tab/Shift+Tab/Enter/Space)·실제 200% 확대·스크린리더 낭독·보조 브라우저 확인(U7-A): tester/designer 몫이며 DEV는 실행하지 않았다.
@@ -95,7 +101,7 @@ summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04�
 
 - ERROR 0. 첫 실행의 DOC-003(이 보고의 front matter 표기)은 `deliverables.py --stamp`로 고쳤다.
 - WARNING SIZE-001 `internal/relay/http.go` 688줄(이전 674): gateView·gateError 보강 14줄이다. 요약 로직은 새 파일 `gate_summary.go`로 분리했고 기존 파일 분할은 이번 범위 밖이다.
-- WARNING SIZE-002 변경 추가 492줄(상한 400): 지시서 예상 300–700줄 범위다. 제품 코드는 약 150줄이고 나머지는 U5-A integration 검사·격리 fixture·렌더 fixture다.
+- WARNING SIZE-002 변경 추가 약 500줄(상한 400): 지시서 예상 300–700줄 범위다. 제품 코드는 약 150줄이고 나머지는 U5-A integration 검사·격리 fixture·렌더 fixture다.
 - WARNING SIZE-001 `PLANS.md`: 이번 과제에서 수정하지 않은 coor 소유 파일이다.
-- 실행 불가 product-lint·product-test: Windows에 make가 없다. 같은 명령을 원격 Linux 격리 clone에서 74bf643 기준 EXIT=0으로 실행했다(위 검사 로그). 이후 커밋은 문서·보고뿐이다.
+- 실행 불가 product-lint·product-test: Windows에 make가 없다. 같은 명령을 원격 Linux 격리 clone에서 f43d05c 기준 EXIT=0으로 실행했다(위 검사 로그). 이후 커밋은 문서·보고뿐이다.
 - 의존성 변경 없음(go.mod·package.json 미수정). DEP-001 해당 없음.
