@@ -47,7 +47,7 @@ func TestApprovalBrowserFixture(t *testing.T) {
 		{"processed", "schedule.query", queryBody(), nil},
 		{"original_missing", "schedule.commit", commit, nil},
 	}
-	gates := map[string]string{}
+	gates, claims := map[string]string{}, map[string]string{}
 	for i, spec := range specs {
 		parent, gate := fmt.Sprintf("0199a3f2-4c10-7a11-8b22-%012x", 0x100+i), fmt.Sprintf("0199a3f2-4c10-7a11-8b22-%012x", 0x200+i)
 		raw := map[string]any{}
@@ -59,6 +59,9 @@ func TestApprovalBrowserFixture(t *testing.T) {
 		claim := f.deliver(parent)
 		f.send(wire(t, f.private["agent_b"], gate, "agent_b", "agent_b", "relay.approval.request", fmt.Sprintf("approval-fixture-g%02d", i), parent, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute)), "agent_b", claim, 200)
 		gates[spec.name] = gate
+		// Claim capacity is global (4 live claims), so park each issued claim and restore all seven after the loop.
+		f.mutate(func(st *State) { st.Messages[parent].ClaimToken = "" })
+		claims[gate] = claim
 	}
 	f.mutate(func(st *State) {
 		now := time.Now()
@@ -66,6 +69,7 @@ func TestApprovalBrowserFixture(t *testing.T) {
 		for _, gate := range gates {
 			g := st.Gates[gate]
 			g.Exp, st.Messages[g.Parent].Receipt.Exp, st.Messages[gate].Receipt.Exp = now.Add(life), now.Add(life), now.Add(life)
+			st.Messages[g.Parent].ClaimToken = claims[gate]
 		}
 		st.Gates[gates["expired"]].Exp = now.Add(-time.Second)
 		st.Gates[gates["processed"]].State = "approved"
