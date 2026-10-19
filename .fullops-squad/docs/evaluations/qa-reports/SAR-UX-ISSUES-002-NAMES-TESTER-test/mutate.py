@@ -9,8 +9,12 @@ A_NAME, B_AGENT, A_AGENT = "가" * 40, "😀" * 40, "긴한글" * 13
 RES = []; EVID = {}
 
 
+ONLY = set(filter(None, os.environ.get("ONLY_CHECKS", "").split(",")))  # recheck 5fa3333: run just these checks (the state-changing chain is not replayed on the shared fixture)
+
+
 def check(name, covers):
     def deco(fn):
+        if ONLY and name not in ONLY: return fn
         try: fn(); RES.append({"check": name, "covers": covers, "result": "pass"})
         except Exception as e: RES.append({"check": name, "covers": covers, "result": "fail", "detail": f"{type(e).__name__}: {e}", "trace": traceback.format_exc(limit=3)})
         return fn
@@ -101,14 +105,34 @@ def _():
 
 
 # ---------- M3: rename
-@check("agent_rename_rejects_unsafe_names_without_change", ["U2 control chars", "U2 40 limit"])
+FORBIDDEN = "이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요."
+LENGTH = "이름은 1–40자로 입력하세요"
+STRIP = lambda v: "".join(c for c in v if not (ord(c) < 0x20 or ord(c) == 0x7f or 0x202a <= ord(c) <= 0x202e or 0x2066 <= ord(c) <= 0x2069))
+CTRL_OR_REPLACEMENT = re.compile("[\x00-\x08\x0b-\x1f\x7f‪-‮⁦-⁩�]")
+
+
+@check("agent_rename_rejects_unsafe_names_without_change", ["U2 control chars", "U2 40 limit", "D-NM-01 dedicated text + stripped value"])
 def _():
     before = agents_of(A); assert [a for _, a in before] == ["agent_a1", "agent_a2"], before
-    bad = {"empty": "", "spaces": "   ", "bel": "ab\x07cd", "nul": "ab\x00cd", "bidi": "ab\u202ecd", "isolate": "ab\u2066cd", "newline": "ab\ncd", "len41": "가" * 41, "emoji41": "😀" * 41}
-    for lab, nm in bad.items():
+    # forbidden-character names: dedicated text, forbidden characters removed from the field, nothing saved
+    forbidden = {"bel": "ab\x07cd", "nul": "ab\x00cd", "bidi": "ab‮cd", "isolate": "ab⁦cd", "newline": "ab\ncd", "only_bel": "\x07", "bel_and_len41": "\x07" + "가" * 41}
+    # length / empty names keep the old text and echo the typed value
+    plain = {"empty": "", "spaces": "   ", "len41": "가" * 41, "emoji41": "😀" * 41}
+    seen = {}
+    for lab, nm in {**forbidden, **plain}.items():
         s, h, b = rename(A, "agent_a2", nm); assert s in (400, 422), (lab, s)
-        assert "\x00" not in b and "\u202e" not in b and "\x07" not in b, lab
-        assert agents_of(A) == before, ("changed by", lab)
+        assert not CTRL_OR_REPLACEMENT.search(main(b)), ("forbidden or replacement character echoed", lab)
+        inp = re.search(r'<input id="agent-name-agent_a2"[^>]*>', b).group(0); val = H.unescape(re.search(r'value="([^"]*)"', inp).group(1))
+        msg = " ".join(alerts(b)); seen[lab] = {"status": s, "alert": msg, "value": val}
+        assert 'aria-invalid="true"' in inp, (lab, inp)
+        if lab in forbidden:
+            assert FORBIDDEN in msg and LENGTH not in msg, (lab, msg)
+            assert val == STRIP(nm), (lab, val, STRIP(nm))
+        else:
+            assert LENGTH in msg and FORBIDDEN not in msg, (lab, msg)
+            assert val == nm, (lab, val)
+        assert agents_of(A) == before, ("changed by", lab)  # not saved
+    EVID["rename_refusals_5fa3333"] = seen
     s, h, b = rename(B, "agent_a2", "해킹 시도"); assert s in (400, 403, 404, 422), s
     assert agents_of(A) == before and "해킹" not in A.get("/home/agents")[2] and "해킹" not in B.get("/home/friends/" + AB)[2]
     s, h, b = rename(A, "agent_b1", "남의 에이전트"); assert s in (400, 403, 404, 422), s
@@ -222,7 +246,7 @@ def _():
 
 if __name__ == "__main__":
     EVID["member_window_429_retries"] = Browser.waited429
-    out = {"origin": ORIGIN, "fixed_sha": "b2e683ae677c78cd7bdc47c75820bcb191b94838", "evidence": EVID, "results": RES}
-    json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "mutate-result.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    out = {"origin": ORIGIN, "fixed_sha": "5fa3333b5948fd36792662b202915bc6243cac14", "evidence": EVID, "results": RES}
+    json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "mutate-result-5fa3333.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for r in RES: print(r["result"].upper(), r["check"], r.get("detail", ""))
     sys.exit(0 if all(r["result"] == "pass" for r in RES) else 1)

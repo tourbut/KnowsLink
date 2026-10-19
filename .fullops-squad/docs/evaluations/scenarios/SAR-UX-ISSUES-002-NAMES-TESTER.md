@@ -40,3 +40,17 @@ summary: "격리 names fixture에서 U2 이름 표시, 내 친구 코드, U4 친
 - 승인 화면(`/gate`)은 fixture가 허용하지 않아 열 수 없다. DEV Go 테스트가 근거이며 not_run으로 남긴다.
 - 조회 성공 화면은 fixture에 receipt 데이터가 없어 열 수 없다(not_run). 실제 인증·DB 화면은 범위 밖이다.
 - 시각 수락은 designer, 고정 SHA 코드 리뷰와 통합은 coor가 조정한다.
+
+## 재확인 5fa3333 (DEV 수정 4건)
+
+대상 `5fa3333b5948fd36792662b202915bc6243cac14`(제품 `97a8899`), 같은 fixture(재기동 상태). 상태를 바꾸는 POST는 마지막 요청 비노출 회귀와 거절되는 이름 저장만 쓴다(designer와 fixture 공유). 결과는 [보고서](../qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md)의 ‘재확인’ 절에 있다.
+
+| covers | 독립 checks (파일) | 통과 조건 |
+|---|---|---|
+| ① 새 대화 radio | `recheck.py` new_conversation_*, `browser.mjs recheck` new-* | select 없음, 그룹 legend와 `이름 / 종류 / 구분값` 라벨, 기본 선택 유지, 방향키 선택, Enter 요청의 `from`·`to`가 고른 값, 쿼리 위조로 선택지가 바뀌지 않음, 3폭 가로 넘침 0·44px |
+| ② 링크 분리 | `recheck.py` my_agents_two_links_*, `browser.mjs recheck` agents-* | 두 링크가 다른 줄(별도 `p`), 각 44px, 정확한 이동 대상 |
+| ③ D-NM-01 | `mutate.py` agent_rename_rejects_unsafe_names_without_change(갱신), `followup.py`, `browser.mjs recheck` rename-refusal-* | 금지 문자 거부 시 전용 문구·입력란에 제거값·이름 불변, 길이·빈 이름은 기존 문구·입력값 보존 |
+| ④ 거절 안내 | `recheck.py` received_request_has_refusal_notice_*, `browser.mjs recheck` deny-* | 수락→안내→거절 순서, 거절의 `aria-describedby`와 접근성 설명 일치 |
+| 영향 회귀 | `checks.py`, `regress_last.py`, `followup.py` 선택 실행 | 이전 PASS 핵심이 유지됨 |
+
+시나리오 밖: `/home/conversation`·`/home/profile`·`/home/agents`는 fixture가 막아 서버 결과·내 이름·에이전트 추가 문구는 not_run이다.

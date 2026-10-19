@@ -10,8 +10,12 @@ AB = M["friend_ab"]; A_AGENT, B_AGENT = "긴한글" * 13, "😀" * 40
 RES = []; EVID = {}
 
 
+ONLY = set(filter(None, os.environ.get("ONLY_CHECKS", "").split(",")))  # recheck 5fa3333: run just these checks (state-changing chain is not replayed on the shared fixture)
+
+
 def check(name, covers):
     def deco(fn):
+        if ONLY and name not in ONLY: return fn
         try: fn(); RES.append({"check": name, "covers": covers, "result": "pass"})
         except Exception as e: RES.append({"check": name, "covers": covers, "result": "fail", "detail": f"{type(e).__name__}: {e}", "trace": traceback.format_exc(limit=3)})
         return fn
@@ -87,7 +91,7 @@ def _():
 
 if __name__ == "__main__":
     EVID["member_window_429_retries"] = Browser.waited429
-    out = {"origin": ORIGIN, "fixed_sha": "b2e683ae677c78cd7bdc47c75820bcb191b94838", "evidence": EVID, "results": RES}
-    json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "followup-result.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    out = {"origin": ORIGIN, "fixed_sha": "5fa3333b5948fd36792662b202915bc6243cac14", "evidence": EVID, "results": RES}
+    json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "followup-result-5fa3333.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for r in RES: print(r["result"].upper(), r["check"], r.get("detail", "")[:500])
     sys.exit(0 if all(r["result"] == "pass" for r in RES) else 1)

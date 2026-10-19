@@ -1,5 +1,5 @@
 // Independent browser checks for the names UX (U2/U4/U7): real key events (CDP Input), 3-width layout matrix, focus walk, a11y names, captures.
-// Usage: node browser.mjs <cdp-port> <label> <stage>   stage = layout | keys | after
+// Usage: node browser.mjs <cdp-port> <label> <stage>   stage = layout | keys | after | recheck (5fa3333 fix recheck)
 // Synthetic A/B/C only. layout/keys change no relationship; keys submits ONE friend request with a non-existent code (harmless no-op by contract).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -198,6 +198,115 @@ try {
     check('skip-link-enter-targets-main', await js(`location.hash==='#main'`)); await tab();
     check('after-skip-next-tab-is-in-main', await js(`!!document.activeElement.closest('main')`));
     // ---- 200%-like check is NOT a real browser zoom: reported not_run in the report
+  }
+
+  if (stage === 'recheck') {
+    // 5fa3333 recheck: only the screens the fix touched (GET), keyboard on the new-conversation radios, link navigation, one refused rename POST (changes nothing).
+    const FORBID = '이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.';
+    const rad = g => `[...document.querySelectorAll('input[name=${g}]')].map(e=>({v:e.value,c:e.checked,lab:e.closest('label').innerText.trim()}))`;
+    const checkedOf = async g => (await js(rad(g))).filter(r => r.c).map(r => r.v);
+    const openAll = `document.querySelectorAll('details').forEach(e=>e.open=true)`;
+    const plan = [['a', 'new-self-a', '/home/new?peer=self'], ['a', 'new-peer-a', '/home/new?peer=' + AB], ['b', 'new-peer-b', '/home/new?peer=' + AB], ['a', 'agents-a', '/home/agents', openAll], ['a', 'friends-a', '/home/friends']];
+    let cur = '';
+    for (const [who, name, p, prep] of plan) {
+      if (cur !== who) { await as(who); cur = who; }
+      await metrics(1440, 900); await go(ORIGIN + p); if (prep) await js(prep);
+      for (const [w, h] of WIDTHS) {
+        await metrics(w, h); await sleep(120);
+        const l = await layout();
+        check(`layout-${w}-${name}`, l.iw === w && l.over <= 0 && l.clipped.length === 0 && l.hidden.length === 0 && l.ell.length === 0 && l.nameOver.length === 0 && l.small.length === 0 && !l.taClip, l);
+        await shot(`${slug(name)}-${w}`);
+      }
+    }
+
+    // ---- (1) new conversation: defaults, labels, AX tree, keyboard
+    await as('a'); await metrics(390, 844); await go(ORIGIN + '/home/new?peer=self');
+    obs.newSelfRadios = {from: await js(rad('from')), to: await js(rad('to'))};
+    check('new-self-no-select-two-radiogroups', await js(`!document.querySelector('main select') && document.querySelectorAll('fieldset[role=radiogroup]').length===2`));
+    check('new-self-defaults-from-a1-to-a2', JSON.stringify(await checkedOf('from')) === '["agent_a1"]' && JSON.stringify(await checkedOf('to')) === '["agent_a2"]', obs.newSelfRadios);
+    let ax = (await send('Accessibility.getFullAXTree')).nodes.filter(n => !n.ignored).map(n => ({role: n.role?.value, name: n.name?.value}));
+    obs.newSelfAx = ax.filter(n => ['radiogroup', 'radio', 'button'].includes(n.role));
+    const grp = ax.filter(n => n.role === 'radiogroup').map(n => n.name), rn = ax.filter(n => n.role === 'radio').map(n => n.name);
+    check('new-self-ax-groups-named-by-legend-radios-by-label', grp.includes('내 발신 에이전트') && grp.includes('내 수신 에이전트') && rn.length === 4 && rn.every(n => /^.+ \/ Node 22 로컬 클라이언트 \/ agent_a[12]$/.test(n)) && new Set(rn).size === 2, {grp, rn});
+    await js('document.activeElement && document.activeElement.blur(); window.scrollTo(0,0)');
+    for (let i = 0; i < 30; i++) { await tab(); if (await js(`document.activeElement.name==='from'`)) break; }
+    check('new-self-tab-enters-from-group-on-checked-radio', await js(`document.activeElement.name==='from'&&document.activeElement.value==='agent_a1'&&document.activeElement.checked&&document.activeElement.matches(':focus-visible')`));
+    await key('ArrowDown', 'ArrowDown', 40);
+    check('new-self-arrow-down-selects-next-from', JSON.stringify(await checkedOf('from')) === '["agent_a2"]', await checkedOf('from'));
+    for (let i = 0; i < 6; i++) { await tab(); if (await js(`document.activeElement.name==='to'`)) break; }
+    check('new-self-tab-enters-to-group-on-checked-radio', await js(`document.activeElement.name==='to'&&document.activeElement.value==='agent_a2'&&document.activeElement.checked`));
+    await key('ArrowUp', 'ArrowUp', 38);
+    check('new-self-arrow-up-selects-previous-to', JSON.stringify(await checkedOf('to')) === '["agent_a1"]', await checkedOf('to'));
+    await tab(); check('new-self-tab-reaches-open-button', await js(`document.activeElement.textContent.trim()==='대화 열기'`));
+    await enterNav();
+    const u1 = new URL(await js('location.href'));
+    obs.newSelfOpen = {path: u1.pathname, query: u1.search}; // the fixture answers 403 for /home/conversation; the request itself is the evidence
+    check('new-self-enter-requests-conversation-with-chosen-from-and-to', u1.pathname === '/home/conversation' && u1.searchParams.get('from') === 'agent_a2' && u1.searchParams.get('to') === 'agent_a1' && [...u1.searchParams.keys()].length === 2, obs.newSelfOpen);
+
+    await go(ORIGIN + '/home/new?peer=' + AB);
+    obs.newPeerRadios = {from: await js(rad('from')), to: await js(rad('to'))};
+    check('new-peer-defaults-from-a1-to-b1', JSON.stringify(await checkedOf('from')) === '["agent_a1"]' && JSON.stringify(await checkedOf('to')) === '["agent_b1"]' && (await js(rad('to'))).length === 1, obs.newPeerRadios);
+    ax = (await send('Accessibility.getFullAXTree')).nodes.filter(n => !n.ignored).map(n => ({role: n.role?.value, name: n.name?.value}));
+    check('new-peer-ax-legend-names-peer', ax.some(n => n.role === 'radiogroup' && n.name === '합성 회원 b의 수신 에이전트') && ax.some(n => n.role === 'radio' && /^😀{40} \/ Node 22 로컬 클라이언트 \/ agent_b1$/u.test(n.name || '')), ax.filter(n => n.role === 'radiogroup' || n.role === 'radio'));
+    await js('document.activeElement && document.activeElement.blur(); window.scrollTo(0,0)');
+    for (let i = 0; i < 30; i++) { await tab(); if (await js(`document.activeElement.name==='from'`)) break; }
+    await key('ArrowDown', 'ArrowDown', 40);
+    for (let i = 0; i < 6; i++) { await tab(); if (await js(`document.activeElement.name==='to'`)) break; }
+    check('new-peer-tab-enters-single-to-radio', await js(`document.activeElement.name==='to'&&document.activeElement.value==='agent_b1'`));
+    await tab(); await enterNav();
+    const u2 = new URL(await js('location.href'));
+    check('new-peer-enter-requests-conversation-with-chosen-from-and-peer-agent', u2.pathname === '/home/conversation' && u2.searchParams.get('from') === 'agent_a2' && u2.searchParams.get('to') === 'agent_b1' && [...u2.searchParams.keys()].length === 2, u2.search);
+
+    // ---- (2) my agents: the two links sit on separate lines, each reaches the right place
+    for (const [w, h] of WIDTHS) {
+      await metrics(w, h); await go(ORIGIN + '/home/agents'); await js(openAll); await sleep(120);
+      const pairs = await js(`(()=>{const r=[...document.querySelectorAll('main a[href^="/home/receipts?agent="]')],l=[...document.querySelectorAll('main a[href="/home/legacy#agents"]')];return r.map((a,i)=>{const x=a.getBoundingClientRect(),y=l[i].getBoundingClientRect();return {agent:a.getAttribute('href'),sameParent:a.parentElement===l[i].parentElement,gap:Math.round(y.top-x.bottom),h1:Math.round(x.height),h2:Math.round(y.height),lineBreak:y.top>=x.bottom-1}})})()`);
+      (obs.agentLinks ||= {})[w] = pairs;
+      check(`agents-links-separate-lines-and-44px-${w}`, pairs.length === 2 && pairs.every(q => !q.sameParent && q.lineBreak && q.h1 >= 43.5 && q.h2 >= 43.5), pairs);
+    }
+    await metrics(390, 844);
+    for (const ag of ['agent_a1', 'agent_a2']) {
+      await go(ORIGIN + '/home/agents'); await js(openAll);
+      await js(`document.querySelector('main a[href="/home/receipts?agent=${ag}#receipt-form"]').focus()`); await enterNav();
+      const r = await js(`({p:location.pathname,q:location.search,h:location.hash,checked:document.querySelector('input[name=agent]:checked')?.value})`);
+      check(`agents-receipt-link-opens-lookup-with-${ag}-selected`, r.p === '/home/receipts' && r.q === '?agent=' + ag && r.h === '#receipt-form' && r.checked === ag, r);
+    }
+    await go(ORIGIN + '/home/agents'); await js(openAll);
+    await js(`document.querySelector('main a[href="/home/legacy#agents"]').focus()`); await enterNav();
+    const lg = await js(`({p:location.pathname,h:location.hash,target:!!document.getElementById('agents'),t:document.title})`);
+    check('agents-manage-link-opens-connection-page-at-agents', lg.p === '/home/legacy' && lg.h === '#agents' && lg.target, lg);
+
+    // ---- (4) received request: refusal notice sits between accept and deny and describes the deny button
+    await go(ORIGIN + '/home/friends');
+    ax = (await send('Accessibility.getFullAXTree')).nodes.filter(n => !n.ignored);
+    const deny = ax.find(n => n.role?.value === 'button' && (n.name?.value || '').startsWith('친구 요청 거절:')), accept = ax.find(n => n.role?.value === 'button' && (n.name?.value || '').startsWith('친구 요청 수락:'));
+    obs.denyAx = {name: deny?.name?.value, description: deny?.description?.value, acceptDescription: accept?.description?.value ?? null};
+    check('deny-button-accessible-description-is-the-refusal-notice', !!deny && deny.description?.value === '거절하면 요청한 사람의 기록에 거절로 표시됩니다. 알리지 않으려면 응답하지 않아도 기한이 지나면 요청이 끝납니다.' && !accept.description?.value, obs.denyAx);
+    check('deny-notice-order-accept-notice-deny', await js(`(()=>{const f=document.querySelector('form[action="/home/friends/decision"]');const k=[...f.children].filter(e=>e.tagName!=='INPUT').map(e=>e.tagName+':'+(e.value||e.id||''));return JSON.stringify(k)})()`) .then(v => /^\["BUTTON:accept","P:deny-help-.+","BUTTON:deny"\]$/.test(v) ? true : v) === true);
+    const st = await tabStops();
+    const names = st.filter(s => !s.wrap).map(s => s.axName); obs.friendsTab = names;
+    const ia = names.findIndex(n => (n || '').startsWith('친구 요청 수락:'));
+    check('friends-tab-accept-then-deny-notice-not-a-stop', ia >= 0 && (names[ia + 1] || '').startsWith('친구 요청 거절:') && st.at(-1).wrap === true && st.filter(s => !s.wrap).every(s => s.axName && focusOk(s)), names);
+
+    // ---- (3) refused rename in the browser: dedicated text, forbidden characters removed from the field, nothing saved
+    await metrics(1440, 900); await go(ORIGIN + '/home/agents'); await js(openAll);
+    const orig = await js(`document.getElementById('agent-name-agent_a2').value`);
+    await js(`document.getElementById('agent-name-agent_a2').focus()`); await selectAll();
+    await send('Input.insertText', {text: 'ab\u0007‮cd'});
+    obs.typedBeforeSubmit = await js(`[...document.getElementById('agent-name-agent_a2').value].map(c=>c.codePointAt(0).toString(16))`);
+    await enterNav();
+    const rf = await js(`(()=>{const i=document.getElementById('agent-name-agent_a2');return {p:location.pathname,alert:[...document.querySelectorAll('[role=alert]')].map(e=>e.textContent.trim()),val:[...i.value].map(c=>c.codePointAt(0).toString(16)),inv:i.getAttribute('aria-invalid'),desc:i.getAttribute('aria-describedby'),title:document.title,text:document.body.innerText}})()`);
+    obs.refusal = rf;
+    check('rename-refusal-browser-dedicated-text-and-stripped-value', rf.p === '/home/agent-name' && rf.alert.some(t => t.includes(FORBID)) && rf.val.join(',') === '61,62,63,64' && rf.inv === 'true' && !/[ --‪-‮⁦-⁩]/.test(rf.text), {...rf, text: rf.text.length});
+    for (const [w, h] of WIDTHS) {
+      await metrics(w, h); await sleep(120); const l = await layout();
+      check(`layout-${w}-rename-refusal-a`, l.iw === w && l.over <= 0 && l.clipped.length === 0 && l.hidden.length === 0 && l.nameOver.length === 0 && l.small.length === 0, l);
+      await shot(`rename-refusal-a-${w}`);
+    }
+    await metrics(1440, 900); await go(ORIGIN + '/home/agents'); await js(openAll);
+    check('rename-refusal-browser-saved-nothing', await js(`document.getElementById('agent-name-agent_a2').value`) === orig && orig.length === 39, orig);
+    const posts = requests.filter(q => q.method === 'POST');
+    check('requests-same-origin-and-exactly-one-post-the-refused-rename', requests.every(q => q.origin === ORIGIN) && posts.length === 1 && posts[0].path === '/home/agent-name', posts);
   }
 } finally { save(); ws.close(); }
 const bad = checks.filter(c => !c.passed); console.log(`checks ${checks.length} failed ${bad.length}`); process.exit(bad.length ? 1 : 0);

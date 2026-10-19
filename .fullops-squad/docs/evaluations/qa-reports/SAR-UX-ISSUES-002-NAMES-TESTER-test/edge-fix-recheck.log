@@ -1,0 +1,44 @@
+PASS layout-1440-new-self-a 
+PASS layout-390-new-self-a 
+PASS layout-320-new-self-a 
+PASS layout-1440-new-peer-a 
+PASS layout-390-new-peer-a 
+PASS layout-320-new-peer-a 
+PASS layout-1440-new-peer-b 
+FAIL layout-390-new-peer-b {"iw":390,"dpr":1,"inputScroll":[],"selects":[],"over":282,"small":[],"clipped":["LEGEND#."],"hidden":[],"ell":[],"nameOver":[],"taClip":false,"nameCount":5}
+FAIL layout-320-new-peer-b {"iw":320,"dpr":1,"inputScroll":[],"selects":[],"over":352,"small":[],"clipped":["LEGEND#."],"hidden":[],"ell":[],"nameOver":[],"taClip":false,"nameCount":5}
+PASS layout-1440-agents-a 
+PASS layout-390-agents-a 
+PASS layout-320-agents-a 
+PASS layout-1440-friends-a 
+PASS layout-390-friends-a 
+PASS layout-320-friends-a 
+PASS new-self-no-select-two-radiogroups 
+PASS new-self-defaults-from-a1-to-a2 
+PASS new-self-ax-groups-named-by-legend-radios-by-label 
+PASS new-self-tab-enters-from-group-on-checked-radio 
+PASS new-self-arrow-down-selects-next-from 
+PASS new-self-tab-enters-to-group-on-checked-radio 
+PASS new-self-arrow-up-selects-previous-to 
+PASS new-self-tab-reaches-open-button 
+PASS new-self-enter-requests-conversation-with-chosen-from-and-to 
+PASS new-peer-defaults-from-a1-to-b1 
+PASS new-peer-ax-legend-names-peer 
+PASS new-peer-tab-enters-single-to-radio 
+PASS new-peer-enter-requests-conversation-with-chosen-from-and-peer-agent 
+PASS agents-links-separate-lines-and-44px-1440 
+PASS agents-links-separate-lines-and-44px-390 
+PASS agents-links-separate-lines-and-44px-320 
+PASS agents-receipt-link-opens-lookup-with-agent_a1-selected 
+PASS agents-receipt-link-opens-lookup-with-agent_a2-selected 
+PASS agents-manage-link-opens-connection-page-at-agents 
+PASS deny-button-accessible-description-is-the-refusal-notice 
+PASS deny-notice-order-accept-notice-deny 
+PASS friends-tab-accept-then-deny-notice-not-a-stop 
+PASS rename-refusal-browser-dedicated-text-and-stripped-value 
+PASS layout-1440-rename-refusal-a 
+PASS layout-390-rename-refusal-a 
+PASS layout-320-rename-refusal-a 
+PASS rename-refusal-browser-saved-nothing 
+PASS requests-same-origin-and-exactly-one-post-the-refused-rename 
+checks 43 failed 2

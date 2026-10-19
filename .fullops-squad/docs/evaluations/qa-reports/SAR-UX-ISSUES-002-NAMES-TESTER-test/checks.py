@@ -66,13 +66,15 @@ def _():
     sums = re.findall(r"<summary><h3>([^<]*)</h3>", lb)
     assert [parts(x) for x in sums] == [[A_AGENT, "Node 22 로컬 클라이언트", "agent_a1"], [A_AGENT, "Node 22 로컬 클라이언트", "agent_a2"]], sums
     nb = S["a"].get("/home/new?peer=self")[2]
+    assert "<select" not in nb, "new-conversation selectors must be radio groups (5fa3333)"
     for sel in ("from", "to"):
-        opts = re.findall(r'<option value="([^"]+)"[^>]*>([^<]*)</option>', re.search(rf'<select id="{sel}".*?</select>', nb, re.S).group(0))
+        fs = re.search(rf'<fieldset id="{sel}" role="radiogroup"><legend>[^<]+</legend>.*?</fieldset>', nb, re.S).group(0)
+        opts = re.findall(rf'<input type="radio" name="{sel}" value="([^"]+)" required[^>]*><span>([^<]*)</span>', fs)
         assert len(opts) == 2 and len({l for _, l in opts}) == 2, opts
         for v, lab in opts: assert parts(lab) == [A_AGENT, "Node 22 로컬 클라이언트", v], lab
     fb = P["a"]["/home/friends/" + AB][2]
     assert re.search(r"<h2>%s</h2><p class=\"muted\">Node 22 로컬 클라이언트 / agent_b1 / " % B_AGENT, fb), "friend detail agent line"
-    assert re.search(r'<option value="agent_b1">%s / Node 22 로컬 클라이언트 / agent_b1</option>' % B_AGENT, S["a"].get("/home/new?peer=" + AB)[2])
+    assert re.search(r'<input type="radio" name="to" value="agent_b1" required[^>]*><span>%s / Node 22 로컬 클라이언트 / agent_b1</span>' % B_AGENT, S["a"].get("/home/new?peer=" + AB)[2])
     # B sees A's two same-name agents on the friend detail, told apart by the discriminator
     bb = P["b"]["/home/friends/" + AB][2]
     assert len(re.findall(r"<h2>%s</h2><p class=\"muted\">Node 22 로컬 클라이언트 / agent_a[12] / " % A_AGENT, bb)) == 2 and "agent_a1" in bb and "agent_a2" in bb
@@ -161,7 +163,7 @@ def _():
     assert "합성 회원 c의 친구 요청" in ab and "서로의 현재·앞으로 추가할 에이전트가 연결됩니다" in ab and "수락 전에는 서로 메시지를 보낼 수 없습니다" in ab
     exp = re.search(r"요청 기한: (\d{4}-\d\d-\d\d \d\d:\d\d:\d\d KST)", ab).group(1); EVID["expires"] = exp
     assert f"요청 기한: {exp}" in cb
-    assert f'<button class="primary" name="decision" value="accept" aria-label="친구 요청 수락: 합성 회원 c / {CA}">수락</button><button name="decision" value="deny" aria-label="친구 요청 거절: 합성 회원 c / {CA}">거절</button>' in ab
+    assert f'<button class="primary" name="decision" value="accept" aria-label="친구 요청 수락: 합성 회원 c / {CA}">수락</button><p class="muted" id="deny-help-{CA}">거절하면 요청한 사람의 기록에 거절로 표시됩니다. 알리지 않으려면 응답하지 않아도 기한이 지나면 요청이 끝납니다.</p><button name="decision" value="deny" aria-label="친구 요청 거절: 합성 회원 c / {CA}" aria-describedby="deny-help-{CA}">거절</button>' in ab  # 5fa3333: refusal notice between accept and deny
     assert "보낸 친구 요청" in cb and "요청 대기" in cb and f'name="decision" value="cancel" aria-label="보낸 친구 요청 취소: {CA}">요청 취소' in cb
     for bad in (A_NAME, A_AGENT, "agent_a", 'value="accept"', 'value="deny"'): assert bad not in cb, bad  # sender sees nothing about the receiver and cannot decide
     assert "아직 친구가 없습니다" in cb and "합성 회원 b" not in cb
@@ -290,7 +292,7 @@ def _():
 
 if __name__ == "__main__":
     EVID["member_window_429_retries"] = Browser.waited429
-    out = {"origin": ORIGIN, "fixed_sha": "b2e683ae677c78cd7bdc47c75820bcb191b94838", "evidence": EVID, "results": RES}
-    json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "http-result.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    out = {"origin": ORIGIN, "fixed_sha": "5fa3333b5948fd36792662b202915bc6243cac14", "evidence": EVID, "results": RES}
+    json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "http-result-5fa3333.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for r in RES: print(r["result"].upper(), r["check"], r.get("detail", ""))
     sys.exit(0 if all(r["result"] == "pass" for r in RES) else 1)
