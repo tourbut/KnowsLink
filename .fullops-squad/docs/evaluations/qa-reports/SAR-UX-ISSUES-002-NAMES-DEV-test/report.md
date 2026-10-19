@@ -141,3 +141,24 @@ Windows 로컬: `gofmt -l` 출력 없음, `go vet`(기본·`integration namesfix
 
 - names fixture 기동, 실제 브라우저 키보드(방향키 선택·Enter 제출) 입력, 스크린리더, 200% 확대, 두 번째 브라우저. radio는 조회와 같은 네이티브 마크업이라 키보드 동작은 브라우저 기본이다. tester·designer 재검수 대상이다.
 - `TestRemoteConsentBrowserReturn`(TEST_BROWSER 필요). remote 동의 화면은 이름 오류 문구·입력값만 바뀌었다.
+
+## D-NM-02 legend 줄바꿈 (세 번째 attempt, `f5ffaa4`)
+
+tester D-NM-02(medium): 40자 이름 친구와 새 대화를 열면 수신 그룹 `<legend>`가 390px에서 282px, 320px에서 352px 넘쳤다. 원인은 공용 `legend` 규칙에 줄바꿈 속성이 없어 공백 없는 긴 이름이 legend 폭을 밀어낸 것이다.
+
+수정: `internal/relay/member_pages.go`의 공용 CSS `legend{...}`에 `max-width:100%;overflow-wrap:anywhere`를 추가했다(1줄). 조회·새 대화 등 모든 radio fieldset legend에 적용된다. 새 JS·토큰·색은 없다(D04 유지). 권한·마크업·테스트 기대값은 그대로다.
+
+### 렌더 (DEV, 합성)
+
+`KNOWSLINK_UI_FIXTURE_DIR`로 만든 `human-new.html`의 수신 legend 이름을 40자 한글(`가나다라마바사아자차`×4)·40자 이모지(`😀`×40)로 바꾸고 기존 [render/probe.mjs](render/probe.mjs)로 1440·390·320px을 측정했다. 같은 HTML에서 새 CSS만 되돌린 `before-*`와 비교했다. 결과 [render-legend/probe.json](render-legend/probe.json), 캡처 `render-legend/*.png`.
+
+| 입력 | 수정 전(`before-*`) 390 / 320 | 수정 후(`new-*`) 1440 / 390 / 320 |
+|---|---|---|
+| 한글 40자 | 페이지·LEGEND 넘침 / 넘침 (재현) | 넘침 0 / 0 / 0, 44px 미만 0 |
+| 이모지 40자 | 넘침 0 (브라우저가 글자 단위로 줄바꿈) | 넘침 0 / 0 / 0, 44px 미만 0 |
+
+### 검사 (`f5ffaa4`)
+
+- 원격 Linux 새 clone: `make lint` EXIT=0 [로그](f5ffaa4049d1198ef5ab9459d2474d42396a6467-lint.log), `make test` EXIT=0 [로그](f5ffaa4049d1198ef5ab9459d2474d42396a6467-test.log). SHA256은 [raw-log-sha256.txt](raw-log-sha256.txt).
+- Windows 로컬: `gofmt -l` 출력 없음, `go test ./internal/relay/` 통과.
+- not_run: integration(CSS 한 줄이라 Go 동작·DB 경로 변경 없음, `97a8899`의 통과 근거 재사용), 실제 names fixture 기동(forward 18930은 coor 소유). tester가 D-NM-02 경로만 재확인한다.
