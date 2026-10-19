@@ -349,7 +349,7 @@ func TestEmailIdentity(t *testing.T) {
 		expect(t, bob.do("GET", "/home/legacy", nil), 200, "/home/gates/"+gateID, "<code>agent_b</code>")
 		expect(t, alice.do("GET", "/home/gates/"+gateID, nil), 403)
 		expect(t, alice.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(alice.cookies[sessionCookie], gateID)}, "decision": {"approve"}}), 409)
-		expect(t, bob.do("GET", "/home/gates/"+gateID, nil), 200, "granularity_min", `value="approve">승인`, `href="/home"`)
+		expect(t, bob.do("GET", "/home/gates/"+gateID, nil), 200, "granularity_min", `value="approve">이 요청 승인`, `href="/home"`)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {"bad"}, "decision": {"approve"}}), 403)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(bob.cookies[sessionCookie], gateID)}, "decision": {"approve"}}, "Sec-Fetch-Site", "cross-site"), 403)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(bob.cookies[sessionCookie], gateID)}, "decision": {"approve"}}), 303)

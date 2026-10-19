@@ -128,11 +128,12 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 				t.Fatalf("%s: approval list shows stale pending", c.name)
 			}
 			expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"approve"}}), 409, "이번 제출은 적용되지 않았습니다", `href="/home/legacy#gates"`)
-			if state(f) != "pending" {
-				t.Fatalf("%s: stale page changed the gate", c.name)
+			// Housekeeping may record the terminal state itself; a stale submission must never record a decision.
+			if s := state(f); s == "approved" || s == "denied" {
+				t.Fatalf("%s: stale page decided the gate: %s", c.name, s)
 			}
 			f.mutate(func(st *State) {
-				st.Gates[gateID].Digest, st.Gates[gateID].Exp = saved.Gates[gateID].Digest, saved.Gates[gateID].Exp
+				st.Gates[gateID].Digest, st.Gates[gateID].Exp, st.Gates[gateID].State = saved.Gates[gateID].Digest, saved.Gates[gateID].Exp, "pending"
 				st.Messages[firstID].Envelope = saved.Messages[firstID].Envelope
 				st.Pairs[pairID("agent_a", "agent_b")].State = saved.Pairs[pairID("agent_a", "agent_b")].State
 			})
