@@ -26,7 +26,7 @@ func (s *Service) memberReceipt(w http.ResponseWriter, r *http.Request) {
 		member, _, retry, err := s.memberHit(st, r, now, memberRate)
 		if err != nil {
 			if !retry.IsZero() {
-				view = map[string]any{"Title": "요청 상태 조회", "Status": 429, "Problem": limited(retry), "Focus": "receipt-problem", "Unavailable": true}
+				view = map[string]any{"Title": "요청 상태 조회", "Status": 429, "Problem": limited(retry), "Focus": "receipt-problem", "Unavailable": true, "Anonymous": true}
 				return nil, nil
 			}
 			return nil, err
@@ -83,10 +83,13 @@ func (s *Service) memberReceipt(w http.ResponseWriter, r *http.Request) {
 		}
 		if view == nil {
 			// Without an authenticated DB read, retain the browser draft but reveal no previous account input.
-			view = map[string]any{"Title": "요청 상태 조회", "Unavailable": true}
+			view = unverifiedReceipt(r)
 		}
 		delete(view, "Transport")
-		view["Status"], view["Problem"], view["Focus"] = 503, "상태를 확인할 수 없습니다. 잠시 뒤 같은 화면에서 다시 조회하세요. 저장된 입력은 로그인 확인이 가능해지면 복원됩니다.", "receipt-problem"
+		view["Status"], view["Problem"], view["Focus"] = 503, "상태를 확인할 수 없습니다. 잠시 뒤 같은 화면에서 다시 조회하세요.", "receipt-problem"
+		if anonymous, _ := view["Anonymous"].(bool); !anonymous {
+			view["Problem"] = view["Problem"].(string) + restoreNote
+		}
 	}
 	if draft.Member != "" {
 		saveReceiptDraft(w, draft, checkedAt)

@@ -385,7 +385,7 @@ func TestEmailIdentity(t *testing.T) {
 		if w.Header().Get("Location") != "/home/gates/"+gateID {
 			t.Fatalf("deny redirected to %q", w.Header().Get("Location"))
 		}
-		expect(t, bob.do("GET", w.Header().Get("Location"), nil), 200, "거절", "지금은 승인하거나 거절할 수 없습니다", `href="/home"`)
+		expect(t, bob.do("GET", w.Header().Get("Location"), nil), 200, "거절", "지금은 승인하거나 거절할 수 없습니다", `href="/home/legacy#gates"`)
 		expect(t, bob.do("GET", "/home/legacy", nil), 200, "/home/gates/"+gateID)
 	})
 }

@@ -237,7 +237,7 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 			return nil, err
 		}
 		m := st.Members[id]
-		agents, pairs, gates := []string{}, []memberPair{}, []*Gate{}
+		agents, pairs := []string{}, []memberPair{}
 		for agent, a := range st.Agents {
 			if a.Owner == m.Owner {
 				agents = append(agents, agent)
@@ -254,11 +254,6 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 				}
 				v.MineAgent, v.PeerAgent = st.visibleAgent(m.Owner, v.Mine()), st.visibleAgent(m.Owner, v.Peer())
 				pairs = append(pairs, v)
-			}
-		}
-		for _, g := range st.Gates {
-			if g.Owner == m.Owner {
-				gates = append(gates, g)
 			}
 		}
 		sort.Strings(agents)
@@ -280,7 +275,7 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 			}
 			return pairID(pairs[i].A, pairs[i].B) < pairID(pairs[j].A, pairs[j].B)
 		})
-		sort.Slice(gates, func(i, j int) bool { return gates[i].ID < gates[j].ID })
+		gates := st.gateRows(m.Owner, now)
 		details, active, incoming, pending := ownAgents(st, m.Owner), 0, 0, 0
 		// Pair rows reuse the widened discriminators of the agent list so colliding own agents stay distinct.
 		shorts := map[string]string{}

@@ -24,8 +24,10 @@ func receiptFailure(w http.ResponseWriter, r *http.Request, status int, problem 
 		return false
 	}
 	if view == nil {
-		view = map[string]any{"Title": "요청 상태 조회", "Unavailable": true}
-		problem += " 저장된 입력은 로그인 확인이 가능해지면 복원됩니다."
+		view = unverifiedReceipt(r)
+		if !view["Anonymous"].(bool) {
+			problem += restoreNote
+		}
 	}
 	view["Problem"], view["Focus"] = problem, "receipt-problem"
 	delete(view, "Transport")
@@ -34,6 +36,13 @@ func receiptFailure(w http.ResponseWriter, r *http.Request, status int, problem 
 	}
 	render(w, status, "receipt", view)
 	return true
+}
+
+const restoreNote = " 저장된 입력은 로그인 확인이 가능해지면 복원됩니다."
+
+// unverifiedReceipt is the view when the session could not be checked; only a browser holding a session hears about restore.
+func unverifiedReceipt(r *http.Request) map[string]any {
+	return map[string]any{"Title": "요청 상태 조회", "Unavailable": true, "Anonymous": readCookie(r, sessionCookie) == ""}
 }
 
 func safeReceiptInput(value string) bool {

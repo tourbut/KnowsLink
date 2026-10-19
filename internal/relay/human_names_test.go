@@ -122,10 +122,11 @@ func TestFriendPagesShareOwnCodeAndKeepRequestInput(t *testing.T) {
 }
 
 func TestGateNamesEndpointsWithinAuthority(t *testing.T) {
-	v := map[string]any{"State": "pending", "From": "agent_x", "To": "agent_a", "Parent": "request-a", "Exp": "e", "Policy": "p", "Body": "{}", "Back": "/home",
-		"FromAgent": humanAgent{ID: "agent_x", Name: "확인할 수 없는 에이전트"}, "ToAgent": humanAgent{ID: "agent_a", Name: "내 도우미", Client: "Node 22", Short: "a001"}}
+	v := map[string]any{"State": "pending", "From": "agent_x", "To": "agent_a", "Parent": "request-a", "Exp": "e", "Policy": "p", "Body": "{}", "Back": "/home/legacy#gates", "Summary": []gateField{{"요청 유형", "일정 확정"}},
+		"FromAgent": humanAgent{ID: "agent_x", Name: "확인할 수 없는 에이전트", Short: "x001"}, "ToAgent": humanAgent{ID: "agent_a", Name: "내 도우미", Client: "Node 22", Short: "a001"}}
 	body := renderHumanPage(t, "human-gate", v)
-	if !strings.Contains(body, "확인할 수 없는 에이전트<br><code>agent_x</code>") || !strings.Contains(body, "내 도우미 / Node 22 / a001<br><code>agent_a</code>") {
-		t.Fatal("gate must lead with permitted names and keep full IDs")
+	name, id := strings.Index(body, "확인할 수 없는 에이전트 / x001"), strings.Index(body, "<code>agent_x</code>")
+	if name < 0 || id < name || !strings.Contains(body, "내 도우미 / Node 22 / a001") || !strings.Contains(body, "<code>agent_a</code>") {
+		t.Fatal("gate must lead with permitted names and keep full IDs in technical detail")
 	}
 }

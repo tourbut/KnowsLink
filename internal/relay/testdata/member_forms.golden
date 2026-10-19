@@ -31,5 +31,13 @@ device-prepared: post /home/device-confirm {button:=@; input::name; input:hidden
 receipt: get /home/receipts {button:=@; input::id; input:radio:agent}
 refusal-reauth: post /auth/reauth {button:=@}
 gate-active: post  {button:decision=approve@; button:decision=deny@/home/gates/00000000-0000-4000-8000-000000000001/deny; input:hidden:csrf=synthetic-csrf}
+gate-commit-hint: post  {button:decision=approve@; button:decision=deny@/home/gates/00000000-0000-4000-8000-000000000001/deny; input:hidden:csrf=synthetic-csrf}
+home-no-gates: post /auth/logout {button:=@}
+home-no-gates: post /auth/logout {button:=@}
+home-no-gates: post /auth/logout-all {button:=@}
+home-no-gates: post /auth/reauth {button:=@}
+home-no-gates: post /home/agent-revoke {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5}
+home-no-gates: post /home/connect {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; select:client; select:mode}
+home-no-gates: post /home/key-revoke {button:=@; input:hidden:agent=agent_0a1b2c3d4e5f60718293a4b5; input:hidden:kid=key_01}
 remote-login: post /auth/google {button:=@; input:hidden:remote=rem0te-1d}
 remote-consent: post  {button:decision=approve@; button:decision=deny@; input::name; input:hidden:csrf=synthetic-csrf}
