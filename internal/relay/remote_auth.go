@@ -355,7 +355,8 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		}
 		name, valid := validName(r.PostForm.Get("name"))
 		if !valid {
-			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id")), "AgentName": r.PostForm.Get("name"), "Problem": "이름은 1–40자로 입력하세요"}, nil
+			problem, kept := nameRefusal(r.PostForm.Get("name"))
+			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id")), "AgentName": kept, "Problem": problem}, nil
 		}
 		code, e := st.approveRemote(a, now)
 		if e != nil {

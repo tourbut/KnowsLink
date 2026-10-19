@@ -2,9 +2,9 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-17
+updated: 2026-10-19
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -29,9 +29,27 @@ SP-04 해석(사용자 결정 2026-10-17, SAR-SESSION-PEER-001-DEV-FIX-2): 연�
 
 V04 해석(사용자 결정 2026-10-17): 세션 연결(`/knowslink-session on`의 lock·watcher)은 소유자의 세션 설정이다. 친구 해제·차단 동안에도 연결은 유지되고 재수락 뒤 다시 `on`할 필요가 없다. 친구 권한은 relay가 발송마다 다시 확인한다. tester 관측(SAR-SESSION-PEER-001-TESTER, fullops/tester a32d0ab)에서 해제 중 A→B·B→A 발송은 모두 403이었고, 재수락 뒤 발송은 새 세대로 성공했으며, 해제 전 메시지의 receipt 조회는 `403 sender_not_allowed`였다. 따라서 V04의 '재수락 후 옛 연결'은 해제 전 친구 권한(과거 세대)을 뜻하고 세션 연결 자체를 뜻하지 않는다. 코드는 바꾸지 않았다.
 
+## SAR-UX-ISSUES-002 이름 표시·친구 코드·친구 요청 안내
+
+2단위(U2/U4와 해당 U7)는 새 schema·API·권한 없이 기존 template과 상태를 사용한다.
+
+| 모듈 | 책임 | 검증 |
+|---|---|---|
+| `human_http.go` `distinguish` | 함께 보이는 agent 목록에서 짧은 구분값이 겹치면 전체 ID로 넓힌다. `humanAgents`·조회 선택기·legacy 목록(`ownAgents`)이 같은 규칙을 쓴다 | `TestReceiptSelectorDistinguishesCollidingNames`, `TestLegacyAgentLabelsWidenCollidingDiscriminators` |
+| `human_http.go` `visibleAgent`·`friendsNow` | 자기 agent와 현재 활성·비차단 친구의 agent만 이름·종류를 보인다. 그 밖은 ‘확인할 수 없는 에이전트’와 전체 ID다. 상대 프로필을 새로 조회하지 않는다 | `TestVisibleAgentNamesOnlyOwnerAndCurrentFriend` |
+| `http.go` `gateView`, `member.go` legacy, `member_agents.go` `ownAgents`·연결 화면 | 승인·legacy agent/관계·연결 대상에 이름 먼저 + 종류 + 구분값을 보이고 전체 ID는 상세에 둔다. legacy 제목은 ‘기존 연결’이다 | `TestGateNamesEndpointsWithinAuthority`, `member_forms.golden`, 렌더 fixture |
+| `human_http.go` `friends/request` | 코드의 앞뒤 공백만 제거한다. 빈 코드·동의 누락은 422로 같은 친구 화면을 다시 보이고 입력 코드와 오류 필드 focus를 유지한다. 대소문자·Unicode 정규화는 하지 않는다 | `TestHumanNamesAndFriendCodePostgres`, `TestFriendCodeRotationKeepsReceivedRequests` |
+| `human_pages.go` 친구·내 계정 | ‘내 친구 코드’를 보이는 라벨의 읽기 전용 `textarea`로 보인다(긴 코드도 줄바꿈). 친구 추가는 보내는 사람 이름·상대 코드·연결 범위·명시 동의·‘친구 요청 보내기’ 순서다. 복사 JS·CSP 변경은 없다 | `TestFriendPagesShareOwnCodeAndKeepRequestInput` |
+| `member.go` `refusedTo` | 친구 동작·친구 상세의 거부 화면은 ‘친구 목록으로 돌아가기’로 정확히 복귀한다 | 렌더 fixture |
+| `human.go` `nameRefusal` | 이름 거부 문구를 고른다. 앞뒤 공백을 뺀 이름에 control/Bidi_Control 문자가 있으면 금지 문자 문구와 그 문자를 뺀 입력을, 아니면 ‘이름은 1–40자로 입력하세요’와 원 입력을 돌려준다. 내 이름·에이전트 이름·추가·device·remote 이름 422가 같이 쓰며 저장하지 않는다 | `TestHumanNamesAndIdentity`, `TestHumanNamesAndFriendCodePostgres` |
+| `human_pages.go` 새 대화·내 에이전트·친구 요청 | 새 대화 발신·수신은 조회와 같은 fieldset/radio 라벨(`이름 / 종류 / 구분값`)이다. 내 에이전트 상세의 ‘요청 상태 조회’·‘연결·키 관리’는 각자 줄이다. 받은 요청 거절 앞에 거절 표시 안내가 있다 | `TestHumanEmptyChoicesOfferRecovery`, 렌더 fixture |
+| `member_receipt.go` | 익명 한도 429 화면은 `Unavailable`로 ‘에이전트 없음’ 오안내를 하지 않는다(1단위 리뷰 low) | 코드 검토 |
+
+동명·40자 한글/이모지·제어문자 거절·이름 변경 뒤 ID/관계 불변·코드 교체·GET만으로 관계 생성 없음·agent 0개 요청·24h 만료 뒤 새 세대는 `human_names_test.go`와 integration 검사로 확인한다. device/remote 생성 경로의 이름 결속은 기존 integration 검사에 단언을 추가했다. 검증 기록은 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md)를 따른다.
+
 ## SAR-UX-ISSUES-002 조회 입력과 복귀
 
-`member_receipt.go`는 최초·성공·실패의 공통 조회 화면을 만들고 기존 소유권/참여 endpoint를 검사한다. `receipt_context.go`는 길이·제어문자·쿠키 수명·회원 경계를 검사하고 소유 agent 선택기를 구성한다. 선택기 옵션(`member_pages.go`)은 `안정 구분값 / 이름 / 종류` 순서로 한 줄에 표시한다. 구분값을 앞에 두어 긴 이름 때문에 닫힌 상태가 잘려도 같은 이름의 agent를 구별할 수 있다(D-RT-01). 복귀 쿠키는 신뢰하지 않는 입력이다. DB 엔티티나 migration은 추가하지 않는다. `capacity.go`는 원래 admission transaction 안에서만 조회 폼을 인증하며 기존 예산·동시 처리 거부를 유지한다. DB 인증 전 실패는 사적 입력 없는 같은 조회 화면이다.
+`member_receipt.go`는 최초·성공·실패의 공통 조회 화면을 만들고 기존 소유권/참여 endpoint를 검사한다. `receipt_context.go`는 길이·제어문자·쿠키 수명·회원 경계를 검사하고 소유 agent 선택기를 구성한다. 선택기는 2단위(SAR-UX-ISSUES-002-NAMES-DEV)부터 `fieldset`의 radio 목록이다. 각 라벨은 `이름 / 종류 / 안정 구분값`이며 줄바꿈되므로 닫힌 select처럼 잘리지 않는다(D-RT-01·U2). 1단위의 `구분값 / 이름 / 종류` 옵션은 대체됐다. 복귀 쿠키는 신뢰하지 않는 입력이다. DB 엔티티나 migration은 추가하지 않는다. `capacity.go`는 원래 admission transaction 안에서만 조회 폼을 인증하며 기존 예산·동시 처리 거부를 유지한다. DB 인증 전 실패는 사적 입력 없는 같은 조회 화면이다.
 
 `member_pages.go`의 네이티브 GET 폼은 안전한 입력·선택을 유지한다. 각 응답은 오류 필드/오류 요약/성공 결과 중 한 곳에만 autofocus를 둔다. `human_pages.go`의 소유 agent 상세와 legacy 관리 영역에서 같은 화면으로 진입한다. D04 CSS·주 메뉴·CSP는 바꾸지 않는다. `member.go`/`google.go`는 기존 인증 성공 뒤 고정 조회 복귀와 로그아웃 초기화만 추가한다. Google의 외부 callback에서 Strict 쿠키를 사용할 수 있다는 가정은 하지 않는다.
 

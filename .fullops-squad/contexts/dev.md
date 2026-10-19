@@ -56,3 +56,5 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - Orca 입력 성공 응답만으로 키보드 PASS를 선언하지 않는다. 이번 native 입력은 hasFocus=false로 미실행이며 CSS200%와 native200%도 분리했다. 같은 host의 포트는 cookie를 공유하므로 fixture 상태별 새 isolated profile을 준비한다.
 
 - 2026-10-15 SAR-UX-ISSUES-002-RECEIPT-DEV: 조회 오류 폼은 route뿐 아니라 상위 admission의429/503에서도 보존해야 한다. 쿠키는 입력이며 현재 회원/소유권을 재확인한다. DB 인증 불가 때는 캐시로 사적 입력을 노출하지 않는다. [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md).
+
+- 2026-10-19 SAR-UX-ISSUES-002-NAMES-DEV: 긴 이름 선택은 닫힌 select 대신 줄바꿈되는 radio로 해결한다. 상대 agent 이름은 현재 친구 권한에서만 보이고 그 밖은 ID만 둔다. CDP 측정은 모바일 emulation이 넘친 폭만큼 viewport를 넓히므로 비모바일 viewport로 가로 넘침을 잰다. [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md).

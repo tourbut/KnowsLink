@@ -16,6 +16,8 @@ type memberPair struct {
 	Incoming bool
 	// Own and Other name the member's live agent and the counterpart for a manual re-invite; Own is "" when none.
 	Own, Other string
+	// MineAgent and PeerAgent label Mine and Peer; a non-friend counterpart stays an unnamed identifier.
+	MineAgent, PeerAgent humanAgent
 }
 
 // Deadline shows the invite deadline in the same KST form as connection deadlines.
@@ -27,9 +29,10 @@ func (p memberPair) Deadline() string {
 }
 
 type memberAgent struct {
-	ID, Status string
-	Keys       []memberKey
-	KeyFull    bool // the key record cap is reached; only a new agent can take a new key
+	ID, Status          string
+	Name, Client, Short string // the same name-first label as the person pages
+	Keys                []memberKey
+	KeyFull             bool // the key record cap is reached; only a new agent can take a new key
 }
 type memberKey struct{ Kid, Fingerprint, Status string }
 
@@ -71,7 +74,8 @@ func ownAgents(st *State, owner string) []memberAgent {
 		if a.Owner != owner {
 			continue
 		}
-		v := memberAgent{ID: id, Status: "미연결", KeyFull: len(a.Keys) >= agentKeyRecords}
+		label := humanAgentView(id, a)
+		v := memberAgent{ID: id, Status: "미연결", Name: label.Name, Client: label.Client, Short: label.Short, KeyFull: len(a.Keys) >= agentKeyRecords}
 		if activeKeys(a) > 0 {
 			v.Status = "연결 완료"
 		}
@@ -89,6 +93,13 @@ func ownAgents(st *State, owner string) []memberAgent {
 		agents = append(agents, v)
 	}
 	sort.Slice(agents, func(i, j int) bool { return agents[i].ID < agents[j].ID })
+	labels := make([]humanAgent, len(agents))
+	for i, a := range agents {
+		labels[i] = humanAgent{ID: a.ID, Short: a.Short}
+	}
+	for i, label := range distinguish(labels) {
+		agents[i].Short = label.Short
+	}
 	return agents
 }
 func safeProblem(err error) string {
@@ -208,7 +219,8 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 						return fail(fault("invalid_auth"))
 					}
 					public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": r.FormValue("name"), "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": "이름은 1–40자로 입력하세요"}, nil
+					problem, kept := nameRefusal(r.FormValue("name"))
+					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": kept, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": problem}, nil
 				}
 				if e := st.approveDevice(r.FormValue("connection"), owner, now); e != nil {
 					return fail(e)
@@ -223,7 +235,8 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 					if e != nil {
 						return fail(e)
 					}
-					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, "이름은 1–40자로 입력하세요", r.FormValue("name")
+					problem, kept := nameRefusal(r.FormValue("name"))
+					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, problem, kept
 					return view, nil
 				}
 				if limit := st.agentLimit(owner); limit != "" {
@@ -241,7 +254,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if e != nil {
 					return fail(e)
 				}
-				return map[string]any{"Title": "에이전트 연결", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
+				return map[string]any{"Title": "에이전트 연결", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Name": agentName(st.Agents[agent]), "Short": shortID(agent), "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
 			case "confirm", "cancel":
 				c := st.Connections[r.FormValue("connection")]
 				if c == nil || c.Owner != owner || !now.Before(c.Exp) || c.State == "consumed" || c.State == "cancelled" {
@@ -328,7 +341,7 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 			return refusal{403, "연결을 조회할 수 없습니다.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-		return map[string]any{"Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
+		return map[string]any{"Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
 	})
 	if err != nil {
 		if err.Error() == "invalid_auth" {

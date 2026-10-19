@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"sort"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -41,7 +42,38 @@ func (st *State) humanAgents(owner string) []humanAgent {
 		}
 	}
 	sort.Slice(agents, func(i, j int) bool { return agents[i].ID < agents[j].ID })
+	return distinguish(agents)
+}
+
+// distinguish widens a colliding short discriminator to the full ID so agents shown together never look alike.
+func distinguish(agents []humanAgent) []humanAgent {
+	for i := range agents {
+		for _, other := range agents {
+			if agents[i].ID != other.ID && agents[i].Short == shortID(other.ID) {
+				agents[i].Short = agents[i].ID
+				break
+			}
+		}
+	}
 	return agents
+}
+
+// visibleAgent names an agent only for its owner or a current friend; it never reads a stranger's profile.
+func (st *State) visibleAgent(owner, id string) humanAgent {
+	if a := st.Agents[id]; a != nil && (a.Owner == owner || st.friendsNow(owner, a.Owner)) {
+		return humanAgentView(id, a)
+	}
+	return humanAgent{ID: id, Name: "확인할 수 없는 에이전트"}
+}
+
+func (st *State) friendsNow(ownerA, ownerB string) bool {
+	ia, ma := st.humanMember(ownerA)
+	ib, mb := st.humanMember(ownerB)
+	if ma == nil || mb == nil {
+		return false
+	}
+	f := st.Friends[pairID(ia, ib)]
+	return f != nil && f.State == "active" && !f.BlockA && !f.BlockB
 }
 
 func conversationURL(from, to string) string {
@@ -63,7 +95,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 	m := st.Members[id]
 	v := map[string]any{"Title": "대화", "Section": "conversations", "Name": m.Name, "Masked": maskEmail(m.Email), "Code": m.FriendCode, "SelfConnected": m.SelfConnect, "Recent": now.Sub(session.Verified) < reauthWindow, "Attempt": randomToken(), "From": humanAgent{}, "To": humanAgent{}}
 	if r.URL.Query().Get("n") == "requested" {
-		v["Notice"] = "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다"
+		v["Notice"] = "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
 	}
 	own := st.humanAgents(m.Owner)
 	v["Own"] = own
@@ -187,6 +219,9 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			}
 			v["Peer"] = humanFriend{ID: f.ID, Name: p.Name, State: f.State, Generation: f.Generation}
 			v["Agents"] = st.humanAgents(p.Owner)
+			if path == "friend" {
+				v["Title"] = p.Name + " — 친구"
+			}
 		}
 	case "conversation":
 		from, to := r.URL.Query().Get("from"), r.URL.Query().Get("to")
@@ -283,6 +318,8 @@ func (s *Service) humanPage(path string) http.HandlerFunc {
 		if err != nil {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
+			} else if path == "friend" {
+				refusedTo(w, "친구", refusal{status: statusFor(err), problem: safeProblem(err)}, "/home/friends")
 			} else {
 				refused(w, "대화", refusal{status: statusFor(err), problem: safeProblem(err)})
 			}
@@ -290,7 +327,11 @@ func (s *Service) humanPage(path string) http.HandlerFunc {
 		}
 		switch result := v.(type) {
 		case refusal:
-			refused(w, "대화", result)
+			if path == "friend" {
+				refusedTo(w, "친구", result, "/home/friends")
+			} else {
+				refused(w, "대화", result)
+			}
 		case string:
 			http.Redirect(w, r, result, 303)
 		default:
@@ -325,7 +366,8 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 			case "profile":
 				name, ok := validName(r.FormValue("name"))
 				if !ok {
-					return map[string]any{"Title": "내 이름", "Name": r.FormValue("name"), "Problem": "이름은 1–40자로 입력하세요"}, nil
+					problem, kept := nameRefusal(r.FormValue("name"))
+					return map[string]any{"Title": "내 이름", "Name": kept, "Problem": problem}, nil
 				}
 				m.Name = name
 				return "/home", nil
@@ -340,7 +382,8 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 					if e != nil {
 						return fail(e)
 					}
-					view["FormTemplate"], view["FormStatus"], view["Problem"], view["EditID"], view["EditName"] = "human-agents", 422, "이름은 1–40자로 입력하세요", r.FormValue("agent"), r.FormValue("name")
+					problem, kept := nameRefusal(r.FormValue("name"))
+					view["FormTemplate"], view["FormStatus"], view["Problem"], view["EditID"], view["EditName"] = "human-agents", 422, problem, r.FormValue("agent"), kept
 					return view, nil
 				}
 				a.Name = name
@@ -358,10 +401,23 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 				m.SelfConnect = true
 				return "/home/new?peer=self", nil
 			case "friends/request":
-				if r.FormValue("consent") != "yes" {
-					return fail(fault("invalid_schema"))
+				// Codes are random values: only surrounding whitespace is removed, never case or Unicode folding.
+				code := strings.TrimSpace(r.FormValue("code"))
+				problem, field := "", ""
+				if code == "" {
+					problem, field = "친구 코드를 입력하세요. 친구가 직접 공유한 코드를 붙여 넣으세요.", "friend-code"
+				} else if r.FormValue("consent") != "yes" {
+					problem, field = "연결 범위에 동의해야 친구 요청을 보낼 수 있습니다.", "friend-consent"
 				}
-				st.requestFriend(id, r.FormValue("code"), now)
+				if problem != "" {
+					view, e := st.humanView(id, session, "friends", r, now)
+					if e != nil {
+						return fail(e)
+					}
+					view["FormTemplate"], view["FormStatus"], view["Problem"], view["Invalid"], view["RequestCode"] = "human-friends", 422, problem, field, r.FormValue("code")
+					return view, nil
+				}
+				st.requestFriend(id, code, now)
 				return "/home/friends?n=requested", nil
 			case "friends/decision":
 				g, e := strconv.ParseInt(r.FormValue("generation"), 10, 64)
@@ -403,7 +459,11 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 		}
 		switch result := v.(type) {
 		case refusal:
-			refused(w, "대화", result)
+			if strings.HasPrefix(path, "friends/") {
+				refusedTo(w, "친구", result, "/home/friends")
+			} else {
+				refused(w, "대화", result)
+			}
 		case string:
 			http.Redirect(w, r, result, 303)
 		case map[string]any:

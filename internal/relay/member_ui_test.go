@@ -22,10 +22,10 @@ func memberFixtures() []uiFixture {
 	exp := time.Date(2026, 10, 12, 7, 55, 0, 0, kst)
 	fp := "SHA256:7_B9RdVzaKQSQRTfdqCvQm3xE1nYc2pLk8sWuT4hJgA0o"
 	agents := []memberAgent{
-		{ID: "agent_0a1b2c3d4e5f60718293a4b5", Status: "연결 완료", Keys: []memberKey{{"key_01", fp, "활성"}, {"key_02", "SHA256:Zx91qLmN0pQrStUvWxYz0123456789abcdefGHIJKLm", "철회"}}},
-		{ID: "agent_1f2e3d4c5b6a79880716253a", Status: "미연결"},
-		{ID: "agent_2b3c4d5e6f708192a3b4c5d6", Status: "연결 완료", KeyFull: true, Keys: []memberKey{{"key_03", fp, "활성"}}},
-		{ID: "agent_9e8d7c6b5a4f3e2d1c0b9a87", Status: "철회", Keys: []memberKey{{"key_04", fp, "철회"}}},
+		{ID: "agent_0a1b2c3d4e5f60718293a4b5", Status: "연결 완료", Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2", Keys: []memberKey{{"key_01", fp, "활성"}, {"key_02", "SHA256:Zx91qLmN0pQrStUvWxYz0123456789abcdefGHIJKLm", "철회"}}},
+		{ID: "agent_1f2e3d4c5b6a79880716253a", Status: "미연결", Name: "합성 노트북 도우미", Client: supportedClient, Short: "b71e44d0"},
+		{ID: "agent_2b3c4d5e6f708192a3b4c5d6", Status: "연결 완료", Name: "합성 서버 도우미", Client: supportedClient, Short: "0c5d9e3a", KeyFull: true, Keys: []memberKey{{"key_03", fp, "활성"}}},
+		{ID: "agent_9e8d7c6b5a4f3e2d1c0b9a87", Status: "철회", Name: "철회한 도우미", Client: supportedClient, Short: "e2a7f610", Keys: []memberKey{{"key_04", fp, "철회"}}},
 	}
 	pair := func(a, b, inviter, state string, gen int64, incoming bool, own, other string) memberPair {
 		p := &Pair{A: a, B: b, Inviter: inviter, Recipient: b, State: state, Generation: gen}
@@ -35,7 +35,10 @@ func memberFixtures() []uiFixture {
 		if state == "pending" {
 			p.Exp = exp
 		}
-		return memberPair{Pair: p, Incoming: incoming, Own: own, Other: other}
+		v := memberPair{Pair: p, Incoming: incoming, Own: own, Other: other}
+		v.MineAgent = humanAgent{ID: v.Mine(), Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}
+		v.PeerAgent = humanAgent{ID: v.Peer(), Name: "확인할 수 없는 에이전트"}
+		return v
 	}
 	pairs := []memberPair{
 		pair("agent_0a1b2c3d4e5f60718293a4b5", "agent_77665544332211009988aabb", "agent_77665544332211009988aabb", "pending", 3, true, "agent_0a1b2c3d4e5f60718293a4b5", "agent_77665544332211009988aabb"),
@@ -45,7 +48,7 @@ func memberFixtures() []uiFixture {
 		pair("agent_9e8d7c6b5a4f3e2d1c0b9a87", "agent_5566778899aabbccddeeff00", "agent_9e8d7c6b5a4f3e2d1c0b9a87", "denied", 1, false, "", ""),
 	}
 	gates := []*Gate{{ID: "00000000-0000-4000-8000-000000000001", Parent: "00000000-0000-4000-8000-0000000000aa", State: "pending"}, {ID: "00000000-0000-4000-8000-000000000002", Parent: "00000000-0000-4000-8000-0000000000bb", State: "denied"}}
-	home := map[string]any{"Title": "내 에이전트", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true,
+	home := map[string]any{"Title": "기존 연결", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true,
 		"AgentDetails": agents, "Pairs": pairs, "Gates": gates, "ActiveAgents": 3, "IncomingInvites": 1, "PendingGates": 1}
 	conn := func(state string) map[string]any {
 		return map[string]any{"Title": "에이전트 연결", "ConnectionID": "c0nnect10n-1d-synthetic-0000000000000000000", "Agent": "agent_0a1b2c3d4e5f60718293a4b5", "Client": supportedClient, "Mode": "register", "State": state, "Fingerprint": fp, "Exp": clock(exp)}
@@ -56,7 +59,8 @@ func memberFixtures() []uiFixture {
 		return map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": "dev1ce-1d-synthetic-00000000000000000000000", "Fingerprint": fp, "Exp": clock(exp), "State": state, "Login": login, "Google": google}
 	}
 	gate := func(active bool, state string) map[string]any {
-		v := map[string]any{"State": state, "From": "agent_77665544332211009988aabb", "To": "agent_0a1b2c3d4e5f60718293a4b5", "Parent": "00000000-0000-4000-8000-0000000000aa", "Exp": clock(exp), "Policy": "owner_gate", "CSRF": "synthetic-csrf", "Active": active, "Body": "{\n  \"granularity_min\": 30\n}", "Intent": "schedule.query", "Hint": "다음 주 회의 가능 시간", "Back": "/home", "Deny": "/home/gates/00000000-0000-4000-8000-000000000001/deny"}
+		v := map[string]any{"State": state, "From": "agent_77665544332211009988aabb", "To": "agent_0a1b2c3d4e5f60718293a4b5", "Parent": "00000000-0000-4000-8000-0000000000aa", "Exp": clock(exp), "Policy": "owner_gate", "CSRF": "synthetic-csrf", "Active": active, "Body": "{\n  \"granularity_min\": 30\n}", "Intent": "schedule.query", "Hint": "다음 주 회의 가능 시간", "Back": "/home", "Deny": "/home/gates/00000000-0000-4000-8000-000000000001/deny",
+			"FromAgent": humanAgent{ID: "agent_77665544332211009988aabb", Name: "확인할 수 없는 에이전트"}, "ToAgent": humanAgent{ID: "agent_0a1b2c3d4e5f60718293a4b5", Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}}
 		return v
 	}
 	return []uiFixture{

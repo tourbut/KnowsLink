@@ -564,7 +564,7 @@ func (s *Service) gateView(r *http.Request, auth ownerAuth) (any, error) {
 		if g == nil || g.Owner != owner {
 			return nil, fault("sender_not_allowed")
 		}
-		view := map[string]any{"State": g.State, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": clock(g.Exp), "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": false, "Body": "원문 부재: 승인 불가", "Back": back, "Deny": back + "/gates/" + g.ID + "/deny"}
+		view := map[string]any{"State": g.State, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": clock(g.Exp), "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": false, "Body": "원문 부재: 승인 불가", "Back": back, "Deny": back + "/gates/" + g.ID + "/deny", "FromAgent": st.visibleAgent(owner, g.From), "ToAgent": st.visibleAgent(owner, g.To)}
 		if e, active := verifiedGate(st, g, now); e != nil {
 			body, _ := json.MarshalIndent(e.Body, "", "  ")
 			view["Body"], view["Intent"], view["Active"] = string(body), e.Intent, active

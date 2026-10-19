@@ -38,7 +38,7 @@ func TestReceiptRecoveryHTTP(t *testing.T) {
 	})
 	path := "/home/receipts?agent=agent_a&id=" + firstID
 	expect(t, a.do("GET", "/home/receipts", nil), 200, "요청 상태 조회", `name="id"`)
-	expect(t, a.do("GET", path, nil), 200, `value="`+firstID+`"`, `value="agent_a" selected`, "수신 클라이언트가 보관했습니다", `id="receipt-result"`)
+	expect(t, a.do("GET", path, nil), 200, `value="`+firstID+`"`, `value="agent_a" required checked`, "수신 클라이언트가 보관했습니다", `id="receipt-result"`)
 	expect(t, a.do("GET", "/home/receipts", nil), 200, `value="`+firstID+`"`, "조회 결과")
 	for _, id := range []string{secondID, gateID} {
 		if id == gateID {
@@ -46,9 +46,9 @@ func TestReceiptRecoveryHTTP(t *testing.T) {
 				st.Messages[gateID] = &Message{Receipt: Receipt{ID: gateID, From: "agent_b", To: "agent_c", State: "delivered", Accepted: time.Now(), Exp: time.Now().Add(time.Minute)}}
 			})
 		}
-		expect(t, a.do("GET", "/home/receipts?agent=agent_a&id="+id, nil), 403, receiptUnavailable, `value="`+id+`"`, `value="agent_a" selected`)
+		expect(t, a.do("GET", "/home/receipts?agent=agent_a&id="+id, nil), 403, receiptUnavailable, `value="`+id+`"`, `value="agent_a" required checked`)
 	}
-	expect(t, a.do("GET", "/home/receipts?agent=agent_a&id="+url.QueryEscape(`<script>bad()</script>`), nil), 422, "&lt;script&gt;", `value="agent_a" selected`)
+	expect(t, a.do("GET", "/home/receipts?agent=agent_a&id="+url.QueryEscape(`<script>bad()</script>`), nil), 422, "&lt;script&gt;", `value="agent_a" required checked`)
 	s.mutateState(t, func(st *State) {
 		st.Messages[firstID].Receipt.Exp = time.Now().Add(-time.Minute)
 		st.Messages[firstID].Receipt.State = "queued"
@@ -59,7 +59,7 @@ func TestReceiptRecoveryHTTP(t *testing.T) {
 			st.Rates["http:member:"+ma] = append(st.Rates["http:member:"+ma], time.Now())
 		}
 	})
-	expect(t, a.do("GET", path, nil), 429, `value="`+firstID+`"`, `value="agent_a" selected`, "이후 다시 시도")
+	expect(t, a.do("GET", path, nil), 429, `value="`+firstID+`"`, `value="agent_a" required checked`, "이후 다시 시도")
 	s.mutateState(t, func(st *State) {
 		st.Rates = map[string][]time.Time{}
 		st.Sessions[hashToken(a.cookies[sessionCookie])].Seen = time.Now().Add(-sessionIdle)
@@ -68,7 +68,7 @@ func TestReceiptRecoveryHTTP(t *testing.T) {
 	if login(t, a, mail, "receipt-a@example.test") != ma {
 		t.Fatal("member changed on re-login")
 	}
-	expect(t, a.do("GET", "/home/receipts", nil), 200, `value="`+firstID+`"`, `value="agent_a" selected`)
+	expect(t, a.do("GET", "/home/receipts", nil), 200, `value="`+firstID+`"`, `value="agent_a" required checked`)
 
 	// A DB outage cannot authenticate even a saved cookie. Preserve it without displaying private input.
 	draft := a.cookies[receiptCookie]

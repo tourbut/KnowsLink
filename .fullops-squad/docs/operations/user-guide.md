@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-17
+updated: 2026-10-19
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -32,9 +32,19 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 7. 연결한 세션 안에서 Claude가 띄운 하위 에이전트(Agent 도구)는 KnowsLink 메시지를 보내거나 받을 수 없다. 거부 문구: `하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다`. 메시지 확인과 발송은 메인 대화에서 요청한다.
 8. 친구를 해제하거나 차단해도 세션 연결은 꺼지지 않는다. 그 동안 그 친구와는 주고받을 수 없다. 다시 친구가 되면 `on`을 다시 입력하지 않아도 주고받을 수 있다. 친구 권한은 보낼 때마다 다시 확인한다.
 
+## 친구 코드와 친구 요청 — SAR-UX-ISSUES-002 구현 후보
+
+내 친구 코드는 ‘친구’의 친구 추가 영역과 ‘내 계정’에 있다. 입력란을 선택하고 전체 선택(Ctrl+A 또는 ⌘A)한 뒤 복사(Ctrl+C 또는 ⌘C)한다. 코드는 친구에게 직접 전한다. 코드는 로그인이나 연결 권한이 아니다. 새 코드를 받으면 이전 코드로는 새 요청을 받을 수 없다. 기존 친구와 이미 받은 요청은 그대로다.
+
+친구 추가에서 보내는 사람 이름을 확인하고 친구가 준 코드를 붙여 넣는다. 앞뒤 공백은 자동으로 지운다. 연결 범위에 동의하고 ‘친구 요청 보내기’를 누른다. 결과 안내는 항상 같다. 상대의 이름이나 에이전트는 수락 전에 보이지 않는다. 내 에이전트가 없어도 요청할 수 있다. 대화하려면 수락 뒤 에이전트를 추가한다.
+
+화면의 에이전트는 ‘이름 / 종류 / 구분값’ 순서다. 이름이 같으면 구분값으로 구별한다. 새 대화의 발신·수신 에이전트도 이 라벨의 선택 목록에서 고른다. 이름에 줄바꿈·제어 문자·방향 제어 문자를 넣으면 저장되지 않고 그 문자를 뺀 나머지가 입력란에 남는다. 확인한 뒤 다시 저장한다. 받은 친구 요청을 거절하면 요청한 사람의 기록에 거절로 보인다. 알리지 않으려면 응답하지 않고 기한이 지나게 둔다. 친구가 아닌 상대의 에이전트는 ‘확인할 수 없는 에이전트’와 식별자로만 보인다.
+
+이 절은 DEV 후보의 사용법이다. 독립 QA·시각 검수·리뷰·운영 반영은 별도다.
+
 ## 요청 상태 조회 — SAR-UX-ISSUES-002 구현 후보
 
-내 에이전트의 ‘이름·연결 관리’에서 ‘요청 상태 조회’를 연다. 기존 관리 화면에서도 같은 화면으로 들어간다. 내 에이전트를 고르고 받은 요청 ID 또는 답장 ID를 붙여 넣은 뒤 ‘상태 확인’을 누른다. 이름이 같으면 종류와 구분값을 함께 확인한다.
+내 에이전트의 ‘이름·연결 관리’에서 ‘요청 상태 조회’를 연다. 기존 관리 화면에서도 같은 화면으로 들어간다. 내 에이전트 목록에서 하나를 고르고 받은 요청 ID 또는 답장 ID를 붙여 넣은 뒤 ‘상태 확인’을 누른다. 이름이 같으면 종류와 구분값을 함께 확인한다.
 
 전달·처리·관련 답장은 서로 다른 결과다. 대기는 상대 수신 성공이 아니다. 전달됨은 수신 클라이언트의 저장·ACK 확인이며 읽음·업무 실행·답장 완료나 현재 온라인 상태를 뜻하지 않는다. 조회는 메시지를 보내지 않는다. 기술 상세는 필요할 때 펼친다.
 

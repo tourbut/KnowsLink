@@ -165,7 +165,7 @@ func TestHumanConversationKeepsDetailsAndDisambiguatesNames(t *testing.T) {
 func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 	for _, name := range []string{"human-home", "human-new", "human-agents"} {
 		body := renderHumanPage(t, name, map[string]any{"Title": "빈 계정", "Section": "conversations"})
-		if strings.Contains(body, "<select") || strings.Contains(body, "<textarea") || !strings.Contains(body, "첫 에이전트를 추가하세요") {
+		if strings.Contains(body, `name="from"`) || strings.Contains(body, "<textarea") || !strings.Contains(body, "첫 에이전트를 추가하세요") {
 			t.Fatal(name, "empty account must lead to agent setup")
 		}
 		if dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR"); dir != "" {
@@ -178,19 +178,34 @@ func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 	v["Agents"] = nil
 	for _, name := range []string{"human-new", "human-friend"} {
 		body := renderHumanPage(t, name, v)
-		if strings.Contains(body, "<select") || strings.Contains(body, "<textarea") || !strings.Contains(body, "연결된 에이전트가 없습니다") {
+		if strings.Contains(body, `name="from"`) || strings.Contains(body, "<textarea") || !strings.Contains(body, "연결된 에이전트가 없습니다") {
 			t.Fatal(name, "no peer agent must hide composer and selects")
 		}
 	}
 	v = humanPageFixture()
+	v["From"] = map[string]any{"ID": "agent_b"} // not the first agent, so the explicit choice must win
 	body := renderHumanPage(t, "human-new", v)
 	for _, required := range []string{`method="get" action="/home/conversation"`, `name="from"`, `name="to"`, "a001", "b002", "c003"} {
 		if !strings.Contains(body, required) {
 			t.Fatal("duplicate names need stable distinctions", required)
 		}
 	}
-	v["Peer"], v["Agents"], v["To"] = nil, v["Own"], map[string]any{"ID": ""}
-	if !strings.Contains(renderHumanPage(t, "human-new", v), `<option value="agent_b" selected>`) {
+	// Radios keep every label visible at narrow widths; a failed open keeps both choices.
+	for _, want := range []string{`<legend>내 발신 에이전트</legend>`, `name="from" value="agent_b" required checked>`, `<legend>합성 친구의 수신 에이전트</legend>`, `name="to" value="agent_c" required checked>`} {
+		if !strings.Contains(body, want) {
+			t.Fatal("new conversation radios lost the chosen endpoints", want)
+		}
+	}
+	if strings.Contains(body, "<select") || strings.Count(body, " checked>") != 2 {
+		t.Fatal("new conversation must offer one checked radio per side")
+	}
+	v["From"], v["To"] = map[string]any{"ID": ""}, map[string]any{"ID": ""}
+	if body := renderHumanPage(t, "human-new", v); !strings.Contains(body, `value="agent_a" required checked>`) || !strings.Contains(body, `value="agent_c" required checked>`) {
+		t.Fatal("new peer conversation must default to the first agents")
+	}
+	v["Peer"], v["Agents"] = nil, v["Own"]
+	body = renderHumanPage(t, "human-new", v)
+	if !strings.Contains(body, `name="from" value="agent_a" required checked>`) || !strings.Contains(body, `name="to" value="agent_b" required checked>`) {
 		t.Fatal("new self conversation must start with different endpoints")
 	}
 }

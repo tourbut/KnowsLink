@@ -26,7 +26,7 @@ func (s *Service) memberReceipt(w http.ResponseWriter, r *http.Request) {
 		member, _, retry, err := s.memberHit(st, r, now, memberRate)
 		if err != nil {
 			if !retry.IsZero() {
-				view = map[string]any{"Title": "요청 상태 조회", "Status": 429, "Problem": limited(retry), "Focus": "receipt-problem"}
+				view = map[string]any{"Title": "요청 상태 조회", "Status": 429, "Problem": limited(retry), "Focus": "receipt-problem", "Unavailable": true}
 				return nil, nil
 			}
 			return nil, err

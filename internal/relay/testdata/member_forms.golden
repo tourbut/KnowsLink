@@ -28,7 +28,7 @@ connection-approved: post /home/cancel {button:=@; input:hidden:connection=c0nne
 device-login: post /auth/google {button:=@; input:hidden:connection=dev1ce-1d-synthetic-00000000000000000000000}
 device-prepared: post /home/cancel {button:=@; input:hidden:connection=dev1ce-1d-synthetic-00000000000000000000000}
 device-prepared: post /home/device-confirm {button:=@; input::name; input:hidden:connection=dev1ce-1d-synthetic-00000000000000000000000}
-receipt: get /home/receipts {button:=@; input::id; select:agent}
+receipt: get /home/receipts {button:=@; input::id; input:radio:agent}
 refusal-reauth: post /auth/reauth {button:=@}
 gate-active: post  {button:decision=approve@; button:decision=deny@/home/gates/00000000-0000-4000-8000-000000000001/deny; input:hidden:csrf=synthetic-csrf}
 remote-login: post /auth/google {button:=@; input:hidden:remote=rem0te-1d}

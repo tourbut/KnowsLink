@@ -2,14 +2,20 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-15
+updated: 2026-10-19
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
 
 # KnowsLink HTTP·adapter 계약
+
+## SAR-UX-ISSUES-002 친구 코드·친구 요청 (2단위)
+
+POST `/home/friends/request`의 `code`는 앞뒤 공백만 제거한다. 빈 코드나 `consent=yes` 누락은 422로 친구 화면을 다시 반환하고 입력 코드를 이스케이프해 유지한다. 유효한 형식의 제출은 코드 존재·차단·한도와 무관하게 `303 /home/friends?n=requested`다. GET `/home/friends`·`/home/account`는 읽기 전용 ‘내 친구 코드’를 보이며 query만으로 관계를 만들지 않는다. 친구 동작·친구 상세의 거부 화면 복귀는 `/home/friends`다.
+
+`/home/receipts`의 `agent` 입력과 `/home/new`의 `from`·`to` 입력은 select 대신 같은 이름의 radio다(새 대화 기본 선택은 기존 select와 같다: 발신 첫째, 친구 수신 첫째, 자기 수신 둘째). 승인 화면은 자기·현재 친구의 agent만 이름을 보이고 그 밖은 ‘확인할 수 없는 에이전트’와 ID를 보인다. 새 경로·필드·권한은 없다.
 
 ## SAR-UX-ISSUES-002 요청 상태 조회
 
@@ -39,7 +45,7 @@ GET `/`는 익명과 유효 세션 모두 서비스 안내 HTML을 200으로 반
 | 경로 | 계약 |
 |---|---|
 | GET `/home`, `/home/name`, `/home/friends`, `/home/friends/{id}`, `/home/agents`, `/home/account`, `/home/new`, `/home/conversation` | 대화 홈·이름·친구/상세·agent·계정·대상 선택·기록. 대화 query는 from/to, optional attempt다 |
-| POST `/home/profile` | name: trim 후 Unicode 1–40자, control/Bidi_Control 문자 거부. 변경은 ID/신원/키 불변 |
+| POST `/home/profile` | name: trim 후 Unicode 1–40자, control/Bidi_Control 문자 거부. 금지 문자 거부는 전용 문구와 함께 금지 문자를 뺀 나머지를 입력란에 남기고 저장하지 않는다(에이전트 이름·추가·device·remote 이름도 같음). 변경은 ID/신원/키 불변 |
 | POST `/home/agent-name` | agent/name, 자기 agent만 변경 |
 | POST `/home/agents` / `/home/device-confirm` / `/remote/consent/{id}` 승인 | 새 agent 이름 필수. 기존 최근 인증·연결 proof·명시 승인 유지 |
 | POST `/home/friend-code` | 자기 코드 회전. 이전 코드는 신규 요청에 무효; 기존 요청/친구를 바꾸지 않음 |
