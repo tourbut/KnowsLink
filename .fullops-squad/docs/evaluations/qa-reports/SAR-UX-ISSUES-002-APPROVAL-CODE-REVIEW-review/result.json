@@ -3,48 +3,48 @@
   "head": "9d13a05ba93c7c085034213590ce661305606010",
   "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
   "ocr_version": "open-code-review v1.13.1 (8eb8334) windows/amd64\nbuilt at: 2026-10-17T01:25:56Z\nhttps://github.com/alibaba/open-code-review",
-  "reviewer": "",
-  "conclusion": "",
+  "reviewer": "claude-opus-5-5 (Claude Code, host session a36fe212-a23f-4d69-9b09-c767707929c1, orca reviewer approval002-code-review-opus)",
+  "conclusion": "accepted: critical/high 0. U5 요약은 Parse로 검증된 envelope 필드만 쓰고 hint·자유문·표시 이름은 승인 범위나 권한으로 승격되지 않는다. gateDecision의 owner·CSRF(gate ID 결속)·pending·기한·verifiedGate(키·서명·digest·세대·current) 재검사는 유지된다. low 2건은 비차단.",
   "files": [
     {
       "path": ".fullops-squad/PLANS.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "3단위 착수·2단위 통합 기록 2줄 추가 확인. 제품 판단 변경 없음. SIZE-001은 기존 누적 크기"
     },
     {
       "path": ".fullops-squad/board/board.json",
       "status": "modified",
       "insertions": 1,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "note 한 줄 갱신 확인. JSON 구조 변경 없음"
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "APPROVAL-DEV 결정 요약 추가 확인. gate_summary 표시 전용·gateDecision 재검사 유지 서술이 코드와 일치"
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "gate 화면 순서·표시 상태(gateState)·회원 gate 거부 복귀 서술이 http.go·human-gate와 일치"
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "status": "modified",
       "insertions": 4,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "gate_summary.go·verifiedGate·refusedTo 행이 실제 코드와 테스트 이름에 일치"
     },
     {
       "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-APPROVAL-DEV-context.json",
@@ -131,8 +131,8 @@
       "status": "added",
       "insertions": 113,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "검증 보조 스크립트. 자격은 .env.server에서 메모리로만 읽고 RejectPolicy·로그 redaction. 제품 코드 경로 밖. 하드코딩 경로는 개발 환경 전용"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/render/probe.json",
@@ -147,160 +147,160 @@
       "status": "added",
       "insertions": 42,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "렌더 검증 스크립트. 로컬 file URL만 열고 임시 프로필 사용. 제품 코드 경로 밖"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md",
       "status": "added",
       "insertions": 116,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "DEV 보고의 검증 필드↔문구 대응표를 gate_summary.go와 대조해 일치 확인. 검사 로그 표와 실제 로그 EXIT 일치. raw-log-sha256.txt 불일치는 finding(low)"
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "status": "modified",
       "insertions": 5,
       "deletions": 1,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "D13 DEV 후보 인계 절 추가 확인. schema·API 변경 없음 서술이 diff와 일치"
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "승인 목록·화면 순서 안내 한 문단 확인. 템플릿 문구와 일치"
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-19_to_dev.md",
       "status": "modified",
       "insertions": 505,
       "deletions": 0,
-      "review_status": "skipped",
-      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+      "review_status": "reviewed",
+      "reason": "요구 정본으로 APPROVAL-DEV 절(적용 기준·해야 할 일·완료 기준)과 fixture 수정 절을 직접 읽음. 하네스 완료 기록이라 문장 품질은 검토하지 않음"
     },
     {
       "path": "internal/relay/approval_browser_fixture_test.go",
       "status": "added",
       "insertions": 110,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "build tag integration&&approvalfixture로 기본·integration 빌드에서 제외 확인(Makefile·CI 참조 없음, remote.py만 명시 태그 사용). 합성 계정·loopback·허용 경로 제한·Origin 검사. 서명·digest·세대는 보낸 그대로, 기한만 fixture 수명으로 연장. claim park/restore 확인"
     },
     {
       "path": "internal/relay/gate_summary.go",
       "status": "added",
       "insertions": 91,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "gateState/gateSummary/gateRows 검토. 요약은 Parse schema가 검증한 body 필드만 사용, commitment는 별도 Text, hint는 요약·scope 밖. 이름은 visibleAgent 권한, 없으면 ID 짧은 구분값. 타입 단언 결합은 finding(low)"
     },
     {
       "path": "internal/relay/gate_summary_integration_test.go",
       "status": "added",
       "insertions": 179,
       "deletions": 0,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "U5-A 경계 검사 확인: 요약/원문 일치, 이름 변경 뒤 ID 유지, 악성 hint·HTML escape, digest·원문 부재·관계 철회·만료, 다른 owner, 낡은 CSRF, 교차 gate token, 중복 클릭"
     },
     {
       "path": "internal/relay/http.go",
       "status": "modified",
       "insertions": 22,
       "deletions": 7,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "verifiedGate의 gateKinds 필터(gate 부모는 parentRouting상 schedule.*만 가능해 동작 변화 없음), gateView 표시 상태, gateDecision 재검사(owner·CSRF gate ID 결속·pending·기한·verifiedGate) 미변경 확인. gateError POST 문구·복귀"
     },
     {
       "path": "internal/relay/human_http.go",
       "status": "modified",
       "insertions": 5,
       "deletions": 5,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "대기 건수를 gateRows 표시 상태 pending만 세도록 변경 확인. 소유자 필터 유지"
     },
     {
       "path": "internal/relay/human_names_test.go",
       "status": "modified",
       "insertions": 5,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "이름 우선·전체 ID 기술 상세 기대로 갱신 확인. 기대 완화 아님"
     },
     {
       "path": "internal/relay/human_pages.go",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "human-gate 읽기 순서·고정 문구·Summary 없을 때 alert만, 버튼 Active일 때만. html/template escape, hint·Text는 텍스트 노드. deny-help 클래스 추가"
     },
     {
       "path": "internal/relay/human_pages_test.go",
       "status": "modified",
       "insertions": 12,
       "deletions": 4,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "hint·자유문 inert, 검증 불가 시 원문·hint 비표시 검사 추가. 기존 검사 유지"
     },
     {
       "path": "internal/relay/identity_integration_test.go",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "버튼 문구·복귀 href 기대만 새 문구로 교체. 결정 경계 검사 유지"
     },
     {
       "path": "internal/relay/member.go",
       "status": "modified",
       "insertions": 2,
       "deletions": 7,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "legacy 승인 목록을 gateRows로 교체. owner 필터 동일"
     },
     {
       "path": "internal/relay/member_pages.go",
       "status": "modified",
       "insertions": 9,
       "deletions": 8,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "승인 목록 행·빈 목록 문구·refusal 복귀 분기·receipt Anonymous 분기 확인. aria-label 안 템플릿은 순수 텍스트라 attribute escape 안전"
     },
     {
       "path": "internal/relay/member_receipt.go",
       "status": "modified",
       "insertions": 6,
       "deletions": 3,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "O-NM-04: 익명 429·503에서 restore 문구와 입력 폼 비노출 확인"
     },
     {
       "path": "internal/relay/member_ui_test.go",
       "status": "modified",
       "insertions": 26,
       "deletions": 5,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "렌더 fixture 확장과 href=\"\" 금지 검사 추가 확인"
     },
     {
       "path": "internal/relay/public_messages_integration_test.go",
       "status": "modified",
       "insertions": 2,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "owner 경로 hint XSS·잘못된 서명 기대 문구만 교체. bad signature 승인 불가 검사 유지"
     },
     {
       "path": "internal/relay/receipt_context.go",
       "status": "modified",
       "insertions": 11,
       "deletions": 2,
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "unverifiedReceipt가 세션 쿠키 유무로 Anonymous 판단, restoreNote 상수화 확인. 조회 권한 판단에는 쓰지 않음"
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/47117a4fe75a76358cc1bc4107b3124eadaa178e-integration.log",
@@ -695,11 +695,30 @@
       "insertions": 8,
       "deletions": 0,
       "exclude_reason": "unsupported_ext",
-      "review_status": "pending",
-      "reason": ""
+      "review_status": "reviewed",
+      "reason": "새 fixture(gate-commit-hint, home-no-gates)의 폼 목록 추가. 기존 행 변화 없음"
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/raw-log-sha256.txt",
+      "start_line": 1,
+      "end_line": 18,
+      "category": "documentation",
+      "severity": "low",
+      "resolved": false,
+      "content": "기록된 SHA256 18건이 커밋된 로그 바이트(LF)와 모두 다르다. 각 로그를 CRLF로 바꾼 값과 일치한다(예: ea94128...-lint.log CRLF 7c93aac3...). Windows autocrlf 작업 사본에서 계산한 값이라 커밋 blob으로 무결성을 재현할 수 없다. 로그 내용·EXIT는 확인했다. 다음 증거부터 git show HEAD:<path> | sha256sum 값을 쓰거나 계산 방식(CRLF)을 함께 기록한다."
+    },
+    {
+      "path": "internal/relay/gate_summary.go",
+      "start_line": 44,
+      "end_line": 58,
+      "category": "maintainability",
+      "severity": "low",
+      "resolved": false,
+      "content": "gateSummary는 e.Body 필드를 검사 없는 타입 단언으로 읽는다. 지금은 verifiedGate가 Parse(intent별 closed schema)와 gateKinds 필터를 통과한 envelope만 넘겨 안전하다. Parse schema가 바뀌거나 gateKinds에 intent를 추가하면 승인 화면이 panic할 수 있다. intent 추가 시 Parse 검증과 함께 갱신하라는 주석이나 comma-ok 단언을 권장한다. 비차단."
+    }
+  ],
   "review_schema_version": 2,
   "independence": {
     "implementer_session": "ctx_0974e0d7a12d",

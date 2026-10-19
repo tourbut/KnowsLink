@@ -1,0 +1,46 @@
+{
+  "task_key": "SAR-UX-ISSUES-002-APPROVAL-DEV",
+  "find_head": "0be38e2168ddd4d91c32401b3139e7d0f3820c93",
+  "base": "688305054dc4f3570f0c9f0d1e7917c35a19db3a",
+  "head": "9d13a05ba93c7c085034213590ce661305606010",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "internal/relay/human_http.go",
+    "internal/relay/human_names_test.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/human_pages_test.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/member_ui_test.go",
+    "internal/relay/public_messages_integration_test.go",
+    "internal/relay/receipt_context.go"
+  ],
+  "new_files": [
+    "internal/relay/approval_browser_fixture_test.go",
+    "internal/relay/gate_summary.go",
+    "internal/relay/gate_summary_integration_test.go"
+  ],
+  "candidates": [
+    "docs/README.md",
+    "docs/system-design.md",
+    "internal/relay/human_pages.go",
+    "internal/relay/member_pages.go"
+  ],
+  "hits": [
+    "internal/relay/human_pages.go",
+    "internal/relay/member_pages.go"
+  ],
+  "recall": 0.222,
+  "precision": 0.5,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}
