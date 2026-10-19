@@ -183,6 +183,7 @@ func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 		}
 	}
 	v = humanPageFixture()
+	v["From"] = map[string]any{"ID": "agent_b"} // not the first agent, so the explicit choice must win
 	body := renderHumanPage(t, "human-new", v)
 	for _, required := range []string{`method="get" action="/home/conversation"`, `name="from"`, `name="to"`, "a001", "b002", "c003"} {
 		if !strings.Contains(body, required) {
@@ -190,7 +191,7 @@ func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 		}
 	}
 	// Radios keep every label visible at narrow widths; a failed open keeps both choices.
-	for _, want := range []string{`<legend>내 발신 에이전트</legend>`, `name="from" value="agent_a" required checked>`, `<legend>합성 친구의 수신 에이전트</legend>`, `name="to" value="agent_c" required checked>`} {
+	for _, want := range []string{`<legend>내 발신 에이전트</legend>`, `name="from" value="agent_b" required checked>`, `<legend>합성 친구의 수신 에이전트</legend>`, `name="to" value="agent_c" required checked>`} {
 		if !strings.Contains(body, want) {
 			t.Fatal("new conversation radios lost the chosen endpoints", want)
 		}

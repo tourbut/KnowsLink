@@ -65,10 +65,11 @@ func TestHumanNamesAndIdentity(t *testing.T) {
 	}
 	chars := "이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요."
 	for raw, want := range map[string][2]string{
-		"a\u202eb\n":                     {chars, "ab"},
-		"\x00" + strings.Repeat("가", 41): {chars, strings.Repeat("가", 41)},
-		"\u2066":                         {chars, ""},
-		strings.Repeat("가", 41):          {"이름은 1–40자로 입력하세요", strings.Repeat("가", 41)},
+		"a\u202eb\n":                          {chars, "ab"},
+		"\x00" + strings.Repeat("가", 41):      {chars, strings.Repeat("가", 41)},
+		"\u2066":                              {chars, ""},
+		strings.Repeat("가", 41):               {"이름은 1–40자로 입력하세요", strings.Repeat("가", 41)},
+		"\t" + strings.Repeat("가", 41) + "\n": {"이름은 1–40자로 입력하세요", "\t" + strings.Repeat("가", 41) + "\n"},
 	} {
 		if problem, kept := nameRefusal(raw); problem != want[0] || kept != want[1] {
 			t.Fatalf("name refusal %q = %q, %q", raw, problem, kept)

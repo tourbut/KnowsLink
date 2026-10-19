@@ -41,7 +41,7 @@ V04 해석(사용자 결정 2026-10-17): 세션 연결(`/knowslink-session on`�
 | `human_http.go` `friends/request` | 코드의 앞뒤 공백만 제거한다. 빈 코드·동의 누락은 422로 같은 친구 화면을 다시 보이고 입력 코드와 오류 필드 focus를 유지한다. 대소문자·Unicode 정규화는 하지 않는다 | `TestHumanNamesAndFriendCodePostgres`, `TestFriendCodeRotationKeepsReceivedRequests` |
 | `human_pages.go` 친구·내 계정 | ‘내 친구 코드’를 보이는 라벨의 읽기 전용 `textarea`로 보인다(긴 코드도 줄바꿈). 친구 추가는 보내는 사람 이름·상대 코드·연결 범위·명시 동의·‘친구 요청 보내기’ 순서다. 복사 JS·CSP 변경은 없다 | `TestFriendPagesShareOwnCodeAndKeepRequestInput` |
 | `member.go` `refusedTo` | 친구 동작·친구 상세의 거부 화면은 ‘친구 목록으로 돌아가기’로 정확히 복귀한다 | 렌더 fixture |
-| `human.go` `nameRefusal` | 이름 거부 문구를 고른다. control/Bidi_Control 문자가 있으면 금지 문자 문구와 그 문자를 뺀 입력을, 아니면 ‘이름은 1–40자로 입력하세요’와 원 입력을 돌려준다. 내 이름·에이전트 이름·추가·device·remote 이름 422가 같이 쓰며 저장하지 않는다 | `TestHumanNamesAndIdentity`, `TestHumanNamesAndFriendCodePostgres` |
+| `human.go` `nameRefusal` | 이름 거부 문구를 고른다. 앞뒤 공백을 뺀 이름에 control/Bidi_Control 문자가 있으면 금지 문자 문구와 그 문자를 뺀 입력을, 아니면 ‘이름은 1–40자로 입력하세요’와 원 입력을 돌려준다. 내 이름·에이전트 이름·추가·device·remote 이름 422가 같이 쓰며 저장하지 않는다 | `TestHumanNamesAndIdentity`, `TestHumanNamesAndFriendCodePostgres` |
 | `human_pages.go` 새 대화·내 에이전트·친구 요청 | 새 대화 발신·수신은 조회와 같은 fieldset/radio 라벨(`이름 / 종류 / 구분값`)이다. 내 에이전트 상세의 ‘요청 상태 조회’·‘연결·키 관리’는 각자 줄이다. 받은 요청 거절 앞에 거절 표시 안내가 있다 | `TestHumanEmptyChoicesOfferRecovery`, 렌더 fixture |
 | `member_receipt.go` | 익명 한도 429 화면은 `Unavailable`로 ‘에이전트 없음’ 오안내를 하지 않는다(1단위 리뷰 low) | 코드 검토 |
 

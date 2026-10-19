@@ -40,16 +40,16 @@ func forbiddenNameRune(r rune) bool {
 
 // nameRefusal explains a rejected name and keeps only the visible characters for the person to review; it never saves.
 func nameRefusal(raw string) (problem, kept string) {
+	if strings.IndexFunc(strings.TrimSpace(raw), forbiddenNameRune) < 0 {
+		return "이름은 1–40자로 입력하세요", raw // validName trims first, so edge newlines/tabs are not the fault.
+	}
 	kept = strings.Map(func(r rune) rune {
 		if forbiddenNameRune(r) {
 			return -1
 		}
 		return r
 	}, raw)
-	if kept != raw {
-		return "이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.", kept
-	}
-	return "이름은 1–40자로 입력하세요", raw
+	return "이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.", kept
 }
 
 func agentName(a *Agent) string {
