@@ -200,6 +200,35 @@ try {
     // ---- 200%-like check is NOT a real browser zoom: reported not_run in the report
   }
 
+  if (stage === 'legend') {
+    // f799250 D-NM-02 recheck: GET only. Shared radio legends at 3 widths: no horizontal overflow, legend wraps inside the viewport, every radio label stays visible.
+    const NAME40 = '가'.repeat(40);
+    const legends = `[...document.querySelectorAll('fieldset[role=radiogroup] > legend')].map(e=>{const r=e.getBoundingClientRect(),cs=getComputedStyle(e),lh=parseFloat(cs.lineHeight)||parseFloat(cs.fontSize)*1.4;return {id:e.parentElement.id,text:e.textContent,left:Math.round(r.left),right:Math.round(r.right),h:Math.round(r.height),lines:Math.round(r.height/lh),sw:e.scrollWidth,cw:e.clientWidth,ow:cs.overflowWrap,mw:cs.maxWidth}})`;
+    const labels = `[...document.querySelectorAll('fieldset[role=radiogroup] label')].map(e=>{const r=e.getBoundingClientRect(),sp=e.querySelector('span'),sr=sp.getBoundingClientRect();return {t:sp.textContent,left:Math.round(r.left),right:Math.round(r.right),h:Math.round(r.height),spanRight:Math.round(sr.right),sw:sp.scrollWidth,cw:sp.clientWidth}})`;
+    const plan = [['a', 'new-self-a', '/home/new?peer=self'], ['a', 'new-peer-a', '/home/new?peer=' + AB], ['b', 'new-peer-b', '/home/new?peer=' + AB], ['a', 'receipts-a', '/home/receipts'], ['a', 'receipts-refusal-a', `/home/receipts?agent=agent_a1&id=${encodeURIComponent(NONE)}`]];
+    let cur = '';
+    for (const [who, name, p] of plan) {
+      if (cur !== who) { await as(who); cur = who; }
+      await metrics(1440, 900); await go(ORIGIN + p);
+      for (const [w, h] of WIDTHS) {
+        await metrics(w, h); await sleep(150);
+        const l = await layout(), lg = await js(legends), lb = await js(labels);
+        (obs.legends ||= {})[`${w}-${name}`] = {legends: lg, labels: lb};
+        check(`layout-${w}-${name}`, l.iw === w && l.over <= 0 && l.clipped.length === 0 && l.hidden.length === 0 && l.ell.length === 0 && l.nameOver.length === 0 && l.small.length === 0 && !l.taClip, l);
+        check(`legend-inside-viewport-and-wrapping-${w}-${name}`, lg.length > 0 && lg.every(g => g.left >= 0 && g.right <= w && g.sw <= g.cw + 1 && g.ow === 'anywhere'), lg);
+        check(`radio-labels-visible-${w}-${name}`, lb.every(x => x.left >= 0 && x.right <= w && x.spanRight <= w && x.sw <= x.cw + 1 && x.h >= 43.5), lb);
+        await shot(`legend-${slug(name)}-${w}`);
+      }
+    }
+    // D-NM-02 exact path: B -> A, A's name is 40 chars without spaces; the legend names it in full and wraps below 1440
+    await as('b'); await go(ORIGIN + '/home/new?peer=' + AB);
+    const ph = await js(`document.querySelector('fieldset#to > legend').textContent`);
+    check('d-nm-02-path-legend-names-the-40-char-peer-in-full', ph === NAME40 + '의 수신 에이전트', ph);
+    for (const [w, h] of WIDTHS.slice(1)) { await metrics(w, h); await sleep(150); const g = (await js(legends)).find(x => x.id === 'to'); check(`d-nm-02-legend-wraps-to-several-lines-${w}`, g.lines >= 2 && g.right <= w, g); }
+    await metrics(1440, 900);
+    check('requests-same-origin-get-only', requests.every(q => q.origin === ORIGIN && q.method === 'GET'), requests.filter(q => q.origin !== ORIGIN || q.method !== 'GET'));
+  }
+
   if (stage === 'recheck') {
     // 5fa3333 recheck: only the screens the fix touched (GET), keyboard on the new-conversation radios, link navigation, one refused rename POST (changes nothing).
     const FORBID = '이름에 줄바꿈·제어 문자·방향 제어 문자는 쓸 수 없습니다. 보이는 글자로 1–40자를 입력하세요.';

@@ -4,12 +4,43 @@ status: review
 updated: 2026-10-19
 owner: tester
 tasks: [SAR-UX-ISSUES-002-NAMES-TESTER]
-summary: "5fa3333 재확인: 수정 4건 PASS, 새 결함 D-NM-02(medium, 40자 이름 상대와의 새 대화 제목이 390·320px에서 넘침), critical·high 없음. 이전 b2e683a 결과는 아래에 보존"
+summary: "f799250 재확인: D-NM-02 PASS(legend 줄바꿈, 3폭 넘침 0, Chrome·Edge), 회귀·새 결함 없음. 이전 5fa3333 재확인: 수정 4건 PASS, 새 결함 D-NM-02(medium, 40자 이름 상대와의 새 대화 제목이 390·320px에서 넘침), critical·high 없음. 이전 b2e683a 결과는 아래에 보존"
 ---
 
 # SAR-UX-ISSUES-002-NAMES-TESTER 독립 QA
 
-## 재확인 (DEV 수정 5fa3333, 제품 97a8899)
+## 재확인 2 (DEV f799250, 제품 f5ffaa4) — D-NM-02
+
+대상은 fullops/dev `f7992504aecdadd3656fac0b2c2e2b7170a420e7`(제품 `f5ffaa4`, 5fa3333 대비 `internal/relay/member_pages.go` 공용 legend CSS에 `max-width:100%;overflow-wrap:anywhere` 1줄)다. fixture `http://127.0.0.1:18930`(새로 기동한 초기 상태). 서버가 이 SHA인지는 manifest·coor 지시를 따랐다. 다만 브라우저가 측정한 legend 계산 스타일이 `overflow-wrap:anywhere`·`max-width:100%`라서 새 CSS가 적용된 서버임은 간접 확인했다. 제품 코드는 고치지 않았고, 이 재확인의 요청은 fixture origin GET뿐이다(POST 0건, fixture 상태 불변). 테스트 레벨 lite. 등록 `make lint`·`make test`는 DEV 같은 SHA 결과(원격 Linux EXIT=0)를 재사용했고 다시 돌리지 않았다.
+
+### 결과
+
+- **D-NM-02 PASS.** 재현 경로 B→A `/home/new?peer=<friend>`(A의 이름 `가`×40, 공백 없음)에서 가로 넘침 0: 1440·390·320 모두 `scrollWidth−innerWidth ≤ 0`(320에서 −15). 수정 전 5fa3333은 390에서 282px, 320에서 352px 넘쳤다.
+- 수신 legend는 이름 전체를 보여 주고(`가`×40 + `의 수신 에이전트`) 390·320에서 3줄로 줄바꿈된다(390: 폭 343px, 320: 폭 273px, 둘 다 뷰포트 안). 1440은 한 줄(763px).
+- radio 라벨은 이름·종류·구분값이 모두 보이고(라벨 범위가 뷰포트 안, 안쪽 span 넘침 없음) 높이 44px 이상이다.
+- **회귀 PASS.** 같은 공용 legend를 쓰는 화면인 새 대화 내 발신·수신 그룹(A 자기), A→B(이모지 40자 상대), 조회 radio(`/home/receipts`), 조회 거절 화면(`?agent=…&id=…`) 모두 3폭에서 넘침·잘림·44px 미만 0, legend 뷰포트 안.
+- **새 결함 없음.** critical·high·medium·low 모두 0.
+
+| 브라우저 | 결과 | 증거 |
+|---|---|---|
+| Chrome 155.0.8059.80 | 49 PASS / 0 FAIL | [browser-chrome-f799250-legend.json](browser-chrome-f799250-legend.json), [로그](chrome-f799250-legend.log) |
+| Edge 155.0.4283.62 | 49 PASS / 0 FAIL | [browser-edge-f799250-legend.json](browser-edge-f799250-legend.json), [로그](edge-f799250-legend.log) |
+
+검사 49건 = 5화면 × 3폭 × (레이아웃·legend 뷰포트 안 줄바꿈·radio 라벨 표시) 45 + D-NM-02 경로 4(legend 전체 이름, 390·320 줄바꿈 ≥2줄, GET만). 레이아웃 검사는 이전 attempt와 같은 기준(넘침·잘림·말줄임·이름 넘침·44px·textarea 잘림)이며 약화하지 않았다. 새 `legend` 단계는 `browser.mjs`에 추가했다.
+
+**첫 Edge 실행의 FAIL은 환경 문제였다.** 기본 프로필의 Edge 확장이 모든 페이지에 `chrome-extension://…/icons/sprite.svg`·`build/content.css`를 불러와 마지막 ‘same-origin GET만’ 검사가 FAIL했다(origin `null`, 제품 요청 아님). 검사를 완화하지 않고 `--disable-extensions`로 다시 실행해 49 PASS를 얻었다. 첫 실행 기록은 `*-first-run-with-extension.*`로 보존했다. 그 실행에서도 레이아웃·legend 검사 48건은 PASS였다.
+
+### 캡처 (designer 시각 검수용)
+
+Chrome `chrome-f799250-legend-<화면>-<폭>.png`(1440·390·320), Edge는 `edge-f799250-legend-*`. 화면: `new-self-a`, `new-peer-a`, `new-peer-b`(D-NM-02), `receipts-a`, `receipts-refusal-a`.
+
+### not_run
+- 5fa3333 재확인의 not_run 항목은 그대로다(fixture 차단 경로, 승인 화면 등). 이번엔 D-NM-02 경로와 공용 legend 화면만 확인했다.
+- 스크린리더, 실제 200% 확대, Firefox·Safari·모바일 실기. integration·`make lint`·`make test`는 DEV 결과 재사용.
+
+---
+
+## 재확인 1 (DEV 수정 5fa3333, 제품 97a8899) — D-NM-02 발견, 위 재확인 2에서 해결
 
 대상은 fullops/dev `5fa3333b5948fd36792662b202915bc6243cac14`(제품 `97a8899`)다. fixture는 같은 origin `http://127.0.0.1:18930`이다. 서버가 이 SHA인지는 manifest·coor 지시를 따랐고 tester가 독립 확인하지는 않았다. fixture는 재기동 직후 상태(A↔B 친구, C→A 대기 요청 1건)에서 시작했다. 제품 코드는 고치지 않았다. 테스트 레벨 lite. DEV의 `make lint`·`make test`·integration(원격 Linux, EXIT=0, SHA 97a8899)은 같은 SHA 결과를 재사용했고 다시 실행하지 않았다. 아래 첫 절의 b2e683a 결과는 이전 attempt 기록이며 덮어쓰지 않았다(새 결과는 `-5fa3333`·`chrome-fix-*`·`edge-fix-*` 파일).
 
