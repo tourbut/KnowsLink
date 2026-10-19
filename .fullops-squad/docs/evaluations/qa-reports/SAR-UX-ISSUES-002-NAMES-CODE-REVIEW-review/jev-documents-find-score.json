@@ -1,0 +1,48 @@
+{
+  "task_key": "SAR-UX-ISSUES-002-NAMES-DEV",
+  "find_head": "8d0db4bf59e905c9f398123c4e2e5bc13ed4c3fa",
+  "base": "8d0db4bf59e905c9f398123c4e2e5bc13ed4c3fa",
+  "head": "b2e683ae677c78cd7bdc47c75820bcb191b94838",
+  "scope": "documents",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/contexts/dev.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/docs/operations/user-guide.md"
+  ],
+  "new_files": [
+    "internal/relay/human_names_integration_test.go",
+    "internal/relay/human_names_test.go",
+    "internal/relay/names_browser_fixture_test.go"
+  ],
+  "candidates": [
+    ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
+    ".fullops-squad/handovers/logs/2026-10-15_to_designer.md",
+    ".fullops-squad/project.md"
+  ],
+  "hits": [],
+  "recall": 0.0,
+  "precision": 0.0,
+  "existence_status": "found",
+  "existence_correct": true,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

@@ -17,6 +17,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 2단위 tester 2026-10-19: msg_7276159b91f6, tester 48ff7b1, critical/high 0, low D-NM-01(제어문자 거부 사유 미설명·보이지 않는 문자 되돌림), 관찰 O-NM-01~07. not_run: 승인·조회 성공·구분값 충돌·내 이름 변경(fixture 한계, DEV Go 테스트 근거), 스크린리더·실제 200%. fixture 비가역 상태. tester가 coor 인박스 사후 수정으로 생긴 packet identity 불일치를 --force 재생성으로 해소(원본 history 보존; coor 원인).
 - 사용자 D002 '리뷰 진행'. SAR-UX-ISSUES-002-NAMES-CODE-REVIEW: snapshot .fullops-review-188ae82872b94838bf6069b8b6f73f48(b2e683a), 기준 8d0db4b(DEV lint base와 일치시키려 잘못된 6275431 prepare 폴더를 coor가 지우고 재준비), lint.json은 DEV lint-result에 Linux EXIT=0 로그 reason 보완본. task_4eeb889e3dca / ctx_f609e4cbdc07, claude-opus-5-5 high, reviewer 라벨 names002-code-review-opus, implementer ctx_bc77cf9072cc.
 - 병행 SAR-UX-ISSUES-002-NAMES-VISUAL: designer 직접 시각 + 제품 판단(O-NM-01 거절 표시, O-NM-02 새 대화 select 잘림, D-NM-01 문구). claude-opus-5-5 high(user).
+- 리뷰 수락 2026-10-19: SAR-UX-ISSUES-002-NAMES-CODE-REVIEW(msg_5e91227fbd20) b2e683a critical/high/medium 0, low D-NM-01(human_http.go:367-385, tester와 동일), check 통과 reviewed29/skipped33. reviewer host 세션 c5a56fd2-5d78-4607-adc3-3df833496e3d release, snapshot의 hook .env 링크만 제거(원본 유지) 후 cleanup --finished 완료. designer 시각 대기.
 - 대기: 3단위 U5 승인 요약 → 4단위 U8 연결 경로·재개(+나머지 U7) → 5단위 U3 언어. 
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
