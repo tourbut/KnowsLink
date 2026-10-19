@@ -4,7 +4,7 @@ status: review
 updated: 2026-10-19
 owner: dev
 tasks: [SAR-UX-ISSUES-002-APPROVAL-DEV]
-summary: 검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04·O-NM-08의 기술 계획, 대응표, 검사 결과와 미실행 항목
+summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04·O-NM-08의 기술 계획, 대응표, 검사 결과와 미실행 항목"
 ---
 
 # SAR-UX-ISSUES-002-APPROVAL-DEV DEV 보고
@@ -88,3 +88,14 @@ summary: 검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04·
 - `TestRemoteConsentBrowserReturn`: 기존 원격 실행과 같이 제외했다(이번 변경과 무관한 remote consent 브라우저 검사).
 - 헤더 ‘내 계정’→‘설정’ 이름 변경(U7 일반)과 언어(U3)·연결(U8)·O-NM-03: 지시서 범위 밖이다.
 - FullOps lint 결과는 완료 보고에 기록한다.
+
+## FullOps lint
+
+`lint.py --repo . --from 688305054dc4`를 커밋된 HEAD에서 실행했다. 미추적 사용자 폴더(`videos/service-intro/`, `SAR-MOTION-INTRO-001-DEV-test/` 하위 다섯 폴더)는 지시대로 건드리지 않고, 그 실행 프로세스에만 `core.excludesFile`(환경 변수 `GIT_CONFIG_*`)로 제외해 작업 트리 깨끗함 검사를 통과시켰다. 저장소 설정과 폴더는 바꾸지 않았다.
+
+- ERROR 0. 첫 실행의 DOC-003(이 보고의 front matter 표기)은 `deliverables.py --stamp`로 고쳤다.
+- WARNING SIZE-001 `internal/relay/http.go` 688줄(이전 674): gateView·gateError 보강 14줄이다. 요약 로직은 새 파일 `gate_summary.go`로 분리했고 기존 파일 분할은 이번 범위 밖이다.
+- WARNING SIZE-002 변경 추가 492줄(상한 400): 지시서 예상 300–700줄 범위다. 제품 코드는 약 150줄이고 나머지는 U5-A integration 검사·격리 fixture·렌더 fixture다.
+- WARNING SIZE-001 `PLANS.md`: 이번 과제에서 수정하지 않은 coor 소유 파일이다.
+- 실행 불가 product-lint·product-test: Windows에 make가 없다. 같은 명령을 원격 Linux 격리 clone에서 74bf643 기준 EXIT=0으로 실행했다(위 검사 로그). 이후 커밋은 문서·보고뿐이다.
+- 의존성 변경 없음(go.mod·package.json 미수정). DEP-001 해당 없음.
