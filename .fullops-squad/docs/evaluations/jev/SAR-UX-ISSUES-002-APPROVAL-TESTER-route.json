@@ -1,0 +1,73 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-APPROVAL-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.03,
+        "ops": 0.01,
+        "tester": 0.96
+      },
+      "confidence": 0.94
+    },
+    "docs": {
+      "D01": 0.14,
+      "D02": 0.13,
+      "D03": 0.15,
+      "D04": 0.19,
+      "D05": 0.15,
+      "D06": 0.14,
+      "D07": 0.13,
+      "D08": 0.14,
+      "D09": 0.15,
+      "D10": 0.31,
+      "D11": 0.16,
+      "D12": 0.5,
+      "D13": 0.42
+    }
+  },
+  "usage": {
+    "input_tokens": 2525,
+    "output_tokens": 314,
+    "cost": 0.00010605
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.776,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "독립 동작 QA는 tester 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "de8680204f0629951e2612eca5853190089e75a7",
+  "requires_packet": true
+}
