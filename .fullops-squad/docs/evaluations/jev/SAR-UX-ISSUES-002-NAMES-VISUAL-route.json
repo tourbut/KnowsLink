@@ -5,7 +5,8 @@
   "route": "product",
   "role": "designer",
   "deliverables": [
-    "D04",
+    "D10",
+    "D13",
     "D11"
   ],
   "thresholds": {
@@ -15,52 +16,55 @@
   },
   "answers": {
     "scope": {
-      "choice": "product",
+      "choice": "implementation",
       "probabilities": {
-        "implementation": 0.04,
-        "product": 0.96
+        "implementation": 0.92,
+        "product": 0.08
       },
-      "confidence": 0.92
+      "confidence": 0.84
     },
     "role": {
-      "choice": "tester",
+      "choice": "dev",
       "probabilities": {
-        "dev": 0.18,
-        "ops": 0.01,
-        "tester": 0.8099999999999999
+        "dev": 0.63,
+        "ops": 0,
+        "tester": 0.37
       },
-      "confidence": 0.71
+      "confidence": 0.45
     },
     "docs": {
-      "D01": 0.28,
-      "D02": 0.46,
-      "D03": 0.26,
-      "D04": 0.73,
-      "D05": 0.22,
-      "D06": 0.31,
-      "D07": 0.15,
-      "D08": 0.16,
-      "D09": 0.28,
-      "D10": 0.46,
-      "D11": 0.6,
-      "D12": 0.48,
-      "D13": 0.45
+      "D01": 0.34,
+      "D02": 0.39,
+      "D03": 0.37,
+      "D04": 0.57,
+      "D05": 0.38,
+      "D06": 0.44,
+      "D07": 0.29,
+      "D08": 0.44,
+      "D09": 0.47,
+      "D10": 0.67,
+      "D11": 0.59,
+      "D12": 0.59,
+      "D13": 0.65
     }
   },
   "usage": {
-    "input_tokens": 2526,
+    "input_tokens": 2469,
     "output_tokens": 314,
-    "cost": 0.000106092
+    "cost": 0.000103698
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
-  "additional_deliverables": [],
-  "latency_seconds": 0.665,
+  "additional_deliverables": [
+    "D04",
+    "D12"
+  ],
+  "latency_seconds": 0.474,
   "response_model": "typesafe/jev-1.14-20261014",
-  "original_role": "designer",
-  "original_route": "product",
-  "override_reason": "직접 시각 수락과 제품 규칙 판단은 designer 소유",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "직접 시각 재검수는 designer 소유",
   "model": {
     "agent": "claude",
     "provider": "anthropic",
@@ -69,15 +73,15 @@
     "source": "user"
   },
   "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
-  "head": "7a66f71341f00f9044f3d1e7da981ef4b57cfca5",
+  "head": "171042e4a2fa16c4478ec381d8800ce5e17a16b4",
   "requires_packet": true,
-  "attempt": "daf215708ff94a038a0a73a6da39763b",
-  "instruction_sha256": "5b83f7890fbd5d3d336ad0124f38da64096edddbea3577b1a562833b8bc570fa",
+  "attempt": "084aab73136444028cb931e5c8747c3c",
+  "instruction_sha256": "759a02596adb23e3aadb87e54a9f3ec0cfa56efe0461683524cce64c63a2c368",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "4382cdf6c2385a0477bc6c959348d3484fce746814ce593dba17932dba1624b8"
+  "input_sha256": "315ef6f3ed8a0aa0be65403c8d32a085d3e51fedc07e812faeb8470841d0a567"
 }
