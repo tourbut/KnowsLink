@@ -3,7 +3,7 @@ title: SAR-UX-ISSUES-002-NAMES-CODE-REVIEW 리뷰
 status: review
 updated: 2026-10-19
 owner: reviewer
-summary: b2e683ae677c 병합 전 독립 리뷰 보고서. critical·high·medium 없음, low 1건(D-NM-01) 미해결로 수락
+summary: "b2e683ae677c 병합 전 독립 리뷰 보고서. critical·high·medium 없음, low 1건(D-NM-01) 미해결로 수락"
 ---
 
 # SAR-UX-ISSUES-002-NAMES-CODE-REVIEW 리뷰
