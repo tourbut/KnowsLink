@@ -105,3 +105,12 @@ summary: "검증된 승인 요약(U5)·승인 화면 위치(U7 해당)·O-NM-04�
 - WARNING SIZE-001 `PLANS.md`: 이번 과제에서 수정하지 않은 coor 소유 파일이다.
 - 실행 불가 product-lint·product-test: Windows에 make가 없다. 같은 명령을 원격 Linux 격리 clone에서 f43d05c 기준 EXIT=0으로 실행했다(위 검사 로그). 이후 커밋은 문서·보고뿐이다.
 - 의존성 변경 없음(go.mod·package.json 미수정). DEP-001 해당 없음.
+
+## 2차 attempt: fixture 기동 실패(409 capacity) 수정
+
+- 증상: coor가 ba047b7(제품 f43d05c)에서 `remote.py fixture`로 기동하자 `approval_browser_fixture_test.go:59: POST /v1/claim got 409 {"error":"capacity"}`로 바로 종료했다.
+- 원인: `POST /v1/claim`은 `claimCapacity()`(`internal/relay/capacity.go`)로 저장소 전체의 살아 있는 `ClaimToken`을 4개로 제한한다. fixture는 gate 7개를 만들려고 부모 7개를 차례로 claim해서 다섯 번째(`expired`)에서 409가 났다. 1차 attempt는 컴파일만 확인해 놓쳤다.
+- 수정(테스트 코드만, `ea94128`): 각 gate를 보낸 뒤 그 부모의 claim token을 비워 두고, 기한을 늘리는 마지막 `mutate`에서 7개 모두 원래 token으로 복원한다. 제품 한도·동작은 바꾸지 않았다. 승인 화면·결정 경로는 claim token을 읽지 않으며, 복원 뒤 저장 상태는 실제 claim된 부모와 같다.
+- 실제 기동(원격 격리 clone `/tmp/knowslink-approval002-ea94128268d3-31684ed2`, 자기 Postgres 컨테이너): `fixture.log`에 `approval fixture ready; synthetic accounts only`, 프로세스 살아 있음, `fixture.json`(권한 600)에 origin·gate 7개·계정 a/b/c·만료 시각이 있다. loopback `GET /` 200, `GET /home` 303(비로그인), 범위 밖 `GET /v1/pull` 403. `POST /fixture/as/a` 204 뒤 `GET /home/gates/{pending_decide_1}` 200, `GET /home` 200. 근거: [fixture-start](ea94128268d329bd1fb2117d166927b5bd096db6-fixture-start.log), [probe](ea94128268d329bd1fb2117d166927b5bd096db6-fixture-probe.log). 프로세스는 남겨 두었다(coor가 새 SHA로 다시 기동한다).
+- 같은 SHA 원격 Linux: `make lint`·`make test`·fixture-compile EXIT=0([lint](ea94128268d329bd1fb2117d166927b5bd096db6-lint.log), [test](ea94128268d329bd1fb2117d166927b5bd096db6-test.log), [fixture-compile](ea94128268d329bd1fb2117d166927b5bd096db6-fixture-compile.log)). 제품 변경이 없어 integration은 다시 실행하지 않았다(지시서 허용). 로컬 Windows `go vet -tags=integration,approvalfixture ./internal/relay` 통과.
+- 미실행: 브라우저 왕복·키보드·확대·스크린리더는 여전히 tester/designer 몫이다.

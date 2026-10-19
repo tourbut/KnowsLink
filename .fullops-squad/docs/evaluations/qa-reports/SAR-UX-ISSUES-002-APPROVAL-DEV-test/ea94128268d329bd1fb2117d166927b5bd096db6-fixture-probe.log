@@ -1,0 +1,16 @@
+# remote probe after fixture-start (ea94128268d329bd1fb2117d166927b5bd096db6)
+=== RUN   TestApprovalBrowserFixture
+    approval_browser_fixture_test.go:108: approval fixture ready; synthetic accounts only
+---
+PROC=alive
+MANIFEST http://127.0.0.1:44795 ['expired', 'original_missing', 'pending_commit_long', 'pending_decide_1', 'pending_decide_2', 'pending_query_hint', 'processed'] ['a', 'b', 'c'] 2026-10-20T01:57:20Z
+GET / -> 200
+GET /home -> 303
+GET /v1/pull (out of scope) -> 403
+600 /tmp/knowslink-approval002-ea94128268d3-31684ed2/fixture.json
+ EXIT= 0
+# account A gate page probe
+login-a 204
+gate-a 200
+home-a 200
+ EXIT= 0

@@ -1,33 +1,15 @@
 {
   "task_key": "SAR-UX-ISSUES-002-APPROVAL-DEV",
   "role": "dev",
-  "attempt": "b38259160bfe4a0b9656ae49784d5a45",
-  "packet_input_sha256": "ba54e70f166f3622930e6f1c83fe15fd64ce65acd71a4bb6b7ee1daad7614e2a",
-  "uncertainty_review": "partial 패킷이다. 미확인 24건은 문자열 검색 한계다. 승인 화면 사용처는 grep으로 확인했다(human-gate·legacy-home gates·refusal·receipt, owner dashboard는 변경 없음). gate 결정 서버 재검사는 수정하지 않았고 전체 make test·integration으로 회귀를 확인했다. 과거 QA·로그 후보는 현행 정본이 대체해 읽지 않았다. 동적 호출 완전 탐색은 주장하지 않는다.",
+  "attempt": "21e8bb63fedb4af787034cabc2d95b54",
+  "packet_input_sha256": "69b78f84c5810bceb420bc832fffdd103ad345f816fb5c272dadd8027cd82022",
+  "uncertainty_review": "partial 패킷이다. 미확인 24건은 문자열 검색 한계다. 409 capacity 발생원은 POST /v1/claim의 claimCapacity(전역 ClaimToken 4개)로 직접 확인했고 fixture 테스트 파일만 고쳤다. 고친 fixture는 원격 실제 기동으로 확인했고 make lint·make test·fixture-compile을 같은 SHA로 실행했다. 동적 호출 완전 탐색은 주장하지 않는다.",
   "items": [
     {
       "path": ".fullops-squad/FULLOPS.md",
       "category": "document_read",
       "status": "completed",
       "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
-      "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      "category": "document_update",
-      "status": "no_change",
-      "reason": "D04는 designer 정본이며 지시서가 수정을 금지했다."
     },
     {
       "path": ".fullops-squad/handovers/to_dev.md",
@@ -66,10 +48,34 @@
       "reason": "필요 구간을 읽고 적용했다."
     },
     {
+      "path": "internal/relay/approval_browser_fixture_test.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "claim을 gate 생성마다 비우고 마지막 mutate에서 복원해 전역 claim 4 한도 안에서 gate 7개를 만든다."
+    },
+    {
+      "path": "internal/relay/approval_browser_fixture_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "원격 실제 기동으로 manifest·loopback GET / 200·A 세션 gate 페이지 200·범위 밖 403을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
       "path": ".fullops-squad/contexts/designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
@@ -81,55 +87,67 @@
       "path": ".fullops-squad/contexts/tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "구성요소·경계 변경 없음(같은 Go template·handler)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "저장 엔티티 CRUD 변경 없음."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/data-model.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "Gate·Message 필드 변경 없음."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/database-design.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "schema·migration 변경 없음."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/interface-design.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "D05 human-gate 절에 표시 상태·읽기 순서·검증 필드 요약·미지원 intent 409와 /home/gates 거부 복귀를 추가했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "D04 정본은 designer 소유이며 수정하지 않는다."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
@@ -140,362 +158,962 @@
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "category": "document_update",
-      "status": "completed",
-      "reason": "D10에 gate_summary.go 책임·verifiedGate의 미지원 intent 차단·refusedTo 승인 목록 복귀와 검사명을 추가했다."
+      "status": "no_change",
+      "reason": "D10 capacity 행에 claim4가 이미 있다. 제품 동작·한도 변경이 없어 갱신할 내용이 없다."
     },
     {
-      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
-      "category": "document_update",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "의존성·도구 변경 없음."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/adapter-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/audit.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/remote-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-OPS/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-002-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-002-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-CODE-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-VISUAL/report.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-HUMAN-PEER-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
-      "path": ".fullops-squad/docs/operations/ops-guide.md",
-      "category": "document_update",
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "새 운영 절차·설정·route·Tunnel 규칙 없음. 배포는 기존 relay 교체 절차(D13에 기록)."
-    },
-    {
-      "path": ".fullops-squad/docs/operations/transition.md",
-      "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": ".fullops-squad/docs/operations/transition.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "D13에 이번 DEV 후보 인계(무 schema·migration·공개 API, 남은 QA·리뷰·통합)를 추가했다."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
-      "path": ".fullops-squad/docs/operations/user-guide.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "D11에 승인 목록→요청 검토→읽기 순서와 참고 문구·자유문 비권한, 확인 불가 시 복귀 안내를 추가했다."
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/planning/business-plan.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "D01 제품 정본 변경 없음."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "D02 정본은 지시서상 수정하지 않는다."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "D02 정본은 수정하지 않는다."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "D02 정본은 수정하지 않는다."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "D02 정본은 수정하지 않는다."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-12_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-17_to_ops.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-18_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-19_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
-      "path": "adapters/src/index.ts",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "gate API(/v1/gates, gate-consume) 계약을 바꾸지 않아 adapter 영향 없음. make test의 adapter 검사 통과."
-    },
-    {
-      "path": "adapters/src/trial-setup.ts",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "회원 화면 문구·경로 변경과 무관하다. make test 통과."
-    },
-    {
-      "path": "cmd/relay/main.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "새 route·설정이 없어 변경 불필요."
-    },
-    {
-      "path": "docs/README.md",
+      "path": "adapters/README.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": "adapters/src/grok-wake.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "adapters/src/session-lock.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "adapters/src/session-lock.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     },
     {
       "path": "docs/architecture.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
       "path": "docs/system-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 수정만 하는 과제다. 현행 지시서·capacity.go·이전 완료 기록이 원인 분석에 충분해 다시 읽지 않았다(동적 참조 미확인)."
     },
     {
-      "path": "internal/relay/connections_test.go",
+      "path": "internal/relay/admission_integration_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "승인·receipt 템플릿을 쓰지 않아 영향 없음을 grep으로 확인했다. 전체 make test 통과."
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     },
     {
-      "path": "internal/relay/http.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "verifiedGate에 미지원 부모 intent 차단, gateView를 gateState·gateSummary 기반으로 교체, gateError가 승인 목록으로 복귀하고 POST 거부 문구를 분리했다. gateDecision 재검사는 그대로다."
-    },
-    {
-      "path": "internal/relay/http.go",
+      "path": "internal/relay/capacity.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "gate GET/POST·owner Basic 경로의 기존 integration(TestGateFailureStates, TestPublicHTTPAdmissionAndGateSafety, TestEmailIdentity gate 하위)이 f43d05c에서 통과했다."
+      "status": "no_change",
+      "reason": "claimCapacity(전역 ClaimToken 4개)가 409 원인임을 읽어 확인했다. 제품 코드는 바꾸지 않았다."
     },
     {
-      "path": "internal/relay/human_names_test.go",
+      "path": "internal/relay/cleanup_flood_integration_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "gate 이름 검사를 새 순서(이름 먼저, 전체 ID는 기술 상세)로 갱신했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     },
     {
-      "path": "internal/relay/human_pages.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "human-gate 템플릿을 누가/내용/범위/기한·상태/결정/기술 상세 순서로 재구성했다. O-NM-08 거절 안내에 deny-help 클래스를 붙였다(문구 불변)."
-    },
-    {
-      "path": "internal/relay/human_pages.go",
+      "path": "internal/relay/cleanup_unit_integration_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "human 템플릿 렌더·escape 검사와 member_forms.golden(추가만) 통과. 친구 화면 3폭 렌더 넘침 0."
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     },
     {
-      "path": "internal/relay/human_pages_test.go",
+      "path": "internal/relay/human_http.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "gate 템플릿 검사를 요약·CSRF·자유문/hint 비활성·검증 불가 무내용으로 갱신했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/human_names_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/landing_fixture_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     },
     {
       "path": "internal/relay/landing_integration_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "공개 첫 화면 경로는 바꾸지 않았다. 전체 integration 통과."
-    },
-    {
-      "path": "internal/relay/landing_pages.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "memberStyle 공유 영향은 .deny-help 한 규칙 추가뿐이며 landing은 해당 클래스를 쓰지 않는다."
-    },
-    {
-      "path": "internal/relay/member_pages.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "legacy 승인 목록 행·빈 목록 문구, refusal의 승인 목록 복귀 라벨, .deny-help 간격, 익명 receipt 화면(O-NM-04) 조건을 바꿨다."
-    },
-    {
-      "path": "internal/relay/member_pages.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "legacy-home·receipt·refusal 렌더 fixture와 golden 통과, 3폭 넘침 0, 빈 href 금지 검사 추가."
-    },
-    {
-      "path": "internal/relay/member_receipt.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "익명 429에 Anonymous 표시, 503 무인증 화면은 세션 쿠키가 있을 때만 저장 입력 복원 문구를 붙인다(unverifiedReceipt 공유)."
-    },
-    {
-      "path": "internal/relay/member_receipt.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "receipt 관련 unit·integration(TestReceipt*, admission 429/503 보존) 통과."
-    },
-    {
-      "path": "internal/relay/member_ui_test.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "승인 fixture(만료·확인 불가·긴 자유문/악성 hint·빈 목록·익명 429)를 추가하고 gateRow 목록으로 바꿨다."
-    },
-    {
-      "path": "internal/relay/testdata/consent_browser.mjs",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "remote consent 마크업은 바꾸지 않았다. 원격 integration은 기존처럼 브라우저 consent 시험만 제외했다."
-    },
-    {
-      "path": "videos/knowslink-motion/README.md",
-      "category": "document_read",
       "status": "no_change",
-      "reason": "과거 보고·로그·보조 문서다. 현행 지시서와 SAR-UX-ISSUES-002 U5/U7·D05/D10 정본이 대체해 다시 읽지 않았다(동적 참조 미확인)."
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     },
     {
-      "path": "videos/knowslink-motion/index.html",
+      "path": "internal/relay/member_agents.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "제품 UI와 무관한 모션 자료다. 이번 범위 밖으로 확인만 했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     },
     {
-      "path": "videos/knowslink-motion/render.mjs",
+      "path": "internal/relay/public_messages_integration_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "제품 UI와 무관한 모션 자료다. 이번 범위 밖으로 확인만 했다."
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/receipt_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/store_retention_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/test_messages.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/test_messages_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "internal/relay/text_events_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "fixture 테스트 파일(태그 approvalfixture)만 바뀌어 이 경로의 동작에 영향이 없다. 원격 make lint·make test EXIT=0."
     }
   ]
 }
