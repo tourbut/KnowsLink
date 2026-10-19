@@ -5,6 +5,7 @@
   "route": "implementation",
   "role": "tester",
   "deliverables": [
+    "D13",
     "D12"
   ],
   "thresholds": {
@@ -24,38 +25,38 @@
     "role": {
       "choice": "tester",
       "probabilities": {
-        "dev": 0.03,
-        "ops": 0.01,
-        "tester": 0.96
+        "dev": 0.27,
+        "ops": 0.04,
+        "tester": 0.69
       },
-      "confidence": 0.94
+      "confidence": 0.53
     },
     "docs": {
-      "D01": 0.14,
-      "D02": 0.13,
-      "D03": 0.15,
-      "D04": 0.19,
-      "D05": 0.15,
-      "D06": 0.14,
-      "D07": 0.13,
-      "D08": 0.14,
-      "D09": 0.15,
-      "D10": 0.31,
-      "D11": 0.16,
-      "D12": 0.5,
-      "D13": 0.42
+      "D01": 0.19,
+      "D02": 0.19,
+      "D03": 0.21,
+      "D04": 0.22,
+      "D05": 0.22,
+      "D06": 0.22,
+      "D07": 0.2,
+      "D08": 0.24,
+      "D09": 0.23,
+      "D10": 0.45,
+      "D11": 0.27,
+      "D12": 0.51,
+      "D13": 0.53
     }
   },
   "usage": {
-    "input_tokens": 2525,
+    "input_tokens": 2472,
     "output_tokens": 314,
-    "cost": 0.00010605
+    "cost": 0.000103824
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.776,
+  "latency_seconds": 0.419,
   "response_model": "typesafe/jev-1.14-20261014",
   "original_role": "tester",
   "original_route": "implementation",
@@ -68,6 +69,15 @@
     "source": "user"
   },
   "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
-  "head": "de8680204f0629951e2612eca5853190089e75a7",
-  "requires_packet": true
+  "head": "252531daceb674d9dc02f991cf88f5cc33f294c8",
+  "requires_packet": true,
+  "attempt": "3cbcc5f741804e1db8c72e7db3a0d500",
+  "instruction_sha256": "cee666ae2845c70b762c15998099dd0ad758b14e7f2a736d32a0173c4fbe828d",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "1b1bad8cdab0a7ed0be91de96d04ae4b1f91c797a8eb1a7a2cd5b7d6e7b8c4fd"
 }
