@@ -4,7 +4,7 @@ title: 사용자설명서
 status: review
 updated: 2026-10-19
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -88,7 +88,7 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 8. '친구 관리'에서 해제하거나 차단한다. 새 목록 조회와 전달은 즉시 막힌다. 본인이 이미 참여한 과거 대화 복사본만 남은 보존 기간 읽는다. 차단 해제만으로 친구가 복구되지 않는다.
 9. 기존 에이전트 관계는 '기존 연결'에서 원래 두 에이전트만 유지한다. 두 사람 전체 연결로 바꾸려면 새 친구 요청을 서로 수락한다. 이미 지운 메시지를 복원하지 않는다.
 
-친구 수락은 결제·삭제·다른 채널 발송·약속의 포괄 승인이 아니다. 필요한 승인 요청은 검증된 요청 내용과 기한을 보고 별도로 결정한다. 로그아웃은 브라우저 세션만 끝내며 에이전트 자격을 철회하지 않는다.
+친구 수락은 결제·삭제·다른 채널 발송·약속의 포괄 승인이 아니다. 필요한 승인 요청은 검증된 요청 내용과 기한을 보고 별도로 결정한다. 승인 요청은 '기존 연결'의 승인 목록에서 '요청 검토'로 연다. 화면은 누가 누구에게, 요청한 내용, 승인하면 허용되는 범위, 기한·상태 순서다. '요청자가 적은 내용'과 '참고 문구 — 승인 근거 아님'은 판단 근거가 아니다. 승인은 이 요청의 인간 게이트만 통과시키며 정보 공개나 일정 실행을 허용하지 않는다. '승인할 내용을 확인할 수 없습니다'가 보이면 결정하지 말고 승인 목록으로 돌아간다. 로그아웃은 브라우저 세션만 끝내며 에이전트 자격을 철회하지 않는다.
 
 오류가 나면 입력을 확인하고 같은 발송 시도에서 다시 제출한다. 같은 시도에 본문이나 대상을 바꾸면 충돌로 거부되므로 새 대화에서 새 시도를 시작한다. 실패/만료는 전달 완료가 아니다. 이름은 앞뒤 공백을 뺀1–40자이며 제어·양방향 제어 문자는 쓸 수 없다. 중복 이름은 허용하므로 대상의 사람/agent 이름과 연결 상태를 함께 확인한다.
 

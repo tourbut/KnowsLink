@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-19
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -137,8 +137,9 @@ R에 result/error optional 정보가 있으면 closed schema에서 거부한다.
 | POST /v1/gate-consume | B-agent claim | `{id,claim}`; approved 1회 consume, 효과·공개 false |
 
 owner POST decision은 H의 인증된 human ACK를 함께 확정하고 H 원문을 지운다. GET 방문은 결정하지 않는다. CSRF는 owner credential과 gate ID에 묶인 HMAC이다.
-UI는 pending/approved/denied/expired/revoked/unavailable을 텍스트로 표시한다.
+UI는 pending/approved/denied/expired/revoked/unavailable을 텍스트로 표시한다. 표시 상태는 저장 상태에 현재 기한·서명/바인딩·current 검사를 더한 값이다(`gateState`).
 원문 없음·철회·만료·이미 결정됨은 활성 버튼이 없다. render.hint·ext·agent sig는 owner 증명이 아니다.
+gate 화면은 누가 누구에게·요청한 내용·허용 범위·기한/상태·결정·기술 상세 순서다. 요약은 검증된 부모 envelope의 schema 필드만 쓴다(`schedule.query`: window·granularity_min, `schedule.commit`: slot·timezone, commitment는 ‘요청자가 적은 내용’). 원문 JSON·ID·policy는 기술 상세에 있다. 검증할 수 없거나 지원하지 않는 부모 intent는 요약 없이 ‘승인할 내용을 확인할 수 없습니다’만 보이며 POST도 409다.
 
 ## TypeScript 합성 경로
 
@@ -198,7 +199,7 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | POST /auth/logout | session | 현재 세션 삭제, 303 `/?n=logout` |
 | POST /auth/reauth | session | 회원 이메일로 새 코드 발송, 303 `/auth/verify` |
 | POST /auth/logout-all | session | 최근 5분 확인이 있으면 회원의 모든 세션 삭제(303 `/?n=all`). 없으면 403 |
-| GET·POST /home/gates/{id} | session | 기존 gate 화면과 결정. CSRF는 세션 token HMAC. 다른 회원 gate 조회 403, 결정 409 |
+| GET·POST /home/gates/{id} | session | 기존 gate 화면과 결정. CSRF는 세션 token HMAC. 다른 회원 gate 조회 403, 결정 409. 거부 화면은 승인 목록 `/home/legacy#gates`로 복귀하며 POST 거부는 ‘이번 제출은 적용되지 않았습니다’다 |
 
 세션이 없거나 만료된 회원 경로는 303 `/?n=expired`다. HTTP Basic 창을 띄우지 않는다. 회원 세션 cookie는 `/v1` owner·agent API의 credential이 아니다(401). `POST /v1/owners`는 합성 가입 설정이 없으면 403이다.
 
