@@ -47,9 +47,9 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 409 capacity 원인 분석과 fixture 수정.
-- [ ] `remote.py fixture`로 실제 기동해 manifest(`fixture.json`)가 쓰이고 loopback origin이 HTTP 200을 주는지 확인(원격 fixture.log 근거). 확인 뒤 프로세스는 그대로 두어도 된다(coor가 새 SHA로 다시 기동한다).
-- [ ] 원격 Linux make lint/test/integration(제품 변경이 없으면 make test·fixture compile만이라도 같은 SHA로), FullOps lint.py --from 688305054dc4, DEV 보고에 절 추가, packet-outcomes, finish, 커밋, worker_done.
+- [x] 409 capacity 원인 분석과 fixture 수정.
+- [x] `remote.py fixture`로 실제 기동해 manifest(`fixture.json`)가 쓰이고 loopback origin이 HTTP 200을 주는지 확인(원격 fixture.log 근거). 확인 뒤 프로세스는 그대로 두어도 된다(coor가 새 SHA로 다시 기동한다).
+- [x] 원격 Linux make lint/test/integration(제품 변경이 없으면 make test·fixture compile만이라도 같은 SHA로), FullOps lint.py --from 688305054dc4, DEV 보고에 절 추가, packet-outcomes, finish, 커밋, worker_done.
 
 소유 파일: fixture 테스트 파일, DEV 보고, own 기록.
 
@@ -274,6 +274,12 @@ fixture 수정, 기동 근거, DEV 보고 절, 완료 보고.
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+- 브랜치 / SHA: `fullops/dev`. fixture 수정 `ea94128`(제품 코드 변경 없음, 이전 제품 SHA `f43d05c` 그대로), 보고 `3142454`, 이 finish 커밋이 최종이다.
+- 원인: `POST /v1/claim`의 `claimCapacity()`(`internal/relay/capacity.go`)가 저장소 전체의 살아 있는 `ClaimToken`을 4개로 제한한다. fixture가 gate 7개를 위해 부모 7개를 차례로 claim해 다섯 번째에서 409 capacity가 났다. 1차 attempt는 컴파일만 확인했다.
+- 변경 이유: 제품 한도는 정상 동작이라 테스트 코드만 고쳤다. `approval_browser_fixture_test.go`에서 각 gate를 보낸 뒤 부모 claim token을 비우고, 기한을 늘리는 마지막 `mutate`에서 7개를 원래 token으로 복원한다(+5/−1줄). 승인 화면·결정 경로는 claim token을 읽지 않는다. 복원 뒤 저장 상태는 실제 claim된 부모와 같다.
+- 검증한 것: 원격 격리 clone(`/tmp/knowslink-approval002-ea94128268d3-31684ed2`, 자기 Postgres 컨테이너)에서 `remote.py fixture` 실제 기동. `fixture.log`에 `approval fixture ready`, 프로세스 살아 있음, `fixture.json`(600)에 origin·gate 7개·계정 a/b/c. loopback `GET /` 200, `/home` 303, 범위 밖 `/v1/pull` 403, `POST /fixture/as/a` 204 뒤 `/home/gates/{pending_decide_1}` 200·`/home` 200. 같은 SHA `make lint`·`make test`·fixture-compile EXIT=0. 로컬 `go vet -tags=integration,approvalfixture` 통과. FullOps `lint.py --from 688305054dc4`: ERROR 0, WARNING 3(SIZE-001 `PLANS.md`·`http.go`, SIZE-002 511줄: 모두 1차 attempt와 같은 원인이고 이번 변경은 +5줄), 실행 불가 2(product-lint·product-test, Windows에 make 없음, 원격 Linux EXIT=0으로 대신). 미추적 사용자 폴더는 lint 프로세스에만 `GIT_CONFIG_*` 환경 변수의 `core.excludesFile`로 제외했다.
+- 못 한 것: 제품 변경이 없어 integration은 다시 실행하지 않았다(지시서 허용). 브라우저 왕복·키보드·확대·스크린리더는 tester/designer 몫이다.
+- DEP-001: 의존성 변경 없음(`go.mod`·`package.json` 미수정).
+- 검토 필요: coor의 고정 SHA 독립 리뷰(제품 `f43d05c` + fixture `ea94128`).
+- 산출물·로그: [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md) ‘2차 attempt’ 절, `ea94128…-{fixture-start,fixture-probe,lint,test,fixture-compile}.log`, `raw-log-sha256.txt`, [packet-outcomes](../docs/evaluations/jev/SAR-UX-ISSUES-002-APPROVAL-DEV-packet-outcomes.json), `contexts/dev.md`.
+- 남은 일: coor가 새 SHA로 fixture를 다시 기동한다(`ea94128` 프로세스는 남아 있다). 이후 독립 리뷰·tester QA·designer 시각 검수·main 통합.
