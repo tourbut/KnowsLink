@@ -1,0 +1,92 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-NAMES-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D13",
+    "D11"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.57,
+      "D02": 0.8,
+      "D03": 0.75,
+      "D04": 0.79,
+      "D05": 0.79,
+      "D06": 0.78,
+      "D07": 0.7,
+      "D08": 0.78,
+      "D09": 0.83,
+      "D10": 0.92,
+      "D11": 0.88,
+      "D12": 0.82,
+      "D13": 0.89
+    }
+  },
+  "usage": {
+    "input_tokens": 2544,
+    "output_tokens": 314,
+    "cost": 0.000106848
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D12"
+  ],
+  "latency_seconds": 0.727,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "8d0db4bf59e905c9f398123c4e2e5bc13ed4c3fa",
+  "requires_packet": true,
+  "attempt": "9a5aabbe90544e148909a807a7a14d18",
+  "instruction_sha256": "68ad0f248b232f8f966fa3094757695128a9c43897f6d1f3b758d6f8b46170eb",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "96b1e28a7fd80f990dcdeb77b69a457181a27322d2db84fcf35d284e71eca4f5"
+}
