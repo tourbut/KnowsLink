@@ -19,6 +19,9 @@ type Friend struct {
 	// CodeTail is the requester's own trimmed input, reduced at send time to codeTail; "" marks a request made
 	// before the tail was kept. The full code and the target's current code are never stored here.
 	CodeTail string
+	// Held marks a request kept from a receiver at the receive limit: the receiver keeps seeing this earlier ended
+	// state, or no row at all ("-"). "" is a row both sides see.
+	Held string `json:",omitempty"`
 }
 
 type ConversationCopy struct {
@@ -183,7 +186,11 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 	if old != nil && (old.State == "active" || open(old) && (old.State == "pending" || old.Inviter == id)) {
 		return // a repeat looks like a repeat of any still-pending request
 	}
-	if p := st.Friends[pairID(id, placeholder)]; target != placeholder && p != nil && open(p) {
+	legacy := st.Friends[pairID(id, placeholder)]
+	if target == placeholder || old != nil {
+		legacy = nil
+	}
+	if legacy != nil && open(legacy) {
 		return // a placeholder row stored before the one-row rule still answers for this code until it ends
 	}
 	active, pending, mine, theirs := 0, 0, 0, 0
@@ -201,17 +208,32 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 			theirs++
 		}
 	}
-	if active >= 400 || pending >= 200 || mine >= 10 || (old == nil && len(st.Friends) >= 20000) {
+	if active >= 400 || pending >= 200 || mine >= 10 || (old == nil && legacy == nil && len(st.Friends) >= 20000) {
 		return
+	}
+	seen := "-" // what the receiver sees of this row now; kept while the request is held from them
+	if old != nil {
+		if seen = old.Held; seen == "" {
+			seen = map[bool]string{true: "removed", false: old.State}[old.State == "blocked-pending"]
+		}
+	}
+	if old == nil && legacy != nil {
+		// An ended placeholder from before the one-row rule becomes this code's pair row with its ID and generation.
+		delete(st.Friends, pairID(id, placeholder))
+		legacy.A, legacy.B, old = id, target, legacy
+		st.Friends[key] = old
 	}
 	if old == nil {
 		old = &Friend{ID: randomToken()[:22], A: id, B: target}
 		st.Friends[key] = old
 	}
 	old.Generation++
-	old.Inviter, old.State, old.Exp, old.CodeTail = id, "pending", now.Add(24*time.Hour), codeTail(code)
+	old.Inviter, old.State, old.Exp, old.CodeTail, old.Held = id, "pending", now.Add(24*time.Hour), codeTail(code), ""
 	if hidden || theirs >= 10 {
 		old.State = "blocked-pending" // the requester sees pending until Exp; the target sees no new request
+	}
+	if !hidden && theirs >= 10 {
+		old.Held = seen
 	}
 	if a := st.Members[old.A]; a != nil {
 		old.NameA = a.Name
@@ -259,7 +281,8 @@ func (st *State) friendByID(id, publicID string) *Friend {
 
 func (st *State) decideFriend(id, publicID, decision string, generation int64, now time.Time) error {
 	f := st.friendByID(id, publicID)
-	if f == nil || f.Generation != generation {
+	// Unblock is guarded by the member's own block flag; the blocker's page never carries the row's generation.
+	if f == nil || f.Generation != generation && decision != "unblock" {
 		return fault("sender_not_allowed")
 	}
 	switch decision {

@@ -129,8 +129,12 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		switch {
 		case blockedByMe:
 			state = "blocked"
+		case f.Held == "-" && incoming:
+			continue // a request held at the receive limit is never shown to its receiver
+		case f.Held != "" && incoming:
+			state = f.Held
 		case f.State == "blocked-pending" && incoming:
-			continue // a request held from this person (unblocked later, or over the receive limit) is never shown
+			state = "removed"
 		case f.State == "blocked-pending":
 			// The recipient blocked this pending request: the requester sees an unanswered request until its deadline.
 			state = "pending"
@@ -141,6 +145,9 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			state = "removed"
 		}
 		entry := humanFriend{ID: f.ID, Name: name, State: state, Generation: f.Generation, Incoming: incoming, Exp: clock(f.Exp)}
+		if state == "blocked" {
+			entry.Generation = 0 // a later request from the blocked person must not show on the blocker's page
+		}
 		if !incoming && (state == "pending" || state == "denied" || state == "cancelled" || state == "expired") {
 			entry.CodeTail = f.CodeTail
 		}

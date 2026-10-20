@@ -3,6 +3,7 @@ package relay
 import (
 	"fmt"
 	"net/http/httptest"
+	"reflect"
 	"testing"
 	"time"
 )
@@ -96,6 +97,22 @@ func TestFriendRerequestReusesOneRow(t *testing.T) {
 			if len(before) != 1 || before[0].State != "expired" && before[0].State != "cancelled" {
 				t.Fatalf("setup left %+v", before)
 			}
+			held := name == "receive_limit" || name == "blocked_expired" || name == "blocked_cancelled"
+			// The rendered friends pages are what a target observes; the per-view form attempt is random and dropped.
+			targets := func(at time.Time) []string {
+				pages := []string{}
+				for _, person := range []string{"b", "c"} {
+					st.sweep(at)
+					v, err := st.humanView(ids[person], &Session{Verified: at}, "friends", httptest.NewRequest("GET", "/home/friends", nil), at)
+					if err != nil {
+						t.Fatal(err)
+					}
+					v["Attempt"] = ""
+					pages = append(pages, renderHumanPage(t, "human-friends", v))
+				}
+				return pages
+			}
+			unseen := targets(later)
 			st.requestFriend(ids["a"], code, later)
 			after := view(t, st, ids["a"], later)
 			got := outcome{rows: len(after), state: after[0].State, label: after[0].CodeLabel(), sameRow: after[0].ID == before[0].ID,
@@ -108,18 +125,20 @@ func TestFriendRerequestReusesOneRow(t *testing.T) {
 			if got != *want || got.rows != 1 || got.state != "pending" || !got.sameRow || !got.generationUp || !got.freshDeadline {
 				t.Fatalf("requester row differs: %+v, want %+v", got, *want)
 			}
-			// The blocker and the full recipient see no new request; a repeat changes nothing.
-			for _, person := range []string{"b", "c"} {
-				for _, row := range view(t, st, ids[person], later) {
-					held := name == "receive_limit" || name == "blocked_expired" || name == "blocked_cancelled"
-					if held && row.ID == after[0].ID && row.State == "pending" {
-						t.Fatal("held request shown to its target")
-					}
-				}
+			// The blocker and the full receiver see exactly what they saw before, generation included, and keep seeing it
+			// after the requester cancels; a repeat changes nothing.
+			if held && !reflect.DeepEqual(targets(later), unseen) {
+				t.Fatal("held request changed its target's page")
 			}
 			st.requestFriend(ids["a"], code, later.Add(time.Hour))
 			if again := view(t, st, ids["a"], later.Add(time.Hour)); len(again) != 1 || again[0].Generation != after[0].Generation || again[0].Exp != after[0].Exp {
 				t.Fatal("repeat changed a pending request")
+			}
+			if e := st.decideFriend(ids["a"], after[0].ID, "cancel", after[0].Generation, later); e != nil {
+				t.Fatal(e)
+			}
+			if held && !reflect.DeepEqual(targets(later), unseen) {
+				t.Fatal("cancelling a held request showed it to its target")
 			}
 		})
 	}
@@ -138,5 +157,33 @@ func TestFriendBlockedRequestCountsTowardSentLimit(t *testing.T) {
 	}
 	if len(st.Friends) != 10 {
 		t.Fatalf("sent limit ignored the blocked request: %d rows", len(st.Friends))
+	}
+}
+
+// A placeholder row stored by the old receive-limit path stays the code's only requester row, and a stale blocker
+// page can still unblock after a held re-request.
+func TestFriendLegacyPlaceholderAndStaleUnblock(t *testing.T) {
+	st, ids, _, now := humanFixture(t)
+	code := st.Members[ids["b"]].FriendCode
+	legacy := &Friend{ID: "legacy-row", A: ids["a"], B: "undisclosed:" + hashToken(code), Inviter: ids["a"], State: "expired", Generation: 3, Exp: now, CodeTail: codeTail(code)}
+	st.Friends[pairID(ids["a"], legacy.B)] = legacy
+	st.requestFriend(ids["a"], code, now)
+	if f := st.Friends[pairID(ids["a"], ids["b"])]; len(st.Friends) != 1 || f == nil || f.ID != "legacy-row" || f.Generation != 4 || f.State != "pending" {
+		t.Fatalf("legacy placeholder not reused: %+v", st.Friends)
+	}
+	f := st.Friends[pairID(ids["a"], ids["b"])]
+	if e := st.decideFriend(ids["b"], f.ID, "block", f.Generation, now); e != nil {
+		t.Fatal(e)
+	}
+	stale := f.Generation
+	st.requestFriend(ids["a"], code, now.Add(25*time.Hour))
+	if f.Generation == stale {
+		t.Fatal("held re-request did not advance the requester's generation")
+	}
+	if e := st.decideFriend(ids["b"], f.ID, "unblock", 0, now.Add(25*time.Hour)); e != nil || f.BlockB {
+		t.Fatal("blocker could not unblock from a page without the generation", e)
+	}
+	if e := st.decideFriend(ids["a"], f.ID, "unblock", 0, now.Add(25*time.Hour)); e == nil {
+		t.Fatal("requester unblocked a block they did not set")
 	}
 }
