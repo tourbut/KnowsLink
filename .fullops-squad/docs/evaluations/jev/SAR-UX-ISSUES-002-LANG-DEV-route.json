@@ -5,8 +5,9 @@
   "route": "implementation",
   "role": "dev",
   "deliverables": [
+    "D13",
     "D10",
-    "D13"
+    "D12"
   ],
   "thresholds": {
     "simple": 0.8,
@@ -17,10 +18,10 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.99,
-        "product": 0.01
+        "implementation": 0.98,
+        "product": 0.02
       },
-      "confidence": 0.98
+      "confidence": 0.96
     },
     "role": {
       "choice": "dev",
@@ -32,31 +33,34 @@
       "confidence": 1
     },
     "docs": {
-      "D01": 0.13,
-      "D02": 0.13,
-      "D03": 0.21,
-      "D04": 0.15,
-      "D05": 0.14,
-      "D06": 0.14,
-      "D07": 0.11,
-      "D08": 0.34,
-      "D09": 0.18,
-      "D10": 0.73,
-      "D11": 0.28,
-      "D12": 0.39,
-      "D13": 0.64
+      "D01": 0.22,
+      "D02": 0.27,
+      "D03": 0.35,
+      "D04": 0.34,
+      "D05": 0.35,
+      "D06": 0.3,
+      "D07": 0.27,
+      "D08": 0.51,
+      "D09": 0.39,
+      "D10": 0.7,
+      "D11": 0.5,
+      "D12": 0.52,
+      "D13": 0.72
     }
   },
   "usage": {
-    "input_tokens": 2524,
+    "input_tokens": 2493,
     "output_tokens": 314,
-    "cost": 0.000106008
+    "cost": 0.000104706
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
-  "additional_deliverables": [],
-  "latency_seconds": 0.68,
+  "additional_deliverables": [
+    "D08",
+    "D11"
+  ],
+  "latency_seconds": 0.573,
   "response_model": "typesafe/jev-1.14-20261014",
   "model": {
     "agent": "claude",
@@ -66,6 +70,15 @@
     "source": "user"
   },
   "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
-  "head": "131544873193795e77a2886dcdd81e8a2658c0f6",
-  "requires_packet": true
+  "head": "7a8a27f8a6f6b67463b702570b82259ab529ff97",
+  "requires_packet": true,
+  "attempt": "37a2e33e9f2c4687b71accf1eb36cd46",
+  "instruction_sha256": "140de98f3186d15f797628f48bf51f14073a74354e08cbca5a9bda2a8f35bbd9",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "4a34c6af9479baf178cb88897d27340410ff25b80a5f83bf16fa84214d3930e9"
 }
