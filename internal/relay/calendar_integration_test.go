@@ -158,7 +158,8 @@ func TestCalendarConnection(t *testing.T) {
 	alice := &browser{t, f.handler, "192.0.2.78", map[string]string{}}
 	mail := &inbox{codes: map[string]string{}}
 	f.s.Mail = mail.send
-	login(t, alice, mail, "alice@example.test")
+	aliceMember := login(t, alice, mail, "alice@example.test")
+	f.mutate(func(st *State) { st.Members[aliceMember].Name = "앨리스" })
 	expect(t, alice.do("GET", "/home/account", nil), 200, "Google 계정으로 로그인한 회원만 캘린더를 연결할 수 있습니다.")
 	if strings.Contains(alice.do("GET", "/home/account", nil).Body.String(), `action="/home/calendar/connect"`) {
 		t.Fatal("email member offered a calendar connection")
@@ -215,7 +216,7 @@ func TestCalendarApprovalRunsOneLookup(t *testing.T) {
 	// SC-02: a repeated submission, a re-opened page and a restarted process never run a second lookup.
 	expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"approve"}}), 409, "이번 제출은 적용되지 않았습니다")
 	page = bob.do("GET", "/home/gates/"+gateID, nil).Body.String()
-	if strings.Contains(page, `value="approve"`) || !strings.Contains(page, "승인됨") {
+	if strings.Contains(page, `value="approve"`) || !strings.Contains(page, "지금은 승인하거나 거절할 수 없습니다") {
 		t.Fatalf("approved page: %s", page)
 	}
 	restarted := (&Service{Pool: f.s.Pool, Google: f.s.Google}).Handler()
