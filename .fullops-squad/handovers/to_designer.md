@@ -176,3 +176,13 @@ FULLOPS.md, common 세 규칙, project.md, 역할 contexts, SAR-UX-ISSUES-002.md
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치·SHA: `fullops/designer`. 고정 SHA는 이 보고를 포함한 완료 커밋이며 worker_done에 적는다. 대상 후보는 `9d13a05`다.
+- 결론: **수락**. 승인 목록(대기·빈 목록), 상세 6상태(정상·악성 hint·긴 자유문과 링크·만료·처리됨·원문 부재), 이름 있는 요청자(DEV 렌더), 익명 429(O-NM-04), 친구 거절 안내(O-NM-08)가 1440·390·320에서 PASS다. critical·high·medium은 없다. DEV 수정 필요 항목은 없다.
+- 관찰: V-AP-01(low) 확인 불가 목록 행의 서버 정책 유형 표시는 현행 수락으로 결정했다. V-AP-02(low) 익명 429의 위치 nav ‘내 에이전트’ 링크는 후속 U8·U7 다듬기 후보다. V-AP-03(정보) 헤더 ‘설정’ 이름 변경은 범위 밖이다.
+- 변경 이유: 지시서의 직접 시각 판정. 제품 코드·SAR-UX-ISSUES-002.md는 바꾸지 않았다(새 제품 규칙 없음).
+- 검증한 것: fixture `127.0.0.1:18931`에 허용 GET과 `POST /fixture/as/{a|c}`만 보냈다. headless Chrome 캡처 33장과 목록 크롭 6장, 측정 JSON, `NO_OVERFLOW 33` 종료코드 0. 토큰 색만 사용, 그라디언트·그림자·4px 초과 모서리 0, 44px, 왼쪽 정렬, 대비를 확인했다.
+- 못 한 것(not_run): 실제 키보드, 실제 200%, 스크린리더, 보조 브라우저, 승인·거절 POST 결과 화면(tester 몫).
+- 주의: 첫 캡처 실행이 세션 쿠키 미저장으로 비로그인 GET을 반복해 fixture 요청 제한(429)이 약 1분 걸렸다(2026-10-20 08:54–08:57 KST). 재실행은 헤더 쿠키와 2.5초 간격으로 정상이다.
+- 산출물: [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-VISUAL/report.md), [캡처 스크립트](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-VISUAL/capture.mjs), `captures/`.
+- 남은 일: coor의 tester QA·고정 SHA 리뷰 취합과 통합 판단.
