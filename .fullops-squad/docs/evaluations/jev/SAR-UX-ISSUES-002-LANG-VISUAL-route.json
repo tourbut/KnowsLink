@@ -1,0 +1,73 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-LANG-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.71,
+        "product": 0.29
+      },
+      "confidence": 0.42
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.58,
+        "ops": 0.01,
+        "tester": 0.41
+      },
+      "confidence": 0.37
+    },
+    "docs": {
+      "D01": 0.2,
+      "D02": 0.14,
+      "D03": 0.14,
+      "D04": 0.7,
+      "D05": 0.16,
+      "D06": 0.13,
+      "D07": 0.11,
+      "D08": 0.13,
+      "D09": 0.15,
+      "D10": 0.36,
+      "D11": 0.31,
+      "D12": 0.39,
+      "D13": 0.45
+    }
+  },
+  "usage": {
+    "input_tokens": 2464,
+    "output_tokens": 314,
+    "cost": 0.000103488
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.443,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "직접 시각 수락과 영어 문구 품질은 designer 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "08f26982f8ccceb4921b5d82462f57411fb2a112",
+  "requires_packet": true
+}
