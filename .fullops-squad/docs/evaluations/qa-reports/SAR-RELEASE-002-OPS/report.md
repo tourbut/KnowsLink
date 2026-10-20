@@ -103,7 +103,9 @@ repo `deploy/knowslink/tunnel/public-ingress.yml`의 `path` 정규식에서 `/ho
 
 ## 문서 HEAD의 FullOps 검사
 
-work.py finish 전에 기록한다.
+- 기준 `1dd6800`, 대상 HEAD `ab77351`(결과 문서 커밋). `lint.py`는 ERROR0·WARNING86·실행 불가2(`make lint`, `make test`)이고 종료1이다([lint.out](lint.out)). 실행 불가는 Windows `make` 부재이며 직전 두 OPS와 같다. 새 PASS로 보고하지 않는다.
+- WARNING 86건은 기준 `1dd6800` 이후 다른 단위의 변경(`videos/knowslink-motion/`·`docs/brand/*.svg`·`internal/relay/*` 크기·`PLANS.md` 크기)이다. 이번 작업은 제품 소스·`videos/`·`docs/brand/`를 바꾸지 않았다. 제품 lint·테스트는 각 단위의 수락 증거를 재사용한다.
+- 산출물 strict는 13개·미작성0·문제0·경고0이다. `git diff --check`는 통과했다(CRLF→LF 경고만 있음).
 
 ## 보존 위치
 

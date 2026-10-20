@@ -421,5 +421,11 @@ workspace 밖에 파일을 만들지 않는다(private 도구 디렉터리 제�
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+- 브랜치 / SHA: `fullops/ops` / 결과 SHA는 worker_done 본문(finish 커밋 후 고정). 작업 커밋 `ab77351`.
+- 변경 이유: 사용자 결정 D006 '배포 진행'에 따라 제품 `7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2`를 기존 운영 relay에 배포하고, 승인된 범위로 공개 ingress에 `/lang/(ko|en)`만 추가했다.
+- 결과: 운영 relay는 새 이미지(`sha256:9646febaf4…`)로 healthy·restart0·migrate0이다. 중단은 13:50:44Z~13:51:02Z(약18초)다. 새 private 백업(`1dd6800-pre-release002-20261020T135049Z.dump`, 0600·11271bytes, SHA256 `32b59288…cc8e5`)과 network-none 격리 복원(전체 data digest 일치·goose2·guard1·HumanModel1·downgrade 거부)을 통과했다. rollback 태그 `knowslink-rollback:1dd6800-release002-20261020`을 붙이고 inspect했다. 보존 assertion 38/38이 통과했다.
+- ingress: repo `public-ingress.yml`·`check_public_ingress.py`와 live config를 함께 바꿨다(live 원본 0600 백업). cloudflared를 13:52:03Z에 한 번 재시작했고 약1.4초 끊겼다. `/lang/ko`·`/lang/en`은 303+쿠키(`__Host-kl_lang`)이고 이웃 경로는 404다. 공개 smoke(기존 21+첫페이지+새 API 경계)와 언어 smoke 22개가 통과했다.
+- 검토 필요: (1) 새 relay가 기존 친구 1건에 `"CodeTail":""`(non-omitempty)을 써서 Friends digest가 전환 전후로 다르다. 백업과 live 필드 비교로 그 한 필드뿐임을 확인했다(원인은 report의 보존 절). DEV가 의도한 직렬화인지 확인하면 좋다. (2) 재시작 관찰 루프가 직전 교훈을 두고도 공개 429를 약1분 이상 만들었다(report의 429 절). (3) `check_public_ingress.py`는 지시서 소유 목록에 없으나 직전 배포와 같이 한 줄 검사로 더했다.
+- 검증한 것과 못 한 것: 위 운영 검사는 직접 실행했다. 제품 코드 gate는 각 단위의 수락 증거를 재사용한다. 미실행: 실계정 로그인·메시지 왕복, 로그인 상태의 언어 저장, 실제 rollback, Access·DNS 변경. `lint.py`는 ERROR0·WARNING86(다른 단위 변경)·실행 불가2(Windows `make` 부재, 직전과 같음)다.
+- 산출물·로그: [report](../docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md), 같은 폴더의 preservation.json·public-smoke*.json·commands.txt·로그. D12/D13·README·docs/operations.md·docs/README.md·contexts/ops.md를 갱신했다.
+- 남은 일: coor가 main 병합·현황판을 처리한다. 서버 checkout에는 ingress 수정 커밋이 다음 main 반영 때 도착한다. 실설치·실계정 검증은 후속 과제다.
