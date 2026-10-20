@@ -95,7 +95,7 @@ func (s *Service) humanRoutes(mux *http.ServeMux) {
 func (st *State) humanView(id string, session *Session, path string, r *http.Request, now time.Time) (map[string]any, error) {
 	m := st.Members[id]
 	lang := pageLang(r, m)
-	v := map[string]any{"Title": "대화", "Section": "conversations", "Name": m.Name, "Masked": maskEmail(m.Email), "Code": m.FriendCode, "SelfConnected": m.SelfConnect, "Recent": now.Sub(session.Verified) < reauthWindow, "Attempt": randomToken(), "From": humanAgent{}, "To": humanAgent{}, "Lang": lang}
+	v := map[string]any{"Title": "대화", "Section": "conversations", "Name": m.Name, "Masked": maskEmail(m.Email), "Code": m.FriendCode, "SelfConnected": m.SelfConnect, "Recent": now.Sub(session.Verified) < reauthWindow, "Attempt": randomToken(), "From": humanAgent{}, "To": humanAgent{}, "Lang": lang, "LangUnsaved": !validLang(m.Locale)}
 	switch r.URL.Query().Get("n") {
 	case "requested":
 		v["Notice"] = "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."

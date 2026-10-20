@@ -15,6 +15,7 @@ const (
 	langCookie        = "__Host-kl_lang"
 	langMaxAge        = 365 * 24 * 60 * 60
 	langUnsavedHeader = "X-KnowsLink-Lang-Unsaved" // set for one response when ?lang= applied without a stored cookie; render removes it
+	langSavedHeader   = "X-KnowsLink-Lang-Saved"   // the member's saved value chose the language, so browser links would do nothing; render removes it
 )
 
 var hangul = regexp.MustCompile(`[\x{AC00}-\x{D7A3}\x{3131}-\x{318E}]`)
@@ -44,6 +45,14 @@ func browserLang(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Language", pageLang(r, nil))
 	if !validLang(readCookie(r, langCookie)) && validLang(r.URL.Query().Get("lang")) {
 		w.Header().Set(langUnsavedHeader, "1")
+	}
+}
+
+// memberLang applies a signed-in member's language and marks when their saved value, not the browser, decided it.
+func memberLang(w http.ResponseWriter, r *http.Request, m *Member) {
+	w.Header().Set("Content-Language", pageLang(r, m))
+	if m != nil && validLang(m.Locale) {
+		w.Header().Set(langSavedHeader, "1")
 	}
 }
 

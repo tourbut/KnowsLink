@@ -45,6 +45,10 @@ func render(w http.ResponseWriter, status int, name string, v map[string]any) {
 			v[key] = tr(lang, s)
 		}
 	}
+	if w.Header().Get(langSavedHeader) != "" {
+		w.Header().Del(langSavedHeader)
+		v["LangSaved"] = true
+	}
 	if w.Header().Get(langUnsavedHeader) != "" {
 		w.Header().Del(langUnsavedHeader)
 		if n, _ := v["Notice"].(string); n == "" {
@@ -87,7 +91,7 @@ func (s *Service) startPage(w http.ResponseWriter, r *http.Request) {
 		if _, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 			id, _, err := st.session(token, now)
 			if err == nil {
-				w.Header().Set("Content-Language", pageLang(r, st.Members[id]))
+				memberLang(w, r, st.Members[id])
 			}
 			return nil, err
 		}); err == nil {
@@ -244,7 +248,7 @@ func (s *Service) memberHit(w http.ResponseWriter, st *State, r *http.Request, n
 	buckets := anonymousRate(s.clientIP(r))
 	if err == nil {
 		buckets = rates(id)
-		w.Header().Set("Content-Language", pageLang(r, st.Members[id]))
+		memberLang(w, r, st.Members[id])
 	}
 	_, retry := s.requestHit(st, r, now, buckets...)
 	return id, session, retry, err

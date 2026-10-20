@@ -81,6 +81,12 @@ func TestLanguagePreferencePostgres(t *testing.T) {
 	if w.Header().Get("Content-Language") != "en" || locale(idA) != "en" || a.cookies[langCookie] != "" {
 		t.Fatal("member save must set the member locale only", locale(idA), a.cookies)
 	}
+	// The saved value decides the public page too, so it offers the settings place instead of browser links (V-LANG-01).
+	w = a.do("GET", "/", nil)
+	expect(t, w, 200, `<html lang="en">`, `<a href="/home/account#language">Change in Settings</a>`)
+	if strings.Contains(w.Body.String(), "/lang/") || w.Header().Get(langSavedHeader) != "" {
+		t.Fatal("saved member must not get browser language links or the marker", w.Header())
+	}
 	for _, path := range []string{"/home", "/home/friends", "/home/agents", "/home/new", "/home/legacy", "/home/receipts"} {
 		w = a.do("GET", path, nil)
 		expect(t, w, 200)
@@ -122,8 +128,9 @@ func TestLanguagePreferencePostgres(t *testing.T) {
 	english(w.Body.String())
 	signIn(a, "lang-b@example.test")
 	w = a.do("GET", "/home/account", nil)
-	expect(t, w, 200, `value="en" checked`)
+	expect(t, w, 200, `value="en" checked`, `id="language-unsaved"`, "not saved to your account yet")
 	english(w.Body.String())
+	expect(t, a.do("GET", "/", nil), 200, `/lang/ko?back=`) // no saved value: the browser links still work
 	if locale(idB) != "" {
 		t.Fatal("screen application must not save the browser choice to the account")
 	}
@@ -133,6 +140,23 @@ func TestLanguagePreferencePostgres(t *testing.T) {
 	if locale(idB) != "ko" || a.cookies[langCookie] != "en" {
 		t.Fatal("member save must leave the browser cookie alone")
 	}
+	if strings.Contains(a.do("GET", "/home/account", nil).Body.String(), "language-unsaved") {
+		t.Fatal("saved value must not be called unsaved")
+	}
+	// The member request limit refuses at admission, before any member lookup: the browser cookie (en) decides the
+	// language even though B saved Korean (U3 LANG-VISUAL).
+	s.mutateState(t, func(st *State) {
+		for range 40 {
+			st.Rates["http:member:"+idB] = append(st.Rates["http:member:"+idB], time.Now())
+		}
+	})
+	w = a.do("GET", "/home/friends", nil)
+	expect(t, w, 429, `<html lang="en">`)
+	english(w.Body.String())
+	if w.Header().Get("Content-Language") != "en" {
+		t.Fatal("refusal language header", w.Header())
+	}
+	s.mutateState(t, func(st *State) { delete(st.Rates, "http:member:"+idB) })
 	expect(t, a.do("POST", "/auth/logout", nil), 303)
 	expect(t, a.do("GET", "/", nil), 200, `<html lang="en">`)
 

@@ -3,6 +3,7 @@
 package relay
 
 import (
+	"context"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -18,6 +19,8 @@ import (
 	"testing"
 	"time"
 	"unicode/utf8"
+
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 var templateAction = regexp.MustCompile(`{{[^}]*}}`)
@@ -47,12 +50,9 @@ func dumpMissing(t *testing.T, label string, missing []string) {
 func TestTranslationCoversTemplates(t *testing.T) {
 	_, missing := translateTemplate(memberSource, en)
 	dumpMissing(t, "template runs", missing)
-	// Every English value keeps the same template actions as its Korean key and carries no Korean of its own.
+	// Every English value keeps the same template actions as its Korean key and carries no Korean but the language name.
 	for key, value := range en {
-		if key == "한국어" {
-			continue
-		}
-		if hangul.MatchString(templateAction.ReplaceAllString(value, "")) {
+		if hangul.MatchString(strings.ReplaceAll(templateAction.ReplaceAllString(value, ""), "한국어", "")) {
 			t.Errorf("English value still Korean: %q", key)
 		}
 		want, got := templateAction.FindAllString(key, -1), templateAction.FindAllString(value, -1)
@@ -181,13 +181,20 @@ func renderEN(t *testing.T, name string, v map[string]any) string {
 // koreanLeft lists the Korean runs of an English page with context, ignoring the language name itself.
 func koreanLeft(body string) []string {
 	var out []string
-	for _, m := range regexp.MustCompile(`[^<>"]*[\x{AC00}-\x{D7A3}][^<>"]*`).FindAllString(body, -1) {
-		if s := strings.TrimSpace(m); s != "" && s != "한국어" {
+	for _, m := range regexp.MustCompile(`[^<>"]*[\x{AC00}-\x{D7A3}][^<>"]*`).FindAllString(strings.ReplaceAll(body, "한국어", ""), -1) {
+		if s := strings.TrimSpace(m); s != "" {
 			out = append(out, s)
 		}
 	}
 	return out
 }
+
+var (
+	firstPerson = regexp.MustCompile(`(?i)\bmy\b([^-]|$)`) // ids such as my-code are not text
+	// Menu and heading names stay first person (V-LANG-02); sentences, choices and errors address the reader.
+	ownNames = regexp.MustCompile(`My (agents|name|friend code)\b`)
+	docLink  = regexp.MustCompile(`<a [^>]*href="https://github\.com/[^"]*README[^"]*"[^>]*>[^<]*</a>`)
+)
 
 func TestEnglishScreensHaveNoKorean(t *testing.T) {
 	check := func(name string, body string) {
@@ -200,6 +207,15 @@ func TestEnglishScreensHaveNoKorean(t *testing.T) {
 		}
 		if strings.Contains(body, "<no value>") {
 			t.Errorf("%s: <no value>", name)
+		}
+		if mine := firstPerson.FindAllString(ownNames.ReplaceAllString(body, ""), -1); len(mine) > 0 {
+			t.Errorf("%s: first person outside menu names: %d", name, len(mine))
+		}
+		// A link to the Korean README says so in English (U3).
+		for _, a := range docLink.FindAllString(body, -1) {
+			if !strings.Contains(a, `hreflang="ko"`) || !strings.Contains(a, "(in Korean)") {
+				t.Errorf("%s: Korean document link without a language mark: %s", name, a)
+			}
 		}
 		if dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR"); dir != "" {
 			if err := os.WriteFile(filepath.Join(dir, "en-"+name+".html"), []byte(body), 0o644); err != nil {
@@ -369,5 +385,79 @@ func TestLanguageChoiceOrderAndLink(t *testing.T) {
 	render(w, 200, "start", (&Service{}).startView(""))
 	if body := w.Body.String(); strings.Contains(body, `role="status"`) {
 		t.Fatal("stored cookie must not show the unsaved notice")
+	}
+}
+
+// A member whose saved value decides the language sees the settings link instead of browser links that would do
+// nothing; members without a saved value and visitors keep the links back to the same page (V-LANG-01).
+func TestSavedLanguageReplacesBrowserLinks(t *testing.T) {
+	page := func(name string, v map[string]any, lang string, saved bool) (string, http.Header) {
+		w := httptest.NewRecorder()
+		w.Header().Set("Content-Language", lang)
+		if saved {
+			w.Header().Set(langSavedHeader, "1")
+		}
+		render(w, 200, name, v)
+		return w.Body.String(), w.Header()
+	}
+	views := map[string]func() map[string]any{
+		"start": func() map[string]any { v := (&Service{}).startView(""); v["Authenticated"] = true; return v },
+		"remote": func() map[string]any {
+			return map[string]any{"ID": "att", "Here": "/remote/consent/att", "Name": "client"}
+		},
+	}
+	for name, view := range views {
+		back := "%2f" // html/template escapes the path inside the query
+		if name == "remote" {
+			back = "%2fremote%2fconsent%2fatt"
+		}
+		for lang, text := range map[string]string{"ko": "설정에서 변경", "en": "Change in Settings"} {
+			body, header := page(name, view(), lang, true)
+			if !strings.Contains(body, `<a href="/home/account#language">`+text+`</a>`) || strings.Contains(body, "/lang/") || header.Get(langSavedHeader) != "" {
+				t.Fatalf("%s %s saved member: %s", name, lang, header)
+			}
+			body, _ = page(name, view(), lang, false)
+			if !strings.Contains(body, `/lang/ko?back=`+back+`"`) || !strings.Contains(body, `/lang/en?back=`+back+`"`) || strings.Contains(body, "#language") {
+				t.Fatalf("%s %s without a saved value must keep the browser links", name, lang)
+			}
+		}
+	}
+}
+
+// Admission refuses before any member lookup, so its 429 and 503 screens follow the browser choice (U3 LANG-VISUAL).
+func TestAdmissionRefusalsFollowBrowserLanguage(t *testing.T) {
+	pool, err := pgxpool.New(context.Background(), "postgres://x@127.0.0.1:1/x?connect_timeout=1") // nothing listens
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer pool.Close()
+	s := &Service{Pool: pool}
+	h := s.boundedHTTP(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { t.Fatal("refused request reached the handler") }))
+	check := func(path, lang string, status int) {
+		t.Helper()
+		r := httptest.NewRequest("GET", path, nil)
+		if lang == "en" {
+			r.AddCookie(&http.Cookie{Name: langCookie, Value: "en"})
+		}
+		w := httptest.NewRecorder()
+		h.ServeHTTP(w, r)
+		body := w.Body.String()
+		if w.Code != status || w.Header().Get("Content-Language") != lang || !strings.Contains(body, `<html lang="`+lang+`">`) {
+			t.Fatalf("%s %s: %d %q", path, lang, w.Code, w.Header().Get("Content-Language"))
+		}
+		if left := koreanLeft(body); lang == "en" && len(left) > 0 {
+			t.Fatalf("%s: Korean left in English refusal: %q", path, left)
+		}
+	}
+	for _, lang := range []string{"ko", "en"} {
+		check("/home/receipts", lang, 503)
+	}
+	for range cap(s.httpNew) {
+		s.httpNew <- struct{}{}
+	}
+	for _, path := range []string{"/", "/home/receipts"} {
+		for _, lang := range []string{"ko", "en"} {
+			check(path, lang, 429)
+		}
 	}
 }
