@@ -14,50 +14,50 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.98,
-        "product": 0.02
+        "implementation": 1,
+        "product": 0
       },
-      "confidence": 0.96
+      "confidence": 1
     },
     "role": {
       "choice": "tester",
       "probabilities": {
-        "dev": 0.15,
+        "dev": 0.11,
         "ops": 0,
-        "tester": 0.85
+        "tester": 0.89
       },
-      "confidence": 0.77
+      "confidence": 0.83
     },
     "docs": {
-      "D01": 0.21,
-      "D02": 0.19,
-      "D03": 0.17,
-      "D04": 0.15,
-      "D05": 0.16,
-      "D06": 0.18,
-      "D07": 0.13,
-      "D08": 0.14,
-      "D09": 0.17,
-      "D10": 0.31,
-      "D11": 0.21,
-      "D12": 0.36,
-      "D13": 0.33
+      "D01": 0.1,
+      "D02": 0.09,
+      "D03": 0.1,
+      "D04": 0.1,
+      "D05": 0.09,
+      "D06": 0.1,
+      "D07": 0.08,
+      "D08": 0.12,
+      "D09": 0.12,
+      "D10": 0.36,
+      "D11": 0.08,
+      "D12": 0.29,
+      "D13": 0.28
     }
   },
   "usage": {
-    "input_tokens": 2464,
+    "input_tokens": 2473,
     "output_tokens": 314,
-    "cost": 0.000103488
+    "cost": 0.000103866
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.676,
+  "latency_seconds": 0.641,
   "response_model": "typesafe/jev-1.14-20261014",
   "original_role": "tester",
   "original_route": "implementation",
-  "override_reason": "독립 동작 QA는 tester 소유",
+  "override_reason": "독립 동작 재확인은 tester 소유",
   "model": {
     "agent": "claude",
     "provider": "anthropic",
@@ -66,15 +66,15 @@
     "source": "user"
   },
   "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
-  "head": "028d02c84922cb5a7393547039900cbb28efce3f",
+  "head": "3242a2f04f2c0cdef1c03434e6a4c9f550c631da",
   "requires_packet": true,
-  "attempt": "a2eed7a32979442ea00c2c8530eed7bc",
-  "instruction_sha256": "d702b4e4d2d889df849047dcd563dfb4befd3b45675d0e9db6cdc662ff1a0f08",
+  "attempt": "b496587ea088470abe5ac3b1cf97864d",
+  "instruction_sha256": "322ff29a9e1143d6fd4cb8989a49bc53689c1f1b28b2dc4056be3cfc0a4f7051",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "c2ac4634fc2bfe6e44f27b2c570c3ab0c2224300f6fbea786ae55d19b010292c"
+  "input_sha256": "9545563f5651b5332d94ae497f6a28fc9b039937a45ca4745d5307410d109c76"
 }
