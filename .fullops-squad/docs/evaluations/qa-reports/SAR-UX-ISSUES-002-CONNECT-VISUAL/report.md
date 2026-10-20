@@ -4,7 +4,7 @@ status: review
 updated: 2026-10-20
 owner: designer
 tasks: [SAR-UX-ISSUES-002-CONNECT-VISUAL]
-summary: 후보 8d8bad4의 연결 경로 선택·재개·보낸 요청 끝 4자·연결 화면을 1440·390·320 캡처로 판정한다. 결론은 조건부 수락이며 재요청 행 차이는 '기존 행 재사용'으로 정한다
+summary: "후보 8d8bad4의 연결 경로 선택·재개·보낸 요청 끝 4자·연결 화면을 1440·390·320 캡처로 판정한다. 결론은 조건부 수락이며 재요청 행 차이는 '기존 행 재사용'으로 정한다"
 ---
 
 # SAR-UX-ISSUES-002-CONNECT-VISUAL 직접 시각 판정
