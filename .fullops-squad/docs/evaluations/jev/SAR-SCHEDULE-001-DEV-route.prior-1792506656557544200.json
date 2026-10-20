@@ -1,0 +1,81 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SCHEDULE-001-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D09",
+    "D05"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.88,
+        "product": 0.12
+      },
+      "confidence": 0.76
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.49,
+      "D02": 0.57,
+      "D03": 0.73,
+      "D04": 0.47,
+      "D05": 0.76,
+      "D06": 0.67,
+      "D07": 0.69,
+      "D08": 0.67,
+      "D09": 0.8,
+      "D10": 0.86,
+      "D11": 0.51,
+      "D12": 0.6,
+      "D13": 0.53
+    }
+  },
+  "usage": {
+    "input_tokens": 2510,
+    "output_tokens": 314,
+    "cost": 0.00010542
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D02",
+    "D03",
+    "D06",
+    "D07",
+    "D08",
+    "D11",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.695,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-fable-5-1",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "826ea80be09c09d67fda75f39fd6a7e7fd32f494",
+  "requires_packet": true
+}

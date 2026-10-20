@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "잔여 UI #2–#8(이름·친구·승인 요약·연결 안내·언어) main 통합. 운영은 1dd6800 기준, 배포 대기.",
+  "summary": "잔여 UI #2–#8 운영 반영(7b4f9bc). 일정 API 연동 DEV 진행 중.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -57,7 +57,7 @@
       "name": "실제 어댑터·일정 조회",
       "status": "active",
       "deliverables": [],
-      "note": "실제 일정 API 연동 제품 기획(SAR-SCHEDULE-001) designer 진행 중."
+      "note": "일정 API 범위 확정(D009·D010). Google freebusy 연동 DEV 진행 중. D011 대기."
     },
     {
       "name": "운영 배포·이행",
@@ -288,12 +288,12 @@
     },
     {
       "name": "잔여 UI 운영 배포",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D12",
         "D13"
       ],
-      "note": "제품 7b4f9bc 배포 ops 진행 중. ingress /lang 추가 승인."
+      "note": "운영 7b4f9bc 배포·/lang ingress·보존 38/38·smoke 통과. GitHub #2–#8 close."
     },
     {
       "name": "CI 파생 로고",
