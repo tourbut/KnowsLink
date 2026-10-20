@@ -64,7 +64,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - CI 파생 로고 통합 2026-10-20: dev 66f1174(구현 527e3d3, msg_3ebafe2b8135) 파비콘 단순형·반전판(lockup/symbol)·한글 lockup, 원본 불변, 대비 12.9:1·4.87:1. 사용자 D012 수락. need skip, main merge, docs/README.md 디자이너 행에 새 SVG 링크 추가(coor). 파비콘 제품 연결은 후속.
 - 운영 배포 완료 2026-10-20: SAR-RELEASE-002-OPS(msg_363f99977058) ops fd943e1, 제품 7b4f9bc 전환(중단 약 18초, healthy·restart 0·migrate 0), 새 0600 백업 격리 복원 digest 일치, rollback 태그 knowslink-rollback:1dd6800-release002-20261020, 보존 38/38, ingress /lang/(ko|en) repo+live(cloudflared 1회 재시작 약 1.4초), 공개 smoke 21·첫페이지/언어 22 통과. 메모: 기존 친구 1건에 CodeTail "" 기록으로 Friends digest만 달라짐(의미 변화 없음), 관찰 루프가 공개 429 약 1분 유발. 미실행: 실계정 로그인·왕복·로그인 상태 언어 저장·실제 rollback. need skip(1파일 4줄), main 826ea80 merge·push, 전 역할 FF.
 - 일정 결정 기록 designer d8f5adc(msg_97280a521b8d) main merge. GitHub #2–#8 근거 댓글 후 close(D007) 2026-10-20.
-- SAR-SCHEDULE-001-DEV: route implementation→dev, claude-fable-5-1 high(user, 큰 기능), base 826ea80. D011 열림(운영 연결 전 재질문).
+- SAR-SCHEDULE-001-DEV: route implementation→dev, claude-fable-5-1 high(user, 큰 기능), base 826ea80. main 67284e3 push·전 역할 FF, ctx_0a6fa8252664 fable-5-1 high, fresh. D011 열림(운영 연결 전 재질문).
 - (이전 대기 기록): 4단위 delta F-R1–F-R3, 3단위 리뷰 low(raw-log 해시—4단위에서 해소), O-NM-08 외 남은 low 관찰(V-AP-01 현행 수락, O-CT-03 현행 유지). 사용자 판단 대기 잔여는 위 '잔여 작업 일괄 수행' 절 목록.·설정('내 계정'→'설정' 포함).
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
