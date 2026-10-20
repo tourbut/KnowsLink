@@ -1,0 +1,82 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SCHEDULE-001-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.72,
+        "product": 0.28
+      },
+      "confidence": 0.44
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.97,
+        "ops": 0.03,
+        "tester": 0
+      },
+      "confidence": 0.95
+    },
+    "docs": {
+      "D01": 0.3,
+      "D02": 0.35,
+      "D03": 0.29,
+      "D04": 0.29,
+      "D05": 0.3,
+      "D06": 0.31,
+      "D07": 0.21,
+      "D08": 0.21,
+      "D09": 0.27,
+      "D10": 0.35,
+      "D11": 0.3,
+      "D12": 0.44,
+      "D13": 0.62
+    }
+  },
+  "usage": {
+    "input_tokens": 2447,
+    "output_tokens": 314,
+    "cost": 0.000102774
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.683,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "제품 정본 결정 기록은 designer 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "ceb42257523b8908c30b9e8ed61e9809190ea54a",
+  "requires_packet": true,
+  "attempt": "223741f4de4b485fa8cad8a5906c5352",
+  "instruction_sha256": "6490500e964a30df6e3ee776129ab9efd3fb35256ef6fb8aea2299975d6e6c45",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "24ee92fc492a9d3fbc69da45390685de1dcf4e7a89ef9daf6a8997885d46c681"
+}
