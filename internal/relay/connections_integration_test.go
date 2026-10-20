@@ -314,7 +314,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			t.Fatal("record cap race", wins, len(live), len(revoked))
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "홈으로 돌아가기")
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "내 에이전트로 돌아가기")
 		// Saturation never blocks cleanup, and revoking adds no record.
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {revoked[0]}}), 303)

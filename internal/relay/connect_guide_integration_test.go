@@ -179,7 +179,7 @@ func TestConnectionResumeAndCodeTail(t *testing.T) {
 		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 미사용"}, "attempt": {strings.Repeat("z", 32)}}), 303)
 		var y, z string
 		s.mutateState(t, func(st *State) {
-			y, z = st.Idempotency[owners["a"]+"/agent-create:"+strings.Repeat("y", 32)], st.Idempotency[owners["a"]+"/agent-create:"+strings.Repeat("z", 32)]
+			y, z = st.Idempotency[agentCreateKey(owners["a"], strings.Repeat("y", 32))], st.Idempotency[agentCreateKey(owners["a"], strings.Repeat("z", 32))]
 		})
 		token4, _ := browserGrant(t, a, y, "register")
 		s.mutateState(t, func(st *State) { st.Connections[hashToken(token4)].Exp = time.Now().Add(-time.Second) })
@@ -284,6 +284,10 @@ func TestConnectionResumeAndCodeTail(t *testing.T) {
 			if !strings.Contains(body, want) {
 				t.Fatal("sent row lacks", want)
 			}
+		}
+		// The block on A's first C request stays invisible: one unanswered row, and the repeat is a no-op like any pending repeat.
+		if strings.Count(body, tail(codes["c"])) != 2 || strings.Count(body, tail(unknown)) != 2 || strings.Contains(body, "해제") {
+			t.Fatal("blocked request differs from an unanswered one")
 		}
 		for _, secret := range []string{codes["b"], codes["c"], unknown} {
 			if strings.Contains(body, secret) {

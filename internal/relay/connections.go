@@ -233,9 +233,11 @@ func (st *State) sweepConnections(now time.Time) {
 		}
 	}
 	// Agent-create replay entries map to agent IDs (message entries map to message IDs) and go with their agent.
-	for key, value := range st.Idempotency {
-		if deleted[value] {
-			delete(st.Idempotency, key)
+	if len(deleted) > 0 {
+		for key, value := range st.Idempotency {
+			if deleted[value] {
+				delete(st.Idempotency, key)
+			}
 		}
 	}
 }

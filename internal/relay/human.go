@@ -170,6 +170,9 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 	}
 	key := pairID(id, target)
 	old := st.Friends[key]
+	if old != nil && old.State == "blocked-pending" && old.Inviter == id && now.Before(old.Exp) {
+		return // a repeat looks like a repeat of any still-pending request
+	}
 	if old != nil && (old.BlockA || old.BlockB) {
 		target = placeholder
 		key = pairID(id, target)
@@ -293,7 +296,8 @@ func (st *State) decideFriend(id, publicID, decision string, generation int64, n
 		}
 		f.State = "active"
 	case "deny", "cancel":
-		if f.State != "pending" || (decision == "cancel") != (f.Inviter == id) {
+		open := f.State == "pending" || decision == "cancel" && f.State == "blocked-pending" && now.Before(f.Exp)
+		if !open || (decision == "cancel") != (f.Inviter == id) {
 			return fault("sender_not_allowed")
 		}
 		f.State = map[string]string{"deny": "denied", "cancel": "cancelled"}[decision]
@@ -303,7 +307,12 @@ func (st *State) decideFriend(id, publicID, decision string, generation int64, n
 		}
 		f.State, f.SuppressLegacy = "removed", true
 	case "block":
+		// Blocking a received pending request is never shown to the requester as an action (U4 차단, O-NM-03).
+		pending := f.State == "pending" && f.Inviter != id
 		f.State, f.SuppressLegacy = "removed", true
+		if pending {
+			f.State = "blocked-pending"
+		}
 		if id == f.A {
 			f.BlockA = true
 		} else {

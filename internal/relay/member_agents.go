@@ -241,10 +241,10 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				}
 				// A repeated submit of the same form (double click, resend) returns the agent it already made.
 				attempt := r.FormValue("attempt")
-				scope := owner + "/agent-create:" + attempt
+				scope := agentCreateKey(owner, attempt)
 				if len(attempt) < 16 || len(attempt) > 96 {
 					scope = ""
-				} else if made := st.Agents[st.Idempotency[scope]]; made != nil && made.Owner == owner {
+				} else if made := st.Agents[st.Idempotency[scope]]; made != nil && made.Owner == owner && !made.Revoked {
 					return "/home/agents#agent-" + st.Idempotency[scope], nil
 				}
 				if limit := st.agentLimit(owner); limit != "" {
@@ -343,6 +343,9 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 		}
 	}
 }
+
+// agentCreateKey starts with NUL so it can never equal a message idempotency key ("from/key", printable only).
+func agentCreateKey(owner, attempt string) string { return "\x00agent-create/" + owner + "/" + attempt }
 
 // memberBack is the internal list a failed member action returns to: legacy pair actions to the pair list, the rest
 // to the agent list. No caller-supplied return URL is ever used.

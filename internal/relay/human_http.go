@@ -126,10 +126,18 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		}
 		state := f.State
 		blockedByMe := f.A == id && f.BlockA || f.B == id && f.BlockB
-		if blockedByMe {
+		switch {
+		case blockedByMe:
 			state = "blocked"
-		}
-		if !blockedByMe && (f.BlockA || f.BlockB) {
+		case f.State == "blocked-pending" && incoming:
+			state = "removed"
+		case f.State == "blocked-pending":
+			// The recipient blocked this pending request: the requester sees an unanswered request until its deadline.
+			state = "pending"
+			if !now.Before(f.Exp) {
+				state = "expired"
+			}
+		case (f.BlockA || f.BlockB) && (f.State == "active" || f.State == "removed"):
 			state = "removed"
 		}
 		entry := humanFriend{ID: f.ID, Name: name, State: state, Generation: f.Generation, Incoming: incoming, Exp: clock(f.Exp)}

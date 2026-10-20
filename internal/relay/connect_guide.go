@@ -35,13 +35,20 @@ func (st *State) agentResume(id string, now time.Time) agentResume {
 		if last.Device {
 			page = "/connect/" + lastID
 		}
+		r := agentResume{}
 		switch last.State {
 		case "waiting":
-			return agentResume{"키 등록 전 · 내 컴퓨터의 준비 대기", "기존 시도의 상태를 확인하세요. 연결 수단은 다시 표시하지 않습니다.", page, "연결 상태 확인"}
+			r = agentResume{"키 등록 전 · 내 컴퓨터의 준비 대기", "기존 시도의 상태를 확인하세요. 연결 수단은 다시 표시하지 않습니다.", page, "연결 상태 확인"}
 		case "prepared":
-			return agentResume{"키 등록 전 · 지문 확인 필요", "내 컴퓨터에 표시된 지문과 같은지 확인하세요. 다르면 취소하세요.", page, "지문 확인"}
+			r = agentResume{"키 등록 전 · 지문 확인 필요", "내 컴퓨터에 표시된 지문과 같은지 확인하세요. 다르면 취소하세요.", page, "지문 확인"}
 		case "approved":
-			return agentResume{"브라우저 동의 완료 · 클라이언트 저장 확인 필요", "시작한 클라이언트에서 마무리와 저장 결과를 확인하세요. 승인만으로는 연결되지 않습니다.", page, "연결 상태 확인"}
+			r = agentResume{"브라우저 동의 완료 · 클라이언트 저장 확인 필요", "시작한 클라이언트에서 마무리와 저장 결과를 확인하세요. 승인만으로는 연결되지 않습니다.", page, "연결 상태 확인"}
+		}
+		if r.State != "" && activeKeys(a) > 0 {
+			r.State = "기존 키 등록됨 · 새 키 " + r.State // an added or rotating key never hides the working one
+		}
+		if r.State != "" {
+			return r
 		}
 	}
 	if install, exchanged, returning := st.remoteResume(id, now); install {
