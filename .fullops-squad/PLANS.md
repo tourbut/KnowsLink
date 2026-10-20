@@ -66,6 +66,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 일정 결정 기록 designer d8f5adc(msg_97280a521b8d) main merge. GitHub #2–#8 근거 댓글 후 close(D007) 2026-10-20.
 - SAR-SCHEDULE-001-DEV: route implementation→dev, claude-fable-5-1 high(user, 큰 기능), base 826ea80. main 67284e3 push·전 역할 FF, ctx_0a6fa8252664 fable-5-1 high, fresh. D011 열림(운영 연결 전 재질문).
 - 사용자 D013(2026-10-20): 실설치 검증은 Claude Code 작업 세션과 Grok Bot. SAR-HOST-VERIFY-001-LIVE를 tester(opus-5-5 high)에 배정: 운영 7b4f9bc에서 깨끗한 신규 설치→연결→친구→왕복→알림, 로그인·발송·수락·앱 설정은 단계마다 ask로 사용자 승인. Dots는 이번 범위 밖. main e9bbdea, ctx_3a94fd9324c3 opus-5-5 high.
+- SCHEDULE DEV 질문 msg_010adf52cf6e: 이메일 로그인 회원(Google 신원 없음)의 캘린더 연결 절 문구 → 기본값('Google 계정으로 로그인한 회원만 캘린더를 연결할 수 있습니다.', 버튼 없음)으로 진행하고 designer 시각 검수 항목에서 확정받기로 회신. HOST-VERIFY 질문 msg_02b2c87f2265 사용자 답 전달(scshin88/knowslog01 기존 친구, longpaths 그 clone만·Windows clone FAIL 기록, Grok 7b4f9bc·README 2747fe9 불일치 FAIL, 발송은 사용자가 직접).
 - (이전 대기 기록): 4단위 delta F-R1–F-R3, 3단위 리뷰 low(raw-log 해시—4단위에서 해소), O-NM-08 외 남은 low 관찰(V-AP-01 현행 수락, O-CT-03 현행 유지). 사용자 판단 대기 잔여는 위 '잔여 작업 일괄 수행' 절 목록.·설정('내 계정'→'설정' 포함).
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
