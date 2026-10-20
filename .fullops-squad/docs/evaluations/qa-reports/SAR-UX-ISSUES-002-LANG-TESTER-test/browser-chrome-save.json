@@ -1,0 +1,1978 @@
+{
+  "browser": "Chrome/155.0.8059.85",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18933",
+  "stage": "save",
+  "acct": "en",
+  "checks": [
+    {
+      "name": "save_en_to_ko_tab_from_radio_reaches_save_button",
+      "passed": true,
+      "detail": {
+        "picked": "ko",
+        "btn": "Save language"
+      }
+    },
+    {
+      "name": "save_en_to_ko_no_request_before_enter",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "save_en_to_ko_lands_on_same_settings_place_in_new_language",
+      "passed": true,
+      "detail": {
+        "lang": "ko",
+        "url": "/home/account?n=language#language",
+        "checked": "ko",
+        "status": [
+          "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
+        ],
+        "h1": "설정",
+        "active": "BODY"
+      }
+    },
+    {
+      "name": "save_en_to_ko_exactly_one_language_post_so_far",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "save_en_to_ko_reload_keeps_language",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save_en_to_ko_other_screen_uses_saved_language",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save_en_as_ko_owner_screens_all_html_lang_ko_no_overflow",
+      "passed": true,
+      "detail": {
+        "home": {
+          "lang": "ko",
+          "title": "대화 · KnowsLink",
+          "over": 0
+        },
+        "name": {
+          "lang": "ko",
+          "title": "내 이름 · KnowsLink",
+          "over": 0
+        },
+        "conversation": {
+          "lang": "ko",
+          "title": "대화 · KnowsLink",
+          "over": -15
+        },
+        "friends": {
+          "lang": "ko",
+          "title": "친구 · KnowsLink",
+          "over": -15
+        },
+        "agents": {
+          "lang": "ko",
+          "title": "내 에이전트 · KnowsLink",
+          "over": -15
+        },
+        "account": {
+          "lang": "ko",
+          "title": "설정 · KnowsLink",
+          "over": -15
+        },
+        "legacy": {
+          "lang": "ko",
+          "title": "기존 연결 · KnowsLink",
+          "over": -15
+        },
+        "new": {
+          "lang": "ko",
+          "title": "새 대화 · KnowsLink",
+          "over": 0
+        },
+        "receipts": {
+          "lang": "ko",
+          "title": "요청 상태 조회 · KnowsLink",
+          "over": 0
+        },
+        "conn-waiting": {
+          "lang": "ko",
+          "title": "에이전트 연결 · KnowsLink",
+          "over": -15
+        },
+        "conn-prepared": {
+          "lang": "ko",
+          "title": "에이전트 연결 · KnowsLink",
+          "over": -15
+        },
+        "conn-approved": {
+          "lang": "ko",
+          "title": "에이전트 연결 · KnowsLink",
+          "over": -15
+        },
+        "gate": {
+          "lang": "ko",
+          "title": "요청 승인 · KnowsLink",
+          "over": -15
+        },
+        "connect-device": {
+          "lang": "ko",
+          "title": "내 클라이언트 연결 · KnowsLink",
+          "over": 0
+        },
+        "remote": {
+          "lang": "ko",
+          "title": "KnowsLink 원격 연결",
+          "over": 0
+        }
+      }
+    },
+    {
+      "name": "layout_owner_ko_home-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": 0,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 10
+      }
+    },
+    {
+      "name": "layout_owner_ko_conversation-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 14
+      }
+    },
+    {
+      "name": "layout_owner_ko_conversation-open-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 14
+      }
+    },
+    {
+      "name": "layout_owner_ko_friends-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 15
+      }
+    },
+    {
+      "name": "layout_owner_ko_agents-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 50
+      }
+    },
+    {
+      "name": "layout_owner_ko_agents-open-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 50
+      }
+    },
+    {
+      "name": "layout_owner_ko_legacy-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 44
+      }
+    },
+    {
+      "name": "layout_owner_ko_legacy-open-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 44
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-waiting-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-waiting-open-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-prepared-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-prepared-open-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-approved-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 4
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-approved-open-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 4
+      }
+    },
+    {
+      "name": "layout_owner_ko_gate-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 8
+      }
+    },
+    {
+      "name": "layout_owner_ko_gate-open-1440",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 8
+      }
+    },
+    {
+      "name": "layout_owner_ko_home-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": 0,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 10
+      }
+    },
+    {
+      "name": "layout_owner_ko_conversation-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 12
+      }
+    },
+    {
+      "name": "layout_owner_ko_conversation-open-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 12
+      }
+    },
+    {
+      "name": "layout_owner_ko_friends-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 15
+      }
+    },
+    {
+      "name": "layout_owner_ko_agents-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 50
+      }
+    },
+    {
+      "name": "layout_owner_ko_agents-open-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 50
+      }
+    },
+    {
+      "name": "layout_owner_ko_legacy-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 44
+      }
+    },
+    {
+      "name": "layout_owner_ko_legacy-open-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 44
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-waiting-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-waiting-open-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-prepared-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-prepared-open-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-approved-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 4
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-approved-open-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 4
+      }
+    },
+    {
+      "name": "layout_owner_ko_gate-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 8
+      }
+    },
+    {
+      "name": "layout_owner_ko_gate-open-390",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 8
+      }
+    },
+    {
+      "name": "layout_owner_ko_home-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": 0,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 10
+      }
+    },
+    {
+      "name": "layout_owner_ko_conversation-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 12
+      }
+    },
+    {
+      "name": "layout_owner_ko_conversation-open-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 12
+      }
+    },
+    {
+      "name": "layout_owner_ko_friends-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 15
+      }
+    },
+    {
+      "name": "layout_owner_ko_agents-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 50
+      }
+    },
+    {
+      "name": "layout_owner_ko_agents-open-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 50
+      }
+    },
+    {
+      "name": "layout_owner_ko_legacy-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 44
+      }
+    },
+    {
+      "name": "layout_owner_ko_legacy-open-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 44
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-waiting-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-waiting-open-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-prepared-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-prepared-open-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 5
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-approved-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 4
+      }
+    },
+    {
+      "name": "layout_owner_ko_conn-approved-open-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 4
+      }
+    },
+    {
+      "name": "layout_owner_ko_gate-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 8
+      }
+    },
+    {
+      "name": "layout_owner_ko_gate-open-320",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "btnClip": [],
+        "lang": "ko",
+        "h1": 1,
+        "nCtl": 8
+      }
+    },
+    {
+      "name": "save_en_to_en_tab_from_radio_reaches_save_button",
+      "passed": true,
+      "detail": {
+        "picked": "en",
+        "btn": "언어 저장"
+      }
+    },
+    {
+      "name": "save_en_to_en_no_request_before_enter",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "save_en_to_en_lands_on_same_settings_place_in_new_language",
+      "passed": true,
+      "detail": {
+        "lang": "en",
+        "url": "/home/account?n=language#language",
+        "checked": "en",
+        "status": [
+          "Language saved. Screens from now on are shown in this language."
+        ],
+        "h1": "Settings",
+        "active": "BODY"
+      }
+    },
+    {
+      "name": "save_en_to_en_exactly_one_language_post_so_far",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "save_en_to_en_reload_keeps_language",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save_en_to_en_other_screen_uses_saved_language",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save_ko_to_en_tab_from_radio_reaches_save_button",
+      "passed": true,
+      "detail": {
+        "picked": "en",
+        "btn": "언어 저장"
+      }
+    },
+    {
+      "name": "save_ko_to_en_no_request_before_enter",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "save_ko_to_en_lands_on_same_settings_place_in_new_language",
+      "passed": true,
+      "detail": {
+        "lang": "en",
+        "url": "/home/account?n=language#language",
+        "checked": "en",
+        "status": [
+          "Language saved. Screens from now on are shown in this language."
+        ],
+        "h1": "Settings",
+        "active": "BODY"
+      }
+    },
+    {
+      "name": "save_ko_to_en_exactly_one_language_post_so_far",
+      "passed": true,
+      "detail": 3
+    },
+    {
+      "name": "save_ko_to_en_reload_keeps_language",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save_ko_to_en_other_screen_uses_saved_language",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save_ko_to_ko_tab_from_radio_reaches_save_button",
+      "passed": true,
+      "detail": {
+        "picked": "ko",
+        "btn": "Save language"
+      }
+    },
+    {
+      "name": "save_ko_to_ko_no_request_before_enter",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "save_ko_to_ko_lands_on_same_settings_place_in_new_language",
+      "passed": true,
+      "detail": {
+        "lang": "ko",
+        "url": "/home/account?n=language#language",
+        "checked": "ko",
+        "status": [
+          "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
+        ],
+        "h1": "설정",
+        "active": "BODY"
+      }
+    },
+    {
+      "name": "save_ko_to_ko_exactly_one_language_post_so_far",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "save_ko_to_ko_reload_keeps_language",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save_ko_to_ko_other_screen_uses_saved_language",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "observations": {
+    "save_en_ko_status": [
+      "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
+    ],
+    "ownerScreensKo": {
+      "home": {
+        "lang": "ko",
+        "title": "대화 · KnowsLink",
+        "over": 0
+      },
+      "name": {
+        "lang": "ko",
+        "title": "내 이름 · KnowsLink",
+        "over": 0
+      },
+      "conversation": {
+        "lang": "ko",
+        "title": "대화 · KnowsLink",
+        "over": -15
+      },
+      "friends": {
+        "lang": "ko",
+        "title": "친구 · KnowsLink",
+        "over": -15
+      },
+      "agents": {
+        "lang": "ko",
+        "title": "내 에이전트 · KnowsLink",
+        "over": -15
+      },
+      "account": {
+        "lang": "ko",
+        "title": "설정 · KnowsLink",
+        "over": -15
+      },
+      "legacy": {
+        "lang": "ko",
+        "title": "기존 연결 · KnowsLink",
+        "over": -15
+      },
+      "new": {
+        "lang": "ko",
+        "title": "새 대화 · KnowsLink",
+        "over": 0
+      },
+      "receipts": {
+        "lang": "ko",
+        "title": "요청 상태 조회 · KnowsLink",
+        "over": 0
+      },
+      "conn-waiting": {
+        "lang": "ko",
+        "title": "에이전트 연결 · KnowsLink",
+        "over": -15
+      },
+      "conn-prepared": {
+        "lang": "ko",
+        "title": "에이전트 연결 · KnowsLink",
+        "over": -15
+      },
+      "conn-approved": {
+        "lang": "ko",
+        "title": "에이전트 연결 · KnowsLink",
+        "over": -15
+      },
+      "gate": {
+        "lang": "ko",
+        "title": "요청 승인 · KnowsLink",
+        "over": -15
+      },
+      "connect-device": {
+        "lang": "ko",
+        "title": "내 클라이언트 연결 · KnowsLink",
+        "over": 0
+      },
+      "remote": {
+        "lang": "ko",
+        "title": "KnowsLink 원격 연결",
+        "over": 0
+      }
+    },
+    "memberWindow429Waits": 6,
+    "save_en_en_status": [
+      "Language saved. Screens from now on are shown in this language."
+    ],
+    "save_ko_en_status": [
+      "Language saved. Screens from now on are shown in this language."
+    ],
+    "save_ko_ko_status": [
+      "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
+    ]
+  },
+  "captures": [
+    {
+      "file": "chrome-en-ko-account-after-save-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "c2ba3fa0341aa3267142fdff13235cd84b40b76b91e072eeb7e2edb94c384eac"
+    },
+    {
+      "file": "chrome-en-ko-account-after-save-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "9f0865a62d5c4061de7d4763e41dcfb2bb480fdc27d7b64c65c560f7f16aec74"
+    },
+    {
+      "file": "chrome-en-ko-account-after-save-320.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "a040de77ad3b4a26a45c9078010e0b5533b86a2f965fd83f8f1c799b892c6bf5"
+    },
+    {
+      "file": "chrome-en-ko-home-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "799997baae896b0aebcd570e50c90ec17633fea3af18c877de0bc1231ef3c5fb"
+    },
+    {
+      "file": "chrome-en-ko-conversation-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "ec1aa8312c88e83cfc73096cd0172f19ff8f46c4dd32e9deea4b66a8a6e3ce36"
+    },
+    {
+      "file": "chrome-en-ko-conversation-open-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "16c279884b5dd27027b425809e1e7ae38b5d8aa80160dcf4c971440f10880228"
+    },
+    {
+      "file": "chrome-en-ko-friends-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "9de60483db520128bf1a67db6a340203c3973a41e4c570923435fbced6dced6e"
+    },
+    {
+      "file": "chrome-en-ko-agents-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "b4f4f2850a6a8cd549e7e7572cedd36194a35dc76ce394a3d4f2db6b8704d872"
+    },
+    {
+      "file": "chrome-en-ko-agents-open-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "8eaa20451c405b34aa1f77f76404d49cdf64d179b6b2f1f525874e87fdf018ad"
+    },
+    {
+      "file": "chrome-en-ko-legacy-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "404b1dc475d46ed0aa135835e99d7d3acbcd81ca71d90ddf7ac82619ff0e356c"
+    },
+    {
+      "file": "chrome-en-ko-legacy-open-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "516c339992ca5ee8fe60f01f520e58910524585de7194f49af716cc59f42c6d9"
+    },
+    {
+      "file": "chrome-en-ko-conn-waiting-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "c5585183929447879632bf58cbb38973b850f784a5899276201e1220da76b231"
+    },
+    {
+      "file": "chrome-en-ko-conn-waiting-open-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "a97d24a9ade5a103688acc2ef6c61954c3cc52f7fe556046150439d038a0cedc"
+    },
+    {
+      "file": "chrome-en-ko-conn-prepared-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "f99278e38a0dadb413457a0b9a26aaa3426e9a11f2aa88233806a37c963a15c1"
+    },
+    {
+      "file": "chrome-en-ko-conn-prepared-open-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "fe9d3602183d770b5aa4badf9e39cce0e5d24596441991ecd5218425711e85e8"
+    },
+    {
+      "file": "chrome-en-ko-conn-approved-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "d52146d81e997ea75865dea542e114b770887ccf2fd9f76d7b22b3f8a4447491"
+    },
+    {
+      "file": "chrome-en-ko-conn-approved-open-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "53650979467d2793e0b02ad9f58f83decbe3273cbd25ca24495a67e36a079dbb"
+    },
+    {
+      "file": "chrome-en-ko-gate-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "b11ef376e69bca21285b18b9c210be67a2500c3170681f19e98de54b5586a9c9"
+    },
+    {
+      "file": "chrome-en-ko-gate-open-1440-ownerko.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "429934251d3b27021e1e23c9c05ea98f75dc7c2fed9f8b90b13adcf581f2c790"
+    },
+    {
+      "file": "chrome-en-ko-home-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "c34c8cb908a7699f32dfaafde9eb2adcf062ff927c791869017580b36b5ff5c0"
+    },
+    {
+      "file": "chrome-en-ko-conversation-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "e4fd504b2d736cc37e23eedbae6724b55322fa29a10faad2615199670e5cc0f7"
+    },
+    {
+      "file": "chrome-en-ko-conversation-open-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "5685052ba18508ab6f9564d0d8c12394ba9a511c8baf96ac1241d8fd61e82173"
+    },
+    {
+      "file": "chrome-en-ko-friends-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "e561484ef4a8a4373415b5f4480424c15cec435d0ec28a3249c334f721d02b1f"
+    },
+    {
+      "file": "chrome-en-ko-agents-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "a92bd6571d89ac3dd421eb67975c8808c9c3f3b4bf73a136f23c3e5b00a4ce34"
+    },
+    {
+      "file": "chrome-en-ko-agents-open-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "67bf7bd7dc0e7ecf25f9f1af78014d59771cc226104c919a80d6dfc9131ab00a"
+    },
+    {
+      "file": "chrome-en-ko-legacy-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "5d0f25f159c6d540bd7a6394b8513389ef4c2e3b2642f96f2fdbe4d3d9ef30f3"
+    },
+    {
+      "file": "chrome-en-ko-legacy-open-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "434d1665ff8579824c05e896da644a7f20a5cff51f459df8e7354d044f2f52d6"
+    },
+    {
+      "file": "chrome-en-ko-conn-waiting-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "8a4944a069b199f4d1fae02a9b6aedb04df968aac77d9ae29a4782050bbc5be9"
+    },
+    {
+      "file": "chrome-en-ko-conn-waiting-open-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "e4664507f23c506c095a56d86ac2d20800e7351d3fb1e119bd2fd4dd3ffac5d9"
+    },
+    {
+      "file": "chrome-en-ko-conn-prepared-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "89c2679446de4d6322074d1e0ea4088c730cdf17d335cb97a55c4f9d6e841f01"
+    },
+    {
+      "file": "chrome-en-ko-conn-prepared-open-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "334d0ece0827831391d7f9a8d22fac3461a1ef47577d196528321d1134abd29d"
+    },
+    {
+      "file": "chrome-en-ko-conn-approved-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "bd6b15018d6a10f1d160e95dbfe9b8e58980cabfaedfa03c2e6338d45368e2c9"
+    },
+    {
+      "file": "chrome-en-ko-conn-approved-open-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "9d34e237ba1f03c554d433ec8e3b014b39e21ac7fa1ac0cc4c8512522651929c"
+    },
+    {
+      "file": "chrome-en-ko-gate-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "b9e697f4e9764a8c1ff4c766134b7974ce7684e54695fd43e329b5d556aa2edc"
+    },
+    {
+      "file": "chrome-en-ko-gate-open-390-ownerko.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "a68adcf10d0d77839b06159e664233e9fc1e0480bfdc53bb90d7c25cf9ee9cb0"
+    },
+    {
+      "file": "chrome-en-ko-home-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "6f653c2343d1ba2421378d97e668dc97ae547d7b829d720882fd9e0532a24467"
+    },
+    {
+      "file": "chrome-en-ko-conversation-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "b8115cdbe1bb84549923ddd747f0921d34d39571f5cc2660434afd0812e53e27"
+    },
+    {
+      "file": "chrome-en-ko-conversation-open-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "ad67dede1b7f691f18328cec5c7be3f9eff6829295e003da6301ec2dbf914495"
+    },
+    {
+      "file": "chrome-en-ko-friends-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "6304e8c618a0bee5532f078a3a3c8ce58d7dabcf83fed9fa487fd9f02dd5cfab"
+    },
+    {
+      "file": "chrome-en-ko-agents-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "35a9d4f5306f49c2c0c449f79f049176144e3c842dc9744e78aad21c59a99217"
+    },
+    {
+      "file": "chrome-en-ko-agents-open-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "7cc73deb3c30785a59b1aa58b1edbeca87224d08e9b0c3b7b7c85910e743fec4"
+    },
+    {
+      "file": "chrome-en-ko-legacy-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "fcbbd55ccfdf165bb286e4c60e9cda202dd267c8e81ce21a31c52210b59c4de0"
+    },
+    {
+      "file": "chrome-en-ko-legacy-open-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "bf6dba81170de0178a77d5cbc6df69800c5e3c8320b4085ced3e37c6e0fc1a57"
+    },
+    {
+      "file": "chrome-en-ko-conn-waiting-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "1d1c19047f8f40469acd33171edaad45eee74ab1f595f996ce9a47f2bbe86d75"
+    },
+    {
+      "file": "chrome-en-ko-conn-waiting-open-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "79c7150e978b5dc7dd6c06dc9978fa7c49dab58962f7f33d66de493db73880d2"
+    },
+    {
+      "file": "chrome-en-ko-conn-prepared-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "2e00b35c0888b03609c170656b3209e74f2c96b9bfb72edc5373dbd0131b0996"
+    },
+    {
+      "file": "chrome-en-ko-conn-prepared-open-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "1229200a4d21f14256b3f6a28ee76f2dca0e9c284f8106f5bd76da9de9270f43"
+    },
+    {
+      "file": "chrome-en-ko-conn-approved-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "afab84f22534c8c4a177314ba7c4e9c8890c3afc2f9674552715b29ba302ed56"
+    },
+    {
+      "file": "chrome-en-ko-conn-approved-open-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "cb1e39ebd40a42a523ec22b7a4980cb72fcccab79820087a3d744c7c4a9c9a49"
+    },
+    {
+      "file": "chrome-en-ko-gate-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "3ea68c918e5761cad0a69c1cb152b88223fd8e0ea9ea2d88dae4e9ff09d14424"
+    },
+    {
+      "file": "chrome-en-ko-gate-open-320-ownerko.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "a65af054577ec5a637956e7c8d014e02e45dbbbfe2ecf9728f270a083bef9294"
+    },
+    {
+      "file": "chrome-en-en-account-after-save-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "f525f48e42bc901ff9df04d4aa750ba793bbc3ba21e6c917723b17d79ff54af4"
+    },
+    {
+      "file": "chrome-en-en-account-after-save-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "8fc512d486e9d2f2beb3a3e4869abe1e16b146f553792e2bdd2e9a9206ae4173"
+    },
+    {
+      "file": "chrome-en-en-account-after-save-320.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "23b57bdf7eb3fa2ba3474f12efaa9751f326a9249d15be10d616634a44cab24f"
+    },
+    {
+      "file": "chrome-ko-en-account-after-save-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "f2a27b25cf2b0ac14f669547a3844724a298763e0a9c74ae1ddd4bfcd9da79ac"
+    },
+    {
+      "file": "chrome-ko-en-account-after-save-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "effa2d95ffcd50daf93c059148abbcf29b432ce00d046b9423ef0f79e7af6a84"
+    },
+    {
+      "file": "chrome-ko-en-account-after-save-320.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "12f79fc852afda7bc5e2ea8794166f738f3de912d849cd233960bb4fa3e9392f"
+    },
+    {
+      "file": "chrome-ko-ko-account-after-save-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "0eefb07bb1c913ee70781d117f8e951feac876ea6f67b46b6bd9534bd070ca3a"
+    },
+    {
+      "file": "chrome-ko-ko-account-after-save-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "3550491e7a067e1b5f35a991c80a911ae585afc37af481d643f6110a08aab258"
+    },
+    {
+      "file": "chrome-ko-ko-account-after-save-320.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "8b6d4f1e2ddfec3ac979ff0fa37d756e1d816e246b7f98f37285cd0ea9a3bde6"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "POST",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/language"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/name"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/conversation?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/legacy"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/new"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/receipts"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/KcVFf_Q58k9zPzwGzye-R54mmWQpQXsS0zbL7tcczCk"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/-J9YArRgA07SaY8W7WJ9RkTieWu87Cj4WmUJvhO8r6k"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/lzmptKLk10nP3zuoGOx3fcj-0qL_GRDDqsZE3pAPk6w"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-00000000f002"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/connect/jnRWR-DegEoOalGfLvpf_DugaLcd9yNEFpmuTyR-PDw"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/conversation?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/legacy"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/KcVFf_Q58k9zPzwGzye-R54mmWQpQXsS0zbL7tcczCk"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/-J9YArRgA07SaY8W7WJ9RkTieWu87Cj4WmUJvhO8r6k"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/lzmptKLk10nP3zuoGOx3fcj-0qL_GRDDqsZE3pAPk6w"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-00000000f002"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/conversation?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/legacy"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/KcVFf_Q58k9zPzwGzye-R54mmWQpQXsS0zbL7tcczCk"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/-J9YArRgA07SaY8W7WJ9RkTieWu87Cj4WmUJvhO8r6k"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/lzmptKLk10nP3zuoGOx3fcj-0qL_GRDDqsZE3pAPk6w"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-00000000f002"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/conversation?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/legacy"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/KcVFf_Q58k9zPzwGzye-R54mmWQpQXsS0zbL7tcczCk"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/-J9YArRgA07SaY8W7WJ9RkTieWu87Cj4WmUJvhO8r6k"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/connections/lzmptKLk10nP3zuoGOx3fcj-0qL_GRDDqsZE3pAPk6w"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/gates/0199a3f2-4c10-7a11-8b22-00000000f002"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "POST",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/language"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "POST",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/language"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "POST",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/language"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    }
+  ]
+}

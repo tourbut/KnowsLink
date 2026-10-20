@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-LANG-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.45,
+        "ops": 0.01,
+        "tester": 0.54
+      },
+      "confidence": 0.31
+    },
+    "docs": {
+      "D01": 0.13,
+      "D02": 0.11,
+      "D03": 0.1,
+      "D04": 0.11,
+      "D05": 0.1,
+      "D06": 0.12,
+      "D07": 0.08,
+      "D08": 0.18,
+      "D09": 0.12,
+      "D10": 0.43,
+      "D11": 0.25,
+      "D12": 0.34,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2474,
+    "output_tokens": 314,
+    "cost": 0.000103908
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.686,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "독립 동작 재확인은 tester 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "1a98e8a1c6aa4052235ae175837406916a2dc1ae",
+  "requires_packet": true,
+  "attempt": "a59427218e9045169be0b418572ba44f",
+  "instruction_sha256": "33cd03e5f476dca322e7663cbdea03cfb74fb651bffc9d047be333fa7ec22ea1",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "f668323de08ca166841d47d113c458f54cc6722dad6972315a9dc9c3aa62db79"
+}

@@ -1,0 +1,197 @@
+{
+  "browser": "Chrome/155.0.8059.85",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18933",
+  "stage": "langflow",
+  "acct": "en",
+  "checks": [
+    {
+      "name": "flow_public_default_is_korean",
+      "passed": true,
+      "detail": "ko"
+    },
+    {
+      "name": "flow_public_english_link_is_a_tab_stop_with_name_English",
+      "passed": true,
+      "detail": {
+        "key": "A||/lang/en?back=%2f|English",
+        "tag": "A",
+        "id": "",
+        "type": "",
+        "text": "English",
+        "fv": true,
+        "outline": "solid 3px",
+        "shadow": false,
+        "h": 44,
+        "inx": true,
+        "skip": false,
+        "axName": "English",
+        "axRole": "link"
+      }
+    },
+    {
+      "name": "flow_public_korean_link_is_a_tab_stop_before_english",
+      "passed": true,
+      "detail": [
+        6,
+        7
+      ]
+    },
+    {
+      "name": "flow_public_focus_is_on_english_link",
+      "passed": false,
+      "detail": "본문으로 건너뛰기"
+    },
+    {
+      "name": "flow_public_enter_on_english_switches_page_to_english",
+      "passed": false,
+      "detail": {
+        "L1": "ko",
+        "url": "http://127.0.0.1:18933/#main"
+      }
+    },
+    {
+      "name": "flow_cookie_kl_lang_en_secure_httponly_strict_365d",
+      "passed": false,
+      "detail": []
+    },
+    {
+      "name": "flow_public_english_has_current_marker_on_english_and_no_hangul_besides_language_name",
+      "passed": false,
+      "detail": "see innerText"
+    },
+    {
+      "name": "flow_public_reload_keeps_english",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "flow_cookie_en_applies_to_connect",
+      "passed": false,
+      "detail": "/connect/ZWDClliDQIldJ6wJnpn1QuLEsgXwZJdfIu1J_kUAyjI"
+    },
+    {
+      "name": "flow_cookie_en_applies_to_remote",
+      "passed": false,
+      "detail": "/remote/consent/fixture-attempt"
+    },
+    {
+      "name": "flow_cookie_en_applies_to_auth",
+      "passed": false,
+      "detail": "/auth/verify"
+    },
+    {
+      "name": "flow_remote_consent_ko_link_returns_to_same_screen_in_korean",
+      "passed": true,
+      "detail": "http://127.0.0.1:18933/remote/consent/fixture-attempt?lang=ko"
+    },
+    {
+      "name": "flow_none_with_en_cookie_settings_in_english_radio_en_checked",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "flow_none_without_cookie_korean_so_cookie_choice_was_not_saved_to_account",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "flow_query_lang_en_without_cookie_applies_one_response_with_notice",
+      "passed": true,
+      "detail": "Skip to content\nKnowsLink\nHow to start\nInstall and connect\nConversation examples\nCheck sign-in status\n한국어\n/\nEnglish\n\nThis browser did not keep the language choice. It applies to this page only. Check "
+    },
+    {
+      "name": "flow_query_lang_notice_is_status_role",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "flow_no_post_requests_made_by_language_links",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "observations": {
+    "publicStops": [
+      "A:본문으로 건너뛰기|본문으로 건너뛰기",
+      "A:KnowsLink|KnowsLink",
+      "A:시작 순서|시작 순서",
+      "A:설치와 연결|설치와 연결",
+      "A:대화 예시|대화 예시",
+      "A:로그인 상태 확인|로그인 상태 확인",
+      "A:한국어|한국어",
+      "A:English|English",
+      "A:로그인 상태 확인|로그인 상태 확인",
+      "A:시작 순서 보기|시작 순서 보기",
+      "A:설치와 연결 방법|설치와 연결 방법",
+      "SUMMARY:Grok에 연결하기Bot 컴퓨터에 설치하고 Co|▸ Grok에 연결하기 Bot 컴퓨터에 설치하고 Command MCP로 연결합니다."
+    ],
+    "nonGetRequestsInFlow": 0
+  },
+  "captures": [
+    {
+      "file": "chrome-anon-en-public-query-notice-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "616a3149e15e6b643b79293fa8595927e96f2c5c1f5da7e06173994bb797e07a"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/connect/ZWDClliDQIldJ6wJnpn1QuLEsgXwZJdfIu1J_kUAyjI"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/auth/verify"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/lang/ko?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/?…"
+    }
+  ]
+}

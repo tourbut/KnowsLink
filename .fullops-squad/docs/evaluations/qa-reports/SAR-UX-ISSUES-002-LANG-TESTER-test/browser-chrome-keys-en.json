@@ -1,0 +1,209 @@
+{
+  "browser": "Chrome/155.0.8059.85",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18933",
+  "stage": "keys",
+  "acct": "en",
+  "checks": [
+    {
+      "name": "keys_en_settings_first_stop_is_skip_link",
+      "passed": true,
+      "detail": {
+        "key": "A||#main|Skip to content",
+        "tag": "A",
+        "id": "",
+        "type": "",
+        "text": "Skip to content",
+        "fv": true,
+        "outline": "solid 3px",
+        "shadow": false,
+        "h": 44,
+        "inx": true,
+        "skip": true,
+        "axName": "Skip to content",
+        "axRole": "link"
+      }
+    },
+    {
+      "name": "keys_en_settings_all_stops_have_visible_focus_inside_viewport",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "keys_en_settings_all_stops_at_least_44px_except_skip",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "keys_en_settings_no_keyboard_trap_one_cycle",
+      "passed": true,
+      "detail": 18
+    },
+    {
+      "name": "keys_en_settings_tab_order_follows_reading_order",
+      "passed": true,
+      "detail": {
+        "missing": [],
+        "names": [
+          "Skip to content",
+          "KnowsLink",
+          "Settings",
+          "Conversations",
+          "Friends",
+          "My agents",
+          "Service guide",
+          "My name",
+          "Save name",
+          "My friend code",
+          "Friend code (replace)",
+          "English",
+          "Save language",
+          "Confirm sign-in again",
+          "Sign out of this browser",
+          "Sign out of all browsers",
+          "Legacy connections"
+        ]
+      }
+    },
+    {
+      "name": "keys_en_settings_no_stop_has_decorative_glyph_in_accessible_name",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "keys_en_settings_summary_stops_present_and_named",
+      "passed": true,
+      "detail": [
+        "Friend code (replace)"
+      ]
+    },
+    {
+      "name": "keys_en_settings_radiogroup_is_one_tab_stop_on_checked_radio",
+      "passed": true,
+      "detail": [
+        "INPUT|||en"
+      ]
+    },
+    {
+      "name": "keys_en_settings_radio_accessible_name_is_language_name",
+      "passed": true,
+      "detail": {
+        "key": "INPUT|||en",
+        "tag": "INPUT",
+        "id": "",
+        "type": "radio",
+        "text": "en",
+        "fv": true,
+        "outline": "solid 3px",
+        "shadow": false,
+        "h": 44,
+        "inx": true,
+        "skip": false,
+        "axName": "English",
+        "axRole": "radio"
+      }
+    },
+    {
+      "name": "keys_en_settings_arrow_moves_selection_to_other_language",
+      "passed": true,
+      "detail": {
+        "startVal": "en",
+        "afterDown": {
+          "v": "ko",
+          "focus": "ko",
+          "url": "http://127.0.0.1:18933/home/account"
+        }
+      }
+    },
+    {
+      "name": "keys_en_settings_arrow_back_restores_original_selection",
+      "passed": true,
+      "detail": {
+        "startVal": "en",
+        "afterUp": "en"
+      }
+    },
+    {
+      "name": "keys_en_settings_choosing_by_keyboard_submits_nothing_no_navigation",
+      "passed": true,
+      "detail": {
+        "posts": [],
+        "path": "/home/account"
+      }
+    },
+    {
+      "name": "keys_en_settings_space_on_other_radio_submits_nothing",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "keys_en_settings_reload_discards_unsaved_choice_saved_value_shown",
+      "passed": true,
+      "detail": "en"
+    },
+    {
+      "name": "keys_en_settings_skip_link_moves_to_main",
+      "passed": true,
+      "detail": "#main"
+    },
+    {
+      "name": "keys_en_friends_third_tab_stop_is_header_settings_link",
+      "passed": true,
+      "detail": {
+        "t": "Settings",
+        "h": "/home/account"
+      }
+    },
+    {
+      "name": "keys_en_header_settings_link_opens_settings",
+      "passed": true,
+      "detail": "/home/account"
+    }
+  ],
+  "observations": {
+    "settingsStops": [
+      "A::Skip to content|link:Skip to content",
+      "A::KnowsLink|link:KnowsLink",
+      "A::Settings|link:Settings",
+      "A::Conversations|link:Conversations",
+      "A::Friends|link:Friends",
+      "A::My agents|link:My agents",
+      "A::Service guide|link:Service guide",
+      "INPUT:text:Synthetic member EN|textbox:My name",
+      "BUTTON:submit:Save name|button:Save name",
+      "TEXTAREA:textarea:fixture-code-en-nE8y5Dui|textbox:My friend code",
+      "SUMMARY::Friend code (replace)|DisclosureTriangle:Friend code (replace)",
+      "INPUT:radio:en|radio:English",
+      "BUTTON:submit:Save language|button:Save language",
+      "BUTTON:submit:Confirm sign-in again|button:Confirm sign-in again",
+      "BUTTON:submit:Sign out of this browser|button:Sign out of this browser",
+      "BUTTON:submit:Sign out of all browsers|button:Sign out of all browsers",
+      "A::Legacy connections|link:Legacy connections",
+      "WRAP"
+    ],
+    "summaryNameHasDecorativeGlyph": false
+  },
+  "captures": [],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    }
+  ]
+}
