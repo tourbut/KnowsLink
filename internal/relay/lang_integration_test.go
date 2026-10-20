@@ -68,7 +68,7 @@ func TestLanguagePreferencePostgres(t *testing.T) {
 
 	// Save English: the same settings place comes back in English with a status notice and the choice checked.
 	expect(t, a.do("POST", "/home/language", url.Values{"lang": {"en"}}), 303, "/home/account?n=language#language")
-	w = a.do("GET", "/home/account", nil)
+	w = a.do("GET", "/home/account?n=language", nil)
 	expect(t, w, 200, `value="en" checked`, `role="status"`, `id="language"`)
 	english(w.Body.String())
 	if w.Header().Get("Content-Language") != "en" || locale(idA) != "en" || a.cookies[langCookie] != "" {
