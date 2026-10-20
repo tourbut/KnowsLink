@@ -176,5 +176,13 @@ D02(SAR-SCHEDULE-001).
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
+
+- 브랜치 / SHA: fullops/designer / 최종 SHA는 worker_done에 고정한다(기준 96bf670 위).
+- 변경 이유: 사용자 결정 D009·D010을 SAR-SCHEDULE-001.md에 기록하고 DEV 인계 기준을 확정했다.
+- 변경: SAR-SCHEDULE-001.md(status approved, 결정 기록 절, SD-01–06 확정 표시, 확정 수치, 확정 제품 규칙, DEV 인계 기준, D011 운영 영향), 결정 근거 report 절, D02 인덱스 한 줄, packet-outcomes.
+- 검토 필요: D011(OAuth 앱 게시·`calendar.freebusy` 심사)이 열려 있다. 운영 연결·실계정 확인 전에 coor가 사용자에게 다시 묻는다.
+- 검증: 문서 lint(lint.py)를 실행했다. 제품 코드·동작 변경이 없어 새 동작 테스트는 없다(lite). 실제 Google 계정 확인은 하지 않았다.
+- 의존성: 변경 없음(문서만 수정).
+- 남은 일: DEV 기술 계획·구현, D011 확인, SC-09 실계정 1경로 수락.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
