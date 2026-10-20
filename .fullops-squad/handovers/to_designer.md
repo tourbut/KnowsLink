@@ -181,3 +181,19 @@ SAR-SCHEDULE-001.md, 결정 근거 report, 완료 보고(결정 질문 목록 �
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 — 2026-10-20
+
+- 브랜치 / 문서 SHA: `fullops/designer` / `780bbbd`(정본·보고), 최종 SHA는 finish 커밋이며 worker_done에 적는다.
+- 변경: [SAR-SCHEDULE-001](../docs/planning/product-specs/SAR-SCHEDULE-001.md) D02 초안(SD-01–06 결정표, 수치 제안, 추천안 기준 흐름·문구·실패/철회·기록·SC-01–09·범위 밖). [결정 근거](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-DESIGN/report.md)(외부 API E1–E10 출처, 미확인 6건, 선택지 비교). D01·D02 인덱스(business-plan, deliverables README, SAR-MVP DEC-02 문단)에 연결 한 줄씩 추가.
+- 외부 근거: Context7 monthly quota 초과. 하위 research 에이전트 1개가 Google·Microsoft·Apple 공식 문서를 WebFetch로 확인했다. `calendar.freebusy`의 sensitive 여부와 현재 OAuth 앱 게시 상태는 미확인이며 Cloud Console 확인이 필요하다.
+- 검증: FullOps lint `--from d0fe090` head 780bbbd ERROR 0 / WARNING 0 / 실행 불가 1. product-lint는 Windows에 make가 없어 unavailable, product-test skipped. 제품 코드 변경 없음(`.fullops-squad` 밖 diff 0). 새 동작 테스트 없음(문서 과제).
+- 사용자 결정 질문(첫 선택지가 추천):
+  1. SD-01 대상 캘린더: A Google만 / B +Outlook / C +Outlook+iCloud.
+  2. SD-02 조회 실행 위치: A KnowsLink 서버가 토큰 보관·조회 / B 받는 사람 agent의 자체 도구.
+  3. SD-03 기능: A 빈 시간 조회만 / B +승인 뒤 내 캘린더에 생성 / C +상대 초대 발송.
+  4. SD-04 공개: A 바쁨 구간 단위 반올림 / B 가능한 시간 후보 3개 / C 바쁨+제목.
+  5. SD-05 승인 관계: A 매 요청 승인=그 요청 1회 조회·1회 공개 / B 친구별 사전 허용 시 자동 / C 친구 수락만으로 자동(비추천).
+  6. SD-06 연결: A 내 계정 '캘린더 연결' 별도 증분 동의·같은 화면 해제 / B 로그인 때 함께 / C 다른 Google 계정 허용.
+  7. 수치 제안 승인: 기간 최대 14일, 단위 15/30/60분(기본 30), 친구당 24시간 5회.
+- 남은 일: 사용자 결정 기록 뒤 designer가 정본 확정·DEV 인계. coor/ops가 Cloud Console에서 scope 분류·앱 게시 상태 확인. 결정 전 DEV 인계·실조회 없음.
