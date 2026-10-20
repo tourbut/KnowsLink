@@ -1,0 +1,15 @@
+PASS after-agents-a-five-cards 
+FAIL after-new-connection-page-facts-and-waiting-step-1 {"title":"내 에이전트 · KnowsLink","h1":1,"main":true,"skip":true,"lang":"ko","cur":["page:내 에이전트"]}
+FAIL after-new-connection-page-return-link-targets-new-card "agent_31f2e8a229c525e2462757"
+PASS layout-1440-conn-new-a 
+PASS layout-390-conn-new-a 
+PASS layout-320-conn-new-a 
+file:///C:/Users/shin/orca/workspaces/KnowsLink/tester/.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/browser.mjs:29
+const js = async expr => { const r = await send('Runtime.evaluate', {expression: expr, returnByValue: true, awaitPromise: true}); if (r.exceptionDetails) throw new Error('eval failed: ' + expr.slice(0, 100) + ' :: ' + JSON.stringify(r.exceptionDetails.exception?.description || '').slice(0, 200)); return r.result.value; };
+                                                                                                                                                                ^
+
+Error: eval failed: [...document.querySelectorAll('a')].find(a=>/내 에이전트로 돌아가기/.test(a.textContent)).focus() :: "TypeError: Cannot read properties of undefined (reading 'focus')\n    at <anonymous>:1:80"
+    at js (file:///C:/Users/shin/orca/workspaces/KnowsLink/tester/.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/browser.mjs:29:161)
+    at async file:///C:/Users/shin/orca/workspaces/KnowsLink/tester/.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/browser.mjs:207:5
+
+Node.js v24.13.0
