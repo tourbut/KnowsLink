@@ -45,15 +45,15 @@ SAR-UX-ISSUES-002.md U3·U7, D04, 공개 첫페이지 정본(D04의 SAR-LANDING-
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 짧은 기술 계획(완료 보고에 기록): 문구 관리 구조, 회원 선호 저장 필드, 비로그인 선호 쿠키(이름·속성·수명), 요청별 언어 결정 순서, 누락 번역 감지 방법.
-- [ ] 설정 화면: '내 계정'을 '설정'으로(헤더·제목·복귀 링크), 순서 '내 이름'·'내 친구 코드'·'언어'·'로그인과 보안', '한국어 / English'와 '언어 저장 / Save language', 저장 성공·실패 표시(정본 규칙).
-- [ ] 언어 결정 우선순위 표 그대로: 회원 저장값 → 비로그인 명시 선호 → 한국어, 계정 교대 시 이전 계정 선호 미복사, 손상 locale은 한국어 fallback. 첫 로그인 시 비로그인 선호는 화면 적용만 하고 저장은 명시 저장으로 확정.
-- [ ] 비로그인 진입: 공개 페이지·로그인·동의 화면에 작은 '한국어 / English' 링크. 공개 페이지 정보 구조·설치 사실 불변. 쿠키 저장이 막히면 현재 응답만 적용하고 한계 안내.
-- [ ] 번역 범위의 모든 지정 화면(공개/로그인/이름/대화/친구/내 에이전트/설정/legacy/receipt/승인/local 연결/remote 동의·복귀)의 제목·메뉴·라벨·상태·빈 상태·오류·검증·접근성 이름·도움말 영어판. HTML lang 일치, 시각은 KST(UTC+09:00) 유지, 기한·정렬·timestamp 불변.
-- [ ] 누락 번역은 한국어 안전 fallback이며 내부 키·빈 버튼 미표시. 지정 화면의 누락이 0임을 자동 검사로 보인다.
-- [ ] U3-A 핵심 실패 경계 자동 검사: 저장·실패·새로고침·재로그인·계정 교대·익명 저장 차단·잘못된 locale, 언어 전환이 친구 요청·발송·승인을 실행하거나 입력을 잃지 않음, 원문/ID/서명값 불변, 같은 시각. 문구 복제 테스트는 쓰지 않는다.
-- [ ] tester/designer용 격리 fixture(두 언어 회원, 비로그인, 각 지정 화면에 닿는 합성 상태) 준비·실제 기동 확인.
-- [ ] 영향받는 D05/D10/D11/D13 갱신, 원격 Linux make lint/test/integration, FullOps lint.py --from 1315448, packet-outcomes, 완료 보고, work.py finish, 커밋, worker_done.
+- [x] 짧은 기술 계획(완료 보고에 기록): 문구 관리 구조, 회원 선호 저장 필드, 비로그인 선호 쿠키(이름·속성·수명), 요청별 언어 결정 순서, 누락 번역 감지 방법.
+- [x] 설정 화면: '내 계정'을 '설정'으로(헤더·제목·복귀 링크), 순서 '내 이름'·'내 친구 코드'·'언어'·'로그인과 보안', '한국어 / English'와 '언어 저장 / Save language', 저장 성공·실패 표시(정본 규칙).
+- [x] 언어 결정 우선순위 표 그대로: 회원 저장값 → 비로그인 명시 선호 → 한국어, 계정 교대 시 이전 계정 선호 미복사, 손상 locale은 한국어 fallback. 첫 로그인 시 비로그인 선호는 화면 적용만 하고 저장은 명시 저장으로 확정.
+- [x] 비로그인 진입: 공개 페이지·로그인·동의 화면에 작은 '한국어 / English' 링크. 공개 페이지 정보 구조·설치 사실 불변. 쿠키 저장이 막히면 현재 응답만 적용하고 한계 안내.
+- [x] 번역 범위의 모든 지정 화면(공개/로그인/이름/대화/친구/내 에이전트/설정/legacy/receipt/승인/local 연결/remote 동의·복귀)의 제목·메뉴·라벨·상태·빈 상태·오류·검증·접근성 이름·도움말 영어판. HTML lang 일치, 시각은 KST(UTC+09:00) 유지, 기한·정렬·timestamp 불변.
+- [x] 누락 번역은 한국어 안전 fallback이며 내부 키·빈 버튼 미표시. 지정 화면의 누락이 0임을 자동 검사로 보인다.
+- [x] U3-A 핵심 실패 경계 자동 검사: 저장·실패·새로고침·재로그인·계정 교대·익명 저장 차단·잘못된 locale, 언어 전환이 친구 요청·발송·승인을 실행하거나 입력을 잃지 않음, 원문/ID/서명값 불변, 같은 시각. 문구 복제 테스트는 쓰지 않는다.
+- [x] tester/designer용 격리 fixture(두 언어 회원, 비로그인, 각 지정 화면에 닿는 합성 상태) 준비·실제 기동 확인.
+- [x] 영향받는 D05/D10/D11/D13 갱신, 원격 Linux make lint/test/integration, FullOps lint.py --from 1315448, packet-outcomes, 완료 보고, work.py finish, 커밋, worker_done.
 
 소유 파일: `internal/relay/` 템플릿·화면 handler·identity/세션 선호·문구 관리와 테스트·fixture, 기술 문서, own 기록·DEV 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/`). 예상 규모가 크다(전 템플릿). SIZE 경고는 분할하지 않은 이유와 함께 보고한다.
 
@@ -187,6 +187,48 @@ D10, D13(route 추천)과 실제 변경에 따라 D05·D11. D02/D04 제품 정�
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+### 결과 요약
+
+- 브랜치 `fullops/dev`. 제품 후보 `2ff9e44a38b2cc6cc5543617c74f5f94f74f37e9`(첫 구현 `9028971`, 주석 `824b4dd`, 번역표 gofmt `2ff9e44`). 이후 `db94002`·`326b82c`·`cc016b5`는 `lang_integration_test.go`만 바꿨고 그 뒤 커밋은 보고·기록뿐이다. 최종 HEAD는 worker_done에 적는다.
+- 기준 `1315448`. DB migration·공개 API·권한·의존성 변경 없음(`go.mod`·`package.json` 미변경, 표준 라이브러리·기존 html/template만; DEP-001 없음). 승인된 범위 안에서 상태 JSON 필드 `Member.Locale`(생략 가능)과 쿠키 `__Host-kl_lang` 하나를 추가했다. 새 경로 `GET /lang/{code}`·`POST /home/language`는 회원 웹 화면의 내부 경로이며 공개 API가 아니다.
+
+### 짧은 기술 계획 (실행함)
+
+1. 문구 관리: 한국어 원문이 키. `i18n.go`가 템플릿 소스를 구간(태그 사이 본문·속성값, 제어 action 분리, 값 action 포함)으로 나눠 영어 표로 치환한 집합 `memberPagesEN`을 하나 더 파싱한다. 핸들러 문구는 `render`(Title·Problem·Notice)와 템플릿 `tr`·`name`·`badge` 함수가 `tr(lang, 원문)`으로, 합성 문구는 `%s`/`%v` 패턴 키로 처리한다. 표는 `i18n_en_member.go`·`i18n_en_human.go`(파일 소유 분리, 하위 에이전트 2개 구현, 부모가 검사로 취합).
+2. 회원 선호 저장 필드: `Member.Locale`.
+3. 비로그인 선호 쿠키: `__Host-kl_lang`, Secure·HttpOnly·SameSite=Strict·Path=/, 365일, `/lang/{code}?back=<내부 경로>`.
+4. 요청별 언어 결정: 회원 저장값 → 쿠키 → 한 응답용 `?lang=` → 한국어(`pageLang`). `browserLang` 미들웨어가 `Content-Language`에 기록하고 `memberHit`가 회원 값으로 바꾼다. 손상 값은 다음 출처로 넘어간다. 쿠키가 막히면 `?lang=`으로 그 응답만 적용하고 안내한다.
+5. 누락 번역 감지: 템플릿 구간 커버리지·Go 리터럴 커버리지·지정 화면 영어 렌더 한글 0·합성 문구 패턴의 네 자동 검사. 누락은 한국어 원문 fallback이며 내부 키·빈 버튼 없음.
+
+### 변경 이유와 지시와 달라진 판단
+
+- 배지 라벨은 공용 표 대신 `badges`의 영어 열로 둔다. 같은 한국어 단어가 버튼(‘거절’=Decline)과 상태(‘거절’=Denied)로 갈려 표 하나로는 충돌했다.
+- README 앵커의 한글 fragment는 영어 값에 한글을 둘 수 없어 percent-encoding했다(같은 대상). designer/tester가 링크 클릭을 한 번 확인하면 좋다.
+- 공용 admission의 429/503 거부 화면은 회원 조회 전이라 브라우저 쿠키 언어를 따른다(회원 저장값 미적용). 알려진 한계로 보고에 적었다.
+- 확인 메일·`/owner` 작업 화면·JSON API·README는 번역 범위 밖이라 그대로다.
+- SIZE 경고: 추가 약 1900줄(번역표 2파일 약 700줄과 검사·fixture 포함). 지시서가 전 템플릿 규모를 예고했고, 표는 키 하나당 한 줄이라 분할해도 줄 수가 줄지 않아 분할하지 않았다. `human_http.go`·`member.go`·`remote_auth.go`는 각각 언어 저장·render·세션 헤더 몇 줄만 늘었다.
+
+### 검증한 것
+
+- 원격 Linux 격리 clone: `make lint`·`make test` EXIT=0(db94002), integration 전체(`-race`, `-skip TestRemoteConsentBrowserReturn`) 116 PASS·실패는 새 `TestLanguagePreferencePostgres` 1건뿐이었고 테스트 자체 결함(조회 query 누락·메일 60초 간격·markup 순서 기대)을 고친 뒤 `cc016b5`에서 PASS. 제품 코드는 `2ff9e44` 이후 변경 없음. `824b4dd`의 `make lint` EXIT=2(번역표 gofmt, Windows PATH의 옛 gofmt가 놓침)는 toolchain gofmt로 고쳤다.
+- U3-A: 저장·실패·새로고침·재로그인·다른 브라우저·계정 교대·익명 저장 차단·잘못된 locale·손상 locale fallback·언어 전환이 다른 상태(친구·에이전트·승인·메시지·연결·pair)를 바꾸지 않음·같은 기한 문자열·`lang`·접근성 이름(aria-current)·쿠키 없는 `?lang=` 한 응답 안내를 Postgres 통합 검사로, 우선순위 표 10조합·`safeBack`·쿠키 속성·humanClock 동일 시각을 단위 검사로 확인했다.
+- 누락 번역: 템플릿 구간·Go 리터럴·지정 화면 영어 렌더 세 검사 모두 0.
+- fixture 실제 기동(`TestLanguageBrowserFixture`, cc016b5): ready 로그·manifest 600·loopback probe(세 계정 언어, `/lang/en` 303·쿠키 적용, 범위 밖 403).
+- 렌더: headless Chrome 1440·390·320, 영어 15·한국어 2 화면 51장 가로 넘침 0.
+- FullOps lint(`--from 1315448`): 깨끗한 detached worktree(2ff9e44)와 최종 HEAD(dev) ERROR 0. WARNING은 SIZE-001(`PLANS.md`는 내 변경 아님, `human_http.go`·`member.go`·`remote_auth.go`·`i18n_en_member.go`·`i18n_test.go`)과 SIZE-002. 실행 불가 2(product-lint·product-test)는 Windows에 make가 없어서이며 같은 명령의 원격 Linux EXIT=0으로 대신한다. 사용자 미추적 `videos/service-intro/`·`SAR-MOTION-INTRO-001-DEV-test/` 하위 폴더는 수정·삭제·커밋하지 않았고 최종 lint 프로세스에만 `core.excludesFile`로 제외했다.
+- 하위 에이전트: implementation 2건(파일 소유 분리). 독립 코드 리뷰는 하지 않았다(coor의 고정 SHA 리뷰 대상).
+
+### 못 한 것 (not_run)
+
+- 저장 실패(503) 자동 검사(DB 장애 주입 수단 없음), 실제 키보드·200%·스크린리더·보조 브라우저, fixture 브라우저 왕복, `TestRemoteConsentBrowserReturn`, 쿠키 차단 실제 브라우저, 영어 문장의 전체 사람 교정(핵심 화면·설정·헤더·오류만 표본 확인).
+
+### 산출물
+
+- 제품: 새 `internal/relay/i18n.go`·`i18n_en_member.go`·`i18n_en_human.go`; 수정 `member_pages.go`·`human_pages.go`·`landing_pages.go`·`remote_auth.go`·`member.go`·`human_http.go`·`http.go`·`identity.go`·`device.go`·`google.go`·`member_agents.go`·`member_receipt.go`.
+- 검사·fixture: 새 `i18n_test.go`·`lang_integration_test.go`·`lang_browser_fixture_test.go`; 수정 `member_ui_test.go`·`connect_guide_test.go`·`gate_summary_integration_test.go`.
+- 문서: D05·D10·D11·D13(deliverables.py stamp). D02/D04 미수정.
+- [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/report.md)(계획·검사 로그·렌더·fixture·하위 에이전트·not_run), [packet-outcomes](../docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-packet-outcomes.json), 원시 로그와 [remote.py](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/remote.py).
+
+### 남은 일 (coor)
+
+고정 SHA 독립 리뷰, tester 독립 QA(fixture `cc016b5` 기동 중, 태그 `integration,langfixture`, manifest `LANG_FIXTURE_MANIFEST`), designer 두 언어 시각 검수(설정·공개 첫페이지 캡처는 render 폴더), main 통합. 선택 사항: README 앵커 percent-encoding 링크 확인, 이전 단위 후속(delta 리뷰 low)은 섞지 않았다.
