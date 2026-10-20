@@ -1,7 +1,7 @@
 ---
 id: D02
 title: 실제 일정 API 연동 제품 범위
-status: approved
+status: review
 updated: 2026-10-20
 owner: designer
 tasks: [SAR-SCHEDULE-001-DESIGN]
@@ -28,7 +28,7 @@ summary: 실제 캘린더 연결의 확정된 사용자 결정(D009·D010)과 �
 | D010 | 2026-10-20 | user | 수치 제안을 승인한다. 요청 시각부터 최대 14일, 단위 15·30·60분(기본 30분), 친구당 24시간 5회, 승인 기한은 기존 gate 기한이다. |
 | D011 | 열림 | user | Google Cloud Console의 OAuth 앱 게시 상태와 `calendar.freebusy` 민감 범위 심사 여부는 사용자가 나중에 확인한다. 개발과 격리 QA는 진행한다. 운영 연결 전에 coor가 다시 묻는다. |
 
-D009·D010은 coor가 사용자에게 물은 답이다. 이 문서의 승인(`status: approved`) 근거다. 선택지를 바꾸려면 사용자의 새 결정이 필요하다. DEV나 fixture가 대신 바꾸지 않는다.
+D009·D010은 coor가 사용자에게 물은 답이다. 이 문서의 제품 범위 확정 근거다. front matter `status`는 D02 인덱스(여러 원천, review)와 맞춰 `review`로 둔다. 다른 D02 원천이 있어 이 문서만 `approved`로 바꿀 수 없다. 선택지를 바꾸려면 사용자의 새 결정이 필요하다. DEV나 fixture가 대신 바꾸지 않는다.
 
 ## 용어
 
