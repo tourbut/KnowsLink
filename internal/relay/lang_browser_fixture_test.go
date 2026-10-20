@@ -50,7 +50,7 @@ func TestLanguageBrowserFixture(t *testing.T) {
 			t.Fatal(e)
 		}
 		ids["message"] = m.Receipt.ID
-		// Friend rows for the request states: sent pending, denied, cancelled, incoming pending (from NONE to EN).
+		// Friend rows for the request states: a sent request still open, a denied one, a cancelled one, and an incoming one from NONE to EN.
 		st.requestFriend(members["en"], "fixture-unknown-zz99", now)
 		st.requestFriend(members["none"], st.Members[members["en"]].FriendCode, now)
 		st.requestFriend(members["ko"], "fixture-cancel-ca11", now)
