@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-CONNECT-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.8,
+        "product": 0.2
+      },
+      "confidence": 0.6
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.7,
+        "ops": 0.13,
+        "tester": 0.17
+      },
+      "confidence": 0.55
+    },
+    "docs": {
+      "D01": 0.19,
+      "D02": 0.21,
+      "D03": 0.25,
+      "D04": 0.32,
+      "D05": 0.2,
+      "D06": 0.21,
+      "D07": 0.16,
+      "D08": 0.18,
+      "D09": 0.21,
+      "D10": 0.31,
+      "D11": 0.23,
+      "D12": 0.42,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2443,
+    "output_tokens": 314,
+    "cost": 0.000102606
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.45,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "직접 시각 수락과 남은 제품 판단은 designer 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "028d02c84922cb5a7393547039900cbb28efce3f",
+  "requires_packet": true,
+  "attempt": "ad0d02cdccd548de8375d2c1769285f3",
+  "instruction_sha256": "1c32d7ca70ab429df0e67c66cae3ef880363543cb0488822ff8e2820b24fb639",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "b5fe8f3c4c90e09cdcb3dcfebfe385b2cec476c1fc2599cb6aa5cc62c208564d"
+}

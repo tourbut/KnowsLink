@@ -14,46 +14,46 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.99,
-        "product": 0.01
+        "implementation": 0.98,
+        "product": 0.02
       },
-      "confidence": 0.98
+      "confidence": 0.96
     },
     "role": {
       "choice": "tester",
       "probabilities": {
-        "dev": 0.04,
+        "dev": 0.15,
         "ops": 0,
-        "tester": 0.96
+        "tester": 0.85
       },
-      "confidence": 0.94
+      "confidence": 0.77
     },
     "docs": {
-      "D01": 0.15,
-      "D02": 0.11,
-      "D03": 0.12,
-      "D04": 0.13,
-      "D05": 0.12,
-      "D06": 0.12,
-      "D07": 0.1,
-      "D08": 0.12,
-      "D09": 0.13,
-      "D10": 0.28,
-      "D11": 0.13,
-      "D12": 0.31,
-      "D13": 0.28
+      "D01": 0.21,
+      "D02": 0.19,
+      "D03": 0.17,
+      "D04": 0.15,
+      "D05": 0.16,
+      "D06": 0.18,
+      "D07": 0.13,
+      "D08": 0.14,
+      "D09": 0.17,
+      "D10": 0.31,
+      "D11": 0.21,
+      "D12": 0.36,
+      "D13": 0.33
     }
   },
   "usage": {
-    "input_tokens": 2493,
+    "input_tokens": 2464,
     "output_tokens": 314,
-    "cost": 0.000104706
+    "cost": 0.000103488
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [],
-  "latency_seconds": 0.69,
+  "latency_seconds": 0.676,
   "response_model": "typesafe/jev-1.14-20261014",
   "original_role": "tester",
   "original_route": "implementation",
@@ -66,6 +66,15 @@
     "source": "user"
   },
   "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
-  "head": "d3e676a0a062cd2e77511e2689436e2cfe5613b6",
-  "requires_packet": true
+  "head": "028d02c84922cb5a7393547039900cbb28efce3f",
+  "requires_packet": true,
+  "attempt": "a2eed7a32979442ea00c2c8530eed7bc",
+  "instruction_sha256": "d702b4e4d2d889df849047dcd563dfb4befd3b45675d0e9db6cdc662ff1a0f08",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "c2ac4634fc2bfe6e44f27b2c570c3ab0c2224300f6fbea786ae55d19b010292c"
 }
