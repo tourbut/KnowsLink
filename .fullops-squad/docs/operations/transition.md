@@ -14,6 +14,8 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 
 회원 연결 경로 선택·상태 재개(U8), 나머지 U7 복귀·단계 표시, 보낸 친구 요청의 입력 코드 끝 4자(O-NM-03)와 이전 단위 low 3건의 DEV 후보다. 운영에는 아직 반영되지 않았다. DB migration·공개 API·Tunnel 규칙 변경은 없다. 상태 JSON의 `Friend.CodeTail` 필드가 추가되며 기존 기록은 빈 값(‘이전 요청’)으로 읽힌다. 에이전트 생성 재전송 기록은 기존 `Idempotency` 맵을 쓴다. 배포 시 기존 relay 교체 절차만 적용한다. 남은 일은 tester 독립 QA(격리 fixture `TestConnectBrowserFixture`)·designer 시각 검수·고정 SHA 리뷰·main 통합이다. 실제 호스트 설치·지원 완료 표시는 범위 밖이다. 근거는 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md)다.
 
+2차 수정(같은 날, `d6369a4`): 끝난 친구 요청을 같은 코드로 다시 보내면 요청자 행 하나를 재사용하고, 차단·수신 한도 상대에게는 그 행을 보이지 않는다. 상태 JSON에 생략 가능 필드 `Friend.Held`가 추가된다(없으면 양쪽 표시). 이전 대리 행은 지우지 않는다. 되돌리기 시 이전 코드는 수신 한도 보류 행을 받은 사람에게 보인다. 승인 뒤 만료된 device 연결 화면은 카드와 같은 ‘확인 필요’를 보인다. migration·공개 API 변경은 없다. 남은 일은 tester 재확인(fixture 재기동 필요)과 coor 수정분 확인·main 통합이다.
+
 ## DEV 후보 인계 (2026-10-19, SAR-UX-ISSUES-002-APPROVAL-DEV)
 
 검증된 승인 요약(U5)과 승인 화면 위치·복귀(U7 해당 부분), 익명 조회 429 정리(O-NM-04), 친구 거절 안내 배치(O-NM-08)의 DEV 후보다. 운영에는 아직 반영되지 않았다. 새 schema·migration·공개 API·Tunnel 규칙은 없으므로 배포 시 기존 relay 교체 절차만 적용한다. 서버의 gate 결정 재검사는 바뀌지 않았다. 남은 일은 tester 독립 QA(격리 fixture `TestApprovalBrowserFixture`, coor 기동)·designer 시각 검수·고정 SHA 리뷰·main 통합이다. 근거는 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md)다.

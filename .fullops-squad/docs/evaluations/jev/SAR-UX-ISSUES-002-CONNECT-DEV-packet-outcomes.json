@@ -1,789 +1,1995 @@
 {
   "task_key": "SAR-UX-ISSUES-002-CONNECT-DEV",
   "role": "dev",
-  "attempt": "092c653b0baf45238006e75c041662a8",
-  "packet_input_sha256": "2e7e51cba10e9f2e2d55e3265351b30e78943c11f95d7d6ed684ded5fe619cdf",
-  "uncertainty_review": "partial 패킷이다. 미확인 25건은 문자열 검색 한계다. 연결·회원·친구 화면과 handler의 호출자(humanView agents, memberAction, remoteConsent, requestFriend)를 직접 읽었고 변경 계약은 단위·원격 통합 검사로 확인했다. 동적 호출 완전 탐색은 주장하지 않는다.",
+  "attempt": "79003121506e4d4f9d1c667f0fc595b1",
+  "packet_input_sha256": "555aa805fad52acb62633c11597397ec8337e339de2b83a994506a86296a35fb",
+  "uncertainty_review": "partial 패킷이다. 미확인 항목은 문자열 검색 한계다. requestFriend·decideFriend·humanView·connectionPage·gate 화면의 호출자를 직접 읽었고, 바뀐 계약은 단위 검사(이전 코드에서 실패 확인)·원격 integration·fixture 재요청 왕복으로 확인했다. 동적 호출 완전 탐색은 주장하지 않는다.",
   "items": [
     {
       "path": ".fullops-squad/FULLOPS.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "reason": "운영 모드·완료 처리·독립 리뷰 계약 절을 읽고 적용했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      "category": "document_update",
-      "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "U4 ‘2026-10-20 CONNECT-VISUAL 결정’과 U8 상태 표 ‘승인 후 응답 유실’을 읽고 재요청 행·연결 화면 수정의 기준으로 썼다."
     },
     {
       "path": ".fullops-squad/handovers/to_dev.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "reason": "현재 지시서. 해야 할 일 9항목을 모두 처리했다."
     },
     {
       "path": ".fullops-squad/project.md",
       "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "status": "completed",
+      "reason": "make lint/test/integration과 FullOps lint 실행 방식을 확인했다."
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
       "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "status": "completed",
+      "reason": "공통 규칙 우선순위를 확인했다."
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
       "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "status": "completed",
+      "reason": "기존 패턴 재사용·새 토큰 없음 기준으로 구현했다."
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
       "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "status": "completed",
+      "reason": "존재·차단 비노출과 입력 경계 기준으로 재요청 경로를 검토했다."
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
       "category": "document_read",
+      "status": "completed",
+      "reason": "lite 범위에서 실패 경계 자동 검사를 먼저 실패로 확인한 뒤 통과시켰다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/contexts/coor.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/contexts/designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/contexts/dev.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/contexts/tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/architecture.md",
-      "category": "document_update",
-      "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/crud-design.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/data-model.md",
       "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/data-model.md",
-      "category": "document_update",
-      "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/database-design.md",
-      "category": "document_update",
-      "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "status": "completed",
+      "reason": "친구 pending 상한 문단을 읽고 blocked-pending 계산·Held 필드·기존 대리 행 처리를 같은 문단에 추가했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "reason": "O-NM-03 행·GET /home/connections·gate 절을 읽고 재요청·저장 미확인 화면·거부 복귀·요약 없는 gate를 갱신했다."
     },
     {
-      "path": ".fullops-squad/docs/design-docs/interface-design.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "D05에 /home/agents use/start, 생성 attempt, 복귀, O-NM-03 계약을 추가했다."
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "reason": "human.go 행을 읽고 requestFriend 재사용 규칙과 새 검사 이름을 추가했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
       "category": "document_update",
       "status": "completed",
-      "reason": "D10에 connect_guide.go·생성 재전송·codeTail 행과 gate_summary 변경을 추가했다."
+      "reason": "human.go 행에 코드별 요청자 행 재사용과 새 검사를 기록했다."
     },
     {
       "path": ".fullops-squad/docs/design-docs/tech-stack.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
-      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
-      "category": "document_update",
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.3.0-FINAL-review/report.md",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/FULLOPS-UPDATE-1.4.4-FINAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-REVIEW-N1-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/v01-v02-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-DOC-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/author-final-handoff.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/css-resume/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/web-20261014-232426-595664/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/dev-final-handoff.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-SERVICE-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CLEANUP/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-CODE-REVIEW-2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-CODE-REVIEW-3-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DESIGN/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-RETEST-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-002-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-002-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OPS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-CODE-REVIEW-review/report.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-VISUAL/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "F1–F4를 읽고 F1·F2·F3·F4를 처리했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "1차 보고를 읽고 2차 수정 절을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-VISUAL/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "V-CN-01 결정 표와 V-CN-02를 읽고 처리했다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-CODE-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-VISUAL/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-HUMAN-PEER-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-APPROVAL-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/generated/db-schema.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
     },
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "category": "document_read",
       "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "reason": "DEV 후보 인계 절을 읽었다."
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
       "category": "document_update",
       "status": "completed",
-      "reason": "D13에 DEV 후보 인계(상태 JSON 필드 추가 포함)를 추가했다."
+      "reason": "D13 DEV 후보 인계 절에 2차 수정·Held 필드·되돌리기 영향을 추가했다."
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/operations/user-guide.md",
       "category": "document_update",
-      "status": "completed",
-      "reason": "D11에 어디에서 사용할까요?·연결 재개·코드 끝 4자 사용법을 추가했다."
+      "status": "no_change",
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/planning/business-plan.md",
-      "category": "document_update",
+      "category": "document_read",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
       "category": "document_update",
       "status": "no_change",
-      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+      "reason": "이번 변경이 이 문서의 기술·운영 사실을 바꾸지 않는다. 영향 문서는 interface·module·data-model·transition에 반영했다."
     },
     {
-      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-17_to_ops.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-18_to_dev.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-19_to_designer.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
-      "path": ".fullops-squad/handovers/logs/2026-10-20_to_designer.md",
+      "path": ".fullops-squad/handovers/logs/2026-10-20_to_dev.md",
       "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "status": "completed",
+      "reason": "1차 완료 기록(남은 한계·fixture 구성)을 확인했다."
     },
     {
       "path": ".fullops-squad/handovers/logs/2026-10-20_to_tester.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
-      "path": "Makefile",
-      "category": "impact_check",
-      "status": "no_change",
-      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
-    },
-    {
-      "path": "README.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "웹에서 시작하기 3단계와 연결 상태 안내를 화면 선택지와 맞췄다."
-    },
-    {
-      "path": "README.md",
+      "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": "adapters/.cursor-plugin/plugin.json",
-      "category": "impact_check",
       "status": "no_change",
-      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
-      "path": "adapters/README.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "화면 선택지와 절 연결, Claude Code 세션 연결의 앱에서 확인 필요를 적었다."
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": "adapters/README.md",
       "category": "document_read",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": "adapters/skills/knowslink/SKILL.md",
-      "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
       "path": "adapters/src/login.test.ts",
       "category": "impact_check",
       "status": "no_change",
-      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
-    },
-    {
-      "path": "adapters/src/mcp.ts",
-      "category": "impact_check",
-      "status": "no_change",
-      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
-    },
-    {
-      "path": "docs/README.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
-    },
-    {
-      "path": "docs/architecture.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
-    },
-    {
-      "path": "docs/development.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
-    },
-    {
-      "path": "docs/operations.md",
-      "category": "document_read",
-      "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "호출 경로를 검색했다. 바뀐 함수의 계약(공개 응답·저장 형식 호환)을 이 파일이 쓰지 않거나 기존 검사로 회귀가 확인됐다(원격 integration EXIT=0)."
     },
     {
       "path": "docs/system-design.md",
       "category": "document_read",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "문자열 검색 후보다. 이번 수정(재요청 행·저장 미확인 연결 화면·low 6건)의 판단에 필요한 새 사실이 없어 참고로만 두었다."
     },
     {
-      "path": "internal/relay/connections.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "agent 삭제 sweep에서 생성 재전송(Idempotency) 항목을 함께 지우도록 수정했다."
-    },
-    {
-      "path": "internal/relay/connections.go",
+      "path": "internal/relay/connect_guide_test.go",
       "category": "impact_check",
       "status": "completed",
-      "reason": "agent 삭제 sweep에서 생성 재전송(Idempotency) 항목을 함께 지우도록 수정했다."
-    },
-    {
-      "path": "internal/relay/connections_test.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "연결 화면 단계 aria-current·복귀 기대를 새 계약으로 갱신했다."
-    },
-    {
-      "path": "internal/relay/device.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "reason": "렌더 변형(저장 미확인·legacy 목차·거부)을 추가했다."
     },
     {
       "path": "internal/relay/gate_summary.go",
       "category": "impact_check",
       "status": "completed",
-      "reason": "검사 없는 타입 단언을 comma-ok로 바꾸고 모양이 다르면 요약 없음으로 닫았다(리뷰 low)."
+      "reason": "gateSummary nil 계약을 읽고 호출부(http.go)에서 Active를 끄도록 했다. 함수 자체는 바꾸지 않았다."
+    },
+    {
+      "path": "internal/relay/human.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "requestFriend의 코드별 행 재사용·보류(Held)·기존 대리 행 이동, decideFriend unblock 세대 대조 제외를 구현했다."
     },
     {
       "path": "internal/relay/human_http.go",
       "category": "impact_check",
       "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "reason": "humanView의 보류 행·차단 행 세대 표시를 고쳤다. 받은 사람·차단한 사람 렌더 화면이 재요청 전후 같음을 단위 검사로 확인했다."
+    },
+    {
+      "path": "internal/relay/human_names_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "호출 경로를 검색했다. 바뀐 함수의 계약(공개 응답·저장 형식 호환)을 이 파일이 쓰지 않거나 기존 검사로 회귀가 확인됐다(원격 integration EXIT=0)."
     },
     {
       "path": "internal/relay/human_names_test.go",
       "category": "impact_check",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
+      "status": "no_change",
+      "reason": "호출 경로를 검색했다. 바뀐 함수의 계약(공개 응답·저장 형식 호환)을 이 파일이 쓰지 않거나 기존 검사로 회귀가 확인됐다(원격 integration EXIT=0)."
     },
     {
       "path": "internal/relay/human_pages.go",
       "category": "direct_edit",
-      "status": "completed",
-      "reason": "내 에이전트 U8 선택지·안내·연결 상태 행과 보낸 친구 요청 O-NM-03 표시를 구현했다."
-    },
-    {
-      "path": "internal/relay/human_pages.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "내 에이전트 U8 선택지·안내·연결 상태 행과 보낸 친구 요청 O-NM-03 표시를 구현했다."
-    },
-    {
-      "path": "internal/relay/member_agents.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "생성 attempt 재전송 방지, confirm/cancel/철회 정확한 복귀, memberBack 거부 복귀를 구현했다."
+      "status": "no_change",
+      "reason": "gate 템플릿은 Active 값만 따르므로 템플릿 변경 없이 http.go에서 F2를 처리했다."
     },
     {
       "path": "internal/relay/member_agents.go",
       "category": "impact_check",
       "status": "completed",
-      "reason": "생성 attempt 재전송 방지, confirm/cancel/철회 정확한 복귀, memberBack 거부 복귀를 구현했다."
+      "reason": "connectionPage에 deviceUnsure와 /home/agents 거부 복귀, 재확인 거부 문구를 반영했다. 통합 검사로 확인했다."
     },
     {
       "path": "internal/relay/member_pages.go",
       "category": "direct_edit",
       "status": "completed",
-      "reason": "연결 화면 키 등록됨 표기·복귀, device 복귀, 익명 조회 nav, 승인 목록 접근성 이름을 고쳤다."
+      "reason": "연결 화면의 저장 미확인 분기와 legacy 목차 제목·스타일을 추가했다."
     },
     {
-      "path": "internal/relay/member_pages.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "연결 화면 키 등록됨 표기·복귀, device 복귀, 익명 조회 nav, 승인 목록 접근성 이름을 고쳤다."
-    },
-    {
-      "path": "internal/relay/member_ui_test.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "필요 구간을 읽고 적용했다."
-    },
-    {
-      "path": "internal/relay/policy_test.go",
+      "path": "internal/relay/receipt_context_test.go",
       "category": "impact_check",
       "status": "no_change",
-      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+      "reason": "호출 경로를 검색했다. 바뀐 함수의 계약(공개 응답·저장 형식 호환)을 이 파일이 쓰지 않거나 기존 검사로 회귀가 확인됐다(원격 integration EXIT=0)."
     },
     {
-      "path": "internal/relay/remote_auth.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "remote 동의 화면 복귀를 내 에이전트로, 앱 복귀 화면에 완료 아님·만료 시 재시작 안내를 더했다."
-    },
-    {
-      "path": "internal/relay/remote_auth.go",
-      "category": "impact_check",
-      "status": "completed",
-      "reason": "remote 동의 화면 복귀를 내 에이전트로, 앱 복귀 화면에 완료 아님·만료 시 재시작 안내를 더했다."
-    },
-    {
-      "path": "scripts/install_bot_mcp.sh",
+      "path": "videos/knowslink-motion/assets/fonts/Geist-OFL.txt",
       "category": "impact_check",
       "status": "no_change",
-      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+      "reason": "호출 경로를 검색했다. 바뀐 함수의 계약(공개 응답·저장 형식 호환)을 이 파일이 쓰지 않거나 기존 검사로 회귀가 확인됐다(원격 integration EXIT=0)."
     },
     {
-      "path": "videos/knowslink-motion/README.md",
-      "category": "document_read",
+      "path": "videos/knowslink-motion/assets/fonts/Pretendard-OFL.txt",
+      "category": "impact_check",
       "status": "no_change",
-      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+      "reason": "호출 경로를 검색했다. 바뀐 함수의 계약(공개 응답·저장 형식 호환)을 이 파일이 쓰지 않거나 기존 검사로 회귀가 확인됐다(원격 integration EXIT=0)."
     },
     {
       "path": "videos/knowslink-motion/index.html",
       "category": "impact_check",
       "status": "no_change",
-      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+      "reason": "호출 경로를 검색했다. 바뀐 함수의 계약(공개 응답·저장 형식 호환)을 이 파일이 쓰지 않거나 기존 검사로 회귀가 확인됐다(원격 integration EXIT=0)."
     }
   ]
 }
