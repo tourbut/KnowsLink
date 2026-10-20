@@ -6,8 +6,8 @@
   "role": "designer",
   "deliverables": [
     "D02",
-    "D11",
-    "D01"
+    "D10",
+    "D03"
   ],
   "thresholds": {
     "simple": 0.8,
@@ -18,58 +18,60 @@
     "scope": {
       "choice": "product",
       "probabilities": {
-        "implementation": 0.02,
-        "product": 0.98
+        "implementation": 0.27,
+        "product": 0.73
       },
-      "confidence": 0.96
+      "confidence": 0.46
     },
     "role": {
       "choice": "dev",
       "probabilities": {
-        "dev": 0.99,
-        "ops": 0.01,
+        "dev": 1,
+        "ops": 0,
         "tester": 0
       },
-      "confidence": 0.98
+      "confidence": 1
     },
     "docs": {
-      "D01": 0.72,
-      "D02": 0.79,
-      "D03": 0.58,
-      "D04": 0.64,
-      "D05": 0.58,
-      "D06": 0.65,
-      "D07": 0.43,
-      "D08": 0.38,
-      "D09": 0.61,
-      "D10": 0.64,
-      "D11": 0.76,
-      "D12": 0.51,
-      "D13": 0.51
+      "D01": 0.68,
+      "D02": 0.82,
+      "D03": 0.8,
+      "D04": 0.78,
+      "D05": 0.77,
+      "D06": 0.77,
+      "D07": 0.72,
+      "D08": 0.7,
+      "D09": 0.78,
+      "D10": 0.82,
+      "D11": 0.79,
+      "D12": 0.75,
+      "D13": 0.74
     }
   },
   "usage": {
-    "input_tokens": 2547,
+    "input_tokens": 2446,
     "output_tokens": 314,
-    "cost": 0.000106974
+    "cost": 0.000102732
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [
-    "D03",
+    "D01",
     "D04",
     "D05",
     "D06",
+    "D07",
+    "D08",
     "D09",
-    "D10",
+    "D11",
     "D12",
     "D13"
   ],
-  "latency_seconds": 0.664,
+  "latency_seconds": 0.459,
   "response_model": "typesafe/jev-1.14-20261014",
-  "original_role": "designer",
-  "original_route": "product",
+  "original_role": null,
+  "original_route": "unresolved",
   "override_reason": "U8 호스트 지원 표시 범위와 O-NM-03 표시 규칙은 제품 판단",
   "model": {
     "agent": "claude",
@@ -79,6 +81,15 @@
     "source": "user"
   },
   "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
-  "head": "79864592804e595810706f6550ff255ee65407ac",
-  "requires_packet": true
+  "head": "1df65d757aaac177dcad548cb1abfedc075cbff8",
+  "requires_packet": true,
+  "attempt": "b5c7601c40374611a78963fdb76dab25",
+  "instruction_sha256": "73d777bfe2be75292179b77af5deed2e84f51d01a881bbc58914f567d9f17ac6",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "c20e8cafcfcb146683d388b2694c19047a6cc83dfd8c6bdbe80f931ee46def9a"
 }

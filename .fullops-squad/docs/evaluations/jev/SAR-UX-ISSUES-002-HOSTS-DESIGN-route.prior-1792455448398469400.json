@@ -1,0 +1,84 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-HOSTS-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D02",
+    "D11",
+    "D01"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.02,
+        "product": 0.98
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.99,
+        "ops": 0.01,
+        "tester": 0
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.72,
+      "D02": 0.79,
+      "D03": 0.58,
+      "D04": 0.64,
+      "D05": 0.58,
+      "D06": 0.65,
+      "D07": 0.43,
+      "D08": 0.38,
+      "D09": 0.61,
+      "D10": 0.64,
+      "D11": 0.76,
+      "D12": 0.51,
+      "D13": 0.51
+    }
+  },
+  "usage": {
+    "input_tokens": 2547,
+    "output_tokens": 314,
+    "cost": 0.000106974
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D09",
+    "D10",
+    "D12",
+    "D13"
+  ],
+  "latency_seconds": 0.664,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "designer",
+  "original_route": "product",
+  "override_reason": "U8 호스트 지원 표시 범위와 O-NM-03 표시 규칙은 제품 판단",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "79864592804e595810706f6550ff255ee65407ac",
+  "requires_packet": true
+}
