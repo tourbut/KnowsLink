@@ -72,6 +72,24 @@ SVG 3–4개, 갱신된 brand README, 렌더·대비 근거, 완료 보고.
 
 미추적 `videos/service-intro/`·`qa-reports/SAR-MOTION-INTRO-001-DEV-test/` 하위 미추적 폴더는 건드리지 않는다. workspace 밖에 파일을 만들지 않는다(브라우저 프로필 등은 QA 폴더 아래). 다른 역할 인박스·PLANS·board·GitHub는 수정하지 않는다.
 
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-CI-002-DEV-packet.json` / SHA `4321ce8f8e5d8f11cc6ec419ac9f4783b517e1ba` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 2, 7, 14, 29, 42, 43 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `docs/brand/README.md` (document_update, document_read) · 줄 16, 17 · inferred · 필수
+- `docs/README.md` (document_read) · 줄 24, 24, 24, 24 · inferred
+- `docs/brand/knowslink-lockup.svg` (direct_edit) · 줄 전체/미확인 · inferred
+- `docs/brand/knowslink-symbol.svg` (direct_edit) · 줄 전체/미확인 · inferred
+미확인 24건: 정본의 unknown/producer_status/remaining_context_paths/optional_context_paths 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
