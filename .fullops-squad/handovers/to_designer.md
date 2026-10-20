@@ -43,11 +43,11 @@ SAR-UX-ISSUES-002.md U4·U8, SAR-SESSION-PEER-001.md, PLANS.md의 2026-10-15 호
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] U8 호스트 표 갱신: 대상 호스트 목록(Meta Muse 제외 명시, OpenClaw 보류 표시 방식, Hermes 상태, Claude Code 세션 연결 추가)과 각 근거 날짜·SHA·화면의 지원 상태 문구·다음 행동. 소스/패키지 근거와 실제 앱 설치·왕복 근거를 구분한다. Codex 세션은 미검증으로 둔다.
-- [ ] '어디에서 사용할까요?' 선택지 목록을 위 표와 맞춘다(웹·Grok·Dots·Claude Code·지원 확인 필요).
-- [ ] O-NM-03 결정: 보낸 요청 행에 요청자 자기 입력 코드의 일부를 보일지, 보인다면 형식(자리 수·마스킹)과 상대 존재 비노출 경계. 보이지 않기로 하면 근거.
-- [ ] 변경을 SAR-UX-ISSUES-002.md에 반영(front matter 갱신), 결정 근거를 `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md`에 짧게 기록.
-- [ ] 완료 보고 → work.py finish → 커밋 → worker_done(DEV 4단위 구현 기준 요약 포함).
+- [x] U8 호스트 표 갱신: 대상 호스트 목록(Meta Muse 제외 명시, OpenClaw 보류 표시 방식, Hermes 상태, Claude Code 세션 연결 추가)과 각 근거 날짜·SHA·화면의 지원 상태 문구·다음 행동. 소스/패키지 근거와 실제 앱 설치·왕복 근거를 구분한다. Codex 세션은 미검증으로 둔다.
+- [x] '어디에서 사용할까요?' 선택지 목록을 위 표와 맞춘다(웹·Grok·Dots·Claude Code·지원 확인 필요).
+- [x] O-NM-03 결정: 보낸 요청 행에 요청자 자기 입력 코드의 일부를 보일지, 보인다면 형식(자리 수·마스킹)과 상대 존재 비노출 경계. 보이지 않기로 하면 근거.
+- [x] 변경을 SAR-UX-ISSUES-002.md에 반영(front matter 갱신), 결정 근거를 `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md`에 짧게 기록.
+- [x] 완료 보고 → work.py finish → 커밋 → worker_done(DEV 4단위 구현 기준 요약 포함).
 
 소유 파일: SAR-UX-ISSUES-002.md, 위 report, own route/inbox/log.
 
@@ -289,3 +289,16 @@ SAR-UX-ISSUES-002.md(필요 시 D02).
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 (2026-10-20, designer)
+
+- 브랜치 / SHA: `fullops/designer` / 결정 커밋 `a58ada7`(문서 2개). 최종 SHA는 이 기록 커밋이며 worker_done에 적는다. 기준 main `79864592804e595810706f6550ff255ee65407ac`.
+- 변경 이유: U8 호스트 표(2026-10-15)가 최신 사용자 범위와 10-17 Claude Code 세션 통합과 달랐다. O-NM-03은 U4 후속 후보였다.
+- 결정: [정본 U4·U8](../docs/design-docs/SAR-UX-ISSUES-002.md), [결정 근거](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md).
+  - 호스트 표: 웹·Grok Bot·Dots·Claude Code 작업 세션은 대상, Codex·Hermes Agent 0.21.3은 ‘지원 확인 필요’, OpenClaw 보류·Meta Muse 제외(둘 다 화면에 이름 없음). 소스·패키지 근거와 실제 설치·왕복 근거를 다른 열로 나눴다.
+  - Claude Code 상태 문구: ‘연결 안내 있음 · 시험 환경 확인 (Claude Code 2.1.302, Windows)’. 격리 relay·합성 회원 근거뿐이라 Grok/Dots의 ‘기존 계정 사용 확인’보다 낮게 둔다.
+  - 선택지 5개: 웹에서 바로 사용 / Grok Bot / Dots / Claude Code 작업 세션 / 지원 확인이 필요한 호스트(Codex, Hermes Agent, 그 밖의 호스트 → 웹 사용 안내, 설치 명령 없음).
+  - O-NM-03: 요청자 자신의 보낸 요청·종료 기록 행에 ‘입력한 코드 …abcd’(입력 끝 4자, 대소문자 그대로). 입력에서만 얻고 상대 현재 코드로 다시 계산하지 않는다. 있는/없는/차단 코드에 같은 형식. 형식 밖·4자 미만은 ‘입력한 코드 형식 다름’, 이전 요청은 ‘이전 요청’. 전체 코드는 새로 보관·표시·로그하지 않는다. 받은 요청·친구 행·상대 화면에는 없다.
+- 검증한 것: `lint.py --from 7986459` ERROR 0·WARNING 0(product-lint `make` unavailable, product-test skipped — 문서만 변경, Windows에 make 없음), `deliverables.py --strict` 문제 0, `--stamp` 재적용 diff 0. 운영 `1dd6800`에 `da97dba`·`467527f` 포함을 `git merge-base --is-ancestor`로 확인.
+- 못 한 것: 화면 렌더·시각 검수, 실제 호스트 설치·왕복, D02 변경(필요 없음).
+- 남은 일: 4단위 DEV가 표·선택지·O-NM-03을 구현한다. 끝 4자 보관 방식과 세션 연결 관측 방법은 DEV가 정한다.
