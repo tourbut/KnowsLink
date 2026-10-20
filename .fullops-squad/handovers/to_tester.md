@@ -327,3 +327,13 @@ fullops-common-0.3.3(보안: 개인 키·쿠키·친구 코드·토큰을 증거
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 상태: 중간 보고(사용자 결정 D015). 사용자가 2026-10-21 C5 Google 로그인 전에 '그만'으로 중지했다(이전 dispatch ctx_3a94fd9324c3). 마무리 dispatch ctx_dc1936b3d6d9.
+- 브랜치 / SHA: fullops/tester / 이 완료 기록 커밋(worker_done에 SHA 기재).
+- 변경 이유: C1–C4 증거와 판정을 보존하고 C5 이후를 not_run으로 닫는다. 제품 코드는 바꾸지 않았다.
+- 검증한 것: Claude Code 2.1.304·Windows 11에서 C1 준비물, C2 clone(longpaths)·`npm ci`·build·`package_plugin.py --connect --verify`, C3 `claude plugin validate`·`test`(11 pass), C4 새 작업 폴더 도구 검색(9개 도구) PASS.
+- 발견(FAIL): Windows 기본 `git clone` exit 128 `Filename too long`(담당 제안 DEV·ops). README 'Grok 신규 설치'가 운영 7b4f9bc가 아닌 2747fe9를 고정(담당 제안 DEV·ops). C5 첫 연결 요청은 사용자 조작 없이 00:17 KST 만료(제품 결함 아님).
+- 못 한 것: C5–C11, Grok G1–G9 not_run(사용자 중지). 두 호스트 모두 '신규 설치 검증 완료' 아님. 운영 데이터 변경·로그인·발송·Grok 조작 없음.
+- 남은 자원(건드리지 않음, 존재·경로만): Orca 터미널 `hv-claude`, 설치 루트 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/host-verify-001`, private 연결 폴더 `.../host-verify-001/inst-claude-01-private`.
+- 산출물: [시나리오](../docs/evaluations/scenarios/SAR-HOST-VERIFY-001-LIVE.md), [보고서](../docs/evaluations/qa-reports/SAR-HOST-VERIFY-001-LIVE/report.md), [evidence.json](../docs/evaluations/qa-reports/SAR-HOST-VERIFY-001-LIVE/evidence.json). 판정에 쓰지 않은 터미널 구동 스크립트는 `raw/`(git 제외).
+- 검토 필요 / 남은 일: 재개 시 C5부터 사용자 로그인 승인을 다시 받는다. 발견 1·2의 수정 배정과 설계 U8 표 유지 여부는 coor 판단.

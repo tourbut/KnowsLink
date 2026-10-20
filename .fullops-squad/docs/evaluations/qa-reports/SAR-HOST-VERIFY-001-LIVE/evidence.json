@@ -1,0 +1,173 @@
+{
+  "task": "SAR-HOST-VERIFY-001-LIVE",
+  "origin": "https://link.knowslog.com",
+  "product_sha": "7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2",
+  "record_base": "e9bbdea768fd93a196e928d980f1836e4c4b5f25",
+  "secrets_excluded": [
+    "private key",
+    "credential",
+    "cookie",
+    "friend code",
+    "connect token/URL",
+    "webhook URL/key"
+  ],
+  "decisions": [
+    {
+      "at": "2026-10-20",
+      "source": "coor ask reply (user)",
+      "content": "Claude=scshin88@gmail.com(existing friend of Grok account), Grok=knowslog01@gmail.com new Command MCP and new folder; friend step verifies auto-inclusion of new agent only; clone with -c core.longpaths=true after recording FAIL; Grok installs 7b4f9bc and README 2747fe9 pin is a FAIL; separate prefix /workspace/.knowslink-hv01; user presses the send approval dialog"
+    },
+    {
+      "at": "2026-10-21T00:07+09:00",
+      "source": "user typed '계속' in tester terminal",
+      "content": "treated as go-ahead for C5 connect request; login and consent remain the user's own action"
+    },
+    {
+      "at": "2026-10-21",
+      "source": "user typed '그만' in tester terminal",
+      "content": "stop the run before C5 Google login; dispatch ctx_3a94fd9324c3 ended failed"
+    },
+    {
+      "at": "2026-10-21",
+      "source": "coor (user decision D015)",
+      "content": "commit C1-C4 as an interim report and close"
+    }
+  ],
+  "hosts": {
+    "claude_code_session": {
+      "product_version": "Claude Code 2.1.304 (2.1.302 in earlier isolated QA)",
+      "os": "Windows 11 Pro 10.0.26300",
+      "account_permission": "scshin88@gmail.com (planned); Claude Max subscription, session showed 99% weekly limit used",
+      "source_sha": "7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2",
+      "install_root": "C:/Users/shin/AppData/Local/KnowsLinkDevTools/host-verify-001",
+      "prerequisites": {
+        "node": "v22.22.2 (existing portable KnowsLinkDevTools/node-v22.22.2-win-x64; default PATH node is v24.13.0)",
+        "npm": "10.9.7",
+        "python": "3.13.12",
+        "git": "2.52.0.windows.1"
+      },
+      "steps": {
+        "C2_clone_default": {
+          "result": "FAIL",
+          "exit": 128,
+          "error": "error: unable to create file .fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/.../...-integration.log: Filename too long; fatal: unable to checkout working tree",
+          "evidence": "c2-clone-default-fail.log",
+          "owner_suggestion": "DEV/ops: shorten or drop committed runtime logs, or document core.longpaths for Windows"
+        },
+        "C2_clone_longpaths": {
+          "result": "PASS",
+          "exit": 0,
+          "command": "git clone -c core.longpaths=true https://github.com/tourbut/KnowsLink.git src-lp; git checkout --detach 7b4f9bc",
+          "status_short_lines": 0,
+          "evidence": "c2-clone-longpaths.log, c2-checkout.log"
+        },
+        "C2_npm_ci": {
+          "result": "PASS",
+          "exit": 0,
+          "evidence": "c2-npm-ci.tail.log"
+        },
+        "C2_build": {
+          "result": "PASS",
+          "exit": 0,
+          "evidence": "c2-npm-build.log"
+        },
+        "C2_package": {
+          "result": "PASS",
+          "exit": 0,
+          "command": "python3 scripts/package_plugin.py --host claude --install-dir C:/Users/shin/AppData/Local/KnowsLinkDevTools/host-verify-001/inst-claude-01 --connect --verify",
+          "evidence": "c2-package-claude.log"
+        },
+        "C3_plugin_validate": {
+          "result": "PASS",
+          "exit": 0,
+          "evidence": "c3-plugin-validate.log"
+        },
+        "C3_plugin_test": {
+          "result": "PASS",
+          "exit": 0,
+          "detail": "11 pass 0 fail",
+          "evidence": "c3-plugin-test.log"
+        },
+        "C4_tool_discovery": {
+          "result": "PASS",
+          "detail": "claude --plugin-dir <install>/knowslink in new work folder; /mcp shows plugin:knowslink:knowslink connected, 9 tools; /knowslink-session status -> 'KnowsLink: 이 세션은 연결되어 있지 않습니다. /knowslink-session on'",
+          "evidence": "c4-mcp-tools.txt"
+        },
+        "C5_auth_attempt1": {
+          "result": "expired (no user action)",
+          "detail": "knowslink_connect confirmed:true -> waiting; web page fingerprint matched the session value; deadline 2026-10-21 00:17:11 KST passed with page unchanged",
+          "fingerprint": "SHA256:o7y0w61snRJto8ZnBxi79_3pZB-PHhdkN3J2UJDnGj0"
+        },
+        "C1_prerequisites": {
+          "result": "PASS",
+          "detail": "versions recorded in prerequisites/product_version/os"
+        },
+        "C5_auth": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "C6_name_registration": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "C7_session_on": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "C8_friend": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "C9_send": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "C10_receive_toast": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "C11_resume": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        }
+      },
+      "verdict": "new-install verification NOT complete (C5-C11 not_run)"
+    },
+    "grok_bot": {
+      "steps": {
+        "README_source_pin": {
+          "result": "FAIL",
+          "detail": "README 'Grok 신규 설치' pins 2747fe98653d5c6946f41c219fc256395333d7fe while production is 7b4f9bc (user decision: record as public guide mismatch)"
+        },
+        "G1_app_record": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G2_install": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G3_command_mcp": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G4_env": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G5_auth": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G6_friend": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G7_receive_reply": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G8_notification": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        },
+        "G9_resume": {
+          "result": "not_run: user stopped the run before C5 Google login (D015)"
+        }
+      },
+      "verdict": "new-install verification NOT complete (G1-G9 not_run)"
+    }
+  },
+  "status": "interim (stopped by user before C5 login)",
+  "left_in_place": {
+    "note": "not touched by the interim close; existence and path only, contents not read or committed",
+    "hv_claude_terminal": "Orca terminal tab 'hv-claude' (open Claude Code session under work-claude)",
+    "install_root": "C:/Users/shin/AppData/Local/KnowsLinkDevTools/host-verify-001 (inst-claude-01, inst-claude-01-private, logs, src, src-lp, work-claude, t.sh)",
+    "private_connection_folder": "C:/Users/shin/AppData/Local/KnowsLinkDevTools/host-verify-001/inst-claude-01-private"
+  }
+}
