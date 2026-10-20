@@ -1,0 +1,82 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-LANG-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.46,
+        "product": 0.54
+      },
+      "confidence": 0.08
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.96,
+        "ops": 0,
+        "tester": 0.04
+      },
+      "confidence": 0.94
+    },
+    "docs": {
+      "D01": 0.3,
+      "D02": 0.31,
+      "D03": 0.35,
+      "D04": 0.71,
+      "D05": 0.35,
+      "D06": 0.32,
+      "D07": 0.28,
+      "D08": 0.31,
+      "D09": 0.33,
+      "D10": 0.48,
+      "D11": 0.39,
+      "D12": 0.43,
+      "D13": 0.46
+    }
+  },
+  "usage": {
+    "input_tokens": 2440,
+    "output_tokens": 314,
+    "cost": 0.00010248
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.446,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "직접 시각 수락과 영어 문구 품질은 designer 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "768e7d2198c231d2a868db0a26cc6a3424392ac6",
+  "requires_packet": true,
+  "attempt": "1c7cb2b561b4459e8c1b9fec4dfc7a88",
+  "instruction_sha256": "0b04d8128e48aaefc58e3b338dd73fda555da413b908720ca911d81b43ef9ba9",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "9d8c61a2055e655db41db1253228bf7b5c1fe308f66db79087be4a6cfde39999"
+}
