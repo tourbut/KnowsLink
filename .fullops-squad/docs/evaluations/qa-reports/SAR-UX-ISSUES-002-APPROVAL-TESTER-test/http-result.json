@@ -1,0 +1,530 @@
+{
+ "origin": "http://127.0.0.1:18931",
+ "checks": [
+  {
+   "name": "list_c_empty_text_exact",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_a_row_count_is_7",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_rows_have_name_type_expiry_state_in_order",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_rows_have_review_link_with_descriptive_name",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_requester_is_allowed_name_or_fallback_and_short_id",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_has_no_original_request_ids",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_gate_ids_only_in_href_not_visible_text",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_state_counts_4_pending_1_expired_1_approved_1_unavailable",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_abs_expiry_with_zone",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "conversation_pending_count_is_4_only_pending",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_a_title_h1_main_skip",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_status200_title_unique_h1_main_skip_nostore",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_location_nav_current_page_and_exact_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_return_link_goes_to_approval_list",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_reading_order_headings",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_order_who_what_scope_state_action_technical_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_actions_labels_and_csrf",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_fixed_scope_sentence",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_pending_state_and_absolute_expiry",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_who_uses_allowed_names",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_technical_details_closed_and_hold_ids_json",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_no_internal_ids_or_policy_ids_before_technical_details",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_status200_title_unique_h1_main_skip_nostore",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_location_nav_current_page_and_exact_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_return_link_goes_to_approval_list",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_reading_order_headings",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_order_who_what_scope_state_action_technical_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_actions_labels_and_csrf",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_fixed_scope_sentence",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_pending_state_and_absolute_expiry",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_who_uses_allowed_names",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_technical_details_closed_and_hold_ids_json",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_no_internal_ids_or_policy_ids_before_technical_details",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_status200_title_unique_h1_main_skip_nostore",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_location_nav_current_page_and_exact_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_return_link_goes_to_approval_list",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_reading_order_headings",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_order_who_what_scope_state_action_technical_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_actions_labels_and_csrf",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_fixed_scope_sentence",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_pending_state_and_absolute_expiry",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_who_uses_allowed_names",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_technical_details_closed_and_hold_ids_json",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_no_internal_ids_or_policy_ids_before_technical_details",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_status200_title_unique_h1_main_skip_nostore",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_location_nav_current_page_and_exact_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_return_link_goes_to_approval_list",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_reading_order_headings",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_order_who_what_scope_state_action_technical_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_actions_labels_and_csrf",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_fixed_scope_sentence",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_pending_state_and_absolute_expiry",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_who_uses_allowed_names",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_technical_details_closed_and_hold_ids_json",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_no_internal_ids_or_policy_ids_before_technical_details",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_summary_matches_signed_body",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_query_hint_scope_says_no_availability_disclosed",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_summary_matches_signed_body",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_1_scope_says_no_availability_disclosed",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_summary_matches_signed_body",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_free_text_separate_labelled_inert",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_free_text_html_escaped_no_link_or_tag",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_free_text_not_in_scope_section",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_commit_long_scope_says_not_executed",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_summary_matches_signed_body",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_free_text_separate_labelled_inert",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_free_text_html_escaped_no_link_or_tag",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_free_text_not_in_scope_section",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_decide_2_scope_says_not_executed",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "hint_only_in_collapsed_reference_block",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "hint_not_in_scope_state_or_buttons",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "hint_url_not_a_link_and_block_closed",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "non_hint_gates_have_no_hint_block",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "expired_status200_title_unique_h1_main_skip_nostore",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "expired_location_nav_current_page_and_exact_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "expired_return_link_goes_to_approval_list",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "expired_no_decision_controls",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "expired_state_badge_with_icon_and_text_and_status_note",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "expired_summary_kept_read_only_with_scope",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "processed_status200_title_unique_h1_main_skip_nostore",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "processed_location_nav_current_page_and_exact_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "processed_return_link_goes_to_approval_list",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "processed_no_decision_controls",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "processed_state_badge_with_icon_and_text_and_status_note",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "processed_summary_kept_read_only_with_scope",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "original_missing_status200_title_unique_h1_main_skip_nostore",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "original_missing_location_nav_current_page_and_exact_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "original_missing_return_link_goes_to_approval_list",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "original_missing_shows_unverifiable_alert_exact",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "original_missing_no_summary_no_decision_no_technical",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "original_missing_state_and_status_note_and_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "other_member_b_get_is_403_without_content",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "other_member_b_403_has_title_h1_main_alert_and_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "nonexistent_gate_b_same_response_as_foreign_gate",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "other_member_c_get_is_403_without_content",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "other_member_c_403_has_title_h1_main_alert_and_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "nonexistent_gate_c_same_response_as_foreign_gate",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "anonymous_gate_get_redirects_to_login_without_content",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "security_headers_csp_nosniff_referrer_noframe",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "onm08_order_accept_help_deny",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "onm08_deny_describedby_matches_help_id",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "onm08_help_text_says_refusal_is_recorded_and_ignoring_is_ok",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "onm08_buttons_have_target_in_accessible_name",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "gets_do_not_change_state_list_identical",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_gates_still_pending_after_all_gets",
+   "result": "PASS",
+   "detail": ""
+  }
+ ]
+}

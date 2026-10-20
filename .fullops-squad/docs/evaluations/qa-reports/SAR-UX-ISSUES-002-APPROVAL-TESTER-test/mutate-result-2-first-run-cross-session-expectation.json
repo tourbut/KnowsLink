@@ -1,0 +1,51 @@
+{
+ "stage": "2",
+ "checks": [
+  {
+   "name": "decide_2_denied_by_real_browser_flow",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "stale_approve_after_denial_409_safe_message_and_return",
+   "result": "FAIL",
+   "detail": [
+    403,
+    "요청 승인 ! 오류 이번 제출은 적용되지 않았습니다. 요청이 이미 처리됐거나 기한·권한·원문이 바뀌었을 수 있습니다. 승인 목록에서 현재 상태를 확인하세요. 승인 목록으로 돌아가기"
+   ]
+  },
+  {
+   "name": "stale_deny_after_denial_409_safe_message_and_return",
+   "result": "FAIL",
+   "detail": [
+    403,
+    "요청 승인 ! 오류 이번 제출은 적용되지 않았습니다. 요청이 이미 처리됐거나 기한·권한·원문이 바뀌었을 수 있습니다. 승인 목록에서 현재 상태를 확인하세요. 승인 목록으로 돌아가기"
+   ]
+  },
+  {
+   "name": "denial_kept_after_stale_resubmits",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "decide_1_still_approved",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_count_final_is_2",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_row_decide_2_shows_denied",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "other_pending_gates_unaffected",
+   "result": "PASS",
+   "detail": ""
+  }
+ ]
+}
