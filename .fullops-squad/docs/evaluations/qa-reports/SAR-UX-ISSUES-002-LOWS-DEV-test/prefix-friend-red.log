@@ -1,0 +1,11 @@
+--- FAIL: TestFriendRerequestReusesOneRow (0.01s)
+    --- FAIL: TestFriendRerequestReusesOneRow/receive_limit_reversed (0.00s)
+        friend_rerequest_test.go:141: held request changed its target's page
+--- FAIL: TestFriendBlockOnHeldRequestKeepsRequesterPending (0.00s)
+    friend_rerequest_test.go:226: requester saw the receiver's block: [{ID:EGMPfo6fkTrfq0qi_KMN70 Name:요청 대기 State:removed Exp:2026-10-22 23:05:51 KST Generation:2 Incoming:false CodeTail:}]
+--- FAIL: TestFriendRepeatWithOpenLegacyPlaceholderIsNoop (0.00s)
+    friend_rerequest_test.go:241: repeat reopened the pair row beside the open placeholder: &{ID:pair-row A:mem_iaWQichS7B8TPcISyxCrIA B:mem_PKDzX7NN2V8081XRQeOfx0 Inviter:mem_iaWQichS7B8TPcISyxCrIA State:blocked-pending NameA:합성 회원 a NameB:합성 회원 c Generation:3 Exp:2026-10-21 13:05:51 +0000 UTC BlockA:false BlockB:true SuppressLegacy:true CodeTail:Yods Held:}
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	0.371s
+FAIL
+EXIT=1

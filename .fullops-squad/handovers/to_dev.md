@@ -17,7 +17,7 @@ test_level: lite
 
 - 작성일: 2026-10-20
 - From / To: coor → dev
-- 상태: ready
+- 상태: done
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위 / 추가 승인이 필요한 행위: 아래 low 5건 수정과 관련 테스트·기술 문서. 상태 JSON의 기존 필드 확장(`Friend.Held`에 이전 방향 보존 등)은 기존 데이터 호환 범위에서 승인. DB migration·새 경로·새 의존성·권한 확대·실계정·운영 배포·삭제/이동·force push는 coor에 ask.
 - 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev
@@ -42,13 +42,13 @@ fullops-common-0.3.3, `.fullops-squad/project.md`, 제품 정본 SAR-UX-ISSUES-0
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] F-R1: 수신 한도 보류 행이 받은 사람에게 이전 모습 그대로 보이도록 이전 방향(Inviter·CodeTail)을 보존한다(또는 동등한 방법). 받은 사람 화면이 재요청 전후 같음을 테스트로 보인다.
-- [ ] F-R2: 받은 사람이 보류 행에 block POST를 해도 요청자의 살아 있는 대기 요청이 '해제'로 바뀌지 않게(보이는 대기 요청 차단과 같은 결과) 한다.
-- [ ] F-R3: 기존 쌍 행+열린 대리 행 데이터에서 같은 코드 재요청이 열린 행 2개를 만들지 않게 한다(없는 코드와 같은 무동작).
-- [ ] O-LG-05: 영어 오류 'Choose 한국어 or English.'의 '한국어'(및 한국어판의 'English')에 부분 언어 lang 속성.
-- [ ] 언어 내부 표식 헤더가 어떤 응답으로도 클라이언트에 나가지 않게 한다(렌더하지 않는 응답 포함).
-- [ ] 위 경계의 자동 검사(수정 전 실패 확인), 영향 문서(D13·data-model·interface-design) 갱신.
-- [ ] 원격 Linux make lint/test/integration, FullOps lint.py --from c3b5192, DEV 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LOWS-DEV-test/report.md`), packet-outcomes, finish, 커밋, worker_done.
+- [x] F-R1: 수신 한도 보류 행이 받은 사람에게 이전 모습 그대로 보이도록 이전 방향(Inviter·CodeTail)을 보존한다(또는 동등한 방법). 받은 사람 화면이 재요청 전후 같음을 테스트로 보인다.
+- [x] F-R2: 받은 사람이 보류 행에 block POST를 해도 요청자의 살아 있는 대기 요청이 '해제'로 바뀌지 않게(보이는 대기 요청 차단과 같은 결과) 한다.
+- [x] F-R3: 기존 쌍 행+열린 대리 행 데이터에서 같은 코드 재요청이 열린 행 2개를 만들지 않게 한다(없는 코드와 같은 무동작).
+- [x] O-LG-05: 영어 오류 'Choose 한국어 or English.'의 '한국어'(및 한국어판의 'English')에 부분 언어 lang 속성.
+- [x] 언어 내부 표식 헤더가 어떤 응답으로도 클라이언트에 나가지 않게 한다(렌더하지 않는 응답 포함).
+- [x] 위 경계의 자동 검사(수정 전 실패 확인), 영향 문서(D13·data-model·interface-design) 갱신.
+- [x] 원격 Linux make lint/test/integration, FullOps lint.py --from c3b5192, DEV 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LOWS-DEV-test/report.md`), packet-outcomes, finish, 커밋, worker_done.
 
 O-LG-06의 (1) 쿠키 없는 저장값 회원의 429 한국어, (2) Retry-After 없음, (3) `?lang=` 한 응답 적용은 designer 결정·설계 허용 범위라 바꾸지 않는다. O-CT-03·V-AP-01·O-LG-01·02·04도 현행 유지한다.
 
@@ -161,3 +161,13 @@ D13과 실제 변경된 기술 문서.
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 완료 보고 (2026-10-20, dev)
+
+- 브랜치 / SHA: `fullops/dev` / 제품·문서 `e9da442e9b3d111c2073b9edd0c9d6f38e54713b`, 그 뒤 DEV 보고·packet-outcomes·dev 컨텍스트·완료 기록 커밋.
+- 변경 이유: F-R1 수신 한도 보류 행에 이전 방향·끝 4자(`Friend.HeldFrom`·`HeldTail`, 생략 가능)를 보존해 받은 사람 화면이 재요청 전후 같다. F-R2 받은 사람의 보류 행 block이 `blocked-pending`을 유지해 요청자에게 대기로 보인다. F-R3 같은 코드의 대리 행이 대기 중이면 쌍 행이 있어도 재요청은 무동작이다. O-LG-05 오류 문장의 다른 언어 이름에 `lang` span. 내부 표식 `Lang-Saved`·`Lang-Unsaved`는 `boundedHTTP`의 `langMarks` 래퍼가 모든 응답에서 지운다.
+- 검토 필요: `capacity.go` 응답 래퍼(`Unwrap`·`MaxBytesReader`에 원래 writer 사용), `requestFriend`의 legacy 검사 조건 변경, 상태 JSON 새 생략 가능 필드 2개. migration·새 경로·의존성 없음.
+- 검증한 것: 새 검사 5건의 수정 전 실패(로컬, 원격 기준 파일 복원 사본 4건 FAIL), 원격 Linux 격리 clone `make install`·`make lint`·`make test`·integration(-race) EXIT=0, FullOps lint.py `--from c3b5192` 깨끗한 임시 detached worktree ERROR 0(WARNING SIZE-001 4, 실행 불가 2=Windows make 없음), worktree는 force 없이 제거. DEP-001 없음(`go.mod`·`go.sum`·`package.json` 변경 없음, 새 import는 표준 `fmt`).
+- 못 한 것: 스크린리더 실제 낭독, 실제 브라우저 헤더 관찰, 독립 코드 리뷰·tester 확인(coor 조정).
+- 산출물: [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LOWS-DEV-test/report.md), [packet-outcomes](../docs/evaluations/jev/SAR-UX-ISSUES-002-LOWS-DEV-packet-outcomes.json), D13·data-model·interface-design·module-design 갱신.
+- 남은 일: coor diff 확인·필요 시 delta 리뷰·tester 확인·main 통합.
