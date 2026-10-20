@@ -1,3 +1,4 @@
+// Friend re-request rows (U4 CONNECT-VISUAL 결정): one requester row per code whatever the target, held requests unseen.
 package relay
 
 import (
