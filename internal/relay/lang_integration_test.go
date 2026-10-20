@@ -167,11 +167,12 @@ func TestLanguagePreferencePostgres(t *testing.T) {
 	if locale(idB) != "ko" {
 		t.Fatal("invalid value must not be saved")
 	}
-	// A damaged stored value falls back to Korean without exposing it.
-	s.mutateState(t, func(st *State) { st.Members[idB].Locale = "xx" })
+	// A damaged stored value falls back to Korean without exposing it; the value is distinctive so random page
+	// tokens cannot match it by chance.
+	s.mutateState(t, func(st *State) { st.Members[idB].Locale = "damaged-locale" })
 	w = a.do("GET", "/home/account", nil)
 	expect(t, w, 200, `<html lang="en">`) // browser cookie en is the next valid source
-	if strings.Contains(w.Body.String(), "xx") {
+	if strings.Contains(w.Body.String(), "damaged-locale") {
 		t.Fatal("damaged locale leaked")
 	}
 	delete(a.cookies, langCookie)
