@@ -1,0 +1,914 @@
+{
+  "base": "131544873193795e77a2886dcdd81e8a2658c0f6",
+  "head": "7704e6d3128831468bb474330210bc2a5099bce7",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.2 (55450a9) windows/amd64\nbuilt at: 2026-10-20T03:03:11Z\nhttps://github.com/alibaba/open-code-review",
+  "reviewer": "Claude Code / claude-opus-5-5 (host session 93aee436-47d5-4be1-9995-709e1628359a, reviewer_session lang002-code-review-opus)",
+  "conclusion": "조건부 수락. critical/high 없음. medium 2건(F1 admission 거부 화면 언어와 DEV 보고 불일치, F2 영어 화면의 한국어 외부 문서 표시 누락)과 low 1건(F3)은 미해결 후속으로 남긴다. 보안 경계(CSRF·인증·입력 검증·열린 리다이렉트·쿠키 속성·계정 교대 미복사·손상 locale fallback·템플릿 escape)에서는 문제를 찾지 못했다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "coor 준비 커밋 a3a8f443의 4단위 통합·5단위 배정 기록 4줄. DEV 커밋은 PLANS를 바꾸지 않았다(git log 1315448..7704e6d 확인). SIZE-001 WARNING은 기존 파일 크기이며 이 과제 범위 밖."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "coor 준비 커밋 a3a8f443의 note 1줄 갱신. 제품 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "D05: POST /home/language·GET /lang/{code}·Content-Language 계약을 코드(i18n.go setLang/safeBack/pageLang, human_http.go language)와 대조했다. 쿠키 속성·우선순위·303 경로가 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "D10: i18n.go 구간 번역·tr 패턴·badges·humanClock·remoteTemplates·langfixture 모듈 설명을 실제 코드와 대조했다. 일치."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-context.json",
+      "status": "added",
+      "insertions": 311,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 탐색 packet·route·context 기록. 제품 동작에 영향 없음. 지시서의 packet 요약과 packet-outcomes 존재만 확인하고 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-find.json",
+      "status": "added",
+      "insertions": 332,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 탐색 packet·route·context 기록. 제품 동작에 영향 없음. 지시서의 packet 요약과 packet-outcomes 존재만 확인하고 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 639,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 탐색 packet·route·context 기록. 제품 동작에 영향 없음. 지시서의 packet 요약과 packet-outcomes 존재만 확인하고 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-packet.json",
+      "status": "added",
+      "insertions": 4748,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 탐색 packet·route·context 기록. 제품 동작에 영향 없음. 지시서의 packet 요약과 packet-outcomes 존재만 확인하고 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-route.json",
+      "status": "added",
+      "insertions": 84,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 탐색 packet·route·context 기록. 제품 동작에 영향 없음. 지시서의 packet 요약과 packet-outcomes 존재만 확인하고 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-route.prior-1792482138092405200.json",
+      "status": "added",
+      "insertions": 71,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 탐색 packet·route·context 기록. 제품 동작에 영향 없음. 지시서의 packet 요약과 packet-outcomes 존재만 확인하고 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-LANG-DEV-route-eb4fbef607aa45a4b3dac58823e52c78.json",
+      "status": "added",
+      "insertions": 84,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "하네스 자동 생성 탐색 packet·route·context 기록. 제품 동작에 영향 없음. 지시서의 packet 요약과 packet-outcomes 존재만 확인하고 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/remote.py",
+      "status": "added",
+      "insertions": 139,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원격 Linux 검사 스크립트. RejectPolicy·known host 필수, 비밀값을 argv·로그에 넣지 않고 .env.server에서 메모리로만 읽는다. 작업용 /tmp 경로와 임의 접미사를 쓴다. 제품 코드에 포함되지 않는다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/probe.json",
+      "status": "added",
+      "insertions": 461,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/probe.mjs",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "headless Chrome 렌더·가로 넘침 측정 스크립트. 합성 fixture HTML만 file URL로 연다. 외부 네트워크·비밀값 사용 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/report.md",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 보고. 기술 계획·검사·렌더·fixture·not_run을 코드·로그와 대조했다. 59행의 'admission 429/503은 브라우저 쿠키 언어를 따른다'는 코드와 다르다(F1)."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "D13 DEV 후보 인계 절. 운영 미반영·migration 없음 서술이 diff와 일치한다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "D11 설정·언어 사용법. 설정 순서·저장·비로그인 링크·쿠키 차단 안내·KST 서술이 코드와 일치한다. README가 한국어라는 표시는 화면에 없다(F2)."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-20_to_dev.md",
+      "status": "modified",
+      "insertions": 238,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "LANG-DEV 지시서(723행~)와 완료 보고를 직접 읽었다. 승인 범위(상태 JSON 필드·쿠키 1개)와 금지 항목(migration·의존성·공개 API) 준수를 diff로 확인했다. 완료 보고의 admission 서술은 F1."
+    },
+    {
+      "path": "internal/relay/connect_guide_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "remoteReturn 변수 제거에 맞춰 memberPages 'remote-return' 템플릿 실행으로 바꿨다. 기대 href 단언은 유지되어 검증 약화 없음."
+    },
+    {
+      "path": "internal/relay/device.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "memberHit 서명 변경(w 추가)과 lang-nav 복귀 경로 Here=/connect/{id}. id는 템플릿 URL query escape와 safeBack 경로 제한을 거친다."
+    },
+    {
+      "path": "internal/relay/gate_summary_integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "badge(lang,state) 서명 변경 반영만. 단언 내용 동일."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "memberHit 서명 변경만. 동작 동일."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "browserLang 호출을 bounded 내부 핸들러에 추가, gatePage를 render로 전환, gateOwner/gateView에 w 전달. crossOrigin 보호 순서 불변. browserLang이 boundedHTTP admission 뒤에 있어 admission 거부 화면은 언어를 받지 못한다(F1)."
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "modified",
+      "insertions": 42,
+      "deletions": 11,
+      "review_status": "reviewed",
+      "reason": "POST /home/language: memberHit 인증·rate, CrossOriginProtection·SameSite=Strict 세션, MaxBytesReader, validLang 화이트리스트, Member.Locale만 변경하고 쿠키를 쓰지 않음(계정 교대 시 미복사). 422/503 경로, humanClock lang 인자(KST 동일 instant) 확인."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "modified",
+      "insertions": 22,
+      "deletions": 21,
+      "review_status": "reviewed",
+      "reason": "lang 속성·'설정' 헤더·언어 fieldset·설정 순서(이름→친구 코드→언어→로그인과 보안) 확인. 사용자 데이터 출력은 {{.X}}/name/tr 문자열로 html/template escape 유지. {{or .Title}}를 if/else로 바꾼 것은 기본 제목 번역용이며 의미 동일."
+    },
+    {
+      "path": "internal/relay/i18n.go",
+      "status": "added",
+      "insertions": 285,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "pageLang 우선순위, safeBack(스킴·호스트·//·백슬래시·CRLF 거부, 이후 http.Redirect의 path.Clean), setLang 쿠키(__Host-, Secure, HttpOnly, SameSite=Strict, Path=/), tr 패턴(%s 재번역, %v 원문 유지), translateTemplate가 소스 텍스트만 치환한 뒤 html/template로 다시 parse해 문맥 escape가 유지됨을 확인했다. badge는 HTMLEscapeString 사용."
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "added",
+      "insertions": 316,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "번역 표 316줄. 표본 약 60항목(설정·언어·친구·에이전트·철회·연결 안내·오류)을 읽어 의미 일치를 확인했다. 값에 태그·속성 따옴표가 없고 action은 키와 같다(값의 큰따옴표는 본문 텍스트, &lt;는 키와 동일). README 링크 문구에 한국어 문서 표시가 없다(F2). 전체 문장 교정은 하지 않았다."
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "status": "added",
+      "insertions": 438,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "번역 표 438줄. 표본 약 50항목(공개 첫페이지·로그인·세션·계정과 보안·연결 명령·패턴 키 5개)을 읽었다. 명령·경로·{{.Exp}} 등 action·ID는 유지된다. 패턴 키 %v분은 gate 요약의 숫자 단위에만 쓰이고 timezone은 time.LoadLocation(IANA, ASCII)로 검증되어 번역 대상이 아니다. SIZE-001 WARNING은 표 파일 특성."
+    },
+    {
+      "path": "internal/relay/i18n_test.go",
+      "status": "added",
+      "insertions": 373,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "템플릿·Go 리터럴 커버리지, action 동일성, 영어 화면 한글 0, 패턴 capture 유지, humanClock 동일 시각, 우선순위 10조합, safeBack, 쿠키 속성, 404 무쿠키, ?lang= 한 응답 안내를 검증한다. SIZE-001 WARNING 수용."
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Member.Locale omitempty 필드 추가. 기존 상태 JSON은 빈 값으로 읽혀 미설정 처리된다. migration 불필요."
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "html lang과 헤더 lang-nav 1개 추가만. 공개 첫페이지의 섹션·설치 사실·토큰·링크 구조는 바뀌지 않았다. 로그인 회원에게도 lang-nav가 보인다(F3)."
+    },
+    {
+      "path": "internal/relay/lang_browser_fixture_test.go",
+      "status": "added",
+      "insertions": 129,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "//go:build integration && langfixture 이며 _test.go라 제품 바이너리에 포함되지 않는다. TEST_SYNTHETIC_DATABASE=1과 manifest 경로가 없으면 실행하지 않고 manifest는 0600."
+    },
+    {
+      "path": "internal/relay/lang_integration_test.go",
+      "status": "added",
+      "insertions": 183,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "//go:build integration. 저장·422·다른 브라우저·로그아웃·계정 교대 미복사·익명 쿠키·첫 로그인 화면 적용만·명시 저장 우선·손상 locale fallback·익명 저장 차단·?lang= 한 응답·외부 back·다른 상태 수 불변·기한 문자열 동일을 단언한다. 7704e6d integration 로그에서 PASS."
+    },
+    {
+      "path": "internal/relay/member.go",
+      "status": "modified",
+      "insertions": 34,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "render가 응답 언어의 템플릿 집합을 고르고 Title/Problem/Notice만 번역한다. memberHit가 세션 확인 뒤 회원 언어를 헤더에 기록한다. startPage도 같은 규칙. refusedTo 401에 Here 추가. SIZE-001 WARNING 수용."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "memberHit 서명 변경만."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 32,
+      "review_status": "reviewed",
+      "reason": "head에 lang·'설정'·lang-nav(비회원이고 Here가 있을 때만). lang-nav href의 {{.}}는 URL query 문맥 escape. 기존 구조·폼·CSRF hidden 값 불변."
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "memberHit 서명 변경만."
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 7,
+      "review_status": "reviewed",
+      "reason": "page/remotePage 변수 제거에 맞춰 memberPages 단일 집합 실행으로 바꿨다. fixture 단언은 유지."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 10,
+      "review_status": "reviewed",
+      "reason": "remote·remote-return 템플릿을 memberPages 집합으로 옮기고 render를 쓴다. meta refresh·href의 {{.Target}} 문맥 escape 동일, CSRF·로그인 판정·redirect 계약 불변. 세션이 있으면 회원 언어 적용. SIZE-001 WARNING 수용."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/2ff9e44a38b2cc6cc5543617c74f5f94f74f37e9-integration.log",
+      "status": "added",
+      "insertions": 483,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/2ff9e44a38b2cc6cc5543617c74f5f94f74f37e9-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/326b82c892a8d2c211dddec769c51274b42332a3-integration-TestLanguagePreferencePostgres.log",
+      "status": "added",
+      "insertions": 101,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-fixture-compile.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-fixture-probe.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-fixture-start.log",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-integration-TestLanguagePreferencePostgres.log",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/db94002bd88561224d07531296df66f625059df1-integration.log",
+      "status": "added",
+      "insertions": 549,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/db94002bd88561224d07531296df66f625059df1-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/db94002bd88561224d07531296df66f625059df1-test.log",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/raw-log-sha256.txt",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-connection-token-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-connection-token-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-connection-token-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-device-login-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-device-login-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-device-login-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-gate-active-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-gate-active-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-gate-active-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-google-complete-home-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-google-complete-home-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-google-complete-home-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-home-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-home-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-home-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-account-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-account-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-account-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-agents-claude-first-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-agents-claude-first-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-agents-claude-first-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-conversation-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-conversation-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-conversation-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-friends-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-friends-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-friends-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-receipt-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-receipt-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-receipt-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-refusal-reauth-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-refusal-reauth-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-refusal-reauth-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-consent-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-consent-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-consent-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-return-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-return-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-return-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-start-both-problem-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-start-both-problem-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-start-both-problem-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-verify-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-verify-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-verify-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/human-account-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/human-account-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/human-account-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/start-both-problem-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/start-both-problem-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/start-both-problem-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. raw-log-sha256.txt로 10개 원시 로그 해시를 sha256sum -c로 대조해 모두 OK. 렌더 PNG는 probe.json(51건 overflow false)과 report.md로 존재를 확인했고 이미지를 개별 열람하지 않았다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/http.go",
+      "start_line": 212,
+      "end_line": 218,
+      "severity": "medium",
+      "resolved": false,
+      "content": "F1: browserLang이 boundedHTTP admission 뒤의 내부 핸들러에서만 실행된다. capacity.go의 capacityResponse('요청 대기' 429)와 admission budget 거부('요청 제한' 429), /home/receipts의 receiptFailure(429/503)는 Content-Language가 비어 responseLang이 항상 ko다. 쿠키 en 비로그인 사용자와 저장값 en 회원 모두 한국어 거부 화면을 본다(lang=\"ko\"와 내용은 일치해 깨진 표시는 아님). DEV 보고 59행과 완료 보고의 '브라우저 쿠키 언어를 따른다'는 코드와 다르다. 수정: browserLang을 boundedHTTP 앞(root 또는 bounded 진입부)으로 옮기거나, 보고를 '항상 한국어'로 정정하고 알려진 한계로 남긴다."
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "start_line": 135,
+      "end_line": 153,
+      "severity": "medium",
+      "resolved": false,
+      "content": "F2: U3 '외부 한국어 문서 링크는 언어를 표시한다'를 지키지 않는다. 영어 화면의 README·adapters/README 링크 문구(예: 'Grok new installation guide', 'Install and usage guide'; i18n_en_member.go 254–303행 포함)가 한국어 문서임을 표시하지 않고 hreflang=\"ko\"도 없다. README.md는 한국어 문서다. 수정: 영어 값에 '(Korean)' 같은 보이는 표시를 붙이거나 템플릿 링크에 hreflang=\"ko\"와 보이는 언어 표시를 둔다."
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "start_line": 13,
+      "end_line": 13,
+      "severity": "low",
+      "resolved": false,
+      "content": "F3: 공개 첫페이지 헤더의 lang-nav가 로그인 회원에게도 보인다. 저장값이 있는 회원이 English를 누르면 브라우저 쿠키만 바뀌고 회원 저장값이 우선해 화면은 바뀌지 않는다(설정 안내 없음). 로그아웃 뒤 그 쿠키가 같은 브라우저의 비로그인·저장값 없는 회원 화면에 적용된다. 명시적 브라우저 선택이라 계정 선호 복사는 아니지만 반응 없는 링크다. 수정: Authenticated일 때 lang-nav 대신 설정 링크를 두거나 회원 저장값을 안내한다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "ctx_9fec89dfb1ec",
+    "reviewer_session": "lang002-code-review-opus",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-c18675c1cf8f476fb89c9ef2245dec75",
+    "snapshot_head": "7704e6d3128831468bb474330210bc2a5099bce7",
+    "read_only": true
+  }
+}
