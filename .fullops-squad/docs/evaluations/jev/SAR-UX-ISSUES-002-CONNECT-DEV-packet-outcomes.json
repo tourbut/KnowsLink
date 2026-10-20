@@ -1,0 +1,789 @@
+{
+  "task_key": "SAR-UX-ISSUES-002-CONNECT-DEV",
+  "role": "dev",
+  "attempt": "092c653b0baf45238006e75c041662a8",
+  "packet_input_sha256": "2e7e51cba10e9f2e2d55e3265351b30e78943c11f95d7d6ed684ded5fe619cdf",
+  "uncertainty_review": "partial 패킷이다. 미확인 25건은 문자열 검색 한계다. 연결·회원·친구 화면과 handler의 호출자(humanView agents, memberAction, remoteConsent, requestFriend)를 직접 읽었고 변경 계약은 단위·원격 통합 검사로 확인했다. 동적 호출 완전 탐색은 주장하지 않는다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/contexts/coor.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D05에 /home/agents use/start, 생성 attempt, 복귀, O-NM-03 계약을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D10에 connect_guide.go·생성 재전송·codeTail 행과 gate_summary 변경을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DEV-test/runtime/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-APPROVAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D13에 DEV 후보 인계(상태 JSON 필드 추가 포함)를 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D11에 어디에서 사용할까요?·연결 재개·코드 끝 4자 사용법을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이번 변경(회원 연결 화면·친구 요청 표시)이 이 문서의 기술·운영 사실을 바꾸지 않는다. D02/D04 제품 정본은 지시대로 수정하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-18_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-19_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-20_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-20_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "Makefile",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "웹에서 시작하기 3단계와 연결 상태 안내를 화면 선택지와 맞췄다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": "adapters/.cursor-plugin/plugin.json",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "화면 선택지와 절 연결, Claude Code 세션 연결의 앱에서 확인 필요를 적었다."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "adapters/src/login.test.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "internal/relay/connections.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "agent 삭제 sweep에서 생성 재전송(Idempotency) 항목을 함께 지우도록 수정했다."
+    },
+    {
+      "path": "internal/relay/connections.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "agent 삭제 sweep에서 생성 재전송(Idempotency) 항목을 함께 지우도록 수정했다."
+    },
+    {
+      "path": "internal/relay/connections_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "연결 화면 단계 aria-current·복귀 기대를 새 계약으로 갱신했다."
+    },
+    {
+      "path": "internal/relay/device.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": "internal/relay/gate_summary.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "검사 없는 타입 단언을 comma-ok로 바꾸고 모양이 다르면 요약 없음으로 닫았다(리뷰 low)."
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": "internal/relay/human_names_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "내 에이전트 U8 선택지·안내·연결 상태 행과 보낸 친구 요청 O-NM-03 표시를 구현했다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "내 에이전트 U8 선택지·안내·연결 상태 행과 보낸 친구 요청 O-NM-03 표시를 구현했다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "생성 attempt 재전송 방지, confirm/cancel/철회 정확한 복귀, memberBack 거부 복귀를 구현했다."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "생성 attempt 재전송 방지, confirm/cancel/철회 정확한 복귀, memberBack 거부 복귀를 구현했다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "연결 화면 키 등록됨 표기·복귀, device 복귀, 익명 조회 nav, 승인 목록 접근성 이름을 고쳤다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "연결 화면 키 등록됨 표기·복귀, device 복귀, 익명 조회 nav, 승인 목록 접근성 이름을 고쳤다."
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "필요 구간을 읽고 적용했다."
+    },
+    {
+      "path": "internal/relay/policy_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "remote 동의 화면 복귀를 내 에이전트로, 앱 복귀 화면에 완료 아님·만료 시 재시작 안내를 더했다."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "remote 동의 화면 복귀를 내 에이전트로, 앱 복귀 화면에 완료 아님·만료 시 재시작 안내를 더했다."
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+    },
+    {
+      "path": "videos/knowslink-motion/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 범위의 판단에 필요한 새 사실이 없어 참고로만 두었다."
+    },
+    {
+      "path": "videos/knowslink-motion/index.html",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "변경한 함수·템플릿·경로를 참조하지 않거나 계약이 그대로다. 원격 make lint/test/integration으로 회귀를 확인했다."
+    }
+  ]
+}

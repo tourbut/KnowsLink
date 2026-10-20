@@ -48,16 +48,16 @@ SAR-UX-ISSUES-002.md U8·U7·U4 O-NM-03 결정, HOSTS-DESIGN report, D04, `inter
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 짧은 기술 계획(완료 보고에 기록): 경로 선택·재개 상태를 서버 상태로부터 계산하는 방식, O-NM-03 끝 4자 보관 위치·형식, 세션 연결 관측 가능 여부(불가면 '앱에서 확인 필요').
-- [ ] U8: '내 에이전트'에서 발급 전 '어디에서 사용할까요?' 5선택지(정본 문구·순서), 선택 뒤 준비물·권한·다음 행동, '처음 연결 / 기존 연결 계속'. 대상이 아닌 호스트 이름(OpenClaw·Meta Muse) 미표시, 5번에 설치 버튼·명령·성공 배지 없음.
-- [ ] U8 상태 표: local waiting/prepared/approved/consumed, remote 동의/앱 복귀, 취소·만료·거절, 승인 후 응답 유실, 미사용 agent, 친구 대기, 오프라인 추정·전달 만료·429의 사용자 설명과 재개. 새로고침·뒤로가기·중복 클릭으로 새 agent 자동 생성·기존 키 덮어쓰기 없음, '온라인' 배지 없음.
-- [ ] 나머지 U7: legacy 앵커 목록 '이 화면에서 찾기'로 구분(거짓 aria-current 없음), 연결 단계 aria-current=step은 확인된 단계만, 키 연결은 내 에이전트의 해당 관리 위치로 정확한 복귀, 임의 외부 return URL 금지, remote 앱 복귀 실패 시 검증된 앱 링크와 만료 안내.
-- [ ] O-NM-03: 요청자 자신의 보낸 요청·종료 행에 '입력한 코드 …abcd'(정본 규칙대로: 입력 끝 4자, 상대 현재 코드로 재계산 금지, 있는/없는/차단 동일 형식, 형식 밖 '입력한 코드 형식 다름', 이전 요청 '이전 요청').
-- [ ] 소규모 low 3건 반영.
-- [ ] README.md·adapters/README.md의 연결 안내를 화면 선택지와 맞춘다(Claude Code 작업 세션 연결 절 포함, 새 명령 문법 추측 금지).
-- [ ] U8-A 핵심 실패 경계 자동 검사: 생성·취소·만료·응답 유실·새로고침·재시작·중복 클릭·거절·rate limit 복구, 기존 agent/key·친구·Inbox 보존, O-NM-03 존재 비노출. 문구 복제 테스트는 쓰지 않는다.
-- [ ] tester/designer용 격리 fixture(local/remote 각 상태, 합성 A/B/C, agent 0개, 친구 대기 행, loopback origin, 허용 GET/POST, 수명) 준비·컴파일·실제 기동 확인.
-- [ ] 영향받는 D05/D10/D11/D13 갱신, 원격 Linux make lint/test/integration, FullOps lint.py --from 022c748, packet-outcomes, 완료 보고, work.py finish, 커밋, worker_done.
+- [x] 짧은 기술 계획(완료 보고에 기록): 경로 선택·재개 상태를 서버 상태로부터 계산하는 방식, O-NM-03 끝 4자 보관 위치·형식, 세션 연결 관측 가능 여부(불가면 '앱에서 확인 필요').
+- [x] U8: '내 에이전트'에서 발급 전 '어디에서 사용할까요?' 5선택지(정본 문구·순서), 선택 뒤 준비물·권한·다음 행동, '처음 연결 / 기존 연결 계속'. 대상이 아닌 호스트 이름(OpenClaw·Meta Muse) 미표시, 5번에 설치 버튼·명령·성공 배지 없음.
+- [x] U8 상태 표: local waiting/prepared/approved/consumed, remote 동의/앱 복귀, 취소·만료·거절, 승인 후 응답 유실, 미사용 agent, 친구 대기, 오프라인 추정·전달 만료·429의 사용자 설명과 재개. 새로고침·뒤로가기·중복 클릭으로 새 agent 자동 생성·기존 키 덮어쓰기 없음, '온라인' 배지 없음.
+- [x] 나머지 U7: legacy 앵커 목록 '이 화면에서 찾기'로 구분(거짓 aria-current 없음), 연결 단계 aria-current=step은 확인된 단계만, 키 연결은 내 에이전트의 해당 관리 위치로 정확한 복귀, 임의 외부 return URL 금지, remote 앱 복귀 실패 시 검증된 앱 링크와 만료 안내.
+- [x] O-NM-03: 요청자 자신의 보낸 요청·종료 행에 '입력한 코드 …abcd'(정본 규칙대로: 입력 끝 4자, 상대 현재 코드로 재계산 금지, 있는/없는/차단 동일 형식, 형식 밖 '입력한 코드 형식 다름', 이전 요청 '이전 요청').
+- [x] 소규모 low 3건 반영.
+- [x] README.md·adapters/README.md의 연결 안내를 화면 선택지와 맞춘다(Claude Code 작업 세션 연결 절 포함, 새 명령 문법 추측 금지).
+- [x] U8-A 핵심 실패 경계 자동 검사: 생성·취소·만료·응답 유실·새로고침·재시작·중복 클릭·거절·rate limit 복구, 기존 agent/key·친구·Inbox 보존, O-NM-03 존재 비노출. 문구 복제 테스트는 쓰지 않는다.
+- [x] tester/designer용 격리 fixture(local/remote 각 상태, 합성 A/B/C, agent 0개, 친구 대기 행, loopback origin, 허용 GET/POST, 수명) 준비·컴파일·실제 기동 확인.
+- [x] 영향받는 D05/D10/D11/D13 갱신, 원격 Linux make lint/test/integration, FullOps lint.py --from 022c748, packet-outcomes, 완료 보고, work.py finish, 커밋, worker_done.
 
 소유 파일: `internal/relay/` 연결·회원·친구 화면/handler/템플릿·상태와 테스트·fixture, README.md·adapters/README.md 연결 절, 기술 문서, own 기록·DEV 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/`). 예상 500–900줄.
 
@@ -209,6 +209,45 @@ D10, D11, D13과 실제 변경에 따라 D05·D12. D02/D04 제품 정본은 수�
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+### 결과 요약
+
+- 브랜치 `fullops/dev`. 제품 후보 `37febf953bcb1d1c5ce3d7e58b4302058ab88ef7`(첫 구현 `bec551f`, 테스트 보정 `137a7f5`·`a196e97`, 리뷰 수정 `d4a1026`, JSONB 키 수정 `37febf9`). 이후 커밋은 보고·기록뿐이며 최종 HEAD는 worker_done에 적는다.
+- 기준 `022c748`. DB migration·공개 API·권한·의존성 변경 없음(`go.mod`·`package.json` 미변경, 표준 라이브러리·기존 Go template만). 상태 JSON에 승인된 `Friend.CodeTail` 필드를 추가했다. 생성 재전송 기록은 기존 `Idempotency` 맵을 쓴다.
+
+### 짧은 기술 계획 (실행함)
+
+1. 경로 선택은 `/home/agents?use=&start=` GET 폼(허용 목록만, 저장 없음). 선택지는 `connect_guide.go:useChoices` 한 곳.
+2. 재개 상태는 `agentResume`가 저장 상태(최신 연결 시도, 활성 키, remote install의 code/token, device 승인 뒤 미저장)만으로 계산한다. 불확실하면 ‘확인 필요’.
+3. 세션 연결(`/knowslink-session on`)은 relay가 관측하지 못하므로 ‘앱에서 확인 필요’와 `/knowslink-session status` 안내로 남긴다.
+4. O-NM-03 끝 4자는 `Friend.CodeTail`(요청 시점 trim 입력, 형식 밖 `?`, 이전 기록 빈 값). 요청자의 보낸·종료 행에만 보인다.
+
+### 변경 이유와 지시와 달라진 판단
+
+- 리뷰 high에 따라 받은 사람이 대기 요청을 차단한 경우를 `blocked-pending`으로 저장해 요청자에게 대기·만료로만 보이게 했다(기존 동작이 차단을 ‘해제’로 드러냈다). 기한 뒤 같은 코드 재요청의 행 수 차이는 남은 한계로 보고에 적었다.
+- 공용 admission의 429 화면 복귀는 기존 `/home`이다. 이번 범위에서 바꾸지 않았다.
+- legacy 앵커 목록은 이미 ‘이 화면에서 찾기’였다. 헤더 ‘내 계정’→‘설정’은 U3 범위라 하지 않았다.
+- 하위 에이전트: 읽기 전용 리뷰 1건(Purpose: review). high 2·medium 2·low 2를 모두 처리했다. coor의 독립 고정 SHA 리뷰를 대신하지 않는다.
+
+### 검증한 것
+
+- 원격 Linux 격리 clone(`37febf9`): `make lint`·`make test`·integration 전체(`-race`, `-skip TestRemoteConsentBrowserReturn`)·fixture 컴파일 모두 EXIT=0. 실패한 중간 실행(`bec551f` 테스트 기대, `4d0fe06` NUL 키 503)은 원인과 함께 보고에 남겼다.
+- U8-A·O-NM-03: `TestConnectionResumeAndCodeTail` 하위 6건(선택지·읽기 무생성, 429 복구·중복 클릭, local 단계·취소·만료·응답 유실·재시작과 키 보존, device/remote 불확실·거절, 끝 4자 존재 비노출·차단·코드 교체·상대 비노출, 친구·키 보존). 단위 `TestCodeTailKeepsOnlyPlainTails`·`TestConnectGuidePagesRender`.
+- fixture 실제 기동(`TestConnectBrowserFixture`): ready 로그, manifest 600, loopback GET 200·로그인 204·범위 밖 403.
+- 렌더: headless Chrome 1440·390·320, 9개 화면 27장 가로 넘침 0.
+- FullOps lint(`--from 022c748`): ERROR 0. WARNING은 SIZE-001(`human.go`·`human_http.go`·`member_agents.go`·`connections_test.go`·새 통합 검사, `PLANS.md`는 내 변경 아님)과 SIZE-002(추가 약 900줄, 지시서 예상 500–900). 실행 불가 2(product-lint·product-test)는 Windows에 make가 없어서이며 같은 명령의 원격 Linux EXIT=0으로 대신한다. 사용자 미추적 폴더는 그 lint 프로세스에만 `GIT_CONFIG_*`의 `core.excludesFile`로 제외했다.
+- DEP-001: 의존성 변경 없음.
+
+### 못 한 것 (not_run)
+
+- 실제 키보드·200% 확대·스크린리더·보조 브라우저(U7-A), fixture 브라우저 왕복, `TestRemoteConsentBrowserReturn`, 실제 호스트 설치·왕복(범위 밖).
+
+### 산출물
+
+- 제품: `internal/relay/` 새 `connect_guide.go`, 수정 `human.go`·`human_http.go`·`human_pages.go`·`member_agents.go`·`member_pages.go`·`connections.go`·`remote_auth.go`·`gate_summary.go`. 테스트: 새 `connect_guide_test.go`·`connect_guide_integration_test.go`·`connect_browser_fixture_test.go`, 수정 `connections_test.go`·`connections_integration_test.go`·`human_pages_test.go`.
+- 안내: `README.md` 웹에서 시작하기, `adapters/README.md` 호스트 안내·Claude Code 세션 절.
+- 기술 문서: D05 `interface-design.md`, D10 `module-design.md`, D11 `user-guide.md`, D13 `transition.md`, `contexts/dev.md`. D02/D04/D12 미수정.
+- [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md)(계획·검사 로그·렌더·fixture·리뷰 처리·not_run), [packet-outcomes](../docs/evaluations/jev/SAR-UX-ISSUES-002-CONNECT-DEV-packet-outcomes.json).
+
+### 남은 일
+
+- coor: 고정 SHA 독립 리뷰, fixture 재기동(`remote.py fixture`), tester 독립 QA(U8-A·U7-A·O-NM-03), designer 직접 시각 검수, main 통합. 차단 요청의 기한 뒤 재요청 행 수 차이는 제품 판단 대상이다.

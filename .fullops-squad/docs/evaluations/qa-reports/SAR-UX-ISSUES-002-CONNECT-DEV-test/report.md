@@ -17,7 +17,7 @@ DEV 검사 기록이다. 독립 리뷰·tester QA·designer 시각 수락이 아
 2. 재개 상태: `agentResume`가 agent마다 저장된 상태만으로 단계와 다음 행동 하나를 계산한다. 근거는 최신 연결 시도(waiting·prepared·approved, 만료·취소 tombstone 24h), 활성 키, remote install의 미교환 code(1분)·token, device 승인 뒤 미저장이다. 불확실하면 ‘확인 필요’다. 온라인·앱 설치·도구 검색은 관측하지 않는다.
 3. 세션 연결 관측: relay는 `/knowslink-session on`을 관측하지 않는다(SSE 구독은 세션 화면 성공의 근거가 아님, 설계 U8). 따라서 Claude Code 안내는 ‘앱에서 확인 필요’와 `/knowslink-session status`로 남긴다.
 4. O-NM-03: 상태 JSON `Friend.CodeTail`(승인된 필드 추가). 요청 시점 trim 입력의 끝 4자, 4자 미만·`[A-Za-z0-9_-]` 밖 문자는 `?`, 이전 기록은 빈 값. 있는/없는/차단/자기 코드 모두 같은 함수로 저장한다. 요청자의 보낸 대기·거절·취소·만료 행에만 보인다. 전체 코드는 저장·URL·로그에 넣지 않는다.
-5. 중복 클릭: 생성 폼의 기존 `Attempt` 값을 기존 `Idempotency` 맵에 `owner/agent-create:attempt → agent`로 기록한다. 새 필드·migration은 없다. agent 삭제 sweep이 해당 항목을 지운다.
+5. 중복 클릭: 생성 폼의 기존 `Attempt` 값을 기존 `Idempotency` 맵에 `#agent-create/owner/attempt → agent`로 기록한다. 새 필드·migration은 없다. agent 삭제 sweep이 해당 항목을 지운다.
 
 ## 변경 요약
 
@@ -30,12 +30,13 @@ DEV 검사 기록이다. 독립 리뷰·tester QA·designer 시각 수락이 아
 
 | 검사 | SHA | 결과 | 근거 |
 |---|---|---|---|
-| 원격 `make lint` | FINAL | EXIT=0 | FINAL-lint.log |
-| 원격 `make test` | FINAL | EXIT=0 | FINAL-test.log |
-| 원격 integration 전체(`-skip TestRemoteConsentBrowserReturn`) | FINAL | EXIT=0 | FINAL-integration.log |
-| fixture 컴파일·실제 기동·probe | FINAL | 아래 | fixture 절 |
-| 첫 실행 `TestConnectionResumeAndCodeTail` | bec551f | EXIT=1 | 429가 공용 admission에서 먼저 나 기대한 복귀 링크가 없었다(테스트 기대 문제). 403 2건은 첫 실패로 agent ID가 비어 생긴 연쇄 |
-| 수정 뒤 `TestConnectionResumeAndCodeTail` | 137a7f5 | EXIT=0 | 하위 6건 PASS |
+| 원격 `make lint` | 37febf9 | EXIT=0 | [lint](37febf953bcb1d1c5ce3d7e58b4302058ab88ef7-lint.log) |
+| 원격 `make test` | 37febf9 | EXIT=0 | [test](37febf953bcb1d1c5ce3d7e58b4302058ab88ef7-test.log) |
+| 원격 integration 전체(`-race`, `-skip TestRemoteConsentBrowserReturn`) | 37febf9 | EXIT=0 | [integration](37febf953bcb1d1c5ce3d7e58b4302058ab88ef7-integration.log) |
+| fixture 컴파일·실제 기동·probe | 37febf9 | EXIT=0 | fixture 절 |
+| 리뷰 수정 뒤 integration 전체 | 4d0fe06 | EXIT=1 | [로그](4d0fe061f7bba4ae68f16b87eebc774f5acd77c4-integration.log). 생성 재전송 키의 NUL 접두사를 Postgres JSONB가 거부해 `POST /home/agents`가 503, 이어 2건 연쇄 실패. `37febf9`에서 `#` 접두사로 고쳤다 |
+| 첫 실행 `TestConnectionResumeAndCodeTail` | bec551f | EXIT=1 ([로그](bec551f557723f489638621a72770fcdb5a34e7d-integration-TestConnectionResumeAndCodeTail.log)) | 429가 공용 admission에서 먼저 나 기대한 복귀 링크가 없었다(테스트 기대 문제). 403 2건은 첫 실패로 agent ID가 비어 생긴 연쇄 |
+| 수정 뒤 `TestConnectionResumeAndCodeTail` | 137a7f5 | EXIT=0 | 하위 6건 PASS ([로그](137a7f58293c953a177bff52abee2e6a29bf5dc3-integration-TestConnectionResumeAndCodeTail.log)) |
 
 U8-A 자동 검사 `TestConnectionResumeAndCodeTail`(Postgres): 선택지 순서·보류 호스트 미표시·5번 설치 경로 없음·읽기/새로고침으로 agent 0; 429 뒤 agent 0과 복구 뒤 같은 attempt로 정확히 1개, 중복 제출은 같은 위치; local waiting→prepared→approved 구분과 재개 링크, 응답 유실 뒤 같은 token 재완료 401·키 1개 유지, 취소·만료(rotate 포함) 뒤 기존 키 불변, 만료된 시도와 미사용 구분, 서비스 재시작 뒤 같은 상태; device 승인 뒤 미저장 ‘확인 필요’, remote 거절은 agent 0·재사용 불가, 승인 뒤 code 대기·유실(확인 필요)·교환 구분; O-NM-03 있는/없는/차단/자기 코드 행의 동일 모양, 형식 다름, 이전 요청, 상대 코드 교체 뒤 불변, 상대 화면 비노출, 전체 코드 비노출, 취소 행 유지; 친구·기존 키 보존. 단위 `TestCodeTailKeepsOnlyPlainTails`, `TestConnectGuidePagesRender`.
 
@@ -45,7 +46,18 @@ U8-A 자동 검사 `TestConnectionResumeAndCodeTail`(Postgres): 선택지 순서
 
 ## fixture
 
-FIXTURE
+`TestConnectBrowserFixture`(태그 `integration,connectfixture`, [runner](remote.py) `fixture`)를 원격 격리 clone `/tmp/knowslink-connect002-37febf953bcb-d5033ad1`와 자기 Postgres 컨테이너 `kl-connect002-fixture-37febf953bcb-cd981d46`에서 실제 기동했다. `fixture.log`에 `connect fixture ready; synthetic accounts only`, 프로세스 생존, `fixture.json` 권한 600. loopback probe: `GET /` 200, `POST /fixture/as/a` 204, 그 세션으로 `GET /home/agents`·`/home/agents?use=other&start=first`·`/home/friends` 200, 범위 밖 `GET /v1/pull` 403. 근거: [start](37febf953bcb1d1c5ce3d7e58b4302058ab88ef7-fixture-start.log), [probe](37febf953bcb1d1c5ce3d7e58b4302058ab88ef7-fixture-probe.log), [compile](37febf953bcb1d1c5ce3d7e58b4302058ab88ef7-fixture-compile.log).
+
+| 항목 | 내용 |
+|---|---|
+| 계정 | 합성 a·b·c(`connect-*@example.test`), `POST /fixture/as/{a,b,c}`로 로그인(동일 출처·POST만) |
+| a | 연결 시도 waiting·prepared·approved agent 각 1, 키 등록 agent 1(긴 영문 이름), 남은 1칸으로 생성·중복 클릭 시험. 보낸 요청: b의 실제 코드·없는 코드·형식 다름(`ab`)·이전 요청·취소 1, c에게서 받은 요청 1 |
+| b | 만료·취소·device 승인 뒤 미저장·remote 앱 복귀 대기·remote 교환 유실·remote 교환 완료 agent. a의 받은 요청 1 |
+| c | agent 0개 |
+| 허용 | GET `/`·`/home`·`/home/agents`(query 포함)·`/home/friends`·`/home/account`·`/home/legacy`·`/home/new`·`/home/receipts`·`/home/connections/*`·`/connect/*`; POST `/home/agents`·`/home/connect`·`/home/confirm`·`/home/cancel`·`/home/friends/request`·`/home/friends/decision`. 그 밖은 403 |
+| 수명 | 12시간(열린 연결 시도·remote code도 같은 수명으로 늘림). manifest에 origin·agent/연결 ID·계정·만료 시각 |
+
+키·연결 변경(생성·연결)은 로그인 뒤 5분 재확인 창 안에서만 된다. 시험 전에 `/fixture/as/{name}`로 다시 로그인한다. 이전 SHA `4d0fe06` fixture 프로세스도 남아 있다(coor가 새 SHA로 다시 기동한다).
 
 ## 하위 리뷰
 
@@ -56,7 +68,7 @@ FIXTURE
 | high | `connections_integration_test.go:317`의 거부 복귀 기대가 옛 ‘홈으로 돌아가기’ | 새 복귀 문구로 고침 |
 | high | 받은 사람이 대기 요청을 차단하면 요청자 화면에 ‘해제’로 보여 코드 존재·행동이 드러남(기존 동작, O-NM-03 동일 모양 위반) | 차단된 대기 요청을 `blocked-pending`으로 저장하고 요청자에게 기한까지 대기·뒤 만료로 보인다. 요청자 취소는 허용, 같은 코드 반복은 대기 중 반복처럼 무동작. 받은 사람은 ‘차단’, 해제 뒤에는 ‘해제’로 보이며 수락할 수 없다. 통합 검사에 같은 모양·행 수 단언 추가 |
 | medium | 키가 있는 agent의 추가·교체 시도 중 ‘키 등록 전’ 표시 | ‘기존 키 등록됨 · 새 키 …’로 표시 |
-| medium | 생성 재전송 키와 메시지 멱등 키의 이론적 충돌 | 키를 NUL로 시작하는 `agentCreateKey`로 분리(메시지 키는 출력 가능 문자만) |
+| medium | 생성 재전송 키와 메시지 멱등 키의 이론적 충돌 | `#`로 시작하는 `agentCreateKey`로 분리. agent ID는 `#`로 시작할 수 없어 메시지 키(`from/key`)와 겹치지 않는다. 처음 고친 NUL 접두사는 Postgres JSONB가 거부해 생성이 503이 됐고(`4d0fe06` integration 실패), `37febf9`에서 바꿨다 |
 | low | 매 sweep의 Idempotency 전체 순회 | 삭제된 agent가 있을 때만 순회 |
 | low | 철회된 agent로 재전송 복귀, 검사 공백 | 철회된 agent는 재전송 대상에서 제외. ‘온라인’ 단언은 배지 마크업 기준으로 유지(본문 설명 문장에 단어가 있음). Inbox 보존은 이번 변경이 메시지·Inbox 경로를 바꾸지 않아 기존 통합 검사(`TestHumanPostgres` 등) 통과로 대신한다 |
 
