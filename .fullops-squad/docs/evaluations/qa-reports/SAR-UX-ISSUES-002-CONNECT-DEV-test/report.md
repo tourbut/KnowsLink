@@ -1,10 +1,10 @@
 ---
 title: SAR-UX-ISSUES-002-CONNECT-DEV DEV 보고
-status: draft
+status: review
 updated: 2026-10-20
 owner: dev
 tasks: [SAR-UX-ISSUES-002-CONNECT-DEV]
-summary: 회원 연결 경로 선택·재개(U8), 나머지 U7, O-NM-03, low 3건의 구현·검사·렌더·fixture 기동 근거와 미실행 항목
+summary: "회원 연결 경로 선택·재개(U8), 나머지 U7, O-NM-03, low 3건의 구현·검사·렌더·fixture 기동 근거와 미실행 항목"
 ---
 
 # SAR-UX-ISSUES-002-CONNECT-DEV DEV 보고
