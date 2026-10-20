@@ -87,16 +87,20 @@ func (s *Service) humanRoutes(mux *http.ServeMux) {
 	}
 	mux.HandleFunc("GET /home/friends/{id}", s.humanPage("friend"))
 	mux.HandleFunc("GET /home/legacy", s.legacyHomePage)
-	for _, path := range []string{"profile", "agent-name", "friends/request", "friends/decision", "friend-code", "self-connect", "conversation/send"} {
+	for _, path := range []string{"profile", "agent-name", "friends/request", "friends/decision", "friend-code", "self-connect", "conversation/send", "language"} {
 		mux.HandleFunc("POST /home/"+path, s.humanAction(path))
 	}
 }
 
 func (st *State) humanView(id string, session *Session, path string, r *http.Request, now time.Time) (map[string]any, error) {
 	m := st.Members[id]
-	v := map[string]any{"Title": "대화", "Section": "conversations", "Name": m.Name, "Masked": maskEmail(m.Email), "Code": m.FriendCode, "SelfConnected": m.SelfConnect, "Recent": now.Sub(session.Verified) < reauthWindow, "Attempt": randomToken(), "From": humanAgent{}, "To": humanAgent{}}
-	if r.URL.Query().Get("n") == "requested" {
+	lang := pageLang(r, m)
+	v := map[string]any{"Title": "대화", "Section": "conversations", "Name": m.Name, "Masked": maskEmail(m.Email), "Code": m.FriendCode, "SelfConnected": m.SelfConnect, "Recent": now.Sub(session.Verified) < reauthWindow, "Attempt": randomToken(), "From": humanAgent{}, "To": humanAgent{}, "Lang": lang, "LangUnsaved": !validLang(m.Locale)}
+	switch r.URL.Query().Get("n") {
+	case "requested":
 		v["Notice"] = "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
+	case "language":
+		v["Notice"] = "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
 	}
 	own := st.humanAgents(m.Owner)
 	v["Own"] = own
@@ -204,7 +208,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 	case "name":
 		v["Title"] = "내 이름"
 	case "account":
-		v["Title"], v["Section"] = "내 계정", "account"
+		v["Title"], v["Section"] = "설정", "account"
 	case "agents":
 		v["Title"], v["Section"] = "내 에이전트", "agents"
 		// The chosen host and start only steer the guide text; nothing about them is stored or treated as progress.
@@ -295,7 +299,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			if auth == "owner" && c.OwnerA != m.Owner {
 				auth = "상대가 작성"
 			}
-			rows = append(rows, humanMessage{ID: msg.Receipt.ID, Author: c.PersonA, Agent: c.AgentA, Short: shortID(msg.Receipt.From), Text: c.Text, When: humanClock(msg.Receipt.Accepted, now), State: humanTransport(msg.Receipt.State), Authorship: auth})
+			rows = append(rows, humanMessage{ID: msg.Receipt.ID, Author: c.PersonA, Agent: c.AgentA, Short: shortID(msg.Receipt.From), Text: c.Text, When: humanClock(msg.Receipt.Accepted, now, lang), State: humanTransport(msg.Receipt.State), Authorship: auth})
 		}
 		v["Title"], v["Messages"], v["CanSend"], v["ConversationID"] = "대화", rows, canSend, pairID(from, to)
 		if attempt := r.URL.Query().Get("attempt"); len(attempt) >= 16 && len(attempt) <= 96 {
@@ -320,13 +324,19 @@ func humanTransport(state string) string {
 	}
 	return "failed"
 }
-func humanClock(t, now time.Time) string {
+
+// humanClock is the short D04 conversation time in KST for both languages; only the words change, never the instant.
+func humanClock(t, now time.Time, lang string) string {
 	t, now = t.In(kst), now.In(kst)
-	prefix := t.Format("1월 2일 ")
+	day, today, year := "1월 2일 ", "오늘 ", "2006년 1월 2일 "
+	if lang == "en" {
+		day, today, year = "Jan 2, ", "Today ", "Jan 2, 2006, "
+	}
+	prefix := t.Format(day)
 	if t.Year() == now.Year() && t.YearDay() == now.YearDay() {
-		prefix = "오늘 "
+		prefix = today
 	} else if t.Year() != now.Year() {
-		prefix = t.Format("2006년 1월 2일 ")
+		prefix = t.Format(year)
 	}
 	hour := t.Hour()
 	part := "오전 "
@@ -337,13 +347,16 @@ func humanClock(t, now time.Time) string {
 	if hour == 0 {
 		hour = 12
 	}
+	if lang == "en" {
+		return prefix + strconv.Itoa(hour) + t.Format(":04 PM")
+	}
 	return prefix + part + strconv.Itoa(hour) + t.Format(":04")
 }
 
 func (s *Service) humanPage(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		v, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			id, session, retry, e := s.memberHit(st, r, now, memberRate)
+			id, session, retry, e := s.memberHit(w, st, r, now, memberRate)
 			if !retry.IsZero() {
 				return refusal{status: 429, problem: limited(retry)}, nil
 			}
@@ -390,7 +403,7 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 			if path == "friends/decision" && decision != "accept" {
 				rates = cleanupRate
 			}
-			id, session, retry, e := s.memberHit(st, r, now, rates)
+			id, session, retry, e := s.memberHit(w, st, r, now, rates)
 			if !retry.IsZero() {
 				return refusal{status: 429, problem: limited(retry)}, nil
 			}
@@ -431,6 +444,18 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 			case "friend-code":
 				m.FriendCode = randomToken()
 				return "/home/account", nil
+			case "language":
+				// Saving changes only the member's own locale (U3); the browser cookie of a later anonymous visitor is untouched.
+				if l := r.FormValue("lang"); validLang(l) {
+					m.Locale = l
+					return "/home/account?n=language#language", nil
+				}
+				view, e := st.humanView(id, session, "account", r, now)
+				if e != nil {
+					return fail(e)
+				}
+				view["FormTemplate"], view["FormStatus"], view["Problem"] = "human-account", 422, "지원하지 않는 언어입니다. 저장된 설정은 그대로입니다. 한국어 또는 English를 선택하세요."
+				return view, nil
 			case "self-connect":
 				if r.FormValue("consent") != "yes" {
 					return fail(fault("invalid_schema"))
@@ -492,6 +517,12 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 		if err != nil {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
+			} else if path == "language" {
+				// The chosen language applies to this failure screen only; the saved value did not change.
+				if l := r.FormValue("lang"); validLang(l) {
+					w.Header().Set("Content-Language", l)
+				}
+				refusedTo(w, "설정", refusal{status: 503, problem: "언어를 저장하지 못했습니다. 이전 설정이 그대로입니다. 잠시 뒤 다시 시도하세요."}, "/home/account#language")
 			} else {
 				refused(w, "대화", refusal{status: 503, problem: safeProblem(err)})
 			}

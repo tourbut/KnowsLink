@@ -122,14 +122,11 @@ func renderFixture(t *testing.T, f uiFixture) string {
 	t.Helper()
 	var b bytes.Buffer
 	var err error
-	switch f.tmpl {
-	case "gate":
-		err = page.Execute(&b, f.data)
-	case "remote":
-		err = remotePage.Execute(&b, f.data)
-	default:
-		err = memberPages.ExecuteTemplate(&b, f.tmpl, f.data)
+	name := f.tmpl
+	if name == "gate" {
+		name = "human-gate"
 	}
+	err = memberPages.ExecuteTemplate(&b, name, f.data)
 	if err != nil {
 		t.Fatal(f.name, err)
 	}

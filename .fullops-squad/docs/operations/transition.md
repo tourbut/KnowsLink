@@ -4,11 +4,17 @@ title: 인수인계서
 status: draft
 updated: 2026-10-20
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## DEV 후보 인계 (2026-10-20, SAR-UX-ISSUES-002-LANG-DEV)
+
+설정 화면과 한국어·English 언어 저장(U3), 헤더 ‘내 계정’→‘설정’(U7), 지정 웹 화면 전체의 영어판 DEV 후보다. 운영에는 아직 반영되지 않았다. DB migration·공개 API·의존성 변경은 없다. 상태 JSON에 생략 가능 필드 `Member.Locale`이 추가되며 기존 회원은 비어 있어 한국어다. 비로그인 선호 쿠키 `__Host-kl_lang` 하나가 추가된다(기존 쿠키와 같은 보안 속성, 365일). HTML 응답에 `Content-Language` 헤더가 붙는다. 되돌리기 시 저장된 `Locale`은 무시되고 쿠키는 읽히지 않는다. 배포 시 기존 relay 교체 절차만 적용한다. 남은 일은 tester 독립 QA(격리 fixture `TestLanguageBrowserFixture`, 태그 `integration,langfixture`, manifest `LANG_FIXTURE_MANIFEST`)·designer 두 언어 시각 검수·고정 SHA 리뷰·main 통합이다. 실제 키보드·200%·스크린리더·다른 브라우저는 미실행이다. 근거는 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/report.md)다.
+
+두 번째 attempt(리뷰 F1–F3·designer V-LANG-01~03·tester D-LG-01·O-LG-03 수정): admission 429/503 거부 화면이 브라우저 쿠키 언어를 따른다. 저장값이 있는 회원은 공개·동의 화면에서 언어 링크 대신 ‘설정에서 변경’ 링크를 본다. 영어 화면의 한국어 README 링크에 ‘(in Korean)’과 `hreflang="ko"`가 붙는다. 운영 영향은 없다. 새 쿠키·헤더·필드·의존성은 없다. 응답 내부 표식 `X-KnowsLink-Lang-Saved`는 HTML render에서 지워지며, render하지 않는 회원 응답(redirect·JSON)에는 값 `1`로 남을 수 있다. 회원 자신의 저장 여부만 뜻하므로 노출 영향은 없다.
 
 ## DEV 후보 인계 (2026-10-20, SAR-UX-ISSUES-002-CONNECT-DEV)
 

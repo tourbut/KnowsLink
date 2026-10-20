@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-20
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -16,6 +16,18 @@ summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 POST `/home/friends/request`의 `code`는 앞뒤 공백만 제거한다. 빈 코드나 `consent=yes` 누락은 422로 친구 화면을 다시 반환하고 입력 코드를 이스케이프해 유지한다. 유효한 형식의 제출은 코드 존재·차단·한도와 무관하게 `303 /home/friends?n=requested`다. GET `/home/friends`·`/home/account`는 읽기 전용 ‘내 친구 코드’를 보이며 query만으로 관계를 만들지 않는다. 친구 동작·친구 상세의 거부 화면 복귀는 `/home/friends`다.
 
 `/home/receipts`의 `agent` 입력과 `/home/new`의 `from`·`to` 입력은 select 대신 같은 이름의 radio다(새 대화 기본 선택은 기존 select와 같다: 발신 첫째, 친구 수신 첫째, 자기 수신 둘째). 승인 화면은 자기·현재 친구의 agent만 이름을 보이고 그 밖은 ‘확인할 수 없는 에이전트’와 ID를 보인다. 새 경로·필드·권한은 없다.
+
+## SAR-UX-ISSUES-002 설정·언어 (5단위)
+
+회원 화면의 헤더 진입은 ‘설정’(`/home/account`)이다. 설정의 순서는 내 이름, 내 친구 코드, 언어, 로그인과 보안이다. 새 공개 API·DB migration·의존성은 없다.
+
+| 경로 | 계약 |
+|---|---|
+| POST `/home/language` `lang=ko\|en` | 회원의 저장 언어(`Member.Locale`, 상태 JSON의 생략 가능 필드)만 바꾼다. 성공은 `303 /home/account?n=language#language`이며 다음 응답부터 그 언어다. 그 밖의 값은 422로 설정 화면을 다시 보이고 저장값은 바꾸지 않는다. 세션이 없으면 `303 /?n=expired`다. 저장 실패(503)는 선택한 언어로 거부 화면을 보이고 `/home/account#language`로 복귀한다. 브라우저 쿠키는 쓰지 않는다 |
+| GET `/lang/{ko\|en}?back=<경로>` | 비로그인 선호 쿠키 `__Host-kl_lang`(Secure·HttpOnly·SameSite=Strict·Path=/·365일) 하나를 쓰고 `back`으로 `303` 복귀한다. `back`은 이 사이트의 경로만 받고 그 밖(스킴·호스트·`//`)은 `/`로 바꾼다. 복귀 URL에는 `?lang=`을 붙여 쿠키가 막힌 브라우저도 그 응답만 선택 언어로 받고 ‘이 화면에만 적용’ 안내를 본다. 알 수 없는 코드는 404다 |
+| 모든 HTML 응답 | `Content-Language` 헤더와 `<html lang>`이 실제 표시 언어다. 우선순위는 회원 저장값 → 비로그인 쿠키 → 한 응답용 `?lang=` → 한국어다. 알 수 없거나 손상된 값은 다음 출처로 넘어간다. 회원 저장값은 쿠키로 복사하지 않으므로 계정을 바꾸면 그 계정의 값이 적용된다. 예외: 공용 admission의 429/503 거부 화면은 회원 조회 전이라 저장값 없이 쿠키 → `?lang=` → 한국어를 따른다 |
+
+번역 범위는 공개/로그인/이름/대화/친구/내 에이전트/설정/legacy/receipt/승인/local 연결/remote 동의·복귀 화면의 제목·메뉴·라벨·상태·빈 상태·오류·검증·접근성 이름·도움말이다. 프로토콜 ID·키·명령·사용자 이름·메시지·검증 원문 JSON·확인 메일·README·JSON API 응답은 번역하지 않는다. 정확한 기한은 두 언어 모두 KST 문자열 그대로이고 짧은 대화 시각만 단어가 바뀐다.
 
 ## SAR-UX-ISSUES-002 요청 상태 조회
 

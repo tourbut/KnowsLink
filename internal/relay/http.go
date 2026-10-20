@@ -484,7 +484,6 @@ func csrf(token, id string) string {
 }
 
 // The gate page shares the member visual tokens; the verified summary leads and the raw body stays in technical detail.
-var page = memberPages.Lookup("human-gate")
 
 // ownerAuth returns the CSRF key, the owner resolver, and the page to return to.
 type ownerAuth func(r *http.Request) (string, func(*State, time.Time) (string, error), string)
@@ -504,14 +503,14 @@ func sessionOwner(r *http.Request) (string, func(*State, time.Time) (string, err
 	}, "/home"
 }
 
-func (s *Service) gateOwner(st *State, r *http.Request, now time.Time, auth ownerAuth, clean bool) (string, error) {
+func (s *Service) gateOwner(w http.ResponseWriter, st *State, r *http.Request, now time.Time, auth ownerAuth, clean bool) (string, error) {
 	_, resolve, back := auth(r)
 	if back == "/home" {
 		rates := memberRate
 		if clean {
 			rates = cleanupRate
 		}
-		id, _, retry, err := s.memberHit(st, r, now, rates)
+		id, _, retry, err := s.memberHit(w, st, r, now, rates)
 		if !retry.IsZero() {
 			return "", &budgetError{retry}
 		}
@@ -553,10 +552,10 @@ func verifiedGate(st *State, g *Gate, now time.Time) (*Envelope, bool) {
 	}
 	return e, g.State == "pending" && st.current(m) && st.current(h) && now.Before(g.Exp) && now.Before(m.Receipt.Exp)
 }
-func (s *Service) gateView(r *http.Request, auth ownerAuth) (any, error) {
+func (s *Service) gateView(w http.ResponseWriter, r *http.Request, auth ownerAuth) (any, error) {
 	token, _, back := auth(r)
 	return s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		owner, err := s.gateOwner(st, r, now, auth, false)
+		owner, err := s.gateOwner(w, st, r, now, auth, false)
 		if err != nil {
 			return nil, err
 		}
@@ -618,14 +617,13 @@ func gateError(w http.ResponseWriter, r *http.Request, back string, err error) {
 }
 func (s *Service) gatePage(auth ownerAuth) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		view, err := s.gateView(r, auth)
+		view, err := s.gateView(w, r, auth)
 		if err != nil {
 			_, _, back := auth(r)
 			gateError(w, r, back, err)
 			return
 		}
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		_ = page.Execute(w, view)
+		render(w, 200, "human-gate", view.(map[string]any))
 	}
 }
 func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
@@ -634,7 +632,7 @@ func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 		r.Body = http.MaxBytesReader(w, r.Body, 8*1024)
 		parseErr := r.ParseForm()
 		_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			owner, err := s.gateOwner(st, r, now, auth, r.PostForm.Get("decision") == "deny")
+			owner, err := s.gateOwner(w, st, r, now, auth, r.PostForm.Get("decision") == "deny")
 			if err != nil {
 				return nil, err
 			}

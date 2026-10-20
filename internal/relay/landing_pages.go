@@ -2,7 +2,7 @@
 package relay
 
 const landingTemplates = `
-{{define "start"}}<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{{.Title}} · KnowsLink</title>` + memberStyle + `
+{{define "start"}}<!doctype html><html lang="{{lang}}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{{.Title}} · KnowsLink</title>` + memberStyle + `
 <style>
 body.landing{max-width:1184px}.landing h2{font-size:24px}.landing h1{font-size:40px}.landing section{margin-bottom:64px}.landing main>section{scroll-margin-top:16px}.landing .hero{display:grid;grid-template-columns:3fr 2fr;gap:32px}.landing .hero>*{min-width:0}.landing nav{display:flex;flex-wrap:wrap;gap:8px 16px}.landing .relation{align-self:center;padding:24px 0 24px 24px;border-left:1px solid var(--edge)}.landing .relation h2{font-size:18px}.landing .people-diagram{display:flex;flex-wrap:wrap;gap:16px 32px}.landing .people-diagram dd{margin:8px 0 0 16px}.landing .sequence{max-width:64ch}.landing .sequence li{padding:0 0 24px 8px}.landing .sequence p{margin:8px 0 0}.landing .install-option{border-top:1px solid var(--edge);padding-top:8px;margin-bottom:24px}.landing .install-option .summary-text{display:block;margin-left:20px;font-weight:400}.landing summary{justify-content:flex-start;gap:0 8px}.landing .summary-text{flex-basis:100%}.landing .install-option ol{margin-top:16px}.landing .install-option li{margin-bottom:12px}.landing .examples{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:24px}.landing .examples article{min-width:0;border-left:1px solid var(--edge);padding-left:16px}.landing .auth{max-width:560px}.landing .auth h3{margin-top:24px}.landing footer{display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--edge);padding-top:16px}.landing .select{user-select:all}.landing .top{margin-bottom:32px}
 @media(max-width:767px){body.landing{padding:16px}.landing h1{font-size:30px}.landing .hero,.landing .examples{grid-template-columns:1fr}.landing section{margin-bottom:48px}.landing .relation{padding:16px 0 0;border-left:0;border-top:1px solid var(--edge)}.landing .top nav{order:3;width:100%}.landing .hero .primary{width:100%}.landing .examples{gap:24px}}
@@ -10,7 +10,7 @@ body.landing{max-width:1184px}.landing h2{font-size:24px}.landing h1{font-size:4
 </style><body class="landing">
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header class="top"><a class="brand" href="/">KnowsLink</a><nav aria-label="서비스 안내"><a href="#how">시작 순서</a><a href="#install">설치와 연결</a><a href="#examples">대화 예시</a></nav>
-{{if .Authenticated}}<a href="/home">대화로 이동</a>{{else}}<a href="#start">{{if or .Google .EmailLogin}}로그인{{else}}로그인 상태 확인{{end}}</a>{{end}}</header>
+{{if .Authenticated}}<a href="/home">대화로 이동</a>{{else}}<a href="#start">{{if or .Google .EmailLogin}}로그인{{else}}로그인 상태 확인{{end}}</a>{{end}}{{template "lang-nav" .}}</header>
 {{if .Problem}}<p class="problem"><a href="#start">로그인 문제를 확인하세요</a></p>{{else if .Notice}}<p class="note">{{.Notice}} <a href="#start">로그인 상태 확인</a></p>{{end}}
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="intro-h"><div><h1 id="intro-h">친구와 연결하고, 에이전트로 대화하세요</h1>
@@ -43,15 +43,15 @@ KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01</code></pre
 <li>Grok에서 KnowsLink 연결을 시작하고, 내 브라우저에서 Google 로그인과 지문 확인 후 동의하세요.<p>이 설정만으로 연결이 끝나지 않습니다. Grok에 연결을 요청하고 본인이 시작한 브라우저 연결의 지문과 권한을 확인해 동의하세요. 연결 완료를 확인한 뒤 사용하세요.</p></li>
 <li>연결 완료와 웹의 내 에이전트를 확인하세요.</li></ol>
 <p>자동 수신에는 실행 중인 MCP 또는 watcher가 필요합니다. 질문 없이 채팅에 알림을 띄우려면 별도 webhook routine 설정이 필요합니다.</p>
-<a href="https://github.com/tourbut/KnowsLink/blob/main/README.md#grok-신규-설치">Grok 신규 설치 문서</a></details></div>
+<a hreflang="ko" href="https://github.com/tourbut/KnowsLink/blob/main/README.md#grok-신규-설치">Grok 신규 설치 문서</a></details></div>
 <div class="install-option"><details><summary>Dots에 연결하기<span class="summary-text muted">로컬 설치 없이 Remote HTTPS MCP로 연결합니다.</span></summary><ol>
 <li>사용 중인 ChatGPT 계정이나 workspace에서 custom MCP를 허용하는지 확인하세요.</li><li>custom MCP 서버 주소에 아래 URL을 등록하세요.<p><code class="select">https://link.knowslog.com/mcp</code></p></li>
 <li>Google 로그인 후 표시된 설치 에이전트와 권한을 확인하고 서버 보관에 동의하세요.</li><li>연결한 에이전트와 웹의 내 에이전트가 맞는지 확인하세요.</li></ol>
 <p>Dots의 연결 키는 서버에 보관됩니다. Grok의 로컬 키나 연결 폴더를 복사하지 마세요.</p>
 <p>질문 없는 알림에는 Events 지원과 구독, 받은 내용을 대화에 표시하는 지시가 필요합니다. 메뉴와 사용 권한은 계정마다 확인하세요.</p>
-<a href="https://github.com/tourbut/KnowsLink/blob/main/README.md#dots-신규-연결">Dots 신규 연결 문서</a></details></div>
+<a hreflang="ko" href="https://github.com/tourbut/KnowsLink/blob/main/README.md#dots-신규-연결">Dots 신규 연결 문서</a></details></div>
 <h3>이미 연결했다면 새로 등록하지 마세요</h3><p>기존 에이전트와 키를 유지한 채 업데이트 안내를 따르세요.</p>
-<p><a href="https://github.com/tourbut/KnowsLink/blob/main/README.md#grok-기존-설치-업데이트">Grok 업데이트</a> · <a href="https://github.com/tourbut/KnowsLink/blob/main/README.md#dots-기존-연결-업데이트">Dots 업데이트</a></p>
+<p><a hreflang="ko" href="https://github.com/tourbut/KnowsLink/blob/main/README.md#grok-기존-설치-업데이트">Grok 업데이트</a> · <a hreflang="ko" href="https://github.com/tourbut/KnowsLink/blob/main/README.md#dots-기존-연결-업데이트">Dots 업데이트</a></p>
 <h3>받는 것과 자동 답장은 다릅니다</h3><p>메시지를 받았다고 자동으로 답장하지 않습니다. 새 메시지를 보낼 때마다 대상과 본문에 대한 사용자 승인이 필요합니다.</p>
 <p>자동 수신에는 실행 중인 MCP 또는 watcher가 필요합니다. 질문 없이 채팅에 알림을 띄우려면 별도 webhook routine 설정이 필요합니다.</p>
 <p>질문 없는 알림에는 Events 지원과 구독, 받은 내용을 대화에 표시하는 지시가 필요합니다. 메뉴와 사용 권한은 계정마다 확인하세요.</p>
@@ -72,5 +72,5 @@ KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01</code></pre
 {{if .EmailLogin}}{{if .Google}}<p class="or">또는</p>{{end}}<h3>이메일로 가입·로그인</h3>
 <form method="post" action="/auth/start"><label for="email">이메일 주소</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required value="{{.Email}}" aria-describedby="email-help{{if .Problem}} problem{{end}}"><p class="muted" id="email-help">6자리 확인 코드는 10분 동안 한 번만 쓸 수 있습니다. 코드를 확인하기 전에는 로그인되지 않습니다.</p><button{{if not .Google}} class="primary"{{end}}>확인 코드 받기</button></form>{{end}}
 {{if and (not .Google) (not .EmailLogin)}}<p>로그인을 준비하고 있습니다. 잠시 뒤 다시 시도하세요.</p><a href="/">안내 다시 불러오기</a>{{end}}{{end}}</section>
-</main><footer><a href="https://github.com/tourbut/KnowsLink/blob/main/README.md">설치·사용 문서</a><a href="#main">맨 위로</a></footer></body></html>{{end}}
+</main><footer><a hreflang="ko" href="https://github.com/tourbut/KnowsLink/blob/main/README.md">설치·사용 문서</a><a href="#main">맨 위로</a></footer></body></html>{{end}}
 `

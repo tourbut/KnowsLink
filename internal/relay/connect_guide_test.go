@@ -100,7 +100,7 @@ func TestConnectGuidePagesRender(t *testing.T) {
 	refusedTo(denied, "연결 확인", refusal{403, "연결을 조회할 수 없습니다.", false, false}, "/home/agents")
 	write("connection-refusal", denied.Body.String())
 	var b bytes.Buffer
-	if err := remoteReturn.Execute(&b, "https://app.invalid/cb?code=synthetic&iss=https%3A%2F%2Flink.invalid&state=s"); err != nil {
+	if err := memberPages.ExecuteTemplate(&b, "remote-return", map[string]any{"Target": "https://app.invalid/cb?code=synthetic&iss=https%3A%2F%2Flink.invalid&state=s"}); err != nil {
 		t.Fatal(err)
 	}
 	if !strings.Contains(b.String(), `href="https://app.invalid/cb?code=synthetic`) {

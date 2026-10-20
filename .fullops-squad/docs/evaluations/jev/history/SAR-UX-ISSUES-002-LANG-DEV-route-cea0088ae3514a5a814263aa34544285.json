@@ -1,0 +1,92 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-LANG-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D09",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.53,
+        "product": 0.47
+      },
+      "confidence": 0.06
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.4,
+      "D02": 0.48,
+      "D03": 0.52,
+      "D04": 0.56,
+      "D05": 0.55,
+      "D06": 0.56,
+      "D07": 0.47,
+      "D08": 0.55,
+      "D09": 0.61,
+      "D10": 0.73,
+      "D11": 0.57,
+      "D12": 0.53,
+      "D13": 0.58
+    }
+  },
+  "usage": {
+    "input_tokens": 2488,
+    "output_tokens": 314,
+    "cost": 0.000104496
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D08",
+    "D11",
+    "D12"
+  ],
+  "latency_seconds": 0.646,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "리뷰·tester 결함과 designer 확정 기준의 구현 수정은 dev 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "af16ac52044b3958d3a89afe6900a0bc0051f15a",
+  "requires_packet": true,
+  "attempt": "d151cd6ef79c4ccb8bec68adb6ff72b6",
+  "instruction_sha256": "376904e231faa498c4e78f4a08fade6fdce83c3da3b105966d4956359087ef6c",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "963737e5f215bba5039f16f02fcc5a003d242b417916ff12c046af46670c4b76"
+}

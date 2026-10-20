@@ -29,6 +29,7 @@ const (
 
 type Member struct {
 	Name, FriendCode     string
+	Locale               string `json:",omitempty"` // "ko" or "en" once saved in settings (U3); anything else means unset
 	SelfConnect          bool
 	Owner, Email, Issuer string
 	Active               bool

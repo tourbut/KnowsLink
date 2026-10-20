@@ -1,0 +1,20 @@
+600
+=== RUN   TestLanguageBrowserFixture
+    lang_browser_fixture_test.go:127: language fixture ready; synthetic accounts only
+GET / 200 <html lang="ko"
+GET /lang/en 303 http://127.0.0.1:38139/?lang=en
+GET / with cookie <html lang="en"
+POST /fixture/as/en 204
+GET /home/account 200 <html lang="en"
+GET /home/friends 200 <html lang="en"
+GET /home/agents 200 <html lang="en"
+GET /home/legacy 200 <html lang="en"
+GET /home/receipts 200 <html lang="en"
+GET /home/new 200 <html lang="en"
+POST /fixture/as/ko 204
+GET /home/account as ko <html lang="ko"
+POST /fixture/as/none 204
+GET /home as none <html lang="ko"
+GET /v1/pull 403
+
+EXIT=0

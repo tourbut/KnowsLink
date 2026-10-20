@@ -106,7 +106,7 @@ func connectionResponse(w http.ResponseWriter, value any, err error) {
 
 func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, session, retry, e := s.memberHit(st, r, now, memberRate)
+		id, session, retry, e := s.memberHit(w, st, r, now, memberRate)
 		if !retry.IsZero() {
 			return refusal{429, limited(retry), false, false}, nil
 		}
@@ -118,7 +118,7 @@ func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {
 			return refusal{403, "이 연결을 시작한 Google 계정으로 다시 시작하세요.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-		v := map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": r.PathValue("id"), "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "State": c.State, "Google": s.Google != nil}
+		v := map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": r.PathValue("id"), "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "State": c.State, "Google": s.Google != nil, "Here": "/connect/" + r.PathValue("id")}
 		v["Login"] = c.Owner == "" || e != nil || now.Sub(session.Verified) >= reauthWindow
 		return v, nil
 	})

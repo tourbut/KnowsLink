@@ -9,7 +9,6 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
-	"html/template"
 	"net/http"
 	"net/url"
 	"strings"
@@ -309,9 +308,11 @@ func (s *Service) remoteAuthorize(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/remote/consent/"+id, 303)
 }
 
-var remotePage = template.Must(template.New("remote").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>KnowsLink 원격 연결</title>` + memberStyle + `<a class="skip" href="#main">본문으로 건너뛰기</a><header class="top"><span class="brand">KnowsLink</span></header><main id="main" class="page"><h1>원격 호스트 연결</h1>{{if .Problem}}<p class="problem" role="alert" id="name-error">{{.Problem}}</p>{{end}}<section aria-label="연결 요청"><p>클라이언트: {{.Name}}</p><p>반환 주소: {{.Redirect}}</p><p>이 설치에 새 agent와 키를 만듭니다. 원격 서명용 개인 키와 구독 webhook 비밀값은 KnowsLink 서버의 비공개 DB에 보관합니다. 기존 로컬 개인 키는 가져오지 않습니다. 기존 agent와 관계는 유지됩니다. 연결한 상대에게 명시적으로 텍스트를 보내고 받을 수 있습니다. 이벤트는 도착 신호만 전송합니다. 자동 답장 권한은 부여하지 않습니다.</p>{{if .Login}}<form method="post" action="/auth/google"><input type="hidden" name="remote" value="{{.ID}}"><button class="primary">Google 계정 확인</button></form>{{else}}<form method="post"><input type="hidden" name="csrf" value="{{.CSRF}}"><label for="remote-agent-name">에이전트 이름</label><input id="remote-agent-name" name="name" required maxlength="80" value="{{.AgentName}}" aria-describedby="remote-name-help{{if .Problem}} name-error{{end}}"><p id="remote-name-help">친구에게도 이 이름이 보입니다.</p><button class="primary" name="decision" value="approve">이 설치 연결 승인</button><button name="decision" value="deny" formnovalidate>취소</button></form>{{end}}<p><a href="/home/agents">내 에이전트 관리</a></p></section></main></html>`))
-
-var remoteReturn = template.Must(template.New("return").Parse(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="refresh" content="0;url={{.}}"><title>KnowsLink 원격 연결</title>` + memberStyle + `<a class="skip" href="#main">본문으로 건너뛰기</a><header class="top"><span class="brand">KnowsLink</span></header><main id="main" class="page"><h1>앱으로 돌아가는 중</h1><section aria-label="다음 동작"><p>이 화면은 연결 완료를 뜻하지 않습니다. 앱에서 연결 결과를 확인하세요.</p><p>자동으로 이동하지 않으면 1분 안에 아래 링크를 누르세요.</p><p><a href="{{.}}">연결을 시작한 앱으로 돌아가기</a></p><p class="muted">1분이 지나 링크가 만료되면 연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.</p></section></main></html>`))
+// remoteTemplates join the member set so the consent and return screens follow the same language choice.
+const remoteTemplates = `
+{{define "remote"}}<!doctype html><html lang="{{lang}}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>KnowsLink 원격 연결</title>` + memberStyle + `<a class="skip" href="#main">본문으로 건너뛰기</a><header class="top"><span class="brand">KnowsLink</span>{{template "lang-nav" .}}</header><main id="main" class="page"><h1>원격 호스트 연결</h1>{{if .Problem}}<p class="problem" role="alert" id="name-error">{{.Problem}}</p>{{end}}{{if .Notice}}<p class="note" role="status">{{.Notice}}</p>{{end}}<section aria-label="연결 요청"><p>클라이언트: {{.Name}}</p><p>반환 주소: {{.Redirect}}</p><p>이 설치에 새 agent와 키를 만듭니다. 원격 서명용 개인 키와 구독 webhook 비밀값은 KnowsLink 서버의 비공개 DB에 보관합니다. 기존 로컬 개인 키는 가져오지 않습니다. 기존 agent와 관계는 유지됩니다. 연결한 상대에게 명시적으로 텍스트를 보내고 받을 수 있습니다. 이벤트는 도착 신호만 전송합니다. 자동 답장 권한은 부여하지 않습니다.</p>{{if .Login}}<form method="post" action="/auth/google"><input type="hidden" name="remote" value="{{.ID}}"><button class="primary">Google 계정 확인</button></form>{{else}}<form method="post"><input type="hidden" name="csrf" value="{{.CSRF}}"><label for="remote-agent-name">에이전트 이름</label><input id="remote-agent-name" name="name" required maxlength="80" value="{{.AgentName}}" aria-describedby="remote-name-help{{if .Problem}} name-error{{end}}"><p id="remote-name-help">친구에게도 이 이름이 보입니다.</p><button class="primary" name="decision" value="approve">이 설치 연결 승인</button><button name="decision" value="deny" formnovalidate>취소</button></form>{{end}}<p><a href="/home/agents">내 에이전트 관리</a></p></section></main></html>{{end}}
+{{define "remote-return"}}<!doctype html><html lang="{{lang}}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="refresh" content="0;url={{.Target}}"><title>KnowsLink 원격 연결</title>` + memberStyle + `<a class="skip" href="#main">본문으로 건너뛰기</a><header class="top"><span class="brand">KnowsLink</span></header><main id="main" class="page"><h1>앱으로 돌아가는 중</h1><section aria-label="다음 동작"><p>이 화면은 연결 완료를 뜻하지 않습니다. 앱에서 연결 결과를 확인하세요.</p><p>자동으로 이동하지 않으면 1분 안에 아래 링크를 누르세요.</p><p><a href="{{.Target}}">연결을 시작한 앱으로 돌아가기</a></p><p class="muted">1분이 지나 링크가 만료되면 연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.</p></section></main></html>{{end}}
+`
 
 func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 	r.Body = http.MaxBytesReader(w, r.Body, 8192)
@@ -330,6 +331,9 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 			return nil, fault("invalid_auth")
 		}
 		member, session, e := st.session(readCookie(r, sessionCookie), now)
+		if e == nil {
+			memberLang(w, r, st.Members[member])
+		}
 		login := e != nil || a.Owner == "" || st.Members[member].Owner != a.Owner || st.Members[member].Issuer != googleIssuer || now.Sub(session.Verified) >= reauthWindow
 		if r.Method == "GET" {
 			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "Login": login, "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id"))}, nil
@@ -374,15 +378,15 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 	}
 	if target, ok := v.(string); ok {
 		// Chromium applies form-action to a form submission's redirects, so a fresh same-origin document navigates instead.
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		_ = remoteReturn.Execute(w, target)
+		render(w, 200, "remote-return", map[string]any{"Target": target})
 		return
 	}
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	if view, ok := v.(map[string]any); ok && view["Problem"] != nil {
-		w.WriteHeader(422)
+	view, status := v.(map[string]any), 200
+	view["Here"] = "/remote/consent/" + r.PathValue("id")
+	if view["Problem"] != nil {
+		status = 422
 	}
-	_ = remotePage.Execute(w, v)
+	render(w, status, "remote", view)
 }
 
 func (st *State) approveRemote(a *remoteAttempt, now time.Time) (string, error) {
