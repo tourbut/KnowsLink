@@ -1,0 +1,1351 @@
+{
+ "packet_input_sha256": "a6f7314f88991eed65bb04bf97acf5b98e8d08d531a795c1e8adbbe9f7e25eeb",
+ "attempt": "4b1aa18f07504d9fb2e6e091242ea605",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "하네스 지도와 tester 규약·문서 규칙을 읽고 따랐다. 변경 요구는 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "U3 언어 저장·우선순위 표·번역 범위·U3-A와 U7 문단을 수락 기준으로 썼다. 정본은 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_tester.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "지시서를 읽고 항목별로 수행했다. 완료 보고만 이 파일에 채운다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "검증 명령·lint·테스트 범위·UI 검사 한계를 읽었다. 등록 make lint/test는 coor의 같은 SHA Linux 결과를 재사용한다. 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "규칙 묶음 fullops-common-0.3.3과 우선순위를 읽었다. 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "읽었다. tester는 제품 코드를 수정하지 않아 적용은 검사 스크립트의 단순성·경계 검증에 한정했다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "읽었다. 합성 계정·loopback fixture만 쓰고 운영·실계정·비밀값을 쓰지 않았다. 외부 back·교차 출처 POST를 경계로 검증했다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "lite 범위, 실패 원본 보존, 실행하지 않은 검증을 통과로 쓰지 않는 규칙을 읽고 따랐다."
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/tester-2026-10-14-refactor002.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/contexts/designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이번 QA의 판정에 필요하지 않았다. 열어 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "DEV 보고를 직접 읽었다. 이 컨텍스트는 열어 읽지 않았고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "tester 컨텍스트를 읽고 이전 fixture 운영 교훈(쿠키 직접 전달, 회원당 분당 40회 한도, 비가역 단계를 마지막에)을 적용했다. 새 교훈은 coor가 contexts에 반영할 후보다. 이 QA는 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/crud-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/interface-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-COPY-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER-PUBLIC.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-BETA-002-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-HOOK-QUOTE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-DEPLOY-001-OPS-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-QA-DOCS-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-DEV-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GOOGLE-CONNECT-002-LIVE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-GROK-WEBHOOK-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-DOC-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-UI-DELTA-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/web-20261014-232426-595664/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-REVIEW-FIX-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FINAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-FIX-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-BOT-CATALOG-DEV-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-DEV-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-002-INSTALL-FIX-DEV-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PREP-002-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FINAL-RECORDS-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER-test/probe-failures.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-UI-FIX/scenario.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-QA-RECORD-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER-test/probe-failures.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-FINAL-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-OPS/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-MAIN-REVIEW-review/verified-qa-report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-INTEGRATION/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-QA-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-002-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-DEV-099-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-INTEGRATION-SOURCE-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SETUP-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "직전 tester 보고의 형식과 fixture 운영 교훈을 읽고 러너(client/checks/browser)를 재사용했다. 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-FIX-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 단위 보고의 형식·러너를 참고했다. 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-VISUAL/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-WINDOWS-SHELL-GUARD-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "시나리오 색인이다. 새 시나리오 파일은 이 과제 소유 범위에 만들었고 색인 파일은 수정하지 않았다(지시서 소유 범위 밖)."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER-PUBLIC.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-BETA-002-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-HUMAN-PEER-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FINAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-AGENTS-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-PUBLIC-MESSAGES-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SETUP-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-APPROVAL-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-CONNECT-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이전 단위의 시나리오 형식을 읽고 새 시나리오를 같은 형식으로 썼다. 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-03_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-03_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-04_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-04_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-04_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-05_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-17_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-18_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-19_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/SAR-SETUP-001-INTEGRATION-REVIEW.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": "adapters/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "탐색 후보. 이번 QA에서 열어 읽지 않았고 수정하지 않았다. 과거 과제 기록이거나 이번 범위(U3 언어 저장·U7 설정·두 언어 지정 화면 독립 QA)와 직접 관련이 없다."
+  },
+  {
+   "path": "internal/relay/cleanup_flood_integration_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "영향 확인 후보다. 이번 QA는 제품 코드를 수정하지 않았고 이 파일의 동작은 fixture 응답으로만 관찰했다."
+  }
+ ],
+ "uncertainty_review": "탐색 패킷은 partial이다. 지시서가 가리킨 문서(FULLOPS, common 규칙 4개, project.md, 설계 U3·U7, DEV 보고)와 직전 APPROVAL·NAMES tester 결과를 직접 읽었다. 과거 보고·로그·계획 후보는 이번 범위와 무관해 열지 않았고, 미확인 24건은 이 QA 판정에 필요하지 않았다."
+}

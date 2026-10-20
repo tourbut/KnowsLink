@@ -1,0 +1,197 @@
+{
+  "browser": "Chrome/155.0.8059.85",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18933",
+  "stage": "keys",
+  "acct": "ko",
+  "checks": [
+    {
+      "name": "keys_ko_settings_first_stop_is_skip_link",
+      "passed": true,
+      "detail": {
+        "key": "A||#main|본문으로 건너뛰기",
+        "tag": "A",
+        "id": "",
+        "type": "",
+        "text": "본문으로 건너뛰기",
+        "fv": true,
+        "outline": "solid 3px",
+        "shadow": false,
+        "h": 44,
+        "inx": true,
+        "skip": true,
+        "axName": "본문으로 건너뛰기",
+        "axRole": "link"
+      }
+    },
+    {
+      "name": "keys_ko_settings_all_stops_have_visible_focus_inside_viewport",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "keys_ko_settings_all_stops_at_least_44px_except_skip",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "keys_ko_settings_no_keyboard_trap_one_cycle",
+      "passed": true,
+      "detail": 18
+    },
+    {
+      "name": "keys_ko_settings_tab_order_follows_reading_order",
+      "passed": true,
+      "detail": {
+        "missing": [],
+        "names": [
+          "본문으로 건너뛰기",
+          "KnowsLink",
+          "설정",
+          "대화",
+          "친구",
+          "내 에이전트",
+          "서비스 안내",
+          "내 이름",
+          "이름 저장",
+          "내 친구 코드",
+          "친구 코드 교체",
+          "한국어",
+          "언어 저장",
+          "로그인 다시 확인",
+          "이 브라우저에서 로그아웃",
+          "모든 브라우저에서 로그아웃",
+          "기존 연결"
+        ]
+      }
+    },
+    {
+      "name": "keys_ko_settings_radiogroup_is_one_tab_stop_on_checked_radio",
+      "passed": true,
+      "detail": [
+        "INPUT|||ko"
+      ]
+    },
+    {
+      "name": "keys_ko_settings_radio_accessible_name_is_language_name",
+      "passed": true,
+      "detail": {
+        "key": "INPUT|||ko",
+        "tag": "INPUT",
+        "id": "",
+        "type": "radio",
+        "text": "ko",
+        "fv": true,
+        "outline": "solid 3px",
+        "shadow": false,
+        "h": 44,
+        "inx": true,
+        "skip": false,
+        "axName": "한국어",
+        "axRole": "radio"
+      }
+    },
+    {
+      "name": "keys_ko_settings_arrow_moves_selection_to_other_language",
+      "passed": true,
+      "detail": {
+        "startVal": "ko",
+        "afterDown": {
+          "v": "en",
+          "focus": "en",
+          "url": "http://127.0.0.1:18933/home/account"
+        }
+      }
+    },
+    {
+      "name": "keys_ko_settings_arrow_back_restores_original_selection",
+      "passed": true,
+      "detail": {
+        "startVal": "ko",
+        "afterUp": "ko"
+      }
+    },
+    {
+      "name": "keys_ko_settings_choosing_by_keyboard_submits_nothing_no_navigation",
+      "passed": true,
+      "detail": {
+        "posts": [],
+        "path": "/home/account"
+      }
+    },
+    {
+      "name": "keys_ko_settings_space_on_other_radio_submits_nothing",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "keys_ko_settings_reload_discards_unsaved_choice_saved_value_shown",
+      "passed": true,
+      "detail": "ko"
+    },
+    {
+      "name": "keys_ko_settings_skip_link_moves_to_main",
+      "passed": true,
+      "detail": "#main"
+    },
+    {
+      "name": "keys_ko_friends_third_tab_stop_is_header_settings_link",
+      "passed": true,
+      "detail": {
+        "t": "설정",
+        "h": "/home/account"
+      }
+    },
+    {
+      "name": "keys_ko_header_settings_link_opens_settings",
+      "passed": true,
+      "detail": "/home/account"
+    }
+  ],
+  "observations": {
+    "settingsStops": [
+      "A::본문으로 건너뛰기|link:본문으로 건너뛰기",
+      "A::KnowsLink|link:KnowsLink",
+      "A::설정|link:설정",
+      "A::대화|link:대화",
+      "A::친구|link:친구",
+      "A::내 에이전트|link:내 에이전트",
+      "A::서비스 안내|link:서비스 안내",
+      "INPUT:text:Synthetic member KO|textbox:내 이름",
+      "BUTTON:submit:이름 저장|button:이름 저장",
+      "TEXTAREA:textarea:fixture-code-ko-Bgs7ncgA|textbox:내 친구 코드",
+      "SUMMARY::친구 코드 교체|DisclosureTriangle:▸ 친구 코드 교체",
+      "INPUT:radio:ko|radio:한국어",
+      "BUTTON:submit:언어 저장|button:언어 저장",
+      "BUTTON:submit:로그인 다시 확인|button:로그인 다시 확인",
+      "BUTTON:submit:이 브라우저에서 로그아웃|button:이 브라우저에서 로그아웃",
+      "BUTTON:submit:모든 브라우저에서 로그아웃|button:모든 브라우저에서 로그아웃",
+      "A::기존 연결|link:기존 연결",
+      "WRAP"
+    ],
+    "summaryNameHasDecorativeGlyph": true
+  },
+  "captures": [],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/home/account"
+    }
+  ]
+}

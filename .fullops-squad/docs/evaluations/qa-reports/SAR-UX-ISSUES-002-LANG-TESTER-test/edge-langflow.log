@@ -1,0 +1,20 @@
+PASS flow_public_default_is_korean 
+PASS flow_public_english_link_is_a_tab_stop_with_name_English 
+PASS flow_public_korean_link_is_a_tab_stop_before_english 
+PASS flow_public_focus_is_on_english_link 
+PASS flow_public_enter_on_english_switches_page_to_english 
+PASS flow_cookie_kl_lang_en_secure_httponly_strict_365d 
+PASS flow_public_english_has_current_marker_on_english_and_no_hangul_besides_language_name 
+PASS flow_public_reload_keeps_english 
+PASS flow_cookie_en_applies_to_connect 
+PASS flow_cookie_en_applies_to_remote 
+PASS flow_cookie_en_applies_to_auth 
+PASS flow_remote_consent_ko_link_returns_to_same_screen_in_korean 
+PASS flow_none_with_en_cookie_settings_in_english_radio_en_checked 
+PASS flow_none_without_cookie_korean_so_cookie_choice_was_not_saved_to_account 
+PASS flow_query_lang_en_without_cookie_applies_one_response_with_notice 
+PASS flow_query_lang_notice_is_status_role 
+PASS flow_no_post_requests_made_by_language_links 
+
+17 PASS / 0 FAIL  (C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\docs\evaluations\qa-reports\SAR-UX-ISSUES-002-LANG-TESTER-test\browser-edge-langflow.json)
+exit=0

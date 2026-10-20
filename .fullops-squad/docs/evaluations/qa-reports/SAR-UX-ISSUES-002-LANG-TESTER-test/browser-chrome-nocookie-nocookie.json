@@ -1,0 +1,190 @@
+{
+  "browser": "Chrome/155.0.8059.85",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18933",
+  "stage": "nocookie",
+  "acct": "en",
+  "checks": [
+    {
+      "name": "nocookie_public_starts_korean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nocookie_public_english_link_applies_this_response_with_notice_and_stores_nothing",
+      "passed": true,
+      "detail": {
+        "st": {
+          "lang": "en",
+          "url": "/?lang=en",
+          "notice": [
+            "This browser did not keep the language choice. It applies to this page only."
+          ],
+          "han": false
+        },
+        "cks": []
+      }
+    },
+    {
+      "name": "nocookie_public_next_visit_is_korean_choice_not_kept",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nocookie_remote_starts_korean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nocookie_remote_english_link_applies_this_response_with_notice_and_stores_nothing",
+      "passed": true,
+      "detail": {
+        "st": {
+          "lang": "en",
+          "url": "/remote/consent/fixture-attempt?lang=en",
+          "notice": [
+            "This browser did not keep the language choice. It applies to this page only."
+          ],
+          "han": false
+        },
+        "cks": []
+      }
+    },
+    {
+      "name": "nocookie_remote_next_visit_is_korean_choice_not_kept",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nocookie_connect_starts_korean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nocookie_connect_english_link_applies_this_response_with_notice_and_stores_nothing",
+      "passed": true,
+      "detail": {
+        "st": {
+          "lang": "en",
+          "url": "/connect/ZWDClliDQIldJ6wJnpn1QuLEsgXwZJdfIu1J_kUAyjI?lang=en",
+          "notice": [
+            "Notice This browser did not keep the language choice. It applies to this page only."
+          ],
+          "han": false
+        },
+        "cks": []
+      }
+    },
+    {
+      "name": "nocookie_connect_next_visit_is_korean_choice_not_kept",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "nocookie_notice_precedes_main_content_inside_main_or_status_region",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "observations": {},
+  "captures": [
+    {
+      "file": "chrome-nocookie-anon-en-public-cookies-blocked-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "616a3149e15e6b643b79293fa8595927e96f2c5c1f5da7e06173994bb797e07a"
+    },
+    {
+      "file": "chrome-nocookie-anon-en-remote-cookies-blocked-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "af673b79b7239dc547d268a28df4ef500705ad7f33b1cb30cbe1c34245741fca"
+    },
+    {
+      "file": "chrome-nocookie-anon-en-connect-cookies-blocked-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "d5b959697adddf81c4c5ff61e61481fcc43ffbf4e5e502e0ffcd66315a797ce8"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/lang/en?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/lang/en?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/remote/consent/fixture-attempt"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/connect/ZWDClliDQIldJ6wJnpn1QuLEsgXwZJdfIu1J_kUAyjI"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/lang/en?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/connect/ZWDClliDQIldJ6wJnpn1QuLEsgXwZJdfIu1J_kUAyjI?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/connect/ZWDClliDQIldJ6wJnpn1QuLEsgXwZJdfIu1J_kUAyjI"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/lang/en?…"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18933",
+      "path": "/?…"
+    }
+  ]
+}
