@@ -1,0 +1,56 @@
+{
+  "task_key": "SAR-UX-ISSUES-002-LANG-DEV",
+  "find_head": "7a8a27f8a6f6b67463b702570b82259ab529ff97",
+  "base": "131544873193795e77a2886dcdd81e8a2658c0f6",
+  "head": "7704e6d3128831468bb474330210bc2a5099bce7",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "internal/relay/connect_guide_test.go",
+    "internal/relay/device.go",
+    "internal/relay/human_http.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/landing_pages.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_receipt.go",
+    "internal/relay/member_ui_test.go"
+  ],
+  "new_files": [
+    "internal/relay/i18n.go",
+    "internal/relay/i18n_en_human.go",
+    "internal/relay/i18n_en_member.go",
+    "internal/relay/i18n_test.go",
+    "internal/relay/lang_browser_fixture_test.go",
+    "internal/relay/lang_integration_test.go"
+  ],
+  "candidates": [
+    "docs/README.md",
+    "docs/development.md",
+    "docs/system-design.md",
+    "internal/config/config.go",
+    "internal/database/models.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/registry.json",
+    "videos/knowslink-motion/beats.json",
+    "videos/knowslink-motion/fetch-audio.sh",
+    "videos/knowslink-motion/index.html",
+    "videos/knowslink-motion/package.json",
+    "videos/knowslink-motion/render.mjs"
+  ],
+  "hits": [
+    "internal/relay/member_pages.go"
+  ],
+  "recall": 0.111,
+  "precision": 0.083,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  },
+  "context_omitted": [],
+  "context_wrong_omits": []
+}

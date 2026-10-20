@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-LANG-TESTER",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.09,
+        "ops": 0,
+        "tester": 0.91
+      },
+      "confidence": 0.86
+    },
+    "docs": {
+      "D01": 0.11,
+      "D02": 0.1,
+      "D03": 0.11,
+      "D04": 0.11,
+      "D05": 0.11,
+      "D06": 0.12,
+      "D07": 0.1,
+      "D08": 0.13,
+      "D09": 0.12,
+      "D10": 0.28,
+      "D11": 0.14,
+      "D12": 0.31,
+      "D13": 0.29
+    }
+  },
+  "usage": {
+    "input_tokens": 2465,
+    "output_tokens": 314,
+    "cost": 0.00010353
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.51,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "독립 동작 QA는 tester 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "768e7d2198c231d2a868db0a26cc6a3424392ac6",
+  "requires_packet": true,
+  "attempt": "4b1aa18f07504d9fb2e6e091242ea605",
+  "instruction_sha256": "3313fb3889241502a11131978033b13ef80e534fa73211e738f1f93bd5850b6a",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "35403f8b0a2b2c6b32037fbd18ebcaa15faad922b99f9b7ded890712a3d3000f"
+}

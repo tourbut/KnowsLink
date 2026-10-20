@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "attempt": "dd72b44c22724fc4be4e7cdf4cebbc6d",
+  "base": "131544873193795e77a2886dcdd81e8a2658c0f6",
+  "merge_base": "131544873193795e77a2886dcdd81e8a2658c0f6",
+  "head": "7704e6d3128831468bb474330210bc2a5099bce7",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "fe29383fbfd0ce5696052fa2a952c3182ca95e35b3d76a7d7fd8a6c938c5cf4a",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make가 없어 lint.py가 실행하지 못했다(원 status 보존). coor가 같은 SHA 7704e6d를 격리 Linux clone에서 make lint 실행해 EXIT=0: C:/Users/shin/AppData/Local/KnowsLinkDevTools/lang-ux002-dev/7704e6d3128831468bb474330210bc2a5099bce7-lint.log. 전체 integration도 같은 SHA에서 EXIT=0(같은 폴더 -integration.log).",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make가 없어 lint.py가 실행하지 못했다(원 status 보존). coor가 같은 SHA 7704e6d를 격리 Linux clone에서 make test 실행해 EXIT=0: C:/Users/shin/AppData/Local/KnowsLinkDevTools/lang-ux002-dev/7704e6d3128831468bb474330210bc2a5099bce7-test.log. 전체 integration도 같은 SHA에서 EXIT=0(같은 폴더 -integration.log).",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "2004줄(이전 2002, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "531줄(이전 504, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/human_http.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "405줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/i18n_en_member.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "348줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/i18n_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "410줄(이전 389, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/member.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "517줄(이전 514, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/remote_auth.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 1931줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 26,
+    "added_lines": 1931,
+    "errors": 0,
+    "warnings": 7,
+    "unavailable": 2
+  }
+}

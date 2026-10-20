@@ -1,0 +1,686 @@
+{
+  "schema_version": "1",
+  "mode": "range",
+  "repository": "C:/Users/shin/orca/workspaces/KnowsLink/coor",
+  "from": "131544873193795e77a2886dcdd81e8a2658c0f6",
+  "to": "7704e6d3128831468bb474330210bc2a5099bce7",
+  "merge_base": "131544873193795e77a2886dcdd81e8a2658c0f6",
+  "total_files": 101,
+  "reviewable_count": 39,
+  "excluded_count": 62,
+  "total_insertions": 10445,
+  "total_deletions": 122,
+  "reviewable_files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 2
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 1
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-context.json",
+      "status": "added",
+      "insertions": 311,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-find.json",
+      "status": "added",
+      "insertions": 332,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 639,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-packet.json",
+      "status": "added",
+      "insertions": 4748,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-route.json",
+      "status": "added",
+      "insertions": 84,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-UX-ISSUES-002-LANG-DEV-route.prior-1792482138092405200.json",
+      "status": "added",
+      "insertions": 71,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-UX-ISSUES-002-LANG-DEV-route-eb4fbef607aa45a4b3dac58823e52c78.json",
+      "status": "added",
+      "insertions": 84,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/remote.py",
+      "status": "added",
+      "insertions": 139,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/probe.json",
+      "status": "added",
+      "insertions": 461,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/probe.mjs",
+      "status": "added",
+      "insertions": 42,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/report.md",
+      "status": "added",
+      "insertions": 66,
+      "deletions": 0
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 3
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-20_to_dev.md",
+      "status": "modified",
+      "insertions": 238,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/connect_guide_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "internal/relay/device.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "internal/relay/gate_summary_integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "internal/relay/google.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 9
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "modified",
+      "insertions": 42,
+      "deletions": 11
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "modified",
+      "insertions": 22,
+      "deletions": 21
+    },
+    {
+      "path": "internal/relay/i18n.go",
+      "status": "added",
+      "insertions": 285,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "added",
+      "insertions": 316,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "status": "added",
+      "insertions": 438,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/i18n_test.go",
+      "status": "added",
+      "insertions": 373,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/identity.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "internal/relay/lang_browser_fixture_test.go",
+      "status": "added",
+      "insertions": 129,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/lang_integration_test.go",
+      "status": "added",
+      "insertions": 183,
+      "deletions": 0
+    },
+    {
+      "path": "internal/relay/member.go",
+      "status": "modified",
+      "insertions": 34,
+      "deletions": 10
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 32
+    },
+    {
+      "path": "internal/relay/member_receipt.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 7
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 10
+    }
+  ],
+  "excluded_files": [
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/2ff9e44a38b2cc6cc5543617c74f5f94f74f37e9-integration.log",
+      "status": "added",
+      "insertions": 483,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/2ff9e44a38b2cc6cc5543617c74f5f94f74f37e9-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/326b82c892a8d2c211dddec769c51274b42332a3-integration-TestLanguagePreferencePostgres.log",
+      "status": "added",
+      "insertions": 101,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-fixture-compile.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-fixture-probe.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-fixture-start.log",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/cc016b5a7ec68baee29ba77c77e82ae1f950f58d-integration-TestLanguagePreferencePostgres.log",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/db94002bd88561224d07531296df66f625059df1-integration.log",
+      "status": "added",
+      "insertions": 549,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/db94002bd88561224d07531296df66f625059df1-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/db94002bd88561224d07531296df66f625059df1-test.log",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/raw-log-sha256.txt",
+      "status": "added",
+      "insertions": 10,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-connection-token-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-connection-token-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-connection-token-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-device-login-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-device-login-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-device-login-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-gate-active-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-gate-active-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-gate-active-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-google-complete-home-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-google-complete-home-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-google-complete-home-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-home-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-home-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-home-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-account-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-account-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-account-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-agents-claude-first-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-agents-claude-first-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-agents-claude-first-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-conversation-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-conversation-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-conversation-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-friends-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-friends-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-human-friends-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-receipt-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-receipt-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-receipt-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-refusal-reauth-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-refusal-reauth-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-refusal-reauth-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-consent-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-consent-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-consent-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-return-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-return-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-remote-return-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-start-both-problem-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-start-both-problem-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-start-both-problem-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-verify-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-verify-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/en-verify-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/human-account-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/human-account-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/human-account-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/start-both-problem-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/start-both-problem-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-DEV-test/render/start-both-problem-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    }
+  ],
+  "fullops_review_schema_version": 2
+}
