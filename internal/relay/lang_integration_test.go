@@ -13,18 +13,25 @@ import (
 )
 
 func TestLanguagePreferencePostgres(t *testing.T) {
-	s, mail := identityService(t, messagePool(t))
+	s, _ := identityService(t, messagePool(t))
 	h := s.Handler()
 	newBrowser := func(ip string) *browser { return &browser{t, h, ip, map[string]string{}} }
+	// signIn mints a verified email session directly (the mail code path is covered by the identity tests and its
+	// 60-second resend spacing would refuse the repeated sign-ins this check needs) and names the member once.
 	signIn := func(b *browser, email string) string {
 		t.Helper()
-		expect(t, b.do("POST", "/auth/start", url.Values{"email": {email}}), 303)
-		expect(t, b.do("POST", "/auth/verify", url.Values{"code": {mail.code(email)}}), 303)
-		if w := b.do("GET", "/home", nil); w.Code == 303 {
-			expect(t, b.do("POST", "/home/profile", url.Values{"name": {"Synthetic " + email[:6]}}), 303)
-		}
 		id := ""
-		s.mutateState(t, func(st *State) { id, _, _ = st.session(b.cookies[sessionCookie], time.Now()) })
+		s.mutateState(t, func(st *State) {
+			v := st.signIn(emailIssuer, email, email, "", "", time.Now())
+			if v.Session == "" {
+				t.Fatal("sign-in refused", v.Problem)
+			}
+			b.cookies[sessionCookie] = v.Session
+			id = st.Sessions[hashToken(v.Session)].Member
+			if st.Members[id].Name == "" {
+				st.Members[id].Name = "Synthetic " + email[:6]
+			}
+		})
 		return id
 	}
 	locale := func(id string) string {
