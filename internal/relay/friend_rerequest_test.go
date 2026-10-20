@@ -84,6 +84,15 @@ func TestFriendRerequestReusesOneRow(t *testing.T) {
 			}
 			return code
 		},
+		// F-R1: the full receiver once sent the earlier request, so it must keep seeing its own sent record.
+		"receive_limit_reversed": func(st *State, ids map[string]string, now time.Time) string {
+			st.requestFriend(ids["b"], st.Members[ids["a"]].FriendCode, now)
+			for i := 0; i < 10; i++ {
+				other := fmt.Sprintf("synthetic-sender-%d", i)
+				st.Friends[pairID(other, ids["b"])] = &Friend{ID: fmt.Sprintf("held%02d", i), A: other, B: ids["b"], Inviter: other, State: "pending", Generation: 1, Exp: now.Add(72 * time.Hour)}
+			}
+			return st.Members[ids["b"]].FriendCode
+		},
 	}
 	var want *outcome
 	for name, setup := range cases {
@@ -98,7 +107,7 @@ func TestFriendRerequestReusesOneRow(t *testing.T) {
 			if len(before) != 1 || before[0].State != "expired" && before[0].State != "cancelled" {
 				t.Fatalf("setup left %+v", before)
 			}
-			held := name == "receive_limit" || name == "blocked_expired" || name == "blocked_cancelled"
+			held := name == "receive_limit" || name == "receive_limit_reversed" || name == "blocked_expired" || name == "blocked_cancelled"
 			// The rendered friends pages are what a target observes; the per-view form attempt is random and dropped.
 			targets := func(at time.Time) []string {
 				pages := []string{}
@@ -186,5 +195,49 @@ func TestFriendLegacyPlaceholderAndStaleUnblock(t *testing.T) {
 	}
 	if e := st.decideFriend(ids["a"], f.ID, "unblock", 0, now.Add(25*time.Hour)); e == nil {
 		t.Fatal("requester unblocked a block they did not set")
+	}
+}
+
+// F-R2: a receiver who posts block on a request held from them gets the same result as blocking a visible pending
+// request: the requester's live request stays pending until its deadline instead of turning into an ended row.
+func TestFriendBlockOnHeldRequestKeepsRequesterPending(t *testing.T) {
+	st, ids, _, now := humanFixture(t)
+	code := st.Members[ids["b"]].FriendCode
+	st.requestFriend(ids["a"], code, now)
+	for i := 0; i < 10; i++ {
+		other := fmt.Sprintf("synthetic-sender-%d", i)
+		st.Friends[pairID(other, ids["b"])] = &Friend{ID: fmt.Sprintf("held%02d", i), A: other, B: ids["b"], Inviter: other, State: "pending", Generation: 1, Exp: now.Add(72 * time.Hour)}
+	}
+	later := now.Add(25 * time.Hour)
+	st.sweep(later)
+	st.requestFriend(ids["a"], code, later)
+	f := st.Friends[pairID(ids["a"], ids["b"])]
+	if f.State != "blocked-pending" || f.Held != "expired" {
+		t.Fatalf("setup did not hold the request: %+v", f)
+	}
+	if e := st.decideFriend(ids["b"], f.ID, "block", f.Generation, later); e != nil {
+		t.Fatal(e)
+	}
+	v, err := st.humanView(ids["a"], &Session{Verified: later}, "friends", httptest.NewRequest("GET", "/home/friends", nil), later)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if rows := v["Requests"].([]humanFriend); len(rows) != 1 || rows[0].State != "pending" {
+		t.Fatalf("requester saw the receiver's block: %+v", rows)
+	}
+}
+
+// F-R3: data stored before the one-row rule can hold an ended pair row blocked by the target and an open placeholder
+// for the same code; a repeat then changes nothing, like a repeat of an unknown code.
+func TestFriendRepeatWithOpenLegacyPlaceholderIsNoop(t *testing.T) {
+	st, ids, _, now := humanFixture(t)
+	code := st.Members[ids["c"]].FriendCode
+	pair := &Friend{ID: "pair-row", A: ids["a"], B: ids["c"], Inviter: ids["a"], State: "removed", Generation: 2, Exp: now, BlockB: true, SuppressLegacy: true}
+	st.Friends[pairID(ids["a"], ids["c"])] = pair
+	placeholder := "undisclosed:" + hashToken(code)
+	st.Friends[pairID(ids["a"], placeholder)] = &Friend{ID: "legacy-open", A: ids["a"], B: placeholder, Inviter: ids["a"], State: "pending", Generation: 1, Exp: now.Add(time.Hour), CodeTail: codeTail(code)}
+	st.requestFriend(ids["a"], code, now)
+	if pair.State != "removed" || pair.Generation != 2 {
+		t.Fatalf("repeat reopened the pair row beside the open placeholder: %+v", pair)
 	}
 }

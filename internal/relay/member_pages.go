@@ -33,7 +33,7 @@ const memberSource = `
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header class="top"><span class="brand">KnowsLink</span>{{if .Member}}<a href="/home/account">설정</a><form method="post" action="/auth/logout"><button class="link">로그아웃</button></form>{{else if .Here}}{{template "lang-nav" .}}{{end}}</header>{{end}}
 {{define "intro"}}<h1>{{or .Heading .Title}}</h1>
-{{if .Problem}}<p class="problem" role="alert" id="problem"><strong><span aria-hidden="true">!</span> 오류</strong> {{.Problem}}</p>{{end}}
+{{if .Problem}}<p class="problem" role="alert" id="problem"><strong><span aria-hidden="true">!</span> 오류</strong> {{langPart .Problem}}</p>{{end}}
 {{if .Notice}}<p class="note" role="status"><strong>안내</strong> {{.Notice}}</p>{{end}}{{end}}
 {{define "refusal"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">
 {{if .Reauth}}<form method="post" action="/auth/reauth"><button class="primary">로그인 다시 확인</button></form>{{end}}

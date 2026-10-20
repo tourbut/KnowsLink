@@ -1,0 +1,61 @@
+a315571fd548fbe95b63b5b6341c7d156ef58967ffa059b6aa1e893277a062dc
+M  internal/relay/capacity.go
+M  internal/relay/human.go
+M  internal/relay/human_http.go
+M  internal/relay/i18n.go
+M  internal/relay/i18n_test.go
+M  internal/relay/member_pages.go
+=== RUN   TestFriendRerequestReusesOneRow
+=== RUN   TestFriendRerequestReusesOneRow/unknown
+=== RUN   TestFriendRerequestReusesOneRow/own_code
+=== RUN   TestFriendRerequestReusesOneRow/receive_limit_reversed
+    friend_rerequest_test.go:141: held request changed its target's page
+=== RUN   TestFriendRerequestReusesOneRow/blocked_expired
+=== RUN   TestFriendRerequestReusesOneRow/blocked_cancelled
+=== RUN   TestFriendRerequestReusesOneRow/blocked_then_unblocked
+=== RUN   TestFriendRerequestReusesOneRow/receive_limit
+=== RUN   TestFriendRerequestReusesOneRow/existing_expired
+=== RUN   TestFriendRerequestReusesOneRow/existing_cancelled
+--- FAIL: TestFriendRerequestReusesOneRow (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/unknown (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/own_code (0.00s)
+    --- FAIL: TestFriendRerequestReusesOneRow/receive_limit_reversed (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/blocked_expired (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/blocked_cancelled (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/blocked_then_unblocked (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/receive_limit (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/existing_expired (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/existing_cancelled (0.00s)
+=== RUN   TestFriendBlockOnHeldRequestKeepsRequesterPending
+    friend_rerequest_test.go:226: requester saw the receiver's block: [{ID:CBgudQitTTWfYaShrMVh7O Name:요청 대기 State:removed Exp:2026-10-22 23:15:34 KST Generation:2 Incoming:false CodeTail:}]
+--- FAIL: TestFriendBlockOnHeldRequestKeepsRequesterPending (0.00s)
+=== RUN   TestFriendRepeatWithOpenLegacyPlaceholderIsNoop
+    friend_rerequest_test.go:241: repeat reopened the pair row beside the open placeholder: &{ID:pair-row A:mem_AEeQygNHOHZQvBp3azdsLz B:mem_29a_DQEdGjGg0Y7JHoNTiC Inviter:mem_AEeQygNHOHZQvBp3azdsLz State:blocked-pending NameA:합성 회원 a NameB:합성 회원 c Generation:3 Exp:2026-10-21 13:15:34 +0000 UTC BlockA:false BlockB:true SuppressLegacy:true CodeTail:inaA Held:}
+--- FAIL: TestFriendRepeatWithOpenLegacyPlaceholderIsNoop (0.00s)
+=== RUN   TestLanguagePreferencePostgres
+    lang_integration_test.go:110: redirect carried an internal language marker map[Cache-Control:[no-store] Content-Language:[en] Content-Security-Policy:[default-src 'none'; style-src 'unsafe-inline'; form-action 'self' https://accounts.google.com; frame-ancestors 'none'; base-uri 'none'] Location:[/home/account?n=language#language] Referrer-Policy:[no-referrer] X-Content-Type-Options:[nosniff] X-Knowslink-Lang-Saved:[1]]
+--- FAIL: TestLanguagePreferencePostgres (0.12s)
+FAIL
+FAIL	github.com/tourbut/KnowsLink/internal/relay	0.143s
+FAIL
+GO_TEST_EXIT=1
+2026/10/20 22:15:29 SQL migrations completed
+Note: switching to 'e9da442e9b3d111c2073b9edd0c9d6f38e54713b'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+
+EXIT=0

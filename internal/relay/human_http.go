@@ -114,7 +114,11 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			peer = f.B
 		}
 		name := "요청 대기"
-		incoming := f.Inviter != id
+		incoming, tail := f.Inviter != id, f.CodeTail
+		held := incoming && f.Held != ""
+		if held && f.HeldFrom == id {
+			incoming, tail = false, f.HeldTail // the full receiver keeps seeing its own earlier sent request (F-R1)
+		}
 		if incoming {
 			name = f.NameA
 			if peer == f.B {
@@ -133,9 +137,9 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		switch {
 		case blockedByMe:
 			state = "blocked"
-		case f.Held == "-" && incoming:
+		case held && f.Held == "-":
 			continue // a request held at the receive limit is never shown to its receiver
-		case f.Held != "" && incoming:
+		case held:
 			state = f.Held
 		case f.State == "blocked-pending" && incoming:
 			state = "removed"
@@ -153,7 +157,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			entry.Generation = 0 // a later request from the blocked person must not show on the blocker's page
 		}
 		if !incoming && (state == "pending" || state == "denied" || state == "cancelled" || state == "expired") {
-			entry.CodeTail = f.CodeTail
+			entry.CodeTail = tail
 		}
 		if state == "active" {
 			friends = append(friends, entry)
