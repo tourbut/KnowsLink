@@ -211,17 +211,25 @@ func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 }
 
 func TestHumanGateKeepsVerifiedBodyAndCSRF(t *testing.T) {
-	v := map[string]any{"State": "pending", "From": "agent_a", "To": "agent_b", "Parent": "request-a", "Intent": "schedule.query", "Exp": "오늘 오후 2:10", "Policy": "owner_gate", "Hint": "합성 참고", "Body": `<script>untrusted</script>`, "Active": true, "CSRF": "synthetic-csrf", "Deny": "/home/gates/gate-a/deny", "Back": "/home"}
+	v := map[string]any{"State": "pending", "From": "agent_a", "To": "agent_b", "Parent": "request-a", "Intent": "schedule.commit", "Exp": "오늘 오후 2:10", "Policy": "owner_gate", "Hint": "<i>합성 참고</i>", "Body": `<script>untrusted</script>`, "Active": true, "CSRF": "synthetic-csrf", "Deny": "/home/gates/gate-a/deny", "Back": "/home/legacy#gates",
+		"Summary": []gateField{{"요청 유형", "일정 확정"}}, "Text": `<a href="https://x.test">free</a>`, "Scope": gateScopes["schedule.commit"]}
 	body := renderHumanPage(t, "human-gate", v)
-	for _, required := range []string{`name="csrf" value="synthetic-csrf"`, `name="decision" value="approve"`, `name="decision" value="deny"`, `formaction="/home/gates/gate-a/deny"`, "검증된 typed body", "&lt;script&gt;", "친구 동의나 대화 메시지는 이 요청의 승인 증명이 아닙니다"} {
+	for _, required := range []string{`name="csrf" value="synthetic-csrf"`, `name="decision" value="approve"`, `name="decision" value="deny"`, `formaction="/home/gates/gate-a/deny"`, "&lt;script&gt;", "&lt;i&gt;", "&lt;a href=", `href="/home/legacy#gates"`} {
 		if !strings.Contains(body, required) {
 			t.Fatal("missing", required)
 		}
 	}
+	if strings.Contains(body, `href="https://x.test"`) || strings.Contains(body, "<i>") {
+		t.Fatal("free text and hint must stay inert")
+	}
 	v["Active"] = false
-	body = renderHumanPage(t, "human-gate", v)
-	if strings.Contains(body, "<form") || !strings.Contains(body, "지금은 승인하거나 거절할 수 없습니다") {
+	if body = renderHumanPage(t, "human-gate", v); strings.Contains(body, "<form") {
 		t.Fatal("inactive gate must not offer decision forms")
+	}
+	// Without a verified request there is no summary, body, or hint to judge.
+	v["Summary"] = nil
+	if body = renderHumanPage(t, "human-gate", v); strings.Contains(body, "<pre>") || strings.Contains(body, "합성 참고") || !strings.Contains(body, `role="alert"`) {
+		t.Fatal("unverifiable gate rendered request content")
 	}
 }
 

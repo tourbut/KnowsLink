@@ -483,7 +483,7 @@ func csrf(token, id string) string {
 	return base64.RawURLEncoding.EncodeToString(mac.Sum(nil))
 }
 
-// The gate page shares only the member visual tokens; its wording, hint-versus-body split, and hidden buttons stay as is.
+// The gate page shares the member visual tokens; the verified summary leads and the raw body stays in technical detail.
 var page = memberPages.Lookup("human-gate")
 
 // ownerAuth returns the CSRF key, the owner resolver, and the page to return to.
@@ -544,7 +544,7 @@ func verifiedGate(st *State, g *Gate, now time.Time) (*Envelope, bool) {
 		return nil, false
 	}
 	e, err := Parse(m.Envelope)
-	if err != nil {
+	if err != nil || gateKinds[e.Intent] == "" {
 		return nil, false
 	}
 	a := st.Agents[e.From]
@@ -564,10 +564,16 @@ func (s *Service) gateView(r *http.Request, auth ownerAuth) (any, error) {
 		if g == nil || g.Owner != owner {
 			return nil, fault("sender_not_allowed")
 		}
-		view := map[string]any{"State": g.State, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": clock(g.Exp), "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": false, "Body": "원문 부재: 승인 불가", "Back": back, "Deny": back + "/gates/" + g.ID + "/deny", "FromAgent": st.visibleAgent(owner, g.From), "ToAgent": st.visibleAgent(owner, g.To)}
-		if e, active := verifiedGate(st, g, now); e != nil {
+		state, e, active := gateState(st, g, now)
+		list := back
+		if back == "/home" {
+			list = "/home/legacy#gates"
+		}
+		view := map[string]any{"State": state, "ID": g.ID, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": clock(g.Exp), "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": active, "Back": list, "Deny": back + "/gates/" + g.ID + "/deny", "FromAgent": st.gateAgent(owner, g.From), "ToAgent": st.gateAgent(owner, g.To)}
+		if e != nil {
 			body, _ := json.MarshalIndent(e.Body, "", "  ")
-			view["Body"], view["Intent"], view["Active"] = string(body), e.Intent, active
+			view["Summary"], view["Text"] = gateSummary(e)
+			view["Body"], view["Intent"], view["Scope"] = string(body), e.Intent, gateScopes[e.Intent]
 			if e.Render != nil {
 				view["Hint"] = e.Render["hint"]
 			}
@@ -583,9 +589,14 @@ func ownerError(w http.ResponseWriter, err error) {
 }
 
 // gateError sends members back to email login instead of the owner Basic prompt.
+// Member refusals return to the approval list; a stale or repeated submission never reads as a fresh decision.
 func gateError(w http.ResponseWriter, r *http.Request, back string, err error) {
+	list := "/home"
+	if back == "/home" {
+		list = "/home/legacy#gates"
+	}
 	if e, ok := err.(*budgetError); ok {
-		refused(w, "승인 요청", refusal{status: 429, problem: limited(e.retry)})
+		refusedTo(w, "요청 승인", refusal{status: 429, problem: limited(e.retry)}, list)
 		return
 	}
 	if back == "/home" && err.Error() == "invalid_auth" {
@@ -593,7 +604,11 @@ func gateError(w http.ResponseWriter, r *http.Request, back string, err error) {
 		return
 	}
 	if back == "/home" {
-		refused(w, "승인 요청", refusal{status: statusFor(err), problem: "현재 권한·원문·기한을 확인하세요. 승인되지 않았습니다."})
+		problem := "이 승인 요청을 볼 수 없습니다. 승인 목록에서 내 요청을 다시 선택하세요."
+		if r.Method == "POST" {
+			problem = "이번 제출은 적용되지 않았습니다. 요청이 이미 처리됐거나 기한·권한·원문이 바뀌었을 수 있습니다. 승인 목록에서 현재 상태를 확인하세요."
+		}
+		refusedTo(w, "요청 승인", refusal{status: statusFor(err), problem: problem}, list)
 		return
 	}
 	ownerError(w, err)

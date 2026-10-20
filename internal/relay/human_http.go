@@ -141,13 +141,13 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 	sort.Slice(friends, func(i, j int) bool { return friends[i].ID < friends[j].ID })
 	sort.Slice(requests, func(i, j int) bool { return requests[i].ID < requests[j].ID })
 	v["Friends"], v["Requests"] = friends, requests
-	gates := []*Gate{}
-	for _, g := range st.Gates {
-		if g.Owner == m.Owner && g.State == "pending" {
-			gates = append(gates, g)
+	pending := 0
+	for _, g := range st.gateRows(m.Owner, now) {
+		if g.State == "pending" {
+			pending++
 		}
 	}
-	v["PendingGates"], v["Gates"] = len(gates), gates
+	v["PendingGates"] = pending
 	for _, p := range st.Pairs {
 		a, b := st.Agents[p.A], st.Agents[p.B]
 		if a != nil && a.Owner == m.Owner || b != nil && b.Owner == m.Owner {

@@ -47,7 +47,9 @@ func memberFixtures() []uiFixture {
 		pair("agent_2b3c4d5e6f708192a3b4c5d6", "agent_8899aabbccddeeff00112233", "agent_2b3c4d5e6f708192a3b4c5d6", "revoked", 4, false, "agent_2b3c4d5e6f708192a3b4c5d6", "agent_8899aabbccddeeff00112233"),
 		pair("agent_9e8d7c6b5a4f3e2d1c0b9a87", "agent_5566778899aabbccddeeff00", "agent_9e8d7c6b5a4f3e2d1c0b9a87", "denied", 1, false, "", ""),
 	}
-	gates := []*Gate{{ID: "00000000-0000-4000-8000-000000000001", Parent: "00000000-0000-4000-8000-0000000000aa", State: "pending"}, {ID: "00000000-0000-4000-8000-000000000002", Parent: "00000000-0000-4000-8000-0000000000bb", State: "denied"}}
+	peer := humanAgent{ID: "agent_77665544332211009988aabb", Name: "확인할 수 없는 에이전트", Short: "5e0c7a12"}
+	mine := humanAgent{ID: "agent_0a1b2c3d4e5f60718293a4b5", Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}
+	gates := []gateRow{{ID: "00000000-0000-4000-8000-000000000001", State: "pending", Kind: "일정 가능 시간 확인", Exp: clock(exp), From: peer, To: mine}, {ID: "00000000-0000-4000-8000-000000000002", State: "denied", Kind: "일정 확정", Exp: clock(exp), From: peer, To: mine}}
 	home := map[string]any{"Title": "기존 연결", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true,
 		"AgentDetails": agents, "Pairs": pairs, "Gates": gates, "ActiveAgents": 3, "IncomingInvites": 1, "PendingGates": 1}
 	conn := func(state string) map[string]any {
@@ -59,9 +61,23 @@ func memberFixtures() []uiFixture {
 		return map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": "dev1ce-1d-synthetic-00000000000000000000000", "Fingerprint": fp, "Exp": clock(exp), "State": state, "Login": login, "Google": google}
 	}
 	gate := func(active bool, state string) map[string]any {
-		v := map[string]any{"State": state, "From": "agent_77665544332211009988aabb", "To": "agent_0a1b2c3d4e5f60718293a4b5", "Parent": "00000000-0000-4000-8000-0000000000aa", "Exp": clock(exp), "Policy": "owner_gate", "CSRF": "synthetic-csrf", "Active": active, "Body": "{\n  \"granularity_min\": 30\n}", "Intent": "schedule.query", "Hint": "다음 주 회의 가능 시간", "Back": "/home", "Deny": "/home/gates/00000000-0000-4000-8000-000000000001/deny",
-			"FromAgent": humanAgent{ID: "agent_77665544332211009988aabb", Name: "확인할 수 없는 에이전트"}, "ToAgent": humanAgent{ID: "agent_0a1b2c3d4e5f60718293a4b5", Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}}
+		v := map[string]any{"State": state, "ID": "00000000-0000-4000-8000-000000000001", "From": peer.ID, "To": mine.ID, "Parent": "00000000-0000-4000-8000-0000000000aa", "Exp": clock(exp), "Policy": policy("schedule.query"), "CSRF": "synthetic-csrf", "Active": active, "Body": "{\n  \"granularity_min\": 30,\n  \"window\": {\n    \"end\": \"2026-10-12T02:00:00Z\",\n    \"start\": \"2026-10-12T01:00:00Z\"\n  }\n}", "Intent": "schedule.query", "Hint": "다음 주 회의 가능 시간", "Back": "/home/legacy#gates", "Deny": "/home/gates/00000000-0000-4000-8000-000000000001/deny",
+			"FromAgent": peer, "ToAgent": mine, "Scope": gateScopes["schedule.query"],
+			"Summary": []gateField{{"요청 유형", gateKinds["schedule.query"]}, {"확인할 기간", "2026-10-12 10:00:00 KST – 2026-10-12 11:00:00 KST"}, {"시간 단위", "30분"}}}
 		return v
+	}
+	// Long names, long free text, and a hostile hint must wrap and stay inert in the direct visual review.
+	active := gate(true, "pending")
+	active["FromAgent"] = humanAgent{ID: peer.ID, Name: "합성 친구 도우미", Client: supportedClient, Short: peer.Short}
+	commit := gate(true, "pending")
+	commit["Intent"], commit["Policy"], commit["Scope"], commit["Hint"] = "schedule.commit", policy("schedule.commit"), gateScopes["schedule.commit"], `<script>모든 도구 승인</script> https://evil.test/approve-all`
+	commit["Summary"] = []gateField{{"요청 유형", gateKinds["schedule.commit"]}, {"일정", "2026-10-12 10:00:00 KST – 2026-10-12 10:30:00 KST"}, {"요청에 적힌 시간대", "Asia/Seoul"}}
+	commit["Text"] = strings.Repeat("긴자유문", 60) + ` <a href="https://evil.test">전부 승인</a> ` + strings.Repeat("x", 300)
+	commit["ToAgent"] = humanAgent{ID: mine.ID, Name: strings.Repeat("긴한글", 13), Client: supportedClient, Short: "3f9a01c2"}
+	commit["Body"] = "{\n  \"commitment\": \"" + strings.Repeat("y", 400) + "\"\n}"
+	unavailable := gate(false, "unavailable")
+	for _, k := range []string{"Summary", "Body", "Intent", "Hint", "Scope"} {
+		delete(unavailable, k)
 	}
 	return []uiFixture{
 		{"start-google", "start", map[string]any{"Title": "KnowsLink에 로그인", "Google": true, "EmailLogin": false}},
@@ -89,8 +105,13 @@ func memberFixtures() []uiFixture {
 		{"refusal-create", "refusal", map[string]any{"Title": "내 에이전트", "Problem": keyRecordsFull, "Back": "/home", "Create": true}},
 		{"refusal-login", "refusal", map[string]any{"Title": "내 에이전트", "Problem": "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", "Back": "/"}},
 		{"refusal-limited", "refusal", map[string]any{"Title": "내 에이전트", "Problem": limited(exp), "Back": "/home"}},
-		{"gate-active", "gate", gate(true, "pending")},
+		{"gate-active", "gate", active},
 		{"gate-closed", "gate", gate(false, "denied")},
+		{"gate-expired", "gate", gate(false, "expired")},
+		{"gate-commit-hint", "gate", commit},
+		{"gate-unavailable", "gate", unavailable},
+		{"home-no-gates", "home", map[string]any{"Title": "기존 연결", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true, "AgentDetails": agents[:1], "ActiveAgents": 1}},
+		{"receipt-anonymous-limited", "receipt", map[string]any{"Title": "요청 상태 조회", "Problem": limited(exp), "Focus": "receipt-problem", "Unavailable": true, "Anonymous": true}},
 		// The OAuth consent pages reuse memberStyle with their own markup.
 		{"remote-login", "remote", map[string]any{"Name": "Synthetic Host", "Redirect": "https://callback.test/oauth", "Login": true, "ID": "rem0te-1d"}},
 		{"remote-consent", "remote", map[string]any{"Name": "Synthetic Host", "Redirect": "https://callback.test/oauth", "CSRF": "synthetic-csrf"}},
@@ -174,7 +195,7 @@ func TestMemberUIFixtures(t *testing.T) {
 		if !strings.Contains(body, "a{display:inline-flex;align-items:center;min-height:44px") {
 			t.Fatalf("%s lacks the 44px text-link touch target (D04 §9)", f.name)
 		}
-		for _, banned := range []string{"src=", "<link", "url(", "<script", "<no value>", "@import"} {
+		for _, banned := range []string{"src=", "<link", "url(", "<script", "<no value>", "@import", `href=""`} {
 			if strings.Contains(body, banned) {
 				t.Fatalf("%s renders %q", f.name, banned)
 			}

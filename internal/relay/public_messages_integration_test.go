@@ -249,13 +249,13 @@ func TestPublicHTTPAdmissionAndGateSafety(t *testing.T) {
 		st.Messages[firstID].Envelope = sign(t, f.private["agent_a"], e.Raw)
 	})
 	w := f.request("GET", "/owner/gates/"+gateID, f.tokens["agent_b_owner"], nil, "")
-	expect(t, w, 200, "granularity_min", "참고 hint", "&lt;script&gt;")
+	expect(t, w, 200, "granularity_min", "참고 문구 — 승인 근거 아님", "&lt;script&gt;")
 	if strings.Contains(w.Body.String(), "<script>") {
 		t.Fatal("gate XSS")
 	}
 	f.mutate(func(st *State) { st.Messages[firstID].Envelope = []byte(`{"invalid":"signature"}`) })
 	w = f.request("GET", "/owner/gates/"+gateID, f.tokens["agent_b_owner"], nil, "")
-	expect(t, w, 200, "원문 부재")
+	expect(t, w, 200, "승인할 내용을 확인할 수 없습니다")
 	if strings.Contains(w.Body.String(), `value="approve"`) {
 		t.Fatal("bad signature enabled approval")
 	}
