@@ -27,13 +27,13 @@ summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 �
 
 ## 현재 기능과 확인 범위
 
-2026-10-17 운영 제품은 `1dd6800d5d4238e2060f99e98eaab437ea06682c`다.
+2026-10-20 운영 제품은 `7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2`다.
 Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동의, 웹/에이전트 연속 대화를 지원한다.
 과거 제품 `26094e9`에서 기존 두 계정의 Grok Bot과 Dots 친구 수락·실제 대화 두 차례 왕복을 확인했다.
 질문 없이 도착한 수신 알림도 양쪽 실제 화면에서 확인했다. 현재 배포는 해당 관계·키·Remote/Inbox의 상태 digest를 보존했다.
 배포 뒤 새 실계정 송수신·화면 알림을 다시 시험한 결과는 아니다.
 이는 해당 계정·시험 범위의 결과다. 모든 호스트·계정의 설치 성공을 보장하지 않는다.
-근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md),
+근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md),
 [실제 대화 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md),
 [수신 알림 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md)이다.
 

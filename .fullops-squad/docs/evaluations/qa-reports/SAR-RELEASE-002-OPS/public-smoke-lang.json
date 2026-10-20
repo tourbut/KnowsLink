@@ -1,0 +1,294 @@
+{
+  "utc": "2026-10-20T13:58:05.049602+00:00",
+  "lang_paths": [
+    {
+      "path": "/lang/ko",
+      "status": 303,
+      "location_ok": true,
+      "cache_control": "no-store",
+      "cookie_single": true,
+      "cookie_name_value": true,
+      "cookie_flags": true,
+      "no_referrer": true,
+      "nosniff": true,
+      "pass": true
+    },
+    {
+      "path": "/lang/en",
+      "status": 303,
+      "location_ok": true,
+      "cache_control": "no-store",
+      "cookie_single": true,
+      "cookie_name_value": true,
+      "cookie_flags": true,
+      "no_referrer": true,
+      "nosniff": true,
+      "pass": true
+    },
+    {
+      "path": "/lang/en?back=%2F",
+      "status": 303,
+      "location_ok": true,
+      "cache_control": "no-store",
+      "cookie_single": true,
+      "cookie_name_value": true,
+      "cookie_flags": true,
+      "no_referrer": true,
+      "nosniff": true,
+      "pass": true
+    },
+    {
+      "path": "/lang/ko?back=%2Fauth%2Fverify",
+      "status": 303,
+      "location_ok": true,
+      "cache_control": "no-store",
+      "cookie_single": true,
+      "cookie_name_value": true,
+      "cookie_flags": true,
+      "no_referrer": true,
+      "nosniff": true,
+      "pass": true
+    },
+    {
+      "path": "/lang/en?back=https%3A%2F%2Fevil.invalid%2F",
+      "status": 303,
+      "location_ok": true,
+      "cache_control": "no-store",
+      "cookie_single": true,
+      "cookie_name_value": true,
+      "cookie_flags": true,
+      "no_referrer": true,
+      "nosniff": true,
+      "pass": true
+    },
+    {
+      "path": "/lang/en?back=%2F%2Fevil.invalid",
+      "status": 303,
+      "location_ok": true,
+      "cache_control": "no-store",
+      "cookie_single": true,
+      "cookie_name_value": true,
+      "cookie_flags": true,
+      "no_referrer": true,
+      "nosniff": true,
+      "pass": true
+    }
+  ],
+  "neighbours": [
+    {
+      "method": "GET",
+      "path": "/lang/fr",
+      "status": 404,
+      "expected": [
+        404
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/lang/KO",
+      "status": 404,
+      "expected": [
+        404
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/lang/ko/x",
+      "status": 404,
+      "expected": [
+        404
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/lang/",
+      "status": 404,
+      "expected": [
+        404
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/lang",
+      "status": 404,
+      "expected": [
+        404
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/lang/ko%2Fx",
+      "status": 404,
+      "expected": [
+        404
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/language",
+      "status": 404,
+      "expected": [
+        404
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/home/language",
+      "status": 405,
+      "expected": [
+        404,
+        405
+      ],
+      "set_cookie_absent": true,
+      "pass": true
+    }
+  ],
+  "landing": [
+    {
+      "case": "ko-default",
+      "status": 200,
+      "content_language": "ko",
+      "html_lang": "ko",
+      "headline": true,
+      "cache_control": "no-store",
+      "no_referrer": true,
+      "nosniff": true,
+      "csp": true,
+      "google_forms": 1,
+      "email_forms": 0,
+      "lang_links": [
+        true,
+        true
+      ],
+      "current_marked": true,
+      "set_cookie_absent": true,
+      "other_headline_absent": true,
+      "pass": true
+    },
+    {
+      "case": "en-cookie",
+      "status": 200,
+      "content_language": "en",
+      "html_lang": "en",
+      "headline": true,
+      "cache_control": "no-store",
+      "no_referrer": true,
+      "nosniff": true,
+      "csp": true,
+      "google_forms": 1,
+      "email_forms": 0,
+      "lang_links": [
+        true,
+        true
+      ],
+      "current_marked": true,
+      "set_cookie_absent": true,
+      "other_headline_absent": true,
+      "pass": true
+    },
+    {
+      "case": "en-hint",
+      "status": 200,
+      "content_language": "en",
+      "html_lang": "en",
+      "headline": true,
+      "cache_control": "no-store",
+      "no_referrer": true,
+      "nosniff": true,
+      "csp": true,
+      "google_forms": 1,
+      "email_forms": 0,
+      "lang_links": [
+        true,
+        true
+      ],
+      "current_marked": true,
+      "set_cookie_absent": true,
+      "other_headline_absent": true,
+      "pass": true
+    },
+    {
+      "case": "ko-cookie",
+      "status": 200,
+      "content_language": "ko",
+      "html_lang": "ko",
+      "headline": true,
+      "cache_control": "no-store",
+      "no_referrer": true,
+      "nosniff": true,
+      "csp": true,
+      "google_forms": 1,
+      "email_forms": 0,
+      "lang_links": [
+        true,
+        true
+      ],
+      "current_marked": true,
+      "set_cookie_absent": true,
+      "other_headline_absent": true,
+      "pass": true
+    },
+    {
+      "case": "bad-cookie",
+      "status": 200,
+      "content_language": "ko",
+      "html_lang": "ko",
+      "headline": true,
+      "cache_control": "no-store",
+      "no_referrer": true,
+      "nosniff": true,
+      "csp": true,
+      "google_forms": 1,
+      "email_forms": 0,
+      "lang_links": [
+        true,
+        true
+      ],
+      "current_marked": true,
+      "set_cookie_absent": true,
+      "other_headline_absent": true,
+      "pass": true
+    }
+  ],
+  "member_boundary": [
+    {
+      "method": "GET",
+      "path": "/home",
+      "status": 303,
+      "location_expired": true,
+      "set_cookie_only_session_clear": true,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/home/account",
+      "status": 303,
+      "location_expired": true,
+      "set_cookie_only_session_clear": true,
+      "pass": true
+    },
+    {
+      "method": "POST",
+      "path": "/home/language",
+      "status": 303,
+      "location_expired": true,
+      "set_cookie_only_session_clear": true,
+      "pass": true
+    }
+  ],
+  "all_pass": true
+}

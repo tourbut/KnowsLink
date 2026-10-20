@@ -1,0 +1,46 @@
+STOP_BEGIN=2026-10-20T13:50:44Z
+FROZEN_EPOCH=1573187
+OTHER_DB_CLIENTS=0
+backup mode=600 bytes=11271
+32b592886b1d753c7874f909c3272c944c5585508403bce297ebe59421bcc8e5  /home/[redacted]/deploy/knowslink-state/backups/1dd6800-pre-release002-20261020T135049Z.dump
+TOC_LINES=25
+RESTORED_FULL_STATE_DIGEST_MATCH=true
+restored goose=2 guard=1 rows=1 epoch=1573187 HumanModel=1
+restored writer downgrade refused
+REHEARSAL_EXIT=0 retained=knowslink-release002-rehearse-20261020
+NAME                      IMAGE                                                                                                     COMMAND                  SERVICE       CREATED         STATUS                     PORTS
+knowslink-cloudflared-1   cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4   "cloudflared --no-au…"   cloudflared   2 weeks ago     Up 3 days                  
+knowslink-migrate-1       knowslink-migrate                                                                                         "/app/migrate"           migrate       7 seconds ago   Exited (0) 6 seconds ago   
+knowslink-postgres-1      postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24                "docker-entrypoint.s…"   postgres      2 weeks ago     Up 2 weeks (healthy)       5432/tcp
+knowslink-relay-1         knowslink-relay                                                                                           "/app/relay"             relay         7 seconds ago   Up 5 seconds (healthy)     127.0.0.1:8080->8080/tcp
+UP_DONE=2026-10-20T13:51:02Z
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+/knowslink-relay-1 sha256:9646febaf4126ffcbbdd80acf5a00ed0299e3fb5a91a6a2b572f8ccd85443f66 healthy restarts=0
+MIGRATE_EXIT=0
+DEPLOY_EXIT=0
+ Container knowslink-relay-1 Stopping 
+ Container knowslink-relay-1 Stopped 
+sh: locale: not found
+2026-10-20 13:50:50.469 UTC [12] WARNING:  no usable system locales were found
+ Container knowslink-postgres-1 Running 
+ Container knowslink-migrate-1 Recreate 
+ Container knowslink-migrate-1 Recreated 
+ Container knowslink-relay-1 Recreate 
+ Container knowslink-relay-1 Recreated 
+ Container knowslink-postgres-1 Waiting 
+ Container knowslink-postgres-1 Healthy 
+ Container knowslink-migrate-1 Starting 
+ Container knowslink-migrate-1 Started 
+ Container knowslink-migrate-1 Waiting 
+ Container knowslink-migrate-1 Exited 
+ Container knowslink-relay-1 Starting 
+ Container knowslink-relay-1 Started 
+ Container knowslink-relay-1 Waiting 
+ Container knowslink-postgres-1 Waiting 
+ Container knowslink-migrate-1 Waiting 
+ Container knowslink-migrate-1 Exited 
+ Container knowslink-postgres-1 Healthy 
+ Container knowslink-relay-1 Healthy 
+2026/10/20 13:50:56 SQL migrations completed
+
+EXIT=0
