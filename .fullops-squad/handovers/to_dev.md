@@ -270,6 +270,12 @@ route 추천과 실제 변경 기준으로 D03·D05·D09·D10·D11·D13 중 해�
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
+- 브랜치 / SHA: fullops/dev / 제품 `7ad11be`(구현 `4b3cad6`, gofmt `c0eb0bc`, 보정·문서 `7ad11be`), 보고·finish 커밋은 뒤따름. 기준 main `826ea80`.
+- 변경 이유: SAR-SCHEDULE-001 SD-01~06(A)·D010 수치의 구현(SC-01~08). 설정 ‘캘린더 연결/해제’(증분 동의, 봉인 refresh token, provider revoke), `schedule.query` 승인 1회=조회 1회(lease·lock 밖 조회·결과 1회 기록), 반올림 disclosure의 1회 공개(consume→echo `done`), 수락 시 범위 집행(`schedule_scope`), 실패 분류(미연결·reconnect·장애·lease 만료), 철회 처리, 고정 문구 KO/EN, commit stub 유지, adapter `core.ts` 결과 전달, 합성 제공자·격리 fixture.
+- 검토 필요: (1) 미연결 회원도 ‘거절’은 가능하게 둔 결정(정본은 승인 버튼만 금지). (2) 이메일 회원 한 줄 안내는 coor 기본값 채택·designer 확인 필요. (3) 운영 문구(연결 완료·해제·다시 연결·준비 중·일부 동의 403)는 정본 고정 문구 밖의 DEV 작성. (4) adapters/src/core.ts·synthetic.ts는 지시서 소유 파일 밖이지만 결과 전달에 필수라 최소 수정했다. (5) 친구당 5회는 ‘조회’가 아니라 ‘수락된 요청’ 기준(조회 없이 거부 요구와 일치).
+- 검증한 것: 원격 Linux make lint·test·integration·fixture-compile·fixture 실제 기동(보고의 검사 로그 표), 로컬 go vet 3태그·go test·adapters check/test, 13화면×3폭 렌더 넘침 0, 공식 문서 근거(Context7 quota 초과로 WebFetch). 못 한 것: 실제 Google 계정·Cloud Console·운영 배포(D011), 브라우저 키보드/확대/스크린리더, 키 교체 절차.
+- 산출물·로그: `.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md`(기술 계획·근거·SC 대응·로그·렌더·fixture·not_run·lint), 같은 폴더의 `<sha>-*.log`·`render/`·`remote.py`, packet-outcomes `docs/evaluations/jev/SAR-SCHEDULE-001-DEV-packet-outcomes.json`, D03·D05·D06·D09·D10·D11·D13 갱신, `contexts/dev.md`.
+- 남은 일: coor의 고정 SHA 독립 리뷰, tester 독립 QA(fixture manifest는 원격 clone `fixture.json`), designer 시각 검수(렌더 캡처·fixture), D011 답 뒤 실계정 1경로·운영 env `KNOWSLINK_CALENDAR_KEY`·scope 등록(transition.md 초안), 통합.
+- lint DEP-001: 의존성 변경 없음(go.mod·package.json 미수정). 봉인은 stdlib, 토큰 갱신은 기존 oauth2.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
