@@ -3,7 +3,7 @@ title: 잔여 UI 이슈의 제품 규칙과 순차 인계
 status: review
 updated: 2026-10-20
 owner: designer
-tasks: [SAR-UX-ISSUES-002-DESIGN, SAR-UX-ISSUES-002-NAMES-VISUAL, SAR-UX-ISSUES-002-HOSTS-DESIGN, SAR-UX-ISSUES-002-CONNECT-VISUAL]
+tasks: [SAR-UX-ISSUES-002-DESIGN, SAR-UX-ISSUES-002-NAMES-VISUAL, SAR-UX-ISSUES-002-HOSTS-DESIGN, SAR-UX-ISSUES-002-CONNECT-VISUAL, SAR-UX-ISSUES-002-LANG-VISUAL]
 summary: 이슈 원문과 사람 친구 구현을 대조하고 이름·언어·승인·조회·설치 재개와 최신 호스트 범위의 수락 기준을 정한다
 ---
 
@@ -157,6 +157,8 @@ HTML `lang`는 실제 선택 언어와 일치한다. 날짜의 시간대는 두 
 누락 번역은 한국어 원문으로 안전 fallback하고 해당 문구의 언어를 구분한다. 내부 번역 키나 빈 버튼은 표시하지 않는다. 런타임 fallback은 장애 보호다. 명시한 필수 화면에 누락 번역이 남으면 #3 완료가 아니다. 문구·상태의 관리 방식은 DEV가 정하며 새 번역 의존성 도입을 제품 요구로 강제하지 않는다.
 
 완료 조건 U3-A: 한국어/English 저장·실패·새로고침·재로그인·새 브라우저·계정 교대·익명 저장 차단·잘못된 locale을 검증한다. 언어 전환이 친구 요청·발송·승인을 실행하거나 입력을 잃게 해서는 안 된다. 원문/ID/서명값 불변, 날짜의 동일 시각, `lang`·접근성 이름·누락 번역·긴 영문 배치를 확인한다. 계정 삭제·내보내기·새 보안 설정은 추가하지 않는다.
+
+2026-10-20 LANG-VISUAL 결정(과부하 거부 화면의 언어): 공용 admission의 429/503 거부 화면은 회원 저장값 대신 브라우저 언어 쿠키(없으면 한국어)를 따라도 된다. 이 화면은 회원 확인 전에 부하를 막는 일시 화면이고 회원 정보·동작이 없다. 회원 저장값을 읽으려고 과부하 중에 DB 조회를 추가하지 않는다. 조건: 화면 문구와 `lang`·`Content-Language`가 일치하고, 재시도 안내와 안전한 복귀를 보이며, 저장된 언어를 적용했다고 말하지 않는다. 회원 확인 뒤의 화면(다른 거부·오류 포함)은 계속 회원 저장값을 따른다. 근거: [시각 판정](../evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-VISUAL/report.md).
 
 ## U8 — 설치 경로, 상태와 재개
 
