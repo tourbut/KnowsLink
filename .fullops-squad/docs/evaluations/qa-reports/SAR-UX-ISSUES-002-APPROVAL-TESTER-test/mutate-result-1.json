@@ -1,0 +1,140 @@
+{
+ "stage": "1",
+ "checks": [
+  {
+   "name": "pre_both_decide_gates_pending_with_buttons",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "csrf_tokens_differ_per_gate_page",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "cross_gate_token_approve_rejected_403",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "cross_gate_token_deny_rejected_403",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "cross_gate_token_left_both_gates_pending",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "csrf_wrong_rejected_403_gate_unchanged",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "csrf_empty_rejected_403_gate_unchanged",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "csrf_truncated_rejected_403_gate_unchanged",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "csrf_absent_rejected_403_gate_unchanged",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "unknown_decision_value_does_not_decide",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "foreign_member_b_approve_with_stolen_token_403_no_leak",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "foreign_member_b_deny_with_stolen_token_403_no_leak",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "foreign_member_c_approve_with_stolen_token_403_no_leak",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "foreign_member_c_deny_with_stolen_token_403_no_leak",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "get_with_decision_query_does_not_decide",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "approve_decide_1_redirects_303_to_detail",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "approved_detail_shows_approved_without_controls",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "list_row_decide_1_shows_approved",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "pending_count_dropped_by_one",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "duplicate_approve_after_approval_409_with_safe_message_and_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "duplicate_approve_page_has_title_h1_alert",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "duplicate_deny_after_approval_409_with_safe_message_and_return",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "duplicate_deny_page_has_title_h1_alert",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "first_decision_kept_after_duplicates",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "approved_page_offers_no_new_csrf_token",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "foreign_member_still_403_after_decision",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "decide_2_untouched_still_pending",
+   "result": "PASS",
+   "detail": ""
+  }
+ ]
+}

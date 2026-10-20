@@ -46,3 +46,6 @@ summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사
 - 2026-10-19 SAR-UX-ISSUES-002-NAMES-TESTER: 고정 b2e683a의 U2·U4·U7·1단위 독립 QA. critical·high 없음, low D-NM-01(이름 거부 사유·보이지 않는 문자 되돌림). [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md).
 - 이 fixture는 `/home/*` 전체에 회원당 분당 40회 한도가 있다(41번째 429). client·CDP 러너에서 429를 기다리게 한다. headless Edge는 Tab을 body로 빼지 않고 페이지 안에서 순환하니 첫 정지점 재도달을 한 바퀴로 본다.
 - 없는 코드·제어문자·500자 코드도 일반 성공을 돌려주므로 거부 기대를 두지 않는다. 비가역 단계가 단언 하나로 멈추지 않게 mutate와 followup으로 나눴다.
+
+- 2026-10-20 SAR-UX-ISSUES-002-APPROVAL-TESTER: 고정 9d13a05의 U5 승인 요약·U7·O-NM-04·O-NM-08 독립 QA. critical·high·medium 없음, low 관찰 3건. [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-TESTER-test/report.md).
+- 승인 상세 CSP(`default-src 'none'`)가 페이지 안 `fetch()`를 막는다. 상태 변경 뒤 읽기 전용 단계를 다시 돌리면 결정 전 캡처가 덮이니 캡처 단계는 변경 전에 끝낸다. CSRF token은 세션에 묶여 다른 세션 재제출은 409가 아니라 403이다. 셸 가드가 파일 삭제 명령을 막으니 조립용 임시 파일은 scratchpad에 둔다.
