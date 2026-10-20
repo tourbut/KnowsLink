@@ -1,0 +1,91 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-HOST-VERIFY-001-LIVE",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D12",
+    "D10",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.56,
+        "product": 0.44
+      },
+      "confidence": 0.12
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.75,
+        "ops": 0.24,
+        "tester": 0.01
+      },
+      "confidence": 0.62
+    },
+    "docs": {
+      "D01": 0.48,
+      "D02": 0.6,
+      "D03": 0.59,
+      "D04": 0.49,
+      "D05": 0.57,
+      "D06": 0.51,
+      "D07": 0.4,
+      "D08": 0.43,
+      "D09": 0.57,
+      "D10": 0.73,
+      "D11": 0.54,
+      "D12": 0.81,
+      "D13": 0.73
+    }
+  },
+  "usage": {
+    "input_tokens": 2437,
+    "output_tokens": 314,
+    "cost": 0.000102354
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D02",
+    "D03",
+    "D05",
+    "D06",
+    "D09",
+    "D11"
+  ],
+  "latency_seconds": 0.5,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "실계정 독립 동작 검증은 tester 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "09fb54d9eab6c0a7d421fea0f72d52985283e0fe",
+  "requires_packet": true,
+  "attempt": "d42304b32b524a52b58d877c6bae2eae",
+  "instruction_sha256": "5894c5d337b7aec5e9d548e6076ff730c40f6d0db3c7801e5bccf69f3437f35b",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "f8200cf4a63da9cab9206961738bbf8ad3344d5c824e321765d2a9be29168fb6"
+}
