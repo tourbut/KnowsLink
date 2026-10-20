@@ -3,6 +3,7 @@ package relay
 
 import (
 	"bytes"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"strings"
@@ -85,6 +86,19 @@ func TestConnectGuidePagesRender(t *testing.T) {
 	write("friends-code-tail", body)
 	conn := renderHumanPage(t, "connection", map[string]any{"Title": "에이전트 연결", "ConnectionID": "c", "Agent": "agent_a", "Name": long, "Short": "a001", "Client": supportedClient, "Mode": "register", "State": "consumed", "Exp": "2026-10-20 13:19:59 KST"})
 	write("connection-consumed", conn)
+	unsure := renderHumanPage(t, "connection", map[string]any{"Unsure": &deviceUnsure, "Title": "에이전트 연결", "ConnectionID": "c", "Agent": "agent_a", "Name": long, "Short": "a001", "Client": supportedClient, "Mode": "register", "State": "expired", "Exp": "2026-10-20 13:19:59 KST"})
+	if !strings.Contains(unsure, deviceUnsure.Next) || strings.Contains(unsure, "새로 시작하세요") || strings.Contains(unsure, `aria-current="step"`) {
+		t.Fatal("unsure connection page reads as a plain expiry")
+	}
+	write("connection-unsure", unsure)
+	legacy := renderHumanPage(t, "legacy-home", humanPageFixture())
+	if !strings.Contains(legacy, `aria-labelledby="toc-h"><span id="toc-h" class="toc-title">이 화면에서 찾기</span>`) || strings.Contains(legacy, `class="toc" aria-current`) {
+		t.Fatal("legacy table of contents lacks its visible title")
+	}
+	write("legacy-toc", legacy)
+	denied := httptest.NewRecorder()
+	refusedTo(denied, "연결 확인", refusal{403, "연결을 조회할 수 없습니다.", false, false}, "/home/agents")
+	write("connection-refusal", denied.Body.String())
 	var b bytes.Buffer
 	if err := remoteReturn.Execute(&b, "https://app.invalid/cb?code=synthetic&iss=https%3A%2F%2Flink.invalid&state=s"); err != nil {
 		t.Fatal(err)
