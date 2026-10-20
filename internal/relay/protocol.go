@@ -113,6 +113,23 @@ func interval(value any) bool {
 	b, ok2 := instant(m["end"])
 	return ok && ok2 && b.After(a)
 }
+func disclosureShape(value any) bool {
+	if !object(value, []string{"window", "granularity_min", "busy"}) {
+		return false
+	}
+	m := value.(map[string]any)
+	n, ok := m["granularity_min"].(float64)
+	busy, isList := m["busy"].([]any)
+	if !interval(m["window"]) || !ok || n <= 0 || n != float64(int64(n)) || !isList {
+		return false
+	}
+	for _, b := range busy {
+		if !interval(b) {
+			return false
+		}
+	}
+	return true
+}
 func Parse(raw []byte) (*Envelope, error) {
 	if len(raw) > rawEnvelopeLimit {
 		return nil, fault("invalid_schema")
@@ -177,7 +194,11 @@ func Parse(raw []byte) (*Envelope, error) {
 		valid = object(e.Body, []string{"reason", "request_digest"}) && d && err == nil && len(decoded) == 32 && r && (reason == "permission_required" || reason == "judgment_required") && e.Deliver == "human" && e.ReplyTo != ""
 	case "relay.result":
 		status, ok := text(e.Body["status"])
-		valid = object(e.Body, []string{"status"}) && ok && (status == "denied" || status == "failed" || status == "done") && e.Deliver == "agent" && e.ReplyTo != ""
+		valid = object(e.Body, []string{"status"}, "disclosure") && ok && (status == "denied" || status == "failed" || status == "done") && e.Deliver == "agent" && e.ReplyTo != ""
+		if d, has := e.Body["disclosure"]; has {
+			// A disclosure is the server-made busy summary: window, unit and start/end spans only (SC-03).
+			valid = valid && status == "done" && disclosureShape(d)
+		}
 	default:
 		return nil, fault("unsupported_intent")
 	}

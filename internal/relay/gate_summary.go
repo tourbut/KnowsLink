@@ -11,11 +11,14 @@ import (
 // gateKinds lists the parent intents a person can judge; any other intent is shown as unverifiable.
 var gateKinds = map[string]string{"schedule.query": "일정 가능 시간 확인", "schedule.commit": "일정 확정"}
 
-// gateScopes restates policy() for people: approval passes the gate only and enables nothing else.
+// gateScopes restates policy() for people: approval passes the gate only and enables nothing else. A member with a
+// connected calendar sees calendarGateScope for schedule.query instead (SAR-SCHEDULE-001 화면 문구 원칙).
 var gateScopes = map[string]string{
 	"schedule.query":  "가능 시간 공개 정책이 없어 승인해도 상대에게 가능 시간이 공개되지 않습니다.",
 	"schedule.commit": "승인해도 일정이 확정되거나 실행되지 않습니다. 이 서비스에는 일정 실행 기능이 없습니다.",
 }
+
+const calendarGateScope = "승인하면 이 요청의 기간에 대해 바쁜 시간대만 한 번 공유합니다. 일정을 만들거나 바꾸지 않습니다."
 
 type gateField struct{ Label, Value string }
 
@@ -57,7 +60,7 @@ func gateSummary(e *Envelope) (fields []gateField, text string) {
 	case "schedule.query":
 		minutes, isNumber := e.Body["granularity_min"].(float64)
 		ok = ok && isNumber
-		fields = append(fields, gateField{"확인할 기간", span("window")}, gateField{"시간 단위", fmt.Sprintf("%d분", int64(minutes))})
+		fields = append(fields, gateField{"확인할 기간", span("window")}, gateField{"시간 단위", fmt.Sprintf("%d분", int64(minutes))}, gateField{"공개되는 내용", "바쁜 시간대만"})
 	case "schedule.commit":
 		zone, isZone := e.Body["timezone"].(string)
 		commitment, isText := e.Body["commitment"].(string)

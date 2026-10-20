@@ -53,7 +53,7 @@ func run(ctx context.Context) error {
 	}
 	service := &relay.Service{Pool: pool, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1"}
 	googleCtx, googleCancel := context.WithTimeout(ctx, 6*time.Second)
-	service.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv("KNOWSLINK_GOOGLE_CLIENT_ID"), os.Getenv("KNOWSLINK_GOOGLE_CLIENT_SECRET"), os.Getenv("KNOWSLINK_GOOGLE_REDIRECT_URL"))
+	service.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv("KNOWSLINK_GOOGLE_CLIENT_ID"), os.Getenv("KNOWSLINK_GOOGLE_CLIENT_SECRET"), os.Getenv("KNOWSLINK_GOOGLE_REDIRECT_URL"), os.Getenv("KNOWSLINK_CALENDAR_KEY"))
 	googleCancel()
 	if err != nil {
 		return err

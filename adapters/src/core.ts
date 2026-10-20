@@ -264,6 +264,7 @@ export class Adapter {
     const claim = await this.request<{ claim: string }>("/v1/claim", {
       id: message.id,
     });
+    let outcome: Record<string, JSONValue> = { status: "denied" };
     if (gate) {
       const receipt = await this.request<{ receipt: { digest: string } }>(
         `/v1/receipts/${message.id}`,
@@ -283,10 +284,17 @@ export class Adapter {
           `/v1/gates/${approval.id}`,
         );
         if (result.state === "approved") {
-          await this.request("/v1/gate-consume", {
-            id: approval.id,
-            claim: claim.claim,
-          });
+          // SAR-SCHEDULE-001: the relay runs the single free/busy lookup on approval and hands back its rounded
+          // disclosure; the result echoes it unchanged (the relay refuses anything else) or reports the failure.
+          const consumed = await this.request<{
+            disclosure: JSONValue;
+            lookup?: string;
+          }>("/v1/gate-consume", { id: approval.id, claim: claim.claim });
+          if (consumed.disclosure && typeof consumed.disclosure === "object") {
+            outcome = { status: "done", disclosure: consumed.disclosure };
+          } else if (consumed.lookup === "failed") {
+            outcome = { status: "failed" };
+          }
           break;
         }
         if (result.state !== "pending") break;
@@ -294,8 +302,8 @@ export class Adapter {
       }
     }
     await this.request("/v1/authorize", { id: message.id, claim: claim.claim });
-    // No disclosure policy and commit stub: approve cannot turn either into an effect.
-    await this.send(message, "relay.result", { status: "denied" }, claim.claim);
+    // Commit stays a stub and an unapproved query discloses nothing: only a server-made disclosure can be "done".
+    await this.send(message, "relay.result", outcome, claim.claim);
     return true;
   }
 }

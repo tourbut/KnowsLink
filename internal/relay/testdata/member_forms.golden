@@ -32,6 +32,7 @@ receipt: get /home/receipts {button:=@; input::id; input:radio:agent}
 refusal-reauth: post /auth/reauth {button:=@}
 gate-active: post  {button:decision=approve@; button:decision=deny@/home/gates/00000000-0000-4000-8000-000000000001/deny; input:hidden:csrf=synthetic-csrf}
 gate-commit-hint: post  {button:decision=approve@; button:decision=deny@/home/gates/00000000-0000-4000-8000-000000000001/deny; input:hidden:csrf=synthetic-csrf}
+gate-query-connected: post  {button:decision=approve@; button:decision=deny@/home/gates/00000000-0000-4000-8000-000000000001/deny; input:hidden:csrf=synthetic-csrf}
 home-no-gates: post /auth/logout {button:=@}
 home-no-gates: post /auth/logout {button:=@}
 home-no-gates: post /auth/logout-all {button:=@}

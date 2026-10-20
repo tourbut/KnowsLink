@@ -78,8 +78,16 @@ async function main() {
       from: a.agent,
       to: b.agent,
       intent: "schedule.query",
+      // A D010-valid window: the next whole hour, one hour long (SAR-SCHEDULE-001 scope is enforced on accept).
       body: {
-        window: { start: "2026-10-03T10:00:00Z", end: "2026-10-03T11:00:00Z" },
+        window: {
+          start: new Date(Math.ceil(Date.now() / 3600000) * 3600000)
+            .toISOString()
+            .replace(/\.\d{3}Z$/, "Z"),
+          end: new Date(Math.ceil(Date.now() / 3600000) * 3600000 + 3600000)
+            .toISOString()
+            .replace(/\.\d{3}Z$/, "Z"),
+        },
         granularity_min: 30,
       },
       deliver: "agent",

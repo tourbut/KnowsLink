@@ -340,8 +340,12 @@ func TestEmailIdentity(t *testing.T) {
 		alice, bob := &browser{t, f.handler, "192.0.2.80", map[string]string{}}, &browser{t, f.handler, "192.0.2.81", map[string]string{}}
 		bobMember := login(t, bob, mail, "bob@example.com")
 		login(t, alice, mail, "alice@example.com")
-		// Bind agent_b to Bob's member owner; the frozen gate flow then targets Bob's home.
-		f.mutate(func(st *State) { st.Agents["agent_b"].Owner = st.Members[bobMember].Owner })
+		// Bind agent_b to Bob's member owner; the frozen gate flow then targets Bob's home. A connected calendar lets Bob
+		// approve the schedule.query; without a provider the lookup fails and discloses nothing (SAR-SCHEDULE-001 SC-05).
+		f.mutate(func(st *State) {
+			st.Agents["agent_b"].Owner = st.Members[bobMember].Owner
+			st.Calendars = map[string]*Calendar{bobMember: {Sealed: []byte("no-provider"), State: "connected"}}
+		})
 		receipt := f.send(f.message(firstID, "idempotency-key-01"), "agent_a", "", 200)
 		claim := f.deliver(firstID)
 		h := wire(t, f.private["agent_b"], gateID, "agent_b", "agent_b", "relay.approval.request", "approval-key-0001", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute))
@@ -354,8 +358,8 @@ func TestEmailIdentity(t *testing.T) {
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(bob.cookies[sessionCookie], gateID)}, "decision": {"approve"}}, "Sec-Fetch-Site", "cross-site"), 403)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrf(bob.cookies[sessionCookie], gateID)}, "decision": {"approve"}}), 303)
 		result := f.call("POST", "/v1/gate-consume", f.tokens["agent_b"], map[string]any{"id": gateID, "claim": claim}, 200)
-		if result["executable"] != false || result["disclosure"] != false {
-			t.Fatal("gate enabled effect")
+		if result["executable"] != false || result["disclosure"] != false || result["lookup"] != "failed" {
+			t.Fatal("gate enabled effect", result)
 		}
 		expect(t, bob.do("POST", "/auth/logout", nil), 303)
 		expect(t, bob.do("GET", "/home/gates/"+gateID, nil), 303, "/?n=expired")
