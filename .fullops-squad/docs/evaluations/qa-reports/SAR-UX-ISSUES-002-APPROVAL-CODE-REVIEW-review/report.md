@@ -3,7 +3,7 @@ title: SAR-UX-ISSUES-002-APPROVAL-CODE-REVIEW 리뷰
 status: review
 updated: 2026-10-20
 owner: reviewer
-summary: 9d13a05ba93c 병합 전 독립 리뷰 보고서. critical/high 0, low 2(비차단), 수락
+summary: "9d13a05ba93c 병합 전 독립 리뷰 보고서. critical/high 0, low 2(비차단), 수락"
 ---
 
 # SAR-UX-ISSUES-002-APPROVAL-CODE-REVIEW 리뷰
