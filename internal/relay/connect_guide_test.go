@@ -92,5 +92,6 @@ func TestConnectGuidePagesRender(t *testing.T) {
 	if !strings.Contains(b.String(), `href="https://app.invalid/cb?code=synthetic`) {
 		t.Fatal("remote return lost the verified app link")
 	}
-	write("remote-return", b.String())
+	// The static capture disables the redirect so the page itself, not the unreachable app, is rendered.
+	write("remote-return", strings.Replace(b.String(), `http-equiv="refresh"`, `data-render-only="refresh"`, 1))
 }
