@@ -41,9 +41,13 @@ func gateState(st *State, g *Gate, now time.Time) (string, *Envelope, bool) {
 }
 
 // gateSummary maps the verified body fields to labels; free text stays separate and is never part of the scope.
+// Parse already guarantees these shapes; any mismatch (a new intent or schema) yields no summary, so the page shows
+// the "cannot confirm" state instead of panicking.
 func gateSummary(e *Envelope) (fields []gateField, text string) {
+	ok := true
 	span := func(key string) string {
-		v := e.Body[key].(map[string]any)
+		v, isMap := e.Body[key].(map[string]any)
+		ok = ok && isMap
 		start, _ := instant(v["start"])
 		end, _ := instant(v["end"])
 		return clock(start) + " – " + clock(end)
@@ -51,10 +55,20 @@ func gateSummary(e *Envelope) (fields []gateField, text string) {
 	fields = []gateField{{"요청 유형", gateKinds[e.Intent]}}
 	switch e.Intent {
 	case "schedule.query":
-		fields = append(fields, gateField{"확인할 기간", span("window")}, gateField{"시간 단위", fmt.Sprintf("%d분", int64(e.Body["granularity_min"].(float64)))})
+		minutes, isNumber := e.Body["granularity_min"].(float64)
+		ok = ok && isNumber
+		fields = append(fields, gateField{"확인할 기간", span("window")}, gateField{"시간 단위", fmt.Sprintf("%d분", int64(minutes))})
 	case "schedule.commit":
-		fields = append(fields, gateField{"일정", span("slot")}, gateField{"요청에 적힌 시간대", e.Body["timezone"].(string)})
-		text = e.Body["commitment"].(string)
+		zone, isZone := e.Body["timezone"].(string)
+		commitment, isText := e.Body["commitment"].(string)
+		ok = ok && isZone && isText
+		fields = append(fields, gateField{"일정", span("slot")}, gateField{"요청에 적힌 시간대", zone})
+		text = commitment
+	default:
+		ok = false
+	}
+	if !ok {
+		return nil, ""
 	}
 	return fields, text
 }

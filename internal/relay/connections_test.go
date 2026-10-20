@@ -347,7 +347,12 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 		if open := state == "waiting" || state == "prepared" || state == "approved"; open != strings.Contains(body, `action="/home/cancel"`) {
 			t.Fatal("cancel control", state)
 		}
-		has(body, `href="/home"`)
+		// U7: only a server-confirmed stage is the current step, and the page returns to that agent's place.
+		if steps := strings.Count(body, `aria-current="step"`); steps != map[bool]int{true: 1, false: 0}[state != "cancelled" && state != "expired"] {
+			t.Fatal("current step", state, steps)
+		}
+		has(body, `href="/home/agents#agent-agent_a"`)
+		lacks(body, "연결 완료")
 	}
 	// Fingerprints wrap inside the card, and invite deadlines use the KST clock.
 	exp := time.Date(2026, 10, 7, 4, 19, 59, 162233000, time.UTC)

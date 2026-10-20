@@ -15,6 +15,7 @@ type humanFriend struct {
 	ID, Name, State, Exp string
 	Generation           int64
 	Incoming             bool
+	CodeTail             string // only on the requester's own sent/ended request rows (O-NM-03)
 }
 type humanConversation struct{ ID, Name, FromName, ToName, State, URL string }
 type humanMessage struct{ ID, Author, Agent, Short, Text, When, State, Authorship string }
@@ -132,6 +133,9 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			state = "removed"
 		}
 		entry := humanFriend{ID: f.ID, Name: name, State: state, Generation: f.Generation, Incoming: incoming, Exp: clock(f.Exp)}
+		if !incoming && (state == "pending" || state == "denied" || state == "cancelled" || state == "expired") {
+			entry.CodeTail = f.CodeTail
+		}
 		if state == "active" {
 			friends = append(friends, entry)
 		} else {
@@ -188,6 +192,27 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		v["Title"], v["Section"] = "내 계정", "account"
 	case "agents":
 		v["Title"], v["Section"] = "내 에이전트", "agents"
+		// The chosen host and start only steer the guide text; nothing about them is stored or treated as progress.
+		v["Choices"], v["Start"] = useChoices, "first"
+		for _, c := range useChoices {
+			if c.ID == r.URL.Query().Get("use") {
+				v["Use"] = c.ID
+			}
+		}
+		if r.URL.Query().Get("start") == "continue" {
+			v["Start"] = "continue"
+		}
+		resume := map[string]agentResume{}
+		for _, a := range own {
+			resume[a.ID] = st.agentResume(a.ID, now)
+		}
+		sent := 0
+		for _, f := range requests {
+			if !f.Incoming && f.State == "pending" {
+				sent++
+			}
+		}
+		v["Resume"], v["SentRequests"] = resume, sent
 	case "friends":
 		v["Title"], v["Section"] = "친구", "friends"
 	case "friend", "new":

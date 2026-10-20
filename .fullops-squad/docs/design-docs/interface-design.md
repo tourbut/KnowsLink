@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-19
+updated: 2026-10-20
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -45,10 +45,12 @@ GET `/`는 익명과 유효 세션 모두 서비스 안내 HTML을 200으로 반
 | 경로 | 계약 |
 |---|---|
 | GET `/home`, `/home/name`, `/home/friends`, `/home/friends/{id}`, `/home/agents`, `/home/account`, `/home/new`, `/home/conversation` | 대화 홈·이름·친구/상세·agent·계정·대상 선택·기록. 대화 query는 from/to, optional attempt다 |
+| GET `/home/agents?use=&start=` | U8 ‘어디에서 사용할까요?’ 안내. `use`는 web·grok·dots·claude·other, `start`는 first·continue만 받고 그 밖은 무시한다. 안내 표시 전용이며 상태를 저장하지 않는다. 각 agent 행의 연결 상태는 저장된 연결·키·remote install·code/token에서만 계산한다(`connect_guide.go`) |
 | POST `/home/profile` | name: trim 후 Unicode 1–40자, control/Bidi_Control 문자 거부. 금지 문자 거부는 전용 문구와 함께 금지 문자를 뺀 나머지를 입력란에 남기고 저장하지 않는다(에이전트 이름·추가·device·remote 이름도 같음). 변경은 ID/신원/키 불변 |
 | POST `/home/agent-name` | agent/name, 자기 agent만 변경 |
 | POST `/home/agents` / `/home/device-confirm` / `/remote/consent/{id}` 승인 | 새 agent 이름 필수. 기존 최근 인증·연결 proof·명시 승인 유지 |
 | POST `/home/friend-code` | 자기 코드 회전. 이전 코드는 신규 요청에 무효; 기존 요청/친구를 바꾸지 않음 |
+| POST `/home/friends/request` 표시용 끝 4자 (O-NM-03) | 요청 기록 `Friend.CodeTail`에 요청자가 입력한 trim 값의 끝 4자를 저장한다. 4자 미만이거나 끝 4자에 `[A-Za-z0-9_-]` 밖 문자가 있으면 `?`, 이 필드 이전 기록은 빈 값이다. 있는/없는/차단/자기 코드 모두 같은 규칙이다. 요청자의 보낸 대기·거절·취소·만료 행에만 ‘입력한 코드 …abcd’/‘입력한 코드 형식 다름’/‘이전 요청’으로 보이며 전체 코드는 저장·URL·로그에 넣지 않는다 |
 | POST `/home/self-connect` | consent=yes. 기존 회원의 자기 활성 endpoint 전체 범위를 명시 활성화 |
 | POST `/home/friends/request` | code/consent=yes. 코드 정답·자기 코드·차단·없는 대상은 동일 외부 결과/발신 요청 표시. 회원 검색 없음 |
 | POST `/home/friends/decision` | friend/generation/decision, accept에는 consent=yes. accept/deny 수신자, cancel 발신자, remove/block 참여자, unblock 차단자만 |
@@ -220,7 +222,8 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 
 | 메서드·경로 | 입력·동작 |
 |---|---|
-| POST /home/agents | 새 무작위 ID의 미연결 자기 agent. 5분 재인증 |
+| POST /home/agents | 새 무작위 ID의 미연결 자기 agent. 5분 재인증. optional `attempt`(16–96자)가 같은 회원의 이전 생성과 같으면 새 agent 없이 그 agent 위치로 303한다(중복 클릭·재전송). 성공·재전송 모두 `/home/agents#agent-{id}`로 복귀 |
+| POST /home/confirm·/home/cancel·/home/agent-revoke 복귀 | confirm은 `/home/connections/{grant hash}`, cancel은 `/home/agents#agent-{id}`, agent 철회는 `/home/agents`로 303한다. 회원 연결 동작의 거부 화면은 `/home/agents`(legacy 관계 동작은 `/home/legacy#pairs`)로 복귀한다. 호출자가 준 return URL은 받지 않는다 |
 | POST /home/connect | agent, client=node-local, mode=register 또는 rotate. 5분 재인증. 화면에서만 grant token 1회 표시 |
 | GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음 |
 | POST /home/confirm | connection=grant hash. 5분 재인증·prepared 상태 검사. 아직 키 미활성 |

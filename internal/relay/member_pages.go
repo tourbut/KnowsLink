@@ -55,7 +55,7 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{define "refusal"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">
 {{if .Reauth}}<form method="post" action="/auth/reauth"><button class="primary">로그인 다시 확인</button></form>{{end}}
 {{if .Create}}<a class="button primary" href="/home/agents">에이전트 추가</a>{{end}}
-<p><a href="{{.Back}}">{{if eq .Back "/"}}로그인 화면으로 이동{{else if eq .Back "/home/friends"}}친구 목록으로 돌아가기{{else if eq .Back "/home/legacy#gates"}}승인 목록으로 돌아가기{{else}}홈으로 돌아가기{{end}}</a></p></section></main></html>{{end}}
+<p><a href="{{.Back}}">{{if eq .Back "/"}}로그인 화면으로 이동{{else if eq .Back "/home/friends"}}친구 목록으로 돌아가기{{else if eq .Back "/home/legacy#gates"}}승인 목록으로 돌아가기{{else if eq .Back "/home/agents"}}내 에이전트로 돌아가기{{else if eq .Back "/home/legacy#pairs"}}기존 연결 목록으로 돌아가기{{else}}홈으로 돌아가기{{end}}</a></p></section></main></html>{{end}}
 {{define "google-complete"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">{{if eq .Next "/home"}}<a class="button primary" href="/home">홈으로 이동</a>{{else if eq .Next "/home/receipts"}}<a class="button primary" href="/home/receipts#receipt-form">요청 상태 조회로 돌아가기</a>{{else}}<a class="button primary" href="{{.Next}}">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}
 {{define "verify"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="확인 코드">
 <p>{{.Masked}}로 코드를 보냈습니다. 아직 로그인되지 않았습니다.</p>
@@ -65,11 +65,11 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 <p class="muted">다시 받기는 이전 요청 60초 뒤부터 가능합니다. 새 코드를 받으면 이전 코드는 쓸 수 없습니다.</p>
 <p><a href="/">다른 주소로 시작</a></p></section></main></html>{{end}}
 {{define "connection"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}
-{{if or (eq .State "expired") (eq .State "cancelled")}}<p class="note" role="status">{{if eq .State "expired"}}만료되었습니다.{{else}}취소되었습니다.{{end}} 새 키가 연결되지 않았습니다. 홈에서 다시 시작하세요.</p>
+{{if or (eq .State "expired") (eq .State "cancelled")}}<p class="note" role="status">{{if eq .State "expired"}}만료되었습니다.{{else}}취소되었습니다.{{end}} 새 키가 연결되지 않았습니다. 이전 연결 수단은 다시 쓸 수 없습니다. 내 에이전트의 연결·키 관리에서 새로 시작하세요.</p>
 {{else}}<ol class="steps" aria-label="연결 단계">
 <li{{if or .Token (eq .State "waiting")}} aria-current="step"{{end}}><span class="n">1</span> 연결 수단 발급됨: 내 컴퓨터에서 준비</li>
 <li{{if and (not .Token) (eq .State "prepared")}} aria-current="step"{{end}}><span class="n">2</span> 지문 확인: 내 컴퓨터에 표시된 지문과 같은지 확인</li>
-<li{{if and (not .Token) (or (eq .State "approved") (eq .State "consumed"))}} aria-current="step"{{end}}><span class="n">3</span> {{if eq .State "consumed"}}연결 완료{{else}}연결 마무리{{end}}</li></ol>{{end}}
+<li{{if and (not .Token) (or (eq .State "approved") (eq .State "consumed"))}} aria-current="step"{{end}}><span class="n">3</span> {{if eq .State "consumed"}}키 등록됨{{else}}연결 마무리{{end}}</li></ol>{{end}}
 <section aria-labelledby="conn-h"><div class="sechead"><h2 id="conn-h">{{if .Token}}연결 수단 발급{{else if eq .State "prepared"}}공개키 확인{{else}}연결 상태{{end}}</h2>{{if .Token}}{{badge "연결 대기"}}{{end}}</div>
 <dl class="kv"><dt>대상 에이전트</dt><dd>{{if .Name}}{{.Name}}{{else}}이름 없는 에이전트{{end}} <span class="short">{{.Short}}</span><details><summary>식별자</summary><code>{{.Agent}}</code></details></dd><dt>클라이언트</dt><dd>{{.Client}}</dd><dt>연결 방식</dt><dd>{{if eq .Mode "rotate"}}키 교체 (완료하면 기존 키가 모두 철회됨){{else if eq .Mode "register"}}새 키 추가 (최대 3개){{else}}{{.Mode}}{{end}}</dd><dt>기한</dt><dd>{{.Exp}}까지 <span class="nowrap">(최대 10분·1회 사용)</span></dd></dl>
 {{if .Token}}<p>내 컴퓨터(Node 22)에서 저장소의 adapters를 설치한 뒤 실행하세요.</p>
@@ -81,11 +81,11 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{else if eq .State "prepared"}}<p>내 컴퓨터에 표시된 지문과 같은지 확인하세요.</p><code class="fp big" aria-label="공개키 지문">{{.Fingerprint}}</code><p>다르면 취소하세요.</p>
 <form method="post" action="/home/confirm"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button class="primary">지문이 같습니다. 연결 승인</button></form>
 {{else if eq .State "approved"}}<p>승인했습니다. 아직 새 키가 연결되지 않았습니다. 내 컴퓨터에서 다음 명령을 실행하세요.</p><pre><code>node adapters/dist/connect.js complete &lt;새 비공개 폴더&gt;</code></pre>
-{{else if eq .State "consumed"}}<p role="status">{{badge "연결 완료"}} 클라이언트가 받은 자격을 내 컴퓨터에 보관합니다.</p>
+{{else if eq .State "consumed"}}<p role="status">{{badge "등록됨"}} 키 등록됨. 앱에서 연결 상태를 확인하세요. 클라이언트가 받은 자격을 내 컴퓨터에 보관합니다. 이 화면은 온라인 여부를 확인하지 않습니다.</p>
 {{else if eq .State "waiting"}}<p>공개키 준비 전입니다. 아직 연결되지 않았습니다.</p><p><a href="/home/connections/{{.ConnectionID}}">상태 새로고침</a></p>{{end}}
 <h3>권한</h3><ul><li>이 에이전트의 보내기·받기만 허용합니다. 소유자 승인·운영 관리자 권한은 없습니다.</li><li>개인키는 내 컴퓨터에만 보관합니다. KnowsLink에 보내지 마세요.</li></ul>
 {{if or (eq .State "waiting") (eq .State "prepared") (eq .State "approved")}}<form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>연결 취소</button></form>{{end}}
-<p><a href="/home">홈으로 돌아가기</a></p></section></main></html>{{end}}
+<p><a href="/home/agents{{if .Agent}}#agent-{{.Agent}}{{end}}">내 에이전트로 돌아가기</a></p></section></main></html>{{end}}
 {{define "device"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}
 <p class="note caution"><strong>주의</strong> 내 컴퓨터에서 시작한 요청만 승인하세요. 다른 사람이 보낸 링크는 승인하지 마세요.</p>
 <section aria-label="연결 요청"><dl class="kv"><dt>클라이언트</dt><dd>Node 로컬 클라이언트</dd><dt>기한</dt><dd>{{.Exp}}</dd></dl>
@@ -93,9 +93,9 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{if .Login}}{{if .Google}}<form method="post" action="/auth/google"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button class="primary">Google로 로그인하고 연결 계속</button></form>{{else}}<p class="problem" role="alert">Google 로그인을 준비 중입니다. 잠시 뒤 다시 시작하세요.</p>{{end}}
 {{else if eq .State "prepared"}}<h2>승인하면</h2><ul><li>내 계정에 새 에이전트 하나를 연결합니다. 기존 에이전트의 키는 바뀌지 않습니다.</li><li>이 에이전트의 보내기·받기만 허용합니다.</li><li>현재 친구에게도 이 에이전트가 보입니다. 친구 동의 범위에서 대화할 수 있습니다.</li><li>개인키는 내 컴퓨터에만 보관합니다.</li></ul>
 <form method="post" action="/home/device-confirm"><input type="hidden" name="connection" value="{{.ConnectionID}}"><label for="device-agent-name">에이전트 이름</label><input id="device-agent-name" name="name" required maxlength="80" value="{{.Name}}" aria-describedby="device-name-help{{if .Problem}} problem{{end}}"><p id="device-name-help" class="muted">친구에게도 이 이름이 보입니다. 이름은 1–40자로 입력하세요.</p><button class="primary">지문 확인 후 연결 승인</button></form><form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>취소</button></form>
-{{else}}<p class="note" role="status">승인했습니다. 내 컴퓨터에서 저장 결과를 확인하세요. 시작한 클라이언트가 자격을 자동 저장합니다.</p>{{end}}
-<p><a href="/home">홈으로 이동</a></p></section></main></html>{{end}}
-{{define "receipt"}}{{template "head" .}}<main id="main" class="page"><nav aria-label="현재 위치"><a href="/home/agents">내 에이전트</a> / <a href="/home/receipts#receipt-form" aria-current="page">요청 상태 조회</a></nav><h1>요청 상태 조회</h1>
+{{else}}<p class="note" role="status">승인했습니다. 내 컴퓨터에서 저장 결과를 확인하세요. 시작한 클라이언트가 자격을 자동 저장합니다. 승인만으로는 연결되지 않습니다.</p>{{end}}
+<p><a href="/home/agents">내 에이전트로 이동</a></p></section></main></html>{{end}}
+{{define "receipt"}}{{template "head" .}}<main id="main" class="page"><nav aria-label="현재 위치">{{if not .Anonymous}}<a href="/home/agents">내 에이전트</a> / {{end}}<a href="/home/receipts#receipt-form" aria-current="page">요청 상태 조회</a></nav><h1>요청 상태 조회</h1>
 <p>보낸 요청이나 답장의 ID로 전달 상태를 확인합니다. 현재 온라인 상태를 확인하는 기능은 아닙니다.</p>
 {{if .Problem}}<p class="problem" role="alert" id="receipt-problem" tabindex="-1"{{if eq .Focus "receipt-problem"}} autofocus{{end}}>{{.Problem}} {{if .Anonymous}}<a href="/">로그인 화면으로 이동</a>{{else}}<a href="#{{if eq .Focus "receipt-agent"}}receipt-agent{{else}}receipt-id{{end}}">조회 입력으로 이동</a>{{end}}</p>{{end}}
 {{if not .Anonymous}}<section aria-label="조회 입력"><form id="receipt-form" method="get" action="/home/receipts" autocomplete="off">
@@ -134,7 +134,7 @@ var memberPages = template.Must(template.New("member").Funcs(template.FuncMap{"b
 {{if .Pairs}}<ul class="rows">{{range .Pairs}}<li class="row"><p>{{template "human-agent-label" .MineAgent}} — {{template "human-agent-label" .PeerAgent}}</p><details><summary>식별자</summary><p><code>{{.Mine}}</code> / <code>{{.Peer}}</code></p></details><p>{{badge .State}}</p>{{if eq .State "pending"}}<p class="muted">이전 요청 기한: {{.Deadline}}</p>{{end}}
 {{if eq .State "active"}}<form method="post" action="/home/unpair"><input type="hidden" name="agent" value="{{.A}}"><input type="hidden" name="target" value="{{.B}}"><input type="hidden" name="generation" value="{{.Generation}}"><p>이 두 에이전트의 새 전달 권한이 끝납니다. 남은 대화는 보존 기간까지 볼 수 있습니다.</p><button class="danger-button" aria-label="기존 연결 철회: {{.MineAgent.Name}} / {{.MineAgent.Short}} — {{.PeerAgent.Name}} / {{if .PeerAgent.Short}}{{.PeerAgent.Short}}{{else}}{{.Peer}}{{end}}">기존 연결 철회</button></form>
 {{else}}<p>이 연결로 새 메시지를 보낼 수 없습니다. 친구 요청으로 다시 시작하세요.</p>{{end}}</li>{{end}}</ul>{{else}}<p>기존 연결 기록이 없습니다.</p>{{end}}</section>
-<section id="gates" aria-labelledby="gates-h"><h2 id="gates-h">승인 요청</h2>{{if .Gates}}<ul class="rows">{{range .Gates}}<li class="row"><dl class="kv"><dt>요청한 에이전트</dt><dd>{{template "human-agent-label" .From}}</dd><dt>받은 내 에이전트</dt><dd>{{template "human-agent-label" .To}}</dd><dt>요청 유형</dt><dd>{{.Kind}}</dd><dt>기한</dt><dd>{{.Exp}}</dd><dt>상태</dt><dd>{{badge .State}}</dd></dl><a href="/home/gates/{{.ID}}" aria-label="요청 검토: {{.Kind}} / {{template "human-agent-label" .From}} / 기한 {{.Exp}}">요청 검토</a></li>{{end}}</ul>{{else}}<p>승인 요청이 없습니다. 사람의 확인이 필요한 요청이 여기에 표시됩니다. 친구 수락이나 메시지 수신만으로 요청이 승인되지는 않습니다.</p>{{end}}</section>
+<section id="gates" aria-labelledby="gates-h"><h2 id="gates-h">승인 요청</h2>{{if .Gates}}<ul class="rows">{{range .Gates}}<li class="row"><dl class="kv"><dt>요청한 에이전트</dt><dd>{{template "human-agent-label" .From}}</dd><dt>받은 내 에이전트</dt><dd>{{template "human-agent-label" .To}}</dd><dt>요청 유형</dt><dd>{{.Kind}}</dd><dt>기한</dt><dd>{{.Exp}}</dd><dt>상태</dt><dd>{{badge .State}}</dd></dl><a href="/home/gates/{{.ID}}" aria-label="요청 검토: {{.Kind}} / {{template "human-agent-label" .From}} → 받은 내 에이전트 {{template "human-agent-label" .To}} / 기한 {{.Exp}}">요청 검토</a></li>{{end}}</ul>{{else}}<p>승인 요청이 없습니다. 사람의 확인이 필요한 요청이 여기에 표시됩니다. 친구 수락이나 메시지 수신만으로 요청이 승인되지는 않습니다.</p>{{end}}</section>
 <section id="receipts" aria-labelledby="receipts-h"><h2 id="receipts-h">요청 상태 조회</h2><p><a href="/home/receipts#receipt-form">요청 상태 조회</a></p>
 <details><summary>연결 확인 방법</summary><p>비민감 연결 확인 송신·관련 답장은 선택한 내 에이전트의 Node client에서 명시적으로 실행하세요. 자동 wake·자동 답장은 없습니다. text 최대 4096 UTF-8 bytes·TTL 180초입니다.</p>
 <pre><code>node adapters/dist/text.js send &lt;내 연결 폴더&gt; &lt;상대 에이전트&gt; &lt;key&gt; --confirmed</code></pre>

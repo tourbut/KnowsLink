@@ -16,6 +16,9 @@ type Friend struct {
 	Generation                     int64
 	Exp                            time.Time
 	BlockA, BlockB, SuppressLegacy bool
+	// CodeTail is the requester's own trimmed input, reduced at send time to codeTail; "" marks a request made
+	// before the tail was kept. The full code and the target's current code are never stored here.
+	CodeTail string
 }
 
 type ConversationCopy struct {
@@ -206,13 +209,40 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 		st.Friends[key] = old
 	}
 	old.Generation++
-	old.Inviter, old.State, old.Exp = id, "pending", now.Add(24*time.Hour)
+	old.Inviter, old.State, old.Exp, old.CodeTail = id, "pending", now.Add(24*time.Hour), codeTail(code)
 	if a := st.Members[old.A]; a != nil {
 		old.NameA = a.Name
 	}
 	if b := st.Members[old.B]; b != nil {
 		old.NameB = b.Name
 	}
+}
+
+// codeTail keeps the last four characters of the requester's input, or "?" when that tail is not plain code text.
+// Every outcome (existing, unknown, blocked, own code) stores the same shape, so the row is no existence oracle.
+func codeTail(code string) string {
+	runes := []rune(code)
+	if len(runes) < 4 {
+		return "?"
+	}
+	tail := string(runes[len(runes)-4:])
+	for _, r := range tail {
+		if !(r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' || r >= '0' && r <= '9' || r == '-' || r == '_') {
+			return "?"
+		}
+	}
+	return tail
+}
+
+// CodeLabel is the requester-only O-NM-03 label for a request row.
+func (f humanFriend) CodeLabel() string {
+	switch {
+	case f.CodeTail == "":
+		return "이전 요청"
+	case f.CodeTail == "?":
+		return "입력한 코드 형식 다름"
+	}
+	return "입력한 코드 …" + f.CodeTail
 }
 
 func (st *State) friendByID(id, publicID string) *Friend {

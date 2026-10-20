@@ -239,12 +239,23 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, problem, kept
 					return view, nil
 				}
+				// A repeated submit of the same form (double click, resend) returns the agent it already made.
+				attempt := r.FormValue("attempt")
+				scope := owner + "/agent-create:" + attempt
+				if len(attempt) < 16 || len(attempt) > 96 {
+					scope = ""
+				} else if made := st.Agents[st.Idempotency[scope]]; made != nil && made.Owner == owner {
+					return "/home/agents#agent-" + st.Idempotency[scope], nil
+				}
 				if limit := st.agentLimit(owner); limit != "" {
 					return refusal{status: 409, problem: agentProblem(limit)}, nil
 				}
 				agent = newMemberAgentID() // Avoid email-derived IDs and cross-member name collisions.
 				st.Agents[agent] = &Agent{Name: name, Owner: owner, Keys: map[string]*Key{}}
-				return "/home/agents", nil
+				if scope != "" {
+					st.Idempotency[scope] = agent
+				}
+				return "/home/agents#agent-" + agent, nil
 			case "connect":
 				t, e := st.beginConnection(owner, agent, r.FormValue("client"), r.FormValue("mode"), now)
 				if e != nil && e.Error() == "capacity" {
@@ -262,12 +273,16 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				}
 				if path == "cancel" {
 					c.State = "cancelled"
-				} else {
-					if c.Device || c.State != "prepared" {
-						return fail(fault("sender_not_allowed"))
+					if c.Agent != "" {
+						return "/home/agents#agent-" + c.Agent, nil
 					}
-					c.State = "approved"
+					return "/home/agents", nil
 				}
+				if c.Device || c.State != "prepared" {
+					return fail(fault("sender_not_allowed"))
+				}
+				c.State = "approved"
+				return "/home/connections/" + r.FormValue("connection"), nil
 			case "agent-revoke":
 				a := st.Agents[agent]
 				if a == nil || a.Owner != owner {
@@ -280,6 +295,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				a.Credential = ""
 				revokeKeys(a, now)
 				st.sweep(now)
+				return "/home/agents", nil
 			default:
 				c := command{Agent: agent, Target: r.FormValue("target"), Kid: r.FormValue("kid"), Decision: r.FormValue("decision")}
 				if path == "invite-decision" || path == "unpair" {
@@ -307,13 +323,13 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
 			} else {
-				refused(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
+				refusedTo(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false}, memberBack(path))
 			}
 			return
 		}
 		switch v := value.(type) {
 		case refusal:
-			refused(w, "내 에이전트", v)
+			refusedTo(w, "내 에이전트", v, memberBack(path))
 		case string:
 			http.Redirect(w, r, v, 303)
 		default:
@@ -326,6 +342,16 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			render(w, status, name, view)
 		}
 	}
+}
+
+// memberBack is the internal list a failed member action returns to: legacy pair actions to the pair list, the rest
+// to the agent list. No caller-supplied return URL is ever used.
+func memberBack(path string) string {
+	switch path {
+	case "invites", "invite-decision", "unpair":
+		return "/home/legacy#pairs"
+	}
+	return "/home/agents"
 }
 func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
