@@ -1,0 +1,655 @@
+{
+ "packet_input_sha256": "b7f67f6cc977db9df222c807ed989f954d8cfa39fa612c181bfd2b3db4d88811",
+ "attempt": "eaa1057e93ce4166a4cff3bd9b02d93a",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "인박스·work.py finish 규약 구간을 확인하고 완료 절차에 따랐다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/architecture.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "gate-consume 효과·공개 false와 실제 calendar가 DEC-02 이후라는 구간을 직접 읽고 정본 근거로 연결했다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/architecture.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_update",
+   "status": "completed",
+   "reason": "MVP-08/11·DEC-02·제외 범위를 직접 읽었다. DEC-02 문단에 새 정본 연결 한 줄을 추가하고 front matter를 stamp했다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "MVP-08/11·DEC-02·제외 범위를 직접 읽었다. DEC-02 문단에 새 정본 연결 한 줄을 추가하고 front matter를 stamp했다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_designer.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "현재 지시서 전문을 읽고 완료 보고를 채웠다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "등록 product-lint/test 범위 구간을 읽었다. 문서 과제라 제품 검사는 Windows make 부재로 unavailable이며 제품 코드 변경은 없다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "토큰·민감정보 보관과 외부 발송 승인 원칙을 읽고 정본의 기록과 보존·범위 밖 규칙에 반영했다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/archive/dev-2026-10-10.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/contexts/designer.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "역할 컨텍스트의 현행 원칙(제품 판단과 수락 경계)을 읽었다."
+  },
+  {
+   "path": ".fullops-squad/contexts/dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/deliverables/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "D01/D02 정본 목록을 읽고 새 D02 초안 연결 한 줄을 추가했다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "U5 승인 요약과 고정 문구를 직접 읽고 일정 승인 문구 변경 범위를 정했다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/crud-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/data-model.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/data-model.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/database-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/interface-design.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "gate 화면 요약 필드(window·granularity_min)와 gate-consume 계약을 읽었다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/interface-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/COOR/dev-fix-2-final/coordinator-handover-supplement.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTO-RECEIVE-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-DESIGN-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-CSS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-AGENTS-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-2-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-UI-RECORD-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-001-RESULT-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-FINAL-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DESIGN/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-002-CODE-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "이전 designer 결정 보고의 형식을 읽고 이번 보고 구성에 사용했다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/SAR-MVP-backlog.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "SAR-MVP-003 held와 DEC-01–05 재개 조건을 읽었다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "D01 현재 범위를 읽고 새 정본 연결 문단을 추가했다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_update",
+   "status": "completed",
+   "reason": "D01 현재 범위를 읽고 새 정본 연결 문단을 추가했다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "HP-13/14/15 해제·차단·친구 동의 경계를 읽고 정본 실패·철회 규칙에 연결했다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이 과제는 사용자 결정 전 제품 초안이다. 이 문서는 DEV/ops 소유 기술·운영 정본이거나 결정 뒤 갱신 대상이므로 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/_TEMPLATE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-06_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-07_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-17_to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-18_to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/logs/2026-10-19_to_designer.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_dev.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/handovers/to_ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/lint/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  },
+  {
+   "path": ".fullops-squad/review/_REPORT.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "과거 과제 이력·리뷰·로그다. 현재 일정 연동 결정에 필요한 규칙은 직접 읽은 정본(D02·D03·U5·HP)에서 확인했으므로 새 근거로 쓰지 않았다."
+  }
+ ],
+ "uncertainty_review": "partial 패킷의 unknown24·remaining68은 경로·제목으로 선별했다. 일정 연동 결정에 필요한 D02 MVP/HUMAN-PEER, D03, interface-design, U5, 백로그, 원천 product/protocol/decisions, Google 로그인 실행 기록을 직접 읽었다. PLANS는 일정 관련 절만 grep으로 확인했다. 과거 큰 로그·리뷰는 범위 밖 이력으로 보존하며 새 근거로 쓰지 않았다. 외부 API 근거는 하위 research 에이전트가 공식 문서로 확인했고 미확인 항목은 보고에 남겼다. 동적 참조 완전 검증은 주장하지 않는다."
+}

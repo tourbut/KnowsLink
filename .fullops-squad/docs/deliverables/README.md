@@ -33,6 +33,7 @@ summary: 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력�
 D01은 [KnowsLink 서비스 개요](../planning/business-plan.md)다.
 D02의 현재 전체 MVP 정본은 [SAR-MVP](../planning/product-specs/SAR-MVP.md)다.
 [SAR-SETUP-001](../planning/product-specs/SAR-SETUP-001.md)은 초기 구성과 lint의 D02 이력으로 보존한다.
+[SAR-SCHEDULE-001](../planning/product-specs/SAR-SCHEDULE-001.md)은 실제 일정 API 연동의 D02 초안이다. 사용자 결정 전이며 DEC-02를 아직 닫지 않는다.
 D02 폴더 매핑은 두 원천의 메타데이터를 함께 검사한다. 초기 구성 이력을 새 MVP 완료로 해석하지 않는다.
 기능 우선순위·미정 결정과 인계는 [백로그](../planning/SAR-MVP-backlog.md)를 따른다.
 D01/D02의 review는 검토 상태다. 제품 MVP 구현·수락이나 운영 배포 상태가 아니다.
