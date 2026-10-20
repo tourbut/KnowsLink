@@ -135,6 +135,17 @@ U8-A 자동 검사 `TestConnectionResumeAndCodeTail`(Postgres): 선택지 순서
 
 fixture 상태: 위 재요청 왕복이 A의 세 행을 이미 대기로 바꿨다. tester 재현에는 fixture 재기동이 필요하다. `7e4ca39` fixture 프로세스(같은 원격 호스트, [start](7e4ca39ba7ad16a98b9b2fc485d41206b9dc4b71-fixture-start.log))와 이전 attempt 프로세스도 남아 있다. 정리·재기동은 coor가 정한다. 포워딩 18932는 건드리지 않았다.
 
+### FullOps lint (2차)
+
+coor 지시(D)대로 dev 워크트리의 미추적 사용자 폴더를 건드리지 않고, 깨끗한 detached 임시 worktree `C:/Users/shin/AppData/Local/KnowsLinkDevTools/connect-ux002-dev/lint-wt`에서 `lint.py --repo <그 경로> --from 022c748e6fd153dea024785ebb045d28fee5a948 --out <같은 폴더>/lint-<HEAD>.json`을 실행했다. clean 검사를 끄지 않았다. 실행 뒤 `git worktree remove`(force 없음)로 정리했다.
+
+| HEAD | 원 exit | 결과 | 처리 |
+|---|---|---|---|
+| `3938340` | 1 | ERROR 0 / WARNING 10 / 실행 불가 2 | DOC-001(`friend_rerequest_test.go` 헤더 없음)을 `daa4cf7`에서 고쳤다 |
+| `daa4cf7` | 1 | ERROR 0 / WARNING 9 / 실행 불가 2 | 결과 JSON `connect-ux002-dev/lint-daa4cf70c465aa2fb1429393d259f9065540d6f0.json`(레포 밖 개인 도구 폴더) |
+
+원 exit 1은 `product-lint`·`product-test`가 `unavailable`(Windows 호스트에 make 없음)이라서다. 같은 명령의 원격 Linux 결과는 위 표의 EXIT=0이다(`d6369a4` 제품 코드, `daa4cf7`까지의 이후 변경은 테스트 파일 주석 한 줄과 기록 문서뿐). WARNING: SIZE-001은 `human.go`(341)·`human_http.go`(504)·`member_agents.go`(409)·`http.go`(690)·테스트 3개·`PLANS.md`(내 변경 아님)다. 기존부터 상한을 넘은 파일에 몇십 줄을 더했고 새 동작은 기존 함수 안의 분기라 분리하지 않았다. SIZE-002(기준 `022c748` 대비 추가 1213줄)는 1차 attempt 약 900줄에 2차 수정·검사·기록 로그가 더해진 값이다. 2차 제품 코드 변경은 약 80줄이고 나머지는 테스트·fixture·문서·원시 로그다. DEP-001: 의존성 변경 없음(`go.mod`·`package.json` 미변경, 표준 라이브러리와 기존 template·test helper만 사용).
+
 ### 남은 한계 (2차)
 
 - 이전 차단 경로가 이미 만든 쌍 행+대리 행 2행 데이터는 합치지 않았다.

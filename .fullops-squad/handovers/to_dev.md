@@ -42,15 +42,15 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] (medium, F1=V-CN-01=O-CT-01) 재요청 행: designer 결정대로 기존 요청자 행을 재사용해 있는/없는/차단/상대 수신 한도/자기 코드에서 행 수·순서·상태·끝 4자·만료·세대가 같게 한다. 차단 기한 뒤·차단 취소 뒤·수신 한도 10건 경로의 대리 행 2행 제거. mine 대기 상한이 blocked-pending도 같은 방식으로 센다. 기존 저장 데이터(이미 2행인 경우) 처리 방식을 정하고 기록한다.
-- [ ] (medium, D-CT-01) 승인 뒤 클라이언트 저장이 확인되지 않은 시도의 연결 화면이 '만료 · 새 키가 연결되지 않았습니다 · 새로 시작하세요'로 단정하지 않게 한다. 같은 agent 카드의 '확인 필요'와 U8 상태 표('승인 후 응답 유실': 결과 대조 먼저, 맹목적 새 등록 금지)에 맞춘다.
-- [ ] (low, V-CN-02) `/home/connections/{없는 ID}` 거부 뒤 복귀를 '내 에이전트'로.
-- [ ] (low, F2) 요약을 만들 수 없는 gate 상세에 승인 버튼이 남는 문제(3단위 '확인할 수 없습니다' 규칙과 일치).
-- [ ] (low, F3) 새 키 상태 문구의 '키' 중복.
-- [ ] (low, O-CT-02) legacy 목차에 보이는 '이 화면에서 찾기' 제목(aria-current 없음 유지).
-- [ ] (low, O-CT-04) 5분 재확인 거부 안내가 시작 위치(내 에이전트)에서 바로 재확인할 수 있게 문구·링크 정리.
-- [ ] F1·D-CT-01 실패 경계 자동 검사(행 수·순서·상태 동일성, 차단 비추론, 저장 미확인 안내). fixture에 차단·수신 한도 경로가 없으면 추가해 tester가 재현할 수 있게 한다(실제 기동 확인).
-- [ ] 원격 Linux make lint/test/integration, FullOps lint.py --from 022c748e6fd153dea024785ebb045d28fee5a948, DEV 보고 수정 절, packet-outcomes, finish, 커밋, worker_done.
+- [x] (medium, F1=V-CN-01=O-CT-01) 재요청 행: designer 결정대로 기존 요청자 행을 재사용해 있는/없는/차단/상대 수신 한도/자기 코드에서 행 수·순서·상태·끝 4자·만료·세대가 같게 한다. 차단 기한 뒤·차단 취소 뒤·수신 한도 10건 경로의 대리 행 2행 제거. mine 대기 상한이 blocked-pending도 같은 방식으로 센다. 기존 저장 데이터(이미 2행인 경우) 처리 방식을 정하고 기록한다.
+- [x] (medium, D-CT-01) 승인 뒤 클라이언트 저장이 확인되지 않은 시도의 연결 화면이 '만료 · 새 키가 연결되지 않았습니다 · 새로 시작하세요'로 단정하지 않게 한다. 같은 agent 카드의 '확인 필요'와 U8 상태 표('승인 후 응답 유실': 결과 대조 먼저, 맹목적 새 등록 금지)에 맞춘다.
+- [x] (low, V-CN-02) `/home/connections/{없는 ID}` 거부 뒤 복귀를 '내 에이전트'로.
+- [x] (low, F2) 요약을 만들 수 없는 gate 상세에 승인 버튼이 남는 문제(3단위 '확인할 수 없습니다' 규칙과 일치).
+- [x] (low, F3) 새 키 상태 문구의 '키' 중복.
+- [x] (low, O-CT-02) legacy 목차에 보이는 '이 화면에서 찾기' 제목(aria-current 없음 유지).
+- [x] (low, O-CT-04) 5분 재확인 거부 안내가 시작 위치(내 에이전트)에서 바로 재확인할 수 있게 문구·링크 정리.
+- [x] F1·D-CT-01 실패 경계 자동 검사(행 수·순서·상태 동일성, 차단 비추론, 저장 미확인 안내). fixture에 차단·수신 한도 경로가 없으면 추가해 tester가 재현할 수 있게 한다(실제 기동 확인).
+- [x] 원격 Linux make lint/test/integration, FullOps lint.py --from 022c748e6fd153dea024785ebb045d28fee5a948, DEV 보고 수정 절, packet-outcomes, finish, 커밋, worker_done.
 
 소유 파일: `internal/relay/` 친구·연결·gate 화면/handler/테스트·fixture, 기술 문서, DEV 보고, own 기록. O-CT-03(카드 제목 3줄 생략)은 기존 패턴이라 이번에 바꾸지 않는다.
 
@@ -414,6 +414,40 @@ D10, D11, D13 중 실제 변경된 것.
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+### 결과 요약
+
+- 브랜치 `fullops/dev`. 제품 변경 `d61cc6f`(수정 묶음) → `7e4ca39`(렌더 변형) → `d6369a4`(하위 리뷰 후속) → `daa4cf7`(테스트 파일 헤더 주석). 이후 커밋은 기록뿐이며 최종 HEAD는 worker_done에 적는다. 기준 `022c748`, main `a7f6b10` 포함.
+- medium 2건(F1=V-CN-01=O-CT-01, D-CT-01)과 low 6건(V-CN-02, F2, F3, F4, O-CT-02, O-CT-04)을 반영했다. O-CT-03은 지시대로 두었다.
+
+### 변경 이유와 판단
+
+- 재요청: `requestFriend`가 코드마다 요청자 행 하나를 재사용한다. 상대 차단·수신 한도이면 같은 행을 `blocked-pending`으로 되살려 상대에게 숨긴다. 수신 한도 보류는 새 생략 가능 필드 `Friend.Held`에 받은 사람이 보던 상태를 남겨 취소·만료 뒤에도 받은 사람 화면을 바꾸지 않는다. 발신 상한은 기한 전 `blocked-pending`도 센다.
+- 기존 저장 데이터: 지우거나 합치지 않는다. 쌍 행 없이 끝난 이전 대리 행만 있으면 쌍 키로 옮겨 ID·세대를 유지한다. 대기 중 대리 행이 있으면 재요청은 무동작이다. 이전 차단 경로의 2행은 그대로 둔다(요청자가 이미 본 상태). migration 없음.
+- 차단 행은 차단한 사람에게 세대를 싣지 않고 차단 해제는 본인 플래그로만 판단한다(하위 리뷰 medium).
+- D-CT-01: 승인 뒤 만료된 device 연결 화면이 카드와 같은 `deviceUnsure`를 보인다.
+- 하위 에이전트: 읽기 전용 리뷰 1건(Purpose: review, `d61cc6f`). medium 2·low 2를 고치고 low 2를 남은 한계로 기록했다. coor의 독립 고정 SHA 리뷰를 대신하지 않는다.
+
+### 검증한 것
+
+- 원격 Linux 격리 clone: `make lint`·`make test` EXIT=0(`d61cc6f`·`7e4ca39`·`d6369a4`), integration 전체 EXIT=0(`d61cc6f`·`d6369a4`), fixture 컴파일 EXIT=0.
+- 실패 경계 자동 검사: `TestFriendRerequestReusesOneRow`(8경로 요청자 행 동일, 차단한 사람·받은 사람 렌더 화면 재요청·취소 전후 동일), `TestFriendBlockedRequestCountsTowardSentLimit`, `TestFriendLegacyPlaceholderAndStaleUnblock`. 이전 코드로 되돌리면 실패함을 확인했다. D-CT-01·V-CN-02는 통합 하위 검사 `device_and_remote_uncertain_results_stay_check_needed`.
+- fixture 실제 기동(`d6369a4`): ready, manifest 600, probe 200/204/403. 새 계정 d·e와 `rerequest_codes`(blocked, receive_limit, unknown_cancelled)로 재요청 왕복 EXIT=0(A 행 하나, D·E 화면 불변). 이 왕복으로 세 행이 이미 대기가 됐으니 tester 재현 전 fixture 재기동이 필요하다.
+- 렌더 3화면×3폭 가로 넘침 0, 2장 직접 확인.
+- FullOps lint(`daa4cf7`, 임시 worktree): ERROR 0, WARNING 9(SIZE-001·SIZE-002), 실행 불가 2(make 없음, 원격 EXIT=0으로 대신). DEP-001 없음.
+
+### 못 한 것 (not_run)
+
+- 실제 키보드·200% 확대·스크린리더·보조 브라우저, fixture 브라우저 왕복, `TestRemoteConsentBrowserReturn`, 실제 호스트 설치·왕복.
+- F2는 도달 경로가 없어 새 자동 검사가 없다.
+
+### 남은 일
+
+- coor 수정분 diff 확인·고정 SHA 리뷰, tester 재확인(fixture 재기동), main 통합.
+- 원격 fixture 프로세스 `7e4ca39`·`d6369a4`와 이전 attempt 프로세스 정리(coor). 포워딩 18932는 건드리지 않았다.
+- 남은 한계(보고 ‘남은 한계 (2차)’): 이전 차단 경로 2행 데이터, 보류 T→R 행을 R이 요청할 때 세대, 되돌리기 시 보류 행 노출.
+
+### 산출물
+
+- 제품: `internal/relay/human.go`·`human_http.go`·`connect_guide.go`·`member_agents.go`·`member_pages.go`·`http.go`. 테스트: 새 `friend_rerequest_test.go`, 수정 `human_test.go`·`connect_guide_test.go`·`connect_guide_integration_test.go`·`connect_browser_fixture_test.go`.
+- 기술 문서: D05 `interface-design.md`, D10 `module-design.md`, `data-model.md`, D13 `transition.md`. D11 `user-guide.md`는 사용자 절차가 바뀌지 않아 그대로 두었다.
+- [DEV 보고 2차 절](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md), [packet-outcomes](../docs/evaluations/jev/SAR-UX-ISSUES-002-CONNECT-DEV-packet-outcomes.json), 원시 로그와 [rerequest_probe.py](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/rerequest_probe.py).
