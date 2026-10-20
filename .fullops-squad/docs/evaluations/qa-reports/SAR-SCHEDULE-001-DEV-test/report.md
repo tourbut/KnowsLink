@@ -100,7 +100,14 @@ designer 확인 필요: 이메일 코드 회원의 설정 절 한 줄 ‘Google 
 
 ## FullOps lint
 
-RESULT_FULLOPS_LINT
+`lint.py --repo <임시 detached worktree of HEAD> --from 826ea80be09c`를 깨끗한 임시 worktree(`git worktree add --detach`, 끝나면 force 없이 `git worktree remove`)에서 실행했다. 미추적 사용자 폴더(`videos/service-intro/` 등)는 worktree에 없으므로 건드리지 않았다.
+
+- 보고 커밋 `dbc95e9`: ERROR 0 / WARNING 15 / 실행 불가 2. 최종 HEAD(이 절 추가 커밋)에서 같은 명령을 다시 실행해 완료 보고에 기록한다.
+- 실행 불가 product-lint·product-test: Windows에 make가 없다. 같은 명령을 원격 Linux 격리 clone에서 제품 `dfd5500` 기준 EXIT=0으로 실행했다(검사 로그 표). 이후 커밋은 보고·로그뿐이다.
+- WARNING SIZE-002 변경 추가 1,883줄(상한 400): 제품 약 650줄, 나머지는 SC-01~08 integration·합성 제공자·격리 fixture·단위 검사·문서·로그다. 분할하지 않은 이유는 위 ‘규모’ 절이다.
+- WARNING SIZE-001 `calendar.go` 381줄: 연결·봉인·범위·반올림·조회·철회가 한 상태 모델을 공유하는 새 파일이다. `http.go` 719줄(이전 688)·`store.go` 578줄(551)·`protocol.go` 303줄(283)·`member.go`·`human_http.go`·`i18n_*`·`identity_integration_test.go`·`i18n_test.go`·`core.ts`: 기존 큰 파일의 좁은 델타이며 기존 파일 분할은 범위 밖이다. `calendar_integration_test.go` 429줄: SC별 검사. `PLANS.md`: 이번 과제에서 수정하지 않은 coor 소유 파일.
+- WARNING SEC-001 `calendar_provider_test.go:64` `ClientSecret: "local-fixture"`: 실제 자격이 없는 합성 제공자 전용 더미(이전 Google 보고와 같음). secret 노출이 아니다.
+- DESIGN 경고 없음(Go 문자열 CSS는 검사 대상이 아니며 새 CSS 규칙·색 토큰도 없다). 의존성 변경 없음(DEP-001 해당 없음).
 
 ## 의존성
 
