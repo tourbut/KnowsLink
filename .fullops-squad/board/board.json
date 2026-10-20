@@ -57,7 +57,7 @@
       "name": "실제 어댑터·일정 조회",
       "status": "active",
       "deliverables": [],
-      "note": "실제 노우 자동 수신 1차 왕복 수락. 실제 일정 API 연동은 별도 후속."
+      "note": "실제 일정 API 연동 제품 기획(SAR-SCHEDULE-001) designer 진행 중."
     },
     {
       "name": "운영 배포·이행",
@@ -99,7 +99,7 @@
         "D12",
         "D13"
       ],
-      "note": "Dots·노우 webhook 왕복 수락. 인증 SSE·Dots Events·추가 호스트 실설치는 후속."
+      "note": "Dots·노우 webhook 왕복 수락. 실설치·SSE 실검증은 배포 뒤 사용자와 계획."
     },
     {
       "name": "Windows 파일 작업 재발 방지",
@@ -285,6 +285,21 @@
       "status": "done",
       "deliverables": [],
       "note": "프롬프트 Opus·생성 agy 시안에서 B3 선택, SVG 재작성. docs/brand/ main 401d7da. 파비콘 단순형·반전판·한글판 없음."
+    },
+    {
+      "name": "잔여 UI 운영 배포",
+      "status": "active",
+      "deliverables": [
+        "D12",
+        "D13"
+      ],
+      "note": "제품 7b4f9bc 배포 ops 진행 중. ingress /lang 추가 승인."
+    },
+    {
+      "name": "CI 파생 로고",
+      "status": "active",
+      "deliverables": [],
+      "note": "파비콘 단순형·반전판·한글 lockup dev 제작 중."
     }
   ]
 }
