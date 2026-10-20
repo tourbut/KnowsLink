@@ -3,7 +3,7 @@
   "role": "dev",
   "attempt": "54a72f9a5f2746358a4bf684c8604529",
   "packet_input_sha256": "57906cf9dadabdd7307e133951d31fe05a09e8ceea3a08bd0f9147ab47429a94",
-  "uncertainty_review": "partial 패킷이다. 미확인 항목은 문자열 검색 한계다. requestFriend·decideFriend·humanView·render·boundedHTTP의 호출자를 직접 확인했고, 바뀐 계약은 수정 전 실패를 확인한 단위·integration 검사와 원격 Linux make lint/test/integration으로 확인했다. 동적 호출 완전 탐색은 주장하지 않는다.",
+  "uncertainty_review": "partial 패킷이다. 미확인 항목은 문자열 검색 한계다. requestFriend·decideFriend·humanView·render·boundedHTTP의 호출자를 직접 확인했고, 바뀐 계약은 수정 전 실패를 확인한 단위·integration 검사와 원격 Linux make lint/test/integration으로 확인했다. 동적 호출 완전 탐색은 주장하지 않는다. 패킷 밖 변경: `internal/relay/capacity.go`(패킷 밖. boundedHTTP가 응답을 langMarks로 감싸고 본문 한도는 원래 writer로 둔다.) `internal/relay/i18n.go`(패킷 밖. langMarks 래퍼와 langPart 템플릿 함수를 추가했다.) `internal/relay/member_pages.go`(패킷 밖. intro의 Problem을 langPart로 렌더한다.) `internal/relay/lang_integration_test.go`(패킷 밖. 저장값 회원의 303 두 응답에 표식이 없음을 단언한다(기준 코드에서 실패 확인).) `.fullops-squad/docs/design-docs/data-model.md`(HeldFrom·HeldTail, F-R2·F-R3 동작을 기록했다.) `.fullops-squad/docs/design-docs/interface-design.md`(보류 행 표시·차단과 언어 오류 lang span을 기록했다.) `.fullops-squad/docs/design-docs/module-design.md`(human.go·i18n.go 행과 검사 이름을 갱신했다.) `.fullops-squad/docs/operations/transition.md`(D13 LOWS-DEV 인계 절을 추가했다.)",
   "items": [
     {
       "path": ".fullops-squad/FULLOPS.md",
@@ -424,54 +424,6 @@
       "category": "impact_check",
       "status": "no_change",
       "reason": "바뀐 계약(Friend 보류 표시·block 판정·intro Problem 렌더·응답 헤더)에 의존하지 않거나 전체 make test·integration 통과로 영향 없음을 확인했다."
-    },
-    {
-      "path": "internal/relay/capacity.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "패킷 밖. boundedHTTP가 응답을 langMarks로 감싸고 본문 한도는 원래 writer로 둔다."
-    },
-    {
-      "path": "internal/relay/i18n.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "패킷 밖. langMarks 래퍼와 langPart 템플릿 함수를 추가했다."
-    },
-    {
-      "path": "internal/relay/member_pages.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "패킷 밖. intro의 Problem을 langPart로 렌더한다."
-    },
-    {
-      "path": "internal/relay/lang_integration_test.go",
-      "category": "direct_edit",
-      "status": "completed",
-      "reason": "패킷 밖. 저장값 회원의 303 두 응답에 표식이 없음을 단언한다(기준 코드에서 실패 확인)."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/data-model.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "HeldFrom·HeldTail, F-R2·F-R3 동작을 기록했다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/interface-design.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "보류 행 표시·차단과 언어 오류 lang span을 기록했다."
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/module-design.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "human.go·i18n.go 행과 검사 이름을 갱신했다."
-    },
-    {
-      "path": ".fullops-squad/docs/operations/transition.md",
-      "category": "document_update",
-      "status": "completed",
-      "reason": "D13 LOWS-DEV 인계 절을 추가했다."
     }
   ]
 }
