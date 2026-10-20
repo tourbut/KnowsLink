@@ -44,7 +44,7 @@ test_level: lite
 
 ## 먼저 읽을 문서
 
-SAR-UX-ISSUES-002.md U8·U7·U4 O-NM-03 결정, HOSTS-DESIGN report, D04, `internal/relay/connections.go`, `member_agents.go`, `remote_auth.go`, `human_pages.go`·`member_pages.go`(연결·legacy·친구 화면), `device.go`, README.md·adapters/README.md의 설치 절, `.fullops-squad/contexts/dev.md`, 3단위 완료 기록(`.fullops-squad/handovers/logs/2026-10-20_to_dev.md` 또는 해당 날짜 로그).
+SAR-UX-ISSUES-002.md U8·U7·U4 O-NM-03 결정, HOSTS-DESIGN report, D04, `internal/relay/connections.go`, `member_agents.go`, `remote_auth.go`, `human_pages.go`·`member_pages.go`(연결·legacy·친구 화면), `device.go`, README.md·adapters/README.md의 설치 절, `.fullops-squad/contexts/dev.md`, 3단위 완료 기록(`.fullops-squad/handovers/logs/2026-10-19_to_dev.md`의 SAR-UX-ISSUES-002-APPROVAL-DEV 절).
 
 ## 해야 할 일과 파일 소유권
 
