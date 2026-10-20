@@ -4,7 +4,7 @@ status: review
 updated: 2026-10-20
 owner: dev
 tasks: [SAR-UX-ISSUES-002-LANG-DEV]
-summary: "설정 화면·한국어/English 저장(U3), 헤더 ‘설정’(U7), 지정 화면 영어판의 기술 계획·누락 번역 검사·U3-A 검사·렌더·fixture 기동 근거와 미실행 항목"
+summary: "설정 화면·한국어/English 저장(U3), 헤더 ‘설정’(U7), 지정 화면 영어판의 기술 계획·검사·렌더·fixture 근거와 두 번째 attempt의 리뷰·designer·tester 수정 기록"
 ---
 
 # SAR-UX-ISSUES-002-LANG-DEV DEV 보고
@@ -56,7 +56,7 @@ Purpose: implementation 2건(standard 예산 2, lite). 파일 소유를 `i18n_en
 - 저장 실패(503) 경로의 자동 검사: DB 장애 주입 수단이 없어 코드 경로만 둔다(선택 언어의 거부 화면·`#language` 복귀).
 - 실제 키보드·200% 확대·스크린리더·보조 브라우저(U7-A 재검증), fixture 브라우저 왕복, `TestRemoteConsentBrowserReturn`(기존 skip 조건 그대로).
 - 쿠키를 막은 실제 브라우저: `?lang=` 한 응답 적용과 안내는 HTTP 수준 검사(`TestLanguageChoiceOrderAndLink`·통합 검사)로만 확인했다.
-- 공용 admission의 429/503 거부 화면은 회원 조회 전이라 브라우저 쿠키 언어를 따른다(회원 저장값 미적용). 알려진 한계로 둔다.
+- (첫 attempt 서술, 코드와 달랐음) 공용 admission의 429/503 거부 화면 언어. 아래 수정 절에서 고쳤다.
 - 영어 문장의 사람 교정: 하위 에이전트 번역을 부모가 핵심 화면·설정·헤더·오류만 표본 확인했다. 전체 문체 검수는 designer/tester 몫이다.
 
 ## 산출물
@@ -64,3 +64,36 @@ Purpose: implementation 2건(standard 예산 2, lite). 파일 소유를 `i18n_en
 - 제품: 새 `internal/relay/i18n.go`·`i18n_en_member.go`·`i18n_en_human.go`, 수정 `member_pages.go`·`human_pages.go`·`landing_pages.go`·`remote_auth.go`·`member.go`·`human_http.go`·`http.go`·`identity.go`·`device.go`·`google.go`·`member_agents.go`·`member_receipt.go`.
 - 검사: 새 `i18n_test.go`·`lang_integration_test.go`·`lang_browser_fixture_test.go`, 수정 `member_ui_test.go`·`connect_guide_test.go`·`gate_summary_integration_test.go`.
 - 문서: D05·D10·D11·D13, [packet-outcomes](../../jev/SAR-UX-ISSUES-002-LANG-DEV-packet-outcomes.json), 이 보고와 원시 로그([remote.py](remote.py)).
+
+## 수정 절 — 두 번째 attempt (2026-10-20)
+
+입력: 리뷰 F1–F3(`7704e6d`), designer V-LANG-01~03, tester D-LG-01·O-LG-03. 기준 fullops/dev `3eb3167`(main `3f81a7d` merge 포함). 최종 후보 `48e3962`, 제품 코드 확정 `665895a`(`8d6b20f` 수정 → `665895a` 모듈 toolchain gofmt). `51bdf2d`는 문서, `48e3962`는 통합 검사 한 줄만 바꿨다.
+
+| 입력 | 수정 | 자동 검사 |
+|---|---|---|
+| F1 = D-LG-01 (medium) | `browserLang`을 `http.go`의 내부 핸들러에서 `capacity.go` `boundedHTTP` 진입부로 옮겼다. admission의 ‘요청 대기’·‘요청 제한’ 429와 `/home/receipts` 503이 회원 조회 없이 브라우저 쿠키 언어(없으면 한국어)로 그려지고 `Content-Language`·`<html lang>`이 같다(U3 LANG-VISUAL 결정). 회원 확인 뒤 화면은 기존처럼 저장값을 따른다 | 단위 `TestAdmissionRefusalsFollowBrowserLanguage`(DB 연결 실패 503, 로컬 대기열 가득 429, `/`·`/home/receipts`, ko/en, 영어 화면 한글 0). 수정 전 코드에서 FAIL을 확인했다. 통합 `TestLanguagePreferencePostgres`: 저장값 ko·쿠키 en 회원이 회원 한도를 넘으면 429·`lang="en"`·`Content-Language: en` |
+| F2 (medium) | 한국어 README·adapters/README 링크 10개(공개 첫페이지 5, 내 에이전트 안내 5)에 `hreflang="ko"`를 붙이고 영어 문구 끝에 ‘(in Korean)’을 붙였다 | `TestEnglishScreensHaveNoKorean`이 모든 영어 화면의 GitHub README 링크마다 `hreflang="ko"`와 ‘(in Korean)’을 단언한다 |
+| V-LANG-01 = F3 (medium) | `memberLang`이 회원 저장값이 언어를 정했을 때 내부 표식 헤더를 남기고 `render`가 지운 뒤 `LangSaved`로 넘긴다. `lang-nav`는 그때 ‘English · Change in Settings’/‘한국어 · 설정에서 변경’(`/home/account#language`)을 보인다. 저장값 없는 회원·비로그인은 기존 링크를 유지한다. 적용 위치: 공개 첫페이지, remote 동의, 회원 head의 비회원 화면(device·확인 코드·거부) | 단위 `TestSavedLanguageReplacesBrowserLinks`(start·remote × ko/en × 저장 유무, 표식 비누출, 복귀 경로). 통합: 저장 en 회원의 `/`는 설정 링크·`/lang/` 없음, 미저장 회원 B의 `/`는 링크 유지 |
+| V-LANG-02 (low) | 영어 표의 1인칭 ‘my’ 값 전부를 ‘your’로 바꿨다(designer 목록 전체 포함, 라벨 ‘Your sending agent’ 등 포함). 메뉴·제목 고유 이름 My agents·My name·My friend code는 유지한다. 설정 도움말은 ‘Selecting a language changes nothing until you save. You stay signed in.’, 지원하지 않는 언어 오류는 ‘Choose 한국어 or English.’ | `TestEnglishScreensHaveNoKorean`이 고유 이름 밖의 `\bmy\b` 0을 단언한다(`my-code` 같은 id는 제외). 언어명 ‘한국어’는 번역 값과 영어 화면 검사에서 허용한다 |
+| V-LANG-03 (low) | 저장값이 없으면 설정 언어 절에 ‘이 브라우저의 선택을 표시합니다. 아직 계정에 저장되지 않았습니다.’/‘This browser’s choice is shown. It is not saved to your account yet.’를 보이고 radiogroup 설명에 연결한다 | 통합: 미저장 회원 B의 설정에 `id="language-unsaved"`, 저장 뒤에는 없음 |
+| O-LG-03 (low) | 공용 `summary::before`에 `content:"▸"/""`(열림 ‘▾’) 대체 텍스트를 추가해 접근성 이름에서 장식 문자를 뺐다. 이를 모르는 옛 브라우저는 앞 선언을 그대로 쓴다 | 자동 검사 없음(CSS 한 줄). tester 재확인 대상 |
+
+O-LG-01·02·04는 지시대로 현행 유지했다. 문구 복제 테스트는 쓰지 않았다.
+
+### 검사 (원시 로그는 이 폴더, [raw-log-sha256.txt](raw-log-sha256.txt) 19건 `sha256sum -c` OK)
+
+| 검사 | SHA | 결과 | 근거 |
+|---|---|---|---|
+| 원격 `make lint` | 48e3962 | EXIT=0 | [lint](48e3962a9a15f53bbb87e90e49bfb1718d907b03-lint.log). `8d6b20f`은 번역표 gofmt 차이로 EXIT=2였다([로그](8d6b20f1da9f1f870ff8ef4a9f5b946c1e07dd28-lint.log)). 원인은 PATH의 옛 gofmt다. `$(go env GOROOT)/bin/gofmt`(모듈 toolchain go1.27.1)로 고쳤다 |
+| 원격 `make test` | 48e3962 | EXIT=0 | [test](48e3962a9a15f53bbb87e90e49bfb1718d907b03-test.log) |
+| 원격 integration 전체(`-race`, 기존 skip `TestRemoteConsentBrowserReturn`) | 48e3962 | EXIT=0, PASS 222, FAIL 0 | [integration](48e3962a9a15f53bbb87e90e49bfb1718d907b03-integration.log). `51bdf2d` 실행은 `TestLanguagePreferencePostgres`의 ‘damaged locale leaked’ 1건 FAIL이었다([로그](51bdf2d3934fbf84383d12cb2156a3b33eae6c3a-integration.log)). 이전 attempt부터 있던 검사가 손상값 `xx`를 본문 전체에서 찾아 무작위 CSRF·attempt 토큰과 우연히 겹칠 수 있었다. 같은 제품 코드의 `8d6b20f` 실행은 통과했다. 손상값을 `damaged-locale`로 바꿔 결정적으로 만들었다(`48e3962`) |
+| 로컬 `go test ./internal/relay`(unit), `go vet -tags integration` | 48e3962 | ok | |
+| fixture 컴파일·실제 기동·probe | 48e3962 | EXIT=0 | [compile](48e3962a9a15f53bbb87e90e49bfb1718d907b03-fixture-compile.log)·[start](48e3962a9a15f53bbb87e90e49bfb1718d907b03-fixture-start.log)·[probe](48e3962a9a15f53bbb87e90e49bfb1718d907b03-fixture-probe.log). manifest 0600, ‘language fixture ready’, 비로그인 ko → `/lang/en` 303 → 쿠키 en, en 회원 6화면 en, ko 회원 ko, 미저장 회원 ko, `/v1/pull` 403. 원격 loopback origin이며 컨테이너 `kl-lang002-fixture-48e3962a9a15-853cbdec`, 위치는 private `fixture-location.json`. coor 소유 18933 포워딩과 이전 fixture는 건드리지 않았다 |
+| FullOps lint.py `--from 1315448` | 51bdf2d(깨끗한 임시 detached worktree, force 없이 제거) · 최종 HEAD(dev, 미추적 사용자 폴더는 그 프로세스에서만 `core.excludesFile`로 제외) | ERROR 0, WARNING 7, 실행 불가 2 | [로그](51bdf2d-fullops-lint.log). WARNING은 SIZE-001(`PLANS.md`는 이 과제 변경 아님, `human_http.go`·`member.go`·`remote_auth.go`·`i18n_en_member.go`·`i18n_test.go`)과 SIZE-002(기준 1315448부터 두 attempt 합계). 실행 불가 2(product-lint·product-test)는 Windows에 make가 없어서이며 원격 Linux EXIT=0으로 대신한다. DEP-001 없음 |
+
+### 남은 일·미실행
+
+- tester 재확인(D-LG-01, 링크 대체, README 표시, O-LG-03 AX 이름), coor 고정 SHA 리뷰. designer 재검수는 지시대로 요청하지 않는다.
+- 내부 표식 `X-KnowsLink-Lang-Saved`는 HTML render에서 지운다. render하지 않는 회원 응답(redirect·JSON)에는 값 `1`로 남을 수 있다. 회원 자신의 저장 여부만 뜻한다. 기존 `X-KnowsLink-Lang-Unsaved`와 같은 방식이다.
+- 바뀐 화면의 두 언어 3폭 렌더는 다시 실행하지 않았다. 새 요소는 기존 `.lang` 줄의 짧은 링크 하나와 설정의 한 문단이다.
+- 실제 키보드·스크린리더·200% 확대는 미실행이다.
