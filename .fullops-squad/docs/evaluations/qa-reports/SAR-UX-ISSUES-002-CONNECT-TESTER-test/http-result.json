@@ -142,7 +142,7 @@
    "detail": ""
   },
   {
-   "name": "resume_summary_counts_pending_sent_requests_4",
+   "name": "resume_summary_counts_pending_sent_requests",
    "result": "PASS",
    "detail": ""
   },
@@ -303,11 +303,33 @@
   },
   {
    "name": "device_lost_connection_page_agrees_with_card_unknown_state",
-   "result": "FAIL",
-   "detail": {
-    "card": "합성 저장 확인 도우미 Node 22 로컬 클라이언트 / 3749784a / — 연결 필요 연결 상태: 확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함 시작한 클라이언트의 저장 결과를 먼저 확인하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다. 연결·키 관리 이름·연결 관리 합성 저장 확인 도우미 / Node 22 로컬",
-    "page": "에이전트 연결 만료되었습니다. 새 키가 연결되지 않았습니다. 이전 연결 수단은 다시 쓸 수 없습니다. 내 에이전트의 연결·키 관리에서 새로 시작하세요. 연결 상태 대상 에이전트 합성 저장 확인 도우미 3749784a 식별자 agent_fx_device_lost 클라이언트 node-local 연결 방식 새 키 추가 (최대 3개) 기한 2026-10-20 10:10:13 KST까지 (최대 10분·1회 사용) 권한 이 에이전트의 보내기·받기만 허용합니다. 소유자 승인"
-   }
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "device_lost_page_same_unknown_wording_as_card_and_no_expired_or_not_connected_claim",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "device_lost_page_no_blind_new_start_button",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "device_lost_expired_and_cancelled_pages_keep_their_own_terminal_wording",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "rejected_connection_unknown_id_403_returns_to_my_agents",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "rejected_connection_other_members_id_403_returns_to_my_agents",
+   "result": "PASS",
+   "detail": ""
   },
   {
    "name": "agents_c_zero_agents_first_agent_prompt_and_selector",
@@ -320,7 +342,7 @@
    "detail": ""
   },
   {
-   "name": "onm03_sent_rows_found_5",
+   "name": "onm03_sent_rows_found_at_least_7_original",
    "result": "PASS",
    "detail": ""
   },
@@ -340,7 +362,7 @@
    "detail": ""
   },
   {
-   "name": "onm03_case_kept_exact_XXK2_not_lowercased",
+   "name": "onm03_case_kept_exact_tail_not_lowercased",
    "result": "PASS",
    "detail": ""
   },
@@ -380,7 +402,7 @@
    "detail": ""
   },
   {
-   "name": "onm03_c_sent_row_tail_Z3N_and_no_full_code",
+   "name": "onm03_c_sent_row_tail_of_as_code_and_no_full_code",
    "result": "PASS",
    "detail": ""
   },
@@ -390,7 +412,12 @@
    "detail": ""
   },
   {
-   "name": "legacy_find_on_this_screen_label_no_false_current",
+   "name": "legacy_find_on_this_screen_visible_heading_no_false_current",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "legacy_toc_heading_is_visible_text_not_hidden",
    "result": "PASS",
    "detail": ""
   },

@@ -41,3 +41,17 @@ summary: "격리 connect fixture에서 U8 호스트 선택지·재개 행, U7 �
 - remote 앱 복귀 화면(`/connect/remote/return` 계열)과 remote 동의는 fixture에서 열 수 없다. 소스 템플릿과 DEV 렌더로만 확인하고 not_run으로 남긴다.
 - 차단 요청 만료 뒤 재요청 행 차이는 fixture에 차단 경로가 없어 소스 근거로만 기록한다.
 - 스크린리더 음성, 실제 브라우저 200% 확대, 보조 브라우저의 모든 조합은 not_run이다. 시각 수락은 designer, 고정 SHA 코드 리뷰와 통합은 coor가 조정한다.
+
+## 재확인 attempt (DEV `abc2191`, 제품 `d6369a4`)
+
+같은 fixture origin·허용 목록에 계정 d·e가 추가되었다(`POST /fixture/as/{a..e}`). manifest `rerequest_codes`(`blocked`·`receive_limit`·`unknown_cancelled`)로 재요청을 확인한다. 이 fixture는 초기 상태에서 한 번만 쓸 수 있는 비가역 경로이므로 순서는 `checks.py`(읽기) → `rerequest.py` → `cap.py` → `stale.py`(5분) → `mutate.py`(마지막 생성) → `browser.mjs`다.
+
+| covers | 독립 checks (파일) | 통과 조건 |
+|---|---|---|
+| F1·V-CN-01·O-CT-01 재요청 동일화 | `rerequest.py` | A가 세 코드를 다시 보낸 뒤 보낸 행 수(7)·순서·상태·끝 4자·기한 형식·POST 응답이 세 경로에서 같다. D·E(와 대조 B·C) 화면이 바이트 단위로 같다. 대기 중 반복은 무동작, 취소 뒤 재요청도 같다. |
+| mine 대기 상한 | `cap.py` | 대기 보낸 행이 10에서 멈추고(보류 행 포함 계산) 11번째는 조용히 버려진다. |
+| D-CT-01 | `checks.py` device_lost_* | 연결 화면이 카드와 같은 ‘확인 필요’이고 ‘만료되었습니다’·‘새 키가 연결되지 않았습니다’·‘새로 시작’이 없다. 기존 기대를 낮추지 않고 단정 부재 검사를 더했다. |
+| V-CN-02, O-CT-02, O-CT-04, F3 | `checks.py` rejected_connection_*, legacy_*, `stale.py` o_ct_04_wording, 소스 | 거부 복귀 ‘내 에이전트’, 보이는 ‘이 화면에서 찾기’(aria-current 없음), 재확인 안내, ‘키 키’ 없음. F2는 소스·DEV 테스트 근거. |
+| 회귀 | `checks.py`, `mutate.py`, `browser.mjs` | 이전 PASS 핵심(5선택지·재개 행·중복 생성 방지·O-NM-03·3폭 넘침 0). |
+
+`checks.py`의 O-NM-03 기대값은 fixture 인스턴스마다 바뀌는 임의 코드 접미를 하드코딩하고 있었다(`XXK2`·`Z-3N`). 새 fixture에서 매번 같은 판정을 하도록 b·a의 친구 코드에서 끝 4자를 읽게 바꿨다. 판정 기준은 같다.

@@ -181,7 +181,7 @@ try {
     check('friends-a-tab-walk-names-focus-no-trap-44px', st.at(-1).wrap === true && st.filter(s => !s.wrap).every(s => s.axName && focusOk(s) && s.h >= 43.5), st.filter(s => !s.wrap && !(s.axName && focusOk(s) && s.h >= 43.5)));
     const names = st.filter(s => !s.wrap).map(s => s.axName); obs.friendsATabNames = names;
     const cancels = names.filter(n => n && n.includes('친구 요청 취소'));
-    check('friends-a-cancel-ax-names-carry-tail-or-marker', ['…XXK2', '…zz99', '형식 다름', '이전 요청'].every(t => cancels.some(n => n.includes(t))), cancels);
+    check('friends-a-cancel-ax-names-carry-tail-or-marker', ['…zz99', '형식 다름', '이전 요청', ...Object.values(M.rerequest_codes).map(c => '…' + c.slice(-4))].every(t => cancels.some(n => n.includes(t))) && cancels.filter(n => /입력한 코드 …/.test(n)).length >= 5, cancels);
     check('friends-a-no-two-cancel-names-identical', new Set(cancels).size === cancels.length, cancels);
     // ---- AX of agents page: landmarks, radiogroups named by legend, headings
     await go(ORIGIN + '/home/agents?use=web&start=first'); const ax2 = await axTree();

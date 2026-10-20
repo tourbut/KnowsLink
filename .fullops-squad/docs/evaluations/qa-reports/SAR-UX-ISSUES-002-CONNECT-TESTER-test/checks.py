@@ -92,7 +92,9 @@ chk("resume_local_approved", "연결 상태: 브라우저 동의 완료 · 클�
 chk("resume_registered_key_only_claim", "연결 상태: 키 등록됨" in ra["registered"] and "앱에서 연결 상태를 확인하세요" in ra["registered"] and "기존 키를 덮어쓰지 말고" in ra["registered"] and "✓ 등록됨" in ra["registered"], ra["registered"][:300])
 chk("resume_registered_never_claims_connected_online_working", not re.search(r"연결되었습니다|연결 완료|온라인입니다|수신 중|정상 작동", ra["registered"] + ra["approved"]), "")
 chk("resume_each_state_has_one_next_action_link_set", all("연결·키 관리" in ra["registered"] or "연결 상태 확인" in ra[k] or "지문 확인" in ra[k] for k in ra), "")
-chk("resume_summary_counts_pending_sent_requests_4", "보낸 친구 요청 4건이 상대 확인을 기다립니다" in text(mb) and 'href="/home/friends#requests-h"' in mb, "")
+_fa = as_("a").get("/home/friends")[2]
+_pend_a = len([r for r in re.findall(r"<(?:li|article|section)[^>]*>(?:(?!</(?:li|article|section)>).)*?보낸 친구 요청(?:(?!</(?:li|article|section)>).)*?</(?:li|article|section)>", main(_fa), re.S) if "요청 대기" in text(r) and "합성 회원 C의 친구 요청" not in r])
+chk("resume_summary_counts_pending_sent_requests", f"보낸 친구 요청 {_pend_a}건이 상대 확인을 기다립니다" in text(mb) and 'href="/home/friends#requests-h"' in mb, (_pend_a, text(mb)[:400]))
 chk("resume_summary_explains_unobserved_items", "앱 설치·도구 검색·세션 연결·온라인 여부는 이 화면에서 확인하지 않습니다" in text(mb), "")
 chk("resume_cards_do_not_expose_connection_token_commands_or_keys", not re.search(r"connect\.js|complete <|private[_ ]?key|BEGIN [A-Z ]*KEY|code_verifier|access_token", mb), "")
 # new agent slot form still present (one slot) and idempotency attempt field
@@ -136,6 +138,12 @@ chk("connection_expired_cancelled_text", "만료되었습니다" in expc["expire
 # card vs connection page agreement for the approved-then-lost device attempt (server state: approved, never consumed)
 dl_card, dl_page = rb["device_lost"], expc["device_lost"][1]
 chk("device_lost_connection_page_agrees_with_card_unknown_state", "확인 필요" in dl_page and "새로 시작" not in dl_page, {"card": dl_card[:200], "page": dl_page[:260]})
+chk("device_lost_page_same_unknown_wording_as_card_and_no_expired_or_not_connected_claim", "확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함" in dl_page and "시작한 클라이언트의 저장 결과를 먼저 확인하세요" in dl_page and "자동 철회는 없습니다" in dl_page and not re.search(r"만료되었습니다|취소되었습니다|새 키가 연결되지 않았습니다|새로 시작", dl_page) and "aria-current" not in expc["device_lost"][2], dl_page[:300])
+chk("device_lost_page_no_blind_new_start_button", not re.search(r"<button[^>]*>\s*(새로 시작|새 키|연결 시작|연결 승인)", expc["device_lost"][2]), "")
+chk("device_lost_expired_and_cancelled_pages_keep_their_own_terminal_wording", "새 키가 연결되지 않았습니다" in expc["expired"][1] and "새 키가 연결되지 않았습니다" in expc["cancelled"][1], "")
+for who, nm in [(bb, "unknown_id"), (a, "other_members_id")]:  # V-CN-02: rejected connection id returns to 내 에이전트
+    s_, h_, d_ = who.get("/home/connections/" + ("x" * 43 if nm == "unknown_id" else C["device_lost"])); m_ = main(d_)
+    chk(f"rejected_connection_{nm}_403_returns_to_my_agents", s_ == 403 and "내 에이전트로 돌아가기" in text(m_) and 'href="/home/agents"' in m_ and "홈으로" not in text(m_) and "agent_fx" not in d_, (s_, text(m_)[:200], re.findall(r'href="([^"]+)"', m_)))
 
 # ---------------- C: zero agents
 cc = as_("c")
@@ -145,34 +153,38 @@ chk("agents_c_summary_sent_request_line", "보낸 친구 요청 1건이 상대 �
 
 # ---------------- O-NM-03 (friends pages)
 s, h, fa = a.get("/home/friends"); fam = main(fa)
+RC = M["rerequest_codes"]
+b_code = re.search(r"fixture-code-b-\w+", bb.get("/home/friends")[2]).group(0); b_tail = b_code[-4:]
+a_code = re.search(r"fixture-code-a-[\w-]+", fa).group(0); a_tail = a_code[-4:]
 sent_rows = re.findall(r"<(?:li|article|section)[^>]*>(?:(?!</(?:li|article|section)>).)*?(?:보낸 친구 요청|친구 요청 기록)(?:(?!</(?:li|article|section)>).)*?</(?:li|article|section)>", fam, re.S)
 RE_TAIL = re.compile(r"입력한 코드 (…[A-Za-z0-9_-]{4}|형식 다름)|이전 요청")
 trows = [text(r) for r in sent_rows]
-chk("onm03_sent_rows_found_5", len(trows) == 5, trows)
+chk("onm03_sent_rows_found_at_least_7_original", len(trows) >= 7, trows)  # cap.py cancel records may add ended rows
 chk("onm03_each_sent_row_has_tail_or_format_or_old_marker", all(RE_TAIL.search(r) for r in trows), trows)
-chk("onm03_expected_tails_present", all(any(x in r for r in trows) for x in ["입력한 코드 …XXK2", "입력한 코드 …zz99", "입력한 코드 형식 다름", "이전 요청", "입력한 코드 …ca11"]), trows)
-shape = lambda r: re.sub(r"입력한 코드 …[A-Za-z0-9_-]{4}", "TAIL", r)
-pend = [shape(r) for r in trows if "요청 대기" in r and "TAIL" in shape(r)]
-chk("onm03_real_and_nonexistent_code_rows_identical_shape", len(pend) == 2 and pend[0] == pend[1], pend)
-chk("onm03_case_kept_exact_XXK2_not_lowercased", "…XXK2" in fam and "…xxk2" not in fam, "")
+chk("onm03_expected_tails_present", all(any(x in r for r in trows) for x in ["입력한 코드 …" + b_tail, "입력한 코드 …zz99", "입력한 코드 형식 다름", "이전 요청"] + ["입력한 코드 …" + c[-4:] for c in RC.values()]), trows)
+shape = lambda r: re.sub(r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}", "DEADLINE", re.sub(r"입력한 코드 …[A-Za-z0-9_-]{4}", "TAIL", r))
+pend = [shape(r).removeprefix("친구 요청과 기록 ") for r in trows if "요청 대기" in r and "TAIL" in shape(r)]  # first row carries its section heading
+chk("onm03_real_and_nonexistent_code_rows_identical_shape", len(pend) >= 2 and len(set(pend)) == 1, pend)
+chk("onm03_case_kept_exact_tail_not_lowercased", "…" + b_tail in fam and "…" + b_tail.lower() not in fam, b_tail)
 chk("onm03_short_input_ab_shows_format_unknown_not_raw", "입력한 코드 형식 다름" in fam and not re.search(r"입력한 코드[^<]*\bab\b", fam), "")
-chk("onm03_cancel_button_accessible_name_has_tail", all(re.search(r'aria-label="입력한 코드 …%s 친구 요청 취소[^"]*"' % t, fam) for t in ["XXK2", "zz99"]), re.findall(r'aria-label="[^"]*취소[^"]*"', fam))
-chk("onm03_ended_row_keeps_tail_for_requester", any("입력한 코드 …ca11" in r and "취소" in r for r in trows) and "새 친구 요청과 수락이 필요합니다" in fam, "")
-chk("onm03_full_typed_code_not_in_requester_page_or_links", "fixture-code-b-NUScXXK2" not in fa and "NUScXXK2" not in fa, "")
+chk("onm03_cancel_button_accessible_name_has_tail", all(re.search(r'aria-label="입력한 코드 …%s 친구 요청 취소[^"]*"' % t, fam) for t in [b_tail, "zz99"]), re.findall(r'aria-label="[^"]*취소[^"]*"', fam))
+_ended = [r for r in trows if "보낸 친구 요청" not in r]
+chk("onm03_ended_row_keeps_tail_for_requester", all("입력한 코드 …" in r and "새 친구 요청과 수락이 필요합니다" in r for r in _ended) and (not _ended or any("취소" in r or "만료" in r for r in _ended)), (len(_ended), _ended))
+chk("onm03_full_typed_code_not_in_requester_page_or_links", b_code not in fa and b_code[:-4] not in fa, "")
 recv = text(re.search(r"합성 회원 C의 친구 요청.*?거절", fam, re.S).group(0)) if "합성 회원 C의 친구 요청" in fam else ""
 chk("onm03_received_request_card_has_no_tail", recv != "" and "입력한 코드" not in recv and not re.search(r"…\w{4}", recv), recv)
 s, h, fb = bb.get("/home/friends"); fbm = main(fb)
 recvb = text(re.search(r"합성 회원 A의 친구 요청.*?거절", fbm, re.S).group(0)) if "합성 회원 A의 친구 요청" in fbm else ""
 chk("onm03_recipient_b_sees_no_sender_input_tail", recvb != "" and "입력한 코드" not in fbm and "zz99" not in fb and "형식 다름" not in fb and "이전 요청" not in fb and "…" not in recvb, recvb)
-chk("onm03_recipient_b_no_existence_signal_beyond_own_request", "XXK2" in fb and fb.count("XXK2") == fb.count("fixture-code-b-NUScXXK2"), fb.count("XXK2"))
+chk("onm03_recipient_b_no_existence_signal_beyond_own_request", b_tail in fb and fb.count(b_tail) == fb.count(b_code), fb.count(b_tail))
 s, h, fc = cc.get("/home/friends"); fcm = main(fc)
-chk("onm03_c_sent_row_tail_Z3N_and_no_full_code", "입력한 코드 …Z-3N" in text(fcm) and "fixture-code-a-Nz4LZ-3N" not in fc, text(fcm)[:200])
-chk("onm03_no_tail_in_urls_forms_hidden_fields", not re.search(r'(href|action|value)="[^"]*(XXK2|zz99|ca11)', fa), "")
+chk("onm03_c_sent_row_tail_of_as_code_and_no_full_code", "입력한 코드 …" + a_tail in text(fcm) and a_code not in fc, text(fcm)[:200])
+chk("onm03_no_tail_in_urls_forms_hidden_fields", not re.search(r'(href|action|value)="[^"]*(%s|zz99|ca11)' % b_tail, fa), "")
 
 # ---------------- U7 secondary pages
 s, h, lg = a.get("/home/legacy")
-chk("legacy_find_on_this_screen_label_no_false_current", s == 200 and '<nav class="toc" aria-label="이 화면에서 찾기">' in lg and "aria-current" not in main(lg), (s, re.findall(r'aria-current="[^"]+"', lg)))
-print("OBS legacy toc visible heading text 'find on this screen':", "이 화면에서 찾기" in text(lg))
+chk("legacy_find_on_this_screen_visible_heading_no_false_current", s == 200 and re.search(r'<nav class="toc" aria-labelledby="(\w[\w-]*)"><span id="\1"[^>]*>이 화면에서 찾기</span>', lg) is not None and "aria-current" not in main(lg), (s, re.findall(r'<nav class="toc"[^>]*>.{0,80}', lg, re.S), re.findall(r'aria-current="[^"]+"', lg)))
+chk("legacy_toc_heading_is_visible_text_not_hidden", "이 화면에서 찾기" in text(lg) and not re.search(r'class="(sr-only|visually-hidden)"[^>]*>이 화면에서 찾기', lg), "")
 chk("legacy_title_h1_main_skip", re.search(r"<title>[^<]+</title>", lg) and len(re.findall(r"<h1[ >]", lg)) == 1 and "<main" in lg and 'class="skip"' in lg, "")
 for name, body in [("agents", base), ("friends", fa), ("connection_waiting", step["waiting"][3])]:
     chk(f"page_{name}_unique_title_h1_main_skip_lang", re.search(r"<title>[^<]+</title>", body) and len(re.findall(r"<h1[ >]", body)) == 1 and "<main" in body and 'class="skip"' in body and 'lang="ko"' in body, "")

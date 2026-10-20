@@ -1,0 +1,242 @@
+{
+ "origin": "http://127.0.0.1:18932",
+ "results": [
+  {
+   "name": "start_initial_state_a_has_7_sent_rows_3_ended",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "start_each_code_row_is_ended_not_pending",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_post_response_identical_on_three_paths",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_a_row_count_unchanged_7",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_three_rows_each_pending_with_tail_same_shape",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_each_code_exactly_one_row",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_cancel_button_name_has_tail_and_deadline_same_format",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_deadline_24h_format_same_three_paths",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_b_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_c_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_d_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p1_e_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p2_repeat_response_identical_three_paths",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p2_repeat_while_pending_changes_nothing_in_a",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p2_b_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p2_c_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p2_d_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p2_e_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_cancel_found_and_response_same_three_paths",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_cancel_generation_hidden_value_same_three_paths",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_row_count_still_7_and_ended_shape_same",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_row_order_same_as_p1",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_b_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_c_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_d_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p3_e_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_post_response_identical_three_paths",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_after_cancel_rerequest_7_rows_pending_same_shape",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_row_order_same_as_p1",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_p1_shape_equals_p4_shape",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_b_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_c_page_byte_equal_to_start_(control)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_d_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "p4_e_page_byte_equal_to_start_(inference check)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "d_still_shows_block_record_no_request_card",
+   "result": "PASS",
+   "detail": "re-run alone after the fix of my expectation (first run: see -first-run- file)"
+  },
+  {
+   "name": "e_still_ten_pending_plus_old_ended_no_new_from_A",
+   "result": "PASS",
+   "detail": ""
+  }
+ ],
+ "obs": {
+  "post_responses_p1": {
+   "blocked": {
+    "status": 303,
+    "location": "/home/friends?n=requested",
+    "text": ""
+   },
+   "receive_limit": {
+    "status": 303,
+    "location": "/home/friends?n=requested",
+    "text": ""
+   },
+   "unknown_cancelled": {
+    "status": 303,
+    "location": "/home/friends?n=requested",
+    "text": ""
+   }
+  },
+  "p1_shapes": {
+   "blocked": "보낸 친구 요청 요청 대기 / 입력한 코드 …TAIL 요청 기한: DEADLINE KST 요청 취소",
+   "receive_limit": "보낸 친구 요청 요청 대기 / 입력한 코드 …TAIL 요청 기한: DEADLINE KST 요청 취소",
+   "unknown_cancelled": "보낸 친구 요청 요청 대기 / 입력한 코드 …TAIL 요청 기한: DEADLINE KST 요청 취소"
+  },
+  "p1_positions": {
+   "blocked": [
+    4
+   ],
+   "receive_limit": [
+    3
+   ],
+   "unknown_cancelled": [
+    5
+   ]
+  },
+  "cancel_responses": {
+   "blocked": {
+    "status": 303,
+    "location": "/home/friends",
+    "generation": "2"
+   },
+   "receive_limit": {
+    "status": 303,
+    "location": "/home/friends",
+    "generation": "2"
+   },
+   "unknown_cancelled": {
+    "status": 303,
+    "location": "/home/friends",
+    "generation": "2"
+   }
+  },
+  "p3_shapes": {
+   "blocked": "친구 요청 기록 / — 취소 / 입력한 코드 …TAIL 다시 연결하려면 새 친구 요청과 수락이 필요합니다.",
+   "receive_limit": "친구 요청 기록 / — 취소 / 입력한 코드 …TAIL 다시 연결하려면 새 친구 요청과 수락이 필요합니다.",
+   "unknown_cancelled": "친구 요청 기록 / — 취소 / 입력한 코드 …TAIL 다시 연결하려면 새 친구 요청과 수락이 필요합니다."
+  }
+ }
+}

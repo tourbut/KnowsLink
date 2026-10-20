@@ -4,10 +4,76 @@ status: review
 updated: 2026-10-20
 owner: tester
 tasks: [SAR-UX-ISSUES-002-CONNECT-TESTER]
-summary: "8d8bad4(제품 37febf9) 격리 fixture 독립 QA: U8 선택지·재개 행·중복 생성·5분 재확인, U7 연결 화면, O-NM-03 PASS. critical·high 없음, medium 1건(D-CT-01 승인 뒤 미저장 시도의 연결 화면 안내가 카드와 모순), low 관찰 4건"
+summary: "재확인 abc2191(제품 d6369a4) 재요청 3경로 동일·D-CT-01·low PASS, 새 결함 없음. 이전 8d8bad4(제품 37febf9) 격리 fixture 독립 QA: U8 선택지·재개 행·중복 생성·5분 재확인, U7 연결 화면, O-NM-03 PASS. critical·high 없음, medium 1건(D-CT-01 승인 뒤 미저장 시도의 연결 화면 안내가 카드와 모순), low 관찰 4건"
 ---
 
 # SAR-UX-ISSUES-002-CONNECT-TESTER 독립 QA
+
+## 재확인 (attempt 2): DEV `abc219120509027b143b0e4ad121511a5a18395b`(제품 `d6369a4`)
+
+**결론: 재요청 3경로 동일화, D-CT-01, low 재확인 모두 PASS. 새 결함 없음, critical·high·medium 0건.** 아래 ‘이전 결과’는 8d8bad4 기준이며 이 절이 D-CT-01·O-CT-01·02·04를 대체한다. 대상 SHA는 dev 워크트리 HEAD가 `abc2191`임을 읽기 전용으로 확인했다. 서버가 이 SHA인지는 coor 지시와 manifest를 따랐고 독립 확인하지 않았다. fixture는 `http://127.0.0.1:18932`의 초기 상태(계정 a~e)에서 시작했다. 제품 코드는 고치지 않았다. 테스트 레벨 lite.
+
+| 영역 | 실행 | 결과 |
+|---|---|---|
+| HTTP 읽기 [checks.py](checks.py) → [http-result.json](http-result.json) | 95 | 95 PASS |
+| 재요청 동일화 [rerequest.py](rerequest.py) → [rerequest-result.json](rerequest-result.json) | 36 | 36 PASS |
+| mine 대기 상한 [cap.py](cap.py) → [cap-result.json](cap-result.json) | 4 | 4 PASS |
+| 5분 재확인 [stale.py](stale.py) → [stale-result.json](stale-result.json) | 1 | PASS (422, agent 4개 그대로, O-CT-04 문구 5항 true) |
+| 생성 [mutate.py](mutate.py) → [mutate-result.json](mutate-result.json) | 8 | 8 PASS |
+| Chrome 155.0.8059.80 layout / keys / after | 76 / 33 / 8 | 모두 PASS |
+| Edge 155.0.4283.62 layout / keys / after | 76 / 33 / 8 | 모두 PASS (keys는 재실행, 아래) |
+
+실행 순서(비가역 경로 때문에 고정): checks.py → rerequest.py → cap.py → stale.py → mutate.py → browser.mjs after. 종료코드는 파이프 없이 확인했다(checks 0, rerequest 1→아래 설명, cap 0, stale 0, mutate 0, 브라우저 0). 브라우저는 `--headless=new --disable-extensions`, 비모바일 viewport 1440·390·320, 실제 키 입력은 CDP `Input.dispatchKeyEvent`다. 도구 변경: `checks.py`의 O-NM-03 기대값은 이전 fixture의 임의 코드 접미(`XXK2`·`Z-3N`)와 행 수 5를 하드코딩해 새 fixture 인스턴스에서 거짓 FAIL이 났다. 접미를 b·a의 친구 코드에서 읽고 행 수를 ‘원본 7 이상’으로 바꿨으며 판정 기준은 같다. D-CT-01·O-CT-02 검사는 낮추지 않고 더 엄격하게 했다(아래).
+
+### 재요청 3경로 동일 (F1·V-CN-01·O-CT-01) — PASS
+
+A가 `blocked`(D가 차단), `receive_limit`(E가 10건 수신), `unknown_cancelled`(없는 코드) 코드를 다시 보냈다. 시작 상태는 A의 보낸 행 7개(대기 4, 종료 3: 세 코드)다.
+
+- 재요청 직후(P1): 세 경로 POST 응답이 모두 `303 /home/friends?n=requested`로 같다. A의 보낸 행은 7개로 늘지 않고 세 코드 각각 정확히 1행이 ‘요청 대기 / 입력한 코드 …끝4자 / 요청 기한 … KST / 요청 취소’로 바뀌었다. 정규화(끝 4자·시각만 치환)한 행 문장이 세 경로에서 같고, 취소 버튼 접근성 이름 형식(‘입력한 코드 …xxxx 친구 요청 취소, 기한 …’)과 기한 형식·24시간 길이도 같다.
+- 행 순서: 세 코드의 위치(3·4·5)는 재요청 전후와 취소·재요청 뒤에도 같다.
+- 대기 중 반복(P2): 같은 코드를 또 보내도 세 경로 응답이 같고 A 화면이 바이트 단위로 같다(무동작).
+- 취소(P3): 세 행이 모두 ‘친구 요청 기록 / — 취소 / 입력한 코드 …끝4자 / 다시 연결하려면 새 친구 요청과 수락이 필요합니다.’로 같고 행 수는 7, 숨은 generation 값도 세 경로 모두 2다. 취소 응답도 `303 /home/friends`로 같다.
+- 취소 뒤 재요청(P4): 다시 7행, P1과 같은 문장·순서다.
+- **D·E 비추론**: D·E와 대조군 B·C의 `/home/friends` main HTML이 시작·P1·P2·P3·P4 모든 단계 뒤에 바이트 단위로 같았다. D는 계속 ‘— 차단 … 차단 해제’ 하나(결정 폼 `unblock`뿐, 회원 A 요청 카드 없음), E는 수신 대기 10건과 기존 ‘— 만료’ 기록 그대로다.
+- 한계: 이 비교는 A·D·E의 서버 렌더 HTML 기준이다. 응답 시간·타이밍 채널은 보지 않았다.
+
+첫 실행에서 `rerequest.py` 마지막 검사 1건(`d_still_shows_block_record_no_request_card`)이 FAIL이었다. 원인은 내 기대값 결함(‘수락’ 부분 문자열이 D 화면의 ‘새 친구 요청과 수락이 필요합니다’ 안내와 겹치고 `합성 회원 A`를 잘못 가정)이다. 제품 동작이 아니고 같은 단계의 바이트 동등 검사는 PASS였다. 기대를 결정 폼 값(`unblock`만)으로 고치고 그 검사만 재실행해 PASS다([첫 실행](rerequest-result-first-run-expectation-error.json)). 재요청은 비가역이라 전체를 다시 돌리지 않았다. 그래서 `rerequest-result.json`은 35개는 첫 실행, 1개는 재실행 값이다.
+
+### mine 대기 상한이 보류 행을 센다 — PASS(관측)
+
+[cap.py](cap.py): 재요청 뒤 A의 대기 보낸 행은 7개(그중 `blocked`·`receive_limit` 2개는 `blocked-pending` 보류 행)다. 없는 합성 코드 4개(`qa-cap-fake-0001~0004`)를 보내니 대기가 8·9·10까지 늘고 4번째는 조용히 버려졌다(POST 응답은 4번 모두 같음). 보류 행을 세지 않았다면 4번째도 나타났을 것이므로(7 대신 5가 센 값) 보류 행이 같은 방식으로 센다. 소스도 같다: `human.go:185` `open` 함수가 `blocked-pending`(기한 전)을 대기와 같이 세고 `mine >= 10`에서 `return`한다. 추가한 3행은 취소했다(A의 기록에 종료 행 3개 `…0001~0003`이 남음).
+
+### D-CT-01 — PASS (이전 FAIL 재판정)
+
+`GET /home/connections/{device_lost}`(b): 제목 ‘에이전트 연결’, 본문 ‘확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함. 시작한 클라이언트의 저장 결과를 먼저 확인하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다.’와 ‘연결·키 관리’·‘내 에이전트로 돌아가기’ 링크다. 카드와 같은 문구이고 ‘만료되었습니다’·‘새 키가 연결되지 않았습니다’·‘새로 시작’이 없으며 단계 `aria-current`도 없고 새 시작 버튼도 없다. 기존 FAIL 검사(`device_lost_connection_page_agrees_with_card_unknown_state`)의 기대는 그대로 두고 단정 부재 검사 3건을 더했다. 대조로 `expired`·`cancelled` 연결 화면은 기존 ‘만료/취소되었습니다. 새 키가 연결되지 않았습니다’를 유지한다(승인 전 종료라 맞다).
+
+### low 회귀 — PASS
+
+- V-CN-02: 없는 연결 ID와 남의 연결 ID 모두 403 ‘연결을 조회할 수 없습니다’ + ‘내 에이전트로 돌아가기’(`/home/agents`), 내부 정보 없음.
+- O-CT-02: `/home/legacy` 목차는 `<nav class="toc" aria-labelledby="toc-h"><span id="toc-h" class="toc-title">이 화면에서 찾기</span>…`로 보이는 글자가 있고 `aria-current`는 없다.
+- O-CT-04: 5분 지난 세션의 생성 POST는 422, 문구 ‘아래 ‘로그인 다시 확인’으로 신원을 확인한 뒤 이 작업을 시작한 화면에서 다시 시도하세요.’, ‘로그인 다시 확인’ 버튼과 ‘내 에이전트로 돌아가기’ 링크가 있고 ‘홈에서’는 없다. agent는 4개 그대로.
+- F3(키 문구): a·b의 /home/agents 어디에도 ‘키 키’ 중복이 없다. ‘기존 키 등록됨 · 새 키 등록 전’은 키가 있는 agent의 새 시도에만 나오고 fixture에 그런 agent가 없어 문구는 소스(`connect_guide.go:56`)와 DEV 통합 검사(`connect_guide_integration_test.go`)로만 확인했다(not_run on fixture).
+- F2(요약 없는 gate 버튼 없음): 소스 `http.go:578` `view["Active"] = active && summary != nil`. fixture가 `/gate`를 막아 화면은 못 열었고 DEV도 도달 경로가 없어 새 검사가 없다고 보고했다(소스 근거만).
+
+### 이전 PASS 핵심 회귀 — PASS
+
+5선택지·문구·보조 문구·선택 전 미리 선택 없음·위조 query 무시, 다섯 선택 안내(4번 `/knowslink-session on`·‘앱에서 확인 필요’, 5번 고정 문장·버튼 없음), OpenClaw·Meta Muse·온라인 배지 없음, 재개 행 전부(waiting/prepared/approved/키 등록/만료/취소/승인 뒤 미저장/remote 3종), 요약 줄(‘보낸 친구 요청 N건’은 이제 화면의 대기 행 수에 맞춰 검사), O-NM-03(있는/없는 코드 같은 모양·대소문자 유지·형식 다름·받는 쪽 비노출·전체 코드 비노출), 연결 화면 7개 단계·복귀·접근성, 중복 생성(같은 attempt 동시 2회 → 1개, 재전송 같은 위치, 새 attempt 한도 거절, 기존 키 카드 불변, 다른 회원에 비노출), 5분 재확인. 1440·390·320 가로 넘침 0·잘림 0·44px 미만 0(Chrome·Edge 각 76 PASS), 키보드 Tab·Enter·화살표 PASS, 요청은 모두 같은 origin GET뿐.
+
+**브라우저 재실행 1건**: Edge keys 첫 실행에서 `conn-waiting`·`conn-prepared`의 ‘복귀 링크가 자기 에이전트 카드에 도착’ 검사가 FAIL(스크롤 위치를 앵커 스크롤 전에 측정, 첫 attempt와 같은 시점 경쟁, [첫 실행 로그](edge-keys-attempt2-first-run-return-link-scroll-timing.log)). 검사를 약화하지 않고 재실행해 33/33 PASS. 같은 시점 경쟁이 두 attempt 연속 나므로 도구 안정화(스크롤 완료 대기)를 후속으로 권한다. 제품 결함 증거는 없다.
+
+### 관찰과 남은 한계
+
+- **O-CT-05 (low, 정보) 종료 행 3개 위치와 ID 순서.** 세 코드의 위치(3·4·5)는 경로 사이에 달랐지만(예: `receive_limit` 3, `blocked` 4, `unknown_cancelled` 5) 재요청·취소·재요청 전후 모두 같았다. 순서가 코드의 존재·차단 여부를 따르는지는 이 fixture(경로당 1행)로는 판단할 수 없다. 정렬 기준이 서버 ID라면 무작위라 문제없다. 이번에는 확인하지 못했다(소스 정렬 키 미읽음).
+- 기존 데이터(이전 차단 경로의 쌍 행+대리 행 2행, 이전 코드로 되돌리기 시 보류 행 노출)와 DEV가 적은 남은 한계 4건은 fixture에 없어 not_run이다.
+- not_run: 스크린리더 음성, 실제 브라우저 200%, 대비 측정, remote 동의·앱 복귀 화면(401), 승인 목록·익명 429 화면, 서비스 재시작 뒤 복구, 실제 호스트 설치·왕복, Windows tester 워크트리에서 Go 테스트 재실행(DEV 원격 Linux EXIT=0 재사용).
+
+### 상태 변경과 정리 (attempt 2)
+
+fixture에 만든 것: A의 보낸 요청 7행이 모두 ‘대기’(세 코드는 재요청으로 새 24시간 기한, generation 3), 종료 행 3개(`qa-cap-fake-0001~0003` 취소), A의 agent 1개(`Connect QA 신규 에이전트`, ID는 [mutate-result.json](mutate-result.json), 5/5). 비가역이다. D·E·B·C 화면은 바뀌지 않았다. 재요청 경로(`rerequest_codes`)는 이 fixture에서 다시 쓸 수 없다. 브라우저 프로필은 session 임시 디렉터리에 두었고 headless 프로세스는 종료했다.
+
+---
+
+## 이전 결과 (8d8bad4, 제품 37febf9)
 
 ## 대상과 결론
 
