@@ -2,9 +2,9 @@
 id: D02
 title: KnowsLink MVP 요구사항
 status: review
-updated: 2026-10-12
+updated: 2026-10-20
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001, SAR-SCHEDULE-001-DESIGN]
 upstream: [D01]
 downstream: [D03, D05, D06, D07, D09, D10]
 summary: frozen MVP 규칙과 일반 서비스 확장 정본 및 과거 파일럿 경계를 연결한다
@@ -88,7 +88,7 @@ approve는 해당 요청의 인간 게이트 통과만 뜻한다. 일정 공개 
 
 ## 미정 결정과 기능 수락 경계
 
-[백로그의 결정 보류표](../SAR-MVP-backlog.md#미정-결정과-재개-조건)가 담당·영향·재개 조건의 정본이다. Free N·가격·slot-unit, disclosure·결과 schema·window/granularity/누적 한도는 기존 held를 유지한다. 추가 resource/rate/size/concurrency 수치는 아래 DEC-03 공개 기준에 승인 근거와 함께 기록한다. 미확정 수치를 DEV/OPS나 합성 fixture가 대신 결정하지 않는다. 미니서버 설정과 어댑터 인터페이스는 담당 dev/ops의 기술 확인이다.
+[백로그의 결정 보류표](../SAR-MVP-backlog.md#미정-결정과-재개-조건)가 담당·영향·재개 조건의 정본이다. DEC-02의 사용자 결정 선택지와 추천안은 [SAR-SCHEDULE-001](SAR-SCHEDULE-001.md)이 정리한다. 사용자 결정 전에는 DEC-02 held를 유지한다. Free N·가격·slot-unit, disclosure·결과 schema·window/granularity/누적 한도는 기존 held를 유지한다. 추가 resource/rate/size/concurrency 수치는 아래 DEC-03 공개 기준에 승인 근거와 함께 기록한다. 미확정 수치를 DEV/OPS나 합성 fixture가 대신 결정하지 않는다. 미니서버 설정과 어댑터 인터페이스는 담당 dev/ops의 기술 확인이다.
 
 첫 기능은 합성 요청의 로컬 안전 전달과 human-gate다. 실제 calendar 조회·외부 부작용·실데이터 silent 성공은 수락 범위에 포함하지 않는다. `schedule.query`는 정책 없음의 거부를 검증한다. 승인과 정보 공개는 별개다. `schedule.commit`은 승인 후에도 실행하지 않는다. positive silent `done` 수락은 공개 정책과 output schema가 확정된 후속 기능에 남긴다.
 

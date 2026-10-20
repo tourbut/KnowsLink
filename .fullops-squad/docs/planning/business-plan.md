@@ -2,9 +2,9 @@
 id: D01
 title: KnowsLink 서비스 개요
 status: review
-updated: 2026-10-15
+updated: 2026-10-20
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001, SAR-SESSION-PEER-001-DESIGN]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001, SAR-SESSION-PEER-001-DESIGN, SAR-SCHEDULE-001-DESIGN]
 downstream: [D02]
 summary: 일반 서비스 가치와 수락 후 동일 이메일 노우 다닷 연결 및 상품 보류를 정의한다
 ---
@@ -12,6 +12,8 @@ summary: 일반 서비스 가치와 수락 후 동일 이메일 노우 다닷 �
 # KnowsLink 서비스 개요
 
 ## 현재 가치와 범위 — 2026-10-12
+
+2026-10-20 사용자 결정 D008로 실제 일정 API 연동을 진행한다. [일정 연동 D02 초안](product-specs/SAR-SCHEDULE-001.md)이 캘린더·기능·공개·승인·연결 결정 선택지와 추천안을 정리한다. 사용자 결정 전에는 실제 조회·DEV 인계를 시작하지 않는다.
 
 2026-10-15의 SAR-SESSION-PEER-001은 작업 중인 Claude Code·Codex 세션을 이름 있는 내 에이전트로 연결하는 제품 범위를 추가한다. 첫 실증 목표는 Claude↔Claude의 기존 작업 세션 왕복이다. 교차 및 Codex↔Codex는 방향별 근거로 수락한다. [세션 제품 기준](../design-docs/SAR-SESSION-PEER-001.md)의 명시 대상 선택·별도 답장 승인·외부 데이터 경계를 적용한다. 다음 조회와 새 세션 생성은 기존 세션 수신 성공이 아니다. 구현·운영 수락은 후속이며 상품·가격·기존 자원 한도는 바꾸지 않는다.
 
