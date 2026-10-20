@@ -1,0 +1,602 @@
+{
+  "task_key": "SAR-UX-ISSUES-002-LANG-VISUAL",
+  "attempt": "1c7cb2b561b4459e8c1b9fec4dfc7a88",
+  "packet_input_sha256": "a5734abc1a6613604e19cad42a8fff74a32dadc2fbedee502ffe3848127a1b74",
+  "uncertainty_review": "partial 패킷의 미확인 항목은 동적 참조·언어 서버 미검증이다. 이번 과제는 제품 코드를 바꾸지 않고 판정 보고·캡처 스크립트·캡처와 정본 U3 결정만 추가해 코드 영향 미확인의 위험이 없다. 판정 근거는 fixture 직접 캡처, DEV 렌더, 7704e6d 소스 읽기다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "하네스 지도·역할 책임·완료 흐름을 읽었다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "U3에 ‘2026-10-20 LANG-VISUAL 결정(과부하 거부 화면의 언어)’을 추가하고 tasks에 과제를 넣었다(커밋 d134258)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "U3·U7·화면 배치 절을 읽고 판정 기준으로 썼다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D04 현행 토큰·44px·왼쪽 정렬·여백 기준을 읽고 판정에 썼다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_designer.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "지시서 범위·fixture·허용 요청·소유 파일을 따르고 완료 보고를 채웠다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "검증 명령 절(make lint/test, Linux 결과 재사용 조건)을 읽었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "공통 기준 묶음과 충돌 우선순위를 읽었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "UI·디자인 일관성 절을 읽었다. 제품 코드 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "입력·외부 데이터 경계와 승인 범위를 읽었다. 상태 변경 POST를 보내지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 범위와 캡처 기준을 읽고 캡처를 지정 화면에 한정했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/archive/designer-2026-10-14-landing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/contexts/designer.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "과거 PASS를 새 화면 수락으로 쓰지 않는 원칙과 수락 경계를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL-DOCS-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-FRONTEND-POLISH-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-DOC-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL-FINAL-DOC-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-FINAL-RECORDS-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-TESTER-test/css-followup/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-TESTER-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-FIX-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-LIVE/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-2-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL-RESULT-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SERVICE-UI-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SSE-INSTALL-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-FIX-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-VISUAL/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직전 단위의 캡처 방법(CDP 쿠키 주입·요청 간격)과 보고 형식을 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-DESIGN/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-HOSTS-DESIGN/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-VISUAL/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-FIX-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-DEV-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-RETEST-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-APPROVAL-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-CONNECT-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-NAMES-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-13_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-14_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-15_to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-17_to_ops.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-18_to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-19_to_designer.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": "internal/relay/friend_rerequest_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    },
+    {
+      "path": "internal/relay/human.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "이 직접 시각 판정의 범위 밖이라 읽거나 바꾸지 않았다. 판정 근거는 fixture 캡처·DEV 보고·렌더와 7704e6d 소스·번역표 읽기다."
+    }
+  ]
+}
