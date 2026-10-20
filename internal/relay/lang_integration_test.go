@@ -115,7 +115,7 @@ func TestLanguagePreferencePostgres(t *testing.T) {
 		t.Fatal("anonymous choice must be stored in the language cookie")
 	}
 	w = a.do("GET", "/", nil)
-	expect(t, w, 200, `<html lang="en">`, `aria-current="true" lang="en"`)
+	expect(t, w, 200, `<html lang="en">`, `lang="en" aria-current="true"`)
 	if strings.Contains(w.Body.String(), `role="status"`) {
 		t.Fatal("a stored cookie shows no unsaved notice")
 	}
