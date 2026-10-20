@@ -1,0 +1,84 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-RELEASE-002-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.84,
+        "product": 0.16
+      },
+      "confidence": 0.68
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.9,
+        "ops": 0.1,
+        "tester": 0
+      },
+      "confidence": 0.85
+    },
+    "docs": {
+      "D01": 0.3,
+      "D02": 0.28,
+      "D03": 0.41,
+      "D04": 0.32,
+      "D05": 0.45,
+      "D06": 0.3,
+      "D07": 0.31,
+      "D08": 0.42,
+      "D09": 0.4,
+      "D10": 0.63,
+      "D11": 0.34,
+      "D12": 0.72,
+      "D13": 0.67
+    }
+  },
+  "usage": {
+    "input_tokens": 2439,
+    "output_tokens": 314,
+    "cost": 0.000102438
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.468,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "운영 배포는 ops 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "d52707429456051099de859e81ee60879e8b3cc1",
+  "requires_packet": true,
+  "attempt": "53bd68b3e3534d06ab50bc09e6376a8c",
+  "instruction_sha256": "5cf27fd8e58d955fdfe7f51297635d82705afffefe54b961b10a470bbe4a6252",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "1d52167998181fad6e61f4e2248ef2faa52ed9134620d6afbfc749ef8aaeef15"
+}
