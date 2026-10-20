@@ -50,7 +50,7 @@ GET `/`는 익명과 유효 세션 모두 서비스 안내 HTML을 200으로 반
 | POST `/home/agent-name` | agent/name, 자기 agent만 변경 |
 | POST `/home/agents` / `/home/device-confirm` / `/remote/consent/{id}` 승인 | 새 agent 이름 필수. 기존 최근 인증·연결 proof·명시 승인 유지 |
 | POST `/home/friend-code` | 자기 코드 회전. 이전 코드는 신규 요청에 무효; 기존 요청/친구를 바꾸지 않음 |
-| POST `/home/friends/request` 표시용 끝 4자 (O-NM-03) | 요청 기록 `Friend.CodeTail`에 요청자가 입력한 trim 값의 끝 4자를 저장한다. 4자 미만이거나 끝 4자에 `[A-Za-z0-9_-]` 밖 문자가 있으면 `?`, 이 필드 이전 기록은 빈 값이다. 있는/없는/차단/자기 코드 모두 같은 규칙이다. 요청자의 보낸 대기·거절·취소·만료 행에만 ‘입력한 코드 …abcd’/‘입력한 코드 형식 다름’/‘이전 요청’으로 보이며 전체 코드는 저장·URL·로그에 넣지 않는다 |
+| POST `/home/friends/request` 표시용 끝 4자 (O-NM-03) | 요청 기록 `Friend.CodeTail`에 요청자가 입력한 trim 값의 끝 4자를 저장한다. 4자 미만이거나 끝 4자에 `[A-Za-z0-9_-]` 밖 문자가 있으면 `?`, 이 필드 이전 기록은 빈 값이다. 있는/없는/차단/자기 코드 모두 같은 규칙이다. 요청자의 보낸 대기·거절·취소·만료 행에만 ‘입력한 코드 …abcd’/‘입력한 코드 형식 다름’/‘이전 요청’으로 보이며 전체 코드는 저장·URL·로그에 넣지 않는다. 받은 사람이 대기 요청을 차단하면 기록은 `blocked-pending`이 되어 요청자에게 기한까지 대기, 뒤에는 만료로 보이고 요청자 취소만 허용한다. 같은 코드 반복은 대기 중 반복처럼 무동작이다 |
 | POST `/home/self-connect` | consent=yes. 기존 회원의 자기 활성 endpoint 전체 범위를 명시 활성화 |
 | POST `/home/friends/request` | code/consent=yes. 코드 정답·자기 코드·차단·없는 대상은 동일 외부 결과/발신 요청 표시. 회원 검색 없음 |
 | POST `/home/friends/decision` | friend/generation/decision, accept에는 consent=yes. accept/deny 수신자, cancel 발신자, remove/block 참여자, unblock 차단자만 |

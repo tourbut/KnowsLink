@@ -1,9 +1,9 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-19
+updated: 2026-10-20
 owner: dev
-tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-REPO-DOCS-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV]
+tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-REPO-DOCS-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
 ---
 
@@ -60,3 +60,5 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 2026-10-19 SAR-UX-ISSUES-002-NAMES-DEV: 긴 이름 선택은 닫힌 select 대신 줄바꿈되는 radio로 해결한다. 상대 agent 이름은 현재 친구 권한에서만 보이고 그 밖은 ID만 둔다. CDP 측정은 모바일 emulation이 넘친 폭만큼 viewport를 넓히므로 비모바일 viewport로 가로 넘침을 잰다. [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md).
 
 - 2026-10-19 SAR-UX-ISSUES-002-APPROVAL-DEV: 승인 요약은 표시 전용 helper(`gate_summary.go`)에 두고 결정 재검사는 `gateDecision`에만 남긴다. 기존 housekeeping이 만료·철회·원문 부재를 저장 상태로 바꾸므로 낡은 제출 검사는 ‘pending 유지’가 아니라 ‘결정 미기록’으로 단언한다. 새 원격 clone의 integration은 make test가 `adapters/dist`를 만든 뒤 실행한다. [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-DEV-test/report.md). fixture가 claim된 부모를 여러 개 만들면 전역 claim 4 한도(`claimCapacity`)에 걸리므로 gate 생성 뒤 claim token을 잠시 비우고 끝에서 복원한다. fixture는 컴파일이 아니라 실제 기동으로 확인한다.
+
+- 2026-10-20 SAR-UX-ISSUES-002-CONNECT-DEV: 연결 재개 상태는 표시 전용 helper(`connect_guide.go`)가 저장 상태만으로 계산하고, 관측할 수 없는 앱 설치·세션 연결·온라인은 ‘앱에서 확인 필요’로 둔다. 존재 비노출 표시는 저장 모양뿐 아니라 상대의 차단·반복 요청 뒤 화면까지 같은 모양인지 확인한다. Python `write_text`는 Windows에서 CRLF로 쓰므로 바이트로 쓴다. [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md).
