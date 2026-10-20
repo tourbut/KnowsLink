@@ -113,7 +113,8 @@ func TestConnectionResumeAndCodeTail(t *testing.T) {
 				st.Rates["http:member:"+members["a"]] = append(st.Rates["http:member:"+members["a"]], time.Now())
 			}
 		})
-		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 재개"}, "attempt": {attempt}}), 429, `href="/home/agents"`)
+		// The shared admission budget refuses before the handler; only the retry instant and "nothing made" matter here.
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 재개"}, "attempt": {attempt}}), 429, "이후 다시 시도")
 		if len(agentsOf("a")) != 0 {
 			t.Fatal("rate-limited create made an agent")
 		}
