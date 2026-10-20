@@ -503,7 +503,7 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 			if e.Body["status"] == "done" {
 				g := st.gateOf(parent.Receipt.ID)
 				echoed, _ := Canonical(e.Body["disclosure"])
-				if g == nil || !g.Consumed || g.Lookup == nil || g.Lookup.State != "done" || len(g.Lookup.Disclosure) == 0 || string(echoed) != string(g.Lookup.Disclosure) {
+				if g == nil || !g.Consumed || g.Lookup == nil || g.Lookup.State != "done" || len(g.Lookup.Disclosure) == 0 || string(echoed) == "" || string(echoed) != canonicalRaw(g.Lookup.Disclosure) {
 					return nil, fault("disclosure_denied")
 				}
 			}

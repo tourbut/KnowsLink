@@ -153,7 +153,7 @@ func TestCalendarConnection(t *testing.T) {
 	if _, _, _, revoked := p.snapshot(); len(revoked) != 1 || revoked[0] != string(refresh) {
 		t.Fatalf("provider revocation: %v", revoked)
 	}
-	expect(t, bob.do("GET", "/home/account", nil), 200, "캘린더 연결을 해제했습니다", `action="/home/calendar/connect"`)
+	expect(t, bob.do("GET", "/home/account?n=calendar-off", nil), 200, "캘린더 연결을 해제했습니다", `action="/home/calendar/connect"`)
 	// An email-code member has no Google identity to extend: one line, no button.
 	alice := &browser{t, f.handler, "192.0.2.78", map[string]string{}}
 	mail := &inbox{codes: map[string]string{}}
@@ -202,7 +202,7 @@ func TestCalendarApprovalRunsOneLookup(t *testing.T) {
 	want := disclosureJSON(start, end, 30, []span{{start, start.Add(30 * time.Minute)}, {end.Add(-30 * time.Minute), end}})
 	f.mutate(func(st *State) {
 		g := st.Gates[gateID]
-		if g.State != "approved" || g.Lookup == nil || g.Lookup.State != "done" || string(g.Lookup.Disclosure) != string(want) {
+		if g.State != "approved" || g.Lookup == nil || g.Lookup.State != "done" || canonicalRaw(g.Lookup.Disclosure) != string(want) {
 			t.Fatalf("lookup record: %+v", g.Lookup)
 		}
 		raw, _ := json.Marshal(st)
@@ -275,8 +275,8 @@ func TestCalendarUnconnectedAndCommitStub(t *testing.T) {
 			t.Fatalf("unconnected gate page lacks %q: %s", want, page)
 		}
 	}
-	if strings.Contains(page, `value="approve"`) || strings.Contains(page, calendarGateScope) {
-		t.Fatal("unconnected member offered approval")
+	if strings.Contains(page, `value="approve"`) || strings.Contains(page, calendarGateScope) || !strings.Contains(page, `value="deny"`) {
+		t.Fatal("unconnected member must see deny only")
 	}
 	// A stale approve POST (page rendered before a disconnect) is refused and the request stays pending.
 	f.mutate(func(st *State) {
@@ -336,7 +336,7 @@ func TestCalendarScopeEnforcedAtAccept(t *testing.T) {
 	id := func(i int) string { return fmt.Sprintf("0199a3f2-4c10-7a11-8b22-3344556600%02d", i) }
 	refused := func(name string, b map[string]any) {
 		t.Helper()
-		w := f.request("POST", "/v1/send", f.tokens["agent_a"], wire(t, f.private["agent_a"], id(0), "agent_a", "agent_b", "schedule.query", "scope-"+name, "", b, time.Now().Add(time.Minute)), "")
+		w := f.request("POST", "/v1/send", f.tokens["agent_a"], wire(t, f.private["agent_a"], id(0), "agent_a", "agent_b", "schedule.query", "scope-refused-"+name+"-0001", "", b, time.Now().Add(time.Minute)), "")
 		if w.Code != 422 || !strings.Contains(w.Body.String(), "schedule_scope") {
 			t.Fatalf("%s accepted: %d %s", name, w.Code, w.Body)
 		}
@@ -345,7 +345,7 @@ func TestCalendarScopeEnforcedAtAccept(t *testing.T) {
 	refused("past", body(start.Add(-2*time.Hour), start.Add(time.Hour), 30))
 	refused("long", body(start, time.Now().Add(scheduleScope.Window+time.Hour), 30))
 	for i := 1; i <= scheduleScope.PerFriend; i++ {
-		f.send(wire(t, f.private["agent_a"], id(i), "agent_a", "agent_b", "schedule.query", fmt.Sprintf("scope-count-%d", i), "", body(start, start.Add(time.Hour), 30), time.Now().Add(time.Minute)), "agent_a", "", 200)
+		f.send(wire(t, f.private["agent_a"], id(i), "agent_a", "agent_b", "schedule.query", fmt.Sprintf("scope-count-%04d-0001", i), "", body(start, start.Add(time.Hour), 30), time.Now().Add(time.Minute)), "agent_a", "", 200)
 	}
 	refused("sixth", body(start, start.Add(time.Hour), 30))
 	f.mutate(func(st *State) {
@@ -355,7 +355,7 @@ func TestCalendarScopeEnforcedAtAccept(t *testing.T) {
 			}
 		}
 	})
-	f.send(wire(t, f.private["agent_a"], id(6), "agent_a", "agent_b", "schedule.query", "scope-after-window", "", body(start, start.Add(time.Hour), 30), time.Now().Add(time.Minute)), "agent_a", "", 200)
+	f.send(wire(t, f.private["agent_a"], id(6), "agent_a", "agent_b", "schedule.query", "scope-after-window-0001", "", body(start, start.Add(time.Hour), 30), time.Now().Add(time.Minute)), "agent_a", "", 200)
 }
 
 func TestCalendarRevocationAndFailureClasses(t *testing.T) {

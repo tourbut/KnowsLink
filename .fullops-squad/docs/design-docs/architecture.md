@@ -2,9 +2,9 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-10-17
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV, SAR-SCHEDULE-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -266,3 +266,14 @@ coor 재검토로 같은 과제를 다시 열었다. 직전 기록의 “미공�
 - 결과 분류·ID marker·재시도 규칙은 loopback 경로와 같다. 설정 파일 불량은 `retry`(`webhook_config_unavailable`)로 아무것도 보내지 않는다.
 - `wake-check`는 webhook 모드에서 파일만 검사한다. POST는 routine 턴을 시작하므로 무해한 probe는 owner·coor가 수동으로 실행한다.
 - 실제 routine 생성·키 발급·턴 표시는 미검증이다. 대체 검증 전에는 기존 `sendPrompt` 설정을 유지한다.
+
+## Google Calendar 빈 시간 조회 — SAR-SCHEDULE-001-DEV
+
+[SAR-SCHEDULE-001](../planning/product-specs/SAR-SCHEDULE-001.md)의 SD-01–06(A)과 D010 수치를 구현한 DEV 후보다. 운영 연결은 D011이 닫힌 뒤 별도 과제다.
+
+- 연결: 회원 설정의 ‘캘린더 연결’은 기존 Google 로그인 attempt를 재사용하는 증분 동의다. 요청 scope는 `openid email https://www.googleapis.com/auth/calendar.freebusy`, `access_type=offline`, `include_granted_scopes=true`다. 로그인·재확인의 scope는 `openid email` 그대로다. callback은 로그인 회원과 같은 Google sub만 받고, 토큰 응답의 `scope`에 freebusy가 없거나 refresh token이 없으면 저장하지 않는다. refresh token은 `KNOWSLINK_CALENDAR_KEY`(32바이트)로 AES-256-GCM 봉인해 `State.Calendars[member]`에 둔다. 평문·키는 상태·로그·화면에 없다.
+- 승인 1회 = 조회 1회: `POST /home/gates/{id}` approve가 `schedule.query` 부모면 lock 안에서 연결 상태를 확인하고 `Gate.Lookup{Started}` lease를 기록한 뒤, lock 밖에서 refresh→freebusy(`primary`, 요청 window)를 한 번 실행한다. 두 번째 transaction이 결과를 한 번만 기록한다(`done`+반올림 disclosure 또는 `failed`). lease 1분 안에 결과가 없으면(프로세스 종료) sweep이 `failed`로 닫고 재조회하지 않는다. agent는 lookup이 끝나기 전까지 gate를 `pending`으로 본다.
+- 공개 최소화: 서버는 응답의 `busy[].start/end`만 읽고 단위로 바깥 반올림·window 클립·병합한 `{window, granularity_min, busy}`를 canonical JSON으로 저장한다. `gate-consume`이 이 disclosure를 돌려주고, `relay.result` `done`은 이 JSON과 바이트 단위로 같은 `body.disclosure`만 수락한다(그 외 `done`은 `disclosure_denied`). 결과가 수락되면 저장한 disclosure를 지운다. 감사 기록은 Gate·Lookup의 시각·상태만이다.
+- 범위 집행: `schedule.query` 수락 시 `scheduleAllowed`가 단위 15·30·60, 요청 시각의 단위 slot 이후 시작, 14일 이내 종료, 같은 owner 쌍 24시간 5회를 검사하고 위반은 `schedule_scope`(422)로 조회 없이 거부한다. 수치는 `scheduleScope` 한 곳이다.
+- 실패 구분·철회: 미연결·재연결 필요 회원은 승인 버튼이 없고 POST도 `invalid_gate`다. 연결 해제는 토큰 삭제·대기/미조회 승인 `denied`·provider revoke 요청(실패는 상세 없는 로그)이다. provider가 refresh를 거부하면(400/401) 상태 `reconnect`·조회 `failed`다. 일시 오류는 8초 예산 안에서 최대 3회 시도 뒤 `failed`다. 친구 해제·차단·unpair 뒤에는 기존 sweep의 `revoked`가 consume·result를 막고 disclosure를 지운다. `schedule.commit`은 조회·공개 없이 기존 stub이다.
+- adapter: `core.ts`는 consume 응답의 disclosure를 그대로 `done` 결과로 보내고, `lookup=failed`면 `failed`, 그 밖은 `denied`다.

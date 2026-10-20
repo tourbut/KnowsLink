@@ -84,7 +84,7 @@ func memberFixtures() []uiFixture {
 	queryConnected := gate(true, "pending")
 	queryConnected["Calendar"], queryConnected["Scope"], queryConnected["Summary"], queryConnected["FromAgent"] = "connected", calendarGateScope, querySummary, humanAgent{ID: peer.ID, Name: "합성 친구 도우미", Client: supportedClient, Short: peer.Short}
 	queryUnconnected := gate(false, "pending")
-	queryUnconnected["Calendar"], queryUnconnected["Summary"] = "none", querySummary
+	queryUnconnected["Calendar"], queryUnconnected["Summary"], queryUnconnected["CanDeny"] = "none", querySummary, true
 	queryApproved := gate(false, "approved")
 	queryApproved["Calendar"], queryApproved["Scope"], queryApproved["Summary"] = "connected", calendarGateScope, querySummary
 	return []uiFixture{

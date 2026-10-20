@@ -39,6 +39,11 @@ func sign(t *testing.T, private ed25519.PrivateKey, raw map[string]any) []byte {
 	return data
 }
 
+// commitBody is a schedule.commit stub body; commit has no accept-time scope, so capacity tests seed with it.
+func commitBody() map[string]any {
+	return map[string]any{"slot": map[string]any{"start": "2026-12-01T01:00:00Z", "end": "2026-12-01T01:30:00Z"}, "timezone": "Asia/Seoul", "commitment": "synthetic"}
+}
+
 // queryBody is a D010-valid window: the next whole hour from now, one hour long, 30-minute unit.
 func queryBody() map[string]any { return queryBodyAt(time.Now()) }
 func queryBodyAt(now time.Time) map[string]any {

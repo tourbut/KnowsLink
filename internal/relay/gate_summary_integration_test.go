@@ -26,6 +26,8 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 		f.mutate(func(st *State) {
 			st.Agents["agent_b"].Owner = st.Members[member].Owner
 			st.Agents["agent_b"].Name = "밥의 도우미"
+			// A connected calendar keeps the approve path; without a provider the lookup fails and discloses nothing.
+			st.Calendars = map[string]*Calendar{member: {Sealed: []byte("no-provider"), State: "connected"}}
 		})
 		raw := map[string]any{}
 		_ = json.Unmarshal(wire(t, f.private["agent_a"], firstID, "agent_a", "agent_b", intent, "summary-key-0001", "", body, time.Now().Add(180*time.Second)), &raw)

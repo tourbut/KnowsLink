@@ -56,6 +56,19 @@ type Lookup struct {
 
 type span struct{ Start, End time.Time }
 
+// canonicalRaw re-canonicalises a stored disclosure: the JSONB column reorders keys and adds spaces on the way back.
+func canonicalRaw(raw json.RawMessage) string {
+	var v any
+	if json.Unmarshal(raw, &v) != nil {
+		return ""
+	}
+	out, err := Canonical(v)
+	if err != nil {
+		return ""
+	}
+	return string(out)
+}
+
 var errReconnect = errors.New("calendar_reconnect")
 
 func (st *State) calendar(member string) *Calendar {

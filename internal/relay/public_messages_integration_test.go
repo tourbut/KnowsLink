@@ -298,7 +298,8 @@ func TestSharedMessageCapacityHTTP(t *testing.T) {
 	f.mutate(func(st *State) {
 		for i := 0; i < 99; i++ {
 			id := fmt.Sprintf("0199a3f2-4c10-7a11-8b22-%012x", i)
-			raw := wire(t, f.private["agent_a"], id, "agent_a", "agent_b", "schedule.query", fmt.Sprintf("capacity-seed-%04d", i), "", queryBody(), time.Now().Add(180*time.Second))
+			// schedule.commit has no per-friend accept scope (SAR-SCHEDULE-001 limits schedule.query to 5 per 24h).
+			raw := wire(t, f.private["agent_a"], id, "agent_a", "agent_b", "schedule.commit", fmt.Sprintf("capacity-seed-%04d", i), "", commitBody(), time.Now().Add(180*time.Second))
 			e, _ := Parse(raw)
 			if _, err := st.ingest("agent_a", e, "", time.Now().UTC()); err != nil {
 				t.Fatal("seed", err)
@@ -310,7 +311,7 @@ func TestSharedMessageCapacityHTTP(t *testing.T) {
 	for i := 99; i < 107; i++ {
 		id := fmt.Sprintf("0199a3f2-4c10-7a11-8b22-%012x", i)
 		raw := map[string]any{}
-		_ = json.Unmarshal(wire(t, f.private["agent_a"], id, "agent_a", "agent_b", "schedule.query", fmt.Sprintf("capacity-race-%04d", i), "", queryBody(), time.Now().Add(180*time.Second)), &raw)
+		_ = json.Unmarshal(wire(t, f.private["agent_a"], id, "agent_a", "agent_b", "schedule.commit", fmt.Sprintf("capacity-race-%04d", i), "", commitBody(), time.Now().Add(180*time.Second)), &raw)
 		raw["priority"] = "high"
 		body := sign(t, f.private["agent_a"], raw)
 		wg.Add(1)

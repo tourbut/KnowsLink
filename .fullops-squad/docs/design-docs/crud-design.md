@@ -2,9 +2,9 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-14
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SCHEDULE-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
@@ -114,3 +114,13 @@ agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다.
 ## Google 연결 CRUD — SAR-GOOGLE-CONNECT-001-DEV
 
 start는 Device 요청만 생성한다. Google callback은 요청의 Owner와 prepared 상태를 갱신한다. 최근 인증된 동일 회원의 device-confirm만 독립 agent를 생성한다. 서명된 poll은 승인 전 회원·agent를 반환하지 않는다. 기존 complete는 키·credential을 생성하고 요청을 소비한다. 기존 cancel·revoke·cleanup을 재사용하며 관계 요청/수락은 변경하지 않는다. 타 회원 재바인딩, 타 키 조회, 만료·재실행은 거부한다. 상세 계약은 D05와 D06을 따른다.
+
+## 캘린더 연결 CRUD — SAR-SCHEDULE-001-DEV
+
+| 동작 | 생성 | 갱신 | 삭제 |
+|---|---|---|---|
+| 연결 동의 callback | `Calendars[member]`(봉인 토큰, connected) | 기존 연결 덮어쓰기 | — |
+| 승인(approve, schedule.query) | `Gate.Lookup{Started}` | lookup 결과(done+disclosure 또는 failed), 거부 시 `Calendars[member].State=reconnect` | — |
+| 결과 수락(`relay.result done`) | R 메시지 | 부모 completion=done | `Gate.Lookup.Disclosure` |
+| 연결 해제 | — | 대기·미조회 승인 gate → denied | `Calendars[member]`, provider revoke 요청 |
+| sweep | — | lease 1분 초과 lookup → failed | approved가 아니거나 부모 만료·완료된 gate의 disclosure |

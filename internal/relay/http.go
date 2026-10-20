@@ -473,7 +473,7 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		if g.Lookup != nil {
 			v["lookup"] = g.Lookup.State
 			if g.Lookup.State == "done" && len(g.Lookup.Disclosure) > 0 {
-				v["disclosure"] = g.Lookup.Disclosure
+				v["disclosure"] = json.RawMessage(canonicalRaw(g.Lookup.Disclosure))
 			}
 		}
 		return v, nil
@@ -587,6 +587,7 @@ func (s *Service) gateView(w http.ResponseWriter, r *http.Request, auth ownerAut
 			view["Summary"], view["Text"] = summary, text
 			// A request whose content cannot be confirmed keeps no approve/deny form (3단위 '확인할 수 없습니다').
 			view["Active"] = active && summary != nil
+			view["CanDeny"] = view["Active"]
 			view["Body"], view["Intent"], view["Scope"] = string(body), e.Intent, gateScopes[e.Intent]
 			if e.Intent == "schedule.query" {
 				// Only a connected member can answer; the fixed SAR-SCHEDULE-001 explanation replaces the U5 text then (SC-07).

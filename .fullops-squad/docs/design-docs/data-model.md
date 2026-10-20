@@ -2,9 +2,9 @@
 id: D06
 title: 엔티티정의서
 status: review
-updated: 2026-10-12
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SCHEDULE-001-DEV]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
@@ -90,3 +90,8 @@ State.HTTP는 무작위 입장 token을 키로 하는 `{Clean,Exp,Owner}` map이
 ## Google 연결 상태 — SAR-GOOGLE-CONNECT-001-DEV
 
 기존 relay state JSON의 Connection에 `Device bool`을 추가하고 GoogleAttempt에 `Connection string`을 추가한다. requested에서는 Owner/Agent가 비어 있다. Google callback은 Owner를 바인딩하고 prepared로 전환한다. 명시적 동의는 새 Agent를 생성하고 approved로 전환한다. 기존 complete가 키·credential을 저장하고 consumed로 전환한다. 취소·만료·소비 상태는 재사용하지 않는다. 같은 회원의 두 요청은 별도 agent와 키를 갖는다. 관계는 자동 생성하지 않는다. 승인 뒤 완료 응답이 유실되면 미사용 agent가 남을 수 있으므로 홈에서 폐기 후 새 요청을 시작한다. JSON 추가 필드이며 SQL migration은 없다. D07 물리 설계와 D08 생성 테이블 정의는 변경하지 않는다.
+
+## 캘린더 연결과 조회 기록 — SAR-SCHEDULE-001-DEV
+
+relay state JSON에 `Calendars map[memberID]*Calendar{Sealed []byte, State "connected"|"reconnect", Changed}`를 추가한다. `Sealed`는 AES-256-GCM nonce||ciphertext이며 키는 env `KNOWSLINK_CALENDAR_KEY`로만 프로세스에 있다. 키를 잃으면 모든 연결을 다시 받아야 한다.
+`Gate`에 생략 가능 `Lookup{Started, Finished, State ""|done|failed, Disclosure json.RawMessage}`를 추가한다. `Disclosure`는 canonical `{window, granularity_min, busy[]}`이며 결과 수락·만료·철회·결정 변경 시 지운다. 바쁨 구간 원본·제목·참석자·캘린더 ID는 어디에도 저장하지 않는다. `GoogleAttempt`에 `Calendar bool`을 추가한다. JSON 추가 필드이며 SQL migration·D07·D08 변경은 없다.
