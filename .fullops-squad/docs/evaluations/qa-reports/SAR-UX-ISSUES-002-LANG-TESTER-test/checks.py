@@ -73,7 +73,7 @@ for who, L in [("en", "en"), ("ko", "ko"), ("none", "ko")]:
     chk(f"settings_{who}_two_radios_labels_and_checked", [(r[0], r[2], r[3]) for r in radios] == [("ko", "ko", "한국어"), ("en", "en", "English")] and [r[0] for r in radios if r[1]] == [L], radios)
     btn = re.search(r'<form method="post" action="/home/language">.*?<button[^>]*>(.*?)</button>', m, re.S).group(1)
     chk(f"settings_{who}_save_button_and_no_autosubmit", btn == {"en": "Save language", "ko": "언어 저장"}[L] and not re.search(r"onchange|onclick|<script", m), btn)
-    chk(f"settings_{who}_language_group_radiogroup_legend_help", '<fieldset role="radiogroup" aria-describedby="language-help"><legend>' in m and 'id="language-help"' in m, "")
+    chk(f"settings_{who}_language_group_radiogroup_legend_help", f'<fieldset role="radiogroup" aria-describedby="{"language-unsaved language-help" if who == "none" else "language-help"}"><legend>' in m and 'id="language-help"' in m and (('id="language-unsaved"' in m) == (who == "none")), "")  # b11d5b4 V-LANG-03: unsaved note joins the description only when nothing is saved
     chk(f"settings_{who}_language_section_anchor", '<section id="language" aria-labelledby="language-h">' in m, "")
 
 # ---------------------------------------------------------------- 2 every designated screen in both languages

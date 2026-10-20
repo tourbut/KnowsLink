@@ -4,10 +4,59 @@ status: review
 updated: 2026-10-20
 owner: tester
 tasks: [SAR-UX-ISSUES-002-LANG-TESTER]
-summary: "7704e6d(제품 2ff9e44) 격리 fixture 독립 QA: U3 언어 저장·우선순위·두 언어 지정 화면·상태 불변·3폭·키보드 PASS. critical·high 없음, medium 1건(회원 요청 한도 429 화면이 항상 한국어), low 관찰 4건"
+summary: "b11d5b4(제품 665895a) 재확인: D-LG-01 해소, 저장값 회원 언어 링크 대체·README hreflang·your 문구·미저장 표시·details 접근성 이름 PASS, 이전 PASS 회귀 없음. 새 결함 없음, low 관찰 O-LG-05·06 추가. 첫 attempt 7704e6d 기록 보존"
 ---
 
 # SAR-UX-ISSUES-002-LANG-TESTER 독립 QA
+
+## 재확인 (DEV b11d5b4, 제품 665895a) — 2026-10-20
+
+대상 fullops/dev `b11d5b49bddb94f97461d7f33be543f9d003fbc5`(제품 `665895a`), fixture `http://127.0.0.1:18933`(초기 상태, 기준 tester `41812cc`). 서버가 이 SHA인지 tester가 독립 확인하지는 못했다. 다만 이전 SHA에 없던 동작(링크 대체·미저장 문단·429 언어)이 모두 나타나 수정판이 떠 있음을 행동으로 확인했다. 제품 코드는 고치지 않았다.
+
+**결론: 지시 항목 모두 PASS. D-LG-01 해소. 새 결함 없음. low 관찰 2건(O-LG-05·06) 추가. 이전 PASS 핵심 회귀 없음.** 스크린리더 낭독·Chrome 설정의 실제 200% Page zoom·저장 실패(503)·공용 admission 503은 not_run이다.
+
+| 지시 항목 | 판정 | 근거 |
+|---|---|---|
+| D-LG-01 회원 한도 429 언어 | **PASS(해소)** | [rate429b.py](rate429b.py) → [rate429b-result.json](rate429b-result.json) 65/65. 회원 3계정×쿠키 변형 11조합 모두 `<html lang>`·`Content-Language`가 **쿠키 언어**(`en`→en, `ko`→ko, 없음·`xx`·`EN`→ko)와 일치, 제목 ‘Request limit · KnowsLink’/‘요청 제한 · KnowsLink’, 본문에 재시도 KST 시각, 복귀 링크 `/home`(내부), 영어판 한글 0, 언어 쿠키 미설정. 이전 실패 조합(`ko` 저장+쿠키 `en`, `none`+쿠키 `en` 등)이 이제 영어다. 익명 `/`를 쿠키 `en`으로 30번째 GET에서 429 → `lang=en`·`Content-Language: en`·‘Request limit’ |
+| 503 | not_run | DB 장애 주입 수단 없음. 단위·통합 검사는 DEV 보고(`TestAdmissionRefusalsFollowBrowserLanguage`) |
+| 저장값 회원 `en`·`ko`: 공개 첫페이지·device·remote 언어 링크 → ‘설정에서 변경’ | **PASS** | [recheck.py](recheck.py) 163/163. 세 화면 × 쿠키 없음/반대/같음 = 18곳 모두 `<span class="lang">English·Change in Settings</span>`/`한국어·설정에서 변경`, href `/home/account#language`, `/lang/` 링크·`nav.lang` 0, 200 화면에 내부 표식 헤더 없음. 링크 대상은 설정 언어 절이며 저장값이 checked. 수동 `/lang/` 호출은 저장값을 못 이기고 화면은 그대로다. 실제 키보드 [swap](browser-chrome-swap.json): Chrome 104·Edge 104 PASS — Tab 정지점(접근성 이름 ‘Change in Settings’/‘설정에서 변경’)·focus 보임·높이 44px 이상·Enter로 `/home/account#language`·POST 없음·언어명 링크 정지점 없음·3폭(1440·390·320) 넘침 0 |
+| `none`·비로그인은 `/lang/` 링크 유지·동작 | **PASS** | HTTP: `none`(쿠키 없음·`en`)×3화면 링크 2개 유지·설정 링크 없음, 영어 링크 클릭 → 303·쿠키 `en`·같은 화면 영어·현재 표시 이동, 한국어로 복귀. 비로그인도 3화면 동작. 브라우저 swap의 `keep_*` 12곳(none·익명 × 쿠키 없음/en × 3화면): 키보드 Enter로 같은 화면에서 언어 전환 PASS |
+| 한국어 README 링크 `hreflang=ko`와 언어 안내 | **PASS** | 영어 화면 README 링크 18개(공개 첫페이지 5 × 비로그인·`en` 회원, 에이전트 안내 claude·grok·dots 변형) 모두 `hreflang="ko"`와 끝 ‘(in Korean)’. 한국어 화면 18개는 `hreflang="ko"`만(영어 안내 없음). 영어 화면의 다른 외부 링크는 없음 |
+| 설정 ‘미저장’ 표시(`none`) | **PASS** | `none`: 쿠키 없음 → ‘이 브라우저의 선택을 표시합니다. 아직 계정에 저장되지 않았습니다.’, 쿠키 `en` → ‘This browser’s choice is shown. It is not saved to your account yet.’, radiogroup `aria-describedby="language-unsaved language-help"`(접근성 트리 description에 문구 포함), 3폭 넘침 0·가시. 저장값 있는 `en`·`ko`는 쿠키 3종 모두 문단 없음 |
+| 영어 문구 표본(your) | **PASS** | 영어 화면 31곳(지정 화면 17 + 에이전트 안내 9변형 + 상태 조회·새 대화·연결 상세·비로그인 첫페이지) 전부 고유 이름(My agents·My name·My friend code) 밖의 `my` 0, ‘on my computer’ 등 옛 문구 0. designer 목록 표본 9개(your computer·Connect your client·Manage your agents·Your own agents can talk·Sign in and choose your name·Connect your agent·your sending agent·Start a conversation with your agent·설정 도움말 ‘Selecting a language changes nothing until you save. You stay signed in.’) 모두 존재. 한국어 설정 도움말은 그대로 |
+| details 요약 접근성 이름에 장식 문자 없음(O-LG-03) | **PASS(해소)** | 실제 AX 측정(Chrome·Edge, 영어·한국어): 설정 Tab 정지점의 요약은 role DisclosureTriangle, 이름 ‘Friend code (replace)’/‘친구 코드 교체’이며 ▸·▾ 없음. [keys](browser-chrome-keys-en.json) 17×4 PASS(이전 15 + 새 2) |
+| 이전 PASS 핵심 빠른 회귀 | **PASS** | [checks.py](checks.py) 232/232(기대 1곳 갱신, 아래), [mutate.py](mutate.py) 64/64(기대 1곳 갱신), Chrome layout en 128·ko 72, Edge layout en 128·ko 72, keys 17×4, langflow 17×2, zoom 16, nocookie 10, 실제 키 입력 저장 73(en→ko→en, ko→en→ko; 마지막에 두 계정 원래 값으로 복구 확인). 설정 순서·우선순위·계정 교대·두 언어 lang·넘침 0·44px 모두 유지 |
+
+실행 명령(종료코드 보존, 파이프 없음): `python checks.py`, `python recheck.py`, `python rate429b.py`, `bash run_readonly.sh`, `node browser.mjs 9333 chrome layout ko`, `node browser.mjs 9333|9334 chrome|edge swap`, `node browser.mjs 9335 chrome-nocookie nocookie`, `python mutate.py`, `node browser.mjs 9333 chrome save`. Chrome 155.0.8059.85·Edge 155.0.4283.62 headless. 시나리오는 [scenarios](../../scenarios/SAR-UX-ISSUES-002-LANG-TESTER.md)의 재확인 절이다.
+
+### 재확인에서 갱신한 기대 (의도된 변경만, 검사를 낮추지 않음)
+
+- `checks.py` `settings_none_language_group_radiogroup_legend_help`: V-LANG-03으로 `none`의 radiogroup 설명이 `language-unsaved language-help`가 됐다. 기대를 ‘`none`만 두 id + 미저장 문단 존재, `en`·`ko`는 `language-help`만 + 문단 없음’으로 **더 엄격히** 바꿨다(첫 실행 231/232, [로그](checks-b11d5b4-run1.log)).
+- `mutate.py` `reject_*_422_alert_in_saved_language`(5건): 영어 오류 문구가 designer 지정 ‘Choose 한국어 or English.’가 되어 한글 잔존 검사에 걸렸다. 그 문장만 제외해 다시 실행 64/64([3차 로그](mutate-run3-error-text-designer-hangul-expectation.log)). 한글이 보이는 이유와 접근성 관찰은 O-LG-05.
+- 검사 결함 보정(제품 결함 아님): `recheck.py` 첫 실행 162/163은 `/auth/verify`가 쿠키만 보는 설계(O-LG-01)인데 영어 회원 화면 한글 잔존 검사에 넣은 내 기대 오류([로그](recheck-run1-verify-page-cookie-only-expectation-error.log)). `browser.mjs swap`의 `keep_anon_*_enter_on_other_language` 첫·둘째 실행 1~2건 FAIL은 클릭한 `/lang/*`가 **비로그인 요청 한도(약 30 GET/분)의 429**를 만난 것(path `/lang/en`·lang ko)이다. 한도 창을 기다렸다 다시 누르도록 고치고 재시도 횟수를 결과에 남겼다(Chrome 3, Edge 1). 원 결과: [Chrome 1차](browser-chrome-swap-first-run-nav-timing.json)·[Chrome 2차](browser-chrome-swap-second-run-anon-429-on-click.json)·[Edge 1차](browser-edge-swap-first-run-nav-timing.json)·[Edge 2차](browser-edge-swap-second-run-anon-429-on-click.json).
+
+### 새 관찰 (결함 아님, low)
+
+| ID | 내용 | 재현 | 비고 |
+|---|---|---|---|
+| O-LG-05 | 영어 오류 ‘Choose 한국어 or English.’의 ‘한국어’에 `lang="ko"`가 없다. 언어 선택 radio·링크의 언어명은 `lang="ko"`를 갖는다. 스크린리더가 영어 음성으로 읽을 수 있다(WCAG 3.1.2 부분 언어). | `en` 회원이 `POST /home/language`(`lang=xx`) → 422 | designer가 보이는 라벨과 같게 지정한 문구다. 한국어판의 ‘English’도 같다. designer·dev 판단 |
+| O-LG-06 | 한도 429 화면 관련 세 가지: (1) 저장값 `en` 회원이 언어 쿠키가 없으면 429 화면이 한국어다(LANG-VISUAL 결정대로, 회원 조회 없음). (2) `Retry-After` 헤더가 없고 재시도 시각은 본문의 KST 문장뿐이다. (3) 쿠키가 없을 때 `?lang=en`이 429 화면에도 적용된다(`en`). | `rate429b.py`의 `en_saved_cookie_None`과 ‘429 with ?lang=en’ 출력 | (1)(2)는 설계 허용 범위. 별개로 회원 303 응답(`POST /home/language`·`/auth/logout`)에 내부 표식 `X-KnowsLink-Lang-Saved: 1`이 남는다([marker-headers.log](marker-headers.log)): DEV 보고의 알려진 한계이며 회원 자신의 저장 여부만 뜻한다. 확인한 200 화면에는 없다 |
+
+### 재확인 not_run
+
+- 스크린리더 낭독, Chrome 설정 Page zoom 실제 200%(reflow 등가 PASS), Firefox·Safari·모바일 실기.
+- 저장 실패 503, 공용 admission 503(DB 장애 주입 수단 없음), remote 복귀 화면, `/auth/verify` 실제 코드 입력 화면.
+- `make lint`·`make test`·integration: coor·DEV의 Linux EXIT=0을 재사용(재실행 안 함). 영어 문장 전체 문체 교정은 범위 밖.
+
+### 재확인이 fixture에 남긴 것 (designer 공유)
+
+- `en`·`ko`의 저장 언어를 `mutate.py`·`browser.mjs save`·같은 값 저장으로 바꿨다가 모두 원래 값으로 복구했다(마지막 확인: `en`=English, `ko`=한국어, `none`=저장값 없음·미저장 문단 표시). `none`은 저장하지 않았다.
+- `rate429b.py`가 회원 3계정과 비로그인 `/`의 요청 한도를 일부러 소진했다(각 약 1분). 이 시간 동안 같은 계정·같은 IP의 GET이 429를 받았을 수 있다. 상태(친구·에이전트·이름·승인)는 바꾸지 않았다.
+- 이 재확인의 캡처가 같은 이름의 이전 PNG를 덮어썼다(이전 PNG는 cca284e). 새 캡처: `chrome-swap-{en|ko}-{public|connect-device|remote}-{1440|390|320}.png`, `chrome-unsaved-none-{ko|en}-account-{1440|390|320}.png`.
+
+---
+
+# 첫 attempt (7704e6d) 기록
 
 ## 대상과 결론
 
@@ -32,7 +81,7 @@ summary: "7704e6d(제품 2ff9e44) 격리 fixture 독립 QA: U3 언어 저장·�
 
 ## 결함
 
-### D-LG-01 (medium) 회원 요청 한도 429 화면이 항상 한국어다
+### D-LG-01 (medium) 회원 요청 한도 429 화면이 항상 한국어다 — **b11d5b4에서 해소(위 재확인 절)**
 
 - 재현: `python rate429.py`(합성 `en` 계정으로 `GET /home/account`를 분당 한도까지 반복, 약 40번째 응답). 계정별로 저장값·쿠키를 바꿔 반복했다.
 - 기대: DEV 보고는 ‘admission 429/503 화면은 회원 저장값이 아니라 브라우저 쿠키 언어를 따른다’고 적었다. 따라서 `__Host-kl_lang=en` 쿠키가 있으면 영어, 설계 U3은 거부·오류 화면도 번역 범위로 둔다.
@@ -66,7 +115,7 @@ summary: "7704e6d(제품 2ff9e44) 격리 fixture 독립 QA: U3 언어 저장·�
 |---|---|---|---|
 | O-LG-01 | 영어를 저장한 로그인 회원이 `/auth/verify`(만료 코드 410)를 열면 한국어다. 이 경로는 쿠키만 본다. | `en` 세션으로 `GET /auth/verify` → `Content-Language: ko` | 비로그인 화면이라 회원을 조회하지 않는 설계로 보인다. 설계 문서는 로그인 전 화면의 언어를 쿠키로 둔다. designer 판단 |
 | O-LG-02 | 저장 버튼 문구가 단일 언어(‘언어 저장’ 또는 ‘Save language’)다. 설계 U3 본문은 ‘언어 저장 / Save language’ 병기를 적고 와이어프레임은 ‘[언어 저장]’이다. | 설정 화면 | 설계 두 곳이 어긋나 해석 차이다. 영어 화면에서 한국어를 읽지 못하는 사용자에게는 현재 구현이 낫다. designer 확인 |
-| O-LG-03 | `details` 요약의 접근성 이름에 장식 문자가 붙는다(‘▸ Friend code (replace)’). CSS `::before` 내용이 이름에 들어간다. | 설정 키 정지점의 AX 이름 | 이번 변경 이전부터 있던 공용 스타일이다. 두 언어 동일 |
+| O-LG-03 (b11d5b4에서 해소) | `details` 요약의 접근성 이름에 장식 문자가 붙는다(‘▸ Friend code (replace)’). CSS `::before` 내용이 이름에 들어간다. | 설정 키 정지점의 AX 이름 | 이번 변경 이전부터 있던 공용 스타일이다. 두 언어 동일 |
 | O-LG-04 | 한국어 legacy 화면에 ‘wake’·‘idle’·‘TTL’·‘bytes’·‘text’ 같은 영어 기술 용어가 남는다. | 한국어 `/home/legacy` 설명문 | 명령·프로토콜 용어로 원문이다. 번역 누락은 아니다 |
 
 시각 판정(390px 공개 첫페이지의 언어 링크가 다음 줄로 내려감 등)은 tester 범위 밖이며 designer 몫이다.

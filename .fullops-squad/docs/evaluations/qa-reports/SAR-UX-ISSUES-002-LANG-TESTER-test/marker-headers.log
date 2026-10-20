@@ -1,0 +1,7 @@
+en GET /lang/ko?back=/ 303 no internal marker header
+en POST /home/language 303 {'x-knowslink-lang-saved': '1'}
+en POST /auth/logout 303 {'x-knowslink-lang-saved': '1'}
+en GET /home/receipts?agent=nope 303 no internal marker header
+none GET /lang/ko?back=/ 303 no internal marker header
+none POST /auth/logout 303 no internal marker header
+none GET /home/receipts?agent=nope 303 no internal marker header

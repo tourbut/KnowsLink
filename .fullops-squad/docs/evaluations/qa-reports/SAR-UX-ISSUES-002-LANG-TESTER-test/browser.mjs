@@ -1,7 +1,7 @@
 // Independent browser checks for the LANG fixture (U3 settings/language, U7 header): real key events (CDP Input), 3-width layout matrix
 // in both languages, focus walk, accessibility-tree names, designer captures.
 // Usage: node browser.mjs <cdp-port> <label> <stage> [acct]
-//   stage = layout | keys | langflow | save        (layout/keys/langflow are GET-only; save does the real, restored language save)
+//   stage = layout | keys | langflow | save | swap        (layout/keys/langflow are GET-only; save does the real, restored language save)
 //   acct  = en | ko   (which synthetic member to sign in as for layout/keys; default en)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -150,6 +150,8 @@ try {
     const exp = ko ? ['본문으로 건너뛰기', 'KnowsLink', '설정', '대화', '친구', '내 에이전트', '서비스 안내', '내 이름', '이름 저장', '친구 코드 교체', '언어 저장'] : ['Skip to content', 'KnowsLink', 'Settings', 'Conversations', 'Friends', 'My agents', 'Service guide', 'My name', 'Save name', 'Friend code (replace)', 'Save language'];
     const names = real.map(s => (s.axName || '').replace(/^[▸▾] /, '')); obs.summaryNameHasDecorativeGlyph = real.some(s => /^[▸▾] /.test(s.axName || '')); let at = -1; const missing = exp.filter(n => { const i = names.findIndex((x, j) => j > at && x === n); if (i < 0) return true; at = i; return false; });
     check(`keys_${L}_settings_tab_order_follows_reading_order`, missing.length === 0, {missing, names});
+    check(`keys_${L}_settings_no_stop_has_decorative_glyph_in_accessible_name`, !real.some(s => /[▸▾]/.test(s.axName || '')), real.filter(s => /[▸▾]/.test(s.axName || '')).map(s => [s.key, s.axName])); // O-LG-03 recheck: DEV b11d5b4 alt text for summary::before
+    const sums = real.filter(s => s.tag === 'SUMMARY'); check(`keys_${L}_settings_summary_stops_present_and_named`, sums.length >= 1 && sums.every(s => s.axName && s.axName.trim().length > 0), sums.map(s => s.axName));
     const radioStops = real.filter(s => s.type === 'radio'); check(`keys_${L}_settings_radiogroup_is_one_tab_stop_on_checked_radio`, radioStops.length === 1, radioStops.map(s => s.key));
     const radioAx = real.find(s => s.type === 'radio'); check(`keys_${L}_settings_radio_accessible_name_is_language_name`, radioAx && (radioAx.axName === (L === 'en' ? 'English' : '한국어')), radioAx);
     // arrow selection changes the radio only
@@ -290,6 +292,65 @@ try {
     await metrics(1440, 900);
     await saveVia('en', 'en'); // restore
     await saveVia('ko', 'en'); await saveVia('ko', 'ko'); // restore
+  }
+
+  if (stage === 'swap') {
+    // V-LANG-01/F3 recheck: saved member sees 'language · Change in Settings' (no /lang/ links) on public / device / remote; none and anonymous keep the language links.
+    const SW = {en: ['English', 'Change in Settings'], ko: ['한국어', '설정에서 변경']};
+    const SCR = [['public', '/'], ['connect-device', '/connect/' + ID.device], ['remote', '/remote/consent/' + ID.remote]];
+    for (const who of ['en', 'ko']) {
+      for (const [n, p] of SCR) {
+        await metrics(1440, 900); await anon(null); await as(who); await go(ORIGIN + p);
+        const st = await js(`(()=>{const sp=document.querySelector('span.lang');const a=sp&&sp.querySelector('a');return {text:sp&&sp.textContent, href:a&&a.getAttribute('href'), langRoute:document.querySelectorAll('a[href^="/lang/"]').length, nav:document.querySelectorAll('nav.lang').length, h:a&&Math.round(a.getBoundingClientRect().height), w:a&&Math.round(a.getBoundingClientRect().width)}})()`);
+        check(`swap_${who}_${n}_span_text_and_link`, st.text === `${SW[who][0]}·${SW[who][1]}` && st.href === '/home/account#language' && st.langRoute === 0 && st.nav === 0, st);
+        check(`swap_${who}_${n}_link_target_at_least_44px_high`, st.h >= 44, st);
+        // keyboard: the Tab walk finds the link as a stop with its accessible name; Enter opens settings on the language section
+        const stops = await tabStops(20); const i = stops.findIndex(x => x.axName === SW[who][1]);
+        check(`swap_${who}_${n}_settings_link_is_a_tab_stop_with_visible_focus`, i >= 0 && focusOk(stops[i]) && stops[i].h >= 44, stops[i] ?? stops.map(x => x.axName));
+        check(`swap_${who}_${n}_no_language_name_links_left_as_tab_stops`, !stops.some(x => x.axName === 'English' || x.axName === '한국어'), stops.map(x => x.axName));
+        const ax = (await axNames()).map(x => x.name); check(`swap_${who}_${n}_ax_tree_has_language_name_and_settings_link`, ax.includes(SW[who][0]) && ax.includes(SW[who][1]), ax.filter(x => /English|한국어|Settings|설정/.test(x)));
+        await js(`document.querySelector('span.lang a').focus()`); const reqBefore = requests.length; await enterNav();
+        const land = await js(`({path:location.pathname, hash:location.hash, lang:document.documentElement.lang, checked:document.querySelector('input[name=lang]:checked')?.value, sec:!!document.getElementById('language')})`);
+        check(`swap_${who}_${n}_enter_opens_settings_language_section_with_saved_value`, land.path === '/home/account' && land.hash === '#language' && land.lang === who && land.checked === who && land.sec, land);
+        check(`swap_${who}_${n}_enter_made_only_navigation_no_post`, requests.slice(reqBefore).every(r => r.method === 'GET'), requests.slice(reqBefore));
+        for (const [w, h] of WIDTHS) {
+          await metrics(w, h); await go(ORIGIN + p); const r = await layout(); const nm = `${n}-${w}`;
+          check(`swap_layout_${who}_${nm}`, r.over <= 0 && r.small.length === 0 && r.clipped.length === 0 && r.hidden.length === 0 && r.ell.length === 0 && r.nameOver.length === 0 && r.btnClip.length === 0 && r.h1 === 1 && r.lang === who, r);
+          if (CAP) await shot(`swap-${who}-${nm}`);
+        }
+        await metrics(1440, 900);
+      }
+    }
+    // none (no saved value) and anonymous: the language links stay, the keyboard works; then the unsaved settings note renders at three widths in both languages
+    for (const [who, cookie] of [['none', null], ['none', 'en'], [null, null], [null, 'en']]) {
+      for (const [n, p] of SCR) {
+        await metrics(1440, 900); await anon(who ? null : cookie); if (who) { await as(who); if (cookie) await send('Network.setCookie', {name: '__Host-kl_lang', value: cookie, url: ORIGIN + '/', secure: true, httpOnly: true, sameSite: 'Strict'}); }
+        await go(ORIGIN + p); const L0 = cookie || 'ko'; const tg = `${who || 'anon'}_${cookie || 'nocookie'}_${n}`;
+        const st = await js(`({nav:document.querySelectorAll('nav.lang').length, langRoute:document.querySelectorAll('a[href^="/lang/"]').length, swap:document.querySelectorAll('a[href="/home/account#language"]').length, lang:document.documentElement.lang})`);
+        check(`keep_${tg}_lang_links_present_no_settings_swap`, st.nav === 1 && st.langRoute === 2 && st.swap === 0 && st.lang === L0, st);
+        const stops = await tabStops(20); const target = L0 === 'en' ? '한국어' : 'English'; const i = stops.findIndex(x => x.axName === target);
+        check(`keep_${tg}_other_language_link_is_a_44px_tab_stop_with_focus`, i >= 0 && stops[i].h >= 44 && focusOk(stops[i]), stops[i] ?? stops.map(x => x.axName));
+        await js(`document.querySelector('nav.lang a[lang=${L0 === 'en' ? 'ko' : 'en'}]').focus()`); await enterNav();
+        for (let r = 0; r < 4 && (await rateLimited()); r++) { // the clicked /lang/* hop hit the anonymous request limit: wait out the window and click again (counted, not hidden)
+          obs.langClickLimitRetries = (obs.langClickLimitRetries || 0) + 1; await sleep(15000); await go(ORIGIN + p);
+          await js(`document.querySelector('nav.lang a[lang=${L0 === 'en' ? 'ko' : 'en'}]').focus()`); await enterNav();
+        }
+        const after = await js(`({path:location.pathname, lang:document.documentElement.lang})`);
+        check(`keep_${tg}_enter_on_other_language_switches_same_screen`, after.path === p && after.lang === (L0 === 'en' ? 'ko' : 'en'), after);
+      }
+    }
+    for (const [cookie, L] of [[null, 'ko'], ['en', 'en']]) {
+      await anon(null); await as('none'); if (cookie) await send('Network.setCookie', {name: '__Host-kl_lang', value: cookie, url: ORIGIN + '/', secure: true, httpOnly: true, sameSite: 'Strict'});
+      for (const [w, h] of WIDTHS) {
+        await metrics(w, h); await go(ORIGIN + '/home/account'); const r = await layout();
+        const note = await js(`(()=>{const e=document.getElementById('language-unsaved');return e&&{text:e.innerText, desc:document.querySelector('fieldset[role=radiogroup]').getAttribute('aria-describedby'), vis:e.getClientRects().length>0}})()`);
+        check(`unsaved_note_none_${L}_${w}_visible_text_described_by_and_layout_ok`, !!note && note.vis && note.desc === 'language-unsaved language-help' && r.over <= 0 && r.small.length === 0 && r.clipped.length === 0 && r.hidden.length === 0 && r.btnClip.length === 0 && r.lang === L, {note, r});
+        if (CAP) await shot(`unsaved-none-${L}-account-${w}`);
+      }
+      await metrics(1440, 900);
+      const ax = (await send('Accessibility.getFullAXTree')).nodes.filter(n => !n.ignored && n.role?.value === 'radiogroup');
+      check(`unsaved_note_none_${L}_radiogroup_ax_description_contains_note`, ax.length === 1 && /브라우저의 선택|browser/i.test(ax[0].description?.value ?? ''), ax.map(n => [n.name?.value, n.description?.value]));
+    }
   }
 } catch (e) { check('script_completed_without_exception', false, String(e.stack || e).slice(0, 400)); }
 save(); ws.close();

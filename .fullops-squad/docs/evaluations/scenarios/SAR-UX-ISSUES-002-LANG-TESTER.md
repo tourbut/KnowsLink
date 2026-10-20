@@ -43,3 +43,15 @@ summary: "격리 lang fixture에서 U3 언어 저장·선호 우선순위, U7 �
 - remote 복귀 화면은 fixture가 허용하지 않아 열 수 없다(not_run, DEV 렌더 근거).
 - 실제 확인 메일·Google 인증이 필요한 `/auth/verify` 입력 화면은 열 수 없다. 만료 응답(410)만 확인한다.
 - 시각 수락은 designer, 고정 SHA 코드 리뷰와 통합은 coor가 조정한다.
+
+## 재확인 (b11d5b4, 제품 665895a)
+
+| covers | 독립 checks | 통과 조건 |
+|---|---|---|
+| D-LG-01 admission 429 언어 | `rate429b.py` | 쿠키 언어와 html lang·Content-Language 일치, 쿠키 없음·손상은 한국어, 영어판 한글 0 |
+| 저장값 회원 링크 대체 | `recheck.py` swap_*, `browser.mjs swap` | 공개·device·remote에서 `/lang/` 링크 0, ‘설정에서 변경’이 `/home/account#language`로 키보드 이동 |
+| 미저장·익명 링크 유지 | `recheck.py` unsaved_none_*, `browser.mjs swap` keep_* | 링크 2개 동작, 같은 화면 전환 |
+| README 링크 | `recheck.py` readme_* | 영어 화면 `hreflang=ko`+(in Korean) |
+| your 문구·미저장 문단 | `recheck.py` wording_*, unsaved_note_* | 고유 이름 밖 my 0, 문단 `none`만 |
+| details AX 이름 | `browser.mjs keys` | 이름에 ▸·▾ 없음 |
+

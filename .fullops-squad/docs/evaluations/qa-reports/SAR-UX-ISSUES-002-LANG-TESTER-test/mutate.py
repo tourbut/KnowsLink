@@ -34,7 +34,7 @@ for form, label in [({"lang": "xx"}, "xx"), ({"lang": ""}, "empty"), ({}, "missi
         chk("lang_post_valid_with_extra_field_saves_ko_then_restored", s == 303, (s, h.get("location")))
         b2 = as_("en"); b2.post("/home/language", {"lang": "en"}); continue
     m = main(body)
-    chk(f"reject_{label}_422_alert_in_saved_language", s == 422 and lang_of(body) == "en" and 'role="alert"' in m and hangul_residue(body) == [], (s, lang_of(body), main_text(m)[:200]))
+    chk(f"reject_{label}_422_alert_in_saved_language", s == 422 and lang_of(body) == "en" and 'role="alert"' in m and hangul_residue(body.replace("Choose 한국어 or English.", "")) == [], (s, lang_of(body), main_text(m)[:200]))  # b11d5b4 V-LANG-02: designer-specified sentence shows the visible label '한국어'
     chk(f"reject_{label}_keeps_previous_selection_en_checked", [r[0] for r in re.findall(r'<input type="radio" name="lang" value="(\w+)"( checked)?>', m) if r[1]] == ["en"], re.findall(r'<input type="radio"[^>]*>', m))
     chk(f"reject_{label}_does_not_change_saved_value_other_session", lang_of(as_("en").get("/home/account")[2]) == "en", "")
     chk(f"reject_{label}_message_says_failure_not_saved_and_save_button_still_there", ("not" in main_text(m).lower() or "unsupported" in main_text(m).lower()) and "Save language" in m, main_text(m)[:300])
