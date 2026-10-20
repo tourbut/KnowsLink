@@ -13,7 +13,7 @@ summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우�
 
 ## 현재 사람 친구·대화와 호스트 안내
 
-현재 사용자 설치·기존 업데이트의 정본은 [루트 README](../README.md)다. 구성·개발·운영은 [문서 목차](../docs/README.md)를 따른다. 이 문서의 과거 시험·합성·legacy 절은 당시 근거로 보존한다.
+현재 사용자 설치·기존 업데이트의 정본은 [루트 README](../README.md)다. 회원 화면 **내 에이전트 → 어디에서 사용할까요?**의 Grok Bot·Dots 선택지는 루트 README의 해당 절로, Claude Code 작업 세션 선택지는 아래 [Claude Code 작업 세션 연결](#claude-code-작업-세션-연결--sar-session-peer-001-dev) 절로 연결된다. 화면은 Codex·Hermes Agent를 ‘지원 확인이 필요한 호스트’로 안내하며 설치 명령을 보이지 않는다. 아래 패키지 표의 Codex·Claude Desktop 행은 패키지 검사 기록이며 회원 화면의 지원 표시가 아니다. 구성·개발·운영은 [문서 목차](../docs/README.md)를 따른다. 이 문서의 과거 시험·합성·legacy 절은 당시 근거로 보존한다.
 
 웹에서 친구 수락을 마치면 양쪽 사람의 현재·앞으로 추가할 활성 agent가 연결된다. status/contacts의 현재 대상만 사용하며 친구 해제·차단·키 철회 뒤에는 저장된 대상이라도 보내지 않는다. 이름은 화면 표시용이고 ID와 credential을 대체하지 않는다.
 
@@ -58,7 +58,7 @@ Claude Code 패키지에는 MCP 서버와 함께 함수 hook 모드(`hooks/regis
 5. `knowslink_text_send`는 호출마다 모드가 소유자에게 `KnowsLink 발송 승인: 내 agent → 친구 <이름> · agent <이름> (<peer>). 본문 「…」` 대화상자를 띄운다. 이름은 `plugin.js contact <folder> <peer>` 한 번 실행으로 조회한다(5초, 실패 시 ID만). 대화상자는 새 메시지인지 답장(`reply_to`)인지, 본문 전체 글자 수와 본문 전체를 잘라내지 않고 보인다. 비가시 문자(Cf·Default_Ignorable, 변이 선택자 포함)는 `⟨U+XXXX⟩`로 바꿔 보이고 개수를 적는다. Claude Code 2.1.302 대화상자는 질문을 2000자까지만 그리므로 질문이 2000자를 넘으면 묻지 않고 거부하며 나눠 보내라고 안내한다. 대화상자가 열린 동안 연결이 해제(`replaced`·`off`)되면 `보내기`를 골라도 거부한다. `보내기`를 고른 한 번의 시도만 보낸다(SP-05/06). `Other`에 입력한 글은 승인이 아니다. 취소하거나 `-p` 실행이면 발송을 거부한다. 연결하지 않은 세션의 text 도구 호출은 모두 거부한다.
 6. `/knowslink-session off`는 자식 프로세스를 끝내고 이 세션의 수신·발송을 막는다. `/knowslink-session status`는 구분값·agent·대기 수와 relay 상태를 보인다. watcher는 relay에 HTTP 응답 없이 실패하거나 5xx를 받으면 `knowslink_relay` unreachable을, 다른 수신 오류(키·친구 등)면 error를 내고 모드는 상태줄을 `통신 불가 · 재시도 중` 또는 `수신 오류 · 키·친구 확인`으로 바꾼다. MCP 실패 결과도 `relay unreachable`·5xx일 때는 키·친구 문제가 아니라고 안내한다.
 7. 연결된 세션 안의 같은 프로세스 subagent·teammate(Agent 도구)의 text 도구 호출은 거부한다(SP-04, 사용자 결정 2026-10-17). 모드는 `tool.call` 입력의 `agentId`로 메인 루프와 구별한다. 거부 문구: `KnowsLink: 하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다. 메인 대화에서 사용하세요.` 별도 프로세스 자식은 연결 상태가 없어 미연결 deny를 받는다.
-8. 세션 연결은 소유자의 세션 설정이다. 친구 해제·차단·재수락은 연결을 끄지 않고, 재수락 뒤 `on`을 다시 실행할 필요가 없다. 친구 권한은 relay가 발송마다 다시 확인한다(V04 해석, 사용자 결정 2026-10-17).
+8. 세션 연결은 소유자의 세션 설정이다. relay는 `/knowslink-session on` 여부를 관측하지 않으므로 회원 화면은 세션 연결을 ‘앱에서 확인 필요’로 두고 완료로 표시하지 않는다. 세션의 `/knowslink-session status`로 확인한다. 친구 해제·차단·재수락은 연결을 끄지 않고, 재수락 뒤 `on`을 다시 실행할 필요가 없다. 친구 권한은 relay가 발송마다 다시 확인한다(V04 해석, 사용자 결정 2026-10-17).
 
 한계: 모드 파일이 바뀌어 플러그인이 다시 로드되면 자식 프로세스가 함께 끝나므로 `/knowslink-session on`을 다시 실행한다. Windows에서 `off`나 세션 종료는 lock 파일을 지우지 않고 pid만 죽는다. 다음 `on`이 죽은 pid의 lock을 회수한다. 슬래시 명령 이름이 `knowslink-session`인 이유는 `/knowslink`가 패키지 skill의 명령이기 때문이다. 지원 수준은 '기존 세션 수신'(도착 toast·세션 결속 로컬 사본, 작업 중·대기 양쪽 관측)이며 본문 표시는 '다음 조회'다. 실제 왕복 근거는 [DEV QA 보고](../.fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md)다. 플러그인 자체 검사는 `claude plugin validate adapters`와 `claude plugin test <설치 폴더>/knowslink`다.
 

@@ -1,0 +1,11 @@
+600
+=== RUN   TestConnectBrowserFixture
+    connect_browser_fixture_test.go:122: connect fixture ready; synthetic accounts only
+GET / 200
+POST /fixture/as/a 204
+GET /home/agents 200
+GET /home/agents?use=other&start=first 200
+GET /home/friends 200
+GET /v1/pull 403
+
+EXIT=0

@@ -1,0 +1,92 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-UX-ISSUES-002-CONNECT-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D13",
+    "D10",
+    "D09"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.57,
+      "D02": 0.63,
+      "D03": 0.69,
+      "D04": 0.62,
+      "D05": 0.71,
+      "D06": 0.7,
+      "D07": 0.67,
+      "D08": 0.67,
+      "D09": 0.76,
+      "D10": 0.81,
+      "D11": 0.71,
+      "D12": 0.7,
+      "D13": 0.84
+    }
+  },
+  "usage": {
+    "input_tokens": 2497,
+    "output_tokens": 314,
+    "cost": 0.000104874
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D11",
+    "D12"
+  ],
+  "latency_seconds": 0.637,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "3a0cd82f6297f5101d165a5cd6475616526d40cb",
+  "requires_packet": true,
+  "attempt": "092c653b0baf45238006e75c041662a8",
+  "instruction_sha256": "c3995fe45b471091363fb4ff9daff0f5d8b4428bc3f13edb28506e69e763cc12",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "6da96235ed59cc466b1208bb06404d0b0fd18e92b40e7f5d5b0e4f06143e1f14"
+}

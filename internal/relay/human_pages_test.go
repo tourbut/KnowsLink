@@ -21,7 +21,7 @@ func humanPageFixture() map[string]any {
 		"Friends": []map[string]any{{"ID": "friend-a", "Name": "합성 친구", "State": "active", "Generation": 7}},
 		"Requests": []map[string]any{
 			{"ID": "incoming", "Name": "받은 이름", "State": "pending", "Generation": 8, "Incoming": true, "Exp": "오늘 오후 2:10"},
-			{"ID": "outgoing", "Name": "노출하지 않을 보낸 이름", "State": "pending", "Generation": 9, "Incoming": false, "Exp": "오늘 오후 2:10"},
+			{"ID": "outgoing", "Name": "노출하지 않을 보낸 이름", "State": "pending", "Generation": 9, "Incoming": false, "Exp": "오늘 오후 2:10", "CodeLabel": "입력한 코드 …ab12"},
 		},
 		"Conversations": []map[string]any{{"ID": "conversation-a", "Name": "합성 친구", "FromName": "노우", "ToName": "다닷", "State": "queued", "URL": "/home/conversation?from=agent_a&to=agent_c"}},
 		"Messages": []map[string]any{
@@ -30,6 +30,8 @@ func humanPageFixture() map[string]any {
 		},
 		"CanSend": true, "Attempt": "synthetic-attempt", "Code": "synthetic-friend-code", "Recent": true,
 		"PendingGates": 1, "ConversationID": "conversation-a", "Legacy": true,
+		"Choices": useChoices, "Use": "claude", "Start": "first", "SentRequests": 1,
+		"Resume": map[string]agentResume{"agent_a": {"키 등록 전 · 지문 확인 필요", "합성 다음 행동", "/home/connections/c", "지문 확인"}},
 	}
 }
 

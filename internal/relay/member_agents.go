@@ -109,7 +109,7 @@ func safeProblem(err error) string {
 	case "unsupported_client":
 		return "미지원 클라이언트입니다. Node 22 로컬 클라이언트를 선택하세요."
 	case "reauth_required":
-		return "이 작업은 5분 안의 로그인 신원 재확인이 필요합니다. 홈에서 로그인 신원을 다시 확인하세요."
+		return "이 작업은 5분 안의 로그인 신원 재확인이 필요합니다. 아래 ‘로그인 다시 확인’으로 신원을 확인한 뒤 이 작업을 시작한 화면에서 다시 시도하세요."
 	case "invalid_auth":
 		return "연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다."
 	default:
@@ -239,12 +239,23 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 					view["FormTemplate"], view["FormStatus"], view["Problem"], view["NewName"] = "human-agents", 422, problem, kept
 					return view, nil
 				}
+				// A repeated submit of the same form (double click, resend) returns the agent it already made.
+				attempt := r.FormValue("attempt")
+				scope := agentCreateKey(owner, attempt)
+				if len(attempt) < 16 || len(attempt) > 96 {
+					scope = ""
+				} else if made := st.Agents[st.Idempotency[scope]]; made != nil && made.Owner == owner && !made.Revoked {
+					return "/home/agents#agent-" + st.Idempotency[scope], nil
+				}
 				if limit := st.agentLimit(owner); limit != "" {
 					return refusal{status: 409, problem: agentProblem(limit)}, nil
 				}
 				agent = newMemberAgentID() // Avoid email-derived IDs and cross-member name collisions.
 				st.Agents[agent] = &Agent{Name: name, Owner: owner, Keys: map[string]*Key{}}
-				return "/home/agents", nil
+				if scope != "" {
+					st.Idempotency[scope] = agent
+				}
+				return "/home/agents#agent-" + agent, nil
 			case "connect":
 				t, e := st.beginConnection(owner, agent, r.FormValue("client"), r.FormValue("mode"), now)
 				if e != nil && e.Error() == "capacity" {
@@ -262,12 +273,16 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				}
 				if path == "cancel" {
 					c.State = "cancelled"
-				} else {
-					if c.Device || c.State != "prepared" {
-						return fail(fault("sender_not_allowed"))
+					if c.Agent != "" {
+						return "/home/agents#agent-" + c.Agent, nil
 					}
-					c.State = "approved"
+					return "/home/agents", nil
 				}
+				if c.Device || c.State != "prepared" {
+					return fail(fault("sender_not_allowed"))
+				}
+				c.State = "approved"
+				return "/home/connections/" + r.FormValue("connection"), nil
 			case "agent-revoke":
 				a := st.Agents[agent]
 				if a == nil || a.Owner != owner {
@@ -280,6 +295,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				a.Credential = ""
 				revokeKeys(a, now)
 				st.sweep(now)
+				return "/home/agents", nil
 			default:
 				c := command{Agent: agent, Target: r.FormValue("target"), Kid: r.FormValue("kid"), Decision: r.FormValue("decision")}
 				if path == "invite-decision" || path == "unpair" {
@@ -307,13 +323,13 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
 			} else {
-				refused(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
+				refusedTo(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false}, memberBack(path))
 			}
 			return
 		}
 		switch v := value.(type) {
 		case refusal:
-			refused(w, "내 에이전트", v)
+			refusedTo(w, "내 에이전트", v, memberBack(path))
 		case string:
 			http.Redirect(w, r, v, 303)
 		default:
@@ -326,6 +342,20 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			render(w, status, name, view)
 		}
 	}
+}
+
+// agentCreateKey starts with "#", which no agent ID (agentPattern) may start with, so it never equals a message
+// idempotency key ("from/key"). It stays printable because Postgres JSONB rejects NUL.
+func agentCreateKey(owner, attempt string) string { return "#agent-create/" + owner + "/" + attempt }
+
+// memberBack is the internal list a failed member action returns to: legacy pair actions to the pair list, the rest
+// to the agent list. No caller-supplied return URL is ever used.
+func memberBack(path string) string {
+	switch path {
+	case "invites", "invite-decision", "unpair":
+		return "/home/legacy#pairs"
+	}
+	return "/home/agents"
 }
 func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
@@ -341,7 +371,11 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 			return refusal{403, "연결을 조회할 수 없습니다.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-		return map[string]any{"Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
+		var unsure *agentResume
+		if a := st.Agents[c.Agent]; c.Device && c.State == "expired" && a != nil && activeKeys(a) == 0 {
+			unsure = &deviceUnsure // approved, then expired: the same check the agent card asks for (U8 승인 후 응답 유실)
+		}
+		return map[string]any{"Unsure": unsure, "Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
 	})
 	if err != nil {
 		if err.Error() == "invalid_auth" {
@@ -352,7 +386,7 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if v, ok := value.(refusal); ok {
-		refused(w, "연결 확인", v)
+		refusedTo(w, "연결 확인", v, "/home/agents")
 		return
 	}
 	render(w, 200, "connection", value.(map[string]any))

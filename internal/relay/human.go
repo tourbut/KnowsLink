@@ -16,6 +16,12 @@ type Friend struct {
 	Generation                     int64
 	Exp                            time.Time
 	BlockA, BlockB, SuppressLegacy bool
+	// CodeTail is the requester's own trimmed input, reduced at send time to codeTail; "" marks a request made
+	// before the tail was kept. The full code and the target's current code are never stored here.
+	CodeTail string
+	// Held marks a request kept from a receiver at the receive limit: the receiver keeps seeing this earlier ended
+	// state, or no row at all ("-"). "" is a row both sides see.
+	Held string `json:",omitempty"`
 }
 
 type ConversationCopy struct {
@@ -167,52 +173,101 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 	}
 	key := pairID(id, target)
 	old := st.Friends[key]
-	if old != nil && (old.BlockA || old.BlockB) {
+	if old != nil && (old.A == id && old.BlockA || old.B == id && old.BlockB) {
+		// The requester's own block is known to them; their request goes to the code's placeholder row.
 		target = placeholder
 		key = pairID(id, target)
 		old = st.Friends[key]
 	}
-	if old != nil && (old.State == "pending" || old.State == "active") {
-		return
+	// One requester row per code (U4 CONNECT-VISUAL 결정): a blocked or full target reuses its pair row as a request
+	// the target never sees, so row count, order and generation match an unknown code's placeholder row.
+	hidden := old != nil && (old.BlockA || old.BlockB)
+	open := func(f *Friend) bool { return f.State == "pending" || f.State == "blocked-pending" && now.Before(f.Exp) }
+	if old != nil && (old.State == "active" || open(old) && (old.State == "pending" || old.Inviter == id)) {
+		return // a repeat looks like a repeat of any still-pending request
+	}
+	legacy := st.Friends[pairID(id, placeholder)]
+	if target == placeholder || old != nil {
+		legacy = nil
+	}
+	if legacy != nil && open(legacy) {
+		return // a placeholder row stored before the one-row rule still answers for this code until it ends
 	}
 	active, pending, mine, theirs := 0, 0, 0, 0
 	for _, f := range st.Friends {
 		if f.State == "active" {
 			active++
 		}
-		if f.State == "pending" {
+		if open(f) {
 			pending++
 			if f.Inviter == id {
 				mine++
 			}
-			if (f.A == target || f.B == target) && f.Inviter != target {
-				theirs++
-			}
+		}
+		if f.State == "pending" && (f.A == target || f.B == target) && f.Inviter != target {
+			theirs++
 		}
 	}
-	if theirs >= 10 {
-		target = placeholder
-		key = pairID(id, target)
-		old = st.Friends[key]
-		if old != nil && old.State == "pending" {
-			return
-		}
-	}
-	if active >= 400 || pending >= 200 || mine >= 10 || (old == nil && len(st.Friends) >= 20000) {
+	if active >= 400 || pending >= 200 || mine >= 10 || (old == nil && legacy == nil && len(st.Friends) >= 20000) {
 		return
+	}
+	seen := "-" // what the receiver sees of this row now; kept while the request is held from them
+	if old != nil {
+		if seen = old.Held; seen == "" {
+			seen = map[bool]string{true: "removed", false: old.State}[old.State == "blocked-pending"]
+		}
+	}
+	if old == nil && legacy != nil {
+		// An ended placeholder from before the one-row rule becomes this code's pair row with its ID and generation.
+		delete(st.Friends, pairID(id, placeholder))
+		legacy.A, legacy.B, old = id, target, legacy
+		st.Friends[key] = old
 	}
 	if old == nil {
 		old = &Friend{ID: randomToken()[:22], A: id, B: target}
 		st.Friends[key] = old
 	}
 	old.Generation++
-	old.Inviter, old.State, old.Exp = id, "pending", now.Add(24*time.Hour)
+	old.Inviter, old.State, old.Exp, old.CodeTail, old.Held = id, "pending", now.Add(24*time.Hour), codeTail(code), ""
+	if hidden || theirs >= 10 {
+		old.State = "blocked-pending" // the requester sees pending until Exp; the target sees no new request
+	}
+	if !hidden && theirs >= 10 {
+		old.Held = seen
+	}
 	if a := st.Members[old.A]; a != nil {
 		old.NameA = a.Name
 	}
 	if b := st.Members[old.B]; b != nil {
 		old.NameB = b.Name
 	}
+}
+
+// codeTail keeps the last four characters of the requester's input, or "?" when that tail is not plain code text.
+// Every outcome (existing, unknown, blocked, own code) stores the same shape, so the row is no existence oracle.
+func codeTail(code string) string {
+	runes := []rune(code)
+	if len(runes) < 4 {
+		return "?"
+	}
+	tail := string(runes[len(runes)-4:])
+	for _, r := range tail {
+		if !(r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' || r >= '0' && r <= '9' || r == '-' || r == '_') {
+			return "?"
+		}
+	}
+	return tail
+}
+
+// CodeLabel is the requester-only O-NM-03 label for a request row.
+func (f humanFriend) CodeLabel() string {
+	switch {
+	case f.CodeTail == "":
+		return "이전 요청"
+	case f.CodeTail == "?":
+		return "입력한 코드 형식 다름"
+	}
+	return "입력한 코드 …" + f.CodeTail
 }
 
 func (st *State) friendByID(id, publicID string) *Friend {
@@ -226,7 +281,8 @@ func (st *State) friendByID(id, publicID string) *Friend {
 
 func (st *State) decideFriend(id, publicID, decision string, generation int64, now time.Time) error {
 	f := st.friendByID(id, publicID)
-	if f == nil || f.Generation != generation {
+	// Unblock is guarded by the member's own block flag; the blocker's page never carries the row's generation.
+	if f == nil || f.Generation != generation && decision != "unblock" {
 		return fault("sender_not_allowed")
 	}
 	switch decision {
@@ -263,7 +319,8 @@ func (st *State) decideFriend(id, publicID, decision string, generation int64, n
 		}
 		f.State = "active"
 	case "deny", "cancel":
-		if f.State != "pending" || (decision == "cancel") != (f.Inviter == id) {
+		open := f.State == "pending" || decision == "cancel" && f.State == "blocked-pending" && now.Before(f.Exp)
+		if !open || (decision == "cancel") != (f.Inviter == id) {
 			return fault("sender_not_allowed")
 		}
 		f.State = map[string]string{"deny": "denied", "cancel": "cancelled"}[decision]
@@ -273,7 +330,12 @@ func (st *State) decideFriend(id, publicID, decision string, generation int64, n
 		}
 		f.State, f.SuppressLegacy = "removed", true
 	case "block":
+		// Blocking a received pending request is never shown to the requester as an action (U4 차단, O-NM-03).
+		pending := f.State == "pending" && f.Inviter != id
 		f.State, f.SuppressLegacy = "removed", true
+		if pending {
+			f.State = "blocked-pending"
+		}
 		if id == f.A {
 			f.BlockA = true
 		} else {

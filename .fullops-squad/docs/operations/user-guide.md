@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-19
+updated: 2026-10-20
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -39,6 +39,16 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 친구 추가에서 보내는 사람 이름을 확인하고 친구가 준 코드를 붙여 넣는다. 앞뒤 공백은 자동으로 지운다. 연결 범위에 동의하고 ‘친구 요청 보내기’를 누른다. 결과 안내는 항상 같다. 상대의 이름이나 에이전트는 수락 전에 보이지 않는다. 내 에이전트가 없어도 요청할 수 있다. 대화하려면 수락 뒤 에이전트를 추가한다.
 
 화면의 에이전트는 ‘이름 / 종류 / 구분값’ 순서다. 이름이 같으면 구분값으로 구별한다. 새 대화의 발신·수신 에이전트도 이 라벨의 선택 목록에서 고른다. 이름에 줄바꿈·제어 문자·방향 제어 문자를 넣으면 저장되지 않고 그 문자를 뺀 나머지가 입력란에 남는다. 확인한 뒤 다시 저장한다. 받은 친구 요청을 거절하면 요청한 사람의 기록에 거절로 보인다. 알리지 않으려면 응답하지 않고 기한이 지나게 둔다. 친구가 아닌 상대의 에이전트는 ‘확인할 수 없는 에이전트’와 식별자로만 보인다.
+
+이 절은 DEV 후보의 사용법이다. 독립 QA·시각 검수·리뷰·운영 반영은 별도다.
+
+## 어디에서 사용할까요?와 연결 재개 — SAR-UX-ISSUES-002 구현 후보
+
+‘내 에이전트’의 ‘어디에서 사용할까요?’에서 웹에서 바로 사용, Grok Bot (내 컴퓨터), Dots (원격), Claude Code 작업 세션 (내 컴퓨터), 지원 확인이 필요한 호스트 중 하나와 ‘처음 연결’ 또는 ‘기존 연결 계속’을 고르고 ‘안내 보기’를 누른다. 고른 곳의 준비물·권한·다음 행동과 설치 문서 링크가 보인다. 고르기만으로 에이전트나 연결 수단은 생기지 않는다. 지원 확인이 필요한 호스트에는 설치 명령이 없으며 지금은 웹 대화를 안내한다.
+
+‘내 에이전트와 연결 상태’는 에이전트마다 서버가 확인한 단계와 다음 행동 하나를 보인다. 키 등록 전이면 기존 시도의 상태 확인이나 지문 확인으로, 만료·취소면 연결·키 관리의 새 시작으로 안내한다. ‘키 등록됨’은 서버에 키가 있다는 뜻이며 앱이 지금 연결되어 있다는 뜻이 아니다. 결과를 확인하지 못하면 ‘확인 필요’로 남으며, 새로 등록하기 전에 시작한 앱의 저장 결과를 먼저 확인한다. Claude Code 세션 연결은 세션의 `/knowslink-session status`로 확인한다. 새로고침·뒤로가기·중복 클릭으로 에이전트가 더 생기거나 키가 바뀌지 않는다.
+
+보낸 친구 요청에는 ‘입력한 코드 …abcd’처럼 내가 입력한 코드의 끝 4자가 보인다. 형식이 다르면 ‘입력한 코드 형식 다름’, 이 기능 이전 요청은 ‘이전 요청’이다. 상대가 코드를 바꿔도 표시는 그대로이고 상대 화면에는 보이지 않는다.
 
 이 절은 DEV 후보의 사용법이다. 독립 QA·시각 검수·리뷰·운영 반영은 별도다.
 

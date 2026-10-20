@@ -572,7 +572,10 @@ func (s *Service) gateView(r *http.Request, auth ownerAuth) (any, error) {
 		view := map[string]any{"State": state, "ID": g.ID, "From": g.From, "To": g.To, "Parent": g.Parent, "Exp": clock(g.Exp), "Policy": g.Policy, "CSRF": csrf(token, g.ID), "Active": active, "Back": list, "Deny": back + "/gates/" + g.ID + "/deny", "FromAgent": st.gateAgent(owner, g.From), "ToAgent": st.gateAgent(owner, g.To)}
 		if e != nil {
 			body, _ := json.MarshalIndent(e.Body, "", "  ")
-			view["Summary"], view["Text"] = gateSummary(e)
+			summary, text := gateSummary(e)
+			view["Summary"], view["Text"] = summary, text
+			// A request whose content cannot be confirmed keeps no approve/deny form (3단위 '확인할 수 없습니다').
+			view["Active"] = active && summary != nil
 			view["Body"], view["Intent"], view["Scope"] = string(body), e.Intent, gateScopes[e.Intent]
 			if e.Render != nil {
 				view["Hint"] = e.Render["hint"]
