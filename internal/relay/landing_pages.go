@@ -2,7 +2,7 @@
 package relay
 
 const landingTemplates = `
-{{define "start"}}<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{{.Title}} · KnowsLink</title>` + memberStyle + `
+{{define "start"}}<!doctype html><html lang="{{lang}}"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{{.Title}} · KnowsLink</title>` + memberStyle + `
 <style>
 body.landing{max-width:1184px}.landing h2{font-size:24px}.landing h1{font-size:40px}.landing section{margin-bottom:64px}.landing main>section{scroll-margin-top:16px}.landing .hero{display:grid;grid-template-columns:3fr 2fr;gap:32px}.landing .hero>*{min-width:0}.landing nav{display:flex;flex-wrap:wrap;gap:8px 16px}.landing .relation{align-self:center;padding:24px 0 24px 24px;border-left:1px solid var(--edge)}.landing .relation h2{font-size:18px}.landing .people-diagram{display:flex;flex-wrap:wrap;gap:16px 32px}.landing .people-diagram dd{margin:8px 0 0 16px}.landing .sequence{max-width:64ch}.landing .sequence li{padding:0 0 24px 8px}.landing .sequence p{margin:8px 0 0}.landing .install-option{border-top:1px solid var(--edge);padding-top:8px;margin-bottom:24px}.landing .install-option .summary-text{display:block;margin-left:20px;font-weight:400}.landing summary{justify-content:flex-start;gap:0 8px}.landing .summary-text{flex-basis:100%}.landing .install-option ol{margin-top:16px}.landing .install-option li{margin-bottom:12px}.landing .examples{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:24px}.landing .examples article{min-width:0;border-left:1px solid var(--edge);padding-left:16px}.landing .auth{max-width:560px}.landing .auth h3{margin-top:24px}.landing footer{display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--edge);padding-top:16px}.landing .select{user-select:all}.landing .top{margin-bottom:32px}
 @media(max-width:767px){body.landing{padding:16px}.landing h1{font-size:30px}.landing .hero,.landing .examples{grid-template-columns:1fr}.landing section{margin-bottom:48px}.landing .relation{padding:16px 0 0;border-left:0;border-top:1px solid var(--edge)}.landing .top nav{order:3;width:100%}.landing .hero .primary{width:100%}.landing .examples{gap:24px}}
@@ -10,7 +10,7 @@ body.landing{max-width:1184px}.landing h2{font-size:24px}.landing h1{font-size:4
 </style><body class="landing">
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header class="top"><a class="brand" href="/">KnowsLink</a><nav aria-label="서비스 안내"><a href="#how">시작 순서</a><a href="#install">설치와 연결</a><a href="#examples">대화 예시</a></nav>
-{{if .Authenticated}}<a href="/home">대화로 이동</a>{{else}}<a href="#start">{{if or .Google .EmailLogin}}로그인{{else}}로그인 상태 확인{{end}}</a>{{end}}</header>
+{{if .Authenticated}}<a href="/home">대화로 이동</a>{{else}}<a href="#start">{{if or .Google .EmailLogin}}로그인{{else}}로그인 상태 확인{{end}}</a>{{end}}{{template "lang-nav" "/"}}</header>
 {{if .Problem}}<p class="problem"><a href="#start">로그인 문제를 확인하세요</a></p>{{else if .Notice}}<p class="note">{{.Notice}} <a href="#start">로그인 상태 확인</a></p>{{end}}
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="intro-h"><div><h1 id="intro-h">친구와 연결하고, 에이전트로 대화하세요</h1>

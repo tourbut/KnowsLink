@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-20
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -39,7 +39,7 @@ V04 해석(사용자 결정 2026-10-17): 세션 연결(`/knowslink-session on`�
 | `human_http.go` `visibleAgent`·`friendsNow` | 자기 agent와 현재 활성·비차단 친구의 agent만 이름·종류를 보인다. 그 밖은 ‘확인할 수 없는 에이전트’와 전체 ID다. 상대 프로필을 새로 조회하지 않는다 | `TestVisibleAgentNamesOnlyOwnerAndCurrentFriend` |
 | `http.go` `gateView`, `member.go` legacy, `member_agents.go` `ownAgents`·연결 화면 | 승인·legacy agent/관계·연결 대상에 이름 먼저 + 종류 + 구분값을 보이고 전체 ID는 상세에 둔다. legacy 제목은 ‘기존 연결’이다 | `TestGateNamesEndpointsWithinAuthority`, `member_forms.golden`, 렌더 fixture |
 | `human_http.go` `friends/request` | 코드의 앞뒤 공백만 제거한다. 빈 코드·동의 누락은 422로 같은 친구 화면을 다시 보이고 입력 코드와 오류 필드 focus를 유지한다. 대소문자·Unicode 정규화는 하지 않는다 | `TestHumanNamesAndFriendCodePostgres`, `TestFriendCodeRotationKeepsReceivedRequests` |
-| `human_pages.go` 친구·내 계정 | ‘내 친구 코드’를 보이는 라벨의 읽기 전용 `textarea`로 보인다(긴 코드도 줄바꿈). 친구 추가는 보내는 사람 이름·상대 코드·연결 범위·명시 동의·‘친구 요청 보내기’ 순서다. 복사 JS·CSP 변경은 없다 | `TestFriendPagesShareOwnCodeAndKeepRequestInput` |
+| `human_pages.go` 친구·설정(옛 내 계정) | ‘내 친구 코드’를 보이는 라벨의 읽기 전용 `textarea`로 보인다(긴 코드도 줄바꿈). 친구 추가는 보내는 사람 이름·상대 코드·연결 범위·명시 동의·‘친구 요청 보내기’ 순서다. 복사 JS·CSP 변경은 없다 | `TestFriendPagesShareOwnCodeAndKeepRequestInput` |
 | `member.go` `refusedTo` | 친구 동작·친구 상세의 거부 화면은 ‘친구 목록으로 돌아가기’로, 회원 gate 거부는 ‘승인 목록으로 돌아가기’(`/home/legacy#gates`)로 정확히 복귀한다 | 렌더 fixture |
 | `gate_summary.go` `gateState`·`gateSummary`·`gateRows` | 표시 상태(만료·확인 불가·철회 포함), 지원 intent별 검증 필드→사용자 문구(필드 모양이 다르면 단언 대신 요약 없음으로 닫는다), 승인 목록 행(이름·구분값·유형·기한·상태)을 만든다. 이름 권한이 없으면 ‘확인할 수 없는 에이전트’와 ID 구분값만 쓴다. 결정 권한은 `gateDecision`의 기존 재검사만 판단한다 | `TestApprovalSummaryBoundaries`, `TestHumanGateKeepsVerifiedBodyAndCSRF`, 렌더 fixture |
 | `connect_guide.go` `useChoices`·`agentResume`·`remoteResume` | U8 선택지 다섯 개(호스트 표 순서·문구, 보류·제외 호스트 이름 없음)와 agent별 연결 상태·다음 행동 하나를 만든다. 최신 연결 시도(waiting/prepared/approved)·활성 키·remote install의 미교환 code/token·device 승인 뒤 미저장만 본다. 앱 설치·세션 연결·온라인은 관측하지 않으며 불확실하면 ‘확인 필요’다. 표시 전용이며 상태를 바꾸지 않는다 | `TestConnectionResumeAndCodeTail`, `TestHumanPagesRenderAndEscape` |
@@ -51,6 +51,21 @@ V04 해석(사용자 결정 2026-10-17): 세션 연결(`/knowslink-session on`�
 | `member_receipt.go` | 익명 한도 429 화면은 `Unavailable`로 ‘에이전트 없음’ 오안내를 하지 않는다(1단위 리뷰 low) | 코드 검토 |
 
 동명·40자 한글/이모지·제어문자 거절·이름 변경 뒤 ID/관계 불변·코드 교체·GET만으로 관계 생성 없음·agent 0개 요청·24h 만료 뒤 새 세대는 `human_names_test.go`와 integration 검사로 확인한다. device/remote 생성 경로의 이름 결속은 기존 integration 검사에 단언을 추가했다. 검증 기록은 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md)를 따른다.
+
+## SAR-UX-ISSUES-002 설정·언어 모듈 (5단위)
+
+한국어 원문이 키이고 영어는 표다. 템플릿 본문은 바꾸지 않고 소스 단위로 영어 템플릿 집합을 하나 더 파싱한다. 새 의존성은 없다.
+
+| 모듈 | 책임 | 검증 |
+|---|---|---|
+| `i18n.go` `pageLang`·`browserLang`·`setLang` | 회원 저장값 → `__Host-kl_lang` 쿠키 → 한 응답용 `?lang=` → 한국어 순서로 언어를 정하고 `Content-Language` 헤더에 기록한다. `memberHit`가 회원을 확인하면 헤더를 회원 값으로 바꾼다. `/lang/{code}`는 쿠키 하나와 안전한 내부 복귀만 처리한다 | `TestLanguageChoiceOrderAndLink`, `TestLanguagePreferencePostgres` |
+| `i18n.go` `templateSegments`·`translateTemplate`·`parsePages` | 템플릿 소스를 태그 사이 본문·속성값 단위(제어 action에서 분리, 값 action은 포함)로 나누어 한국어 구간을 표로 바꾼 뒤 영어 집합(`memberPagesEN`)을 만든다. 누락 구간은 한국어로 남고 검사가 나열한다 | `TestTranslationCoversTemplates` |
+| `i18n.go` `tr`·패턴 | 핸들러 문구의 정확 일치, 없으면 `%s`(다시 번역)·`%v`(그대로) 패턴. `render`가 Title·Problem·Notice에, 템플릿 `tr`/`name`/`badge` 함수가 상태·안내·에이전트 fallback 이름·배지에 적용한다. 사용자 이름·메시지는 `name`의 두 서버 라벨 외에는 거치지 않는다 | `TestTranslationCoversGoText`, `TestComposedHandlerTextTranslates` |
+| `i18n_en_member.go`·`i18n_en_human.go` | 회원·공개·remote 화면과 사람 화면의 영어 표(파일 소유 분리). 값은 키와 같은 `{{…}}` action을 가져야 한다 | `TestTranslationCoversTemplates`, `TestEnglishScreensHaveNoKorean`(지정 화면 영어 렌더에 한글 0) |
+| `human_pages.go` `human-account`, `human_http.go` `language` | ‘설정’ 제목·헤더, 내 이름·내 친구 코드·언어(radio 한국어/English, ‘언어 저장’)·로그인과 보안 순서. 저장은 `Member.Locale`만 바꾸고 선택만으로는 제출하지 않는다 | `TestLanguagePreferencePostgres`, `TestHumanPagesRenderAndEscape` |
+| `human_http.go` `humanClock(lang)` | 짧은 대화 시각의 단어만 언어별로 바꾸고 KST 시각은 같다 | `TestHumanClockKeepsInstantAcrossLanguages` |
+| `remote_auth.go` `remoteTemplates` | remote 동의·복귀 화면을 같은 템플릿 집합의 `remote`·`remote-return`으로 옮겨 언어 선택을 따른다 | `TestMemberUIFixtures`, `TestEnglishScreensHaveNoKorean` |
+| `lang_browser_fixture_test.go` | opt-in `langfixture` 격리 fixture: 저장 English·저장 한국어·미저장 회원, 각 지정 화면에 닿는 합성 상태, loopback origin, 허용 GET/POST | DEV 보고의 실제 기동·probe |
 
 ## SAR-UX-ISSUES-002 조회 입력과 복귀
 
@@ -67,7 +82,7 @@ V04 해석(사용자 결정 2026-10-17): 세션 연결(`/knowslink-session on`�
 
 `member.go`의 `startPage`는 유효 세션도 공개 안내에 머물게 하고 존재 여부만 전달한다. 이름·이메일·친구·agent·키는 안내에 넣지 않는다. `/home`의 이름 설정과 회원 인가는 유지한다. `Service.startView`는 Google/Mail 설정을 모든 start 오류 화면에 반영한다. `google.go`의 오류 호출자도 이 view를 사용한다. Google callback·재확인·클라이언트/Remote 복귀 계약은 바꾸지 않는다.
 
-`human_pages.go`의 내 계정에는 `/`의 서비스 안내 링크가 있다. 기존 회원 주 메뉴·인증 폼 계약은 유지한다. `landing_test.go`와 `landing_integration_test.go`는 로그인 수단·공개 카피·오류 escape·실제 DB 세션·이름 설정·만료·개인정보 비노출을 검증한다. 기존 member form golden과 Google/device/Remote 회귀도 적용한다. opt-in `landingfixture` 태그의 fixture는 별도 합성 DB와 loopback 서버만 사용한다. 실제 검증 SHA·명령·결과는 [DEV 기록](../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다.
+`human_pages.go`의 설정(5단위 전 ‘내 계정’)에는 `/`의 서비스 안내 링크가 있다. 기존 회원 주 메뉴·인증 폼 계약은 유지한다. `landing_test.go`와 `landing_integration_test.go`는 로그인 수단·공개 카피·오류 escape·실제 DB 세션·이름 설정·만료·개인정보 비노출을 검증한다. 기존 member form golden과 Google/device/Remote 회귀도 적용한다. opt-in `landingfixture` 태그의 fixture는 별도 합성 DB와 loopback 서버만 사용한다. 실제 검증 SHA·명령·결과는 [DEV 기록](../exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md)에 연결한다.
 
 ## SAR-REFACTOR-002 감사·개선
 

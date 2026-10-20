@@ -186,7 +186,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			if clean {
 				rates = cleanupRate
 			}
-			id, session, retry, e := s.memberHit(st, r, now, rates)
+			id, session, retry, e := s.memberHit(w, st, r, now, rates)
 			if !retry.IsZero() {
 				return refusal{429, limited(retry), false, false}, nil
 			}
@@ -359,7 +359,7 @@ func memberBack(path string) string {
 }
 func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, retry, e := s.memberHit(st, r, now, memberRate)
+		id, _, retry, e := s.memberHit(w, st, r, now, memberRate)
 		if !retry.IsZero() {
 			return refusal{429, limited(retry), false, false}, nil
 		}

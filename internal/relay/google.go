@@ -74,7 +74,7 @@ func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth boo
 	}
 	state := randomToken()
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, retry, sessionErr := s.memberHit(st, r, now, memberRate)
+		id, _, retry, sessionErr := s.memberHit(w, st, r, now, memberRate)
 		if !retry.IsZero() {
 			return nil, fault("rate_limited")
 		}

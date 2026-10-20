@@ -128,7 +128,7 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 			if c.name != "relationship" && c.name != "expired" && (!strings.Contains(page, "승인할 내용을 확인할 수 없습니다") || strings.Contains(page, "요청한 내용")) {
 				t.Fatalf("%s: unverifiable request still summarised", c.name)
 			}
-			if list := gatesSection(bob.do("GET", "/home/legacy", nil).Body.String()); !strings.Contains(list, c.badge) || strings.Contains(list, string(badge("pending"))) {
+			if list := gatesSection(bob.do("GET", "/home/legacy", nil).Body.String()); !strings.Contains(list, c.badge) || strings.Contains(list, string(badge("ko", "pending"))) {
 				t.Fatalf("%s: approval list shows stale pending", c.name)
 			}
 			expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"approve"}}), 409, "이번 제출은 적용되지 않았습니다", `href="/home/legacy#gates"`)
@@ -172,7 +172,7 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"approve"}}), 303)
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {token}, "decision": {"deny"}}), 409, "이번 제출은 적용되지 않았습니다")
 		page := bob.do("GET", "/home/gates/"+gateID, nil).Body.String()
-		if state(f) != "approved" || strings.Contains(page, `value="approve"`) || !strings.Contains(page, string(badge("approved"))) {
+		if state(f) != "approved" || strings.Contains(page, `value="approve"`) || !strings.Contains(page, string(badge("ko", "approved"))) {
 			t.Fatal("double click must keep the first decision and offer no new one")
 		}
 	})
