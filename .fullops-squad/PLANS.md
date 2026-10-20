@@ -37,7 +37,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 4단위 선행 제품 판단 SAR-UX-ISSUES-002-HOSTS-DESIGN: U8 호스트 표(10-15)가 최신 사용자 범위(Meta Muse 제외·OpenClaw 보류·Hermes 지정)와 10-17 Claude Code 세션 연결 구현을 반영하지 않아 designer에 표·선택지 갱신과 O-NM-03 결정을 배정. route product→designer, claude-opus-5-5 high, ctx_29a49a558a24, main 366caaf. 결과 통합 뒤 4단위 DEV.
 - HOSTS-DESIGN 완료 2026-10-20: msg_1b1000643eb4, designer a66b0f9. 대상 웹·Grok·Dots·Claude Code 작업 세션('시험 환경 확인 (Claude Code 2.1.302, Windows)'), Codex·Hermes '지원 확인 필요', OpenClaw 보류·Meta Muse 제외는 화면 미표시, 선택지 5개. O-NM-03: 요청자 자기 행에 '입력한 코드 …abcd'(끝 4자, 전체 코드 미보관). need skip, main 022c748 merge·push, 전 역할 FF, designer release.
 - 4단위 SAR-UX-ISSUES-002-CONNECT-DEV(U8+나머지 U7+O-NM-03+low 3): route implementation→dev, claude-opus-5-5 high(user). 끝 4자 보관용 상태 JSON 필드 추가 승인, DB migration은 ask. '내 계정'→'설정'은 5단위. fixture 실제 기동 확인을 DEV 완료 조건에 넣음.
-- 대기: 5단위 U3 연결 경로·재개(+나머지 U7) → 5단위 U3 언어. 
+- 4단위 배정: main d6f9d7f push·전 역할 FF, ctx_81b0bfd36b71, launch.effective claude-opus-5-5 high, fresh.
+- 대기: 5단위 U3 언어·설정('내 계정'→'설정' 포함).
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
 ## 모델 전환 — 2026-10-17
