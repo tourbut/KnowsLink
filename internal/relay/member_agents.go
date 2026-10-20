@@ -109,7 +109,7 @@ func safeProblem(err error) string {
 	case "unsupported_client":
 		return "미지원 클라이언트입니다. Node 22 로컬 클라이언트를 선택하세요."
 	case "reauth_required":
-		return "이 작업은 5분 안의 로그인 신원 재확인이 필요합니다. 홈에서 로그인 신원을 다시 확인하세요."
+		return "이 작업은 5분 안의 로그인 신원 재확인이 필요합니다. 아래 ‘로그인 다시 확인’으로 신원을 확인한 뒤 이 작업을 시작한 화면에서 다시 시도하세요."
 	case "invalid_auth":
 		return "연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다."
 	default:
@@ -371,7 +371,11 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 			return refusal{403, "연결을 조회할 수 없습니다.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-		return map[string]any{"Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
+		var unsure *agentResume
+		if a := st.Agents[c.Agent]; c.Device && c.State == "expired" && a != nil && activeKeys(a) == 0 {
+			unsure = &deviceUnsure // approved, then expired: the same check the agent card asks for (U8 승인 후 응답 유실)
+		}
+		return map[string]any{"Unsure": unsure, "Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
 	})
 	if err != nil {
 		if err.Error() == "invalid_auth" {
@@ -382,7 +386,7 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if v, ok := value.(refusal); ok {
-		refused(w, "연결 확인", v)
+		refusedTo(w, "연결 확인", v, "/home/agents")
 		return
 	}
 	render(w, 200, "connection", value.(map[string]any))

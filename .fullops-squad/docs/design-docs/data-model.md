@@ -22,7 +22,7 @@ summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한�
 | Message.Scope | self:/friend: 출처 또는 빈 legacy. Generation과 함께 current 검사 |
 | Message.Conversation | OwnerA/B, 당시 PersonA/B·AgentA/B, Text, Authorship(owner/agent). 신규 text만 수락부터24h |
 
-친구 pending은24h, active 전체400/회원20, pending 전체200/발신10/수신10이다. 종료 tombstone은 deny/세대/차단 근거이므로 자동 부활하지 않는다. 친구 기록20000 보호 상한은 새 요청만 막는다. 숨긴 가짜 outgoing placeholder도 실제 pending 한도에 포함한다. 차단 상태는 상대 화면에 공개하지 않는다. 친구 코드는 권한이 아닌 요청 수단이다.
+친구 pending은24h, active 전체400/회원20, pending 전체200/발신10/수신10이다. 종료 tombstone은 deny/세대/차단 근거이므로 자동 부활하지 않는다. 친구 기록20000 보호 상한은 새 요청만 막는다. 숨긴 가짜 outgoing placeholder도 실제 pending 한도에 포함한다. 요청자에게 대기로 보이는 기한 전 `blocked-pending`(상대 차단·수신 한도 보류)도 pending 전체·발신 한도에 포함하고 수신 한도에는 넣지 않는다. 이전 코드가 차단·수신 한도 경로에서 만든 대리 행(같은 코드 2행)은 지우거나 합치지 않는다. 그 대리 행이 대기 중이면 같은 코드 재요청은 무동작이고, 끝난 뒤에는 쌍 행만 재사용한다. 차단 상태는 상대 화면에 공개하지 않는다. 친구 코드는 권한이 아닌 요청 수단이다.
 
 옛 Member/Agent의 이름은 빈 값이고 관리 화면에서 설정한다. 기존 회원 SelfConnect=false, 기존 pending Pair=expired, 기존 active Pair는 정확한 쌍만 유지한다. 기존 원문·업무 메시지를 새 대화 사본으로 소급 복사하지 않는다. SyntheticSignup은 runtime-only(`json:"-"`)이며 production 인가에 저장되지 않는다.
 

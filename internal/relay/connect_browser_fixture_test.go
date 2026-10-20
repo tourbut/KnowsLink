@@ -23,11 +23,11 @@ func TestConnectBrowserFixture(t *testing.T) {
 	}
 	const life = 12 * time.Hour
 	s, _ := identityService(t, messagePool(t))
-	members, owners, agents, connections := map[string]string{}, map[string]string{}, map[string]string{}, map[string]string{}
+	members, owners, agents, connections, codes := map[string]string{}, map[string]string{}, map[string]string{}, map[string]string{}, map[string]string{}
 	email := func(name string) string { return "connect-" + name + "@example.test" }
 	s.mutateState(t, func(st *State) {
 		now := time.Now()
-		for _, name := range []string{"a", "b", "c"} {
+		for _, name := range []string{"a", "b", "c", "d", "e"} {
 			v := st.signIn(emailIssuer, email(name), email(name), "", "", now)
 			members[name] = st.Sessions[hashToken(v.Session)].Member
 			m := st.Members[members[name]]
@@ -90,6 +90,20 @@ func TestConnectBrowserFixture(t *testing.T) {
 			t.Fatal(e)
 		}
 		st.requestFriend(members["c"], st.Members[members["a"]].FriendCode, now)
+		// F1/V-CN-01 re-request paths on A, ended a day ago: D blocked A's pending request, and E now holds ten
+		// synthetic incoming requests (receive limit). Re-sending either code must leave one A row, like ca11.
+		before := now.Add(-25 * time.Hour)
+		st.requestFriend(members["a"], st.Members[members["d"]].FriendCode, before)
+		blocked := st.Friends[pairID(members["a"], members["d"])]
+		if e := st.decideFriend(members["d"], blocked.ID, "block", blocked.Generation, before); e != nil {
+			t.Fatal(e)
+		}
+		st.requestFriend(members["a"], st.Members[members["e"]].FriendCode, before)
+		for i := 0; i < 10; i++ {
+			sender := "fixture-sender-" + string(rune('0'+i))
+			st.Friends[pairID(sender, members["e"])] = &Friend{ID: randomToken()[:22], A: sender, B: members["e"], Inviter: sender, NameA: "합성 발신자 " + string(rune('0'+i)), State: "pending", Generation: 1, Exp: now.Add(life)}
+		}
+		codes["blocked"], codes["receive_limit"], codes["unknown_cancelled"] = st.Members[members["d"]].FriendCode, st.Members[members["e"]].FriendCode, "fixture-cancel-ca11"
 	})
 	allowedGET := map[string]bool{"/": true, "/home": true, "/home/agents": true, "/home/friends": true, "/home/account": true, "/home/legacy": true, "/home/new": true, "/home/receipts": true}
 	allowedPOST := map[string]bool{"/home/agents": true, "/home/connect": true, "/home/confirm": true, "/home/cancel": true, "/home/friends/request": true, "/home/friends/decision": true}
@@ -115,7 +129,7 @@ func TestConnectBrowserFixture(t *testing.T) {
 		handler.ServeHTTP(w, r)
 	}))
 	defer server.Close()
-	data, _ := json.Marshal(map[string]any{"origin": server.URL, "agents": agents, "connections": connections, "accounts": []string{"a", "b", "c"}, "expires_at": time.Now().Add(life).UTC().Format(time.RFC3339)})
+	data, _ := json.Marshal(map[string]any{"origin": server.URL, "agents": agents, "connections": connections, "rerequest_codes": codes, "accounts": []string{"a", "b", "c", "d", "e"}, "expires_at": time.Now().Add(life).UTC().Format(time.RFC3339)})
 	if err := os.WriteFile(os.Getenv("CONNECT_FIXTURE_MANIFEST"), data, 0600); err != nil {
 		t.Fatal(err)
 	}

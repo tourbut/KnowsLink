@@ -170,38 +170,35 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 	}
 	key := pairID(id, target)
 	old := st.Friends[key]
-	if old != nil && old.State == "blocked-pending" && old.Inviter == id && now.Before(old.Exp) {
-		return // a repeat looks like a repeat of any still-pending request
-	}
-	if old != nil && (old.BlockA || old.BlockB) {
+	if old != nil && (old.A == id && old.BlockA || old.B == id && old.BlockB) {
+		// The requester's own block is known to them; their request goes to the code's placeholder row.
 		target = placeholder
 		key = pairID(id, target)
 		old = st.Friends[key]
 	}
-	if old != nil && (old.State == "pending" || old.State == "active") {
-		return
+	// One requester row per code (U4 CONNECT-VISUAL 결정): a blocked or full target reuses its pair row as a request
+	// the target never sees, so row count, order and generation match an unknown code's placeholder row.
+	hidden := old != nil && (old.BlockA || old.BlockB)
+	open := func(f *Friend) bool { return f.State == "pending" || f.State == "blocked-pending" && now.Before(f.Exp) }
+	if old != nil && (old.State == "active" || open(old) && (old.State == "pending" || old.Inviter == id)) {
+		return // a repeat looks like a repeat of any still-pending request
+	}
+	if p := st.Friends[pairID(id, placeholder)]; target != placeholder && p != nil && open(p) {
+		return // a placeholder row stored before the one-row rule still answers for this code until it ends
 	}
 	active, pending, mine, theirs := 0, 0, 0, 0
 	for _, f := range st.Friends {
 		if f.State == "active" {
 			active++
 		}
-		if f.State == "pending" {
+		if open(f) {
 			pending++
 			if f.Inviter == id {
 				mine++
 			}
-			if (f.A == target || f.B == target) && f.Inviter != target {
-				theirs++
-			}
 		}
-	}
-	if theirs >= 10 {
-		target = placeholder
-		key = pairID(id, target)
-		old = st.Friends[key]
-		if old != nil && old.State == "pending" {
-			return
+		if f.State == "pending" && (f.A == target || f.B == target) && f.Inviter != target {
+			theirs++
 		}
 	}
 	if active >= 400 || pending >= 200 || mine >= 10 || (old == nil && len(st.Friends) >= 20000) {
@@ -213,6 +210,9 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 	}
 	old.Generation++
 	old.Inviter, old.State, old.Exp, old.CodeTail = id, "pending", now.Add(24*time.Hour), codeTail(code)
+	if hidden || theirs >= 10 {
+		old.State = "blocked-pending" // the requester sees pending until Exp; the target sees no new request
+	}
 	if a := st.Members[old.A]; a != nil {
 		old.NameA = a.Name
 	}

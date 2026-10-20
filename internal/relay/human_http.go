@@ -130,7 +130,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		case blockedByMe:
 			state = "blocked"
 		case f.State == "blocked-pending" && incoming:
-			state = "removed"
+			continue // a request held from this person (unblocked later, or over the receive limit) is never shown
 		case f.State == "blocked-pending":
 			// The recipient blocked this pending request: the requester sees an unanswered request until its deadline.
 			state = "pending"

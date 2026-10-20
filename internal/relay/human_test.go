@@ -166,9 +166,10 @@ func TestHumanFriendTransitionsAndDiscovery(t *testing.T) {
 		t.Fatal("legacy bypasses block")
 	}
 	st.requestFriend(b, st.Members[a].FriendCode, now)
-	if f.State == "pending" || !f.BlockA {
-		t.Fatal("blocked request restored friend")
+	if f.State != "blocked-pending" || !f.BlockA || f.Inviter != b || len(st.Friends) != 1 {
+		t.Fatal("blocked request restored friend or added a second requester row")
 	}
+	generation = f.Generation
 	if e := st.decideFriend(b, f.ID, "unblock", generation, now); e == nil {
 		t.Fatal("other unblocked")
 	}

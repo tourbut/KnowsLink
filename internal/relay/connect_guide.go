@@ -2,7 +2,10 @@
 // from stored connection, key and remote-install state. Display only: it never marks a host installed or online.
 package relay
 
-import "time"
+import (
+	"strings"
+	"time"
+)
 
 type useChoice struct{ ID, Label, Note string }
 
@@ -19,6 +22,10 @@ var useChoices = []useChoice{
 type agentResume struct{ State, Next, Link, LinkText string }
 
 const keyManage = "/home/legacy#agents"
+
+// deviceUnsure is the U8 '승인 후 응답 유실' state: the server cannot know whether the client saved its key, so the
+// agent card and the connection page both ask for that check before any new registration.
+var deviceUnsure = agentResume{"확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함", "시작한 클라이언트의 저장 결과를 먼저 확인하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다.", keyManage, "연결·키 관리"}
 
 func (st *State) agentResume(id string, now time.Time) agentResume {
 	a := st.Agents[id]
@@ -45,7 +52,8 @@ func (st *State) agentResume(id string, now time.Time) agentResume {
 			r = agentResume{"브라우저 동의 완료 · 클라이언트 저장 확인 필요", "시작한 클라이언트에서 마무리와 저장 결과를 확인하세요. 승인만으로는 연결되지 않습니다.", page, "연결 상태 확인"}
 		}
 		if r.State != "" && activeKeys(a) > 0 {
-			r.State = "기존 키 등록됨 · 새 키 " + r.State // an added or rotating key never hides the working one
+			// An added or rotating key never hides the working one.
+			r.State = "기존 키 등록됨 · 새 키 등록 전 · " + strings.TrimPrefix(r.State, "키 등록 전 · ")
 		}
 		if r.State != "" {
 			return r
@@ -64,7 +72,7 @@ func (st *State) agentResume(id string, now time.Time) agentResume {
 		return agentResume{"키 등록됨", "앱에서 연결 상태를 확인하세요. 클라이언트가 자격을 저장하지 못했다면 기존 키를 덮어쓰지 말고 그 키를 철회한 뒤 새 키 추가로 다시 연결하세요.", keyManage, "연결·키 관리"}
 	}
 	if last != nil && last.Device && (last.State == "approved" || last.State == "expired") {
-		return agentResume{"확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함", "시작한 클라이언트의 저장 결과를 먼저 확인하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다.", keyManage, "연결·키 관리"}
+		return deviceUnsure
 	}
 	if last != nil && last.State != "consumed" {
 		ended := "이전 시도 만료"

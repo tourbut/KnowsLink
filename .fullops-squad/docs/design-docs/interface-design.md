@@ -50,7 +50,7 @@ GET `/`는 익명과 유효 세션 모두 서비스 안내 HTML을 200으로 반
 | POST `/home/agent-name` | agent/name, 자기 agent만 변경 |
 | POST `/home/agents` / `/home/device-confirm` / `/remote/consent/{id}` 승인 | 새 agent 이름 필수. 기존 최근 인증·연결 proof·명시 승인 유지 |
 | POST `/home/friend-code` | 자기 코드 회전. 이전 코드는 신규 요청에 무효; 기존 요청/친구를 바꾸지 않음 |
-| POST `/home/friends/request` 표시용 끝 4자 (O-NM-03) | 요청 기록 `Friend.CodeTail`에 요청자가 입력한 trim 값의 끝 4자를 저장한다. 4자 미만이거나 끝 4자에 `[A-Za-z0-9_-]` 밖 문자가 있으면 `?`, 이 필드 이전 기록은 빈 값이다. 있는/없는/차단/자기 코드 모두 같은 규칙이다. 요청자의 보낸 대기·거절·취소·만료 행에만 ‘입력한 코드 …abcd’/‘입력한 코드 형식 다름’/‘이전 요청’으로 보이며 전체 코드는 저장·URL·로그에 넣지 않는다. 받은 사람이 대기 요청을 차단하면 기록은 `blocked-pending`이 되어 요청자에게 기한까지 대기, 뒤에는 만료로 보이고 요청자 취소만 허용한다. 같은 코드 반복은 대기 중 반복처럼 무동작이다 |
+| POST `/home/friends/request` 표시용 끝 4자 (O-NM-03) | 요청 기록 `Friend.CodeTail`에 요청자가 입력한 trim 값의 끝 4자를 저장한다. 4자 미만이거나 끝 4자에 `[A-Za-z0-9_-]` 밖 문자가 있으면 `?`, 이 필드 이전 기록은 빈 값이다. 있는/없는/차단/자기 코드 모두 같은 규칙이다. 요청자의 보낸 대기·거절·취소·만료 행에만 ‘입력한 코드 …abcd’/‘입력한 코드 형식 다름’/‘이전 요청’으로 보이며 전체 코드는 저장·URL·로그에 넣지 않는다. 받은 사람이 대기 요청을 차단하면 기록은 `blocked-pending`이 되어 요청자에게 기한까지 대기, 뒤에는 만료로 보이고 요청자 취소만 허용한다. 같은 코드 반복은 대기 중 반복처럼 무동작이다. 끝난 요청(만료·취소·거절)을 같은 코드로 다시 보내면 그 코드의 기존 요청자 행 하나를 다시 대기로 바꾼다(세대 +1, 새 24h 기한, 같은 행 ID). 상대가 차단했거나 상대 수신 대기가 10건 이상이면 같은 행을 `blocked-pending`으로 바꿔 상대에게 보이지 않는다. 요청자 화면의 행 수·순서·상태·끝 4자·기한·세대는 있는/없는/차단/수신 한도/자기 코드에서 같다(U4 CONNECT-VISUAL 결정). 받은 사람 화면은 자기가 차단하지 않은 `blocked-pending`(차단 해제 뒤·수신 한도 보류)을 보이지 않는다. 발신 대기 상한 10건은 기한 전 `blocked-pending`도 센다 |
 | POST `/home/self-connect` | consent=yes. 기존 회원의 자기 활성 endpoint 전체 범위를 명시 활성화 |
 | POST `/home/friends/request` | code/consent=yes. 코드 정답·자기 코드·차단·없는 대상은 동일 외부 결과/발신 요청 표시. 회원 검색 없음 |
 | POST `/home/friends/decision` | friend/generation/decision, accept에는 consent=yes. accept/deny 수신자, cancel 발신자, remove/block 참여자, unblock 차단자만 |
@@ -141,7 +141,7 @@ R에 result/error optional 정보가 있으면 closed schema에서 거부한다.
 owner POST decision은 H의 인증된 human ACK를 함께 확정하고 H 원문을 지운다. GET 방문은 결정하지 않는다. CSRF는 owner credential과 gate ID에 묶인 HMAC이다.
 UI는 pending/approved/denied/expired/revoked/unavailable을 텍스트로 표시한다. 표시 상태는 저장 상태에 현재 기한·서명/바인딩·current 검사를 더한 값이다(`gateState`).
 원문 없음·철회·만료·이미 결정됨은 활성 버튼이 없다. render.hint·ext·agent sig는 owner 증명이 아니다.
-gate 화면은 누가 누구에게·요청한 내용·허용 범위·기한/상태·결정·기술 상세 순서다. 요약은 검증된 부모 envelope의 schema 필드만 쓴다(`schedule.query`: window·granularity_min, `schedule.commit`: slot·timezone, commitment는 ‘요청자가 적은 내용’). 원문 JSON·ID·policy는 기술 상세에 있다. 검증할 수 없거나 지원하지 않는 부모 intent는 요약 없이 ‘승인할 내용을 확인할 수 없습니다’만 보이며 POST도 409다.
+gate 화면은 누가 누구에게·요청한 내용·허용 범위·기한/상태·결정·기술 상세 순서다. 요약은 검증된 부모 envelope의 schema 필드만 쓴다(`schedule.query`: window·granularity_min, `schedule.commit`: slot·timezone, commitment는 ‘요청자가 적은 내용’). 원문 JSON·ID·policy는 기술 상세에 있다. 검증할 수 없거나 지원하지 않는 부모 intent는 요약 없이 ‘승인할 내용을 확인할 수 없습니다’만 보이며 POST도 409다. 원문은 검증되지만 요약 모양이 맞지 않을 때도 승인·거절 폼을 그리지 않는다.
 
 ## TypeScript 합성 경로
 
@@ -225,7 +225,7 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | POST /home/agents | 새 무작위 ID의 미연결 자기 agent. 5분 재인증. optional `attempt`(16–96자)가 같은 회원의 이전 생성과 같으면 새 agent 없이 그 agent 위치로 303한다(중복 클릭·재전송). 성공·재전송 모두 `/home/agents#agent-{id}`로 복귀 |
 | POST /home/confirm·/home/cancel·/home/agent-revoke 복귀 | confirm은 `/home/connections/{grant hash}`, cancel은 `/home/agents#agent-{id}`, agent 철회는 `/home/agents`로 303한다. 회원 연결 동작의 거부 화면은 `/home/agents`(legacy 관계 동작은 `/home/legacy#pairs`)로 복귀한다. 호출자가 준 return URL은 받지 않는다 |
 | POST /home/connect | agent, client=node-local, mode=register 또는 rotate. 5분 재인증. 화면에서만 grant token 1회 표시 |
-| GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음 |
+| GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음. 승인 뒤 만료된 device 연결(에이전트 활성 키 0)은 ‘만료·새로 시작’ 대신 내 에이전트 카드와 같은 ‘확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함’과 연결·키 관리 링크를 보인다(U8 승인 후 응답 유실). 없거나 남의 ID는 403이며 ‘내 에이전트로 돌아가기’로 복귀한다 |
 | POST /home/confirm | connection=grant hash. 5분 재인증·prepared 상태 검사. 아직 키 미활성 |
 | POST /home/cancel | 자기 grant 무효화. 별도 정리 budget |
 | POST /home/key-revoke | agent,kid. 5분 재인증·선택 키 철회 |

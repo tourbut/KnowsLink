@@ -207,6 +207,13 @@ func TestConnectionResumeAndCodeTail(t *testing.T) {
 		if r := resumeOf(s, device); !strings.Contains(r.State, "확인 필요") {
 			t.Fatal("device approval without saved key", r)
 		}
+		// D-CT-01: the connection page asks for the same check as the card instead of declaring no key.
+		page := people["a"].do("GET", "/home/connections/device-lost", nil).Body.String()
+		if !strings.Contains(page, deviceUnsure.State) || !strings.Contains(page, deviceUnsure.Next) || strings.Contains(page, "새 키가 연결되지 않았습니다") || strings.Contains(page, "새로 시작하세요") {
+			t.Fatal("device-lost connection page contradicts the card", page)
+		}
+		// V-CN-02: an unknown connection returns to the agent list.
+		expect(t, people["a"].do("GET", "/home/connections/no-such-connection", nil), 403, `href="/home/agents"`, "내 에이전트로 돌아가기")
 		// C consents in the browser: deny makes nothing and cannot be replayed; approve leaves a code until the app returns.
 		s.mutateState(t, func(st *State) {
 			st.Members[members["c"]].Issuer = googleIssuer
