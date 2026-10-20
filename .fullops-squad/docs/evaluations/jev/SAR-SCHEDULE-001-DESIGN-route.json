@@ -1,0 +1,73 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SCHEDULE-001-DESIGN",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D05"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.08,
+        "product": 0.92
+      },
+      "confidence": 0.84
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.98,
+        "ops": 0.01,
+        "tester": 0.01
+      },
+      "confidence": 0.97
+    },
+    "docs": {
+      "D01": 0.34,
+      "D02": 0.48,
+      "D03": 0.44,
+      "D04": 0.46,
+      "D05": 0.51,
+      "D06": 0.44,
+      "D07": 0.3,
+      "D08": 0.1,
+      "D09": 0.49,
+      "D10": 0.23,
+      "D11": 0.37,
+      "D12": 0.24,
+      "D13": 0.24
+    }
+  },
+  "usage": {
+    "input_tokens": 2481,
+    "output_tokens": 314,
+    "cost": 0.000104202
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.708,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "designer",
+  "original_route": "product",
+  "override_reason": "제품 범위 미정 기능의 기획은 designer 소유",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "760dc1f4bad73df3edb03cd02f0e5cb7075d0341",
+  "requires_packet": true
+}
