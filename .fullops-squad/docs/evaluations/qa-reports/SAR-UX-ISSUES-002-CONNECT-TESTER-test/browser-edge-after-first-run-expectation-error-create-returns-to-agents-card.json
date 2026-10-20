@@ -1,0 +1,101 @@
+{
+  "browser": "Edg/155.0.4283.62",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18932",
+  "stage": "after",
+  "checks": [
+    {
+      "name": "after-agents-a-five-cards",
+      "passed": true,
+      "detail": 5
+    },
+    {
+      "name": "after-new-connection-page-facts-and-waiting-step-1",
+      "passed": false,
+      "detail": {
+        "title": "내 에이전트 · KnowsLink",
+        "h1": 1,
+        "main": true,
+        "skip": true,
+        "lang": "ko",
+        "cur": [
+          "page:내 에이전트"
+        ]
+      }
+    },
+    {
+      "name": "after-new-connection-page-return-link-targets-new-card",
+      "passed": false,
+      "detail": "agent_31f2e8a229c525e2462757"
+    },
+    {
+      "name": "layout-1440-conn-new-a",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "inputScroll": [],
+        "selects": [],
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "taClip": false,
+        "nameCount": 21
+      }
+    },
+    {
+      "name": "layout-390-conn-new-a",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "inputScroll": [
+          "agent-name-agent_fx_approved:40ch",
+          "agent-name-agent_fx_registered:52ch"
+        ],
+        "selects": [],
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "taClip": false,
+        "nameCount": 21
+      }
+    },
+    {
+      "name": "layout-320-conn-new-a",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "inputScroll": [
+          "agent-name-agent_fx_approved:40ch",
+          "agent-name-agent_fx_registered:52ch"
+        ],
+        "selects": [],
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "taClip": false,
+        "nameCount": 21
+      }
+    }
+  ],
+  "observations": {},
+  "captures": [],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    }
+  ]
+}

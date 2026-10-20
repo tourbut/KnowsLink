@@ -1,0 +1,34 @@
+PASS tab-reaches-use-radio-group 
+PASS tab-enters-group-at-first-choice-when-none-selected 
+PASS arrow-down-x3-selects-claude 
+PASS arrow-wraps-inside-group-no-escape 
+PASS arrow-up-wraps-to-other 
+PASS tab-leaves-use-group-to-start-group 
+PASS start-arrow-selects-continue 
+PASS tab-reaches-submit-button 
+PASS enter-submits-get-guide-shown-for-claude-first 
+PASS selection-by-keyboard-created-no-agent 
+PASS guide-region-scrolled-into-view 
+PASS reload-guide-keeps-selection-and-card-count 
+PASS agents-tab-walk-names-focus-no-trap 
+PASS skip-link-first-stop-visible-focus 
+PASS agents-tab-stops-all-44px 
+PASS other-guide-link-goes-to-web-guide 
+PASS conn-waiting-tab-walk-names-focus-no-trap-44px 
+PASS conn-prepared-tab-walk-names-focus-no-trap-44px 
+PASS conn-approved-tab-walk-names-focus-no-trap-44px 
+PASS conn-consumed-tab-walk-names-focus-no-trap-44px 
+FAIL conn-waiting-return-link-lands-on-own-agent-card {"p":"/home/agents","h":"#agent-agent_fx_waiting","el":true,"top":1825}
+PASS conn-prepared-return-link-lands-on-own-agent-card 
+PASS conn-approved-return-link-lands-on-own-agent-card 
+PASS conn-consumed-return-link-lands-on-own-agent-card 
+PASS resume-link-opens-connection-page 
+PASS history-back-forward-do-not-change-agents 
+PASS friends-a-tab-walk-names-focus-no-trap-44px 
+PASS friends-a-cancel-ax-names-carry-tail-or-marker 
+PASS friends-a-no-two-cancel-names-identical 
+PASS ax-agents-landmarks-radiogroups-headings 
+PASS agents-b-tab-walk-names-focus-no-trap 
+PASS agents-c-tab-walk-names-focus-no-trap 
+PASS requests-same-origin-get-only 
+checks 33 failed 1

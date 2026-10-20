@@ -1,0 +1,459 @@
+{
+  "browser": "Edg/155.0.4283.62",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18932",
+  "stage": "keys",
+  "checks": [
+    {
+      "name": "tab-reaches-use-radio-group",
+      "passed": true
+    },
+    {
+      "name": "tab-enters-group-at-first-choice-when-none-selected",
+      "passed": true,
+      "detail": "web"
+    },
+    {
+      "name": "arrow-down-x3-selects-claude",
+      "passed": true,
+      "detail": "claude"
+    },
+    {
+      "name": "arrow-wraps-inside-group-no-escape",
+      "passed": true,
+      "detail": "web"
+    },
+    {
+      "name": "arrow-up-wraps-to-other",
+      "passed": true
+    },
+    {
+      "name": "tab-leaves-use-group-to-start-group",
+      "passed": true,
+      "detail": "start"
+    },
+    {
+      "name": "start-arrow-selects-continue",
+      "passed": true
+    },
+    {
+      "name": "tab-reaches-submit-button",
+      "passed": true
+    },
+    {
+      "name": "enter-submits-get-guide-shown-for-claude-first",
+      "passed": true,
+      "detail": {
+        "q": "?use=claude&start=first",
+        "h": "#use-guide",
+        "h3": "Claude Code 작업 세션 (내 컴퓨터)",
+        "active": "use-guide",
+        "checked": "claude",
+        "start": "first",
+        "cards": 4
+      }
+    },
+    {
+      "name": "selection-by-keyboard-created-no-agent",
+      "passed": true,
+      "detail": [
+        4,
+        4
+      ]
+    },
+    {
+      "name": "guide-region-scrolled-into-view",
+      "passed": true
+    },
+    {
+      "name": "reload-guide-keeps-selection-and-card-count",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "agents-tab-walk-names-focus-no-trap",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "skip-link-first-stop-visible-focus",
+      "passed": true,
+      "detail": {
+        "key": "A||#main|본문으로 건너뛰기",
+        "tag": "A",
+        "id": "",
+        "cls": "skip",
+        "type": "",
+        "text": "본문으로 건너뛰기",
+        "fv": true,
+        "outline": "solid 3px",
+        "shadow": false,
+        "h": 44,
+        "inx": true,
+        "axName": "본문으로 건너뛰기",
+        "axRole": "link"
+      }
+    },
+    {
+      "name": "agents-tab-stops-all-44px",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "other-guide-link-goes-to-web-guide",
+      "passed": true,
+      "detail": "http://127.0.0.1:18932/home/agents?use=web#use-guide"
+    },
+    {
+      "name": "conn-waiting-tab-walk-names-focus-no-trap-44px",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "conn-prepared-tab-walk-names-focus-no-trap-44px",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "conn-approved-tab-walk-names-focus-no-trap-44px",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "conn-consumed-tab-walk-names-focus-no-trap-44px",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "conn-waiting-return-link-lands-on-own-agent-card",
+      "passed": true,
+      "detail": {
+        "p": "/home/agents",
+        "h": "#agent-agent_fx_waiting",
+        "el": true,
+        "top": 221
+      }
+    },
+    {
+      "name": "conn-prepared-return-link-lands-on-own-agent-card",
+      "passed": true,
+      "detail": {
+        "p": "/home/agents",
+        "h": "#agent-agent_fx_prepared",
+        "el": true,
+        "top": 0
+      }
+    },
+    {
+      "name": "conn-approved-return-link-lands-on-own-agent-card",
+      "passed": true,
+      "detail": {
+        "p": "/home/agents",
+        "h": "#agent-agent_fx_approved",
+        "el": true,
+        "top": 0
+      }
+    },
+    {
+      "name": "conn-consumed-return-link-lands-on-own-agent-card",
+      "passed": true,
+      "detail": {
+        "p": "/home/agents",
+        "h": "#agent-agent_fx_registered",
+        "el": true,
+        "top": 0
+      }
+    },
+    {
+      "name": "resume-link-opens-connection-page",
+      "passed": true,
+      "detail": "/home/connections/ef1t-6dG0ZAl6go1ZwU2zEvMHuo5jxy4h3tIDVsbM08"
+    },
+    {
+      "name": "history-back-forward-do-not-change-agents",
+      "passed": true,
+      "detail": [
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "friends-a-tab-walk-names-focus-no-trap-44px",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "friends-a-cancel-ax-names-carry-tail-or-marker",
+      "passed": true,
+      "detail": [
+        "입력한 코드 …zz99 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+        "입력한 코드 …G9Zg 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+        "입력한 코드 형식 다름 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+        "입력한 코드 …WqcI 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+        "입력한 코드 …yltd 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+        "입력한 코드 …ca11 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+        "이전 요청 친구 요청 취소, 기한 2026-10-21 16:21:48 KST"
+      ]
+    },
+    {
+      "name": "friends-a-no-two-cancel-names-identical",
+      "passed": true,
+      "detail": [
+        "입력한 코드 …zz99 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+        "입력한 코드 …G9Zg 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+        "입력한 코드 형식 다름 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+        "입력한 코드 …WqcI 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+        "입력한 코드 …yltd 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+        "입력한 코드 …ca11 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+        "이전 요청 친구 요청 취소, 기한 2026-10-21 16:21:48 KST"
+      ]
+    },
+    {
+      "name": "ax-agents-landmarks-radiogroups-headings",
+      "passed": true,
+      "detail": [
+        "heading:내 에이전트",
+        "heading:어디에서 사용할까요?",
+        "heading:내 에이전트와 연결 상태",
+        "heading:에이전트 추가",
+        "radiogroup:사용할 곳",
+        "radiogroup:연결 시작",
+        "heading:웹에서 바로 사용",
+        "heading:긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름",
+        "heading:합성 지문 확인 도우미",
+        "heading:Synthetic registered helper with a long English name",
+        "heading:합성 대기 도우미",
+        "radio:웹에서 바로 사용 설치 필요 없음",
+        "radio:Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+        "radio:Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+        "radio:Claude Code 작업 세션 (내 컴퓨터) 연결 안내 있음 · 시험 환경 확인 (Claude Code 2.1.302, Windows)",
+        "radio:지원 확인이 필요한 호스트 Codex, Hermes Agent, 그 밖의 호스트",
+        "radio:처음 연결",
+        "radio:기존 연결 계속"
+      ]
+    },
+    {
+      "name": "agents-b-tab-walk-names-focus-no-trap",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "agents-c-tab-walk-names-focus-no-trap",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "requests-same-origin-get-only",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "observations": {
+    "focusAfterSelect": "use-guide",
+    "agentsTabNames": [
+      "본문으로 건너뛰기",
+      "KnowsLink",
+      "내 계정",
+      "대화",
+      "친구",
+      "내 에이전트",
+      "Claude Code 작업 세션 (내 컴퓨터) 연결 안내 있음 · 시험 환경 확인 (Claude Code 2.1.302, Windows)",
+      "처음 연결",
+      "안내 보기",
+      "Claude Code 작업 세션 연결 문서",
+      "친구 요청 확인",
+      "연결 상태 확인: 긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름 / 5f4a4c4a",
+      "에이전트 상세: 긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름긴한글이름 / 5f4a4c4a",
+      "지문 확인: 합성 지문 확인 도우미 / 4a39314e",
+      "에이전트 상세: 합성 지문 확인 도우미 / 4a39314e",
+      "연결·키 관리: Synthetic registered helper with a long English name / 71513175",
+      "에이전트 상세: Synthetic registered helper with a long English name / 71513175",
+      "연결 상태 확인: 합성 대기 도우미 / 78673861",
+      "에이전트 상세: 합성 대기 도우미 / 78673861",
+      "요청 상태 조회",
+      "에이전트 이름",
+      "에이전트 추가"
+    ],
+    "connTabNames-waiting": [
+      "본문으로 건너뛰기",
+      "▸ 식별자",
+      "상태 새로고침",
+      "연결 취소",
+      "내 에이전트로 돌아가기"
+    ],
+    "connTabNames-prepared": [
+      "본문으로 건너뛰기",
+      "▸ 식별자",
+      "지문이 같습니다. 연결 승인",
+      "연결 취소",
+      "내 에이전트로 돌아가기"
+    ],
+    "connTabNames-approved": [
+      "본문으로 건너뛰기",
+      "▸ 식별자",
+      "연결 취소",
+      "내 에이전트로 돌아가기"
+    ],
+    "connTabNames-consumed": [
+      "본문으로 건너뛰기",
+      "▸ 식별자",
+      "내 에이전트로 돌아가기"
+    ],
+    "friendsATabNames": [
+      "본문으로 건너뛰기",
+      "KnowsLink",
+      "내 계정",
+      "대화",
+      "친구",
+      "내 에이전트",
+      "입력한 코드 …zz99 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+      "친구 요청 수락: 합성 회원 C / 8ZONjg5Fp2Phf_6lYejilu",
+      "친구 요청 거절: 합성 회원 C / 8ZONjg5Fp2Phf_6lYejilu",
+      "입력한 코드 …G9Zg 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+      "입력한 코드 형식 다름 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+      "입력한 코드 …WqcI 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+      "입력한 코드 …yltd 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+      "입력한 코드 …ca11 친구 요청 취소, 기한 2026-10-21 16:25:34 KST",
+      "이전 요청 친구 요청 취소, 기한 2026-10-21 16:21:48 KST",
+      "내 친구 코드",
+      "내 이름 바꾸기",
+      "친구가 준 친구 코드",
+      "내 이름 ‘합성 회원 A’을 상대에게 공개하고 위 연결 범위에 동의합니다.",
+      "친구 요청 보내기"
+    ]
+  },
+  "captures": [],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/ZOeaXAFWgNICRHCC8bhdfDdUZ4OnKjW5mG4Qib_Sgag"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/tCQB7YcsQMoYgS1iYA3ATpRVRYGOOA1lHoA8jTZ-ihA"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/ef1t-6dG0ZAl6go1ZwU2zEvMHuo5jxy4h3tIDVsbM08"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/iCt6BGbclFWa97_6P0h2cHCXWHFTSP5KVnkWjpx_NwI"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/ZOeaXAFWgNICRHCC8bhdfDdUZ4OnKjW5mG4Qib_Sgag"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/tCQB7YcsQMoYgS1iYA3ATpRVRYGOOA1lHoA8jTZ-ihA"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/ef1t-6dG0ZAl6go1ZwU2zEvMHuo5jxy4h3tIDVsbM08"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/iCt6BGbclFWa97_6P0h2cHCXWHFTSP5KVnkWjpx_NwI"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/ef1t-6dG0ZAl6go1ZwU2zEvMHuo5jxy4h3tIDVsbM08"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/connections/ef1t-6dG0ZAl6go1ZwU2zEvMHuo5jxy4h3tIDVsbM08"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/friends"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    },
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    }
+  ]
+}

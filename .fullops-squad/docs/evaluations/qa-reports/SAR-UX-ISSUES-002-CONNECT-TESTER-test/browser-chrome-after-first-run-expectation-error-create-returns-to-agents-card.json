@@ -1,0 +1,123 @@
+{
+  "browser": "Chrome/155.0.8059.80",
+  "protocol": "1.3",
+  "origin": "http://127.0.0.1:18932",
+  "stage": "after",
+  "checks": [
+    {
+      "name": "after-agents-a-five-cards",
+      "passed": true,
+      "detail": 5
+    },
+    {
+      "name": "after-new-connection-page-facts-and-waiting-step-1",
+      "passed": false,
+      "detail": {
+        "title": "내 에이전트 · KnowsLink",
+        "h1": 1,
+        "main": true,
+        "skip": true,
+        "lang": "ko",
+        "cur": [
+          "page:내 에이전트"
+        ]
+      }
+    },
+    {
+      "name": "after-new-connection-page-return-link-targets-new-card",
+      "passed": false,
+      "detail": "agent_31f2e8a229c525e2462757"
+    },
+    {
+      "name": "layout-1440-conn-new-a",
+      "passed": true,
+      "detail": {
+        "iw": 1440,
+        "dpr": 1,
+        "inputScroll": [],
+        "selects": [],
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "taClip": false,
+        "nameCount": 21
+      }
+    },
+    {
+      "name": "layout-390-conn-new-a",
+      "passed": true,
+      "detail": {
+        "iw": 390,
+        "dpr": 1,
+        "inputScroll": [
+          "agent-name-agent_fx_approved:40ch",
+          "agent-name-agent_fx_registered:52ch"
+        ],
+        "selects": [],
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "taClip": false,
+        "nameCount": 21
+      }
+    },
+    {
+      "name": "layout-320-conn-new-a",
+      "passed": true,
+      "detail": {
+        "iw": 320,
+        "dpr": 1,
+        "inputScroll": [
+          "agent-name-agent_fx_approved:40ch",
+          "agent-name-agent_fx_registered:52ch"
+        ],
+        "selects": [],
+        "over": -15,
+        "small": [],
+        "clipped": [],
+        "hidden": [],
+        "ell": [],
+        "nameOver": [],
+        "taClip": false,
+        "nameCount": 21
+      }
+    }
+  ],
+  "observations": {},
+  "captures": [
+    {
+      "file": "chrome-conn-new-a-1440.png",
+      "w": 1440,
+      "h": 900,
+      "dpr": 1,
+      "sha256": "0ade73e84aa572e32a729ae329ea0ecaae7513a4073ad162bd3f0782d96fe75a"
+    },
+    {
+      "file": "chrome-conn-new-a-390.png",
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "sha256": "0ed706ac90957531465ff66c729f3bf2ba42d74a9dc5a6624a99f977c3c01ddb"
+    },
+    {
+      "file": "chrome-conn-new-a-320.png",
+      "w": 320,
+      "h": 640,
+      "dpr": 1,
+      "sha256": "6bf25c9bc7dcc43080afcc6e836190ef5b130fd0e34c855e53747ef098d95cbc"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "origin": "http://127.0.0.1:18932",
+      "path": "/home/agents"
+    }
+  ]
+}
