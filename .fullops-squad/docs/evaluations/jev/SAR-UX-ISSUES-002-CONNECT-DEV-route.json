@@ -5,8 +5,8 @@
   "route": "implementation",
   "role": "dev",
   "deliverables": [
-    "D10",
     "D13",
+    "D10",
     "D09"
   ],
   "thresholds": {
@@ -18,10 +18,10 @@
     "scope": {
       "choice": "implementation",
       "probabilities": {
-        "implementation": 0.97,
-        "product": 0.03
+        "implementation": 0.99,
+        "product": 0.01
       },
-      "confidence": 0.94
+      "confidence": 0.98
     },
     "role": {
       "choice": "dev",
@@ -33,37 +33,42 @@
       "confidence": 1
     },
     "docs": {
-      "D01": 0.4,
-      "D02": 0.41,
-      "D03": 0.53,
-      "D04": 0.49,
-      "D05": 0.51,
-      "D06": 0.44,
-      "D07": 0.4,
-      "D08": 0.59,
-      "D09": 0.64,
-      "D10": 0.8,
-      "D11": 0.58,
-      "D12": 0.57,
-      "D13": 0.79
+      "D01": 0.57,
+      "D02": 0.63,
+      "D03": 0.69,
+      "D04": 0.62,
+      "D05": 0.71,
+      "D06": 0.7,
+      "D07": 0.67,
+      "D08": 0.67,
+      "D09": 0.76,
+      "D10": 0.81,
+      "D11": 0.71,
+      "D12": 0.7,
+      "D13": 0.84
     }
   },
   "usage": {
-    "input_tokens": 2566,
+    "input_tokens": 2497,
     "output_tokens": 314,
-    "cost": 0.000107772
+    "cost": 0.000104874
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
   "additional_deliverables": [
+    "D01",
+    "D02",
     "D03",
+    "D04",
     "D05",
+    "D06",
+    "D07",
     "D08",
     "D11",
     "D12"
   ],
-  "latency_seconds": 0.666,
+  "latency_seconds": 0.637,
   "response_model": "typesafe/jev-1.14-20261014",
   "model": {
     "agent": "claude",
@@ -73,6 +78,15 @@
     "source": "user"
   },
   "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
-  "head": "022c748e6fd153dea024785ebb045d28fee5a948",
-  "requires_packet": true
+  "head": "3a0cd82f6297f5101d165a5cd6475616526d40cb",
+  "requires_packet": true,
+  "attempt": "092c653b0baf45238006e75c041662a8",
+  "instruction_sha256": "c3995fe45b471091363fb4ff9daff0f5d8b4428bc3f13edb28506e69e763cc12",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "6da96235ed59cc466b1208bb06404d0b0fd18e92b40e7f5d5b0e4f06143e1f14"
 }
