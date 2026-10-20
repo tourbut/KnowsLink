@@ -1,10 +1,11 @@
 ---
+id: D02
 title: 실제 일정 API 연동 제품 범위
-status: draft
+status: review
 updated: 2026-10-20
 owner: designer
 tasks: [SAR-SCHEDULE-001-DESIGN]
-upstream: [D01, D02]
+upstream: [D01]
 summary: 실제 캘린더 연결의 사용자 결정 선택지와 추천안 기준 흐름·공개·실패·완료 조건 초안을 정한다
 ---
 
