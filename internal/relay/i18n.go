@@ -3,6 +3,7 @@
 package relay
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"net/url"
@@ -55,6 +56,21 @@ func memberLang(w http.ResponseWriter, r *http.Request, m *Member) {
 		w.Header().Set(langSavedHeader, "1")
 	}
 }
+
+// langMarks drops both internal markers when headers go out, so redirects, JSON and other unrendered responses
+// never carry them; Unwrap keeps http.ResponseController deadlines and flushing.
+type langMarks struct{ http.ResponseWriter }
+
+func (w langMarks) strip() {
+	w.Header().Del(langSavedHeader)
+	w.Header().Del(langUnsavedHeader)
+}
+func (w langMarks) WriteHeader(code int) { w.strip(); w.ResponseWriter.WriteHeader(code) }
+func (w langMarks) Write(b []byte) (int, error) {
+	w.strip()
+	return w.ResponseWriter.Write(b)
+}
+func (w langMarks) Unwrap() http.ResponseWriter { return w.ResponseWriter }
 
 func responseLang(w http.ResponseWriter) string {
 	if l := w.Header().Get("Content-Language"); validLang(l) {
@@ -187,6 +203,14 @@ func pageFuncs(lang string) template.FuncMap {
 		"tr":    func(v any) string { return tr(lang, text(v)) },
 		"name":  func(v any) string { return agentFallback(lang, text(v)) },
 		"lang":  func() string { return lang },
+		// langPart marks the other language's own name inside a problem sentence (O-LG-05, WCAG 3.1.2).
+		"langPart": func(v any) template.HTML {
+			other, code := "English", "en"
+			if lang == "en" {
+				other, code = "한국어", "ko"
+			}
+			return template.HTML(strings.ReplaceAll(template.HTMLEscapeString(fmt.Sprint(v)), other, `<span lang="`+code+`">`+other+`</span>`))
+		},
 	}
 }
 

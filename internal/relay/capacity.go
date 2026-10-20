@@ -169,7 +169,8 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 	s.httpOnce.Do(func() {
 		s.httpNew, s.httpClean, s.reading = make(chan struct{}, 16), make(chan struct{}, 4), make(chan struct{}, 1)
 	})
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return http.HandlerFunc(func(inner http.ResponseWriter, r *http.Request) {
+		w := langMarks{inner}
 		arrived := time.Now()
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
@@ -185,7 +186,7 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		if form || strings.HasPrefix(r.URL.Path, "/v1/connect/") {
 			limit = 8192
 		}
-		raw, readErr := io.ReadAll(http.MaxBytesReader(w, r.Body, limit))
+		raw, readErr := io.ReadAll(http.MaxBytesReader(inner, r.Body, limit))
 		r.Body = io.NopCloser(bytes.NewReader(raw))
 		r = r.WithContext(context.WithValue(r.Context(), requestBodyKey{}, raw))
 		var formErr error

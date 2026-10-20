@@ -461,3 +461,25 @@ func TestAdmissionRefusalsFollowBrowserLanguage(t *testing.T) {
 		}
 	}
 }
+
+// O-LG-05: the other language's own name inside a problem sentence carries its language (WCAG 3.1.2), and the
+// internal language markers leave no response, rendered or a plain redirect.
+func TestLanguagePartsAndMarkers(t *testing.T) {
+	problem := "지원하지 않는 언어입니다. 저장된 설정은 그대로입니다. 한국어 또는 English를 선택하세요."
+	for lang, part := range map[string]string{"ko": `<span lang="en">English</span>를`, "en": `Choose <span lang="ko">한국어</span> or English.`} {
+		w := httptest.NewRecorder()
+		w.Header().Set("Content-Language", lang)
+		render(w, 422, "refusal", map[string]any{"Title": "설정", "Problem": problem})
+		if !strings.Contains(w.Body.String(), part) {
+			t.Fatalf("%s problem lacks the language part %q", lang, part)
+		}
+	}
+	w := httptest.NewRecorder()
+	marked := langMarks{w}
+	marked.Header().Set(langSavedHeader, "1")
+	marked.Header().Set(langUnsavedHeader, "1")
+	http.Redirect(marked, httptest.NewRequest("POST", "/home/language", nil), "/home/account", http.StatusSeeOther)
+	if sent := w.Result().Header; w.Code != 303 || sent.Get(langSavedHeader) != "" || sent.Get(langUnsavedHeader) != "" {
+		t.Fatal("redirect carried an internal language marker", sent)
+	}
+}

@@ -22,6 +22,9 @@ type Friend struct {
 	// Held marks a request kept from a receiver at the receive limit: the receiver keeps seeing this earlier ended
 	// state, or no row at all ("-"). "" is a row both sides see.
 	Held string `json:",omitempty"`
+	// HeldFrom and HeldTail keep the earlier row's direction for that receiver (F-R1); "" in older data shows it incoming.
+	HeldFrom string `json:",omitempty"`
+	HeldTail string `json:",omitempty"`
 }
 
 type ConversationCopy struct {
@@ -187,7 +190,7 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 		return // a repeat looks like a repeat of any still-pending request
 	}
 	legacy := st.Friends[pairID(id, placeholder)]
-	if target == placeholder || old != nil {
+	if target == placeholder {
 		legacy = nil
 	}
 	if legacy != nil && open(legacy) {
@@ -211,10 +214,11 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 	if active >= 400 || pending >= 200 || mine >= 10 || (old == nil && legacy == nil && len(st.Friends) >= 20000) {
 		return
 	}
-	seen := "-" // what the receiver sees of this row now; kept while the request is held from them
+	seen, from, tail := "-", "", "" // what the receiver sees of this row now; kept while the request is held from them
 	if old != nil {
-		if seen = old.Held; seen == "" {
+		if seen, from, tail = old.Held, old.HeldFrom, old.HeldTail; seen == "" {
 			seen = map[bool]string{true: "removed", false: old.State}[old.State == "blocked-pending"]
+			from, tail = old.Inviter, old.CodeTail
 		}
 	}
 	if old == nil && legacy != nil {
@@ -228,12 +232,12 @@ func (st *State) requestFriend(id, code string, now time.Time) {
 		st.Friends[key] = old
 	}
 	old.Generation++
-	old.Inviter, old.State, old.Exp, old.CodeTail, old.Held = id, "pending", now.Add(24*time.Hour), codeTail(code), ""
+	old.Inviter, old.State, old.Exp, old.CodeTail, old.Held, old.HeldFrom, old.HeldTail = id, "pending", now.Add(24*time.Hour), codeTail(code), "", "", ""
 	if hidden || theirs >= 10 {
 		old.State = "blocked-pending" // the requester sees pending until Exp; the target sees no new request
 	}
 	if !hidden && theirs >= 10 {
-		old.Held = seen
+		old.Held, old.HeldFrom, old.HeldTail = seen, from, tail
 	}
 	if a := st.Members[old.A]; a != nil {
 		old.NameA = a.Name
@@ -331,7 +335,8 @@ func (st *State) decideFriend(id, publicID, decision string, generation int64, n
 		f.State, f.SuppressLegacy = "removed", true
 	case "block":
 		// Blocking a received pending request is never shown to the requester as an action (U4 차단, O-NM-03).
-		pending := f.State == "pending" && f.Inviter != id
+		// A request held from this receiver blocks the same way, so the requester cannot tell it was held (F-R2).
+		pending := (f.State == "pending" || f.State == "blocked-pending" && now.Before(f.Exp)) && f.Inviter != id
 		f.State, f.SuppressLegacy = "removed", true
 		if pending {
 			f.State = "blocked-pending"

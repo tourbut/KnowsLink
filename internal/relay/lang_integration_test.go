@@ -6,6 +6,7 @@ package relay
 
 import (
 	"fmt"
+	"net/http/httptest"
 	"net/url"
 	"strings"
 	"testing"
@@ -102,8 +103,14 @@ func TestLanguagePreferencePostgres(t *testing.T) {
 	expect(t, w, 422)
 	english(w.Body.String())
 
-	// Sign out: the public page follows the browser, which holds no choice, so Korean.
-	expect(t, a.do("POST", "/auth/logout", nil), 303)
+	// A redirect of a member with a saved value renders nothing, yet must not carry the internal markers either.
+	for _, w := range []*httptest.ResponseRecorder{a.do("POST", "/home/language", url.Values{"lang": {"en"}}), a.do("POST", "/auth/logout", nil)} {
+		expect(t, w, 303)
+		if sent := w.Result().Header; sent.Get(langSavedHeader) != "" || sent.Get(langUnsavedHeader) != "" {
+			t.Fatal("redirect carried an internal language marker", sent)
+		}
+	}
+	// Signed out: the public page follows the browser, which holds no choice, so Korean.
 	expect(t, a.do("GET", "/", nil), 200, `<html lang="ko">`)
 	// Account switch in the same browser: B has no saved value and inherits nothing from A.
 	idB := signIn(a, "lang-b@example.test")
