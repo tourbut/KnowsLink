@@ -4,7 +4,7 @@ status: review
 updated: 2026-10-20
 owner: designer
 tasks: [SAR-UX-ISSUES-002-LANG-VISUAL]
-summary: "후보 7704e6d의 설정·공개 첫페이지·주요 회원 화면을 한국어/English와 1440·390·320 캡처 90장으로 판정한다. 결론은 조건부 수락이며 로그인 회원의 언어 링크 무동작과 영어 1인칭 문구를 DEV 수정으로 남긴다"
+summary: 후보 7704e6d의 설정·공개 첫페이지·주요 회원 화면을 한국어/English와 1440·390·320 캡처 90장으로 판정한다. 결론은 조건부 수락이며 로그인 회원의 언어 링크 무동작과 영어 1인칭 문구를 DEV 수정으로 남긴다
 ---
 
 # SAR-UX-ISSUES-002-LANG-VISUAL 직접 시각 판정
