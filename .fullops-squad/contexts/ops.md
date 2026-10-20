@@ -1,7 +1,7 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-17
+updated: 2026-10-20
 owner: ops
 tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
@@ -105,3 +105,9 @@ Grok은같은기존연결폴더·Command/watcher·webhook routine을유지하며
 1dd6800을 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용했다. [운영 보고](../docs/evaluations/qa-reports/SAR-RELEASE-001-OPS/report.md). 이번엔 build 전에 현재 이미지에 고유 태그를 붙여 inspect했다(직전 원 이미지 조회 실패 재발 방지).
 db/deploy diff가 0이어도 공개 Tunnel ingress `path` 정규식이 새 API를 막을 수 있다. 새 공개 경로는 loopback 401과 공개 401을 둘 다 확인한다. 공개 주소는 간격을 두고 호출한다. 2.5회/초 루프가 429를 2분 만들었다.
 live Tunnel 변경은 사용자 승인·원본 백업·`cloudflared ingress validate/rule`·재시작 순서로 한다(끊김 약2초). `ingress rule | grep -m1`은 SIGPIPE로 종료141이 된다. Cloudflare edge가 Web Analytics script를 주입하므로 공개 `<script` 검사는 origin(loopback)과 분리한다.
+
+## 2026-10-20 — SAR-RELEASE-002-OPS
+
+7b4f9bc을 같은 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용했다. [운영 보고](../docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md). `/lang/(ko|en)`은 repo·live ingress를 함께 바꾸고(승인) 후보가 repo 규칙과 문자열이 같은지 서버에서 대조한 뒤 적용했다.
+새 relay는 기존 상태를 저장할 때 `omitempty`가 아닌 새 필드(`CodeTail:""`)를 기존 레코드에 쓴다. 이 직렬화 차이는 digest를 바꾼다. 전환 전후 digest를 따로 묶고 원인을 백업과 live의 필드 비교로 분리한다.
+재시작 관찰 루프(0.5초 간격 공개 호출)가 직전 교훈을 두고도 429를 다시 만들었다. 재시작은 서버 측 cloudflared 등록 로그로 보고 공개 확인은 1초 이상 간격·재시작 뒤 한 번씩만 한다.

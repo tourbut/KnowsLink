@@ -1,0 +1,11 @@
+FINAL_OBSERVE_UTC=2026-10-20T13:53:18Z
+99789dba9991f021f60260d23a1c38282930b4caf3f06919d2cb56b9c58ced10  /home/[redacted]/deploy/knowslink-state/release002-ops-20261020/new-public-ingress.yml
+93acc733dbd27d25824ccbdd1a26868987c38152d470bdf7182b53a045163555  /home/[redacted]/deploy/knowslink-state/release002-ops-20261020/new-check_public_ingress.py
+f2d8e6eed9dade1fe30f3aa1cf25c8313aa0cb480ac1d9385d570ed224ca2eaa  /home/[redacted]/deploy/knowslink-state/release002-ops-20261020/config.yml.pre-release002
+live_path_rule == repo_path_rule: True | old != new: True
+added alternatives: ['/lang/(ko', 'en)'] removed: []
+live config mode=600
+/knowslink-cloudflared-1 running restarts=0 started=2026-10-20T13:52:03.46594893Z
+/knowslink-relay-1 running restarts=0 started=2026-10-20T13:50:56.739259266Z
+
+EXIT=0

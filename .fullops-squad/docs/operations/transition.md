@@ -4,7 +4,7 @@ title: 인수인계서
 status: draft
 updated: 2026-10-20
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
@@ -33,6 +33,14 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 ## DEV 후보 인계 (2026-10-19, SAR-UX-ISSUES-002-NAMES-DEV)
 
 이름 중심 표시·친구 코드 공유·친구 요청 오류 복구의 DEV 후보다. 운영에는 아직 반영되지 않았다. 새 schema·migration·공개 경로·Tunnel 규칙은 없으므로 배포 시 기존 relay 교체 절차만 적용한다. 수락 전 남은 일은 tester 독립 QA·designer 시각 검수·고정 SHA 리뷰·main 통합이다. designer 조건부 수락의 수정 4건(새 대화 radio·내 에이전트 링크 분리·이름 금지 문자 문구와 입력 복구·거절 안내)을 같은 후보에 더했다. 근거는 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md)다.
+
+## 현재 운영 상태 (2026-10-20, SAR-RELEASE-002-OPS)
+
+실제 운영 제품은 `7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2`다. 13:51:02Z(22:51:02 KST)에 relay healthy를 확인했다. 이전 `1dd6800`에서 약18초 중단했고 새 schema/migration은 없다. 위 DEV 후보 인계(이름·승인·연결·언어·low)는 이 배포로 운영에 반영됐다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
+
+새 private 백업 `backups/1dd6800-pre-release002-20261020T135049Z.dump`는 0600·11271bytes다. network-none 복원의 전체 data digest·goose2·guard1·HumanModel1·downgrade 거부를 확인했다. 기존 회원·키/철회·Remote 설치·Events·Inbox0, 기존17개 백업, 공유 컨테이너는 보존됐다. 기존 친구 1건은 새 relay 저장 때 `CodeTail:""`이 추가된 직렬화 차이만 있다. Rates의 변경은 요청/시간 경계로 분리했다. 이전 relay 이미지는 `knowslink-rollback:1dd6800-release002-20261020` 태그로 보존했다.
+
+인수 항목: (1) 공개 Tunnel 규칙에 `/lang/(ko|en)`을 추가했다. live config 원본 백업은 서버 `release002-ops-20261020/config.yml.pre-release002`다. (2) 서버 checkout은 `7b4f9bc`다. (3) 공개 주소를 빠르게 반복 호출하면 429가 1~2분 지속된다. 재시작 관찰은 서버 측 로그로 한다. (4) 이전 코드로 되돌리면 `Member.Locale`·`CodeTail` 등 새 필드는 무시되고 `Held` 보류 행은 받은 사람에게 보일 수 있다. (5) 실계정 송수신·로그인 상태의 언어 저장·실제 rollback은 아직 시험하지 않았다. 자세한 근거는 [운영 보고](../evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md)다.
 
 ## 현재 운영 상태 (2026-10-17, SAR-RELEASE-001-OPS)
 

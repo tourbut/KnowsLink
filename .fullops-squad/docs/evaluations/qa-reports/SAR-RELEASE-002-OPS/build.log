@@ -1,0 +1,115 @@
+/home/[redacted]/deploy/knowslink-state/release002-ops-20261020/release.bundle: OK
+The bundle contains this ref:
+7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2 refs/tmp/release002
+The bundle requires this ref:
+1dd6800d5d4238e2060f99e98eaab437ea06682c 
+The bundle uses this hash algorithm: sha1
+schema/compose/dependency diff=0 (no migration)
+deploy diff files:
+ deploy/knowslink/tunnel/public-ingress.yml | 2 +-
+ scripts/check_public_ingress.py            | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+ 72 files changed, 5619 insertions(+), 276 deletions(-)
+ 46 files changed, 4285 insertions(+), 263 deletions(-)
+ROLLBACK_TAG_IMAGE=sha256:4893d0f51333ae3d0476f0602b63d5b09d10ab5dadf1946bf20f994990098999
+#1 [internal] load local bake definitions
+#1 reading from stdin 933B done
+#1 DONE 0.0s
+
+#2 [relay internal] load build definition from Dockerfile
+#2 transferring dockerfile: 711B done
+#2 DONE 0.0s
+
+#3 [relay internal] load metadata for docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#3 DONE 1.2s
+
+#4 [migrate internal] load metadata for docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#4 DONE 1.2s
+
+#5 [relay internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load build context
+#6 transferring context: 628.50kB 0.0s done
+#6 DONE 0.1s
+
+#7 [relay build 1/7] FROM docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#7 resolve docker.io/library/golang:1.27.1-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.1s done
+#7 DONE 0.1s
+
+#8 [migrate stage-1 1/5] FROM docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0
+#8 resolve docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 0.1s done
+#8 DONE 0.1s
+
+#9 [migrate build 2/7] WORKDIR /src
+#9 CACHED
+
+#10 [migrate build 3/7] COPY go.mod go.sum ./
+#10 CACHED
+
+#11 [migrate build 4/7] RUN go mod download
+#11 CACHED
+
+#12 [migrate build 5/7] COPY cmd ./cmd
+#12 CACHED
+
+#13 [migrate build 6/7] COPY internal ./internal
+#13 DONE 0.8s
+
+#14 [relay build 7/7] RUN CGO_ENABLED=0 go build -trimpath -o /out/relay ./cmd/relay &&     CGO_ENABLED=0 go build -trimpath -o /out/migrate ./cmd/migrate
+#14 DONE 28.0s
+
+#15 [relay stage-1 2/5] RUN apk add --no-cache ca-certificates
+#15 CACHED
+
+#16 [relay stage-1 3/5] WORKDIR /app
+#16 CACHED
+
+#17 [migrate stage-1 4/5] COPY --from=build /out/relay /out/migrate ./
+#17 DONE 0.1s
+
+#18 [migrate stage-1 5/5] COPY db/migrations ./db/migrations
+#18 DONE 0.1s
+
+#19 [relay] exporting to image
+#19 exporting layers
+#19 exporting layers 1.8s done
+#19 exporting manifest sha256:394440ad2ca88c4c009ed57fc620a33bc801c3a3f65fd80a7f88ada4363e0b23 0.0s done
+#19 exporting config sha256:66cc3a12bd1e5264f8befd7e5655888c136642c979ee7c62447a78b0c56e6b56 0.0s done
+#19 exporting attestation manifest sha256:1626cb2346f45499c2dbc95b7d58c2a739ab96eae53a869662db9f0ec7e813a2
+#19 exporting attestation manifest sha256:1626cb2346f45499c2dbc95b7d58c2a739ab96eae53a869662db9f0ec7e813a2 0.1s done
+#19 exporting manifest list sha256:9646febaf4126ffcbbdd80acf5a00ed0299e3fb5a91a6a2b572f8ccd85443f66 0.0s done
+#19 naming to docker.io/library/knowslink-relay:latest
+#19 naming to docker.io/library/knowslink-relay:latest done
+#19 unpacking to docker.io/library/knowslink-relay:latest
+#19 unpacking to docker.io/library/knowslink-relay:latest 0.3s done
+#19 DONE 2.3s
+
+#20 [migrate] exporting to image
+#20 exporting layers 1.8s done
+#20 exporting manifest sha256:825af7ed48c89698bb4eec89e11cbbb882684a1375b5914504a47c8c45f5af73 0.0s done
+#20 exporting config sha256:66c59d69e9d85a1259644eee3a274c603f69e1fdf905c281193d1eac80ccf9e5 0.0s done
+#20 exporting attestation manifest sha256:ced5d61185cd6b4e200253ff79f5dc37dbcfe91a8bca4bab8653d84161174937 0.1s done
+#20 exporting manifest list sha256:42fa4e0bd97e73748210c4b8b32dd169156855c0632eb942da23a29919b2919b 0.0s done
+#20 naming to docker.io/library/knowslink-migrate:latest done
+#20 unpacking to docker.io/library/knowslink-migrate:latest 0.3s done
+#20 DONE 2.3s
+
+#21 [relay] resolving provenance for metadata file
+#21 DONE 0.1s
+
+#22 [migrate] resolving provenance for metadata file
+#22 DONE 0.1s
+BUILD_EXIT=0
+HEAD=7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2
+/knowslink-relay-1 sha256:4893d0f51333ae3d0476f0602b63d5b09d10ab5dadf1946bf20f994990098999 healthy
+NEW_RELAY_IMAGE=sha256:9646febaf4126ffcbbdd80acf5a00ed0299e3fb5a91a6a2b572f8ccd85443f66
+ROLLBACK_STILL=sha256:4893d0f51333ae3d0476f0602b63d5b09d10ab5dadf1946bf20f994990098999
+/home/[redacted]/deploy/knowslink-state/release002-ops-20261020/release.bundle is okay
+ Image knowslink-relay Building 
+ Image knowslink-migrate Building 
+ Image knowslink-relay Built 
+ Image knowslink-migrate Built 
+
+EXIT=0
