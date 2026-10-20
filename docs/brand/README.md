@@ -1,9 +1,9 @@
 ---
 title: KnowsLink CI
 status: draft
-updated: 2026-10-18
+updated: 2026-10-20
 owner: coor
-tasks: [SAR-CI-001]
+tasks: [SAR-CI-001, SAR-CI-002-DEV]
 summary: KnowsLink 로고 에셋과 도형 의미, 사용 규칙
 ---
 
@@ -15,9 +15,21 @@ summary: KnowsLink 로고 에셋과 도형 의미, 사용 규칙
 |---|---|
 | [knowslink-lockup.svg](knowslink-lockup.svg) | 심볼과 글자를 세로로 묶은 기본형. 글자는 Geist 500 윤곽선이라 폰트가 필요 없다 |
 | [knowslink-symbol.svg](knowslink-symbol.svg) | 심볼만. 정사각형이 필요한 자리에 쓴다 |
+| [knowslink-favicon.svg](knowslink-favicon.svg) | 32px 이하용 단순형. 16·32·48px에서 쓴다. OS가 어두운 모드면 반전 색으로 바뀐다 |
+| [knowslink-lockup-inverse.svg](knowslink-lockup-inverse.svg) | 어두운 배경용 기본 lockup. 색만 바꾼 반전판 |
+| [knowslink-symbol-inverse.svg](knowslink-symbol-inverse.svg) | 어두운 배경용 심볼 |
+| [knowslink-lockup-ko.svg](knowslink-lockup-ko.svg) | 한글 '노우스링크' lockup. 글자는 Pretendard 500 윤곽선이라 폰트가 필요 없다 |
 
-색은 잉크 `#182B31`, 청록 `#005A62`뿐이다. 배경은 투명이며 흰색이나 밝은 웜그레이 위에서 쓴다.
+밝은 배경용 색은 잉크 `#182B31`, 청록 `#005A62`뿐이다. 배경은 투명이며 흰색이나 밝은 웜그레이 위에서 쓴다.
+어두운 배경용 반전판은 선·글자를 웜화이트 `#F2F0EA`, 청록을 `#2FA3AD`로 바꾼다. 잉크색 선이 묻히고 `#005A62`도 `#182B31` 위에서 1.85:1이라 원본 색은 어두운 배경에 쓰지 않는다.
 이 SVG가 원본이다. 아래 기하를 지키면 손으로 고쳐도 된다.
+
+## 사용 규칙
+
+- 밝은 배경에는 원본·파비콘·한글판, 어두운 배경에는 `-inverse`를 쓴다. 색을 바꾸지 않는다.
+- 반전판 대비는 `#182B31` 위에서 선 12.90:1, 청록 4.87:1이고 `#000000` 위에서 18.43:1, 6.96:1이다. WCAG 비텍스트 3:1을 넘는 배경은 `#182B31`과 같거나 더 어두운 것까지다. 그보다 밝은 배경에는 쓰지 않는다. 수치는 `.fullops-squad/docs/evaluations/qa-reports/SAR-CI-002-DEV-test/contrast.md`에 있다.
+- 파비콘은 `<link rel="icon" type="image/svg+xml">`로 연결한다. `<img>`로 넣으면 어두운 모드 전환이 페이지가 아니라 OS 설정을 따른다. 제품 페이지에 연결하는 일은 아직 하지 않았다.
+- 한글 lockup 글자는 윤곽선이다. 글자를 바꾸려면 Pretendard로 다시 윤곽선을 뽑는다. 글꼴은 `videos/knowslink-motion/assets/fonts/PretendardVariable.woff2`(SIL OFL 1.1, `Pretendard-OFL.txt`)를 weight 500으로 인스턴스해 썼다. 영문 lockup의 Geist 500과 같은 굵기다.
 
 ## 도형 의미
 
@@ -33,8 +45,19 @@ summary: KnowsLink 로고 에셋과 도형 의미, 사용 규칙
 - 칸 하나는 `(20,20)`에서 `(120,120)`, 다른 칸은 `(100,100)` 기준 180도 회전이다. 겹침은 `(80,80)`에서 `(120,120)`이다.
 - 점은 반지름 5이고 칸의 바깥 모서리 안쪽에 놓는다. 선 틈은 점 옆에서 양쪽이 같아야 한다.
 
+## 파비콘 단순화 근거
+
+32px 이하에서는 선 굵기 6과 반지름 5 점이 0.5px 안팎이 되어 흐려졌다(QA 캡처에서 16px 원본은 선이 회색 얼룩이 된다). 그래서 원본 기하를 두고 다음만 바꿨다.
+
+- 선 굵기를 6에서 14로 키운다. 16px에서 약 1.2px다.
+- 점과 선 틈을 뺀다. 두 윤곽은 틈 없이 닫힌 사각형이다.
+- 두 칸 위치·모서리 반지름 14·청록 겹침 `(80,80)`–`(120,120)`은 그대로다. 청록은 여전히 겹침 한 곳에만 쓴다.
+- 심볼 상자는 `6 6 188 188`로 잘라 여백을 줄였다.
+
+점(사람)과 선 틈(발송 승인)의 의미는 파비콘에서 보이지 않는다. 의미는 큰 크기의 원본이 맡는다.
+
 ## 알려진 한계
 
-- 32px 이하에서는 선 틈과 점이 흐려진다. 파비콘용 단순형은 아직 없다.
-- 어두운 배경용 반전판이 없다. 잉크색 선이 묻히므로 어두운 배경에 그대로 쓰지 않는다.
-- 한글 표기 버전은 없다.
+- 한글 lockup과 심볼 외 반전판은 기본 lockup 반전판만 있다. 한글 반전판은 없다.
+- 파비콘은 PNG·ICO가 없다. SVG 파비콘을 지원하지 않는 환경에서는 따로 내보내야 한다.
+- 한글·반전·파비콘의 시각 수락은 아직 받지 않았다. 사용자나 designer가 확인한다.
