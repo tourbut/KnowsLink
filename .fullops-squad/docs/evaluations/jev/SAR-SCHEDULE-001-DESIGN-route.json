@@ -5,9 +5,7 @@
   "route": "product",
   "role": "designer",
   "deliverables": [
-    "D02",
-    "D01",
-    "D04"
+    "D13"
   ],
   "thresholds": {
     "simple": 0.8,
@@ -16,77 +14,69 @@
   },
   "answers": {
     "scope": {
-      "choice": "product",
+      "choice": "implementation",
       "probabilities": {
-        "implementation": 0.06,
-        "product": 0.94
+        "implementation": 0.72,
+        "product": 0.28
       },
-      "confidence": 0.88
+      "confidence": 0.44
     },
     "role": {
       "choice": "dev",
       "probabilities": {
-        "dev": 1,
-        "ops": 0,
+        "dev": 0.97,
+        "ops": 0.03,
         "tester": 0
       },
-      "confidence": 1
+      "confidence": 0.95
     },
     "docs": {
-      "D01": 0.74,
-      "D02": 0.82,
-      "D03": 0.64,
-      "D04": 0.71,
-      "D05": 0.71,
-      "D06": 0.7,
-      "D07": 0.58,
-      "D08": 0.4,
-      "D09": 0.68,
-      "D10": 0.6,
-      "D11": 0.63,
-      "D12": 0.49,
-      "D13": 0.47
+      "D01": 0.3,
+      "D02": 0.35,
+      "D03": 0.29,
+      "D04": 0.29,
+      "D05": 0.3,
+      "D06": 0.31,
+      "D07": 0.21,
+      "D08": 0.21,
+      "D09": 0.27,
+      "D10": 0.35,
+      "D11": 0.3,
+      "D12": 0.44,
+      "D13": 0.62
     }
   },
   "usage": {
-    "input_tokens": 2437,
+    "input_tokens": 2447,
     "output_tokens": 314,
-    "cost": 0.000102354
+    "cost": 0.000102774
   },
   "error": null,
   "docs_status": "complete",
   "unresolved_deliverables": [],
-  "additional_deliverables": [
-    "D03",
-    "D05",
-    "D06",
-    "D07",
-    "D09",
-    "D10",
-    "D11"
-  ],
-  "latency_seconds": 0.52,
+  "additional_deliverables": [],
+  "latency_seconds": 0.683,
   "response_model": "typesafe/jev-1.14-20261014",
-  "original_role": "designer",
-  "original_route": "product",
-  "override_reason": "제품 범위 미정 기능의 기획은 designer 소유",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "제품 정본 결정 기록은 designer 소유",
   "model": {
     "agent": "claude",
     "provider": "anthropic",
-    "model": "claude-opus-5-5",
+    "model": "claude-sonnet-5-5",
     "effort": "high",
     "source": "user"
   },
   "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
-  "head": "4321ce8f8e5d8f11cc6ec419ac9f4783b517e1ba",
+  "head": "ceb42257523b8908c30b9e8ed61e9809190ea54a",
   "requires_packet": true,
-  "attempt": "eaa1057e93ce4166a4cff3bd9b02d93a",
-  "instruction_sha256": "8c28c6aa654a22e3fe66dee8c64f789abb00d9f1dfc541906a40ec5b17a22edc",
+  "attempt": "223741f4de4b485fa8cad8a5906c5352",
+  "instruction_sha256": "6490500e964a30df6e3ee776129ab9efd3fb35256ef6fb8aea2299975d6e6c45",
   "options": {
     "model": "~typesafe/jev-latest",
     "offline": false,
     "payload_cache_bypass": false,
     "policy": "route-v4"
   },
-  "input_sha256": "7517cfe94680cb4bf97b732d4a8ea879d140ffe89d0095973d9f969c73e0b3a6"
+  "input_sha256": "24ee92fc492a9d3fbc69da45390685de1dcf4e7a89ef9daf6a8997885d46c681"
 }
