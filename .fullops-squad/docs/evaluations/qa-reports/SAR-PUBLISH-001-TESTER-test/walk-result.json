@@ -1,0 +1,314 @@
+{
+ "checks": [
+  {
+   "id": "CL-00 seed state",
+   "pass": true,
+   "detail": "{'calendar_key_in_state': True, 'connections': 2, 'disclosure_in_state': True, 'gate_pending': 'pending', 'gate_with_result': 'approved', 'lookup_in_state': True, 'revoke_requests': 0}"
+  },
+  {
+   "id": "CL key=present record",
+   "pass": true,
+   "detail": "2026/10/22 00:19:29 calendar cleanup: connections=2 revoked=2 failed=0"
+  },
+  {
+   "id": "CL key=present state",
+   "pass": true,
+   "detail": "{'calendar_key_in_state': False, 'connections': 0, 'disclosure_in_state': False, 'gate_pending': 'pending', 'gate_with_result': 'denied', 'lookup_in_state': False, 'revoke_requests': 2}"
+  },
+  {
+   "id": "CL key=present revoke requests",
+   "pass": true,
+   "detail": "2"
+  },
+  {
+   "id": "CL key=present no secrets in record",
+   "pass": true,
+   "detail": "2026/10/22 00:19:29 calendar cleanup: connections=2 revoked=2 failed=0"
+  },
+  {
+   "id": "CL key=present 2nd run idempotent",
+   "pass": true,
+   "detail": "{'calendar_key_in_state': False, 'cleanup_record': '', 'connections': 0, 'disclosure_in_state': False, 'gate_pending': 'pending', 'gate_with_result': 'denied', 'lookup_in_state': False, 'revoke_requests': 2}"
+  },
+  {
+   "id": "CL key=present revoke=fail record",
+   "pass": true,
+   "detail": "2026/10/22 00:19:29 calendar cleanup: connections=2 revoked=0 failed=2"
+  },
+  {
+   "id": "CL key=present revoke=fail state",
+   "pass": true,
+   "detail": "{'calendar_key_in_state': False, 'connections': 0, 'disclosure_in_state': False, 'gate_pending': 'pending', 'gate_with_result': 'denied', 'lookup_in_state': False, 'revoke_requests': 4}"
+  },
+  {
+   "id": "CL key=present revoke=fail revoke requests",
+   "pass": true,
+   "detail": "2"
+  },
+  {
+   "id": "CL key=present revoke=fail no secrets in record",
+   "pass": true,
+   "detail": "2026/10/22 00:19:29 calendar cleanup: connections=2 revoked=0 failed=2"
+  },
+  {
+   "id": "CL key=present revoke=fail 2nd run idempotent",
+   "pass": true,
+   "detail": "{'calendar_key_in_state': False, 'cleanup_record': '', 'connections': 0, 'disclosure_in_state': False, 'gate_pending': 'pending', 'gate_with_result': 'denied', 'lookup_in_state': False, 'revoke_requests': 4}"
+  },
+  {
+   "id": "CL key=absent record",
+   "pass": true,
+   "detail": "2026/10/22 00:19:29 calendar cleanup: connections=2 revoked=0 failed=2"
+  },
+  {
+   "id": "CL key=absent state",
+   "pass": true,
+   "detail": "{'calendar_key_in_state': False, 'connections': 0, 'disclosure_in_state': False, 'gate_pending': 'pending', 'gate_with_result': 'denied', 'lookup_in_state': False, 'revoke_requests': 4}"
+  },
+  {
+   "id": "CL key=absent revoke requests",
+   "pass": true,
+   "detail": "0"
+  },
+  {
+   "id": "CL key=absent no secrets in record",
+   "pass": true,
+   "detail": "2026/10/22 00:19:29 calendar cleanup: connections=2 revoked=0 failed=2"
+  },
+  {
+   "id": "CL key=absent 2nd run idempotent",
+   "pass": true,
+   "detail": "{'calendar_key_in_state': False, 'cleanup_record': '', 'connections': 0, 'disclosure_in_state': False, 'gate_pending': 'pending', 'gate_with_result': 'denied', 'lookup_in_state': False, 'revoke_requests': 4}"
+  },
+  {
+   "id": "CL pending gate without lookup untouched (spec: only gates with lookup are denied)",
+   "pass": true,
+   "detail": "pending"
+  },
+  {
+   "id": "ST ko account: no calendar words",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "ST ko account: policy links",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "GT ko pending: approve button + no calendar words",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "GT ko cleaned gate: no approve, no calendar words",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "RT ko POST /home/calendar/connect = 404",
+   "pass": true,
+   "detail": "404"
+  },
+  {
+   "id": "RT ko GET /home/calendar/connect not 2xx",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "RT ko POST /home/calendar/disconnect = 404",
+   "pass": true,
+   "detail": "404"
+  },
+  {
+   "id": "RT ko GET /home/calendar/disconnect not 2xx",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "RT ko logged-out POST connect 404",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "ST en account: no calendar words",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "ST en account: policy links",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "GT en pending: approve button + no calendar words",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "GT en cleaned gate: no approve, no calendar words",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "RT en POST /home/calendar/connect = 404",
+   "pass": true,
+   "detail": "404"
+  },
+  {
+   "id": "RT en GET /home/calendar/connect not 2xx",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "RT en POST /home/calendar/disconnect = 404",
+   "pass": true,
+   "detail": "404"
+  },
+  {
+   "id": "RT en GET /home/calendar/disconnect not 2xx",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "RT en logged-out POST connect 404",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "GT cleaned gate consume -> invalid_gate (no disclosure)",
+   "pass": true,
+   "detail": "{\"error\":\"invalid_gate\"}\n"
+  },
+  {
+   "id": "GT approve schedule.query accepted (2xx/3xx)",
+   "pass": true,
+   "detail": "(303, dict_keys(['csrf', 'decision']))"
+  },
+  {
+   "id": "GT after approval: no approve button, no calendar words",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "GT approved schedule.query consume: disclosure false",
+   "pass": true,
+   "detail": "{\"disclosure\":false,\"executable\":false,\"gate_passed\":true}\n"
+  },
+  {
+   "id": "PC /privacy ko 200 public",
+   "pass": true,
+   "detail": "200"
+  },
+  {
+   "id": "PC /privacy ko no braces",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /privacy ko cross link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /privacy ko one h1 + title",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /privacy en 200 public",
+   "pass": true,
+   "detail": "200"
+  },
+  {
+   "id": "PC /privacy en no braces",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /privacy en no Hangul",
+   "pass": true,
+   "detail": "['한국어']"
+  },
+  {
+   "id": "PC /privacy en cross link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /privacy en one h1 + title",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /terms ko 200 public",
+   "pass": true,
+   "detail": "200"
+  },
+  {
+   "id": "PC /terms ko no braces",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /terms ko cross link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /terms ko one h1 + title",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /terms en 200 public",
+   "pass": true,
+   "detail": "200"
+  },
+  {
+   "id": "PC /terms en no braces",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /terms en no Hangul",
+   "pass": true,
+   "detail": "['한국어']"
+  },
+  {
+   "id": "PC /terms en cross link",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC /terms en one h1 + title",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC landing ko footer links",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC landing ko #start fallback without login (line hidden by design)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC landing en footer links",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC landing en #start fallback without login (line hidden by design)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "PC logged-in /privacy 200",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}
