@@ -1,0 +1,82 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLISH-001-RETENTION",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.89,
+        "product": 0.11
+      },
+      "confidence": 0.78
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.18,
+        "ops": 0.8200000000000001,
+        "tester": 0
+      },
+      "confidence": 0.73
+    },
+    "docs": {
+      "D01": 0.08,
+      "D02": 0.07,
+      "D03": 0.12,
+      "D04": 0.06,
+      "D05": 0.09,
+      "D06": 0.11,
+      "D07": 0.16,
+      "D08": 0.23,
+      "D09": 0.11,
+      "D10": 0.36,
+      "D11": 0.11,
+      "D12": 0.58,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2436,
+    "output_tokens": 314,
+    "cost": 0.000102312
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.789,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "coor 배정: D021",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "d5695ff1b7c6c738f527a05978e69248d1404e16",
+  "requires_packet": true,
+  "attempt": "78ed9cb2768648068aa99bec686c157a",
+  "instruction_sha256": "ebfee8c2783c35b482621de0ba82c198dc8538ef5d80db1789f005bc09f67450",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "bfc9d9893652e794992e9840af8e377079141c06626220fbff89d04bcb701c36"
+}
