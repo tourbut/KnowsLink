@@ -43,10 +43,10 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] `internal/relay/policy/privacy.ko.html` 33행: '장애 복구용 백업에는 정보가 더 오래 남을 수 있습니다. 백업은 만든 날부터 14일이 지나면 삭제합니다.'
-- [ ] `internal/relay/policy/privacy.en.html` 33행: 'Backups for recovering from failures can keep information longer. We delete backups 14 days after they are made.'
-- [ ] `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md` 111·199행의 `{백업 보존 기간}`·`{backup retention period}`를 14일 문장으로 바꾸고, 386행 P-03 행을 '확정: 14일(D021, ops 자동 정리 SAR-PUBLISH-001-RETENTION)'로 고친다.
-- [ ] 정책 문안 일치 테스트가 있으면 함께 고친다. 시행일(P-01)은 바꾸지 않는다.
+- [x] `internal/relay/policy/privacy.ko.html` 33행: '장애 복구용 백업에는 정보가 더 오래 남을 수 있습니다. 백업은 만든 날부터 14일이 지나면 삭제합니다.'
+- [x] `internal/relay/policy/privacy.en.html` 33행: 'Backups for recovering from failures can keep information longer. We delete backups 14 days after they are made.'
+- [x] `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md` 111·199행의 `{백업 보존 기간}`·`{backup retention period}`를 14일 문장으로 바꾸고, 386행 P-03 행을 '확정: 14일(D021, ops 자동 정리 SAR-PUBLISH-001-RETENTION)'로 고친다.
+- [x] 정책 문안 일치 테스트가 있으면 함께 고친다. 시행일(P-01)은 바꾸지 않는다.
 
 소유 파일: 위 두 HTML, 정본 문서, 관련 테스트, DEV 보고.
 
@@ -108,7 +108,10 @@ ops 백업 정리(SAR-PUBLISH-001-RETENTION)와 병렬. 운영 배포는 coor가
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
+- 브랜치 / SHA: fullops/dev / f15fceac(문안·정본), 기록 커밋은 그 뒤.
+- 변경 이유: D021, 백업 문장을 '만든 날부터 14일 뒤 삭제'로 교체. KO/EN HTML 33행, 정본 111·199행, P-03 행을 확정으로 바꿨다.
+- 지시와 달라진 점: 없음. 일치 테스트는 없어 테스트 변경 없음.
+- 검증: 원격 Linux `make lint`·`make test` EXIT=0(f15fceac), 영어판 한글 0건. 못 한 것: 운영 화면 확인(배포 전). 상세 [report.md](../docs/evaluations/qa-reports/SAR-PUBLISH-001-P03-test/report.md).
+- 산출물: D02(SAR-PUBLISH-001.md). DEP-001: 의존성 변경 없음(HTML·문서만).
+- 남은 일: coor가 ops 정리(SAR-PUBLISH-001-RETENTION)와 함께 운영 배포를 배정한다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
