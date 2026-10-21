@@ -1,0 +1,33 @@
+=== RUN   TestCalendarConnection
+--- PASS: TestCalendarConnection (0.47s)
+=== RUN   TestCalendarApprovalRunsOneLookup
+--- PASS: TestCalendarApprovalRunsOneLookup (0.90s)
+=== RUN   TestCalendarUnconnectedAndCommitStub
+--- PASS: TestCalendarUnconnectedAndCommitStub (0.78s)
+=== RUN   TestCalendarScopeEnforcedAtAccept
+--- PASS: TestCalendarScopeEnforcedAtAccept (0.49s)
+=== RUN   TestCalendarRevocationAndFailureClasses
+=== RUN   TestCalendarRevocationAndFailureClasses/disconnect_ends_pending_without_lookup
+=== RUN   TestCalendarRevocationAndFailureClasses/disconnect_drops_undelivered_result
+=== RUN   TestCalendarRevocationAndFailureClasses/disconnect_keeps_consumed_result
+=== RUN   TestCalendarRevocationAndFailureClasses/owner_revoke_disconnects_and_revokes
+=== RUN   TestCalendarRevocationAndFailureClasses/provider_revocation_marks_reconnect
+2026/10/21 10:31:06 calendar lookup failed
+=== RUN   TestCalendarRevocationAndFailureClasses/outage_fails_after_short_retry_and_keeps_connection
+2026/10/21 10:31:08 calendar lookup failed
+=== RUN   TestCalendarRevocationAndFailureClasses/relationship_revoked_after_approval_discloses_nothing
+=== RUN   TestCalendarRevocationAndFailureClasses/crashed_lookup_lease_fails_closed
+--- PASS: TestCalendarRevocationAndFailureClasses (4.49s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/disconnect_ends_pending_without_lookup (0.41s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/disconnect_drops_undelivered_result (0.48s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/disconnect_keeps_consumed_result (0.43s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/owner_revoke_disconnects_and_revokes (0.30s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/provider_revocation_marks_reconnect (0.44s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/outage_fails_after_short_retry_and_keeps_connection (1.57s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/relationship_revoked_after_approval_discloses_nothing (0.47s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/crashed_lookup_lease_fails_closed (0.39s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	8.209s
+2026/10/21 10:31:00 SQL migrations completed
+
+EXIT=0

@@ -40,11 +40,11 @@ worker가 먼저 읽을 경로를 적는다. `jev_context.py`로 분류했다면
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 시나리오를 `.fullops-squad/docs/evaluations/scenarios/SAR-SCHEDULE-001-QA.md`에 쓴다. SC-01~SC-08과 리뷰 low 수정(L1 done 재전송, L2 봉인 AAD, L3 미저장 refresh token revoke, L5 owner-revoke 해제·revoke)을 항목으로 나눈다.
-- [ ] 격리 fixture를 main `336533e`로 기동한다. DEV 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md`의 'tester/designer용 격리 fixture' 절)의 `remote.py fixture` 방식과 `TestCalendarBrowserFixture`(태그 `integration && calendarfixture`)를 쓴다. 계정 a(요청자)·b(연결 회원)·c(미연결 회원), 합성 Google 동의·철회·장애 토글, `GET /fixture/gate/{id}` 관측을 사용한다. 원격 접근·포트 전달은 이전 tester 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/`)의 방식을 따른다.
-- [ ] 브라우저와 agent API 왕복으로 각 항목을 실행한다. 최소: 연결·해제(해제 뒤 서버에 토큰 없음, revoke 요청), 승인 1회=조회 1회(중복 제출·재접근), 결과에 비밀 필드(summary·attendees·location·이메일) 없음, 범위 초과·친구 아님 거부, 미연결·재연결·장애·한도의 denied/failed 구분, 해제·친구 해제·차단 직후 대기·승인 요청 미조회, 해제 전 조회됐지만 consume 전 결과 미공개(요청자는 denied), 같은 key done 재전송이 기존 receipt, commit U5 유지, 화면 고정 문구(KO/EN, V1·V3·D2 문구 포함).
-- [ ] 결과를 보고서에 판정(PASS/FAIL/not_run)과 재현 절차로 남긴다. 결함은 심각도·재현·기대·실제를 적는다.
-- [ ] fixture를 정리하거나 수명과 정리 담당을 보고서에 적는다.
+- [x] 시나리오를 `.fullops-squad/docs/evaluations/scenarios/SAR-SCHEDULE-001-QA.md`에 쓴다. SC-01~SC-08과 리뷰 low 수정(L1 done 재전송, L2 봉인 AAD, L3 미저장 refresh token revoke, L5 owner-revoke 해제·revoke)을 항목으로 나눈다.
+- [x] 격리 fixture를 main `336533e`로 기동한다. DEV 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md`의 'tester/designer용 격리 fixture' 절)의 `remote.py fixture` 방식과 `TestCalendarBrowserFixture`(태그 `integration && calendarfixture`)를 쓴다. 계정 a(요청자)·b(연결 회원)·c(미연결 회원), 합성 Google 동의·철회·장애 토글, `GET /fixture/gate/{id}` 관측을 사용한다. 원격 접근·포트 전달은 이전 tester 보고(`.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/`)의 방식을 따른다.
+- [x] 브라우저와 agent API 왕복으로 각 항목을 실행한다. 최소: 연결·해제(해제 뒤 서버에 토큰 없음, revoke 요청), 승인 1회=조회 1회(중복 제출·재접근), 결과에 비밀 필드(summary·attendees·location·이메일) 없음, 범위 초과·친구 아님 거부, 미연결·재연결·장애·한도의 denied/failed 구분, 해제·친구 해제·차단 직후 대기·승인 요청 미조회, 해제 전 조회됐지만 consume 전 결과 미공개(요청자는 denied), 같은 key done 재전송이 기존 receipt, commit U5 유지, 화면 고정 문구(KO/EN, V1·V3·D2 문구 포함).
+- [x] 결과를 보고서에 판정(PASS/FAIL/not_run)과 재현 절차로 남긴다. 결함은 심각도·재현·기대·실제를 적는다.
+- [x] fixture를 정리하거나 수명과 정리 담당을 보고서에 적는다.
 
 소유 파일: `scenarios/SAR-SCHEDULE-001-QA.md`, `qa-reports/SAR-SCHEDULE-001-QA-tester-test/`. 제품 코드는 수정하지 않는다. 결함 수정은 coor를 통해 dev에 요청한다.
 
@@ -111,7 +111,11 @@ designer가 같은 SHA에서 SAR-SCHEDULE-001-VISUAL-RECHECK를 진행한다. fi
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+- 브랜치: `fullops/tester`. QA 증거 SHA: 첫 커밋 뒤 이 줄에 적는다.
+- 변경 이유: main 336533e의 일정 조회를 합성 fixture에서 SC-01~SC-08과 L1·L2·L3·L5로 독립 QA하고 시나리오·보고서를 남긴다. 제품 코드는 바꾸지 않았다.
+- 검토 필요: 없음. 제품 결함 0. 독립 QA이며 제품 수락이 아니다.
+- 검증한 것: 원격 exact SHA에서 make lint·make test·calendar integration EXIT=0. 새 fixture walk 47건과 Chrome 초기·reconnect·해제 화면 PASS. 상세는 [보고서](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md).
+- 검증하지 못한 것: 친구 아님, 친구 해제·차단, 브라우저 commit 화면, L3 브라우저 계정 전환과 자기 계정 token 유지 분기, 이메일 회원 브라우저, OS 재시작, 스크린리더, 200%, SC-09 실계정, 캘린더 키 복구. Windows make는 없어 원격 Linux에서 등록 검사를 실행했다.
+- 산출물: [시나리오](../docs/evaluations/scenarios/SAR-SCHEDULE-001-QA.md), [보고서](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md).
+- 남은 일: 이 역할의 남은 일은 없다.
+- 의존성: 제품 `go.mod`·`package.json`을 바꾸지 않았다. DEP-001 해당 없음.
