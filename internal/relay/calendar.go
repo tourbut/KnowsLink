@@ -345,7 +345,8 @@ func (st *State) sweepLookups(now time.Time) {
 	}
 }
 
-// disconnectCalendar drops the sealed token and ends every pending or not-yet-looked-up schedule.query approval as denied.
+// disconnectCalendar drops the sealed token and ends every schedule.query gate the agent has not consumed as denied,
+// dropping any disclosure not yet delivered; a consumed result was already handed over and is not recalled.
 func (st *State) disconnectCalendar(member string, now time.Time) []byte {
 	c := st.calendar(member)
 	if c == nil {
@@ -358,7 +359,7 @@ func (st *State) disconnectCalendar(member string, now time.Time) []byte {
 		if g.Owner != m.Owner || intent != "schedule.query" {
 			continue
 		}
-		if g.State == "pending" || (g.State == "approved" && (g.Lookup == nil || g.Lookup.State != "done")) {
+		if g.State == "pending" || (g.State == "approved" && !g.Consumed) {
 			g.State = "denied"
 			if g.Lookup != nil {
 				g.Lookup.State, g.Lookup.Disclosure = "failed", nil
