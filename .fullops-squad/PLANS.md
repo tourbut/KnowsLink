@@ -2061,4 +2061,3 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-PUBLISH-001-VISUAL → tester: 독립 QA(SAR-PUBLISH-001-TESTER)에서 서버 경유 화면(언어 쿠키 전환·로그인 회원 저장 언어)과 키보드 순회·200% 확대를 확인한다. designer는 이 항목을 보지 못했다. (완료 보고 2026-10-22)
 - [x] SAR-PUBLISH-001-TESTER → designer: designer 시각 검수(SAR-PUBLISH-001-VISUAL, PASS 7980fb52) (완료 보고 자동 등재 2026-10-22)
 - [ ] SAR-PUBLISH-001-TESTER → ops: ops live 반영 확인과 P-04 SMTP 활성화 전 문안 갱신 조건 (완료 보고 자동 등재 2026-10-22)
-- [ ] SAR-PUBLISH-001-D04 → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-22)
