@@ -121,3 +121,9 @@ assertion 41개가 통과했다. 비교 단계는 baseline·before·frozen·afte
 - 서버 백업: `/home/shin/deploy/knowslink-state/backups/4787e85-pre-publish001-20261021T224540Z.dump`(0600).
 - 보존 컨테이너: `knowslink-publish001-rehearse-20261022`(복원 fixture), `knowslink-publish001-rollback-inspect-20261022`. 이미지 tag `knowslink-rollback:4787e85-publish001-20261022`.
 - Git 증거: 이 폴더의 redacted JSON/log와 [commands.txt](commands.txt)(실행 스크립트 전문). 원 credential·token·cookie 값·캘린더 키 값·실메시지·DB row는 포함하지 않는다.
+
+## 문서 HEAD의 FullOps 검사
+
+- 기준 `7c6ef373`, 대상 HEAD `258df551`(결과 문서 커밋)에서 `lint.py`는 ERROR0·WARNING1·실행 불가1(`make lint`)이고 `make test`는 skipped, 종료1이다. 실행 불가는 Windows `make` 부재이며 직전 OPS와 같다. 새 PASS로 보고하지 않는다. 제품 lint·테스트는 SAR-PUBLISH-001 각 단위의 수락 증거를 재사용한다. 이 작업은 제품 코드·의존성을 바꾸지 않았다.
+- WARNING 1건은 `ops-guide.md`의 SIZE-001(513줄, 이전 509)이었다. 새 절의 bullet 4개를 합쳐 509줄로 되돌렸다. 이미 상한 500을 넘던 기존 문서이며 분할은 이번 소유 범위 밖이다.
+- `lint.py`는 작업 트리가 깨끗해야 한다. `deliverables.py --stamp --path`가 잘못된 경로 `.fullops-squad/.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md`에 보고서 복사본을 만들었다(원본과 같은 front matter). 이 저장소는 worker의 삭제·이동 정리를 금지하므로 지우지 않고 보존했다. Git에는 넣지 않고 공유 `.git/info/exclude`에 `/.fullops-squad/.fullops-squad/` 한 줄을 더해 lint가 돌게 했다. coor가 폴더를 지운 뒤 그 줄을 빼면 된다.
