@@ -4,7 +4,7 @@ status: review
 updated: 2026-10-22
 owner: dev
 tasks: [SAR-PUBLISH-001-FIX]
-summary: 시각 검수 V-01~V-03 수정(문단 링크 인라인화, 정책 하단 현재 링크 표시, 설정 링크 간격)과 3폭 재측정, 원격 Linux lint·test EXIT=0
+summary: "시각 검수 V-01~V-03 수정(문단 링크 인라인화, 정책 하단 현재 링크 표시, 설정 링크 간격)과 3폭 재측정, 원격 Linux lint·test EXIT=0"
 ---
 
 # SAR-PUBLISH-001-FIX DEV 검증 보고
