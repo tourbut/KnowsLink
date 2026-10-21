@@ -39,7 +39,7 @@ const memberSource = `
 {{if .Reauth}}<form method="post" action="/auth/reauth"><button class="primary">로그인 다시 확인</button></form>{{end}}
 {{if .Create}}<a class="button primary" href="/home/agents">에이전트 추가</a>{{end}}
 <p><a href="{{.Back}}">{{if eq .Back "/"}}로그인 화면으로 이동{{else if eq .Back "/home/friends"}}친구 목록으로 돌아가기{{else if eq .Back "/home/legacy#gates"}}승인 목록으로 돌아가기{{else if eq .Back "/home/agents"}}내 에이전트로 돌아가기{{else if eq .Back "/home/legacy#pairs"}}기존 연결 목록으로 돌아가기{{else}}홈으로 돌아가기{{end}}</a></p></section></main></html>{{end}}
-{{define "google-complete"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">{{if eq .Next "/home"}}<a class="button primary" href="/home">홈으로 이동</a>{{else if eq .Next "/home/account#calendar"}}<a class="button primary" href="/home/account#calendar">설정으로 돌아가기</a>{{else if eq .Next "/home/receipts"}}<a class="button primary" href="/home/receipts#receipt-form">요청 상태 조회로 돌아가기</a>{{else}}<a class="button primary" href="{{.Next}}">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}
+{{define "google-complete"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">{{if eq .Next "/home"}}<a class="button primary" href="/home">홈으로 이동</a>{{else if eq .Next "/home/receipts"}}<a class="button primary" href="/home/receipts#receipt-form">요청 상태 조회로 돌아가기</a>{{else}}<a class="button primary" href="{{.Next}}">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}
 {{define "verify"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="확인 코드">
 <p>{{.Masked}}로 코드를 보냈습니다. 아직 로그인되지 않았습니다.</p>
 <form method="post" action="/auth/verify"><label for="code">6자리 확인 코드</label><input id="code" class="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required aria-describedby="code-help{{if .Problem}} problem{{end}}">
@@ -130,6 +130,6 @@ const memberSource = `
 <h3>로그아웃</h3><p>로그아웃은 브라우저 세션만 끝냅니다. 연결한 에이전트의 키와 자격은 철회되지 않습니다.</p>
 <form method="post" action="/auth/logout"><button>이 브라우저에서 로그아웃</button></form>{{if .Recent}}<form method="post" action="/auth/logout-all"><button>모든 브라우저에서 로그아웃</button></form>{{else}}<p class="muted">모든 브라우저에서 로그아웃하려면 위 "로그인 다시 확인"으로 5분 안에 재확인하세요.</p>{{end}}</section>
 </main></div></html>{{end}}
-` + humanTemplates + landingTemplates + remoteTemplates
+` + humanTemplates + landingTemplates + policyTemplates + remoteTemplates
 
 var memberPages, memberPagesEN = parsePages("ko"), parsePages("en")

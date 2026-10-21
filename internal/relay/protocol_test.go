@@ -38,22 +38,8 @@ func sign(t *testing.T, private ed25519.PrivateKey, raw map[string]any) []byte {
 	data, _ = json.Marshal(raw)
 	return data
 }
-
-// commitBody is a schedule.commit stub body; commit has no accept-time scope, so capacity tests seed with it.
-func commitBody() map[string]any {
-	return map[string]any{"slot": map[string]any{"start": "2026-12-01T01:00:00Z", "end": "2026-12-01T01:30:00Z"}, "timezone": "Asia/Seoul", "commitment": "synthetic"}
-}
-
-// queryBody is a D010-valid window: the next whole hour from now, one hour long, 30-minute unit.
-func queryBody() map[string]any { return queryBodyAt(time.Now()) }
-func queryBodyAt(now time.Time) map[string]any {
-	start, end := queryWindowAt(now)
-	return map[string]any{"window": map[string]any{"start": start.Format("2006-01-02T15:04:05Z"), "end": end.Format("2006-01-02T15:04:05Z")}, "granularity_min": 30}
-}
-func queryWindow() (time.Time, time.Time) { return queryWindowAt(time.Now()) }
-func queryWindowAt(now time.Time) (time.Time, time.Time) {
-	start := now.UTC().Truncate(time.Hour).Add(time.Hour)
-	return start, start.Add(time.Hour)
+func queryBody() map[string]any {
+	return map[string]any{"window": map[string]any{"start": "2026-10-03T10:00:00Z", "end": "2026-10-03T11:00:00Z"}, "granularity_min": 30}
 }
 func TestFrozenParsingAndSigning(t *testing.T) {
 	if !RegistryValid() {

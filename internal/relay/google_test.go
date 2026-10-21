@@ -159,11 +159,11 @@ func TestGoogleAttemptAndConfiguration(t *testing.T) {
 	if len(st.GoogleAttempts) != 0 {
 		t.Fatal("expired state retained")
 	}
-	if g, err := ConfigureGoogle(context.Background(), "", "", "", ""); g != nil || err != nil {
+	if g, err := ConfigureGoogle(context.Background(), "", "", ""); g != nil || err != nil {
 		t.Fatal("disabled configuration")
 	}
 	for _, u := range []string{"", "http://localhost/auth/google/callback", "https://example.com/wrong", "https://user@example.com/auth/google/callback", "https://example.com/auth/google/callback?x=1"} {
-		if _, err := ConfigureGoogle(context.Background(), "client", "secret", u, ""); err == nil {
+		if _, err := ConfigureGoogle(context.Background(), "client", "secret", u); err == nil {
 			t.Fatal("invalid redirect accepted")
 		}
 	}

@@ -1,0 +1,21 @@
+before cleanup: {"calendar_key_in_state":true,"connections":2,"disclosure_in_state":true,"gate_pending":"pending","gate_with_result":"approved","lookup_in_state":true,"revoke_requests":0}
+retire key=present: {"calendar_key_in_state":false,"cleanup_record":"2026/10/21 22:36:58 calendar cleanup: connections=2 revoked=2 failed=0","connections":0,"disclosure_in_state":false,"gate_pending":"pending","gate_with_result":"denied","lookup_in_state":false,"revoke_requests":2}
+retire key=present revoke=fail: {"calendar_key_in_state":false,"cleanup_record":"2026/10/21 22:36:58 calendar cleanup: connections=2 revoked=0 failed=2","connections":0,"disclosure_in_state":false,"gate_pending":"pending","gate_with_result":"denied","lookup_in_state":false,"revoke_requests":4}
+retire key=absent: {"calendar_key_in_state":false,"cleanup_record":"2026/10/21 22:36:58 calendar cleanup: connections=2 revoked=0 failed=2","connections":0,"disclosure_in_state":false,"gate_pending":"pending","gate_with_result":"denied","lookup_in_state":false,"revoke_requests":4}
+GET /privacy ko: 200 h1=<h1>개인정보처리방침</h1>
+GET /privacy en: 200 h1=<h1>Privacy Policy</h1> korean_runs=0
+GET /terms ko: 200 h1=<h1>서비스 약관</h1>
+GET /terms en: 200 h1=<h1>Terms of Service</h1> korean_runs=0
+GET / footer: href="/privacy" href="/terms" 
+account ko: policy_links=1 calendar_words=0
+pending gate ko: approve_button=1 u5_text=1 calendar_words=0
+cleaned gate ko: state_denied=1 approve_button=0
+account en: policy_links=1 calendar_words=0
+pending gate en: approve_button=1 u5_text=1 calendar_words=0
+cleaned gate en: state_denied=1 approve_button=0
+consume cleaned gate: {"error":"invalid_gate"}
+POST /home/calendar/connect: 404
+POST /home/calendar/disconnect: 404
+fixture alive: yes
+
+EXIT=0

@@ -70,8 +70,9 @@ func limited(retry time.Time) string {
 func (s *Service) memberRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /{$}", s.startPage)
 	mux.HandleFunc("GET /lang/{code}", s.setLang)
-	mux.HandleFunc("POST /auth/google", func(w http.ResponseWriter, r *http.Request) { s.googleStart(w, r, false, false) })
-	s.calendarRoutes(mux)
+	mux.HandleFunc("GET /privacy", s.policyPage("privacy"))
+	mux.HandleFunc("GET /terms", s.policyPage("terms"))
+	mux.HandleFunc("POST /auth/google", func(w http.ResponseWriter, r *http.Request) { s.googleStart(w, r, false) })
 	mux.HandleFunc("GET /auth/google/callback", s.googleCallback)
 	mux.HandleFunc("POST /auth/start", s.authStart)
 	mux.HandleFunc("GET /auth/verify", s.verifyPage)
@@ -358,7 +359,7 @@ func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
 		return st.Members[id].Issuer == googleIssuer, nil
 	})
 	if err == nil && value.(bool) {
-		s.googleStart(w, r, true, false)
+		s.googleStart(w, r, true)
 		return
 	}
 	ip := s.clientIP(r)

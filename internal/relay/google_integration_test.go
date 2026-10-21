@@ -88,6 +88,10 @@ func TestGoogleHTTP(t *testing.T) {
 		if auth.Get("prompt") != "select_account consent" || auth.Get("nonce") == "" || auth.Get("code_challenge_method") != "S256" {
 			t.Fatal("missing nonce/PKCE/explicit confirmation")
 		}
+		// D018: sign-in and re-verification ask for openid email only; no path adds a scope or offline access.
+		if auth.Get("scope") != "openid email" || auth.Get("access_type") != "" || auth.Get("include_granted_scopes") != "" {
+			t.Fatal("Google consent widened", auth)
+		}
 		return "/auth/google/callback?code=one-use-code&state=" + auth.Get("state")
 	}
 	expect(t, do("GET", "/", false), 200, "Google로 계속")

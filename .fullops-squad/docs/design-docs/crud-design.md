@@ -4,7 +4,7 @@ title: CRUD정의서
 status: review
 updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SCHEDULE-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
@@ -115,7 +115,20 @@ agent 자격은 owner·관계 수락·gate 승인 권한을 만들지 않는다.
 
 start는 Device 요청만 생성한다. Google callback은 요청의 Owner와 prepared 상태를 갱신한다. 최근 인증된 동일 회원의 device-confirm만 독립 agent를 생성한다. 서명된 poll은 승인 전 회원·agent를 반환하지 않는다. 기존 complete는 키·credential을 생성하고 요청을 소비한다. 기존 cancel·revoke·cleanup을 재사용하며 관계 요청/수락은 변경하지 않는다. 타 회원 재바인딩, 타 키 조회, 만료·재실행은 거부한다. 상세 계약은 D05와 D06을 따른다.
 
+## 캘린더 연결 정리 CRUD — SAR-PUBLISH-001-DEV
+
+D018로 아래 '캘린더 연결 CRUD' 절의 연결 동의·승인 조회·결과 공개·연결 해제·lookup sweep을 모두 제거했다. 남은 캘린더 CRUD는 relay 기동 때 한 번 실행하는 정리 삭제뿐이다.
+
+| 동작 | 생성 | 갱신 | 삭제 |
+|---|---|---|---|
+| 기동 정리(`RetireCalendars`) | — | lookup이 있던 미consume `pending`·`approved` gate → `denied`, 모든 `Gate.Lookup` → 빈 값 | `State.Calendars` 전체, calendar 표시 진행 중 Google attempt. commit 뒤 키가 유효하면 토큰마다 provider revoke 요청 1회 |
+| 그 뒤 기동 | — | — | 대상 없음 |
+
+revoke 실패는 삭제를 되돌리지 않는다. consume된 gate는 이미 결과를 넘겼으므로 `approved`로 남는다. 정책 페이지(`/privacy`, `/terms`)는 읽기 전용 정적 본문이며 CRUD 대상 데이터가 없다.
+
 ## 캘린더 연결 CRUD — SAR-SCHEDULE-001-DEV
+
+> 비현행: 이 절은 D018 철회 전 기록이다. 현행은 위 '캘린더 연결 정리 CRUD — SAR-PUBLISH-001-DEV' 절이다.
 
 | 동작 | 생성 | 갱신 | 삭제 |
 |---|---|---|---|

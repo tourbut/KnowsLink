@@ -75,3 +75,31 @@ func TestLandingSessionAndLoginRecovery(t *testing.T) {
 		t.Fatal("direct POST re-enabled the disabled form")
 	}
 }
+
+// SAR-PUBLISH-001 PC-01: both policy pages open without a session through the real handler, follow the browser's
+// language choice, and follow a signed-in member's saved language as the first page does.
+func TestPolicyPagesPublic(t *testing.T) {
+	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" || os.Getenv("TEST_DATABASE_URL") == "" {
+		t.Fatal("isolated synthetic database required")
+	}
+	pool, err := pgxpool.New(context.Background(), os.Getenv("TEST_DATABASE_URL"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer pool.Close()
+	s, mail := identityService(t, pool)
+	b := &browser{t, s.Handler(), "192.0.2.72", map[string]string{}}
+	expect(t, b.do("GET", "/privacy", nil), 200, "<h1>개인정보처리방침</h1>", policyEffective)
+	expect(t, b.do("GET", "/terms", nil), 200, "<h1>서비스 약관</h1>")
+	b.cookies[langCookie] = "en"
+	w := b.do("GET", "/terms", nil)
+	expect(t, w, 200, "<h1>Terms of Service</h1>")
+	if w.Header().Get("Content-Language") != "en" || w.Header().Get("Cache-Control") != "no-store" {
+		t.Fatal("policy language or cache header", w.Header())
+	}
+	expect(t, b.do("GET", "/privacy/", nil), 404)
+	delete(b.cookies, langCookie)
+	id := login(t, b, mail, "policy-member@example.test")
+	s.mutateState(t, func(st *State) { st.Members[id].Locale = "en" })
+	expect(t, b.do("GET", "/privacy", nil), 200, "<h1>Privacy Policy</h1>", "Effective date: "+policyEffective)
+}

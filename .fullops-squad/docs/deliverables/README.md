@@ -1,9 +1,9 @@
 ---
 title: 산출물 인덱스
 status: draft
-updated: 2026-10-03
+updated: 2026-10-21
 owner: coor
-tasks: [SAR-SETUP-001, SAR-PREP-002]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-PUBLISH-001-DEV]
 summary: 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력을 관리한다
 ---
 
@@ -33,7 +33,8 @@ summary: 산출물 원천과 현재 MVP 정본 및 초기 구성 보존 이력�
 D01은 [KnowsLink 서비스 개요](../planning/business-plan.md)다.
 D02의 현재 전체 MVP 정본은 [SAR-MVP](../planning/product-specs/SAR-MVP.md)다.
 [SAR-SETUP-001](../planning/product-specs/SAR-SETUP-001.md)은 초기 구성과 lint의 D02 이력으로 보존한다.
-[SAR-SCHEDULE-001](../planning/product-specs/SAR-SCHEDULE-001.md)은 실제 일정 API 연동의 D02 정본이다. 사용자 결정 D009·D010으로 범위와 수치를 확정했다. D011(OAuth 앱 게시·심사)은 열려 있어 운영 연결 전에 다시 확인한다.
+[SAR-SCHEDULE-001](../planning/product-specs/SAR-SCHEDULE-001.md)은 실제 일정 API 연동의 D02 원천이며 철회됐다(D018, 2026-10-21). 현행 정본은 그 문서의 '철회 — D018' 절이다. D009·D010 범위와 수치는 철회 전 기록이다.
+[SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)은 앱 공개 게시(D017)용 `/privacy`·`/terms` 문안의 D02 정본이다. 법률 검토 전 초안이다.
 D02 폴더 매핑은 두 원천의 메타데이터를 함께 검사한다. 초기 구성 이력을 새 MVP 완료로 해석하지 않는다.
 기능 우선순위·미정 결정과 인계는 [백로그](../planning/SAR-MVP-backlog.md)를 따른다.
 D01/D02의 review는 검토 상태다. 제품 MVP 구현·수락이나 운영 배포 상태가 아니다.

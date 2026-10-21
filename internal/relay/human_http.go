@@ -101,8 +101,6 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		v["Notice"] = "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
 	case "language":
 		v["Notice"] = "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
-	case "calendar-off":
-		v["Notice"] = "캘린더 연결을 해제했습니다. KnowsLink에 보관한 토큰을 폐기했고 아직 전달되지 않은 조회 요청과 결과는 거절로 끝났습니다."
 	}
 	own := st.humanAgents(m.Owner)
 	v["Own"] = own
@@ -215,8 +213,6 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		v["Title"] = "내 이름"
 	case "account":
 		v["Title"], v["Section"] = "설정", "account"
-		// Calendar connection (SAR-SCHEDULE-001 SC-01): same Google account only, so email-code members get one line.
-		v["Calendar"], v["CalendarGoogle"], v["CalendarReady"] = st.calendarState(m.Owner), m.Issuer == googleIssuer, st.CalendarReady
 	case "agents":
 		v["Title"], v["Section"] = "내 에이전트", "agents"
 		// The chosen host and start only steer the guide text; nothing about them is stored or treated as progress.

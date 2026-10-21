@@ -4,7 +4,7 @@ title: 아키텍처설계서
 status: review
 updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV, SAR-SCHEDULE-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -267,7 +267,18 @@ coor 재검토로 같은 과제를 다시 열었다. 직전 기록의 “미공�
 - `wake-check`는 webhook 모드에서 파일만 검사한다. POST는 routine 턴을 시작하므로 무해한 probe는 owner·coor가 수동으로 실행한다.
 - 실제 routine 생성·키 발급·턴 표시는 미검증이다. 대체 검증 전에는 기존 `sendPrompt` 설정을 유지한다.
 
+## 서버 캘린더 연결 제거와 정책 페이지 — SAR-PUBLISH-001-DEV
+
+[SAR-SCHEDULE-001 '철회 — D018'](../planning/product-specs/SAR-SCHEDULE-001.md#철회--d018-2026-10-21)의 SR-01–06·RC-01–05와 [SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)(D017)을 구현한 DEV 후보다. 운영 반영은 별도 과제다. 아래 'Google Calendar 빈 시간 조회' 절은 철회 전 기록이며 현행이 아니다.
+
+- 현행 경계: relay는 캘린더 API를 호출하지 않는다. 캘린더 토큰·연결·조회 결과를 저장하지 않는다. Google 로그인·재확인 scope는 다시 `openid email`만이다. 설정에 ‘캘린더 연결’ 절이 없다. `/home/calendar/*`는 404다.
+- 승인: `schedule.query`·`schedule.commit` 승인은 U5 기준으로 돌아간다. approve는 그 요청의 인간 게이트만 통과시킨다. 모든 회원이 승인과 거절을 할 수 있다. `gate-consume`은 항상 `disclosure:false`를 돌려준다. `relay.result` `done`은 다시 `disclosure_denied`로 거부한다. `schedule.query` 수락 때 D010 범위·횟수 검사는 없다. policy 문구는 `schedule.query: disclosure policy absent; deny even after gate approve`다.
+- 일회 정리: `cmd/relay/main.go`는 요청을 받기 전에 `Service.RetireCalendars`를 실행한다. 한 transaction이 모든 `State.Calendars`를 지운다. 같은 transaction이 모든 `Gate.Lookup`을 비우고, lookup이 있던 미consume `pending`·`approved` gate를 `denied`로 끝낸다. calendar 표시가 있는 진행 중 Google attempt도 지운다. commit 뒤 선택 env `KNOWSLINK_CALENDAR_KEY`가 유효한 base64 32바이트이면 각 봉인 토큰을 열어 `https://oauth2.googleapis.com/revoke`에 한 번 POST한다. revoke가 실패해도 남기는 값은 없다. 키가 없거나 잘못되면 revoke 없이 지우기만 한다. 로그는 지운 연결이 있을 때만 `calendar cleanup: connections=N revoked=M failed=K` 한 줄이다. 다음 기동은 지울 대상이 없어 로그도 없다. 정리 transaction이 실패하면 relay는 기동하지 않는다.
+- 정책 페이지: `GET /privacy`·`GET /terms`는 로그인 없이 KO/EN 정적 본문을 보인다. 로그인 회원에게는 저장 언어를 적용한다. 세션 조회가 실패해도 페이지는 열리고 저장 언어만 적용되지 않는다. 공개 ingress 후보는 두 경로만 정확히 허용한다.
+
 ## Google Calendar 빈 시간 조회 — SAR-SCHEDULE-001-DEV
+
+> 비현행: 이 절은 D018 철회 전 기록이다. 현행은 위 ‘서버 캘린더 연결 제거와 정책 페이지 — SAR-PUBLISH-001-DEV’ 절이다.
 
 [SAR-SCHEDULE-001](../planning/product-specs/SAR-SCHEDULE-001.md)의 SD-01–06(A)과 D010 수치를 구현한 DEV 후보다. 운영 연결은 D011이 닫힌 뒤 별도 과제다.
 

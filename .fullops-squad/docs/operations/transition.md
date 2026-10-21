@@ -4,13 +4,28 @@ title: 인수인계서
 status: draft
 updated: 2026-10-21
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV, SAR-RELEASE-003-OPS]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
 
+## DEV 후보 인계 (2026-10-21, SAR-PUBLISH-001-DEV)
+
+D018 서버 캘린더 연결 제거와 D017 정책 페이지(`/privacy`, `/terms`)의 DEV 후보다. 운영에는 아직 반영되지 않았다. 운영 절차와 확인 값은 [D12 SAR-PUBLISH-001 운영 후보](ops-guide.md)를 따른다. 제품 규칙은 [SAR-SCHEDULE-001 '철회 — D018'](../planning/product-specs/SAR-SCHEDULE-001.md#철회--d018-2026-10-21)과 [SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)이다. DB migration·새 의존성은 없다.
+
+인수 항목은 실행 순서대로다.
+
+1. ops: 운영 env 정본의 기존 `KNOWSLINK_CALENDAR_KEY`를 그대로 둔 채 제거 빌드를 배포한다. 배포 전 Postgres backup을 받는다. 첫 기동 relay 로그의 `calendar cleanup: connections=N revoked=M failed=K` 한 줄을 확인하고 개수를 기록한다. 지운 연결이 없으면 줄이 없다. 정리 확인 뒤 ops가 운영 env에서 `KNOWSLINK_CALENDAR_KEY`를 지우고 relay를 다시 기동한다. 다시 기동한 로그에는 정리 줄이 없어야 한다. `failed`가 0보다 크면 coor가 연결했던 테스트 사용자에게 Google 계정 ‘타사 앱 및 서비스’에서 KnowsLink 접근을 직접 삭제하도록 안내한다.
+2. coor와 사용자: Cloud Console에서 OAuth 동의 화면의 `https://www.googleapis.com/auth/calendar.freebusy` scope를 지운다. Google Calendar API를 비활성화한다. 브랜딩에 홈페이지 `https://link.knowslog.com/`, 개인정보처리방침 `https://link.knowslog.com/privacy`, 서비스 약관 `https://link.knowslog.com/terms`를 등록하고 앱을 게시한다(D017). 게시 전에 3번으로 두 페이지가 공개 주소에서 열려야 한다. 정책 문안은 법률 검토(P-05) 전 초안이다.
+3. ops: repo 후보 `deploy/knowslink/tunnel/public-ingress.yml`의 `/privacy`·`/terms`를 live 공개 ingress에 반영한다. live Tunnel config는 DEV가 바꾸지 않았다. 반영 전 `python3 scripts/check_public_ingress.py`를 통과시킨다. 반영 뒤 두 경로 200, `/privacy/`·`/privacy/x`·`/terms/` 404를 확인한다.
+4. rollback: `4787e85`로 되돌릴 수 있다. 정리 뒤에는 저장된 캘린더 연결이 없다. 토큰은 revoke됐으므로 이전 코드로 돌아가면 회원이 다시 연결해야 한다. 상태 JSON 정리는 backup 복원 없이 되돌릴 수 없다.
+
+시행일 상수 `policyEffective`는 `2026-10-22`다. 운영 배포일이 바뀌면 배포 전에 `internal/relay/policy_pages.go`의 이 상수만 바꾼다. P-02는 'KnowsLink 운영자', P-03은 대체 백업 문장을 쓴다. P-04 이메일 발송 업체 행은 운영 이메일 코드 로그인이 꺼져 있어(SMTP 미설정) 뺐다.
+
 ## DEV 후보 인계 (2026-10-21, SAR-SCHEDULE-001-DEV)
+
+> 비현행: 이 절은 D018 철회 전 기록이다. 현행은 위 SAR-PUBLISH-001-DEV 인계다.
 
 Google Calendar 빈 시간 조회 연동의 DEV 후보다. 이 절의 코드는 SAR-RELEASE-003-OPS로 운영에 반영됐다(아래 현재 운영 상태 참고). 실제 Google 계정·Cloud Console은 바꾸지 않았다. D011 답은 OAuth 앱 Testing 유지, 사용자는 테스트 사용자다.
 
@@ -53,6 +68,8 @@ Google Calendar 빈 시간 조회 연동의 DEV 후보다. 이 절의 코드는 
 새 private 백업 `backups/7b4f9bc-pre-release003-20261021T044846Z.dump`는 0600·11280bytes다. network-none 복원의 전체 data digest·goose2·guard1·HumanModel1·downgrade 거부를 확인했다. 기존 회원·키/철회·친구·Remote 설치·Events·Inbox, 기존18개 백업, 공유 컨테이너는 보존됐다. 이전 relay 이미지는 `knowslink-rollback:7b4f9bc-release003-20261021` 태그로 보존했다.
 
 인수 항목: (1) 사용자가 Cloud Console Data Access에 `calendar.freebusy` scope를 등록해야 캘린더 동의가 동작한다(Cloud Console 변경은 하지 않았다). (2) OAuth 앱은 Testing이라 refresh token이 7일 뒤 만료해 연결이 주마다 끊긴다(E6, D011 답). (3) 서버 checkout은 `4787e85`이며 live 공개 ingress `path` 규칙은 repo와 같다. (4) 실계정 로그인·캘린더 연결·조회 왕복(SC-09)은 실행하지 않았다. coor가 사용자와 1경로를 진행한다. 자세한 근거는 [운영 보고](../evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md)다.
+
+비현행(D018): 위 인수 항목 (1)·(2)·(4)와 캘린더 키 교체 절차는 D018로 취소됐다. 현행 인수 항목은 맨 위 SAR-PUBLISH-001-DEV 인계다.
 
 ## 현재 운영 상태 (2026-10-20, SAR-RELEASE-002-OPS)
 

@@ -1,9 +1,9 @@
 ---
 title: KnowsLink
 status: draft
-updated: 2026-10-14
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS]
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV]
 summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 안내한다
 ---
 
@@ -41,7 +41,8 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 - 전달 큐 기한은 최대 180초다. 새 메시지는 독립 기한을 가지므로 대화를 계속 이어갈 수 있다.
 - 참여 회원의 웹 대화 사본은 수락 후 최대 24시간 보관한다. 로컬 Inbox·WAL·백업 기한과 다르다.
 - `queued`는 서버 수락, `delivered`는 수신 측 보관·ACK를 뜻한다. 읽음·업무 실행·답장 완료와 다르다.
-- 캘린더 빈 시간 조회는 배포됐고 운영 키가 설정됐다. 실계정 연결·조회 왕복은 아직 확인하지 않았다. Google 앱이 Testing이면 연결이 7일 뒤 끊긴다.
+- 서버 캘린더 빈 시간 조회는 사용자 결정 D018로 제거된다. 현재 운영 제품에는 아직 남아 있고, 제거 빌드는 운영 반영 전이다. 캘린더는 각 에이전트가 자기 호스트에서 따로 연결한다.
+- 제거 빌드는 로그인 없이 열리는 개인정보처리방침(`/privacy`)과 서비스 약관(`/terms`)을 더한다. 문안은 법률 검토 전 초안이다.
 - 외부 업무 도구 효과(일정 생성 등)·정보 공개 정책·positive silent done은 활성화하지 않았다.
 - singleton DB의 공개 규모 성능, 장시간 알림, 앱 재시작 뒤 수신과 다음 Events 갱신은 보장하지 않는다.
 - 합성 시험·legacy 정확한 두 agent 관계는 남아 있다. 현재 사람 친구 권한으로 자동 확대하지 않는다.

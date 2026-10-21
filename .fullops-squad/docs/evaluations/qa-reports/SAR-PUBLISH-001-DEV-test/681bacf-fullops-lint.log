@@ -1,0 +1,20 @@
+[unavailable] product-lint: make lint
+[unavailable] product-test: make test
+WARNING SIZE-001 .fullops-squad/PLANS.md 2055줄(이전 2052, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 .fullops-squad/docs/design-docs/mockups/service-member-ui.md 839줄(이전 817, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 .fullops-squad/docs/operations/ops-guide.md 509줄(이전 496, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING ANTI-005 internal/relay/calendar_browser_fixture_test.go 테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다
+WARNING ANTI-005 internal/relay/calendar_integration_test.go 테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다
+WARNING ANTI-005 internal/relay/calendar_provider_test.go 테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다
+WARNING ANTI-005 internal/relay/calendar_test.go 테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다
+WARNING ANTI-005 internal/relay/calendar_testgap_integration_test.go 테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다
+WARNING ANTI-005 internal/relay/human_pages_test.go 테스트 케이스 1개 감소. 대체 테스트나 삭제 이유를 확인한다
+WARNING SIZE-001 internal/relay/i18n_en_member.go 413줄(이전 411, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING SIZE-001 internal/relay/member.go 416줄(이전 415, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다
+WARNING DOC-001 internal/relay/policy/privacy.en.html 새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다
+WARNING DOC-001 internal/relay/policy/privacy.ko.html 새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다
+WARNING DOC-001 internal/relay/policy/terms.en.html 새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다
+WARNING DOC-001 internal/relay/policy/terms.ko.html 새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다
+WARNING SLOP-004 scripts/check_public_ingress.py:24 디버그 출력 잔재 의심. 필요한 사용자 출력인지 확인하고 디버그 잔재는 제거한다
+WARNING SIZE-002  변경 추가 1552줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요
+head 681bacff04ea / 파일 57 / ERROR 0 / WARNING 17 / 실행 불가 2

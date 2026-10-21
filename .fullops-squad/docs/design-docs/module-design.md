@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX, SAR-PUBLISH-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -339,7 +339,21 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 시각 검수 자료: `KNOWSLINK_UI_FIXTURE_DIR=<빈 폴더> go test ./internal/relay -run TestMemberUIFixtures`가 합성 데이터의 29개 화면 HTML을 쓴다. 실제 계정·비밀값은 없다. 방법은 [실행 기록](../exec-plans/phases/SAR-SERVICE-UI-001-DEV.md)을 따른다.
 FullOps DESIGN 규칙은 Go 문자열 안의 CSS를 검사하지 않는다. 대신 위 렌더 검사와 Orca 내장 브라우저의 1440·390·320 폭 측정을 사용했다.
 
+## 캘린더 연결 정리(일회)·정책 페이지 모듈 — SAR-PUBLISH-001-DEV
+
+D018로 아래 '캘린더 연동 모듈' 절의 `calendar.go`와 그 검사 파일을 지웠다. 그 절은 철회 전 기록이다.
+
+- `calendar_retire.go`: `Service.RetireCalendars(ctx, key)`는 `cmd/relay/main.go`가 요청을 받기 전에 한 번 부른다. `State.retireCalendars`는 한 transaction 안에서 `State.Calendars`를 지우고 모든 `Gate.Lookup`을 비운다. lookup이 있던 미consume `pending`·`approved` gate는 `denied`로 끝내고 calendar 표시 Google attempt를 지운다. commit 뒤 `revokeSealed`가 member ID를 GCM additional data로 봉인을 열어 `https://oauth2.googleapis.com/revoke`에 한 번 POST한다(5초 timeout). 키가 없거나 base64 32바이트가 아니면 revoke 없이 지운다. 로그는 개수만 남긴다. legacy 타입 `legacyCalendar{Sealed}`와 정리 파일은 운영 상태에 연결이 없음을 확인한 뒤 지운다(파일의 `shortcut:` 주석).
+- `google.go`: `ConfigureGoogle`의 `calendarKey` 인자와 calendar attempt를 지웠다. 로그인 scope는 `openid email`이다. `googleAttempt.Calendar`는 정리용 legacy 필드다.
+- `store.go`·`http.go`·`protocol.go`: `CalendarReady`·`sweepLookups`·`scheduleAllowed`·disclosure 대조·`disclosureShape`를 지웠다. `relay.result` `done`은 `disclosure_denied`다. `gate-consume`은 항상 `disclosure:false`다. `GET /v1/gates/{id}`는 저장 상태를 그대로 보인다. `owner-revoke`는 캘린더를 다루지 않는다.
+- `gate_summary.go`·`human_pages.go`·`i18n_en_*.go`: '공개되는 내용' 행·`calendarGateScope`·설정 '캘린더 연결' 절·미연결 승인 불가 문구와 그 영어판을 지웠다. 두 일정 intent의 승인 상세는 U5 고정 문구다.
+- `policy_pages.go`: `GET /privacy`·`GET /terms` 처리기 `policyPage`. `policy/{privacy,terms}.{ko,en}.html` 정적 본문을 embed로 한 번 읽는다. 시행일은 상수 `policyEffective`(`2026-10-22`) 하나다. 배포일이 바뀌면 이 상수만 바꾼다. 로그인 회원의 저장 언어를 적용하고 세션 조회 실패는 무시한다. `landing_pages.go`의 하단(`landing-footer`)·`#start` 안내와 `human_pages.go` 설정 링크가 두 페이지로 간다. `member.go`가 경로를 등록한다.
+- `adapters/src/core.ts`·`synthetic.ts`: SAR-SCHEDULE-001 이전 판으로 되돌렸다. 승인된 gate를 consume한 뒤 결과는 항상 `denied`다. 합성 `schedule.query`의 기간은 다시 고정 값이다(D010 범위 검사가 없다).
+- 검사: `calendar_retire_integration_test.go`(`TestRetireCalendars`, `TestCalendarRoutesRetired`, `TestRetireCalendarsKeepsConsumedGate`), `policy_pages_test.go`(`TestPolicyPages`, `TestPolicyLinks`), `landing_integration_test.go` `TestPolicyPagesPublic`, `publish_browser_fixture_test.go`(태그 `integration && publishfixture`, 합성 legacy 상태·로컬 revoke 대상의 격리 fixture), `scripts/check_public_ingress.py`.
+
 ## 캘린더 연동 모듈 — SAR-SCHEDULE-001-DEV
+
+> 비현행: 이 절은 D018 철회 전 기록이다. 현행은 위 '캘린더 연결 정리(일회)·정책 페이지 모듈 — SAR-PUBLISH-001-DEV' 절이다.
 
 - `calendar.go`: D010 설정 `scheduleScope`, `Calendar`·`Lookup` 타입, `sealToken/openToken`(AES-256-GCM), `scheduleAllowed`(수락 시 범위·친구당 횟수), `roundBusy`·`disclosureJSON`(바깥 반올림·클립·병합·canonical), `startLookup`(승인 transaction 안의 lease), `GoogleLogin.freeBusy`(refresh→`freeBusy` POST, 400/401은 `errReconnect`), `Service.runLookup`(lock 밖 최대 3회·8초, 결과 1회 기록), `lookupVisible`, `sweepLookups`, `disconnectCalendar`, `Service.revoke`, `/home/calendar/{connect,disconnect}`.
 - `google.go`: `ConfigureGoogle`에 `calendarKey` 인자. `googleStart(reauth, calendar)`가 calendar attempt에 freebusy scope·offline·include_granted_scopes를 더한다. callback은 scope·refresh token을 확인해 봉인 저장하고 ‘캘린더 연결 완료’를 보인다. `GoogleLogin`의 `freeBusyURL`·`revokeURL`은 합성 제공자가 바꾼다.

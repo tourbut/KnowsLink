@@ -4,7 +4,7 @@ title: 인터페이스설계서
 status: review
 updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -147,8 +147,8 @@ R에 result/error optional 정보가 있으면 closed schema에서 거부한다.
 | GET /owner | owner | 자기 agent와 gate 목록 |
 | GET /owner/gates/{id} | gate owner | verified typed body·policy·상태·만료 |
 | POST /owner/gates/{id} | gate owner | form csrf·decision=approve|deny; 원자적 결정 |
-| GET /v1/gates/{id} | B-agent | state·consumed·parent metadata; `schedule.query` 승인은 lookup이 끝나기 전까지 `pending`, 끝나면 `lookup: done|failed` |
-| POST /v1/gate-consume | B-agent claim | `{id,claim}`; approved 1회 consume, `executable:false`. `schedule.query`는 `lookup`과 `disclosure`(done일 때 `{window,granularity_min,busy}`), 그 밖은 `disclosure:false` |
+| GET /v1/gates/{id} | B-agent | state·consumed·parent metadata. D018 뒤 `lookup` 필드는 없다(SAR-PUBLISH-001-DEV) |
+| POST /v1/gate-consume | B-agent claim | `{id,claim}`; approved 1회 consume, `executable:false`, `disclosure:false`. D018 뒤 모든 intent가 같다(SAR-PUBLISH-001-DEV) |
 
 owner POST decision은 H의 인증된 human ACK를 함께 확정하고 H 원문을 지운다. GET 방문은 결정하지 않는다. CSRF는 owner credential과 gate ID에 묶인 HMAC이다.
 UI는 pending/approved/denied/expired/revoked/unavailable을 텍스트로 표시한다. 표시 상태는 저장 상태에 현재 기한·서명/바인딩·current 검사를 더한 값이다(`gateState`).
@@ -321,7 +321,24 @@ device proof 바이트는 `KNOWSLINK-DEVICE\0token\0client\0kid\0public` UTF-8�
 - `autoReceive.hostWake`는 `{state:off|invalid_config|idle|accepted_unverified|retry|rejected|uncertain,lastAt,lastError}`다. `lastError`는 `gateway_unreachable`, `gateway_token_unavailable`, `gateway_no_response`, `gateway HTTP <code>`, `failed` 중 하나다. 같은 값이 `<inbox>/<id>.wake`(0600)에 ID별로 남는다. retry만 marker를 지우고 다음 loop에서 다시 보낸다.
 - CLI `node dist/plugin.js wake-check`는 `POST /api/listAgents {}`만 호출한다. 출력은 `{state:"ok",agentIds,configuredAgent,configuredListed}` 또는 `{state:"failed"|"invalid_config",error?}`이며 실패는 exit 1이다. token·이름·기타 응답 필드는 출력하지 않는다.
 
+## 서버 캘린더 연결 제거와 정책 페이지 — SAR-PUBLISH-001-DEV
+
+D018로 아래 '캘린더 연결과 빈 시간 공개' 절의 계약을 모두 제거했다. 근거는 [SAR-SCHEDULE-001 '철회 — D018'](../planning/product-specs/SAR-SCHEDULE-001.md#철회--d018-2026-10-21)이다. 새 공개 페이지 두 개는 [SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)(D017)을 따른다.
+
+| 경로 | 입력과 결과 | 경계 |
+|---|---|---|
+| POST `/home/calendar/connect`, POST `/home/calendar/disconnect` | 404 | 경로가 없다. 공개 ingress의 `/home(/.*)?` 규칙은 바꾸지 않는다 |
+| POST `/auth/google` | Google 동의 `scope=openid email` | 증분 calendar 동의·`access_type=offline`이 없다 |
+| POST `/home/gates/{id}` (`schedule.query`·`schedule.commit`) | 모든 회원이 approve·deny → 303 gate 화면 | approve는 인간 게이트만 통과시킨다. 화면 설명은 U5 고정 문구 '승인은 이 요청의 인간 게이트만 통과시킵니다. 정보 공개나 일정 실행을 허용하지 않습니다.'다 |
+| POST `/v1/send` `schedule.query` | 기존 wire 형식 검사 | D010 범위·횟수 검사와 `schedule_scope`(422)가 없다 |
+| POST `/v1/send` `relay.result` `done` | 403 `disclosure_denied` | `relay.result` body는 다시 `{status}`만 받는다. `disclosure` 키는 closed schema에서 거부한다 |
+| GET `/privacy`, GET `/terms` | 200 HTML. 로그인이 필요 없다 | KO/EN 정적 본문과 시행일 상수 `policyEffective`를 보인다. 로그인 회원은 저장 언어, 그 밖은 기존 `/lang/{ko\|en}` 선택을 따른다. `/privacy/`·`/privacy/x`·`/terms/` 같은 이웃 경로는 공개 ingress에서 막힌다 |
+
+`schedule.query`의 policy 문구는 `schedule.query: disclosure policy absent; deny even after gate approve`다. 링크 위치는 첫페이지 하단(개인정보처리방침 · 서비스 약관 · 설치·사용 문서 · 맨 위로), `#start` 로그인 아래 한 줄, 회원 설정의 '서비스 안내' 옆이다.
+
 ## 캘린더 연결과 빈 시간 공개 — SAR-SCHEDULE-001-DEV
+
+> 비현행: 이 절은 D018 철회 전 기록이다. 현행은 위 '서버 캘린더 연결 제거와 정책 페이지 — SAR-PUBLISH-001-DEV' 절이다.
 
 | 경로 | 입력과 결과 | 경계 |
 |---|---|---|
