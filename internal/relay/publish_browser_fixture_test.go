@@ -41,7 +41,7 @@ func TestPublishBrowserFixture(t *testing.T) {
 		st.Agents["agent_b"].Name = "밥의 도우미"
 	})
 	var claims sync.Map
-	for _, g := range []struct{ parent, gate, key string }{{firstID, gateID, "fixture-a"}, {queryID, pendingGate, "fixture-b"}} {
+	for _, g := range []struct{ parent, gate, key string }{{firstID, gateID, "publish-fixture-a"}, {queryID, pendingGate, "publish-fixture-b"}} {
 		receipt := f.send(f.message(g.parent, g.key+"-0001"), "agent_a", "", 200)
 		claim := f.deliver(g.parent)
 		claims.Store(g.gate, claim)

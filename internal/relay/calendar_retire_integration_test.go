@@ -42,7 +42,7 @@ func TestRetireCalendars(t *testing.T) {
 	} {
 		t.Run(c.name, func(t *testing.T) {
 			f := setup(t, pool)
-			receipt := f.send(f.message(firstID, "retire-key-0001"), "agent_a", "", 200)
+			receipt := f.send(f.message(firstID, "retire-request-0001"), "agent_a", "", 200)
 			claim := f.deliver(firstID)
 			f.send(wire(t, f.private["agent_b"], gateID, "agent_b", "agent_b", "relay.approval.request", "retire-gate-0001", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute)), "agent_b", claim, 200)
 			f.mutate(func(st *State) {
