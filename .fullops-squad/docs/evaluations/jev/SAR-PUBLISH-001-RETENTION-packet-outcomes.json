@@ -1,0 +1,169 @@
+{
+  "packet_input_sha256": "51ae090f8361b615e025baaf1b6273618e5e186655703bd24f8c622f794fa3b6",
+  "attempt": "78ed9cb2768648068aa99bec686c157a",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인박스·finish·lint 절차를 확인해 그대로 따랐다. 규약 변경은 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "P-03 절과 서버 접속 방식·rollback 백업 이름을 읽고 근거로 썼다. 원본 보고서는 고치지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "백업·보존 관련 줄을 검색해 확인했다. 이번 변경과 충돌하는 정본이 없고 고치지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "적용 범위·우선순위만 확인했다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "새 스크립트의 헤더 주석·짧은 함수 기준만 확인해 따랐다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽고 적용했다. 비밀값 미기록, 경로 한정(find -maxdepth 1 -type f), 외부 명령 인자 고정을 지켰다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "lite 레벨로 로컬 fixture 검증만 했다. 사소한 별도 테스트 파일은 만들지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "UI 작업이 아니라 열지 않았다. 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "정책 문안은 dev SAR-PUBLISH-001-P03 소유이며 이 과제에서 열지 않았다. 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "백업 형식·복원 절차를 바꾸지 않아 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이전 준비 기록이며 이번 정리는 현행 ops-guide 5장 보존 문장만 갱신했다. 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "맨 위에 백업 보존 14일 절(정리 방법·확인 명령)을 더하고 P-03 문장과 5장 보존 기간 문장을 갱신했다. front matter는 deliverables.py --stamp로 썼다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검색으로 백업 수·기존 백업 언급을 확인했다. D13은 이 과제 소유 밖이라 고치지 않았고 남은 일에 적는다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "P-03·백업 문장 줄을 검색해 확인했다. 문안 수정은 dev 소유라 고치지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 정리와 무관해 열지 않았다."
+    }
+  ],
+  "uncertainty_review": "packet이 partial이고 PLANS.md·service-member-ui.md·module-design.md·ops-guide.md는 자동 확인에 실패했다. PLANS.md는 이번 과제 대기 항목이 없음을 finish가 갱신한다. service-member-ui.md는 문안 소유가 dev라 읽지 않았고, module-design.md는 코드 구조 변경이 없어 해당 없다. ops-guide.md는 직접 읽고 갱신했다. 서버 상태는 직접 조회해 확인했다(백업 목록·crontab·cron active)."
+}
