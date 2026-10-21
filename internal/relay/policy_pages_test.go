@@ -3,6 +3,8 @@ package relay
 
 import (
 	"net/http/httptest"
+	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
@@ -15,6 +17,12 @@ func policyRender(t *testing.T, page, lang string) string {
 	(&Service{}).policyPage(page)(w, httptest.NewRequest("GET", "/"+page, nil))
 	if w.Code != 200 {
 		t.Fatal(page, lang, w.Code)
+	}
+	// KNOWSLINK_UI_FIXTURE_DIR also writes each page for the 1440/390/320 render probe.
+	if dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR"); dir != "" {
+		if err := os.WriteFile(filepath.Join(dir, "policy-"+page+"-"+lang+".html"), w.Body.Bytes(), 0o644); err != nil {
+			t.Fatal(err)
+		}
 	}
 	return w.Body.String()
 }
@@ -69,6 +77,13 @@ func TestPolicyLinks(t *testing.T) {
 		t.Fatal("sign-in policy line", start)
 	}
 	en := renderEN(t, "start", s.startView(""))
+	if dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR"); dir != "" {
+		for name, page := range map[string]string{"start-ko": body, "start-en": en} {
+			if err := os.WriteFile(filepath.Join(dir, "policy-"+name+".html"), []byte(page), 0o644); err != nil {
+				t.Fatal(err)
+			}
+		}
+	}
 	if !strings.Contains(en, `Before you sign in, read the <a href="/terms">Terms of Service</a> and the <a href="/privacy">Privacy Policy</a>.`) {
 		t.Fatal("English sign-in policy line")
 	}
