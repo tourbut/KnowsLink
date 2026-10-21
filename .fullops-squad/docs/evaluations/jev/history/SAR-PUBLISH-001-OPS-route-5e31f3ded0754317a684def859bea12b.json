@@ -1,0 +1,85 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLISH-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.71,
+        "product": 0.29
+      },
+      "confidence": 0.42
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.9,
+        "ops": 0.1,
+        "tester": 0
+      },
+      "confidence": 0.85
+    },
+    "docs": {
+      "D01": 0.52,
+      "D02": 0.48,
+      "D03": 0.59,
+      "D04": 0.56,
+      "D05": 0.62,
+      "D06": 0.65,
+      "D07": 0.59,
+      "D08": 0.62,
+      "D09": 0.63,
+      "D10": 0.68,
+      "D11": 0.63,
+      "D12": 0.81,
+      "D13": 0.81
+    }
+  },
+  "usage": {
+    "input_tokens": 2424,
+    "output_tokens": 314,
+    "cost": 0.000101808
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D11"
+  ],
+  "latency_seconds": 0.793,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "coor 배정: D020 배포 진행",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "7c6ef3734a38a8f273714aa2915dc2f14f83a7e4",
+  "requires_packet": true
+}
