@@ -66,7 +66,7 @@ designer가 확인한 코드 위치(기준 `dcf8825`):
 - [ ] 짧은 기술 계획(완료 보고): 제거 범위, 기존 상태 JSON(`Calendars`·`Gate.Lookup`·`GoogleAttempt.Calendar`)의 일회 정리 방식과 시점, 키 유무에 따른 철회 요청 처리, `schedule.query` gate를 U5 기준으로 되돌리는 방식, rollback 영향.
 - [ ] RC-01–05 구현: 설정 캘린더 절, `/home/calendar/*`, 증분 동의, freebusy 호출, 토큰 봉인, disclosure, D010 범위·횟수 검사, 캘린더 문구(KO/EN)를 제거한다. Google 로그인 scope는 `openid email`만 남긴다.
 - [ ] 기존 연결 정리(SAR-SCHEDULE-001 '기존 연결 회원 처리' 1–3·5·6): 각 연결의 Google refresh token 철회를 한 번 요청한다. 결과와 무관하게 토큰·연결·미전달 조회 결과를 삭제한다. consume되지 않은 해당 gate는 `denied`다. 키가 없으면 철회 요청 없이 삭제한다. 기록은 연결 수·성공 수·실패 수만 남긴다. 운영 실행에 `KNOWSLINK_CALENDAR_KEY`가 필수가 아니다.
-- [ ] `/privacy`·`/terms` 구현(SAR-PUBLISH-001 화면 기준과 KO/EN 문안 전문): 첫페이지 템플릿 스타일 재사용, 고유 title, `aria-current`, 시행일 단일 상수. 첫페이지 하단·`#start` 한 줄·회원 설정 링크를 추가한다. `{ }` 자리 표시는 P-01–04의 값 또는 그 표에 적힌 대체 문구로 채운다. 시행일(P-01)은 coor가 dispatch 때 준다. 값이 없으면 ask.
+- [ ] `/privacy`·`/terms` 구현(SAR-PUBLISH-001 화면 기준과 KO/EN 문안 전문): 첫페이지 템플릿 스타일 재사용, 고유 title, `aria-current`, 시행일 단일 상수. 첫페이지 하단·`#start` 한 줄·회원 설정 링크를 추가한다. `{ }` 자리 표시는 P-01–04의 값 또는 그 표에 적힌 대체 문구로 채운다. 시행일(P-01)은 2026-10-22(coor 지정, 운영 배포 예정일. 배포일이 바뀌면 ops가 상수만 고친다).
 - [ ] 공개 ingress repo 후보: `deploy/knowslink/tunnel/public-ingress.yml`과 `scripts/check_public_ingress.py`에 `GET /privacy`·`GET /terms` 정확 경로를 추가한다. `/home/calendar/*`가 더 필요 없음을 반영한다. live config는 바꾸지 않는다(ops 몫).
 - [ ] 테스트: 캘린더 테스트·fixture를 삭제하거나 대체한다. 실패 경계 자동 검사: 정리 코드(키 있음/없음, 철회 실패에도 토큰 0, 미전달 결과 미공개), `schedule.query` 승인 뒤 disclosure 없음과 U5 문구, 정책 두 페이지 200·두 언어·영어판 한국어 없음·링크. 기존 친구·메시지·승인 회귀를 확인한다.
 - [ ] tester·designer용 격리 fixture: 정리 전 연결 상태가 있는 합성 데이터에서 시작하는 경로와 정책 페이지 KO/EN을 볼 수 있는 기동 방법을 DEV 보고에 적는다.
@@ -117,6 +117,42 @@ D03·D05·D06·D09·D10·D11·D12·D13 중 실제 변경(위 문서 갱신 항�
 - 정책 문안·링크 위치·제거 규칙의 변경은 제품 판단이다. coor를 거쳐 designer에게 묻는다.
 - 운영 env·live Tunnel·Cloud Console·실계정은 범위 밖이다. dev 완료 뒤 coor가 tester 검증과 ops 배포를 배정한다. 배포 뒤 coor가 사용자와 Cloud Console 브랜딩 입력, `calendar.freebusy` scope·Calendar API 정리, 앱 게시를 한다.
 - 법률 검토(P-05)는 사용자 몫이다. DEV는 문안을 법적 최종본으로 표시하지 않는다.
+
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-PUBLISH-001-DEV-packet.json` / SHA `4d6c3a3232dc7ca08cbd933f69e166dcceae3c81` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md` (document_read) · 줄 9, 9, 18, 18, 18, 23, 24, 43, 47, 47, 129, 217, 241, 321, 335, 359, 366, 372, 394, 394, 403, 403 · inferred · 필수
+- `.fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md` (document_read) · 줄 14, 18, 40, 47, 54, 69, 235 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 274 · inferred
+- `.fullops-squad/docs/design-docs/crud-design.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/data-model.md` (document_read) · 줄 96 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 328 · inferred
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/design-docs/module-design.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/tech-stack.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/operations/ops-guide.md` (document_update) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/operations/transition.md` (document_read, document_update) · 줄 17, 51 · inferred
+- `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_read) · 줄 전체/미확인 · inferred
+- `docs/system-design.md` (document_read) · 줄 75, 78, 113 · inferred
+- `internal/relay/calendar.go` (direct_edit) · 줄 전체/미확인 · unknown
+- `internal/relay/google.go` (direct_edit) · 줄 전체/미확인 · unknown
+- `internal/relay/http.go` (direct_edit) · 줄 전체/미확인 · unknown
+나머지 참조 후보 6건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
+미확인 6건: .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection; internal/relay/calendar.go: missing, oversized, sensitive or invalid; manual inspection; internal/relay/google.go: missing, oversized, sensitive or invalid; manual inspection …. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
 
 ## 완료 보고
 
