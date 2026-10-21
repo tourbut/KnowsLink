@@ -1,0 +1,290 @@
+{
+ "origin": "http://127.0.0.1:18961",
+ "sha": "336533e6e15679d67118cbec5ab907768b80a70f",
+ "finished_at": "2026-10-21T01:31:19Z",
+ "mutations": [
+  {
+   "at": "2026-10-21T01:31:14Z",
+   "who": "a",
+   "action": "allow-connect"
+  },
+  {
+   "at": "2026-10-21T01:31:14Z",
+   "who": "a",
+   "action": "disconnect"
+  },
+  {
+   "at": "2026-10-21T01:31:14Z",
+   "who": "b",
+   "action": "approve-4h-15"
+  },
+  {
+   "at": "2026-10-21T01:31:14Z",
+   "who": "b",
+   "action": "toggle-outage-on"
+  },
+  {
+   "at": "2026-10-21T01:31:14Z",
+   "who": "b",
+   "action": "approve-8h-during-outage"
+  },
+  {
+   "at": "2026-10-21T01:31:15Z",
+   "who": "b",
+   "action": "toggle-outage-off"
+  },
+  {
+   "at": "2026-10-21T01:31:15Z",
+   "who": "b",
+   "action": "toggle-revoke-grant"
+  },
+  {
+   "at": "2026-10-21T01:31:16Z",
+   "who": "b",
+   "action": "approve-2h-after-revoke"
+  },
+  {
+   "at": "2026-10-21T01:31:17Z",
+   "who": "b",
+   "action": "disconnect-with-undelivered"
+  }
+ ],
+ "results": [
+  {
+   "name": "anon-root",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "agent-api-blocked",
+   "verdict": "PASS",
+   "detail": "403"
+  },
+  {
+   "name": "sign-in-b",
+   "verdict": "PASS",
+   "detail": "204"
+  },
+  {
+   "name": "sc07-b-connected-ko",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc07-b-no-connect-button",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc07-b-connected-en",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc01-login-scope-unchanged",
+   "verdict": "PASS",
+   "detail": "openid email"
+  },
+  {
+   "name": "sc07-gate-ko",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc07-gate-no-old-copy",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc07-gate-en",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sign-in-c",
+   "verdict": "PASS",
+   "detail": "204"
+  },
+  {
+   "name": "sc07-v1-ko",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc07-v1-no-old",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc07-v1-en",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc05-unconnected-approve-refused",
+   "verdict": "PASS",
+   "detail": "409 pending"
+  },
+  {
+   "name": "sign-in-a",
+   "verdict": "PASS",
+   "detail": "204"
+  },
+  {
+   "name": "sc01-a-unconnected",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc01-consent-scope",
+   "verdict": "PASS",
+   "detail": "scope-keys-only"
+  },
+  {
+   "name": "sc01-consent-page",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc01-partial-not-stored",
+   "verdict": "PASS",
+   "detail": "403"
+  },
+  {
+   "name": "sc01-partial-still-unconnected",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc01-a-connect",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc01-a-connected-copy",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc01-a-disconnect-redirect",
+   "verdict": "PASS",
+   "detail": "303"
+  },
+  {
+   "name": "sc01-a-disconnect-copy",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc07-a-off-en",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sign-in-b",
+   "verdict": "PASS",
+   "detail": "204"
+  },
+  {
+   "name": "sc02-approve-redirect",
+   "verdict": "PASS",
+   "detail": "303"
+  },
+  {
+   "name": "sc02-one-lookup-done",
+   "verdict": "PASS",
+   "detail": "done"
+  },
+  {
+   "name": "sc03-disclosure-minimised",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc02-revisit-no-form",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc03-page-has-no-secrets",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc02-duplicate-409",
+   "verdict": "PASS",
+   "detail": "409"
+  },
+  {
+   "name": "sc05-outage-on",
+   "verdict": "PASS",
+   "detail": "{\"grant_revoked\":false,\"outage\":true}\n"
+  },
+  {
+   "name": "sc05-outage-failed-not-done",
+   "verdict": "PASS",
+   "detail": "failed"
+  },
+  {
+   "name": "sc05-revoke-failed",
+   "verdict": "PASS",
+   "detail": "failed"
+  },
+  {
+   "name": "sc07-v3-d2-reconnect",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc07-v3-en",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "browser-reconnect",
+   "verdict": "PASS",
+   "detail": "PASS browser-v3-ko PASS browser-v3-en FAILS=0 "
+  },
+  {
+   "name": "sc06-disconnect-redirect",
+   "verdict": "PASS",
+   "detail": "303"
+  },
+  {
+   "name": "sc06-undelivered-hidden",
+   "verdict": "PASS",
+   "detail": "denied"
+  },
+  {
+   "name": "sc06-other-pending-denied",
+   "verdict": "PASS",
+   "detail": "denied"
+  },
+  {
+   "name": "sc06-off-copy-and-no-token-ui",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "sc07-off-en",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "name": "browser-off",
+   "verdict": "PASS",
+   "detail": "PASS browser-off-ko PASS browser-off-en FAILS=0 "
+  },
+  {
+   "name": "sc02-expired-no-approve",
+   "verdict": "PASS",
+   "detail": "200"
+  },
+  {
+   "name": "sc02-denied-no-approve",
+   "verdict": "PASS",
+   "detail": "200"
+  }
+ ],
+ "fail": 0
+}

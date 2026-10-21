@@ -1,0 +1,128 @@
+{
+  "task_key": "SAR-SCHEDULE-001-QA",
+  "attempt": "aacabee3b417488182789259b0116b99",
+  "packet_input_sha256": "a249d1b58bcdf1e836dec24f572cc68614d5008657379ebe946ed0ad8a6c63de",
+  "uncertainty_review": "partial=true. route 미확인은 task/role/SHA/attempt/instruction 불일치 또는 부재라서 근거로 쓰지 않았다. 살아있는 인박스의 키 SAR-SCHEDULE-001-QA, 역할 tester, attempt aacabee3b417488182789259b0116b99, base 336533e를 직접 확인했다. context producer는 input_partial이고 DEV 보고와 calendar_browser_fixture_test.go를 oversized로 보내지 않았다. 두 파일은 로컬에서 fixture 절과 HTTP handler를 읽었다. PLANS.md는 SAR-SCHEDULE 줄만 읽었고 수정하지 않았다. service-member-ui.md는 캘린더 절(396–413)과 이전 절이 비현행이라는 경계를 읽었다. CODE-REVIEW 보고는 L1–L6 표와 수락 결론을 읽었다. ops-guide.md는 캘린더 키·freebusy 검색 0건이라 키 복구 절차가 없다고 보았고, 절차 미정은 transition.md 본문으로 확인했다. remaining_context_paths는 0건이다. 동적 참조와 language server 의미는 검증하지 않았다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 완료는 시나리오·보고서·packet outcomes와 work.py finish로 남기고, 이 QA를 제품 수락으로 적지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "격리 fixture 절의 계정·gate·토글·허용 경로를 읽고 336533e clone에서 같은 TestCalendarBrowserFixture를 기동했다. DEV의 dfd5500 로그는 재사용하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D009·D010 확정과 D011 열림, SC-01~SC-09, 빈 시간만 공개, 승인 1회=조회 1회를 기준 표로 썼다. SC-09는 실행하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "합성 fixture, 제품 코드 금지, 실계정 금지, 증거 정본 report.md, L1·L2·L3·L5 범위를 그대로 수행했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "등록 명령 make lint·make test는 최소 level이 없어 lite에서도 실행했다. Windows make가 없어 exact SHA Linux clone에서 실행했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "fullops-common-0.3.4는 fullops.json이 있을 때 적용되고, 비밀값·승인 범위는 지시서로 완화하지 않는다는 적용 절을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "제품 상태 변경은 하지 않았다. 검사 스크립트의 실패를 성공으로 보고하지 않고 고친 뒤 새 fixture에서 다시 실행했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "SSH 값·세션 쿠키·refresh token을 증거와 로그에 넣지 않았다. 관측은 127.0.0.1:18961뿐이고 운영 DB와 실계정은 쓰지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite에서도 등록된 전체 lint·test를 건너뛰지 않았다. 실행하지 않은 친구 해제·차단·친구 아님·실계정은 not_run으로 남겼다."
+    },
+    {
+      "path": ".fullops-squad/contexts/tester.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "제품 수정 금지, exact SHA와 기록 HEAD의 구분, CSP로 페이지 fetch가 막힌다는 기존 교훈을 이번 로그인 방식에 적용하고 한 줄 교훈을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현행 정본은 2026-10-12 D04 포인터이고, 옛 gate의 '정보 공개나 일정 실행' 문장은 이력이라 캘린더 승인 문구의 기준으로 쓰지 않았다. commit U5만 그 문장을 유지한다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "캘린더 절의 연결됨·다시 연결·미연결 승인 불가·처리됨 배치를 문구 판정에 썼다. 이전 1–14절은 비현행으로 표시돼 있다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "리뷰 L1 done 재전송, L3 AAD, L4 미저장 revoke, L6 owner-revoke를 지시서 L1·L2·L3·L5에 대응했다. 리뷰 L2는 designer D2이고 리뷰 L5 body close는 이번 표 밖이다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-LOWS-DEV-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "지시서 번호와 리뷰 번호의 대응, L3의 자기 계정 제외에 자동 검사가 없다는 기록, owner-revoke가 사람 회원 credential 없이는 도달하지 않는다는 기록을 판정 한계에 반영했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "V1 한 줄, V3 reconnect details, D2 미전달 삭제가 44ecde1 이후 336533e에 들어 있다는 수정 표를 읽고, 그 SHA의 옛 로그 대신 336533e를 다시 실행했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이메일 회원 문구 수락과 해제 시 미전달 결과 삭제(D2)를 문구·동작 기준으로 썼다. 시각 수락 캡처는 만들지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이전 tester의 loopback 전달과 CDP 쿠키 주입을 따랐다. 포트는 18932 대신 18961을 써 그 fixture를 건드리지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "캘린더 절은 운영 미적용 초안이고 키를 잃으면 다시 연결해야 하며 교체 절차는 미정이다. 그 복구는 not_run으로 남겼다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D008로 일정 API를 진행하고 실데이터 silent 조회는 보류라는 줄만 확인했다. 과금·가입자 목표는 이번 QA 기준이 아니다."
+    },
+    {
+      "path": "internal/relay/calendar_browser_fixture_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "허용 경로, /v1 403, 계정 쿠키 kl_fixture_account, manifest gate 6개, 수명 12시간을 읽고 walk 범위를 그 표면에 맞췄다. 제품 파일은 수정하지 않았다."
+    }
+  ]
+}
