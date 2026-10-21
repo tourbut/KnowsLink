@@ -160,7 +160,7 @@ D03·D05·D06·D09·D10·D11·D12·D13 중 실제 변경(위 문서 갱신 항�
 - 변경 이유: D018 서버 캘린더 연결 제거와 기존 연결 일회 정리, D017 `/privacy`·`/terms` 공개 페이지와 링크, 공개 ingress repo 후보 두 경로.
 - 기술 계획: SAR-SCHEDULE-001 이전 `67284e3` 판으로 캘린더 파일을 되돌렸다(`internal`·`cmd`·adapter·env). 정리는 HTTP 시작 전 `RetireCalendars` 한 곳이며 legacy 필드는 그 정리만 읽는다. 상세는 [DEV 보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md) '기술 계획'.
 - 검토 필요: `calendar_retire.go`(토큰 처리·로그 비노출), `policy_pages.go`·`policy/*.html`, `landing_pages.go`의 style·footer 분리. 정책 페이지 하단에 '홈'을 넣은 위치(서비스 약관 뒤)는 designer 확인 대상이다. P-04 이메일 업체 행은 운영 SMTP 미설정이라 뺐다.
-- 검증한 것: 원격 Linux make lint/test/integration EXIT=0(`e20c199`), 격리 fixture 기동·probe(정리 전 상태 → 키 있음·철회 거부·키 없음 모두 토큰·연결·결과 0, gate denied, 정책 200, 영어판 한국어 0, `/home/calendar/*` 404), 정본 문안 4개 일치, 1440·390·320 가로 넘침 없음. FullOps lint 결과는 아래 lint 줄.
+- 검증한 것: 원격 Linux make lint/test/integration EXIT=0(`e20c199`), 격리 fixture 기동·probe(정리 전 상태 → 키 있음·철회 거부·키 없음 모두 토큰·연결·결과 0, gate denied, 정책 200, 영어판 한국어 0, `/home/calendar/*` 404), 정본 문안 4개 일치, 1440·390·320 가로 넘침 없음. FullOps lint `681bacf` ERROR 0·WARNING 17(처리 이유는 DEV 보고)·실행 불가 2(Windows make 없음, 원격 Linux에서 실행).
 - 못 한 것: 실제 Google revoke 호출, 운영 상태 정리, live ingress, 키보드·200% 실행, 독립 리뷰·tester·designer 수락.
 - 산출물·로그: [DEV 보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md), [render](../docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/), [packet-outcomes](../docs/evaluations/jev/SAR-PUBLISH-001-DEV-packet-outcomes.json).
 - 의존성: 변경 없음(go.mod·package.json 미변경). revoke는 표준 `net/http` POST다.

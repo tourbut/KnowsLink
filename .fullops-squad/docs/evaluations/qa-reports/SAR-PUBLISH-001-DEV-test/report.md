@@ -53,6 +53,13 @@ DEV 검사 기록이다. 독립 리뷰·tester QA·designer 시각 수락(PC-06)
 
 로컬 Windows: `go vet ./...`, `go vet -tags integration[,publishfixture]`, `go test ./internal/relay ./cmd/...` 통과. gofmt는 toolchain gofmt(go1.27.1)로 확인했다.
 
+FullOps lint(`--from dcf8825`, 깨끗한 임시 detached worktree, HEAD `681bacf`): ERROR 0, WARNING 17, 실행 불가 2([로그](681bacf-fullops-lint.log)). 실행 불가는 Windows에 make가 없는 product-lint·product-test이며 같은 명령을 위 원격 Linux에서 EXIT=0으로 실행했다. 경고 처리:
+
+- ANTI-005(캘린더 테스트 5개 파일·`human_pages_test.go` 1사례 삭제): 삭제된 기능의 테스트다. 대체는 `calendar_retire_integration_test.go`(정리·경로 404)와 U5로 되돌린 기존 승인 테스트다.
+- SIZE-002(추가 1,552줄)·SIZE-001(`i18n_en_member.go`·`member.go`·`ops-guide.md`·`PLANS.md`·`service-member-ui.md`): 제거 단위와 정책 문안 4개(약 300줄) 때문이다. 기존 파일은 몇 줄만 늘었고 분할은 이번 범위 밖이다. `PLANS.md`·`service-member-ui.md`는 이 과제가 바꾸지 않았다.
+- DOC-001(`policy/*.html`): 방문자에게 그대로 보내는 정적 문서라 헤더 주석을 넣지 않았다. 설명은 `policy_pages.go` 헤더에 있다.
+- SLOP-004(`check_public_ingress.py:24`): 검사 결과를 알리는 기존 출력 줄이다.
+
 ## 격리 fixture (tester·designer)
 
 `TestPublishBrowserFixture`(빌드 태그 `integration,publishfixture`)는 합성 DB에서 SAR-SCHEDULE-001 빌드가 저장한 모양의 정리 전 상태(연결 2개, 미전달 결과가 있는 approved gate 1개, pending gate 1개)로 시작한다. 실행은 `python3 remote.py fixture`이며 manifest(`<base>/fixture.json`)에 URL과 gate ID가 있다. 현재 기동 위치는 [fixture-location.json](fixture-location.json)이고 수명은 24시간이다.
