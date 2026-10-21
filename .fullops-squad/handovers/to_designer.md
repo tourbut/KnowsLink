@@ -127,3 +127,13 @@ dev가 같은 기준에서 SAR-SCHEDULE-001-LOWS-DEV(서버 내부 low 수정, �
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 (2026-10-21, designer)
+
+- 브랜치 / SHA: `fullops/designer` / 결정·보고 커밋 `115b7a9c`. finish 기록 커밋은 그 뒤이며 worker_done에 최종 HEAD를 적는다. 제품 코드는 18d74dd와 같다(`.fullops-squad` 밖 diff 0).
+- 변경 이유: 판단 1은 현행 이메일 회원 한 줄·버튼 없음을 수락한다. 판단 2는 해제 때 미전달 disclosure를 지우고 상대에게 대기 요청과 같은 `denied`를 보낸다. 해제 안내·해제 뒤 안내 KO/EN을 확정했다. SAR-SCHEDULE-001.md(화면 문구 원칙·실패 표·SC-06/07)와 D04 캘린더 절에 반영했다. D009·D010은 바꾸지 않았다.
+- 검토 필요: 시각 수정 필요 4건(모두 low). V1 미연결 조회 상세 승인 범위 문구 모순, V2 EN 320 summary 기호 줄바꿈, V3 reconnect 해제 안내 없음, D2 결정에 따른 해제 문구·서버 disclosure 삭제(리뷰 L2). 상세 [보고](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md).
+- 검증한 것: 18화면×3폭 54장을 정적 fixture로 렌더해 직접 보았다(넘침 0, 영어판 한국어 0, 토큰 대비 AA 이상). lint `--from 18d74dd` ERROR 0 / WARNING 1(D04 SIZE-001 기존 798줄→817줄, 분할은 범위 밖) / 실행 불가 1(product-lint, Windows make 없음). product-test는 lite 문서 변경으로 skipped.
+- 못 한 것: 격리 fixture 실제 왕복, 키보드·200%·스크린리더, 실제 Google 계정(D011).
+- 의존성: 변경 없음(문서·PNG만). DEP-001 해당 없음.
+- 남은 일: dev가 V1–V3·D2를 수정한다(coor 배정). 수정 SHA에서 designer가 영향 화면을 다시 본다. tester 독립 QA와 실계정 1경로(D011 뒤)는 SC-09 그대로 남는다.
