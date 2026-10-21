@@ -1,0 +1,272 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "336533e6e15679d67118cbec5ab907768b80a70f",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "405dc8841105058ef6d970ef6baf80f417e356c6fe3e4bb3c235f23798834a1f",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-SAR-SCHEDULE-001.md",
+      "c1-report.md",
+      "c2-report.md",
+      "c3-report.md",
+      "c4-report.md",
+      "c5-report.md",
+      "c6-report.md",
+      "c7-calendar_browser_fixture_test.go",
+      "c8-tester.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-SAR-SCHEDULE-001.md",
+      "c1-report.md",
+      "c2-report.md",
+      "c3-report.md",
+      "c4-report.md",
+      "c5-report.md",
+      "c6-report.md",
+      "c7-calendar_browser_fixture_test.go",
+      "c8-tester.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-SAR-SCHEDULE-001.md": {
+        "relevant": 0.28,
+        "evidence": 0.58,
+        "contradicts": 0.25,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c2-report.md": {
+        "relevant": 0.41,
+        "evidence": 0.71,
+        "contradicts": 0.37,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-report.md": {
+        "relevant": 0.15,
+        "evidence": 0.37,
+        "contradicts": 0.6,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-report.md": {
+        "relevant": 0.15,
+        "evidence": 0.37,
+        "contradicts": 0.68,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-report.md": {
+        "relevant": 0.11,
+        "evidence": 0.27,
+        "contradicts": 0.57,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-report.md": {
+        "relevant": 0.03,
+        "evidence": 0.03,
+        "contradicts": 0.8,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-tester.md": {
+        "relevant": 0.15,
+        "evidence": 0.47,
+        "contradicts": 0.17,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-SAR-SCHEDULE-001.md": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "c1-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md",
+      "c2-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-LOWS-DEV-test/report.md",
+      "c3-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/report.md",
+      "c4-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md",
+      "c5-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "c6-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/report.md",
+      "c7-calendar_browser_fixture_test.go": "internal/relay/calendar_browser_fixture_test.go",
+      "c8-tester.md": ".fullops-squad/contexts/tester.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_tester.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_tester.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 28278,
+    "output_tokens": 532,
+    "cost": 0.001187676,
+    "known_cost": 0.001187676,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.603,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.539,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3779,
+        "output_tokens": 76,
+        "cost": 0.000158718
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.491,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3889,
+        "output_tokens": 76,
+        "cost": 0.000163338
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.553,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3548,
+        "output_tokens": 76,
+        "cost": 0.000149016
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.512,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3649,
+        "output_tokens": 76,
+        "cost": 0.000153258
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.579,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4396,
+        "output_tokens": 76,
+        "cost": 0.000184632
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.487,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4834,
+        "output_tokens": 76,
+        "cost": 0.000203028
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.592,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4183,
+        "output_tokens": 76,
+        "cost": 0.000175686
+      }
+    }
+  ],
+  "request_max_seconds": 0.592,
+  "task_key": "SAR-SCHEDULE-001-QA",
+  "role": "tester",
+  "attempt": "aacabee3b417488182789259b0116b99",
+  "instruction_sha256": "522599431d3976d4898d6bb4ea47b8de1ff0927ab7879e68c33200054a81ab6f",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-LOWS-DEV-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/report.md",
+      "internal/relay/calendar_browser_fixture_test.go",
+      ".fullops-squad/contexts/tester.md"
+    ],
+    "required": [],
+    "sources": {
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md": "71a14957615f5973b08f0e468d6b542a24754159bca8a78a7f82e592fbbc6675",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md": "6525915d774d6d6f706f351531480e1a802287fd8fbd684b4f552a1ccc33955d",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-LOWS-DEV-test/report.md": "a4daa6b16acd1bc519ed8620497a246da651fe7799042ca09c4341f7efb0c73a",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/report.md": "1e75316fcdbe1d3fc151d4339c63b8210940dfc13deb37f91d06b3e803df5737",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md": "eebe333d98d34588b214169a56b3589713dbf65dafcf85e2f1496a6c4a9fa726",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md": "dd727f2d31266aa8f9171e6ea41f197109b655dffe0326f35c4698004699ea1a",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-TESTER-test/report.md": "b7600505ec25b7bd788ddc2c87085f6143f458fbb3dffafd998d738423305a11",
+      "internal/relay/calendar_browser_fixture_test.go": "e15c09ef8de7086cfe9679bc388c607ee5d689fe0d8542b0cd48e19d3926ede9",
+      ".fullops-squad/contexts/tester.md": "9be97952a42470a5776beaab5ec576546da1ac6441d28d117ffab06cd51747a3"
+    }
+  },
+  "unsent_sources": {
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md": "sensitive or oversized passage",
+    "internal/relay/calendar_browser_fixture_test.go": "sensitive or oversized passage"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 1.726,
+  "input_partial": true,
+  "instruction_chars": 6093,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 6093
+  }
+}
