@@ -122,3 +122,16 @@ dev 완료 뒤 coor가 tester 검증과 ops 배포를 배정한다. 배포 뒤 c
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### SAR-PUBLISH-001 완료 보고 (2026-10-21)
+
+- 브랜치 / SHA: `fullops/designer` / 설계 커밋 `e01798c3`·`35a89477`, 완료 SHA는 finish 커밋(worker_done에 고정).
+- 변경 이유: D018(서버 캘린더 연결 제거)·D017(앱 공개 게시용 /privacy·/terms).
+- 결정: SAR-SCHEDULE-001을 철회 상태로 바꾸고 대체 규칙 SR-01–06을 정했다. 캘린더는 각 에이전트가 연결하고 KnowsLink는 메시지만 중계한다. 일정 조율은 보통 메시지로 계속 가능하다. `schedule.query`·`schedule.commit` gate는 남기고 U5·MVP-08 기준(승인=gate 통과만, 조회·공개 없음)으로 되돌린다. D010 수치는 제품 요구에서 뺐다.
+- 기존 연결: 제거 배포가 Google 철회를 한 번 요청하고 결과와 무관하게 토큰·미전달 결과를 삭제한다. 화면 안내는 없고 coor가 테스트 사용자에게 알린다. 완료 조건 RC-01–05.
+- 정책: [SAR-PUBLISH-001](../docs/planning/product-specs/SAR-PUBLISH-001.md)에 KO/EN 문안 전문·화면 기준·링크 위치(첫페이지 하단·`#start`·설정)·PC-01–06. 법률 검토 전 초안이며 게시 전 확인 항목 P-01–05(시행일·보호책임자 표시·백업 기간·메일 업체·법률 검토)가 열려 있다.
+- D04: 캘린더 배치를 제거 뒤 기대 화면으로 바꾸고 정책 페이지 배치를 추가했다.
+- dev 인박스: `handovers/to_dev.md` `SAR-PUBLISH-001-DEV`(tester 검증 기준 포함).
+- 검증: FullOps lint `--from dcf8825` ERROR 0, WARNING 3(SIZE-001 PLANS.md·D04 기존 초과, SIZE-002 문서 추가 490줄: KO/EN 정책 전문이라 분할하지 않음). product-lint/test는 Windows make 없음으로 실행 불가이며 문서만 바꿨다. 의존성 변경 없음(코드 미변경).
+- 못 한 것: 화면 시각 검수(구현 전), 법률 검토. PLANS.md·ops-guide.md는 읽지 않았다(필요 없음).
+- 남은 일: dev SAR-PUBLISH-001-DEV 구현 → tester 독립 QA → designer 직접 시각 검수(KO/EN 3폭) → ops 배포 → coor·사용자 Cloud Console 브랜딩 입력·`calendar.freebusy` scope·Calendar API 정리·앱 게시. 사용자 P-02·P-05 확인.
