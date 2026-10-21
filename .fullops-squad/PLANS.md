@@ -2025,3 +2025,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - CI 로고 2026-10-18: 사용자 지시로 이미지 생성은 agy, 프롬프트는 Opus. 1차 Grok·agy 시안과 체크 제거 5안 중 B3를 선택했고 SVG로 다시 그렸다. docs/brand/(lockup·symbol·README), main 401d7da push, designer·ops·tester 동기화. 파비콘 단순형·반전판·한글판은 없다. docs/brand 위치는 정본으로 확정되지 않았다.
 - 보드 정리 2026-10-18: 해소된 blocked 두 건(27 active로, 28 done으로)과 소개 모션 문구를 고치고 FullOps 1.7.0·CI 단계를 추가했다. 위 "사용자 작업 중지 — 2026-10-15" 절은 2026-10-17 재개로 더는 유효하지 않다.
 - 보존: dev 워크트리의 미커밋 WIP(videos/service-intro/ 등, 방향 전환으로 중단된 HyperFrames 산출물)는 사용자 판단 전까지 삭제하지 않는다.
+
+## 완료 보고 후속 요청
+- [ ] SAR-SCHEDULE-001-LOWS-DEV → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-21)
