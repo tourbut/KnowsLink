@@ -90,7 +90,7 @@ func TestPolicyLinks(t *testing.T) {
 	v := humanPageFixture()
 	v["Title"], v["Section"] = "설정", "account"
 	account := renderHumanPage(t, "human-account", v)
-	if !strings.Contains(account, `<p><a href="/">서비스 안내</a> <a href="/privacy">개인정보처리방침</a> <a href="/terms">서비스 약관</a></p>`) {
+	if !strings.Contains(account, `<p class="links"><a href="/">서비스 안내</a> <a href="/privacy">개인정보처리방침</a> <a href="/terms">서비스 약관</a></p>`) {
 		t.Fatal("settings policy links")
 	}
 }
