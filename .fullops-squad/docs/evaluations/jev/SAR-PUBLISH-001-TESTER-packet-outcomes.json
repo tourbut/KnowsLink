@@ -1,0 +1,55 @@
+{
+ "packet_input_sha256": "3dcfb7eb4e3fa07fcb0b36a2777360555a81068be574c24be29a8639d9612a3a",
+ "attempt": "4b9db50ef2f84af6805a6fda0cf55e66",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "앞부분(운영 모드·tester 범위)을 읽었다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문을 읽고 fixture API·검증하지 못한 것 절을 이 QA의 기준으로 썼다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "정책 문안 4개 절은 parity.py로 렌더와 단어 단위 대조했고 PC 표와 #start 행을 grep으로 읽었다. 전문 정독은 아니다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "앞부분 표(스택·정본·기준)를 읽었다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문을 읽었다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "QA는 제품 코드를 고치지 않아 적용 대상 없음. 파일 목록 확인만 했다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문을 읽고 합성 fixture·비밀값 비노출 원칙을 적용했다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "담당과 반복 범위 절을 읽고 증거 보존 위치(raw/)와 재검증 기준을 적용했다."
+  }
+ ],
+ "uncertainty_review": "packet partial=True. 미확인 4건(PLANS.md, service-member-ui.md, module-design.md, ops-guide.md)은 이 QA에 필요하지 않아 읽지 않았다. 선택 참조(impact_check) 파일은 grep으로 필요한 줄(google.go scope, landing_pages.go #start 조건)만 확인했다."
+}

@@ -115,7 +115,11 @@ main 17a360b2에 SAR-PUBLISH-001-DEV(dev 722feed9, 제품 e20c199)가 병합됐�
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+- 브랜치 / SHA: `fullops/tester` / 기록 커밋 `8871b8cfdd65`(+ packet-outcomes 커밋). 검증 대상 제품 main `17a360b2051d96e39646e1b048c931f6f0ede88b`.
+- 변경 이유: 캘린더 제거(D018)·일회 정리·`/privacy`·`/terms`(D017)의 tester 독립 확인. 제품 코드 수정 없음.
+- 검토 필요: 제품 결함 0. 키 없음 정리 기록이 `failed=2`로 남는 의미를 ops-guide 설명과 맞춰 볼 것. `#start` 정책 안내 줄은 Google·이메일 로그인이 켜질 때만 렌더되므로 운영 live에서 ops가 확인한다.
+- 검증한 것: 새 격리 fixture 62/62 PASS(정리 3사례+재실행 idempotent, KO/EN 캘린더 문구 0, `/home/calendar/*` 404, schedule.query 승인·disclosure false, 정책 4페이지 문안 일치·링크·3폭 넘침 0), 원격 Linux `make lint`·`make test`·integration EXIT=0(FAIL 0).
+- 검증하지 못한 것: 실제 Google revoke·운영 정리·live 반영(ops), 실제 브라우저 시각·키보드·200% 확대(designer), 법적 적합성(P-05), commit~revoke 사이 crash(fixture 재현 지점 없음), Google redirect URL 직접 확인(fixture 차단, 코드·단언으로 대체).
+- 산출물: [report.md](../docs/evaluations/qa-reports/SAR-PUBLISH-001-TESTER-test/report.md), [시나리오](../docs/evaluations/scenarios/SAR-PUBLISH-001-TESTER.md).
+- 남은 일: designer 시각 검수(SAR-PUBLISH-001-VISUAL), ops live 반영 확인과 P-04 SMTP 활성화 전 문안 갱신 조건.
+- 의존성 변경: 없음(제품 파일을 바꾸지 않았다).
