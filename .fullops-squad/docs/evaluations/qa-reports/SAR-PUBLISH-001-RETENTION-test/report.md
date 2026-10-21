@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-22
 owner: ops
 tasks: [SAR-PUBLISH-001-RETENTION]
-summary: D021에 따라 운영 knowslink-state/backups의 14일 초과 백업 9개를 지우고 매일 03:17 KST 자동 정리 cron을 예약한 대상 목록·실행·확인 결과를 기록한다.
+summary: "D021에 따라 운영 knowslink-state/backups의 14일 초과 백업 9개를 지우고 매일 03:17 KST 자동 정리 cron을 예약한 대상 목록·실행·확인 결과를 기록한다."
 ---
 
 # SAR-PUBLISH-001-RETENTION 결과
