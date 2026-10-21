@@ -4,12 +4,20 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-22
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## 백업 보존 14일과 자동 정리 (SAR-PUBLISH-001-RETENTION, 사용자 결정 D021, 2026-10-22)
+
+`knowslink-state/backups/`의 `*.dump`는 수정 시각 기준 최대 14일 보관한다. 서버 사용자 cron이 매일 03:17 KST에 `~/.local/bin/knowslink-prune-backups.sh`(repo `deploy/knowslink/prune-backups.sh` 사본)를 돌려 14일을 넘은 파일만 지운다. 가장 최근 1개는 남기고 디렉터리 밖은 건드리지 않으며 로그는 `knowslink-state/backup-prune.log`에 삭제·보존 개수 한 줄뿐이다. 배포 때 만드는 새 백업은 이 규칙을 따르고 14일 뒤 지워진다. 더 오래 둘 복구점은 다른 곳에 복사한다. 근거는 [보고서](../evaluations/qa-reports/SAR-PUBLISH-001-RETENTION-test/report.md)다(첫 실행에서 9개 삭제, 11개 남음).
+
+- 확인: `crontab -l | grep knowslink-prune`, `tail -n 3 ~/deploy/knowslink-state/backup-prune.log`, `find ~/deploy/knowslink-state/backups -type f -mmin +20160`(출력 없음이 정상).
+- 대상 미리보기(지우지 않음): `~/.local/bin/knowslink-prune-backups.sh ~/deploy/knowslink-state/backups --list`.
+- 중지: `crontab -e`에서 해당 줄을 주석 처리한다. 원래 crontab은 `knowslink-state/crontab.pre-retention001`에 있다.
 
 ## SAR-PUBLISH-001 운영 적용 결과 (2026-10-22)
 
@@ -19,7 +27,7 @@ summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검�
 - 백업은 `backups/4787e85-pre-publish001-20261021T224540Z.dump`, 0600·11178bytes·TOC25줄이다. SHA256은 `9d21d9ef0e8459ea9934ea3ce5feb3fbda16330c8c4c6991c7613c0050aed848`다. network-none 복원의 전체 data digest가 frozen DB와 같고 goose2·guard1·HumanModel1과 downgrade 거부를 확인했다. 운영 DB는 복원하지 않았다.
 - 캘린더 정리: 키를 그대로 둔 채 기동했고 `calendar cleanup` 줄은 0이다. 상태 JSON에 `Calendars`가 처음부터 없었다(연결 0). 그래서 revoke 호출·`failed`는 없다. 키 제거: 22:46:32Z에 운영 env 정본 `/home/shin/deploy/knowslink-state/.env`(0600)에서 `KNOWSLINK_CALENDAR_KEY` 줄만 지웠다(518→450bytes). 이전 env는 `publish001-ops-20261022/env.pre-publish001`(0600)에 보관했다. relay만 재생성했고 재기동 로그에 정리 줄이 없다(idempotent). 이후 이 키는 운영에 없다.
 - 공개 ingress: `path`에 `/privacy|/terms`만 더했다. live 규칙이 repo `public-ingress.yml`과 같다. 원본은 `publish001-ops-20261022/config.yml.pre-publish001`(0600)이다. cloudflared를 한 번 재시작했고(22:47:14Z) 연결 4개가 등록됐다. `https://link.knowslog.com/privacy`·`/terms`는 비로그인 200(한국어·영어)이고 `/privacy/`·`/privacy/x`·`/privacyx`·`/terms/`·`/terms.html`은 404다. `/home/calendar/*`는 relay가 404로 답한다.
-- 시행일 상수 `policyEffective = "2026-10-22"`는 배포일과 같아 바꾸지 않았다. 문안은 법률 검토(P-05) 전 초안이다. P-03: 문안은 ‘백업을 정기적으로 교체하며 삭제’지만 실제로는 자동 정리가 없다(cron·timer·정리 단계 없음, WAL archive 꺼짐). 백업 dump 20개가 2026-10-03부터 쌓여 있다. 문안과 실제가 달라 designer·coor의 결정이 필요하다(문안은 고치지 않았다). P-04: 운영 이메일 코드 로그인이 꺼져 있어(`email login configured=false`) 이메일 업체 행은 생략을 유지한다.
+- 시행일 상수 `policyEffective = "2026-10-22"`는 배포일과 같아 바꾸지 않았다. 문안은 법률 검토(P-05) 전 초안이다. P-03: 문안은 ‘백업을 정기적으로 교체하며 삭제’지만 실제로는 자동 정리가 없다(cron·timer·정리 단계 없음, WAL archive 꺼짐). 백업 dump 20개가 2026-10-03부터 쌓여 있었다. 문안과 실제가 달랐고 D021로 14일 자동 정리를 만들어 해소했다(위 절). P-04: 운영 이메일 코드 로그인이 꺼져 있어(`email login configured=false`) 이메일 업체 행은 생략을 유지한다.
 - egress: `https://www.googleapis.com/calendar/v3/freeBusy`는 더 이상 호출하지 않는다. `https://oauth2.googleapis.com/revoke`는 첫 기동 정리에서만 호출하는데 이번에는 호출하지 않았다. 공개 smoke 21개·첫페이지·새 API 경계·언어 22개·정책 페이지·캘린더 경로가 통과했다. 보존 assertion 41개가 통과했다(Rates·Remote.Tokens는 volatile). 실계정 로그인·발송, 브라우저 렌더링은 실행하지 않았다.
 - 남은 일: coor와 사용자가 Cloud Console을 바꾼다(`calendar.freebusy` scope 제거, Google Calendar API 비활성화, 브랜딩 URL `https://link.knowslog.com/`·`/privacy`·`/terms`, 앱 게시). ops는 Cloud Console을 바꾸지 않는다.
 
@@ -225,7 +233,7 @@ ingress:
 4. 공개 노출을 중단할 때는 KnowsLink `cloudflared` 서비스만 중지한다. 앱·DB·볼륨은 보존한다. Cloudflare 오류의 정확한 HTTP 코드를 고정하지 않는다.
 5. 전체 철회가 명시적으로 지시되면 KnowsLink connector를 중지하고 `link.knowslog.com`의 해당 레코드와 새 Tunnel만 제거한다. 기존 `orca` Tunnel·route는 유지한다. `down -v`와 공유 자원 prune은 금지한다.
 
-백업 보관 기간·암호화 저장소·복구 목표는 운영 재개 전 확정할 항목이다. 임의로 최근 7개 정책을 확정하지 않는다. 업무 행 삭제는 WAL/backup 완전 삭제가 아니다. 백업 삭제 보장을 제품 완료로 표시하지 않는다.
+백업 보관 기간은 D021로 14일이 확정됐다(맨 위 절). 암호화 저장소·복구 목표는 운영 재개 전 확정할 항목이다. 임의로 최근 7개 정책을 확정하지 않는다. 업무 행 삭제는 WAL/backup 완전 삭제가 아니다. 백업 삭제 보장을 제품 완료로 표시하지 않는다.
 
 ## 6. 적용 절차 (역사적 계획 — 실제 절차는 11장)
 
