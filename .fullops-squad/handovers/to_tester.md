@@ -111,7 +111,7 @@ designer가 같은 SHA에서 SAR-SCHEDULE-001-VISUAL-RECHECK를 진행한다. fi
 
 ## 완료 보고
 
-- 브랜치: `fullops/tester`. QA 증거 SHA: 첫 커밋 뒤 이 줄에 적는다.
+- 브랜치: `fullops/tester`. QA 증거 SHA: `91dcea6e17a995b552cfadd0c46a68ff0e5acd3b`.
 - 변경 이유: main 336533e의 일정 조회를 합성 fixture에서 SC-01~SC-08과 L1·L2·L3·L5로 독립 QA하고 시나리오·보고서를 남긴다. 제품 코드는 바꾸지 않았다.
 - 검토 필요: 없음. 제품 결함 0. 독립 QA이며 제품 수락이 아니다.
 - 검증한 것: 원격 exact SHA에서 make lint·make test·calendar integration EXIT=0. 새 fixture walk 47건과 Chrome 초기·reconnect·해제 화면 PASS. 상세는 [보고서](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md).
