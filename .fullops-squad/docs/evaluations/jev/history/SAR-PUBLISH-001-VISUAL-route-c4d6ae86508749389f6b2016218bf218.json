@@ -1,0 +1,91 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLISH-001-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.34,
+        "product": 0.66
+      },
+      "confidence": 0.32
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.99,
+        "ops": 0.01,
+        "tester": 0
+      },
+      "confidence": 0.98
+    },
+    "docs": {
+      "D01": 0.37,
+      "D02": 0.35,
+      "D03": 0.31,
+      "D04": 0.5,
+      "D05": 0.33,
+      "D06": 0.34,
+      "D07": 0.23,
+      "D08": 0.26,
+      "D09": 0.34,
+      "D10": 0.43,
+      "D11": 0.4,
+      "D12": 0.37,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2434,
+    "output_tokens": 314,
+    "cost": 0.000102228
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.586,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "coor 배정: dev 완료 뒤 PC-06 designer 몫",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 high": 0.7,
+      "claude claude-opus-5-5 high": 0.3
+    },
+    "usage": {
+      "input_tokens": 480,
+      "output_tokens": 34,
+      "cost": 2.016e-05
+    }
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "17a360b2051d96e39646e1b048c931f6f0ede88b",
+  "requires_packet": true,
+  "attempt": "7b6d0140a0f6428b80aeb53f76be5647",
+  "instruction_sha256": "97ed147529305db07971e7c3547111b549d7c5ebdc1f06766e4cef8a47006908",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "af52a9092b93d09e9ca9ca793e57f8986aaa6a2e9818b2dc0c68f5a6ccf1b7e2"
+}
