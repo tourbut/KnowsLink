@@ -40,11 +40,11 @@ worker가 먼저 읽을 경로를 적는다. `jev_context.py`로 분류했다면
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] T1 SC-04: 친구가 아닌 상대에게 보낸 `schedule.query`가 조회 없이 거부되는 integration 테스트를 추가한다(철회 세대의 요청 거부도 기존 테스트가 없으면 함께).
-- [ ] T2 SC-06: 친구 해제와 차단 직후, 대기(pending) 요청과 승인됐지만 consume 전인 요청이 조회하지 않고 미전달 결과가 공개되지 않는 integration 테스트를 추가한다. 요청자 agent가 받는 상태를 확인한다.
-- [ ] T3 L3: 이미 연결된 자기 Google 계정으로 캘린더 재동의가 실패(권한 일부 거절 등)할 때 공유 grant를 revoke하지 않는 분기를 테스트한다. 다른 계정 동의는 revoke하는 기존 테스트와 짝을 이룬다.
-- [ ] 테스트가 기대와 다르게 실패하면 제품 동작을 같은 과제에서 고친다. 고친 경우 수정 전 실패를 기록한다. 기대 자체가 정본과 맞지 않아 보이면 멈추고 ask로 묻는다.
-- [ ] 동작을 바꿨으면 D10(`.fullops-squad/docs/design-docs/module-design.md`)·`docs/development.md`를 갱신한다.
+- [x] T1 SC-04: 친구가 아닌 상대에게 보낸 `schedule.query`가 조회 없이 거부되는 integration 테스트를 추가한다(철회 세대의 요청 거부도 기존 테스트가 없으면 함께).
+- [x] T2 SC-06: 친구 해제와 차단 직후, 대기(pending) 요청과 승인됐지만 consume 전인 요청이 조회하지 않고 미전달 결과가 공개되지 않는 integration 테스트를 추가한다. 요청자 agent가 받는 상태를 확인한다.
+- [x] T3 L3: 이미 연결된 자기 Google 계정으로 캘린더 재동의가 실패(권한 일부 거절 등)할 때 공유 grant를 revoke하지 않는 분기를 테스트한다. 다른 계정 동의는 revoke하는 기존 테스트와 짝을 이룬다.
+- [x] 테스트가 기대와 다르게 실패하면 제품 동작을 같은 과제에서 고친다. 고친 경우 수정 전 실패를 기록한다. 기대 자체가 정본과 맞지 않아 보이면 멈추고 ask로 묻는다.
+- [x] 동작을 바꿨으면 D10(`.fullops-squad/docs/design-docs/module-design.md`)·`docs/development.md`를 갱신한다.
 
 소유 파일: `internal/relay/calendar_integration_test.go`(또는 같은 패키지의 새 테스트 파일), 고칠 경우 관련 `internal/relay/` 파일, 이 과제의 qa-reports 폴더. 예상 규모 250줄 이하.
 
@@ -115,3 +115,12 @@ D10(`.fullops-squad/docs/design-docs/module-design.md`) — 제품 동작을 바
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치 / 완료 SHA: fullops/dev / `4a708c1`(코드). 이후 커밋은 `.fullops-squad/` 보고·지시서·패킷 결과만 바꾼다.
+- 변경 이유: 독립 QA not_run 세 경로(SC-04 친구 아님·철회 세대, SC-06 친구 해제·차단, L3 자기 계정 재동의 실패)에 자동 검사가 없었다. `internal/relay/calendar_testgap_integration_test.go`에 integration 테스트 4함수(subtest 6)를 더했다.
+- 결과: 세 경로 모두 기대대로 통과했다. 제품 코드 수정 없음, D10·`docs/development.md` 갱신 없음.
+- 검토 필요: 테스트 전용 변경이다. T3는 부분 동의 분기 대신 `shared` 결과 거부 분기를 실행한다. 이유는 보고서 판단 절에 있다.
+- 검증: 로컬 `go vet` 3태그·`go test ./internal/relay` EXIT=0. 원격 Linux `4a708c1` `make lint`·`make test`·integration EXIT=0. FullOps lint는 보고서 참조. 못 한 것: T3의 mutation 확인.
+- 산출물: [report.md](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-TESTGAP-DEV-test/report.md), 완료 SHA gate 로그 3건.
+- DEP-001: 의존성 변경 없음. `go.mod`·`package.json`을 바꾸지 않았다.
+- 남은 일: 없음. 테스트만 추가해 tester 재QA는 필요 없다.

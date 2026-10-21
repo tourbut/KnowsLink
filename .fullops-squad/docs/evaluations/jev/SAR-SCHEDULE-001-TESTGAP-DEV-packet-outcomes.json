@@ -1,0 +1,135 @@
+{
+  "task_key": "SAR-SCHEDULE-001-TESTGAP-DEV",
+  "role": "dev",
+  "attempt": "d2a75f15727b49cdb5737cfa73550ad3",
+  "packet_input_sha256": "154407b287738d10589ec70db95d0ad3e806c33213ed0f27862073020ff3925a",
+  "uncertainty_review": "partial 패킷이다. 미확인 항목은 route 재생성 필요, PLANS.md·service-member-ui.md·CODE-REVIEW report 직접 확인, 문자열 검색 한계다. CODE-REVIEW report와 PLANS.md는 직접 읽었다. 테스트만 추가해 호출자 영향이 없고, 원격 전체 integration이 EXIT=0이다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "다른 과제 대기열 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 동작을 바꾸지 않아 D10 갱신이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 테스트 과제와 관련 내용이 없어 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 테스트 과제와 관련 내용이 없어 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 테스트 과제와 관련 내용이 없어 변경하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이 테스트 과제와 관련 내용이 없어 변경하지 않았다."
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "sweepLookups·disconnectCalendar·revoke 경로를 읽고 T2 기대를 정했다. 수정 없음."
+    },
+    {
+      "path": "internal/relay/calendar_integration_test.go",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "기존 helper(calendarSetup·gateFor·csrfToken)만 재사용했다. 새 테스트는 같은 패키지의 calendar_testgap_integration_test.go에 두었다."
+    },
+    {
+      "path": "internal/relay/calendar_integration_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "기존 helper(calendarSetup·gateFor·csrfToken)만 재사용했다. 새 테스트는 같은 패키지의 calendar_testgap_integration_test.go에 두었다."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "225행 부분 동의 분기와 240·256행 shared 분기를 읽고 T3 대상을 정했다. 수정 없음."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "sweep의 revoked 전환과 send의 authority 검사를 읽었다. 수정 없음."
+    }
+  ]
+}
