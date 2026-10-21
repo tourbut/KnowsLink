@@ -1,19 +1,19 @@
 ---
 id: D02
 title: 앱 공개 게시용 개인정보처리방침·서비스 약관 정본
-status: draft
+status: review
 updated: 2026-10-21
 owner: designer
 tasks: [SAR-PUBLISH-001]
 upstream: [D01]
-summary: Google OAuth 앱 공개 게시(D017)에 필요한 /privacy·/terms의 KO/EN 문안 초안, 화면 기준, 홈페이지 링크 위치와 완료 조건을 정한다. 법률 검토 전 초안이다
+summary: "Google OAuth 앱 공개 게시(D017)에 필요한 /privacy·/terms의 KO/EN 문안 초안, 화면 기준, 홈페이지 링크 위치와 완료 조건을 정한다. 법률 검토 전 초안이다"
 ---
 
 # 앱 공개 게시용 개인정보처리방침·서비스 약관 — SAR-PUBLISH-001
 
 ## 상태와 적용 범위
 
-> 법률 검토 전 초안이다. 이 문안은 법률 자문이 아니다. 아래 '게시 전 확인 항목'이 닫히기 전에는 법적 효력을 갖는 최종본으로 보지 않는다. 문서 상태는 `draft`다.
+> 법률 검토 전 초안이다. 이 문안은 법률 자문이 아니다. 아래 '게시 전 확인 항목'이 닫히기 전에는 법적 효력을 갖는 최종본으로 보지 않는다. front matter `status: review`는 D02 인덱스 상태와 맞춘 값이며 법률 검토 완료를 뜻하지 않는다.
 
 2026-10-21 사용자 결정 D017로 Google OAuth 앱(knowslink-auth)을 공개 게시한다. Google 브랜딩 설정에는 홈페이지·개인정보처리방침·서비스 약관 URL이 필요하다. 세 URL은 승인된 도메인 `knowslog.com` 아래에 있어야 한다. 현재 `link.knowslog.com`에는 `/privacy`·`/terms`가 없다(404). 이 문서가 두 페이지의 제품 정본이다. 같은 날 결정 D018로 서버 캘린더 연결을 제거한다. 그래서 이 문안은 제거 뒤 기준으로 쓴다. 제거 규칙은 [SAR-SCHEDULE-001 '철회 — D018'](SAR-SCHEDULE-001.md#철회--d018-2026-10-21)이다.
 

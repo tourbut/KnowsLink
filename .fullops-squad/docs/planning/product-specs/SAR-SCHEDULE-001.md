@@ -6,7 +6,7 @@ updated: 2026-10-21
 owner: designer
 tasks: [SAR-SCHEDULE-001-DESIGN, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001]
 upstream: [D01]
-summary: 서버 캘린더 연결은 D018로 철회했다. 대체 규칙(에이전트가 각자 캘린더 연결, KnowsLink는 메시지만 중계)·gate 처리·기존 연결 정리 기준과 철회 전 기록을 보존한다
+summary: "서버 캘린더 연결은 D018로 철회했다. 대체 규칙(에이전트가 각자 캘린더 연결, KnowsLink는 메시지만 중계)·gate 처리·기존 연결 정리 기준과 철회 전 기록을 보존한다"
 ---
 
 # 실제 일정 API 연동 제품 범위 — SAR-SCHEDULE-001 (철회)
