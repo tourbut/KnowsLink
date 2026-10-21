@@ -1,0 +1,176 @@
+{
+ "task_key": "SAR-PUBLISH-001-FIX",
+ "attempt": "265b249573cf43ea87eebaa27cfe6e2a",
+ "packet_input_sha256": "14862dd099af4665d10ce49ee1c7c0fdcfd956e30ca9658b7dfbf3180ef656a0",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "CLAUDE.md 지시로 운영 규약을 확인했다. 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "V-01~V-04 지적 근거로 전문을 읽었다. V-01~V-03만 수정했고 V-04는 지시대로 두었다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정본 위치만 확인했고 이번 CSS 수정과 무관해 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "공통 규칙 진입점으로 확인했고 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "기존 CSS 한 줄 압축 스타일과 규칙 이름 관례를 따랐다. 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "스타일 변경만이라 입력·권한 경계에 영향이 없다. 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "lite 레벨과 원격 Linux 검증 범위를 따랐다. 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 새 색·글꼴·구조 변경이 없어 해당 없음이라 판단했다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04는 designer의 SAR-PUBLISH-001-D04가 소유한다(파일 겹침 금지). 이 과제는 읽기만 했고 수정하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/module-design.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "모듈 경계·API 변경이 없는 CSS 수정이라 갱신 불필요."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 44px 터치 대상 줄 참조로 추정되며 전역 `a` 규칙을 바꾸지 않아 영향 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 이번 수정은 정책·첫페이지·설정 링크 스타일에 한정돼 영향 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 설정 화면 링크 줄에 클래스만 추가했고 기능 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 설정 화면 기능 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 첫페이지 다른 링크·버튼의 44px 대상은 3폭 측정으로 유지됨을 확인했다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. MVP 동작 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 공개 화면 구조 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 정책 문안은 바꾸지 않았다(승인 범위 밖)."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 운영 준비 조건 변경 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 전역 `a` 44px 규칙은 그대로 두고 문단 링크만 예외로 좁혀 영향 없음."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/ops-guide.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "운영 절차 변경이 없는 스타일 수정이라 갱신 불필요."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 배포 전환 절차와 무관한 스타일 수정."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "전환 절차 변경이 없어 갱신 불필요."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 열지 않았다. 사업 계획과 무관."
+  },
+  {
+   "path": "internal/relay/connect_guide_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "원격 Linux make test와 로컬 go test 전체가 통과했다. 이 파일의 단언은 깨지지 않았다."
+  },
+  {
+   "path": "internal/relay/human_pages_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "원격 Linux make test와 로컬 go test 전체가 통과했다. 이 파일의 단언은 깨지지 않았다."
+  },
+  {
+   "path": "internal/relay/member_ui_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "원격 Linux make test와 로컬 go test 전체가 통과했다. 이 파일의 단언은 깨지지 않았다."
+  },
+  {
+   "path": "internal/relay/policy_pages_test.go",
+   "category": "impact_check",
+   "status": "completed",
+   "reason": "설정 링크 줄 단언을 `<p class=\"links\">` 마크업에 맞게 고쳤다."
+  }
+ ],
+ "uncertainty_review": "packet이 partial이고 PLANS.md·service-member-ui.md·module-design.md·ops-guide.md 4건이 미확인이다. service-member-ui.md는 designer 소유라 수정하지 않았고, 나머지는 CSS 수정과 무관함을 변경 파일 목록(internal/relay 4개)으로 확인했다. 잔여 참조 후보 8건은 열람하지 않았으며 코드 변경이 4개 파일 안에 머물러 영향이 없다고 판단했다."
+}
