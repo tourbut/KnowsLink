@@ -2063,3 +2063,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-PUBLISH-001-TESTER → designer: designer 시각 검수(SAR-PUBLISH-001-VISUAL, PASS 7980fb52) (완료 보고 자동 등재 2026-10-22)
 - [ ] SAR-PUBLISH-001-TESTER → ops: ops live 반영 확인과 P-04 SMTP 활성화 전 문안 갱신 조건 (완료 보고 자동 등재 2026-10-22)
 - [ ] SAR-PUBLISH-001-FIX → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-22)
+- [ ] SAR-PUBLISH-001-OPS → coor: (coor (완료 보고 자동 등재 2026-10-22)
+- [ ] SAR-PUBLISH-001-OPS → designer: 앱 게시. (designer (완료 보고 자동 등재 2026-10-22)
+- [ ] SAR-PUBLISH-001-OPS → coor: coor) P-03 문안/운영 절차 결정. (dev) 배포로 낡은 문서 갱신: D11 `user-guide.md` 57 (완료 보고 자동 등재 2026-10-22)
+- [ ] SAR-PUBLISH-001-OPS → dev: 59행(DEV 후보 사용법 → 공개됨) (완료 보고 자동 등재 2026-10-22)
