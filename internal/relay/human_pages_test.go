@@ -237,6 +237,11 @@ func TestHumanAccountCalendarStates(t *testing.T) {
 		if strings.Contains(body, `action="/home/calendar/connect"`) != c.connect || strings.Contains(body, `action="/home/calendar/disconnect"`) != c.disconnect {
 			t.Fatalf("%s: forms connect=%v disconnect=%v: %s", c.name, c.connect, c.disconnect, body)
 		}
+		// V3/D2: every disconnect form sits inside the danger details, after the result sentence.
+		warning := `<details class="danger"><summary>캘린더 연결 해제</summary><p>해제하면 KnowsLink에 보관한 토큰을 즉시 폐기하고 Google에도 권한 철회를 요청합니다. 아직 상대에게 전달되지 않은 조회 요청과 결과는 거절로 끝나고 공유되지 않습니다. 이미 전달된 결과는 되돌릴 수 없습니다.</p><form method="post" action="/home/calendar/disconnect">`
+		if c.disconnect && strings.Count(body, `action="/home/calendar/disconnect"`) != strings.Count(body, warning) {
+			t.Fatalf("%s: disconnect outside the danger details: %s", c.name, body)
+		}
 		if dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR"); dir != "" {
 			if err := os.WriteFile(filepath.Join(dir, "human-account-calendar-"+c.name+".html"), []byte(body), 0o644); err != nil {
 				t.Fatal(err)

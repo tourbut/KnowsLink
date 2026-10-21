@@ -282,9 +282,15 @@ func TestCalendarUnconnectedAndCommitStub(t *testing.T) {
 	claim := f.gateFor(t, queryBody(), firstID, gateID, "calendar-key-0002")
 	// SC-07/05: no connected calendar means no approval button and no lookup; the U5 text stays.
 	page := bob.do("GET", "/home/gates/"+gateID, nil).Body.String()
-	for _, want := range []string{"캘린더가 연결되지 않아 이 요청에 답할 수 없습니다.", `href="/home/account#calendar"`, gateScopes["schedule.query"], "바쁜 시간대만"} {
+	for _, want := range []string{"캘린더가 연결되지 않아 이 요청에 답할 수 없습니다.", `href="/home/account#calendar"`, "이 요청은 승인할 수 없습니다. 거절하거나 기한이 지나면 조회 없이 끝납니다.", "친구 동의나 대화 메시지는", "바쁜 시간대만"} {
 		if !strings.Contains(page, want) {
 			t.Fatalf("unconnected gate page lacks %q: %s", want, page)
+		}
+	}
+	// V1: the two approval-scope lines contradict a page without an approve button.
+	for _, banned := range []string{gateScopes["schedule.query"], "정보 공개나 일정 실행을 허용하지 않습니다"} {
+		if strings.Contains(page, banned) {
+			t.Fatalf("unconnected gate page shows %q", banned)
 		}
 	}
 	if strings.Contains(page, `value="approve"`) || strings.Contains(page, calendarGateScope) || !strings.Contains(page, `value="deny"`) {
@@ -387,6 +393,43 @@ func TestCalendarRevocationAndFailureClasses(t *testing.T) {
 		if calls, _, _, _ := p.snapshot(); calls != 0 {
 			t.Fatal("lookup after disconnect")
 		}
+	})
+	// D2: an approved lookup the agent has not consumed is dropped like a pending request; a consumed one is not recalled.
+	t.Run("disconnect_drops_undelivered_result", func(t *testing.T) {
+		f, p, bob, member := calendarSetup(t)
+		f.mutate(func(st *State) {
+			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected"}}
+		})
+		claim := f.gateFor(t, queryBody(), firstID, gateID, "calendar-key-0012")
+		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrfToken(t, bob.do("GET", "/home/gates/"+gateID, nil).Body.String())}, "decision": {"approve"}}), 303)
+		if g := f.call("GET", "/v1/gates/"+gateID, f.tokens["agent_b"], nil, 200); g["state"] != "approved" || g["lookup"] != "done" {
+			t.Fatal("lookup not done before disconnect", g)
+		}
+		expect(t, bob.do("POST", "/home/calendar/disconnect", nil), 303)
+		if g := f.call("GET", "/v1/gates/"+gateID, f.tokens["agent_b"], nil, 200); g["state"] != "denied" {
+			t.Fatal("undelivered result survived disconnect", g)
+		}
+		f.call("POST", "/v1/gate-consume", f.tokens["agent_b"], map[string]any{"id": gateID, "claim": claim}, 409)
+		f.mutate(func(st *State) {
+			if len(st.Gates[gateID].Lookup.Disclosure) != 0 {
+				t.Fatal("disclosure kept after disconnect")
+			}
+		})
+		f.send(wire(t, f.private["agent_b"], "0199a3f2-4c10-7a11-8b22-3344556677bb", "agent_b", "agent_a", "relay.result", "result-key-00012", firstID, map[string]any{"status": "denied"}, time.Now().Add(time.Minute)), "agent_b", claim, 200)
+	})
+	t.Run("disconnect_keeps_consumed_result", func(t *testing.T) {
+		f, p, bob, member := calendarSetup(t)
+		f.mutate(func(st *State) {
+			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected"}}
+		})
+		claim := f.gateFor(t, queryBody(), firstID, gateID, "calendar-key-0013")
+		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrfToken(t, bob.do("GET", "/home/gates/"+gateID, nil).Body.String())}, "decision": {"approve"}}), 303)
+		consumed := f.call("POST", "/v1/gate-consume", f.tokens["agent_b"], map[string]any{"id": gateID, "claim": claim}, 200)
+		expect(t, bob.do("POST", "/home/calendar/disconnect", nil), 303)
+		if g := f.call("GET", "/v1/gates/"+gateID, f.tokens["agent_b"], nil, 200); g["state"] != "approved" || g["consumed"] != true {
+			t.Fatal("consumed result recalled", g)
+		}
+		f.send(wire(t, f.private["agent_b"], "0199a3f2-4c10-7a11-8b22-3344556677bb", "agent_b", "agent_a", "relay.result", "result-key-00013", firstID, map[string]any{"status": "done", "disclosure": consumed["disclosure"]}, time.Now().Add(time.Minute)), "agent_b", claim, 200)
 	})
 	t.Run("owner_revoke_disconnects_and_revokes", func(t *testing.T) {
 		f, p, _, member := calendarSetup(t)
