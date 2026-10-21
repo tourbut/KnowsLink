@@ -2059,3 +2059,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-PUBLISH-001-VISUAL → dev(coor 배정): V-01(전역 `a{display:inline-flex;min-height:44px}`가 문장 속 링크 줄 간격을 벌림 — `#start` 한 줄·개인정보처리방침 §6) 수정을 배포 전에 권한다. V-02(정책 하단 현재 페이지 시각 표시)·V-03(설정 링크 간격)은 low다. 수정 지시안과 재현 위치는 `qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md`. (완료 보고 2026-10-22, designer 정정)
 - [ ] SAR-PUBLISH-001-VISUAL → coor: D04 `service-member-ui.md` 정책 페이지 하단 배치도에 '홈'을 추가하는 문서 변경(D-01)을 배정한다. 정책 하단 '홈' 위치(서비스 약관 뒤)는 designer가 승인했다. (완료 보고 2026-10-22)
 - [ ] SAR-PUBLISH-001-VISUAL → tester: 독립 QA(SAR-PUBLISH-001-TESTER)에서 서버 경유 화면(언어 쿠키 전환·로그인 회원 저장 언어)과 키보드 순회·200% 확대를 확인한다. designer는 이 항목을 보지 못했다. (완료 보고 2026-10-22)
+- [x] SAR-PUBLISH-001-TESTER → designer: designer 시각 검수(SAR-PUBLISH-001-VISUAL, PASS 7980fb52) (완료 보고 자동 등재 2026-10-22)
+- [ ] SAR-PUBLISH-001-TESTER → ops: ops live 반영 확인과 P-04 SMTP 활성화 전 문안 갱신 조건 (완료 보고 자동 등재 2026-10-22)
