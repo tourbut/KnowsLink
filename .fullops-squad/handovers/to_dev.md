@@ -1,0 +1,118 @@
+---
+title: SAR-PUBLISH-001-FIX — 시각 검수 V-01~V-03 정책 링크 스타일 수정(배포 전)
+status: draft
+updated: 2026-10-22
+owner: dev
+tasks: [SAR-PUBLISH-001-FIX]
+summary: 시각 검수 V-01~V-03 정책 링크 스타일 수정(배포 전)
+attempt: 265b249573cf43ea87eebaa27cfe6e2a
+base: 179bdfe8d1b0b9a70f8e45c979bd19206b656c86
+subagent_level: standard
+test_level: lite
+---
+
+# SAR-PUBLISH-001-FIX — 시각 검수 V-01~V-03 정책 링크 스타일 수정(배포 전)
+
+현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.
+
+- 작성일: 2026-10-22
+- From / To: coor → dev
+- 상태: ready
+- 테스트 레벨 / 하위 에이전트 레벨: lite / standard
+- 승인된 범위 / 추가 승인이 필요한 행위: 제품 CSS·템플릿의 V-01~V-03 수정, 관련 테스트·렌더 확인, 커밋 / 운영 서버·운영 env·live Tunnel·Cloud Console·실계정 사용, 정책 문안 변경, force-push, 새 색·글꼴 추가
+- 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev
+- 병합 책임자 / 기본 브랜치: coor / main(origin)
+- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/coor / (dispatch 후 기록) / run_76a9511dbb0d / (dispatch 후 기록) / (dispatch 후 기록)
+
+`상태`는 과제 상태다. front matter `status`는 문서 상태(draft/review/approved, lint DOC-003 어휘)라 서로 다른 값이 맞다.
+
+## 현재 상황과 확인 근거
+
+main 179bdfe8: SAR-PUBLISH-001-DEV(캘린더 제거·/privacy·/terms) 병합, 독립 리뷰 수락, tester QA 62/62 PASS(`.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-TESTER-test/report.md`), designer 시각 검수 PASS(medium 1, low 3, 문서 D-01: `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md`). 운영 배포 전에 시각 지적을 고친다.
+
+## 적용 기준과 예외
+
+공통 기준은 `.fullops-squad/rules/common/README.md`와 연결 규칙(testing.md `담당과 반복 범위`)이다. 기준 커밋 main `179bdfe8d1b0b9a70f8e45c979bd19206b656c86`. 정책 정본·완료 조건 PC-01–06·RC-01–05: `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md`. 화면 정본 D04: `.fullops-squad/docs/design-docs/mockups/service-member-ui.md`. 결정 D017·D018은 `decision.py list`. 산출물 ID D01~D13: `docs/deliverables/README.md`. 예외 없음.
+
+## 먼저 읽을 문서
+
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md`(PC·RC 표와 KO/EN 문안)
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md`(격리 fixture 절·화면 근거·검증하지 못한 것)
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md`(V-01~V-04, D-01)
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md`(정책 페이지·첫페이지 하단·설정 절)
+
+## 해야 할 일과 파일 소유권
+
+- [ ] V-01(medium): 전역 `a{display:inline-flex;min-height:44px}`가 문장 속 링크의 줄 간격을 약 44px로 벌린다. 본문 안 링크(`p a`, `li a` 등)는 `display:inline;min-height:0`으로 되돌리고, 단독 줄 링크(정책 하단·설정 링크 줄)는 44px 터치 대상을 유지한다. 대상: 첫페이지 `#start` 정책 안내 한 줄, 개인정보처리방침 §6 문단, 그 밖에 같은 규칙에 걸리는 문단 링크.
+- [ ] V-02(low): 정책 하단의 `[aria-current="page"]`에 시각 표시(`font-weight:600` 또는 밑줄 제거)를 준다. 새 색·글꼴은 쓰지 않는다.
+- [ ] V-03(low): 설정 상단 '서비스 안내·개인정보처리방침·서비스 약관' 링크 사이에 가로 간격(약 16px, `gap`)을 둔다.
+- [ ] V-04는 수정하지 않는다(designer 판정: 수정 불필요).
+- [ ] 수정 뒤 `KNOWSLINK_UI_FIXTURE_DIR` 렌더로 KO/EN `#start`·`/privacy`·`/terms`·설정을 1440·390·320px에서 다시 찍어 줄 간격·가로 넘침 0을 확인한다. 기존 공개 화면(첫페이지 다른 링크·버튼)의 44px 터치 대상이 줄지 않았는지 확인한다.
+
+소유 파일: 정책·공개·설정 화면 CSS/템플릿(`internal/relay/` 아래 해당 파일)과 그 테스트, DEV 보고. 예상 규모: CSS 수십 줄.
+
+## 완료 기준과 검증
+
+- V-01~V-03이 고쳐지고 회귀가 없다. 원격 Linux `make lint`·`make test` EXIT=0(dev의 `remote.py` 방식). 3폭 재렌더 캡처는 판정 근거로만 남긴다.
+- 기록 커밋 뒤 `python3 C:/Users/shin/AppData/Roaming/orca/claude-profiles/6dd9013c-003c-4a1b-8dc5-f4ba45568e5e/home/plugins/cache/fullops-squad/fullops-squad/1.8.0/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/dev --from 179bdfe8d1b0b9a70f8e45c979bd19206b656c86` ERROR 0. 워크트리에 예전 영상 작업 미추적 파일이 있어 gate가 막히면 깨끗한 임시 detached worktree에서 lint를 돌리고 그 결과 경로를 보고한다(미추적 파일은 지우지 않는다).
+- DEV 보고 `qa-reports/SAR-PUBLISH-001-FIX-test/report.md`, `work.py finish`, `worker_done`. designer 재확인은 coor가 배정한다.
+
+### UI 작업의 디자인 기준과 검증
+
+- 디자인 정본: `.fullops-squad/docs/design-docs/mockups/service-member-ui.md`, `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md` 화면 기준 절, 지적 근거 `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md`.
+- 피할 것: 크림 배경, 알약 버튼, 모노스페이스 라벨, 장식 그라디언트, 이모지 아이콘, 새 색·글꼴.
+- 단일 테마, 디자인 lint 없음.
+
+## 갱신할 산출물
+
+없음(코드 스타일 수정, D10 문서 변경 불필요하면 없음으로 보고).
+
+## 기대 산출물
+
+CSS/템플릿 수정 커밋, `qa-reports/SAR-PUBLISH-001-FIX-test/report.md`.
+
+## 제약·협업·후속
+
+designer의 D04 문서 수정(SAR-PUBLISH-001-D04)과 병렬이다. 파일이 겹치지 않는다. 완료 뒤 coor가 ops 배포를 배정한다.
+
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-PUBLISH-001-FIX-packet.json` / SHA `179bdfe8d1b0b9a70f8e45c979bd19206b656c86` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md` (document_read) · 줄 20, 75 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/design-docs/module-design.md` (document_update) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md` (document_read) · 줄 44, 68 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md` (document_read) · 줄 70 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md` (document_read) · 줄 72 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md` (document_read) · 줄 114 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md` (document_read) · 줄 14 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md` (document_read) · 줄 101 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md` (document_read) · 줄 77 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md` (document_read) · 줄 67 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md` (document_read) · 줄 184 · inferred
+- `.fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md` (document_read) · 줄 92 · inferred
+- `.fullops-squad/docs/operations/ops-guide.md` (document_update) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/operations/transition.md` (document_read, document_update) · 줄 136 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 전체/미확인 · inferred
+- `internal/relay/connect_guide_test.go` (impact_check) · 줄 28, 30 · inferred
+- `internal/relay/human_pages_test.go` (impact_check) · 줄 67, 173 · inferred
+- `internal/relay/member_ui_test.go` (impact_check) · 줄 182, 186 · inferred
+- `internal/relay/policy_pages_test.go` (impact_check) · 줄 21, 22, 80 · inferred
+나머지 참조 후보 8건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
+미확인 4건: .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/module-design.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
+## 완료 보고
+
+브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
+항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
+lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
+처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.

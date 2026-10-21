@@ -1,0 +1,105 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLISH-001-FIX",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D13",
+    "D12"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.86,
+        "product": 0.14
+      },
+      "confidence": 0.72
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.43,
+      "D02": 0.47,
+      "D03": 0.62,
+      "D04": 0.57,
+      "D05": 0.61,
+      "D06": 0.56,
+      "D07": 0.54,
+      "D08": 0.6,
+      "D09": 0.61,
+      "D10": 0.72,
+      "D11": 0.58,
+      "D12": 0.64,
+      "D13": 0.66
+    }
+  },
+  "usage": {
+    "input_tokens": 2428,
+    "output_tokens": 314,
+    "cost": 0.000101976
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D11"
+  ],
+  "latency_seconds": 1.155,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "coor 배정: designer 시각 검수 지적 후속",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.15,
+      "claude claude-sonnet-5-5 high": 0.58,
+      "claude claude-opus-5-5 medium": 0.22,
+      "claude claude-opus-5-5 high": 0.05,
+      "claude claude-fable-5-1 high": 0
+    },
+    "usage": {
+      "input_tokens": 625,
+      "output_tokens": 58,
+      "cost": 2.625e-05
+    }
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "179bdfe8d1b0b9a70f8e45c979bd19206b656c86",
+  "requires_packet": true,
+  "attempt": "265b249573cf43ea87eebaa27cfe6e2a",
+  "instruction_sha256": "1afeebf2566c24ca3c43c63f852f36b584fe235a5b08cd3868c8e06c736a2598",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "4238ace074e8f48f8b9816458088e003007a8426a3fa5eb78f6332ac35fa8845"
+}
