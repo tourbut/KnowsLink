@@ -39,8 +39,11 @@ func TestCalendarQueryOutsideRelationship(t *testing.T) {
 		connectCalendar(f, p, member)
 		f.send(wire(t, f.private["agent_a"], firstID, "agent_a", "agent_b", "schedule.query", "testgap-old-gen-01", "", queryBody(), time.Now().Add(time.Minute)), "agent_a", "", 200)
 		f.call("POST", "/v1/unpair", f.tokens["agent_a_owner"], map[string]any{"agent": "agent_a", "target": "agent_b"}, 200)
-		f.call("POST", "/v1/invites", f.tokens["agent_a"], map[string]any{"agent": "agent_a", "target": "agent_b"}, 200)
-		f.call("POST", "/v1/invite-decision", f.tokens["agent_b_owner"], map[string]any{"agent": "agent_a", "target": "agent_b", "decision": "accept"}, 200)
+		// A human member cannot re-pair through /v1/invites; the next generation is what a new acceptance leaves behind.
+		f.mutate(func(st *State) {
+			pair := st.Pairs[pairID("agent_a", "agent_b")]
+			pair.State, pair.Generation = "active", pair.Generation+1
+		})
 		f.mutate(func(st *State) {
 			m := st.Messages[firstID]
 			if pair := st.Pairs[pairID("agent_a", "agent_b")]; pair.State != "active" || pair.Generation == m.Generation || m.Receipt.State != "failed:revoked" || len(m.Envelope) != 0 {
