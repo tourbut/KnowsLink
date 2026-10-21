@@ -1,10 +1,10 @@
 ---
-title: "SAR-PUBLISH-001-P03 DEV 검증 보고"
+title: SAR-PUBLISH-001-P03 DEV 검증 보고
 status: draft
 updated: 2026-10-22
 owner: dev
 tasks: [SAR-PUBLISH-001-P03]
-summary: "개인정보처리방침 백업 문장을 14일 보관으로 교체하고 원격 lint·test를 통과시킴"
+summary: 개인정보처리방침 백업 문장을 14일 보관으로 교체하고 원격 lint·test를 통과시킴
 ---
 
 # SAR-PUBLISH-001-P03 DEV 검증 보고
