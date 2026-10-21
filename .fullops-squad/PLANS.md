@@ -2027,4 +2027,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 보존: dev 워크트리의 미커밋 WIP(videos/service-intro/ 등, 방향 전환으로 중단된 HyperFrames 산출물)는 사용자 판단 전까지 삭제하지 않는다.
 
 ## 완료 보고 후속 요청
-- [ ] SAR-SCHEDULE-001-LOWS-DEV → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-21)
+- [ ] SAR-SCHEDULE-001-LOWS-DEV → tester: 완료 SHA e0f55d1(제품 08819e3)에서 독립 QA. coor는 delta 리뷰 필요 여부를 판정한다. designer SAR-SCHEDULE-001-VISUAL이 해제 시 disclosure(리뷰 L2)를 정한다 (완료 보고 자동 등재 2026-10-21, 문구 dev 보정)
