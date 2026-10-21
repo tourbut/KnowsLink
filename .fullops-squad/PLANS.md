@@ -2025,3 +2025,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - CI 로고 2026-10-18: 사용자 지시로 이미지 생성은 agy, 프롬프트는 Opus. 1차 Grok·agy 시안과 체크 제거 5안 중 B3를 선택했고 SVG로 다시 그렸다. docs/brand/(lockup·symbol·README), main 401d7da push, designer·ops·tester 동기화. 파비콘 단순형·반전판·한글판은 없다. docs/brand 위치는 정본으로 확정되지 않았다.
 - 보드 정리 2026-10-18: 해소된 blocked 두 건(27 active로, 28 done으로)과 소개 모션 문구를 고치고 FullOps 1.7.0·CI 단계를 추가했다. 위 "사용자 작업 중지 — 2026-10-15" 절은 2026-10-17 재개로 더는 유효하지 않다.
 - 보존: dev 워크트리의 미커밋 WIP(videos/service-intro/ 등, 방향 전환으로 중단된 HyperFrames 산출물)는 사용자 판단 전까지 삭제하지 않는다.
+
+## 완료 보고 후속 요청
+- [ ] SAR-SCHEDULE-001-VISUAL → dev: V1(미연결 조회 상세 승인 불가 한 줄)·V2(EN 320 summary 기호 줄바꿈)·V3(reconnect 해제 details)·D2(해제 안내 문구와 미전달 disclosure 삭제, 리뷰 L2)를 수정한다. 정본 `docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md`, 결정 커밋 115b7a9c (완료 보고 자동 등재 2026-10-21, designer 정정)
+- [ ] SAR-SCHEDULE-001-VISUAL → tester: SC-09 독립 QA는 그대로 남는다. dev 수정 SHA 뒤 designer가 영향 화면을 다시 본다 (완료 보고 2026-10-21)
