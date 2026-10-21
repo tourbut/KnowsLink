@@ -7,6 +7,8 @@ import (
 	"crypto/ed25519"
 	"crypto/rand"
 	"encoding/json"
+	"io"
+	"net/http"
 	"strings"
 	"testing"
 	"time"
@@ -56,11 +58,11 @@ func TestRoundBusyWidensClipsAndMerges(t *testing.T) {
 func TestSealedTokenRoundTripAndTamper(t *testing.T) {
 	key := make([]byte, calendarKeyLength)
 	_, _ = rand.Read(key)
-	sealed, err := sealToken(key, []byte("1//refresh-secret"))
+	sealed, err := sealToken(key, []byte("1//refresh-secret"), "mem_a")
 	if err != nil || bytes.Contains(sealed, []byte("refresh-secret")) {
 		t.Fatal("plaintext must not appear in the sealed token", err)
 	}
-	plain, err := openToken(key, sealed)
+	plain, err := openToken(key, sealed, "mem_a")
 	if err != nil || string(plain) != "1//refresh-secret" {
 		t.Fatal("round trip failed", err)
 	}
@@ -71,9 +73,13 @@ func TestSealedTokenRoundTripAndTamper(t *testing.T) {
 	for name, c := range map[string]struct {
 		key, sealed []byte
 	}{"wrong_key": {other, sealed}, "tampered": {key, tampered}, "short": {key, sealed[:5]}, "bad_key": {key[:7], sealed}} {
-		if _, err := openToken(c.key, c.sealed); err == nil {
+		if _, err := openToken(c.key, c.sealed, "mem_a"); err == nil {
 			t.Fatal(name, "opened")
 		}
+	}
+	// A sealed value copied into another member's row must not open there (member ID is the GCM additional data).
+	if _, err := openToken(key, sealed, "mem_b"); err == nil {
+		t.Fatal("sealed token opened for another member")
 	}
 	if _, err := ConfigureGoogle(context.Background(), "client", "secret", "https://example.com/auth/google/callback", "not-base64*"); err == nil || !strings.Contains(err.Error(), "KNOWSLINK_CALENDAR_KEY") || strings.Contains(err.Error(), "secret") {
 		t.Fatal("invalid key must fail closed without echoing values", err)
@@ -201,5 +207,31 @@ func TestLookupVisibilityAndSweep(t *testing.T) {
 	}
 	if !strings.HasPrefix(policy("schedule.query"), "schedule.query:") || !strings.HasPrefix(policy("schedule.commit"), "schedule.commit:") {
 		t.Fatal("policy labels keep their intent prefix for gate rows")
+	}
+}
+
+type closeBody struct {
+	io.Reader
+	closed bool
+}
+
+func (b *closeBody) Close() error { b.closed = true; return nil }
+
+type roundTrip func(*http.Request) (*http.Response, error)
+
+func (f roundTrip) RoundTrip(r *http.Request) (*http.Response, error) { return f(r) }
+
+// The revoke response body is closed whatever the provider answers.
+func TestRevokeClosesBodyOnEveryStatus(t *testing.T) {
+	for _, status := range []int{200, 400, 503} {
+		body := &closeBody{Reader: strings.NewReader(`{"error":"invalid_token"}`)}
+		client := &http.Client{Transport: roundTrip(func(r *http.Request) (*http.Response, error) {
+			return &http.Response{StatusCode: status, Body: body, Header: http.Header{}, Request: r}, nil
+		})}
+		s := &Service{Google: &GoogleLogin{client: client, revokeURL: "https://revoke.example.test/revoke"}}
+		s.revokeToken(context.Background(), "refresh")
+		if !body.closed {
+			t.Fatalf("status %d: revoke response body left open", status)
+		}
 	}
 }

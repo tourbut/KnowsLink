@@ -48,7 +48,7 @@ func TestCalendarBrowserFixture(t *testing.T) {
 				}
 			}
 		}
-		st.Calendars = map[string]*Calendar{members["b"]: {Sealed: p.sealedFor("sub-b"), State: "connected", Changed: now}}
+		st.Calendars = map[string]*Calendar{members["b"]: {Sealed: p.sealedFor("sub-b", members["b"]), State: "connected", Changed: now}}
 	})
 	start, _ := queryWindow()
 	window := func(hours int, minutes int64) map[string]any {

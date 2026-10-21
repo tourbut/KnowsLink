@@ -84,12 +84,12 @@ func (p *syntheticProvider) grant(location, subject, scope string) string {
 }
 
 // sealedFor is a stored connection for a member as the relay would have saved it after consent.
-func (p *syntheticProvider) sealedFor(subject string) []byte {
+func (p *syntheticProvider) sealedFor(subject, member string) []byte {
 	token := "fixture-refresh-" + randomToken()[:16]
 	p.mu.Lock()
 	p.refresh[token] = subject
 	p.mu.Unlock()
-	sealed, err := sealToken(p.key, []byte(token))
+	sealed, err := sealToken(p.key, []byte(token), member)
 	if err != nil {
 		p.t.Fatal(err)
 	}

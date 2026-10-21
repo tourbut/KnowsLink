@@ -70,7 +70,7 @@ docker compose -p knowslink-dev-new --env-file .env stop
 | 모드 | 설정·동작 |
 |---|---|
 | Google | `KNOWSLINK_GOOGLE_CLIENT_ID`, `KNOWSLINK_GOOGLE_CLIENT_SECRET`, `KNOWSLINK_GOOGLE_REDIRECT_URL`을 함께 설정 |
-| 캘린더 연결 | Google 설정에 `KNOWSLINK_CALENDAR_KEY`(base64 32바이트)를 더하면 회원 설정에 ‘캘린더 연결’이 열린다. 없으면 연결 절이 준비 중으로 보인다. 격리 검사는 합성 제공자를 쓰며 실계정 연결은 D011 뒤 운영 과제다 |
+| 캘린더 연결 | Google 설정에 `KNOWSLINK_CALENDAR_KEY`(base64 32바이트)를 더하면 회원 설정에 ‘캘린더 연결’이 열린다. 없으면 연결 절이 준비 중으로 보인다. 봉인은 회원 ID에 묶여 다른 회원 행에서 열리지 않는다. 격리 검사는 합성 제공자를 쓰며 실계정 연결은 D011 뒤 운영 과제다 |
 | 이메일 코드 | `KNOWSLINK_SMTP_URL`, `KNOWSLINK_MAIL_FROM`을 설정. SMTP가 없으면 코드 발송 불가 |
 | 합성 로그인 | 격리 fixture에서만 `KNOWSLINK_SYNTHETIC_SIGNUP=1`. 실메일·실계정 성공 근거가 아님 |
 | 둘 다 미설정 | relay health 성공과 사용자의 로그인 성공은 별개 |

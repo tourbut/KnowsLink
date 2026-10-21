@@ -41,7 +41,7 @@ var scheduleScope = struct {
 
 // Calendar is a member's connected Google calendar: only the sealed refresh token and a state, never busy data.
 type Calendar struct {
-	Sealed  []byte // AES-256-GCM nonce||ciphertext of the refresh token; the key lives only in process memory
+	Sealed  []byte // AES-256-GCM nonce||ciphertext of the refresh token bound to the member ID; the key lives only in process memory
 	State   string // "connected" or "reconnect" (provider refused the token; the member must consent again)
 	Changed time.Time
 }
@@ -90,7 +90,8 @@ func (st *State) calendarState(owner string) string {
 	return "none"
 }
 
-func sealToken(key, plain []byte) ([]byte, error) {
+// sealToken binds the member ID as GCM additional data, so a sealed value moved to another member's row never opens.
+func sealToken(key, plain []byte, member string) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
@@ -103,10 +104,10 @@ func sealToken(key, plain []byte) ([]byte, error) {
 	if _, err := rand.Read(nonce); err != nil {
 		return nil, err
 	}
-	return gcm.Seal(nonce, nonce, plain, nil), nil
+	return gcm.Seal(nonce, nonce, plain, []byte(member)), nil
 }
 
-func openToken(key, sealed []byte) ([]byte, error) {
+func openToken(key, sealed []byte, member string) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
@@ -115,7 +116,7 @@ func openToken(key, sealed []byte) ([]byte, error) {
 	if err != nil || len(sealed) < gcm.NonceSize() {
 		return nil, errors.New("sealed token too short")
 	}
-	return gcm.Open(nil, sealed[:gcm.NonceSize()], sealed[gcm.NonceSize():], nil)
+	return gcm.Open(nil, sealed[:gcm.NonceSize()], sealed[gcm.NonceSize():], []byte(member))
 }
 
 // scheduleAllowed enforces the D010 scope on an accepted schedule.query before any lookup can happen (SC-04).
@@ -281,7 +282,7 @@ func (s *Service) runLookup(ctx context.Context, job *lookupJob) {
 	err := errors.New("calendar not configured")
 	if s.Google != nil && s.Google.calendarKey != nil {
 		var refresh []byte
-		if refresh, err = openToken(s.Google.calendarKey, job.sealed); err == nil {
+		if refresh, err = openToken(s.Google.calendarKey, job.sealed, job.member); err == nil {
 			for attempt := 0; ; attempt++ {
 				busy, err = s.Google.freeBusy(ctx, string(refresh), job.start, job.end)
 				if err == nil || errors.Is(err, errReconnect) || attempt >= 2 || ctx.Err() != nil {
@@ -371,27 +372,33 @@ func (st *State) disconnectCalendar(member string, now time.Time) []byte {
 }
 
 // revoke asks the provider to end the grant; failure is logged without detail and never blocks the local removal.
-func (s *Service) revoke(ctx context.Context, sealed []byte) {
+func (s *Service) revoke(ctx context.Context, member string, sealed []byte) {
 	if s.Google == nil || s.Google.calendarKey == nil || sealed == nil {
 		return
 	}
-	refresh, err := openToken(s.Google.calendarKey, sealed)
+	refresh, err := openToken(s.Google.calendarKey, sealed, member)
 	if err != nil {
 		return
 	}
+	s.revokeToken(ctx, string(refresh))
+}
+
+// revokeToken posts one refresh token to the provider's revoke endpoint.
+func (s *Service) revokeToken(ctx context.Context, refresh string) {
 	ctx, cancel := context.WithTimeout(context.WithoutCancel(ctx), 5*time.Second)
 	defer cancel()
-	req, err := http.NewRequestWithContext(ctx, "POST", s.Google.revokeURL, strings.NewReader(url.Values{"token": {string(refresh)}}.Encode()))
+	req, err := http.NewRequestWithContext(ctx, "POST", s.Google.revokeURL, strings.NewReader(url.Values{"token": {refresh}}.Encode()))
 	if err != nil {
 		return
 	}
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	resp, err := s.Google.client.Do(req)
+	if err == nil {
+		resp.Body.Close()
+	}
 	if err != nil || resp.StatusCode != 200 {
 		log.Print("calendar revoke not confirmed by provider")
-		return
 	}
-	resp.Body.Close()
 }
 
 func (s *Service) calendarRoutes(mux *http.ServeMux) {
@@ -400,6 +407,7 @@ func (s *Service) calendarRoutes(mux *http.ServeMux) {
 }
 
 func (s *Service) calendarDisconnect(w http.ResponseWriter, r *http.Request) {
+	var member string
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		id, _, retry, err := s.memberHit(w, st, r, now, cleanupRate)
 		if !retry.IsZero() {
@@ -408,6 +416,7 @@ func (s *Service) calendarDisconnect(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			return nil, err
 		}
+		member = id
 		return st.disconnectCalendar(id, now), nil
 	})
 	if err != nil {
@@ -422,6 +431,6 @@ func (s *Service) calendarDisconnect(w http.ResponseWriter, r *http.Request) {
 		refusedTo(w, "설정", v, "/home/account#calendar")
 		return
 	}
-	s.revoke(r.Context(), value.([]byte))
+	s.revoke(r.Context(), member, value.([]byte))
 	http.Redirect(w, r, "/home/account?n=calendar-off#calendar", http.StatusSeeOther)
 }
