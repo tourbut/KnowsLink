@@ -1,0 +1,86 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLISH-001",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D10",
+    "D13",
+    "D02"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.03,
+        "product": 0.97
+      },
+      "confidence": 0.94
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.76,
+        "ops": 0.24,
+        "tester": 0
+      },
+      "confidence": 0.64
+    },
+    "docs": {
+      "D01": 0.53,
+      "D02": 0.56,
+      "D03": 0.51,
+      "D04": 0.39,
+      "D05": 0.45,
+      "D06": 0.44,
+      "D07": 0.27,
+      "D08": 0.29,
+      "D09": 0.46,
+      "D10": 0.66,
+      "D11": 0.52,
+      "D12": 0.52,
+      "D13": 0.57
+    }
+  },
+  "usage": {
+    "input_tokens": 2594,
+    "output_tokens": 314,
+    "cost": 0.000108948
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D01",
+    "D03",
+    "D11",
+    "D12"
+  ],
+  "latency_seconds": 0.96,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 high": 0.25,
+      "claude claude-opus-5-5 high": 0.75
+    },
+    "usage": {
+      "input_tokens": 640,
+      "output_tokens": 34,
+      "cost": 2.688e-05
+    }
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "dcf882528eb41183071d22a1c086b4c0579db2dc",
+  "requires_packet": true
+}
