@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "attempt": "eccfa12f703b4f039d0690a29d776c07",
+  "base": "05d0800e825768f78ca6750209d74c74aa1174c9",
+  "merge_base": "05d0800e825768f78ca6750209d74c74aa1174c9",
+  "head": "722feed9a89b5e0f415ed90f8ede64174f7b6437",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "954ba751f6f2db6789f61a7030da4a6d4a4b1312681b64fe476b507ceba98e50",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make가 없어 lint.py가 실행하지 못했다(coor가 722feed9 깨끗한 임시 detached worktree에서 실행, 원 결과는 reason만 보충). 제품 최종 SHA e20c199(722feed9까지 이후 커밋은 .fullops-squad 기록만)를 원격 Linux 격리 clone에서 make lint 실행해 EXIT=0임을 DEV가 보고했다: qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-lint.log. 이 값은 722feed9 직접 실행이 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make가 없어 lint.py가 실행하지 못했다(coor가 722feed9 깨끗한 임시 detached worktree에서 실행, 원 결과는 reason만 보충). 제품 최종 SHA e20c199(722feed9까지 이후 커밋은 .fullops-squad 기록만)를 원격 Linux 격리 clone에서 make test 실행해 EXIT=0임을 DEV가 보고했다: qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-test.log. 이 값은 722feed9 직접 실행이 아니다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "2057줄(이전 2055, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "509줄(이전 496, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/operations/ops-guide.md"
+    },
+    {
+      "code": "ANTI-005",
+      "severity": "WARNING",
+      "line": null,
+      "path": "internal/relay/calendar_browser_fixture_test.go",
+      "message": "테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다"
+    },
+    {
+      "code": "ANTI-005",
+      "severity": "WARNING",
+      "line": null,
+      "path": "internal/relay/calendar_integration_test.go",
+      "message": "테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다"
+    },
+    {
+      "code": "ANTI-005",
+      "severity": "WARNING",
+      "line": null,
+      "path": "internal/relay/calendar_provider_test.go",
+      "message": "테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다"
+    },
+    {
+      "code": "ANTI-005",
+      "severity": "WARNING",
+      "line": null,
+      "path": "internal/relay/calendar_test.go",
+      "message": "테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다"
+    },
+    {
+      "code": "ANTI-005",
+      "severity": "WARNING",
+      "line": null,
+      "path": "internal/relay/calendar_testgap_integration_test.go",
+      "message": "테스트 파일 삭제. 대체 테스트나 삭제 이유를 확인한다"
+    },
+    {
+      "code": "ANTI-005",
+      "severity": "WARNING",
+      "line": null,
+      "message": "테스트 케이스 1개 감소. 대체 테스트나 삭제 이유를 확인한다",
+      "path": "internal/relay/human_pages_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "413줄(이전 411, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/i18n_en_member.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "416줄(이전 415, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/member.go"
+    },
+    {
+      "code": "DOC-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다",
+      "path": "internal/relay/policy/privacy.en.html"
+    },
+    {
+      "code": "DOC-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다",
+      "path": "internal/relay/policy/privacy.ko.html"
+    },
+    {
+      "code": "DOC-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다",
+      "path": "internal/relay/policy/terms.en.html"
+    },
+    {
+      "code": "DOC-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없다",
+      "path": "internal/relay/policy/terms.ko.html"
+    },
+    {
+      "code": "SLOP-004",
+      "severity": "WARNING",
+      "line": 24,
+      "message": "디버그 출력 잔재 의심. 필요한 사용자 출력인지 확인하고 디버그 잔재는 제거한다",
+      "path": "scripts/check_public_ingress.py"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 1062줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 54,
+    "added_lines": 1062,
+    "errors": 0,
+    "warnings": 16,
+    "unavailable": 2
+  }
+}
