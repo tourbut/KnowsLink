@@ -1,0 +1,930 @@
+{
+  "task_key": "SAR-SCHEDULE-001-TESTGAP-DEV",
+  "role": "dev",
+  "head": "884c6bca8eacc703f2667f39497fbaa245a3f557",
+  "attempt": "d2a75f15727b49cdb5737cfa73550ad3",
+  "instruction_sha256": "61b30092d694ac826b545bef0a53902b15a91569efc182a6973353b2f672c608",
+  "options": {
+    "policy": "packet-v3",
+    "seeds": [
+      ".fullops-squad/PLANS.md",
+      "internal/relay/calendar_integration_test.go"
+    ],
+    "required": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "updates": [],
+    "sources": {
+      ".dockerignore": "981dfc52b656e4e5d6d3d08668bf12d18af6e1c67bc90fb07e15bbade5841e16",
+      ".fullops-squad/FULLOPS.md": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
+      ".fullops-squad/contexts/coor.md": "0e44cf37f0b307d3c8f04b26c2b2055a2cc3062eb921eab2f5a66190f3871aa2",
+      ".fullops-squad/contexts/designer.md": "24993024dfcdcf653ae8a610f054a8460caac0d6f1431a80741160b3d647addf",
+      ".fullops-squad/contexts/dev.md": "657da89eed8ece05e8b246b395c7691615d63e071edcb2f5eeff6b05085090da",
+      ".fullops-squad/contexts/ops.md": "2869b0f2f20587cb067d2f729362332df7f4b7ab7b62476a84112a0001aa3344",
+      ".fullops-squad/contexts/tester.md": "7db1ca898c9a3b87f61d094535d3bfa05952e48122efc4deb6014521ccbb4108",
+      ".fullops-squad/docs/agents/document-writing.md": "c6933cf2fc4e79c1f5691c60bff4d434327301827b82aef08dca0d4e881ba9e0",
+      ".fullops-squad/docs/agents/domain.md": "6a02fc13e1ffa9e0e719216a91d897aadb9120fe5f1061da3eca4efc6443cc64",
+      ".fullops-squad/docs/agents/issue-tracker.md": "d613d0e67332beca5265b5c967eea732e89cd5472f2295f4b2f9f8c1f2eb1d85",
+      ".fullops-squad/docs/agents/triage-labels.md": "dba7a161d428e08df77da98df71cb1fc26cc3406bb627beb540a855427605858",
+      ".fullops-squad/docs/deliverables/README.md": "7f9489197d26cd9843372fc9f6adf2843f80520b9bf7f2b13f581652a6d96124",
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md": "9896a2ef6cd6d527359a42967b51e82346188ae58a61963f8f1b9a9fa6997825",
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md": "a4943750f52a88b3bd7973960577178564f20fe074b254c952ebbeff1264812b",
+      ".fullops-squad/docs/design-docs/architecture.md": "3efc922c27473781a13b1e08a06d001dad97e6346fb6028b0b2ba2a5a3992950",
+      ".fullops-squad/docs/design-docs/crud-design.md": "3b22a4b643fd6209fc69805a5d40e60cb8b967a89a0b1ad2ad296fdb58bff853",
+      ".fullops-squad/docs/design-docs/data-model.md": "72aa86b3a3932a11d45012d3073ecf36322d3ea0b39530bfa6bfc102a283cee3",
+      ".fullops-squad/docs/design-docs/database-design.md": "b3a220fcb56c3d8c5bac9e0ab3cbbc6260fa00956d70193c25dfe1aac3783bf4",
+      ".fullops-squad/docs/design-docs/interface-design.md": "7645268a70946edb925a34ca7d0089e8ec63819964c3a5bfe729e5170f2b29aa",
+      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md": "10dece240342ce8b35824d03b99a339d695f24bd95d8776fa1ecb83cc228ba33",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md": "a73fbf953230e30abddf5fafe2ec98113a38c2fc42cb80abcd51fb3487c952b9",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md": "40e884141a521151fa29b2983b21909a8a9e4504be4b864db061b5386034abc4",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md": "c34f993ed74894ac526e597fca79ee718ebc9600d1a7fc1ab27785d2cbb27580",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md": "df49f42a49250ebac2e9e6dd6ee5dc9c2009c3a677ff5e232c488d9051f5350f",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
+      ".fullops-squad/docs/design-docs/module-design.md": "5aaaf0b4aa4effd3095784c0ebaaf2c8ca63e004d3d2f1c4db494786de6e64b6",
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md": "b7557710e48de9caff96b368be97ada128e5da802cca80e4e6305a253a8179b8",
+      ".fullops-squad/docs/design-docs/tech-stack.md": "93767e9761e95950c18e913a8d9464a9b9ad9a990c1cd2f3410172b1cd9a9141",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md": "e6ed1e76412f39ce0bea40d5a3c79d72820fb5d0d2759292834b125680221380",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md": "7c2832e059bbe8467f566f0a9c22bdd5775740efad82238c5b5fcd8d013a80eb",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md": "5d3afe68dfeb3d62a21906d97c15d21cd1c69e9cf92362b57394618ef377e90c",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md": "e533ce7e8f5ad7da877c7e366de6fcfcb046e277d193c7663a905e763dc1a26d",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md": "15b54c5f847c17c14952268656a23a4c2bfb5997f2a9fc15502fe67f2bf4e491",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md": "d3651c164d408e2ad7cf8d5fcf96900e9d52e2ae1469b8630dc09dd15e035464",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md": "903d1503266b936402775ef70d3a0211344e23b11005f0ebc539cf0d3e1849c5",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md": "84a1100590d606f7c6a26a7320c8c1ef3905b07a09ab6997557ac8c23a3c4a17",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md": "e1f8a996eda18181bd1bb39f4e4790ca63ec23c077bbb88aff1cfadb93aadfa3",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md": "5b982d2714ef77a6d7e63a1fe1ce19be90462f34f84c6470392bc6390b52ee2d",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md": "ae251ce17bc9cc77d632cb10ab1fb52437097acd1b1b92dac53f7201e2b39443",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md": "9890dbe76f41d9554b532237a3b8d62e599b1062ce34b9b505b4e6063b0c2085",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.5.0.md": "5a2616aefe476dba6d74dfba751d46e981412cdfc40dff33bd9d639d05ad8d83",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.6.0.md": "bf8c14a140b9d9319df25dc83c688b3b00f6b38b476a53ea71d535bd272bbb98",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.7.0.md": "1fe10ed217eaac6b0685eade3fed8b985d75845367013612cf913932e48c3c9c",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.0.md": "fad1b87cbc1b68b873bcdacae8d256d36befd33729c5ae68d37ef62263fd76b0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md": "8ac5a2b69e3a2ed3648572f34598c0a41a48c9c0575ad1dda5ac4c6d0e40401c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md": "959dd264ff5fd28ea5815634c149bb0f1b22826edf0d9b376f3822018073b790",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md": "c0c576b8cd3ab6f45fd71490a464ce71d2388499492596b0491b5c364642c907",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md": "dd9ecd802f4d962cfc233f3354f82e915655aa03f494c9912598ebc12d69a711",
+      ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md": "221ba3cc7e0b44e37aa4dcadddddb248a76a4e929409e533a1c035760ca76c96",
+      ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md": "548ee0dd10160748cfe29916767c1a9c1a506693f0f9dedd6afa25abf3034964",
+      ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md": "cdf5b35799d5c6bf664ce9998d1ede51fd6ac600f6c37cf92948d210259ae321",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md": "6ce2e2018cb8b9c72d4aa4649859cd7886d6fcb68c982998c4ba5367a286dc07",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md": "7c9447441795a60d080670f04d55ece55b264d3c5ff90d1aec46848e348c21dc",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md": "45ce620877489db4c9822a044b681e108ea80cfd42ae5448c29ba70a93c2a1ee",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md": "38122c2a33edf5af477a09294a965a86fdd425611ab96dd0b5f40bb96e24f878",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md": "0433fc272810f430e07f39372cc83e747c2f6d97aeeed8853d89efd72e7e7483",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md": "845218fbe35cace6e40e9793c10791cada55efe8bd33d031807028c7debf7226",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md": "564029ab5aaa0c5def9e7374253633976d89c1a756bb5b916bb8aaa894ffc0ab",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md": "4cd6a2ea6e24325b256e4803f4e579efa01aeab8cf928f1dca5a58444a751d67",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md": "a221ae3f9fb6d60f84282844be2dd59db8ad4d13c1afa9e6dbb79891197d2f0d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md": "0623323c09f2c89005665157214f87d6b7511629f6e51eb9623b02b93ed99f27",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-TESTER.md": "542a27a68af7c4e72e2edc2eaa6c6adeb9d980968b3f60bcbff28bb466b68c38",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md": "7e9ebe28f7d8dc615c58feba8b923585dcbff37460c2c0e760b826855ac7e353",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md": "915b085effbe035a070e096691dae91bd93d5b4eed7a120075c2103b031a62f0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md": "97ec62bc0a77e859bffa0103040dbba33103f559a3fccca7e09242f059268a08",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md": "caa4aac0b0900d38b53d474b900859e9e63d7e410112de7a66ed3424a4a1b80d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md": "49a16c4878ca51d683a261694eae73e5602d251affdeea183e971df6dddc487a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md": "abebefe1c8e5c5379e6472a159fa2448967ee78e67a97fc124b8a2c7a06cc657",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md": "17f38f961f9ed608e7338eb42760d488726cd5819ecb0f03509b0160a6e0c13a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md": "3c716c56ee0d4d7ab3f855531ce2cd826846729ae46c0a0475c46237c50ded19",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md": "3e05fc15eccff6a4b5b5257f2963cf2aa2321d3f4caf99deded135fbb9426e44",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md": "0b1ce81433e1dbae367249840ff17207b9fff9164299354cae613a2a36b9a6ae",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md": "eac55f177fc78cd301d368cb7a765a326ecc3e70905535b37f871c73659b3301",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md": "821220ecb64b28bd16aa8045aaa5069a661e32992768e1ec0eef122878d604e2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md": "c133782ba0bbe0f073839f3188419564c23fd1364e85f533b973143140dec66e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md": "3cf91bb4de57068ea759ccaf355a4cdcf03315c1222e9a7c8c0e46110fa48eca",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md": "e5dfcf996bcf87ba0df991de67e534630abca437cf867ceb96186f73a3580040",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md": "bf6885773d7c3c13214eb02aea8916e8cc3dfc1abda8610c83dfcc39d96633b7",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md": "ebe5eb2d7029d61beaa2941f8ba691f407b938004302ee5f9c04b0e7f4df2bef",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md": "e8225c7aa480033c96aa83d9e32b481deeabde127478e5e59d83f445dd75aa91",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md": "68c34cb86d9c758ace357d74099c0e7dc8bdb533adf790a69e6cb705d965cd9a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md": "2306d1427857dfa7ee18bd973ea9d0f72f88a7d7e24863d8b1f580bd4319dfa4",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md": "5def42d4f22ccd943efa4b1ddef1c2d54f3e8781148b7e7a7971f85beacbe69d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md": "6f9864882dc7ca03be11fa2342ad634c616e14b5e1bde2d708e629d3194e005c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md": "1eee985743cab4d1231ee724ffaac0bb2a8aa0e41fcf86a51f76d70d709297bd",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md": "60b1ca68d6a842d7a15f4f421aa4d408dd07f117866dde8c57751d1b2363c760",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md": "5a7e3881893bfef3dfabdcb94a07d2d7e0de85fdc15948342d8334203d249a1c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md": "4317a70f01eb15a22fd1fbb3c0ace78932714bb42d5332e965bb33cf3eef00b0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md": "df7e52bfbc7a8d2c0c800d2637962afd6ae73378afe79632ac44efc1bf9a18eb",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md": "6aa10e57bbf0e089ee1b9189bec1c466d1aa6446e03f38d5c6c0c3631db3297f",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md": "3ca622fe6b6d8d67e1e9c2e4c0b40186ba9a91e2d93f8bbd0896260710323615",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md": "2416763f961651bb89eb80f4bb3384c750e2da0105f5f743904b17812a32de20",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md": "19529ef3cad5538181b1416abf71f7389ac8bff0e54e45a7af07c117bfa10c42",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md": "2585d95b9a162c8f1d2d53c91c14c7477c8166c81c8a8a869ad6d554f38ec456",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md": "282d8b4d2e87020cdb3edd67512e1e60df0919b6f81b545b173d03b45256a3b2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md": "976ddaccde742d84cf02c6c94c97234c568966022d69030f7f34018c6aad4935",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md": "fb06f51a5969e2fa178c761363cd8c7a2573c668a6e2499d6c76bf27c8db43da",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md": "f3b52cc7db3cf5a07f5e134334d92cbe384c47543633779587dab2449936e75d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md": "c450f61805ab76d20370e00c703ea92cc845c9e1d1409cfc9b08487f8b0d3cde",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md": "5ff83b94e223a005e6baf3727bd74b098b3e008d08495779bb514a65032f8a3e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md": "83d1f5c82680ca086647060d8a671255e2ccbc3f9b57028da71b492e6612bdb3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md": "bee9517e22c473e13adc18e3831a71aebd91106b1267542666c734f1d74fbb01",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md": "1ad904ed82b22febc610ae468c7d2a19967af203ad0432feb540ec5c7822d961",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-OPS.md": "3a3ecc27dcbfee248679458a0470d8452230e358855266ea65afd5a1d5d80779",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md": "840247c22108c38577c50e8c13e15497f5fc9d29cfc9818f47c2332f824cfd98",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md": "19da99c2b5b8c6a94015add559388acefb2b6cf9283a06b8ad23936c23fdd980",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md": "a98aa2fa4a20efd4cb257d0348cd2ac43591da50449d26408e5bc6dd49bd20de",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md": "ad12618f580e4c3d31c573f3e212e4c1ff0153af5274d3d0ea130292652f3e98",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md": "c421658df3c5a742c62d723ae48e5e73e8a8ee7b4b39dc76ac03462f35921496",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md": "3df4cba9ebbe78273483cde64a9098b145e98d83dd26cd17fc62a659a7171aee",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md": "8b59d50c5abcaeffb4c5d75be7e933336c90e87a18728103f4b3a9d26731c9dc",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md": "f640a7fbbd38ae58274b98b898cd573cc5385bfb10bb04b8ca3e2c624f7224e5",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md": "fec52c74a05128a2df8e9a3c98d004402975ab1b9ec7204aa9adad765c424084",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md": "b57dad2560ecbbb137e998d988c53d5f19926a7943c00b0ac7b3cd2006a72ea8",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md": "41e798a47e06093dd05bb71e9d0e1d452c64f8e23444c28612be6dac706987e8",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md": "c62ca4dab96a5dcc25dcc0bc5d7f463247810f784c2b3370d46700e4703598e3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md": "08fc0866aaf6a437966ec6865ddc14c4691994f686e00e83be9a3987aad25857",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md": "3e022c5bdc6e6d8d62302d4551c256c6c67fb69b175581b4b5cf1d81bc08d8d0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md": "d02fb52a2773481fc7911dfff34f7defb414ac276478ce7dc2bf10861bccc2cf",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md": "33825d9e5e6fcf802cb7987cb167d690351a8da428f5b7a94c214f56994dbf48",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md": "f188a72ae7485031e114cdae794c6d495efdb46badbd083dd2bf4ea087c396b1",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md": "4cf30abb159dc7f9feba9e18bf0b3981bd0ae88fc24680c8f2088a3cb6850b24",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md": "410c4cf7b50c262d51ec6e650ef396683646a174afda0e0ab7e59260ff1857e0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md": "27385fa288124f4bb570e95a68e7e77423341ab61ffb001fb30945b23c10e678",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md": "bff52bb1aa8d408a8183eda6aac8a8487a710577f7dfb98158a9c1b8156610e2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md": "bf29cdfe4fbf22d196154f81ac4303a357671244f1d7d47e0178b88e3d106001",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md": "e12f7859078c667e6914ca992c12f09cc7866003ec6bb24de9578129d1592c2a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md": "ce6dfb99b0bdd0f12702e1893db6e90ded9b8a9308c8c88fadde655a403c1ad4",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md": "cbcbdc87758844ea0b7d4e356e862e90f177e2861243cc2851de8682374b92fa",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md": "2d64d35bf7acb5814687396711c16fa49869b8404d658662d430f38a8bd2a3a2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md": "ea9f6892d6598b718a5af4e9a7ed01884416253bcffd07061b91d1c8c516600d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md": "771e1bd3f26dbbc4163aa2f17a106da31d1afcbecf4f2aec2a5cd0bd61e3e4cf",
+      ".fullops-squad/docs/generated/db-schema.md": "50cfbb5605a108c9916e50d518182e2d682a727fcf002c0cba083fcffaa9d088",
+      ".fullops-squad/docs/operations/transition.md": "9f906297926d36c0c7eab14bc2bec2f92cc1743da90e5f4e1f7f8ee1a6335c04",
+      ".fullops-squad/docs/operations/user-guide.md": "d5a272e4015f2c2659540c9f0c65e5b53039b6f5e48071247634a36f81157aed",
+      ".fullops-squad/docs/planning/SAR-MVP-backlog.md": "9266c6a3493bf2f329b8a578ecd75932a9f1237d9919a876152d7fd03a52b3bc",
+      ".fullops-squad/docs/planning/SAR-PREP-002-request.md": "aac8e951f534dd7898a8a8d8d397b62c70acbab730f69d00d67428059d25045c",
+      ".fullops-squad/docs/planning/SAR-SETUP-001-question.md": "982e3d96376167d548fa86d9eff83ad3cf9fa789d77305535ae34fda0d3b695c",
+      ".fullops-squad/docs/planning/SAR-SETUP-001-request.md": "71ed2c382551dcd2bd1ce2fbaf78c20b984650f2db3439d7d87eee8f3e62a4ba",
+      ".fullops-squad/docs/planning/business-plan.md": "87782f650b333970663df77a4a36e551d58622e35c302a06faadcce1e6b1430e",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md": "0f6d75a32951acf44e129b5b700375c087eda3583265e62a187c1b40298d7d9f",
+      ".fullops-squad/docs/planning/product-specs/SAR-MVP.md": "1d63b5517f2883cc15375ccc5cdac6689a5a171e46b962fe56ac6c437bfebf8e",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md": "5e133fb99cde136feb0cc669c5970e6241b1a547c632b249c3c809977ae3605c",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md": "71a14957615f5973b08f0e468d6b542a24754159bca8a78a7f82e592fbbc6675",
+      ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md": "d3c17571ade569fb0a4e421cedbd3426cd690809293f8abc9f73627605fcae1d",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md": "274f169b48dd9b8ff7da1c4a7354635d009448faa23370fded046e401504f7cf",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/business-model.md": "d72b2aa56552e866f8c1d4739c15478a0e7159cd19e2a7bc2c504365c40ef043",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md": "1d9cca82bc9f681dbeba13ff2829cd6848d184cf136fc62d6701eafd95c673e1",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md": "7d45cd0c15112a6ea498debab9fb69adaf006de900f316ea41fbe77973b11adc",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md": "892afa9114d4ed861400931ff21abac630f15cc8e60600fc7fc48afa655d5bda",
+      ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md": "87369dfbd30eb4b9d7da6b380720b2232bab9a59c77cac7d7a1ba482479af1cf",
+      ".fullops-squad/handovers/_TEMPLATE.md": "6d84f5545592c3875850e8f76cb2247ff80052be72d02a41405eec1bc14cb386",
+      ".fullops-squad/handovers/to_dev.md": "61b30092d694ac826b545bef0a53902b15a91569efc182a6973353b2f672c608",
+      ".fullops-squad/lint/README.md": "f417dc4d17f3c9d9c8e05ef7caa8f8afc6bec08735cd21afb4a9bd378e940160",
+      ".fullops-squad/orca-agents.md": "f9ff863ce8fcb9d90973a6412ceb028f02b983d5513e12a69f2f68af719beae0",
+      ".fullops-squad/project.md": "f7e1e83eb7cd85d88a82a78e704dbbfb39bdf6ed6559c6fc3c60f02bd026d85b",
+      ".fullops-squad/review/_REPORT.md": "ea98b4ee3d26e68730deebccc900ce46da6424979bee25c37bceac3c8124ed8f",
+      ".fullops-squad/rules/common/README.md": "a6c15853e8be9bf55f40f043dec7c519e1234a0f6655f6721f607689e9ac499f",
+      ".fullops-squad/rules/common/coding-style.md": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+      ".fullops-squad/rules/common/security.md": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      ".fullops-squad/rules/common/testing.md": "3ce575ae94e2a326e75b56e8fee37d7b51ad0fb1ea59ea9cb9eba6a7f5e3f530",
+      ".fullops-squad/rules/delegation.md": "d9b0606c7e6750977cec70d5de0da2521e6fbe4401f572b49b6dbe7932792c35",
+      ".gitattributes": "0c51494119f4a7029fd6ceb638a2dcf45ea7cc3ab5553492ee7817e77fc798e3",
+      ".gitignore": "595783a50601c938014a94b41366b8ed3f2e9adf20cae3eb3e2d7b11968831b5",
+      ".nvmrc": "4c42fb8d6334c5cdcac68b93f96c581fb83b1f58cda898cff115e5e941ef717d",
+      "AGENTS.md": "77136894b9a49dd67c3c231850ca8872c660f89094157844940f1d600c364be0",
+      "CLAUDE.md": "ab708fa2af849e84fd18a385c73834c41e5f2e9bb2bac67550141768c20a22ba",
+      "Dockerfile": "0d4910ef981013c4db94ae408f6eb814c21d0a4bffe3edcc2658ad97f374314e",
+      "GEMINI.md": "198b9baad6276b7fe1232378edda29ab62dd2a255dfd7c7e06db9e0ff38753bd",
+      "Makefile": "5dd825348888b8f25d0c600a365eaf2ec1f6ecd05cda52426afc0a491d1e3f33",
+      "README.md": "bf2ff6db723a8d83b20bc172cf22418424864466ead284c43ec9edbb8e64cc2c",
+      "adapters/.claude-plugin/plugin.json": "3a05f695b5f9c7903c12a2a9c9319827ddc0f973dcf2790e5c3f2a4e9c5daf38",
+      "adapters/.codex-plugin/plugin.json": "772efdf22502937e5dd329e38e3c0987c01e5777d7511c5d6020d432e20d1f9a",
+      "adapters/.cursor-plugin/plugin.json": "3dd88c35bdc753a136921641e7f2d7c54750af7670cc8e052da74b7799be37f4",
+      "adapters/.grok-plugin/plugin.json": "986494101184e26680b0448832f08554fd1d60503be11cea7fe07263e2d8beb5",
+      "adapters/.mcp.json": "6e6f51c6c531740ef9b3f351e90ca78b6855372652527aaf17614c31ba52d51b",
+      "adapters/README.md": "7977da72026239731ae988349017e901988add3e73b58c4e0712b1bebcac4116",
+      "adapters/config/local.mcp.json": "3e22b80eead57acf4207fec33ded2a1e73a0c7a4eb0de3112ba6e03c1176354b",
+      "adapters/eslint.config.mjs": "f5147934551e8e0305207cbb8f1041e41da2636ed978f8a37f9408b1933f5c44",
+      "adapters/hooks/hooks.json": "c835c92d8e1159d20a40ca78ad654da7433942c3694ffeda0b376b0c4dfd52cf",
+      "adapters/hooks/register.test.ts": "65d45f26a4bd8af6ac5eee31dd9f37befe46b730865191b26ec60d84dded1147",
+      "adapters/hooks/register.ts": "604d1a176dd468e97a284826713344104606e542d5d3722cc8e6bf32e421f2e3",
+      "adapters/manifest.json": "ebbb8df958b3c3a0e361f99fbfc710a91493ca9aa878d7bcfd9abc0bcf62fd4b",
+      "adapters/mcp.json": "e95d0223b47d355abba37fe8223069998350ae5653379dc196c5bc7e21db09b7",
+      "adapters/package.json": "947427a5891b76935fcfafdea86ddbdd4affd01e7e1cbd59413b3ba69820e7e0",
+      "adapters/skills/knowslink/SKILL.md": "709a11eb916d13e95363fbccd8eefa613ed31f3c7452ef0615d1a079e3a62d14",
+      "adapters/src/grok-wake.test.ts": "0cfe274ed0d33e91c061e41445f51d00fd8e52423c9dfc27b994f4c195f8d9d7",
+      "adapters/src/inbox-files.test.ts": "a94e148fb2f908e7946834cbdaf0fcacab31b27f2b6f1dc1cf09e1b2a39d6f17",
+      "adapters/src/inbox.ts": "d4ceae67d0e55bb20d4a78d07a8e9c55fc51f1580ed737fcc2beba6775c7ddf9",
+      "adapters/src/index.ts": "ca28630722ef67b43b4972850d1b8d008a0aa0a86b7d19734dc8b8c44e65e62d",
+      "adapters/src/login.test.ts": "ae0a5e30447b16d35f6fc329b70f7a70de4405db6b6b744a6d51df1915c71844",
+      "adapters/src/mcp.ts": "018aab9c3b70c6bcb4bd11cd235c1fcd3349bbed3c44e945ebac4800e7186b09",
+      "adapters/src/private-files.ts": "86b6c219eb3f1ca87320c7bba7b501e7f1bce650920ab665a8d942d1f3abca04",
+      "adapters/src/public-check.ts": "789bfc15eb843ea866d0724dc428c7047404baad32e825cf09a42ce75d5a456b",
+      "adapters/src/session-lock.test.ts": "e973cb18ea2002ecef275c20a892b14c10108d3b10ed9722a3a6aaa8eaa32b50",
+      "adapters/src/session-lock.ts": "999f65a502cfbd3335d2d1ecf491f55cde77f8ef6e7e5425d339217af8f1837e",
+      "adapters/src/trial-check.ts": "51c62c5457ecb6d1a404a442a88be4c58ac2f3bd938ff142815d65f67ea1389b",
+      "adapters/src/trial-cli.ts": "22838fa55f0ebfd3adad690f7d6cb3b18a73d6c0da8453c6d187c53624d78bd2",
+      "adapters/src/trial-setup.ts": "7c1204946e878e9e7995f5132ffac022f979503428654e0c9801cd54c29c6f3b",
+      "adapters/tsconfig.json": "864dbc33acdab5c8e2bbe029ad982459838aa461c5a4a1b98039a5302864b62b",
+      "cmd/migrate/main.go": "ab1525213a591693fa268505106970812e9aba7c920b93576985748b566d04b7",
+      "cmd/migrate/main_test.go": "b0cacdde1f9a969176f55bbc294cf0ab22c3e0c2e9485b534046a3469d86de22",
+      "cmd/relay/main.go": "515e415ea1137a7eaf5d60f37400d4a1196d2baaf6105738e3878538694f7e22",
+      "cmd/relay/main_test.go": "962b7a53d75ef67180212afeabd691641ed00fc98dc5513c9754185d3002775b",
+      "db/migrations/00001_relay.sql": "31aa978fb6e7d26eb4be7f65cd58c6abc286c0675bacd1856368221d095c7507",
+      "db/migrations/00002_human_writer.sql": "83cfa1aab7ddb803a0705434187af01386bbd8ccb60ab37a4cf5e9220c661f36",
+      "db/queries/relay.sql": "8339645080a1f2a5174de2f16f8667d71242ec756da3f6d19ac0766a782e1c8f",
+      "deploy/knowslink/access_trial_plan.py": "22aab14ccd82333c1ea5666f83e73eada6bda0eb9014c07a28af3ce9c0ad663a",
+      "deploy/knowslink/compose.ops.yaml": "035ee2d09a76c8c691701e545518badddeaa17bc5381140b7a567ff988fef6c2",
+      "deploy/knowslink/test_public_config.sh": "5d6f45419da2632134b848666a92befccc7c90841ddb9989dcdd0f74c8873452",
+      "deploy/knowslink/tunnel/config.yml.tmpl": "116268e9e27bf495873749cc3a1e75d16d221cb082c6d9a1cfca5d1c66107d77",
+      "deploy/knowslink/tunnel/public-ingress.yml": "99789dba9991f021f60260d23a1c38282930b4caf3f06919d2cb56b9c58ced10",
+      "deploy/knowslink/verify.py": "a65b263294d9e8f1a86297b0069c9bd94a05fed7f8ecfaf23632130d16a3eac9",
+      "docs/README.md": "69fec26efa515c67fff5e967a9d42a4f20799a056f8199233a3186473232962b",
+      "docs/architecture.md": "f991945b9567e10c830a04c5b8d5a641112eb892bb884b0b808a77c3b3a28a75",
+      "docs/brand/README.md": "70ec4c56545248ab9dbebf5019fd56199c5bd628c7f8fe66da06c151cc4944c6",
+      "docs/brand/knowslink-favicon.svg": "5ee8a5760f9d0be047c010e4c942a3ef92800568917216afe647f0f4c5821032",
+      "docs/brand/knowslink-lockup-inverse.svg": "1b0d1b5b08fd9d3819969af6f196b1ac7da6f7565e1f88e50a28264078ba7b62",
+      "docs/brand/knowslink-lockup-ko.svg": "6dab554a929bcbeb0666d9dcc4fae39c9de42d71a862b97b87fee06d1978a833",
+      "docs/brand/knowslink-lockup.svg": "fcbaa3cfe0a531b10900f1075fd929bf566b19b8cbe2a35aaa374853d24d6028",
+      "docs/brand/knowslink-symbol-inverse.svg": "040f9dfca090850816a38236c29d8936696639591e8134aa0fbddfc4a43d045b",
+      "docs/brand/knowslink-symbol.svg": "c61f2a24ec4acbd6e81b667479b26e61919aa0c4c477a61db519c58209171001",
+      "docs/development.md": "b6a94020df6b56ed1c50b6ed346148d338f12575dd49e3ae30ed07c47eb3a636",
+      "docs/operations.md": "6a6cbbd2abed0c29c45c07ce7474caebe984debcc5dd7b087d1e061f7919c5d1",
+      "docs/system-design.md": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
+      "go.mod": "43099800f2f949dab1c19c1a42940dc389fc5c8a90c10d40b50999ce65aceaac",
+      "go.sum": "2d9688060391df4ea15fd8c24cb274441c5a7d466e5c3f016d2dc9e1bd1c282e",
+      "internal/config/config.go": "eedd02bfffb977f9e5199f7feac343b93a05965adee561cf63bfc4a09dca292e",
+      "internal/database/db.go": "b6213219679f628bd87a92365b7aa0c595adfecdd942318aa4af989c67d69e2b",
+      "internal/database/models.go": "692e07142c393f74203d8e64af57c4f77a8bb8061f16deb8f92134c558ff69f2",
+      "internal/database/relay.sql.go": "3b5dbf3ad41094abfbb17880bd0474733711fc865d3080c531307fa88840282c",
+      "internal/relay/admission_integration_test.go": "c815201bcc8d34d043bbc44bd949069192685beb0e3eec77c715e3914470f322",
+      "internal/relay/api_rate.go": "e0630a88d92f897a134584be2c3117632b634f102de15fc59bd5b0279b4eb19e",
+      "internal/relay/calendar_test.go": "f135891418c4b80d055220d3d11d55b86e77289df006892ac218ccefd62598db",
+      "internal/relay/capacity.go": "633f300563f8abdaf8a526f894fbd681e2f36c18009e453f4062b2746183a3fe",
+      "internal/relay/cleanup.go": "29ed63da91c6d0f70dd8224a6d1bf433fdea06ecb2c228225155315faa47b76e",
+      "internal/relay/cleanup_flood_integration_test.go": "b7ac154bb82ec510bed917e4c4e04dcb4392a93501781baa649ce2c7621db3b7",
+      "internal/relay/cleanup_unit_integration_test.go": "4c702fa7c115281738790c37b92102792b9fe08b2ffece347ed3c88ab2b9ffa6",
+      "internal/relay/connect_guide.go": "0933ff99cffbfab2ab2e779b784e55426d575d32f84784827bd035d3b71a174a",
+      "internal/relay/connect_guide_test.go": "b6c90e7e743fd9a88debcc3ee0a8d5d6961e17e52da6b2105aefb3957ef01124",
+      "internal/relay/connections_test.go": "8cb8b0180ddb73afa0f24ba9c581d4ec996fc1ded4e4ef2bcad50a7961716833",
+      "internal/relay/device.go": "07bdd98ad6e24d486a462f83063082c599908929a553e792045d1743fb06fbd9",
+      "internal/relay/friend_rerequest_test.go": "c8225a6a1e0d794120d42486f26aa59da250c0400caa5392198131e41da39934",
+      "internal/relay/gate_summary.go": "8c564cc472b86e28f6eb901e96542e07138ea6d3b852974bf3d97720a3985c98",
+      "internal/relay/google_test.go": "fddc6dc74a9881f13d9222bdfa27064b8ba81b3bc67cdf5d5889f4a4b813efc4",
+      "internal/relay/human.go": "b686a4118e33fa38a7d69f5abed174eccdab18e8392f6f4625f78df6b98d3cdc",
+      "internal/relay/human_http.go": "5d712dec443ae8029119be083c4f42e8029149d80a8588f7b439874a16f9bf76",
+      "internal/relay/human_messages.go": "17a7d54b053f22e21b0e56840a31b83d214a17e5585a95e49d5ef515f1f1329b",
+      "internal/relay/human_names_integration_test.go": "10bbcec5d59d986f9ca74ae07c39854cc274697ab07f32ce75e204ed78a2692c",
+      "internal/relay/human_names_test.go": "99f361aed28a4f1e28962693e4493c0ff59007ab063aebe220463e66d6747568",
+      "internal/relay/human_pages.go": "6b992f33c6ae7996e74cb2cdab98b2a6f75346a7e4233cec2db12a10d6aedf2f",
+      "internal/relay/human_pages_test.go": "c8358db7ba46e39306e97dbe1cf55b04c4d302c9fb1e1e95188c7044926f616d",
+      "internal/relay/i18n.go": "71ca5638cd4a875ce5d1c446c4cdc15ba4578750e771b6614bafec2867f77823",
+      "internal/relay/i18n_en_human.go": "62ba98110cfede6b72a51457375f225542ca2abd7e8e893ad5e71be51755053a",
+      "internal/relay/i18n_test.go": "50c724c884c06694cbdf589230fa540c09a27766d5f1c00c8ab13eea6f7f165f",
+      "internal/relay/landing_fixture_test.go": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+      "internal/relay/landing_integration_test.go": "2667ad853f804b416fe179ec66ed46fe03dd7f15a79d8203718a99098131e9e5",
+      "internal/relay/landing_pages.go": "c1cd9ed9e7c7c4d8da112c13c5bfde32d630266633001f5e83c162958f944fdb",
+      "internal/relay/landing_test.go": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
+      "internal/relay/lang_integration_test.go": "387f58601833fe51d57b17d9d1fb96d8bddb330a1c53c0b2928922ac375cadca",
+      "internal/relay/mail.go": "db5171b9e74b68532e0a0cc7e821ba55a3c69151c8e4daed1f5a8a94b0561754",
+      "internal/relay/member_agents.go": "011d3cc7fe57d00c71bdcc2c5f5774d258e5a94b986205bbc800739a603115f8",
+      "internal/relay/member_pages.go": "c83eaac961cfa3387a2906a7164a29837c15c16802b7d27943f045e529de8e87",
+      "internal/relay/member_receipt.go": "bb2b4a2bb54d0474d051c01cf4e38fed5fc7026cc31dd601500f9285f77f6cf0",
+      "internal/relay/member_ui_test.go": "1022080495957f504a7699d0854c95bd97bf1c7784af765751f7882ef23e058c",
+      "internal/relay/policy_test.go": "0ab6ab95db543afe422fe4126ff7f8679f1b3bae0a254a7e9ca77e43f85aacd3",
+      "internal/relay/protocol.go": "d3ed199d18391aea17e993f9bfc66ba9b2fe38881de82d6b93c0480aa669d4e8",
+      "internal/relay/protocol_test.go": "5c285594b03819e86593c3f23b04674e84cf0d7db41053a23fc585b9380dcca1",
+      "internal/relay/public_messages_integration_test.go": "61dca09b641f4048fb033658c89ba90b71e747c58affc6e9150439345533071c",
+      "internal/relay/public_text.go": "5828030e24e8d5c039201cacebb46c4ce74ecbd8f178f10ba6587166d1371804",
+      "internal/relay/receipt_context.go": "ee3e46bd248d3262a93023d797852b30160edd1b54faba46a515dc9c4d98ece8",
+      "internal/relay/receipt_context_test.go": "d0387ab18b0fa20d0cefae31f6517f554875007041bb6b5a09dbb88c39e299c3",
+      "internal/relay/receipt_integration_test.go": "436ab90d93c774a029f76ae8f15e96a01c48e43c66c068e8c64560e5e6fa1d8a",
+      "internal/relay/registry.go": "652a0193b46720a05a7797b309e1f3d372342b430bf3ed991dba3085daeb2cb0",
+      "internal/relay/registry.json": "2b25c6b58fb6b6973de1c9bac19162834cfc9b678a0416ad39e2cffab3cde1e2",
+      "internal/relay/store_retention_integration_test.go": "2224ac00ed6f3417382f90ef3147880aebcedfb33323f4a425eda83599f2915b",
+      "internal/relay/store_retention_test.go": "8fffcea135407c496799f77befa7f380a9d067e1f022659e7954ad0dd8ba752c",
+      "internal/relay/test_messages.go": "33176453ad79efe89a78d46efba40bac50a79cda20e1e1ad8578901e8130102d",
+      "internal/relay/test_messages_integration_test.go": "7a013073933cd8119a11034b0d8d9d1c4e7b7f4de134e70fe8b3ae9a0ca34052",
+      "internal/relay/testdata/consent_browser.mjs": "704b045e65317ccd89cefbef180215d93680a4ab13f2ebb10ebd958d65628081",
+      "internal/relay/testdata/legacy_claims.json": "325c731b01d1579b3ff51818236f91a46d1145087d63f63a6bbffcaf0c294d2f",
+      "internal/relay/text_events.go": "7a305730527510c02ae18460729734213ede81c15b592b53087fdc1b3ed806fa",
+      "internal/relay/text_events_integration_test.go": "329d381e88436bac1358bbbc9c8a933c881891cb3718d241a20318439146820d",
+      "internal/relay/text_events_test.go": "6663f90253f8b33cfbed45786e07fb3001bbd37f06a7c69eb5f77ddbfc257138",
+      "scripts/check_public_ingress.py": "93acc733dbd27d25824ccbdd1a26868987c38152d470bdf7182b53a045163555",
+      "scripts/install_bot_mcp.sh": "89ffc7efbb42b4098c83dd8ab8e08cac8005043223200413fb79c418d7474c15",
+      "scripts/mail_sink.py": "849e22ce33ca1254991f8ba92e9ef989bb994192915fec21380296ead1c36542",
+      "scripts/package_plugin.py": "e326d292c347b606de53abac52256d4e27abc95c7a571a035c495868ca707bd9",
+      "scripts/run_trial.py": "b5e4fcc9e20b079f37153598245ad51dbe905bff9b95daf87d02fdb334a0186e",
+      "scripts/schema.py": "f522e897e019eced9e2127a2671937a67561db76ab7af1953b8e955021e1fa91",
+      "scripts/shell_guard.py": "eb376fd5cdac405098d4b31ebac85f1f670ca9b177cd44b26e0633551490657b",
+      "scripts/test_shell_guard.py": "9f0c41ebf3ebebe6c01672a4d37c4e5cf6e7f7e16357e777521d39e3d77a2b5f",
+      "scripts/verify_grok_plugin.py": "56cee9bad252a4e20dce2ea24bcf5f4b48a87adaef7298f5ce9299bea446d1d3",
+      "scripts/verify_setup.py": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
+      "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0",
+      "videos/knowslink-motion/.gitignore": "47a3d1fb0dd29b8c312fdda10e075f66934d4d4382653450618e6db6923a4eeb",
+      "videos/knowslink-motion/README.md": "4475973a664834b3f77fc09cea2074b356214fd0101f400bf50a5950bff14d17",
+      "videos/knowslink-motion/analyze.py": "84c002c0a40b668579eca0aa244f0bfd3713deae432bafd0463ca5e10e37ce96",
+      "videos/knowslink-motion/assets/SHA256SUMS": "4430036c74226929c382d27670f4658b2da8e67b3d081659c99479c7067c33cb",
+      "videos/knowslink-motion/assets/SOURCES.md": "f9379d15e41e7210b7190d68a3a51ddde94ecf0494169342623b4db4be8460c2",
+      "videos/knowslink-motion/assets/fonts/Geist-OFL.txt": "930853ee1daa68554d9e35c8a9175affb74f699fad9a5da6ee5ebe76379d9137",
+      "videos/knowslink-motion/assets/fonts/Pretendard-OFL.txt": "b04538c9abec39a3db75108cf0af0fd9c77032fe8aa2cf38345b4d250e98e38e",
+      "videos/knowslink-motion/beats.json": "857bd7d3f459cadcfd450e1928527608874943d225077abef370b9a3ae1deadf",
+      "videos/knowslink-motion/fetch-audio.sh": "962252b30184dcd6fdec9e821f8bed5f63be9f190c0248f9e26e0b465c0775a6",
+      "videos/knowslink-motion/index.html": "a7ba6224e174c6566f8a6ad14ec7cc1c2d3f95bdc04889f2b334acf538b37b74",
+      "videos/knowslink-motion/package.json": "536bc3117baf86d6bd5ef4af5617ca384e946901845b206f85265ad060899700",
+      "videos/knowslink-motion/render.mjs": "ffb055a7d8ff5ba40a035c42a8c8e11fa9ca9499eda12ff791adfd4733d9776b"
+    },
+    "search_results": {
+      "context": "636997750213a4ade77f20a4ca3ab6cf49df06aee1b2698c7cad9bcb2b767ee3"
+    },
+    "decisions": []
+  },
+  "input_sha256": "154407b287738d10589ec70db95d0ad3e806c33213ed0f27862073020ff3925a",
+  "version": "jev-packet-v2",
+  "base": "884c6bca8eacc703f2667f39497fbaa245a3f557",
+  "worktree_dirty": true,
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
+      "source_basis": "HEAD",
+      "context_signal": null
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation",
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "not_run",
+          "line": 47,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "e6ed1e76412f39ce0bea40d5a3c79d72820fb5d0d2759292834b125680221380",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.28,
+        "evidence": 0.57,
+        "contradicts": 0.63,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation",
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D02",
+          "source": [
+            "docs/planning/product-specs/"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D02"
+      ],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "71a14957615f5973b08f0e468d6b542a24754159bca8a78a7f82e592fbbc6675",
+      "source_basis": "HEAD",
+      "context_signal": {
+        "relevant": 0.09,
+        "evidence": 0.23,
+        "contradicts": 0.3,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation",
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "not_run",
+          "line": 31,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "61b30092d694ac826b545bef0a53902b15a91569efc182a6973353b2f672c608",
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "f7e1e83eb7cd85d88a82a78e704dbbfb39bdf6ed6559c6fc3c60f02bd026d85b",
+      "source_basis": "HEAD",
+      "context_signal": null
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "a6c15853e8be9bf55f40f043dec7c519e1234a0f6655f6721f607689e9ac499f",
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      "source_basis": "tracked_worktree_overlay",
+      "context_signal": null
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "3ce575ae94e2a326e75b56e8fee37d7b51ad0fb1ea59ea9cb9eba6a7f5e3f530",
+      "source_basis": "HEAD",
+      "context_signal": null
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "categories": [
+        "document_update"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D10",
+          "source": [
+            "docs/design-docs/module-design.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D10"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5aaaf0b4aa4effd3095784c0ebaaf2c8ca63e004d3d2f1c4db494786de6e64b6",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null,
+      "context_signal": {
+        "relevant": 0.03,
+        "evidence": 0.09,
+        "contradicts": 0.63,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "not_run",
+          "line": 25,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "548ee0dd10160748cfe29916767c1a9c1a506693f0f9dedd6afa25abf3034964",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "not_run",
+          "line": 24,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "4cd6a2ea6e24325b256e4803f4e579efa01aeab8cf928f1dca5a58444a751d67",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D13",
+          "source": [
+            "docs/operations/transition.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D13"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "9f906297926d36c0c7eab14bc2bec2f92cc1743da90e5f4e1f7f8ee1a6335c04",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D01",
+          "source": [
+            "docs/planning/business-plan.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D01"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "87782f650b333970663df77a4a36e551d58622e35c302a06faadcce1e6b1430e",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null,
+      "context_signal": {
+        "relevant": 0.1,
+        "evidence": 0.16,
+        "contradicts": 0.14,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "internal/relay/calendar_integration_test.go",
+      "categories": [
+        "direct_edit",
+        "impact_check"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null,
+      "context_signal": {
+        "relevant": 0.6,
+        "evidence": 0.55,
+        "contradicts": 0.18,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    {
+      "path": "internal/relay/google.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null,
+      "context_signal": null
+    },
+    {
+      "path": "internal/relay/store.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null,
+      "context_signal": {
+        "relevant": 0.05,
+        "evidence": 0.06,
+        "contradicts": 0.41,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      }
+    }
+  ],
+  "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
+  "source_hash_policy": "verify before worker start; regenerate on change; completion allows implementation changes",
+  "categories": {
+    "direct_edit": [
+      "internal/relay/calendar_integration_test.go"
+    ],
+    "impact_check": [
+      "internal/relay/calendar.go",
+      "internal/relay/calendar_integration_test.go",
+      "internal/relay/google.go",
+      "internal/relay/store.go"
+    ],
+    "document_read": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/docs/design-docs/module-design.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md",
+      ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/docs/planning/business-plan.md"
+    ],
+    "document_update": [
+      ".fullops-squad/PLANS.md"
+    ]
+  },
+  "input_partial": true,
+  "task_excerpt": "---\ntitle: SAR-SCHEDULE-001-TESTGAP-DEV — 독립 QA에서 자동 검사가 없던 일정 조회 세 경로에 integration 테스트를 추가한다\nstatus: draft\nupdated: 2026-10-21\nowner: dev\ntasks: [SAR-SCHEDULE-001-TESTGAP-DEV]\nsummary: 독립 QA에서 자동 검사가 없던 일정 조회 세 경로에 integration 테스트를 추가한다\nattempt: d2a75f15727b49cdb5737cfa73550ad3\nbase: 884c6bca8eacc703f2667f39497fbaa245a3f557\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-SCHEDULE-001-TESTGAP-DEV — 독립 QA에서 자동 검사가 없던 일정 조회 세 경로에 integration 테스트를 추가한다\n\n현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.\n\n- 작성일: 2026-10-21\n- From / To: coor → dev\n- 상태: ready\n- 테스트 레벨 / 하위 에이전트 레벨: lite / standard\n- 승인된 범위 / 추가 승인이 필요한 행위: 테스트 추가와 필요한 경우 제품 코드 수정·커밋, 원격 Linux 격리 clone 검사 / 운영 서버·운영 env·실제 Google 계정 조작, 운영 배포, force-push, 기존 미추적 파일(HyperFrames WIP·SAR-MOTION-INTRO 증거) 이동·삭제, 제품 규칙 변경\n- 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev\n- 병합 책임자 / 기본 브랜치: coor / main(origin)\n- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_fec2befe-1fd1-4564-b0cc-cd9e6b157161 / run_76a9511dbb0d / (dispatch 후 기록) / (dispatch 후 기록)\n\n`상태`는 과제 상태다. front matter `status`는 문서 상태(draft/review/approved, lint DOC-003 어휘)라 서로 다른 값이 맞다.\n\n## 현재 상황과 확인 근거\n\n일정 조회 기능과 후속 수정이 main `884c6bc`에 있고, 독립 QA SAR-SCHEDULE-001-QA(419ccc2)는 실행한 항목이 모두 PASS다. QA의 `not_run` 중 세 경로는 fixture로 실행할 수 없었고 자동 테스트도 없다(`.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md` not_run 절). 이 과제는 그 세 경로를 integration 테스트로 덮는다.\n\n## 적용 기준과 예외\n\n공통 기준은 `.fullops-squad/\n[partial: read full inbox]\n더 동작에 회귀가 없다.\n- dev 담당, 완료 SHA에서 1회: 원격 Linux 격리 clone(`.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/remote.py` 방식)에서 `make lint`·`make test`·integration EXIT=0. 로컬 `go vet`(3태그)·`go test ./internal/relay`. 명령 자신의 종료코드를 남긴다.\n- FullOps lint: 커밋 뒤 깨끗한 HEAD에서 `python3 C:/Users/shin/.fullops-squad/runtime/fullops-squad/packages/<current.json의 package>/scripts/lint.py --repo <깨끗한 체크아웃> --from 884c6bca8eacc703f2667f39497fbaa245a3f557` ERROR 0. 미추적 파일 때문에 거부되면 같은 HEAD의 임시 detached worktree에서 실행한다.\n- 증거 정본: `.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-TESTGAP-DEV-test/report.md` 하나. 통과 검사는 한 줄로 적는다. 완료 SHA의 gate 로그만 커밋한다.\n- 테스트만 추가했으면 tester 재QA는 필요 없다. 제품 동작을 고쳤으면 완료 보고의 남은 일에 tester 재확인 범위를 적는다.\n\n### UI 작업의 디자인 기준과 검증\n\n해당 없음. 화면을 바꾸지 않는다.\n\n### UI 작업의 디자인 기준과 검증\n\nUI가 없는 작업은 해당 없음과 이유를 적는다. UI 작업은 아래 항목을 채우고 완료 보고에 검증 결과를 남긴다.\n\n- 디자인 문서 / 테마·토큰 정본 경로:\n- 재사용할 공용 컴포넌트 경로 / variant·허용 변경 / 의도적 예외와 근거:\n- 변경 후 다시 실행할 디자인 lint 명령·cwd / DESIGN 경고 처리:\n- 테마 전환 후 확인할 화면·컴포넌트와 토큰 전파 / 검증 결과·미실행 사유:\n\n## 갱신할 산출물\n\nD10(`.fullops-squad/docs/design-docs/module-design.md`) — 제품 동작을 바꾼 경우만. 테스트만 추가하면 없음.\n\n## 기대 산출물\n\n테스트 커밋, `.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-TESTGAP-DEV-test/report.md`, 완료 SHA의 원격 로그.\n\n## 제약·협업·후속\n\n하위 에이전트는 선택이다. 쓰면 Purpose와 파일 소유권을 적는다. 범위 밖 발견은 완료 보고의 남은 일에 적는다.\n\n## 완료 보고\n\n브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.\n항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.\nlint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.\n처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.\n",
+  "instruction": ".fullops-squad/handovers/to_dev.md",
+  "partial": true,
+  "unknown": [
+    {
+      "source": "route",
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+    },
+    {
+      "source": "context",
+      "reason": "producer uncertainty; inspect producer_status",
+      "error": null,
+      "input_partial": true,
+      "refused_paths": [],
+      "unsent_sources": {
+        "internal/relay/google.go": "sensitive or oversized passage"
+      }
+    },
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/calendar_integration_test.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/google.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/store.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    }
+  ],
+  "producer_status": {
+    "context": {
+      "error": null,
+      "input_partial": true,
+      "refused_paths": [],
+      "unsent_sources": {
+        "internal/relay/google.go": "sensitive or oversized passage"
+      }
+    }
+  },
+  "worker_decisions": [],
+  "worker_decisions_mode": "annotations; original recommendations preserved",
+  "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
+  "ubiquitous_terms": [
+    "integration"
+  ],
+  "context_paths": [
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/docs/planning/business-plan.md",
+    ".fullops-squad/PLANS.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+    "internal/relay/calendar.go",
+    "internal/relay/calendar_integration_test.go",
+    "internal/relay/google.go",
+    "internal/relay/store.go",
+    ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md"
+  ],
+  "required_paths": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md",
+    ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+    ".fullops-squad/handovers/to_dev.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/rules/common/README.md",
+    ".fullops-squad/rules/common/coding-style.md",
+    ".fullops-squad/rules/common/security.md",
+    ".fullops-squad/rules/common/testing.md"
+  ],
+  "optional_context_paths": [],
+  "remaining_context_paths": []
+}

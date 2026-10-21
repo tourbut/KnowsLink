@@ -1,0 +1,242 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "884c6bca8eacc703f2667f39497fbaa245a3f557",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "f29ca2658120af238696a8e53136c695f9c20da5a160a7facf3a5e4907930b8e",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-calendar_integration_test.go",
+      "c1-calendar.go",
+      "c2-google.go",
+      "c3-store.go",
+      "c4-report.md",
+      "c5-SAR-SCHEDULE-001.md",
+      "c6-report.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-calendar_integration_test.go",
+      "c1-calendar.go",
+      "c2-google.go",
+      "c3-store.go",
+      "c4-report.md",
+      "c5-SAR-SCHEDULE-001.md",
+      "c6-report.md",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-calendar_integration_test.go": {
+        "relevant": 0.6,
+        "evidence": 0.55,
+        "contradicts": 0.18,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-calendar.go": {
+        "relevant": 0.1,
+        "evidence": 0.16,
+        "contradicts": 0.14,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-store.go": {
+        "relevant": 0.05,
+        "evidence": 0.06,
+        "contradicts": 0.41,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-report.md": {
+        "relevant": 0.28,
+        "evidence": 0.57,
+        "contradicts": 0.63,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-SAR-SCHEDULE-001.md": {
+        "relevant": 0.09,
+        "evidence": 0.23,
+        "contradicts": 0.3,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-report.md": {
+        "relevant": 0.03,
+        "evidence": 0.09,
+        "contradicts": 0.63,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-calendar_integration_test.go": "internal/relay/calendar_integration_test.go",
+      "c1-calendar.go": "internal/relay/calendar.go",
+      "c2-google.go": "internal/relay/google.go",
+      "c3-store.go": "internal/relay/store.go",
+      "c4-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md",
+      "c5-SAR-SCHEDULE-001.md": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "c6-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 20323,
+    "output_tokens": 456,
+    "cost": 0.0008535659999999999,
+    "known_cost": 0.0008535659999999999,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.521,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.479,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2848,
+        "output_tokens": 76,
+        "cost": 0.000119616
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.481,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2719,
+        "output_tokens": 76,
+        "cost": 0.000114198
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.479,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2660,
+        "output_tokens": 76,
+        "cost": 0.00011172
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.49,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4003,
+        "output_tokens": 76,
+        "cost": 0.000168126
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.487,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3738,
+        "output_tokens": 76,
+        "cost": 0.000156996
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.512,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4355,
+        "output_tokens": 76,
+        "cost": 0.00018291
+      }
+    }
+  ],
+  "request_max_seconds": 0.512,
+  "task_key": "SAR-SCHEDULE-001-TESTGAP-DEV",
+  "role": "dev",
+  "attempt": "d2a75f15727b49cdb5737cfa73550ad3",
+  "instruction_sha256": "61b30092d694ac826b545bef0a53902b15a91569efc182a6973353b2f672c608",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "internal/relay/calendar_integration_test.go",
+      "internal/relay/calendar.go",
+      "internal/relay/google.go",
+      "internal/relay/store.go",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md"
+    ],
+    "required": [],
+    "sources": {
+      "internal/relay/calendar_integration_test.go": "334a13cc74f9aa1ee1990a672ff8a6368fec080288566d6b29e27f97c8524e1a",
+      "internal/relay/calendar.go": "2c93e5ba47fba81343db130eeb498255e77bcd5c6a63ad7bf9ad7c4a9dd87612",
+      "internal/relay/google.go": "7345048d5e262ea0af721da2c78b311acd3ea2c60fb97a89f0b69f58e476eab8",
+      "internal/relay/store.go": "46a803c3f116b448de2462ccf28d933daa47a2f4871ff7b72f4ab9f596346326",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-QA-tester-test/report.md": "e6ed1e76412f39ce0bea40d5a3c79d72820fb5d0d2759292834b125680221380",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md": "71a14957615f5973b08f0e468d6b542a24754159bca8a78a7f82e592fbbc6675",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md": "dd727f2d31266aa8f9171e6ea41f197109b655dffe0326f35c4698004699ea1a"
+    }
+  },
+  "unsent_sources": {
+    "internal/relay/google.go": "sensitive or oversized passage"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 1.774,
+  "input_partial": true,
+  "instruction_chars": 4996,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 4996
+  }
+}
