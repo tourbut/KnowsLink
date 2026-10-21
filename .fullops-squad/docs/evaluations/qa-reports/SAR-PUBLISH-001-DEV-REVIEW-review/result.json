@@ -1,0 +1,1060 @@
+{
+  "base": "05d0800e825768f78ca6750209d74c74aa1174c9",
+  "head": "722feed9a89b5e0f415ed90f8ede64174f7b6437",
+  "rule_sha256": "f1061481dcdb66affe2f0f69a6c2354d276babcf23434dedfe6b622171994de8",
+  "ocr_version": "open-code-review v1.13.2 (55450a9) windows/amd64\nbuilt at: 2026-10-20T03:03:11Z\nhttps://github.com/alibaba/open-code-review",
+  "prepared_at": "2026-10-21T14:57:40+00:00",
+  "reviewer": "tester reviewer session 8c2de73c-2985-47a5-9f5e-a7eb008be2d4 (Claude Code, claude-opus-5-5)",
+  "conclusion": "수락. critical/high 0. low 4건은 미해결 후속으로 남긴다. lint ERROR 0, 실행 불가 2건은 같은 제품 코드(e20c199)의 원격 Linux make lint/test EXIT=0 증거로 판단했다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "후속 2건(독립 리뷰·QA·designer 검수, ops 배포·키 제거·ingress) 확인"
+    },
+    {
+      "path": ".fullops-squad/contexts/dev.md",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "교훈 한 줄과 tasks 갱신 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "SAR-SCHEDULE-001 철회·SAR-PUBLISH-001 정본 안내 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "현행 경계 절 추가, 이전 절 비현행 표시 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "일회 정리 CRUD 표가 코드와 일치"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "legacy 필드 3개와 제거 조건, SQL migration 없음이 코드와 일치"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 20,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "404·scope·U5·disclosure_denied·정책 경로 계약이 코드와 일치"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 15,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "모듈 변경 목록이 diff와 일치"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-PUBLISH-001-DEV-packet-outcomes.json",
+      "status": "added",
+      "insertions": 218,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/fixture-location.json",
+      "status": "added",
+      "insertions": 1,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/parity.py",
+      "status": "added",
+      "insertions": 34,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "렌더 텍스트와 정본 문안 대조 스크립트, parity.txt 결과로 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/probe.py",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "fixture probe 보조 스크립트, 제품 경로 아님. 출력 로그만 증거로 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/remote.py",
+      "status": "added",
+      "insertions": 113,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "원격 검사 보조 스크립트. 자격 값은 실행 시 입력, 저장소에 비밀값 없음(grep)"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/measure.py",
+      "status": "added",
+      "insertions": 24,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "3폭 가로 넘침 측정 보조 스크립트, widths.json 결과로 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/shots.py",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "캡처 보조 스크립트, 제품 경로 아님"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/widths.json",
+      "status": "added",
+      "insertions": 296,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md",
+      "status": "added",
+      "insertions": 87,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "DEV 보고 전문 확인. 기술 계획·완료 조건 대조·원격 검사·실패 기록·미검증 범위가 diff와 일치"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "키 유지 배포·정리 로그 확인·키 제거 절차 확인. 정리 줄 없음 해석은 low 발견과 연결"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "제거 배포·rollback 영향 확인"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 6,
+      "review_status": "reviewed",
+      "reason": "캘린더 안내 제거·정책 페이지 안내 확인"
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-21_to_dev.md",
+      "status": "modified",
+      "insertions": 175,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 162,
+      "review_status": "reviewed",
+      "reason": "인박스 비움(내용은 handovers/logs/2026-10-21_to_dev.md로 보존)"
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "캘린더 연결 설명 제거·정책 페이지 반영 확인"
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 14,
+      "review_status": "reviewed",
+      "reason": "67284e3 판으로 복원. 승인 gate consume 후 결과는 항상 denied"
+    },
+    {
+      "path": "adapters/src/synthetic.ts",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "합성 schedule.query 고정 기간으로 복원(D010 범위 검사 제거와 일치)"
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "ConfigureGoogle 키 인자 제거, HTTP 서비스 전 RetireCalendars 실행, 실패 시 기동 중단 확인"
+    },
+    {
+      "path": "compose.yaml",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "KNOWSLINK_CALENDAR_KEY 전달 유지, 일회 철회용 주석"
+    },
+    {
+      "path": "deploy/knowslink/tunnel/public-ingress.yml",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "정규식에 /privacy·/terms 정확 일치 두 대안만 추가. ^(...)$ 앵커로 /privacy/·/privacyx 불일치. 다른 경로 변경 없음"
+    },
+    {
+      "path": "docs/development.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "키 설명 한 줄 갱신 확인"
+    },
+    {
+      "path": "docs/operations.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "키 선택값·정리 로그·키 제거 절차 확인"
+    },
+    {
+      "path": "internal/relay/calendar_retire.go",
+      "status": "added",
+      "insertions": 110,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "전문 검토. 한 transaction에서 Calendars·모든 Gate.Lookup·calendar attempt 삭제, 미consume pending/approved lookup gate denied. commit 뒤 키 유효 시 토큰별 revoke 1회, 실패·키 없음도 삭제 유지. 로그는 개수만. 재기동 시 대상 0으로 요청 0. seal 형식(nonce||ct, AAD member)이 기준 calendar.go sealToken과 같음 확인. low 2건"
+    },
+    {
+      "path": "internal/relay/calendar_retire_integration_test.go",
+      "status": "added",
+      "insertions": 132,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "키 있음 성공·revoke 500·키 없음 3사례, 상태 JSON 잔존 0, gate denied·consume 409, 로그에 토큰·회원 ID 없음, 두 번째 실행 요청 0, consumed gate 유지를 실제 Postgres에서 단언. e20c199 integration 로그 PASS 확인"
+    },
+    {
+      "path": "internal/relay/gate_summary.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "공개되는 내용 행·calendarGateScope 제거. gateScopes는 U5 문구"
+    },
+    {
+      "path": "internal/relay/gate_summary_integration_test.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "캘린더 연결 seed·바쁜 시간대만 기대 제거, 고정 기간 기대로 복원"
+    },
+    {
+      "path": "internal/relay/google.go",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 60,
+      "review_status": "reviewed",
+      "reason": "scope는 openid email만, calendar 증분 동의·offline·sealToken·revoke 경로 제거. googleAttempt.Calendar는 omitempty legacy 필드"
+    },
+    {
+      "path": "internal/relay/google_integration_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Google 동의 URL scope=openid email, access_type·include_granted_scopes 없음 단언 추가"
+    },
+    {
+      "path": "internal/relay/google_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "ConfigureGoogle 시그니처 변경 반영"
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 54,
+      "review_status": "reviewed",
+      "reason": "GET /v1/gates는 g.State 그대로, gate-consume은 항상 disclosure:false, owner-revoke 캘린더 해제 제거, gateView는 schedule.query도 승인·거절 가능(U5), gateDecision lookup 시작 제거. CanDeny 제거와 템플릿 참조 0 확인"
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "설정 calendar 뷰 값·calendar-off 알림 제거"
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "설정 캘린더 절 제거, 정책 링크 2개 추가, 승인 상세를 U5 고정 문구와 승인·거절 폼으로 복원"
+    },
+    {
+      "path": "internal/relay/human_pages_test.go",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 38,
+      "review_status": "reviewed",
+      "reason": "설정 캘린더 상태 테스트 1개 삭제(기능 제거). 남은 렌더 검사는 유지"
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "modified",
+      "insertions": 7,
+      "deletions": 25,
+      "review_status": "reviewed",
+      "reason": "캘린더 문구 영어판 제거, 남은 항목은 정렬만 변경"
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 7,
+      "review_status": "reviewed",
+      "reason": "정책 링크·시행일 영어판 추가, google calendar 문구 제거. 조사 분리 번역(과/을 확인하세요) 결과를 TestPolicyLinks EN 단언으로 확인"
+    },
+    {
+      "path": "internal/relay/i18n_test.go",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "캘린더 설정 EN 렌더 반복 제거"
+    },
+    {
+      "path": "internal/relay/identity_integration_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 8,
+      "review_status": "reviewed",
+      "reason": "캘린더 seed 제거, gate-consume executable·disclosure false 단언 유지"
+    },
+    {
+      "path": "internal/relay/integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "commit 대신 기존 schedule.query 메시지로 승인 경로 검사 복원"
+    },
+    {
+      "path": "internal/relay/landing_integration_test.go",
+      "status": "modified",
+      "insertions": 28,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "TestPolicyPagesPublic: 실제 핸들러에서 비로그인 200, EN 쿠키·Content-Language·no-store, /privacy/ 404, 저장 언어 적용"
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 6,
+      "review_status": "reviewed",
+      "reason": "landing-style·landing-footer template 분리, #start 정책 한 줄(로그인 수단 있을 때만), 하단 순서 개인정보처리방침·서비스 약관·설치·사용 문서·맨 위로"
+    },
+    {
+      "path": "internal/relay/legacy_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "queryBody 고정 기간으로 복원"
+    },
+    {
+      "path": "internal/relay/member.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "GET /privacy·/terms 라우트 추가, calendarRoutes 제거. /home/calendar/* 핸들러 없음"
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "google-complete의 캘린더 분기 제거, policyTemplates 연결"
+    },
+    {
+      "path": "internal/relay/member_ui_test.go",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 11,
+      "review_status": "reviewed",
+      "reason": "캘린더 gate 렌더 사례 3개 제거"
+    },
+    {
+      "path": "internal/relay/policy/privacy.en.html",
+      "status": "added",
+      "insertions": 60,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "SAR-PUBLISH-001 EN 문안과 대조, 한국어 문자 0(grep), 캘린더는 수집하지 않음 1회. P-04 행 제외 동일"
+    },
+    {
+      "path": "internal/relay/policy/privacy.ko.html",
+      "status": "added",
+      "insertions": 60,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "SAR-PUBLISH-001 KO 문안과 절 단위 대조. P-02·P-03 대체 문구 적용, P-04 이메일 업체 행 제외(low 1건)"
+    },
+    {
+      "path": "internal/relay/policy/terms.en.html",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "SAR-PUBLISH-001 EN 약관 문안과 전문 대조, 한국어 문자 0(grep)"
+    },
+    {
+      "path": "internal/relay/policy/terms.ko.html",
+      "status": "added",
+      "insertions": 47,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "SAR-PUBLISH-001 KO 약관 문안과 대조, 자리 표시 없음"
+    },
+    {
+      "path": "internal/relay/policy_pages.go",
+      "status": "added",
+      "insertions": 60,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "embed 정적 본문 4개, 시행일 상수 하나, startPage와 같은 세션 언어 적용 패턴, 세션 조회 실패해도 200. 신뢰된 embed만 template.HTML로 사용"
+    },
+    {
+      "path": "internal/relay/policy_pages_test.go",
+      "status": "added",
+      "insertions": 96,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "KO/EN 4페이지의 lang·title·h1·시행일·상호 링크·aria-current 1개·금지 요소·EN 한국어 0·캘린더 언급 수와 3곳 링크를 단언"
+    },
+    {
+      "path": "internal/relay/protocol.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 22,
+      "review_status": "reviewed",
+      "reason": "relay.result body를 {status}만 받는 closed schema로 복원, disclosureShape 제거"
+    },
+    {
+      "path": "internal/relay/protocol_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 16,
+      "review_status": "reviewed",
+      "reason": "queryBody·commitBody 헬퍼를 67284e3 판으로 복원"
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "capacity seed를 schedule.query로 복원(D010 횟수 제한 제거와 일치)"
+    },
+    {
+      "path": "internal/relay/publish_browser_fixture_test.go",
+      "status": "added",
+      "insertions": 191,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "integration && publishfixture 빌드 태그로 운영 빌드에서 제외됨을 확인. 합성 DB·로컬 revoke 끝점만 사용"
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 36,
+      "review_status": "reviewed",
+      "reason": "Calendars를 legacyCalendar, Gate.Lookup을 RawMessage로 축소, CalendarReady·sweepLookups·scheduleAllowed·disclosure 대조 제거. relay.result done을 parent 검사 단계에서 disclosure_denied. 67284e3 대비 차이는 legacy 필드 3줄뿐임을 git diff로 확인. done 재전송 응답 변화 low 1건"
+    },
+    {
+      "path": "scripts/check_public_ingress.py",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "허용 목록에 두 경로, 차단 목록에 /privacy/·/privacy/x·/privacyx·/terms/·/terms.html 추가. 출력 줄은 기존 결과 안내(SLOP-004 오탐)"
+    },
+    {
+      "path": ".env.example",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "키를 선택·은퇴 값으로 설명, 값 없음"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/681bacf-fullops-lint.log",
+      "status": "added",
+      "insertions": 20,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-fixture-probe.log",
+      "status": "added",
+      "insertions": 21,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-fixture-start.log",
+      "status": "added",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-install.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-integration-stop.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-integration.log",
+      "status": "added",
+      "insertions": 486,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-test.log",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-install.log",
+      "status": "added",
+      "insertions": 28,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-integration-stop.log",
+      "status": "added",
+      "insertions": 3,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-integration.log",
+      "status": "added",
+      "insertions": 486,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-lint.log",
+      "status": "added",
+      "insertions": 39,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-mkdir.log",
+      "status": "added",
+      "insertions": 2,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/e20c199a4ec2d81c434962954614a8f0feba2b85-test.log",
+      "status": "added",
+      "insertions": 43,
+      "deletions": 0,
+      "exclude_reason": "user_exclude",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/parity.txt",
+      "status": "added",
+      "insertions": 8,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/raw-log-sha256.txt",
+      "status": "added",
+      "insertions": 14,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/en-gate-active-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/en-gate-active-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/en-gate-active-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/en-human-account-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/en-human-account-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/en-human-account-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/gate-active-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/gate-active-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/gate-active-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/human-account-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/human-account-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/human-account-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-privacy-en-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-privacy-en-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-privacy-en-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-privacy-ko-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-privacy-ko-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-privacy-ko-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-start-en-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-start-en-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-start-en-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-start-ko-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-start-ko-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-start-ko-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-terms-en-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-terms-en-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-terms-en-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-terms-ko-1440.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-terms-ko-320.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/policy-terms-ko-390.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "status": "deleted",
+      "insertions": 0,
+      "deletions": 437,
+      "exclude_reason": "deleted",
+      "review_status": "reviewed",
+      "reason": "삭제. 연결·조회·봉인·revoke·라우트 전체 제거. 남은 참조 0(grep), 일회 정리에 필요한 open 로직은 calendar_retire.go가 같은 형식으로 보유"
+    },
+    {
+      "path": "internal/relay/calendar_browser_fixture_test.go",
+      "status": "deleted",
+      "insertions": 0,
+      "deletions": 170,
+      "exclude_reason": "deleted",
+      "review_status": "reviewed",
+      "reason": "삭제된 기능의 browser fixture. 대체는 publish_browser_fixture_test.go"
+    },
+    {
+      "path": "internal/relay/calendar_integration_test.go",
+      "status": "deleted",
+      "insertions": 0,
+      "deletions": 534,
+      "exclude_reason": "deleted",
+      "review_status": "reviewed",
+      "reason": "삭제된 기능의 integration 테스트(ANTI-005). 정리 동작은 calendar_retire_integration_test.go가 대체"
+    },
+    {
+      "path": "internal/relay/calendar_provider_test.go",
+      "status": "deleted",
+      "insertions": 0,
+      "deletions": 218,
+      "exclude_reason": "deleted",
+      "review_status": "reviewed",
+      "reason": "삭제된 freebusy provider 테스트. 대응 코드 삭제"
+    },
+    {
+      "path": "internal/relay/calendar_test.go",
+      "status": "deleted",
+      "insertions": 0,
+      "deletions": 237,
+      "exclude_reason": "deleted",
+      "review_status": "reviewed",
+      "reason": "삭제된 봉인·조회 단위 테스트. 대응 코드 삭제"
+    },
+    {
+      "path": "internal/relay/calendar_testgap_integration_test.go",
+      "status": "deleted",
+      "insertions": 0,
+      "deletions": 129,
+      "exclude_reason": "deleted",
+      "review_status": "reviewed",
+      "reason": "삭제. 67284e3..05d0800e의 이 파일 변경(4a708c15 포함)이 모두 캘린더 과제임을 git log로 확인"
+    },
+    {
+      "path": "internal/relay/testdata/member_forms.golden",
+      "status": "modified",
+      "insertions": 0,
+      "deletions": 2,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "캘린더 gate 폼 2줄 제거"
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/calendar_retire.go",
+      "start_line": 31,
+      "end_line": 34,
+      "severity": "low",
+      "resolved": false,
+      "content": "정리 transaction 오류를 \"calendar cleanup failed\"로 바꿔 원인(DB·상태 JSON 해석 오류)을 버린다. 기동이 막힐 때 운영자가 원인을 알 수 없다. 토큰이 없는 err 문자열을 감싸 반환하거나 log에 남기기를 권한다."
+    },
+    {
+      "path": "internal/relay/calendar_retire.go",
+      "start_line": 39,
+      "end_line": 51,
+      "severity": "low",
+      "resolved": false,
+      "content": "삭제 commit 뒤 revoke 루프·로그 전에 프로세스가 종료되면 토큰은 revoke 없이 지워지고 정리 줄도 남지 않는다. ops-guide의 \"줄이 없으면 지울 연결이 없었다\" 해석이 이 경우 틀린다. 첫 기동이 정상 진행됐는지 함께 확인하거나, 이상 종료 시 테스트 사용자 전원에게 수동 삭제 안내(SAR-SCHEDULE-001 처리 4)를 적용하도록 ops 절차에 적기를 권한다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "start_line": 497,
+      "end_line": 499,
+      "severity": "low",
+      "resolved": false,
+      "content": "relay.result done 거부가 idempotency 분기 앞에 있어, 캘린더 빌드에서 이미 받은 done의 같은 키 재전송이 기존 receipt 대신 403 disclosure_denied를 받는다. 메시지 24시간 보관이라 영향은 배포 직후 24시간의 재전송 한정이다. 67284e3 동작과 같으므로 수용 가능하며 기록만 남긴다."
+    },
+    {
+      "path": "internal/relay/policy/privacy.ko.html",
+      "start_line": 6,
+      "end_line": 38,
+      "severity": "low",
+      "resolved": false,
+      "content": "P-04 이메일 발송 업체 행을 운영 SMTP 미설정 근거로 KO/EN 모두 뺐다. PLANS에서 P-04는 ops 확인 대기다. 이메일 코드 로그인을 켜면 처리 위탁 고지가 빠진 상태가 되며 이를 막는 코드·설정 연결은 없다. ops의 P-04 확인과 SMTP 활성화 시 문안 갱신 조건을 PLANS 후속에 남기기를 권한다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "a5727aa6-dee3-44de-8040-810796a5d9ca",
+    "reviewer_session": "8c2de73c-2985-47a5-9f5e-a7eb008be2d4",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-8d05ab5817d2480285051e41ecf15231",
+    "snapshot_head": "722feed9a89b5e0f415ed90f8ede64174f7b6437",
+    "read_only": true
+  }
+}
