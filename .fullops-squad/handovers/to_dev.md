@@ -139,3 +139,12 @@ D10(`.fullops-squad/docs/design-docs/module-design.md`)과 `docs/development.md`
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치 / SHA: `fullops/dev` / 제품 완료 SHA `44ecde1`(원격 검사 대상). 이후 커밋은 `.fullops-squad/` 아래 보고·지시서·패킷 결과만 바꾼다.
+- 변경 이유: designer 시각 검수 V1·V2·V3·D2. `disconnectCalendar`는 consume되지 않은 `schedule.query` gate를 모두 `denied`로 바꾸고 disclosure를 지운다.
+- 검토 필요: D2 상태 전이(조회 완료·미consume gate를 `denied`, `Lookup=failed`로 바꿈)와 V2 CSS(`summary:not(:has(*))`).
+- 검증한 것: 원격 Linux `make lint`·`make test`·integration EXIT=0. 로컬 `go vet` 3태그·`go test ./internal/relay` EXIT=0. 테스트만 담은 `eeec681`에서 V1·D2 FAIL 확인. 렌더 30개 가로 넘침 0, summary 분리 0. FullOps lint ERROR 0(실행 불가 2는 Windows `make` 없음).
+- 못 한 것: 열린 details 상태의 캡처. 시각 수락은 designer 몫이다.
+- 산출물: `.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/report.md`.
+- 의존성: `go.mod`·`package.json` 변경 없음.
+- 남은 일: tester 독립 QA(SC-09, LOWS-DEV 포함)와 designer 영향 화면 재확인(gate 조회 3화면, 설정 캘린더 connected·reconnect, 해제 뒤 안내).

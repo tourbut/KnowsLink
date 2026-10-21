@@ -39,6 +39,12 @@ RED 근거: 테스트만 담은 커밋 `eeec681`(제품 코드는 base)을 원�
 
 이후 커밋은 `.fullops-squad/` 아래 보고·지시서·패킷 결과만 바꾼다. 원격 실행은 [remote.py](remote.py)(LOWS-DEV 복사본, 경로·접두어만 바꿈)다. gate 로그 SHA256은 [gate-log-sha256.txt](gate-log-sha256.txt)다.
 
+FullOps lint 상세(`50052fa`, 출력 `raw/fullops-lint.txt`): ERROR 0 / WARNING 2 / 실행 불가 2, EXIT=1.
+
+- 역할 워크트리에 보존할 미추적 파일(SAR-MOTION-INTRO 증거·`videos/service-intro/`)이 있어 같은 HEAD의 detached 임시 worktree에서 실행하고 지웠다.
+- 실행 불가 2: product-lint·product-test. Windows에 `make`가 없다. 같은 명령은 원격 Linux `44ecde1`에서 EXIT=0이다. EXIT=1은 이 실행 불가 때문이다.
+- SIZE-001 2건: `calendar_integration_test.go` 499줄(+41, D2 subtest 2개), `i18n_en_human.go` 304줄(+1). 기존 큰 파일의 좁은 델타라 분할하지 않는다.
+
 ## 확인과 판단
 
 - 로컬 PATH의 `gofmt`가 toolchain `$(go env GOROOT)/bin/gofmt`와 정렬 결과가 달라 원격 `make lint`가 처음 `2e5020f`에서 EXIT=2였다. GOROOT gofmt로 다시 맞춰 `44ecde1`에서 다시 실행했다.
