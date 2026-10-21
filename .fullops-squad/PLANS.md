@@ -84,6 +84,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - TESTGAP 통합 2026-10-21: msg_06e7fa745e45 dev 9b301af(테스트 4a708c1), 1파일 129줄 테스트만, 세 경로 첫 실행 PASS로 제품 수정 없음(T3 mutation 미확인). 원격 make lint/test/integration EXIT=0, dev lint ERROR 0. main 4787e85 non-FF lint ERROR 0, push, 전 역할 FF, ctx_1b25f0a62cf6 release. integration pending 0.
 - 일정 조회 다음 단계(사용자 결정 대기): D011(OAuth 앱 게시 상태·calendar.freebusy 민감 범위 심사) 답 → 실계정 1경로(SC-09, coor가 사용자 승인 아래) → 운영 배포(ops: KNOWSLINK_CALENDAR_KEY 생성·보관, Cloud Console scope 등록, transition.md 키 교체·분실 절차). 운영 배포는 사용자 승인 필요.
 - 사용자 결정 2026-10-21: D011 'OAuth 앱 Testing, scshin88 테스트 사용자'(refresh token 7일 만료 감수), D016 '배포 진행'. SAR-RELEASE-003-OPS 준비: 운영 7b4f9bc→제품 4787e85, KNOWSLINK_CALENDAR_KEY 신규(0600, 값 비기록), egress freeBusy·revoke, ingress 변경 없음. 사용자는 Cloud Console Data Access에 calendar.freebusy 등록. 배포 뒤 SC-09 실계정 1경로를 coor가 사용자 승인 아래 진행.
+- RELEASE-003 배정 2026-10-21(main 375b5c2): ops ctx_d0f27dc316dd(task_da2868667888, sonnet-5-5 high=jev only 후보, fresh).
 - (이전 대기 기록): 4단위 delta F-R1–F-R3, 3단위 리뷰 low(raw-log 해시—4단위에서 해소), O-NM-08 외 남은 low 관찰(V-AP-01 현행 수락, O-CT-03 현행 유지). 사용자 판단 대기 잔여는 위 '잔여 작업 일괄 수행' 절 목록.·설정('내 계정'→'설정' 포함).
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
