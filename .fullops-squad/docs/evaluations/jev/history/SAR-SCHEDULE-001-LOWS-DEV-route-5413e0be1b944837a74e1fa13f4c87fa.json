@@ -1,0 +1,82 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SCHEDULE-001-LOWS-DEV",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.99,
+        "product": 0.01
+      },
+      "confidence": 0.98
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.08,
+      "D02": 0.08,
+      "D03": 0.17,
+      "D04": 0.08,
+      "D05": 0.21,
+      "D06": 0.24,
+      "D07": 0.13,
+      "D08": 0.3,
+      "D09": 0.23,
+      "D10": 0.76,
+      "D11": 0.1,
+      "D12": 0.47,
+      "D13": 0.43
+    }
+  },
+  "usage": {
+    "input_tokens": 2560,
+    "output_tokens": 314,
+    "cost": 0.00010752
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.914,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0,
+      "claude claude-sonnet-5-5 high": 0.01,
+      "claude claude-opus-5-5 medium": 0.17,
+      "claude claude-opus-5-5 high": 0.81,
+      "claude claude-fable-5-1 high": 0.01
+    },
+    "usage": {
+      "input_tokens": 757,
+      "output_tokens": 58,
+      "cost": 3.1794e-05
+    }
+  },
+  "candidate_hash": "e4af380df01e9d00c529dca12d1f86dcad5426d2ca1fd70c9d9bed1b0a802f1c",
+  "head": "18d74dd72132311c9abb1e2aa6fdf6eb062d38e9",
+  "requires_packet": true
+}
