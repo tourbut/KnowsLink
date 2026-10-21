@@ -1,0 +1,88 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-SCHEDULE-001-VISUAL",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.02,
+        "product": 0.98
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.62,
+        "ops": 0.02,
+        "tester": 0.36
+      },
+      "confidence": 0.43
+    },
+    "docs": {
+      "D01": 0.29,
+      "D02": 0.25,
+      "D03": 0.18,
+      "D04": 0.74,
+      "D05": 0.17,
+      "D06": 0.24,
+      "D07": 0.1,
+      "D08": 0.12,
+      "D09": 0.22,
+      "D10": 0.31,
+      "D11": 0.25,
+      "D12": 0.24,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2529,
+    "output_tokens": 314,
+    "cost": 0.000106218
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.555,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 high": 0.19,
+      "claude claude-opus-5-5 high": 0.81
+    },
+    "usage": {
+      "input_tokens": 575,
+      "output_tokens": 34,
+      "cost": 2.415e-05
+    }
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "18d74dd72132311c9abb1e2aa6fdf6eb062d38e9",
+  "requires_packet": true,
+  "attempt": "f1c73a5932bd49b3bd4be668a527ccfa",
+  "instruction_sha256": "b52b2e912083016c6fab14e8e91f8bdb0be3b9a97d6997e2ab4ed81ab8e9a2bb",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "5eafdfb46e2fe6a7da5cf3aa8bb11628a4ed48ba203ac468cd5318b9ed703e0e"
+}

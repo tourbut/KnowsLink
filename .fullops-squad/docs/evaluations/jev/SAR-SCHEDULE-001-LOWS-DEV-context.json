@@ -1,0 +1,332 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "18d74dd72132311c9abb1e2aa6fdf6eb062d38e9",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "a7a26cc1023d129203ffe136047f93684eb90e6a62d39987d36d9adef2a4e104",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-store.go",
+      "c1-calendar.go",
+      "c2-google.go",
+      "c3-http.go",
+      "c4-calendar_test.go",
+      "c5-calendar_provider_test.go",
+      "c6-calendar_integration_test.go",
+      "c7-development.md",
+      "c8-module-design.md",
+      "c9-SAR-SCHEDULE-001.md",
+      "c10-report.md",
+      "c11-report.md",
+      "c12-remote.py",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-store.go",
+      "c1-calendar.go",
+      "c2-google.go",
+      "c3-http.go",
+      "c4-calendar_test.go",
+      "c5-calendar_provider_test.go",
+      "c6-calendar_integration_test.go",
+      "c7-development.md",
+      "c8-module-design.md",
+      "c9-SAR-SCHEDULE-001.md",
+      "c10-report.md",
+      "c11-report.md",
+      "c12-remote.py",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-store.go": {
+        "relevant": 0.14,
+        "evidence": 0.2,
+        "contradicts": 0.29,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-calendar.go": {
+        "relevant": 0.34,
+        "evidence": 0.46,
+        "contradicts": 0.16,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-http.go": {
+        "relevant": 0.19,
+        "evidence": 0.33,
+        "contradicts": 0.22,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-calendar_test.go": {
+        "relevant": 0.46,
+        "evidence": 0.48,
+        "contradicts": 0.21,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c6-calendar_integration_test.go": {
+        "relevant": 0.3,
+        "evidence": 0.33,
+        "contradicts": 0.28,
+        "injection": 0.01,
+        "decision": "keep",
+        "reason": null
+      },
+      "c7-development.md": {
+        "relevant": 0.11,
+        "evidence": 0.23,
+        "contradicts": 0.72,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c8-module-design.md": {
+        "relevant": 0.05,
+        "evidence": 0.06,
+        "contradicts": 0.8,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c9-SAR-SCHEDULE-001.md": {
+        "relevant": 0.1,
+        "evidence": 0.18,
+        "contradicts": 0.41,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      },
+      "c10-report.md": {
+        "relevant": 0.82,
+        "evidence": 0.94,
+        "contradicts": 0.23,
+        "injection": 0.03,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-store.go": "internal/relay/store.go",
+      "c1-calendar.go": "internal/relay/calendar.go",
+      "c2-google.go": "internal/relay/google.go",
+      "c3-http.go": "internal/relay/http.go",
+      "c4-calendar_test.go": "internal/relay/calendar_test.go",
+      "c5-calendar_provider_test.go": "internal/relay/calendar_provider_test.go",
+      "c6-calendar_integration_test.go": "internal/relay/calendar_integration_test.go",
+      "c7-development.md": "docs/development.md",
+      "c8-module-design.md": ".fullops-squad/docs/design-docs/module-design.md",
+      "c9-SAR-SCHEDULE-001.md": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "c10-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "c11-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md",
+      "c12-remote.py": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/remote.py",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_dev.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 29347,
+    "output_tokens": 684,
+    "cost": 0.0012325740000000002,
+    "known_cost": 0.0012325740000000002,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.964,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.513,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2695,
+        "output_tokens": 76,
+        "cost": 0.00011319
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.509,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2749,
+        "output_tokens": 76,
+        "cost": 0.000115458
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.515,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2744,
+        "output_tokens": 76,
+        "cost": 0.000115248
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.542,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2903,
+        "output_tokens": 76,
+        "cost": 0.000121926
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.513,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2883,
+        "output_tokens": 76,
+        "cost": 0.000121086
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.513,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2937,
+        "output_tokens": 76,
+        "cost": 0.000123354
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.493,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4272,
+        "output_tokens": 76,
+        "cost": 0.000179424
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.513,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3773,
+        "output_tokens": 76,
+        "cost": 0.000158466
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.46,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4391,
+        "output_tokens": 76,
+        "cost": 0.000184422
+      }
+    }
+  ],
+  "request_max_seconds": 0.542,
+  "task_key": "SAR-SCHEDULE-001-LOWS-DEV",
+  "role": "dev",
+  "attempt": "601f8d6838974b2894f287614b58cd7e",
+  "instruction_sha256": "75e91890ce7854e72d7601b3a7ecf7fac457bbdfcf52fc814ce4121a5ff7af77",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      "internal/relay/store.go",
+      "internal/relay/calendar.go",
+      "internal/relay/google.go",
+      "internal/relay/http.go",
+      "internal/relay/calendar_test.go",
+      "internal/relay/calendar_provider_test.go",
+      "internal/relay/calendar_integration_test.go",
+      "docs/development.md",
+      ".fullops-squad/docs/design-docs/module-design.md",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/remote.py"
+    ],
+    "required": [],
+    "sources": {
+      "internal/relay/store.go": "897fd3f6ac565c6b0d0c8d528436293f1ae2ea43b8a09342dbeca045af9fd8d6",
+      "internal/relay/calendar.go": "14699f25dd16c9aa194a9463a7041f7e62d638ad0fd41230a84605cd4e499416",
+      "internal/relay/google.go": "27c229b895b83657a64c43139f642a2cce355deda10a7c48d60f2c15414cea8e",
+      "internal/relay/http.go": "cb76f292467114e4e4061f3b08330c5d75bf84a5d4c98fabdc64156707f24ed3",
+      "internal/relay/calendar_test.go": "857ee254c1b28c6760e1f70e5993d20f46fda768c5eba5e88d3dc4041b9b667c",
+      "internal/relay/calendar_provider_test.go": "2186477c65f950c76088989f408f507d62157e509db72fe4206ed95302f5fd1c",
+      "internal/relay/calendar_integration_test.go": "f174f48cee67e161c0f0edc0f7dd1e2793c25bdef1a3943630f1bb95690bc84b",
+      "docs/development.md": "a5fdbed374d1a3dc039906d605569ffa7381a23ce159b9c7db1a7185dd4f6bc5",
+      ".fullops-squad/docs/design-docs/module-design.md": "54649e7998d1fe9c299ff54b560d1ae992ab62459fb25b6ddd9a883447d56d9e",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md": "45b960197ee3a654779264444a18c1c7439881fb05aaf777edd306d3cde3ea35",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md": "dd727f2d31266aa8f9171e6ea41f197109b655dffe0326f35c4698004699ea1a",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md": "6525915d774d6d6f706f351531480e1a802287fd8fbd684b4f552a1ccc33955d",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/remote.py": "cf7e09c59fd846796e58ca94f7a1102404c5e1de8e8359021d46407f99074ad8"
+    }
+  },
+  "unsent_sources": {
+    "internal/relay/google.go": "sensitive or oversized passage",
+    "internal/relay/calendar_provider_test.go": "sensitive or oversized passage",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md": "sensitive or oversized passage",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/remote.py": "sensitive or oversized passage"
+  },
+  "refused_paths": [],
+  "elapsed_seconds": 2.934,
+  "input_partial": true,
+  "instruction_chars": 5519,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 5519
+  }
+}
