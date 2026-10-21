@@ -125,14 +125,6 @@ D10(`.fullops-squad/docs/design-docs/module-design.md`)과 `docs/development.md`
 미확인 8건: route: task/role/SHA/attempt/instruction differs or absent; regenerate/bind route; context: producer uncertainty; inspect producer_status; .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection …. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 
-## 기술 계획 (dev)
-
-- V1: `human-gate` 범위 절에 `{{else if .Calendar}}` 분기. `.Calendar`는 `schedule.query`에서만 채워져(`http.go` gateView) commit U5 분기는 그대로다.
-- V2: 공용 CSS에서 자식 요소가 없는 `summary`만 `flex-wrap:nowrap`·`align-items:baseline`. h3·span을 가진 summary는 그대로다.
-- V3·D2 문구: 해제 details를 `human-calendar-disconnect` 템플릿 하나로 두고 connected·reconnect가 같이 쓴다. KO 원문과 `enHuman` 번역을 교체한다.
-- D2 서버 상태 전이: `disconnectCalendar` 대상을 `pending` 또는 `approved && !Consumed`로 넓힌다. 대상 gate는 `denied`, `Lookup.State=failed`, `Disclosure=nil`이다. agent는 `GET /v1/gates`에서 `denied`, consume은 409다. consume된 gate는 `approved`로 남는다.
-- 검사: integration subtest 2개(미consume 삭제, consume 유지), V1 단언 갱신, V3 단위 단언. 테스트만 담은 커밋을 원격에서 먼저 실행해 실패를 확인한다.
-
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
@@ -148,3 +140,11 @@ lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 �
 - 산출물: `.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/report.md`.
 - 의존성: `go.mod`·`package.json` 변경 없음.
 - 남은 일: tester 독립 QA(SC-09, LOWS-DEV 포함)와 designer 영향 화면 재확인(gate 조회 3화면, 설정 캘린더 connected·reconnect, 해제 뒤 안내).
+
+### 기술 계획 (dev)
+
+- V1: `human-gate` 범위 절에 `{{else if .Calendar}}` 분기. `.Calendar`는 `schedule.query`에서만 채워져(`http.go` gateView) commit U5 분기는 그대로다.
+- V2: 공용 CSS에서 자식 요소가 없는 `summary`만 `flex-wrap:nowrap`·`align-items:baseline`. h3·span을 가진 summary는 그대로다.
+- V3·D2 문구: 해제 details를 `human-calendar-disconnect` 템플릿 하나로 두고 connected·reconnect가 같이 쓴다. KO 원문과 `enHuman` 번역을 교체한다.
+- D2 서버 상태 전이: `disconnectCalendar` 대상을 `pending` 또는 `approved && !Consumed`로 넓힌다. 대상 gate는 `denied`, `Lookup.State=failed`, `Disclosure=nil`이다. agent는 `GET /v1/gates`에서 `denied`, consume은 409다. consume된 gate는 `approved`로 남는다.
+- 검사: integration subtest 2개(미consume 삭제, consume 유지), V1 단언 갱신, V3 단위 단언. 테스트만 담은 커밋을 원격에서 먼저 실행해 실패를 확인한다.
