@@ -2,14 +2,26 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-20
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-RELEASE-003 운영 적용 결과 (2026-10-21)
+
+현재 운영 제품은 `4787e85a0b6952970a861b6b100b3561b9cf30a0`다(일정 조회 포함). 직전 `7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2`에서 무삭제 bundle·rollback 태그·env 키 추가·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md)다. 아래 날짜별 절은 당시 기록이다.
+
+- 중단은 04:48:42Z~04:48:59Z(13:48:42~13:48:59 KST), 약17초다. relay/Postgres healthy·restart0·migrate0이다. `db/`·Dockerfile·go.mod/go.sum·Makefile 입력 변경은 없고 `compose.yaml`은 `KNOWSLINK_CALENDAR_KEY` 전달 한 줄만 늘었다.
+- build 전에 이전 relay 이미지(`sha256:9646febaf4126ffcbbdd80acf5a00ed0299e3fb5a91a6a2b572f8ccd85443f66`)에 `knowslink-rollback:7b4f9bc-release003-20261021` 태그를 붙였다. inspect와 network-none read-only 파일 검사를 통과했다. 실제 rollback은 실행하지 않았다. 되돌리면 저장된 `Calendars` 봉인 토큰은 이전 코드가 읽지 않는다.
+- 운영 env 정본 `/home/shin/deploy/knowslink-state/.env`(0600)에 `KNOWSLINK_CALENDAR_KEY`(base64 32바이트)를 서버에서 새로 만들어 한 줄 추가했다. 값은 어디에도 기록하지 않았다. 이전 env는 `release003-ops-20261021/env.pre-release003`(0600)에 보관했다. 키를 바꾸거나 잃으면 저장된 모든 캘린더 연결이 열리지 않아 회원이 다시 연결해야 하며 교체 절차는 미정이다.
+- 백업은 `backups/7b4f9bc-pre-release003-20261021T044846Z.dump`, 0600·11280bytes·TOC25줄이다. SHA256은 `e6b31b28967f5fa205f678e3eff171bef1d3f248b786ba7c3d9d69e0ad8f62be`다. network-none 복원의 전체 data digest가 frozen DB와 같고 goose2·guard1·HumanModel1과 downgrade 거부를 확인했다. 운영 DB는 복원하지 않았다.
+- 보존 assertion 40개가 통과했다(Rates는 volatile 차이). 기존 상태 JSON은 새 캘린더 필드 없이 읽혔다. 기존 백업18개와 공유 컨테이너(Postgres 포함)를 보존했다. Tunnel config·cloudflared는 바꾸지 않았다.
+- egress: relay 컨테이너에서 `https://www.googleapis.com/calendar/v3/freeBusy`와 `https://oauth2.googleapis.com/revoke`에 도달했다(인증 없이 GET 404/404, 빈 POST 403/400). 공개 smoke 21개·첫페이지·새 API 경계·언어 22개·캘린더 경로가 통과했다. 인증 없는 `POST /home/calendar/connect`가 503이 아닌 401이므로 relay가 캘린더 키를 읽었다.
+- 남은 일: 소유자가 Cloud Console Data Access에 `calendar.freebusy`를 등록해야 한다. OAuth 앱이 Testing이라 refresh token은 7일 뒤 만료한다. 실계정 연결·조회 왕복(SC-09)은 실행하지 않았다.
 
 ## SAR-RELEASE-002 운영 적용 결과 (2026-10-20)
 

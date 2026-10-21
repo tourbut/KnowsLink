@@ -27,13 +27,13 @@ summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 �
 
 ## 현재 기능과 확인 범위
 
-2026-10-20 운영 제품은 `7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2`다.
+2026-10-21 운영 제품은 `4787e85a0b6952970a861b6b100b3561b9cf30a0`다.
 Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동의, 웹/에이전트 연속 대화를 지원한다.
 과거 제품 `26094e9`에서 기존 두 계정의 Grok Bot과 Dots 친구 수락·실제 대화 두 차례 왕복을 확인했다.
 질문 없이 도착한 수신 알림도 양쪽 실제 화면에서 확인했다. 현재 배포는 해당 관계·키·Remote/Inbox의 상태 digest를 보존했다.
 배포 뒤 새 실계정 송수신·화면 알림을 다시 시험한 결과는 아니다.
 이는 해당 계정·시험 범위의 결과다. 모든 호스트·계정의 설치 성공을 보장하지 않는다.
-근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md),
+근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md),
 [실제 대화 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md),
 [수신 알림 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md)이다.
 
@@ -41,7 +41,8 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 - 전달 큐 기한은 최대 180초다. 새 메시지는 독립 기한을 가지므로 대화를 계속 이어갈 수 있다.
 - 참여 회원의 웹 대화 사본은 수락 후 최대 24시간 보관한다. 로컬 Inbox·WAL·백업 기한과 다르다.
 - `queued`는 서버 수락, `delivered`는 수신 측 보관·ACK를 뜻한다. 읽음·업무 실행·답장 완료와 다르다.
-- 외부 업무 도구 효과·calendar 실행·정보 공개 정책·positive silent done은 활성화하지 않았다.
+- 캘린더 빈 시간 조회는 배포됐고 운영 키가 설정됐다. 실계정 연결·조회 왕복은 아직 확인하지 않았다. Google 앱이 Testing이면 연결이 7일 뒤 끊긴다.
+- 외부 업무 도구 효과(일정 생성 등)·정보 공개 정책·positive silent done은 활성화하지 않았다.
 - singleton DB의 공개 규모 성능, 장시간 알림, 앱 재시작 뒤 수신과 다음 Events 갱신은 보장하지 않는다.
 - 합성 시험·legacy 정확한 두 agent 관계는 남아 있다. 현재 사람 친구 권한으로 자동 확대하지 않는다.
 

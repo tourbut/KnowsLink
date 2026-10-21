@@ -120,7 +120,12 @@ D12·D13(운영 문서) — 운영 SHA·캘린더 키 존재·egress·Testing �
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+- 브랜치 / SHA: `fullops/ops` / 결과 SHA는 worker_done 본문(finish 커밋 후 고정). 운영 제품 `4787e85a0b6952970a861b6b100b3561b9cf30a0`.
+- 변경 이유: 사용자 결정 D016 '배포 진행'과 D011 답에 따라 일정 조회를 포함한 main 제품을 기존 운영 relay에 배포하고 운영 env에 `KNOWSLINK_CALENDAR_KEY`를 새로 만들었다.
+- 결과: 운영 relay는 새 이미지(`sha256:0e0eb8b44e47…`)로 healthy·restart0·migrate0이다. 중단은 04:48:42Z~04:48:59Z(약17초)다. 새 private 백업(`7b4f9bc-pre-release003-20261021T044846Z.dump`, 0600·11280bytes, SHA256 `e6b31b28…8f62be`)과 network-none 격리 복원(전체 data digest 일치·goose2·guard1·HumanModel1·downgrade 거부)을 통과했다. rollback 태그 `knowslink-rollback:7b4f9bc-release003-20261021`을 붙이고 inspect했다. 보존 assertion 40/40이 통과했다.
+- 캘린더 키: 서버에서 만들어 `.env`(0600)에 한 줄 추가했다. 값은 출력하지 않았고 길이(base64 32바이트, 44자)·존재만 확인했다. 이전 env는 서버에 0600으로 보관했다. 인증 없는 `POST /home/calendar/connect`가 503이 아닌 401이라 relay가 키를 읽었다. egress 두 주소는 relay 컨테이너에서 도달했다(GET 404/404, 빈 POST 403/400).
+- 검토 필요: (1) relay 기동 로그 줄에는 캘린더 상태가 없다(`google login configured=true`뿐). 지시서의 '비밀 없는 상태 줄' 확인은 기동 성공(잘못된 키는 기동 실패)과 위 401로 대체했다. DEV가 상태 줄에 `calendar configured`를 넣을지 판단하면 좋다. (2) 키 교체·분실 절차는 미정이다.
+- 검증한 것과 못 한 것: 위 운영 검사는 직접 실행했다. 제품 코드 gate는 SAR-SCHEDULE-001의 리뷰·QA·VISUAL-RECHECK 수락 증거를 재사용했다. 미실행: 실계정 로그인·캘린더 연결·조회 왕복(SC-09), 로그인 회원 화면의 캘린더 절, 실제 rollback, Cloud Console 변경. 공개 호출은 1.5초 이상 간격으로 했고 429는 없었다. `lint.py`는 아래 보고에 따른다(Windows `make` 부재).
+- 산출물·로그: [report](../docs/evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md), 같은 폴더의 preservation.json·public-smoke*.json·commands.txt·로그. D12/D13·README·docs/operations.md·docs/README.md·contexts/ops.md를 갱신했다.
+- 남은 일: (coor) 사용자가 Cloud Console Data Access에 `calendar.freebusy`를 등록한 뒤 실계정 1경로(SC-09)를 진행한다. OAuth 앱은 Testing이라 refresh token이 7일 뒤 만료한다. main 병합·현황판은 coor가 처리한다. 서버 checkout은 `4787e85`이며 live ingress는 repo와 같다.
+- 의존성: 의존성 변경 없음(`go.mod`·`go.sum`·`adapters/package*.json` diff 0, 제품 코드 변경 없음).

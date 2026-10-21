@@ -1,0 +1,212 @@
+{
+  "utc_stages": {
+    "baseline": "2026-10-21T04:47:02.950510+00:00",
+    "before": "2026-10-21T04:48:40.682313+00:00",
+    "frozen": "2026-10-21T04:48:45.283934+00:00",
+    "after": "2026-10-21T04:49:00.073739+00:00",
+    "final": "2026-10-21T04:49:34.287581+00:00"
+  },
+  "passed": 40,
+  "total": 40,
+  "assertions": [
+    {
+      "assertion": "state map HTTP digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Gates digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Pairs digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Agents digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Owners digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Friends digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Members digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Messages digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Sessions digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Challenges digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Identities digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Connections digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Idempotency digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map GoogleAttempts digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "Friends count 1 at all stages (digest covered by the all-stage map check)",
+      "pass": true
+    },
+    {
+      "assertion": "new omitempty state maps (Calendars) absent at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map counts equal at all stages except volatile Rates",
+      "pass": true
+    },
+    {
+      "assertion": "Remote map digests/counts/inbox/subscription metadata equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "schema sha256 equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "HumanModel=1 and goose2/guard1/rows1 at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "frozen equals before for every state digest incl. Rates (writer stopped)",
+      "pass": true
+    },
+    {
+      "assertion": "Rates is volatile (informational, not a permission change)",
+      "pass": true,
+      "detail": {
+        "Rates_counts": [
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "digest_equal_before_frozen": true,
+        "digest_equal_frozen_after": false
+      }
+    },
+    {
+      "assertion": "tunnel.uuid/access.aud hash+mode equal at all stages; .env mode 0600 at all stages (its hash changes once, by the approved key line)",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel/config.yml unchanged through the relay switch",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel/config.yml unchanged through final (no ingress change this task)",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel credential json hash+mode equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "state and backups directory modes 0700 at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "existing 18 backups preserved (hash/mode/bytes); exactly one new backup",
+      "pass": true
+    },
+    {
+      "assertion": "new backup is mode 0600",
+      "pass": true,
+      "detail": {
+        "bytes": 11280,
+        "sha256": "e6b31b28967f5fa205f678e3eff171bef1d3f248b786ba7c3d9d69e0ad8f62be"
+      }
+    },
+    {
+      "assertion": "only relay and migrate containers changed across the switch",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "Postgres container unchanged across switch and final",
+      "pass": true
+    },
+    {
+      "assertion": "final: only relay and migrate changed (cloudflared not restarted)",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "final: the other pre-existing containers (shared services included) unchanged",
+      "pass": true,
+      "detail": {
+        "pre_existing": 113,
+        "unchanged": 111
+      }
+    },
+    {
+      "assertion": "only new containers since baseline are the retained restore fixture and rollback-artifact check",
+      "pass": true
+    },
+    {
+      "assertion": "relay image changed and relay healthy with restarts 0",
+      "pass": true
+    },
+    {
+      "assertion": "shared orca/s8/mcp statuses and host cloudflared PIDs equal at all stages",
+      "pass": true,
+      "detail": {
+        "host_cloudflared_pids": [
+          "2039731"
+        ]
+      }
+    },
+    {
+      "assertion": "listeners 127.0.0.1:8080 and 5432 restored; frozen had only 5432",
+      "pass": true
+    },
+    {
+      "assertion": "no other active DB writer at frozen/after/final",
+      "pass": true
+    },
+    {
+      "assertion": "deployed HEAD 4787e85 clean at before/frozen/after/final (checkout moved by the build step); baseline at 7b4f9bc",
+      "pass": true
+    },
+    {
+      "assertion": "epoch never decreased; stable while writer stopped",
+      "pass": true,
+      "detail": [
+        1627540,
+        1627649,
+        1627651,
+        1627668,
+        1627702
+      ]
+    }
+  ]
+}

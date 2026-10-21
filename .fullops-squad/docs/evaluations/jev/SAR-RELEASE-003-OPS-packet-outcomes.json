@@ -1,0 +1,147 @@
+{
+  "task_key": "SAR-RELEASE-003-OPS",
+  "role": "ops",
+  "attempt": "b742ab63f75f4c77aab6a1a37b6a01b9",
+  "packet_input_sha256": "72bcf3223e1f4a91c7718f7195805cb489c0166a51e5f0ab3aba786e55555eeb",
+  "uncertainty_review": "후보 목록이 partial이다(unknown 7건). 필수 9개는 모두 직접 읽었다(FULLOPS·project·rules는 앞부분과 관련 조항 중심). 비필수 후보 중 설계 문서 3개·business-plan·development.md·calendar_test.go는 읽지 않았다고 no_change로 적었다. 운영 입력은 git diff(compose.yaml, deploy, scripts, db, go.mod)로 직접 확인했다. packet이 예상하지 못한 사실: relay 기동 로그 줄에 캘린더 상태가 없다(지시서가 가정한 상태 줄 없음). 인증 없는 POST /home/calendar/connect의 401(키 없으면 503)을 대체 증거로 썼다. 동적 호출 탐색과 의미 검색은 주장하지 않는다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "하네스 지도 앞 60줄(모드·문서 규칙·책임 분담·비밀 비기록)을 읽었다. 수정 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D13 전문을 읽어 SAR-SCHEDULE-001 인계(키·scope·egress·Testing 7일)를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "현재 운영 상태 2026-10-21 절을 추가하고 SCHEDULE 절의 운영 미반영 문구를 갱신했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-10-20_to_ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "SAR-RELEASE-002-OPS 지시서·완료 보고(1-347줄 중 지시서 본문과 완료 보고 435-442줄)를 읽어 절차를 재사용했다. 분류는 conflict였으나 과제 전제와 충돌하는 내용은 없었다(이전 SHA·ingress는 이번에 해당 없음)."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "지시서 전문을 읽었다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "프로젝트 기준·검증 명령·인증값 비기록 규칙을 읽었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "공통 규칙 0.3.4 적용·충돌 절을 읽었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽었다. 이번 작업은 제품 코드 변경이 없어 해당 조항은 적용하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "비밀값 비기록 조항을 적용했다. 캘린더 키는 서버에서 생성해 값을 출력·기록하지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "lite 레벨과 검증 근거 구분 조항을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "ops 컨텍스트 전문을 읽고 2026-10-21 교훈을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 배포는 설계 변경이 없고 운영 입력 diff는 compose.yaml 한 줄이다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 새 상태 필드는 D13 인계와 git diff로 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 공개 경로는 /home 아래 기존 규칙이라 ingress 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직전 배포 보고 전문과 commands.txt를 읽어 절차를 재사용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D12에 SAR-RELEASE-003 운영 적용 결과 절을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 사업 계획은 배포 절차와 무관하다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 기능과 확인 범위 절을 읽고 운영 SHA·캘린더 문구를 갱신했다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "git diff로 ConfigureGoogle 호출에 KNOWSLINK_CALENDAR_KEY 전달이 추가됐음과 기동 로그 줄에 캘린더 상태가 없음을 확인했다."
+    },
+    {
+      "path": "compose.yaml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "git diff로 relay 환경에 KNOWSLINK_CALENDAR_KEY 한 줄이 추가됐음을 확인하고 서버에서 compose config 길이로 검증했다."
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 개발 절차 문서이며 운영 문서 갱신 대상이 아니다."
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 확인 범위·배포 준비 절을 읽고 갱신했다."
+    },
+    {
+      "path": "internal/relay/calendar_test.go",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "읽지 않았다. 테스트 파일이며 제품 gate는 기존 수락 증거를 재사용한다."
+    }
+  ]
+}
