@@ -48,9 +48,16 @@ RED 근거:
 | `make test` | 원격 | EXIT=0 |
 | integration `go test -race -tags=integration ./internal/relay -skip TestRemoteConsentBrowserReturn` | 원격, 자체 Postgres 컨테이너 | EXIT=0 (`ok internal/relay 166.6s`, FAIL 0) |
 | fixture-compile(`integration,calendarfixture` vet·test -c) | 원격 | EXIT=0 |
-| FullOps lint `--from 18d74dd` | 로컬 | @FLINT@ |
+| FullOps lint `--from 18d74dd` | 로컬, `012549f`의 깨끗한 임시 worktree | ERROR 0 / WARNING 3 / 실행 불가 2, EXIT=1 |
 
 원격 실행은 [remote.py](remote.py)다. DEV 과제의 remote.py를 복사해 `KL_REF`와 integration 실행 필터를 더했다. 완료 SHA의 gate 로그만 이 폴더에 둔다: [lint](631996d3e5363dc4fca57365e641cbf28e23e043-lint.log), [test](631996d3e5363dc4fca57365e641cbf28e23e043-test.log), [integration](631996d3e5363dc4fca57365e641cbf28e23e043-integration.log), [fixture-compile](631996d3e5363dc4fca57365e641cbf28e23e043-fixture-compile.log). SHA256은 [gate-log-sha256.txt](gate-log-sha256.txt), raw 로그 SHA256은 `raw/sha256.txt`다.
+
+FullOps lint 상세:
+
+- 역할 워크트리에는 지시서가 보존하라고 한 기존 미추적 파일(SAR-MOTION-INTRO 증거·`videos/service-intro/`)이 있다. lint.py는 깨끗하지 않은 트리를 거부한다. 그래서 같은 HEAD의 detached 임시 worktree에서 실행하고 지웠다. 출력은 `raw/fullops-lint.txt`.
+- 실행 불가 2: product-lint·product-test. Windows에 `make`가 없다. 같은 명령은 원격 Linux에서 EXIT=0이다. EXIT=1은 이 실행 불가 때문이다.
+- SIZE-001 3건: `calendar.go` 387줄(+6), `calendar_integration_test.go` 458줄(+29), `http.go` 729줄(+10). 기존 큰 파일의 좁은 델타다. 리뷰가 수락한 원래 크기에서 분할하지 않는다.
+- 이후 커밋은 이 보고만 바꾼다.
 
 ## 미검증·남은 일
 
