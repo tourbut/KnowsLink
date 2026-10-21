@@ -1,0 +1,170 @@
+{
+ "task_key": "SAR-PUBLISH-001-D04",
+ "attempt": "b0cfa862fa4241b59e1971229fd3e6ef",
+ "packet_input_sha256": "6d416f5c48e9f86c2352ca6db36df61ff6002a646ffff73f1a71c3123cd803e3",
+ "uncertainty_review": "미확인 4건 중 PLANS.md·module-design.md·ops-guide.md는 이 D04 문서 수정 판정에 쓰지 않았다. service-member-ui.md는 직접 읽고 수정했다. 규칙·exec-plan 문서는 관련 구간 검색으로 확인했고 전문 정독은 주장하지 않는다.",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "운영 모드·finish 계약만 확인했다. D04 문서 변경이라 추가 조치 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "V-01~V-04·D-01 표를 읽고 D-01은 배치도에 반영, V-01~V-03은 링크 모양 한 줄로 반영"
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정본 목록만 확인했다. 제품 코드·검증 명령은 문서 변경이라 쓰지 않음"
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "적용 범위·전달 절을 읽고 지시서의 적용 기준과 맞는지 확인"
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "코드 변경이 없어 적용할 항목 없음"
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "비밀값·권한 변경 없음. 문서에 메일 주소 외 새 개인정보를 쓰지 않음"
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "lite 레벨. 문서 변경은 lint ERROR 0으로 검증"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "SAR-PUBLISH-001 운영 반영 상태 줄만 확인. D04 수정과 무관"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "D04의 다른 원천. 정책 페이지 절이 없어 바꿀 내용이 없음. 잘못 stamp된 변경은 되돌림"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_update",
+   "status": "completed",
+   "reason": "정책 페이지 배치도에 '홈' 추가, 첫페이지 하단에 '홈' 없음 한 줄, V-01~V-03 링크 모양 한 줄, front matter stamp"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "D01 사업 문서. 화면 배치와 무관"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "D02 사람 친구 정본. 정책 페이지 하단 규칙이 없어 바꾸지 않음"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "D04 링크만 있고 정책 페이지 배치 언급 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "D04·정책 페이지 언급 없음 확인"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "51행이 하단에 '홈'을 이미 정한다. 제품 정본은 바꾸지 않고 D04만 맞춤"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "캘린더 제거 안내만 있음. 정책 페이지 배치 언급 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "D04 생성 없음 문장만 있음. 바꿀 내용 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04·정책 페이지 언급 없음 확인"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04·정책 페이지 언급 없음 확인"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04 토큰 구현 기록. 하단 링크 규칙과 충돌 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04 현행 절 위치만 확인. 충돌 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "첫페이지 하단 구성의 기원. 첫페이지에 '홈'이 없다는 이번 기록과 일치"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04 후속 담당 표만 있음. 영향 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04·정책 페이지 언급 없음 확인"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04·정책 페이지 언급 없음 확인"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04·정책 페이지 언급 없음 확인"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "D04·정책 페이지 언급 없음 확인"
+  }
+ ]
+}

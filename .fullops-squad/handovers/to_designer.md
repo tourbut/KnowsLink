@@ -17,7 +17,7 @@ test_level: lite
 
 - 작성일: 2026-10-22
 - From / To: coor → designer
-- 상태: ready
+- 상태: done
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위 / 추가 승인이 필요한 행위: D04 문서 수정과 커밋 / 제품 코드 수정, 운영 서버·운영 env·live Tunnel·Cloud Console·실계정 사용, 정책 문안 변경, force-push
 - 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/designer / fullops/designer
@@ -43,8 +43,8 @@ main 179bdfe8: SAR-PUBLISH-001-DEV(캘린더 제거·/privacy·/terms) 병합, �
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] D-01: `.fullops-squad/docs/design-docs/mockups/service-member-ui.md`의 정책 페이지 하단 배치도 줄을 `개인정보처리방침 · 서비스 약관 · 홈 · 설치·사용 문서 · 맨 위로`로 고친다. 첫페이지 하단에는 '홈'이 없다고 한 줄 적는다.
-- [ ] V-01~V-03 수정 방향(본문 링크 inline, 하단 aria-current 굵게, 설정 링크 gap)이 D04 화면 기준과 다르면 D04에 한 줄로 반영한다. 같으면 바꾸지 않는다.
+- [x] D-01: `.fullops-squad/docs/design-docs/mockups/service-member-ui.md`의 정책 페이지 하단 배치도 줄을 `개인정보처리방침 · 서비스 약관 · 홈 · 설치·사용 문서 · 맨 위로`로 고친다. 첫페이지 하단에는 '홈'이 없다고 한 줄 적는다.
+- [x] V-01~V-03 수정 방향(본문 링크 inline, 하단 aria-current 굵게, 설정 링크 gap)이 D04 화면 기준과 다르면 D04에 한 줄로 반영한다. 같으면 바꾸지 않는다.
 
 소유 파일: D04, 이 인박스.
 
@@ -109,4 +109,14 @@ dev의 V-01~V-03 수정(SAR-PUBLISH-001-FIX)과 병렬이다. dev 수정 뒤 시
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
+- 브랜치 / SHA: fullops/designer / (finish 로그의 완료 SHA 참조)
+- 변경 이유: 시각 검수 D-01. D04 정책 페이지 하단 배치도에 '홈'이 없어 제품 정본(SAR-PUBLISH-001 51행)과 어긋났다.
+- 변경: D04 배치도 줄을 `개인정보처리방침 · 서비스 약관 · 홈 · 설치·사용 문서 · 맨 위로`로 고쳤다. 정책 페이지에만 '홈'이 있고 첫페이지 하단에는 없다고 적었다.
+- 지시와 달라진 판단: V-01~V-03 방향(본문 링크 inline, 하단 aria-current 굵게, 설정 링크 gap 16px)은 D04에 없어 링크 모양 한 줄로 추가했다. 제품 정본 문안은 바꾸지 않았다.
+- 검토 필요: 제품 정본 51행은 '첫페이지와 같은 하단에 … 홈'이라 읽혀 D04의 '첫페이지에 홈 없음'과 표현이 다르다. 실제 화면 기준으로 D04를 맞췄다. coor가 정본 문장 정리 여부를 정한다.
+- 검증: `deliverables.py --stamp --id D04 --path docs/design-docs/mockups/service-member-ui.md --task SAR-PUBLISH-001-D04` 성공. lint 결과는 아래 finish 로그에 남는다. 제품 코드·화면은 바꾸지 않았고 시각 재확인은 하지 않았다.
+- 산출물: D04(service-member-ui.md), `docs/evaluations/jev/SAR-PUBLISH-001-D04-packet-outcomes.json`.
+- 의존성: 코드 변경이 없어 의존성 변경 없음.
+- 남은 일: dev의 V-01~V-03 구현(SAR-PUBLISH-001-FIX) 뒤 시각 재확인은 coor가 별도로 정한다.
+
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
