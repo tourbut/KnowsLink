@@ -115,11 +115,12 @@ D12 ops-guide, D13 transition.
 
 ## 완료 보고
 
-- 브랜치 / SHA: `fullops/ops` / 완료 SHA는 아래 `완료 SHA` 줄(결과 문서 커밋). 배포한 제품은 main `7c6ef3734a38a8f273714aa2915dc2f14f83a7e4`.
+- 브랜치 / SHA: `fullops/ops` / 완료 SHA `6c87f721`(결과 문서 커밋; 앞선 `258df551`은 기록 커밋). 배포한 제품은 main `7c6ef3734a38a8f273714aa2915dc2f14f83a7e4`.
 - 변경 이유: D020 '배포 진행'에 따라 운영 relay를 `4787e85`에서 `7c6ef373`으로 전환했다(D018 캘린더 제거·D017 정책 페이지). 운영 env의 캘린더 키를 지웠고 live ingress에 `/privacy|/terms`를 더했다.
 - 결과: 운영 `7c6ef373`·healthy(restart 0). 캘린더 연결·토큰 0(처음부터 0). 첫 기동 `calendar cleanup` 줄 없음(상태 JSON `Calendars` 없음으로 판정). 운영 env에 캘린더 키 없음. 키 제거 재기동 뒤 정리 줄 없음(idempotent). live `/privacy`·`/terms` 비로그인 200(KO/EN), `/privacy/`·`/privacy/x`·`/terms/` 등 404, `/home/calendar/connect` 404. 중단은 relay 약17초, cloudflared 재시작 1회.
 - 검토 필요(문안과 실제가 다름): **P-03** 백업 문안은 ‘정기 교체·삭제’지만 서버에 자동 정리가 없다(백업 dump 20개가 2026-10-03부터 누적, 14일 초과 6개, WAL archive off). 문안 또는 운영 절차를 정해야 한다. 문안은 고치지 않았다. **P-04** 운영 SMTP 꺼짐(`email login configured=false`) 확인, 이메일 업체 행 생략 유지.
 - 검증한 것: 백업 격리 복원 digest·goose2·guard1·downgrade 거부, 보존 assertion 41개(Rates·Remote.Tokens volatile), 공개 smoke 21개·언어 22개·정책/캘린더 경로, `verify.py local` 4회, `check_public_ingress.py` 전·후. 못 한 것: 실계정 로그인·발송, 브라우저 렌더링, 실제 rollback, Cloud Console.
-- lint: 커밋한 HEAD에서 `lint.py --from 7c6ef373` 결과는 report.md 마지막 절에 적는다. Windows에 `make`가 없어 `make lint`·`make test`는 실행 불가다(직전 OPS와 같다). 제품 코드·의존성 변경 없음(DEP-001 해당 없음: go.mod·go.sum·package.json diff 0).
+- lint: HEAD `6c87f721`에서 `lint.py --from 7c6ef373` ERROR 0·WARNING 0·실행 불가 1(`make lint`; `make test`는 skipped). 처음 `258df551`의 WARNING 1(ops-guide SIZE-001)은 압축으로 해소했다. Windows에 `make`가 없어 `make lint`·`make test`는 실행 불가다(직전 OPS와 같다). 제품 코드·의존성 변경 없음(DEP-001 해당 없음: go.mod·go.sum·package.json diff 0).
+- 임시 자료: `deliverables.py --stamp --path`가 잘못 만든 복사본 `.fullops-squad/.fullops-squad/`(미추적, 삭제 금지 규칙에 따라 보존, 공유 `.git/info/exclude`에 한 줄)을 coor가 지우고 그 줄을 빼 달라. 로컬 원본·서버 작업물 위치는 report.md 끝에 있다.
 - 산출물·로그: [report.md](../docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md)(명령·시각·종료코드, 비밀 값 없음), D12 [ops-guide](../docs/operations/ops-guide.md)·D13 [transition](../docs/operations/transition.md) 갱신.
 - 남은 일: (coor·사용자) Cloud Console: calendar.freebusy scope 제거, Calendar API 비활성화, 브랜딩 홈페이지·`/privacy`·`/terms` URL 등록, 앱 게시. (designer·coor) P-03 문안/운영 절차 결정. (dev) 배포로 낡은 문서 갱신: D11 `user-guide.md` 57·59행(DEV 후보 사용법 → 공개됨), `docs/operations.md` 19–27행(운영 미적용·ingress 후속), `interface-design.md` 345행·`architecture.md` 285행의 `/home/calendar` 기술.
