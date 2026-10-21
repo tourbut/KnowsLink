@@ -245,6 +245,11 @@ func TestEnglishScreensHaveNoKorean(t *testing.T) {
 	for _, name := range []string{"human-home", "human-friends", "human-friend", "human-account", "human-name", "human-new", "human-conversation"} {
 		check(name, renderEN(t, name, human()))
 	}
+	for _, calendar := range []string{"none", "connected", "reconnect"} {
+		v := human()
+		v["Title"], v["Section"], v["Calendar"], v["CalendarGoogle"], v["CalendarReady"] = "설정", "account", calendar, true, true
+		check("human-account-calendar-"+calendar, renderEN(t, "human-account", v))
+	}
 	for _, choice := range append(useChoices, useChoice{ID: ""}) {
 		for _, start := range []string{"first", "continue"} {
 			v := human()

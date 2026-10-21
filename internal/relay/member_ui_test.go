@@ -79,6 +79,14 @@ func memberFixtures() []uiFixture {
 	for _, k := range []string{"Summary", "Body", "Intent", "Hint", "Scope"} {
 		delete(unavailable, k)
 	}
+	// SAR-SCHEDULE-001: a connected member sees the fixed disclosure explanation; an unconnected one gets no decision form.
+	querySummary := []gateField{{"요청 유형", gateKinds["schedule.query"]}, {"확인할 기간", "2026-10-12 10:00:00 KST – 2026-10-12 11:00:00 KST"}, {"시간 단위", "30분"}, {"공개되는 내용", "바쁜 시간대만"}}
+	queryConnected := gate(true, "pending")
+	queryConnected["Calendar"], queryConnected["Scope"], queryConnected["Summary"], queryConnected["FromAgent"] = "connected", calendarGateScope, querySummary, humanAgent{ID: peer.ID, Name: "합성 친구 도우미", Client: supportedClient, Short: peer.Short}
+	queryUnconnected := gate(false, "pending")
+	queryUnconnected["Calendar"], queryUnconnected["Summary"], queryUnconnected["CanDeny"] = "none", querySummary, true
+	queryApproved := gate(false, "approved")
+	queryApproved["Calendar"], queryApproved["Scope"], queryApproved["Summary"] = "connected", calendarGateScope, querySummary
 	return []uiFixture{
 		{"start-google", "start", map[string]any{"Title": "KnowsLink에 로그인", "Google": true, "EmailLogin": false}},
 		{"start-both-problem", "start", map[string]any{"Title": "KnowsLink에 로그인", "Google": true, "EmailLogin": true, "Email": "m@example.test", "Problem": "이메일 주소 형식이 올바르지 않습니다. 이름 없이 주소 하나만 입력하세요."}},
@@ -110,6 +118,9 @@ func memberFixtures() []uiFixture {
 		{"gate-expired", "gate", gate(false, "expired")},
 		{"gate-commit-hint", "gate", commit},
 		{"gate-unavailable", "gate", unavailable},
+		{"gate-query-connected", "gate", queryConnected},
+		{"gate-query-unconnected", "gate", queryUnconnected},
+		{"gate-query-approved", "gate", queryApproved},
 		{"home-no-gates", "home", map[string]any{"Title": "기존 연결", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true, "AgentDetails": agents[:1], "ActiveAgents": 1}},
 		{"receipt-anonymous-limited", "receipt", map[string]any{"Title": "요청 상태 조회", "Problem": limited(exp), "Focus": "receipt-problem", "Unavailable": true, "Anonymous": true}},
 		// The OAuth consent pages reuse memberStyle with their own markup.

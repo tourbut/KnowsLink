@@ -214,7 +214,8 @@ func TestPostgresSafety(t *testing.T) {
 	})
 	t.Run("owner_gate_csrf_binding_and_no_effect", func(t *testing.T) {
 		f := setup(t, pool)
-		receipt := f.send(f.message(firstID, "idempotency-key-01"), "agent_a", "", 200)
+		// A synthetic owner has no calendar, so a schedule.query could only be declined; commit keeps the approve path.
+		receipt := f.send(wire(t, f.private["agent_a"], firstID, "agent_a", "agent_b", "schedule.commit", "idempotency-key-01", "", commitBody(), time.Now().Add(180*time.Second)), "agent_a", "", 200)
 		claim := f.deliver(firstID)
 		h := wire(t, f.private["agent_b"], gateID, "agent_b", "agent_b", "relay.approval.request", "approval-key-0001", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute))
 		f.send(h, "agent_b", "", 403)
@@ -222,7 +223,7 @@ func TestPostgresSafety(t *testing.T) {
 		duplicate := wire(t, f.private["agent_b"], secondID, "agent_b", "agent_b", "relay.approval.request", "approval-key-0002", firstID, map[string]any{"reason": "judgment_required", "request_digest": receipt["digest"]}, time.Now().Add(time.Minute))
 		f.send(duplicate, "agent_b", claim, 409)
 		w := f.request("GET", "/owner/gates/"+gateID, f.tokens["agent_b_owner"], nil, "")
-		if w.Code != 200 || !strings.Contains(w.Body.String(), "granularity_min") || !strings.Contains(w.Body.String(), "대기") || !strings.Contains(w.Body.String(), `value="approve"`) {
+		if w.Code != 200 || !strings.Contains(w.Body.String(), "commitment") || !strings.Contains(w.Body.String(), "대기") || !strings.Contains(w.Body.String(), `value="approve"`) {
 			t.Fatal("verified UI missing")
 		}
 		f.call("GET", "/owner/gates/"+gateID, f.tokens["agent_b"], nil, 401)

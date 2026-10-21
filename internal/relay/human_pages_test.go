@@ -212,6 +212,39 @@ func TestHumanEmptyChoicesOfferRecovery(t *testing.T) {
 	}
 }
 
+// The calendar section of settings (SAR-SCHEDULE-001 SC-01/07): fixed copy in every state, a connect form only for a
+// Google member without a connection, a disconnect form only while connected or reconnecting.
+func TestHumanAccountCalendarStates(t *testing.T) {
+	notice := "친구가 요청하고 내가 승인할 때만, 해당 기간의 바쁜 시간대를 알려 줍니다. 일정 제목·참석자·장소는 공유하지 않습니다."
+	for _, c := range []struct {
+		name, calendar      string
+		google, ready       bool
+		connect, disconnect bool
+		text                string
+	}{
+		{"none-google", "none", true, true, true, false, "빈 시간 조회 권한만 요청합니다"},
+		{"connected", "connected", true, true, false, true, "연결됨 — 바쁜 시간만 확인합니다"},
+		{"reconnect", "reconnect", true, true, true, true, "다시 연결 필요"},
+		{"email-member", "none", false, true, false, false, "Google 계정으로 로그인한 회원만 캘린더를 연결할 수 있습니다."},
+		{"not-ready", "none", true, false, false, false, "캘린더 연결을 준비 중입니다"},
+	} {
+		v := humanPageFixture()
+		v["Title"], v["Section"], v["Calendar"], v["CalendarGoogle"], v["CalendarReady"] = "설정", "account", c.calendar, c.google, c.ready
+		body := renderHumanPage(t, "human-account", v)
+		if !strings.Contains(body, notice) || !strings.Contains(body, c.text) {
+			t.Fatalf("%s: calendar copy missing %q", c.name, c.text)
+		}
+		if strings.Contains(body, `action="/home/calendar/connect"`) != c.connect || strings.Contains(body, `action="/home/calendar/disconnect"`) != c.disconnect {
+			t.Fatalf("%s: forms connect=%v disconnect=%v: %s", c.name, c.connect, c.disconnect, body)
+		}
+		if dir := os.Getenv("KNOWSLINK_UI_FIXTURE_DIR"); dir != "" {
+			if err := os.WriteFile(filepath.Join(dir, "human-account-calendar-"+c.name+".html"), []byte(body), 0o644); err != nil {
+				t.Fatal(err)
+			}
+		}
+	}
+}
+
 func TestHumanGateKeepsVerifiedBodyAndCSRF(t *testing.T) {
 	v := map[string]any{"State": "pending", "From": "agent_a", "To": "agent_b", "Parent": "request-a", "Intent": "schedule.commit", "Exp": "오늘 오후 2:10", "Policy": "owner_gate", "Hint": "<i>합성 참고</i>", "Body": `<script>untrusted</script>`, "Active": true, "CSRF": "synthetic-csrf", "Deny": "/home/gates/gate-a/deny", "Back": "/home/legacy#gates",
 		"Summary": []gateField{{"요청 유형", "일정 확정"}}, "Text": `<a href="https://x.test">free</a>`, "Scope": gateScopes["schedule.commit"]}

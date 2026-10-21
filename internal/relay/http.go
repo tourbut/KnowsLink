@@ -115,7 +115,11 @@ func (s *Service) Handler() http.Handler {
 			if g == nil || g.To != agent {
 				return nil, fault("sender_not_allowed")
 			}
-			return map[string]any{"state": g.State, "consumed": g.Consumed, "parent": g.Parent}, nil
+			v := map[string]any{"state": lookupVisible(g), "consumed": g.Consumed, "parent": g.Parent}
+			if g.Lookup != nil && g.Lookup.State != "" {
+				v["lookup"] = g.Lookup.State
+			}
+			return v, nil
 		})
 		respond(w, result, err)
 	})
@@ -453,7 +457,7 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		return map[string]string{"claim": m.ClaimToken, "policy": policy(m.Receipt.Intent)}, nil
 	case "gate-consume":
 		g := st.Gates[c.ID]
-		if g == nil || g.To != principal || g.State != "approved" || g.Consumed || !now.Before(g.Exp) {
+		if g == nil || g.To != principal || lookupVisible(g) != "approved" || g.Consumed || !now.Before(g.Exp) {
 			return nil, fault("invalid_gate")
 		}
 		m, err := st.parentFor(principal, g.Parent, now)
@@ -464,7 +468,15 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 			return nil, fault("invalid_gate")
 		}
 		g.Consumed = true
-		return map[string]any{"gate_passed": true, "executable": false, "disclosure": false}, nil
+		// The disclosure is the only thing approval enables: the agent must echo it unchanged in its done result.
+		v := map[string]any{"gate_passed": true, "executable": false, "disclosure": false}
+		if g.Lookup != nil {
+			v["lookup"] = g.Lookup.State
+			if g.Lookup.State == "done" && len(g.Lookup.Disclosure) > 0 {
+				v["disclosure"] = json.RawMessage(canonicalRaw(g.Lookup.Disclosure))
+			}
+		}
+		return v, nil
 	case "authorize":
 		m, err := st.parentFor(principal, c.ID, now)
 		if err != nil {
@@ -575,7 +587,18 @@ func (s *Service) gateView(w http.ResponseWriter, r *http.Request, auth ownerAut
 			view["Summary"], view["Text"] = summary, text
 			// A request whose content cannot be confirmed keeps no approve/deny form (3단위 '확인할 수 없습니다').
 			view["Active"] = active && summary != nil
+			view["CanDeny"] = view["Active"]
 			view["Body"], view["Intent"], view["Scope"] = string(body), e.Intent, gateScopes[e.Intent]
+			if e.Intent == "schedule.query" {
+				// Only a connected member can answer; the fixed SAR-SCHEDULE-001 explanation replaces the U5 text then (SC-07).
+				calendar := st.calendarState(owner)
+				view["Calendar"] = calendar
+				if calendar == "connected" {
+					view["Scope"] = calendarGateScope
+				} else {
+					view["Active"] = false
+				}
+			}
 			if e.Render != nil {
 				view["Hint"] = e.Render["hint"]
 			}
@@ -631,7 +654,7 @@ func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 		token, _, back := auth(r)
 		r.Body = http.MaxBytesReader(w, r.Body, 8*1024)
 		parseErr := r.ParseForm()
-		_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
+		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 			owner, err := s.gateOwner(w, st, r, now, auth, r.PostForm.Get("decision") == "deny")
 			if err != nil {
 				return nil, err
@@ -656,6 +679,14 @@ func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 			if decision != "approve" && decision != "deny" {
 				return nil, fault("invalid_schema")
 			}
+			var job *lookupJob
+			if decision == "approve" {
+				// An approval of a schedule.query is one lookup; a member without a connected calendar cannot approve (SC-02/07).
+				e, _ := verifiedGate(st, g, now)
+				if job, err = st.startLookup(g, e, now); err != nil {
+					return nil, err
+				}
+			}
 			h.Receipt.State = "delivered"
 			h.Persisted = true
 			h.Envelope = nil
@@ -664,11 +695,14 @@ func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 			if decision == "approve" {
 				g.State = "approved"
 			}
-			return nil, nil
+			return job, nil
 		})
 		if err != nil {
 			gateError(w, r, back, err)
 			return
+		}
+		if job, ok := value.(*lookupJob); ok && job != nil {
+			s.runLookup(r.Context(), job)
 		}
 		// Both decisions land on the canonical gate page; /deny is POST-only and its GET would end in 405.
 		http.Redirect(w, r, back+"/gates/"+r.PathValue("id"), http.StatusSeeOther)

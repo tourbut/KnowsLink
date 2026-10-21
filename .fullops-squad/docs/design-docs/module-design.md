@@ -2,9 +2,9 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-20
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -338,3 +338,13 @@ Device 단위 검사와 GoogleDeviceHTTP 합성 OAuth/DB 검사가 회원·키 �
 
 시각 검수 자료: `KNOWSLINK_UI_FIXTURE_DIR=<빈 폴더> go test ./internal/relay -run TestMemberUIFixtures`가 합성 데이터의 29개 화면 HTML을 쓴다. 실제 계정·비밀값은 없다. 방법은 [실행 기록](../exec-plans/phases/SAR-SERVICE-UI-001-DEV.md)을 따른다.
 FullOps DESIGN 규칙은 Go 문자열 안의 CSS를 검사하지 않는다. 대신 위 렌더 검사와 Orca 내장 브라우저의 1440·390·320 폭 측정을 사용했다.
+
+## 캘린더 연동 모듈 — SAR-SCHEDULE-001-DEV
+
+- `calendar.go`: D010 설정 `scheduleScope`, `Calendar`·`Lookup` 타입, `sealToken/openToken`(AES-256-GCM), `scheduleAllowed`(수락 시 범위·친구당 횟수), `roundBusy`·`disclosureJSON`(바깥 반올림·클립·병합·canonical), `startLookup`(승인 transaction 안의 lease), `GoogleLogin.freeBusy`(refresh→`freeBusy` POST, 400/401은 `errReconnect`), `Service.runLookup`(lock 밖 최대 3회·8초, 결과 1회 기록), `lookupVisible`, `sweepLookups`, `disconnectCalendar`, `Service.revoke`, `/home/calendar/{connect,disconnect}`.
+- `google.go`: `ConfigureGoogle`에 `calendarKey` 인자. `googleStart(reauth, calendar)`가 calendar attempt에 freebusy scope·offline·include_granted_scopes를 더한다. callback은 scope·refresh token을 확인해 봉인 저장하고 ‘캘린더 연결 완료’를 보인다. `GoogleLogin`의 `freeBusyURL`·`revokeURL`은 합성 제공자가 바꾼다.
+- `store.go`: `State.Calendars`, `Gate.Lookup`, `State.CalendarReady`(런타임 플래그), `policy("schedule.query")` 문구, `sweep→sweepLookups`, `ingest`의 `scheduleAllowed`와 `done` 결과의 disclosure 대조, 결과 수락 뒤 disclosure 삭제.
+- `http.go`: `GET /v1/gates/{id}`의 `lookupVisible`·`lookup`, `gate-consume`의 `lookup`·`disclosure`, `gateView`의 `Calendar` 상태와 문구 선택, `gateDecision` approve의 `startLookup`→commit→`runLookup`.
+- `protocol.go`: `relay.result`의 선택 `disclosure`와 `disclosureShape`. `gate_summary.go`: ‘공개되는 내용’ 행과 `calendarGateScope`. `human_http.go`/`human_pages.go`/`member_pages.go`: 설정 ‘캘린더 연결’ 절, gate 화면 분기, 연결 완료 복귀, `?n=calendar-off` 안내. `i18n_en_*.go`: 영어판.
+- `adapters/src/core.ts`: consume 응답의 disclosure를 `done` 결과로 그대로 보내고 `lookup=failed`는 `failed`. `synthetic.ts`: D010 유효 window.
+- 검사: `calendar_test.go`(반올림·봉인·범위·결과 shape·lease sweep), `calendar_provider_test.go`(합성 Google: code/refresh/revoke/freebusy, 비밀 필드 포함 응답, 철회·장애 토글), `calendar_integration_test.go`(SC-01~08 실제 Postgres), `calendar_browser_fixture_test.go`(태그 `integration && calendarfixture`, tester/designer 격리 fixture).

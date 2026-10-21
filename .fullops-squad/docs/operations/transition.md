@@ -2,13 +2,23 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-20
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## DEV 후보 인계 (2026-10-21, SAR-SCHEDULE-001-DEV) — 운영 연결 전 초안
+
+Google Calendar 빈 시간 조회 연동의 DEV 후보다. 운영에는 반영되지 않았고 실제 Google 계정·Cloud Console·운영 env는 바꾸지 않았다. 운영 연결 전에 coor가 D011(OAuth 앱 게시 상태, `calendar.freebusy` 민감 범위 심사)을 사용자에게 다시 묻는다.
+
+- 환경 변수: 기존 세 Google env에 `KNOWSLINK_CALENDAR_KEY`(base64 32바이트, 예: `openssl rand -base64 32`)를 더한다. 운영 env 정본 `/home/shin/deploy/knowslink-state/.env`(0600)에만 두고 Git·대화·로그에 남기지 않는다. 키가 없으면 relay는 기동하지만 설정의 캘린더 절이 ‘준비 중’이다. 잘못된 값은 기동 실패다. 키를 바꾸거나 잃으면 저장된 모든 연결이 열리지 않으므로 회원이 다시 연결해야 한다(교체 절차는 미정).
+- OAuth scope: 동의 화면에 `https://www.googleapis.com/auth/calendar.freebusy`가 추가로 쓰인다. Cloud Console의 Data Access(scopes)에 이 scope를 등록하고 민감 여부를 확인한다. Testing 상태면 refresh token이 7일 뒤 만료해 연결이 주마다 끊긴다(E6). 로그인 scope `openid email`과 redirect URI는 그대로다. 새 Authorized redirect URI는 필요 없다.
+- egress: 기존 Google discovery/token/JWK에 `https://www.googleapis.com/calendar/v3/freeBusy`와 `https://oauth2.googleapis.com/revoke`가 추가된다.
+- DB migration·새 의존성·public ingress 변경은 없다(`/home/calendar/*`는 기존 `/home(/.*)?` 규칙 안). 상태 JSON에 `Calendars`·`Gate.Lookup`·`GoogleAttempt.Calendar`가 추가되며 이전 상태는 빈 값으로 읽힌다. rollback은 코드만 되돌리면 되고, 남은 `Calendars` 봉인 토큰은 이전 코드가 읽지 않는다. 운영 적용 전 Postgres backup을 받는다.
+- 운영 수락 조건: D011 답 기록 → 실제 Google 계정 1경로(연결·승인 1회·해제) coor 확인 → 로그에 비밀값·바쁨 원본·이메일이 없음 확인. 합성 제공자 통과는 실계정 수락이 아니다(SC-09).
 
 ## DEV 후보 인계 (2026-10-20, SAR-UX-ISSUES-002-LOWS-DEV)
 

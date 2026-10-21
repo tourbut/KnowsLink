@@ -1,0 +1,518 @@
+62a768631081d666e0abaf607e7fa30d3f8aad4620ef69e21b3d1317124c578d
+=== RUN   TestHTTPSlowBodyAndCleanupAdmission
+--- PASS: TestHTTPSlowBodyAndCleanupAdmission (1.63s)
+=== RUN   TestCalendarConnection
+--- PASS: TestCalendarConnection (0.83s)
+=== RUN   TestCalendarApprovalRunsOneLookup
+--- PASS: TestCalendarApprovalRunsOneLookup (1.23s)
+=== RUN   TestCalendarUnconnectedAndCommitStub
+--- PASS: TestCalendarUnconnectedAndCommitStub (1.29s)
+=== RUN   TestCalendarScopeEnforcedAtAccept
+--- PASS: TestCalendarScopeEnforcedAtAccept (0.86s)
+=== RUN   TestCalendarRevocationAndFailureClasses
+=== RUN   TestCalendarRevocationAndFailureClasses/disconnect_ends_pending_without_lookup
+=== RUN   TestCalendarRevocationAndFailureClasses/provider_revocation_marks_reconnect
+2026/10/21 00:26:12 calendar lookup failed
+=== RUN   TestCalendarRevocationAndFailureClasses/outage_fails_after_short_retry_and_keeps_connection
+2026/10/21 00:26:14 calendar lookup failed
+=== RUN   TestCalendarRevocationAndFailureClasses/relationship_revoked_after_approval_discloses_nothing
+=== RUN   TestCalendarRevocationAndFailureClasses/crashed_lookup_lease_fails_closed
+--- PASS: TestCalendarRevocationAndFailureClasses (4.43s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/disconnect_ends_pending_without_lookup (0.74s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/provider_revocation_marks_reconnect (0.72s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/outage_fails_after_short_retry_and_keeps_connection (1.64s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/relationship_revoked_after_approval_discloses_nothing (0.81s)
+    --- PASS: TestCalendarRevocationAndFailureClasses/crashed_lookup_lease_fails_closed (0.51s)
+=== RUN   TestRoundBusyWidensClipsAndMerges
+=== RUN   TestRoundBusyWidensClipsAndMerges/none
+=== RUN   TestRoundBusyWidensClipsAndMerges/inside_one_unit
+=== RUN   TestRoundBusyWidensClipsAndMerges/exact_unit_not_widened
+=== RUN   TestRoundBusyWidensClipsAndMerges/crosses_units_and_window_end
+=== RUN   TestRoundBusyWidensClipsAndMerges/before_window_start
+=== RUN   TestRoundBusyWidensClipsAndMerges/outside_window_dropped
+=== RUN   TestRoundBusyWidensClipsAndMerges/overlap_merged_and_sorted
+--- PASS: TestRoundBusyWidensClipsAndMerges (0.00s)
+    --- PASS: TestRoundBusyWidensClipsAndMerges/none (0.00s)
+    --- PASS: TestRoundBusyWidensClipsAndMerges/inside_one_unit (0.00s)
+    --- PASS: TestRoundBusyWidensClipsAndMerges/exact_unit_not_widened (0.00s)
+    --- PASS: TestRoundBusyWidensClipsAndMerges/crosses_units_and_window_end (0.00s)
+    --- PASS: TestRoundBusyWidensClipsAndMerges/before_window_start (0.00s)
+    --- PASS: TestRoundBusyWidensClipsAndMerges/outside_window_dropped (0.00s)
+    --- PASS: TestRoundBusyWidensClipsAndMerges/overlap_merged_and_sorted (0.00s)
+=== RUN   TestSealedTokenRoundTripAndTamper
+--- PASS: TestSealedTokenRoundTripAndTamper (0.00s)
+=== RUN   TestScheduleScopeBoundaries
+--- PASS: TestScheduleScopeBoundaries (0.02s)
+=== RUN   TestResultDisclosureShape
+--- PASS: TestResultDisclosureShape (0.01s)
+=== RUN   TestLookupVisibilityAndSweep
+--- PASS: TestLookupVisibilityAndSweep (0.00s)
+=== RUN   TestCleanupAdmissionNeedsVerifiedOwnRecord
+--- PASS: TestCleanupAdmissionNeedsVerifiedOwnRecord (0.00s)
+=== RUN   TestRememberKeepsNewestCommit
+--- PASS: TestRememberKeepsNewestCommit (0.00s)
+=== RUN   TestValidCredentialCleanupFlood
+    cleanup_flood_integration_test.go:128: B foreign owner revoke: valid cleanup refused 0/18, slowest 302ms
+    cleanup_flood_integration_test.go:128: B agent no-lease ack: valid cleanup refused 0/18, slowest 323ms
+    cleanup_flood_integration_test.go:128: B own repeated revoke: valid cleanup refused 0/18, slowest 1.016s
+    cleanup_flood_integration_test.go:128: B new work control: valid cleanup refused 0/18, slowest 3.139s
+--- PASS: TestValidCredentialCleanupFlood (71.66s)
+=== RUN   TestCleanupSnapshotAcrossProcessesAndRestart
+--- PASS: TestCleanupSnapshotAcrossProcessesAndRestart (0.28s)
+=== RUN   TestFailedFinishReclaimedAtNextCommit
+--- PASS: TestFailedFinishReclaimedAtNextCommit (4.26s)
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull/stale
+=== RUN   TestCleanupProvenWhileSnapshotStaleAndNewFull/restart
+--- PASS: TestCleanupProvenWhileSnapshotStaleAndNewFull (0.55s)
+    --- PASS: TestCleanupProvenWhileSnapshotStaleAndNewFull/stale (0.28s)
+    --- PASS: TestCleanupProvenWhileSnapshotStaleAndNewFull/restart (0.27s)
+=== RUN   TestOwnerControlNotHeldByOwnAgentAcks
+    cleanup_unit_integration_test.go:144: owner revoke refused 0/18 during its agent's ACK flood
+--- PASS: TestOwnerControlNotHeldByOwnAgentAcks (12.64s)
+=== RUN   TestConnectionResumeAndCodeTail
+=== RUN   TestConnectionResumeAndCodeTail/choices_follow_host_table_and_reading_creates_nothing
+=== RUN   TestConnectionResumeAndCodeTail/repeated_create_and_rate_limit_recovery_make_one_agent
+=== RUN   TestConnectionResumeAndCodeTail/local_stages_cancel_expiry_and_lost_response_keep_keys
+=== RUN   TestConnectionResumeAndCodeTail/device_and_remote_uncertain_results_stay_check_needed
+=== RUN   TestConnectionResumeAndCodeTail/sent_request_tail_is_existence_blind
+=== RUN   TestConnectionResumeAndCodeTail/existing_agent_key_and_friend_survive
+--- PASS: TestConnectionResumeAndCodeTail (2.09s)
+    --- PASS: TestConnectionResumeAndCodeTail/choices_follow_host_table_and_reading_creates_nothing (0.10s)
+    --- PASS: TestConnectionResumeAndCodeTail/repeated_create_and_rate_limit_recovery_make_one_agent (0.09s)
+    --- PASS: TestConnectionResumeAndCodeTail/local_stages_cancel_expiry_and_lost_response_keep_keys (0.51s)
+    --- PASS: TestConnectionResumeAndCodeTail/device_and_remote_uncertain_results_stay_check_needed (0.27s)
+    --- PASS: TestConnectionResumeAndCodeTail/sent_request_tail_is_existence_blind (0.56s)
+    --- PASS: TestConnectionResumeAndCodeTail/existing_agent_key_and_friend_survive (0.16s)
+=== RUN   TestCodeTailKeepsOnlyPlainTails
+--- PASS: TestCodeTailKeepsOnlyPlainTails (0.00s)
+=== RUN   TestConnectGuidePagesRender
+--- PASS: TestConnectGuidePagesRender (0.03s)
+=== RUN   TestPublicAgentHTTP
+=== RUN   TestPublicAgentHTTP/onboarding_owner_isolation_rotation_and_all_revoked_paths
+=== RUN   TestPublicAgentHTTP/same_owner_legacy_refusal_generation_expiry_and_cleanup_budget
+=== RUN   TestPublicAgentHTTP/malformed_connection_requests_spend_anonymous_budget
+=== RUN   TestPublicAgentHTTP/invalid_session_pages_spend_anonymous_budget
+=== RUN   TestPublicAgentHTTP/revoked_record_saturation_concurrency_restart_and_retention
+=== RUN   TestPublicAgentHTTP/concurrent_agent_capacity_and_restart
+=== RUN   TestPublicAgentHTTP/concurrent_completion_cancel_expire_and_reauth
+--- PASS: TestPublicAgentHTTP (4.65s)
+    --- PASS: TestPublicAgentHTTP/onboarding_owner_isolation_rotation_and_all_revoked_paths (1.10s)
+    --- PASS: TestPublicAgentHTTP/same_owner_legacy_refusal_generation_expiry_and_cleanup_budget (0.67s)
+    --- PASS: TestPublicAgentHTTP/malformed_connection_requests_spend_anonymous_budget (0.62s)
+    --- PASS: TestPublicAgentHTTP/invalid_session_pages_spend_anonymous_budget (0.56s)
+    --- PASS: TestPublicAgentHTTP/revoked_record_saturation_concurrency_restart_and_retention (0.72s)
+    --- PASS: TestPublicAgentHTTP/concurrent_agent_capacity_and_restart (0.32s)
+    --- PASS: TestPublicAgentHTTP/concurrent_completion_cancel_expire_and_reauth (0.66s)
+=== RUN   TestConnectionApprovalAndKeyCredentials
+--- PASS: TestConnectionApprovalAndKeyCredentials (0.02s)
+=== RUN   TestConnectionFailureExpiryAndCancellation
+=== RUN   TestConnectionFailureExpiryAndCancellation/cancelled
+=== RUN   TestConnectionFailureExpiryAndCancellation/expired
+=== RUN   TestConnectionFailureExpiryAndCancellation/consumed
+--- PASS: TestConnectionFailureExpiryAndCancellation (0.01s)
+    --- PASS: TestConnectionFailureExpiryAndCancellation/cancelled (0.00s)
+    --- PASS: TestConnectionFailureExpiryAndCancellation/expired (0.00s)
+    --- PASS: TestConnectionFailureExpiryAndCancellation/consumed (0.00s)
+=== RUN   TestAgentAndPairCapacity
+--- PASS: TestAgentAndPairCapacity (0.00s)
+=== RUN   TestRevokedRecordRetention
+--- PASS: TestRevokedRecordRetention (0.04s)
+=== RUN   TestMemberPagesShowNextSteps
+--- PASS: TestMemberPagesShowNextSteps (0.01s)
+=== RUN   TestGoogleDeviceHTTP
+--- PASS: TestGoogleDeviceHTTP (0.73s)
+=== RUN   TestDeviceGoogleConnection
+--- PASS: TestDeviceGoogleConnection (0.02s)
+=== RUN   TestDeviceCapacityRetention
+--- PASS: TestDeviceCapacityRetention (0.03s)
+=== RUN   TestDeviceFailureBoundaries
+--- PASS: TestDeviceFailureBoundaries (0.02s)
+=== RUN   TestDeviceConsentTemplate
+--- PASS: TestDeviceConsentTemplate (0.00s)
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/retry
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/command_error
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/transaction_error
+=== RUN   TestConnectionResponseKeepsRetryAndErrorPriority/success
+--- PASS: TestConnectionResponseKeepsRetryAndErrorPriority (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/retry (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/command_error (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/transaction_error (0.00s)
+    --- PASS: TestConnectionResponseKeepsRetryAndErrorPriority/success (0.00s)
+=== RUN   TestFriendRerequestReusesOneRow
+=== RUN   TestFriendRerequestReusesOneRow/existing_cancelled
+=== RUN   TestFriendRerequestReusesOneRow/unknown
+=== RUN   TestFriendRerequestReusesOneRow/blocked_expired
+=== RUN   TestFriendRerequestReusesOneRow/blocked_cancelled
+=== RUN   TestFriendRerequestReusesOneRow/receive_limit
+=== RUN   TestFriendRerequestReusesOneRow/receive_limit_reversed
+=== RUN   TestFriendRerequestReusesOneRow/existing_expired
+=== RUN   TestFriendRerequestReusesOneRow/own_code
+=== RUN   TestFriendRerequestReusesOneRow/blocked_then_unblocked
+--- PASS: TestFriendRerequestReusesOneRow (0.08s)
+    --- PASS: TestFriendRerequestReusesOneRow/existing_cancelled (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/unknown (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/blocked_expired (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/blocked_cancelled (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/receive_limit (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/receive_limit_reversed (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/existing_expired (0.01s)
+    --- PASS: TestFriendRerequestReusesOneRow/own_code (0.00s)
+    --- PASS: TestFriendRerequestReusesOneRow/blocked_then_unblocked (0.00s)
+=== RUN   TestFriendBlockedRequestCountsTowardSentLimit
+--- PASS: TestFriendBlockedRequestCountsTowardSentLimit (0.00s)
+=== RUN   TestFriendLegacyPlaceholderAndStaleUnblock
+--- PASS: TestFriendLegacyPlaceholderAndStaleUnblock (0.00s)
+=== RUN   TestFriendBlockOnHeldRequestKeepsRequesterPending
+--- PASS: TestFriendBlockOnHeldRequestKeepsRequesterPending (0.00s)
+=== RUN   TestFriendRepeatWithOpenLegacyPlaceholderIsNoop
+--- PASS: TestFriendRepeatWithOpenLegacyPlaceholderIsNoop (0.00s)
+=== RUN   TestApprovalSummaryBoundaries
+=== RUN   TestApprovalSummaryBoundaries/query_summary_matches_verified_body
+=== RUN   TestApprovalSummaryBoundaries/commit_free_text_is_separate_and_inert
+=== RUN   TestApprovalSummaryBoundaries/unverifiable_states_offer_no_decision
+=== RUN   TestApprovalSummaryBoundaries/other_owner_stale_form_and_double_click
+2026/10/21 00:27:56 calendar lookup failed
+--- PASS: TestApprovalSummaryBoundaries (3.56s)
+    --- PASS: TestApprovalSummaryBoundaries/query_summary_matches_verified_body (0.68s)
+    --- PASS: TestApprovalSummaryBoundaries/commit_free_text_is_separate_and_inert (0.56s)
+    --- PASS: TestApprovalSummaryBoundaries/unverifiable_states_offer_no_decision (1.06s)
+    --- PASS: TestApprovalSummaryBoundaries/other_owner_stale_form_and_double_click (1.27s)
+=== RUN   TestGoogleHTTP
+--- PASS: TestGoogleHTTP (0.70s)
+=== RUN   TestGoogleTokenVerification
+=== RUN   TestGoogleTokenVerification/valid
+=== RUN   TestGoogleTokenVerification/iss
+=== RUN   TestGoogleTokenVerification/aud
+=== RUN   TestGoogleTokenVerification/exp
+=== RUN   TestGoogleTokenVerification/nonce
+=== RUN   TestGoogleTokenVerification/email_verified
+=== RUN   TestGoogleTokenVerification/email
+=== RUN   TestGoogleTokenVerification/sub
+=== RUN   TestGoogleTokenVerification/iat
+=== RUN   TestGoogleTokenVerification/future
+=== RUN   TestGoogleTokenVerification/stale
+=== RUN   TestGoogleTokenVerification/unsigned
+=== RUN   TestGoogleTokenVerification/signature
+--- PASS: TestGoogleTokenVerification (0.17s)
+    --- PASS: TestGoogleTokenVerification/valid (0.01s)
+    --- PASS: TestGoogleTokenVerification/iss (0.01s)
+    --- PASS: TestGoogleTokenVerification/aud (0.01s)
+    --- PASS: TestGoogleTokenVerification/exp (0.01s)
+    --- PASS: TestGoogleTokenVerification/nonce (0.01s)
+    --- PASS: TestGoogleTokenVerification/email_verified (0.01s)
+    --- PASS: TestGoogleTokenVerification/email (0.00s)
+    --- PASS: TestGoogleTokenVerification/sub (0.00s)
+    --- PASS: TestGoogleTokenVerification/iat (0.00s)
+    --- PASS: TestGoogleTokenVerification/future (0.00s)
+    --- PASS: TestGoogleTokenVerification/stale (0.00s)
+    --- PASS: TestGoogleTokenVerification/unsigned (0.00s)
+    --- PASS: TestGoogleTokenVerification/signature (0.01s)
+=== RUN   TestGoogleIdentityContinuityAndReauth
+--- PASS: TestGoogleIdentityContinuityAndReauth (0.00s)
+=== RUN   TestGoogleAttemptAndConfiguration
+--- PASS: TestGoogleAttemptAndConfiguration (0.00s)
+=== RUN   TestHumanPostgres
+--- PASS: TestHumanPostgres (3.83s)
+=== RUN   TestHumanLegacyPostgres
+--- PASS: TestHumanLegacyPostgres (0.05s)
+=== RUN   TestHumanNamesAndFriendCodePostgres
+--- PASS: TestHumanNamesAndFriendCodePostgres (0.63s)
+=== RUN   TestVisibleAgentNamesOnlyOwnerAndCurrentFriend
+--- PASS: TestVisibleAgentNamesOnlyOwnerAndCurrentFriend (0.01s)
+=== RUN   TestLegacyAgentLabelsWidenCollidingDiscriminators
+--- PASS: TestLegacyAgentLabelsWidenCollidingDiscriminators (0.00s)
+=== RUN   TestFriendViewsNeverCreateRelationships
+--- PASS: TestFriendViewsNeverCreateRelationships (0.01s)
+=== RUN   TestFriendCodeRotationKeepsReceivedRequests
+--- PASS: TestFriendCodeRotationKeepsReceivedRequests (0.00s)
+=== RUN   TestFriendPagesShareOwnCodeAndKeepRequestInput
+--- PASS: TestFriendPagesShareOwnCodeAndKeepRequestInput (0.00s)
+=== RUN   TestGateNamesEndpointsWithinAuthority
+--- PASS: TestGateNamesEndpointsWithinAuthority (0.00s)
+=== RUN   TestHumanPagesRenderAndEscape
+=== RUN   TestHumanPagesRenderAndEscape/human-home
+=== RUN   TestHumanPagesRenderAndEscape/human-friends
+=== RUN   TestHumanPagesRenderAndEscape/human-friend
+=== RUN   TestHumanPagesRenderAndEscape/human-agents
+=== RUN   TestHumanPagesRenderAndEscape/human-account
+=== RUN   TestHumanPagesRenderAndEscape/human-name
+=== RUN   TestHumanPagesRenderAndEscape/human-new
+=== RUN   TestHumanPagesRenderAndEscape/human-conversation
+--- PASS: TestHumanPagesRenderAndEscape (0.01s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-home (0.00s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-friends (0.00s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-friend (0.00s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-agents (0.00s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-account (0.00s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-name (0.00s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-new (0.00s)
+    --- PASS: TestHumanPagesRenderAndEscape/human-conversation (0.00s)
+=== RUN   TestHumanFriendActionsMatchRequestDirection
+--- PASS: TestHumanFriendActionsMatchRequestDirection (0.00s)
+=== RUN   TestHumanConversationPinsTargetAndReadOnlyBoundary
+--- PASS: TestHumanConversationPinsTargetAndReadOnlyBoundary (0.01s)
+=== RUN   TestHumanConversationKeepsDetailsAndDisambiguatesNames
+--- PASS: TestHumanConversationKeepsDetailsAndDisambiguatesNames (0.00s)
+=== RUN   TestHumanEmptyChoicesOfferRecovery
+--- PASS: TestHumanEmptyChoicesOfferRecovery (0.00s)
+=== RUN   TestHumanAccountCalendarStates
+--- PASS: TestHumanAccountCalendarStates (0.00s)
+=== RUN   TestHumanGateKeepsVerifiedBodyAndCSRF
+--- PASS: TestHumanGateKeepsVerifiedBodyAndCSRF (0.00s)
+=== RUN   TestHumanAgentNameRecoveryAndSelfConsent
+--- PASS: TestHumanAgentNameRecoveryAndSelfConsent (0.00s)
+=== RUN   TestHumanNamesAndIdentity
+--- PASS: TestHumanNamesAndIdentity (0.00s)
+=== RUN   TestHumanAgentListsKeepOwnerAndFriendBoundaries
+--- PASS: TestHumanAgentListsKeepOwnerAndFriendBoundaries (0.00s)
+=== RUN   TestHumanFriendTransitionsAndDiscovery
+--- PASS: TestHumanFriendTransitionsAndDiscovery (0.01s)
+=== RUN   TestHumanConversationLifetimeReplayAndRevocation
+--- PASS: TestHumanConversationLifetimeReplayAndRevocation (0.01s)
+=== RUN   TestHumanLegacyMigrationAndExecutionBoundary
+--- PASS: TestHumanLegacyMigrationAndExecutionBoundary (0.01s)
+=== RUN   TestHumanGateRevocationAndReaccept
+=== RUN   TestHumanGateRevocationAndReaccept/remove
+=== RUN   TestHumanGateRevocationAndReaccept/block
+=== RUN   TestHumanGateRevocationAndReaccept/key
+=== RUN   TestHumanGateRevocationAndReaccept/member
+--- PASS: TestHumanGateRevocationAndReaccept (0.06s)
+    --- PASS: TestHumanGateRevocationAndReaccept/remove (0.02s)
+    --- PASS: TestHumanGateRevocationAndReaccept/block (0.01s)
+    --- PASS: TestHumanGateRevocationAndReaccept/key (0.02s)
+    --- PASS: TestHumanGateRevocationAndReaccept/member (0.02s)
+=== RUN   TestHumanFriendPrivacyAndCapacity
+--- PASS: TestHumanFriendPrivacyAndCapacity (0.01s)
+=== RUN   TestHumanRemoteOwnerAndAgentAuthorship
+--- PASS: TestHumanRemoteOwnerAndAgentAuthorship (0.01s)
+=== RUN   TestTranslationCoversTemplates
+--- PASS: TestTranslationCoversTemplates (0.09s)
+=== RUN   TestTranslationCoversGoText
+--- PASS: TestTranslationCoversGoText (0.20s)
+=== RUN   TestEnglishScreensHaveNoKorean
+--- PASS: TestEnglishScreensHaveNoKorean (1.20s)
+=== RUN   TestComposedHandlerTextTranslates
+--- PASS: TestComposedHandlerTextTranslates (0.00s)
+=== RUN   TestHumanClockKeepsInstantAcrossLanguages
+--- PASS: TestHumanClockKeepsInstantAcrossLanguages (0.00s)
+=== RUN   TestLanguageChoiceOrderAndLink
+--- PASS: TestLanguageChoiceOrderAndLink (0.00s)
+=== RUN   TestSavedLanguageReplacesBrowserLinks
+--- PASS: TestSavedLanguageReplacesBrowserLinks (0.01s)
+=== RUN   TestAdmissionRefusalsFollowBrowserLanguage
+--- PASS: TestAdmissionRefusalsFollowBrowserLanguage (0.05s)
+=== RUN   TestLanguagePartsAndMarkers
+--- PASS: TestLanguagePartsAndMarkers (0.00s)
+=== RUN   TestEmailIdentity
+=== RUN   TestEmailIdentity/verified_signup_home_and_continuity
+=== RUN   TestEmailIdentity/concurrent_first_signup_and_one_use_code
+=== RUN   TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives
+=== RUN   TestEmailIdentity/send_failure_limits_and_csrf
+2026/10/21 00:28:04 verification mail not sent
+2026/10/21 00:28:04 verification mail not sent
+=== RUN   TestEmailIdentity/refused_principal_does_not_spend_shared_rate
+=== RUN   TestEmailIdentity/member_gate_isolation_and_decision
+2026/10/21 00:28:14 calendar lookup failed
+=== RUN   TestEmailIdentity/member_gate_deny_form_returns_to_result
+--- PASS: TestEmailIdentity (11.42s)
+    --- PASS: TestEmailIdentity/verified_signup_home_and_continuity (0.37s)
+    --- PASS: TestEmailIdentity/concurrent_first_signup_and_one_use_code (0.17s)
+    --- PASS: TestEmailIdentity/logout_all_reauth_expiry_and_agent_credential_survives (0.65s)
+    --- PASS: TestEmailIdentity/send_failure_limits_and_csrf (0.73s)
+    --- PASS: TestEmailIdentity/refused_principal_does_not_spend_shared_rate (7.89s)
+    --- PASS: TestEmailIdentity/member_gate_isolation_and_decision (0.98s)
+    --- PASS: TestEmailIdentity/member_gate_deny_form_returns_to_result (0.62s)
+=== RUN   TestNormalizeEmail
+--- PASS: TestNormalizeEmail (0.00s)
+=== RUN   TestRollingWindowBoundary
+--- PASS: TestRollingWindowBoundary (0.00s)
+=== RUN   TestSendLimits
+--- PASS: TestSendLimits (0.01s)
+=== RUN   TestCodeVerificationAndMembers
+--- PASS: TestCodeVerificationAndMembers (0.00s)
+=== RUN   TestSessionLifetime
+--- PASS: TestSessionLifetime (0.00s)
+=== RUN   TestSMTPMailer
+--- PASS: TestSMTPMailer (0.00s)
+=== RUN   TestRatePrincipalIsolation
+--- PASS: TestRatePrincipalIsolation (0.05s)
+=== RUN   TestRateStateBoundedUnderRotation
+--- PASS: TestRateStateBoundedUnderRotation (0.75s)
+=== RUN   TestPostgresSafety
+=== RUN   TestPostgresSafety/auth_first_atomic_replay_and_rollback
+=== RUN   TestPostgresSafety/last_lease_ack_and_shared_claim_restart
+=== RUN   TestPostgresSafety/owner_gate_csrf_binding_and_no_effect
+=== RUN   TestPostgresSafety/unpair_generation_expiry_max_attempts_and_clock
+=== RUN   TestPostgresSafety/agent_cannot_process_human_delivery
+=== RUN   TestPostgresSafety/legacy_unrouted_claim_parent_boundaries
+=== RUN   TestPostgresSafety/rotation_pop_and_key_reassignment
+PASS: isolated Postgres safety invariants
+--- PASS: TestPostgresSafety (4.42s)
+    --- PASS: TestPostgresSafety/auth_first_atomic_replay_and_rollback (0.80s)
+    --- PASS: TestPostgresSafety/last_lease_ack_and_shared_claim_restart (0.66s)
+    --- PASS: TestPostgresSafety/owner_gate_csrf_binding_and_no_effect (0.81s)
+    --- PASS: TestPostgresSafety/unpair_generation_expiry_max_attempts_and_clock (0.53s)
+    --- PASS: TestPostgresSafety/agent_cannot_process_human_delivery (0.48s)
+    --- PASS: TestPostgresSafety/legacy_unrouted_claim_parent_boundaries (0.86s)
+    --- PASS: TestPostgresSafety/rotation_pop_and_key_reassignment (0.28s)
+=== RUN   TestGateFailureStates
+=== RUN   TestGateFailureStates/denied
+=== RUN   TestGateFailureStates/expired
+=== RUN   TestGateFailureStates/revoked
+=== RUN   TestGateFailureStates/unavailable
+--- PASS: TestGateFailureStates (1.87s)
+    --- PASS: TestGateFailureStates/denied (0.47s)
+    --- PASS: TestGateFailureStates/expired (0.47s)
+    --- PASS: TestGateFailureStates/revoked (0.45s)
+    --- PASS: TestGateFailureStates/unavailable (0.48s)
+=== RUN   TestApprovalAndResultInstanceBinding
+--- PASS: TestApprovalAndResultInstanceBinding (0.91s)
+=== RUN   TestPendingAndConcurrentAccept
+--- PASS: TestPendingAndConcurrentAccept (0.46s)
+=== RUN   TestLandingSessionAndLoginRecovery
+2026/10/21 00:28:23 verification mail not sent
+--- PASS: TestLandingSessionAndLoginRecovery (0.42s)
+=== RUN   TestLandingConfiguredLoginAndPublicContent
+=== RUN   TestLandingConfiguredLoginAndPublicContent/google
+=== RUN   TestLandingConfiguredLoginAndPublicContent/both
+=== RUN   TestLandingConfiguredLoginAndPublicContent/email
+=== RUN   TestLandingConfiguredLoginAndPublicContent/none
+--- PASS: TestLandingConfiguredLoginAndPublicContent (0.01s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/google (0.00s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/both (0.00s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/email (0.00s)
+    --- PASS: TestLandingConfiguredLoginAndPublicContent/none (0.00s)
+=== RUN   TestLanguagePreferencePostgres
+--- PASS: TestLanguagePreferencePostgres (1.08s)
+=== RUN   TestLegacyClaimsCannotReachParentBoundaries
+--- PASS: TestLegacyClaimsCannotReachParentBoundaries (0.04s)
+=== RUN   TestMemberUIFixtures
+--- PASS: TestMemberUIFixtures (0.07s)
+=== RUN   TestLegacyMemberPageDoesNotCreateRelationships
+--- PASS: TestLegacyMemberPageDoesNotCreateRelationships (0.00s)
+=== RUN   TestSaturationGuidance
+--- PASS: TestSaturationGuidance (0.00s)
+=== RUN   TestRelationshipPolicy
+--- PASS: TestRelationshipPolicy (0.00s)
+=== RUN   TestFrozenParsingAndSigning
+--- PASS: TestFrozenParsingAndSigning (0.01s)
+=== RUN   TestFrozenFieldLimits
+--- PASS: TestFrozenFieldLimits (0.05s)
+=== RUN   TestPublicNodeProcesses
+    public_messages_integration_test.go:90: {"state":"public_node_process_roundtrip_pass","request":"01a159ed-9c7f-7c65-bebb-17291c24bce6","received":"01a159ed-9c7f-7c65-bebb-17291c24bce6","reply":"01a159ed-9e2f-7a20-971d-389172cbe8cf","replyReceived":"01a159ed-9e2f-7a20-971d-389172cbe8cf","actualGrok":"unverified","actualDadot":"unverified"}
+--- PASS: TestPublicNodeProcesses (2.58s)
+=== RUN   TestPublicMessageHTTPBoundaries
+--- PASS: TestPublicMessageHTTPBoundaries (2.31s)
+=== RUN   TestPublicHTTPAdmissionAndGateSafety
+--- PASS: TestPublicHTTPAdmissionAndGateSafety (0.61s)
+=== RUN   TestSharedMessageCapacityHTTP
+--- PASS: TestSharedMessageCapacityHTTP (2.61s)
+=== RUN   TestSharedExecutionClaimHTTP
+--- PASS: TestSharedExecutionClaimHTTP (1.00s)
+=== RUN   TestHTTPConcurrencyAcrossInstances
+--- PASS: TestHTTPConcurrencyAcrossInstances (0.69s)
+=== RUN   TestPublicTextWire
+--- PASS: TestPublicTextWire (0.03s)
+=== RUN   TestPublicTextRoundtripAndCurrentAuth
+--- PASS: TestPublicTextRoundtripAndCurrentAuth (0.02s)
+=== RUN   TestPublicTextTTLAndLeaseFailures
+--- PASS: TestPublicTextTTLAndLeaseFailures (0.01s)
+=== RUN   TestSharedCapacitiesAndCleanupClassification
+--- PASS: TestSharedCapacitiesAndCleanupClassification (2.56s)
+=== RUN   TestMemberReceiptView
+--- PASS: TestMemberReceiptView (0.00s)
+=== RUN   TestReceiptDraftIsolationAndBounds
+=== RUN   TestReceiptDraftIsolationAndBounds/same-member-relogin
+=== RUN   TestReceiptDraftIsolationAndBounds/other-member
+=== RUN   TestReceiptDraftIsolationAndBounds/other-member-old-url
+=== RUN   TestReceiptDraftIsolationAndBounds/edit
+=== RUN   TestReceiptDraftIsolationAndBounds/back
+=== RUN   TestReceiptDraftIsolationAndBounds/foreign-agent
+=== RUN   TestReceiptDraftIsolationAndBounds/oversized
+=== RUN   TestReceiptDraftIsolationAndBounds/control
+--- PASS: TestReceiptDraftIsolationAndBounds (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/same-member-relogin (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/other-member (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/other-member-old-url (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/edit (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/back (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/foreign-agent (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/oversized (0.00s)
+    --- PASS: TestReceiptDraftIsolationAndBounds/control (0.00s)
+=== RUN   TestReceiptSelectorDistinguishesCollidingNames
+--- PASS: TestReceiptSelectorDistinguishesCollidingNames (0.00s)
+=== RUN   TestReceiptFormRecoveryFixtures
+=== RUN   TestReceiptFormRecoveryFixtures/first
+=== RUN   TestReceiptFormRecoveryFixtures/invalid
+=== RUN   TestReceiptFormRecoveryFixtures/unavailable
+=== RUN   TestReceiptFormRecoveryFixtures/limited
+=== RUN   TestReceiptFormRecoveryFixtures/success
+=== RUN   TestReceiptFormRecoveryFixtures/revoked
+--- PASS: TestReceiptFormRecoveryFixtures (0.02s)
+    --- PASS: TestReceiptFormRecoveryFixtures/first (0.00s)
+    --- PASS: TestReceiptFormRecoveryFixtures/invalid (0.00s)
+    --- PASS: TestReceiptFormRecoveryFixtures/unavailable (0.00s)
+    --- PASS: TestReceiptFormRecoveryFixtures/limited (0.00s)
+    --- PASS: TestReceiptFormRecoveryFixtures/success (0.00s)
+    --- PASS: TestReceiptFormRecoveryFixtures/revoked (0.00s)
+=== RUN   TestReceiptRecoveryHTTP
+--- PASS: TestReceiptRecoveryHTTP (0.82s)
+=== RUN   TestRemoteExhaustedLeaseWakesNewArrival
+--- PASS: TestRemoteExhaustedLeaseWakesNewArrival (0.01s)
+=== RUN   TestRemoteClaimsRecheckCurrentAuthority
+--- PASS: TestRemoteClaimsRecheckCurrentAuthority (0.00s)
+=== RUN   TestRemoteOAuthHTTP
+--- PASS: TestRemoteOAuthHTTP (1.34s)
+=== RUN   TestRemoteOAuthIsolationAndRefresh
+--- PASS: TestRemoteOAuthIsolationAndRefresh (0.00s)
+=== RUN   TestRemoteRefreshReplayRevokesOnlyVerifiedFamily
+--- PASS: TestRemoteRefreshReplayRevokesOnlyVerifiedFamily (0.00s)
+=== RUN   TestRemoteGoogleBindingAndSignedInbox
+--- PASS: TestRemoteGoogleBindingAndSignedInbox (0.02s)
+=== RUN   TestRemoteDeliveryClaimsRetryAndRevocation
+--- PASS: TestRemoteDeliveryClaimsRetryAndRevocation (0.01s)
+=== RUN   TestRemoteWebhookSignatureAndSSRF
+--- PASS: TestRemoteWebhookSignatureAndSSRF (0.00s)
+=== RUN   TestRemoteAdmissionAndEventVersions
+--- PASS: TestRemoteAdmissionAndEventVersions (0.00s)
+=== RUN   TestRemoteSubscriptionIdentityAndExpiry
+--- PASS: TestRemoteSubscriptionIdentityAndExpiry (0.00s)
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=true
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=true
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=true
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=false
+=== RUN   TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=true
+--- PASS: TestSweepExpiryPreservesRetentionAndRevocation (0.02s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/queued/revoked=true (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/leased/revoked=true (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/delivered/revoked=true (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=false (0.00s)
+    --- PASS: TestSweepExpiryPreservesRetentionAndRevocation/failed:revoked/revoked=true (0.00s)
+=== RUN   TestTrialHTTP
+--- PASS: TestTrialHTTP (1.02s)
+=== RUN   TestTrialForeignAllowlistRevokesLease
+--- PASS: TestTrialForeignAllowlistRevokesLease (0.30s)
+=== RUN   TestTrialMessageSafety
+--- PASS: TestTrialMessageSafety (0.05s)
+=== RUN   TestTrialSchemaAndConfiguration
+--- PASS: TestTrialSchemaAndConfiguration (0.02s)
+=== RUN   TestTextEventsHTTP
+--- PASS: TestTextEventsHTTP (15.63s)
+=== RUN   TestTextEventSelectionAndAuthorization
+--- PASS: TestTextEventSelectionAndAuthorization (0.00s)
+=== RUN   TestTextEventSharedBudgetAndExpiry
+--- PASS: TestTextEventSharedBudgetAndExpiry (0.00s)
+PASS
+ok  	github.com/tourbut/KnowsLink/internal/relay	172.459s
+2026/10/21 00:25:58 SQL migrations completed
+
+EXIT=0

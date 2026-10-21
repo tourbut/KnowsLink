@@ -1,9 +1,9 @@
 ---
 title: dev 컨텍스트
 status: draft
-updated: 2026-10-20
+updated: 2026-10-21
 owner: dev
-tasks: [SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-REPO-DOCS-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LOWS-DEV]
+tasks: [SAR-SCHEDULE-001-DEV, SAR-CODEX-HOOK-QUOTE-001-DEV, SAR-SERVICE-UI-001-FIX-DEV, SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-REPO-DOCS-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LOWS-DEV]
 summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지의 전문은 archive에 보관
 ---
 
@@ -64,3 +64,5 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 2026-10-20 SAR-UX-ISSUES-002-CONNECT-DEV: 연결 재개 상태는 표시 전용 helper(`connect_guide.go`)가 저장 상태만으로 계산하고, 관측할 수 없는 앱 설치·세션 연결·온라인은 ‘앱에서 확인 필요’로 둔다. 존재 비노출 표시는 저장 모양뿐 아니라 상대의 차단·반복 요청 뒤 화면까지 같은 모양인지 확인한다. Python `write_text`는 Windows에서 CRLF로 쓰므로 바이트로 쓴다. [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-CONNECT-DEV-test/report.md).
 
 - 2026-10-20 SAR-UX-ISSUES-002-LOWS-DEV: 응답 내부 표식은 render 한 곳이 아니라 진입 미들웨어의 ResponseWriter 래퍼(`Unwrap` 포함)에서 지워야 redirect·JSON까지 막는다. 보류 행처럼 상태를 바꿔 숨긴 행은 표시뿐 아니라 방향·결정 판정(block)도 이전 모습과 같게 맞춘다. 수정 전 실패는 원격 clone 사본에서 제품 파일만 기준 SHA로 되돌려 확인한다. [DEV 보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LOWS-DEV-test/report.md).
+
+- 2026-10-21 SAR-SCHEDULE-001-DEV: 외부 조회는 lock 안에서 lease(`Gate.Lookup.Started`)만 잡고 lock 밖에서 한 번 실행한 뒤 두 번째 transaction이 결과를 1회 기록한다. 재시작은 lease 만료로 `failed`에 닫고 재조회하지 않는다. agent에는 lookup이 끝나기 전까지 `pending`으로 보여 중간 상태를 노출하지 않는다. 결과 공개는 서버 canonical JSON과 바이트 동일한 echo만 수락해 agent가 필드를 더하지 못한다. 같은 Google project의 refresh token을 revoke하면 그 project의 모든 grant가 끊기므로 재연결(덮어쓰기) 때는 revoke하지 않는다. Makefile의 gofmt는 `$(go env GOROOT)/bin/gofmt`이며 PATH의 다른 Go 버전 gofmt와 정렬 결과가 다를 수 있다. [DEV 보고](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md).

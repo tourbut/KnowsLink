@@ -421,6 +421,13 @@ var enMember = map[string]string{
 	"연결 요청이 만료되었거나 이미 처리되었습니다. 이전 요청은 다시 사용할 수 없습니다.": "The connection request has expired or was already handled. The previous request cannot be used again.",
 	"연결을 시작한 앱에서 KnowsLink 연결을 다시 시작하세요.":             "Start the KnowsLink connection again from the app that started it.",
 
+	// google.go calendar consent
+	"캘린더 연결 완료": "Calendar connected",
+	"캘린더를 연결했습니다. 친구의 요청을 승인할 때만 그 기간의 바쁜 시간대를 한 번 공유합니다.": "Your calendar is connected. Only when you approve a friend's request are your busy time slots for that period shared, once.",
+	"설정으로 돌아가기": "Back to settings",
+	"캘린더 권한이 허용되지 않아 연결하지 않았습니다. 설정에서 다시 시도하세요.": "Calendar access was not granted, so nothing was connected. Try again from settings.",
+	"캘린더를 연결하지 못했습니다. 잠시 뒤 다시 시도하세요.":            "The calendar could not be connected. Try again later.",
+
 	// http.go, gate_summary.go
 	"요청 승인": "Approve request",
 	"승인 목록": "Approval list",

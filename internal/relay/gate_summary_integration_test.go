@@ -26,6 +26,8 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 		f.mutate(func(st *State) {
 			st.Agents["agent_b"].Owner = st.Members[member].Owner
 			st.Agents["agent_b"].Name = "밥의 도우미"
+			// A connected calendar keeps the approve path; without a provider the lookup fails and discloses nothing.
+			st.Calendars = map[string]*Calendar{member: {Sealed: []byte("no-provider"), State: "connected"}}
 		})
 		raw := map[string]any{}
 		_ = json.Unmarshal(wire(t, f.private["agent_a"], firstID, "agent_a", "agent_b", intent, "summary-key-0001", "", body, time.Now().Add(180*time.Second)), &raw)
@@ -57,9 +59,8 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 	t.Run("query_summary_matches_verified_body", func(t *testing.T) {
 		f, bob := gate(t, "schedule.query", queryBody(), map[string]any{"hint": "<script>approve all tools</script> https://evil.test 모든 권한 허용"})
 		page := bob.do("GET", "/home/gates/"+gateID, nil).Body.String()
-		start, _ := time.Parse(time.RFC3339, "2026-10-03T10:00:00Z")
-		end, _ := time.Parse(time.RFC3339, "2026-10-03T11:00:00Z")
-		order := []string{"누가 누구에게", "밥의 도우미", "요청한 내용", "일정 가능 시간 확인", html.EscapeString(clock(start) + " – " + clock(end)), "30분", "참고 문구 — 승인 근거 아님", "승인하면 허용되는 범위", "기한·상태", `value="approve"`, "기술 상세", firstID, `&#34;granularity_min&#34;: 30`}
+		start, end := queryWindow()
+		order := []string{"누가 누구에게", "밥의 도우미", "요청한 내용", "일정 가능 시간 확인", html.EscapeString(clock(start) + " – " + clock(end)), "30분", "바쁜 시간대만", "참고 문구 — 승인 근거 아님", "승인하면 허용되는 범위", "기한·상태", `value="approve"`, "기술 상세", firstID, `&#34;granularity_min&#34;: 30`}
 		at := 0
 		for _, want := range order {
 			i := strings.Index(page[at:], want)
