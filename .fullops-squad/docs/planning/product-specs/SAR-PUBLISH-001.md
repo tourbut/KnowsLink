@@ -108,7 +108,7 @@ KnowsLink는 개인정보를 판매하지 않습니다. 광고에 쓰지 않습�
 | 연결 해제한 에이전트 정보 | 해제 후 24시간 뒤 삭제 |
 | 요청 횟수 제한용 IP 주소 | 최대 1시간 |
 
-장애 복구용 백업에는 정보가 더 오래 남을 수 있습니다. 백업은 {백업 보존 기간}이 지나면 삭제합니다.
+장애 복구용 백업에는 정보가 더 오래 남을 수 있습니다. 백업은 만든 날부터 14일이 지나면 삭제합니다.
 
 **5. 다른 사람에게 전달되는 정보**
 
@@ -196,7 +196,7 @@ KnowsLink does not sell personal information. We do not use it for advertising. 
 | Information about a disconnected agent | Deleted 24 hours after disconnection |
 | IP addresses for rate limiting | Up to 1 hour |
 
-Backups for recovering from failures can keep information longer. We delete backups after {backup retention period}.
+Backups for recovering from failures can keep information longer. We delete backups 14 days after they are made.
 
 **5. Information shared with others**
 
@@ -383,7 +383,7 @@ Email: [knowslog01@gmail.com](mailto:knowslog01@gmail.com)
 |---|---|---|---|
 | P-01 | 시행일 | coor(dev 배정 때) | 예정 운영 배포일. 두 언어 공통 상수 |
 | P-02 | 개인정보 보호책임자 표시(이름 또는 직책) | user | 사용자가 정할 때까지 'KnowsLink 운영자' / 'KnowsLink operator'를 쓴다 |
-| P-03 | 백업 보존 기간 | ops | 현재 배포 전 백업 정리 주기를 확인해 적는다. 확인 전에는 4절 백업 문장을 '백업은 정기적으로 교체하며 교체할 때 함께 삭제합니다.' / 'Backups are replaced regularly, and the information in them is deleted when they are replaced.'로 쓴다 |
+| P-03 | 백업 보존 기간 | ops | 확정: 14일(D021, ops 자동 정리 SAR-PUBLISH-001-RETENTION) |
 | P-04 | 이메일 발송 업체·위치 | ops | 운영에서 이메일 코드 로그인이 꺼져 있으면 표의 그 행을 뺀다 |
 | P-05 | 법률 검토 | user | 개인정보 보호법의 국외 이전 고지, 처리 위탁 고지, 약관 책임 조항의 표현을 확인한다. 이 문서는 효력을 단정하지 않는다 |
 
