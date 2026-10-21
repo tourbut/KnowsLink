@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-22
 owner: tester
 tasks: [SAR-PUBLISH-001-TESTER]
-summary: "main 17a360b2의 서버 캘린더 제거(D018)·시작 시 일회 정리·/privacy·/terms(D017)를 격리 fixture에서 다시 돌리는 절차와 통과 조건"
+summary: main 17a360b2의 서버 캘린더 제거(D018)·시작 시 일회 정리·/privacy·/terms(D017)를 격리 fixture에서 다시 돌리는 절차와 통과 조건
 ---
 
 # SAR-PUBLISH-001-TESTER — 독립 QA 시나리오
