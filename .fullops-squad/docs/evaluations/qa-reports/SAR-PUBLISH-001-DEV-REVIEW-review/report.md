@@ -3,8 +3,8 @@ title: SAR-PUBLISH-001-DEV-REVIEW 리뷰
 status: review
 updated: 2026-10-22
 owner: reviewer
-tasks: [SAR-PUBLISH-001-DEV]
-summary: 722feed9a89b 병합 전 독립 리뷰 보고서. 서버 캘린더 제거(D018)·일회 정리·/privacy·/terms(D017)를 수락한다. critical/high 0, low 4
+tasks: [SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-DEV-REVIEW]
+summary: "722feed9a89b 병합 전 독립 리뷰 보고서. 서버 캘린더 제거(D018)·일회 정리·/privacy·/terms(D017)를 수락한다. critical/high 0, low 4"
 ---
 
 # SAR-PUBLISH-001-DEV-REVIEW 리뷰
