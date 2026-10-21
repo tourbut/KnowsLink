@@ -40,16 +40,16 @@ DEV 검사 기록이다. 독립 리뷰·tester QA·designer 시각 수락(PC-06)
 
 ## 검사
 
-원격 Linux 격리 clone(`/tmp/knowslink-publish001-d54aa68ab2e4-71918df7`, 자기 Postgres 컨테이너, [remote.py](remote.py))에서 제품 HEAD `d54aa68`로 실행했다. 로그 SHA256은 [raw-log-sha256.txt](raw-log-sha256.txt)다.
+원격 Linux 격리 clone(자기 Postgres 컨테이너, [remote.py](remote.py))에서 실행했다. 최종 제품 SHA는 `e20c199`(clone `/tmp/knowslink-publish001-e20c199a4ec2-caeb11f3`)다. fixture는 그 전 `d54aa68`에서 기동했다. 두 SHA 사이의 제품 차이는 adapter 되돌림(아래)과 env 변수로만 켜지는 테스트 HTML 출력뿐이며 Go relay 동작은 같다. 로그 SHA256은 [raw-log-sha256.txt](raw-log-sha256.txt)다(작업 트리의 CRLF 사본 기준).
 
 | 검사 | 결과 | 로그 |
 |---|---|---|
-| make lint | EXIT=0 | [lint](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-lint.log) |
-| make test | EXIT=0 | [test](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-test.log) |
-| integration(`-race -tags=integration`, `TestRemoteConsentBrowserReturn` 제외: 기존과 같음) | EXIT=0 | [integration](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-integration.log) |
-| fixture 기동·probe | EXIT=0 | [start](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-fixture-start.log), [probe](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-fixture-probe.log) |
+| make lint | `e20c199` EXIT=0 (`d54aa68` EXIT=0) | [lint](e20c199a4ec2d81c434962954614a8f0feba2b85-lint.log) |
+| make test | `e20c199` EXIT=0 (`d54aa68` EXIT=0) | [test](e20c199a4ec2d81c434962954614a8f0feba2b85-test.log) |
+| integration(`-race -tags=integration`, `TestRemoteConsentBrowserReturn` 제외: 기존과 같음) | `e20c199` EXIT=0, FAIL 0 (`d54aa68` EXIT=0) | [integration](e20c199a4ec2d81c434962954614a8f0feba2b85-integration.log), [d54aa68](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-integration.log) |
+| fixture 기동·probe | `d54aa68` EXIT=0 | [start](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-fixture-start.log), [probe](d54aa68ab2e4e777cd73dbbf2faebddf9f4b0966-fixture-probe.log) |
 
-실패 기록: 첫 integration(`cbe1c05`)은 새 정리 테스트의 idempotency key가 15자(최소 16자)라 실패했다. `d54aa68`에서 고쳤다. 같은 SHA의 integration을 make test 전에 돌린 실행은 `adapters/dist`가 없어 `TestPublicNodeProcesses`가 실패했다. make lint·make test 뒤 다시 실행해 EXIT=0이다(dev 컨텍스트의 기존 교훈).
+실패 기록: 첫 integration(`cbe1c05`)은 새 정리 테스트의 idempotency key가 15자(최소 16자)라 실패했다. `d54aa68`에서 고쳤다. 같은 SHA의 integration을 make test 전에 돌린 실행은 `adapters/dist`가 없어 `TestPublicNodeProcesses`가 실패했다. make lint·make test 뒤 다시 실행해 EXIT=0이다(dev 컨텍스트의 기존 교훈). 문서 하위 작업의 대조에서 SAR-SCHEDULE-001이 `adapters/src/core.ts`·`synthetic.ts`도 바꾼 것을 찾았다. 처음 되돌림 범위(`internal`·`cmd`)에서 빠졌던 파일이다. `67284e3` 판으로 되돌려 adapter가 승인 뒤 다시 `denied`만 보내고 합성 조회는 고정 기간을 쓴다. 그 뒤 `e20c199`에서 전체 게이트를 다시 실행했다.
 
 로컬 Windows: `go vet ./...`, `go vet -tags integration[,publishfixture]`, `go test ./internal/relay ./cmd/...` 통과. gofmt는 toolchain gofmt(go1.27.1)로 확인했다.
 

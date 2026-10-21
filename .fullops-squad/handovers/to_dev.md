@@ -17,7 +17,7 @@ test_level: lite
 
 - 작성일: 2026-10-21
 - From / To: designer(SAR-PUBLISH-001) → coor → dev
-- 상태: ready
+- 상태: done(DEV 완료, 리뷰·tester·designer 수락 대기)
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위 / 추가 승인이 필요한 행위: 서버 캘린더 연결 코드·화면·테스트·fixture·env 요구 제거, 기존 저장 연결의 일회 정리 코드, `/privacy`·`/terms` 구현과 링크, 공개 ingress repo 후보(`public-ingress.yml`·`check_public_ingress.py`), 기술·사용 문서 갱신과 커밋 / 운영 서버·운영 env·live Tunnel config 변경, Cloud Console 변경, 실계정 Google 호출, DB migration, 새 외부 의존성, 정책 문안 변경(designer 확인 필요), force-push
 - 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/dev / fullops/dev
@@ -63,15 +63,15 @@ designer가 확인한 코드 위치(기준 `dcf8825`):
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 짧은 기술 계획(완료 보고): 제거 범위, 기존 상태 JSON(`Calendars`·`Gate.Lookup`·`GoogleAttempt.Calendar`)의 일회 정리 방식과 시점, 키 유무에 따른 철회 요청 처리, `schedule.query` gate를 U5 기준으로 되돌리는 방식, rollback 영향.
-- [ ] RC-01–05 구현: 설정 캘린더 절, `/home/calendar/*`, 증분 동의, freebusy 호출, 토큰 봉인, disclosure, D010 범위·횟수 검사, 캘린더 문구(KO/EN)를 제거한다. Google 로그인 scope는 `openid email`만 남긴다.
-- [ ] 기존 연결 정리(SAR-SCHEDULE-001 '기존 연결 회원 처리' 1–3·5·6): 각 연결의 Google refresh token 철회를 한 번 요청한다. 결과와 무관하게 토큰·연결·미전달 조회 결과를 삭제한다. consume되지 않은 해당 gate는 `denied`다. 키가 없으면 철회 요청 없이 삭제한다. 기록은 연결 수·성공 수·실패 수만 남긴다. 운영 실행에 `KNOWSLINK_CALENDAR_KEY`가 필수가 아니다.
-- [ ] `/privacy`·`/terms` 구현(SAR-PUBLISH-001 화면 기준과 KO/EN 문안 전문): 첫페이지 템플릿 스타일 재사용, 고유 title, `aria-current`, 시행일 단일 상수. 첫페이지 하단·`#start` 한 줄·회원 설정 링크를 추가한다. `{ }` 자리 표시는 P-01–04의 값 또는 그 표에 적힌 대체 문구로 채운다. 시행일(P-01)은 2026-10-22(coor 지정, 운영 배포 예정일. 배포일이 바뀌면 ops가 상수만 고친다).
-- [ ] 공개 ingress repo 후보: `deploy/knowslink/tunnel/public-ingress.yml`과 `scripts/check_public_ingress.py`에 `GET /privacy`·`GET /terms` 정확 경로를 추가한다. `/home/calendar/*`가 더 필요 없음을 반영한다. live config는 바꾸지 않는다(ops 몫).
-- [ ] 테스트: 캘린더 테스트·fixture를 삭제하거나 대체한다. 실패 경계 자동 검사: 정리 코드(키 있음/없음, 철회 실패에도 토큰 0, 미전달 결과 미공개), `schedule.query` 승인 뒤 disclosure 없음과 U5 문구, 정책 두 페이지 200·두 언어·영어판 한국어 없음·링크. 기존 친구·메시지·승인 회귀를 확인한다.
-- [ ] tester·designer용 격리 fixture: 정리 전 연결 상태가 있는 합성 데이터에서 시작하는 경로와 정책 페이지 KO/EN을 볼 수 있는 기동 방법을 DEV 보고에 적는다.
-- [ ] 문서 갱신(실제 변경만): D03 architecture, D05 interface, D06 data-model, D09 crud, D10 module-design, D11 user-guide, D12 ops-guide, D13 transition(제거 배포 인수 항목: 운영 키 제거 시점, Cloud Console scope·Calendar API 정리, 공개 ingress 두 경로), `docs/development.md`·`docs/operations.md`·`README.md`의 캘린더 문장, `docs/deliverables/README.md` D02 줄(SAR-SCHEDULE-001 철회, SAR-PUBLISH-001 추가).
-- [ ] 원격 Linux make lint/test/integration, FullOps lint.py --from (지시서 base), DEV 보고 `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md`, packet-outcomes, finish, 커밋, worker_done.
+- [x] 짧은 기술 계획(완료 보고): 제거 범위, 기존 상태 JSON(`Calendars`·`Gate.Lookup`·`GoogleAttempt.Calendar`)의 일회 정리 방식과 시점, 키 유무에 따른 철회 요청 처리, `schedule.query` gate를 U5 기준으로 되돌리는 방식, rollback 영향.
+- [x] RC-01–05 구현: 설정 캘린더 절, `/home/calendar/*`, 증분 동의, freebusy 호출, 토큰 봉인, disclosure, D010 범위·횟수 검사, 캘린더 문구(KO/EN)를 제거한다. Google 로그인 scope는 `openid email`만 남긴다.
+- [x] 기존 연결 정리(SAR-SCHEDULE-001 '기존 연결 회원 처리' 1–3·5·6): 각 연결의 Google refresh token 철회를 한 번 요청한다. 결과와 무관하게 토큰·연결·미전달 조회 결과를 삭제한다. consume되지 않은 해당 gate는 `denied`다. 키가 없으면 철회 요청 없이 삭제한다. 기록은 연결 수·성공 수·실패 수만 남긴다. 운영 실행에 `KNOWSLINK_CALENDAR_KEY`가 필수가 아니다.
+- [x] `/privacy`·`/terms` 구현(SAR-PUBLISH-001 화면 기준과 KO/EN 문안 전문): 첫페이지 템플릿 스타일 재사용, 고유 title, `aria-current`, 시행일 단일 상수. 첫페이지 하단·`#start` 한 줄·회원 설정 링크를 추가한다. `{ }` 자리 표시는 P-01–04의 값 또는 그 표에 적힌 대체 문구로 채운다. 시행일(P-01)은 2026-10-22(coor 지정, 운영 배포 예정일. 배포일이 바뀌면 ops가 상수만 고친다).
+- [x] 공개 ingress repo 후보: `deploy/knowslink/tunnel/public-ingress.yml`과 `scripts/check_public_ingress.py`에 `GET /privacy`·`GET /terms` 정확 경로를 추가한다. `/home/calendar/*`가 더 필요 없음을 반영한다. live config는 바꾸지 않는다(ops 몫).
+- [x] 테스트: 캘린더 테스트·fixture를 삭제하거나 대체한다. 실패 경계 자동 검사: 정리 코드(키 있음/없음, 철회 실패에도 토큰 0, 미전달 결과 미공개), `schedule.query` 승인 뒤 disclosure 없음과 U5 문구, 정책 두 페이지 200·두 언어·영어판 한국어 없음·링크. 기존 친구·메시지·승인 회귀를 확인한다.
+- [x] tester·designer용 격리 fixture: 정리 전 연결 상태가 있는 합성 데이터에서 시작하는 경로와 정책 페이지 KO/EN을 볼 수 있는 기동 방법을 DEV 보고에 적는다.
+- [x] 문서 갱신(실제 변경만): D03 architecture, D05 interface, D06 data-model, D09 crud, D10 module-design, D11 user-guide, D12 ops-guide, D13 transition(제거 배포 인수 항목: 운영 키 제거 시점, Cloud Console scope·Calendar API 정리, 공개 ingress 두 경로), `docs/development.md`·`docs/operations.md`·`README.md`의 캘린더 문장, `docs/deliverables/README.md` D02 줄(SAR-SCHEDULE-001 철회, SAR-PUBLISH-001 추가).
+- [x] 원격 Linux make lint/test/integration, FullOps lint.py --from (지시서 base), DEV 보고 `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md`, packet-outcomes, finish, 커밋, worker_done.
 
 소유 파일: `internal/relay/`의 캘린더 제거 경로·정책 페이지·첫페이지·설정 링크와 테스트, `cmd/relay/main.go`, `.env.example`, `compose.yaml`, 공개 ingress repo 후보 두 파일, 위 기술 문서, 자기 기록·DEV 보고.
 
@@ -156,7 +156,16 @@ D03·D05·D06·D09·D10·D11·D12·D13 중 실제 변경(위 문서 갱신 항�
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
+- 브랜치 / SHA: `fullops/dev` / 제품 최종 `e20c199a4ec2d81c434962954614a8f0feba2b85`(원격 게이트 기준). 이후 커밋은 보고·지시서·packet-outcomes 기록뿐이다.
+- 변경 이유: D018 서버 캘린더 연결 제거와 기존 연결 일회 정리, D017 `/privacy`·`/terms` 공개 페이지와 링크, 공개 ingress repo 후보 두 경로.
+- 기술 계획: SAR-SCHEDULE-001 이전 `67284e3` 판으로 캘린더 파일을 되돌렸다(`internal`·`cmd`·adapter·env). 정리는 HTTP 시작 전 `RetireCalendars` 한 곳이며 legacy 필드는 그 정리만 읽는다. 상세는 [DEV 보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md) '기술 계획'.
+- 검토 필요: `calendar_retire.go`(토큰 처리·로그 비노출), `policy_pages.go`·`policy/*.html`, `landing_pages.go`의 style·footer 분리. 정책 페이지 하단에 '홈'을 넣은 위치(서비스 약관 뒤)는 designer 확인 대상이다. P-04 이메일 업체 행은 운영 SMTP 미설정이라 뺐다.
+- 검증한 것: 원격 Linux make lint/test/integration EXIT=0(`e20c199`), 격리 fixture 기동·probe(정리 전 상태 → 키 있음·철회 거부·키 없음 모두 토큰·연결·결과 0, gate denied, 정책 200, 영어판 한국어 0, `/home/calendar/*` 404), 정본 문안 4개 일치, 1440·390·320 가로 넘침 없음. FullOps lint 결과는 아래 lint 줄.
+- 못 한 것: 실제 Google revoke 호출, 운영 상태 정리, live ingress, 키보드·200% 실행, 독립 리뷰·tester·designer 수락.
+- 산출물·로그: [DEV 보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md), [render](../docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/render/), [packet-outcomes](../docs/evaluations/jev/SAR-PUBLISH-001-DEV-packet-outcomes.json).
+- 의존성: 변경 없음(go.mod·package.json 미변경). revoke는 표준 `net/http` POST다.
+- SIZE: 제거 단위라 분할하지 않았다(제품 코드 +232/−673, 테스트 포함 +898/−2,052).
+- 남은 일: coor가 고정 SHA 독립 코드 리뷰를 배정한다. tester가 격리 fixture로 독립 QA를 한다. designer가 KO/EN 3폭 직접 시각 검수(PC-06)를 한다. ops가 키를 둔 채 제거 배포·정리 로그 확인·키 제거·live ingress 두 경로를 한다. coor·user가 Cloud Console scope·Calendar API 정리와 앱 게시, 법률 검토(P-05)를 한다.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
