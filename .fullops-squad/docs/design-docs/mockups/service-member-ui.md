@@ -2,9 +2,9 @@
 id: D04
 title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
-updated: 2026-10-21
+updated: 2026-10-22
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -426,12 +426,14 @@ Desktop 1440 / Mobile 390·320 (같은 한 열, 읽기 폭 약 72ch)
 │ …                                             │
 │ 12. 연락처  knowslog01@gmail.com (mailto)      │
 ├───────────────────────────────────────────────┤
-│ 개인정보처리방침 · 서비스 약관 · 설치·사용 문서 · 맨 위로 │ ← 현재 페이지 aria-current
+│ 개인정보처리방침 · 서비스 약관 · 홈 · 설치·사용 문서 · 맨 위로 │ ← 현재 페이지 aria-current
 └───────────────────────────────────────────────┘
 ```
 
 - 스타일은 첫페이지의 `memberStyle`·`body.landing` 토큰을 재사용한다. 표는 기존 표 스타일을 쓰고 320px에서는 표 영역만 가로 스크롤한다. 페이지 전체 가로 넘침은 없다.
+- 정책 페이지 하단에만 '홈'(`/`)을 둔다. 첫페이지 하단에는 '홈'이 없다(2026-10-22 SAR-PUBLISH-001-D04, 시각 검수 D-01).
 - 첫페이지 `#start` 로그인 버튼 아래 `muted` 한 줄로 두 페이지를 링크한다. 회원 설정은 '서비스 안내' 옆에 두 링크를 둔다.
+- 링크 모양(시각 검수 V-01~V-03): 문장 속 링크는 줄 높이를 키우지 않고 inline으로 둔다. 하단·설정처럼 단독 줄 링크만 44px 터치 대상을 유지한다. 하단의 현재 페이지 링크(`aria-current`)는 굵게(600) 표시하고 새 색·글꼴은 쓰지 않는다. 설정의 세 링크 사이는 약 16px 가로 간격을 둔다.
 - 피할 것: 크림 배경, 알약 버튼, 모노스페이스 라벨, 장식 그라디언트, 이모지 아이콘, 접는 상자, 영어판의 한국어 잔존.
 
 ## 이전 설계와 검수 기록 — 비현행
