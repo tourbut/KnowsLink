@@ -135,7 +135,7 @@ func TestLegacyClaimsCannotReachParentBoundaries(t *testing.T) {
 	// A new agent delivery on the same loaded state keeps the full claim/authorize/result path.
 	st, privateA, privateB := load()
 	const newID = "0199a3f2-4c10-7a11-8b22-3344556677ff"
-	e, err := Parse(wire(t, privateA, newID, "agent_a", "agent_b", "schedule.query", "legacy-request-04", "", queryBodyAt(legacyNow), legacyNow.Add(time.Minute)))
+	e, err := Parse(wire(t, privateA, newID, "agent_a", "agent_b", "schedule.query", "legacy-request-04", "", queryBody(), legacyNow.Add(time.Minute)))
 	if err != nil {
 		t.Fatal(err)
 	}

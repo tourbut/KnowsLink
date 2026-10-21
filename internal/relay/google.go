@@ -4,12 +4,9 @@ package relay
 import (
 	"context"
 	"crypto/hmac"
-	"encoding/base64"
 	"errors"
 	"net/http"
 	"net/url"
-	"slices"
-	"strings"
 	"time"
 
 	"github.com/coreos/go-oidc/v3/oidc"
@@ -23,9 +20,6 @@ type GoogleLogin struct {
 	config   oauth2.Config
 	verifier *oidc.IDTokenVerifier
 	client   *http.Client
-	// calendarKey seals stored refresh tokens; nil leaves calendar connection off. URLs are fixture-replaceable.
-	calendarKey            []byte
-	freeBusyURL, revokeURL string
 }
 
 type googleAttempt struct {
@@ -33,25 +27,18 @@ type googleAttempt struct {
 	Connection                           string
 	Remote                               string
 	Receipt                              bool
-	Calendar                             bool // incremental calendar.freebusy consent of the signed-in member (SD-06 A)
+	Calendar                             bool `json:",omitempty"` // retired calendar consent, dropped by retireCalendars
 	Created, Exp                         time.Time
 }
 
 // ConfigureGoogle leaves login disabled when all values are absent; partial or unsafe settings fail closed.
-// calendarKey (base64, 32 bytes) enables calendar connection; empty keeps it off, anything else fails startup.
-func ConfigureGoogle(ctx context.Context, clientID, secret, redirect, calendarKey string) (*GoogleLogin, error) {
+func ConfigureGoogle(ctx context.Context, clientID, secret, redirect string) (*GoogleLogin, error) {
 	if clientID == "" && secret == "" && redirect == "" {
 		return nil, nil
 	}
 	u, err := url.Parse(redirect)
 	if clientID == "" || secret == "" || err != nil || u.Scheme != "https" || u.Host == "" || u.User != nil || u.Path != "/auth/google/callback" || u.RawQuery != "" || u.Fragment != "" {
 		return nil, errors.New("Google login requires client ID, client secret and an HTTPS /auth/google/callback redirect URL")
-	}
-	var key []byte
-	if calendarKey != "" {
-		if key, err = base64.StdEncoding.DecodeString(calendarKey); err != nil || len(key) != calendarKeyLength {
-			return nil, errors.New("KNOWSLINK_CALENDAR_KEY must be base64 of 32 random bytes")
-		}
 	}
 	client := &http.Client{Timeout: 5 * time.Second}
 	ctx = oidc.ClientContext(ctx, client)
@@ -62,7 +49,7 @@ func ConfigureGoogle(ctx context.Context, clientID, secret, redirect, calendarKe
 	return &GoogleLogin{
 		config:   oauth2.Config{ClientID: clientID, ClientSecret: secret, RedirectURL: redirect, Endpoint: provider.Endpoint(), Scopes: []string{oidc.ScopeOpenID, "email"}},
 		verifier: provider.VerifierContext(context.WithoutCancel(ctx), &oidc.Config{ClientID: clientID, SupportedSigningAlgs: []string{oidc.RS256}}),
-		client:   client, calendarKey: key, freeBusyURL: freeBusyEndpoint, revokeURL: revokeEndpoint,
+		client:   client,
 	}, nil
 }
 
@@ -76,14 +63,13 @@ func (s *Service) googleFailure(w http.ResponseWriter, status int, problem strin
 	render(w, status, "start", v)
 }
 
-// googleStart begins login, re-verification (reauth) or the calendar consent of the signed-in Google member (calendar).
-func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth, calendar bool) {
+func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth bool) {
 	r.Body = http.MaxBytesReader(w, r.Body, 8192)
 	if r.ParseForm() != nil {
 		s.googleFailure(w, 422, "로그인을 시작할 수 없습니다. 다시 시작하세요.")
 		return
 	}
-	if s.Google == nil || (calendar && s.Google.calendarKey == nil) {
+	if s.Google == nil {
 		s.googleFailure(w, 503, "Google 로그인이 아직 설정되지 않았습니다. 잠시 뒤 다시 시도하세요.")
 		return
 	}
@@ -101,7 +87,6 @@ func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth, ca
 		if reauth {
 			a.Member = id
 		}
-		a.Calendar = calendar
 		if connection := r.FormValue("connection"); connection != "" {
 			c := st.Connections[connection]
 			if c == nil || !c.Device || !now.Before(c.Exp) || (c.State != "requested" && c.State != "prepared") {
@@ -142,12 +127,7 @@ func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth, ca
 	a := value.(*googleAttempt)
 	googleAttemptCookie(w, state, int(codeTTL/time.Second))
 	// An explicit account selection/consent plus a fresh nonce-bound ID token re-verifies identity, not the Google password.
-	options := []oauth2.AuthCodeOption{oidc.Nonce(a.Nonce), oauth2.S256ChallengeOption(a.Verifier), oauth2.SetAuthURLParam("prompt", "select_account consent")}
-	if a.Calendar {
-		// Incremental consent (E7): only the free/busy scope is added; offline access yields the refresh token the server seals.
-		options = append(options, oauth2.SetAuthURLParam("scope", strings.Join(append(slices.Clone(s.Google.config.Scopes), calendarScope), " ")), oauth2.AccessTypeOffline, oauth2.SetAuthURLParam("include_granted_scopes", "true"))
-	}
-	redirect := s.Google.config.AuthCodeURL(state, options...)
+	redirect := s.Google.config.AuthCodeURL(state, oidc.Nonce(a.Nonce), oauth2.S256ChallengeOption(a.Verifier), oauth2.SetAuthURLParam("prompt", "select_account consent"))
 	http.Redirect(w, r, redirect, http.StatusSeeOther)
 }
 
@@ -218,33 +198,8 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 		s.googleFailure(w, 401, "Google 신원을 확인하지 못했습니다. 다시 시작하세요.")
 		return
 	}
-	var sealed []byte
-	if a.Calendar {
-		// The user may grant only part of the request; without the free/busy scope and a refresh token nothing is stored.
-		granted, _ := exchanged.Extra("scope").(string)
-		if exchanged.RefreshToken == "" || !slices.Contains(strings.Fields(granted), calendarScope) {
-			if exchanged.RefreshToken != "" {
-				s.revokeToken(r.Context(), exchanged.RefreshToken)
-			}
-			s.googleFailure(w, 403, "캘린더 권한이 허용되지 않아 연결하지 않았습니다. 설정에서 다시 시도하세요.")
-			return
-		}
-		if sealed, err = sealToken(s.Google.calendarKey, []byte(exchanged.RefreshToken), a.Member); err != nil {
-			s.googleFailure(w, 503, "캘린더를 연결하지 못했습니다. 잠시 뒤 다시 시도하세요.")
-			return
-		}
-	}
-	shared := false
 	value, err = s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		// A refused token of the member's own connected account shares that connection's grant and must not be revoked.
-		shared = st.Identities[googleIssuer+"|"+subject] == a.Member && st.calendar(a.Member) != nil
-		result := st.finishGoogleLogin(a, subject, email, now)
-		if result.Problem == "" && a.Calendar {
-			// Replacing a connection keeps the provider grant: revoking the old token would revoke the new one too (E7).
-			st.calendar(a.Member)
-			st.Calendars[a.Member] = &Calendar{Sealed: sealed, State: "connected", Changed: now}
-		}
-		return result, nil
+		return st.finishGoogleLogin(a, subject, email, now), nil
 	})
 	if err != nil {
 		s.googleFailure(w, 503, "로그인을 완료하지 못했습니다. 다시 시작하세요.")
@@ -252,10 +207,6 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 	result := value.(verifyResult)
 	if result.Problem != "" {
-		// An unstored calendar grant (another account, expiry) is handed back to the provider instead of left behind.
-		if a.Calendar && !shared {
-			s.revokeToken(r.Context(), exchanged.RefreshToken)
-		}
 		s.googleFailure(w, 403, "이 계정으로 로그인하거나 재확인할 수 없습니다. 기존 회원의 같은 Google 계정으로 다시 시도하세요. 신규 가입 한도도 적용됩니다.")
 		return
 	}
@@ -270,10 +221,6 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 	if a.Remote != "" {
 		next = "/remote/consent/" + a.Remote
-	}
-	if a.Calendar {
-		render(w, 200, "google-complete", map[string]any{"Title": "캘린더 연결 완료", "Notice": "캘린더를 연결했습니다. 친구의 요청을 승인할 때만 그 기간의 바쁜 시간대를 한 번 공유합니다.", "Next": "/home/account#calendar"})
-		return
 	}
 	render(w, 200, "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Notice": "신원을 확인했습니다. 계속해서 연결을 확인하세요.", "Next": next})
 }

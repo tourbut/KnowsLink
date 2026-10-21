@@ -53,9 +53,13 @@ func run(ctx context.Context) error {
 	}
 	service := &relay.Service{Pool: pool, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1"}
 	googleCtx, googleCancel := context.WithTimeout(ctx, 6*time.Second)
-	service.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv("KNOWSLINK_GOOGLE_CLIENT_ID"), os.Getenv("KNOWSLINK_GOOGLE_CLIENT_SECRET"), os.Getenv("KNOWSLINK_GOOGLE_REDIRECT_URL"), os.Getenv("KNOWSLINK_CALENDAR_KEY"))
+	service.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv("KNOWSLINK_GOOGLE_CLIENT_ID"), os.Getenv("KNOWSLINK_GOOGLE_CLIENT_SECRET"), os.Getenv("KNOWSLINK_GOOGLE_REDIRECT_URL"))
 	googleCancel()
 	if err != nil {
+		return err
+	}
+	// D018: retired calendar connections are revoked (when the optional key is still set) and deleted before serving.
+	if err = service.RetireCalendars(ctx, os.Getenv("KNOWSLINK_CALENDAR_KEY")); err != nil {
 		return err
 	}
 	if smtpURL := os.Getenv("KNOWSLINK_SMTP_URL"); smtpURL != "" {

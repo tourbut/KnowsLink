@@ -76,7 +76,7 @@ type Gate struct {
 	Generation                                         int64
 	Exp                                                time.Time
 	Consumed                                           bool
-	Lookup                                             *Lookup `json:",omitempty"` // the approval's single calendar lookup (schedule.query)
+	Lookup                                             json.RawMessage `json:",omitempty"` // retired calendar lookup, cleared by retireCalendars
 }
 type State struct {
 	HumanModel      int
@@ -97,10 +97,9 @@ type State struct {
 	Rates           map[string][]time.Time
 	HTTP            map[string]admission
 	Connections     map[string]*Connection
-	Calendars       map[string]*Calendar `json:",omitempty"` // member ID -> sealed Google calendar connection
-	TestAgents      map[string]bool      `json:"-"`
-	SyntheticSignup bool                 `json:"-"`
-	CalendarReady   bool                 `json:"-"` // Google login and the sealing key are configured in this process
+	Calendars       map[string]*legacyCalendar `json:",omitempty"` // retired calendar connections, cleared by retireCalendars
+	TestAgents      map[string]bool            `json:"-"`
+	SyntheticSignup bool                       `json:"-"`
 }
 
 func newState() *State {
@@ -167,7 +166,6 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	}
 	state.TestAgents = s.TestAgents
 	state.SyntheticSignup = s.SyntheticSignup
-	state.CalendarReady = s.calendarReady()
 	beforeEvents := state.eventVersion(now)
 	state.sweep(now)
 	orphans := s.reclaim(state)
@@ -184,7 +182,6 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		}
 		state.TestAgents = s.TestAgents
 		state.SyntheticSignup = s.SyntheticSignup
-		state.CalendarReady = s.calendarReady()
 		state.sweep(now)
 		s.reclaim(state)
 		state.Rates = rates
@@ -212,7 +209,6 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	s.remember(state, now, row.Epoch+1)
 	return value, opErr
 }
-func (s *Service) calendarReady() bool { return s.Google != nil && s.Google.calendarKey != nil }
 
 // reclaim drops shared admissions this process failed to finish, at its next commit (the 1s sweep at the latest).
 func (s *Service) reclaim(st *State) (tokens []string) {
@@ -349,7 +345,6 @@ func (st *State) sweep(now time.Time) {
 			continue
 		}
 	}
-	st.sweepLookups(now)
 }
 func (st *State) principal(token, kind string) (string, error) {
 	hash := hashToken(token)
@@ -385,7 +380,7 @@ func require(condition bool, code string) error {
 }
 func policy(intent string) string {
 	if intent == "schedule.query" {
-		return "schedule.query: approve runs one free/busy lookup; rounded busy spans disclosed once (SAR-SCHEDULE-001)"
+		return "schedule.query: disclosure policy absent; deny even after gate approve"
 	}
 	return "schedule.commit: human gate required; non-executable stub even after approve"
 }
@@ -499,6 +494,9 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 			if e.From != parent.Receipt.To || e.To != parent.Receipt.From || generation != parent.Generation {
 				return nil, fault("sender_not_allowed")
 			}
+			if e.Body["status"] == "done" {
+				return nil, fault("disclosure_denied")
+			}
 		}
 	}
 	digest := e.Digest()
@@ -513,22 +511,8 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 		}
 		return m.Receipt, nil
 	}
-	// done is only the server's own rounded disclosure, echoed exactly once after an approved, consumed lookup (SC-02/03/05).
-	// It runs after the idempotency branch: the accepted done clears the disclosure, and a same-key resend gets its receipt.
-	if e.Intent == "relay.result" && e.Body["status"] == "done" {
-		g := st.gateOf(parent.Receipt.ID)
-		echoed, _ := Canonical(e.Body["disclosure"])
-		if g == nil || !g.Consumed || g.Lookup == nil || g.Lookup.State != "done" || len(g.Lookup.Disclosure) == 0 || string(echoed) == "" || string(echoed) != canonicalRaw(g.Lookup.Disclosure) {
-			return nil, fault("disclosure_denied")
-		}
-	}
 	if parent != nil && (claim == "" || parent.ClaimToken != claim) {
 		return nil, fault("sender_not_allowed")
-	}
-	if e.Intent == "schedule.query" {
-		if err := st.scheduleAllowed(e, now); err != nil {
-			return nil, err
-		}
 	}
 	exp, _ := instant(e.Exp)
 	if !exp.After(now) {
@@ -580,18 +564,6 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 		parent.Envelope = nil
 		parent.Inbox = nil
 		parent.ClaimToken = ""
-		if g := st.gateOf(parent.Receipt.ID); g != nil && g.Lookup != nil {
-			g.Lookup.Disclosure = nil // disclosed once; nothing to send again
-		}
 	}
 	return m.Receipt, nil
-}
-
-func (st *State) gateOf(parent string) *Gate {
-	for _, g := range st.Gates {
-		if g.Parent == parent {
-			return g
-		}
-	}
-	return nil
 }
