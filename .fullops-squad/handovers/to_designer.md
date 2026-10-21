@@ -110,3 +110,13 @@ tester가 같은 SHA에서 SAR-SCHEDULE-001-QA를 진행한다. 코드는 수정
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 (2026-10-21, designer)
+
+- 브랜치 / SHA: `fullops/designer` / 보고 커밋 `c5a30cbc`. finish 기록 커밋은 그 뒤이며 worker_done에 최종 HEAD를 적는다. 대상 제품 코드는 main `336533e`다.
+- 변경 이유: V1·V2·V3·D2 반영을 KO/EN·1440/390/320에서 다시 보고 판정했다. 결론은 **수락**(4건 모두 PASS, 회귀 없음)이다. 일정 조회 화면의 시각 수락이며 전체 제품 수락이 아니다.
+- 검토 필요: 없음. 관찰 2건(`:has()` 미지원 브라우저의 이전 배치, 기술 상세의 정책 문자열)은 수정 요구가 아니다. 상세 [보고](../docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL-RECHECK/report.md).
+- 검증한 것: 대상 18화면 × 3폭 × details 닫힘·열림 렌더, 넘침 0·summary 분리 0. summary가 있는 fixture 73화면 × 3폭(열림) 219개 넘침 0·분리 0. 정본 문구 고정 문자열 대조, 이전 문구 0건. 판정 비교판 5장을 직접 보았다.
+- 못 한 것: 격리 fixture 실제 왕복, 키보드·200%·스크린리더(tester 몫), 실제 Google 계정(D011 뒤 coor). D2 서버 동작은 시각 범위 밖이다.
+- 의존성: 변경 없음(문서·PNG만). DEP-001 해당 없음.
+- 남은 일: tester 독립 QA SAR-SCHEDULE-001-QA(같은 SHA)와 실계정 1경로(SC-09, D011 뒤 coor)가 남는다.
