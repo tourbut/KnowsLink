@@ -3,7 +3,7 @@ title: 운영·업데이트·복구
 status: draft
 updated: 2026-10-21
 owner: ops
-tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS]
+tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV]
 summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복구 경계를 설명한다.
 ---
 
@@ -20,8 +20,11 @@ summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복�
 relay/Postgres health, schema·HumanModel·writer guard, 기존 회원·키·친구·Remote 설치·구독·Inbox 보존을 확인했다.
 실제 친구 대화와 질문 없는 화면 알림은 별도 두 계정 시험의 근거다.
 그 시험 제품은 과거 `26094e9`다. 이번 배포는 직전 `7b4f9bc`의 상태 보존을 확인했고 실계정 로그인·캘린더 연결·조회 왕복은 실행하지 않았다.
-캘린더 키는 운영 env 정본에만 두며 값을 Git·대화·로그에 남기지 않는다. 키를 바꾸거나 잃으면 저장된 모든 캘린더 연결이 열리지 않아 회원이 다시 연결해야 한다(교체 절차 미정).
-동의 화면에 `calendar.freebusy` scope가 쓰이므로 Cloud Console Data Access 등록은 소유자가 직접 한다. Testing 상태의 refresh token은 7일 뒤 만료한다.
+사용자 결정 D018로 서버 캘린더 연결은 제거된다. 제거 빌드(SAR-PUBLISH-001-DEV)는 아직 운영에 반영되지 않았다.
+제거 배포는 기존 캘린더 키를 둔 채 진행한다. 첫 기동 정리가 저장 연결을 revoke 요청 뒤 지우고 `calendar cleanup: connections=N revoked=M failed=K` 한 줄을 남긴다.
+정리를 확인한 뒤 운영 env에서 `KNOWSLINK_CALENDAR_KEY`를 지운다. 키 값은 Git·대화·로그에 남기지 않는다.
+`calendar.freebusy` scope 삭제·Calendar API 비활성화·브랜딩 URL 등록과 앱 게시는 소유자가 Cloud Console에서 직접 한다.
+제거 빌드는 `/privacy`·`/terms` 정책 페이지를 더한다. 공개 ingress 반영은 ops 과제다. 절차는 [인수인계](../.fullops-squad/docs/operations/transition.md)를 따른다.
 새 계정 설치·부하·장시간 알림·다음 Events 갱신·앱 재시작 성공을 보장하지 않는다.
 자동 답장·외부 업무 실행은 활성화하지 않았다.
 

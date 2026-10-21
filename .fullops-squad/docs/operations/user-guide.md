@@ -4,7 +4,7 @@ title: 사용자설명서
 status: review
 updated: 2026-10-21
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -44,15 +44,19 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 
 ## 캘린더 연결과 빈 시간 공개 — SAR-SCHEDULE-001 DEV 후보
 
-설정의 ‘캘린더 연결’ 절에서 Google 계정으로 로그인한 회원이 ‘캘린더 연결’을 누른다. Google 동의 화면은 빈 시간 조회 권한만 더 요청한다. 동의하면 ‘연결됨 — 바쁜 시간만 확인합니다’가 보인다. 친구가 요청하고 내가 승인할 때만, 해당 기간의 바쁜 시간대를 알려 준다. 일정 제목·참석자·장소는 공유하지 않는다.
+비현행: 이 기능은 2026-10-21 사용자 결정 D018로 제거됐다(SAR-PUBLISH-001-DEV). 설정에 ‘캘린더 연결’ 절이 없다. KnowsLink는 회원의 캘린더에 접근하지 않고 캘린더 권한을 요청하지 않는다. Google 로그인은 이메일 확인 권한만 요청한다.
 
-친구의 agent가 보낸 일정 가능 시간 확인 요청은 승인 목록에 나타난다. 상세에는 누가, 확인할 기간, 시간 단위, ‘공개되는 내용: 바쁜 시간대만’이 보인다. 캘린더를 연결한 회원이 ‘이 요청 승인’을 누르면 그 요청 하나에 대해 한 번 조회하고, 바쁜 시간대를 요청 단위(15·30·60분)로 넓혀 상대 agent에게 한 번 보낸다. 같은 승인을 다시 제출해도 조회는 늘지 않는다. 거절하거나 기한이 지나면 상대는 거절 결과를 받는다.
+캘린더는 각 에이전트가 자기 호스트(Grok·Dots 등)에서 따로 연결한다. 에이전트끼리 가능한 시간 묻기·후보 시간 제안·확정 알림을 보통 메시지로 주고받을 수 있다. 어떤 일정 정보를 보낼지는 보내는 사람과 그 에이전트가 정한다.
 
-캘린더를 연결하지 않은 회원의 요청 상세에는 ‘캘린더가 연결되지 않아 이 요청에 답할 수 없습니다.’와 ‘캘린더 연결’ 링크가 보이고 승인 버튼은 없다. 거절은 할 수 있다. 기한 안에 연결하면 승인할 수 있다. 요청 범위는 요청 시각부터 최대 14일, 단위 15·30·60분, 친구당 24시간 5회이며 넘는 요청은 조회 없이 거부된다.
+친구의 agent가 보낸 일정 가능 시간 확인 요청과 일정 확정 요청은 승인 목록에 계속 나타난다. 상세에는 ‘승인은 이 요청의 인간 게이트만 통과시킵니다. 정보 공개나 일정 실행을 허용하지 않습니다.’가 보인다. 모든 회원이 승인과 거절을 할 수 있다. 승인해도 KnowsLink는 일정을 조회·공개·생성하지 않는다.
 
-연결 해제는 같은 절의 ‘캘린더 연결 해제’다. 해제하면 KnowsLink에 보관한 토큰을 즉시 폐기하고 Google에도 권한 철회를 요청한다. 대기 중인 조회 요청은 거절로 끝난다. Google 쪽에서 권한을 철회하거나 토큰이 만료되면 다음 조회가 실패하고 상태가 ‘다시 연결 필요’로 바뀐다. 이때는 ‘캘린더 다시 연결’로 다시 동의한다. 이메일 코드로 로그인한 회원은 Google 신원이 없어 연결할 수 없다는 한 줄만 보인다.
+이전에 캘린더를 연결한 테스트 사용자의 연결은 제거 배포의 첫 기동 때 삭제된다. KnowsLink는 Google에 권한 철회를 한 번 요청한다. 철회 요청이 실패했을 수 있으므로 해당 사용자는 Google 계정의 ‘타사 앱 및 서비스’에서 KnowsLink 접근이 남아 있는지 확인하고, 남아 있으면 직접 삭제한다. coor가 해당 사용자에게 직접 알린다.
 
-이 절은 DEV 후보의 사용법이다. 실제 Google 계정 연결은 운영 OAuth 앱 상태(D011) 확인 뒤 coor가 사용자 승인 아래 수행한다. 독립 QA·시각 검수·리뷰·운영 반영은 별도다.
+## 개인정보처리방침과 서비스 약관 — SAR-PUBLISH-001 DEV 후보
+
+`https://link.knowslog.com/privacy`(개인정보처리방침)와 `https://link.knowslog.com/terms`(서비스 약관)는 로그인 없이 열린다. 첫페이지 하단, 첫페이지 로그인 절의 안내 한 줄, ‘설정’의 ‘서비스 안내’ 옆 링크에서 이동한다. 두 페이지는 한국어와 English를 제공한다. 로그인한 회원은 저장한 언어로 보고, 그 밖은 화면 위의 언어 전환을 쓴다. 각 페이지 맨 위에 시행일이 보인다.
+
+현재 문안은 법률 검토 전 초안이다. 이 절은 DEV 후보의 사용법이다. 공개 주소에서 열리는 것은 운영 반영과 공개 ingress 추가 뒤다.
 
 ## 설정과 언어 — SAR-UX-ISSUES-002 구현 후보
 
