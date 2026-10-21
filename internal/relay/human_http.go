@@ -102,7 +102,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 	case "language":
 		v["Notice"] = "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
 	case "calendar-off":
-		v["Notice"] = "캘린더 연결을 해제했습니다. KnowsLink에 보관한 토큰을 폐기했고 대기 중이던 조회 요청은 거절로 끝났습니다."
+		v["Notice"] = "캘린더 연결을 해제했습니다. KnowsLink에 보관한 토큰을 폐기했고 아직 전달되지 않은 조회 요청과 결과는 거절로 끝났습니다."
 	}
 	own := st.humanAgents(m.Owner)
 	v["Own"] = own

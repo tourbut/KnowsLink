@@ -1,0 +1,219 @@
+{
+  "task_key": "SAR-SCHEDULE-001-VISUAL-FIX",
+  "role": "dev",
+  "attempt": "17a6acd58040430e86304495647276a8",
+  "packet_input_sha256": "bcf1c172f1b785870e1a5dac567084572f2e2cec38a1b015a10949df4eeaa460",
+  "uncertainty_review": "partial 패킷이다. 미확인 항목은 route 재생성 필요, PLANS.md·service-member-ui.md·ops-guide.md 직접 확인, 문자열 검색 한계다. disconnectCalendar 호출자(calendarDisconnect, owner-revoke)와 human-gate·human-account 템플릿 사용처를 grep으로 확인했다. 바뀐 계약은 수정 전 실패를 확인한 integration 검사와 원격 Linux make lint/test/integration으로 확인했다. 동적 호출 완전 탐색은 주장하지 않는다. 패킷 밖 변경: internal/relay/human_pages_test.go(V3 단언), qa-reports/SAR-SCHEDULE-001-VISUAL-FIX-test/(보고·remote.py·probe.mjs·로그).",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "수정했다(V1·V2·V3·D2 해당 부분)."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "필요 범위를 확인했다."
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "수정했다(V1·V2·V3·D2 해당 부분)."
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "호출자·검사를 확인했다. 수정·검사를 갱신했다."
+    },
+    {
+      "path": "internal/relay/calendar_integration_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "호출자·검사를 확인했다. 수정·검사를 갱신했다."
+    },
+    {
+      "path": "internal/relay/calendar_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "disconnect·lease 단위 검사를 확인했다. 바뀐 계약이 없어 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/gate_summary.go",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "gateScopes·calendarGateScope를 확인했다. 문구 분기는 템플릿에서 바꿔 이 파일은 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/gate_summary.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "gateScopes·calendarGateScope를 확인했다. 문구 분기는 템플릿에서 바꿔 이 파일은 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "호출자·검사를 확인했다. 수정·검사를 갱신했다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "수정했다(V1·V2·V3·D2 해당 부분)."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "호출자·검사를 확인했다. 수정·검사를 갱신했다."
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "수정했다(V1·V2·V3·D2 해당 부분)."
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "호출자·검사를 확인했다. 수정·검사를 갱신했다."
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "schedule.query 범위 영문을 확인했다. 해당 문구는 이제 화면에 없지만 테스트 금지 문자열로 남겨 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "schedule.query 범위 영문을 확인했다. 해당 문구는 이제 화면에 없지만 테스트 금지 문자열로 남겨 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "공용 summary CSS를 고쳤다(V2)."
+    }
+  ]
+}
