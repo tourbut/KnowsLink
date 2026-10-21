@@ -43,10 +43,10 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 정리 스크립트(또는 unit)를 repo에 두고(`deploy/knowslink/` 아래, 헤더 주석 1~3줄) 운영에 설치한다. 규칙: 수정 시각 14일 초과 백업 파일만 삭제, 디렉터리 밖은 건드리지 않음, 삭제 개수만 로그.
-- [ ] 첫 실행 전 대상 목록을 기록하고 실행한다. 실행 뒤 남은 백업 수와 가장 오래된 날짜를 기록한다.
-- [ ] 다음 실행 시각(timer/cron)이 잡혔는지 확인한다.
-- [ ] D12 `.fullops-squad/docs/operations/ops-guide.md`에 백업 보존 14일과 정리 방법·확인 명령을 적는다.
+- [x] 정리 스크립트(또는 unit)를 repo에 두고(`deploy/knowslink/` 아래, 헤더 주석 1~3줄) 운영에 설치한다. 규칙: 수정 시각 14일 초과 백업 파일만 삭제, 디렉터리 밖은 건드리지 않음, 삭제 개수만 로그.
+- [x] 첫 실행 전 대상 목록을 기록하고 실행한다. 실행 뒤 남은 백업 수와 가장 오래된 날짜를 기록한다.
+- [x] 다음 실행 시각(timer/cron)이 잡혔는지 확인한다.
+- [x] D12 `.fullops-squad/docs/operations/ops-guide.md`에 백업 보존 14일과 정리 방법·확인 명령을 적는다.
 
 소유 파일: `deploy/knowslink/` 아래 새 정리 파일, D12, `qa-reports/SAR-PUBLISH-001-RETENTION-test/`, 이 인박스.
 
@@ -113,3 +113,12 @@ dev 문안 수정과 병렬. 파일이 겹치지 않는다.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치 / SHA: `fullops/ops` / 완료 SHA `2641bf1f7533372650e13bd4df3d71010b8a90be`(이 보고 기록 커밋은 그 뒤).
+- 변경 이유: D021. 백업 자동 정리가 없어 문안과 달랐다. 서버 사용자 cron(매일 03:17 KST)과 `deploy/knowslink/prune-backups.sh`를 만들었다. 14일 초과 백업 9개를 지웠고 11개가 남았다(가장 오래된 2026-10-10, 14일 초과 0).
+- 지시와 달라진 판단: 14일을 정확히 `-mmin +20160`으로 잡아 지시서의 ‘6개’ 대신 9개를 지웠다(2026-10-07 백업 3개가 14.0~14.7일). `-mtime +14`는 15일 이상만 지워 ‘최대 14일 보관’ 문안과 맞지 않는다. 가장 최근 1개는 14일이 넘어도 남기는 규칙을 더했다.
+- 검토 필요: 위 9개 기준. rollback용 `4787e85-pre-publish001` 백업은 이번에 남았지만 2026-11-05 이후에는 최신 1개가 아니면 자동 삭제된다. 더 둘 복구점은 따로 복사한다.
+- 검증한 것: 임시 fixture 로컬 실행(경계·밖 파일·빈 폴더·전부 초과), 서버 `bash -n`·`--list` 목록 기록 뒤 실행, crontab 줄·cron active·다음 실행 2026-10-23 03:17 KST. 못 한 것: 예약된 자동 실행은 아직 한 번도 안 돌았다. 의존성 변경 없음(표준 bash·find·ls만 사용, 파일별 의존성 추가 0).
+- FullOps 검사: HEAD `2641bf1f`, 기준 `d5695ff1`, ERROR 0·WARNING 1(`ops-guide.md` SIZE-001, 기존 초과 문서)·실행 불가 2(`make lint`·`make test`, Windows `make` 부재). 제품 코드·테스트는 바꾸지 않았다.
+- 산출물·로그: [보고서](../docs/evaluations/qa-reports/SAR-PUBLISH-001-RETENTION-test/report.md), D12 `ops-guide.md`(백업 보존 14일 절), `deploy/knowslink/prune-backups.sh`. 서버: `~/.local/bin/knowslink-prune-backups.sh`, `knowslink-state/backup-prune.log`, `knowslink-state/crontab.pre-retention001`.
+- 남은 일: coor가 dev SAR-PUBLISH-001-P03 문안('최대 14일 보관') 병합 후 배포를 배정한다. 2026-10-23 이후 `backup-prune.log`에 첫 자동 실행 줄이 생겼는지 확인한다. D13 `transition.md`의 기존 백업 수 설명은 소유 밖이라 고치지 않았다.
