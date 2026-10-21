@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLISH-001-P03-DEPLOY",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.68,
+        "product": 0.32
+      },
+      "confidence": 0.36
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.64,
+        "ops": 0.36,
+        "tester": 0
+      },
+      "confidence": 0.46
+    },
+    "docs": {
+      "D01": 0.23,
+      "D02": 0.35,
+      "D03": 0.27,
+      "D04": 0.29,
+      "D05": 0.31,
+      "D06": 0.35,
+      "D07": 0.3,
+      "D08": 0.36,
+      "D09": 0.34,
+      "D10": 0.45,
+      "D11": 0.42,
+      "D12": 0.67,
+      "D13": 0.6
+    }
+  },
+  "usage": {
+    "input_tokens": 2437,
+    "output_tokens": 314,
+    "cost": 0.000102354
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.655,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "coor 배정: D021 문안 운영 반영",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "4fdd149b27d3ff251a73128120dce9f8bb136620",
+  "requires_packet": true,
+  "attempt": "84c1758b68e5417f84ae015cf802f036",
+  "instruction_sha256": "95be5819134f317f628302c35e8ba1f087cab8f20f1138076e0f3aa1d0b65aca",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "5d8b893a19e672274e2592ea2fced0cf37b1faa9aa561a130c621700d40bb0e9"
+}
