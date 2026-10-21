@@ -2,26 +2,26 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-21
+updated: 2026-10-22
 owner: dev
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
-## SAR-PUBLISH-001 운영 후보 — 캘린더 제거와 정책 페이지 (운영 미적용)
+## SAR-PUBLISH-001 운영 적용 결과 (2026-10-22)
 
-SAR-PUBLISH-001-DEV 후보는 D018 서버 캘린더 연결 제거와 D017 `/privacy`·`/terms` 페이지를 담는다. 운영 제품은 아직 `4787e85`다. 제품 규칙은 [SAR-SCHEDULE-001 '철회 — D018'](../planning/product-specs/SAR-SCHEDULE-001.md#철회--d018-2026-10-21)의 '기존 연결 회원 처리'와 [SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)이다. 인수 순서는 [D13](transition.md)이다.
+현재 운영 제품은 `7c6ef3734a38a8f273714aa2915dc2f14f83a7e4`다(캘린더 연결 제거·정책 페이지 `/privacy`·`/terms`). 직전 `4787e85a0b6952970a861b6b100b3561b9cf30a0`에서 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다(사용자 결정 D020). 근거는 [운영 보고](../evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md)다. 제품 규칙은 [SAR-SCHEDULE-001 '철회 — D018'](../planning/product-specs/SAR-SCHEDULE-001.md#철회--d018-2026-10-21)와 [SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)이다. 아래 날짜별 절은 당시 기록이다.
 
-- env: `KNOWSLINK_CALENDAR_KEY`는 선택 값이다. 기동은 이 키를 검사하지 않으며 키가 없어도 기동한다. 제거 배포 때는 기존 키를 운영 env 정본에 그대로 둔다. 키가 있어야 첫 기동 정리가 저장된 토큰마다 Google revoke를 한 번 요청한다. 키가 없으면 revoke 없이 지운다.
-- 정리 확인: 첫 기동의 relay 로그에서 `calendar cleanup: connections=N revoked=M failed=K` 한 줄을 확인한다. 값은 개수만이며 회원·토큰·이메일은 없다. 이 줄은 지운 연결이 있을 때만 나온다. 줄이 없으면 지울 연결이 없었던 것이다. `failed`가 0보다 크면 coor가 연결했던 테스트 사용자에게 Google 계정 ‘타사 앱 및 서비스’에서 KnowsLink 접근을 직접 삭제하도록 안내한다. 정리 transaction이 실패하면 relay는 기동하지 않는다.
-- 키 제거: 정리 줄을 확인했거나 줄이 없으면 저장 연결은 0이다. 그 뒤 운영 env 정본에서 `KNOWSLINK_CALENDAR_KEY` 줄을 지우고 relay를 다시 기동한다. 다시 기동한 로그에 정리 줄이 없어야 한다. `compose.yaml`의 전달 줄은 선택 값이라 그대로 둔다.
-- egress: `https://www.googleapis.com/calendar/v3/freeBusy`는 더 이상 호출하지 않는다. `https://oauth2.googleapis.com/revoke`는 첫 기동 정리에서만 호출한다.
-- 공개 ingress: repo 후보 `deploy/knowslink/tunnel/public-ingress.yml`의 `path`에 `/privacy|/terms`가 정확히 추가됐다. `python3 scripts/check_public_ingress.py`는 두 경로가 열리고 `/privacy/`·`/privacy/x`·`/privacyx`·`/terms/`·`/terms.html`이 막히는 것을 검사한다. `/home(/.*)?` 규칙은 바꾸지 않았다. `/home/calendar/*`는 relay가 404로 답한다. live Tunnel config는 바뀌지 않았다. ops가 사용자 승인 아래 반영하고 KnowsLink cloudflared만 재시작한다. 반영 뒤 `https://link.knowslog.com/privacy`·`/terms`가 200, 이웃 경로가 404인지 확인한다.
-- 시행일: 두 언어 공통 시행일은 `internal/relay/policy_pages.go`의 상수 `policyEffective = "2026-10-22"`다. 운영 배포일이 바뀌면 배포 전에 이 상수만 바꾼다. 문안은 법률 검토(P-05) 전 초안이다.
-- DB·rollback: schema·migration·의존성 변경은 없다. 상태 JSON의 캘린더 정리는 되돌릴 수 없으므로 배포 전에 Postgres backup을 받는다. `4787e85`로 rollback할 수 있으나 정리 뒤에는 연결이 없다. 토큰은 revoke됐으므로 회원이 다시 연결해야 한다.
+- 중단은 22:45:36Z~22:45:53Z(07:45:36~07:45:53 KST, 2026-10-22), 약17초다. relay/Postgres healthy·restart0·migrate0이다. schema·migration·`db/`·의존성 입력 변경은 없었다. `compose.yaml`은 주석만 바뀌었다. build 전에 이전 relay 이미지(`sha256:0e0eb8b44e4713032436ca09751a7363a01f8d1a4034ee1f64bc5b607ae7fd49`)에 `knowslink-rollback:4787e85-publish001-20261022` 태그를 붙였다. 실제 rollback은 실행하지 않았다. 되돌려도 잃는 캘린더 연결은 없다(연결 0).
+- 백업은 `backups/4787e85-pre-publish001-20261021T224540Z.dump`, 0600·11178bytes·TOC25줄이다. SHA256은 `9d21d9ef0e8459ea9934ea3ce5feb3fbda16330c8c4c6991c7613c0050aed848`다. network-none 복원의 전체 data digest가 frozen DB와 같고 goose2·guard1·HumanModel1과 downgrade 거부를 확인했다. 운영 DB는 복원하지 않았다.
+- 캘린더 정리: 키를 그대로 둔 채 기동했고 `calendar cleanup` 줄은 0이다. 상태 JSON에 `Calendars`가 처음부터 없었다(연결 0). 그래서 revoke 호출·`failed`는 없다. 키 제거: 22:46:32Z에 운영 env 정본 `/home/shin/deploy/knowslink-state/.env`(0600)에서 `KNOWSLINK_CALENDAR_KEY` 줄만 지웠다(518→450bytes). 이전 env는 `publish001-ops-20261022/env.pre-publish001`(0600)에 보관했다. relay만 재생성했고 재기동 로그에 정리 줄이 없다(idempotent). 이후 이 키는 운영에 없다.
+- 공개 ingress: `path`에 `/privacy|/terms`만 더했다. live 규칙이 repo `public-ingress.yml`과 같다. 원본은 `publish001-ops-20261022/config.yml.pre-publish001`(0600)이다. cloudflared를 한 번 재시작했고(22:47:14Z) 연결 4개가 등록됐다. `https://link.knowslog.com/privacy`·`/terms`는 비로그인 200(한국어·영어)이고 `/privacy/`·`/privacy/x`·`/privacyx`·`/terms/`·`/terms.html`은 404다. `/home/calendar/*`는 relay가 404로 답한다.
+- 시행일 상수 `policyEffective = "2026-10-22"`는 배포일과 같아 바꾸지 않았다. 문안은 법률 검토(P-05) 전 초안이다. P-03: 문안은 ‘백업을 정기적으로 교체하며 삭제’지만 실제로는 자동 정리가 없다(cron·timer·정리 단계 없음, WAL archive 꺼짐). 백업 dump 20개가 2026-10-03부터 쌓여 있다. 문안과 실제가 달라 designer·coor의 결정이 필요하다(문안은 고치지 않았다). P-04: 운영 이메일 코드 로그인이 꺼져 있어(`email login configured=false`) 이메일 업체 행은 생략을 유지한다.
+- egress: `https://www.googleapis.com/calendar/v3/freeBusy`는 더 이상 호출하지 않는다. `https://oauth2.googleapis.com/revoke`는 첫 기동 정리에서만 호출하는데 이번에는 호출하지 않았다. 공개 smoke 21개·첫페이지·새 API 경계·언어 22개·정책 페이지·캘린더 경로가 통과했다. 보존 assertion 41개가 통과했다(Rates·Remote.Tokens는 volatile). 실계정 로그인·발송, 브라우저 렌더링은 실행하지 않았다.
+- 남은 일: coor와 사용자가 Cloud Console을 바꾼다(`calendar.freebusy` scope 제거, Google Calendar API 비활성화, 브랜딩 URL `https://link.knowslog.com/`·`/privacy`·`/terms`, 앱 게시). ops는 Cloud Console을 바꾸지 않는다.
 
 ## SAR-RELEASE-003 운영 적용 결과 (2026-10-21)
 
@@ -34,7 +34,7 @@ SAR-PUBLISH-001-DEV 후보는 D018 서버 캘린더 연결 제거와 D017 `/priv
 - 보존 assertion 40개가 통과했다(Rates는 volatile 차이). 기존 상태 JSON은 새 캘린더 필드 없이 읽혔다. 기존 백업18개와 공유 컨테이너(Postgres 포함)를 보존했다. Tunnel config·cloudflared는 바꾸지 않았다.
 - egress: relay 컨테이너에서 `https://www.googleapis.com/calendar/v3/freeBusy`와 `https://oauth2.googleapis.com/revoke`에 도달했다(인증 없이 GET 404/404, 빈 POST 403/400). 공개 smoke 21개·첫페이지·새 API 경계·언어 22개·캘린더 경로가 통과했다. 인증 없는 `POST /home/calendar/connect`가 503이 아닌 401이므로 relay가 캘린더 키를 읽었다.
 - 남은 일: 소유자가 Cloud Console Data Access에 `calendar.freebusy`를 등록해야 한다. OAuth 앱이 Testing이라 refresh token은 7일 뒤 만료한다. 실계정 연결·조회 왕복(SC-09)은 실행하지 않았다.
-- 비현행(D018): 위 캘린더 키·`calendar.freebusy` 등록·SC-09 항목은 D018로 취소됐다. 현행 처리는 위 ‘SAR-PUBLISH-001 운영 후보’ 절이다.
+- 비현행(D018): 위 캘린더 키·`calendar.freebusy` 등록·SC-09 항목은 D018로 취소됐다. 현행 처리는 위 ‘SAR-PUBLISH-001 운영 적용 결과’ 절이다.
 
 ## SAR-RELEASE-002 운영 적용 결과 (2026-10-20)
 

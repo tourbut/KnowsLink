@@ -1,0 +1,9 @@
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+calendar_connections=0
+healthz_local=200
+relay_log_calendar_lines=0
+env_calendar_key_lines=1
+env mode=600 bytes=518
+BASELINE_OK
+
+EXIT=0
