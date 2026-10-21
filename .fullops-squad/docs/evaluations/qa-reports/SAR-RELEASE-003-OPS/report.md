@@ -110,7 +110,9 @@ summary: 일정 조회를 포함한 제품 4787e85를 기존 운영 relay에 배
 
 ## 문서 HEAD의 FullOps 검사
 
-아래 절은 결과 문서 커밋 뒤 채운다.
+- 기준 `e1393794`, 대상 HEAD `2b99d2d8`(결과 문서 커밋)에서 `lint.py`는 ERROR0·WARNING1·실행 불가1(`make lint`)이고 `make test`는 skipped, 종료1이다. 실행 불가는 Windows `make` 부재이며 직전 두 OPS와 같다. 새 PASS로 보고하지 않는다. 제품 lint·테스트는 SAR-SCHEDULE-001 각 단위의 수락 증거를 재사용한다.
+- WARNING 1건은 `PLANS.md` 크기(SIZE-001)다. 이번 작업은 PLANS.md를 바꾸지 않았다(coor 소유).
+- 공백 검사는 로그 파일의 줄 끝 공백을 제거한 뒤 `git diff --check`로 확인한다(CRLF→LF 경고만 남는다).
 
 ## 보존 위치
 
