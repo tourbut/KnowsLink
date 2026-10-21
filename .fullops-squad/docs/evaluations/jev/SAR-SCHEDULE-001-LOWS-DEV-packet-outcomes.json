@@ -1,0 +1,177 @@
+{
+  "task_key": "SAR-SCHEDULE-001-LOWS-DEV",
+  "role": "dev",
+  "attempt": "601f8d6838974b2894f287614b58cd7e",
+  "packet_input_sha256": "7d73f8e9b69e1ff00b1e3015ae8cdf1026693b415419aa2f753d16312332b103",
+  "uncertainty_review": "partial 패킷이다. 미확인 항목은 route 재생성 필요와 문자열 검색 한계다. sealToken·openToken·revoke·disconnectCalendar·operateAs owner-revoke의 호출자를 grep으로 직접 확인했다. 바뀐 계약은 수정 전 실패를 확인한 단위·integration 검사와 원격 Linux make lint/test/integration으로 확인했다. 동적 호출 완전 탐색은 주장하지 않는다. 패킷 밖 변경: `internal/relay/calendar_browser_fixture_test.go`(sealedFor 인자 갱신), `.fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-LOWS-DEV-test/`(보고·remote.py·gate 로그).",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "운영 모드·인박스·완료 처리 절을 읽고 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-CODE-REVIEW-review/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "low 6건의 재현 조건·수정 제안을 읽었다. 기술 5건을 고쳤고 L2(disclosure)는 designer 몫으로 남겼다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "실패·철회 절(해제 시 토큰 폐기·제공자 철회)을 확인했다. 수정이 이 규칙 안에 있다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 지시서. 기술 계획을 적고 해야 할 일 7항목을 처리했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "검증 명령(make lint/test, integration 태그)을 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "공통 규칙 우선순위를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "단순 설계·기존 helper 재사용을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "비밀값 비노출·보안 경계 유지를 확인했다. revokedOwner의 봉인 필드는 응답에 나가지 않는다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "RED 실행 확인, raw/ 중간 로그, 완료 SHA gate 로그 1건 규칙을 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "캘린더 모듈 절에 LOWS 보정 항목을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "캘린더 모듈 절에 LOWS 보정 항목을 추가했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/remote.py",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "복사해 이 과제 remote.py로 썼다. 원본은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-SCHEDULE-001-DEV-test/report.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "기존 검사 명령(vet 3태그, 원격 integration skip)을 확인해 같은 방식으로 실행했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "캘린더가 운영 연결 전 초안임을 확인했다. 봉인 이행이 필요 없다는 근거다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "이 과제와 직접 관련 없음. 변경 없음."
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "캘린더 연결 행에 봉인의 회원 ID 결합을 한 문장 추가했다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "캘린더 관련 줄을 확인했다. 동작 서술이 바뀌지 않아 수정하지 않았다."
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "L2 AAD, L4 body close, revoke/revokeToken 분리, disconnect의 member 전달."
+    },
+    {
+      "path": "internal/relay/calendar.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "L2 AAD, L4 body close, revoke/revokeToken 분리, disconnect의 member 전달."
+    },
+    {
+      "path": "internal/relay/calendar_integration_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "L1·L3·L5 실패 테스트 추가, sealedFor/openToken 호출 갱신."
+    },
+    {
+      "path": "internal/relay/calendar_provider_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "sealedFor에 member 인자를 더했다."
+    },
+    {
+      "path": "internal/relay/calendar_test.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "L2 다른 member 열기 실패, L4 body close 테스트를 추가했다."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "L3 미저장 refresh token revoke와 봉인 member 인자."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "L3 미저장 refresh token revoke와 봉인 member 인자."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "L5 owner-revoke 연결 해제·revoke, revokedOwner 타입."
+    },
+    {
+      "path": "internal/relay/http.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "L5 owner-revoke 연결 해제·revoke, revokedOwner 타입."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "L1 done 대조를 idempotency 분기 뒤로 옮겼다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "L1 done 대조를 idempotency 분기 뒤로 옮겼다."
+    }
+  ]
+}
