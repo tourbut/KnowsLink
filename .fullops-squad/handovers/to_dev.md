@@ -43,11 +43,11 @@ main 179bdfe8: SAR-PUBLISH-001-DEV(캘린더 제거·/privacy·/terms) 병합, �
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] V-01(medium): 전역 `a{display:inline-flex;min-height:44px}`가 문장 속 링크의 줄 간격을 약 44px로 벌린다. 본문 안 링크(`p a`, `li a` 등)는 `display:inline;min-height:0`으로 되돌리고, 단독 줄 링크(정책 하단·설정 링크 줄)는 44px 터치 대상을 유지한다. 대상: 첫페이지 `#start` 정책 안내 한 줄, 개인정보처리방침 §6 문단, 그 밖에 같은 규칙에 걸리는 문단 링크.
-- [ ] V-02(low): 정책 하단의 `[aria-current="page"]`에 시각 표시(`font-weight:600` 또는 밑줄 제거)를 준다. 새 색·글꼴은 쓰지 않는다.
-- [ ] V-03(low): 설정 상단 '서비스 안내·개인정보처리방침·서비스 약관' 링크 사이에 가로 간격(약 16px, `gap`)을 둔다.
-- [ ] V-04는 수정하지 않는다(designer 판정: 수정 불필요).
-- [ ] 수정 뒤 `KNOWSLINK_UI_FIXTURE_DIR` 렌더로 KO/EN `#start`·`/privacy`·`/terms`·설정을 1440·390·320px에서 다시 찍어 줄 간격·가로 넘침 0을 확인한다. 기존 공개 화면(첫페이지 다른 링크·버튼)의 44px 터치 대상이 줄지 않았는지 확인한다.
+- [x] V-01(medium): 전역 `a{display:inline-flex;min-height:44px}`가 문장 속 링크의 줄 간격을 약 44px로 벌린다. 본문 안 링크(`p a`, `li a` 등)는 `display:inline;min-height:0`으로 되돌리고, 단독 줄 링크(정책 하단·설정 링크 줄)는 44px 터치 대상을 유지한다. 대상: 첫페이지 `#start` 정책 안내 한 줄, 개인정보처리방침 §6 문단, 그 밖에 같은 규칙에 걸리는 문단 링크.
+- [x] V-02(low): 정책 하단의 `[aria-current="page"]`에 시각 표시(`font-weight:600` 또는 밑줄 제거)를 준다. 새 색·글꼴은 쓰지 않는다.
+- [x] V-03(low): 설정 상단 '서비스 안내·개인정보처리방침·서비스 약관' 링크 사이에 가로 간격(약 16px, `gap`)을 둔다.
+- [x] V-04는 수정하지 않는다(designer 판정: 수정 불필요).
+- [x] 수정 뒤 `KNOWSLINK_UI_FIXTURE_DIR` 렌더로 KO/EN `#start`·`/privacy`·`/terms`·설정을 1440·390·320px에서 다시 찍어 줄 간격·가로 넘침 0을 확인한다. 기존 공개 화면(첫페이지 다른 링크·버튼)의 44px 터치 대상이 줄지 않았는지 확인한다.
 
 소유 파일: 정책·공개·설정 화면 CSS/템플릿(`internal/relay/` 아래 해당 파일)과 그 테스트, DEV 보고. 예상 규모: CSS 수십 줄.
 
@@ -115,4 +115,13 @@ designer의 D04 문서 수정(SAR-PUBLISH-001-D04)과 병렬이다. 파일이 �
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
+
+- 브랜치 / SHA: `fullops/dev` / 수정 `2943acc6b9e6abbc2af36088a7f6095e203a5bad`(기록 커밋 SHA는 finish 로그 기준)
+- 변경 이유: 시각 검수 V-01(문단 링크 줄 간격)·V-02(하단 현재 링크 표시)·V-03(설정 링크 간격). V-04는 지시대로 미수정.
+- 달라진 판단: 없음. V-01은 전역 `a` 규칙을 두고 `.policy p a,.policy li a,.auth p a`만 인라인으로 되돌렸다. 설정 링크 줄은 `p.links`로 간격을 줬다.
+- 검토 필요: 없음. 정책 문안·D04 미변경, 새 색·글꼴 없음.
+- 검증한 것: 원격 Linux `make lint`·`make test` EXIT=0, Windows `go test ./internal/relay` ok, 8화면×3폭 측정(넘침 0, 문단 링크 외 모든 링크 44px 이상). 못 한 것: 서버 경유 화면, 키보드 순회, 수정 전 자동 비교.
+- 산출물·로그: [report.md](../../docs/evaluations/qa-reports/SAR-PUBLISH-001-FIX-test/report.md). 의존성 변경 없음. 갱신 산출물 없음.
+- 남은 일: designer 재확인(수정 화면 시각), 이후 ops 배포 배정(coor).
+
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
