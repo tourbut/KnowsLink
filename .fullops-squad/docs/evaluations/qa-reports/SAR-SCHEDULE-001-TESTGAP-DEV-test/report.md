@@ -40,7 +40,12 @@ summary: "독립 QA not_run 세 경로(SC-04 친구 아님·철회 세대, SC-06
 
 원격 실행은 [remote.py](remote.py)(VISUAL-FIX 복사본, 로컬 로그 경로·clone 접두어만 바꿈)다. gate 로그 SHA256은 [gate-log-sha256.txt](gate-log-sha256.txt)다. `4a708c1` 이후 커밋은 `.fullops-squad/` 아래 보고·지시서·패킷 결과만 바꾼다.
 
-FullOps lint 상세: 완료 커밋 뒤 기록한다.
+FullOps lint 상세(`68a241c7`, 출력 `raw/fullops-lint.txt`): ERROR 0 / WARNING 1 / 실행 불가 2, EXIT=1.
+
+- 역할 워크트리에 보존할 미추적 파일(SAR-MOTION-INTRO 증거·`videos/service-intro/`)이 있어 같은 HEAD의 detached 임시 worktree에서 실행하고 지웠다.
+- 실행 불가 2: product-lint·product-test. Windows에 `make`가 없다. 같은 명령은 원격 Linux `4a708c1`에서 EXIT=0이다. EXIT=1은 이 실행 불가 때문이다.
+- SIZE-001 1건: `.fullops-squad/PLANS.md` 2044줄. 이 과제는 PLANS.md를 바꾸지 않았다. 기존 경고다.
+- gate 로그 SHA256은 Git에 저장된 LF blob 기준이다.
 
 ## 미검증·남은 일
 
