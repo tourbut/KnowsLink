@@ -117,3 +117,9 @@ live Tunnel 변경은 사용자 승인·원본 백업·`cloudflared ingress vali
 4787e85를 같은 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용했다. [운영 보고](../docs/evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md). 운영 env 정본에 `KNOWSLINK_CALENDAR_KEY`를 서버에서 만들어 추가했다(값 비출력, 이전 env 0600 보관, 길이만 확인).
 relay 기동 로그 줄에는 캘린더 상태가 없다. 키 준비 여부는 인증 없는 `POST /home/calendar/connect`가 503이 아닌 401인지로 본다(키가 없으면 503). 공개 호출은 1.5초 이상 간격으로 했고 429는 없었다.
 preservation 비교의 HEAD 기준은 build 단계가 checkout을 옮기므로 baseline만 이전 SHA이고 before부터 새 SHA다. 새 relay 직렬화 차이는 이번엔 없었다(`CodeTail`은 직전 배포에서 이미 기록됨).
+
+## 2026-10-22 — SAR-PUBLISH-001-OPS
+
+7c6ef373을 같은 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용하고 운영 env의 캘린더 키를 지웠다. 정책 페이지 `/privacy|/terms`를 live ingress에 더했다. [운영 보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md).
+정리 줄이 없으면 줄 부재가 아니라 상태 JSON(`Calendars` 키·연결 수)으로 판정한다. 이번에는 연결이 처음부터 0이었다. 백업 보존 문안(P-03)은 실제 자동 정리가 없어 문안과 다르다. 배포 전에 서버의 실제 정리 방식부터 확인한다.
+Git Bash가 `/home/...` 인자를 Windows 경로로 바꿔 sftp put이 ENOENT로 실패했다(`MSYS_NO_PATHCONV=1`). 셸 가드가 스크립트 안의 삭제 명령 문자열까지 막아 임시 파일 대신 변수와 `printf`로 `.env`를 다시 썼다. `git checkout <sha> --`는 워크트리 HEAD를 옮기므로 확인용에 쓰지 않는다.

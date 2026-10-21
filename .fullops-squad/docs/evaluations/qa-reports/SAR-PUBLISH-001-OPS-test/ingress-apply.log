@@ -1,0 +1,38 @@
+== repo ingress check on server checkout (before live change)
+Public ingress: Google/member and policy paths only; owner, administrative APIs and trial remain outside this rule
+a9e24b10f5982cfe459c2e57058151e910658aa47401257928a2abdd67bb6fac  /home/[redacted]/deploy/knowslink-state/tunnel/config.yml
+a9e24b10f5982cfe459c2e57058151e910658aa47401257928a2abdd67bb6fac  /home/[redacted]/deploy/knowslink-state/publish001-ops-20261022/config.yml.pre-publish001
+backup mode=600 bytes=1035
+live rule == 4787e85 repo rule; candidate rule == 7c6ef373 repo rule; only /privacy|/terms added
+changed lines: 2
+cloudflared version 2026.8.3 (built 2026-08-31-10:04 UTC)
+Validating rules from /home/[redacted]/deploy/knowslink-state/publish001-ops-20261022/config.candidate.yml
+OK
+candidate /privacy                   Matched rule #0
+candidate /terms                     Matched rule #0
+candidate /privacy/                  Matched rule #1
+candidate /privacy/x                 Matched rule #1
+candidate /privacyx                  Matched rule #1
+candidate /terms/                    Matched rule #1
+candidate /terms.html                Matched rule #1
+candidate /                          Matched rule #0
+candidate /home                      Matched rule #0
+candidate /home/calendar/connect     Matched rule #0
+candidate /lang/ko                   Matched rule #0
+candidate /v1/text/seen              Matched rule #0
+candidate /owner                     Matched rule #1
+candidate /healthz                   Matched rule #1
+candidate /v1/owners                 Matched rule #1
+live after mode=600 owner=[redacted]
+RESTART_BEGIN=2026-10-21T22:47:14Z
+knowslink-cloudflared-1
+RESTART_RETURNED=2026-10-21T22:47:14Z
+REGISTERED_CONNECTIONS=4
+TUNNEL_ERR_LINES=5
+cloudflared status=running restarts=0 started=2026-10-21T22:47:14.304413036Z
+== repo ingress check after live change
+Public ingress: Google/member and policy paths only; owner, administrative APIs and trial remain outside this rule
+live_path_rule == repo_path_rule(7c6ef373): True
+INGRESS_APPLY_EXIT=0
+
+EXIT=0

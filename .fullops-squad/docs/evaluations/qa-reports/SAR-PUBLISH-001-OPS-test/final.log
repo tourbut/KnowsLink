@@ -1,0 +1,23 @@
+FINAL_OBSERVE_UTC=2026-10-21T22:50:33Z
+/knowslink-cloudflared-1 running restarts=0 started=2026-10-21T22:47:14.304413036Z
+/knowslink-relay-1 running restarts=0 started=2026-10-21T22:46:34.484894935Z
+relay health=healthy image=sha256:69f62b72483b0665d6ea19bb4875f63154b97ddb86b8db515f3f6c24705e95a2
+relay_error_panic_lines=0
+relay_log_lines=1
+relay_calendar_lines=0
+env_calendar_key_lines=0
+env mode=600 bytes=450
+env backup mode=600 bytes=518
+config backup mode=600 bytes=1035
+7c6ef3734a38a8f273714aa2915dc2f14f83a7e4
+dirty_lines=0
+rollback_tag=sha256:0e0eb8b44e4713032436ca09751a7363a01f8d1a4034ee1f64bc5b607ae7fd49
+fixture /knowslink-publish001-rehearse-20261022 status=exited exit=0 net=none ports=map[]
+fixture /knowslink-publish001-rollback-inspect-20261022 status=exited exit=0 net=none ports=map[]
+healthz_local=200
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+2026-10-21T04:48:59Z 7b4f9bcf11bb7ab13207d8e635060a6e90e7f8c2 -> 4787e85a0b6952970a861b6b100b3561b9cf30a0 release manual verified bundle+backup+retained-isolation+rollback-tag
+2026-10-21T22:45:54Z 4787e85a0b6952970a861b6b100b3561b9cf30a0 -> 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 release manual verified bundle+backup+retained-isolation+rollback-tag
+2026-10-21T22:46:40Z 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 calendar key removed from env, relay recreated
+
+EXIT=0

@@ -1,0 +1,217 @@
+{
+  "utc_stages": {
+    "baseline": "2026-10-21T22:39:35.210586+00:00",
+    "before": "2026-10-21T22:45:34.584327+00:00",
+    "frozen": "2026-10-21T22:45:38.818514+00:00",
+    "after": "2026-10-21T22:45:54.176375+00:00",
+    "final": "2026-10-21T22:50:33.577325+00:00"
+  },
+  "passed": 41,
+  "total": 41,
+  "assertions": [
+    {
+      "assertion": "state map HTTP digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Gates digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Pairs digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Agents digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Owners digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Friends digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Members digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Messages digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Sessions digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Challenges digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Identities digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Connections digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Idempotency digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map GoogleAttempts digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "Friends count 1 at all stages (digest covered by the all-stage map check)",
+      "pass": true
+    },
+    {
+      "assertion": "new omitempty state maps (Calendars) absent at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map counts equal at all stages except volatile Rates",
+      "pass": true
+    },
+    {
+      "assertion": "Remote Clients/Attempts/Codes/Installs/Subscriptions digests/counts, inbox and subscription metadata equal at all stages (Tokens is volatile: 2 -> 1 only at final)",
+      "pass": true
+    },
+    {
+      "assertion": "schema sha256 equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "HumanModel=1 and goose2/guard1/rows1 at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "frozen equals before for every state digest incl. Rates (writer stopped)",
+      "pass": true
+    },
+    {
+      "assertion": "Rates is volatile (informational, not a permission change)",
+      "pass": true,
+      "detail": {
+        "Rates_counts": [
+          3,
+          4,
+          4,
+          4,
+          4
+        ],
+        "digest_equal_before_frozen": true,
+        "digest_equal_frozen_after": false
+      }
+    },
+    {
+      "assertion": "tunnel.uuid/access.aud hash+mode equal at all stages; .env mode 0600 at all stages",
+      "pass": true
+    },
+    {
+      "assertion": ".env hash unchanged through the relay switch and changes exactly once afterwards (approved calendar key line removal)",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel/config.yml unchanged through the relay switch",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel/config.yml changed exactly once after the switch (approved /privacy|/terms ingress), mode 0600",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel credential json hash+mode equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "state and backups directory modes 0700 at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "existing 19 backups preserved (hash/mode/bytes); exactly one new backup",
+      "pass": true
+    },
+    {
+      "assertion": "new backup is mode 0600",
+      "pass": true,
+      "detail": {
+        "bytes": 11178,
+        "sha256": "9d21d9ef0e8459ea9934ea3ce5feb3fbda16330c8c4c6991c7613c0050aed848"
+      }
+    },
+    {
+      "assertion": "only relay and migrate containers changed across the switch",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "Postgres container unchanged across switch and final",
+      "pass": true
+    },
+    {
+      "assertion": "final: only relay, migrate and KnowsLink cloudflared changed",
+      "pass": true,
+      "detail": [
+        "/knowslink-cloudflared-1",
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "final: the other pre-existing containers (shared services included) unchanged",
+      "pass": true,
+      "detail": {
+        "pre_existing": 124,
+        "unchanged": 121
+      }
+    },
+    {
+      "assertion": "only new containers since baseline are the retained restore fixture and rollback-artifact check",
+      "pass": true
+    },
+    {
+      "assertion": "relay image changed and relay healthy with restarts 0",
+      "pass": true
+    },
+    {
+      "assertion": "shared orca/s8/mcp statuses and host cloudflared PIDs equal at all stages",
+      "pass": true,
+      "detail": {
+        "host_cloudflared_pids": [
+          "2039731"
+        ]
+      }
+    },
+    {
+      "assertion": "listeners 127.0.0.1:8080 and 5432 restored; frozen had only 5432",
+      "pass": true
+    },
+    {
+      "assertion": "no other active DB writer at frozen/after/final",
+      "pass": true
+    },
+    {
+      "assertion": "deployed HEAD 7c6ef373 clean at before/frozen/after/final (checkout moved by the build step); baseline at 4787e85",
+      "pass": true
+    },
+    {
+      "assertion": "epoch never decreased; stable while writer stopped",
+      "pass": true,
+      "detail": [
+        1692269,
+        1692640,
+        1692641,
+        1692659,
+        1693037
+      ]
+    }
+  ]
+}

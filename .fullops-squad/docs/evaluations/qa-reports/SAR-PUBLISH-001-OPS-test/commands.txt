@@ -1,0 +1,309 @@
+# Server scripts run through the task-local verified SSH transport (EXIT is in the matching .log). Secrets are never in these scripts.
+
+##### mkw.txt
+set -o errexit -o nounset -o pipefail
+W=/home/shin/deploy/knowslink-state/publish001-ops-20261022
+test ! -e "$W"
+mkdir -m 0700 "$W"
+stat -c "workspace mode=%a" "$W"
+
+
+##### baseline.txt
+set -o errexit -o nounset -o pipefail
+W=/home/shin/deploy/knowslink-state/publish001-ops-20261022
+chmod 0600 "$W/observe.txt" "$W/release.bundle"
+umask 077
+date -u +%FT%TZ >"$W/baseline.utc"
+bash "$W/observe.txt" >"$W/baseline.json"
+python3 /home/shin/deploy/knowslink/deploy/knowslink/verify.py local
+docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select 'calendar_connections='||coalesce(jsonb_object_keys_count,0) from (select (select count(*) from jsonb_object_keys(coalesce(data->'Calendars','{}'::jsonb))) as jsonb_object_keys_count from relay_state) t"
+curl -s -o /dev/null -m 10 -w 'healthz_local=%{http_code}\n' http://127.0.0.1:8080/healthz
+docker logs knowslink-relay-1 2>&1 | grep -c -i calendar | sed 's/^/relay_log_calendar_lines=/' || true
+grep -c '^KNOWSLINK_CALENDAR_KEY=' /home/shin/deploy/knowslink-state/.env | sed 's/^/env_calendar_key_lines=/' || true
+stat -c 'env mode=%a bytes=%s' /home/shin/deploy/knowslink-state/.env
+echo BASELINE_OK
+
+
+##### build.txt
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/publish001-ops-20261022
+OLD=4787e85a0b6952970a861b6b100b3561b9cf30a0; NEW=7c6ef3734a38a8f273714aa2915dc2f14f83a7e4
+TAG=knowslink-rollback:4787e85-publish001-20261022
+test "$(git -C "$D" rev-parse HEAD)" = "$OLD"
+test -z "$(git -C "$D" status --porcelain)"
+printf 'ce1866100ce179832270699976e302197e744df5727256b7a219454408731ed0  %s\n' "$W/release.bundle" | sha256sum -c -
+git -C "$D" bundle verify "$W/release.bundle"
+git -C "$D" fetch -q "$W/release.bundle" refs/tmp/publish001
+git -C "$D" cat-file -e "$NEW^{commit}"
+test "$(git -C "$D" rev-parse FETCH_HEAD)" = "$NEW"
+git -C "$D" merge-base --is-ancestor "$OLD" "$NEW"
+git -C "$D" diff --exit-code "$OLD" "$NEW" -- db Dockerfile go.mod go.sum Makefile sqlc.yaml
+echo 'schema/dependency diff=0 (no migration, no new dependency)'
+echo "compose.yaml diff:"; git -C "$D" diff -U0 "$OLD" "$NEW" -- compose.yaml | grep '^[+-][^+-]'
+echo "deploy diff files:"; git -C "$D" diff --stat "$OLD" "$NEW" -- deploy scripts
+git -C "$D" diff --shortstat "$OLD" "$NEW" -- . ':!.fullops-squad'
+OLDIMG=$(docker inspect -f '{{.Image}}' knowslink-relay-1)
+test "$OLDIMG" = "$(docker image inspect knowslink-relay:latest --format '{{.Id}}')"
+printf '%s\n' "$OLDIMG" >"$W/previous-relay-image.txt"; echo "OLDIMG=$OLDIMG"
+! docker image inspect "$TAG" >/dev/null 2>&1
+docker tag "$OLDIMG" "$TAG"
+test "$(docker image inspect "$TAG" --format '{{.Id}}')" = "$OLDIMG"
+docker image inspect "$TAG" --format 'ROLLBACK_TAG_IMAGE={{.Id}}'
+git -C "$D" checkout -q --detach "$NEW"
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" config --quiet
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" build relay migrate
+echo 'BUILD_EXIT=0'
+printf 'HEAD='; git rev-parse HEAD
+test -z "$(git status --porcelain)"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}}' knowslink-relay-1
+docker image inspect knowslink-relay:latest --format 'NEW_RELAY_IMAGE={{.Id}}'
+docker image inspect "$TAG" --format 'ROLLBACK_STILL={{.Id}}'
+
+
+##### rollback-verify.txt
+set -o errexit -o nounset -o pipefail
+TAG=knowslink-rollback:4787e85-publish001-20261022
+docker image inspect "$TAG" --format 'ROLLBACK_TAG_IMAGE={{.Id}} created={{.Created}}'
+docker run --name knowslink-publish001-rollback-inspect-20261022 --network none --read-only --entrypoint /bin/sh "$TAG" -c 'test -x /app/relay; test -x /app/migrate; sha256sum /app/relay /app/migrate'
+docker inspect -f 'network={{.HostConfig.NetworkMode}} read_only={{.HostConfig.ReadonlyRootfs}} status={{.State.Status}} exit={{.State.ExitCode}}' knowslink-publish001-rollback-inspect-20261022
+echo 'ROLLBACK_ARTIFACT_CHECK_EXIT=0; application rollback not run'
+
+
+##### deploy.txt
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/publish001-ops-20261022
+NEW=7c6ef3734a38a8f273714aa2915dc2f14f83a7e4; FIX=knowslink-publish001-rehearse-20261022
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+test "$(git rev-parse HEAD)" = "$NEW"
+test -z "$(git status --porcelain)"
+test "$(docker inspect -f '{{.State.Health.Status}}' knowslink-relay-1)" = healthy
+STOPPED=0; UPDONE=0
+trap 'rc=$?; if [ $rc -ne 0 ] && [ "$STOPPED" = 1 ] && [ "$UPDONE" = 0 ]; then echo "TRAP: pre-up failure rc=$rc; restarting old relay container"; docker start knowslink-relay-1 || true; fi' EXIT
+umask 077
+bash "$W/observe.txt" >"$W/before.json"
+STOPPED=1
+echo "STOP_BEGIN=$(date -u +%FT%TZ)"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" stop relay
+E1=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+sleep 2
+E2=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+test "$E1" = "$E2"; echo "FROZEN_EPOCH=$E1"
+OTHER=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select count(*) from pg_stat_activity where datname='knowslink' and backend_type='client backend' and pid<>pg_backend_pid()")
+test "$OTHER" = 0; echo "OTHER_DB_CLIENTS=$OTHER"
+FROZEN=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select md5(data::text) from relay_state')
+printf '%s\n' "$FROZEN" >"$W/frozen-data.md5"
+bash "$W/observe.txt" >"$W/frozen.json"
+OUT=$S/backups/4787e85-pre-publish001-$(date -u +%Y%m%dT%H%M%SZ).dump
+(set -o noclobber; docker exec knowslink-postgres-1 pg_dump -U knowslink -Fc knowslink >"$OUT")
+printf '%s\n' "$OUT" >"$W/backup.path"
+docker exec -i knowslink-postgres-1 pg_restore --list <"$OUT" >"$W/backup.list"
+stat -c 'backup mode=%a bytes=%s' "$OUT"
+sha256sum "$OUT"
+printf 'TOC_LINES='; wc -l <"$W/backup.list"
+IMG=postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+docker run -i -e EXPECTED_MD5="$FROZEN" --network none --name "$FIX" --user postgres --entrypoint sh "$IMG" -c '
+set -eu
+initdb -D /tmp/pgd -A trust >/dev/null
+pg_ctl -D /tmp/pgd -o "-c listen_addresses= -c unix_socket_directories=/tmp" -w -l /tmp/pg.log start >/dev/null
+export PGHOST=/tmp
+createdb rehearse
+pg_restore -d rehearse --no-owner --no-privileges --exit-on-error
+ACTUAL_MD5=$(psql -d rehearse -Atc "select md5(data::text) from relay_state")
+test "$ACTUAL_MD5" = "$EXPECTED_MD5"; echo "RESTORED_FULL_STATE_DIGEST_MATCH=true"
+psql -d rehearse -v ON_ERROR_STOP=1 -Atc "select '\''restored goose='\''||(select max(version_id) from goose_db_version)||'\'' guard='\''||(select count(*) from pg_trigger where tgname='\''human_writer_guard'\'')||'\'' rows='\''||count(*)||'\'' epoch='\''||max(epoch)||'\'' HumanModel='\''||max(data->>'\''HumanModel'\'') from relay_state"
+if psql -d rehearse -v ON_ERROR_STOP=1 -Atc "update relay_state set data=data-'\''HumanModel'\''" >/tmp/guard.log 2>&1; then
+ echo "FAIL downgrade accepted"; exit 42
+else
+ grep -q "human authorization writer downgrade refused" /tmp/guard.log
+ echo "restored writer downgrade refused"
+fi
+pg_ctl -D /tmp/pgd -m fast stop >/dev/null
+' <"$OUT"
+echo "REHEARSAL_EXIT=0 retained=$FIX"
+UPDONE=1
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" up -d --no-build --wait relay
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" ps -a
+echo "UP_DONE=$(date -u +%FT%TZ)"
+python3 "$D/deploy/knowslink/verify.py" local
+printf '%s 4787e85a0b6952970a861b6b100b3561b9cf30a0 -> 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 release manual verified bundle+backup+retained-isolation+rollback-tag\n' "$(date -u +%FT%TZ)" >>"$S/deploy-history.log"
+bash "$W/observe.txt" >"$W/after.json"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}} restarts={{.RestartCount}}' knowslink-relay-1
+printf 'MIGRATE_EXIT='; docker inspect -f '{{.State.ExitCode}}' knowslink-migrate-1
+docker logs knowslink-migrate-1
+printf 'RELAY_ENV_CALENDAR_KEY_TEXT_LEN='; docker exec knowslink-relay-1 sh -c 'printf %s "${KNOWSLINK_CALENDAR_KEY:-}" | wc -c'
+echo "CLEANUP_LINES=$(docker logs knowslink-relay-1 2>&1 | grep -c 'calendar cleanup' || true)"
+docker logs knowslink-relay-1 2>&1 | grep 'calendar cleanup' | sed 's/^[0-9\/: ]* //' || true
+echo "RELAY_LOG_LINES=$(docker logs knowslink-relay-1 2>&1 | wc -l)"
+echo 'DEPLOY_EXIT=0'
+
+
+##### envkey.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/publish001-ops-20261022; D=/home/shin/deploy/knowslink
+umask 077
+ENVF=$S/.env
+cal() { docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select 'calendar_key_in_state='||(data ? 'Calendars')||' calendar_connections='||(select count(*) from jsonb_object_keys(coalesce(data->'Calendars','{}'::jsonb))) from relay_state"; }
+echo "PRE_STATE: $(cal)"
+echo "PRE_CLEANUP_LINES=$(docker logs knowslink-relay-1 2>&1 | grep -c 'calendar cleanup' || true)"
+stat -c 'env before mode=%a bytes=%s' "$ENVF"
+test "$(grep -c '^KNOWSLINK_CALENDAR_KEY=' "$ENVF")" = 1
+test ! -e "$W/env.pre-publish001"
+cp -p "$ENVF" "$W/env.pre-publish001"; chmod 0600 "$W/env.pre-publish001"
+sha256sum "$ENVF" "$W/env.pre-publish001"
+KEPT=$(grep -v '^KNOWSLINK_CALENDAR_KEY=' "$W/env.pre-publish001")
+printf '%s\n' "$KEPT" >"$ENVF"
+chmod 0600 "$ENVF"
+stat -c 'env after mode=%a bytes=%s' "$ENVF"
+echo "key_lines_after=$(grep -c '^KNOWSLINK_CALENDAR_KEY' "$ENVF" || true)"
+test "$(diff "$W/env.pre-publish001" "$ENVF" | grep -c '^[<>]')" = 1; echo 'only the calendar key line differs (1 removed line)'
+stat -c 'env backup mode=%a bytes=%s' "$W/env.pre-publish001"
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+test "$(git rev-parse HEAD)" = 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4
+echo "RESTART_BEGIN=$(date -u +%FT%TZ)"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" up -d --no-build --wait relay
+echo "RESTART_DONE=$(date -u +%FT%TZ)"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-relay-1
+printf 'RELAY_ENV_CALENDAR_KEY_TEXT_LEN='; docker exec knowslink-relay-1 sh -c 'printf %s "${KNOWSLINK_CALENDAR_KEY:-}" | wc -c'
+echo "POST_CLEANUP_LINES=$(docker logs knowslink-relay-1 2>&1 | grep -c 'calendar cleanup' || true)"
+echo "RELAY_LOG_LINES=$(docker logs knowslink-relay-1 2>&1 | wc -l)"
+echo "RELAY_ERROR_PANIC=$(docker logs knowslink-relay-1 2>&1 | grep -c -i -E 'error|panic' || true)"
+docker logs knowslink-relay-1 2>&1 | sed 's/^[0-9\/: ]* //'
+echo "POST_STATE: $(cal)"
+python3 "$D/deploy/knowslink/verify.py" local
+printf '%s 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 calendar key removed from env, relay recreated\n' "$(date -u +%FT%TZ)" >>"$S/deploy-history.log"
+echo ENVKEY_EXIT=0
+
+
+##### ingress.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/publish001-ops-20261022; D=/home/shin/deploy/knowslink; LIVE=$S/tunnel/config.yml
+BK=$W/config.yml.pre-publish001; CAND=$W/config.candidate.yml; CF=/home/shin/.local/bin/cloudflared
+umask 077
+test "$(git -C "$D" rev-parse HEAD)" = 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4
+echo "== repo ingress check on server checkout (before live change)"
+(cd "$D" && python3 scripts/check_public_ingress.py)
+test ! -e "$BK"
+cp -p "$LIVE" "$BK"
+sha256sum "$LIVE" "$BK"
+stat -c 'backup mode=%a bytes=%s' "$BK"
+python3 - <<'PY'
+import re,subprocess
+S='/home/shin/deploy/knowslink-state'; W=S+'/publish001-ops-20261022'; D='/home/shin/deploy/knowslink'
+live=open(S+'/tunnel/config.yml').read()
+old_repo=subprocess.check_output(['git','-C',D,'show','4787e85a0b6952970a861b6b100b3561b9cf30a0:deploy/knowslink/tunnel/public-ingress.yml'],text=True)
+new_repo=open(D+'/deploy/knowslink/tunnel/public-ingress.yml').read()
+rule=lambda t: re.search(r"path: '(.+)'",t)[1]
+old,new=rule(old_repo),rule(new_repo)
+assert rule(live)==old, 'live path rule must equal the 4787e85 repo rule'
+assert live.count(old)==1
+open(W+'/config.candidate.yml','w').write(live.replace(old,new))
+print('live rule == 4787e85 repo rule; candidate rule == 7c6ef373 repo rule; only /privacy|/terms added')
+PY
+echo "changed lines: $(diff "$LIVE" "$CAND" | grep -c '^[<>]')"
+"$CF" --version | head -1
+"$CF" tunnel --config "$CAND" ingress validate
+for p in /privacy /terms /privacy/ /privacy/x /privacyx /terms/ /terms.html / /home /home/calendar/connect /lang/ko /v1/text/seen /owner /healthz /v1/owners; do
+ printf 'candidate %-26s ' "$p"; "$CF" tunnel --config "$CAND" ingress rule "https://link.knowslog.com$p" | grep 'Matched rule' | sed -n 1p || true
+done
+APPLIED=0
+trap 'rc=$?; if [ $rc -ne 0 ] && [ "$APPLIED" = 1 ]; then echo "TRAP: failure rc=$rc; restoring backup config and restarting cloudflared"; cat "$BK" >"$LIVE"; docker restart knowslink-cloudflared-1 >/dev/null || true; fi' EXIT
+APPLIED=1
+cat "$CAND" >"$LIVE"
+test "$(sha256sum <"$LIVE")" = "$(sha256sum <"$CAND")"
+stat -c 'live after mode=%a owner=%U' "$LIVE"
+T0=$(date -u +%FT%TZ); echo "RESTART_BEGIN=$T0"
+docker restart knowslink-cloudflared-1
+echo "RESTART_RETURNED=$(date -u +%FT%TZ)"
+for i in $(seq 1 30); do n=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c 'Registered tunnel connection' || true); [ "$n" -ge 4 ] && break; sleep 1; done
+sleep 3
+echo "REGISTERED_CONNECTIONS=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c 'Registered tunnel connection' || true)"
+echo "TUNNEL_ERR_LINES=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c -E '\bERR\b|error' || true)"
+docker inspect -f 'cloudflared status={{.State.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-cloudflared-1
+APPLIED=0
+echo "== repo ingress check after live change"
+(cd "$D" && python3 scripts/check_public_ingress.py)
+python3 - <<'PY'
+import re
+S='/home/shin/deploy/knowslink-state'; D='/home/shin/deploy/knowslink'
+live=re.search(r"path: '(.+)'",open(S+'/tunnel/config.yml').read())[1]; repo=re.search(r"path: '(.+)'",open(D+'/deploy/knowslink/tunnel/public-ingress.yml').read())[1]
+print('live_path_rule == repo_path_rule(7c6ef373):',live==repo)
+PY
+echo INGRESS_APPLY_EXIT=0
+
+
+##### retention.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state
+echo "backup_files=$(ls "$S/backups" | wc -l)"
+ls -l --time-style=+%F "$S/backups" | awk 'NR>1{print $6, $5, $1}' | sed -n '1p;$p'
+find "$S/backups" -type f -mtime +14 | wc -l | sed 's/^/backups_older_than_14d=/'
+(crontab -l 2>/dev/null || true) | grep -i -E 'backup|knowslink' | sed 's/^/crontab: /' || true
+systemctl list-timers --all 2>/dev/null | grep -i -E 'knowslink|backup' || echo 'no knowslink/backup systemd timer'
+grep -n -i -E 'prune|retention' /home/shin/deploy/knowslink/deploy/knowslink/beta.sh | head -5 || echo 'no prune/retention in beta.sh'
+docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "show archive_mode" | sed 's/^/pg_archive_mode=/'
+
+
+##### final.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/publish001-ops-20261022; D=/home/shin/deploy/knowslink
+umask 077
+echo "FINAL_OBSERVE_UTC=$(date -u +%FT%TZ)"
+bash "$W/observe.txt" >"$W/final.json"
+docker inspect -f '{{.Name}} {{.State.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-cloudflared-1 knowslink-relay-1
+docker inspect -f 'relay health={{.State.Health.Status}} image={{.Image}}' knowslink-relay-1
+echo "relay_error_panic_lines=$(docker logs knowslink-relay-1 2>&1 | grep -c -i -E 'error|panic' || true)"
+echo "relay_log_lines=$(docker logs knowslink-relay-1 2>&1 | wc -l)"
+echo "relay_calendar_lines=$(docker logs knowslink-relay-1 2>&1 | grep -c -i calendar || true)"
+echo "env_calendar_key_lines=$(grep -c '^KNOWSLINK_CALENDAR_KEY' $S/.env || true)"
+stat -c 'env mode=%a bytes=%s' $S/.env; stat -c 'env backup mode=%a bytes=%s' $W/env.pre-publish001
+stat -c 'config backup mode=%a bytes=%s' $W/config.yml.pre-publish001
+git -C $D rev-parse HEAD; git -C $D status --porcelain | wc -l | sed 's/^/dirty_lines=/'
+docker image inspect knowslink-rollback:4787e85-publish001-20261022 --format 'rollback_tag={{.Id}}'
+docker inspect -f 'fixture {{.Name}} status={{.State.Status}} exit={{.State.ExitCode}} net={{.HostConfig.NetworkMode}} ports={{.HostConfig.PortBindings}}' knowslink-publish001-rehearse-20261022 knowslink-publish001-rollback-inspect-20261022
+curl -s -o /dev/null -m 10 -w 'healthz_local=%{http_code}\n' http://127.0.0.1:8080/healthz
+python3 $D/deploy/knowslink/verify.py local
+tail -3 $S/deploy-history.log
+
+
+##### public smoke scripts: public-smoke.py, public-smoke-lang.py (task-local, read-only), public-smoke-policy.py
+"""Read-only public check of /privacy, /terms and neighbours for SAR-PUBLISH-001-OPS: no credentials, bodies and cookie values not retained."""
+import datetime, http.client, json, pathlib, re, time
+root = pathlib.Path(__file__).parent
+rep = {'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'policy': [], 'neighbours': [], 'calendar': [], 'landing': {}}
+def call(method, path, headers=None):
+    c = http.client.HTTPSConnection('link.knowslog.com', timeout=20)
+    c.request(method, path, headers=headers or {})
+    r = c.getresponse(); data = r.read(); hdr = r.getheaders(); c.close(); time.sleep(1.5)
+    return r, data.decode('utf-8', 'replace'), hdr
+for path in ['/privacy', '/terms']:
+    for lang in ['ko', 'en']:
+        r, t, hdr = call('GET', path, {'Cookie': '__Host-kl_lang=' + lang} if lang == 'en' else {})
+        h = lambda k: next((v for kk, v in hdr if kk.lower() == k.lower()), None)
+        v = {'path': path, 'lang': lang, 'status': r.status, 'content_type': h('Content-Type'), 'cache_control': h('Cache-Control'), 'content_language': h('Content-Language'),
+             'set_cookie_absent': not any(k.lower() == 'set-cookie' for k, _ in hdr), 'effective_2026-10-22': '2026-10-22' in t, 'has_h1': '<h1' in t, 'no_img': '<img' not in t,
+             'robots_noindex': 'noindex' in t.lower()}
+        v['pass'] = r.status == 200 and (h('Content-Type') or '').startswith('text/html') and v['set_cookie_absent'] and v['effective_2026-10-22'] and v['has_h1']
+        rep['policy'].append(v)
+for path in ['/privacy/', '/privacy/x', '/privacyx', '/terms/', '/terms.html', '/Privacy', '/policy']:
+    r, _, _ = call('GET', path)
+    rep['neighbours'].append({'path': path, 'status': r.status, 'pass': r.status == 404})
+for method, path in [('GET', '/home/calendar/connect'), ('POST', '/home/calendar/connect'), ('POST', '/home/calendar/disconnect'), ('GET', '/home/calendar')]:
+    r, _, hdr = call(method, path)
+    rep['calendar'].append({'method': method, 'path': path, 'status': r.status, 'pass': r.status == 404, 'cookies_set': [k for k, _ in hdr if k.lower() == 'set-cookie']})
+# first page: policy links present, no calendar/freebusy wording, with or without login block shown
+r, t, hdr = call('GET', '/')
+L = rep['landing']; L['status'] = r.status
+L['links'] = {p: (('href="%s"' % p) in t) for p in ['/privacy', '/terms']}
+L['start_anchor'] = 'id="start"' in t
+L['calendar_words_absent'] = not re.search(r'calendar|freebusy|캘린더|일정 조회', t, re.I)
+L['google_form_count'] = t.count('action="/auth/google"')
+L['set_cookie_absent'] = not any(k.lower() == 'set-cookie' for k, _ in hdr)
+L['pass'] = r.status == 200 and all(L['links'].values()) and L['start_anchor'] and L['calendar_words_absent'] and L['set_cookie_absent']
+rep['all_pass'] = all(v['pass'] for v in rep['policy'] + rep['neighbours'] + rep['calendar']) and L['pass']
+(root / 'public-smoke-policy.json').write_text(json.dumps(rep, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+print([(v['path'], v['lang'], v['status']) for v in rep['policy']], [(v['path'], v['status']) for v in rep['neighbours']], [(v['method'], v['path'], v['status']) for v in rep['calendar']], L)
+assert rep['all_pass'], 'policy smoke mismatch'
