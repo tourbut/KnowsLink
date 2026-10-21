@@ -1,0 +1,71 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-RELEASE-003-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.02,
+        "ops": 0.98,
+        "tester": 0
+      },
+      "confidence": 0.97
+    },
+    "docs": {
+      "D01": 0.18,
+      "D02": 0.1,
+      "D03": 0.13,
+      "D04": 0.08,
+      "D05": 0.13,
+      "D06": 0.12,
+      "D07": 0.14,
+      "D08": 0.16,
+      "D09": 0.15,
+      "D10": 0.39,
+      "D11": 0.14,
+      "D12": 0.8,
+      "D13": 0.63
+    }
+  },
+  "usage": {
+    "input_tokens": 2568,
+    "output_tokens": 314,
+    "cost": 0.000107856
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.724,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "only"
+  },
+  "candidate_hash": "d829f2528074bda60e766c740f46863d77194445422ef41ac7553f90cdd9ecb3",
+  "head": "e1393794bb58b530a96a509e8a158892bd8837d0",
+  "requires_packet": true
+}

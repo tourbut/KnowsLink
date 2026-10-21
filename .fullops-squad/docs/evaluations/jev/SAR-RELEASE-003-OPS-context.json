@@ -1,0 +1,251 @@
+{
+  "version": "jev-observe-v3",
+  "mode": "observation",
+  "head": "e1393794bb58b530a96a509e8a158892bd8837d0",
+  "requested_model": "~typesafe/jev-latest",
+  "input_sha256": "2f73d6f4e6327b5c98cd2c3161bcb45e60a1b35a9bebddba01bb6f074d961d98",
+  "question_sha256": "9a3e34dc25f13edeaa432a869c42cff152a0269dbfd5e7d5f63009d576b1685e",
+  "context": {
+    "baseline_ids": [
+      "c0-transition.md",
+      "c1-2026-10-20_to_ops.md",
+      "c2-report.md",
+      "c3-operations.md",
+      "c4-README.md",
+      "c5-ops.md",
+      "c6-compose.yaml",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "recommended_ids": [
+      "c0-transition.md",
+      "c1-2026-10-20_to_ops.md",
+      "c2-report.md",
+      "c3-operations.md",
+      "c4-README.md",
+      "c5-ops.md",
+      "c6-compose.yaml",
+      "required_0",
+      "required_1",
+      "required_2",
+      "required_3",
+      "required_4",
+      "required_5",
+      "required_6"
+    ],
+    "signals": {
+      "c0-transition.md": {
+        "relevant": 0.13,
+        "evidence": 0.38,
+        "contradicts": 0.23,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c1-2026-10-20_to_ops.md": {
+        "relevant": 0.1,
+        "evidence": 0.35,
+        "contradicts": 0.9,
+        "injection": 0.05,
+        "decision": "conflict",
+        "reason": "contradicts task"
+      },
+      "c2-report.md": {
+        "relevant": 0.08,
+        "evidence": 0.42,
+        "contradicts": 0.44,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c3-operations.md": {
+        "relevant": 0.58,
+        "evidence": 0.84,
+        "contradicts": 0.42,
+        "injection": 0.04,
+        "decision": "keep",
+        "reason": null
+      },
+      "c4-README.md": {
+        "relevant": 0.09,
+        "evidence": 0.21,
+        "contradicts": 0.47,
+        "injection": 0.02,
+        "decision": "keep",
+        "reason": null
+      },
+      "c5-ops.md": {
+        "relevant": 0.14,
+        "evidence": 0.33,
+        "contradicts": 0.21,
+        "injection": 0.05,
+        "decision": "keep",
+        "reason": null
+      }
+    },
+    "fallback": null,
+    "conflict_ids": [
+      "c1-2026-10-20_to_ops.md"
+    ],
+    "caution_ids": [],
+    "candidate_paths": {
+      "c0-transition.md": ".fullops-squad/docs/operations/transition.md",
+      "c1-2026-10-20_to_ops.md": ".fullops-squad/handovers/logs/2026-10-20_to_ops.md",
+      "c2-report.md": ".fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md",
+      "c3-operations.md": "docs/operations.md",
+      "c4-README.md": "README.md",
+      "c5-ops.md": ".fullops-squad/contexts/ops.md",
+      "c6-compose.yaml": "compose.yaml",
+      "required_0": ".fullops-squad/FULLOPS.md",
+      "required_1": ".fullops-squad/handovers/to_ops.md",
+      "required_2": ".fullops-squad/project.md",
+      "required_3": ".fullops-squad/rules/common/README.md",
+      "required_4": ".fullops-squad/rules/common/coding-style.md",
+      "required_5": ".fullops-squad/rules/common/security.md",
+      "required_6": ".fullops-squad/rules/common/testing.md"
+    },
+    "required_paths": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_ops.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "missing_required_paths": []
+  },
+  "evidence_checks": {},
+  "claims": {},
+  "usage": {
+    "input_tokens": 24375,
+    "output_tokens": 456,
+    "cost": 0.00102375,
+    "known_cost": 0.00102375,
+    "cost_status": "complete"
+  },
+  "latency_seconds": 0.535,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "error": null,
+  "calls": [
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.491,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4385,
+        "output_tokens": 76,
+        "cost": 0.00018417
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.484,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4115,
+        "output_tokens": 76,
+        "cost": 0.00017283
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.528,
+      "cached": false,
+      "usage": {
+        "input_tokens": 4375,
+        "output_tokens": 76,
+        "cost": 0.00018375
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.491,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3621,
+        "output_tokens": 76,
+        "cost": 0.000152082
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.475,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3935,
+        "output_tokens": 76,
+        "cost": 0.00016527
+      }
+    },
+    {
+      "status": "received",
+      "model": "typesafe/jev-1.14-20261014",
+      "elapsed": 0.482,
+      "cached": false,
+      "usage": {
+        "input_tokens": 3944,
+        "output_tokens": 76,
+        "cost": 0.000165648
+      }
+    }
+  ],
+  "request_max_seconds": 0.528,
+  "task_key": "SAR-RELEASE-003-OPS",
+  "role": "ops",
+  "attempt": "b742ab63f75f4c77aab6a1a37b6a01b9",
+  "instruction_sha256": "336ddeb69928d6990e49b0cb04e2bc53b79d87186e2cb3369fa4b79206e84938",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "context-v2",
+    "paths": [
+      ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/handovers/logs/2026-10-20_to_ops.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md",
+      "docs/operations.md",
+      "README.md",
+      ".fullops-squad/contexts/ops.md",
+      "compose.yaml",
+      ".env.example"
+    ],
+    "required": [],
+    "sources": {
+      ".fullops-squad/docs/operations/transition.md": "9f906297926d36c0c7eab14bc2bec2f92cc1743da90e5f4e1f7f8ee1a6335c04",
+      ".fullops-squad/handovers/logs/2026-10-20_to_ops.md": "ed59224ccee35988759d8a806282118f32a9f4b8c0fce2b43db2a90f3359224f",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md": "8f5d23adf3f12a46596ebf631e6e398f6877004d020ad22fb6694f81ab3baaae",
+      "docs/operations.md": "6a6cbbd2abed0c29c45c07ce7474caebe984debcc5dd7b087d1e061f7919c5d1",
+      "README.md": "bf2ff6db723a8d83b20bc172cf22418424864466ead284c43ec9edbb8e64cc2c",
+      ".fullops-squad/contexts/ops.md": "2869b0f2f20587cb067d2f729362332df7f4b7ab7b62476a84112a0001aa3344",
+      "compose.yaml": "4a59aee1c2c0950d54a2c37a599dfaaab4ff5bc17cc09b0c8a68af7463614b8e",
+      ".env.example": "unavailable"
+    }
+  },
+  "unsent_sources": {
+    "compose.yaml": "sensitive or oversized passage"
+  },
+  "refused_paths": [
+    {
+      "path": ".env.example",
+      "reason": "sensitive path"
+    }
+  ],
+  "elapsed_seconds": 1.569,
+  "input_partial": true,
+  "instruction_chars": 6272,
+  "remaining_instruction": {
+    "start_char": 3500,
+    "end_char": 6272
+  }
+}
