@@ -43,3 +43,6 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-15 SAR-LANDING-GUIDE-001-VISUAL CSS 후속: source f2b8cb6/final fc4ad58의 PNG7 직접 검수로 V-LG-01/02는 resolved / 시각 PASS다. 원 실패·수치·PNG는 보존한다.
   DEV38 checks·24px·7.958:1과 Linux gate 종료0은 동일성 확인 후 재사용이다. 새 native keyboard/200%·전체 제품 수락은 아니다.
   [후속 보고](../docs/evaluations/qa-reports/SAR-LANDING-GUIDE-001-VISUAL/css-followup/report.md). 코드 리뷰·tester 취합·main 통합은 coor 책임이다.
+
+- 2026-10-22 SAR-PUBLISH-001-VISUAL: 정책 페이지·첫페이지·설정 KO/EN 3폭을 CDP 고정 폭 Chrome으로 직접 검수해 PASS(medium 1·low 3). 전역 `a{inline-flex;min-height:44px}`가 문장 속 링크 줄 간격을 벌리는 것이 새 인라인 링크에서 드러났다.
+  정책 하단 '홈'은 서비스 약관 뒤 승인, D04 배치도에는 누락(D-01). [보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md)

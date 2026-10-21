@@ -1,0 +1,176 @@
+{
+ "task_key": "SAR-PUBLISH-001-VISUAL",
+ "attempt": "7b6d0140a0f6428b80aeb53f76be5647",
+ "packet_input_sha256": "e5d0468590d2579a012d342fc35dbb8d9a454f92217ffa0b80fae862d9d28504",
+ "uncertainty_review": "partial 패킷의 미확인(PLANS.md)은 이 시각 검수 판정에 쓰지 않았다. 검수 대상 화면·정본은 지시서 목록의 문서와 렌더 HTML에서 직접 확인했고, 코드 의존 관계의 완전성은 주장하지 않는다.",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문 읽음. coor/lite·인박스·finish·lint 계약 적용"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문 읽음. 격리 fixture·미결 '홈' 항목·검증하지 못한 것을 검수 범위로 사용"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "화면 기준·링크 위치·PC/RC 표 읽음. 화면 항목 판정 기준으로 사용"
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "designer 시각 검수 범위라 검증 명령은 쓰지 않음. 읽지 않은 구간은 판정에 쓰지 않음"
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문 읽음. 적용 범위·보고서 근거 기록 규칙 적용"
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문 읽음. UI 절의 토큰 재사용 기준을 스타일 항목 판정에 사용. 제품 코드 수정 없음"
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "전문 읽음. 외부 서비스·실계정 금지 준수(합성 HTML만 사용)"
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "담당과 반복 범위 절 읽음. 판정 항목에 연결한 캡처 6장만 커밋"
+  },
+  {
+   "path": ".fullops-squad/contexts/ops.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "ops 배포 맥락이며 시각 검수에 필요 없어 읽지 않음. 변경 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/deliverables/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "갱신할 산출물 없음(지시서). 읽지 않음, 변경 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/architecture.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "구조 문서이며 화면 검수와 무관해 읽지 않음. 변경 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/crud-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "데이터 설계 문서이며 화면 검수와 무관해 읽지 않음. 변경 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/interface-design.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "인터페이스 문서이며 화면 검수와 무관해 읽지 않음. 변경 없음"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "이전 목업. 지시서가 D04 수정을 금지하고 이 문서는 현행 기준이 아니라 읽지 않음"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "정책 페이지 배치도·피할 것 절을 대조에 사용. 정책 페이지 하단에 '홈'이 빠진 불일치를 D-01로 보고. 지시서가 수정을 금지해 파일은 바꾸지 않음"
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "하네스 업데이트 기록이며 검수와 무관해 읽지 않음"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "이행 문서이며 검수와 무관해 읽지 않음. 배포는 ops 몫"
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "사용 안내이며 검수와 무관해 읽지 않음"
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "사업 계획이며 검수와 무관해 읽지 않음"
+  },
+  {
+   "path": "README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "하단 '설치·사용 문서' 링크 대상. 링크 표시(영어판 '(in Korean)')만 화면에서 확인, 문서 본문은 읽지 않음"
+  },
+  {
+   "path": "deploy/knowslink/tunnel/public-ingress.yml",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "공개 ingress는 ops 몫. 화면 검수 영향 없음"
+  },
+  {
+   "path": "docs/operations.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "운영 문서이며 검수와 무관해 읽지 않음"
+  },
+  {
+   "path": "internal/relay/human_pages.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "설정 링크 렌더를 화면에서 확인. 제품 코드 수정 금지로 변경 없음"
+  },
+  {
+   "path": "internal/relay/landing_integration_test.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "첫페이지 통합 테스트. 실행하지 않고 렌더 HTML만 확인"
+  },
+  {
+   "path": "internal/relay/landing_pages.go",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "첫페이지 하단·#start 줄을 화면에서 확인. V-01 수정 위치 후보로 보고, 코드는 바꾸지 않음"
+  },
+  {
+   "path": "internal/relay/policy/terms.en.html",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "영어 약관 렌더를 3폭으로 확인. 영어판 한국어 잔존 없음. 문안은 평가 대상이 아님"
+  },
+  {
+   "path": "internal/relay/policy_pages_test.go",
+   "category": "impact_check",
+   "status": "completed",
+   "reason": "HTML 생성에 사용(KNOWSLINK_UI_FIXTURE_DIR). TestPolicyPages 통과 확인"
+  },
+  {
+   "path": "scripts/check_public_ingress.py",
+   "category": "impact_check",
+   "status": "no_change",
+   "reason": "ingress 검사는 ops 몫. 화면 검수 영향 없음"
+  }
+ ]
+}
