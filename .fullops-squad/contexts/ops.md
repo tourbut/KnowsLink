@@ -1,9 +1,9 @@
 ---
 title: ops 컨텍스트
 status: draft
-updated: 2026-10-20
+updated: 2026-10-21
 owner: ops
-tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS]
+tasks: [SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-PUBLIC-AGENTS-001-REVIEW, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-REVIEW, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-SERVICE-UI-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS]
 summary: 운영 수락 경계와 독립 정적 리뷰의 원 증거 보존 및 UTF-8 입력 검증 교훈을 기록한다
 ---
 
@@ -111,3 +111,9 @@ live Tunnel 변경은 사용자 승인·원본 백업·`cloudflared ingress vali
 7b4f9bc을 같은 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용했다. [운영 보고](../docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md). `/lang/(ko|en)`은 repo·live ingress를 함께 바꾸고(승인) 후보가 repo 규칙과 문자열이 같은지 서버에서 대조한 뒤 적용했다.
 새 relay는 기존 상태를 저장할 때 `omitempty`가 아닌 새 필드(`CodeTail:""`)를 기존 레코드에 쓴다. 이 직렬화 차이는 digest를 바꾼다. 전환 전후 digest를 따로 묶고 원인을 백업과 live의 필드 비교로 분리한다.
 재시작 관찰 루프(0.5초 간격 공개 호출)가 직전 교훈을 두고도 429를 다시 만들었다. 재시작은 서버 측 cloudflared 등록 로그로 보고 공개 확인은 1초 이상 간격·재시작 뒤 한 번씩만 한다.
+
+## 2026-10-21 — SAR-RELEASE-003-OPS
+
+4787e85를 같은 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용했다. [운영 보고](../docs/evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md). 운영 env 정본에 `KNOWSLINK_CALENDAR_KEY`를 서버에서 만들어 추가했다(값 비출력, 이전 env 0600 보관, 길이만 확인).
+relay 기동 로그 줄에는 캘린더 상태가 없다. 키 준비 여부는 인증 없는 `POST /home/calendar/connect`가 503이 아닌 401인지로 본다(키가 없으면 503). 공개 호출은 1.5초 이상 간격으로 했고 429는 없었다.
+preservation 비교의 HEAD 기준은 build 단계가 checkout을 옮기므로 baseline만 이전 SHA이고 before부터 새 SHA다. 새 relay 직렬화 차이는 이번엔 없었다(`CodeTail`은 직전 배포에서 이미 기록됨).

@@ -4,15 +4,15 @@ title: 인수인계서
 status: draft
 updated: 2026-10-21
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV]
+tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV, SAR-RELEASE-003-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
 
-## DEV 후보 인계 (2026-10-21, SAR-SCHEDULE-001-DEV) — 운영 연결 전 초안
+## DEV 후보 인계 (2026-10-21, SAR-SCHEDULE-001-DEV)
 
-Google Calendar 빈 시간 조회 연동의 DEV 후보다. 운영에는 반영되지 않았고 실제 Google 계정·Cloud Console·운영 env는 바꾸지 않았다. 운영 연결 전에 coor가 D011(OAuth 앱 게시 상태, `calendar.freebusy` 민감 범위 심사)을 사용자에게 다시 묻는다.
+Google Calendar 빈 시간 조회 연동의 DEV 후보다. 이 절의 코드는 SAR-RELEASE-003-OPS로 운영에 반영됐다(아래 현재 운영 상태 참고). 실제 Google 계정·Cloud Console은 바꾸지 않았다. D011 답은 OAuth 앱 Testing 유지, 사용자는 테스트 사용자다.
 
 - 환경 변수: 기존 세 Google env에 `KNOWSLINK_CALENDAR_KEY`(base64 32바이트, 예: `openssl rand -base64 32`)를 더한다. 운영 env 정본 `/home/shin/deploy/knowslink-state/.env`(0600)에만 두고 Git·대화·로그에 남기지 않는다. 키가 없으면 relay는 기동하지만 설정의 캘린더 절이 ‘준비 중’이다. 잘못된 값은 기동 실패다. 키를 바꾸거나 잃으면 저장된 모든 연결이 열리지 않으므로 회원이 다시 연결해야 한다(교체 절차는 미정).
 - OAuth scope: 동의 화면에 `https://www.googleapis.com/auth/calendar.freebusy`가 추가로 쓰인다. Cloud Console의 Data Access(scopes)에 이 scope를 등록하고 민감 여부를 확인한다. Testing 상태면 refresh token이 7일 뒤 만료해 연결이 주마다 끊긴다(E6). 로그인 scope `openid email`과 redirect URI는 그대로다. 새 Authorized redirect URI는 필요 없다.
@@ -43,6 +43,16 @@ Google Calendar 빈 시간 조회 연동의 DEV 후보다. 운영에는 반영�
 ## DEV 후보 인계 (2026-10-19, SAR-UX-ISSUES-002-NAMES-DEV)
 
 이름 중심 표시·친구 코드 공유·친구 요청 오류 복구의 DEV 후보다. 운영에는 아직 반영되지 않았다. 새 schema·migration·공개 경로·Tunnel 규칙은 없으므로 배포 시 기존 relay 교체 절차만 적용한다. 수락 전 남은 일은 tester 독립 QA·designer 시각 검수·고정 SHA 리뷰·main 통합이다. designer 조건부 수락의 수정 4건(새 대화 radio·내 에이전트 링크 분리·이름 금지 문자 문구와 입력 복구·거절 안내)을 같은 후보에 더했다. 근거는 [DEV 보고](../evaluations/qa-reports/SAR-UX-ISSUES-002-NAMES-DEV-test/report.md)다.
+
+## 현재 운영 상태 (2026-10-21, SAR-RELEASE-003-OPS)
+
+실제 운영 제품은 `4787e85a0b6952970a861b6b100b3561b9cf30a0`다. 04:48:59Z(13:48:59 KST)에 relay healthy를 확인했다. 이전 `7b4f9bc`에서 약17초 중단했고 새 schema/migration은 없다. 위 DEV 후보 인계(SAR-SCHEDULE-001)는 이 배포로 운영에 반영됐다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
+
+운영 env에 `KNOWSLINK_CALENDAR_KEY`가 추가됐다(값 비기록, 0600 유지, 이전 env 0600 보관). 키 교체·분실 절차는 여전히 미정이며 잃으면 회원이 캘린더를 다시 연결해야 한다. egress 두 주소(`calendar/v3/freeBusy`, `oauth2.googleapis.com/revoke`)는 운영 relay에서 도달함을 확인했다. 새 redirect URI·ingress 변경은 없다.
+
+새 private 백업 `backups/7b4f9bc-pre-release003-20261021T044846Z.dump`는 0600·11280bytes다. network-none 복원의 전체 data digest·goose2·guard1·HumanModel1·downgrade 거부를 확인했다. 기존 회원·키/철회·친구·Remote 설치·Events·Inbox, 기존18개 백업, 공유 컨테이너는 보존됐다. 이전 relay 이미지는 `knowslink-rollback:7b4f9bc-release003-20261021` 태그로 보존했다.
+
+인수 항목: (1) 사용자가 Cloud Console Data Access에 `calendar.freebusy` scope를 등록해야 캘린더 동의가 동작한다(Cloud Console 변경은 하지 않았다). (2) OAuth 앱은 Testing이라 refresh token이 7일 뒤 만료해 연결이 주마다 끊긴다(E6, D011 답). (3) 서버 checkout은 `4787e85`이며 live 공개 ingress `path` 규칙은 repo와 같다. (4) 실계정 로그인·캘린더 연결·조회 왕복(SC-09)은 실행하지 않았다. coor가 사용자와 1경로를 진행한다. 자세한 근거는 [운영 보고](../evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md)다.
 
 ## 현재 운영 상태 (2026-10-20, SAR-RELEASE-002-OPS)
 

@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-21T04:52:02.595358+00:00",
+  "probes": [
+    {
+      "method": "POST",
+      "path": "/home/calendar/connect",
+      "status": 401,
+      "location": null,
+      "cache_control": "no-store",
+      "cookies": [],
+      "only_cookie_clears": true
+    },
+    {
+      "method": "POST",
+      "path": "/home/calendar/disconnect",
+      "status": 303,
+      "location": "/?n=expired",
+      "cache_control": "no-store",
+      "cookies": [
+        "__Host-kl_session(cleared)"
+      ],
+      "only_cookie_clears": true
+    },
+    {
+      "method": "GET",
+      "path": "/home/calendar/connect",
+      "status": 405,
+      "location": null,
+      "cache_control": "no-store",
+      "cookies": [],
+      "only_cookie_clears": true
+    },
+    {
+      "method": "GET",
+      "path": "/home/calendar",
+      "status": 404,
+      "location": null,
+      "cache_control": "no-store",
+      "cookies": [],
+      "only_cookie_clears": true
+    },
+    {
+      "method": "GET",
+      "path": "/home/calendar/x",
+      "status": 404,
+      "location": null,
+      "cache_control": "no-store",
+      "cookies": [],
+      "only_cookie_clears": true
+    }
+  ],
+  "calendar_key_ready_signal": true,
+  "unauth_post_blocked": true,
+  "no_session_state_exposed": true
+}

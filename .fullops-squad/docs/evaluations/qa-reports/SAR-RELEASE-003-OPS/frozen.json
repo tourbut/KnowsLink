@@ -1,0 +1,1230 @@
+{
+  "utc": "2026-10-21T04:48:45.283934+00:00",
+  "head": "4787e85a0b6952970a861b6b100b3561b9cf30a0",
+  "dirty": [],
+  "epoch": 1627651,
+  "human_model": 1,
+  "goose_trigger": "{\"goose\" : 2, \"guard\" : 1, \"rows\" : 1}",
+  "counts": {
+    "HTTP": 0,
+    "Gates": 0,
+    "Pairs": 13,
+    "Rates": 3,
+    "Agents": 28,
+    "Owners": 24,
+    "Remote": 6,
+    "Friends": 1,
+    "Members": 2,
+    "Messages": 0,
+    "Sessions": 0,
+    "Challenges": 0,
+    "Identities": 2,
+    "Connections": 1,
+    "Idempotency": 0,
+    "GoogleAttempts": 0
+  },
+  "digests": {
+    "HTTP": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "Gates": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "Pairs": "d32e72118f0797bca3535e94e9ec611101e8fe42b98cdba7eb4fc13495076e4b",
+    "Rates": "4830a8bab00169a508a81a64303eda61727858c3939fb2677c9b18d1f5f9ce40",
+    "Agents": "f29970fc0ec248f1dcd5668575c15b07d1bc5ecf98fc5151414085b8cf135126",
+    "Owners": "280c83a3ade7f209551474fdcdfdac3a8d4b0f9f93862209d3e1e5b7d0739d5d",
+    "Friends": "a033424f90a70d7a7253b278b569900b2f562246cc00b4c1543431feb85dbc9c",
+    "Members": "19b27386505921734fb53abc8ce96a4262a1713085ebaa95cb4686e96658e0a5",
+    "Messages": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "Sessions": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "Challenges": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "Identities": "d242b09e6da2f6e5eaa70f2a8b4467d0f497e5537d36442190cdbf65b6e93bd6",
+    "Connections": "0e11ab6638632b28d8c40f92e7bb31dee766830782ab340ad2d20296fcb875c2",
+    "Idempotency": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "GoogleAttempts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "remote_counts": {
+    "Codes": 0,
+    "Tokens": 1,
+    "Clients": 1,
+    "Attempts": 0,
+    "Installs": 2,
+    "Subscriptions": 1
+  },
+  "remote_digests": {
+    "Clients": "5b4de9f911588c7bdada040f0b19a2ac2a3bdad927c1d70b28a321508203d830",
+    "Attempts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "Codes": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "Tokens": "529181b4debdbae758ed5528e25113227802e4f15c41cac4ea8b8a45373be8c6",
+    "Installs": "f35b197295ba1abb1dd55f3b4c94169711b77e19b60337f515ce437582774059",
+    "Subscriptions": "909c042cf6db721fdbf300909c834e9f1c6fbeab37ab7866326b6db7926ed5f0"
+  },
+  "remote_inbox_count": 0,
+  "subscription_metadata": [
+    {
+      "expires": "2026-10-21T05:29:14.604258Z",
+      "verified": "2026-10-21T04:29:14.604258Z",
+      "attempts": 1,
+      "pending": false,
+      "lease": false,
+      "next": "2026-10-14T12:27:51.771256Z",
+      "identity_digest": "30e9602f0fb20fb8d8c517fe5ed6d2c6987a2c09292859bc11c8fd2a2e0a8a30"
+    }
+  ],
+  "files": {
+    ".env": {
+      "sha256": "131e0798558cecd1b081a5e7d412b20877e8b9c29353a8755311e2d84b950bb8",
+      "mode": "0o600"
+    },
+    "tunnel.uuid": {
+      "sha256": "25ec7513b476401a07169daaa969258f57e746becb57f6a324e5aba69f1d88f9",
+      "mode": "0o600"
+    },
+    "access.aud": {
+      "sha256": "cd6a969f4d26b8fd4807058b439fd2d822f2836a6d5931f967dee7a68cc03368",
+      "mode": "0o600"
+    },
+    "tunnel/config.yml": {
+      "sha256": "a9e24b10f5982cfe459c2e57058151e910658aa47401257928a2abdd67bb6fac",
+      "mode": "0o600"
+    }
+  },
+  "backup_inventory": {
+    "04a65b20-20261009T171623Z.dump": {
+      "sha256": "075be04da16f7c48229ba4b3bf121bbb3b71e6d82167b0223c723657d4fcd7fd",
+      "mode": "0o600",
+      "bytes": 8432
+    },
+    "0911c2c-20261007T130747Z.dump": {
+      "sha256": "5efaa2d3fa3078df98ff89d3655db3e21718e42b684b5f9df7ba8b494c4a3813",
+      "mode": "0o600",
+      "bytes": 7873
+    },
+    "0911c2c-20261007T140237Z.dump": {
+      "sha256": "44f075d730564b9d91bca27010c6480809e1cd4ecb6460ddda42880475e4fe00",
+      "mode": "0o600",
+      "bytes": 7875
+    },
+    "121cde9-pre-oauthret-20261011T081432Z.dump": {
+      "sha256": "16d6cc9d6d4081bf240fd3651f3e4a33012b46c491ea351d60756e7e9aab7e26",
+      "mode": "0o600",
+      "bytes": 10594
+    },
+    "1dd6800-pre-release002-20261020T135049Z.dump": {
+      "sha256": "32b592886b1d753c7874f909c3272c944c5585508403bce297ebe59421bcc8e5",
+      "mode": "0o600",
+      "bytes": 11271
+    },
+    "26094e9-pre-refactor-20261013T132105Z.dump": {
+      "sha256": "792523eebdb6d007fd6f01cf45ebc75b282942dd96eabaf60424602b74cc95bd",
+      "mode": "0o600",
+      "bytes": 15693
+    },
+    "2747fe9-pre-refactor002-20261014T113101Z.dump": {
+      "sha256": "3e92b655bd884378cd04d9624804d60d5d607c5c07fffe865525301cea9dc6cf",
+      "mode": "0o600",
+      "bytes": 20039
+    },
+    "28bd1bb-20261004T044744Z.dump": {
+      "sha256": "d46615cc4f72e357e7c42ce18177e24b2b70892f9baa27f3b5b89ffceb813f2b",
+      "mode": "0o600",
+      "bytes": 13920
+    },
+    "66d1057-20261003T104032Z.dump": {
+      "sha256": "dba30475267e524321e6640087cb69d5398a9cfcbf1edca6221f27716f3eac28",
+      "mode": "0o600",
+      "bytes": 6538
+    },
+    "8a7ad36-20261003T105604Z.dump": {
+      "sha256": "3b96331e19c53a0fa6ca451c26b0d4eacfacf9034af29fc18de2e0e3f3ef674d",
+      "mode": "0o600",
+      "bytes": 6968
+    },
+    "8a7ad36-20261003T105623Z.dump": {
+      "sha256": "2ee1aa3922073897e6c4dc07e3d848ff7a8e4c6d96c398225e4338f43871a29a",
+      "mode": "0o600",
+      "bytes": 6969
+    },
+    "8a7ad36-20261003T105630Z.dump": {
+      "sha256": "8177cbd8612ec7eb28648d3d7b03dfee3542347585a683607b7e0f64a99c3e90",
+      "mode": "0o600",
+      "bytes": 6968
+    },
+    "8a93e38-pre-release001-20261017T093752Z.dump": {
+      "sha256": "8498f8ebfce0f57dab69b9ad2ac64198f978176eafefe4beb23d7cca89ea3452",
+      "mode": "0o600",
+      "bytes": 11104
+    },
+    "95df83c-pre-humanpeer-20261012T124350Z.dump": {
+      "sha256": "76b78824cbd0699e24ff7afd17555fe70b2e2b3cab513465760946021daad206",
+      "mode": "0o600",
+      "bytes": 11098
+    },
+    "a9a0db4-20261009T162500Z.dump": {
+      "sha256": "23f7ee951b46b6123a59527af56d7b4b65602d46809f88fe9d3c3105a1fc4256",
+      "mode": "0o600",
+      "bytes": 8352
+    },
+    "ba3754d-pre-sse-20261011T033643Z.dump": {
+      "sha256": "acdf5ec14049c05b458fd6be0a1323be498d9a1682ff59006ecd0de30ca165e8",
+      "mode": "0o600",
+      "bytes": 10315
+    },
+    "d08903a-20261007T145512Z.dump": {
+      "sha256": "50874dee8eeeedc6c28001b7c837fd79b087d2ec7442d52c84afd5db756a7d59",
+      "mode": "0o600",
+      "bytes": 8046
+    },
+    "f824015-20261003T110011Z.dump": {
+      "sha256": "23165b3ce07337708070594eca23efe8a9df857c9e0859688c56eb9a7b4048f1",
+      "mode": "0o600",
+      "bytes": 6969
+    }
+  },
+  "schema_sha256": "0fe69ca9d3c55799a0f97987e862ce8b0589ee3871b28b50a5aa1627d6bd7002",
+  "containers": [
+    {
+      "name": "/kl-schedgap-integration-4a708c159919-484bd3fe",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a604c002f6a2fa83c4c44f84f0a34876bfcd652dac62813211af46dd26f70808",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T01:57:29.186484047Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedgap-integration-4a708c159919-e739fa01",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "4b506b504e4644797ceeadacc047c7d29b3c80eec5110ac175aacdc57566b59d",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T01:55:40.777156382Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedgap-integration-4df22f60c4a4-e82cecff",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "c5984453ce8ec9b6a21366cf4008034909910523b67e9d9313f26839267950d8",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T01:54:43.595520969Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedqa-integration-336533e6e156-f286b0a7",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "4eeffe1d5fd66b003281dfdfe08a25d2b1d5fdda31e2b531196a7eaa9a1213c4",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T01:30:58.344377002Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedqa-fixture-336533e6e156-9a58544e",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "1ba97b8f069bdc556f3436954b8ea1ea76010d2391e57e9b00a4734a3d6c37dd",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T01:29:16.768876403Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedqa-integration-336533e6e156-0ad30f5a",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "846cb2d439732cb205b3930eafef42b418f1aba7563b5eec6d0f18651af0a73d",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T01:22:32.615425649Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedqa-fixture-336533e6e156-abc87b17",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "3fd48ffa80a7e06bd1d68a60cbf6d22cd3e8bee02748abba757791df2df982e2",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T01:14:04.217167338Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedvis-integration-44ecde1223d5-a8c18e58",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "b8f7c67e8a7a536dff82277994084448661b04265ecda768b9056ebd3f598872",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T00:46:35.40677276Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedvis-integration-eeec6819ccd0-a9eca7aa",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "61d95694f90810b025e44cfb739a479b45dd7452a66a2bde14d199d87c3aecba",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T00:40:27.323451577Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedlows-integration-631996d3e536-69e254a1",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "6365f50eea6d0ad32765b8aed3d2cca0a4a0291fbca47983c5433483371deaba",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T00:23:17.301750007Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedlows-integration-11b6b03df218-b1684aef",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a4f5222ac3e824f2d137e9a0fe7baf1035a0927a62a6e1c226818523817c47b6",
+      "running": false,
+      "health": null,
+      "started": "2026-10-21T00:20:49.219111469Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedule001-fixture-dfd55004df90-95e18efa",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "b7d4bdf6015016a85b9602e3ff6b424c5ddfccae679371ff707a91f5ae3d302d",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T15:29:07.830186427Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedule001-integration-dfd55004df90-e8989eee",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "62a768631081d666e0abaf607e7fa30d3f8aad4620ef69e21b3d1317124c578d",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T15:25:55.403826613Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedule001-integration-7ad11be0edfd-4a0f6261",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "2157880f6708ac082c393de4f292bc3fa71ec16f703b2b0394a4ddc026b1c34a",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T15:20:29.01664112Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-schedule001-integration-c0eb0bc82c02-c1c79f4a",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "063d14eb1c3cce306ff1318f41ad2b1c4b28f7048e93660c0d8be4544851ed87",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T15:12:05.34607717Z",
+      "restarts": 0
+    },
+    {
+      "name": "/myportfolio-viewer-1",
+      "image": "sha256:989a19a9ab1d576e632b9ed2f7ed1f927944c43c4d133d8ad4ac049c0bcb4ef9",
+      "id": "a564c1c4b869ea6f6bc7997cd4f653ed0fd1a62fd56dff1ae515779e8a238008",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T14:41:56.135502975Z",
+      "restarts": 0
+    },
+    {
+      "name": "/myportfolio-worker-1",
+      "image": "sha256:15e332be1f52b96862b605a2a28610ec495a74010c54b2bcc95768c0b599ad72",
+      "id": "2c0ecd5138276d3049a4454f2e52ae744e17cbe75af907a2296495de0954aa71",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T14:39:09.192451516Z",
+      "restarts": 0
+    },
+    {
+      "name": "/myportfolio-beat-1",
+      "image": "sha256:6b75d5f7c982d5ea2634dd775cfb8a94cedc78e42e46e81c5471e053ea245dc6",
+      "id": "415b6d7ba414f417d97ec3a528ba18d8e2fa1474d318a7f9870b131f21179255",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T14:39:08.630331318Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-release002-rollback-inspect-20261020",
+      "image": "sha256:4893d0f51333ae3d0476f0602b63d5b09d10ab5dadf1946bf20f994990098999",
+      "id": "8f062287c38178c02720969968f195edd72e822e2785d521df3282fd493a6c54",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T13:51:23.947244214Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-relay-1",
+      "image": "sha256:9646febaf4126ffcbbdd80acf5a00ed0299e3fb5a91a6a2b572f8ccd85443f66",
+      "id": "9c13d5e81be3f58c84cc072e2e0f0d3ba23b1eca86f12a2194aab88ed564dfe8",
+      "running": false,
+      "health": "unhealthy",
+      "started": "2026-10-20T13:50:56.739259266Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-migrate-1",
+      "image": "sha256:42fa4e0bd97e73748210c4b8b32dd169156855c0632eb942da23a29919b2919b",
+      "id": "5075e9f137f43a7f92a196753c0e10651109c3dcda556b32827e754dc6b69f04",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T13:50:56.070555832Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-release002-rehearse-20261020",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "befdee65e1007ac7990df9f712120ec1e9e81f04d791823a3286ba6fe4d8f50f",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T13:50:49.894953103Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lows002-red-e9da442e9b3d-2614bd8d",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a315571fd548fbe95b63b5b6341c7d156ef58967ffa059b6aa1e893277a062dc",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T13:15:26.694579642Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lows002-integration-e9da442e9b3d-d5fbac0a",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "09fd830365c3af186e6656a854a4e6c9221e3e85dc32c5d554cb1ff998a34dc4",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T13:12:58.050499888Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-fixture-b11d5b49bddb-66cf1e77",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "2a6aa412f4cf74a143af4937ee1bc3056d75465e39928c0c12835a5a209a33d4",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T12:11:31.155638418Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-fixture-48e3962a9a15-853cbdec",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "7b4c0913b16ea66c5bebb7d41d7cb8a99d134e897117a8e1fd55afe465ca09a9",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T12:06:42.564824687Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-48e3962a9a15-68bba37a",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "cdd1b4663ce138420ff795057c841896be88d0855e2c8dcfef4bd9658eae41ef",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T12:04:07.986347303Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-51bdf2d3934f-380a4663",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "c8840826de6b9cd666987d0dae69e8cc4928cdd22cc30b3119e65994e7a47d53",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T11:59:15.277487614Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-8d6b20f1da9f-674462a0",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "5ed5fa5fc8d832d824e9f6ac03ea8bee99e12e664dfcd4087fdcddd959f56458",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T11:54:28.267325132Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-fixture-7704e6d31288-a8717b84",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "77ebd8e07799f74beaaebc68f6cf7bf11285414303998fb3e04e5ba61c543d82",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T10:49:00.116902375Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-7704e6d31288-23d1b3a6",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "3cd1cd7273711687d866300c53d640727539827a26639a2f719a51746776b170",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T10:45:28.27283975Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-fixture-cc016b5a7ec6-4596230e",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "6f13deeb0d5bd655a650ff5170e6a65404f8a7c40217dfb76c16b20905f3f441",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T08:44:41.833053576Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-cc016b5a7ec6-e7f7ae4c",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "1f2da38c45395f663a8b0ab6ccfa859dd0510b6472b1b1c86eb43a0f942fa911",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:44:24.26274348Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-fixture-326b82c892a8-5c4c1790",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "c96db3b28fee11f6978d5a88cb0ded237d772334561c13803947491e9f1f82e0",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:43:10.122231607Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-326b82c892a8-87c54d6e",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "f6bb04b66b466cbaaab0bdf8bacd5089b6bb03d8da09e8e11689841611da3c2b",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:42:54.307859911Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-fixture-db94002bd885-5dbf510f",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "8a8969b92fea801f1fcea61a17d8613e462c48b74723c066ae476eb39152d24d",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:41:22.916442537Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-db94002bd885-848ed5f5",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "515da454a417c617e56ccdcc90c136f568e62db7574026217a68ff9e5778e4f1",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:38:55.263366137Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-fixture-2ff9e44a38b2-198faaad",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "d01d663514cbb0e2e8195230bbd5686f6c3b2e2b95a8aa540ad98696ca9b2d70",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:36:12.120403612Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-2ff9e44a38b2-efbb9710",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a50ad873cdddd61276958e7dbaaa45ece36c4c549af75622ad9c6382d99f015f",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:33:38.735498345Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-lang002-integration-824b4dd7bf95-87eb8883",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "0144f559ab45f490115908c7f915af934b0d0ac59622bd41b2d4bd031856764d",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T08:29:37.903329278Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-fixture-abc219120509-354beae3",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "bbbd140a76284d827f37df0669ed7d36e4f13948befea21f60e118a2f834a1f4",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T07:21:41.876264011Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-fixture-d6369a43c5c4-5cf2f1d5",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a42f664060fea73b6dc1f37fc08be4cd4238624c436676624a400c555b58c6a6",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T07:12:07.709314226Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-integration-d6369a43c5c4-a5ef261d",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "74bc56d587b1de7fe29307fe05b0613dba026680255be955c5d449e11fefb8af",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T07:09:16.175186659Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-fixture-7e4ca39ba7ad-d5857310",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "5c63db6ad06418e5dba1ed2aac368d9c82609d5959d8591b1e46111a3cb12fc8",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T07:03:55.446455494Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-integration-d61cc6f449cb-3a59c9a3",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "0ff21c2940bcfd5778da2d5eb9f5c84c1cf824984a85f7c8d000d45abf7e48b3",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T06:58:27.32207025Z",
+      "restarts": 0
+    },
+    {
+      "name": "/myportfolio-portfolio-mcp-1",
+      "image": "sha256:89df452e7bfdf2ed39a0d1a60c8258e5c6ba0a3b4aef6232db531a2dd7f741df",
+      "id": "599833f242c161043ae29d26262e08398963d4528a3926a2716adfed78ec800b",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T06:58:05.451928094Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-fixture-8d8bad4cd75a-a27ac964",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "75b7d520f9644dd329e7148354137727babe70a398b200b0930e8b518c0515ae",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T01:11:05.120526411Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-fixture-37febf953bcb-cd981d46",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "e237988680a2a163d1221b0ff9700f02ed03929d70f271a39865f7e08216cf59",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T01:07:30.000419164Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-integration-37febf953bcb-b82f165d",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "f59a968a08462ac6b19220771318f7a8e4bcded27d6604b16a5ad2fd1041c6a4",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T01:05:02.385667387Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-fixture-4d0fe061f7bb-a9c8d9c2",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "bf7b63bd08d567c86268b2f1a2b91696f4296cd1ba1811e5feecb534ff56f322",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T01:02:29.603267928Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-integration-4d0fe061f7bb-60359e4b",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "ebcc900ca730c4084dd641c752ce9e546fdce9acb3d591ac55c0cab0153aa892",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T00:59:48.747006497Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-integration-137a7f58293c-52342aa1",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "2884d0ef76e12a2b591dc3ff054ffd06fb77e764daa4cb1d0239181e8dc33947",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T00:49:50.620424577Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-connect002-integration-bec551f55772-51601e04",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "21bbd06270c6c866bce77fb450ccc197969d22df38a7163dd62eccfd2ce83521",
+      "running": false,
+      "health": null,
+      "started": "2026-10-20T00:48:32.525771931Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-approval002-fixture-9d13a05ba93c-5cd13abf",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "531b69f5185e623ba6ec695201bcde6947cd100f59877acaff4532974de0738b",
+      "running": true,
+      "health": null,
+      "started": "2026-10-19T23:49:25.449433194Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-approval002-fixture-ea94128268d3-77a44c8c",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "82c3148d0b50f5d9f5e719a946e499e1ec939b4190fbd2a608c45163179e1314",
+      "running": true,
+      "health": null,
+      "started": "2026-10-19T13:57:12.686219706Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-approval002-fixture-ba047b74581f-a37dd01e",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "be808d8a4d0260ce0e7eb7510101649c293d098a64437608c210fa584c27365f",
+      "running": true,
+      "health": null,
+      "started": "2026-10-19T13:53:40.568010113Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-approval002-integration-f43d05cc153f-591ed6e0",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "1544258c66d54bdc1f87b64a46537bc2d8582afa247f2ab4024f4dedf66b90be",
+      "running": false,
+      "health": null,
+      "started": "2026-10-19T13:48:08.398411871Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-approval002-integration-74bf643e30a5-813adf2f",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "2c9d194cbc70fb595cb502e122eb2f5c88376aa952da6cf31eabdfb057d66eed",
+      "running": false,
+      "health": null,
+      "started": "2026-10-19T13:34:17.745458897Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-approval002-integration-74bf643e30a5-040f876b",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "3cd36c317d75a2ff5529e4580e6b66b462898a101dbc87151d9e861e2fb094a9",
+      "running": false,
+      "health": null,
+      "started": "2026-10-19T13:29:26.231450559Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-approval002-integration-47117a4fe75a-eb12e47e",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "4f7a0651e4d710bc541d3b6453711d1c9ca33cbf409db49ea4b59289f8a5a8de",
+      "running": false,
+      "health": null,
+      "started": "2026-10-19T13:26:10.30437794Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-names002-fixture-f7992504aecd-467ef16e",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a4825913c63a0fa92eb90bfa9dd251126c7b32c8a125d12d5e503760c511890e",
+      "running": true,
+      "health": null,
+      "started": "2026-10-19T12:56:39.853598698Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-names002-fixture-5fa3333b5948-385e64d3",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "734641246d4cb9097d552a56067245e19b8cb400d011feea9acd1401f6fd5f53",
+      "running": true,
+      "health": null,
+      "started": "2026-10-19T12:26:51.247433279Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-names002-integration-97a889978587-62908811",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "7dc6812a4574eaddb29cdd2a9daf984084d8155044b8c2b0d6f9cba0d1c17685",
+      "running": false,
+      "health": null,
+      "started": "2026-10-19T12:20:14.502261061Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-names002-integration-101fb20899bc-cb298e51",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "092b365f89b9e3e2178af38654f00ce413e16cf82713168dd64b327a79f03d9a",
+      "running": false,
+      "health": null,
+      "started": "2026-10-19T12:14:24.854160897Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-names002-fixture-b2e683ae677c-1928ba0b",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "e4888b28f4dba4cf1de00526770c04dadcdb2e2b84acab645207c5cf77e1d310",
+      "running": true,
+      "health": null,
+      "started": "2026-10-18T15:22:12.600026424Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-names002-integration-516bf6247f06-c194fb81",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "233259b7f3a40355b88477dbbc70d2a1194d5272614ea3d280360028ddd849f6",
+      "running": false,
+      "health": null,
+      "started": "2026-10-18T15:14:50.454730805Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-names002-integration-3c1567fcff8c-9ffee8be",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "8961c0e13ad34c7856dca11e6697e88687c74c2afd8bbfa18d86118e65fea990",
+      "running": false,
+      "health": null,
+      "started": "2026-10-18T15:08:50.335927002Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-release001-rollback-inspect-20261017",
+      "image": "sha256:482d3197fe7ca26eef7918a2061feede01bd5199dfd8be37af5f46c4e381343d",
+      "id": "acfca4d2ec78daddf2e68260daff6eed227b2a4976cb11f92e1b16908e7c3cab",
+      "running": false,
+      "health": null,
+      "started": "2026-10-17T09:49:29.653821065Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-release001-rehearse-20261017",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "ce76432bb28ef3b191bc6ec9260ba587a53e0c6405e04eccbdb528fbf3f9990b",
+      "running": false,
+      "health": null,
+      "started": "2026-10-17T09:37:52.708721684Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-sp002dev-integration-3500e1b5390f-8333612b",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "e72407616413baa8aa871ca39223a2750db19eabab221cf7c33d9488deaa311f",
+      "running": false,
+      "health": null,
+      "started": "2026-10-17T06:28:29.871044282Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-sp002dev-integration-9b7b222ff1c0-577089e3",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "afe6354614183e5568900752523559223dbf29e0d4e8b4f898020a7ab6515940",
+      "running": false,
+      "health": null,
+      "started": "2026-10-17T06:20:58.394663395Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-receipt002-fixture-71dcac7822b8-cb5a6311",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "5eea931ed0e531a51749490c993f327ca857071538d7c44dc632daaba0afff54",
+      "running": true,
+      "health": null,
+      "started": "2026-10-17T02:25:48.422038957Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-receipt002-fixture-9ae29ec4ddfc-6620c395",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "ab25dad8a3b8dfebd72a447b9f4800283299097260432e63786ef2788f689746",
+      "running": true,
+      "health": null,
+      "started": "2026-10-16T23:57:14.55522136Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-receipt002-fixture-1e49033c6a03-76b5ef22",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "b93db7a6b259bfbfbe3428b389875aa0b90df9389a56054a154dc71b37ded3bf",
+      "running": true,
+      "health": null,
+      "started": "2026-10-15T14:22:46.363079742Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-receipt002-integration-1e49033c6a03-654ef8be",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "0cec7786c9468ab89660296862acb55a679444346c0c160b26ae0cf6865f083c",
+      "running": false,
+      "health": null,
+      "started": "2026-10-15T14:22:46.35623089Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-receipt002-integration-0e4eba40560a-4c0f9dc6",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "6cf10220a9f7f01c095084fe978556ea5e6ca397a9588cee0e018d3dc32b9232",
+      "running": false,
+      "health": null,
+      "started": "2026-10-15T14:19:27.488714799Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-receipt002-integration-cc84b24e11b9-d41922cb",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "9538f80b62e42bbeeec48c99d1c50af6e98f5443f1506903e5217dd400761d28",
+      "running": false,
+      "health": null,
+      "started": "2026-10-15T14:16:06.698764753Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-landing001-fixture-4795d619513f-ebfe4439",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "deb50d15ed1ad8fc58064152c8fffa70099231915e74b7a49851ddc1f444da5b",
+      "running": true,
+      "health": null,
+      "started": "2026-10-14T13:45:15.654883708Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-landing001-integration-4795d619513f-7d6f9b56",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a8dc1cb2494cbb59c646abf8945ae5209b17267fcae59890f1c961f2706abae8",
+      "running": false,
+      "health": null,
+      "started": "2026-10-14T13:44:50.535908701Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-members-web-1",
+      "image": "sha256:067040038e99cab0c2e5b40a889f54712f4e4c5b950547c1853e25ac5106768c",
+      "id": "6b2fd513d8a833f331ac5f3d66f46c56b34c8ca08c27b1e7fbf666a9f9f89e24",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-10-14T12:59:23.15944642Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-members-api-1",
+      "image": "sha256:3dc1c5286fc46d1a7dcc7534545c9b0cd80215e490e7cd5c399e3a0b15a47165",
+      "id": "44dc34cd669f5a03eb61725c37a91c5be73f8cb194ddb691128e3500af129a31",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-10-14T12:59:16.416593177Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-members-scheduler-1",
+      "image": "sha256:3dc1c5286fc46d1a7dcc7534545c9b0cd80215e490e7cd5c399e3a0b15a47165",
+      "id": "498293aed48ec6f59f7757a9f7d6a415ffd5e6c98c7f03400808245e674640f0",
+      "running": true,
+      "health": null,
+      "started": "2026-10-14T12:59:16.414302814Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-members-postgres-1",
+      "image": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+      "id": "6c6bba2b560ec80fed8661357f04870ccd66304158f42a587c6e8a5a2061dc9e",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-10-14T12:59:11.896767379Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-refactor002-rollback-inspect-20261014",
+      "image": "sha256:12f1313a1460997710d727eb543eebdf9b4dee5b8f8ffdc01dc25d50442bc72a",
+      "id": "3868e9e8babc089dcd7ee64bae253d1ece49d55b113aa3e254f6cd2e4f2b7bde",
+      "running": false,
+      "health": null,
+      "started": "2026-10-14T11:40:55.597498396Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-refactor002-rehearse-20261014",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "eec8793676fc51bb6abda969c8c8401cf872576bf577803dabad30450cc55ec8",
+      "running": false,
+      "health": null,
+      "started": "2026-10-14T11:31:01.342165Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-qa-refactor002-6405308e3d1f",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "3ea4f0bb38878c190149c03d52b7be0240dda25507fb556b915bff864e9796a9",
+      "running": false,
+      "health": null,
+      "started": "2026-10-14T09:22:05.06402819Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-refactor002-bcb1dd6629b5-0a7414c0",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "87d9b9288f16450949a62ce12f41cf6d88e5a8936ac2025b301a8f613a9b5b99",
+      "running": false,
+      "health": null,
+      "started": "2026-10-14T09:09:59.689943489Z",
+      "restarts": 0
+    },
+    {
+      "name": "/kl-refactor002-bcb1dd6629b5-5a295562",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "9e5a916f4558c6c98d944552e1c584fc101c1d3ccfaf9e17e28842570c45668a",
+      "running": false,
+      "health": null,
+      "started": "2026-10-14T09:06:37.636162089Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-refactor001-rehearse-20261013",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "d038feb108205a67f6c22961f2a5565ea836449434cae1ecf2e5c95c32c40ba1",
+      "running": false,
+      "health": null,
+      "started": "2026-10-13T13:21:05.760600656Z",
+      "restarts": 0
+    },
+    {
+      "name": "/qa-13a5db3f-44b44bdd-postgres",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "9534b2cda8410df061befb3c70c599c8dac5ac6d001ea8241c8069d40e0750d0",
+      "running": true,
+      "health": null,
+      "started": "2026-10-12T11:32:16.265543144Z",
+      "restarts": 0
+    },
+    {
+      "name": "/qa-ccaa8cd7-c30163b6-postgres",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "2a606feb8efd95d8e099abd2b79cffb86caacaab254a21a8afb51935325280f0",
+      "running": true,
+      "health": null,
+      "started": "2026-10-12T11:09:02.074131314Z",
+      "restarts": 0
+    },
+    {
+      "name": "/qa-2c401650-a0d3aeba-postgres",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "f3d591c83c35713a60066eb9f28be3891b4b0ee31f71046112536b7d9617439b",
+      "running": true,
+      "health": null,
+      "started": "2026-10-12T10:50:39.635241073Z",
+      "restarts": 0
+    },
+    {
+      "name": "/qa-8154ee89-0b335c67-postgres",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "cbfe4439f6c68657258fdb9c4a719613a8dee59d9112a3052820a55401d2a956",
+      "running": true,
+      "health": null,
+      "started": "2026-10-12T10:41:26.134533544Z",
+      "restarts": 0
+    },
+    {
+      "name": "/qa-c8a0339a-c63728a4-postgres",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "a8102e657df1daa4a8f531887898618592860e0cd0965e214a0542db464cedfe",
+      "running": true,
+      "health": null,
+      "started": "2026-10-12T10:19:59.540986859Z",
+      "restarts": 0
+    },
+    {
+      "name": "/qa-34e6309f-02300ad1-postgres",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "c0204365c47ce1ea36993a766286585e588b5828e86c7e7b041ed533eaece63e",
+      "running": true,
+      "health": null,
+      "started": "2026-10-12T09:59:24.560383988Z",
+      "restarts": 0
+    },
+    {
+      "name": "/qa-da1c0627-02300ad1-postgres",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "69dd073e387ea925e8696c0df8b26cce9ea458d403fa7516bc7e3bab60afb4c0",
+      "running": true,
+      "health": null,
+      "started": "2026-10-12T09:58:53.31667723Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-demo-web-1",
+      "image": "sha256:2c100100c52e4c4dc7af691bbc6a770f320d07f9c16ca7a43ca55da9a6f678c8",
+      "id": "f9395e8cdba3f906dda18edad991e049dc3ff669ff3e491b6770d28eb6739dee",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-10-12T08:27:04.496944893Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-dev-serviceui-c7828b2-ctxd554b501",
+      "image": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+      "id": "d35fc36c7a33febe513de839228d6dcecef9649dfb58bc31899e645a123f42b7",
+      "running": false,
+      "health": null,
+      "started": "2026-10-11T12:46:40.144653303Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-dev-serviceui-0b485ad-ctxd554b501",
+      "image": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+      "id": "ad2b3fea83fbff507bce7da6829568139795a5ce28c65ff5c2de99faad518436",
+      "running": false,
+      "health": null,
+      "started": "2026-10-11T12:37:11.745213131Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-dev-serviceui-ctxd554b501",
+      "image": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+      "id": "3d04d88c18e1da4371fd3ed062a0522c1bab06f855f8188f5f497409df95e1dc",
+      "running": false,
+      "health": null,
+      "started": "2026-10-11T12:33:36.803172221Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-demo-cloudflared",
+      "image": "sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4",
+      "id": "16cd2b623d3c31a400081efa24039119c73bf4d745c7af842b3e100f4235044a",
+      "running": true,
+      "health": null,
+      "started": "2026-10-14T13:05:08.73758638Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-demo-api-1",
+      "image": "sha256:2a2af4ae312d99499d9f05cd7b11a4c44832a03a039ca62f9dedc4dc41be255b",
+      "id": "b651fbca17f9ed5eca7599cfe5cd43dc93f0496e432ed489b7a8802fb23278ec",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-10-11T09:14:10.526295948Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-demo-scheduler-1",
+      "image": "sha256:83c8a0e34aa8724b2f9caad546cd3f62a2e45613704bb505ed4ff24e342ab804",
+      "id": "6bd3a61a37a2fa48ef7d6a15895869591c1c0c135a9325476f1423eebdeeee37",
+      "running": true,
+      "health": null,
+      "started": "2026-10-11T09:14:10.521481425Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-demo-seed-1",
+      "image": "sha256:62931ca86af0d1e945f2a784a0d5a1c25462db2bd01db2dcc8302120df570a1c",
+      "id": "f8644cd6fcea0f1fdfb4932cfc180dd1ef03212db0719e9c069747330e6bb739",
+      "running": false,
+      "health": null,
+      "started": "2026-10-11T09:14:08.877810836Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-demo-migrate-1",
+      "image": "sha256:da28736dbd9d7f5e7469a50a9a3f2f8c8539ec9fdb408fa7d51c522e70025e86",
+      "id": "b2a93609f7b4475f2efd3cb5efad72991a8cf10f5e9ebe106a7aac5ed65c0392",
+      "running": false,
+      "health": null,
+      "started": "2026-10-11T09:14:07.221987476Z",
+      "restarts": 0
+    },
+    {
+      "name": "/jevpet-demo-postgres-1",
+      "image": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+      "id": "93119215a1000dbb2bca5b6e1b994e926e9e00f0bdf2b3ac9c4d862fee1164b1",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-10-11T08:55:18.20121752Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-tester-oauth001-d7e2c059",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "329e39c2e5f98e86211fae27e9335f97d6f923ecc6cfd4645d52d6e22b24dcd9",
+      "running": true,
+      "health": null,
+      "started": "2026-10-11T07:28:34.15733434Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-cloudflared-1",
+      "image": "sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4",
+      "id": "07077b9ef5e40369b6cf9cbb2e5420af6c3d866eea187e7099d79ffce9257ed2",
+      "running": true,
+      "health": null,
+      "started": "2026-10-20T13:52:03.46594893Z",
+      "restarts": 0
+    },
+    {
+      "name": "/knowslink-postgres-1",
+      "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "id": "bc3482dc52f2e54863cb01140e057bbc88717d221be4beae83a970335158d28c",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-10-03T10:39:50.014056269Z",
+      "restarts": 0
+    },
+    {
+      "name": "/myportfolio-postgres-1",
+      "image": "sha256:cf78e76683b9ca8c5733cbbdce6c9262b45b6767934dd0a95e671f9a0fc20685",
+      "id": "40149fcb95118f0f3661c440d6a01016777087fffe5c68d3c27fa73418a467e4",
+      "running": true,
+      "health": "healthy",
+      "started": "2026-09-01T14:29:56.933349171Z",
+      "restarts": 0
+    },
+    {
+      "name": "/myportfolio-redis-1",
+      "image": "sha256:6ab0b6e7381779332f97b8ca76193e45b0756f38d4c0dcda72dbb3c32061ab99",
+      "id": "924e6a637f82c54f9084ed911f50555b8c4b9afae1bc195974e29ac17ea0322a",
+      "running": true,
+      "health": null,
+      "started": "2026-08-31T14:47:27.624459339Z",
+      "restarts": 0
+    },
+    {
+      "name": "/myportfolio-master-viewer-1",
+      "image": "sha256:9e8a7aabbe3e034fd2df0bd6e9ab82669418e28aed8cd7e77b9d8917368263f6",
+      "id": "679ba59690d74ae60639b607f7550bcc95ef7ac55aa047cfa9f2a3aefb59a83f",
+      "running": false,
+      "health": null,
+      "started": "0001-01-01T00:00:00Z",
+      "restarts": 0
+    },
+    {
+      "name": "/hermes-9ae8f587",
+      "image": "sha256:8f958bdc1b4a422bfafd97cab4f69836401f616ae985d4b57a53d254f5bcb038",
+      "id": "4a199aea5a6383d9680ba6cc16e4169e6803ec5d0bdf8a81aa73ab4f9d5494b7",
+      "running": false,
+      "health": null,
+      "started": "2026-06-18T13:37:35.515947036Z",
+      "restarts": 0
+    }
+  ],
+  "listeners": [
+    "127.0.0.1:5432"
+  ],
+  "shared": {
+    "orca": {
+      "python_status": 403,
+      "curl_status": 200
+    },
+    "s8": {
+      "python_status": 403,
+      "curl_status": 200
+    },
+    "mcp": {
+      "python_status": 403,
+      "curl_status": 401
+    }
+  },
+  "host_cloudflared_pids": [
+    "2039731"
+  ],
+  "state_mode": "0o700",
+  "backups_mode": "0o700",
+  "private_tunnel_files": [
+    {
+      "sha256": "71555474b2ec32e4987e63ba52425b72e544554290cc712d51883375624c5017",
+      "mode": "0o600"
+    }
+  ],
+  "db_connections": "{\"active_other_writers\" : 0, \"client_connections\" : 1}"
+}
