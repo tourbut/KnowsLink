@@ -499,14 +499,6 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 			if e.From != parent.Receipt.To || e.To != parent.Receipt.From || generation != parent.Generation {
 				return nil, fault("sender_not_allowed")
 			}
-			// done is only the server's own rounded disclosure, echoed exactly once after an approved, consumed lookup (SC-02/03/05).
-			if e.Body["status"] == "done" {
-				g := st.gateOf(parent.Receipt.ID)
-				echoed, _ := Canonical(e.Body["disclosure"])
-				if g == nil || !g.Consumed || g.Lookup == nil || g.Lookup.State != "done" || len(g.Lookup.Disclosure) == 0 || string(echoed) == "" || string(echoed) != canonicalRaw(g.Lookup.Disclosure) {
-					return nil, fault("disclosure_denied")
-				}
-			}
 		}
 	}
 	digest := e.Digest()
@@ -520,6 +512,15 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 			return nil, fault("sender_not_allowed")
 		}
 		return m.Receipt, nil
+	}
+	// done is only the server's own rounded disclosure, echoed exactly once after an approved, consumed lookup (SC-02/03/05).
+	// It runs after the idempotency branch: the accepted done clears the disclosure, and a same-key resend gets its receipt.
+	if e.Intent == "relay.result" && e.Body["status"] == "done" {
+		g := st.gateOf(parent.Receipt.ID)
+		echoed, _ := Canonical(e.Body["disclosure"])
+		if g == nil || !g.Consumed || g.Lookup == nil || g.Lookup.State != "done" || len(g.Lookup.Disclosure) == 0 || string(echoed) == "" || string(echoed) != canonicalRaw(g.Lookup.Disclosure) {
+			return nil, fault("disclosure_denied")
+		}
 	}
 	if parent != nil && (claim == "" || parent.ClaimToken != claim) {
 		return nil, fault("sender_not_allowed")

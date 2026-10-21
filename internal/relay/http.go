@@ -252,9 +252,20 @@ func (s *Service) operation(path string) http.HandlerFunc {
 			return
 		}
 		result, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) { return st.operate(path, bearer(r), c, now) })
+		if v, ok := result.(revokedOwner); ok && err == nil {
+			s.revoke(r.Context(), v.member, v.sealed)
+		}
 		respond(w, result, err)
 	}
 }
+
+// revokedOwner answers owner-revoke; the unexported calendar fields reach the provider revoke, never the response body.
+type revokedOwner struct {
+	State  string `json:"state"`
+	member string
+	sealed []byte
+}
+
 func (st *State) operate(path, token string, c command, now time.Time) (any, error) {
 	testOnly := strings.HasPrefix(path, "test-")
 	if testOnly {
@@ -341,9 +352,12 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		st.sweep(now)
 		return map[string]string{"state": "revoked"}, nil
 	case "owner-revoke":
+		// The member lookup needs the owner still active; the calendar grant ends with the owner.
+		member, _ := st.humanMember(principal)
 		st.Owners[principal].Active = false
+		sealed := st.disconnectCalendar(member, now)
 		st.sweep(now)
-		return map[string]string{"state": "revoked"}, nil
+		return revokedOwner{"revoked", member, sealed}, nil
 	case "invites":
 		if st.HumanModel == 1 && !st.SyntheticSignup {
 			return nil, fault("human_invite_required")

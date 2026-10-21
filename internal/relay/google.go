@@ -223,15 +223,21 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 		// The user may grant only part of the request; without the free/busy scope and a refresh token nothing is stored.
 		granted, _ := exchanged.Extra("scope").(string)
 		if exchanged.RefreshToken == "" || !slices.Contains(strings.Fields(granted), calendarScope) {
+			if exchanged.RefreshToken != "" {
+				s.revokeToken(r.Context(), exchanged.RefreshToken)
+			}
 			s.googleFailure(w, 403, "캘린더 권한이 허용되지 않아 연결하지 않았습니다. 설정에서 다시 시도하세요.")
 			return
 		}
-		if sealed, err = sealToken(s.Google.calendarKey, []byte(exchanged.RefreshToken)); err != nil {
+		if sealed, err = sealToken(s.Google.calendarKey, []byte(exchanged.RefreshToken), a.Member); err != nil {
 			s.googleFailure(w, 503, "캘린더를 연결하지 못했습니다. 잠시 뒤 다시 시도하세요.")
 			return
 		}
 	}
+	shared := false
 	value, err = s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
+		// A refused token of the member's own connected account shares that connection's grant and must not be revoked.
+		shared = st.Identities[googleIssuer+"|"+subject] == a.Member && st.calendar(a.Member) != nil
 		result := st.finishGoogleLogin(a, subject, email, now)
 		if result.Problem == "" && a.Calendar {
 			// Replacing a connection keeps the provider grant: revoking the old token would revoke the new one too (E7).
@@ -246,6 +252,10 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 	result := value.(verifyResult)
 	if result.Problem != "" {
+		// An unstored calendar grant (another account, expiry) is handed back to the provider instead of left behind.
+		if a.Calendar && !shared {
+			s.revokeToken(r.Context(), exchanged.RefreshToken)
+		}
 		s.googleFailure(w, 403, "이 계정으로 로그인하거나 재확인할 수 없습니다. 기존 회원의 같은 Google 계정으로 다시 시도하세요. 신규 가입 한도도 적용됩니다.")
 		return
 	}

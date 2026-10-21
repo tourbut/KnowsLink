@@ -13,6 +13,7 @@ import (
 	"net/http/httptest"
 	"net/url"
 	"os"
+	"slices"
 	"strings"
 	"testing"
 	"time"
@@ -116,6 +117,11 @@ func TestCalendarConnection(t *testing.T) {
 	// Another Google account cannot be attached to this member (SD-06 C is out of scope).
 	w = bob.do("POST", "/home/calendar/connect", nil)
 	expect(t, bob.do("GET", strings.TrimPrefix(p.grant(w.Header().Get("Location"), "sub-other", "openid email "+calendarScope), "https://example.com"), nil), 403)
+	// The other account's unstored refresh token is revoked instead of leaving a free/busy grant behind.
+	_, _, _, mismatched := p.snapshot()
+	if len(mismatched) != 1 || p.refresh[mismatched[0]] != "sub-other" {
+		t.Fatalf("identity mismatch revocation: %v", mismatched)
+	}
 	f.mutate(func(st *State) {
 		if len(st.Calendars) != 0 {
 			t.Fatal("refused consents stored a connection")
@@ -135,7 +141,7 @@ func TestCalendarConnection(t *testing.T) {
 			t.Fatal("refresh token stored in clear")
 		}
 	})
-	refresh, err := openToken(p.key, sealed)
+	refresh, err := openToken(p.key, sealed, member)
 	if err != nil || !strings.HasPrefix(string(refresh), "fixture-refresh-") {
 		t.Fatal("sealed token does not open to the provider's refresh token", err)
 	}
@@ -150,7 +156,7 @@ func TestCalendarConnection(t *testing.T) {
 			t.Fatal("token kept after disconnect")
 		}
 	})
-	if _, _, _, revoked := p.snapshot(); len(revoked) != 1 || revoked[0] != string(refresh) {
+	if _, _, _, revoked := p.snapshot(); len(revoked) != 2 || !slices.Contains(revoked, string(refresh)) {
 		t.Fatalf("provider revocation: %v", revoked)
 	}
 	expect(t, bob.do("GET", "/home/account?n=calendar-off", nil), 200, "캘린더 연결을 해제했습니다", `action="/home/calendar/connect"`)
@@ -172,7 +178,7 @@ func TestCalendarApprovalRunsOneLookup(t *testing.T) {
 	log.SetOutput(&logs)
 	t.Cleanup(func() { log.SetOutput(os.Stderr) })
 	f.mutate(func(st *State) {
-		st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob"), State: "connected", Changed: time.Now()}}
+		st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected", Changed: time.Now()}}
 	})
 	start, _ := queryWindow()
 	end := start.Add(2 * time.Hour)
@@ -246,7 +252,12 @@ func TestCalendarApprovalRunsOneLookup(t *testing.T) {
 	tampered := map[string]any{"window": disclosure["window"], "granularity_min": disclosure["granularity_min"], "busy": append(disclosure["busy"].([]any), map[string]any{"start": start.Add(30 * time.Minute).Format("2006-01-02T15:04:05Z"), "end": start.Add(time.Hour).Format("2006-01-02T15:04:05Z")})}
 	f.send(wire(t, f.private["agent_b"], resultID, "agent_b", "agent_a", "relay.result", "result-key-00001", firstID, map[string]any{"status": "done", "disclosure": tampered}, time.Now().Add(time.Minute)), "agent_b", claim, 403)
 	f.send(wire(t, f.private["agent_b"], resultID, "agent_b", "agent_a", "relay.result", "result-key-00002", firstID, map[string]any{"status": "done"}, time.Now().Add(time.Minute)), "agent_b", claim, 403)
-	f.send(wire(t, f.private["agent_b"], resultID, "agent_b", "agent_a", "relay.result", "result-key-00003", firstID, map[string]any{"status": "done", "disclosure": disclosure}, time.Now().Add(time.Minute)), "agent_b", claim, 200)
+	done := wire(t, f.private["agent_b"], resultID, "agent_b", "agent_a", "relay.result", "result-key-00003", firstID, map[string]any{"status": "done", "disclosure": disclosure}, time.Now().Add(time.Minute))
+	accepted := f.send(done, "agent_b", claim, 200)
+	// A same-key resend of the accepted done gets its receipt back, although the disclosure is already cleared.
+	if again := f.send(done, "agent_b", claim, 200); again["digest"] != accepted["digest"] || again["id"] != accepted["id"] {
+		t.Fatalf("done resend receipt: %v vs %v", again, accepted)
+	}
 	f.send(wire(t, f.private["agent_b"], "0199a3f2-4c10-7a11-8b22-3344556677cc", "agent_b", "agent_a", "relay.result", "result-key-00004", firstID, map[string]any{"status": "done", "disclosure": disclosure}, time.Now().Add(time.Minute)), "agent_b", claim, 403)
 	if receipt := f.call("GET", "/v1/receipts/"+firstID, f.tokens["agent_a"], nil, 200); receipt["completion"] != "done" {
 		t.Fatal("requester receipt", receipt)
@@ -281,7 +292,7 @@ func TestCalendarUnconnectedAndCommitStub(t *testing.T) {
 	}
 	// A stale approve POST (page rendered before a disconnect) is refused and the request stays pending.
 	f.mutate(func(st *State) {
-		st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob"), State: "connected"}}
+		st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected"}}
 	})
 	token := csrfToken(t, bob.do("GET", "/home/gates/"+gateID, nil).Body.String())
 	f.mutate(func(st *State) { delete(st.Calendars, member) })
@@ -291,7 +302,7 @@ func TestCalendarUnconnectedAndCommitStub(t *testing.T) {
 	}
 	// Reconnection needed: the provider refuses the stored token, so approval records a failure, never a result.
 	f.mutate(func(st *State) {
-		st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob"), State: "reconnect"}}
+		st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "reconnect"}}
 	})
 	page = bob.do("GET", "/home/gates/"+gateID, nil).Body.String()
 	if strings.Contains(page, `value="approve"`) || !strings.Contains(page, "캘린더가 연결되지 않아") {
@@ -363,7 +374,7 @@ func TestCalendarRevocationAndFailureClasses(t *testing.T) {
 	t.Run("disconnect_ends_pending_without_lookup", func(t *testing.T) {
 		f, p, bob, member := calendarSetup(t)
 		f.mutate(func(st *State) {
-			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob"), State: "connected"}}
+			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected"}}
 		})
 		claim := f.gateFor(t, queryBody(), firstID, gateID, "calendar-key-0010")
 		token := csrfToken(t, bob.do("GET", "/home/gates/"+gateID, nil).Body.String())
@@ -377,10 +388,30 @@ func TestCalendarRevocationAndFailureClasses(t *testing.T) {
 			t.Fatal("lookup after disconnect")
 		}
 	})
+	t.Run("owner_revoke_disconnects_and_revokes", func(t *testing.T) {
+		f, p, _, member := calendarSetup(t)
+		sealed := p.sealedFor("sub-bob", member)
+		f.mutate(func(st *State) {
+			st.Calendars = map[string]*Calendar{member: {Sealed: sealed, State: "connected"}}
+			st.Owners[st.Members[member].Owner].Credential = hashToken("owner-token-bob")
+		})
+		if v := f.call("POST", "/v1/owner-revoke", "owner-token-bob", map[string]any{}, 200); len(v) != 1 || v["state"] != "revoked" {
+			t.Fatal("owner-revoke response", v)
+		}
+		f.mutate(func(st *State) {
+			if len(st.Calendars) != 0 {
+				t.Fatal("sealed token kept after owner-revoke")
+			}
+		})
+		refresh, _ := openToken(p.key, sealed, member)
+		if _, _, _, revoked := p.snapshot(); len(revoked) != 1 || revoked[0] != string(refresh) {
+			t.Fatalf("owner-revoke provider revocation: %v", revoked)
+		}
+	})
 	t.Run("provider_revocation_marks_reconnect", func(t *testing.T) {
 		f, p, bob, member := calendarSetup(t)
 		f.mutate(func(st *State) {
-			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob"), State: "connected"}}
+			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected"}}
 		})
 		claim := f.gateFor(t, queryBody(), firstID, gateID, "calendar-key-0011")
 		p.mu.Lock()
@@ -406,7 +437,7 @@ func TestCalendarRevocationAndFailureClasses(t *testing.T) {
 	t.Run("outage_fails_after_short_retry_and_keeps_connection", func(t *testing.T) {
 		f, p, bob, member := calendarSetup(t)
 		f.mutate(func(st *State) {
-			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob"), State: "connected"}}
+			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected"}}
 		})
 		f.gateFor(t, queryBody(), firstID, gateID, "calendar-key-0012")
 		p.mu.Lock()
@@ -426,7 +457,7 @@ func TestCalendarRevocationAndFailureClasses(t *testing.T) {
 	t.Run("relationship_revoked_after_approval_discloses_nothing", func(t *testing.T) {
 		f, p, bob, member := calendarSetup(t)
 		f.mutate(func(st *State) {
-			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob"), State: "connected"}}
+			st.Calendars = map[string]*Calendar{member: {Sealed: p.sealedFor("sub-bob", member), State: "connected"}}
 		})
 		claim := f.gateFor(t, queryBody(), firstID, gateID, "calendar-key-0013")
 		expect(t, bob.do("POST", "/home/gates/"+gateID, url.Values{"csrf": {csrfToken(t, bob.do("GET", "/home/gates/"+gateID, nil).Body.String())}, "decision": {"approve"}}), 303)
