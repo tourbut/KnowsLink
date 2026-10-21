@@ -1,0 +1,59 @@
+{
+  "task_key": "SAR-SCHEDULE-001-DEV",
+  "find_head": "d8a4a037cbc6b0a022abfd31210d8629f0f3a6a9",
+  "base": "826ea80be09c09d67fda75f39fd6a7e7fd32f494",
+  "head": "cc6f836b2394e9350c3b57a6c1078499ab7598f6",
+  "scope": "code",
+  "metric": "changed-file overlap; does not measure required reading or impact coverage",
+  "deleted_files": [],
+  "renamed_files": [],
+  "changed_existing": [
+    "cmd/relay/main.go",
+    "docs/development.md",
+    "internal/relay/gate_summary.go",
+    "internal/relay/google_test.go",
+    "internal/relay/human_http.go",
+    "internal/relay/human_pages.go",
+    "internal/relay/human_pages_test.go",
+    "internal/relay/i18n_en_human.go",
+    "internal/relay/i18n_test.go",
+    "internal/relay/member_pages.go",
+    "internal/relay/member_ui_test.go",
+    "internal/relay/protocol.go",
+    "internal/relay/protocol_test.go",
+    "internal/relay/public_messages_integration_test.go"
+  ],
+  "new_files": [
+    "internal/relay/calendar.go",
+    "internal/relay/calendar_browser_fixture_test.go",
+    "internal/relay/calendar_integration_test.go",
+    "internal/relay/calendar_provider_test.go",
+    "internal/relay/calendar_test.go"
+  ],
+  "candidates": [
+    "docs/README.md",
+    "docs/development.md",
+    "docs/system-design.md",
+    "internal/relay/device.go",
+    "internal/relay/google_test.go",
+    "internal/relay/registry.json",
+    "videos/knowslink-motion/README.md",
+    "videos/knowslink-motion/analyze.py",
+    "videos/knowslink-motion/assets/SOURCES.md",
+    "videos/knowslink-motion/beats.json",
+    "videos/knowslink-motion/package.json",
+    "videos/knowslink-motion/render.mjs"
+  ],
+  "hits": [
+    "docs/development.md",
+    "internal/relay/google_test.go"
+  ],
+  "recall": 0.143,
+  "precision": 0.167,
+  "existence_status": "unclear",
+  "existence_correct": null,
+  "packet_evaluation": {
+    "status": "not_run",
+    "reason": "explicit expected read/impact/update labels unavailable"
+  }
+}
