@@ -2,9 +2,9 @@
 id: D04
 title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
-updated: 2026-10-14
+updated: 2026-10-21
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -392,6 +392,25 @@ P0 전체 흐름: 로그인·이름, 내 agent 등록/이름 변경, 친구 요�
 ### 2026-10-12 수정 후보 직접 시각 재검수 — 12dc0c7
 
 원후보254ff6a FAIL은 위 절과 원보고에 보존한다. 후보 `12dc0c733d4d0bcdf0094fdebda7309da4c3fdd5`의 제공된 V01–V03 수정 화면은 시각 PASS다. 실제14PNG를 모두 직접 열고 sourcefe7a509와 최종 제품 동일성을 확인했다. 별도 isolated page의15상태에서 두 줄 목록·가로 overflow0·44px 제어·desktop 첫 화면 textarea/보내기를 확인했다. 실제 키보드/200%·로그인/이름/pending/해제/gate의 직접 시각 검사는 not_run이며 전체 제품 수락을 뜻하지 않는다. 범위·보정·후속 정본: [수정 후보 직접 재검수](../../evaluations/qa-reports/SAR-HUMAN-PEER-001-VISUAL/final-report.md).
+
+### 캘린더 연결과 일정 조회 승인 — SAR-SCHEDULE-001
+
+제품 규칙과 고정 문구의 정본은 [SAR-SCHEDULE-001](../../planning/product-specs/SAR-SCHEDULE-001.md) '화면 문구 원칙'·'실패·만료·철회'다. 이 절은 화면 배치만 정한다. 새 스타일·토큰·JS는 없다. 기존 설정 절, 승인 상세, 위험 details, `problem`·`note`·`muted` 블록을 재사용한다.
+
+| 화면·상태 | 보이는 것 | 동작 |
+|---|---|---|
+| 설정 '캘린더 연결' 공통 | 제목 '캘린더 연결', 연결 전 안내 한 문단 | 모든 상태에서 먼저 보인다 |
+| Google 회원, 미연결 | 주 버튼 '캘린더 연결', muted '빈 시간 조회 권한만 요청…' | 증분 동의로 이동 |
+| 연결됨 | status '연결됨 — 바쁜 시간만 확인합니다', 위험 details '캘린더 연결 해제' | details 안에서 해제 안내를 먼저 보이고 해제 버튼 |
+| 다시 연결 필요 | problem '다시 연결 필요 …', 주 버튼 '캘린더 다시 연결', 위험 details '캘린더 연결 해제' | 해제는 연결됨과 같은 details·안내를 쓴다 |
+| 이메일 회원 | muted 'Google 계정으로 로그인한 회원만 캘린더를 연결할 수 있습니다.' | 버튼 없음 |
+| 준비 중(키 없음) | muted '캘린더 연결을 준비 중입니다. …' | 버튼 없음 |
+| 해제 뒤 | 페이지 상단 status의 해제 뒤 안내 | 캘린더 절로 이동 |
+| 조회 승인, 연결됨 | 요약(유형·기간·단위·'공개되는 내용: 바쁜 시간대만'), 승인 범위 고정 설명 | '이 요청 승인' 주 버튼, '거절' |
+| 조회 승인, 미연결 | 같은 요약, 승인 범위 대신 승인 불가 한 줄, alert '캘린더가 연결되지 않아…', '캘린더 연결' 링크 | '거절'만 |
+| 조회 승인, 처리됨 | 상태 배지, note '지금은 승인하거나 거절할 수 없습니다…' | 결정 폼 없음 |
+
+320px에서 주 버튼은 전체 폭, 보조·위험 버튼은 내용 폭이다. 접기(summary)의 표시 기호와 문구는 같은 줄에서 시작한다. 2026-10-21 직접 시각 검수 결과와 DEV 수정 항목 V1–V3·D2는 [시각 검수 보고](../../evaluations/qa-reports/SAR-SCHEDULE-001-VISUAL/report.md)에 있다.
 
 ## 이전 설계와 검수 기록 — 비현행
 
