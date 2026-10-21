@@ -1,0 +1,17 @@
+
+hooks\register.test.ts:
+(pass) text tools are denied until the owner runs /knowslink-session on [65.33ms]
+(pass) /knowslink-session status and off report an unconnected session [39.32ms]
+(pass) Bash and other tools pass through untouched [33.25ms]
+(pass) the send dialog shows the whole body, its length and whether it is a reply [47.75ms]
+(pass) invisible characters in the body are named in the dialog [36.49ms]
+(pass) a session released while the dialog is open does not send [43.81ms]
+(pass) a reconnect counts unread copies, and a relay outage is not shown as connected [41.54ms]
+(pass) cancel, a failed dialog, free text and missing arguments deny the send [43.01ms]
+(pass) a subagent of a connected session is denied the text tools; the main conversation is not [35.10ms]
+(pass) a received body never runs a command, a tool or a reply by itself [34.22ms]
+(pass) a replaced session is released at once and its text tools are denied [46.12ms]
+
+ 11 pass
+ 0 fail
+Ran 11 tests across 1 file. [0.71s]

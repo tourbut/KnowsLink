@@ -1,0 +1,10 @@
+Validating plugin manifest: C:\Users\shin\AppData\Local\KnowsLinkDevTools\host-verify-001\src-lp\adapters\.claude-plugin\plugin.json
+
+Validating hooks: C:\Users\shin\AppData\Local\KnowsLinkDevTools\host-verify-001\src-lp\adapters\hooks\hooks.json
+
+  ❯ ./register.ts hooks: session.start, command.run{command=knowslink-session}, tool.call
+  ❯ ./register.ts answers its own command: command.run{command=knowslink-session}
+  ❯ ./register.ts gating hook with .catch: tool.call
+  ❯ ./register.ts calls: $.clock.after (via contact, turnOn), $.command.register, $.fs.read (via readConfig), $.process.spawn (via contact, turnOn), $.session.id (via turnOn), $.ui.ask, $.ui.status, $.ui.toast (via turnOn)
+
+✔ Validation passed
