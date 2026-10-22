@@ -2094,3 +2094,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-CODEX-RECV-001-TESTER → coor: `tools/orphan.mjs` 회귀 확인. coor — 수정 뒤 병합 판단. designer — D11 Codex 안내에 YOLO 세션 사용 불가와 승인 코드 입력 방법 (완료 보고 자동 등재 2026-10-22) → coor: orphan 회귀는 dev가 0/8로 확인, b1029605 병합. designer D11은 SAR-CODEX-RECV-001-DOCS로 배정(2026-10-22).
 - [ ] SAR-CODEX-RECV-001-DEV(D-CR-01 수정) → coor: 코드 3f9648e4 병합 판단(tester 재QA는 회귀 도구 결과로 갈음 여부 coor 판단). designer — D11 Codex 안내(YOLO 불가·확인 코드 입력) (완료 보고 자동 등재 2026-10-22, 템플릿 문장을 실제 남은 일로 교정)
 - [x] SAR-CODEX-RECV-001-DOCS → coor: 남은 일 없음. D11 Codex 절 병합 판단만 남는다. 검토 요청: 지원 표가 DEV/tester 실측 표를 넘지 않는지(SP-12) (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정)
+- [ ] SAR-AUTOSETUP-001 → coor: 사용자 intent 승인과 Q1–Q6 답 받기 → `docs/planning/SAR-AUTOSETUP-001-DEV-brief.md`로 dev 배정. 구현 뒤 tester 큰 틀 검수 1회(S1–S7), designer D04 시각 검수·U8 표 갱신 (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정)
