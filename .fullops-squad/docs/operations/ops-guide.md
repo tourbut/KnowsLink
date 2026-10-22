@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-22
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -19,9 +19,17 @@ summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검�
 - 대상 미리보기(지우지 않음): `~/.local/bin/knowslink-prune-backups.sh ~/deploy/knowslink-state/backups --list`.
 - 중지: `crontab -e`에서 해당 줄을 주석 처리한다. 원래 crontab은 `knowslink-state/crontab.pre-retention001`에 있다.
 
+## SAR-PUBLISH-001-P03 운영 적용 결과 (2026-10-22)
+
+현재 운영 제품은 `4fdd149b27d3ff251a73128120dce9f8bb136620`다(개인정보처리방침 백업 문장: ‘만든 날부터 14일이 지나면 삭제’). 직전 `7c6ef3734a38a8f273714aa2915dc2f14f83a7e4`에서 같은 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다(사용자 결정 D020·D021). 근거는 [운영 보고](../evaluations/qa-reports/SAR-PUBLISH-001-P03-DEPLOY-test/report.md)다.
+
+- 중단은 23:57:12Z~23:57:29Z(08:57 KST, 2026-10-22), 약17초다. relay healthy·restart0·migrate0이다. 제품 diff는 정정 HTML 2개와 `prune-backups.sh`뿐이고 schema·`db/`·의존성·`compose.yaml` 변경은 없다. env·ingress는 바꾸지 않았다. rollback 태그는 `knowslink-rollback:7c6ef373-p03-20261022`(이전 relay 이미지 `sha256:69f62b72483b…e95a2`)다. 실제 rollback은 실행하지 않았다.
+- 백업은 `backups/7c6ef373-pre-p03deploy-20261021T235716Z.dump`, 0600·11226bytes·TOC25줄, SHA256 `8eed17521aaac56dbe54fb3a412112455a9fab75e94f956f1ea946cbd87b6ca5`다. 격리 복원 digest가 frozen DB와 같다. 이 백업도 14일 뒤(2026-11-05 이후) 자동 정리 대상이 된다.
+- `https://link.knowslog.com/privacy`(한국어·`/lang/en?back=/privacy` 뒤 영어)에 14일 문장이 있고 옛 ‘교체’ 문장은 없다. `/terms`·`/`는 200이다. 서버 작업물은 `knowslink-state/p03deploy-20261022/`다.
+
 ## SAR-PUBLISH-001 운영 적용 결과 (2026-10-22)
 
-현재 운영 제품은 `7c6ef3734a38a8f273714aa2915dc2f14f83a7e4`다(캘린더 연결 제거·정책 페이지 `/privacy`·`/terms`). 직전 `4787e85a0b6952970a861b6b100b3561b9cf30a0`에서 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다(사용자 결정 D020). 근거는 [운영 보고](../evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md)다. 제품 규칙은 [SAR-SCHEDULE-001 '철회 — D018'](../planning/product-specs/SAR-SCHEDULE-001.md#철회--d018-2026-10-21)와 [SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)이다. 아래 날짜별 절은 당시 기록이다.
+당시 운영 제품은 `7c6ef3734a38a8f273714aa2915dc2f14f83a7e4`였다(캘린더 연결 제거·정책 페이지 `/privacy`·`/terms`). 직전 `4787e85a0b6952970a861b6b100b3561b9cf30a0`에서 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다(사용자 결정 D020). 근거는 [운영 보고](../evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md)다. 제품 규칙은 [SAR-SCHEDULE-001 '철회 — D018'](../planning/product-specs/SAR-SCHEDULE-001.md#철회--d018-2026-10-21)와 [SAR-PUBLISH-001](../planning/product-specs/SAR-PUBLISH-001.md)이다. 아래 날짜별 절은 당시 기록이다.
 
 - 중단은 22:45:36Z~22:45:53Z(07:45:36~07:45:53 KST, 2026-10-22), 약17초다. relay/Postgres healthy·restart0·migrate0이다. schema·migration·`db/`·의존성 입력 변경은 없었다. `compose.yaml`은 주석만 바뀌었다. build 전에 이전 relay 이미지(`sha256:0e0eb8b44e4713032436ca09751a7363a01f8d1a4034ee1f64bc5b607ae7fd49`)에 `knowslink-rollback:4787e85-publish001-20261022` 태그를 붙였다. 실제 rollback은 실행하지 않았다. 되돌려도 잃는 캘린더 연결은 없다(연결 0).
 - 백업은 `backups/4787e85-pre-publish001-20261021T224540Z.dump`, 0600·11178bytes·TOC25줄이다. SHA256은 `9d21d9ef0e8459ea9934ea3ce5feb3fbda16330c8c4c6991c7613c0050aed848`다. network-none 복원의 전체 data digest가 frozen DB와 같고 goose2·guard1·HumanModel1과 downgrade 거부를 확인했다. 운영 DB는 복원하지 않았다.
