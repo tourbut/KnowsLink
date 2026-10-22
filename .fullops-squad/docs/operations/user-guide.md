@@ -4,7 +4,7 @@ title: 사용자설명서
 status: review
 updated: 2026-10-22
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -31,6 +31,39 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 6. 그만 받으려면 `/knowslink-session off`를 입력한다. 이후 그 세션의 송수신 요청은 거부된다. 플러그인이 다시 로드되면 `on`을 다시 입력한다.
 7. 연결한 세션 안에서 Claude가 띄운 하위 에이전트(Agent 도구)는 KnowsLink 메시지를 보내거나 받을 수 없다. 거부 문구: `하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다`. 메시지 확인과 발송은 메인 대화에서 요청한다.
 8. 친구를 해제하거나 차단해도 세션 연결은 꺼지지 않는다. 그 동안 그 친구와는 주고받을 수 없다. 다시 친구가 되면 `on`을 다시 입력하지 않아도 주고받을 수 있다. 친구 권한은 보낼 때마다 다시 확인한다.
+
+### Codex 세션에서 사용하기 — SAR-CODEX-RECV-001-DOCS
+
+Codex CLI `0.163.0`(Windows 11)에서 확인한 절차다. 격리된 합성 서버와 합성 회원으로 확인했다. 실제 회원·운영 서버·실제 상대로는 확인하지 않았다. 근거는 [DEV 실측 보고](../evaluations/qa-reports/SAR-CODEX-RECV-001-DEV-test/report.md)와 [독립 QA 보고](../evaluations/qa-reports/SAR-CODEX-RECV-001-TESTER-test/report.md)다. 설치 명령과 도구 인자는 [플러그인 설치 문서](../../../adapters/README.md#codex-작업-세션-연결--sar-codex-recv-001-dev)를 따른다.
+
+Codex에는 `/knowslink-session` 같은 슬래시 명령이 없다. Codex에게 `knowslink_session` 도구를 부르게 해서 연결한다.
+
+1. 준비한 Codex 플러그인으로 Codex를 열고 Google 연결을 마친다. 이 단계만으로는 어떤 세션도 메시지를 받지 않는다.
+2. 메시지를 받을 Codex 세션에서 `knowslink_session`을 `on`으로 실행하게 한다. Codex가 먼저 도구 실행 승인 창을 띄운다. 이 승인은 KnowsLink 승인이 아니다.
+3. 이어서 KnowsLink 승인 창이 따로 뜬다. 창에 `Codex 세션(구분값 codex-xxxxxx)`, 내 agent ID, 4자리 확인 코드가 보인다. 코드를 그대로 입력하고 제출하면 연결된다. 코드는 창마다 새로 나온다. 이전 창의 코드는 쓸 수 없다.
+4. 연결하지 않으려면 코드를 입력하지 않는다. 별도 거절 버튼은 없다. 창을 거절하거나 Esc로 취소한다. 틀린 코드를 입력해도 연결되지 않는다. 이때 결과는 `declined`다.
+5. 다른 세션이 같은 agent를 이미 받고 있으면 창 없이 `busy`와 그 세션의 구분값·시작 시각이 나온다. 그 세션을 끝내고 이 세션으로 옮기려면 `knowslink_session`을 `on`과 `take`로 실행하게 한다. 창에 끊길 세션이 적힌다. 코드를 입력하면 옛 세션은 연결을 잃고 그 뒤 옛 세션의 송수신 요청은 거부된다. 한 agent는 한 번에 한 세션만 받는다.
+6. 친구 메시지는 연결된 세션이 받아 내 agent 폴더에 저장한다. 작업 중이어도 진행 중인 작업은 멈추지 않는다. Codex 화면에는 도착 알림이 뜨지 않는다. 본문은 다음에 "knowslink 메시지 확인"처럼 받기를 요청할 때 표시된다. Codex는 본문을 외부 데이터로 보여 주고 본문 속 지시를 실행하지 않는다.
+7. 답장이나 새 메시지를 보내 달라고 요청하면 Codex 도구 실행 승인 창이 먼저 뜨고, 이어서 KnowsLink 발송 승인 창이 뜬다. 발송 창에서 받는 친구·agent, 새 메시지인지 답장인지, 본문 전체와 글자 수를 확인한다. 보이지 않는 문자는 `⟨U+200B⟩`처럼 코드로 보인다. 4자리 코드를 입력한 한 번만 보낸다. 거절·Esc·틀린 코드·입력 없이 제출하면 보내지 않는다. 승인 창이 열린 동안 이 세션의 연결이 해제되면 코드를 입력해도 보내지 않는다. Codex 도구 실행 승인 창에서 허용해도 KnowsLink 발송 승인은 따로 필요하다.
+8. 그만 받으려면 `knowslink_session`을 `off`로 실행하게 한다. `status`는 세션 구분값·agent·대기 수를 보인다. 연결하기 전이거나 다른 세션이 가져간 뒤에는 `knowslink_text_*` 도구가 거부된다.
+
+제한은 다음과 같다.
+
+- **YOLO(전체 자동) 모드의 Codex 세션에서는 연결도 발송도 되지 않는다.** YOLO는 승인 창을 사람에게 보이지 않고 코드 없이 수락하므로 KnowsLink가 거부한다. `approval_policy = "on-request"`처럼 승인을 묻는 모드로 세션을 연다.
+- 도착 알림이 없다. 새 메시지는 받기를 요청해야 본문이 보인다. 상태줄 `대기 N`과 도착 toast는 Claude Code 세션에만 있다.
+- 한 agent는 한 세션만 받는다. 같은 agent를 Claude Code와 Codex가 함께 받을 수 없다. 옮기려면 `take`를 쓴다.
+- Codex를 다시 시작하거나 세션을 바꾸면 연결을 다시 해야 한다. 이전 연결은 이어지지 않는다.
+
+지원 수준은 근거별로 다음과 같다. 합성 서버에서 실측한 범위만 지원으로 적는다.
+
+| 방향 | 기존 세션 수신(도착 표시) | 연결된 세션의 로컬 사본 | 다음 조회 수신 |
+|---|---|---|---|
+| Claude Code → Codex | 미지원 | 지원 | 지원 |
+| Codex → Claude Code | Claude Code 쪽 지원(상태줄·toast) | 지원 | 지원 |
+| Codex ↔ Codex(별도 두 세션) | 미지원 | 지원(작업 중 도착 포함) | 지원 |
+| Codex YOLO 세션 | — | 연결 거부 | — |
+
+Codex는 '도착이 보이는 작업 세션 수신'으로 지원하지 않는다. '연결된 세션의 로컬 사본'과 '다음 조회 수신'만 지원한다. 새 세션 실행으로 메시지를 받는 경로는 쓰지 않는다. 확인하지 못한 항목은 지원으로 적지 않는다. Codex에서 띄운 하위 에이전트의 사용과 4096바이트급 긴 본문이 Codex 화면의 승인 창에 끝까지 보이는지는 확인하지 못했다. 긴 본문을 보낼 때는 승인 창에서 본문 끝까지 보이는지 먼저 확인하고, 보이지 않으면 승인하지 않는다. 전달됨은 보관과 ACK이고 읽음이 아니다. 독립 QA에서 첫 호출 경쟁의 고아 연결 결함(D-CR-01)을 찾았고, 수정 뒤 격리 환경에서 재확인했다. 실제 Codex 화면의 재확인은 하지 않았다.
 
 ## 친구 코드와 친구 요청 — SAR-UX-ISSUES-002 구현 후보
 

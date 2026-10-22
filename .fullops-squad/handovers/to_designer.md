@@ -106,4 +106,13 @@ D11(`docs/operations/user-guide.md`). 그 밖 없음.
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
+- 브랜치 / SHA: fullops/designer / 커밋 후 worker_done에 고정 SHA를 적는다(기준 main 9bfd61fd).
+- 변경 이유: Codex 세션 수신(C-01)이 main에 병합돼 사용자 안내가 필요했다. D11에 "Codex 세션에서 사용하기" 절을 추가했다.
+- 내용: `knowslink_session` on·take·off·status, 승인 창마다 4자리 확인 코드 입력, 거절·Esc 취소, Codex 도구 승인 창과 KnowsLink 승인 창이 따로 뜸. 제한은 YOLO 연결·발송 불가, 도착 알림 없음, 한 agent 한 세션이다.
+- 검토 필요: 지원 표가 DEV/tester 실측 표를 넘지 않는지(SP-12). 하위 에이전트와 4096바이트 TUI 대화상자 전체 표시는 미검증으로 적었다.
+- 검증한 것과 못 한 것: 근거 보고서와 문장 대조, front matter stamp, lint는 아래 worker_done에 기록한다. 문서 과제라 QA report.md는 없다. 실제 Codex 화면은 열지 않았다.
+- 산출물: `.fullops-squad/docs/operations/user-guide.md`, `.fullops-squad/contexts/designer.md`, `.fullops-squad/docs/evaluations/jev/SAR-CODEX-RECV-001-DOCS-packet-outcomes.json`.
+- 의존성 변경: 없음(문서만 변경).
+- 남은 일: 없음.
+
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
