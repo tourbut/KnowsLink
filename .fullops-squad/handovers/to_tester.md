@@ -105,6 +105,15 @@ dev가 Codex 세션 수신(C-01, 사용자 결정 D027)을 fullops/dev `611356a9
 
 ## 완료 보고
 
+- 브랜치 / SHA: `fullops/tester` / 기록 커밋 `8e59e62b77d7`(+ packet-outcomes·finish 커밋). 검증 대상 제품 `611356a9995371d7d1aef45feb74ef7031949684`(fullops/dev), 제품 파일 변경 0.
+- 변경 이유: Codex 세션 수신 후보의 V02와 승인 경계 독립 QA. 새 파일은 `qa-reports/SAR-CODEX-RECV-001-TESTER-test/`, `jev/…-packet-outcomes.json`, `contexts/tester.md` 갱신뿐이다.
+- 결과: V02 Claude→Codex·Codex→Claude·Codex↔Codex(App Server)와 독립 TUI(on-request) PASS, 수준은 '세션 결속 로컬 사본 + 다음 조회'(도착 표시 없음). 승인 경계(on/take/발송: 거절·Esc·입력 없는 accept·틀린 코드, YOLO TUI, 승인 창 중 off/take, confirmed:true, 주입 본문) PASS, Claude 회귀 PASS, `npm test`·`npm run check` exit 0.
+- 검토 필요: **medium D-CR-01** — 새 MCP 프로세스의 첫 호출 두 개(예: `status`와 `on`)가 겹치면 `CodexSession`이 둘 생겨, 결속된 객체가 `session`에서 빠지고 `off`가 `unbound`라고 답한 뒤에도 lock과 자동 수신이 남는다(SP-09). 발송 경계는 안전하다. critical/high 없음이라 병합 차단은 아니다. 수정은 dev 몫이다.
+- 검증한 것과 못 한 것: 위 항목은 실제 Codex 0.163.0·Claude Code 2.1.308과 격리 relay(합성 회원)로 실행했다. 못 한 것: 독립 TUI의 도착 표시 화면, 독립 TUI를 한쪽으로 쓴 Codex↔Codex, Codex 하위 에이전트(SP-04), 5분 elicitation 제한, Linux product-lint/test(Windows에 make 없음).
+- 산출물·로그: [report.md](../docs/evaluations/qa-reports/SAR-CODEX-RECV-001-TESTER-test/report.md), 원시 로그 `raw/`, 시험 도구 `tools/`. 임시 빌드·도구·원본은 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/codex-recv-001-tester/`. Compose `knowslink-codexrecv-qa`는 정지만 했다.
+- 의존성 변경: 없음. 제품 파일을 바꾸지 않았고 새 패키지를 레포에 추가하지 않았다(임시 빌드의 `npm ci`만).
+- 남은 일: dev — D-CR-01 수정(`codexSession()` 동시 생성 방지)과 RC-4·RC-5·`tools/orphan.mjs` 회귀 확인. coor — 수정 뒤 병합 판단. designer — D11 Codex 안내에 YOLO 세션 사용 불가와 승인 코드 입력 방법.
+
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
