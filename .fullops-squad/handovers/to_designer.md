@@ -125,3 +125,13 @@ D02(신규 SAR-AUTOSETUP-001), D04(회원 안내 절). route 추천 D10·D03·D0
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 (2026-10-22, designer)
+
+- 브랜치 / SHA: `fullops/designer` / 산출물 커밋 `b7f472bf`(기준 main `cfdd642b`). packet-outcomes·완료 보고 커밋이 뒤따른다.
+- 변경 이유: D027에 따라 C-03 자동 설정을 Claude Code·Codex로 한정해 intent 초안·D02 규칙·D04 안내 변경안·DEV 지시서 초안을 썼다. 제품 코드는 바꾸지 않았다.
+- 결정: 명령 하나 + 설치 계획 동의 뒤 자동(AS-01–03). Google·지문·이름·세션 연결·발송 승인은 사람(AS-04). 재실행은 갱신이며 agent·키 보존(AS-10). 실패 F-01–F-09는 재실행으로 이어감(AS-11). 지원 문구는 Claude Code 2.1.302·Codex CLI 0.163.0·Windows 11만(NG-05).
+- 검토 필요: intent Q1–Q6(배포 형태, 설치기의 Google 연결 시작, 호스트 등록 범위, OS, 미검증 버전, Codex 선택지 시점). 모두 추천안 기준으로 D02·D04를 썼고 사용자 승인 전이다.
+- 검증한 것: lint `--from cfdd642b` ERROR 0, WARNING 2(SIZE-001 PLANS.md·service-member-ui.md 기존 초과), `product-lint: make lint` 실행 불가(Windows에 make 없음), product-test skipped. 못 한 것: 현재 수동 절차 단계 수·시간 실측(문서 기준 추정, DEV 착수 때 실측).
+- 산출물: [intent](../docs/planning/intents/SAR-AUTOSETUP-001.md), [D02](../docs/planning/product-specs/SAR-AUTOSETUP-001.md), [D04 절](../docs/design-docs/mockups/service-member-ui.md#claude-codecodex-자동-설정-안내--sar-autosetup-001), [DEV 지시서 초안](../docs/planning/SAR-AUTOSETUP-001-DEV-brief.md), [designer 컨텍스트](../contexts/designer.md). 의존성 변경 없음(문서만).
+- 남은 일: 사용자 intent 승인과 Q1–Q6 답 → coor가 DEV 지시서 초안으로 dev 배정. 구현 뒤 tester 큰 틀 검수 1회(새 사용자 흐름, S1–S7), designer D04 시각 검수와 U8 표 갱신.
