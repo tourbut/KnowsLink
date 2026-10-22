@@ -2097,3 +2097,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-CODEX-RECV-001-DEV(D-CR-01 수정) → coor: 코드 3f9648e4 병합 판단(tester 재QA는 회귀 도구 결과로 갈음 여부 coor 판단). designer — D11 Codex 안내(YOLO 불가·확인 코드 입력) (완료 보고 자동 등재 2026-10-22, 템플릿 문장을 실제 남은 일로 교정)
 - [x] SAR-CODEX-RECV-001-DOCS → coor: 남은 일 없음. D11 Codex 절 병합 판단만 남는다. 검토 요청: 지원 표가 DEV/tester 실측 표를 넘지 않는지(SP-12) (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정)
 - [ ] SAR-AUTOSETUP-001 → coor: 사용자 intent 승인과 Q1–Q6 답 받기 → `docs/planning/SAR-AUTOSETUP-001-DEV-brief.md`로 dev 배정. 구현 뒤 tester 큰 틀 검수 1회(S1–S7), designer D04 시각 검수·U8 표 갱신 (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정)
+- [ ] SAR-AUTOSETUP-001-DEV → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-23)
