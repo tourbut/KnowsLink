@@ -1,0 +1,14 @@
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+7c6ef3734a38a8f273714aa2915dc2f14f83a7e4
+dirty_lines=0
+/knowslink-relay-1 running restarts=0
+/knowslink-cloudflared-1 running restarts=0
+healthz_local=200
+backup_files=11
+prune_cron_lines=1
+2026-10-21T23:47:03Z deleted=9 kept=11
+2026-10-21T22:45:54Z 4787e85a0b6952970a861b6b100b3561b9cf30a0 -> 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 release manual verified bundle+backup+retained-isolation+rollback-tag
+2026-10-21T22:46:40Z 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 calendar key removed from env, relay recreated
+BASELINE_OK
+
+EXIT=0

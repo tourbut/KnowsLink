@@ -1,0 +1,145 @@
+# Server scripts run through the task-local verified SSH transport (EXIT is in the matching .log). Secrets are never in these scripts.
+
+##### mkw.txt
+set -o errexit -o nounset -o pipefail
+W=/home/shin/deploy/knowslink-state/p03deploy-20261022
+test ! -e "$W"
+mkdir -m 0700 "$W"
+stat -c "workspace mode=%a" "$W"
+date -u +%FT%TZ
+
+##### baseline.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/p03deploy-20261022; D=/home/shin/deploy/knowslink
+chmod 0600 "$W/observe.txt" "$W/release.bundle"
+umask 077
+date -u +%FT%TZ >"$W/baseline.utc"
+bash "$W/observe.txt" >"$W/baseline.json"
+python3 "$D/deploy/knowslink/verify.py" local
+git -C "$D" rev-parse HEAD
+git -C "$D" status --porcelain | wc -l | sed 's/^/dirty_lines=/'
+docker inspect -f '{{.Name}} {{.State.Status}} restarts={{.RestartCount}}' knowslink-relay-1 knowslink-cloudflared-1
+curl -s -o /dev/null -m 10 -w 'healthz_local=%{http_code}\n' http://127.0.0.1:8080/healthz
+echo "backup_files=$(ls "$S/backups" | wc -l)"
+crontab -l | grep -c prune-backups | sed 's/^/prune_cron_lines=/'
+tail -2 "$S/backup-prune.log" 2>/dev/null || true
+tail -2 "$S/deploy-history.log"
+echo BASELINE_OK
+
+##### build.txt
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/p03deploy-20261022
+OLD=7c6ef3734a38a8f273714aa2915dc2f14f83a7e4; NEW=4fdd149b27d3ff251a73128120dce9f8bb136620
+TAG=knowslink-rollback:7c6ef373-p03-20261022
+test "$(git -C "$D" rev-parse HEAD)" = "$OLD"
+test -z "$(git -C "$D" status --porcelain)"
+printf 'e14f3f175bd13cf4a322ed2a6afd72dd3a7541e77fc1c33180c0a40be8800798  %s\n' "$W/release.bundle" | sha256sum -c -
+git -C "$D" bundle verify "$W/release.bundle"
+git -C "$D" fetch -q "$W/release.bundle" origin/main:refs/tmp/p03deploy
+git -C "$D" cat-file -e "$NEW^{commit}"
+git -C "$D" merge-base --is-ancestor "$OLD" "$NEW"
+git -C "$D" diff --exit-code "$OLD" "$NEW" -- db Dockerfile go.mod go.sum Makefile sqlc.yaml compose.yaml
+echo 'schema/dependency/compose diff=0 (no migration, no new dependency)'
+git -C "$D" diff --stat "$OLD" "$NEW" -- . ':!.fullops-squad'
+OLDIMG=$(docker inspect -f '{{.Image}}' knowslink-relay-1)
+test "$OLDIMG" = "$(docker image inspect knowslink-relay:latest --format '{{.Id}}')"
+printf '%s\n' "$OLDIMG" >"$W/previous-relay-image.txt"; echo "OLDIMG=$OLDIMG"
+! docker image inspect "$TAG" >/dev/null 2>&1
+docker tag "$OLDIMG" "$TAG"
+test "$(docker image inspect "$TAG" --format '{{.Id}}')" = "$OLDIMG"
+docker image inspect "$TAG" --format 'ROLLBACK_TAG_IMAGE={{.Id}}'
+git -C "$D" checkout -q --detach "$NEW"
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" config --quiet
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" build relay migrate
+echo 'BUILD_EXIT=0'
+printf 'HEAD='; git rev-parse HEAD
+test -z "$(git status --porcelain)"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}}' knowslink-relay-1
+docker image inspect knowslink-relay:latest --format 'NEW_RELAY_IMAGE={{.Id}}'
+docker image inspect "$TAG" --format 'ROLLBACK_STILL={{.Id}}'
+echo BUILD_OK
+
+##### deploy.txt
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/p03deploy-20261022
+NEW=4fdd149b27d3ff251a73128120dce9f8bb136620; FIX=knowslink-p03deploy-rehearse-20261022
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+test "$(git rev-parse HEAD)" = "$NEW"
+test -z "$(git status --porcelain)"
+test "$(docker inspect -f '{{.State.Health.Status}}' knowslink-relay-1)" = healthy
+STOPPED=0; UPDONE=0
+trap 'rc=$?; if [ $rc -ne 0 ] && [ "$STOPPED" = 1 ] && [ "$UPDONE" = 0 ]; then echo "TRAP: pre-up failure rc=$rc; restarting old relay container"; docker start knowslink-relay-1 || true; fi' EXIT
+umask 077
+bash "$W/observe.txt" >"$W/before.json"
+STOPPED=1
+echo "STOP_BEGIN=$(date -u +%FT%TZ)"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" stop relay
+E1=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+sleep 2
+E2=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+test "$E1" = "$E2"; echo "FROZEN_EPOCH=$E1"
+OTHER=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select count(*) from pg_stat_activity where datname='knowslink' and backend_type='client backend' and pid<>pg_backend_pid()")
+test "$OTHER" = 0; echo "OTHER_DB_CLIENTS=$OTHER"
+FROZEN=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select md5(data::text) from relay_state')
+printf '%s\n' "$FROZEN" >"$W/frozen-data.md5"
+bash "$W/observe.txt" >"$W/frozen.json"
+OUT=$S/backups/7c6ef373-pre-p03deploy-$(date -u +%Y%m%dT%H%M%SZ).dump
+(set -o noclobber; docker exec knowslink-postgres-1 pg_dump -U knowslink -Fc knowslink >"$OUT")
+printf '%s\n' "$OUT" >"$W/backup.path"
+docker exec -i knowslink-postgres-1 pg_restore --list <"$OUT" >"$W/backup.list"
+stat -c 'backup mode=%a bytes=%s' "$OUT"
+sha256sum "$OUT"
+printf 'TOC_LINES='; wc -l <"$W/backup.list"
+IMG=postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+docker run -i -e EXPECTED_MD5="$FROZEN" --network none --name "$FIX" --user postgres --entrypoint sh "$IMG" -c '
+set -eu
+initdb -D /tmp/pgd -A trust >/dev/null
+pg_ctl -D /tmp/pgd -o "-c listen_addresses= -c unix_socket_directories=/tmp" -w -l /tmp/pg.log start >/dev/null
+export PGHOST=/tmp
+createdb rehearse
+pg_restore -d rehearse --no-owner --no-privileges --exit-on-error
+ACTUAL_MD5=$(psql -d rehearse -Atc "select md5(data::text) from relay_state")
+test "$ACTUAL_MD5" = "$EXPECTED_MD5"; echo "RESTORED_FULL_STATE_DIGEST_MATCH=true"
+psql -d rehearse -v ON_ERROR_STOP=1 -Atc "select '\''restored goose='\''||(select max(version_id) from goose_db_version)||'\'' guard='\''||(select count(*) from pg_trigger where tgname='\''human_writer_guard'\'')||'\'' rows='\''||count(*)||'\'' epoch='\''||max(epoch)||'\'' HumanModel='\''||max(data->>'\''HumanModel'\'') from relay_state"
+if psql -d rehearse -v ON_ERROR_STOP=1 -Atc "update relay_state set data=data-'\''HumanModel'\''" >/tmp/guard.log 2>&1; then
+ echo "FAIL downgrade accepted"; exit 42
+else
+ grep -q "human authorization writer downgrade refused" /tmp/guard.log
+ echo "restored writer downgrade refused"
+fi
+pg_ctl -D /tmp/pgd -m fast stop >/dev/null
+' <"$OUT"
+echo "REHEARSAL_EXIT=0 retained=$FIX"
+UPDONE=1
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" up -d --no-build --wait relay
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" ps -a
+echo "UP_DONE=$(date -u +%FT%TZ)"
+python3 "$D/deploy/knowslink/verify.py" local
+printf '%s 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 -> 4fdd149b27d3ff251a73128120dce9f8bb136620 release manual verified bundle+backup+retained-isolation+rollback-tag\n' "$(date -u +%FT%TZ)" >>"$S/deploy-history.log"
+bash "$W/observe.txt" >"$W/after.json"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}} restarts={{.RestartCount}}' knowslink-relay-1
+printf 'MIGRATE_EXIT='; docker inspect -f '{{.State.ExitCode}}' knowslink-migrate-1
+docker logs knowslink-migrate-1
+echo "RELAY_LOG_LINES=$(docker logs knowslink-relay-1 2>&1 | wc -l)"
+echo "RELAY_ERROR_PANIC=$(docker logs knowslink-relay-1 2>&1 | grep -c -i -E 'error|panic' || true)"
+echo 'DEPLOY_EXIT=0'
+
+##### final.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/p03deploy-20261022; D=/home/shin/deploy/knowslink
+umask 077
+echo "FINAL_OBSERVE_UTC=$(date -u +%FT%TZ)"
+bash "$W/observe.txt" >"$W/final.json"
+docker inspect -f '{{.Name}} {{.State.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-cloudflared-1 knowslink-relay-1
+docker inspect -f 'relay health={{.State.Health.Status}} image={{.Image}}' knowslink-relay-1
+echo "relay_error_panic_lines=$(docker logs knowslink-relay-1 2>&1 | grep -c -i -E 'error|panic' || true)"
+git -C $D rev-parse HEAD; git -C $D status --porcelain | wc -l | sed 's/^/dirty_lines=/'
+docker image inspect knowslink-rollback:7c6ef373-p03-20261022 --format 'rollback_tag={{.Id}}'
+docker inspect -f 'fixture {{.Name}} status={{.State.Status}} exit={{.State.ExitCode}} net={{.HostConfig.NetworkMode}}' knowslink-p03deploy-rehearse-20261022
+curl -s -o /dev/null -m 10 -w 'healthz_local=%{http_code}\n' http://127.0.0.1:8080/healthz
+python3 $D/deploy/knowslink/verify.py local
+echo "backup_files=$(ls $S/backups | wc -l)"; ls $S/backups | tail -1
+tail -1 $S/deploy-history.log

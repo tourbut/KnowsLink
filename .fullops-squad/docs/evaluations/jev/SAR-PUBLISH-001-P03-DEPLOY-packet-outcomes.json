@@ -1,0 +1,175 @@
+{
+  "packet_input_sha256": "e0653b532b685f6108809187471878d9983439bea2eb2abf7f1066c8c54b7526",
+  "attempt": "84c1758b68e5417f84ae015cf802f036",
+  "uncertainty_review": "packet이 partial이고 PLANS.md·service-member-ui.md·module-design.md·ops-guide.md는 자동 확인에 실패했다. ops-guide.md는 직접 읽고 갱신했다. PLANS.md는 finish가 갱신한다. service-member-ui.md는 문안 소유가 dev이고 이번엔 배포라 변경하지 않았다. module-design.md는 코드 구조 변경이 없어 해당 없다. 서버 상태(HEAD·이미지·health·백업 수·cron)는 직접 조회해 확인했다.",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "인박스·finish·lint 흐름과 운영 모드(coor/lite)를 확인해 따랐다. 규약 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "배포 절차(bundle·rollback 태그·백업·격리 복원·up)와 smoke 방식을 읽고 같은 순서로 실행했다. 원본은 고치지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검증 명령·정본 위치를 확인했다. 제품 코드를 바꾸지 않아 이번 과제와 충돌하는 항목이 없다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "적용 범위와 우선순위만 확인했다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "새 코드 파일은 smoke.py 하나이고 헤더 docstring 1줄을 넣었다. 기준 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "비밀값 출력·기록 금지를 따랐다. SSH 자격은 메모리에서만 쓰고 로그는 redact했다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "lite 수준과 담당 범위를 확인했다. 배포 과제라 공개 smoke·보존 비교·verify.py local로 검증했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D13 현재 운영 상태 절이 7c6ef373으로 남아 있음을 확인했다. 인박스 소유 범위 밖이라 고치지 않고 완료 보고 남은 일에 적었다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "지시서 소유 파일은 D12·보고서·인박스뿐이다. D13 갱신은 소유권 밖이라 coor 후속으로 넘긴다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "화면 변경이 없는 배포 과제라 읽지 않았고 고치지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "정책 페이지 화면 정본이다. 문안 변경은 dev P03에서 끝났고 이번엔 배포만 해서 읽을 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D12에 P03 운영 적용 절(SHA 4fdd149b·중단 시각·rollback 태그·백업 SHA256·공개 확인)을 추가하고 이전 절은 당시 기록으로 바꿨다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "배포 절차와 무관해 읽지 않았다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "회원·peer 제품 규칙이다. 상태 보존 비교에서 digest가 같음을 확인했고 문서 변경은 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이번 배포와 직접 관계가 없어 읽지 않았다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "공개 서비스 범위 문서다. 공개 경로 노출이 늘지 않음을 이웃 404로 확인했다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "P-03 14일 문안(KO/EN)을 live 문자열 검사의 기준으로 썼다. 정본은 고치지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "캘린더 철회 기록이다. 이번 배포가 캘린더 상태를 바꾸지 않음을 보존 비교로 확인했다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "설치 흐름 문서라 이번 배포와 관계가 없다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "hook 런타임 기록이다. 이번 과제와 관계가 없고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "Grok webhook 개발 기록이다. 이번 relay 전환에서 Remote 상태 digest가 같아 영향이 없다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "HumanModel 변환 기록이다. 복원 검증에서 HumanModel1과 guard를 확인했다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "HumanModel 복귀 불가 조건을 확인했다. 이번엔 schema 변경이 없어 해당하지 않는다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "첫페이지 안내 기록이다. 첫페이지 200만 확인했다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "MVP 개발 기록이다. 이번 배포와 관계가 없어 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "공개 agent 개발 기록이다. 이번 배포 영향이 없고 agent digest가 같다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "정책 문안 기획 기록이다. 14일 문장 반영은 P03에서 끝났다. 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "운영 준비 기록이다. 배포 순서 참고만 했고 변경 없음."
+    }
+  ]
+}
