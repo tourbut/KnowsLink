@@ -1,10 +1,10 @@
 ---
-title: 이슈 #9 경쟁 서비스 Reason Network 비교 요청
+title: "이슈 #9 경쟁 서비스 Reason Network 비교 요청"
 status: draft
 updated: 2026-10-22
 owner: coor
 tasks: [SAR-COMPETE-001]
-summary: GitHub 이슈 #9 원문. Reason Network와의 비교 사실 정리와 기획자 분석 요청이다
+summary: "GitHub 이슈 #9 원문. Reason Network와의 비교 사실 정리와 기획자 분석 요청이다"
 ---
 
 # SAR-COMPETE-001 — 사용자 요청(GitHub 이슈 #9 원문)

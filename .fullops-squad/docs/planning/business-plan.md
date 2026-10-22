@@ -6,7 +6,7 @@ updated: 2026-10-22
 owner: designer
 tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001, SAR-SESSION-PEER-001-DESIGN, SAR-SCHEDULE-001-DESIGN, SAR-COMPETE-001]
 downstream: [D02]
-summary: 일반 서비스 가치, 수락 후 동일 이메일 노우 다닷 연결, 상품 보류와 경쟁 대비 포지셔닝 제안을 정의한다
+summary: "일반 서비스 가치, 수락 후 동일 이메일 노우 다닷 연결, 상품 보류와 경쟁 대비 포지셔닝 제안을 정의한다"
 ---
 
 # KnowsLink 서비스 개요
