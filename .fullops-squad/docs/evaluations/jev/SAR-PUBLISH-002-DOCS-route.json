@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-PUBLISH-002-DOCS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D11",
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.9,
+        "product": 0.1
+      },
+      "confidence": 0.8
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.58,
+        "ops": 0.39,
+        "tester": 0.03
+      },
+      "confidence": 0.37
+    },
+    "docs": {
+      "D01": 0.28,
+      "D02": 0.14,
+      "D03": 0.13,
+      "D04": 0.73,
+      "D05": 0.08,
+      "D06": 0.1,
+      "D07": 0.07,
+      "D08": 0.08,
+      "D09": 0.09,
+      "D10": 0.21,
+      "D11": 0.95,
+      "D12": 0.25,
+      "D13": 0.31
+    }
+  },
+  "usage": {
+    "input_tokens": 2509,
+    "output_tokens": 314,
+    "cost": 0.000105378
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.948,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "제품 화면·사용 문서 정본 갱신, 코드 변경 없음",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "3e04e6984f25bcb50e605ae69f860a33f6f8e4a4",
+  "requires_packet": true,
+  "attempt": "4a0ef7137c814ca49c9d82ccd36cda9c",
+  "instruction_sha256": "d9cd87c90bc948e567bd94bcbed13fa18521b779761cb122c8f1118c89327620",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "7729ff1188e7852162123b007766f8bc0be5b73b48fcaf81bdc3ddfcda4f6b2f"
+}
