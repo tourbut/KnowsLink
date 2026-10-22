@@ -2,11 +2,11 @@
 id: D01
 title: KnowsLink 서비스 개요
 status: review
-updated: 2026-10-20
+updated: 2026-10-22
 owner: designer
-tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001, SAR-SESSION-PEER-001-DESIGN, SAR-SCHEDULE-001-DESIGN]
+tasks: [SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-PUBLIC-SERVICE-001, SAR-HUMAN-PEER-001, SAR-SESSION-PEER-001-DESIGN, SAR-SCHEDULE-001-DESIGN, SAR-COMPETE-001]
 downstream: [D02]
-summary: 일반 서비스 가치와 수락 후 동일 이메일 노우 다닷 연결 및 상품 보류를 정의한다
+summary: 일반 서비스 가치, 수락 후 동일 이메일 노우 다닷 연결, 상품 보류와 경쟁 대비 포지셔닝 제안을 정의한다
 ---
 
 # KnowsLink 서비스 개요
@@ -57,6 +57,22 @@ owner는 에이전트와 키를 관리하고 상대 초대를 명시적으로 �
 
 상세 수락 기준은 [MVP 요구사항](product-specs/SAR-MVP.md)이다. 실행 순서와 첫 기능은 [기능 단위 백로그](SAR-MVP-backlog.md)다. 기술 설계 D03과 필요한 D05–D10은 후속 dev가 실제 구현과 함께 갱신한다.
 
+## 경쟁과 포지셔닝 — 2026-10-22
+
+2026-10-16 유사 서비스 Reason Network(Reason Machines)가 공개됐다. 사용자는 GitHub 이슈 #9로 비교 사실을 정리하고 차별점·개선점 분석을 요청했다. [경쟁 비교 D02](product-specs/SAR-COMPETE-001.md)가 상세 근거·개선 후보 우선순위·non-goal·SoT 반영안·결정 질문의 정본이다. 이 절은 사용자 결정 전 제안이다.
+
+Reason Network는 한 팀 안의 코딩 에이전트 세션을 잇는 개발 도구다. P2P 전송, 팀 전체 목록, 실시간 busy/idle이 중심이다. KnowsLink는 서로 다른 사람의 개인 에이전트가 대화하는 개인 메신저다. 사람 1:1 친구 수락, 발송마다 승인, 서버의 위험 행동 기본 거부, 짧은 보존이 중심이다. KnowsLink는 개발 팀 협업 시장에서 기능 수로 경쟁하지 않는다.
+
+제안 핵심 가치 문장은 다음과 같다. 채택은 사용자 결정 Q1이다.
+
+> KnowsLink는 내가 수락한 친구의 에이전트와만, 내가 승인한 메시지만 주고받게 하고, 위험한 행동은 서버가 먼저 막는 개인 에이전트 메신저다.
+
+주 타깃은 개인 AI 에이전트를 쓰며 친구·가족·지인과 짧은 요청을 주고받는 개인이다. 보조 타깃은 서로 다른 조직의 개인 사이 소규모 협업이다. 한 팀 내부의 실시간 코딩 세션 조율은 비타깃이다.
+
+제안 우선순위는 다음과 같다. P0는 루프 방지 불변식과 포지셔닝의 SoT 반영이다. P1은 Codex 세션 수신, 클라이언트 자동 설정, 서명과 암호화의 차이 고지다. 상태 표시·즉시 표시·종단 간 암호화 조사는 P2, 첨부·그룹 대화는 P3다. P2P 전환, 팀 초대 링크, 승인 생략 모드, 장기 보관, 실시간 작업 활동 공유는 non-goal이다.
+
+상품 방향은 바꾸지 않는다. 경쟁 서비스가 무료라는 사실은 BM 위험 가설로만 기록한다. Free N·Pro 가격은 계속 미정이다. 특허 메모는 법률 자문이 아니다. 전문가 FTO 시점은 사용자 결정 Q7이다.
+
 ## 미정 결정
 
 | 항목 | 담당 | 영향 | 재개 조건 |
@@ -65,6 +81,7 @@ owner는 에이전트와 키를 관리하고 상대 초대를 명시적으로 �
 | 일정 disclosure·출력 allowlist·범위 수치 | designer, dev는 구현 가능성 근거 제공 | 실데이터 silent 조회·정보 반환 보류 | 반환 필드·window·granularity·누적 한도와 정책 승인 기록 확보 |
 | 자원·rate·추가 size·concurrency 수치 | designer가 정책 결정, dev가 측정 근거 제공 | 무제한 공개 배포 금지 | [일반 서비스 D02](product-specs/SAR-PUBLIC-SERVICE.md)의 새 기본값·단위·거부 기준과 DEV/OPS 검증 근거 적용 |
 | 실제 어댑터 인터페이스 | dev | 제품별 실제 연결 보류 | 지원 인터페이스·권한·통합 가능성 확인 |
+| 경쟁 대비 포지셔닝·개선 우선순위·SoT 반영 | designer가 Q1–Q8을 coor 경유 수집 | 핵심 가치 문장·개발 후보 배정·외부 SoT 반영 보류 | [경쟁 비교 D02](product-specs/SAR-COMPETE-001.md#5-사용자-결정-질문)의 사용자 답 |
 | 운영 설정·배포 시점·외부 발송 | ops와 coor, 사용자가 실행 승인 | 운영 공개 보류 | 안전 제한 확정·수락 SHA·운영 설정 검증. 현재 서버 Docker·Tunnel 첫 파일럿 승인은 확보됐으며 범위 확대에는 새 승인 필요 |
 
 미정 결정은 개발 준비와 합성 데이터의 로컬 검증을 막지 않는다. 보류된 경로를 허용하는 기본값으로 바꾸지 않는다.
@@ -74,3 +91,5 @@ owner는 에이전트와 키를 관리하고 상대 초대를 명시적으로 �
 - 2026-10-03: SAR-PREP-002에서 최신 원천의 제품 가치·사업 방향·미정 결정과 개발 준비 범위를 정리했다.
 
 - 2026-10-05: SAR-PUBLIC-SERVICE-001에서 일반 서비스 완성과 수락 후 다닷 연결을 새 범위로 반영했다. 이전 실벤더 제외는 이 범위에 한해 대체하며 실데이터 업무·상품 held는 유지한다.
+
+- 2026-10-22: SAR-COMPETE-001에서 이슈 #9의 Reason Network 비교를 바탕으로 경쟁·포지셔닝 절을 추가했다. 사용자 결정 전 제안이며 상품 방향은 바꾸지 않았다.
