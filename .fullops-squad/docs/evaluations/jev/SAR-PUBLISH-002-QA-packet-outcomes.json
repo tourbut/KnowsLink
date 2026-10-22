@@ -1,0 +1,175 @@
+{
+ "packet_input_sha256": "f1f959b83594c374a5bb425c198a37a9950877c0809447d8fb48d8ad3fee3941",
+ "attempt": "ff50f2d4c18945c38b98415162fba94d",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "역할 흐름·worker_done·인박스 규약을 읽고 따랐다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-TESTER-test/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "59행의 못 한 것(키보드·200%·서버 경유 언어)을 이번 QA 항목 1–4로 확인했고 remote.py·explore.py·stop.py를 재사용했다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/scenarios/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "웹 실행기 선택과 시나리오 형식을 읽었다. 읽기·키 입력뿐이라 새 시나리오 없이 CDP 스크립트를 재실행 도구로 남겼다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "검증 명령과 담당 구분을 읽었다. 제품 코드 변경이 없어 make lint/test는 Windows에 make가 없어 실행 불가이며 PASS로 적지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "적용 기준과 예외 규정을 읽었다. 예외 없음."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "제품 코드를 바꾸지 않아 적용 대상 없음. 증거 스크립트는 읽기 전용이다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "운영에 쓰기 요청을 보내지 않았고 Google 로그인 폼 POST는 DB 상태를 쓰므로 승인 전 실행하지 않았다. 비밀값은 출력하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "담당과 반복 범위·raw 보존 규칙에 따라 판정 항목이 링크하는 파일만 커밋하고 캡처는 raw에 두었다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정책 링크·언어 전환·aria-current 언급 0건을 확인했다. 이번 QA 대상과 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "429–436행 정책 하단 배치(홈은 정책 페이지에만)와 A-03·A-08 기준을 읽고 Tab 순서·재배치 판정에 적용했다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "44·68행은 hook 갱신 기록이다. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "70행은 과거 lint 실행 기록이다. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "72행은 과거 lint·worker 정착 기록이다. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "114행은 과거 SHA 고정 설명이다. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "14행은 첫페이지 설계 결과 링크다. 정책 하단 기준은 D04 429–436행을 정본으로 썼다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "101행은 과거 SHA 기록이다. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "77행은 과거 코드 SHA 기록이다. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/transition.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "133행은 SSE 설치 후보 설명이다. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/operations/user-guide.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "55–57행에 정책 페이지가 아직 DEV 후보로 적혀 있음을 확인했다. 갱신은 SAR-PUBLISH-002-DOCS(designer) 몫이다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/business-plan.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정책 링크·언어 관련 언급 0건. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정책 링크·언어 관련 언급 0건. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정책 링크·언어 관련 언급 0건. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정책 링크·언어 관련 언급 0건. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "PC-03·PC-04·PC-06과 RC-01 기준을 대조해 항목 1–5를 설계했다. 문안 일치(PC-02)는 범위 밖이다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정책 링크·언어 관련 언급 0건. 이번 QA와 무관하다."
+  },
+  {
+   "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "정책 링크·언어 관련 언급 0건. 이번 QA와 무관하다."
+  },
+  {
+   "path": "internal/relay/policy/privacy.en.html",
+   "category": "direct_edit",
+   "status": "no_change",
+   "reason": "tester는 제품 파일을 수정하지 않는다. 운영 렌더의 영어 문안을 브라우저로 읽기만 했다."
+  },
+  {
+   "path": "internal/relay/policy/privacy.ko.html",
+   "category": "direct_edit",
+   "status": "no_change",
+   "reason": "tester는 제품 파일을 수정하지 않는다. 운영 렌더의 한국어 문안을 브라우저로 읽기만 했다."
+  }
+ ],
+ "uncertainty_review": "정본 packet은 partial이며 PLANS.md·module-design.md·ops-guide.md는 미확인으로 남았다. 이번 QA는 운영 화면 읽기와 격리 fixture 확인이라 세 문서에 의존하지 않았다. 나머지 참조 후보 7건은 읽지 않았고 지시서의 다섯 항목과 무관해 판정에 쓰지 않았다."
+}
