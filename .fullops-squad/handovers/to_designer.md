@@ -47,10 +47,10 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] `.fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md`(D02, 신규) 작성: (1) 차별점 — 포지셔닝, 타깃 사용자, 핵심 가치 문장 1개 (2) 개선·보강 후보 우선순위 표 — 이슈 예시(첨부, 그룹 대화, 상태 표시, 클라이언트 자동 설정, 루프 방지, 종단 간 암호화, Codex 지원 확인)를 포함하고 항목마다 사용자 가치·KnowsLink 원칙(owner 게이트·서명·짧은 보존)과의 충돌·대략 규모(S/M/L)·우선순위(P0~P3)·담당 후보(designer/dev) (3) non-goal과 이유 (4) SoT 반영안 — SoT 파일별로 바꿀 절과 제안 문장(외부 레포에 직접 쓰지 않는다) (5) 사용자 결정이 필요한 질문 목록(선택지·추천·영향)
-- [ ] `docs/planning/business-plan.md`(D01): 경쟁·포지셔닝 절을 추가 또는 갱신하고 SPEC을 링크
-- [ ] 산출물 front matter를 `deliverables.py --stamp --task SAR-COMPETE-001`로 갱신
-- [ ] `contexts/designer.md`에 결정·교훈 3줄 이내 append
+- [x] `.fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md`(D02, 신규) 작성: (1) 차별점 — 포지셔닝, 타깃 사용자, 핵심 가치 문장 1개 (2) 개선·보강 후보 우선순위 표 — 이슈 예시(첨부, 그룹 대화, 상태 표시, 클라이언트 자동 설정, 루프 방지, 종단 간 암호화, Codex 지원 확인)를 포함하고 항목마다 사용자 가치·KnowsLink 원칙(owner 게이트·서명·짧은 보존)과의 충돌·대략 규모(S/M/L)·우선순위(P0~P3)·담당 후보(designer/dev) (3) non-goal과 이유 (4) SoT 반영안 — SoT 파일별로 바꿀 절과 제안 문장(외부 레포에 직접 쓰지 않는다) (5) 사용자 결정이 필요한 질문 목록(선택지·추천·영향)
+- [x] `docs/planning/business-plan.md`(D01): 경쟁·포지셔닝 절을 추가 또는 갱신하고 SPEC을 링크
+- [x] 산출물 front matter를 `deliverables.py --stamp --task SAR-COMPETE-001`로 갱신
+- [x] `contexts/designer.md`에 결정·교훈 3줄 이내 append
 
 파일 소유권: 위 파일과 designer 인박스만. 예상 규모: 신규 문서 200~350줄, D01 20~60줄.
 
@@ -125,3 +125,13 @@ D02(신규 `product-specs/SAR-COMPETE-001.md`), D01(`business-plan.md` 경쟁·�
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 — 2026-10-22
+
+- 브랜치 / SHA: `fullops/designer` / 문서 완료 `53da8090`(본문 `9da57ad1` + front matter 인용 수정). 기준 main `30ceb260`, 지시서 커밋 `90018038`.
+- 변경 이유: 이슈 #9의 분석 요청 1–4를 [경쟁 비교 D02](../docs/planning/product-specs/SAR-COMPETE-001.md)로 정리했다. 차별점 DF-01–05·핵심 가치 문장, 개선 후보 C-01–10(P0 C-02·C-10 / P1 C-01·C-03·C-08 고지 / P2 C-04·C-05·C-08 E2E·C-09 / P3 C-06·C-07), non-goal NG-01–07, SoT 파일·절별 제안 문장, 결정 질문 Q1–Q8이다. [D01 경쟁과 포지셔닝 절](../docs/planning/business-plan.md#경쟁과-포지셔닝--2026-10-22)과 designer 컨텍스트 3줄을 추가했다.
+- 검토 필요: coor 소유 `docs/planning/SAR-COMPETE-001-request.md`의 front matter `title`·`summary`를 `deliverables.py --stamp`로 따옴표 처리했다(`#`가 YAML 주석으로 읽혀 lint DOC-003 ERROR). 본문·값은 바꾸지 않았다. D02 새 원천은 다른 D02 원천과 상태를 맞추려고 `status: review`로 두었다(본문은 사용자 결정 전 제안).
+- 검증한 것: `lint.py --repo . --from 30ceb2607fffd20a50d7154e5d5ca53d2643e67a` → `head 53da8090d071 / 파일 3 / ERROR 0 / WARNING 0 / 실행 불가 1`. 실행 불가 1은 Windows 호스트에 `make`가 없어 `product-lint: make lint`가 unavailable, `product-test`는 skipped다. 제품 코드 변경 0건이라 영향 없다. 의존성 변경 없음(문서만 변경).
+- 못 한 것: 웹 조사는 하지 않았다(지시서상 선택). 경쟁사 사실은 이슈 본문만 썼고 이슈 '확인하지 못한 것' 3건은 미확인으로 유지했다. 특허는 추가 조사하지 않았고 법률 자문 아님 문구와 FTO 결정(Q7, P-05 연결)을 유지했다. 외부 SoT 현재 HEAD는 확인하지 않았다(반영 전 coor 확인 필요).
+- 산출물: `.fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md`, `.fullops-squad/docs/planning/business-plan.md`, `.fullops-squad/contexts/designer.md`, `.fullops-squad/docs/evaluations/jev/SAR-COMPETE-001-packet-outcomes.json`. 별도 QA report는 지시서대로 만들지 않았다.
+- 남은 일: coor — 사용자 결정 Q1–Q8 수집 대기. coor — Q1–Q6 답 반영 뒤 SoT 반영안의 외부 SoT(tourbut/service-design) 적용 사용자 승인 대기. designer — 사용자 답에 따른 SPEC 우선순위·SoT 문장 갱신. coor — 이슈 #9 댓글·종료는 사용자 승인 뒤 처리.
