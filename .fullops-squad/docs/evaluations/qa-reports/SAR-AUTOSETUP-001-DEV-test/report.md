@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-23
 owner: dev
 tasks: [SAR-AUTOSETUP-001-DEV]
-summary: "Windows 11 자동 설정 설치기를 격리 relay·합성 회원·격리 호스트 설정에서 실측했다. AC-05–AC-10과 F-01–F-09 KO·EN을 확인했고 AC-01 N7–N8·AC-02–04는 tester 후속이다."
+summary: Windows 11 자동 설정 설치기를 격리 relay·합성 회원·격리 호스트 설정에서 실측했다. AC-05–AC-10과 F-01–F-09 KO·EN을 확인했고 AC-01 N7–N8·AC-02–04는 tester 후속이다.
 ---
 
 # SAR-AUTOSETUP-001-DEV 자체 검사 보고
