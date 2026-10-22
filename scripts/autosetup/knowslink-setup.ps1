@@ -210,7 +210,7 @@ function Remove-Temp { if ($S.Temp -and (Test-Path -LiteralPath $S.Temp)) { Remo
 
 function Stop-Setup([string]$Id, [string]$Message, [string]$Changed, [string]$Next) {
     Write-Host ''
-    Write-Host "[$Id] $Message" -ForegroundColor Yellow
+    if ($Message) { Write-Host "[$Id] $Message" -ForegroundColor Yellow }
     Say changed $Changed
     Say next $Next
     Save-Record $Id 'failed'
@@ -490,7 +490,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $Private 'agent.json'))) {
             Write-Host ("[F-07] " + (T F07 $lost)) -ForegroundColor Yellow
             Save-Record 'F-07' 'unconfirmed'
             if ((Ask f07Ask $lost) -eq 'new') { $fresh = $true; continue }
-            Stop-Setup 'F-07' (T F07 $lost) (T cUnsure) (T F07n)
+            Stop-Setup 'F-07' '' (T cUnsure) (T F07n) # the [F-07] line is already shown above
         }
         Stop-Setup 'F-06' (T F06) (T cNoKey) (T F06n)
     }

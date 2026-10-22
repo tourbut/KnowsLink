@@ -67,7 +67,7 @@ def registered(box, app):
 
 
 def new_and_update(app, lang_new, lang_update):
-    box = Box(f"{app}-main")
+    box = Box(f"{app}-main", fresh_node=app == "claude")  # the first install downloads and checks the real Node zip
     seed(box, app)
     before, counts = protected(box), state()
     code, out = box.run(app, lang_new, YES[app], approve(f"{app} 자동 설정"), label=f"{app}-new")
@@ -149,9 +149,9 @@ def failures(lang):
         code, out = box.run("claude", lang, YES["claude"] + [""], approve("응답 유실"), label=f"f07-{lang}")
     finally:
         fixture("/fixture/lose-complete", on="0")
-    check(code == 1 and out.count("[F-07]") >= 2 and "응답 유실" in out, f"F-07 lost answer: check-needed with the agent name, no new attempt ({lang})")
+    check(code == 1 and "[F-07]" in out and out.count("/connect/") == 1 and "응답 유실" in out, f"F-07 lost answer: check-needed with the agent name, no new attempt ({lang})")
     code, out = box.run("claude", other, YES["claude"] + ["new"], approve("재실행"), label=f"f07-rerun-{other}")
-    check(code == 0 and "[F-07]" in out and WORDS[other]["done"] in out, f"AC-09 F-07 rerun re-checks first, new connection only after 'new' ({other})")
+    check(code == 0 and "[F-07]" in out and out.count("/connect/") == 1 and WORDS[other]["done"] in out, f"AC-09 F-07 rerun re-checks first, new connection only after 'new' ({other})")
     # F-08: the install folder is in use during an update; the previous install stays.
     box = Box(f"f08-{lang}")
     box.run("claude", lang, YES["claude"], approve("갱신 실패"), label=f"f08-setup-{lang}")
