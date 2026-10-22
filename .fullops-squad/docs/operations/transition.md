@@ -12,7 +12,7 @@ summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기�
 
 ## 현재 운영 상태 (2026-10-22, SAR-PUBLISH-001-OPS)
 
-실제 운영 제품은 `7c6ef3734a38a8f273714aa2915dc2f14f83a7e4`다. 07:45:53 KST(22:45:53Z)에 relay healthy를 확인했다. 이전 `4787e85`에서 약17초 중단했고 새 schema/migration은 없다(사용자 결정 D020). D018 서버 캘린더 연결 제거와 D017 정책 페이지(`/privacy`, `/terms`)가 운영에 반영됐다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
+실제 운영 제품은 `4fdd149b27d3ff251a73128120dce9f8bb136620`다(2026-10-22 SAR-PUBLISH-001-P03-DEPLOY, 개인정보처리방침 백업 14일 문장. 이전 `7c6ef373`, rollback 태그 `knowslink-rollback:7c6ef373-p03-20261022`). 아래는 `7c6ef373` 배포 기록이다. 07:45:53 KST(22:45:53Z)에 relay healthy를 확인했다. 이전 `4787e85`에서 약17초 중단했고 새 schema/migration은 없다(사용자 결정 D020). D018 서버 캘린더 연결 제거와 D017 정책 페이지(`/privacy`, `/terms`)가 운영에 반영됐다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
 
 저장된 캘린더 연결·토큰은 처음부터 0이었다(첫 기동 `calendar cleanup` 줄 없음, 상태 JSON에 `Calendars` 없음). 운영 env에서 `KNOWSLINK_CALENDAR_KEY`를 지웠고(값 비기록, 이전 env 0600 보관) relay를 다시 띄웠다. 재기동 로그에도 정리 줄이 없다. 새 private 백업 `backups/4787e85-pre-publish001-20261021T224540Z.dump`는 0600·11178bytes다. network-none 복원의 전체 data digest·goose2·guard1·HumanModel1·downgrade 거부를 확인했다. 이전 relay 이미지는 `knowslink-rollback:4787e85-publish001-20261022` 태그로 보존했다. 증거는 [운영 보고](../evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md)다.
 
