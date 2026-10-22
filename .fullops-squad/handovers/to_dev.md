@@ -119,3 +119,12 @@ D10(module-design.md, 동작이 바뀌면). 그 밖 없음.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치 / 완료 SHA: `fullops/dev` / 코드 `3f9648e4b8e8f19648bdb3b1d89b169898996955`(검사 대상). 뒤 커밋은 packet outcomes·이 완료 보고·finish 로그 문서만 바꾼다.
+- 변경 이유: tester D-CR-01(medium). `codexSession()`이 `await memberTransport()` 사이에 `CodexSession`을 둘 만들어 `off`가 고아 결속의 lock·수신을 못 풀었다. 생성 promise `sessionInit` 공유(실패 때만 비움)와 승인 창이 열린 동안의 둘째 `on`은 창 없이 `busy`로 고쳤다. 코드 +30/-10줄.
+- 검토 필요: 동시 `on`+`on`의 둘째 응답이 `busy`("연결 승인 창이 이미 열려 있습니다")로 바뀐다. 제품 규칙 변경은 없다. 사용자가 독립 리뷰를 생략했다(waiver). 미해결 critical/high 없음.
+- 검증한 것: 새 단위 테스트 6(동시 `status`+`on`+`on` → 창 1·`bound`/`busy`·`off` 뒤 lock 없음)이 수정 전 빌드에서 FAIL, 수정 뒤 PASS. Windows Node 22.22.2 `npm run check`·`npm test --prefix adapters` EXIT=0. tester `approval-matrix.mjs` 50/50 PASS(RC-4 dialogs=1, RC-5 고아 0/4), `orphan.mjs` 8회 고아 0. 코드 SHA의 Linux 격리 clone `make lint` 0·`make test` 0·FullOps lint.py `--from 4c4e1f89` ERROR 0 / WARNING 2. 상세 [DEV report D-CR-01 절](../docs/evaluations/qa-reports/SAR-CODEX-RECV-001-DEV-test/report.md).
+- 못 한 것: 실제 Codex TUI·App Server 재실측은 하지 않았다(변경이 MCP 서버 내부 생성 순서뿐이고 매트릭스가 같은 stdio MCP 경계를 쓴다). 로컬 Windows lint.py는 다른 과제(SAR-MOTION-INTRO)의 미추적 파일로 "작업 트리가 깨끗하지 않습니다"(EXIT=2)라 Linux clone에서 실행했다.
+- WARNING 처리: DESIGN-003 `codex-session.test.ts:264`는 정규식 `[0-9a-f]{6}` 오탐. SIZE-001 `mcp.ts` 525줄(이전 522)은 기존 초과 파일에 3줄 추가이며 구조를 유지했다. 의존성 변경 없음(DEP-001 없음).
+- 산출물·로그: Linux 로그 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/codex-recv-001-devfix/3f9648e4b8e8f19648bdb3b1d89b169898996955-{install,lint,test,lintpy}.log`. 회귀 도구 디렉터리 같은 경로. relay `knowslink-codexrecv-qa` 컨테이너는 정지만 했다(삭제 안 함).
+- 남은 일: coor가 main에 병합한다. designer는 D11 사용자 안내에 Codex YOLO 세션에서는 KnowsLink 연결·발송 불가, 대화상자의 확인 코드 입력 필요를 반영한다. tester 재QA는 지시서대로 생략(회귀 도구 결과로 갈음, coor 판단).
