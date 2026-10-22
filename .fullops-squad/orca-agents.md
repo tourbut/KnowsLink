@@ -64,6 +64,7 @@ coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 �
 - `dev` `claude` `claude-opus-5-5` `high`: 원인 추적이 필요한 버그, 여러 모듈 구현
 - `dev` `claude` `claude-fable-5-1` `high`: 공유 계약을 따르는 큰 기능 구현·리팩터링
 - `ops` `claude` `claude-sonnet-5-5` `high`: 기록 검사·형식 검증·여러 SHA의 충돌 없는 main 통합 조정
+- `reviewer` `claude` `claude-opus-5-5` `high`: 병합 전 고정 SHA 독립 리뷰. 1.8.1 적용 2026-10-22, 기존 관행 유지
 
 - `tester` `claude` `claude-sonnet-5-5` `medium`: 명확한 재현·좁은 핵심 경로 검증. 사용자 2026-10-09 추가
 - `tester` `claude` `claude-sonnet-5-5` `high`: 실패 경계·연동 회귀 검증. 사용자 2026-10-09 추가
