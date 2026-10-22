@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-22
 owner: coor
 tasks: [FULLOPS-UPDATE-1.8.3]
-summary: 1.8.3을 적용해 공통 규칙 0.3.5, 지시서 상위 의도·증명 방법 칸, intents 템플릿을 레포에 옮기고 빈 cps 폴더를 지운다
+summary: "1.8.3을 적용해 공통 규칙 0.3.5, 지시서 상위 의도·증명 방법 칸, intents 템플릿을 레포에 옮기고 빈 cps 폴더를 지운다"
 ---
 
 # FULLOPS-UPDATE-1.8.3
