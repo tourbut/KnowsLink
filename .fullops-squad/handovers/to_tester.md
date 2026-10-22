@@ -110,6 +110,15 @@ designer SAR-PUBLISH-002-DOCS와 병렬. 웹 실행기는 Orca·Playwright·ego 
 
 ## 완료 보고
 
+- 브랜치 / SHA: `fullops/tester` / 기록 커밋 `d6dea07b`(기준 main `24198e40`, 제품 코드 `4fdd149b`와 동일, 제품 파일 변경 0).
+- 변경 이유: 지시서 5개 QA 항목 확인. 새 파일은 `qa-reports/SAR-PUBLISH-002-QA-tester-test/`와 `jev/…-packet-outcomes.json`뿐이다.
+- 결과: 1 언어 전환 PASS, 2 Tab·`aria-current` PASS, 3 640/320px 재배치·V-01 회귀 PASS, 4 저장 언어(격리 fixture) PASS, 5 Google scope는 격리 `TestGoogleHTTP` PASS이고 **운영 실측은 NOT RUN**. 제품 결함 0.
+- 검토 필요: 5번. 운영 로그인 버튼은 링크가 아니라 `POST /auth/google` 폼이며 DB에 로그인 시도를 쓴다(`google.go:85`). 폼 제출 금지 범위라 보내지 않았다. 운영 실측이 필요하면 coor가 POST 1회(응답 `Location`의 `scope`만 읽기)를 승인한다.
+- 검증한 것과 못 한 것: 운영 읽기 전용 CDP 확인, 원격 Linux 격리 fixture와 통합 테스트 2종. 못 한 것: 실제 Ctrl+확대 조작(640px 에뮬레이션으로 대체), 스크린리더, make lint/test(Windows에 make 없음, 코드 변경 없음). 관찰 low: 언어 전환 뒤 주소에 `?lang=` 쿼리가 붙는다. `#start`와 하단의 두 정책 링크 순서가 반대다.
+- 산출물·로그: [report.md](../docs/evaluations/qa-reports/SAR-PUBLISH-002-QA-tester-test/report.md), [prod-result.json](../docs/evaluations/qa-reports/SAR-PUBLISH-002-QA-tester-test/prod-result.json), [google-policy-run.log](../docs/evaluations/qa-reports/SAR-PUBLISH-002-QA-tester-test/google-policy-run.log). 원격 fixture·컨테이너는 정리했다(남은 `kl-pub002` 0).
+- 의존성: 변경 없음. 새 패키지를 설치하지 않았고 Node 내장 WebSocket·시스템 Chrome·기존 paramiko 경로만 썼다.
+- 남은 일: coor 결정 — 운영 Google scope 실측 POST 승인 여부. designer SAR-PUBLISH-002-DOCS는 이 QA와 별개로 진행 중이다.
+
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
