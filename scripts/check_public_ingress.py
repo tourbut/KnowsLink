@@ -11,13 +11,15 @@ for path in ("/", "/privacy", "/terms", "/auth/google", "/auth/google/callback",
              "/lang/ko", "/lang/en", "/v1/text/send", "/v1/text/events", "/v1/text/seen", "/v1/contacts/agent_a", "/v1/keys/agent_a/key_a", "/v1/receipts/00000000-0000-7000-8000-000000000001",
              "/mcp", "/.well-known/oauth-protected-resource", "/.well-known/oauth-protected-resource/mcp",
              "/.well-known/oauth-authorization-server", "/remote/oauth/register", "/remote/oauth/authorize",
-             "/remote/oauth/token", "/remote/oauth/revoke", "/remote/consent/" + "a" * 43):
+             "/remote/oauth/token", "/remote/oauth/revoke", "/remote/consent/" + "a" * 43,
+             "/install/0.1.0/knowslink-setup.ps1", "/install/0.1.0/knowslink-claude-plugin.zip"):
     assert public.fullmatch(path), f"member path blocked: {path}"
 for path in ("/owner", "/owner/gates/x", "/v1/owners", "/v1/agents", "/v1/keys", "/v1/key-revoke",
              "/v1/owner-revoke", "/lang", "/lang/", "/lang/fr", "/lang/ko/x", "/lang/KO", "/v1/contacts", "/v1/contacts/", "/v1/contacts/agent/extra", "/v1/contacts/Agent", "/v1/text/seen/extra", "/v1/authorize", "/v1/test/pull", "/healthz", "/_probe", "/homepage",
              "/privacy/", "/privacy/x", "/privacyx", "/terms/", "/terms.html",
              "/connect/short", "/v1/connect/unknown", "/v1/keys/agent/key/extra", "/mcp/extra",
-             "/remote/oauth/unknown", "/remote/consent/short", "/.well-known/other"):
+             "/remote/oauth/unknown", "/remote/consent/short", "/.well-known/other",
+             "/install/", "/install/0.1.0/", "/install/0.1/knowslink-setup.ps1", "/install/0.1.0/a/knowslink-setup.ps1", "/install/0.1.0/other.txt"):
     assert not public.fullmatch(path), f"protected path exposed: {path}"
 assert "hostname: link.knowslog.com" in source and "service: http://relay:8080" in source
 assert "required: false" in source

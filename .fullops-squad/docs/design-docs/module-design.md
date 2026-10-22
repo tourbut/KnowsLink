@@ -2,14 +2,28 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-22
+updated: 2026-10-23
 owner: dev
-tasks: [SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX, SAR-PUBLISH-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX, SAR-PUBLISH-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
 
 # KnowsLink 프로그램 책임과 검증
+
+## SAR-AUTOSETUP-001-DEV Windows 자동 설정
+
+기술 선택 근거는 [실행 기록](../exec-plans/phases/SAR-AUTOSETUP-001-DEV.md)이다. 세션 연결·발송 승인 모듈은 바꾸지 않았다.
+
+| 모듈 | 책임 | 검증 |
+|---|---|---|
+| `scripts/autosetup/knowslink-setup.ps1` | OS·호스트·버전 확인(F-01/02), 기존 설치 찾기(AS-10), 설치 계획과 동의(AS-02), 내려받기·SHA-256(F-03/04), runtime Node, 단계별 교체(F-08), KnowsLink 항목만 호스트 등록·확인(F-05), Google 연결 단계 호출(F-06/07), 완료·YOLO·제거 안내(AS-08/13, F-09), KO/EN 출력, 설치 기록(AS-12) | 격리 fixture 실측 `scenarios.py`([DEV QA](../evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md)) |
+| `scripts/package_plugin.py` `release()` | 설치기 자리표시자(버전·URL·ZIP SHA-256) 채우기, Claude/Codex ZIP 복사, 기존 버전 폴더 거부 | `--release` 실행과 fixture 설치 |
+| `adapters/src/setup-connect.ts`, `mcp.ts` `setup-connect` | agent 폴더의 시도 상태로 시작·재개·옆으로 옮긴 뒤 새 시작·저장 결과 재확인. 공개 상태만 JSON 줄로 출력 | `setup-connect.test.ts`: 취소 뒤 새 시도, 중단 시도 재개(같은 URL·지문), F-07 재확인·`--fresh` 전 새 시도 없음, 저장된 키는 relay 호출 없음 |
+| `adapters/src/connect.ts` `complete` | device 승인 응답의 이름을 `agent.json`에 표시용으로 보존 | `connect.test.ts`, `login.test.ts` 회귀 |
+| `internal/relay/device.go` | approved poll 응답에 agent 이름 추가 | `device_integration_test.go` |
+| `internal/relay/install_files.go` | `GET /install/<semver>/<허용 파일>`만 `KNOWSLINK_INSTALL_DIR`에서 제공, 설치기는 UTF-8 text | `install_files_test.go`: 허용 목록·버전 형식·경로 조작·미설정 404 |
+| `internal/relay/connect_guide.go`, `human_pages.go`, `i18n*.go` | `use=claude` D04 안내, `use=codex` 선택지·안내, 6번 보조 문구, 명령 `textarea.share`(`-Lang {{lang}}`), 문장 안 명령용 `code` 함수 | `autosetup_guide_test.go`(AC-10 KO/EN, 명령은 두 호스트에만, 버전 일치), 기존 번역 누락 검사 |
 
 ## SAR-CODEX-RECV-001-DEV Codex 세션 연결
 

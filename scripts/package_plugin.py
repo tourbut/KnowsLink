@@ -133,6 +133,32 @@ def install(output, host, destination, connect):
         print(f"New private connection folder (created only on explicit Google connect): {private}", flush=True)
 
 
+PRODUCTION_RELAY = "https://link.knowslog.com"
+
+
+def release(directory, relay):
+    # The relay serves <directory>/<version>/ at /install/<version>/ (KNOWSLINK_INSTALL_DIR); a published version never changes.
+    version = json.loads((ROOT / "adapters/.claude-plugin/plugin.json").read_text())["version"]
+    target = directory.resolve() / version
+    target.mkdir(parents=True, exist_ok=False)
+    values = {"__VERSION__": version, "__BASE__": f"{relay}/install/{version}", "__RELAY__": relay}
+    for host in ("claude", "codex"):
+        built = package(host, False)
+        shutil.copyfile(built, target / built.name)
+        values[f"__SHA_{host.upper()}__"] = sha256(built.read_bytes()).hexdigest()
+    script = (ROOT / "scripts/autosetup/knowslink-setup.ps1").read_text(encoding="utf-8")
+    for key, value in values.items():
+        script = script.replace(key, value)
+    if relay != PRODUCTION_RELAY:
+        # Isolated fixtures print the link instead of opening the tester's real browser.
+        script = script.replace("$OpenBrowser = $true # __OPEN_BROWSER__", "$OpenBrowser = $false")
+    if re.search(r"__[A-Z_]+__", script.replace("# __OPEN_BROWSER__", "")):
+        raise RuntimeError("Unfilled installer placeholder")
+    (target / "knowslink-setup.ps1").write_text(script, encoding="utf-8")
+    print(f"Auto-setup {version}: {target}; command: & ([scriptblock]::Create((irm {values['__BASE__']}/knowslink-setup.ps1))) -App claude -Lang ko")
+    return target
+
+
 def cloud_package(app_id, verify):
     # Cloud plugins reference an already registered app; bundling MCP makes this Desktop-only.
     if not re.fullmatch(r"(?:asdk_app_|connector_|templated_apps_)[A-Za-z0-9_-]{1,128}", app_id or ""):
@@ -176,7 +202,15 @@ def main():
     parser.add_argument("--verify", action="store_true", help="Run MCP checks against each extracted standalone bundle")
     parser.add_argument("--install-dir", type=Path, help="Prepare one host in a new absolute directory; never changes host settings")
     parser.add_argument("--connect", action="store_true", help="Prepare public-node settings with a fresh private sibling folder; does not start login")
+    parser.add_argument("--release", type=Path, help="Write the pinned Windows auto-setup installer and Claude/Codex ZIPs under <dir>/<version>")
+    parser.add_argument("--relay-url", default=PRODUCTION_RELAY, help="Service URL baked into a --release installer; non-production URLs are isolated fixtures")
     options = parser.parse_args()
+    if options.release:
+        relay = options.relay_url.rstrip("/")
+        if not re.fullmatch(r"https://[a-z0-9.-]+(:\d+)?|http://(127\.0\.0\.1|localhost)(:\d+)?", relay):
+            parser.error("--relay-url must be https or a loopback http URL without a path")
+        release(options.release, relay)
+        return
     if options.host == "openai-cloud":
         if options.install_dir or options.connect:
             parser.error("Cloud registration uses the host UI, not local installation settings")

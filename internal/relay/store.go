@@ -122,6 +122,8 @@ type Service struct {
 	Google          *GoogleLogin
 	Mail            Mailer
 	ClientIPHeader  string
+	// InstallDir holds released auto-setup files (<version>/<file>); empty serves none.
+	InstallDir string
 }
 
 func randomToken() string {

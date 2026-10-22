@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 호스트별 설치
 status: draft
-updated: 2026-10-22
+updated: 2026-10-23
 owner: dev
-tasks: [SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-CODEX-RECV-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-CODEX-RECV-001-DEV]
 summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계
 ---
 
@@ -46,6 +46,22 @@ python3 scripts/package_plugin.py --host codex --install-dir /absolute/knowslink
 `--connect`는 `public-node`, 서비스 URL, `<설치 경로>-private`를 설정한다. private 폴더는 설치 폴더 밖에 있으며 아직 생성하지 않는다. 이미 존재하는 설치/private 폴더를 재사용하거나 덮어쓰지 않는다. 기존 설치·키는 보존하고 호스트/인스턴스마다 새 경로를 지정한다. 아래 Google 연결 절차가 성공한 뒤에만 키와 agent가 생성된다.
 
 Claude Code는 `--host claude`로 준비한 뒤 세션 한정으로 `claude --plugin-dir /absolute/knowslink-claude-01/knowslink`를 사용한다. marketplace 방식은 `/plugin marketplace add /absolute/knowslink-claude-01` 후 `/plugin install knowslink@knowslink-plugins`다. 이 작업에서는 실제 사용자 설정을 바꾸지 않았다. [Claude 설치 문서](https://code.claude.com/docs/en/plugins), [manifest와 MCP 경로](https://code.claude.com/docs/en/plugins-reference).
+
+### Windows 자동 설정 배포물 — SAR-AUTOSETUP-001-DEV
+
+회원은 위 수동 절차 대신 [루트 README의 자동 설정](../README.md#claude-codecodex-자동-설정-windows-11) 명령 한 줄을 쓴다. 배포물은 다음 명령으로 만든다. 빌드는 기존 절차를 따른다.
+
+```sh
+python3 scripts/package_plugin.py --release /absolute/new-release-dir
+```
+
+- 결과는 `<dir>/<버전>/`의 `knowslink-setup.ps1`, `knowslink-claude-plugin.zip`, `knowslink-codex-plugin.zip`이다. 버전은 `.claude-plugin/plugin.json`의 `version`이다. 이미 있는 버전 폴더는 거부한다.
+- 설치기 원본은 `scripts/autosetup/knowslink-setup.ps1`이다. `--release`가 버전·배포 URL·서비스 URL·두 ZIP의 SHA-256을 채운다. Node `22.22.2` win-x64/arm64 zip의 SHA-256은 원본에 고정되어 있다. 채우지 않은 자리표시자가 남으면 실패한다.
+- relay는 `KNOWSLINK_INSTALL_DIR=<dir>`일 때 `GET /install/<버전>/<파일>`로 위 세 파일만 보낸다. 설치기는 `text/plain; charset=utf-8`이다. 공개 ingress 규칙은 `deploy/knowslink/tunnel/public-ingress.yml`에 같은 경로를 허용한다. 운영 게시는 ops 과제다.
+- `--relay-url http://127.0.0.1:<port>`는 격리 fixture용 설치기를 만든다. 이때 설치기는 브라우저를 열지 않고 링크만 출력한다.
+- 설치기는 등록 MCP 설정에 `install()`과 같은 값을 쓴다: runtime `node.exe`, 설치 폴더의 `dist/plugin.js`, `public-node`·서비스 URL·`<설치>-private`, Claude `KNOWSLINK_AUTO_RECEIVE=off`, Codex `KNOWSLINK_SESSION_HOST=codex`.
+- Google 연결 단계는 `node dist/plugin.js setup-connect <서비스 URL> <agent 폴더> [--fresh]`다. 공개 상태(`waiting` URL·지문·기한, `connected` agent ID·이름·지문, `failed`, `unconfirmed`)만 JSON 줄로 출력한다. 대기 중 시도는 이어서 기다린다. 취소·만료 시도는 `<폴더>.unused-<시각>`으로 옮기고 새로 시작한다. 승인 뒤 응답을 잃은 시도는 저장 결과부터 다시 확인하며, `--fresh` 전에는 새 시도를 만들지 않는다.
+- 격리 검사: `internal/relay/autosetup_fixture_test.go`(`-tags "integration autosetupfixture"`)가 합성 Google 회원과 승인·취소·응답 유실 제어를 제공한다. 실행 도구와 결과는 [DEV QA 보고](../.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md)다.
 
 ### Claude Code 작업 세션 연결 — SAR-SESSION-PEER-001-DEV
 

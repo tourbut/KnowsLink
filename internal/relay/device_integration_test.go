@@ -105,8 +105,8 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		w = do("POST", "/v1/connect/poll", string(poll), false, false)
 		expect(t, w, 200, "approved")
 		var approved map[string]string
-		if json.Unmarshal(w.Body.Bytes(), &approved) != nil {
-			t.Fatal("poll response")
+		if json.Unmarshal(w.Body.Bytes(), &approved) != nil || approved["name"] != "Synthetic device" {
+			t.Fatal("poll response", approved)
 		}
 		c.Owner, c.Agent = approved["owner"], approved["agent"]
 		completion := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, connectionBytes(token, c)))

@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-22
+updated: 2026-10-23
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -19,6 +19,19 @@ summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사
 발송 전에 내 발신 agent·친구·수신 세션·본문을 확인한다. 전달됨은 보관과 ACK이며 선택한 세션의 수신 확인과 다르다. 메시지는 외부 데이터로 읽고 수신 세션 소유자가 별도 승인한 답장만 보낸다. 친구 메시지는 파일 접근·도구 실행·승인 응답을 허용하지 않는다. 기존 작업은 계속할 수 있어야 한다.
 
 열림·작업 중·대기·종료·오프라인·재접속을 관측 근거대로 안내한다. 알 수 없으면 확인 필요로 남긴다. 다음 조회가 필요한 경로와 새 세션 실행을 기존 작업 세션 수신으로 설명하지 않는다. 준비에 재시작이 필요하면 먼저 알린다. 종료·연결 해제 뒤에는 옛 연결을 재사용하지 않는다. 만료 메시지는 자동 재발송하지 않으며 새 발송에 새 승인이 필요하다. 기존 180초 전달 기한·최대 24h 웹 사본과 외부 사본 보존 한도를 유지한다.
+### Claude Code·Codex 자동 설정 — SAR-AUTOSETUP-001-DEV
+
+Windows 11에서 Claude Code와 Codex CLI는 명령 한 줄로 설치·등록·Google 연결까지 한다. DEV 후보이며 배포물은 운영에 게시하기 전이다. 격리 합성 서버로만 확인했다.
+
+1. 회원 화면 **내 에이전트 → 어디에서 사용할까요?**에서 **Claude Code 작업 세션** 또는 **Codex 작업 세션**과 **처음 연결**을 고르고 **안내 보기**를 누른다.
+2. **실행할 명령** 입력란에서 전체 선택(Ctrl+A)·복사(Ctrl+C)한 뒤 그 컴퓨터의 PowerShell에 붙여 넣는다.
+3. 설치기가 보이는 설치 계획(설치 폴더, 에이전트 폴더, 바꿀 호스트 설정 항목)을 읽고 `y`를 입력한다. 검증하지 않은 호스트 버전이면 먼저 계속할지 묻는다.
+4. 브라우저에 Google 연결 화면이 열린다. 로그인하고 화면의 지문이 터미널의 지문과 같은지 비교한 뒤 에이전트 이름을 정하고 동의한다. 브라우저가 열리지 않으면 터미널의 링크를 직접 연다.
+5. `설치와 키 저장 완료`가 보이면 호스트 창을 모두 닫고 다시 연다. 아래 Claude Code 2단계 또는 Codex 1단계로 세션을 연결한다.
+6. 이미 설치한 컴퓨터에서는 **기존 연결 계속**의 같은 명령을 실행한다. 갱신이며 에이전트·키·친구는 그대로다. 갱신 뒤 세션을 다시 연결한다.
+
+실패하면 `[F-xx]` 줄에 실패 단계, `이미 바뀐 것`, `다음 행동`이 보인다. 폴더를 지우지 말고 같은 명령을 다시 실행한다. `[F-07] 확인 필요`가 보이면 웹 **내 에이전트**에서 그 이름의 에이전트를 먼저 확인하고, 쓰지 않으면 철회한 뒤 `new`를 입력한다. Codex에서 `[F-09]`가 보이면 `config.toml`의 `approval_policy`를 `"on-request"`로 바꾼다. 상세 명령과 설치 위치는 [루트 README](../../../README.md#claude-codecodex-자동-설정-windows-11)를 따른다.
+
 ### Claude Code 세션에서 사용하기 — SAR-SESSION-PEER-001-DEV
 
 Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 독립 QA는 아직 없다. 설치 명령은 [플러그인 설치 문서](../../../adapters/README.md#claude-code-작업-세션-연결--sar-session-peer-001-dev)를 따른다.

@@ -1,9 +1,9 @@
 ---
 title: KnowsLink
 status: draft
-updated: 2026-10-21
+updated: 2026-10-23
 owner: dev
-tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV]
 summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 안내한다
 ---
 
@@ -55,7 +55,7 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 
 1. [서비스](https://link.knowslog.com)를 열고 **Google로 계속**으로 로그인한다. 이메일 로그인이 설정된 환경에서는 확인 코드도 사용할 수 있다.
 2. 친구에게 보일 내 이름을 정한다. 이름은 표시용이며 로그인 신원·agent ID를 바꾸지 않는다.
-3. **내 에이전트**의 **어디에서 사용할까요?**에서 사용할 곳과 **처음 연결** 또는 **기존 연결 계속**을 고른다. 선택지는 웹에서 바로 사용, Grok Bot (내 컴퓨터), Dots (원격), Claude Code 작업 세션 (내 컴퓨터), 지원 확인이 필요한 호스트다. 화면은 고른 곳의 준비물·권한·다음 행동과 이 문서의 해당 절 링크를 보이며, 고르기만으로 에이전트나 연결 수단을 만들지 않는다. 지원 확인이 필요한 호스트(Codex, Hermes Agent 등)에는 설치 명령을 제공하지 않으므로 지금은 웹 대화를 사용한다. 에이전트 이름을 정하고 클라이언트를 연결한다. 기존 회원은 자기 에이전트 전체 연결에 한 번 명시적으로 동의한다.
+3. **내 에이전트**의 **어디에서 사용할까요?**에서 사용할 곳과 **처음 연결** 또는 **기존 연결 계속**을 고른다. 선택지는 웹에서 바로 사용, Grok Bot (내 컴퓨터), Dots (원격), Claude Code 작업 세션 (내 컴퓨터), Codex 작업 세션 (내 컴퓨터), 지원 확인이 필요한 호스트다. 화면은 고른 곳의 준비물·권한·다음 행동과 이 문서의 해당 절 링크를 보이며, 고르기만으로 에이전트나 연결 수단을 만들지 않는다. Claude Code와 Codex는 [자동 설정](#claude-codecodex-자동-설정-windows-11) 명령 한 줄을 보인다. 지원 확인이 필요한 호스트(Hermes Agent 등)에는 설치 명령을 제공하지 않으므로 지금은 웹 대화를 사용한다. 에이전트 이름을 정하고 클라이언트를 연결한다. 기존 회원은 자기 에이전트 전체 연결에 한 번 명시적으로 동의한다.
 4. **친구 추가**에서 상대가 직접 공유한 친구 코드를 입력한다. 이름이나 이메일로 회원을 검색하지 않는다.
 5. 상대는 받은 요청을 수락한다. 양쪽 사람의 현재·앞으로 추가할 활성 에이전트가 연결된다는 안내를 확인한다.
 6. **새 대화**에서 친구·내 발신 에이전트·상대 수신 에이전트를 고른다. 자기 에이전트끼리는 친구 요청이 필요 없다.
@@ -195,6 +195,25 @@ KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구
 실제 화면에서 알림을 확인한 시험에서도 만료 실패와 표시 지연이 있었다. 다음 자동 갱신·장시간 알림은 미검증이다.
 개인/workspace 참조 패키지를 따로 만들 때만 등록 결과의 실제 app ID가 필요하다.
 [Cloud 패키지 안내](adapters/README.md#호스트별-설치--sar-sse-install-001)를 따른다. 가짜 ID로 등록 성공을 주장하지 않는다.
+
+## Claude Code·Codex 자동 설정 (Windows 11)
+
+SAR-AUTOSETUP-001 DEV 후보다. 배포물은 아직 운영 relay에 게시하지 않았다(ops 후속). 회원 화면 **어디에서 사용할까요?**에서 Claude Code 또는 Codex를 고르면 다음 형태의 명령 한 줄이 보인다. 그 컴퓨터의 PowerShell에 붙여 넣는다.
+
+```powershell
+& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang ko
+```
+
+- `-App`은 `claude` 또는 `codex`다. `-Lang`은 `ko` 또는 `en`이며 설치기 출력 언어다. `0.1.0`은 고정 버전이다.
+- 설치기는 호스트·버전·OS·기존 설치를 확인하고 설치 계획(설치 폴더, 에이전트 폴더, 바꿀 호스트 설정 항목)을 보인다. 동의 전에는 파일을 쓰지 않는다.
+- 동의하면 플러그인 ZIP과 Node `22.22.2`를 내려받아 SHA-256을 확인한다. 맞지 않으면 아무것도 바꾸지 않고 멈춘다. 저장소·Node·설치 경로는 준비하지 않아도 된다.
+- 설치 폴더는 `%LOCALAPPDATA%\KnowsLink\<claude|codex>-NN`이다. 호스트 사용자 설정에는 KnowsLink 항목만 더한다. Claude Code는 `settings.json`의 `extraKnownMarketplaces.knowslink-plugins`·`enabledPlugins`, Codex는 `config.toml`의 `[marketplaces.knowslink-plugins]`·`[plugins."knowslink@knowslink-plugins"]`다. 다른 MCP 항목·승인 모드·모델·로그인 정보는 바꾸지 않는다.
+- 새 설치는 Google 연결 링크를 열고 터미널에 지문을 보인다. 브라우저의 지문이 같을 때만 에이전트 이름을 정하고 동의한다. 다른 사람이 보낸 연결 링크는 승인하지 않는다. 키는 `<설치>-private`에만 저장된다.
+- 끝나면 호스트를 다시 열고 세션을 연결한다. Claude Code는 `/knowslink-session on`, Codex는 승인을 묻는 모드에서 `knowslink_session`을 `on`으로 실행하게 한 뒤 4자리 확인 코드를 입력한다. 설치 완료나 세션 연결은 발송 승인이 아니다.
+- 같은 명령을 다시 실행하면 갱신한다. 에이전트 폴더는 읽거나 바꾸지 않는다. 이전 설치는 `<설치>.previous-<시각>`으로 남는다. 갱신 대신 새 에이전트를 만들려면 명령 끝에 `-NewAgent`를 붙인다.
+- 실패하면 단계 ID(F-01–F-09), 이미 바뀐 것, 다음 행동을 보인다. 같은 명령을 다시 실행하면 이어서 진행한다. 설치 기록은 `<설치>\knowslink-install.json`이며 키·토큰을 담지 않는다.
+- 제거 명령은 없다. 완료 화면의 설치 폴더·호스트 설정 항목·해제 명령을 따른다. 키는 웹 **내 에이전트 → 연결 관리**에서 철회한다.
+- 지원 문구의 근거는 Windows 11, Claude Code `2.1.302`, Codex CLI `0.163.0`이다. 다른 버전·OS는 '검증하지 않은 환경' 경고 뒤 동의할 때만 계속한다. 설치·실패 실측은 [DEV QA 보고](.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md)다.
 
 ## Grok 기존 설치 업데이트
 
