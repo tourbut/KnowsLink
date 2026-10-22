@@ -17,7 +17,7 @@ test_level: lite
 
 - 작성일: 2026-10-22
 - From / To: coor → designer
-- 상태: ready
+- 상태: done
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위 / 추가 승인이 필요한 행위: D04·D11 문서만 고친다. 제품 코드·정책 HTML·다른 정본은 바꾸지 않는다. / 추가 승인 필요: 제품 코드 변경, 정책 문안 변경, force-push
 - 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/designer / fullops/designer
@@ -43,9 +43,9 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] D04 `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` 정책 페이지 하단 배치도 줄을 `개인정보처리방침 · 서비스 약관 · 홈 · 설치·사용 문서 · 맨 위로`로 고치고, 첫페이지 하단에는 '홈'이 없다고 한 줄 적는다(D-01, `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md` 39–53행).
-- [ ] D11 `.fullops-squad/docs/operations/user-guide.md` '개인정보처리방침과 서비스 약관 — SAR-PUBLISH-001 DEV 후보' 절을 운영 공개 상태로 고친다: 제목에서 'DEV 후보'를 빼고, '이 절은 DEV 후보의 사용법이다…' 문장을 '2026-10-22부터 공개 주소에서 열린다'로 바꾼다. '법률 검토 전 초안' 문장은 P-05가 열려 있으므로 유지한다.
-- [ ] 같은 파일의 캘린더 연결 삭제 안내 문단을 실제 결과에 맞춘다: 운영 첫 기동 때 남은 연결이 0이었다(`.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md`). 안내 대상이 없다는 사실만 적고 절차 문장은 줄인다.
+- [x] D04 `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` 정책 페이지 하단 배치도 줄을 `개인정보처리방침 · 서비스 약관 · 홈 · 설치·사용 문서 · 맨 위로`로 고치고, 첫페이지 하단에는 '홈'이 없다고 한 줄 적는다(D-01, `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-VISUAL-designer-test/report.md` 39–53행).
+- [x] D11 `.fullops-squad/docs/operations/user-guide.md` '개인정보처리방침과 서비스 약관 — SAR-PUBLISH-001 DEV 후보' 절을 운영 공개 상태로 고친다: 제목에서 'DEV 후보'를 빼고, '이 절은 DEV 후보의 사용법이다…' 문장을 '2026-10-22부터 공개 주소에서 열린다'로 바꾼다. '법률 검토 전 초안' 문장은 P-05가 열려 있으므로 유지한다.
+- [x] 같은 파일의 캘린더 연결 삭제 안내 문단을 실제 결과에 맞춘다: 운영 첫 기동 때 남은 연결이 0이었다(`.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md`). 안내 대상이 없다는 사실만 적고 절차 문장은 줄인다.
 
 소유 파일: D04, D11, 이 인박스.
 
@@ -107,7 +107,10 @@ tester SAR-PUBLISH-002-QA와 병렬. 파일이 겹치지 않는다.
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+- 브랜치 / SHA: `fullops/designer` / (커밋 뒤 아래 SHA 줄에 기록)
+- D04 `service-member-ui.md`: 정책 페이지 배치도의 '홈'과 "첫페이지 하단에는 홈이 없다" 줄은 이미 543ddfe9(SAR-PUBLISH-001-D04)에 있어 본문은 바꾸지 않았다. front matter tasks에 이 과제만 stamp했다.
+- D11 `user-guide.md`: 정책 절 제목에서 'DEV 후보'를 빼고 '2026-10-22부터 공개 주소에서 열린다'로 바꿨다. '법률 검토 전 초안' 문장은 유지했다.
+- D11 캘린더 삭제 안내 문단: 운영 첫 기동 때 남은 연결 0, 철회 요청 없음, 사용자가 할 일 없음으로 줄이고 OPS 보고 링크를 달았다.
+- 검증: 문서 변경이라 새 테스트는 없고 lint ERROR 0을 확인한다. 못 본 것: 키보드·200%·서버 경유 언어 화면은 이 과제 범위가 아니라 tester SAR-PUBLISH-002-QA 몫이다.
+- 의존성 변경 없음(문서만 수정). 제품 코드·정책 HTML 변경 없음.
+- 남은 일: 없음. tester 독립 QA는 SAR-PUBLISH-002-QA에서 병렬 진행 중이다.

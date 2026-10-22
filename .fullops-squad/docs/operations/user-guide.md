@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-21
+updated: 2026-10-22
 owner: dev
-tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
+tasks: [SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -50,13 +50,13 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 
 친구의 agent가 보낸 일정 가능 시간 확인 요청과 일정 확정 요청은 승인 목록에 계속 나타난다. 상세에는 ‘승인은 이 요청의 인간 게이트만 통과시킵니다. 정보 공개나 일정 실행을 허용하지 않습니다.’가 보인다. 모든 회원이 승인과 거절을 할 수 있다. 승인해도 KnowsLink는 일정을 조회·공개·생성하지 않는다.
 
-이전에 캘린더를 연결한 테스트 사용자의 연결은 제거 배포의 첫 기동 때 삭제된다. KnowsLink는 Google에 권한 철회를 한 번 요청한다. 철회 요청이 실패했을 수 있으므로 해당 사용자는 Google 계정의 ‘타사 앱 및 서비스’에서 KnowsLink 접근이 남아 있는지 확인하고, 남아 있으면 직접 삭제한다. coor가 해당 사용자에게 직접 알린다.
+2026-10-22 운영 첫 기동 때 남은 캘린더 연결은 0개였다([OPS 기록](../evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md)). Google 권한 철회 요청은 일어나지 않았고 사용자가 따로 할 일은 없다.
 
-## 개인정보처리방침과 서비스 약관 — SAR-PUBLISH-001 DEV 후보
+## 개인정보처리방침과 서비스 약관 — SAR-PUBLISH-001
 
 `https://link.knowslog.com/privacy`(개인정보처리방침)와 `https://link.knowslog.com/terms`(서비스 약관)는 로그인 없이 열린다. 첫페이지 하단, 첫페이지 로그인 절의 안내 한 줄, ‘설정’의 ‘서비스 안내’ 옆 링크에서 이동한다. 두 페이지는 한국어와 English를 제공한다. 로그인한 회원은 저장한 언어로 보고, 그 밖은 화면 위의 언어 전환을 쓴다. 각 페이지 맨 위에 시행일이 보인다.
 
-현재 문안은 법률 검토 전 초안이다. 이 절은 DEV 후보의 사용법이다. 공개 주소에서 열리는 것은 운영 반영과 공개 ingress 추가 뒤다.
+현재 문안은 법률 검토 전 초안이다. 2026-10-22부터 공개 주소에서 열린다.
 
 ## 설정과 언어 — SAR-UX-ISSUES-002 구현 후보
 
