@@ -43,10 +43,10 @@ test_level: lite
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 배포 전 backup·rollback 태그, healthz 기록.
-- [ ] main `4fdd149b`로 relay를 전환하고 healthy·restart 0을 확인한다.
-- [ ] live `https://link.knowslog.com/privacy`(KO)와 영어판(`/lang/en?back=/privacy`)에 14일 문장이 보이는지, `/terms`·`/` 200인지 확인한다.
-- [ ] D12 `.fullops-squad/docs/operations/ops-guide.md` 현행 운영 SHA를 갱신한다.
+- [x] 배포 전 backup·rollback 태그, healthz 기록.
+- [x] main `4fdd149b`로 relay를 전환하고 healthy·restart 0을 확인한다.
+- [x] live `https://link.knowslog.com/privacy`(KO)와 영어판(`/lang/en?back=/privacy`)에 14일 문장이 보이는지, `/terms`·`/` 200인지 확인한다.
+- [x] D12 `.fullops-squad/docs/operations/ops-guide.md` 현행 운영 SHA를 갱신한다.
 
 소유 파일: D12, `qa-reports/SAR-PUBLISH-001-P03-DEPLOY-test/`, 이 인박스.
 
@@ -112,3 +112,12 @@ D12 ops-guide.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치 / SHA: `fullops/ops` / 완료 SHA `3b97f80e30f70d3ced80fd2f3ee0761beb60a32d`(이 보고 기록 커밋은 그 뒤). 운영 제품은 main `4fdd149b27d3ff251a73128120dce9f8bb136620`이다.
+- 변경 이유: D020·D021. 개인정보처리방침 KO/EN의 백업 문장을 ‘만든 날부터 14일이 지나면 삭제’로 바꾼 정책 HTML 두 줄을 운영 relay에 반영했다. env·ingress·DB는 바꾸지 않았다.
+- 지시와 달라진 판단: 없다. 첫 smoke에서 `/lang/en` 리다이렉트 기대값을 `/privacy`로 잘못 둬 1건이 실패로 찍혔다(실제 `/privacy?lang=en`, 제품 결함 아님). 기대값을 고쳐 전체를 다시 실행해 7/7을 얻었다.
+- 검토 필요: 새 백업 `7c6ef373-pre-p03deploy-20261021T235716Z.dump`는 2026-11-05 이후 14일 정리 대상이 된다. 더 둘 복구점은 따로 복사한다.
+- 검증한 것: bundle hash·조상·infra diff 0, rollback 태그 `knowslink-rollback:7c6ef373-p03-20261022`, 새 0600 백업·TOC 25줄·격리 복원 digest 일치, relay 중단 약17초(23:57:12Z~23:57:29Z)·healthy·restart 0·migrate 0, `verify.py local` 통과, live `/privacy`(한국어)·영어판 14일 문장 있음·옛 문장 없음, `/terms`·`/` 200, 이웃 404, 상태 digest 보존(Rates만 volatile). 못 한 것: 브라우저 렌더링, 실계정 로그인·발송, 실제 rollback. 의존성 변경 없음(제품 코드·go.mod 변경 0).
+- FullOps 검사: HEAD `3b97f80e`, 기준 `4fdd149b`, ERROR 0·WARNING 2(`PLANS.md`·`ops-guide.md` SIZE-001, 기존 초과 문서)·실행 불가 1(`make lint`, Windows `make` 부재, `make test`는 skipped). 제품 코드·테스트는 바꾸지 않았다.
+- 산출물·로그: [보고서](../docs/evaluations/qa-reports/SAR-PUBLISH-001-P03-DEPLOY-test/report.md), D12 `ops-guide.md`(P03 운영 적용 절). 서버: `knowslink-state/p03deploy-20261022/`, `backups/7c6ef373-pre-p03deploy-20261021T235716Z.dump`.
+- 남은 일: coor가 D13 `transition.md` '현재 운영 상태'의 운영 SHA(`7c6ef373`)를 `4fdd149b`로 고친다(ops 소유 밖이라 고치지 않았다). 2026-10-23 03:17 KST 이후 `backup-prune.log`에 첫 자동 실행 줄이 생겼는지 확인한다. Cloud Console은 coor와 사용자가 진행한다.
