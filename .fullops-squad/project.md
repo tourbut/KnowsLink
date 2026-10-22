@@ -17,7 +17,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
-| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.3`; Ponytail full |
+| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.5`; Ponytail full |
 | 보안·코딩 규칙 | [코딩](rules/common/coding-style.md), [테스트](rules/common/testing.md), [보안](rules/common/security.md) |
 | 문서 언어 | 한국어 |
 | 이슈 트래커 | 로컬 `PLANS.md`·역할 인박스. GitHub Issues/Projects 연동은 미설정 |
