@@ -1,3 +1,12 @@
+---
+title: relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)
+status: draft
+updated: 2026-10-22
+owner: coor
+tasks: [SAR-COMPETE-001]
+summary: service-design be7c00e 반입 원문이다. 2026-10-19 메신저 재정의와 2026-10-22 포지셔닝 잠금을 포함한다
+---
+
 # relay.v1 — 프로토콜 (frozen 2026-10-02; ops/seed round-2 2026-10-02; security C1–C5 2026-10-02)
 
 구조화된 JSON 봉투. **자연어가 와이어 포맷이 아니다.**  

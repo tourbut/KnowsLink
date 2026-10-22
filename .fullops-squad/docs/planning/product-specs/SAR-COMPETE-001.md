@@ -1,7 +1,7 @@
 ---
 id: D02
 title: 경쟁 서비스 Reason Network 대비 KnowsLink 포지셔닝과 개선 우선순위
-status: approved
+status: review
 updated: 2026-10-22
 owner: designer
 tasks: [SAR-COMPETE-001]
@@ -181,4 +181,4 @@ KnowsLink는 개발 팀 협업 도구 시장에서 Reason Network와 기능 수�
 ## 개정 이력
 
 - 2026-10-22: SAR-COMPETE-001에서 이슈 #9 비교를 바탕으로 초안을 작성했다. 사용자 결정 전이다.
-- 2026-10-22: 사용자가 Q1–Q8 추천안을 채택했다(D023–D030). coor가 SoT `be7c00e`에 반영하고 반입을 갱신했다. 상태를 approved로 바꿨다.
+- 2026-10-22: 사용자가 Q1–Q8 추천안을 채택했다(D023–D030). coor가 SoT `be7c00e`에 반영하고 반입을 갱신했다. D02 인덱스는 여러 명세를 묶으므로 문서 상태는 review로 둔다.

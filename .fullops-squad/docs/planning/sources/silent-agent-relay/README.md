@@ -1,3 +1,12 @@
+---
+title: KnowsLink
+status: draft
+updated: 2026-10-22
+owner: coor
+tasks: [SAR-COMPETE-001]
+summary: service-design be7c00e 반입 원문이다. 2026-10-19 메신저 재정의와 2026-10-22 포지셔닝 잠금을 포함한다
+---
+
 # KnowsLink
 
 **공개 제품명 (잠금):** KnowsLink

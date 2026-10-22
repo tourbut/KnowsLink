@@ -1,3 +1,12 @@
+---
+title: KnowsLink (Silent Agent Relay) — MVP 체크리스트
+status: draft
+updated: 2026-10-22
+owner: coor
+tasks: [SAR-COMPETE-001]
+summary: service-design be7c00e 반입 원문이다. 2026-10-19 메신저 재정의와 2026-10-22 포지셔닝 잠금을 포함한다
+---
+
 # KnowsLink (Silent Agent Relay) — MVP 체크리스트
 
 개인 퍼블릭넷 최소 구현. 병원·폐쇄망·벤더 코어 수정·공식 cross-agent API 가정 없음.
