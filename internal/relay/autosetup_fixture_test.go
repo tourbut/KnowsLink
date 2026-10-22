@@ -69,11 +69,11 @@ func TestAutosetupFixture(t *testing.T) {
 			}
 			return
 		case "/fixture/revoke-all":
-			// Separate failure scenarios stay under the member's active-agent limit.
-			_ = mutate(func(st *State, now time.Time) error {
-				for _, a := range st.Agents {
+			// Separate failure scenarios stay under the member's active-agent and agent-record limits (synthetic data only).
+			_ = mutate(func(st *State, _ time.Time) error {
+				for id, a := range st.Agents {
 					if a.Owner == owner {
-						a.Revoked, a.Changed = true, now
+						delete(st.Agents, id)
 					}
 				}
 				return nil
