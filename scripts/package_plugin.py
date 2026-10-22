@@ -124,6 +124,9 @@ def install(output, host, destination, connect):
             if host == "claude":
                 # Only the session the owner switches on with /knowslink-session on receives (SP-01); the mod's watcher pulls, not every MCP process.
                 server["env"]["KNOWSLINK_AUTO_RECEIVE"] = "off"
+            if host == "codex":
+                # Codex has no host mod: the MCP process binds only after the owner accepts knowslink_session on in that session.
+                server["env"]["KNOWSLINK_SESSION_HOST"] = "codex"
         path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
     print(f"Prepared {host} plugin at {destination}; host registration and Google consent have not run", flush=True)
     if connect:

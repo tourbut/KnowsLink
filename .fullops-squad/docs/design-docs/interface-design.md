@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-21
+updated: 2026-10-22
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
+tasks: [SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -320,6 +320,14 @@ device proof 바이트는 `KNOWSLINK-DEVICE\0token\0client\0kid\0public` UTF-8�
 - prompt는 고정 문장 `KnowsLink automatic receive: <N> unread message(s) in the local inbox (new IDs: <최대 10개 UUID>). ...`이다. 받은 text·발신자를 넣지 않는다.
 - `autoReceive.hostWake`는 `{state:off|invalid_config|idle|accepted_unverified|retry|rejected|uncertain,lastAt,lastError}`다. `lastError`는 `gateway_unreachable`, `gateway_token_unavailable`, `gateway_no_response`, `gateway HTTP <code>`, `failed` 중 하나다. 같은 값이 `<inbox>/<id>.wake`(0600)에 ID별로 남는다. retry만 marker를 지우고 다음 loop에서 다시 보낸다.
 - CLI `node dist/plugin.js wake-check`는 `POST /api/listAgents {}`만 호출한다. 출력은 `{state:"ok",agentIds,configuredAgent,configuredListed}` 또는 `{state:"failed"|"invalid_config",error?}`이며 실패는 exit 1이다. token·이름·기타 응답 필드는 출력하지 않는다.
+
+## Codex 세션 연결 계약 — SAR-CODEX-RECV-001-DEV
+
+- 환경 `KNOWSLINK_SESSION_HOST=codex`(`package_plugin.py --host codex --connect`가 쓴다)일 때만 적용한다. 이 MCP 서버는 시작 때 자동 수신하지 않는다.
+- 도구 `knowslink_session` 입력 `{action:"on"|"off"|"status", take?:boolean}`. 출력 `{state, text}`이며 state는 `bound|busy|declined|unbound`다. `on`이 bound가 아니면 isError다. 다른 살아 있는 세션이 agent 폴더를 잡고 있으면 `busy`(점유 구분값·시작 시각)이고 대화상자를 띄우지 않는다.
+- 소유자 승인은 MCP `elicitation/create`(form)다. 메시지 끝에 `승인하려면 확인 코드 NNNN 를 입력하세요`를 붙이고 `requestedSchema`는 필수 문자열 `code` 하나다. `action:"accept"`이고 `content.code`(앞뒤 공백 제거)가 그 코드와 같을 때만 승인이다. 시간 제한은 5분이다. 클라이언트가 elicitation을 선언하지 않으면 승인 불가다.
+- 결속 전·전환 뒤의 `knowslink_text_send|receive|receipt`는 `{state:"denied", text}`(isError)다. send는 모델 인자 `confirmed:true`와 별개로 위 승인을 거친다. 승인 창 본문 형식은 Claude Code 모드와 같다(`KnowsLink 발송 승인: 내 agent … → 친구 … · agent … (<id>) · 새 메시지|답장(reply_to …) · 본문 전체 N자 「…」`).
+- 세션 구분값은 MCP 프로세스마다 새로 만든 `codex-<6 hex>`이며 `<agent 폴더>/session.lock`의 `session`에 들어간다. lock 형식은 Claude Code와 같다.
 
 ## 서버 캘린더 연결 제거와 정책 페이지 — SAR-PUBLISH-001-DEV
 
