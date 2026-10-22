@@ -1,6 +1,6 @@
 ---
 title: SAR-AUTOSETUP-001 — Claude Code·Codex 사용자가 명령 하나와 필수 확인만으로 첫 메시지를 보낸다
-status: draft
+status: approved
 updated: 2026-10-22
 owner: designer
 tasks: [SAR-AUTOSETUP-001]
@@ -118,4 +118,4 @@ Claude Code나 Codex를 쓰는 새 회원은 친구 메시지를 받기 전에 �
 
 ## 승인
 
-아직 승인 전이다. 사용자가 Q1–Q6에 답하고 승인하면 coor가 날짜·근거를 적고 dev를 배정한다.
+2026-10-22 사용자가 대화에서 "추천대로"로 승인했다. 성공 기준 S1–S7을 승인하고 Q1–Q6은 모두 추천 A를 채택했다(사용자 결정 D031–D037).
