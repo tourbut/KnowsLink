@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-22
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-UX-ISSUES-002-DESIGN, SAR-SESSION-PEER-001-DESIGN, SAR-COMPETE-001]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-UX-ISSUES-002-DESIGN, SAR-SESSION-PEER-001-DESIGN, SAR-COMPETE-001, SAR-CODEX-RECV-001-DOCS]
 summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 보존한다
 ---
 
@@ -50,3 +50,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-22 SAR-COMPETE-001: 이슈 #9 Reason Network는 팀 코딩 세션 버스, KnowsLink는 사람 1:1 수락·발송마다 승인·서버 기본 거부·짧은 보존의 개인 메신저로 구분했다. 기능 수 경쟁 대신 신뢰 경계를 차별점으로 둔다.
   P0 루프 방지 불변식·SoT 포지셔닝, P1 Codex 수신·자동 설정·서명≠암호화 고지, 첨부·그룹 P3, P2P·팀 초대·승인 생략·실시간 활동 공유는 non-goal. Q1–Q8 사용자 결정 전 제안이다.
   [경쟁 비교 D02](../docs/planning/product-specs/SAR-COMPETE-001.md). 경쟁사 수치는 이슈 본문만 쓰고 이슈의 미확인 3건은 미확인으로 유지한다.
+
+- 2026-10-22 SAR-CODEX-RECV-001-DOCS: D11에 Codex 세션 연결 절을 추가했다. 확인 코드 승인, Esc 취소, Codex 도구 승인과 KnowsLink 승인이 따로 뜸, YOLO 불가, 도착 알림 없음, 한 agent 한 세션을 적었다.
+  지원은 '연결된 세션의 로컬 사본 + 다음 조회'만 쓴다(SP-12). Codex 하위 에이전트와 TUI의 4096바이트 대화상자 전체 표시는 미검증으로 남겼다.
+  [D11](../docs/operations/user-guide.md), [DEV 보고](../docs/evaluations/qa-reports/SAR-CODEX-RECV-001-DEV-test/report.md).
