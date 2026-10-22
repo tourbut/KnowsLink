@@ -2090,5 +2090,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-CODEX-RECV-001-TESTER → dev: dev — D-CR-01 수정(`codexSession()` 동시 생성 방지)과 RC-4 (완료 보고 자동 등재 2026-10-22)
 - [x] SAR-CODEX-RECV-001-TESTER → coor: `tools/orphan.mjs` 회귀 확인. coor — 수정 뒤 병합 판단. designer — D11 Codex 안내에 YOLO 세션 사용 불가와 승인 코드 입력 방법 (완료 보고 자동 등재 2026-10-22) → coor: orphan 회귀는 dev가 0/8로 확인, b1029605 병합. designer D11은 SAR-CODEX-RECV-001-DOCS로 배정(2026-10-22).
 - [ ] SAR-CODEX-RECV-001-DEV(D-CR-01 수정) → coor: 코드 3f9648e4 병합 판단(tester 재QA는 회귀 도구 결과로 갈음 여부 coor 판단). designer — D11 Codex 안내(YOLO 불가·확인 코드 입력) (완료 보고 자동 등재 2026-10-22, 템플릿 문장을 실제 남은 일로 교정)
-- [ ] SAR-CODEX-RECV-001-DOCS → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-22)
-- [ ] SAR-CODEX-RECV-001-DOCS → dev: 검토 필요: 지원 표가 DEV/tester 실측 표를 넘지 않는지(SP-12). 하위 에이전트와 4096바이트 TUI 대화상자 전체 표시는 미검증으로 적었다 (완료 보고 자동 등재 2026-10-22)
+- [x] SAR-CODEX-RECV-001-DOCS → coor: 남은 일 없음. D11 Codex 절 병합 판단만 남는다. 검토 요청: 지원 표가 DEV/tester 실측 표를 넘지 않는지(SP-12) (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정)
