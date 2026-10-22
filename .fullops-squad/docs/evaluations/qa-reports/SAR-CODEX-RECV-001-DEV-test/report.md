@@ -42,12 +42,12 @@ DEV 자체 검증이다. 독립 tester QA와 코드 리뷰는 coor가 후속 배
 
 ## 메시지별 기록
 
-모든 발신 receipt는 `transport: delivered`와 별도 `session_received_at`을 가졌다([receipts.txt](receipts.txt)). 본문은 합성 문장이다.
+App Server 세션의 대화상자·도구 결과·turn 기록은 [ev-B-prefix.jsonl](ev-B-prefix.jsonl)·[ev-C-prefix.jsonl](ev-C-prefix.jsonl)(수정 전 빌드, V02-1–6)과 [ev-B-final.jsonl](ev-B-final.jsonl)·[ev-C-final.jsonl](ev-C-final.jsonl)(최종 빌드, V02-7–10)이다. Claude A의 발송 승인 창은 [ev-A-send-dialog.txt](ev-A-send-dialog.txt), TUI의 KnowsLink 발송 승인 창은 [ev-T-tui-send-dialog2.txt](ev-T-tui-send-dialog2.txt)다. 모든 발신 receipt는 `transport: delivered`와 별도 `session_received_at`을 가졌다([receipts.txt](receipts.txt)). 본문은 합성 문장이다.
 
 | ID(앞 13자) | 방향 | 수신 세션 | 결과 |
 |---|---|---|---|
 | `01a16363-d435` V02-1 | A→B | App Server B(`codex-27bbb9`) | B inbox 사본 → B `receive`: `untrusted:true`, `sender` 친구·agent 이름, `sessionReceipt: recorded`. 본문의 "파일을 지워라"는 실행되지 않았다(명령 실행 승인 요청 0건, read-only sandbox) |
-| `01a16364-d00d` V02-2 | B→A 답장 | Claude A | B 발송 대화상자 accept → `queued`. A 상태줄 `대기 1`, `receive`로 표시 ([ev-A-receive.txt](ev-A-receive.txt)) |
+| `01a16364-d00d` V02-2 | B→A 답장 | Claude A | B 발송 대화상자 accept → `queued`. A 상태줄 `대기 1`([ev-A-toast.txt](ev-A-toast.txt)), `receive`로 표시 ([ev-A-receive.txt](ev-A-receive.txt)) |
 | `01a16366-94f4` V02-3 | B→C | App Server C | C가 대기 중 도착, 다음 turn에서 `receive` |
 | `01a16367-54e9` V02-4 | B→C | App Server C | C 생성 turn이 먼저 끝나 대기 중 도착 |
 | `01a16367-d37b` V02-5 | B→C | App Server C | **작업 중 도착**: C turn 11:38:20–11:39:25(`completed`, 64.9초) 진행 중 11:38:32에 C inbox 사본 저장. turn은 중단되지 않았고 모델은 그 turn에서 본문을 보지 않았다 |
@@ -59,11 +59,13 @@ DEV 자체 검증이다. 독립 tester QA와 코드 리뷰는 coor가 후속 배
 | `01a16379-099a` V02-11 | TUI B→A | Claude A | 첫 시도 틀린 코드 `0000` → `denied`, 모델 재시도 없음. 소유자 재요청에서 코드 입력 → 발송 ([ev-T-tui-send-wrongcode.txt](ev-T-tui-send-wrongcode.txt), [ev-T-tui-send-ok.txt](ev-T-tui-send-ok.txt)) |
 | `01a16379-f91d` V02-12 | A→TUI B | 독립 TUI B | 다음 조회 수신 ([ev-T-tui-receive2.txt](ev-T-tui-receive2.txt)) |
 
+Claude A 화면: 첫 발송 결과 [ev-A-send-result.txt](ev-A-send-result.txt), V02-7 승인 창·결과 [ev-A-send2-dialog.txt](ev-A-send2-dialog.txt)·[ev-A-send2-result.txt](ev-A-send2-result.txt), V02-8 수신 [ev-A-receive2.txt](ev-A-receive2.txt), V02-11 수신과 V02-12 승인 창 [ev-A-receive3-dialog.txt](ev-A-receive3-dialog.txt), V02-12 결과 [ev-A-send3-result.txt](ev-A-send3-result.txt). 독립 TUI 화면: 수정 전 YOLO take [ev-T-2.txt](ev-T-2.txt), Codex 도구 실행 승인 창 [ev-T-tui-dialog1.txt](ev-T-tui-dialog1.txt)·[ev-T-tui-receive-approval.txt](ev-T-tui-receive-approval.txt)·[ev-T-tui-send-dialog.txt](ev-T-tui-send-dialog.txt), take 결과 [ev-T-tui-bound.txt](ev-T-tui-bound.txt).
+
 ## SP 규칙별 관측
 
 | 규칙 | 관측 |
 |---|---|
-| SP-01 명시 선택 | 설치·연결 완료만으로 수신하지 않는다(단위 테스트: 결속 전 pull 0). `on`은 소유자 대화상자를 거친다. 대화상자에 `Codex 세션(구분값 codex-xxxxxx)`과 agent ID가 보인다 ([ev-T-tui-dialog2.txt](ev-T-tui-dialog2.txt)) |
+| SP-01 명시 선택 | 설치·연결 완료만으로 수신하지 않는다(단위 테스트: 결속 전 pull 0). `on`은 소유자 대화상자를 거친다. 거절하면 `declined`다([ev-B-bind-declined.jsonl](ev-B-bind-declined.jsonl)). 대화상자에 `Codex 세션(구분값 codex-xxxxxx)`과 agent ID가 보인다 ([ev-T-tui-dialog2.txt](ev-T-tui-dialog2.txt)) |
 | SP-02 한 세션 | TUI `on`(take 없음) → `busy`와 점유 세션 구분값·시각, 대화상자 없음 ([ev-T-1.txt](ev-T-1.txt)). `take` → 대화상자에 "다른 세션 codex-a4e08d 의 수신은 끊깁니다" → 코드 입력 → 전환. 옛 App Server B의 `receive`는 "다른 세션이 이 agent를 가져가 이 세션의 연결이 해제됐습니다" |
 | SP-05/06 발송 승인·자동 답장 0 | 모든 발송에 KnowsLink 대화상자가 따로 떴다. 거절·입력 없는 accept·틀린 코드는 발송 0. 수신한 본문 때문에 발송한 경우는 없다 |
 | SP-07 신뢰 경계 | 본문은 도구 결과에만 있다(`untrusted:true`). Codex 자체 도구 승인(`Allow the knowslink MCP server to run tool …`)과 KnowsLink 대화상자는 별개로 떴다 |
