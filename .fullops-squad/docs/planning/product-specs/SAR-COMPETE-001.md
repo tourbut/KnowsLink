@@ -1,19 +1,19 @@
 ---
 id: D02
 title: 경쟁 서비스 Reason Network 대비 KnowsLink 포지셔닝과 개선 우선순위
-status: review
+status: approved
 updated: 2026-10-22
 owner: designer
 tasks: [SAR-COMPETE-001]
 upstream: [D01]
-summary: "이슈 #9의 Reason Network 비교로 KnowsLink 차별점·핵심 가치 문장·개선 후보 우선순위·non-goal·SoT 반영안·사용자 결정 질문을 정한다. 사용자 결정 전 제안이다"
+summary: "이슈 #9의 Reason Network 비교로 KnowsLink 차별점·핵심 가치 문장·개선 후보 우선순위·non-goal·SoT 반영안·사용자 결정 질문을 정한다. 2026-10-22 사용자가 추천안을 모두 채택했다"
 ---
 
 # 경쟁 서비스 비교와 KnowsLink 포지셔닝 — SAR-COMPETE-001
 
 ## 상태와 근거
 
-이 문서는 사용자 결정 전 제안이다. 제품 규칙을 바꾸지 않는다. 사용자가 아래 '사용자 결정 질문'에 답한 뒤 제품 수락과 SoT 반영을 진행한다.
+2026-10-22 사용자가 Q1–Q8 추천안을 모두 채택했다(결정 D023–D030, "추천대로 진행해"). 외부 SoT는 service-design `be7c00ea25ebbd4a0e6c7a3724084ec120f35c77`에 반영했고 반입 사본도 같은 SHA로 갱신했다. 아래 '판단'은 이제 확정 기준이다.
 
 요청 원문은 [이슈 #9 원문](../SAR-COMPETE-001-request.md)이다. 기준 커밋은 main `30ceb2607fffd20a50d7154e5d5ca53d2643e67a`다. 반입 SoT는 service-design `7bc9ea190ea549fae8b047e850247a19322fc9c3`([source.json](../sources/silent-agent-relay/source.json))이다.
 
@@ -181,3 +181,4 @@ KnowsLink는 개발 팀 협업 도구 시장에서 Reason Network와 기능 수�
 ## 개정 이력
 
 - 2026-10-22: SAR-COMPETE-001에서 이슈 #9 비교를 바탕으로 초안을 작성했다. 사용자 결정 전이다.
+- 2026-10-22: 사용자가 Q1–Q8 추천안을 채택했다(D023–D030). coor가 SoT `be7c00e`에 반영하고 반입을 갱신했다. 상태를 approved로 바꿨다.

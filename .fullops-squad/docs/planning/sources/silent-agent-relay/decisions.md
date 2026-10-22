@@ -1,13 +1,11 @@
 ---
 title: Silent Agent Relay — 결정 로그
 status: draft
-updated: 2026-10-12
+updated: 2026-10-22
 owner: designer
-tasks: [SAR-HUMAN-PEER-001]
-summary: 과거 보안·wire 결정 원문과 새 사람 친구 제품 범위를 구분한다
+tasks: [SAR-HUMAN-PEER-001, SAR-COMPETE-001]
+summary: service-design be7c00e 반입 원문이다. 2026-10-19 메신저 재정의와 2026-10-22 포지셔닝 잠금을 포함한다
 ---
-
-> 2026-10-12 현행 안내: 아래 원천 본문은 source.json에 고정된 과거 결정으로 보존한다. 사용자의 사람 peer·이름·대화 전면 개편 요청이 Contacts=agents·agent별 수락·composer 금지를 대체한다. 새 제품 규칙은 [현행 D02](../../product-specs/SAR-HUMAN-PEER.md), 화면은 [현행 D04](../../../design-docs/mockups/service-member-ui.md)를 따른다. 업무 wire·키·현재 인가·게이트의 보안 잠금은 유지한다. 과거 원문이나 출처 SHA를 소급 변경하지 않는다.
 
 # Silent Agent Relay — 결정 로그
 
@@ -16,12 +14,12 @@ summary: 과거 보안·wire 결정 원문과 새 사람 친구 제품 범위를
 ### Grill points 1–7 — locked
 
 1. Agent signup + pubkey; owner revoke/rotate  
-2. Invite A→B; B-human must accept (auto only for already-paired reinvite)  
-3. Short TTL queue only; expired → `failed: expired`; no long-term chat history  
+2. Invite A→B; B-human must accept (auto only for already-paired reinvite) — *2026-10-19 superseded → 사람 친구 요청·상호 수락 (legacy agent pair만 유지)*  
+3. Short TTL queue only; expired → `failed: expired`; ~~no long-term chat history~~ — *2026-10-19 amended → 웹 대화 사본 24h, 그 이상 아카이브 없음*  
 4. Deny-by-default silent ops; human required for payment, delete, grants, outbound sends, commitments  
-5. Core = HTTPS relay; plugins pull-default, webhook if available  
+5. Core = HTTPS relay; plugins pull-default, webhook if available — *2026-10-19: 서명된 도착 metadata webhook 허용*  
 6. Idempotency: same key+payload → cache hit; conflict → require new key  
-7. Contacts = agents; A picks target agent (humans are owners only)
+7. Contacts = agents; A picks target agent (humans are owners only) — *2026-10-19 superseded → 친구 단위 = 사람(회원), 대화 단위 = agent 두 개*
 
 ### Business model — locked direction
 
@@ -41,7 +39,7 @@ summary: 과거 보안·wire 결정 원문과 새 사람 친구 제품 범위를
 - A2A gap review is complete against the public **A2A v0.3.0 concepts**. This is not a wire-compatibility claim; the delta from any later/latest revision was **not rechecked**.
 - Verdict: `relay.v1` is **Task-inspired, not an A2A clone**. **No A2A wire is imported.**
 - Do **not** add `taskId`, `contextId`, `parts`, `artifacts`, or A2A state enums to `relay.v1`.
-- Do not treat `role:user`, an AgentCard, or push as owner approval. Push is not a reason to enable the MVP webhook; the MVP webhook remains OFF.
+- Do not treat `role:user`, an AgentCard, or push as owner approval. Push is not a reason to enable the MVP webhook; the MVP webhook remains OFF. *(2026-10-19 amended: 서명된 도착 metadata webhook만 허용. A2A push를 근거로 연 것이 아니며, push·wake ≠ owner approval 원칙은 유지.)*
 - Optional later documentation only (not written now): intent capability notes, an out-of-envelope observation view, and per-intent result schema examples.
 
 ### Scope
@@ -126,10 +124,10 @@ Source: ChatGPT Extra High security grill (`relay-v1-security-grill.reply.md`). 
 
 **C5 Boundaries — Adopt**
 - Strict JSON; same parse object for verify+exec.
-- **MVP OFF:** evidence auto-fetch/preview; optional webhook.
+- **MVP OFF:** evidence auto-fetch/preview; optional webhook. *(2026-10-19 amended: webhook은 서명된 도착 metadata 알림만 허용; evidence OFF 유지)*
 - Resource/rate limits TBD (never unlimited). Pending invites do not consume active slots.
 
-**Defer:** evidence remote fetch; optional webhook; `schedule.commit` executable; amend.  
+**Defer:** evidence remote fetch; ~~optional webhook~~ (2026-10-19 도착 알림 한정 허용); `schedule.commit` executable; amend.  
 **Reject:** wire/schema bypasses; auth-meaning bypasses; ops-invariant breaks; “HTTPS ref is safe”; invent Free N / Pro price / rate / extra size numbers; BM slot-unit change.
 
 ### Tech stack / deploy — locked
@@ -137,14 +135,14 @@ Source: ChatGPT Extra High security grill (`relay-v1-security-grill.reply.md`). 
 Source: user 성철 신 (2026-10-02). Docs: `architecture.md`, `product.md`, `mvp-checklist.md`, `README.md`.
 
 - **MVP hosting:** home **mini-server** (self-host process). **No paid cloud app server** for MVP.
-- **Public HTTPS:** **Cloudflare Tunnel** as **edge ingress only** (TLS/public entry → local relay). Public host is **`relay.knowslog.com`** on `knowslog.com`; Tunnel ingress routes it to the home mini-server. Tunnel is not the application runtime.
+- **Public HTTPS:** **Cloudflare Tunnel** as **edge ingress only** (TLS/public entry → local relay). Public host is ~~`relay.knowslog.com`~~ **`link.knowslog.com`** (2026-10-19 superseded) on `knowslog.com`; Tunnel ingress routes it to the home mini-server. Tunnel is not the application runtime.
 - **Reject as MVP hosting assumption:** Cloudflare Workers / Durable Objects (and similar serverless relay cores). May revisit later; not the current plan.
 - **Database:** **Postgres** — locked (keys/pairs/intent registry/queue/lease/receipts/approval records; atomic txn requirements). **Not SQLite.**
 - **Relay core:** **Go** — the HTTPS relay process/runtime.
 - **Adapters/plugins:** **TypeScript** — including MCP pull clients.
 - **First MVP adapters (locked, priority order):** **Grok Bot → Claude Code → Codex → Dots** (TypeScript, pull-default).
 - These are adapter targets, not claims of official inbound APIs. No integration details are implied here.
-- Unchanged: HTTPS relay core; personal public-net; no hospital/closed-net; no vendor core mods; pull-default adapters; webhook/evidence MVP OFF; `relay.v1` freeze; BM Free N / Pro price TBD (do not invent).
+- Unchanged: HTTPS relay core; personal public-net; no hospital/closed-net; no vendor core mods; pull-default adapters; webhook/evidence MVP OFF *(webhook: 2026-10-19 amended)*; `relay.v1` freeze; BM Free N / Pro price TBD (do not invent).
 
 ### Go MVP first implementation scope — locked
 
@@ -178,6 +176,70 @@ Source: user 성철 신 (2026-10-02). Docs: `architecture.md`, `product.md`, `mv
 ### Public product name — locked
 
 - 공개 제품명은 **KnowsLink**로 잠근다.
-- KR: Knows 가족에서 승인된 에이전트끼리만 짧게 잇는 연결(채팅 아님; human-gated handoff).
-- EN: Selective, human-gated handoff between paired agents in the Knows family—not a chat app.
-- 내부 코드/폴더명 `silent-agent-relay`와 기술 호스트 `relay.knowslog.com`은 유지한다.
+- ~~KR: Knows 가족에서 승인된 에이전트끼리만 짧게 잇는 연결(채팅 아님; human-gated handoff).~~
+- ~~EN: Selective, human-gated handoff between paired agents in the Knows family—not a chat app.~~
+- ~~내부 코드/폴더명 `silent-agent-relay`와 기술 호스트 `relay.knowslog.com`은 유지한다.~~
+- *2026-10-19 superseded:* 이름 KnowsLink와 내부 폴더명 `silent-agent-relay`는 유지. 정의·호스트는 아래 2026-10-19 항목을 따른다.
+
+## 2026-10-19
+
+### KnowsLink 재정의: 에이전트 메신저 (구현 기준 SoT 정합) — locked
+
+Source: 성철 신 승인 (2026-10-19, 1안 "SoT를 구현 기준으로 다시 쓴다"). 구현 근거: `tourbut/KnowsLink` main `7a66f71` 시점 읽기 전용 확인, 운영 제품 `1dd6800` (2026-10-17 배포, `cc500a6`). Docs: `product.md`, `architecture.md`, `mvp-checklist.md`, `README.md`, `protocol.md`.
+
+**제품 정의 (supersedes 2026-10-02 "채팅 아님" 정의와 Public product name의 KR/EN 문구)**
+
+- KnowsLink = **사람 친구끼리 각자의 에이전트를 연결해 대화하는 에이전트 메신저 (위험 행동은 owner 승인 게이트)**.
+- 공개 이름 KnowsLink와 내부 폴더명 `silent-agent-relay`는 유지한다.
+
+**채택한 구현 사실**
+
+| 항목 | 결정 (구현 기준) | KnowsLink 근거 |
+|------|------------------|----------------|
+| 메신저 전환 | 사람 친구 → 이름 있는 agent 연결 → 웹·클라이언트 연속 대화 | `df598df` (human peer 구현), `9d74ed1` (운영 배포 기록, 2026-10-12), README |
+| 친구 모델 | 친구 코드로 요청 → 상대 명시 수락. 검색·공개 디렉터리 없음. 요청 대기 24h. 수락 시 양쪽의 현재·향후 활성 agent 연결. 같은 회원의 agent끼리는 친구 요청 불필요 | `SAR-HUMAN-PEER.md` HP-02–07 |
+| 작성 주체 | 웹 메시지 = owner 작성(`knowslink.owner-text.v1`, `authorship: owner`), 클라이언트 메시지 = 서명된 agent 작성 | HP-09, `internal/relay/human_messages.go` |
+| 회원·로그인 | Google 로그인 기반 회원 가입·로그인; 클라이언트 연결도 Google 동의 | `3ae2878`, `a9a0db4` (2026-10-07), `b8fce7e`, `3c523fc` |
+| 공개 호스트 | **`link.knowslog.com`** — `relay.knowslog.com` (2026-10-02 lock) 대체. Dots Remote MCP는 `https://link.knowslog.com/mcp` | README; 구현 레포에서 2026-10-03(`e872ee0`)부터 사용 |
+| 도착 알림 webhook | 허용. relay → Dots MCP Events는 도착 metadata만 담은 HMAC 서명(`webhook-id`/`webhook-timestamp`/`webhook-signature`) https callback; Grok Bot은 owner 소유 routine webhook에 도착 metadata만 POST. 본문은 receive로 읽고, wake ≠ ACK·실행·승인 | `3c523fc`, `95df83c` (2026-10-11), `internal/relay/remote_events.go`, `adapters/src/grok-wake.ts` |
+| 대화 사본 | 참여 회원 세션만 읽는 웹 대화 사본, 수락 시각부터 최대 24h | HP-12, `docs/architecture.md` |
+| 전달 기한 | 메신저 text 전달 큐 최대 **180s** (메시지별 독립 기한, 연장·자동 재발송 없음) | `internal/relay/public_text.go`, `human_messages.go` |
+| 해제·차단 | 이후 전달 즉시 차단; 과거 사본은 참여자에게 잔여 기간 읽기 전용; 차단 해제 ≠ 친구 복구; 재수락 = 새 세대 | HP-13/14 |
+| 작업 세션 메시지 | Claude Code 세션끼리 친구 메시지. 답장은 수신 세션 owner의 별도 승인으로만 발송, 자동 답장 0, 수신 본문은 비신뢰 외부 데이터 | `SAR-SESSION-PEER-001.md` SP-05–07, `df4d3a1`, `4ecb34d` (2026-10-17) |
+
+**값 변경 기록 (frozen 값과 구현 값이 다른 곳)**
+
+- `relay.v1` `MAX_TTL` 300s는 **그대로**다(구현 `store.go`도 300s). 메신저 text는 별도 서명 wire `knowslink.text.v1`을 쓰며 기한 상한이 **180s**다. 즉 300s→180s는 relay.v1 변경이 아니라 메신저 wire의 별도 값이다.
+- "장기 채팅 히스토리 없음" → "웹 대화 사본 24h, 그 이상 아카이브 없음"으로 변경.
+- C5 "optional webhook OFF" → "서명된 도착 metadata webhook만 허용"으로 변경. evidence auto-fetch OFF는 유지.
+- "Contacts = agents", "A→B agent 초대" → 사람 친구 모델로 대체. 기존 agent pair는 legacy "정확한 두 agent" 범위로만 유지하고 사람 친구 권한으로 자동 확대하지 않는다.
+
+**변경 없음 (유지)**
+
+- `relay.v1` freeze: JCS(RFC8785) + Ed25519, domain-separated 서명(`SILENT-AGENT-RELAY\0relay.v1\0Ed25519\0`), `(from, idempotency_key)` + semantic digest 멱등, receipt 24h, lease 30s, auth → idempotency ingest 순서. 메신저 text wire도 JCS + Ed25519 + 별도 domain prefix(`KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0`)와 idempotency key를 쓴다.
+- owner 승인 게이트와 deny-by-default(결제·삭제·권한 부여·외부 발송·약속), C1–C4, `relay.approval.request` escalate, approval record 봉투 밖, GET-link 승인 금지.
+- 스택: Go relay core + TypeScript adapters, Postgres + pgx/v5 + goose SQL-only(`cmd/migrate`) + sqlc, Docker Compose(`postgres`/`migrate`/`relay`/`cloudflared`), 집 미니서버 + Cloudflare Tunnel, Go `net/http` + `html/template` UI.
+- BM Free N / Pro 가격 / slot unit: TBD (발명하지 않음).
+
+**열린 결정 (이번에 잠그지 않음)**
+
+- 구현은 Postgres를 단일 `relay_state` JSON 상태 행으로 쓴다(README의 "singleton DB"). SoT의 관계형 테이블·행 단위 트랜잭션 가정과 다르며, 공개 규모 성능은 구현 레포도 보장하지 않는다고 적고 있다.
+- Dots Remote MCP 설치는 서명키·credential·Inbox를 relay private DB에 보관한다(서버 보관 키). "agent가 자기 개인키를 가진다"는 C1 가정과의 관계를 SoT에서 정리할지.
+- 사람 친구 수락 범위(현재·향후 활성 agent 전체, 개별 숨김 없음)를 장기 정책으로 둘지.
+- 아키텍처 다이어그램(`assets/architecture.*`)은 2026-10-02 relay 모델 기준이라 갱신이 필요하다.
+
+## 2026-10-22
+
+### Competitive positioning vs Reason Network — locked
+
+Positioning: personal agent messenger between people who accepted each other, not a team coding-session bus. Keep: per-send human approval, server-side deny-by-default, 1:1 friend consent, short retention. Non-goals: P2P transport, reusable team invite links and team-wide directory, wildcard addressing, approval-bypass/full-access mode, headless unattended worker, long-term archive/search, sharing real-time work activity (repo@branch, busy/idle), user-hosted relay distribution. Source: implementation repo SAR-COMPETE-001 (issue #9), owner decisions D023–D030.
+
+- E2E: keep current model, state clearly that signatures are not encryption, and start a study of text-body E2E only.
+- Presence: at most one coarse owner opt-in "can receive" value (P2). No real-time activity.
+- Attachments and group chat: deferred (P3).
+- Next development order: Codex session receive, then client auto-setup.
+- BM: personal free stays; N and price remain TBD. Expert FTO before any paid/commercial decision.
+
+### Reply-loop invariant — locked
+
+Default automatic replies = 0. Every agent-drafted reply needs a separate explicit owner send approval. A message, result, or approval request must not trigger another send without that approval. Existing HTTP/queue rate limits stay; do not invent new numbers here.

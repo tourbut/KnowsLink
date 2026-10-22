@@ -6,7 +6,7 @@
 영감: ASMTP형 mailbox + A2A Task 의미론. MVP는 얇은 `relay.v1`만.
 
 > **Freeze:** intent + typed body · signed · short-TTL · idempotent mailbox.  
-> agent↔agent 채팅 프로토콜이 **아님**.
+> ~~agent↔agent 채팅 프로토콜이 아님.~~ *(2026-10-19 amended)* `relay.v1` 봉투 자체는 여전히 업무 요청용 typed-intent 프로토콜이며 **freeze는 변경 없음**. KnowsLink가 에이전트 메신저로 재정의되면서, 대화 text는 별도 서명 wire `knowslink.text.v1`로 오간다 (아래 「메신저 text wire」). relay.v1의 "NL wire / canonical `body.text` 금지"는 relay.v1에만 적용된다.
 
 ## 불변식
 
@@ -361,25 +361,43 @@ ext ?? {}
 
 - Strict JSON; **same parse object** for verify + exec. Reject duplicate keys / bad Unicode / non-canonical protocol values. Registered AgentID lowercase ASCII match; do not lowercase-then-verify arbitrary envelope.
 - Registry: integrity-checked revision + implemented subset; ADD intent ≠ auto-exec register.
-- **MVP OFF:** evidence auto-fetch/preview; optional webhook.
+- **MVP OFF:** evidence auto-fetch/preview. ~~optional webhook~~ → *2026-10-19:* 도착 metadata만 담는 서명된 webhook 알림 허용 (https callback, HMAC `webhook-signature`; 본문 없음; wake ≠ ACK/exec/approve).
 - Resource / rate / size / concurrency limits: values **TBD**, never unlimited. `priority:high` does not bypass.
 - Pending invites do **not** consume active pair slots. Auto reinvite = current active pair only.
 
 ### Reject / Defer (constraints)
 
-**Defer (MVP inactive):** evidence remote fetch; optional webhook; `schedule.commit` executable + amend.
+**Defer (MVP inactive):** evidence remote fetch; ~~optional webhook~~ (2026-10-19 도착 알림 한정 허용); `schedule.commit` executable + amend.
 
 **Reject:** NL mid-hop / canonical `body.text` / `deliver:both` / new top-level parent-link / request-envelope `status` / remap intent meaning; using `sig`·hint·`ext`·confidence as owner approval; self-message pairing restore; tool exec from `relay.approval.request`; mutate original to escalate; pre-auth idempotency probe; full-envelope cache hit / re-enqueue / TTL extend; lease grant as `delivered`; forged B-signed `relay.result`; "HTTPS ref is safe"; execute on pre-revoke receipt alone; ACK ⇒ external exactly-once; invent Free **N** / Pro price / rate numbers / extra size caps.
+
+## 메신저 text wire — `knowslink.text.v1` (2026-10-19, 구현 기준 기록)
+
+구현 `tourbut/KnowsLink` `internal/relay/public_text.go`에서 확인한 값을 기록한다. relay.v1 freeze와 별개인 sibling wire이며, 이 SoT가 새로 발명한 값이 아니다. 정식 freeze 여부는 열린 결정이다 (`decisions.md` 2026-10-19).
+
+| 항목 | 구현 값 |
+|------|---------|
+| 필수 필드 | `v`(`"knowslink.text.v1"`), `id`(UUID), `from`, `to`(`from ≠ to`), `text`, `exp`, `idempotency_key`(16–128 printable ASCII), `sig{alg,kid,value}` |
+| 선택 필드 | `reply_to` (UUID) |
+| 본문 | 일반 text, 공백만 불가, UTF-8 **4096 bytes** 이하; 원 봉투 32768 bytes 이하; strict JSON |
+| 기한 | `exp` ≤ 수신 시각 + **180s** (relay.v1 `MAX_TTL` 300s와 별도) |
+| 서명 | Ed25519 over `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0` + kid + `\0` + JCS(`v,id,from,to,text,exp,idempotency_key,reply_to`) |
+| 멱등 | `(from, idempotency_key)` + digest (JCS of `v,from,to,text,reply_to`); receipt 24h |
+| 웹 작성 | 웹 메시지는 agent 서명 없이 owner 인증 경로로 `knowslink.owner-text.v1` (`authorship: owner`) 기록 — agent 서명을 주장하지 않음 |
+| 전달 상태 | `queued` = 서버 수락, `delivered` = 수신 측 durable inbox + ACK. 읽음·실행·답장 완료와 다름 |
+| 인가 | 현재 회원·친구(또는 자기 연결)·키 인가를 enqueue/lease/ACK 시 재검사 (C1 유지). text 수신·ACK는 답장·도구 실행 승인이 아님 |
+
+위험 행동(결제·삭제·권한 부여·외부 발송·약속)은 text로 승인되지 않으며, 계속 relay.v1 owner gate(`relay.approval.request`)를 따른다.
 
 ## Non-goals (MVP)
 
 
 - Latent KV / token-id LLM handoff — research only
 - Auth tokens in message body — forbidden
-- 장기 채팅 로그, `deliver: both`, 병원·폐쇄망 전제 프로토콜
+- 24h 초과 장기 대화 로그 (2026-10-19: 웹 대화 사본 24h는 허용), `deliver: both`, 병원·폐쇄망 전제 프로토콜
 - amend (승인 수정) — out of MVP
 - parent-link top-level 필드
 - 릴레이가 B-서명 `relay.result`를 위조하는 transport failure 보고
 - rate limit / 추가 봉투 크기 / Free N / Pro 가격 숫자 발명
-- MVP evidence 자동 fetch/preview · optional webhook (C5 OFF)
+- MVP evidence 자동 fetch/preview (C5 OFF). optional webhook은 2026-10-19 도착 알림 한정 허용
 - `schedule.commit` 실행 경로 (stub only)
