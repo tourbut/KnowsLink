@@ -1,0 +1,52 @@
+== main
+PASS claude N1-N6 new install exit 0 (ko)
+PASS claude host entry points at the new install and agent folder
+PASS claude MCP runs the pinned runtime Node
+PASS claude AC-05 other agent folders, Grok/Dots, host auth and other MCP/settings entries unchanged
+PASS claude AC-06 orphan claude-01-private left alone; install used claude-02
+PASS claude AC-06 credential and private key absent from output and install record
+PASS claude one new agent on the web ({'agents': 1, 'friends': 1})
+PASS claude U1-U4 same command updates without Google (en)
+PASS claude AC-07 agent folder (ID, key) byte-identical after update
+PASS claude AC-07 web agent and friend counts unchanged {'agents': 1, 'friends': 1}
+PASS claude AS-03 previous install kept
+PASS claude AC-05 still unchanged after update
+PASS claude AC-06 no credential in update output or record
+PASS codex N1-N6 new install exit 0 (en)
+PASS codex host entry points at the new install and agent folder
+PASS codex MCP runs the pinned runtime Node
+PASS codex AC-05 other agent folders, Grok/Dots, host auth and other MCP/settings entries unchanged
+PASS codex AC-06 orphan codex-01-private left alone; install used codex-02
+PASS codex AC-06 credential and private key absent from output and install record
+PASS codex one new agent on the web ({'agents': 2, 'friends': 1})
+PASS codex U1-U4 same command updates without Google (ko)
+PASS codex AC-07 agent folder (ID, key) byte-identical after update
+PASS codex AC-07 web agent and friend counts unchanged {'agents': 2, 'friends': 1}
+PASS codex AS-03 previous install kept
+PASS codex AC-05 still unchanged after update
+PASS codex AC-06 no credential in update output or record
+== failures-ko
+PASS F-01 host missing: message, nothing changed (ko)
+PASS F-02 declined unverified version: nothing changed (ko)
+PASS AS-02 plan declined: nothing written (ko)
+PASS F-03 download failure: nothing changed, temp removed (ko)
+PASS AC-09 F-03 rerun completes without cleanup (en)
+PASS F-04 download failure: nothing changed, temp removed (ko)
+PASS AC-09 F-04 rerun completes without cleanup (en)
+PASS F-05 registration failure: summary shown, install folder kept (ko)
+PASS AC-09 F-05 rerun resumes at registration, files kept (en)
+PASS F-06 cancelled: install and registration kept, no key (ko)
+PASS AC-09 F-06 rerun uses a new connection (en)
+PASS F-07 lost answer: check-needed with the agent name, no new attempt (ko)
+PASS AC-09 F-07 rerun re-checks first, new connection only after 'new' (en)
+PASS F-08 swap failure: previous install byte-identical and still registered (ko)
+PASS AC-09 F-08 rerun updates (en)
+PASS F-09 YOLO: install complete, mode reported and unchanged (ko)
+== failures-en
+PASS F-01 host missing: message, nothing changed (en)
+PASS F-02 declined unverified version: nothing changed (en)
+PASS AS-02 plan declined: nothing written (en)
+PASS F-03 download failure: nothing changed, temp removed (en)
+urllib.error.HTTPError: HTTP Error 409: Conflict
+FAIL AC-09 F-03 rerun completes without cleanup (ko)
+exit=1

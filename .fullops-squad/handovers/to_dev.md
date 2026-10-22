@@ -129,3 +129,11 @@ D10(module-design.md), D05·D03 해당 절(설치·배포 구조가 바뀌면), 
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치 / SHA: `fullops/dev` / 제품 증거 `4bc19f9b`, fixture 수정 `bf2cb34e`, 완료 SHA는 보고 커밋(worker_done에 기록).
+- 변경 이유: intent S1–S7·D02 AS-01–13. `scripts/autosetup/knowslink-setup.ps1` 한 줄 설치기, `package_plugin.py --release`, relay `/install/<ver>/`(`KNOWSLINK_INSTALL_DIR`)·ingress 규칙, `plugin.js setup-connect`(재개·F-07 재확인), device poll `name`, 회원 화면 D04 Claude·Codex 안내와 6번 문구. `install()` 보호 조건은 바꾸지 않았다.
+- 검토 필요: 설치기·자격 경계·relay 공개 경로가 바뀌어 독립 코드 리뷰가 필요하다(사용자 결정). relay `/v1/contacts` 자기 조회 403 계약은 유지하고 이름은 poll 응답으로 받았다.
+- 검증한 것: AC-05–AC-10, F-01–F-09 KO·EN, AS-10 선택, Linux `make lint`·`make test`·통합 EXIT=0, `lint.py --from 3c8007e1` ERROR 0. 못 한 것: AC-01 N7–N8·AC-02–04 실제 세션 발송·10분 측정, 깨끗한 PC 기준선 시간.
+- 규모·의존성: 추가 약 1,360줄(설치기 약 530줄·KO/EN 문구, fixture·시나리오 도구, 문서). 설치기·화면·relay가 한 흐름의 계약이라 나누지 않았다. DEP-001: `adapters/package.json`은 test 스크립트에 `setup-connect.test.js` 한 개를 더했을 뿐 의존성 변경 없음. SLOP-004는 `--release`의 의도된 사용자 출력이다.
+- 산출물: [DEV QA 보고](../docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md), [실행 기록](../docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md), D03·D05·D10·D11·adapters·루트 README 해당 절.
+- 남은 일: 독립 코드 리뷰(사용자 결정), tester 큰 틀 검수 1회(S1–S7, 호스트별 1회: 실제 세션 연결·첫 발송·10분 측정), designer D04 시각 검수(1440·390·320, KO·EN)와 AC-10 뒤 U8 표 갱신, ops 배포물 게시·`KNOWSLINK_INSTALL_DIR` 운영 반영(사용자 승인).
