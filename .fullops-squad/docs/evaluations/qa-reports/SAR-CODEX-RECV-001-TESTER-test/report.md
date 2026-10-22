@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-22
 owner: tester
 tasks: [SAR-CODEX-RECV-001-TESTER]
-summary: "고정 후보 611356a9를 격리 relay·합성 회원 A/B/C와 실제 Codex CLI 0.163.0·Claude Code 2.1.308로 검증했다. V02 세 방향과 승인 경계(on/take/발송)는 통과했다. 첫 사용 경쟁(상태 조회와 on을 동시에 호출)에서 고아 결속이 생겨 off 뒤에도 수신이 남는 medium 결함 D-CR-01을 찾았다. critical·high는 없다."
+summary: 고정 후보 611356a9를 격리 relay·합성 회원 A/B/C와 실제 Codex CLI 0.163.0·Claude Code 2.1.308로 검증했다. V02 세 방향과 승인 경계(on/take/발송)는 통과했다. 첫 사용 경쟁(상태 조회와 on을 동시에 호출)에서 고아 결속이 생겨 off 뒤에도 수신이 남는 medium 결함 D-CR-01을 찾았다. critical·high는 없다.
 ---
 
 # SAR-CODEX-RECV-001-TESTER — 독립 QA
