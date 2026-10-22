@@ -108,6 +108,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 2026-10-22 사용자 "fullops update 진행해": 설치 1.8.3(최신 확인), 레포 1.8.2 → 1.8.3. 필수 5/5(testing 0.3.5 가벼운 QA·큰 틀 검수, _TEMPLATE 상위 의도·증명 방법, intents/_TEMPLATE, cps 삭제) 적용, update.py --verify exit 0, lint ERROR 0. 기록 [FULLOPS-UPDATE-1.8.3](docs/exec-plans/phases/FULLOPS-UPDATE-1.8.3.md). 이후 지시서는 test_level lite의 축소된 QA 범위를 따른다.
 - 2026-10-22 사용자 "다음 작업 진행해": C-03 클라이언트 자동 설정을 SAR-AUTOSETUP-001로 시작한다. route unresolved → designer override(두 역할 묶음, 1.8.3 intent 승인 선행). designer opus high fresh가 intent·D02·D04·dev brief를 쓰고, 사용자 intent 승인 뒤 dev를 배정한다.
 - 2026-10-22 SAR-AUTOSETUP-001 designer 완료(msg_7fbe9566f0c4, 16101dfc) → main 52cbcf65 병합(need false, 문서). intent 초안 S1–S7, D02 AS-01–13·AC-01–10, D04 안내안, DEV brief. 사용자 결정 D031(intent 승인)·D032–D037(Q1–Q6) 대기, dev 배정은 승인 뒤. designer release.
+- 2026-10-22 사용자 "추천대로": D031(intent 승인)·D032–D037(Q1–Q6 추천 A) 닫음, intent status approved. SAR-AUTOSETUP-001-DEV를 dev에 배정한다. route model opus medium이나 설치기·자격 경계·파이프 실행 위험으로 opus high fresh. 완료 뒤 독립 코드 리뷰 여부는 사용자에게 묻는다.
 - (이전 대기 기록): 4단위 delta F-R1–F-R3, 3단위 리뷰 low(raw-log 해시—4단위에서 해소), O-NM-08 외 남은 low 관찰(V-AP-01 현행 수락, O-CT-03 현행 유지). 사용자 판단 대기 잔여는 위 '잔여 작업 일괄 수행' 절 목록.·설정('내 계정'→'설정' 포함).
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
