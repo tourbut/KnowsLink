@@ -3,7 +3,7 @@ title: tester 컨텍스트
 status: draft
 updated: 2026-10-21
 owner: tester
-tasks: [SAR-REFACTOR-002-TESTER, SAR-LANDING-GUIDE-001-TESTER, SAR-UX-ISSUES-002-RECEIPT-TESTER, SAR-SCHEDULE-001-QA]
+tasks: [SAR-REFACTOR-002-TESTER, SAR-LANDING-GUIDE-001-TESTER, SAR-UX-ISSUES-002-RECEIPT-TESTER, SAR-SCHEDULE-001-QA, SAR-CODEX-RECV-001-TESTER]
 summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사용 경계를 기록한다
 ---
 
@@ -50,3 +50,8 @@ summary: 독립QA의 원실패 보존 및 CSS수정 source동일성·gate 재사
 
 - 2026-10-20 SAR-UX-ISSUES-002-APPROVAL-TESTER: 고정 9d13a05의 U5 승인 요약·U7·O-NM-04·O-NM-08 독립 QA. critical·high·medium 없음, low 관찰 3건. [보고](../docs/evaluations/qa-reports/SAR-UX-ISSUES-002-APPROVAL-TESTER-test/report.md).
 - 승인 상세 CSP(`default-src 'none'`)가 페이지 안 `fetch()`를 막는다. 상태 변경 뒤 읽기 전용 단계를 다시 돌리면 결정 전 캡처가 덮이니 캡처 단계는 변경 전에 끝낸다. CSRF token은 세션에 묶여 다른 세션 재제출은 409가 아니라 403이다. 셸 가드가 파일 삭제 명령을 막으니 조립용 임시 파일은 scratchpad에 둔다.
+
+- 2026-10-22 SAR-CODEX-RECV-001-TESTER: 고정 611356a9의 Codex 세션 수신 V02·승인 경계 독립 QA. critical·high 없음, medium D-CR-01(첫 사용 동시 호출이 고아 결속을 만들어 off 뒤에도 수신). [보고](../docs/evaluations/qa-reports/SAR-CODEX-RECV-001-TESTER-test/report.md).
+- 설치 MCP를 SDK 클라이언트로 직접 띄워 elicitation 응답(거절·취소·입력 없는 accept·틀린 코드)을 스크립트하면 모델 비용 없이 승인 경계를 결정적으로 본다. 실제 호스트 확인은 App Server 드라이버와 Orca TUI로 따로 한다. 시스템 Node 24는 `engines` 위반이라 Node 22 경로를 PATH 앞에 둔다.
+- Codex 사용자 기본값은 YOLO다(`approval_policy=never`). 그 TUI는 KnowsLink 창을 자동 수락해 코드 불일치로 거부된다. Orca `terminal send`로 TUI 입력란에 코드와 Enter를 따로 보내고, Esc는 `$''`다. Windows에서 클라이언트·드라이버를 끝내면 `onclose`가 안 돌아 lock이 남지만 pid가 죽어 다음 `on`이 회수한다.
+- 셸 가드는 파일 삭제 API 이름이 든 인라인 스크립트를 막는다. 그런 이름을 시험 도구나 메모에 넣지 않는다.
