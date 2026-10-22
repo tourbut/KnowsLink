@@ -4,7 +4,7 @@ title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
 updated: 2026-10-22
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS, SAR-AUTOSETUP-001]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -435,6 +435,77 @@ Desktop 1440 / Mobile 390·320 (같은 한 열, 읽기 폭 약 72ch)
 - 첫페이지 `#start` 로그인 버튼 아래 `muted` 한 줄로 두 페이지를 링크한다. 회원 설정은 '서비스 안내' 옆에 두 링크를 둔다.
 - 링크 모양(시각 검수 V-01~V-03): 문장 속 링크는 줄 높이를 키우지 않고 inline으로 둔다. 하단·설정처럼 단독 줄 링크만 44px 터치 대상을 유지한다. 하단의 현재 페이지 링크(`aria-current`)는 굵게(600) 표시하고 새 색·글꼴은 쓰지 않는다. 설정의 세 링크 사이는 약 16px 가로 간격을 둔다.
 - 피할 것: 크림 배경, 알약 버튼, 모노스페이스 라벨, 장식 그라디언트, 이모지 아이콘, 접는 상자, 영어판의 한국어 잔존.
+
+### Claude Code·Codex 자동 설정 안내 — SAR-AUTOSETUP-001
+
+변경안이다. [intent SAR-AUTOSETUP-001](../../planning/intents/SAR-AUTOSETUP-001.md)이 승인되고 자동 설정이 구현될 때 적용한다. 그 전까지 현행 U8 화면을 유지한다. 제품 규칙은 [D02 SAR-AUTOSETUP-001](../../planning/product-specs/SAR-AUTOSETUP-001.md)이다. 바꾸는 곳은 '내 에이전트 → 어디에서 사용할까요?'의 선택지와 Claude Code·Codex 안내 상자뿐이다. 다른 선택지·연결 상태 절·'기존 연결 계속' 안내 문장은 그대로다.
+
+#### 선택지
+
+| 순서 | 선택지 KO / EN | 보조 문구 KO / EN | 바뀐 점 |
+|---|---|---|---|
+| 1 | 웹에서 바로 사용 / Use directly on the web | 현행 | 없음 |
+| 2 | Grok Bot (내 컴퓨터) | 현행 | 없음 |
+| 3 | Dots (원격) | 현행 | 없음 |
+| 4 | Claude Code 작업 세션 (내 컴퓨터) / Claude Code work session (your computer) | 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11) / Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11) | '연결 안내 있음'을 '자동 설정'으로 바꾼다 |
+| 5 | Codex 작업 세션 (내 컴퓨터) / Codex work session (your computer) | 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음 / Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice | 새 선택지. `use=codex` |
+| 6 | 지원 확인이 필요한 호스트 / Hosts pending support confirmation (현행) | Hermes Agent, 그 밖의 호스트 / Hermes Agent and other hosts | 보조 문구에서 Codex를 뺀다 |
+
+- 버전·OS 문구는 D02 범위 표의 근거가 바뀔 때만 바꾼다(NG-05). Q4가 B로 결정되기 전에는 macOS·Linux를 쓰지 않는다.
+- 6번에는 명령·성공 배지·설치 버튼이 없다(현행 유지).
+
+#### 안내 상자 구성
+
+기존 `dl.kv` 안내 상자를 그대로 쓴다. 행 순서: 준비물, 실행할 명령, 자동으로 하는 일, 직접 확인할 일, 다음 행동, 세션 연결. 명령은 친구 코드와 같은 `textarea.share`(readonly, `spellcheck="false"`)와 `muted` 도움말로 보인다. 복사 버튼·새 JS·새 토큰·새 컴포넌트는 쓰지 않는다. 수동 설치 문서 링크는 맨 아래 `details`로 접는다. 명령 문자열은 DEV가 정한다. 아래 `<명령>`은 그 자리를 뜻한다.
+
+```text
+Claude Code 작업 세션 (내 컴퓨터)                (h3)
+준비물        Windows 11, 로그인한 Claude Code …
+실행할 명령   [<명령>                         ]   (textarea.share)
+              입력란에서 전체 선택(Ctrl+A)한 뒤 …  (muted)
+자동으로 하는 일  내려받기와 확인, …
+직접 확인할 일    설치 계획 동의, …
+다음 행동     …
+세션 연결     앱에서 확인 필요. …
+▸ 수동 설치 문서                                 (details)
+```
+
+1440px에서는 기존 읽기 폭 안의 `dl.kv` 두 열이다. 390·320px에서는 기존처럼 한 열이다. 명령 입력란은 폭 100%이고 줄바꿈된다. 페이지 전체 가로 넘침은 없다.
+
+#### Claude Code 카피 (`use=claude`)
+
+| 행 | KO | EN |
+|---|---|---|
+| 준비물 | Windows 11, 이 컴퓨터에 설치·로그인한 Claude Code, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Claude Code 2.1.302입니다. | Windows 11, Claude Code installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Claude Code 2.1.302. |
+| 실행할 명령 | 라벨: 이 컴퓨터의 PowerShell에서 실행할 명령 / 도움말: 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다. | Label: Command to run in PowerShell on this computer / Help: Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything. |
+| 자동으로 하는 일 | 내려받은 파일 확인, 새 설치 폴더 만들기, Claude Code에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Claude Code 로그인 정보는 읽거나 복사하지 않습니다. | Checks the download, creates a new install folder, adds KnowsLink to Claude Code, and starts Google connection. It never reads or copies other apps' keys or your Claude Code sign-in. |
+| 직접 확인할 일 | 설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 `/knowslink-session on`, 보낼 때마다 발송 승인. | Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; run `/knowslink-session on` in the session that should receive; approve every send. |
+| 다음 행동 (처음 연결) | 명령을 실행하고 설치기 안내를 따르세요. 끝나면 Claude Code를 다시 열고 메시지를 받을 세션에서 `/knowslink-session on`을 실행하세요. | Run the command and follow the installer. When it finishes, reopen Claude Code and run `/knowslink-session on` in the session that should receive messages. |
+| 다음 행동 (기존 연결 계속) | 같은 명령을 실행하면 기존 설치를 갱신합니다. 에이전트·키·친구는 그대로입니다. 갱신 뒤 Claude Code를 다시 열고 `/knowslink-session on`을 다시 실행하세요. | Running the same command updates your existing install. Your agent, key, and friends stay the same. After the update, reopen Claude Code and run `/knowslink-session on` again. |
+| 세션 연결 | 현행 문구 유지. | Keep the current text. |
+| details 요약 | 수동 설치 문서 | Manual install guide (in Korean) |
+
+#### Codex 카피 (`use=codex`)
+
+| 행 | KO | EN |
+|---|---|---|
+| 준비물 | Windows 11, 이 컴퓨터에 설치·로그인한 Codex CLI, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Codex CLI 0.163.0입니다. | Windows 11, Codex CLI installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Codex CLI 0.163.0. |
+| 실행할 명령 | Claude Code와 같은 라벨·도움말. | Same label and help as Claude Code. |
+| 자동으로 하는 일 | 내려받은 파일 확인, 새 설치 폴더 만들기, Codex에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Codex 로그인 정보는 읽거나 복사하지 않습니다. Codex 승인 모드는 바꾸지 않습니다. | Checks the download, creates a new install folder, adds KnowsLink to Codex, and starts Google connection. It never reads or copies other apps' keys or your Codex sign-in. It does not change Codex's approval mode. |
+| 직접 확인할 일 | 설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 `knowslink_session`을 `on`으로 실행하게 한 뒤 Codex 도구 승인과 4자리 확인 코드 입력, 보낼 때마다 확인 코드로 발송 승인. | Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; in the receiving session, ask Codex to run `knowslink_session` with `on`, approve the Codex tool, and enter the 4-digit code; approve every send with its code. |
+| 다음 행동 (처음 연결) | 명령을 실행하고 설치기 안내를 따르세요. 끝나면 승인을 묻는 모드(예: `approval_policy = "on-request"`)로 Codex를 열고 세션을 연결하세요. YOLO(전체 자동) 모드에서는 연결되지 않습니다. | Run the command and follow the installer. When it finishes, open Codex in a mode that asks for approval (for example `approval_policy = "on-request"`) and connect the session. Connection does not work in YOLO (full auto) mode. |
+| 다음 행동 (기존 연결 계속) | 같은 명령을 실행하면 기존 설치를 갱신합니다. 에이전트·키·친구는 그대로입니다. 갱신 뒤 Codex를 다시 열고 세션을 다시 연결하세요. | Running the same command updates your existing install. Your agent, key, and friends stay the same. After the update, reopen Codex and connect the session again. |
+| 세션 연결 | 앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 Codex에서 `knowslink_session`을 `status`로 확인하세요. Codex 화면에는 도착 알림이 없습니다. 새 메시지는 받기를 요청해야 보입니다. | Check in the app. The server can't see session connection, so ask Codex to run `knowslink_session` with `status`. Codex shows no arrival notice; ask it to receive to see new messages. |
+| details 요약 | 수동 설치 문서 | Manual install guide (in Korean) |
+
+Codex details 링크는 [adapters Codex 절](../../../../adapters/README.md#codex-작업-세션-연결--sar-codex-recv-001-dev)이다. Claude Code는 현행 링크를 유지한다.
+
+#### 자기 비평과 수락
+
+- 첫 구상은 명령 옆에 복사 버튼을 두었다. 새 JS가 필요하고 D04의 'JS 없음' 원칙과 어긋나므로 친구 코드와 같은 선택·복사 안내로 바꿨다.
+- 준비물 첫머리에 OS를 둔다. 검증 안 된 OS 사용자가 명령을 실행하기 전에 알 수 있다.
+- '직접 확인할 일'을 '자동으로 하는 일' 바로 뒤에 둔다. 자동 설정이 승인을 줄인다고 오해하지 않게 한다.
+- 수락: KO·EN 문구가 위 표와 같다. 1440·390·320px에서 명령 입력란이 넘치지 않는다. 키보드로 선택지→안내 보기→명령 입력란→details 순서로 이동한다. 200% 확대에서 읽힌다. 6번 선택지에 명령이 없다.
 
 ## 이전 설계와 검수 기록 — 비현행
 

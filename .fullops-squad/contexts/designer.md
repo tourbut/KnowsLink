@@ -3,7 +3,7 @@ title: designer 컨텍스트
 status: draft
 updated: 2026-10-22
 owner: designer
-tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-UX-ISSUES-002-DESIGN, SAR-SESSION-PEER-001-DESIGN, SAR-COMPETE-001, SAR-CODEX-RECV-001-DOCS]
+tasks: [SAR-SETUP-001, SAR-PREP-002, SAR-MVP-PUBLIC-POLICY-001, SAR-MVP-001-UI, SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-UI, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL, SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-SERVICE-UI-001-FIX-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-UX-ISSUES-002-DESIGN, SAR-SESSION-PEER-001-DESIGN, SAR-COMPETE-001, SAR-CODEX-RECV-001-DOCS, SAR-AUTOSETUP-001]
 summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 보존한다
 ---
 
@@ -54,3 +54,7 @@ summary: 제품 판단과 직접 UI 검수의 수락·중단·보류 경계를 �
 - 2026-10-22 SAR-CODEX-RECV-001-DOCS: D11에 Codex 세션 연결 절을 추가했다. 확인 코드 승인, Esc 취소, Codex 도구 승인과 KnowsLink 승인이 따로 뜸, YOLO 불가, 도착 알림 없음, 한 agent 한 세션을 적었다.
   지원은 '연결된 세션의 로컬 사본 + 다음 조회'만 쓴다(SP-12). Codex 하위 에이전트와 TUI의 4096바이트 대화상자 전체 표시는 미검증으로 남겼다.
   [D11](../docs/operations/user-guide.md), [DEV 보고](../docs/evaluations/qa-reports/SAR-CODEX-RECV-001-DEV-test/report.md).
+
+- 2026-10-22 SAR-AUTOSETUP-001: C-03 자동 설정을 Claude Code·Codex(Windows 11, 실측 버전)로 한정했다. 명령 하나와 설치 계획 동의 뒤 자동, Google·지문·이름·세션 연결·발송 승인은 사람이 한다. 재실행은 갱신이며 agent·키를 보존한다.
+  intent S1–S7(사람 행동 6개 이하·경로 입력 0·10분 이하·자격 변경 0·실패 F-01–09 재실행)과 D02 AS-01–13·AC-01–10을 연결했다. Q1–Q6(배포 형태·설치기 Google 연결·호스트 등록 범위·OS·미검증 버전·Codex 선택지 시점)은 사용자 결정 전이다.
+  [intent](../docs/planning/intents/SAR-AUTOSETUP-001.md), [D02](../docs/planning/product-specs/SAR-AUTOSETUP-001.md), [D04 절](../docs/design-docs/mockups/service-member-ui.md#claude-codecodex-자동-설정-안내--sar-autosetup-001), [DEV 초안](../docs/planning/SAR-AUTOSETUP-001-DEV-brief.md). 현재 기준선 단계 수는 문서 추정이며 DEV가 실측한다.
