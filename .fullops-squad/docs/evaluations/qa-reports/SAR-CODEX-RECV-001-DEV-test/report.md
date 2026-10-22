@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-22
 owner: dev
 tasks: [SAR-CODEX-RECV-001-DEV]
-summary: "격리 relay에서 Claude→Codex·Codex→Claude·Codex↔Codex를 App Server 세션과 독립 TUI로 나눠 실측했다. 지원 수준은 '세션 결속 로컬 사본 + 다음 조회'다. YOLO 자동 수락 결함을 찾아 확인 코드로 고쳤다."
+summary: "격리 relay에서 Claude→Codex·Codex→Claude·Codex↔Codex를 App Server 세션과 독립 TUI로 나눠 실측했다. 지원 수준은 '세션 결속 로컬 사본 + 다음 조회'다. YOLO 자동 수락 결함을 찾아 확인 코드로 고쳤다. tester D-CR-01(첫 호출 경쟁의 고아 결속)을 생성 promise 공유와 on 중복 차단으로 고쳤다."
 ---
 
 # SAR-CODEX-RECV-001-DEV — DEV 검증 보고
@@ -81,6 +81,29 @@ Claude A 화면: 첫 발송 결과 [ev-A-send-result.txt](ev-A-send-result.txt),
 | F1 | high(수정됨) | 첫 구현은 elicitation `accept`만으로 승인했다. 사용자 기본 설정이 YOLO인 Codex TUI에서 `take`가 대화상자 없이 `bound`됐다 ([ev-T-2-full.txt](ev-T-2-full.txt)). 같은 방식이면 발송도 소유자 확인 없이 나갈 수 있다(SP-05/06) | 대화상자마다 새 4자리 확인 코드를 보이고 입력 일치만 수락한다. 같은 YOLO TUI에서 `declined`, lock 유지 ([ev-T-yolo-final.txt](ev-T-yolo-final.txt)). 단위 테스트에 입력 없는 accept·틀린 코드 거부 추가. 변이(무조건 accept) 검사로 테스트가 실패함을 확인 |
 
 미해결 critical/high는 없다.
+
+## D-CR-01 수정 (재개 attempt)
+
+tester [D-CR-01](../SAR-CODEX-RECV-001-TESTER-test/report.md)(medium): 새 MCP 프로세스의 첫 호출 두 개가 겹치면 `codexSession()`이 `await memberTransport()` 사이에 `CodexSession`을 둘 만들었다. 결속된 고아 객체는 `off`가 닿지 않아 lock·자동 수신이 남았다(SP-02·SP-09).
+
+| 변경 | 내용 |
+|---|---|
+| `adapters/src/mcp.ts` `codexSession()` | 생성 promise `sessionInit`를 프로세스에서 하나만 만들고 모든 호출이 공유한다. `memberTransport` 실패 때만 비워 다음 호출이 다시 시도한다(기존 실패 동작 유지) |
+| `adapters/src/codex-session.ts` `on()` | 같은 객체에서 승인 창이 열린 동안 들어온 둘째 `on`은 창을 열지 않고 `busy`("연결 승인 창이 이미 열려 있습니다")를 돌려준다. 공유된 객체에서 `on`+`on`이 창 두 개와 `AutoReceiver` 두 개를 만드는 2차 경로를 막는다 |
+| `adapters/src/codex-session.test.ts` 6 | 새 프로세스에서 `status`+`on`+`on` 동시 첫 호출: 창 1개, `bound`/`busy` 하나씩, `status`가 결속 객체의 구분값을 보임, `off` 뒤 lock 없음·receive denied. 수정 전 코드로 빌드하면 "status sees the bound session"에서 실패함을 확인했다 |
+
+회귀 실측: tester 도구를 수정 번들(`plugin.js` sha256 앞 16자 `2985e0ca951741d8`)로 tester 격리 relay `knowslink-codexrecv-qa`(127.0.0.1:18321, 합성 회원 A·B)에서 실행했다. 도구 디렉터리는 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/codex-recv-001-devfix/`이다. tester 설치본의 설정 사본에서 경로만 바꾸고, 회원 폴더 사본은 원본과 같은 소유자 전용 ACL로 맞췄다(상속 ACL 사본은 `memberTransport`가 거부해 첫 실행이 전부 `failed`였다. 제품 결함 아님).
+
+| 검사 | 결과 |
+|---|---|
+| `approval-matrix.mjs` 전체 | 50/50 PASS ([dcr01-matrix.out](dcr01-matrix.out), [jsonl](dcr01-matrix.jsonl)) |
+| RC-4 `on`+`on` | PASS, dialogs=1, 둘째는 `busy`, `off` 뒤 lock 없음 |
+| RC-5 `status`+`on` 4회 | PASS, 고아 0/4. 매 회 `off` 뒤 lock 없음·receive denied |
+| `orphan.mjs` 8회 | 고아 0 ("no orphan in 8 rounds", [dcr01-orphan.out](dcr01-orphan.out), [jsonl](dcr01-orphan.jsonl)) |
+| `npm run check --prefix adapters`(Node 22.22.2) | EXIT=0 ([dcr01-adapters-check.log](dcr01-adapters-check.log)) |
+| `npm test --prefix adapters`(Node 22.22.2) | EXIT=0, `.../parallel first call` PASS 포함 ([dcr01-adapters-test.log](dcr01-adapters-test.log)) |
+
+실측 뒤 relay·postgres 컨테이너는 정지만 했다. 실제 Codex TUI·App Server 재실측은 하지 않았다. 변경은 MCP 서버 안의 객체 생성 순서뿐이고 tester 매트릭스가 같은 stdio MCP 경계를 쓴다.
 
 ## 관찰
 

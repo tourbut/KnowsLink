@@ -1,0 +1,52 @@
+PASS G0-1 knowslink_session tool exists on codex host
+PASS G0-2 fresh session is unbound, no dialog, no lock
+PASS G0-3 unbound receive denied, no dialog
+PASS G0-4 unbound send denied before any dialog (confirmed:true is not enough)
+PASS G0-5 unbound receipt denied
+PASS G0-6 knowslink_status works unbound (no relay contact)
+PASS G0-7 relay delivered 0 messages to A
+PASS ON-1 on decline -> declined, no lock, receive/send denied
+PASS ON-2 on Esc cancel -> declined, no lock, receive/send denied
+PASS ON-3 on accept without input (content {}) -> declined, no lock, receive/send denied
+PASS ON-4 on accept with no content field -> declined, no lock, receive/send denied
+PASS ON-5 on wrong code -> declined, no lock, receive/send denied
+PASS ON-6 on empty code -> declined, no lock, receive/send denied
+PASS ON-7 on whitespace-only code -> declined, no lock, receive/send denied
+PASS ON-8 client without elicitation support cannot bind
+PASS ON-9 take on client without elicitation cannot bind
+PASS ON-10 code from a previous dialog is rejected (one-time code)
+PASS ON-11 bind dialog shows session alias, my agent id, one-time code and cancel instruction
+PASS ON-12 on with correct typed code binds and writes lock
+PASS ON-13 second on while bound: no new dialog
+PASS ON-14 off releases lock, receive denied after
+PASS ON-15 correct code with surrounding spaces binds (trim) - informational
+PASS ON-16 client.close(): lock released, or left only with a dead pid (recoverable); process not left alive
+PASS SD-1 send decline -> denied, relay delivered 0
+PASS SD-2 send Esc cancel -> denied, relay delivered 0
+PASS SD-3 send accept without input -> denied, relay delivered 0
+PASS SD-4 send accept no content field -> denied, relay delivered 0
+PASS SD-5 send wrong code -> denied, relay delivered 0
+PASS SD-6 send empty code -> denied, relay delivered 0
+PASS SD-7 model-supplied confirmed:true from a session that is not the bound one -> denied, 0 delivered
+PASS SD-8 confirmed:false / missing -> schema error, no dialog, 0 delivered
+PASS SD-9 right code -> exactly 1 delivered to A; same-key retry does not duplicate
+PASS SD-10 every send attempt (even same key retry) draws its own dialog
+PASS SD-11 send dialog shows full body, hidden chars labelled ⟨U+…⟩, target, my agent and code
+PASS SD-12 4096-char body appears in the dialog in full (no truncation)
+PASS RC-1 off while send dialog is open, owner then types the right code -> denied, 0 delivered
+PASS RC-2 take by another session while send dialog open -> old send denied, 0 delivered
+PASS RC-3 off+on (new link) while old send dialog open -> old approval does not send
+PASS RC-4 two concurrent on calls: ends bound once, off releases lock (informational: dialogs=1)
+PASS RC-5 first-use race status||on: no orphaned bound link (orphan rounds 0/4)
+PASS TK-0 second session on without take -> busy, no dialog, lock unchanged
+PASS TK-1 take decline -> declined, original holder keeps lock and receive
+PASS TK-2 take cancel -> declined, original holder keeps lock and receive
+PASS TK-3 take blind accept -> declined, original holder keeps lock and receive
+PASS TK-4 take wrong code -> declined, original holder keeps lock and receive
+PASS TK-5 take with right code -> new session holds lock; old session receive/send denied
+PASS TK-6 replaced session's send delivered 0
+PASS ST-1 dead holder's stale lock + decline -> declined, stale lock does not bind the new session
+PASS ST-2 dead holder's stale lock + right code -> new session binds without take
+PASS RX-1 injected friend body arrives only as untrusted data; no outbound send/dialog from receive
+
+50/50 PASS 

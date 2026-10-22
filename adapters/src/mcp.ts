@@ -69,16 +69,20 @@ const ownerAccepts = (message: string): Promise<boolean> => {
       () => false,
     );
 };
-async function codexSession(): Promise<CodexSession | null> {
+// One shared creation promise: parallel first calls must not each build a CodexSession, or off misses the bound one (D-CR-01).
+let sessionInit: Promise<CodexSession | null> | null = null;
+function codexSession(): Promise<CodexSession | null> {
   const folder = process.env.KNOWSLINK_AGENT_FOLDER;
-  if (!session && process.env.KNOWSLINK_MODE === "public-node" && folder)
-    session = new CodexSession(
-      folder,
-      await memberTransport(folder),
-      ownerAccepts,
-      announce,
-    );
-  return session;
+  if (process.env.KNOWSLINK_MODE !== "public-node" || !folder)
+    return Promise.resolve(null);
+  sessionInit ??= memberTransport(folder).then(
+    (t) => (session = new CodexSession(folder, t, ownerAccepts, announce)),
+    (e: unknown) => {
+      sessionInit = null;
+      throw e;
+    },
+  );
+  return sessionInit;
 }
 const denied = (text: string) => trialResult({ state: "denied", text }, true);
 // Automatic receive is on for a connected public-node folder unless KNOWSLINK_AUTO_RECEIVE=off. It only stores and announces text.

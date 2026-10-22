@@ -32,6 +32,7 @@ export class CodexSession {
   private auto: AutoReceiver | null = null;
   private guard: ReturnType<typeof setInterval> | null = null;
   private ended = "";
+  private binding = false;
 
   constructor(
     private readonly folder: string,
@@ -51,12 +52,27 @@ export class CodexSession {
   }
 
   async on(take: boolean): Promise<{ state: string; text: string }> {
-    const agent = this.transport.agentId;
     if (this.auto)
       return {
         state: "bound",
         text: `KnowsLink 이미 연결됨: ${await this.summary()}`,
       };
+    // A parallel on would open a second dialog and start a second receiver over the first (D-CR-01).
+    if (this.binding)
+      return {
+        state: "busy",
+        text: "KnowsLink 연결 보류: 이 세션의 연결 승인 창이 이미 열려 있습니다. 그 창에 답한 뒤 status로 확인하세요.",
+      };
+    this.binding = true;
+    try {
+      return await this.bind(take);
+    } finally {
+      this.binding = false;
+    }
+  }
+
+  private async bind(take: boolean): Promise<{ state: string; text: string }> {
+    const agent = this.transport.agentId;
     const held = await readLock(this.folder);
     const other = held && held.session !== this.alias && alive(held.pid);
     if (other && !take)

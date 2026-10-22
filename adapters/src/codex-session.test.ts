@@ -11,6 +11,7 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 import { ElicitRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { uuid7 } from "./core.js";
 import { privateDirectory } from "./private-files.js";
+import { readLock } from "./session-lock.js";
 import { textSigningBytes, type TextEnvelope } from "./text.js";
 
 const peer = generateKeyPairSync("ed25519");
@@ -248,10 +249,34 @@ try {
     await c.client.close();
   }
   assert.deepEqual(sent, [body], "only the one approved send left");
+
+  // 6. Parallel first calls in a new process share one session: one dialog, one bind, and off releases the lock (D-CR-01).
+  const d = await open();
+  try {
+    d.answers.push("accept");
+    const [st, on1, on2] = await Promise.all([
+      d.call("knowslink_session", { action: "status" }),
+      d.call("knowslink_session", { action: "on" }),
+      d.call("knowslink_session", { action: "on" }),
+    ]);
+    assert.equal(d.asked.length, 1, "one dialog for parallel on");
+    assert.deepEqual([on1.state, on2.state].sort(), ["bound", "busy"]);
+    const alias = /구분값 (codex-[0-9a-f]{6})/.exec(d.asked[0]!)?.[1];
+    assert(alias && st.text.includes(alias), "status sees the bound session");
+    assert.equal((await readLock(folder))?.session, alias);
+    assert.equal(
+      (await d.call("knowslink_session", { action: "off" })).state,
+      "unbound",
+    );
+    assert.equal(await readLock(folder), null, "off releases the lock");
+    assert.equal((await d.call("knowslink_text_receive")).state, "denied");
+  } finally {
+    await d.client.close();
+  }
 } finally {
   await a.client.close();
   relay.close();
 }
 process.stdout.write(
-  "PASS: codex session bind/decline/single receiver/take/per-send approval/no elicitation\n",
+  "PASS: codex session bind/decline/single receiver/take/per-send approval/no elicitation/parallel first call\n",
 );
