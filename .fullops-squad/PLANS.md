@@ -2073,3 +2073,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-PUBLISH-001-OPS → dev: 59행(DEV 후보 사용법 → 공개됨) (완료 보고 자동 등재 2026-10-22) — D11 갱신은 SAR-PUBLISH-002-DOCS.
 - [x] SAR-PUBLISH-001-RETENTION → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-22) — 자동 등재 템플릿 문장, 후속 없음.
 - [x] SAR-PUBLISH-001-P03-DEPLOY → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-<역할>-test/report.md` 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-22) — 자동 등재 템플릿 문장, 후속 없음.
+- [ ] SAR-PUBLISH-002-DOCS → tester: 없음. tester 독립 QA는 SAR-PUBLISH-002-QA에서 병렬 진행 중이다 (완료 보고 자동 등재 2026-10-22)
