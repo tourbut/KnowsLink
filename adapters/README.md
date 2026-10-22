@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 호스트별 설치
 status: draft
-updated: 2026-10-17
+updated: 2026-10-22
 owner: dev
-tasks: [SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2]
+tasks: [SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-CODEX-RECV-001-DEV]
 summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계
 ---
 
@@ -13,7 +13,7 @@ summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우�
 
 ## 현재 사람 친구·대화와 호스트 안내
 
-현재 사용자 설치·기존 업데이트의 정본은 [루트 README](../README.md)다. 회원 화면 **내 에이전트 → 어디에서 사용할까요?**의 Grok Bot·Dots 선택지는 루트 README의 해당 절로, Claude Code 작업 세션 선택지는 아래 [Claude Code 작업 세션 연결](#claude-code-작업-세션-연결--sar-session-peer-001-dev) 절로 연결된다. 화면은 Codex·Hermes Agent를 ‘지원 확인이 필요한 호스트’로 안내하며 설치 명령을 보이지 않는다. 아래 패키지 표의 Codex·Claude Desktop 행은 패키지 검사 기록이며 회원 화면의 지원 표시가 아니다. 구성·개발·운영은 [문서 목차](../docs/README.md)를 따른다. 이 문서의 과거 시험·합성·legacy 절은 당시 근거로 보존한다.
+현재 사용자 설치·기존 업데이트의 정본은 [루트 README](../README.md)다. 회원 화면 **내 에이전트 → 어디에서 사용할까요?**의 Grok Bot·Dots 선택지는 루트 README의 해당 절로, Claude Code 작업 세션 선택지는 아래 [Claude Code 작업 세션 연결](#claude-code-작업-세션-연결--sar-session-peer-001-dev) 절로 연결된다. 화면은 Codex·Hermes Agent를 ‘지원 확인이 필요한 호스트’로 안내하며 설치 명령을 보이지 않는다. Codex 작업 세션 연결의 DEV 실측 수준은 아래 [Codex 작업 세션 연결](#codex-작업-세션-연결--sar-codex-recv-001-dev) 절이며 회원 화면 안내 변경(D11)은 후속이다. 아래 패키지 표의 Codex·Claude Desktop 행은 패키지 검사 기록이며 회원 화면의 지원 표시가 아니다. 구성·개발·운영은 [문서 목차](../docs/README.md)를 따른다. 이 문서의 과거 시험·합성·legacy 절은 당시 근거로 보존한다.
 
 웹에서 친구 수락을 마치면 양쪽 사람의 현재·앞으로 추가할 활성 agent가 연결된다. status/contacts의 현재 대상만 사용하며 친구 해제·차단·키 철회 뒤에는 저장된 대상이라도 보내지 않는다. 이름은 화면 표시용이고 ID와 credential을 대체하지 않는다.
 
@@ -61,6 +61,27 @@ Claude Code 패키지에는 MCP 서버와 함께 함수 hook 모드(`hooks/regis
 8. 세션 연결은 소유자의 세션 설정이다. relay는 `/knowslink-session on` 여부를 관측하지 않으므로 회원 화면은 세션 연결을 ‘앱에서 확인 필요’로 두고 완료로 표시하지 않는다. 세션의 `/knowslink-session status`로 확인한다. 친구 해제·차단·재수락은 연결을 끄지 않고, 재수락 뒤 `on`을 다시 실행할 필요가 없다. 친구 권한은 relay가 발송마다 다시 확인한다(V04 해석, 사용자 결정 2026-10-17).
 
 한계: 모드 파일이 바뀌어 플러그인이 다시 로드되면 자식 프로세스가 함께 끝나므로 `/knowslink-session on`을 다시 실행한다. Windows에서 `off`나 세션 종료는 lock 파일을 지우지 않고 pid만 죽는다. 다음 `on`이 죽은 pid의 lock을 회수한다. 슬래시 명령 이름이 `knowslink-session`인 이유는 `/knowslink`가 패키지 skill의 명령이기 때문이다. 지원 수준은 '기존 세션 수신'(도착 toast·세션 결속 로컬 사본, 작업 중·대기 양쪽 관측)이며 본문 표시는 '다음 조회'다. 실제 왕복 근거는 [DEV QA 보고](../.fullops-squad/docs/evaluations/qa-reports/SAR-SESSION-PEER-001-DEV-test/report.md)다. 플러그인 자체 검사는 `claude plugin validate adapters`와 `claude plugin test <설치 폴더>/knowslink`다.
+
+### Codex 작업 세션 연결 — SAR-CODEX-RECV-001-DEV
+
+Codex 설치(`--host codex --connect`)의 MCP 서버는 `KNOWSLINK_SESSION_HOST=codex`로 실행된다. Codex에는 Claude Code 모드 같은 확장이 없으므로 Codex가 세션마다 띄우는 MCP 프로세스가 그 세션의 연결을 맡는다. 설치만으로는 수신하지 않는다(SP-01). 검증한 호스트는 Codex CLI `0.163.0`(Windows 11)이다.
+
+1. 연결할 Codex 세션에서 소유자가 `knowslink_session` 도구를 `action: on`으로 부르게 한다. Codex의 도구 실행 승인 뒤 KnowsLink 대화상자가 `Codex 세션(구분값 codex-xxxxxx)`·agent ID를 보인다. 대화상자의 4자리 확인 코드를 입력해야 연결된다. 거절·취소(Esc)·틀린 코드는 연결하지 않는다.
+2. 다른 세션이 이미 받고 있으면 대화상자 없이 `busy`와 그 세션 구분값·시작 시각을 돌려준다. 옮기려면 `take: true`로 다시 부른다. 대화상자에 끊길 세션이 적힌다. 옛 세션은 다음 도구 호출이나 10초 안에 연결을 잃는다(SP-02, SP-09).
+3. 연결된 세션은 메시지를 받아 agent 폴더 inbox에 저장한다. 작업 중인 turn은 중단되지 않는다(SP-08). Codex 화면에는 도착 표시가 없다. 본문은 `knowslink_text_receive` 결과로만, `untrusted:true` 외부 데이터로 본다.
+4. `knowslink_text_send`는 호출마다 KnowsLink 발송 승인 대화상자(친구·agent 이름, 새 메시지/답장, 본문 전체·글자 수, 비가시 문자 표시)를 띄운다. 모델의 `confirmed:true`는 승인이 아니다. 확인 코드를 입력한 한 번의 시도만 보낸다(SP-05, SP-06).
+5. `action: off`는 수신·발송을 멈추고 lock을 지운다. `action: status`는 구분값·agent·대기 수를 보인다. 연결 전·전환 뒤의 text 도구는 `denied`다.
+6. **YOLO(전체 자동) 모드에서는 쓸 수 없다.** Codex 0.163.0의 YOLO는 MCP 대화상자를 보이지 않고 코드 없이 수락하므로 KnowsLink가 거부한다. `approval_policy = "on-request"` 같은 승인 모드로 세션을 연다.
+
+| 방향(Codex 0.163.0) | 기존 세션 수신(도착 표시) | 세션 결속 로컬 사본 | 다음 조회 수신 | 새 세션 실행 |
+|---|---|---|---|---|
+| Claude Code → Codex (App Server 세션·독립 TUI) | 미지원 | 지원(실측) | 지원(실측) | 사용 안 함 |
+| Codex → Claude Code | Claude 쪽 지원(상태줄·toast) | 지원(실측) | 지원(실측) | 사용 안 함 |
+| Codex ↔ Codex (별도 두 세션) | 미지원 | 지원(실측, 작업 중 도착 포함) | 지원(실측) | 사용 안 함 |
+| Codex YOLO 세션 | — | 연결 거부 | — | — |
+| Codex 하위 에이전트(SP-04), 4096 bytes 대화상자 전체 표시 | 미검증 | 미검증 | 미검증 | — |
+
+`codex queue`와 App Server `turn/start`·`turn/steer`·`thread/inject_items`는 친구 본문을 소유자 입력이나 대화 기록으로 넣으므로 쓰지 않는다. 실측 근거는 [DEV QA 보고](../.fullops-squad/docs/evaluations/qa-reports/SAR-CODEX-RECV-001-DEV-test/report.md)다.
 
 Codex는 준비한 폴더를 독립 작업 폴더로 열면 `.agents/plugins/marketplace.json`을 찾을 수 있다. 명령으로 확인하려면 별도 `CODEX_HOME` 디렉터리를 먼저 만들고 각 명령에 같은 경로를 지정한다. 사용자 기본 설정과 인증 파일은 복사하지 않는다. 실제 대화 사용에 필요한 호스트 로그인은 사용자가 수행한다.
 

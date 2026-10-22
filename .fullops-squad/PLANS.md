@@ -2085,5 +2085,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-PUBLISH-002-DOCS → tester: 없음. tester 독립 QA는 SAR-PUBLISH-002-QA에서 병렬 진행 중이다 (완료 보고 자동 등재 2026-10-22) — 해당 없음.
 - [x] SAR-PUBLISH-002-QA → coor: coor 결정 — 운영 Google scope 실측 POST 승인 여부. designer SAR-PUBLISH-002-DOCS는 이 QA와 별개로 진행 중이다 (완료 보고 자동 등재 2026-10-22) — 운영 POST 생략: 격리 TestGoogleHTTP 'openid email' PASS, Cloud Console 범위 0(2026-10-22), 사용자 다른 계정 동의 화면 확인으로 대신.
 - [x] SAR-COMPETE-001 → tester: 해당 없음(템플릿 문장 자동 등재, 기획 문서 과제라 tester 후속 없음. 2026-10-22 coor)
-- [ ] SAR-CODEX-RECV-001-TESTER → dev: dev — D-CR-01 수정(`codexSession()` 동시 생성 방지)과 RC-4 (완료 보고 자동 등재 2026-10-22)
+- [x] SAR-CODEX-RECV-001-DEV → tester: SAR-CODEX-RECV-001-TESTER로 완료(2026-10-22 coor). 완료 SHA 999db058의 독립 QA(V02 재현: App Server·독립 TUI 행, YOLO 연결 거부, 틀린 코드 거부). 후속: D11 Codex 안내 갱신, 회원 화면 Codex 표시는 designer 판단, 승인 경계 독립 코드 리뷰 (완료 보고 자동 등재 2026-10-22, 템플릿 문장을 실제 남은 일로 교정)
+- [x] SAR-CODEX-RECV-001-TESTER → dev: dev — D-CR-01 수정(`codexSession()` 동시 생성 방지)과 RC-4 (완료 보고 자동 등재 2026-10-22)
 - [ ] SAR-CODEX-RECV-001-TESTER → coor: `tools/orphan.mjs` 회귀 확인. coor — 수정 뒤 병합 판단. designer — D11 Codex 안내에 YOLO 세션 사용 불가와 승인 코드 입력 방법 (완료 보고 자동 등재 2026-10-22)
+- [ ] SAR-CODEX-RECV-001-DEV(D-CR-01 수정) → coor: 코드 3f9648e4 병합 판단(tester 재QA는 회귀 도구 결과로 갈음 여부 coor 판단). designer — D11 Codex 안내(YOLO 불가·확인 코드 입력) (완료 보고 자동 등재 2026-10-22, 템플릿 문장을 실제 남은 일로 교정)
