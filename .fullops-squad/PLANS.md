@@ -109,6 +109,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 2026-10-22 사용자 "다음 작업 진행해": C-03 클라이언트 자동 설정을 SAR-AUTOSETUP-001로 시작한다. route unresolved → designer override(두 역할 묶음, 1.8.3 intent 승인 선행). designer opus high fresh가 intent·D02·D04·dev brief를 쓰고, 사용자 intent 승인 뒤 dev를 배정한다.
 - 2026-10-22 SAR-AUTOSETUP-001 designer 완료(msg_7fbe9566f0c4, 16101dfc) → main 52cbcf65 병합(need false, 문서). intent 초안 S1–S7, D02 AS-01–13·AC-01–10, D04 안내안, DEV brief. 사용자 결정 D031(intent 승인)·D032–D037(Q1–Q6) 대기, dev 배정은 승인 뒤. designer release.
 - 2026-10-22 사용자 "추천대로": D031(intent 승인)·D032–D037(Q1–Q6 추천 A) 닫음, intent status approved. SAR-AUTOSETUP-001-DEV를 dev에 배정한다. route model opus medium이나 설치기·자격 경계·파이프 실행 위험으로 opus high fresh. 완료 뒤 독립 코드 리뷰 여부는 사용자에게 묻는다.
+- 2026-10-23 SAR-AUTOSETUP-001-DEV dev 완료(msg_25d5be7849e0, c74c90e1) → main 8ec61ab3 병합. need required(코드 20파일 687줄), 사용자 D038 리뷰 생략 → waive. 병합자 확인: /install 경로 화이트리스트·버전 정규식, 설치기 SHA-256 검증, 호스트 CLI 등록만, 원자적 교체·롤백. lint ERROR 0/WARNING 9. dev release. 남은 일: tester 실세션 검수(승인 범위 확인), designer 시각 검수, ops 게시(승인).
 - (이전 대기 기록): 4단위 delta F-R1–F-R3, 3단위 리뷰 low(raw-log 해시—4단위에서 해소), O-NM-08 외 남은 low 관찰(V-AP-01 현행 수락, O-CT-03 현행 유지). 사용자 판단 대기 잔여는 위 '잔여 작업 일괄 수행' 절 목록.·설정('내 계정'→'설정' 포함).
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
@@ -2096,5 +2097,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-CODEX-RECV-001-TESTER → coor: `tools/orphan.mjs` 회귀 확인. coor — 수정 뒤 병합 판단. designer — D11 Codex 안내에 YOLO 세션 사용 불가와 승인 코드 입력 방법 (완료 보고 자동 등재 2026-10-22) → coor: orphan 회귀는 dev가 0/8로 확인, b1029605 병합. designer D11은 SAR-CODEX-RECV-001-DOCS로 배정(2026-10-22).
 - [ ] SAR-CODEX-RECV-001-DEV(D-CR-01 수정) → coor: 코드 3f9648e4 병합 판단(tester 재QA는 회귀 도구 결과로 갈음 여부 coor 판단). designer — D11 Codex 안내(YOLO 불가·확인 코드 입력) (완료 보고 자동 등재 2026-10-22, 템플릿 문장을 실제 남은 일로 교정)
 - [x] SAR-CODEX-RECV-001-DOCS → coor: 남은 일 없음. D11 Codex 절 병합 판단만 남는다. 검토 요청: 지원 표가 DEV/tester 실측 표를 넘지 않는지(SP-12) (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정)
-- [ ] SAR-AUTOSETUP-001 → coor: 사용자 intent 승인과 Q1–Q6 답 받기 → `docs/planning/SAR-AUTOSETUP-001-DEV-brief.md`로 dev 배정. 구현 뒤 tester 큰 틀 검수 1회(S1–S7), designer D04 시각 검수·U8 표 갱신 (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정)
-- [ ] SAR-AUTOSETUP-001-DEV → tester: 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다 (완료 보고 자동 등재 2026-10-23)
+- [x] SAR-AUTOSETUP-001 → coor: 사용자 intent 승인과 Q1–Q6 답 받기 → `docs/planning/SAR-AUTOSETUP-001-DEV-brief.md`로 dev 배정. 구현 뒤 tester 큰 틀 검수 1회(S1–S7), designer D04 시각 검수·U8 표 갱신 (완료 보고 자동 등재 2026-10-22, 템플릿 문장 교정) — 완료: dev 구현 main 8ec61ab3 병합
+- [ ] SAR-AUTOSETUP-001-DEV → tester: 큰 틀 검수 1회(S1–S7, 호스트별). DEV 미실행 실세션 부분 AC-01 N7–N8, AC-02/03 첫 발송, AC-04 10분 측정. 실계정·실제 호스트 설정 사용 범위는 사용자 승인 필요
+- [ ] SAR-AUTOSETUP-001-DEV → designer: D04 자동 설정 절 시각 검수(1440·390·320, KO·EN), U8 표 갱신
+- [ ] SAR-AUTOSETUP-001-DEV → ops: release 배포물 게시·KNOWSLINK_INSTALL_DIR·ingress 운영 반영(사용자 승인 뒤)
