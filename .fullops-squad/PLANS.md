@@ -110,6 +110,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 2026-10-22 SAR-AUTOSETUP-001 designer 완료(msg_7fbe9566f0c4, 16101dfc) → main 52cbcf65 병합(need false, 문서). intent 초안 S1–S7, D02 AS-01–13·AC-01–10, D04 안내안, DEV brief. 사용자 결정 D031(intent 승인)·D032–D037(Q1–Q6) 대기, dev 배정은 승인 뒤. designer release.
 - 2026-10-22 사용자 "추천대로": D031(intent 승인)·D032–D037(Q1–Q6 추천 A) 닫음, intent status approved. SAR-AUTOSETUP-001-DEV를 dev에 배정한다. route model opus medium이나 설치기·자격 경계·파이프 실행 위험으로 opus high fresh. 완료 뒤 독립 코드 리뷰 여부는 사용자에게 묻는다.
 - 2026-10-23 SAR-AUTOSETUP-001-DEV dev 완료(msg_25d5be7849e0, c74c90e1) → main 8ec61ab3 병합. need required(코드 20파일 687줄), 사용자 D038 리뷰 생략 → waive. 병합자 확인: /install 경로 화이트리스트·버전 정규식, 설치기 SHA-256 검증, 호스트 CLI 등록만, 원자적 교체·롤백. lint ERROR 0/WARNING 9. dev release. 남은 일: tester 실세션 검수(승인 범위 확인), designer 시각 검수, ops 게시(승인).
+- 2026-10-23 사용자 D039=A(격리 CLAUDE_CONFIG_DIR/CODEX_HOME+실 호스트 로그인, 실제 ~/.claude·~/.codex 미변경). tester SAR-AUTOSETUP-001-QA(task_5ed60f25ef93/ctx_2e648c40c3af)·designer SAR-AUTOSETUP-001-ART(task_4aaec6e067bb/ctx_eb17c7d7fc9c) 병렬 배정, 둘 다 sonnet 5.5 high fresh(route jev 추천), 기준 main 11d91648.
 - (이전 대기 기록): 4단위 delta F-R1–F-R3, 3단위 리뷰 low(raw-log 해시—4단위에서 해소), O-NM-08 외 남은 low 관찰(V-AP-01 현행 수락, O-CT-03 현행 유지). 사용자 판단 대기 잔여는 위 '잔여 작업 일괄 수행' 절 목록.·설정('내 계정'→'설정' 포함).
 - 사용자 결정·외부 조건이 필요한 잔여(자동 착수하지 않음): 실제 일정 API 연동(제품 범위 미정), 인증 SSE·Dots Events·추가 호스트 실설치(실계정·호스트 필요), Windows hook 실제 host trust 검증(사용자 세션 관측 필요), 운영 배포(사용자 승인), CI 파비콘·반전판·한글판(요청 없음), dev 미커밋 HyperFrames WIP 처분(사용자 판단).
 
