@@ -2,9 +2,9 @@
 id: D04
 title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
-updated: 2026-10-22
+updated: 2026-10-23
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS, SAR-AUTOSETUP-001]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS, SAR-AUTOSETUP-001, SAR-AUTOSETUP-001-ART]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -438,7 +438,7 @@ Desktop 1440 / Mobile 390·320 (같은 한 열, 읽기 폭 약 72ch)
 
 ### Claude Code·Codex 자동 설정 안내 — SAR-AUTOSETUP-001
 
-변경안이다. [intent SAR-AUTOSETUP-001](../../planning/intents/SAR-AUTOSETUP-001.md)이 승인되고 자동 설정이 구현될 때 적용한다. 그 전까지 현행 U8 화면을 유지한다. 제품 규칙은 [D02 SAR-AUTOSETUP-001](../../planning/product-specs/SAR-AUTOSETUP-001.md)이다. 바꾸는 곳은 '내 에이전트 → 어디에서 사용할까요?'의 선택지와 Claude Code·Codex 안내 상자뿐이다. 다른 선택지·연결 상태 절·'기존 연결 계속' 안내 문장은 그대로다.
+현행 화면이다. [intent SAR-AUTOSETUP-001](../../planning/intents/SAR-AUTOSETUP-001.md)의 자동 설정이 main `8ec61ab3`에 구현됐고, 2026-10-23 직접 시각 검수([보고](../../evaluations/qa-reports/SAR-AUTOSETUP-001-ART-test/report.md))에서 아래 U8 선택지 표·안내 상자 카피와 일치함을 확인했다(AC-10 PASS). 미해결은 아래 '시각 검수 결과'의 V-01이다. 제품 규칙은 [D02 SAR-AUTOSETUP-001](../../planning/product-specs/SAR-AUTOSETUP-001.md)이다. 바꾸는 곳은 '내 에이전트 → 어디에서 사용할까요?'의 선택지와 Claude Code·Codex 안내 상자뿐이다. 다른 선택지·연결 상태 절·'기존 연결 계속' 안내 문장은 그대로다.
 
 #### 선택지
 
@@ -506,6 +506,18 @@ Codex details 링크는 [adapters Codex 절](../../../../adapters/README.md#code
 - 준비물 첫머리에 OS를 둔다. 검증 안 된 OS 사용자가 명령을 실행하기 전에 알 수 있다.
 - '직접 확인할 일'을 '자동으로 하는 일' 바로 뒤에 둔다. 자동 설정이 승인을 줄인다고 오해하지 않게 한다.
 - 수락: KO·EN 문구가 위 표와 같다. 1440·390·320px에서 명령 입력란이 넘치지 않는다. 키보드로 선택지→안내 보기→명령 입력란→details 순서로 이동한다. 200% 확대에서 읽힌다. 6번 선택지에 명령이 없다.
+
+#### 시각 검수 결과 — SAR-AUTOSETUP-001-ART (main `11d91648`, 2026-10-23)
+
+| 항목 | 결과 |
+|---|---|
+| U8 선택지 표(1–6번 KO·EN) | 화면과 일치. 4·5번은 '자동 설정', 5번은 새 선택지(`use=codex`), 6번 보조 문구에서 Codex를 뺐다. |
+| 안내 상자 카피·순서(Claude Code·Codex × KO·EN × 처음·기존) | 48행 모두 일치. 새 색·버튼·JS 없음. |
+| 명령 범위(AC-10) | 명령 입력란은 `use=claude`·`use=codex`에만 있다. web·grok·dots·6번에는 없다. |
+| 가로 넘침·대비 | 1440·390·320 모두 가로 스크롤 0. 도움말 대비 6.19:1. |
+| 열린 결함 | V-01(medium, dev 수정 필요): 320px에서 명령이 4줄인데 입력란이 3행이라 마지막 줄이 가려진다. 390px는 3줄에 딱 맞는다. 수정은 입력란을 4행으로 늘리거나 좁은 폭에서 `min-height`를 키우는 방식이며 새 토큰은 쓰지 않는다. V-02–V-04는 low로 수용했다. |
+
+위 '수락'의 "320px에서 명령 입력란이 넘치지 않는다"는 마지막 줄이 보이는 것까지 포함한다. V-01 수정 뒤 320px 4조합(claude·codex × KO·EN)을 다시 확인한다.
 
 ## 이전 설계와 검수 기록 — 비현행
 

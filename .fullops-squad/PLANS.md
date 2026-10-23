@@ -2102,3 +2102,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-AUTOSETUP-001-DEV → tester: 큰 틀 검수 1회(S1–S7, 호스트별). DEV 미실행 실세션 부분 AC-01 N7–N8, AC-02/03 첫 발송, AC-04 10분 측정. 실계정·실제 호스트 설정 사용 범위는 사용자 승인 필요
 - [ ] SAR-AUTOSETUP-001-DEV → designer: D04 자동 설정 절 시각 검수(1440·390·320, KO·EN), U8 표 갱신
 - [ ] SAR-AUTOSETUP-001-DEV → ops: release 배포물 게시·KNOWSLINK_INSTALL_DIR·ingress 운영 반영(사용자 승인 뒤)
+- [ ] SAR-AUTOSETUP-001-ART → dev: dev — V-01 수정(`internal/relay/human_pages.go` 입력란 행 수). 수정 뒤 designer가 320px 4조합만 재확인 (완료 보고 자동 등재 2026-10-23)
