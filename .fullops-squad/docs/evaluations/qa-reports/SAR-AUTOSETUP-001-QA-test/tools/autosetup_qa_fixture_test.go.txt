@@ -1,0 +1,101 @@
+//go:build integration && autosetupqa
+
+// SAR-AUTOSETUP-001-QA tester fixture (not product code, kept untracked in the isolated QA worktree): synthetic Google
+// members A and B who are accepted friends. /fixture/login hands out the member's browser session; /fixture/google stands in
+// for the Google OAuth callback of a device attempt (binds the owner, as the callback would). The rest of the browser
+// approval (device page, fingerprint, name, /home/device-confirm) is the real relay code.
+package relay
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"net/http"
+	"os"
+	"testing"
+	"time"
+)
+
+func TestAutosetupQA(t *testing.T) {
+	addr, dir := os.Getenv("AUTOSETUP_FIXTURE_ADDR"), os.Getenv("AUTOSETUP_FIXTURE_INSTALL_DIR")
+	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" || addr == "" || dir == "" {
+		t.Fatal("explicit isolated fixture configuration required")
+	}
+	s, _ := identityService(t, messagePool(t))
+	s.InstallDir = dir
+	owners, ids := map[string]string{}, map[string]string{}
+	var members = map[string]string{}
+	s.mutateState(t, func(st *State) {
+		now := time.Now()
+		for _, l := range []string{"a", "b"} {
+			r := st.signIn(googleIssuer, "autosetup-qa-"+l, "autosetup-qa-"+l+"@example.test", "", "", now)
+			m := st.Sessions[hashToken(r.Session)].Member
+			members[l] = m
+			ids[l] = r.Session
+			st.Members[m].Name = "합성 회원 " + l
+			st.Members[m].FriendCode = "fixture-code-qa-" + l
+			owners[l] = st.Members[m].Owner
+		}
+		st.requestFriend(members["a"], "fixture-code-qa-b", now)
+		f := st.Friends[pairID(members["a"], members["b"])]
+		if e := st.decideFriend(members["b"], f.ID, "accept", f.Generation, now); e != nil {
+			t.Fatal(e)
+		}
+	})
+	mutate := func(fn func(*State, time.Time) error) error {
+		_, err := s.transaction(context.Background(), func(st *State, now time.Time) (any, error) { return nil, fn(st, now) })
+		return err
+	}
+	handler := s.Handler()
+	server := &http.Server{Addr: addr, Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		l := r.FormValue("member")
+		switch r.URL.Path {
+		case "/fixture/login":
+			// A fresh browser session each time (Verified = now) so the device page needs no re-login.
+			var token string
+			s.mutateState(t, func(st *State) {
+				token = st.signIn(googleIssuer, "autosetup-qa-"+l, "autosetup-qa-"+l+"@example.test", "", "", time.Now()).Session
+			})
+			_ = json.NewEncoder(w).Encode(map[string]string{"session": token})
+			return
+		case "/fixture/google":
+			id := r.FormValue("connection")
+			err := mutate(func(st *State, now time.Time) error {
+				c := st.Connections[id]
+				if c == nil || !c.Device || owners[l] == "" {
+					return errors.New("unknown device attempt")
+				}
+				c.Owner, c.State = owners[l], "prepared"
+				return nil
+			})
+			if err != nil {
+				http.Error(w, err.Error(), 409)
+			}
+			return
+		case "/fixture/state":
+			out := map[string]any{}
+			_ = mutate(func(st *State, _ time.Time) error {
+				agents := []string{}
+				for id, a := range st.Agents {
+					if a.Owner == owners[l] && !a.Revoked {
+						agents = append(agents, id+"|"+a.Name)
+					}
+				}
+				friends := 0
+				for _, f := range st.Friends {
+					if (f.A == members[l] || f.B == members[l]) && f.State == "active" {
+						friends++
+					}
+				}
+				out["agents"], out["friends"], out["member"] = agents, friends, members[l]
+				return nil
+			})
+			_ = json.NewEncoder(w).Encode(out)
+			return
+		}
+		handler.ServeHTTP(w, r)
+	})}
+	go func() { _ = server.ListenAndServe() }()
+	t.Log("autosetup QA fixture ready on " + addr + "; synthetic accounts only")
+	<-time.After(8 * time.Hour)
+}
