@@ -102,6 +102,14 @@ tester SAR-AUTOSETUP-001-QA와 병렬, 파일 겹침 없음. 피할 스타일: �
 
 ## 완료 보고
 
+- 브랜치 / 완료 SHA: `fullops/designer` / `4c1d598000f5b20185007415d7edf5a517f3fe0c`(기준 main `11d91648`). 이후 finish 로그 커밋이 따른다.
+- 변경 이유: 회원 화면 자동 설정 안내의 시각·카피 검수와 D04 U8 표 갱신. 제품 코드는 고치지 않았다.
+- 결과: 3화면×3폭×2언어 18조합 중 14 PASS, 4 FAIL(V-01, 320px claude·codex × KO·EN). D04 카피 48행 일치(차이 0), 가로 스크롤 0, 명령은 claude·codex에만 있음(AC-10 PASS), 도움말 대비 6.19:1.
+- 검토 필요: V-01(medium, **수정 필요 dev**) 320px에서 명령이 4줄인데 입력란이 `rows=3`이라 마지막 줄(`-App … -Lang …`)이 가려진다. 입력란을 4행으로 늘리거나 좁은 폭에서 `min-height`를 키운다(새 토큰 없음). V-02–V-04는 low로 수용했다.
+- 검증한 것과 못 한 것: 격리 relay·Postgres 17·loopback SMTP sink·합성 회원으로 Chromium 1248 CDP 실측(`4c1d5980`의 shoot.mjs·compare.mjs). 실제 Ctrl+C 클립보드·200%·키보드 순서는 못 했다. lint: HEAD `4c1d5980` ERROR 0, WARNING 1(SIZE-001, D04 924줄·기존 912줄에 12줄 추가), `product-lint`·`product-test`는 Windows에 `make`가 없어 실행 불가·생략이다. relay·DB 컨테이너는 검수 뒤 정리했다.
+- 산출물·로그: [report.md](../docs/evaluations/qa-reports/SAR-AUTOSETUP-001-ART-test/report.md), [measure.json](../docs/evaluations/qa-reports/SAR-AUTOSETUP-001-ART-test/measure.json), D04 `service-member-ui.md`('시각 검수 결과' 소절). 의존성 변경 없음(제품 코드·패키지 파일 미변경, 검수 도구는 Node·Python 표준 기능만 사용).
+- 남은 일: dev — V-01 수정(`internal/relay/human_pages.go` 입력란 행 수). 수정 뒤 designer가 320px 4조합만 재확인.
+
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
