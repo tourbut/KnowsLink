@@ -1,0 +1,21 @@
+== failures-en
+PASS F-01 host missing: message, nothing changed (en)
+PASS F-02 declined unverified version: nothing changed (en)
+PASS AS-02 plan declined: nothing written (en)
+PASS F-03 download failure: nothing changed, temp removed (en)
+PASS AC-09 F-03 rerun completes without cleanup (ko)
+PASS F-04 download failure: nothing changed, temp removed (en)
+PASS AC-09 F-04 rerun completes without cleanup (ko)
+PASS F-05 registration failure: summary shown, install folder kept (en)
+PASS AC-09 F-05 rerun resumes at registration, files kept (ko)
+PASS F-06 cancelled: install and registration kept, no key (en)
+PASS AC-09 F-06 rerun uses a new connection (ko)
+PASS F-07 lost answer: check-needed with the agent name, no new attempt (en)
+PASS AC-09 F-07 rerun re-checks first, new connection only after 'new' (ko)
+PASS F-08 swap failure: previous install byte-identical and still registered (en)
+PASS AC-09 F-08 rerun updates (ko)
+PASS F-09 YOLO: install complete, mode reported and unchanged (en)
+== pick
+PASS AS-10 -NewAgent installs a separate agent
+PASS AS-10 several installs: list shown, unclear choice stops
+exit=0

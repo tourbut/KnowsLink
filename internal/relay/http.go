@@ -61,6 +61,7 @@ func statusFor(err error) int {
 func (s *Service) Handler() http.Handler {
 	mux := http.NewServeMux()
 	s.remoteRoutes(mux)
+	mux.HandleFunc("GET /install/{version}/{file}", s.installFile)
 	mux.HandleFunc("GET /v1/registry", func(w http.ResponseWriter, r *http.Request) {
 		if !RegistryValid() {
 			respond(w, nil, fault("unavailable"))

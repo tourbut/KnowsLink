@@ -203,6 +203,10 @@ func pageFuncs(lang string) template.FuncMap {
 		"tr":    func(v any) string { return tr(lang, text(v)) },
 		"name":  func(v any) string { return agentFallback(lang, text(v)) },
 		"lang":  func() string { return lang },
+		// code keeps an inline command inside one translatable sentence, so English can move it (SAR-AUTOSETUP-001).
+		"code": func(s string) template.HTML {
+			return template.HTML("<code>" + template.HTMLEscapeString(s) + "</code>")
+		},
 		// langPart marks the other language's own name inside a problem sentence (O-LG-05, WCAG 3.1.2).
 		"langPart": func(v any) template.HTML {
 			other, code := "English", "en"

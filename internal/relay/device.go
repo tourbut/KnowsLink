@@ -84,7 +84,8 @@ func (s *Service) deviceAPI(start bool) http.HandlerFunc {
 				if _, e = st.connection(input.Token, now); e != nil {
 					return map[string]string{"error": e.Error()}, nil
 				}
-				v["owner"], v["agent"] = c.Owner, c.Agent
+				// The owner chose the name in the browser; the installer shows it beside the fingerprint (AS-05, F-07).
+				v["owner"], v["agent"], v["name"] = c.Owner, c.Agent, st.Agents[c.Agent].Name
 			}
 			return v, nil
 		})

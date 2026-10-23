@@ -24,6 +24,7 @@ type Pending = Grant & {
   token: string;
   kid: string;
   public: string;
+  name?: unknown;
 };
 export { relayBase } from "./core.js";
 function proof(p: Pending, privateKey: string): string {
@@ -132,6 +133,8 @@ export async function complete(folder: string): Promise<void> {
     JSON.stringify({
       relay: p.base,
       ...connected,
+      // Display-only agent name from the device approval answer (installer completion screen).
+      ...(typeof p.name === "string" ? { name: p.name.slice(0, 80) } : {}),
       keyFile: join(folder, "private.pem"),
     }),
     { mode: 0o600, flag: "wx" },

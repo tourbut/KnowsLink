@@ -2,14 +2,21 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-22
+updated: 2026-10-23
 owner: dev
-tasks: [SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
 
 # KnowsLink HTTP·adapter 계약
+
+## SAR-AUTOSETUP-001-DEV 자동 설정 배포·연결 계약
+
+- `GET /install/<major.minor.patch>/<file>`: `KNOWSLINK_INSTALL_DIR`가 있을 때만 `knowslink-setup.ps1`(`text/plain; charset=utf-8`), `knowslink-claude-plugin.zip`, `knowslink-codex-plugin.zip`(`application/zip`)을 보낸다. 그 밖의 이름·버전 형식·미설정은 404다. 인증은 없고 공개 ingress 규칙에 같은 경로만 있다.
+- `POST /v1/connect/poll`: `approved` 응답에 `name`(브라우저에서 정한 agent 이름)을 더했다. 기존 `owner`·`agent`는 그대로다. 이 응답은 시도의 device 키 PoP를 가진 클라이언트만 받는다.
+- 로컬 CLI `node dist/plugin.js setup-connect <서비스 URL> <agent 폴더> [--fresh]`: stdout은 JSON 줄 `{"state":"waiting","url","fingerprint","expires"[,"resumed"]}`, `{"state":"connected","agent","name","fingerprint"}` 또는 `{"state":"connected","existing":"true"}`, `{"state":"failed","reason":"cancelled_or_expired|unreachable"}`, `{"state":"unconfirmed","agent","name"}`다. 종료코드는 0 연결, 2 실패, 3 확인 필요, 1 예외다. 토큰·키·credential은 출력하지 않는다.
+- 설치기 인자: `-App claude|codex`, `-Lang ko|en`, `-NewAgent`. 실패 출력은 `[F-01]`–`[F-09]` 줄과 `이미 바뀐 것`·`다음 행동` 줄이다. 상세는 [실행 기록](../exec-plans/phases/SAR-AUTOSETUP-001-DEV.md)이다.
 
 ## SAR-UX-ISSUES-002 친구 코드·친구 요청 (2단위)
 

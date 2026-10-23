@@ -14,8 +14,9 @@ var useChoices = []useChoice{
 	{"web", "웹에서 바로 사용", "설치 필요 없음"},
 	{"grok", "Grok Bot (내 컴퓨터)", "연결 안내 있음 · 기존 계정 사용 확인"},
 	{"dots", "Dots (원격)", "연결 안내 있음 · 기존 계정 사용 확인"},
-	{"claude", "Claude Code 작업 세션 (내 컴퓨터)", "연결 안내 있음 · 시험 환경 확인 (Claude Code 2.1.302, Windows)"},
-	{"other", "지원 확인이 필요한 호스트", "Codex, Hermes Agent, 그 밖의 호스트"},
+	{"claude", "Claude Code 작업 세션 (내 컴퓨터)", "자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)"},
+	{"codex", "Codex 작업 세션 (내 컴퓨터)", "자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음"},
+	{"other", "지원 확인이 필요한 호스트", "Hermes Agent, 그 밖의 호스트"},
 }
 
 // agentResume is one agent's observed connection stage and the single next step that can still work.

@@ -15,6 +15,7 @@ import { GrokWake } from "./grok-wake.js";
 import { localAdapter } from "./core.js";
 import { beginLogin, finishLogin, waitForLogin } from "./login.js";
 import { CodexSession } from "./codex-session.js";
+import { setupConnect } from "./setup-connect.js";
 import type { ReceivedText } from "./text.js";
 
 const server = new McpServer(
@@ -525,6 +526,26 @@ else if (process.argv[2] === "contact" && process.argv[3] && process.argv[4])
     console.error("KnowsLink contact lookup failed");
     process.exitCode = 1;
   });
+// `plugin.js setup-connect <relay> <private folder> [--fresh]` is the installer's Google connection step (JSON lines).
+else if (
+  process.argv[2] === "setup-connect" &&
+  process.argv[3] &&
+  process.argv[4]
+)
+  setupConnect(
+    process.argv[3],
+    process.argv[4],
+    process.argv.includes("--fresh"),
+    (event) => process.stdout.write(JSON.stringify(event) + "\n"),
+  )
+    .then((outcome) => {
+      if (outcome !== "connected")
+        process.exitCode = outcome === "unconfirmed" ? 3 : 2;
+    })
+    .catch(() => {
+      console.error("KnowsLink setup-connect failed");
+      process.exitCode = 1;
+    });
 else if (process.argv[2] === "watch" && process.argv[3])
   watchFromArgv(process.argv.slice(3)).catch(() => {
     console.error("KnowsLink watch startup failed");

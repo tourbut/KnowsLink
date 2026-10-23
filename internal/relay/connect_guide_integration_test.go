@@ -70,7 +70,7 @@ func TestConnectionResumeAndCodeTail(t *testing.T) {
 	t.Run("choices_follow_host_table_and_reading_creates_nothing", func(t *testing.T) {
 		body := a.do("GET", "/home/agents", nil).Body.String()
 		last := -1
-		for _, value := range []string{"web", "grok", "dots", "claude", "other"} {
+		for _, value := range []string{"web", "grok", "dots", "claude", "codex", "other"} {
 			i := strings.Index(body, `name="use" value="`+value+`"`)
 			if i <= last {
 				t.Fatal("choice order", value)
