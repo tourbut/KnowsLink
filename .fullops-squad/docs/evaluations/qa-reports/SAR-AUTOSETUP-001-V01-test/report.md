@@ -27,3 +27,5 @@ summary: 320px 명령 입력란 rows 4 수정 검증
 
 8조합 모두 scrollHeight ≤ clientHeight. 가로 넘침 없음(문서 scrollWidth 305·375).
 한계: 합성 템플릿 렌더이며 실제 relay 로그인 화면은 아니다. designer가 320px 4조합을 재확인한다.
+
+- lint.py (깨끗한 HEAD 793c1daf 임시 worktree, --from 70863527): ERROR 0, WARNING 0, 실행 불가 2(product-lint/product-test는 Windows에 make 없음; go test로 대체). 워크트리의 다른 과제 untracked 파일 때문에 본 워크트리에서는 lint가 거부되어 임시 worktree에서 실행했다.
