@@ -1,0 +1,91 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-AUTOSETUP-001-ART",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [
+    "D04"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.75,
+        "product": 0.25
+      },
+      "confidence": 0.5
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.69,
+        "ops": 0.01,
+        "tester": 0.3
+      },
+      "confidence": 0.53
+    },
+    "docs": {
+      "D01": 0.16,
+      "D02": 0.29,
+      "D03": 0.2,
+      "D04": 0.89,
+      "D05": 0.24,
+      "D06": 0.19,
+      "D07": 0.17,
+      "D08": 0.47,
+      "D09": 0.21,
+      "D10": 0.39,
+      "D11": 0.23,
+      "D12": 0.29,
+      "D13": 0.36
+    }
+  },
+  "usage": {
+    "input_tokens": 2485,
+    "output_tokens": 314,
+    "cost": 0.00010437
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.448,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "D04 시각 검수는 designer 담당(brief 후속)",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 high": 0.72,
+      "claude claude-opus-5-5 high": 0.28
+    },
+    "usage": {
+      "input_tokens": 496,
+      "output_tokens": 34,
+      "cost": 2.0832e-05
+    }
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "4fefdf68fa55d2405bb7aa7c94a73439bf7ab235",
+  "requires_packet": true,
+  "attempt": "a1134cf0f55b41a39c9e2e4e455af1ad",
+  "instruction_sha256": "b3e99fd04ac27c175809c219e1aa6c2d09f566440be9ae110dcce5da569b2f6b",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "59b2aa5dd2a30d91c4d5883aa88591e40bb626e86f1966927392b620f44ee3e3"
+}
