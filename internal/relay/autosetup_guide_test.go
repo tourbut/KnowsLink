@@ -48,6 +48,9 @@ func TestAutosetupGuideOnlyForClaudeAndCodex(t *testing.T) {
 				if has && !strings.Contains(body, command+use+" -Lang "+lang+"</textarea>") {
 					t.Fatalf("%s %s: command must carry app and page language", lang, use)
 				}
+				if has && !strings.Contains(body, `id="setup-command" class="share" readonly rows="4"`) {
+					t.Fatalf("%s %s: setup command box must show all 4 lines at 320px", lang, use)
+				}
 				texts := want[lang][use]
 				if start == "continue" && has {
 					texts = []string{map[string]string{"ko": "같은 명령을 실행하면 기존 설치를 갱신합니다. 에이전트·키·친구는 그대로입니다.", "en": "Running the same command updates your existing install. Your agent, key, and friends stay the same."}[lang]}

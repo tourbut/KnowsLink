@@ -17,7 +17,7 @@ test_level: lite
 
 - 작성일: 2026-10-23
 - From / To: coor → dev
-- 상태: ready
+- 상태: done
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위 / 추가 승인이 필요한 행위: fullops/dev의 `internal/relay/human_pages.go` 명령 입력란 수정과 관련 테스트, 커밋·push. 추가 승인 필요: 새 색·토큰·스타일 요소 추가, 다른 화면 변경, 운영 배포
 - 상위 의도: `.fullops-squad/docs/planning/intents/SAR-AUTOSETUP-001.md` — S1(회원 화면 명령 안내)
@@ -88,6 +88,13 @@ tester SAR-AUTOSETUP-001-QA가 같은 화면으로 검수 중이다(tester 워�
 <!-- fullops-packet:end -->
 
 ## 완료 보고
+
+- 브랜치 / SHA: fullops/dev / (finish 뒤 아래 커밋 SHA)
+- 변경 이유: 320px에서 4줄 명령의 마지막 줄이 숨던 V-01. `#setup-command` rows 3→4.
+- 검토 필요: 없음. 새 스타일 요소 없음.
+- 검증: `go test ./internal/relay/...` ok. 8조합 scrollHeight 106 = clientHeight 106. [report](../docs/evaluations/qa-reports/SAR-AUTOSETUP-001-V01-test/report.md)
+- 의존성 변경 없음(rows 속성만 변경).
+- 남은 일: designer가 320px 4조합 재확인.
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
