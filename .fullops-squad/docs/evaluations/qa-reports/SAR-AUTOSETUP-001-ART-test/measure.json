@@ -1,0 +1,1856 @@
+[
+ {
+  "iw": 320,
+  "sw": 320,
+  "docH": 1770,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 346.171875,
+   "w": 288,
+   "h": 784.359375
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": null,
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "list-320-ko"
+ },
+ {
+  "iw": 320,
+  "sw": 320,
+  "docH": 3036,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 346.171875,
+   "w": 288,
+   "h": 2049.65625
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Claude Code 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Claude Code, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Claude Code 2.1.302입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Claude Code에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Claude Code 로그인 정보는 읽거나 복사하지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 /knowslink-session on, 보낼 때마다 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "명령을 실행하고 설치기 안내를 따르세요. 끝나면 Claude Code를 다시 열고 메시지를 받을 세션에서 /knowslink-session on을 실행하세요."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 세션에서 /knowslink-session status로 확인하세요. 도착 알림은 알림일 뿐이며 본문은 세션에서 knowslink_text_receive로 확인합니다."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 286,
+   "scrollW": 286,
+   "clientH": 83,
+   "scrollH": 106,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 4,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "claude-320-ko"
+ },
+ {
+  "iw": 320,
+  "sw": 320,
+  "docH": 3140,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 346.171875,
+   "w": 288,
+   "h": 2153.4375
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Codex 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Codex CLI, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Codex CLI 0.163.0입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Codex에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Codex 로그인 정보는 읽거나 복사하지 않습니다. Codex 승인 모드는 바꾸지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 knowslink_session을 on으로 실행하게 한 뒤 Codex 도구 승인과 4자리 확인 코드 입력, 보낼 때마다 확인 코드로 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "명령을 실행하고 설치기 안내를 따르세요. 끝나면 승인을 묻는 모드(예: approval_policy = \"on-request\")로 Codex를 열고 세션을 연결하세요. YOLO(전체 자동) 모드에서는 연결되지 않습니다."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 Codex에서 knowslink_session을 status로 확인하세요. Codex 화면에는 도착 알림이 없습니다. 새 메시지는 받기를 요청해야 보입니다."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 286,
+   "scrollW": 286,
+   "clientH": 83,
+   "scrollH": 106,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 4,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "codex-320-ko"
+ },
+ {
+  "iw": 390,
+  "sw": 390,
+  "docH": 1674,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 320.578125,
+   "w": 358,
+   "h": 761.96875
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": null,
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "list-390-ko"
+ },
+ {
+  "iw": 390,
+  "sw": 390,
+  "docH": 2715,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 320.578125,
+   "w": 358,
+   "h": 1802.328125
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Claude Code 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Claude Code, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Claude Code 2.1.302입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Claude Code에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Claude Code 로그인 정보는 읽거나 복사하지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 /knowslink-session on, 보낼 때마다 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "명령을 실행하고 설치기 안내를 따르세요. 끝나면 Claude Code를 다시 열고 메시지를 받을 세션에서 /knowslink-session on을 실행하세요."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 세션에서 /knowslink-session status로 확인하세요. 도착 알림은 알림일 뿐이며 본문은 세션에서 knowslink_text_receive로 확인합니다."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 356,
+   "scrollW": 356,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "claude-390-ko"
+ },
+ {
+  "iw": 390,
+  "sw": 390,
+  "docH": 2792,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 320.578125,
+   "w": 358,
+   "h": 1879.109375
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Codex 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Codex CLI, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Codex CLI 0.163.0입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Codex에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Codex 로그인 정보는 읽거나 복사하지 않습니다. Codex 승인 모드는 바꾸지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 knowslink_session을 on으로 실행하게 한 뒤 Codex 도구 승인과 4자리 확인 코드 입력, 보낼 때마다 확인 코드로 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "명령을 실행하고 설치기 안내를 따르세요. 끝나면 승인을 묻는 모드(예: approval_policy = \"on-request\")로 Codex를 열고 세션을 연결하세요. YOLO(전체 자동) 모드에서는 연결되지 않습니다."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 Codex에서 knowslink_session을 status로 확인하세요. Codex 화면에는 도착 알림이 없습니다. 새 메시지는 받기를 요청해야 보입니다."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 356,
+   "scrollW": 356,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "codex-390-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1568,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 713.96875
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": null,
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "list-1440-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2171,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1316.828125
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Claude Code 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Claude Code, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Claude Code 2.1.302입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Claude Code에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Claude Code 로그인 정보는 읽거나 복사하지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 /knowslink-session on, 보낼 때마다 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "명령을 실행하고 설치기 안내를 따르세요. 끝나면 Claude Code를 다시 열고 메시지를 받을 세션에서 /knowslink-session on을 실행하세요."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 세션에서 /knowslink-session status로 확인하세요. 도착 알림은 알림일 뿐이며 본문은 세션에서 knowslink_text_receive로 확인합니다."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "claude-1440-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2170,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1316.03125
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Codex 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Codex CLI, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Codex CLI 0.163.0입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Codex에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Codex 로그인 정보는 읽거나 복사하지 않습니다. Codex 승인 모드는 바꾸지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 knowslink_session을 on으로 실행하게 한 뒤 Codex 도구 승인과 4자리 확인 코드 입력, 보낼 때마다 확인 코드로 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "명령을 실행하고 설치기 안내를 따르세요. 끝나면 승인을 묻는 모드(예: approval_policy = \"on-request\")로 Codex를 열고 세션을 연결하세요. YOLO(전체 자동) 모드에서는 연결되지 않습니다."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 Codex에서 knowslink_session을 status로 확인하세요. Codex 화면에는 도착 알림이 없습니다. 새 메시지는 받기를 요청해야 보입니다."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "codex-1440-ko"
+ },
+ {
+  "iw": 320,
+  "sw": 320,
+  "docH": 2080,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 394.171875,
+   "w": 288,
+   "h": 974.75
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": null,
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "list-320-en"
+ },
+ {
+  "iw": 320,
+  "sw": 320,
+  "docH": 3423,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 394.171875,
+   "w": 288,
+   "h": 2318.421875
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Claude Code work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Claude Code installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Claude Code 2.1.302."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Claude Code, and starts Google connection. It never reads or copies other apps' keys or your Claude Code sign-in."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; run /knowslink-session on in the session that should receive; approve every send."
+   ],
+   [
+    "Next action",
+    "Run the command and follow the installer. When it finishes, reopen Claude Code and run /knowslink-session on in the session that should receive messages."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server does not verify the session connection, so check it in the session with /knowslink-session status. Arrival notices are only notices; read the text in the session with knowslink_text_receive."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 286,
+   "scrollW": 286,
+   "clientH": 83,
+   "scrollH": 106,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 4,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "claude-320-en"
+ },
+ {
+  "iw": 320,
+  "sw": 320,
+  "docH": 3499,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 394.171875,
+   "w": 288,
+   "h": 2394.40625
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Codex work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Codex CLI installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Codex CLI 0.163.0."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Codex, and starts Google connection. It never reads or copies other apps' keys or your Codex sign-in. It does not change Codex's approval mode."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; in the receiving session, ask Codex to run knowslink_session with on, approve the Codex tool, and enter the 4-digit code; approve every send with its code."
+   ],
+   [
+    "Next action",
+    "Run the command and follow the installer. When it finishes, open Codex in a mode that asks for approval (for example approval_policy = \"on-request\") and connect the session. Connection does not work in YOLO (full auto) mode."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server can't see session connection, so ask Codex to run knowslink_session with status. Codex shows no arrival notice; ask it to receive to see new messages."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 286,
+   "scrollW": 286,
+   "clientH": 83,
+   "scrollH": 106,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 4,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "codex-320-en"
+ },
+ {
+  "iw": 390,
+  "sw": 390,
+  "docH": 1791,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 320.578125,
+   "w": 358,
+   "h": 856.359375
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": null,
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "list-390-en"
+ },
+ {
+  "iw": 390,
+  "sw": 390,
+  "docH": 2983,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 320.578125,
+   "w": 358,
+   "h": 2048.078125
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Claude Code work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Claude Code installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Claude Code 2.1.302."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Claude Code, and starts Google connection. It never reads or copies other apps' keys or your Claude Code sign-in."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; run /knowslink-session on in the session that should receive; approve every send."
+   ],
+   [
+    "Next action",
+    "Run the command and follow the installer. When it finishes, reopen Claude Code and run /knowslink-session on in the session that should receive messages."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server does not verify the session connection, so check it in the session with /knowslink-session status. Arrival notices are only notices; read the text in the session with knowslink_text_receive."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 356,
+   "scrollW": 356,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "claude-390-en"
+ },
+ {
+  "iw": 390,
+  "sw": 390,
+  "docH": 3036,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 16,
+   "y": 320.578125,
+   "w": 358,
+   "h": 2101.46875
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Codex work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Codex CLI installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Codex CLI 0.163.0."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Codex, and starts Google connection. It never reads or copies other apps' keys or your Codex sign-in. It does not change Codex's approval mode."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; in the receiving session, ask Codex to run knowslink_session with on, approve the Codex tool, and enter the 4-digit code; approve every send with its code."
+   ],
+   [
+    "Next action",
+    "Run the command and follow the installer. When it finishes, open Codex in a mode that asks for approval (for example approval_policy = \"on-request\") and connect the session. Connection does not work in YOLO (full auto) mode."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server can't see session connection, so ask Codex to run knowslink_session with status. Codex shows no arrival notice; ask it to receive to see new messages."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 356,
+   "scrollW": 356,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 1,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "codex-390-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1590,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 713.96875
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": null,
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "list-1440-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2193,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1316.03125
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Claude Code work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Claude Code installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Claude Code 2.1.302."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Claude Code, and starts Google connection. It never reads or copies other apps' keys or your Claude Code sign-in."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; run /knowslink-session on in the session that should receive; approve every send."
+   ],
+   [
+    "Next action",
+    "Run the command and follow the installer. When it finishes, reopen Claude Code and run /knowslink-session on in the session that should receive messages."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server does not verify the session connection, so check it in the session with /knowslink-session status. Arrival notices are only notices; read the text in the session with knowslink_text_receive."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "claude-1440-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2217,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1340.828125
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Codex work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Codex CLI installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Codex CLI 0.163.0."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Codex, and starts Google connection. It never reads or copies other apps' keys or your Codex sign-in. It does not change Codex's approval mode."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; in the receiving session, ask Codex to run knowslink_session with on, approve the Codex tool, and enter the 4-digit code; approve every send with its code."
+   ],
+   [
+    "Next action",
+    "Run the command and follow the installer. When it finishes, open Codex in a mode that asks for approval (for example approval_policy = \"on-request\") and connect the session. Connection does not work in YOLO (full auto) mode."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server can't see session connection, so ask Codex to run knowslink_session with status. Codex shows no arrival notice; ask it to receive to see new messages."
+   ]
+  ],
+  "note": null,
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "codex-1440-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2315,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1460.8125
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Claude Code 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Claude Code, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Claude Code 2.1.302입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Claude Code에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Claude Code 로그인 정보는 읽거나 복사하지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 /knowslink-session on, 보낼 때마다 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "같은 명령을 실행하면 기존 설치를 갱신합니다. 에이전트·키·친구는 그대로입니다. 갱신 뒤 Claude Code를 다시 열고 /knowslink-session on을 다시 실행하세요."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 세션에서 /knowslink-session status로 확인하세요. 도착 알림은 알림일 뿐이며 본문은 세션에서 knowslink_text_receive로 확인합니다."
+   ]
+  ],
+  "note": "기존 연결 계속: 아래 ‘내 에이전트와 연결 상태’에서 현재 에이전트와 키를 먼저 확인하세요. 새 에이전트나 새 설치 폴더를 만들지 않습니다. 연결 상태로 이동",
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "extra-use_claude_start_continue-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2313,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1458.421875
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Codex 작업 세션 (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Windows 11, 이 컴퓨터에 설치·로그인한 Codex CLI, 인터넷 연결. 저장소·Node·설치 경로는 준비하지 않아도 됩니다. 시험 환경은 Codex CLI 0.163.0입니다."
+   ],
+   [
+    "실행할 명령",
+    "이 컴퓨터의 PowerShell에서 실행할 명령 입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다."
+   ],
+   [
+    "자동으로 하는 일",
+    "내려받은 파일 확인, 새 설치 폴더 만들기, Codex에 KnowsLink 등록, Google 연결 시작. 다른 앱의 키나 Codex 로그인 정보는 읽거나 복사하지 않습니다. Codex 승인 모드는 바꾸지 않습니다."
+   ],
+   [
+    "직접 확인할 일",
+    "설치 계획에 동의, 브라우저에서 Google 로그인·지문 비교·에이전트 이름·연결 동의, 메시지를 받을 세션에서 knowslink_session을 on으로 실행하게 한 뒤 Codex 도구 승인과 4자리 확인 코드 입력, 보낼 때마다 확인 코드로 발송 승인."
+   ],
+   [
+    "다음 행동",
+    "같은 명령을 실행하면 기존 설치를 갱신합니다. 에이전트·키·친구는 그대로입니다. 갱신 뒤 Codex를 다시 열고 세션을 다시 연결하세요."
+   ],
+   [
+    "세션 연결",
+    "앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 Codex에서 knowslink_session을 status로 확인하세요. Codex 화면에는 도착 알림이 없습니다. 새 메시지는 받기를 요청해야 보입니다."
+   ]
+  ],
+  "note": "기존 연결 계속: 아래 ‘내 에이전트와 연결 상태’에서 현재 에이전트와 키를 먼저 확인하세요. 새 에이전트나 새 설치 폴더를 만들지 않습니다. 연결 상태로 이동",
+  "details": {
+   "summary": "수동 설치 문서",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang ko",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "이 컴퓨터의 PowerShell에서 실행할 명령",
+   "help": "입력란에서 전체 선택(Ctrl+A)한 뒤 복사(Ctrl+C)해 PowerShell에 붙여 넣으세요. 설치기는 바꾸기 전에 설치 계획을 보이고 동의를 묻습니다.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "extra-use_codex_start_continue-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1711,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 856.546875
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "웹에서 바로 사용",
+  "rows": [
+   [
+    "준비물",
+    "설치 필요 없음. 웹 대화의 발신 이름으로 쓸 내 에이전트 하나가 필요하며 아래 ‘에이전트 추가’에서 이름만 정하면 됩니다."
+   ],
+   [
+    "권한",
+    "친구가 요청을 수락해야 대화할 수 있습니다. 보낼 때마다 대상과 본문을 확인합니다."
+   ],
+   [
+    "다음 행동",
+    "친구 확인·추가 새 대화"
+   ]
+  ],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "extra-use_web_start_first-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1736,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 882.140625
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Grok Bot (내 컴퓨터)",
+  "rows": [
+   [
+    "준비물",
+    "Bot 컴퓨터(Linux x86_64 또는 aarch64)의 Git·POSIX sh·curl·tar·gzip·sha256sum·Python 3. 앱의 Command MCP 등록 권한과 실제 앱 버전을 먼저 확인하세요."
+   ],
+   [
+    "권한",
+    "설치는 Bot 컴퓨터의 소유자가 실행합니다. Google 동의 화면에서 새 에이전트 이름과 지문을 직접 확인합니다."
+   ],
+   [
+    "다음 행동",
+    "Grok 신규 설치 문서"
+   ]
+  ],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "extra-use_grok_start_first-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1736,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 882.140625
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "Dots (원격)",
+  "rows": [
+   [
+    "준비물",
+    "ChatGPT 계정/workspace가 custom MCP와 Events를 허용하는지 확인하세요. 내 컴퓨터에 설치할 파일은 없습니다."
+   ],
+   [
+    "권한",
+    "Google 로그인 뒤 서버 보관 동의 화면에서 설치 범위를 확인합니다. 원격 서명키와 Inbox는 KnowsLink 서버의 비공개 DB에 보관됩니다."
+   ],
+   [
+    "다음 행동",
+    "Dots에서 연결을 시작하세요. Dots 신규 연결 문서"
+   ]
+  ],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "extra-use_dots_start_first-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1685,
+  "lang": "ko",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 830.953125
+  },
+  "choices": [
+   "웹에서 바로 사용 설치 필요 없음",
+   "Grok Bot (내 컴퓨터) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Dots (원격) 연결 안내 있음 · 기존 계정 사용 확인",
+   "Claude Code 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)",
+   "Codex 작업 세션 (내 컴퓨터) 자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음",
+   "지원 확인이 필요한 호스트 Hermes Agent, 그 밖의 호스트",
+   "처음 연결",
+   "기존 연결 계속"
+  ],
+  "guideH3": "지원 확인이 필요한 호스트",
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": null,
+  "key": "extra-use_other_start_first-ko"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2336,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1459.21875
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Claude Code work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Claude Code installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Claude Code 2.1.302."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Claude Code, and starts Google connection. It never reads or copies other apps' keys or your Claude Code sign-in."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; run /knowslink-session on in the session that should receive; approve every send."
+   ],
+   [
+    "Next action",
+    "Running the same command updates your existing install. Your agent, key, and friends stay the same. After the update, reopen Claude Code and run /knowslink-session on again."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server does not verify the session connection, so check it in the session with /knowslink-session status. Arrival notices are only notices; read the text in the session with knowslink_text_receive."
+   ]
+  ],
+  "note": "Continue an existing connection: first check your current agents and keys under ‘My agents and connection status’ below. Do not create a new agent or a new install folder. Go to connection status",
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "extra-use_claude_start_continue-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 2360,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 1483.21875
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Codex work session (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Windows 11, Codex CLI installed and signed in on this computer, and an internet connection. You don't need the repository, Node, or an install path. Tested with Codex CLI 0.163.0."
+   ],
+   [
+    "Command",
+    "Command to run in PowerShell on this computer Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything."
+   ],
+   [
+    "Done automatically",
+    "Checks the download, creates a new install folder, adds KnowsLink to Codex, and starts Google connection. It never reads or copies other apps' keys or your Codex sign-in. It does not change Codex's approval mode."
+   ],
+   [
+    "You confirm",
+    "Agree to the install plan; in your browser, sign in with Google, compare the fingerprint, name the agent, and agree; in the receiving session, ask Codex to run knowslink_session with on, approve the Codex tool, and enter the 4-digit code; approve every send with its code."
+   ],
+   [
+    "Next action",
+    "Running the same command updates your existing install. Your agent, key, and friends stay the same. After the update, reopen Codex and connect the session again."
+   ],
+   [
+    "Session connection",
+    "Check in the app. The server can't see session connection, so ask Codex to run knowslink_session with status. Codex shows no arrival notice; ask it to receive to see new messages."
+   ]
+  ],
+  "note": "Continue an existing connection: first check your current agents and keys under ‘My agents and connection status’ below. Do not create a new agent or a new install folder. Go to connection status",
+  "details": {
+   "summary": "Manual install guide (in Korean)",
+   "href": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#codex-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-codex-recv-001-dev",
+   "linkText": ""
+  },
+  "cmd": {
+   "value": "& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App codex -Lang en",
+   "hasNewline": false,
+   "readOnly": true,
+   "spellcheck": false,
+   "rows": 3,
+   "clientW": 926,
+   "scrollW": 926,
+   "clientH": 83,
+   "scrollH": 83,
+   "wFrac": 0.79,
+   "selectedAll": true,
+   "font": "ui-monospace, SFMono-Regular, Consolas, monospace",
+   "fontPx": "14px",
+   "textLines": 3,
+   "label": "Command to run in PowerShell on this computer",
+   "help": "Select all in the box (Ctrl+A), copy (Ctrl+C), and paste it into PowerShell. The installer shows its plan and asks you before it changes anything.",
+   "contrastText": 14.7,
+   "contrastHelp": 6.19,
+   "contrastLabel": 14.7,
+   "describedby": "setup-command-help"
+  },
+  "mutedMinContrast": 6.19,
+  "hasCommandUI": true,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "extra-use_codex_start_continue-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1759,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 882.140625
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Use directly on the web",
+  "rows": [
+   [
+    "What you need",
+    "No installation needed. You need one agent of your own as the sender name for web conversations; just set a name under ‘Add agent’ below."
+   ],
+   [
+    "Permissions",
+    "A friend must accept your request before you can talk. The recipient and text are confirmed on every send."
+   ],
+   [
+    "Next action",
+    "Check or add friends New conversation"
+   ]
+  ],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "extra-use_web_start_first-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1784,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 907.734375
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Grok Bot (your computer)",
+  "rows": [
+   [
+    "What you need",
+    "Git, POSIX sh, curl, tar, gzip, sha256sum and Python 3 on the Bot computer (Linux x86_64 or aarch64). First confirm the app’s Command MCP registration permission and the actual app version."
+   ],
+   [
+    "Permissions",
+    "The owner of the Bot computer runs the installation. You confirm the new agent name and fingerprint yourself on the Google consent screen."
+   ],
+   [
+    "Next action",
+    "Grok new installation guide (in Korean)"
+   ]
+  ],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "extra-use_grok_start_first-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1759,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 882.140625
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Dots (remote)",
+  "rows": [
+   [
+    "What you need",
+    "Check that your ChatGPT account or workspace allows custom MCP and Events. Nothing is installed on your computer."
+   ],
+   [
+    "Permissions",
+    "After Google sign-in, you confirm the installation scope on the server-storage consent screen. The remote signing key and Inbox are kept in the KnowsLink server’s private DB."
+   ],
+   [
+    "Next action",
+    "Start the connection from Dots. Dots new connection guide (in Korean)"
+   ]
+  ],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "extra-use_dots_start_first-en"
+ },
+ {
+  "iw": 1440,
+  "sw": 1440,
+  "docH": 1733,
+  "lang": "en",
+  "overflow": [],
+  "use": {
+   "x": 240,
+   "y": 268.578125,
+   "w": 1168,
+   "h": 856.546875
+  },
+  "choices": [
+   "Use directly on the web No installation needed",
+   "Grok Bot (your computer) Connection guide available · confirm use of your existing account",
+   "Dots (remote) Connection guide available · confirm use of your existing account",
+   "Claude Code work session (your computer) Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)",
+   "Codex work session (your computer) Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice",
+   "Hosts pending support confirmation Hermes Agent and other hosts",
+   "First connection",
+   "Continue an existing connection"
+  ],
+  "guideH3": "Hosts pending support confirmation",
+  "rows": [],
+  "note": null,
+  "details": null,
+  "mutedMinContrast": null,
+  "hasCommandUI": false,
+  "buttonsInGuide": [],
+  "hangulInEn": [],
+  "key": "extra-use_other_start_first-en"
+ }
+]
