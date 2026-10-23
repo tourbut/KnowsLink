@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-23
 owner: tester
 tasks: [SAR-AUTOSETUP-001-QA]
-summary: 실제 화면 명령을 격리 relay에서 실행해 N1–N6·갱신·화면(S7)·자격 경계를 확인했다. 실제 호스트 로그인이 없어 세션 연결·첫 발송(AC-02/03)과 AC-04 전체 시간은 미확인이다. 미해결 high 0, 새 관찰 3건.
+summary: "실제 화면 명령을 격리 relay에서 실행해 N1–N6·갱신·화면(S7)·자격 경계를 확인했다. 실제 호스트 로그인이 없어 세션 연결·첫 발송(AC-02/03)과 AC-04 전체 시간은 미확인이다. 미해결 high 0, 새 관찰 3건."
 ---
 
 # SAR-AUTOSETUP-001-QA — 큰 틀 검수 보고
