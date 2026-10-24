@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-24
 owner: coor
 tasks: [FULLOPS-UPDATE-1.8.5]
-summary: "1.8.4·1.8.5를 확인했다. 두 릴리스 모두 레포 적용 항목이 없어 plugin_version만 1.8.5로 올린다"
+summary: 1.8.4·1.8.5를 확인했다. 두 릴리스 모두 레포 적용 항목이 없어 plugin_version만 1.8.5로 올린다
 ---
 
 # FULLOPS-UPDATE-1.8.5
