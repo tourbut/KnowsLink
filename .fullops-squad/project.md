@@ -51,7 +51,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 - 합성 업무 DB·경합·TypeScript/Go UI 연동: `make verify-mvp` (고유 Compose project, 자기 자원만 회수).
 - 실제 sqlc 생성: `make generate`; 생성물 diff는 `git diff --exit-code -- internal/database`.
 - D08 테이블 정의 생성: `make schema`.
-- Claude Code 모드 검사: `claude plugin validate adapters`, `claude plugin test adapters`(hooks/register.test.ts 행만 판정; src 검사 파일은 로드 실패로 표시됨). Windows Node 22는 KnowsLinkDevTools 경로를 PATH 앞에 둔다.
+- Claude Code 모드 검사: `claude plugin validate adapters`, `claude plugin test adapters`(hooks/register.test.ts 행만 판정; src 검사 파일은 로드 실패로 표시됨). Windows Node 22는 기본 체크아웃 `.devtools/node-v22.22.2-win-x64`를 PATH 앞에 둔다.
 - Grok plugin 패키지·실제 CLI 설치 검사: `make verify-grok-plugin` (임시 HOME의 `grok plugin install`·`grok mcp doctor`, 사용자 `~/.grok` 미변경). CLI 검사이며 앱 카탈로그 증거가 아니다.
 - Grok Bot 앱 Command server 준비: Bot 컴퓨터에서 `sh scripts/install_bot_mcp.sh` (`KNOWSLINK_PREFIX` 기본 `/workspace/.knowslink`). 앱 등록은 owner가 [README](../adapters/README.md#grok-bot-앱-등록)대로 실행한다.
 - 운영 배포·실제 Tunnel 연결: 후보 수락 뒤 OPS 담당.

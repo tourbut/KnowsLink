@@ -8,3 +8,4 @@
 ## Windows 셸 안전
 
 삭제·이동 정리는 [AGENTS.md](AGENTS.md)의 `Windows 파일 작업 안전` 절을 따른다. `.claude/settings.json`의 `scripts/shell_guard.py` hook이 교차 셸 삭제와 검증되지 않은 재귀 삭제를 실행 전에 거부한다.
+도구·임시 산출물·검증 로그 위치는 [AGENTS.md](AGENTS.md)의 `작업 파일 위치` 절을 따른다(레포 밖 생성 금지).

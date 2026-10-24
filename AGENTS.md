@@ -15,3 +15,12 @@ Codex hook은 session cwd에서 실행되므로 `git rev-parse --show-toplevel`�
 hook은 다른 셸·평가기(`bash -c`, `cmd /c`, `pwsh -Command`, `wsl`, `ssh`, `Invoke-Expression` 등)로 전달한 삭제 문자열을 거부한다. 대상이 검증되지 않은 재귀 삭제, 변수·와일드카드·빈 값·루트 대상 삭제, `find -delete`, `git clean`(`-n` 제외), `robocopy /MIR`, 인라인 코드의 삭제 API도 거부한다.
 허용하는 재귀 삭제는 단독 PowerShell 명령 `Remove-Item -LiteralPath '<workspace 안의 실제 절대경로>' -Recurse -Force` 하나다. 경로는 존재해야 한다. 경로는 workspace 자체·드라이브 루트·`.git`·링크·reparse 지점이 아니어야 한다.
 hook은 명령 문자열 검사이며 완전한 보안 경계가 아니다. 스크립트 파일·별칭·생성 코드는 hook을 우회할 수 있다. 따라서 위 규칙을 계속 지킨다. 명령이 거부되면 다른 형태로 우회하지 않고 coordinator에게 보고한다.
+
+## 작업 파일 위치
+
+레포 작업에 쓰는 도구·임시 산출물·검증 로그는 기본 체크아웃의 `.devtools/`(gitignore)에 둔다. 경로는 `git rev-parse --path-format=absolute --git-common-dir`의 상위 폴더 아래 `.devtools/`다(현재 `D:/workspace/KnowsLink/.devtools`). 모든 워크트리가 이 폴더를 공유한다.
+- 도구: `.devtools/node-v22.22.2-win-x64`, `.devtools/w64devkit`, `.devtools/ssh`, `.devtools/ssh-python`.
+- 과제 로그·bundle·캡처: `.devtools/<과제 폴더>/`. 레포 증거로 남길 것은 기존 규칙대로 `qa-reports/`에 커밋한다.
+
+레포 밖(`%LOCALAPPDATA%`, `%TEMP%`, 홈 디렉터리)에 이 레포 전용 파일을 만들지 않는다. 호스트 세션 scratchpad는 세션 한정 임시 파일에만 쓴다. 레포 밖이 꼭 필요하면 사용자 승인 뒤 경로·용도·정리 시점을 이 절에 기록한다.
+예전 경로 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/<X>`는 `.devtools/<X>`로 옮겼다. 과거 기록의 예전 경로는 이 대응으로 읽는다.

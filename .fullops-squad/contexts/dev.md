@@ -13,7 +13,7 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 
 ## 유효 원칙 (보관본 요약)
 
-- 검증: `make lint`·`make test`는 `cmd/`·`internal/`과 adapter만 대상이다. Windows는 KnowsLinkDevTools의 Node22·w64devkit을 쓴다. Windows product-lint는 deploy 스크립트 한계가 있어 최종 gate는 서버 고유 `/tmp` clean clone에서 실행한다.
+- 검증: `make lint`·`make test`는 `cmd/`·`internal/`과 adapter만 대상이다. Windows는 기본 체크아웃 `.devtools/`의 Node22·w64devkit을 쓴다(AGENTS.md 작업 파일 위치). Windows product-lint는 deploy 스크립트 한계가 있어 최종 gate는 서버 고유 `/tmp` clean clone에서 실행한다.
 - 실행권: claim은 한 번만 발급한다. 재시작·철회·세대 교체 뒤 과거 receipt·gate로 복구하지 않는다. 처리 경로(`deliver`)는 저장 상태에 남기고 lease·persist·ACK·claim 확정 지점마다 검사한다.
 - 보안 게이트를 Python `assert`로 쓰지 않는다(`-O`에서 사라진다). 회귀 검사는 원 결함 대조군·변이로 검출력을 먼저 증명한다.
 - timeout: inline `AbortSignal.timeout()`과 reader만 남은 `Response`는 GC로 회수될 수 있다. 실제 기본값과 강제 GC로 검사한다.
