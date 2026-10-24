@@ -17,7 +17,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
-| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.5`; Ponytail full |
+| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.6`; Ponytail full |
 | 보안·코딩 규칙 | [코딩](rules/common/coding-style.md), [테스트](rules/common/testing.md), [보안](rules/common/security.md) |
 | 문서 언어 | 한국어 |
 | 이슈 트래커 | 로컬 `PLANS.md`·역할 인박스. GitHub Issues/Projects 연동은 미설정 |
@@ -61,6 +61,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 기존 프로젝트 규칙은 없으므로 공통 규칙을 기본값으로 적용한다. 이후 기술 정본이 생기면 연결하며 보안·권한·리뷰 수락 기준은 낮추지 않는다.
 변경한 동작과 실패·경계 조건을 검증한다. DEV 자동 검증과 독립 기능 QA를 구분한다. 업무 API·Go owner UI·실제 singleton SQL·sqlc 생성이 후보에 포함된다. 일반 이메일 코드 신원·세션·신원 한도는 SAR-PUBLIC-IDENTITY-001 후보다. SAR-PUBLIC-AGENTS-001은 회원 agent 연결·키별 credential·관계·해당 한도의 DEV 후보다. SAR-PUBLIC-MESSAGES-001은 일반 text/관련 답장·receipt·gate·공통 메시지/HTTP/claim 상한의 DEV 후보다. 독립 수락·운영 측정·DEC-02 공개 정책·벤더 연결은 후속이다.
 작업 지시서에는 적용 문서와 기준 SHA를 남기고 worker와 검토자가 같은 버전을 읽도록 한다.
+작업 파일 위치 예외(2026-10-24 사용자 요청으로 1.8.6 이전에 만든 경로): 공통 규칙의 `.fullops-squad/local/` 대신 기본 체크아웃의 `/.devtools/`(루트 `.gitignore`)를 쓴다. 경로는 `D:/workspace/KnowsLink/.devtools`이고 모든 워크트리가 공유한다. 용도는 Windows용 Node22·w64devkit·ssh와 과제별 로그·bundle이다. 과제 로그는 과제 통합 뒤 사용자 확인을 받아 정리한다. 상세는 [AGENTS.md](../AGENTS.md)의 `작업 파일 위치` 절을 따른다.
 
 ## 검증 담당과 후속 인계
 
