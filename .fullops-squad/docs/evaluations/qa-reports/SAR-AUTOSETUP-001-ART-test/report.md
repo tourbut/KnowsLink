@@ -1,10 +1,10 @@
 ---
 title: SAR-AUTOSETUP-001-ART 회원 화면 자동 설정 안내 시각 검수
 status: draft
-updated: 2026-10-23
+updated: 2026-10-25
 owner: designer
 tasks: [SAR-AUTOSETUP-001-ART]
-summary: "use=claude·use=codex·선택지 목록을 3폭×KO·EN으로 직접 검수했다. D04 카피는 48행 모두 일치하고 가로 넘침은 0이다. 320px에서 명령 입력란이 마지막 줄을 가린다(V-01, medium, dev 수정 필요)."
+summary: "use=claude·use=codex·선택지 목록을 3폭×KO·EN으로 직접 검수했다. D04 카피는 48행 모두 일치하고 가로 넘침은 0이다. 320px에서 명령 입력란이 마지막 줄을 가린다(V-01, medium, dev 수정 필요). 2026-10-25 재확인: V-01 수정(rows 4) 뒤 320px 4조합 PASS."
 ---
 
 # SAR-AUTOSETUP-001-ART 시각 검수
@@ -46,3 +46,23 @@ critical·high는 0건이다. 관찰하지 않은 상태의 결함 부재를 뜻
 ## 못 한 것
 
 실제 Ctrl+C 클립보드 내용, 200% 확대·키보드 포커스 순서·고대비 모드, `start=continue` 화면의 캡처(문구는 48건에 포함), 설치기 실행(DEV·tester 몫)은 확인하지 않았다. V-01 수정 뒤에는 320px 4조합만 다시 보면 된다.
+
+## V-01 재확인 — 2026-10-25
+
+대상은 main `7f4b320d`(V-01 수정 `793c1daf` 포함, 제품 코드는 이 브랜치 HEAD와 같다). 제품 코드는 고치지 않았다. 환경은 위와 같은 방식이다: `cmd/relay`·`cmd/migrate` 빌드본 `127.0.0.1:18432`, 격리 Postgres 17(`127.0.0.1:55433`, 컨테이너 `kl-autosetup-art-recheck`), loopback SMTP sink, 합성 이메일 회원 1명(`@autosetup-art.invalid`), Chromium 1248 headless(DPR 1). 운영 relay·실계정은 쓰지 않았다. 도구는 위 [shoot.mjs](shoot.mjs)·[smtp_sink.py](smtp_sink.py)를 재사용했다(범위만 줄인 사본과 로그는 `D:/workspace/KnowsLink/.devtools/autosetup-001-art-recheck/`). 검수 뒤 relay·sink 프로세스와 DB 컨테이너를 정리했고 해당 포트는 닫혔다.
+
+`#setup-command` 측정(`rows` 4, 개행 없음, 전체 선택 `select()`가 값 전체 선택):
+
+| 조합 | 320 `scrollHeight`/`clientHeight` | 320 판정 | 390 `scrollHeight`/`clientHeight` | 390 가로 넘침 |
+|---|---|---|---|---|
+| claude KO | 106 / 106 | PASS ([png](png/recheck-claude-320-ko.png)) | 106 / 106 | 0 (`scrollWidth` 390 == 390) |
+| claude EN | 106 / 106 | PASS ([png](png/recheck-claude-320-en.png)) | 106 / 106 | 0 |
+| codex KO | 106 / 106 | PASS ([png](png/recheck-codex-320-ko.png)) | 106 / 106 | 0 |
+| codex EN | 106 / 106 | PASS ([png](png/recheck-codex-320-en.png)) | 106 / 106 | 0 |
+
+- 이전 `scrollHeight 106 > clientHeight 83`이 `106 == 106`이 됐다. 320px 캡처 4장에서 마지막 줄 `-App <호스트> -Lang <언어>`가 입력란 안에 보인다(claude·codex 모두 `claude -Lang ko`·`codex -Lang en`처럼 4줄째).
+- 320px 가로 스크롤 0(`scrollWidth` 320 == 320, 넘치는 요소 0), EN 화면 한글 잔존 0.
+- 390px는 측정만 했다. 가로 넘침 0, `scrollHeight == clientHeight`라 회귀 없다. 390px 캡처는 FAIL이 없어 남기지 않았다. 390px 줄 수는 `scrollHeight`가 최소 높이에 고정돼 측정값으로 알 수 없지만, 입력란이 4행이라 이전 3줄 명령에 1줄 여유가 생겼다.
+- 판정: **V-01 PASS**(320px 4조합). 위 PASS* 주석(390px 여유 없음)도 해소됐다. 이 검수로 SAR-AUTOSETUP-001의 시각 수락(AC-10 포함) 마지막 조건이 충족된다. 새 결함은 없다.
+
+못 한 것: 위 '못 한 것'(클립보드·200% 확대·키보드·고대비·`start=continue` 캡처·설치기 실행)은 범위 밖이라 그대로다.
