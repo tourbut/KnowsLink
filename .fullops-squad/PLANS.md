@@ -19,7 +19,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 ## SAR-AUTOSETUP-001-V01 통합·ART 재확인 — 2026-10-25
 
 - V01 통합: dev worker task_820a8aa04505 succeeded(worker_done은 이 coor 세션에 미도착, integration pending 0). dev 378cadc1(제품 793c1daf, rows 3→4·회귀 테스트 1건). review need skip(코드 2파일 5줄), 병합자 diff 확인, dev lint 793c1daf ERROR 0. main 7f4b320d non-FF, 병합 lint ERROR 0(make 부재 unavailable 2), `go test ./internal/relay -run TestAutosetupGuide` ok, push·원격 조상 확인. coor·designer·ops·dev FF(dev 미추적 영상 WIP 보존). tester는 D040 대기로 동기화 예약.
-- ART 재확인: SAR-AUTOSETUP-001-ART reopen(base 7f4b320d), route product→designer override(같은 과제 재검수), claude-sonnet-5-5 high(jev), fresh(이전 designer 세션 release). 320px 4조합 측정·캡처, 390은 측정만. 로그는 `.devtools/autosetup-001-art-recheck/`.
+- ART 재확인: SAR-AUTOSETUP-001-ART reopen(base 7f4b320d), route product→designer override(같은 과제 재검수), claude-sonnet-5-5 high(jev), fresh(이전 designer 세션 release). 320px 4조합 측정·캡처, 390은 측정만. 로그는 `.devtools/autosetup-001-art-recheck/`. designer task_6a46c947a05b / ctx_de1378548dae / term_5129c221-b19a-45b6-b294-3765bb3a00a2, sonnet-5-5 high 일치, 착수 확인. spec에 `Purpose: review`로 잘못 적어 완료 보고가 integration에 잡히지 않을 수 있다 → 완료 시 coor가 직접 병합.
+- QA 부분 결과 통합: msg_3c99b0c52824(2026-10-23 worker_done, 이번 대기에서 수신) tester c17e8f24 — 설치기 N1–N6·갱신 S5·화면 S7·자격 경계 S4·MCP 왕복 PASS, high 0, 관찰 O-01. need skip(코드 0), 비밀값 없음 확인. main 6788040f non-FF, 병합 lint ERROR 0, push·원격 조상 확인, coor·ops·tester·dev FF(designer는 작업 중이라 예약). 남은 일: AC-02/03/04·S1–S3 실세션 판정은 D040 답 뒤 tester 재배정. 질문 msg_680697387071은 D040으로 열어 둔다.
 
 ## 잔여 작업 일괄 수행 — 2026-10-18
 
