@@ -117,3 +117,11 @@ V-01은 이전 ART 보고서의 결함 ID다.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. worker_done 본문 첫 줄은 `[완료] <과제 키> | 브랜치 <이름> | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치 / SHA: fullops/designer / 44094447 (재확인 절 커밋, 이후 finish 기록 커밋은 별도)
+- 변경 이유: V-01 수정(main 7f4b320d, rows 4) 뒤 320px 4조합 재확인. 결과는 V-01 PASS.
+- 검토 필요: 없음. 새 결함 없음.
+- 검증한 것과 못 한 것: 격리 relay(18432)·Postgres 17(55433)·합성 회원에서 320/390px × claude·codex × KO·EN 8조합 측정. 320px 4조합 모두 scrollHeight 106 == clientHeight 106, 마지막 줄 `-App <호스트> -Lang <언어>`가 캡처에 보인다. 390px 4조합 가로 넘침 0. 클립보드·200% 확대·키보드·설치기 실행은 범위 밖이라 안 했다.
+- 산출물·로그 링크: [report.md 재확인 절](../docs/evaluations/qa-reports/SAR-AUTOSETUP-001-ART-test/report.md), 로그 `D:/workspace/KnowsLink/.devtools/autosetup-001-art-recheck/`
+- 남은 일: 없음. relay·sink·DB 컨테이너는 정리했다. tester 실세션 검수(D040 대기)는 별도다.
+- 의존성: 변경 없음(문서·캡처만 변경, 제품 코드·manifest 무수정).

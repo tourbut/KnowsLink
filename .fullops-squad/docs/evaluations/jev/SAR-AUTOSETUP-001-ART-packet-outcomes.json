@@ -1,30 +1,55 @@
 {
- "task_key": "SAR-AUTOSETUP-001-ART",
- "attempt": "a1134cf0f55b41a39c9e2e4e455af1ad",
- "packet_input_sha256": "4c74381366fcb5bf47d7c05fa8db9cd517e4a43231349f0eee8887de395acf62",
+ "packet_input_sha256": "f02abd0fd86781f74ac8f44b63eae34c2f8b51675aa9da6ca46096596643cbfd",
+ "attempt": "c928aa86fd0948d8a5da90f959554d55",
  "items": [
-  {"path": ".fullops-squad/FULLOPS.md", "category": "document_read", "status": "no_change", "reason": "운영 모드(coor/lite)와 designer 역할 경계를 읽었다. 검수만 하고 코드는 고치지 않아 바꿀 내용이 없다."},
-  {"path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md", "category": "document_read", "status": "completed", "reason": "D04 자동 설정 절의 U8 선택지 표와 Claude Code·Codex 카피 표를 읽고 화면 행 텍스트와 48건 대조했다."},
-  {"path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md", "category": "document_update", "status": "completed", "reason": "변경안 문단을 현행·검수 완료로 바꾸고 '시각 검수 결과' 소절(V-01 열린 결함 포함)을 추가했다. front matter는 deliverables.py --stamp로 썼다."},
-  {"path": ".fullops-squad/docs/product-specs/SAR-AUTOSETUP-001.md", "category": "document_read", "status": "no_change", "reason": "AC-10 문구를 확인했다. 현재 경로는 docs/planning/product-specs/다. 제품 규칙은 바꾸지 않았다."},
-  {"path": ".fullops-squad/project.md", "category": "document_read", "status": "no_change", "reason": "검증 명령과 정본 위치를 확인했다. Windows 호스트에서 product-lint(make)는 실행 불가라는 기존 기록과 같다."},
-  {"path": ".fullops-squad/rules/common/README.md", "category": "document_read", "status": "no_change", "reason": "공통 규칙 우선순위를 확인했다. 예외나 충돌은 없다."},
-  {"path": ".fullops-squad/rules/common/coding-style.md", "category": "document_read", "status": "no_change", "reason": "제품 코드를 바꾸지 않아 적용할 변경이 없다. 검수 도구(.mjs, .py)는 qa-reports에만 두었다."},
-  {"path": ".fullops-squad/rules/common/security.md", "category": "document_read", "status": "no_change", "reason": "격리 relay·합성 회원·loopback SMTP만 썼다. 운영 relay·실계정·실메일은 접근하지 않아 기준을 지켰다."},
-  {"path": ".fullops-squad/rules/common/testing.md", "category": "document_read", "status": "no_change", "reason": "lite 레벨의 designer 시각 검수 범위와 커밋 증거 규칙(report가 링크하는 캡처만)을 따랐다."},
-  {"path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md", "category": "document_update", "status": "completed", "reason": "D04의 다른 원천이라 deliverables.py --id D04 --stamp가 tasks에 이 과제 키를 더했다. 본문은 바꾸지 않았다."},
-  {"path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md", "category": "document_read", "status": "no_change", "reason": "이전 회원 화면 DEV 기준을 확인했다. 이번 검수 범위와 충돌하는 내용이 없다."},
-  {"path": "internal/relay/capacity.go", "category": "impact_check", "status": "no_change", "reason": "회원당 agent 상한 로직이다. 이번 화면 검수는 읽기 전용 GET만 써서 영향이 없다."},
-  {"path": "internal/relay/connect_guide.go", "category": "direct_edit", "status": "no_change", "reason": "useChoices 4–6번 라벨·보조 문구가 D04 선택지 표와 같음을 화면 실측으로 확인했다. 수정 필요 없다."},
-  {"path": "internal/relay/human_http.go", "category": "impact_check", "status": "no_change", "reason": "use 쿼리로 안내 상자를 고르는 경로다. use=claude·codex·web·grok·dots·other를 실제 요청해 동작을 확인했다."},
-  {"path": "internal/relay/human_pages.go", "category": "direct_edit", "status": "no_change", "reason": "안내 상자 템플릿을 화면으로 검수했다. 320px에서 명령 입력란 rows=3이 마지막 줄을 가리는 V-01을 찾았고 코드 수정은 dev에 맡겨 report에 기록했다."},
-  {"path": "internal/relay/i18n.go", "category": "direct_edit", "status": "no_change", "reason": "?lang=ko|en 힌트로 KO·EN 화면을 만들었다. EN 화면에 한글 잔존이 없음을 확인했다."},
-  {"path": "internal/relay/i18n_en_human.go", "category": "direct_edit", "status": "no_change", "reason": "EN 선택지·안내 카피 48행이 D04 EN 칸과 모두 일치했다. 수정 필요 없다."},
-  {"path": "internal/relay/i18n_test.go", "category": "impact_check", "status": "no_change", "reason": "번역 표 테스트다. 제품 코드를 바꾸지 않아 영향이 없다."},
-  {"path": "internal/relay/member_pages.go", "category": "impact_check", "status": "no_change", "reason": "회원 화면 공통 렌더링이다. 같은 화면의 로그인·이름 입력 단계를 통과해 선택지 화면에 도달했고 변경은 없다."},
-  {"path": "internal/relay/policy/privacy.en.html", "category": "impact_check", "status": "no_change", "reason": "정책 페이지다. 이 과제의 화면 범위 밖이라 열지 않았다."},
-  {"path": "internal/relay/policy/privacy.ko.html", "category": "impact_check", "status": "no_change", "reason": "정책 페이지다. 이 과제의 화면 범위 밖이라 열지 않았다."},
-  {"path": "videos/knowslink-motion/index.html", "category": "impact_check", "status": "no_change", "reason": "모션 영상 소스다. 회원 화면 검수와 관계가 없어 열지 않았다."}
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "하네스 규약 확인, 재확인 절 규칙(기존 report.md에 절 추가) 적용"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-V01-test/report.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "DEV 측정(합성 템플릿)을 확인하고 실제 relay 화면으로 재확인"
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "작업 파일 위치 예외(.devtools) 적용"
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "읽고 재확인 기준으로 적용"
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "읽고 재확인 기준으로 적용"
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "읽고 재확인 기준으로 적용"
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "completed",
+   "reason": "읽고 재확인 기준으로 적용"
+  },
+  {
+   "path": "internal/relay/human_pages.go",
+   "category": "impact_check",
+   "status": "completed",
+   "reason": "#setup-command rows=\"4\" 확인(제품 코드 수정 없음)"
+  }
  ],
- "uncertainty_review": "정본 packet의 미확인 5건을 직접 확인했다. PLANS.md는 이 과제 범위 밖이다. service-member-ui.md와 SAR-AUTOSETUP-001.md는 전체를 읽었다(제품 규칙 문서의 실제 위치는 docs/planning/product-specs/). module-design.md와 ops-guide.md는 이번 시각 검수 범위가 아니라 읽지 않았다. 잔여 후보 0건이다."
+ "uncertainty_review": "미확인 4건(PLANS.md, service-member-ui.md, module-design.md, ops-guide.md)은 이 재확인(제품 코드 무수정, 320/390px 측정)에 영향이 없어 읽지 않았다."
 }
