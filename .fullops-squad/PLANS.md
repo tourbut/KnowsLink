@@ -16,6 +16,11 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 플러그인 이슈 tourbut/Fullops-Squad-plugin#95 등록(작업 파일 위치 규칙·setup gitignore·지시서 칸·hook 알림 제안).
 - 보류(사용자): 원본 `KnowsLinkDevTools` 삭제. shell guard가 workspace 밖 재귀 삭제를 거부하므로 사용자가 직접 지운다. dev(V-01 진행 중)·tester(D040 대기)는 다음 동기화 때 새 규칙을 받는다.
 
+## SAR-AUTOSETUP-001-V01 통합·ART 재확인 — 2026-10-25
+
+- V01 통합: dev worker task_820a8aa04505 succeeded(worker_done은 이 coor 세션에 미도착, integration pending 0). dev 378cadc1(제품 793c1daf, rows 3→4·회귀 테스트 1건). review need skip(코드 2파일 5줄), 병합자 diff 확인, dev lint 793c1daf ERROR 0. main 7f4b320d non-FF, 병합 lint ERROR 0(make 부재 unavailable 2), `go test ./internal/relay -run TestAutosetupGuide` ok, push·원격 조상 확인. coor·designer·ops·dev FF(dev 미추적 영상 WIP 보존). tester는 D040 대기로 동기화 예약.
+- ART 재확인: SAR-AUTOSETUP-001-ART reopen(base 7f4b320d), route product→designer override(같은 과제 재검수), claude-sonnet-5-5 high(jev), fresh(이전 designer 세션 release). 320px 4조합 측정·캡처, 390은 측정만. 로그는 `.devtools/autosetup-001-art-recheck/`.
+
 ## 잔여 작업 일괄 수행 — 2026-10-18
 
 - 사용자 지시 "잔여작업 모두 수행해". coor Run run_76a9511dbb0d. 설계 정본 SAR-UX-ISSUES-002.md 순차 인계 2–5단위를 차례로 DEV → tester → designer 시각 → 고정 SHA 리뷰 → main 통합한다. 각 단위는 직전 통합 main을 기준으로 한다.

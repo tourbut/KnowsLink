@@ -82,6 +82,35 @@ V-01은 이전 ART 보고서의 결함 ID다.
 
 - .fullops-squad/handovers/logs/2026-10-23_to_designer.md
 
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad\docs\evaluations\jev\SAR-AUTOSETUP-001-ART-packet.json` / SHA `6c6a0b576a726c0630af08e4dd6341d2ead28c9f` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-V01-test/report.md` (document_read) · 줄 7, 12, 15 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `internal/relay/human_pages.go` (impact_check) · 줄 24, 37, 49 · inferred · 필수
+- `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-ART-test/report.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/handovers/to_designer.md` (document_read) · 줄 2, 7, 14, 33, 50 · inferred
+- `internal/relay/autosetup_guide_test.go` (impact_check) · 줄 51 · inferred
+- `internal/relay/connect_guide.go` (impact_check) · 줄 1 · inferred
+- `internal/relay/connect_guide_test.go` (impact_check) · 줄 1, 84 · inferred
+- `internal/relay/friend_rerequest_test.go` (impact_check) · 줄 1, 16, 128, 135, 169, 225, 226 · inferred
+- `internal/relay/gate_summary.go` (impact_check) · 줄 86, 101, 103, 104 · inferred
+- `internal/relay/human_http.go` (impact_check) · 줄 18, 299, 306, 308 · inferred
+- `internal/relay/human_names_test.go` (impact_check) · 줄 119 · inferred
+- `internal/relay/member_pages.go` (impact_check) · 줄 20, 118, 121 · inferred
+- `videos/knowslink-motion/analyze.py` (impact_check) · 줄 207, 215, 222, 224 · inferred
+나머지 참조 후보 0건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
+미확인 4건: .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/module-design.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
