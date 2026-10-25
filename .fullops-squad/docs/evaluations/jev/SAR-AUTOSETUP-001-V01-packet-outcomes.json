@@ -1,0 +1,73 @@
+{
+ "packet_input_sha256": "615702b7a193ed3a8c7b3c58fff213587c5be5da39a57301a7e9e70a48760046",
+ "attempt": "0b4e9fd12ba9436dbe63c1736fbb0d0f",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-ART-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "read for context; no change needed for rows attribute fix"
+  },
+  {
+   "path": "internal/relay/autosetup_guide_test.go",
+   "category": "direct_edit",
+   "status": "completed",
+   "reason": "added rows=4 assertion to guide test"
+  },
+  {
+   "path": "internal/relay/human_pages.go",
+   "category": "direct_edit",
+   "status": "completed",
+   "reason": "rows 3→4 in human-setup-command"
+  }
+ ],
+ "uncertainty_review": "Unconfirmed PLANS.md, service-member-ui.md, module-design.md, ops-guide.md were not needed: change is a single rows attribute; D04 shape unchanged (same .share class, no new style)."
+}
