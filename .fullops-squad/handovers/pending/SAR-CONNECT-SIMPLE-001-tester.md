@@ -16,7 +16,7 @@ summary: DEV 완료 SHA에서 한도 제거·연결 시도 정리·실패 사유
 - 상태: blocked — DEV 완료 SHA 대기
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위: fullops/tester의 시나리오·qa-reports 작성, DEV 완료 SHA의 격리 로컬 relay와 합성 회원 fixture(A·B·C), 이 PC의 Windows 폴더 실측(레포 `.fullops-squad/local/` 또는 지정 테스트 폴더 안, D: 드라이브 포함), release 패키지 검사, 커밋·push.
-- 2단계 승인 범위(사용자 결정 2026-10-26, 아래 '실연결 재검증' 절): 배포된 relay에서 Grok Bot 쪽 `knowslog01@gmail.com` 회원과 Claude Code 쪽 `scshin88@gmail.com` 회원의 실제 연결, 두 회원 사이 친구 요청·수락, ego 브라우저에서 에이전트가 Google 로그인·지문 비교·이름·연결 동의를 직접 진행.
+- 2단계 승인 범위(사용자 결정 2026-10-26, 아래 '실연결 재검증' 절): 배포된 relay에서 Grok Bot 쪽 회원 A(운영 테스트 계정, 실제 주소는 coor가 실행 시 전달)과 Claude Code 쪽 회원 B(사용자 본인 계정)의 실제 연결, 두 회원 사이 친구 요청·수락, ego 브라우저에서 에이전트가 Google 로그인·지문 비교·이름·연결 동의를 직접 진행.
 - 추가 승인이 필요한 행위: 1단계에서 운영 relay·운영 agent 사용, 실제 메시지 발송(2단계 포함), 비밀번호·2단계 인증 코드 입력, 사용자 실제 `~/.claude`·`~/.codex` 설정 변경, 위 두 회원 외 계정 사용, 기존 운영 agent 철회·정리, 제품 코드 수정(결함은 보고만), 제품 규칙 변경.
 - 상위 의도: 없음. [D02 SAR-CONNECT-SIMPLE-001](../../docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md) CS-AC-01–CS-AC-16의 독립 동작 확인.
 - 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/tester / fullops/tester
@@ -68,7 +68,7 @@ summary: DEV 완료 SHA에서 한도 제거·연결 시도 정리·실패 사유
 
 1단계(격리 fixture) PASS와 운영 배포(ops, 사용자 승인) 뒤 실행한다. 1단계와 같은 지시서의 별도 절로 기록하고 PASS를 섞지 않는다.
 
-1. 회원 구성: Grok Bot 쪽은 `knowslog01@gmail.com` 회원, Claude Code 쪽은 `scshin88@gmail.com` 회원이다. 서로 다른 두 회원이므로 친구 요청·수락 흐름을 포함한다.
+1. 회원 구성: Grok Bot 쪽은 회원 A(운영 테스트 계정, 실제 주소는 coor가 실행 시 전달), Claude Code 쪽은 회원 B(사용자 본인 계정)이다. 서로 다른 두 회원이므로 친구 요청·수락 흐름을 포함한다.
 2. 브라우저 단계: Google 로그인, 계정 선택, 지문 비교, 에이전트 이름, 연결 동의, 친구 코드 요청·수락을 사용자에게 넘기지 않는다. 에이전트가 ego 브라우저에서 모두 진행한다. 지문은 클라이언트 출력과 브라우저 화면을 에이전트가 직접 대조하고 결과를 기록한다.
 3. 멈추는 경우: Google이 비밀번호·2단계 인증 코드·새 기기 확인을 요구하면 입력하지 않고 coor에 `ask`로 알린다. 다른 Google 계정이 선택돼 있으면 W-02 화면을 확인한 뒤 지정 계정으로 바꾼다.
 4. 측정: 호스트별 T-01–T-04 사람 행동 수 대신 에이전트가 대신한 행동과 사람이 꼭 한 행동(있다면)을 순서대로 기록한다. 연결 실패가 나면 E 표 사유 코드·문구·다음 행동이 보였는지 기록한다. 실패 시도가 '내 에이전트' 목록에 늘지 않는지 확인한다(CS-AC-05).
