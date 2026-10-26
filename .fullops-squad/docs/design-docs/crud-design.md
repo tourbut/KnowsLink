@@ -2,14 +2,30 @@
 id: D09
 title: CRUD정의서
 status: review
-updated: 2026-10-21
+updated: 2026-10-26
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV]
 upstream: [D02]
 summary: owner와 pair 및 transport와 gate의 상태 변경을 정의한다
 ---
 
 # KnowsLink CRUD 정의
+
+## SAR-CONNECT-SIMPLE-001-DEV 연결 시도와 agent 생성
+
+| 동작 | 입력 | 상태 변경 | 거절 |
+|---|---|---|---|
+| 클라이언트 시작 | `POST /v1/connect/start` (+선택 `host`) | Connection(Device) `requested` 생성. 알려진 host만 저장 | 기존 형식·서명·2000개 |
+| Google 로그인 | `/auth/google` → callback | Owner 결합, `prepared` | 다른 계정 결합 시도는 W-02 문구 |
+| 브라우저 동의 | `POST /home/device-confirm` (connection, name) | 속도·용량 확인 뒤 agent ID 예약, Name 저장, `approved`. Agent는 만들지 않는다 | `agent_rate`·`service_capacity`면 `refused`로 바꾸고 거절 화면 |
+| 키 저장 | `POST /v1/connect/complete` | Agent 생성(Name·Owner·Created), 키·credential 저장, `consumed` | 기한 + 24시간 뒤, 속도·용량 초과 |
+| 시도 정리 | `POST /home/attempt-remove` (connection) | 키 없는 device 시도 기록을 바로 삭제. 철회 기록 없음 | 남의 시도·`consumed` 시도 |
+| 자동 정리 | sweep | 키 없는 시도는 기한 + 24시간에 삭제 | 없음 |
+| 웹 에이전트 추가 | `POST /home/agents` | 속도·용량 확인 뒤 Agent 생성(Created) | `agent_rate` 429, `service_capacity` 409 |
+| Dots 원격 동의 | `POST /remote/consent/{id}` | 속도·용량 확인 뒤 이름 있는 Agent와 원격 키 생성 | 같은 두 사유를 동의 화면에 표시 |
+| owner API agent 등록 | `POST /v1/agents` | 같은 확인 뒤 Agent 생성 | 같은 두 사유 |
+
+agent 철회·키 철회·이름 변경은 바뀌지 않았다. 새 agent의 수 제한은 회원당 24시간 20개 속도와 서버 전체 용량 경계만 남는다.
 
 ## SAR-REFACTOR-002 처리 순서 보완
 

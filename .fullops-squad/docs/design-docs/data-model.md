@@ -2,14 +2,27 @@
 id: D06
 title: 엔티티정의서
 status: review
-updated: 2026-10-21
+updated: 2026-10-26
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
 
 # KnowsLink 업무 엔티티·DB·CRUD
+
+## SAR-CONNECT-SIMPLE-001-DEV agent·연결 시도 필드
+
+제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md)이다. relay state JSON에 필드만 더했다. SQL migration은 없다. D07 물리 설계와 D08 테이블 정의는 바뀌지 않는다.
+
+- `Agent.Created`: agent를 만든 시각이다(`omitzero`). 24시간 새 agent 속도(L-04)가 이 값을 센다. 철회한 agent도 센다. 이 필드가 없는 기존 agent는 0이며 세지 않는다.
+- owner당 agent 기록 상한(10)과 활성 상한(5), 고정 전체 상한(200)을 없앴다(L-01–L-03). 아래 'SAR-PUBLIC-AGENTS-001-DEV-FIX 철회 기록 보존' 절의 owner agent 기록 상한은 더 이상 적용하지 않는다. agent당 키 기록 20개와 활성 키 3개는 그대로다.
+- 서버 전체 경계: 활성 owner의 철회되지 않은 agent 수가 1000 이상이면 새 agent를 만들 때마다 운영 로그를 남긴다. 2000 이상이면 새 agent만 거절한다(`service_capacity`). 값의 근거는 [D12](../operations/ops-guide.md#sar-connect-simple-001-dev-agent-용량-경계)다.
+- `Connection.Host`: 클라이언트가 시작할 때 보낸 호스트 힌트(`claude`·`codex`·`grok`)다. 기본 이름 계산에만 쓴다. 다른 값은 저장하지 않는다.
+- `Connection.Name`: 브라우저 동의 때 정한 agent 이름이다. 키 저장 전에는 이 값만 있고 Agent는 없다.
+- `Connection.Agent`(device 시도): 동의 때 예약한 무작위 agent ID다. 클라이언트가 키를 저장하는 complete 때 이 ID로 Agent를 만든다(A-01). 그 전에는 agent 목록·친구 화면·속도 집계에 없다.
+- `Connection.State`에 `refused`를 더했다. 동의 때 L-03·L-04로 거절된 device 시도다. `Connection.Refused`는 `agent_rate` 또는 `service_capacity`, `Connection.Retry`는 `agent_rate`가 풀리는 시각이다.
+- 동의를 받은(`approved`) device 시도는 기한(10분)이 지나도 `expired`로 바뀌지 않는다. 기한 + 24시간까지 complete를 받는다(A-02, F-07). 그 시각에 sweep이 다른 연결 기록과 함께 지운다. 키가 없으므로 철회 기록은 남기지 않는다.
 
 ## SAR-HUMAN-PEER-001 DEV 후보
 

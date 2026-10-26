@@ -2,20 +2,46 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-23
+updated: 2026-10-26
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
 
 # KnowsLink HTTP·adapter 계약
 
+## SAR-CONNECT-SIMPLE-001-DEV 연결 단순화 계약
+
+제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md)이다. 기존 클라이언트(Grok·Dots·설치기·이전 플러그인)는 새 필드 없이 그대로 동작한다.
+
+| 경로 | 바뀐 것 | 경계 |
+|---|---|---|
+| POST `/v1/connect/start` | 선택 필드 `host`(`claude`·`codex`·`grok`)를 받는다. 기본 이름 계산에만 쓴다. 다른 값은 무시한다 | 이전 relay는 모르는 필드를 422 `invalid_schema`로 거절하므로 클라이언트는 호스트를 알 때만 보낸다 |
+| POST `/v1/connect/poll` | `approved`의 `agent`는 예약 ID다. Agent는 complete 때 생긴다. 동의가 L-03·L-04로 거절된 시도는 아래 오류를 돌려준다 | 기존 `requested`·`prepared`·`approved` 형식 유지 |
+| POST `/v1/connect/complete` | 동의를 받은 device 시도는 기한 + 24시간까지 완료할 수 있다(F-07 복구). 완료 때 Agent를 만든다 | 같은 PoP·client 검사 |
+| 새 오류 | `agent_rate`: HTTP 429, `{"error":"agent_rate","retry_at":"<RFC3339>"}`. `service_capacity`: HTTP 409, `{"error":"service_capacity"}` | `/v1/agents`, poll, complete, 웹 생성·동의, Dots 동의에 같은 판정 |
+| GET `/v1/contacts/{agent}` | 자기 agent도 조회한다. 응답에 `short`(구분값)를 더했다. 이름 없는 agent의 `name`은 `이름 없는 에이전트 (<short>)`다 | 남의 agent는 친구 권한이 있어야 한다. 이메일·키·credential 없음 |
+| GET `/connect/{id}` | 시작한 회원이 로그인해 있으면 완료·동의 완료·만료·취소 화면을 보인다(W-01). 거절된 시도는 거절 문구 | 다른 회원·로그아웃은 기존 401·403 문구 |
+| POST `/home/attempt-remove` | `connection`: 키 없는 자기 device 시도를 지운다 | 정리 budget, 동일 Origin·세션. 남의 시도·소비된 시도는 403 |
+| Google callback(연결 중) | 다른 계정이 시작한 연결·새 가입 닫힘·로그인 기한 지남을 서로 다른 403 문구로 보인다. 앞의 둘은 '다른 계정 선택'(POST `/auth/google`, 같은 connection)을 보인다 | 다른 계정의 이메일·이름·존재를 응답에 넣지 않는다 |
+| GET `/remote/consent/{id}` | 이름 칸 기본값 `Dots`(번호) | 기존 동의·CSRF |
+
+클라이언트 출력(E, A-06):
+
+- `plugin.js setup-connect <relay> <폴더> [--fresh] [--host claude|codex|grok] [--lang ko|en]`: 실패 줄은 `{"state":"failed","reason","message"[,"retry_at"]}`이다. F-07은 `{"state":"unconfirmed","reason":"unconfirmed","message","agent","name"}`이다. `reason`은 `expired`·`cancelled`·`unconfirmed`·`private_folder`·`unreachable`·`rate_limited`·`agent_rate`·`service_capacity`다. `signed_out`은 웹 전용이다.
+- `knowslink_connect`(`confirmed:true`, 선택 `fresh:true`)와 `knowslink_connect_status`: 같은 `reason`·`message`에 모델용 `next` 한 줄을 더한다. 성공 결과와 `knowslink_status`·text send/receive 결과는 `me`·`peer`(`agent`, `name`)를 담는다. 같은 컴퓨터의 Grok Bot이 같은 agent를 쓰면 `knowslink_status`가 `sharedAgent`를 보인다.
+- 환경 변수: `KNOWSLINK_HOST`(기본 이름 힌트), `KNOWSLINK_LANG`(문구 언어, 기본 ko), `KNOWSLINK_AGENT_ROOT`(기본 폴더 상위). `KNOWSLINK_AGENT_FOLDER`가 없으면 `<root>/<host>-agent`를 쓴다. Windows root는 `%LOCALAPPDATA%\KnowsLink`다. Grok release 설치는 `defaults.json`이 비어 있는 값만 채운다.
+
+배포 순서: relay를 클라이언트·설치기보다 먼저 배포한다. 이전 relay는 `host`를 422로 거절하며 클라이언트는 이를 `unreachable`로 보인다.
+
+기본 이름(A-04): 호스트 표시 이름(`Claude Code`·`Codex`·`Grok Bot`·`Dots`)이다. 같은 회원의 철회되지 않은 agent나 동의 완료 시도가 그 이름을 쓰면 2부터 비어 있는 가장 작은 번호를 붙인다. 호스트를 모르면 `내 에이전트 1`(영어 화면 `My agent 1`)부터 센다. 컴퓨터 이름·계정·이메일은 쓰지 않는다.
+
 ## SAR-AUTOSETUP-001-DEV 자동 설정 배포·연결 계약
 
 - `GET /install/<major.minor.patch>/<file>`: `KNOWSLINK_INSTALL_DIR`가 있을 때만 `knowslink-setup.ps1`(`text/plain; charset=utf-8`), `knowslink-claude-plugin.zip`, `knowslink-codex-plugin.zip`(`application/zip`)을 보낸다. 그 밖의 이름·버전 형식·미설정은 404다. 인증은 없고 공개 ingress 규칙에 같은 경로만 있다.
 - `POST /v1/connect/poll`: `approved` 응답에 `name`(브라우저에서 정한 agent 이름)을 더했다. 기존 `owner`·`agent`는 그대로다. 이 응답은 시도의 device 키 PoP를 가진 클라이언트만 받는다.
-- 로컬 CLI `node dist/plugin.js setup-connect <서비스 URL> <agent 폴더> [--fresh]`: stdout은 JSON 줄 `{"state":"waiting","url","fingerprint","expires"[,"resumed"]}`, `{"state":"connected","agent","name","fingerprint"}` 또는 `{"state":"connected","existing":"true"}`, `{"state":"failed","reason":"cancelled_or_expired|unreachable"}`, `{"state":"unconfirmed","agent","name"}`다. 종료코드는 0 연결, 2 실패, 3 확인 필요, 1 예외다. 토큰·키·credential은 출력하지 않는다.
+- 로컬 CLI `node dist/plugin.js setup-connect <서비스 URL> <agent 폴더> [--fresh]`: stdout은 JSON 줄 `{"state":"waiting","url","fingerprint","expires"[,"resumed"]}`, `{"state":"connected","agent","name","fingerprint"}` 또는 `{"state":"connected","existing":"true"}`, `{"state":"failed","reason":"<E 사유>","message"}`(SAR-CONNECT-SIMPLE-001-DEV에서 `cancelled_or_expired`를 `cancelled`·`expired`로 나눴다), `{"state":"unconfirmed","agent","name"}`다. 종료코드는 0 연결, 2 실패, 3 확인 필요, 1 예외다. 토큰·키·credential은 출력하지 않는다.
 - 설치기 인자: `-App claude|codex`, `-Lang ko|en`, `-NewAgent`. 실패 출력은 `[F-01]`–`[F-09]` 줄과 `이미 바뀐 것`·`다음 행동` 줄이다. 상세는 [실행 기록](../exec-plans/phases/SAR-AUTOSETUP-001-DEV.md)이다.
 
 ## SAR-UX-ISSUES-002 친구 코드·친구 요청 (2단위)
