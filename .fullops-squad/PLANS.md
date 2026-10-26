@@ -9,6 +9,13 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## 링크·Claude 실연결 테스트 중지와 SAR-CONNECT-SIMPLE-001 — 2026-10-26
+
+- 테스트(운영 relay·실계정): Grok Bot '링크'를 `knowslink-link` custom MCP로 연결했다(agent_c18976751d5a96d8adfbb0, 웹 이름 '링크'). Claude Code 쪽은 회원당 활성 agent 5개 한도로 "연결 에이전트 초과" 거절. 사용자가 "테스트 중지"를 지시해 테스트 세션 터미널과 ego task space 3을 닫았다. 메시지는 보내지 않았다.
+- 발견: ① 운영 자동 설정 미게시로 수동 package_plugin 필요 ② connect 실패 사유 미노출(폴더 재사용·빈 폴더 선생성·D: private 폴더 ACL SetOwner 실패) ③ 다른 Google 계정 선택 시 403 일반 문구 ④ 이름 없는 미사용 agent 누적 ⑤ `package_plugin.py --verify`의 mcp.test 실패 경계 검사가 main b413464에서 실패.
+- 테스트 잔여물: 설치 `.devtools/knowslink-claude-link-test-01`, 빈 `.devtools/knowslink-claude-link-test-01-private`, `%LOCALAPPDATA%\KnowsLink\claude-link-test-01-private`(Claude 시도), Grok Bot `/workspace/.knowslink-connect/link/google-20261025`(미완료 시도 파일 2개). 운영 이름 없는 agent는 건드리지 않았다.
+- 사용자 요청: 에이전트 연결 한도 제거, 연동 전체 단순화, 구조 재점검·UI/UX 개선·연결 처리 정리. route: product → designer (`docs/evaluations/jev/SAR-CONNECT-SIMPLE-001-route.json`). 지시서 `handovers/to_designer.md`.
+
 ## 작업 파일 위치 정리 — 2026-10-24
 
 - FullOps 1.8.5 레포 적용 완료(1.8.4·1.8.5 할 일 없음). 기록 `docs/exec-plans/phases/FULLOPS-UPDATE-1.8.5.md`.
