@@ -16,6 +16,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 테스트 잔여물: 설치 `.devtools/knowslink-claude-link-test-01`, 빈 `.devtools/knowslink-claude-link-test-01-private`, `%LOCALAPPDATA%\KnowsLink\claude-link-test-01-private`(Claude 시도), Grok Bot `/workspace/.knowslink-connect/link/google-20261025`(미완료 시도 파일 2개). 운영 이름 없는 agent는 건드리지 않았다.
 - 사용자 요청: 에이전트 연결 한도 제거, 연동 전체 단순화, 구조 재점검·UI/UX 개선·연결 처리 정리. route: product → designer (`docs/evaluations/jev/SAR-CONNECT-SIMPLE-001-route.json`). 지시서 `handovers/to_designer.md`.
 - 배정: run_1701a184c359 / task_8900556a492c / ctx_372b5d37a97c / term_ff3d4680-8f66-488f-9666-2a7a9e845d85, fresh Claude opus-5-5 high(jev 추천 그대로). designer 기준 bee6acb6(main d5a2bfd3 + packet 연결). 이전 designer 세션은 10/25 release됨 → fresh.
+- designer 질문 msg_cd3f36b88d26(to_tester.md가 AUTOSETUP-QA 사용 중) → A: `handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md` 초안 + PLANS 대기, 인박스가 비면 coor가 옮김.
+- 사용자 테스트 조건(2026-10-26): 재검증 실연결은 Grok Bot=운영 테스트 계정(회원 A), Claude Code=사용자 본인 계정(회원 B)(두 회원, 친구 흐름 포함. 실제 주소는 레포에 적지 않음). 브라우저 단계는 사용자에게 넘기지 않고 에이전트가 ego 브라우저에서 모두 진행. designer에 전달함.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
