@@ -7,7 +7,7 @@ owner: designer
 tasks: [SAR-CONNECT-SIMPLE-001]
 upstream: [D01]
 downstream: [D04, D10]
-summary: "회원당 agent 수 제한 제거와 남용 방지 속도·용량 경계, 키 저장 전 시도 분리, 기본 이름, 재시도 폴더, 실패 사유, 연결 화면 규칙과 수락 기준 CS-AC-01–17"
+summary: "회원당 agent 수 제한 제거와 남용 방지 속도·용량 경계, 키 저장 전 시도 분리, 기본 이름, 재시도 폴더, 실패 사유, 연결 화면 규칙과 수락 기준 CS-AC-01–18"
 ---
 
 # 연동 단순화와 에이전트 한도 제거의 제품 규칙 — SAR-CONNECT-SIMPLE-001
@@ -160,7 +160,7 @@ Grok Bot의 한 줄 설치기(clone·checkout 없는 설치)는 이번 범위가
 
 ## 수락 기준
 
-측정은 격리 합성 fixture에서 한다. 운영 relay·운영 agent·실제 상대 발송은 쓰지 않는다.
+CS-AC-01–CS-AC-17은 격리 합성 fixture에서 측정한다. 운영 relay·운영 agent·실제 상대 발송은 쓰지 않는다. CS-AC-18은 아래 실연결 재검증으로 측정한다.
 
 | ID | 수락 기준 | 규칙 | 증명 방법 |
 |---|---|---|---|
@@ -182,6 +182,12 @@ Grok Bot의 한 줄 설치기(clone·checkout 없는 설치)는 이번 범위가
 | CS-AC-16 | 지문 비교, 명시적 동의, 비공개 폴더 권한, 발송 승인, 친구 권한의 기존 테스트가 통과한다. 키·토큰·credential이 출력·로그·화면에 없다. | 보안 경계 | DEV `make test`, tester 출력 검색 |
 | CS-AC-17 | 회원 화면 변경(M, W)이 D04 문구·배치와 같다. 1440·390·320px에서 가로 넘침이 없다. 키보드로 모든 버튼에 닿는다. | M, W | designer 시각 검수(ART) |
 
+실연결 재검증(사용자 결정 2026-10-26): 격리 fixture 수락과 운영 배포 뒤 서로 다른 두 회원으로 다시 연결한다. Grok Bot 쪽은 `knowslog01@gmail.com` 회원, Claude Code 쪽은 `scshin88@gmail.com` 회원이다. 친구 요청·수락 흐름을 포함한다. Google 로그인·동의 등 브라우저 단계는 에이전트가 ego 브라우저에서 모두 진행한다. 비밀번호·2단계 인증 입력과 실제 메시지 발송은 별도 승인이다. 절차는 [tester 지시서 초안](../../../handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md)의 '실연결 재검증' 절이다.
+
+| ID | 수락 기준 | 규칙 | 증명 방법 |
+|---|---|---|---|
+| CS-AC-18 | 배포된 relay에서 두 회원이 각각 Grok Bot·Claude Code를 연결하고 친구가 된다. 실패 시도가 목록에 남지 않는다. 서로의 agent가 기본 이름(또는 정한 이름)으로 보인다. 사람이 꼭 해야 한 행동이 기록된다. | L-01, A-01, A-04, A-06, W-01, T-02, T-03 | tester 2단계 기록 |
+
 ## 범위 밖
 
 - 운영 배포와 SAR-AUTOSETUP-001 자동 설정 게시(사용자 승인 대기).
@@ -192,3 +198,4 @@ Grok Bot의 한 줄 설치기(clone·checkout 없는 설치)는 이번 범위가
 ## 개정 이력
 
 - 2026-10-26: SAR-CONNECT-SIMPLE-001에서 작성했다. 사용자 결정(회원당 한도 제거)과 designer 결정(L-02–L-06, A, R, E, W, M, T)을 담았다.
+- 2026-10-26: 사용자 결정(coor 전달)으로 실연결 재검증 조건과 CS-AC-18을 더했다.

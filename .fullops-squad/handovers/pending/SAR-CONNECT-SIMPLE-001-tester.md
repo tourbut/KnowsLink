@@ -16,7 +16,8 @@ summary: DEV 완료 SHA에서 한도 제거·연결 시도 정리·실패 사유
 - 상태: blocked — DEV 완료 SHA 대기
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위: fullops/tester의 시나리오·qa-reports 작성, DEV 완료 SHA의 격리 로컬 relay와 합성 회원 fixture(A·B·C), 이 PC의 Windows 폴더 실측(레포 `.fullops-squad/local/` 또는 지정 테스트 폴더 안, D: 드라이브 포함), release 패키지 검사, 커밋·push.
-- 추가 승인이 필요한 행위: 운영 relay·운영 agent 사용, 실제 상대에게 발송, 사용자 실제 `~/.claude`·`~/.codex` 설정 변경, 실제 Grok·Dots 계정 연결, 제품 코드 수정(결함은 보고만), 제품 규칙 변경.
+- 2단계 승인 범위(사용자 결정 2026-10-26, 아래 '실연결 재검증' 절): 배포된 relay에서 Grok Bot 쪽 `knowslog01@gmail.com` 회원과 Claude Code 쪽 `scshin88@gmail.com` 회원의 실제 연결, 두 회원 사이 친구 요청·수락, ego 브라우저에서 에이전트가 Google 로그인·지문 비교·이름·연결 동의를 직접 진행.
+- 추가 승인이 필요한 행위: 1단계에서 운영 relay·운영 agent 사용, 실제 메시지 발송(2단계 포함), 비밀번호·2단계 인증 코드 입력, 사용자 실제 `~/.claude`·`~/.codex` 설정 변경, 위 두 회원 외 계정 사용, 기존 운영 agent 철회·정리, 제품 코드 수정(결함은 보고만), 제품 규칙 변경.
 - 상위 의도: 없음. [D02 SAR-CONNECT-SIMPLE-001](../../docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md) CS-AC-01–CS-AC-16의 독립 동작 확인.
 - 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/tester / fullops/tester
 - 병합 책임자 / 기본 브랜치: coor / main(origin)
@@ -63,6 +64,18 @@ summary: DEV 완료 SHA에서 한도 제거·연결 시도 정리·실패 사유
 - 증거 형식: `.md`는 front matter 필수, 원시 로그는 `.txt`/`.log`. 커밋하는 캡처는 report.md가 링크하는 것만이다. 로그와 임시 파일은 `.fullops-squad/local/SAR-CONNECT-SIMPLE-001-QA/`.
 - 시간 예산: fixture 준비 포함 2시간. 넘으면 진행 상황을 escalation으로 알린다.
 
+### 실연결 재검증 — 2단계(사용자 결정 2026-10-26)
+
+1단계(격리 fixture) PASS와 운영 배포(ops, 사용자 승인) 뒤 실행한다. 1단계와 같은 지시서의 별도 절로 기록하고 PASS를 섞지 않는다.
+
+1. 회원 구성: Grok Bot 쪽은 `knowslog01@gmail.com` 회원, Claude Code 쪽은 `scshin88@gmail.com` 회원이다. 서로 다른 두 회원이므로 친구 요청·수락 흐름을 포함한다.
+2. 브라우저 단계: Google 로그인, 계정 선택, 지문 비교, 에이전트 이름, 연결 동의, 친구 코드 요청·수락을 사용자에게 넘기지 않는다. 에이전트가 ego 브라우저에서 모두 진행한다. 지문은 클라이언트 출력과 브라우저 화면을 에이전트가 직접 대조하고 결과를 기록한다.
+3. 멈추는 경우: Google이 비밀번호·2단계 인증 코드·새 기기 확인을 요구하면 입력하지 않고 coor에 `ask`로 알린다. 다른 Google 계정이 선택돼 있으면 W-02 화면을 확인한 뒤 지정 계정으로 바꾼다.
+4. 측정: 호스트별 T-01–T-04 사람 행동 수 대신 에이전트가 대신한 행동과 사람이 꼭 한 행동(있다면)을 순서대로 기록한다. 연결 실패가 나면 E 표 사유 코드·문구·다음 행동이 보였는지 기록한다. 실패 시도가 '내 에이전트' 목록에 늘지 않는지 확인한다(CS-AC-05).
+5. 확인 범위: 두 회원 각각 연결 완료(키 등록됨), 기본 이름, 링크 재방문 완료 화면(W-01), 친구 요청·수락 뒤 서로의 agent가 이름과 함께 보이는지, 도구 결과의 표시 이름(A-06).
+6. 메시지 발송: 두 회원 사이 시험 메시지 1건은 coor를 통해 사용자 승인을 받은 뒤에만 보낸다.
+7. 운영의 기존 agent(`agent_c18976751d5a96d8adfbb0` 등)와 이름 없는 agent는 건드리지 않는다. 2단계에서 새로 만든 agent도 사용자 지시 없이 철회하지 않는다.
+
 ### designer 시각 검수(ART) 인계 조건
 
 UI 변경(M·W)이 있으므로 designer 직접 시각 검수를 배정한다. 조건과 범위:
@@ -83,7 +96,7 @@ UI 변경(M·W)이 있으므로 designer 직접 시각 검수를 배정한다. �
 
 ## 제약·협업·후속
 
-- 운영 relay·운영 agent·실제 상대 발송 금지. 운영의 이름 없는 agent와 `agent_c18976751d5a96d8adfbb0`은 건드리지 않는다.
+- 1단계는 운영 relay·운영 agent·실제 상대 발송 금지. 2단계는 위 '실연결 재검증' 절의 범위만 쓴다. 운영의 이름 없는 agent와 `agent_c18976751d5a96d8adfbb0`은 건드리지 않는다.
 - D: 드라이브 실측 폴더는 검증 뒤 사용자 데이터와 섞이지 않게 테스트 폴더 안에만 만든다. 삭제·이동 정리는 `AGENTS.md`의 'Windows 파일 작업 안전'을 따른다.
 - SAR-AUTOSETUP-001-QA(D040)와 별개다. 그 과제의 결과를 이 과제 PASS로 쓰지 않는다.
 
