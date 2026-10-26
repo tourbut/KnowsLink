@@ -1,7 +1,10 @@
 // MCP connector stays held by default; explicit local trial or member-folder modes enable manual transport.
+import { defaultFolder } from "./defaults.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { randomInt } from "node:crypto";
+import { access, readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { z } from "zod";
 import { trialMode, testTransport } from "./test-transport.js";
 import {
@@ -9,13 +12,15 @@ import {
   memberTransport,
   printContact,
   watchFromArgv,
+  type TextTransport,
 } from "./text.js";
 import { AutoReceiver, Inbox } from "./inbox.js";
 import { GrokWake } from "./grok-wake.js";
 import { localAdapter } from "./core.js";
-import { beginLogin, finishLogin, waitForLogin } from "./login.js";
+import { approvedAttempt, finishLogin } from "./login.js";
 import { CodexSession } from "./codex-session.js";
-import { setupConnect } from "./setup-connect.js";
+import { setupConnect, type SetupEvent } from "./setup-connect.js";
+import { failureOf, lang, type Reason } from "./reasons.js";
 import type { ReceivedText } from "./text.js";
 
 const server = new McpServer(
@@ -24,7 +29,8 @@ const server = new McpServer(
 );
 const synthetic = process.env.KNOWSLINK_MODE === "synthetic-loopback";
 let busy = false;
-let loginState = "idle";
+// This process's connection attempt: the latest setup-connect event, or null before knowslink_connect.
+let login: SetupEvent | null = null;
 let auto: AutoReceiver | null = null;
 let autoError: string | null = null;
 // Codex installs (package_plugin --host codex --connect) bind receive to one owner-approved session instead of every MCP process.
@@ -128,53 +134,122 @@ const result = (state: string, isError = false) =>
     },
     isError,
   );
+// A-06: display names only, never keys or credentials. A failed relay lookup falls back to the local name.
+const unnamed = (agent: string) => `이름 없는 에이전트 (${agent})`;
+async function named(t: TextTransport, agent: string, local = "") {
+  const c = await t.contact(agent).catch(() => null);
+  return { agent, name: c?.name || local || unnamed(agent) };
+}
+async function localAgent(folder: string) {
+  try {
+    const c = JSON.parse(
+      await readFile(join(folder, "agent.json"), "utf8"),
+    ) as Record<string, unknown>;
+    if (typeof c.agent !== "string") return null;
+    const name = typeof c.name === "string" ? c.name.slice(0, 80) : "";
+    return { agent: c.agent, name: name || unnamed(c.agent) };
+  } catch {
+    return null;
+  }
+}
+const exists = (path: string) =>
+  access(path).then(
+    () => true,
+    () => false,
+  );
+async function connected(folder: string, fingerprint?: string) {
+  void startAuto();
+  return trialResult({
+    state: "connected",
+    fingerprint,
+    me: await localAgent(folder),
+  });
+}
+const again =
+  "Show message to the user. After the user agrees, call knowslink_connect with confirmed:true again.";
+const later =
+  "Show message to the user. Call knowslink_connect again only after retry_at, with the user's agreement.";
+const NEXT: Record<Reason, string> = {
+  expired: again,
+  cancelled: again,
+  unreachable: again,
+  unconfirmed:
+    "Show message, agent and name to the user. Calling knowslink_connect again checks this attempt first; pass fresh:true only if the user, after checking My agents on the web, chooses a new agent.",
+  private_folder:
+    "Show message to the user. Remove KNOWSLINK_AGENT_FOLDER from this server's settings so the default location is used, restart the server, then call knowslink_connect again.",
+  rate_limited: later,
+  agent_rate: later,
+  service_capacity:
+    "Show message to the user. Existing agents keep working; call knowslink_connect again later with the user's agreement.",
+};
+// Every connect failure carries a D02 E reason, its member-language message and one next action; never a reason-less failed.
+const connectFailure = (f: SetupEvent) =>
+  trialResult({ ...f, next: NEXT[f.reason as Reason] }, true);
+const connectResult = (folder: string, e: SetupEvent) =>
+  e.state === "connected"
+    ? connected(folder, e.fingerprint)
+    : e.state === "waiting"
+      ? trialResult(e)
+      : connectFailure(e);
+// T-04: Grok Bots on one computer get no launch signal that tells them apart, so default settings share one agent.
+const shared = () =>
+  defaultFolder && process.env.KNOWSLINK_HOST === "grok"
+    ? lang() === "en"
+      ? "Every Grok Bot on this computer that uses the default settings shares this agent."
+      : "이 컴퓨터에서 기본 설정을 쓰는 Grok Bot은 모두 이 에이전트를 함께 씁니다."
+    : undefined;
 server.registerTool(
   "knowslink_connect",
   {
     description:
-      "Start connecting this client to your Google account after explicit user approval. Open returned URL in your own browser and compare the fingerprint before consent. Credentials save locally automatically; never paste keys or tokens. Requires public-node mode, RELAY_URL and a new KNOWSLINK_AGENT_FOLDER.",
-    inputSchema: { confirmed: z.literal(true) },
+      "Start connecting this client to your Google account after explicit user approval. Open returned URL in your own browser and compare the fingerprint before consent. Credentials save locally automatically; never paste keys or tokens. Requires public-node mode and RELAY_URL; the agent folder is KNOWSLINK_AGENT_FOLDER or an automatic default. A stored agent is reused, a waiting attempt resumes and dead leftovers are moved aside. fresh:true only when the user chose a new agent after an unconfirmed result.",
+    inputSchema: {
+      confirmed: z.literal(true),
+      fresh: z.literal(true).optional(),
+    },
     annotations: {
       destructiveHint: false,
       idempotentHint: false,
       openWorldHint: true,
     },
   },
-  async () => {
+  async ({ fresh }) => {
     const folder = process.env.KNOWSLINK_AGENT_FOLDER;
     const base = process.env.RELAY_URL;
     if (process.env.KNOWSLINK_MODE !== "public-node" || !folder || !base)
       return result("held", true);
     if (busy) return result("busy", true);
     busy = true;
-    try {
-      const login = await beginLogin(base, folder);
-      loginState = "waiting";
-      void waitForLogin(folder)
-        .then(() => {
-          loginState = "connected";
-          void startAuto();
-        })
-        .catch(() => {
-          loginState = "failed";
-        })
+    login = { state: "waiting" };
+    // The installer's start/resume/set-aside rules (R-01); the tool answers at the first event while polling continues.
+    return new Promise((answer) => {
+      let first = true;
+      const reply = (r: ReturnType<typeof trialResult>) => {
+        if (first) answer(r);
+        first = false;
+      };
+      void setupConnect(
+        base,
+        folder,
+        fresh === true,
+        (event) => {
+          login = event;
+          if (event.state === "waiting") reply(trialResult(event));
+        },
+        10000,
+      )
+        .then(async () => reply(await connectResult(folder, login!)))
         .finally(() => {
           busy = false;
         });
-      return {
-        content: [{ type: "text" as const, text: JSON.stringify(login) }],
-      };
-    } catch {
-      busy = false;
-      return result("failed", true);
-    }
+    });
   },
 );
 server.registerTool(
   "knowslink_connect_status",
   {
     description:
-      "Check client connection progress. If this MCP process restarted, resume one private-key-bound poll and save an approved credential. No secrets returned.",
+      "Check client connection progress. If this MCP process restarted, resume one private-key-bound poll and save an approved credential. Failures carry a reason, message and next action. No secrets returned.",
     inputSchema: {},
     annotations: {
       destructiveHint: false,
@@ -186,16 +261,26 @@ server.registerTool(
     const folder = process.env.KNOWSLINK_AGENT_FOLDER;
     if (process.env.KNOWSLINK_MODE !== "public-node" || !folder)
       return result("held", true);
-    if (loginState !== "idle")
-      return result(loginState, loginState === "failed");
+    if (login)
+      return login.state === "waiting"
+        ? result("waiting")
+        : connectResult(folder, login);
     if (busy) return result("busy", true);
     busy = true;
     try {
-      const state = await finishLogin(folder);
-      if (state === "connected") void startAuto();
-      return result(state);
-    } catch {
-      return result("failed", true);
+      if (await exists(join(folder, "agent.json")))
+        return await connected(folder);
+      // Nothing started yet: only knowslink_connect makes the first relay request.
+      if (
+        !(await exists(join(folder, "login.json"))) &&
+        !(await approvedAttempt(folder))
+      )
+        return result("idle");
+      return (await finishLogin(folder)) === "connected"
+        ? await connected(folder)
+        : result("waiting");
+    } catch (e) {
+      return connectFailure(await failureOf(e, folder));
     } finally {
       busy = false;
     }
@@ -205,7 +290,7 @@ server.registerTool(
   "knowslink_status",
   {
     description:
-      "Report KnowsLink connector readiness and automatic receive state (last success/error, pending local messages, host notice) without reading credentials or contacting relay. host notice sent_unverified does not mean the host started a turn.",
+      "Report KnowsLink connector readiness, this agent's ID and display name, and automatic receive state (last success/error, pending local messages, host notice). Reads only the local agent ID and name; never returns credentials or contacts relay. host notice sent_unverified does not mean the host started a turn.",
     inputSchema: {},
     annotations: { readOnlyHint: true, openWorldHint: false },
   },
@@ -226,8 +311,11 @@ server.registerTool(
             process.env.KNOWSLINK_AUTO_RECEIVE === "off" ? "off" : "stopped",
           lastError: autoError ?? undefined,
         };
+    const folder = process.env.KNOWSLINK_AGENT_FOLDER;
+    const me = folder ? await localAgent(folder) : null;
     return trialResult({
       ...JSON.parse(base.content[0]!.text),
+      ...(me ? { me, sharedAgent: shared() } : {}),
       autoReceive,
     });
   },
@@ -356,9 +444,18 @@ server.registerTool(
     try {
       const t = await configuredMemberTransport();
       if (!t) return result("held", true);
-      return trialResult(
-        await t.sendText(peer, text, idempotency_key, confirmed, reply_to),
+      const sent = await t.sendText(
+        peer,
+        text,
+        idempotency_key,
+        confirmed,
+        reply_to,
       );
+      const [me, to] = await Promise.all([
+        named(t, t.agentId, t.localName),
+        named(t, peer),
+      ]);
+      return trialResult({ ...sent, me, peer: to });
     } catch (e) {
       return publicFailure(e);
     } finally {
@@ -401,12 +498,13 @@ server.registerTool(
       }
       if (!message) return trialResult({ state: "empty", message });
       // Friend/agent names (O-03) and the session receipt (SP-12) are best effort: the local copy is shown either way.
-      const [sender, seen] = await Promise.all([
+      const [sender, seen, me] = await Promise.all([
         t.contact(message.from).catch(() => null),
         t.seen(message.id).then(
           () => "recorded",
           () => "not_recorded",
         ),
+        named(t, t.agentId, t.localName),
       ]);
       return trialResult({
         state: "received",
@@ -420,6 +518,11 @@ server.registerTool(
               },
             }
           : message,
+        me,
+        peer: {
+          agent: message.from,
+          name: sender?.name || unnamed(message.from),
+        },
         sessionReceipt: seen,
       });
     } catch (e) {
@@ -526,13 +629,21 @@ else if (process.argv[2] === "contact" && process.argv[3] && process.argv[4])
     console.error("KnowsLink contact lookup failed");
     process.exitCode = 1;
   });
-// `plugin.js setup-connect <relay> <private folder> [--fresh]` is the installer's Google connection step (JSON lines).
+// `plugin.js setup-connect <relay> <private folder> [--fresh] [--host claude|codex] [--lang ko|en]` is the installer's
+// Google connection step (JSON lines); host names the default agent (A-04) and lang picks the reason text (E).
 else if (
   process.argv[2] === "setup-connect" &&
   process.argv[3] &&
   process.argv[4]
-)
-  setupConnect(
+) {
+  for (const [flag, key] of [
+    ["--host", "KNOWSLINK_HOST"],
+    ["--lang", "KNOWSLINK_LANG"],
+  ] as const) {
+    const at = process.argv.indexOf(flag);
+    if (at > 4 && process.argv[at + 1]) process.env[key] = process.argv[at + 1];
+  }
+  void setupConnect(
     process.argv[3],
     process.argv[4],
     process.argv.includes("--fresh"),
@@ -546,7 +657,7 @@ else if (
       console.error("KnowsLink setup-connect failed");
       process.exitCode = 1;
     });
-else if (process.argv[2] === "watch" && process.argv[3])
+} else if (process.argv[2] === "watch" && process.argv[3])
   watchFromArgv(process.argv.slice(3)).catch(() => {
     console.error("KnowsLink watch startup failed");
     process.exitCode = 1;

@@ -1,6 +1,6 @@
 #!/bin/sh
 # Stage the KnowsLink MCP bundle and pinned Node in a durable Grok Bot folder for a Custom MCP "Command" server.
-# Run from the repo root on the Bot computer. It never touches ~/.grok or app credentials and keeps KNOWSLINK_MODE held.
+# Run from the repo root on the Bot computer. It never touches ~/.grok or app credentials; its release defaults start no connection.
 # It owns only $PREFIX/node, $PREFIX/knowslink and its own $PREFIX/.stage.* folder; other files in PREFIX are kept.
 set -eu
 
@@ -63,6 +63,9 @@ python3 scripts/package_plugin.py --host grok --verify
 python3 -m zipfile -e build/knowslink-grok-bot-plugin.zip "$stage"
 # Same boundary test, run as the app would: staged node, new bundle, no inherited PATH or env.
 env -i "$node" adapters/dist/mcp.test.js "$stage/knowslink/dist/plugin.js"
+# Release defaults (T-03): with no environment the Command server is public-node on the service with an automatic agent folder.
+# Variables set in the app still win. No request is made before knowslink_connect with confirmed:true.
+python3 -c 'import json, sys; json.dump({"KNOWSLINK_MODE": "public-node", "RELAY_URL": "https://link.knowslog.com", "KNOWSLINK_HOST": "grok", "KNOWSLINK_AGENT_ROOT": sys.argv[1] + "/connections"}, open(sys.argv[2], "w"))' "$PREFIX" "$stage/knowslink/defaults.json"
 swap knowslink
 
 cat <<EOF
@@ -71,17 +74,18 @@ Ready. Register in the Grok Bot app as a Custom MCP server:
   Type:        Command
   Command:     $node
   Arguments:   $PREFIX/knowslink/dist/plugin.js
-  Environment: none (held is the default)
+  Environment: none
 
-For Google connection, restart this Command server with these non-secret settings:
-  KNOWSLINK_MODE=public-node
-  RELAY_URL=https://link.knowslog.com
-  KNOWSLINK_AGENT_FOLDER=$PREFIX/connections/<new-unique-installation>
-The final folder must not exist. Keep credentials outside $PREFIX/knowslink,
-which this installer replaces. Use a different folder for every host/instance.
-After explicit consent, call knowslink_connect with confirmed:true and have the
-user open its URL, compare the fingerprint, and approve Google connection.
-Check knowslink_connect_status for connected; person friendship consent is separate.
+Defaults ($PREFIX/knowslink/defaults.json): KNOWSLINK_MODE=public-node,
+RELAY_URL=https://link.knowslog.com and the agent folder
+$PREFIX/connections/grok-agent. A variable set in the app wins.
+Nothing contacts the service until the user agrees: call knowslink_connect with
+confirmed:true and have the user open its URL, compare the fingerprint, and
+approve Google connection. Check knowslink_connect_status for connected; a
+failure shows its reason and next action. A retry reuses or sets the folder
+aside by itself; never delete it. Grok Bots on this computer that use these
+defaults share one agent (knowslink_status shows it). Person friendship
+consent is separate.
 Default receive remains polling. KNOWSLINK_RECEIVE_MODE=sse opts into arrival
 signals plus existing API pull and periodic recovery. Neither starts a host turn.
 EOF

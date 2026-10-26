@@ -388,7 +388,8 @@ $config = Get-Content -Raw -LiteralPath $configPath -Encoding UTF8 | ConvertFrom
 $server = $config.mcpServers.knowslink
 $server.command = $Node
 $server.args = @(Join-Path $Dir 'knowslink\dist\plugin.js')
-$serverEnv = [ordered]@{ KNOWSLINK_MODE = 'public-node'; RELAY_URL = $Relay; KNOWSLINK_AGENT_FOLDER = $Private }
+# KNOWSLINK_HOST names a later knowslink_connect's default agent; KNOWSLINK_LANG picks its failure text.
+$serverEnv = [ordered]@{ KNOWSLINK_MODE = 'public-node'; RELAY_URL = $Relay; KNOWSLINK_AGENT_FOLDER = $Private; KNOWSLINK_HOST = $App; KNOWSLINK_LANG = $Lang }
 # Same host contract as package_plugin.py install(): Claude receives only in the owner's switched-on session; Codex binds per session.
 if ($App -eq 'claude') { $serverEnv.KNOWSLINK_AUTO_RECEIVE = 'off' } else { $serverEnv.KNOWSLINK_SESSION_HOST = 'codex' }
 $server | Add-Member -NotePropertyName env -NotePropertyValue ([pscustomobject]$serverEnv) -Force
@@ -461,7 +462,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $Private 'agent.json'))) {
     while ($true) {
         $outcome = $null
         $ErrorActionPreference = 'Continue'
-        $connectArgs = @($pluginJs, 'setup-connect', $Relay, $Private)
+        $connectArgs = @($pluginJs, 'setup-connect', $Relay, $Private, '--host', $App, '--lang', $Lang)
         if ($fresh) { $connectArgs += '--fresh' }
         & $Node @connectArgs 2>$null | ForEach-Object {
             $evt = try { $_ | ConvertFrom-Json } catch { $null }
@@ -488,11 +489,14 @@ if (-not (Test-Path -LiteralPath (Join-Path $Private 'agent.json'))) {
             Write-Host ''
             $lost = ("{0} ({1})" -f $outcome.name, $outcome.agent).Trim()
             Write-Host ("[F-07] " + (T F07 $lost)) -ForegroundColor Yellow
+            if ($outcome.message) { Write-Host ("{0} ({1})" -f $outcome.message, $outcome.reason) }
             Save-Record 'F-07' 'unconfirmed'
             if ((Ask f07Ask $lost) -eq 'new') { $fresh = $true; continue }
             Stop-Setup 'F-07' '' (T cUnsure) (T F07n) # the [F-07] line is already shown above
         }
-        Stop-Setup 'F-06' (T F06) (T cNoKey) (T F06n)
+        # The connection step's reason text (D02 E) replaces the generic line when it reported one.
+        $why = if ($outcome -and $outcome.message) { "{0} ({1})" -f $outcome.message, $outcome.reason } else { T F06 }
+        Stop-Setup 'F-06' $why (T cNoKey) (T F06n)
     }
     Save-Record 'google' 'ok'
     $a = $S.Record.agent

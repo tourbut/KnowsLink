@@ -32,6 +32,7 @@ function deviceProof(p: Login, key: string): string {
 }
 export async function beginLogin(base: string, folder: string) {
   base = relayBase(base);
+  const host = process.env.KNOWSLINK_HOST ?? "";
   await mkdir(dirname(folder), { recursive: true, mode: 0o700 });
   await privateDirectory(folder);
   const keys = generateKeyPairSync("ed25519");
@@ -66,6 +67,8 @@ export async function beginLogin(base: string, folder: string) {
     kid: p.kid,
     public: p.public,
     proof: deviceProof(p, key),
+    // Only a known host prefills the default agent name (A-04); older relays reject unknown fields.
+    ...(["claude", "codex", "grok"].includes(host) ? { host } : {}),
   });
   if (
     response.state !== "requested" ||
@@ -81,10 +84,32 @@ export async function beginLogin(base: string, folder: string) {
   };
 }
 
+// The approved, not yet completed attempt in this folder, if any (F-07).
+export async function approvedAttempt(
+  folder: string,
+): Promise<Record<string, string> | null> {
+  const p = await readFile(join(folder, "pending.json"), "utf8").then(
+    (raw) => JSON.parse(raw) as Record<string, string>,
+    () => null,
+  );
+  return p && p.state !== "consumed" && p.mode === "register" ? p : null;
+}
+async function completeLogin(folder: string): Promise<"connected"> {
+  await complete(folder);
+  await writeFile(
+    join(folder, "login.json"),
+    JSON.stringify({ state: "consumed" }),
+    { mode: 0o600 },
+  );
+  return "connected";
+}
+
 export async function finishLogin(
   folder: string,
 ): Promise<"waiting" | "connected"> {
   await privatePath(folder, true);
+  // The relay completes an approved attempt until exp + 24h, so an expired link must not stop it (A-02, F-07).
+  if (await approvedAttempt(folder)) return completeLogin(folder);
   for (const name of ["login.json", "private.pem"])
     await privatePath(join(folder, name));
   const p: Login = JSON.parse(
@@ -93,21 +118,26 @@ export async function finishLogin(
   if (!Number.isFinite(Date.parse(p.exp)) || Date.parse(p.exp) <= Date.now())
     throw new Error("login expired");
   const key = await readFile(join(folder, "private.pem"), "utf8");
-  const response = await new Adapter(
-    relayBase(p.base),
-    "",
-    "",
-    "",
-    "",
-  ).request<{
-    state: string;
-    owner?: string;
-    agent?: string;
-  }>("/v1/connect/poll", {
-    token: p.token,
-    client: p.client,
-    proof: deviceProof(p, key),
-  });
+  const response = await new Adapter(relayBase(p.base), "", "", "", "")
+    .request<{
+      state: string;
+      owner?: string;
+      agent?: string;
+    }>("/v1/connect/poll", {
+      token: p.token,
+      client: p.client,
+      proof: deviceProof(p, key),
+    })
+    .catch((e: unknown) => {
+      // Before approval the relay answers invalid_auth only for an expired, cancelled or unknown attempt.
+      throw /^relay HTTP 401/.test(String((e as Error)?.message))
+        ? new Error(
+            Date.parse(p.exp) <= Date.now()
+              ? "login expired"
+              : "login cancelled",
+          )
+        : e;
+    });
   if (response.state === "requested" || response.state === "prepared")
     return "waiting";
   if (
@@ -122,13 +152,7 @@ export async function finishLogin(
     JSON.stringify({ ...p, ...response, mode: "register" }),
     { mode: 0o600, flag: "wx" },
   );
-  await complete(folder);
-  await writeFile(
-    join(folder, "login.json"),
-    JSON.stringify({ state: "consumed" }),
-    { mode: 0o600 },
-  );
-  return "connected";
+  return completeLogin(folder);
 }
 
 export async function waitForLogin(folder: string): Promise<void> {

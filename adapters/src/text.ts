@@ -53,6 +53,8 @@ export function textSigningBytes(e: TextEnvelope): Buffer {
   );
 }
 export class TextTransport extends Adapter {
+  // The name chosen at connection (agent.json); the fallback when the relay contact lookup fails (A-06).
+  localName = "";
   async listen(onSignal: () => void, signal: AbortSignal): Promise<void> {
     const response = await this.openEvents(signal);
     if (!response.ok) {
@@ -258,21 +260,28 @@ export async function memberTransport(folder: string): Promise<TextTransport> {
   for (const name of ["", "agent.json", "private.pem"]) {
     await privatePath(join(folder, name), name === "");
   }
-  const c: { relay: string; agent: string; kid: string; credential: string } =
-    JSON.parse(await readFile(join(folder, "agent.json"), "utf8"));
+  const c: {
+    relay: string;
+    agent: string;
+    kid: string;
+    credential: string;
+    name?: unknown;
+  } = JSON.parse(await readFile(join(folder, "agent.json"), "utf8"));
   if (
     !/^[a-z][a-z0-9_:-]*$/.test(c.agent) ||
     !/^[A-Za-z0-9_:-]{1,128}$/.test(c.kid) ||
     !/^[A-Za-z0-9_-]{43}$/.test(c.credential)
   )
     throw new Error("invalid member connection");
-  return new TextTransport(
+  const t = new TextTransport(
     relayBase(c.relay),
     c.credential,
     c.agent,
     c.kid,
     await readFile(join(folder, "private.pem"), "utf8"),
   );
+  if (typeof c.name === "string") t.localName = c.name.slice(0, 80);
+  return t;
 }
 export async function configuredMemberTransport(): Promise<TextTransport | null> {
   if (

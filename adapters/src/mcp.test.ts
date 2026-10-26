@@ -69,9 +69,18 @@ async function textBoundaries() {
 }
 
 async function failureBoundaries() {
-  const manifest = await readFile(
-    new URL("../../internal/relay/registry.json", import.meta.url),
-    "utf8",
+  // The relay serves the committed LF bytes (.gitattributes eol=lf); a checkout made before that rule keeps CRLF on disk,
+  // which once failed this check right after /v1/registry (C-10). Use the committed form and prove it is the pinned one.
+  const manifest = (
+    await readFile(
+      new URL("../../internal/relay/registry.json", import.meta.url),
+      "utf8",
+    )
+  ).replace(/\r\n/g, "\n");
+  assert.equal(
+    createHash("sha256").update(manifest).digest("hex"),
+    "2b25c6b58fb6b6973de1c9bac19162834cfc9b678a0416ad39e2cffab3cde1e2",
+    "registry fixture must be the pinned registry",
   );
   const { publicKey, privateKey } = generateKeyPairSync("ed25519");
   const message: Envelope = {

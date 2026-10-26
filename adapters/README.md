@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 호스트별 설치
 status: draft
-updated: 2026-10-23
+updated: 2026-10-26
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-CODEX-RECV-001-DEV]
+tasks: [SAR-CONNECT-SIMPLE-001-DEV, SAR-AUTOSETUP-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-CODEX-RECV-001-DEV]
 summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우드 지원 한계
 ---
 
@@ -59,8 +59,8 @@ python3 scripts/package_plugin.py --release /absolute/new-release-dir
 - 설치기 원본은 `scripts/autosetup/knowslink-setup.ps1`이다. `--release`가 버전·배포 URL·서비스 URL·두 ZIP의 SHA-256을 채운다. Node `22.22.2` win-x64/arm64 zip의 SHA-256은 원본에 고정되어 있다. 채우지 않은 자리표시자가 남으면 실패한다.
 - relay는 `KNOWSLINK_INSTALL_DIR=<dir>`일 때 `GET /install/<버전>/<파일>`로 위 세 파일만 보낸다. 설치기는 `text/plain; charset=utf-8`이다. 공개 ingress 규칙은 `deploy/knowslink/tunnel/public-ingress.yml`에 같은 경로를 허용한다. 운영 게시는 ops 과제다.
 - `--relay-url http://127.0.0.1:<port>`는 격리 fixture용 설치기를 만든다. 이때 설치기는 브라우저를 열지 않고 링크만 출력한다.
-- 설치기는 등록 MCP 설정에 `install()`과 같은 값을 쓴다: runtime `node.exe`, 설치 폴더의 `dist/plugin.js`, `public-node`·서비스 URL·`<설치>-private`, Claude `KNOWSLINK_AUTO_RECEIVE=off`, Codex `KNOWSLINK_SESSION_HOST=codex`.
-- Google 연결 단계는 `node dist/plugin.js setup-connect <서비스 URL> <agent 폴더> [--fresh]`다. 공개 상태(`waiting` URL·지문·기한, `connected` agent ID·이름·지문, `failed`, `unconfirmed`)만 JSON 줄로 출력한다. 대기 중 시도는 이어서 기다린다. 취소·만료 시도는 `<폴더>.unused-<시각>`으로 옮기고 새로 시작한다. 승인 뒤 응답을 잃은 시도는 저장 결과부터 다시 확인하며, `--fresh` 전에는 새 시도를 만들지 않는다.
+- 설치기는 등록 MCP 설정에 `install()`과 같은 값을 쓴다: runtime `node.exe`, 설치 폴더의 `dist/plugin.js`, `public-node`·서비스 URL·`<설치>-private`, `KNOWSLINK_HOST=<claude|codex>`, Claude `KNOWSLINK_AUTO_RECEIVE=off`, Codex `KNOWSLINK_SESSION_HOST=codex`. 설치기는 `KNOWSLINK_LANG=<-Lang>`도 쓴다.
+- Google 연결 단계는 `node dist/plugin.js setup-connect <서비스 URL> <agent 폴더> [--fresh] [--host claude|codex] [--lang ko|en]`다. 공개 상태(`waiting` URL·지문·기한, `connected` agent ID·이름·지문, `failed`, `unconfirmed` agent ID·이름)만 JSON 줄로 출력한다. `failed`·`unconfirmed`는 `reason`(D02 E 사유 코드)과 `message`(`--lang` 문구), 시각이 있으면 `retry_at`을 담는다. 설치기는 이 문구를 F-06·F-07 줄에 보인다. `--host`는 동의 화면의 기본 이름을 정한다(A-04). 대기 중 시도는 이어서 기다린다. 취소·만료 시도는 `<폴더>.unused-<시각>`으로 옮기고 새로 시작한다. 빈 폴더는 비공개 권한을 설정·확인한 뒤 그대로 쓴다. 승인 뒤 응답을 잃은 시도는 저장 결과부터 다시 확인하며, `--fresh` 전에는 새 시도를 만들지 않는다. 승인된 시도는 연결 기한이 지나도 완료를 다시 보낸다(서버는 기한 + 24시간까지 받는다).
 - 격리 검사: `internal/relay/autosetup_fixture_test.go`(`-tags "integration autosetupfixture"`)가 합성 Google 회원과 승인·취소·응답 유실 제어를 제공한다. 실행 도구와 결과는 [DEV QA 보고](../.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md)다.
 
 ### Claude Code 작업 세션 연결 — SAR-SESSION-PEER-001-DEV
@@ -121,7 +121,7 @@ OpenAI MCP Events는 relay SSE와 별도다. 원격 서버는 MCP 2.0 `2026-07-2
 
 ## 도메인으로 Google 연결 시작
 
-앱 Command server 등록 후 다음 환경을 설정하고 MCP를 다시 시작한다. ZIP manifest의 기본 `KNOWSLINK_MODE=held`도 이 값으로 바꾼다. 자격 값은 도구 인자나 채팅에 넣지 않는다.
+Grok Bot 앱의 Command 등록은 [Grok Bot 앱 등록](#grok-bot-앱-등록)의 기본값(`defaults.json`)으로 환경 변수 없이 연결한다. 다른 호스트는 Command server 등록 후 다음 환경을 설정하고 MCP를 다시 시작한다. ZIP manifest의 기본 `KNOWSLINK_MODE=held`도 이 값으로 바꾼다. 자격 값은 도구 인자나 채팅에 넣지 않는다.
 
 ```text
 KNOWSLINK_MODE=public-node
@@ -129,7 +129,7 @@ RELAY_URL=https://link.knowslog.com
 KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink-connect/nou/new-google-client
 ```
 
-상위 폴더는 자동 생성하며 마지막 연결 폴더는 아직 없어야 한다. 각 클라이언트는 다른 새 폴더를 사용한다. 사용자 허가 뒤 `knowslink_connect`에 `confirmed:true`를 전달한다. 반환된 URL을 사용자가 자기 브라우저에서 열고 Google 로그인한다. 실행한 클라이언트의 지문과 화면 지문을 비교한 뒤 명시적으로 동의한다. 다른 사람이 보낸 연결 링크는 승인하지 않는다. `knowslink_connect_status`의 `connected`를 확인한다. 개인키·credential은 해당 컴퓨터에만 자동 저장된다. 이 설정에는 Cloudflare Access token이 필요 없다.
+`KNOWSLINK_AGENT_FOLDER`를 생략하면 기본 폴더를 쓴다: Windows는 `%LOCALAPPDATA%\KnowsLink\<호스트>-agent`, Grok Bot은 `<설치 prefix>/connections/grok-agent`다. 호스트는 `KNOWSLINK_HOST`(`claude`·`codex`·`grok`, 없으면 `local`)다. 이름이 고정이므로 MCP를 다시 시작해도 상태·수신이 같은 폴더를 찾는다. 그 밖의 OS에서는 폴더를 지정한다. 상위 폴더는 자동 생성한다. 각 클라이언트는 다른 폴더를 사용한다. 다시 연결할 때 폴더를 지우지 않는다: `agent.json`이 있으면 그 agent를 다시 쓰고, 대기 중인 시도는 이어서 기다리고, 재개할 수 없는 시도 파일은 `<폴더>.unused-<시각>`으로 옮긴 뒤 새로 시작한다. 빈 폴더는 그대로 쓴다. 사용자 허가 뒤 `knowslink_connect`에 `confirmed:true`를 전달한다. 반환된 URL을 사용자가 자기 브라우저에서 열고 Google 로그인한다. 실행한 클라이언트의 지문과 화면 지문을 비교한 뒤 명시적으로 동의한다. 다른 사람이 보낸 연결 링크는 승인하지 않는다. `knowslink_connect_status`의 `connected`를 확인한다. 개인키·credential은 해당 컴퓨터에만 자동 저장된다. 이 설정에는 Cloudflare Access token이 필요 없다.
 
 root/connect가 Cloudflare 로그인이나 요금제 화면으로 이동하면 서비스 연결이 준비되지 않은 것이다. 관리자에게 [D12의 비용 없는 적용 절차](../.fullops-squad/docs/operations/ops-guide.md#비용-없는-tunnel-적용--sar-google-connect-002-dev)를 전달한다. 플러그인에서 결제·Access 가입을 진행하지 않는다. 관계 수락과 exact text 발송 동의는 연결 뒤에도 별도로 필요하다.
 
@@ -208,9 +208,9 @@ KnowsLink는 새 공용 서비스 없이 **Command** server 등록을 시도한�
 
    3. 두 경로 모두 Command 등록 수단이 없으면 등록을 멈춘다. Bot이 `AddMcpServer` 같은 도구가 없다고 답할 때도 멈춘다. 아래 회신 항목을 남긴다. Remote HTTPS·팀 marketplace는 별도 승인 대상이다.
 
-   환경 변수가 없으므로 기본 `held`로 실행된다. 환경 변수가 있는 Command server는 owner 자신의 채팅에서만 실행된다. 비밀값은 command·argument·채팅에 넣지 않는다.
+   환경 변수가 없으면 installer가 둔 `/workspace/.knowslink/knowslink/defaults.json`의 기본값으로 실행된다: `KNOWSLINK_MODE=public-node`, `RELAY_URL=https://link.knowslog.com`, 연결 폴더 `<prefix>/connections/grok-agent`. 이 기본값으로도 `knowslink_connect`의 `confirmed:true` 전에는 서버에 요청하지 않는다. 앱에 넣은 환경 변수가 기본값보다 우선한다. 환경 변수가 있는 Command server는 owner 자신의 채팅에서만 실행된다. 비밀값은 command·argument·채팅에 넣지 않는다. 같은 컴퓨터의 Bot은 구별 신호가 없어 기본값으로 한 agent를 함께 쓴다. `knowslink_status`의 `sharedAgent`가 이를 보인다.
 
-3. **Marketplace → Your plugins**의 Installed 목록 또는 Bot info pane의 Setup → Plugins에서 knowslink를 확인한다. 실제 표시 위치는 미확인이다. 새 대화에서 `@knowslink`로 connector를 붙이고 `knowslink_status`만 호출한다. 기대 결과는 `{"state":"held","transport":"pull","actualConnection":"held","webhook":false,"evidenceFetch":false}`다.
+3. **Marketplace → Your plugins**의 Installed 목록 또는 Bot info pane의 Setup → Plugins에서 knowslink를 확인한다. 실제 표시 위치는 미확인이다. 새 대화에서 `@knowslink`로 connector를 붙이고 `knowslink_status`만 호출한다. 연결 전 기대 결과의 `state`는 `public_node_configured_unverified`이고 `actualConnection`은 `configured_unverified`다. 연결 완료가 아니다.
 
 등록하지 못했거나 화면이 위와 다르면 다음을 회신한다. 비밀값은 넣지 않는다.
 
@@ -264,7 +264,9 @@ Cursor IDE의 로컬 개발 검사는 [공식 로컬 플러그인 절차](https:
 
 ## 도구와 결과
 
-`knowslink_status`는 비밀 파일을 읽거나 네트워크에 접속하지 않는다. `held` 또는 `synthetic_only`를 반환한다. 설정 검증이나 실제 연결 성공을 뜻하지 않는다.
+`knowslink_status`는 네트워크에 접속하지 않는다. `public-node`에서는 `agent.json`의 agent ID·이름만 읽어 `me`로 보인다. credential·키는 반환하지 않는다. 그 밖에는 `held` 또는 `synthetic_only`를 반환한다. 설정 검증이나 실제 연결 성공을 뜻하지 않는다.
+
+상태·연결·보낸·받은 결과는 내 agent `me`와 상대 `peer`의 `{agent, name}`을 담는다(A-06). 이름은 relay 연락처 조회 값이고, 조회에 실패하면 연결 때 정한 이름을 쓴다. 이름이 없으면 `이름 없는 에이전트 (<agent ID>)`다. `knowslink_status`와 연결 결과는 `agent.json`의 이름을 쓴다.
 
 `knowslink_pull_once`는 모델 입력 없이 한 delivery를 처리한다. 동시 호출은 `busy`다. gate는 KnowsLink의 인증된 owner UI에서 결정한다. Grok Bot의 Allow once·chat reply·skill은 owner 승인 증명이 아니다. 승인돼도 disclosure policy와 calendar stub은 유지되며 결과는 denied다. control result는 소비만 하고 재응답하지 않는다. 도구는 원문·gate ID·lease/claim·credential을 모델에 반환하지 않는다.
 
@@ -422,4 +424,4 @@ port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEW
 
 Command MCP는 기존 `KNOWSLINK_MODE=public-node`, `RELAY_URL`, `KNOWSLINK_AGENT_FOLDER` 설정을 사용한다. 사용자의 동의를 받고 `knowslink_connect`에 `confirmed:true`를 전달한다. 결과의 링크와 지문을 사용자에게 보여 주고 `knowslink_connect_status`로 저장 완료를 확인한다. 기본 held/trial 모드는 그대로다. 같은 Google 계정으로 다른 클라이언트에서 반복하면 이름을 정한 별도 agent와 키가 생긴다. 자기 agent는 신규 회원 기본 연결 또는 기존 회원의 명시적 범위 동의를 따르고, 다른 사람은 친구 수락을 별도로 받는다.
 
-요청은 10분 뒤 만료한다. 실패·취소·완료 응답 유실 때는 기존 폴더를 덮어쓰지 말고 새 폴더로 다시 시작한다. 이미 생성한 미사용 agent는 자기 홈에서 확인하고 폐기한다. POSIX 소유자·권한 검사와 Windows 상속 차단 ACL 검사를 적용한다. 현재 공개 경로와 실제 외부 Bot 연결 결과는 루트 README의 운영·실계정 근거를 따른다. 이 로컬 연결 구현 검사만으로 실제 계정 성공을 주장하지 않는다.
+요청은 10분 뒤 만료한다. `knowslink_connect`와 `knowslink_connect_status`의 실패는 `reason`·`message`·`next`를 담는다. 사유 표는 [루트 README](../README.md#연결-실패와-다시-연결)다. 문구 언어는 `KNOWSLINK_LANG=en|ko`(기본 `ko`)다. 다시 연결은 같은 폴더에서 `knowslink_connect`를 다시 호출한다. 완료 응답 유실(`unconfirmed`)은 다시 호출하면 먼저 그 시도를 확인한다. 사용자가 웹에서 그 agent를 확인하고 새 agent를 고를 때만 `fresh:true`를 전달한다. POSIX 소유자·권한 검사와 Windows 상속 차단 ACL 검사를 적용한다. 현재 공개 경로와 실제 외부 Bot 연결 결과는 루트 README의 운영·실계정 근거를 따른다. 이 로컬 연결 구현 검사만으로 실제 계정 성공을 주장하지 않는다.
