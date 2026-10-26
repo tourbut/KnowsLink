@@ -15,6 +15,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 발견: ① 운영 자동 설정 미게시로 수동 package_plugin 필요 ② connect 실패 사유 미노출(폴더 재사용·빈 폴더 선생성·D: private 폴더 ACL SetOwner 실패) ③ 다른 Google 계정 선택 시 403 일반 문구 ④ 이름 없는 미사용 agent 누적 ⑤ `package_plugin.py --verify`의 mcp.test 실패 경계 검사가 main b413464에서 실패.
 - 테스트 잔여물: 설치 `.devtools/knowslink-claude-link-test-01`, 빈 `.devtools/knowslink-claude-link-test-01-private`, `%LOCALAPPDATA%\KnowsLink\claude-link-test-01-private`(Claude 시도), Grok Bot `/workspace/.knowslink-connect/link/google-20261025`(미완료 시도 파일 2개). 운영 이름 없는 agent는 건드리지 않았다.
 - 사용자 요청: 에이전트 연결 한도 제거, 연동 전체 단순화, 구조 재점검·UI/UX 개선·연결 처리 정리. route: product → designer (`docs/evaluations/jev/SAR-CONNECT-SIMPLE-001-route.json`). 지시서 `handovers/to_designer.md`.
+- 배정: run_1701a184c359 / task_8900556a492c / ctx_372b5d37a97c / term_ff3d4680-8f66-488f-9666-2a7a9e845d85, fresh Claude opus-5-5 high(jev 추천 그대로). designer 기준 bee6acb6(main d5a2bfd3 + packet 연결). 이전 designer 세션은 10/25 release됨 → fresh.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
