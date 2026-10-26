@@ -217,7 +217,8 @@ func TestPublicAgentHTTP(t *testing.T) {
 				st.Agents[fmt.Sprint("agent_extra", i)] = &Agent{Owner: st.Members[member].Owner, Keys: map[string]*Key{}}
 			}
 		})
-		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409)
+		// L-01: no per-member count cap; a sixth and later live agent is created (CS-AC-01).
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 	})
 	t.Run("malformed_connection_requests_spend_anonymous_budget", func(t *testing.T) {
 		s, _ := identityService(t, pool)

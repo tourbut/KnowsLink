@@ -423,7 +423,8 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
 		var unsure *agentResume
-		if a := st.Agents[c.Agent]; c.Device && c.State == "expired" && a != nil && activeKeys(a) == 0 {
+		// An approved attempt past its deadline keeps its state until cleanup (A-02) but asks for the same check.
+		if a := st.Agents[c.Agent]; c.Device && (c.State == "expired" || c.State == "approved" && !now.Before(c.Exp)) && a != nil && activeKeys(a) == 0 {
 			unsure = &deviceUnsure // approved, then expired: the same check the agent card asks for (U8 승인 후 응답 유실)
 		}
 		return map[string]any{"Unsure": unsure, "Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil

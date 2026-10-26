@@ -161,6 +161,11 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		return id, string(poll)
 	}
 	// A-04 default name, A-01 no agent before the key is saved, M-02 the attempt and its removal, W-01 the revisit.
+	s.mutateState(t, func(st *State) {
+		for _, m := range st.Members {
+			m.Name = "합성 회원" // the agents page asks for a member name first
+		}
+	})
 	id, poll := begin("claude")
 	expect(t, do("GET", "/connect/"+id, "", true, false), 200, `value="Claude Code"`, "1. 지문 비교", "지문이 같습니다. 연결합니다")
 	expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Claude+Code", true, false), 303)
