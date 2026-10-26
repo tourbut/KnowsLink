@@ -1,9 +1,9 @@
 ---
 title: 잔여 UI 이슈의 제품 규칙과 순차 인계
 status: review
-updated: 2026-10-20
+updated: 2026-10-26
 owner: designer
-tasks: [SAR-UX-ISSUES-002-DESIGN, SAR-UX-ISSUES-002-NAMES-VISUAL, SAR-UX-ISSUES-002-HOSTS-DESIGN, SAR-UX-ISSUES-002-CONNECT-VISUAL, SAR-UX-ISSUES-002-LANG-VISUAL]
+tasks: [SAR-UX-ISSUES-002-DESIGN, SAR-UX-ISSUES-002-NAMES-VISUAL, SAR-UX-ISSUES-002-HOSTS-DESIGN, SAR-UX-ISSUES-002-CONNECT-VISUAL, SAR-UX-ISSUES-002-LANG-VISUAL, SAR-CONNECT-SIMPLE-001]
 summary: 이슈 원문과 사람 친구 구현을 대조하고 이름·언어·승인·조회·설치 재개와 최신 호스트 범위의 수락 기준을 정한다
 ---
 
@@ -224,7 +224,7 @@ HTML `lang`는 실제 선택 언어와 일치한다. 날짜의 시간대는 두 
 | remote 동의/앱 복귀 | 설치 범위·서버 보관 확인 후 앱에서 토큰 교환 결과 확인 | return 화면의 이동 성공을 연결 완료로 표시하지 않음 |
 | 취소·만료·거절 | 기존 시도는 재사용 불가; 시작한 앱의 새 연결 경로 | 새로고침/뒤로가기로 새 agent를 자동 생성하지 않음 |
 | 승인 후 응답 유실 | 현재 웹 agent와 시작한 클라이언트의 저장 결과를 먼저 대조 | 결과가 불확실하면 ‘확인 필요’. 맹목적 새 등록/기존 키 덮어쓰기 금지 |
-| 미사용 agent만 남음 | 사용자가 소유·미사용 여부를 확인한 뒤 기존 철회 안내 | 자동 철회·삭제 없음. 재시도용 새 폴더도 기존 자격을 덮지 않음 |
+| 미사용 agent만 남음 | 사용자가 소유·미사용 여부를 확인한 뒤 기존 철회 안내 | 자동 철회·삭제 없음. 재시도용 새 폴더도 기존 자격을 덮지 않음. 키가 한 번도 저장되지 않은 시도는 2026-10-26 [SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md) A-02로 자동 정리 |
 | 친구 대기·잘못된 코드·중복·만료 | U4의 안전 상태·재요청 안내 | 상대 존재/차단을 누설하지 않음 |
 | 오프라인 추정·전달 만료·429 | 관측된 실패와 수신 앱/요청 조회 안내 | online 추측 금지, 자동 재발송·TTL 연장 금지 |
 
