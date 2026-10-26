@@ -2132,3 +2132,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-AUTOSETUP-001-DEV → ops: release 배포물 게시·KNOWSLINK_INSTALL_DIR·ingress 운영 반영(사용자 승인 뒤)
 - [ ] SAR-AUTOSETUP-001-ART → dev: dev — V-01 수정(`internal/relay/human_pages.go` 입력란 행 수). 수정 뒤 designer가 320px 4조합만 재확인 (완료 보고 자동 등재 2026-10-23)
 - [ ] SAR-AUTOSETUP-001-ART → tester: DB 컨테이너는 정리했다. tester 실세션 검수(D040 대기)는 별도다 (완료 보고 자동 등재 2026-10-25)
+- [ ] SAR-CONNECT-SIMPLE-001-DEV → tester: tester 독립 QA(CS-AC-01–16 재현 (완료 보고 자동 등재 2026-10-26)
+- [ ] SAR-CONNECT-SIMPLE-001-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-26)
+- [ ] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 독립 코드 리뷰 배정. main 체크아웃의 CRLF `registry.json` 재체크아웃 여부는 사용자 (완료 보고 자동 등재 2026-10-26)
+- [ ] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 결정 (완료 보고 자동 등재 2026-10-26)
