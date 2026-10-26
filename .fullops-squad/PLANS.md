@@ -21,6 +21,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - designer 설계 완료(2026-10-26): D02 `docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md`(회원당 수 제한 없음, 24시간 새 agent 20개 속도, 운영 용량 경계, 키 저장 전 시도 분리·24h 자동 정리, 기본 이름, 재시도 폴더, 실패 사유 표, 링크·Google 화면), D04 `service-member-ui.md` 연결 단순화 절, D10 책임 절. DEV 지시서 `handovers/to_dev.md`(SAR-CONNECT-SIMPLE-001-DEV, P1 한도·시도·이름·폴더·사유·화면·mcp.test, P2 Grok 기본값).
 - 대기: tester SAR-CONNECT-SIMPLE-001-QA. 본문 `handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md`. 재개 조건: DEV 완료 SHA와 tester 인박스(현재 SAR-AUTOSETUP-001-QA, D040 대기)가 빔. coor가 `work.py new`로 to_tester.md를 만들고 본문을 옮긴다. designer ART 시각 검수(CS-AC-17)는 DEV 완료 SHA 뒤 병행.
 - 대기(후속 과제 후보): Grok Bot 한 줄 설치기(clone·checkout 없는 설치). 재개 조건: SAR-AUTOSETUP-001 게시 사용자 승인 뒤.
+- designer 결과 통합: worker_done msg_18681017701c(ff104175) → coor가 새 문서의 계정 주소를 회원 A/B로 바꿈(202dddfc, 공개 저장소에 새 주소 추가 금지) → main 44cf98f9 병합(review need: 문서만, skip). work.py finish가 packet attempt identity 불일치로 실패(coor 지시서에 attempt 없음) → coor가 logs/2026-10-26_to_designer.md에 수동 보존·인박스 비움(ec33a3fc). designer release.
+- DEV 배정: SAR-CONNECT-SIMPLE-001-DEV route implementation→dev, run_1701a184c359 / task_dbf3aa815187 / ctx_bf6e45146604 / term_fdba1934-69f7-4f8b-9257-6d8c14e30c44, fresh Claude opus-5-5 high(jev). dev 기준 9ad346fe(main ec33a3fc + packet). 착수 확인.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
