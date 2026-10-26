@@ -427,7 +427,11 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 		if a := st.Agents[c.Agent]; c.Device && (c.State == "expired" || c.State == "approved" && !now.Before(c.Exp)) && a != nil && activeKeys(a) == 0 {
 			unsure = &deviceUnsure // approved, then expired: the same check the agent card asks for (U8 승인 후 응답 유실)
 		}
-		return map[string]any{"Unsure": unsure, "Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
+		state := c.State
+		if unsure != nil {
+			state = "expired" // past its deadline the page offers no completion command or cancel
+		}
+		return map[string]any{"Unsure": unsure, "Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": state, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
 	})
 	if err != nil {
 		if err.Error() == "invalid_auth" {
