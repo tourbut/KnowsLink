@@ -58,7 +58,7 @@ func TestAutosetupFixture(t *testing.T) {
 					return nil
 				}
 				c.Owner, c.State = owner, "prepared"
-				if e := st.approveDevice(id, owner, now); e != nil {
+				if e := st.approveDevice(id, owner, "합성 설치", now); e != nil {
 					return e
 				}
 				st.Agents[c.Agent].Name = name

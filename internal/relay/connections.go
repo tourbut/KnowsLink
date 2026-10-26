@@ -4,6 +4,8 @@ package relay
 import (
 	"crypto/ed25519"
 	"encoding/base64"
+	"log"
+	"sort"
 	"time"
 )
 
@@ -13,50 +15,91 @@ const supportedClient = "node-local"
 // A revoked agent stays at least the frozen 24h revoke-metadata period, then the sweep deletes it with its keys and pairs.
 // Member agent IDs are random and never issued again, so deleting the whole agent cannot reassign a (from,kid) (C1).
 // Revoked keys of a live agent are never deleted, for the same reason.
-// The record caps are technical state protection, not product quotas: they hold the active limits (agent 5, key 3)
-// plus revoked records, so churn cannot grow the single state row without bound. New agents and keys are refused
-// at a cap; revocation never adds a record and stays available. A key-saturated agent is replaced by a new agent.
+// The key record cap is technical state protection, not a product quota: it holds the active key limit (3) plus
+// revoked records, so churn cannot grow the single state row without bound. A key-saturated agent is replaced by a
+// new agent. Agent count has no per-member cap (SAR-CONNECT-SIMPLE-001 L-01/L-02): the 24h new-agent rate and the
+// service capacity boundary below bound the row instead.
 const (
-	revokedRetention  = 24 * time.Hour
-	ownerAgentRecords = 10
-	agentKeyRecords   = 20
+	revokedRetention = 24 * time.Hour
+	agentKeyRecords  = 20
+	// agentRate new agents per member in a rolling 24h, revoked ones included (L-04).
+	agentRate = 20
+	// The live-agent boundary of the single state row (L-03, D12): a warning log from agentWarn, new agents refused
+	// at agentCeiling. Existing agents, keys and friends never depend on it.
+	agentWarn    = 1000
+	agentCeiling = 2000
 )
 
 type Connection struct {
 	Owner, Agent, Client, Mode, Kid, Public, State string
 	Exp                                            time.Time
 	Device                                         bool // Client-started requests never put the private polling token in a browser.
+	// A client-started attempt keeps the client's host hint and the approved name: its agent exists only once the
+	// client saves its key (A-01). Refused and Retry record an L-03/L-04 refusal so the client can report it.
+	Host    string    `json:",omitempty"`
+	Name    string    `json:",omitempty"`
+	Refused string    `json:",omitempty"`
+	Retry   time.Time `json:",omitzero"`
 }
+
+// agentRefused is an L-03/L-04 refusal of a new agent; Retry is when agent_rate frees a slot.
+type agentRefused struct {
+	Code  string
+	Retry time.Time
+}
+
+func (e agentRefused) Error() string { return e.Code }
 
 func connectionBytes(token string, c *Connection) []byte {
 	return []byte("KNOWSLINK-CONNECT\x00" + token + "\x00" + c.Owner + "\x00" + c.Agent + "\x00" + c.Client + "\x00" + c.Mode + "\x00" + c.Kid + "\x00" + c.Public)
 }
-func (st *State) agentCapacity(owner string) bool { return st.agentLimit(owner) == "" }
 
-// agentLimit names the limit refusing a new agent for owner: "total", "active", "records", or "" when one fits.
-func (st *State) agentLimit(owner string) string {
-	total, own, records := 0, 0, 0
+func (st *State) liveAgents() int {
+	n := 0
 	for _, a := range st.Agents {
-		if a.Owner == owner {
-			records++
-		}
 		if !a.Revoked && st.Owners[a.Owner] != nil && st.Owners[a.Owner].Active {
-			total++
-			if a.Owner == owner {
-				own++
-			}
+			n++
 		}
 	}
-	switch {
-	case total >= 200:
-		return "total"
-	case records >= ownerAgentRecords:
-		return "records"
-	case own >= 5:
-		return "active"
-	}
-	return ""
+	return n
 }
+
+// agentLimit refuses a new agent for owner at the service capacity boundary or the 24h rate, else returns nil.
+func (st *State) agentLimit(owner string, now time.Time) error {
+	if st.liveAgents() >= agentCeiling {
+		return agentRefused{Code: "service_capacity"}
+	}
+	var made []time.Time
+	for _, a := range st.Agents {
+		if a.Owner == owner && !a.Created.IsZero() && now.Sub(a.Created) < 24*time.Hour {
+			made = append(made, a.Created)
+		}
+	}
+	if len(made) < agentRate {
+		return nil
+	}
+	sort.Slice(made, func(i, j int) bool { return made[i].Before(made[j]) })
+	return agentRefused{"agent_rate", made[len(made)-agentRate].Add(24 * time.Hour)}
+}
+
+// addAgent stores an agent agentLimit admitted; every creation path goes through it so the rate sees each one.
+func (st *State) addAgent(id string, a *Agent, now time.Time) {
+	a.Created = now
+	st.Agents[id] = a
+	if live := st.liveAgents(); live >= agentWarn {
+		log.Printf("agent capacity warning: live=%d warn=%d refuse=%d", live, agentWarn, agentCeiling)
+	}
+}
+
+// open reports whether an attempt can still progress. An approved client attempt stays completable until the sweep
+// removes it a day after its deadline, so a lost answer can still be saved (A-02, F-07).
+func (c *Connection) open(now time.Time) bool {
+	if c.Device && c.State == "approved" {
+		return now.Before(c.Exp.Add(24 * time.Hour))
+	}
+	return now.Before(c.Exp) && c.State != "cancelled" && c.State != "consumed" && c.State != "refused"
+}
+
 func (st *State) pairCapacity(a, b string, active bool) bool {
 	total, ownA, ownB := 0, 0, 0
 	for _, p := range st.Pairs {
@@ -125,11 +168,12 @@ func (st *State) beginConnection(owner, agent, client, mode string, now time.Tim
 }
 func (st *State) connection(token string, now time.Time) (*Connection, error) {
 	c := st.Connections[hashToken(token)]
-	if token == "" || c == nil || !now.Before(c.Exp) || c.State == "cancelled" || c.State == "consumed" {
+	if token == "" || c == nil || !c.open(now) {
 		return nil, fault("invalid_auth")
 	}
 	a := st.Agents[c.Agent]
-	if a == nil || a.Owner != c.Owner || a.Revoked || st.Owners[c.Owner] == nil || !st.Owners[c.Owner].Active {
+	reserved := c.Device && c.State == "approved" && a == nil // the agent is made when its key is saved (A-01)
+	if (!reserved && (a == nil || a.Owner != c.Owner || a.Revoked)) || st.Owners[c.Owner] == nil || !st.Owners[c.Owner].Active {
 		return nil, fault("invalid_auth")
 	}
 	return c, nil
@@ -172,6 +216,13 @@ func (st *State) completeConnection(token, client, proof string, now time.Time) 
 		return nil, fault("invalid_signature")
 	}
 	a := st.Agents[c.Agent]
+	if a == nil {
+		if err := st.agentLimit(c.Owner, now); err != nil {
+			return nil, err
+		}
+		a = &Agent{Name: c.Name, Owner: c.Owner, Keys: map[string]*Key{}}
+		st.addAgent(c.Agent, a, now)
+	}
 	if a.Keys[c.Kid] != nil {
 		return nil, fault("key_exists")
 	}
@@ -193,7 +244,8 @@ func (st *State) completeConnection(token, client, proof string, now time.Time) 
 func (st *State) sweepConnections(now time.Time) {
 	for id, c := range st.Connections {
 		if !now.Before(c.Exp) {
-			if c.State != "consumed" && c.State != "cancelled" {
+			// An approved client attempt keeps its state so the key can still be saved; it goes with the 24h delete (A-02).
+			if c.State != "consumed" && c.State != "cancelled" && c.State != "refused" && !(c.Device && c.State == "approved") {
 				c.State = "expired"
 			}
 			if now.Sub(c.Exp) >= 24*time.Hour {

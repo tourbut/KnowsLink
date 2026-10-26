@@ -284,7 +284,7 @@ func TestComposedHandlerTextTranslates(t *testing.T) {
 		}
 	}
 	at := time.Date(2026, 10, 20, 3, 4, 5, 0, time.UTC)
-	for _, s := range []string{limited(at), "코드가 맞지 않습니다. 남은 시도: 3회.", keyRecordsFull + " 지금은 새 agent도 만들 수 없습니다. " + agentProblem("active"), "입력한 코드 …ab12", "Alice — 친구", "상태를 확인할 수 없습니다. 잠시 뒤 같은 화면에서 다시 조회하세요." + restoreNote} {
+	for _, s := range []string{limited(at), "코드가 맞지 않습니다. 남은 시도: 3회.", keyRecordsFull + " 지금은 새 agent도 만들 수 없습니다. " + safeProblem(agentRefused{"agent_rate", at}), safeProblem(agentRefused{"agent_rate", at}), safeProblem(agentRefused{Code: "service_capacity"}), "입력한 코드 …ab12", "Alice — 친구", "상태를 확인할 수 없습니다. 잠시 뒤 같은 화면에서 다시 조회하세요." + restoreNote} {
 		got := tr("en", s)
 		if got == s || hangul.MatchString(got) {
 			t.Errorf("composed text untranslated: %q -> %q", s, got)

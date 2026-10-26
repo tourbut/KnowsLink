@@ -112,27 +112,25 @@ func safeProblem(err error) string {
 		return "이 작업은 5분 안의 로그인 신원 재확인이 필요합니다. 아래 ‘로그인 다시 확인’으로 신원을 확인한 뒤 이 작업을 시작한 화면에서 다시 시도하세요."
 	case "invalid_auth":
 		return "연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다."
+	case "agent_rate":
+		r, _ := err.(agentRefused)
+		return "오늘 새 에이전트를 많이 만들었습니다. " + clock(r.Retry) + " 뒤 다시 연결하세요. 기존 에이전트는 그대로 쓸 수 있습니다."
+	case "service_capacity":
+		return "지금은 서비스 용량 때문에 새 에이전트를 만들 수 없습니다. 기존 에이전트는 그대로 쓸 수 있습니다. 나중에 다시 연결하세요."
 	default:
 		return "처리할 수 없습니다. 대상과 현재 권한·상태를 확인하세요. 새 권한은 생성되지 않았습니다."
 	}
 }
 
-// Record and active-limit refusals name the actual limit and the next step that can work; none promises an exact
-// cleanup time, payment, or that revoking a key or waiting frees key space on a live agent (C1).
-var agentLimits = map[string]string{
-	"active":  "활성 agent는 회원당 5개입니다. 새 agent를 만들려면 쓰지 않는 agent를 먼저 철회하세요. 철회한 agent의 키와 전달 권한은 끝나며 되돌릴 수 없습니다.",
-	"records": "철회한 agent 기록을 보존하는 중이라 지금은 새 agent를 만들 수 없습니다. 기존 agent와 키는 그대로입니다. 필요하면 쓰지 않는 agent를 철회하세요. 철회 기록은 최소 24시간 보존된 뒤 정리됩니다. 정리되어 홈 목록에서 사라진 뒤 다시 시도하세요.",
-}
-
 const keyRecordsFull = "이 agent에는 새 키를 더 연결할 수 없습니다(키 기록 보호 상한). 키를 철회하거나 기다려도 이 agent에 새 키 공간은 생기지 않습니다. 새 agent를 만들어 따로 연결하세요. 활성 친구에는 새 agent도 연결됩니다. 기존 개별 연결만 있다면 사람 친구 요청을 새로 수락하세요. 기존 키와 관계는 철회하기 전까지 그대로입니다."
 
 // connectLimit explains a connect capacity refusal; create reports whether a replacement agent can be made now.
-func connectLimit(st *State, owner, agent, mode string) (problem string, create bool) {
+func connectLimit(st *State, owner, agent, mode string, now time.Time) (problem string, create bool) {
 	a := st.Agents[agent]
 	switch {
 	case a != nil && len(a.Keys) >= agentKeyRecords:
-		if limit := st.agentLimit(owner); limit != "" {
-			return keyRecordsFull + " 지금은 새 agent도 만들 수 없습니다. " + agentProblem(limit), false
+		if err := st.agentLimit(owner, now); err != nil {
+			return keyRecordsFull + " 지금은 새 agent도 만들 수 없습니다. " + safeProblem(err), false
 		}
 		return keyRecordsFull, true
 	case a != nil && mode == "register" && activeKeys(a) >= 3:
@@ -140,11 +138,58 @@ func connectLimit(st *State, owner, agent, mode string) (problem string, create 
 	}
 	return safeProblem(fault("capacity")), false
 }
-func agentProblem(limit string) string {
-	if m := agentLimits[limit]; m != "" {
-		return m
+
+// hostNames are default agent names (A-04): the hosts a client may name when it starts, plus remote Dots.
+var hostNames = map[string]string{"claude": "Claude Code", "codex": "Codex", "grok": "Grok Bot", "dots": "Dots"}
+
+// defaultName is the host name, numbered from 2 while owner's live agents or approved attempts hold it; an unknown
+// host counts "내 에이전트 N" from 1. It never uses device, account or email details, since friends see the name.
+func (st *State) defaultName(owner, host, lang string) string {
+	taken := map[string]bool{}
+	for _, a := range st.Agents {
+		if a.Owner == owner && !a.Revoked {
+			taken[a.Name] = true
+		}
 	}
-	return safeProblem(fault("capacity"))
+	for _, c := range st.Connections {
+		if c.Device && c.Owner == owner && c.State == "approved" {
+			taken[c.Name] = true
+		}
+	}
+	base, n := hostNames[host], 1
+	name := base
+	if base == "" {
+		base = "내 에이전트"
+		if lang == "en" {
+			base = "My agent"
+		}
+		name = base + " 1"
+	}
+	for taken[name] {
+		n++
+		name = base + " " + strconv.Itoa(n)
+	}
+	return name
+}
+
+// ownAttempt is one client-started connection still waiting for its key on the agents page (M-02).
+type ownAttempt struct{ ID, Client, Started, State string }
+
+// ownAttempts lists the member's keyless client attempts until the sweep removes them a day after their deadline.
+func (st *State) ownAttempts(owner string) []ownAttempt {
+	out := []ownAttempt{}
+	for id, c := range st.Connections {
+		if !c.Device || c.Owner != owner || (c.State != "prepared" && c.State != "approved" && c.State != "expired") {
+			continue
+		}
+		client := hostNames[c.Host]
+		if client == "" {
+			client = "Node 로컬 클라이언트"
+		}
+		out = append(out, ownAttempt{id, client, c.Exp.Add(-connectionTTL).In(kst).Format("15:04"), c.State})
+	}
+	sort.Slice(out, func(i, j int) bool { return out[i].ID < out[j].ID })
+	return out
 }
 
 // inviteNotice tells the inviter whether the submit made a new pending invite or kept the current one unchanged.
@@ -165,7 +210,7 @@ func (s *Service) agentRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /home/agents", s.memberAction("create"))
 	mux.HandleFunc("POST /home/connect", s.memberAction("connect"))
 	mux.HandleFunc("GET /home/connections/{id}", s.connectionPage)
-	for _, path := range []string{"invite-deny", "confirm", "cancel", "key-revoke", "agent-revoke", "invites", "invite-decision", "unpair"} {
+	for _, path := range []string{"invite-deny", "confirm", "cancel", "attempt-remove", "key-revoke", "agent-revoke", "invites", "invite-decision", "unpair"} {
 		mux.HandleFunc("POST /home/"+path, s.memberAction(path))
 	}
 	for _, path := range []string{"info", "prepare", "complete"} {
@@ -181,7 +226,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 		r.Body = http.MaxBytesReader(w, r.Body, 8192)
 		parseErr := r.ParseForm()
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			clean := path == "cancel" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
+			clean := path == "cancel" || path == "attempt-remove" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
 			rates := memberRate
 			if clean {
 				rates = cleanupRate
@@ -222,11 +267,9 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 					problem, kept := nameRefusal(r.FormValue("name"))
 					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": kept, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": problem}, nil
 				}
-				if e := st.approveDevice(r.FormValue("connection"), owner, now); e != nil {
+				if e := st.approveDevice(r.FormValue("connection"), owner, name, now); e != nil {
 					return fail(e)
 				}
-				c := st.Connections[r.FormValue("connection")]
-				st.Agents[c.Agent].Name = name
 				return "/connect/" + r.FormValue("connection"), nil
 			case "create":
 				name, valid := validName(r.FormValue("name"))
@@ -247,11 +290,11 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				} else if made := st.Agents[st.Idempotency[scope]]; made != nil && made.Owner == owner && !made.Revoked {
 					return "/home/agents#agent-" + st.Idempotency[scope], nil
 				}
-				if limit := st.agentLimit(owner); limit != "" {
-					return refusal{status: 409, problem: agentProblem(limit)}, nil
+				if e := st.agentLimit(owner, now); e != nil {
+					return fail(e)
 				}
 				agent = newMemberAgentID() // Avoid email-derived IDs and cross-member name collisions.
-				st.Agents[agent] = &Agent{Name: name, Owner: owner, Keys: map[string]*Key{}}
+				st.addAgent(agent, &Agent{Name: name, Owner: owner, Keys: map[string]*Key{}}, now)
 				if scope != "" {
 					st.Idempotency[scope] = agent
 				}
@@ -259,13 +302,21 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 			case "connect":
 				t, e := st.beginConnection(owner, agent, r.FormValue("client"), r.FormValue("mode"), now)
 				if e != nil && e.Error() == "capacity" {
-					problem, create := connectLimit(st, owner, agent, r.FormValue("mode"))
+					problem, create := connectLimit(st, owner, agent, r.FormValue("mode"), now)
 					return refusal{status: 409, problem: problem, create: create}, nil
 				}
 				if e != nil {
 					return fail(e)
 				}
 				return map[string]any{"Title": "에이전트 연결", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Name": agentName(st.Agents[agent]), "Short": shortID(agent), "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
+			case "attempt-remove":
+				// A client attempt has no key or agent yet, so removing it revokes nothing and keeps no record (A-02).
+				c := st.Connections[r.FormValue("connection")]
+				if c == nil || !c.Device || c.Owner != owner || c.State == "consumed" {
+					return fail(fault("sender_not_allowed"))
+				}
+				delete(st.Connections, r.FormValue("connection"))
+				return "/home/agents", nil
 			case "confirm", "cancel":
 				c := st.Connections[r.FormValue("connection")]
 				if c == nil || c.Owner != owner || !now.Before(c.Exp) || c.State == "consumed" || c.State == "cancelled" {

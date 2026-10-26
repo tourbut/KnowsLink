@@ -336,7 +336,11 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		}
 		login := e != nil || a.Owner == "" || st.Members[member].Owner != a.Owner || st.Members[member].Issuer != googleIssuer || now.Sub(session.Verified) >= reauthWindow
 		if r.Method == "GET" {
-			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "Login": login, "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id"))}, nil
+			v := map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "Login": login, "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id"))}
+			if !login {
+				v["AgentName"] = st.defaultName(a.Owner, "dots", "") // A-04: Dots, numbered when taken
+			}
+			return v, nil
 		}
 		if login {
 			return nil, fault("invalid_auth")
@@ -362,11 +366,13 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 			problem, kept := nameRefusal(r.PostForm.Get("name"))
 			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id")), "AgentName": kept, "Problem": problem}, nil
 		}
-		code, e := st.approveRemote(a, now)
+		code, e := st.approveRemote(a, name, now)
+		if _, refused := e.(agentRefused); refused {
+			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id")), "AgentName": name, "Problem": safeProblem(e)}, nil
+		}
 		if e != nil {
 			return nil, e
 		}
-		st.Agents[rs.Installs[rs.Codes[hashToken(code)].Install].Agent].Name = name
 		delete(rs.Attempts, r.PathValue("id"))
 		q.Set("code", code)
 		u.RawQuery = q.Encode()
@@ -389,12 +395,12 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 	render(w, status, "remote", view)
 }
 
-func (st *State) approveRemote(a *remoteAttempt, now time.Time) (string, error) {
+func (st *State) approveRemote(a *remoteAttempt, name string, now time.Time) (string, error) {
 	if a.Owner == "" || !now.Before(a.Exp) || !st.publicOwner(a.Owner) {
 		return "", fault("invalid_auth")
 	}
-	if !st.agentCapacity(a.Owner) {
-		return "", fault("capacity")
+	if err := st.agentLimit(a.Owner, now); err != nil {
+		return "", err
 	}
 	r := st.remote()
 	if len(r.Installs) >= 500 {
@@ -405,7 +411,7 @@ func (st *State) approveRemote(a *remoteAttempt, now time.Time) (string, error) 
 		return "", fault("unavailable")
 	}
 	id, agent, kid := randomToken(), newMemberAgentID(), "remote_"+hex.EncodeToString(public)
-	st.Agents[agent] = &Agent{Owner: a.Owner, Client: "원격 호스트", Keys: map[string]*Key{kid: {Public: public, Changed: now}}}
+	st.addAgent(agent, &Agent{Name: name, Owner: a.Owner, Client: "원격 호스트", Keys: map[string]*Key{kid: {Public: public, Changed: now}}}, now)
 	r.Installs[id] = &remoteInstall{Owner: a.Owner, Agent: agent, Kid: kid, Private: private, Exp: now.Add(remoteLifetime)}
 	code := randomToken()
 	r.Codes[hashToken(code)] = &remoteCode{id, a.Client, a.Redirect, a.Challenge, a.Resource, now.Add(time.Minute)}

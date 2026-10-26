@@ -206,6 +206,14 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	result := value.(verifyResult)
+	if problem, retry := connectFailure(a, result.Problem); problem != "" {
+		view := map[string]any{"Title": "Google 로그인", "Problem": problem, "Back": "/", "Here": "/"}
+		if retry {
+			view["Retry"] = a.Connection
+		}
+		render(w, 403, "refusal", view)
+		return
+	}
 	if result.Problem != "" {
 		s.googleFailure(w, 403, "이 계정으로 로그인하거나 재확인할 수 없습니다. 기존 회원의 같은 Google 계정으로 다시 시도하세요. 신규 가입 한도도 적용됩니다.")
 		return
@@ -223,6 +231,23 @@ func (s *Service) googleCallback(w http.ResponseWriter, r *http.Request) {
 		next = "/remote/consent/" + a.Remote
 	}
 	render(w, 200, "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Notice": "신원을 확인했습니다. 계속해서 연결을 확인하세요.", "Next": next})
+}
+
+// connectFailure names why a Google login for a client connection failed (W-02) and whether choosing another account
+// can help. It never says which account started the connection or whether one exists.
+func connectFailure(a *googleAttempt, problem string) (string, bool) {
+	if a.Connection == "" {
+		return "", false
+	}
+	switch problem {
+	case "invalid_auth":
+		return "이 연결은 다른 Google 계정으로 시작됐습니다. 처음 고른 Google 계정으로 다시 선택하세요.", true
+	case "capacity":
+		return "이 Google 계정은 아직 KnowsLink 회원이 아니며 지금은 새 가입을 받지 않습니다. 이미 쓰고 있는 Google 계정으로 다시 선택하세요.", true
+	case "expired":
+		return "로그인 시간이 지났습니다. 시작한 앱에서 연결 링크를 다시 여세요.", false
+	}
+	return "", false
 }
 
 // finishGoogleLogin binds a verified identity before browser consent; a different account cannot replace that binding.

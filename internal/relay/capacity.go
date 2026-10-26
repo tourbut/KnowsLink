@@ -125,7 +125,7 @@ func cleanupRequest(r *http.Request) bool {
 		}
 	}
 	switch r.URL.Path {
-	case "/v1/ack", "/v1/test/ack", "/v1/text/ack", "/v1/key-revoke", "/v1/unpair", "/v1/owner-revoke", "/home/key-revoke", "/home/agent-revoke", "/home/unpair", "/home/cancel", "/auth/logout", "/auth/logout-all", "/home/invite-deny":
+	case "/v1/ack", "/v1/test/ack", "/v1/text/ack", "/v1/key-revoke", "/v1/unpair", "/v1/owner-revoke", "/home/key-revoke", "/home/agent-revoke", "/home/unpair", "/home/cancel", "/home/attempt-remove", "/auth/logout", "/auth/logout-all", "/home/invite-deny":
 		return true
 	}
 	if r.URL.Path == "/home/invite-decision" || strings.HasPrefix(r.URL.Path, "/home/gates/") || strings.HasPrefix(r.URL.Path, "/owner/gates/") {

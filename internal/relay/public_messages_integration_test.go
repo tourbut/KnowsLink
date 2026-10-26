@@ -153,10 +153,13 @@ func TestPublicMessageHTTPBoundaries(t *testing.T) {
 	getJSON("/v1/contacts/"+agentB, tokenA, 403)
 	friend := befriend()
 	label := getJSON("/v1/contacts/"+agentB, tokenA, 200)
-	if label["agent"] != agentB || label["name"] != "합성 도우미" || label["friend"] != "합성 수신 회원" || label["client"] == "" || len(label) != 4 {
+	if label["agent"] != agentB || label["name"] != "합성 도우미" || label["friend"] != "합성 수신 회원" || label["client"] == "" || label["short"] != shortID(agentB) || len(label) != 5 {
 		t.Fatal("contact label", label)
 	}
-	getJSON("/v1/contacts/"+agentA, tokenA, 403)
+	// A-06: an agent reads its own label too, so tool results can name both sides.
+	if own := getJSON("/v1/contacts/"+agentA, tokenA, 200); own["agent"] != agentA || own["name"] == "" || len(own) != 5 {
+		t.Fatal("own label", own)
+	}
 	body, _ := json.Marshal(e)
 	codes := make(chan int, 8)
 	var wg sync.WaitGroup

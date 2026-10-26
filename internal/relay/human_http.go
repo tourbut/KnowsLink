@@ -236,6 +236,14 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			}
 		}
 		v["Resume"], v["SentRequests"] = resume, sent
+		// M-01: keyless attempts and agents needing a name come first; an empty list hides its whole section.
+		unnamed := []humanAgent{}
+		for _, a := range own {
+			if st.Agents[a.ID].Name == "" {
+				unnamed = append(unnamed, a)
+			}
+		}
+		v["Attempts"], v["Unnamed"], v["NewName"] = st.ownAttempts(m.Owner), unnamed, st.defaultName(m.Owner, "", pageLang(r, m))
 	case "friends":
 		v["Title"], v["Section"] = "친구", "friends"
 	case "friend", "new":

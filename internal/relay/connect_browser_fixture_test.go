@@ -52,7 +52,7 @@ func TestConnectBrowserFixture(t *testing.T) {
 		}
 		// B's remote installs come first: approval respects the five-active-agent limit.
 		for _, label := range []string{"remote_returning", "remote_lost", "remote_exchanged"} {
-			code, e := st.approveRemote(&remoteAttempt{Client: "fixture-client", Redirect: "https://app.invalid/cb", Resource: "fixture", Owner: owners["b"], Exp: now.Add(time.Minute)}, now)
+			code, e := st.approveRemote(&remoteAttempt{Client: "fixture-client", Redirect: "https://app.invalid/cb", Resource: "fixture", Owner: owners["b"], Exp: now.Add(time.Minute)}, "Dots", now)
 			if e != nil {
 				t.Fatal(e)
 			}
