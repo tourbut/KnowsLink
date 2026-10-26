@@ -2,9 +2,9 @@
 id: D02
 title: 요구사항정의서
 status: review
-updated: 2026-10-15
+updated: 2026-10-26
 owner: designer
-tasks: [SAR-HUMAN-PEER-001, SAR-LANDING-GUIDE-001, SAR-SESSION-PEER-001-DESIGN]
+tasks: [SAR-HUMAN-PEER-001, SAR-LANDING-GUIDE-001, SAR-SESSION-PEER-001-DESIGN, SAR-CONNECT-SIMPLE-001]
 summary: 사람 친구와 이름 있는 에이전트의 대화 및 기존 데이터 권한 이행을 정의한다
 ---
 
@@ -95,7 +95,7 @@ DEV는 화면 동작에 필요한 기술 계획·API/handler·테스트와 D10 �
 
 ### 용량과 남용 방어
 
-회원당 활성 agent 5개, agent당 활성 키 3개, 회원 100명/agent 200개, 기존 HTTP·queue·gate·receipt·연결 한도는 유지한다. 상품 Free N·가격은 결정하지 않는다.
+회원당 활성 agent 5개, agent당 활성 키 3개, 회원 100명/agent 200개, 기존 HTTP·queue·gate·receipt·연결 한도는 유지한다. 상품 Free N·가격은 결정하지 않는다. 2026-10-26 [SAR-CONNECT-SIMPLE-001](SAR-CONNECT-SIMPLE-001.md) L-01–L-04가 회원당 활성 agent 5개·기록 상한·전체 agent 200개를 대체했다(회원당 수 제한 없음, 24시간 새 agent 속도, 운영 용량 경계).
 
 새 사람 친구 한도는 전체 active 400개, 회원당 active 20명, 전체 pending 200개, 회원당 보낸 pending 10개와 받은 pending 10개다. pending 수명은 24h다. 반복/반대 요청은 한 pending만 사용한다. 기존 agent pair 400개 한도는 보존 중인 legacy pair에만 적용한다. 사람 친구 한도를 agent 쌍의 수로 곱하지 않는다. DEV는 보존 기록과 차단 목록에도 유한한 자원 보호를 설계하고 포화 시 신규만 안전 거절한다. 차단 해제·거절·취소·철회·해제·로그아웃에는 기존 안전 정리 budget을 적용한다. 실패·중복도 기존 rate에 집계한다.
 

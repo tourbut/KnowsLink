@@ -2,9 +2,9 @@
 id: D02
 title: KnowsLink 일반 이메일 서비스 수락 기준
 status: review
-updated: 2026-10-12
+updated: 2026-10-26
 owner: designer
-tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY, SAR-HUMAN-PEER-001]
+tasks: [SAR-PUBLIC-SERVICE-001, SAR-PUBLIC-AGENTS-001-POLICY, SAR-HUMAN-PEER-001, SAR-CONNECT-SIMPLE-001]
 summary: 일반 서비스 관계 재초대와 기록 포화의 교체·철회 목록 정리 수락 조건을 정의한다
 ---
 
@@ -97,7 +97,7 @@ DEV는 기존 시험 text 계약을 일반 회원용으로 분리하거나 승�
 | 확인 발송 | 같은 이메일 재발송 간격 60s, rolling 1h에 이메일 5회·source IP 20회·전체 100회 | 인증 메일 폭주와 비용을 제한한다. 발송 실패도 재시도 budget에 포함한다. 가입 여부와 무관하게 같은 안전 안내를 보인다. trusted source IP와 NAT 영향은 OPS가 검증한다. |
 | 브라우저 세션 | 절대 수명 최대 12h, 무활동 최대 60분 | 방치된 로그인 권한을 제한한다. 키/연결 권한 변경과 전체 로그아웃은 5분 이내 재인증을 요구한다. agent 권한 수명과 혼동하지 않는다. |
 | 연결 승인 | 최대 10분·1회 사용, owner·agent·대상 클라이언트에 결속 | 탈취한 연결 수단의 재사용과 다른 agent 연결을 막는다. 발급만으로 agent 권한을 활성화하지 않는다. |
-| 회원·agent | 전체 활성 회원 100명·활성 agent 200개, 회원당 활성 agent 5개 | 작은 운영 용량에서 동일 회원의 두 agent 왕복과 독립 회원 분리 검사를 지원한다. 누구나 가입 시작이 가능하고 포화 시 새 등록만 거부한다. 상품 quota로 표시하지 않는다. |
+| 회원·agent | 전체 활성 회원 100명·활성 agent 200개, 회원당 활성 agent 5개 | 작은 운영 용량에서 동일 회원의 두 agent 왕복과 독립 회원 분리 검사를 지원한다. 누구나 가입 시작이 가능하고 포화 시 새 등록만 거부한다. 상품 quota로 표시하지 않는다. 2026-10-26 [SAR-CONNECT-SIMPLE-001](SAR-CONNECT-SIMPLE-001.md) L-01–L-04가 회원당 활성 agent 5개·기록 상한·전체 agent 200개를 대체했다(회원당 수 제한 없음, 24시간 새 agent 속도, 운영 용량 경계). |
 | 관계·초대 | 전체 active pair 400개·pending 200개, owner당 active 20개·송신 pending 10개, pending 수명 24h | 연락처와 미결정 초대 폭주를 제한한다. 유효한 pending 또는 active의 반복 초대는 새 초대를 만들지 않는다. 거절·만료·철회 뒤 수동 재초대는 PS-07 상세 규칙을 따른다. 철회·거절은 신규 수용량과 분리한다. |
 | 키 | agent당 동시 활성 키 최대 3개 | 새 키 확인과 회전 겹침을 지원한다. 초과 등록은 거부하며 기존 키 철회를 허용한다. 보존 중인 철회 기록으로 활성 개수를 늘리지 않는다. |
 | queue·gate·receipt | 전체 queued+leased 봉투 100개, pending gate 100개, 24h receipt·멱등 메시지 20000건 | M/H/R을 각각 집계한다. receipt와 멱등은 같은 메시지 한 건이다. replay는 새 수용량을 소비하지 않는다. |

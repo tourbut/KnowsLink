@@ -2,14 +2,29 @@
 id: D10
 title: 프로그램설계서
 status: review
-updated: 2026-10-23
+updated: 2026-10-26
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX, SAR-PUBLISH-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
 
 # KnowsLink 프로그램 책임과 검증
+
+## SAR-CONNECT-SIMPLE-001 연결 단순화 책임
+
+designer 설계 단계의 책임 배치다. 구현 전이다. 제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md)이다. 아래 표는 규칙이 닿는 현재 모듈(main `b413464`)이다. 함수 구조·저장 방식·API 형식은 DEV가 정하고 구현 뒤 이 절을 실제 구조로 고친다.
+
+| 규칙 | 현재 모듈 | 바뀌는 책임 |
+|---|---|---|
+| L-01–L-04 | `internal/relay/connections.go` `agentLimit`·`agentCapacity`, `device.go` `approveDevice`, `http.go` `operateAs`, `remote_auth.go`, `member_agents.go` `create`·`agentLimits`·`connectLimit` | 회원당 활성·기록 한도와 고정 전체 200을 거절 사유에서 뺀다. 회원당 24시간 새 agent 속도와 운영 용량 경계를 한곳에서 판정한다. |
+| A-01–A-03 | `device.go` `approveDevice`·`deviceAPI`, `connections.go` 정리 주기(`sweep`), `human_http.go`·`human_pages.go` agent 목록 | 키 저장 전 시도를 agent 목록·친구 화면에서 분리한다. 키 없는 시도를 기한 + 24시간 뒤 정리하고 즉시 정리 동작을 받는다. |
+| A-04–A-06 | `member_agents.go` `device-confirm`, `remote_auth.go`, `member_pages.go` `device`, `adapters/src` 도구 결과 | 모든 생성 경로에 기본 이름을 준다. 도구 결과에 양쪽 표시 이름을 넣는다. |
+| R-01–R-03 | `adapters/src/private-files.ts`, `login.ts`, `setup-connect.ts`, 플러그인 `knowslink_connect` | 남은 시도 폴더를 옮기고 빈 폴더를 받는다. 비시스템 드라이브에서도 같은 권한 결과를 만든다. 기본 폴더를 자동으로 정한다. |
+| E | `adapters/src/setup-connect.ts`, 플러그인 연결 도구, 설치기 출력, `i18n_en_*.go` | 사유 코드·문구·다음 행동을 한 표로 낸다. |
+| W-01–W-04 | `device.go` `devicePage`, `member_pages.go` `device`, `google.go` 실패 경로 | 시작한 회원에게 연결 상태별 화면을 보인다. Google 실패 원인을 나눈다. |
+| T-03·T-04 | `adapters` Grok 설정 기본값, `scripts/package_plugin.py` release | release 기본값과 자동 폴더로 환경 변수 편집을 없앤다. |
+| C-10 | `scripts/package_plugin.py --verify`, `adapters/dist/mcp.test.js` 원천 | 실패 원인을 찾고 검사를 통과시킨다. |
 
 ## SAR-AUTOSETUP-001-DEV Windows 자동 설정
 

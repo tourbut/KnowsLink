@@ -2,9 +2,9 @@
 id: D04
 title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
-updated: 2026-10-23
+updated: 2026-10-26
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS, SAR-AUTOSETUP-001, SAR-AUTOSETUP-001-ART]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS, SAR-AUTOSETUP-001, SAR-AUTOSETUP-001-ART, SAR-CONNECT-SIMPLE-001]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -518,6 +518,107 @@ Codex details 링크는 [adapters Codex 절](../../../../adapters/README.md#code
 | 열린 결함 | V-01(medium, dev 수정 필요): 320px에서 명령이 4줄인데 입력란이 3행이라 마지막 줄이 가려진다. 390px는 3줄에 딱 맞는다. 수정은 입력란을 4행으로 늘리거나 좁은 폭에서 `min-height`를 키우는 방식이며 새 토큰은 쓰지 않는다. V-02–V-04는 low로 수용했다. |
 
 위 '수락'의 "320px에서 명령 입력란이 넘치지 않는다"는 마지막 줄이 보이는 것까지 포함한다. V-01 수정 뒤 320px 4조합(claude·codex × KO·EN)을 다시 확인한다.
+
+### 연결 단순화와 내 에이전트 정리 — SAR-CONNECT-SIMPLE-001
+
+설계안이다. 구현 전이다. 제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../../planning/product-specs/SAR-CONNECT-SIMPLE-001.md)이다. 바꾸는 화면은 '내 에이전트' 목록 위쪽, 연결 링크 화면(`/connect/{id}`), 연결 중 Google 실패 화면이다. 다른 화면·'어디에서 사용할까요?' 선택지·자동 설정 안내 상자는 그대로다.
+
+토큰·컴포넌트는 위 '현행 토큰과 형태'를 그대로 쓴다. 새 색·새 토큰·새 JS·복사 버튼·카드 그림자·알약 버튼·상태 색 배지를 쓰지 않는다. 상태는 텍스트로 보인다. 기존 `dl.kv`, `p.note`, `p.problem`, `details`, `button.primary`, `code.fp.big`, 폼 입력을 재사용한다.
+
+#### 내 에이전트 목록 위쪽
+
+```text
+내 에이전트                                          (h1, 현행)
+[어디에서 사용할까요?]                                (현행)
+
+진행 중인 연결                                       (h2, 시도가 있을 때만)
+  Node 로컬 클라이언트 · 10:42 시작                   (h3)
+  동의 완료 · 키 저장 확인 필요                        (p)
+  시작한 앱에서 저장 결과를 확인하세요. …              (p.muted)
+  [이 시도 정리]                                     (button, 키 없는 시도만)
+
+이름을 정할 에이전트                                  (h2, 이름 없는 agent가 있을 때만)
+  이름 없는 에이전트 · a1b2                            (h3)
+  에이전트 이름 [            ] [이름 저장]             (form, 접지 않음)
+
+에이전트 목록                                        (현행 카드)
+```
+
+- 빈 절은 제목도 보이지 않는다(M-01).
+- 진행 중인 연결의 상태 문구는 세 가지다: '지문 확인 대기', '동의 완료 · 키 저장 확인 필요', '만료'. 만료 시도는 A-02 정리 전까지만 보인다.
+- '이 시도 정리'는 확인 단계 없이 바로 지운다. 키가 없는 시도라 잃는 자격이 없다. 키가 있는 agent의 철회는 현행처럼 카드의 접힌 `details.danger` 안에 둔다.
+- 한도 안내 문구, '쓰지 않는 agent를 먼저 철회하세요' 거절 화면, '새 에이전트 만들기' 대체 버튼(활성 한도 경로)을 없앤다(M-03). 키 기록 포화(agent당 20개) 안내는 현행 유지다.
+- 1440px은 기존 읽기 폭, 390·320px은 한 열이다. 이름 입력과 저장 버튼은 320px에서 위아래로 쌓인다.
+
+| 요소 | KO | EN |
+|---|---|---|
+| 절 제목 | 진행 중인 연결 | Connections in progress |
+| 시도 제목 | `<클라이언트 종류>` · `<HH:MM>` 시작 | `<client type>` · started `<HH:MM>` |
+| 상태: 대기 | 지문 확인 대기. 연결 링크에서 지문을 비교하고 승인하세요. | Waiting for fingerprint check. Compare the fingerprint on the connection link and approve. |
+| 상태: 동의 완료 | 동의 완료 · 키 저장 확인 필요. 시작한 앱에서 저장 결과를 확인하세요. 앱이 저장하면 이 시도는 에이전트 목록으로 옮겨집니다. | Approved · Key storage not confirmed yet. Check the result in the app you started from. When the app saves the key, this attempt moves to your agent list. |
+| 상태: 만료 | 만료. 키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하세요. | Expired. No key was connected. Connect again from the app you started from. |
+| 정리 버튼 | 이 시도 정리 | Remove this attempt |
+| 정리 도움말 | 키가 저장되지 않은 시도라 지워도 잃는 것이 없습니다. 정리하지 않아도 하루 뒤 자동으로 정리됩니다. | No key was saved, so nothing is lost. If you leave it, it's removed automatically after a day. |
+| 이름 절 제목 | 이름을 정할 에이전트 | Agents that need a name |
+| 이름 도움말 | 친구에게도 이 이름이 보입니다. 이름은 1–40자로 입력하세요. | Friends see this name too. Use 1–40 characters. |
+
+#### 연결 링크 화면 `/connect/{id}`
+
+```text
+내 클라이언트 연결                                    (h1)
+[주의] 내 컴퓨터에서 시작한 요청만 승인하세요 …         (p.note.caution, 현행)
+1. 지문 비교                                          (h2)
+   내 컴퓨터에 표시된 지문과 같은지 확인하세요.
+   SHA256:xxxx…                                      (code.fp.big)
+   다르면 취소하세요.
+2. 에이전트 이름                                      (h2)
+   [Claude Code 2              ]                      (기본값 채움, A-04)
+   친구에게도 이 이름이 보입니다. …                     (p.muted)
+[지문이 같습니다. 연결합니다]                          (button.primary)
+[취소]                                               (button)
+▸ 승인하면 허용되는 것 · 기한 10:52까지                 (details: 현행 '승인하면' 목록과 클라이언트·기한)
+```
+
+- 순서는 지문, 이름, 연결 버튼 하나다(W-03). 현행 '승인하면' 목록은 지우지 않고 `details` 안으로 옮긴다. 요약 줄에 기한을 함께 보여 접힌 상태에서도 기한을 안다.
+- 연결 버튼 문구가 지문 확인을 담는다. 지문 비교와 버튼 누름은 생략하지 않는다.
+- 기본 이름은 서버가 정한 값이다(A-04). 클라이언트가 보낸 호스트 정보는 기본 이름 계산에만 쓰고 사용자가 고칠 수 있다.
+
+| 요소 | KO | EN |
+|---|---|---|
+| 1단계 제목 | 1. 지문 비교 | 1. Compare the fingerprint |
+| 2단계 제목 | 2. 에이전트 이름 | 2. Agent name |
+| 연결 버튼 | 지문이 같습니다. 연결합니다 | The fingerprint matches. Connect |
+| details 요약 | 승인하면 허용되는 것 · 기한 `<시각>`까지 | What approval allows · until `<time>` |
+
+링크를 다시 열 때(W-01). 연결을 시작한 회원이 로그인한 경우에만 아래 상태별 화면을 보인다. 다른 회원·로그아웃 상태는 현행 401 일반 문구와 로그인 링크다.
+
+| 상태 | 제목 | KO 본문 | EN 본문 | 링크 |
+|---|---|---|---|---|
+| 동의 직후·키 저장 대기 | 연결을 승인했습니다 | 시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에 `<이름>`이 '키 등록됨'으로 보입니다. 승인만으로는 아직 연결되지 않았습니다. | Go back to the app you started from. When it saves the key, `<name>` shows as "Key registered" in My agents. Approval alone doesn't connect it yet. | 내 에이전트로 이동 |
+| 완료(키 저장됨) | 이 연결은 완료됐습니다 | `<이름>` 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요. | The key for `<name>` is registered. This link can't be used again. Connect the receiving session in the app. | 내 에이전트로 이동 |
+| 만료 | 이 연결은 만료됐습니다 | 키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다. | No key was connected. Connect again from the app you started from to get a new link. | 내 에이전트로 이동 |
+| 취소 | 이 연결은 취소됐습니다 | 키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다. | No key was connected. Connect again from the app you started from to get a new link. | 내 에이전트로 이동 |
+
+완료 화면은 오류 스타일(`p.problem`, `role="alert"`)을 쓰지 않는다. `p.note`와 `role="status"`를 쓴다. 만료·취소는 `p.problem`이다.
+
+#### 연결 중 Google 실패 화면
+
+현행 403 문구 하나를 원인별 세 문구로 나눈다(W-02). 다른 계정의 이메일·이름·존재는 보이지 않는다. '다른 계정 선택'은 Google 계정 선택 화면부터 다시 시작한다.
+
+| 원인 | KO | EN | 행동 |
+|---|---|---|---|
+| 이 연결을 다른 Google 계정이 이미 시작함 | 이 연결은 다른 Google 계정으로 시작됐습니다. 처음 고른 Google 계정으로 다시 선택하세요. | This connection was started with a different Google account. Choose the account you used first. | [다른 계정 선택] |
+| 새 가입이 닫힘 | 이 Google 계정은 아직 KnowsLink 회원이 아니며 지금은 새 가입을 받지 않습니다. 이미 쓰고 있는 Google 계정으로 다시 선택하세요. | This Google account isn't a KnowsLink member yet, and sign-ups are closed right now. Choose the Google account you already use. | [다른 계정 선택] |
+| 로그인 기한 지남·연결 만료 | 로그인 시간이 지났습니다. 시작한 앱에서 연결 링크를 다시 여세요. | Sign-in timed out. Open the connection link again from the app you started from. | 없음 |
+| 그 밖의 실패 | 현행 문구 | 현행 문구 | 현행 |
+
+#### 자기 비평과 수락
+
+- 첫 구상은 진행 중인 시도를 agent 카드 안의 상태로 섞었다. 실패 시도가 agent처럼 보여 C-02를 되풀이하므로 별도 절로 분리했다.
+- 첫 구상은 '이 시도 정리'에 확인 단계를 두었다. 잃는 것이 없는 동작에 확인을 두면 정리가 번거로워 C-01의 쌓임이 남으므로 뺐다. 키 있는 agent 철회의 확인 위치는 그대로다.
+- 연결 링크 화면의 권한 목록을 지우지 않고 접었다. 사람 확인 범위(AS-04)는 그대로이고 첫 화면의 결정만 줄인다.
+- 수락: 위 표의 KO·EN 문구가 같다. 1440·390·320px에서 가로 스크롤 0, 이름 입력과 버튼이 가려지지 않는다. 키보드로 진행 중인 연결의 정리 버튼, 이름 저장, 연결 링크의 지문→이름→연결→취소→details 순서로 이동한다. 200% 확대에서 읽힌다. 한도 문구('회원당', '5개', '먼저 철회')가 회원 화면에 없다.
+- 시각 검수: DEV 후보에서 designer가 직접 검수한다(ART, [tester 지시서 초안](../../../handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md)의 인계 조건).
 
 ## 이전 설계와 검수 기록 — 비현행
 
