@@ -29,6 +29,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - FIX-DEV 배정: run_1701a184c359 / task_f68e201160be / ctx_cfc38e89ad95 / term_3844e862-8b79-4006-b88a-f46e9227205e, fresh claude-opus-5-5 high(effective 동일), dev 297710fe. 착수 확인.
 - FIX-DEV 병합 2026-10-27: msg_ee2422e261d0, dev 987152d4(코드 fd0eb2d5). need skip(코드 4파일 69줄) → coor diff 확인(errorBody 2곳, reserved에 c.Name 조건, 테스트 2, D12 한 줄). worker lint ERROR 0·Linux make lint/test/-race EXIT=0. --no-ff 3f1da403, 병합 lint --from 3d8257cd ERROR 0. push·조상 확인, dev release, 전 워크트리 3f1da403 동기화.
 - QA·ART 배정 준비: tester 인박스의 SAR-AUTOSETUP-001-QA(D040 사용자 결정 대기, 부분 결과는 6788040f 통합)를 `handovers/pending/SAR-AUTOSETUP-001-QA-tester.md`로 옮겨 보존하고 SAR-CONNECT-SIMPLE-001-QA를 인박스에 넣었다(재개 조건: D040 답 뒤 CONNECT QA 완료 시 다시 인박스로). designer 인박스에 SAR-CONNECT-SIMPLE-001-ART. 기준 main 3f1da403. tester 모델: jev grok-4.7 high 대신 후보 claude-sonnet-5-5 high(실패 경계·연동 회귀 검증, Windows D: 실측·이전 tester 실행 환경과 동일). 2단계 실연결은 운영 배포 승인 뒤 같은 과제로 재배정.
+- QA·ART 배정: tester task_e24204d24237 / ctx_5d71bccaa750 / term_da486903 sonnet-5-5 high, designer task_b4f0a8267c4c / ctx_98d3a29436c2 / term_094dadd0 opus-5-5 high(jev), 둘 다 fresh·effective 일치·5c750943·착수 확인.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
