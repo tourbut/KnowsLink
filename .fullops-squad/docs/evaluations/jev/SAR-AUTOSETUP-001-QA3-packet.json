@@ -1,0 +1,2879 @@
+{
+  "task_key": "SAR-AUTOSETUP-001-QA3",
+  "role": "tester",
+  "head": "1e18baa0cecec0d0577c7dab03a7f40d437d33ae",
+  "attempt": "f70aac227f5a44ceba37d741507aafb6",
+  "instruction_sha256": "3cc0911bd83c4237a3a62693c0b38533f053b837f1cabbc1ec9e8c04b4a1cf2e",
+  "options": {
+    "policy": "packet-v3",
+    "seeds": [
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md",
+      "scripts/autosetup/knowslink-setup.ps1"
+    ],
+    "required": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "updates": [],
+    "sources": {
+      ".dockerignore": "981dfc52b656e4e5d6d3d08668bf12d18af6e1c67bc90fb07e15bbade5841e16",
+      ".fullops-squad/FULLOPS.md": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
+      ".fullops-squad/contexts/coor.md": "0e44cf37f0b307d3c8f04b26c2b2055a2cc3062eb921eab2f5a66190f3871aa2",
+      ".fullops-squad/contexts/designer.md": "315a2f4f4a3c037db1d64edb00da1828dbdf9e08c69cc0728a08c26369aacd84",
+      ".fullops-squad/contexts/dev.md": "ca512e43df51f5f61c2398238d4928dcc2a77294d5816cad4c2798c09d6e786e",
+      ".fullops-squad/contexts/ops.md": "0b70bf7191b5fac9fd14d96054cc1451398e0bc593ae4a17f7a078d4d58b8445",
+      ".fullops-squad/contexts/tester.md": "76f62aee9b0ed330d03fe04fa7b8505c362cdeab49ea6722802ce7ec408046bc",
+      ".fullops-squad/docs/agents/document-writing.md": "c6933cf2fc4e79c1f5691c60bff4d434327301827b82aef08dca0d4e881ba9e0",
+      ".fullops-squad/docs/agents/domain.md": "6a02fc13e1ffa9e0e719216a91d897aadb9120fe5f1061da3eca4efc6443cc64",
+      ".fullops-squad/docs/agents/issue-tracker.md": "d613d0e67332beca5265b5c967eea732e89cd5472f2295f4b2f9f8c1f2eb1d85",
+      ".fullops-squad/docs/agents/triage-labels.md": "dba7a161d428e08df77da98df71cb1fc26cc3406bb627beb540a855427605858",
+      ".fullops-squad/docs/deliverables/README.md": "679031917d22b49b8c50c45dfb7bb84a892ed44f67f6dc41949d50e0c732cffc",
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md": "fbde87ea84689efb010958d541ddb301a7a6c9c1e2deb64fb861585b6b54e459",
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md": "0cdc10f7e731e1cd597472b6d39f39246684e2bef86770e18248cec6bb501070",
+      ".fullops-squad/docs/design-docs/architecture.md": "1c504b30284f253c90e02eda8aae25b7f64935db6b683254979a72eda8fd7ffc",
+      ".fullops-squad/docs/design-docs/crud-design.md": "ab7e42286679b29d752bc5bdae0177d96841283f1d61e1de41216456e2290c85",
+      ".fullops-squad/docs/design-docs/data-model.md": "45aeb1eed94e0c7f8a7fe78976504571662792d9c5faf1a3a8f8f2830864e7a8",
+      ".fullops-squad/docs/design-docs/database-design.md": "b3a220fcb56c3d8c5bac9e0ab3cbbc6260fa00956d70193c25dfe1aac3783bf4",
+      ".fullops-squad/docs/design-docs/interface-design.md": "55870e8de3c96575b0e27a634b2d4d4b5b821dabd84dd75bf2e4011ba9589eca",
+      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md": "995b66bc3f49b8d8d60000e87cb3c29187923c32f44162490b068d984268f2fa",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md": "a73fbf953230e30abddf5fafe2ec98113a38c2fc42cb80abcd51fb3487c952b9",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md": "40e884141a521151fa29b2983b21909a8a9e4504be4b864db061b5386034abc4",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md": "c34f993ed74894ac526e597fca79ee718ebc9600d1a7fc1ab27785d2cbb27580",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md": "df49f42a49250ebac2e9e6dd6ee5dc9c2009c3a677ff5e232c488d9051f5350f",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md": "b7557710e48de9caff96b368be97ada128e5da802cca80e4e6305a253a8179b8",
+      ".fullops-squad/docs/design-docs/tech-stack.md": "93767e9761e95950c18e913a8d9464a9b9ad9a990c1cd2f3410172b1cd9a9141",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md": "17a43d8565e7a625c69f1b9d17d00a0e2acc33e116195ac866ac33f19e24c961",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md": "aaa121484a227c711cbe224d5f143f3bafe2699ad9b494a4759c354644589ffb",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md": "7c2832e059bbe8467f566f0a9c22bdd5775740efad82238c5b5fcd8d013a80eb",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md": "5d3afe68dfeb3d62a21906d97c15d21cd1c69e9cf92362b57394618ef377e90c",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md": "e533ce7e8f5ad7da877c7e366de6fcfcb046e277d193c7663a905e763dc1a26d",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md": "15b54c5f847c17c14952268656a23a4c2bfb5997f2a9fc15502fe67f2bf4e491",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md": "d3651c164d408e2ad7cf8d5fcf96900e9d52e2ae1469b8630dc09dd15e035464",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md": "903d1503266b936402775ef70d3a0211344e23b11005f0ebc539cf0d3e1849c5",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.10.0.md": "34fc53647773547bf64d98d2f6d256fff308b563da805b4d4a7f01092e642136",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md": "84a1100590d606f7c6a26a7320c8c1ef3905b07a09ab6997557ac8c23a3c4a17",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md": "e1f8a996eda18181bd1bb39f4e4790ca63ec23c077bbb88aff1cfadb93aadfa3",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md": "5b982d2714ef77a6d7e63a1fe1ce19be90462f34f84c6470392bc6390b52ee2d",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md": "ae251ce17bc9cc77d632cb10ab1fb52437097acd1b1b92dac53f7201e2b39443",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md": "9890dbe76f41d9554b532237a3b8d62e599b1062ce34b9b505b4e6063b0c2085",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.5.0.md": "5a2616aefe476dba6d74dfba751d46e981412cdfc40dff33bd9d639d05ad8d83",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.6.0.md": "bf8c14a140b9d9319df25dc83c688b3b00f6b38b476a53ea71d535bd272bbb98",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.7.0.md": "1fe10ed217eaac6b0685eade3fed8b985d75845367013612cf913932e48c3c9c",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.0.md": "fad1b87cbc1b68b873bcdacae8d256d36befd33729c5ae68d37ef62263fd76b0",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.2.md": "5f03ae42e9fb00829a61a5c506c75f802c1028611035692f6d8bb01425f54fa8",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.3.md": "33fedb237008c61f484c0963f3b5e999d044763f3b409b3a6d1172923808f467",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.5.md": "fa0eb81b0e4625283b19a85d107985f9bce42934eb43e03190c1efac379c3ba7",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.6.md": "63aab3b6c5e7fb5742a93b406419545958a8bd602a3c2c4646c41ebbb03607ca",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.9.0.md": "2088f7c84de2377bee928d5aa2c25a263d8b9a3e345b38b1a1a56d67fea54a85",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md": "8ac5a2b69e3a2ed3648572f34598c0a41a48c9c0575ad1dda5ac4c6d0e40401c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md": "d518f8346f4917a082e9f4860ef6de5501a55b7cf8babf27e6366c9f27802c2a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md": "959dd264ff5fd28ea5815634c149bb0f1b22826edf0d9b376f3822018073b790",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md": "c0c576b8cd3ab6f45fd71490a464ce71d2388499492596b0491b5c364642c907",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md": "dd9ecd802f4d962cfc233f3354f82e915655aa03f494c9912598ebc12d69a711",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-RECV-001-DEV.md": "02a2315ad22dcc40142b9b3482ccf55cedfbee9b0bc1696bc4d2c0a4dcf24b2e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md": "221ba3cc7e0b44e37aa4dcadddddb248a76a4e929409e533a1c035760ca76c96",
+      ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md": "548ee0dd10160748cfe29916767c1a9c1a506693f0f9dedd6afa25abf3034964",
+      ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md": "cdf5b35799d5c6bf664ce9998d1ede51fd6ac600f6c37cf92948d210259ae321",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md": "6ce2e2018cb8b9c72d4aa4649859cd7886d6fcb68c982998c4ba5367a286dc07",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md": "7c9447441795a60d080670f04d55ece55b264d3c5ff90d1aec46848e348c21dc",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md": "45ce620877489db4c9822a044b681e108ea80cfd42ae5448c29ba70a93c2a1ee",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md": "38122c2a33edf5af477a09294a965a86fdd425611ab96dd0b5f40bb96e24f878",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md": "0433fc272810f430e07f39372cc83e747c2f6d97aeeed8853d89efd72e7e7483",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md": "845218fbe35cace6e40e9793c10791cada55efe8bd33d031807028c7debf7226",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md": "564029ab5aaa0c5def9e7374253633976d89c1a756bb5b916bb8aaa894ffc0ab",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md": "4cd6a2ea6e24325b256e4803f4e579efa01aeab8cf928f1dca5a58444a751d67",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md": "a221ae3f9fb6d60f84282844be2dd59db8ad4d13c1afa9e6dbb79891197d2f0d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md": "0623323c09f2c89005665157214f87d6b7511629f6e51eb9623b02b93ed99f27",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-TESTER.md": "542a27a68af7c4e72e2edc2eaa6c6adeb9d980968b3f60bcbff28bb466b68c38",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md": "7e9ebe28f7d8dc615c58feba8b923585dcbff37460c2c0e760b826855ac7e353",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md": "915b085effbe035a070e096691dae91bd93d5b4eed7a120075c2103b031a62f0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md": "97ec62bc0a77e859bffa0103040dbba33103f559a3fccca7e09242f059268a08",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md": "caa4aac0b0900d38b53d474b900859e9e63d7e410112de7a66ed3424a4a1b80d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md": "49a16c4878ca51d683a261694eae73e5602d251affdeea183e971df6dddc487a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md": "abebefe1c8e5c5379e6472a159fa2448967ee78e67a97fc124b8a2c7a06cc657",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md": "17f38f961f9ed608e7338eb42760d488726cd5819ecb0f03509b0160a6e0c13a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md": "3c716c56ee0d4d7ab3f855531ce2cd826846729ae46c0a0475c46237c50ded19",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md": "3e05fc15eccff6a4b5b5257f2963cf2aa2321d3f4caf99deded135fbb9426e44",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md": "0b1ce81433e1dbae367249840ff17207b9fff9164299354cae613a2a36b9a6ae",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md": "eac55f177fc78cd301d368cb7a765a326ecc3e70905535b37f871c73659b3301",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md": "821220ecb64b28bd16aa8045aaa5069a661e32992768e1ec0eef122878d604e2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md": "c133782ba0bbe0f073839f3188419564c23fd1364e85f533b973143140dec66e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md": "3cf91bb4de57068ea759ccaf355a4cdcf03315c1222e9a7c8c0e46110fa48eca",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md": "e5dfcf996bcf87ba0df991de67e534630abca437cf867ceb96186f73a3580040",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md": "bf6885773d7c3c13214eb02aea8916e8cc3dfc1abda8610c83dfcc39d96633b7",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md": "ebe5eb2d7029d61beaa2941f8ba691f407b938004302ee5f9c04b0e7f4df2bef",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md": "e8225c7aa480033c96aa83d9e32b481deeabde127478e5e59d83f445dd75aa91",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md": "68c34cb86d9c758ace357d74099c0e7dc8bdb533adf790a69e6cb705d965cd9a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md": "2306d1427857dfa7ee18bd973ea9d0f72f88a7d7e24863d8b1f580bd4319dfa4",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md": "5def42d4f22ccd943efa4b1ddef1c2d54f3e8781148b7e7a7971f85beacbe69d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md": "6f9864882dc7ca03be11fa2342ad634c616e14b5e1bde2d708e629d3194e005c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md": "1eee985743cab4d1231ee724ffaac0bb2a8aa0e41fcf86a51f76d70d709297bd",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md": "60b1ca68d6a842d7a15f4f421aa4d408dd07f117866dde8c57751d1b2363c760",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md": "5a7e3881893bfef3dfabdcb94a07d2d7e0de85fdc15948342d8334203d249a1c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md": "4317a70f01eb15a22fd1fbb3c0ace78932714bb42d5332e965bb33cf3eef00b0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md": "df7e52bfbc7a8d2c0c800d2637962afd6ae73378afe79632ac44efc1bf9a18eb",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md": "6aa10e57bbf0e089ee1b9189bec1c466d1aa6446e03f38d5c6c0c3631db3297f",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md": "3ca622fe6b6d8d67e1e9c2e4c0b40186ba9a91e2d93f8bbd0896260710323615",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md": "2416763f961651bb89eb80f4bb3384c750e2da0105f5f743904b17812a32de20",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md": "19529ef3cad5538181b1416abf71f7389ac8bff0e54e45a7af07c117bfa10c42",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md": "2585d95b9a162c8f1d2d53c91c14c7477c8166c81c8a8a869ad6d554f38ec456",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md": "282d8b4d2e87020cdb3edd67512e1e60df0919b6f81b545b173d03b45256a3b2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md": "976ddaccde742d84cf02c6c94c97234c568966022d69030f7f34018c6aad4935",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md": "fb06f51a5969e2fa178c761363cd8c7a2573c668a6e2499d6c76bf27c8db43da",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md": "f3b52cc7db3cf5a07f5e134334d92cbe384c47543633779587dab2449936e75d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md": "c450f61805ab76d20370e00c703ea92cc845c9e1d1409cfc9b08487f8b0d3cde",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md": "5ff83b94e223a005e6baf3727bd74b098b3e008d08495779bb514a65032f8a3e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md": "83d1f5c82680ca086647060d8a671255e2ccbc3f9b57028da71b492e6612bdb3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md": "bee9517e22c473e13adc18e3831a71aebd91106b1267542666c734f1d74fbb01",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md": "1ad904ed82b22febc610ae468c7d2a19967af203ad0432feb540ec5c7822d961",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-OPS.md": "3a3ecc27dcbfee248679458a0470d8452230e358855266ea65afd5a1d5d80779",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md": "840247c22108c38577c50e8c13e15497f5fc9d29cfc9818f47c2332f824cfd98",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md": "19da99c2b5b8c6a94015add559388acefb2b6cf9283a06b8ad23936c23fdd980",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md": "a98aa2fa4a20efd4cb257d0348cd2ac43591da50449d26408e5bc6dd49bd20de",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md": "ad12618f580e4c3d31c573f3e212e4c1ff0153af5274d3d0ea130292652f3e98",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md": "c421658df3c5a742c62d723ae48e5e73e8a8ee7b4b39dc76ac03462f35921496",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md": "3df4cba9ebbe78273483cde64a9098b145e98d83dd26cd17fc62a659a7171aee",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md": "8b59d50c5abcaeffb4c5d75be7e933336c90e87a18728103f4b3a9d26731c9dc",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md": "f640a7fbbd38ae58274b98b898cd573cc5385bfb10bb04b8ca3e2c624f7224e5",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md": "fec52c74a05128a2df8e9a3c98d004402975ab1b9ec7204aa9adad765c424084",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md": "b57dad2560ecbbb137e998d988c53d5f19926a7943c00b0ac7b3cd2006a72ea8",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md": "41e798a47e06093dd05bb71e9d0e1d452c64f8e23444c28612be6dac706987e8",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md": "c62ca4dab96a5dcc25dcc0bc5d7f463247810f784c2b3370d46700e4703598e3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md": "08fc0866aaf6a437966ec6865ddc14c4691994f686e00e83be9a3987aad25857",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md": "3e022c5bdc6e6d8d62302d4551c256c6c67fb69b175581b4b5cf1d81bc08d8d0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md": "d02fb52a2773481fc7911dfff34f7defb414ac276478ce7dc2bf10861bccc2cf",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md": "33825d9e5e6fcf802cb7987cb167d690351a8da428f5b7a94c214f56994dbf48",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md": "f188a72ae7485031e114cdae794c6d495efdb46badbd083dd2bf4ea087c396b1",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md": "4cf30abb159dc7f9feba9e18bf0b3981bd0ae88fc24680c8f2088a3cb6850b24",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md": "410c4cf7b50c262d51ec6e650ef396683646a174afda0e0ab7e59260ff1857e0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md": "27385fa288124f4bb570e95a68e7e77423341ab61ffb001fb30945b23c10e678",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md": "bff52bb1aa8d408a8183eda6aac8a8487a710577f7dfb98158a9c1b8156610e2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md": "bf29cdfe4fbf22d196154f81ac4303a357671244f1d7d47e0178b88e3d106001",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md": "e12f7859078c667e6914ca992c12f09cc7866003ec6bb24de9578129d1592c2a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md": "ce6dfb99b0bdd0f12702e1893db6e90ded9b8a9308c8c88fadde655a403c1ad4",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md": "cbcbdc87758844ea0b7d4e356e862e90f177e2861243cc2851de8682374b92fa",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md": "2d64d35bf7acb5814687396711c16fa49869b8404d658662d430f38a8bd2a3a2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md": "ea9f6892d6598b718a5af4e9a7ed01884416253bcffd07061b91d1c8c516600d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md": "771e1bd3f26dbbc4163aa2f17a106da31d1afcbecf4f2aec2a5cd0bd61e3e4cf",
+      ".fullops-squad/docs/generated/db-schema.md": "50cfbb5605a108c9916e50d518182e2d682a727fcf002c0cba083fcffaa9d088",
+      ".fullops-squad/docs/operations/transition.md": "4ab1915b9f11d9596e0cdbe8957a4cd10c0a8c4b868fc06db6c23705d87d5bb7",
+      ".fullops-squad/docs/operations/user-guide.md": "3857f2c23f303fa98dbfba31ed6ce1255c46aa067de8e3adfea0129215b9607a",
+      ".fullops-squad/docs/planning/SAR-AUTOSETUP-001-DEV-brief.md": "aa9730fdc319b4bf9b5b5a9e20b8fbb68eaf837b10f9abd6d8770ea68f9e5728",
+      ".fullops-squad/docs/planning/SAR-COMPETE-001-request.md": "a3a9694290f31b7d97573595c8044178234205d1bde2016a5fe006c63e01191a",
+      ".fullops-squad/docs/planning/SAR-MVP-backlog.md": "9266c6a3493bf2f329b8a578ecd75932a9f1237d9919a876152d7fd03a52b3bc",
+      ".fullops-squad/docs/planning/SAR-PREP-002-request.md": "aac8e951f534dd7898a8a8d8d397b62c70acbab730f69d00d67428059d25045c",
+      ".fullops-squad/docs/planning/SAR-SETUP-001-question.md": "982e3d96376167d548fa86d9eff83ad3cf9fa789d77305535ae34fda0d3b695c",
+      ".fullops-squad/docs/planning/SAR-SETUP-001-request.md": "71ed2c382551dcd2bd1ce2fbaf78c20b984650f2db3439d7d87eee8f3e62a4ba",
+      ".fullops-squad/docs/planning/business-plan.md": "c6713affaabf38eac24beaee57e34db9a20f31d39493fae17f86df4ca8d43297",
+      ".fullops-squad/docs/planning/intents/SAR-AUTOSETUP-001.md": "e8a4dd9e8845e4f1c0c5133c51e66a4f40e56b519cb519fd17f8eb8db00aa983",
+      ".fullops-squad/docs/planning/intents/_TEMPLATE.md": "d96761acac91d610997157847ca1cc000efc86aa370e3c59af015404f8fb7d98",
+      ".fullops-squad/docs/planning/product-specs/SAR-AUTOSETUP-001.md": "1ab9b4ec5e5dedbb3961523f596961c2a1607ef67105e2e685689ae2a558b4d5",
+      ".fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md": "f41a11866b1b88522705347b63351d1525db665e30e3698566a970faae7d39f2",
+      ".fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md": "b9f456ef1d0261e6475b658d993a7c5a8cedc4169b6b0b6ba584bfc3b81e8ded",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md": "4d2fc9fa96fede616f7ea6e2c9b31e0527e3eeaba8442e31a7aa2ab5253b0578",
+      ".fullops-squad/docs/planning/product-specs/SAR-MVP.md": "1d63b5517f2883cc15375ccc5cdac6689a5a171e46b962fe56ac6c437bfebf8e",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md": "a34c277ad73b4b879fe76d5e9594c1f93606390b310b46fe155ccd6b25fc109d",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md": "d6d98dd915e1e6f115bf81f138dc5d0db25d168bc96d2019de826531d9859403",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md": "4651854cc519ecaa695ca9acc644c6471f9d089ecc5ec9a5e1eec2825a4eda94",
+      ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md": "d3c17571ade569fb0a4e421cedbd3426cd690809293f8abc9f73627605fcae1d",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md": "b7aa9204c400ce76e7b77accbd7d1cc1317f6622677a53029fdd9a96d71b7f3d",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/business-model.md": "7453f9d50c8c66dc5e225713528d97b9b99bd1121d626686de5ec44e4bf4aac4",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md": "8eca37c259c284908334d4c600eab4198b7f44b3df45712d0ed48e6870c32e8d",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md": "6c5acf3b1a82d43ebaefca904b1678b172119fc5c275f784ae4ae6305abe7050",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md": "b7f1e78de9dfc541f9d42270d595f05360253e95a72a6d1f95a41e2ea7db21d8",
+      ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md": "87369dfbd30eb4b9d7da6b380720b2232bab9a59c77cac7d7a1ba482479af1cf",
+      ".fullops-squad/handovers/_TEMPLATE.md": "70b02089b9663e286a427692d61e51aac94cb1751a4602d772a0117a491db7a0",
+      ".fullops-squad/handovers/pending/SAR-AUTOSETUP-001-QA-superseded.md": "2d4a32a02b839c97942341c255c8057aaa42e6465eecaf07c4391e579fa638da",
+      ".fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md": "6ab87527f6d130fd8a05ad6b49c01501d49e6b379d0f685851107d690f719103",
+      ".fullops-squad/lint/README.md": "dcb06cfe86360e39accc844200b80b7c10bec7a81f0c07c11f13ce557e1fc474",
+      ".fullops-squad/orca-agents.md": "e15c0956821cbe4f8e5cbfb5873020211ebb824a31357fa0e26afa8e29c04953",
+      ".fullops-squad/project.md": "fc29df0d4540cea831c8d0a22eae75467e9e094de38e3954771354b4ad548ffe",
+      ".fullops-squad/review/_REPORT.md": "ea98b4ee3d26e68730deebccc900ce46da6424979bee25c37bceac3c8124ed8f",
+      ".fullops-squad/rules/common/README.md": "deccf1af12f00b265dc6a465dcabf369108b5f8b73bb7befc37b63a16ebe6a43",
+      ".fullops-squad/rules/common/coding-style.md": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+      ".fullops-squad/rules/common/security.md": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      ".fullops-squad/rules/common/testing.md": "1f54ec402f46c465719b487b9d6caf390e243c1fa54e8eaf43e3b345ab730ecb",
+      ".fullops-squad/rules/delegation.md": "d9b0606c7e6750977cec70d5de0da2521e6fbe4401f572b49b6dbe7932792c35",
+      ".gitattributes": "0c51494119f4a7029fd6ceb638a2dcf45ea7cc3ab5553492ee7817e77fc798e3",
+      ".gitignore": "f48b8404e7b958376b4de76d693e0211aed4850822b255e1d89aac7f143d4ad9",
+      ".nvmrc": "4c42fb8d6334c5cdcac68b93f96c581fb83b1f58cda898cff115e5e941ef717d",
+      "AGENTS.md": "5a86b5145d2405a5adfc4adc39daa41b2f62a5bf08d25820e333f5a3e671f288",
+      "CLAUDE.md": "890c7b372e915d12dd47df0af31551ad1e092d79df72893810874278a889daa7",
+      "Dockerfile": "0d4910ef981013c4db94ae408f6eb814c21d0a4bffe3edcc2658ad97f374314e",
+      "GEMINI.md": "198b9baad6276b7fe1232378edda29ab62dd2a255dfd7c7e06db9e0ff38753bd",
+      "Makefile": "65bbb321bf6951d05431b8ecc2ab41a1393dd7d4bf9b8b470fa886bedc0c8dd2",
+      "README.md": "9ea1c70d12b5182326ed83db636635e27bb2e841f77463c2415a690438bf53f8",
+      "adapters/.claude-plugin/plugin.json": "a0b3bef6a81483eaa0d2411e94a6c72b2c17349cf5ad33e84e695b946b32f60f",
+      "adapters/.codex-plugin/plugin.json": "73535ee113ee4fd019433a0cb01ad735323b014d6531b5bda833d8cdbb2a2c12",
+      "adapters/.cursor-plugin/plugin.json": "f6124654d704a63bff4e9c7c5293880a126ffc2817eabd13d889353902423b4e",
+      "adapters/.grok-plugin/plugin.json": "7fb7e729a9affb85262d82f1cfe6c2f4ceaa2a0210c6f6797060e98a520e10fd",
+      "adapters/.mcp.json": "6e6f51c6c531740ef9b3f351e90ca78b6855372652527aaf17614c31ba52d51b",
+      "adapters/README.md": "692fa9d2a84acda0a31fb662ea5f605f4f381b703a49b14d2542dcb18b295316",
+      "adapters/config/local.mcp.json": "3e22b80eead57acf4207fec33ded2a1e73a0c7a4eb0de3112ba6e03c1176354b",
+      "adapters/eslint.config.mjs": "f5147934551e8e0305207cbb8f1041e41da2636ed978f8a37f9408b1933f5c44",
+      "adapters/hooks/hooks.json": "c835c92d8e1159d20a40ca78ad654da7433942c3694ffeda0b376b0c4dfd52cf",
+      "adapters/hooks/register.test.ts": "65d45f26a4bd8af6ac5eee31dd9f37befe46b730865191b26ec60d84dded1147",
+      "adapters/hooks/register.ts": "604d1a176dd468e97a284826713344104606e542d5d3722cc8e6bf32e421f2e3",
+      "adapters/manifest.json": "7ec54c5d4a0be643fa6e0dc8bb1dd4beec9f3d8d44cbfadbf2158a9ee287f054",
+      "adapters/mcp.json": "e95d0223b47d355abba37fe8223069998350ae5653379dc196c5bc7e21db09b7",
+      "adapters/package.json": "6b85f3ffd565e1baeec2d7ddc2aa8523568b6bacee8fdb1e5c2de5e7ebed5183",
+      "adapters/skills/knowslink/SKILL.md": "889a37ee2f61fb1b0d1cc90d1a60adfb9f31b4bde60f7dfe7698f9db836eadb1",
+      "adapters/src/codex-session.ts": "c697cef432e28072d538c3bd0d786e9ead5b7825d10f55a2c32fe82cb37c4120",
+      "adapters/src/defaults.ts": "f347b80c95eee91c407ff66cba1400932059bae0877b268cbddcf71c644775c6",
+      "adapters/src/grok-wake.test.ts": "0cfe274ed0d33e91c061e41445f51d00fd8e52423c9dfc27b994f4c195f8d9d7",
+      "adapters/src/inbox-files.test.ts": "a94e148fb2f908e7946834cbdaf0fcacab31b27f2b6f1dc1cf09e1b2a39d6f17",
+      "adapters/src/inbox.ts": "d4ceae67d0e55bb20d4a78d07a8e9c55fc51f1580ed737fcc2beba6775c7ddf9",
+      "adapters/src/index.ts": "ca28630722ef67b43b4972850d1b8d008a0aa0a86b7d19734dc8b8c44e65e62d",
+      "adapters/src/login.test.ts": "ae0a5e30447b16d35f6fc329b70f7a70de4405db6b6b744a6d51df1915c71844",
+      "adapters/src/mcp.ts": "559ee52da57023088053d28fe63a6082dcb6e693316f50c0c1979c6bc06ce8de",
+      "adapters/src/private-files.ts": "78dba38999ce629fc841661bc2ef9093fca212e65544bbd4825a8b8e3716936c",
+      "adapters/src/public-check.ts": "789bfc15eb843ea866d0724dc428c7047404baad32e825cf09a42ce75d5a456b",
+      "adapters/src/reasons.ts": "40f61cd778b0e73f8ec64c1754fd1d7f2c694519a026123bbe73348afc012cf9",
+      "adapters/src/session-lock.test.ts": "e973cb18ea2002ecef275c20a892b14c10108d3b10ed9722a3a6aaa8eaa32b50",
+      "adapters/src/session-lock.ts": "999f65a502cfbd3335d2d1ecf491f55cde77f8ef6e7e5425d339217af8f1837e",
+      "adapters/src/setup-connect.test.ts": "c800ce841d6ccd4ce39e2b5ba3af4cb57c07e5aa9e21fd12e06c2eb817fa5d4b",
+      "adapters/src/setup-connect.ts": "598d8b80808db88264decaeba20f4fff7f3befb8e757bf58aa00f04c9e1eb8d3",
+      "adapters/src/trial-check.ts": "51c62c5457ecb6d1a404a442a88be4c58ac2f3bd938ff142815d65f67ea1389b",
+      "adapters/src/trial-cli.ts": "22838fa55f0ebfd3adad690f7d6cb3b18a73d6c0da8453c6d187c53624d78bd2",
+      "adapters/src/trial-setup.ts": "7c1204946e878e9e7995f5132ffac022f979503428654e0c9801cd54c29c6f3b",
+      "adapters/tsconfig.json": "864dbc33acdab5c8e2bbe029ad982459838aa461c5a4a1b98039a5302864b62b",
+      "cmd/migrate/main.go": "ab1525213a591693fa268505106970812e9aba7c920b93576985748b566d04b7",
+      "cmd/migrate/main_test.go": "b0cacdde1f9a969176f55bbc294cf0ab22c3e0c2e9485b534046a3469d86de22",
+      "cmd/relay/main.go": "2dedc549b624a1517d62a413294a12b70f968f8f1a88382403239968f1cb88bf",
+      "cmd/relay/main_test.go": "962b7a53d75ef67180212afeabd691641ed00fc98dc5513c9754185d3002775b",
+      "db/migrations/00001_relay.sql": "31aa978fb6e7d26eb4be7f65cd58c6abc286c0675bacd1856368221d095c7507",
+      "db/migrations/00002_human_writer.sql": "83cfa1aab7ddb803a0705434187af01386bbd8ccb60ab37a4cf5e9220c661f36",
+      "db/queries/relay.sql": "8339645080a1f2a5174de2f16f8667d71242ec756da3f6d19ac0766a782e1c8f",
+      "deploy/knowslink/access_trial_plan.py": "22aab14ccd82333c1ea5666f83e73eada6bda0eb9014c07a28af3ce9c0ad663a",
+      "deploy/knowslink/compose.ops.yaml": "63ba6860410b28bbf637e963b4973fe80e00cddede8c39c14cbd273db1321355",
+      "deploy/knowslink/prune-backups.sh": "a3c3f25cf83e5dc21723d7a8f92ddca41d928b9973999220f70feeb3a9438736",
+      "deploy/knowslink/test_public_config.sh": "5d6f45419da2632134b848666a92befccc7c90841ddb9989dcdd0f74c8873452",
+      "deploy/knowslink/tunnel/config.yml.tmpl": "116268e9e27bf495873749cc3a1e75d16d221cb082c6d9a1cfca5d1c66107d77",
+      "deploy/knowslink/tunnel/public-ingress.yml": "592929bde90161f2b5ee4d6382a2abbd0cd7e783b311a3359433ebb81a541349",
+      "deploy/knowslink/verify.py": "a65b263294d9e8f1a86297b0069c9bd94a05fed7f8ecfaf23632130d16a3eac9",
+      "docs/README.md": "fd8f03eaef15ff66e8a000865e8fa1f28f315fab0b73069b3781ff8ee4c802d1",
+      "docs/architecture.md": "f991945b9567e10c830a04c5b8d5a641112eb892bb884b0b808a77c3b3a28a75",
+      "docs/brand/README.md": "70ec4c56545248ab9dbebf5019fd56199c5bd628c7f8fe66da06c151cc4944c6",
+      "docs/brand/knowslink-favicon.svg": "5ee8a5760f9d0be047c010e4c942a3ef92800568917216afe647f0f4c5821032",
+      "docs/brand/knowslink-lockup-inverse.svg": "1b0d1b5b08fd9d3819969af6f196b1ac7da6f7565e1f88e50a28264078ba7b62",
+      "docs/brand/knowslink-lockup-ko.svg": "6dab554a929bcbeb0666d9dcc4fae39c9de42d71a862b97b87fee06d1978a833",
+      "docs/brand/knowslink-lockup.svg": "fcbaa3cfe0a531b10900f1075fd929bf566b19b8cbe2a35aaa374853d24d6028",
+      "docs/brand/knowslink-symbol-inverse.svg": "040f9dfca090850816a38236c29d8936696639591e8134aa0fbddfc4a43d045b",
+      "docs/brand/knowslink-symbol.svg": "c61f2a24ec4acbd6e81b667479b26e61919aa0c4c477a61db519c58209171001",
+      "docs/development.md": "109217c254d60bb068975be5a561fe0b1763a10a10ccf9d61df99bbc9ad7e0ff",
+      "docs/operations.md": "823d6a35de5ecba8fd304fa599c4afcea581a6ce748613cc1fd0327e7afd7755",
+      "docs/system-design.md": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
+      "go.mod": "43099800f2f949dab1c19c1a42940dc389fc5c8a90c10d40b50999ce65aceaac",
+      "go.sum": "2d9688060391df4ea15fd8c24cb274441c5a7d466e5c3f016d2dc9e1bd1c282e",
+      "internal/config/config.go": "eedd02bfffb977f9e5199f7feac343b93a05965adee561cf63bfc4a09dca292e",
+      "internal/database/db.go": "b6213219679f628bd87a92365b7aa0c595adfecdd942318aa4af989c67d69e2b",
+      "internal/database/models.go": "692e07142c393f74203d8e64af57c4f77a8bb8061f16deb8f92134c558ff69f2",
+      "internal/database/relay.sql.go": "3b5dbf3ad41094abfbb17880bd0474733711fc865d3080c531307fa88840282c",
+      "internal/relay/admission_integration_test.go": "c815201bcc8d34d043bbc44bd949069192685beb0e3eec77c715e3914470f322",
+      "internal/relay/api_rate.go": "e0630a88d92f897a134584be2c3117632b634f102de15fc59bd5b0279b4eb19e",
+      "internal/relay/autosetup_fixture_test.go": "f1f7d13509f25be1aed36ea6ec757b9044c4f2816d8b1225337634f0efc69726",
+      "internal/relay/autosetup_guide_test.go": "97da09d0f2266784b756ae158e3d02468cf2e0aef646ac312949d54751baeca0",
+      "internal/relay/calendar_retire_integration_test.go": "11e558c7ec8acc420f69d330109f6c74280e9d0cd764b2ef0b12b676acf56266",
+      "internal/relay/capacity.go": "fc54a96f3a23418fc2e7cca261d80c7c8add87c20a74baab6cf9013e9a89e6ce",
+      "internal/relay/cleanup.go": "29ed63da91c6d0f70dd8224a6d1bf433fdea06ecb2c228225155315faa47b76e",
+      "internal/relay/cleanup_flood_integration_test.go": "b7ac154bb82ec510bed917e4c4e04dcb4392a93501781baa649ce2c7621db3b7",
+      "internal/relay/cleanup_unit_integration_test.go": "4c702fa7c115281738790c37b92102792b9fe08b2ffece347ed3c88ab2b9ffa6",
+      "internal/relay/connect_guide.go": "20f7e96617ce6650df7240492b7df708a75302e1da669c72097cd5092486c355",
+      "internal/relay/connect_guide_test.go": "b6c90e7e743fd9a88debcc3ee0a8d5d6961e17e52da6b2105aefb3957ef01124",
+      "internal/relay/connect_simple_test.go": "ad31f4a84fb17044461f517b2d71f5fec58f3e9603a737ebd0c7cdc5ebfb45d7",
+      "internal/relay/connections_test.go": "561f278193ba69c77136e784238f8c5876403ddbe0750eb103dac35153b6d62b",
+      "internal/relay/device.go": "5e5a22f28f2ab66e46436e56535b8344012a401b1b725140f67cedc4d5420e56",
+      "internal/relay/friend_rerequest_test.go": "c8225a6a1e0d794120d42486f26aa59da250c0400caa5392198131e41da39934",
+      "internal/relay/gate_summary.go": "d57449f6a067796af953f779bea1a390316853c61ad431680119b8192ef8043d",
+      "internal/relay/google_test.go": "1b4a4c12c7b2edeb3f5e1628aa04692fab44bd4d4bedccbcf7d020bb220fa13e",
+      "internal/relay/human.go": "b686a4118e33fa38a7d69f5abed174eccdab18e8392f6f4625f78df6b98d3cdc",
+      "internal/relay/human_http.go": "9a981a00ce867436e5cdbe871a6ef6863d1055d903d0124adb1d832ec42e9500",
+      "internal/relay/human_messages.go": "17a7d54b053f22e21b0e56840a31b83d214a17e5585a95e49d5ef515f1f1329b",
+      "internal/relay/human_names_integration_test.go": "10bbcec5d59d986f9ca74ae07c39854cc274697ab07f32ce75e204ed78a2692c",
+      "internal/relay/human_names_test.go": "99f361aed28a4f1e28962693e4493c0ff59007ab063aebe220463e66d6747568",
+      "internal/relay/human_pages.go": "acb2759b7381ba4ca6647474766d43da5c420b832a032cf27aa28ba03ef5ff87",
+      "internal/relay/human_pages_test.go": "47bc0b2dcd2a39ef8ce8d137ead680b2fd8ccdd72dc0e4eeabb47683b1a0f20f",
+      "internal/relay/i18n.go": "e88a473f4b4d67a2d13c85b15abc0ae6bf83db658b4b4d02211f8a662ad0dbb3",
+      "internal/relay/i18n_en_human.go": "3fa023e034009ed7feb3482f619dd0dfbfea1a02d0e04273d3042649d2f36876",
+      "internal/relay/i18n_test.go": "207009ff2241a5e6fedd0dacf45895b363a966609d077e938b9557feb9d5f99c",
+      "internal/relay/install_files.go": "64997012f99214df2ca147c34b80ebe5cac35811afdb48f535271255b7e55c48",
+      "internal/relay/install_files_test.go": "e3abdc540b64b65b30f47f2afe37f3e00fe1371945b6d77621b67bbeebb635f7",
+      "internal/relay/landing_fixture_test.go": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+      "internal/relay/landing_integration_test.go": "703c3c40923f310c0fa1bcb3a40b27dcedea122978b385b50a7461f3e6ee2911",
+      "internal/relay/landing_pages.go": "48f829f5013ba094352b39f1cb2d40877ae9beee4dc3279f1983e6c0596be154",
+      "internal/relay/landing_test.go": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
+      "internal/relay/lang_integration_test.go": "387f58601833fe51d57b17d9d1fb96d8bddb330a1c53c0b2928922ac375cadca",
+      "internal/relay/mail.go": "db5171b9e74b68532e0a0cc7e821ba55a3c69151c8e4daed1f5a8a94b0561754",
+      "internal/relay/member_agents.go": "7e8e360da07bc4da48ce3e0c07a3a39379f5d7da3b673806b84c7eb103cd7fa4",
+      "internal/relay/member_pages.go": "bd99c7f08b4e2e80581dc98d7cc5f7985a3439bd885a6a72726bba522fbc21e6",
+      "internal/relay/member_receipt.go": "bb2b4a2bb54d0474d051c01cf4e38fed5fc7026cc31dd601500f9285f77f6cf0",
+      "internal/relay/member_ui_test.go": "28fa97bd35a6a6ba616c05f30aae2b26d8b2dad148688a3a092e5f28014c5218",
+      "internal/relay/policy/privacy.en.html": "45d1fb0a2536d985b35ceb60acdb577a793818c539b8bbdbf8e30e316bd08b03",
+      "internal/relay/policy/privacy.ko.html": "06d8aae664f27dfcec6c8fd18e3426de675c0b163a5d1f3f0d299042f6065af0",
+      "internal/relay/policy/terms.en.html": "451c7282a6bd873cad50b4d7312080745184088af8422f0b2cde18b7000c4118",
+      "internal/relay/policy/terms.ko.html": "3c6a252ff3327ab25aa429fc5ce93fb9740e0cfa28da8c741b05171a0a551802",
+      "internal/relay/policy_pages_test.go": "36af03acd28f12bde15ca98017f383ff062a715ae353f29bed0f6ce51c51d73f",
+      "internal/relay/policy_test.go": "8bed6f0d747b821d1797cd7f4c9649957a5bc4ef3e16990b3acc23d2ce0b419e",
+      "internal/relay/protocol.go": "7a01b3e2b491ab935e1e4527a68c6d2bde90624a59f4059624e132cccfc033b0",
+      "internal/relay/protocol_test.go": "8433c1ac3a09c2c20fd7f82c6756841761998b616ef281a5d12dc91170939a5f",
+      "internal/relay/public_messages_integration_test.go": "5b8e7b52b9f90c2882d23f5ce5bf1ae75dcb31a94b639fbe9585ef6204ccd1f3",
+      "internal/relay/public_text.go": "5828030e24e8d5c039201cacebb46c4ce74ecbd8f178f10ba6587166d1371804",
+      "internal/relay/receipt_context.go": "ee3e46bd248d3262a93023d797852b30160edd1b54faba46a515dc9c4d98ece8",
+      "internal/relay/receipt_context_test.go": "d0387ab18b0fa20d0cefae31f6517f554875007041bb6b5a09dbb88c39e299c3",
+      "internal/relay/receipt_integration_test.go": "436ab90d93c774a029f76ae8f15e96a01c48e43c66c068e8c64560e5e6fa1d8a",
+      "internal/relay/registry.go": "652a0193b46720a05a7797b309e1f3d372342b430bf3ed991dba3085daeb2cb0",
+      "internal/relay/registry.json": "2b25c6b58fb6b6973de1c9bac19162834cfc9b678a0416ad39e2cffab3cde1e2",
+      "internal/relay/store_retention_integration_test.go": "2224ac00ed6f3417382f90ef3147880aebcedfb33323f4a425eda83599f2915b",
+      "internal/relay/store_retention_test.go": "8fffcea135407c496799f77befa7f380a9d067e1f022659e7954ad0dd8ba752c",
+      "internal/relay/test_messages.go": "33176453ad79efe89a78d46efba40bac50a79cda20e1e1ad8578901e8130102d",
+      "internal/relay/test_messages_integration_test.go": "7a013073933cd8119a11034b0d8d9d1c4e7b7f4de134e70fe8b3ae9a0ca34052",
+      "internal/relay/testdata/consent_browser.mjs": "704b045e65317ccd89cefbef180215d93680a4ab13f2ebb10ebd958d65628081",
+      "internal/relay/testdata/legacy_claims.json": "325c731b01d1579b3ff51818236f91a46d1145087d63f63a6bbffcaf0c294d2f",
+      "internal/relay/text_events.go": "7a305730527510c02ae18460729734213ede81c15b592b53087fdc1b3ed806fa",
+      "internal/relay/text_events_integration_test.go": "329d381e88436bac1358bbbc9c8a933c881891cb3718d241a20318439146820d",
+      "internal/relay/text_events_test.go": "6663f90253f8b33cfbed45786e07fb3001bbd37f06a7c69eb5f77ddbfc257138",
+      "scripts/autosetup/knowslink-setup.ps1": "2d9e23e3e0ee90290a8f2100cd66c022db0c72b4102c07c73522f9f2244bf9b9",
+      "scripts/autosetup/test-get-registered.ps1": "a7bbfa6f4f8465119f73ad98ef08b15a4d76eedeb35870baac1d7f474d6e5469",
+      "scripts/autosetup/test_get_registered.py": "117a18909e8bdd32eafed5e6c7281db45864766533385e2e6fb7f56bc354a73d",
+      "scripts/check_public_ingress.py": "542fe89d755d18101ce8f126f1c323e8f55562cd7dba7c56b0822102a259d83d",
+      "scripts/install_bot_mcp.sh": "13276be1bd2504bb1ee19aabd8dc2bfaf55f3174632b12fb2d82e4dc9c17c1bd",
+      "scripts/mail_sink.py": "849e22ce33ca1254991f8ba92e9ef989bb994192915fec21380296ead1c36542",
+      "scripts/package_plugin.py": "1c31d94a83deb2f27fead985835756d62c42fbb90fb10611b086e7dd3dc5e0b4",
+      "scripts/run_trial.py": "b5e4fcc9e20b079f37153598245ad51dbe905bff9b95daf87d02fdb334a0186e",
+      "scripts/schema.py": "f522e897e019eced9e2127a2671937a67561db76ab7af1953b8e955021e1fa91",
+      "scripts/shell_guard.py": "eb376fd5cdac405098d4b31ebac85f1f670ca9b177cd44b26e0633551490657b",
+      "scripts/test_shell_guard.py": "9f0c41ebf3ebebe6c01672a4d37c4e5cf6e7f7e16357e777521d39e3d77a2b5f",
+      "scripts/verify_grok_plugin.py": "74b9cb2865c13c0ae5ce8c1901088d0f8255d324450cdfa17618578e85e5f143",
+      "scripts/verify_setup.py": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
+      "sqlc.yaml": "7374b98ad6a57b13f6006e995dc9c585b6db7f75d8500edd93c7c34438d50cd0",
+      "videos/knowslink-motion/.gitignore": "47a3d1fb0dd29b8c312fdda10e075f66934d4d4382653450618e6db6923a4eeb",
+      "videos/knowslink-motion/README.md": "4475973a664834b3f77fc09cea2074b356214fd0101f400bf50a5950bff14d17",
+      "videos/knowslink-motion/analyze.py": "84c002c0a40b668579eca0aa244f0bfd3713deae432bafd0463ca5e10e37ce96",
+      "videos/knowslink-motion/assets/SHA256SUMS": "4430036c74226929c382d27670f4658b2da8e67b3d081659c99479c7067c33cb",
+      "videos/knowslink-motion/assets/SOURCES.md": "f9379d15e41e7210b7190d68a3a51ddde94ecf0494169342623b4db4be8460c2",
+      "videos/knowslink-motion/assets/fonts/Geist-OFL.txt": "930853ee1daa68554d9e35c8a9175affb74f699fad9a5da6ee5ebe76379d9137",
+      "videos/knowslink-motion/assets/fonts/Pretendard-OFL.txt": "b04538c9abec39a3db75108cf0af0fd9c77032fe8aa2cf38345b4d250e98e38e",
+      "videos/knowslink-motion/beats.json": "857bd7d3f459cadcfd450e1928527608874943d225077abef370b9a3ae1deadf",
+      "videos/knowslink-motion/fetch-audio.sh": "962252b30184dcd6fdec9e821f8bed5f63be9f190c0248f9e26e0b465c0775a6",
+      "videos/knowslink-motion/index.html": "a7ba6224e174c6566f8a6ad14ec7cc1c2d3f95bdc04889f2b334acf538b37b74",
+      "videos/knowslink-motion/package.json": "536bc3117baf86d6bd5ef4af5617ca384e946901845b206f85265ad060899700",
+      "videos/knowslink-motion/render.mjs": "ffb055a7d8ff5ba40a035c42a8c8e11fa9ca9499eda12ff791adfd4733d9776b"
+    },
+    "search_results": {
+      "route": "72778d3add3e230230cd6013d1d6fcaf83eee35fbea7a14eeb7e4cbc47d9539e"
+    },
+    "decisions": []
+  },
+  "input_sha256": "12e5b042dfabb5af7258f2912ba29347c76c973705fa7318b0b2fd724d044b27",
+  "version": "jev-packet-v2",
+  "base": "1e18baa0cecec0d0577c7dab03a7f40d437d33ae",
+  "worktree_dirty": true,
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md",
+      "categories": [
+        "document_update",
+        "document_read"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "aaa121484a227c711cbe224d5f143f3bafe2699ad9b494a4759c354644589ffb",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "fc29df0d4540cea831c8d0a22eae75467e9e094de38e3954771354b4ad548ffe",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "deccf1af12f00b265dc6a465dcabf369108b5f8b73bb7befc37b63a16ebe6a43",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "1f54ec402f46c465719b487b9d6caf390e243c1fa54e8eaf43e3b345ab730ecb",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Save",
+          "line": 138,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "0cdc10f7e731e1cd597472b6d39f39246684e2bef86770e18248cec6bb501070",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D03",
+          "source": [
+            "docs/design-docs/architecture.md",
+            "docs/design-docs/tech-stack.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D03"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "1c504b30284f253c90e02eda8aae25b7f64935db6b683254979a72eda8fd7ffc",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D04",
+          "source": [
+            "docs/design-docs/mockups/SAR-MVP-001-UI.md",
+            "docs/design-docs/mockups/service-member-ui.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D04"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "995b66bc3f49b8d8d60000e87cb3c29187923c32f44162490b068d984268f2fa",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D04",
+          "source": [
+            "docs/design-docs/mockups/SAR-MVP-001-UI.md",
+            "docs/design-docs/mockups/service-member-ui.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D04"
+      ],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Ask",
+          "line": 38,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "b7557710e48de9caff96b368be97ada128e5da802cca80e4e6305a253a8179b8",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D03",
+          "source": [
+            "docs/design-docs/architecture.md",
+            "docs/design-docs/tech-stack.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D03"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "93767e9761e95950c18e913a8d9464a9b9ad9a990c1cd2f3410172b1cd9a9141",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md",
+      "categories": [
+        "document_update",
+        "document_read"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 16,
+          "seed": ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "17a43d8565e7a625c69f1b9d17d00a0e2acc33e116195ac866ac33f19e24c961",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 44,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Stop",
+          "line": 68,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 68,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "9890dbe76f41d9554b532237a3b8d62e599b1062ce34b9b505b4e6063b0c2085",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.9.0.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 7,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 28,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2088f7c84de2377bee928d5aa2c25a263d8b9a3e345b38b1a1a56d67fea54a85",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "CLAUDE_CONFIG_DIR",
+          "line": 16,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 61,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "d518f8346f4917a082e9f4860ef6de5501a55b7cf8babf27e6366c9f27802c2a",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 70,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "38122c2a33edf5af477a09294a965a86fdd425611ab96dd0b5f40bb96e24f878",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 72,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "845218fbe35cace6e40e9793c10791cada55efe8bd33d031807028c7debf7226",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 114,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "a221ae3f9fb6d60f84282844be2dd59db8ad4d13c1afa9e6dbb79891197d2f0d",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 14,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 101,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "915b085effbe035a070e096691dae91bd93d5b4eed7a120075c2103b031a62f0",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 77,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "68c34cb86d9c758ace357d74099c0e7dc8bdb533adf790a69e6cb705d965cd9a",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 67,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2306d1427857dfa7ee18bd973ea9d0f72f88a7d7e24863d8b1f580bd4319dfa4",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 184,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5ff83b94e223a005e6baf3727bd74b098b3e008d08495779bb514a65032f8a3e",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 22,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "41e798a47e06093dd05bb71e9d0e1d452c64f8e23444c28612be6dac706987e8",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 64,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "d02fb52a2773481fc7911dfff34f7defb414ac276478ce7dc2bf10861bccc2cf",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Stop",
+          "line": 30,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "33825d9e5e6fcf802cb7987cb167d690351a8da428f5b7a94c214f56994dbf48",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Invoke",
+          "line": 30,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 32,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 36,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 75,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "771e1bd3f26dbbc4163aa2f17a106da31d1afcbecf4f2aec2a5cd0bd61e3e4cf",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D12",
+          "source": [
+            "docs/operations/ops-guide.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D12"
+      ],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification",
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 141,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "deliverable-index",
+          "id": "D13",
+          "source": [
+            "docs/operations/transition.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D13"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "4ab1915b9f11d9596e0cdbe8957a4cd10c0a8c4b868fc06db6c23705d87d5bb7",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/handovers/_TEMPLATE.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 76,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "70b02089b9663e286a427692d61e51aac94cb1751a4602d772a0117a491db7a0",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/handovers/pending/SAR-AUTOSETUP-001-QA-superseded.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "CLAUDE_CONFIG_DIR",
+          "line": 22,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 120,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2d4a32a02b839c97942341c255c8057aaa42e6465eecaf07c4391e579fa638da",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 106,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "6ab87527f6d130fd8a05ad6b49c01501d49e6b379d0f685851107d690f719103",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/lint/README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Stop",
+          "line": 94,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "dcb06cfe86360e39accc844200b80b7c10bec7a81f0c07c11f13ce557e1fc474",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/orca-agents.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 14,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e15c0956821cbe4f8e5cbfb5873020211ebb824a31357fa0e26afa8e29c04953",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/rules/delegation.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "worker_done",
+          "line": 33,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "d9b0606c7e6750977cec70d5de0da2521e6fbe4401f572b49b6dbe7932792c35",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "AGENTS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Invoke",
+          "line": 15,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 16,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5a86b5145d2405a5adfc4adc39daa41b2f62a5bf08d25820e333f5a3e671f288",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/src/codex-session.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Ask",
+          "line": 15,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Ask",
+          "line": 40,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "c697cef432e28072d538c3bd0d786e9ead5b7825d10f55a2c32fe82cb37c4120",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 179,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "559ee52da57023088053d28fe63a6082dcb6e693316f50c0c1979c6bc06ce8de",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/src/private-files.ts",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Stop",
+          "line": 20,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "78dba38999ce629fc841661bc2ef9093fca212e65544bbd4825a8b8e3716936c",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/calendar_retire_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 65,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "11e558c7ec8acc420f69d330109f6c74280e9d0cd764b2ef0b12b676acf56266",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 122,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 132,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 185,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "fc54a96f3a23418fc2e7cca261d80c7c8add87c20a74baab6cf9013e9a89e6ce",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/cleanup.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Stop",
+          "line": 12,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "29ed63da91c6d0f70dd8224a6d1bf433fdea06ecb2c228225155315faa47b76e",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 99,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 221,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 225,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 251,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 283,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 317,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "9a981a00ce867436e5cdbe871a6ef6863d1055d903d0124adb1d832ec42e9500",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/i18n.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 35,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 47,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 76,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 100,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e88a473f4b4d67a2d13c85b15abc0ae6bf83db658b4b4d02211f8a662ad0dbb3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Save",
+          "line": 33,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 53,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 54,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 57,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 61,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 79,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 80,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Save",
+          "line": 98,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Save",
+          "line": 99,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 163,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 168,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Save",
+          "line": 173,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "3fa023e034009ed7feb3482f619dd0dfbfea1a02d0e04273d3042649d2f36876",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/i18n_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 357,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 358,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 366,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 367,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 378,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 416,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 445,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 446,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 482,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "207009ff2241a5e6fedd0dacf45895b363a966609d077e938b9557feb9d5f99c",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/install_files_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 42,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 43,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e3abdc540b64b65b30f47f2afe37f3e00fe1371945b6d77621b67bbeebb635f7",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/landing_fixture_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 46,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 55,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/landing_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 30,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 43,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 46,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 97,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "703c3c40923f310c0fa1bcb3a40b27dcedea122978b385b50a7461f3e6ee2911",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/landing_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 25,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "7be694fe8b0fb5456d2e4cb41da112770eee4212f9cb2eb5246ffbabcdb7e2c3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/lang_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 66,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Save",
+          "line": 77,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 82,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 88,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 109,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 163,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 194,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "387f58601833fe51d57b17d9d1fb96d8bddb330a1c53c0b2928922ac375cadca",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 257,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "7e8e360da07bc4da48ce3e0c07a3a39379f5d7da3b673806b84c7eb103cd7fa4",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 286,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 287,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5b8e7b52b9f90c2882d23f5ce5bf1ae75dcb31a94b639fbe9585ef6204ccd1f3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/receipt_context.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 81,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ee3e46bd248d3262a93023d797852b30160edd1b54faba46a515dc9c4d98ece8",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 77,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "7a305730527510c02ae18460729734213ede81c15b592b53087fdc1b3ed806fa",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/text_events_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 50,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "329d381e88436bac1358bbbc9c8a933c881891cb3718d241a20318439146820d",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "scripts/autosetup/knowslink-setup.ps1",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "Say",
+          "line": 193,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "T",
+          "line": 194,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Ask",
+          "line": 195,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Norm",
+          "line": 201,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Stamp",
+          "line": 202,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Save",
+          "line": 206,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Remove",
+          "line": 215,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Stop",
+          "line": 217,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Invoke",
+          "line": 229,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Get",
+          "line": 234,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Get",
+          "line": 247,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Invoke",
+          "line": 259,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        },
+        {
+          "method": "definition",
+          "symbol": "Get",
+          "line": 359,
+          "seed": "scripts/autosetup/knowslink-setup.ps1"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2d9e23e3e0ee90290a8f2100cd66c022db0c72b4102c07c73522f9f2244bf9b9",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "scripts/autosetup/test-get-registered.ps1",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 1,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Norm",
+          "line": 2,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 2,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Stop",
+          "line": 3,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Norm",
+          "line": 7,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 7,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 15,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 24,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Norm",
+          "line": 28,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Norm",
+          "line": 40,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 45,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "a7bbfa6f4f8465119f73ad98ef08b15a4d76eedeb35870baac1d7f474d6e5469",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "scripts/shell_guard.py",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 9,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 37,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 143,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 147,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "eb376fd5cdac405098d4b31ebac85f1f670ca9b177cd44b26e0633551490657b",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "scripts/test_shell_guard.py",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 31,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 45,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 46,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 47,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 47,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 52,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 56,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Invoke",
+          "line": 58,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 76,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 77,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 80,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 81,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 104,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Get",
+          "line": 113,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1",
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "Remove",
+          "line": 115,
+          "seeds": [
+            "scripts/autosetup/knowslink-setup.ps1"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "9f0c41ebf3ebebe6c01672a4d37c4e5cf6e7f7e16357e777521d39e3d77a2b5f",
+      "source_basis": "HEAD"
+    }
+  ],
+  "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
+  "source_hash_policy": "verify before worker start; regenerate on change; completion allows implementation changes",
+  "categories": {
+    "direct_edit": [
+      "scripts/autosetup/knowslink-setup.ps1"
+    ],
+    "impact_check": [
+      "adapters/src/codex-session.ts",
+      "adapters/src/mcp.ts",
+      "adapters/src/private-files.ts",
+      "internal/relay/calendar_retire_integration_test.go",
+      "internal/relay/capacity.go",
+      "internal/relay/cleanup.go",
+      "internal/relay/human_http.go",
+      "internal/relay/i18n.go",
+      "internal/relay/i18n_en_human.go",
+      "internal/relay/i18n_test.go",
+      "internal/relay/install_files_test.go",
+      "internal/relay/landing_fixture_test.go",
+      "internal/relay/landing_integration_test.go",
+      "internal/relay/landing_test.go",
+      "internal/relay/lang_integration_test.go",
+      "internal/relay/member_agents.go",
+      "internal/relay/public_messages_integration_test.go",
+      "internal/relay/receipt_context.go",
+      "internal/relay/text_events.go",
+      "internal/relay/text_events_integration_test.go",
+      "scripts/autosetup/test-get-registered.ps1",
+      "scripts/shell_guard.py",
+      "scripts/test_shell_guard.py"
+    ],
+    "document_read": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      ".fullops-squad/docs/design-docs/architecture.md",
+      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md",
+      ".fullops-squad/docs/design-docs/tech-stack.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.9.0.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/handovers/_TEMPLATE.md",
+      ".fullops-squad/handovers/pending/SAR-AUTOSETUP-001-QA-superseded.md",
+      ".fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md",
+      ".fullops-squad/lint/README.md",
+      ".fullops-squad/orca-agents.md",
+      ".fullops-squad/rules/delegation.md",
+      "AGENTS.md"
+    ],
+    "document_update": [
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md"
+    ]
+  },
+  "input_partial": true,
+  "task_excerpt": "---\ntitle: \"SAR-AUTOSETUP-001-QA3 — O-04 수정 재검증(다중 플러그인 호스트 갱신, 0.1.0→0.1.1)\"\nstatus: draft\nupdated: 2026-10-28\nowner: tester\ntasks: [SAR-AUTOSETUP-001-QA3]\nsummary: \"O-04 수정 재검증(다중 플러그인 호스트 갱신, 0.1.0→0.1.1)\"\nattempt: f70aac227f5a44ceba37d741507aafb6\nbase: 1e18baa0cecec0d0577c7dab03a7f40d437d33ae\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-AUTOSETUP-001-QA3 — O-04 수정 재검증(다중 플러그인 호스트 갱신, 0.1.0→0.1.1)\n\n현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.\n\n- 작성일: 2026-10-28\n- From / To: coor → tester\n- 상태: ready\n- 테스트 레벨 / 하위 에이전트 레벨: lite / standard\n- 승인된 범위 / 추가 승인이 필요한 행위: QA2와 같다(D039=A, D040 'Claude만 로그인'). 사용자가 로그인한 격리 설정 폴더 `D:\\workspace\\KnowsLink\\.devtools\\autosetup-001-qa\\claude-config`를 `CLAUDE_CONFIG_DIR`로 쓰고, 격리 로컬 relay·합성 회원으로 검증한다. 격리 폴더 안에서만 둘째 플러그인을 추가·제거해도 된다. qa-reports 작성·커밋·push. / 추가 승인 필요: 사용자 실제 `~/.claude`·`~/.codex` 변경, 운영 relay·운영 agent, 실제 상대 발송, 비밀번호 입력, 자격 파일 읽기·복사·출력·커밋, 제품 코드 수정(결함은 보고만). 저장소 `AGENTS.md`의 'Windows 파일 작업 안전'을 따른다. 삭제·`git worktree remove`·이동 정리는 하지 않고, 남길 임시 경로를 완료 보고에 적는다(QA2에서 이 규칙을 어겼다).\n- 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/tester / fullops/tester\n- 병합 책임자 / 기본 브랜치: coor / main(origin)\n- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_189d77c7-a247-4d47-bf52-920daaedab82 / run_1701a184c359 / (dispatch 후 기록) / (dispatch 후 기록)\n\n`상태`는 과제 상태다. front matter `status`는 문서 상태(draft/review/approved, lint DOC-003 어휘)라 서로 다른 값이 맞다.\n\n## 현재 상황과 확인 근거\n\nQA2가 찾은 O-04(high)를 dev가 고쳤다(main `1e18baa0`, \n[partial: read full inbox]\nls/qa2-repro.ps1`)\n- `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md`\n- `scripts/autosetup/knowslink-setup.ps1`, `scripts/package_plugin.py`(`--release`)\n\n## 해야 할 일과 파일 소유권\n\n- [ ] 격리 relay에 main의 0.1.0·0.1.1 release 산출물을 함께 올린다.\n- [ ] 다중 플러그인 환경(QA2와 같이 Orca `CLAUDE_CODE_PLUGIN_DIRS` inline 플러그인이 둘째 항목인 상태, 가능하면 격리 폴더에 실제 둘째 플러그인도 하나 설치)에서 0.1.1 명령을 재실행해 갱신이 끝나는지 확인한다(AC-07, S5). agent ID·키 파일 해시·웹 agent 수·친구 수가 그대로인지 전후로 비교한다.\n- [ ] 0.1.0으로 설치된 상태에서 0.1.1 명령을 실행하는 갱신(실제 사용자 경로)을 1회 확인한다.\n- [ ] 갱신 뒤 Claude Code를 다시 열어 `/knowslink-session on`이 같은 agent로 연결되는지 확인한다.\n- [ ] 예상 밖 오류가 `[F-10]` 형식(실패 단계·바뀐 것·다음 행동)으로 끝나는지 합성 실패 1건으로 확인한다.\n- [ ] 보고서에 QA3 절을 더하고 O-04 판정을 갱신한다.\n\n소유 파일: `qa-reports/SAR-AUTOSETUP-001-QA-test/`(갱신), 이 인박스.\n\n## 완료 기준과 검증\n\n- 통과 조건: 다중 플러그인 갱신·0.1.0→0.1.1 갱신 PASS, O-04 해소, 미해결 high 0.\n- 자격 파일 내용·토큰·이메일·지문 전체 값은 적지 않는다. 원시 로그는 `.txt`/`.log` 또는 `.fullops-squad/local/SAR-AUTOSETUP-001-QA3/`.\n- 커밋 뒤 `python3 C:/Users/shin/AppData/Roaming/orca/claude-profiles/6dd9013c-003c-4a1b-8dc5-f4ba45568e5e/home/plugins/cache/fullops-squad/fullops-squad/1.10.0/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/tester --from <이 지시서 기준 SHA>` ERROR 0. `work.py finish`, `worker_done`.\n- 시간 예산 45분. 넘으면 escalation.\n\n### UI 작업의 디자인 기준과 검증\n\n해당 없음(동작 검수).\n\n## 갱신할 산출물\n\n없음(QA 보고서만).\n\n## 기대 산출물\n\n갱신된 `qa-reports/SAR-AUTOSETUP-001-QA-test/report.md`.\n\n## 제약·협업·후속\n\n하위 에이전트 배정 안 함. 통과하면 coor가 사용자 승인을 받아 ops 운영 교체(0.1.1 게시·relay 배포·서버 override 제거)를 배정한다.\n\n## 완료 보고\n\n브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.\n항목당 1~2줄, 상세는 보고서 링크. worker_done 본문 첫 줄은 `[완료] SAR-AUTOSETUP-001-QA3 | 브랜치 fullops/tester | SHA <브랜치 HEAD>` 한 줄로 쓴다.\n처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.\n",
+  "instruction": ".fullops-squad/handovers/to_tester.md",
+  "partial": true,
+  "unknown": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    }
+  ],
+  "producer_status": {
+    "route": {
+      "error": null,
+      "docs_status": "complete",
+      "unresolved_deliverables": []
+    }
+  },
+  "worker_decisions": [],
+  "worker_decisions_mode": "annotations; original recommendations preserved",
+  "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
+  "ubiquitous_terms": [
+    "T"
+  ],
+  "context_paths": [
+    "scripts/autosetup/knowslink-setup.ps1",
+    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/design-docs/tech-stack.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    "scripts/test_shell_guard.py",
+    "internal/relay/i18n_en_human.go",
+    "scripts/autosetup/test-get-registered.ps1",
+    "internal/relay/i18n_test.go",
+    "internal/relay/lang_integration_test.go",
+    "internal/relay/human_http.go",
+    ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md",
+    "internal/relay/i18n.go",
+    "internal/relay/landing_integration_test.go",
+    "scripts/shell_guard.py",
+    ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md",
+    "internal/relay/capacity.go"
+  ],
+  "required_paths": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/rules/common/README.md",
+    ".fullops-squad/rules/common/coding-style.md",
+    ".fullops-squad/rules/common/security.md",
+    ".fullops-squad/rules/common/testing.md"
+  ],
+  "optional_context_paths": [],
+  "remaining_context_paths": [
+    ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.9.0.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md",
+    ".fullops-squad/handovers/pending/SAR-AUTOSETUP-001-QA-superseded.md",
+    "AGENTS.md",
+    "adapters/src/codex-session.ts",
+    "internal/relay/install_files_test.go",
+    "internal/relay/landing_fixture_test.go",
+    "internal/relay/public_messages_integration_test.go",
+    ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+    ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md",
+    ".fullops-squad/handovers/_TEMPLATE.md",
+    ".fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md",
+    ".fullops-squad/lint/README.md",
+    ".fullops-squad/orca-agents.md",
+    ".fullops-squad/rules/delegation.md",
+    "adapters/src/mcp.ts",
+    "adapters/src/private-files.ts",
+    "internal/relay/calendar_retire_integration_test.go",
+    "internal/relay/cleanup.go",
+    "internal/relay/landing_test.go",
+    "internal/relay/member_agents.go",
+    "internal/relay/receipt_context.go",
+    "internal/relay/text_events.go",
+    "internal/relay/text_events_integration_test.go"
+  ]
+}
