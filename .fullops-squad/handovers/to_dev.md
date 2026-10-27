@@ -120,3 +120,11 @@ dev 작업 트리의 SAR-MOTION-INTRO 미추적 파일은 건드리지 않는다
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일. worker_done 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-UI-FIX-DEV | 브랜치 fullops/dev | SHA <HEAD>`.
+
+- 브랜치 / SHA: `fullops/dev` / 코드 `659380f1`·`9f279b4f`, 보고 `165ec732`(finish 커밋이 최종 HEAD).
+- 변경 이유: ART V-CS-01(medium)·V-CS-02–06(low), QA 결함 1. EN 사전 `Google 로그인`, device approved KO 문장(D04 같은 칸), 두 절 버튼 `aria-label`, `agent_rate` 거절 재방문 복귀 `/home/agents`, device 클라이언트 줄 `clientName`, `ownAttempts` 최신순·ID순.
+- 검토 필요: 독립 코드 리뷰(relay 화면·정렬 Go 변경), designer EN 1폭 재검수(V-CS-01).
+- 검증한 것: Linux 격리 clone `9f279b4f` `make lint`·`make test` EXIT=0, `659380f1` integration EXIT=0(`ok 161.809s`, 그 뒤 차이는 사전 공백·front matter), Windows `go test ./internal/relay`, FullOps lint 깨끗한 worktree `--from e426f03be373` ERROR 0.
+- 못 한 것: dev 작업 트리 FullOps lint(SAR-MOTION-INTRO 미추적 파일로 실행 거부), 캡처(lite), 임시 자료 정리(AGENTS.md 삭제 금지).
+- 산출물·로그: [보고](../docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-UI-FIX-DEV-test/report.md), 원시 로그 `D:/workspace/KnowsLink/.devtools/connect-simple-001-uifix-dev/`.
+- 남은 일: 리뷰·재검수 배정(coor). 남은 임시 자료 경로는 보고서 끝에 있다.
