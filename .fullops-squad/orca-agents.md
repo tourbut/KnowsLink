@@ -53,6 +53,8 @@ coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 �
 ## 모델 후보
 
 사용자가 제공한 후보의 약한 것부터 강한 순서를 유지한다. dev CLI는 선택한 후보에 따른다.
+coordinator가 배정할 때마다 지시서의 범위·위험을 보고 이 목록에서 하나를 고르고, `jev_route.py`에 `--agent <CLI> --model <모델> --effort <effort>`로 넘겨 기록한다. 사용자·과제가 tuple을 고정했으면 그 tuple을 그대로 쓴다. 범위와 완료 기준이 확정된 작은 작업은 앞쪽을, 설계 판단·여러 모듈·위험한 변경은 뒤쪽을 고른다.
+`reviewer`는 역할이 아니라 병합 전 고정 SHA 독립 리뷰 세션의 후보 키다. coordinator가 need 판정 사유를 보고 이 후보에서 골라 `jev_route.py --model-only --role reviewer --agent <CLI> --model <모델> --effort <effort>`로 기록하고 그 tuple로 띄운다. 후보가 없으면 가장 강한 `dev` 후보를 쓴다.
 `worker-start --agent <CLI> --model <모델> --effort <effort> --run <run id>` 결과의 `launch.effective`로 실제 적용을 확인한다.
 
 - `coor` `claude` `claude-opus-5-5` `xhigh`: 과제 라우팅·Run 운영. Codex 구독 종료로 2026-10-17 Claude 전환
