@@ -115,6 +115,16 @@ D12 ops-guide, D13 transition.
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
+- 브랜치 / SHA: `fullops/ops` / 완료 `2b4e2c7b`(문서·증거 커밋, 제품 코드 변경 없음). 이후 finish 기록 커밋이 HEAD다.
+- 변경 이유: D042·D043에 따라 운영 relay를 main `bf67dfcb`로 전환하고 자동 설정 0.1.0을 `/install/0.1.0/`에 공개했다. 중단 약18초(13:27:25Z~13:27:43Z), healthy·restart0·migrate0, migration 없음.
+- 지시와 달라진 판단: `compose.yaml`이 relay에 `KNOWSLINK_INSTALL_DIR`를 넘기지 않고 폴더를 마운트하지 않아 env 추가만으로는 404였다. coor 승인(옵션 A)으로 서버 로컬 `compose.install.yaml`(env 1줄 + 읽기 전용 마운트 1개)을 썼다. 운영 `.env`는 바꾸지 않았다.
+- 검토 필요: 위 override가 repo 밖이다(D12에 경로·내용·호출 규칙·되돌리는 법 기록). ingress는 `/install/...` 한 대안만 추가했다.
+- 검증: 백업 `4fdd149b-pre-connect001-20261027T132730Z.dump`(0600·11464bytes)의 격리 복원 digest 일치. 공개 probe 21/21(설치 3파일 200+SHA 일치, 이웃 404 9개, `host` 필드 수용, `/home/agents` 303, 차단 경로 유지), 보존 비교 39/39, 첫 기동·5분 뒤 error/panic 0, `agent capacity warning` 0, live agent 30. `lint.py --from bf67dfcb`(HEAD `2b4e2c7b`): ERROR 0·WARNING 2(SIZE-001)·실행 불가 1(`make lint`, Windows `make` 부재). `make test`는 skipped.
+- 못 한 것: 실계정 로그인·발송, CS-AC-18 실연결, 설치기 실세션 QA, 실제 rollback, 브라우저 렌더링.
+- 산출물·로그: [report.md](../docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md), D12 `ops-guide.md`, D13 `transition.md`. 서버 작업물 `knowslink-state/connect001-ops-20261027/`, 로컬 원본 `.devtools/connect-simple-001-ops/`.
+- 남은 일: tester: 배포된 운영에서 CS-AC-18 실연결(Grok=회원 A, Claude Code=회원 B)과 자동 설정 실세션 QA, 옛 CONNECT 시나리오 기대값 4건 갱신. dev: `compose.install.yaml`의 두 줄을 `compose.ops.yaml`로 옮겨 repo가 추적하게 한다(override 파일 제거).
+- 의존성: 변경 없음(lockfile·go.mod 무변경, 제품 코드 무변경).
+
+원본 안내:
 항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-OPS | 브랜치 fullops/ops | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.

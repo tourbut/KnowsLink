@@ -1,0 +1,188 @@
+{
+  "task_key": "SAR-CONNECT-SIMPLE-001-OPS",
+  "attempt": "f3d4ffbc37374ae0ad4f81329276933a",
+  "packet_input_sha256": "63e2d108f894c625c73fd3efb2ad34c619d3dc0be260d406ea1503ddcc12fb08",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "전문을 읽었다. 역할 인박스·work.py finish·독립 리뷰 계약을 따랐다. 규약은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D12에 SAR-CONNECT-SIMPLE-001-OPS 운영 적용 결과 절(시각·중단·백업·태그·install 폴더·compose override 내용·호출 규칙·ingress·rollback)을 더하고 agent 용량 경계 절을 현행으로 바꿨다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "직전 배포 절과 agent 용량 경계 절을 읽고 같은 순서로 적용했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D13 맨 위에 2026-10-27 현재 운영 상태와 인수 항목 7개를 더하고 front matter를 갱신했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "현재 운영 상태와 rollback 서술을 읽고 새 상태를 위에 더했다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "열어 읽지 않았다. 배포는 지시서의 서버 절차와 직전 OPS 보고를 정본으로 썼고 기술 기준을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "열어 읽지 않았다. 지시서의 보안·삭제 금지·추가 승인 경계를 그대로 적용했다. 규칙은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "열어 읽지 않았다. 제품 코드를 바꾸지 않아 해당 없음. 규칙 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "열어 읽지 않았다. 비밀값·이메일·cookie를 레포와 로그에 남기지 않고 서버 로그의 사용자명은 redact했다. 규칙 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "열어 읽지 않았다. lite 수준으로 배포 전후 단계 검사, 공개 probe 21개, 보존 비교 39개를 실행했다. 규칙 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "배포물과 KNOWSLINK_INSTALL_DIR 서술(16행)을 확인했다. 운영 연결은 서버 로컬 override로 하며 설계 서술과 모순되지 않아 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "schema·migration 변경이 없음을 diff로 확인했다. 데이터 모델 문서 변경 불필요."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "/install 줄(42행)이 live 응답과 일치함을 공개 probe로 확인했다(허용 3파일, 200/404, content-type). 변경 불필요."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "화면 변경 없는 배포 과제라 열지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "화면 변경 없는 배포 과제라 열지 않았다. 미확인으로 남은 파일이며 영향 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "의존성 변경이 없음을 diff로 확인했다. 변경 불필요."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-DEV-test/report.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "DEV 보고의 배포 주의(relay 먼저)를 지시서에서 확인하고 따랐다. DEV 보고는 수정하지 않았고 운영 결과는 OPS 보고서에 적었다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "배포 위치 행이 live와 일치한다(/install/<version>/, 허용 3파일). 운영 반영 사실은 D12·D13·OPS 보고서에 기록했다."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이전 배포 참고 자료. 열지 않았고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이전 배포 참고 자료. 열지 않았고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "관련 없는 이전 과제 문서. 열지 않았고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "이전 공개 준비 문서. 열지 않았고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "사용자 안내는 이 과제 소유가 아니다. 열지 않았고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "기획 문서. 열지 않았고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "철회된 일정 기능 문서. 열지 않았고 변경 없음."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "관련 없는 이전 설정 명세. 열지 않았고 변경 없음."
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "/install과 KNOWSLINK_INSTALL_DIR 서술(60행)이 live 동작과 일치한다. 제품 문서라 바꾸지 않았다."
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 문서. 열지 않았고 변경 없음."
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 운영 문서. 이 과제의 D12 갱신 범위 밖이라 바꾸지 않았다. 필요하면 dev 후속에서 override 이전과 함께 반영한다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 설계 문서. 열지 않았고 변경 없음."
+    }
+  ],
+  "uncertainty_review": "partial 패킷의 미확인 5건(PLANS.md, service-member-ui.md, module-design.md, SAR-CONNECT-SIMPLE-001-DEV-test/report.md, ops-guide.md)을 수동 점검했다. ops-guide.md는 전문을 읽고 갱신했다. DEV 보고와 mockups는 배포 영향이 없어 변경하지 않았다. PLANS.md는 work.py finish가 갱신한다. module-design.md는 제품 코드를 바꾸지 않아 영향이 없다. 잔여 참조 후보 38건은 지시서 외 범위로 열지 않았다."
+}
