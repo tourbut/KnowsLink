@@ -46,4 +46,7 @@ relay에 `KNOWSLINK_INSTALL_DIR: /install`과 `${KNOWSLINK_STATE_DIR:?…}/insta
 ## 3. 남은 일
 
 - ops: 이 커밋으로 배포한 뒤 서버 `knowslink-state/compose.install.yaml`을 D12 절차대로 `.retired`로 바꾼다(서버 미접속, 미실행).
-- `make lint`·`make test`: Windows에 `make`가 없어 실행하지 않았다. 대신 FullOps `lint.py --from 540df637`과 adapters `check`·`test`를 돌렸다.
+- `make lint`(w64devkit make, Node 22): `lint-go`(gofmt·go vet·go mod verify)·`lint-adapters`·`lint-config`의 prettier·`check_compose.py`·`check_public_ingress.py` 통과. `deploy/knowslink/test_public_config.sh`는 로컬에 `cloudflared`가 없어 127로 멈췄다(변경과 무관한 환경 제약). 그 뒤 단계 `sh -n scripts/install_bot_mcp.sh`·`py_compile`은 수동 실행 EXIT 0.
+- `make test`: 실행하지 않았다. Go 코드는 바뀌지 않았고, 포함된 `npm test --prefix adapters`는 위에서 EXIT 0, `python3 scripts/test_shell_guard.py` EXIT 0.
+- FullOps gate `lint.py --from 540df637`: 기본 PATH(make 없음)에서 ERROR 0. WARNING: SIZE-001 PLANS.md·ops-guide.md(기존 초과, +1줄), DEP-001 package.json(zod 4.6.5→4.6.7 보안 patch, 새 의존성 없음, 표준 라이브러리 대안 해당 없음).
+- 작업 트리의 다른 과제(SAR-MOTION-INTRO-001) untracked 파일은 lint 동안만 `.git/info/exclude`에 넣고 원복했다(파일은 건드리지 않음).

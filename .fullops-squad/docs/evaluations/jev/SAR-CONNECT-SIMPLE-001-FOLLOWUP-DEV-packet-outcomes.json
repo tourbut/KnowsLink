@@ -1,0 +1,187 @@
+{
+  "packet_input_sha256": "57e5ab0becdb00cb2390ac4c683d6a9e4db07b547d2aa0a9c127a3e2fb54028b",
+  "attempt": "d2b88cca7e3f467393a272bce6c83405",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D12 compose override·호출 규칙·override 제거 절차 갱신"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "D12 compose override·호출 규칙·override 제거 절차 갱신 (영향 확인 포함)"
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "relay에 KNOWSLINK_INSTALL_DIR·/install:ro 마운트 추가, override 유무 config 동일 확인"
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "relay에 KNOWSLINK_INSTALL_DIR·/install:ro 마운트 추가, override 유무 config 동일 확인 (영향 확인 포함)"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": "adapters/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": "adapters/package.json",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "zod 4.6.5→4.6.7 patch 고정 변경(npm audit GHSA-mrhx-c7xc-m3w5)"
+    },
+    {
+      "path": "compose.yaml",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "수정 불필요: install 항목은 운영 전용 compose.ops.yaml에 둔다"
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "수정 불필요: dc()가 compose.ops.yaml을 쓰므로 install 마운트가 자동 포함"
+    },
+    {
+      "path": "deploy/knowslink/test_public_config.sh",
+      "category": "impact_check",
+      "status": "completed",
+      "reason": "영향 확인: 변경 없음"
+    },
+    {
+      "path": "docs/README.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": "docs/development.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": "docs/operations.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "completed",
+      "reason": "읽고 이번 변경과의 관계 확인, 수정 불필요"
+    },
+    {
+      "path": "scripts/install_bot_mcp.sh",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "수정 불필요: npm ci가 갱신된 lockfile을 그대로 사용"
+    }
+  ],
+  "uncertainty_review": "partial 패킷의 미확인 항목(compose.yaml·ops-guide.md·PLANS.md 등)은 직접 열어 확인했다. compose.yaml은 relay env에 KNOWSLINK_INSTALL_DIR가 없음을 확인했고 운영 전용 변경이라 compose.ops.yaml만 고쳤다. cmd/relay/main.go가 KNOWSLINK_INSTALL_DIR를 읽는 유일한 코드임을 grep으로 확인했다."
+}
