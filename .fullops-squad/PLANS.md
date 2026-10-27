@@ -27,6 +27,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - 보류(배정 안 함): SAR-CONNECT-SIMPLE-001-DEV-REVIEW — jev reviewer 모델 선택(-model-reviewer.json)만 한 키다. lint DOC-003로 snapshot을 abandon했고, 같은 모델 tuple로 SAR-CONNECT-SIMPLE-001-DEV-REVIEW2(ctx_007188ba712c)에 배정했다. 재개 조건 없음(REVIEW2가 대체).
 - 병합 2026-10-27: REVIEW2(msg_563b9b021a39) 조건부 수락 critical/high 0, medium 1·low 3, review.py check 통과. coor 커밋 19ab5468(리뷰 기록) 뒤 0fff4ca0 --no-ff 병합 116e3e8a. 비FF라 병합 결과 lint.py --from 19ab5468 ERROR 0·WARNING 20·make 실행 불가 2. origin/main push, 0fff4ca0 조상 확인. reviewer·dev 세션 release, snapshot cleanup --finished. main 체크아웃·designer·dev·ops·tester 116e3e8a 동기화. 후속 SAR-CONNECT-SIMPLE-001-FIX-DEV(medium M1 retry_at, low L1 agent ID 재생성, L2 D12 배포 순서, L3 attempt-remove 음성 테스트) → dev fresh opus-5-5 high(jev), 이전 dev 세션은 문맥 466k·캐시 만료로 retain 불가.
 - FIX-DEV 배정: run_1701a184c359 / task_f68e201160be / ctx_cfc38e89ad95 / term_3844e862-8b79-4006-b88a-f46e9227205e, fresh claude-opus-5-5 high(effective 동일), dev 297710fe. 착수 확인.
+- FIX-DEV 병합 2026-10-27: msg_ee2422e261d0, dev 987152d4(코드 fd0eb2d5). need skip(코드 4파일 69줄) → coor diff 확인(errorBody 2곳, reserved에 c.Name 조건, 테스트 2, D12 한 줄). worker lint ERROR 0·Linux make lint/test/-race EXIT=0. --no-ff 3f1da403, 병합 lint --from 3d8257cd ERROR 0. push·조상 확인, dev release, 전 워크트리 3f1da403 동기화.
+- QA·ART 배정 준비: tester 인박스의 SAR-AUTOSETUP-001-QA(D040 사용자 결정 대기, 부분 결과는 6788040f 통합)를 `handovers/pending/SAR-AUTOSETUP-001-QA-tester.md`로 옮겨 보존하고 SAR-CONNECT-SIMPLE-001-QA를 인박스에 넣었다(재개 조건: D040 답 뒤 CONNECT QA 완료 시 다시 인박스로). designer 인박스에 SAR-CONNECT-SIMPLE-001-ART. 기준 main 3f1da403. tester 모델: jev grok-4.7 high 대신 후보 claude-sonnet-5-5 high(실패 경계·연동 회귀 검증, Windows D: 실측·이전 tester 실행 환경과 동일). 2단계 실연결은 운영 배포 승인 뒤 같은 과제로 재배정.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
@@ -2142,6 +2144,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-CONNECT-SIMPLE-001-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 배정.
 - [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 독립 코드 리뷰 배정. main 체크아웃의 CRLF `registry.json` 재체크아웃 여부는 사용자 (완료 보고 자동 등재 2026-10-26) — REVIEW2 조건부 수락, main 116e3e8a 병합. registry.json: main 체크아웃 git status 깨끗(변경 없음)으로 확인, 조치 불필요.
 - [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 결정 (완료 보고 자동 등재 2026-10-26) — 위 항목과 같은 조각, 처리 완료.
-- [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → tester: tester 독립 QA(CS-AC-01–16) (완료 보고 자동 등재 2026-10-27)
-- [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-27)
+- [x] SAR-CONNECT-SIMPLE-001-FIX-DEV → tester: tester 독립 QA(CS-AC-01–16) (완료 보고 자동 등재 2026-10-27)
+- [x] SAR-CONNECT-SIMPLE-001-FIX-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-27)
 - [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → coor: 배포 뒤 실연결(CS-AC-18)은 coor 배정 (완료 보고 자동 등재 2026-10-27)

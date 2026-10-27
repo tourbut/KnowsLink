@@ -1,0 +1,90 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-CONNECT-SIMPLE-001-QA",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.87,
+        "product": 0.13
+      },
+      "confidence": 0.74
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.34,
+        "ops": 0,
+        "tester": 0.66
+      },
+      "confidence": 0.49
+    },
+    "docs": {
+      "D01": 0.19,
+      "D02": 0.36,
+      "D03": 0.2,
+      "D04": 0.26,
+      "D05": 0.19,
+      "D06": 0.22,
+      "D07": 0.15,
+      "D08": 0.23,
+      "D09": 0.24,
+      "D10": 0.47,
+      "D11": 0.2,
+      "D12": 0.43,
+      "D13": 0.35
+    }
+  },
+  "usage": {
+    "input_tokens": 2541,
+    "output_tokens": 314,
+    "cost": 0.000106722
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.851,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "designer 초안 pending/SAR-CONNECT-SIMPLE-001-tester.md의 독립 QA",
+  "model": {
+    "agent": "grok",
+    "provider": "xai",
+    "model": "grok-4.7",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 medium": 0.08,
+      "claude claude-sonnet-5-5 high": 0.41,
+      "grok grok-4.7 high": 0.51
+    },
+    "usage": {
+      "input_tokens": 636,
+      "output_tokens": 42,
+      "cost": 2.6712e-05
+    }
+  },
+  "candidate_hash": "eadc302638a1ca2b6fc233b049920a78982190229cd92561cb75c8b1084b046c",
+  "head": "3f1da403086e4449a7b3df214c441cd1b5972db6",
+  "requires_packet": true,
+  "attempt": "d6ebe714ee79463f8dab411579ca5755",
+  "instruction_sha256": "0ed2c5678ffff19b7e86bccb744dd7dfb9bd38d5b5374a4b36e058ec5fe15e1d",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "37338f86f64f0c464fd177d05da59a8afccefffc07bd8cd6ae9115cd795cead9"
+}
