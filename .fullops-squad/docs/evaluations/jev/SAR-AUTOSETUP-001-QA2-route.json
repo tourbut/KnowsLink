@@ -1,0 +1,83 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-AUTOSETUP-001-QA2",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D13",
+    "D12",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.96,
+        "product": 0.04
+      },
+      "confidence": 0.92
+    },
+    "role": {
+      "choice": "tester",
+      "probabilities": {
+        "dev": 0.3,
+        "ops": 0,
+        "tester": 0.7
+      },
+      "confidence": 0.55
+    },
+    "docs": {
+      "D01": 0.13,
+      "D02": 0.4,
+      "D03": 0.24,
+      "D04": 0.26,
+      "D05": 0.25,
+      "D06": 0.21,
+      "D07": 0.17,
+      "D08": 0.21,
+      "D09": 0.21,
+      "D10": 0.53,
+      "D11": 0.26,
+      "D12": 0.59,
+      "D13": 0.63
+    }
+  },
+  "usage": {
+    "input_tokens": 2531,
+    "output_tokens": 314,
+    "cost": 0.000106302
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.719,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "tester",
+  "original_route": "implementation",
+  "override_reason": "독립 동작 QA는 tester",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "head": "0a70c65c79c5028cc5b52a381c23efb579045d3d",
+  "requires_packet": true,
+  "attempt": "b399069bf220483cbc439ad0dbd112d9",
+  "instruction_sha256": "11740aebffe0a5c2c670a8ccc5ed1b98fa4e9d402a20fc467ffcfbd1d40ec008",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "b366ff4be91119b87a7a700ed63868bcda960fff2a9385a5d1f3fd36c4838246"
+}
