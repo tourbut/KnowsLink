@@ -113,3 +113,14 @@ D12 ops-guide(운영 교체 후보 절), 필요 시 SAR-AUTOSETUP-001-DEV 실행
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄, 상세는 보고서 링크. worker_done 본문 첫 줄은 `[완료] SAR-AUTOSETUP-001-O04-DEV | 브랜치 fullops/dev | SHA <브랜치 HEAD>` 한 줄로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+[완료] SAR-AUTOSETUP-001-O04-DEV | 브랜치 fullops/dev | SHA f0774fb4 (코드 커밋, 기록 커밋은 그 뒤)
+
+- 변경 이유: Windows PowerShell 5.1 `ConvertFrom-Json`이 배열을 펼치지 않아 호스트 플러그인 2개 이상에서 `Get-Registered`가 `Path` null로 실패(O-04). `Get-HostJson`이 항목을 펼치도록 한 곳에서 고쳤고 Codex 분기·등록 확인도 같은 함수를 거쳐 함께 고쳐졌다.
+- 예상 밖 오류: `[ERROR]` 한 줄 대신 `[F-10]` S6 형식(실패 단계·바뀐 것·다음 행동)과 설치 기록. KO·EN 추가.
+- 회귀 테스트: `scripts/autosetup/test_get_registered.py`(`make test` 연결). 수정 전 2개 이상에서 O-04 오류 재현, 수정 후 `powershell.exe` 5.1·`pwsh` 7.6 각 10/10 PASS.
+- 버전: 공개 0.1.0은 고정이라 0.1.1로 올림(매니페스트 5곳, `mcp.ts`, `package_plugin.py`, `verify_grok_plugin.py`, 화면 명령 숫자, README). 화면 문구 변경 없음. 운영 교체는 D12 '자동 설정 0.1.1 교체 후보' 절.
+- 검토 필요: 0.1.1 일괄 상향 범위(Grok·Cursor 매니페스트 포함)가 맞는지, F-10 문구.
+- 검증: `package_plugin.py --verify`·`--release` 0, `npm run check` 0, `npm test` 0, `go test ./cmd/... ./internal/...` 0, `go vet` 0. `make`가 없어 `make lint/test`는 구성 명령으로 대신(`-race`·prettier·`test_public_config.sh` 미실행). 실제 다중 플러그인 호스트 실행은 하지 않음(합성 JSON·stub).
+- 산출물: [보고서](../docs/evaluations/qa-reports/SAR-AUTOSETUP-001-O04-DEV-test/report.md).
+- 남은 일: tester 다중 플러그인 갱신·S6 재검증, ops `/install/0.1.1/` 게시 후 relay 화면 명령 배포(사용자 승인).
