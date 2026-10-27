@@ -33,6 +33,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - ART 통합 2026-10-27: msg_36d898ede1e4 designer 9ed04461, 28화면×KO·EN×3폭 84장. CS-AC-17 FAIL: V-CS-01 medium(EN W-02 제목이 'Google 로그인', google.go:210 EN 사전 누락), low 5(V-CS-02~06), critical/high 0. need skip(코드 0), --no-ff dc1da3b7, lint ERROR 0, push. designer release. tester는 진행 중(QA 기준 3f1da403 유지, 미동기화). 후속: tester 결과와 합쳐 DEV 수정 1회 → designer EN 1폭 재검수.
 - QA 통합 2026-10-27: msg_a673ae7c4fbc tester 28e8740c, CS-AC-01·02·05·06·08·10(C:·D:)·12–16 PASS, 07·09·11 부분, 03·04 DEV 근거. critical/high/medium 0, low 1(조사, V-CS-02와 같음). 이전 CONNECT 시나리오 기대 변경 4건(AUTOSETUP 3, 한도 1)은 tester 후속(배포 후 2단계 때 함께). need skip, --no-ff e426f03b, lint ERROR 0, push, tester release, 전 워크트리 동기화.
 - UI-FIX-DEV 배정 준비: SAR-CONNECT-SIMPLE-001-UI-FIX-DEV(V-CS-01 medium + V-CS-02–06 low, D04 V-CS-02 문장 한 칸) → dev fresh opus-5-5 high(jev), 기준 e426f03b. 뒤에 designer EN 1폭 재검수.
+- UI-FIX-DEV 배정: task_a218ca4c7250 / ctx_e17c38053317 / term_9f28e1a9-4f32-49e9-87a8-0ca93a0e8fbe, opus-5-5 high effective 일치, dev 2ec104f8. 착수 확인.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
