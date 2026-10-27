@@ -49,7 +49,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - QA2 통합 2026-10-28: msg_63afc4ab5ac3 tester 4f7487df. Claude 실세션 N7·N8·AC-02 왕복·AC-04 3분24초·S4 PASS, S1 6/6 경계(O-01), AC-07 갱신 조건부 — O-04 high(호스트 플러그인 2개 이상이면 재실행 갱신 실패, 기존 설치 무변경). need skip, --no-ff 34d680f3, lint ERROR 0, tester release. tester가 AGENTS.md 삭제 금지를 어기고 git worktree remove로 임시 src를 지웠다고 자진 보고. 남은 임시 폴더 D:/workspace/KnowsLink/.devtools/autosetup-001-qa2(합성 키·pg.secret)와 빈 C:/d는 shell_guard가 coor 삭제도 막아 사용자 정리 대기. 격리 로그인 폴더는 보존 확인.
 - O04-DEV 배정 준비: dev fresh, claude sonnet-5-5 high(기존 패턴 따르는 단일 파일 버그 수정·테스트). 지시서 handovers/to_dev.md. 이후: tester 재검증 → 사용자 승인 뒤 ops 운영 교체(새 버전, zod patch 포함, 서버 override 제거 함께). 배정 task_df8df74c4f1e / ctx_70b61e1c578d / term_67d15df8-0350-4fbe-9fb0-5832050acefd.
 - O04-DEV 통합 2026-10-28: msg_95dd4d3c000e dev d8c996b4. Get-HostJson PS5.1 배열 펼침(Claude·Codex 등록 확인 함께), 예상 밖 오류 [F-10] S6 형식, 회귀 테스트 0·1·2+ (PS5.1·PS7 10/10, 수정 전 재현), 0.1.1로 버전 상향, D12 운영 교체 후보. need skip(코드 27줄), --no-ff 1e18baa0, lint ERROR 0, dev release.
-- QA3 배정 준비: tester fresh, claude sonnet-5-5 medium(명확한 재현·좁은 경로 재검증). 지시서 handovers/to_tester.md. 통과 시 사용자 승인 받아 ops 운영 교체.
+- QA3 배정 준비: tester fresh, claude sonnet-5-5 medium(명확한 재현·좁은 경로 재검증). 지시서 handovers/to_tester.md. 통과 시 사용자 승인 받아 ops 운영 교체. 배정 task_357c08368800 / ctx_2c032d756430 / term_ca628e4b-984f-44c3-9239-bfdafa908abf.
 - [ ] 대기: designer — O-01 S1 Claude 행동 6/6 경계(검증 버전 밖 2.1.311에서 `y` 1개 추가) 판단.
 - [x] 배정(FOLLOWUP-DEV): dev — 새 설치 npm audit 4건(moderate 2, high 2) 의존성 범위 확인(SAR-CONNECT-SIMPLE-001-LIVE 관찰 1).
 - [ ] 사용자 판단 대기: Grok Bot 컴퓨터의 /workspace/.knowslink-live·MCP knowslink-live와 새 agent(Grok Bot, Claude Code) 유지/정리(제거 방법은 LIVE report.md).
