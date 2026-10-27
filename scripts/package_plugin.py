@@ -83,6 +83,7 @@ def package(host, verify):
                 configured = json.loads((destination / "knowslink" / config_name).read_text())["mcpServers"]["knowslink"]
                 assert Path(configured["args"][0]).is_file()
                 assert configured["env"]["KNOWSLINK_AGENT_FOLDER"] == str(private)
+                assert configured["env"]["KNOWSLINK_HOST"] == host
                 for target in (destination, Path(temporary) / "other"):
                     if target != destination:
                         target.with_name("other-private").mkdir()
@@ -120,7 +121,8 @@ def install(output, host, destination, connect):
         # Codex 0.162.0 does not expand plugin-root variables in MCP args; use this durable installation path.
         server.update(command=node, args=[str(plugin / "dist/plugin.js")])
         if connect:
-            server["env"] = {"KNOWSLINK_MODE": "public-node", "RELAY_URL": "https://link.knowslog.com", "KNOWSLINK_AGENT_FOLDER": str(private)}
+            # KNOWSLINK_HOST names the default agent on the consent page (A-04).
+            server["env"] = {"KNOWSLINK_MODE": "public-node", "RELAY_URL": "https://link.knowslog.com", "KNOWSLINK_AGENT_FOLDER": str(private), "KNOWSLINK_HOST": host}
             if host == "claude":
                 # Only the session the owner switches on with /knowslink-session on receives (SP-01); the mod's watcher pulls, not every MCP process.
                 server["env"]["KNOWSLINK_AUTO_RECEIVE"] = "off"

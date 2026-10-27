@@ -64,7 +64,7 @@ func (st *State) cleanupTarget(r *http.Request, principal string, now time.Time)
 		return p != nil && (own(p.A) || own(p.B))
 	case "/home/invite-deny", "/home/invite-decision", "/v1/invite-decision":
 		return p != nil && own(p.Recipient)
-	case "/home/cancel":
+	case "/home/cancel", "/home/attempt-remove":
 		conn := st.Connections[r.PostForm.Get("connection")]
 		return conn != nil && conn.Owner == owner
 	case "/home/friends/decision":

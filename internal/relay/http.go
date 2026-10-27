@@ -48,9 +48,9 @@ func statusFor(err error) int {
 		return 403
 	case "idempotency_conflict", "id_collision", "duplicate_gate", "duplicate_result", "already_claimed", "invalid_lease", "invalid_gate", "key_exists":
 		return 409
-	case "rate_limited":
+	case "rate_limited", "agent_rate":
 		return 429
-	case "capacity":
+	case "capacity", "service_capacity":
 		return 409
 	case "unavailable", "abnormal_clock":
 		return 503
@@ -143,17 +143,21 @@ func (s *Service) Handler() http.Handler {
 			if err != nil {
 				return nil, err
 			}
+			// The agent's own label is allowed too, so tool results can name both sides (A-06).
 			target := r.PathValue("agent")
-			if _, _, ok := st.authority(agent, target); !ok {
+			if _, _, ok := st.authority(agent, target); !ok && target != agent {
 				return nil, fault("sender_not_allowed")
 			}
 			a := st.Agents[target]
 			v := humanAgentView(target, a)
+			if a.Name == "" {
+				v.Name += " (" + v.Short + ")"
+			}
 			friend := ""
 			if _, m := st.humanMember(a.Owner); m != nil {
 				friend = m.Name
 			}
-			return map[string]string{"agent": target, "name": v.Name, "client": v.Client, "friend": friend}, nil
+			return map[string]string{"agent": target, "name": v.Name, "client": v.Client, "friend": friend, "short": v.Short}, nil
 		})
 		respond(w, result, err)
 	})
@@ -307,12 +311,12 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		}
 		credential := ""
 		if a == nil {
-			if !st.agentCapacity(principal) {
-				return nil, fault("capacity")
+			if err := st.agentLimit(principal, now); err != nil {
+				return nil, err
 			}
 			credential = randomToken()
 			a = &Agent{Owner: principal, Credential: hashToken(credential), Keys: map[string]*Key{}}
-			st.Agents[c.Agent] = a
+			st.addAgent(c.Agent, a, now)
 		}
 		if a.Keys[c.Kid] != nil {
 			return nil, fault("key_exists")

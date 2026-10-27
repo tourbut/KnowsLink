@@ -19,63 +19,45 @@ func TestSaturationGuidance(t *testing.T) {
 		if _, e := st.beginConnection("owner", "agent_a", supportedClient, mode, now); e == nil || e.Error() != "capacity" {
 			t.Fatal("key records", e)
 		}
-		problem, create := connectLimit(st, "owner", "agent_a", mode)
+		problem, create := connectLimit(st, "owner", "agent_a", mode, now)
 		if problem != keyRecordsFull || !create {
 			t.Fatal("key-full guidance", mode, problem, create)
 		}
 	}
-	// No replacement fits: the refusal adds the actual agent limit and drops the create control.
-	for i := 1; i < ownerAgentRecords; i++ {
-		st.Agents[fmt.Sprint("agent_r", i)] = &Agent{Owner: "owner", Keys: map[string]*Key{}, Revoked: true, Changed: now}
+	// No replacement fits: the refusal adds the 24h rate with its time and drops the create control (L-04).
+	for i := 1; i < agentRate; i++ {
+		st.Agents[fmt.Sprint("agent_r", i)] = &Agent{Owner: "owner", Keys: map[string]*Key{}, Revoked: true, Changed: now, Created: now.Add(-time.Hour)}
 	}
-	problem, create := connectLimit(st, "owner", "agent_a", "register")
-	if create || !strings.HasPrefix(problem, keyRecordsFull) || !strings.Contains(problem, agentLimits["records"]) {
+	st.Agents["agent_a"].Created = now.Add(-2 * time.Hour)
+	problem, create := connectLimit(st, "owner", "agent_a", "register", now)
+	if create || !strings.HasPrefix(problem, keyRecordsFull) || !strings.Contains(problem, "오늘 새 에이전트를 많이 만들었습니다. "+clock(now.Add(22*time.Hour))+" 뒤 다시 연결하세요.") {
 		t.Fatal("key-full without replacement", problem, create)
 	}
-	if st.agentLimit("owner") != "records" {
-		t.Fatal("owner records", st.agentLimit("owner"))
-	}
-	// Only the actual cleanup after the retention frees the record space; the old key stays refused throughout.
+	// The sweep keeps a revoked agent 24h after revocation, past its rate window; its old key stays refused.
 	st.Agents["agent_r1"].Keys["old"] = &Key{Revoked: true, Changed: now, Credential: hashToken("old-credential")}
-	st.sweep(now.Add(revokedRetention - time.Second))
-	if _, e := st.principal("old-credential", "agent"); e == nil {
-		t.Fatal("revoked key during retention")
-	}
-	if st.agentLimit("owner") != "records" {
-		t.Fatal("record space before retention")
-	}
 	st.sweep(now.Add(revokedRetention))
-	if st.agentLimit("owner") != "" || st.Agents["agent_r1"] != nil || st.Agents["agent_a"] == nil {
-		t.Fatal("cleanup", st.agentLimit("owner"))
-	}
 	if _, e := st.principal("old-credential", "agent"); e == nil {
 		t.Fatal("revoked key after cleanup")
+	}
+	if e := st.agentLimit("owner", now.Add(23*time.Hour)); e != nil || st.Agents["agent_r1"] != nil {
+		t.Fatal("cleanup", e)
 	}
 	// Three active keys: register names the active key limit; the live agent's key records are untouched.
 	st, now = connectionFixture()
 	for i := 0; i < 3; i++ {
 		st.Agents["agent_a"].Keys[fmt.Sprint("k", i)] = &Key{Changed: now}
 	}
-	if problem, create := connectLimit(st, "owner", "agent_a", "register"); create || !strings.Contains(problem, "활성 키는 agent당 3개") {
+	if problem, create := connectLimit(st, "owner", "agent_a", "register", now); create || !strings.Contains(problem, "활성 키는 agent당 3개") {
 		t.Fatal("active keys", problem)
 	}
-	for i := 1; i < 5; i++ {
-		st.Agents[fmt.Sprint("agent_", i)] = &Agent{Owner: "owner", Keys: map[string]*Key{}}
-	}
-	if st.agentLimit("owner") != "active" || !strings.Contains(agentProblem("active"), "회원당 5개") {
-		t.Fatal("active agents", st.agentLimit("owner"))
-	}
-	if agentProblem("total") != safeProblem(fault("capacity")) {
-		t.Fatal("service-wide limit")
-	}
-	for _, m := range []string{keyRecordsFull, agentLimits["active"], agentLimits["records"]} {
-		for _, banned := range []string{"결제", "업그레이드", "요금", "정확히", "quota"} {
+	for _, m := range []string{keyRecordsFull, safeProblem(agentRefused{"agent_rate", now}), safeProblem(agentRefused{Code: "service_capacity"})} {
+		for _, banned := range []string{"결제", "업그레이드", "요금", "정확히", "quota", "회원당", "먼저 철회"} {
 			if strings.Contains(m, banned) {
 				t.Fatal(banned, m)
 			}
 		}
 	}
-	if !strings.Contains(keyRecordsFull, "기다려도 이 agent에 새 키 공간은 생기지 않습니다") || !strings.Contains(agentLimits["records"], "최소 24시간") {
+	if !strings.Contains(keyRecordsFull, "기다려도 이 agent에 새 키 공간은 생기지 않습니다") {
 		t.Fatal("record guidance")
 	}
 }

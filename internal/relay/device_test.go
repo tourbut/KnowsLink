@@ -20,7 +20,7 @@ func deviceFixture(t *testing.T, st *State, now time.Time) (string, *Connection,
 	token := randomToken()
 	c := &Connection{Client: supportedClient, Kid: "device_key", Public: base64.RawURLEncoding.EncodeToString(public)}
 	proof := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, deviceBytes(token, c)))
-	result, err := st.startDevice(token, c.Client, c.Kid, c.Public, proof, now)
+	result, err := st.startDevice(token, c.Client, c.Kid, c.Public, proof, "", now)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -38,7 +38,7 @@ func TestDeviceGoogleConnection(t *testing.T) {
 		token, c, private := deviceFixture(t, st, now)
 		id := hashToken(token)
 		attempt := &googleAttempt{Connection: id, Exp: now.Add(connectionTTL)}
-		if err := st.approveDevice(id, "owner", now); err == nil {
+		if err := st.approveDevice(id, "owner", "합성 에이전트", now); err == nil {
 			t.Fatal("approval before Google identity")
 		}
 		login := st.finishGoogleLogin(attempt, "same-subject", "same@example.test", now)
@@ -54,16 +54,16 @@ func TestDeviceGoogleConnection(t *testing.T) {
 		if foreign := st.finishGoogleLogin(attempt, "existing-foreign", "foreign@example.test", now); foreign.Problem == "" || len(st.Members) != members || len(st.Sessions) != sessions || c.Owner != owner || c.State != "prepared" {
 			t.Fatal("existing foreign member replaced binding or gained a session")
 		}
-		if err := st.approveDevice(id, "other-owner", now); err == nil {
+		if err := st.approveDevice(id, "other-owner", "합성 에이전트", now); err == nil {
 			t.Fatal("foreign approval")
 		}
 		if _, err := st.completeConnection(token, supportedClient, "", now); err == nil {
 			t.Fatal("credential before consent")
 		}
-		if err := st.approveDevice(id, owner, now); err != nil {
+		if err := st.approveDevice(id, owner, "합성 에이전트", now); err != nil {
 			t.Fatal(err)
 		}
-		if err := st.approveDevice(id, owner, now); err == nil {
+		if err := st.approveDevice(id, owner, "합성 에이전트", now); err == nil {
 			t.Fatal("approval replay created an agent")
 		}
 		_, attacker, _ := ed25519.GenerateKey(rand.Reader)
@@ -110,19 +110,19 @@ func TestDeviceCapacityRetention(t *testing.T) {
 	st.Connections["member"] = &Connection{State: "waiting", Exp: c.Exp}
 	newToken := randomToken()
 	proof := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, deviceBytes(newToken, c)))
-	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, now); err != nil {
+	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, "", now); err != nil {
 		t.Fatal("member connections consumed device capacity or 2000th request was rejected")
 	}
 	newToken = randomToken()
 	proof = base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, deviceBytes(newToken, c)))
 	retained := c.Exp.Add(24*time.Hour - time.Nanosecond)
 	st.sweepConnections(retained)
-	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, retained); err == nil || len(st.Connections) != 2001 || st.Connections[hashToken(token)] == nil {
+	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, "", retained); err == nil || len(st.Connections) != 2001 || st.Connections[hashToken(token)] == nil {
 		t.Fatal("capacity or 24h tombstone retention changed")
 	}
 	cleared := c.Exp.Add(24 * time.Hour)
 	st.sweepConnections(cleared)
-	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, cleared); err != nil || len(st.Connections) != 1 {
+	if _, err := st.startDevice(newToken, c.Client, c.Kid, c.Public, proof, "", cleared); err != nil || len(st.Connections) != 1 {
 		t.Fatal("anonymous capacity did not recover after retention")
 	}
 }
@@ -139,10 +139,10 @@ func TestDeviceFailureBoundaries(t *testing.T) {
 	if deviceProof(token, proof, &copy) {
 		t.Fatal("poll proof not bound to client")
 	}
-	if _, err := st.startDevice(token, c.Client, c.Kid, c.Public, proof, now); err == nil {
+	if _, err := st.startDevice(token, c.Client, c.Kid, c.Public, proof, "", now); err == nil {
 		t.Fatal("start replay")
 	}
-	if _, err := st.startDevice(randomToken(), c.Client, c.Kid, c.Public, proof, now); err == nil {
+	if _, err := st.startDevice(randomToken(), c.Client, c.Kid, c.Public, proof, "", now); err == nil {
 		t.Fatal("start proof substitution")
 	}
 	attempt := &googleAttempt{Connection: hashToken(token), Exp: now.Add(connectionTTL)}
@@ -150,26 +150,32 @@ func TestDeviceFailureBoundaries(t *testing.T) {
 		t.Fatal("expired Google binding")
 	}
 	st.finishGoogleLogin(attempt, "subject", "member@example.test", now)
-	if st.approveDevice(hashToken(token), c.Owner, c.Exp) == nil {
+	if st.approveDevice(hashToken(token), c.Owner, "합성 에이전트", c.Exp) == nil {
 		t.Fatal("expired consent")
 	}
-	if st.approveDevice(hashToken(token), c.Owner, now) != nil {
+	if st.approveDevice(hashToken(token), c.Owner, "합성 에이전트", now) != nil {
 		t.Fatal("approval")
 	}
 	completion := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, connectionBytes(token, c)))
-	if _, err := st.completeConnection(token, supportedClient, completion, c.Exp); err == nil {
-		t.Fatal("expired completion")
+	if _, err := st.completeConnection(token, supportedClient, completion, c.Exp.Add(24*time.Hour)); err == nil {
+		t.Fatal("completion after the approved attempt's cleanup time")
 	}
 	st.Owners[c.Owner].Active = false
 	if _, err := st.completeConnection(token, supportedClient, completion, now); err == nil {
 		t.Fatal("inactive owner")
+	}
+	// A-02/F-07: an approved attempt whose answer was lost still completes after its 10-minute deadline.
+	st.Owners[c.Owner].Active = true
+	st.sweepConnections(c.Exp.Add(time.Hour))
+	if _, err := st.completeConnection(token, supportedClient, completion, c.Exp.Add(time.Hour)); err != nil || st.Agents[c.Agent] == nil || st.Agents[c.Agent].Name != "합성 에이전트" {
+		t.Fatal("late completion of an approved attempt", err)
 	}
 	for len(st.Connections) < 2000 {
 		st.Connections[randomToken()] = &Connection{Device: true}
 	}
 	token = randomToken()
 	proof = base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, deviceBytes(token, c)))
-	if _, err := st.startDevice(token, c.Client, c.Kid, c.Public, proof, now); err == nil {
+	if _, err := st.startDevice(token, c.Client, c.Kid, c.Public, proof, "", now); err == nil {
 		t.Fatal("unbounded anonymous storage")
 	}
 }
@@ -177,9 +183,13 @@ func TestDeviceFailureBoundaries(t *testing.T) {
 func TestDeviceConsentTemplate(t *testing.T) {
 	for _, state := range []string{"login", "prepared", "approved"} {
 		w := httptest.NewRecorder()
-		render(w, 200, "device", map[string]any{"Title": "connect", "ConnectionID": "public-id", "Fingerprint": "SHA256:public", "State": state, "Login": state == "login", "Google": true})
+		v := map[string]any{"Title": "connect", "ConnectionID": "public-id", "Fingerprint": "SHA256:public", "State": state, "Login": state == "login", "Google": true}
+		if state == "approved" {
+			v = map[string]any{"Title": "연결을 승인했습니다", "Outcome": state, "Name": "Claude Code"}
+		}
+		render(w, 200, "device", v)
 		body := w.Body.String()
-		if !strings.Contains(body, "SHA256:public") || strings.Contains(body, "<no value>") {
+		if (state != "approved" && !strings.Contains(body, "SHA256:public")) || strings.Contains(body, "<no value>") {
 			t.Fatal("missing fingerprint")
 		}
 		if state == "prepared" && !strings.Contains(body, "/home/device-confirm") {

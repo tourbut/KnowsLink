@@ -4,7 +4,7 @@ title: 프로그램설계서
 status: review
 updated: 2026-10-26
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-TESTER, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-FIX-3-TESTER, SAR-GOOGLE-LOGIN-001-DEV, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-FRONTEND-POLISH-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-SCHEDULE-001-LOWS-DEV, SAR-SCHEDULE-001-VISUAL-FIX, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001, SAR-CONNECT-SIMPLE-001-DEV]
 upstream: [D02]
 summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 ---
@@ -13,18 +13,22 @@ summary: 실제 프로그램 책임과 요구사항 및 검증을 연결한다
 
 ## SAR-CONNECT-SIMPLE-001 연결 단순화 책임
 
-designer 설계 단계의 책임 배치다. 구현 전이다. 제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md)이다. 아래 표는 규칙이 닿는 현재 모듈(main `b413464`)이다. 함수 구조·저장 방식·API 형식은 DEV가 정하고 구현 뒤 이 절을 실제 구조로 고친다.
+DEV 구현 후보(fullops/dev)의 실제 구조다. 제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md)이다. 검증 기록은 [DEV QA](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-DEV-test/report.md)다.
 
-| 규칙 | 현재 모듈 | 바뀌는 책임 |
-|---|---|---|
-| L-01–L-04 | `internal/relay/connections.go` `agentLimit`·`agentCapacity`, `device.go` `approveDevice`, `http.go` `operateAs`, `remote_auth.go`, `member_agents.go` `create`·`agentLimits`·`connectLimit` | 회원당 활성·기록 한도와 고정 전체 200을 거절 사유에서 뺀다. 회원당 24시간 새 agent 속도와 운영 용량 경계를 한곳에서 판정한다. |
-| A-01–A-03 | `device.go` `approveDevice`·`deviceAPI`, `connections.go` 정리 주기(`sweep`), `human_http.go`·`human_pages.go` agent 목록 | 키 저장 전 시도를 agent 목록·친구 화면에서 분리한다. 키 없는 시도를 기한 + 24시간 뒤 정리하고 즉시 정리 동작을 받는다. |
-| A-04–A-06 | `member_agents.go` `device-confirm`, `remote_auth.go`, `member_pages.go` `device`, `adapters/src` 도구 결과 | 모든 생성 경로에 기본 이름을 준다. 도구 결과에 양쪽 표시 이름을 넣는다. |
-| R-01–R-03 | `adapters/src/private-files.ts`, `login.ts`, `setup-connect.ts`, 플러그인 `knowslink_connect` | 남은 시도 폴더를 옮기고 빈 폴더를 받는다. 비시스템 드라이브에서도 같은 권한 결과를 만든다. 기본 폴더를 자동으로 정한다. |
-| E | `adapters/src/setup-connect.ts`, 플러그인 연결 도구, 설치기 출력, `i18n_en_*.go` | 사유 코드·문구·다음 행동을 한 표로 낸다. |
-| W-01–W-04 | `device.go` `devicePage`, `member_pages.go` `device`, `google.go` 실패 경로 | 시작한 회원에게 연결 상태별 화면을 보인다. Google 실패 원인을 나눈다. |
-| T-03·T-04 | `adapters` Grok 설정 기본값, `scripts/package_plugin.py` release | release 기본값과 자동 폴더로 환경 변수 편집을 없앤다. |
-| C-10 | `scripts/package_plugin.py --verify`, `adapters/dist/mcp.test.js` 원천 | 실패 원인을 찾고 검사를 통과시킨다. |
+| 규칙 | 모듈 | 책임 | 검증 |
+|---|---|---|---|
+| L-01–L-04 | `internal/relay/connections.go` `agentLimit`·`addAgent`·`liveAgents`, 상수 `agentRate`·`agentWarn`·`agentCeiling` | 새 agent 판정 한 곳: 서버 경계(활성 2000 거절, 1000부터 경고 로그)와 회원당 24시간 20개(철회 포함, `Agent.Created` 기준). 회원당 활성·기록 한도와 전체 200은 없다. 모든 생성 경로(device complete, 웹 생성, Dots 동의, owner API)가 `agentLimit` 뒤 `addAgent`를 부른다 | `TestAgentAndPairCapacity`(7개·철회 10개·201개·경계), `TestAgentRate`(21번째·재시도 시각·철회 포함·기존 자격 유지), integration `concurrent_agent_rate_and_restart`·`revoked_records_never_refuse_*` |
+| L-03·L-04 문구 | `member_agents.go` `safeProblem`(`agent_rate`·`service_capacity`), `connectLimit`, `http.go` `statusFor`(429·409), `device.go` `errorBody`(`retry_at`) | E 문구와 API 오류. 한도 문구 `agentLimits`·`agentProblem`은 지웠다 | `TestSaturationGuidance`, i18n 번역 검사 |
+| A-01–A-03 | `device.go` `approveDevice`·`deviceAPI`, `connections.go` `completeConnection`·`Connection.open`·`sweepConnections`, `member_agents.go` `attempt-remove`·`ownAttempts`·`connectionPage`, `capacity.go`·`cleanup_admission.go` | 동의는 agent ID와 이름만 예약한다. complete가 Agent를 만든다. 동의를 받은 시도는 기한 + 24시간까지 완료할 수 있고 그때 sweep이 지운다. '이 시도 정리'는 정리 budget으로 기록을 지운다 | `TestAttemptsAreNotAgents`, `TestDeviceFailureBoundaries`(늦은 완료), integration `TestGoogleDeviceHTTP`(동의 뒤 agent 0, 시도 목록·정리, 정리 뒤 poll 401) |
+| A-04 | `member_agents.go` `hostNames`·`defaultName`, `device.go` `startDevice`(`Host`)·`devicePage`, `human_http.go` 웹 추가 기본값, `remote_auth.go` 동의 기본값 | 호스트 이름 + 번호, 모르면 `내 에이전트 N`. 동의 화면·웹 추가·Dots 이름 칸을 채운다 | `TestDefaultNames`, integration `value="Claude Code"` |
+| A-05, M-01–M-03 | `human_pages.go` `human-agents`의 `#attempts`·`#unnamed` 절, `human_http.go` `Attempts`·`Unnamed` | 진행 중인 연결, 이름을 정할 에이전트, 목록 순서. 빈 절은 숨긴다 | `TestConnectScreens` |
+| A-06 | `http.go` `GET /v1/contacts/{agent}`(자기 agent 허용, `short`), `adapters/src/mcp.ts`·`text.ts` `me`/`peer` | 도구 결과에 양쪽 표시 이름 | integration `TestPublicMessageHTTPBoundaries`, `connect-simple.test.ts` 출력 스냅숏 |
+| W-01–W-04 | `device.go` `deviceOutcome`·`devicePage`, `member_pages.go` `device`·`refusal`(`Retry`) | 시작한 회원의 재방문 상태 화면, 지문·이름·연결 순서와 접힌 권한, 동의 뒤 '연결을 승인했습니다' | `TestDeviceConsentTemplate`, `TestMemberUIFixtures`, integration |
+| W-02 | `google.go` `connectFailure` | 연결 중 Google 실패를 다른 계정·가입 닫힘·기한 지남으로 나누고 앞의 둘에 '다른 계정 선택'을 둔다 | `TestConnectFailureMessages` |
+| E | `adapters/src/reasons.ts` `failureOf`, `setup-connect.ts`, `mcp.ts` `knowslink_connect`·`knowslink_connect_status`, `core.ts` 오류 코드, `scripts/autosetup/knowslink-setup.ps1` | 실패마다 `reason`·`message`(KO/EN, `KNOWSLINK_LANG`)·다음 행동. 사유 없는 `failed`가 없다 | `connect-simple.test.ts`, `setup-connect.test.ts` |
+| R-01–R-03 | `adapters/src/private-files.ts` `privateDirectory`·`windowsACL`, `login.ts`, `setup-connect.ts`, `defaults.ts` | 남은 시도 재개·옆으로 옮김, 빈 폴더 사용, 소유자가 다를 때만 `SetOwner`(D: 드라이브), 호스트별 고정 기본 폴더 | `connect-simple.test.ts`, Windows 실측(C:·D:) |
+| T-03·T-04 | `scripts/install_bot_mcp.sh` `defaults.json`, `adapters/src/defaults.ts`, `mcp.ts` `sharedAgent` | Grok release 기본값(설정된 env 우선, 동의 전 요청 0), 같은 컴퓨터 Bot의 같은 agent 표시 | `connect-simple.test.ts` |
+| C-10 | `adapters/src/mcp.test.ts` `failureBoundaries` | registry fixture를 커밋된 LF 바이트로 읽고 고정 hash를 먼저 확인한다 | `package_plugin.py --verify` |
 
 ## SAR-AUTOSETUP-001-DEV Windows 자동 설정
 

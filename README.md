@@ -1,9 +1,9 @@
 ---
 title: KnowsLink
 status: draft
-updated: 2026-10-23
+updated: 2026-10-26
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV]
+tasks: [SAR-CONNECT-SIMPLE-001-DEV, SAR-AUTOSETUP-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV]
 summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 안내한다
 ---
 
@@ -120,17 +120,8 @@ installer는 자신이 관리하는 설치물을 교체하고 임시 stage를 �
    | Command | `/workspace/.knowslink/node/bin/node` |
    | Arguments | `/workspace/.knowslink/knowslink/dist/plugin.js` |
 
-2. 처음 환경 변수를 비우면 `held`다. `knowslink_status`로 도구 실행을 확인한다. held는 연결 완료가 아니다.
-3. 신규 연결 승인을 받은 뒤 다음 **비밀이 아닌 설정**을 Command server 환경에 넣고 MCP를 재시작한다.
-
-   ```text
-   KNOWSLINK_MODE=public-node
-   RELAY_URL=https://link.knowslog.com
-   KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01
-   ```
-
-   마지막 폴더 `grok-new-01`은 아직 없어야 한다. 상위 폴더는 자동 생성한다.
-   호스트·인스턴스마다 다른 새 폴더를 쓴다. 교체되는 `/workspace/.knowslink/knowslink` 안에 자격 폴더를 두지 않는다.
+2. 환경 변수는 넣지 않는다. installer가 `/workspace/.knowslink/knowslink/defaults.json`에 기본값을 둔다: `KNOWSLINK_MODE=public-node`, `RELAY_URL=https://link.knowslog.com`, 연결 폴더 `/workspace/.knowslink/connections/grok-agent`. 앱에 환경 변수를 넣으면 그 값이 우선한다(기존 설치 유지).
+3. `knowslink_status`로 도구 실행을 확인한다. 이 상태는 연결 완료가 아니다. `knowslink_connect` 동의 전에는 서버에 요청하지 않는다.
 4. 사용자에게 이 클라이언트 연결의 명시적 동의를 받은 뒤 `knowslink_connect`를 `{"confirmed":true}`로 호출한다.
 5. 사용자가 반환 URL을 자기 브라우저에서 연다. Google 로그인 뒤 실행한 클라이언트와 화면의 지문을 비교한다.
    대상·이름·권한·기한을 확인하고 연결에 동의한다. 다른 사람이 보낸 연결 링크는 승인하지 않는다.
@@ -141,8 +132,23 @@ installer는 자신이 관리하는 설치물을 교체하고 임시 stage를 �
 개인키 `private.pem`, 자격 `agent.json`, 연결 진행 파일은 해당 컴퓨터의 비공개 폴더에 저장한다.
 POSIX 폴더는 0700, 파일은 0600을 사용한다. Windows 로컬 연결은 소유자·상속 차단 ACL도 검사한다.
 키·credential·Google 비밀번호·연결 token을 채팅·argv·Git·캡처에 복사하지 않는다.
-실패·취소·만료된 신규 연결은 기존 폴더를 덮어쓰지 않고 새 폴더에서 시작한다.
-승인 뒤 완료 응답을 잃었으면 웹에서 미사용 agent를 확인하고 철회한다.
+같은 컴퓨터에서 기본값을 쓰는 Grok Bot은 모두 한 agent를 쓴다. Bot을 구별할 신호가 없기 때문이다. `knowslink_status`의 `me`·`sharedAgent`가 이 사실과 agent 이름을 보인다.
+
+### 연결 실패와 다시 연결
+
+연결 실패 결과는 `reason`(사유 코드), `message`(문구), `next`(다음 행동)를 담는다. 문구 언어는 `KNOWSLINK_LANG=en|ko`(기본 `ko`)를 따른다.
+
+| reason | 뜻 | 다음 행동 |
+|---|---|---|
+| `expired` | 10분 안에 동의하지 않았다 | 다시 연결한다. 새 링크를 만든다. |
+| `cancelled` | 브라우저에서 취소했다(지문 불일치 포함) | 다시 연결한다. 새 링크를 만든다. |
+| `unconfirmed` | 동의했지만 키 저장을 확인하지 못했다 | 다시 연결한다. 먼저 이 시도를 확인한다. 웹 '내 에이전트'에서 결과의 agent를 확인한 뒤 새 agent를 원할 때만 `fresh:true`를 쓴다. |
+| `private_folder` | 비공개 폴더 권한을 설정·확인하지 못했다(경로 표시) | `KNOWSLINK_AGENT_FOLDER`를 지워 기본 위치로 다시 연결한다. |
+| `unreachable` | 서버에 연결할 수 없다 | 인터넷 연결을 확인하고 다시 연결한다. |
+| `rate_limited`·`agent_rate` | 요청 또는 새 agent가 많다 | `retry_at` 뒤 다시 연결한다. 기존 agent는 그대로 쓴다. |
+| `service_capacity` | 서비스 용량 때문에 새 agent를 만들 수 없다 | 나중에 다시 연결한다. 기존 agent는 그대로 쓴다. |
+
+다시 연결할 때 폴더를 지우거나 새 경로를 입력하지 않는다. `agent.json`이 있으면 그 agent를 다시 쓴다. 대기 중인 시도는 이어서 기다린다. 재개할 수 없는 시도 파일은 `<폴더>.unused-<시각>`으로 옮기고 새로 시작한다. 옮긴 폴더는 지우지 않는다. 비어 있는 폴더는 비공개 권한을 설정·확인한 뒤 그대로 쓴다.
 
 ### 자동 수신과 화면 알림
 
@@ -158,8 +164,8 @@ SSE·MCP log notice·Inbox 저장·ACK만으로 Grok 채팅에 새 턴이 생기
 KNOWSLINK_MODE=public-node RELAY_URL=https://link.knowslog.com \
 nohup /workspace/.knowslink/node/bin/node \
   /workspace/.knowslink/knowslink/dist/plugin.js watch \
-  /workspace/.knowslink/connections/grok-new-01 \
-  >> /workspace/.knowslink/connections/grok-new-01/watch.log 2>&1 &
+  /workspace/.knowslink/connections/grok-agent \
+  >> /workspace/.knowslink/connections/grok-agent/watch.log 2>&1 &
 ```
 
 질문 없는 화면 알림에는 별도 webhook routine 설정과 수신 결과를 채팅에 표시하는 지시가 필요하다.

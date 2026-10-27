@@ -137,23 +137,30 @@ func TestConnectionFailureExpiryAndCancellation(t *testing.T) {
 	}
 }
 func TestAgentAndPairCapacity(t *testing.T) {
+	// L-01–L-03: no per-member count or record cap and no fixed 200; only the service boundary refuses by count.
 	st, now := connectionFixture()
-	for i := 1; i < 5; i++ {
+	for i := 1; i < 7; i++ {
 		st.Agents[fmt.Sprintf("agent_%d", i)] = &Agent{Owner: "owner", Keys: map[string]*Key{}}
 	}
-	if st.agentCapacity("owner") {
-		t.Fatal("owner sixth agent")
-	}
-	st.Agents["agent_1"].Revoked = true
-	if !st.agentCapacity("owner") {
-		t.Fatal("revoke did not release slot")
+	for i := 0; i < 10; i++ {
+		st.Agents[fmt.Sprintf("agent_r%d", i)] = &Agent{Owner: "owner", Keys: map[string]*Key{}, Revoked: true, Changed: now}
 	}
 	st.Owners["other"] = &Owner{Active: true}
-	for i := 5; i < 201; i++ {
+	for i := 7; i < 202; i++ {
 		st.Agents[fmt.Sprintf("agent_%d", i)] = &Agent{Owner: "other", Keys: map[string]*Key{}}
 	}
-	if st.agentCapacity("owner") {
-		t.Fatal("global 201st agent")
+	if e := st.agentLimit("owner", now); e != nil {
+		t.Fatal("count refused a new agent", e)
+	}
+	for i := 202; st.liveAgents() < agentCeiling; i++ {
+		st.Agents[fmt.Sprintf("agent_%d", i)] = &Agent{Owner: "other", Keys: map[string]*Key{}}
+	}
+	if e := st.agentLimit("owner", now); e == nil || e.Error() != "service_capacity" || safeProblem(e) != "지금은 서비스 용량 때문에 새 에이전트를 만들 수 없습니다. 기존 에이전트는 그대로 쓸 수 있습니다. 나중에 다시 연결하세요." {
+		t.Fatal("capacity boundary", e)
+	}
+	st.Agents["agent_7"].Revoked = true
+	if e := st.agentLimit("owner", now); e != nil {
+		t.Fatal("boundary counts revoked agents", e)
 	}
 	st, now = connectionFixture()
 	st.Owners["other"] = &Owner{Active: true}
@@ -252,11 +259,8 @@ func TestRevokedRecordRetention(t *testing.T) {
 	st.Pairs[pairID("agent_b", "agent_c")] = &Pair{A: "agent_b", B: "agent_c", Inviter: "agent_b", Recipient: "agent_c", State: "revoked", Generation: 4}
 	st.Agents["agent_a"].Revoked = true
 	st.Agents["agent_a"].Changed = now
-	for i := 1; i < ownerAgentRecords; i++ {
+	for i := 1; i < 10; i++ {
 		st.Agents[fmt.Sprint("agent_x", i)] = &Agent{Owner: "owner", Keys: map[string]*Key{}, Revoked: i > 4, Changed: now.Add(time.Hour)}
-	}
-	if st.agentCapacity("owner") {
-		t.Fatal("owner records exceeded")
 	}
 	// A revocation stored before Changed existed starts retention at the next sweep instead of being deleted.
 	legacy := []byte(`{"Agents":{"agent_old":{"Owner":"owner","Keys":{},"Revoked":true}}}`)
@@ -279,9 +283,6 @@ func TestRevokedRecordRetention(t *testing.T) {
 	}
 	if p := st.Pairs[pairID("agent_b", "agent_c")]; p == nil || p.Generation != 4 {
 		t.Fatal("live pair history lost its generation")
-	}
-	if !st.agentCapacity("owner") {
-		t.Fatal("sweep did not free owner records")
 	}
 	for _, path := range []string{"invite-decision", "unpair"} {
 		if _, e := st.operateAs(path, "other", "owner", command{Agent: "agent_a", Target: "agent_b", Decision: "deny"}, now, false); e == nil {
@@ -417,6 +418,6 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 	refused(w, "내 agent", refusal{409, keyRecordsFull, false, true})
 	has(w.Body.String(), `href="/home/agents"`, "에이전트 추가", `href="/home"`)
 	w = httptest.NewRecorder()
-	refused(w, "내 agent", refusal{409, agentProblem("records"), false, false})
+	refused(w, "내 agent", refusal{429, safeProblem(agentRefused{"agent_rate", time.Now()}), false, false})
 	lacks(w.Body.String(), `action="/home/agents"`)
 }

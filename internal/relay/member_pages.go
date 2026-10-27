@@ -38,6 +38,7 @@ const memberSource = `
 {{define "refusal"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">
 {{if .Reauth}}<form method="post" action="/auth/reauth"><button class="primary">로그인 다시 확인</button></form>{{end}}
 {{if .Create}}<a class="button primary" href="/home/agents">에이전트 추가</a>{{end}}
+{{if .Retry}}<form method="post" action="/auth/google"><input type="hidden" name="connection" value="{{.Retry}}"><button class="primary">다른 계정 선택</button></form>{{end}}
 <p><a href="{{.Back}}">{{if eq .Back "/"}}로그인 화면으로 이동{{else if eq .Back "/home/friends"}}친구 목록으로 돌아가기{{else if eq .Back "/home/legacy#gates"}}승인 목록으로 돌아가기{{else if eq .Back "/home/agents"}}내 에이전트로 돌아가기{{else if eq .Back "/home/legacy#pairs"}}기존 연결 목록으로 돌아가기{{else}}홈으로 돌아가기{{end}}</a></p></section></main></html>{{end}}
 {{define "google-complete"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="다음 동작">{{if eq .Next "/home"}}<a class="button primary" href="/home">홈으로 이동</a>{{else if eq .Next "/home/receipts"}}<a class="button primary" href="/home/receipts#receipt-form">요청 상태 조회로 돌아가기</a>{{else}}<a class="button primary" href="{{.Next}}">클라이언트 연결 계속</a>{{end}}</section></main></html>{{end}}
 {{define "verify"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}<section aria-label="확인 코드">
@@ -71,14 +72,17 @@ const memberSource = `
 {{if or (eq .State "waiting") (eq .State "prepared") (eq .State "approved")}}<form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>연결 취소</button></form>{{end}}
 <p><a href="/home/agents{{if .Agent}}#agent-{{.Agent}}{{end}}">내 에이전트로 돌아가기</a></p></section></main></html>{{end}}
 {{define "device"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}
-<p class="note caution"><strong>주의</strong> 내 컴퓨터에서 시작한 요청만 승인하세요. 다른 사람이 보낸 링크는 승인하지 마세요.</p>
-<section aria-label="연결 요청"><dl class="kv"><dt>클라이언트</dt><dd>Node 로컬 클라이언트</dd><dt>기한</dt><dd>{{.Exp}}</dd></dl>
+{{if .Outcome}}<section aria-label="연결 결과">{{if eq .Outcome "consumed"}}<p class="note" role="status">{{name .Name}} 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요.</p>{{else if eq .Outcome "approved"}}<p class="note" role="status">시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에 {{name .Name}}이 '키 등록됨'으로 보입니다. 승인만으로는 아직 연결되지 않았습니다.</p>{{else}}<p class="problem" role="alert">키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.</p>{{end}}<p><a href="/home/agents">내 에이전트로 이동</a></p></section>
+{{else}}<p class="note caution"><strong>주의</strong> 내 컴퓨터에서 시작한 요청만 승인하세요. 다른 사람이 보낸 링크는 승인하지 마세요.</p>
+{{if .Login}}<section aria-label="연결 요청"><dl class="kv"><dt>클라이언트</dt><dd>Node 로컬 클라이언트</dd><dt>기한</dt><dd>{{.Exp}}</dd></dl>
 <p>내 컴퓨터에 표시된 지문과 같은지 확인하세요.</p><code class="fp big" aria-label="공개키 지문">{{.Fingerprint}}</code><p>다르면 취소하세요.</p>
-{{if .Login}}{{if .Google}}<form method="post" action="/auth/google"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button class="primary">Google로 로그인하고 연결 계속</button></form>{{else}}<p class="problem" role="alert">Google 로그인을 준비 중입니다. 잠시 뒤 다시 시작하세요.</p>{{end}}
-{{else if eq .State "prepared"}}<h2>승인하면</h2><ul><li>내 계정에 새 에이전트 하나를 연결합니다. 기존 에이전트의 키는 바뀌지 않습니다.</li><li>이 에이전트의 보내기·받기만 허용합니다.</li><li>현재 친구에게도 이 에이전트가 보입니다. 친구 동의 범위에서 대화할 수 있습니다.</li><li>개인키는 내 컴퓨터에만 보관합니다.</li></ul>
-<form method="post" action="/home/device-confirm"><input type="hidden" name="connection" value="{{.ConnectionID}}"><label for="device-agent-name">에이전트 이름</label><input id="device-agent-name" name="name" required maxlength="80" value="{{name .Name}}" aria-describedby="device-name-help{{if .Problem}} problem{{end}}"><p id="device-name-help" class="muted">친구에게도 이 이름이 보입니다. 이름은 1–40자로 입력하세요.</p><button class="primary">지문 확인 후 연결 승인</button></form><form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>취소</button></form>
-{{else}}<p class="note" role="status">승인했습니다. 내 컴퓨터에서 저장 결과를 확인하세요. 시작한 클라이언트가 자격을 자동 저장합니다. 승인만으로는 연결되지 않습니다.</p>{{end}}
-<p><a href="/home/agents">내 에이전트로 이동</a></p></section></main></html>{{end}}
+{{if .Google}}<form method="post" action="/auth/google"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button class="primary">Google로 로그인하고 연결 계속</button></form>{{else}}<p class="problem" role="alert">Google 로그인을 준비 중입니다. 잠시 뒤 다시 시작하세요.</p>{{end}}
+{{else}}<section aria-label="연결 요청"><form method="post" action="/home/device-confirm"><input type="hidden" name="connection" value="{{.ConnectionID}}">
+<h2>1. 지문 비교</h2><p>내 컴퓨터에 표시된 지문과 같은지 확인하세요.</p><code class="fp big" aria-label="공개키 지문">{{.Fingerprint}}</code><p>다르면 취소하세요.</p>
+<h2><label for="device-agent-name">2. 에이전트 이름</label></h2><input id="device-agent-name" name="name" required maxlength="80" value="{{name .Name}}" aria-describedby="device-name-help{{if .Problem}} problem{{end}}"><p id="device-name-help" class="muted">친구에게도 이 이름이 보입니다. 이름은 1–40자로 입력하세요.</p>
+<button class="primary">지문이 같습니다. 연결합니다</button></form><form method="post" action="/home/cancel"><input type="hidden" name="connection" value="{{.ConnectionID}}"><button>취소</button></form>
+<details><summary>승인하면 허용되는 것 · 기한 {{.Exp}}까지</summary><dl class="kv"><dt>클라이언트</dt><dd>Node 로컬 클라이언트</dd></dl><ul><li>내 계정에 새 에이전트 하나를 연결합니다. 기존 에이전트의 키는 바뀌지 않습니다.</li><li>이 에이전트의 보내기·받기만 허용합니다.</li><li>현재 친구에게도 이 에이전트가 보입니다. 친구 동의 범위에서 대화할 수 있습니다.</li><li>개인키는 내 컴퓨터에만 보관합니다.</li></ul></details>{{end}}
+<p><a href="/home/agents">내 에이전트로 이동</a></p></section>{{end}}</main></html>{{end}}
 {{define "receipt"}}{{template "head" .}}<main id="main" class="page"><nav aria-label="현재 위치">{{if not .Anonymous}}<a href="/home/agents">내 에이전트</a> / {{end}}<a href="/home/receipts#receipt-form" aria-current="page">요청 상태 조회</a></nav><h1>요청 상태 조회</h1>
 <p>보낸 요청이나 답장의 ID로 전달 상태를 확인합니다. 현재 온라인 상태를 확인하는 기능은 아닙니다.</p>
 {{if .Problem}}<p class="problem" role="alert" id="receipt-problem" tabindex="-1"{{if eq .Focus "receipt-problem"}} autofocus{{end}}>{{.Problem}} {{if .Anonymous}}<a href="/">로그인 화면으로 이동</a>{{else}}<a href="#{{if eq .Focus "receipt-agent"}}receipt-agent{{else}}receipt-id{{end}}">조회 입력으로 이동</a>{{end}}</p>{{end}}

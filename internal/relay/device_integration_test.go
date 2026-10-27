@@ -8,6 +8,7 @@ import (
 	"crypto/ed25519"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -74,7 +75,7 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		}
 		return w
 	}
-	var firstAgent, firstCredential string
+	var firstAgent, firstCredential, firstID string
 	for i := range 2 {
 		fixture, now := connectionFixture()
 		token, c, private := deviceFixture(t, fixture, now)
@@ -113,6 +114,9 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		payload, _ := json.Marshal(map[string]string{"token": token, "client": c.Client, "proof": completion})
 		w = do("POST", "/v1/connect/complete", string(payload), false, false)
 		expect(t, w, 200, "connected")
+		// W-01: the member who started the link sees the finished connection and its agent name.
+		expect(t, do("GET", "/connect/"+id, "", true, false), 200, "이 연결은 완료됐습니다", "Synthetic device")
+		firstID = id
 		var connected map[string]string
 		_ = json.Unmarshal(w.Body.Bytes(), &connected)
 		// U2-A: the browser name labels the client's agent, and the refused retry made no extra agent.
@@ -140,6 +144,65 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 			t.Fatal("identity/agent/pair isolation")
 		}
 	})
+
+	begin := func(host string) (string, string) {
+		t.Helper()
+		fixture, now := connectionFixture()
+		token, c, private := deviceFixture(t, fixture, now)
+		proof := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, deviceBytes(token, c)))
+		input, _ := json.Marshal(map[string]string{"token": token, "client": c.Client, "kid": c.Kid, "public": c.Public, "proof": proof, "host": host})
+		expect(t, do("POST", "/v1/connect/start", string(input), false, false), 200, "requested")
+		id := hashToken(token)
+		w := do("POST", "/auth/google", "connection="+id, true, false)
+		u, _ := url.Parse(w.Header().Get("Location"))
+		auth = u.Query()
+		expect(t, do("GET", "/auth/google/callback?code=fixture&state="+auth.Get("state"), "", true, true), 200, "/connect/"+id)
+		poll, _ := json.Marshal(map[string]string{"token": token, "client": c.Client, "proof": proof})
+		return id, string(poll)
+	}
+	// A-04 default name, A-01 no agent before the key is saved, M-02 the attempt and its removal, W-01 the revisit.
+	s.mutateState(t, func(st *State) {
+		for _, m := range st.Members {
+			m.Name = "합성 회원" // the agents page asks for a member name first
+		}
+	})
+	id, poll := begin("claude")
+	expect(t, do("GET", "/connect/"+id, "", true, false), 200, `value="Claude Code"`, "1. 지문 비교", "지문이 같습니다. 연결합니다")
+	expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Claude+Code", true, false), 303)
+	expect(t, do("GET", "/connect/"+id, "", true, false), 200, "연결을 승인했습니다", "Claude Code")
+	expect(t, do("GET", "/home/agents", "", true, false), 200, "진행 중인 연결", "동의 완료 · 키 저장 확인 필요", "이 시도 정리")
+	s.mutateState(t, func(st *State) {
+		if len(st.Agents) != 2 {
+			t.Fatal("approval made an agent before its key was saved")
+		}
+	})
+	expect(t, do("POST", "/home/attempt-remove", "connection="+id, true, false), 303)
+	expect(t, do("POST", "/v1/connect/poll", poll, false, false), 401)
+	if body := do("GET", "/home/agents", "", true, false).Body.String(); strings.Contains(body, "진행 중인 연결") {
+		t.Fatal("removed attempt still listed")
+	}
+	// Signed out, a finished link names nothing (W-01).
+	session := cookies[sessionCookie]
+	delete(cookies, sessionCookie)
+	out := do("GET", "/connect/"+firstID, "", true, false)
+	expect(t, out, 401, "연결 수단이 만료")
+	if body := out.Body.String(); strings.Contains(body, "Synthetic device") || strings.Contains(body, "완료") {
+		t.Fatal("signed-out revisit revealed the connection")
+	}
+	cookies[sessionCookie] = session
+	// L-04 at consent: past the 24h rate the browser refuses and the polling client learns when to retry (E agent_rate).
+	id, poll = begin("")
+	s.mutateState(t, func(st *State) {
+		for _, m := range st.Members {
+			for i := range agentRate {
+				st.Agents[fmt.Sprint("agent_seed", i)] = &Agent{Owner: m.Owner, Keys: map[string]*Key{}, Created: time.Now()}
+			}
+		}
+		st.Rates = map[string][]time.Time{}
+	})
+	expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Seed", true, false), 429, "오늘 새 에이전트를 많이 만들었습니다")
+	expect(t, do("POST", "/v1/connect/poll", poll, false, false), 429, `"error":"agent_rate"`, `"retry_at"`)
+	expect(t, do("GET", "/connect/"+id, "", true, false), 429, "오늘 새 에이전트를 많이 만들었습니다")
 }
 
 func decodePublic(value string) []byte {

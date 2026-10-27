@@ -157,6 +157,8 @@ export class Adapter {
           "invalid_lease",
           "capacity",
           "rate_limited",
+          "agent_rate",
+          "service_capacity",
           "invalid_schema",
           "invalid_json",
           "unavailable",

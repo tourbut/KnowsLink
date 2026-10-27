@@ -217,7 +217,8 @@ func TestPublicAgentHTTP(t *testing.T) {
 				st.Agents[fmt.Sprint("agent_extra", i)] = &Agent{Owner: st.Members[member].Owner, Keys: map[string]*Key{}}
 			}
 		})
-		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409)
+		// L-01: no per-member count cap; a sixth and later live agent is created (CS-AC-01).
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 	})
 	t.Run("malformed_connection_requests_spend_anonymous_budget", func(t *testing.T) {
 		s, _ := identityService(t, pool)
@@ -261,7 +262,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		expect(t, stale.do("POST", "/auth/logout", nil), 429)
 		expect(t, stale.do("POST", "/auth/reauth", nil), 429)
 	})
-	t.Run("revoked_record_saturation_concurrency_restart_and_retention", func(t *testing.T) {
+	t.Run("revoked_records_never_refuse_restart_and_retention", func(t *testing.T) {
 		s, mail := identityService(t, pool)
 		a := newBrowser(s, "192.0.2.66")
 		member := login(t, a, mail, "churn@example.com")
@@ -288,7 +289,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 				expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {id}}), 303)
 			}
 		}
-		// Six revoked records and no active agent: the record cap, not the active cap of 5, admits exactly 4.
+		// Six revoked records never refuse a new agent (L-02): all eight concurrent creates win.
 		var wg sync.WaitGroup
 		codes := make(chan int, 8)
 		for i := 0; i < 8; i++ {
@@ -310,17 +311,17 @@ func TestPublicAgentHTTP(t *testing.T) {
 			}
 		}
 		live, revoked := ids()
-		if wins != ownerAgentRecords-6 || len(live) != 4 || len(revoked) != 6 {
-			t.Fatal("record cap race", wins, len(live), len(revoked))
+		if wins != 8 || len(live) != 8 || len(revoked) != 6 {
+			t.Fatal("revoked records refused", wins, len(live), len(revoked))
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409, "철회한 agent 기록을 보존하는 중", "최소 24시간", "내 에이전트로 돌아가기")
-		// Saturation never blocks cleanup, and revoking adds no record.
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
+		// Revoking adds no record.
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {revoked[0]}}), 303)
 		s.mutateState(t, func(st *State) {
 			owner := st.Members[member].Owner
-			if len(st.Agents) != ownerAgentRecords || st.agentCapacity(owner) {
+			if len(st.Agents) != 15 || st.agentLimit(owner, time.Now()) != nil {
 				t.Fatal("cleanup changed records", len(st.Agents))
 			}
 			for _, ag := range st.Agents {
@@ -360,10 +361,15 @@ func TestPublicAgentHTTP(t *testing.T) {
 		})
 	})
 
-	t.Run("concurrent_agent_capacity_and_restart", func(t *testing.T) {
+	t.Run("concurrent_agent_rate_and_restart", func(t *testing.T) {
 		s, mail := identityService(t, pool)
 		a := newBrowser(s, "192.0.2.88")
 		member := login(t, a, mail, "capacity@example.com")
+		s.mutateState(t, func(st *State) {
+			for i := 0; i < agentRate-5; i++ {
+				st.Agents[fmt.Sprint("agent_seed", i)] = &Agent{Name: "합성", Owner: st.Members[member].Owner, Keys: map[string]*Key{}, Created: time.Now()}
+			}
+		})
 		var wg sync.WaitGroup
 		codes := make(chan int, 8)
 		for i := 0; i < 8; i++ {
@@ -380,18 +386,18 @@ func TestPublicAgentHTTP(t *testing.T) {
 		for c := range codes {
 			if c == 303 {
 				wins++
-			} else if c != 409 {
+			} else if c != 429 {
 				t.Fatal(c)
 			}
 		}
 		if wins != 5 {
-			t.Fatal("capacity race", wins)
+			t.Fatal("rate race", wins)
 		}
 		a.h = (&Service{Pool: pool}).Handler()
-		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 409)
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 429, "오늘 새 에이전트를 많이 만들었습니다", "기존 에이전트는 그대로 쓸 수 있습니다")
 		var first string
 		s.mutateState(t, func(st *State) {
-			if len(st.Agents) != 5 {
+			if len(st.Agents) != agentRate {
 				t.Fatal("agent overflow")
 			}
 			for id := range st.Agents {
@@ -403,10 +409,13 @@ func TestPublicAgentHTTP(t *testing.T) {
 				st.Rates["http:new"][i] = time.Now()
 			}
 		})
+		// Cleanup works under saturation; a revoked agent still counts toward the 24h rate (L-04).
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {first}}), 303)
+		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
+		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 429)
 		s.mutateState(t, func(st *State) {
-			if !st.agentCapacity(st.Members[member].Owner) {
-				t.Fatal("revoke did not free slot")
+			for _, ag := range st.Agents {
+				ag.Created = ag.Created.Add(-24 * time.Hour)
 			}
 			st.Rates = map[string][]time.Time{}
 		})

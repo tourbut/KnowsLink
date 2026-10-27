@@ -90,7 +90,11 @@ try {
   decision = "cancel";
   const cancelled = await run(folder);
   assert.equal(cancelled.outcome, "failed");
-  assert.equal(cancelled.events.at(-1)!.reason, "cancelled_or_expired");
+  assert.equal(cancelled.events.at(-1)!.reason, "cancelled");
+  assert.equal(
+    cancelled.events.at(-1)!.message,
+    "연결을 취소했습니다. 다시 연결하면 새 링크를 만듭니다.",
+  );
   const firstPrint = cancelled.events[0]!.fingerprint;
   assert(!JSON.stringify(cancelled.events).includes(tokens[0]!));
 

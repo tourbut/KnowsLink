@@ -24,7 +24,7 @@ func remoteFixture(t *testing.T, st *State, owner string, now time.Time) (string
 	verifier := strings.Repeat("A", 43)
 	sum := sha256.Sum256([]byte(verifier))
 	a := &remoteAttempt{Client: "client", Redirect: "https://chatgpt.com/callback", Challenge: base64.RawURLEncoding.EncodeToString(sum[:]), Resource: "https://relay.example/mcp", Owner: owner, Exp: now.Add(codeTTL)}
-	code, e := st.approveRemote(a, now)
+	code, e := st.approveRemote(a, "Dots", now)
 	if e != nil {
 		t.Fatal(e)
 	}

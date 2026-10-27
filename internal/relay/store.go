@@ -34,6 +34,7 @@ type Agent struct {
 	Keys       map[string]*Key
 	Revoked    bool
 	Changed    time.Time
+	Created    time.Time `json:",omitzero"` // counted by the 24h new-agent rate (L-04); zero for agents made before it
 }
 type Pair struct {
 	A, B, Inviter, Recipient, State string

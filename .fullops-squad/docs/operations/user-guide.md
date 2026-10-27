@@ -2,13 +2,28 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-23
+updated: 2026-10-26
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS, SAR-CONNECT-SIMPLE-001-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 사용자설명서 (D11)
+
+## 연결과 내 에이전트 정리 — SAR-CONNECT-SIMPLE-001 DEV 후보
+
+운영 미배포 후보다. 제품 규칙은 [D02](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md), 화면은 [D04](../design-docs/mockups/service-member-ui.md#연결-단순화와-내-에이전트-정리--sar-connect-simple-001)다.
+
+1. 연결 링크를 열고 Google로 로그인한다.
+2. 내 컴퓨터에 표시된 지문과 화면의 지문을 비교한다. 다르면 취소한다.
+3. 에이전트 이름을 확인한다. 기본 이름(예: `Claude Code`, 두 번째는 `Claude Code 2`)이 채워져 있다. 필요하면 고친다.
+4. '지문이 같습니다. 연결합니다'를 누른다. 화면에 '연결을 승인했습니다'가 보인다. 앱이 키를 저장하면 '내 에이전트' 목록에 그 에이전트가 생긴다.
+
+- 회원당 에이전트 수 제한은 없다. 24시간 안에 새 에이전트를 20개 만들면 다시 만들 수 있는 시각이 보인다. 기존 에이전트는 그대로 쓸 수 있다.
+- 키가 저장되지 않은 시도는 '진행 중인 연결'에만 보인다. 친구에게 보이지 않는다. '이 시도 정리'로 바로 지우거나 하루 뒤 자동 정리를 기다린다.
+- 다시 연결할 때 폴더를 지우거나 새 경로를 입력하지 않는다. 클라이언트가 남은 시도를 재개하거나 옆으로 옮긴다.
+- 실패하면 클라이언트가 사유와 다음 행동을 보인다. 예: `expired`(연결 시간 지남), `private_folder`(비공개 폴더 준비 실패, 기본 위치로 다시 연결), `agent_rate`(표시된 시각 뒤 다시 연결).
+- 연결 링크를 다시 열면 시작한 회원에게만 그 연결의 상태(완료·승인·만료·취소)가 보인다.
 
 ## 작업 세션 연결 안내의 완료 기준 — SAR-SESSION-PEER-001
 
@@ -271,14 +286,14 @@ Dots/Work Cloud는 후보 배포 후 Custom MCP에 `https://link.knowslog.com/mc
 
 이 절은 후보 `458798c2ee15c179edacfd6f94ebb9896d26f411`의 회원 화면이다. 공개 서버의 현재 절차가 아니다. 운영 수락은 아직 없다.
 
-1. 홈에서 새 agent를 만든다. 활성 agent는 회원당 5개다. 5개를 넘기면 쓰지 않는 agent를 먼저 철회한다.
+1. 홈에서 새 agent를 만든다. 회원당 agent 수 제한은 없다(SAR-CONNECT-SIMPLE-001). 24시간 안에 새 agent를 20개 만들면 화면이 다시 만들 수 있는 시각을 보인다.
 2. 연결은 Node 22가 있는 자기 컴퓨터의 로컬 클라이언트에서 한다. 개인키는 그 컴퓨터에만 둔다.
 3. 상대 agent 식별자로 초대한다. 수신 owner가 수락하기 전에는 메시지를 보낼 수 없다. 같은 owner의 두 agent도 수락이 필요하다.
 4. 이미 대기 중인 초대나 이미 연결된 관계를 다시 보내도 새 초대가 생기지 않는다. 기한도 바뀌지 않는다.
 5. 거절, 만료, 또는 어느 쪽의 관계 철회 뒤에는 새 초대를 보낸다. 상대가 그 초대를 다시 수락해야 한다. 옛 수락은 다시 쓸 수 없다.
 6. 철회한 agent는 최소 24시간 동안 목록에 남을 수 있다. 목록에서 사라져도 권한이 돌아오거나 백업이 영구 삭제된 것은 아니다. 정확한 삭제 시각은 약속하지 않는다.
 7. 한 agent의 키 기록이 꽉 차면 그 agent에 새 키를 연결할 수 없다. 키를 철회하거나 기다려도 그 자리가 생기지 않는다. 새 agent를 만들고 상대와 다시 수락한다.
-8. 철회 기록까지 꽉 차면 새 agent를 만들 수 없다. 최소 24시간이 지나 목록에서 정리된 뒤에 다시 만든다. 기존 자격은 그 거절만으로 지워지지 않는다. 철회는 여전히 할 수 있다.
+8. 철회한 agent 기록은 새 agent를 막지 않는다(SAR-CONNECT-SIMPLE-001). 철회는 언제든 할 수 있다.
 9. 요청이 많으면 화면이 다시 시도할 시각을 보인다. 연결 API의 429는 `retry_at`과 `Retry-After`에 같은 시각을 담는다.
 10. 계정 비활성화는 이 후보에서도 제공하지 않는다.
 
@@ -291,7 +306,7 @@ Dots/Work Cloud는 후보 배포 후 Custom MCP에 `https://link.knowslog.com/mc
 3. 실행 중인 클라이언트가 연결 완료를 표시할 때까지 기다린다. 개인키와 credential은 자동 저장되며 복사하지 않는다.
 4. 다른 클라이언트에서도 같은 Google 계정으로 반복한다. 별도 agent와 키가 생긴다. 자기 홈의 관계 요청에서 출발 agent와 자기 다른 agent를 선택하고 상대에서 명시적으로 수락한다.
 
-Command MCP에서는 사용자 동의 뒤 `knowslink_connect`를 실행하고 링크를 연다. `knowslink_connect_status`로 완료를 확인한다. 요청은 10분 뒤 만료하며 실패·취소 때 새 폴더로 재시작한다. 기존 폴더를 덮어쓰지 않는다. 승인 뒤 응답 유실로 남은 agent는 홈에서 폐기한다. 외부 Bot 설치·전송 성공은 별도 실제 검증 결과를 따른다.
+Command MCP에서는 사용자 동의 뒤 `knowslink_connect`를 실행하고 링크를 연다. `knowslink_connect_status`로 완료를 확인한다. 요청은 10분 뒤 만료한다. 실패·취소 뒤에는 같은 폴더로 다시 연결한다. 남은 시도 파일은 `<폴더>.unused-<시각>`으로 옮겨지고 지워지지 않는다(SAR-CONNECT-SIMPLE-001). 동의 뒤 키 저장 확인에 실패한 시도는 에이전트가 되지 않고 '진행 중인 연결'에 남는다. 하루 뒤 자동으로 정리되며 '이 시도 정리'로 바로 지울 수 있다. 외부 Bot 설치·전송 성공은 별도 실제 검증 결과를 따른다.
 ## 설치 직후 도메인 설정 — SAR-GOOGLE-CONNECT-002-DEV
 
 [플러그인 README](../../../adapters/README.md#도메인으로-google-연결-시작)의 public-node·RELAY_URL·새 연결 폴더를 앱 Command server에 설정한다. 상위 폴더는 자동 생성하며 마지막 연결 폴더는 새 경로여야 한다. 설치만으로 로그인이나 발송하지 않는다. 사용자 허가 뒤 connect를 실행하고 사용자가 자기 브라우저에서 Google 로그인·지문 비교·동의를 수행한다. 다른 사람이 보낸 연결 링크를 승인하지 않는다.
