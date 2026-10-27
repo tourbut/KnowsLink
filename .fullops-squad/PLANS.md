@@ -36,6 +36,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - UI-FIX-DEV 배정: task_a218ca4c7250 / ctx_e17c38053317 / term_9f28e1a9-4f32-49e9-87a8-0ca93a0e8fbe, opus-5-5 high effective 일치, dev 2ec104f8. 착수 확인.
 - UI-FIX-DEV 병합 2026-10-27: msg_7be09e2bd7cd dev 061c4142, V-CS-01–06 반영. need skip(코드 9파일 85줄) coor diff 확인. --no-ff 06af3fe2, 병합 lint ERROR 0, push, dev release, 전 워크트리 동기화. 다음: SAR-CONNECT-SIMPLE-001-ART-RECHECK(designer, jev opus-5-5 high, 기준 06af3fe2).
 - ART-RECHECK 배정: task_bd47dcb05642 / ctx_ff65a97dc94a / term_582d4ea3-f81b-4a01-9be0-c33ec1f8df58, opus-5-5 high, designer ce24d290. 착수 확인.
+- ART-RECHECK 통합 2026-10-27: msg_72ddb8858193 designer da983fed, V-CS-01–06 수정 확인, CS-AC-17 PASS(critical/high/medium 0). need skip, --no-ff f4a3982e, lint ERROR 0, push, designer release, 전 워크트리 동기화. SAR-CONNECT-SIMPLE-001 1단계(CS-AC-01–17) 완료. tester 인박스에 SAR-AUTOSETUP-001-QA 복귀(D040 대기). 남은 일: 운영 배포(relay 먼저, 사용자 승인 D042) → tester 2단계 실연결 CS-AC-18(회원 A=Grok, 회원 B=Claude Code, ego 브라우저 에이전트 진행)·이전 CONNECT 시나리오 기대 갱신 4건. designer 후속: D04 이름 도움말 EN을 기존 문자열로 맞춤(low).
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
@@ -2147,11 +2148,11 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-AUTOSETUP-001-DEV → ops: release 배포물 게시·KNOWSLINK_INSTALL_DIR·ingress 운영 반영(사용자 승인 뒤)
 - [ ] SAR-AUTOSETUP-001-ART → dev: dev — V-01 수정(`internal/relay/human_pages.go` 입력란 행 수). 수정 뒤 designer가 320px 4조합만 재확인 (완료 보고 자동 등재 2026-10-23)
 - [ ] SAR-AUTOSETUP-001-ART → tester: DB 컨테이너는 정리했다. tester 실세션 검수(D040 대기)는 별도다 (완료 보고 자동 등재 2026-10-25)
-- [ ] SAR-CONNECT-SIMPLE-001-DEV → tester: tester 독립 QA(CS-AC-01–16 재현 (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 한 번 배정(tester 인박스는 AUTOSETUP-QA·D040 대기라 pending 초안 유지).
-- [ ] SAR-CONNECT-SIMPLE-001-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 배정.
+- [x] SAR-CONNECT-SIMPLE-001-DEV → tester: tester 독립 QA(CS-AC-01–16 재현 (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 한 번 배정(tester 인박스는 AUTOSETUP-QA·D040 대기라 pending 초안 유지).
+- [x] SAR-CONNECT-SIMPLE-001-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 배정.
 - [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 독립 코드 리뷰 배정. main 체크아웃의 CRLF `registry.json` 재체크아웃 여부는 사용자 (완료 보고 자동 등재 2026-10-26) — REVIEW2 조건부 수락, main 116e3e8a 병합. registry.json: main 체크아웃 git status 깨끗(변경 없음)으로 확인, 조치 불필요.
 - [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 결정 (완료 보고 자동 등재 2026-10-26) — 위 항목과 같은 조각, 처리 완료.
 - [x] SAR-CONNECT-SIMPLE-001-FIX-DEV → tester: tester 독립 QA(CS-AC-01–16) (완료 보고 자동 등재 2026-10-27)
 - [x] SAR-CONNECT-SIMPLE-001-FIX-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-27)
 - [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → coor: 배포 뒤 실연결(CS-AC-18)은 coor 배정 (완료 보고 자동 등재 2026-10-27)
-- [ ] SAR-CONNECT-SIMPLE-001-UI-FIX-DEV → coor: 재검수 배정(coor). 남은 임시 자료 경로는 보고서 끝에 있다 (완료 보고 자동 등재 2026-10-27)
+- [x] SAR-CONNECT-SIMPLE-001-UI-FIX-DEV → coor: 재검수 배정(coor). 남은 임시 자료 경로는 보고서 끝에 있다 (완료 보고 자동 등재 2026-10-27)
