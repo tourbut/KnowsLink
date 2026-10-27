@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-28
 owner: dev
 tasks: [SAR-AUTOSETUP-001-O04-DEV]
-summary: O-04(호스트 플러그인 2개 이상에서 갱신 실패)를 Get-HostJson 한 곳에서 고쳤다. 0·1·2개 이상 합성 JSON 회귀 테스트가 PS5.1·PS7에서 통과하고, 수정 전 코드는 같은 오류로 실패한다. 예상 밖 오류에도 S6 안내를 더했고 버전을 0.1.1로 올렸다.
+summary: "O-04(호스트 플러그인 2개 이상에서 갱신 실패)를 Get-HostJson 한 곳에서 고쳤다. 0·1·2개 이상 합성 JSON 회귀 테스트가 PS5.1·PS7에서 통과하고, 수정 전 코드는 같은 오류로 실패한다. 예상 밖 오류에도 S6 안내를 더했고 버전을 0.1.1로 올렸다."
 ---
 
 # SAR-AUTOSETUP-001-O04-DEV 수정 검증 보고
