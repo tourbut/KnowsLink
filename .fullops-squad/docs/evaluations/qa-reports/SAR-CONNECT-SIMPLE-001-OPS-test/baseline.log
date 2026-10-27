@@ -1,0 +1,19 @@
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+4fdd149b27d3ff251a73128120dce9f8bb136620
+dirty_lines=0
+/knowslink-relay-1 running restarts=0
+/knowslink-cloudflared-1 running restarts=0
+healthz_local=200
+live_agents=30 total_agents=30 owners=24
+backup_files=7
+prune_cron_lines=1
+2026-10-21T22:46:40Z 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 calendar key removed from env, relay recreated
+2026-10-21T23:57:30Z 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 -> 4fdd149b27d3ff251a73128120dce9f8bb136620 release manual verified bundle+backup+retained-isolation+rollback-tag
+state_dir: ls: cannot access '/home/[redacted]/deploy/knowslink-state/install': No such file or directory
+state_dir: drwx------ 20 [redacted] [redacted] 4096 10월 27 22:23 /home/[redacted]/deploy/knowslink-state
+env mode=600 bytes=450
+env_install_dir_lines=0
+server_uid=1000
+BASELINE_OK
+
+EXIT=0

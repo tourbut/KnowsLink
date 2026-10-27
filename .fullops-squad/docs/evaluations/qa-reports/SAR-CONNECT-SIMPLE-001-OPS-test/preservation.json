@@ -1,0 +1,235 @@
+{
+  "utc_stages": {
+    "baseline": "2026-10-27T13:23:25.648728+00:00",
+    "before": "2026-10-27T13:27:24.383395+00:00",
+    "frozen": "2026-10-27T13:27:28.626127+00:00",
+    "after": "2026-10-27T13:27:43.534501+00:00",
+    "final": "2026-10-27T13:29:36.895075+00:00"
+  },
+  "passed": 39,
+  "total": 39,
+  "assertions": [
+    {
+      "assertion": "state map HTTP digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Gates digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Pairs digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Agents digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Owners digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Friends digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Members digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Messages digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Sessions digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Challenges digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Identities digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Idempotency digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map GoogleAttempts digest equal at all 5 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map counts equal at all stages except volatile Rates",
+      "pass": true,
+      "detail": {
+        "Pairs": 13,
+        "Agents": 30,
+        "Owners": 24,
+        "Friends": 1,
+        "Members": 2,
+        "Messages": 0
+      }
+    },
+    {
+      "assertion": "Remote digests/counts (Clients/Attempts/Codes/Installs/Subscriptions), inbox and subscription metadata equal at all stages",
+      "pass": true,
+      "detail": {
+        "Tokens_digest_equal": true
+      }
+    },
+    {
+      "assertion": "schema sha256 equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "HumanModel=1 and goose2/guard1/rows1 at all stages (no migration)",
+      "pass": true
+    },
+    {
+      "assertion": "frozen equals before for every state digest incl. Rates (writer stopped)",
+      "pass": true
+    },
+    {
+      "assertion": "Connections: baseline had 1 expiring attempt, 0 from before (old relay) through final; unchanged across the switch",
+      "pass": true
+    },
+    {
+      "assertion": "Rates is volatile (informational, not a permission change)",
+      "pass": true,
+      "detail": {
+        "Rates_counts": [
+          3,
+          4,
+          4,
+          4,
+          4
+        ],
+        "digest_equal_before_frozen": true
+      }
+    },
+    {
+      "assertion": "tunnel.uuid/access.aud hash+mode equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": ".env hash+mode unchanged at all stages (env untouched; install dir wired by the server-local override)",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel/config.yml unchanged through the relay switch",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel/config.yml changed exactly once after the switch (approved /install ingress), mode 0600",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel credential json hash+mode equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "state and backups directory modes 0700 at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "existing backups preserved (hash/mode/bytes); exactly one new backup",
+      "pass": true,
+      "detail": {
+        "before_count": 7,
+        "after_count": 8
+      }
+    },
+    {
+      "assertion": "new backup is mode 0600",
+      "pass": true,
+      "detail": {
+        "bytes": 11464,
+        "sha256": "c6662ff7532b7c652d49d777486e458dd0100cb5cce56e42fb1d5b743df2ea0d"
+      }
+    },
+    {
+      "assertion": "only relay and migrate containers changed across the switch",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "Postgres container unchanged across switch and final",
+      "pass": true
+    },
+    {
+      "assertion": "final: only relay, migrate and KnowsLink cloudflared changed",
+      "pass": true,
+      "detail": [
+        "/knowslink-cloudflared-1",
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "final: every other pre-existing container (shared services included) unchanged",
+      "pass": true,
+      "detail": {
+        "pre_existing": 137,
+        "unchanged": 134
+      }
+    },
+    {
+      "assertion": "only new container since baseline is the retained restore fixture",
+      "pass": true,
+      "detail": [
+        "/knowslink-connect001-rehearse-20261027"
+      ]
+    },
+    {
+      "assertion": "relay image changed and relay healthy with restarts 0",
+      "pass": true
+    },
+    {
+      "assertion": "shared orca/s8/mcp statuses and host cloudflared PIDs equal at all stages",
+      "pass": true,
+      "detail": {
+        "host_cloudflared_pids": [
+          "2039731"
+        ]
+      }
+    },
+    {
+      "assertion": "listeners 127.0.0.1:8080 and 5432 restored; frozen had only 5432",
+      "pass": true,
+      "detail": {
+        "baseline": [
+          "127.0.0.1:8080",
+          "127.0.0.1:5432"
+        ],
+        "frozen": [
+          "127.0.0.1:5432"
+        ]
+      }
+    },
+    {
+      "assertion": "no other active DB writer at frozen/after/final",
+      "pass": true
+    },
+    {
+      "assertion": "checkout bf67dfcb clean at before/frozen/after/final (moved by the build step); baseline at 4fdd149b",
+      "pass": true
+    },
+    {
+      "assertion": "epoch never decreased (frozen epoch 2180035 was verified stable for 2s in deploy.log)",
+      "pass": true,
+      "detail": [
+        2179760,
+        2180033,
+        2180035,
+        2180053,
+        2180199
+      ]
+    }
+  ]
+}

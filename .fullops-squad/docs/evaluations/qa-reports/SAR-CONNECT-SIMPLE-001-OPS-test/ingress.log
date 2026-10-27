@@ -1,0 +1,37 @@
+== repo ingress check on server checkout (before live change)
+Public ingress: Google/member and policy paths only; owner, administrative APIs and trial remain outside this rule
+3168f9eebfb53376b086dc4023be36e908f58d1aa125e5014c508e4e69b19f9b  /home/[redacted]/deploy/knowslink-state/tunnel/config.yml
+3168f9eebfb53376b086dc4023be36e908f58d1aa125e5014c508e4e69b19f9b  /home/[redacted]/deploy/knowslink-state/connect001-ops-20261027/config.yml.pre-connect001
+backup mode=600 bytes=1051
+live rule == 4fdd149b repo rule; candidate rule == bf67dfcb repo rule; only /install alternative added
+changed lines: 2
+cloudflared version 2026.8.3 (built 2026-08-31-10:04 UTC)
+Validating rules from /home/[redacted]/deploy/knowslink-state/connect001-ops-20261027/config.candidate.yml
+OK
+candidate /install/0.1.0/knowslink-setup.ps1               Matched rule #0
+candidate /install/0.1.0/knowslink-claude-plugin.zip       Matched rule #0
+candidate /install/0.1.0/knowslink-codex-plugin.zip        Matched rule #0
+candidate /install/0.1.0/other.txt                         Matched rule #1
+candidate /install/                                        Matched rule #1
+candidate /install/0.1.0/                                  Matched rule #1
+candidate /install/0.1/knowslink-setup.ps1                 Matched rule #1
+candidate /privacy                                         Matched rule #0
+candidate /terms                                           Matched rule #0
+candidate /                                                Matched rule #0
+candidate /home                                            Matched rule #0
+candidate /owner                                           Matched rule #1
+candidate /v1/owners                                       Matched rule #1
+candidate /healthz                                         Matched rule #1
+live after mode=600 owner=[redacted]
+RESTART_BEGIN=2026-10-27T13:28:19Z
+knowslink-cloudflared-1
+RESTART_RETURNED=2026-10-27T13:28:20Z
+REGISTERED_CONNECTIONS=4
+TUNNEL_ERR_LINES=5
+cloudflared status=running restarts=0 started=2026-10-27T13:28:20.015600302Z
+== repo ingress check after live change
+Public ingress: Google/member and policy paths only; owner, administrative APIs and trial remain outside this rule
+live_path_rule == repo_path_rule(bf67dfcb): True
+INGRESS_APPLY_EXIT=0
+
+EXIT=0

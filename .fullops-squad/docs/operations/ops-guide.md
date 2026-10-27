@@ -2,25 +2,63 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-26
+updated: 2026-10-27
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
+## SAR-CONNECT-SIMPLE-001-OPS 운영 적용 결과 (2026-10-27)
+
+현재 운영 제품은 `bf67dfcbb4f7164149901d847edc0aa0e5783dc7`다(연결 단순화 SAR-CONNECT-SIMPLE-001과 자동 설정 SAR-AUTOSETUP-001 0.1.0 공개. 사용자 결정 D042·D043). 직전 `4fdd149b27d3ff251a73128120dce9f8bb136620`에서 같은 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md)다. 아래 날짜별 절은 당시 기록이다.
+
+- 중단은 13:27:25Z~13:27:43Z(22:27:25~22:27:43 KST, 2026-10-27), 약18초다. relay healthy·restart0·migrate0이다. schema·`db/`·`compose.yaml`·Dockerfile·의존성 변경은 없다. `deploy/`는 `tunnel/public-ingress.yml`만 바뀌었다.
+- 백업은 `backups/4fdd149b-pre-connect001-20261027T132730Z.dump`, 0600·11464bytes·TOC25줄, SHA256 `c6662ff7532b7c652d49d777486e458dd0100cb5cce56e42fb1d5b743df2ea0d`다. 격리 복원 digest가 frozen DB와 같다. rollback 태그는 `knowslink-rollback:4fdd149b-connect001-20261027`(이전 relay 이미지 `sha256:95852e24153d…a6be25a0e`)다. 실제 rollback은 실행하지 않았다. 이 백업은 2026-11-10 이후 14일 자동 정리 대상이 된다.
+- agent 용량: 적용 시점 live agent 30개, owner 24개다(경고 1000·거절 2000의 33배·66배 여유). 첫 기동 로그에 `agent capacity warning`은 없다.
+- 순서: relay를 먼저 전환한 뒤 ingress를 열었다. 설치기는 relay가 제공하므로 relay 전환이 곧 설치기 전환이다.
+
+### 자동 설정 0.1.0 공개: 설치 폴더·compose override·ingress
+
+- 설치 폴더 `/home/shin/deploy/knowslink-state/install/0.1.0/`(폴더 0755·파일 0644): `knowslink-setup.ps1`(SHA256 `33b3ba372340…16fe`), `knowslink-claude-plugin.zip`(`767c0e87ca6d…403e`), `knowslink-codex-plugin.zip`(`498644fe3110…1b3c`). `scripts/package_plugin.py --release <install 폴더>`(운영 relay URL 기본값)로 `bf67dfcb` 소스에서 만들었다. 게시한 버전 폴더는 바꾸지 않는다. 새 버전은 새 폴더로 올리고 설치기 안의 URL·SHA-256이 그 버전을 가리키게 한다.
+- **compose override**: `bf67dfcb`의 `compose.yaml`은 relay에 `KNOWSLINK_INSTALL_DIR`를 넘기지 않고 폴더도 마운트하지 않는다(relay는 read-only 컨테이너). 그래서 운영 `.env`가 아니라 서버 로컬 파일 `/home/shin/deploy/knowslink-state/compose.install.yaml`(0644, repo 밖, 비밀 없음)로 연결했다(coor 승인 옵션 A). 내용은 이 두 항목뿐이다.
+
+```yaml
+services:
+  relay:
+    environment:
+      KNOWSLINK_INSTALL_DIR: /install
+    volumes:
+      - /home/shin/deploy/knowslink-state/install:/install:ro
+```
+
+- **compose 호출 규칙**: relay를 만들거나 다시 띄우는 모든 호출에 같은 `-f` 순서를 쓴다. override가 빠지면 install 마운트가 사라져 `/install`이 404가 된다(회원 기능은 그대로).
+
+```sh
+cd /home/shin/deploy/knowslink
+export KNOWSLINK_STATE_DIR=/home/shin/deploy/knowslink-state KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml \
+  -f /home/shin/deploy/knowslink-state/compose.install.yaml --env-file /home/shin/deploy/knowslink-state/.env <명령>
+```
+
+- `beta.sh`는 override를 얹지 않으므로 relay를 `beta.sh`로 다시 만들지 않는다(원래 배포에도 쓰지 않는다). 후속(dev): 이 두 줄을 `compose.ops.yaml`로 옮겨 repo가 추적하게 하면 override 파일이 필요 없다. 그때 서버의 `compose.install.yaml`은 같은 내용이므로 한 번에 빼면 된다.
+- **공개 ingress**: 공개 Tunnel `path` 정규식에 `|/install/[0-9]+\.[0-9]+\.[0-9]+/knowslink-[a-z0-9-]+\.(ps1|zip)` 한 대안만 더했다(repo `public-ingress.yml`과 같음, 반영 전후 `scripts/check_public_ingress.py` 통과). 원본은 `connect001-ops-20261027/config.yml.pre-connect001`(0600)이다. 13:28:19Z에 cloudflared를 한 번 재시작했고 약1초 끊겼다. 공개 `https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1`은 200 `text/plain; charset=utf-8`, ZIP 2개는 200 `application/zip`이고 다른 이름·버전·하위 경로는 404다. 서버 `connect001-ops-20261027/`는 작업물(0700)이다.
+- **되돌리는 법**(공개 중단만): 설치 파일 공개를 멈추려면 `config.yml.pre-connect001`을 `tunnel/config.yml`로 되돌리고 cloudflared를 재시작한다(규칙 한 대안이 빠져 `/install`이 다시 404). relay 쪽은 `compose.install.yaml`을 빼고 relay를 다시 띄우면 변수·마운트가 사라진다. 설치 폴더 파일은 삭제하지 않고 둔다.
+- **relay 코드 rollback**: writer(relay) 중단 → 새 백업 → 서버 checkout을 `4fdd149b`로 → `docker tag knowslink-rollback:4fdd149b-connect001-20261027 knowslink-relay:latest` → 위 규칙의 `up -d --no-build --wait relay`. schema·migration 변경이 없어 코드 전용 복귀다. 영향: 이전 relay는 `/v1/connect/start`의 `host`를 `invalid_schema`(422)로 거절해 새 클라이언트가 `unreachable`로 보이고, `/install`은 200을 못 줄 수 있다(404). 과거 DB 덮기·Down·삭제 정리는 금지한다.
+- 미실행: 실계정 로그인·발송, 설치기를 사용자 PC에서 실행하는 실세션 QA(CS-AC-18, 자동 설정 실세션 QA는 tester 과제), 실제 rollback.
+
 ## SAR-CONNECT-SIMPLE-001-DEV agent 용량 경계
 
-운영 미적용(DEV 후보)이다. 제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md) L-03·L-04다.
+운영 적용 완료(2026-10-27, 위 절)다. 제품 규칙은 [D02 SAR-CONNECT-SIMPLE-001](../planning/product-specs/SAR-CONNECT-SIMPLE-001.md) L-03·L-04다.
 
 - 회원당 활성 agent 5개, 기록 10개, 전체 활성 agent 200개 상한을 없앴다. 새 agent의 거절 사유는 두 가지만 남는다.
 - `agent_rate`: 한 회원이 24시간 이동 창에서 agent 20개를 만들었다. 철회한 agent도 센다. 키 저장 전 시도·취소·만료는 세지 않는다.
 - `service_capacity`: 활성 owner의 철회되지 않은 agent가 2000개 이상이다. 새 agent만 거절한다. 기존 agent·키·친구는 영향이 없다.
 - 경고: 같은 수가 1000개 이상이면 새 agent를 만들 때마다 relay 로그에 `agent capacity warning: live=<수> warn=1000 refuse=2000` 한 줄을 남긴다. 회원 정보·agent ID는 쓰지 않는다.
 - 근거: 이전 전체 상한이 200이므로 운영의 현재 활성 agent는 200개 이하다. 거절 임계 2000은 그 10배 이상이다(L-03 조건). 상태는 한 행 JSON이다. agent 하나는 키를 포함해 약 0.5 KB이므로 2000개는 약 1 MB다. 모든 요청이 이 행을 읽고 쓰므로 경고가 보이면 상태 정규화(행 분리)를 계획한다.
-- 배포 순서: relay를 클라이언트·설치기보다 먼저 배포한다. 이전 relay는 `/v1/connect/start`의 `host`를 422로 거절해 클라이언트에 `unreachable`로 보인다.
+- 배포 순서(적용 완료): relay를 클라이언트·설치기보다 먼저 배포한다. 이전 relay는 `/v1/connect/start`의 `host`를 422로 거절해 클라이언트에 `unreachable`로 보인다.
 - 확인 명령: 운영 로그에서 `agent capacity warning`을 찾는다. 경계 값은 `internal/relay/connections.go`의 `agentWarn`·`agentCeiling`이며 바꾸려면 새 릴리스가 필요하다.
 
 ## 백업 보존 14일과 자동 정리 (SAR-PUBLISH-001-RETENTION, 사용자 결정 D021, 2026-10-22)
