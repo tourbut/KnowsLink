@@ -1,0 +1,12 @@
+const task = await taskSpace("connect-simple-qa-20261027");
+const page = task.page("p1");
+const out = "C:/Users/shin/orca/workspaces/KnowsLink/tester/.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-QA-test/";
+await page.click("text=클라이언트 연결 계속", { label: "Continue connection" });
+await page.waitForSelector('form[action="/home/device-confirm"]');
+const c = await page.evaluate(() => ({ name: document.querySelector("#device-agent-name").value, button: document.querySelector('form[action="/home/device-confirm"] button').textContent, order: [...document.querySelectorAll("main h2")].map((h) => h.textContent.trim()), fp: document.querySelector("code.fp").textContent }));
+console.log(JSON.stringify(c));
+await page.screenshot({ path: out + "shot-04-consent-default-name-claude-code.png" });
+await page.click('form[action="/home/device-confirm"] button', { label: "Confirm connection" });
+await page.waitForLoadState();
+console.log("after consent:", await page.url(), (await page.evaluate(() => document.body.innerText)).slice(0, 400).replace(/\n/g, " "));
+await page.screenshot({ path: out + "shot-05-after-consent-not-yet-connected.png" });

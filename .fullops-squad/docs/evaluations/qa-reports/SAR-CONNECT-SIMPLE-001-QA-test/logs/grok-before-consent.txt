@@ -1,0 +1,42 @@
+{
+ "status": {
+  "state": "public_node_configured_unverified",
+  "transport": "pull",
+  "actualConnection": "configured_unverified",
+  "webhook": false,
+  "evidenceFetch": false,
+  "autoReceive": {
+   "state": "stopped",
+   "lastError": "unconfigured"
+  }
+ },
+ "connect_status": {
+  "state": "idle",
+  "transport": "pull",
+  "actualConnection": "configured_unverified",
+  "webhook": false,
+  "evidenceFetch": false
+ },
+ "no_confirm": {
+  "content": [
+   {
+    "type": "text",
+    "text": "MCP error -32602: Input validation error: Invalid arguments for tool knowslink_connect: Invalid input: expected true at confirmed"
+   }
+  ],
+  "isError": true
+ },
+ "confirm_false": {
+  "content": [
+   {
+    "type": "text",
+    "text": "MCP error -32602: Input validation error: Invalid arguments for tool knowslink_connect: Invalid input: expected true at confirmed"
+   }
+  ],
+  "isError": true
+ },
+ "hits": {
+  "api": 0,
+  "starts": 0
+ }
+}

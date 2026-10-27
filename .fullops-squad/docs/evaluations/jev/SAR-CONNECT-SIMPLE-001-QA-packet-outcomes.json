@@ -1,0 +1,176 @@
+{
+  "task_key": "SAR-CONNECT-SIMPLE-001-QA",
+  "attempt": "d6ebe714ee79463f8dab411579ca5755",
+  "packet_input_sha256": "2ef2918096a583647a20f82ab69e3bd7e87a9c39dd420a483522870170041611",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "전문을 읽었다. 역할 인박스·독립 QA·미해결 critical/high 차단·완료 기록 규약을 적용했다. 규약은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "전문을 읽고 CS-AC-01–16을 시나리오 covers와 독립 checks로 옮겼다. 제품 규칙은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "전문을 읽고 CS-AC-01–16을 시나리오 covers와 독립 checks로 옮겼다. 제품 규칙은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "기술 스택과 검증 명령을 확인했다. Windows에는 make가 없어 DEV의 Linux 결과를 재사용하고 동작 검사는 격리 relay로 직접 실행했다. 파일은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "공통 규칙의 우선순위를 확인하고 프로젝트 기준과 함께 적용했다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽었다. 새 코드는 테스트 하네스(Python·Node·Go fixture)뿐이며 기존 fixture 패턴을 따랐다. 제품 코드는 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽었다. 합성 계정·loopback·격리 DB만 쓰고 비밀값은 로그에 남기지 않았다(CS-AC-16 검색 0건). 규칙은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽었다. lite 레벨에서 독립 QA를 새 흐름에 한정하고 미실행을 PASS로 쓰지 않았다. 커밋 증거는 보고서가 링크하는 파일로 한정했다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "W-01 절 문구(593–597줄)를 화면 출력과 대조했다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-AUTOSETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 현재 지시서 to_tester.md의 같은 내용을 읽었다. 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/handovers/to_tester.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "지시서·초안 문구를 확인해 실연결 2단계와 1단계 범위를 나눴다. 바꾸지 않았다."
+    },
+    {
+      "path": "README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽지 않았다. 이번 독립 QA의 근거는 D02·D04·DEV 보고였고 이 문서는 검사 범위에 필요하지 않았다. 바꾸지 않았다."
+    },
+    {
+      "path": "adapters/src/reasons.ts",
+      "category": "impact_check",
+      "status": "no_change",
+      "reason": "impact_check: 사유 코드 8개와 KO·EN 문구를 소스에서 확인하고 클라이언트 출력과 대조했다(CS-AC-11). 바꾸지 않았다."
+    }
+  ],
+  "uncertainty_review": "packet은 partial이다. 미확인 4건 중 service-member-ui.md는 W-01 절(593–597줄)을 직접 대조했다. PLANS.md·module-design.md·ops-guide.md는 읽지 않았다. D10·D12 내용은 DEV 보고의 요약으로 대신했고 필수 경로가 아니다. 나머지 참조 후보는 필수가 아니어서 검사 범위를 D02와 DEV 보고에서 정했다."
+}

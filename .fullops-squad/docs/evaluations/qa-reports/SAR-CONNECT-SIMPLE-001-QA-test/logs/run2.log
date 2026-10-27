@@ -1,0 +1,133 @@
+=== s_folders.py 01:42:49
+[PASS] CS-AC-10 D: leftover attempt files: retry connects with no manual cleanup :: {"state": "connected", "agent": "agent_7de5ba85e9e1d094c3b245", "name": "Claude Code 2", "fingerprint": "SHA256:dXHxBBsI3okklZ13yUYWDlvJWWhX9cW90aSXbKTetas"}
+[PASS] CS-AC-10 D: leftover files were moved to .unused-<time>, not deleted :: leftover_before=['login.json', 'private.pem'] moved=['leftover.unused-1793065374569'] kept=['login.json', 'private.pem']
+Exception in thread Thread-4 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\shin\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\shin\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shin\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1615, in _readerthread
+    buffer.append(fh.read())
+                  ~~~~~~~^^
+  File "<frozen codecs>", line 325, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb8 in position 20: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\s_folders.py", line 30, in <module>
+    ok1, d1 = acl_ok(f1); rec("CS-AC-10", f"{drive} new private folder ACL: owner current user, only user/SYSTEM/Administrators", ok1, d1[:400])
+              ~~~~~~^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\s_folders.py", line 11, in acl_ok
+    owner, prot, rules = lines[0], lines[1], lines[2] if len(lines) > 2 else ""
+                                   ~~~~~^^^
+IndexError: list index out of range
+=== exit 1 s_folders.py
+=== s_names.py 01:42:59
+[PASS] CS-AC-07 web add path: default name filled in; after creating it the next default takes the next number :: first=내 에이전트 2 second=내 에이전트 3
+[not_run] CS-AC-07 Dots remote path default name 'Dots': fixture cannot start the remote OAuth consent; DEV evidence only :: no remote OAuth client in fixture; see DEV report TestDefaultNames + remote tests
+[PASS] CS-AC-08 nameless agent: '이름을 정할 에이전트' section is first, with the name input and save button not inside a <details> :: <form method="post" action="/home/agent-name"><input type="hidden" name="agent" value="agent_25f51e163f4b3268653937"><label for="unnamed-name-agent_25f51e163f4b3268653937">에이전트 이름</label><input id="un
+[PASS] CS-AC-08 section order: 이름 필요 section comes before the agent list (M-01) :: pos name-section=11468 list=12413
+[FAIL] CS-AC-08 saving the name from the visible form names the agent without opening anything else :: status=303 action=/home/agent-name agent=[{'id': 'agent_8bb18915cd5dd5ea1ab763', 'keys': 0, 'name': '', 'revoked': False}]
+[FAIL] CS-AC-08 after naming, the '이름을 정할 에이전트' section is gone (empty section shows no title) :: 
+=== exit 0 s_names.py
+=== s_nohost.py 01:42:59
+[PASS] CS-AC-07 no host: default 내 에이전트 <번호> on the consent screen and saved with it :: default=내 에이전트 1 event={"state": "connected", "agent": "agent_303af8db508474de036c9b", "name": "내 에이전트 1", "fingerprint": "SHA256:pbMaJ_0bwDPPk7GrksEqyG0vgjcjGz547-y9xs5lY6c"}
+=== exit 0 s_nohost.py
+=== s_browser.py main 01:43:03
+[PASS] CS-AC-12 starter A reopens a completed link: completion screen with the agent name :: status=200 name=Claude Code 3 text=     이 연결은 완료됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 완료됐습니다 
+
+
+  Claude Code 3 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요.   내 에이전트로 이동   
+
+[PASS] CS-AC-12 completed screen does not claim expiry/cancel/invalid ::      이 연결은 완료됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 완료됐습니다 
+
+
+  Claude Code 3 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요.   내 에이전트로 이동   
+  
+[PASS] CS-AC-12 other member B opens the same link: current generic refusal, no agent name/state/email :: status=401 text=     클라이언트 연결 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink   한국어  /  English     클라이언트 연결 
+   !  오류  연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다. 
+ 
+
+
+
+  로그인 화면으로 이동     
+[PASS] CS-AC-12 logged-out browser opens the link: generic refusal, no name/state :: status=401 text=     클라이언트 연결 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink   한국어  /  English     클라이언트 연결 
+   !  오류  연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다. 
+ 
+
+
+
+  로그인 화면으로 이동     
+[FAIL] CS-AC-12 approved but key not saved: starter sees 'app is saving the key' and not 'connected/완료' (W-01, W-04) :: status=200 text=     연결을 승인했습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    연결을 승인했습니다 
+
+
+  시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에 저장 대기이 '키 등록됨'으로 보입니다. 승인만으로는 아직 연결되지 않았습니다.   내 에이전트로 이동   
+  
+[PASS] CS-AC-12 cancelled link, starter: 'cancelled' + connect-again-from-app guidance :: status=200 text=     이 연결은 취소됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 취소됐습니다 
+
+
+  키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.   내 에이전트로 이동   
+  
+[INFO] CS-AC-12 expired link, starter: current screen (reason/connect-again guidance expected by W-01) :: status=200 text=     이 연결은 만료됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 만료됐습니다 
+
+
+  키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.   내 에이전트로 이동   
+  
+Traceback (most recent call last):
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\s_browser.py", line 36, in <module>
+    s, raw, _ = google_login(bb, oid, "b"); t = bb.text(raw)
+                ~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\lib.py", line 24, in google_login
+    assert s == 303, (s, raw[:200])
+           ^^^^^^^^
+AssertionError: (401, '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>서비스 안내와 시작하기 · KnowsLink</title><style>\n:root{--canvas:#FFFFFF;--ink:#182B31;--muted:#526')
+=== exit 1 s_browser.py main
+=== s_reasons.py 01:43:16
+[PASS] CS-AC-11 unreachable (ko): code, text, next action; exit 2 :: {"state": "failed", "reason": "unreachable", "message": "KnowsLink 서버에 연결할 수 없습니다. 인터넷 연결을 확인하고 다시 연결하세요."}
+[PASS] CS-AC-11 unreachable (en): code, text, next action; exit 2 :: {"state": "failed", "reason": "unreachable", "message": "Can't reach the KnowsLink server. Check your internet connection and connect again."}
+[PASS] CS-AC-04 web: 21st new agent in 24h is refused with agent_rate wording and a time :: status=429 text=     내 에이전트 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    내 에이전트 
+   !  오류  오늘 새 에이전트를 많이 만들었습니다. 2026-10-28 10:36:55 KST 뒤 다시 연결하세요. 기존 에이전트는 그대로 쓸 수 있습니다. 
+ 
+
+
+
+  내 에이전트로 돌아가기     
+[PASS] CS-AC-11 agent_rate (ko): code, text with time, next action; retry_at present; exit 2 :: {"state": "failed", "reason": "agent_rate", "message": "오늘 새 에이전트를 많이 만들었습니다. 2026-10-28 01:36 UTC 뒤 다시 연결하세요. 기존 에이전트는 그대로 쓸 수 있습니다.", "retry_at": "2026-10-28T01:36:56Z"}
+[PASS] CS-AC-11 agent_rate (en): code, text with time, next action; retry_at present; exit 2 :: {"state": "failed", "reason": "agent_rate", "message": "You've made many new agents today. Connect again after 2026-10-28 01:36 UTC. Your existing agents still work.", "retry_at": "2026-10-28T01:36:56
+[PASS] CS-AC-04 after agent_rate refusals: B still has the same 20 agents (10 revoked kept, 10 active), none newly made :: total=20
+[PASS] CS-AC-11 dropped key-save answer: single poll errors, nothing claims 'connected', no agent exists yet :: {"error": "relay unreachable"}
+[PASS] CS-AC-11 retry on the same folder checks that attempt first and connects with the chosen name :: {"state": "connected", "agent": "agent_c8ba8c2e7faa30781edec3", "name": "미확인 이름", "fingerprint": "SHA256:Jgr6GiqIqRI_lk8FEuGFTdR04ncMBVnf-qHUXd80G70"}
+[PASS] CS-AC-11 rate_limited (ko): code, text with time, next action :: {"state": "failed", "reason": "rate_limited", "message": "요청이 많아 잠시 멈췄습니다. 2026-10-27 01:45 UTC 뒤 다시 연결하세요.", "retry_at": "2026-10-27T01:45:30Z"}
+[PASS] CS-AC-11 rate_limited (en): code, text with time, next action :: {"state": "failed", "reason": "rate_limited", "message": "Too many requests. Connect again after 2026-10-27 01:45 UTC.", "retry_at": "2026-10-27T01:45:30Z"}
+=== exit 0 s_reasons.py
+=== s_security.py 01:44:32
+[PASS] CS-AC-16 secret material found on disk to search for (private.pem bodies, credentials, login tokens) :: 32 secret strings
+[PASS] CS-AC-16 none of the secret strings appear in 20 captured outputs/logs (CLI JSON lines, MCP replies, fixture log, evidence) :: hits=[]
+[PASS] CS-AC-16 pattern search (PEM header, credential value, lease token, bearer) over the same files: 0 hits :: hits=[]
+[PASS] CS-AC-16 member pages of A, B, D show no other non-friend member's e-mail or agent id :: leaks=[]
+=== exit 0 s_security.py
+=== s_browser.py signup 01:44:33
+Traceback (most recent call last):
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\s_browser.py", line 49, in <module>
+    r = hnode("start", URL, W + "/w02-signup"); sid = conn_id(r["url"]); b = Browser()
+                                                              ~^^^^^^^
+KeyError: 'url'
+=== exit 1 s_browser.py signup
+ALLDONE
