@@ -117,6 +117,10 @@ test_level: lite
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-LIVE | 브랜치 fullops/tester | SHA <브랜치 HEAD>` 한 줄로 쓴다.
-처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+- 브랜치 / SHA: `fullops/tester` / `ce40f8d2`(기록 커밋). 기준 main `3d67c5d8`.
+- 변경 이유: 운영 relay에서 CS-AC-18 실연결 검증과 옛 CONNECT 시나리오 기대 4건 갱신.
+- 판정: CS-AC-18 PASS, high 이상 결함 0. 회원 B(Claude Code) 연결·지문 일치·기본 이름·W-01·취소 시도 목록 불변, 회원 A(Grok Bot 새 설치 `knowslink-live`) 연결·W-01, 친구 해제 후 재요청·수락, 서로의 agent 이름 표시, 시험 메시지 1건 수신(sender 이름 `Grok Bot`).
+- 검토 필요: 회원 A 동의 화면 승인은 사용자가 직접 했다(사람이 꼭 한 행동). Grok Bot 컴퓨터에 새 prefix `/workspace/.knowslink-live`·소스 폴더·MCP `knowslink-live`를 더했다(제거 방법은 보고서).
+- 검증한 것과 못 한 것: 위 항목 확인. 못 한 것: 회원 A 동의 화면의 에이전트 직접 지문 대조·이름 입력, 자동 설정 설치기·Claude Code 세션 안 `/knowslink-session`, 양방향 대화. 캡처 없음.
+- 산출물: [report](../docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md), [시나리오 UX-002](../docs/evaluations/scenarios/SAR-UX-ISSUES-002-CONNECT-TESTER.md), [시나리오 CONNECT-SIMPLE](../docs/evaluations/scenarios/SAR-CONNECT-SIMPLE-001-TESTER.md). 원시 로그는 `.fullops-squad/local/SAR-CONNECT-SIMPLE-001-LIVE/`.
+- 남은 일: 관찰 1(새 설치 `npm audit` 4건 보고)을 dev가 의존성 범위로 확인. D02·D04·D12 변경 필요 없음. 새 agent·연결 기록·Grok 새 설치는 사용자 지시 전까지 유지.
