@@ -40,7 +40,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - FullOps 1.10.0 적용 2026-10-27(bf67dfcb). D042 '배포 진행', D043 '자동 설정 함께 공개'(main에 SAR-AUTOSETUP-001 화면이 함께 있어 설치 파일 0.1.0·/install ingress도 게시). OPS 배정: ops fresh 세션, claude sonnet-5-5 high(ops 후보 하나, 직렬 운영 절차·지난 배포와 같은 순서). 지시서 handovers/to_ops.md.
 - OPS 배정: task_60054516e2a4 / ctx_626d8f3c3217 / term_c0ca1a14-3b7d-4b57-8b9a-c736120a9914, 착수 확인. 질문 msg_94c4b58774d3(compose에 KNOWSLINK_INSTALL_DIR·install 마운트 없음) → coor 답 A: 서버 로컬 override(relay env·:ro 마운트만), D12 기록, 후속 dev가 compose.ops.yaml로 옮김.
 - OPS 통합 2026-10-27: msg_c4a1be536c86 ops d4ef2f4d. 운영 relay 4fdd149b→bf67dfcb(중단 약18초, healthy·restart0·migrate0), /install/0.1.0/ 3파일 공개(서버 로컬 compose.install.yaml), probe 21/21·보존 39/39, live agent 30. need skip(코드 0), --no-ff e5819ac7, lint ERROR 0, push, ops release. 후속: dev가 override 두 줄을 compose.ops.yaml로 이전(PLANS 대기).
-- LIVE 배정 준비: SAR-AUTOSETUP-001-QA 인박스를 handovers/pending/SAR-AUTOSETUP-001-QA-tester.md로 대기(D040). tester fresh 세션, claude sonnet-5-5 high(tester 후보 중 실패 경계·연동 회귀 검증 항목). 지시서 handovers/to_tester.md SAR-CONNECT-SIMPLE-001-LIVE.
+- LIVE 배정 준비: SAR-AUTOSETUP-001-QA 인박스를 handovers/pending/SAR-AUTOSETUP-001-QA-tester.md로 대기(D040). tester fresh 세션, claude sonnet-5-5 high(tester 후보 중 실패 경계·연동 회귀 검증 항목). 지시서 handovers/to_tester.md SAR-CONNECT-SIMPLE-001-LIVE. 배정 task_42334558ac95 / ctx_1e8d20dd92fe / term_2102cbe4-5ef7-48a4-ab57-f1f007c1cf85, 착수 확인(계정 주소는 spec으로만 전달).
 - [ ] 대기: dev — 서버 로컬 compose.install.yaml(relay env KNOWSLINK_INSTALL_DIR·:ro install 마운트)을 compose.ops.yaml로 옮겨 repo 추적(SAR-CONNECT-SIMPLE-001-OPS 후속).
 
 ## 작업 파일 위치 정리 — 2026-10-24
