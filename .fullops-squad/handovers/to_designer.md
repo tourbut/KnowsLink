@@ -117,3 +117,12 @@ SAR-CONNECT-SIMPLE-001-DEV(0fff4ca0)와 리뷰 후속 FIX-DEV(987152d4)가 main 
 ## 완료 보고
 
 브랜치 / SHA / 판정 요약 / 결함 / 남은 일. worker_done 본문 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-ART | 브랜치 fullops/designer | SHA <HEAD>` 한 줄로 쓴다.
+
+- 브랜치 fullops/designer. 보고 커밋 `f994b432`. 대상 main `3f1da403`.
+- 판정: CS-AC-17 FAIL(medium 1, critical·high 0). KO·EN × 1440·390·320, 28화면 84장 측정. 가로 넘침 0, 한도 문구 0, 모든 초점에 3px outline, D04 키보드 순서 일치. EN Google 실패 3화면만 FAIL이다.
+- 결함: V-CS-01 medium. EN W-02 제목·`<title>`이 'Google 로그인'이다(`google.go:210`, EN 사전 누락). low 5건: V-CS-02 KO 'Codex이' 조사, V-CS-03 새 절 버튼의 접근성 이름 중복, V-CS-04 `agent_rate` 복귀 링크 '홈으로', V-CS-05 device 템플릿의 'Node 로컬 클라이언트' 고정값, V-CS-06 시도 정렬이 무작위 ID 순서.
+- 제품 결정: V-CS-02 KO 문장을 정했다. EN 이름 도움말은 기존 문자열을 유지한다.
+- 남은 일: DEV가 V-CS-01을 고친 뒤 EN 1폭 재검수를 한다. D04 반영(V-CS-02 문장, EN 도움말)은 designer 후속이다.
+- not_run: 실제 Google OAuth, 상태 변경 POST 전이, 실제 200% 확대·스크린리더, 테마(제품에 없음).
+- 검사: FullOps lint `--from 3f1da403` ERROR 0, WARNING 1(PLANS.md SIZE-001, 기존). product-lint는 Windows에 `make`가 없어 실행 불가다. 제품 코드 변경은 없다.
+- 보고서: [report.md](../docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-ART-test/report.md). fixture 사본·로그는 `.fullops-squad/local/SAR-CONNECT-SIMPLE-001-ART/`(gitignore)에 있다. Postgres 컨테이너 `kl-csart-pg`는 정지했다.
