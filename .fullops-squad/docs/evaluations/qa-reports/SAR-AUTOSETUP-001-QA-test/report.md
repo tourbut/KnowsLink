@@ -1,17 +1,91 @@
 ---
 title: SAR-AUTOSETUP-001-QA — Claude Code·Codex 자동 설정 큰 틀 검수 보고
 status: draft
-updated: 2026-10-23
+updated: 2026-10-27
 owner: tester
-tasks: [SAR-AUTOSETUP-001-QA]
-summary: "실제 화면 명령을 격리 relay에서 실행해 N1–N6·갱신·화면(S7)·자격 경계를 확인했다. 실제 호스트 로그인이 없어 세션 연결·첫 발송(AC-02/03)과 AC-04 전체 시간은 미확인이다. 미해결 high 0, 새 관찰 3건."
+tasks: [SAR-AUTOSETUP-001-QA, SAR-AUTOSETUP-001-QA2]
+summary: "1차(10-23)는 N1–N6·갱신·S7·자격 경계를 확인했다. 2차(10-27, QA2)는 로그인한 격리 Claude Code 실세션으로 N7–N8·AC-02·AC-04를 PASS 확인했다(3분 24초). 갱신(AC-07)은 호스트 플러그인이 2개 이상이면 실패하는 결함 O-04(high)를 찾았다. Codex는 사용자 결정 D040으로 제외."
 ---
 
 # SAR-AUTOSETUP-001-QA — 큰 틀 검수 보고
 
 독립 동작 QA(lite, 새 사용자 흐름 1회)다. 제품 코드는 고치지 않았다. 운영 relay·실제 Google 계정·실제 상대·사용자 실제 `~/.claude`·`~/.codex`는 쓰지 않았다.
 
-**결론: 부분 완료.** 통과 조건(AC-01–AC-04 PASS)은 충족하지 못했다. 이유는 제품 결함이 아니라 검증 환경이다. 격리 `CLAUDE_CONFIG_DIR`·`CODEX_HOME`의 실제 호스트 로그인은 브라우저 OAuth 동의가 필요한데, 자동화 권한 분류기가 거부했다(우회하지 않음). 사용자가 로그인해 주면 남은 항목을 이어서 검증한다(`남은 일`).
+**최종 결론(QA2 반영, 2026-10-27): Claude 쪽 AC-01·02·04 PASS, AC-07(갱신)은 O-04 때문에 조건부.** 아래 `QA2` 절이 최신 판정이다. 1차(10-23) 절은 기록으로 남기고 해당 행에 QA2 판정을 덧붙였다. 미해결 high **1건(O-04)**, critical 0. Codex 항목은 사용자 결정 D040으로 이번에 제외했다.
+
+## QA2 실세션 검수 (SAR-AUTOSETUP-001-QA2, 2026-10-27)
+
+독립 동작 QA(lite)다. 제품 코드는 고치지 않았다. 운영 relay·운영 agent·실제 상대·실제 `~/.claude`·`~/.codex`는 쓰지 않았다. 격리 폴더의 로그인 자격 파일은 열지도 복사도 하지 않았다(크기·수정시각만 확인).
+
+### 환경
+
+| 항목 | 값 |
+|---|---|
+| 제품 SHA | `66407760`(main), 격리 `git worktree add --detach`에서 빌드. 제품 파일 변경 0 |
+| 호스트 | Windows 11 Pro 26300, Windows PowerShell 5.1, Claude Code **2.1.311**(검증 버전 2.1.302와 다름), Node 22.22.2(빌드·실행) |
+| 로그인 | 사용자가 마친 격리 `CLAUDE_CONFIG_DIR`=`D:\workspace\KnowsLink\.devtools\autosetup-001-qa\claude-config`. `claude auth status` loggedIn true(coor 확인, tester 재확인). 자격 파일은 설치·세션 전후 크기 559바이트·수정시각 동일 |
+| 배포물 | `package_plugin.py --release … --relay-url http://127.0.0.1:18442`, Claude ZIP `2d2c1884…`, Codex ZIP `45a09512…`(합성 상대 B 설치용) |
+| relay | 격리 Postgres 17(Compose 프로젝트 `knowslink-autosetup-qa2`, 15482) + 1차 시험 fixture(합성 회원 a·b 친구 1쌍, Google 콜백만 대행) |
+| 합성 상대 B | 회원 b 이름으로 설치한 Codex 설치기 산출물의 `plugin.js`를 스크립트 MCP 클라이언트로 구동([qa2-b_step.mjs](tools/qa2-b_step.mjs)). **Codex 호스트 세션은 쓰지 않았다**(상대 역할만) |
+| 실세션 | Orca 터미널에서 `CLAUDE_CONFIG_DIR`을 위 폴더로 두고 `claude` 실행([화면 1](ev/qa2-claude-session-1.screen.txt), [재시작 후](ev/qa2-claude-session-restart.screen.txt)) |
+| 도구 | [qa2-install_run.py](tools/qa2-install_run.py)(`QA_CLAUDE_CONFIG`로 로그인 폴더 지정), [qa2-fixture.sh](tools/qa2-fixture.sh), [qa2-b_step.mjs](tools/qa2-b_step.mjs), [qa2-repro.ps1](tools/qa2-repro.ps1) |
+
+### AC 판정
+
+| AC | 판정 | 근거 |
+|---|---|---|
+| AC-01 사람 행동 | **PASS** | 아래 행동 표. 경로·환경 변수·설정 파일 편집 입력 0, 붙여 넣은 셸 명령 1 |
+| AC-02 Claude 첫 발송 | **PASS** | `/knowslink-session on` 뒤 기존 발송 승인 대화상자(「본문 전체 29자 … 그대로 보낼까요?」)에서 1회 승인 → `queued`, 상대 B `receive`가 같은 본문·발신자를 1건 받음([B 수신](ev/qa2-peer-B-recv.jsonl.txt)). 설치 완료·세션 연결만으로는 발송이 없었다: 연결 직후 `대기 0건`, B의 첫 `receive`가 정확히 이 1건 |
+| AC-02 역방향 | **PASS** | B(합성) 발송은 B 쪽 4자리 코드 승인 후 `queued`([B 발송](ev/qa2-peer-B-send.jsonl.txt)). 실세션 Claude 화면에 알림 「KnowsLink 외부 메시지 도착 · 발신 친구 합성 회원 b … 대기 1건」과 상태줄 `대기 1`이 떴고, `knowslink_text_receive`로 본문·발신자를 받았다(`untrusted: true`, 세션 수신 기록 저장) |
+| AC-03 Codex | **사용자 결정 제외(D040)** | 미검증 |
+| AC-04 시간 | **PASS** | 명령 붙여 넣기 23:45:08 → 첫 발송 승인 완료 23:48:32 = **3분 24초**(한도 10분). 구간: 설치기 17.8초(내려받기·Node·등록·브라우저 대행 포함), `claude` 열기·첫 실행 안내, `/knowslink-session on` 23:47:25(연결 확인), 발송 요청 23:47:53, 승인 23:48:32([시각 기록](ev/qa2-timeline.txt)). 한계: 자동 구동 시간이다. 사람이 화면을 읽고 지문을 비교하는 시간은 더 걸린다. 이 시험에서 첫 실행 안내 중 신뢰 폴더 선택을 잘못 눌러 Claude Code를 한 번 다시 열었다(약 1분 포함) |
+| AC-07 갱신 | **조건부(O-04 참조)** | 호스트 플러그인이 knowslink 하나뿐인 환경에서는 PASS: 같은 명령이 `기존 설치 갱신`, 5.5초, agent ID·`agent.json`·`private.pem` 해시·웹 agent 수 1·친구 수 1 동일([전](ev/qa2-update-before.txt)/[후](ev/qa2-update-after.txt)), 이전 설치 `.previous-*` 보존. 갱신 뒤 Claude Code를 다시 열어 `/knowslink-session on`이 같은 agent로 새 세션에 연결됨([재시작 후 화면](ev/qa2-claude-session-restart.screen.txt)). **호스트 플러그인 목록에 다른 플러그인이 함께 있으면 실패한다**(O-04) |
+| AC-05·06 자격 경계 | **PASS** | 실제 `~/.claude`·`~/.codex` 전후: 변하는 파일은 1차와 같다(마켓플레이스 자동 새로고침으로 `known_marketplaces.json` 해시만 바뀜, 크기 같음, `knowslink` 0건. 이 세션 프로필 `.claude.json`은 실행 중이라 제외)([전](ev/qa2-real-before.txt)/[후](ev/qa2-real-after.txt)). 격리 로그인 폴더 `settings.json`에는 KnowsLink 항목 2개(`extraKnownMarketplaces.knowslink-plugins`, `enabledPlugins.knowslink@knowslink-plugins`)와 첫 실행의 `theme`만 있다. 출력·설치 로그에서 토큰·개인키 패턴 검색 0건. 지문은 앞 8자만 보고서·증거에 남겼다 |
+
+### 사람 행동 표(Claude 2.1.311, 실세션)
+
+| 단계 | 사람 행동 | 입력 종류 |
+|---|---|---|
+| N1 | 화면 명령 복사→PowerShell 붙여 넣기 | 붙여 넣기 1회 |
+| N2 | 검증하지 않은 환경(2.1.311)에서 계속 `y` | 한 글자(O-01) |
+| N3 | 설치 계획 동의 `y` | 한 글자 |
+| N5 | 브라우저 Google 로그인·지문 비교·이름·동의 | 브라우저(fixture 대행) |
+| 재시작 | 설치 때 Claude Code가 실행 중이 아니었으므로 없음 | — |
+| N7 | `/knowslink-session on` | 명령 1 → `KnowsLink 연결됨: 세션 3e3cb6a2 · 내 agent agent_784f… · 대기 0건` |
+| N8 | 발송 승인 대화상자 `1. 보내기` | 선택 1 |
+
+합계 6(호스트 재시작 없음). 검증 버전 2.1.302면 5다. S1 한도 6에 닿는다(O-01). 별개로 새 `CLAUDE_CONFIG_DIR`에서는 Claude Code 자체의 첫 실행 안내(테마 선택·보안 안내·폴더 신뢰)가 따로 있다. 이미 Claude Code를 쓰는 사용자에게는 없는 단계라 S1 행동으로 세지 않았다.
+
+### S1–S7 최종 판정
+
+| ID | 판정 | 비고 |
+|---|---|---|
+| S1 Claude 행동 ≤6 | **PASS(경계)** | 6/6. 검증 버전 밖(2.1.311)이라 `y` 1개가 더해져 여유 0(O-01) |
+| S2 Codex | **사용자 결정 제외(D040)** | 1차에서 N1–N6만 확인 |
+| S3 ≤10분 | **PASS(Claude)** | 3분 24초(AC-04). Codex 미측정(D040) |
+| S4 자격 경계 | **PASS** | 1차 + 실세션 후 재확인 |
+| S5 갱신 | **조건부** | 단일 플러그인 환경 PASS, 다중 플러그인 환경 FAIL(O-04) |
+| S6 실패 안내 | 1차 판정 유지 | 이번 범위 밖 |
+| S7 화면 | **PASS** | 1차 판정 유지 |
+
+### O-04 (high) — 호스트에 플러그인이 둘 이상이면 갱신·재실행이 실패한다
+
+- 재현: 호스트 `claude plugin list --json`이 항목 2개 이상이고 그중 하나가 `knowslink@knowslink-plugins`일 때 같은 명령을 다시 실행한다. 이 시험에서는 Orca가 주입한 `CLAUDE_CODE_PLUGIN_DIRS`의 inline 플러그인(`orca-agent-view@inline`)이 둘째 항목이었다. 같은 명령을 그 환경변수만 지우고 실행하면 갱신이 통과한다([실패](ev/qa2-claude-update-fail-plugin-dirs.log.txt), [통과](ev/qa2-claude-update-ok.log.txt)).
+- 증상: 버전 확인 `y` 직후 `[ERROR] 'Path' 매개 변수가 null이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다.`로 종료(종료 코드 1). 실패 단계·바뀐 것·다음 행동 안내가 없다(S6 형식 미적용).
+- 원인(코드 읽기와 합성 입력 재현으로 확인): `scripts/autosetup/knowslink-setup.ps1:243-246` `Get-Registered`가 `@(Get-HostJson …) | Where-Object { $_.id -eq $Plugin }`로 항목을 고른다. Windows PowerShell 5.1의 `ConvertFrom-Json`은 JSON 배열을 한 개의 배열 객체로 돌려주므로 `@()`가 이를 펼치지 못하고, 항목이 2개 이상이면 `Where-Object`가 배열 전체를 통과시켜 `$entry.readFromFolder`가 배열(null 포함)이 된다. 항목이 1개면 우연히 통과한다([합성 재현](ev/qa2-o04-repro.txt), [qa2-repro.ps1](tools/qa2-repro.ps1)).
+- 영향: 다른 플러그인을 하나라도 설치한 Claude Code 사용자는 S5·AC-07(같은 명령 재실행 갱신)이 막힌다. 설치 도중 상태 변경 전에 종료하므로 기존 설치·키는 그대로다(전후 해시 동일). 첫 설치는 영향이 없다(이번 첫 설치가 같은 환경에서 성공).
+- 한계: 실제 둘째 플러그인을 설치해 본 것이 아니라 Orca의 inline 플러그인과 합성 JSON으로 재현했다. 조치(수정)는 dev 판단이다(제품 코드는 고치지 않음).
+
+### QA2 한계
+
+- 실제 Google 로그인·동의는 하지 않았다(1차와 같은 fixture 대행). 사용자 실계정 비밀번호 입력 0.
+- 상대는 합성 B의 스크립트 MCP 클라이언트다. 상대 쪽 호스트 UI는 검증하지 않았다.
+- 발송 승인 대화상자와 도착 알림은 실세션 터미널 화면에서 직접 읽었다. 화면 캡처 이미지는 만들지 않았다(토스트는 텍스트 스트림에서 확인했고 [화면 1](ev/qa2-claude-session-1.screen.txt)에는 대화상자·알림 전 상태가 남는다).
+- Claude Code 2.1.311이라 검증 버전(2.1.302)과 다르다. 화면은 계속 검증 버전을 말한다.
+
+## 1차 검수 기록 (2026-10-23)
+
+**1차 결론: 부분 완료.** 통과 조건(AC-01–AC-04 PASS)은 충족하지 못했다. 이유는 제품 결함이 아니라 검증 환경이다. 격리 `CLAUDE_CONFIG_DIR`·`CODEX_HOME`의 실제 호스트 로그인은 브라우저 OAuth 동의가 필요한데, 자동화 권한 분류기가 거부했다(우회하지 않음). 사용자가 로그인해 주면 남은 항목을 이어서 검증한다(`남은 일`).
 
 ## 고정 후보와 환경
 
@@ -71,7 +145,7 @@ summary: "실제 화면 명령을 격리 relay에서 실행해 N1–N6·갱신·
 
 ## 관찰·결함
 
-심각도 high 0, 미해결 critical 0.
+1차 시점 심각도 high 0, 미해결 critical 0. QA2에서 high O-04가 추가됐다(위 QA2 절).
 
 | ID | 심각도 | 내용 | 재현·영향 |
 |---|---|---|---|
@@ -88,6 +162,7 @@ summary: "실제 화면 명령을 격리 relay에서 실행해 N1–N6·갱신·
 
 ## 남은 일
 
-1. 사용자가 격리 상자에서 두 호스트에 로그인한다. `$env:CLAUDE_CONFIG_DIR='C:\Users\shin\AppData\Local\KnowsLinkDevTools\autosetup-001-qa\work\claude-ko1\claude'; claude auth login` 과 `$env:CODEX_HOME='C:\Users\shin\AppData\Local\KnowsLinkDevTools\autosetup-001-qa\work\codex-ko1\codex'; codex login`.
-2. 로그인 뒤 tester가 실세션으로 N7–N8, AC-02/03, AC-04 시간 측정, S1·S2·S3 최종 판정(약 20–30분).
-3. designer: O-01(S1 행동 수와 검증 버전 문구) 판단.
+1. dev: O-04 수정(`Get-Registered`가 `claude plugin list --json` 항목이 여러 개여도 `knowslink@knowslink-plugins` 한 개만 고르게 한다). 수정 뒤 호스트 플러그인이 2개 이상인 환경에서 같은 명령 재실행(갱신)을 다시 검증한다(tester, 약 10분). 함께 갱신·재실행 실패 시 S6 형식(실패 단계·바뀐 것·다음 행동)이 보이는지 확인한다.
+2. designer: O-01(S1 행동 수 6/6 여유 0과 검증 버전 문구) 판단. D02·D04 변경은 이번 검수에서 필요하지 않았다.
+3. Codex 실세션 N7–N8·AC-03·S2·S3는 사용자 결정 D040으로 제외했다. Codex를 검수 범위에 되돌리면 격리 `CODEX_HOME` 로그인 뒤 재개한다.
+4. 사용자: 격리 로그인 폴더 `D:\workspace\KnowsLink\.devtools\autosetup-001-qa\claude-config`는 지우지 않고 뒀다(사용자 소유, 로그인 유지).
