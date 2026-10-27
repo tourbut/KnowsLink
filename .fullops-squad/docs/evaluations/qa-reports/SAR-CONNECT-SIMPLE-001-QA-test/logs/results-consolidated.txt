@@ -1,0 +1,100 @@
+PASS	CS-AC-01	8th agent also accepted (no count wall at 5 or 7)	status=303
+PASS	CS-AC-01	EN screens contain no limit wording with 8 agents	{}
+PASS	CS-AC-01	KO screens contain no limit wording (회원당/5개/먼저 철회/남은/한도) with 8 agents	{}
+PASS	CS-AC-01	invalid-name refusal has no limit wording	status=422
+PASS	CS-AC-01	member A creates 7 active agents on the web; none refused	statuses=[303, 303, 303, 303, 303, 303, 303] active=7
+PASS	CS-AC-02	B revokes 10 agents; all 10 records kept (revoked=true)	revoke statuses={303} revoked=10
+PASS	CS-AC-02	no limit wording on B's screens	{}
+PASS	CS-AC-02	with 10 revoked records kept, B still creates a new agent (web)	status=303 loc=/home/agents#agent-agent_80344157b69cb919a42045
+PASS	CS-AC-04	after agent_rate refusals: B still has the same 20 agents (10 revoked kept, 10 active), none newly made	total=20
+PASS	CS-AC-04	web: 21st new agent in 24h is refused with agent_rate wording and a time	status=429 text=     내 에이전트 · KnowsLink   본문으로 건너뛰기    KnowsLink    내 에이전트     !  오류  오늘 새 에이전트를 많이 만들었습니다. 2026-10-28 10:36:55 KST 뒤 다시 연결하세요. 기존 에이전트는 그대로 쓸 수 있습니다.         내 에이전트로 돌아가기     
+PASS	CS-AC-05	'진행 중인 연결' section lists the open attempts (M-02) on C's 내 에이전트	진행 중인 연결    Claude Code · 10:26 시작  만료. 키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하세요.  키가 저장되지 않은 시도라 지워도 잃는 것이 없습니다. 정리하지 않아도 하루 뒤 자동으로 정리됩니다.    이 시도 정리     Node 로컬 클라이언트 · 10:37 시작  지문 확인 대기. 연결 링크에서 지문을 비교하고 승
+PASS	CS-AC-05	after 5 attempts (cancel, expire, idle, prepared, consented-unsaved): C active agents and 내 에이전트 cards unchanged (0)	state_agents=0 cards=0
+PASS	CS-AC-05	after success: C has exactly 1 active agent, visible to E; failed attempts still not agents	active=1 cards=1 E-sees=1 (base 0)
+PASS	CS-AC-05	attempt 5 consent accepted (303) but no key saved	status=303 default_name=내 에이전트 1
+PASS	CS-AC-05	friend E's view of C (friend detail page) lists no agent of C	agents on E's view of C before=0 after=0
+PASS	CS-AC-05	next normal connection succeeds after the failed attempts	{"state": "connected", "agent": "agent_4eaf688ccaa142777c380e", "name": "Claude Code", "fingerprint": "SHA256:NEpLLEvp65Lg137c7uWqpBjLRKRDUOIwJu5jwe5ZFP8"}
+PASS	CS-AC-05	setup: C and E are friends, C has 0 agents and 0 attempts	friends=1 agents=None attempts=None
+PASS	CS-AC-06	'이 시도 정리' removes the attempt immediately (server state)	before=True after=False status=303
+PASS	CS-AC-06	after cleanup the app's poll is refused (no phantom agent)	{"error": "login cancelled"}
+PASS	CS-AC-06	after exp passed (<24h) the saved-late completion still connects normally	{"state": "connected", "agent": "agent_f5b0aa1917f94f03185faa", "name": "정리 전 저장", "fingerprint": "SHA256:rTGL508CxThG8xieVq0MC2yXRq2ocxjbrJ3M_nHKcF8"}
+PASS	CS-AC-06	first save attempt dropped: poll shows an error and no agent exists yet (A-01)	{"error": "relay unreachable"} attempts=['approved']
+PASS	CS-AC-06	keyed agent is untouched by cleanup (A-03)	[{"id": "agent_f5b0aa1917f94f03185faa", "keys": 1, "name": "정리 전 저장", "revoked": false}]
+PASS	CS-AC-06	purged attempt cannot be completed later	{"error": "login cancelled"}
+PASS	CS-AC-06	the completed agent has a stored key and its chosen name	[{"id": "agent_f5b0aa1917f94f03185faa", "keys": 1, "name": "정리 전 저장", "revoked": false}]
+PASS	CS-AC-06	unsaved attempt 23h past exp is kept, 25h past exp is purged by the relay	kept@23h=True purged@25h=True
+PASS	CS-AC-06	unsaved consented attempt shows with '이 시도 정리' button on 내 에이전트 (M-02)	<form method="post" action="/home/attempt-remove"><input type="hidden" name="connection" value="xiqPpNXGoltJqhAAC2NQo1v0eLsWBUBSgUC0eqe1Dd8"><button>이 시도 정리</button></form>
+not_run	CS-AC-07	Dots remote path default name 'Dots': fixture cannot start the remote OAuth consent; DEV evidence only	no remote OAuth client in fixture; see DEV report TestDefaultNames + remote tests
+PASS	CS-AC-07	device path (host=claude): consent default name is 'Claude Code' and agent saved with that name	default=Claude Code agent.name=Claude Code
+PASS	CS-AC-07	host=codex default name is the codex display name	default=Codex
+SUPERSEDED(harness)	CS-AC-07	no host: default 내 에이전트 <번호>	default=None
+PASS	CS-AC-07	no host: default 내 에이전트 <번호> on the consent screen and saved with it	default=내 에이전트 1 event={"state": "connected", "agent": "agent_303af8db508474de036c9b", "name": "내 에이전트 1", "fingerprint": "SHA256:pbMaJ_0bwDPPk7GrksEqyG0vgjcjGz547-y9xs5lY6c"}
+PASS	CS-AC-07	second same-host agent gets the next number ('Claude Code 2')	default=Claude Code 2 saved=Claude Code 2
+PASS	CS-AC-07	web add path: default name filled in; after creating it the next default takes the next number	first=내 에이전트 3 second=내 에이전트 4
+PASS	CS-AC-08	after naming all 1 remaining nameless agents (inline form, one by one) the '이름을 정할 에이전트' section has no title at all (M-01)	named=1
+SUPERSEDED(harness)	CS-AC-08	after naming, the '이름을 정할 에이전트' section is gone (empty section shows no title)	
+PASS	CS-AC-08	nameless agent: '이름을 정할 에이전트' section is first, with the name input and save button not inside a <details>	<form method="post" action="/home/agent-name"><input type="hidden" name="agent" value="agent_c21af4888a4f84a45ab055"><label for="unnamed-name-agent_c21af4888a4f84a45ab055">에이전트 이름</label><input id="un
+PASS	CS-AC-08	saving the name from the visible form names the agent without opening anything else	status=303 action=/home/agent-name agent=[{'id': 'agent_c21af4888a4f84a45ab055', 'keys': 0, 'name': '바로 정한 이름', 'revoked': False}]
+PASS	CS-AC-08	section order: 이름 필요 section comes before the agent list (M-01)	pos name-section=11468 list=12413
+PASS	CS-AC-09	grok knowslink_status shows my agent's display name (A-06), no key/token	{"state": "public_node_configured_unverified", "transport": "pull", "actualConnection": "configured_unverified", "webhook": false, "evidenceFetch": false, "me": {"agent": "agent_2d7fa1530cb88488289a0e
+PASS	CS-AC-10	C: brand-new folder connects	{"state": "connected", "agent": "agent_33da9fd555bd7017855be5", "name": "Claude Code 6", "fingerprint": "SHA256:NOmsgSgbYEVceBoGXQrEmTG13XwVtqoAgL1HYE0S-Dw"}
+PASS	CS-AC-10	C: folder with agent.json is reused as connected (no new attempt)	{"state": "connected", "existing": "true"}
+PASS	CS-AC-10	C: leftover attempt files: retry connects with no manual cleanup	{"state": "connected", "agent": "agent_a2ef86f31e7f03ef46bb55", "name": "Claude Code 4", "fingerprint": "SHA256:76be_8z5uZJwJ_hDfb1op2rkwrk0yuz55BmqAm2IYYw"}
+PASS	CS-AC-10	C: leftover files were moved to .unused-<time>, not deleted	leftover_before=['login.json', 'private.pem'] moved=['leftover.unused-1793066241295'] kept=['login.json', 'private.pem']
+PASS	CS-AC-10	C: new private folder ACL: owner current user, only user/SYSTEM/Administrators	owner=SHINPC\shin protected=True rules=SHINPC\shin|FullControl|Allow
+PASS	CS-AC-10	C: path whose parent is a file -> reason private_folder with the path and next action (KO)	{"state": "failed", "reason": "private_folder", "message": "키를 보관할 비공개 폴더를 준비하지 못했습니다(C:/Users/shin/orca/workspaces/KnowsLink/tester/.fullops-squad/local/SAR-CONNECT-SIMPLE-001-QA/work-c7/blocker-file
+PASS	CS-AC-10	C: pre-made empty folder ACL after connect: owner current user, only user/SYSTEM/Administrators	owner=SHINPC\shin protected=True rules=SHINPC\shin|FullControl|Allow
+PASS	CS-AC-10	C: pre-made empty folder is used as is (connected, nothing moved)	{"state": "connected", "agent": "agent_4a30bb081f634e8d060c07", "name": "Claude Code 5", "fingerprint": "SHA256:jKMZ4ryza4HZgJP4gGn-8PWFJWg396dRiEJc5OhrTEI"}
+PASS	CS-AC-10	C: waiting attempt left in the folder is resumed (same link, no new start)	first_event={'state': 'waiting', 'resumed': 'true', 'url': 'http://127.0.0.1:18951/connect/Y0YdFTdFTG_iz12bOrJ98TGm_H9CM-gVc0EobZN2DP4', 'fingerprint': 'SHA256:JeDFIV1Fr9vw-6LW9ZlI5X6AGoOYXL2fTbGISBvg
+PASS	CS-AC-10	D: brand-new folder connects	{"state": "connected", "agent": "agent_d34c6a262d726ea92d5e8d", "name": "Claude Code 3", "fingerprint": "SHA256:CeobGsnHRQdWTU3tJobZMo3aEOUnLYyJYCqJNEQ0KHQ"}
+PASS	CS-AC-10	D: folder with agent.json is reused as connected (no new attempt)	{"state": "connected", "existing": "true"}
+PASS	CS-AC-10	D: leftover attempt files: retry connects with no manual cleanup	{"state": "connected", "agent": "agent_ae67e8e278730ab04e65db", "name": "Claude Code", "fingerprint": "SHA256:nL991-qO_veERYZvmsAIsbg2q8RInlThKtcAc5iZtK4"}
+PASS	CS-AC-10	D: leftover files were moved to .unused-<time>, not deleted	leftover_before=['login.json', 'private.pem'] moved=['leftover.unused-1793066216475'] kept=['login.json', 'private.pem']
+PASS	CS-AC-10	D: new private folder ACL: owner current user, only user/SYSTEM/Administrators	owner=SHINPC\shin protected=True rules=SHINPC\shin|FullControl|Allow
+PASS	CS-AC-10	D: path whose parent is a file -> reason private_folder with the path and next action (KO)	{"state": "failed", "reason": "private_folder", "message": "키를 보관할 비공개 폴더를 준비하지 못했습니다(D:/workspace/KnowsLink/.devtools/connect-simple-001-qa/work/run8/folders/blocker-file/child). 기본 위치로 다시 연결하세요."}
+PASS	CS-AC-10	D: pre-made empty folder ACL after connect: owner current user, only user/SYSTEM/Administrators	owner=SHINPC\shin protected=True rules=SHINPC\shin|FullControl|Allow
+PASS	CS-AC-10	D: pre-made empty folder is used as is (connected, nothing moved)	{"state": "connected", "agent": "agent_2bf432dd03e9cbc0738c08", "name": "Claude Code 2", "fingerprint": "SHA256:HS0mo_LTHVV6oMtA3HqKtYwoNWDghs-IyI5V6G90k7w"}
+PASS	CS-AC-10	D: waiting attempt left in the folder is resumed (same link, no new start)	first_event={'state': 'waiting', 'resumed': 'true', 'url': 'http://127.0.0.1:18951/connect/cxU1NhIA54HsorCAssiaegDD7RwzGqDWRMWvFJdBFwI', 'fingerprint': 'SHA256:8C2Kpm5qrp-I3k9NVhUDtbV_x677Ev-jM9dj9p3W
+PASS	CS-AC-11	C: private_folder (EN): code, text, next action	{"state": "failed", "reason": "private_folder", "message": "Couldn't prepare a private folder for the key (C:/Users/shin/orca/workspaces/KnowsLink/tester/.fullops-squad/local/SAR-CONNECT-SIMPLE-001-QA
+PASS	CS-AC-11	D: private_folder (EN): code, text, next action	{"state": "failed", "reason": "private_folder", "message": "Couldn't prepare a private folder for the key (D:/workspace/KnowsLink/.devtools/connect-simple-001-qa/work/run8/folders/blocker-file/child).
+PASS	CS-AC-11	agent_rate (en): code, text with time, next action; retry_at present; exit 2	{"state": "failed", "reason": "agent_rate", "message": "You've made many new agents today. Connect again after 2026-10-28 01:36 UTC. Your existing agents still work.", "retry_at": "2026-10-28T01:36:56
+PASS	CS-AC-11	agent_rate (ko): code, text with time, next action; retry_at present; exit 2	{"state": "failed", "reason": "agent_rate", "message": "오늘 새 에이전트를 많이 만들었습니다. 2026-10-28 01:36 UTC 뒤 다시 연결하세요. 기존 에이전트는 그대로 쓸 수 있습니다.", "retry_at": "2026-10-28T01:36:56Z"}
+PASS	CS-AC-11	cancelled (EN): reason code, text, next action	{"state": "failed", "reason": "cancelled", "message": "You cancelled the connection. Connect again to get a new link."}
+PASS	CS-AC-11	cancelled (KO): reason code, text, next action; exit 2	{"state": "failed", "reason": "cancelled", "message": "연결을 취소했습니다. 다시 연결하면 새 링크를 만듭니다."}
+PASS	CS-AC-11	dropped key-save answer: single poll errors, nothing claims 'connected', no agent exists yet	{"error": "relay unreachable"}
+PASS	CS-AC-11	rate_limited (en): code, text with time, next action	{"state": "failed", "reason": "rate_limited", "message": "Too many requests. Connect again after 2026-10-27 01:45 UTC.", "retry_at": "2026-10-27T01:45:30Z"}
+PASS	CS-AC-11	rate_limited (ko): code, text with time, next action	{"state": "failed", "reason": "rate_limited", "message": "요청이 많아 잠시 멈췄습니다. 2026-10-27 01:45 UTC 뒤 다시 연결하세요.", "retry_at": "2026-10-27T01:45:30Z"}
+PASS	CS-AC-11	relay-expired attempt: client ends with a reason (not bare failed)	{"state": "failed", "reason": "cancelled", "message": "연결을 취소했습니다. 다시 연결하면 새 링크를 만듭니다."}
+PASS	CS-AC-11	retry on the same folder checks that attempt first and connects with the chosen name	{"state": "connected", "agent": "agent_c8ba8c2e7faa30781edec3", "name": "미확인 이름", "fingerprint": "SHA256:Jgr6GiqIqRI_lk8FEuGFTdR04ncMBVnf-qHUXd80G70"}
+PASS	CS-AC-11	unreachable (en): code, text, next action; exit 2	{"state": "failed", "reason": "unreachable", "message": "Can't reach the KnowsLink server. Check your internet connection and connect again."}
+PASS	CS-AC-11	unreachable (ko): code, text, next action; exit 2	{"state": "failed", "reason": "unreachable", "message": "KnowsLink 서버에 연결할 수 없습니다. 인터넷 연결을 확인하고 다시 연결하세요."}
+SUPERSEDED(harness)	CS-AC-12	approved but key not saved: starter sees 'app is saving the key' and not 'connected/완료' (W-01, W-04)	status=200 text=     연결을 승인했습니다 · KnowsLink   본문으로 건너뛰기    KnowsLink    연결을 승인했습니다      시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에 저장 대기이 '키 등록됨'으로 보입니다. 승인만으로는 아직 연결되지 않았습니다.   내 에이전트로 이동      
+PASS	CS-AC-12	approved but key not saved: starter sees the D04 text (title 연결을 승인했습니다; 'Approval alone doesn't connect it yet') and not 'connected/완료' (W-01, W-04)	status=200 text=     연결을 승인했습니다 · KnowsLink   본문으로 건너뛰기    KnowsLink    연결을 승인했습니다      시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에 저장 대기이 '키 등록됨'으로 보입니다. 승인만으로는 아직 연결되지 않았습니다.   내 에이전트로 이동      
+PASS	CS-AC-12	cancelled link, starter: 'cancelled' + connect-again-from-app guidance	status=200 text=     이 연결은 취소됐습니다 · KnowsLink   본문으로 건너뛰기    KnowsLink    이 연결은 취소됐습니다      키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.   내 에이전트로 이동      
+PASS	CS-AC-12	completed screen does not claim expiry/cancel/invalid	     이 연결은 완료됐습니다 · KnowsLink   본문으로 건너뛰기    KnowsLink    이 연결은 완료됐습니다      Claude Code 4 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요.   내 에이전트로 이동      
+SUPERSEDED(harness)	CS-AC-12	expired link, starter: current screen (reason/connect-again guidance expected by W-01)	status=200 text=     이 연결은 만료됐습니다 · KnowsLink   본문으로 건너뛰기    KnowsLink    이 연결은 만료됐습니다      키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.   내 에이전트로 이동      
+PASS	CS-AC-12	expired link, starter: reason + connect-again-from-app guidance (W-01)	status=200 text=     이 연결은 만료됐습니다 · KnowsLink   본문으로 건너뛰기    KnowsLink    이 연결은 만료됐습니다      키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.   내 에이전트로 이동      
+PASS	CS-AC-12	logged-out browser opens the link: generic refusal, no name/state	status=401 text=     클라이언트 연결 · KnowsLink   본문으로 건너뛰기    KnowsLink   한국어  /  English     클라이언트 연결     !  오류  연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다.         로그인 화면으로 이동     
+PASS	CS-AC-12	other member B opens the same link: current generic refusal, no agent name/state/email	status=401 text=     클라이언트 연결 · KnowsLink   본문으로 건너뛰기    KnowsLink   한국어  /  English     클라이언트 연결     !  오류  연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다.         로그인 화면으로 이동     
+PASS	CS-AC-12	starter A reopens a completed link: completion screen with the agent name	status=200 name=Claude Code 4 text=     이 연결은 완료됐습니다 · KnowsLink   본문으로 건너뛰기    KnowsLink    이 연결은 완료됐습니다      Claude Code 4 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요.   내 에이전트로 이동    
+PASS	CS-AC-13	login deadline passed (attempt expired during Google): specific 'login time passed' message, no retry-as-other-account	status=403 text=     Google 로그인 · KnowsLink   본문으로 건너뛰기    KnowsLink   한국어  /  English     Google 로그인     !  오류  로그인 시간이 지났습니다. 시작한 앱에서 연결 링크를 다시 여세요.         로그인 화면으로 이동     
+PASS	CS-AC-13	other account started this connection: specific message, retry form back to Google account choice	status=403 text=     Google 로그인 · KnowsLink   본문으로 건너뛰기    KnowsLink   한국어  /  English     Google 로그인     !  오류  이 연결은 다른 Google 계정으로 시작됐습니다. 처음 고른 Google 계정으로 다시 선택하세요.         다른 계정 선택     로그인 화면으로 
+PASS	CS-AC-13	other-account response has no email/name/id of A or B	searched emails, member names, subjects
+PASS	CS-AC-13	signups closed (cap filled with 0 synthetic members): specific message for a new Google account, retry to account choice, no other-account info	status=403 text=     Google 로그인 · KnowsLink   본문으로 건너뛰기    KnowsLink   한국어  /  English     Google 로그인     !  오류  이 Google 계정은 아직 KnowsLink 회원이 아니며 지금은 새 가입을 받지 않습니다. 이미 쓰고 있는 Google 계정으로 다시 선택하세요.    
+PASS	CS-AC-13	the two messages differ	
+PASS	CS-AC-14	after consent (confirmed:true) the connection starts: one start request, URL + fingerprint returned, no env set	{"state": "waiting", "url": "http://127.0.0.1:18951/connect/KdLwh3YEyg8hk9552P1OQ0ubo6-JiWQreOn9lTitdGo", "fingerprint": "SHA256:RHc9mPU6jHRUj5yDjhDZtnPis-W9vfsfP6DbHqG5110", "expires": "2026-10-27T01
+PASS	CS-AC-14	automatic agent folder is <prefix>/connections/grok-agent (R-03) with agent.json	files=['agent.json', 'login.json', 'pending.json', 'private.pem']
+PASS	CS-AC-14	browser approval -> knowslink_connect_status reports connected with the agent name (grok default)	{"state": "connected", "fingerprint": "SHA256:RHc9mPU6jHRUj5yDjhDZtnPis-W9vfsfP6DbHqG5110", "me": {"agent": "agent_2d7fa1530cb88488289a0e", "name": "Grok Bot"}}
+PASS	CS-AC-14	connect without confirmed:true is refused by the tool (not started)	{"content": [{"type": "text", "text": "MCP error -32602: Input validation error: Invalid arguments for tool knowslink_connect: Invalid input: expected true at confirmed"}], "isError": true}
+PASS	CS-AC-14	existing environment variables (mode/relay/folder) win over defaults.json and still connect to the env relay	url=http://127.0.0.1:18951/connect/wwAxoqVoSlOB3bt3twe_HSlIUtcQvLjzGJ48YzoPqZ8 status={"state": "connected", "fingerprint": "SHA256:cQJpQ0C0MMLnZyjst6zoViLUfUvf2Aznzk6OlOwHs8Y", "me": {"agent": "agent
+PASS	CS-AC-14	installer script writes release defaults: public-node, production URL, host grok, connections/ root (source check)	scripts/install_bot_mcp.sh line 68
+PASS	CS-AC-14	no environment: status, connect_status, connect without/false confirmation make 0 relay requests	hits={'api': 0, 'starts': 0} no_confirm_error=True rpcError=
+PASS	CS-AC-14	package without defaults.json and without env stays held (no relay request)	{"state": "held", "transport": "pull", "actualConnection": "held", "webhook": false, "evidenceFetch": false}
+PASS	CS-AC-14	release package exposes knowslink_connect / connect_status / status tools	knowslink_connect,knowslink_connect_status,knowslink_status,knowslink_pull_once,knowslink_test_send,knowslink_test_receive,knowslink_text_send,knowslink_text_receive,knowslink_text_receipt
+PASS	CS-AC-16	member pages of A, B, D show no other non-friend member's e-mail or agent id	leaks=[]
+PASS	CS-AC-16	none of the secret strings appear in 19 captured outputs/logs (CLI JSON lines, MCP replies, fixture log, evidence)	hits=[]
+PASS	CS-AC-16	none of the secret strings appear in 20 captured outputs/logs (CLI JSON lines, MCP replies, fixture log, evidence)	hits=[]
+PASS	CS-AC-16	none of the secret strings appear in 21 captured outputs/logs (CLI JSON lines, MCP replies, fixture log, evidence)	hits=[]
+PASS	CS-AC-16	none of the secret strings appear in 23 captured outputs/logs (CLI JSON lines, MCP replies, fixture log, evidence)	hits=[]
+PASS	CS-AC-16	pattern search (PEM header, credential value, lease token, bearer) over the same files: 0 hits	hits=[]
+PASS	CS-AC-16	secret material found on disk to search for (private.pem bodies, credentials, login tokens)	12 secret strings

@@ -1,0 +1,13 @@
+{"id": "CS-AC-01", "check": "member A creates 7 active agents on the web; none refused", "result": "PASS", "detail": "statuses=[303, 303, 303, 303, 303, 303, 303] active=7"}
+{"id": "CS-AC-01", "check": "8th agent also accepted (no count wall at 5 or 7)", "result": "PASS", "detail": "status=303"}
+{"id": "CS-AC-01", "check": "KO screens contain no limit wording (회원당/5개/먼저 철회/남은/한도) with 8 agents", "result": "PASS", "detail": "{}"}
+{"id": "CS-AC-01", "check": "EN screens contain no limit wording with 8 agents", "result": "PASS", "detail": "{}"}
+{"id": "CS-AC-01", "check": "invalid-name refusal has no limit wording", "result": "PASS", "detail": "status=422"}
+{"id": "CS-AC-02", "check": "B revokes 10 agents; all 10 records kept (revoked=true)", "result": "PASS", "detail": "revoke statuses={303} revoked=10"}
+{"id": "CS-AC-02", "check": "with 10 revoked records kept, B still creates a new agent (web)", "result": "PASS", "detail": "status=303 loc=/home/agents#agent-agent_17f369d4f4a82766589e71"}
+{"id": "CS-AC-02", "check": "no limit wording on B's screens", "result": "PASS", "detail": "{}"}
+{"id": "CS-AC-05", "check": "setup: C and E are friends, C has 0 agents and 0 attempts", "result": "FAIL", "detail": "friends=1 agents=None attempts=[{'agent': '', 'exp': '2026-10-27T01:25:26Z', 'host': '', 'id': 'oiV3y49BshjnJVISdHbpmgCMVb2zVnejofqnNSG8S54', 'name': '', 'state': 'prepared'}]"}
+{"id": "CS-AC-11", "check": "cancelled (KO): reason code, text, next action; exit 2", "result": "PASS", "detail": "{\"state\": \"failed\", \"reason\": \"cancelled\", \"message\": \"연결을 취소했습니다. 다시 연결하면 새 링크를 만듭니다.\"}"}
+{"id": "CS-AC-11", "check": "cancelled (EN): reason code, text, next action", "result": "PASS", "detail": "{\"state\": \"failed\", \"reason\": \"cancelled\", \"message\": \"You cancelled the connection. Connect again to get a new link.\"}"}
+{"id": "CS-AC-11", "check": "relay-expired attempt: client ends with a reason (not bare failed)", "result": "연결을 취소했습니다. 다시 연결하면 새 링크를 만듭니다.", "detail": "{\"state\": \"failed\", \"reason\": \"cancelled\", \"message\": \"연결을 취소했습니다. 다시 연결하면 새 링크를 만듭니다.\"}"}
+{"id": "CS-AC-11", "check": "expired (real 10-min wait, KO): reason code, text, next action", "result": "PASS", "detail": "{\"state\": \"failed\", \"reason\": \"expired\", \"message\": \"연결 시간이 지났습니다. 다시 연결하면 새 링크를 만듭니다.\"}"}

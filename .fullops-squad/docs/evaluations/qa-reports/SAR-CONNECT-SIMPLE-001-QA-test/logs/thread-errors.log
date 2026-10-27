@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\lib.py", line 43, in run
+    try: fn(*a)
+         ~~^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\s_attempts.py", line 71, in fourth
+    b, cid, c = approve("c", url); ids["nohost_default"] = c[0]
+                ~~~~~~~^^^^^^^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\lib.py", line 39, in approve
+    cb = google_login(b, cid, acct)
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\lib.py", line 23, in google_login
+    s, raw, h = b.post("/auth/google", {"connection": cid})
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\br.py", line 27, in post
+    def post(self, p, d=None, **k): return self.req("POST", p, d or {}, **k)
+                                           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\br.py", line 25, in req
+    raise RuntimeError("rate limited too long " + path)
+RuntimeError: rate limited too long /auth/google
+
+Traceback (most recent call last):
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\lib.py", line 43, in run
+    try: fn(*a)
+         ~~^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\s_folders.py", line 15, in ok
+    def ok(url): approve("a", url)
+                 ~~~~~~~^^^^^^^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\lib.py", line 39, in approve
+    cb = google_login(b, cid, acct)
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\lib.py", line 23, in google_login
+    s, raw, h = b.post("/auth/google", {"connection": cid})
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\br.py", line 27, in post
+    def post(self, p, d=None, **k): return self.req("POST", p, d or {}, **k)
+                                           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shin\orca\workspaces\KnowsLink\tester\.fullops-squad\local\SAR-CONNECT-SIMPLE-001-QA\br.py", line 25, in req
+    raise RuntimeError("rate limited too long " + path)
+RuntimeError: rate limited too long /auth/google
+

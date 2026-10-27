@@ -1,0 +1,11 @@
+const task = await taskSpace("connect-simple-qa-20261027");
+const page = task.page("p1");
+const out = "C:/Users/shin/orca/workspaces/KnowsLink/tester/.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-QA-test/";
+await page.click('form[action="/auth/google"] button', { label: "Start Google login" });
+await page.waitForSelector("#pick-d");
+await page.screenshot({ path: out + "shot-03-fixture-google-account-chooser.png" });
+await page.click("#pick-d", { label: "Choose account D" });
+await page.waitForLoadState();
+console.log("after callback:", await page.url(), (await page.evaluate(() => document.body.innerText)).slice(0, 200).replace(/\n/g, " "));
+const next = await page.evaluate(() => [...document.querySelectorAll("a")].map((a) => a.textContent.trim() + " -> " + a.getAttribute("href")));
+console.log(JSON.stringify(next));

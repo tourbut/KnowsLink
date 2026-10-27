@@ -1,0 +1,98 @@
+=== s_names.py 01:46:27
+[PASS] CS-AC-07 web add path: default name filled in; after creating it the next default takes the next number :: first=내 에이전트 3 second=내 에이전트 4
+[not_run] CS-AC-07 Dots remote path default name 'Dots': fixture cannot start the remote OAuth consent; DEV evidence only :: no remote OAuth client in fixture; see DEV report TestDefaultNames + remote tests
+[PASS] CS-AC-08 nameless agent: '이름을 정할 에이전트' section is first, with the name input and save button not inside a <details> :: <form method="post" action="/home/agent-name"><input type="hidden" name="agent" value="agent_c21af4888a4f84a45ab055"><label for="unnamed-name-agent_c21af4888a4f84a45ab055">에이전트 이름</label><input id="un
+[PASS] CS-AC-08 section order: 이름 필요 section comes before the agent list (M-01) :: pos name-section=11468 list=12413
+[PASS] CS-AC-08 saving the name from the visible form names the agent without opening anything else :: status=303 action=/home/agent-name agent=[{'id': 'agent_c21af4888a4f84a45ab055', 'keys': 0, 'name': '바로 정한 이름', 'revoked': False}]
+[FAIL] CS-AC-08 after naming, the '이름을 정할 에이전트' section is gone (empty section shows no title) :: 
+=== exit 0 s_names.py
+=== s_browser.py main 01:46:27
+[PASS] CS-AC-12 starter A reopens a completed link: completion screen with the agent name :: status=200 name=Claude Code 4 text=     이 연결은 완료됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 완료됐습니다 
+
+
+  Claude Code 4 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요.   내 에이전트로 이동   
+
+[PASS] CS-AC-12 completed screen does not claim expiry/cancel/invalid ::      이 연결은 완료됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 완료됐습니다 
+
+
+  Claude Code 4 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요.   내 에이전트로 이동   
+  
+[PASS] CS-AC-12 other member B opens the same link: current generic refusal, no agent name/state/email :: status=401 text=     클라이언트 연결 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink   한국어  /  English     클라이언트 연결 
+   !  오류  연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다. 
+ 
+
+
+
+  로그인 화면으로 이동     
+[PASS] CS-AC-12 logged-out browser opens the link: generic refusal, no name/state :: status=401 text=     클라이언트 연결 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink   한국어  /  English     클라이언트 연결 
+   !  오류  연결 수단이 만료·취소·사용되었거나 유효하지 않습니다. 아직 새 키가 연결되지 않았습니다. 
+ 
+
+
+
+  로그인 화면으로 이동     
+[PASS] CS-AC-12 approved but key not saved: starter sees the D04 text (title 연결을 승인했습니다; 'Approval alone doesn't connect it yet') and not 'connected/완료' (W-01, W-04) :: status=200 text=     연결을 승인했습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    연결을 승인했습니다 
+
+
+  시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에 저장 대기이 '키 등록됨'으로 보입니다. 승인만으로는 아직 연결되지 않았습니다.   내 에이전트로 이동   
+  
+[PASS] CS-AC-12 cancelled link, starter: 'cancelled' + connect-again-from-app guidance :: status=200 text=     이 연결은 취소됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 취소됐습니다 
+
+
+  키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.   내 에이전트로 이동   
+  
+[PASS] CS-AC-12 expired link, starter: reason + connect-again-from-app guidance (W-01) :: status=200 text=     이 연결은 만료됐습니다 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink    이 연결은 만료됐습니다 
+
+
+  키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다.   내 에이전트로 이동   
+  
+[PASS] CS-AC-13 other account started this connection: specific message, retry form back to Google account choice :: status=403 text=     Google 로그인 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink   한국어  /  English     Google 로그인 
+   !  오류  이 연결은 다른 Google 계정으로 시작됐습니다. 처음 고른 Google 계정으로 다시 선택하세요. 
+ 
+
+
+   다른 계정 선택  
+  로그인 화면으로 
+[PASS] CS-AC-13 other-account response has no email/name/id of A or B :: searched emails, member names, subjects
+[PASS] CS-AC-13 login deadline passed (attempt expired during Google): specific 'login time passed' message, no retry-as-other-account :: status=403 text=     Google 로그인 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink   한국어  /  English     Google 로그인 
+   !  오류  로그인 시간이 지났습니다. 시작한 앱에서 연결 링크를 다시 여세요. 
+ 
+
+
+
+  로그인 화면으로 이동     
+[PASS] CS-AC-13 the two messages differ :: 
+=== exit 0 s_browser.py main
+=== s_security.py 01:46:42
+[PASS] CS-AC-16 secret material found on disk to search for (private.pem bodies, credentials, login tokens) :: 13 secret strings
+[PASS] CS-AC-16 none of the secret strings appear in 21 captured outputs/logs (CLI JSON lines, MCP replies, fixture log, evidence) :: hits=[]
+[PASS] CS-AC-16 pattern search (PEM header, credential value, lease token, bearer) over the same files: 0 hits :: hits=[]
+[PASS] CS-AC-16 member pages of A, B, D show no other non-friend member's e-mail or agent id :: leaks=[]
+=== exit 0 s_security.py
+=== s_browser.py signup 01:46:44
+[PASS] CS-AC-13 signups closed (cap filled with 0 synthetic members): specific message for a new Google account, retry to account choice, no other-account info :: status=403 text=     Google 로그인 · KnowsLink 
+ 본문으로 건너뛰기 
+  KnowsLink   한국어  /  English     Google 로그인 
+   !  오류  이 Google 계정은 아직 KnowsLink 회원이 아니며 지금은 새 가입을 받지 않습니다. 이미 쓰고 있는 Google 계정으로 다시 선택하세요. 
+ 
+
+=== exit 0 s_browser.py signup
+ALLDONE
