@@ -94,6 +94,9 @@ $Text = @{
         F08n = '{0} 창을 모두 닫고 같은 명령을 다시 실행하세요. 갱신부터 이어서 진행합니다.'
         F09 = '이 설정에서는 연결할 수 없습니다. Codex 승인 모드가 YOLO(approval_policy = "never")입니다.'
         F09n = '{0} 의 approval_policy 를 "on-request"로 바꾸거나 해당 줄을 지운 뒤 Codex를 여세요. 설치기는 승인 모드를 바꾸지 않습니다.'
+        F10 = '예상하지 못한 오류로 멈췄습니다: {0}'
+        F10n = '같은 명령을 다시 실행하세요. 계속되면 위 오류 줄을 알려 주세요.'
+        cMaybe = '일부 단계가 끝났을 수 있음 (마지막 단계는 설치 기록 {0} 에 남아 있음)'
         cNone = '없음'
         cTemp = '없음 (임시 파일 삭제)'
         cFolder = '설치 폴더 {0} 있음, {1} 등록 없음 또는 이전 등록'
@@ -174,6 +177,9 @@ $Text = @{
         F08n = 'Close every {0} window and run the same command again. It continues from the update.'
         F09 = 'You cannot connect with this setting. Codex approval mode is YOLO (approval_policy = "never").'
         F09n = 'Change approval_policy in {0} to "on-request" or delete that line, then open Codex. The installer does not change the approval mode.'
+        F10 = 'Stopped by an unexpected error: {0}'
+        F10n = 'Run the same command again. If it repeats, send the error line above.'
+        cMaybe = 'some steps may be done (the last step is in the install record {0})'
         cNone = 'nothing'
         cTemp = 'nothing (temporary files deleted)'
         cFolder = 'install folder {0} exists; {1} registration missing or previous'
@@ -229,7 +235,8 @@ function Get-HostJson([string[]]$CliArgs) {
     $ErrorActionPreference = 'Continue'
     $out = & $HostCommand.Source @CliArgs 2>$null | Out-String
     if ($LASTEXITCODE -ne 0) { return $null }
-    try { $out | ConvertFrom-Json } catch { $null }
+    # Windows PowerShell 5.1 returns a JSON array as one array object; ForEach-Object unrolls it so callers see one object per item (PowerShell 7 already does).
+    try { $out | ConvertFrom-Json | ForEach-Object { $_ } } catch { $null }
 }
 
 $HostHome = if ($App -eq 'claude') { if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { Join-Path $HOME '.claude' } } else { if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME '.codex' } }
@@ -536,10 +543,13 @@ try {
     Invoke-Setup
 } catch {
     if ("$($_.Exception.Message)" -ne 'knowslink-setup-stopped') {
-        # Unexpected errors still say where it stopped; the record keeps the step, never a key or token.
+        # Unexpected errors use the same failure format (step, what changed, next); the record keeps the step, never a key or token.
+        $record = if ($S.Record) { Join-Path $S.Record.install 'knowslink-install.json' } else { '' }
         Write-Host ''
-        Write-Host ("[ERROR] " + $_.Exception.Message) -ForegroundColor Yellow
-        Save-Record 'error' $_.Exception.Message
+        Write-Host ("[F-10] " + (T F10 $_.Exception.Message)) -ForegroundColor Yellow
+        Say changed $(if ($S.Record) { T cMaybe $record } else { T cNone })
+        Say next (T F10n)
+        Save-Record 'F-10' $_.Exception.Message
         Remove-Temp
     }
     $global:LASTEXITCODE = 1

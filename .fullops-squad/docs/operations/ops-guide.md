@@ -2,9 +2,9 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-27
+updated: 2026-10-28
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -49,6 +49,17 @@ docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml
 - **되돌리는 법**(공개 중단만): 설치 파일 공개를 멈추려면 `config.yml.pre-connect001`을 `tunnel/config.yml`로 되돌리고 cloudflared를 재시작한다(규칙 한 대안이 빠져 `/install`이 다시 404). relay 쪽은 `bf67dfcb` 이하 checkout에서 `compose.install.yaml`을 빼고 relay를 다시 띄우면 변수·마운트가 사라진다. 이후 커밋에서는 `compose.ops.yaml`에서 두 항목을 빼는 새 릴리스가 필요하다. 설치 폴더 파일은 삭제하지 않고 둔다.
 - **relay 코드 rollback**: writer(relay) 중단 → 새 백업 → 서버 checkout을 `4fdd149b`로 → `docker tag knowslink-rollback:4fdd149b-connect001-20261027 knowslink-relay:latest` → 위 규칙의 `up -d --no-build --wait relay`. schema·migration 변경이 없어 코드 전용 복귀다. `bf67dfcb` 이하로 되돌릴 때는 `compose.install.yaml`(또는 `.retired`를 되살린 파일)을 세 번째 `-f`로 얹어야 `/install`이 유지된다. 영향: 이전 relay는 `/v1/connect/start`의 `host`를 `invalid_schema`(422)로 거절해 새 클라이언트가 `unreachable`로 보이고, `/install`은 200을 못 줄 수 있다(404). 과거 DB 덮기·Down·삭제 정리는 금지한다.
 - 미실행: 실계정 로그인·발송, 설치기를 사용자 PC에서 실행하는 실세션 QA(CS-AC-18, 자동 설정 실세션 QA는 tester 과제), 실제 rollback.
+
+### 자동 설정 0.1.1 교체 후보 (O-04 수정, SAR-AUTOSETUP-001-O04-DEV, 서버 미실행)
+
+공개된 0.1.0 설치기는 호스트 플러그인이 2개 이상이면 같은 명령 재실행(갱신)이 실패한다(O-04, Windows PowerShell 5.1 `ConvertFrom-Json` 배열 처리). 게시한 버전 폴더는 바꾸지 않으므로 수정본은 새 버전 0.1.1로 낸다. 아래는 ops 과제 후보이며 사용자 승인 뒤에만 실행한다.
+
+1. 수정을 포함한 main 커밋을 고정하고 그 소스에서 `python3 scripts/package_plugin.py --release <빈 작업 폴더>`(운영 relay URL 기본값)를 실행한다. `adapters/.claude-plugin/plugin.json`의 `0.1.1` 폴더가 새로 생기며 이미 있으면 멈춘다. 설치기 안의 URL·SHA-256은 그 폴더 파일을 가리킨다.
+2. 서버 `/home/shin/deploy/knowslink-state/install/0.1.1/`(폴더 0755·파일 0644)에 세 파일을 둔다. `0.1.0/` 폴더는 지우지 않는다. relay는 요청마다 파일을 읽으므로 재시작이 필요 없고, ingress 규칙은 임의 semver를 이미 허용하므로 Tunnel도 바꾸지 않는다.
+3. 공개 `https://link.knowslog.com/install/0.1.1/` 세 파일이 200이고 설치기 안의 두 SHA-256이 ZIP과 같은지 확인한다. 이 확인이 끝나기 전에는 회원 화면 명령을 0.1.1로 바꾸지 않는다(404 방지).
+4. 그다음에 회원 화면 명령이 `install/0.1.1/`을 가리키는 relay 코드(`internal/relay/human_pages.go`)를 평소 배포 순서(백업·rollback 태그·relay up)로 적용한다. 이 코드는 DB migration이 없다.
+5. 되돌리는 법: relay 코드는 rollback 태그로 되돌리면 화면이 0.1.0 명령으로 돌아간다. 0.1.1 폴더는 삭제하지 않는다. 0.1.0을 이미 설치한 사용자는 0.1.1 명령을 한 번 실행하면 갱신되고(에이전트·키·친구 유지), 옛 0.1.0 명령은 다단 플러그인 환경에서 계속 실패하므로 안내를 새 명령으로 바꾼다.
+6. 후속 검증: tester가 호스트 플러그인이 2개 이상인 환경에서 같은 명령 재실행(갱신)을 다시 확인한다(AC-07·S5).
 
 ## SAR-CONNECT-SIMPLE-001-DEV agent 용량 경계
 
