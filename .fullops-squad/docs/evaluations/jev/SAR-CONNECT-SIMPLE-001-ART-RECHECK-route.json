@@ -1,0 +1,89 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-CONNECT-SIMPLE-001-ART-RECHECK",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "product",
+  "role": "designer",
+  "deliverables": [],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.62,
+        "product": 0.38
+      },
+      "confidence": 0.24
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.52,
+        "ops": 0.02,
+        "tester": 0.46
+      },
+      "confidence": 0.28
+    },
+    "docs": {
+      "D01": 0.23,
+      "D02": 0.33,
+      "D03": 0.25,
+      "D04": 0.47,
+      "D05": 0.28,
+      "D06": 0.26,
+      "D07": 0.22,
+      "D08": 0.23,
+      "D09": 0.28,
+      "D10": 0.42,
+      "D11": 0.29,
+      "D12": 0.38,
+      "D13": 0.45
+    }
+  },
+  "usage": {
+    "input_tokens": 2538,
+    "output_tokens": 314,
+    "cost": 0.000106596
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.718,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "ART V-CS-01 수정 확인 재검수(같은 designer 판정 범위)",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "jev",
+    "probabilities": {
+      "claude claude-sonnet-5-5 high": 0.3,
+      "claude claude-opus-5-5 high": 0.7
+    },
+    "usage": {
+      "input_tokens": 549,
+      "output_tokens": 34,
+      "cost": 2.3058e-05
+    }
+  },
+  "candidate_hash": "d6ed4143f165862597ac9c5d2e13c48aa283bb64500c03f5e638f4f2660acb7d",
+  "head": "06af3fe2318d1f6cf1e423e1f5257ae656c51895",
+  "requires_packet": true,
+  "attempt": "47c7de52bbd746769bf7d08fc85ddb82",
+  "instruction_sha256": "0fde0f89c5996948541864df3b9c6abbf3b1d6ad2367612303bae344fce537e0",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "b8850eb5e34fcdfac729077ad8ee1a2093b3d7845e3d58061b8ca251974fefe5"
+}
