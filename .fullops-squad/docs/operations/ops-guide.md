@@ -4,7 +4,7 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-27
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
@@ -23,7 +23,7 @@ summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검�
 ### 자동 설정 0.1.0 공개: 설치 폴더·compose override·ingress
 
 - 설치 폴더 `/home/shin/deploy/knowslink-state/install/0.1.0/`(폴더 0755·파일 0644): `knowslink-setup.ps1`(SHA256 `33b3ba372340…16fe`), `knowslink-claude-plugin.zip`(`767c0e87ca6d…403e`), `knowslink-codex-plugin.zip`(`498644fe3110…1b3c`). `scripts/package_plugin.py --release <install 폴더>`(운영 relay URL 기본값)로 `bf67dfcb` 소스에서 만들었다. 게시한 버전 폴더는 바꾸지 않는다. 새 버전은 새 폴더로 올리고 설치기 안의 URL·SHA-256이 그 버전을 가리키게 한다.
-- **compose override**: `bf67dfcb`의 `compose.yaml`은 relay에 `KNOWSLINK_INSTALL_DIR`를 넘기지 않고 폴더도 마운트하지 않는다(relay는 read-only 컨테이너). 그래서 운영 `.env`가 아니라 서버 로컬 파일 `/home/shin/deploy/knowslink-state/compose.install.yaml`(0644, repo 밖, 비밀 없음)로 연결했다(coor 승인 옵션 A). 내용은 이 두 항목뿐이다.
+- **compose override (SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV로 repo 이전)**: `bf67dfcb`의 `compose.yaml`·`compose.ops.yaml`은 relay에 `KNOWSLINK_INSTALL_DIR`를 넘기지 않아, 적용 당시 서버 로컬 파일 `/home/shin/deploy/knowslink-state/compose.install.yaml`(0644, repo 밖, 비밀 없음)로 연결했다(coor 승인 옵션 A). 이후 커밋의 `deploy/knowslink/compose.ops.yaml`이 relay에 같은 두 항목(`KNOWSLINK_INSTALL_DIR: /install`, `${KNOWSLINK_STATE_DIR}/install:/install:ro`)을 직접 넣는다. `KNOWSLINK_STATE_DIR`가 비면 다른 마운트와 같이 compose가 거절한다. 서버 override 내용은 아래와 같고, 새 `compose.ops.yaml`과 함께 얹어도 `config` 결과가 같다(중복 마운트 오류 없음, [보고](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV-test/report.md)).
 
 ```yaml
 services:
@@ -34,19 +34,20 @@ services:
       - /home/shin/deploy/knowslink-state/install:/install:ro
 ```
 
-- **compose 호출 규칙**: relay를 만들거나 다시 띄우는 모든 호출에 같은 `-f` 순서를 쓴다. override가 빠지면 install 마운트가 사라져 `/install`이 404가 된다(회원 기능은 그대로).
+- **compose 호출 규칙**: 서버 checkout이 이 변경을 포함한 커밋이면 override 없이 두 파일만 쓴다. `beta.sh`의 `dc`도 같은 두 파일을 쓰므로 `beta.sh up`·`deploy`가 만드는 relay에도 install 마운트가 들어간다(`beta.sh` 수정 불필요). 서버 checkout이 아직 `bf67dfcb` 이하이면 override를 세 번째 `-f`로 계속 얹는다. 빠지면 `/install`이 404가 된다(회원 기능은 그대로).
 
 ```sh
 cd /home/shin/deploy/knowslink
 export KNOWSLINK_STATE_DIR=/home/shin/deploy/knowslink-state KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
-docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml \
-  -f /home/shin/deploy/knowslink-state/compose.install.yaml --env-file /home/shin/deploy/knowslink-state/.env <명령>
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file /home/shin/deploy/knowslink-state/.env <명령>
+# bf67dfcb 이하 checkout만: -f /home/shin/deploy/knowslink-state/compose.install.yaml 을 compose.ops.yaml 뒤에 더한다
 ```
 
-- `beta.sh`는 override를 얹지 않으므로 relay를 `beta.sh`로 다시 만들지 않는다(원래 배포에도 쓰지 않는다). 후속(dev): 이 두 줄을 `compose.ops.yaml`로 옮겨 repo가 추적하게 하면 override 파일이 필요 없다. 그때 서버의 `compose.install.yaml`은 같은 내용이므로 한 번에 빼면 된다.
+- **override 제거 절차(이후 ops 과제, 서버 미실행)**: (1) 이 변경을 포함한 커밋으로 평소 배포 순서(백업·rollback 태그·relay up)를 마친다. 배포 중에는 override를 계속 얹는다. (2) 새 checkout에서 override 없는 `config relay`와 override를 얹은 `config relay`를 파일에 저장하지 않고 `diff <(…) <(…) >/dev/null && echo SAME`으로 비교하고(`config` 전문은 비밀값을 포함한다), `config relay | grep -E 'KNOWSLINK_INSTALL_DIR|target: /install|read_only: true'`로 `KNOWSLINK_INSTALL_DIR: /install`과 `target: /install`·`read_only: true`가 있는지 본다. (3) 결과가 같으면 relay 재생성 없이 `compose.install.yaml`을 `compose.install.yaml.retired`로 이름만 바꾼다(삭제하지 않는다). 컨테이너 정의가 같으므로 `up -d --no-build --wait relay`를 해도 재생성되지 않아야 한다(재생성되면 relay가 약 20초 끊기므로 배포 창에서만 실행). (4) 확인: `docker inspect knowslink-relay-1 --format '{{json .Mounts}}'`에 `/install` RO 바인드, 공개 `https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1` 200. 되돌리는 법: `.retired`를 원래 이름으로 돌리고 위 규칙에 세 번째 `-f`를 다시 얹는다.
+
 - **공개 ingress**: 공개 Tunnel `path` 정규식에 `|/install/[0-9]+\.[0-9]+\.[0-9]+/knowslink-[a-z0-9-]+\.(ps1|zip)` 한 대안만 더했다(repo `public-ingress.yml`과 같음, 반영 전후 `scripts/check_public_ingress.py` 통과). 원본은 `connect001-ops-20261027/config.yml.pre-connect001`(0600)이다. 13:28:19Z에 cloudflared를 한 번 재시작했고 약1초 끊겼다. 공개 `https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1`은 200 `text/plain; charset=utf-8`, ZIP 2개는 200 `application/zip`이고 다른 이름·버전·하위 경로는 404다. 서버 `connect001-ops-20261027/`는 작업물(0700)이다.
-- **되돌리는 법**(공개 중단만): 설치 파일 공개를 멈추려면 `config.yml.pre-connect001`을 `tunnel/config.yml`로 되돌리고 cloudflared를 재시작한다(규칙 한 대안이 빠져 `/install`이 다시 404). relay 쪽은 `compose.install.yaml`을 빼고 relay를 다시 띄우면 변수·마운트가 사라진다. 설치 폴더 파일은 삭제하지 않고 둔다.
-- **relay 코드 rollback**: writer(relay) 중단 → 새 백업 → 서버 checkout을 `4fdd149b`로 → `docker tag knowslink-rollback:4fdd149b-connect001-20261027 knowslink-relay:latest` → 위 규칙의 `up -d --no-build --wait relay`. schema·migration 변경이 없어 코드 전용 복귀다. 영향: 이전 relay는 `/v1/connect/start`의 `host`를 `invalid_schema`(422)로 거절해 새 클라이언트가 `unreachable`로 보이고, `/install`은 200을 못 줄 수 있다(404). 과거 DB 덮기·Down·삭제 정리는 금지한다.
+- **되돌리는 법**(공개 중단만): 설치 파일 공개를 멈추려면 `config.yml.pre-connect001`을 `tunnel/config.yml`로 되돌리고 cloudflared를 재시작한다(규칙 한 대안이 빠져 `/install`이 다시 404). relay 쪽은 `bf67dfcb` 이하 checkout에서 `compose.install.yaml`을 빼고 relay를 다시 띄우면 변수·마운트가 사라진다. 이후 커밋에서는 `compose.ops.yaml`에서 두 항목을 빼는 새 릴리스가 필요하다. 설치 폴더 파일은 삭제하지 않고 둔다.
+- **relay 코드 rollback**: writer(relay) 중단 → 새 백업 → 서버 checkout을 `4fdd149b`로 → `docker tag knowslink-rollback:4fdd149b-connect001-20261027 knowslink-relay:latest` → 위 규칙의 `up -d --no-build --wait relay`. schema·migration 변경이 없어 코드 전용 복귀다. `bf67dfcb` 이하로 되돌릴 때는 `compose.install.yaml`(또는 `.retired`를 되살린 파일)을 세 번째 `-f`로 얹어야 `/install`이 유지된다. 영향: 이전 relay는 `/v1/connect/start`의 `host`를 `invalid_schema`(422)로 거절해 새 클라이언트가 `unreachable`로 보이고, `/install`은 200을 못 줄 수 있다(404). 과거 DB 덮기·Down·삭제 정리는 금지한다.
 - 미실행: 실계정 로그인·발송, 설치기를 사용자 PC에서 실행하는 실세션 QA(CS-AC-18, 자동 설정 실세션 QA는 tester 과제), 실제 rollback.
 
 ## SAR-CONNECT-SIMPLE-001-DEV agent 용량 경계

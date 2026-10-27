@@ -19,6 +19,10 @@ services:
     logging: *log
   relay:
     restart: unless-stopped
+    environment:
+      KNOWSLINK_INSTALL_DIR: /install
+    volumes:
+      - ${KNOWSLINK_STATE_DIR:?KNOWSLINK_STATE_DIR is required}/install:/install:ro
     mem_limit: 256m
     cpus: 0.5
     pids_limit: 128
