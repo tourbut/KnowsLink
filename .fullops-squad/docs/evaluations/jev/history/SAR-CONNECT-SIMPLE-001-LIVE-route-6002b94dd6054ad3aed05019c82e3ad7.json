@@ -1,0 +1,84 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-CONNECT-SIMPLE-001-LIVE",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "tester",
+  "deliverables": [
+    "D11",
+    "D13",
+    "D10"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "product",
+      "probabilities": {
+        "implementation": 0.46,
+        "product": 0.54
+      },
+      "confidence": 0.08
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.96,
+        "ops": 0.02,
+        "tester": 0.02
+      },
+      "confidence": 0.94
+    },
+    "docs": {
+      "D01": 0.44,
+      "D02": 0.76,
+      "D03": 0.71,
+      "D04": 0.74,
+      "D05": 0.76,
+      "D06": 0.71,
+      "D07": 0.59,
+      "D08": 0.62,
+      "D09": 0.77,
+      "D10": 0.85,
+      "D11": 0.86,
+      "D12": 0.85,
+      "D13": 0.86
+    }
+  },
+  "usage": {
+    "input_tokens": 2530,
+    "output_tokens": 314,
+    "cost": 0.00010626
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D12"
+  ],
+  "latency_seconds": 0.735,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": null,
+  "original_route": "unresolved",
+  "override_reason": "독립 동작 QA·실연결 검증은 tester 역할",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "head": "e5819ac7966ffd8c3a9779835d65b5c2cb02b760",
+  "requires_packet": true
+}

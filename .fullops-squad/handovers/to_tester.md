@@ -1,122 +1,122 @@
 ---
-title: "SAR-AUTOSETUP-001-QA — Claude Code·Codex 자동 설정 큰 틀 검수(S1–S7, 호스트별 1회)"
+title: "SAR-CONNECT-SIMPLE-001-LIVE — 운영 실연결 검증 CS-AC-18(회원 A Grok·회원 B Claude Code, 친구 요청·수락)과 옛 CONNECT 시나리오 기대 4건 갱신"
 status: draft
-updated: 2026-10-23
+updated: 2026-10-27
 owner: tester
-tasks: [SAR-AUTOSETUP-001-QA]
-summary: "Claude Code·Codex 자동 설정 큰 틀 검수(S1–S7, 호스트별 1회)"
-attempt: 19d219b00469434185a3811d904f7b04
-base: 4fefdf68fa55d2405bb7aa7c94a73439bf7ab235
+tasks: [SAR-CONNECT-SIMPLE-001-LIVE]
+summary: "운영 실연결 검증 CS-AC-18(회원 A Grok·회원 B Claude Code, 친구 요청·수락)과 옛 CONNECT 시나리오 기대 4건 갱신"
+attempt: b6e2ee12e38d415aab56a140569e489a
+base: e5819ac7966ffd8c3a9779835d65b5c2cb02b760
 subagent_level: standard
 test_level: lite
 ---
 
-# SAR-AUTOSETUP-001-QA — Claude Code·Codex 자동 설정 큰 틀 검수(S1–S7, 호스트별 1회)
+# SAR-CONNECT-SIMPLE-001-LIVE — 운영 실연결 검증 CS-AC-18과 옛 CONNECT 시나리오 기대 4건 갱신
 
 현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.
 
-- 작성일: 2026-10-23
+- 작성일: 2026-10-27
 - From / To: coor → tester
 - 상태: ready
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
-- 승인된 범위 / 추가 승인이 필요한 행위: fullops/tester의 qa-reports·시나리오 문서 작성, 격리 로컬 relay(KNOWSLINK_INSTALL_DIR에 `scripts/package_plugin.py --release` 산출물)·합성 회원으로 검증, 이 PC의 실제 Claude Code·Codex 로그인을 **검증용 별도 CLAUDE_CONFIG_DIR/CODEX_HOME**에서 사용(사용자 결정 D039=A), 커밋·push. 추가 승인 필요: 사용자 실제 ~/.claude·~/.codex 설정 변경, 운영 relay·배포물 공개 게시, 실제 상대에게 발송, 비밀번호 입력, 제품 규칙(AS·D031–D039) 변경, 제품 코드 수정(결함은 보고만)
-- 상위 의도: `.fullops-squad/docs/planning/intents/SAR-AUTOSETUP-001.md` — S1–S7 큰 틀 검수(호스트별 1회)
+- 승인된 범위 / 추가 승인이 필요한 행위: 사용자 결정(2026-10-26, coor 전달)과 D042 배포 진행. 운영 relay `https://link.knowslog.com`(bf67dfcb)에서 회원 A(Grok Bot 쪽, 운영 테스트 계정)와 회원 B(Claude Code 쪽, 사용자 본인 계정)의 실제 연결, 두 회원 사이 친구 요청·수락. ego 브라우저에서 에이전트가 Google 계정 선택·동의·지문 비교·이름·연결 동의·친구 코드 요청·수락을 모두 직접 진행한다(사용자에게 넘기지 않는다). 두 회원의 실제 주소는 coor가 별도 메시지로 전달한다(문서·커밋에 적지 않는다, 회원 A/회원 B로만 쓴다). 새로 만든 agent와 연결 기록은 그대로 둔다. / 추가 승인 필요: 실제 메시지 발송(두 회원 사이 시험 1건도 coor 경유 사용자 승인 뒤), 비밀번호·2단계 인증 코드·새 기기 확인 입력, 사용자 실제 `~/.claude`·`~/.codex` 설정 변경, 두 회원 외 계정, 기존 운영 agent(`agent_c18976751d5a96d8adfbb0`, 이름 없는 agent, 기존 Grok `knowslink` 연결) 철회·정리·변경, 제품 코드 수정(결함은 보고만), 제품 규칙 변경.
 - 담당 repo id / 워크트리 절대경로 / 브랜치: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/tester / fullops/tester
 - 병합 책임자 / 기본 브랜치: coor / main(origin)
-- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/coor / (dispatch 후 기록) / run_76a9511dbb0d / (dispatch 후 기록) / (dispatch 후 기록)
+- 복귀 repo id / 워크트리 / 터미널 핸들 / run id / task id / dispatch id: 0b08ec4c-9e3a-4613-8197-5a835e545335 / C:/Users/shin/orca/workspaces/KnowsLink/coor / term_189d77c7-a247-4d47-bf52-920daaedab82 / run_1701a184c359 / (dispatch 후 기록) / (dispatch 후 기록)
 
 `상태`는 과제 상태다. front matter `status`는 문서 상태(draft/review/approved, lint DOC-003 어휘)라 서로 다른 값이 맞다.
 
 ## 현재 상황과 확인 근거
 
-dev SAR-AUTOSETUP-001-DEV 완료 c74c90e1 → main 8ec61ab3 병합(사용자 D038 리뷰 생략, 병합자 diff 확인). dev 자체 검사: AC-05–AC-10, F-01–F-09 KO·EN, AS-10 PASS(격리 fixture). dev가 실세션으로 확인하지 못한 부분: AC-01 N7–N8 사람 행동 표, AC-02/03 첫 발송, AC-04 10분 측정. 근거: `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md`.
+1단계(격리 fixture) CS-AC-01–17은 통과했다(`qa-reports/SAR-CONNECT-SIMPLE-001-QA-test/report.md`, ART 재검수 PASS). ops가 2026-10-27 운영 relay를 bf67dfcb로 전환했고 자동 설정 0.1.0을 `/install/0.1.0/`에 공개했다(`qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md`, D12 ops-guide 해당 절). 운영 live agent 30개. 이 과제는 2단계(CS-AC-18)와 1단계 QA가 남긴 옛 시나리오 기대 4건 갱신이다. 2단계 조건 정본은 `handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md`의 '실연결 재검증 — 2단계' 절이다.
 
 ## 적용 기준과 예외
 
-- 공통 규칙: `.fullops-squad/rules/common/README.md`, `testing.md`(lite: 새 사용자 흐름 큰 틀 검수 1회). 기준 main 4fefdf68.
-- `AS-`·`AC-`·`F-`·`N`/`U` 흐름 → `.fullops-squad/docs/product-specs/SAR-AUTOSETUP-001.md`(D02). `S1–S7` → intent. 결정 `D031–D039` → `fullops-decisions`(PLANS.md 기록). 산출물 `D04` → `docs/design-docs/mockups/service-member-ui.md`.
-- 예외: 실 호스트 로그인 사용은 D039=A로 승인. 실제 Google 로그인은 합성 회원 경로를 쓰고 사용자 실계정 비밀번호를 입력하지 않는다(Google 로그인이 꼭 필요하면 ask).
+공통 기준은 `.fullops-squad/rules/common/README.md`와 연결 규칙(testing.md `담당과 반복 범위`, security.md)이다. 기준 커밋 main `e5819ac7`. 제품 정본·완료 조건(CS-AC, L-·A-·W-·T- 규칙 ID): `.fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md`. 화면 정본 D04: `.fullops-squad/docs/design-docs/mockups/service-member-ui.md`. 산출물 ID D01~D13: `docs/deliverables/README.md`. 예외 없음.
 
 ## 먼저 읽을 문서
 
-- `.fullops-squad/docs/planning/intents/SAR-AUTOSETUP-001.md`
-- `.fullops-squad/docs/product-specs/SAR-AUTOSETUP-001.md`
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md` (+ 같은 폴더 `scenarios.py`, `drive.py`)
-- `.fullops-squad/docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md`
-- `scripts/autosetup/knowslink-setup.ps1`, `scripts/package_plugin.py`(`--release`)
-- `adapters/README.md`, 루트 `README.md` 자동 설정 절, D11 해당 절
+- `.fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md`('실연결 재검증 — 2단계' 절)
+- `.fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md`(CS-AC-18, E 표, W-01, A-06)
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-QA-test/report.md`('이전 시나리오 회귀' 절의 기대 변경 4건)
+- `.fullops-squad/docs/evaluations/scenarios/SAR-CONNECT-SIMPLE-001-TESTER.md`, `.fullops-squad/docs/evaluations/scenarios/SAR-UX-ISSUES-002-CONNECT-TESTER.md`
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md`
+- `adapters/README.md`(Claude Code 연결), `.fullops-squad/docs/operations/user-guide.md`(Grok Bot 연결)
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] 격리 relay에 release 배포물을 올리고 회원 화면 `use=claude`·`use=codex` 안내의 한 줄 명령을 그대로 실행(호스트별 1회, 각각 새 격리 설정 폴더)
-- [ ] AC-01: N1–N8 사람 행동 표(단계·행동·입력값 종류) 작성, 기준선(intent 문제 절 추정)과 비교
-- [ ] AC-02/03: 설치 직후 세션 연결 → 다른 합성 agent에게 첫 발송·수신까지(Claude→Codex, Codex→Claude)
-- [ ] AC-04: 명령 붙여넣기부터 첫 발송까지 시간 측정(10분 이내)
-- [ ] S1–S7 각각 PASS/FAIL/미확인 판정, F-0x 중 실세션에서 새로 나온 실패가 있으면 재현 절차
-- [ ] 같은 명령 재실행(갱신) 1회 확인 — dev AC-07 결과를 실세션에서 재확인
-- [ ] 결함은 qa-reports에 재현·영향·심각도로 기록(제품 코드 수정 안 함)
+- [ ] coor가 보낸 두 회원 주소를 받기 전에는 로그인하지 않는다(메시지가 없으면 `ask`).
+- [ ] 회원 A로 Grok Bot 쪽 agent를 새로 연결한다. 기존 Grok `knowslink` 연결은 바꾸지 않는다. 사용자 실제 Grok 설정을 바꿔야 하면 멈추고 `ask`한다.
+- [ ] 회원 B로 Claude Code 쪽 agent를 새로 연결한다. 실제 `~/.claude`는 바꾸지 않는다(테스트 폴더의 agent 폴더·격리 설정만 쓴다).
+- [ ] 두 연결 각각: 키 등록, 기본 이름, 링크 재방문 완료 화면(W-01), 실패 시도가 '내 에이전트'에 늘지 않음(CS-AC-05), 실패가 나면 E 표 사유·문구·다음 행동. 지문은 클라이언트 출력과 브라우저 화면을 직접 대조(앞 8자만 기록).
+- [ ] 친구 코드 요청·수락 뒤 두 회원 화면에 서로의 agent가 이름과 함께 보이는지, 도구 결과의 표시 이름(A-06).
+- [ ] 에이전트가 대신한 행동과 사람이 꼭 해야 한 행동(있다면)을 순서대로 기록한다.
+- [ ] 시험 메시지 1건은 `ask`로 coor에 발송 승인을 요청하고, 승인 뒤에만 보낸다. 승인이 없으면 not_run.
+- [ ] 옛 시나리오 기대 4건(QA 보고 '이전 시나리오 회귀' 절)을 현재 규칙에 맞게 시나리오 문서에서 갱신한다(제품 코드·테스트 코드는 바꾸지 않는다).
+
+소유 파일: `qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/`, `docs/evaluations/scenarios/SAR-CONNECT-SIMPLE-001-TESTER.md`, `docs/evaluations/scenarios/SAR-UX-ISSUES-002-CONNECT-TESTER.md`, 이 인박스.
 
 ## 완료 기준과 검증
 
-- 정본: `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md`(front matter 필수). S1–S7 판정표, 호스트별 행동 표, 소요 시간, 명령·종료코드·기준 SHA.
-- 원시 로그는 `raw/`(gitignore) 또는 `.txt`. 키·토큰·실제 이메일·지문 전체 값은 적지 않는다(지문은 앞 8자).
-- 증명 방법: S1–S7 판정표와 실측 시간·행동 수. 통과 조건 = AC-01–AC-04 PASS, 미해결 high 0.
-- lint: `python C:/Users/shin/AppData/Roaming/orca/claude-profiles/6dd9013c-003c-4a1b-8dc5-f4ba45568e5e/home/plugins/cache/fullops-squad/fullops-squad/1.8.3/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/tester --from 4fefdf68`, ERROR 0.
-- 검증 뒤 격리 설정 폴더·임시 relay는 tester가 정리(격리 경로만, 실제 ~/.claude·~/.codex 미변경을 전후 해시로 확인).
-- UI 작업: 해당 없음(시각 검수는 designer SAR-AUTOSETUP-001-ART).
+- CS-AC-18 PASS/FAIL/not_run과 근거가 `qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md`(front matter 필수)에 있다. 결함은 심각도·재현 절차. 통과 조건: 두 회원 연결 완료·친구 성립·서로의 agent 이름 표시, 미해결 high 0.
+- 이메일 주소·키·토큰·쿠키·지문 전체 값은 어디에도 적지 않는다. 캡처에 이메일이 보이면 가리거나 커밋하지 않는다. 원시 로그·임시 파일은 `.fullops-squad/local/SAR-CONNECT-SIMPLE-001-LIVE/`.
+- 기록 커밋 뒤 `python3 C:/Users/shin/AppData/Roaming/orca/claude-profiles/6dd9013c-003c-4a1b-8dc5-f4ba45568e5e/home/plugins/cache/fullops-squad/fullops-squad/1.10.0/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/tester --from e5819ac7` ERROR 0. `work.py finish`, `worker_done`.
+- Google이 비밀번호·2단계 인증·새 기기 확인을 요구하면 입력하지 않고 `ask`한다. 시간 예산 90분, 넘으면 escalation.
+
+### UI 작업의 디자인 기준과 검증
+
+해당 없음(동작 검증). 화면은 D04 문구로 판정만 하고 시각 검수는 하지 않는다.
 
 ## 갱신할 산출물
 
-없음(QA 보고서만). D04·D02 변경 필요가 보이면 완료 보고 `남은 일`에 적는다.
+없음(QA 보고서와 시나리오만). D02·D04·D12 변경 필요가 보이면 완료 보고 `남은 일`에 적는다.
 
 ## 기대 산출물
 
-`.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md`
+`qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md`, 갱신한 시나리오 2개.
 
 ## 제약·협업·후속
 
-designer SAR-AUTOSETUP-001-ART와 병렬. 파일 소유권 겹침 없음(tester는 qa-reports/SAR-AUTOSETUP-001-QA-test만). 하위 에이전트 배정 안 함.
+하위 에이전트 배정 안 함(실계정 브라우저 세션은 직렬). SAR-AUTOSETUP-001-QA(D040, `handovers/pending/SAR-AUTOSETUP-001-QA-tester.md`로 대기)와 별개이며 그 결과를 이 과제 PASS로 쓰지 않는다.
 
 <!-- fullops-packet:start -->
 ### 탐색 근거와 읽을 구간
 
-정본: `.fullops-squad\docs\evaluations\jev\SAR-AUTOSETUP-001-QA-packet.json` / SHA `4fefdf68fa55d2405bb7aa7c94a73439bf7ab235` / partial=True
-- `.fullops-squad/FULLOPS.md` (document_read) · 줄 75 · inferred · 필수
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md` (document_read) · 줄 16 · inferred · 필수
-- `.fullops-squad/docs/planning/intents/SAR-AUTOSETUP-001.md` (document_read) · 줄 31, 56 · inferred · 필수
-- `.fullops-squad/docs/product-specs/SAR-AUTOSETUP-001.md` (document_read) · 줄 전체/미확인 · unknown · 필수
+정본: `.fullops-squad\docs\evaluations\jev\SAR-CONNECT-SIMPLE-001-LIVE-packet.json` / SHA `e5819ac7966ffd8c3a9779835d65b5c2cb02b760` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md` (document_update, document_read) · 줄 185 · inferred · 필수
 - `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
-- `.fullops-squad/docs/design-docs/architecture.md` (document_read, document_update) · 줄 16 · inferred
+- `.fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md` (document_read) · 줄 37 · inferred
+- `.fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md` (document_read) · 줄 227 · inferred
+- `.fullops-squad/docs/design-docs/data-model.md` (document_read) · 줄 16 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 16 · inferred
 - `.fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md` (document_read) · 줄 전체/미확인 · inferred
 - `.fullops-squad/docs/design-docs/mockups/service-member-ui.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/docs/design-docs/module-design.md` (document_update) · 줄 전체/미확인 · unknown
-- `.fullops-squad/docs/design-docs/tech-stack.md` (document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/operations/user-guide.md` (document_read) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-AUTOSETUP-001.md` (document_read, document_update) · 줄 101 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md` (document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md` (document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md` (document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md` (document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_update) · 줄 전체/미확인 · inferred
-- `adapters/hooks/register.test.ts` (impact_check) · 줄 77, 78, 133, 146, 172, 176, 181, 185, 195, 199, 220, 225, 242, 246, 256, 260, 284, 288, 305 · inferred
-- `internal/relay/i18n_en_human.go` (impact_check) · 줄 33, 53, 54, 57, 61, 79, 80, 98, 99, 131, 163, 168, 173 · inferred
-- `internal/relay/i18n_test.go` (impact_check) · 줄 357, 358, 366, 367, 378, 416, 445, 446, 482 · inferred
-- `scripts/autosetup/knowslink-setup.ps1` (direct_edit) · 줄 187, 188, 189, 195, 196, 200, 209, 211, 223, 228, 240, 252, 352 · inferred
-- `scripts/package_plugin.py` (direct_edit) · 줄 25, 32, 99, 139, 162, 198 · inferred
-- `scripts/test_shell_guard.py` (impact_check) · 줄 31, 45, 46, 47, 47, 52, 56, 58, 76, 77, 80, 81, 104, 113, 115 · inferred
-나머지 참조 후보 50건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
-미확인 5건: .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/module-design.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/product-specs/SAR-AUTOSETUP-001.md: missing, oversized, sensitive or invalid; manual inspection. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-QA-test/report.md` (document_update) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/operations/ops-guide.md` (document_read) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/operations/transition.md` (document_read, document_update) · 줄 141 · inferred
+- `.fullops-squad/docs/operations/user-guide.md` (document_read, document_update) · 줄 15 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-AUTOSETUP-001.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md` (document_read) · 줄 98 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-MVP.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md` (document_read) · 줄 100 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md` (document_update, document_read) · 줄 21, 39 · inferred
+나머지 참조 후보 16건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
+미확인 4건: .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/module-design.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄로 쓰고 상세는 `qa-reports/<과제 키>-test/report.md`(역할별로 나눈 키는 `<키>-DEV` 그대로) 링크로 대신한다. 브랜치와 완료 SHA는 여기에 적는다. worker_done 메시지에만 적지 않는다. `남은 일`에 다른 역할의 후속(예: tester 독립 QA)을 쓰면 `work.py finish`가 PLANS.md `## 완료 보고 후속 요청`에 등재한다.
-lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
+항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-LIVE | 브랜치 fullops/tester | SHA <브랜치 HEAD>` 한 줄로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
