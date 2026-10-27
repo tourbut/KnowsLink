@@ -31,6 +31,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - QA·ART 배정 준비: tester 인박스의 SAR-AUTOSETUP-001-QA(D040 사용자 결정 대기, 부분 결과는 6788040f 통합)를 `handovers/pending/SAR-AUTOSETUP-001-QA-tester.md`로 옮겨 보존하고 SAR-CONNECT-SIMPLE-001-QA를 인박스에 넣었다(재개 조건: D040 답 뒤 CONNECT QA 완료 시 다시 인박스로). designer 인박스에 SAR-CONNECT-SIMPLE-001-ART. 기준 main 3f1da403. tester 모델: jev grok-4.7 high 대신 후보 claude-sonnet-5-5 high(실패 경계·연동 회귀 검증, Windows D: 실측·이전 tester 실행 환경과 동일). 2단계 실연결은 운영 배포 승인 뒤 같은 과제로 재배정.
 - QA·ART 배정: tester task_e24204d24237 / ctx_5d71bccaa750 / term_da486903 sonnet-5-5 high, designer task_b4f0a8267c4c / ctx_98d3a29436c2 / term_094dadd0 opus-5-5 high(jev), 둘 다 fresh·effective 일치·5c750943·착수 확인.
 - ART 통합 2026-10-27: msg_36d898ede1e4 designer 9ed04461, 28화면×KO·EN×3폭 84장. CS-AC-17 FAIL: V-CS-01 medium(EN W-02 제목이 'Google 로그인', google.go:210 EN 사전 누락), low 5(V-CS-02~06), critical/high 0. need skip(코드 0), --no-ff dc1da3b7, lint ERROR 0, push. designer release. tester는 진행 중(QA 기준 3f1da403 유지, 미동기화). 후속: tester 결과와 합쳐 DEV 수정 1회 → designer EN 1폭 재검수.
+- QA 통합 2026-10-27: msg_a673ae7c4fbc tester 28e8740c, CS-AC-01·02·05·06·08·10(C:·D:)·12–16 PASS, 07·09·11 부분, 03·04 DEV 근거. critical/high/medium 0, low 1(조사, V-CS-02와 같음). 이전 CONNECT 시나리오 기대 변경 4건(AUTOSETUP 3, 한도 1)은 tester 후속(배포 후 2단계 때 함께). need skip, --no-ff e426f03b, lint ERROR 0, push, tester release, 전 워크트리 동기화.
+- UI-FIX-DEV 배정 준비: SAR-CONNECT-SIMPLE-001-UI-FIX-DEV(V-CS-01 medium + V-CS-02–06 low, D04 V-CS-02 문장 한 칸) → dev fresh opus-5-5 high(jev), 기준 e426f03b. 뒤에 designer EN 1폭 재검수.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
