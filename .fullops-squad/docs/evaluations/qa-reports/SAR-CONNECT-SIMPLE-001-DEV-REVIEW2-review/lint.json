@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "attempt": "d629f17beccd4ec0942b49d625363ac8",
+  "base": "3fa283e0c69208b9c4e81aa4c73873cefca20a6e",
+  "merge_base": "ec33a3fc45692763d9ae3e261307a1ddd276e47e",
+  "head": "0fff4ca0768622c7e8f7128dca3d671372d5f144",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "8c895595ef806126d4a9608d6885e92fedf36f8020cc7ae45676fe86452fac3e",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make 없음. 같은 코드(310fdd73, 이후 .fullops-squad 문서만 변경)를 DEV가 Linux 격리 clone에서 make lint/make test·-race 통합 EXIT=0으로 실행(SAR-CONNECT-SIMPLE-001-DEV-test/report.md)",
+      "status": "unavailable",
+      "exit_code": null,
+      "seconds": 0.0,
+      "output_tail": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트에 make 없음. 같은 코드(310fdd73, 이후 .fullops-squad 문서만 변경)를 DEV가 Linux 격리 clone에서 make lint/make test·-race 통합 EXIT=0으로 실행(SAR-CONNECT-SIMPLE-001-DEV-test/report.md)",
+      "status": "unavailable",
+      "exit_code": null,
+      "seconds": 0.0,
+      "output_tail": ""
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "2138줄(이전 2134, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "536줄(이전 525, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/operations/ops-guide.md"
+    },
+    {
+      "code": "DEP-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": "adapters/package.json",
+      "message": "의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "419줄(이전 0, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/connect-simple.test.ts"
+    },
+    {
+      "code": "SEC-001",
+      "severity": "WARNING",
+      "line": 73,
+      "message": "하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다",
+      "path": "adapters/src/connect-simple.test.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "341줄(이전 339, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/core.ts"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "line": 71,
+      "message": "조건부 객체 스프레드. 명시적 분기보다 읽기 쉬운지 검토한다",
+      "path": "adapters/src/login.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "649줄(이전 545, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/mcp.ts"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "line": 318,
+      "message": "조건부 객체 스프레드. 명시적 분기보다 읽기 쉬운지 검토한다",
+      "path": "adapters/src/mcp.ts"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "line": 71,
+      "message": "조건부 객체 스프레드. 명시적 분기보다 읽기 쉬운지 검토한다",
+      "path": "adapters/src/reasons.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "429줄(이전 421, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "adapters/src/text.ts"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "455줄(이전 448, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/connections_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "692줄(이전 689, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/http.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "542줄(이전 535, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/human_http.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "440줄(이전 413, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/i18n_en_member.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "457줄(이전 409, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/member_agents.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "459줄(이전 457, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/public_messages_integration_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "524줄(이전 518, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/remote_auth.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "555줄(이전 554, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/store.go"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 1738줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 50,
+    "added_lines": 1738,
+    "errors": 0,
+    "warnings": 20,
+    "unavailable": 2
+  }
+}
